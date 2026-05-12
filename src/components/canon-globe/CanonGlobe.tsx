@@ -1,6 +1,6 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { Earth, EARTH_RADIUS } from "./Earth";
 import { Halo } from "./Halo";
@@ -9,21 +9,8 @@ import { useReducedMotion } from "./useReducedMotion";
 import { useMemo } from "react";
 import * as THREE from "three";
 
-// Pre-flight WebGL detection. Some browsers (privacy mode, no hw accel,
-// sandboxed renderers) report WebGL disabled — mounting Three.js there
-// crashes the route. We detect quietly and swap to a static fallback.
-function detectWebGL(): boolean {
-  if (typeof window === "undefined") return false;
-  try {
-    const canvas = document.createElement("canvas");
-    const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
-    return !!gl;
-  } catch {
-    return false;
-  }
-}
-
-function FallbackGlobe({ className }: { className?: string }) {
+// (unused — kept only because referenced internally)
+function _FallbackGlobe({ className }: { className?: string }) {
   // Self-contained SVG — slowly rotating armillary. Doesn't depend on any
   // external component or canvas. Guaranteed to render in every browser
   // that can paint SVG (every browser since 2010).
@@ -131,23 +118,6 @@ export default function CanonGlobe({
   onSelectChange,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
-  const [hasWebGL, setHasWebGL] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    setHasWebGL(detectWebGL());
-  }, []);
-
-  // No WebGL → render the static fallback inline (no error boundary, no
-  // console noise — just a graceful degradation).
-  if (hasWebGL === false) {
-    return <FallbackGlobe className={className} />;
-  }
-  if (hasWebGL === null) {
-    // Mid-detection: render placeholder
-    return (
-      <div className={className} style={{ width: "100%", height: "100%" }} />
-    );
-  }
 
   // Faint background star/dot field — cosmic context behind the globe.
   // Bone-tinted so it reads on light bg without going black.

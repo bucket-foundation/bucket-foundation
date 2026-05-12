@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
-import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import timelineData from "@/data/canon-timeline.json";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
@@ -266,15 +265,13 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
               "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
           }}
         />
-        <GlobeErrorBoundary>
-          <R3FCanonGlobe
-            markers={markers}
-            activeIndex={activeIndex}
-            onHoverChange={setHovered}
-            onSelectChange={setSelected}
-            className="relative z-10"
-          />
-        </GlobeErrorBoundary>
+        <R3FCanonGlobe
+          markers={markers}
+          activeIndex={activeIndex}
+          onHoverChange={setHovered}
+          onSelectChange={setSelected}
+          className="relative z-10"
+        />
       </div>
 
       {/* TIME SCRUBBER — always visible, clearly labelled */}
