@@ -25,29 +25,11 @@ function detectWebGL(): boolean {
 }
 
 function FallbackGlobe({ className }: { className?: string }) {
+  // No message — just the static globe centered in the container.
   return (
-    <div
-      className={className}
-      style={{ width: "100%", height: "100%" }}
-    >
-      <div className="w-full h-full flex flex-col items-center justify-center text-center px-6 py-4">
-        <StaticCanonGlobe branches={[]} size={340} interactive={false} />
-        <div
-          className="mt-4 max-w-md mx-auto rounded-md border px-4 py-3 text-xs"
-          style={{ background: "var(--bone)", borderColor: "var(--hairline)" }}
-        >
-          <span
-            className="small-caps tracking-[0.2em]"
-            style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
-          >
-            static globe ·{" "}
-          </span>
-          <span style={{ color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
-            interactive globe needs WebGL (enable hardware acceleration in
-            your browser to see the rotating one). Search, claims, bridges
-            all work without it.
-          </span>
-        </div>
+    <div className={className} style={{ width: "100%", height: "100%" }}>
+      <div className="w-full h-full flex items-center justify-center">
+        <StaticCanonGlobe branches={[]} size={420} interactive={false} />
       </div>
     </div>
   );
