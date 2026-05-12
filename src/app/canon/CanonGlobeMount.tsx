@@ -1,8 +1,9 @@
 "use client";
 import nextDynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
+import timelineData from "@/data/canon-timeline.json";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ssr: false,
@@ -13,20 +14,24 @@ const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ),
 });
 
-const DEFAULT_MARKERS: CanonMarker[] = [
-  { id: "newton",     lat:  52.806, lng:  -0.628, year: 1643, branch: "physics",     title: "Newton — Woolsthorpe",   kind: "figure-birth" },
-  { id: "einstein",   lat:  48.401, lng:   9.987, year: 1879, branch: "physics",     title: "Einstein — Ulm",         kind: "figure-birth" },
-  { id: "helmholtz",  lat:  52.400, lng:  13.060, year: 1821, branch: "physics",     title: "Helmholtz — Potsdam",    kind: "figure-birth" },
-  { id: "vneumann",   lat:  47.500, lng:  19.050, year: 1903, branch: "information", title: "von Neumann — Budapest", kind: "figure-birth" },
-  { id: "turing",     lat:  51.500, lng:  -0.130, year: 1912, branch: "information", title: "Turing — London",        kind: "figure-birth" },
-  { id: "poincare",   lat:  48.690, lng:   6.180, year: 1854, branch: "mathematics", title: "Poincaré — Nancy",       kind: "figure-birth" },
-  { id: "bragg",      lat: -34.930, lng: 138.600, year: 1862, branch: "chemistry",   title: "Bragg — Adelaide",       kind: "canon-entry" },
-  { id: "mendeleev",  lat:  58.200, lng:  68.250, year: 1834, branch: "chemistry",   title: "Mendeleev — Tobolsk",    kind: "canon-entry" },
-];
+type TimelineEvent = {
+  id: string;
+  title: string;
+  lat: number;
+  lng: number;
+  year: number;
+  branch: string;
+  kind: string;
+};
+
+const ALL_EVENTS = (timelineData.events as TimelineEvent[]).sort(
+  (a, b) => a.year - b.year,
+);
+const MIN_YEAR = timelineData.min_year as number;
+const MAX_YEAR = timelineData.max_year as number;
 
 interface Props {
   branches: GlobeBranch[];
-  markers?: CanonMarker[];
 }
 
 function fmtYear(y?: number): string {
@@ -35,14 +40,53 @@ function fmtYear(y?: number): string {
   return `${y} CE`;
 }
 
-export default function CanonGlobeMount({ branches: _branches, markers }: Props) {
+function eventsAsMarkers(events: TimelineEvent[]): CanonMarker[] {
+  return events.map((e) => ({
+    id: e.id,
+    lat: e.lat,
+    lng: e.lng,
+    year: e.year,
+    branch: e.branch,
+    title: e.title,
+    kind:
+      e.kind === "figure-birth" || e.kind === "canon-entry"
+        ? (e.kind as CanonMarker["kind"])
+        : "canon-entry",
+  }));
+}
+
+export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
-  const visibleMarkers = markers ?? DEFAULT_MARKERS;
+  const [timeOn, setTimeOn] = useState(false);
+  const [year, setYear] = useState(2020);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!playing) return;
+    const id = setInterval(() => {
+      setYear((y) => {
+        const next = y + 25;
+        if (next > MAX_YEAR) {
+          setPlaying(false);
+          return MAX_YEAR;
+        }
+        return next;
+      });
+    }, 100);
+    return () => clearInterval(id);
+  }, [playing]);
+
+  const markers = useMemo(() => {
+    if (!timeOn) {
+      // Default view: all events flat, sized by recency / branch
+      return eventsAsMarkers(ALL_EVENTS);
+    }
+    return eventsAsMarkers(ALL_EVENTS.filter((e) => e.year <= year));
+  }, [timeOn, year]);
 
   return (
-    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-8 md:py-12">
-      {/* Hover readout — at the TOP of the globe section so it's never
-          below the fold. Sticky to viewport top while scrolling. */}
+    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-6 md:py-8">
+      {/* Hover readout — TOP of section, sticky so it follows when scrolling */}
       <div className="sticky top-20 z-30 mx-auto mb-4 w-full px-4 pointer-events-none flex justify-center">
         <div
           className="rounded-md px-5 py-3 shadow-md text-center transition-all duration-200"
@@ -63,7 +107,8 @@ export default function CanonGlobeMount({ branches: _branches, markers }: Props)
               minHeight: "1.3em",
             }}
           >
-            {hovered?.title || "hover or tap a marker"}
+            {hovered?.title ||
+              (timeOn ? fmtYear(Math.round(year)) : "hover or tap a marker")}
           </div>
           <div
             className="mt-1 text-xs uppercase"
@@ -80,21 +125,24 @@ export default function CanonGlobeMount({ branches: _branches, markers }: Props)
                   <span>{fmtYear(hovered.year)} · </span>
                 )}
                 <span>{hovered.branch}</span>
-                <span> · </span>
-                <span>{hovered.kind.replace(/-/g, " ")}</span>
               </>
             ) : (
-              <span>each dot is a canon-anchor place</span>
+              <span>
+                {timeOn
+                  ? `${markers.length} canon events by ${fmtYear(Math.round(year))}`
+                  : `${markers.length} canon-anchor places`}
+              </span>
             )}
           </div>
         </div>
       </div>
 
+      {/* The globe itself */}
       <div
         className="relative w-full mx-auto"
         style={{
-          height: "min(80vh, 1000px)",
-          minHeight: "620px",
+          height: "min(70vh, 800px)",
+          minHeight: "480px",
         }}
       >
         <div
@@ -106,10 +154,72 @@ export default function CanonGlobeMount({ branches: _branches, markers }: Props)
           }}
         />
         <R3FCanonGlobe
-          markers={visibleMarkers}
+          markers={markers}
           onHoverChange={setHovered}
           className="relative z-10"
         />
+      </div>
+
+      {/* Time controls — collapsed by default. Expand in place; no separate
+          /canon/timeline page needed. */}
+      <div className="mx-auto mt-6 max-w-3xl px-4">
+        {!timeOn ? (
+          <div className="flex justify-center">
+            <button
+              onClick={() => setTimeOn(true)}
+              className="small-caps text-[11px] tracking-[0.2em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] text-[color:var(--basalt)] px-5 py-2 transition"
+            >
+              ⏵ scrub through time
+            </button>
+          </div>
+        ) : (
+          <div>
+            <input
+              type="range"
+              min={MIN_YEAR}
+              max={MAX_YEAR}
+              step={1}
+              value={year}
+              onChange={(e) => {
+                setYear(Number(e.target.value));
+                setPlaying(false);
+              }}
+              className="w-full accent-[color:var(--gold)]"
+            />
+            <div className="flex justify-between mt-1 small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.16em]">
+              <span>{fmtYear(MIN_YEAR)}</span>
+              <span>{fmtYear(0)}</span>
+              <span>{fmtYear(1500)}</span>
+              <span>{fmtYear(MAX_YEAR)}</span>
+            </div>
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+              <button
+                onClick={() => setYear(MIN_YEAR)}
+                className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-1"
+              >
+                ⏮ start
+              </button>
+              <button
+                onClick={() => setPlaying((p) => !p)}
+                className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-4 py-1"
+              >
+                {playing ? "⏸ pause" : "▶ play"}
+              </button>
+              <button
+                onClick={() => setYear(MAX_YEAR)}
+                className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-1"
+              >
+                ⏭ now
+              </button>
+              <button
+                onClick={() => { setTimeOn(false); setPlaying(false); }}
+                className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--parchment-dim)] hover:text-[color:var(--basalt)] px-3 py-1"
+              >
+                exit ✕
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

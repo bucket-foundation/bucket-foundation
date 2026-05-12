@@ -78,12 +78,6 @@ export default function Page() {
             >
               ⌬  knowledge graph
             </Link>
-            <Link
-              href="/canon/timeline"
-              className="border border-[color:var(--hairline)] text-[color:var(--basalt)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-2 transition"
-            >
-              ⏵  globe through time
-            </Link>
             <a
               href="/api/canon/search?q=consciousness&top_k=5"
               target="_blank"

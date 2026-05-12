@@ -7,14 +7,14 @@ import { useEffect, useState } from "react";
 
 const NAV = [
   { href: "/canon",     label: "Canon" },
-  { href: "/canon/search",   label: "Search" },
-  { href: "/canon/bridges",  label: "Bridges" },
-  { href: "/canon/timeline", label: "Timeline" },
-  { href: "/whats-new",      label: "What's new" },
-  { href: "/access",         label: "Access" },
-  { href: "/protocol",       label: "Protocol" },
-  { href: "/chat",           label: "Chat" },
-  { href: "/about",          label: "About" },
+  { href: "/whats-new", label: "What's new" },
+  { href: "/research",  label: "Research" },
+  { href: "/protocol",  label: "Protocol" },
+  { href: "/build",     label: "Build" },
+  { href: "/learn",     label: "Learn" },
+  { href: "/access",    label: "Access" },
+  { href: "/chat",      label: "Chat" },
+  { href: "/about",     label: "About" },
 ];
 
 const CANON = [
