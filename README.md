@@ -44,8 +44,24 @@ MCP server manifest at [`/.well-known/mcp.json`](https://www.bucket.foundation/.
 This repo contains:
 
 1. **`PROTOCOL.md`** — the open spec (sidecar schema, x402 endpoint shape, canon contract).
-2. **`src/`** — a reference Next.js site that fetches, mints, and displays bucketed papers. The site is optional. The protocol is not.
-3. **`LICENSE`** — MIT. Fork it, run your own bucket, federate.
+2. **`src/`** — Next.js site at [bucket.foundation](https://www.bucket.foundation) — the reader UI + JSON API.
+3. **`bucket-canon/`** — 599 curated claim cards across 9 branches + 17 detected multi-branch primitive bridges.
+4. **`mcp-server/`** — local MCP server for Claude Desktop/Code (`canon_search`, `canon_get_claim`, etc.).
+5. **`_intake/`** — embeddings, knowledge graph, trained ML artifacts. See [`REPRODUCE.md`](./REPRODUCE.md).
+6. **`tools/`** — pipeline tools (`agf-*`) referenced from `~/agfarms/tools/`.
+7. **`LICENSE`** — MIT.
+
+## Map (where everything lives)
+
+| Surface | URL | What |
+|---|---|---|
+| **Website** | https://www.bucket.foundation | Read canon, browse bridges, search |
+| **Access page** | https://www.bucket.foundation/access | Every entry point for humans, researchers, and AI agents |
+| **API** | https://www.bucket.foundation/api/canon/search | Search canon claims as JSON |
+| **MCP server** | `mcp-server/bucket-canon-mcp.py` (this repo) | Claude Code / Desktop integration |
+| **Standalone MCP** | https://github.com/bucket-foundation/bucket-mcp | Separate npm package for paid research |
+| **Research index** | https://github.com/bucket-foundation/bucket-research | PDFs, raw data (paired with [BucketDrive](https://drive.google.com/open?id=12QjkHYFqzVNm30kvkW-upi0kqa_Kri2B)) |
+| **Upstream gateway** | https://github.com/AGFarms/x402-research-gateway | The feed402/x402 rail behind /api/research |
 
 ## The thesis in one paragraph
 

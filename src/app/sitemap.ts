@@ -19,7 +19,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const top = [
     { p: "",                    pri: 1.0,  freq: "weekly"  as const },
-    { p: "/canon",              pri: 0.9,  freq: "weekly"  as const },
+    { p: "/canon",              pri: 0.95, freq: "weekly"  as const },
+    { p: "/canon/search",       pri: 0.9,  freq: "daily"   as const },
+    { p: "/canon/bridges",      pri: 0.9,  freq: "weekly"  as const },
+    { p: "/canon/graph",        pri: 0.85, freq: "weekly"  as const },
+    { p: "/canon/timeline",     pri: 0.85, freq: "weekly"  as const },
+    { p: "/canon/claims",       pri: 0.9,  freq: "weekly"  as const },
+    { p: "/access",             pri: 0.9,  freq: "weekly"  as const },
     { p: "/learn",              pri: 0.9,  freq: "weekly"  as const },
     { p: "/build",              pri: 0.9,  freq: "weekly"  as const },
     { p: "/protocol",           pri: 0.9,  freq: "weekly"  as const },
