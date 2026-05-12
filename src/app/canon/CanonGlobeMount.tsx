@@ -1,5 +1,6 @@
 "use client";
 import nextDynamic from "next/dynamic";
+import { useState } from "react";
 import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
 
@@ -13,7 +14,6 @@ const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
 });
 
 // Default markers — birthplaces of the 6 polymath bios + 2 canon-entry stubs.
-// Real canon-events data wiring is a separate bead (see BEAD_BACKLOG.md).
 const DEFAULT_MARKERS: CanonMarker[] = [
   { id: "newton",     lat:  52.806, lng:  -0.628, year: 1643, branch: "physics",     title: "Newton — Woolsthorpe",   kind: "figure-birth" },
   { id: "einstein",   lat:  48.401, lng:   9.987, year: 1879, branch: "physics",     title: "Einstein — Ulm",         kind: "figure-birth" },
@@ -26,17 +26,21 @@ const DEFAULT_MARKERS: CanonMarker[] = [
 ];
 
 interface Props {
-  // Branches are still passed through for the loading-fallback armillary,
-  // but the live globe runs on canon markers, not branch ports.
   branches: GlobeBranch[];
   markers?: CanonMarker[];
 }
 
+function fmtYear(y?: number): string {
+  if (y === undefined) return "";
+  if (y < 0) return `${Math.abs(y)} BCE`;
+  return `${y} CE`;
+}
+
 export default function CanonGlobeMount({ branches: _branches, markers }: Props) {
+  const [hovered, setHovered] = useState<CanonMarker | null>(null);
+  const visibleMarkers = markers ?? DEFAULT_MARKERS;
+
   return (
-    // Full-bleed breakout: escape the max-w-6xl parent so the globe spans
-    // the whole viewport. Padded top + bottom so hover tooltips on
-    // top/bottom markers have room to render without clipping.
     <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-12 md:py-16">
       <div
         className="relative w-full mx-auto"
@@ -45,7 +49,7 @@ export default function CanonGlobeMount({ branches: _branches, markers }: Props)
           minHeight: "760px",
         }}
       >
-        {/* radial vignette behind the globe — pulls it forward, hides canvas edges */}
+        {/* radial vignette behind the globe */}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
@@ -54,7 +58,78 @@ export default function CanonGlobeMount({ branches: _branches, markers }: Props)
               "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
           }}
         />
-        <R3FCanonGlobe markers={markers ?? DEFAULT_MARKERS} className="relative z-10" />
+        <R3FCanonGlobe
+          markers={visibleMarkers}
+          onHoverChange={setHovered}
+          className="relative z-10"
+        />
+
+        {/* Always-visible hover panel — guaranteed to render outside the
+            canvas so it never gets clipped. Updates as the mouse moves
+            over markers. */}
+        <div
+          className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-4 z-20 transition-opacity duration-150"
+          style={{ opacity: hovered ? 1 : 0 }}
+          aria-hidden={!hovered}
+        >
+          <div
+            className="rounded-md px-5 py-3 shadow-md text-center"
+            style={{
+              background: "var(--bone)",
+              border: "1px solid var(--hairline)",
+              minWidth: "240px",
+              maxWidth: "min(420px, calc(100vw - 32px))",
+            }}
+          >
+            <div
+              className="text-base"
+              style={{
+                fontFamily: "Cinzel, serif",
+                color: "var(--basalt)",
+                letterSpacing: "0.04em",
+              }}
+            >
+              {hovered?.title || " "}
+            </div>
+            <div
+              className="mt-1 text-xs uppercase"
+              style={{
+                fontFamily: "var(--font-jetbrains)",
+                color: "var(--parchment-dim)",
+                letterSpacing: "0.18em",
+              }}
+            >
+              {hovered ? (
+                <>
+                  {hovered.year !== undefined && (
+                    <span>{fmtYear(hovered.year)} · </span>
+                  )}
+                  <span>{hovered.branch}</span>
+                  <span> · </span>
+                  <span>{hovered.kind.replace(/-/g, " ")}</span>
+                </>
+              ) : (
+                " "
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile-friendly hint at the very bottom */}
+        {!hovered && (
+          <div
+            className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-4 z-10 text-center"
+            style={{
+              fontFamily: "var(--font-jetbrains)",
+              color: "var(--parchment-dim)",
+              fontSize: 10,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+            }}
+          >
+            hover or tap a marker
+          </div>
+        )}
       </div>
     </div>
   );

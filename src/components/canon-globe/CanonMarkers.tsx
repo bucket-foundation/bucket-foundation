@@ -32,6 +32,7 @@ interface CanonMarkersProps {
   activeIndex?: number;
   radius: number;
   reducedMotion: boolean;
+  onHoverChange?: (m: CanonMarker | null) => void;
 }
 
 const DEG2RAD = Math.PI / 180;
@@ -58,9 +59,18 @@ export function CanonMarkers({
   activeIndex,
   radius,
   reducedMotion,
+  onHoverChange,
 }: CanonMarkersProps) {
   const router = useRouter();
   const [hover, setHover] = useState<number | null>(null);
+
+  // Bubble hovered marker up so the parent (outside the Canvas) can render a
+  // guaranteed-visible panel — the in-3D Html tooltip alone gets clipped on
+  // some viewports / canvas configurations.
+  const reportHover = (idx: number | null) => {
+    setHover(idx);
+    if (onHoverChange) onHoverChange(idx === null ? null : markers[idx] || null);
+  };
   const ringRef = useRef<THREE.Mesh | null>(null);
 
   const positions = useMemo(
@@ -127,8 +137,8 @@ export function CanonMarkers({
             {/* dot itself */}
             <mesh
               position={p}
-              onPointerOver={(e) => { e.stopPropagation(); setHover(i); document.body.style.cursor = "pointer"; }}
-              onPointerOut={() => { setHover((h) => (h === i ? null : h)); document.body.style.cursor = "auto"; }}
+              onPointerOver={(e) => { e.stopPropagation(); reportHover(i); document.body.style.cursor = "pointer"; }}
+              onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
               onClick={(e) => { e.stopPropagation(); handleClick(m); }}
             >
               <sphereGeometry args={[dotScale, 16, 16]} />
@@ -137,15 +147,15 @@ export function CanonMarkers({
 
             {hover === i && (
               <Html
-                position={p.clone().multiplyScalar(1.18)}
+                position={p.clone().multiplyScalar(1.25)}
                 center
                 zIndexRange={[100, 0]}
-                style={{ pointerEvents: "none" }}
               >
                 <div
                   style={{
                     pointerEvents: "none",
-                    maxWidth: "240px",
+                    minWidth: "120px",
+                    maxWidth: "260px",
                     background: "var(--bone)",
                     color: "var(--basalt)",
                     border: "1px solid var(--hairline)",
@@ -153,17 +163,17 @@ export function CanonMarkers({
                     fontFamily: "Cinzel, serif",
                     fontSize: 11,
                     lineHeight: 1.4,
-                    letterSpacing: "0.18em",
+                    letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    boxShadow: "0 2px 8px rgba(31,28,22,0.18)",
-                    transform: "translate(-50%, -100%) translateY(-8px)",
+                    boxShadow: "0 2px 12px rgba(31,28,22,0.25)",
                     whiteSpace: "normal",
                     wordBreak: "break-word",
+                    textAlign: "center",
                   }}
                 >
-                  {m.title}{m.year ? ` · ${m.year}` : ""}
-                  <div style={{ fontSize: 9, opacity: 0.7, marginTop: 2 }}>
-                    {m.branch}
+                  {m.title}
+                  <div style={{ fontSize: 9, opacity: 0.7, marginTop: 3, letterSpacing: "0.18em" }}>
+                    {m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}{m.branch}
                   </div>
                 </div>
               </Html>
