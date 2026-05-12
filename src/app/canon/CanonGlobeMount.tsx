@@ -13,7 +13,6 @@ const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ),
 });
 
-// Default markers — birthplaces of the 6 polymath bios + 2 canon-entry stubs.
 const DEFAULT_MARKERS: CanonMarker[] = [
   { id: "newton",     lat:  52.806, lng:  -0.628, year: 1643, branch: "physics",     title: "Newton — Woolsthorpe",   kind: "figure-birth" },
   { id: "einstein",   lat:  48.401, lng:   9.987, year: 1879, branch: "physics",     title: "Einstein — Ulm",         kind: "figure-birth" },
@@ -41,15 +40,63 @@ export default function CanonGlobeMount({ branches: _branches, markers }: Props)
   const visibleMarkers = markers ?? DEFAULT_MARKERS;
 
   return (
-    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-12 md:py-16">
+    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-8 md:py-12">
+      {/* Hover readout — at the TOP of the globe section so it's never
+          below the fold. Sticky to viewport top while scrolling. */}
+      <div className="sticky top-20 z-30 mx-auto mb-4 w-full px-4 pointer-events-none flex justify-center">
+        <div
+          className="rounded-md px-5 py-3 shadow-md text-center transition-all duration-200"
+          style={{
+            background: "var(--bone)",
+            border: `1px solid ${hovered ? "var(--gold)" : "var(--hairline)"}`,
+            opacity: hovered ? 1 : 0.65,
+            transform: hovered ? "scale(1.0)" : "scale(0.96)",
+            maxWidth: "min(480px, calc(100vw - 24px))",
+          }}
+        >
+          <div
+            className="text-base md:text-lg"
+            style={{
+              fontFamily: "Cinzel, serif",
+              color: "var(--basalt)",
+              letterSpacing: "0.04em",
+              minHeight: "1.3em",
+            }}
+          >
+            {hovered?.title || "hover or tap a marker"}
+          </div>
+          <div
+            className="mt-1 text-xs uppercase"
+            style={{
+              fontFamily: "var(--font-jetbrains)",
+              color: "var(--parchment-dim)",
+              letterSpacing: "0.18em",
+              minHeight: "1.2em",
+            }}
+          >
+            {hovered ? (
+              <>
+                {hovered.year !== undefined && (
+                  <span>{fmtYear(hovered.year)} · </span>
+                )}
+                <span>{hovered.branch}</span>
+                <span> · </span>
+                <span>{hovered.kind.replace(/-/g, " ")}</span>
+              </>
+            ) : (
+              <span>each dot is a canon-anchor place</span>
+            )}
+          </div>
+        </div>
+      </div>
+
       <div
         className="relative w-full mx-auto"
         style={{
-          height: "min(95vh, 1200px)",
-          minHeight: "760px",
+          height: "min(80vh, 1000px)",
+          minHeight: "620px",
         }}
       >
-        {/* radial vignette behind the globe */}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
@@ -63,73 +110,6 @@ export default function CanonGlobeMount({ branches: _branches, markers }: Props)
           onHoverChange={setHovered}
           className="relative z-10"
         />
-
-        {/* Always-visible hover panel — guaranteed to render outside the
-            canvas so it never gets clipped. Updates as the mouse moves
-            over markers. */}
-        <div
-          className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-4 z-20 transition-opacity duration-150"
-          style={{ opacity: hovered ? 1 : 0 }}
-          aria-hidden={!hovered}
-        >
-          <div
-            className="rounded-md px-5 py-3 shadow-md text-center"
-            style={{
-              background: "var(--bone)",
-              border: "1px solid var(--hairline)",
-              minWidth: "240px",
-              maxWidth: "min(420px, calc(100vw - 32px))",
-            }}
-          >
-            <div
-              className="text-base"
-              style={{
-                fontFamily: "Cinzel, serif",
-                color: "var(--basalt)",
-                letterSpacing: "0.04em",
-              }}
-            >
-              {hovered?.title || " "}
-            </div>
-            <div
-              className="mt-1 text-xs uppercase"
-              style={{
-                fontFamily: "var(--font-jetbrains)",
-                color: "var(--parchment-dim)",
-                letterSpacing: "0.18em",
-              }}
-            >
-              {hovered ? (
-                <>
-                  {hovered.year !== undefined && (
-                    <span>{fmtYear(hovered.year)} · </span>
-                  )}
-                  <span>{hovered.branch}</span>
-                  <span> · </span>
-                  <span>{hovered.kind.replace(/-/g, " ")}</span>
-                </>
-              ) : (
-                " "
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile-friendly hint at the very bottom */}
-        {!hovered && (
-          <div
-            className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-4 z-10 text-center"
-            style={{
-              fontFamily: "var(--font-jetbrains)",
-              color: "var(--parchment-dim)",
-              fontSize: 10,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-            }}
-          >
-            hover or tap a marker
-          </div>
-        )}
       </div>
     </div>
   );

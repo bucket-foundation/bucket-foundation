@@ -134,13 +134,20 @@ export function CanonMarkers({
               <ringGeometry args={[dotScale * 1.2, dotScale * 2.1, 24]} />
               <meshBasicMaterial color={color} transparent opacity={0.35} side={THREE.DoubleSide} toneMapped={false} depthWrite={false} />
             </mesh>
-            {/* dot itself */}
+            {/* invisible large hit-target sphere — makes hover/tap reliable
+                even when dots are visually clustered (e.g. Newton, Einstein,
+                Helmholtz, Turing, Poincaré are all within ~500km in Europe) */}
             <mesh
               position={p}
               onPointerOver={(e) => { e.stopPropagation(); reportHover(i); document.body.style.cursor = "pointer"; }}
               onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
               onClick={(e) => { e.stopPropagation(); handleClick(m); }}
             >
+              <sphereGeometry args={[dotScale * 3.5, 12, 12]} />
+              <meshBasicMaterial color={color} transparent opacity={0} depthWrite={false} />
+            </mesh>
+            {/* visible dot */}
+            <mesh position={p}>
               <sphereGeometry args={[dotScale, 16, 16]} />
               <meshBasicMaterial color={color} toneMapped={false} />
             </mesh>
