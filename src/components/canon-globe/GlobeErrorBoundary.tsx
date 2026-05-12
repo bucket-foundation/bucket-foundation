@@ -18,10 +18,9 @@ export class GlobeErrorBoundary extends Component<
     return { hasError: true, message: err.message || "" };
   }
 
-  componentDidCatch(err: Error) {
-    // Surface to console for debugging without crashing the page
-    // eslint-disable-next-line no-console
-    console.warn("[CanonGlobe] WebGL canvas failed, rendering fallback:", err.message);
+  componentDidCatch(_err: Error) {
+    // Silent — fallback UI renders the explanation. Don't pollute the
+    // user's console for an expected condition.
   }
 
   render() {

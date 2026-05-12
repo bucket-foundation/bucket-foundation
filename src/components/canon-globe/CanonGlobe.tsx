@@ -8,11 +8,11 @@ import { CanonMarkers, type CanonMarker } from "./CanonMarkers";
 import { useReducedMotion } from "./useReducedMotion";
 import { useMemo } from "react";
 import * as THREE from "three";
+import StaticCanonGlobe from "@/components/CanonGlobe";
 
-// Detect WebGL availability before mounting the Canvas. Some browsers
-// (privacy mode, no hw accel, sandboxed renderers) report WebGL as
-// disabled — mounting R3F there throws an unhandled exception that
-// brings the whole page down. Pre-flight check → graceful no-canvas.
+// Pre-flight WebGL detection. Some browsers (privacy mode, no hw accel,
+// sandboxed renderers) report WebGL disabled — mounting Three.js there
+// crashes the route. We detect quietly and swap to a static fallback.
 function detectWebGL(): boolean {
   if (typeof window === "undefined") return false;
   try {
@@ -22,6 +22,35 @@ function detectWebGL(): boolean {
   } catch {
     return false;
   }
+}
+
+function FallbackGlobe({ className }: { className?: string }) {
+  return (
+    <div
+      className={className}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <div className="w-full h-full flex flex-col items-center justify-center text-center px-6 py-4">
+        <StaticCanonGlobe branches={[]} size={340} interactive={false} />
+        <div
+          className="mt-4 max-w-md mx-auto rounded-md border px-4 py-3 text-xs"
+          style={{ background: "var(--bone)", borderColor: "var(--hairline)" }}
+        >
+          <span
+            className="small-caps tracking-[0.2em]"
+            style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+          >
+            static globe ·{" "}
+          </span>
+          <span style={{ color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+            interactive globe needs WebGL (enable hardware acceleration in
+            your browser to see the rotating one). Search, claims, bridges
+            all work without it.
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 interface CanonGlobeProps {
@@ -48,14 +77,13 @@ export default function CanonGlobe({
     setHasWebGL(detectWebGL());
   }, []);
 
-  // Throwing here lets the GlobeErrorBoundary catch and render its fallback.
-  // This intentionally surfaces *before* Three.js attempts to instantiate
-  // a context that the browser has disabled.
+  // No WebGL → render the static fallback inline (no error boundary, no
+  // console noise — just a graceful degradation).
   if (hasWebGL === false) {
-    throw new Error("WebGL is disabled or unavailable in this browser");
+    return <FallbackGlobe className={className} />;
   }
   if (hasWebGL === null) {
-    // Mid-detection: render nothing rather than risk a crash race
+    // Mid-detection: render placeholder
     return (
       <div className={className} style={{ width: "100%", height: "100%" }} />
     );
