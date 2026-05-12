@@ -1,6 +1,7 @@
 "use client";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
+import { OrbitControls } from "@react-three/drei";
 import { Earth, EARTH_RADIUS } from "./Earth";
 import { Halo } from "./Halo";
 import { CanonMarkers, type CanonMarker } from "./CanonMarkers";
@@ -71,7 +72,7 @@ export default function CanonGlobe({
         <Suspense fallback={null}>
           <Earth
             targetRotationY={0}
-            reducedMotion={reducedMotion}
+            reducedMotion={true /* OrbitControls handles rotation now */}
             landmaskUrl={LANDMASK_URL}
           >
             <CanonMarkers
@@ -84,6 +85,24 @@ export default function CanonGlobe({
           </Earth>
         </Suspense>
         <Halo enabled />
+
+        {/* Google-Earth-style controls: drag to spin, scroll to zoom, no pan.
+            Auto-rotates slowly when idle (like an attract loop). User
+            interaction temporarily stops auto-rotation; resumes after 4s. */}
+        <OrbitControls
+          enableDamping
+          dampingFactor={0.08}
+          enableZoom
+          enablePan={false}
+          minDistance={1.8}      // can't get inside the globe
+          maxDistance={8}        // can't fly away forever
+          minPolarAngle={0.1}    // don't flip over the poles
+          maxPolarAngle={Math.PI - 0.1}
+          rotateSpeed={0.55}     // smooth, not twitchy
+          zoomSpeed={0.7}
+          autoRotate={!reducedMotion}
+          autoRotateSpeed={0.4}  // 1 full revolution every ~15 minutes — gentle
+        />
       </Canvas>
     </div>
   );
