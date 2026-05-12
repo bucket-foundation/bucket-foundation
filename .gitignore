@@ -66,3 +66,10 @@ checkpoints/
 figma-export/
 feed/2026-*
 *.png
+
+# Trained ML artifacts (regeneratable, can be large)
+_intake/training/canon-bge-small-v1/model.safetensors
+_intake/training/canon-bge-small-v1/tokenizer.json
+_intake/training/kg.gpickle
+_intake/training/kg-embeddings.npy
+

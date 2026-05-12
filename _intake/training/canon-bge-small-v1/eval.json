@@ -1,0 +1,21 @@
+{
+  "base_model": "BAAI/bge-small-en-v1.5",
+  "baseline": {
+    "triplet_acc": 0.9298245614035088,
+    "recall@10": 0.2543859649122807
+  },
+  "after": {
+    "triplet_acc": 0.9824561403508771,
+    "recall@10": 0.21929824561403508
+  },
+  "delta": {
+    "triplet_acc": 0.05263157894736836,
+    "recall@10": -0.03508771929824564
+  },
+  "n_train": 789,
+  "n_test": 114,
+  "epochs": 4,
+  "batch": 16,
+  "lr": 2e-05,
+  "device": "cuda"
+}
