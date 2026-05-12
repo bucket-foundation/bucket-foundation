@@ -14,6 +14,7 @@ interface CanonGlobeProps {
   activeIndex?: number;
   className?: string;
   onHoverChange?: (m: CanonMarker | null) => void;
+  onSelectChange?: (m: CanonMarker | null) => void;
 }
 
 const LANDMASK_URL = "/textures/earth/2k_earth_daymap.jpg";
@@ -23,6 +24,7 @@ export default function CanonGlobe({
   activeIndex,
   className,
   onHoverChange,
+  onSelectChange,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
 
@@ -81,6 +83,7 @@ export default function CanonGlobe({
               radius={EARTH_RADIUS * 1.008}
               reducedMotion={reducedMotion}
               onHoverChange={onHoverChange}
+              onSelectChange={onSelectChange}
             />
           </Earth>
         </Suspense>

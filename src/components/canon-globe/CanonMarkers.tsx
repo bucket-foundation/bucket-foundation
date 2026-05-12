@@ -33,6 +33,8 @@ interface CanonMarkersProps {
   radius: number;
   reducedMotion: boolean;
   onHoverChange?: (m: CanonMarker | null) => void;
+  /** If provided, clicking a marker fires this instead of routing. */
+  onSelectChange?: (m: CanonMarker | null) => void;
 }
 
 const DEG2RAD = Math.PI / 180;
@@ -60,6 +62,7 @@ export function CanonMarkers({
   radius,
   reducedMotion,
   onHoverChange,
+  onSelectChange,
 }: CanonMarkersProps) {
   const router = useRouter();
   const [hover, setHover] = useState<number | null>(null);
@@ -96,6 +99,12 @@ export function CanonMarkers({
   const activeLookAt = activePos ? activePos.clone().multiplyScalar(2) : null;
 
   const handleClick = (m: CanonMarker) => {
+    // If parent provided a select handler, open the side drawer instead of
+    // routing. Routing remains the fallback for legacy embeds.
+    if (onSelectChange) {
+      onSelectChange(m);
+      return;
+    }
     if (m.kind === "canon-entry" && m.href) {
       router.push(`/canon/${m.branch}/${m.href}`);
     } else {
