@@ -647,5 +647,293 @@
       "[04-information/wolfram] Yes, yes. I mean, well, that's a complicated issue because it depends on what subpart of the rules you end up selecting as you make this pattern. I mean it's usually the case that when you produce some pattern from a cellular automaton for example, every little subpart is typically using only some s",
       "[07-mind/iit] of how mental states join together to form complexes or split apart because splitting apart the formation of fault lines leads to more integrated information. It's the best theory. It's"
     ]
+  },
+  "c15": {
+    "cluster_id": 15,
+    "size": 10,
+    "branches": [
+      "02-physics",
+      "03-chemistry",
+      "06-cosmology"
+    ],
+    "branch_count": 3,
+    "bridge_score": 4.764793106511856,
+    "judgment": {
+      "primitive_name": "constant speed of light",
+      "primitive_description": "The speed of light is always constant and unchanging, regardless of the observer's frame of reference or location in space-time.",
+      "vocabulary_map": [
+        {
+          "branch": "02-physics/einstein",
+          "term": "speed one state per step",
+          "role": "describes constant speed"
+        },
+        {
+          "branch": "03-chemistry/periodic-table",
+          "term": "fast light is always",
+          "role": "describes constant speed"
+        },
+        {
+          "branch": "06-cosmology/black-hole",
+          "term": "everything is time as it always is",
+          "role": "describes constant speed"
+        },
+        {
+          "branch": "02-physics/relativity",
+          "term": "time dilation",
+          "role": "explains constant speed in relativity"
+        }
+      ],
+      "canonical_form": "The speed of light is always constant.",
+      "confidence": 0.9,
+      "category": "primitive",
+      "supporting_authors": [
+        "Einstein"
+      ],
+      "test_falsifiability": "Measure the speed of light in different frames of reference using high-speed particle accelerators and compare results to experimental data."
+    },
+    "excerpts_used": [
+      "[02-physics/einstein] inertial frames? because the trace of an end cycle is an end cycle when I take so it's always the same speed one state per step one new state per step in an end cycle so what what Einstein has to",
+      "[02-physics/relativity] the top clock always has to run faster than every other. And the reason is a physics reason. It's tied back to Einstein's general and special relativity because of time dilation.",
+      "[03-chemistry/periodic-table] because that is the key to the periodicity of the clock timing mechanism in other words when you break your fast light is always",
+      "[06-cosmology/black-hole] fly by. It's not like it was speeding up for the crewmate because everything is time as it always is. It's always the time that you experience. But relative to the clock near the black hole, which",
+      "[06-cosmology/black-hole] Kip: He's very deep and he's a superb physicist in all aspects of optics, ever so much more than I know. And so I provide the equation that we need to do a propagation of light, say from the accretion disc hot gas going around a black hole, propagation of light around a black hole and down to an IMA"
+    ]
+  },
+  "c5": {
+    "cluster_id": 5,
+    "size": 10,
+    "branches": [
+      "01-mathematics",
+      "02-physics",
+      "07-mind"
+    ],
+    "branch_count": 3,
+    "bridge_score": 4.60644015387365,
+    "judgment": {
+      "primitive_name": "Global Causality",
+      "primitive_description": "Every effect in the universe has a cause, and change is instantaneous and global.",
+      "vocabulary_map": [
+        {
+          "branch": "01-mathematics",
+          "term": "butterfly effect",
+          "role": "illustrates amplification of small changes"
+        },
+        {
+          "branch": "02-physics",
+          "term": "spooky action at a distance",
+          "role": "describes instantaneous global change"
+        },
+        {
+          "branch": "07-mind",
+          "term": "natural state for things to move in",
+          "role": "describes cause and effect"
+        }
+      ],
+      "canonical_form": "Every event has a cause, and change occurs instantly everywhere.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "Aristotle",
+        "Einstein"
+      ],
+      "test_falsifiability": "Observe the behavior of complex systems over time to test whether every effect has a cause"
+    },
+    "excerpts_used": [
+      "[01-mathematics/chaos-theory] thing to think about because what I'm trying to say is that small little um stimuli can lead to massive amplification I do think that back to the butterfly effect right small changes",
+      "[02-physics/einstein] soon as it forms here, that chance immediately has to be annihilated to zero because you never get two spots. That has to be global and instantaneous change. And Einstein called that spooky",
+      "[02-physics/einstein] think that's why Einstein was so upset about spooky action at a distance because it requires if you say doing something here has an effect way over there. Well, just pairing up the cause",
+      "[07-mind/aristotle] macroscopic world that we are familiar with in our everyday lives that Aristotle knew about Speaks a completely different language There is dissipation there's cause and effect There's a natural state for things to move in there are reasons why? Things happen rather than not happen and much of this ",
+      "[07-mind/aristotle] there's lots of things moving in the universe. Every one of them requires a mover. There's for every effect in the universe, Aristotle says, there is a cause. He develops an elaborate"
+    ]
+  },
+  "c0": {
+    "cluster_id": 0,
+    "size": 8,
+    "branches": [
+      "02-physics",
+      "05-biophysics",
+      "07-mind"
+    ],
+    "branch_count": 3,
+    "bridge_score": 4.600717651871732,
+    "judgment": {
+      "primitive_name": "Decentralized Operational Law",
+      "primitive_description": "The principle that operational laws and principles governing natural phenomena are decentralized and cannot be reduced to centralized control structures.",
+      "vocabulary_map": [
+        {
+          "branch": "02-physics/photoelectric",
+          "term": "E equals MC squared",
+          "role": "example of operational law"
+        },
+        {
+          "branch": "02-physics/photoelectric",
+          "term": "photoelectric effect",
+          "role": "illustration of operational principle"
+        },
+        {
+          "branch": "05-biophysics/becker",
+          "term": "decentralized network",
+          "role": "related concept"
+        },
+        {
+          "branch": "07-mind/consciousness",
+          "term": "particles with consciousness",
+          "role": "counterpoint to centralized control"
+        }
+      ],
+      "canonical_form": "Operational laws and principles are decentralized.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "<name>",
+        "<name>"
+      ],
+      "test_falsifiability": "Testing the falsifiability of this primitive could involve attempting to centralize operational laws in a controlled environment and observing the consequences."
+    },
+    "excerpts_used": [
+      "[02-physics/photoelectric] decentralized is we use nature as our meter stick everything that nature says is axiomatically true those particularly like E equals MC squared the photoelectric effect that kind of stuff that is operational in you like you break that law you got a problem why because Evolution built a cell to be a ",
+      "[02-physics/photoelectric] the biggest RCT that needs to be done is put an RCT up against decentralization in networks because that's effectively what equals MC square is and the photoelectric effect when a randomized",
+      "[05-biophysics/becker] like the government the military like just centralized power structures and controlling science because I feel like given your experiences in Becker's lab it must have I mean I at least in my",
+      "[05-biophysics/becker] Becker's work when you begin to understand that you are part of the decentralized network and you need to be plugged into that but you need to understand what that means because this",
+      "[07-mind/consciousness] government department can labor night and day. They will never produce an equation that captures the historical process because it's particles with consciousness. And as they all interact"
+    ]
+  },
+  "c3": {
+    "cluster_id": 3,
+    "size": 6,
+    "branches": [
+      "02-physics",
+      "06-cosmology",
+      "07-mind"
+    ],
+    "branch_count": 3,
+    "bridge_score": 4.465065845809412,
+    "judgment": {
+      "primitive_name": "Curvature is fundamental",
+      "primitive_description": "All claims point to the idea that curvature plays a crucial role in understanding massless particles, dark matter, and the nature of energy.",
+      "vocabulary_map": [
+        {
+          "branch": "02-physics/speed-of-light",
+          "term": "speed of light",
+          "role": "limit for massless particles"
+        },
+        {
+          "branch": "06-cosmology/dark-matter",
+          "term": "rotation curves",
+          "role": "evidence for dark matter"
+        },
+        {
+          "branch": "07-mind/godhead",
+          "term": "platonic solids",
+          "role": "geometry of fundamental particles"
+        }
+      ],
+      "canonical_form": "Curvature is a universal limit for massless particles and the geometry of fundamental particles.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "<name>",
+        "<name>",
+        "<name>"
+      ],
+      "test_falsifiability": "Testing the speed of light as a limit for massless particles through high-energy particle collisions"
+    },
+    "excerpts_used": [
+      "[02-physics/speed-of-light] So these particles are massless. They have no rest mass and you know, something with no rest mass, if it is to have a momentum, it must travel at the speed of light. Because normally, the momentum of anything with",
+      "[06-cosmology/dark-matter] spiral galaxies and rotation curves you you can stop listening you know you don't need to really take them seriously because historically the first evidence for Dark Matter came",
+      "[07-mind/godhead] the platonic solids. And then he found a new solid, one that hadn't been discovered before. Energy never travels in straight lines. It always moves in curves. By",
+      "[07-mind/godhead] Energy never travels in straight lines. It always moves in curves. By incorporating curves into the basic geometry of our platonic solids, you actually discover much simpler particles"
+    ]
+  },
+  "c33": {
+    "cluster_id": 33,
+    "size": 6,
+    "branches": [
+      "01-mathematics",
+      "04-information",
+      "07-mind"
+    ],
+    "branch_count": 3,
+    "bridge_score": 4.342820952861161,
+    "judgment": {
+      "primitive_name": "Lack of Self-Reference",
+      "primitive_description": "A system lacks consciousness if it cannot reference or modify its own internal state.",
+      "vocabulary_map": [
+        {
+          "branch": "01-mathematics",
+          "term": "phi",
+          "role": "necessary condition for consciousness"
+        },
+        {
+          "branch": "04-information",
+          "term": "Turing machine",
+          "role": "system without self-reference"
+        },
+        {
+          "branch": "07-mind",
+          "term": "free will",
+          "role": "aspects of consciousness"
+        }
+      ],
+      "canonical_form": "A system cannot be conscious if it lacks the ability to modify its own internal state.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "<name>"
+      ],
+      "test_falsifiability": "Design a Turing machine that can modify its own tape and demonstrate its consciousness"
+    },
+    "excerpts_used": [
+      "[01-mathematics/golden-ratio] can considerably be conscious if it is satisfying all the necessary properties. But a von Neumann computer can never be conscious. Because it's too linear, it doesn't have this necessary phi. And, uh, on the other hand, if you ask him, he does not deny the Church Turing thesis.",
+      "[04-information/turing] so our mind is actually less than a turing machine there can be no touring machine because it's defined as having an infinite tape and we always only have a finite tape",
+      "[07-mind/consciousness] doing that because the evidence Is that consciousness and free will which are the aspects of wanting and the aspect of knowing itself because for one to know itself it must be conscious. It must",
+      "[07-mind/consciousness] So a computer can never be conscious because it doesn't have the characteristics of free will. Can you speak on how you were very much so trying to create consciousness through"
+    ]
+  },
+  "c16": {
+    "cluster_id": 16,
+    "size": 5,
+    "branches": [
+      "06-cosmology",
+      "07-mind",
+      "08-deep-history"
+    ],
+    "branch_count": 3,
+    "bridge_score": 3.435310074660357,
+    "judgment": {
+      "primitive_name": "Two-Story Narrative",
+      "primitive_description": "The existence of multiple narratives or stories that coexist and intersect in different contexts, such as cosmology (black hole), psychology (Jungian concept), and deep history (ice age).",
+      "vocabulary_map": [
+        {
+          "branch": "06-cosmology/black-hole",
+          "term": "two different narratives",
+          "role": "cosmological story"
+        },
+        {
+          "branch": "07-mind/jung",
+          "term": "pre-tonal memory",
+          "role": "musical technique"
+        },
+        {
+          "branch": "08-deep-history/ice-age",
+          "term": "crack in the story",
+          "role": "narrative discontinuity"
+        }
+      ],
+      "canonical_form": "There are two stories that need to be told: one about the event itself and another about the individual's experience.",
+      "confidence": 0.8,
+      "category": "primitive",
+      "supporting_authors": [
+        "Brian",
+        "Jung"
+      ],
+      "test_falsifiability": "Test by comparing the narratives in different branches for consistency and coherence"
+    },
+    "excerpts_used": [
+      "[06-cosmology/black-hole] Brian: But part of what was alien too, I presume, was there are two different narratives, two different stories that you need to tell if you're watching something fall to a black hole versus the story that will be told by the individual, unfortunately, who is passing into the black hole. Can you jus",
+      "[07-mind/jung] pre-tonal memory. It's a Jungian thing, I suppose, in that case. Bach's music provides us with the grand summation of all the techniques practiced by the great masters of North European music since the early Renaissance. He stands at the very end of a long line of German and Dutch and Flemish master",
+      "[08-deep-history/ice-age] a sky they no longer understood, wondering what had just broken? The truth is, we don't know yet. The younger Dus is like a crack running through the story of the late ice age. We can trace",
+      "[08-deep-history/ice-age] finding this kind of material. But it's not just underwater because I don't think we need to stop there. If we look at this culture in Europe at the end of the ice age, this Magdaleneian culture"
+    ]
   }
 }

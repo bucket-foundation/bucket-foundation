@@ -1,6 +1,6 @@
 # Canon Truth Patterns
 
-*Auto-generated synthesis · 2026-05-11T15:35:40.*
+*Auto-generated synthesis · 2026-05-11T21:22:36.*
 
 
 This is the algorithm-discovered structure of canon — the multi-branch primitives that emerged when we embedded every claim card and let cosine similarity tell us which different branches were independently arriving at the same truth.
@@ -63,6 +63,12 @@ No keyword matching. No manual labeling. The structure emerged from semantic dis
 | 9 | 5.14 | 3 | [Intrinsic Pressure](bucket-canon/_bridges/detected/09-intrinsic-pressure/README.md) | The universe exhibits a pervasive, intrinsic pressure driving objects towards their centers. |
 | 10 | 5.11 | 3 | [photoelectric effect](bucket-canon/_bridges/detected/10-photoelectric-effect/README.md) | The photoelectric effect is the process by which light energy is absorbed and converted into chemical energy. |
 | 11 | 5.06 | 4 | [Nonlinear Dynamical Systems](bucket-canon/_bridges/detected/11-nonlinear-dynamical-systems/README.md) | A system's behavior is highly sensitive to initial conditions and small changes, leading to unpredictable outcomes. |
+| 12 | 4.76 | 3 | [constant speed of light](bucket-canon/_bridges/detected/12-constant-speed-of-light/README.md) | The speed of light is always constant. |
+| 13 | 4.61 | 3 | [Global Causality](bucket-canon/_bridges/detected/13-global-causality/README.md) | Every event has a cause, and change occurs instantly everywhere. |
+| 14 | 4.60 | 3 | [Decentralized Operational Law](bucket-canon/_bridges/detected/14-decentralized-operational-law/README.md) | Operational laws and principles are decentralized. |
+| 15 | 4.47 | 3 | [Curvature is fundamental](bucket-canon/_bridges/detected/15-curvature-is-fundamental/README.md) | Curvature is a universal limit for massless particles and the geometry of fundamental particles. |
+| 16 | 4.34 | 3 | [Lack of Self-Reference](bucket-canon/_bridges/detected/16-lack-of-self-reference/README.md) | A system cannot be conscious if it lacks the ability to modify its own internal state. |
+| 17 | 3.44 | 3 | [Two-Story Narrative](bucket-canon/_bridges/detected/17-two-story-narrative/README.md) | There are two stories that need to be told: one about the event itself and another about the individual's experience. |
 
 ## Top-10 detailed cards
 
