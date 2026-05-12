@@ -67,9 +67,17 @@ figma-export/
 feed/2026-*
 *.png
 
-# Trained ML artifacts (regeneratable, can be large)
+# Trained ML artifacts.
+# Large weights go to HuggingFace Hub for collaborators (see REPRODUCE.md):
 _intake/training/canon-bge-small-v1/model.safetensors
 _intake/training/canon-bge-small-v1/tokenizer.json
-_intake/training/kg.gpickle
-_intake/training/kg-embeddings.npy
+# Smaller artifacts ARE committed so collaborators see the full knowledge
+# graph out of the box:
+#   _intake/training/kg.gpickle              (~325KB) networkx graph
+#   _intake/training/kg-embeddings.npy       (~580KB) node2vec embeddings
+#   _intake/training/kg-nodes.jsonl          (~267KB) node metadata
+#   _intake/training/tier-classifier.pt      (~267KB) tier MLP weights
+#   _intake/training/tier-predictions.jsonl  per-claim tier predictions
+#   _intake/embeddings-v2/claims-vectors.npy (~920KB) canon-tuned 384-d vecs
+#   _intake/embeddings/claim-evidence.jsonl  (~5.5MB) top-K evidence per claim
 

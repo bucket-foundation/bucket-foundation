@@ -5,12 +5,20 @@
 
 import Link from "next/link";
 import { getCanonGraph } from "@/lib/canon-graph";
+import {
+  getKGSummary,
+  getCentralityTopAuthors,
+  getCentralityTopConcepts,
+} from "@/lib/canon-kg";
 
 export const metadata = { title: "Canon graph · bucket.foundation" };
 export const dynamic = "force-static";
 
 export default function Page() {
   const g = getCanonGraph();
+  const kg = getKGSummary();
+  const topAuthors = getCentralityTopAuthors();
+  const topConcepts = getCentralityTopConcepts();
   const sortedNodes = [...g.nodes].sort((a, b) => b.centrality - a.centrality);
 
   // Build cluster map: each connected component
@@ -35,11 +43,128 @@ export default function Page() {
           className="mt-4 max-w-2xl text-lg md:text-xl"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
         >
-          {g.nodes.length} canon-target authors · {g.edges.length} direct
-          collaboration edges (shared works in OpenAlex). The actual lineage
-          structure beneath the seven-branch grid.
+          {kg.n_nodes > 0 ? (
+            <>
+              {kg.n_nodes.toLocaleString()} nodes ·{" "}
+              {kg.by_kind.claim || 0} claims ·{" "}
+              {kg.by_kind.concept || 0} concepts ·{" "}
+              {kg.by_kind.bridge || 0} bridges ·{" "}
+              {kg.by_kind.author || 0} authors. The full canon knowledge
+              graph — built from OpenAlex citation data + UMAP→HDBSCAN
+              cluster detection + canon-tuned embedding similarity.
+            </>
+          ) : (
+            <>
+              {g.nodes.length} canon-target authors · {g.edges.length} direct
+              collaboration edges (shared works in OpenAlex).
+            </>
+          )}
+        </p>
+        <p
+          className="mt-2 max-w-2xl text-sm"
+          style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
+        >
+          The raw graph (1,133 nodes, 2,001 edges, 128-d node2vec
+          embeddings) ships in this repo at{" "}
+          <code>_intake/training/kg.gpickle</code> +{" "}
+          <code>kg-embeddings.npy</code>. See{" "}
+          <Link href="https://github.com/bucket-foundation/bucket-foundation/blob/main/REPRODUCE.md" className="underline">
+            REPRODUCE.md
+          </Link>{" "}
+          for collaborator access.
         </p>
       </header>
+
+      {topConcepts.length > 0 && (
+        <section className="mb-16">
+          <h2
+            className="mb-4 text-sm uppercase tracking-[0.2em]"
+            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+          >
+            Most central concepts (PageRank on full KG)
+          </h2>
+          <p
+            className="mb-4 text-sm"
+            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
+          >
+            Concepts that anchor the most cross-branch connections.
+            These are the conceptual hubs around which canon density
+            organizes.
+          </p>
+          <div className="space-y-1 text-base" style={{ fontFamily: "var(--font-fraunces)" }}>
+            {topConcepts.slice(0, 15).map((c, i) => (
+              <div key={`${c.branch}/${c.concept}`} className="flex items-baseline justify-between gap-4">
+                <span>
+                  <span
+                    className="mr-3 inline-block w-6 text-right"
+                    style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <Link
+                    href={`/canon/claims/${c.concept}`}
+                    className="hover:text-[color:var(--gold)]"
+                  >
+                    {c.concept.replace(/-/g, " ")}
+                  </Link>
+                  <span
+                    className="ml-2 text-xs uppercase tracking-[0.14em]"
+                    style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    {c.branch}
+                  </span>
+                </span>
+                <span
+                  className="text-xs uppercase tracking-[0.16em]"
+                  style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  pr {c.pagerank.toFixed(4)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {topAuthors.length > 0 && (
+        <section className="mb-16">
+          <h2
+            className="mb-4 text-sm uppercase tracking-[0.2em]"
+            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+          >
+            Most central authors (PageRank, canon-graph-internal)
+          </h2>
+          <p
+            className="mb-4 text-sm"
+            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
+          >
+            Not global h-index ranking — these are the people most
+            central to <em>this corpus's</em> intellectual lineage,
+            measured by PageRank on the canon knowledge graph.
+          </p>
+          <div className="space-y-1 text-base" style={{ fontFamily: "var(--font-fraunces)" }}>
+            {topAuthors.slice(0, 15).map((a, i) => (
+              <div key={a.name} className="flex items-baseline justify-between gap-4">
+                <span>
+                  <span
+                    className="mr-3 inline-block w-6 text-right"
+                    style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span style={{ fontWeight: 500 }}>{a.name}</span>
+                </span>
+                <span
+                  className="text-xs uppercase tracking-[0.16em]"
+                  style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  pr {a.pagerank.toFixed(4)} · h{a.hIndex} · {a.citedBy.toLocaleString()} cites
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mb-16">
         <h2
