@@ -10,7 +10,7 @@ const NAV = [
   { href: "/canon/search",   label: "Search" },
   { href: "/canon/bridges",  label: "Bridges" },
   { href: "/canon/timeline", label: "Timeline" },
-  { href: "/whats-new",      label: "Feed" },
+  { href: "/whats-new",      label: "What's new" },
   { href: "/access",         label: "Access" },
   { href: "/protocol",       label: "Protocol" },
   { href: "/chat",           label: "Chat" },
