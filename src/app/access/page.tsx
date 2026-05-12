@@ -60,12 +60,6 @@ const REPOS = [
     contents: "The Next.js app you're using. Canon claim cards (bucket-canon/), detected bridges (bucket-canon/_bridges/), embeddings + trained ML artifacts (_intake/), MCP server (mcp-server/), pipeline tools.",
   },
   {
-    name: "bucket-foundation/bucket-mcp",
-    url: "https://github.com/bucket-foundation/bucket-mcp",
-    role: "Standalone MCP server (paid research tools)",
-    contents: "Plug into Claude Desktop / Claude Code. Three tools: bucket_research, bucket_cite, bucket_canon_list. Uses /api/research with the proxy wallet.",
-  },
-  {
     name: "bucket-foundation/bucket-research",
     url: "https://github.com/bucket-foundation/bucket-research",
     role: "Research index (paired with Google Drive)",
@@ -82,17 +76,12 @@ const REPOS = [
 const AGENT_INTEGRATIONS = [
   {
     title: "Claude Code · Claude Desktop · any MCP client",
-    desc: "Two MCP servers exist; pick one based on what you need:",
+    desc: "One MCP server, seven tools. Connects local canon files AND the bucket.foundation research API in one server. (Previously split across two repos — consolidated.)",
     options: [
       {
-        name: "bucket-canon-mcp (in this repo)",
-        what: "Canon search + bridges + claim cards (filesystem, fast, local)",
-        install: "claude mcp add --scope user --transport stdio bucket-canon \\\n  -- python3 /path/to/bucket-foundation/mcp-server/bucket-canon-mcp.py",
-      },
-      {
-        name: "bucket-mcp (standalone repo)",
-        what: "Paid research over /api/research, citation generation",
-        install: "claude mcp add --scope user --transport stdio bucket \\\n  -- npx -y bucket-mcp",
+        name: "bucket-mcp",
+        what: "Tools: canon_search · canon_get_claim · canon_list_branches · canon_list_bridges · canon_get_bridge · bucket_research · bucket_cite",
+        install: "# 1. clone the repo (one time)\ngit clone https://github.com/bucket-foundation/bucket-foundation\n\n# 2. register the MCP server\nclaude mcp add --scope user --transport stdio bucket \\\n  -- python3 $(pwd)/bucket-foundation/mcp-server/bucket-mcp.py",
       },
     ],
   },

@@ -7,13 +7,14 @@ import { useEffect, useState } from "react";
 
 const NAV = [
   { href: "/canon",     label: "Canon" },
-  // 5 tabs. Sub-pages roll up under hubs:
-  //   Build → /protocol, /learn, /research, /whats-new (via footer + Build page)
+  // 6 tabs.
+  //   Build → /protocol, /learn, /research (via footer + Build page hub row)
   //   About → /governance, /manifesto, /contributors, /join
-  { href: "/build",  label: "Build" },
-  { href: "/access", label: "Access" },
-  { href: "/chat",   label: "Chat" },
-  { href: "/about",  label: "About" },
+  { href: "/whats-new", label: "What's new" },
+  { href: "/build",     label: "Build" },
+  { href: "/access",    label: "Access" },
+  { href: "/chat",      label: "Chat" },
+  { href: "/about",     label: "About" },
 ];
 
 const CANON = [

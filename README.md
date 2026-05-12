@@ -58,8 +58,7 @@ This repo contains:
 | **Website** | https://www.bucket.foundation | Read canon, browse bridges, search |
 | **Access page** | https://www.bucket.foundation/access | Every entry point for humans, researchers, and AI agents |
 | **API** | https://www.bucket.foundation/api/canon/search | Search canon claims as JSON |
-| **MCP server** | `mcp-server/bucket-canon-mcp.py` (this repo) | Claude Code / Desktop integration |
-| **Standalone MCP** | https://github.com/bucket-foundation/bucket-mcp | Separate npm package for paid research |
+| **MCP server** | `mcp-server/bucket-mcp.py` (this repo) | One server, 7 tools — Claude Code / Desktop. (The old standalone `bucket-mcp` repo is now archived.) |
 | **Research index** | https://github.com/bucket-foundation/bucket-research | PDFs, raw data (paired with [BucketDrive](https://drive.google.com/open?id=12QjkHYFqzVNm30kvkW-upi0kqa_Kri2B)) |
 | **Upstream gateway** | https://github.com/AGFarms/x402-research-gateway | The feed402/x402 rail behind /api/research |
 

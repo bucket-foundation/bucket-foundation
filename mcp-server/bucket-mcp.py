@@ -1,31 +1,34 @@
 #!/usr/bin/env python3
 """
-bucket-canon-mcp — Model Context Protocol server for bucket.foundation canon.
+bucket-mcp — single Model Context Protocol server for bucket.foundation.
 
-Exposes the canon corpus as MCP tools that any MCP-compatible AI agent
-(Claude Desktop, Claude Code, ChatGPT via MCP, custom agents) can call.
+Replaces the old split (bucket-canon-mcp + standalone bucket-mcp repo).
+One server. All tools. This file is canonical — the standalone bucket-mcp
+GitHub repo is being archived.
 
 Tools:
-  - canon_search       — semantic + lexical search over claim cards
-  - canon_get_claim    — fetch a single claim card with full evidence
-  - canon_get_bridge   — fetch a detected primitive bridge with members
-  - canon_list_branches — list the 9 canon branches with counts
-  - canon_list_bridges — list all detected multi-branch primitives
-  - canon_get_author   — fetch author profile + canon-graph centrality
+  CANON (local filesystem — fast, no network):
+    - canon_search         search 599 claim cards by query
+    - canon_get_claim      fetch a single claim card
+    - canon_list_branches  list 9 canon branches with counts
+    - canon_list_bridges   list detected multi-branch primitives
+    - canon_get_bridge     fetch a detected bridge by slug
 
-Transport: stdio JSON-RPC 2.0 (the standard MCP transport).
+  RESEARCH RAIL (hits bucket.foundation HTTPS API):
+    - bucket_research      paid research via feed402/0.2 envelopes
+    - bucket_cite          CSL-JSON citation from DOI or URL
+
+Transport: stdio JSON-RPC 2.0.
 
 Register in Claude Code:
-  claude mcp add --scope user --transport stdio bucket-canon \\
-    -- python3 /home/gian/agfarms/bucket-foundation/mcp-server/bucket-canon-mcp.py
+  claude mcp add --scope user --transport stdio bucket \\
+    -- python3 /home/gian/agfarms/bucket-foundation/mcp-server/bucket-mcp.py
 
 Register in Claude Desktop (config.json):
-  "bucket-canon": {
+  "bucket": {
     "command": "python3",
-    "args": ["/path/to/bucket-canon-mcp.py"]
+    "args": ["/path/to/bucket-mcp.py"]
   }
-
-Live HTTP-MCP variant (planned): https://bucket.foundation/mcp
 """
 from __future__ import annotations
 import json, sys, pathlib, re, urllib.request, urllib.error
@@ -181,6 +184,63 @@ def tool_canon_get_bridge(slug: str) -> dict:
     return {'error': 'not_found'}
 
 
+# ---------- Research rail tools (merged from standalone bucket-mcp) ----------
+
+BUCKET_BASE = __import__('os').environ.get('BUCKET_BASE', 'https://www.bucket.foundation')
+RESEARCH_PATH = '/api/research'
+DOI_RE = re.compile(r"10\.\d{4,9}/[^\s]+", re.IGNORECASE)
+HTTP_TIMEOUT = 20
+
+
+def _post_json(url: str, body: dict) -> dict:
+    """POST JSON, return {ok, status, body|error}."""
+    data = json.dumps(body).encode()
+    req = urllib.request.Request(url, data=data, headers={
+        'Content-Type': 'application/json', 'Accept': 'application/json',
+        'User-Agent': 'bucket-mcp/2.0'
+    }, method='POST')
+    try:
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r:
+            return {'ok': True, 'status': r.status, 'body': json.loads(r.read())}
+    except urllib.error.HTTPError as e:
+        try: body = json.loads(e.read())
+        except Exception: body = None
+        return {'ok': False, 'status': e.code, 'error': f'HTTP {e.code}', 'body': body}
+    except Exception as e:
+        return {'ok': False, 'status': 0, 'error': f'{type(e).__name__}: {e}'}
+
+
+def tool_bucket_research(query: str, tier: str = 'insight') -> dict:
+    if tier not in ('raw', 'query', 'insight'):
+        return {'error': "tier must be one of: raw, query, insight"}
+    url = BUCKET_BASE.rstrip('/') + RESEARCH_PATH
+    r = _post_json(url, {'query': query, 'tier': tier})
+    if not r['ok']:
+        return {'ok': False, 'error': r.get('error'), 'upstream_status': r.get('status'),
+                'hint': 'paid research route; may require x402 challenge payment'}
+    return {'ok': True, 'tier': tier, 'query': query, 'envelope': r['body']}
+
+
+def tool_bucket_cite(doi_or_url: str) -> dict:
+    doi_match = DOI_RE.search(doi_or_url)
+    if doi_match:
+        doi = doi_match.group(0).rstrip(".,;)")
+        req = urllib.request.Request(
+            f"https://doi.org/{doi}",
+            headers={'Accept': 'application/vnd.citationstyles.csl+json',
+                     'User-Agent': 'bucket-mcp/2.0'},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as r:
+                return {'ok': True, 'doi': doi, 'csl_json': json.loads(r.read().decode())}
+        except Exception as e:
+            return {'ok': False, 'doi': doi, 'error': f'{type(e).__name__}: {e}'}
+    # Non-DOI URL → minimal webpage CSL stub
+    return {'ok': True, 'csl_json': {
+        'type': 'webpage', 'URL': doi_or_url, 'id': doi_or_url
+    }, 'note': 'no DOI detected; returned minimal webpage CSL stub'}
+
+
 # ---------- MCP JSON-RPC 2.0 stdio loop ----------
 
 TOOLS = [
@@ -226,6 +286,30 @@ TOOLS = [
             'required': ['slug'],
         },
     },
+    {
+        'name': 'bucket_research',
+        'description': 'Paid research via bucket.foundation /api/research (feed402/0.2 envelopes). Returns either a cited answer (200) or an x402 payment challenge (402). Use for primary-source research backed by PubMed, Semantic Scholar, OpenAlex, ClinicalTrials, PubChem.',
+        'inputSchema': {
+            'type': 'object',
+            'properties': {
+                'query': {'type': 'string', 'description': 'natural-language research query'},
+                'tier': {'type': 'string', 'enum': ['raw', 'query', 'insight'], 'default': 'insight',
+                         'description': 'raw=$0.010/call, query=$0.005, insight=$0.002'},
+            },
+            'required': ['query'],
+        },
+    },
+    {
+        'name': 'bucket_cite',
+        'description': 'Generate a CSL-JSON citation block from a DOI or URL. Uses doi.org content negotiation for DOIs; falls back to a minimal webpage CSL stub for non-DOI URLs.',
+        'inputSchema': {
+            'type': 'object',
+            'properties': {
+                'doi_or_url': {'type': 'string', 'description': 'a DOI (10.xxxx/yyyy) or any URL'},
+            },
+            'required': ['doi_or_url'],
+        },
+    },
 ]
 
 
@@ -240,7 +324,7 @@ def handle_request(req: dict) -> dict:
             'result': {
                 'protocolVersion': '2024-11-05',
                 'capabilities': {'tools': {}},
-                'serverInfo': {'name': 'bucket-canon', 'version': '1.0.0'},
+                'serverInfo': {'name': 'bucket', 'version': '2.0.0'},
             },
         }
     if method == 'notifications/initialized':
@@ -264,6 +348,10 @@ def handle_request(req: dict) -> dict:
                 result = tool_canon_list_bridges()
             elif name == 'canon_get_bridge':
                 result = tool_canon_get_bridge(args['slug'])
+            elif name == 'bucket_research':
+                result = tool_bucket_research(args.get('query', ''), args.get('tier', 'insight'))
+            elif name == 'bucket_cite':
+                result = tool_bucket_cite(args.get('doi_or_url', ''))
             else:
                 return {'jsonrpc': '2.0', 'id': id_,
                         'error': {'code': -32601, 'message': f'unknown tool: {name}'}}
