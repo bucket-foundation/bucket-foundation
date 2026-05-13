@@ -53,6 +53,31 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
 
+  // The sidebar is only mounted into view while the globe section is on
+  // screen. Above the globe (top of the page) and below it (footer/branch
+  // grid) the sidebar is hidden, so the rest of the site reads at full
+  // width. Tied via IntersectionObserver on the tool wrapper.
+  const toolRef = useRef<HTMLDivElement | null>(null);
+  const [inTool, setInTool] = useState(false);
+
+  useEffect(() => {
+    const el = toolRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setInTool(true); // SSR / no-IO fallback — always show
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) setInTool(e.isIntersecting);
+      },
+      // Open the sidebar as soon as ~25% of the tool block enters view,
+      // close once it's fully left — feels like a gentle pause-and-reveal.
+      { rootMargin: "-15% 0px -15% 0px", threshold: [0, 0.25, 0.5] },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   // Time scrub state — always visible, defaults to 2020 CE (= show all)
   const [year, setYear] = useState(2020);
   const [playing, setPlaying] = useState(false);
@@ -116,7 +141,12 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   }, [q, branchFilter]);
 
   return (
-    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-4 md:py-6 md:pr-[440px]">
+    <div
+      ref={toolRef}
+      className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen py-4 md:py-6 transition-[padding] duration-300 ${
+        inTool ? "md:pr-[440px]" : ""
+      }`}
+    >
       {/* SEARCH BAR — rounded pill, sticky above the globe */}
       <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex flex-col items-center gap-2">
         <div className="w-full max-w-2xl pointer-events-auto">
@@ -363,17 +393,19 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
       </div>
 
-      {/* RIGHT-SIDE INFO DRAWER */}
-      <Drawer selected={selected} onClose={() => setSelected(null)} />
+      {/* RIGHT-SIDE INFO DRAWER — only visible while the globe is in view */}
+      <Drawer selected={selected} inTool={inTool} onClose={() => setSelected(null)} />
     </div>
   );
 }
 
 function Drawer({
   selected,
+  inTool,
   onClose,
 }: {
   selected: CanonMarker | null;
+  inTool: boolean;
   onClose: () => void;
 }) {
   const search = (selected as unknown as { _search?: SearchResult })?._search;
@@ -404,7 +436,10 @@ function Drawer({
       />
       <aside
         className={`fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
-          selected ? "translate-x-0" : "translate-x-full md:translate-x-0"
+          // Mobile: visible only when something selected.
+          // Desktop: visible only while the tool section is on screen
+          //          (IntersectionObserver-driven) OR a marker selected.
+          selected ? "translate-x-0" : (inTool ? "translate-x-full md:translate-x-0" : "translate-x-full")
         }`}
         style={{
           width: "min(440px, 100vw)",
