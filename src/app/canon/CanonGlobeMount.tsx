@@ -53,29 +53,40 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
 
-  // The sidebar is only mounted into view while the globe section is on
-  // screen. Above the globe (top of the page) and below it (footer/branch
-  // grid) the sidebar is hidden, so the rest of the site reads at full
-  // width. Tied via IntersectionObserver on the tool wrapper.
-  const toolRef = useRef<HTMLDivElement | null>(null);
-  const [inTool, setInTool] = useState(false);
+  // The sidebar appears only when the search-bar container hits the top of
+  // the viewport — i.e. the moment the sticky search bar would "pin" itself.
+  // It hides again once the user scrolls past the tool (search bar leaves
+  // viewport top). Driven by two sentinel divs:
+  //   - sentinelTop sits just above the search bar. When it crosses out the
+  //     top of the viewport, the sticky bar is pinned → show sidebar.
+  //   - sentinelBottom sits just after the globe. When it crosses out the
+  //     top of the viewport, the user has scrolled past the tool → hide.
+  const sentinelTopRef = useRef<HTMLDivElement | null>(null);
+  const sentinelBottomRef = useRef<HTMLDivElement | null>(null);
+  const [pinnedTop, setPinnedTop] = useState(false);   // search bar reached top
+  const [pastTool, setPastTool] = useState(false);     // scrolled past globe
+  const inTool = pinnedTop && !pastTool;
 
   useEffect(() => {
-    const el = toolRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setInTool(true); // SSR / no-IO fallback — always show
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) setInTool(e.isIntersecting);
-      },
-      // Open the sidebar as soon as ~25% of the tool block enters view,
-      // close once it's fully left — feels like a gentle pause-and-reveal.
-      { rootMargin: "-15% 0px -15% 0px", threshold: [0, 0.25, 0.5] },
+    if (typeof IntersectionObserver === "undefined") return;
+    const top = sentinelTopRef.current;
+    const bottom = sentinelBottomRef.current;
+    if (!top || !bottom) return;
+
+    // Detect "search bar pinned to viewport top":
+    // sentinelTop is above the search bar. When its bottom edge is at or
+    // above the viewport top (rootMargin -1px top), it's pinned.
+    const ioTop = new IntersectionObserver(
+      ([e]) => setPinnedTop(!e.isIntersecting && e.boundingClientRect.top < 0),
+      { rootMargin: "-80px 0px 0px 0px", threshold: 0 },
     );
-    io.observe(el);
-    return () => io.disconnect();
+    const ioBottom = new IntersectionObserver(
+      ([e]) => setPastTool(!e.isIntersecting && e.boundingClientRect.top < 0),
+      { rootMargin: "-80px 0px 0px 0px", threshold: 0 },
+    );
+    ioTop.observe(top);
+    ioBottom.observe(bottom);
+    return () => { ioTop.disconnect(); ioBottom.disconnect(); };
   }, []);
 
   // Time scrub state — always visible, defaults to 2020 CE (= show all)
@@ -142,11 +153,14 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 
   return (
     <div
-      ref={toolRef}
-      className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen py-4 md:py-6 transition-[padding] duration-300 ${
+      className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen min-h-screen py-4 md:py-6 transition-[padding] duration-300 ${
         inTool ? "md:pr-[440px]" : ""
       }`}
     >
+      {/* Sentinel: just above the search bar. When this scrolls out the top
+          of the viewport, the search bar is pinned → show sidebar. */}
+      <div ref={sentinelTopRef} aria-hidden style={{ height: 1 }} />
+
       {/* SEARCH BAR — rounded pill, sticky above the globe */}
       <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex flex-col items-center gap-2">
         <div className="w-full max-w-2xl pointer-events-auto">
@@ -392,6 +406,10 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
           showing {markers.length} canon event{markers.length === 1 ? "" : "s"} that happened by {fmtYear(Math.round(year))}
         </div>
       </div>
+
+      {/* Sentinel: end of tool block. When it scrolls out the top of the
+          viewport, the user has scrolled past the globe → hide sidebar. */}
+      <div ref={sentinelBottomRef} aria-hidden style={{ height: 1 }} />
 
       {/* RIGHT-SIDE INFO DRAWER — only visible while the globe is in view */}
       <Drawer selected={selected} inTool={inTool} onClose={() => setSelected(null)} />
