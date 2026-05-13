@@ -142,10 +142,14 @@ export default function CanonGlobe({
   return (
     <div className={className} style={{ width: "100%", height: "100%" }}>
       <Canvas
-        dpr={[1, 2]}
-        performance={{ min: 0.6 }}
+        // Lower GPU pressure: cap DPR to 1, drop antialias. Helps on
+        // browsers with shaky GPU drivers (Brave/Wayland/AMD on Linux
+        // tends to crash with frequent context switches).
+        dpr={1}
+        frameloop="demand"  // only render on prop change / camera moves
+        performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 3.4], fov: 42 }}
-        gl={{ antialias: true, alpha: true }}
+        gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
         {/* dot-globe is unlit (MeshBasicMaterial) — ambient is harmless. */}
         <ambientLight intensity={0.5} />
@@ -165,7 +169,7 @@ export default function CanonGlobe({
         <Suspense fallback={null}>
           <Earth
             targetRotationY={0}
-            reducedMotion={true /* OrbitControls handles rotation now */}
+            reducedMotion={true /* let OrbitControls drive rotation */}
             landmaskUrl={LANDMASK_URL}
           >
             <CanonMarkers
@@ -180,22 +184,21 @@ export default function CanonGlobe({
         </Suspense>
         <Halo enabled />
 
-        {/* Google-Earth-style controls: drag to spin, scroll to zoom, no pan.
-            Auto-rotates slowly when idle (like an attract loop). User
-            interaction temporarily stops auto-rotation; resumes after 4s. */}
+        {/* Minimal controls: drag to rotate + scroll to zoom. No damping
+            (no continuous re-renders), no auto-rotate (no idle GPU work)
+            — frameloop="demand" only renders on input. Drops GPU pressure
+            so shaky Linux/Wayland AMD drivers don't crash on interaction. */}
         <OrbitControls
-          enableDamping
-          dampingFactor={0.08}
+          enableDamping={false}
           enableZoom
           enablePan={false}
-          minDistance={1.8}      // can't get inside the globe
-          maxDistance={8}        // can't fly away forever
-          minPolarAngle={0.1}    // don't flip over the poles
-          maxPolarAngle={Math.PI - 0.1}
-          rotateSpeed={0.55}     // smooth, not twitchy
-          zoomSpeed={0.7}
-          autoRotate={!reducedMotion}
-          autoRotateSpeed={0.4}  // 1 full revolution every ~15 minutes — gentle
+          minDistance={2.0}
+          maxDistance={6}
+          minPolarAngle={0.15}
+          maxPolarAngle={Math.PI - 0.15}
+          rotateSpeed={0.5}
+          zoomSpeed={0.6}
+          autoRotate={false}
         />
       </Canvas>
     </div>

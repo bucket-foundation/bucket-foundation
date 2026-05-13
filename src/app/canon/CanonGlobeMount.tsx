@@ -112,32 +112,29 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 
   return (
     <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-4 md:py-6">
-      {/* SEARCH BAR — sticky above the globe */}
+      {/* SEARCH BAR — rounded pill, sticky above the globe */}
       <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex justify-center">
         <div className="w-full max-w-2xl pointer-events-auto">
-          {/* Visible label so users immediately know what this is */}
           <div
-            className="text-[10px] uppercase tracking-[0.22em] mb-1 px-1"
-            style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
-          >
-            ⌕ search canon · 599 claims across 9 branches
-          </div>
-          <div
-            className="rounded-md shadow-sm flex items-center"
+            className="rounded-full shadow-sm flex items-center px-2"
             style={{ background: "var(--bone)", border: "1px solid var(--hairline)" }}
           >
-            <span
-              className="pl-3 pr-2 text-base"
+            <svg
+              className="ml-3 mr-2 flex-shrink-0"
+              width="18" height="18" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="2"
+              strokeLinecap="round" strokeLinejoin="round"
               style={{ color: "var(--parchment-dim)" }}
               aria-hidden
             >
-              ⌕
-            </span>
+              <circle cx="11" cy="11" r="7" />
+              <line x1="20" y1="20" x2="16.65" y2="16.65" />
+            </svg>
             <input
               type="text"
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="type a question — e.g. 'why can't computers be conscious?'"
+              placeholder="search canon · 599 claims across 9 branches"
               className="flex-1 bg-transparent py-3 text-sm md:text-base outline-none placeholder:text-[color:var(--parchment-dim)]"
               style={{ fontFamily: "var(--font-fraunces)" }}
             />
@@ -210,42 +207,24 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
       </div>
 
-      {/* INSTRUCTIONAL READOUT — tells the user exactly what to do */}
-      {!selected && (
-        <div className="mx-auto mb-3 flex justify-center px-4 pointer-events-none">
+      {/* Hover chip — appears centered under the search bar only when
+          hovering a marker. Out of the way otherwise. */}
+      {hovered && !selected && (
+        <div className="mx-auto mb-2 flex justify-center px-4 pointer-events-none">
           <div
-            className="rounded-md px-4 py-2 transition-all duration-200"
-            style={{
-              background: "var(--bone)",
-              border: `1px solid ${hovered ? "var(--gold)" : "var(--hairline)"}`,
-              opacity: hovered ? 1 : 0.85,
-              maxWidth: "min(640px, calc(100vw - 24px))",
-            }}
+            className="rounded-full px-4 py-1.5 shadow-sm"
+            style={{ background: "var(--bone)", border: "1px solid var(--gold)" }}
           >
-            {hovered ? (
-              <div className="text-center">
-                <div className="text-sm" style={{ fontFamily: "Cinzel, serif", color: "var(--basalt)", letterSpacing: "0.04em" }}>
-                  {hovered.title}
-                </div>
-                <div
-                  className="text-[10px] uppercase tracking-[0.2em] mt-1"
-                  style={{ fontFamily: "var(--font-jetbrains)", color: "var(--gold)" }}
-                >
-                  {hovered.year !== undefined && `${fmtYear(hovered.year)} · `}
-                  {hovered.branch} · click to open details
-                </div>
-              </div>
-            ) : (
-              <div
-                className="text-[11px] uppercase tracking-[0.18em] flex flex-wrap items-center justify-center gap-x-4 gap-y-1"
-                style={{ fontFamily: "var(--font-jetbrains)", color: "var(--parchment-dim)" }}
-              >
-                <span><span style={{ color: "var(--gold)" }}>drag</span> to rotate</span>
-                <span><span style={{ color: "var(--gold)" }}>scroll</span> to zoom</span>
-                <span><span style={{ color: "var(--gold)" }}>click</span> a marker for details</span>
-                <span><span style={{ color: "var(--gold)" }}>scrub time</span> below</span>
-              </div>
-            )}
+            <div className="text-sm" style={{ fontFamily: "Cinzel, serif", color: "var(--basalt)", letterSpacing: "0.04em" }}>
+              {hovered.title}
+            </div>
+            <div
+              className="text-[10px] uppercase tracking-[0.2em] mt-0.5 text-center"
+              style={{ fontFamily: "var(--font-jetbrains)", color: "var(--gold)" }}
+            >
+              {hovered.year !== undefined && `${fmtYear(hovered.year)} · `}
+              {hovered.branch} · click for details
+            </div>
           </div>
         </div>
       )}
@@ -266,6 +245,32 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
               "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
           }}
         />
+        {/* Tiny corner legend — out of the way but always visible */}
+        <div
+          className="absolute bottom-3 right-3 z-20 pointer-events-none rounded-md px-3 py-2 shadow-sm"
+          style={{
+            background: "color-mix(in srgb, var(--bone) 92%, transparent)",
+            border: "1px solid var(--hairline)",
+            fontFamily: "var(--font-jetbrains)",
+          }}
+        >
+          <div
+            className="text-[9px] uppercase tracking-[0.22em] mb-1"
+            style={{ color: "var(--gold)" }}
+          >
+            globe controls
+          </div>
+          <ul
+            className="space-y-0.5 text-[10px]"
+            style={{ color: "var(--parchment-dim)" }}
+          >
+            <li><span style={{ color: "var(--basalt)" }}>drag</span> · rotate</li>
+            <li><span style={{ color: "var(--basalt)" }}>scroll</span> · zoom</li>
+            <li><span style={{ color: "var(--basalt)" }}>click</span> · marker details</li>
+            <li><span style={{ color: "var(--basalt)" }}>↓</span> · scrub time</li>
+          </ul>
+        </div>
+
         <GlobeErrorBoundary>
           <R3FCanonGlobe
             markers={markers}

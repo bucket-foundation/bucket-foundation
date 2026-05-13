@@ -114,6 +114,74 @@ for (const ln of lines) {
       });
     }
   }
+
+  // claim-added — new claim card under sub-claims/<concept>/<NNN-slug>.md
+  if (status === "A" && parts[2] === "sub-claims" && parts.length >= 5 && file.endsWith(".md") && parts[parts.length-1] !== "INDEX.md") {
+    const key = `${branchDir}-${parts[3]}-claims-batch`;
+    if (!seenBranchEntry.has(key)) {
+      seenBranchEntry.add(key);
+      newEntries.push({
+        id: `${COMMIT_SHA}-${key}`,
+        date: COMMIT_DATE,
+        category: "claim-added",
+        branch: branchDir,
+        title: `${branchDir.slice(3).replace(/-/g, " ")} · new ${parts[3].replace(/-/g, " ")} claim card${lines.filter(l => l.includes(`sub-claims/${parts[3]}/`) && l.startsWith("A")).length > 1 ? "s" : ""}`,
+        summary: `Claim card(s) committed under ${branchDir}/sub-claims/${parts[3]}/.`,
+        commit: COMMIT_SHA,
+      });
+    }
+  }
+
+  // bridge-discovered — new file under _bridges/detected/<NN-slug>/
+  if (status === "A" && parts[2] === "_bridges" && parts[3] === "detected" && parts.length >= 5) {
+    const bridgeSlug = parts[4];
+    const key = `bridge-${bridgeSlug}`;
+    if (!seenBranchEntry.has(key)) {
+      seenBranchEntry.add(key);
+      newEntries.push({
+        id: `${COMMIT_SHA}-${key}`,
+        date: COMMIT_DATE,
+        category: "bridge-discovered",
+        branch: null,
+        title: `Multi-branch primitive: ${bridgeSlug.replace(/^\d+-/, "").replace(/-/g, " ")}`,
+        summary: `Algorithm-detected cross-branch isomorphism committed.`,
+        commit: COMMIT_SHA,
+      });
+    }
+  }
+
+  // bridge-added — new manual bridge under _bridges/<slug>.md (not detected/)
+  if (status === "A" && parts[2] === "_bridges" && parts[3] !== "detected" && parts.length === 4 && file.endsWith(".md")) {
+    const bridgeSlug = basename(parts[3], ".md");
+    if (bridgeSlug !== "INDEX" && bridgeSlug !== "DETECTED-INDEX") {
+      newEntries.push({
+        id: `${COMMIT_SHA}-bridge-${bridgeSlug}`,
+        date: COMMIT_DATE,
+        category: "bridge-added",
+        branch: null,
+        title: `Bridge added: ${bridgeSlug.replace(/-/g, " ")}`,
+        summary: `Curated cross-branch bridge committed.`,
+        commit: COMMIT_SHA,
+      });
+    }
+  }
+}
+
+// site-feature — commit messages prefixed with web|ux|globe|mcp|canon: → site update
+// (catches feature work that doesn't touch bucket-canon/)
+if (newEntries.length === 0) {
+  const m = COMMIT_MSG.match(/^(web|ux|globe|mcp|canon|nav|fix|site refactor)(?:\([^)]+\))?:\s*(.+)$/i);
+  if (m) {
+    newEntries.push({
+      id: `${COMMIT_SHA}-site`,
+      date: COMMIT_DATE,
+      category: "site-feature",
+      branch: null,
+      title: m[2].slice(0, 100),
+      summary: COMMIT_MSG.slice(0, 240),
+      commit: COMMIT_SHA,
+    });
+  }
 }
 
 if (newEntries.length === 0) {

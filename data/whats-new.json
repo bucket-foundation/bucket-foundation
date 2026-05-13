@@ -2,6 +2,1734 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "44cdd66-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "nav buttons, bigger globe space, fixed tooltips, /canon/timeline",
+      "summary": "web(canon): nav buttons, bigger globe space, fixed tooltips, /canon/timeline",
+      "commit": "44cdd66"
+    },
+    {
+      "id": "9c16c1e-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": ".npmrc legacy-peer-deps — unblock Vercel npm install",
+      "summary": "fix(build): .npmrc legacy-peer-deps — unblock Vercel npm install",
+      "commit": "9c16c1e"
+    },
+    {
+      "id": "b36e2de-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "/access page + nav surfaces new features + clear repo map",
+      "summary": "site refactor: /access page + nav surfaces new features + clear repo map",
+      "commit": "b36e2de"
+    },
+    {
+      "id": "bdaf94d-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "guaranteed-visible hover panel + working in-canvas tooltip",
+      "summary": "fix(globe): guaranteed-visible hover panel + working in-canvas tooltip",
+      "commit": "bdaf94d"
+    },
+    {
+      "id": "bd79e46-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "bigger hit area + sticky hover panel at top + restore Feed in nav",
+      "summary": "fix(globe): bigger hit area + sticky hover panel at top + restore Feed in nav",
+      "commit": "bd79e46"
+    },
+    {
+      "id": "e039abf-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "rename Feed → What's new (keep the original label)",
+      "summary": "nav: rename Feed → What's new (keep the original label)",
+      "commit": "e039abf"
+    },
+    {
+      "id": "9260855-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "globe camera pulled back · timeline merged into main · original nav restored",
+      "summary": "fix(canon): globe camera pulled back · timeline merged into main · original nav restored",
+      "commit": "9260855"
+    },
+    {
+      "id": "24c3a58-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Google-Earth-style controls — drag to rotate · scroll to zoom",
+      "summary": "globe: Google-Earth-style controls — drag to rotate · scroll to zoom",
+      "commit": "24c3a58"
+    },
+    {
+      "id": "bac23ea-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "click → right-side drawer · search above globe · time scrubber always visible",
+      "summary": "globe: click → right-side drawer · search above globe · time scrubber always visible",
+      "commit": "bac23ea"
+    },
+    {
+      "id": "89874df-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "nav consolidation (5 tabs) + visible affordances on every interaction",
+      "summary": "ux: nav consolidation (5 tabs) + visible affordances on every interaction",
+      "commit": "89874df"
+    },
+    {
+      "id": "0416037-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "consolidate two servers into one + restore What's new in nav",
+      "summary": "mcp: consolidate two servers into one + restore What's new in nav",
+      "commit": "0416037"
+    },
+    {
+      "id": "0aabd91-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "WebGL pre-flight check + error boundary — page survives if GPU disabled",
+      "summary": "fix(globe): WebGL pre-flight check + error boundary — page survives if GPU disabled",
+      "commit": "0aabd91"
+    },
+    {
+      "id": "2b8bf24-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "clean WebGL fallback — no thrown errors, no console noise",
+      "summary": "fix(globe): clean WebGL fallback — no thrown errors, no console noise",
+      "commit": "2b8bf24"
+    },
+    {
+      "id": "6088bde-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "silent fallback — just the static globe, no warning card",
+      "summary": "globe: silent fallback — just the static globe, no warning card",
+      "commit": "6088bde"
+    },
+    {
+      "id": "cfbc1f7-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "self-contained SVG fallback — guaranteed to render",
+      "summary": "fix(globe): self-contained SVG fallback — guaranteed to render",
+      "commit": "cfbc1f7"
+    },
+    {
+      "id": "6a4ff90-site",
+      "date": "2026-05-12",
+      "category": "site-feature",
+      "branch": null,
+      "title": "silent error boundary — page survives, no fallback message",
+      "summary": "fix(globe): silent error boundary — page survives, no fallback message",
+      "commit": "6a4ff90"
+    },
+    {
+      "id": "37613ab-01-mathematics-godel-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new godel claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/godel/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-01-mathematics-golden-ratio-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new golden ratio claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/golden-ratio/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-01-mathematics-group-theory-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new group theory claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/group-theory/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-01-mathematics-set-theory-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new set theory claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/set-theory/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-01-mathematics-topology-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new topology claim cards",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/topology/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-einstein-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new einstein claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/einstein/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-entropy-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new entropy claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/entropy/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-feynman-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new feynman claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/feynman/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-gravity-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new gravity claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/gravity/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-maxwell-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new maxwell claim card",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/maxwell/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-newton-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new newton claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/newton/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-photoelectric-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new photoelectric claim card",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/photoelectric/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-quantum-mech-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new quantum mech claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/quantum-mech/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-quantum-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new quantum claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/quantum/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-02-physics-relativity-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new relativity claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/relativity/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-04-information-shannon-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "04-information",
+      "title": "information · new shannon claim card",
+      "summary": "Claim card(s) committed under 04-information/sub-claims/shannon/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-04-information-turing-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "04-information",
+      "title": "information · new turing claim card",
+      "summary": "Claim card(s) committed under 04-information/sub-claims/turing/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-06-cosmology-big-bang-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new big bang claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/big-bang/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-06-cosmology-black-hole-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new black hole claim card",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/black-hole/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-06-cosmology-dark-matter-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new dark matter claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/dark-matter/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-06-cosmology-inflation-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new inflation claim card",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/inflation/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-07-mind-consciousness-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new consciousness claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/consciousness/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-07-mind-free-will-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new free will claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/free-will/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-07-mind-godhead-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new godhead claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/godhead/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-08-deep-history-atlantis-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new atlantis claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/atlantis/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "37613ab-08-deep-history-younger-dryas-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new younger dryas claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/younger-dryas/.",
+      "commit": "37613ab"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-chaos-theory-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new chaos theory claim cards",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/chaos-theory/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-euler-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new euler claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/euler/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-fractal-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new fractal claim cards",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/fractal/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-godel-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new godel claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/godel/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-golden-ratio-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new golden ratio claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/golden-ratio/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-group-theory-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new group theory claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/group-theory/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-hilbert-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new hilbert claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/hilbert/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-set-theory-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new set theory claim card",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/set-theory/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-01-mathematics-topology-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "01-mathematics",
+      "title": "mathematics · new topology claim cards",
+      "summary": "Claim card(s) committed under 01-mathematics/sub-claims/topology/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-bell-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new bell claim card",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/bell/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-boltzmann-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new boltzmann claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/boltzmann/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-heisenberg-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new heisenberg claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/heisenberg/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-loop-quantum-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new loop quantum claim card",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/loop-quantum/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-maxwell-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new maxwell claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/maxwell/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-photoelectric-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new photoelectric claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/photoelectric/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-planck-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new planck claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/planck/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-quantum-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new quantum claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/quantum/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-schrodinger-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new schrodinger claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/schrodinger/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-speed-of-light-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new speed of light claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/speed-of-light/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-standard-model-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new standard model claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/standard-model/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-string-theory-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new string theory claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/string-theory/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-tesla-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new tesla claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/tesla/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-thermodynamics-2nd-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new thermodynamics 2nd claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/thermodynamics-2nd/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-thermodynamics-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new thermodynamics claim cards",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/thermodynamics/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-wave-particle-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new wave particle claim card",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/wave-particle/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-02-physics-zero-point-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "02-physics",
+      "title": "physics · new zero point claim card",
+      "summary": "Claim card(s) committed under 02-physics/sub-claims/zero-point/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-03-chemistry-pauling-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "03-chemistry",
+      "title": "chemistry · new pauling claim card",
+      "summary": "Claim card(s) committed under 03-chemistry/sub-claims/pauling/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-03-chemistry-periodic-table-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "03-chemistry",
+      "title": "chemistry · new periodic table claim cards",
+      "summary": "Claim card(s) committed under 03-chemistry/sub-claims/periodic-table/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-03-chemistry-redox-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "03-chemistry",
+      "title": "chemistry · new redox claim cards",
+      "summary": "Claim card(s) committed under 03-chemistry/sub-claims/redox/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-03-chemistry-water-anomalies-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "03-chemistry",
+      "title": "chemistry · new water anomalies claim card",
+      "summary": "Claim card(s) committed under 03-chemistry/sub-claims/water-anomalies/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-04-information-cybernetics-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "04-information",
+      "title": "information · new cybernetics claim card",
+      "summary": "Claim card(s) committed under 04-information/sub-claims/cybernetics/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-04-information-shannon-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "04-information",
+      "title": "information · new shannon claim cards",
+      "summary": "Claim card(s) committed under 04-information/sub-claims/shannon/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-04-information-wolfram-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "04-information",
+      "title": "information · new wolfram claim cards",
+      "summary": "Claim card(s) committed under 04-information/sub-claims/wolfram/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-becker-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new becker claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/becker/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-blue-light-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new blue light claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/blue-light/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-cytochrome-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new cytochrome claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/cytochrome/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-deuterium-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new deuterium claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/deuterium/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-dopamine-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new dopamine claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/dopamine/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-ez-water-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new ez water claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/ez-water/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-gilbert-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new gilbert claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/gilbert/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-iron-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new iron claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/iron/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-methylene-blue-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new methylene blue claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/methylene-blue/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-mitochondria-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new mitochondria claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/mitochondria/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-oxygen-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new oxygen claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/oxygen/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-photoelectric-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new photoelectric claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/photoelectric/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-pollack-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new pollack claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/pollack/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-red-light-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new red light claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/red-light/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-05-biophysics-szent-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new szent claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/szent/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-anthropic-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new anthropic claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/anthropic/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-black-hole-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new black hole claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/black-hole/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-dark-energy-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new dark energy claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/dark-energy/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-dark-matter-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new dark matter claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/dark-matter/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-hawking-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new hawking claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/hawking/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-hubble-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new hubble claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/hubble/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-inflation-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new inflation claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/inflation/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-multiverse-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new multiverse claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/multiverse/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-penrose-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new penrose claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/penrose/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-plasma-cosmology-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new plasma cosmology claim cards",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/plasma-cosmology/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-06-cosmology-taurid-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "06-cosmology",
+      "title": "cosmology · new taurid claim card",
+      "summary": "Claim card(s) committed under 06-cosmology/sub-claims/taurid/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-aristotle-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new aristotle claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/aristotle/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-attention-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new attention claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/attention/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-consciousness-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new consciousness claim card",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/consciousness/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-gwt-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new gwt claim card",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/gwt/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-hegel-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new hegel claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/hegel/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-iit-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new iit claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/iit/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-intentionality-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new intentionality claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/intentionality/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-jung-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new jung claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/jung/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-kant-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new kant claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/kant/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-mccrone-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new mccrone claim card",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/mccrone/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-meditation-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new meditation claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/meditation/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-plato-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new plato claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/plato/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-07-mind-whitehead-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "07-mind",
+      "title": "mind · new whitehead claim cards",
+      "summary": "Claim card(s) committed under 07-mind/sub-claims/whitehead/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-agriculture-origin-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new agriculture origin claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/agriculture-origin/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-atlantis-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new atlantis claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/atlantis/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-carlson-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new carlson claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/carlson/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-cataclysm-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new cataclysm claim card",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/cataclysm/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-hancock-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new hancock claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/hancock/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-ice-age-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new ice age claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/ice-age/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-megalith-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new megalith claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/megalith/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-pyramid-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new pyramid claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/pyramid/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-sphinx-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new sphinx claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/sphinx/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-08-deep-history-younger-dryas-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "08-deep-history",
+      "title": "deep history · new younger dryas claim cards",
+      "summary": "Claim card(s) committed under 08-deep-history/sub-claims/younger-dryas/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-09-sacred-texts-gospel-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "09-sacred-texts",
+      "title": "sacred texts · new gospel claim card",
+      "summary": "Claim card(s) committed under 09-sacred-texts/sub-claims/gospel/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-09-sacred-texts-hermetic-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "09-sacred-texts",
+      "title": "sacred texts · new hermetic claim card",
+      "summary": "Claim card(s) committed under 09-sacred-texts/sub-claims/hermetic/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-09-sacred-texts-logos-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "09-sacred-texts",
+      "title": "sacred texts · new logos claim cards",
+      "summary": "Claim card(s) committed under 09-sacred-texts/sub-claims/logos/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "bc2bec6-09-sacred-texts-vedanta-claims-batch",
+      "date": "2026-05-11",
+      "category": "claim-added",
+      "branch": "09-sacred-texts",
+      "title": "sacred texts · new vedanta claim cards",
+      "summary": "Claim card(s) committed under 09-sacred-texts/sub-claims/vedanta/.",
+      "commit": "bc2bec6"
+    },
+    {
+      "id": "031f837-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "cross-branch isomorphism detection pipeline (stages 1-3 shipped)",
+      "summary": "canon: cross-branch isomorphism detection pipeline (stages 1-3 shipped)",
+      "commit": "031f837"
+    },
+    {
+      "id": "77eb4dd-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "cross-branch isomorphism pipeline — stages 1-6 shipped + LLM-naming in progress",
+      "summary": "canon: cross-branch isomorphism pipeline — stages 1-6 shipped + LLM-naming in progress",
+      "commit": "77eb4dd"
+    },
+    {
+      "id": "4902717-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "surface detected multi-branch primitives + bridge-name stage",
+      "summary": "web(canon): surface detected multi-branch primitives + bridge-name stage",
+      "commit": "4902717"
+    },
+    {
+      "id": "c202cad-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "wire bridge-evidence + qwen-quality-pass watchers",
+      "summary": "canon: wire bridge-evidence + qwen-quality-pass watchers",
+      "commit": "c202cad"
+    },
+    {
+      "id": "159ac3a-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "add CANON-TRUTH-PATTERNS.md master synthesis doc (11/17 bridges named)",
+      "summary": "canon: add CANON-TRUTH-PATTERNS.md master synthesis doc (11/17 bridges named)",
+      "commit": "159ac3a"
+    },
+    {
+      "id": "0e3e103-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "all 17 bridges grounded with corpus evidence + 599 claims with top-K passages",
+      "summary": "canon: all 17 bridges grounded with corpus evidence + 599 claims with top-K passages",
+      "commit": "0e3e103"
+    },
+    {
+      "id": "01d3805-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "tiered architecture + AI/ML value research + overnight training kickoff",
+      "summary": "canon: tiered architecture + AI/ML value research + overnight training kickoff",
+      "commit": "01d3805"
+    },
+    {
+      "id": "54917d8-site",
+      "date": "2026-05-11",
+      "category": "site-feature",
+      "branch": null,
+      "title": "re-cluster with canon-tuned embedding → 7-BRANCH BRIDGE DISCOVERED",
+      "summary": "canon: re-cluster with canon-tuned embedding → 7-BRANCH BRIDGE DISCOVERED",
+      "commit": "54917d8"
+    },
+    {
+      "id": "cb322f9-site",
+      "date": "2026-05-10",
+      "category": "site-feature",
+      "branch": null,
+      "title": "10 primary-bridge entries — the meta-structure",
+      "summary": "canon(bridges): 10 primary-bridge entries — the meta-structure",
+      "commit": "cb322f9"
+    },
+    {
+      "id": "858d42e-05-biophysics-mitochondria-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new mitochondria claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/mitochondria/.",
+      "commit": "858d42e"
+    },
+    {
+      "id": "858d42e-05-biophysics-photosynthesis-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new photosynthesis claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/photosynthesis/.",
+      "commit": "858d42e"
+    },
+    {
+      "id": "858d42e-05-biophysics-red-light-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new red light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/red-light/.",
+      "commit": "858d42e"
+    },
+    {
+      "id": "858d42e-05-biophysics-vitamin-d-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new vitamin d claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/vitamin-d/.",
+      "commit": "858d42e"
+    },
+    {
+      "id": "6a688f1-05-biophysics-blue-light-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new blue light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/blue-light/.",
+      "commit": "6a688f1"
+    },
+    {
+      "id": "6a688f1-05-biophysics-circadian-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new circadian claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/circadian/.",
+      "commit": "6a688f1"
+    },
+    {
+      "id": "6a688f1-05-biophysics-leptin-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new leptin claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/leptin/.",
+      "commit": "6a688f1"
+    },
+    {
+      "id": "6a688f1-05-biophysics-mitochondria-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new mitochondria claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/mitochondria/.",
+      "commit": "6a688f1"
+    },
+    {
+      "id": "6a688f1-05-biophysics-red-light-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new red light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/red-light/.",
+      "commit": "6a688f1"
+    },
+    {
+      "id": "6a688f1-05-biophysics-vitamin-d-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new vitamin d claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/vitamin-d/.",
+      "commit": "6a688f1"
+    },
+    {
+      "id": "c1f1c6c-05-biophysics-blue-light-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new blue light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/blue-light/.",
+      "commit": "c1f1c6c"
+    },
+    {
+      "id": "d34f55f-10-music-opened",
+      "date": "2026-05-10",
+      "category": "branch-opened",
+      "branch": "10-music",
+      "title": "music branch opened",
+      "summary": "Branch root README committed.",
+      "commit": "d34f55f"
+    },
+    {
+      "id": "15ff764-site",
+      "date": "2026-05-10",
+      "category": "site-feature",
+      "branch": null,
+      "title": "music reframed as primary-axis bridge (was 10-music branch)",
+      "summary": "canon: music reframed as primary-axis bridge (was 10-music branch)",
+      "commit": "15ff764"
+    },
+    {
+      "id": "85bd040-05-biophysics-EMF-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new EMF claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/EMF/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-becker-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new becker claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/becker/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-blue-light-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new blue light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/blue-light/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-bone-bioelectric-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new bone bioelectric claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/bone-bioelectric/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-circadian-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new circadian claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/circadian/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-cytochrome-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new cytochrome claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/cytochrome/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-deuterium-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new deuterium claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/deuterium/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-dopamine-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new dopamine claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/dopamine/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-ez-water-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new ez water claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/ez-water/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-iron-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new iron claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/iron/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-leptin-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new leptin claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/leptin/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-melanin-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new melanin claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/melanin/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-methylene-blue-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new methylene blue claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/methylene-blue/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-mitochondria-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new mitochondria claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/mitochondria/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-oxygen-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new oxygen claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/oxygen/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-photoelectric-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new photoelectric claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/photoelectric/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-photosynthesis-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new photosynthesis claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/photosynthesis/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-quantum-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new quantum claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/quantum/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-red-light-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new red light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/red-light/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "85bd040-05-biophysics-vitamin-d-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new vitamin d claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/vitamin-d/.",
+      "commit": "85bd040"
+    },
+    {
+      "id": "9ef535d-05-biophysics-becker-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new becker claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/becker/.",
+      "commit": "9ef535d"
+    },
+    {
+      "id": "9ef535d-05-biophysics-blue-light-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new blue light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/blue-light/.",
+      "commit": "9ef535d"
+    },
+    {
+      "id": "9ef535d-05-biophysics-circadian-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new circadian claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/circadian/.",
+      "commit": "9ef535d"
+    },
+    {
+      "id": "9ef535d-05-biophysics-dopamine-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new dopamine claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/dopamine/.",
+      "commit": "9ef535d"
+    },
+    {
+      "id": "9ef535d-05-biophysics-melanin-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new melanin claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/melanin/.",
+      "commit": "9ef535d"
+    },
+    {
+      "id": "9ef535d-05-biophysics-mitochondria-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new mitochondria claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/mitochondria/.",
+      "commit": "9ef535d"
+    },
+    {
+      "id": "9ef535d-05-biophysics-photoelectric-claims-batch",
+      "date": "2026-05-10",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new photoelectric claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/photoelectric/.",
+      "commit": "9ef535d"
+    },
+    {
+      "id": "b70f86c-05-biophysics-EMF-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new EMF claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/EMF/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-blue-light-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new blue light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/blue-light/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-circadian-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new circadian claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/circadian/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-deuterium-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new deuterium claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/deuterium/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-dopamine-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new dopamine claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/dopamine/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-leptin-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new leptin claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/leptin/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-melanin-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new melanin claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/melanin/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-mitochondria-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new mitochondria claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/mitochondria/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-oxygen-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new oxygen claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/oxygen/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-photoelectric-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new photoelectric claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/photoelectric/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-photosynthesis-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new photosynthesis claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/photosynthesis/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-pollack-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new pollack claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/pollack/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-quantum-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new quantum claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/quantum/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-red-light-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new red light claim cards",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/red-light/.",
+      "commit": "b70f86c"
+    },
+    {
+      "id": "b70f86c-05-biophysics-vitamin-d-claims-batch",
+      "date": "2026-05-09",
+      "category": "claim-added",
+      "branch": "05-biophysics",
+      "title": "biophysics · new vitamin d claim card",
+      "summary": "Claim card(s) committed under 05-biophysics/sub-claims/vitamin-d/.",
+      "commit": "b70f86c"
+    },
+    {
       "id": "afec2ed-site-refactor",
       "date": "2026-05-01",
       "category": "site-refactor",
