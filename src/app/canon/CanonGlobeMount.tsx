@@ -52,6 +52,25 @@ interface Props {
 export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
+  const [expanded, setExpanded] = useState(false);
+
+  // Lock body scroll when the tool is in fullscreen so the page behind doesn't move.
+  useEffect(() => {
+    if (!expanded) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [expanded]);
+
+  // Escape exits fullscreen.
+  useEffect(() => {
+    if (!expanded) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setExpanded(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [expanded]);
 
   // Sidebar is always present on desktop (md+). Mobile: slide-in on select.
 
@@ -119,8 +138,39 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 
   return (
     <div
-      className="relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+      className={
+        expanded
+          ? "fixed inset-0 z-[60] px-4 md:px-6 md:pr-[440px] md:flex md:flex-col overflow-hidden bg-[color:var(--bone)]"
+          : "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
+      }
     >
+      {/* Expand / minimize button — top right of the tool card */}
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-label={expanded ? "exit fullscreen" : "expand to fullscreen"}
+        title={expanded ? "exit fullscreen (Esc)" : "expand to fullscreen"}
+        className="absolute top-3 right-3 md:right-[452px] z-40 w-9 h-9 flex items-center justify-center rounded-md border bg-[color:var(--bone)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] transition"
+        style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+      >
+        {expanded ? (
+          // Minimize icon
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="4 14 10 14 10 20" />
+            <polyline points="20 10 14 10 14 4" />
+            <line x1="14" y1="10" x2="21" y2="3" />
+            <line x1="3" y1="21" x2="10" y2="14" />
+          </svg>
+        ) : (
+          // Expand icon
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 3 21 3 21 9" />
+            <polyline points="9 21 3 21 3 15" />
+            <line x1="21" y1="3" x2="14" y2="10" />
+            <line x1="3" y1="21" x2="10" y2="14" />
+          </svg>
+        )}
+      </button>
 
       {/* SEARCH BAR — rounded pill at the top of the tool container */}
       <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
