@@ -53,41 +53,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [hovered, setHovered] = useState<CanonMarker | null>(null);
   const [selected, setSelected] = useState<CanonMarker | null>(null);
 
-  // The sidebar appears only when the search-bar container hits the top of
-  // the viewport — i.e. the moment the sticky search bar would "pin" itself.
-  // It hides again once the user scrolls past the tool (search bar leaves
-  // viewport top). Driven by two sentinel divs:
-  //   - sentinelTop sits just above the search bar. When it crosses out the
-  //     top of the viewport, the sticky bar is pinned → show sidebar.
-  //   - sentinelBottom sits just after the globe. When it crosses out the
-  //     top of the viewport, the user has scrolled past the tool → hide.
-  const sentinelTopRef = useRef<HTMLDivElement | null>(null);
-  const sentinelBottomRef = useRef<HTMLDivElement | null>(null);
-  const [pinnedTop, setPinnedTop] = useState(false);   // search bar reached top
-  const [pastTool, setPastTool] = useState(false);     // scrolled past globe
-  const inTool = pinnedTop && !pastTool;
-
-  useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    const top = sentinelTopRef.current;
-    const bottom = sentinelBottomRef.current;
-    if (!top || !bottom) return;
-
-    // Detect "search bar pinned to viewport top":
-    // sentinelTop is above the search bar. When its bottom edge is at or
-    // above the viewport top (rootMargin -1px top), it's pinned.
-    const ioTop = new IntersectionObserver(
-      ([e]) => setPinnedTop(!e.isIntersecting && e.boundingClientRect.top < 0),
-      { rootMargin: "-80px 0px 0px 0px", threshold: 0 },
-    );
-    const ioBottom = new IntersectionObserver(
-      ([e]) => setPastTool(!e.isIntersecting && e.boundingClientRect.top < 0),
-      { rootMargin: "-80px 0px 0px 0px", threshold: 0 },
-    );
-    ioTop.observe(top);
-    ioBottom.observe(bottom);
-    return () => { ioTop.disconnect(); ioBottom.disconnect(); };
-  }, []);
+  // Sidebar is always present on desktop (md+). Mobile: slide-in on select.
 
   // Time scrub state — always visible, defaults to 2020 CE (= show all)
   const [year, setYear] = useState(2020);
@@ -153,13 +119,8 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 
   return (
     <div
-      className={`relative left-1/2 right-1/2 -mx-[50vw] w-screen min-h-screen py-4 md:py-6 transition-[padding] duration-300 ${
-        inTool ? "md:pr-[440px]" : ""
-      }`}
+      className="relative left-1/2 right-1/2 -mx-[50vw] w-screen min-h-screen md:h-screen py-4 md:py-0 md:pr-[440px] md:overflow-hidden md:flex md:flex-col"
     >
-      {/* Sentinel: just above the search bar. When this scrolls out the top
-          of the viewport, the search bar is pinned → show sidebar. */}
-      <div ref={sentinelTopRef} aria-hidden style={{ height: 1 }} />
 
       {/* SEARCH BAR — rounded pill, sticky above the globe */}
       <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex flex-col items-center gap-2">
@@ -300,12 +261,11 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
       </div>
 
-      {/* GLOBE */}
+      {/* GLOBE — fills remaining viewport height on desktop */}
       <div
-        className="relative w-full mx-auto"
+        className="relative w-full mx-auto flex-1"
         style={{
-          height: "min(68vh, 760px)",
-          minHeight: "460px",
+          minHeight: "440px",
         }}
       >
         <div
@@ -407,23 +367,17 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
       </div>
 
-      {/* Sentinel: end of tool block. When it scrolls out the top of the
-          viewport, the user has scrolled past the globe → hide sidebar. */}
-      <div ref={sentinelBottomRef} aria-hidden style={{ height: 1 }} />
-
-      {/* RIGHT-SIDE INFO DRAWER — only visible while the globe is in view */}
-      <Drawer selected={selected} inTool={inTool} onClose={() => setSelected(null)} />
+      {/* RIGHT-SIDE INFO DRAWER */}
+      <Drawer selected={selected} onClose={() => setSelected(null)} />
     </div>
   );
 }
 
 function Drawer({
   selected,
-  inTool,
   onClose,
 }: {
   selected: CanonMarker | null;
-  inTool: boolean;
   onClose: () => void;
 }) {
   const search = (selected as unknown as { _search?: SearchResult })?._search;
@@ -453,11 +407,9 @@ function Drawer({
         }}
       />
       <aside
-        className={`fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
-          // Mobile: visible only when something selected.
-          // Desktop: visible only while the tool section is on screen
-          //          (IntersectionObserver-driven) OR a marker selected.
-          selected ? "translate-x-0" : (inTool ? "translate-x-full md:translate-x-0" : "translate-x-full")
+        className={`md:absolute md:right-0 md:top-0 md:h-screen md:translate-x-0 md:z-10
+                    fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
+          selected ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
           width: "min(440px, 100vw)",
