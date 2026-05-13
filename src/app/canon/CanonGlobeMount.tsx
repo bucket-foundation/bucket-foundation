@@ -119,11 +119,11 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 
   return (
     <div
-      className="relative left-1/2 right-1/2 -mx-[50vw] w-screen min-h-screen md:h-screen py-4 md:py-0 md:pr-[440px] md:overflow-hidden md:flex md:flex-col"
+      className="relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
     >
 
-      {/* SEARCH BAR — rounded pill, sticky above the globe */}
-      <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex flex-col items-center gap-2">
+      {/* SEARCH BAR — rounded pill at the top of the tool container */}
+      <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
         <div className="w-full max-w-2xl pointer-events-auto">
           <div
             className="rounded-full shadow-sm flex items-center px-2"
@@ -313,8 +313,8 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </GlobeErrorBoundary>
       </div>
 
-      {/* TIME SCRUBBER — always visible, clearly labelled */}
-      <div className="mx-auto mt-5 max-w-3xl px-4">
+      {/* TIME SCRUBBER — pinned at the bottom of the tool container */}
+      <div className="mx-auto mt-3 max-w-3xl px-2 md:pb-6 flex-shrink-0">
         <div
           className="text-[10px] uppercase tracking-[0.22em] mb-2 px-1 text-center"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
@@ -407,7 +407,7 @@ function Drawer({
         }}
       />
       <aside
-        className={`md:absolute md:right-0 md:top-0 md:h-screen md:translate-x-0 md:z-10
+        className={`md:absolute md:right-0 md:top-0 md:bottom-0 md:h-auto md:translate-x-0 md:z-10
                     fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
           selected ? "translate-x-0" : "translate-x-full"
         }`}
