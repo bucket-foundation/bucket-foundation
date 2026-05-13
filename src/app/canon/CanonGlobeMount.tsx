@@ -207,27 +207,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
       </div>
 
-      {/* Hover chip — appears centered under the search bar only when
-          hovering a marker. Out of the way otherwise. */}
-      {hovered && !selected && (
-        <div className="mx-auto mb-2 flex justify-center px-4 pointer-events-none">
-          <div
-            className="rounded-full px-4 py-1.5 shadow-sm"
-            style={{ background: "var(--bone)", border: "1px solid var(--gold)" }}
-          >
-            <div className="text-sm" style={{ fontFamily: "Cinzel, serif", color: "var(--basalt)", letterSpacing: "0.04em" }}>
-              {hovered.title}
-            </div>
-            <div
-              className="text-[10px] uppercase tracking-[0.2em] mt-0.5 text-center"
-              style={{ fontFamily: "var(--font-jetbrains)", color: "var(--gold)" }}
-            >
-              {hovered.year !== undefined && `${fmtYear(hovered.year)} · `}
-              {hovered.branch} · click for details
-            </div>
-          </div>
-        </div>
-      )}
+      {/* In-canvas tooltip on the marker itself is enough — no chip up here */}
 
       {/* GLOBE */}
       <div
