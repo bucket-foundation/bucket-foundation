@@ -57,8 +57,9 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [year, setYear] = useState(2020);
   const [playing, setPlaying] = useState(false);
 
-  // Search
+  // Search + branch filter
   const [q, setQ] = useState("");
+  const [branchFilter, setBranchFilter] = useState<string | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searching, setSearching] = useState(false);
   const searchAbort = useRef<AbortController | null>(null);
@@ -97,7 +98,11 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
     setSearching(true);
     const t = setTimeout(async () => {
       try {
-        const r = await fetch(`/api/canon/search?q=${encodeURIComponent(q)}&top_k=8`, { signal: ac.signal });
+        const url = new URL("/api/canon/search", window.location.origin);
+        url.searchParams.set("q", q);
+        url.searchParams.set("top_k", "15");
+        if (branchFilter) url.searchParams.set("branch", branchFilter);
+        const r = await fetch(url.toString(), { signal: ac.signal });
         if (!r.ok) throw new Error(`http ${r.status}`);
         const j = await r.json();
         setResults(j.results || []);
@@ -108,12 +113,12 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
       }
     }, 250);
     return () => clearTimeout(t);
-  }, [q]);
+  }, [q, branchFilter]);
 
   return (
-    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-4 md:py-6">
+    <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen py-4 md:py-6 md:pr-[440px]">
       {/* SEARCH BAR — rounded pill, sticky above the globe */}
-      <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex justify-center">
+      <div className="sticky top-20 z-30 mx-auto mb-3 w-full px-4 flex flex-col items-center gap-2">
         <div className="w-full max-w-2xl pointer-events-auto">
           <div
             className="rounded-full shadow-sm flex items-center px-2"
@@ -205,9 +210,51 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
               </div>
             )}
         </div>
-      </div>
 
-      {/* In-canvas tooltip on the marker itself is enough — no chip up here */}
+        {/* Branch filter chips — one row of 9 toggles below the search */}
+        <div className="w-full max-w-2xl flex flex-wrap items-center justify-center gap-1.5 pointer-events-auto">
+          <button
+            onClick={() => setBranchFilter(null)}
+            className="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.16em] transition"
+            style={{
+              fontFamily: "var(--font-jetbrains)",
+              background: branchFilter === null ? "var(--basalt)" : "transparent",
+              color: branchFilter === null ? "var(--bone)" : "var(--parchment-dim)",
+              border: `1px solid ${branchFilter === null ? "var(--basalt)" : "var(--hairline)"}`,
+            }}
+          >
+            all
+          </button>
+          {[
+            ["01-mathematics", "math", "#D9A43A"],
+            ["02-physics", "physics", "#3E6FA8"],
+            ["03-chemistry", "chem", "#9B5A2C"],
+            ["04-information", "info", "#557B66"],
+            ["05-biophysics", "biophys", "#8E3E3E"],
+            ["06-cosmology", "cosmo", "#5B4882"],
+            ["07-mind", "mind", "#C2873E"],
+            ["08-deep-history", "deep-hist", "#7A5D3E"],
+            ["09-sacred-texts", "sacred", "#A0863F"],
+          ].map(([slug, label, color]) => {
+            const active = branchFilter === slug;
+            return (
+              <button
+                key={slug}
+                onClick={() => setBranchFilter(active ? null : slug)}
+                className="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.16em] transition"
+                style={{
+                  fontFamily: "var(--font-jetbrains)",
+                  background: active ? color : "transparent",
+                  color: active ? "white" : color,
+                  border: `1px solid ${color}`,
+                }}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       {/* GLOBE */}
       <div
@@ -344,11 +391,11 @@ function Drawer({
 
   return (
     <>
-      {/* backdrop only on mobile, soft on desktop */}
+      {/* mobile-only backdrop when a marker is selected */}
       <div
         onClick={onClose}
         aria-hidden
-        className="fixed inset-0 z-40 transition-opacity duration-200 md:bg-transparent md:pointer-events-none"
+        className="md:hidden fixed inset-0 z-40 transition-opacity duration-200"
         style={{
           background: selected ? "rgba(31,28,22,0.35)" : "transparent",
           opacity: selected ? 1 : 0,
@@ -356,13 +403,13 @@ function Drawer({
         }}
       />
       <aside
-        className="fixed right-0 top-0 h-screen z-50 transition-transform duration-300 overflow-y-auto"
+        className={`fixed right-0 top-0 h-screen z-50 overflow-y-auto transition-transform duration-300 ${
+          selected ? "translate-x-0" : "translate-x-full md:translate-x-0"
+        }`}
         style={{
           width: "min(440px, 100vw)",
           background: "var(--bone)",
           borderLeft: "1px solid var(--hairline)",
-          boxShadow: "-8px 0 32px rgba(31,28,22,0.18)",
-          transform: selected ? "translateX(0)" : "translateX(100%)",
         }}
       >
         {selected && (
@@ -464,6 +511,103 @@ function Drawer({
                 </Link>
               )}
             </div>
+          </div>
+        )}
+
+        {/* Empty state — desktop only, shown when nothing is selected.
+            Acts as a persistent research panel: how to use, current corpus
+            stats, quick links. */}
+        {!selected && (
+          <div className="hidden md:block p-6 md:p-8">
+            <div
+              className="pb-3 mb-5 border-b text-[10px] uppercase tracking-[0.22em]"
+              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)", borderColor: "var(--hairline)" }}
+            >
+              Detail panel
+            </div>
+            <h2
+              className="text-xl leading-tight mb-3"
+              style={{ fontFamily: "var(--font-fraunces)", color: "var(--basalt)", fontWeight: 500 }}
+            >
+              Click anywhere on the globe — or any search result — to inspect.
+            </h2>
+            <p
+              className="text-sm leading-relaxed mb-6"
+              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
+            >
+              This panel shows the canon entity you&apos;re currently focused on.
+              Hover a pin to preview its title. Click to open the full record
+              with year, branch, coordinates, claim excerpt (when from search),
+              and links into the canon.
+            </p>
+
+            <div
+              className="rounded-md p-4 mb-5"
+              style={{ background: "var(--bone-2)", border: "1px solid var(--hairline)" }}
+            >
+              <div
+                className="text-[10px] uppercase tracking-[0.2em] mb-2"
+                style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+              >
+                Canon · live counts
+              </div>
+              <dl
+                className="space-y-1 text-sm"
+                style={{ fontFamily: "var(--font-fraunces)" }}
+              >
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Claim cards</dt>
+                  <dd>599</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Branches</dt>
+                  <dd>9</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Detected bridges</dt>
+                  <dd>17</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Geocoded events</dt>
+                  <dd>50</dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Year span</dt>
+                  <dd>570 BCE — 2020 CE</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="space-y-1.5 text-sm" style={{ fontFamily: "var(--font-fraunces)" }}>
+              <a
+                href="/canon/search"
+                className="block px-3 py-2 rounded-md border hover:border-[color:var(--gold)] transition"
+                style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+              >
+                ⌕ full-page search →
+              </a>
+              <a
+                href="/canon/bridges"
+                className="block px-3 py-2 rounded-md border hover:border-[color:var(--gold)] transition"
+                style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+              >
+                ⤺⤻ multi-branch bridges →
+              </a>
+              <a
+                href="/canon/graph"
+                className="block px-3 py-2 rounded-md border hover:border-[color:var(--gold)] transition"
+                style={{ borderColor: "var(--hairline)", color: "var(--basalt)" }}
+              >
+                ⌬ knowledge graph →
+              </a>
+            </div>
+
+            <p
+              className="mt-8 text-[10px] uppercase tracking-[0.18em]"
+              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
+            >
+              A research tool. Free to read · paid to cite.
+            </p>
           </div>
         )}
       </aside>
