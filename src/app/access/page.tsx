@@ -60,12 +60,6 @@ const REPOS = [
     contents: "The Next.js app you're using. Canon claim cards (bucket-canon/), detected bridges (bucket-canon/_bridges/), embeddings + trained ML artifacts (_intake/), MCP server (mcp-server/), pipeline tools.",
   },
   {
-    name: "bucket-foundation/bucket-research",
-    url: "https://github.com/bucket-foundation/bucket-research",
-    role: "Research index (paired with Google Drive)",
-    contents: "Every research artifact organized by canon branch — paid x402 envelopes, canon PDFs, scraped corpora, annotated bibliographies. Dual-mirrored with BucketDrive.",
-  },
-  {
     name: "AGFarms/x402-research-gateway",
     url: "https://github.com/AGFarms/x402-research-gateway",
     role: "Upstream feed402 gateway (the rail)",

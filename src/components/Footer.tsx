@@ -53,7 +53,6 @@ export default function Footer() {
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Open source</div>
           <ul className="space-y-2 text-sm">
             <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">bucket-foundation</a></li>
-            <li><a href="https://github.com/bucket-foundation/bucket-research" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">bucket-research</a></li>
             <li><a href="https://github.com/AGFarms/x402-research-gateway" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">x402-gateway</a></li>
             <li><a href="/feed.xml" className="hover:text-[color:var(--bone)] transition">RSS feed</a></li>
             <li><Link href="/manifesto" className="hover:text-[color:var(--bone)] transition">Manifesto</Link></li>

@@ -487,17 +487,29 @@ export default function Presentation() {
           </p>
           <div className="mt-14 flex justify-center gap-3 flex-wrap">
             <Link
-              href="/join"
+              href="/canon"
               className="px-6 sm:px-10 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] min-h-[44px] inline-flex items-center"
             >
-              Contribute canon
+              Read the canon →
             </Link>
-            <a
-              href="https://github.com/bucket-foundation/bucket-research"
+            <Link
+              href="/canon/search"
               className="px-6 sm:px-10 py-4 border-2 border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition small-caps text-[11px] min-h-[44px] inline-flex items-center"
             >
-              bucket-research ↗
-            </a>
+              Search canon
+            </Link>
+            <Link
+              href="/access"
+              className="px-6 sm:px-10 py-4 border-2 border-[color:var(--aegean-deep)] text-[color:var(--aegean-deep)] hover:bg-[color:var(--aegean-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px] min-h-[44px] inline-flex items-center"
+            >
+              Use it · API · MCP
+            </Link>
+            <Link
+              href="/join"
+              className="px-6 sm:px-10 py-4 border border-[color:var(--basalt)] text-[color:var(--basalt-2)] hover:text-[color:var(--basalt)] transition small-caps text-[11px] min-h-[44px] inline-flex items-center"
+            >
+              Contribute
+            </Link>
           </div>
         </div>
         {/* Closing stele marquee */}
