@@ -1,7 +1,6 @@
 "use client";
 import { Html } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
 
@@ -49,18 +48,41 @@ export function latLngToVec3(lat: number, lng: number, radius: number): THREE.Ve
   );
 }
 
+// Branch → marker color. Each canon branch gets its own hue so the globe
+// reads as a coloured-coded atlas at a glance. Gradient anchored to the
+// bone+gold palette so it stays legible on the dot-pattern earth.
+const BRANCH_COLOR: Record<string, string> = {
+  mathematics:  "#D9A43A", // gold-bright
+  physics:      "#3E6FA8", // aegean
+  chemistry:    "#9B5A2C", // ochre
+  information:  "#557B66", // laurel
+  biophysics:   "#8E3E3E", // terra red
+  cosmology:    "#5B4882", // indigo
+  mind:         "#C2873E", // amber
+  "deep-history": "#7A5D3E", // umber
+  "sacred-texts": "#A0863F", // tarnished gold
+  earth:        "#4A6E5E",
+  art:          "#A45A4C",
+};
+
 const KIND_COLOR: Record<CanonMarkerKind, string> = {
-  "canon-entry":  "#D9A43A", // gold-bright
-  "figure-birth": "#B8861E", // gold
-  "figure-death": "#8A641A", // gold-deep
+  "canon-entry":  "#D9A43A",
+  "figure-birth": "#B8861E",
+  "figure-death": "#8A641A",
   "event":        "#B8861E",
 };
+
+function markerColor(m: CanonMarker): string {
+  // Branch → color first; fall back to kind color.
+  const b = (m.branch || "").replace(/^\d+-/, "");
+  return BRANCH_COLOR[b] || KIND_COLOR[m.kind] || "#D9A43A";
+}
 
 export function CanonMarkers({
   markers,
   activeIndex,
   radius,
-  reducedMotion,
+  reducedMotion: _reducedMotion,
   onHoverChange,
   onSelectChange,
 }: CanonMarkersProps) {
@@ -74,29 +96,15 @@ export function CanonMarkers({
     setHover(idx);
     if (onHoverChange) onHoverChange(idx === null ? null : markers[idx] || null);
   };
-  const ringRef = useRef<THREE.Mesh | null>(null);
-
   const positions = useMemo(
     () => markers.map((m) => latLngToVec3(m.lat, m.lng, radius)),
     [markers, radius]
   );
 
-  useFrame(({ clock }) => {
-    if (reducedMotion) return;
-    const ring = ringRef.current;
-    if (!ring) return;
-    const t = clock.getElapsedTime();
-    const s = 1 + Math.sin(t * 2.4) * 0.25 + 0.25;
-    ring.scale.setScalar(s * 0.05);
-    const mat = ring.material as THREE.MeshBasicMaterial;
-    mat.opacity = 0.6 - (s - 1) * 0.55;
-  });
-
   const activePos =
     typeof activeIndex === "number" && activeIndex >= 0 && activeIndex < positions.length
       ? positions[activeIndex]
       : null;
-  const activeLookAt = activePos ? activePos.clone().multiplyScalar(2) : null;
 
   const handleClick = (m: CanonMarker) => {
     // If parent provided a select handler, open the side drawer instead of
@@ -116,80 +124,154 @@ export function CanonMarkers({
     <group>
       {markers.map((m, i) => {
         const p = positions[i];
-        const color = KIND_COLOR[m.kind];
+        const color = markerColor(m);
         const isActive = i === activeIndex;
-        const dotScale = isActive ? 0.028 : 0.020;
-        // Beam pointing outward from the dot — pulled-up obelisk.
-        const beamLen = isActive ? 0.18 : 0.10;
-        const beamMid = p.clone().normalize().multiplyScalar(radius + beamLen / 2);
+        const isHover = i === hover;
+
+        // Mapbox-style pin: head + stem + surface halo.
+        // Scale animates with hover/active — discrete steps (not useFrame)
+        // so we stay frameloop="demand" friendly.
+        const lifted = isHover || isActive;
+        const headScale = lifted ? 0.034 : 0.024;
+        const stemLen = lifted ? 0.10 : 0.06;
+        const haloOuter = lifted ? 3.2 : 2.2;
+
+        const normal = p.clone().normalize();
+        // Anchor: where the pin meets the globe surface (just above).
+        const anchor = normal.clone().multiplyScalar(radius + 0.001);
+        // Stem center: midpoint between anchor and head.
+        const stemMid = normal.clone().multiplyScalar(radius + stemLen / 2);
+        // Head: the dot at the top of the pin.
+        const head = normal.clone().multiplyScalar(radius + stemLen + headScale * 0.6);
+
         return (
           <group key={m.id}>
-            {/* outward beam */}
+            {/* Surface halo — a flat disc on the globe, like a drop-shadow.
+                Bigger and brighter when hovered/active. Visually attaches
+                the pin to the surface. */}
             <mesh
-              position={beamMid}
-              onUpdate={(self) => self.lookAt(beamMid.clone().multiplyScalar(2))}
+              position={anchor}
+              onUpdate={(self) => self.lookAt(anchor.clone().add(normal))}
             >
-              <cylinderGeometry args={[dotScale * 0.18, dotScale * 0.18, beamLen, 8, 1, true]} />
+              <ringGeometry args={[headScale * 0.7, headScale * haloOuter, 32]} />
               <meshBasicMaterial
                 color={color}
                 transparent
-                opacity={0.55}
+                opacity={lifted ? 0.55 : 0.28}
+                side={THREE.DoubleSide}
                 toneMapped={false}
                 depthWrite={false}
               />
             </mesh>
-            {/* halo disc behind dot */}
-            <mesh position={p.clone().multiplyScalar(1.001)} onUpdate={(self) => self.lookAt(p.clone().multiplyScalar(2))}>
-              <ringGeometry args={[dotScale * 1.2, dotScale * 2.1, 24]} />
-              <meshBasicMaterial color={color} transparent opacity={0.35} side={THREE.DoubleSide} toneMapped={false} depthWrite={false} />
-            </mesh>
-            {/* invisible large hit-target sphere — makes hover/tap reliable
-                even when dots are visually clustered (e.g. Newton, Einstein,
-                Helmholtz, Turing, Poincaré are all within ~500km in Europe) */}
+
+            {/* Pin stem — slim cylinder anchoring the head to the surface */}
             <mesh
-              position={p}
+              position={stemMid}
+              onUpdate={(self) => self.lookAt(stemMid.clone().add(normal))}
+            >
+              <cylinderGeometry args={[headScale * 0.14, headScale * 0.20, stemLen, 8, 1, false]} />
+              <meshBasicMaterial
+                color={color}
+                transparent
+                opacity={0.85}
+                toneMapped={false}
+              />
+            </mesh>
+
+            {/* Pin head (outer glow ring on hover) */}
+            {lifted && (
+              <mesh
+                position={head}
+                onUpdate={(self) => self.lookAt(head.clone().add(normal))}
+              >
+                <ringGeometry args={[headScale * 1.05, headScale * 1.55, 24]} />
+                <meshBasicMaterial
+                  color={color}
+                  transparent
+                  opacity={0.45}
+                  side={THREE.DoubleSide}
+                  toneMapped={false}
+                  depthWrite={false}
+                />
+              </mesh>
+            )}
+
+            {/* Pin head — the visible dot */}
+            <mesh position={head}>
+              <sphereGeometry args={[headScale, 18, 18]} />
+              <meshBasicMaterial color={color} toneMapped={false} />
+            </mesh>
+
+            {/* Crisp white inner highlight on the head — makes it pop on
+                the dot-pattern earth */}
+            <mesh position={head.clone().multiplyScalar(1.0008)}>
+              <sphereGeometry args={[headScale * 0.45, 12, 12]} />
+              <meshBasicMaterial color="#FFF8E6" transparent opacity={0.7} toneMapped={false} />
+            </mesh>
+
+            {/* Invisible large hit-target — 4x head size. Forgiving on
+                tight clusters (Europe has 5 markers within ~500km). */}
+            <mesh
+              position={head}
               onPointerOver={(e) => { e.stopPropagation(); reportHover(i); document.body.style.cursor = "pointer"; }}
               onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
               onClick={(e) => { e.stopPropagation(); handleClick(m); }}
             >
-              <sphereGeometry args={[dotScale * 3.5, 12, 12]} />
+              <sphereGeometry args={[headScale * 4, 10, 10]} />
               <meshBasicMaterial color={color} transparent opacity={0} depthWrite={false} />
             </mesh>
-            {/* visible dot */}
-            <mesh position={p}>
-              <sphereGeometry args={[dotScale, 16, 16]} />
-              <meshBasicMaterial color={color} toneMapped={false} />
-            </mesh>
 
-            {hover === i && (
+            {isHover && (
               <Html
-                position={p.clone().multiplyScalar(1.25)}
+                position={head.clone().multiplyScalar(1.4)}
                 center
                 zIndexRange={[100, 0]}
               >
                 <div
                   style={{
                     pointerEvents: "none",
-                    minWidth: "120px",
-                    maxWidth: "260px",
-                    background: "var(--bone)",
+                    minWidth: "140px",
+                    maxWidth: "280px",
+                    background: "rgba(239, 232, 212, 0.96)",  // bone @ 96%
                     color: "var(--basalt)",
-                    border: "1px solid var(--hairline)",
-                    padding: "6px 12px",
+                    border: `1px solid ${color}`,
+                    borderRadius: "4px",
+                    padding: "8px 14px",
                     fontFamily: "Cinzel, serif",
                     fontSize: 11,
-                    lineHeight: 1.4,
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                    boxShadow: "0 2px 12px rgba(31,28,22,0.25)",
+                    lineHeight: 1.35,
+                    letterSpacing: "0.12em",
+                    boxShadow: "0 4px 18px rgba(31,28,22,0.32)",
                     whiteSpace: "normal",
                     wordBreak: "break-word",
                     textAlign: "center",
+                    backdropFilter: "blur(4px)",
+                    WebkitBackdropFilter: "blur(4px)",
                   }}
                 >
-                  {m.title}
-                  <div style={{ fontSize: 9, opacity: 0.7, marginTop: 3, letterSpacing: "0.18em" }}>
+                  <div style={{ fontWeight: 500 }}>{m.title}</div>
+                  <div
+                    style={{
+                      fontSize: 9,
+                      opacity: 0.7,
+                      marginTop: 4,
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
+                      color,
+                    }}
+                  >
                     {m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}{m.branch}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 8,
+                      opacity: 0.5,
+                      marginTop: 5,
+                      letterSpacing: "0.2em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    click for details →
                   </div>
                 </div>
               </Html>
@@ -198,23 +280,40 @@ export function CanonMarkers({
         );
       })}
 
-      {activePos && activeLookAt && (
-        <mesh
-          ref={ringRef}
-          position={activePos.clone().multiplyScalar(1.001)}
-          onUpdate={(self) => self.lookAt(activeLookAt)}
-          scale={0.05}
-        >
-          <ringGeometry args={[0.7, 1, 32]} />
-          <meshBasicMaterial
-            color={"#D9A43A"}
-            transparent
-            opacity={0.55}
-            side={THREE.DoubleSide}
-            toneMapped={false}
-            depthWrite={false}
-          />
-        </mesh>
+      {/* Selected-marker indicator: a wide bright ring on the surface
+          + a tiny dot at the centre, marking the chosen anchor. Static
+          (no useFrame pulse) to stay friendly with frameloop=demand. */}
+      {activePos && (
+        <>
+          <mesh
+            position={activePos.clone().multiplyScalar(1.0005)}
+            onUpdate={(self) => self.lookAt(activePos.clone().multiplyScalar(2))}
+          >
+            <ringGeometry args={[0.048, 0.078, 48]} />
+            <meshBasicMaterial
+              color={"#D9A43A"}
+              transparent
+              opacity={0.7}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+              depthWrite={false}
+            />
+          </mesh>
+          <mesh
+            position={activePos.clone().multiplyScalar(1.0007)}
+            onUpdate={(self) => self.lookAt(activePos.clone().multiplyScalar(2))}
+          >
+            <ringGeometry args={[0.08, 0.092, 48]} />
+            <meshBasicMaterial
+              color={"#D9A43A"}
+              transparent
+              opacity={0.45}
+              side={THREE.DoubleSide}
+              toneMapped={false}
+              depthWrite={false}
+            />
+          </mesh>
+        </>
       )}
     </group>
   );
