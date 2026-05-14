@@ -6,6 +6,7 @@ import StaticCanonGlobe, { GlobeBranch } from "@/components/CanonGlobe";
 import type { CanonMarker } from "@/components/canon-globe";
 import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import timelineData from "@/data/canon-timeline.json";
+import sitesData from "@/data/canon-sites.json";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ssr: false,
@@ -26,9 +27,16 @@ type SearchResult = {
   title: string; score: number; url: string; excerpt: string;
 };
 
+type SiteEntry = {
+  id: string; title: string; lat: number; lng: number; year: number;
+  civilization?: string; lidar?: string; unesco?: string; wikipedia?: string;
+  branch: string; kind: string;
+};
+
 const ALL_EVENTS = (timelineData.events as TimelineEvent[]).sort((a, b) => a.year - b.year);
-const MIN_YEAR = timelineData.min_year as number;
-const MAX_YEAR = timelineData.max_year as number;
+const ALL_SITES = (sitesData.sites as SiteEntry[]).sort((a, b) => a.year - b.year);
+const MIN_YEAR = Math.min(timelineData.min_year as number, ...ALL_SITES.map((s) => s.year));
+const MAX_YEAR = Math.max(timelineData.max_year as number, ...ALL_SITES.map((s) => s.year));
 
 function fmtYear(y?: number): string {
   if (y === undefined) return "";
@@ -42,6 +50,16 @@ function eventsAsMarkers(events: TimelineEvent[]): CanonMarker[] {
     branch: e.branch, title: e.title,
     kind: (e.kind === "figure-birth" || e.kind === "canon-entry"
       ? e.kind : "canon-entry") as CanonMarker["kind"],
+  }));
+}
+
+function sitesAsMarkers(sites: SiteEntry[]): CanonMarker[] {
+  return sites.map((s) => ({
+    id: s.id, lat: s.lat, lng: s.lng, year: s.year,
+    branch: s.branch, title: s.title,
+    kind: "archaeological-site",
+    civilization: s.civilization, lidar: s.lidar,
+    unesco: s.unesco, wikipedia: s.wikipedia,
   }));
 }
 
@@ -85,11 +103,19 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [searching, setSearching] = useState(false);
   const searchAbort = useRef<AbortController | null>(null);
 
+  // Layer toggles — figures (default on) + archaeological sites (default on).
+  // Lets the user show the material-evidence layer (Giza, Stonehenge, Maya
+  // LiDAR sites, etc.) alongside or instead of the people/works layer.
+  const [showFigures, setShowFigures] = useState(true);
+  const [showSites, setShowSites] = useState(true);
+
   // Active marker for highlight ring on the globe
-  const markers = useMemo(
-    () => eventsAsMarkers(ALL_EVENTS.filter((e) => e.year <= year)),
-    [year],
-  );
+  const markers = useMemo(() => {
+    const out: CanonMarker[] = [];
+    if (showFigures) out.push(...eventsAsMarkers(ALL_EVENTS.filter((e) => e.year <= year)));
+    if (showSites) out.push(...sitesAsMarkers(ALL_SITES.filter((s) => s.year <= year)));
+    return out;
+  }, [year, showFigures, showSites]);
 
   const activeIndex = useMemo(() => {
     if (!selected) return undefined;
@@ -264,6 +290,34 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
                 ))}
               </div>
             )}
+        </div>
+
+        {/* Layer toggles — figures vs sites */}
+        <div className="w-full max-w-2xl flex items-center justify-center gap-2 mb-1 pointer-events-auto">
+          <button
+            onClick={() => setShowFigures((v) => !v)}
+            className="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.16em] transition"
+            style={{
+              fontFamily: "var(--font-jetbrains)",
+              background: showFigures ? "var(--gold)" : "transparent",
+              color: showFigures ? "white" : "var(--parchment-dim)",
+              border: `1px solid ${showFigures ? "var(--gold)" : "var(--hairline)"}`,
+            }}
+          >
+            ◉ figures · {ALL_EVENTS.length}
+          </button>
+          <button
+            onClick={() => setShowSites((v) => !v)}
+            className="px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.16em] transition"
+            style={{
+              fontFamily: "var(--font-jetbrains)",
+              background: showSites ? "#6E5840" : "transparent",
+              color: showSites ? "white" : "var(--parchment-dim)",
+              border: `1px solid ${showSites ? "#6E5840" : "var(--hairline)"}`,
+            }}
+          >
+            ▣ sites · {ALL_SITES.length}
+          </button>
         </div>
 
         {/* Branch filter chips — one row of 9 toggles below the search */}
@@ -524,7 +578,46 @@ function Drawer({
                   </dd>
                 </div>
               )}
+              {selected.civilization && (
+                <div className="flex justify-between border-b border-[color:var(--hairline)] pb-2">
+                  <dt style={{ color: "var(--parchment-dim)" }}>Civilization</dt>
+                  <dd>{selected.civilization}</dd>
+                </div>
+              )}
             </dl>
+
+            {/* External resource links for archaeological sites */}
+            {(selected.lidar || selected.unesco || selected.wikipedia) && (
+              <div className="mb-6 space-y-1.5">
+                <h3
+                  className="text-xs uppercase tracking-[0.18em] mb-2"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  Resources
+                </h3>
+                {selected.lidar && (
+                  <a href={selected.lidar} target="_blank" rel="noreferrer"
+                     className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                     style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                    🛰  LiDAR / aerial survey ↗
+                  </a>
+                )}
+                {selected.unesco && (
+                  <a href={selected.unesco} target="_blank" rel="noreferrer"
+                     className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                     style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                    🏛  UNESCO World Heritage ↗
+                  </a>
+                )}
+                {selected.wikipedia && (
+                  <a href={selected.wikipedia} target="_blank" rel="noreferrer"
+                     className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                     style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                    📖  Wikipedia ↗
+                  </a>
+                )}
+              </div>
+            )}
 
             {search && (
               <section className="mb-6">

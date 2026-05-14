@@ -12,7 +12,8 @@ export type CanonMarkerKind =
   | "canon-entry"
   | "figure-birth"
   | "figure-death"
-  | "event";
+  | "event"
+  | "archaeological-site";  // material-evidence layer
 
 export type CanonMarker = {
   id: string;
@@ -24,6 +25,11 @@ export type CanonMarker = {
   kind: CanonMarkerKind;
   /** when kind === 'canon-entry', router pushes /canon/<branch>/<href|id>. */
   href?: string;
+  /** archaeological-site extras */
+  civilization?: string;
+  lidar?: string;
+  unesco?: string;
+  wikipedia?: string;
 };
 
 interface CanonMarkersProps {
@@ -70,10 +76,13 @@ const KIND_COLOR: Record<CanonMarkerKind, string> = {
   "figure-birth": "#B8861E",
   "figure-death": "#8A641A",
   "event":        "#B8861E",
+  "archaeological-site": "#6E5840",
 };
 
 function markerColor(m: CanonMarker): string {
-  // Branch → color first; fall back to kind color.
+  // Archaeological sites get a stone-grey / aged-bronze tone so they're
+  // visually distinct from the figure/event markers.
+  if (m.kind === "archaeological-site") return "#6E5840";
   const b = (m.branch || "").replace(/^\d+-/, "");
   return BRANCH_COLOR[b] || KIND_COLOR[m.kind] || "#D9A43A";
 }
