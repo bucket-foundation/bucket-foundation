@@ -1,6 +1,12 @@
-// photon-index.ts — server-only access to the photon index sqlite.
-// Reads _intake/photons/index.sqlite and serializes photons as JSON.
-// Used by /api/photon endpoints and (eventually) the polingual.com app.
+// photon-index.ts — server-only access to the photon graph.
+//
+// Reads _intake/photons/all.json (a snapshot of every photon as a flat
+// array). Loaded once per Node process, indexed in memory. Fast enough
+// for 45K records (linear scan is ~10-30ms; precomputed indices for
+// id/lang make lookups O(1) and per-lang filtered O(k)).
+//
+// We use JSON not sqlite so the function is portable (no native deps
+// like better-sqlite3) and the data is part of the build artifact.
 
 import fs from "fs";
 import path from "path";
@@ -15,92 +21,92 @@ export type Photon = {
   branch: string[];
   pos?: string | null;
   ipa?: string | null;
-  provenance: {
+  provenance?: {
     source: string;
     source_uri: string;
     captured_at: string;
   };
-  relations: { predicate: string; to: string }[];
+  relations?: { predicate: string; to: string }[];
 };
 
 const REPO_ROOT = path.resolve(process.cwd());
-const SQLITE_PATH = path.join(REPO_ROOT, "_intake", "photons", "index.sqlite");
+const JSON_PATH = path.join(REPO_ROOT, "_intake", "photons", "all.json");
 
-// We use better-sqlite3 if available, otherwise return empty/null.
-// (Avoiding a hard dep until polingual is wired; the sqlite file may
-//  not even exist on Vercel until we publish a snapshot.)
-let _db: { prepare: (sql: string) => { get: (...args: unknown[]) => unknown; all: (...args: unknown[]) => unknown[] } } | null | undefined;
+type LoadedIndex = {
+  all: Photon[];
+  byId: Map<string, Photon>;
+  byLang: Map<string, Photon[]>;
+};
 
-function getDb() {
-  if (_db !== undefined) return _db;
-  if (!fs.existsSync(SQLITE_PATH)) {
-    _db = null;
-    return _db;
+let _cache: LoadedIndex | null | undefined;
+
+function load(): LoadedIndex | null {
+  if (_cache !== undefined) return _cache;
+  if (!fs.existsSync(JSON_PATH)) {
+    _cache = null;
+    return null;
   }
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const Database = require("better-sqlite3");
-    _db = new Database(SQLITE_PATH, { readonly: true, fileMustExist: true });
-    return _db;
+    const raw = fs.readFileSync(JSON_PATH, "utf-8");
+    const all = JSON.parse(raw) as Photon[];
+    const byId = new Map<string, Photon>();
+    const byLang = new Map<string, Photon[]>();
+    for (const p of all) {
+      byId.set(p.id, p);
+      const lang = p.lang || "en";
+      if (!byLang.has(lang)) byLang.set(lang, []);
+      byLang.get(lang)!.push(p);
+    }
+    _cache = { all, byId, byLang };
+    return _cache;
   } catch {
-    _db = null;
-    return _db;
-  }
-}
-
-export function getPhoton(id: string): Photon | null {
-  const db = getDb();
-  if (!db) return null;
-  try {
-    const row = db
-      .prepare("SELECT payload FROM photons WHERE id = ?")
-      .get(id) as { payload?: string } | undefined;
-    if (!row?.payload) return null;
-    return JSON.parse(row.payload) as Photon;
-  } catch {
+    _cache = null;
     return null;
   }
 }
 
-export function searchPhotons(query: string, lang?: string, kind?: string, topK = 20): Photon[] {
-  const db = getDb();
-  if (!db) return [];
-  try {
-    const clauses: string[] = [];
-    const args: (string | number)[] = [];
-    if (query) {
-      clauses.push("(surface LIKE ? OR meaning_en LIKE ?)");
-      args.push(`%${query}%`, `%${query}%`);
-    }
-    if (lang) { clauses.push("lang = ?"); args.push(lang); }
-    if (kind) { clauses.push("kind = ?"); args.push(kind); }
-    const where = clauses.length ? "WHERE " + clauses.join(" AND ") : "";
-    const rows = db
-      .prepare(`SELECT payload FROM photons ${where} LIMIT ?`)
-      .all(...args, topK) as { payload?: string }[];
-    return rows
-      .map((r) => (r.payload ? (JSON.parse(r.payload) as Photon) : null))
-      .filter((p): p is Photon => !!p);
-  } catch {
-    return [];
-  }
+export function getPhoton(id: string): Photon | null {
+  const idx = load();
+  if (!idx) return null;
+  return idx.byId.get(id) || null;
 }
 
-export function photonStats(): { total: number; by_kind: Record<string, number>; by_lang: Record<string, number> } {
-  const db = getDb();
-  if (!db) return { total: 0, by_kind: {}, by_lang: {} };
-  try {
-    const total = (db.prepare("SELECT COUNT(*) AS n FROM photons").get() as { n: number }).n;
-    const byKind: Record<string, number> = {};
-    for (const r of db.prepare("SELECT kind, COUNT(*) AS n FROM photons GROUP BY kind").all() as { kind: string; n: number }[]) {
-      byKind[r.kind] = r.n;
-    }
-    const byLang: Record<string, number> = {};
-    for (const r of db.prepare("SELECT lang, COUNT(*) AS n FROM photons GROUP BY lang").all() as { lang: string; n: number }[]) {
-      byLang[r.lang] = r.n;
-    }
-    return { total, by_kind: byKind, by_lang: byLang };
-  } catch {
-    return { total: 0, by_kind: {}, by_lang: {} };
+export function searchPhotons(query: string, lang?: string, kind?: string, topK = 20): Photon[] {
+  const idx = load();
+  if (!idx) return [];
+  const q = query.toLowerCase().trim();
+  if (!q) return [];
+  // Pick pool: filtered by lang if provided, else the whole set
+  const pool = lang ? idx.byLang.get(lang) || [] : idx.all;
+  const scored: { p: Photon; s: number }[] = [];
+  for (const p of pool) {
+    if (kind && p.kind !== kind) continue;
+    const surface = (p.surface || "").toLowerCase();
+    const meaning = (p.meaning_en || "").toLowerCase();
+    // Score: exact surface match > surface contains > meaning contains
+    let s = 0;
+    if (surface === q) s = 1000;
+    else if (surface.startsWith(q)) s = 500;
+    else if (surface.includes(q)) s = 200;
+    else if (meaning.includes(q)) s = 50;
+    if (s > 0) scored.push({ p, s });
   }
+  scored.sort((a, b) => b.s - a.s);
+  return scored.slice(0, topK).map((x) => x.p);
+}
+
+export function photonStats(): {
+  total: number;
+  by_kind: Record<string, number>;
+  by_lang: Record<string, number>;
+} {
+  const idx = load();
+  if (!idx) return { total: 0, by_kind: {}, by_lang: {} };
+  const byKind: Record<string, number> = {};
+  const byLang: Record<string, number> = {};
+  for (const p of idx.all) {
+    byKind[p.kind] = (byKind[p.kind] || 0) + 1;
+    byLang[p.lang] = (byLang[p.lang] || 0) + 1;
+  }
+  return { total: idx.all.length, by_kind: byKind, by_lang: byLang };
 }
