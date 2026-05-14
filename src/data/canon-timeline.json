@@ -1,12 +1,93 @@
 {
   "events": [
     {
+      "id": "lascaux",
+      "title": "Lascaux cave paintings",
+      "lat": 45.05,
+      "lng": 1.16,
+      "year": -17000,
+      "branch": "deep-history",
+      "kind": "work"
+    },
+    {
+      "id": "catalhoyuk",
+      "title": "\u00c7atalh\u00f6y\u00fck (Hodder)",
+      "lat": 37.67,
+      "lng": 32.83,
+      "year": -7100,
+      "branch": "deep-history",
+      "kind": "work"
+    },
+    {
+      "id": "stonehenge",
+      "title": "Stonehenge \u2014 built",
+      "lat": 51.18,
+      "lng": -1.83,
+      "year": -2500,
+      "branch": "deep-history",
+      "kind": "work"
+    },
+    {
+      "id": "gilgamesh",
+      "title": "Gilgamesh \u2014 Uruk",
+      "lat": 31.32,
+      "lng": 45.64,
+      "year": -2100,
+      "branch": "sacred-texts",
+      "kind": "work"
+    },
+    {
+      "id": "vedas",
+      "title": "Rigveda compiled \u2014 Punjab",
+      "lat": 30.73,
+      "lng": 76.78,
+      "year": -1500,
+      "branch": "sacred-texts",
+      "kind": "work"
+    },
+    {
+      "id": "upanishads",
+      "title": "Upanishads \u2014 Varanasi",
+      "lat": 25.32,
+      "lng": 82.97,
+      "year": -800,
+      "branch": "sacred-texts",
+      "kind": "work"
+    },
+    {
+      "id": "lao-tzu",
+      "title": "Lao Tzu \u2014 Henan",
+      "lat": 34.46,
+      "lng": 112.45,
+      "year": -571,
+      "branch": "mind",
+      "kind": "figure-birth"
+    },
+    {
       "id": "pythagoras",
       "title": "Pythagoras \u2014 Samos",
       "lat": 37.755,
       "lng": 26.978,
       "year": -570,
       "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "buddha",
+      "title": "Buddha \u2014 Lumbini",
+      "lat": 27.49,
+      "lng": 83.28,
+      "year": -563,
+      "branch": "mind",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "confucius",
+      "title": "Confucius \u2014 Qufu",
+      "lat": 35.59,
+      "lng": 116.99,
+      "year": -551,
+      "branch": "mind",
       "kind": "figure-birth"
     },
     {
@@ -51,6 +132,33 @@
       "lat": 37.077,
       "lng": 15.286,
       "year": -250,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "archimedes-e",
+      "title": "Archimedes \u2014 Eureka (Syracuse)",
+      "lat": 37.07,
+      "lng": 15.29,
+      "year": -250,
+      "branch": "physics",
+      "kind": "work"
+    },
+    {
+      "id": "nag-hammadi",
+      "title": "Nag Hammadi codices \u2014 Egypt",
+      "lat": 26.55,
+      "lng": 32.24,
+      "year": 380,
+      "branch": "sacred-texts",
+      "kind": "work"
+    },
+    {
+      "id": "al-khwarizmi",
+      "title": "al-Khwarizmi \u2014 Baghdad",
+      "lat": 33.32,
+      "lng": 44.42,
+      "year": 780,
       "branch": "mathematics",
       "kind": "figure-birth"
     },
@@ -100,6 +208,15 @@
       "kind": "work"
     },
     {
+      "id": "descartes",
+      "title": "Descartes \u2014 La Haye",
+      "lat": 47.06,
+      "lng": 0.66,
+      "year": 1596,
+      "branch": "mind",
+      "kind": "figure-birth"
+    },
+    {
       "id": "newton",
       "title": "Newton \u2014 Principia",
       "lat": 52.806,
@@ -118,12 +235,57 @@
       "kind": "figure-birth"
     },
     {
+      "id": "lavoisier",
+      "title": "Lavoisier \u2014 Paris",
+      "lat": 48.86,
+      "lng": 2.35,
+      "year": 1743,
+      "branch": "chemistry",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "volta",
+      "title": "Volta \u2014 Como",
+      "lat": 45.81,
+      "lng": 9.08,
+      "year": 1745,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "hegel-w",
+      "title": "Hegel \u2014 Stuttgart",
+      "lat": 48.78,
+      "lng": 9.18,
+      "year": 1770,
+      "branch": "mind",
+      "kind": "figure-birth"
+    },
+    {
       "id": "faraday",
       "title": "Faraday \u2014 Royal Institution",
       "lat": 51.508,
       "lng": -0.143,
       "year": 1791,
       "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "lovelace",
+      "title": "Lovelace \u2014 London",
+      "lat": 51.51,
+      "lng": -0.13,
+      "year": 1815,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "boole",
+      "title": "Boole \u2014 Lincoln",
+      "lat": 53.23,
+      "lng": -0.54,
+      "year": 1815,
+      "branch": "information",
       "kind": "figure-birth"
     },
     {
@@ -136,12 +298,48 @@
       "kind": "figure-birth"
     },
     {
+      "id": "mendel",
+      "title": "Mendel \u2014 Hyn\u010dice",
+      "lat": 49.84,
+      "lng": 17.66,
+      "year": 1822,
+      "branch": "biophysics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "riemann",
+      "title": "Riemann \u2014 Breselenz",
+      "lat": 53.5,
+      "lng": 10.5,
+      "year": 1826,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "james-w",
+      "title": "William James \u2014 NYC",
+      "lat": 40.71,
+      "lng": -74.0,
+      "year": 1842,
+      "branch": "mind",
+      "kind": "figure-birth"
+    },
+    {
       "id": "poincare",
       "title": "Poincar\u00e9 \u2014 Nancy",
       "lat": 48.69,
       "lng": 6.18,
       "year": 1854,
       "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "freud",
+      "title": "Freud \u2014 P\u0159\u00edbor",
+      "lat": 49.64,
+      "lng": 18.14,
+      "year": 1856,
+      "branch": "mind",
       "kind": "figure-birth"
     },
     {
@@ -154,6 +352,15 @@
       "kind": "work"
     },
     {
+      "id": "hilbert",
+      "title": "Hilbert \u2014 K\u00f6nigsberg",
+      "lat": 54.71,
+      "lng": 20.51,
+      "year": 1862,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
       "id": "maxwell",
       "title": "Maxwell \u2014 Cambridge",
       "lat": 52.205,
@@ -163,6 +370,15 @@
       "kind": "work"
     },
     {
+      "id": "curie-m",
+      "title": "Marie Curie \u2014 Warsaw",
+      "lat": 52.23,
+      "lng": 21.01,
+      "year": 1867,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
       "id": "mendeleev",
       "title": "Mendeleev \u2014 periodic table",
       "lat": 58.2,
@@ -170,6 +386,15 @@
       "year": 1869,
       "branch": "chemistry",
       "kind": "work"
+    },
+    {
+      "id": "rutherford",
+      "title": "Rutherford \u2014 Brightwater",
+      "lat": -41.13,
+      "lng": 172.96,
+      "year": 1871,
+      "branch": "physics",
+      "kind": "figure-birth"
     },
     {
       "id": "boltzmann",
@@ -190,6 +415,60 @@
       "kind": "work"
     },
     {
+      "id": "noether",
+      "title": "Noether \u2014 Erlangen",
+      "lat": 49.59,
+      "lng": 11.0,
+      "year": 1882,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "ramanujan",
+      "title": "Ramanujan \u2014 Erode",
+      "lat": 11.34,
+      "lng": 77.72,
+      "year": 1887,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "hubble",
+      "title": "Hubble \u2014 Marshfield, MO",
+      "lat": 37.34,
+      "lng": -92.91,
+      "year": 1889,
+      "branch": "cosmology",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "wiener",
+      "title": "Wiener (cybernetics) \u2014 Columbia, MO",
+      "lat": 38.95,
+      "lng": -92.33,
+      "year": 1894,
+      "branch": "information",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "lemaitre",
+      "title": "Lema\u00eetre \u2014 Charleroi",
+      "lat": 50.41,
+      "lng": 4.44,
+      "year": 1894,
+      "branch": "cosmology",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "curie-marie",
+      "title": "Marie Curie \u2014 radium",
+      "lat": 48.86,
+      "lng": 2.35,
+      "year": 1898,
+      "branch": "chemistry",
+      "kind": "work"
+    },
+    {
       "id": "planck",
       "title": "Planck \u2014 black body",
       "lat": 52.52,
@@ -199,6 +478,33 @@
       "kind": "work"
     },
     {
+      "id": "pauling-l",
+      "title": "Pauling \u2014 Portland, OR",
+      "lat": 45.52,
+      "lng": -122.68,
+      "year": 1901,
+      "branch": "chemistry",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "dirac",
+      "title": "Dirac \u2014 Bristol",
+      "lat": 51.45,
+      "lng": -2.59,
+      "year": 1902,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "skinner",
+      "title": "Skinner \u2014 Susquehanna, PA",
+      "lat": 41.95,
+      "lng": -75.6,
+      "year": 1904,
+      "branch": "mind",
+      "kind": "figure-birth"
+    },
+    {
       "id": "einstein-1905",
       "title": "Einstein \u2014 annus mirabilis",
       "lat": 46.948,
@@ -206,6 +512,33 @@
       "year": 1905,
       "branch": "physics",
       "kind": "work"
+    },
+    {
+      "id": "alfven",
+      "title": "Alfv\u00e9n \u2014 Norrk\u00f6ping",
+      "lat": 58.59,
+      "lng": 16.18,
+      "year": 1908,
+      "branch": "cosmology",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "wheeler",
+      "title": "John Wheeler \u2014 Jacksonville",
+      "lat": 30.34,
+      "lng": -81.66,
+      "year": 1911,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "hodgkin",
+      "title": "Hodgkin \u2014 Banbury",
+      "lat": 52.06,
+      "lng": -1.34,
+      "year": 1914,
+      "branch": "biophysics",
+      "kind": "figure-birth"
     },
     {
       "id": "einstein-1915",
@@ -226,6 +559,60 @@
       "kind": "work"
     },
     {
+      "id": "crick",
+      "title": "Crick \u2014 Cambridge",
+      "lat": 52.21,
+      "lng": 0.12,
+      "year": 1916,
+      "branch": "chemistry",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "huxley-a",
+      "title": "Huxley \u2014 Hampstead",
+      "lat": 51.55,
+      "lng": -0.18,
+      "year": 1917,
+      "branch": "biophysics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "feynman",
+      "title": "Feynman \u2014 Queens, NY",
+      "lat": 40.73,
+      "lng": -73.85,
+      "year": 1918,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "schwinger",
+      "title": "Schwinger \u2014 Manhattan",
+      "lat": 40.78,
+      "lng": -73.97,
+      "year": 1918,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "becker-r",
+      "title": "Robert Becker \u2014 NY",
+      "lat": 42.09,
+      "lng": -75.91,
+      "year": 1923,
+      "branch": "biophysics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "mandelbrot",
+      "title": "Mandelbrot \u2014 Warsaw",
+      "lat": 52.23,
+      "lng": 21.01,
+      "year": 1924,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
       "id": "schrodinger",
       "title": "Schr\u00f6dinger \u2014 wave equation",
       "lat": 46.62,
@@ -233,6 +620,15 @@
       "year": 1926,
       "branch": "physics",
       "kind": "work"
+    },
+    {
+      "id": "foucault",
+      "title": "Foucault \u2014 Poitiers",
+      "lat": 46.58,
+      "lng": 0.34,
+      "year": 1926,
+      "branch": "mind",
+      "kind": "figure-birth"
     },
     {
       "id": "heisenberg",
@@ -244,6 +640,42 @@
       "kind": "work"
     },
     {
+      "id": "mccarthy",
+      "title": "McCarthy (LISP) \u2014 Boston",
+      "lat": 42.36,
+      "lng": -71.06,
+      "year": 1927,
+      "branch": "information",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "grothendieck",
+      "title": "Grothendieck \u2014 Berlin",
+      "lat": 52.52,
+      "lng": 13.4,
+      "year": 1928,
+      "branch": "mathematics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "watson-j",
+      "title": "Watson \u2014 Chicago",
+      "lat": 41.88,
+      "lng": -87.63,
+      "year": 1928,
+      "branch": "chemistry",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "chomsky",
+      "title": "Chomsky \u2014 Philadelphia",
+      "lat": 39.95,
+      "lng": -75.16,
+      "year": 1928,
+      "branch": "information",
+      "kind": "figure-birth"
+    },
+    {
       "id": "whitehead",
       "title": "Whitehead \u2014 Process & Reality",
       "lat": 42.38,
@@ -251,6 +683,15 @@
       "year": 1929,
       "branch": "mind",
       "kind": "work"
+    },
+    {
+      "id": "dijkstra",
+      "title": "Dijkstra \u2014 Rotterdam",
+      "lat": 51.92,
+      "lng": 4.48,
+      "year": 1930,
+      "branch": "information",
+      "kind": "figure-birth"
     },
     {
       "id": "godel",
@@ -262,6 +703,24 @@
       "kind": "work"
     },
     {
+      "id": "weinberg-s",
+      "title": "Steven Weinberg \u2014 NYC",
+      "lat": 40.71,
+      "lng": -74.0,
+      "year": 1933,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "sagan",
+      "title": "Sagan \u2014 Brooklyn",
+      "lat": 40.69,
+      "lng": -73.99,
+      "year": 1934,
+      "branch": "cosmology",
+      "kind": "figure-birth"
+    },
+    {
       "id": "turing",
       "title": "Turing \u2014 computability",
       "lat": 52.205,
@@ -269,6 +728,33 @@
       "year": 1936,
       "branch": "information",
       "kind": "work"
+    },
+    {
+      "id": "knuth",
+      "title": "Knuth \u2014 Milwaukee",
+      "lat": 43.04,
+      "lng": -87.91,
+      "year": 1938,
+      "branch": "information",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "rees",
+      "title": "Martin Rees \u2014 York",
+      "lat": 53.96,
+      "lng": -1.08,
+      "year": 1942,
+      "branch": "cosmology",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "dennett",
+      "title": "Dennett \u2014 Boston",
+      "lat": 42.36,
+      "lng": -71.06,
+      "year": 1942,
+      "branch": "mind",
+      "kind": "figure-birth"
     },
     {
       "id": "vneumann",
@@ -280,6 +766,15 @@
       "kind": "work"
     },
     {
+      "id": "tHooft",
+      "title": "'t Hooft \u2014 Den Helder",
+      "lat": 52.96,
+      "lng": 4.76,
+      "year": 1946,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
       "id": "shannon",
       "title": "Shannon \u2014 information theory",
       "lat": 40.785,
@@ -289,6 +784,15 @@
       "kind": "work"
     },
     {
+      "id": "witten",
+      "title": "Witten \u2014 Baltimore",
+      "lat": 39.29,
+      "lng": -76.61,
+      "year": 1951,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
       "id": "crick-watson",
       "title": "Crick & Watson \u2014 DNA",
       "lat": 52.205,
@@ -296,6 +800,33 @@
       "year": 1953,
       "branch": "biophysics",
       "kind": "work"
+    },
+    {
+      "id": "smolin",
+      "title": "Smolin \u2014 NYC",
+      "lat": 40.71,
+      "lng": -74.0,
+      "year": 1955,
+      "branch": "physics",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "berners-lee",
+      "title": "Berners-Lee \u2014 London",
+      "lat": 51.51,
+      "lng": -0.13,
+      "year": 1955,
+      "branch": "information",
+      "kind": "figure-birth"
+    },
+    {
+      "id": "rovelli",
+      "title": "Rovelli \u2014 Verona",
+      "lat": 45.44,
+      "lng": 10.99,
+      "year": 1956,
+      "branch": "physics",
+      "kind": "figure-birth"
     },
     {
       "id": "szent-gyorgyi",
@@ -325,6 +856,15 @@
       "kind": "work"
     },
     {
+      "id": "chomsky-m",
+      "title": "Chomsky on mind \u2014 MIT",
+      "lat": 42.36,
+      "lng": -71.06,
+      "year": 1965,
+      "branch": "mind",
+      "kind": "work"
+    },
+    {
       "id": "hawking",
       "title": "Hawking \u2014 radiation",
       "lat": 52.205,
@@ -340,6 +880,15 @@
       "lng": -75.91,
       "year": 1985,
       "branch": "biophysics",
+      "kind": "work"
+    },
+    {
+      "id": "hancock-g",
+      "title": "Hancock \u2014 UK",
+      "lat": 51.51,
+      "lng": -0.13,
+      "year": 1990,
+      "branch": "deep-history",
       "kind": "work"
     },
     {
@@ -388,6 +937,15 @@
       "kind": "work"
     },
     {
+      "id": "carlson-r",
+      "title": "Carlson \u2014 Portland, OR",
+      "lat": 45.52,
+      "lng": -122.68,
+      "year": 2007,
+      "branch": "deep-history",
+      "kind": "work"
+    },
+    {
       "id": "tononi",
       "title": "Tononi \u2014 IIT",
       "lat": 45.45,
@@ -406,6 +964,15 @@
       "kind": "work"
     },
     {
+      "id": "kruse-j",
+      "title": "Jack Kruse \u2014 New Orleans",
+      "lat": 29.95,
+      "lng": -90.07,
+      "year": 2010,
+      "branch": "biophysics",
+      "kind": "work"
+    },
+    {
       "id": "pollack",
       "title": "Pollack \u2014 EZ water",
       "lat": 47.654,
@@ -421,6 +988,15 @@
       "lng": -122.418,
       "year": 2013,
       "branch": "physics",
+      "kind": "work"
+    },
+    {
+      "id": "pollack-g",
+      "title": "Pollack \u2014 Seattle",
+      "lat": 47.61,
+      "lng": -122.33,
+      "year": 2013,
+      "branch": "biophysics",
       "kind": "work"
     },
     {
@@ -451,6 +1027,6 @@
       "kind": "work"
     }
   ],
-  "min_year": -570,
+  "min_year": -17000,
   "max_year": 2020
 }
