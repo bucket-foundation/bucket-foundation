@@ -89,3 +89,10 @@ shorts-runs/
 # committed, but the full vector matrices are not.
 _intake/photons/index.sqlite
 _intake/photons/*.f32.bin
+# Bulk-ingest artifacts: the consolidated CSV + per-language kaikki
+# JSONL cache (10s of GB). Regenerate via photon-kaikki-bulk2.py.
+_intake/photons/bulk.csv
+_intake/photons/bulk.log
+_intake/photons/kaikki-cache/
+_intake/photons/all.json.gz
+_intake/photons/smoke.csv
