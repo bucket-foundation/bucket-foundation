@@ -83,3 +83,9 @@ _intake/training/canon-bge-small-v1/tokenizer.json
 
 .venv-shorts/
 shorts-runs/
+
+# Photon index — sqlite + vector matrices are large; regenerate from
+# tools (see PHOTON-SPEC.md). The spec + tools + sample photons may be
+# committed, but the full vector matrices are not.
+_intake/photons/index.sqlite
+_intake/photons/*.f32.bin
