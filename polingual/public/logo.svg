@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" role="img" aria-label="Po — polingual logomark">
+  <!-- Deep-navy "Po" with a blue concentric halo around the o, signifying
+       the photon graph (many languages, one meaning at the center). -->
+  <defs>
+    <linearGradient id="poInk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0F2540"/>
+      <stop offset="1" stop-color="#1B3B66"/>
+    </linearGradient>
+    <radialGradient id="poGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#2563EB" stop-opacity="0.18"/>
+      <stop offset="0.7" stop-color="#2563EB" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Soft ambient glow behind the o -->
+  <circle cx="135" cy="40" r="35" fill="url(#poGlow)"/>
+
+  <!-- The mark: 'Po' in custom serif geometry -->
+  <g font-family="'Cormorant Garamond', 'EB Garamond', 'Garamond', Georgia, serif"
+     font-weight="500" font-size="76"
+     fill="url(#poInk)" letter-spacing="-0.025em">
+    <text x="60" y="60" text-anchor="end">P</text>
+    <text x="118" y="60">o</text>
+  </g>
+
+  <!-- Concentric halo around the o — the 'photon' ring -->
+  <circle cx="135" cy="40" r="26" fill="none" stroke="#2563EB" stroke-width="1.4" stroke-opacity="0.55"/>
+  <circle cx="135" cy="40" r="29.5" fill="none" stroke="#2563EB" stroke-width="0.7" stroke-opacity="0.28"/>
+
+  <!-- Eight orbital dots (every 45°) — the 'many languages' around the meaning -->
+  <g fill="#2563EB">
+    <circle cx="161"   cy="40"   r="1.5"/>
+    <circle cx="153.4" cy="58.4" r="1.5"/>
+    <circle cx="135"   cy="66"   r="1.5"/>
+    <circle cx="116.6" cy="58.4" r="1.5"/>
+    <circle cx="109"   cy="40"   r="1.5"/>
+    <circle cx="116.6" cy="21.6" r="1.5"/>
+    <circle cx="135"   cy="14"   r="1.5"/>
+    <circle cx="153.4" cy="21.6" r="1.5"/>
+  </g>
+</svg>

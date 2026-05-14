@@ -2,23 +2,15 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-type Photon = {
-  id: string; kind: string; lang: string; surface: string;
-  meaning_en: string; tier: string; branch: string[];
-  pos?: string | null; ipa?: string | null;
-  provenance?: { source: string; source_uri: string; captured_at: string };
-  relations?: { predicate: string; to: string }[];
-};
+import { getPhoton, type Photon } from "@/lib/photon-db";
 
 export const dynamic = "force-dynamic";
 
+// Server-side fetch against polingual.photons on db.agfarms.dev (via the
+// shared client in src/lib/photon-db.ts). No more bucket.foundation hop.
 async function fetchPhoton(id: string): Promise<Photon | null> {
   try {
-    const url = `https://www.bucket.foundation/api/photon/${encodeURIComponent(id)}`;
-    const r = await fetch(url, { next: { revalidate: 60 } });
-    if (!r.ok) return null;
-    return (await r.json()) as Photon;
+    return await getPhoton(id);
   } catch {
     return null;
   }
@@ -43,13 +35,20 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
   return (
     <main className="min-h-screen">
       <div className="max-w-3xl mx-auto px-5 md:px-8 py-10 md:py-14">
-        {/* Back chip */}
+        {/* Back chip with Po mark */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] hover:opacity-100 transition"
-          style={{ color: "var(--ink-faint)" }}
+          className="inline-flex items-center gap-3 group"
+          aria-label="back to polingual"
         >
-          <span style={{ color: "var(--blue)" }}>←</span> polingual
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.svg" alt="" width="120" height="48" className="h-9 w-auto opacity-70 group-hover:opacity-100 transition" />
+          <span
+            className="font-mono text-[10px] uppercase tracking-[0.22em] transition"
+            style={{ color: "var(--ink-faint)" }}
+          >
+            <span style={{ color: "var(--blue)" }}>←</span> back to search
+          </span>
         </Link>
 
         {/* Header card */}

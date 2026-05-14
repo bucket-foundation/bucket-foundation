@@ -109,7 +109,18 @@ export default function HomePage() {
       {/* Hero band with subtle blue glow */}
       <section className="relative">
         <div className="hero-glow absolute inset-0 pointer-events-none" />
-        <div className="relative max-w-4xl mx-auto px-5 md:px-8 pt-14 md:pt-20 pb-6 text-center">
+        <div className="relative max-w-4xl mx-auto px-5 md:px-8 pt-10 md:pt-16 pb-6 text-center">
+          {/* Logo */}
+          <div className="flex justify-center mb-6">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.svg"
+              alt="Po — polingual"
+              width="160"
+              height="64"
+              className="h-14 md:h-16 w-auto"
+            />
+          </div>
           <p
             className="font-mono text-[10px] tracking-[0.28em] uppercase"
             style={{ color: "var(--ink-faint)" }}

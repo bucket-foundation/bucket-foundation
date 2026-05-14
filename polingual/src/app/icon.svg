@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Po">
+  <!-- Square favicon — compact 'Po' monogram with photon halo.
+       Used at 16px, 32px, 64px, 256px by Next.js automatically. -->
+  <defs>
+    <linearGradient id="favInk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0F2540"/>
+      <stop offset="1" stop-color="#1B3B66"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="10" fill="#F2F7FC"/>
+  <text x="50%" y="58%" text-anchor="middle"
+        font-family="'Cormorant Garamond', 'Garamond', Georgia, serif"
+        font-weight="500" font-size="44"
+        fill="url(#favInk)"
+        letter-spacing="-0.025em">Po</text>
+  <circle cx="44" cy="30" r="14" fill="none" stroke="#2563EB" stroke-width="1.2" stroke-opacity="0.45"/>
+</svg>
