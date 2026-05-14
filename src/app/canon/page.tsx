@@ -100,6 +100,19 @@ export default function Page() {
             <Stat label="opened" value={String(opened)} />
             <Stat label="canon entries" value={String(totalEntries)} />
           </div>
+
+          {/* Gap-analysis bar — per-branch claim-count visualisation.
+              Coverage relative to the deepest branch (currently 05-biophysics
+              at 198 cards). Bars dim when a branch is sparse, full when
+              dense. Lets visitors see exactly where the canon is thin
+              without clicking each branch. */}
+          <div className="mt-10 max-w-3xl">
+            <div className="small-caps text-[10px] text-[color:var(--parchment-dim)] mb-3 tracking-[0.2em]">
+              live coverage · click any branch for detail
+            </div>
+            <CoverageBar branches={branches} />
+          </div>
+
           <div className="mt-10 flex flex-wrap gap-4 small-caps text-[11px]">
             <a href={REPO_TREE} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">bucket-research repo ↗</a>
             <a href={DRIVE_URL} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">BucketDrive ↗</a>
@@ -169,6 +182,101 @@ function Stat({ label, value }: { label: string; value: string }) {
     <div>
       <div className="font-serif-display text-4xl text-[color:var(--gold)]">{value}</div>
       <div className="small-caps text-[10px] text-[color:var(--parchment-dim)] mt-1">{label}</div>
+    </div>
+  );
+}
+
+// Branch coverage bar — per-branch claim-count viz. Reads claim cards
+// directly off disk at build time. Bars dim when sparse, gold when dense.
+import fs from "fs";
+import path from "path";
+
+function countClaims(branchDir: string): number {
+  const sub = path.join(process.cwd(), "bucket-canon", branchDir, "sub-claims");
+  if (!fs.existsSync(sub)) return 0;
+  let n = 0;
+  for (const concept of fs.readdirSync(sub)) {
+    const cd = path.join(sub, concept);
+    try {
+      if (!fs.statSync(cd).isDirectory()) continue;
+      for (const f of fs.readdirSync(cd)) {
+        if (f.endsWith(".md") && f !== "INDEX.md") n++;
+      }
+    } catch {
+      continue;
+    }
+  }
+  return n;
+}
+
+const BRANCH_COLOR: Record<string, string> = {
+  mathematics:  "#D9A43A",
+  physics:      "#3E6FA8",
+  chemistry:    "#9B5A2C",
+  information:  "#557B66",
+  biophysics:   "#8E3E3E",
+  cosmology:    "#5B4882",
+  mind:         "#C2873E",
+  "deep-history": "#7A5D3E",
+  "sacred-texts": "#A0863F",
+  art:          "#A45A4C",
+  earth:        "#4A6E5E",
+};
+
+type BranchLike = { dir: string; slug: string; name: string; numeral: string };
+
+function CoverageBar({ branches }: { branches: BranchLike[] }) {
+  const counts = branches.map((b) => ({
+    ...b,
+    count: countClaims(b.dir),
+    color: BRANCH_COLOR[b.slug] || "#D9A43A",
+  }));
+  const max = Math.max(1, ...counts.map((c) => c.count));
+  const total = counts.reduce((s, c) => s + c.count, 0);
+
+  return (
+    <div>
+      <div className="space-y-2">
+        {counts.map((c) => {
+          const pct = (c.count / max) * 100;
+          return (
+            <a
+              key={c.slug}
+              href={`/canon/${c.slug}`}
+              className="block group"
+              title={`${c.count} claim cards in ${c.name}`}
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className="font-mono-mark text-[10px] w-16 flex-shrink-0 tracking-[0.05em]"
+                  style={{ color: c.color }}
+                >
+                  {c.numeral} {c.name.toLowerCase()}
+                </div>
+                <div className="flex-1 h-2 rounded-full bg-[color:var(--bone-3)] overflow-hidden">
+                  <div
+                    className="h-full transition-all duration-300 group-hover:opacity-80"
+                    style={{
+                      width: `${Math.max(pct, 1.5)}%`,
+                      background: c.color,
+                      opacity: c.count === 0 ? 0.15 : 0.85,
+                    }}
+                  />
+                </div>
+                <div
+                  className="text-[11px] w-16 text-right flex-shrink-0 tabular-nums"
+                  style={{ color: c.count === 0 ? "var(--parchment-dim)" : "var(--basalt)" }}
+                >
+                  {c.count === 0 ? "—" : c.count}
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+      <div className="mt-3 small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.18em]">
+        {total} claim cards · {counts.filter((c) => c.count > 0).length} of {counts.length} branches active
+      </div>
     </div>
   );
 }

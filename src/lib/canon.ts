@@ -90,12 +90,31 @@ export const BRANCHES: Branch[] = [
     figures: [],
   },
   {
-    num: "08", slug: "earth", name: "earth", note: "geosciences · biosphere",
-    thesis: "The Earth as a physical and biological system. Tectonics, climate, biosphere — primary data, primary instruments.",
+    num: "08", slug: "deep-history", name: "deep history", note: "civilizations · archaeology · catastrophe",
+    thesis: "The deep past as primary record — geological strata, dated artifacts, monuments, the Younger Dryas boundary, the Neolithic revolution. Where text and stone disagree, the stone wins until proven otherwise.",
     sources: [
-      { label: "OpenAlex landmark works", count: 25 },
-      { label: "GBIF landmark species", count: 10 },
-      { label: "USGS recent M6+ earthquakes", count: 25 },
+      { label: "Pleiades ancient places", count: 38000, note: "ancient settlements gazetteer" },
+      { label: "Met CC0 ancient artifacts", count: 600 },
+      { label: "Open Context archaeology", count: 0, note: "queued" },
+    ],
+    figures: [],
+  },
+  {
+    num: "09", slug: "art", name: "art", note: "form · composition · craft",
+    thesis: "The discipline of form. Composition, proportion, craft, the canonical works that define how images and sounds organize meaning.",
+    sources: [
+      { label: "Met CC0 collection", count: 600 },
+      { label: "Wikidata art entities", count: 0, note: "queued" },
+    ],
+    figures: [],
+  },
+  {
+    num: "09b", slug: "sacred-texts", name: "sacred texts", note: "scripture · revelation · liturgy",
+    thesis: "World scripture as primary source. Vedas, Upanishads, Bible, Quran, Tao Te Ching, Gnostic codices, Hermetic corpus. Citation-only — full texts at their canonical sources.",
+    sources: [
+      { label: "Sacred-Texts.com mirror", count: 1000 },
+      { label: "Nag Hammadi · Dead Sea Scrolls", count: 0, note: "queued" },
+      { label: "Project Gutenberg dictionaries", count: 0, note: "queued" },
     ],
     figures: [],
   },
