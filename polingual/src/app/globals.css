@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+:root {
+  --ink:        #1A2540;   /* deep ink blue */
+  --ink-dim:    #45567A;
+  --parchment:  #F3EBD9;   /* warm parchment */
+  --parchment-2:#E8DCC1;
+  --parchment-3:#D6C49A;
+  --sepia:      #6B4F2E;   /* sepia for headings */
+  --sepia-dim:  #9C7F5B;
+  --burgundy:   #6F2A2F;   /* accent for buttons */
+  --gilt:       #BD8A30;
+  --hairline:   rgba(26, 37, 64, 0.12);
+}
+
+html, body {
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: "ED Garamond Connect", "EB Garamond", "Garamond", Georgia, serif;
+  font-feature-settings: "kern", "liga", "calt", "onum";
+}
+
+* { box-sizing: border-box; }
+
+.font-mono { font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace; }
+.font-display { font-family: "Cinzel", "Trajan Pro", serif; }
+
+.pill {
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: white;
+  transition: border-color 200ms;
+}
+.pill:focus-within {
+  border-color: var(--ink);
+}
