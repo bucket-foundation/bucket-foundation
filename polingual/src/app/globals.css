@@ -1,36 +1,54 @@
 @import "tailwindcss";
 
 :root {
-  --ink:        #1A2540;   /* deep ink blue */
-  --ink-dim:    #45567A;
-  --parchment:  #F3EBD9;   /* warm parchment */
-  --parchment-2:#E8DCC1;
-  --parchment-3:#D6C49A;
-  --sepia:      #6B4F2E;   /* sepia for headings */
-  --sepia-dim:  #9C7F5B;
-  --burgundy:   #6F2A2F;   /* accent for buttons */
-  --gilt:       #BD8A30;
-  --hairline:   rgba(26, 37, 64, 0.12);
+  /* Light-blue palette — calm, dictionary-cool */
+  --sky:        #F2F7FC;   /* page bg */
+  --sky-2:      #E4EEF7;   /* cards */
+  --sky-3:      #CFE0EE;   /* hover/strong bg */
+  --hairline:   rgba(15, 37, 64, 0.10);
+  --hairline-2: rgba(15, 37, 64, 0.18);
+
+  --ink:        #0F2540;   /* primary text — deep navy */
+  --ink-2:      #224569;
+  --ink-dim:    #5A7290;
+  --ink-faint:  #93A5BC;
+
+  --blue:       #2563EB;   /* action blue */
+  --blue-deep:  #1D4ED8;
+  --blue-soft:  #BCD3EE;
+  --gold:       #C99A2E;   /* accent — kept warm */
+  --burgundy:   #6F2A2F;
 }
 
 html, body {
-  background: var(--parchment);
+  background: var(--sky);
   color: var(--ink);
-  font-family: "ED Garamond Connect", "EB Garamond", "Garamond", Georgia, serif;
+  font-family: "Cormorant Garamond", "EB Garamond", "Garamond", Georgia, serif;
   font-feature-settings: "kern", "liga", "calt", "onum";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * { box-sizing: border-box; }
 
-.font-mono { font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace; }
-.font-display { font-family: "Cinzel", "Trajan Pro", serif; }
+.font-mono   { font-family: "JetBrains Mono", ui-monospace, monospace; }
+.font-sans   { font-family: "Inter", system-ui, -apple-system, sans-serif; }
+.font-script { font-family: "Cinzel", "Trajan Pro", serif; }
 
-.pill {
-  border-radius: 999px;
-  border: 1px solid var(--hairline);
-  background: white;
-  transition: border-color 200ms;
+/* Soft animation polish */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in { animation: fadeIn 200ms ease-out; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(2px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 }
-.pill:focus-within {
-  border-color: var(--ink);
+
+/* Subtle ambient gradient behind the hero */
+.hero-glow {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%,
+      rgba(37, 99, 235, 0.10) 0%,
+      rgba(37, 99, 235, 0.04) 40%,
+      transparent 70%);
 }
