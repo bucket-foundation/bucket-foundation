@@ -28,7 +28,7 @@ export default function Page() {
           Canon holds only <em>foundations</em>: axioms, real math, rules, laws, principles, primary derivations. Outcomes — longevity, disease, cognition — are downstream applications, cross-mirrored into the branches that derive them.
         </p>
         <p>
-          The work is open-source under <Link href="/governance" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">MIT code + CC0 intent</Link>. The protocol is <Link href="/protocol" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">feed402</Link> over x402 on Base. The reference site is this one. The research index is <a href="https://github.com/bucket-foundation/bucket-research" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">bucket-research</a>.
+          The work is open-source under <Link href="/governance" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">MIT code + CC0 intent</Link>. The protocol is <Link href="/protocol" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">feed402</Link> over x402 on Base. Code, canon entries, claim cards, figures, bridges — all live in one repo: <a href="https://github.com/bucket-foundation/bucket-foundation" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">bucket-foundation</a>.
         </p>
       </div>
 

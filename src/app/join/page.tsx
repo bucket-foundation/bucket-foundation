@@ -38,10 +38,12 @@ export default function Page() {
           </h2>
           <p className="text-[color:var(--parchment-dim)] leading-relaxed">
             Open a PR on{" "}
-            <a href="https://github.com/bucket-foundation/bucket-research" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
-              bucket-research
+            <a href="https://github.com/bucket-foundation/bucket-foundation/tree/main/bucket-canon" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">
+              bucket-foundation
             </a>{" "}
-            against the matching branch. Every entry is a{" "}
+            against the matching{" "}
+            <code className="font-mono-mark text-[color:var(--gold)]">bucket-canon/&lt;branch&gt;</code>{" "}
+            directory. Every entry is a{" "}
             <Link href="/protocol" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">feed402 §3 envelope</Link>
             {" "}(data + citation + receipt) — no raw scrapes, no commentary,
             no draft notes. Review happens on the PR thread.

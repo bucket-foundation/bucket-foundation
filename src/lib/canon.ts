@@ -8,8 +8,11 @@
  * and the changes flow through on the next build. The hand-coded entries
  * below are leftover seeds that the loader overwrites.
  *
- * Artifact counts in `sources:` reflect the initial seed in
- * github.com/bucket-foundation/bucket-research (2026-04-23).
+ * Artifact counts in `sources:` reflect the initial canon seed
+ * (2026-04-23). The numbers were generated when there was a separate
+ * `bucket-research` repo; that repo has since been retired and all canon
+ * content was consolidated into `bucket-canon/` and `canon-figures/` in
+ * *this* repo (2026-05-15).
  */
 
 import canonFiguresJson from "../../canon-figures/figures.json";
@@ -228,5 +231,12 @@ export function getFigure(branchSlug: string, figureSlug: string) {
   return b?.figures.find((f) => f.slug === figureSlug);
 }
 
-export const REPO_TREE = "https://github.com/bucket-foundation/bucket-research/tree/main/branches";
+// Canonical repo tree URL — every link that says "open on GitHub" or
+// "edit on GitHub" from /canon/* points here. Was previously the stale
+// `bucket-research` repo (deleted 2026-05-15); everything that mattered
+// already lives in this repo under `bucket-canon/` and `canon-figures/`.
+export const REPO_TREE = "https://github.com/bucket-foundation/bucket-foundation/tree/main/bucket-canon";
+
+// Where the canonical figure metadata + bios live in *this* repo.
+export const FIGURES_TREE = "https://github.com/bucket-foundation/bucket-foundation/tree/main/canon-figures";
 export const DRIVE_URL = "https://drive.google.com/open?id=12QjkHYFqzVNm30kvkW-upi0kqa_Kri2B";

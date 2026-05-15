@@ -114,7 +114,7 @@ export default function Page() {
           </div>
 
           <div className="mt-10 flex flex-wrap gap-4 small-caps text-[11px]">
-            <a href={REPO_TREE} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">bucket-research repo ↗</a>
+            <a href={REPO_TREE} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">canon repo ↗</a>
             <a href={DRIVE_URL} className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]">BucketDrive ↗</a>
           </div>
         </div>

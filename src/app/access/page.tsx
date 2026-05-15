@@ -237,9 +237,9 @@ export default function AccessPage() {
           </div>
           <p className="text-sm"
              style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
-            Public Google Drive folder mirroring <code>bucket-research</code> repo.
-            PDFs (which don&apos;t belong in git), large datasets, Figma exports,
-            scanned manuscripts. Same canon-branch tree as the repo.
+            Public Google Drive folder mirroring the canon — <code>bucket-canon/</code>{" "}
+            in this repo. PDFs (which don&apos;t belong in git), large datasets,
+            Figma exports, scanned manuscripts. Same branch tree as the repo.
           </p>
         </a>
       </section>
