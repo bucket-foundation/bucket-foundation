@@ -124,6 +124,14 @@ Filing blocked on: `NUCLEUS_ADMIN_USER` / `NUCLEUS_ADMIN_PASSWORD` not in sessio
 
 ---
 
+## 2026-05-14 — Canon → web audit: 99 figures live, photon graph still has zero canon
+
+| Date | Hrs | Actor | Scope | Deliverable | Bead |
+|---|---|---|---|---|---|
+| 2026-05-14 | ~1.0 | bkt-nuc (engineering) | bkt / canon-web | **99-of-99 canon figure pages now live (was 1-of-99).** Authored `CANON-WEB-AUDIT.md` — honest gap analysis: what's on disk (599 claim cards + 99 figures + 599 evidence sets + 13 detected bridges + nomic-embed vectors + knowledge graph) vs what's on the web (only the 599 claim cards + 13 bridges + 1 figure) vs what's in the photon DB (only 6.5M `kind=word` from Wiktionary — zero claims, figures, evidence, bridges). Quick win shipped: `src/lib/canon.ts` `BRANCHES[].figures` was hand-curated with only Einstein; rewrote it to import `canon-figures/figures.json` at module-init time and override the hand-coded arrays. Added the `10-earth` branch (figures.json has it, no BRANCHES entry before, so 10 figures were orphaned). Also added `FigureSummary` type exposing lifespan/era/region/tradition/primary_works/tags so figure pages can render more context. Built and verified 99/99 figure pages return 200: every figure across math, physics, chem, info, biophysics, cosmology, mind, deep-history, art, earth. Vercel deploy was painful — initial `vercel --prod` choked on 2.5 GB local kaikki cache + 80 K node_modules files (15K file limit), fixed via comprehensive `.vercelignore`. Bigger gap remains: **the photon DB has zero canon content**. Added 9 new beads to `BEADS-PENDING.jsonl` (now 37 total): branch claims listings, figure/claim/evidence/bridge photon ingest, dynamic web reads from DB, CI auto-sync, search ranking, figure page enrichment. ~5.5 dev-days to fully tie the web to the canon to the photon graph. | intent-logged in CANON-WEB-AUDIT.md + BEADS-PENDING.jsonl |
+
+---
+
 ## 2026-05-14 — polingual photon graph wired to agfarms postgres (`polingual` schema)
 
 | Date | Hrs | Actor | Scope | Deliverable | Bead |
