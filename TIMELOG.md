@@ -124,6 +124,14 @@ Filing blocked on: `NUCLEUS_ADMIN_USER` / `NUCLEUS_ADMIN_PASSWORD` not in sessio
 
 ---
 
+## 2026-05-15 — Retired bucket-research; figure pages now show real content
+
+| Date | Hrs | Actor | Scope | Deliverable | Bead |
+|---|---|---|---|---|---|
+| 2026-05-15 | ~0.75 | bkt-nuc (engineering) | bkt / canon-web | **Killed the stale `bucket-foundation/bucket-research` repo.** Founder caught that figure pages were linking to e.g. `bucket-research/tree/main/branches/10-earth/figures/west-jaw/works` — all 404. Audit: bucket-research last pushed 2026-04-23, branch numbering disagreed with this repo (08-earth there vs 10-earth here), only Einstein had a per-figure subdir, the promised `works/biographies/about` subdirs never got built for 98 of 99 figures. **Fix in 3 parts:** (1) **Repointed `REPO_TREE`** in `src/lib/canon.ts` from `bucket-research/branches` → `bucket-foundation/bucket-canon`; added `FIGURES_TREE` const for `canon-figures/`. (2) **Rewrote `/canon/<slug>/figures/<figure>/page.tsx`** to render *real* content: header with name + lifespan/region/tradition + tag chips, Primary works list (year + title + language from `figures.json`), Cross-branch chip links, Biography section that reads `canon-figures/bios/<id>.md` if present (12 bios on disk so far — einstein, newton, maxwell, mendeleev, hilbert, helmholtz, poincare, curie-marie, pauling, turing, von-neumann; plus a "bio pending" stub for the other 87 with contribute link), and a Sources section linking to real external lookups (Wikipedia, Wikidata, OpenAlex sorted by citation count, Google Scholar) by URL-encoded name search. Edit / Add bio links point to the actual paths in this repo. Built a tiny inline md→HTML renderer in `src/lib/canon-figures.ts` to display the bios (handles h2/h3, p, tables, bold/italic, inline code, links, hr — all output HTML-escaped first). Dropped the fake `1,372 authored works indexed` metric since 98 figures had `works: 0` from the figures.json wiring. (3) **Cleaned remaining `bucket-research` mentions** from `/about`, `/join`, `/access`, and README (all redirected to `bucket-foundation/bucket-canon`). Then `gh repo delete bucket-foundation/bucket-research --yes` — repo gone. Verified live: 6 spot-checked figure pages (einstein, euclid, szent-gyorgyi, west-jaw, carlson-randall, leonardo) all show Primary works + Biography + Sources, zero bucket-research references in the rendered HTML. | intent-logged |
+
+---
+
 ## 2026-05-15 — Canon branch pages: figures grid + claim cards live
 
 | Date | Hrs | Actor | Scope | Deliverable | Bead |
