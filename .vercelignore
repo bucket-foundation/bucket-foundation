@@ -1,0 +1,62 @@
+# Vercel ignore — only ship what Next.js needs.
+# The Vercel upload has a 10MB body limit even for repo tarballs; this
+# file keeps the deploy lean and fast. The repo IS the CMS (canon-fs.ts
+# reads `bucket-canon/`), so canon directories MUST stay shipped — but
+# the gigabytes of corpora, embeddings, archives, and intake data do not.
+
+# Local corpora + intake (multi-GB, regenerable, server-side only)
+_intake/
+yt/
+archaeology/
+openalex/
+openalex-fanout/
+openalex-citers/
+arxiv/
+pubmed/
+gutenberg/
+blog/
+
+# Large media + workshop dirs (mirrored to gdrive, not git-versioned)
+archive/
+manifesto-source/
+figma-export/
+shorts-runs/
+gtm/video-v*/
+brand/workshop/
+
+# Sibling project (deployed separately to polingual.com)
+polingual/
+
+# Local sqlite + fts artifacts
+.fts.sqlite
+
+# Other local-only working dirs that the build doesn't need
+grants-gateway/
+checkpoints/
+private/
+
+# Local feed/ output
+feed/
+
+# Vercel auto-excludes these but be explicit (we're hitting the 15k-file limit)
+.git/
+.next/
+.venv-shorts/
+node_modules/
+.beads/
+
+# Other large local-only dirs
+wikisource/
+museum/
+firms-out/
+gtm/
+canon-figures/bios/
+canon-figures/_archive/
+
+# Beads JSON sidecars
+BEADS-PENDING.jsonl
+BEADS-DISPATCHED.jsonl
+.longtail-submissions.jsonl
+
+# Tooling source (the Python ingesters live in agfarms/tools/canon, not here)
+tools/

@@ -2,15 +2,31 @@
  * Canon branch metadata. Source of truth for /canon, /canon/<slug>, footer,
  * and landing grid.
  *
- * Artifact counts reflect the initial seed in
- * github.com/bucket-foundation/bucket-research (2026-04-23):
- *   - OpenAlex landmark works (25 per branch)
- *   - arXiv recent papers (30 per, where relevant)
- *   - PubMed (biophysics, mind)
- *   - PubChem compounds, GBIF species, USGS earthquakes (earth/chem)
- *   - Kruse corpus — 460 posts in 05-biophysics
- *   - Einstein figure — 1,372 works + 11-lang bios in 02-physics
+ * **Figures are loaded at module-init time from `canon-figures/figures.json`**
+ * — the canonical 99-figure index across 10 branches. Don't hand-edit the
+ * `figures: []` arrays in BRANCHES below; edit `canon-figures/figures.json`
+ * and the changes flow through on the next build. The hand-coded entries
+ * below are leftover seeds that the loader overwrites.
+ *
+ * Artifact counts in `sources:` reflect the initial seed in
+ * github.com/bucket-foundation/bucket-research (2026-04-23).
  */
+
+import canonFiguresJson from "../../canon-figures/figures.json";
+
+export type FigureSummary = {
+  slug: string;
+  name: string;
+  note: string;       // "lifespan · region · tradition" or similar
+  works: number;      // OpenAlex authored-works count (0 until wired)
+  lifespan?: string;
+  era?: string;
+  region?: string;
+  tradition?: string;
+  cross_branches?: string[];
+  primary_works?: { title: string; year?: string; language?: string }[];
+  tags?: string[];
+};
 
 export type Branch = {
   num: string;
@@ -19,8 +35,72 @@ export type Branch = {
   note: string;
   thesis: string;
   sources: { label: string; count: number; note?: string }[];
-  figures: { slug: string; name: string; note: string; works: number }[];
+  figures: FigureSummary[];
 };
+
+// ----------------------------------------------------------------- figures
+// figures.json branches use the directory naming `01-mathematics`,
+// `08-tradition`, `10-earth`. Our BRANCHES use slug `mathematics`,
+// `deep-history`, etc. Map dir → slug:
+const DIR_TO_SLUG: Record<string, string> = {
+  "01-mathematics": "mathematics",
+  "02-physics":     "physics",
+  "03-chemistry":   "chemistry",
+  "04-information": "information",
+  "05-biophysics":  "biophysics",
+  "06-cosmology":   "cosmology",
+  "07-mind":        "mind",
+  "08-tradition":   "deep-history",
+  "09-art":         "art",
+  "10-earth":       "earth",
+  // "09b sacred-texts" has no figures in figures.json yet
+};
+
+type RawFigure = {
+  id: string;
+  name: string;
+  lifespan?: string;
+  era?: string;
+  region?: string;
+  tradition?: string;
+  branches: string[];
+  cross_branches?: string[];
+  primary_works?: { title: string; year?: string; language?: string }[];
+  tags?: string[];
+  added_in_pass?: number;
+};
+
+function figuresFromJson(): Map<string, FigureSummary[]> {
+  const data = canonFiguresJson as unknown as { figures: RawFigure[] };
+  const out = new Map<string, FigureSummary[]>();
+  for (const fig of data.figures) {
+    // a figure belongs to its primary branch (first in `branches`) for routing
+    const primaryDir = fig.branches[0];
+    const slug = DIR_TO_SLUG[primaryDir];
+    if (!slug) continue;
+    if (!out.has(slug)) out.set(slug, []);
+    const lifespan = fig.lifespan ? fig.lifespan : "";
+    const region = fig.region || "";
+    const tradition = fig.tradition || "";
+    const note = [lifespan, region, tradition].filter(Boolean).join(" · ");
+    out.get(slug)!.push({
+      slug: fig.id,
+      name: fig.name,
+      note,
+      works: 0,
+      lifespan: fig.lifespan,
+      era: fig.era,
+      region: fig.region,
+      tradition: fig.tradition,
+      cross_branches: fig.cross_branches,
+      primary_works: fig.primary_works,
+      tags: fig.tags,
+    });
+  }
+  return out;
+}
+
+const FIGURES_BY_SLUG = figuresFromJson();
 
 export const BRANCHES: Branch[] = [
   {
@@ -118,7 +198,26 @@ export const BRANCHES: Branch[] = [
     ],
     figures: [],
   },
+  {
+    num: "10", slug: "earth", name: "earth", note: "planet · climate · life",
+    thesis: "The planet as primary record — geology, climate, biogeochemistry, the living biosphere. Strata, ice cores, magnetic reversals, mass extinctions, the rules of how this rock organises matter and life.",
+    sources: [
+      { label: "USGS earthquakes (1900–)", count: 0, note: "queued" },
+      { label: "GBIF species occurrences", count: 0, note: "queued" },
+      { label: "NOAA climate", count: 0, note: "queued" },
+    ],
+    figures: [],
+  },
 ];
+
+// Overwrite the hand-coded `figures: []` arrays with the canonical
+// 99-figure list loaded from `canon-figures/figures.json`. The previous
+// Einstein-only seed is preserved by figures.json (it has an `einstein`
+// figure with name "Albert Einstein"), so nothing is lost.
+for (const b of BRANCHES) {
+  const loaded = FIGURES_BY_SLUG.get(b.slug);
+  if (loaded && loaded.length > 0) b.figures = loaded;
+}
 
 export function getBranch(slug: string): Branch | undefined {
   return BRANCHES.find((b) => b.slug === slug);
