@@ -7,6 +7,7 @@ import type { CanonMarker } from "@/components/canon-globe";
 import { GlobeErrorBoundary } from "@/components/canon-globe/GlobeErrorBoundary";
 import timelineData from "@/data/canon-timeline.json";
 import sitesData from "@/data/canon-sites.json";
+import figuresData from "../../../canon-figures/figures.json";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ssr: false,
@@ -37,6 +38,40 @@ const ALL_EVENTS = (timelineData.events as TimelineEvent[]).sort((a, b) => a.yea
 const ALL_SITES = (sitesData.sites as SiteEntry[]).sort((a, b) => a.year - b.year);
 const MIN_YEAR = Math.min(timelineData.min_year as number, ...ALL_SITES.map((s) => s.year));
 const MAX_YEAR = Math.max(timelineData.max_year as number, ...ALL_SITES.map((s) => s.year));
+
+// Map a timeline figure-event id to the corresponding figures.json id when
+// possible. Timeline uses shorter ids that occasionally diverge from
+// figures.json (e.g. `becker-r` → `becker`, `curie-m` → `curie`,
+// `hegel-w` → `hegel`). 21 of 58 figure-births currently map cleanly;
+// the rest fall back to deep-linking via `?marker=<id>` on /canon.
+const FIGURE_IDS = new Set<string>(
+  (figuresData as { figures: { id: string }[] }).figures.map((f) => f.id)
+);
+function mapTimelineIdToFigureId(timelineId: string): string | null {
+  if (FIGURE_IDS.has(timelineId)) return timelineId;
+  if (timelineId.includes("-")) {
+    const head = timelineId.replace(/-[a-z0-9]$/i, "");
+    if (FIGURE_IDS.has(head)) return head;
+  }
+  return null;
+}
+
+/**
+ * Best per-marker "open page" URL. Returns null when the marker has no
+ * dedicated page yet — UI should fall back to the deep-link
+ * `/canon?marker=<id>` so the marker is at least addressable.
+ */
+function markerPageUrl(m: CanonMarker): string | null {
+  const branchSlug = (m.branch || "").replace(/^\d+-/, "");
+  // figure-birth / figure-death → /canon/<branch>/figures/<figureId>
+  if (m.kind === "figure-birth" || m.kind === "figure-death") {
+    const figureId = mapTimelineIdToFigureId(m.id);
+    if (figureId && branchSlug) return `/canon/${branchSlug}/figures/${figureId}`;
+  }
+  // canon-entry markers that came from a search result are wired in the
+  // drawer directly via `_search` — they don't go through this helper.
+  return null;
+}
 
 function fmtYear(y?: number): string {
   if (y === undefined) return "";
@@ -89,6 +124,76 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [expanded]);
+
+  // ────────────────────────────────────────────────────────────────────
+  //  Deep-link: every marker has its own URL via `?marker=<id>`
+  // ────────────────────────────────────────────────────────────────────
+  //  - On mount, read `?marker=<id>` from the URL. If present, find that
+  //    marker in ALL_EVENTS or ALL_SITES, select it, and bump `year` to
+  //    include it (otherwise the time-filter could hide it).
+  //  - When `selected` changes (the user clicked a marker or a search
+  //    result), push `?marker=<id>` to the URL via replaceState so the
+  //    address bar reflects the current focus. When the drawer closes,
+  //    strip the param.
+  //  - For markers that ALSO have a dedicated page (figures with a
+  //    figures.json match), the drawer renders a primary "open page →"
+  //    link to the clean URL. For everything else the deep-link form
+  //    `/canon?marker=<id>` is the addressable representation.
+  //
+  //  Doing this with raw window APIs (not next/navigation's useRouter)
+  //  on purpose — useRouter.replace triggers a re-render which would
+  //  thrash the R3F canvas. window.history.replaceState updates the URL
+  //  silently.
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const markerId = params.get("marker");
+    if (!markerId) return;
+
+    const found =
+      ALL_EVENTS.find((e) => e.id === markerId) ||
+      ALL_SITES.find((s) => s.id === markerId);
+    if (!found) return;
+
+    const isSite = "civilization" in found || ALL_SITES.some((s) => s.id === markerId);
+    const m: CanonMarker = isSite
+      ? {
+          id: found.id, lat: found.lat, lng: found.lng, year: found.year,
+          branch: found.branch, title: found.title,
+          kind: "archaeological-site",
+          civilization: (found as SiteEntry).civilization,
+          lidar: (found as SiteEntry).lidar,
+          unesco: (found as SiteEntry).unesco,
+          wikipedia: (found as SiteEntry).wikipedia,
+        }
+      : {
+          id: found.id, lat: found.lat, lng: found.lng, year: found.year,
+          branch: found.branch, title: found.title,
+          kind: ((found as TimelineEvent).kind === "figure-birth"
+            ? "figure-birth" : "canon-entry") as CanonMarker["kind"],
+        };
+    setSelected(m);
+    // Bump the year scrubber so this marker is within the visible time
+    // window (otherwise we'd select a marker that's filtered out).
+    setYear((y) => Math.max(y, found.year));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Sync the URL when a marker is selected/deselected. Skip the initial
+  // run (the deep-link effect above already handles that), so we don't
+  // race the read with our own write.
+  const lastSyncedMarker = useRef<string | null>(null);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const currentId = selected?.id ?? null;
+    if (lastSyncedMarker.current === currentId) return;
+    lastSyncedMarker.current = currentId;
+    const url = new URL(window.location.href);
+    if (currentId) url.searchParams.set("marker", currentId);
+    else url.searchParams.delete("marker");
+    window.history.replaceState(null, "", url.toString());
+  }, [selected]);
 
   // Sidebar is always present on desktop (md+). Mobile: slide-in on select.
 
@@ -486,8 +591,14 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </GlobeErrorBoundary>
       </div>
 
-      {/* TIME SCRUBBER — pinned at the bottom of the tool container */}
-      <div className="mx-auto mt-3 max-w-3xl px-2 md:pb-6 flex-shrink-0">
+      {/* TIME SCRUBBER — pinned at the bottom of the tool container.
+          Full-width within the tool (the parent container reserves
+          `md:pr-[440px]` for the sidebar, so the scrubber naturally
+          ends at the sidebar's left edge). The old `max-w-3xl mx-auto`
+          made it a centered 768px island with empty bone on both
+          sides; this version uses every horizontal pixel the layout
+          gives it. */}
+      <div className="w-full mt-3 px-4 md:px-6 md:pb-6 flex-shrink-0">
         <div
           className="text-[10px] uppercase tracking-[0.22em] mb-2 px-1 text-center"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
@@ -571,6 +682,10 @@ function Drawer({
 }) {
   const search = (selected as unknown as { _search?: SearchResult })?._search;
   const branchSlug = selected?.branch?.replace(/^\d+-/, "");
+  // Best per-marker "open page" URL (figures.json-matched figures get
+  // /canon/<branch>/figures/<id>; sites and works return null and fall
+  // back to the copy-share-link button further down).
+  const pageUrl = selected ? markerPageUrl(selected) : null;
 
   // Close on Escape — standard UX expectation for drawers/modals
   useEffect(() => {
@@ -726,6 +841,19 @@ function Drawer({
               </section>
             )}
 
+            {/*
+             * Primary action: open the marker's own page.
+             *   - search-driven canon-entry  → /canon/claims/<concept>/<slug>
+             *   - figure-birth / figure-death → /canon/<branch>/figures/<figureId>
+             *     (only when the timeline id maps to a figures.json entry)
+             *   - everything else (works, sites without a figures match)
+             *     → the addressable deep-link `?marker=<id>` on /canon,
+             *       which re-opens the globe focused on this marker.
+             *
+             * The branch link stays available as a secondary action.
+             * Sites also get a "copy share link" button for the
+             * deep-link URL.
+             */}
             <div className="space-y-2">
               {search ? (
                 <Link
@@ -734,7 +862,27 @@ function Drawer({
                 >
                   open full claim →
                 </Link>
-              ) : null}
+              ) : pageUrl ? (
+                <Link
+                  href={pageUrl}
+                  className="block w-full text-center small-caps text-[11px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-4 py-2 transition"
+                >
+                  open page → {selected.kind === "figure-birth" || selected.kind === "figure-death" ? "figure" : "entry"}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => {
+                    if (typeof window === "undefined") return;
+                    const url = new URL(window.location.href);
+                    url.search = `?marker=${encodeURIComponent(selected.id)}`;
+                    navigator.clipboard?.writeText(url.toString()).catch(() => {});
+                  }}
+                  className="block w-full text-center small-caps text-[11px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-4 py-2 transition"
+                  title={`copies /canon?marker=${selected.id}`}
+                >
+                  copy share link ⎘
+                </button>
+              )}
               {branchSlug && (
                 <Link
                   href={`/canon/${branchSlug}`}
