@@ -1,6 +1,6 @@
 "use client";
 import { Html } from "@react-three/drei";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
 
@@ -46,6 +46,15 @@ interface CanonMarkersProps {
    * embeddings of the globe.
    */
   cameraDistance?: number;
+  /**
+   * Camera position in scene coordinates. Used to gate interaction to
+   * the front-facing hemisphere — pins on the back of the globe stay
+   * visible (dimmed) but don't fire hover or click. Without this, the
+   * cursor catches on the invisible hit-target of a marker geometrically
+   * behind the globe, opening tooltips for pins the user can't actually
+   * see. If omitted, every marker is treated as interactive.
+   */
+  cameraPosition?: [number, number, number];
   onHoverChange?: (m: CanonMarker | null) => void;
   /** If provided, clicking a marker fires this instead of routing. */
   onSelectChange?: (m: CanonMarker | null) => void;
@@ -102,6 +111,7 @@ export function CanonMarkers({
   radius,
   reducedMotion: _reducedMotion,
   cameraDistance,
+  cameraPosition,
   onHoverChange,
   onSelectChange,
 }: CanonMarkersProps) {
@@ -120,6 +130,37 @@ export function CanonMarkers({
     const t = (cameraDistance - NEAR) / (FAR - NEAR);
     return MIN_SCALE + Math.max(0, Math.min(1, t)) * (1 - MIN_SCALE);
   }, [cameraDistance]);
+
+  // Pre-compute per-marker "is on the camera-facing hemisphere" booleans.
+  // Geometry: Earth is a sphere of radius R=1 centered at the origin. A
+  // surface point M is *visible* from camera position C iff
+  //
+  //     dot(M, C) > R²     ≡     dot(M, C) > 1
+  //
+  // (this is the tangent-plane / horizon condition: a point on the limb
+  // satisfies it with equality, anything further around the globe falls
+  // below 1). When `cameraPosition` is omitted we treat every marker as
+  // visible — the unguarded behaviour from before.
+  const visible = useMemo<boolean[]>(() => {
+    if (!cameraPosition) return markers.map(() => true);
+    const [cx, cy, cz] = cameraPosition;
+    return markers.map((m) => {
+      const mp = latLngToVec3(m.lat, m.lng, 1); // unit sphere position
+      // Add a small margin (0.02) so pins right at the limb don't flicker
+      // between interactive / non-interactive as the camera nudges.
+      return mp.x * cx + mp.y * cy + mp.z * cz > 1.02;
+    });
+  }, [markers, cameraPosition]);
+
+  // If the currently-hovered pin rotates to the back side as the user
+  // drags or zooms, its hit-target unmounts but the React `hover` state
+  // would otherwise stay sticky and keep the tooltip up. Clear it.
+  useEffect(() => {
+    if (hover !== null && visible[hover] === false) {
+      setHover(null);
+      onHoverChange?.(null);
+    }
+  }, [hover, visible, onHoverChange]);
 
   // Bubble hovered marker up so the parent (outside the Canvas) can render a
   // guaranteed-visible panel — the in-3D Html tooltip alone gets clipped on
@@ -159,6 +200,12 @@ export function CanonMarkers({
         const color = markerColor(m);
         const isActive = i === activeIndex;
         const isHover = i === hover;
+        // Front-hemisphere visibility (set by the dot-product check in
+        // the `visible` memo). Back-side markers still render — so the
+        // user can see the globe is populated all the way around — but
+        // they're dimmed and have NO hit target, so the cursor doesn't
+        // catch on a pin geometrically behind 6 000 km of dot-pattern.
+        const isFront = visible[i];
 
         // Mapbox-style pin: head + stem + surface halo.
         // Scale animates with hover/active — discrete steps (not useFrame)
@@ -174,6 +221,10 @@ export function CanonMarkers({
         const headScale = baseHead;
         const stemLen = baseStem;
         const haloOuter = lifted ? 3.2 : 2.2;
+        // Back-side pins fade out a lot so they don't compete with the
+        // front-side markers visually. ~25% the normal opacity feels
+        // like "echo of what's behind the globe" without being invisible.
+        const backOpacity = isFront ? 1 : 0.25;
 
         const normal = p.clone().normalize();
         // Anchor: where the pin meets the globe surface (just above).
@@ -196,7 +247,7 @@ export function CanonMarkers({
               <meshBasicMaterial
                 color={color}
                 transparent
-                opacity={lifted ? 0.55 : 0.28}
+                opacity={(lifted ? 0.55 : 0.28) * backOpacity}
                 side={THREE.DoubleSide}
                 toneMapped={false}
                 depthWrite={false}
@@ -212,13 +263,15 @@ export function CanonMarkers({
               <meshBasicMaterial
                 color={color}
                 transparent
-                opacity={0.85}
+                opacity={0.85 * backOpacity}
                 toneMapped={false}
               />
             </mesh>
 
-            {/* Pin head (outer glow ring on hover) */}
-            {lifted && (
+            {/* Pin head (outer glow ring on hover) — only shown when
+                lifted AND on the front face, so back-side markers don't
+                phantom-glow from past frames. */}
+            {lifted && isFront && (
               <mesh
                 position={head}
                 onUpdate={(self) => self.lookAt(head.clone().add(normal))}
@@ -238,30 +291,45 @@ export function CanonMarkers({
             {/* Pin head — the visible dot */}
             <mesh position={head}>
               <sphereGeometry args={[headScale, 18, 18]} />
-              <meshBasicMaterial color={color} toneMapped={false} />
+              <meshBasicMaterial
+                color={color}
+                transparent
+                opacity={backOpacity}
+                toneMapped={false}
+              />
             </mesh>
 
             {/* Crisp white inner highlight on the head — makes it pop on
                 the dot-pattern earth */}
             <mesh position={head.clone().multiplyScalar(1.0008)}>
               <sphereGeometry args={[headScale * 0.45, 12, 12]} />
-              <meshBasicMaterial color="#FFF8E6" transparent opacity={0.7} toneMapped={false} />
+              <meshBasicMaterial
+                color="#FFF8E6"
+                transparent
+                opacity={0.7 * backOpacity}
+                toneMapped={false}
+              />
             </mesh>
 
-            {/* Invisible hit-target. At the default zoom this is 4×
-                head; at close zoom the head shrinks via LOD but we keep
-                the hit target generous (≥ 0.05 = ~50px of screen radius
-                at typical fov) so tight clusters in Europe / East Asia
-                stay clickable without overshooting. */}
-            <mesh
-              position={head}
-              onPointerOver={(e) => { e.stopPropagation(); reportHover(i); document.body.style.cursor = "pointer"; }}
-              onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
-              onClick={(e) => { e.stopPropagation(); handleClick(m); }}
-            >
-              <sphereGeometry args={[Math.max(headScale * 4, 0.04), 10, 10]} />
-              <meshBasicMaterial color={color} transparent opacity={0} depthWrite={false} />
-            </mesh>
+            {/* Invisible hit-target. Only rendered for front-facing
+                pins — back-side markers stay non-interactive so the
+                cursor doesn't catch on a pin behind the globe. At the
+                default zoom this is 4× head; at close zoom the head
+                shrinks via LOD but we keep the hit target generous
+                (≥ 0.04 = ~50px of screen radius at typical fov) so
+                tight clusters in Europe / East Asia stay clickable
+                without overshooting. */}
+            {isFront && (
+              <mesh
+                position={head}
+                onPointerOver={(e) => { e.stopPropagation(); reportHover(i); document.body.style.cursor = "pointer"; }}
+                onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
+                onClick={(e) => { e.stopPropagation(); handleClick(m); }}
+              >
+                <sphereGeometry args={[Math.max(headScale * 4, 0.04), 10, 10]} />
+                <meshBasicMaterial color={color} transparent opacity={0} depthWrite={false} />
+              </mesh>
+            )}
 
             {isHover && (
               <Html

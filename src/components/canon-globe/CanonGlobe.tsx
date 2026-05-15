@@ -11,30 +11,35 @@ import { useMemo } from "react";
 import * as THREE from "three";
 
 /**
- * Drives camera distance into React state via OrbitControls' change event.
- * We're on frameloop="demand" so we can't sample camera.position every
- * frame — but every user zoom/rotate fires `change` on the controls, and
- * we propagate that to a state setter so marker LOD can react.
+ * Drives camera distance + position into React state via OrbitControls'
+ * change event. We're on frameloop="demand" so we can't sample
+ * camera.position every frame — but every user zoom/rotate fires
+ * `change` on the controls, and we propagate that to setters so marker
+ * LOD (size) and front-face filtering (which side of the globe a pin
+ * is on) can both react.
  */
-function CameraDistanceTracker({
+function CameraTracker({
   controlsRef,
-  onChange,
+  onDistance,
+  onPosition,
 }: {
   controlsRef: React.MutableRefObject<OrbitControlsImpl | null>;
-  onChange: (d: number) => void;
+  onDistance: (d: number) => void;
+  onPosition: (xyz: [number, number, number]) => void;
 }) {
   const { camera, invalidate } = useThree();
   useEffect(() => {
     const c = controlsRef.current;
     if (!c) return;
     const handler = () => {
-      onChange(camera.position.length());
+      onDistance(camera.position.length());
+      onPosition([camera.position.x, camera.position.y, camera.position.z]);
       invalidate();
     };
-    handler(); // seed initial distance
+    handler(); // seed initial values
     c.addEventListener("change", handler);
     return () => c.removeEventListener("change", handler);
-  }, [controlsRef, camera, onChange, invalidate]);
+  }, [controlsRef, camera, onDistance, onPosition, invalidate]);
   return null;
 }
 
@@ -151,6 +156,13 @@ export default function CanonGlobe({
   // Camera distance from origin, in scene units (Earth radius = 1).
   // Seeded to match the camera's starting position (z=3.4 below).
   const [cameraDistance, setCameraDistance] = useState(3.4);
+  // Camera position tuple. Used by CanonMarkers to compute which pins
+  // face the camera (front hemisphere) vs which are occluded by the
+  // globe itself. Hover should only fire on the front side; the back
+  // side stays visible but is non-interactive so the cursor doesn't
+  // catch on a marker that's geometrically behind 6 000 km of rock.
+  const [cameraPosition, setCameraPosition] =
+    useState<[number, number, number]>([0, 0, 3.4]);
 
   // Faint background star/dot field — cosmic context behind the globe.
   // Bone-tinted so it reads on light bg without going black.
@@ -211,6 +223,7 @@ export default function CanonGlobe({
               radius={EARTH_RADIUS * 1.008}
               reducedMotion={reducedMotion}
               cameraDistance={cameraDistance}
+              cameraPosition={cameraPosition}
               onHoverChange={onHoverChange}
               onSelectChange={onSelectChange}
             />
@@ -245,9 +258,10 @@ export default function CanonGlobe({
           zoomSpeed={Math.max(0.25, 0.7 * Math.min(1, (cameraDistance - 1) / 2.4))}
           autoRotate={false}
         />
-        <CameraDistanceTracker
+        <CameraTracker
           controlsRef={controlsRef}
-          onChange={setCameraDistance}
+          onDistance={setCameraDistance}
+          onPosition={setCameraPosition}
         />
       </Canvas>
     </div>
