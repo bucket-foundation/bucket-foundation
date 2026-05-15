@@ -124,6 +124,14 @@ Filing blocked on: `NUCLEUS_ADMIN_USER` / `NUCLEUS_ADMIN_PASSWORD` not in sessio
 
 ---
 
+## 2026-05-15 — Canon branch pages: figures grid + claim cards live
+
+| Date | Hrs | Actor | Scope | Deliverable | Bead |
+|---|---|---|---|---|---|
+| 2026-05-15 | ~0.5 | bkt-nuc (engineering) | bkt / canon-web | **Every `/canon/<slug>` branch page now renders its full content.** Founder feedback: pages showed only title + thesis + footer; everything else was hidden behind the "Sub-folders scaffolded. Entries pending." block, including the 99 figures and 590 claim cards that already existed on disk. Fix: rewrote `src/app/canon/[slug]/page.tsx` to always render two new sections when data exists — (1) **Figures**: 3-column card grid from `getStaticBranch(slug).figures` (the canon-figures/figures.json wiring from yesterday), with name, lifespan/region/tradition note, and up to 3 tags per card; (2) **Claim cards**: grouped by concept, top 6 claims per concept with overflow links to `/canon/claims/<concept>`. Driven by new `getClaimsForBranch(slug)` helper in `src/lib/canon-claims.ts` that filters `getAllClaims()` to one branch. Verified live across all 10 branches: mathematics 10 figs+35 claims, physics 10+136, chemistry 6+13, information 8+9, biophysics 19+198, cosmology 8+52, mind 7+105, deep-history 11+42, art 10+0 (no sub-claims yet), earth 10+0 (no on-disk dir yet). The "Sub-folders scaffolded. Entries pending." fallback now only fires when *all three* of figures/claims/entries are empty. Sub-folder chips also moved to their own dedicated section below figures+claims so they stay visible (linking to the GitHub tree) instead of being hidden when figures/claims exist. | intent-logged |
+
+---
+
 ## 2026-05-14 — Canon → web audit: 99 figures live, photon graph still has zero canon
 
 | Date | Hrs | Actor | Scope | Deliverable | Bead |
