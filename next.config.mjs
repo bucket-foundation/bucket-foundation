@@ -28,11 +28,6 @@ const nextConfig = {
       "./_intake/embeddings/claim-evidence.jsonl",
       "./bucket-canon/**",
     ],
-    "/api/canon/debugfs": [
-      "./_intake/embeddings-v2/claims-vectors.npy",
-      "./_intake/embeddings/claim-evidence.jsonl",
-      "./bucket-canon/**",
-    ],
     "/canon/graph": [
       "./_intake/connections/graph.json",
       "./_intake/connections/centrality.json",

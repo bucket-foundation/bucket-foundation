@@ -22,8 +22,40 @@ _intake/concept-digests/
 _intake/canon-profiles/
 _intake/everychem/
 _intake/gov-declassified/
-# Per-figure intake dirs (one per canon-figure, all near-empty placeholders)
-_intake/*-*/
+# Per-figure / per-concept intake dirs (all near-empty placeholders).
+# DO NOT use the lazy `_intake/*-*/` pattern here — it greedily matches
+# `_intake/embeddings-v2/` (hyphenated), which BREAKS canon-search by
+# stripping the precomputed claim vectors from the Lambda. The list
+# below is enumerated explicitly so the next person who adds an
+# `embeddings-v3/` or similar doesn't ship a search regression.
+_intake/becker-robert-o/
+_intake/einstein-albert/
+_intake/faraday-michael/
+_intake/ferry-david/
+_intake/frohlich-herbert/
+_intake/ling-gilbert/
+_intake/marino-andrew/
+_intake/maxwell-james-clerk/
+_intake/mendeleev-dmitri/
+_intake/mitchell-peter/
+_intake/newton-isaac/
+_intake/nordenstrom-bjorn/
+_intake/peat-ray/
+_intake/pollack-gerald/
+_intake/popp-fritz-albert/
+_intake/russell-walter/
+_intake/szent-gyorgyi-albert/
+_intake/tesla-nikola/
+_intake/warburg-otto/
+_intake/wheeler-john-archibald/
+_intake/concept-circadian-light-environment/
+_intake/concept-cmes-biology/
+_intake/concept-deuterium-depleted-water/
+_intake/concept-ez-water-fourth-phase/
+_intake/concept-melanin-semiconductor/
+_intake/concept-mitochondrial-chemiosmosis/
+_intake/concept-photoelectric-effect-biology/
+_intake/concept-quantum-biology/
 
 # Inside _intake/embeddings/ the `corpus/` subdir is 304 MB of raw
 # source documents that nothing at runtime needs — exclude it but keep
