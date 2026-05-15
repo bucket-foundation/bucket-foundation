@@ -21,6 +21,7 @@ const nextConfig = {
   // otherwise Vercel ships the Lambda without those files and the
   // search index comes back empty (HTTP 503 index_empty).
   outputFileTracingIncludes: {
+    "/api/canon/debugfs": ["./_intake/embeddings-v2/**", "./_intake/embeddings/**", "./bucket-canon/**"],
     "/api/canon/search": [
       "./_intake/embeddings-v2/claims-vectors.npy",
       "./_intake/embeddings-v2/clusters.json",
