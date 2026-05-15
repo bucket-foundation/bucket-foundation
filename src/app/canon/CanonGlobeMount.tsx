@@ -668,7 +668,37 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
       </div>
 
       {/* RIGHT-SIDE INFO DRAWER */}
-      <Drawer selected={selected} onClose={() => setSelected(null)} />
+      <Drawer
+        selected={selected}
+        onClose={() => setSelected(null)}
+        onSelectMarker={(id) => {
+          // Same-era / nearby click — find the marker by id in the
+          // pre-loaded event + site lists and select it directly. Bump
+          // the year scrubber if needed so the marker is visible on
+          // the globe at the same moment its drawer fills with detail.
+          const ev = ALL_EVENTS.find((e) => e.id === id);
+          const site = ev ? null : ALL_SITES.find((s) => s.id === id);
+          if (ev) {
+            setSelected({
+              id: ev.id, lat: ev.lat, lng: ev.lng, year: ev.year,
+              branch: ev.branch, title: ev.title,
+              kind: (ev.kind === "figure-birth" ? "figure-birth" : "canon-entry") as CanonMarker["kind"],
+            });
+            setYear((y) => Math.max(y, ev.year));
+          } else if (site) {
+            setSelected({
+              id: site.id, lat: site.lat, lng: site.lng, year: site.year,
+              branch: site.branch, title: site.title,
+              kind: "archaeological-site",
+              civilization: site.civilization,
+              lidar: site.lidar,
+              unesco: site.unesco,
+              wikipedia: site.wikipedia,
+            });
+            setYear((y) => Math.max(y, site.year));
+          }
+        }}
+      />
     </div>
   );
 }
@@ -676,9 +706,12 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 function Drawer({
   selected,
   onClose,
+  onSelectMarker,
 }: {
   selected: CanonMarker | null;
   onClose: () => void;
+  /** Called when the user clicks a same-era or nearby cross-reference. */
+  onSelectMarker?: (id: string) => void;
 }) {
   const search = (selected as unknown as { _search?: SearchResult })?._search;
   const branchSlug = selected?.branch?.replace(/^\d+-/, "");
@@ -686,6 +719,136 @@ function Drawer({
   // /canon/<branch>/figures/<id>; sites and works return null and fall
   // back to the copy-share-link button further down).
   const pageUrl = selected ? markerPageUrl(selected) : null;
+
+  // ──────────────────────────────────────────────────────────────────
+  // Cross-references — every marker becomes a hub for "what makes
+  // this what it is": claim cards that mention it, contemporary
+  // figures + sites (±500 years), nearby markers (~5° lat/lng radius),
+  // and outbound research links (Wikipedia, Scholar, Wikidata).
+  // ──────────────────────────────────────────────────────────────────
+
+  // Claims that mention this marker, via the existing canon-search API.
+  const [relatedClaims, setRelatedClaims] = useState<SearchResult[]>([]);
+  const [relatedLoading, setRelatedLoading] = useState(false);
+  const fetchAbort = useRef<AbortController | null>(null);
+  useEffect(() => {
+    if (!selected || !selected.title) {
+      setRelatedClaims([]);
+      return;
+    }
+    // Don't re-query when the search-driven _search shim is already there
+    // — that means the user clicked a result, and the excerpt section
+    // already shows the primary match.
+    fetchAbort.current?.abort();
+    const ac = new AbortController();
+    fetchAbort.current = ac;
+    setRelatedLoading(true);
+    const t = setTimeout(async () => {
+      try {
+        const url = new URL("/api/canon/search", window.location.origin);
+        url.searchParams.set("q", selected.title);
+        url.searchParams.set("top_k", "8");
+        const r = await fetch(url.toString(), { signal: ac.signal });
+        const j = r.ok ? await r.json() : { results: [] };
+        // Skip the very same claim the user came from (avoid duplication)
+        const out = (j.results || []).filter((x: SearchResult) =>
+          !search || `${x.concept}/${x.slug}` !== `${search.concept}/${search.slug}`
+        );
+        setRelatedClaims(out);
+      } catch (e: unknown) {
+        if ((e as Error).name !== "AbortError") setRelatedClaims([]);
+      } finally {
+        setRelatedLoading(false);
+      }
+    }, 250);
+    return () => { clearTimeout(t); ac.abort(); };
+  }, [selected, search]);
+
+  // Same era — events/sites within ±500 years (or ±100 years if the
+  // marker is post-1700 CE, when the canon density is higher).
+  const sameEra = useMemo(() => {
+    if (!selected || selected.year === undefined) return [];
+    const Y = selected.year;
+    const RADIUS = Y > 1700 ? 100 : 500;
+    const out: Array<{ id: string; title: string; year: number; branch: string; kind: "event" | "site" }> = [];
+    for (const e of ALL_EVENTS) {
+      if (e.id === selected.id) continue;
+      if (Math.abs(e.year - Y) <= RADIUS) {
+        out.push({ id: e.id, title: e.title, year: e.year, branch: e.branch, kind: "event" });
+      }
+    }
+    for (const s of ALL_SITES) {
+      if (s.id === selected.id) continue;
+      if (Math.abs(s.year - Y) <= RADIUS) {
+        out.push({ id: s.id, title: s.title, year: s.year, branch: s.branch, kind: "site" });
+      }
+    }
+    return out.sort((a, b) => Math.abs(a.year - Y) - Math.abs(b.year - Y)).slice(0, 8);
+  }, [selected]);
+
+  // Nearby — within ~5° lat/lng of this marker. Cheap great-circle
+  // distance is overkill at this density; a simple bounding box reads
+  // as "broadly the same region" without false positives across hemispheres.
+  const nearby = useMemo(() => {
+    if (!selected || (selected.lat === 0 && selected.lng === 0)) return [];
+    const RADIUS = 5; // degrees
+    const within = (lat: number, lng: number) =>
+      Math.abs(lat - selected.lat) <= RADIUS &&
+      Math.abs(lng - selected.lng) <= RADIUS;
+    type Near = { id: string; title: string; year: number; branch: string; kind: "event" | "site"; lat: number; lng: number };
+    const out: Near[] = [];
+    for (const e of ALL_EVENTS) {
+      if (e.id === selected.id) continue;
+      if (within(e.lat, e.lng)) {
+        out.push({ id: e.id, title: e.title, year: e.year, branch: e.branch, kind: "event", lat: e.lat, lng: e.lng });
+      }
+    }
+    for (const s of ALL_SITES) {
+      if (s.id === selected.id) continue;
+      if (within(s.lat, s.lng)) {
+        out.push({ id: s.id, title: s.title, year: s.year, branch: s.branch, kind: "site", lat: s.lat, lng: s.lng });
+      }
+    }
+    return out
+      .sort(
+        (a, b) =>
+          Math.abs(a.lat - selected.lat) + Math.abs(a.lng - selected.lng) -
+          (Math.abs(b.lat - selected.lat) + Math.abs(b.lng - selected.lng))
+      )
+      .slice(0, 8);
+  }, [selected]);
+
+  // Build the outbound research links — Wikipedia first (highest signal),
+  // then Google Scholar, then Wikidata. Site markers come with an
+  // explicit `wikipedia` field; everything else uses a name search.
+  const externalLinks = useMemo(() => {
+    if (!selected) return [];
+    const q = encodeURIComponent(selected.title);
+    return [
+      {
+        label: "Wikipedia",
+        note: "biographical / topical primary entry",
+        href: selected.wikipedia
+          ? selected.wikipedia
+          : `https://en.wikipedia.org/w/index.php?search=${q}`,
+      },
+      {
+        label: "Google Scholar",
+        note: "papers about this topic — broadest academic coverage",
+        href: `https://scholar.google.com/scholar?q=${q}`,
+      },
+      {
+        label: "Wikidata",
+        note: "structured identifiers (VIAF, GND, ORCID, ISNI)",
+        href: `https://www.wikidata.org/w/index.php?search=${q}`,
+      },
+      {
+        label: "OpenAlex",
+        note: "OA-indexed works + citation graph",
+        href: `https://openalex.org/works?search=${q}&sort=cited_by_count:desc`,
+      },
+    ];
+  }, [selected]);
 
   // Close on Escape — standard UX expectation for drawers/modals
   useEffect(() => {
@@ -722,154 +885,71 @@ function Drawer({
         }}
       >
         {selected && (
-          <div className="p-6 md:p-8">
+          <div>
+            {/* STICKY HEADER + CTA STRIP — stays in view as the user
+                scrolls the cross-reference sections below. */}
             <div
-              className="flex items-baseline justify-between mb-1 pb-3 border-b"
-              style={{ borderColor: "var(--hairline)" }}
+              className="sticky top-0 z-10 px-6 md:px-8 pt-6 md:pt-8 pb-4"
+              style={{ background: "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
             >
-              <span
-                className="text-[10px] uppercase tracking-[0.22em]"
+              <div className="flex items-baseline justify-between mb-3">
+                <span
+                  className="text-[10px] uppercase tracking-[0.22em]"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  {selected.kind?.replace(/-/g, " ")}
+                </span>
+                <button
+                  onClick={onClose}
+                  className="text-2xl leading-none hover:text-[color:var(--gold)]"
+                  style={{ color: "var(--parchment-dim)" }}
+                  aria-label="close drawer"
+                  title="close (Esc)"
+                >
+                  ×
+                </button>
+              </div>
+              <h2
+                className="text-xl md:text-2xl leading-tight mb-2"
+                style={{ fontFamily: "var(--font-fraunces)", color: "var(--basalt)", fontWeight: 500 }}
+              >
+                {selected.title}
+              </h2>
+              <p
+                className="text-[11px] uppercase tracking-[0.18em] mb-4"
                 style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
               >
-                Canon detail · click anywhere outside to close
-              </span>
-              <button
-                onClick={onClose}
-                className="text-2xl leading-none hover:text-[color:var(--gold)]"
-                style={{ color: "var(--parchment-dim)" }}
-                aria-label="close drawer"
-                title="close (Esc)"
-              >
-                ×
-              </button>
-            </div>
-            <div className="mt-5 mb-2">
-              <span
-                className="text-xs uppercase tracking-[0.18em]"
-                style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
-              >
-                {selected.kind?.replace(/-/g, " ")}
-              </span>
-            </div>
+                {selected.year !== undefined && <>{fmtYear(selected.year)} · </>}
+                {selected.branch}
+                {selected.civilization && <> · {selected.civilization}</>}
+              </p>
 
-            <h2
-              className="text-2xl md:text-3xl leading-tight mb-3"
-              style={{ fontFamily: "var(--font-fraunces)", color: "var(--basalt)", fontWeight: 500 }}
-            >
-              {selected.title}
-            </h2>
-
-            <dl className="space-y-3 mb-6 text-sm" style={{ fontFamily: "var(--font-fraunces)" }}>
-              {selected.year !== undefined && (
-                <div className="flex justify-between border-b border-[color:var(--hairline)] pb-2">
-                  <dt style={{ color: "var(--parchment-dim)" }}>Year</dt>
-                  <dd>{fmtYear(selected.year)}</dd>
-                </div>
-              )}
-              <div className="flex justify-between border-b border-[color:var(--hairline)] pb-2">
-                <dt style={{ color: "var(--parchment-dim)" }}>Branch</dt>
-                <dd>{selected.branch}</dd>
-              </div>
-              {(selected.lat !== 0 || selected.lng !== 0) && (
-                <div className="flex justify-between border-b border-[color:var(--hairline)] pb-2">
-                  <dt style={{ color: "var(--parchment-dim)" }}>Coords</dt>
-                  <dd className="font-mono text-xs">
-                    {selected.lat.toFixed(2)}, {selected.lng.toFixed(2)}
-                  </dd>
-                </div>
-              )}
-              {selected.civilization && (
-                <div className="flex justify-between border-b border-[color:var(--hairline)] pb-2">
-                  <dt style={{ color: "var(--parchment-dim)" }}>Civilization</dt>
-                  <dd>{selected.civilization}</dd>
-                </div>
-              )}
-            </dl>
-
-            {/* External resource links for archaeological sites */}
-            {(selected.lidar || selected.unesco || selected.wikipedia) && (
-              <div className="mb-6 space-y-1.5">
-                <h3
-                  className="text-xs uppercase tracking-[0.18em] mb-2"
-                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
-                >
-                  Resources
-                </h3>
-                {selected.lidar && (
-                  <a href={selected.lidar} target="_blank" rel="noreferrer"
-                     className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
-                     style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
-                    🛰  LiDAR / aerial survey ↗
-                  </a>
+              {/* Primary CTA row — like the branch page's top nav */}
+              <div className="flex flex-wrap gap-1.5">
+                {/* Open the canonical page when one exists */}
+                {search ? (
+                  <Link
+                    href={`/canon/claims/${search.concept}/${search.slug}`}
+                    className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-3 py-1.5 transition"
+                  >
+                    open full claim →
+                  </Link>
+                ) : pageUrl ? (
+                  <Link
+                    href={pageUrl}
+                    className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-3 py-1.5 transition"
+                  >
+                    open page →
+                  </Link>
+                ) : null}
+                {branchSlug && (
+                  <Link
+                    href={`/canon/${branchSlug}`}
+                    className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-1.5 transition"
+                  >
+                    {branchSlug} branch →
+                  </Link>
                 )}
-                {selected.unesco && (
-                  <a href={selected.unesco} target="_blank" rel="noreferrer"
-                     className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
-                     style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
-                    🏛  UNESCO World Heritage ↗
-                  </a>
-                )}
-                {selected.wikipedia && (
-                  <a href={selected.wikipedia} target="_blank" rel="noreferrer"
-                     className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
-                     style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
-                    📖  Wikipedia ↗
-                  </a>
-                )}
-              </div>
-            )}
-
-            {search && (
-              <section className="mb-6">
-                <h3
-                  className="text-xs uppercase tracking-[0.18em] mb-3"
-                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
-                >
-                  Claim excerpt
-                </h3>
-                <blockquote
-                  className="border-l-2 pl-4 py-1 text-sm leading-relaxed italic"
-                  style={{
-                    borderColor: "var(--gold)",
-                    color: "var(--basalt)",
-                    fontFamily: "var(--font-fraunces)",
-                  }}
-                >
-                  {search.excerpt.slice(0, 400)}
-                  {search.excerpt.length > 400 && "…"}
-                </blockquote>
-              </section>
-            )}
-
-            {/*
-             * Primary action: open the marker's own page.
-             *   - search-driven canon-entry  → /canon/claims/<concept>/<slug>
-             *   - figure-birth / figure-death → /canon/<branch>/figures/<figureId>
-             *     (only when the timeline id maps to a figures.json entry)
-             *   - everything else (works, sites without a figures match)
-             *     → the addressable deep-link `?marker=<id>` on /canon,
-             *       which re-opens the globe focused on this marker.
-             *
-             * The branch link stays available as a secondary action.
-             * Sites also get a "copy share link" button for the
-             * deep-link URL.
-             */}
-            <div className="space-y-2">
-              {search ? (
-                <Link
-                  href={`/canon/claims/${search.concept}/${search.slug}`}
-                  className="block w-full text-center small-caps text-[11px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-4 py-2 transition"
-                >
-                  open full claim →
-                </Link>
-              ) : pageUrl ? (
-                <Link
-                  href={pageUrl}
-                  className="block w-full text-center small-caps text-[11px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-4 py-2 transition"
-                >
-                  open page → {selected.kind === "figure-birth" || selected.kind === "figure-death" ? "figure" : "entry"}
-                </Link>
-              ) : (
                 <button
                   onClick={() => {
                     if (typeof window === "undefined") return;
@@ -877,20 +957,239 @@ function Drawer({
                     url.search = `?marker=${encodeURIComponent(selected.id)}`;
                     navigator.clipboard?.writeText(url.toString()).catch(() => {});
                   }}
-                  className="block w-full text-center small-caps text-[11px] tracking-[0.18em] border border-[color:var(--gold)] text-[color:var(--gold)] hover:bg-[color:var(--gold)] hover:text-white px-4 py-2 transition"
+                  className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-1.5 transition"
                   title={`copies /canon?marker=${selected.id}`}
                 >
-                  copy share link ⎘
+                  copy link ⎘
                 </button>
+              </div>
+            </div>
+
+            {/* SCROLLABLE BODY — every source/related-material section
+                stacks here. Headers are small-caps gold; sections are
+                separated by hairline borders so the scroll has rhythm. */}
+            <div className="px-6 md:px-8 pt-5 pb-10 space-y-7">
+              {/* Search-driven excerpt (when the user came from a search) */}
+              {search && (
+                <section>
+                  <h3
+                    className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                    style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    Claim excerpt
+                  </h3>
+                  <blockquote
+                    className="border-l-2 pl-4 py-1 text-sm leading-relaxed italic"
+                    style={{
+                      borderColor: "var(--gold)",
+                      color: "var(--basalt)",
+                      fontFamily: "var(--font-fraunces)",
+                    }}
+                  >
+                    {search.excerpt.slice(0, 400)}
+                    {search.excerpt.length > 400 && "…"}
+                  </blockquote>
+                </section>
               )}
-              {branchSlug && (
-                <Link
-                  href={`/canon/${branchSlug}`}
-                  className="block w-full text-center small-caps text-[11px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-4 py-2 transition"
+
+              {/* Source data — every primary place this marker shows up
+                  on disk. For sites this is wikipedia / unesco / lidar.
+                  For figures with a figures.json record it's the
+                  figure-page link (also in the top CTA, repeated here
+                  with a description). */}
+              <section>
+                <h3
+                  className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
                 >
-                  enter {branchSlug} branch →
-                </Link>
+                  Source data
+                </h3>
+                <div className="space-y-1.5">
+                  {selected.lidar && (
+                    <a href={selected.lidar} target="_blank" rel="noreferrer"
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      🛰  LiDAR / aerial survey ↗
+                    </a>
+                  )}
+                  {selected.unesco && (
+                    <a href={selected.unesco} target="_blank" rel="noreferrer"
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      🏛  UNESCO World Heritage entry ↗
+                    </a>
+                  )}
+                  {selected.wikipedia && (
+                    <a href={selected.wikipedia} target="_blank" rel="noreferrer"
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      📖  Wikipedia ↗
+                    </a>
+                  )}
+                  {pageUrl && (
+                    <Link href={pageUrl}
+                       className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                       style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                      📄  Figure page in canon — biography, primary works ↗
+                    </Link>
+                  )}
+                  {/* Always-available outbound research links */}
+                  {externalLinks.map((e) => {
+                    // Skip the Wikipedia entry when we already showed a
+                    // specific wikipedia URL above (avoid duplication).
+                    if (e.label === "Wikipedia" && selected.wikipedia) return null;
+                    return (
+                      <a key={e.label} href={e.href} target="_blank" rel="noreferrer"
+                         className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                         style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}>
+                        <span className="block">{e.label} ↗</span>
+                        <span className="block text-[11px] mt-0.5" style={{ color: "var(--parchment-dim)" }}>
+                          {e.note}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </section>
+
+              {/* Mentioned in canon — claim cards that match this marker
+                  by name via the canon search index. Bridges the
+                  geocoded markers (timeline + sites) into the 599
+                  curated claim cards. */}
+              <section>
+                <h3
+                  className="text-[10px] uppercase tracking-[0.18em] mb-3 flex items-baseline justify-between"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  <span>Mentioned in canon</span>
+                  <span style={{ color: "var(--parchment-dim)" }}>
+                    {relatedLoading ? "searching…" : `${relatedClaims.length} match${relatedClaims.length === 1 ? "" : "es"}`}
+                  </span>
+                </h3>
+                {relatedClaims.length === 0 && !relatedLoading && (
+                  <p className="text-[12px] leading-relaxed"
+                     style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}>
+                    No claim cards mention &ldquo;{selected.title}&rdquo; yet — try{" "}
+                    <Link href={`/canon/search?q=${encodeURIComponent(selected.title)}`}
+                          className="text-[color:var(--gold)] hover:text-[color:var(--basalt)] underline">
+                      full canon search →
+                    </Link>
+                  </p>
+                )}
+                {relatedClaims.length > 0 && (
+                  <ul className="space-y-1.5">
+                    {relatedClaims.map((c) => (
+                      <li key={`${c.concept}/${c.slug}`}>
+                        <Link
+                          href={`/canon/claims/${c.concept}/${c.slug}`}
+                          className="block px-3 py-2 rounded-md border text-sm hover:border-[color:var(--gold)] transition"
+                          style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
+                        >
+                          <span className="block leading-snug">{c.title.slice(0, 110)}{c.title.length > 110 && "…"}</span>
+                          <span className="block text-[10px] uppercase tracking-[0.18em] mt-1"
+                                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                            {c.branch.replace(/^\d+-/, "")} · {c.concept}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+
+              {/* Same era — every other geocoded marker within ±500
+                  years (±100 if post-1700). Lets the user jump
+                  directly from Lascaux to Çatalhöyük, from Einstein
+                  to Hilbert, etc. */}
+              {sameEra.length > 0 && (
+                <section>
+                  <h3
+                    className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                    style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    Same era — {sameEra.length} other marker{sameEra.length === 1 ? "" : "s"}
+                  </h3>
+                  <ul className="space-y-1">
+                    {sameEra.map((m) => (
+                      <li key={m.id}>
+                        <button
+                          onClick={() => onSelectMarker?.(m.id)}
+                          className="w-full flex items-baseline justify-between gap-3 px-3 py-1.5 rounded-md border text-sm hover:border-[color:var(--gold)] transition text-left"
+                          style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
+                        >
+                          <span className="truncate flex-1">{m.title}</span>
+                          <span className="text-[10px] uppercase tracking-[0.16em] flex-shrink-0"
+                                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                            {fmtYear(m.year)}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
               )}
+
+              {/* Nearby — markers in roughly the same region (~5° box).
+                  Geographic neighbours regardless of era. */}
+              {nearby.length > 0 && (
+                <section>
+                  <h3
+                    className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                    style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                  >
+                    Nearby — {nearby.length} other marker{nearby.length === 1 ? "" : "s"}
+                  </h3>
+                  <ul className="space-y-1">
+                    {nearby.map((m) => (
+                      <li key={m.id}>
+                        <button
+                          onClick={() => onSelectMarker?.(m.id)}
+                          className="w-full flex items-baseline justify-between gap-3 px-3 py-1.5 rounded-md border text-sm hover:border-[color:var(--gold)] transition text-left"
+                          style={{ borderColor: "var(--hairline)", color: "var(--basalt)", fontFamily: "var(--font-fraunces)" }}
+                        >
+                          <span className="truncate flex-1">{m.title}</span>
+                          <span className="text-[10px] uppercase tracking-[0.16em] flex-shrink-0"
+                                style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}>
+                            {m.branch.replace(/^\d+-/, "")}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {/* Coordinates — small, dim, last. Site-specific
+                  civilization field too when present. */}
+              <section>
+                <h3
+                  className="text-[10px] uppercase tracking-[0.18em] mb-3"
+                  style={{ color: "var(--gold)", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  Metadata
+                </h3>
+                <dl className="text-[12px] space-y-1" style={{ fontFamily: "var(--font-fraunces)" }}>
+                  <div className="flex justify-between border-b border-[color:var(--hairline)] pb-1">
+                    <dt style={{ color: "var(--parchment-dim)" }}>id</dt>
+                    <dd className="font-mono">{selected.id}</dd>
+                  </div>
+                  {(selected.lat !== 0 || selected.lng !== 0) && (
+                    <div className="flex justify-between border-b border-[color:var(--hairline)] pb-1">
+                      <dt style={{ color: "var(--parchment-dim)" }}>coords</dt>
+                      <dd className="font-mono">
+                        <a
+                          href={`https://www.google.com/maps?q=${selected.lat},${selected.lng}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="hover:text-[color:var(--gold)] underline-offset-2 hover:underline"
+                        >
+                          {selected.lat.toFixed(2)}, {selected.lng.toFixed(2)} ↗
+                        </a>
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+              </section>
             </div>
           </div>
         )}
