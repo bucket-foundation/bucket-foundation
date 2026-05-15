@@ -4,8 +4,40 @@
 # reads `bucket-canon/`), so canon directories MUST stay shipped — but
 # the gigabytes of corpora, embeddings, archives, and intake data do not.
 
-# Local corpora + intake (multi-GB, regenerable, server-side only)
-_intake/
+# Local corpora + intake — exclude the multi-GB subdirs but KEEP the
+# small embedding / evidence / graph files that the runtime canon-search
+# + canon-graph + canon-evidence libraries actually read at request time.
+# (See src/lib/canon-search-index.ts and src/lib/canon-evidence.ts.)
+_intake/photons/                      # 20 GB regenerable kaikki cache
+_intake/war-gov-pursue-release-01/    # 2 GB war.gov mirror
+_intake/aaro-mil-archive/             # 152 MB
+_intake/training/                     # 132 MB
+_intake/kruse-blog-corpus/            # 24 MB
+_intake/claims-v2/
+_intake/claims-allbranch/
+_intake/dni-uap-reports/
+_intake/canon-claims-raw/
+_intake/kruse-references-mined/
+_intake/concept-digests/
+_intake/canon-profiles/
+_intake/everychem/
+_intake/gov-declassified/
+# Per-figure intake dirs (one per canon-figure, all near-empty placeholders)
+_intake/*-*/
+
+# Inside _intake/embeddings/ the `corpus/` subdir is 304 MB of raw
+# source documents that nothing at runtime needs — exclude it but keep
+# the rest of the dir.
+_intake/embeddings/corpus/
+
+# Keep these explicitly (they're tiny and the runtime needs them):
+#   _intake/embeddings/claims-vectors.f32.bin   (1.8 MB, fallback vectors)
+#   _intake/embeddings/claim-evidence.jsonl     (5.4 MB, evidence per claim)
+#   _intake/embeddings-v2/claims-vectors.npy    (899 KB, preferred vectors)
+#   _intake/embeddings-v2/clusters.json
+#   _intake/embeddings-v2/multi-branch-graph.json
+#   _intake/connections/graph.json + centrality.json   (228 KB, /canon/graph)
+
 yt/
 archaeology/
 openalex/
