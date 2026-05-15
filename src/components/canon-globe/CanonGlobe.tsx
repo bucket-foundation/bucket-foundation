@@ -1,13 +1,42 @@
 "use client";
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { OrbitControls } from "@react-three/drei";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { Earth, EARTH_RADIUS } from "./Earth";
 import { Halo } from "./Halo";
 import { CanonMarkers, type CanonMarker } from "./CanonMarkers";
 import { useReducedMotion } from "./useReducedMotion";
 import { useMemo } from "react";
 import * as THREE from "three";
+
+/**
+ * Drives camera distance into React state via OrbitControls' change event.
+ * We're on frameloop="demand" so we can't sample camera.position every
+ * frame — but every user zoom/rotate fires `change` on the controls, and
+ * we propagate that to a state setter so marker LOD can react.
+ */
+function CameraDistanceTracker({
+  controlsRef,
+  onChange,
+}: {
+  controlsRef: React.MutableRefObject<OrbitControlsImpl | null>;
+  onChange: (d: number) => void;
+}) {
+  const { camera, invalidate } = useThree();
+  useEffect(() => {
+    const c = controlsRef.current;
+    if (!c) return;
+    const handler = () => {
+      onChange(camera.position.length());
+      invalidate();
+    };
+    handler(); // seed initial distance
+    c.addEventListener("change", handler);
+    return () => c.removeEventListener("change", handler);
+  }, [controlsRef, camera, onChange, invalidate]);
+  return null;
+}
 
 // (unused — kept only because referenced internally)
 function _FallbackGlobe({ className }: { className?: string }) {
@@ -118,6 +147,10 @@ export default function CanonGlobe({
   onSelectChange,
 }: CanonGlobeProps) {
   const reducedMotion = useReducedMotion();
+  const controlsRef = useRef<OrbitControlsImpl | null>(null);
+  // Camera distance from origin, in scene units (Earth radius = 1).
+  // Seeded to match the camera's starting position (z=3.4 below).
+  const [cameraDistance, setCameraDistance] = useState(3.4);
 
   // Faint background star/dot field — cosmic context behind the globe.
   // Bone-tinted so it reads on light bg without going black.
@@ -177,6 +210,7 @@ export default function CanonGlobe({
               activeIndex={activeIndex}
               radius={EARTH_RADIUS * 1.008}
               reducedMotion={reducedMotion}
+              cameraDistance={cameraDistance}
               onHoverChange={onHoverChange}
               onSelectChange={onSelectChange}
             />
@@ -184,21 +218,36 @@ export default function CanonGlobe({
         </Suspense>
         <Halo enabled />
 
-        {/* Minimal controls: drag to rotate + scroll to zoom. No damping
-            (no continuous re-renders), no auto-rotate (no idle GPU work)
-            — frameloop="demand" only renders on input. Drops GPU pressure
-            so shaky Linux/Wayland AMD drivers don't crash on interaction. */}
+        {/* Drag to rotate + scroll to zoom. `minDistance` is set tight
+            against the Earth surface (radius=1 in scene units) so users
+            can drill into dense regions like Europe. The pins scale down
+            with cameraDistance via CanonMarkers' LOD so dense clusters
+            visually separate at close zoom. `rotateSpeed` is also scaled
+            down adaptively — gentle nudges at high zoom let you fly
+            along the coastline without overshooting. */}
         <OrbitControls
+          ref={controlsRef}
           enableDamping={false}
           enableZoom
           enablePan={false}
-          minDistance={2.0}
+          // 1.0 is the Earth surface. 1.04 keeps us a hair above it so the
+          // camera never clips through the dot pattern.
+          minDistance={1.04}
           maxDistance={6}
           minPolarAngle={0.15}
           maxPolarAngle={Math.PI - 0.15}
-          rotateSpeed={0.5}
-          zoomSpeed={0.6}
+          // Rotate slower the closer you get — at distance 3.4 the speed
+          // is 0.5, at distance 1.05 it's ~0.16. This trick makes drilling
+          // into Europe feel like a real fly-over rather than a snap-spin.
+          rotateSpeed={Math.max(0.12, 0.5 * Math.min(1, (cameraDistance - 1) / 2.4))}
+          // Zoom logarithmically — wider steps at far view, finer at
+          // close zoom so the last "click" doesn't overshoot the surface.
+          zoomSpeed={Math.max(0.25, 0.7 * Math.min(1, (cameraDistance - 1) / 2.4))}
           autoRotate={false}
+        />
+        <CameraDistanceTracker
+          controlsRef={controlsRef}
+          onChange={setCameraDistance}
         />
       </Canvas>
     </div>

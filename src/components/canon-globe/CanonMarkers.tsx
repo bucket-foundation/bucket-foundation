@@ -37,6 +37,15 @@ interface CanonMarkersProps {
   activeIndex?: number;
   radius: number;
   reducedMotion: boolean;
+  /**
+   * Distance from camera to scene origin (Earth center), in scene units
+   * where Earth radius = 1. Used for level-of-detail scaling: at far view
+   * (~3.4) markers are full size; at close zoom (~1.05) they shrink to
+   * ~30% so dense regions (Europe, Asia) visually separate. If omitted,
+   * markers use their full size — used by static / non-interactive
+   * embeddings of the globe.
+   */
+  cameraDistance?: number;
   onHoverChange?: (m: CanonMarker | null) => void;
   /** If provided, clicking a marker fires this instead of routing. */
   onSelectChange?: (m: CanonMarker | null) => void;
@@ -92,11 +101,25 @@ export function CanonMarkers({
   activeIndex,
   radius,
   reducedMotion: _reducedMotion,
+  cameraDistance,
   onHoverChange,
   onSelectChange,
 }: CanonMarkersProps) {
   const router = useRouter();
   const [hover, setHover] = useState<number | null>(null);
+
+  // LOD scale: 1.0 at the default camera distance (3.4), 0.30 at the
+  // minimum (~1.04 = surface-skimming). Linear in the middle. Active /
+  // hovered pins ignore this — they always render full size so the
+  // current focus stays clearly visible regardless of zoom level.
+  const lodScale = useMemo(() => {
+    if (cameraDistance === undefined) return 1;
+    const FAR = 3.4;
+    const NEAR = 1.04;
+    const MIN_SCALE = 0.30;
+    const t = (cameraDistance - NEAR) / (FAR - NEAR);
+    return MIN_SCALE + Math.max(0, Math.min(1, t)) * (1 - MIN_SCALE);
+  }, [cameraDistance]);
 
   // Bubble hovered marker up so the parent (outside the Canvas) can render a
   // guaranteed-visible panel — the in-3D Html tooltip alone gets clipped on
@@ -140,9 +163,16 @@ export function CanonMarkers({
         // Mapbox-style pin: head + stem + surface halo.
         // Scale animates with hover/active — discrete steps (not useFrame)
         // so we stay frameloop="demand" friendly.
+        //
+        // We multiply the resting size by `lodScale` (driven by camera
+        // distance) so dense regions visually separate when you zoom in.
+        // Hover/active states bypass LOD (kept at the lifted size) so
+        // the user's current focus stays large even at deep zoom.
         const lifted = isHover || isActive;
-        const headScale = lifted ? 0.034 : 0.024;
-        const stemLen = lifted ? 0.10 : 0.06;
+        const baseHead = lifted ? 0.034 : 0.024 * lodScale;
+        const baseStem = lifted ? 0.10 : 0.06 * lodScale;
+        const headScale = baseHead;
+        const stemLen = baseStem;
         const haloOuter = lifted ? 3.2 : 2.2;
 
         const normal = p.clone().normalize();
@@ -218,15 +248,18 @@ export function CanonMarkers({
               <meshBasicMaterial color="#FFF8E6" transparent opacity={0.7} toneMapped={false} />
             </mesh>
 
-            {/* Invisible large hit-target — 4x head size. Forgiving on
-                tight clusters (Europe has 5 markers within ~500km). */}
+            {/* Invisible hit-target. At the default zoom this is 4×
+                head; at close zoom the head shrinks via LOD but we keep
+                the hit target generous (≥ 0.05 = ~50px of screen radius
+                at typical fov) so tight clusters in Europe / East Asia
+                stay clickable without overshooting. */}
             <mesh
               position={head}
               onPointerOver={(e) => { e.stopPropagation(); reportHover(i); document.body.style.cursor = "pointer"; }}
               onPointerOut={() => { reportHover(null); document.body.style.cursor = "auto"; }}
               onClick={(e) => { e.stopPropagation(); handleClick(m); }}
             >
-              <sphereGeometry args={[headScale * 4, 10, 10]} />
+              <sphereGeometry args={[Math.max(headScale * 4, 0.04), 10, 10]} />
               <meshBasicMaterial color={color} transparent opacity={0} depthWrite={false} />
             </mesh>
 

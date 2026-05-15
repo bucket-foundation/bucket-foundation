@@ -468,8 +468,8 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
             className="space-y-0.5 text-[10px]"
             style={{ color: "var(--parchment-dim)" }}
           >
-            <li><span style={{ color: "var(--basalt)" }}>drag</span> · rotate</li>
-            <li><span style={{ color: "var(--basalt)" }}>scroll</span> · zoom</li>
+            <li><span style={{ color: "var(--basalt)" }}>drag</span> · rotate (slows when zoomed)</li>
+            <li><span style={{ color: "var(--basalt)" }}>scroll</span> · zoom into a region</li>
             <li><span style={{ color: "var(--basalt)" }}>click</span> · marker details</li>
             <li><span style={{ color: "var(--basalt)" }}>↓</span> · scrub time</li>
           </ul>
