@@ -109,13 +109,38 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [showFigures, setShowFigures] = useState(true);
   const [showSites, setShowSites] = useState(true);
 
-  // Active marker for highlight ring on the globe
+  // The globe + search were two unconnected views before. Now they share
+  // state — the same filter chips and the same query narrow BOTH the
+  // search result list AND the globe markers, so a query for "topology"
+  // shrinks the globe to mathematics in the same instant the result list
+  // updates.
+
+  // Branches that have at least one current search result — used to
+  // narrow the globe to topic-relevant branches when a query is active.
+  const branchesInResults = useMemo(() => {
+    if (!q.trim() || results.length === 0) return null;
+    return new Set(results.map((r) => r.branch.replace(/^\d+-/, "")));
+  }, [q, results]);
+
+  // Active marker for highlight ring on the globe.
   const markers = useMemo(() => {
     const out: CanonMarker[] = [];
     if (showFigures) out.push(...eventsAsMarkers(ALL_EVENTS.filter((e) => e.year <= year)));
     if (showSites) out.push(...sitesAsMarkers(ALL_SITES.filter((s) => s.year <= year)));
-    return out;
-  }, [year, showFigures, showSites]);
+    return out.filter((m) => {
+      // chip filter — mirrors what search uses, so the two stay aligned
+      if (branchFilter) {
+        const want = branchFilter.replace(/^\d+-/, "");
+        const got = m.branch.replace(/^\d+-/, "");
+        if (got !== want) return false;
+      }
+      // active search narrows by branches that appear in the results
+      if (branchesInResults) {
+        if (!branchesInResults.has(m.branch.replace(/^\d+-/, ""))) return false;
+      }
+      return true;
+    });
+  }, [year, showFigures, showSites, branchFilter, branchesInResults]);
 
   const activeIndex = useMemo(() => {
     if (!selected) return undefined;
@@ -253,18 +278,62 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
                   <button
                     key={`${r.concept}/${r.slug}`}
                     onClick={() => {
-                      // Open the drawer with this result. Also try to map to a
-                      // globe marker if the branch matches one.
-                      const m: CanonMarker = {
-                        id: `claim:${r.claim_id}`,
-                        lat: 0, lng: 0,    // unknown for claim cards
-                        branch: r.branch.replace(/^\d+-/, ""),
-                        title: r.title,
-                        kind: "canon-entry",
-                      };
-                      setSelected(m);
-                      // also stash the full search result on the marker for drawer use
+                      // Try to map this search result to a real geocoded
+                      // globe marker — that way clicking the result
+                      // actually moves the globe to a place instead of
+                      // pinning at (0,0). Strategy: find a figure marker
+                      // whose name appears in the claim title (e.g. a
+                      // "Becker" claim picks the Robert O. Becker marker),
+                      // or fall back to the first marker in the same
+                      // branch. Last resort: synthetic 0,0 marker.
+                      const lowerTitle = r.title.toLowerCase();
+                      const branchSuffix = r.branch.replace(/^\d+-/, "");
+                      const eventCandidates = ALL_EVENTS.filter(
+                        (e) => e.branch.replace(/^\d+-/, "") === branchSuffix
+                      );
+                      // First pass: figure name overlap with the claim title
+                      let match = eventCandidates.find((e) => {
+                        const surname = e.title
+                          .replace(/\(.*?\)/g, "")
+                          .split(/[\s—,-]+/)
+                          .filter((w) => w.length >= 4)
+                          .pop()
+                          ?.toLowerCase();
+                        return surname && lowerTitle.includes(surname);
+                      });
+                      // Second pass: concept name overlap (e.g. "becker"
+                      // claim concept → "Robert O. Becker" event)
+                      if (!match) {
+                        const concept = r.concept.toLowerCase();
+                        match = eventCandidates.find((e) =>
+                          e.title.toLowerCase().includes(concept) ||
+                          e.id.toLowerCase().includes(concept)
+                        );
+                      }
+                      const m: CanonMarker = match
+                        ? {
+                            id: match.id,
+                            lat: match.lat,
+                            lng: match.lng,
+                            year: match.year,
+                            branch: match.branch,
+                            title: match.title,
+                            kind: "canon-entry",
+                          }
+                        : {
+                            // No geocoded match — still let the drawer
+                            // render but flag the missing location.
+                            id: `claim:${r.claim_id}`,
+                            lat: 0,
+                            lng: 0,
+                            branch: branchSuffix,
+                            title: r.title,
+                            kind: "canon-entry",
+                          };
+                      // Always attach the full search result so the drawer
+                      // can render the excerpt + "open full claim" link.
                       (m as unknown as { _search: SearchResult })._search = r;
+                      setSelected(m);
                       setQ("");
                       setResults([]);
                     }}
@@ -468,6 +537,22 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
         <div className="mt-2 text-center small-caps text-[10px] text-[color:var(--parchment-dim)] tracking-[0.18em]">
           showing {markers.length} canon event{markers.length === 1 ? "" : "s"} that happened by {fmtYear(Math.round(year))}
+          {branchFilter && (
+            <>
+              {" · "}
+              <span style={{ color: "var(--gold)" }}>
+                filtered to {branchFilter.replace(/^\d+-/, "")}
+              </span>
+            </>
+          )}
+          {branchesInResults && (
+            <>
+              {" · "}
+              <span style={{ color: "var(--gold)" }}>
+                narrowed by query &ldquo;{q.trim()}&rdquo; ({branchesInResults.size} branch{branchesInResults.size === 1 ? "" : "es"})
+              </span>
+            </>
+          )}
         </div>
       </div>
 
