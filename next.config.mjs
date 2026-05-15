@@ -28,7 +28,7 @@ const nextConfig = {
       "./_intake/embeddings/claim-evidence.jsonl",
       "./bucket-canon/**",
     ],
-    "/api/canon/_debug": [
+    "/api/canon/debugfs": [
       "./_intake/embeddings-v2/claims-vectors.npy",
       "./_intake/embeddings/claim-evidence.jsonl",
       "./bucket-canon/**",
