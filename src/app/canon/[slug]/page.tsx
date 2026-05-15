@@ -1,10 +1,14 @@
 // /canon/[slug] — branch page. Renders README scope + sortable entries table
-// from the filesystem. Falls back to static metadata for legacy slugs.
+// from the filesystem PLUS the figures (from canon-figures/figures.json,
+// wired in src/lib/canon.ts) and per-concept claim cards (from
+// bucket-canon/<num>-<slug>/sub-claims/<concept>/). Falls back to static
+// metadata for legacy slugs.
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBranches, getBranch, getBranchEntries } from "@/lib/canon-fs";
 import { BRANCHES as STATIC_BRANCHES, getBranch as getStaticBranch, REPO_TREE, DRIVE_URL } from "@/lib/canon";
+import { getClaimsForBranch } from "@/lib/canon-claims";
 import BranchEntriesTable from "./BranchEntriesTable";
 
 export const dynamic = "force-static";
@@ -41,6 +45,12 @@ export default function Page({ params }: { params: { slug: string } }) {
   const readme = fs?.readme || null;
   const entries = fs ? getBranchEntries(params.slug) : [];
 
+  // NEW: figures (from canon-figures/figures.json via canon.ts) + per-concept
+  // claim cards (from bucket-canon/<num>-<slug>/sub-claims/). These are the
+  // two big "content" lists that were missing from every branch page.
+  const figures = stat?.figures ?? [];
+  const { total: claimsTotal, concepts: claimsByConcept } = getClaimsForBranch(params.slug);
+
   // Pull the first 1-3 paragraphs from README as scope summary
   const readmeIntro = readme ? extractIntro(readme) : null;
 
@@ -67,6 +77,12 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <span className="text-[color:var(--parchment-dim)]">· {fs.subfolders.length} sub-folders</span>
               </>
             )}
+            {figures.length > 0 && (
+              <span className="text-[color:var(--parchment-dim)]">· {figures.length} figures</span>
+            )}
+            {claimsTotal > 0 && (
+              <span className="text-[color:var(--parchment-dim)]">· {claimsTotal} claim cards</span>
+            )}
           </div>
           {readmeIntro && (
             <p className="mt-6 max-w-3xl text-[color:var(--parchment-dim)] leading-relaxed text-pretty">
@@ -82,12 +98,106 @@ export default function Page({ params }: { params: { slug: string } }) {
       </header>
 
       <section className="max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12">
+        {/* FIGURES ---------------------------------------------------- */}
+        {figures.length > 0 && (
+          <div>
+            <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">
+              Figures
+              <span className="ml-3 small-caps text-[11px] text-[color:var(--parchment-dim)]">
+                · {figures.length} canonical
+              </span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[color:var(--hairline)]">
+              {figures.map((f) => (
+                <Link
+                  key={f.slug}
+                  href={`/canon/${params.slug}/figures/${f.slug}`}
+                  className="block bg-[color:var(--bone-2)] p-5 hover:bg-[color:var(--bone-3)] transition"
+                >
+                  <div className="font-serif-display text-lg text-[color:var(--basalt)] leading-tight">
+                    {f.name}
+                  </div>
+                  {f.note && (
+                    <div className="mt-1.5 text-[12px] text-[color:var(--parchment-dim)] leading-snug">
+                      {f.note}
+                    </div>
+                  )}
+                  {f.tags && f.tags.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-1">
+                      {f.tags.slice(0, 3).map((t) => (
+                        <span
+                          key={t}
+                          className="text-[9px] uppercase tracking-[0.15em] text-[color:var(--basalt-2)] border hairline px-1.5 py-0.5"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* CLAIMS BY CONCEPT ----------------------------------------- */}
+        {claimsByConcept.length > 0 && (
+          <div>
+            <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">
+              Claim cards
+              <span className="ml-3 small-caps text-[11px] text-[color:var(--parchment-dim)]">
+                · {claimsTotal} across {claimsByConcept.length} concepts
+              </span>
+            </h2>
+            <div className="space-y-8">
+              {claimsByConcept.map(({ concept, claims }) => (
+                <div key={concept}>
+                  <h3 className="font-serif-display text-lg text-[color:var(--basalt)] mb-3 capitalize">
+                    <Link
+                      href={`/canon/claims/${concept}`}
+                      className="hover:text-[color:var(--gold)]"
+                    >
+                      {concept.replace(/-/g, " ")}
+                    </Link>
+                    <span className="ml-2 small-caps text-[10px] text-[color:var(--parchment-dim)]">
+                      · {claims.length}
+                    </span>
+                  </h3>
+                  <ul className="space-y-1.5">
+                    {claims.slice(0, 6).map((c) => (
+                      <li key={c.slug} className="text-[14px] leading-relaxed">
+                        <Link
+                          href={`/canon/claims/${c.concept}/${c.slug}`}
+                          className="text-[color:var(--basalt-2)] hover:text-[color:var(--gold)]"
+                        >
+                          {c.title.length > 110 ? c.title.slice(0, 110) + "…" : c.title}
+                        </Link>
+                      </li>
+                    ))}
+                    {claims.length > 6 && (
+                      <li className="text-[11px] small-caps">
+                        <Link
+                          href={`/canon/claims/${concept}`}
+                          className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
+                        >
+                          + {claims.length - 6} more →
+                        </Link>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* CANON_INDEX ENTRIES (existing) ----------------------------- */}
         {entries.length > 0 ? (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-6">Entries</h2>
             <BranchEntriesTable entries={entries} branchSlug={params.slug} />
           </div>
-        ) : fs ? (
+        ) : fs && figures.length === 0 && claimsByConcept.length === 0 ? (
           <div className="bg-[color:var(--bone-2)] p-8 border hairline">
             <div className="font-serif-display text-xl text-[color:var(--basalt)] mb-2">
               Sub-folders scaffolded. Entries pending.
@@ -108,6 +218,29 @@ export default function Page({ params }: { params: { slug: string } }) {
             )}
           </div>
         ) : null}
+
+        {/* SUB-FOLDERS (always shown when present, after figures + claims) */}
+        {fs && fs.subfolders.length > 0 && (figures.length > 0 || claimsByConcept.length > 0) && (
+          <div>
+            <h2 className="font-serif-display text-2xl text-[color:var(--basalt)] mb-4">
+              Sub-folders
+              <span className="ml-3 small-caps text-[11px] text-[color:var(--parchment-dim)]">
+                · {fs.subfolders.length} open
+              </span>
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {fs.subfolders.map((s) => (
+                <a
+                  key={s}
+                  href={`https://github.com/bucket-foundation/bucket-foundation/tree/main/bucket-canon/${fs.dir}/${s}`}
+                  className="text-xs text-[color:var(--basalt-2)] border hairline px-3 py-1.5 small-caps hover:text-[color:var(--gold)] hover:border-[color:var(--gold)] transition"
+                >
+                  {s}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         {isBiophysics && (
           <div>

@@ -155,3 +155,40 @@ export function getConcepts(): { concept: string; count: number }[] {
     .map(([concept, claims]) => ({ concept, count: claims.length }))
     .sort((a, b) => b.count - a.count);
 }
+
+// Map a `/canon/<slug>` route slug to the on-disk branch directory name.
+// Same mapping as src/lib/canon.ts DIR_TO_SLUG, inverted. Kept as a local
+// copy so this file stays standalone-importable.
+const BRANCH_SLUG_TO_DIR: Record<string, string> = {
+  "mathematics":   "01-mathematics",
+  "physics":       "02-physics",
+  "chemistry":     "03-chemistry",
+  "information":   "04-information",
+  "biophysics":    "05-biophysics",
+  "cosmology":     "06-cosmology",
+  "mind":          "07-mind",
+  "deep-history":  "08-deep-history",
+  "art":           "09-art",
+  "sacred-texts":  "09-sacred-texts",
+  "earth":         "10-earth",
+};
+
+/** Return all claims for one branch (by canon route slug), grouped by concept. */
+export function getClaimsForBranch(branchSlug: string): {
+  total: number;
+  concepts: { concept: string; claims: ClaimCard[] }[];
+} {
+  const dir = BRANCH_SLUG_TO_DIR[branchSlug];
+  if (!dir) return { total: 0, concepts: [] };
+  const all = getAllClaims().filter((c) => c.branch === dir);
+  if (all.length === 0) return { total: 0, concepts: [] };
+  const by: Record<string, ClaimCard[]> = {};
+  for (const c of all) (by[c.concept] ||= []).push(c);
+  const concepts = Object.entries(by)
+    .map(([concept, claims]) => ({
+      concept,
+      claims: claims.sort((a, b) => b.score - a.score),
+    }))
+    .sort((a, b) => b.claims.length - a.claims.length);
+  return { total: all.length, concepts };
+}
