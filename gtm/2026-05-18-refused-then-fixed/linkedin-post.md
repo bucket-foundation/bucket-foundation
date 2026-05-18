@@ -90,7 +90,7 @@ bucket.foundation · open protocol · MIT · nonprofit
 
 ## First comment (post immediately under the post)
 
-Write-up: [WRITE-UP URL] · Protocol: https://bucket.foundation · Code (MIT):
+Write-up: https://www.bucket.foundation/protocol/agent-trust · Protocol: https://bucket.foundation · Code (MIT):
 https://github.com/gianyrox/bucket-foundation
 
 No fundraise is open. The most useful support is technical review or mirroring

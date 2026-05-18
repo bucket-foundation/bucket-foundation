@@ -110,7 +110,7 @@ build the past. build history. bucket is the new renaissance.
 Open protocol. MIT. Nonprofit — no equity, no token, no exit.
 
 The full technical write-up, including the verbatim refusal and the fix:
-[WRITE-UP URL] · https://bucket.foundation
+https://www.bucket.foundation/protocol/agent-trust · https://bucket.foundation
 
 ---
 
