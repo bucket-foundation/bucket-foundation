@@ -21,7 +21,7 @@ file is not listed below, treat it as **not canon**.
 | `papers.bib` | BibTeX of all 56 Becker-authored/coauthored PubMed-indexed papers, 1961–2004. Generated from NCBI EUtils 2026-04-23. |
 | `books.md` | Three books (*Electromagnetism and Life* 1982, *The Body Electric* 1985, *Cross Currents* 1990) with WorldCat/OpenLibrary links. No PDFs stored. |
 | `lineage.md` | Influenced-by and extends-from network: Marino, Spadaro, Reichmanis (direct); Oschman, Ho, Liboff, Goodman, Blank, Blackman, Smith, Pollack, Levin (second-generation); Lund, Burr, Szent-Györgyi, Fröhlich (precursors Becker himself cited). |
-| `site-mirror/2026-04-23/` | Full offline mirror of robertobecker.net (estate-maintained archive). Captured with `wget --mirror --page-requisites` honoring robots.txt. |
+| `site-mirror/2026-04-23/` | Full offline mirror of robertobecker.net (estate-maintained archive). Captured with `wget --mirror --page-requisites` honoring robots.txt. **Not in git and not in the Vercel build** (419 MB incl. a 360 MB `Becker60Minutes.mp4`; gitignored via `bucket-canon/**/site-mirror/`, excluded in `.vercelignore`). Canonical copy mirrored to **`gdrive:AGFarms/Nucleus/bucket-foundation/becker/site-mirror/`** (262 objects / 418 MiB) per the org gdrive convention. No runtime code reads it — canon search/claims only glob `sub-claims/**/*.md`. |
 
 ---
 

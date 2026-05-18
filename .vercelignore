@@ -62,6 +62,19 @@ _intake/concept-quantum-biology/
 # the rest of the dir.
 _intake/embeddings/corpus/
 
+# Offline site mirrors under canon (large binaries: video, full WP
+# scrapes, PDFs) are NOT read by any runtime code — canon-search-index.ts
+# and canon-claims.ts only glob `bucket-canon/*/sub-claims/**/*.md`.
+# bucket-canon/05-biophysics/becker/site-mirror/ alone is 419 MB
+# (incl. a 360 MB Becker60Minutes.mp4) and was blowing the
+# api/canon/search Lambda past Vercel's 300 MB limit. Already gitignored
+# (.gitignore: `bucket-canon/**/site-mirror/`) and fully mirrored to
+# gdrive:AGFarms/Nucleus/bucket-foundation/becker/site-mirror/ (262
+# objects / 418 MiB). Excluded from the Vercel upload too so it can
+# never be re-traced into a function even if outputFileTracingIncludes
+# regresses. (bkt-epic-infra: api/canon/search > 300 MB lambda)
+bucket-canon/**/site-mirror/
+
 # Keep these explicitly (they're tiny and the runtime needs them):
 #   _intake/embeddings/claims-vectors.f32.bin   (1.8 MB, fallback vectors)
 #   _intake/embeddings/claim-evidence.jsonl     (5.4 MB, evidence per claim)
