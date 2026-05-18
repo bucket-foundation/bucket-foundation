@@ -61,6 +61,7 @@ This repo contains:
 | **MCP server** | `mcp-server/bucket-mcp.py` (this repo) | One server, 7 tools — Claude Code / Desktop. (The old standalone `bucket-mcp` repo is now archived.) |
 | **Research artifacts** | [BucketDrive](https://drive.google.com/open?id=12QjkHYFqzVNm30kvkW-upi0kqa_Kri2B) (Google Drive) | PDFs, raw data, large research artifacts. The dormant `bucket-research` repo was retired 2026-05-15; all canon content lives here under `bucket-canon/` and `canon-figures/`. |
 | **Upstream gateway** | https://github.com/AGFarms/x402-research-gateway | The feed402/x402 rail behind /api/research |
+| **Agent-trust write-up** | https://www.bucket.foundation/protocol/agent-trust | Why a safety-tuned agent refused the protocol, why it was right, and the structural fix. Source: [`docs/AGENT-TRUST.md`](./docs/AGENT-TRUST.md) |
 
 ## The thesis in one paragraph
 

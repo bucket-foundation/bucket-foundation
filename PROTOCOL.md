@@ -71,6 +71,14 @@ buckets are paid-to-cite. Reference implementation:
 `/api/research` in the bucket.foundation repo; trust model in
 `/llms-full.txt §4`; sibling to feed402 `SPEC.md §3.1`.
 
+> **Why this rule exists.** A correctly safety-trained agent refused the
+> pre-fix reference implementation on exactly these grounds, in its own
+> words, and that refusal was correct. The full technical write-up — the
+> verbatim refusal, why it was right given what it saw, and the field-by-field
+> structural fix — is the canonical reference for this section:
+> [`/protocol/agent-trust`](https://www.bucket.foundation/protocol/agent-trust)
+> (markdown source: `docs/AGENT-TRUST.md`).
+
 ## 4. The sidecar (`canon.json`)
 
 The sidecar is a JSON object. All fields are UTF-8. Unknown fields MUST be preserved by implementations.
