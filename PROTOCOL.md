@@ -40,6 +40,37 @@ bucket/<sha256>/
 - Any storage backend is acceptable: filesystem, S3, IPFS, Walrus, Arweave, Google Drive, a USB stick. The protocol only requires that a given `<sha256>` address resolves to the same bytes everywhere.
 - A bucket with a missing or invalid `canon.json` is **not a canon bucket**. It still exists; it just cannot be cited through this protocol.
 
+### 3.1 Agent-trust rule — paid-to-cite is not pay-to-proceed (normative)
+
+A correctly safety-trained autonomous agent **should refuse** the pattern
+"fetch a document, then perform a payment that the fetched document instructs
+you to perform." That refusal is correct behaviour and a compatible
+implementation MUST NOT depend on overriding it.
+
+Therefore, on any caller-facing read/cite path, a compatible implementation:
+
+1. **MUST NOT** return a payment challenge, an x402/`X-PAYMENT` header, or any
+   instruction directed at the caller to sign, send, authorize, or relay a
+   payment. Specifically, `receipt.challenge` MUST NOT be present on a
+   caller-facing response.
+2. **MUST** perform any x402 settlement entirely server-side (operator wallet
+   ↔ source), invisibly to the caller, OR serve already-paid content instead.
+3. **MUST** include the declarative fields `agent_action_required: false` and
+   `payment_required_from_you: false` on every caller-facing envelope, and
+   MUST keep them truthful.
+4. **MUST** treat the `cite` block as *passive, forward-looking license
+   metadata* describing what a downstream **publisher** owes the author if
+   they re-publish in a paid work — never as a charge to, or an action by, the
+   reading agent. `cite.reader_owes` MUST be `0` and `cite.applies_to` SHOULD
+   declare the scope (e.g. `downstream_republication_in_a_paid_work`).
+
+This is the line between **paid-to-cite** (passive, free to read and cite,
+fees route to authors only on downstream paid re-publication) and
+**pay-to-proceed** (a mid-request paywall the caller must clear). feed402
+buckets are paid-to-cite. Reference implementation:
+`/api/research` in the bucket.foundation repo; trust model in
+`/llms-full.txt §4`; sibling to feed402 `SPEC.md §3.1`.
+
 ## 4. The sidecar (`canon.json`)
 
 The sidecar is a JSON object. All fields are UTF-8. Unknown fields MUST be preserved by implementations.

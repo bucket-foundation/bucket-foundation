@@ -1,0 +1,40 @@
+{
+  "data": null,
+  "citation": {
+    "type": "source",
+    "provider": "bucket-foundation",
+    "canonical_url": "https://www.bucket.foundation/protocol",
+    "license": "CC-BY-4.0",
+    "retrieved_at": "2026-05-18T18:01:02.697Z"
+  },
+  "receipt": {
+    "tier": "insight",
+    "status": "payment_required",
+    "price_usd": 0.005,
+    "asset": "USDC",
+    "network": "base-sepolia",
+    "pay_to": "0xa91115B1AB8412f380Fd62446F523559F668b96B",
+    "challenge": "eyJ4NDAyVmVyc2lvbiI6MiwiZXJyb3IiOiJQYXltZW50IHJlcXVpcmVkIiwicmVzb3VyY2UiOnsidXJsIjoiL3Jlc2VhcmNoL2luc2lnaHQiLCJkZXNjcmlwdGlvbiI6IlBhaWQgTExNLXN1bW1hcml6ZWQgcmVzZWFyY2ggaW5zaWdodCBvdmVyIFB1Yk1lZCByZXRyaWV2YWwiLCJtaW1lVHlwZSI6ImFwcGxpY2F0aW9uL2pzb24ifSwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiYmFzZS1zZXBvbGlhIiwiYXNzZXQiOiIweDAzNkNiRDUzODQyYzU0MjY2MzRlNzkyOTU0MWVDMjMxOGYzZENGN2UiLCJhbW91bnQiOiI1MDAwIiwicGF5VG8iOiIweGE5MTExNUIxQUI4NDEyZjM4MEZkNjI0NDZGNTIzNTU5RjY2OGI5NkIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6NjAsImV4dHJhIjp7Im5hbWUiOiJVU0RDIiwidmVyc2lvbiI6IjIifX1dfQ==",
+    "demo": true
+  },
+  "cite": {
+    "price_usd": 0.005,
+    "payout_wallet": "0xa91115B1AB8412f380Fd62446F523559F668b96B",
+    "license": "bucket.foundation/cite-forever/v0.1"
+  },
+  "tags": [],
+  "canon_tier": "candidate",
+  "foundation_branches": [],
+  "provenance": [
+    {
+      "action": "payment_required",
+      "at": "2026-05-18T18:01:02.698Z",
+      "by": "bucket-proxy/v1",
+      "via": "https://x402-research.agfarms.dev"
+    }
+  ],
+  "error": {
+    "code": "payment_required",
+    "message": "This endpoint requires x402 payment. The bucket.foundation proxy wallet is not yet funded — you can (a) pay the x402 challenge directly from your own Base wallet using receipt.challenge, or (b) check back soon for zero-key service. See https://www.bucket.foundation/llms-full.txt §4 for details."
+  }
+}

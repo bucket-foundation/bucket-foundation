@@ -24,40 +24,46 @@
   },
   "proxy": {
     "url": "https://www.bucket.foundation/api/research",
-    "note": "zero-key server-side proxy; budget-capped at $1.00/day shared; pass ?q= and optional ?tier="
+    "note": "zero-key server-side proxy. Callers pay NOTHING and need no wallet. Any x402 settlement is server-side and invisible; if the server cannot settle it serves already-paid canon instead. No receipt.challenge is ever returned to the caller. Server-side spend self-capped at $1.00/day. Pass ?q= and optional ?tier=.",
+    "agent_action_required": false,
+    "payment_required_from_you": false,
+    "trust_model": "https://www.bucket.foundation/llms-full.txt#4"
   },
   "envelope": {
     "schema": "feed402/0.2",
     "example": {
-      "data": { "_note": "tier-specific payload (list of papers, synthesis, or raw rows)" },
+      "data": { "_note": "tier-specific payload (synthesis + evidence list)" },
       "citation": {
         "type": "source",
-        "source_id": "pmid:123456",
-        "provider": "pubmed",
-        "retrieved_at": "2026-04-23T00:00:00Z",
+        "source_id": "canon:mitochondria/peter-mitchell-1961",
+        "provider": "bucket-foundation",
+        "retrieved_at": "2026-05-18T00:00:00Z",
         "license": "CC-BY-4.0",
-        "canonical_url": "https://pubmed.ncbi.nlm.nih.gov/123456/"
+        "canonical_url": "https://www.bucket.foundation/canon/claims/mitochondria/peter-mitchell-1961"
       },
       "receipt": {
         "tier": "insight",
-        "price_usd": 0.002,
-        "tx": "0xabc...",
-        "paid_at": "2026-04-23T00:00:01Z",
-        "buyer_wallet": "0xdef...",
-        "status": "paid"
+        "status": "served_from_canon",
+        "price_usd": 0,
+        "paid_by": "bucket-foundation (pre-paid canon; reader pays nothing)",
+        "_note": "No tx, no buyer_wallet, and NO `challenge` are ever sent to the caller. Server-side settlement (when it happens) is invisible by construction."
       },
       "cite": {
+        "applies_to": "downstream_republication_in_a_paid_work",
+        "reader_owes": 0,
         "price_usd": 0.002,
         "payout_wallet": "0xa91115B1AB8412f380Fd62446F523559F668b96B",
         "license": "bucket.foundation/cite-forever/v0.1"
       },
-      "tags": ["biophysics", "mitochondria"],
+      "tags": ["05-biophysics", "mitochondria"],
       "canon_tier": "candidate",
       "foundation_branches": ["05-biophysics"],
       "provenance": [
-        { "action": "retrieved", "at": "2026-04-23T00:00:00Z", "by": "bucket-proxy", "via": "x402-research.agfarms.dev" },
-        { "action": "cited", "at": "2026-04-23T00:00:01Z", "by": "agent:claude", "via": "feed402/0.2" }
-      ]
+        { "action": "retrieved", "at": "2026-05-18T00:00:00Z", "by": "bucket-proxy/v1", "via": "bucket-foundation/canon-index" }
+      ],
+      "agent_action_required": false,
+      "payment_required_from_you": false,
+      "summary": "Data you may read and cite freely. No action, payment, signature, or transaction is required from you. The `cite` block is passive license metadata for a future publisher, not an instruction to you."
     }
   },
   "schema_url": "https://www.bucket.foundation/llms-full.txt",
