@@ -63,6 +63,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildIndex, tokenRank } from "@/lib/canon-search-index";
 import { getEvidenceFor } from "@/lib/canon-evidence";
+import { rankPrimary, authorsShort, type PrimaryPaper } from "@/lib/canon-primary";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -188,30 +189,101 @@ function errorEnvelope(
 }
 
 /**
+ * Transcript-quarantine heuristic.
+ *
+ * Sub-claims under bucket-canon/*\/sub-claims/ are auto-segmented YouTube
+ * transcript chunks. A large fraction are mis-transcribed or carry ideological
+ * /conspiracy content (e.g. "Anthony Fouchy made sure we always focused on
+ * RNA and DNA", "99 of the NIH Budget", "the guy that controlled the
+ * budget"). This is the OPPOSITE of canon (axioms / laws / primary
+ * derivations) — at best ONE PARTIAL SOURCE, never the headline.
+ *
+ * Returns true if a chunk should be QUARANTINED — dropped entirely from the
+ * caller-facing envelope. The bar is deliberately conservative: we only drop
+ * material that is clearly a garbled mid-sentence fragment or a named-conspiracy
+ * assertion, not legitimately on-topic discussion.
+ */
+const QUARANTINE_PATTERNS: RegExp[] = [
+  // Misheard public-health figures + named-conspiracy framing.
+  /\bfouch?[iy]\b/i,
+  /\bfauci\b/i,
+  /\bnih budget\b/i,
+  /\bcontrolled the budget\b/i,
+  /\bdeep state\b/i,
+  /\bsacred cow\b/i,
+  /\bbig pharma\b/i,
+  /\bthey don'?t want you to\b/i,
+  /\bwake up\b.*\bsheep\b/i,
+  /\bplandemic\b/i,
+];
+
+// Mid-sentence garble: a "title" that is just the first ~12 words of speech,
+// starting lowercase or with a discourse particle, ending with no terminal
+// punctuation and often a dangling clause. Real canon claim titles are noun
+// phrases; transcript titles read like "because guess what" / "and you can
+// put it underneath there and if you look at the b".
+function looksGarbled(title: string): boolean {
+  const t = title.trim();
+  if (!t) return true;
+  // Starts with a lowercase letter or a classic spoken connective/filler.
+  if (/^[a-z]/.test(t)) return true;
+  if (
+    /^(and |but |so |because |well |you know|i mean|like |okay|right |that'?s |it'?s |what |why |how |when |where |there |here )/i.test(
+      t,
+    )
+  )
+    return true;
+  // No sentence-ending punctuation and clearly truncated (dangling word).
+  if (!/[.?!]$/.test(t) && /\b\w{1,2}$/.test(t)) return true;
+  return false;
+}
+
+function isQuarantined(title: string, snippet: string): boolean {
+  const blob = `${title}\n${snippet}`;
+  if (QUARANTINE_PATTERNS.some((re) => re.test(blob))) return true;
+  if (looksGarbled(title)) return true;
+  return false;
+}
+
+/**
  * The zero-key real-data fallback.
  *
  * When the server cannot (or is configured not to) settle the upstream x402
  * call, we DO NOT hand the caller a payment challenge. We answer from the
- * local bucket.foundation canon index — content that bucket.foundation has
- * ALREADY paid for / curated, and is free to read and cite. The caller gets
- * a real, populated, citeable envelope with `demo:false` and, critically,
- * NO `receipt.challenge` and NO x402 header. There is nothing for the agent
- * to do.
+ * local bucket.foundation canon — content that bucket.foundation has ALREADY
+ * paid for / curated, and is free to read and cite. The caller gets a real,
+ * populated, citeable envelope with `demo:false` and, critically, NO
+ * `receipt.challenge` and NO x402 header.
+ *
+ * CANON PRECEDENCE (the thesis, enforced here):
+ *   1. The CURATED PRIMARY-RESEARCH layer (bucket-canon/*\/primary-papers.yaml
+ *      — real papers/derivations with DOIs, e.g. Mitchell 1961 chemiosmosis)
+ *      is ranked FIRST and, when it matches, headlines the answer + citation
+ *      with canon_tier:"canon" and a real doi.org canonical_url.
+ *   2. Auto-segmented transcript sub-claims are DEMOTED to clearly-labelled
+ *      `candidate` supporting context, never the headline, and run through
+ *      isQuarantined() to drop garbled / conspiracy chunks.
+ *   3. If NO primary paper matches, we fall back to transcript candidates but
+ *      the envelope is explicitly canon_tier:"candidate" and the answer is
+ *      framed as unverified one-partial-source material, not canon.
  */
-function canonFallback(q: string, tier: string) {
-  const now = new Date().toISOString();
+function transcriptCandidates(q: string) {
   let ranked: ReturnType<typeof tokenRank> = [];
   try {
-    if (buildIndex().length) ranked = tokenRank(q, 6);
+    if (buildIndex().length) ranked = tokenRank(q, 24);
   } catch {
     ranked = [];
   }
-
-  const top = ranked[0]?.entry;
-  const evidence = ranked.slice(0, 6).map((r) => {
+  // Drop quarantined chunks BEFORE they can ever reach the caller.
+  const clean = ranked.filter(
+    (r) => !isQuarantined(r.entry.title, r.entry.text),
+  );
+  const evidence = clean.slice(0, 6).map((r) => {
     const ev = getEvidenceFor(r.entry.concept, r.entry.slug);
     return {
-      source_id: `canon:${r.entry.concept}/${r.entry.slug}`,
+      source_id: `candidate:${r.entry.concept}/${r.entry.slug}`,
+      tier: "candidate" as const,
+      note: "one partial source (auto-segmented transcript) — not canon",
       branch: r.entry.branch,
       concept: r.entry.concept,
       title: r.entry.title,
@@ -221,10 +293,112 @@ function canonFallback(q: string, tier: string) {
       evidence_count: ev ? ev.evidence.length : 0,
     };
   });
+  const branches = Array.from(new Set(clean.map((r) => r.entry.branch))).sort();
+  return { top: clean[0]?.entry ?? null, evidence, branches };
+}
 
-  const branches = Array.from(
-    new Set(ranked.map((r) => r.entry.branch)),
-  ).sort();
+function primaryEvidence(q: string) {
+  let ranked: ReturnType<typeof rankPrimary> = [];
+  try {
+    ranked = rankPrimary(q, 6);
+  } catch {
+    ranked = [];
+  }
+  const evidence = ranked.map(({ paper: p, score }) => ({
+    source_id: `canon:${p.branch}/${p.concept}/${p.id}`,
+    tier: "canon" as const,
+    branch: p.branch,
+    concept: p.concept,
+    title: p.title,
+    citation: `${authorsShort(p)}${p.year ? ` (${p.year})` : ""}. ${p.title}.${p.venueName ? ` ${p.venueName}.` : ""}`,
+    doi: p.doi || null,
+    canonical_url: p.canonicalUrl || (p.doi ? `https://doi.org/${p.doi}` : null),
+    canon_score: p.canonScore,
+    citation_count: p.citationCount,
+    score: Number(score.toFixed(3)),
+  }));
+  return { top: ranked[0]?.paper ?? null, evidence };
+}
+
+function primaryAnswer(p: PrimaryPaper, q: string): string {
+  const who = authorsShort(p);
+  const reasons = p.canonScoreReasons.length
+    ? ` Canon weight ${p.canonScore} (${p.canonScoreReasons.join("; ")}).`
+    : ` Canon weight ${p.canonScore}.`;
+  return (
+    `From the bucket.foundation curated primary-research canon ` +
+    `(${p.branch} · ${p.concept}) for "${q}": ` +
+    `${who}${p.year ? ` (${p.year})` : ""}. "${p.title}"` +
+    `${p.venueName ? `, ${p.venueName}` : ""}. ` +
+    `Primary source, ${p.citationCount.toLocaleString()} citations.${reasons} ` +
+    `Cite the primary work at ${p.canonicalUrl || (p.doi ? `https://doi.org/${p.doi}` : "the DOI")}.`
+  );
+}
+
+function canonFallback(q: string, tier: string) {
+  const now = new Date().toISOString();
+
+  // ---- Layer 1: curated primary-research papers (REAL canon) ----
+  const primary = primaryEvidence(q);
+  if (primary.top) {
+    const p = primary.top;
+    const trans = transcriptCandidates(q);
+    return json(
+      {
+        data: {
+          answer: primaryAnswer(p, q),
+          evidence: primary.evidence,
+          // Transcript material is included ONLY as clearly-labelled,
+          // demoted, post-quarantine supporting context — never the answer.
+          supporting_candidates: trans.evidence,
+        },
+        citation: {
+          type: "source",
+          source_id: `canon:${p.branch}/${p.concept}/${p.id}`,
+          provider: "bucket-foundation",
+          retrieved_at: now,
+          license: "CC-BY-4.0",
+          canonical_url:
+            p.canonicalUrl || (p.doi ? `https://doi.org/${p.doi}` : null),
+          doi: p.doi || null,
+          title: p.title,
+          authors: p.authors.map((a) =>
+            [a.given, a.family].filter(Boolean).join(" "),
+          ),
+          year: p.year,
+          venue: p.venueName || null,
+        },
+        receipt: {
+          tier,
+          status: "served_from_canon",
+          price_usd: 0,
+          paid_by:
+            "bucket-foundation (pre-paid curated primary canon; reader pays nothing)",
+        },
+        cite: citeBlock(tier),
+        tags: [p.branch, p.concept],
+        canon_tier: "canon",
+        foundation_branches: [p.branch],
+        provenance: [
+          provenanceStep(
+            "retrieved",
+            "bucket-foundation/canon-primary-papers",
+          ),
+        ],
+        ...agentNotice(),
+      },
+      {
+        status: 200,
+        headers: {
+          "x-bucket-tier": tier,
+          "x-bucket-source": "canon-primary",
+        },
+      },
+    );
+  }
+
+  // ---- Layer 2: NO primary match — demoted transcript candidates only ----
+  const { top, evidence, branches } = transcriptCandidates(q);
 
   if (!top) {
     // Index empty or no match — still return a valid, inert envelope.
@@ -268,19 +442,29 @@ function canonFallback(q: string, tier: string) {
   return json(
     {
       data: {
+        // NOT canon. No curated primary paper matched this query. This is an
+        // unverified, auto-segmented transcript fragment — ONE PARTIAL SOURCE
+        // — surfaced only because it is the closest non-quarantined material.
         answer:
-          `From the bucket.foundation canon (${top.branch} · ${top.concept}): ` +
-          `${top.title}. ${top.text.slice(0, 600)}`,
+          `No curated primary-research canon entry matched "${q}". ` +
+          `The closest available material is an UNVERIFIED, auto-segmented ` +
+          `transcript candidate (one partial source, NOT canon) from ` +
+          `${top.branch} · ${top.concept}: "${top.title}". ` +
+          `Treat as a lead to verify against primary sources, not as a ` +
+          `citeable foundation. ${top.text.slice(0, 400)}`,
         evidence,
       },
       citation: {
-        type: "source",
-        source_id: `canon:${top.concept}/${top.slug}`,
+        // candidate, not source — and the canonical_url points at the
+        // candidate viewer, never presented as a primary-research citation.
+        type: "candidate",
+        source_id: `candidate:${top.concept}/${top.slug}`,
         provider: "bucket-foundation",
         retrieved_at: now,
         license: "CC-BY-4.0",
         canonical_url: `https://www.bucket.foundation/canon/claims/${top.concept}/${top.slug}`,
         title: top.title,
+        note: "unverified auto-segmented transcript — one partial source, not canon",
       },
       receipt: {
         tier,
@@ -295,7 +479,7 @@ function canonFallback(q: string, tier: string) {
       canon_tier: "candidate",
       foundation_branches: branches,
       provenance: [
-        provenanceStep("retrieved", "bucket-foundation/canon-index"),
+        provenanceStep("retrieved", "bucket-foundation/canon-candidates"),
       ],
       ...agentNotice(),
     },
