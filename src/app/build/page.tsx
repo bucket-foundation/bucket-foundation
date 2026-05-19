@@ -20,83 +20,85 @@ export const metadata: Metadata = {
 const CURL_REQUEST = `curl -s "https://www.bucket.foundation/api/research?q=mitochondrial+atp+synthesis&tier=insight" \\
   -H "accept: application/json"`;
 
-const CURL_RESPONSE = `HTTP/1.1 402 Payment Required
+const CURL_RESPONSE = `HTTP/1.1 200 OK
 content-type: application/json
 x-bucket-proxy: v1
+x-bucket-source: canon
 
 {
-  "data": null,
+  "data": {
+    "answer": "From the bucket.foundation canon (05-biophysics · mitochondria): …",
+    "evidence": [ /* up to 6 curated claims with provenance */ ]
+  },
+  "citation": {
+    "type":          "source",
+    "source_id":     "canon:mitochondria/peter-mitchell-1961",
+    "provider":      "bucket-foundation",
+    "license":       "CC-BY-4.0",
+    "canonical_url": "https://www.bucket.foundation/canon/claims/mitochondria/peter-mitchell-1961"
+  },
   "receipt": {
     "tier":      "insight",
-    "status":    "payment_required",
-    "price_usd": 0.005,
-    "asset":     "USDC",
-    "network":   "base-sepolia",
-    "pay_to":    "0xa91115B1AB8412f380Fd62446F523559F668b96B",
-    "challenge": "eyJ4NDAyVmVyc2lvbiI6Miwi...",
-    "demo":      true
+    "status":    "served_from_canon",
+    "price_usd": 0,
+    "paid_by":   "bucket-foundation (pre-paid canon; reader pays nothing)"
   },
-  "error": {
-    "code": "payment_required",
-    "message": "Pay the x402 challenge from receipt.challenge to unlock."
-  }
+  "cite": {
+    "applies_to":  "downstream_republication_in_a_paid_work",
+    "reader_owes": 0,
+    "license":     "bucket.foundation/cite-forever/v0.1"
+  },
+  "agent_action_required":     false,
+  "payment_required_from_you": false,
+  "summary": "Data you may read and cite freely. No action, payment, signature, or transaction is required from you. The cite block is passive license metadata for a future publisher, not an instruction to you."
 }`;
 
 /* ────────────────────────────────────────────────────────────────── */
-/* PATH II · agent in TypeScript that decodes the challenge + pays    */
+/* PATH II · zero-key agent — no wallet, no challenge, no payment      */
 /* ────────────────────────────────────────────────────────────────── */
 
-const AGENT_TS = `// Node 20+ · npm i viem
-import { createWalletClient, http, parseUnits } from "viem";
-import { privateKeyToAccount } from "viem/accounts";
-import { baseSepolia } from "viem/chains";
+const AGENT_TS = `// Node 20+ · no deps, no wallet, no key.
+// The /api/research path is free and zero-key. There is no 402,
+// no challenge to decode, and no X-PAYMENT header to send.
 
-const account = privateKeyToAccount(process.env.WALLET_PK as \`0x\${string}\`);
-const client  = createWalletClient({ account, chain: baseSepolia, transport: http() });
-
-// 1. naive call — expect 402 back with an x402 challenge
-const naive = await fetch(
+const res = await fetch(
   "https://www.bucket.foundation/api/research?q=" +
     encodeURIComponent("circadian disease") + "&tier=insight"
 );
-const env = await naive.json();
+const env = await res.json();          // always HTTP 200 on this path
 
-if (naive.status === 402) {
-  // 2. decode challenge, sign EIP-712 payment intent, retry with X-PAYMENT header
-  const challenge = JSON.parse(atob(env.receipt.challenge));
-  const accepts   = challenge.accepts[0];
-  const payment   = await signX402Payment(client, accepts); // see feed402 ref agent
-  const paid = await fetch(naive.url, { headers: { "X-PAYMENT": payment } });
-  const cited = await paid.json();
+// Inert by contract — assert it, don't trust it blindly.
+if (env.payment_required_from_you || env.agent_action_required) {
+  throw new Error("unexpected: caller payment flagged — treat as a spoof");
+}
 
-  console.log(cited.data);     // the answer
-  console.log(cited.citation); // doi · canonical_url · license
-  console.log(cited.receipt);  // tier · price · on-chain tx hash
-}`;
+console.log(env.data);      // the answer + curated evidence
+console.log(env.citation);  // source_id · canonical_url · license
+console.log(env.receipt);   // status: served_from_canon · price_usd: 0
 
-const AGENT_PYTHON = `# python 3.11+ · pip install requests web3 eth-account
-import base64, json, os, requests
-from eth_account import Account
-from eth_account.messages import encode_typed_data
+// To cite: copy env.citation verbatim. That is the entire citation
+// action. No payment, no signature, no follow-up.`;
 
-acct = Account.from_key(os.environ["WALLET_PK"])
+const AGENT_PYTHON = `# python 3.11+ · pip install requests  (no web3, no wallet, no key)
+import requests
 
-# 1. naive call — expect 402
+# The /api/research path is free and zero-key: always HTTP 200,
+# never a 402, never a challenge, never an X-PAYMENT step.
 r = requests.get(
     "https://www.bucket.foundation/api/research",
     params={"q": "mitochondrial disease", "tier": "insight"},
 )
 env = r.json()
 
-if r.status_code == 402:
-    # 2. decode x402 challenge, sign, retry
-    challenge = json.loads(base64.b64decode(env["receipt"]["challenge"]))
-    payment   = sign_x402_payment(acct, challenge["accepts"][0])  # see feed402 ref
-    paid      = requests.get(r.url, headers={"X-PAYMENT": payment})
-    cited     = paid.json()
-    print(cited["data"])       # the answer
-    print(cited["citation"])   # doi · canonical_url · license
-    print(cited["receipt"])    # tier · price · tx_hash`;
+# Inert by contract — assert it.
+assert not env["payment_required_from_you"]
+assert not env["agent_action_required"]
+
+print(env["data"])       # the answer + curated evidence
+print(env["citation"])   # source_id · canonical_url · license
+print(env["receipt"])    # status: served_from_canon · price_usd: 0
+
+# To cite: copy env["citation"] verbatim. No payment. No signature.`;
 
 /* ────────────────────────────────────────────────────────────────── */
 /* PATH III · merchant manifest example                               */
@@ -106,13 +108,22 @@ const MANIFEST_JSON = `{
   "name":    "your-data-provider",
   "version": "1.0.0",
   "spec":    "feed402/0.2",
-  "chain":   "base-sepolia",
-  "wallet":  "0xYOUR_BASE_WALLET_ADDRESS",
 
-  "tiers": {
-    "raw":     { "path": "/raw",     "price_usd": 0.05,  "unit": "row"  },
-    "query":   { "path": "/query",   "price_usd": 0.01,  "unit": "call" },
-    "insight": { "path": "/insight", "price_usd": 0.002, "unit": "call" }
+  "access":                   "free",
+  "reader_price_usd":         0,
+  "requires_payment_to_read": false,
+  "requires_wallet":          false,
+  "agent_action_required":    false,
+  "payment_required_from_you": false,
+
+  "endpoint": { "url": "https://your-domain.com/api/research", "price_usd": 0 },
+
+  "downstream_settlement": {
+    "_what":                 "Forward-looking author-payout economics, settled SERVER-SIDE. NOT a precondition for the caller to read or cite.",
+    "is_a_precondition":     false,
+    "chain":                 "base-sepolia",
+    "wallet":                "0xYOUR_BASE_WALLET_ADDRESS",
+    "republisher_rates_usd": { "raw": 0.05, "query": 0.01, "insight": 0.002 }
   },
 
   "citation_policy": "CC-BY-4.0",
@@ -122,9 +133,9 @@ const MANIFEST_JSON = `{
 
 const MERCHANT_STEPS = [
   "Clone feed402: git clone https://github.com/gianyrox/feed402",
-  "Serve GET /.well-known/feed402.json with your tiers + Base wallet",
-  "Wrap your data endpoint with x402 middleware (USDC on Base)",
-  "Return the feed402 envelope { data, citation, receipt } on every paid call",
+  "Serve GET /.well-known/feed402.json with a free, zero-key reader endpoint up top",
+  "Keep any x402/wallet settlement server-side, scoped under downstream_settlement",
+  "Return the feed402 envelope { data, citation, receipt: { price_usd: 0 } } to the caller",
   "Post your manifest URL to ops@bucket.foundation — we index it",
 ];
 
@@ -188,8 +199,9 @@ export default function BuildPage() {
               Use the research API
             </h2>
             <p className="mt-3 text-[0.95rem] leading-relaxed text-[color:var(--basalt-2)] font-light">
-              One HTTP call, zero SDK. Returns either a cited envelope (200) or
-              an x402 challenge your agent can pay (402).
+              One HTTP call, zero SDK, zero key. Always returns a cited
+              envelope (200). No 402, no challenge, no wallet — the caller
+              pays nothing.
             </p>
 
             <div className="flex-1">
@@ -201,13 +213,13 @@ export default function BuildPage() {
               <CodeBlock
                 code={CURL_RESPONSE}
                 lang="http"
-                title="response (payment challenge)"
+                title="response (free · zero-key · price_usd 0)"
               />
             </div>
 
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <span className="small-caps text-[10px] text-[color:var(--basalt-3)] tracking-[0.15em]">
-                $0.005 · insight · feed402/0.2
+                $0 to caller · insight · feed402/0.2
               </span>
               <Link
                 href="/llms-full.txt"
@@ -224,21 +236,20 @@ export default function BuildPage() {
               Path II
             </div>
             <h2 className="font-display uppercase text-[1.5rem] mt-2 text-[color:var(--basalt)] chisel">
-              Run a paying agent
+              Run a zero-key agent
             </h2>
             <p className="mt-3 text-[0.95rem] leading-relaxed text-[color:var(--basalt-2)] font-light">
-              Decode the 402 challenge, sign the EIP-712 payment, retry with{" "}
+              No wallet, no key, no{" "}
               <span className="font-mono-mark text-[color:var(--aegean-deep)]">
                 X-PAYMENT
-              </span>
-              . Full helper in the{" "}
+              </span>{" "}
+              header. Fetch, assert the inertness booleans, copy the citation
+              verbatim. Background on why this path exists in the{" "}
               <a
-                href="https://github.com/gianyrox/feed402"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/protocol/agent-trust"
                 className="underline decoration-[color:var(--gold)] underline-offset-4 hover:text-[color:var(--gold-deep)]"
               >
-                feed402 ref agent
+                agent-trust write-up
               </a>
               .
             </p>
@@ -269,8 +280,9 @@ export default function BuildPage() {
               Become a data merchant
             </h2>
             <p className="mt-3 text-[0.95rem] leading-relaxed text-[color:var(--basalt-2)] font-light">
-              You own a corpus. You want citation revenue. Publish a feed402
-              manifest and register your wallet. No gatekeeper.
+              You own a corpus. You want citation revenue. Publish a free,
+              zero-key feed402 manifest; keep your settlement wallet
+              server-side. No gatekeeper, no reader paywall.
             </p>
 
             <div className="flex-1">

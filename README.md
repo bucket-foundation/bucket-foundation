@@ -5,7 +5,7 @@
 >
 > Foundations, brilliant humans, and AI — on an open substrate, with the patronage layer routed back to the people who write the foundations.
 >
-> **Open-source research data protocol over x402.** Pay once per paper. Cite it forever. No gatekeepers.
+> **Open-source research data protocol.** Free to read. Paid to cite. — the reader pays nothing and needs no wallet; "paid to cite" means a paper is paid for *once*, server-side, by the bucket operator, and the citation fee then routes to the author forever. No gatekeepers.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![protocol](https://img.shields.io/badge/protocol-x402-purple.svg)](./PROTOCOL.md)
@@ -36,7 +36,7 @@ MCP server manifest at [`/.well-known/mcp.json`](https://www.bucket.foundation/.
 
 `bucket.foundation` is an open protocol and a reference publishing site for research that can be **paid for once and cited forever**.
 
-- You pay for a paper once, over **[x402](https://x402.org/)** — HTTP-native micropayments on an L2.
+- The bucket *operator* pays for a paper once, server-side, over **[x402](https://x402.org/)** — HTTP-native micropayments on an L2. The reader never pays, signs, or holds a wallet.
 - The paper lands in a **bucket** — a content-addressed folder with a sidecar manifest (`canon.json`) that records provenance, license, and citation metadata.
 - Any downstream agent, research tool, or human can cite the bucketed paper from a local copy, forever, at zero marginal x402 cost.
 - Citations route fees back to the author through a simple on-chain receipt, not through publishers.

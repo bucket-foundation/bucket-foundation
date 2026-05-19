@@ -2,33 +2,64 @@
   "name": "bucket-foundation",
   "version": "0.2.0",
   "spec": "feed402/0.2",
-  "chain": "base-sepolia",
-  "wallet": "0x0000000000000000000000000000000000000000",
-  "_wallet_note": "placeholder — live wallet address drops in after Track B (x402-research-gateway) deploys to x402-research.agfarms.dev",
-  "tiers": {
-    "raw": {
-      "path": "https://x402-research.agfarms.dev/raw",
-      "price_usd": 0.05,
-      "unit": "row"
-    },
-    "query": {
-      "path": "https://x402-research.agfarms.dev/query",
-      "price_usd": 0.01,
-      "unit": "call"
-    },
-    "insight": {
-      "path": "https://x402-research.agfarms.dev/insight",
-      "price_usd": 0.002,
-      "unit": "call"
-    }
-  },
-  "proxy": {
+
+  "model": "free to read. paid to cite.",
+  "_model_note": "\"paid to cite\" is the protocol thesis, NOT a charge to you. It means: free to read, free for you to cite (you owe 0), and a fee routes to the original author only when a DOWNSTREAM publisher re-publishes this in a PAID work — settled server-side, never a caller precondition. Identical wording in /llms-full.txt §4.",
+
+  "access": "free",
+  "reader_price_usd": 0,
+  "requires_payment_to_read": false,
+  "requires_payment_to_cite": false,
+  "_requires_payment_to_cite_note": "false for you, the reading/citing agent (cite.reader_owes is 0). The forward-looking author payout is owed only by a downstream paid republisher, server-side.",
+  "requires_wallet": false,
+  "requires_signature": false,
+  "auth": "none",
+  "agent_action_required": false,
+  "payment_required_from_you": false,
+  "summary": "This manifest describes a FREE, zero-key research feed. Reading and citing cost you nothing: no wallet, no signature, no x402 challenge, no payment step exists on the caller path. Query it directly at the `endpoint` below. Any settlement is performed server-side and is invisible to you. The `downstream_settlement` block is passive, forward-looking license metadata about what a future PAID republisher owes the original author — it is NOT a precondition for you to read or cite, and it is NOT an instruction to you.",
+
+  "endpoint": {
     "url": "https://www.bucket.foundation/api/research",
-    "note": "zero-key server-side proxy. Callers pay NOTHING and need no wallet. Any x402 settlement is server-side and invisible; if the server cannot settle it serves already-paid canon instead. No receipt.challenge is ever returned to the caller. Server-side spend self-capped at $1.00/day. Pass ?q= and optional ?tier=.",
+    "method": "GET",
+    "params": { "q": "natural-language research query", "tier": "raw | query | insight (detail level only — NOT a price)" },
+    "price_usd": 0,
+    "auth": "none",
+    "requires_wallet": false,
+    "requires_payment_to_read": false,
     "agent_action_required": false,
     "payment_required_from_you": false,
+    "note": "Zero-key server-side proxy. Callers pay NOTHING and need no wallet. `tier` only selects how much detail comes back; it is not a price. Any x402 settlement is performed server-side between bucket.foundation's own wallet and the upstream gateway, and is invisible by construction. If the server cannot settle, it transparently serves already-paid canon instead. No `receipt.challenge`, no `X-PAYMENT`, no `pay_to` is ever returned to the caller. Server-side spend self-capped at $1.00/day.",
     "trust_model": "https://www.bucket.foundation/llms-full.txt#4"
   },
+
+  "tiers": {
+    "_note": "Tiers select RESPONSE DETAIL only. None of these is a price to the caller. reader_price_usd is 0 for every tier; no wallet or signature is required for any of them.",
+    "insight": {
+      "path": "https://www.bucket.foundation/api/research?tier=insight",
+      "reader_price_usd": 0,
+      "requires_payment_to_read": false,
+      "requires_wallet": false,
+      "unit": "call",
+      "detail": "synthesis + curated evidence list (default; best for agent loops)"
+    },
+    "query": {
+      "path": "https://www.bucket.foundation/api/research?tier=query",
+      "reader_price_usd": 0,
+      "requires_payment_to_read": false,
+      "requires_wallet": false,
+      "unit": "call",
+      "detail": "ranked citations"
+    },
+    "raw": {
+      "path": "https://www.bucket.foundation/api/research?tier=raw",
+      "reader_price_usd": 0,
+      "requires_payment_to_read": false,
+      "requires_wallet": false,
+      "unit": "row",
+      "detail": "full records"
+    }
+  },
+
   "envelope": {
     "schema": "feed402/0.2",
     "example": {
@@ -51,9 +82,8 @@
       "cite": {
         "applies_to": "downstream_republication_in_a_paid_work",
         "reader_owes": 0,
-        "price_usd": 0.002,
-        "payout_wallet": "0xa91115B1AB8412f380Fd62446F523559F668b96B",
-        "license": "bucket.foundation/cite-forever/v0.1"
+        "license": "bucket.foundation/cite-forever/v0.1",
+        "_note": "Passive license metadata for a future PAID publisher. The reader/citing agent owes 0 and does nothing. See `downstream_settlement` for the (server-side, not-a-precondition) economics."
       },
       "tags": ["05-biophysics", "mitochondria"],
       "canon_tier": "candidate",
@@ -66,6 +96,38 @@
       "summary": "Data you may read and cite freely. No action, payment, signature, or transaction is required from you. The `cite` block is passive license metadata for a future publisher, not an instruction to you."
     }
   },
+
+  "downstream_settlement": {
+    "_what": "Passive, forward-looking author-payout economics. This block exists ONLY so a future PAID republisher knows what it owes the original author. It is settled SERVER-SIDE between operators, never by the reading or citing agent.",
+    "is_a_precondition_to_read": false,
+    "is_a_precondition_to_cite": false,
+    "is_an_instruction_to_the_caller": false,
+    "owed_by": "a downstream publisher that re-publishes canon content in a PAID work — never the reading/citing agent",
+    "owed_to": "the original author (citation fees route to authors, not publishers)",
+    "settled": "server-side, operator wallet <-> upstream gateway; invisible to the caller",
+    "applies_to": "downstream_republication_in_a_paid_work",
+    "reader_owes_usd": 0,
+    "citing_agent_owes_usd": 0,
+    "chain": "base-sepolia",
+    "wallet": "0x0000000000000000000000000000000000000000",
+    "_wallet_note": "placeholder — live operator settlement wallet drops in after Track B (x402-research-gateway) deploys to x402-research.agfarms.dev. The reader never sees, signs, or relays this.",
+    "payout_wallet": "0xa91115B1AB8412f380Fd62446F523559F668b96B",
+    "rail": "x402 over USDC on Base",
+    "republisher_rates_usd": {
+      "_note": "What a downstream PAID republisher would owe the author per re-published unit. NOT charged to the reader/citing agent. NOT a precondition for anything on the caller path.",
+      "raw": 0.05,
+      "query": 0.01,
+      "insight": 0.002,
+      "unit": "republished call/row"
+    },
+    "upstream_source_endpoints": {
+      "_note": "Operator-side only. The proxy at `endpoint.url` calls these server-side. The caller never touches them and never needs a wallet for them.",
+      "raw": "https://x402-research.agfarms.dev/raw",
+      "query": "https://x402-research.agfarms.dev/query",
+      "insight": "https://x402-research.agfarms.dev/insight"
+    }
+  },
+
   "schema_url": "https://www.bucket.foundation/llms-full.txt",
   "citation_policy": "CC-BY-4.0",
   "citation_types": ["source"],
@@ -73,7 +135,7 @@
     "name": "bucket.foundation cite-forever v0.1",
     "url": "https://www.bucket.foundation/cite-forever/v0.1",
     "spdx": null,
-    "intent": "free-to-read, paid-to-cite"
+    "intent": "free to read. paid to cite. — the reader/citing agent pays nothing (reader_owes 0, no wallet, no payment step). 'paid to cite' is forward-looking: only a downstream PAID republisher owes the author, settled server-side, never a caller precondition."
   },
   "contact": "ops@bucket.foundation",
   "index": {
@@ -93,6 +155,7 @@
     "ai_plugin": "https://www.bucket.foundation/.well-known/ai-plugin.json",
     "cite_license": "https://www.bucket.foundation/cite-forever/v0.1",
     "envelope_docs": "https://www.bucket.foundation/protocol/envelope",
+    "agent_trust": "https://www.bucket.foundation/protocol/agent-trust",
     "source": "https://github.com/bucket-foundation/bucket-foundation",
     "spec": "https://github.com/gianyrox/feed402"
   }

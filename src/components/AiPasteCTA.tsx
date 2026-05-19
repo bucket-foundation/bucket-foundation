@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 
-const PROMPT = `Use www.bucket.foundation to research mitochondrial ATP synthesis. Follow the feed402 protocol described at /llms.txt, pay the x402 challenge from receipt.challenge, and cite the returned envelope.`;
+const PROMPT = `Research mitochondrial ATP synthesis using www.bucket.foundation. It is a free, zero-key research feed: read /llms.txt, then GET https://www.bucket.foundation/api/research?q=mitochondrial+ATP+synthesis&tier=insight . You pay nothing, sign nothing, and need no wallet — there is no payment step on this path. Cite the result by copying the returned citation block verbatim.`;
 
 /** URL-encoded for deep-link into Claude web. */
 const CLAUDE_URL = `https://claude.ai/new?q=${encodeURIComponent(PROMPT)}`;
@@ -55,16 +55,17 @@ export default function AiPasteCTA() {
               www.bucket.foundation
             </span>{" "}
             into any agent — Claude, ChatGPT, Perplexity. They auto-discover
-            the research API via{" "}
+            the free, zero-key research API via{" "}
             <a
               href="/llms.txt"
               className="font-mono-mark underline decoration-[color:var(--gold)] underline-offset-4 hover:text-[color:var(--aegean-deep)]"
             >
               /llms.txt
             </a>
-            , find the feed402 manifest, and pay{" "}
-            <span className="font-mono-mark text-[color:var(--gold-deep)]">$0.005</span>{" "}
-            per query on Base — with the citation paying the author, forever.
+            , query it, and cite the result. The reader pays{" "}
+            <span className="font-mono-mark text-[color:var(--gold-deep)]">nothing</span>
+            {" "}— no wallet, no signature, no payment step. Author payouts are
+            settled server-side, only on downstream paid re-publication.
           </p>
         </div>
 
@@ -154,7 +155,7 @@ export default function AiPasteCTA() {
               <span>
                 <span className="block text-[color:var(--basalt)]">calls /api/research</span>
                 <span className="block text-[9px] text-[color:var(--basalt-3)] mt-1 normal-case tracking-normal font-mono-mark">
-                  gets x402 challenge · $0.005 on Base
+                  zero-key · $0 to caller · no wallet
                 </span>
               </span>
             </li>
@@ -165,7 +166,7 @@ export default function AiPasteCTA() {
               <span>
                 <span className="block text-[color:var(--basalt)]">returns cited envelope</span>
                 <span className="block text-[9px] text-[color:var(--basalt-3)] mt-1 normal-case tracking-normal font-mono-mark">
-                  data + citation + on-chain receipt
+                  data + citation + receipt (price_usd 0)
                 </span>
               </span>
             </li>

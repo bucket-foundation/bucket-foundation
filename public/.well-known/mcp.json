@@ -2,7 +2,7 @@
   "$schema": "https://modelcontextprotocol.io/schemas/server-manifest.json",
   "name": "bucket-foundation",
   "version": "0.1.0",
-  "description": "Query the bucket.foundation research canon — feed402/0.2 over x402 on Base. Every response returns a citeable envelope (data + citation + receipt).",
+  "description": "Query the bucket.foundation research canon — feed402/0.2, free and zero-key for the caller. No wallet, no signature, no payment step on the read/cite path. Every response returns a citeable envelope (data + citation + receipt with price_usd 0).",
   "homepage": "https://www.bucket.foundation",
   "license": "MIT",
   "contact": "ops@bucket.foundation",
@@ -21,7 +21,7 @@
   "tools": [
     {
       "name": "bucket_research",
-      "description": "Query the bucket.foundation research canon. Routes through bucket.foundation/api/research (zero-key proxy) → feed402 provider on Base → cited envelope. Default tier 'insight' ($0.002/call).",
+      "description": "Query the bucket.foundation research canon. Routes through bucket.foundation/api/research (free, zero-key proxy) → cited envelope. The caller pays nothing and needs no wallet; any settlement is server-side and invisible. Default tier 'insight' (tier selects response detail only — it is NOT a price).",
       "input_schema": {
         "type": "object",
         "properties": {

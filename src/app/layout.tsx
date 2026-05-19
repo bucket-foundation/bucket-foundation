@@ -9,7 +9,7 @@ const SITE_URL = "https://www.bucket.foundation";
 const SITE_NAME = "bucket.foundation";
 const TAGLINE = "free to read. paid to cite.";
 const DESCRIPTION =
-  "A nonprofit canon of foundations — axioms, laws, first principles — carved into stone by the small number of people who can do genius work with AI. Every paper is free to read. Every citation pays the author, over the x402 rail, forever.";
+  "A nonprofit canon of foundations — axioms, laws, first principles — carved into stone by the small number of people who can do genius work with AI. Free to read, free to cite — the reader pays nothing. When a paid work re-publishes it, the fee routes to the author, not the publisher, forever.";
 const KEYWORDS = [
   "decentralized research",
   "x402",
@@ -209,7 +209,7 @@ const JSON_LD = {
       name: "bucket.foundation cite-forever license v0.1",
       url: `${SITE_URL}/cite-forever/v0.1`,
       description:
-        "Free to read. Paid to cite. Every citation routes fees to the author, over the x402 rail on Base, forever.",
+        "Free to read. Free to cite. The reader pays nothing. On downstream paid re-publication, the fee routes to the original author — not the publisher — over the x402 rail, settled server-side, forever.",
       license: `${SITE_URL}/cite-forever/v0.1`,
     },
     {
@@ -220,13 +220,13 @@ const JSON_LD = {
       operatingSystem: "Web",
       url: `${SITE_URL}/protocol`,
       description:
-        "Open standard for paid research endpoints over x402 on Base. Discover, pay per query, receive a citeable envelope (data + citation + receipt).",
+        "Open standard for free, zero-key research endpoints. Discover and query with no wallet, no signature, and no payment step for the caller; receive a citeable envelope (data + citation + receipt, price_usd 0). Author payouts settle server-side only on downstream paid re-publication — never a charge to the reading agent.",
       offers: {
-        "@type": "AggregateOffer",
+        "@type": "Offer",
         priceCurrency: "USD",
-        lowPrice: "0.002",
-        highPrice: "0.010",
-        offerCount: 3,
+        price: "0",
+        description:
+          "Free to read and cite. The caller pays nothing.",
       },
     },
   ],

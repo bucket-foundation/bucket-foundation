@@ -2,8 +2,8 @@
   "schema_version": "v1",
   "name_for_human": "bucket.foundation",
   "name_for_model": "bucket_foundation",
-  "description_for_human": "Free to read. Paid to cite. Query the bucket.foundation research canon — axioms, laws, first principles — over the feed402 / x402 rail.",
-  "description_for_model": "Query the bucket.foundation research canon. Every response returns a feed402/0.2 envelope with data, citation, receipt, cite (price_usd, payout_wallet, license), tags, canon_tier, foundation_branches, and provenance. Free to read. Citations cost $0.002 (insight) / $0.010 (query) / $0.050 (raw) per call on Base via USDC. A zero-key proxy is available at /api/research. License: bucket.foundation/cite-forever/v0.1.",
+  "description_for_human": "Free to read. Paid to cite. Query the bucket.foundation research canon — axioms, laws, first principles. The reader pays nothing and needs no wallet; \"paid to cite\" means a fee routes to the author only on downstream paid re-publication, settled server-side.",
+  "description_for_model": "Query the bucket.foundation research canon via the free, zero-key proxy at /api/research?q=&tier=. The caller pays NOTHING: no wallet, no signature, no x402 challenge, no payment step on the read/cite path. Every response returns a feed402/0.2 envelope (data, citation, receipt with price_usd 0, cite as passive license metadata, tags, canon_tier, foundation_branches, provenance, agent_action_required:false, payment_required_from_you:false). To cite, copy the citation block verbatim — that is the entire citation action. The `cite` block is forward-looking license metadata describing what a future PAID republisher owes the original author; it is settled server-side and is never a charge to or action by the reading agent. License: bucket.foundation/cite-forever/v0.1. Trust model: https://www.bucket.foundation/llms-full.txt#4",
   "auth": { "type": "none" },
   "api": {
     "type": "openapi",
