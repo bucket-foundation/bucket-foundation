@@ -1,0 +1,31 @@
+# TEMPLATE — installed 2026-05-19 (founder greenlit "do what you can and must").
+#
+# Install (already performed for this corpus; re-run is idempotent):
+#   cp sacred-history-mirror.service.template ~/.config/systemd/user/sacred-history-mirror.service
+#   cp sacred-history-mirror.timer.template   ~/.config/systemd/user/sacred-history-mirror.timer
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now sacred-history-mirror.timer
+#
+# Modeled on ~/.config/systemd/user/pursue-mirror.service.
+# Differences:
+#   - This runner runs LIVE for PD/open sources only (founder-locked
+#     2026-05-19, see DECISIONS.md). Copyrighted/NC/unclear stay gated
+#     in-runner (TIER_B_GUARD=1). No --dry-run flag here = live PD/open.
+#   - RECURRING: the timer does NOT self-disable.
+
+[Unit]
+Description=Bucket Foundation — Sacred-History Corpus mirror runner (LIVE PD/open only, idempotent)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# No flag = LIVE for the 5 PD/open Phase-1 sources only (founder-locked).
+# Tier-B / copyrighted / NC / unclear remain gated INSIDE the runner.
+# Network AI / Viatika x402 metered synthesis stays disabled ($0) in-runner.
+ExecStart=/home/gian/agfarms/bucket-foundation/_intake/sacred-history-corpus/runners/sacred-history-runner.sh
+Nice=10
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,21 @@
+# TEMPLATE — installed 2026-05-19. See .service.template for install steps.
+#
+# Modeled on ~/.config/systemd/user/pursue-mirror.timer, with ONE deliberate
+# difference: this corpus is "ongoing forever". The runner NEVER disables this
+# timer. It re-checks daily for new editions / manuscripts / timeline events.
+# (pursue-mirror.timer self-disables on completion; this one MUST NOT.)
+
+[Unit]
+Description=Recurring trigger for Sacred-History Corpus mirror runner (does NOT self-disable)
+Requires=sacred-history-mirror.service
+
+[Timer]
+# 10 min after boot, then once per day. RandomizedDelaySec spreads load and
+# is polite to upstream APIs (Sefaria, SuttaCentral, ctext, Wikidata).
+OnBootSec=10min
+OnUnitActiveSec=1d
+RandomizedDelaySec=30min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

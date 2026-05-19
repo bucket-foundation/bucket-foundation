@@ -67,6 +67,15 @@ Active jobs:
 | Job | Runner | Service | Status command |
 |---|---|---|---|
 | **war.gov PURSUE Release 01 mirror** (162 records → `_intake/war-gov-pursue-release-01/`) | `scripts/pursue-mirror-runner.sh` | `pursue-mirror.timer` (hourly) | `pursue-status` (alias) |
+| **Sacred-History Corpus mirror** (rights-aware; PD/open LIVE, Tier-B gated → `_intake/sacred-history-corpus/work/`) | `_intake/sacred-history-corpus/runners/sacred-history-runner.sh` | `sacred-history-mirror.timer` (**daily, RECURRING — does NOT self-disable**) | `sacred-history-status` (alias) |
+
+The Sacred-History timer is **recurring forever** (re-checks for new
+editions/manuscripts/events) — unlike `pursue-mirror.timer` it never
+self-disables. Phase 1 is LIVE for PD/open sources only (Sefaria index,
+SuttaCentral CC0, Tanzil verbatim Arabic, ctext PD structure ToS-safe,
+bounded CC0 Wikidata SPARQL); copyrighted/NC/unclear stay metadata-only
+and gated (`TIER_B_GUARD=1`). Network AI / Viatika x402 = $0 (local model
+only). See `_intake/sacred-history-corpus/DECISIONS.md`.
 
 Manual control:
 ```bash
