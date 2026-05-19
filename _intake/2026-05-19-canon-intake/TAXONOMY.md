@@ -190,14 +190,20 @@ self-help, NOT pop neuroscience, NOT outcome (cognition enhancement is downstrea
 
 | Branch | concepts in target | curated (≥1 canon rec) | seeded this bead |
 |---|---|---|---|
-| 01-mathematics | 12 | 0 | **5 (golden seed)** |
-| 02-physics | 13 | 0 | **5 (golden seed)** |
-| 03-chemistry | 11 | 0 | 0 |
-| 04-information | 10 | 0 | 0 |
+| 01-mathematics | 12 | 5 | **5 (golden seed)** |
+| 02-physics | 13 | 5 | **5 (golden seed)** |
+| 03-chemistry | 11 | 4 | **4 (pass-1 spine, verified)** |
+| 04-information | 10 | 4 | **4 (pass-1 spine, verified)** |
 | 05-biophysics | 12 | 4 (pre-existing) | 0 |
-| 06-cosmology | 10 | 0 | 0 |
-| 07-mind | 11 | 0 | 0 |
-| **total** | **79** | **4** | **+10** |
+| 06-cosmology | 10 | 4 | **4 (pass-1 spine, verified)** |
+| 07-mind | 11 | 4 | **4 (pass-1 spine, verified)** |
+| **total** | **79** | **30** | **+26** |
+
+> 2026-05-19 update (Data pillar, 4-gap-branch pass-1): 03/04/06/07 each now
+> have 4 hand-verified CANON concepts (21 records total). Every anchor DOI was
+> live-resolved and confirmed against the intended foundational primary before
+> commit — see `PASS1-VERIFICATION.md` (6 wrong/weak anchors caught + rejected).
+> All 7 thesis branches now serve real primary research at spine level.
 
 `08-deep-history`, `09-art`, `09-sacred-texts` exist on disk but are **NOT canon
 branches** per the thesis (7 branches only). They are out of scope for this
