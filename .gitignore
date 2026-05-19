@@ -96,3 +96,8 @@ _intake/photons/bulk.log
 _intake/photons/kaikki-cache/
 _intake/photons/all.json.gz
 _intake/photons/smoke.csv
+
+# canon-intake convergent runner runtime state (logs, lock, status snapshot).
+# The runner WRITES bucket-canon/**/primary-papers.yaml (committed by the data
+# pillar); this dir is just its bookkeeping and must never dirty the tree.
+_intake/canon-intake/

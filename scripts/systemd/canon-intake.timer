@@ -1,0 +1,14 @@
+[Unit]
+Description=Hourly trigger for canon-intake convergent runner
+Requires=canon-intake.service
+
+[Timer]
+# Run 5 min after boot, then every 1 hour. Self-disables on a clean pass
+# (zero converge failures over >=1 folder); re-enable when new queries.txt
+# land:  systemctl --user enable --now canon-intake.timer
+OnBootSec=5min
+OnUnitActiveSec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target

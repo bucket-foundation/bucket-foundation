@@ -1,0 +1,13 @@
+[Unit]
+Description=Bucket Foundation — canon-intake convergent runner (all branches, idempotent)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/gian/agfarms/bucket-foundation/scripts/canon-intake-runner.sh
+Nice=10
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=default.target
