@@ -1,10 +1,4 @@
 ---
-███████████████████████████████████████████████████████████████████████████████
-██  EMBARGOED — DRAFT — DO NOT PUBLISH                                        ██
-██  Gated on bkt-1 + bkt-2 closed and the after-state verified on camera.     ██
-██  The paragraphs describing the fix are written in present tense and are    ██
-██  only true once the gating beads ship. See EMBARGO.md.                     ██
-███████████████████████████████████████████████████████████████████████████████
 ---
 
 # LinkedIn post — founder voice, research-integrity angle

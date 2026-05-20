@@ -78,7 +78,7 @@ For a research-integrity nonprofit, that is not a small problem.
 
 ---
 
-**7/ [GATED bkt-1 + bkt-2]**
+**7/**
 So we treated the refusal as the spec, and changed the protocol.
 
 On the zero-key path: the agent never holds a wallet. The agent never sees a
@@ -87,7 +87,7 @@ Citation is a record, not an action.
 
 ---
 
-**8/ [GATED bkt-2]**
+**8/**
 We wrote the trust and payment model down in plain language where an agent
 will actually read it (/llms-full.txt §4), keeping paid-to-cite provably
 distinct from pay-to-proceed.
@@ -96,7 +96,7 @@ Then we re-ran the identical test against an unmodified agent.
 
 ---
 
-**9/ [GATED bkt-2]**
+**9/**
 It completes the flow now — discover, query, cite — and raises no safety
 objection, because there is no longer one to raise.
 
