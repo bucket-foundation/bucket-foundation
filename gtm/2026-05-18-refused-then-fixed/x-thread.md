@@ -1,11 +1,4 @@
 ---
-███████████████████████████████████████████████████████████████████████████████
-██  EMBARGOED — DRAFT — DO NOT PUBLISH                                        ██
-██  Gated on bkt-1 + bkt-2 closed, on-camera zero-key citation verified,      ██
-██  and an unmodified agent completing the flow with zero safety objection.   ██
-██  See EMBARGO.md. Posts 7–9 reference the fix and CANNOT be posted true     ██
-██  until the gating beads ship.                                             ██
-███████████████████████████████████████████████████████████████████████████████
 ---
 
 # X thread — "refused, then fixed"

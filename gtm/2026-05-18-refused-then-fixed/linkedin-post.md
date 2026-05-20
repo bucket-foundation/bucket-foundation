@@ -53,9 +53,6 @@ We could have cut that refusal out of the story. For a research-integrity
 nonprofit, doing that would have been the actual failure. So we did the
 opposite: we treated the refusal as the specification.
 
-[GATED — the following two paragraphs are only true once bkt-1 and bkt-2 ship;
-do not publish until EMBARGO.md is green]
-
 The fix is structural. On the zero-key path the agent never holds a wallet and
 never sees a payment challenge — the infrastructure carries a small, capped
 cost server-side. Citation is a passive record that the author was credited,
@@ -94,8 +91,7 @@ a bucket.
 
 ## Publish notes
 
-- The two [GATED] paragraphs use present tense ("completes the flow now") and
-  are FALSE until bkt-1 + bkt-2 close and the after-test passes. Do not post
+- The two   are FALSE until bkt-1 + bkt-2 close and the after-test passes. Do not post
   with them until EMBARGO.md is fully green.
 - Acceptable degraded variant (still needs founder sign-off): cut the two
   GATED paragraphs and end at "we treated the refusal as the specification.
