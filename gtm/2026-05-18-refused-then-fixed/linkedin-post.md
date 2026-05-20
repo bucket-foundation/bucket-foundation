@@ -83,7 +83,7 @@ past, build history, bucket is the new renaissance. This is what building the
 past honestly looks like — including the parts where someone tells you no, and
 they are right.
 
-— [Founder name]
+— Gian Dichio
 bucket.foundation · open protocol · MIT · nonprofit
 
 ---
