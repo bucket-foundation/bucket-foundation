@@ -13,7 +13,9 @@ export type CanonMarkerKind =
   | "figure-birth"
   | "figure-death"
   | "event"
-  | "archaeological-site";  // material-evidence layer
+  | "archaeological-site"  // material-evidence layer
+  | "world-indicator"      // /earth — a country, coloured by a data value/score
+  | "blue-zone";           // /earth — longevity ground-truth overlay
 
 export type CanonMarker = {
   id: string;
@@ -30,6 +32,19 @@ export type CanonMarker = {
   lidar?: string;
   unesco?: string;
   wikipedia?: string;
+  /**
+   * Explicit marker colour. When set, it OVERRIDES the branch/kind palette
+   * below — used by /earth to paint each country pin by an indicator value
+   * or composite score along a sequential ramp. Leave unset on /canon so the
+   * existing branch-hue atlas is unchanged.
+   */
+  color?: string;
+  /**
+   * Numeric payload for /earth markers — the active indicator value or the
+   * composite 0–100 score. Surfaced in the hover tooltip. Optional + ignored
+   * by /canon.
+   */
+  value?: number;
 };
 
 interface CanonMarkersProps {
@@ -95,9 +110,18 @@ const KIND_COLOR: Record<CanonMarkerKind, string> = {
   "figure-death": "#8A641A",
   "event":        "#B8861E",
   "archaeological-site": "#6E5840",
+  // /earth kinds normally arrive with an explicit `m.color` (which wins in
+  // markerColor), so these are only fallbacks: teal-ish earth, terra-red zone.
+  "world-indicator": "#4A6E5E",
+  "blue-zone":       "#8E3E3E",
 };
 
 function markerColor(m: CanonMarker): string {
+  // /earth pins carry an explicit colour computed by the control panel
+  // (indicator ramp / composite-score ramp / blue-zone terra-red). When
+  // present it wins over the branch palette so the globe reads as a
+  // data choropleth instead of a branch atlas.
+  if (m.color) return m.color;
   // Archaeological sites get a stone-grey / aged-bronze tone so they're
   // visually distinct from the figure/event markers.
   if (m.kind === "archaeological-site") return "#6E5840";
@@ -360,6 +384,24 @@ export function CanonMarkers({
                   }}
                 >
                   <div style={{ fontWeight: 500 }}>{m.title}</div>
+                  {/* /earth markers carry a numeric value (indicator reading
+                      or composite score) instead of a year — surface it in
+                      gold so the choropleth is legible on hover. */}
+                  {typeof m.value === "number" && (
+                    <div
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 600,
+                        marginTop: 5,
+                        letterSpacing: "0.06em",
+                        color,
+                      }}
+                    >
+                      {Number.isFinite(m.value)
+                        ? m.value.toLocaleString(undefined, { maximumFractionDigits: 2 })
+                        : "—"}
+                    </div>
+                  )}
                   <div
                     style={{
                       fontSize: 9,
@@ -370,8 +412,29 @@ export function CanonMarkers({
                       color,
                     }}
                   >
-                    {m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}{m.branch}
+                    {m.kind === "blue-zone"
+                      ? "blue zone · longevity"
+                      : m.kind === "world-indicator"
+                      ? "world indicator"
+                      : `${m.year ? `${m.year < 0 ? Math.abs(m.year) + " BCE" : m.year + " CE"} · ` : ""}${m.branch}`}
                   </div>
+                  {/* Blue-zone tooltip carries the longevity note (held in the
+                      civilization field by the /earth mount). */}
+                  {m.kind === "blue-zone" && m.civilization && (
+                    <div
+                      style={{
+                        fontSize: 9,
+                        opacity: 0.78,
+                        marginTop: 5,
+                        letterSpacing: "0.04em",
+                        textTransform: "none",
+                        fontFamily: "Fraunces, Georgia, serif",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {m.civilization}
+                    </div>
+                  )}
                   <div
                     style={{
                       fontSize: 8,
@@ -381,7 +444,7 @@ export function CanonMarkers({
                       textTransform: "uppercase",
                     }}
                   >
-                    click for details →
+                    {m.kind === "world-indicator" ? "click to rank →" : m.kind === "blue-zone" ? "longevity ground-truth" : "click for details →"}
                   </div>
                 </div>
               </Html>
