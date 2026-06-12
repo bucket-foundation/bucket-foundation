@@ -1359,6 +1359,247 @@
           "answer": "No crystal is required and there is no phase problem (phases come from the images), so flexible, heterogeneous, or hard-to-crystallize complexes can be solved — and 3D classification can resolve multiple conformational states from a single dataset."
         }
       ]
+    },
+    {
+      "id": "helfrich",
+      "title": "Helfrich membrane bending energy",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "bilayer"
+      ],
+      "summary": "A fluid lipid bilayer behaves as a 2D elastic sheet whose energy cost is quadratic in curvature, governed by a bending modulus κ — the elasticity that sets the shapes of vesicles, tubes, and organelles.",
+      "depths": {
+        "eli5": "A soap-film-like membrane doesn't like to bend. The more sharply you curve it, the more energy it costs — and that simple rule explains why cells make round blobs, thin tubes, and folded shapes.",
+        "core": "Helfrich modeled the bilayer as a thin fluid elastic sheet. The bending energy per area is ½κ(2H − c₀)² + κ̄·K, where H is the mean curvature, K the Gaussian curvature, c₀ the spontaneous curvature, κ the bending modulus (~10–40 k_BT for lipids), and κ̄ the Gaussian (saddle-splay) modulus. Integrating over the surface gives the total cost of any shape; the equilibrium shape minimizes it (subject to area and volume constraints).",
+        "deep": "Because κ is only tens of k_BT, thermal fluctuations ripple the membrane — its fluctuation spectrum ⟨|h_q|²⟩ = k_BT/(κq⁴ + σq²) lets you read κ and tension σ from flicker microscopy. The Gaussian term integrates (Gauss–Bonnet) to a topological constant unless topology changes, so it only matters for fission/fusion. Spontaneous curvature c₀ from lipid shape or protein scaffolds (BAR domains) drives tubulation and budding — the physics behind endocytosis and organelle morphology."
+      },
+      "note": "κ in units of k_BT means membranes are soft enough to fluctuate thermally yet stiff enough to hold shape — the sweet spot biology exploits for remodeling.",
+      "sources": [
+        "LibreTexts Biophysics",
+        "PMC open-access membrane-mechanics reviews",
+        "arXiv cond-mat.soft"
+      ],
+      "art_prompt": "a rippling fluid lipid vesicle with curvature arrows, a sharp tube and a budding sphere annotated with mean and Gaussian curvature",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the Helfrich model, how does bending energy density depend on curvature, and what does κ measure?",
+          "answer": "It is quadratic in mean curvature: ½κ(2H − c₀)². κ is the bending modulus (≈10–40 k_BT for lipid bilayers) — the stiffness against bending."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why does the Gaussian-curvature term usually not affect a membrane's equilibrium shape?",
+          "answer": "By the Gauss–Bonnet theorem the integral of Gaussian curvature over a closed surface is a topological invariant (4π×(1−genus)), so it stays constant unless the membrane changes topology — it only matters in fusion/fission events."
+        }
+      ]
+    },
+    {
+      "id": "ghk",
+      "title": "Goldman–Hodgkin–Katz voltage equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "nernst"
+      ],
+      "summary": "Generalizes the Nernst potential to a membrane permeable to several ions at once: the resting potential is a permeability-weighted blend of each ion's equilibrium potential.",
+      "depths": {
+        "eli5": "A cell's voltage isn't set by one ion but by a tug-of-war among several. Whichever ion the membrane lets through most easily pulls the voltage toward its own preferred value.",
+        "core": "When a membrane passes K⁺, Na⁺, and Cl⁻ simultaneously, the steady-state (zero net current) voltage is V_m = (RT/F)·ln[(P_K[K]_o + P_Na[Na]_o + P_Cl[Cl]_i)/(P_K[K]_i + P_Na[Na]_i + P_Cl[Cl]_o)]. Each permeability P weights that ion's contribution; anions appear with inside/outside flipped. At rest P_K dominates, so V_m sits near E_K but is pulled positive by the small Na⁺ leak.",
+        "deep": "GHK assumes a constant electric field across the membrane (the Goldman 'constant-field' approximation) and independent ion movement, yielding the GHK current equation whose zero-sum gives the voltage form. It explains why opening Na⁺ channels (raising P_Na) swings V_m toward E_Na during an action potential, and why the resting potential is never exactly any single Nernst potential — it is a dynamic, permeability-weighted compromise that channels actively retune."
+      },
+      "note": "Nernst is the one-ion equilibrium; GHK is the many-ion steady state. Changing a permeability — i.e. gating a channel — is how excitable cells move V_m between the ions' Nernst potentials.",
+      "sources": [
+        "LibreTexts Physiology",
+        "NCBI Bookshelf (open-access neuroscience texts)",
+        "MIT OCW 9.01"
+      ],
+      "art_prompt": "a membrane with three ion channels of different widths, each ion's Nernst potential on a voltage axis and the resting potential sitting between them weighted by channel width",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the GHK voltage equation compute that the Nernst equation cannot?",
+          "answer": "The membrane potential when several ion species are permeant at once — a permeability-weighted combination of their equilibrium potentials, rather than the equilibrium potential of a single ion."
+        },
+        {
+          "level": "apply",
+          "prompt": "During the rising phase of an action potential, Na⁺ permeability rises sharply. Using GHK reasoning, which way does V_m move and why?",
+          "answer": "Toward E_Na (positive). Raising P_Na increases sodium's weight in the GHK average, pulling the permeability-weighted potential away from E_K and toward the sodium Nernst potential."
+        }
+      ]
+    },
+    {
+      "id": "cable-equation",
+      "title": "The cable equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "hodgkin-huxley"
+      ],
+      "summary": "Treats a dendrite or axon as a leaky electrical cable: voltage spreads passively with a characteristic length and time constant, setting how far and how fast signals travel before active channels regenerate them.",
+      "depths": {
+        "eli5": "A nerve fiber is like a leaky garden hose for voltage. Push voltage in at one spot and it spreads out, fading with distance and lagging in time — unless channels actively boost it along the way.",
+        "core": "Modeling the membrane as a resistive–capacitive cable gives ∂V/∂t = (λ²)·∂²V/∂x² − V (in units of the time constant τ), with space constant λ = √(r_m/r_i) and time constant τ = r_m·c_m. λ sets how far a passive signal decays to 1/e (∝ √diameter); τ sets how fast the membrane charges. Large λ and small τ mean fast, far-reaching passive spread.",
+        "deep": "The cable equation is the passive skeleton; Hodgkin–Huxley channels are the active flesh that turn decaying spread into a self-regenerating action potential. Conduction velocity scales with λ/τ, so thicker axons and — crucially — myelin (which raises r_m and lowers c_m) speed conduction; saltatory conduction jumps between nodes of Ranvier where the cable is actively re-excited. Dendritic cable theory (Rall) explains how synaptic inputs at different distances are filtered and summed at the soma."
+      },
+      "note": "λ and τ are the two numbers that decide whether a synapse 'felt' at a dendrite reaches the soma in time to matter — the passive physics underneath neural computation.",
+      "sources": [
+        "NCBI Bookshelf (open-access neuroscience)",
+        "MIT OCW 9.40",
+        "LibreTexts Physiology"
+      ],
+      "art_prompt": "a dendrite drawn as a leaky cable, an injected voltage bump decaying exponentially with distance over a length λ, myelin segments speeding it up",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What do the space constant λ and time constant τ represent in cable theory?",
+          "answer": "λ is the distance over which a passive voltage signal decays to 1/e of its value; τ = r_m·c_m is the time the membrane takes to charge. Together they set how far and how fast signals spread passively."
+        },
+        {
+          "level": "apply",
+          "prompt": "Myelin increases membrane resistance r_m and decreases membrane capacitance c_m. Using cable parameters, why does this speed conduction?",
+          "answer": "Higher r_m increases λ = √(r_m/r_i), so voltage spreads farther per unit length, while lower c_m reduces τ = r_m·c_m so the membrane charges faster — both raise conduction velocity (∝ λ/τ), enabling saltatory conduction between nodes."
+        }
+      ]
+    },
+    {
+      "id": "monte-carlo",
+      "title": "Metropolis Monte Carlo sampling",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "boltzmann"
+      ],
+      "summary": "A stochastic algorithm that samples configurations with their Boltzmann probabilities by accepting or rejecting random moves — computing equilibrium averages without ever solving the dynamics.",
+      "depths": {
+        "eli5": "Instead of following a molecule's real motion, you propose random nudges and keep the ones that lower the energy (and sometimes the ones that raise it, by chance). Do this long enough and you visit shapes as often as nature would.",
+        "core": "Metropolis Monte Carlo generates a Markov chain over configurations. Propose a random move; if it lowers the energy (ΔE ≤ 0) accept it; if it raises the energy accept it with probability e^(−ΔE/k_BT), else reject and keep the current state. This acceptance rule satisfies detailed balance with the Boltzmann distribution, so the chain's stationary distribution is ∝ e^(−E/k_BT). Time averages over the chain converge to canonical ensemble averages.",
+        "deep": "MC needs no forces or time integration — only an energy function and a move set — so it can take large, unphysical jumps that cross barriers molecular dynamics would take ages to climb, but it gives no real kinetics (chain steps aren't time). Cleverness lives in move design (cluster moves, configurational-bias for polymers) and in beating critical slowing-down. Detailed balance, P(a)·W(a→b) = P(b)·W(b→a), is the load-bearing condition; break it carelessly and you sample the wrong distribution."
+      },
+      "note": "MC trades real dynamics for sampling freedom: it reaches equilibrium averages efficiently but tells you nothing about rates — the complementary tradeoff to molecular dynamics.",
+      "sources": [
+        "MIT OCW 5.72",
+        "LibreTexts (Computational Chemistry)",
+        "arXiv cond-mat.stat-mech"
+      ],
+      "art_prompt": "an energy landscape with a chain of sampled points hopping around, accepted downhill moves and probabilistically-accepted uphill moves marked with e^(−ΔE/kT)",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the Metropolis acceptance rule for a proposed move with energy change ΔE.",
+          "answer": "Accept if ΔE ≤ 0; otherwise accept with probability e^(−ΔE/k_BT), and reject (keep the current configuration) otherwise."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why does the Metropolis rule sample the Boltzmann distribution, and what is the key thing it does NOT give you?",
+          "answer": "The acceptance rule satisfies detailed balance with respect to e^(−E/k_BT), making it the chain's stationary distribution, so configuration averages equal canonical averages. It does not give real kinetics — Monte Carlo steps are not physical time, so rates are not accessible."
+        }
+      ]
+    },
+    {
+      "id": "fep-wham",
+      "title": "Free-energy methods: FEP, umbrella sampling & WHAM",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "free-energy",
+        "md"
+      ],
+      "summary": "Simulation techniques that compute free-energy differences — the quantities that govern binding and folding — by reweighting biased or alchemically-perturbed ensembles rather than waiting for spontaneous transitions.",
+      "depths": {
+        "eli5": "Free energy is what decides which state wins, but the interesting states are rarely visited in a plain simulation. These methods gently push the system through the rare regions, then mathematically subtract the push back out.",
+        "core": "Free-energy perturbation uses ΔF = −k_BT·ln⟨e^(−(E_B−E_A)/k_BT)⟩_A to get the free-energy change for an alchemical transformation A→B from fluctuations sampled in state A. Umbrella sampling adds a biasing potential along a reaction coordinate to force sampling of high-energy regions in overlapping windows; WHAM (the weighted histogram analysis method) then optimally stitches the windows' biased histograms back into the unbiased potential of mean force.",
+        "deep": "The art is overlap: FEP's exponential average is dominated by rare low-energy tails, so A and B must have overlapping phase space (hence stratification into many small λ-windows, or Bennett acceptance ratio / MBAR which use both endpoints). Umbrella windows must overlap for WHAM to bridge them. These give the equilibrium PMF — the free-energy landscape — but not rates directly; combined with Kramers or transition-state ideas, the PMF's barrier height feeds a kinetic estimate. This is how computed binding affinities (ΔΔG of mutations, drug candidates) are made."
+      },
+      "note": "FEP/umbrella+WHAM compute the free-energy landscape (ΔG, the PMF) that plain MD samples too rarely to see — the bridge from simulation to measurable binding and folding free energies.",
+      "sources": [
+        "MIT OCW 5.72",
+        "PMC open-access free-energy-methods reviews",
+        "arXiv physics.chem-ph"
+      ],
+      "art_prompt": "a reaction coordinate with overlapping umbrella-sampling windows as parabolic restraints, their biased histograms stitched by WHAM into a smooth potential of mean force",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does umbrella sampling do, and what is WHAM's job afterward?",
+          "answer": "Umbrella sampling adds biasing potentials to force the simulation to sample high-energy regions along a reaction coordinate in overlapping windows. WHAM reweights and stitches the biased histograms together into the unbiased potential of mean force (free-energy profile)."
+        },
+        {
+          "level": "derive",
+          "prompt": "FEP uses ΔF = −k_BT·ln⟨exp(−ΔE/k_BT)⟩_A. Why does it fail when states A and B have little phase-space overlap?",
+          "answer": "The exponential average is dominated by rare configurations where ΔE is very negative — the low-energy tail of B sampled from A. If A and B barely overlap, those configurations are essentially never sampled, so the average is unconverged and biased; this is why the transformation is split into many small, overlapping windows."
+        }
+      ]
+    },
+    {
+      "id": "markov-state-model",
+      "title": "Markov state models",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "md",
+        "random-walk"
+      ],
+      "summary": "Coarse-grains long or many short simulations into a network of metastable states with transition probabilities, recovering slow kinetics and rare-event rates that no single trajectory could reach.",
+      "depths": {
+        "eli5": "Chop a molecule's wiggling into a handful of 'rooms' and count how often it hops between them. The hopping statistics let you predict slow rearrangements you never watched happen in one go.",
+        "core": "An MSM partitions configuration space into discrete states and estimates a transition probability matrix T(τ) — the chance of moving between states in a lag time τ. If τ is long enough that jumps are memoryless (Markovian), the dynamics are fully captured by T. Its eigenvalues give relaxation timescales t_i = −τ/ln(λ_i); the slowest non-trivial eigenvectors identify the metastable states and the slow conformational processes.",
+        "deep": "The power move: stitch thousands of short, cheap, parallel trajectories into one global model of slow kinetics — you never need a single trajectory that crosses the barrier. Validity hinges on the Markov assumption, tested by the implied-timescales plot (timescales must plateau as τ grows) and the Chapman–Kolmogorov test. State definition matters: poor clustering breaks Markovianity, so modern pipelines learn collective variables (TICA, VAMPnets) before clustering. MSMs turn MD's sampling problem into a statistics problem and yield rates comparable to experiment."
+      },
+      "note": "MSMs recover slow rates from many fast simulations by assuming memoryless hops between metastable states — making rare events statistically accessible without ever simulating one end-to-end.",
+      "sources": [
+        "PMC open-access Markov-state-model reviews",
+        "arXiv q-bio.BM",
+        "MIT OCW 5.72"
+      ],
+      "art_prompt": "a folding landscape clustered into a few metastable basins drawn as nodes with weighted arrows for transition probabilities, slow eigenvectors highlighted",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the transition matrix T(τ) of a Markov state model encode, and what assumption must hold at lag time τ?",
+          "answer": "It encodes the probabilities of moving between discrete metastable states within a lag time τ. The Markov (memoryless) assumption must hold at τ — transitions depend only on the current state, not the history."
+        },
+        {
+          "level": "derive",
+          "prompt": "How does an MSM extract slow timescales, and how do you check the Markov assumption is valid?",
+          "answer": "The eigenvalues λ_i of T(τ) give relaxation timescales t_i = −τ/ln(λ_i), and the slowest eigenvectors define the slow processes. Validity is checked with the implied-timescales plot — the timescales must become independent of τ (plateau) — and the Chapman–Kolmogorov test comparing T(nτ) to T(τ)ⁿ."
+        }
+      ]
+    },
+    {
+      "id": "contact-order",
+      "title": "Contact order & folding rate",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "two-state-folding",
+        "structure-hierarchy"
+      ],
+      "summary": "An empirical structural predictor of folding speed: proteins whose contacts are mostly between residues far apart in sequence fold more slowly than those stabilized by local contacts.",
+      "depths": {
+        "eli5": "If a protein is held together mostly by neighbors that sit close along the chain, it snaps shut fast. If it relies on partners at opposite ends of the chain finding each other, folding is slow.",
+        "core": "Relative contact order is CO = (1/(L·N))·Σ ΔS_ij, averaging the sequence separation ΔS_ij over all N native residue contacts in a chain of length L. Plaxco, Simons, and Baker found that for small two-state proteins, ln(k_f) of the folding rate correlates strongly (negatively) with relative contact order — high contact order means slow folding — often more predictively than thermodynamic stability does.",
+        "deep": "The result says topology, not just stability, sets folding kinetics: forming non-local contacts requires bringing distant chain segments together, paying a larger entropy cost in the transition state, which raises the folding barrier (linking to the two-state ΔG‡ picture). It rationalizes why all-α and local-β proteins fold fast while complex β-sheet topologies fold slowly, and it constrains funnel models — the transition-state ensemble's structure is encoded in which contacts must form. Variants (absolute CO, long-range order) refine the correlation across larger sets."
+      },
+      "note": "Contact order shows folding speed is a property of native topology, not just stability — distant-in-sequence contacts cost more transition-state entropy, raising the folding barrier.",
+      "sources": [
+        "PMC open-access protein-folding reviews",
+        "arXiv q-bio.BM",
+        "LibreTexts Biochemistry"
+      ],
+      "art_prompt": "two protein topologies side by side — one with local short-range contacts folding fast, one with long-range cross-chain contacts folding slowly — with a contact map and a folding-rate axis",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does contact order measure, and how does it relate to folding rate for small two-state proteins?",
+          "answer": "It measures the average sequence separation of residues that contact each other in the native structure. High contact order (mostly long-range contacts) correlates with slower folding; ln(k_f) decreases with relative contact order."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why should forming non-local (high-contact-order) contacts slow folding, in transition-state terms?",
+          "answer": "Bringing residues that are far apart in sequence into contact requires organizing a large stretch of chain, which costs more conformational entropy in the folding transition state. That raises the folding free-energy barrier ΔG‡, lowering the rate — so topology, not just stability, governs folding kinetics."
+        }
+      ]
     }
   ]
 }
