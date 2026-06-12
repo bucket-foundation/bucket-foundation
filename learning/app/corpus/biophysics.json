@@ -8,8 +8,12 @@
   },
   "atoms": [
     {
-      "id": "boltzmann", "title": "Boltzmann distribution", "shell": "prereq", "type": "equation",
-      "requires": [], "equation": "p_i = \\dfrac{e^{-E_i/k_BT}}{Z}",
+      "id": "boltzmann",
+      "title": "Boltzmann distribution",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [],
+      "equation": "p_i = \\dfrac{e^{-E_i/k_BT}}{Z}",
       "summary": "At thermal equilibrium, the probability of a state falls off exponentially with its energy.",
       "depths": {
         "eli5": "Nature prefers low-energy states, but warmth lets it visit higher ones. The hotter it is, the more often costly states get sampled.",
@@ -17,48 +21,99 @@
         "deep": "k_B is Boltzmann's constant; kT (~0.6 kcal/mol at body temperature) is the natural energy scale of biology. Energy differences of a few kT are the difference between 'always' and 'never'."
       },
       "note": "Memorize kT ≈ 0.6 kcal/mol ≈ 2.5 kJ/mol at 310 K — your unit of biological 'is this significant?'.",
-      "sources": ["OpenStax University Physics", "LibreTexts P-Chem"],
+      "sources": [
+        "OpenStax University Physics",
+        "LibreTexts P-Chem"
+      ],
       "art_prompt": "a ladder of discrete energy levels with population dots thinning exponentially toward the top",
       "quiz": [
-        { "level": "recall", "prompt": "What sets the energy scale that decides whether an energy gap matters in biology, and roughly how big is it at body temperature?", "answer": "k_BT — the thermal energy, ≈ 0.6 kcal/mol (2.5 kJ/mol) at 310 K." },
-        { "level": "apply", "prompt": "Two conformations differ by ΔE = 2.4 kcal/mol at 310 K. Roughly what is the population ratio of the higher to the lower state?", "answer": "ratio ≈ e^(−ΔE/kT) = e^(−2.4/0.6) = e^(−4) ≈ 0.018, so about 1.8% — the high state is ~55× rarer.", "eq": "p_{hi}/p_{lo}=e^{-\\Delta E/k_BT}" }
+        {
+          "level": "recall",
+          "prompt": "What sets the energy scale that decides whether an energy gap matters in biology, and roughly how big is it at body temperature?",
+          "answer": "k_BT — the thermal energy, ≈ 0.6 kcal/mol (2.5 kJ/mol) at 310 K."
+        },
+        {
+          "level": "apply",
+          "prompt": "Two conformations differ by ΔE = 2.4 kcal/mol at 310 K. Roughly what is the population ratio of the higher to the lower state?",
+          "answer": "ratio ≈ e^(−ΔE/kT) = e^(−2.4/0.6) = e^(−4) ≈ 0.018, so about 1.8% — the high state is ~55× rarer.",
+          "eq": "p_{hi}/p_{lo}=e^{-\\Delta E/k_BT}"
+        }
       ]
     },
     {
-      "id": "partition-function", "title": "Partition function", "shell": "prereq", "type": "equation",
-      "requires": ["boltzmann"], "equation": "Z = \\sum_i e^{-E_i/k_BT}",
+      "id": "partition-function",
+      "title": "Partition function",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "Z = \\sum_i e^{-E_i/k_BT}",
       "summary": "The sum of all Boltzmann factors — the normalizer that turns energies into probabilities and free energies.",
       "depths": {
         "eli5": "Add up how 'available' every state is. That total tells you everything measurable about the system.",
         "core": "Z normalizes the Boltzmann distribution and is the bridge to thermodynamics: once you can write Z, you can extract free energy, average energy, and any observable by differentiation.",
         "deep": "For independent subsystems Z factorizes (Z = ∏ z_k), which is why two-state models and binding polynomials are so tractable — you just multiply small partition functions."
       },
-      "sources": ["LibreTexts P-Chem", "MIT OCW 8.044"],
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OCW 8.044"
+      ],
       "art_prompt": "many small energy-level ladders being summed into one master quantity Z",
       "quiz": [
-        { "level": "recall", "prompt": "Why is the partition function called the 'bridge to thermodynamics'?", "answer": "Because every thermodynamic quantity (free energy, average energy, entropy) is obtained from Z or its derivatives." },
-        { "level": "derive", "prompt": "Write the probability of state i in terms of Z, and explain what role Z plays.", "answer": "p_i = e^(−E_i/kT)/Z; Z is the normalization constant ensuring the probabilities sum to 1.", "eq": "p_i=\\frac{e^{-E_i/k_BT}}{Z}" }
+        {
+          "level": "recall",
+          "prompt": "Why is the partition function called the 'bridge to thermodynamics'?",
+          "answer": "Because every thermodynamic quantity (free energy, average energy, entropy) is obtained from Z or its derivatives."
+        },
+        {
+          "level": "derive",
+          "prompt": "Write the probability of state i in terms of Z, and explain what role Z plays.",
+          "answer": "p_i = e^(−E_i/kT)/Z; Z is the normalization constant ensuring the probabilities sum to 1.",
+          "eq": "p_i=\\frac{e^{-E_i/k_BT}}{Z}"
+        }
       ]
     },
     {
-      "id": "free-energy", "title": "Free energy from the partition function", "shell": "prereq", "type": "equation",
-      "requires": ["partition-function"], "equation": "F = -k_BT\\,\\ln Z",
+      "id": "free-energy",
+      "title": "Free energy from the partition function",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [
+        "partition-function"
+      ],
+      "equation": "F = -k_BT\\,\\ln Z",
       "summary": "Free energy is just the log of the partition function — the quantity systems minimize at constant T.",
       "depths": {
         "eli5": "One number that balances 'low energy' against 'many ways to arrange' — systems settle where it's smallest.",
         "core": "The Helmholtz free energy F = −kT ln Z packages energy and entropy together. At constant temperature and volume, equilibrium is the state of minimum F; differences in F drive every spontaneous biomolecular process.",
         "deep": "F = U − TS. The entropy term TS is why warm, floppy, high-multiplicity states win even at a small energy cost — the engine behind the hydrophobic effect and chain entropy."
       },
-      "sources": ["LibreTexts P-Chem", "MIT OCW 8.044"],
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OCW 8.044"
+      ],
       "art_prompt": "two pans of a balance labeled energy and entropy, with free energy as the needle",
       "quiz": [
-        { "level": "recall", "prompt": "What quantity do systems minimize at constant temperature and volume?", "answer": "The Helmholtz free energy F = U − TS = −kT ln Z." },
-        { "level": "apply", "prompt": "Why can a process that increases energy still happen spontaneously?", "answer": "If it increases entropy enough that TΔS outweighs ΔU, ΔF is still negative — entropy can pay for energy." }
+        {
+          "level": "recall",
+          "prompt": "What quantity do systems minimize at constant temperature and volume?",
+          "answer": "The Helmholtz free energy F = U − TS = −kT ln Z."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why can a process that increases energy still happen spontaneously?",
+          "answer": "If it increases entropy enough that TΔS outweighs ΔU, ΔF is still negative — entropy can pay for energy."
+        }
       ]
     },
     {
-      "id": "gibbs", "title": "Gibbs free energy", "shell": "prereq", "type": "equation",
-      "requires": [], "equation": "\\Delta G = \\Delta H - T\\Delta S",
+      "id": "gibbs",
+      "title": "Gibbs free energy",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [],
+      "equation": "\\Delta G = \\Delta H - T\\Delta S",
       "summary": "At constant temperature and pressure (the cell's condition), spontaneity is governed by ΔG.",
       "depths": {
         "eli5": "Will it happen on its own? Compare the heat released to the order lost. ΔG < 0 means yes.",
@@ -66,31 +121,58 @@
         "deep": "ΔG° = −RT ln K links the standard free-energy change to the equilibrium constant — the equation you use to convert any measured K_d or K_eq into an energy."
       },
       "note": "ΔG°' = −RT ln K — the most-used equation in all of biochemistry.",
-      "sources": ["LibreTexts P-Chem", "NCBI Bookshelf (Biochemistry)"],
+      "sources": [
+        "LibreTexts P-Chem",
+        "NCBI Bookshelf (Biochemistry)"
+      ],
       "art_prompt": "enthalpy and entropy arrows combining into a single downhill free-energy slope",
       "quiz": [
-        { "level": "recall", "prompt": "Which free energy governs spontaneity at constant T and P, and what is its formula?", "answer": "Gibbs free energy, ΔG = ΔH − TΔS." },
-        { "level": "apply", "prompt": "A binding reaction has K = 10^6 M^-1 at 310 K. Estimate ΔG° (RT ≈ 0.6 kcal/mol).", "answer": "ΔG° = −RT ln K = −0.6 × ln(10^6) ≈ −0.6 × 13.8 ≈ −8.3 kcal/mol.", "eq": "\\Delta G^\\circ=-RT\\ln K" }
+        {
+          "level": "recall",
+          "prompt": "Which free energy governs spontaneity at constant T and P, and what is its formula?",
+          "answer": "Gibbs free energy, ΔG = ΔH − TΔS."
+        },
+        {
+          "level": "apply",
+          "prompt": "A binding reaction has K = 10^6 M^-1 at 310 K. Estimate ΔG° (RT ≈ 0.6 kcal/mol).",
+          "answer": "ΔG° = −RT ln K = −0.6 × ln(10^6) ≈ −0.6 × 13.8 ≈ −8.3 kcal/mol.",
+          "eq": "\\Delta G^\\circ=-RT\\ln K"
+        }
       ]
     },
     {
-      "id": "eigen-modes", "title": "Eigenvalues & normal modes", "shell": "prereq", "type": "concept",
-      "requires": [], "equation": "A\\mathbf{x} = \\lambda\\mathbf{x}",
+      "id": "eigen-modes",
+      "title": "Eigenvalues & normal modes",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [],
+      "equation": "A\\mathbf{x} = \\lambda\\mathbf{x}",
       "summary": "Linear systems decompose into independent modes — directions that simply scale. This is how we read out collective motion.",
       "depths": {
         "eli5": "Complicated wobbling is really a few simple wobbles stacked up. Find those simple ones and the motion becomes clear.",
         "core": "An eigenvector of a matrix is a direction that the matrix only stretches (by its eigenvalue). For a protein's stiffness matrix, the eigenvectors are normal modes — coordinated motions — and the small eigenvalues are the soft, biologically important large-scale motions.",
         "deep": "Diagonalizing the Hessian (or the connectivity matrix in network models) turns coupled dynamics into independent oscillators. Low-frequency modes dominate functional conformational change."
       },
-      "sources": ["MIT OCW 18.06 (Linear Algebra)"],
+      "sources": [
+        "MIT OCW 18.06 (Linear Algebra)"
+      ],
       "art_prompt": "a tangled spring network resolving into a few clean orthogonal vibration arrows",
       "quiz": [
-        { "level": "recall", "prompt": "In a protein elastic model, what do the eigenvectors of the stiffness matrix represent, and which eigenvalues matter most biologically?", "answer": "Eigenvectors are the normal modes (collective motions); the smallest non-zero eigenvalues are the soft, large-scale, functionally important modes." }
+        {
+          "level": "recall",
+          "prompt": "In a protein elastic model, what do the eigenvectors of the stiffness matrix represent, and which eigenvalues matter most biologically?",
+          "answer": "Eigenvectors are the normal modes (collective motions); the smallest non-zero eigenvalues are the soft, large-scale, functionally important modes."
+        }
       ]
     },
     {
-      "id": "hydrophobic", "title": "The hydrophobic effect", "shell": "nucleus", "type": "concept",
-      "requires": ["gibbs"],
+      "id": "hydrophobic",
+      "title": "The hydrophobic effect",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "gibbs"
+      ],
       "summary": "Nonpolar groups cluster in water not because they attract each other, but because water gains entropy when they hide.",
       "depths": {
         "eli5": "Oil beads up in water because water 'likes' to avoid wrapping around oil. Pushing the oil together frees the water to be messy again.",
@@ -98,16 +180,33 @@
         "deep": "Classic signature: a large positive heat-capacity change (ΔCp) on exposing nonpolar surface, and a folding free energy that is a small difference of large enthalpic and entropic terms — making proteins marginally stable (~5–15 kcal/mol)."
       },
       "note": "Marginal stability (only a few kT) is a feature: it lets proteins fold reversibly and be regulated/degraded.",
-      "sources": ["LibreTexts Biophysics", "PMC open-access reviews"],
+      "sources": [
+        "LibreTexts Biophysics",
+        "PMC open-access reviews"
+      ],
       "art_prompt": "ordered water cages around two oily blobs releasing into disordered bulk as the blobs merge",
       "quiz": [
-        { "level": "recall", "prompt": "Is the hydrophobic effect mainly enthalpic or entropic, and whose entropy increases?", "answer": "Mainly entropic — the water's entropy increases when ordered cage water around nonpolar surface is released to the bulk." },
-        { "level": "apply", "prompt": "Why is a folded protein only marginally stable (a few kcal/mol)?", "answer": "Folding free energy is a small difference between large opposing enthalpic and entropic terms, so the net is small — which usefully keeps folding reversible and regulatable." }
+        {
+          "level": "recall",
+          "prompt": "Is the hydrophobic effect mainly enthalpic or entropic, and whose entropy increases?",
+          "answer": "Mainly entropic — the water's entropy increases when ordered cage water around nonpolar surface is released to the bulk."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is a folded protein only marginally stable (a few kcal/mol)?",
+          "answer": "Folding free energy is a small difference between large opposing enthalpic and entropic terms, so the net is small — which usefully keeps folding reversible and regulatable."
+        }
       ]
     },
     {
-      "id": "debye", "title": "Electrostatic screening & the Debye length", "shell": "nucleus", "type": "equation",
-      "requires": ["boltzmann"], "equation": "\\lambda_D = \\sqrt{\\dfrac{\\varepsilon\\varepsilon_0 k_BT}{\\sum_i n_i q_i^2}}",
+      "id": "debye",
+      "title": "Electrostatic screening & the Debye length",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "\\lambda_D = \\sqrt{\\dfrac{\\varepsilon\\varepsilon_0 k_BT}{\\sum_i n_i q_i^2}}",
       "summary": "Salt ions cloud around charges and cut off electrostatic interactions beyond the Debye length.",
       "depths": {
         "eli5": "In salty water, charges get surrounded by opposite ions and stop 'feeling' each other past a short distance.",
@@ -115,15 +214,29 @@
         "deep": "λ_D shrinks as 1/√(ionic strength). Experiments that titrate salt are reading out the electrostatic contribution to binding/folding by tuning how far charges 'see'."
       },
       "note": "λ_D ≈ 0.3 nm / √(I in molar). At 0.1 M, ≈ 1 nm.",
-      "sources": ["LibreTexts P-Chem", "PMC reviews"],
+      "sources": [
+        "LibreTexts P-Chem",
+        "PMC reviews"
+      ],
       "art_prompt": "a central charge surrounded by a fading cloud of counter-ions, potential decaying with distance",
       "quiz": [
-        { "level": "recall", "prompt": "What physically causes the Debye length, and how does it change with salt concentration?", "answer": "Mobile counter-ions screen charges; λ_D decreases as ionic strength increases (∝ 1/√I)." },
-        { "level": "apply", "prompt": "Roughly what is the Debye length at physiological ionic strength, and what does that imply about electrostatics in the cell?", "answer": "≈ 0.8–1 nm, so electrostatic interactions are effectively short-ranged inside cells." }
+        {
+          "level": "recall",
+          "prompt": "What physically causes the Debye length, and how does it change with salt concentration?",
+          "answer": "Mobile counter-ions screen charges; λ_D decreases as ionic strength increases (∝ 1/√I)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Roughly what is the Debye length at physiological ionic strength, and what does that imply about electrostatics in the cell?",
+          "answer": "≈ 0.8–1 nm, so electrostatic interactions are effectively short-ranged inside cells."
+        }
       ]
     },
     {
-      "id": "structure-hierarchy", "title": "Protein structure hierarchy", "shell": "nucleus", "type": "concept",
+      "id": "structure-hierarchy",
+      "title": "Protein structure hierarchy",
+      "shell": "nucleus",
+      "type": "concept",
       "requires": [],
       "summary": "Sequence (primary) → local helices/sheets (secondary) → 3D fold (tertiary) → assemblies (quaternary).",
       "depths": {
@@ -131,112 +244,227 @@
         "core": "Primary structure is the amino-acid sequence; secondary structure is local backbone motifs (α-helix, β-sheet) stabilized by hydrogen bonds; tertiary is the full 3D fold; quaternary is multi-chain assembly. Function lives in the tertiary/quaternary level.",
         "deep": "The α-helix and β-sheet were predicted from H-bonding geometry before being seen — a landmark of structural reasoning. Backbone dihedral angles (φ, ψ) parameterize secondary structure (see Ramachandran)."
       },
-      "sources": ["NCBI Bookshelf (MBoC)", "PDB-101"],
+      "sources": [
+        "NCBI Bookshelf (MBoC)",
+        "PDB-101"
+      ],
       "art_prompt": "four panels: bead string, a helix and sheet, a folded domain, a multi-subunit complex",
       "quiz": [
-        { "level": "recall", "prompt": "Name the four levels of protein structure in order.", "answer": "Primary (sequence) → secondary (helices/sheets) → tertiary (3D fold) → quaternary (multi-chain assembly)." },
-        { "level": "apply", "prompt": "What interaction primarily stabilizes secondary structure?", "answer": "Backbone hydrogen bonds (between C=O and N–H groups)." }
+        {
+          "level": "recall",
+          "prompt": "Name the four levels of protein structure in order.",
+          "answer": "Primary (sequence) → secondary (helices/sheets) → tertiary (3D fold) → quaternary (multi-chain assembly)."
+        },
+        {
+          "level": "apply",
+          "prompt": "What interaction primarily stabilizes secondary structure?",
+          "answer": "Backbone hydrogen bonds (between C=O and N–H groups)."
+        }
       ]
     },
     {
-      "id": "ramachandran", "title": "The Ramachandran plot", "shell": "nucleus", "type": "concept",
-      "requires": ["structure-hierarchy"],
+      "id": "ramachandran",
+      "title": "The Ramachandran plot",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "structure-hierarchy"
+      ],
       "summary": "Allowed backbone (φ, ψ) angles cluster into a few regions — and those regions ARE the secondary-structure types.",
       "depths": {
         "eli5": "Only certain twist combinations of the backbone don't bump atoms together. Those allowed twists make helices and sheets.",
         "core": "Steric clashes restrict the two backbone dihedrals φ and ψ to a few regions; the α-helix and β-sheet sit in distinct basins. The plot is the canonical validation tool for structures — outliers signal errors.",
         "deep": "Glycine (no side chain) accesses extra regions; proline is restricted. The plot is a direct, geometric consequence of excluded volume — a beautiful example of structure from sterics alone."
       },
-      "sources": ["PDB-101", "LibreTexts Biophysics"],
+      "sources": [
+        "PDB-101",
+        "LibreTexts Biophysics"
+      ],
       "art_prompt": "a phi-psi scatter with labeled alpha and beta basins emerging from a clash map",
       "quiz": [
-        { "level": "recall", "prompt": "What two angles are plotted, and why are only some regions allowed?", "answer": "Backbone dihedrals φ and ψ; only some combinations avoid steric clashes between atoms." },
-        { "level": "apply", "prompt": "Why does glycine access regions other residues cannot?", "answer": "It has only a hydrogen as its side chain, so it has far less steric restriction." }
+        {
+          "level": "recall",
+          "prompt": "What two angles are plotted, and why are only some regions allowed?",
+          "answer": "Backbone dihedrals φ and ψ; only some combinations avoid steric clashes between atoms."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does glycine access regions other residues cannot?",
+          "answer": "It has only a hydrogen as its side chain, so it has far less steric restriction."
+        }
       ]
     },
     {
-      "id": "ideal-chain", "title": "The ideal polymer chain", "shell": "nucleus", "type": "equation",
-      "requires": [], "equation": "\\langle R^2 \\rangle = N b^2",
+      "id": "ideal-chain",
+      "title": "The ideal polymer chain",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [],
+      "equation": "\\langle R^2 \\rangle = N b^2",
       "summary": "A flexible chain of N random links behaves like a random walk: its size grows as the square root of length.",
       "depths": {
         "eli5": "A floppy string folded at random doesn't reach far — double its length and it only gets about 1.4× wider.",
         "core": "Treating each of N segments (length b) as an independent random step gives a Gaussian coil with end-to-end size R ~ b√N. This is the baseline 'no interactions' model for unfolded proteins and DNA, and the reference against which real chains are compared.",
         "deep": "Self-avoidance (excluded volume) swells the coil to R ~ b N^0.59 (Flory); a poor solvent collapses it. Folding is, in part, a dramatic departure from random-coil statistics."
       },
-      "sources": ["LibreTexts (Polymer Physics)", "MIT OCW"],
+      "sources": [
+        "LibreTexts (Polymer Physics)",
+        "MIT OCW"
+      ],
       "art_prompt": "a random-walk coil with its root-mean-square end-to-end distance marked",
       "quiz": [
-        { "level": "recall", "prompt": "How does an ideal chain's size scale with the number of segments N?", "answer": "As √N (R ~ b√N) — like a random walk." },
-        { "level": "derive", "prompt": "Why does ⟨R²⟩ = Nb² for independent segments? Sketch the reasoning.", "answer": "R = Σ b_i; ⟨R²⟩ = Σ⟨b_i·b_j⟩; cross-terms average to zero for independent random directions, leaving N terms of b², so ⟨R²⟩ = Nb².", "eq": "\\langle R^2\\rangle=\\sum_{i,j}\\langle \\mathbf{b}_i\\cdot\\mathbf{b}_j\\rangle=Nb^2" }
+        {
+          "level": "recall",
+          "prompt": "How does an ideal chain's size scale with the number of segments N?",
+          "answer": "As √N (R ~ b√N) — like a random walk."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why does ⟨R²⟩ = Nb² for independent segments? Sketch the reasoning.",
+          "answer": "R = Σ b_i; ⟨R²⟩ = Σ⟨b_i·b_j⟩; cross-terms average to zero for independent random directions, leaving N terms of b², so ⟨R²⟩ = Nb².",
+          "eq": "\\langle R^2\\rangle=\\sum_{i,j}\\langle \\mathbf{b}_i\\cdot\\mathbf{b}_j\\rangle=Nb^2"
+        }
       ]
     },
     {
-      "id": "wlc", "title": "Worm-like chain & persistence length", "shell": "nucleus", "type": "concept",
-      "requires": ["ideal-chain"],
+      "id": "wlc",
+      "title": "Worm-like chain & persistence length",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "ideal-chain"
+      ],
       "summary": "Stiff polymers (like DNA) are characterized by a persistence length — the distance over which the chain 'forgets' its direction.",
       "depths": {
         "eli5": "Some strings are stiff like cooked spaghetti — they stay straight for a while before bending. That 'while' is the persistence length.",
         "core": "The worm-like chain models semiflexible polymers with bending stiffness. The persistence length l_p sets the crossover from rod-like (short pieces) to coil-like (long pieces). DNA's l_p ≈ 50 nm; a disordered protein's is ~0.5–1 nm.",
         "deep": "The force–extension of a WLC underlies single-molecule pulling experiments (optical/magnetic tweezers) and lets you read mechanical properties of DNA and proteins one molecule at a time."
       },
-      "sources": ["PMC single-molecule reviews", "LibreTexts"],
+      "sources": [
+        "PMC single-molecule reviews",
+        "LibreTexts"
+      ],
       "art_prompt": "a semiflexible filament straight over one persistence length then curling beyond it",
       "quiz": [
-        { "level": "recall", "prompt": "Define persistence length in one sentence.", "answer": "The contour distance over which a polymer's backbone direction stays correlated (it 'forgets' its orientation beyond it)." },
-        { "level": "apply", "prompt": "DNA has l_p ≈ 50 nm. Is a 30 nm fragment more rod-like or coil-like?", "answer": "More rod-like, since its length is shorter than the persistence length." }
+        {
+          "level": "recall",
+          "prompt": "Define persistence length in one sentence.",
+          "answer": "The contour distance over which a polymer's backbone direction stays correlated (it 'forgets' its orientation beyond it)."
+        },
+        {
+          "level": "apply",
+          "prompt": "DNA has l_p ≈ 50 nm. Is a 30 nm fragment more rod-like or coil-like?",
+          "answer": "More rod-like, since its length is shorter than the persistence length."
+        }
       ]
     },
     {
-      "id": "two-state-folding", "title": "Two-state folding equilibrium", "shell": "nucleus", "type": "equation",
-      "requires": ["free-energy", "gibbs"], "equation": "K = \\dfrac{[U]}{[F]} = e^{-\\Delta G_{fold}/k_BT}",
+      "id": "two-state-folding",
+      "title": "Two-state folding equilibrium",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "free-energy",
+        "gibbs"
+      ],
+      "equation": "K = \\dfrac{[U]}{[F]} = e^{-\\Delta G_{fold}/k_BT}",
       "summary": "Many small proteins fold all-or-none: only folded and unfolded states are populated, set by a single ΔG.",
       "depths": {
         "eli5": "Some proteins are either fully folded or fully unfolded — almost nothing in between — like a switch.",
         "core": "In the two-state approximation the equilibrium between folded (F) and unfolded (U) is governed by one free energy, ΔG_fold. Cooperative, sigmoidal melting curves (vs temperature or denaturant) are the experimental signature, and fitting them gives ΔG.",
         "deep": "Cooperativity arises because partially folded states are higher in free energy than either end — the funnel makes the intermediate region thermodynamically unfavorable, so the population is bimodal."
       },
-      "sources": ["PMC folding reviews", "LibreTexts Biophysics"],
+      "sources": [
+        "PMC folding reviews",
+        "LibreTexts Biophysics"
+      ],
       "art_prompt": "a sigmoidal melting curve with folded and unfolded baskets at the ends",
       "quiz": [
-        { "level": "recall", "prompt": "What is the experimental signature of two-state folding?", "answer": "A cooperative, sigmoidal transition (vs temperature or denaturant) with only folded and unfolded states populated." },
-        { "level": "derive", "prompt": "Express the fraction folded in terms of ΔG_fold.", "answer": "f_F = 1/(1 + e^(−ΔG_unfold/kT)) ... equivalently f_F = 1/(1+K) with K = [U]/[F] = e^(−ΔG_fold/kT).", "eq": "f_F=\\frac{1}{1+e^{-\\Delta G_{fold}/k_BT}}" }
+        {
+          "level": "recall",
+          "prompt": "What is the experimental signature of two-state folding?",
+          "answer": "A cooperative, sigmoidal transition (vs temperature or denaturant) with only folded and unfolded states populated."
+        },
+        {
+          "level": "derive",
+          "prompt": "Express the fraction folded in terms of ΔG_fold.",
+          "answer": "f_F = 1/(1 + e^(−ΔG_unfold/kT)) ... equivalently f_F = 1/(1+K) with K = [U]/[F] = e^(−ΔG_fold/kT).",
+          "eq": "f_F=\\frac{1}{1+e^{-\\Delta G_{fold}/k_BT}}"
+        }
       ]
     },
     {
-      "id": "folding-funnel", "title": "Energy landscape & the folding funnel", "shell": "nucleus", "type": "concept",
-      "requires": ["two-state-folding"],
+      "id": "folding-funnel",
+      "title": "Energy landscape & the folding funnel",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "two-state-folding"
+      ],
       "summary": "Folding is a biased downhill search on a funnel-shaped landscape, not a single pathway.",
       "depths": {
         "eli5": "A protein folds by tumbling 'downhill' on a funnel toward its shape — many routes, one bottom.",
         "core": "Landscape theory replaced the idea of one folding route with a statistical funnel: many high-energy unfolded conformations narrowing toward the native state. Energetic bias (the funnel's slope) beats the entropy of the search, resolving Levinthal's paradox.",
         "deep": "Ruggedness (local minima) can trap intermediates or misfold; the principle of minimal frustration says evolved sequences have smooth-enough funnels to fold reliably."
       },
-      "sources": ["PMC reviews (Wolynes/Onuchic landscape theory)"],
+      "sources": [
+        "PMC reviews (Wolynes/Onuchic landscape theory)"
+      ],
       "art_prompt": "a 3D funnel with many trajectories spiraling to a single native minimum",
       "quiz": [
-        { "level": "recall", "prompt": "What does the funnel picture replace, and what does it resolve?", "answer": "It replaces the single-pathway view with a statistical downhill search and resolves Levinthal's paradox." },
-        { "level": "apply", "prompt": "What does 'minimal frustration' mean for an evolved protein sequence?", "answer": "Its interactions are mutually compatible enough that the funnel is smooth, so it folds reliably without getting trapped." }
+        {
+          "level": "recall",
+          "prompt": "What does the funnel picture replace, and what does it resolve?",
+          "answer": "It replaces the single-pathway view with a statistical downhill search and resolves Levinthal's paradox."
+        },
+        {
+          "level": "apply",
+          "prompt": "What does 'minimal frustration' mean for an evolved protein sequence?",
+          "answer": "Its interactions are mutually compatible enough that the funnel is smooth, so it folds reliably without getting trapped."
+        }
       ]
     },
     {
-      "id": "anfinsen", "title": "Anfinsen's thermodynamic hypothesis", "shell": "nucleus", "type": "result",
-      "requires": ["two-state-folding"],
+      "id": "anfinsen",
+      "title": "Anfinsen's thermodynamic hypothesis",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "two-state-folding"
+      ],
       "summary": "The native structure is encoded by the sequence alone — it is the global free-energy minimum.",
       "depths": {
         "eli5": "A protein's shape is written into its sequence; unfold it and it folds right back.",
         "core": "Anfinsen showed a denatured enzyme can spontaneously refold to its active form, implying the native state is the thermodynamically most stable structure for that sequence under physiological conditions — the founding principle of structure prediction.",
         "deep": "Caveats: chaperones assist kinetics in vivo, and some proteins are kinetically trapped or require co-translational folding — but the thermodynamic hypothesis remains the conceptual basis of the field (and of AlphaFold's premise)."
       },
-      "sources": ["NCBI Bookshelf", "PMC"],
+      "sources": [
+        "NCBI Bookshelf",
+        "PMC"
+      ],
       "art_prompt": "an enzyme unfolding and spontaneously refolding to the same active shape",
       "quiz": [
-        { "level": "recall", "prompt": "State Anfinsen's hypothesis in one sentence.", "answer": "A protein's native 3D structure is determined by its amino-acid sequence and corresponds to the global free-energy minimum." },
-        { "level": "apply", "prompt": "Name one in vivo caveat to the pure thermodynamic picture.", "answer": "Chaperones, kinetic traps, or co-translational folding can matter for getting there, even if the native state is still the stable one." }
+        {
+          "level": "recall",
+          "prompt": "State Anfinsen's hypothesis in one sentence.",
+          "answer": "A protein's native 3D structure is determined by its amino-acid sequence and corresponds to the global free-energy minimum."
+        },
+        {
+          "level": "apply",
+          "prompt": "Name one in vivo caveat to the pure thermodynamic picture.",
+          "answer": "Chaperones, kinetic traps, or co-translational folding can matter for getting there, even if the native state is still the stable one."
+        }
       ]
     },
     {
-      "id": "ddg", "title": "Mutational stability change (ΔΔG)", "shell": "nucleus", "type": "equation",
-      "requires": ["two-state-folding"], "equation": "\\Delta\\Delta G = \\Delta G_{fold}^{mut} - \\Delta G_{fold}^{wt}",
+      "id": "ddg",
+      "title": "Mutational stability change (ΔΔG)",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "two-state-folding"
+      ],
+      "equation": "\\Delta\\Delta G = \\Delta G_{fold}^{mut} - \\Delta G_{fold}^{wt}",
       "summary": "How much a point mutation stabilizes or destabilizes the fold — the workhorse number of protein engineering.",
       "depths": {
         "eli5": "Change one amino acid: does the protein hold together better or worse? That difference is ΔΔG.",
@@ -244,16 +472,32 @@
         "deep": "ΔΔG for stability is distinct from effects on aggregation or function — a mutation can be stabilizing yet pathogenic (e.g. by promoting aggregation), so matching the right observable to the question matters."
       },
       "note": "Sign conventions differ between tools — always check which direction 'destabilizing' points.",
-      "sources": ["PMC variant-effect reviews"],
+      "sources": [
+        "PMC variant-effect reviews"
+      ],
       "art_prompt": "wild-type vs mutant folded states on a shifted free-energy scale",
       "quiz": [
-        { "level": "recall", "prompt": "What does ΔΔG measure?", "answer": "The change in folding free energy caused by a mutation (mutant minus wild type)." },
-        { "level": "apply", "prompt": "Can a stabilizing mutation still cause disease? Explain.", "answer": "Yes — stability and aggregation/function are different observables; a mutation can stabilize the fold yet promote aggregation or impair function." }
+        {
+          "level": "recall",
+          "prompt": "What does ΔΔG measure?",
+          "answer": "The change in folding free energy caused by a mutation (mutant minus wild type)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Can a stabilizing mutation still cause disease? Explain.",
+          "answer": "Yes — stability and aggregation/function are different observables; a mutation can stabilize the fold yet promote aggregation or impair function."
+        }
       ]
     },
     {
-      "id": "binding-kd", "title": "Binding & the dissociation constant", "shell": "nucleus", "type": "equation",
-      "requires": ["gibbs"], "equation": "K_d = \\dfrac{[P][L]}{[PL]}, \\quad \\theta = \\dfrac{[L]}{K_d + [L]}",
+      "id": "binding-kd",
+      "title": "Binding & the dissociation constant",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "gibbs"
+      ],
+      "equation": "K_d = \\dfrac{[P][L]}{[PL]}, \\quad \\theta = \\dfrac{[L]}{K_d + [L]}",
       "summary": "K_d is the ligand concentration at which a site is half-occupied — the universal currency of molecular recognition.",
       "depths": {
         "eli5": "How much ligand do you need before half the proteins are bound? That concentration is K_d. Smaller K_d = tighter binding.",
@@ -261,112 +505,232 @@
         "deep": "K_d = k_off/k_on ties equilibrium to kinetics; many drugs are optimized on k_off (residence time) rather than K_d alone."
       },
       "note": "nM K_d ≈ tight, µM ≈ moderate, mM ≈ weak. Each 10× in K_d ≈ 1.4 kcal/mol at 310 K.",
-      "sources": ["LibreTexts Biophysics", "NCBI Bookshelf"],
+      "sources": [
+        "LibreTexts Biophysics",
+        "NCBI Bookshelf"
+      ],
       "art_prompt": "a binding hyperbola with the half-saturation point marked at L = Kd",
       "quiz": [
-        { "level": "recall", "prompt": "What does K_d equal in terms of occupancy?", "answer": "The free-ligand concentration at which the binding site is half-occupied (θ = 0.5)." },
-        { "level": "derive", "prompt": "Show that occupancy is θ = [L]/(K_d+[L]).", "answer": "From K_d = [P][L]/[PL], θ = [PL]/([P]+[PL]) = [L]/(K_d+[L]) after substituting [PL] = [P][L]/K_d.", "eq": "\\theta=\\frac{[PL]}{[P]+[PL]}=\\frac{[L]}{K_d+[L]}" }
+        {
+          "level": "recall",
+          "prompt": "What does K_d equal in terms of occupancy?",
+          "answer": "The free-ligand concentration at which the binding site is half-occupied (θ = 0.5)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Show that occupancy is θ = [L]/(K_d+[L]).",
+          "answer": "From K_d = [P][L]/[PL], θ = [PL]/([P]+[PL]) = [L]/(K_d+[L]) after substituting [PL] = [P][L]/K_d.",
+          "eq": "\\theta=\\frac{[PL]}{[P]+[PL]}=\\frac{[L]}{K_d+[L]}"
+        }
       ]
     },
     {
-      "id": "hill", "title": "Cooperativity & the Hill equation", "shell": "nucleus", "type": "equation",
-      "requires": ["binding-kd"], "equation": "\\theta = \\dfrac{[L]^n}{K_d + [L]^n}",
+      "id": "hill",
+      "title": "Cooperativity & the Hill equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "binding-kd"
+      ],
+      "equation": "\\theta = \\dfrac{[L]^n}{K_d + [L]^n}",
       "summary": "When binding one ligand helps the next, the binding curve sharpens from a hyperbola into a switch.",
       "depths": {
         "eli5": "If grabbing one molecule makes it easier to grab more, the protein flips from 'off' to 'on' over a narrow range — like a switch.",
         "core": "The Hill coefficient n measures cooperativity: n = 1 is independent sites; n > 1 is positive cooperativity (sigmoidal curve). Hemoglobin's O₂ binding (n ≈ 2.8) is the classic example that makes oxygen delivery efficient.",
         "deep": "The Hill equation is a phenomenological limit (infinitely cooperative would give n = number of sites); mechanistic models (MWC, KNF) explain where cooperativity comes from."
       },
-      "sources": ["NCBI Bookshelf", "LibreTexts"],
+      "sources": [
+        "NCBI Bookshelf",
+        "LibreTexts"
+      ],
       "art_prompt": "a hyperbola morphing into a steep sigmoid as cooperativity increases",
       "quiz": [
-        { "level": "recall", "prompt": "What does a Hill coefficient n > 1 indicate?", "answer": "Positive cooperativity — binding one ligand increases affinity for the next, giving a sigmoidal (switch-like) curve." },
-        { "level": "apply", "prompt": "Why is cooperative O₂ binding useful for hemoglobin?", "answer": "The sigmoidal curve lets it load O₂ in the lungs and unload it in tissues over a small change in O₂ pressure." }
+        {
+          "level": "recall",
+          "prompt": "What does a Hill coefficient n > 1 indicate?",
+          "answer": "Positive cooperativity — binding one ligand increases affinity for the next, giving a sigmoidal (switch-like) curve."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is cooperative O₂ binding useful for hemoglobin?",
+          "answer": "The sigmoidal curve lets it load O₂ in the lungs and unload it in tissues over a small change in O₂ pressure."
+        }
       ]
     },
     {
-      "id": "mwc", "title": "MWC allostery", "shell": "nucleus", "type": "concept",
-      "requires": ["hill"],
+      "id": "mwc",
+      "title": "MWC allostery",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "hill"
+      ],
       "summary": "Cooperativity from a concerted switch between a tense (T) and relaxed (R) state of the whole assembly.",
       "depths": {
         "eli5": "The whole protein flips together between two shapes; ligands tip the balance toward the one that binds them better.",
         "core": "The Monod–Wyman–Changeux model: a symmetric oligomer pre-exists in two states (T, low affinity; R, high affinity) in equilibrium. Ligand binds R better, so binding shifts the population toward R — producing cooperativity without sequential induced fit.",
         "deep": "MWC (concerted) vs KNF (sequential) are the two canonical frameworks; real allostery often lies between, and MWC's 'conformational selection' view connects to modern ensemble/energy-landscape thinking."
       },
-      "sources": ["PMC allostery reviews"],
+      "sources": [
+        "PMC allostery reviews"
+      ],
       "art_prompt": "a symmetric oligomer toggling concertedly between tense and relaxed states",
       "quiz": [
-        { "level": "recall", "prompt": "In MWC, where does cooperativity come from?", "answer": "From a pre-existing equilibrium between a low-affinity (T) and high-affinity (R) state; ligand binding shifts the whole assembly toward R." },
-        { "level": "apply", "prompt": "How does MWC differ from the KNF (induced-fit) model?", "answer": "MWC is concerted (all subunits switch together, conformational selection); KNF is sequential (each binding event induces a local change)." }
+        {
+          "level": "recall",
+          "prompt": "In MWC, where does cooperativity come from?",
+          "answer": "From a pre-existing equilibrium between a low-affinity (T) and high-affinity (R) state; ligand binding shifts the whole assembly toward R."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does MWC differ from the KNF (induced-fit) model?",
+          "answer": "MWC is concerted (all subunits switch together, conformational selection); KNF is sequential (each binding event induces a local change)."
+        }
       ]
     },
     {
-      "id": "michaelis", "title": "Michaelis–Menten kinetics", "shell": "nucleus", "type": "equation",
-      "requires": ["binding-kd"], "equation": "v = \\dfrac{V_{max}[S]}{K_M + [S]}",
+      "id": "michaelis",
+      "title": "Michaelis–Menten kinetics",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "binding-kd"
+      ],
+      "equation": "v = \\dfrac{V_{max}[S]}{K_M + [S]}",
       "summary": "Enzyme rate rises with substrate then saturates; K_M and V_max characterize the enzyme.",
       "depths": {
         "eli5": "Give an enzyme more substrate and it speeds up — until it's working flat out and can't go faster.",
         "core": "Under the steady-state (Briggs–Haldane) assumption for the enzyme–substrate complex, the initial rate is a hyperbola in [S]. K_M is the substrate concentration at half V_max (loosely, an affinity), and k_cat/K_M is the specificity constant comparing enzymes.",
         "deep": "k_cat/K_M is bounded by diffusion (~10^8–10^9 M^-1 s^-1); 'catalytically perfect' enzymes reach this limit, linking kinetics back to diffusion physics."
       },
-      "sources": ["NCBI Bookshelf (Biochemistry)", "LibreTexts"],
+      "sources": [
+        "NCBI Bookshelf (Biochemistry)",
+        "LibreTexts"
+      ],
       "art_prompt": "a saturating rate-vs-substrate hyperbola with Km at half Vmax",
       "quiz": [
-        { "level": "recall", "prompt": "What does K_M represent on the rate curve?", "answer": "The substrate concentration giving half the maximum rate (V_max/2)." },
-        { "level": "derive", "prompt": "What assumption yields the Michaelis–Menten form, and what is the specificity constant?", "answer": "Steady state for [ES] (d[ES]/dt ≈ 0); specificity constant is k_cat/K_M.", "eq": "\\frac{d[ES]}{dt}\\approx 0\\;\\Rightarrow\\; v=\\frac{V_{max}[S]}{K_M+[S]}" }
+        {
+          "level": "recall",
+          "prompt": "What does K_M represent on the rate curve?",
+          "answer": "The substrate concentration giving half the maximum rate (V_max/2)."
+        },
+        {
+          "level": "derive",
+          "prompt": "What assumption yields the Michaelis–Menten form, and what is the specificity constant?",
+          "answer": "Steady state for [ES] (d[ES]/dt ≈ 0); specificity constant is k_cat/K_M.",
+          "eq": "\\frac{d[ES]}{dt}\\approx 0\\;\\Rightarrow\\; v=\\frac{V_{max}[S]}{K_M+[S]}"
+        }
       ]
     },
     {
-      "id": "eyring", "title": "Transition-state theory (Eyring)", "shell": "nucleus", "type": "equation",
-      "requires": ["gibbs"], "equation": "k = \\dfrac{k_BT}{h}\\,e^{-\\Delta G^{\\ddagger}/k_BT}",
+      "id": "eyring",
+      "title": "Transition-state theory (Eyring)",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "gibbs"
+      ],
+      "equation": "k = \\dfrac{k_BT}{h}\\,e^{-\\Delta G^{\\ddagger}/k_BT}",
       "summary": "Reaction rate is set by the free-energy barrier to a transition state — the bridge from thermodynamics to kinetics.",
       "depths": {
         "eli5": "Reactions go as fast as it is easy to climb the hill between start and finish. Taller hill, slower reaction.",
         "core": "Eyring's equation relates a rate constant to the activation free energy ΔG‡ of the transition state, with prefactor k_BT/h (~6×10^12 s^-1 at 310 K). It explains why catalysis = lowering the barrier and why rates are exquisitely temperature-sensitive.",
         "deep": "An enzyme accelerates a reaction by binding the transition state more tightly than the substrate — Pauling's insight, and the rationale behind transition-state-analog inhibitors."
       },
-      "sources": ["LibreTexts P-Chem", "PMC"],
+      "sources": [
+        "LibreTexts P-Chem",
+        "PMC"
+      ],
       "art_prompt": "a reaction coordinate with a barrier at the transition state, lowered by a catalyst",
       "quiz": [
-        { "level": "recall", "prompt": "What single quantity sets the rate in transition-state theory?", "answer": "The activation free energy ΔG‡ — the barrier height to the transition state." },
-        { "level": "apply", "prompt": "In one sentence, how does an enzyme speed a reaction in this framework?", "answer": "By preferentially stabilizing (binding) the transition state, lowering ΔG‡." }
+        {
+          "level": "recall",
+          "prompt": "What single quantity sets the rate in transition-state theory?",
+          "answer": "The activation free energy ΔG‡ — the barrier height to the transition state."
+        },
+        {
+          "level": "apply",
+          "prompt": "In one sentence, how does an enzyme speed a reaction in this framework?",
+          "answer": "By preferentially stabilizing (binding) the transition state, lowering ΔG‡."
+        }
       ]
     },
     {
-      "id": "fick", "title": "Diffusion — Fick's laws", "shell": "nucleus", "type": "equation",
-      "requires": [], "equation": "J = -D\\,\\nabla c",
+      "id": "fick",
+      "title": "Diffusion — Fick's laws",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [],
+      "equation": "J = -D\\,\\nabla c",
       "summary": "Matter flows down concentration gradients; the diffusion coefficient D sets how fast.",
       "depths": {
         "eli5": "Stuff spreads from crowded places to empty ones. The steeper the crowd gradient, the faster the flow.",
         "core": "Fick's first law relates flux to the concentration gradient; combined with conservation it gives the diffusion equation ∂c/∂t = D∇²c. Diffusion is how molecules find targets inside cells, and it sets the timescale of unstirred biological transport.",
         "deep": "Diffusion is the macroscopic face of random molecular motion — the same D appears in the microscopic mean-square-displacement law (see random walk) and in the Einstein relation."
       },
-      "sources": ["LibreTexts P-Chem", "MIT OCW"],
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OCW"
+      ],
       "art_prompt": "molecules streaming down a smooth concentration gradient",
       "quiz": [
-        { "level": "recall", "prompt": "What does Fick's first law relate?", "answer": "Diffusive flux J to the concentration gradient ∇c (J = −D∇c)." },
-        { "level": "apply", "prompt": "Write the diffusion equation that follows from Fick's law plus conservation of mass.", "answer": "∂c/∂t = D∇²c.", "eq": "\\frac{\\partial c}{\\partial t}=D\\nabla^2 c" }
+        {
+          "level": "recall",
+          "prompt": "What does Fick's first law relate?",
+          "answer": "Diffusive flux J to the concentration gradient ∇c (J = −D∇c)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Write the diffusion equation that follows from Fick's law plus conservation of mass.",
+          "answer": "∂c/∂t = D∇²c.",
+          "eq": "\\frac{\\partial c}{\\partial t}=D\\nabla^2 c"
+        }
       ]
     },
     {
-      "id": "einstein-stokes", "title": "Einstein–Stokes relation", "shell": "nucleus", "type": "equation",
-      "requires": ["fick", "boltzmann"], "equation": "D = \\dfrac{k_BT}{6\\pi\\eta r}",
+      "id": "einstein-stokes",
+      "title": "Einstein–Stokes relation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "fick",
+        "boltzmann"
+      ],
+      "equation": "D = \\dfrac{k_BT}{6\\pi\\eta r}",
       "summary": "Diffusion, temperature, viscosity, and size are linked — bigger and stickier means slower.",
       "depths": {
         "eli5": "Small things in thin, warm liquid zip around; big things in thick, cold liquid crawl.",
         "core": "The Einstein relation D = kT/γ plus Stokes drag γ = 6πηr for a sphere gives D = kT/(6πηr). It lets you estimate a molecule's diffusion coefficient from its size, or its size from a measured D (e.g. dynamic light scattering).",
         "deep": "It is a fluctuation–dissipation result: the same friction γ that dissipates motion also sets the magnitude of thermal kicks — random force and drag are two faces of one coin."
       },
-      "sources": ["LibreTexts", "PMC"],
+      "sources": [
+        "LibreTexts",
+        "PMC"
+      ],
       "art_prompt": "a sphere buffeted by thermal kicks while feeling viscous drag, with D, eta, r labeled",
       "quiz": [
-        { "level": "recall", "prompt": "How does diffusion coefficient depend on particle radius and viscosity?", "answer": "Inversely on both: D = kT/(6πηr) — bigger or more viscous means slower diffusion." },
-        { "level": "derive", "prompt": "From the Einstein relation D = kT/γ and Stokes drag, get D for a sphere.", "answer": "Substitute γ = 6πηr: D = kT/(6πηr).", "eq": "D=\\frac{k_BT}{\\gamma},\\;\\gamma=6\\pi\\eta r\\Rightarrow D=\\frac{k_BT}{6\\pi\\eta r}" }
+        {
+          "level": "recall",
+          "prompt": "How does diffusion coefficient depend on particle radius and viscosity?",
+          "answer": "Inversely on both: D = kT/(6πηr) — bigger or more viscous means slower diffusion."
+        },
+        {
+          "level": "derive",
+          "prompt": "From the Einstein relation D = kT/γ and Stokes drag, get D for a sphere.",
+          "answer": "Substitute γ = 6πηr: D = kT/(6πηr).",
+          "eq": "D=\\frac{k_BT}{\\gamma},\\;\\gamma=6\\pi\\eta r\\Rightarrow D=\\frac{k_BT}{6\\pi\\eta r}"
+        }
       ]
     },
     {
-      "id": "random-walk", "title": "Random walk & mean-square displacement", "shell": "nucleus", "type": "equation",
-      "requires": ["fick"], "equation": "\\langle x^2 \\rangle = 2Dt",
+      "id": "random-walk",
+      "title": "Random walk & mean-square displacement",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "fick"
+      ],
+      "equation": "\\langle x^2 \\rangle = 2Dt",
       "summary": "Diffusing molecules spread as the square root of time — the microscopic origin of Fick's laws.",
       "depths": {
         "eli5": "A drunkard's walk covers distance slowly: to go twice as far takes four times as long.",
@@ -374,16 +738,33 @@
         "deep": "Anomalous diffusion (⟨x²⟩ ~ t^α, α ≠ 1) signals crowding or binding and is a rich readout in single-particle tracking inside cells."
       },
       "note": "Diffusion time scales as L²/D — estimate it before assuming transport is fast.",
-      "sources": ["LibreTexts", "MIT OCW"],
+      "sources": [
+        "LibreTexts",
+        "MIT OCW"
+      ],
       "art_prompt": "a jagged random-walk trajectory with a growing root-time spread",
       "quiz": [
-        { "level": "recall", "prompt": "How does mean-square displacement scale with time for normal diffusion?", "answer": "Linearly: ⟨x²⟩ ∝ t (so distance grows as √t)." },
-        { "level": "apply", "prompt": "If a molecule needs ~1 ms to diffuse across a 1 µm cell, roughly how long to cross a 10 µm cell?", "answer": "~100 ms — time scales as L²/D, so 10× distance is 100× time." }
+        {
+          "level": "recall",
+          "prompt": "How does mean-square displacement scale with time for normal diffusion?",
+          "answer": "Linearly: ⟨x²⟩ ∝ t (so distance grows as √t)."
+        },
+        {
+          "level": "apply",
+          "prompt": "If a molecule needs ~1 ms to diffuse across a 1 µm cell, roughly how long to cross a 10 µm cell?",
+          "answer": "~100 ms — time scales as L²/D, so 10× distance is 100× time."
+        }
       ]
     },
     {
-      "id": "nernst", "title": "The Nernst potential", "shell": "nucleus", "type": "equation",
-      "requires": ["boltzmann"], "equation": "E = \\dfrac{RT}{zF}\\ln\\dfrac{[\\text{ion}]_{out}}{[\\text{ion}]_{in}}",
+      "id": "nernst",
+      "title": "The Nernst potential",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "E = \\dfrac{RT}{zF}\\ln\\dfrac{[\\text{ion}]_{out}}{[\\text{ion}]_{in}}",
       "summary": "The membrane voltage at which an ion's concentration gradient is exactly balanced by the electric field.",
       "depths": {
         "eli5": "An ion wants to flow from where it's crowded to where it's not; charge it up enough and the push-back balances it. That balancing voltage is the Nernst potential.",
@@ -391,48 +772,99 @@
         "deep": "With multiple permeant ions you weight by permeability (Goldman–Hodgkin–Katz) to get the resting potential — but each ion's Nernst potential remains the reference it drives toward."
       },
       "note": "At 310 K, (RT/F)·ln ≈ 61 mV per decade of concentration ratio (×1/z).",
-      "sources": ["LibreTexts", "NCBI Bookshelf"],
+      "sources": [
+        "LibreTexts",
+        "NCBI Bookshelf"
+      ],
       "art_prompt": "a membrane with an ion gradient balanced by a voltage, forces canceling",
       "quiz": [
-        { "level": "recall", "prompt": "What does the Nernst potential represent?", "answer": "The membrane voltage at which an ion's chemical gradient is exactly balanced by the electrical force (its equilibrium potential)." },
-        { "level": "apply", "prompt": "A 10× outside:inside gradient of a monovalent cation gives roughly what equilibrium potential at body temperature?", "answer": "About +61 mV (≈ 61 mV per tenfold ratio for z = +1)." }
+        {
+          "level": "recall",
+          "prompt": "What does the Nernst potential represent?",
+          "answer": "The membrane voltage at which an ion's chemical gradient is exactly balanced by the electrical force (its equilibrium potential)."
+        },
+        {
+          "level": "apply",
+          "prompt": "A 10× outside:inside gradient of a monovalent cation gives roughly what equilibrium potential at body temperature?",
+          "answer": "About +61 mV (≈ 61 mV per tenfold ratio for z = +1)."
+        }
       ]
     },
     {
-      "id": "bilayer", "title": "Lipid bilayer self-assembly", "shell": "nucleus", "type": "concept",
-      "requires": ["hydrophobic"],
+      "id": "bilayer",
+      "title": "Lipid bilayer self-assembly",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "hydrophobic"
+      ],
       "summary": "Amphiphilic lipids spontaneously form bilayers — the cell's barrier — driven by the hydrophobic effect.",
       "depths": {
         "eli5": "Soap-like molecules with a water-loving head and oily tail line up tail-to-tail into a sheet that keeps water out.",
         "core": "Because lipids have a polar head and nonpolar tails, burying the tails away from water (hydrophobic effect) drives self-assembly into a bilayer. The result is a fluid, self-healing 2D sheet — the structural basis of all membranes and of compartmentalization.",
         "deep": "Molecular shape (packing parameter) selects bilayers vs micelles vs hexagonal phases; bilayer bending and fusion energetics (see Helfrich-type elasticity) govern vesicles, membrane shaping, and pore formation."
       },
-      "sources": ["PMC membrane reviews", "LibreTexts Biophysics"],
+      "sources": [
+        "PMC membrane reviews",
+        "LibreTexts Biophysics"
+      ],
       "art_prompt": "amphiphilic lipids assembling tail-to-tail into a fluid bilayer sheet",
       "quiz": [
-        { "level": "recall", "prompt": "What drives lipids to form a bilayer?", "answer": "The hydrophobic effect — burying the nonpolar tails away from water." },
-        { "level": "apply", "prompt": "Why is a bilayer described as 'self-healing'?", "answer": "Exposing tails to water is costly, so the bilayer spontaneously reseals to minimize that exposure." }
+        {
+          "level": "recall",
+          "prompt": "What drives lipids to form a bilayer?",
+          "answer": "The hydrophobic effect — burying the nonpolar tails away from water."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is a bilayer described as 'self-healing'?",
+          "answer": "Exposing tails to water is costly, so the bilayer spontaneously reseals to minimize that exposure."
+        }
       ]
     },
     {
-      "id": "hodgkin-huxley", "title": "Hodgkin–Huxley & the action potential", "shell": "nucleus", "type": "equation",
-      "requires": ["nernst"], "equation": "C\\dfrac{dV}{dt} = -\\sum_i g_i(V)\\,(V - E_i) + I_{ext}",
+      "id": "hodgkin-huxley",
+      "title": "Hodgkin–Huxley & the action potential",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "nernst"
+      ],
+      "equation": "C\\dfrac{dV}{dt} = -\\sum_i g_i(V)\\,(V - E_i) + I_{ext}",
       "summary": "Voltage-gated ion conductances make the membrane an excitable circuit that fires all-or-none spikes.",
       "depths": {
         "eli5": "Tiny voltage-controlled gates open and close, letting the cell snap to a spike and reset — the language of neurons.",
         "core": "The membrane is a capacitor in parallel with ion-specific conductances. Hodgkin and Huxley described how voltage-dependent Na⁺ and K⁺ conductances (with gating variables) produce the action potential: fast Na⁺ influx depolarizes, slower K⁺ efflux repolarizes. Each current drives V toward that ion's Nernst potential.",
         "deep": "It was a quantitative, predictive model fit to voltage-clamp data — a landmark of biophysics — and the gating variables presaged the molecular structure of voltage-gated channels."
       },
-      "sources": ["NCBI Bookshelf", "PMC (Hodgkin–Huxley)"],
+      "sources": [
+        "NCBI Bookshelf",
+        "PMC (Hodgkin–Huxley)"
+      ],
       "art_prompt": "a membrane equivalent circuit with Na and K conductance branches producing a spike",
       "quiz": [
-        { "level": "recall", "prompt": "Which two ion conductances chiefly generate the classic action potential, and what does each do?", "answer": "Voltage-gated Na⁺ (fast depolarization) and K⁺ (slower repolarization)." },
-        { "level": "derive", "prompt": "Why does each ionic current term have the form g_i(V − E_i)?", "answer": "It is Ohm's law with E_i the ion's Nernst potential: the driving force is the deviation of V from equilibrium, scaled by conductance g_i.", "eq": "I_i=g_i\\,(V-E_i)" }
+        {
+          "level": "recall",
+          "prompt": "Which two ion conductances chiefly generate the classic action potential, and what does each do?",
+          "answer": "Voltage-gated Na⁺ (fast depolarization) and K⁺ (slower repolarization)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why does each ionic current term have the form g_i(V − E_i)?",
+          "answer": "It is Ohm's law with E_i the ion's Nernst potential: the driving force is the deviation of V from equilibrium, scaled by conductance g_i.",
+          "eq": "I_i=g_i\\,(V-E_i)"
+        }
       ]
     },
     {
-      "id": "gnm", "title": "Elastic network models (GNM/ENM)", "shell": "nucleus", "type": "concept",
-      "requires": ["eigen-modes", "structure-hierarchy"],
+      "id": "gnm",
+      "title": "Elastic network models (GNM/ENM)",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "eigen-modes",
+        "structure-hierarchy"
+      ],
       "summary": "Model a protein as nodes connected by springs; the soft normal modes predict functional flexibility remarkably well.",
       "depths": {
         "eli5": "Pretend the protein is balls joined by springs. Where it naturally wobbles tells you which parts are floppy.",
@@ -440,48 +872,96 @@
         "deep": "Because GNM is parameter-free and analytic, it cannot 'leak' homology information — making it a strong, honest baseline against which learned flexibility predictors (e.g. sequence models) should be judged."
       },
       "note": "A recurring lesson: simple physics baselines (GNM) often match or beat ML for flexibility.",
-      "sources": ["Bahar et al., Folding & Design 1997", "PMC"],
+      "sources": [
+        "Bahar et al., Folding & Design 1997",
+        "PMC"
+      ],
       "art_prompt": "a protein reduced to a spring network with soft low-frequency modes highlighted",
       "quiz": [
-        { "level": "recall", "prompt": "What does a Gaussian Network Model represent the protein as, and what do its soft modes predict?", "answer": "Residues as nodes joined by identical springs; the low-frequency modes predict flexibility (B-factors / RMSF)." },
-        { "level": "apply", "prompt": "Why is GNM a good 'honest' baseline for flexibility prediction?", "answer": "It is analytic and trained on nothing, so it cannot exploit homology/data leakage — any learned model must beat it fairly." }
+        {
+          "level": "recall",
+          "prompt": "What does a Gaussian Network Model represent the protein as, and what do its soft modes predict?",
+          "answer": "Residues as nodes joined by identical springs; the low-frequency modes predict flexibility (B-factors / RMSF)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is GNM a good 'honest' baseline for flexibility prediction?",
+          "answer": "It is analytic and trained on nothing, so it cannot exploit homology/data leakage — any learned model must beat it fairly."
+        }
       ]
     },
     {
-      "id": "md", "title": "Molecular dynamics", "shell": "nucleus", "type": "method",
-      "requires": ["gibbs"],
+      "id": "md",
+      "title": "Molecular dynamics",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "gibbs"
+      ],
       "summary": "Integrate Newton's equations on a force field to watch biomolecules move atom-by-atom.",
       "depths": {
         "eli5": "Give every atom a tiny push according to the forces between them, repeat a billion times, and watch the molecule dance.",
         "core": "MD numerically integrates F = ma (via the Verlet algorithm) using an empirical force field for bonds, angles, electrostatics, and van der Waals. It yields trajectories from which thermodynamic and kinetic properties are computed — bridging structure and function in motion.",
         "deep": "The sampling problem is central: femtosecond timesteps vs millisecond biology means rare events need enhanced sampling (umbrella sampling, metadynamics) or Markov state models to be reachable."
       },
-      "sources": ["LiveCoMS open reviews", "GROMACS/OpenMM docs"],
+      "sources": [
+        "LiveCoMS open reviews",
+        "GROMACS/OpenMM docs"
+      ],
       "art_prompt": "atoms tracing trajectories under force-field interactions over time",
       "quiz": [
-        { "level": "recall", "prompt": "What does molecular dynamics integrate, and with what model of the forces?", "answer": "Newton's equations of motion (F = ma), using an empirical force field." },
-        { "level": "apply", "prompt": "What is the central limitation of plain MD, and one way around it?", "answer": "The timescale/sampling gap (fs steps vs ms events); enhanced sampling or Markov state models help bridge it." }
+        {
+          "level": "recall",
+          "prompt": "What does molecular dynamics integrate, and with what model of the forces?",
+          "answer": "Newton's equations of motion (F = ma), using an empirical force field."
+        },
+        {
+          "level": "apply",
+          "prompt": "What is the central limitation of plain MD, and one way around it?",
+          "answer": "The timescale/sampling gap (fs steps vs ms events); enhanced sampling or Markov state models help bridge it."
+        }
       ]
     },
     {
-      "id": "alphafold-plddt", "title": "AlphaFold & pLDDT", "shell": "frontier", "type": "concept",
-      "requires": ["structure-hierarchy"],
+      "id": "alphafold-plddt",
+      "title": "AlphaFold & pLDDT",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "structure-hierarchy"
+      ],
       "summary": "Deep learning predicts structure from sequence; pLDDT is its per-residue confidence — often misread as flexibility.",
       "depths": {
         "eli5": "An AI guesses a protein's shape from its letters and marks how sure it is at each spot. People wrongly treat 'unsure' as 'floppy'.",
         "core": "AlphaFold predicts 3D structure from sequence and a multiple-sequence alignment, with pLDDT as a per-residue confidence score. Low-pLDDT regions correlate with disorder/flexibility on average but the score is a confidence, not a physical flexibility — a live 2025 debate.",
         "deep": "Conflating pLDDT with dynamics is a leakage/observable-mismatch trap: confidence reflects predictability (including conservation), so honest flexibility benchmarks must compare against physics (GNM) and control for homology."
       },
-      "sources": ["Jumper et al. 2021 (Nature)", "Structure 2025 pLDDT critiques"],
+      "sources": [
+        "Jumper et al. 2021 (Nature)",
+        "Structure 2025 pLDDT critiques"
+      ],
       "art_prompt": "a predicted fold colored by per-residue confidence, with a caution flag over low-confidence loops",
       "quiz": [
-        { "level": "recall", "prompt": "What does pLDDT measure, and what is it NOT?", "answer": "It is AlphaFold's per-residue confidence; it is not a direct measure of physical flexibility." },
-        { "level": "apply", "prompt": "Why is using pLDDT as a flexibility predictor risky?", "answer": "Confidence reflects predictability/conservation, not dynamics, so it can mislead unless benchmarked against physics and homology-controlled." }
+        {
+          "level": "recall",
+          "prompt": "What does pLDDT measure, and what is it NOT?",
+          "answer": "It is AlphaFold's per-residue confidence; it is not a direct measure of physical flexibility."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is using pLDDT as a flexibility predictor risky?",
+          "answer": "Confidence reflects predictability/conservation, not dynamics, so it can mislead unless benchmarked against physics and homology-controlled."
+        }
       ]
     },
     {
-      "id": "esm", "title": "Protein language models (ESM)", "shell": "frontier", "type": "concept",
-      "requires": ["structure-hierarchy"],
+      "id": "esm",
+      "title": "Protein language models (ESM)",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "structure-hierarchy"
+      ],
       "summary": "Transformers trained on millions of sequences learn representations that predict structure, function, and mutation effects.",
       "depths": {
         "eli5": "Train an AI on a huge library of protein 'sentences' and it learns the grammar — enough to guess effects of changing a letter.",
@@ -489,32 +969,65 @@
         "deep": "Evaluating these models honestly requires fold-disjoint (e.g. CATH-superfamily-disjoint) splits; otherwise apparent skill is partly memorized homology rather than transferable biophysics."
       },
       "note": "A theme across modern biophysics ML: control for homology leakage or your benchmark lies to you.",
-      "sources": ["Lin et al. 2023 (Science)", "PMC benchmarks"],
+      "sources": [
+        "Lin et al. 2023 (Science)",
+        "PMC benchmarks"
+      ],
       "art_prompt": "a transformer attending over a protein sequence, embeddings projecting to structure",
       "quiz": [
-        { "level": "recall", "prompt": "How are protein language models like ESM trained?", "answer": "By masked-token prediction over large databases of protein sequences (self-supervised)." },
-        { "level": "apply", "prompt": "Why must flexibility/function benchmarks use fold-disjoint splits for these models?", "answer": "To prevent homology leakage — without it, apparent skill can be memorized similarity rather than real generalization." }
+        {
+          "level": "recall",
+          "prompt": "How are protein language models like ESM trained?",
+          "answer": "By masked-token prediction over large databases of protein sequences (self-supervised)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why must flexibility/function benchmarks use fold-disjoint splits for these models?",
+          "answer": "To prevent homology leakage — without it, apparent skill can be memorized similarity rather than real generalization."
+        }
       ]
     },
     {
-      "id": "idp-llps", "title": "Disordered proteins & phase separation", "shell": "frontier", "type": "concept",
-      "requires": ["hydrophobic"],
+      "id": "idp-llps",
+      "title": "Disordered proteins & phase separation",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "hydrophobic"
+      ],
       "summary": "Many proteins lack a fixed fold; some demix into liquid droplets that organize the cell without membranes.",
       "depths": {
         "eli5": "Some proteins are floppy by design, and crowds of them can clump into liquid droplets — like oil drops that sort cell contents.",
         "core": "Intrinsically disordered regions sample ensembles rather than one structure. Multivalent weak interactions among them can drive liquid–liquid phase separation (LLPS), forming biomolecular condensates that compartmentalize biochemistry without a membrane.",
         "deep": "Sequence patterning (charge blocks, aromatic 'stickers') tunes condensate formation; aberrant transitions from liquid to solid are linked to amyloid disease — connecting LLPS to aggregation."
       },
-      "sources": ["PMC LLPS reviews", "CAID disorder benchmarks"],
+      "sources": [
+        "PMC LLPS reviews",
+        "CAID disorder benchmarks"
+      ],
       "art_prompt": "disordered chains with sticker residues coalescing into a liquid droplet",
       "quiz": [
-        { "level": "recall", "prompt": "What is a biomolecular condensate, and what drives its formation?", "answer": "A membraneless liquid compartment formed by liquid–liquid phase separation, driven by multivalent weak (often disordered) interactions." },
-        { "level": "apply", "prompt": "How can phase separation connect to disease?", "answer": "Aberrant liquid-to-solid transitions of condensates can seed pathological aggregation (e.g. amyloid)." }
+        {
+          "level": "recall",
+          "prompt": "What is a biomolecular condensate, and what drives its formation?",
+          "answer": "A membraneless liquid compartment formed by liquid–liquid phase separation, driven by multivalent weak (often disordered) interactions."
+        },
+        {
+          "level": "apply",
+          "prompt": "How can phase separation connect to disease?",
+          "answer": "Aberrant liquid-to-solid transitions of condensates can seed pathological aggregation (e.g. amyloid)."
+        }
       ]
     },
     {
-      "id": "amyloid", "title": "Amyloid aggregation & nucleation", "shell": "frontier", "type": "concept",
-      "requires": ["hydrophobic", "ddg"],
+      "id": "amyloid",
+      "title": "Amyloid aggregation & nucleation",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "hydrophobic",
+        "ddg"
+      ],
       "summary": "Proteins can misassemble into ordered β-sheet fibrils through a nucleation-and-growth process central to neurodegeneration.",
       "depths": {
         "eli5": "Sticky protein pieces can lock into long ordered fibers; once a seed forms, more pile on fast — the hallmark of diseases like Alzheimer's.",
@@ -522,27 +1035,329 @@
         "deep": "Thioflavin-T fluorescence reports the sigmoidal kinetics; for intrinsically disordered amyloid proteins, a folding-stability predictor is the wrong observable — aggregation scales (e.g. AGGRESCAN) match the phenotype better, a clean example of matching method to question."
       },
       "note": "Match the observable to the question: for disordered amyloid mutants, aggregation propensity beats ΔΔG.",
-      "sources": ["PMC amyloid kinetics reviews", "Th-T assay literature"],
+      "sources": [
+        "PMC amyloid kinetics reviews",
+        "Th-T assay literature"
+      ],
       "art_prompt": "monomers nucleating into an ordered cross-beta fibril with a sigmoidal growth curve",
       "quiz": [
-        { "level": "recall", "prompt": "What kinetic process describes amyloid formation?", "answer": "Nucleation–elongation (a slow nucleation step followed by rapid fibril growth, often with secondary nucleation)." },
-        { "level": "apply", "prompt": "For familial amyloid mutations in a disordered peptide, why might aggregation propensity predict disease better than ΔΔG?", "answer": "There is no stable fold to destabilize, so folding ΔΔG is the wrong observable; stickiness/aggregation scales match the actual aggregation phenotype." }
+        {
+          "level": "recall",
+          "prompt": "What kinetic process describes amyloid formation?",
+          "answer": "Nucleation–elongation (a slow nucleation step followed by rapid fibril growth, often with secondary nucleation)."
+        },
+        {
+          "level": "apply",
+          "prompt": "For familial amyloid mutations in a disordered peptide, why might aggregation propensity predict disease better than ΔΔG?",
+          "answer": "There is no stable fold to destabilize, so folding ΔΔG is the wrong observable; stickiness/aggregation scales match the actual aggregation phenotype."
+        }
       ]
     },
     {
-      "id": "mdcath", "title": "MD datasets at scale (mdCATH)", "shell": "frontier", "type": "result",
-      "requires": ["md", "gnm"],
+      "id": "mdcath",
+      "title": "MD datasets at scale (mdCATH)",
+      "shell": "frontier",
+      "type": "result",
+      "requires": [
+        "md",
+        "gnm"
+      ],
       "summary": "Large, fold-diverse MD archives enable proteome-scale, leakage-controlled tests of biophysical hypotheses.",
       "depths": {
         "eli5": "Instead of simulating one protein, use a huge library of simulated proteins to test ideas fairly across all shapes.",
         "core": "Datasets like mdCATH provide all-atom trajectories across thousands of CATH domains and temperatures. They let you ask whether a rule (e.g. what unfolds first, or what predicts flexibility) holds across fold space under honest, CATH-superfamily-disjoint splits — turning anecdotes into benchmarks.",
         "deep": "A frequent finding: single-domain 'lore' fails to generalize at scale, and simple structural/topological features (contact order, network models) carry most of the transferable signal — a humbling, useful corrective."
       },
-      "sources": ["Mirarchi et al. 2024 (Sci. Data), arXiv:2407.14794"],
+      "sources": [
+        "Mirarchi et al. 2024 (Sci. Data), arXiv:2407.14794"
+      ],
       "art_prompt": "thousands of small protein trajectories tiled into a fold-diverse benchmark grid",
       "quiz": [
-        { "level": "recall", "prompt": "What does a fold-diverse MD dataset enable that single-protein studies cannot?", "answer": "Proteome-scale, homology-controlled (fold-disjoint) tests of whether a biophysical rule generalizes across fold space." },
-        { "level": "apply", "prompt": "Why use a CATH-superfamily-disjoint split when benchmarking on such data?", "answer": "To prevent homology leakage, so measured skill reflects genuine generalization rather than memorized fold similarity." }
+        {
+          "level": "recall",
+          "prompt": "What does a fold-diverse MD dataset enable that single-protein studies cannot?",
+          "answer": "Proteome-scale, homology-controlled (fold-disjoint) tests of whether a biophysical rule generalizes across fold space."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why use a CATH-superfamily-disjoint split when benchmarking on such data?",
+          "answer": "To prevent homology leakage, so measured skill reflects genuine generalization rather than memorized fold similarity."
+        }
+      ]
+    },
+    {
+      "id": "poisson-boltzmann",
+      "title": "Poisson–Boltzmann electrostatics",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "debye"
+      ],
+      "summary": "The mean-field equation for the electrostatic potential around a charged molecule in salt water — Boltzmann-weighted mobile ions plugged into Poisson's equation.",
+      "depths": {
+        "eli5": "A charged protein pulls a cloud of opposite ions around itself. This equation tells you the shape of that cloud and how quickly the protein's pull fades with distance.",
+        "core": "Take Poisson's equation, ∇²φ = −ρ/(εε₀), and feed it a mobile-ion charge density set by the Boltzmann factor: each ion species sits at concentration nᵢ⁰·e^(−qᵢφ/kT). The result is a self-consistent, nonlinear PDE for the potential φ around a fixed charge distribution. Solve it (numerically, e.g. APBS) and you get binding electrostatics, pKa shifts, and salt dependence.",
+        "deep": "Linearizing the exponential for small φ collapses PB to Debye–Hückel, ∇²φ = κ²φ, where κ = 1/λ_D — so the Debye length is literally the decay constant of the linearized theory. PB is mean-field: it ignores ion–ion correlations, finite ion size, and dielectric saturation, which is why it fails for multivalent ions (Mg²⁺, polyamines) and highly charged nucleic acids."
+      },
+      "note": "PB is the workhorse behind continuum-electrostatics tools (APBS, DelPhi). Its failure modes (multivalent counterions, DNA) are exactly where ion correlations matter.",
+      "sources": [
+        "LibreTexts Biophysics",
+        "PMC open-access electrostatics reviews",
+        "APBS open documentation"
+      ],
+      "art_prompt": "a charged molecule surrounded by a fading cloud of counterions, potential contours decaying smoothly into the bulk salt",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What two equations are combined to derive the Poisson–Boltzmann equation?",
+          "answer": "Poisson's equation (∇²φ = −ρ/εε₀) and the Boltzmann distribution for the mobile-ion concentrations (nᵢ ∝ e^(−qᵢφ/kT))."
+        },
+        {
+          "level": "derive",
+          "prompt": "Show how the Debye length arises from PB.",
+          "answer": "Expand the Boltzmann factor for small qφ/kT; the linear term gives ∇²φ = κ²φ with κ² = Σ nᵢ⁰qᵢ²/(εε₀kT). The decay length λ_D = 1/κ is the Debye length — the linearized (Debye–Hückel) limit of PB."
+        }
+      ]
+    },
+    {
+      "id": "langevin",
+      "title": "The Langevin equation",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "random-walk",
+        "einstein-stokes"
+      ],
+      "summary": "Newton's law for a particle in a fluid: deterministic drag plus a random kicking force, with the two tied together by fluctuation–dissipation.",
+      "depths": {
+        "eli5": "A pollen grain in water gets dragged (slowed) by the fluid and randomly kicked by molecules hitting it. Write F = ma with both forces and you can predict how it wanders.",
+        "core": "m·dv/dt = −γv + ξ(t), where γ is Stokes drag and ξ(t) is a random force with zero mean. The kicks and the drag are not independent: ⟨ξ(t)ξ(t′)⟩ = 2γk_BT·δ(t−t′). This fluctuation–dissipation relation is what forces the particle to thermalize to k_BT, and it is why the same γ sets both the friction and the noise.",
+        "deep": "In the overdamped (high-friction) limit inertia drops out: γ·dx/dt = −∂U/∂x + ξ(t). Averaging recovers ⟨x²⟩ = 2Dt with D = k_BT/γ (Einstein–Stokes). The Langevin picture in configuration space is dual to the Fokker–Planck/Smoluchowski equation for the probability density, and is the integrator behind Brownian and Langevin-dynamics MD."
+      },
+      "note": "Fluctuation–dissipation: the same γ that dissipates energy also injects the noise that maintains thermal equilibrium. Break that link and your simulation won't reach the right temperature.",
+      "sources": [
+        "MIT OCW 8.333 statistical mechanics",
+        "LibreTexts Statistical Mechanics",
+        "arXiv q-bio stochastic-dynamics reviews"
+      ],
+      "art_prompt": "a single particle drifting down a gentle potential slope while jittery random arrows kick it sideways, drag arrows opposing its motion",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the fluctuation–dissipation relation connect in the Langevin equation?",
+          "answer": "The friction coefficient γ (dissipation) and the strength of the random force (fluctuation): ⟨ξ(t)ξ(t′)⟩ = 2γk_BT·δ(t−t′). The same γ controls both."
+        },
+        {
+          "level": "apply",
+          "prompt": "What is the overdamped Langevin equation and when is it valid?",
+          "answer": "γ·dx/dt = −∂U/∂x + ξ(t), valid when inertia is negligible (friction dominates) — the usual regime for molecules in water, where momentum relaxes far faster than position changes."
+        }
+      ]
+    },
+    {
+      "id": "smoluchowski-rate",
+      "title": "Diffusion-limited rate (Smoluchowski)",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "fick",
+        "einstein-stokes"
+      ],
+      "summary": "The fastest a bimolecular reaction can go when every diffusive encounter reacts — set purely by how quickly partners find each other.",
+      "depths": {
+        "eli5": "If two molecules react instantly the moment they touch, the only thing limiting the reaction is how fast they bump into each other by random wandering. This gives that speed limit.",
+        "core": "Solve the steady-state diffusion equation for partners approaching an absorbing sphere of radius R and you get k = 4πDR, where D is the relative diffusion coefficient (D = D_A + D_B). For typical proteins this ceiling is ~10⁹–10¹⁰ M⁻¹s⁻¹. A measured on-rate near this value means binding is diffusion-limited; far below it means an energy barrier or orientational/steric constraints gate the encounter.",
+        "deep": "Electrostatics rescales R by a Debye–Hückel factor (attraction speeds, like charges slow). Orientational constraints — only a small reactive patch counts — give the Berg–von Hippel reduction, partly rescued by reduction-in-dimensionality (sliding along DNA, membrane confinement). Enzymes like acetylcholinesterase and superoxide dismutase use electrostatic steering to beat the naive 4πDR estimate."
+      },
+      "note": "Diffusion-limited on-rates (~10⁹ M⁻¹s⁻¹) are the speed limit; faster apparent rates signal electrostatic steering or dimensional reduction, not magic.",
+      "sources": [
+        "PMC open-access enzyme-kinetics reviews",
+        "LibreTexts Biophysics",
+        "arXiv q-bio reaction-diffusion"
+      ],
+      "art_prompt": "two molecules wandering on diffusive paths converging onto an absorbing sphere, flux lines streaming inward",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the Smoluchowski diffusion-limited rate constant and what does each symbol mean?",
+          "answer": "k = 4πDR, where D is the relative diffusion coefficient (D_A + D_B) and R is the encounter (reaction) radius. It is the rate when every encounter reacts."
+        },
+        {
+          "level": "apply",
+          "prompt": "A measured association rate is ~10⁸ M⁻¹s⁻¹, well below the ~10⁹–10¹⁰ ceiling. What does that imply?",
+          "answer": "Binding is not purely diffusion-limited — an activation barrier, restrictive orientation, or steric gating slows reaction below the encounter rate."
+        }
+      ]
+    },
+    {
+      "id": "kramers",
+      "title": "Kramers escape over a barrier",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "langevin",
+        "eyring"
+      ],
+      "summary": "The rate a thermally-kicked particle escapes a potential well — Arrhenius exponential times a friction-dependent prefactor, the dynamical correction to transition-state theory.",
+      "depths": {
+        "eli5": "A ball jiggling in a valley occasionally gets enough random kicks to climb over a hill and escape. How often that happens depends on the hill's height and how 'sticky' the surrounding fluid is.",
+        "core": "Kramers solved the Langevin escape problem. The rate factors as k = A·e^(−ΔU/k_BT): the Boltzmann factor for the barrier height ΔU times a prefactor A set by the curvatures of the well and barrier and by the friction γ. In the high-friction (overdamped) limit, k = (ω₀ω_b)/(2πγ)·e^(−ΔU/k_BT) — crucially, the rate falls as 1/γ.",
+        "deep": "This exposes what transition-state theory misses: TST assumes every crossing of the barrier top is productive, but with friction the system can recross. The full Kramers result is non-monotonic in γ — the 'turnover': at low friction energy diffusion limits the rate (k ∝ γ), at high friction spatial diffusion does (k ∝ 1/γ). Protein folding and isomerization live in the high-friction regime, which is why solvent viscosity changes folding rates."
+      },
+      "note": "Kramers turnover: rate rises then falls with friction. Eyring/TST is the zero-friction, no-recrossing idealization Kramers corrects.",
+      "sources": [
+        "MIT OCW 8.333",
+        "PMC open-access protein-folding-kinetics reviews",
+        "arXiv cond-mat stochastic-processes"
+      ],
+      "art_prompt": "a double-well potential with a particle in the left well, a faint trajectory hopping over the central barrier, friction arrows damping it",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does the Kramers escape rate depend on barrier height and (in the overdamped limit) on friction?",
+          "answer": "Exponentially on barrier height: k ∝ e^(−ΔU/k_BT); and inversely on friction in the high-friction limit: k ∝ 1/γ."
+        },
+        {
+          "level": "derive",
+          "prompt": "What does Kramers theory add beyond Eyring transition-state theory?",
+          "answer": "A friction-dependent prefactor and barrier recrossing. TST assumes every barrier crossing is productive (no recrossing, no friction); Kramers shows the rate depends on γ and is non-monotonic (the turnover), correcting TST in condensed phases."
+        }
+      ]
+    },
+    {
+      "id": "bragg",
+      "title": "X-ray diffraction & Bragg's law",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "structure-hierarchy"
+      ],
+      "summary": "Crystals diffract X-rays into sharp spots where path differences between lattice planes are whole wavelengths — the original route to atomic-resolution structure.",
+      "depths": {
+        "eli5": "Line up molecules in a regular crystal, shine X-rays through, and they bounce off in special directions that make bright spots. The pattern of spots encodes where the atoms are.",
+        "core": "Constructive interference from parallel lattice planes spaced d apart requires nλ = 2d·sinθ (Bragg's law). The diffraction pattern is the Fourier transform of the electron density; spot positions give the unit cell, spot intensities give |F(hkl)|². Because detectors record intensity, the phases are lost — the phase problem — solved by molecular replacement, isomorphous replacement, or anomalous scattering.",
+        "deep": "Resolution is set by the highest-angle spots you can measure (smaller d ↔ larger θ). The map you build is the inverse FT of the structure factors F(hkl) = Σ f_j·e^(2πi(hx+ky+lz)); getting the phases right matters far more than the amplitudes ('phase dominance'). Crystal packing can distort flexible regions, and a static map averages over the crystal's molecules and time — a key contrast with NMR ensembles."
+      },
+      "note": "The phase problem is the crux: intensities give amplitudes, not phases, yet phases carry most of the structural information.",
+      "sources": [
+        "LibreTexts Physical Chemistry (diffraction)",
+        "PDB-101 open educational resources",
+        "MIT OCW crystallography materials"
+      ],
+      "art_prompt": "parallel atomic planes with two X-ray beams reflecting, the lower beam's extra path 2d·sinθ highlighted, sharp diffraction spots on a detector",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Bragg's law and what d and θ represent.",
+          "answer": "nλ = 2d·sinθ — n is the diffraction order, λ the X-ray wavelength, d the spacing between lattice planes, and θ the glancing (Bragg) angle. Constructive interference occurs when the extra path 2d·sinθ is a whole number of wavelengths."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is solving a crystal structure called the 'phase problem'?",
+          "answer": "Detectors record intensities (∝ |F|²), giving structure-factor amplitudes but not their phases. The electron-density map is the inverse Fourier transform of F = |F|·e^(iφ), and the phases carry most of the structural information, so they must be recovered separately (molecular/isomorphous replacement, anomalous scattering)."
+        }
+      ]
+    },
+    {
+      "id": "nmr-noe",
+      "title": "NMR & the NOE distance ruler",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "structure-hierarchy"
+      ],
+      "summary": "Nuclear spins report their chemical environment through chemical shift, and through cross-relaxation (the NOE) report inter-proton distances — structure in solution.",
+      "depths": {
+        "eli5": "Atomic nuclei act like tiny magnets. In a strong magnet they 'sing' at frequencies that depend on their neighbours, and nearby nuclei influence each other in a way that reveals how close they are.",
+        "core": "Each nucleus resonates at a frequency shifted by its local electronic environment — the chemical shift — fingerprinting chemical groups. The nuclear Overhauser effect (NOE) is dipolar cross-relaxation between nearby spins; its intensity scales steeply as r⁻⁶, so it is detectable only for protons within ~5 Å. A network of NOE-derived distance restraints, plus dihedral restraints from J-couplings, is fed to restrained dynamics to compute a structure.",
+        "deep": "Because NMR is done in solution at room temperature, the output is an ensemble of models consistent with the restraints, not a single static structure — it natively captures flexibility and exchange. Relaxation rates (T₁, T₂, ¹⁵N-NOE) report ps–ns backbone dynamics; relaxation dispersion probes µs–ms conformational exchange. Size is the limit: slow tumbling broadens lines, so beyond ~30–50 kDa you need TROSY, deuteration, and selective labeling."
+      },
+      "note": "NMR's r⁻⁶ NOE makes it a short-range ruler; its solution-state ensemble is complementary to a crystal's single averaged model.",
+      "sources": [
+        "LibreTexts NMR spectroscopy",
+        "PMC open-access biomolecular-NMR reviews",
+        "BMRB open documentation"
+      ],
+      "art_prompt": "two protons within five angstroms linked by a faint r-to-the-minus-six coupling, a spectrum of chemical-shift peaks fingerprinting groups",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What structural information does the NOE provide, and over what distance range?",
+          "answer": "Inter-proton distances, via dipolar cross-relaxation whose intensity scales as r⁻⁶ — detectable only for protons within roughly 5 Å. These distance restraints drive structure calculation."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does solution NMR yield an ensemble of structures rather than one, and what is its main size limitation?",
+          "answer": "It is measured in solution at room temperature, so it samples the molecule's real conformational fluctuations — the output is an ensemble consistent with the restraints. The limit is molecular size: slow tumbling broadens lines, capping standard methods near 30–50 kDa without TROSY/deuteration."
+        }
+      ]
+    },
+    {
+      "id": "fret",
+      "title": "FRET — the spectroscopic ruler",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "structure-hierarchy"
+      ],
+      "summary": "Energy hops non-radiatively from an excited donor dye to a nearby acceptor with an efficiency that falls as r⁻⁶ — a molecular tape measure for 2–10 nm.",
+      "depths": {
+        "eli5": "Attach two differently-coloured tags to a molecule. When they are close, one tag silently passes its energy to the other; how much it passes tells you how far apart they are.",
+        "core": "Förster resonance energy transfer is dipole–dipole coupling between a donor and acceptor whose emission and absorption spectra overlap. The transfer efficiency is E = 1/(1+(r/R₀)⁶), where R₀ (the Förster radius, typically 2–6 nm) is the distance giving 50% transfer. The steep r⁻⁶ dependence makes E exquisitely sensitive near R₀ — ideal for resolving conformational changes and binding.",
+        "deep": "R₀⁶ ∝ κ²·J·Q_D·n⁻⁴, where J is the spectral overlap, Q_D the donor quantum yield, n the refractive index, and κ² the orientation factor (often assumed 2/3 — a real source of error if the dyes are constrained). Single-molecule FRET (smFRET) resolves subpopulations and dwell times hidden in ensemble averages, mapping folding intermediates, motor stepping, and IDP conformational ensembles in real time."
+      },
+      "note": "The orientation factor κ² (assumed 2/3) is FRET's hidden uncertainty; the r⁻⁶ law makes it a precise ruler only near R₀.",
+      "sources": [
+        "LibreTexts Fluorescence spectroscopy",
+        "PMC open-access single-molecule FRET reviews",
+        "arXiv q-bio biophysical-methods"
+      ],
+      "art_prompt": "an excited donor dye passing energy across a few nanometers to an acceptor dye, an efficiency curve falling sharply as r exceeds R-zero",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the FRET efficiency as a function of distance and define R₀.",
+          "answer": "E = 1/(1+(r/R₀)⁶). R₀, the Förster radius, is the donor–acceptor separation at which transfer efficiency is 50% (typically 2–6 nm)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is FRET most sensitive to distance changes near R₀, and what does smFRET add over ensemble FRET?",
+          "answer": "The r⁻⁶ dependence makes dE/dr steepest around r = R₀, so small distance changes there cause large efficiency changes. Single-molecule FRET resolves subpopulations, intermediates, and dwell times that ensemble averaging washes out."
+        }
+      ]
+    },
+    {
+      "id": "cryo-em-ctf",
+      "title": "Cryo-EM & the contrast transfer function",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "bragg"
+      ],
+      "summary": "Flash-freeze molecules in vitreous ice, image thousands of noisy single particles, and reconstruct a 3D map — after correcting the microscope's oscillating contrast transfer function.",
+      "depths": {
+        "eli5": "Freeze molecules so fast the water turns glassy, take many blurry pictures of single particles in random orientations, and computationally combine them into a sharp 3D shape.",
+        "core": "Single-particle cryo-EM images many copies of a molecule frozen in random orientations in vitreous ice. Each image is extremely noisy and is modulated by the contrast transfer function — the microscope's point-spread in Fourier space, CTF(s) ≈ −sin(π·λ·Δz·s² − ½π·C_s·λ³·s⁴), which oscillates and zeroes out information at certain spatial frequencies. Estimating Δz (defocus) per micrograph and correcting the CTF is mandatory before averaging and 3D reconstruction.",
+        "deep": "Because the CTF flips sign and crosses zero, single defocus values leave gaps; collecting a range of defoci fills them. Resolution is reported via Fourier shell correlation (the FSC = 0.143 criterion). Unlike crystallography there is no crystal and no phase problem — phases come directly from the images — so flexible and heterogeneous complexes are tractable; 3D classification even resolves multiple conformational states from one dataset, making cryo-EM a structure *and* dynamics tool."
+      },
+      "note": "No crystal, no phase problem: cryo-EM gets phases straight from images, so heterogeneous and flexible assemblies that resist crystallization become accessible.",
+      "sources": [
+        "PMC open-access cryo-EM methods reviews",
+        "PDB-101 open educational resources",
+        "arXiv q-bio cryo-EM"
+      ],
+      "art_prompt": "thousands of noisy single-particle images in random orientations merging into one sharp 3D density map, an oscillating CTF curve crossing zero",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the contrast transfer function and why must it be corrected in cryo-EM?",
+          "answer": "The CTF is the microscope's transfer in Fourier space; it oscillates and crosses zero, flipping the sign of contrast and erasing information at certain spatial frequencies. It must be estimated (defocus) per image and corrected before averaging, or the reconstruction is wrong."
+        },
+        {
+          "level": "apply",
+          "prompt": "Give one advantage cryo-EM has over X-ray crystallography for structural biology.",
+          "answer": "No crystal is required and there is no phase problem (phases come from the images), so flexible, heterogeneous, or hard-to-crystallize complexes can be solved — and 3D classification can resolve multiple conformational states from a single dataset."
+        }
       ]
     }
   ]
