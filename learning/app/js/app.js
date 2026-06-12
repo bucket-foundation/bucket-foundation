@@ -99,8 +99,55 @@
 
   function header() {
     const h = el("div", "topbar");
-    h.innerHTML = '<div class="brand">Bucket <span>Academy</span></div><div class="branch-pill">05 · Biophysics</div>';
+    const cur = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
+    h.innerHTML =
+      '<div class="brand">Bucket <span>Academy</span></div>' +
+      '<button class="branch-pill" id="branchPill" title="Switch branch">' +
+      cur.pill +
+      ' <span class="branch-caret">▾</span></button>';
+    h.querySelector("#branchPill").onclick = openBranchPicker;
     return h;
+  }
+
+  function openBranchPicker() {
+    const back = el("div", "sheet-back");
+    const sheet = el("div", "sheet");
+    sheet.innerHTML = '<div class="sheet-title">Choose a branch</div>';
+    BRANCHES.forEach((b) => {
+      const on = b.file === currentBranchFile;
+      const row = el(
+        "button",
+        "branch-row" + (on ? " on" : ""),
+        '<span class="branch-row-name">' + b.pill + "</span>" +
+          '<span class="branch-row-sub">' + b.sub + "</span>"
+      );
+      row.onclick = () => {
+        back.remove();
+        if (b.file !== currentBranchFile) switchBranch(b.file);
+      };
+      sheet.appendChild(row);
+    });
+    back.appendChild(sheet);
+    back.onclick = (e) => {
+      if (e.target === back) back.remove();
+    };
+    document.body.appendChild(back);
+  }
+
+  async function switchBranch(file) {
+    currentBranchFile = file;
+    try {
+      localStorage.setItem(BRANCH_PREF_KEY, file);
+    } catch (e) {}
+    session = null;
+    try {
+      await E.load(file);
+    } catch (e) {
+      $("#app").innerHTML =
+        '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
+      return;
+    }
+    go("home");
   }
 
   function nav(active) {

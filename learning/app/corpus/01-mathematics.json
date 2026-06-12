@@ -1,0 +1,388 @@
+{
+  "meta": {
+    "branch": "01-mathematics",
+    "title": "Mathematics — general-exam nucleus",
+    "version": "0.1.0",
+    "note": "Explanations authored for Bucket Academy (original prose; equations and standard definitions are facts). Open sources only. Seed pass — foundations-first DAG from sets/functions up to the spectral and Stokes theorems.",
+    "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
+  },
+  "atoms": [
+    {
+      "id": "set-function",
+      "title": "Sets and functions",
+      "shell": "prereq",
+      "type": "definition",
+      "requires": [],
+      "equation": "f\\colon X \\to Y,\\quad x \\mapsto f(x)",
+      "summary": "A set is a collection of objects; a function is a rule assigning to each input exactly one output. These are the nouns and verbs of all modern mathematics.",
+      "depths": {
+        "eli5": "A set is a bag of things. A function is a machine: put one thing in, get exactly one thing out — never two, never none.",
+        "core": "Almost every mathematical object is built from sets, and almost every relationship between them is a function. The defining property is single-valuedness: each x in the domain X maps to one y in the codomain Y. Injective means no two inputs share an output; surjective means every output is hit; bijective means both, which is exactly when an inverse exists.",
+        "deep": "Functions compose, and composition is associative, which quietly makes 'sets and functions' a category — the ambient stage on which limits, groups, and spaces are later defined. Cardinality (size compared by bijection) already escapes intuition here: the integers and the rationals have the same cardinality, but the reals do not."
+      },
+      "note": "Distinguish the function f from its value f(x): one is the machine, the other is a single output.",
+      "sources": ["LibreTexts Abstract Algebra", "MIT OCW 18.100 Real Analysis"],
+      "art_prompt": "two labeled bags of dots with single arrows leaving each left dot for exactly one right dot, none branching",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What property must a relation between X and Y have to be a function, and what extra property makes it invertible?",
+          "answer": "Each input maps to exactly one output (single-valued, total on X) to be a function; it is invertible exactly when it is bijective — both injective and surjective."
+        },
+        {
+          "level": "apply",
+          "prompt": "Is f(x) = x^2 from the reals to the reals injective? Surjective? How does restricting the codomain or domain change the answer?",
+          "answer": "Not injective (x and -x collide) and not surjective onto all reals (negatives are never hit). Restrict the codomain to [0,∞) to make it surjective, and the domain to [0,∞) to make it injective; with both it becomes a bijection."
+        }
+      ]
+    },
+    {
+      "id": "limit",
+      "title": "Limits and continuity",
+      "shell": "prereq",
+      "type": "definition",
+      "requires": ["set-function"],
+      "equation": "\\forall\\varepsilon>0\\ \\exists\\delta>0:\\ |x-a|<\\delta \\Rightarrow |f(x)-L|<\\varepsilon",
+      "summary": "A limit pins down what value a function approaches; continuity is when that approached value equals the actual value. The epsilon–delta game makes 'approaches' precise.",
+      "depths": {
+        "eli5": "If you can always get the output as close to a target as someone demands by making the input close enough to a point, that target is the limit. If the limit is just the value at the point, the function has no jumps there.",
+        "core": "The limit L is the number f(x) can be forced arbitrarily near (within any ε) by keeping x within some δ of a — without ever needing x = a. Continuity at a means the limit exists and equals f(a). This single definition tames the infinite: it lets us reason about 'getting close' using only finite inequalities.",
+        "deep": "The order of quantifiers is the whole subject: ε is chosen by an adversary first, δ is your response. Uniform continuity strengthens this by demanding one δ work for all a at once. Completeness of the reals is what guarantees the limits we expect actually exist — Cauchy sequences converge, and no points are 'missing'."
+      },
+      "note": "ε comes first, δ responds. Swap the order and you have defined uniform continuity instead.",
+      "sources": ["MIT OCW 18.100 Real Analysis", "LibreTexts Calculus"],
+      "art_prompt": "a curve approaching a target height with shrinking horizontal and vertical tolerance bands nested around the point",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the epsilon–delta definition, who 'chooses' ε and who 'chooses' δ, and what does continuity at a add to the existence of the limit?",
+          "answer": "The adversary fixes ε first; you must then produce a δ that works. Continuity at a additionally requires the limit to equal the function's actual value f(a)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why is the function that is 0 on the rationals and 1 on the irrationals discontinuous at every point?",
+          "answer": "Near any point both rationals and irrationals appear within any δ, so f takes both 0 and 1 arbitrarily close by; no single L can sit within ε < 1/2 of both, so the limit never exists."
+        }
+      ]
+    },
+    {
+      "id": "group",
+      "title": "Groups",
+      "shell": "prereq",
+      "type": "definition",
+      "requires": ["set-function"],
+      "equation": "(ab)c=a(bc),\\quad ea=ae=a,\\quad a a^{-1}=e",
+      "summary": "A group is a set with one associative operation that has an identity and inverses. It is the minimal axiom system for 'symmetry' and 'reversible composition'.",
+      "depths": {
+        "eli5": "A group is a set of moves you can do and undo, where doing two in a row is itself a move, and one 'do-nothing' move exists. Shuffling a deck or rotating a square both follow these rules.",
+        "core": "Four axioms — closure, associativity, an identity element e, and an inverse for every element — capture an astonishing range of structure: integers under addition, invertible matrices under multiplication, symmetries of any object. Abelian groups add commutativity. The power is that anything proven from the axioms holds for every group at once.",
+        "deep": "Groups act on sets, and the orbit–stabilizer theorem ties the size of an orbit to a subgroup index, turning counting problems into algebra. Lagrange's theorem (subgroup order divides group order) constrains structure before you know any specifics. The classification of finite simple groups — the 'periodic table' of symmetry — is one of mathematics' largest collective proofs."
+      },
+      "note": "Associativity is doing heavy lifting: it lets you write abc with no parentheses and is what fails for, e.g., the cross product.",
+      "sources": ["LibreTexts Abstract Algebra", "MIT OCW 18.701 Algebra"],
+      "art_prompt": "a square with arrows showing its four rotational symmetries closing back on themselves as a cycle",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name the four group axioms.",
+          "answer": "Closure under the operation, associativity, existence of an identity element, and existence of an inverse for every element."
+        },
+        {
+          "level": "apply",
+          "prompt": "Are the integers under multiplication a group? Why or why not?",
+          "answer": "No — multiplication is associative with identity 1, but most integers (everything except ±1) lack a multiplicative inverse in the integers, so the inverse axiom fails."
+        }
+      ]
+    },
+    {
+      "id": "derivative",
+      "title": "The derivative",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["limit"],
+      "equation": "f'(a)=\\lim_{h\\to 0}\\dfrac{f(a+h)-f(a)}{h}",
+      "summary": "The derivative is the best linear approximation to a function near a point — its instantaneous rate of change, and the slope of the tangent line.",
+      "depths": {
+        "eli5": "Zoom in on a smooth curve far enough and it looks like a straight line. The derivative is the slope of that line — how fast the output changes as you nudge the input.",
+        "core": "f'(a) is the limit of average rates of change f(a+h)/h as the window h shrinks to zero. Equivalently, it is the number m for which f(a+h) ≈ f(a) + mh with error vanishing faster than h. This 'local linearity' is why calculus works: hard nonlinear behavior becomes locally linear and therefore solvable.",
+        "deep": "In higher dimensions the derivative is a linear map (the Jacobian), not a number, and differentiability means the map approximates f with error o(‖h‖). The chain rule is then just composition of linear maps. Smoothness is a ladder: differentiable ⊂ continuously differentiable ⊂ analytic, and the inclusions are strict."
+      },
+      "note": "Differentiable implies continuous, but not the reverse — |x| is continuous at 0 yet has no derivative there.",
+      "sources": ["MIT OCW 18.01 Single Variable Calculus", "LibreTexts Calculus"],
+      "art_prompt": "a curve with a tangent line touching it at one point, and an inset showing the curve and line nearly coinciding when zoomed",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the derivative as a limit, and say what geometric object it computes.",
+          "answer": "f'(a) = lim_{h→0} [f(a+h) − f(a)]/h; it is the slope of the tangent line, the instantaneous rate of change at a."
+        },
+        {
+          "level": "derive",
+          "prompt": "Use the limit definition to show the derivative of f(x) = x^2 is 2x.",
+          "answer": "[ (x+h)^2 − x^2 ]/h = (2xh + h^2)/h = 2x + h, and as h→0 this tends to 2x."
+        }
+      ]
+    },
+    {
+      "id": "integral",
+      "title": "The integral and the Fundamental Theorem",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["limit"],
+      "equation": "\\int_a^b f = \\lim_{\\|P\\|\\to 0}\\sum_i f(x_i^*)\\,\\Delta x_i,\\qquad \\int_a^b f' = f(b)-f(a)",
+      "summary": "The integral accumulates a function over an interval as a limit of sums; the Fundamental Theorem makes integration and differentiation inverse operations.",
+      "depths": {
+        "eli5": "Slice the area under a curve into thin rectangles, add them up, and let the slices get infinitely thin. The Fundamental Theorem says undoing a derivative gives you that area for free.",
+        "core": "The Riemann integral is the common limit of upper and lower rectangle sums as the partition is refined. Its deep partner, the Fundamental Theorem of Calculus, has two faces: differentiating an accumulation function returns the integrand, and integrating a derivative returns the net change f(b) − f(a). This duality is what makes calculus a calculus — a system for trading hard sums for antiderivatives.",
+        "deep": "Riemann integration fails for badly discontinuous functions and for interchanging limits; the Lebesgue integral repairs this by partitioning the range instead of the domain, giving the convergence theorems analysis needs. Measure theory is the price and the payoff."
+      },
+      "note": "The 'dx' is not decoration — it records the variable of integration and carries units, and it is what changes under substitution.",
+      "sources": ["MIT OCW 18.01 Single Variable Calculus", "MIT OCW 18.100 Real Analysis"],
+      "art_prompt": "the area under a curve filled with rectangles that grow thinner and more numerous toward a smooth fill",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What two operations does the Fundamental Theorem of Calculus relate, and how?",
+          "answer": "Differentiation and integration — it states they are inverse operations: d/dx of an accumulation of f returns f, and integrating f' over [a,b] returns f(b) − f(a)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Using the Fundamental Theorem, evaluate the integral of 2x from 0 to 3.",
+          "answer": "An antiderivative of 2x is x^2, so the value is 3^2 − 0^2 = 9."
+        }
+      ]
+    },
+    {
+      "id": "vector-space",
+      "title": "Vector spaces",
+      "shell": "nucleus",
+      "type": "definition",
+      "requires": ["group"],
+      "equation": "u+v\\in V,\\quad \\alpha v\\in V,\\quad \\alpha(u+v)=\\alpha u+\\alpha v",
+      "summary": "A vector space is a set where you can add elements and scale them by numbers, obeying distributive and associative rules. It is the arena of all of linear algebra.",
+      "depths": {
+        "eli5": "A vector space is a set of arrows you can add tip-to-tail and stretch by any number, and everything still lands inside the set. Functions, polynomials, and physical forces all qualify.",
+        "core": "Built on an abelian group (vectors under addition) plus a compatible scalar multiplication over a field, the eight axioms guarantee a basis exists: a minimal set whose linear combinations reach every vector uniquely. Dimension — the basis size — is then a complete invariant, so every n-dimensional space over a field looks exactly like coordinate n-space.",
+        "deep": "The leap of abstraction is that 'vector' need not mean arrow: solutions of a linear ODE, the polynomials of degree ≤ n, and the continuous functions on an interval are all vector spaces, so linear-algebraic reasoning transfers wholesale. Infinite-dimensional spaces need topology (completeness, norms) to behave, which is where functional analysis begins."
+      },
+      "note": "Subspaces must contain the zero vector — a line not through the origin is not a subspace.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "LibreTexts Linear Algebra"],
+      "art_prompt": "two arrows from a common origin combining tip-to-tail into a third, with faint scaled copies of each",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is a basis of a vector space, and what does its size define?",
+          "answer": "A linearly independent set that spans the space — every vector is a unique linear combination of it; its size is the dimension, a complete invariant of the space."
+        },
+        {
+          "level": "apply",
+          "prompt": "Is the set of polynomials of degree exactly 2 a vector space under the usual operations?",
+          "answer": "No — it is not closed under addition (x^2 + (−x^2 + x) = x has degree 1) and lacks the zero polynomial; degree ≤ 2 is required to form a vector space."
+        }
+      ]
+    },
+    {
+      "id": "linear-map",
+      "title": "Linear maps and matrices",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["vector-space"],
+      "equation": "T(\\alpha u + \\beta v) = \\alpha\\,T(u) + \\beta\\,T(v)",
+      "summary": "A linear map preserves addition and scaling; once a basis is fixed it is encoded by a matrix, and composition of maps becomes matrix multiplication.",
+      "depths": {
+        "eli5": "A linear map is a transformation that keeps grid lines straight and evenly spaced and keeps the origin fixed. A matrix is just its instruction sheet, one column per basis vector.",
+        "core": "Linearity — T respects sums and scalar multiples — means T is completely determined by where it sends a basis. Stacking those images as columns gives the matrix, and the rule (AB)v = A(Bv) makes matrix multiplication the bookkeeping of composing maps. The rank–nullity theorem (dim domain = rank + nullity) ties what the map crushes to zero to what it can reach.",
+        "deep": "Choosing a different basis conjugates the matrix by a change-of-basis matrix, so a matrix is a coordinate shadow of a basis-free object. Invariants that survive conjugation — rank, trace, determinant, eigenvalues — are the map's true properties; everything else is an artifact of the chosen coordinates."
+      },
+      "note": "Matrix multiplication is non-commutative because composing transformations in a different order generally lands you somewhere else.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "LibreTexts Linear Algebra"],
+      "art_prompt": "a unit grid being sheared into a parallelogram grid with the origin pinned and basis vectors highlighted",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why does fixing a basis let you represent any linear map as a matrix?",
+          "answer": "Linearity means the map is determined by its action on the basis vectors; placing each basis vector's image as a column builds the matrix, and linearity reconstructs the map on all inputs."
+        },
+        {
+          "level": "derive",
+          "prompt": "State the rank–nullity theorem and say what it constrains.",
+          "answer": "dim(domain) = rank(T) + nullity(T); the dimension of the image plus the dimension of the kernel equals the input dimension, so a map cannot both collapse a lot and reach a lot."
+        }
+      ]
+    },
+    {
+      "id": "inner-product",
+      "title": "Inner product spaces",
+      "shell": "nucleus",
+      "type": "definition",
+      "requires": ["vector-space"],
+      "equation": "\\langle u,v\\rangle,\\quad \\|v\\|=\\sqrt{\\langle v,v\\rangle},\\quad |\\langle u,v\\rangle|\\le\\|u\\|\\,\\|v\\|",
+      "summary": "An inner product adds geometry — length and angle — to a vector space, defining orthogonality and enabling projection and best approximation.",
+      "depths": {
+        "eli5": "An inner product is a way to multiply two vectors into a single number that tells you how much they point the same way. Zero means perpendicular; that one idea unlocks distance and angle.",
+        "core": "A symmetric, positive-definite, bilinear (or Hermitian) form ⟨·,·⟩ defines a norm ‖v‖ = √⟨v,v⟩ and an angle via cos θ = ⟨u,v⟩/(‖u‖‖v‖), the last well-defined because the Cauchy–Schwarz inequality bounds it. Orthogonal bases make projection trivial: the closest point in a subspace is the sum of projections onto its orthonormal directions — the engine of least squares and Fourier analysis.",
+        "deep": "Completeness turns an inner product space into a Hilbert space, where every closed subspace has an orthogonal complement and projection always exists. This single guarantee underwrites quantum mechanics (states as unit vectors, observables as self-adjoint operators) and signal processing alike."
+      },
+      "note": "Cauchy–Schwarz is what makes 'angle' meaningful — without it cos θ could exceed 1.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "LibreTexts Linear Algebra"],
+      "art_prompt": "two vectors with a marked angle between them and a dashed projection of one onto the other",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does an inner product add to a bare vector space, and what does ⟨u,v⟩ = 0 mean?",
+          "answer": "It adds geometry — a notion of length (norm) and angle; ⟨u,v⟩ = 0 means the two vectors are orthogonal (perpendicular)."
+        },
+        {
+          "level": "apply",
+          "prompt": "State the Cauchy–Schwarz inequality and explain why it guarantees a valid angle between two vectors.",
+          "answer": "|⟨u,v⟩| ≤ ‖u‖‖v‖; dividing gives |cos θ| = |⟨u,v⟩|/(‖u‖‖v‖) ≤ 1, so the ratio is a legitimate cosine and θ is well-defined."
+        }
+      ]
+    },
+    {
+      "id": "eigenvalue",
+      "title": "Eigenvalues and eigenvectors",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["linear-map"],
+      "equation": "Av=\\lambda v,\\qquad \\det(A-\\lambda I)=0",
+      "summary": "An eigenvector is a direction a linear map only stretches, never rotates; its eigenvalue is the stretch factor. They expose the map's intrinsic axes.",
+      "depths": {
+        "eli5": "Some special directions don't get knocked off course by a transformation — they just get longer or shorter. Those directions are eigenvectors, and the scaling number is the eigenvalue.",
+        "core": "Solving Av = λv finds directions preserved up to scaling. The eigenvalues are the roots of the characteristic polynomial det(A − λI) = 0; the eigenvectors span the corresponding invariant lines. When enough independent eigenvectors exist, the map is diagonalizable: in their basis it is just multiplication by the eigenvalues, so high powers and exponentials of the matrix become trivial.",
+        "deep": "Eigenvalues are basis-independent, so they are genuine invariants of the operator, and they govern dynamics: stability of fixed points, growth modes of linear ODE/recurrence systems, and resonance frequencies all read off the spectrum. Defective matrices (too few eigenvectors) need Jordan form, the structural footnote to diagonalization."
+      },
+      "note": "Real matrices can have complex eigenvalues — those encode rotation, with the magnitude giving the scaling and the argument the angle.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "LibreTexts Linear Algebra"],
+      "art_prompt": "a transformed grid with two highlighted directions that stay on their own lines, one stretched and one shrunk",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What geometric property distinguishes an eigenvector of A, and how do you find the eigenvalues?",
+          "answer": "An eigenvector's direction is preserved by A (only scaled, not rotated); eigenvalues are the roots of the characteristic equation det(A − λI) = 0."
+        },
+        {
+          "level": "derive",
+          "prompt": "Find the eigenvalues of the 2×2 matrix [[2,0],[0,3]] and explain why they are obvious here.",
+          "answer": "It is diagonal, so det(A − λI) = (2−λ)(3−λ) = 0 gives λ = 2 and λ = 3; the standard basis vectors are already eigenvectors, scaled by 2 and 3."
+        }
+      ]
+    },
+    {
+      "id": "taylor",
+      "title": "Taylor's theorem",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["derivative"],
+      "equation": "f(x)=\\sum_{k=0}^{n}\\dfrac{f^{(k)}(a)}{k!}(x-a)^k + R_n(x)",
+      "summary": "Taylor's theorem approximates a smooth function near a point by a polynomial built from its derivatives, with an explicit remainder bounding the error.",
+      "depths": {
+        "eli5": "If you know a function's value and all its rates of change at one point, you can predict it nearby by adding polynomial corrections — slope, then curvature, then finer wiggles.",
+        "core": "Matching derivatives up to order n at a gives the best degree-n polynomial fit; the remainder R_n (Lagrange form: f^{(n+1)}(ξ)/(n+1)! · (x−a)^{n+1}) makes the approximation an equality and bounds how fast it degrades away from a. This is why linearization (n=1) and quadratic models (n=2) are everywhere — they are truncated Taylor series with controlled error.",
+        "deep": "When the remainder vanishes as n→∞ on an interval, the function equals its Taylor series there and is called analytic. Not all smooth functions are analytic — e^{−1/x^2} has every derivative zero at 0 yet is nonzero nearby — which is why real analysis and complex analysis diverge so sharply."
+      },
+      "note": "A Taylor series can converge yet converge to the wrong function — convergence and equality are separate questions, settled by the remainder.",
+      "sources": ["MIT OCW 18.01 Single Variable Calculus", "MIT OCW 18.100 Real Analysis"],
+      "art_prompt": "a curve overlaid with progressively higher-degree polynomial approximations hugging it over a widening interval",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What information about f at a point does the degree-n Taylor polynomial use, and what does the remainder term provide?",
+          "answer": "The values of f and its first n derivatives at a; the remainder R_n gives the exact error, bounding how far the polynomial drifts from f away from a."
+        },
+        {
+          "level": "apply",
+          "prompt": "Write the degree-2 Taylor polynomial of e^x about 0 and use it to estimate e^{0.1}.",
+          "answer": "1 + x + x^2/2, so e^{0.1} ≈ 1 + 0.1 + 0.005 = 1.105 (actual ≈ 1.10517)."
+        }
+      ]
+    },
+    {
+      "id": "metric-space",
+      "title": "Metric spaces",
+      "shell": "nucleus",
+      "type": "definition",
+      "requires": ["limit"],
+      "equation": "d(x,y)\\ge 0,\\ d(x,y)=d(y,x),\\ d(x,z)\\le d(x,y)+d(y,z)",
+      "summary": "A metric space abstracts 'distance', letting limits, continuity, and convergence be defined far beyond the real line. The triangle inequality is its load-bearing axiom.",
+      "depths": {
+        "eli5": "A metric is any honest notion of distance: never negative, symmetric, and where a detour is never shorter than going direct. Once you have distance, 'getting close' — and therefore limits — makes sense anywhere.",
+        "core": "Three axioms (non-negativity with identity of indiscernibles, symmetry, and the triangle inequality) are enough to define open balls, convergence, and continuity. This lets the same analysis run on function spaces, sequence spaces, and graphs, not just the reals. Completeness — every Cauchy sequence converges — is the extra property that makes a metric space safe for fixed-point and existence arguments.",
+        "deep": "Open sets defined by the metric generalize further to topology, where 'nearness' survives even without a distance. Compactness (every open cover has a finite subcover) is the property that rescues the intuition 'closed and bounded' carries on the reals, underwriting maxima, uniform continuity, and convergence of subsequences."
+      },
+      "note": "Different metrics on the same set can give the same open sets (topology) — distance is more data than nearness.",
+      "sources": ["MIT OCW 18.100 Real Analysis", "LibreTexts Real Analysis"],
+      "art_prompt": "three points with edges labeled by distances, the direct edge visibly no longer than the two-edge detour",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the triangle inequality and explain why it is the crucial metric axiom.",
+          "answer": "d(x,z) ≤ d(x,y) + d(y,z): a direct distance never exceeds a detour. It is what makes open balls and limits behave consistently, enabling continuity and convergence arguments."
+        },
+        {
+          "level": "apply",
+          "prompt": "What additional property must a metric space have for the Banach fixed-point (contraction mapping) theorem to apply, and why?",
+          "answer": "Completeness — every Cauchy sequence must converge — so the iterates of the contraction, which form a Cauchy sequence, are guaranteed to have a limit point inside the space."
+        }
+      ]
+    },
+    {
+      "id": "spectral-theorem",
+      "title": "The spectral theorem",
+      "shell": "frontier",
+      "type": "theorem",
+      "requires": ["eigenvalue", "inner-product"],
+      "equation": "A=A^{*}\\ \\Rightarrow\\ A=\\sum_i \\lambda_i P_i,\\quad \\lambda_i\\in\\mathbb{R},\\ P_iP_j=\\delta_{ij}P_i",
+      "summary": "Every self-adjoint operator has an orthonormal basis of eigenvectors with real eigenvalues — it is diagonal in the right coordinates. This is the backbone of quantum mechanics and PCA.",
+      "depths": {
+        "eli5": "If a transformation is its own mirror image (symmetric), then it has a set of perpendicular axes it simply stretches along, with honest real stretch factors. Pick those axes and it becomes the simplest possible map.",
+        "core": "For a self-adjoint operator (A = A* — symmetric for real matrices, Hermitian for complex) the spectral theorem guarantees real eigenvalues and an orthonormal eigenbasis, so A decomposes as a sum of real eigenvalues times orthogonal projections. Geometrically every such map is a pure rescaling along perpendicular directions: no shear, no rotation, no defect.",
+        "deep": "This is why observables in quantum mechanics are self-adjoint — their real eigenvalues are the measurable outcomes and their orthogonal eigenstates the distinguishable results. The same theorem powers principal component analysis (diagonalizing a covariance matrix) and the stability analysis of symmetric systems. The infinite-dimensional version, requiring a spectral measure, is a cornerstone of functional analysis."
+      },
+      "note": "Self-adjointness is essential: a general matrix may not be diagonalizable at all, and a normal-but-not-self-adjoint one diagonalizes only over the complex numbers.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "MIT OCW 18.700 Linear Algebra"],
+      "art_prompt": "a symmetric transformation shown as pure stretching along three mutually perpendicular highlighted axes, no twisting",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the spectral theorem guarantee for a self-adjoint operator?",
+          "answer": "Real eigenvalues and an orthonormal basis of eigenvectors — equivalently, the operator is diagonalizable by an orthogonal/unitary change of basis into a sum of real eigenvalues times orthogonal projections."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why must the eigenvalues of a quantum-mechanical observable be real, in terms of this theorem?",
+          "answer": "Observables are modeled as self-adjoint operators, and the spectral theorem forces self-adjoint operators to have real eigenvalues — which is required because those eigenvalues are the physically measurable outcomes."
+        }
+      ]
+    },
+    {
+      "id": "stokes-theorem",
+      "title": "The generalized Stokes' theorem",
+      "shell": "frontier",
+      "type": "theorem",
+      "requires": ["integral", "derivative"],
+      "equation": "\\int_{\\partial\\Omega}\\omega=\\int_{\\Omega}d\\omega",
+      "summary": "The integral of a differential form over a boundary equals the integral of its derivative over the interior. One identity unifies the fundamental theorem of calculus, Green's, Gauss's, and the classical Stokes' theorems.",
+      "depths": {
+        "eli5": "What happens on the edge of a region is the sum of what happens inside it. Adding up tiny circulations or flows everywhere inside leaves only the boundary contributions, because interior walls cancel in pairs.",
+        "core": "Written with differential forms, every integral theorem of vector calculus is one statement: integrating dω over a region Ω equals integrating ω over its boundary ∂Ω. Setting the dimension appropriately recovers the Fundamental Theorem of Calculus (1D), Green's theorem (2D), the divergence theorem, and the curl form of Stokes' theorem — they were never separate results.",
+        "deep": "The engine is that the boundary operator ∂ and the exterior derivative d are adjoint, and that ∂∂ = 0 mirrors dd = 0. This duality between boundaries and derivatives is the seed of de Rham cohomology, where 'closed forms modulo exact forms' detects the holes in a space — turning calculus into a probe of global topology."
+      },
+      "note": "The recurring miracle is cancellation: shared interior boundaries are traversed twice with opposite orientation and vanish, leaving only the outer edge.",
+      "sources": ["MIT OCW 18.02 Multivariable Calculus", "MIT OCW 18.952 Theory of Differential Forms"],
+      "art_prompt": "a region tiled with small oriented loops whose shared interior edges cancel, leaving one bold loop around the outer boundary",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In one sentence, what does the generalized Stokes' theorem equate?",
+          "answer": "The integral of a differential form ω over the boundary ∂Ω equals the integral of its exterior derivative dω over the region Ω."
+        },
+        {
+          "level": "derive",
+          "prompt": "Which classical theorem does the generalized Stokes' theorem reduce to in one dimension, and how?",
+          "answer": "The Fundamental Theorem of Calculus: with Ω = [a,b] the boundary ∂Ω is the two endpoints {a,b} (with signs), so ∫_Ω df = ∫_{∂Ω} f becomes f(b) − f(a) = ∫_a^b f'."
+        }
+      ]
+    }
+  ]
+}
