@@ -19,7 +19,9 @@
   ],
   "main": "index.js",
   "scripts": {
+    "predev": "node scripts/sync-academy.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/sync-academy.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
