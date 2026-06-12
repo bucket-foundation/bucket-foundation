@@ -15,6 +15,21 @@
   const SHELL_RANK = { prereq: 0, nucleus: 1, frontier: 2 };
   const SHELL_LABEL = { prereq: "Prerequisite", nucleus: "Nucleus", frontier: "Frontier" };
 
+  // Available branches (corpora). The overnight loop added the picker UI; these
+  // are the definitions it referenced. Each branch keeps independent progress.
+  const BRANCH_PREF_KEY = "bucket-academy/branch";
+  const BRANCHES = [
+    { file: "corpus/biophysics.json", pill: "V · Biophysics", sub: "Energy, matter & life" },
+    { file: "corpus/01-mathematics.json", pill: "I · Mathematics", sub: "The foundations of reasoning" },
+  ];
+  let currentBranchFile = (function () {
+    try {
+      return localStorage.getItem(BRANCH_PREF_KEY) || BRANCHES[0].file;
+    } catch (e) {
+      return BRANCHES[0].file;
+    }
+  })();
+
   let session = null; // {queue:[{id,kind}], i, current, level, revealed}
 
   function katex(root) {
@@ -53,7 +68,8 @@
     wrap.appendChild(header());
 
     const hero = el("div", "hero");
-    hero.appendChild(el("div", "kicker", "Biophysics · today's route"));
+    const curBranch = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
+    hero.appendChild(el("div", "kicker", curBranch.pill.replace(/^[IVX]+ · /, "") + " · today's route"));
     hero.appendChild(el("h1", null, route.length ? "Ready when you are." : "All caught up. 🎉"));
     const sub = route.length
       ? route.filter((r) => r.kind === "review").length + " reviews · " + route.filter((r) => r.kind === "new").length + " new concepts"
@@ -432,7 +448,7 @@
 
   async function boot() {
     try {
-      await E.load("corpus/biophysics.json");
+      await E.load(currentBranchFile);
     } catch (e) {
       $("#app").innerHTML = '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
       return;
