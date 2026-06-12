@@ -96,6 +96,9 @@
     const cta = el("button", "btn primary", route.length ? "Start route →" : "Explore the map");
     cta.onclick = () => (route.length ? startSession(route) : go("map"));
     hero.appendChild(cta);
+    const studyBtn = el("button", "btn ghost hero-study", "📖 Study — read the material");
+    studyBtn.onclick = () => go("study");
+    hero.appendChild(studyBtn);
     wrap.appendChild(hero);
 
     const stats = el("div", "stats");
@@ -186,8 +189,8 @@
   }
 
   function nav(active) {
-    const n = el("div", "tabbar");
-    [["home", "◎", "Today"], ["map", "✸", "Map"], ["progress", "▰", "Progress"]].forEach(([k, i, l]) => {
+    const n = el("div", "tabbar tabbar-4");
+    [["home", "◎", "Today"], ["study", "▤", "Study"], ["map", "✸", "Map"], ["progress", "▰", "Progress"]].forEach(([k, i, l]) => {
       const b = el("button", "tab" + (k === active ? " on" : ""), '<span>' + i + "</span>" + l);
       b.onclick = () => go(k);
       n.appendChild(b);
@@ -465,6 +468,120 @@
     return wrap;
   }
 
+  /* ---------- study / read mode (learn the material in order) ---------- */
+  let studyDepth = "core";
+
+  // Topological learning order (prerequisites first), foundations-weighted.
+  function studyOrder() {
+    const atoms = E.atoms;
+    const shellRank = { prereq: 0, nucleus: 1, frontier: 2 };
+    const indeg = {}, adj = {};
+    atoms.forEach((a) => { indeg[a.id] = (a.requires || []).filter((r) => E.byId[r]).length; });
+    atoms.forEach((a) => (a.requires || []).forEach((r) => { if (E.byId[r]) (adj[r] = adj[r] || []).push(a.id); }));
+    let q = atoms.filter((a) => indeg[a.id] === 0).map((a) => a.id);
+    const out = [], seen = new Set();
+    const order = (x, y) => (shellRank[E.byId[x].shell] - shellRank[E.byId[y].shell]) || ((E.byId[y].leverage || 0) - (E.byId[x].leverage || 0));
+    while (q.length) {
+      q.sort(order);
+      const id = q.shift();
+      if (seen.has(id)) continue;
+      seen.add(id); out.push(id);
+      (adj[id] || []).forEach((n) => { indeg[n]--; if (indeg[n] === 0) q.push(n); });
+    }
+    atoms.forEach((a) => { if (!seen.has(a.id)) out.push(a.id); }); // any leftovers (cycles)
+    return out;
+  }
+
+  function screenStudy() {
+    if (isLang()) return screenStudyLang();
+    const wrap = el("div", "screen study");
+    wrap.appendChild(header());
+    const cur = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
+    wrap.appendChild(el("h1", "study-h1", cur.pill.replace(/^\S+ · /, "")));
+    wrap.appendChild(el("p", "study-sub", "Read straight through — foundations first. Switch depth any time; tap a concept to drill it."));
+
+    // global depth toggle
+    const tabs = el("div", "depth-tabs study-depth");
+    [["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]].forEach(([k, lbl]) => {
+      const b = el("button", studyDepth === k ? "on" : null, lbl);
+      b.onclick = () => { studyDepth = k; go("study"); };
+      tabs.appendChild(b);
+    });
+    wrap.appendChild(tabs);
+
+    const order = studyOrder();
+    let lastShell = null;
+    const SHELL_H = { prereq: "Prerequisites", nucleus: "Core", frontier: "Frontier" };
+    order.forEach((id, i) => {
+      const a = E.byId[id];
+      if (a.shell !== lastShell) {
+        wrap.appendChild(el("div", "study-section", SHELL_H[a.shell] || a.shell));
+        lastShell = a.shell;
+      }
+      const blk = el("div", "study-block shell-edge-" + a.shell);
+      const head = el("div", "sb-head");
+      head.innerHTML = '<span class="sb-num">' + (i + 1) + "</span><span class=\"sb-title\">" + escapeHtml(a.title) + "</span>";
+      const m = E.masteryFor(id);
+      if (E.cardFor(id)) head.appendChild(el("span", "sb-mastery" + (m >= 0.7 ? " on" : ""), m >= 0.7 ? "✓ known" : "seen"));
+      blk.appendChild(head);
+      const txt = (a.depths && a.depths[studyDepth]) || a.summary || "";
+      blk.appendChild(el("p", "sb-text", escapeHtml(txt)));
+      if (a.equation) { const eq = el("div", "eqbox", "$$" + a.equation + "$$"); blk.appendChild(eq); }
+      if (a.note && studyDepth !== "eli5") blk.appendChild(el("p", "sb-note", escapeHtml(a.note)));
+      // compact references
+      const det = el("details", "sb-more");
+      det.appendChild(el("summary", null, "Sources & links"));
+      const ll = el("div", "link-list");
+      (a.resources || []).slice(0, 8).forEach((r) => {
+        if (!r || !r.url) return;
+        const lk = el("a", "ext-link", '<span class="lk-ico">↗</span>' + escapeHtml(r.label || r.url));
+        lk.href = r.url; lk.target = "_blank"; lk.rel = "noopener noreferrer"; ll.appendChild(lk);
+      });
+      const slug = CANON_SLUG[E.meta && E.meta.branch];
+      if (slug) { const lk = el("a", "int-link", '<span class="lk-ico">❖</span>Canon · ' + (slug.charAt(0).toUpperCase() + slug.slice(1))); lk.href = "/canon/" + slug; lk.target = "_blank"; lk.rel = "noopener"; ll.appendChild(lk); }
+      det.appendChild(ll);
+      blk.appendChild(det);
+      const drill = el("button", "sb-drill", "Drill this →");
+      drill.onclick = () => openAtom(id, false);
+      blk.appendChild(drill);
+      wrap.appendChild(blk);
+    });
+
+    wrap.appendChild(nav("study"));
+    mount(wrap);
+    katex(wrap);
+  }
+
+  function screenStudyLang() {
+    const wrap = el("div", "screen study");
+    wrap.appendChild(header());
+    const { target, known } = langSettings();
+    wrap.appendChild(el("h1", "study-h1", (LANG_NAMES[target] || target) + " — vocabulary"));
+    wrap.appendChild(el("p", "study-sub", "Study the words grouped by topic. Your known languages are shown to anchor each one. Tap to drill."));
+    const cats = {};
+    studyOrder().forEach((id) => { const a = E.byId[id]; const c = a.category || "other"; (cats[c] = cats[c] || []).push(a); });
+    Object.keys(cats).forEach((c) => {
+      wrap.appendChild(el("div", "study-section", c.charAt(0).toUpperCase() + c.slice(1)));
+      cats[c].forEach((a) => {
+        const tf = a.forms[target] || {};
+        const blk = el("div", "study-block lang-study");
+        const head = el("div", "sb-head");
+        head.innerHTML = '<span class="sb-title">' + escapeHtml(tf.word || "—") + "</span>" +
+          (tf.ipa ? '<span class="sb-ipa">/' + escapeHtml(tf.ipa) + "/</span>" : "") +
+          '<span class="sb-gloss">' + escapeHtml(a.gloss || "") + "</span>";
+        blk.appendChild(head);
+        known.forEach((l) => { const f = a.forms[l]; if (f) blk.appendChild(el("div", "lang-row", '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span><span class=\"lang-w\">" + escapeHtml(f.word) + "</span>")); });
+        if (a.note) blk.appendChild(el("p", "sb-note", escapeHtml(a.note)));
+        const drill = el("button", "sb-drill", "Drill this →");
+        drill.onclick = () => openAtom(a.id, false);
+        blk.appendChild(drill);
+        wrap.appendChild(blk);
+      });
+    });
+    wrap.appendChild(nav("study"));
+    mount(wrap);
+  }
+
   /* ---------- nucleus map (concentric shells) ---------- */
   function screenMap() {
     const wrap = el("div", "screen map");
@@ -623,6 +740,7 @@
   }
   function go(where) {
     if (where === "home") mount(screenHome());
+    else if (where === "study") screenStudy();
     else if (where === "map") mount(screenMap());
     else if (where === "progress") mount(screenProgress());
     window.scrollTo(0, 0);
@@ -646,6 +764,7 @@
     window.__BA = E; // debug handle
     go("home");
     if (params) {
+      if (params.get("view") === "study") go("study");
       const aParam = params.get("atom");
       if (aParam && E.byId[aParam]) openAtom(aParam, true);
     }

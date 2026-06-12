@@ -99,6 +99,32 @@ button.hidden, .hidden { display: none !important; }
 
 /* ---- tabbar ---- */
 .tabbar { position: fixed; left: 0; right: 0; bottom: 0; max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); background: rgba(239,232,212,.9); backdrop-filter: blur(14px); border-top: 1px solid var(--line); }
+.tabbar-4 { grid-template-columns: repeat(4, 1fr); }
+.hero-study { width: 100%; margin-top: 10px; }
+
+/* ---- study / read mode ---- */
+.study-h1 { font-family: var(--serif); font-weight: 500; font-size: 30px; letter-spacing: -.01em; margin: 16px 0 4px; }
+.study-sub { color: var(--ink-dim); font-size: 15px; margin: 0 0 14px; }
+.study-depth { position: sticky; top: 64px; z-index: 5; }
+.study-section { font-family: var(--display); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; color: var(--gold-deep); margin: 26px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.study-block { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--line-strong); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; }
+.study-block.shell-edge-prereq { border-left-color: var(--prereq); }
+.study-block.shell-edge-nucleus { border-left-color: var(--nucleus); }
+.study-block.shell-edge-frontier { border-left-color: var(--frontier); }
+.sb-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.sb-num { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); flex: none; }
+.sb-title { font-family: var(--serif); font-weight: 600; font-size: 19px; flex: 1; }
+.sb-ipa { font-family: var(--mono); font-size: 13px; color: var(--gold-deep); }
+.sb-gloss { color: var(--ink-faint); font-size: 14px; }
+.sb-mastery { font-family: var(--display); text-transform: uppercase; font-size: 9px; letter-spacing: .08em; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; }
+.sb-mastery.on { color: var(--laurel-deep); border-color: var(--laurel); }
+.sb-text { font-size: 16.5px; line-height: 1.62; color: var(--ink); margin: 4px 0 10px; }
+.sb-note { font-size: 14px; color: var(--ink-dim); font-style: italic; margin: 8px 0 0; }
+.sb-more { margin-top: 10px; }
+.sb-more summary { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 11px; color: var(--ink-faint); cursor: pointer; padding: 4px 0; }
+.sb-more[open] summary { color: var(--aegean-deep); margin-bottom: 8px; }
+.sb-drill { margin-top: 12px; background: none; border: none; color: var(--aegean-deep); font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 11px; cursor: pointer; padding: 6px 0 0; }
+.lang-study .sb-head { align-items: baseline; }
 .tab { background: none; border: none; color: var(--ink-faint); font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 10px; padding: 12px 0 calc(14px + env(safe-area-inset-bottom)); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .tab span { font-size: 17px; }
 .tab.on { color: var(--aegean-deep); }
