@@ -30,3 +30,25 @@ FEP/WHAM free-energy methods + Markov state models (requires md), contact order,
 After ~1–2 more biophysics batches, START A SECOND BRANCH: create app/corpus/01-mathematics.json
 or 02-physics.json (6–12 seed atoms, same schema) + a branch-picker in the UI (engine.js
 currently hardcodes biophysics.json — see js/engine.js load()).
+
+## 2026-06-11 — run 2 (corpus expansion: membranes + electrophysiology + computational)
+Added 7 nucleus atoms, 41 → 48. Membranes/electrophysiology (§1.6/1.7 gaps):
+`helfrich` (bending energy ½κ(2H−c₀)², requires bilayer), `ghk` (Goldman–Hodgkin–Katz
+permeability-weighted V_m, requires nernst), `cable-equation` (λ/τ passive cable,
+requires hodgkin-huxley). Computational/statistical biophysics (§1.9, was thin):
+`monte-carlo` (Metropolis detailed-balance sampling, requires boltzmann), `fep-wham`
+(FEP + umbrella + WHAM free-energy/PMF, requires free-energy+md), `markov-state-model`
+(MSM slow-kinetics from many short trajectories, requires md+random-walk). Folding
+(§1.3): `contact-order` (native topology sets folding rate, requires two-state-folding+
+structure-hierarchy). All clean requires-edges, 3 depths, 2 varied-level quiz, OPEN
+sources, art_prompt. validate.sh PASSES (48 atoms, no dupes/missing, 60-day sim
+introduces all 48). Commit fefd9ed.
+NEXT: biophysics §1.9/1.5 still has RMSF (requires md — atomic fluctuation B-factor link),
+plus possible Verlet integrator, enhanced sampling (replica exchange), TICA/collective
+variables. After that the biophysics nucleus is well-covered (~50 atoms) — STRONGLY
+recommend STARTING A SECOND BRANCH next run: create app/corpus/01-mathematics.json or
+02-physics.json (6–12 seed atoms, same schema/meta block) AND add a branch picker — note
+engine.js load() and validate.sh both hardcode biophysics.json, so a multi-branch picker
+needs engine.js to accept a corpus path + validate.sh's engine sim to loop or stay on
+biophysics. Lowest-risk: add the second corpus file first (validate.sh's JSON-integrity
+loop already covers corpus/*.json), then wire the picker.
