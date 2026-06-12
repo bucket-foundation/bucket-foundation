@@ -1,0 +1,3375 @@
+{
+  "$schema": "sacred-history/web/v1",
+  "generatedAt": "2026-06-12T14:06:52Z",
+  "title": "Sacred history",
+  "tagline": "build the past. build history.",
+  "summary": {
+    "figures": 22,
+    "traditions": 13,
+    "correlations": 49,
+    "timelineEvents": 21,
+    "earliestEvent": "1500 BCE",
+    "latestEvent": "1947 CE"
+  },
+  "rights": {
+    "tier": "A",
+    "policy": "Tier-A (public-domain / open / CC0) only. No copyrighted text. Figure metadata, motifs, conventional dates, Wikidata QIDs, and AI-generated contestable correlation claims only."
+  },
+  "method": "Local-model pipeline (ollama: nomic-embed-text embeddings + llama3.2:3b synthesis). Cross-tradition correlations are AI-generated candidates emitted as contestable claims with evidence and confidence, never as settled fact. $0 paid AI spend.",
+  "traditions": [
+    "bahai",
+    "buddhism",
+    "christianity",
+    "greek",
+    "hinduism",
+    "islam",
+    "jainism",
+    "judaism",
+    "lds",
+    "mesopotamian",
+    "sikhism",
+    "tao-confucian",
+    "zoroastrianism"
+  ],
+  "figures": [
+    {
+      "id": "abraham",
+      "label": "Abraham",
+      "aka": [
+        "Avraham",
+        "Ibrahim"
+      ],
+      "traditions": [
+        "judaism",
+        "christianity",
+        "islam"
+      ],
+      "figureClass": "patriarch",
+      "historicity": "contested",
+      "motifs": [
+        "covenant",
+        "sacrifice-of-son",
+        "founding-patriarch"
+      ],
+      "wikidata": "Q9181",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9181"
+    },
+    {
+      "id": "bahaullah",
+      "label": "Bahá'u'lláh",
+      "aka": [
+        "Bahaullah",
+        "Mirza Husayn Ali"
+      ],
+      "traditions": [
+        "bahai"
+      ],
+      "figureClass": "founder",
+      "historicity": "historical",
+      "motifs": [
+        "founder",
+        "manifestation"
+      ],
+      "wikidata": "Q83410",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q83410"
+    },
+    {
+      "id": "confucius",
+      "label": "Confucius",
+      "aka": [
+        "孔子",
+        "Kǒngzǐ"
+      ],
+      "traditions": [
+        "tao-confucian"
+      ],
+      "figureClass": "founder",
+      "historicity": "historical",
+      "motifs": [
+        "sage",
+        "lawgiver",
+        "teacher"
+      ],
+      "wikidata": "Q4604",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q4604"
+    },
+    {
+      "id": "david",
+      "label": "David",
+      "aka": [
+        "Dawud",
+        "Dāwūd"
+      ],
+      "traditions": [
+        "judaism",
+        "christianity",
+        "islam"
+      ],
+      "figureClass": "patriarch",
+      "historicity": "contested",
+      "motifs": [
+        "psalmist",
+        "king",
+        "messianic-line"
+      ],
+      "wikidata": "Q41370",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q41370"
+    },
+    {
+      "id": "deucalion",
+      "label": "Deucalion",
+      "aka": [
+        "Δευκαλίων"
+      ],
+      "traditions": [
+        "greek"
+      ],
+      "figureClass": "legendary",
+      "historicity": "mythic",
+      "motifs": [
+        "flood",
+        "ark",
+        "founding-patriarch"
+      ],
+      "wikidata": "Q188643",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q188643"
+    },
+    {
+      "id": "buddha",
+      "label": "Gautama Buddha",
+      "aka": [
+        "Siddhārtha Gautama",
+        "Śākyamuni"
+      ],
+      "traditions": [
+        "buddhism",
+        "hinduism"
+      ],
+      "figureClass": "founder",
+      "historicity": "historical",
+      "motifs": [
+        "awakened-one",
+        "founder",
+        "lawgiver"
+      ],
+      "wikidata": "Q9441",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9441"
+    },
+    {
+      "id": "gilgamesh",
+      "label": "Gilgamesh",
+      "aka": [
+        "Bilgames"
+      ],
+      "traditions": [
+        "mesopotamian"
+      ],
+      "figureClass": "legendary",
+      "historicity": "legendary",
+      "motifs": [
+        "king",
+        "quest-for-immortality"
+      ],
+      "wikidata": "Q193430",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q193430"
+    },
+    {
+      "id": "guru-nanak",
+      "label": "Guru Nanak",
+      "aka": [
+        "Nānak"
+      ],
+      "traditions": [
+        "sikhism"
+      ],
+      "figureClass": "founder",
+      "historicity": "historical",
+      "motifs": [
+        "founder",
+        "reformer"
+      ],
+      "wikidata": "Q83478",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q83478"
+    },
+    {
+      "id": "jesus",
+      "label": "Jesus of Nazareth",
+      "aka": [
+        "Yeshua",
+        "Isa",
+        "ʿĪsā"
+      ],
+      "traditions": [
+        "christianity",
+        "islam"
+      ],
+      "figureClass": "messiah-claimant",
+      "historicity": "historical",
+      "motifs": [
+        "dying-and-rising",
+        "messiah",
+        "miracle-worker"
+      ],
+      "wikidata": "Q302",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q302"
+    },
+    {
+      "id": "joseph-smith",
+      "label": "Joseph Smith",
+      "aka": [
+        "Joseph Smith Jr."
+      ],
+      "traditions": [
+        "lds"
+      ],
+      "figureClass": "founder",
+      "historicity": "historical",
+      "motifs": [
+        "founder",
+        "prophet-restorationist"
+      ],
+      "wikidata": "Q11891",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q11891"
+    },
+    {
+      "id": "krishna",
+      "label": "Krishna",
+      "aka": [
+        "Kṛṣṇa",
+        "Krsna"
+      ],
+      "traditions": [
+        "hinduism"
+      ],
+      "figureClass": "avatar",
+      "historicity": "mythic",
+      "motifs": [
+        "avatar",
+        "divine-teacher",
+        "trickster"
+      ],
+      "wikidata": "Q43361",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q43361"
+    },
+    {
+      "id": "laozi",
+      "label": "Laozi",
+      "aka": [
+        "老子",
+        "Lǎozǐ",
+        "Lao Tzu"
+      ],
+      "traditions": [
+        "tao-confucian"
+      ],
+      "figureClass": "founder",
+      "historicity": "contested",
+      "motifs": [
+        "sage",
+        "founder",
+        "way-of-nature"
+      ],
+      "wikidata": "Q9333",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9333"
+    },
+    {
+      "id": "mahavira",
+      "label": "Mahāvīra",
+      "aka": [
+        "Vardhamāna"
+      ],
+      "traditions": [
+        "jainism"
+      ],
+      "figureClass": "founder",
+      "historicity": "historical",
+      "motifs": [
+        "tirthankara",
+        "ascetic",
+        "reformer"
+      ],
+      "wikidata": "Q193466",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q193466"
+    },
+    {
+      "id": "manu",
+      "label": "Manu",
+      "aka": [
+        "Manu Vaivasvata",
+        "Vaivasvata Manu"
+      ],
+      "traditions": [
+        "hinduism"
+      ],
+      "figureClass": "patriarch",
+      "historicity": "mythic",
+      "motifs": [
+        "flood",
+        "ark",
+        "lawgiver",
+        "founding-patriarch"
+      ],
+      "wikidata": "Q1233738",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1233738"
+    },
+    {
+      "id": "moses",
+      "label": "Moses",
+      "aka": [
+        "Moshe",
+        "Musa",
+        "Mūsā"
+      ],
+      "traditions": [
+        "judaism",
+        "christianity",
+        "islam"
+      ],
+      "figureClass": "prophet",
+      "historicity": "contested",
+      "motifs": [
+        "lawgiver",
+        "exodus",
+        "mountain-revelation"
+      ],
+      "wikidata": "Q9077",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9077"
+    },
+    {
+      "id": "muhammad",
+      "label": "Muḥammad",
+      "aka": [
+        "Muhammad",
+        "Mohammed"
+      ],
+      "traditions": [
+        "islam"
+      ],
+      "figureClass": "prophet",
+      "historicity": "historical",
+      "motifs": [
+        "lawgiver",
+        "mountain-revelation",
+        "seal-of-prophets"
+      ],
+      "wikidata": "Q9458",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9458"
+    },
+    {
+      "id": "noah",
+      "label": "Noah",
+      "aka": [
+        "Nūḥ",
+        "Noach",
+        "Νῶε"
+      ],
+      "traditions": [
+        "judaism",
+        "christianity",
+        "islam"
+      ],
+      "figureClass": "prophet",
+      "historicity": "legendary",
+      "motifs": [
+        "flood",
+        "ark",
+        "covenant-rainbow"
+      ],
+      "wikidata": "Q80350",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q80350"
+    },
+    {
+      "id": "rama",
+      "label": "Rama",
+      "aka": [
+        "Rāma"
+      ],
+      "traditions": [
+        "hinduism"
+      ],
+      "figureClass": "avatar",
+      "historicity": "mythic",
+      "motifs": [
+        "avatar",
+        "righteous-king"
+      ],
+      "wikidata": "Q160213",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q160213"
+    },
+    {
+      "id": "saoshyant",
+      "label": "Saoshyant",
+      "aka": [
+        "Saoshyans"
+      ],
+      "traditions": [
+        "zoroastrianism"
+      ],
+      "figureClass": "messiah-claimant",
+      "historicity": "mythic",
+      "motifs": [
+        "world-savior",
+        "eschatological-redeemer"
+      ],
+      "wikidata": "Q1996291",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1996291"
+    },
+    {
+      "id": "utnapishtim",
+      "label": "Utnapishtim",
+      "aka": [
+        "Ūta-napišti",
+        "Ziusudra",
+        "Atrahasis"
+      ],
+      "traditions": [
+        "mesopotamian"
+      ],
+      "figureClass": "legendary",
+      "historicity": "mythic",
+      "motifs": [
+        "flood",
+        "ark",
+        "immortality-granted"
+      ],
+      "wikidata": "Q317481",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q317481"
+    },
+    {
+      "id": "yu-the-great",
+      "label": "Yu the Great",
+      "aka": [
+        "大禹",
+        "Dà Yǔ"
+      ],
+      "traditions": [
+        "tao-confucian"
+      ],
+      "figureClass": "legendary",
+      "historicity": "legendary",
+      "motifs": [
+        "flood",
+        "lawgiver",
+        "founding-king"
+      ],
+      "wikidata": "Q47042",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q47042"
+    },
+    {
+      "id": "zoroaster",
+      "label": "Zoroaster",
+      "aka": [
+        "Zarathustra",
+        "Zarathuštra"
+      ],
+      "traditions": [
+        "zoroastrianism"
+      ],
+      "figureClass": "founder",
+      "historicity": "contested",
+      "motifs": [
+        "prophet",
+        "dualist-cosmology"
+      ],
+      "wikidata": "Q35811",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q35811"
+    }
+  ],
+  "correlations": [
+    {
+      "id": "clm-corr-figure-mapping-8d76c0b84f",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Manu ↔ Deucalion",
+      "statement": "Manu is proposed as a cross-tradition correlate of Deucalion (shared motifs: ark, flood, founding-patriarch).",
+      "sideA": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "sideB": {
+        "tradition": "greek",
+        "node": "deucalion",
+        "wikidata": "Q188643"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.718,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q188643",
+          "sourceNode": "deucalion",
+          "rightsTier": "A",
+          "summary": "Figure Deucalion (['greek']) — motifs ['flood', 'ark', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:ark,flood,founding-patriarch",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.934; rapidfuzz token-set ratio=17.6; shared motifs=['ark', 'flood', 'founding-patriarch']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-7567bdaebf",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Manu ↔ Yu the Great",
+      "statement": "Manu is proposed as a cross-tradition correlate of Yu the Great (shared motifs: flood, lawgiver).",
+      "sideA": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.594,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:flood,lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.845; rapidfuzz token-set ratio=22.2; shared motifs=['flood', 'lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-79cd0f2833",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Utnapishtim ↔ Manu",
+      "statement": "Utnapishtim is proposed as a cross-tradition correlate of Manu (shared motifs: ark, flood).",
+      "sideA": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.575,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q317481",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Figure Utnapishtim (['mesopotamian']) — motifs ['flood', 'ark', 'immortality-granted']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:ark,flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.762; rapidfuzz token-set ratio=28.1; shared motifs=['ark', 'flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-0fa5896921",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Noah ↔ Utnapishtim",
+      "statement": "Noah is proposed as a cross-tradition correlate of Utnapishtim (shared motifs: ark, flood).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "noah",
+        "wikidata": "Q80350"
+      },
+      "sideB": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.563,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q80350",
+          "sourceNode": "noah",
+          "rightsTier": "A",
+          "summary": "Figure Noah (['judaism', 'christianity', 'islam']) — motifs ['flood', 'ark', 'covenant-rainbow']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q317481",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Figure Utnapishtim (['mesopotamian']) — motifs ['flood', 'ark', 'immortality-granted']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:ark,flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.761; rapidfuzz token-set ratio=23.3; shared motifs=['ark', 'flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-890850c4cd",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Noah ↔ Deucalion",
+      "statement": "Noah is proposed as a cross-tradition correlate of Deucalion (shared motifs: ark, flood).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "noah",
+        "wikidata": "Q80350"
+      },
+      "sideB": {
+        "tradition": "greek",
+        "node": "deucalion",
+        "wikidata": "Q188643"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.537,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q80350",
+          "sourceNode": "noah",
+          "rightsTier": "A",
+          "summary": "Figure Noah (['judaism', 'christianity', 'islam']) — motifs ['flood', 'ark', 'covenant-rainbow']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q188643",
+          "sourceNode": "deucalion",
+          "rightsTier": "A",
+          "summary": "Figure Deucalion (['greek']) — motifs ['flood', 'ark', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:ark,flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.707; rapidfuzz token-set ratio=21.6; shared motifs=['ark', 'flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-1a41cc99b5",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Utnapishtim ↔ Deucalion",
+      "statement": "Utnapishtim is proposed as a cross-tradition correlate of Deucalion (shared motifs: ark, flood).",
+      "sideA": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "sideB": {
+        "tradition": "greek",
+        "node": "deucalion",
+        "wikidata": "Q188643"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.531,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q317481",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Figure Utnapishtim (['mesopotamian']) — motifs ['flood', 'ark', 'immortality-granted']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q188643",
+          "sourceNode": "deucalion",
+          "rightsTier": "A",
+          "summary": "Figure Deucalion (['greek']) — motifs ['flood', 'ark', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:ark,flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.746; rapidfuzz token-set ratio=13.1; shared motifs=['ark', 'flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-fb832469eb",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Noah ↔ Manu",
+      "statement": "Noah is proposed as a cross-tradition correlate of Manu (shared motifs: ark, flood).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "noah",
+        "wikidata": "Q80350"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.527,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q80350",
+          "sourceNode": "noah",
+          "rightsTier": "A",
+          "summary": "Figure Noah (['judaism', 'christianity', 'islam']) — motifs ['flood', 'ark', 'covenant-rainbow']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:ark,flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.704; rapidfuzz token-set ratio=18.2; shared motifs=['ark', 'flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-25942df7a6",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Guru Nanak ↔ Mahāvīra",
+      "statement": "Guru Nanak is proposed as a cross-tradition correlate of Mahāvīra (shared motifs: reformer).",
+      "sideA": {
+        "tradition": "sikhism",
+        "node": "guru-nanak",
+        "wikidata": "Q83478"
+      },
+      "sideB": {
+        "tradition": "jainism",
+        "node": "mahavira",
+        "wikidata": "Q193466"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.485,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q83478",
+          "sourceNode": "guru-nanak",
+          "rightsTier": "A",
+          "summary": "Figure Guru Nanak (['sikhism']) — motifs ['founder', 'reformer']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q193466",
+          "sourceNode": "mahavira",
+          "rightsTier": "A",
+          "summary": "Figure Mahāvīra (['jainism']) — motifs ['tirthankara', 'ascetic', 'reformer']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:reformer",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.712; rapidfuzz token-set ratio=40.0; shared motifs=['reformer']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-01ce859cea",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Abraham ↔ Manu",
+      "statement": "Abraham is proposed as a cross-tradition correlate of Manu (shared motifs: founding-patriarch).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "abraham",
+        "wikidata": "Q9181"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.483,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9181",
+          "sourceNode": "abraham",
+          "rightsTier": "A",
+          "summary": "Figure Abraham (['judaism', 'christianity', 'islam']) — motifs ['covenant', 'sacrifice-of-son', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founding-patriarch",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.761; rapidfuzz token-set ratio=31.6; shared motifs=['founding-patriarch']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-f46543d4ce",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Muḥammad ↔ Gautama Buddha",
+      "statement": "Muḥammad is proposed as a cross-tradition correlate of Gautama Buddha (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "islam",
+        "node": "muhammad",
+        "wikidata": "Q9458"
+      },
+      "sideB": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.47,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9458",
+          "sourceNode": "muhammad",
+          "rightsTier": "A",
+          "summary": "Figure Muḥammad (['islam']) — motifs ['lawgiver', 'mountain-revelation', 'seal-of-prophets']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.700; rapidfuzz token-set ratio=36.1; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-33f52864a9",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Gautama Buddha ↔ Bahá'u'lláh",
+      "statement": "Gautama Buddha is proposed as a cross-tradition correlate of Bahá'u'lláh (shared motifs: founder).",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "bahai",
+        "node": "bahaullah",
+        "wikidata": "Q83410"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.468,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q83410",
+          "sourceNode": "bahaullah",
+          "rightsTier": "A",
+          "summary": "Figure Bahá'u'lláh (['bahai']) — motifs ['founder', 'manifestation']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.715; rapidfuzz token-set ratio=32.9; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-78408fa6c0",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Gautama Buddha ↔ Yu the Great",
+      "statement": "Gautama Buddha is proposed as a cross-tradition correlate of Yu the Great (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.465,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.733; rapidfuzz token-set ratio=28.6; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-4a49772657",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Gautama Buddha ↔ Guru Nanak",
+      "statement": "Gautama Buddha is proposed as a cross-tradition correlate of Guru Nanak (shared motifs: founder).",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "sikhism",
+        "node": "guru-nanak",
+        "wikidata": "Q83478"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.464,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q83478",
+          "sourceNode": "guru-nanak",
+          "rightsTier": "A",
+          "summary": "Figure Guru Nanak (['sikhism']) — motifs ['founder', 'reformer']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.713; rapidfuzz token-set ratio=31.4; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-57c34b1659",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Muḥammad ↔ Manu",
+      "statement": "Muḥammad is proposed as a cross-tradition correlate of Manu (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "islam",
+        "node": "muhammad",
+        "wikidata": "Q9458"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.461,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9458",
+          "sourceNode": "muhammad",
+          "rightsTier": "A",
+          "summary": "Figure Muḥammad (['islam']) — motifs ['lawgiver', 'mountain-revelation', 'seal-of-prophets']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.690; rapidfuzz token-set ratio=34.1; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-260d02245c",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Gautama Buddha ↔ Joseph Smith",
+      "statement": "Gautama Buddha is proposed as a cross-tradition correlate of Joseph Smith (shared motifs: founder).",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "lds",
+        "node": "joseph-smith",
+        "wikidata": "Q11891"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.46,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q11891",
+          "sourceNode": "joseph-smith",
+          "rightsTier": "A",
+          "summary": "Figure Joseph Smith (['lds']) — motifs ['founder', 'prophet-restorationist']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.729; rapidfuzz token-set ratio=27.5; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-e4b24b2cf9",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Deucalion ↔ Yu the Great",
+      "statement": "Deucalion is proposed as a cross-tradition correlate of Yu the Great (shared motifs: flood).",
+      "sideA": {
+        "tradition": "greek",
+        "node": "deucalion",
+        "wikidata": "Q188643"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.456,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q188643",
+          "sourceNode": "deucalion",
+          "rightsTier": "A",
+          "summary": "Figure Deucalion (['greek']) — motifs ['flood', 'ark', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.764; rapidfuzz token-set ratio=20.0; shared motifs=['flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-114e1adc49",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Moses ↔ Gautama Buddha",
+      "statement": "Moses is proposed as a cross-tradition correlate of Gautama Buddha (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "moses",
+        "wikidata": "Q9077"
+      },
+      "sideB": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.452,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9077",
+          "sourceNode": "moses",
+          "rightsTier": "A",
+          "summary": "Figure Moses (['judaism', 'christianity', 'islam']) — motifs ['lawgiver', 'exodus', 'mountain-revelation']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.746; rapidfuzz token-set ratio=21.4; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-9c2d19c3b7",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Utnapishtim ↔ Yu the Great",
+      "statement": "Utnapishtim is proposed as a cross-tradition correlate of Yu the Great (shared motifs: flood).",
+      "sideA": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.449,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q317481",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Figure Utnapishtim (['mesopotamian']) — motifs ['flood', 'ark', 'immortality-granted']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.735; rapidfuzz token-set ratio=22.2; shared motifs=['flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-c8e6adccca",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Guru Nanak ↔ Bahá'u'lláh",
+      "statement": "Guru Nanak is proposed as a cross-tradition correlate of Bahá'u'lláh (shared motifs: founder).",
+      "sideA": {
+        "tradition": "sikhism",
+        "node": "guru-nanak",
+        "wikidata": "Q83478"
+      },
+      "sideB": {
+        "tradition": "bahai",
+        "node": "bahaullah",
+        "wikidata": "Q83410"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.443,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q83478",
+          "sourceNode": "guru-nanak",
+          "rightsTier": "A",
+          "summary": "Figure Guru Nanak (['sikhism']) — motifs ['founder', 'reformer']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q83410",
+          "sourceNode": "bahaullah",
+          "rightsTier": "A",
+          "summary": "Figure Bahá'u'lláh (['bahai']) — motifs ['founder', 'manifestation']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.694; rapidfuzz token-set ratio=25.9; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-470422f41b",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Moses ↔ Manu",
+      "statement": "Moses is proposed as a cross-tradition correlate of Manu (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "moses",
+        "wikidata": "Q9077"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.436,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9077",
+          "sourceNode": "moses",
+          "rightsTier": "A",
+          "summary": "Figure Moses (['judaism', 'christianity', 'islam']) — motifs ['lawgiver', 'exodus', 'mountain-revelation']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.701; rapidfuzz token-set ratio=22.2; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-0ed9976536",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Gautama Buddha ↔ Laozi",
+      "statement": "Gautama Buddha is proposed as a cross-tradition correlate of Laozi (shared motifs: founder).",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "laozi",
+        "wikidata": "Q9333"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.435,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q9333",
+          "sourceNode": "laozi",
+          "rightsTier": "A",
+          "summary": "Figure Laozi (['tao-confucian']) — motifs ['sage', 'founder', 'way-of-nature']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.705; rapidfuzz token-set ratio=21.1; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-690ceb8922",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Moses ↔ Yu the Great",
+      "statement": "Moses is proposed as a cross-tradition correlate of Yu the Great (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "moses",
+        "wikidata": "Q9077"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.434,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9077",
+          "sourceNode": "moses",
+          "rightsTier": "A",
+          "summary": "Figure Moses (['judaism', 'christianity', 'islam']) — motifs ['lawgiver', 'exodus', 'mountain-revelation']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.686; rapidfuzz token-set ratio=23.8; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-02863f7dfd",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Guru Nanak ↔ Joseph Smith",
+      "statement": "Guru Nanak is proposed as a cross-tradition correlate of Joseph Smith (shared motifs: founder).",
+      "sideA": {
+        "tradition": "sikhism",
+        "node": "guru-nanak",
+        "wikidata": "Q83478"
+      },
+      "sideB": {
+        "tradition": "lds",
+        "node": "joseph-smith",
+        "wikidata": "Q11891"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.43,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q83478",
+          "sourceNode": "guru-nanak",
+          "rightsTier": "A",
+          "summary": "Figure Guru Nanak (['sikhism']) — motifs ['founder', 'reformer']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q11891",
+          "sourceNode": "joseph-smith",
+          "rightsTier": "A",
+          "summary": "Figure Joseph Smith (['lds']) — motifs ['founder', 'prophet-restorationist']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.748; rapidfuzz token-set ratio=12.5; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-1c01bf3232",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Muḥammad ↔ Yu the Great",
+      "statement": "Muḥammad is proposed as a cross-tradition correlate of Yu the Great (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "islam",
+        "node": "muhammad",
+        "wikidata": "Q9458"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.428,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9458",
+          "sourceNode": "muhammad",
+          "rightsTier": "A",
+          "summary": "Figure Muḥammad (['islam']) — motifs ['lawgiver', 'mountain-revelation', 'seal-of-prophets']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.687; rapidfuzz token-set ratio=21.3; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-4df4c4639a",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Gautama Buddha ↔ Confucius",
+      "statement": "Gautama Buddha is proposed as a cross-tradition correlate of Confucius (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "confucius",
+        "wikidata": "Q4604"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.422,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q4604",
+          "sourceNode": "confucius",
+          "rightsTier": "A",
+          "summary": "Figure Confucius (['tao-confucian']) — motifs ['sage', 'lawgiver', 'teacher']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.712; rapidfuzz token-set ratio=14.8; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-049097740d",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Laozi ↔ Guru Nanak",
+      "statement": "Laozi is proposed as a cross-tradition correlate of Guru Nanak (shared motifs: founder).",
+      "sideA": {
+        "tradition": "tao-confucian",
+        "node": "laozi",
+        "wikidata": "Q9333"
+      },
+      "sideB": {
+        "tradition": "sikhism",
+        "node": "guru-nanak",
+        "wikidata": "Q83478"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.422,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9333",
+          "sourceNode": "laozi",
+          "rightsTier": "A",
+          "summary": "Figure Laozi (['tao-confucian']) — motifs ['sage', 'founder', 'way-of-nature']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q83478",
+          "sourceNode": "guru-nanak",
+          "rightsTier": "A",
+          "summary": "Figure Guru Nanak (['sikhism']) — motifs ['founder', 'reformer']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.705; rapidfuzz token-set ratio=15.8; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-14b1209bfa",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Moses ↔ Confucius",
+      "statement": "Moses is proposed as a cross-tradition correlate of Confucius (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "moses",
+        "wikidata": "Q9077"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "confucius",
+        "wikidata": "Q4604"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.42,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9077",
+          "sourceNode": "moses",
+          "rightsTier": "A",
+          "summary": "Figure Moses (['judaism', 'christianity', 'islam']) — motifs ['lawgiver', 'exodus', 'mountain-revelation']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q4604",
+          "sourceNode": "confucius",
+          "rightsTier": "A",
+          "summary": "Figure Confucius (['tao-confucian']) — motifs ['sage', 'lawgiver', 'teacher']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.674; rapidfuzz token-set ratio=20.0; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-83ed9ccdd9",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Abraham ↔ Deucalion",
+      "statement": "Abraham is proposed as a cross-tradition correlate of Deucalion (shared motifs: founding-patriarch).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "abraham",
+        "wikidata": "Q9181"
+      },
+      "sideB": {
+        "tradition": "greek",
+        "node": "deucalion",
+        "wikidata": "Q188643"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.42,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9181",
+          "sourceNode": "abraham",
+          "rightsTier": "A",
+          "summary": "Figure Abraham (['judaism', 'christianity', 'islam']) — motifs ['covenant', 'sacrifice-of-son', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q188643",
+          "sourceNode": "deucalion",
+          "rightsTier": "A",
+          "summary": "Figure Deucalion (['greek']) — motifs ['flood', 'ark', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founding-patriarch",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.741; rapidfuzz token-set ratio=9.5; shared motifs=['founding-patriarch']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-d125dbc8ad",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Laozi ↔ Bahá'u'lláh",
+      "statement": "Laozi is proposed as a cross-tradition correlate of Bahá'u'lláh (shared motifs: founder).",
+      "sideA": {
+        "tradition": "tao-confucian",
+        "node": "laozi",
+        "wikidata": "Q9333"
+      },
+      "sideB": {
+        "tradition": "bahai",
+        "node": "bahaullah",
+        "wikidata": "Q83410"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.418,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9333",
+          "sourceNode": "laozi",
+          "rightsTier": "A",
+          "summary": "Figure Laozi (['tao-confucian']) — motifs ['sage', 'founder', 'way-of-nature']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q83410",
+          "sourceNode": "bahaullah",
+          "rightsTier": "A",
+          "summary": "Figure Bahá'u'lláh (['bahai']) — motifs ['founder', 'manifestation']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.671; rapidfuzz token-set ratio=20.0; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-85b3422227",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Bahá'u'lláh ↔ Joseph Smith",
+      "statement": "Bahá'u'lláh is proposed as a cross-tradition correlate of Joseph Smith (shared motifs: founder).",
+      "sideA": {
+        "tradition": "bahai",
+        "node": "bahaullah",
+        "wikidata": "Q83410"
+      },
+      "sideB": {
+        "tradition": "lds",
+        "node": "joseph-smith",
+        "wikidata": "Q11891"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.418,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q83410",
+          "sourceNode": "bahaullah",
+          "rightsTier": "A",
+          "summary": "Figure Bahá'u'lláh (['bahai']) — motifs ['founder', 'manifestation']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q11891",
+          "sourceNode": "joseph-smith",
+          "rightsTier": "A",
+          "summary": "Figure Joseph Smith (['lds']) — motifs ['founder', 'prophet-restorationist']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.703; rapidfuzz token-set ratio=14.8; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-c74ffea2e1",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Noah ↔ Yu the Great",
+      "statement": "Noah is proposed as a cross-tradition correlate of Yu the Great (shared motifs: flood).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "noah",
+        "wikidata": "Q80350"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.415,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q80350",
+          "sourceNode": "noah",
+          "rightsTier": "A",
+          "summary": "Figure Noah (['judaism', 'christianity', 'islam']) — motifs ['flood', 'ark', 'covenant-rainbow']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:flood",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.660; rapidfuzz token-set ratio=20.5; shared motifs=['flood']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-88a1e86009",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Laozi ↔ Joseph Smith",
+      "statement": "Laozi is proposed as a cross-tradition correlate of Joseph Smith (shared motifs: founder).",
+      "sideA": {
+        "tradition": "tao-confucian",
+        "node": "laozi",
+        "wikidata": "Q9333"
+      },
+      "sideB": {
+        "tradition": "lds",
+        "node": "joseph-smith",
+        "wikidata": "Q11891"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.412,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9333",
+          "sourceNode": "laozi",
+          "rightsTier": "A",
+          "summary": "Figure Laozi (['tao-confucian']) — motifs ['sage', 'founder', 'way-of-nature']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q11891",
+          "sourceNode": "joseph-smith",
+          "rightsTier": "A",
+          "summary": "Figure Joseph Smith (['lds']) — motifs ['founder', 'prophet-restorationist']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:founder",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.682; rapidfuzz token-set ratio=15.8; shared motifs=['founder']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-25bfc7e061",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Manu ↔ Confucius",
+      "statement": "Manu is proposed as a cross-tradition correlate of Confucius (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "confucius",
+        "wikidata": "Q4604"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.409,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q4604",
+          "sourceNode": "confucius",
+          "rightsTier": "A",
+          "summary": "Figure Confucius (['tao-confucian']) — motifs ['sage', 'lawgiver', 'teacher']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.627; rapidfuzz token-set ratio=23.5; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-adb5379427",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: David ↔ Gilgamesh",
+      "statement": "David is proposed as a cross-tradition correlate of Gilgamesh (shared motifs: king).",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "david",
+        "wikidata": "Q41370"
+      },
+      "sideB": {
+        "tradition": "mesopotamian",
+        "node": "gilgamesh",
+        "wikidata": "Q193430"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.393,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q41370",
+          "sourceNode": "david",
+          "rightsTier": "A",
+          "summary": "Figure David (['judaism', 'christianity', 'islam']) — motifs ['psalmist', 'king', 'messianic-line']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q193430",
+          "sourceNode": "gilgamesh",
+          "rightsTier": "A",
+          "summary": "Figure Gilgamesh (['mesopotamian']) — motifs ['king', 'quest-for-immortality']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:king",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.626; rapidfuzz token-set ratio=17.1; shared motifs=['king']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-figure-mapping-f71f1915d7",
+      "kind": "figure-mapping",
+      "label": "Figure-mapping candidate: Muḥammad ↔ Confucius",
+      "statement": "Muḥammad is proposed as a cross-tradition correlate of Confucius (shared motifs: lawgiver).",
+      "sideA": {
+        "tradition": "islam",
+        "node": "muhammad",
+        "wikidata": "Q9458"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "confucius",
+        "wikidata": "Q4604"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.392,
+      "scope": "ai-generated candidate; cross-tradition figure-mapping",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9458",
+          "sourceNode": "muhammad",
+          "rightsTier": "A",
+          "summary": "Figure Muḥammad (['islam']) — motifs ['lawgiver', 'mountain-revelation', 'seal-of-prophets']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q4604",
+          "sourceNode": "confucius",
+          "rightsTier": "A",
+          "summary": "Figure Confucius (['tao-confucian']) — motifs ['sage', 'lawgiver', 'teacher']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "shared-motifs:lawgiver",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Embedding cosine=0.647; rapidfuzz token-set ratio=13.3; shared motifs=['lawgiver']."
+        }
+      ],
+      "counterConsiderations": [],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": "entity-graph-resolver",
+        "model": "nomic-embed-text",
+        "runId": "entity-graph-20260612-095321",
+        "addedOn": "2026-06-12"
+      },
+      "source": "entity-graph-resolver"
+    },
+    {
+      "id": "clm-corr-motif-parallel-1699a92a90",
+      "kind": "motif-parallel",
+      "label": "The flood motif is proposed to be correlated with the ark motif in both mesopotamian and hinduism traditions.",
+      "statement": "The flood motif is proposed to be correlated with the ark motif in both mesopotamian and hinduism traditions.",
+      "sideA": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.693,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q317481",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Figure Utnapishtim (['mesopotamian']) — motifs ['flood', 'ark', 'immortality-granted']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:utnapishtim+manu",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motifs of 'flood' and 'ark' across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "The presence of additional motifs like 'immortality-granted' in mesopotamian may indicate a unique cultural context.",
+        "The hinduism tradition's inclusion of 'lawgiver' and 'founding-patriarch' motifs may suggest a distinct theological framework."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-827d0fee6e",
+      "kind": "motif-parallel",
+      "label": "This motif of an ark figure is proposed to be correlated with in the mesopotamian and greek traditions.",
+      "statement": "This motif of an ark figure is proposed to be correlated with in the mesopotamian and greek traditions.",
+      "sideA": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "sideB": {
+        "tradition": "greek",
+        "node": "deucalion",
+        "wikidata": "Q188643"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.693,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q317481",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Figure Utnapishtim (['mesopotamian']) — motifs ['flood', 'ark', 'immortality-granted']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q188643",
+          "sourceNode": "deucalion",
+          "rightsTier": "A",
+          "summary": "Figure Deucalion (['greek']) — motifs ['flood', 'ark', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:utnapishtim+deucalion",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motifs of 'ark' and 'flood' across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "The presence of immortality-granted themes in mesopotamian utnapishtim may not be directly comparable to greek deucalion's founding-patriarch role."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-9b864abea6",
+      "kind": "motif-parallel",
+      "label": "The motif of the founding patriarch appears parallel to in both Judaism and Hinduism.",
+      "statement": "The motif of the founding patriarch appears parallel to in both Judaism and Hinduism.",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "abraham",
+        "wikidata": "Q9181"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.693,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9181",
+          "sourceNode": "abraham",
+          "rightsTier": "A",
+          "summary": "Figure Abraham (['judaism', 'christianity', 'islam']) — motifs ['covenant', 'sacrifice-of-son', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:abraham+manu",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motif of founding patriarch across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Lack of direct textual connection between Abraham and Manu"
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-bebac75dc9",
+      "kind": "motif-parallel",
+      "label": "The motif of the flood is proposed to be correlated with the founding patriarch in Hinduism and Greek traditions.",
+      "statement": "The motif of the flood is proposed to be correlated with the founding patriarch in Hinduism and Greek traditions.",
+      "sideA": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "sideB": {
+        "tradition": "greek",
+        "node": "deucalion",
+        "wikidata": "Q188643"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q188643",
+          "sourceNode": "deucalion",
+          "rightsTier": "A",
+          "summary": "Figure Deucalion (['greek']) — motifs ['flood', 'ark', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:manu+deucalion",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motifs of 'flood', 'ark', and 'founding-patriarch' across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Counter-intuitive overlap with unrelated mythological themes in other traditions"
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-9cb448fdc6",
+      "kind": "motif-parallel",
+      "label": "The motif of the lawgiver is proposed to be correlated with in Hinduism and Taoist traditions.",
+      "statement": "The motif of the lawgiver is proposed to be correlated with in Hinduism and Taoist traditions.",
+      "sideA": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:manu+yu-the-great",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motifs of 'flood', 'lawgiver' across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Counter-consideration: The lawgiver motif may be a cultural borrowing from ancient Near Eastern traditions."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-4895b384d8",
+      "kind": "motif-parallel",
+      "label": "This motif of the ark and covenant-rainbow is proposed to be correlated with the figure of Utnapishtim in Mesopotamian tradition.",
+      "statement": "This motif of the ark and covenant-rainbow is proposed to be correlated with the figure of Utnapishtim in Mesopotamian tradition.",
+      "sideA": {
+        "tradition": "mesopotamian",
+        "node": "utnapishtim",
+        "wikidata": "Q317481"
+      },
+      "sideB": {
+        "tradition": "judaism",
+        "node": "noah",
+        "wikidata": "Q80350"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q317481",
+          "sourceNode": "utnapishtim",
+          "rightsTier": "A",
+          "summary": "Figure Utnapishtim (['mesopotamian']) — motifs ['flood', 'ark', 'immortality-granted']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q80350",
+          "sourceNode": "noah",
+          "rightsTier": "A",
+          "summary": "Figure Noah (['judaism', 'christianity', 'islam']) — motifs ['flood', 'ark', 'covenant-rainbow']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:utnapishtim+noah",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motifs of 'flood' and 'ark' across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Different cultural contexts may have influenced the development of these motifs independently."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-ca3ad8f9e1",
+      "kind": "motif-parallel",
+      "label": "This motif 'lawgiver' appears parallel to in the traditions of Islam and Buddhism.",
+      "statement": "This motif 'lawgiver' appears parallel to in the traditions of Islam and Buddhism.",
+      "sideA": {
+        "tradition": "islam",
+        "node": "muhammad",
+        "wikidata": "Q9458"
+      },
+      "sideB": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9458",
+          "sourceNode": "muhammad",
+          "rightsTier": "A",
+          "summary": "Figure Muḥammad (['islam']) — motifs ['lawgiver', 'mountain-revelation', 'seal-of-prophets']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:muhammad+buddha",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Both traditions associate the lawgiver with revelation and prophetic authority."
+        }
+      ],
+      "counterConsiderations": [
+        "The motif may be a result of cultural exchange or independent development."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-86b6e200bf",
+      "kind": "motif-parallel",
+      "label": "This cluster appears parallel to the motif of 'founder' in buddhism and bahai traditions.",
+      "statement": "This cluster appears parallel to the motif of 'founder' in buddhism and bahai traditions.",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "bahai",
+        "node": "bahaullah",
+        "wikidata": "Q83410"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q83410",
+          "sourceNode": "bahaullah",
+          "rightsTier": "A",
+          "summary": "Figure Bahá'u'lláh (['bahai']) — motifs ['founder', 'manifestation']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:buddha+bahaullah",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motif of 'founder' across buddhism and bahai traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "May be due to cultural exchange or borrowing"
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-fab8ab2488",
+      "kind": "motif-parallel",
+      "label": "This motif 'lawgiver' appears parallel to in the traditions of buddhism and tao-confucian.",
+      "statement": "This motif 'lawgiver' appears parallel to in the traditions of buddhism and tao-confucian.",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "tao-confucian",
+        "node": "yu-the-great",
+        "wikidata": "Q47042"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q47042",
+          "sourceNode": "yu-the-great",
+          "rightsTier": "A",
+          "summary": "Figure Yu the Great (['tao-confucian']) — motifs ['flood', 'lawgiver', 'founding-king']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:buddha+yu-the-great",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motif 'lawgiver' in buddhism and tao-confucian traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Counter-claim may be due to linguistic borrowing or cultural exchange."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-5201bb8716",
+      "kind": "motif-parallel",
+      "label": "This founder motif appears parallel to in Sikhism and Buddhism.",
+      "statement": "This founder motif appears parallel to in Sikhism and Buddhism.",
+      "sideA": {
+        "tradition": "sikhism",
+        "node": "guru-nanak",
+        "wikidata": "Q83478"
+      },
+      "sideB": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q83478",
+          "sourceNode": "guru-nanak",
+          "rightsTier": "A",
+          "summary": "Figure Guru Nanak (['sikhism']) — motifs ['founder', 'reformer']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:guru-nanak+buddha",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared 'founder' motif across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "May be a result of cultural exchange or independent development."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-68fe95566d",
+      "kind": "motif-parallel",
+      "label": "This motif of the 'lawgiver' appears parallel to Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch'] and is hypothesized to be correlated with Figure Muḥammad (['isl",
+      "statement": "This motif of the 'lawgiver' appears parallel to Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch'] and is hypothesized to be correlated with Figure Muḥammad (['islam']) — motifs ['lawgiver', 'mountain-revelation', 'seal-of-prophets'], with counter-considerations including potential cultural exchange or independent development of the motif.",
+      "sideA": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "sideB": {
+        "tradition": "islam",
+        "node": "muhammad",
+        "wikidata": "Q9458"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q9458",
+          "sourceNode": "muhammad",
+          "rightsTier": "A",
+          "summary": "Figure Muḥammad (['islam']) — motifs ['lawgiver', 'mountain-revelation', 'seal-of-prophets']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:manu+muhammad",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motif of the 'lawgiver' across two traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Potential cultural exchange or independent development of the motif."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-c1f7ca06c8",
+      "kind": "motif-parallel",
+      "label": "This founder motif is proposed to be correlated with across traditions.",
+      "statement": "This founder motif is proposed to be correlated with across traditions.",
+      "sideA": {
+        "tradition": "buddhism",
+        "node": "buddha",
+        "wikidata": "Q9441"
+      },
+      "sideB": {
+        "tradition": "lds",
+        "node": "joseph-smith",
+        "wikidata": "Q11891"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.665,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q9441",
+          "sourceNode": "buddha",
+          "rightsTier": "A",
+          "summary": "Figure Gautama Buddha (['buddhism', 'hinduism']) — motifs ['awakened-one', 'founder', 'lawgiver']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q11891",
+          "sourceNode": "joseph-smith",
+          "rightsTier": "A",
+          "summary": "Figure Joseph Smith (['lds']) — motifs ['founder', 'prophet-restorationist']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:buddha+joseph-smith",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared 'founder' motif across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Lack of direct textual connection between Buddha and Joseph Smith"
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-motif-parallel-85849e2b03",
+      "kind": "motif-parallel",
+      "label": "This motif of the flood appears parallel to in both Judaism and Hinduism.",
+      "statement": "This motif of the flood appears parallel to in both Judaism and Hinduism.",
+      "sideA": {
+        "tradition": "judaism",
+        "node": "noah",
+        "wikidata": "Q80350"
+      },
+      "sideB": {
+        "tradition": "hinduism",
+        "node": "manu",
+        "wikidata": "Q1233738"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.555,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q80350",
+          "sourceNode": "noah",
+          "rightsTier": "A",
+          "summary": "Figure Noah (['judaism', 'christianity', 'islam']) — motifs ['flood', 'ark', 'covenant-rainbow']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q1233738",
+          "sourceNode": "manu",
+          "rightsTier": "A",
+          "summary": "Figure Manu (['hinduism']) — motifs ['flood', 'ark', 'lawgiver', 'founding-patriarch']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:noah+manu",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motifs of the flood in both traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "The presence of other distinct motifs in each tradition may indicate unique cultural influences."
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    },
+    {
+      "id": "clm-corr-structural-d1e887ad03",
+      "kind": "structural",
+      "label": "Guru Nanak is hypothesized to be correlated with Mahāvīra as reformers in their respective traditions.",
+      "statement": "Guru Nanak is hypothesized to be correlated with Mahāvīra as reformers in their respective traditions.",
+      "sideA": {
+        "tradition": "sikhism",
+        "node": "guru-nanak",
+        "wikidata": "Q83478"
+      },
+      "sideB": {
+        "tradition": "jainism",
+        "node": "mahavira",
+        "wikidata": "Q193466"
+      },
+      "stance": "contested",
+      "disputed": true,
+      "confidence": 0.555,
+      "scope": "ai-generated candidate; cluster-derived",
+      "evidence": [
+        {
+          "kind": "primary",
+          "locator": "Q83478",
+          "sourceNode": "guru-nanak",
+          "rightsTier": "A",
+          "summary": "Figure Guru Nanak (['sikhism']) — motifs ['founder', 'reformer']"
+        },
+        {
+          "kind": "primary",
+          "locator": "Q193466",
+          "sourceNode": "mahavira",
+          "rightsTier": "A",
+          "summary": "Figure Mahāvīra (['jainism']) — motifs ['tirthankara', 'ascetic', 'reformer']"
+        },
+        {
+          "kind": "ai-derived",
+          "locator": "cluster:guru-nanak+mahavira",
+          "sourceNode": "ai-branch-analysis",
+          "rightsTier": "A",
+          "summary": "Shared motifs of 'reformer' across traditions."
+        }
+      ],
+      "counterConsiderations": [
+        "Lack of direct textual connection between Guru Nanak and Mahāvīra"
+      ],
+      "provenance": {
+        "assertedBy": "ai-branch-analysis",
+        "method": null,
+        "model": "llama3.2:3b",
+        "runId": "branch-analysis-20260520-021725",
+        "addedOn": "2026-05-20"
+      },
+      "source": "llm-branch-analysis"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "anc-vedas-composition",
+      "label": "Composition of the Rigveda",
+      "eventClass": "composition",
+      "traditions": [
+        "hinduism"
+      ],
+      "year": -1500,
+      "precision": "century",
+      "disputed": true,
+      "wikidata": "Q183143",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q183143",
+      "note": "Oral composition of the oldest Vedic hymns; conventionally placed c. 1500-1200 BCE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-zoroaster-life",
+      "label": "Traditional floruit of Zoroaster",
+      "eventClass": "life-event",
+      "traditions": [
+        "zoroastrianism"
+      ],
+      "year": -1000,
+      "precision": "century",
+      "disputed": true,
+      "wikidata": "Q4456",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q4456",
+      "note": "Dating ranges widely across scholarship, from the 2nd millennium to the 6th century BCE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-laozi-traditional",
+      "label": "Traditional life of Laozi",
+      "eventClass": "life-event",
+      "traditions": [
+        "tao-confucian"
+      ],
+      "year": -571,
+      "precision": "century",
+      "disputed": true,
+      "wikidata": "Q9333",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9333",
+      "note": "Historicity and dates are uncertain; tradition places him as an older contemporary of Confucius.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-confucius-life",
+      "label": "Life of Confucius",
+      "eventClass": "life-event",
+      "traditions": [
+        "tao-confucian"
+      ],
+      "year": -551,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q4604",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q4604",
+      "note": "Conventionally 551-479 BCE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-mahavira-life",
+      "label": "Life of Mahavira",
+      "eventClass": "life-event",
+      "traditions": [
+        "jainism"
+      ],
+      "year": -540,
+      "precision": "century",
+      "disputed": true,
+      "wikidata": "Q170359",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q170359",
+      "note": "24th and last Tirthankara of the present age; traditionally c. 599-527 BCE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-buddha-life",
+      "label": "Life of Gautama Buddha",
+      "eventClass": "life-event",
+      "traditions": [
+        "buddhism"
+      ],
+      "year": -500,
+      "precision": "century",
+      "disputed": true,
+      "wikidata": "Q9441",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9441",
+      "note": "Conventional placement c. 6th-5th century BCE; the exact dates remain debated.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-septuagint",
+      "label": "Greek translation of the Hebrew scriptures (Septuagint)",
+      "eventClass": "translation",
+      "traditions": [
+        "judaism",
+        "christianity"
+      ],
+      "year": -250,
+      "precision": "century",
+      "disputed": true,
+      "wikidata": "Q131405",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q131405",
+      "note": "Began with the Torah in Alexandria in the 3rd century BCE; the rest followed over the next two centuries.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-jesus-life",
+      "label": "Life of Jesus of Nazareth",
+      "eventClass": "life-event",
+      "traditions": [
+        "christianity"
+      ],
+      "year": -4,
+      "precision": "year",
+      "disputed": true,
+      "wikidata": "Q302",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q302",
+      "note": "Most scholarship places his birth c. 6-4 BCE and death c. 30-33 CE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-council-jerusalem",
+      "label": "Council of Jerusalem",
+      "eventClass": "council",
+      "traditions": [
+        "christianity"
+      ],
+      "year": 50,
+      "precision": "year",
+      "disputed": true,
+      "wikidata": "Q727072",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q727072",
+      "note": "Early apostolic meeting described in Acts; conventionally dated c. 48-50 CE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-council-nicaea",
+      "label": "First Council of Nicaea",
+      "eventClass": "council",
+      "traditions": [
+        "christianity"
+      ],
+      "year": 325,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q51993",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q51993",
+      "note": "Convened by Constantine; produced the original Nicene Creed and addressed the dating of Easter.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-council-chalcedon",
+      "label": "Council of Chalcedon",
+      "eventClass": "council",
+      "traditions": [
+        "christianity"
+      ],
+      "year": 451,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q172017",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q172017",
+      "note": "Defined the two natures of Christ; a fault line between Chalcedonian and Oriental Orthodox traditions.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-talmud-redaction",
+      "label": "Redaction of the Babylonian Talmud",
+      "eventClass": "redaction",
+      "traditions": [
+        "judaism"
+      ],
+      "year": 500,
+      "precision": "century",
+      "disputed": true,
+      "wikidata": "Q584949",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q584949",
+      "note": "Editorial closing conventionally placed around the 5th-6th century CE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-muhammad-life",
+      "label": "Life of Muhammad",
+      "eventClass": "life-event",
+      "traditions": [
+        "islam"
+      ],
+      "year": 570,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q9458",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q9458",
+      "note": "Conventionally c. 570-632 CE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-hijra",
+      "label": "The Hijra (migration to Medina)",
+      "eventClass": "migration",
+      "traditions": [
+        "islam"
+      ],
+      "year": 622,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q224774",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q224774",
+      "note": "Year 1 of the Islamic (Hijri) calendar.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-quran-uthmanic",
+      "label": "Compilation of the Uthmanic codex of the Qur'an",
+      "eventClass": "canonization",
+      "traditions": [
+        "islam"
+      ],
+      "year": 650,
+      "precision": "decade",
+      "disputed": true,
+      "wikidata": "Q428995",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q428995",
+      "note": "Standardization of the consonantal text under the caliph Uthman, conventionally c. 650 CE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-guru-nanak-life",
+      "label": "Life of Guru Nanak",
+      "eventClass": "life-event",
+      "traditions": [
+        "sikhism"
+      ],
+      "year": 1469,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q187085",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q187085",
+      "note": "Founder of Sikhism, 1469-1539 CE.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-adi-granth",
+      "label": "Compilation of the Adi Granth",
+      "eventClass": "canonization",
+      "traditions": [
+        "sikhism"
+      ],
+      "year": 1604,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q1115903",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q1115903",
+      "note": "First compilation of the Sikh scripture by Guru Arjan.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-book-of-mormon",
+      "label": "Publication of the Book of Mormon",
+      "eventClass": "founding",
+      "traditions": [
+        "lds"
+      ],
+      "year": 1830,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q43066",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q43066",
+      "note": "Published by Joseph Smith; founding text of the Latter Day Saint movement.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-bahaullah-declaration",
+      "label": "Declaration of Baha'u'llah",
+      "eventClass": "founding",
+      "traditions": [
+        "bahai"
+      ],
+      "year": 1863,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q170504",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q170504",
+      "note": "Baha'u'llah's declaration of his mission, conventionally dated to 1863 in Baghdad.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-nag-hammadi",
+      "label": "Discovery of the Nag Hammadi library",
+      "eventClass": "manuscript-discovery",
+      "traditions": [
+        "christianity"
+      ],
+      "year": 1945,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q235329",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q235329",
+      "note": "A cache of early Christian and Gnostic codices found in Upper Egypt.",
+      "layer": "anchor"
+    },
+    {
+      "id": "anc-dss-discovery",
+      "label": "Discovery of the Dead Sea Scrolls",
+      "eventClass": "manuscript-discovery",
+      "traditions": [
+        "judaism"
+      ],
+      "year": 1947,
+      "precision": "year",
+      "disputed": false,
+      "wikidata": "Q131233",
+      "wikidataUrl": "https://www.wikidata.org/wiki/Q131233",
+      "note": "Manuscripts found in the Qumran caves, including some of the oldest surviving Hebrew biblical texts.",
+      "layer": "anchor"
+    }
+  ]
+}

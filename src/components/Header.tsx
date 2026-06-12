@@ -22,14 +22,15 @@ const NAV: NavItem[] = [
       { href: "/canon/graph",    label: "Knowledge graph", meta: "1,133 nodes · PageRank" },
     ],
   },
-  // 6 tabs total. Build → /protocol, /learn, /research (hub row on /build).
+  // Build → /protocol, /learn, /research (hub row on /build).
   // About → /governance, /manifesto, /contributors, /join.
-  { href: "/whats-new", label: "What's new" },
-  { href: "/build",     label: "Build" },
-  { href: "/academy",   label: "Academy" },
-  { href: "/access",    label: "Access" },
-  { href: "/chat",      label: "Chat" },
-  { href: "/about",     label: "About" },
+  { href: "/whats-new",      label: "What's new" },
+  { href: "/build",          label: "Build" },
+  { href: "/academy",        label: "Academy" },
+  { href: "/sacred-history", label: "Sacred history" },
+  { href: "/access",         label: "Access" },
+  { href: "/chat",           label: "Chat" },
+  { href: "/about",          label: "About" },
 ];
 
 const CANON = [
