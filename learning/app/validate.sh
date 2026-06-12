@@ -8,16 +8,24 @@ for f in corpus/*.json; do
   python3 - "$f" <<'PY'
 import json,sys,collections
 f=sys.argv[1]; d=json.load(open(f)); a=d['atoms']; ids=[x['id'] for x in a]
+kind=d.get('meta',{}).get('kind','concept')
 dup=[k for k,v in collections.Counter(ids).items() if v>1]
 miss=sorted({r for x in a for r in x.get('requires',[]) if r not in ids})
-nq=[x['id'] for x in a if not x.get('quiz')]
 assert not dup, f"{f}: duplicate ids {dup}"
 assert not miss, f"{f}: missing requires {miss}"
-assert not nq, f"{f}: atoms without quiz {nq}"
-# every atom needs depths + summary
-bad=[x['id'] for x in a if not x.get('summary') or not x.get('depths')]
-assert not bad, f"{f}: atoms missing summary/depths {bad}"
-print(f"  OK {f}: {len(a)} atoms, no dupes/missing/empty")
+assert all(x.get('shell') for x in a), f"{f}: atoms missing shell"
+if kind=='language':
+    # language atoms carry gloss + per-language forms instead of quiz/depths
+    langs=d.get('meta',{}).get('languages',[])
+    bad=[x['id'] for x in a if not x.get('gloss') or not all(l in x.get('forms',{}) and x['forms'][l].get('word') for l in langs)]
+    assert not bad, f"{f}: language atoms missing gloss/forms {bad}"
+    print(f"  OK {f}: {len(a)} language entries x {len(langs)} languages")
+else:
+    nq=[x['id'] for x in a if not x.get('quiz')]
+    assert not nq, f"{f}: atoms without quiz {nq}"
+    bad=[x['id'] for x in a if not x.get('summary') or not x.get('depths')]
+    assert not bad, f"{f}: atoms missing summary/depths {bad}"
+    print(f"  OK {f}: {len(a)} atoms, no dupes/missing/empty")
 PY
 done
 echo "== JS syntax =="

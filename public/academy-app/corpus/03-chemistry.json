@@ -2,7 +2,7 @@
   "meta": {
     "branch": "03-chemistry",
     "title": "Chemistry — matter, bonds & transformation",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations and standard definitions are facts). Open sources only. Foundations-first DAG running from atomic structure and the periodic table, through bonding, stoichiometry, gases, thermodynamics, equilibrium, acids/bases, kinetics, and electrochemistry, into organic foundations and a computational-chemistry frontier.",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -15,13 +15,23 @@
       "requires": [],
       "summary": "An atom is a tiny dense positive nucleus of protons and neutrons surrounded by a diffuse cloud of electrons.",
       "depths": {
-        "eli5": "Picture a marble (the nucleus) in the middle of a stadium, with a fuzzy swarm of much lighter electrons filling all the rest of the space.",
-        "core": "Rutherford's scattering experiment showed that nearly all of an atom's mass and all of its positive charge sit in a nucleus ten-thousand times smaller than the atom itself. Protons (charge +1) set the element's identity; neutrons (charge 0) add mass and tune stability; electrons (charge −1) occupy the surrounding volume and do all the chemistry.",
-        "deep": "Chemistry is almost entirely the behavior of the outermost electrons in the electric field of the nucleus. The nucleus is essentially a spectator in ordinary reactions — it only changes the rules through its charge Z, which sets how tightly electrons are held."
+        "eli5": "Everything around you is made of atoms — unimaginably tiny building blocks. Each atom has a heavy clump at its very center called the nucleus, and a cloud of much lighter specks called electrons whizzing around it. Picture a marble (the nucleus) sitting in the middle of a whole stadium, with a fuzzy swarm of tiny electrons filling all the rest of the empty space. Almost all the weight is in that central marble.",
+        "core": "An atom is the smallest unit of an element (a pure substance like carbon or oxygen). It is built from three kinds of particle. Protons carry a positive (+1) electric charge; neutrons carry no charge (0); electrons carry a negative (−1) charge. Protons and neutrons are packed tightly together in the central nucleus, which holds nearly all the atom's mass. Electrons occupy the much larger surrounding volume. A famous 1911 experiment by Ernest Rutherford (firing particles at thin gold foil and watching a few bounce straight back) revealed that the positive charge and mass are concentrated in a nucleus about ten-thousand times smaller than the whole atom. The number of protons — called the atomic number, written Z — defines which element you have. Neutrons add mass and tune how stable the nucleus is. Electrons are the part that does the actual chemistry.",
+        "deep": "Chemistry is almost entirely the behavior of the outermost electrons sitting in the electric field of the nucleus. In ordinary chemical reactions the nucleus is essentially a spectator — it never changes; only electrons are rearranged. The nucleus matters only through its charge Z, which sets how tightly the electrons are held. (Nuclear reactions, where the nucleus itself changes, are a separate subject from chemistry.)"
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Atomic Structure"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Atom (the overall concept)", "url": "https://en.wikipedia.org/wiki/Atom" },
+        { "label": "Wikipedia — Atomic nucleus", "url": "https://en.wikipedia.org/wiki/Atomic_nucleus" },
+        { "label": "Wikipedia — Proton", "url": "https://en.wikipedia.org/wiki/Proton" },
+        { "label": "Wikipedia — Neutron", "url": "https://en.wikipedia.org/wiki/Neutron" },
+        { "label": "Wikipedia — Electron", "url": "https://en.wikipedia.org/wiki/Electron" },
+        { "label": "Wikipedia — Atomic number (Z)", "url": "https://en.wikipedia.org/wiki/Atomic_number" },
+        { "label": "Wikipedia — Rutherford scattering (the gold-foil experiment)", "url": "https://en.wikipedia.org/wiki/Rutherford_scattering" },
+        { "label": "Khan Academy — Chemistry (free course)", "url": "https://www.khanacademy.org/science/chemistry" }
       ],
       "art_prompt": "a small bright nucleus at center with a faint spherical electron haze around it, scale exaggerated to show the nucleus is tiny",
       "quiz": [
@@ -47,15 +57,24 @@
       ],
       "summary": "Each electron is labeled by four quantum numbers that name its orbital and spin, and no two electrons in an atom share all four.",
       "depths": {
-        "eli5": "Every electron has its own 'address' with four parts. No two electrons in the same atom are allowed to have the exact same address.",
-        "core": "Solving the quantum problem for an electron bound to a nucleus gives discrete states labeled by n (energy/size, 1,2,3…), ℓ (shape: s,p,d,f), and m_ℓ (orientation). A fourth label, spin m_s = ±½, completes the set. The Pauli exclusion principle forbids two electrons from sharing all four, which is why orbitals hold at most two electrons.",
-        "deep": "The shapes (ℓ) come from the angular part of the Schrödinger solution, identical to the spherical harmonics; the radial part (n) sets the energy. Pauli exclusion is not an extra force but a consequence of electrons being identical fermions whose total wavefunction must be antisymmetric."
+        "eli5": "Electrons don't sit still in fixed dots — physics describes each one by a set of four 'address' numbers that say roughly where it lives and how it spins. A strict rule says no two electrons in the same atom can have the exact same four-part address. That rule is why electrons stack up in layers instead of all piling into one spot.",
+        "core": "In modern physics an electron bound to a nucleus can only exist in certain allowed states, each one labeled by four 'quantum numbers' — fixed numbers that act like an address. (1) n, the principal quantum number (1, 2, 3, …), sets the electron's energy and roughly its distance from the nucleus. (2) ℓ sets the shape of the region the electron occupies; these shapes are named with letters s, p, d, f. A specific region of space an electron occupies is called an orbital. (3) m_ℓ sets the orientation of that shape in space. (4) m_s, the spin (always +½ or −½), is an intrinsic property of the electron, loosely picturable as which way it 'spins'. The Pauli exclusion principle states that no two electrons in one atom may have all four numbers identical — which is exactly why each orbital can hold at most two electrons (and only if their spins differ).",
+        "deep": "The allowed shapes (the ℓ values) come from the angular part of the solution to the Schrödinger equation — the master equation of quantum mechanics — and are mathematically the spherical harmonics; the radial part (linked to n) fixes the energy. Pauli exclusion is not an extra force pushing electrons apart but a deep consequence of electrons being identical 'fermions': the combined wavefunction describing two of them must flip sign if you swap them, which mathematically forbids them sharing an identical state."
       },
       "note": "Subshell capacities: s holds 2, p holds 6, d holds 10, f holds 14.",
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Electronic Structure",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Quantum number", "url": "https://en.wikipedia.org/wiki/Quantum_number" },
+        { "label": "Wikipedia — Atomic orbital (the s, p, d, f shapes)", "url": "https://en.wikipedia.org/wiki/Atomic_orbital" },
+        { "label": "Wikipedia — Pauli exclusion principle", "url": "https://en.wikipedia.org/wiki/Pauli_exclusion_principle" },
+        { "label": "Wikipedia — Spin (the electron's intrinsic spin)", "url": "https://en.wikipedia.org/wiki/Spin_(physics)" },
+        { "label": "Wikipedia — Spherical harmonics (where orbital shapes come from)", "url": "https://en.wikipedia.org/wiki/Spherical_harmonics" },
+        { "label": "LibreTexts — General Chemistry (electronic structure chapters)", "url": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "the s, p, and d orbital shapes (sphere, dumbbell, cloverleaf) arranged in a labeled grid by quantum number",
       "quiz": [
@@ -81,14 +100,23 @@
       ],
       "summary": "Ground-state electrons fill orbitals from lowest energy up, one spin-paired pair at a time, following Aufbau, Hund, and Pauli.",
       "depths": {
-        "eli5": "Electrons fill the cheapest seats first. They spread out across equal-cost seats before doubling up, and never share an identical seat.",
-        "core": "Build an atom's configuration by adding electrons to the lowest available orbital (Aufbau), keeping unpaired electrons in degenerate orbitals to minimize repulsion (Hund's rule), and obeying Pauli. The pattern explains the periodic table's block structure: s-block, p-block, d-block (transition metals), f-block.",
-        "deep": "Orbital energy ordering isn't strictly by n — 4s fills before 3d because of penetration and shielding, but once 3d is occupied it often drops below 4s, which is why transition-metal ions lose 4s electrons first. Half-filled and filled subshells (Cr, Cu) get extra exchange stabilization."
+        "eli5": "Think of an atom's orbitals (the regions electrons live in) as seats in a theater priced by how close they are to the front. Electrons fill the cheapest seats first. When several seats cost the same, electrons spread out — one to each — before any seat is shared. And no two ever share an identical seat. Doing this for an atom's electrons gives you its 'electron configuration', a shorthand for where all its electrons sit.",
+        "core": "An electron configuration lists which orbitals an atom's electrons occupy in its lowest-energy (ground) state. You build it with three rules. The Aufbau principle ('building-up'): add electrons one at a time to the lowest-energy orbital still available. Hund's rule: when several orbitals have the same energy (called 'degenerate'), put one electron in each, all spinning the same way, before doubling any up — this keeps electrons apart and lowers repulsion. The Pauli exclusion principle: never put two electrons in the identical state. Writing configurations this way explains the periodic table's 'blocks' — the s-block, p-block, the d-block (the transition metals), and the f-block — each block being the orbital type being filled there.",
+        "deep": "Orbital energies aren't ordered strictly by the number n. The 4s orbital fills before 3d because of 'penetration' (4s dips closer to the nucleus) and 'shielding' (inner electrons partly block the nuclear pull). Once 3d is occupied it often sinks below 4s in energy, which is why transition-metal ions lose their 4s electrons first when they form ions. A few elements (chromium, copper) break the simple pattern because a half-filled or completely filled subshell gains extra stability from a quantum effect called exchange energy."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Electron Configurations",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Electron configuration", "url": "https://en.wikipedia.org/wiki/Electron_configuration" },
+        { "label": "Wikipedia — Aufbau principle (fill lowest energy first)", "url": "https://en.wikipedia.org/wiki/Aufbau_principle" },
+        { "label": "Wikipedia — Hund's rule of maximum multiplicity", "url": "https://en.wikipedia.org/wiki/Hund%27s_rule_of_maximum_multiplicity" },
+        { "label": "Wikipedia — Pauli exclusion principle", "url": "https://en.wikipedia.org/wiki/Pauli_exclusion_principle" },
+        { "label": "Wikipedia — Atomic orbital", "url": "https://en.wikipedia.org/wiki/Atomic_orbital" },
+        { "label": "Khan Academy — Chemistry (electron configurations)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "an energy-level staircase being filled bottom-up with paired and unpaired electron arrows showing Hund's rule",
       "quiz": [
@@ -114,13 +142,22 @@
       ],
       "summary": "Arranging elements by atomic number makes chemical properties recur periodically, because outer-shell structure repeats.",
       "depths": {
-        "eli5": "Line the elements up by how many protons they have, and the way they behave starts to rhyme — every so often you meet a 'cousin' that acts the same.",
-        "core": "Mendeleev ordered elements so that families with similar reactivity fall in the same column; the modern table orders by atomic number Z. The periodicity is a direct shadow of electron configuration: elements in a group share the same valence-shell pattern, so they bond and react alike.",
-        "deep": "The table is a map of the Schrödinger solution. Period length (2, 8, 8, 18, 18, 32) equals the capacity of the subshells being filled, and the block structure (s/p/d/f) is the ℓ value of the last electron added — the periodic law is quantum mechanics made visible."
+        "eli5": "There are about 118 known elements (the pure substances everything is made of). If you line them up in order of how many protons they have, something magical happens: their behavior starts to repeat in a regular pattern. Every so often you reach an element that acts a lot like an earlier one — a chemical 'cousin'. The periodic table is just that line-up, folded into rows so the cousins stack into columns.",
+        "core": "The periodic table arranges all the elements so that chemical behavior recurs in a regular ('periodic') way. The 19th-century chemist Dmitri Mendeleev first ordered elements so that families with similar reactivity fell in the same column, even leaving gaps for elements not yet discovered. The modern table orders strictly by atomic number Z (proton count). A column is called a group; a row is called a period. The repeating behavior is a direct shadow of electron configuration: elements in the same group have the same arrangement of outer electrons (their 'valence' electrons), and since outer electrons control bonding, same-group elements react alike.",
+        "deep": "The table is essentially a map of the solutions to the Schrödinger equation. The length of each period (2, 8, 8, 18, 18, 32) exactly equals the number of electrons the subshells being filled there can hold. The block structure (s, p, d, f) corresponds to which orbital-shape (the ℓ value) the most recently added electron occupies. In other words, the periodic law is quantum mechanics made visible on a wall chart."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Periodic Table"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Periodic table", "url": "https://en.wikipedia.org/wiki/Periodic_table" },
+        { "label": "Wikipedia — Atomic number (Z, the ordering rule)", "url": "https://en.wikipedia.org/wiki/Atomic_number" },
+        { "label": "Wikipedia — Valence electron", "url": "https://en.wikipedia.org/wiki/Valence_electron" },
+        { "label": "Wikipedia — Dmitri Mendeleev", "url": "https://en.wikipedia.org/wiki/Dmitri_Mendeleev" },
+        { "label": "Wikipedia — Electron configuration (why behavior repeats)", "url": "https://en.wikipedia.org/wiki/Electron_configuration" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" },
+        { "label": "Khan Academy — Chemistry (the periodic table)", "url": "https://www.khanacademy.org/science/chemistry" }
       ],
       "art_prompt": "a periodic table color-coded by s/p/d/f blocks with arrows showing how block boundaries line up with subshell filling",
       "quiz": [
@@ -146,14 +183,23 @@
       ],
       "summary": "Atomic radius, ionization energy, electron affinity, and electronegativity vary smoothly across periods and down groups.",
       "depths": {
-        "eli5": "As you move across a row, atoms get smaller and grip their electrons harder; as you go down a column, they get bigger and looser.",
-        "core": "Across a period, nuclear charge grows while the shielding shell stays the same, so atoms shrink and hold electrons more tightly (ionization energy and electronegativity rise). Down a group, each new shell adds size and distance, so the outer electrons are easier to remove. These trends predict who donates and who accepts electrons in a bond.",
-        "deep": "The controlling quantity is effective nuclear charge Z_eff = Z − S (shielding). Trends have exceptions where subshell stability matters — e.g., the small ionization-energy dips at B (after full 2s) and O (after half-filled 2p) reveal exchange and pairing energetics directly."
+        "eli5": "Because the periodic table is so orderly, an element's properties change smoothly as you move across it. As you go left-to-right across a row, atoms get a little smaller and hold onto their electrons more tightly. As you go down a column, atoms get bigger and hold their outer electrons more loosely. Knowing these two simple directions lets you guess how an element behaves without memorizing each one.",
+        "core": "Periodic trends are the smooth changes in atomic properties across the table. The key ones: atomic radius (how big the atom is), ionization energy (how hard it is to pull an electron off), electron affinity (how much energy is released when the atom grabs an extra electron), and electronegativity (how strongly an atom pulls on shared electrons in a bond). Across a period, the nuclear charge (proton count) grows but the electrons are being added to the same outer shell, so the nucleus pulls everything in tighter: atoms shrink and ionization energy and electronegativity rise. Down a group, each step adds a whole new shell of electrons farther out, so the outermost electrons are easier to remove. These trends predict which atoms tend to give electrons away and which tend to take them — the heart of how bonds form.",
+        "deep": "The single quantity behind all these trends is the effective nuclear charge, Z_eff = Z − S: the net pull an outer electron actually feels once inner electrons (the 'shielding' S) partly cancel the nuclear charge Z. The trends have telling exceptions where subshell stability matters — for example the small dips in ionization energy at boron (after the 2s subshell just filled) and oxygen (after the 2p subshell became half-filled) directly reveal the underlying electron-pairing and exchange energetics."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Periodic Trends",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Periodic trends", "url": "https://en.wikipedia.org/wiki/Periodic_trends" },
+        { "label": "Wikipedia — Atomic radius", "url": "https://en.wikipedia.org/wiki/Atomic_radius" },
+        { "label": "Wikipedia — Ionization energy", "url": "https://en.wikipedia.org/wiki/Ionization_energy" },
+        { "label": "Wikipedia — Electron affinity", "url": "https://en.wikipedia.org/wiki/Electron_affinity" },
+        { "label": "Wikipedia — Electronegativity", "url": "https://en.wikipedia.org/wiki/Electronegativity" },
+        { "label": "Wikipedia — Effective nuclear charge", "url": "https://en.wikipedia.org/wiki/Effective_nuclear_charge" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "a periodic table grid with two big arrows: radius increasing down-left, ionization energy increasing up-right",
       "quiz": [
@@ -180,13 +226,22 @@
       "equation": "Z_{eff} = Z - S",
       "summary": "An outer electron feels not the full nuclear charge but a reduced charge, screened by inner electrons.",
       "depths": {
-        "eli5": "Electrons closer to the nucleus form a crowd that partly blocks the nucleus's pull on the outer electrons, like people in front of you at a concert.",
-        "core": "The true charge Z is partially cancelled by the repulsion of inner-shell electrons, an effect called shielding S. The net pull on a valence electron is Z_eff = Z − S. This single quantity explains atomic size, ionization energy, and why valence electrons across a period get progressively harder to remove.",
-        "deep": "Shielding is imperfect and orbital-dependent: s electrons penetrate closer to the nucleus and shield well, p less so, d and f poorly. Slater's rules give an empirical recipe for S, and the penetration ordering s>p>d>f is exactly why subshell energies split within a shell."
+        "eli5": "The nucleus tugs on every electron, but the outer electrons don't feel the full tug. The electrons packed in close to the nucleus form a crowd that partly blocks the pull — like people standing in front of you at a concert blocking your view of the stage. So an outer electron feels a watered-down version of the nucleus's pull. The equation Z_eff = Z − S just says: real felt pull = full charge minus the blocking.",
+        "core": "An atom's nucleus has a charge Z (equal to its number of protons), but an outer electron doesn't experience all of it. The inner-shell electrons repel the outer electron and partly cancel the nuclear pull — an effect called shielding, written S. The leftover pull the outer electron actually feels is the effective nuclear charge: Z_eff = Z − S. This one quantity explains a lot at once: how big atoms are, how much energy it takes to remove an electron (ionization energy), and why, moving across a period, the outer electrons get harder and harder to pull off (Z rises faster than S).",
+        "deep": "Shielding is imperfect and depends on orbital shape: s electrons 'penetrate' closer to the nucleus and shield well, p electrons less, d and f electrons poorly. Slater's rules are a simple recipe for estimating S by hand. The penetration ordering s > p > d > f is exactly why subshells within the same shell end up at slightly different energies, which in turn drives the order in which orbitals fill."
       },
       "sources": [
         "LibreTexts Chemistry — Shielding and Effective Nuclear Charge",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Effective nuclear charge", "url": "https://en.wikipedia.org/wiki/Effective_nuclear_charge" },
+        { "label": "Wikipedia — Shielding effect", "url": "https://en.wikipedia.org/wiki/Shielding_effect" },
+        { "label": "Wikipedia — Atomic number (Z)", "url": "https://en.wikipedia.org/wiki/Atomic_number" },
+        { "label": "Wikipedia — Valence electron", "url": "https://en.wikipedia.org/wiki/Valence_electron" },
+        { "label": "Wikipedia — Slater's rules (estimating S)", "url": "https://en.wikipedia.org/wiki/Slater%27s_rules" },
+        { "label": "LibreTexts — General Chemistry map", "url": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "a nucleus with inner electron shells drawn as a translucent screen partly blocking field lines reaching an outer electron",
       "quiz": [
@@ -213,13 +268,22 @@
       ],
       "summary": "A metal donates electrons to a nonmetal, and the resulting oppositely charged ions are held in a lattice by electrostatics.",
       "depths": {
-        "eli5": "One atom hands its spare electrons to another, both become charged, and opposite charges stick together strongly.",
-        "core": "When an element with low ionization energy meets one with high electron affinity, electrons transfer completely. The cations and anions arrange into a repeating crystal lattice; the net stabilization is the lattice energy. Ionic compounds are hard, brittle, high-melting, and conduct only when molten or dissolved.",
-        "deep": "Lattice energy scales as roughly q₁q₂/r (Born–Landé / Coulomb), so charge magnitude dominates: MgO (2+/2−) melts far higher than NaCl (1+/1−) despite similar sizes. 'Purely ionic' is an idealization — real bonds have covalent character that grows with cation polarizing power (Fajans' rules)."
+        "eli5": "Atoms can hold together in different ways; this is one of them. One atom simply hands its spare outer electrons to a neighbor. Now the giver is short of electrons (positively charged) and the taker has extra (negatively charged). Opposite charges attract, so the two stick together hard. Table salt is held together exactly this way.",
+        "core": "A bond is the force that holds atoms together in a substance. In ionic bonding, electrons are transferred completely from one atom to another. This happens when an atom that gives up electrons easily (low ionization energy — typically a metal) meets one that grabs electrons readily (high electron affinity — typically a nonmetal). An atom that has lost electrons becomes a positively charged ion called a cation; one that has gained electrons becomes a negatively charged anion. Vast numbers of these ions stack into a regular, repeating 3-D pattern called a crystal lattice, with positives and negatives alternating. The total energy released by assembling that lattice is the lattice energy — the glue's strength. Ionic compounds are hard, brittle, and melt only at high temperatures; they conduct electricity only when melted or dissolved (when the ions are free to move).",
+        "deep": "Lattice energy scales roughly as q₁q₂/r — the product of the ion charges divided by their separation (Coulomb's law, made precise by the Born–Landé equation). So charge magnitude dominates: magnesium oxide (with 2+ and 2− ions) melts far higher than sodium chloride (1+ and 1−) even though the ions are similar in size. 'Purely ionic' is an idealization; real bonds always have some shared-electron (covalent) character, which grows when a small, highly charged cation distorts a large anion's electron cloud (summarized by Fajans' rules)."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Ionic Bonding"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Ionic bonding", "url": "https://en.wikipedia.org/wiki/Ionic_bonding" },
+        { "label": "Wikipedia — Ion (cation and anion)", "url": "https://en.wikipedia.org/wiki/Ion" },
+        { "label": "Wikipedia — Lattice energy", "url": "https://en.wikipedia.org/wiki/Lattice_energy" },
+        { "label": "Wikipedia — Crystal structure (the lattice)", "url": "https://en.wikipedia.org/wiki/Crystal_structure" },
+        { "label": "Wikipedia — Born–Landé equation", "url": "https://en.wikipedia.org/wiki/Born%E2%80%93Land%C3%A9_equation" },
+        { "label": "Wikipedia — Fajans' rules", "url": "https://en.wikipedia.org/wiki/Fajans%27_rules" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a sodium atom passing one electron to a chlorine atom, then a cutaway NaCl cubic lattice of alternating + and − ions",
       "quiz": [
@@ -246,14 +310,22 @@
       ],
       "summary": "Two atoms share electron pairs, lowering energy by letting electrons feel both nuclei at once.",
       "depths": {
-        "eli5": "Instead of giving electrons away, two atoms hold some between them, and that shared glue pulls them together.",
-        "core": "When neither atom can easily lose or gain electrons, they share. A shared pair in the region between two nuclei is attracted to both, which lowers energy and forms a bond. Atoms tend to share until they reach a stable noble-gas count (the octet rule), giving single, double, or triple bonds.",
-        "deep": "The energy lowering is genuinely quantum: constructive interference of atomic wavefunctions concentrates electron density between the nuclei, and the dominant stabilization is a drop in electron kinetic energy as the electron delocalizes over both atoms. Bond order (1, 2, 3) correlates with shorter, stronger bonds."
+        "eli5": "Here's the other main way atoms stick together. Instead of one atom handing electrons over, two atoms hold a pair of electrons in the gap between them — like two kids holding the same rope. That shared pair tugs on both atoms at once and pulls them together. Most of the molecules in living things (water, sugar, DNA) are built from bonds like this.",
+        "core": "In a covalent bond, two atoms share one or more pairs of electrons rather than transferring them. This happens when neither atom can easily lose or gain electrons outright — typically between two nonmetals. A shared electron pair sitting between the two nuclei is attracted to both positive nuclei at once, which lowers the total energy and locks the atoms together (lower energy = more stable). Atoms tend to keep sharing until each reaches a stable, full count of outer electrons — usually eight, the 'octet rule'. Sharing one pair gives a single bond, two pairs a double bond, three pairs a triple bond. More shared pairs make a shorter, stronger bond.",
+        "deep": "The energy drop is genuinely quantum-mechanical: the electron 'waves' of the two atoms add together (constructive interference) and pile up electron density between the nuclei. The dominant reason energy falls is that the shared electron spreads out (delocalizes) over both atoms, which lowers its kinetic energy. The number of shared pairs is the bond order (1, 2, or 3), and higher bond order tracks with shorter, stronger bonds."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Covalent Bonding",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Covalent bond", "url": "https://en.wikipedia.org/wiki/Covalent_bond" },
+        { "label": "Wikipedia — Octet rule", "url": "https://en.wikipedia.org/wiki/Octet_rule" },
+        { "label": "Wikipedia — Bond order", "url": "https://en.wikipedia.org/wiki/Bond_order" },
+        { "label": "Wikipedia — Valence electron", "url": "https://en.wikipedia.org/wiki/Valence_electron" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "two hydrogen nuclei with a shared electron-density cloud pooling in the middle, energy curve dipping to a minimum below",
       "quiz": [
@@ -280,13 +352,21 @@
       ],
       "summary": "Unequal electron-attracting power between bonded atoms creates partial charges and a continuum from covalent to ionic.",
       "depths": {
-        "eli5": "In a tug-of-war over shared electrons, the stronger puller ends up slightly negative and the weaker one slightly positive.",
-        "core": "Electronegativity measures how strongly an atom pulls bonding electrons. A large difference makes a polar bond with partial charges (δ+/δ−); a very large difference makes the transfer essentially complete (ionic); equal sharing is nonpolar covalent. Polarity governs solubility, intermolecular forces, and reactivity sites.",
-        "deep": "The covalent–ionic spectrum is continuous, not a dichotomy. Pauling's scale is derived from bond energies; the dipole moment μ = q·d quantifies polarity at the molecular level once geometry is included, so a molecule with polar bonds can still be nonpolar overall if the dipoles cancel (e.g., CO₂)."
+        "eli5": "When two atoms share electrons in a bond, they rarely share fairly. One atom usually pulls the shared electrons closer to itself. The stronger puller ends up a little bit negative (it has the electrons more), and the weaker one ends up a little bit positive. So even a shared bond can have a 'plus end' and a 'minus end' — like a tiny magnet.",
+        "core": "Electronegativity is a number that measures how strongly an atom pulls on the electrons in a bond. Compare the two atoms in a bond: if their electronegativities are nearly equal, they share evenly — a nonpolar covalent bond. If one pulls noticeably harder, the electrons sit closer to it, giving a polar bond with small partial charges, written δ− (slightly negative) on the stronger puller and δ+ (slightly positive) on the other. If the difference is huge, the pull becomes a complete grab — that's an ionic bond. So electronegativity difference is a sliding scale from nonpolar, to polar, to ionic. Bond polarity controls a molecule's solubility, the weak attractions between molecules, and where it tends to react.",
+        "deep": "Because the covalent-to-ionic change is a smooth continuum, not two separate categories, chemists use scales like Pauling's (derived from measured bond energies). Polarity at the whole-molecule level is captured by the dipole moment, μ = q·d (charge times separation), which depends on geometry. A molecule can have polar bonds yet be nonpolar overall if those bond dipoles point in opposite directions and cancel — carbon dioxide (CO₂) is the classic example because it is linear."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Electronegativity"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Electronegativity", "url": "https://en.wikipedia.org/wiki/Electronegativity" },
+        { "label": "Wikipedia — Chemical polarity", "url": "https://en.wikipedia.org/wiki/Chemical_polarity" },
+        { "label": "Wikipedia — Bond dipole moment", "url": "https://en.wikipedia.org/wiki/Bond_dipole_moment" },
+        { "label": "Wikipedia — Covalent bond", "url": "https://en.wikipedia.org/wiki/Covalent_bond" },
+        { "label": "Wikipedia — Ionic bonding", "url": "https://en.wikipedia.org/wiki/Ionic_bonding" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a bond with shared electrons shifted toward the more electronegative atom, δ+ and δ− labels and a dipole arrow",
       "quiz": [
@@ -312,13 +392,22 @@
       ],
       "summary": "Dot-and-line diagrams track valence electrons as bonds and lone pairs, with most main-group atoms seeking eight.",
       "depths": {
-        "eli5": "Draw each atom's outer electrons as dots, pair them up into bonds, and aim to give everyone a full set of eight.",
-        "core": "Lewis structures count valence electrons, distribute them as bonding pairs and lone pairs, and check that each atom (except H, which wants 2) has an octet. Formal charge identifies the best of several valid structures, and resonance handles cases where electrons are delocalized over more than one arrangement.",
-        "deep": "The octet rule is a heuristic, not a law: it works because the s and p valence orbitals hold eight electrons. Exceptions are real — electron-deficient (BF₃), odd-electron radicals (NO), and expanded shells (SF₆) where d-orbital participation is now understood as hypervalency through highly polar bonds rather than literal d-orbital filling."
+        "eli5": "Chemists use a simple drawing to picture a molecule. You draw each atom's outer electrons as dots, then pair the dots up — a shared pair becomes a line (a bond). The goal is to arrange things so every atom is surrounded by a full set of eight outer electrons (hydrogen is happy with two). This sketch is called a Lewis structure, and it tells you how the atoms are connected.",
+        "core": "A Lewis structure is a bookkeeping diagram of a molecule's outer (valence) electrons. You count all the valence electrons available, then place them either as bonding pairs (shared between two atoms, drawn as lines) or lone pairs (sitting on a single atom, drawn as dots). You check that each main-group atom has eight outer electrons — the octet rule — except hydrogen, which only needs two. When more than one valid drawing is possible, formal charge (a simple count comparing an atom's electrons in the structure to its normal count) tells you which is best. Resonance is used when the electrons are actually spread (delocalized) over several equivalent arrangements; you draw each and understand the real molecule as a blend.",
+        "deep": "The octet rule is a useful rule of thumb, not an unbreakable law. It works because an atom's outer s and p orbitals together hold eight electrons. Genuine exceptions exist: electron-deficient molecules like boron trifluoride (BF₃, only six around boron), odd-electron radicals like nitric oxide (NO), and 'expanded octets' like sulfur hexafluoride (SF₆, twelve around sulfur). The expanded cases — called hypervalency — are now explained by very polar bonding rather than the older idea of filling d orbitals."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Lewis Structures"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Lewis structure", "url": "https://en.wikipedia.org/wiki/Lewis_structure" },
+        { "label": "Wikipedia — Octet rule", "url": "https://en.wikipedia.org/wiki/Octet_rule" },
+        { "label": "Wikipedia — Formal charge", "url": "https://en.wikipedia.org/wiki/Formal_charge" },
+        { "label": "Wikipedia — Resonance (chemistry)", "url": "https://en.wikipedia.org/wiki/Resonance_(chemistry)" },
+        { "label": "Wikipedia — Hypervalent molecule (octet exceptions)", "url": "https://en.wikipedia.org/wiki/Hypervalent_molecule" },
+        { "label": "Khan Academy — Chemistry (Lewis diagrams)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "the Lewis structure of CO₂ and of the resonance pair of ozone, with dots and bonds labeled",
       "quiz": [
@@ -344,14 +433,22 @@
       ],
       "summary": "Electron-pair domains around a central atom repel and spread out, fixing molecular shape.",
       "depths": {
-        "eli5": "Bunches of electrons around an atom push each other as far apart as possible, like balloons tied at a knot — and that decides the molecule's shape.",
-        "core": "Valence-Shell Electron-Pair Repulsion theory says bonding and lone-pair domains arrange to minimize repulsion: 2 domains → linear, 3 → trigonal planar, 4 → tetrahedral, 5 → trigonal bipyramidal, 6 → octahedral. Lone pairs occupy more angular space than bonds, bending shapes (water's 104.5°) below ideal angles.",
-        "deep": "VSEPR predicts geometry remarkably well from electron count alone, but it is a model, not the cause — the underlying reason is the antisymmetry of the wavefunction (Pauli) keeping same-spin electrons apart, plus electrostatics. It pairs naturally with hybridization to rationalize both shape and the orbitals used."
+        "eli5": "Molecules aren't flat blobs — they have definite 3-D shapes, and shape decides how a molecule behaves. Here's the trick to predicting it: around the central atom, each clump of electrons repels every other clump and they spread out as far from each other as they can, exactly like balloons tied together at one knot push apart. Wherever the clumps end up pointing is the molecule's shape.",
+        "core": "VSEPR stands for Valence-Shell Electron-Pair Repulsion. The idea: around a central atom, count the 'domains' of electrons — each bonded group counts as one domain, and each lone pair (an unshared pair sitting on the atom) counts as one too. These domains push apart to get as far from each other as possible, which fixes the geometry: 2 domains give a straight line (linear), 3 give a flat triangle (trigonal planar), 4 give a tetrahedron (tetrahedral, 109.5° angles), 5 give a trigonal bipyramid, 6 give an octahedron. Lone pairs take up a bit more room than bonds, so they squeeze the bond angles slightly — which is why water is bent at 104.5° instead of the ideal 109.5°.",
+        "deep": "VSEPR predicts shapes remarkably well using nothing but an electron count, but it is a model, not the true cause. The deeper reason electron pairs avoid each other is the Pauli principle (same-spin electrons cannot occupy the same state) combined with plain electrostatic repulsion. VSEPR pairs naturally with the idea of hybridization, which describes which orbitals the atom uses to point its bonds in those directions."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — VSEPR",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — VSEPR theory", "url": "https://en.wikipedia.org/wiki/VSEPR_theory" },
+        { "label": "Wikipedia — Tetrahedral molecular geometry", "url": "https://en.wikipedia.org/wiki/Tetrahedral_molecular_geometry" },
+        { "label": "Wikipedia — Lewis structure (lone pairs vs bonds)", "url": "https://en.wikipedia.org/wiki/Lewis_structure" },
+        { "label": "Wikipedia — Pauli exclusion principle (why pairs avoid each other)", "url": "https://en.wikipedia.org/wiki/Pauli_exclusion_principle" },
+        { "label": "Khan Academy — Chemistry (molecular geometry)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "a central atom with 4 electron-domain balloons in a tetrahedron, then the same with one lone pair squeezing the bond angle",
       "quiz": [
@@ -378,14 +475,22 @@
       ],
       "summary": "Atomic orbitals mix into equivalent hybrid orbitals that point toward bonding partners, matching observed geometry.",
       "depths": {
-        "eli5": "An atom blends its plain orbitals into new ones aimed straight at its neighbors, so the bonds come out evenly spaced.",
-        "core": "To form four equivalent C–H bonds in methane, carbon's one 2s and three 2p orbitals mix into four sp³ hybrids pointing to the tetrahedron's corners. Mixing s with two p gives three sp² hybrids (trigonal planar, with a leftover p for a π bond); s with one p gives two sp hybrids (linear, two leftover p). Hybridization is the orbital-level partner of VSEPR.",
-        "deep": "Hybridization is a basis change, not a physical event — it is the linear combination of atomic orbitals that best matches the molecular symmetry, and it conveniently separates σ-framework (hybrids) from π-system (unhybridized p). It is descriptive, not predictive; photoelectron spectra show the underlying orbitals are not literally all equivalent."
+        "eli5": "An atom's basic electron 'rooms' (orbitals) come in different shapes and don't all point the right way for bonding. So the atom blends them into a fresh set of identical, evenly-spaced rooms that aim straight at its neighbors. With matching rooms pointing the right directions, the bonds all come out the same and the molecule gets a clean symmetric shape.",
+        "core": "Hybridization describes how an atom mixes its basic atomic orbitals into a new set of equivalent 'hybrid' orbitals aimed at its bonding partners. Example: in methane (CH₄), carbon mixes its one 2s orbital and three 2p orbitals into four identical sp³ hybrids that point to the corners of a tetrahedron, giving four equal C–H bonds. Mixing the s with only two p orbitals gives three sp² hybrids in a flat triangle (trigonal planar), leaving one unmixed p orbital available to form a second, side-by-side bond called a π bond. Mixing s with one p gives two sp hybrids in a straight line, leaving two unmixed p orbitals. So hybridization is the orbital-level partner of VSEPR: VSEPR predicts the shape, hybridization names the orbitals that produce it. (A normal end-to-end single bond is called a σ bond.)",
+        "deep": "Hybridization is a mathematical change of description, not a physical event the atom 'does' — it is the combination of atomic orbitals that best matches the molecule's symmetry, and it conveniently splits the bonding into a σ framework (from the hybrids) and a π system (from leftover unmixed p orbitals). It is descriptive rather than predictive: experiments like photoelectron spectroscopy show the underlying orbitals are not literally all identical, so hybridization is best treated as a useful model."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Hybrid Orbitals",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Orbital hybridisation", "url": "https://en.wikipedia.org/wiki/Orbital_hybridisation" },
+        { "label": "Wikipedia — Sigma (σ) bond", "url": "https://en.wikipedia.org/wiki/Sigma_bond" },
+        { "label": "Wikipedia — Pi (π) bond", "url": "https://en.wikipedia.org/wiki/Pi_bond" },
+        { "label": "Wikipedia — Atomic orbital", "url": "https://en.wikipedia.org/wiki/Atomic_orbital" },
+        { "label": "Wikipedia — Methane (the sp³ example)", "url": "https://en.wikipedia.org/wiki/Methane" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "a 2s and three 2p orbitals merging into four identical sp³ lobes pointing to tetrahedron corners",
       "quiz": [
@@ -412,14 +517,22 @@
       ],
       "summary": "Atomic orbitals combine into delocalized bonding and antibonding molecular orbitals filled by all the molecule's electrons.",
       "depths": {
-        "eli5": "When atoms join, their orbitals merge into new molecule-wide orbitals — some that glue the atoms together and some that push them apart.",
-        "core": "Combining N atomic orbitals gives N molecular orbitals: in-phase combinations are bonding (lower energy, density between nuclei), out-of-phase are antibonding (higher energy, a node between nuclei). Bond order = ½(bonding − antibonding electrons). MO theory explains what Lewis cannot: O₂'s paramagnetism, fractional bond orders, and why He₂ doesn't bond.",
-        "deep": "MO theory is the linear-combination-of-atomic-orbitals (LCAO) approximation to the molecular Schrödinger equation. Filling MOs by energy (Aufbau again) predicts spectra and magnetism directly; for O₂ the two highest electrons land in degenerate π* orbitals with parallel spins (Hund), giving a triplet ground state and two unpaired electrons."
+        "eli5": "Here's a more powerful way to picture bonding. When atoms join, their separate electron 'rooms' (orbitals) merge into new rooms that belong to the whole molecule. Some of these new rooms hold electrons in the gap between atoms and act like glue (bonding); others put electrons where they actually push the atoms apart (antibonding). Whether a molecule holds together depends on which kind the electrons fill.",
+        "core": "Molecular orbital (MO) theory treats a molecule's electrons as belonging to the whole molecule, not to individual atoms. When you combine N atomic orbitals you get N molecular orbitals. The 'in-phase' combinations are bonding orbitals — lower energy, with electron density piled between the nuclei (stabilizing). The 'out-of-phase' combinations are antibonding orbitals — higher energy, with a node (a gap of zero electron density) between the nuclei (destabilizing). The net bonding is captured by the bond order = ½ (bonding electrons − antibonding electrons). MO theory explains things the simpler Lewis-dot picture cannot: why oxygen (O₂) is paramagnetic (weakly attracted to a magnet because it has unpaired electrons), why some molecules have fractional bond orders, and why a helium molecule (He₂) never forms.",
+        "deep": "MO theory is the 'linear combination of atomic orbitals' (LCAO) approximation to the molecular Schrödinger equation. You fill the molecular orbitals from lowest energy up — Aufbau again — which directly predicts spectra and magnetism. For O₂, the two highest electrons land in a pair of equal-energy antibonding (π*) orbitals with parallel spins (Hund's rule), giving two unpaired electrons and hence its magnetic behavior, a result Lewis structures get wrong."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Molecular Orbital Theory",
         "MIT OCW 5.111"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Molecular orbital theory", "url": "https://en.wikipedia.org/wiki/Molecular_orbital_theory" },
+        { "label": "Wikipedia — Bond order", "url": "https://en.wikipedia.org/wiki/Bond_order" },
+        { "label": "Wikipedia — Linear combination of atomic orbitals (LCAO)", "url": "https://en.wikipedia.org/wiki/Linear_combination_of_atomic_orbitals" },
+        { "label": "Wikipedia — Paramagnetism (O₂'s magnetism)", "url": "https://en.wikipedia.org/wiki/Paramagnetism" },
+        { "label": "Wikipedia — Atomic orbital", "url": "https://en.wikipedia.org/wiki/Atomic_orbital" },
+        { "label": "MIT OCW 5.111 — Principles of Chemical Science", "url": "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/" }
       ],
       "art_prompt": "two atomic orbitals splitting into a lower bonding MO and an upper antibonding MO with a node, energy diagram beside",
       "quiz": [
@@ -447,13 +560,21 @@
       ],
       "summary": "Metal atoms pool their valence electrons into a delocalized sea (or bands) shared across the whole lattice.",
       "depths": {
-        "eli5": "In a metal the outer electrons aren't owned by any one atom — they roam everywhere, like a shared swimming pool of charge around fixed positive cores.",
-        "core": "Metal atoms contribute valence electrons to a collective 'electron sea' that flows around a lattice of cations. This delocalization explains metals' defining properties: high electrical and thermal conductivity, malleability (cations can slide without breaking directional bonds), and metallic luster.",
-        "deep": "The electron-sea picture is the qualitative limit of band theory: overlapping atomic orbitals across many atoms form continuous energy bands, and conduction happens when a band is partly filled. The gap (or absence of one) between valence and conduction bands distinguishes metals, semiconductors, and insulators."
+        "eli5": "Metals like copper and iron hold together a third way. The outer electrons don't belong to any single atom — they all let go and roam freely through the whole chunk of metal, like a shared swimming pool of electrons sloshing around fixed positive cores. Because the electrons can move anywhere, metals carry electricity, and because nothing locks the cores into rigid positions, you can bend and hammer metal without it shattering.",
+        "core": "In metallic bonding, every metal atom releases its outer (valence) electrons into a shared, collective pool — often called the 'electron sea' — that flows freely around a fixed lattice of positive cores (cations). Because the electrons are delocalized (not tied to one atom), this picture explains the signature properties of metals: they conduct electricity and heat well (the free electrons carry charge and energy), they are malleable and ductile (you can bend or stretch them because the cores slide past each other without snapping any directional bond), and they have a shiny metallic luster (the free electrons reflect light).",
+        "deep": "The electron-sea idea is the simple limit of a deeper picture called band theory: when many atomic orbitals overlap across a huge number of atoms, their energy levels merge into continuous 'bands'. Electrical conduction happens when a band is only partly filled, so electrons have nearby empty states to move into. The size of the gap (if any) between the filled valence band and the empty conduction band is exactly what separates metals (no gap), semiconductors (small gap), and insulators (large gap)."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Metallic Bonding"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Metallic bonding", "url": "https://en.wikipedia.org/wiki/Metallic_bonding" },
+        { "label": "Wikipedia — Valence electron", "url": "https://en.wikipedia.org/wiki/Valence_electron" },
+        { "label": "Wikipedia — Ion (the positive cores)", "url": "https://en.wikipedia.org/wiki/Ion" },
+        { "label": "Wikipedia — Electronic band structure", "url": "https://en.wikipedia.org/wiki/Electronic_band_structure" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" },
+        { "label": "LibreTexts — General Chemistry map", "url": "https://chem.libretexts.org/Bookshelves/General_Chemistry/Map%3A_Chemistry_-_The_Central_Science_(Brown_et_al.)" }
       ],
       "art_prompt": "a regular grid of positive metal cores immersed in a continuous blurred electron sea, arrows showing free flow",
       "quiz": [
@@ -480,13 +601,21 @@
       "equation": "N_A = 6.022\\times10^{23}\\ \\text{mol}^{-1}",
       "summary": "A mole is a fixed count of particles that links the atomic scale to gram-scale laboratory amounts.",
       "depths": {
-        "eli5": "A mole is just a really big counting word — like 'dozen' but for 6.022×10²³ things — so we can weigh out atoms by the gram.",
-        "core": "One mole contains Avogadro's number of entities, and the molar mass in grams equals the average atomic/molecular mass in atomic mass units. This is the bridge that lets chemists weigh a sample and know exactly how many particles it contains, which makes quantitative chemistry possible.",
-        "deep": "Since the 2019 SI redefinition, N_A is a defined exact constant (6.02214076×10²³ mol⁻¹) rather than measured, so the mole is now defined by a fixed particle count. Molar mass remains tied to atomic masses, which themselves are weighted averages over isotopes."
+        "eli5": "Atoms are so tiny that there are mind-bending numbers of them in even a pinch of stuff — far too many to count one by one. So chemists invented a counting word for a fixed, huge batch of them: the mole. Just like 'a dozen' always means 12, 'a mole' always means 6.022×10²³ (that's 602 followed by 21 zeros). With a counting word this size, you can weigh out a known number of atoms on a scale.",
+        "core": "A mole is a fixed count of particles: 6.022×10²³ of them, a value called Avogadro's number (N_A). It bridges the invisible world of atoms and the everyday world of grams. The trick is molar mass: the mass in grams of one mole of a substance is numerically equal to its average atomic or molecular mass (the number you read off the periodic table). So one mole of carbon weighs about 12 grams; one mole of water weighs about 18 grams. This lets a chemist weigh a sample and immediately know how many particles it holds — the foundation of doing chemistry by the numbers.",
+        "deep": "Since the 2019 redefinition of the international system of units (SI), Avogadro's number is a defined exact constant (6.02214076×10²³ per mole) rather than something measured experimentally, so the mole is now defined purely as that fixed particle count. Molar mass is still tied to atomic masses, which are themselves weighted averages over an element's naturally occurring isotopes (atoms of the same element with different numbers of neutrons)."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — The Mole"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Mole (unit)", "url": "https://en.wikipedia.org/wiki/Mole_(unit)" },
+        { "label": "Wikipedia — Avogadro constant", "url": "https://en.wikipedia.org/wiki/Avogadro_constant" },
+        { "label": "Wikipedia — Molar mass", "url": "https://en.wikipedia.org/wiki/Molar_mass" },
+        { "label": "Wikipedia — Isotope (why atomic masses are averages)", "url": "https://en.wikipedia.org/wiki/Isotope" },
+        { "label": "Khan Academy — Chemistry (the mole)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a balance with a labeled gram mass on one side and a swarm of 6.022×10²³ tiny particles on the other",
       "quiz": [
@@ -512,13 +641,21 @@
       ],
       "summary": "Balanced chemical equations fix the mole ratios that convert amounts of reactants into amounts of products.",
       "depths": {
-        "eli5": "A reaction is a recipe: balancing it tells you exactly how many scoops of each ingredient make how much product, and nothing is created or destroyed.",
-        "core": "Balancing an equation enforces conservation of mass and atoms: the same number of each element appears on both sides. The coefficients are mole ratios, the unit-conversion factors between any two species. With them you compute yields, find the limiting reagent, and calculate percent yield against the theoretical maximum.",
-        "deep": "Stoichiometry is bookkeeping enforced by conservation of atoms and charge; for redox reactions you must also balance electrons. The limiting reagent is whichever runs out first relative to its coefficient, and it alone caps the theoretical yield — excess reagent is left over."
+        "eli5": "A chemical reaction is like a cooking recipe written with symbols. A 'balanced equation' is a recipe where the ingredients (reactants) on the left turn into results (products) on the right, with the numbers worked out so that every atom is accounted for — nothing is created or destroyed, atoms just get rearranged. The numbers in front tell you exactly how many of each ingredient you need.",
+        "core": "Stoichiometry is the math of how much reacts with how much. A chemical equation shows reactants turning into products, e.g. 2H₂ + O₂ → 2H₂O. Balancing it means choosing the numbers in front (the coefficients) so the same count of each kind of atom appears on both sides — this enforces conservation of mass (matter is neither created nor destroyed). Those coefficients are mole ratios: they tell you the proportions in which substances combine, and act as conversion factors between any two substances in the reaction. With them you can predict how much product forms, find the limiting reagent (the ingredient that runs out first and caps the amount of product), and compute the percent yield (how much you actually got versus the theoretical maximum).",
+        "deep": "Stoichiometry is bookkeeping forced by the conservation of atoms (and, for charged species, charge). For redox reactions — where electrons move — you must also balance the electrons transferred. The limiting reagent is whichever runs out first relative to its coefficient; it alone sets the theoretical yield, and whatever is left over is the 'excess' reagent."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Stoichiometry"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Stoichiometry", "url": "https://en.wikipedia.org/wiki/Stoichiometry" },
+        { "label": "Wikipedia — Chemical equation", "url": "https://en.wikipedia.org/wiki/Chemical_equation" },
+        { "label": "Wikipedia — Limiting reagent", "url": "https://en.wikipedia.org/wiki/Limiting_reagent" },
+        { "label": "Wikipedia — Conservation of mass", "url": "https://en.wikipedia.org/wiki/Conservation_of_mass" },
+        { "label": "Wikipedia — Yield (chemistry)", "url": "https://en.wikipedia.org/wiki/Yield_(chemistry)" },
+        { "label": "Khan Academy — Chemistry (stoichiometry)", "url": "https://www.khanacademy.org/science/chemistry" }
       ],
       "art_prompt": "a balanced equation 2H₂ + O₂ → 2H₂O drawn with molecule counts equal on both sides, atoms color-matched",
       "quiz": [
@@ -545,14 +682,22 @@
       "equation": "PV = nRT",
       "summary": "Pressure, volume, amount, and temperature of a dilute gas obey one combined relation.",
       "depths": {
-        "eli5": "Squeeze a gas and pressure goes up; heat it and it pushes harder or expands. One tidy formula ties all of that together.",
-        "core": "The ideal gas law merges Boyle's, Charles's, and Avogadro's laws: at fixed amount, P and V are inversely related; V grows with T; and equal volumes hold equal moles at the same P and T. It treats gas molecules as point particles with no interactions — an excellent approximation at low pressure and high temperature.",
-        "deep": "PV = nRT emerges from kinetic theory: pressure is momentum transfer from molecular collisions, and temperature is mean kinetic energy. Real gases deviate when molecular volume and attractions matter; the van der Waals equation (P + a n²/V²)(V − nb) = nRT corrects for both."
+        "eli5": "Gases respond to squeezing and heating in simple ways: squeeze a gas into a smaller space and its pressure (the push on the container walls) goes up; warm it and it either pushes harder or expands. One neat formula, PV = nRT, ties together pressure (P), volume (V), the amount of gas (n), and temperature (T) all at once.",
+        "core": "The ideal gas law, PV = nRT, relates the four things that describe a gas: pressure P, volume V, amount n (in moles), and absolute temperature T (measured from absolute zero, in kelvin). R is a fixed number called the gas constant. The law bundles three older observations: at fixed amount, pressure and volume are inversely related (Boyle's law — squeeze to half the volume, double the pressure); volume grows with temperature (Charles's law); and equal volumes of gas hold equal numbers of molecules at the same P and T (Avogadro's law). It pictures gas molecules as tiny points that don't attract each other — a very good approximation when the gas is dilute (low pressure, high temperature).",
+        "deep": "PV = nRT can be derived from the kinetic theory of gases: pressure is the cumulative push from molecules colliding with the walls, and absolute temperature is a measure of their average kinetic energy. Real gases deviate from the ideal law when molecules are crowded enough that their own size and their mutual attractions matter; the van der Waals equation, (P + a n²/V²)(V − nb) = nRT, patches in corrections for both effects."
       },
       "note": "R = 8.314 J·mol⁻¹·K⁻¹ = 0.08206 L·atm·mol⁻¹·K⁻¹.",
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Gas Laws"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Ideal gas law", "url": "https://en.wikipedia.org/wiki/Ideal_gas_law" },
+        { "label": "Wikipedia — Boyle's law", "url": "https://en.wikipedia.org/wiki/Boyle%27s_law" },
+        { "label": "Wikipedia — Van der Waals equation (real-gas correction)", "url": "https://en.wikipedia.org/wiki/Van_der_Waals_equation" },
+        { "label": "Wikipedia — Mole (unit) (the amount n)", "url": "https://en.wikipedia.org/wiki/Mole_(unit)" },
+        { "label": "Khan Academy — Chemistry (gases and the ideal gas law)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a piston cylinder with gas molecules bouncing, gauges for P, V, T, and the equation PV=nRT overlaid",
       "quiz": [
@@ -579,14 +724,22 @@
       ],
       "summary": "Gas behavior follows from many tiny particles in constant random motion whose average kinetic energy is set by temperature.",
       "depths": {
-        "eli5": "A gas is a huge crowd of tiny balls zooming around and bouncing off walls; how fast they zoom is what we feel as temperature.",
-        "core": "Kinetic-molecular theory derives the gas laws from a few assumptions: molecules are tiny, far apart, in constant random motion, and collide elastically. Pressure is the cumulative force of wall collisions, and absolute temperature is proportional to the average translational kinetic energy. Speeds follow the Maxwell–Boltzmann distribution.",
-        "deep": "The key result is ½m⟨v²⟩ = (3/2)k_BT, so mean speed scales as √(T/M): light molecules move faster, which explains effusion rates (Graham's law) and why hydrogen escapes a planet's atmosphere while CO₂ stays. The distribution's high-energy tail is exactly what feeds reaction kinetics."
+        "eli5": "Zoom in on a gas and it's a huge swarm of tiny balls (the molecules) zooming around in all directions and bouncing off the walls of their container. The constant drumming of these bounces is what we feel as pressure, and how fast the balls zoom on average is what we measure as temperature. Hotter = faster.",
+        "core": "Kinetic-molecular theory explains where the gas laws come from by modeling a gas as countless tiny molecules in constant, random motion. The assumptions: the molecules are very small compared to the space between them, they don't attract each other, and their collisions are 'elastic' (no energy lost). From these, two key ideas follow: pressure is the combined force of molecules hammering the container walls, and absolute temperature is directly proportional to the molecules' average kinetic energy of motion. The molecules don't all move at one speed — their speeds are spread out in a predictable pattern called the Maxwell–Boltzmann distribution.",
+        "deep": "The central result is ½m⟨v²⟩ = (3/2)k_BT (average kinetic energy is set by temperature, where k_B is the Boltzmann constant). This means average speed scales as the square root of T/M, so lighter molecules move faster at the same temperature. That explains effusion rates (how fast a gas leaks through a tiny hole — Graham's law) and why light hydrogen escapes a planet's gravity while heavier CO₂ stays. The high-speed 'tail' of the distribution — the small fraction of unusually fast, energetic molecules — is exactly what drives the rates of chemical reactions."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Kinetic Molecular Theory",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Kinetic theory of gases", "url": "https://en.wikipedia.org/wiki/Kinetic_theory_of_gases" },
+        { "label": "Wikipedia — Maxwell–Boltzmann distribution (speeds)", "url": "https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution" },
+        { "label": "Wikipedia — Effusion", "url": "https://en.wikipedia.org/wiki/Effusion" },
+        { "label": "Wikipedia — Graham's law", "url": "https://en.wikipedia.org/wiki/Graham%27s_law" },
+        { "label": "Wikipedia — Boltzmann constant", "url": "https://en.wikipedia.org/wiki/Boltzmann_constant" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "a box of gas molecules with velocity arrows and a Maxwell–Boltzmann speed distribution curve beside it",
       "quiz": [
@@ -612,13 +765,21 @@
       ],
       "summary": "Attractions between whole molecules — dispersion, dipole-dipole, and hydrogen bonding — set boiling points and phase behavior.",
       "depths": {
-        "eli5": "Even neutral molecules feel a little stickiness toward each other; the stickier they are, the harder it is to boil them apart.",
-        "core": "Beyond the bonds within a molecule, weaker forces act between molecules. London dispersion (fluctuating-dipole) forces exist in everything and grow with size; dipole-dipole forces act between polar molecules; hydrogen bonding — the strongest — occurs when H bonded to N, O, or F is attracted to a nearby lone pair. These forces explain trends in boiling point, viscosity, and surface tension.",
-        "deep": "All three are electrostatic in origin but differ in range and strength; dispersion arises from correlated quantum fluctuations of electron clouds (an r⁻⁶ attraction). Hydrogen bonding is why water boils 160 °C higher than expected from its mass and is the organizing force of liquid water, protein folding, and DNA base pairing."
+        "eli5": "There are strong forces holding the atoms inside a molecule together — but there are also much weaker forces of attraction between whole, separate molecules. Even molecules with no overall charge feel a faint stickiness toward their neighbors. The stickier the molecules, the more energy it takes to pull them apart, so the higher the boiling point.",
+        "core": "Intermolecular forces are the attractions between separate molecules (as opposed to the bonds inside a molecule). There are three main kinds, from weakest to strongest. London dispersion forces exist between all molecules: at any instant an electron cloud can be lopsided, creating a fleeting tiny dipole (a plus end and a minus end) that pulls on a neighbor; these grow stronger as molecules get bigger. Dipole-dipole forces act between permanently polar molecules (ones with a fixed plus and minus end), which line up plus-to-minus. Hydrogen bonding is the strongest: it occurs when a hydrogen atom bonded to nitrogen, oxygen, or fluorine is attracted to a lone pair on a nearby N, O, or F. Together these forces set boiling points, viscosity (thickness), and surface tension.",
+        "deep": "All three are ultimately electrostatic, but differ in range and strength; dispersion comes from correlated quantum fluctuations of electron clouds and falls off as r⁻⁶ (very fast with distance). Hydrogen bonding is why water boils about 160 °C higher than its small mass would predict, and it is the organizing force behind liquid water's structure, how proteins fold into shape, and how the two strands of DNA pair up."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Intermolecular Forces"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Intermolecular force", "url": "https://en.wikipedia.org/wiki/Intermolecular_force" },
+        { "label": "Wikipedia — London dispersion force", "url": "https://en.wikipedia.org/wiki/London_dispersion_force" },
+        { "label": "Wikipedia — Hydrogen bond", "url": "https://en.wikipedia.org/wiki/Hydrogen_bond" },
+        { "label": "Wikipedia — Chemical polarity (dipoles)", "url": "https://en.wikipedia.org/wiki/Chemical_polarity" },
+        { "label": "Khan Academy — Chemistry (intermolecular forces)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "three panels: fluctuating-dipole attraction, aligned polar molecules, and a dashed hydrogen bond between water molecules",
       "quiz": [
@@ -645,13 +806,22 @@
       ],
       "summary": "Solid, liquid, and gas reflect the contest between intermolecular attraction and thermal motion, mapped by a phase diagram.",
       "depths": {
-        "eli5": "Cold and sticky makes a solid, warm makes a liquid, hot and free makes a gas — the same molecules, just more or less energetic.",
-        "core": "Whether a substance is solid, liquid, or gas depends on whether thermal energy (∝ T) can overcome intermolecular attraction. A phase diagram plots which phase is stable at each pressure and temperature, with lines marking transitions, a triple point where all three coexist, and a critical point beyond which liquid and gas become indistinguishable.",
-        "deep": "Phase transitions are where free energy of two phases crosses; at the boundary the molar Gibbs energies are equal, and the Clausius–Clapeyron relation gives the slope of the vapor-pressure line. Above the critical point the distinction collapses into a supercritical fluid with intermediate properties exploited in green-solvent chemistry."
+        "eli5": "Water can be ice, liquid, or steam — same molecules, just different amounts of energy. When molecules are cold they barely move and lock into a rigid solid; warm them and they loosen into a flowing liquid; heat them more and they break free entirely as a gas. It's a tug-of-war between the molecules' stickiness (which wants to hold them together) and their heat energy (which wants to fling them apart).",
+        "core": "The three common states of matter — solid, liquid, and gas — reflect a contest between intermolecular attraction (the stickiness holding molecules together) and thermal energy (random motion, which increases with temperature T). When stickiness wins you get a solid; as heat wins out you progress to liquid then gas. A phase diagram is a map that shows which state is stable at any given pressure and temperature, with lines marking where transitions happen. Two special spots appear on it: the triple point, the unique pressure and temperature where solid, liquid, and gas all coexist; and the critical point, beyond which the liquid and gas blur into one and can no longer be told apart.",
+        "deep": "A phase transition occurs where the 'free energy' (a stability measure) of two phases becomes equal; at that boundary the molar Gibbs energies of the two phases match. The Clausius–Clapeyron relation gives the slope of the liquid–gas (vapor-pressure) line on the diagram. Past the critical point the liquid/gas distinction vanishes into a supercritical fluid — a state with in-between properties that's used as an environmentally friendly 'green' solvent, for example to decaffeinate coffee with supercritical CO₂."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Phase Diagrams"
+      ],
+      "resources": [
+        { "label": "Wikipedia — State of matter", "url": "https://en.wikipedia.org/wiki/State_of_matter" },
+        { "label": "Wikipedia — Phase transition", "url": "https://en.wikipedia.org/wiki/Phase_transition" },
+        { "label": "Wikipedia — Phase diagram", "url": "https://en.wikipedia.org/wiki/Phase_diagram" },
+        { "label": "Wikipedia — Triple point", "url": "https://en.wikipedia.org/wiki/Triple_point" },
+        { "label": "Wikipedia — Critical point (thermodynamics)", "url": "https://en.wikipedia.org/wiki/Critical_point_(thermodynamics)" },
+        { "label": "Wikipedia — Supercritical fluid", "url": "https://en.wikipedia.org/wiki/Supercritical_fluid" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a P–T phase diagram with solid/liquid/gas regions, triple point and critical point clearly marked",
       "quiz": [
@@ -678,13 +848,21 @@
       ],
       "summary": "A solute dissolves in a solvent when their intermolecular interactions are compatible, with concentration measured in molarity.",
       "depths": {
-        "eli5": "Things dissolve when they 'get along' with the liquid — salt loves water, oil doesn't — and concentration is just how crowded the dissolved stuff is.",
-        "core": "Dissolution is governed by 'like dissolves like': polar and ionic solutes dissolve in polar solvents, nonpolar in nonpolar. The process trades solute–solute and solvent–solvent attractions for solute–solvent ones. Concentration is most often expressed as molarity (mol solute per liter solution), which feeds directly into stoichiometry and equilibrium.",
-        "deep": "Solubility reflects the Gibbs energy of mixing, which usually has a large favorable entropy term; for ionic solids it is a fine balance between lattice energy (cost) and hydration energy (payoff). Colligative properties — boiling-point elevation, freezing-point depression, osmotic pressure — depend on the number of dissolved particles, not their identity."
+        "eli5": "When you stir sugar into water and it disappears, that's dissolving — a solution. The thing that dissolves (sugar) is the solute; the liquid it dissolves into (water) is the solvent. Things dissolve when they 'get along' with the liquid: salt and sugar love water, but oil refuses to mix with it. 'Concentration' is just a way of saying how crowded the dissolved stuff is.",
+        "core": "A solution is a uniform mixture of a solute (the dissolved substance) in a solvent (the dissolving liquid). Whether something dissolves follows the rule 'like dissolves like': polar and ionic solutes (with charged or lopsided molecules) dissolve in polar solvents like water, while nonpolar solutes dissolve in nonpolar solvents like oil. Dissolving means trading the attractions among solute particles and among solvent particles for new attractions between solute and solvent. Concentration is most often given as molarity — moles of solute per liter of solution (mol/L) — a number that plugs directly into stoichiometry and equilibrium calculations.",
+        "deep": "Whether a substance dissolves depends on the Gibbs free energy of mixing, which usually has a large favorable entropy (disorder) term pushing things to mix. For an ionic solid, dissolving is a close contest between the lattice energy holding the crystal together (a cost) and the hydration energy released when water surrounds the freed ions (a payoff). Once dissolved, the solute produces colligative properties — boiling-point elevation, freezing-point depression, and osmotic pressure — that depend only on how many dissolved particles there are, not what they are."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Solutions and Colligative Properties"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Solution (chemistry)", "url": "https://en.wikipedia.org/wiki/Solution_(chemistry)" },
+        { "label": "Wikipedia — Solubility", "url": "https://en.wikipedia.org/wiki/Solubility" },
+        { "label": "Wikipedia — Molar concentration (molarity)", "url": "https://en.wikipedia.org/wiki/Molar_concentration" },
+        { "label": "Wikipedia — Chemical polarity ('like dissolves like')", "url": "https://en.wikipedia.org/wiki/Chemical_polarity" },
+        { "label": "Wikipedia — Colligative properties", "url": "https://en.wikipedia.org/wiki/Colligative_properties" },
+        { "label": "Khan Academy — Chemistry (solutions and mixtures)", "url": "https://www.khanacademy.org/science/chemistry" }
       ],
       "art_prompt": "ionic crystal dissolving as water molecules surround and pull apart ions, a molarity flask labeled mol/L beside it",
       "quiz": [
@@ -711,14 +889,23 @@
       "equation": "\\Delta H = q_p",
       "summary": "Enthalpy change is the heat exchanged at constant pressure, negative for exothermic and positive for endothermic reactions.",
       "depths": {
-        "eli5": "Some reactions release heat (you feel them warm up) and some soak it up (they go cold); enthalpy is the bookkeeping of that heat.",
-        "core": "At constant pressure the heat of a reaction equals its enthalpy change ΔH. Exothermic reactions (ΔH < 0) release energy because product bonds are more stable than reactant bonds; endothermic (ΔH > 0) absorb it. Hess's law lets you add reaction enthalpies along any path because enthalpy is a state function.",
-        "deep": "H = U + PV; the PV term is why constant-pressure heat differs from constant-volume heat (ΔU) by the work of expansion. Standard enthalpies of formation tabulate ΔH for making one mole of a compound from its elements, and ΔH°_rxn = Σ ΔH°_f(products) − Σ ΔH°_f(reactants)."
+        "eli5": "Reactions move heat around. Some give off heat — you feel the beaker get warm, like a hand-warmer. Others soak heat up and go cold, like an instant cold-pack. 'Enthalpy' is just the accounting word for tracking that heat. A reaction's enthalpy change tells you how much heat it released or absorbed.",
+        "core": "Enthalpy (symbol H) is a measure of a substance's heat content. What chemists usually care about is the enthalpy change of a reaction, written ΔH (the Greek delta means 'change in'). At constant pressure — the normal condition in an open lab — ΔH equals the heat the reaction exchanges with its surroundings. A reaction that releases heat is exothermic, and it has ΔH < 0 (negative), which happens because the new bonds in the products are more stable (lower energy) than the bonds in the reactants. A reaction that absorbs heat is endothermic, with ΔH > 0 (positive). Because enthalpy is a state function (it depends only on the start and end, not the route taken), Hess's law lets you add up the enthalpy changes of separate steps to get the overall ΔH.",
+        "deep": "Formally H = U + PV, where U is internal energy; the PV term is why heat measured at constant pressure (ΔH) differs from heat at constant volume (ΔU) by the work done pushing back the surroundings as the system expands. Chemists tabulate standard enthalpies of formation — the ΔH to make one mole of a compound from its pure elements — and then compute any reaction's enthalpy as ΔH°_rxn = Σ ΔH°_f(products) − Σ ΔH°_f(reactants)."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Thermochemistry",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Enthalpy", "url": "https://en.wikipedia.org/wiki/Enthalpy" },
+        { "label": "Wikipedia — Exothermic process", "url": "https://en.wikipedia.org/wiki/Exothermic_process" },
+        { "label": "Wikipedia — Endothermic process", "url": "https://en.wikipedia.org/wiki/Endothermic_process" },
+        { "label": "Wikipedia — Hess's law", "url": "https://en.wikipedia.org/wiki/Hess%27s_law" },
+        { "label": "Wikipedia — Standard enthalpy of formation", "url": "https://en.wikipedia.org/wiki/Standard_enthalpy_of_formation" },
+        { "label": "Wikipedia — State function", "url": "https://en.wikipedia.org/wiki/State_function" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "an energy diagram with reactants high, products low for exothermic, ΔH labeled as the drop, heat radiating out",
       "quiz": [
@@ -745,14 +932,22 @@
       "equation": "S = k_B \\ln W",
       "summary": "Entropy measures the number of microscopic arrangements, and isolated systems evolve toward higher total entropy.",
       "depths": {
-        "eli5": "Entropy counts how many ways something can be jumbled. Stuff naturally spreads out into the most-jumbled arrangement because there are simply more ways to be messy.",
-        "core": "Boltzmann's S = k ln W ties entropy to the number of microstates W consistent with a system's macrostate. The second law states that the entropy of the universe (system + surroundings) increases in any spontaneous process. Gases expanding, heat flowing hot-to-cold, and solutes spreading are all entropy-driven.",
-        "deep": "Entropy is not 'disorder' loosely but a precise count of accessible microstates. A reaction can decrease a system's entropy if it dumps enough heat to raise the surroundings' entropy more (ΔS_surr = −ΔH/T) — which is exactly what the Gibbs criterion packages into a system-only test."
+        "eli5": "Entropy is a measure of how many different ways the bits of something can be arranged while still looking the same overall. There are far more messy, spread-out arrangements than tidy ones, so things naturally drift toward being spread out — that's why a drop of dye disperses through water and never gathers back into a drop on its own. Nature tends toward the arrangement that can happen the most ways.",
+        "core": "Entropy (symbol S) counts how many microscopic arrangements ('microstates', W) are consistent with what you actually observe. Boltzmann's equation S = k ln W (k is the Boltzmann constant) makes this precise: more possible arrangements means higher entropy. The second law of thermodynamics says that in any spontaneous (self-occurring) process, the total entropy of the universe — the system plus its surroundings — increases. This is why gases expand to fill a room, heat flows from hot to cold, and dissolved substances spread out evenly: each of these moves toward the state that can be realized in vastly more ways.",
+        "deep": "Entropy is not vaguely 'messiness' — it is a precise count of accessible microstates. A reaction can lower the system's own entropy and still be spontaneous if it releases enough heat to raise the surroundings' entropy by more (ΔS_surr = −ΔH/T, where heat dumped at lower temperature raises entropy most). That trade-off between system and surroundings is exactly what the Gibbs free energy criterion repackages into a convenient system-only test."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Entropy and the Second Law",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Entropy", "url": "https://en.wikipedia.org/wiki/Entropy" },
+        { "label": "Wikipedia — Second law of thermodynamics", "url": "https://en.wikipedia.org/wiki/Second_law_of_thermodynamics" },
+        { "label": "Wikipedia — Microstate (statistical mechanics)", "url": "https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)" },
+        { "label": "Wikipedia — Boltzmann constant", "url": "https://en.wikipedia.org/wiki/Boltzmann_constant" },
+        { "label": "Wikipedia — Spontaneous process", "url": "https://en.wikipedia.org/wiki/Spontaneous_process" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "gas molecules confined to one corner then spreading evenly through a box, microstate count rising",
       "quiz": [
@@ -780,14 +975,22 @@
       "equation": "\\Delta G = \\Delta H - T\\Delta S",
       "summary": "At constant temperature and pressure, a process is spontaneous when its Gibbs free energy change is negative.",
       "depths": {
-        "eli5": "One number decides whether a reaction will go on its own: if it goes down, the reaction is downhill and happens.",
-        "core": "Gibbs free energy combines enthalpy and entropy into a single spontaneity test for constant T and P: ΔG = ΔH − TΔS. ΔG < 0 means spontaneous, ΔG > 0 nonspontaneous, ΔG = 0 equilibrium. Temperature acts as the dial that lets the entropy term overtake enthalpy (or vice versa).",
-        "deep": "ΔG is the maximum non-expansion work obtainable and is the system-only restatement of the second law (ΔG = −T·ΔS_universe at constant T, P). It connects to equilibrium and electrochemistry through ΔG° = −RT ln K and ΔG° = −nFE°, making it the hinge of chemical thermodynamics."
+        "eli5": "Wouldn't it be handy to have one number that tells you whether a reaction will happen by itself? Gibbs free energy is that number. If a reaction's Gibbs free energy goes down (the change is negative), the reaction is 'downhill' and will proceed on its own. If it would go up, the reaction won't happen unless you push it.",
+        "core": "Gibbs free energy (symbol G) bundles two competing tendencies — releasing heat (enthalpy) and increasing disorder (entropy) — into a single spontaneity test that works at constant temperature and pressure: ΔG = ΔH − TΔS. Here ΔH is the enthalpy change, ΔS the entropy change, and T the absolute temperature. The rule: ΔG < 0 means the process is spontaneous (it can happen on its own); ΔG > 0 means it is nonspontaneous (the reverse is favored); ΔG = 0 means the system is at equilibrium (balanced). Temperature T is the dial that decides whether the entropy term (TΔS) can outweigh the enthalpy term, which is why some reactions only 'go' when heated.",
+        "deep": "ΔG also equals the maximum useful (non-expansion) work a process can deliver, and it is just the second law restated in a system-only form (ΔG = −T·ΔS_universe at constant T and P). It is the central hinge of chemical thermodynamics because it connects to equilibrium through ΔG° = −RT ln K and to electrochemistry (batteries) through ΔG° = −nFE°."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Gibbs Free Energy",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Gibbs free energy", "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy" },
+        { "label": "Wikipedia — Enthalpy", "url": "https://en.wikipedia.org/wiki/Enthalpy" },
+        { "label": "Wikipedia — Entropy", "url": "https://en.wikipedia.org/wiki/Entropy" },
+        { "label": "Wikipedia — Spontaneous process", "url": "https://en.wikipedia.org/wiki/Spontaneous_process" },
+        { "label": "Wikipedia — Second law of thermodynamics", "url": "https://en.wikipedia.org/wiki/Second_law_of_thermodynamics" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "a balance of ΔH and TΔS pans with ΔG as the resulting needle pointing toward 'spontaneous' or 'not'",
       "quiz": [
@@ -816,14 +1019,22 @@
       "equation": "K = \\dfrac{[\\text{products}]}{[\\text{reactants}]}\\bigg|_{eq}",
       "summary": "A reversible reaction settles at a ratio of products to reactants fixed by the equilibrium constant K.",
       "depths": {
-        "eli5": "Many reactions don't finish — they reach a steady mix of reactants and products and stay there. K is a number that says where that balance sits.",
-        "core": "At equilibrium the forward and reverse rates are equal, so concentrations stop changing. The equilibrium constant K is the ratio of product to reactant activities, each raised to its stoichiometric coefficient. Large K favors products; small K favors reactants. Comparing the reaction quotient Q to K tells you which way a non-equilibrium mixture will shift.",
-        "deep": "K is set by thermodynamics through ΔG° = −RT ln K, so it depends only on temperature, not on starting amounts or catalysts. Equilibrium is dynamic, not static — molecules keep reacting in both directions at matched rates. Activities (effective concentrations) replace concentrations rigorously in nonideal systems."
+        "eli5": "Many reactions never fully finish. Instead they reach a steady mixture of leftover reactants and freshly made products and then just sit there, seemingly unchanged. This balance point is called equilibrium, and K is a single number that tells you where the balance lands — mostly products, mostly reactants, or somewhere in between.",
+        "core": "A reversible reaction can run forward (reactants → products) and backward (products → reactants) at the same time. At equilibrium the forward and reverse rates become equal, so the amounts of everything stop changing (even though molecules keep reacting both ways). The equilibrium constant K captures the balance: it is the ratio of product 'activities' to reactant 'activities' (activity = effective concentration), each raised to the power of its coefficient in the balanced equation. A large K means equilibrium favors products; a small K means it favors reactants. To predict which way a mixture that's not yet at equilibrium will move, you compute the reaction quotient Q (the same ratio using the current amounts) and compare it to K: the reaction shifts in whichever direction brings Q toward K.",
+        "deep": "K is fixed by thermodynamics through ΔG° = −RT ln K, so it depends only on temperature — not on how much you start with and not on whether a catalyst is present. Equilibrium is dynamic, not frozen: molecules keep converting in both directions at matched rates. In nonideal (crowded) systems, 'activities' replace plain concentrations to make K rigorous."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Chemical Equilibrium",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Chemical equilibrium", "url": "https://en.wikipedia.org/wiki/Chemical_equilibrium" },
+        { "label": "Wikipedia — Equilibrium constant (K)", "url": "https://en.wikipedia.org/wiki/Equilibrium_constant" },
+        { "label": "Wikipedia — Reaction quotient (Q)", "url": "https://en.wikipedia.org/wiki/Reaction_quotient" },
+        { "label": "Wikipedia — Gibbs free energy (ΔG° = −RT ln K)", "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy" },
+        { "label": "Khan Academy — Chemistry (equilibrium)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "a reaction vessel with forward and reverse arrows equal in length, concentration vs time curves flattening to constant",
       "quiz": [
@@ -849,13 +1060,21 @@
       ],
       "summary": "A system at equilibrium responds to a disturbance by shifting in the direction that partially offsets the change.",
       "depths": {
-        "eli5": "Push on a balanced system and it pushes back — add more of something and the reaction tries to use it up.",
-        "core": "If you change concentration, pressure, or temperature, an equilibrium shifts to counteract the change. Adding reactant pushes toward products; compressing a gas mixture favors the side with fewer moles of gas; heating an endothermic reaction (heat as a 'reactant') favors products. The shift restores a new equilibrium, not the old one.",
-        "deep": "The principle is qualitative shorthand for how Q is perturbed relative to K. Concentration and pressure changes move Q at fixed K; only temperature changes K itself (via ΔG° = −RT ln K and the van't Hoff relation). Catalysts speed both directions equally and never shift the position of equilibrium."
+        "eli5": "A reaction sitting at its balance point (equilibrium) acts a bit like a stubborn seesaw: push on it and it pushes back. If you dump in more of one ingredient, the reaction responds by using some of it up; if you take something away, it makes more. It always shifts in the direction that partly undoes whatever you did.",
+        "core": "Le Chatelier's principle predicts how a reaction at equilibrium responds to a disturbance: it shifts in the direction that partially offsets the change. Three common disturbances: (1) Concentration — add more reactant and equilibrium shifts toward products to consume it (remove a product and it shifts the same way). (2) Pressure — compress a gas mixture and equilibrium shifts toward the side with fewer gas molecules, easing the squeeze. (3) Temperature — treat heat as a reactant for an endothermic reaction or a product for an exothermic one; adding heat shifts away from it. Importantly, the system settles into a new equilibrium, not the original one.",
+        "deep": "The principle is qualitative shorthand for how the reaction quotient Q gets nudged relative to the equilibrium constant K. Changing concentration or pressure moves Q while K stays fixed, so the reaction re-balances Q back to K. Only temperature actually changes K itself (through ΔG° = −RT ln K and the van't Hoff relation). A catalyst speeds the forward and reverse reactions equally, so it reaches equilibrium faster but never shifts where the equilibrium sits."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Le Chatelier's Principle"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Le Chatelier's principle", "url": "https://en.wikipedia.org/wiki/Le_Chatelier%27s_principle" },
+        { "label": "Wikipedia — Chemical equilibrium", "url": "https://en.wikipedia.org/wiki/Chemical_equilibrium" },
+        { "label": "Wikipedia — Reaction quotient (Q vs K)", "url": "https://en.wikipedia.org/wiki/Reaction_quotient" },
+        { "label": "Wikipedia — Van 't Hoff equation (temperature effect on K)", "url": "https://en.wikipedia.org/wiki/Van_%27t_Hoff_equation" },
+        { "label": "Khan Academy — Chemistry (Le Chatelier's principle)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "an equilibrium seesaw being pushed on one side and tilting to compensate, with concentration arrows",
       "quiz": [
@@ -881,13 +1100,21 @@
       ],
       "summary": "Brønsted acids donate protons and bases accept them, reacting through conjugate acid-base pairs.",
       "depths": {
-        "eli5": "Acids give away hydrogen ions; bases grab them. They come in matched pairs, like a giver and a taker.",
-        "core": "The Brønsted–Lowry model defines an acid as a proton (H⁺) donor and a base as a proton acceptor; every acid has a conjugate base and vice versa. Strong acids ionize completely; weak acids partially, governed by an acid-dissociation constant K_a. The Lewis model generalizes further to electron-pair donors and acceptors.",
-        "deep": "Acid strength is the equilibrium position of proton transfer, captured by K_a (or pK_a = −log K_a). A strong acid has a weak conjugate base and vice versa; the relation K_a·K_b = K_w links a conjugate pair. Water itself is amphoteric, both donating and accepting protons (autoionization)."
+        "eli5": "Acids (like vinegar or lemon juice) and bases (like baking soda or soap) are opposites. The simplest way to tell them apart: an acid gives away hydrogen ions (a hydrogen atom stripped of its electron, written H⁺), and a base grabs them. They always come in matched pairs — a giver and a taker — and when they meet they neutralize each other.",
+        "core": "The most useful definition is the Brønsted–Lowry model: an acid is a proton donor (a proton here means H⁺, a hydrogen ion) and a base is a proton acceptor. When an acid gives up its proton, what's left is its conjugate base; when a base accepts one, it becomes its conjugate acid — so acids and bases always work in conjugate pairs. Strong acids hand off their protons completely in water; weak acids do so only partially, and how far is measured by the acid-dissociation constant K_a. A broader definition, the Lewis model, generalizes acids and bases to electron-pair acceptors and donors, covering reactions with no proton at all.",
+        "deep": "Acid strength is really the equilibrium position of proton transfer, captured by K_a (often reported as pK_a = −log K_a, where a lower pK_a means a stronger acid). A strong acid has a weak conjugate base and vice versa. For any conjugate pair, K_a·K_b = K_w, the water constant. Water itself is amphoteric — it can both donate and accept protons — which it does in a tiny amount even in pure water (autoionization)."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Acids and Bases"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Acid–base reaction", "url": "https://en.wikipedia.org/wiki/Acid%E2%80%93base_reaction" },
+        { "label": "Wikipedia — Brønsted–Lowry acid–base theory", "url": "https://en.wikipedia.org/wiki/Br%C3%B8nsted%E2%80%93Lowry_acid%E2%80%93base_theory" },
+        { "label": "Wikipedia — Conjugate acid (and conjugate base)", "url": "https://en.wikipedia.org/wiki/Conjugate_acid" },
+        { "label": "Wikipedia — Acid dissociation constant (K_a)", "url": "https://en.wikipedia.org/wiki/Acid_dissociation_constant" },
+        { "label": "Wikipedia — Lewis acids and bases", "url": "https://en.wikipedia.org/wiki/Lewis_acids_and_bases" },
+        { "label": "Khan Academy — Chemistry (acids and bases)", "url": "https://www.khanacademy.org/science/chemistry" }
       ],
       "art_prompt": "an acid molecule handing a proton to a base, with conjugate base and conjugate acid labeled on the products",
       "quiz": [
@@ -914,13 +1141,21 @@
       "equation": "\\text{pH} = -\\log_{10}[\\text{H}^+]",
       "summary": "pH is a logarithmic measure of hydrogen-ion concentration, with the water autoionization product fixing the neutral point.",
       "depths": {
-        "eli5": "pH is a 0–14 ruler for acidity. Low numbers are sour acids, 7 is neutral, high numbers are slippery bases — and each step is a tenfold jump.",
-        "core": "Because [H⁺] spans many orders of magnitude, we report its negative logarithm: pH = −log[H⁺]. Water autoionizes with K_w = [H⁺][OH⁻] = 1.0×10⁻¹⁴ at 25 °C, so pH + pOH = 14. Neutral is pH 7, acidic below, basic above; each unit is a tenfold change in [H⁺].",
-        "deep": "K_w is temperature-dependent, so 'neutral pH' is exactly 7 only at 25 °C — it shifts with temperature even though the solution stays neutral. Rigorously pH uses hydrogen-ion activity, which is why measured pH in concentrated solutions departs from the simple −log[H⁺]."
+        "eli5": "pH is the familiar 0-to-14 ruler for how acidic or basic something is. Low numbers (like lemon juice at 2) are strong acids and taste sour; 7 in the middle is neutral, like pure water; high numbers (like bleach at 13) are strong bases and feel slippery. Each step on the ruler is a tenfold change — pH 3 is ten times more acidic than pH 4.",
+        "core": "Acidity is set by the concentration of hydrogen ions, written [H⁺], in a solution. That concentration can span an enormous range, so instead of huge or tiny numbers we use a compressed scale: pH = −log₁₀[H⁺] (the negative base-10 logarithm). Pure water slightly splits itself into H⁺ and OH⁻ ions (autoionization), and the product of their concentrations is fixed: K_w = [H⁺][OH⁻] = 1.0×10⁻¹⁴ at 25 °C. Taking logs gives pH + pOH = 14. So pH 7 is neutral, below 7 is acidic, above 7 is basic — and because it's a logarithm, each whole-number step is a tenfold change in [H⁺].",
+        "deep": "K_w depends on temperature, so 'neutral pH' is exactly 7 only at 25 °C; at other temperatures the neutral point shifts even though the water is still neutral (equal H⁺ and OH⁻). Strictly, pH is defined using hydrogen-ion activity (effective concentration) rather than raw concentration, which is why a measured pH in concentrated solutions can drift away from the simple −log[H⁺] value."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — pH and pOH"
+      ],
+      "resources": [
+        { "label": "Wikipedia — pH", "url": "https://en.wikipedia.org/wiki/PH" },
+        { "label": "Wikipedia — Self-ionization of water (K_w)", "url": "https://en.wikipedia.org/wiki/Self-ionization_of_water" },
+        { "label": "Wikipedia — Logarithm (the math behind the scale)", "url": "https://en.wikipedia.org/wiki/Logarithm" },
+        { "label": "Wikipedia — Ion (H⁺ and OH⁻)", "url": "https://en.wikipedia.org/wiki/Ion" },
+        { "label": "Khan Academy — Chemistry (pH, acids and bases)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a vertical pH scale 0–14 with example substances, and the water equilibrium 2H₂O ⇌ H₃O⁺ + OH⁻ at the side",
       "quiz": [
@@ -948,13 +1183,21 @@
       "equation": "\\text{pH} = \\text{p}K_a + \\log\\dfrac{[\\text{A}^-]}{[\\text{HA}]}",
       "summary": "A weak acid and its conjugate base together resist pH change when small amounts of acid or base are added.",
       "depths": {
-        "eli5": "A buffer is a chemical shock absorber: it has both an acid and its partner base on hand to soak up whatever you add and keep the pH steady.",
-        "core": "A buffer is a mixture of a weak acid HA and its conjugate base A⁻. Added acid is consumed by A⁻ and added base by HA, so pH barely moves. The Henderson–Hasselbalch equation gives the pH directly from pK_a and the ratio of base to acid; buffering is strongest when that ratio is near 1, i.e., pH ≈ pK_a.",
-        "deep": "Buffer capacity is finite and peaks at pH = pK_a, within roughly ±1 unit. The equation is an approximation valid when concentrations are much larger than the change induced, and it is the operational backbone of blood pH control (the carbonic-acid/bicarbonate system) and almost every biochemistry experiment."
+        "eli5": "A buffer is a chemical shock absorber for acidity. It keeps both an acid and its partner base on hand at the same time, so whatever you splash in — extra acid or extra base — gets soaked up and the pH (the acidity level) barely budges. Your blood is buffered this way, which is why its acidity stays remarkably steady.",
+        "core": "A buffer is a solution that resists changes in pH. It is made of a weak acid (call it HA) together with its conjugate base (A⁻) in comparable amounts. If you add acid, the A⁻ mops it up; if you add base, the HA neutralizes it — so the pH moves only a little. The Henderson–Hasselbalch equation, pH = pK_a + log([A⁻]/[HA]), gives the buffer's pH directly from the acid's pK_a (its strength) and the ratio of base to acid present. A buffer works best when that ratio is near 1, which happens when the pH is close to the pK_a.",
+        "deep": "A buffer's capacity — how much acid or base it can absorb before failing — is finite and peaks when pH = pK_a, staying effective within roughly ±1 pH unit of it. The Henderson–Hasselbalch equation is an approximation, valid when the buffer's concentrations are much larger than the amount of acid or base added. This chemistry is the operational backbone of blood pH control (the carbonic-acid/bicarbonate system) and of nearly every biochemistry experiment, where keeping pH constant is essential."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Buffers"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Buffer solution", "url": "https://en.wikipedia.org/wiki/Buffer_solution" },
+        { "label": "Wikipedia — Henderson–Hasselbalch equation", "url": "https://en.wikipedia.org/wiki/Henderson%E2%80%93Hasselbalch_equation" },
+        { "label": "Wikipedia — Acid dissociation constant (pK_a)", "url": "https://en.wikipedia.org/wiki/Acid_dissociation_constant" },
+        { "label": "Wikipedia — Conjugate acid (the HA / A⁻ pair)", "url": "https://en.wikipedia.org/wiki/Conjugate_acid" },
+        { "label": "Wikipedia — pH", "url": "https://en.wikipedia.org/wiki/PH" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a titration curve flat plateau region labeled buffer zone, with HA and A⁻ molecules trading a proton",
       "quiz": [
@@ -982,14 +1225,22 @@
       "equation": "\\text{rate} = k[A]^m[B]^n",
       "summary": "The speed of a reaction depends on concentrations raised to experimentally determined orders.",
       "depths": {
-        "eli5": "How fast a reaction runs depends on how crowded the reactants are; doubling a reactant might double the speed, quadruple it, or do nothing — you have to measure.",
-        "core": "A rate law expresses reaction speed as a rate constant k times concentrations raised to powers (the orders m, n). Orders are found experimentally, not from coefficients, because they reflect the mechanism. Integrated rate laws then predict concentration over time and give characteristic signatures (half-life behavior) for zero-, first-, and second-order reactions.",
-        "deep": "The rate law reflects the slowest elementary step — the rate-determining step — so reaction order encodes mechanism. A first-order reaction has constant half-life (t½ = ln2/k) independent of concentration, the same mathematics as radioactive decay; second-order half-life grows as the reaction proceeds."
+        "eli5": "Some reactions are over in a flash, others crawl for years. How fast one runs usually depends on how crowded the reactants are. But you can't guess the exact relationship — doubling a reactant might double the speed, or quadruple it, or change nothing at all. You have to measure it in the lab.",
+        "core": "Reaction rate is how fast reactants turn into products. A rate law is the equation that links that speed to the concentrations of the reactants: rate = k[A]^m[B]^n. Here k is the rate constant (a number specific to the reaction and temperature), and the exponents m and n are the reaction orders — they say how sensitive the rate is to each reactant. Crucially, the orders are found by experiment, not read off the balanced equation's coefficients, because they reflect the actual step-by-step pathway (the mechanism). 'Integrated' rate laws then predict how concentration drops over time and give each reaction order a characteristic fingerprint, such as how its half-life behaves.",
+        "deep": "The rate law mirrors the slowest step in the mechanism — the rate-determining step — so the measured order encodes information about that step. A first-order reaction has a constant half-life (t½ = ln2/k) that doesn't depend on concentration — the very same mathematics as radioactive decay. A second-order reaction's half-life instead grows longer as the reaction proceeds and reactants thin out."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Chemical Kinetics",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Reaction rate", "url": "https://en.wikipedia.org/wiki/Reaction_rate" },
+        { "label": "Wikipedia — Rate equation (rate law)", "url": "https://en.wikipedia.org/wiki/Rate_equation" },
+        { "label": "Wikipedia — Half-life", "url": "https://en.wikipedia.org/wiki/Half-life" },
+        { "label": "Wikipedia — Rate-determining step", "url": "https://en.wikipedia.org/wiki/Rate-determining_step" },
+        { "label": "Khan Academy — Chemistry (kinetics)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "concentration-vs-time decay curves for zero, first, and second order overlaid with their rate-law expressions",
       "quiz": [
@@ -1017,14 +1268,22 @@
       "equation": "k = A e^{-E_a/RT}",
       "summary": "The rate constant grows exponentially with temperature as more molecules clear the activation-energy barrier.",
       "depths": {
-        "eli5": "Reactions need a running start — a hill to climb. Heating gives molecules more energy, so far more of them make it over the hill and the reaction speeds up.",
-        "core": "Every reaction has an activation energy E_a, the barrier reactants must surmount in the transition state. The Arrhenius equation says the rate constant k equals a frequency factor A times the Boltzmann fraction of molecules with enough energy, e^(−E_a/RT). Small temperature rises cause large rate increases because of the exponential.",
-        "deep": "The exponential is the Boltzmann tail from kinetic theory: the fraction of collisions energetic enough to react. Plotting ln k versus 1/T gives a straight line of slope −E_a/R, the standard way to measure activation energies. The factor A also folds in the geometric requirement that collisions be correctly oriented."
+        "eli5": "Even a reaction that's 'downhill' overall often needs a running start — a hill it must get over before it can roll down the other side. That hill is why a log doesn't burst into flame on its own but does once you light a match. Heating the molecules gives them more energy, so many more of them can clear the hill, and the reaction speeds up dramatically.",
+        "core": "Most reactions have an energy hill called the activation energy, E_a — the minimum energy reactants must gather to reach the high-energy 'transition state' at the top, after which they tumble into products. The Arrhenius equation, k = A·e^(−E_a/RT), gives the rate constant k as a frequency factor A multiplied by e^(−E_a/RT), which is the fraction of molecules that have at least E_a worth of energy at temperature T (R is the gas constant). Because that fraction sits in an exponential, even a small rise in temperature can boost the rate enormously.",
+        "deep": "The exponential term is the 'Boltzmann tail' from kinetic theory — the small fraction of molecular collisions energetic enough to react. Taking the logarithm shows that plotting ln k against 1/T gives a straight line of slope −E_a/R, which is the standard experimental way to measure an activation energy. The factor A also folds in the geometric requirement that colliding molecules be lined up correctly to react."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — The Arrhenius Equation",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Activation energy", "url": "https://en.wikipedia.org/wiki/Activation_energy" },
+        { "label": "Wikipedia — Arrhenius equation", "url": "https://en.wikipedia.org/wiki/Arrhenius_equation" },
+        { "label": "Wikipedia — Transition state", "url": "https://en.wikipedia.org/wiki/Transition_state" },
+        { "label": "Wikipedia — Maxwell–Boltzmann distribution (the energetic tail)", "url": "https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a reaction-coordinate diagram with reactants, a transition-state hump labeled Ea, products, and an Arrhenius ln k vs 1/T line",
       "quiz": [
@@ -1051,13 +1310,21 @@
       ],
       "summary": "A catalyst speeds a reaction by providing a lower-energy pathway without being consumed.",
       "depths": {
-        "eli5": "A catalyst is a shortcut that lets a reaction take an easier route over a smaller hill, and it comes out unchanged so it can help again and again.",
-        "core": "Catalysts lower the activation energy by opening an alternative mechanism, increasing the rate of both forward and reverse reactions equally. They are regenerated, not consumed, so a tiny amount processes vast amounts of substrate. Catalysis can be homogeneous (same phase), heterogeneous (surface-based), or enzymatic (biological).",
-        "deep": "Because a catalyst lowers E_a for forward and reverse equally, it never changes ΔG or the equilibrium position — only how fast equilibrium is reached. Heterogeneous catalysts work by adsorbing and weakening reactant bonds on a surface; enzymes achieve enormous rate enhancements by precise transition-state stabilization."
+        "eli5": "A catalyst is a helper that makes a reaction go faster without being used up itself. Picture it opening a shortcut over a smaller hill instead of the big one. Because the catalyst comes out of the reaction unchanged, the same little bit can help over and over. The catalytic converter in a car and the enzymes in your body all work this way.",
+        "core": "A catalyst speeds up a reaction by providing an alternative pathway with a lower activation energy (a smaller energy hill to climb). It speeds the forward and reverse reactions equally, and it is regenerated rather than consumed — so a tiny amount can process huge quantities of starting material (substrate). There are three flavors: homogeneous catalysis (catalyst in the same phase as the reactants, e.g. all dissolved in liquid), heterogeneous catalysis (a solid catalyst with reactants flowing over its surface), and enzymatic catalysis (biological catalysts — enzymes — in living things).",
+        "deep": "Because a catalyst lowers the activation energy for the forward and reverse directions by the same amount, it never changes the reaction's ΔG (the overall energy change) or where the equilibrium sits — it only shortens the time to reach equilibrium. Heterogeneous catalysts work by grabbing (adsorbing) reactant molecules onto their surface and weakening their bonds. Enzymes achieve their staggering speed-ups by precisely stabilizing the transition state, the fragile high-energy arrangement at the top of the hill."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Catalysis"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Catalysis", "url": "https://en.wikipedia.org/wiki/Catalysis" },
+        { "label": "Wikipedia — Catalyst", "url": "https://en.wikipedia.org/wiki/Catalyst" },
+        { "label": "Wikipedia — Activation energy (what a catalyst lowers)", "url": "https://en.wikipedia.org/wiki/Activation_energy" },
+        { "label": "Wikipedia — Enzyme (biological catalysts)", "url": "https://en.wikipedia.org/wiki/Enzyme" },
+        { "label": "Wikipedia — Transition state", "url": "https://en.wikipedia.org/wiki/Transition_state" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "two reaction-coordinate curves, the catalyzed one with a lower barrier, same start and end points",
       "quiz": [
@@ -1084,13 +1351,21 @@
       ],
       "summary": "Redox reactions transfer electrons, with one species oxidized (losing electrons) and another reduced (gaining them).",
       "depths": {
-        "eli5": "Some reactions are about passing electrons from one atom to another. The giver is oxidized, the taker is reduced — and you can't have one without the other.",
-        "core": "In a redox reaction, oxidation (loss of electrons, increase in oxidation state) and reduction (gain of electrons) always occur together. Tracking oxidation numbers identifies who loses and who gains electrons, and half-reactions let you balance the electron transfer. Redox underlies combustion, corrosion, respiration, and batteries.",
-        "deep": "Balancing requires conserving both atoms and charge; in acidic or basic solution you also balance with H⁺, OH⁻, and H₂O. Oxidation state is a formal bookkeeping device (electrons assigned to the more electronegative atom), not a real charge, but it reliably tracks electron flow across a reaction."
+        "eli5": "A whole family of reactions is really about electrons being passed from one atom to another. The atom that gives electrons away is 'oxidized'; the atom that takes them is 'reduced'. You can never have one without the other — every giver needs a taker. Rusting, burning, and the reactions in a battery are all electron-passing reactions.",
+        "core": "A redox reaction (short for reduction–oxidation) is one in which electrons transfer from one species to another. Oxidation is the loss of electrons (and a rise in 'oxidation state'); reduction is the gain of electrons. They always happen together: whatever is oxidized hands its electrons to whatever is reduced. A handy memory aid is 'OIL RIG' — Oxidation Is Loss, Reduction Is Gain. Chemists track which atom loses and which gains by assigning oxidation numbers, and they split the process into two half-reactions to balance the electrons cleanly. Redox underlies combustion (burning), corrosion (rusting), respiration (how your cells get energy), and batteries.",
+        "deep": "Balancing a redox reaction means conserving both atoms and electric charge; in acidic or basic water solutions you also balance using H⁺, OH⁻, and H₂O. Oxidation state is a formal bookkeeping device — you imagine giving every bond's shared electrons entirely to the more electronegative atom — so it isn't a real, physical charge, but it reliably tracks how electrons flow across a reaction."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Oxidation-Reduction Reactions"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Redox", "url": "https://en.wikipedia.org/wiki/Redox" },
+        { "label": "Wikipedia — Oxidation state", "url": "https://en.wikipedia.org/wiki/Oxidation_state" },
+        { "label": "Wikipedia — Half-reaction", "url": "https://en.wikipedia.org/wiki/Half-reaction" },
+        { "label": "Wikipedia — Electron", "url": "https://en.wikipedia.org/wiki/Electron" },
+        { "label": "Khan Academy — Chemistry (redox reactions)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "electrons flowing from an oxidized atom to a reduced atom, with oxidation states changing labeled above each",
       "quiz": [
@@ -1118,14 +1393,23 @@
       "equation": "\\Delta G^\\circ = -nFE^\\circ",
       "summary": "Separating the half-reactions of a redox process lets electron flow do electrical work, linking cell voltage to free energy.",
       "depths": {
-        "eli5": "If you split the electron-giver and electron-taker into two cups joined by a wire, the electrons flow through the wire — that's a battery.",
-        "core": "A galvanic cell physically separates oxidation (anode) from reduction (cathode), forcing electrons through an external circuit and producing a voltage. The standard cell potential E° comes from tabulated standard reduction potentials. The link to thermodynamics is ΔG° = −nFE°: a positive E° means a spontaneous, energy-releasing cell.",
-        "deep": "F is Faraday's constant (96,485 C/mol e⁻), the charge per mole of electrons. Electrolytic cells run the same machinery in reverse, using external voltage to drive nonspontaneous reactions (E° < 0). The salt bridge maintains electroneutrality so current keeps flowing."
+        "eli5": "In a redox reaction electrons jump from one atom to another. Here's the clever trick behind every battery: separate the electron-giver and the electron-taker into two compartments and connect them only by a wire. Now the electrons have to travel through the wire to get across — and electrons moving through a wire is electricity. You've built a battery.",
+        "core": "An electrochemical cell harnesses a redox reaction to make (or use) electricity. In a galvanic cell (a battery), oxidation and reduction are physically separated: oxidation happens at the anode, reduction at the cathode. Electrons released at the anode are forced through an external wire to the cathode, and that flow is the current; the push driving it is the voltage, called the cell potential. The standard cell potential E° is calculated from tabulated 'standard reduction potentials' for each half-reaction. The bridge to thermodynamics is ΔG° = −nFE°: here n is the number of electrons transferred and F is Faraday's constant. A positive E° gives a negative ΔG°, meaning the cell reaction is spontaneous and releases energy.",
+        "deep": "Faraday's constant F = 96,485 coulombs per mole of electrons — the electric charge carried by one mole of electrons. An electrolytic cell runs the same machinery in reverse: you apply an external voltage to force a nonspontaneous reaction (E° < 0) to happen, which is how metals are electroplated and aluminum is refined. A salt bridge connects the two compartments and lets ions flow to keep each side electrically neutral, so the current can keep going."
       },
       "note": "F = 96,485 C·mol⁻¹; n = moles of electrons transferred per reaction.",
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Electrochemistry"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Electrochemical cell", "url": "https://en.wikipedia.org/wiki/Electrochemical_cell" },
+        { "label": "Wikipedia — Galvanic cell", "url": "https://en.wikipedia.org/wiki/Galvanic_cell" },
+        { "label": "Wikipedia — Standard electrode potential (E°)", "url": "https://en.wikipedia.org/wiki/Standard_electrode_potential" },
+        { "label": "Wikipedia — Faraday constant (F)", "url": "https://en.wikipedia.org/wiki/Faraday_constant" },
+        { "label": "Wikipedia — Electrolytic cell", "url": "https://en.wikipedia.org/wiki/Electrolytic_cell" },
+        { "label": "Wikipedia — Salt bridge", "url": "https://en.wikipedia.org/wiki/Salt_bridge" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a galvanic cell: two beakers with electrodes, a wire carrying electrons, a salt bridge, voltmeter reading E°",
       "quiz": [
@@ -1154,14 +1438,22 @@
       "equation": "E = E^\\circ - \\dfrac{RT}{nF}\\ln Q",
       "summary": "Cell potential under non-standard conditions depends on the reaction quotient through the Nernst equation.",
       "depths": {
-        "eli5": "A battery's voltage isn't fixed — it sags as the reactants get used up. The Nernst equation tells you exactly how the voltage depends on what's left.",
-        "core": "Standard potentials assume 1 M concentrations and 1 atm; real cells run at arbitrary conditions. The Nernst equation corrects E° for actual concentrations via the reaction quotient Q. As a cell discharges, Q rises toward K and E falls to zero — a dead battery is one that has reached equilibrium.",
-        "deep": "Setting E = 0 gives E° = (RT/nF) ln K, directly linking electrochemistry to equilibrium. At 25 °C the prefactor simplifies to 0.0592/n with base-10 logs. The Nernst equation is also the foundation of biological membrane potentials and pH electrodes, where ion concentration gradients become measurable voltages."
+        "eli5": "A battery's voltage isn't a fixed number — it slowly sags as the chemicals inside get used up, which is why an old battery is weaker. The Nernst equation is the formula that tells you exactly how the voltage depends on how much reactant is left. When everything is used up, the voltage hits zero: the battery is dead.",
+        "core": "The 'standard' cell potential E° assumes textbook conditions (every dissolved substance at 1 mol/L, every gas at 1 atmosphere). Real cells almost never run at those conditions. The Nernst equation, E = E° − (RT/nF)·ln Q, corrects the voltage for the actual amounts present, using the reaction quotient Q (the current ratio of products to reactants). As a battery discharges, products build up, Q rises toward the equilibrium constant K, and the voltage E falls toward zero. A 'dead' battery is simply one whose reaction has reached equilibrium, where there is no longer any push.",
+        "deep": "Setting E = 0 (equilibrium, Q = K) gives E° = (RT/nF) ln K, directly tying electrochemistry to the equilibrium constant. At 25 °C the messy prefactor RT/F simplifies, so with base-10 logarithms the term becomes 0.0592/n. The same equation underlies biological membrane potentials (the voltages nerve cells use to fire) and the pH electrode, where a difference in ion concentration is turned into a measurable voltage."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — The Nernst Equation",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Nernst equation", "url": "https://en.wikipedia.org/wiki/Nernst_equation" },
+        { "label": "Wikipedia — Standard electrode potential (E°)", "url": "https://en.wikipedia.org/wiki/Standard_electrode_potential" },
+        { "label": "Wikipedia — Reaction quotient (Q)", "url": "https://en.wikipedia.org/wiki/Reaction_quotient" },
+        { "label": "Wikipedia — Equilibrium constant (K)", "url": "https://en.wikipedia.org/wiki/Equilibrium_constant" },
+        { "label": "Wikipedia — Galvanic cell", "url": "https://en.wikipedia.org/wiki/Galvanic_cell" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "a cell-voltage curve declining as the reaction proceeds toward equilibrium, Q approaching K and E approaching 0",
       "quiz": [
@@ -1190,13 +1482,21 @@
       "equation": "\\hat{H}\\psi = E\\psi",
       "summary": "Electronic structure is the set of solutions to the Schrödinger equation for electrons in the field of nuclei.",
       "depths": {
-        "eli5": "Underneath all the dots and arrows of chemistry is one wave equation; orbitals, bonds, and the periodic table are just its answers.",
-        "core": "The time-independent Schrödinger equation Ĥψ = Eψ governs the electrons in any atom or molecule: the wavefunction ψ encodes where electrons are likely to be, and the allowed energies E are quantized. Orbitals are one-electron wavefunctions; the periodic table, bond energies, and spectra are all consequences of solving (or approximating) this equation.",
-        "deep": "Only the hydrogen atom is solved exactly; every many-electron system requires approximations because electrons repel each other (the correlation problem). Methods like Hartree–Fock treat each electron in the average field of the others; the entire field of computational chemistry exists to approximate Ĥψ = Eψ for molecules too complex to solve by hand."
+        "eli5": "All the dots, arrows, and orbital pictures in chemistry are really shortcuts for one deep equation from physics — a 'wave equation' that describes how electrons behave. Orbitals, chemical bonds, even the whole periodic table are just answers that fall out of solving it. In other words, chemistry is what quantum physics looks like when applied to electrons around atoms.",
+        "core": "Quantum chemistry treats electrons as waves governed by the Schrödinger equation, written Ĥψ = Eψ. In it, ψ (psi) is the wavefunction, a mathematical object that encodes where an electron is likely to be (its square, |ψ|², gives the probability of finding it at each point). Ĥ (the Hamiltonian) is the operator that represents the system's total energy, and E is an allowed energy value. The equation only permits certain solutions, which is why energies come in fixed, quantized levels. An orbital is simply a one-electron wavefunction. The shapes of orbitals, the lengths and strengths of bonds, and the lines in atomic spectra all emerge from solving — or approximating — this single equation.",
+        "deep": "Only the hydrogen atom (one electron) can be solved exactly. Every atom or molecule with more than one electron requires approximations, because the electrons repel each other and their motions become entangled — the 'electron correlation' problem. The Hartree–Fock method approximates this by treating each electron as moving in the averaged field of all the others. The entire field of computational chemistry exists to approximate Ĥψ = Eψ for molecules far too complex to solve by hand."
       },
       "sources": [
         "LibreTexts Chemistry — Quantum Mechanics",
         "MIT OCW 5.61"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Schrödinger equation", "url": "https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation" },
+        { "label": "Wikipedia — Wave function (ψ)", "url": "https://en.wikipedia.org/wiki/Wave_function" },
+        { "label": "Wikipedia — Atomic orbital", "url": "https://en.wikipedia.org/wiki/Atomic_orbital" },
+        { "label": "Wikipedia — Hartree–Fock method", "url": "https://en.wikipedia.org/wiki/Hartree%E2%80%93Fock_method" },
+        { "label": "Wikipedia — Electronic correlation", "url": "https://en.wikipedia.org/wiki/Electronic_correlation" },
+        { "label": "MIT OCW 5.61 — Physical Chemistry", "url": "https://ocw.mit.edu/courses/5-61-physical-chemistry-fall-2017/" }
       ],
       "art_prompt": "a hydrogen wavefunction probability cloud beside the equation Ĥψ=Eψ, with energy levels branching off",
       "quiz": [
@@ -1223,13 +1523,22 @@
       ],
       "summary": "Carbon's versatility lets recurring atom groupings define families of molecules with predictable reactivity.",
       "depths": {
-        "eli5": "Most of organic chemistry is recognizing a handful of recurring 'gadgets' attached to carbon chains — each gadget acts a certain way no matter what chain it's on.",
-        "core": "Carbon forms four strong covalent bonds and chains/rings of arbitrary size, so organic molecules are best understood by their functional groups: alcohols (–OH), carbonyls (C=O) in aldehydes/ketones, carboxylic acids (–COOH), amines (–NH₂), and others. A functional group concentrates reactivity, so molecules sharing one behave similarly regardless of the rest of the skeleton.",
-        "deep": "Functional-group behavior follows from local bonding and polarity: the carbonyl carbon is electrophilic because oxygen pulls electron density away, making it a magnet for nucleophiles. This modular view — a relatively inert hydrocarbon skeleton decorated with reactive groups — is what makes the vast space of organic molecules learnable."
+        "eli5": "Organic chemistry is the chemistry of carbon-based molecules — the stuff of life and most materials. It sounds overwhelming because there are millions of these molecules, but there's a shortcut: most of them are just a carbon skeleton with a few recurring 'gadgets' bolted on. Each gadget behaves the same way no matter what skeleton it's attached to, so once you know the gadgets, you can predict a lot.",
+        "core": "Carbon is special: it forms four strong covalent bonds and can link into chains and rings of any size, which is why there are so many carbon (organic) compounds. The key to organizing them is the functional group — a specific small cluster of atoms that gives a molecule its characteristic chemistry. Common examples: the alcohol group (–OH), the carbonyl group (a carbon double-bonded to oxygen, C=O, found in aldehydes and ketones), the carboxylic acid group (–COOH), and the amine group (–NH₂). A functional group concentrates the reactivity, so any molecule carrying that group behaves similarly regardless of the rest of its structure.",
+        "deep": "A functional group's behavior follows from its local bonding and polarity. For instance, the carbonyl carbon is electrophilic (electron-poor and so attractive to electron-rich species) because the oxygen pulls electron density away from it, making it a magnet for nucleophiles (electron-rich attackers). This modular picture — a fairly unreactive hydrocarbon skeleton decorated with reactive groups — is exactly what makes the enormous space of organic molecules learnable rather than hopeless."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Organic Chemistry — Functional Groups"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Functional group", "url": "https://en.wikipedia.org/wiki/Functional_group" },
+        { "label": "Wikipedia — Carbonyl group (C=O)", "url": "https://en.wikipedia.org/wiki/Carbonyl_group" },
+        { "label": "Wikipedia — Carboxylic acid (–COOH)", "url": "https://en.wikipedia.org/wiki/Carboxylic_acid" },
+        { "label": "Wikipedia — Amine (–NH₂)", "url": "https://en.wikipedia.org/wiki/Amine" },
+        { "label": "Wikipedia — Alcohol (chemistry) (–OH)", "url": "https://en.wikipedia.org/wiki/Alcohol_(chemistry)" },
+        { "label": "Wikipedia — Nucleophile / electrophile (reactivity)", "url": "https://en.wikipedia.org/wiki/Nucleophile" },
+        { "label": "LibreTexts — Organic Chemistry map", "url": "https://chem.libretexts.org/Bookshelves/Organic_Chemistry/Map%3A_Organic_Chemistry_(Smith)" }
       ],
       "art_prompt": "a chart of common functional groups (–OH, C=O, –COOH, –NH₂) each on a generic carbon skeleton, labeled",
       "quiz": [
@@ -1255,13 +1564,22 @@
       ],
       "summary": "Molecules with the same formula can differ in connectivity or spatial arrangement, changing their properties.",
       "depths": {
-        "eli5": "Same building blocks, different builds. Two molecules can have identical atom counts yet be completely different substances depending on how the atoms are joined or arranged in space.",
-        "core": "Isomers share a molecular formula but differ in structure. Structural (constitutional) isomers differ in connectivity; stereoisomers share connectivity but differ in 3D arrangement — cis/trans around double bonds and enantiomers that are non-superimposable mirror images. Even subtle stereochemistry can change biological activity dramatically.",
-        "deep": "Chirality arises from a carbon bonded to four different groups; enantiomers have identical physical properties except they rotate plane-polarized light oppositely and interact differently with other chiral molecules — which is why one enantiomer of a drug can heal while its mirror image is inert or harmful. This connects directly to biophysics' homochirality."
+        "eli5": "Give two builders the exact same set of LEGO bricks and they might build completely different things. Molecules are the same way: two can have the identical count of each atom yet be totally different substances, just because the atoms are connected or arranged in space differently. Such molecules are called isomers.",
+        "core": "Isomers are molecules with the same molecular formula (the same atoms in the same numbers) but a different structure. There are two big families. Structural (constitutional) isomers differ in how the atoms are connected — the same parts wired together in a different order. Stereoisomers have the same connectivity but differ in their 3-D arrangement; these include cis/trans isomers (groups on the same vs. opposite sides of a rigid double bond) and enantiomers (a molecule and its non-superimposable mirror image, like your left and right hands). Even a subtle stereochemical difference can dramatically change how a molecule behaves in the body.",
+        "deep": "A common source of handedness (chirality) is a carbon atom bonded to four different groups. The two mirror-image forms (enantiomers) have identical ordinary physical properties and differ only in two ways: they rotate polarized light in opposite directions, and they interact differently with other handed molecules. That second point is why one enantiomer of a drug can be a cure while its mirror image is useless or even harmful — and it connects directly to a deep puzzle in biophysics, homochirality (why life uses only one handedness of its key molecules)."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Organic Chemistry — Isomerism and Stereochemistry"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Isomer", "url": "https://en.wikipedia.org/wiki/Isomer" },
+        { "label": "Wikipedia — Structural isomer", "url": "https://en.wikipedia.org/wiki/Structural_isomer" },
+        { "label": "Wikipedia — Stereoisomerism", "url": "https://en.wikipedia.org/wiki/Stereoisomerism" },
+        { "label": "Wikipedia — Enantiomer", "url": "https://en.wikipedia.org/wiki/Enantiomer" },
+        { "label": "Wikipedia — Chirality (chemistry)", "url": "https://en.wikipedia.org/wiki/Chirality_(chemistry)" },
+        { "label": "Wikipedia — Cis–trans isomerism", "url": "https://en.wikipedia.org/wiki/Cis%E2%80%93trans_isomerism" },
+        { "label": "LibreTexts — Organic Chemistry map", "url": "https://chem.libretexts.org/Bookshelves/Organic_Chemistry/Map%3A_Organic_Chemistry_(Smith)" }
       ],
       "art_prompt": "a pair of mirror-image (enantiomer) molecules that can't be superimposed, like left and right hands",
       "quiz": [
@@ -1289,13 +1607,22 @@
       ],
       "summary": "Most organic transformations sort into a few mechanistic classes driven by electron-pair movement.",
       "depths": {
-        "eli5": "Despite millions of organic reactions, they mostly follow a handful of recipes: swap a group, add across a double bond, remove a piece, or rearrange — all by electrons moving from where they're rich to where they're poor.",
-        "core": "Organic reactions group into substitution, addition, elimination, and rearrangement, often combined with oxidation or reduction. The common engine is nucleophile–electrophile interaction: electron-rich sites attack electron-poor sites, and curved arrows track each electron-pair's movement. Recognizing the class predicts products and conditions.",
-        "deep": "Mechanism, not just product, is the organizing principle: SN1 versus SN2 substitution differ in whether bond-breaking and bond-making are concurrent, which controls stereochemistry and rate dependence. Reaction networks of these elementary steps, increasingly mapped computationally, are how complex syntheses and metabolic pathways are designed."
+        "eli5": "There are millions of known organic reactions, but they mostly follow just a few basic recipes: swap one group for another, add a new piece across a double bond, pull a piece off, or shuffle the atoms around. And underneath all of them is one idea — electrons moving from places that are electron-rich to places that are electron-poor.",
+        "core": "Most organic reactions fall into four broad classes: substitution (one group replaces another), addition (atoms add across a double or triple bond), elimination (a small piece is removed, often creating a double bond), and rearrangement (atoms reshuffle within the molecule) — frequently combined with oxidation or reduction. The common engine driving them is the nucleophile–electrophile interaction: an electron-rich site (the nucleophile) attacks an electron-poor site (the electrophile). Chemists trace these moves with 'curved arrows', each showing where a pair of electrons goes. Recognizing which class a reaction belongs to lets you predict its products and the conditions it needs.",
+        "deep": "The organizing principle is the mechanism — the actual step-by-step path — not just the final product. For example, the two substitution mechanisms SN1 and SN2 differ in whether the old bond breaks before or at the same time as the new bond forms, which in turn controls the reaction's stereochemistry (3-D outcome) and how its rate depends on concentration. Whole networks of such elementary steps, now increasingly mapped by computer, are how chemists design complex syntheses and understand the metabolic pathways inside cells."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Organic Chemistry — Reaction Mechanisms"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Organic reaction", "url": "https://en.wikipedia.org/wiki/Organic_reaction" },
+        { "label": "Wikipedia — Substitution reaction", "url": "https://en.wikipedia.org/wiki/Substitution_reaction" },
+        { "label": "Wikipedia — Addition reaction", "url": "https://en.wikipedia.org/wiki/Addition_reaction" },
+        { "label": "Wikipedia — Elimination reaction", "url": "https://en.wikipedia.org/wiki/Elimination_reaction" },
+        { "label": "Wikipedia — Nucleophile (vs electrophile)", "url": "https://en.wikipedia.org/wiki/Nucleophile" },
+        { "label": "Wikipedia — SN2 reaction (and SN1)", "url": "https://en.wikipedia.org/wiki/SN2_reaction" },
+        { "label": "LibreTexts — Organic Chemistry map", "url": "https://chem.libretexts.org/Bookshelves/Organic_Chemistry/Map%3A_Organic_Chemistry_(Smith)" }
       ],
       "art_prompt": "curved-arrow mechanism of a nucleophile attacking an electrophilic carbon, leaving group departing",
       "quiz": [
@@ -1322,13 +1649,21 @@
       ],
       "summary": "Whether a reaction yields the most stable product or the fastest-formed one depends on conditions.",
       "depths": {
-        "eli5": "Sometimes a reaction makes the easiest product first, sometimes the most stable one wins — it depends on whether you give it time and heat to find the best answer.",
-        "core": "Thermodynamics (ΔG) says which product is most stable; kinetics (E_a) says which forms fastest. When two products compete, low temperature and short times favor the kinetic product (lower barrier), while high temperature and long times let the system reach the thermodynamic product (lower energy). The two need not be the same molecule.",
-        "deep": "This distinction is the practical heart of synthesis: it decides selectivity. It requires that the kinetic product can revert (reaction reversibility) for thermodynamic control to take over. The same logic explains why diamond (thermodynamically less stable than graphite at room conditions) persists — its conversion barrier is astronomically high, so kinetics traps it."
+        "eli5": "When a reaction could make more than one product, two different questions matter. Which product forms fastest? And which product is the most stable once formed? They aren't always the same molecule. Give the reaction little time and low heat and you tend to get the fast one; give it lots of time and heat and the most stable one eventually wins out.",
+        "core": "Two separate ideas govern which product you get. Thermodynamics (measured by Gibbs free energy, ΔG) tells you which product is most stable. Kinetics (measured by activation energy, E_a) tells you which product forms fastest — the one with the smallest energy barrier. When two products compete: low temperature and short reaction times favor the kinetic product (the quick-to-form one), while high temperature and long times let the system find its way to the thermodynamic product (the most stable one). These need not be the same molecule, so the conditions you choose decide the outcome.",
+        "deep": "This distinction is the practical heart of designing a synthesis, because it determines selectivity (which product you actually get). For thermodynamic control to win, the kinetic product must be able to revert — the reaction has to be reversible — so the system can back out and find the more stable option. The same logic explains why diamond persists at room temperature even though graphite is the more stable form of carbon: the barrier to convert diamond into graphite is astronomically high, so kinetics traps it indefinitely."
       },
       "sources": [
         "LibreTexts Organic Chemistry — Thermodynamic and Kinetic Control",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Thermodynamic versus kinetic reaction control", "url": "https://en.wikipedia.org/wiki/Thermodynamic_versus_kinetic_reaction_control" },
+        { "label": "Wikipedia — Gibbs free energy (stability)", "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy" },
+        { "label": "Wikipedia — Activation energy (the kinetic barrier)", "url": "https://en.wikipedia.org/wiki/Activation_energy" },
+        { "label": "Wikipedia — Diamond", "url": "https://en.wikipedia.org/wiki/Diamond" },
+        { "label": "Wikipedia — Graphite", "url": "https://en.wikipedia.org/wiki/Graphite" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "an energy diagram with two product wells: a shallow-barrier kinetic product and a deeper, higher-barrier thermodynamic product",
       "quiz": [
@@ -1356,14 +1691,22 @@
       ],
       "summary": "Approximate solutions of the electronic Schrödinger equation let computers predict structures, energies, and reaction pathways.",
       "depths": {
-        "eli5": "Instead of running every experiment, chemists let computers solve the quantum math approximately to predict how molecules look and react — and now map whole webs of possible reactions automatically.",
-        "core": "Computational chemistry approximates the electronic Schrödinger equation to predict molecular geometry, energies, and reactivity. Density functional theory (DFT) trades the full wavefunction for the electron density, making medium-sized molecules tractable. Mapping the connected elementary steps as a reaction network turns synthesis and catalysis into a searchable graph of transition states and intermediates.",
-        "deep": "All methods balance accuracy against cost: Hartree–Fock misses electron correlation, post-HF methods add it expensively, and DFT approximates it through the exchange-correlation functional. Modern frontiers — machine-learned interatomic potentials and automated transition-state search — aim to explore vast reaction networks at near-quantum accuracy but a fraction of the cost, closing the loop back to the foundational Ĥψ = Eψ."
+        "eli5": "Running real chemistry experiments is slow and expensive. So chemists let computers do the quantum math (approximately) to predict how a molecule will look and how it will react — before anyone touches a test tube. Lately, computers can even map whole webs of possible reactions automatically, suggesting routes a human might never think of.",
+        "core": "Computational chemistry uses computers to approximate the electronic Schrödinger equation and predict a molecule's geometry (its shape), energies, and reactivity. Solving that equation exactly is impossible for real molecules, so methods make trade-offs. A widely used one is density functional theory (DFT), which cleverly works with the electron density (how electrons are spread out in space) instead of the full, far more complex wavefunction — this makes medium-sized molecules practical to compute. Linking many elementary reaction steps together produces a 'reaction network': a searchable map of intermediates and transition states that turns planning a synthesis into a graph-search problem.",
+        "deep": "Every method balances accuracy against computational cost. Hartree–Fock ignores electron correlation (the way electrons' motions are interdependent); 'post-Hartree–Fock' methods add it back but become very expensive; DFT approximates it through an 'exchange-correlation functional'. The current frontier — machine-learned interatomic potentials and automated transition-state searches — aims to explore enormous reaction networks at near-quantum accuracy for a fraction of the cost, closing the loop back to the foundational equation Ĥψ = Eψ."
       },
       "note": "This is the live frontier: ML potentials and automated reaction-network discovery are reshaping how chemistry is predicted rather than only measured.",
       "sources": [
         "LibreTexts Chemistry — Computational Chemistry",
         "MIT OCW 5.61"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Computational chemistry", "url": "https://en.wikipedia.org/wiki/Computational_chemistry" },
+        { "label": "Wikipedia — Density functional theory (DFT)", "url": "https://en.wikipedia.org/wiki/Density_functional_theory" },
+        { "label": "Wikipedia — Hartree–Fock method", "url": "https://en.wikipedia.org/wiki/Hartree%E2%80%93Fock_method" },
+        { "label": "Wikipedia — Schrödinger equation", "url": "https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation" },
+        { "label": "Wikipedia — Machine learning potential", "url": "https://en.wikipedia.org/wiki/Machine_learning_potential" },
+        { "label": "MIT OCW 5.61 — Physical Chemistry", "url": "https://ocw.mit.edu/courses/5-61-physical-chemistry-fall-2017/" }
       ],
       "art_prompt": "a reaction-network graph of intermediates and transition states with computed energies, a DFT electron-density isosurface beside it",
       "quiz": [
@@ -1391,13 +1734,22 @@
       ],
       "summary": "Transition-metal ions bind surrounding ligands, and the resulting d-orbital splitting explains color and magnetism.",
       "depths": {
-        "eli5": "A metal ion in the middle, with molecules clamped around it like a claw — the arrangement bends the metal's electron levels, which is why these compounds are so colorful.",
-        "core": "A coordination complex is a central metal ion bonded to surrounding ligands that donate electron pairs (Lewis bases). Crystal field theory describes how the ligands' electric field splits the metal's five d orbitals into groups of different energy; the size of that gap determines the complex's color (light absorbed across the gap) and whether electrons pair up (low spin) or spread out (high spin).",
-        "deep": "The crystal-field splitting Δ depends on geometry (octahedral, tetrahedral) and ligand strength (the spectrochemical series). When Δ exceeds the electron-pairing energy, electrons pair into the lower set (low spin); otherwise they occupy the upper set (high spin), which dictates magnetism. Ligand-field theory refines this with MO concepts, central to bioinorganic chemistry like hemoglobin's iron."
+        "eli5": "Picture a metal ion sitting in the middle, with several molecules clamped around it like the fingers of a claw. This claw-like grip subtly bends the energy levels of the metal's electrons — and that bending is why these compounds come in such vivid colors. The deep blue of many copper solutions and the red of blood both come from arrangements like this.",
+        "core": "A coordination complex is a central metal ion surrounded by molecules or ions called ligands that bond to it by donating a pair of electrons (ligands act as Lewis bases — electron-pair donors). Crystal field theory explains the consequences: the ligands' electric field pushes on the metal's five d orbitals and splits them into groups of different energy. The size of that energy gap controls two things. First, the complex's color — the complex absorbs light whose energy matches the gap, and you see the leftover colors. Second, how the d electrons arrange: they can pair up tightly in the lower group (low spin) or spread out into the higher group (high spin).",
+        "deep": "The crystal-field splitting, written Δ, depends on the complex's geometry (octahedral, tetrahedral, etc.) and on how strongly the ligands push, ranked by the 'spectrochemical series'. If Δ is larger than the energy cost of pairing two electrons, electrons pair in the lower set (low spin); if smaller, they occupy the upper set unpaired (high spin) — and the number of unpaired electrons sets the complex's magnetism. A refinement called ligand-field theory blends this with molecular-orbital ideas, and it is central to bioinorganic chemistry, such as the iron at the heart of hemoglobin that carries oxygen in your blood."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Coordination Chemistry and Crystal Field Theory"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Coordination complex", "url": "https://en.wikipedia.org/wiki/Coordination_complex" },
+        { "label": "Wikipedia — Crystal field theory", "url": "https://en.wikipedia.org/wiki/Crystal_field_theory" },
+        { "label": "Wikipedia — Ligand", "url": "https://en.wikipedia.org/wiki/Ligand" },
+        { "label": "Wikipedia — Spectrochemical series (ligand strength)", "url": "https://en.wikipedia.org/wiki/Spectrochemical_series" },
+        { "label": "Wikipedia — Ligand field theory", "url": "https://en.wikipedia.org/wiki/Ligand_field_theory" },
+        { "label": "Wikipedia — Lewis acids and bases (ligands as donors)", "url": "https://en.wikipedia.org/wiki/Lewis_acids_and_bases" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "an octahedral metal complex with six ligands, beside a d-orbital splitting diagram showing the t2g/eg gap Δ",
       "quiz": [
@@ -1424,13 +1776,21 @@
       ],
       "summary": "Reaction enthalpy can be estimated as the energy to break reactant bonds minus the energy released forming product bonds.",
       "depths": {
-        "eli5": "Breaking bonds costs energy; making bonds gives it back. A reaction's heat is roughly the difference between what you spend breaking and what you get back making.",
-        "core": "Each bond type has a characteristic average bond-dissociation energy. Breaking bonds is endothermic, forming bonds exothermic, so ΔH_rxn ≈ Σ(bonds broken) − Σ(bonds formed). This gives a quick estimate of whether a reaction releases or absorbs heat and connects molecular structure directly to thermochemistry.",
-        "deep": "Bond energies are averages over many molecules, so this method is approximate — Hess's law with formation enthalpies is more accurate. Still, it reveals why combustion is so exothermic (strong C=O and O–H bonds form) and why high-energy bonds like those in nitrogen compounds make powerful explosives when they rearrange to ultra-stable N₂."
+        "eli5": "Pulling a chemical bond apart takes energy, like stretching a spring until it snaps. Forming a new bond gives energy back. So whether a reaction warms up or cools down is just a tug-of-war: the energy you spend breaking the old bonds versus the energy you get back making the new ones.",
+        "core": "Every type of bond has a characteristic strength, called its average bond-dissociation energy — the energy needed to break it. Breaking bonds always absorbs energy (endothermic); forming bonds always releases energy (exothermic). So a reaction's overall heat can be estimated as ΔH_rxn ≈ (sum of energies of bonds broken) − (sum of energies of bonds formed). This gives a quick prediction of whether a reaction gives off or takes in heat, and it links molecular structure directly to the energetics (thermochemistry) of a reaction.",
+        "deep": "Bond energies are averages taken over many different molecules, so this method is only approximate; using Hess's law with tabulated formation enthalpies is more accurate. Even so, the bond-energy view explains a lot: combustion releases so much heat because very strong C=O and O–H bonds form in the products, and high-energy compounds (like many nitrogen explosives) release enormous energy when they rearrange into the extraordinarily stable triple bond of nitrogen gas (N₂)."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Bond Energies"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Bond-dissociation energy", "url": "https://en.wikipedia.org/wiki/Bond-dissociation_energy" },
+        { "label": "Wikipedia — Enthalpy (the heat of reaction)", "url": "https://en.wikipedia.org/wiki/Enthalpy" },
+        { "label": "Wikipedia — Hess's law (the more accurate route)", "url": "https://en.wikipedia.org/wiki/Hess%27s_law" },
+        { "label": "Wikipedia — Covalent bond", "url": "https://en.wikipedia.org/wiki/Covalent_bond" },
+        { "label": "Wikipedia — Exothermic process", "url": "https://en.wikipedia.org/wiki/Exothermic_process" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a bar chart: energy invested breaking reactant bonds vs energy released forming product bonds, net ΔH as the difference",
       "quiz": [
@@ -1458,13 +1818,21 @@
       ],
       "summary": "Adding a known reagent until stoichiometric equivalence lets you measure an unknown concentration.",
       "depths": {
-        "eli5": "Drip in a base of known strength until it exactly cancels the acid; the amount it took tells you how much acid was there.",
-        "core": "In a titration you add a standardized titrant to an analyte until the equivalence point, where moles of added reagent exactly match the analyte by the reaction's stoichiometry. The pH curve shows a characteristic sharp jump at equivalence; an indicator or pH meter signals it. From the volume and concentration of titrant, the unknown concentration follows directly.",
-        "deep": "The equivalence point is not always pH 7 — for a weak acid titrated with strong base it is basic, because the conjugate base remains. The steep region's midpoint of the buffer plateau gives pK_a directly (pH = pK_a at half-equivalence), so a titration curve simultaneously yields concentration and acid strength."
+        "eli5": "Suppose you have some acid but don't know how concentrated it is. Here's a clever way to find out: slowly drip in a base whose strength you do know, until it has exactly cancelled all the acid. The amount of base it took tells you precisely how much acid was there. This drip-and-measure technique is called a titration.",
+        "core": "A titration measures an unknown concentration by reacting it with a solution you know exactly. You slowly add the standardized titrant (the known solution) to the analyte (the unknown) until you reach the equivalence point — the moment when the moles of added reagent exactly match the analyte according to the reaction's stoichiometry. For an acid–base titration, a plot of pH versus volume added shows a sharp jump right at equivalence; a color-changing indicator or a pH meter signals when you're there. Knowing the volume and concentration of titrant used, you calculate the unknown concentration directly.",
+        "deep": "The equivalence point isn't always at pH 7. When a weak acid is titrated with a strong base, the equivalence point is basic (above 7), because the product left behind is the acid's conjugate base, which is itself slightly basic. There's a bonus: at the half-equivalence point (halfway to equivalence) the solution is an equal-parts buffer, so pH = pK_a there. That means a single titration curve gives you both the unknown's concentration and the acid's strength (pK_a) at once."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Acid-Base Titrations"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Titration", "url": "https://en.wikipedia.org/wiki/Titration" },
+        { "label": "Wikipedia — Equivalence point", "url": "https://en.wikipedia.org/wiki/Equivalence_point" },
+        { "label": "Wikipedia — pH indicator", "url": "https://en.wikipedia.org/wiki/PH_indicator" },
+        { "label": "Wikipedia — Acid dissociation constant (pK_a)", "url": "https://en.wikipedia.org/wiki/Acid_dissociation_constant" },
+        { "label": "Wikipedia — Buffer solution (the half-equivalence point)", "url": "https://en.wikipedia.org/wiki/Buffer_solution" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a titration setup with burette dripping into a flask, beside the sigmoidal pH curve with equivalence point marked",
       "quiz": [
@@ -1491,13 +1859,21 @@
       ],
       "summary": "A bookkeeping charge assigned by giving shared electrons to the more electronegative atom tracks electron flow.",
       "depths": {
-        "eli5": "Pretend every bond's electrons fully belong to the greedier atom, then count each atom's leftover charge — that number is its oxidation state.",
-        "core": "Oxidation state is the hypothetical charge an atom would have if all its bonds were fully ionic, assigning shared electrons to the more electronegative partner. Simple rules (free elements 0, oxygen usually −2, hydrogen +1, sum equals overall charge) let you assign them quickly. They are the tool for identifying and balancing redox reactions.",
-        "deep": "Oxidation state is formal, not physical — the actual partial charge on an atom is usually much smaller and non-integer. Its value lies in conservation: total change in oxidation states must balance the electrons transferred, which is exactly what makes redox balancing and electrochemical stoichiometry work."
+        "eli5": "Here's a handy bookkeeping trick. For every bond, pretend the shared electrons belong entirely to the greedier (more electronegative) atom. Then count up whether each atom ended up with more or fewer electrons than it normally has. That count, written as a + or − number, is the atom's oxidation state. It's not the atom's real charge — it's a tally that helps you track where electrons go.",
+        "core": "An oxidation state (or oxidation number) is the hypothetical charge an atom would carry if every one of its bonds were treated as fully ionic, with the shared electrons handed to the more electronegative partner. A few simple rules let you assign them fast: a pure element is 0, oxygen is usually −2, hydrogen is usually +1, and all the oxidation states in a species must add up to its overall charge. Oxidation states are the main tool for spotting redox reactions (where the numbers change) and for balancing them, since a rise means electrons lost and a fall means electrons gained.",
+        "deep": "Oxidation state is a formal accounting device, not a physical measurement — the actual partial charge on an atom is usually much smaller and not a whole number. Its real value comes from conservation: the total increase in oxidation states must exactly equal the total decrease, because every electron lost by one atom is gained by another. That balance is precisely what makes redox equation-balancing and electrochemical calculations work."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Oxidation States"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Oxidation state", "url": "https://en.wikipedia.org/wiki/Oxidation_state" },
+        { "label": "Wikipedia — Redox (where oxidation states are used)", "url": "https://en.wikipedia.org/wiki/Redox" },
+        { "label": "Wikipedia — Electronegativity (assigning electrons)", "url": "https://en.wikipedia.org/wiki/Electronegativity" },
+        { "label": "Wikipedia — Ion (charge basics)", "url": "https://en.wikipedia.org/wiki/Ion" },
+        { "label": "Khan Academy — Chemistry (oxidation numbers)", "url": "https://www.khanacademy.org/science/chemistry" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a molecule with each bond's electrons assigned to the more electronegative atom, resulting oxidation numbers labeled",
       "quiz": [
@@ -1525,13 +1901,21 @@
       "equation": "\\ln\\dfrac{P_2}{P_1} = -\\dfrac{\\Delta H_{vap}}{R}\\left(\\dfrac{1}{T_2}-\\dfrac{1}{T_1}\\right)",
       "summary": "The vapor pressure of a liquid rises exponentially with temperature, governed by its enthalpy of vaporization.",
       "depths": {
-        "eli5": "Warm a liquid and more of it escapes into vapor, fast — the hotter it gets, the much higher its 'urge' to evaporate climbs.",
-        "core": "A liquid in a closed container reaches a vapor pressure set by the balance of evaporation and condensation. The Clausius–Clapeyron relation shows this pressure grows exponentially with temperature, controlled by the enthalpy of vaporization ΔH_vap. Boiling occurs when vapor pressure equals external pressure — which is why water boils at lower temperature on a mountain.",
-        "deep": "The relation derives from setting the molar Gibbs energies of liquid and vapor equal along the coexistence curve and approximating the vapor as ideal. A plot of ln P versus 1/T is linear with slope −ΔH_vap/R, a standard route to measure vaporization enthalpies — the same mathematical form as Arrhenius and van't Hoff, all rooted in Boltzmann statistics."
+        "eli5": "Leave a glass of water out and some of it slowly turns to vapor and drifts away — that's evaporation. Warm the water and it evaporates much faster: its 'urge' to become vapor climbs steeply as it heats up. This urge is called vapor pressure, and a single equation captures how fast it rises with temperature.",
+        "core": "In a closed container, a liquid keeps evaporating and condensing until those two rates balance; the pressure of vapor sitting above the liquid at that balance is the vapor pressure. The Clausius–Clapeyron relation describes how vapor pressure climbs — exponentially — as temperature rises, governed by the liquid's enthalpy of vaporization, ΔH_vap (the energy needed to turn it into vapor). A liquid boils when its vapor pressure rises to equal the surrounding air pressure. That's why water boils at a lower temperature high on a mountain, where the air pressure is lower — and why food takes longer to cook up there.",
+        "deep": "The relation is derived by setting the molar Gibbs energies of the liquid and the vapor equal along their coexistence line and treating the vapor as an ideal gas. A plot of ln P against 1/T comes out as a straight line with slope −ΔH_vap/R, the standard way to measure vaporization enthalpies. Notice it has the same mathematical shape as the Arrhenius equation (kinetics) and the van't Hoff equation (equilibrium) — all three trace back to the same underlying Boltzmann statistics of energy."
       },
       "sources": [
         "LibreTexts Chemistry — Clausius-Clapeyron Equation",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Vapor pressure", "url": "https://en.wikipedia.org/wiki/Vapor_pressure" },
+        { "label": "Wikipedia — Clausius–Clapeyron relation", "url": "https://en.wikipedia.org/wiki/Clausius%E2%80%93Clapeyron_relation" },
+        { "label": "Wikipedia — Enthalpy of vaporization (ΔH_vap)", "url": "https://en.wikipedia.org/wiki/Enthalpy_of_vaporization" },
+        { "label": "Wikipedia — Boiling point", "url": "https://en.wikipedia.org/wiki/Boiling_point" },
+        { "label": "Wikipedia — Phase transition", "url": "https://en.wikipedia.org/wiki/Phase_transition" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "a vapor-pressure curve rising steeply with temperature, with a ln P vs 1/T linear inset",
       "quiz": [
@@ -1558,13 +1942,21 @@
       ],
       "summary": "An overall reaction is a sequence of elementary steps, the slowest of which sets the observed rate.",
       "depths": {
-        "eli5": "A reaction usually happens in several small moves, not one big leap. The slowest move is the bottleneck that decides how fast the whole thing goes.",
-        "core": "A mechanism is the step-by-step molecular pathway from reactants to products, built of elementary steps (unimolecular, bimolecular). The rate-determining step — the slowest — governs the overall rate law, which is why measured orders often differ from overall stoichiometry. Intermediates appear and are consumed; a valid mechanism must reproduce the experimental rate law.",
-        "deep": "For an elementary step, molecularity does equal the order in the rate law — the exception that proves the rule, since only single molecular events have rate laws readable from stoichiometry. Steady-state and pre-equilibrium approximations let you derive an overall rate law from a proposed multi-step mechanism and test it against experiment."
+        "eli5": "A reaction written on paper as 'A turns into B' usually doesn't happen in one big leap. Behind the scenes it's a series of small molecular moves, one after another. And just like a checkout line, the slowest single move is the bottleneck — it sets how fast the whole reaction can go, no matter how quick the other steps are.",
+        "core": "A reaction mechanism is the detailed, step-by-step molecular path from reactants to products. It is built from elementary steps — single molecular events that actually occur, classified by how many molecules collide in them (one = unimolecular, two = bimolecular). The slowest elementary step is the rate-determining step, and it controls the overall rate law. This is why a reaction's experimentally measured order often doesn't match the coefficients in the overall balanced equation. Along the way, short-lived intermediates are produced and then used up. A proposed mechanism is only valid if it reproduces the rate law actually observed in experiments.",
+        "deep": "For an elementary step — and only an elementary step — the molecularity (how many molecules are involved) does equal the order in its rate law; this is the special case where you can read the rate law straight from the equation. To predict the overall rate law of a multi-step mechanism, chemists use approximations like the steady-state approximation (intermediate concentration stays roughly constant) or the pre-equilibrium approximation, then check the prediction against experiment."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Reaction Mechanisms"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Reaction mechanism", "url": "https://en.wikipedia.org/wiki/Reaction_mechanism" },
+        { "label": "Wikipedia — Elementary reaction (the single steps)", "url": "https://en.wikipedia.org/wiki/Elementary_reaction" },
+        { "label": "Wikipedia — Rate-determining step", "url": "https://en.wikipedia.org/wiki/Rate-determining_step" },
+        { "label": "Wikipedia — Molecularity", "url": "https://en.wikipedia.org/wiki/Molecularity" },
+        { "label": "Wikipedia — Steady state (chemistry) approximation", "url": "https://en.wikipedia.org/wiki/Steady_state_(chemistry)" },
+        { "label": "Wikipedia — Rate equation (rate law)", "url": "https://en.wikipedia.org/wiki/Rate_equation" }
       ],
       "art_prompt": "a multi-hump reaction-coordinate diagram with intermediates in valleys, the tallest hump marked rate-determining",
       "quiz": [
@@ -1592,14 +1984,22 @@
       "equation": "\\Delta G^\\circ = -RT\\ln K",
       "summary": "The equilibrium constant is the exponential of the standard free-energy change, unifying thermodynamics and equilibrium.",
       "depths": {
-        "eli5": "How far a reaction goes (K) and how downhill it is (ΔG°) are the same fact written two ways — one is the log of the other.",
-        "core": "Standard free-energy change and the equilibrium constant are two faces of the same thermodynamics: ΔG° = −RT ln K. A negative ΔG° (favorable) gives K > 1 (products favored); a positive ΔG° gives K < 1. This single relation lets you predict equilibrium position from tabulated thermodynamic data alone, without ever running the reaction.",
-        "deep": "Combined with ΔG° = ΔH° − TΔS°, this yields the van't Hoff equation, showing how K varies with temperature: ln K shifts with −ΔH°/RT, so endothermic reactions' K rises with temperature and exothermic ones' falls — the quantitative engine behind Le Chatelier's temperature predictions and the bridge to electrochemistry's E° = (RT/nF) ln K."
+        "eli5": "Two ideas you've met separately turn out to be the same fact in disguise. How far a reaction goes before settling (its equilibrium constant K) and how 'downhill' the reaction is (its free-energy change ΔG°) are tied together by one equation — one is essentially the logarithm of the other. So if you know how downhill a reaction is, you already know how far it will go, without running it.",
+        "core": "The standard free-energy change ΔG° and the equilibrium constant K are two faces of the same thermodynamics, linked by ΔG° = −RT ln K (R is the gas constant, T the absolute temperature, ln the natural logarithm). A negative ΔG° (a favorable, downhill reaction) makes K greater than 1, meaning equilibrium favors products; a positive ΔG° makes K less than 1, favoring reactants; ΔG° = 0 gives K = 1. This single relation lets you predict where a reaction's equilibrium will sit using only tabulated thermodynamic data — no experiment required.",
+        "deep": "Combine this with ΔG° = ΔH° − TΔS° and you get the van't Hoff equation, which shows how K changes with temperature: ln K shifts by −ΔH°/RT, so an endothermic reaction's K rises as you heat it while an exothermic reaction's K falls. This is the quantitative engine behind Le Chatelier's temperature predictions, and it connects onward to electrochemistry through E° = (RT/nF) ln K."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Free Energy and Equilibrium",
         "MIT OCW 5.60"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Gibbs free energy (ΔG°)", "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy" },
+        { "label": "Wikipedia — Equilibrium constant (K)", "url": "https://en.wikipedia.org/wiki/Equilibrium_constant" },
+        { "label": "Wikipedia — Chemical equilibrium", "url": "https://en.wikipedia.org/wiki/Chemical_equilibrium" },
+        { "label": "Wikipedia — Van 't Hoff equation (temperature dependence)", "url": "https://en.wikipedia.org/wiki/Van_%27t_Hoff_equation" },
+        { "label": "Wikipedia — Logarithm", "url": "https://en.wikipedia.org/wiki/Logarithm" },
+        { "label": "MIT OCW 5.60 — Thermodynamics & Kinetics", "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/" }
       ],
       "art_prompt": "a curve mapping ΔG° to K through the exponential relation, with favorable/unfavorable regions shaded",
       "quiz": [
@@ -1628,13 +2028,21 @@
       ],
       "summary": "Dissolved particles lower vapor pressure and freezing point and raise boiling point, depending only on how many they are.",
       "depths": {
-        "eli5": "Dissolve something in a liquid and it freezes later and boils later — and what matters is the number of dissolved bits, not what they are.",
-        "core": "Colligative properties — vapor-pressure lowering, boiling-point elevation, freezing-point depression, and osmotic pressure — depend on the concentration of solute particles, not their chemical identity. Adding solute lowers the solvent's vapor pressure and shifts its phase boundaries; this is why salt melts ice and antifreeze protects engines.",
-        "deep": "The driving cause is entropy: dissolved particles increase the disorder of the liquid, stabilizing it relative to the pure-solvent solid and vapor, which shifts the equilibrium temperatures. Osmotic pressure (Π = MRT, the van't Hoff form) can be large and is the basis of cell turgor and reverse-osmosis desalination — connecting straight into biophysics."
+        "eli5": "Dissolve something into a liquid and you change when it freezes and boils: salty water freezes below 0 °C and boils above 100 °C. Here's the surprising part — what matters is how many dissolved particles there are, not what kind they are. This is why we throw salt on icy roads and put antifreeze in car engines.",
+        "core": "Colligative properties are the handful of solution behaviors that depend only on the number of dissolved solute particles, not their chemical identity. The four are: vapor-pressure lowering (the liquid evaporates less readily), boiling-point elevation (it boils at a higher temperature), freezing-point depression (it freezes at a lower temperature), and osmotic pressure (the pressure that drives solvent across a membrane into the solution). Adding any solute lowers the solvent's vapor pressure and shifts where it freezes and boils — which is exactly why salt melts ice on roads and antifreeze keeps an engine's coolant liquid across a wider temperature range.",
+        "deep": "The underlying cause is entropy: dissolved particles raise the disorder of the liquid, making the liquid state more stable relative to the pure-solvent solid and vapor, which pushes the freezing point down and the boiling point up. Osmotic pressure (given by Π = MRT, the van't Hoff form, where M is molarity) can become surprisingly large; it underlies the turgor that keeps plant cells firm and the reverse-osmosis process used to desalinate seawater — a direct bridge from chemistry into biophysics."
       },
       "sources": [
         "OpenStax Chemistry 2e",
         "LibreTexts Chemistry — Colligative Properties"
+      ],
+      "resources": [
+        { "label": "Wikipedia — Colligative properties", "url": "https://en.wikipedia.org/wiki/Colligative_properties" },
+        { "label": "Wikipedia — Freezing-point depression", "url": "https://en.wikipedia.org/wiki/Freezing-point_depression" },
+        { "label": "Wikipedia — Boiling-point elevation", "url": "https://en.wikipedia.org/wiki/Boiling-point_elevation" },
+        { "label": "Wikipedia — Osmotic pressure", "url": "https://en.wikipedia.org/wiki/Osmotic_pressure" },
+        { "label": "Wikipedia — Vapor pressure", "url": "https://en.wikipedia.org/wiki/Vapor_pressure" },
+        { "label": "OpenStax Chemistry 2e (free textbook)", "url": "https://openstax.org/details/books/chemistry-2e" }
       ],
       "art_prompt": "a phase diagram showing the solution's depressed freezing point and elevated boiling point versus pure solvent",
       "quiz": [
