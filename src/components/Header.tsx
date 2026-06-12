@@ -26,6 +26,7 @@ const NAV: NavItem[] = [
   // About → /governance, /manifesto, /contributors, /join.
   { href: "/whats-new", label: "What's new" },
   { href: "/build",     label: "Build" },
+  { href: "/academy",   label: "Academy" },
   { href: "/access",    label: "Access" },
   { href: "/chat",      label: "Chat" },
   { href: "/about",     label: "About" },
