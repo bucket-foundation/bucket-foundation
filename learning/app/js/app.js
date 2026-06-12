@@ -82,43 +82,60 @@
   function screenHome() {
     const s = E.summary();
     const route = E.route();
+    const dueReviews = route.filter((r) => r.kind === "review");
+    const next = studyOrder().filter((id) => !E.cardFor(id)); // not-yet-drilled, in order
     const wrap = el("div", "screen home");
     wrap.appendChild(header());
 
     const hero = el("div", "hero");
     const curBranch = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
-    hero.appendChild(el("div", "kicker", curBranch.pill.replace(/^\S+ · /, "") + " · today's route"));
-    hero.appendChild(el("h1", null, route.length ? "Ready when you are." : "All caught up. 🎉"));
-    const sub = route.length
-      ? route.filter((r) => r.kind === "review").length + " reviews · " + route.filter((r) => r.kind === "new").length + " new concepts"
-      : "Nothing due. Explore the map or come back tomorrow.";
-    hero.appendChild(el("p", "sub", sub));
-    const cta = el("button", "btn primary", route.length ? "Start route →" : "Explore the map");
-    cta.onclick = () => (route.length ? startSession(route) : go("map"));
-    hero.appendChild(cta);
-    const studyBtn = el("button", "btn ghost hero-study", "📖 Study — read the material");
-    studyBtn.onclick = () => go("study");
-    hero.appendChild(studyBtn);
+    const branchName = curBranch.pill.replace(/^\S+ · /, "");
+    hero.appendChild(el("div", "kicker", branchName + " · learn"));
+    hero.appendChild(el("h1", null, next.length ? "Keep learning." : "You've covered it all. 🎉"));
+    hero.appendChild(el("p", "sub",
+      s.introduced + " of " + s.total + " concepts started" +
+      (dueReviews.length ? " · " + dueReviews.length + " due to review" : "")));
+    const studyCta = el("button", "btn primary", "📖 Study & learn →");
+    studyCta.onclick = () => go("study");
+    hero.appendChild(studyCta);
+    if (dueReviews.length) {
+      const rev = el("button", "btn ghost hero-study", "Review " + dueReviews.length + " due →");
+      rev.onclick = () => startSession(dueReviews);
+      hero.appendChild(rev);
+    }
     wrap.appendChild(hero);
 
     const stats = el("div", "stats");
     stats.appendChild(stat("🔥", s.streak, "day streak"));
     stats.appendChild(stat("✦", s.xp, "XP"));
-    stats.appendChild(stat("◎", s.introduced + "/" + s.total, "concepts seen"));
+    stats.appendChild(stat("◎", s.introduced + "/" + s.total, "started"));
     stats.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(stats);
 
-    // route preview
-    if (route.length) {
+    // Continue learning — next concepts in learning order, NO daily cap. Always something.
+    if (next.length) {
       const list = el("div", "route-list");
-      list.appendChild(el("div", "section-label", "Up next"));
-      route.slice(0, 8).forEach((r) => {
+      list.appendChild(el("div", "section-label", "Continue learning"));
+      next.slice(0, 8).forEach((id) => {
+        const a = E.byId[id];
+        const row = el("div", "route-row");
+        row.appendChild(el("span", "dot shell-dot-" + a.shell));
+        row.appendChild(el("span", "rtitle", escapeHtml(a.title)));
+        row.appendChild(el("span", "rtag new", "learn"));
+        row.onclick = () => openAtom(a.id, true);
+        list.appendChild(row);
+      });
+      wrap.appendChild(list);
+    } else if (dueReviews.length) {
+      const list = el("div", "route-list");
+      list.appendChild(el("div", "section-label", "Due for review"));
+      dueReviews.slice(0, 8).forEach((r) => {
         const a = E.byId[r.id];
         const row = el("div", "route-row");
         row.appendChild(el("span", "dot shell-dot-" + a.shell));
         row.appendChild(el("span", "rtitle", escapeHtml(a.title)));
-        row.appendChild(el("span", "rtag " + r.kind, r.kind === "new" ? "new" : "review"));
-        row.onclick = () => openAtom(a.id, true);
+        row.appendChild(el("span", "rtag", "review"));
+        row.onclick = () => openAtom(a.id, false);
         list.appendChild(row);
       });
       wrap.appendChild(list);
@@ -191,8 +208,8 @@
   }
 
   function nav(active) {
-    const n = el("div", "tabbar tabbar-4");
-    [["home", "◎", "Today"], ["study", "▤", "Study"], ["map", "✸", "Map"], ["progress", "▰", "Progress"]].forEach(([k, i, l]) => {
+    const n = el("div", "tabbar");
+    [["home", "◎", "Learn"], ["map", "✸", "Map"], ["progress", "▰", "Progress"]].forEach(([k, i, l]) => {
       const b = el("button", "tab" + (k === active ? " on" : ""), '<span>' + i + "</span>" + l);
       b.onclick = () => go(k);
       n.appendChild(b);
@@ -314,7 +331,7 @@
     wrap.appendChild(body);
 
     if (!peek) wrap.appendChild(langDrill(a, target, known));
-    else { const cont = el("button", "btn primary wide", "Got it →"); cont.onclick = () => go("home"); wrap.appendChild(cont); }
+    else { const cont = el("button", "btn primary wide", "Got it →"); cont.onclick = () => { if (!E.cardFor(id)) E.grade(id, 3, "recall"); go("home"); }; wrap.appendChild(cont); }
     wrap.appendChild(deeperSection(a));
     mount(wrap);
   }
@@ -392,7 +409,7 @@
     if (q && !peek) wrap.appendChild(drill(a, q, level));
     else {
       const cont = el("button", "btn primary wide", "Got it →");
-      cont.onclick = () => go("home");
+      cont.onclick = () => { if (!E.cardFor(id)) E.grade(id, 3, level || "recall"); go("home"); };
       wrap.appendChild(cont);
     }
 
