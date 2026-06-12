@@ -2,7 +2,7 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.1.0",
+    "version": "0.3.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only.",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
@@ -1598,6 +1598,916 @@
           "level": "derive",
           "prompt": "Why should forming non-local (high-contact-order) contacts slow folding, in transition-state terms?",
           "answer": "Bringing residues that are far apart in sequence into contact requires organizing a large stretch of chain, which costs more conformational entropy in the folding transition state. That raises the folding free-energy barrier ΔG‡, lowering the rate — so topology, not just stability, governs folding kinetics."
+        }
+      ]
+    },
+    {
+      "id": "redox-potential",
+      "title": "Redox potentials & the Nernst equation for electron transfer",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [
+        "gibbs",
+        "nernst"
+      ],
+      "equation": "\\Delta G = -nF\\,\\Delta E,\\quad \\Delta E = E^{\\circ}_{accept} - E^{\\circ}_{donor}",
+      "summary": "A redox couple's tendency to gain electrons is scored by its standard potential E°; electrons flow from low to high potential, releasing free energy nF·ΔE.",
+      "depths": {
+        "eli5": "Some molecules are greedy for electrons and some give them up easily. Electrons roll 'downhill' from generous donors to greedy acceptors, and that downhill trip can do useful work.",
+        "core": "Each half-reaction has a standard reduction potential E° (in volts, relative to the hydrogen electrode); a more positive E° means a stronger electron acceptor. For a transfer from donor to acceptor, ΔE = E°_acceptor − E°_donor and the free energy released is ΔG = −nF·ΔE, where n is the number of electrons and F the Faraday constant. This converts an electron's appetite into the energy currency that powers respiratory chains.",
+        "deep": "The biochemical standard E°' is quoted at pH 7. The concentration-corrected potential follows the Nernst form E = E° − (RT/nF)·ln(Q), tying redox to the same Boltzmann statistics as ionic equilibria. Respiratory electron transport is a staircase of carriers arranged by increasing E°', so each step is spontaneous and the total drop (NADH at −0.32 V to O₂ at +0.82 V, ≈1.14 V) sets the energy available to pump protons."
+      },
+      "note": "−0.32 V (NADH/NAD⁺) to +0.82 V (O₂/H₂O): the ~1.14 V respiratory drop is the energy budget the electron transport chain spends pumping protons.",
+      "sources": [
+        "LibreTexts Biochemistry (bioenergetics)",
+        "NCBI Bookshelf (open-access biochemistry)",
+        "MIT OCW 5.07"
+      ],
+      "art_prompt": "two redox couples on a vertical voltage axis with an electron rolling downhill from the more-negative donor to the more-positive acceptor, free energy nFΔE harvested",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does a more positive standard reduction potential E° tell you about a redox couple?",
+          "answer": "It is a stronger electron acceptor (more readily reduced). Electrons flow spontaneously from couples with lower (more negative) E° to those with higher (more positive) E°."
+        },
+        {
+          "level": "apply",
+          "prompt": "NADH/NAD⁺ has E°' ≈ −0.32 V and O₂/H₂O ≈ +0.82 V. Roughly what free energy (per 2 electrons) does transferring electrons between them release?",
+          "answer": "ΔE ≈ 1.14 V; ΔG = −nFΔE = −2 × 96.5 kJ/(V·mol) × 1.14 V ≈ −220 kJ/mol — enough to pump several protons and ultimately make multiple ATP.",
+          "eq": "\\Delta G=-nF\\Delta E"
+        }
+      ]
+    },
+    {
+      "id": "electron-transport-chain",
+      "title": "The electron transport chain",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "redox-potential",
+        "bilayer"
+      ],
+      "summary": "A membrane-bound staircase of redox carriers passes electrons downhill in potential, using each spontaneous step to pump protons and build an electrochemical gradient.",
+      "depths": {
+        "eli5": "Electrons hop through a line of molecular handlers, each a bit greedier than the last. Every hop releases a little energy that the cell uses to shove protons across a membrane, charging it like a battery.",
+        "core": "In mitochondria and bacteria, complexes I–IV accept electrons from NADH/FADH₂ and pass them through a sequence ordered by increasing reduction potential, ending at O₂. Mobile carriers (ubiquinone, cytochrome c) ferry electrons between complexes. The free energy of each redox step (ΔG = −nFΔE) is transduced into proton pumping across the membrane, storing energy as a transmembrane electrochemical proton gradient.",
+        "deep": "Electron transfer between cofactors is quantum tunneling, with rates governed by Marcus theory — falling roughly exponentially with edge-to-edge distance (the ~14 Å design rule keeps steps fast). The chain's arrangement enforces directionality: each carrier is poised at a slightly higher E°' so back-flow is thermodynamically suppressed. Leaks at complexes I and III generate reactive oxygen species, coupling bioenergetics to oxidative stress."
+      },
+      "note": "The chain is a redox staircase that converts electron 'downhill' energy into a sideways proton gradient — separating electron flow (the source) from ATP synthesis (the sink).",
+      "sources": [
+        "NCBI Bookshelf (open-access biochemistry)",
+        "LibreTexts Biochemistry",
+        "PMC open-access bioenergetics reviews"
+      ],
+      "art_prompt": "four membrane complexes in a row, electrons hopping downhill in potential while each complex pumps protons across the bilayer building a gradient",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is conserved as electrons flow down the electron transport chain, and in what form is the released energy stored?",
+          "answer": "Electrons flow from low to high reduction potential (NADH to O₂); the released free energy is stored as a transmembrane electrochemical proton gradient (proton-motive force)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why are redox cofactors in the chain spaced within roughly 14 Å of each other?",
+          "answer": "Electron transfer is quantum tunneling whose rate falls off steeply (roughly exponentially) with distance; keeping cofactors within ~14 Å edge-to-edge keeps each transfer fast enough to be physiologically productive."
+        }
+      ]
+    },
+    {
+      "id": "chemiosmosis",
+      "title": "Chemiosmotic coupling & proton-motive force",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "electron-transport-chain",
+        "nernst"
+      ],
+      "equation": "\\Delta p = \\Delta\\psi - \\dfrac{2.303RT}{F}\\,\\Delta\\text{pH}",
+      "summary": "Mitchell's insight: the proton gradient built by electron transport is the energy intermediate that drives ATP synthesis, quantified as the proton-motive force.",
+      "depths": {
+        "eli5": "Instead of passing energy hand-to-hand as a chemical, the cell stores it as a wall of protons pushed to one side of a membrane. The protons rushing back through a turbine make ATP.",
+        "core": "Peter Mitchell's chemiosmotic theory says electron transport and ATP synthesis are coupled not by a chemical intermediate but by a proton gradient across a membrane. The proton-motive force Δp has two parts: the membrane voltage Δψ and the pH difference. Both pull protons back across the membrane, and that return flux is harnessed by ATP synthase. It explained why an intact, sealed membrane is essential — uncouplers that leak protons abolish ATP synthesis without blocking electron flow.",
+        "deep": "Δp ≈ 200 mV in mitochondria (mostly Δψ). The free energy per proton is F·Δp ≈ 20 kJ/mol; synthesizing one ATP costs ≈ 50 kJ/mol under cellular conditions, so several protons (matching the c-ring stoichiometry) must cross per ATP. Chemiosmosis unifies respiration, photosynthesis, and bacterial flagellar rotation — all driven by transmembrane ion-motive force, a deep generalization of the Nernst/membrane-potential physics."
+      },
+      "note": "Energy stored as a proton gradient, not a molecule — Mitchell's heresy-turned-Nobel. Uncouplers prove the point: leak the protons and ATP stops even while electrons keep flowing.",
+      "sources": [
+        "NCBI Bookshelf (open-access biochemistry)",
+        "LibreTexts Biochemistry",
+        "PMC open-access bioenergetics reviews"
+      ],
+      "art_prompt": "protons accumulated on one side of a membrane forming a voltage-plus-pH gradient, arrows showing them rushing back through an ATP synthase turbine",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What two components make up the proton-motive force, and what does chemiosmotic theory claim couples electron transport to ATP synthesis?",
+          "answer": "The membrane potential Δψ and the transmembrane pH difference. The coupling intermediate is the proton gradient itself (proton-motive force), not a chemical intermediate."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does a chemical uncoupler abolish ATP synthesis without stopping electron transport?",
+          "answer": "It carries protons back across the membrane, dissipating the gradient. Electron transport still runs (and even speeds up), but with no proton-motive force the ATP synthase has nothing to harness, so ATP synthesis stops — direct evidence for chemiosmotic coupling."
+        }
+      ]
+    },
+    {
+      "id": "atp-synthase",
+      "title": "ATP synthase — the rotary motor",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "chemiosmosis"
+      ],
+      "summary": "A two-motor molecular machine that lets protons flow down their gradient to spin a rotor, and uses that rotation to mechanically force ADP and phosphate together into ATP.",
+      "depths": {
+        "eli5": "Protons flowing back across the membrane turn a tiny turbine. The turbine's spinning shaft squeezes a chemical factory above it, popping out ATP one twist at a time.",
+        "core": "ATP synthase couples a membrane-embedded Fo motor to a soluble F1 head. Proton flow through Fo protonates conserved glutamates on a ring of c-subunits, driving the c-ring to rotate by biased Brownian motion. The c-ring spins the central γ-stalk inside the F1 α₃β₃ hexamer. Boyer's binding-change mechanism: γ rotation cycles each of the three catalytic β-subunits through loose, tight, and open conformations, so substrate binds, ATP forms while bound (the hard step is release), and product ejects — three ATP per full turn.",
+        "deep": "It is fully reversible: run it backward (hydrolyzing ATP) and it pumps protons, which is how it was first proven to rotate (single-molecule actin-filament assays by Noji and Kinosita visibly watched F1 turn). Catalysis at the tight site is nearly thermoneutral — the proton gradient does its work mostly on binding and release, not bond formation. The c-ring stoichiometry (8–15 subunits across species) sets protons-per-ATP and hence the gradient needed, a beautiful case of mechanical gearing tuning bioenergetic efficiency."
+      },
+      "note": "The classic demonstration of a true rotary molecular motor: protons in, rotation, ATP out — and run it in reverse and it becomes a proton pump.",
+      "sources": [
+        "LibreTexts Biochemistry (ATP synthesis)",
+        "PMC open-access ATP-synthase reviews",
+        "NCBI Bookshelf (open-access biochemistry)"
+      ],
+      "art_prompt": "a membrane c-ring turbine spun by proton flow, its central stalk rotating inside a three-lobed catalytic head cycling loose-tight-open and ejecting ATP",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In Boyer's binding-change mechanism, what does rotation of the γ-stalk do to the catalytic sites?",
+          "answer": "It cycles each of the three β catalytic sites through loose, tight, and open conformations, so substrate binds (loose), ATP forms (tight), and ATP is released (open) — yielding three ATP per full rotation."
+        },
+        {
+          "level": "apply",
+          "prompt": "ATP synthase is reversible. What does it do when run backward, and what physically determines protons consumed per ATP?",
+          "answer": "Run backward it hydrolyzes ATP to pump protons against their gradient. The protons-per-ATP ratio is set by the number of c-subunits in the rotor ring (its mechanical gearing), which varies across organisms."
+        }
+      ]
+    },
+    {
+      "id": "knf-allostery",
+      "title": "KNF sequential allostery",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "mwc",
+        "binding-kd"
+      ],
+      "summary": "The induced-fit alternative to MWC: each ligand binding reshapes its own subunit and, through subunit contacts, changes neighbors' affinities one step at a time.",
+      "depths": {
+        "eli5": "Instead of the whole protein flipping at once, each subunit changes shape only when it grabs a ligand, and that change nudges its neighbors to bind better (or worse) — a chain reaction rather than a single switch.",
+        "core": "The Koshland–Némethy–Filmer model is built on induced fit: a subunit changes conformation only upon binding its ligand, and inter-subunit coupling then alters neighboring sites' affinities. Unlike MWC, KNF allows intermediate hybrid states (some subunits in each conformation) and can produce negative cooperativity, which MWC cannot. Real allosteric proteins often fall between the two limits.",
+        "deep": "MWC = conformational selection from a pre-existing equilibrium of symmetric states; KNF = induced fit with sequential, asymmetric changes. The distinction maps onto a modern energy-landscape view: both are limits of a fuller ensemble description where ligands reweight a continuum of conformations. Experiments distinguishing them look for the symmetry-breaking intermediates KNF permits and the negative cooperativity MWC forbids."
+      },
+      "note": "MWC vs KNF in one line: concerted conformational selection (MWC, no negative cooperativity) vs sequential induced fit (KNF, can be negatively cooperative). Reality usually lies between.",
+      "sources": [
+        "PMC open-access allostery reviews",
+        "LibreTexts Biochemistry",
+        "NCBI Bookshelf"
+      ],
+      "art_prompt": "an oligomer binding ligands one subunit at a time, each bound subunit changing shape and tugging its neighbor's affinity, with mixed-conformation intermediates",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the central assumption of the KNF model, and what behavior can it explain that MWC cannot?",
+          "answer": "Induced fit: a subunit changes conformation only upon binding ligand, sequentially altering neighbors' affinities. KNF can produce negative cooperativity (and mixed-conformation intermediates), which the concerted MWC model cannot."
+        },
+        {
+          "level": "apply",
+          "prompt": "How would you experimentally distinguish KNF from MWC behavior in an oligomer?",
+          "answer": "Look for symmetry-breaking intermediates (subunits in different conformations at partial saturation) and for negative cooperativity — both are allowed by KNF's sequential induced fit but forbidden by MWC's concerted, symmetric switching."
+        }
+      ]
+    },
+    {
+      "id": "pka-shift",
+      "title": "pKa shifts in proteins",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "poisson-boltzmann",
+        "gibbs"
+      ],
+      "summary": "A protein's electrostatic environment shifts the acid–base equilibria of ionizable residues away from their solution values — the physical basis of enzyme catalysis and pH sensing.",
+      "depths": {
+        "eli5": "An amino acid's willingness to hold or release a proton depends on its neighbors. Bury it near a positive charge and it lets go more easily; near a negative charge it clings tighter. The protein tunes these to do chemistry.",
+        "core": "Each ionizable group has an intrinsic solution pKa, but inside a protein its effective pKa is shifted by the local electrostatics: desolvation (burial in low dielectric disfavors charge, raising acidic pKa / lowering basic pKa), nearby fixed charges, and hydrogen bonds. The shift is ΔpKa = ΔΔG/(2.303·RT), where ΔΔG is the electrostatic free-energy change of the charged versus neutral form. Continuum electrostatics (Poisson–Boltzmann) is the standard tool to compute it.",
+        "deep": "Catalysis often exploits dramatic shifts: an active-site aspartate or histidine may be shifted by several pH units so it is protonated or deprotonated at physiological pH precisely when needed for proton shuttling. Buried, electrostatically frustrated groups can shift pKa by 4–5 units; networks of coupled ionizable residues give pH-dependent conformational switches (e.g. in viral fusion and proton pumps). Measuring these shifts (NMR titration) directly probes the electrostatic model and is a stringent test of PB-based predictions."
+      },
+      "note": "pKa shift = electrostatic free energy in disguise: ΔpKa = ΔΔG/2.303RT. Enzymes engineer these shifts to place protons where catalysis needs them.",
+      "sources": [
+        "PMC open-access electrostatics/pKa reviews",
+        "LibreTexts Biochemistry",
+        "APBS / PROPKA open documentation"
+      ],
+      "art_prompt": "an ionizable side chain buried near fixed charges in a protein, its titration curve shifted left or right from the solution value, dielectric boundary drawn",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name three factors inside a protein that shift an ionizable residue's pKa from its solution value.",
+          "answer": "Desolvation (burial in a low-dielectric interior), nearby fixed charges (favorable or unfavorable), and hydrogen bonding to the ionizable group. All are electrostatic contributions to the charged-vs-neutral free energy."
+        },
+        {
+          "level": "derive",
+          "prompt": "Relate a residue's pKa shift to an electrostatic free-energy change.",
+          "answer": "ΔpKa = ΔΔG_elec/(2.303·RT), where ΔΔG_elec is the change in free energy of forming the charged state inside the protein relative to in solution. A positive electrostatic penalty for the charge of an acid raises its pKa; stabilizing it lowers the pKa."
+        }
+      ]
+    },
+    {
+      "id": "ion-channel-gating",
+      "title": "Ion channel gating & selectivity",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "nernst",
+        "boltzmann"
+      ],
+      "summary": "Channels open and close (gate) in response to voltage, ligands, or force, and a selectivity filter passes the right ion at near-diffusion-limited rates — the molecular basis of excitability.",
+      "depths": {
+        "eli5": "Ion channels are doors in the membrane that snap open and shut, and they are picky about which ion they let through. A voltage-sensing part feels the membrane's charge and pulls the door open.",
+        "core": "Gating is a conformational equilibrium between closed and open states biased by a stimulus. For voltage-gated channels, charged S4 helices (gating charges) move in the field, so the open probability follows a Boltzmann function of voltage, P_open = 1/(1 + e^(−zF(V−V₁/₂)/RT)), where z is the effective gating charge. Selectivity comes from a filter that coordinates the dehydrated ion with backbone carbonyls mimicking its hydration shell — K⁺ channels fit K⁺ but not the smaller Na⁺, conducting at ~10⁷–10⁸ ions/s near the diffusion limit.",
+        "deep": "The single-channel current is stochastic — it blinks open and closed (resolved by patch clamp) — and the macroscopic conductance g_i(V) in Hodgkin–Huxley is the ensemble average of these gating probabilities. Selectivity is a thermodynamic balance: the energetic cost of stripping the ion's hydration shell must be repaid by the filter's coordination, a 'snug-fit' tuned to the target ion's radius. Inactivation (a separate gate) and modulation by lipids and second messengers make channels rich computational elements, not simple resistors."
+      },
+      "note": "The Boltzmann voltage-dependence of open probability is what makes g(V) in Hodgkin–Huxley; selectivity is the filter repaying an ion's dehydration cost by exact coordination.",
+      "sources": [
+        "NCBI Bookshelf (open-access neuroscience)",
+        "PMC open-access ion-channel reviews",
+        "LibreTexts Physiology"
+      ],
+      "art_prompt": "a voltage-gated channel with charged S4 helices moving in the membrane field, a selectivity filter coordinating a dehydrated K⁺ ion, a sigmoidal open-probability-vs-voltage curve",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why does the open probability of a voltage-gated channel follow a Boltzmann (sigmoidal) function of membrane voltage?",
+          "answer": "Gating charges (e.g. the S4 helix) move within the membrane electric field, so the open-vs-closed free-energy difference is linear in voltage; the equilibrium population of the open state is then a Boltzmann function of that voltage-dependent energy."
+        },
+        {
+          "level": "apply",
+          "prompt": "How can a K⁺ channel conduct K⁺ but exclude the smaller Na⁺ ion?",
+          "answer": "The selectivity filter's carbonyl oxygens are spaced to coordinate a dehydrated K⁺ exactly as water would, repaying its dehydration cost; the smaller Na⁺ does not fit snugly enough for the filter to compensate its larger dehydration penalty, so it is excluded — a 'snug-fit' thermodynamic discrimination."
+        }
+      ]
+    },
+    {
+      "id": "membrane-transport",
+      "title": "Membrane transport: pumps, channels & cotransporters",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "nernst",
+        "gibbs"
+      ],
+      "summary": "Cells move solutes across membranes either downhill (passive, through channels) or uphill (active, powered by ATP or a coupled ion gradient) — the bookkeeping of cellular energetics.",
+      "depths": {
+        "eli5": "Some doors just let things slide downhill across the membrane. Other machines spend energy to push things uphill — either by burning ATP directly, or by letting one ion fall downhill to drag another one up.",
+        "core": "Passive transport (channels, facilitated carriers) moves a solute down its electrochemical gradient; the driving force is the difference between membrane voltage and the solute's Nernst potential. Active transport moves solutes uphill, against the gradient. Primary active transport hydrolyzes ATP (e.g. the Na⁺/K⁺-ATPase pumps 3 Na⁺ out and 2 K⁺ in per ATP). Secondary active transport (cotransport) couples an uphill solute to a downhill ion: symporters move both the same way, antiporters opposite — the energy comes from the ion gradient a primary pump created.",
+        "deep": "The free energy to move a charged solute is ΔG = RT·ln([S]_in/[S]_out) + zF·Δψ — chemical plus electrical work. Secondary transport is the cell 'spending' the Na⁺ (or H⁺) gradient like a battery the ATP-driven pump charged, which is why the Na⁺/K⁺-ATPase consumes a large fraction of cellular ATP: it maintains the gradient that powers nutrient uptake, pH regulation, and volume control. Transporters cycle through alternating-access conformations (outward-open ↔ inward-open), a slow turnover (10²–10³/s) versus a channel's 10⁷–10⁸/s — the speed/control tradeoff between gated pores and conformational carriers."
+      },
+      "note": "Pumps charge the battery (primary, ATP-driven), cotransporters spend it (secondary, gradient-driven). The Na⁺/K⁺-ATPase's gradient is the cell's universal secondary power source.",
+      "sources": [
+        "NCBI Bookshelf (Molecular Biology of the Cell, open access)",
+        "LibreTexts Physiology",
+        "PMC open-access transporter reviews"
+      ],
+      "art_prompt": "a membrane showing a channel passing ions downhill, an ATP-driven pump pushing ions uphill, and a symporter using a downhill Na⁺ flux to drag a sugar uphill",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the difference between primary and secondary active transport?",
+          "answer": "Primary active transport uses a direct energy source (usually ATP hydrolysis) to move a solute uphill; secondary active transport (cotransport) couples the uphill movement of one solute to the downhill movement of an ion (e.g. Na⁺ or H⁺) whose gradient was established by a primary pump."
+        },
+        {
+          "level": "derive",
+          "prompt": "Write the free energy to move one mole of a charged solute across a membrane and identify the two contributions.",
+          "answer": "ΔG = RT·ln([S]_in/[S]_out) + zFΔψ: a chemical (concentration) term and an electrical (voltage) term. Transport is passive if this is negative for the move and active (needs energy input) if positive."
+        }
+      ]
+    },
+    {
+      "id": "signal-transduction",
+      "title": "Signal transduction biophysics",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "binding-kd",
+        "hill"
+      ],
+      "summary": "Cells convert extracellular ligand binding into intracellular responses through cascades whose biophysics sets sensitivity, gain, noise filtering, and switch-like decisions.",
+      "depths": {
+        "eli5": "A signal arrives outside the cell as a molecule docking onto a receptor. The cell then relays and amplifies that message through a chain of molecular switches, deciding whether to act and how strongly.",
+        "core": "A receptor binds ligand with a K_d that sets the concentration range it detects. Downstream, enzymatic cascades (e.g. kinase phosphorylation) amplify: one active receptor can activate many G-proteins, each producing many second messengers. Ultrasensitivity — a sharp, switch-like input/output relation (effective Hill coefficient ≫ 1) — arises from multistep phosphorylation, zero-order kinetics (Goldbeter–Koshland), or molecular titration, letting cells make near-digital decisions from graded inputs.",
+        "deep": "Sensitivity is bounded by physics: receptor occupancy fluctuates (shot noise from finite ligand counts), so the Berg–Purcell limit sets how precisely concentration can be measured given diffusion and integration time. Feedback loops add dynamics — negative feedback gives adaptation (the system returns to baseline despite sustained input, as in bacterial chemotaxis) and oscillations; positive feedback gives bistability and memory. Spatial gradients of second messengers, set by a balance of production and degradation/diffusion (a length scale √(D/k)), localize responses within the cell."
+      },
+      "note": "Three recurring design moves: amplification (cascade gain), ultrasensitivity (graded input → switch output), and feedback (adaptation, bistability, oscillation). All are quantifiable from binding and kinetics.",
+      "sources": [
+        "PMC open-access signal-transduction reviews",
+        "NCBI Bookshelf (open-access cell biology)",
+        "arXiv q-bio.MN"
+      ],
+      "art_prompt": "a receptor binding a ligand, a branching kinase cascade amplifying the signal, a steep ultrasensitive input-output curve, and a feedback loop returning the system to baseline",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is ultrasensitivity in a signaling pathway, and name one mechanism that produces it.",
+          "answer": "A sharp, switch-like input/output relationship (effective Hill coefficient much greater than 1), turning a graded signal into a near-digital response. Mechanisms include multistep phosphorylation, zero-order ultrasensitivity (Goldbeter–Koshland), and molecular titration."
+        },
+        {
+          "level": "apply",
+          "prompt": "What does negative feedback contribute to a signaling response, with a biological example?",
+          "answer": "It produces adaptation — the response returns toward baseline despite a sustained stimulus (and can generate oscillations). Bacterial chemotaxis is the classic example: the cell adapts to a constant attractant level so it can keep sensing further changes."
+        }
+      ]
+    },
+    {
+      "id": "molecular-motors",
+      "title": "Molecular motors: myosin & kinesin",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "eyring",
+        "random-walk"
+      ],
+      "summary": "Motor proteins convert chemical energy from ATP hydrolysis into directed mechanical motion along cytoskeletal tracks by rectifying thermal noise through a tightly coupled mechanochemical cycle.",
+      "depths": {
+        "eli5": "Tiny protein machines walk along molecular tracks inside the cell, carrying cargo. Each step is powered by burning one ATP, and they walk in one direction even though they are constantly jostled by heat.",
+        "core": "Myosin (on actin) and kinesin (on microtubules) cycle through ATP binding, hydrolysis, and product release, each step gated to a mechanical change. Kinesin walks hand-over-hand in 8 nm steps toward the microtubule plus-end, tightly coupling roughly one ATP per step. The motor doesn't push against thermal motion so much as rectify it: nucleotide state changes bias which conformations and binding states are accessible, ratcheting net displacement in one direction (a Brownian ratchet / power-stroke hybrid).",
+        "deep": "A motor cannot beat the second law: the free energy of ATP hydrolysis (~20 k_BT under cellular conditions) sets the maximum work per cycle, and the stall force (where the motor stops, ~5–7 pN for kinesin) times the step length must stay below it. Single-molecule optical-trap experiments resolve individual steps, dwell-time distributions (revealing hidden substeps), and the force–velocity relation. Processivity (steps before detaching) requires coordinating two heads so at least one stays bound — the gating that turns a one-shot power stroke into a long walk."
+      },
+      "note": "Motors rectify thermal noise, not defy it: ATP's ~20 k_BT caps the work per step, and stall force × step length is bounded by that budget. Tight chemomechanical coupling (≈1 ATP/step) is the design principle.",
+      "sources": [
+        "PMC open-access molecular-motor reviews",
+        "arXiv q-bio (single-molecule biophysics)",
+        "LibreTexts Biophysics"
+      ],
+      "art_prompt": "a two-headed kinesin walking hand-over-hand in 8 nm steps along a microtubule, an optical trap measuring its stepwise displacement and stall force, ATP turnover annotated per step",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does a molecular motor like kinesin achieve directed motion despite constant thermal buffeting?",
+          "answer": "It rectifies thermal motion: ATP binding, hydrolysis, and product release gate conformational and binding-state changes that bias the motor's diffusion in one direction, so net displacement is directional even though individual fluctuations are random. The chemical cycle is tightly coupled to the mechanical step (~1 ATP per 8 nm step)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Kinesin takes 8 nm steps and stalls at about 6 pN. Roughly what work does it do per step at stall, and how does that compare to ATP's energy?",
+          "answer": "Work ≈ force × distance = 6 pN × 8 nm ≈ 48 pN·nm ≈ 12 k_BT. ATP hydrolysis supplies ~20 k_BT per cycle, so the motor operates below its energy budget (≈60% efficiency at stall), consistent with the second law."
+        }
+      ]
+    },
+    {
+      "id": "entropic-elasticity",
+      "title": "Entropic elasticity of polymer chains",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "ideal-chain",
+        "boltzmann"
+      ],
+      "equation": "f = \\dfrac{3k_BT}{Nb^2}\\,x \\quad(\\text{small extension})",
+      "summary": "Stretching a flexible polymer costs free energy not by straining bonds but by reducing the number of available conformations — the restoring force is purely entropic and grows with temperature.",
+      "depths": {
+        "eli5": "A floppy molecule resists being pulled straight the way a crumpled chain resists being uncrumpled: there are far fewer ways to be straight than to be tangled, so the chain pulls back toward its messy, high-count state. Heat it and it pulls back harder.",
+        "core": "An ideal chain has a Gaussian distribution of end-to-end vectors, so stretching it to extension x reduces conformational entropy by ΔS ∝ −x². The free-energy cost F = −TΔS gives a Hookean restoring force f = (3k_BT/Nb²)·x at small extension — a spring whose stiffness rises with temperature, the signature of an entropic (not enthalpic) spring. There is no bond stretching; the resistance is purely statistical.",
+        "deep": "At large extension the Gaussian model fails and the force diverges as the chain runs out of slack; the worm-like chain interpolation f·l_p/k_BT = x/L − ¼ + 1/[4(1−x/L)²] captures this and fits single-molecule force–extension curves of DNA superbly. Entropic elasticity is why rubber warms when stretched and contracts when heated, and it underlies the mechanics of titin, the nuclear pore mesh, and disordered protein linkers acting as molecular springs."
+      },
+      "note": "The stiffness ∝ k_BT is the tell: an entropic spring gets stiffer when heated, opposite to an energetic (bond) spring. This is the physics single-molecule pulling experiments read out.",
+      "sources": [
+        "LibreTexts (Polymer Physics)",
+        "PMC open-access single-molecule mechanics reviews",
+        "MIT OCW (soft matter)"
+      ],
+      "art_prompt": "a coiled chain being pulled taut, the cloud of accessible conformations shrinking as extension grows, a force-extension curve rising then diverging near full extension",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is the restoring force of a stretched flexible polymer called entropic, and how does its stiffness depend on temperature?",
+          "answer": "Stretching reduces the number of available chain conformations (lowers entropy) without straining any bonds, so the restoring force comes from the free-energy cost −TΔS. Its stiffness is proportional to k_BT, so the chain gets stiffer as temperature rises — the hallmark of an entropic spring."
+        },
+        {
+          "level": "derive",
+          "prompt": "From the Gaussian end-to-end distribution, sketch why the small-extension force is linear in x.",
+          "answer": "The probability of end-to-end vector x is P(x) ∝ exp(−3x²/2Nb²), so the entropy S = k_B·ln P gives free energy F = −TS ∝ (3k_BT/2Nb²)x². The force is f = ∂F/∂x = (3k_BT/Nb²)x — Hookean (linear in x) at small extension.",
+          "eq": "P(x)\\propto e^{-3x^2/2Nb^2}\\Rightarrow f=\\frac{3k_BT}{Nb^2}x"
+        }
+      ]
+    },
+    {
+      "id": "polymer-gels",
+      "title": "Polymer networks, gels & scaling",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "entropic-elasticity",
+        "wlc"
+      ],
+      "summary": "Crosslinking polymer chains into a network produces a soft solid (a gel) whose elastic modulus is set by the density of network strands times k_BT — entropic elasticity scaled up to a material.",
+      "depths": {
+        "eli5": "Tie many floppy chains together at junctions and you get a squishy solid like jelly. Each connecting strand acts as a little entropic spring, so the whole network's stiffness comes from counting strands and temperature, not from strong bonds.",
+        "core": "In a crosslinked network, each strand between crosslinks is an entropic spring. Rubber-elasticity theory predicts a shear modulus G ≈ ν·k_BT, where ν is the number density of elastically active strands — so gels are soft (kPa) precisely because ν·k_BT is small. The sol–gel transition is a percolation phenomenon: as crosslinks accumulate, at a critical point a system-spanning network suddenly appears and the material switches from liquid (sol) to solid (gel).",
+        "deep": "Semidilute solutions introduce a correlation length (mesh size) ξ that controls what can diffuse through and how the osmotic modulus scales with concentration (de Gennes scaling laws, e.g. ξ ~ c^(−3/4) in good solvent). For stiff biopolymer networks (actin, collagen, intermediate filaments) the persistence length matters: they are strain-stiffening — the modulus rises sharply with strain as entropic slack runs out, a nonlinearity living cells exploit for mechanical robustness. The cytoskeleton, mucus, the extracellular matrix, and the nuclear pore's FG-mesh are all biological gels read through this lens."
+      },
+      "note": "Gel stiffness G ≈ ν·k_BT (strand density × thermal energy) is why biological gels are soft yet solid; the sol–gel transition is percolation, and stiff-chain networks strain-stiffen.",
+      "sources": [
+        "LibreTexts (Polymer Physics)",
+        "PMC open-access biopolymer-network reviews",
+        "arXiv cond-mat.soft"
+      ],
+      "art_prompt": "a crosslinked mesh of polymer strands forming a gel, each strand drawn as an entropic spring, a percolation threshold where a spanning network first appears, a strain-stiffening stress-strain curve",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What sets the elastic (shear) modulus of a crosslinked polymer gel, and why are such gels soft?",
+          "answer": "The shear modulus is approximately ν·k_BT, where ν is the number density of elastically active strands between crosslinks. Gels are soft because this product is small — the stiffness is entropic (k_BT per strand), not from strong bonds, and strand densities are modest."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is the sol–gel transition described as a percolation phenomenon?",
+          "answer": "As crosslinks are added, clusters grow until, at a critical crosslink density, a single connected network spans the whole sample. That percolation threshold is where the material abruptly gains a static shear modulus — switching from a flowing liquid (sol) to an elastic solid (gel)."
+        }
+      ]
+    },
+    {
+      "id": "reaction-diffusion",
+      "title": "Reaction–diffusion & Turing patterns",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "fick",
+        "eigen-modes"
+      ],
+      "summary": "Coupling chemical reactions to diffusion can spontaneously break spatial uniformity, generating stationary patterns — Turing's mechanism for how a uniform embryo can self-organize structure.",
+      "depths": {
+        "eli5": "Mix two chemicals that react and spread at different speeds, and a perfectly even soup can spontaneously develop spots or stripes. A short-range 'activator' builds itself up locally while a fast-spreading 'inhibitor' keeps it in check from afar.",
+        "core": "Turing (1952) showed that a stable, spatially uniform steady state of a reaction system can become unstable when diffusion is added — diffusion-driven instability. The classic recipe is a slowly-diffusing self-enhancing activator plus a fast-diffusing long-range inhibitor (local activation, lateral inhibition). Linearizing the two-species reaction–diffusion equations and analyzing the growth rate of each Fourier mode shows a band of finite wavelengths grows fastest, selecting a pattern with an intrinsic length scale set by reaction rates and diffusion constants.",
+        "deep": "Counterintuitively, diffusion — usually a homogenizing force — here destabilizes. The condition requires the inhibitor to diffuse substantially faster than the activator (D_inh ≫ D_act); the unstable wavenumber band comes from the eigenvalues of the linearized reaction Jacobian plus the −Dk² diffusion terms (an eigenmode/normal-mode analysis in space). Nonlinear saturation then sets the pattern's amplitude. Turing patterns plausibly underlie animal coat markings, digit spacing, hair-follicle arrays, and left–right symmetry breaking, though identifying the real morphogens has been hard — a triumph of physics predicting biology decades before molecules were found."
+      },
+      "note": "Diffusion-driven instability is the paradox: diffusion, which normally smooths gradients, breaks symmetry when a fast inhibitor outruns a slow activator. The pattern's wavelength is an intrinsic chemical length scale.",
+      "sources": [
+        "PMC open-access pattern-formation reviews",
+        "arXiv nlin.PS / q-bio.TO",
+        "LibreTexts (mathematical biology)"
+      ],
+      "art_prompt": "a uniform field spontaneously developing spots and stripes, a short-range activator peak flanked by a broad fast-spreading inhibitor, a dispersion curve with a band of unstable wavenumbers",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is diffusion-driven (Turing) instability, and what relationship between activator and inhibitor diffusion does it require?",
+          "answer": "It is the destabilization of a spatially uniform steady state by adding diffusion, generating a patterned state. It requires a self-enhancing activator that diffuses slowly and a long-range inhibitor that diffuses much faster (D_inhibitor ≫ D_activator) — local activation with lateral inhibition."
+        },
+        {
+          "level": "derive",
+          "prompt": "How does linear stability analysis predict the pattern's length scale?",
+          "answer": "Linearize the reaction–diffusion equations about the uniform state and expand perturbations in Fourier modes e^(ikx); each mode's growth rate comes from the eigenvalues of the reaction Jacobian minus the Dk² diffusion terms. A finite band of wavenumbers k has positive growth rate, and the fastest-growing k sets the dominant wavelength of the emergent pattern."
+        }
+      ]
+    },
+    {
+      "id": "optical-tweezers",
+      "title": "Optical & magnetic tweezers",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "wlc",
+        "boltzmann"
+      ],
+      "summary": "Single-molecule force spectroscopy: a trapped bead applies and measures piconewton forces on one molecule, reading out its mechanics, folding, and motor stepping in real time.",
+      "depths": {
+        "eli5": "A tightly focused laser (or a magnetic field) grabs a microscopic bead like invisible tweezers. Tie a single molecule to the bead and you can gently pull on it, measuring forces a trillion times smaller than a gram of weight.",
+        "core": "An optical trap is a tightly focused laser beam whose intensity gradient pulls a dielectric bead toward the focus; near the center the restoring force is Hookean, F = −k_trap·x, so measuring the bead's displacement reads out force (pN) with sub-nm precision. Tethering a DNA or protein between beads (or a bead and surface) lets you record force–extension curves — fit by the worm-like chain — and watch discrete folding/unfolding transitions or a motor's nanometer steps. Magnetic tweezers instead pull on a magnetic bead and naturally apply constant force and torque, ideal for studying DNA twist and topoisomerases.",
+        "deep": "The fundamental noise floor is thermal: the trapped bead jiggles with ⟨x²⟩ = k_BT/k_trap (equipartition), which both calibrates the trap stiffness and sets the force resolution and bandwidth tradeoff. Constant-force (force-clamp) versus constant-position (position-clamp) modes probe different ensembles; pulling at varying loading rates and applying Bell/Dudko–Hummer–Szabo theory extracts the energy landscape's barrier height and position from the distribution of rupture forces — turning mechanical pulling into a thermodynamic measurement of ΔG‡ and x‡."
+      },
+      "note": "Trap calibration is pure statistical mechanics: equipartition ⟨x²⟩ = k_BT/k gives the stiffness, and rupture-force distributions yield the underlying energy landscape (barrier height and position).",
+      "sources": [
+        "PMC open-access single-molecule force-spectroscopy reviews",
+        "arXiv q-bio / physics.bio-ph",
+        "LibreTexts Biophysics"
+      ],
+      "art_prompt": "a laser-focused bead held in a harmonic trap with a single DNA molecule tethered to a second bead, a worm-like-chain force-extension curve and discrete unfolding steps on a trace",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does an optical trap convert a bead's measured displacement into a force?",
+          "answer": "Near the focus the trap acts as a harmonic (Hookean) spring, F = −k_trap·x, so the bead's displacement x from the trap center, multiplied by the calibrated stiffness k_trap, gives the applied force — typically in the piconewton range."
+        },
+        {
+          "level": "derive",
+          "prompt": "How is trap stiffness calibrated from thermal motion, and what does this imply for resolution?",
+          "answer": "By equipartition, the trapped bead's mean-square thermal displacement satisfies ½k_trap⟨x²⟩ = ½k_BT, so k_trap = k_BT/⟨x²⟩ — measuring the bead's positional variance calibrates the stiffness. The same thermal jiggle is the noise floor, setting the fundamental force/spatial resolution and its tradeoff with bandwidth."
+        }
+      ]
+    },
+    {
+      "id": "afm",
+      "title": "Atomic force microscopy",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "wlc"
+      ],
+      "summary": "A sharp tip on a flexible cantilever feels single molecules: it images surfaces at nanometer resolution and mechanically unfolds proteins one domain at a time.",
+      "depths": {
+        "eli5": "Drag an incredibly sharp needle on a tiny diving board across a surface; as it rides up and down over bumps, a laser tracks the board's bending to build a height map fine enough to see single molecules. Hook the tip to a protein and pull, and you can rip it apart one piece at a time.",
+        "core": "AFM measures the deflection of a microcantilever (spring constant ~10–100 pN/nm) as its nanoscale tip interacts with a sample, read out by a laser bouncing off the cantilever onto a photodiode. In imaging mode it maps topography at sub-nm vertical resolution in air or liquid — even on live cells. In force-spectroscopy mode the tip grabs a molecule and retracts; unfolding a multidomain protein (e.g. titin) gives a characteristic sawtooth force–extension curve, each peak a domain rupture fit by the worm-like chain.",
+        "deep": "Like the optical trap, the cantilever's thermal fluctuations calibrate its stiffness via equipartition. AFM accesses higher forces (tens of pN to nN) than optical tweezers, making it the tool for strong unfolding events and receptor–ligand bond rupture, but with poorer force resolution. Dynamic force spectroscopy — measuring how rupture force grows with loading rate — applies Bell–Evans theory to extract the bond's intrinsic off-rate and the distance to the transition state, again converting a mechanical pull into landscape parameters. High-speed AFM now films conformational dynamics (e.g. myosin walking) at video rates."
+      },
+      "note": "The titin sawtooth — equal-spaced force peaks, each a domain unfolding — is the canonical AFM single-molecule signature, fit by the worm-like chain. Higher force range than tweezers, lower resolution.",
+      "sources": [
+        "PMC open-access AFM single-molecule reviews",
+        "arXiv physics.bio-ph",
+        "LibreTexts Biophysics"
+      ],
+      "art_prompt": "a sharp tip on a cantilever with a laser-photodiode readout scanning a surface, and a separate panel of a multidomain protein being stretched into a sawtooth force-extension curve",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the characteristic sawtooth force–extension curve from AFM pulling on a multidomain protein represent?",
+          "answer": "Each peak is the unfolding (rupture) of one structural domain; as the chain is stretched, domains pop open sequentially, each releasing slack that is then re-tensioned, producing repeated rises and drops fit by the worm-like chain model."
+        },
+        {
+          "level": "apply",
+          "prompt": "When would you choose AFM over optical tweezers for single-molecule force work?",
+          "answer": "AFM accesses higher forces (tens of pN to nN) and stiffer probes, so it suits strong unfolding events and receptor–ligand bond rupture, plus topographic imaging; optical tweezers offer finer force resolution (sub-pN) for delicate, low-force measurements like motor stepping."
+        }
+      ]
+    },
+    {
+      "id": "saxs",
+      "title": "Small-angle X-ray scattering (SAXS)",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "bragg",
+        "ideal-chain"
+      ],
+      "summary": "Scattering at small angles from molecules in solution reports overall size, shape, and flexibility — low resolution but native, and uniquely powerful for disordered and multidomain proteins.",
+      "depths": {
+        "eli5": "Shine X-rays through a solution of molecules and look at how they scatter at very small angles. You can't see atoms, but you can measure how big and what general shape the molecules are — even floppy ones that won't crystallize.",
+        "core": "SAXS measures scattering intensity I(q) versus momentum transfer q for a dilute solution; because the molecules are randomly oriented, the signal is the orientationally-averaged form factor. The low-q Guinier regime gives the radius of gyration R_g (ln I(q) ≈ ln I(0) − q²R_g²/3), and I(0) scales with molecular mass. The full curve, and its real-space Fourier transform the pair-distance distribution P(r), encode overall shape, oligomeric state, and conformational ensembles — all in physiological solution, no crystal needed.",
+        "deep": "For flexible or disordered chains the scattering follows polymer scaling (the Kratky plot I·q² vs q distinguishes globular folds, which peak and fall, from unfolded chains, which plateau or rise) — a direct readout of compactness versus expansion. SAXS resolution is low (~1 nm), so it constrains rather than determines structure; it is most powerful combined with crystallography, NMR, or computation (rigid-body and ensemble modeling). Time-resolved SAXS follows folding and assembly in real time, and contrast variation (SANS with deuteration) isolates components in complexes."
+      },
+      "note": "Guinier gives R_g, the Kratky plot reveals folded-vs-disordered, and P(r) gives shape — all in solution. SAXS is the go-to for the flexible and disordered molecules crystallography can't touch.",
+      "sources": [
+        "PMC open-access SAXS biology reviews",
+        "LibreTexts Physical Chemistry (scattering)",
+        "arXiv physics.bio-ph"
+      ],
+      "art_prompt": "X-rays scattering off randomly-oriented molecules in solution onto a detector ring, a Guinier plot yielding R_g and a Kratky plot contrasting a folded peak with a disordered plateau",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What structural quantity does the Guinier region of a SAXS curve give, and what is the key advantage of SAXS over crystallography?",
+          "answer": "The Guinier region gives the radius of gyration R_g (and I(0) gives molecular mass). The advantage is that SAXS works on molecules in native solution — no crystal — so it can characterize flexible, disordered, and multidomain proteins that resist crystallization."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does a Kratky plot distinguish a folded protein from an intrinsically disordered one?",
+          "answer": "A Kratky plot (I·q² vs q) shows a clear bell-shaped peak for a compact, globular fold, whereas a disordered or unfolded chain gives a curve that plateaus or keeps rising at high q — directly signaling expanded, flexible conformations rather than a defined globular shape."
+        }
+      ]
+    },
+    {
+      "id": "mass-spec",
+      "title": "Mass spectrometry of biomolecules",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "structure-hierarchy"
+      ],
+      "summary": "Weigh molecules and their fragments by mass-to-charge ratio to identify, sequence, and probe the structure and dynamics of proteins and complexes.",
+      "depths": {
+        "eli5": "Turn molecules into flying charged particles, then sort them by how heavy they are. From the exact masses you can tell what a protein is, read its sequence, and even spot which parts are exposed or modified.",
+        "core": "Soft ionization (electrospray, ESI; or matrix-assisted laser desorption, MALDI) lifts intact biomolecules into the gas phase as ions without shattering them, then an analyzer separates them by mass-to-charge ratio m/z (time-of-flight, Orbitrap, etc.). In proteomics, proteins are digested and the peptides fragmented (tandem MS/MS) so that mass differences between fragment ions read out the amino-acid sequence and pinpoint post-translational modifications. Accurate intact masses also reveal stoichiometry of assembled complexes (native MS).",
+        "deep": "Structural variants turn MS into a biophysics tool: hydrogen–deuterium exchange (HDX-MS) measures how fast backbone amides swap H for D — exposed, flexible regions exchange fast, buried/H-bonded regions slow — mapping folding, dynamics, and binding interfaces by mass shifts. Native MS preserves noncovalent complexes to count subunits and ligands; ion-mobility MS adds a collision cross-section (shape/size in the gas phase). Crosslinking-MS captures residue–residue proximities as distance restraints. None of these need crystals, and they shine on heterogeneous, dynamic, and large assemblies."
+      },
+      "note": "Beyond identification: HDX-MS reads dynamics from how fast amides exchange, native MS counts subunits/ligands, and crosslinking-MS gives distance restraints — mass differences turned into structural biology.",
+      "sources": [
+        "PMC open-access biomolecular mass-spectrometry reviews",
+        "LibreTexts Analytical Chemistry (MS)",
+        "arXiv q-bio (proteomics methods)"
+      ],
+      "art_prompt": "a protein electrosprayed into a stream of charged droplets becoming gas-phase ions, an m/z spectrum with a charge-state envelope, and an HDX panel coloring fast- and slow-exchanging regions",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What property are molecules separated by in mass spectrometry, and what does tandem MS/MS add for proteins?",
+          "answer": "They are separated by mass-to-charge ratio (m/z). Tandem MS/MS fragments peptides so that the mass differences between fragment ions reveal the amino-acid sequence and locate post-translational modifications."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does hydrogen–deuterium exchange MS report on protein dynamics?",
+          "answer": "Backbone amide hydrogens exchange with deuterium from the solvent at rates that depend on local structure: solvent-exposed, flexible, or non-hydrogen-bonded regions exchange quickly and gain mass fast, while buried or H-bonded regions exchange slowly. The pattern of mass increase over time maps flexibility, folding, and binding interfaces."
+        }
+      ]
+    },
+    {
+      "id": "nmr-relaxation",
+      "title": "NMR relaxation & protein dynamics",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "nmr-noe",
+        "random-walk"
+      ],
+      "summary": "The rates at which excited nuclear spins return to equilibrium encode molecular motion across many timescales — making NMR a uniquely broadband probe of biomolecular dynamics.",
+      "depths": {
+        "eli5": "After you nudge atomic-nuclei magnets out of line, they relax back at speeds that depend on how the molecule tumbles and wiggles. Measuring those relaxation speeds tells you which parts of a protein are rigid and which are floppy, and how fast.",
+        "core": "Spin relaxation is driven by fluctuating local magnetic fields from molecular motion. The longitudinal (T₁) and transverse (T₂) relaxation rates and the heteronuclear ¹⁵N–{¹H} NOE depend on the spectral density J(ω) — the Fourier transform of the orientational correlation function of each bond vector. Fitting these (the model-free Lipari–Szabo analysis) yields a per-residue order parameter S² (0 = fully flexible, 1 = rigid) and an internal correlation time, mapping fast (ps–ns) backbone and side-chain motions site by site.",
+        "deep": "Different experiments window different timescales: T₁/T₂/NOE report ps–ns; Carr–Purcell–Meiboom–Gill (CPMG) relaxation dispersion and R₁ρ report µs–ms conformational exchange — the timescale of catalysis, allostery, and folding transitions — and can even characterize sparsely-populated 'invisible' excited states and their structures. Residual dipolar couplings add long-range orientational restraints. This breadth is NMR's signature advantage: a single, atomically-resolved technique that quantifies motion from picoseconds to milliseconds in solution, complementing the static snapshots of crystallography and cryo-EM."
+      },
+      "note": "Lipari–Szabo's order parameter S² is the headline number: a per-residue rigidity score from relaxation. Relaxation dispersion (CPMG) reaches the µs–ms exchange that underlies catalysis and allostery — and even 'invisible' excited states.",
+      "sources": [
+        "PMC open-access biomolecular-NMR dynamics reviews",
+        "LibreTexts NMR spectroscopy",
+        "BMRB open documentation"
+      ],
+      "art_prompt": "a protein colored by per-residue order parameter from rigid core to floppy loops, with timescale bars showing T1/T2/NOE in the ps-ns range and CPMG dispersion in the µs-ms range",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Lipari–Szabo order parameter S² measure, and what range does it span?",
+          "answer": "It measures the amplitude of fast (ps–ns) internal motion of a bond vector per residue, ranging from 0 (fully flexible, no orientational order) to 1 (completely rigid relative to overall tumbling)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is CPMG relaxation dispersion especially valuable for studying enzyme mechanism?",
+          "answer": "It detects conformational exchange on the µs–ms timescale — the timescale of catalytic turnover, allosteric transitions, and substrate gating — and can characterize sparsely-populated 'invisible' excited states, revealing functional motions that static structures and fast (ps–ns) relaxation cannot."
+        }
+      ]
+    },
+    {
+      "id": "cryo-em-workflow",
+      "title": "Single-particle cryo-EM workflow",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "cryo-em-ctf"
+      ],
+      "summary": "The end-to-end pipeline from vitrified sample to atomic model: motion-corrected movies, particle picking, 2D/3D classification, refinement, and validation by Fourier shell correlation.",
+      "depths": {
+        "eli5": "Take many blurry pictures of single frozen molecules in random poses and run them through a computational assembly line — clean them up, sort them, line them up, and average them — until a sharp 3D shape emerges that you can fit atoms into.",
+        "core": "The workflow: vitrify a thin sample on a grid; collect dose-fractionated movies on a direct-electron detector; motion-correct and dose-weight each movie; estimate and correct the per-micrograph CTF; pick particles; sort them by 2D classification to discard junk; build an initial 3D model; refine orientations and shifts; and run 3D classification to separate conformational/compositional states. Resolution is tracked by the Fourier shell correlation between two independently-refined half-maps (the 'gold-standard' FSC, reported at the 0.143 threshold).",
+        "deep": "The 'resolution revolution' (~2013) came from direct-electron detectors (fast frames let you correct beam-induced motion) plus maximum-likelihood / Bayesian refinement (RELION) that weights each noisy particle probabilistically rather than hard-assigning it. Gold-standard refinement keeps two half-sets independent to prevent overfitting noise into apparent resolution. Modern frontiers — per-particle CTF and motion, Bayesian polishing, and continuous heterogeneity methods (3D variability, manifold/deep-learning approaches like cryoDRGN) — recover not just multiple discrete states but continuous conformational landscapes, turning cryo-EM into a tool for dynamics as well as structure."
+      },
+      "note": "Gold-standard FSC (two independent half-maps, 0.143 cutoff) guards against overfitting noise; the resolution revolution = direct detectors + Bayesian refinement. Continuous-heterogeneity methods now recover whole conformational ensembles.",
+      "sources": [
+        "PMC open-access single-particle cryo-EM methods reviews",
+        "RELION / cryoSPARC open documentation",
+        "arXiv q-bio (cryo-EM heterogeneity)"
+      ],
+      "art_prompt": "a pipeline diagram from a frozen grid to motion-corrected movies, picked particles, 2D class averages, a 3D map, and a Fourier shell correlation curve crossing 0.143",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the gold-standard Fourier shell correlation, and why is it used to report cryo-EM resolution?",
+          "answer": "It is the correlation between two independently refined half-maps as a function of spatial frequency, with resolution quoted where it falls to 0.143. Keeping the two half-sets independent prevents overfitting noise from inflating the apparent resolution, giving an honest, reproducible measure."
+        },
+        {
+          "level": "apply",
+          "prompt": "What two technical advances drove the cryo-EM 'resolution revolution,' and what new capability do continuous-heterogeneity methods add?",
+          "answer": "Direct-electron detectors (fast frame capture enabling beam-induced-motion correction) and maximum-likelihood/Bayesian refinement (probabilistic weighting of noisy particles, e.g. RELION). Continuous-heterogeneity methods (3D variability, cryoDRGN) go beyond discrete classes to reconstruct continuous conformational landscapes, making cryo-EM a dynamics tool."
+        }
+      ]
+    },
+    {
+      "id": "cryo-em-revolution",
+      "title": "The cryo-EM resolution revolution",
+      "shell": "frontier",
+      "type": "result",
+      "requires": [
+        "cryo-em-workflow",
+        "bragg"
+      ],
+      "summary": "Within a few years, single-particle cryo-EM went from a low-resolution 'blobology' to routinely atomic resolution, displacing crystallography for many large and dynamic complexes.",
+      "depths": {
+        "eli5": "For decades cryo-EM gave only fuzzy outlines. Then new cameras and smarter software suddenly made it sharp enough to see individual atoms — so scientists could finally solve giant molecular machines that never formed crystals.",
+        "core": "Around 2013 the convergence of direct-electron detectors and improved image-processing algorithms raised single-particle cryo-EM resolution from ~1 nm to better than 3–4 Å, and by ~2020 to true atomic resolution (~1.2 Å) on favorable samples. Because it needs no crystal and tolerates heterogeneity, cryo-EM unlocked structures of membrane proteins, ribosomes, spliceosomes, viral machines, and large dynamic assemblies that had resisted crystallography for decades — reshaping structural biology and earning the 2017 Nobel Prize in Chemistry.",
+        "deep": "The deeper significance is methodological pluralism: cryo-EM, crystallography, NMR, SAXS, and mass spectrometry are now integrated (integrative/hybrid modeling) because each constrains different aspects — high-resolution local geometry, solution flexibility, dynamics, stoichiometry. Cryo-EM's natural access to multiple conformational states (via 3D classification and continuous-heterogeneity methods) makes it the bridge from static structure to functional dynamics, and it feeds the data that train and validate deep-learning structure and dynamics models. The lesson echoes a theme across biophysics: match the method to the observable — and for big, flexible, crystallization-resistant machines, that method became cryo-EM."
+      },
+      "note": "2013 detectors + algorithms → atomic resolution without crystals; 2017 Nobel. The frontier point: cryo-EM made dynamics and heterogeneity first-class, feeding the integrative-modeling and deep-learning era.",
+      "sources": [
+        "PMC open-access cryo-EM history/reviews",
+        "Nobel Prize 2017 (Chemistry) open materials",
+        "arXiv q-bio (cryo-EM)"
+      ],
+      "art_prompt": "a timeline of a molecular complex sharpening from a fuzzy blob to an atomic-resolution map, with detector and algorithm icons marking the 2013 inflection",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What changed around 2013 to trigger the cryo-EM resolution revolution, and why did it matter for structural biology?",
+          "answer": "Direct-electron detectors plus improved (Bayesian/maximum-likelihood) image processing raised resolution to near-atomic without needing crystals. This unlocked large, dynamic, membrane, and crystallization-resistant complexes (ribosomes, spliceosomes, viral and membrane machines), reshaping the field."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is cryo-EM often described as a bridge from static structure to dynamics?",
+          "answer": "Because it images many individual particles, 3D and continuous-heterogeneity classification can separate distinct conformational and compositional states from a single dataset — directly revealing the ensemble of functional states rather than one averaged structure, and feeding data to dynamics-aware models."
+        }
+      ]
+    },
+    {
+      "id": "ml-force-fields",
+      "title": "Machine-learning force fields",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "md"
+      ],
+      "summary": "Neural-network potentials trained on quantum-mechanical data promise near-quantum accuracy at near-classical cost — closing the accuracy/speed gap that has long limited molecular simulation.",
+      "depths": {
+        "eli5": "Classical simulations use simple spring-and-charge rules that are fast but approximate; quantum calculations are accurate but far too slow for big molecules. A trained neural network learns to mimic the quantum answer, giving you accuracy and speed at once.",
+        "core": "Empirical force fields use fixed functional forms (bonds, angles, fixed charges, Lennard-Jones) that are cheap but miss polarization, bond breaking, and subtle electronic effects. Machine-learning potentials instead fit a flexible neural network to a database of quantum-mechanical energies and forces, with architectures that build in physical symmetries (translation, rotation, permutation invariance) — e.g. message-passing graph networks on atomic environments. The result approaches quantum accuracy at a tiny fraction of the cost, enabling reactive and polarizable molecular dynamics at scales QM cannot reach.",
+        "deep": "The central challenge is transferability and the honest-evaluation theme that runs through modern biophysics ML: a potential is only as good as its training distribution, so extrapolation to unsampled chemistries or conformations can fail silently. Benchmarks must use chemically/conformationally disjoint test sets (the same anti-leakage discipline as protein-flexibility and structure benchmarks) and check energy conservation and stability over long trajectories, not just single-point errors. Foundation-model potentials trained across broad chemical space, active learning to target high-uncertainty regions, and Δ-learning (correcting a cheap baseline) are the current frontiers — and physics baselines (classical force fields, simple models) remain the fair yardstick they must beat."
+      },
+      "note": "Same recurring discipline as the rest of biophysics ML: control the train/test split (disjoint chemistry/conformations) or the benchmark lies. Accuracy means nothing without stable, energy-conserving long trajectories.",
+      "sources": [
+        "PMC / arXiv physics.chem-ph open-access ML-potential reviews",
+        "LiveCoMS open reviews",
+        "arXiv cs.LG (equivariant networks)"
+      ],
+      "art_prompt": "a graph neural network ingesting atomic neighborhoods and outputting energies and forces, sitting on an accuracy-vs-cost plot between cheap classical force fields and expensive quantum methods",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What gap do machine-learning force fields aim to close, and how do they differ from classical force fields?",
+          "answer": "They aim to close the accuracy/cost gap between cheap-but-approximate classical force fields and accurate-but-expensive quantum mechanics. Rather than fixed functional forms, they fit flexible (symmetry-respecting) neural networks to quantum energies and forces, achieving near-quantum accuracy at near-classical cost."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why must ML force fields be benchmarked on chemically and conformationally disjoint test sets, and what beyond single-point error matters?",
+          "answer": "Because their accuracy is bounded by the training distribution; testing on data too similar to training (leakage) overstates transferability and hides silent extrapolation failures. Beyond point-wise energy/force error, you must verify long-trajectory stability and energy conservation, since a model can be accurate per-frame yet produce unstable dynamics."
+        }
+      ]
+    },
+    {
+      "id": "condensate-biophysics",
+      "title": "Condensate biophysics: scaffolds, clients & material state",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "idp-llps",
+        "polymer-gels"
+      ],
+      "summary": "Beyond simple phase separation, biomolecular condensates are tunable materials whose multivalent 'sticker–spacer' architecture sets composition, surface tension, and the liquid-to-gel-to-solid transitions that matter for function and disease.",
+      "depths": {
+        "eli5": "Cells make membraneless droplets that act like tiny liquid factories. The molecules inside have sticky spots connected by floppy linkers; how many sticky spots and how strong they are decides which droplets form, what they pull in, and whether they stay liquid or harden.",
+        "core": "Condensate-forming molecules follow a sticker–spacer logic: multivalent attractive motifs (stickers — aromatics, charged blocks, folded interaction domains) connected by flexible spacers. The number and strength of stickers, plus spacer solvent quality, set the saturation concentration for phase separation and tune which molecules are scaffolds (drive demixing) versus clients (partition in). The same polymer-network and surface-tension physics governing gels applies: condensates have interfacial tension, can wet surfaces, and can be viscoelastic rather than purely liquid.",
+        "deep": "The material state is a control variable, not a fixed property: condensates span liquid (fast internal rearrangement) to gel/glass (arrested) to amyloid-like solid, and physiological function or pathology depends on where a condensate sits and whether it ages over time. Aberrant liquid-to-solid maturation links condensates to neurodegeneration (e.g. FUS, TDP-43). Measuring this requires the right observables — FRAP for internal mobility, active microrheology for viscoelasticity, controlled in-vitro reconstitution to map phase diagrams — a clean instance of the field-wide lesson that you must match the measurement to the material property you care about, since 'is it a condensate?' is far less informative than 'what is its composition, dynamics, and material state?'"
+      },
+      "note": "Sticker–spacer valence and strength set the phase diagram; material state (liquid → gel → solid) is a tunable, ageing property, and pathological hardening links condensates to disease. Match the observable (FRAP, microrheology) to the question.",
+      "sources": [
+        "PMC open-access condensate / LLPS reviews",
+        "arXiv cond-mat.soft / q-bio.SC",
+        "CAID disorder benchmarks"
+      ],
+      "art_prompt": "sticker-spacer chains with labeled multivalent sticky motifs coalescing into a droplet, a phase diagram with a saturation boundary, and a liquid-to-gel-to-solid material-state axis with an ageing arrow",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the sticker–spacer model of condensates, what roles do stickers and spacers play, and what distinguishes a scaffold from a client?",
+          "answer": "Stickers are the multivalent attractive motifs that drive association; spacers are the flexible linkers connecting them and tuning solubility/solvent quality. Scaffolds are the components whose multivalent interactions drive phase separation; clients are molecules that partition into the condensate without driving its formation."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is a condensate's material state (liquid vs gel vs solid) considered a key, disease-relevant variable, and how would you measure it?",
+          "answer": "Function often requires liquid-like fast exchange, while aberrant hardening (liquid-to-solid maturation/ageing) is linked to pathological aggregation in neurodegeneration. You measure internal dynamics by FRAP (recovery rate) and viscoelasticity by active microrheology, and map phase behavior by controlled in-vitro reconstitution — matching the observable to the material property."
+        }
+      ]
+    },
+    {
+      "id": "circular-dichroism",
+      "title": "Circular dichroism spectroscopy",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "structure-hierarchy"
+      ],
+      "summary": "Chiral biomolecules absorb left- and right-circularly-polarized light differently; the far-UV spectrum is a quick fingerprint of secondary-structure content and folding.",
+      "depths": {
+        "eli5": "Proteins are 'handed,' so they twist left- and right-spinning light by different amounts. The pattern of that difference tells you roughly how much helix and sheet a protein has — and whether it's still folded.",
+        "core": "Circular dichroism (CD) measures the differential absorption of left- versus right-circularly-polarized light by chiral chromophores. In the far-UV (190–250 nm) the peptide backbone's amide transitions give signatures characteristic of secondary structure: α-helix shows a double minimum at 208 and 222 nm, β-sheet a single broader minimum near 218 nm, and random coil a minimum near 200 nm. Deconvolving a spectrum estimates the fractional helix/sheet/coil content, and watching the 222 nm signal versus temperature or denaturant gives a folding/melting curve.",
+        "deep": "CD is low-resolution but fast, low-sample, and works in solution — ideal for confirming a protein is folded, monitoring thermal/chemical denaturation to extract ΔG and T_m (tying back to two-state folding), and detecting conformational change on binding. Near-UV CD (250–320 nm) reports the tertiary environment of aromatic side chains, a sensitive (if hard-to-interpret) fingerprint of the native fold. Synchrotron-radiation CD extends the usable wavelength range for better deconvolution. It complements high-resolution methods: CD tells you fast whether a sample is worth taking to crystallography, NMR, or cryo-EM."
+      },
+      "note": "The 222 nm helix signal is the workhorse: track it vs temperature/denaturant to get a melting curve and ΔG. CD is the fast, low-sample 'is it folded and how much helix/sheet?' check before expensive structural methods.",
+      "sources": [
+        "PMC open-access circular-dichroism reviews",
+        "LibreTexts Spectroscopy",
+        "arXiv physics.bio-ph"
+      ],
+      "art_prompt": "left- and right-circularly-polarized light absorbed differently by a chiral protein, a far-UV CD spectrum with the alpha-helix double minimum at 208 and 222 nm beside a beta-sheet single minimum",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does far-UV circular dichroism report about a protein, and what is the characteristic α-helix signature?",
+          "answer": "It reports secondary-structure content (fractional helix/sheet/coil) from the backbone amide transitions. The α-helix gives a characteristic double minimum at 208 nm and 222 nm; β-sheet gives a single broader minimum near 218 nm."
+        },
+        {
+          "level": "apply",
+          "prompt": "How is CD used to measure protein stability?",
+          "answer": "By monitoring a secondary-structure signal (commonly the helix band at 222 nm) as a function of temperature or denaturant, you obtain a cooperative melting curve; fitting it (often as two-state) yields the melting temperature T_m and the folding free energy ΔG."
+        }
+      ]
+    },
+    {
+      "id": "patch-clamp",
+      "title": "Patch clamp & single-channel recording",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "ion-channel-gating",
+        "hodgkin-huxley"
+      ],
+      "summary": "A glass micropipette seals onto a patch of membrane to record the picoampere currents of individual ion channels — resolving single gating events that ensemble methods only average.",
+      "depths": {
+        "eli5": "Press a tiny glass tube tightly against a cell's surface and you can listen to a single ion channel clicking open and shut, counting the trickle of charge through one molecule at a time.",
+        "core": "Patch clamp forms a gigaohm-resistance seal between a fire-polished glass pipette and the cell membrane, electrically isolating a small patch so that the current through even a single channel (a few picoamperes) is measurable above noise. In voltage clamp the membrane voltage is held fixed and the current measured; single-channel records show discrete rectangular openings and closings, directly revealing the channel's unitary conductance, open probability, and dwell-time distributions. Configurations (cell-attached, whole-cell, inside-out, outside-out) expose either ensemble or single-molecule behavior and either side of the membrane to drugs.",
+        "deep": "Single-channel dwell-time histograms are a direct window onto the gating kinetics: the distribution of open and closed durations is a sum of exponentials whose number and rates reveal the underlying Markov-state gating scheme (connecting to ion-channel gating and Markov models). Averaging many single-channel records reproduces the macroscopic g_i(V) of the Hodgkin–Huxley description — making patch clamp the experimental bridge between molecular gating and whole-cell excitability. The technique (Neher and Sakmann, Nobel 1991) is the gold standard of electrophysiology and the readout for ion-channel drug screening."
+      },
+      "note": "Single-channel dwell times → Markov gating scheme; averaging single channels → the macroscopic g(V) of Hodgkin–Huxley. Patch clamp is the molecular-to-cellular bridge in electrophysiology.",
+      "sources": [
+        "NCBI Bookshelf (open-access neuroscience)",
+        "PMC open-access electrophysiology reviews",
+        "LibreTexts Physiology"
+      ],
+      "art_prompt": "a glass pipette forming a gigaohm seal on a membrane patch, a single-channel current trace showing rectangular open/closed events, and a dwell-time histogram fit by exponentials",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does patch clamp measure, and what makes recording a single channel possible?",
+          "answer": "It measures the tiny (picoampere) ionic current through ion channels under voltage control. A gigaohm-resistance seal between the glass pipette and the membrane electrically isolates a small patch, lowering noise enough to resolve the current through a single channel as discrete open/closed events."
+        },
+        {
+          "level": "apply",
+          "prompt": "How do single-channel dwell-time distributions connect to a channel's gating model?",
+          "answer": "The histograms of open and closed durations are sums of exponentials; the number of exponential components and their rate constants reveal the number of kinetic states and the transition rates of the channel's Markov gating scheme. Averaging many single-channel records reconstructs the macroscopic conductance g(V)."
+        }
+      ]
+    },
+    {
+      "id": "smfret-dynamics",
+      "title": "Single-molecule FRET conformational dynamics",
+      "shell": "frontier",
+      "type": "method",
+      "requires": [
+        "fret",
+        "markov-state-model"
+      ],
+      "summary": "Watching FRET on one molecule at a time resolves conformational subpopulations, transition rates, and intermediates that ensemble averaging hides — a real-time movie of a single molecule's states.",
+      "depths": {
+        "eli5": "Ordinary FRET averages over billions of molecules, blurring different shapes together. Looking at one molecule at a time, you can actually watch it flip between conformations and time how long it stays in each — like following one dancer instead of a whole blurry crowd.",
+        "core": "Single-molecule FRET (smFRET) records the donor–acceptor transfer efficiency of individual molecules, either freely diffusing through a confocal spot (giving efficiency histograms whose peaks are distinct conformational states) or surface-immobilized and watched over time (giving trajectories that jump between FRET states). The distribution of dwell times in each state yields the transition rates between conformations directly — kinetics that bulk measurements only see as a relaxation average. It maps folding intermediates, IDP ensembles, motor stepping, and binding-induced conformational changes one molecule at a time.",
+        "deep": "smFRET trajectories are naturally analyzed as hidden Markov models / Markov state models: the observed noisy FRET signal is emitted by an underlying small set of discrete conformational states, and the inference recovers the states and their transition-rate matrix — the same formalism used to coarse-grain MD. Care is needed with the orientation factor κ² and photophysics (blinking, bleaching), and with distinguishing genuine states from shot noise. Combined with alternating-laser excitation and multi-color FRET, it dissects multistate machines; combined with force (in tweezers) it correlates conformation with mechanics. It is the experimental complement to MSM-analyzed simulation: both reduce complex dynamics to states-and-rates."
+      },
+      "note": "smFRET turns conformational dynamics into states-and-rates via hidden Markov / MSM analysis — the experimental mirror of coarse-graining a simulation. It resolves subpopulations and dwell times ensemble FRET averages away.",
+      "sources": [
+        "PMC open-access single-molecule FRET reviews",
+        "arXiv q-bio / physics.bio-ph",
+        "LibreTexts Fluorescence spectroscopy"
+      ],
+      "art_prompt": "a single immobilized molecule's FRET-efficiency time trace hopping between two levels, a histogram with resolved subpopulation peaks, and a two-state kinetic scheme inferred by a hidden Markov model",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What can single-molecule FRET resolve that ensemble FRET cannot?",
+          "answer": "Distinct conformational subpopulations (as separate peaks/states rather than one averaged efficiency), real-time transitions between states, and the dwell-time distributions that give transition rates between conformations — all of which ensemble averaging washes into a single mean."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why are smFRET trajectories analyzed with hidden Markov / Markov state models?",
+          "answer": "The observed noisy FRET signal is treated as emitted by a small set of underlying discrete conformational states; HMM/MSM inference recovers those states and their transition-rate matrix from the time series — turning the trajectory into a states-and-rates description, the same coarse-graining used for molecular-dynamics data."
+        }
+      ]
+    },
+    {
+      "id": "marcus-theory",
+      "title": "Marcus theory of electron transfer",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "eyring",
+        "redox-potential"
+      ],
+      "equation": "k_{ET} \\propto \\exp\\!\\left[-\\dfrac{(\\Delta G^{\\circ}+\\lambda)^2}{4\\lambda k_BT}\\right]",
+      "summary": "Electron-transfer rate depends parabolically on driving force through a reorganization energy λ — predicting the counterintuitive 'inverted region' where more driving force slows the reaction.",
+      "depths": {
+        "eli5": "When an electron jumps between molecules, the surrounding atoms must rearrange to accommodate the new charges. The rate depends on how much driving force there is and how much rearrangement is needed — and surprisingly, too much driving force can actually slow the jump down.",
+        "core": "Marcus theory models electron transfer as a transition between two parabolic free-energy surfaces (reactant and product) along a nuclear reorganization coordinate. The activation free energy is ΔG‡ = (ΔG° + λ)²/(4λ), where λ is the reorganization energy — the cost of distorting the nuclei and solvent to the product geometry without transferring the electron. Plugging into an Eyring-like expression gives the rate. The rate is maximal when −ΔG° = λ (barrierless), and the famous inverted region appears when −ΔG° > λ: making the reaction more exergonic raises the barrier again, slowing it.",
+        "deep": "Combined with electronic coupling that decays exponentially with donor–acceptor distance, Marcus theory explains the ~14 Å spacing design rule of biological electron-transport chains: cofactors are placed so coupling keeps tunneling fast while the staircase of redox potentials (ΔG°) sits near the barrierless optimum. Proteins tune λ by controlling the dielectric/rigidity of the cofactor environment, lowering reorganization to speed physiological transfers. The inverted region — confirmed experimentally decades after prediction — is why charge recombination (very exergonic) can be slow, a feature photosynthesis exploits to prevent wasteful back-reactions."
+      },
+      "note": "Two knobs: driving force ΔG° and reorganization energy λ. Maximum rate at −ΔG° = λ; beyond it the inverted region slows things — exploited by photosynthesis to suppress charge recombination.",
+      "sources": [
+        "LibreTexts Physical Chemistry (electron transfer)",
+        "PMC open-access biological-electron-transfer reviews",
+        "arXiv physics.chem-ph"
+      ],
+      "art_prompt": "two parabolic free-energy surfaces crossing along a reorganization coordinate, the activation barrier shrinking to zero at -ΔG°=λ and re-growing in the inverted region",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the reorganization energy λ in Marcus theory, and at what driving force is the electron-transfer rate maximal?",
+          "answer": "λ is the free-energy cost of rearranging the nuclei and surrounding solvent from the reactant to the product geometry without moving the electron. The rate is maximal (barrierless) when the driving force exactly matches it: −ΔG° = λ."
+        },
+        {
+          "level": "derive",
+          "prompt": "What is the Marcus inverted region, and why does it occur?",
+          "answer": "It is the regime where making a reaction more exergonic (−ΔG° > λ) actually slows electron transfer. From ΔG‡ = (ΔG° + λ)²/(4λ), the barrier is minimized at −ΔG° = λ; pushing −ΔG° beyond λ makes (ΔG° + λ)² grow again, re-raising the barrier and lowering the rate."
         }
       ]
     }
