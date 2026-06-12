@@ -1,0 +1,53 @@
+{
+  "source": "Blue Zones (Dan Buettner / National Geographic) — the five regions with verified highest concentrations of centenarians.",
+  "branch": "05-biophysics",
+  "kind": "blue-zone",
+  "note": "Longevity ground-truth overlay. Per the canon thesis longevity is an OUTCOME (downstream of the biophysics branch), not a foundation — used here to validate world-indicator rankings against where people actually live longest.",
+  "zones": [
+    {
+      "id": "bz-okinawa",
+      "title": "Okinawa, Japan",
+      "lat": 26.3344, "lng": 127.8056,
+      "country": "Japan", "iso3": "JPN",
+      "branch": "05-biophysics", "kind": "blue-zone",
+      "longevity_note": "World's longest-lived women; diet of sweet potato, tofu, bitter melon; 'ikigai' (sense of purpose) and 'moai' (lifelong social circles).",
+      "centenarian_signal": "very high"
+    },
+    {
+      "id": "bz-sardinia",
+      "title": "Nuoro / Ogliastra, Sardinia, Italy",
+      "lat": 40.0, "lng": 9.43,
+      "country": "Italy", "iso3": "ITA",
+      "branch": "05-biophysics", "kind": "blue-zone",
+      "longevity_note": "Highest concentration of male centenarians; mountain shepherding (daily movement), pecorino, Cannonau wine, strong family elder-care.",
+      "centenarian_signal": "very high"
+    },
+    {
+      "id": "bz-nicoya",
+      "title": "Nicoya Peninsula, Costa Rica",
+      "lat": 10.15, "lng": -85.45,
+      "country": "Costa Rica", "iso3": "CRI",
+      "branch": "05-biophysics", "kind": "blue-zone",
+      "longevity_note": "Lowest middle-age mortality; 'plan de vida' (purpose), calcium-rich water, beans/corn/squash, sunshine and strong faith/community.",
+      "centenarian_signal": "high"
+    },
+    {
+      "id": "bz-ikaria",
+      "title": "Ikaria, Greece",
+      "lat": 37.61, "lng": 26.17,
+      "country": "Greece", "iso3": "GRC",
+      "branch": "05-biophysics", "kind": "blue-zone",
+      "longevity_note": "'The island where people forget to die'; Mediterranean diet, wild greens, herbal teas, afternoon naps, low rates of dementia.",
+      "centenarian_signal": "high"
+    },
+    {
+      "id": "bz-loma-linda",
+      "title": "Loma Linda, California, USA",
+      "lat": 34.0483, "lng": -117.2614,
+      "country": "United States", "iso3": "USA",
+      "branch": "05-biophysics", "kind": "blue-zone",
+      "longevity_note": "Seventh-day Adventist community living ~10 years longer than other Americans; plant-based diet, sabbath rest, no smoking/alcohol, tight community.",
+      "centenarian_signal": "high"
+    }
+  ]
+}
