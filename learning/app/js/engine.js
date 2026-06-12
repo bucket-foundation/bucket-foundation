@@ -7,7 +7,7 @@
 (function (global) {
   "use strict";
 
-  const LS_KEY = "bucket-academy/v1";
+  const LS_BASE = "bucket-academy/v1";
   const DAY = 86400000;
 
   function Engine() {
@@ -22,6 +22,8 @@
     const data = await res.json();
     this.atoms = data.atoms || [];
     this.meta = data.meta || {};
+    // Per-branch storage so each branch keeps independent FSRS state + xp/streak.
+    this.lsKey = LS_BASE + "/" + (this.meta.branch || "default");
     this.byId = {};
     this.atoms.forEach((a) => (this.byId[a.id] = a));
     this._computeLeverage();
@@ -68,7 +70,7 @@
   Engine.prototype._loadState = function () {
     let s = null;
     try {
-      s = JSON.parse(localStorage.getItem(LS_KEY));
+      s = JSON.parse(localStorage.getItem(this.lsKey || LS_BASE));
     } catch (e) {}
     if (!s) {
       s = {
@@ -86,12 +88,12 @@
 
   Engine.prototype.save = function () {
     try {
-      localStorage.setItem(LS_KEY, JSON.stringify(this.state));
+      localStorage.setItem(this.lsKey || LS_BASE, JSON.stringify(this.state));
     } catch (e) {}
   };
 
   Engine.prototype.reset = function () {
-    localStorage.removeItem(LS_KEY);
+    localStorage.removeItem(this.lsKey || LS_BASE);
     this._loadState();
   };
 
