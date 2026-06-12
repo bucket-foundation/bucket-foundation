@@ -1,3 +1,17 @@
 
 
 ========== build run 2026-06-12T01:45:20Z ==========
+Done. This run expanded the Bucket Academy biophysics corpus from **33 to 41 atoms**, closing the two biggest gaps the seed run flagged.
+
+**What I added (8 nucleus atoms, all original prose, open sources only):**
+- **Spectroscopy methods** — syllabus §1.8 was entirely empty before this run: `bragg` (X-ray diffraction + the phase problem), `nmr-noe` (chemical shift + the r⁻⁶ NOE distance ruler), `fret` (Förster ruler, E = 1/(1+(r/R₀)⁶)), `cryo-em-ctf` (single-particle reconstruction + CTF correction).
+- **Stochastic dynamics** — §1.5/1.9 gaps: `poisson-boltzmann` (with the Debye length shown as its linearized limit), `langevin` (fluctuation–dissipation), `smoluchowski-rate` (k = 4πDR diffusion-limited binding), `kramers` (friction-corrected transition-state theory, with the turnover).
+
+Each atom has clean `requires` edges into existing nucleus atoms (e.g. `kramers` → langevin+eyring, `smoluchowski-rate` → fick+einstein-stokes, `poisson-boltzmann` → debye, `cryo-em-ctf` → bragg), three depth levels, two varied-level quiz items, and an art prompt.
+
+**Validation:** `./validate.sh` passes — 41 atoms, no duplicate/missing/empty, JS syntax clean, and the 60-day FSRS engine simulation introduces all 41. Committed locally in two commits (`d0476a5`, `2c4cb06`); nothing pushed.
+
+**Next run** (logged): finish the thin biophysics topics — Helfrich, GHK, cable equation, Monte Carlo, FEP/WHAM, Markov state models, contact order, RMSF — then start a second branch (`app/corpus/01-mathematics.json` or `02-physics.json`) plus a branch-picker, since `engine.js` currently hardcodes loading biophysics.
+---------- run done 2026-06-12T01:48:42Z ----------
+
+========== build run 2026-06-12T02:10:34Z ==========
