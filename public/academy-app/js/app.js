@@ -27,7 +27,19 @@
     { file: "corpus/biophysics.json", pill: "V · Biophysics", sub: "Energy, matter & life" },
     { file: "corpus/06-cosmology.json", pill: "VI · Cosmology", sub: "The universe at large" },
     { file: "corpus/07-mind.json", pill: "VII · Mind", sub: "Brains, computation & cognition" },
+    { file: "corpus/lang-core.json", pill: "✺ · Languages", sub: "Learn a language through the ones you know" },
   ];
+  // canon branch slug per corpus → links into bucket.foundation/canon/<slug>
+  const CANON_SLUG = {
+    "01-mathematics": "mathematics", "02-physics": "physics", "03-chemistry": "chemistry",
+    "04-information": "information", "05-biophysics": "biophysics", "06-cosmology": "cosmology",
+    "07-mind": "mind",
+  };
+  const LANG_NAMES = {
+    en: "English", es: "Spanish", fr: "French", it: "Italian",
+    pt: "Portuguese", de: "German", la: "Latin",
+  };
+  const LANG_PREF_KEY = "bucket-academy/lang";
   let currentBranchFile = (function () {
     try {
       return localStorage.getItem(BRANCH_PREF_KEY) || DEFAULT_BRANCH;
@@ -75,7 +87,7 @@
 
     const hero = el("div", "hero");
     const curBranch = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
-    hero.appendChild(el("div", "kicker", curBranch.pill.replace(/^[IVX]+ · /, "") + " · today's route"));
+    hero.appendChild(el("div", "kicker", curBranch.pill.replace(/^\S+ · /, "") + " · today's route"));
     hero.appendChild(el("h1", null, route.length ? "Ready when you are." : "All caught up. 🎉"));
     const sub = route.length
       ? route.filter((r) => r.kind === "review").length + " reviews · " + route.filter((r) => r.kind === "new").length + " new concepts"
@@ -166,6 +178,7 @@
     session = null;
     try {
       await E.load(file);
+      normalizeAtoms();
     } catch (e) {
       $("#app").innerHTML =
         '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
@@ -201,7 +214,135 @@
     return have[0] || "recall";
   }
 
+  function isLang() {
+    return !!(E.meta && E.meta.kind === "language");
+  }
+  function normalizeAtoms() {
+    // language atoms use `gloss`; give them a display title so shared UI works.
+    E.atoms.forEach((a) => { if (!a.title) a.title = a.gloss || a.id; });
+  }
+  function langSettings() {
+    const langs = (E.meta && E.meta.languages) || ["en"];
+    let p = {};
+    try { p = JSON.parse(localStorage.getItem(LANG_PREF_KEY)) || {}; } catch (e) {}
+    let target = p.target && langs.includes(p.target) ? p.target : (langs.find((l) => l !== "en") || langs[0]);
+    let known = (p.known || ["en"]).filter((l) => langs.includes(l) && l !== target);
+    if (!known.length) known = langs.filter((l) => l !== target).slice(0, 1);
+    return { target, known, langs };
+  }
+  function setLangPref(target, known) {
+    try { localStorage.setItem(LANG_PREF_KEY, JSON.stringify({ target, known })); } catch (e) {}
+  }
+
+  // "Go deeper" (external resources) + "Related in Bucket" (canon links) for any atom.
+  function deeperSection(a) {
+    const wrap = el("div", "deeper");
+    if (a.resources && a.resources.length) {
+      wrap.appendChild(el("div", "section-label", "Go deeper"));
+      const list = el("div", "link-list");
+      a.resources.forEach((r) => {
+        if (!r || !r.url) return;
+        const lk = el("a", "ext-link", '<span class="lk-ico">↗</span>' + escapeHtml(r.label || r.url));
+        lk.href = r.url; lk.target = "_blank"; lk.rel = "noopener noreferrer";
+        list.appendChild(lk);
+      });
+      wrap.appendChild(list);
+    }
+    const slug = CANON_SLUG[E.meta && E.meta.branch];
+    if (slug) {
+      wrap.appendChild(el("div", "section-label", "Related in Bucket"));
+      const list = el("div", "link-list");
+      const mk = (href, label, ico) => {
+        const l = el("a", "int-link", '<span class="lk-ico">' + ico + "</span>" + label);
+        l.href = href; l.target = "_blank"; l.rel = "noopener"; return l;
+      };
+      const nice = slug.charAt(0).toUpperCase() + slug.slice(1);
+      list.appendChild(mk("/canon/" + slug, "Canon · " + nice, "❖"));
+      list.appendChild(mk("/canon/search?q=" + encodeURIComponent(a.title || ""), "Find claims: " + escapeHtml(a.title || ""), "🔍"));
+      list.appendChild(mk("/canon/graph", "Knowledge graph", "✸"));
+      wrap.appendChild(list);
+    }
+    return wrap;
+  }
+
+  /* ---------- language (polyglot) atom ---------- */
+  function renderLangAtom(id, peek) {
+    const a = E.byId[id];
+    const { target, known } = langSettings();
+    const tf = a.forms[target] || {};
+    const wrap = el("div", "screen atom lang");
+    wrap.appendChild(header());
+    const top = el("div", "atom-top");
+    const back = el("button", "ghost", "‹ Route"); back.onclick = () => go("home");
+    top.appendChild(back);
+    top.appendChild(el("span", "prog", session ? session.i + 1 + " / " + session.queue.length : ""));
+    wrap.appendChild(top);
+
+    const card = el("div", "art lang-card shell-" + a.shell);
+    card.innerHTML =
+      '<div class="art-badge">' + escapeHtml(LANG_NAMES[target] || target) + "</div>" +
+      '<div class="lang-word">' + escapeHtml(tf.word || "—") + "</div>" +
+      (tf.ipa ? '<div class="lang-ipa">/' + escapeHtml(tf.ipa) + "/</div>" : "") +
+      '<div class="art-title">' + escapeHtml(a.gloss || a.title || "") +
+        (a.pos ? " · " + escapeHtml(a.pos) : "") + (tf.gender ? " · " + escapeHtml(tf.gender) : "") + "</div>";
+    wrap.appendChild(card);
+
+    const body = el("div", "atom-body");
+    const ref = el("div", "lang-ref");
+    ref.appendChild(el("div", "section-label", "In the languages you know"));
+    known.forEach((l) => {
+      const f = a.forms[l]; if (!f) return;
+      ref.appendChild(el("div", "lang-row",
+        '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span>" +
+        '<span class="lang-w">' + escapeHtml(f.word) + (f.ipa ? ' <i>/' + escapeHtml(f.ipa) + "/</i>" : "") + "</span>"));
+    });
+    body.appendChild(ref);
+    if (a.note) body.appendChild(el("div", "lang-note", escapeHtml(a.note)));
+    if (a.example) {
+      const ex = el("div", "lang-ex");
+      ex.appendChild(el("div", "section-label", "Example"));
+      [target].concat(known).forEach((l) => {
+        if (!a.example[l]) return;
+        ex.appendChild(el("div", "ex-row",
+          '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span> " + escapeHtml(a.example[l])));
+      });
+      body.appendChild(ex);
+    }
+    wrap.appendChild(body);
+
+    if (!peek) wrap.appendChild(langDrill(a, target, known));
+    else { const cont = el("button", "btn primary wide", "Got it →"); cont.onclick = () => go("home"); wrap.appendChild(cont); }
+    wrap.appendChild(deeperSection(a));
+    mount(wrap);
+  }
+
+  function langDrill(a, target, known) {
+    const box = el("div", "drill");
+    box.appendChild(el("div", "drill-label", "Recall · " + (LANG_NAMES[target] || target)));
+    const hintLang = known[0];
+    const hint = hintLang && a.forms[hintLang];
+    box.appendChild(el("div", "q",
+      "How do you say <b>“" + escapeHtml(a.gloss || a.title || "") + "”</b>" +
+      (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
+      " in " + escapeHtml(LANG_NAMES[target] || target) + "?"));
+    const tf = a.forms[target] || {};
+    const answer = el("div", "answer hidden");
+    answer.innerHTML = "<div class='a-label'>Answer</div><div class='a-text lang-ans'>" +
+      escapeHtml(tf.word || "") + (tf.ipa ? " <i>/" + escapeHtml(tf.ipa) + "/</i>" : "") + "</div>";
+    const reveal = el("button", "btn wide", "Show answer");
+    const rate = el("div", "rate hidden");
+    reveal.onclick = () => { answer.classList.remove("hidden"); reveal.classList.add("hidden"); rate.classList.remove("hidden"); };
+    [[1, "Again", "again"], [2, "Hard", "hard"], [3, "Good", "good"], [4, "Easy", "easy"]].forEach(([g, lbl, cls]) => {
+      const b = el("button", "rbtn " + cls, lbl);
+      b.onclick = () => { E.grade(a.id, g, "recall"); next(); };
+      rate.appendChild(b);
+    });
+    box.appendChild(reveal); box.appendChild(answer); box.appendChild(rate);
+    return box;
+  }
+
   function renderAtom(id, peek) {
+    if (isLang()) return renderLangAtom(id, peek);
     const a = E.byId[id];
     const level = pickLevel(id);
     const wrap = el("div", "screen atom");
@@ -258,6 +399,7 @@
       wrap.appendChild(u);
     }
 
+    wrap.appendChild(deeperSection(a));
     mount(wrap);
     katex(wrap);
   }
@@ -435,6 +577,40 @@
     const sw = el("input"); sw.type = "checkbox"; sw.checked = (E.state.settings.requestRetention || 0.9) >= 0.95;
     sw.onchange = () => { E.state.settings.requestRetention = sw.checked ? 0.95 : 0.9; E.save(); };
     rr.appendChild(sw); settings.appendChild(rr);
+
+    // language branch: choose target + known languages
+    if (isLang()) {
+      const { target, known, langs } = langSettings();
+      const tRow = el("label", "set-row", "Language I'm learning");
+      const tSel = el("select", "lang-sel");
+      langs.forEach((l) => {
+        const o = el("option", null, LANG_NAMES[l] || l); o.value = l; if (l === target) o.selected = true; tSel.appendChild(o);
+      });
+      tSel.onchange = () => {
+        const nt = tSel.value;
+        const nk = (langSettings().known || []).filter((l) => l !== nt);
+        setLangPref(nt, nk.length ? nk : langs.filter((l) => l !== nt).slice(0, 1));
+        go("progress");
+      };
+      tRow.appendChild(tSel); settings.appendChild(tRow);
+
+      settings.appendChild(el("div", "set-hint", "Languages I already know (used as hints + reinforcement):"));
+      const kWrap = el("div", "lang-known");
+      langs.filter((l) => l !== target).forEach((l) => {
+        const on = known.includes(l);
+        const chip = el("button", "lang-chip" + (on ? " on" : ""), escapeHtml(LANG_NAMES[l] || l));
+        chip.onclick = () => {
+          let nk = (langSettings().known || []).slice();
+          nk = nk.includes(l) ? nk.filter((x) => x !== l) : nk.concat(l);
+          if (!nk.length) nk = [l];
+          setLangPref(target, nk);
+          go("progress");
+        };
+        kWrap.appendChild(chip);
+      });
+      settings.appendChild(kWrap);
+    }
+
     const reset = el("button", "btn ghost wide danger", "Reset all progress");
     reset.onclick = () => { if (confirm("Erase all learning progress?")) { E.reset(); go("home"); } };
     settings.appendChild(reset);
@@ -472,14 +648,26 @@
   };
 
   async function boot() {
+    // optional deep link: ?branch=<id>&atom=<id>
+    let params = null;
+    try { params = new URLSearchParams(location.search); } catch (e) {}
+    if (params) {
+      const bParam = params.get("branch");
+      if (bParam) { const m = BRANCHES.find((b) => b.file.includes(bParam)); if (m) currentBranchFile = m.file; }
+    }
     try {
       await E.load(currentBranchFile);
+      normalizeAtoms();
     } catch (e) {
       $("#app").innerHTML = '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
       return;
     }
     window.__BA = E; // debug handle
     go("home");
+    if (params) {
+      const aParam = params.get("atom");
+      if (aParam && E.byId[aParam]) openAtom(aParam, true);
+    }
   }
   document.addEventListener("DOMContentLoaded", boot);
 })();

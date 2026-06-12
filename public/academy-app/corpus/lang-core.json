@@ -1,0 +1,2475 @@
+{
+  "meta": {
+    "branch": "lang-core",
+    "kind": "language",
+    "title": "Polyglot Core — learn a language through the languages you know",
+    "languages": ["en", "es", "fr", "it", "pt", "de", "la"],
+    "version": "0.1.0",
+    "license": "Translations & IPA are facts; example sentences original; vocab cross-checked against Wiktionary (CC-BY-SA, attributed)"
+  },
+  "atoms": [
+    {
+      "id": "one",
+      "gloss": "one (1)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "one", "ipa": "wʌn"},
+        "es": {"word": "uno", "ipa": "ˈuno"},
+        "fr": {"word": "un", "ipa": "œ̃"},
+        "it": {"word": "uno", "ipa": "ˈuːno"},
+        "pt": {"word": "um", "ipa": "ˈũ"},
+        "de": {"word": "eins", "ipa": "ˈaɪ̯ns"},
+        "la": {"word": "unus", "ipa": "ˈuː.nus"}
+      },
+      "note": "Romance '1' all descend from Latin 'unus'; English 'one' and German 'eins' are the Germanic branch of the same Indo-European root *óynos.",
+      "example": {"en": "I have one dog.", "es": "Tengo un perro.", "fr": "J'ai un chien."},
+      "resources": [
+        {"label": "Wiktionary: one", "url": "https://en.wiktionary.org/wiki/one"},
+        {"label": "Wiktionary: unus (Latin)", "url": "https://en.wiktionary.org/wiki/unus"}
+      ]
+    },
+    {
+      "id": "two",
+      "gloss": "two (2)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "two", "ipa": "tuː"},
+        "es": {"word": "dos", "ipa": "dos"},
+        "fr": {"word": "deux", "ipa": "dø"},
+        "it": {"word": "due", "ipa": "ˈduːe"},
+        "pt": {"word": "dois", "ipa": "ˈdojʃ"},
+        "de": {"word": "zwei", "ipa": "t͡svaɪ̯"},
+        "la": {"word": "duo", "ipa": "ˈdu.oː"}
+      },
+      "note": "Every form here comes from Indo-European *dwóh₁: Latin 'duo' → Romance, while English 'two' and German 'zwei' kept the Germanic shape (the 'd→t/z' shift is Grimm's Law).",
+      "example": {"en": "I see two cats.", "es": "Veo dos gatos.", "it": "Vedo due gatti."},
+      "resources": [
+        {"label": "Wiktionary: two", "url": "https://en.wiktionary.org/wiki/two"},
+        {"label": "Wiktionary: duo (Latin)", "url": "https://en.wiktionary.org/wiki/duo"}
+      ]
+    },
+    {
+      "id": "three",
+      "gloss": "three (3)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "three", "ipa": "θriː"},
+        "es": {"word": "tres", "ipa": "tɾes"},
+        "fr": {"word": "trois", "ipa": "tʁwa"},
+        "it": {"word": "tre", "ipa": "tre"},
+        "pt": {"word": "três", "ipa": "ˈtɾes"},
+        "de": {"word": "drei", "ipa": "dʁaɪ̯"},
+        "la": {"word": "tres", "ipa": "treːs"}
+      },
+      "note": "Latin 'tres' gives Spanish/Portuguese 'tres/três' directly; the English 'th' and German 'dr' both trace to the same *tréyes — once you see 'tri-' you see them all.",
+      "example": {"en": "Three friends arrive.", "es": "Tres amigos llegan.", "fr": "Trois amis arrivent."},
+      "resources": [
+        {"label": "Wiktionary: three", "url": "https://en.wiktionary.org/wiki/three"},
+        {"label": "Wiktionary: tres (Latin)", "url": "https://en.wiktionary.org/wiki/tres"}
+      ]
+    },
+    {
+      "id": "four",
+      "gloss": "four (4)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "four", "ipa": "fɔː(ɹ)"},
+        "es": {"word": "cuatro", "ipa": "ˈkwatɾo"},
+        "fr": {"word": "quatre", "ipa": "katʁ"},
+        "it": {"word": "quattro", "ipa": "ˈkwattro"},
+        "pt": {"word": "quatro", "ipa": "ˈkwatɾu"},
+        "de": {"word": "vier", "ipa": "fiːɐ̯"},
+        "la": {"word": "quattuor", "ipa": "ˈkʷat.tu.or"}
+      },
+      "note": "Romance 'qu-' forms (cuatro, quatre, quattro, quatro) all come from Latin 'quattuor'; English 'four' and German 'vier' kept the 'f/v' Germanic reflex of the same *kʷetwóres.",
+      "example": {"en": "Four books on the table.", "es": "Cuatro libros en la mesa.", "it": "Quattro libri sul tavolo."},
+      "resources": [
+        {"label": "Wiktionary: four", "url": "https://en.wiktionary.org/wiki/four"},
+        {"label": "Wiktionary: quattuor (Latin)", "url": "https://en.wiktionary.org/wiki/quattuor"}
+      ]
+    },
+    {
+      "id": "five",
+      "gloss": "five (5)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "five", "ipa": "faɪv"},
+        "es": {"word": "cinco", "ipa": "ˈθiŋko"},
+        "fr": {"word": "cinq", "ipa": "sɛ̃k"},
+        "it": {"word": "cinque", "ipa": "ˈt͡ʃiŋkwe"},
+        "pt": {"word": "cinco", "ipa": "ˈsĩku"},
+        "de": {"word": "fünf", "ipa": "fʏnf"},
+        "la": {"word": "quinque", "ipa": "ˈkʷiːn.kʷe"}
+      },
+      "note": "Latin 'quinque' → 'cinco/cinq/cinque'; English 'five' and German 'fünf' show the Germanic 'f' for the same root *pénkʷe (think 'penta-' in Greek loanwords).",
+      "example": {"en": "Five days a week.", "es": "Cinco días a la semana.", "fr": "Cinq jours par semaine."},
+      "resources": [
+        {"label": "Wiktionary: five", "url": "https://en.wiktionary.org/wiki/five"},
+        {"label": "Wiktionary: quinque (Latin)", "url": "https://en.wiktionary.org/wiki/quinque"}
+      ]
+    },
+    {
+      "id": "six",
+      "gloss": "six (6)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "six", "ipa": "sɪks"},
+        "es": {"word": "seis", "ipa": "ˈsejs"},
+        "fr": {"word": "six", "ipa": "sis"},
+        "it": {"word": "sei", "ipa": "ˈsɛi"},
+        "pt": {"word": "seis", "ipa": "ˈsejʃ"},
+        "de": {"word": "sechs", "ipa": "zɛks"},
+        "la": {"word": "sex", "ipa": "seks"}
+      },
+      "note": "Almost transparent: Latin 'sex' → 'seis/six/sei/seis', and English 'six' / German 'sechs' barely diverge. The shared 's-' root *swéḱs makes this one of the easiest cognates.",
+      "example": {"en": "Six hours of sleep.", "es": "Seis horas de sueño.", "it": "Sei ore di sonno."},
+      "resources": [
+        {"label": "Wiktionary: six", "url": "https://en.wiktionary.org/wiki/six"},
+        {"label": "Wiktionary: sex (Latin)", "url": "https://en.wiktionary.org/wiki/sex"}
+      ]
+    },
+    {
+      "id": "seven",
+      "gloss": "seven (7)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "seven", "ipa": "ˈsɛvən"},
+        "es": {"word": "siete", "ipa": "ˈsjete"},
+        "fr": {"word": "sept", "ipa": "sɛt"},
+        "it": {"word": "sette", "ipa": "ˈsɛtte"},
+        "pt": {"word": "sete", "ipa": "ˈsɛtɨ"},
+        "de": {"word": "sieben", "ipa": "ˈziːbn̩"},
+        "la": {"word": "septem", "ipa": "ˈsɛp.tɛm"}
+      },
+      "note": "Latin 'septem' (cf. 'September', the old 7th month) → 'siete/sept/sette/sete'; English 'seven' and German 'sieben' descend from the same *septḿ̥.",
+      "example": {"en": "Seven colors in the rainbow.", "es": "Siete colores en el arcoíris.", "fr": "Sept couleurs dans l'arc-en-ciel."},
+      "resources": [
+        {"label": "Wiktionary: seven", "url": "https://en.wiktionary.org/wiki/seven"},
+        {"label": "Wiktionary: septem (Latin)", "url": "https://en.wiktionary.org/wiki/septem"}
+      ]
+    },
+    {
+      "id": "eight",
+      "gloss": "eight (8)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "eight", "ipa": "eɪt"},
+        "es": {"word": "ocho", "ipa": "ˈot͡ʃo"},
+        "fr": {"word": "huit", "ipa": "ɥit"},
+        "it": {"word": "otto", "ipa": "ˈɔtto"},
+        "pt": {"word": "oito", "ipa": "ˈojtu"},
+        "de": {"word": "acht", "ipa": "axt"},
+        "la": {"word": "octo", "ipa": "ˈok.toː"}
+      },
+      "note": "Latin 'octo' (cf. 'octopus', 'October') → 'ocho/huit/otto/oito'; English 'eight' and German 'acht' come from the same *oḱtṓ — the 'ct' often softens to a vowel in Romance.",
+      "example": {"en": "Eight in the morning.", "es": "Las ocho de la mañana.", "it": "Le otto del mattino."},
+      "resources": [
+        {"label": "Wiktionary: eight", "url": "https://en.wiktionary.org/wiki/eight"},
+        {"label": "Wiktionary: octo (Latin)", "url": "https://en.wiktionary.org/wiki/octo"}
+      ]
+    },
+    {
+      "id": "nine",
+      "gloss": "nine (9)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "nine", "ipa": "naɪn"},
+        "es": {"word": "nueve", "ipa": "ˈnweβe"},
+        "fr": {"word": "neuf", "ipa": "nœf"},
+        "it": {"word": "nove", "ipa": "ˈnɔːve"},
+        "pt": {"word": "nove", "ipa": "ˈnɔvɨ"},
+        "de": {"word": "neun", "ipa": "nɔɪ̯n"},
+        "la": {"word": "novem", "ipa": "ˈnɔ.wɛm"}
+      },
+      "note": "Latin 'novem' (cf. 'November', old 9th month) → 'nueve/neuf/nove'; English 'nine' and German 'neun' share the same *h₁néwn̥. All start with 'n-'.",
+      "example": {"en": "Nine and counting.", "es": "Nueve y contando.", "fr": "Neuf et ça continue."},
+      "resources": [
+        {"label": "Wiktionary: nine", "url": "https://en.wiktionary.org/wiki/nine"},
+        {"label": "Wiktionary: novem (Latin)", "url": "https://en.wiktionary.org/wiki/novem"}
+      ]
+    },
+    {
+      "id": "ten",
+      "gloss": "ten (10)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "ten", "ipa": "tɛn"},
+        "es": {"word": "diez", "ipa": "ˈdjeθ"},
+        "fr": {"word": "dix", "ipa": "dis"},
+        "it": {"word": "dieci", "ipa": "ˈdjɛːt͡ʃi"},
+        "pt": {"word": "dez", "ipa": "ˈdɛʃ"},
+        "de": {"word": "zehn", "ipa": "t͡seːn"},
+        "la": {"word": "decem", "ipa": "ˈdɛ.kɛm"}
+      },
+      "note": "Latin 'decem' (cf. 'decimal', 'December') → 'diez/dix/dieci/dez'; English 'ten' and German 'zehn' descend from the same *déḱm̥. The 'dec-' prefix you know from math is right here.",
+      "example": {"en": "Ten fingers, two hands.", "es": "Diez dedos, dos manos.", "it": "Dieci dita, due mani."},
+      "resources": [
+        {"label": "Wiktionary: ten", "url": "https://en.wiktionary.org/wiki/ten"},
+        {"label": "Wiktionary: decem (Latin)", "url": "https://en.wiktionary.org/wiki/decem"}
+      ]
+    },
+    {
+      "id": "i",
+      "gloss": "I (1st person singular)",
+      "category": "pronoun",
+      "pos": "pronoun",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "I", "ipa": "aɪ"},
+        "es": {"word": "yo", "ipa": "ʝo"},
+        "fr": {"word": "je", "ipa": "ʒə"},
+        "it": {"word": "io", "ipa": "ˈiːo"},
+        "pt": {"word": "eu", "ipa": "ˈew"},
+        "de": {"word": "ich", "ipa": "ɪç"},
+        "la": {"word": "ego", "ipa": "ˈɛ.ɡoː"}
+      },
+      "note": "Latin 'ego' (the source of the English psychology term) gives Italian 'io' and Portuguese 'eu'; English 'I' and German 'ich' descend from a separate but related *éǵ-.",
+      "example": {"en": "I am here.", "es": "Yo estoy aquí.", "fr": "Je suis ici."},
+      "resources": [
+        {"label": "Wiktionary: ego (Latin)", "url": "https://en.wiktionary.org/wiki/ego"},
+        {"label": "Wiktionary: I", "url": "https://en.wiktionary.org/wiki/I"}
+      ]
+    },
+    {
+      "id": "you-sg",
+      "gloss": "you (singular, informal)",
+      "category": "pronoun",
+      "pos": "pronoun",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "you", "ipa": "juː"},
+        "es": {"word": "tú", "ipa": "tu"},
+        "fr": {"word": "tu", "ipa": "ty"},
+        "it": {"word": "tu", "ipa": "tu"},
+        "pt": {"word": "tu", "ipa": "tu"},
+        "de": {"word": "du", "ipa": "duː"},
+        "la": {"word": "tu", "ipa": "tuː"}
+      },
+      "note": "The informal 'you' is one of the most stable words in Europe: Latin 'tu' is unchanged in Spanish/French/Italian/Portuguese, and German 'du' is the same *túh₂. English alone replaced 'thou' with the old plural 'you'.",
+      "example": {"en": "You are my friend.", "es": "Tú eres mi amigo.", "it": "Tu sei mio amico."},
+      "resources": [
+        {"label": "Wiktionary: tu (Latin)", "url": "https://en.wiktionary.org/wiki/tu"},
+        {"label": "Wiktionary: you", "url": "https://en.wiktionary.org/wiki/you"}
+      ]
+    },
+    {
+      "id": "he",
+      "gloss": "he (3rd person singular masculine)",
+      "category": "pronoun",
+      "pos": "pronoun",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "he", "ipa": "hiː"},
+        "es": {"word": "él", "ipa": "el"},
+        "fr": {"word": "il", "ipa": "il"},
+        "it": {"word": "lui", "ipa": "ˈlui"},
+        "pt": {"word": "ele", "ipa": "ˈeli"},
+        "de": {"word": "er", "ipa": "eːɐ̯"},
+        "la": {"word": "is", "ipa": "is"}
+      },
+      "note": "Romance 'he' (él, il, ele) descends from Latin 'ille' (that one); Italian 'lui' is from the same demonstrative. English 'he' and German 'er' are a separate Germanic set.",
+      "example": {"en": "He speaks Spanish.", "es": "Él habla español.", "fr": "Il parle espagnol."},
+      "resources": [
+        {"label": "Wiktionary: ille (Latin)", "url": "https://en.wiktionary.org/wiki/ille"},
+        {"label": "Wiktionary: he", "url": "https://en.wiktionary.org/wiki/he"}
+      ]
+    },
+    {
+      "id": "she",
+      "gloss": "she (3rd person singular feminine)",
+      "category": "pronoun",
+      "pos": "pronoun",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "she", "ipa": "ʃiː"},
+        "es": {"word": "ella", "ipa": "ˈeʎa"},
+        "fr": {"word": "elle", "ipa": "ɛl"},
+        "it": {"word": "lei", "ipa": "ˈlɛi"},
+        "pt": {"word": "ela", "ipa": "ˈɛlɐ"},
+        "de": {"word": "sie", "ipa": "ziː"},
+        "la": {"word": "ea", "ipa": "ˈe.a"}
+      },
+      "note": "The feminine 'she' in Romance (ella, elle, ela) is the feminine of Latin 'ille' → 'illa'. Note the '-a/-e' feminine ending lighting up across Spanish, French, and Portuguese.",
+      "example": {"en": "She reads a book.", "es": "Ella lee un libro.", "it": "Lei legge un libro."},
+      "resources": [
+        {"label": "Wiktionary: illa (Latin)", "url": "https://en.wiktionary.org/wiki/illa"},
+        {"label": "Wiktionary: she", "url": "https://en.wiktionary.org/wiki/she"}
+      ]
+    },
+    {
+      "id": "we",
+      "gloss": "we (1st person plural)",
+      "category": "pronoun",
+      "pos": "pronoun",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "we", "ipa": "wiː"},
+        "es": {"word": "nosotros", "ipa": "noˈsotɾos"},
+        "fr": {"word": "nous", "ipa": "nu"},
+        "it": {"word": "noi", "ipa": "ˈnoi"},
+        "pt": {"word": "nós", "ipa": "ˈnɔʃ"},
+        "de": {"word": "wir", "ipa": "viːɐ̯"},
+        "la": {"word": "nos", "ipa": "noːs"}
+      },
+      "note": "Latin 'nos' is right there in French 'nous', Italian 'noi', Portuguese 'nós', and the 'nos-' of Spanish 'nosotros'. English 'we' and German 'wir' are the Germanic *wéi instead.",
+      "example": {"en": "We go together.", "es": "Nosotros vamos juntos.", "fr": "Nous allons ensemble."},
+      "resources": [
+        {"label": "Wiktionary: nos (Latin)", "url": "https://en.wiktionary.org/wiki/nos"},
+        {"label": "Wiktionary: we", "url": "https://en.wiktionary.org/wiki/we"}
+      ]
+    },
+    {
+      "id": "they",
+      "gloss": "they (3rd person plural)",
+      "category": "pronoun",
+      "pos": "pronoun",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "they", "ipa": "ðeɪ"},
+        "es": {"word": "ellos", "ipa": "ˈeʎos"},
+        "fr": {"word": "ils", "ipa": "il"},
+        "it": {"word": "loro", "ipa": "ˈloːro"},
+        "pt": {"word": "eles", "ipa": "ˈeliʃ"},
+        "de": {"word": "sie", "ipa": "ziː"},
+        "la": {"word": "ii", "ipa": "ˈiː"}
+      },
+      "note": "Romance plural 'they' (ellos, ils, eles) is the plural of Latin 'ille'; Italian 'loro' is from Latin 'illorum' (of those). English 'they' is unusually a Norse loan, not native Germanic.",
+      "example": {"en": "They live here.", "es": "Ellos viven aquí.", "pt": "Eles vivem aqui."},
+      "resources": [
+        {"label": "Wiktionary: ille (Latin)", "url": "https://en.wiktionary.org/wiki/ille"},
+        {"label": "Wiktionary: they", "url": "https://en.wiktionary.org/wiki/they"}
+      ]
+    },
+    {
+      "id": "to-be",
+      "gloss": "to be",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to be", "ipa": "tə biː"},
+        "es": {"word": "ser", "ipa": "seɾ"},
+        "fr": {"word": "être", "ipa": "ɛtʁ"},
+        "it": {"word": "essere", "ipa": "ˈɛssere"},
+        "pt": {"word": "ser", "ipa": "ˈseɾ"},
+        "de": {"word": "sein", "ipa": "zaɪ̯n"},
+        "la": {"word": "esse", "ipa": "ˈɛs.sɛ"}
+      },
+      "note": "Latin 'esse' is the parent of Spanish/Portuguese 'ser', French 'être', and Italian 'essere'. The root *h₁es- also surfaces in English 'is' and German 'ist'. (Spanish/Portuguese split a second 'to be' — estar — for states.)",
+      "example": {"en": "It is good to be here.", "es": "Es bueno ser aquí.", "fr": "C'est bon d'être ici."},
+      "resources": [
+        {"label": "Wiktionary: esse (Latin)", "url": "https://en.wiktionary.org/wiki/esse"},
+        {"label": "Wiktionary: be", "url": "https://en.wiktionary.org/wiki/be"}
+      ]
+    },
+    {
+      "id": "to-have",
+      "gloss": "to have",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to have", "ipa": "tə hæv"},
+        "es": {"word": "haber", "ipa": "aˈβeɾ"},
+        "fr": {"word": "avoir", "ipa": "avwaʁ"},
+        "it": {"word": "avere", "ipa": "aˈveːre"},
+        "pt": {"word": "haver", "ipa": "ɐˈveɾ"},
+        "de": {"word": "haben", "ipa": "ˈhaːbn̩"},
+        "la": {"word": "habere", "ipa": "haˈbeː.rɛ"}
+      },
+      "note": "Romance 'to have' (haber, avoir, avere, haver) all come from Latin 'habere'. English 'have' and German 'haben' look identical but are a coincidental Germanic root *habjaną — same meaning, different family.",
+      "example": {"en": "I want to have time.", "es": "Quiero tener tiempo.", "it": "Voglio avere tempo."},
+      "resources": [
+        {"label": "Wiktionary: habere (Latin)", "url": "https://en.wiktionary.org/wiki/habere"},
+        {"label": "Wiktionary: have", "url": "https://en.wiktionary.org/wiki/have"}
+      ]
+    },
+    {
+      "id": "yes",
+      "gloss": "yes",
+      "category": "function",
+      "pos": "particle",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "yes", "ipa": "jɛs"},
+        "es": {"word": "sí", "ipa": "si"},
+        "fr": {"word": "oui", "ipa": "wi"},
+        "it": {"word": "sì", "ipa": "si"},
+        "pt": {"word": "sim", "ipa": "ˈsĩ"},
+        "de": {"word": "ja", "ipa": "jaː"},
+        "la": {"word": "ita", "ipa": "ˈi.ta"}
+      },
+      "note": "Italian and Spanish 'sì/sí' come from Latin 'sic' (thus, so); Portuguese 'sim' is from 'sic' too. French 'oui' is from 'hoc ille' (this one). German 'ja' and English 'yes' are Germanic.",
+      "example": {"en": "Yes, I understand.", "es": "Sí, entiendo.", "it": "Sì, capisco."},
+      "resources": [
+        {"label": "Wiktionary: yes", "url": "https://en.wiktionary.org/wiki/yes"},
+        {"label": "Wiktionary: sic (Latin)", "url": "https://en.wiktionary.org/wiki/sic"}
+      ]
+    },
+    {
+      "id": "no",
+      "gloss": "no",
+      "category": "function",
+      "pos": "particle",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "no", "ipa": "nəʊ"},
+        "es": {"word": "no", "ipa": "no"},
+        "fr": {"word": "non", "ipa": "nɔ̃"},
+        "it": {"word": "no", "ipa": "nɔ"},
+        "pt": {"word": "não", "ipa": "ˈnɐ̃w̃"},
+        "de": {"word": "nein", "ipa": "naɪ̯n"},
+        "la": {"word": "non", "ipa": "noːn"}
+      },
+      "note": "Latin 'non' is the root of every 'no' here: Spanish/Italian 'no', French 'non', Portuguese 'não'. The 'n-' negation runs all the way to English 'no' and German 'nein' via *ne.",
+      "example": {"en": "No, thank you.", "es": "No, gracias.", "fr": "Non, merci."},
+      "resources": [
+        {"label": "Wiktionary: no", "url": "https://en.wiktionary.org/wiki/no"},
+        {"label": "Wiktionary: non (Latin)", "url": "https://en.wiktionary.org/wiki/non"}
+      ]
+    },
+    {
+      "id": "hello",
+      "gloss": "hello / greeting",
+      "category": "greeting",
+      "pos": "interjection",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "hello", "ipa": "həˈloʊ"},
+        "es": {"word": "hola", "ipa": "ˈola"},
+        "fr": {"word": "bonjour", "ipa": "bɔ̃ʒuʁ"},
+        "it": {"word": "ciao", "ipa": "ˈt͡ʃaːo"},
+        "pt": {"word": "olá", "ipa": "oˈla"},
+        "de": {"word": "hallo", "ipa": "haˈloː"},
+        "la": {"word": "salve", "ipa": "ˈsal.weː"}
+      },
+      "note": "French 'bonjour' is literally 'good day'. Latin 'salve' (be well) survives in the English 'salutation'. Italian 'ciao' actually comes from Venetian 'schiavo' (your servant).",
+      "example": {"en": "Hello, how are you?", "es": "Hola, ¿cómo estás?", "fr": "Bonjour, comment ça va ?"},
+      "resources": [
+        {"label": "Wiktionary: hello", "url": "https://en.wiktionary.org/wiki/hello"},
+        {"label": "Wiktionary: salve (Latin)", "url": "https://en.wiktionary.org/wiki/salve"}
+      ]
+    },
+    {
+      "id": "thank-you",
+      "gloss": "thank you",
+      "category": "greeting",
+      "pos": "phrase",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "thank you", "ipa": "ˈθæŋk juː"},
+        "es": {"word": "gracias", "ipa": "ˈɡɾaθjas"},
+        "fr": {"word": "merci", "ipa": "mɛʁsi"},
+        "it": {"word": "grazie", "ipa": "ˈɡrattsje"},
+        "pt": {"word": "obrigado", "ipa": "obɾiˈɡadu"},
+        "de": {"word": "danke", "ipa": "ˈdaŋkə"},
+        "la": {"word": "gratias", "ipa": "ˈɡraː.ti.aːs"}
+      },
+      "note": "Spanish 'gracias' and Italian 'grazie' come from Latin 'gratias' (thanks, favors) — the same root as English 'grace' and 'gratitude'. French 'merci' is from Latin 'merces' (reward).",
+      "example": {"en": "Thank you very much.", "es": "Muchas gracias.", "it": "Grazie mille."},
+      "resources": [
+        {"label": "Wiktionary: gratias (Latin)", "url": "https://en.wiktionary.org/wiki/gratias"},
+        {"label": "Wiktionary: gracias", "url": "https://en.wiktionary.org/wiki/gracias"}
+      ]
+    },
+    {
+      "id": "please",
+      "gloss": "please",
+      "category": "greeting",
+      "pos": "phrase",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "please", "ipa": "pliːz"},
+        "es": {"word": "por favor", "ipa": "poɾ faˈβoɾ"},
+        "fr": {"word": "s'il vous plaît", "ipa": "sil vu plɛ"},
+        "it": {"word": "per favore", "ipa": "per faˈvoːre"},
+        "pt": {"word": "por favor", "ipa": "poɾ fɐˈvoɾ"},
+        "de": {"word": "bitte", "ipa": "ˈbɪtə"},
+        "la": {"word": "quaeso", "ipa": "ˈkʷae̯.soː"}
+      },
+      "note": "Spanish/Portuguese 'por favor' and Italian 'per favore' literally mean 'by/for favor' (Latin 'favor'). French 's'il vous plaît' means 'if it pleases you' — sharing the root of English 'please' (Latin 'placere').",
+      "example": {"en": "Water, please.", "es": "Agua, por favor.", "it": "Acqua, per favore."},
+      "resources": [
+        {"label": "Wiktionary: please", "url": "https://en.wiktionary.org/wiki/please"},
+        {"label": "Wiktionary: favor (Latin)", "url": "https://en.wiktionary.org/wiki/favor"}
+      ]
+    },
+    {
+      "id": "goodbye",
+      "gloss": "goodbye",
+      "category": "greeting",
+      "pos": "phrase",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "goodbye", "ipa": "ɡʊdˈbaɪ"},
+        "es": {"word": "adiós", "ipa": "aˈðjos"},
+        "fr": {"word": "au revoir", "ipa": "o ʁəvwaʁ"},
+        "it": {"word": "arrivederci", "ipa": "arriveˈdert͡ʃi"},
+        "pt": {"word": "adeus", "ipa": "ɐˈdewʃ"},
+        "de": {"word": "tschüss", "ipa": "t͡ʃʏs"},
+        "la": {"word": "vale", "ipa": "ˈwa.leː"}
+      },
+      "note": "Spanish 'adiós' and Portuguese 'adeus' literally mean 'to God' (a Dios), as does French 'adieu'. Latin 'vale' (be strong / farewell) is the classical goodbye — the root of 'valid' and 'value'.",
+      "example": {"en": "Goodbye, see you tomorrow.", "es": "Adiós, hasta mañana.", "fr": "Au revoir, à demain."},
+      "resources": [
+        {"label": "Wiktionary: goodbye", "url": "https://en.wiktionary.org/wiki/goodbye"},
+        {"label": "Wiktionary: vale (Latin)", "url": "https://en.wiktionary.org/wiki/vale"}
+      ]
+    },
+    {
+      "id": "this",
+      "gloss": "this",
+      "category": "function",
+      "pos": "determiner",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "this", "ipa": "ðɪs"},
+        "es": {"word": "este", "ipa": "ˈeste"},
+        "fr": {"word": "ce", "ipa": "sə"},
+        "it": {"word": "questo", "ipa": "ˈkwesto"},
+        "pt": {"word": "este", "ipa": "ˈeʃtɨ"},
+        "de": {"word": "dieser", "ipa": "ˈdiːzɐ"},
+        "la": {"word": "hic", "ipa": "hik"}
+      },
+      "note": "Spanish/Portuguese 'este' and Italian 'questo' (from Latin 'eccum istum') point to the near demonstrative. English 'this' and German 'dieser' share the Germanic 'th/d' demonstrative root.",
+      "example": {"en": "This is my house.", "es": "Esta es mi casa.", "it": "Questa è la mia casa."},
+      "resources": [
+        {"label": "Wiktionary: this", "url": "https://en.wiktionary.org/wiki/this"},
+        {"label": "Wiktionary: iste (Latin)", "url": "https://en.wiktionary.org/wiki/iste"}
+      ]
+    },
+    {
+      "id": "that",
+      "gloss": "that",
+      "category": "function",
+      "pos": "determiner",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "that", "ipa": "ðæt"},
+        "es": {"word": "ese", "ipa": "ˈese"},
+        "fr": {"word": "cela", "ipa": "səla"},
+        "it": {"word": "quello", "ipa": "ˈkwello"},
+        "pt": {"word": "esse", "ipa": "ˈesɨ"},
+        "de": {"word": "jener", "ipa": "ˈjeːnɐ"},
+        "la": {"word": "ille", "ipa": "ˈil.le"}
+      },
+      "note": "The far demonstrative: Spanish 'ese', Portuguese 'esse', Italian 'quello' from Latin 'ille' / 'eccum illum' — the same 'ille' that became the Romance words for 'he' and 'the'.",
+      "example": {"en": "That is a good book.", "es": "Ese es un buen libro.", "it": "Quello è un buon libro."},
+      "resources": [
+        {"label": "Wiktionary: that", "url": "https://en.wiktionary.org/wiki/that"},
+        {"label": "Wiktionary: ille (Latin)", "url": "https://en.wiktionary.org/wiki/ille"}
+      ]
+    },
+    {
+      "id": "here",
+      "gloss": "here",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "here", "ipa": "hɪə(ɹ)"},
+        "es": {"word": "aquí", "ipa": "aˈki"},
+        "fr": {"word": "ici", "ipa": "isi"},
+        "it": {"word": "qui", "ipa": "kwi"},
+        "pt": {"word": "aqui", "ipa": "ɐˈki"},
+        "de": {"word": "hier", "ipa": "hiːɐ̯"},
+        "la": {"word": "hic", "ipa": "hiːk"}
+      },
+      "note": "Spanish/Portuguese 'aquí/aqui' and Italian 'qui' trace to Latin 'hic' (here). English 'here' and German 'hier' are a separate Germanic 'h-' word — but the meanings line up cleanly.",
+      "example": {"en": "I am here.", "es": "Estoy aquí.", "fr": "Je suis ici."},
+      "resources": [
+        {"label": "Wiktionary: here", "url": "https://en.wiktionary.org/wiki/here"},
+        {"label": "Wiktionary: hic (Latin)", "url": "https://en.wiktionary.org/wiki/hic"}
+      ]
+    },
+    {
+      "id": "there",
+      "gloss": "there",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {"word": "there", "ipa": "ðɛə(ɹ)"},
+        "es": {"word": "allí", "ipa": "aˈʎi"},
+        "fr": {"word": "là", "ipa": "la"},
+        "it": {"word": "lì", "ipa": "li"},
+        "pt": {"word": "ali", "ipa": "ɐˈli"},
+        "de": {"word": "dort", "ipa": "dɔʁt"},
+        "la": {"word": "illic", "ipa": "ˈil.lik"}
+      },
+      "note": "Romance 'there' (allí, là, lì, ali) carry the 'l-' of Latin 'illic' / 'illac' — the demonstrative 'ille' again. English 'there' and German 'dort' are the Germanic counterpart.",
+      "example": {"en": "The book is there.", "es": "El libro está allí.", "it": "Il libro è lì."},
+      "resources": [
+        {"label": "Wiktionary: there", "url": "https://en.wiktionary.org/wiki/there"},
+        {"label": "Wiktionary: illic (Latin)", "url": "https://en.wiktionary.org/wiki/illic"}
+      ]
+    },
+
+    {
+      "id": "water",
+      "gloss": "water",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "water", "ipa": "ˈwɔːtər"},
+        "es": {"word": "agua", "ipa": "ˈaɣwa", "gender": "f", "note": "takes 'el' in singular"},
+        "fr": {"word": "eau", "ipa": "o", "gender": "f"},
+        "it": {"word": "acqua", "ipa": "ˈakkwa", "gender": "f"},
+        "pt": {"word": "água", "ipa": "ˈaɡwɐ", "gender": "f"},
+        "de": {"word": "Wasser", "ipa": "ˈvasɐ", "gender": "n"},
+        "la": {"word": "aqua", "ipa": "ˈa.kʷa", "gender": "f"}
+      },
+      "note": "All Romance forms descend from Latin 'aqua' (think 'aquarium', 'aquatic'); English 'water' is Germanic (cf. German 'Wasser'), from the parallel root *wódr̥.",
+      "example": {"en": "I drink water.", "es": "Bebo agua.", "fr": "Je bois de l'eau."},
+      "resources": [
+        {"label": "Wiktionary: water", "url": "https://en.wiktionary.org/wiki/water"},
+        {"label": "Wiktionary: aqua (Latin)", "url": "https://en.wiktionary.org/wiki/aqua"}
+      ]
+    },
+    {
+      "id": "bread",
+      "gloss": "bread",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "bread", "ipa": "brɛd"},
+        "es": {"word": "pan", "ipa": "pan", "gender": "m"},
+        "fr": {"word": "pain", "ipa": "pɛ̃", "gender": "m"},
+        "it": {"word": "pane", "ipa": "ˈpaːne", "gender": "m"},
+        "pt": {"word": "pão", "ipa": "ˈpɐ̃w̃", "gender": "m"},
+        "de": {"word": "Brot", "ipa": "bʁoːt", "gender": "n"},
+        "la": {"word": "panis", "ipa": "ˈpaː.nis", "gender": "m"}
+      },
+      "note": "Romance 'bread' (pan, pain, pane, pão) all come from Latin 'panis' — the root of 'pantry', 'companion' (one you share bread with), and 'empanada'. English 'bread' and German 'Brot' are Germanic.",
+      "example": {"en": "I eat bread with butter.", "es": "Como pan con mantequilla.", "it": "Mangio pane con burro."},
+      "resources": [
+        {"label": "Wiktionary: bread", "url": "https://en.wiktionary.org/wiki/bread"},
+        {"label": "Wiktionary: panis (Latin)", "url": "https://en.wiktionary.org/wiki/panis"}
+      ]
+    },
+    {
+      "id": "house",
+      "gloss": "house",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "house", "ipa": "haʊs"},
+        "es": {"word": "casa", "ipa": "ˈkasa", "gender": "f"},
+        "fr": {"word": "maison", "ipa": "mɛzɔ̃", "gender": "f"},
+        "it": {"word": "casa", "ipa": "ˈkaːza", "gender": "f"},
+        "pt": {"word": "casa", "ipa": "ˈkazɐ", "gender": "f"},
+        "de": {"word": "Haus", "ipa": "haʊ̯s", "gender": "n"},
+        "la": {"word": "casa", "ipa": "ˈka.sa", "gender": "f"}
+      },
+      "note": "Spanish, Italian, and Portuguese keep Latin 'casa' (cottage) unchanged. French chose 'maison' (from Latin 'mansio', a dwelling — root of 'mansion'). English 'house' and German 'Haus' are Germanic twins.",
+      "example": {"en": "My house is small.", "es": "Mi casa es pequeña.", "it": "La mia casa è piccola."},
+      "resources": [
+        {"label": "Wiktionary: house", "url": "https://en.wiktionary.org/wiki/house"},
+        {"label": "Wiktionary: casa (Latin)", "url": "https://en.wiktionary.org/wiki/casa"}
+      ]
+    },
+    {
+      "id": "friend",
+      "gloss": "friend",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "friend", "ipa": "frɛnd"},
+        "es": {"word": "amigo", "ipa": "aˈmiɣo", "gender": "m"},
+        "fr": {"word": "ami", "ipa": "ami", "gender": "m"},
+        "it": {"word": "amico", "ipa": "aˈmiːko", "gender": "m"},
+        "pt": {"word": "amigo", "ipa": "ɐˈmiɡu", "gender": "m"},
+        "de": {"word": "Freund", "ipa": "fʁɔɪ̯nt", "gender": "m"},
+        "la": {"word": "amicus", "ipa": "aˈmiː.kus", "gender": "m"}
+      },
+      "note": "Romance 'friend' (amigo, ami, amico) is from Latin 'amicus', built on 'amare' (to love) — the same root as 'amiable' and 'amity'. English 'friend' and German 'Freund' are Germanic.",
+      "example": {"en": "You are my friend.", "es": "Eres mi amigo.", "it": "Sei mio amico."},
+      "resources": [
+        {"label": "Wiktionary: friend", "url": "https://en.wiktionary.org/wiki/friend"},
+        {"label": "Wiktionary: amicus (Latin)", "url": "https://en.wiktionary.org/wiki/amicus"}
+      ]
+    },
+    {
+      "id": "day",
+      "gloss": "day",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "day", "ipa": "deɪ"},
+        "es": {"word": "día", "ipa": "ˈdia", "gender": "m"},
+        "fr": {"word": "jour", "ipa": "ʒuʁ", "gender": "m"},
+        "it": {"word": "giorno", "ipa": "ˈdʒorno", "gender": "m"},
+        "pt": {"word": "dia", "ipa": "ˈdiɐ", "gender": "m"},
+        "de": {"word": "Tag", "ipa": "taːk", "gender": "m"},
+        "la": {"word": "dies", "ipa": "ˈdi.eːs", "gender": "m"}
+      },
+      "note": "Spanish/Portuguese 'día/dia' come straight from Latin 'dies'. French 'jour' and Italian 'giorno' took a different Latin path through 'diurnum' (daily) — the root of 'journal' and 'journey'. English 'day' / German 'Tag' are Germanic.",
+      "example": {"en": "Good day, friend.", "es": "Buen día, amigo.", "fr": "Bonne journée, ami."},
+      "resources": [
+        {"label": "Wiktionary: day", "url": "https://en.wiktionary.org/wiki/day"},
+        {"label": "Wiktionary: dies (Latin)", "url": "https://en.wiktionary.org/wiki/dies"}
+      ]
+    },
+    {
+      "id": "night",
+      "gloss": "night",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "night", "ipa": "naɪt"},
+        "es": {"word": "noche", "ipa": "ˈnot͡ʃe", "gender": "f"},
+        "fr": {"word": "nuit", "ipa": "nɥi", "gender": "f"},
+        "it": {"word": "notte", "ipa": "ˈnɔtte", "gender": "f"},
+        "pt": {"word": "noite", "ipa": "ˈnojtɨ", "gender": "f"},
+        "de": {"word": "Nacht", "ipa": "naxt", "gender": "f"},
+        "la": {"word": "nox", "ipa": "noks", "gender": "f"}
+      },
+      "note": "A beautiful cognate set: Latin 'nox' (stem 'noct-', as in 'nocturnal') gives noche/nuit/notte/noite, and the same root *nókʷts gives English 'night' and German 'Nacht'. Every form keeps the 'n-' and a 't/ch'.",
+      "example": {"en": "Good night.", "es": "Buenas noches.", "it": "Buona notte."},
+      "resources": [
+        {"label": "Wiktionary: night", "url": "https://en.wiktionary.org/wiki/night"},
+        {"label": "Wiktionary: nox (Latin)", "url": "https://en.wiktionary.org/wiki/nox"}
+      ]
+    },
+    {
+      "id": "sun",
+      "gloss": "sun",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "sun", "ipa": "sʌn"},
+        "es": {"word": "sol", "ipa": "sol", "gender": "m"},
+        "fr": {"word": "soleil", "ipa": "sɔlɛj", "gender": "m"},
+        "it": {"word": "sole", "ipa": "ˈsoːle", "gender": "m"},
+        "pt": {"word": "sol", "ipa": "ˈsɔl", "gender": "m"},
+        "de": {"word": "Sonne", "ipa": "ˈzɔnə", "gender": "f"},
+        "la": {"word": "sol", "ipa": "soːl", "gender": "m"}
+      },
+      "note": "Latin 'sol' (root of 'solar') is nearly untouched in Spanish/Portuguese 'sol' and Italian 'sole'; French 'soleil' adds a diminutive. English 'sun' and German 'Sonne' are the Germanic side of the same *sóh₂wl̥.",
+      "example": {"en": "The sun is hot.", "es": "El sol está caliente.", "it": "Il sole è caldo."},
+      "resources": [
+        {"label": "Wiktionary: sun", "url": "https://en.wiktionary.org/wiki/sun"},
+        {"label": "Wiktionary: sol (Latin)", "url": "https://en.wiktionary.org/wiki/sol"}
+      ]
+    },
+    {
+      "id": "moon",
+      "gloss": "moon",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "moon", "ipa": "muːn"},
+        "es": {"word": "luna", "ipa": "ˈluna", "gender": "f"},
+        "fr": {"word": "lune", "ipa": "lyn", "gender": "f"},
+        "it": {"word": "luna", "ipa": "ˈluːna", "gender": "f"},
+        "pt": {"word": "lua", "ipa": "ˈluɐ", "gender": "f"},
+        "de": {"word": "Mond", "ipa": "moːnt", "gender": "m"},
+        "la": {"word": "luna", "ipa": "ˈluː.na", "gender": "f"}
+      },
+      "note": "Romance 'moon' (luna, lune, luna, lua) all come from Latin 'luna' (root of 'lunar', 'lunatic'). English 'moon' and German 'Mond' descend from a different root *mḗh₁n̥s — also the source of 'month'.",
+      "example": {"en": "The moon is full tonight.", "es": "La luna está llena esta noche.", "it": "La luna è piena stanotte."},
+      "resources": [
+        {"label": "Wiktionary: moon", "url": "https://en.wiktionary.org/wiki/moon"},
+        {"label": "Wiktionary: luna (Latin)", "url": "https://en.wiktionary.org/wiki/luna"}
+      ]
+    },
+    {
+      "id": "book",
+      "gloss": "book",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "book", "ipa": "bʊk"},
+        "es": {"word": "libro", "ipa": "ˈliβɾo", "gender": "m"},
+        "fr": {"word": "livre", "ipa": "livʁ", "gender": "m"},
+        "it": {"word": "libro", "ipa": "ˈliːbro", "gender": "m"},
+        "pt": {"word": "livro", "ipa": "ˈlivɾu", "gender": "m"},
+        "de": {"word": "Buch", "ipa": "buːx", "gender": "n"},
+        "la": {"word": "liber", "ipa": "ˈli.bɛr", "gender": "m"}
+      },
+      "note": "Romance 'book' (libro, livre, libro, livro) all come from Latin 'liber' — root of 'library' and 'libretto'. English 'book' and German 'Buch' come from the Germanic word for beech wood, on which early runes were carved.",
+      "example": {"en": "This book is new.", "es": "Este libro es nuevo.", "it": "Questo libro è nuovo."},
+      "resources": [
+        {"label": "Wiktionary: book", "url": "https://en.wiktionary.org/wiki/book"},
+        {"label": "Wiktionary: liber (Latin)", "url": "https://en.wiktionary.org/wiki/liber"}
+      ]
+    },
+    {
+      "id": "dog",
+      "gloss": "dog",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "dog", "ipa": "dɒɡ"},
+        "es": {"word": "perro", "ipa": "ˈpero", "gender": "m"},
+        "fr": {"word": "chien", "ipa": "ʃjɛ̃", "gender": "m"},
+        "it": {"word": "cane", "ipa": "ˈkaːne", "gender": "m"},
+        "pt": {"word": "cão", "ipa": "ˈkɐ̃w̃", "gender": "m"},
+        "de": {"word": "Hund", "ipa": "hʊnt", "gender": "m"},
+        "la": {"word": "canis", "ipa": "ˈka.nis", "gender": "m"}
+      },
+      "note": "French 'chien', Italian 'cane', and Portuguese 'cão' come from Latin 'canis' (root of 'canine'). Spanish broke ranks with 'perro' (uncertain origin). English 'dog' and German 'Hund' (cf. 'hound') are Germanic.",
+      "example": {"en": "The dog drinks water.", "es": "El perro bebe agua.", "it": "Il cane beve acqua."},
+      "resources": [
+        {"label": "Wiktionary: dog", "url": "https://en.wiktionary.org/wiki/dog"},
+        {"label": "Wiktionary: canis (Latin)", "url": "https://en.wiktionary.org/wiki/canis"}
+      ]
+    },
+    {
+      "id": "hand",
+      "gloss": "hand",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "hand", "ipa": "hænd"},
+        "es": {"word": "mano", "ipa": "ˈmano", "gender": "f", "note": "feminine despite the '-o' ending"},
+        "fr": {"word": "main", "ipa": "mɛ̃", "gender": "f"},
+        "it": {"word": "mano", "ipa": "ˈmaːno", "gender": "f"},
+        "pt": {"word": "mão", "ipa": "ˈmɐ̃w̃", "gender": "f"},
+        "de": {"word": "Hand", "ipa": "hant", "gender": "f"},
+        "la": {"word": "manus", "ipa": "ˈma.nus", "gender": "f"}
+      },
+      "note": "Romance 'hand' (mano, main, mano, mão) all come from Latin 'manus' — the root of 'manual', 'manage', 'manuscript'. Note 'mano' is feminine even though it ends in '-o'. English/German 'hand' is the Germanic word.",
+      "example": {"en": "I write with my hand.", "es": "Escribo con la mano.", "it": "Scrivo con la mano."},
+      "resources": [
+        {"label": "Wiktionary: hand", "url": "https://en.wiktionary.org/wiki/hand"},
+        {"label": "Wiktionary: manus (Latin)", "url": "https://en.wiktionary.org/wiki/manus"}
+      ]
+    },
+    {
+      "id": "eye",
+      "gloss": "eye",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "eye", "ipa": "aɪ"},
+        "es": {"word": "ojo", "ipa": "ˈoxo", "gender": "m"},
+        "fr": {"word": "œil", "ipa": "œj", "gender": "m"},
+        "it": {"word": "occhio", "ipa": "ˈɔkkjo", "gender": "m"},
+        "pt": {"word": "olho", "ipa": "ˈoʎu", "gender": "m"},
+        "de": {"word": "Auge", "ipa": "ˈaʊ̯ɡə", "gender": "n"},
+        "la": {"word": "oculus", "ipa": "ˈo.ku.lus", "gender": "m"}
+      },
+      "note": "Romance 'eye' (ojo, œil, occhio, olho) all come from Latin 'oculus' — root of 'ocular', 'binoculars', 'inoculate'. English 'eye' and German 'Auge' descend from the parallel root *h₃ókʷs.",
+      "example": {"en": "I see with my eyes.", "es": "Veo con los ojos.", "it": "Vedo con gli occhi."},
+      "resources": [
+        {"label": "Wiktionary: eye", "url": "https://en.wiktionary.org/wiki/eye"},
+        {"label": "Wiktionary: oculus (Latin)", "url": "https://en.wiktionary.org/wiki/oculus"}
+      ]
+    },
+    {
+      "id": "mother",
+      "gloss": "mother",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "mother", "ipa": "ˈmʌðər"},
+        "es": {"word": "madre", "ipa": "ˈmaðɾe", "gender": "f"},
+        "fr": {"word": "mère", "ipa": "mɛʁ", "gender": "f"},
+        "it": {"word": "madre", "ipa": "ˈmaːdre", "gender": "f"},
+        "pt": {"word": "mãe", "ipa": "ˈmɐ̃j̃", "gender": "f"},
+        "de": {"word": "Mutter", "ipa": "ˈmʊtɐ", "gender": "f"},
+        "la": {"word": "mater", "ipa": "ˈmaː.tɛr", "gender": "f"}
+      },
+      "note": "One of the oldest cognates in the family: Latin 'mater' (root of 'maternal', 'matrix') gives madre/mère/madre/mãe, and the same *méh₂tēr gives English 'mother' and German 'Mutter'. Every form starts with 'm-'.",
+      "example": {"en": "My mother is here.", "es": "Mi madre está aquí.", "it": "Mia madre è qui."},
+      "resources": [
+        {"label": "Wiktionary: mother", "url": "https://en.wiktionary.org/wiki/mother"},
+        {"label": "Wiktionary: mater (Latin)", "url": "https://en.wiktionary.org/wiki/mater"}
+      ]
+    },
+    {
+      "id": "father",
+      "gloss": "father",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "father", "ipa": "ˈfɑːðər"},
+        "es": {"word": "padre", "ipa": "ˈpaðɾe", "gender": "m"},
+        "fr": {"word": "père", "ipa": "pɛʁ", "gender": "m"},
+        "it": {"word": "padre", "ipa": "ˈpaːdre", "gender": "m"},
+        "pt": {"word": "pai", "ipa": "ˈpaj", "gender": "m"},
+        "de": {"word": "Vater", "ipa": "ˈfaːtɐ", "gender": "m"},
+        "la": {"word": "pater", "ipa": "ˈpa.tɛr", "gender": "m"}
+      },
+      "note": "Latin 'pater' (root of 'paternal', 'patriarch') gives padre/père/padre/pai. English 'father' and German 'Vater' come from the same *ph₂tḗr — the Latin 'p' became Germanic 'f' by Grimm's Law.",
+      "example": {"en": "My father reads a book.", "es": "Mi padre lee un libro.", "it": "Mio padre legge un libro."},
+      "resources": [
+        {"label": "Wiktionary: father", "url": "https://en.wiktionary.org/wiki/father"},
+        {"label": "Wiktionary: pater (Latin)", "url": "https://en.wiktionary.org/wiki/pater"}
+      ]
+    },
+    {
+      "id": "to-eat",
+      "gloss": "to eat",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to eat", "ipa": "tə iːt"},
+        "es": {"word": "comer", "ipa": "koˈmeɾ"},
+        "fr": {"word": "manger", "ipa": "mɑ̃ʒe"},
+        "it": {"word": "mangiare", "ipa": "manˈdʒaːre"},
+        "pt": {"word": "comer", "ipa": "kuˈmeɾ"},
+        "de": {"word": "essen", "ipa": "ˈɛsn̩"},
+        "la": {"word": "edere", "ipa": "ˈɛ.dɛ.rɛ"}
+      },
+      "note": "Spanish/Portuguese 'comer' is from Latin 'comedere' (to eat up). French 'manger' and Italian 'mangiare' come from Latin 'manducare' (to chew). English 'eat' and German 'essen' descend from Latin's cousin root 'edere' (*h₁ed-).",
+      "example": {"en": "We eat bread.", "es": "Comemos pan.", "it": "Mangiamo pane."},
+      "resources": [
+        {"label": "Wiktionary: eat", "url": "https://en.wiktionary.org/wiki/eat"},
+        {"label": "Wiktionary: edere (Latin)", "url": "https://en.wiktionary.org/wiki/edere"}
+      ]
+    },
+    {
+      "id": "to-drink",
+      "gloss": "to drink",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to drink", "ipa": "tə drɪŋk"},
+        "es": {"word": "beber", "ipa": "beˈβeɾ"},
+        "fr": {"word": "boire", "ipa": "bwaʁ"},
+        "it": {"word": "bere", "ipa": "ˈbeːre"},
+        "pt": {"word": "beber", "ipa": "bɨˈbeɾ"},
+        "de": {"word": "trinken", "ipa": "ˈtʁɪŋkn̩"},
+        "la": {"word": "bibere", "ipa": "ˈbi.bɛ.rɛ"}
+      },
+      "note": "Romance 'to drink' (beber, boire, bere, beber) all come from Latin 'bibere' — the root of 'imbibe' and 'beverage'. English 'drink' and German 'trinken' are a separate Germanic pair.",
+      "example": {"en": "I drink water every day.", "es": "Bebo agua cada día.", "fr": "Je bois de l'eau chaque jour."},
+      "resources": [
+        {"label": "Wiktionary: drink", "url": "https://en.wiktionary.org/wiki/drink"},
+        {"label": "Wiktionary: bibere (Latin)", "url": "https://en.wiktionary.org/wiki/bibere"}
+      ]
+    },
+    {
+      "id": "to-go",
+      "gloss": "to go",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to go", "ipa": "tə ɡoʊ"},
+        "es": {"word": "ir", "ipa": "iɾ"},
+        "fr": {"word": "aller", "ipa": "ale"},
+        "it": {"word": "andare", "ipa": "anˈdaːre"},
+        "pt": {"word": "ir", "ipa": "ˈiɾ"},
+        "de": {"word": "gehen", "ipa": "ˈɡeːən"},
+        "la": {"word": "ire", "ipa": "ˈiː.rɛ"}
+      },
+      "note": "Spanish/Portuguese 'ir' come directly from Latin 'ire' (to go) — the root of 'exit' (he/she goes out). French 'aller' and Italian 'andare' have separate Latin sources. English 'go' and German 'gehen' are Germanic.",
+      "example": {"en": "I go to the house.", "es": "Voy a la casa.", "it": "Vado a casa."},
+      "resources": [
+        {"label": "Wiktionary: go", "url": "https://en.wiktionary.org/wiki/go"},
+        {"label": "Wiktionary: ire (Latin)", "url": "https://en.wiktionary.org/wiki/ire"}
+      ]
+    },
+    {
+      "id": "to-come",
+      "gloss": "to come",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to come", "ipa": "tə kʌm"},
+        "es": {"word": "venir", "ipa": "beˈniɾ"},
+        "fr": {"word": "venir", "ipa": "vəniʁ"},
+        "it": {"word": "venire", "ipa": "veˈniːre"},
+        "pt": {"word": "vir", "ipa": "ˈviɾ"},
+        "de": {"word": "kommen", "ipa": "ˈkɔmən"},
+        "la": {"word": "venire", "ipa": "weˈniː.rɛ"}
+      },
+      "note": "Romance 'to come' (venir, venir, venire, vir) all come from Latin 'venire' — the root of 'adventure', 'convene', 'event'. English 'come' and German 'kommen' descend from the cousin root *gʷem-.",
+      "example": {"en": "Come here, please.", "es": "Ven aquí, por favor.", "it": "Vieni qui, per favore."},
+      "resources": [
+        {"label": "Wiktionary: come", "url": "https://en.wiktionary.org/wiki/come"},
+        {"label": "Wiktionary: venire (Latin)", "url": "https://en.wiktionary.org/wiki/venire"}
+      ]
+    },
+    {
+      "id": "to-see",
+      "gloss": "to see",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to see", "ipa": "tə siː"},
+        "es": {"word": "ver", "ipa": "beɾ"},
+        "fr": {"word": "voir", "ipa": "vwaʁ"},
+        "it": {"word": "vedere", "ipa": "veˈdeːre"},
+        "pt": {"word": "ver", "ipa": "ˈveɾ"},
+        "de": {"word": "sehen", "ipa": "ˈzeːən"},
+        "la": {"word": "videre", "ipa": "wiˈdeː.rɛ"}
+      },
+      "note": "Romance 'to see' (ver, voir, vedere, ver) all come from Latin 'videre' — the root of 'video', 'vision', 'evident'. English 'see' and German 'sehen' are the Germanic pair.",
+      "example": {"en": "I see the moon.", "es": "Veo la luna.", "it": "Vedo la luna."},
+      "resources": [
+        {"label": "Wiktionary: see", "url": "https://en.wiktionary.org/wiki/see"},
+        {"label": "Wiktionary: videre (Latin)", "url": "https://en.wiktionary.org/wiki/videre"}
+      ]
+    },
+    {
+      "id": "to-want",
+      "gloss": "to want",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to want", "ipa": "tə wɒnt"},
+        "es": {"word": "querer", "ipa": "keˈɾeɾ"},
+        "fr": {"word": "vouloir", "ipa": "vulwaʁ"},
+        "it": {"word": "volere", "ipa": "voˈleːre"},
+        "pt": {"word": "querer", "ipa": "kɨˈɾeɾ"},
+        "de": {"word": "wollen", "ipa": "ˈvɔlən"},
+        "la": {"word": "velle", "ipa": "ˈwɛl.lɛ"}
+      },
+      "note": "French 'vouloir' and Italian 'volere' come from Latin 'velle' (to wish) — and so do English 'will' and German 'wollen', via the shared root *welh₁-. Spanish/Portuguese 'querer' took a different Latin verb, 'quaerere' (to seek).",
+      "example": {"en": "I want to see you.", "es": "Quiero verte.", "it": "Voglio vederti."},
+      "resources": [
+        {"label": "Wiktionary: want", "url": "https://en.wiktionary.org/wiki/want"},
+        {"label": "Wiktionary: velle (Latin)", "url": "https://en.wiktionary.org/wiki/velle"}
+      ]
+    },
+    {
+      "id": "to-know",
+      "gloss": "to know (a fact)",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to know", "ipa": "tə noʊ"},
+        "es": {"word": "saber", "ipa": "saˈβeɾ"},
+        "fr": {"word": "savoir", "ipa": "savwaʁ"},
+        "it": {"word": "sapere", "ipa": "saˈpeːre"},
+        "pt": {"word": "saber", "ipa": "sɐˈbeɾ"},
+        "de": {"word": "wissen", "ipa": "ˈvɪsn̩"},
+        "la": {"word": "scire", "ipa": "ˈskiː.rɛ"}
+      },
+      "note": "Romance 'to know' (saber, savoir, sapere, saber) come from Latin 'sapere' (to be wise / taste) — root of 'savvy' and 'Homo sapiens'. Latin also had 'scire' (root of 'science'). English 'know' and German 'wissen' are Germanic.",
+      "example": {"en": "I know your name.", "es": "Sé tu nombre.", "it": "So il tuo nome."},
+      "resources": [
+        {"label": "Wiktionary: know", "url": "https://en.wiktionary.org/wiki/know"},
+        {"label": "Wiktionary: sapere (Latin)", "url": "https://en.wiktionary.org/wiki/sapere"}
+      ]
+    },
+    {
+      "id": "to-speak",
+      "gloss": "to speak",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to speak", "ipa": "tə spiːk"},
+        "es": {"word": "hablar", "ipa": "aˈβlaɾ"},
+        "fr": {"word": "parler", "ipa": "paʁle"},
+        "it": {"word": "parlare", "ipa": "parˈlaːre"},
+        "pt": {"word": "falar", "ipa": "fɐˈlaɾ"},
+        "de": {"word": "sprechen", "ipa": "ˈʃpʁɛçn̩"},
+        "la": {"word": "loqui", "ipa": "ˈlɔ.kʷiː"}
+      },
+      "note": "Spanish 'hablar' and Portuguese 'falar' come from Latin 'fabulari' (to chat — root of 'fable'). French 'parler' and Italian 'parlare' come from 'parabolare' (root of 'parable', 'parley'). English 'speak'/German 'sprechen' are Germanic.",
+      "example": {"en": "I speak a little Italian.", "es": "Hablo un poco de italiano.", "fr": "Je parle un peu italien."},
+      "resources": [
+        {"label": "Wiktionary: speak", "url": "https://en.wiktionary.org/wiki/speak"},
+        {"label": "Wiktionary: fabulari (Latin)", "url": "https://en.wiktionary.org/wiki/fabulari"}
+      ]
+    },
+    {
+      "id": "to-do",
+      "gloss": "to do / to make",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to do / to make", "ipa": "tə duː"},
+        "es": {"word": "hacer", "ipa": "aˈθeɾ"},
+        "fr": {"word": "faire", "ipa": "fɛʁ"},
+        "it": {"word": "fare", "ipa": "ˈfaːre"},
+        "pt": {"word": "fazer", "ipa": "fɐˈzeɾ"},
+        "de": {"word": "machen", "ipa": "ˈmaxn̩"},
+        "la": {"word": "facere", "ipa": "ˈfa.kɛ.rɛ"}
+      },
+      "note": "Romance 'to do/make' (hacer, faire, fare, fazer) all come from Latin 'facere' — the root of 'fact', 'factory', 'manufacture'. Spanish 'h-' is a silent leftover of Latin 'f-'. English 'do' and German 'machen' are Germanic.",
+      "example": {"en": "What do you make?", "es": "¿Qué haces?", "it": "Che cosa fai?"},
+      "resources": [
+        {"label": "Wiktionary: do", "url": "https://en.wiktionary.org/wiki/do"},
+        {"label": "Wiktionary: facere (Latin)", "url": "https://en.wiktionary.org/wiki/facere"}
+      ]
+    },
+    {
+      "id": "to-give",
+      "gloss": "to give",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to give", "ipa": "tə ɡɪv"},
+        "es": {"word": "dar", "ipa": "daɾ"},
+        "fr": {"word": "donner", "ipa": "dɔne"},
+        "it": {"word": "dare", "ipa": "ˈdaːre"},
+        "pt": {"word": "dar", "ipa": "ˈdaɾ"},
+        "de": {"word": "geben", "ipa": "ˈɡeːbn̩"},
+        "la": {"word": "dare", "ipa": "ˈda.rɛ"}
+      },
+      "note": "Spanish/Portuguese/Italian 'dar/dare' come straight from Latin 'dare' (to give) — root of 'donate', 'data' (things given). French 'donner' is from the related 'donare'. English 'give'/German 'geben' are Germanic.",
+      "example": {"en": "Give me the book, please.", "es": "Dame el libro, por favor.", "it": "Dammi il libro, per favore."},
+      "resources": [
+        {"label": "Wiktionary: give", "url": "https://en.wiktionary.org/wiki/give"},
+        {"label": "Wiktionary: dare (Latin)", "url": "https://en.wiktionary.org/wiki/dare"}
+      ]
+    },
+    {
+      "id": "good",
+      "gloss": "good",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "good", "ipa": "ɡʊd"},
+        "es": {"word": "bueno", "ipa": "ˈbweno"},
+        "fr": {"word": "bon", "ipa": "bɔ̃"},
+        "it": {"word": "buono", "ipa": "ˈbwɔːno"},
+        "pt": {"word": "bom", "ipa": "ˈbõ"},
+        "de": {"word": "gut", "ipa": "ɡuːt"},
+        "la": {"word": "bonus", "ipa": "ˈbɔ.nus"}
+      },
+      "note": "Romance 'good' (bueno, bon, buono, bom) all come from Latin 'bonus' — the root of 'bonus', 'bonafide', 'benefit'. English 'good' and German 'gut' are an unrelated Germanic pair.",
+      "example": {"en": "This bread is good.", "es": "Este pan es bueno.", "it": "Questo pane è buono."},
+      "resources": [
+        {"label": "Wiktionary: good", "url": "https://en.wiktionary.org/wiki/good"},
+        {"label": "Wiktionary: bonus (Latin)", "url": "https://en.wiktionary.org/wiki/bonus"}
+      ]
+    },
+    {
+      "id": "big",
+      "gloss": "big / large",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "big", "ipa": "bɪɡ"},
+        "es": {"word": "grande", "ipa": "ˈɡɾande"},
+        "fr": {"word": "grand", "ipa": "ɡʁɑ̃"},
+        "it": {"word": "grande", "ipa": "ˈɡrande"},
+        "pt": {"word": "grande", "ipa": "ˈɡɾɐ̃dɨ"},
+        "de": {"word": "groß", "ipa": "ɡʁoːs"},
+        "la": {"word": "magnus", "ipa": "ˈma.ɡnus"}
+      },
+      "note": "Romance 'big' (grande, grand, grande, grande) all come from Latin 'grandis' — root of 'grand', 'grandeur'. Latin's other word, 'magnus' (root of 'magnify', 'magnitude'), survives in scientific vocabulary. English 'big' / German 'groß' are Germanic.",
+      "example": {"en": "The house is big.", "es": "La casa es grande.", "it": "La casa è grande."},
+      "resources": [
+        {"label": "Wiktionary: big", "url": "https://en.wiktionary.org/wiki/big"},
+        {"label": "Wiktionary: grandis (Latin)", "url": "https://en.wiktionary.org/wiki/grandis"}
+      ]
+    },
+    {
+      "id": "small",
+      "gloss": "small / little",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "small", "ipa": "smɔːl"},
+        "es": {"word": "pequeño", "ipa": "peˈkeɲo"},
+        "fr": {"word": "petit", "ipa": "pəti"},
+        "it": {"word": "piccolo", "ipa": "ˈpikkolo"},
+        "pt": {"word": "pequeno", "ipa": "pɨˈkenu"},
+        "de": {"word": "klein", "ipa": "klaɪ̯n"},
+        "la": {"word": "parvus", "ipa": "ˈpar.wus"}
+      },
+      "note": "The Romance words for 'small' are a scattered family (pequeño, petit, piccolo, pequeno) tied to an expressive 'pikk-/pitt-' root for 'little'. Latin used 'parvus'. English 'small' and German 'klein' are Germanic.",
+      "example": {"en": "I have a small dog.", "es": "Tengo un perro pequeño.", "it": "Ho un cane piccolo."},
+      "resources": [
+        {"label": "Wiktionary: small", "url": "https://en.wiktionary.org/wiki/small"},
+        {"label": "Wiktionary: parvus (Latin)", "url": "https://en.wiktionary.org/wiki/parvus"}
+      ]
+    },
+    {
+      "id": "new",
+      "gloss": "new",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "new", "ipa": "njuː"},
+        "es": {"word": "nuevo", "ipa": "ˈnweβo"},
+        "fr": {"word": "nouveau", "ipa": "nuvo"},
+        "it": {"word": "nuovo", "ipa": "ˈnwɔːvo"},
+        "pt": {"word": "novo", "ipa": "ˈnovu"},
+        "de": {"word": "neu", "ipa": "nɔɪ̯"},
+        "la": {"word": "novus", "ipa": "ˈnɔ.wus"}
+      },
+      "note": "A clean cognate: Latin 'novus' (root of 'novel', 'innovate', 'renovate') gives nuevo/nouveau/nuovo/novo, and the same *néwos gives English 'new' and German 'neu'. Every form keeps 'n-' + a 'v/w'.",
+      "example": {"en": "I have a new book.", "es": "Tengo un libro nuevo.", "it": "Ho un libro nuovo."},
+      "resources": [
+        {"label": "Wiktionary: new", "url": "https://en.wiktionary.org/wiki/new"},
+        {"label": "Wiktionary: novus (Latin)", "url": "https://en.wiktionary.org/wiki/novus"}
+      ]
+    },
+    {
+      "id": "old",
+      "gloss": "old",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "old", "ipa": "oʊld"},
+        "es": {"word": "viejo", "ipa": "ˈbjexo"},
+        "fr": {"word": "vieux", "ipa": "vjø"},
+        "it": {"word": "vecchio", "ipa": "ˈvɛkkjo"},
+        "pt": {"word": "velho", "ipa": "ˈvɛʎu"},
+        "de": {"word": "alt", "ipa": "alt"},
+        "la": {"word": "vetus", "ipa": "ˈwɛ.tus"}
+      },
+      "note": "Romance 'old' (viejo, vieux, vecchio, velho) come from Latin 'vetulus' (little-old), a diminutive of 'vetus' — the root of 'veteran' and 'inveterate'. English 'old' and German 'alt' are Germanic.",
+      "example": {"en": "This is an old house.", "es": "Esta es una casa vieja.", "it": "Questa è una casa vecchia."},
+      "resources": [
+        {"label": "Wiktionary: old", "url": "https://en.wiktionary.org/wiki/old"},
+        {"label": "Wiktionary: vetus (Latin)", "url": "https://en.wiktionary.org/wiki/vetus"}
+      ]
+    },
+    {
+      "id": "hot",
+      "gloss": "hot / warm",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "hot", "ipa": "hɒt"},
+        "es": {"word": "caliente", "ipa": "kaˈljente"},
+        "fr": {"word": "chaud", "ipa": "ʃo"},
+        "it": {"word": "caldo", "ipa": "ˈkaldo"},
+        "pt": {"word": "quente", "ipa": "ˈkẽtɨ"},
+        "de": {"word": "heiß", "ipa": "haɪ̯s"},
+        "la": {"word": "calidus", "ipa": "ˈka.li.dus"}
+      },
+      "note": "Romance 'hot' (caliente, chaud, caldo, quente) all come from Latin 'calidus' — the root of 'calorie', 'cauldron', 'nonchalant'. The 'cal-/chal-' is the heat. English 'hot' and German 'heiß' are Germanic.",
+      "example": {"en": "The water is hot.", "es": "El agua está caliente.", "it": "L'acqua è calda."},
+      "resources": [
+        {"label": "Wiktionary: hot", "url": "https://en.wiktionary.org/wiki/hot"},
+        {"label": "Wiktionary: calidus (Latin)", "url": "https://en.wiktionary.org/wiki/calidus"}
+      ]
+    },
+    {
+      "id": "cold",
+      "gloss": "cold",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "cold", "ipa": "koʊld"},
+        "es": {"word": "frío", "ipa": "ˈfɾio"},
+        "fr": {"word": "froid", "ipa": "fʁwa"},
+        "it": {"word": "freddo", "ipa": "ˈfreddo"},
+        "pt": {"word": "frio", "ipa": "ˈfɾiu"},
+        "de": {"word": "kalt", "ipa": "kalt"},
+        "la": {"word": "frigidus", "ipa": "ˈfri.ɡi.dus"}
+      },
+      "note": "Romance 'cold' (frío, froid, freddo, frio) all come from Latin 'frigidus' — the root of 'frigid', 'refrigerator'. English 'cold' and German 'kalt' are Germanic — and interestingly share a root with Latin 'gelidus' (gel/cold).",
+      "example": {"en": "The night is cold.", "es": "La noche es fría.", "it": "La notte è fredda."},
+      "resources": [
+        {"label": "Wiktionary: cold", "url": "https://en.wiktionary.org/wiki/cold"},
+        {"label": "Wiktionary: frigidus (Latin)", "url": "https://en.wiktionary.org/wiki/frigidus"}
+      ]
+    },
+    {
+      "id": "red",
+      "gloss": "red",
+      "category": "color",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "red", "ipa": "rɛd"},
+        "es": {"word": "rojo", "ipa": "ˈroxo"},
+        "fr": {"word": "rouge", "ipa": "ʁuʒ"},
+        "it": {"word": "rosso", "ipa": "ˈrosso"},
+        "pt": {"word": "vermelho", "ipa": "vɨɾˈmeʎu"},
+        "de": {"word": "rot", "ipa": "ʁoːt"},
+        "la": {"word": "ruber", "ipa": "ˈru.bɛr"}
+      },
+      "note": "Spanish 'rojo', French 'rouge', Italian 'rosso' come from Latin 'russus/ruber' — root of 'ruby', 'rubric'. The whole family, including English 'red' and German 'rot', traces to *h₁rewdʰ-. Portuguese went its own way with 'vermelho' (from 'vermiculus', the red dye-worm).",
+      "example": {"en": "The book is red.", "es": "El libro es rojo.", "it": "Il libro è rosso."},
+      "resources": [
+        {"label": "Wiktionary: red", "url": "https://en.wiktionary.org/wiki/red"},
+        {"label": "Wiktionary: ruber (Latin)", "url": "https://en.wiktionary.org/wiki/ruber"}
+      ]
+    },
+    {
+      "id": "blue",
+      "gloss": "blue",
+      "category": "color",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "blue", "ipa": "bluː"},
+        "es": {"word": "azul", "ipa": "aˈθul"},
+        "fr": {"word": "bleu", "ipa": "blø"},
+        "it": {"word": "blu", "ipa": "blu"},
+        "pt": {"word": "azul", "ipa": "ɐˈzul"},
+        "de": {"word": "blau", "ipa": "blaʊ̯"},
+        "la": {"word": "caeruleus", "ipa": "kae̯ˈru.le.us"}
+      },
+      "note": "Two families here: Spanish/Portuguese 'azul' is from Arabic 'lāzaward' (lapis lazuli), while French 'bleu', Italian 'blu', English 'blue', German 'blau' all share the Germanic root *blēwaz. Latin had no single common word; 'caeruleus' (sky-blue) is the classical term.",
+      "example": {"en": "The sky is blue.", "es": "El cielo es azul.", "fr": "Le ciel est bleu."},
+      "resources": [
+        {"label": "Wiktionary: blue", "url": "https://en.wiktionary.org/wiki/blue"},
+        {"label": "Wiktionary: caeruleus (Latin)", "url": "https://en.wiktionary.org/wiki/caeruleus"}
+      ]
+    },
+    {
+      "id": "green",
+      "gloss": "green",
+      "category": "color",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "green", "ipa": "ɡriːn"},
+        "es": {"word": "verde", "ipa": "ˈbeɾðe"},
+        "fr": {"word": "vert", "ipa": "vɛʁ"},
+        "it": {"word": "verde", "ipa": "ˈverde"},
+        "pt": {"word": "verde", "ipa": "ˈveɾdɨ"},
+        "de": {"word": "grün", "ipa": "ɡʁyːn"},
+        "la": {"word": "viridis", "ipa": "ˈwi.ri.dis"}
+      },
+      "note": "Romance 'green' (verde, vert, verde, verde) all come from Latin 'viridis' — root of 'verdant', 'verdure'. English 'green' and German 'grün' share a Germanic root with 'grow' and 'grass'.",
+      "example": {"en": "The house is green.", "es": "La casa es verde.", "it": "La casa è verde."},
+      "resources": [
+        {"label": "Wiktionary: green", "url": "https://en.wiktionary.org/wiki/green"},
+        {"label": "Wiktionary: viridis (Latin)", "url": "https://en.wiktionary.org/wiki/viridis"}
+      ]
+    },
+    {
+      "id": "black",
+      "gloss": "black",
+      "category": "color",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "black", "ipa": "blæk"},
+        "es": {"word": "negro", "ipa": "ˈneɣɾo"},
+        "fr": {"word": "noir", "ipa": "nwaʁ"},
+        "it": {"word": "nero", "ipa": "ˈneːro"},
+        "pt": {"word": "preto", "ipa": "ˈpɾetu"},
+        "de": {"word": "schwarz", "ipa": "ʃvaʁt͡s"},
+        "la": {"word": "niger", "ipa": "ˈni.ɡɛr"}
+      },
+      "note": "Spanish 'negro', French 'noir', Italian 'nero' all come from Latin 'niger' — root of 'denigrate'. Portuguese commonly uses 'preto' (from Latin 'apprehensus', pressed-tight/dense). English 'black' and German 'schwarz' are Germanic.",
+      "example": {"en": "The dog is black.", "es": "El perro es negro.", "it": "Il cane è nero."},
+      "resources": [
+        {"label": "Wiktionary: black", "url": "https://en.wiktionary.org/wiki/black"},
+        {"label": "Wiktionary: niger (Latin)", "url": "https://en.wiktionary.org/wiki/niger"}
+      ]
+    },
+    {
+      "id": "white",
+      "gloss": "white",
+      "category": "color",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "white", "ipa": "waɪt"},
+        "es": {"word": "blanco", "ipa": "ˈblaŋko"},
+        "fr": {"word": "blanc", "ipa": "blɑ̃"},
+        "it": {"word": "bianco", "ipa": "ˈbjaŋko"},
+        "pt": {"word": "branco", "ipa": "ˈbɾɐ̃ku"},
+        "de": {"word": "weiß", "ipa": "vaɪ̯s"},
+        "la": {"word": "albus", "ipa": "ˈal.bus"}
+      },
+      "note": "Romance 'white' (blanco, blanc, bianco, branco) is borrowed from Germanic *blankaz (shining) — the same root as English 'blank'. Classical Latin used 'albus' (root of 'album', 'albino'). English 'white' / German 'weiß' are native Germanic.",
+      "example": {"en": "The bread is white.", "es": "El pan es blanco.", "it": "Il pane è bianco."},
+      "resources": [
+        {"label": "Wiktionary: white", "url": "https://en.wiktionary.org/wiki/white"},
+        {"label": "Wiktionary: albus (Latin)", "url": "https://en.wiktionary.org/wiki/albus"}
+      ]
+    },
+    {
+      "id": "year",
+      "gloss": "year",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "year", "ipa": "jɪə(ɹ)"},
+        "es": {"word": "año", "ipa": "ˈaɲo", "gender": "m"},
+        "fr": {"word": "an", "ipa": "ɑ̃", "gender": "m"},
+        "it": {"word": "anno", "ipa": "ˈanno", "gender": "m"},
+        "pt": {"word": "ano", "ipa": "ˈɐnu", "gender": "m"},
+        "de": {"word": "Jahr", "ipa": "jaːɐ̯", "gender": "n"},
+        "la": {"word": "annus", "ipa": "ˈan.nus", "gender": "m"}
+      },
+      "note": "Romance 'year' (año, an, anno, ano) all come from Latin 'annus' — root of 'annual', 'anniversary'. Spanish 'ñ' is a squeezed double-n. English 'year' and German 'Jahr' are Germanic.",
+      "example": {"en": "A new year begins.", "es": "Un nuevo año comienza.", "it": "Un nuovo anno comincia."},
+      "resources": [
+        {"label": "Wiktionary: year", "url": "https://en.wiktionary.org/wiki/year"},
+        {"label": "Wiktionary: annus (Latin)", "url": "https://en.wiktionary.org/wiki/annus"}
+      ]
+    },
+    {
+      "id": "name",
+      "gloss": "name",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "name", "ipa": "neɪm"},
+        "es": {"word": "nombre", "ipa": "ˈnombɾe", "gender": "m"},
+        "fr": {"word": "nom", "ipa": "nɔ̃", "gender": "m"},
+        "it": {"word": "nome", "ipa": "ˈnoːme", "gender": "m"},
+        "pt": {"word": "nome", "ipa": "ˈnomɨ", "gender": "m"},
+        "de": {"word": "Name", "ipa": "ˈnaːmə", "gender": "m"},
+        "la": {"word": "nomen", "ipa": "ˈnoː.mɛn", "gender": "n"}
+      },
+      "note": "A near-universal cognate: Latin 'nomen' (root of 'nominate', 'noun', 'nominal') gives nombre/nom/nome/nome, and the same *h₁nómn̥ gives English 'name' and German 'Name'. They all keep 'n-...-m'.",
+      "example": {"en": "My name is Ana.", "es": "Mi nombre es Ana.", "it": "Il mio nome è Ana."},
+      "resources": [
+        {"label": "Wiktionary: name", "url": "https://en.wiktionary.org/wiki/name"},
+        {"label": "Wiktionary: nomen (Latin)", "url": "https://en.wiktionary.org/wiki/nomen"}
+      ]
+    },
+    {
+      "id": "city",
+      "gloss": "city",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "city", "ipa": "ˈsɪti"},
+        "es": {"word": "ciudad", "ipa": "θjuˈðað", "gender": "f"},
+        "fr": {"word": "ville", "ipa": "vil", "gender": "f"},
+        "it": {"word": "città", "ipa": "t͡ʃitˈta", "gender": "f"},
+        "pt": {"word": "cidade", "ipa": "siˈdadɨ", "gender": "f"},
+        "de": {"word": "Stadt", "ipa": "ʃtat", "gender": "f"},
+        "la": {"word": "civitas", "ipa": "ˈki.wi.taːs", "gender": "f"}
+      },
+      "note": "Spanish 'ciudad', Italian 'città', Portuguese 'cidade', and English 'city' all come from Latin 'civitas' (citizenry — root of 'civic', 'civilization'). French 'ville' is from 'villa' (farmstead). German 'Stadt' is Germanic.",
+      "example": {"en": "I live in a big city.", "es": "Vivo en una ciudad grande.", "it": "Vivo in una grande città."},
+      "resources": [
+        {"label": "Wiktionary: city", "url": "https://en.wiktionary.org/wiki/city"},
+        {"label": "Wiktionary: civitas (Latin)", "url": "https://en.wiktionary.org/wiki/civitas"}
+      ]
+    },
+    {
+      "id": "fire",
+      "gloss": "fire",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "fire", "ipa": "ˈfaɪə(ɹ)"},
+        "es": {"word": "fuego", "ipa": "ˈfweɣo", "gender": "m"},
+        "fr": {"word": "feu", "ipa": "fø", "gender": "m"},
+        "it": {"word": "fuoco", "ipa": "ˈfwɔːko", "gender": "m"},
+        "pt": {"word": "fogo", "ipa": "ˈfoɡu", "gender": "m"},
+        "de": {"word": "Feuer", "ipa": "ˈfɔɪ̯ɐ", "gender": "n"},
+        "la": {"word": "ignis", "ipa": "ˈiɡ.nis", "gender": "m"}
+      },
+      "note": "Romance 'fire' (fuego, feu, fuoco, fogo) come from Latin 'focus' (hearth — yes, the same word as English 'focus'). Latin's poetic word was 'ignis' (root of 'ignite'). English 'fire' and German 'Feuer' descend from a separate root *péh₂wr̥.",
+      "example": {"en": "The fire is hot.", "es": "El fuego está caliente.", "it": "Il fuoco è caldo."},
+      "resources": [
+        {"label": "Wiktionary: fire", "url": "https://en.wiktionary.org/wiki/fire"},
+        {"label": "Wiktionary: ignis (Latin)", "url": "https://en.wiktionary.org/wiki/ignis"}
+      ]
+    },
+    {
+      "id": "earth",
+      "gloss": "earth / land",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "earth", "ipa": "ɜːθ"},
+        "es": {"word": "tierra", "ipa": "ˈtjera", "gender": "f"},
+        "fr": {"word": "terre", "ipa": "tɛʁ", "gender": "f"},
+        "it": {"word": "terra", "ipa": "ˈtɛrra", "gender": "f"},
+        "pt": {"word": "terra", "ipa": "ˈtɛʁɐ", "gender": "f"},
+        "de": {"word": "Erde", "ipa": "ˈeːɐ̯də", "gender": "f"},
+        "la": {"word": "terra", "ipa": "ˈtɛr.ra", "gender": "f"}
+      },
+      "note": "Romance 'earth' (tierra, terre, terra, terra) all come from Latin 'terra' — root of 'territory', 'terrain', 'terrestrial'. English 'earth' and German 'Erde' are the Germanic pair.",
+      "example": {"en": "The earth is our home.", "es": "La tierra es nuestro hogar.", "it": "La terra è la nostra casa."},
+      "resources": [
+        {"label": "Wiktionary: earth", "url": "https://en.wiktionary.org/wiki/earth"},
+        {"label": "Wiktionary: terra (Latin)", "url": "https://en.wiktionary.org/wiki/terra"}
+      ]
+    },
+    {
+      "id": "milk",
+      "gloss": "milk",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "milk", "ipa": "mɪlk"},
+        "es": {"word": "leche", "ipa": "ˈlet͡ʃe", "gender": "f"},
+        "fr": {"word": "lait", "ipa": "lɛ", "gender": "m"},
+        "it": {"word": "latte", "ipa": "ˈlatte", "gender": "m"},
+        "pt": {"word": "leite", "ipa": "ˈlejtɨ", "gender": "m"},
+        "de": {"word": "Milch", "ipa": "mɪlç", "gender": "f"},
+        "la": {"word": "lac", "ipa": "lak", "gender": "n"}
+      },
+      "note": "Romance 'milk' (leche, lait, latte, leite) all come from Latin 'lac' (stem 'lact-') — root of 'lactose', 'lactic', 'latte'. English 'milk' and German 'Milch' are Germanic, though distantly related via *gʷálakts.",
+      "example": {"en": "I drink milk in the morning.", "es": "Bebo leche por la mañana.", "it": "Bevo latte la mattina."},
+      "resources": [
+        {"label": "Wiktionary: milk", "url": "https://en.wiktionary.org/wiki/milk"},
+        {"label": "Wiktionary: lac (Latin)", "url": "https://en.wiktionary.org/wiki/lac"}
+      ]
+    },
+    {
+      "id": "fish",
+      "gloss": "fish",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "fish", "ipa": "fɪʃ"},
+        "es": {"word": "pez", "ipa": "peθ", "gender": "m"},
+        "fr": {"word": "poisson", "ipa": "pwasɔ̃", "gender": "m"},
+        "it": {"word": "pesce", "ipa": "ˈpeʃʃe", "gender": "m"},
+        "pt": {"word": "peixe", "ipa": "ˈpejʃɨ", "gender": "m"},
+        "de": {"word": "Fisch", "ipa": "fɪʃ", "gender": "m"},
+        "la": {"word": "piscis", "ipa": "ˈpis.kis", "gender": "m"}
+      },
+      "note": "Romance 'fish' (pez, poisson, pesce, peixe) all come from Latin 'piscis' — root of 'Pisces', 'piscine'. English 'fish' and German 'Fisch' are the Germanic reflex of the same root (Latin 'p' → Germanic 'f').",
+      "example": {"en": "The fish is in the water.", "es": "El pez está en el agua.", "it": "Il pesce è nell'acqua."},
+      "resources": [
+        {"label": "Wiktionary: fish", "url": "https://en.wiktionary.org/wiki/fish"},
+        {"label": "Wiktionary: piscis (Latin)", "url": "https://en.wiktionary.org/wiki/piscis"}
+      ]
+    },
+    {
+      "id": "wine",
+      "gloss": "wine",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "wine", "ipa": "waɪn"},
+        "es": {"word": "vino", "ipa": "ˈbino", "gender": "m"},
+        "fr": {"word": "vin", "ipa": "vɛ̃", "gender": "m"},
+        "it": {"word": "vino", "ipa": "ˈviːno", "gender": "m"},
+        "pt": {"word": "vinho", "ipa": "ˈviɲu", "gender": "m"},
+        "de": {"word": "Wein", "ipa": "vaɪ̯n", "gender": "m"},
+        "la": {"word": "vinum", "ipa": "ˈwiː.num", "gender": "n"}
+      },
+      "note": "A perfect cognate: Latin 'vinum' (root of 'vine', 'vintage', 'vinegar') gives vino/vin/vino/vinho, and the borrowed-into-Germanic 'Wein' and 'wine' too. Every form keeps the 'v/w' + 'n'.",
+      "example": {"en": "We drink red wine.", "es": "Bebemos vino rojo.", "it": "Beviamo vino rosso."},
+      "resources": [
+        {"label": "Wiktionary: wine", "url": "https://en.wiktionary.org/wiki/wine"},
+        {"label": "Wiktionary: vinum (Latin)", "url": "https://en.wiktionary.org/wiki/vinum"}
+      ]
+    },
+    {
+      "id": "word",
+      "gloss": "word",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "word", "ipa": "wɜːd"},
+        "es": {"word": "palabra", "ipa": "paˈlaβɾa", "gender": "f"},
+        "fr": {"word": "mot", "ipa": "mo", "gender": "m"},
+        "it": {"word": "parola", "ipa": "paˈrɔːla", "gender": "f"},
+        "pt": {"word": "palavra", "ipa": "pɐˈlavɾɐ", "gender": "f"},
+        "de": {"word": "Wort", "ipa": "vɔʁt", "gender": "n"},
+        "la": {"word": "verbum", "ipa": "ˈwɛr.bum", "gender": "n"}
+      },
+      "note": "Spanish 'palabra', Italian 'parola', Portuguese 'palavra' come from Latin 'parabola' (comparison — also the root of 'parable' and, via French, 'parole'). Latin 'verbum' (root of 'verb', 'verbal') links to English 'word' and German 'Wort'.",
+      "example": {"en": "I know this word.", "es": "Conozco esta palabra.", "it": "Conosco questa parola."},
+      "resources": [
+        {"label": "Wiktionary: word", "url": "https://en.wiktionary.org/wiki/word"},
+        {"label": "Wiktionary: verbum (Latin)", "url": "https://en.wiktionary.org/wiki/verbum"}
+      ]
+    },
+    {
+      "id": "head",
+      "gloss": "head",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "head", "ipa": "hɛd"},
+        "es": {"word": "cabeza", "ipa": "kaˈβeθa", "gender": "f"},
+        "fr": {"word": "tête", "ipa": "tɛt", "gender": "f"},
+        "it": {"word": "testa", "ipa": "ˈtɛsta", "gender": "f"},
+        "pt": {"word": "cabeça", "ipa": "kɐˈbesɐ", "gender": "f"},
+        "de": {"word": "Kopf", "ipa": "kɔpf", "gender": "m"},
+        "la": {"word": "caput", "ipa": "ˈka.put", "gender": "n"}
+      },
+      "note": "Spanish 'cabeza' and Portuguese 'cabeça' come from Latin 'capitia', from 'caput' (root of 'capital', 'captain', 'decapitate'). French 'tête' and Italian 'testa' come from Latin 'testa' (a pot — slang for the head). English 'head' and German 'Kopf' (originally 'cup') are Germanic.",
+      "example": {"en": "My head hurts.", "es": "Me duele la cabeza.", "it": "Mi fa male la testa."},
+      "resources": [
+        {"label": "Wiktionary: head", "url": "https://en.wiktionary.org/wiki/head"},
+        {"label": "Wiktionary: caput (Latin)", "url": "https://en.wiktionary.org/wiki/caput"}
+      ]
+    },
+    {
+      "id": "heart",
+      "gloss": "heart",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "heart", "ipa": "hɑːt"},
+        "es": {"word": "corazón", "ipa": "koɾaˈθon", "gender": "m"},
+        "fr": {"word": "cœur", "ipa": "kœʁ", "gender": "m"},
+        "it": {"word": "cuore", "ipa": "ˈkwɔːre", "gender": "m"},
+        "pt": {"word": "coração", "ipa": "kuɾɐˈsɐ̃w̃", "gender": "m"},
+        "de": {"word": "Herz", "ipa": "hɛʁt͡s", "gender": "n"},
+        "la": {"word": "cor", "ipa": "kor", "gender": "n"}
+      },
+      "note": "Romance 'heart' (corazón, cœur, cuore, coração) all come from Latin 'cor' (stem 'cord-') — root of 'cordial', 'courage', 'record'. English 'heart' and German 'Herz' descend from the same *ḱḗr — once you spot the 'c/h' + 'r' you see them all.",
+      "example": {"en": "The heart is strong.", "es": "El corazón es fuerte.", "it": "Il cuore è forte."},
+      "resources": [
+        {"label": "Wiktionary: heart", "url": "https://en.wiktionary.org/wiki/heart"},
+        {"label": "Wiktionary: cor (Latin)", "url": "https://en.wiktionary.org/wiki/cor"}
+      ]
+    },
+    {
+      "id": "foot",
+      "gloss": "foot",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "foot", "ipa": "fʊt"},
+        "es": {"word": "pie", "ipa": "ˈpje", "gender": "m"},
+        "fr": {"word": "pied", "ipa": "pje", "gender": "m"},
+        "it": {"word": "piede", "ipa": "ˈpjɛːde", "gender": "m"},
+        "pt": {"word": "pé", "ipa": "ˈpɛ", "gender": "m"},
+        "de": {"word": "Fuß", "ipa": "fuːs", "gender": "m"},
+        "la": {"word": "pes", "ipa": "peːs", "gender": "m"}
+      },
+      "note": "Romance 'foot' (pie, pied, piede, pé) all come from Latin 'pes' (stem 'ped-') — root of 'pedal', 'pedestrian', 'pedestal'. English 'foot' and German 'Fuß' descend from the same *pṓds, with Latin 'p' → Germanic 'f'.",
+      "example": {"en": "I have two feet.", "es": "Tengo dos pies.", "it": "Ho due piedi."},
+      "resources": [
+        {"label": "Wiktionary: foot", "url": "https://en.wiktionary.org/wiki/foot"},
+        {"label": "Wiktionary: pes (Latin)", "url": "https://en.wiktionary.org/wiki/pes"}
+      ]
+    },
+    {
+      "id": "tree",
+      "gloss": "tree",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "tree", "ipa": "triː"},
+        "es": {"word": "árbol", "ipa": "ˈaɾβol", "gender": "m"},
+        "fr": {"word": "arbre", "ipa": "aʁbʁ", "gender": "m"},
+        "it": {"word": "albero", "ipa": "ˈalbero", "gender": "m"},
+        "pt": {"word": "árvore", "ipa": "ˈaɾvuɾɨ", "gender": "f"},
+        "de": {"word": "Baum", "ipa": "baʊ̯m", "gender": "m"},
+        "la": {"word": "arbor", "ipa": "ˈar.bor", "gender": "f"}
+      },
+      "note": "Romance 'tree' (árbol, arbre, albero, árvore) all come from Latin 'arbor' — root of 'arbor', 'arboretum'. English 'tree' and German 'Baum' are Germanic (Baum is the source of English 'beam').",
+      "example": {"en": "The tree is big.", "es": "El árbol es grande.", "it": "L'albero è grande."},
+      "resources": [
+        {"label": "Wiktionary: tree", "url": "https://en.wiktionary.org/wiki/tree"},
+        {"label": "Wiktionary: arbor (Latin)", "url": "https://en.wiktionary.org/wiki/arbor"}
+      ]
+    },
+    {
+      "id": "flower",
+      "gloss": "flower",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "flower", "ipa": "ˈflaʊə(ɹ)"},
+        "es": {"word": "flor", "ipa": "floɾ", "gender": "f"},
+        "fr": {"word": "fleur", "ipa": "flœʁ", "gender": "f"},
+        "it": {"word": "fiore", "ipa": "ˈfjoːre", "gender": "m"},
+        "pt": {"word": "flor", "ipa": "ˈfloɾ", "gender": "f"},
+        "de": {"word": "Blume", "ipa": "ˈbluːmə", "gender": "f"},
+        "la": {"word": "flos", "ipa": "floːs", "gender": "m"}
+      },
+      "note": "Romance 'flower' (flor, fleur, fiore, flor) and English 'flower' all come from Latin 'flos' (stem 'flor-') — root of 'floral', 'flora', 'flourish'. German 'Blume' is Germanic (cf. English 'bloom' and 'blossom').",
+      "example": {"en": "The flower is red.", "es": "La flor es roja.", "it": "Il fiore è rosso."},
+      "resources": [
+        {"label": "Wiktionary: flower", "url": "https://en.wiktionary.org/wiki/flower"},
+        {"label": "Wiktionary: flos (Latin)", "url": "https://en.wiktionary.org/wiki/flos"}
+      ]
+    },
+    {
+      "id": "cat",
+      "gloss": "cat",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "cat", "ipa": "kæt"},
+        "es": {"word": "gato", "ipa": "ˈɡato", "gender": "m"},
+        "fr": {"word": "chat", "ipa": "ʃa", "gender": "m"},
+        "it": {"word": "gatto", "ipa": "ˈɡatto", "gender": "m"},
+        "pt": {"word": "gato", "ipa": "ˈɡatu", "gender": "m"},
+        "de": {"word": "Katze", "ipa": "ˈkat͡sə", "gender": "f"},
+        "la": {"word": "cattus", "ipa": "ˈkat.tus", "gender": "m"}
+      },
+      "note": "Almost every European 'cat' (gato, chat, gatto, gato, Katze, cat) descends from Late Latin 'cattus'. This word spread across the whole continent with the domestic cat itself — one of the most uniform cognates in the deck.",
+      "example": {"en": "The cat sees the dog.", "es": "El gato ve al perro.", "it": "Il gatto vede il cane."},
+      "resources": [
+        {"label": "Wiktionary: cat", "url": "https://en.wiktionary.org/wiki/cat"},
+        {"label": "Wiktionary: cattus (Latin)", "url": "https://en.wiktionary.org/wiki/cattus"}
+      ]
+    },
+    {
+      "id": "horse",
+      "gloss": "horse",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "horse", "ipa": "hɔːs"},
+        "es": {"word": "caballo", "ipa": "kaˈβaʎo", "gender": "m"},
+        "fr": {"word": "cheval", "ipa": "ʃəval", "gender": "m"},
+        "it": {"word": "cavallo", "ipa": "kaˈvallo", "gender": "m"},
+        "pt": {"word": "cavalo", "ipa": "kɐˈvalu", "gender": "m"},
+        "de": {"word": "Pferd", "ipa": "pfeːɐ̯t", "gender": "n"},
+        "la": {"word": "equus", "ipa": "ˈɛk.kʷus", "gender": "m"}
+      },
+      "note": "Romance 'horse' (caballo, cheval, cavallo, cavalo) come from Latin 'caballus' (workhorse, nag) — root of 'cavalry', 'chivalry', 'cavalier'. Classical Latin 'equus' (root of 'equestrian') lost out. English 'horse' and German 'Pferd' are Germanic.",
+      "example": {"en": "The horse is white.", "es": "El caballo es blanco.", "it": "Il cavallo è bianco."},
+      "resources": [
+        {"label": "Wiktionary: horse", "url": "https://en.wiktionary.org/wiki/horse"},
+        {"label": "Wiktionary: caballus (Latin)", "url": "https://en.wiktionary.org/wiki/caballus"}
+      ]
+    },
+    {
+      "id": "bird",
+      "gloss": "bird",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "bird", "ipa": "bɜːd"},
+        "es": {"word": "pájaro", "ipa": "ˈpaxaɾo", "gender": "m"},
+        "fr": {"word": "oiseau", "ipa": "wazo", "gender": "m"},
+        "it": {"word": "uccello", "ipa": "utˈtʃɛllo", "gender": "m"},
+        "pt": {"word": "pássaro", "ipa": "ˈpasɐɾu", "gender": "m"},
+        "de": {"word": "Vogel", "ipa": "ˈfoːɡl̩", "gender": "m"},
+        "la": {"word": "avis", "ipa": "ˈa.wis", "gender": "f"}
+      },
+      "note": "Spanish 'pájaro' and Portuguese 'pássaro' come from Latin 'passer' (sparrow). Italian 'uccello' and French 'oiseau' come from Latin 'avicellus', a diminutive of 'avis' (root of 'aviary', 'aviation'). English 'bird' and German 'Vogel' are Germanic.",
+      "example": {"en": "The bird sees the sun.", "es": "El pájaro ve el sol.", "it": "L'uccello vede il sole."},
+      "resources": [
+        {"label": "Wiktionary: bird", "url": "https://en.wiktionary.org/wiki/bird"},
+        {"label": "Wiktionary: avis (Latin)", "url": "https://en.wiktionary.org/wiki/avis"}
+      ]
+    },
+    {
+      "id": "woman",
+      "gloss": "woman",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "woman", "ipa": "ˈwʊmən"},
+        "es": {"word": "mujer", "ipa": "muˈxeɾ", "gender": "f"},
+        "fr": {"word": "femme", "ipa": "fam", "gender": "f"},
+        "it": {"word": "donna", "ipa": "ˈdɔnna", "gender": "f"},
+        "pt": {"word": "mulher", "ipa": "muˈʎɛɾ", "gender": "f"},
+        "de": {"word": "Frau", "ipa": "fʁaʊ̯", "gender": "f"},
+        "la": {"word": "femina", "ipa": "ˈfeː.mi.na", "gender": "f"}
+      },
+      "note": "Spanish 'mujer' and Portuguese 'mulher' come from Latin 'mulier'. French 'femme' comes from Latin 'femina' (root of 'feminine'). Italian 'donna' is from 'domina' (lady — root of 'Madonna', 'dame'). English 'woman' and German 'Frau' are Germanic.",
+      "example": {"en": "The woman speaks French.", "es": "La mujer habla francés.", "it": "La donna parla francese."},
+      "resources": [
+        {"label": "Wiktionary: woman", "url": "https://en.wiktionary.org/wiki/woman"},
+        {"label": "Wiktionary: femina (Latin)", "url": "https://en.wiktionary.org/wiki/femina"}
+      ]
+    },
+    {
+      "id": "man",
+      "gloss": "man",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "man", "ipa": "mæn"},
+        "es": {"word": "hombre", "ipa": "ˈombɾe", "gender": "m"},
+        "fr": {"word": "homme", "ipa": "ɔm", "gender": "m"},
+        "it": {"word": "uomo", "ipa": "ˈwɔːmo", "gender": "m"},
+        "pt": {"word": "homem", "ipa": "ˈomɐ̃j̃", "gender": "m"},
+        "de": {"word": "Mann", "ipa": "man", "gender": "m"},
+        "la": {"word": "homo", "ipa": "ˈho.moː", "gender": "m"}
+      },
+      "note": "Romance 'man' (hombre, homme, uomo, homem) all come from Latin 'homo' (human being) — root of 'human', 'homage', 'Homo sapiens'. The silent Spanish/Portuguese 'h-' is the old Latin 'h'. English 'man' and German 'Mann' are Germanic.",
+      "example": {"en": "The man drinks wine.", "es": "El hombre bebe vino.", "it": "L'uomo beve vino."},
+      "resources": [
+        {"label": "Wiktionary: man", "url": "https://en.wiktionary.org/wiki/man"},
+        {"label": "Wiktionary: homo (Latin)", "url": "https://en.wiktionary.org/wiki/homo"}
+      ]
+    },
+    {
+      "id": "child",
+      "gloss": "child",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "child", "ipa": "tʃaɪld"},
+        "es": {"word": "niño", "ipa": "ˈniɲo", "gender": "m"},
+        "fr": {"word": "enfant", "ipa": "ɑ̃fɑ̃", "gender": "m"},
+        "it": {"word": "bambino", "ipa": "bamˈbiːno", "gender": "m"},
+        "pt": {"word": "criança", "ipa": "kɾiˈɐ̃sɐ", "gender": "f"},
+        "de": {"word": "Kind", "ipa": "kɪnt", "gender": "n"},
+        "la": {"word": "infans", "ipa": "ˈin.faːns", "gender": "m"}
+      },
+      "note": "French 'enfant' and English 'infant' both come from Latin 'infans' (literally 'not speaking'). Portuguese 'criança' is from Latin 'creare' (to create — cf. 'creature'). Spanish 'niño' and Italian 'bambino' are nursery words. German 'Kind' (cf. 'kin', 'kindergarten') is Germanic.",
+      "example": {"en": "The child is small.", "es": "El niño es pequeño.", "fr": "L'enfant est petit."},
+      "resources": [
+        {"label": "Wiktionary: child", "url": "https://en.wiktionary.org/wiki/child"},
+        {"label": "Wiktionary: infans (Latin)", "url": "https://en.wiktionary.org/wiki/infans"}
+      ]
+    },
+    {
+      "id": "to-live",
+      "gloss": "to live",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to live", "ipa": "tə lɪv"},
+        "es": {"word": "vivir", "ipa": "biˈβiɾ"},
+        "fr": {"word": "vivre", "ipa": "vivʁ"},
+        "it": {"word": "vivere", "ipa": "ˈviːvere"},
+        "pt": {"word": "viver", "ipa": "viˈveɾ"},
+        "de": {"word": "leben", "ipa": "ˈleːbn̩"},
+        "la": {"word": "vivere", "ipa": "ˈwiː.wɛ.rɛ"}
+      },
+      "note": "Romance 'to live' (vivir, vivre, vivere, viver) all come from Latin 'vivere' — root of 'vivid', 'survive', 'revive', 'vivacious'. English 'live' and German 'leben' descend from a separate Germanic root *libjaną.",
+      "example": {"en": "We live in the city.", "es": "Vivimos en la ciudad.", "it": "Viviamo in città."},
+      "resources": [
+        {"label": "Wiktionary: live", "url": "https://en.wiktionary.org/wiki/live"},
+        {"label": "Wiktionary: vivere (Latin)", "url": "https://en.wiktionary.org/wiki/vivere"}
+      ]
+    },
+    {
+      "id": "to-read",
+      "gloss": "to read",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to read", "ipa": "tə riːd"},
+        "es": {"word": "leer", "ipa": "leˈeɾ"},
+        "fr": {"word": "lire", "ipa": "liʁ"},
+        "it": {"word": "leggere", "ipa": "ˈlɛddʒere"},
+        "pt": {"word": "ler", "ipa": "ˈleɾ"},
+        "de": {"word": "lesen", "ipa": "ˈleːzn̩"},
+        "la": {"word": "legere", "ipa": "ˈlɛ.ɡɛ.rɛ"}
+      },
+      "note": "Romance 'to read' (leer, lire, leggere, ler) all come from Latin 'legere' (to gather, choose, read) — root of 'legible', 'lecture', 'lesson', 'collect'. German 'lesen' shares the 'gather' sense too. English 'read' is the Germanic odd one out.",
+      "example": {"en": "I read a book at night.", "es": "Leo un libro por la noche.", "it": "Leggo un libro la notte."},
+      "resources": [
+        {"label": "Wiktionary: read", "url": "https://en.wiktionary.org/wiki/read"},
+        {"label": "Wiktionary: legere (Latin)", "url": "https://en.wiktionary.org/wiki/legere"}
+      ]
+    },
+    {
+      "id": "to-write",
+      "gloss": "to write",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to write", "ipa": "tə raɪt"},
+        "es": {"word": "escribir", "ipa": "eskɾiˈβiɾ"},
+        "fr": {"word": "écrire", "ipa": "ekʁiʁ"},
+        "it": {"word": "scrivere", "ipa": "ˈskriːvere"},
+        "pt": {"word": "escrever", "ipa": "ɨʃkɾɨˈveɾ"},
+        "de": {"word": "schreiben", "ipa": "ˈʃʁaɪ̯bn̩"},
+        "la": {"word": "scribere", "ipa": "ˈskriː.bɛ.rɛ"}
+      },
+      "note": "Romance 'to write' (escribir, écrire, scrivere, escrever) all come from Latin 'scribere' — root of 'scribe', 'describe', 'manuscript', 'script'. German 'schreiben' is borrowed from the same Latin verb. English 'write' is the Germanic odd one out.",
+      "example": {"en": "I write your name.", "es": "Escribo tu nombre.", "it": "Scrivo il tuo nome."},
+      "resources": [
+        {"label": "Wiktionary: write", "url": "https://en.wiktionary.org/wiki/write"},
+        {"label": "Wiktionary: scribere (Latin)", "url": "https://en.wiktionary.org/wiki/scribere"}
+      ]
+    },
+    {
+      "id": "to-love",
+      "gloss": "to love",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "to love", "ipa": "tə lʌv"},
+        "es": {"word": "amar", "ipa": "aˈmaɾ"},
+        "fr": {"word": "aimer", "ipa": "eme"},
+        "it": {"word": "amare", "ipa": "aˈmaːre"},
+        "pt": {"word": "amar", "ipa": "ɐˈmaɾ"},
+        "de": {"word": "lieben", "ipa": "ˈliːbn̩"},
+        "la": {"word": "amare", "ipa": "aˈmaː.rɛ"}
+      },
+      "note": "Romance 'to love' (amar, aimer, amare, amar) all come from Latin 'amare' — root of 'amateur', 'amorous'. This is the verb behind the 'love' noun and 'I love you' entries in this deck. English 'love' and German 'lieben' are Germanic.",
+      "example": {"en": "I love to read.", "es": "Amo leer.", "it": "Amo leggere."},
+      "resources": [
+        {"label": "Wiktionary: love", "url": "https://en.wiktionary.org/wiki/love"},
+        {"label": "Wiktionary: amare (Latin)", "url": "https://en.wiktionary.org/wiki/amo#Latin"}
+      ]
+    },
+    {
+      "id": "yellow",
+      "gloss": "yellow",
+      "category": "color",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "yellow", "ipa": "ˈjɛloʊ"},
+        "es": {"word": "amarillo", "ipa": "amaˈɾiʎo"},
+        "fr": {"word": "jaune", "ipa": "ʒoːn"},
+        "it": {"word": "giallo", "ipa": "ˈdʒallo"},
+        "pt": {"word": "amarelo", "ipa": "ɐmɐˈɾɛlu"},
+        "de": {"word": "gelb", "ipa": "ɡɛlp"},
+        "la": {"word": "flavus", "ipa": "ˈflaː.wus"}
+      },
+      "note": "Spanish 'amarillo' and Portuguese 'amarelo' come from Latin 'amarellus' (bitterish). French 'jaune' and Italian 'giallo' come from Latin 'galbinus' (greenish-yellow). English 'yellow' and German 'gelb' share a Germanic root with 'gold' and 'glow'.",
+      "example": {"en": "The sun is yellow.", "es": "El sol es amarillo.", "it": "Il sole è giallo."},
+      "resources": [
+        {"label": "Wiktionary: yellow", "url": "https://en.wiktionary.org/wiki/yellow"},
+        {"label": "Wiktionary: flavus (Latin)", "url": "https://en.wiktionary.org/wiki/flavus"}
+      ]
+    },
+    {
+      "id": "beautiful",
+      "gloss": "beautiful",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "beautiful", "ipa": "ˈbjuːtɪfl̩"},
+        "es": {"word": "hermoso", "ipa": "eɾˈmoso"},
+        "fr": {"word": "beau", "ipa": "bo"},
+        "it": {"word": "bello", "ipa": "ˈbɛllo"},
+        "pt": {"word": "belo", "ipa": "ˈbɛlu"},
+        "de": {"word": "schön", "ipa": "ʃøːn"},
+        "la": {"word": "pulcher", "ipa": "ˈpul.kɛr"}
+      },
+      "note": "French 'beau', Italian 'bello', Portuguese 'belo' all come from Latin 'bellus' (pretty) — root of 'embellish' and the name 'Bella'. English 'beautiful' is from Latin 'bellus' too, via French 'beauté'. Classical Latin's main word was 'pulcher'. German 'schön' is Germanic.",
+      "example": {"en": "The flower is beautiful.", "es": "La flor es hermosa.", "it": "Il fiore è bello."},
+      "resources": [
+        {"label": "Wiktionary: beautiful", "url": "https://en.wiktionary.org/wiki/beautiful"},
+        {"label": "Wiktionary: bellus (Latin)", "url": "https://en.wiktionary.org/wiki/bellus"}
+      ]
+    },
+    {
+      "id": "zero",
+      "gloss": "zero (0)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "zero", "ipa": "ˈzɪəroʊ"},
+        "es": {"word": "cero", "ipa": "ˈθeɾo"},
+        "fr": {"word": "zéro", "ipa": "zeʁo"},
+        "it": {"word": "zero", "ipa": "ˈd͡zɛːro"},
+        "pt": {"word": "zero", "ipa": "ˈzɛɾu"},
+        "de": {"word": "null", "ipa": "nʊl"},
+        "la": {"word": "nihil", "ipa": "ˈni.hil"}
+      },
+      "note": "'Zero' (cero, zéro, zero, zero) is a young word: from Italian 'zero', from Arabic 'sifr' (empty) — which also gives English 'cipher'. German 'null' and the Latin idea 'nihil' (nothing — root of 'annihilate', 'nihilism') express the same emptiness differently.",
+      "example": {"en": "Zero is a number.", "es": "El cero es un número.", "it": "Lo zero è un numero."},
+      "resources": [
+        {"label": "Wiktionary: zero", "url": "https://en.wiktionary.org/wiki/zero"},
+        {"label": "Wiktionary: nihil (Latin)", "url": "https://en.wiktionary.org/wiki/nihil"}
+      ]
+    },
+    {
+      "id": "today",
+      "gloss": "today",
+      "category": "time",
+      "pos": "adverb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {"word": "today", "ipa": "təˈdeɪ"},
+        "es": {"word": "hoy", "ipa": "oj"},
+        "fr": {"word": "aujourd'hui", "ipa": "oʒuʁdɥi"},
+        "it": {"word": "oggi", "ipa": "ˈɔddʒi"},
+        "pt": {"word": "hoje", "ipa": "ˈoʒɨ"},
+        "de": {"word": "heute", "ipa": "ˈhɔɪ̯tə"},
+        "la": {"word": "hodie", "ipa": "ˈho.di.eː"}
+      },
+      "note": "Romance 'today' (hoy, oggi, hoje, and the '-hui' inside French 'aujourd'hui') all come from Latin 'hodie' — itself a contraction of 'hoc die' (on this day). The 'day' word from this deck is hiding inside it. English 'today' and German 'heute' are Germanic.",
+      "example": {"en": "Today is a good day.", "es": "Hoy es un buen día.", "it": "Oggi è un buon giorno."},
+      "resources": [
+        {"label": "Wiktionary: today", "url": "https://en.wiktionary.org/wiki/today"},
+        {"label": "Wiktionary: hodie (Latin)", "url": "https://en.wiktionary.org/wiki/hodie"}
+      ]
+    },
+    {
+      "id": "good-night",
+      "gloss": "good night",
+      "category": "greeting",
+      "pos": "phrase",
+      "shell": "nucleus",
+      "requires": ["good", "night"],
+      "forms": {
+        "en": {"word": "good night", "ipa": "ɡʊd naɪt"},
+        "es": {"word": "buenas noches", "ipa": "ˈbwenas ˈnot͡ʃes"},
+        "fr": {"word": "bonne nuit", "ipa": "bɔn nɥi"},
+        "it": {"word": "buonanotte", "ipa": "bwonaˈnɔtte"},
+        "pt": {"word": "boa noite", "ipa": "ˈboɐ ˈnojtɨ"},
+        "de": {"word": "gute Nacht", "ipa": "ˈɡuːtə naxt"},
+        "la": {"word": "bona nox", "ipa": "ˈbɔ.na noks"}
+      },
+      "note": "Another build-your-own phrase: 'good' (bueno/bon/buono/bom) + 'night' (noche/nuit/notte/noite) — both already in this deck. Italian fuses them as 'buonanotte'. Once you know the parts, the greeting assembles itself.",
+      "example": {"en": "Good night, mother.", "es": "Buenas noches, madre.", "it": "Buonanotte, madre."},
+      "resources": [
+        {"label": "Wiktionary: bonus (Latin)", "url": "https://en.wiktionary.org/wiki/bonus"},
+        {"label": "Wiktionary: nox (Latin)", "url": "https://en.wiktionary.org/wiki/nox"}
+      ]
+    },
+
+    {
+      "id": "how-are-you",
+      "gloss": "how are you?",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": ["to-be"],
+      "forms": {
+        "en": {"word": "how are you?", "ipa": "haʊ ɑː juː"},
+        "es": {"word": "¿cómo estás?", "ipa": "ˈkomo esˈtas"},
+        "fr": {"word": "comment ça va ?", "ipa": "kɔmɑ̃ sa va"},
+        "it": {"word": "come stai?", "ipa": "ˈkoːme ˈstai"},
+        "pt": {"word": "como estás?", "ipa": "ˈkomu ɨʃˈtaʃ"},
+        "de": {"word": "wie geht es dir?", "ipa": "viː ɡeːt ɛs diːɐ̯"},
+        "la": {"word": "quid agis?", "ipa": "kʷid ˈa.ɡis"}
+      },
+      "note": "The Romance 'cómo/come/como' all come from Latin 'quomodo' (in what way). Spanish/Portuguese/Italian use the verb 'estar/stare' (Latin 'stare', to stand) for state — the same root as English 'state' and 'stand'. German asks literally 'how goes it to you?'.",
+      "example": {"en": "Hello, how are you?", "es": "Hola, ¿cómo estás?", "it": "Ciao, come stai?"},
+      "resources": [
+        {"label": "Wiktionary: stare (Latin)", "url": "https://en.wiktionary.org/wiki/sto#Latin"},
+        {"label": "Wiktionary: quomodo (Latin)", "url": "https://en.wiktionary.org/wiki/quomodo"}
+      ]
+    },
+    {
+      "id": "what-is-your-name",
+      "gloss": "what is your name?",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": ["name"],
+      "forms": {
+        "en": {"word": "what is your name?", "ipa": "wɒt ɪz jɔː neɪm"},
+        "es": {"word": "¿cómo te llamas?", "ipa": "ˈkomo te ˈʎamas"},
+        "fr": {"word": "comment tu t'appelles ?", "ipa": "kɔmɑ̃ ty tapɛl"},
+        "it": {"word": "come ti chiami?", "ipa": "ˈkoːme ti ˈkjaːmi"},
+        "pt": {"word": "como te chamas?", "ipa": "ˈkomu tɨ ˈʃɐmɐʃ"},
+        "de": {"word": "wie heißt du?", "ipa": "viː haɪ̯st duː"},
+        "la": {"word": "quod nomen tibi est?", "ipa": "kʷod ˈnoː.mɛn ˈti.bi ɛst"}
+      },
+      "note": "The Romance languages ask literally 'how do you call yourself?' — llamas/t'appelles/ti chiami/te chamas all use a reflexive verb from Latin 'clamare' (to call out) or 'appellare'. Latin instead asks 'what name is to you?', using the noun 'nomen' from this deck.",
+      "example": {"en": "Hello, what is your name?", "es": "Hola, ¿cómo te llamas?", "it": "Ciao, come ti chiami?"},
+      "resources": [
+        {"label": "Wiktionary: nomen (Latin)", "url": "https://en.wiktionary.org/wiki/nomen"},
+        {"label": "Wiktionary: clamare (Latin)", "url": "https://en.wiktionary.org/wiki/clamo#Latin"}
+      ]
+    },
+    {
+      "id": "i-dont-understand",
+      "gloss": "I don't understand",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": ["i", "no"],
+      "forms": {
+        "en": {"word": "I don't understand", "ipa": "aɪ doʊnt ˌʌndərˈstænd"},
+        "es": {"word": "no entiendo", "ipa": "no enˈtjendo"},
+        "fr": {"word": "je ne comprends pas", "ipa": "ʒə nə kɔ̃pʁɑ̃ pa"},
+        "it": {"word": "non capisco", "ipa": "non kaˈpisko"},
+        "pt": {"word": "não entendo", "ipa": "nɐ̃w̃ ẽˈtẽdu"},
+        "de": {"word": "ich verstehe nicht", "ipa": "ɪç fɛɐ̯ˈʃteːə nɪçt"},
+        "la": {"word": "non intellego", "ipa": "noːn inˈtɛl.lɛ.ɡoː"}
+      },
+      "note": "Spanish 'entiendo' and Portuguese 'entendo' come from Latin 'intendere' (to stretch toward, attend). French 'comprends' and Italian 'capisco' come from 'comprehendere' / 'capere' (to grasp) — the same image as English 'grasp the meaning'. Note the negators no/ne...pas/non from earlier in the deck.",
+      "example": {"en": "Sorry, I don't understand.", "es": "Lo siento, no entiendo.", "it": "Mi dispiace, non capisco."},
+      "resources": [
+        {"label": "Wiktionary: understand", "url": "https://en.wiktionary.org/wiki/understand"},
+        {"label": "Wiktionary: intellego (Latin)", "url": "https://en.wiktionary.org/wiki/intellego"}
+      ]
+    },
+    {
+      "id": "where-is",
+      "gloss": "where is...?",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": ["to-be"],
+      "forms": {
+        "en": {"word": "where is...?", "ipa": "wɛər ɪz"},
+        "es": {"word": "¿dónde está...?", "ipa": "ˈdonde esˈta"},
+        "fr": {"word": "où est... ?", "ipa": "u ɛ"},
+        "it": {"word": "dov'è...?", "ipa": "doˈvɛ"},
+        "pt": {"word": "onde está...?", "ipa": "ˈõdɨ ɨʃˈta"},
+        "de": {"word": "wo ist...?", "ipa": "voː ɪst"},
+        "la": {"word": "ubi est...?", "ipa": "ˈu.bi ɛst"}
+      },
+      "note": "Spanish 'dónde', Italian 'dove', Portuguese 'onde' all come from Latin 'unde' (from where) reinforced by 'de'. French 'où' is from Latin 'ubi'. The verb is 'estar/stare' again. German 'wo' and English 'where' share a Germanic question-word root.",
+      "example": {"en": "Where is the house?", "es": "¿Dónde está la casa?", "it": "Dov'è la casa?"},
+      "resources": [
+        {"label": "Wiktionary: ubi (Latin)", "url": "https://en.wiktionary.org/wiki/ubi"},
+        {"label": "Wiktionary: unde (Latin)", "url": "https://en.wiktionary.org/wiki/unde"}
+      ]
+    },
+    {
+      "id": "i-love-you",
+      "gloss": "I love you",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": ["i", "you-sg", "love"],
+      "forms": {
+        "en": {"word": "I love you", "ipa": "aɪ lʌv juː"},
+        "es": {"word": "te quiero", "ipa": "te ˈkjeɾo"},
+        "fr": {"word": "je t'aime", "ipa": "ʒə tɛm"},
+        "it": {"word": "ti amo", "ipa": "ti ˈaːmo"},
+        "pt": {"word": "amo-te", "ipa": "ˈamu tɨ"},
+        "de": {"word": "ich liebe dich", "ipa": "ɪç ˈliːbə dɪç"},
+        "la": {"word": "te amo", "ipa": "teː ˈa.moː"}
+      },
+      "note": "French 'aime', Italian 'amo', Portuguese 'amo', and Latin 'amo' all come from Latin 'amare' (to love) — the root of 'amateur' (one who does it for love) and 'amorous'. Spanish often uses 'querer' (to want) for people. German 'lieben' connects to English 'love'.",
+      "example": {"en": "I love you, mother.", "es": "Te quiero, madre.", "it": "Ti amo, madre."},
+      "resources": [
+        {"label": "Wiktionary: amare (Latin)", "url": "https://en.wiktionary.org/wiki/amo#Latin"},
+        {"label": "Wiktionary: love", "url": "https://en.wiktionary.org/wiki/love"}
+      ]
+    },
+    {
+      "id": "love",
+      "gloss": "love (the noun)",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {"word": "love", "ipa": "lʌv"},
+        "es": {"word": "amor", "ipa": "aˈmoɾ", "gender": "m"},
+        "fr": {"word": "amour", "ipa": "amuʁ", "gender": "m"},
+        "it": {"word": "amore", "ipa": "aˈmoːre", "gender": "m"},
+        "pt": {"word": "amor", "ipa": "ɐˈmoɾ", "gender": "m"},
+        "de": {"word": "Liebe", "ipa": "ˈliːbə", "gender": "f"},
+        "la": {"word": "amor", "ipa": "ˈa.mor", "gender": "m"}
+      },
+      "note": "Romance 'love' (amor, amour, amore, amor) all come from Latin 'amor' — root of 'amorous', 'enamored', 'paramour'. English 'love' and German 'Liebe' are Germanic, from *lewbʰ- (the same root that gives Latin 'libido').",
+      "example": {"en": "Love is a great thing.", "es": "El amor es algo grande.", "it": "L'amore è una cosa grande."},
+      "resources": [
+        {"label": "Wiktionary: amor (Latin)", "url": "https://en.wiktionary.org/wiki/amor"},
+        {"label": "Wiktionary: love", "url": "https://en.wiktionary.org/wiki/love"}
+      ]
+    },
+    {
+      "id": "time",
+      "gloss": "time",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {"word": "time", "ipa": "taɪm"},
+        "es": {"word": "tiempo", "ipa": "ˈtjempo", "gender": "m"},
+        "fr": {"word": "temps", "ipa": "tɑ̃", "gender": "m"},
+        "it": {"word": "tempo", "ipa": "ˈtɛmpo", "gender": "m"},
+        "pt": {"word": "tempo", "ipa": "ˈtẽpu", "gender": "m"},
+        "de": {"word": "Zeit", "ipa": "t͡saɪ̯t", "gender": "f"},
+        "la": {"word": "tempus", "ipa": "ˈtɛm.pus", "gender": "n"}
+      },
+      "note": "Romance 'time' (tiempo, temps, tempo, tempo) all come from Latin 'tempus' — root of 'temporary', 'tempo', 'contemporary'. (In Spanish/Italian/Portuguese it also means 'weather'.) English 'time' and German 'Zeit' are Germanic.",
+      "example": {"en": "I don't have time today.", "es": "No tengo tiempo hoy.", "it": "Non ho tempo oggi."},
+      "resources": [
+        {"label": "Wiktionary: time", "url": "https://en.wiktionary.org/wiki/time"},
+        {"label": "Wiktionary: tempus (Latin)", "url": "https://en.wiktionary.org/wiki/tempus"}
+      ]
+    },
+    {
+      "id": "light",
+      "gloss": "light",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {"word": "light", "ipa": "laɪt"},
+        "es": {"word": "luz", "ipa": "luθ", "gender": "f"},
+        "fr": {"word": "lumière", "ipa": "lymjɛʁ", "gender": "f"},
+        "it": {"word": "luce", "ipa": "ˈluːt͡ʃe", "gender": "f"},
+        "pt": {"word": "luz", "ipa": "ˈluʃ", "gender": "f"},
+        "de": {"word": "Licht", "ipa": "lɪçt", "gender": "n"},
+        "la": {"word": "lux", "ipa": "luːks", "gender": "f"}
+      },
+      "note": "Romance 'light' (luz, lumière, luce, luz) all come from Latin 'lux' (stem 'luc-') — root of 'lucid', 'translucent', 'Lucifer' (light-bearer). The same root *lewk- also gives English 'light' and German 'Licht'. A canon-tier word: light ties to the physics branch.",
+      "example": {"en": "The sun gives light.", "es": "El sol da luz.", "it": "Il sole dà luce."},
+      "resources": [
+        {"label": "Wiktionary: light", "url": "https://en.wiktionary.org/wiki/light"},
+        {"label": "Wiktionary: lux (Latin)", "url": "https://en.wiktionary.org/wiki/lux"}
+      ]
+    },
+    {
+      "id": "mind",
+      "gloss": "mind",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {"word": "mind", "ipa": "maɪnd"},
+        "es": {"word": "mente", "ipa": "ˈmente", "gender": "f"},
+        "fr": {"word": "esprit", "ipa": "ɛspʁi", "gender": "m"},
+        "it": {"word": "mente", "ipa": "ˈmente", "gender": "f"},
+        "pt": {"word": "mente", "ipa": "ˈmẽtɨ", "gender": "f"},
+        "de": {"word": "Geist", "ipa": "ɡaɪ̯st", "gender": "m"},
+        "la": {"word": "mens", "ipa": "meːns", "gender": "f"}
+      },
+      "note": "Spanish/Italian/Portuguese 'mente' come from Latin 'mens' (stem 'ment-') — root of 'mental', 'mention', 'comment'. English 'mind' is from the same *men- (to think). French 'esprit' (from 'spiritus') and German 'Geist' pick the 'spirit' sense instead. A canon-tier word tying to the mind branch.",
+      "example": {"en": "A clear mind sees the truth.", "es": "Una mente clara ve la verdad.", "it": "Una mente chiara vede la verità."},
+      "resources": [
+        {"label": "Wiktionary: mind", "url": "https://en.wiktionary.org/wiki/mind"},
+        {"label": "Wiktionary: mens (Latin)", "url": "https://en.wiktionary.org/wiki/mens"}
+      ]
+    },
+    {
+      "id": "truth",
+      "gloss": "truth",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {"word": "truth", "ipa": "truːθ"},
+        "es": {"word": "verdad", "ipa": "beɾˈðað", "gender": "f"},
+        "fr": {"word": "vérité", "ipa": "veʁite", "gender": "f"},
+        "it": {"word": "verità", "ipa": "veriˈta", "gender": "f"},
+        "pt": {"word": "verdade", "ipa": "vɨɾˈdadɨ", "gender": "f"},
+        "de": {"word": "Wahrheit", "ipa": "ˈvaːɐ̯haɪ̯t", "gender": "f"},
+        "la": {"word": "veritas", "ipa": "ˈweː.ri.taːs", "gender": "f"}
+      },
+      "note": "Romance 'truth' (verdad, vérité, verità, verdade) all come from Latin 'veritas' — root of 'verify', 'verdict', 'very'. The '-dad/-té/-tà/-dade' endings all reflect Latin '-tas'. English 'truth' and German 'Wahrheit' are Germanic. A canon-tier word: truth underlies every branch.",
+      "example": {"en": "I want the truth.", "es": "Quiero la verdad.", "it": "Voglio la verità."},
+      "resources": [
+        {"label": "Wiktionary: truth", "url": "https://en.wiktionary.org/wiki/truth"},
+        {"label": "Wiktionary: veritas (Latin)", "url": "https://en.wiktionary.org/wiki/veritas"}
+      ]
+    },
+    {
+      "id": "number",
+      "gloss": "number",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {"word": "number", "ipa": "ˈnʌmbər"},
+        "es": {"word": "número", "ipa": "ˈnumeɾo", "gender": "m"},
+        "fr": {"word": "nombre", "ipa": "nɔ̃bʁ", "gender": "m"},
+        "it": {"word": "numero", "ipa": "ˈnuːmero", "gender": "m"},
+        "pt": {"word": "número", "ipa": "ˈnumɨɾu", "gender": "m"},
+        "de": {"word": "Zahl", "ipa": "t͡saːl", "gender": "f"},
+        "la": {"word": "numerus", "ipa": "ˈnu.mɛ.rus", "gender": "m"}
+      },
+      "note": "Romance 'number' (número, nombre, numero, número) and English 'number' all come from Latin 'numerus' — root of 'numeral', 'enumerate', 'numerous'. German 'Zahl' is Germanic (cf. 'tale', a count). A canon-tier word tying to the mathematics branch.",
+      "example": {"en": "Seven is my number.", "es": "El siete es mi número.", "it": "Il sette è il mio numero."},
+      "resources": [
+        {"label": "Wiktionary: number", "url": "https://en.wiktionary.org/wiki/number"},
+        {"label": "Wiktionary: numerus (Latin)", "url": "https://en.wiktionary.org/wiki/numerus"}
+      ]
+    },
+    {
+      "id": "star",
+      "gloss": "star",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {"word": "star", "ipa": "stɑː(ɹ)"},
+        "es": {"word": "estrella", "ipa": "esˈtɾeʎa", "gender": "f"},
+        "fr": {"word": "étoile", "ipa": "etwal", "gender": "f"},
+        "it": {"word": "stella", "ipa": "ˈstella", "gender": "f"},
+        "pt": {"word": "estrela", "ipa": "ɨʃˈtɾelɐ", "gender": "f"},
+        "de": {"word": "Stern", "ipa": "ʃtɛʁn", "gender": "m"},
+        "la": {"word": "stella", "ipa": "ˈstɛl.la", "gender": "f"}
+      },
+      "note": "Romance 'star' (estrella, étoile, stella, estrela) all come from Latin 'stella' — root of 'stellar', 'constellation'. English 'star' and German 'Stern' descend from the same *h₂stḗr. A canon-tier word tying to the cosmology branch.",
+      "example": {"en": "The stars are bright tonight.", "es": "Las estrellas brillan esta noche.", "it": "Le stelle brillano stanotte."},
+      "resources": [
+        {"label": "Wiktionary: star", "url": "https://en.wiktionary.org/wiki/star"},
+        {"label": "Wiktionary: stella (Latin)", "url": "https://en.wiktionary.org/wiki/stella"}
+      ]
+    },
+    {
+      "id": "good-morning",
+      "gloss": "good morning",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": ["good", "day"],
+      "forms": {
+        "en": {"word": "good morning", "ipa": "ɡʊd ˈmɔːnɪŋ"},
+        "es": {"word": "buenos días", "ipa": "ˈbwenos ˈdias"},
+        "fr": {"word": "bonjour", "ipa": "bɔ̃ʒuʁ"},
+        "it": {"word": "buongiorno", "ipa": "bwonˈdʒorno"},
+        "pt": {"word": "bom dia", "ipa": "bõ ˈdiɐ"},
+        "de": {"word": "guten Morgen", "ipa": "ˈɡuːtn̩ ˈmɔʁɡn̩"},
+        "la": {"word": "salve", "ipa": "ˈsal.weː"}
+      },
+      "note": "This phrase recombines two words you already know: 'good' (bueno/bon/buono/bom) + 'day' (día/jour/giorno/dia). French and Italian fuse them into one word ('bonjour', 'buongiorno'). German says 'good morning' literally. Notice the building-block reuse.",
+      "example": {"en": "Good morning, friend.", "es": "Buenos días, amigo.", "it": "Buongiorno, amico."},
+      "resources": [
+        {"label": "Wiktionary: bonus (Latin)", "url": "https://en.wiktionary.org/wiki/bonus"},
+        {"label": "Wiktionary: dies (Latin)", "url": "https://en.wiktionary.org/wiki/dies"}
+      ]
+    },
+    {
+      "id": "i-have-a-friend",
+      "gloss": "I have a friend",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": ["i", "to-have", "friend"],
+      "forms": {
+        "en": {"word": "I have a friend", "ipa": "aɪ hæv ə frɛnd"},
+        "es": {"word": "tengo un amigo", "ipa": "ˈteŋɡo un aˈmiɣo"},
+        "fr": {"word": "j'ai un ami", "ipa": "ʒe œ̃n ami"},
+        "it": {"word": "ho un amico", "ipa": "ɔ un aˈmiːko"},
+        "pt": {"word": "tenho um amigo", "ipa": "ˈtɐɲu ũ ɐˈmiɡu"},
+        "de": {"word": "ich habe einen Freund", "ipa": "ɪç ˈhaːbə ˈaɪ̯nən fʁɔɪ̯nt"},
+        "la": {"word": "amicum habeo", "ipa": "aˈmiː.kum haˈbe.oː"}
+      },
+      "note": "A full sentence built from this deck: 'I' + 'to have' + 'one/a' + 'friend'. Note that Spanish 'tener' and Italian/French/Latin 'avere/avoir/habere' both render English 'have' — Spanish picked the 'hold' verb where the others kept Latin 'habere'.",
+      "example": {"en": "I have a good friend.", "es": "Tengo un buen amigo.", "it": "Ho un buon amico."},
+      "resources": [
+        {"label": "Wiktionary: habere (Latin)", "url": "https://en.wiktionary.org/wiki/habere"},
+        {"label": "Wiktionary: amicus (Latin)", "url": "https://en.wiktionary.org/wiki/amicus"}
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "meta": {
     "branch": "04-information",
     "title": "Information & Computation — entropy, computability, complexity",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations, theorems, and standard definitions are facts). Open sources only. Foundations-first DAG spanning information theory (entropy, mutual information, channel capacity, coding, Kolmogorov complexity), computability (Turing machines, Church–Turing, halting, decidability), automata & formal languages (DFA/NFA, the Chomsky hierarchy), complexity (P, NP, NP-completeness, reductions, space), algorithms & data structures (asymptotics, divide & conquer, dynamic programming, graphs), logic (propositional, predicate, proof systems), cryptography basics (one-way functions, public key), and a learning-theory frontier (PAC learning, VC dimension, the link to statistical mechanics, a modern-ML glimpse).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -15,14 +15,22 @@
       "requires": [],
       "summary": "One bit is the information in answering a single yes/no question whose two answers are equally likely.",
       "depths": {
-        "eli5": "A bit is one perfect yes-or-no answer. If you had to guess a number from 1 to 8, three good yes/no questions always nail it — that's three bits.",
-        "core": "Information is measured by how much it reduces uncertainty. The natural unit is the bit: the amount of information gained from learning the outcome of a fair coin flip. Choosing among 2^n equally likely options takes exactly n bits, because each bit halves the field of possibilities.",
-        "deep": "The bit is dimensionless and logarithmic by necessity: information about independent events must add, while the number of joint outcomes multiplies, and log is the unique function turning products into sums. Using log base 2 fixes the unit as the bit; base e gives nats, base 10 gives dits/hartleys — same quantity, different ruler."
+        "eli5": "A bit is the answer to one yes-or-no question — the smallest possible piece of information. Think of guessing a number from 1 to 8. Ask 'is it 5 or higher?', then split what's left in half again, then again: three good yes/no questions always pin down the answer. Each answer is one bit, so the whole guess took three bits. 'Bit' is short for 'binary digit', meaning a single 0 or 1.",
+        "core": "Information is measured by how much it cuts down your uncertainty. The natural unit is the bit: the amount of information you gain from learning the result of a fair (50/50) coin flip. Picking one item out of 2^n equally likely options takes exactly n bits, because each yes/no answer halves the number of remaining possibilities. The mathematics uses the logarithm — the function that asks 'how many times must I halve N to reach 1?' — so identifying one item out of N equally likely items costs log2(N) bits.",
+        "deep": "The bit is dimensionless and logarithmic by necessity: information about independent events must add up, while the number of combined outcomes multiplies, and the logarithm is the unique function that turns products into sums. Using log base 2 fixes the unit as the bit; using the natural log (base e) gives 'nats', and base 10 gives 'dits' or 'hartleys' — the same quantity measured with a different ruler."
       },
       "note": "log2(N) bits identify one item out of N equally likely ones. Memorize: 10 bits ≈ a thousand, 20 bits ≈ a million, 30 bits ≈ a billion.",
       "sources": [
         "MIT OCW 6.050J Information and Entropy",
         "Wikipedia (facts): Bit; Shannon (unit)"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Bit (binary digit, the unit of information)", "url": "https://en.wikipedia.org/wiki/Bit"},
+        {"label": "Wikipedia: Units of information (bit, nat, hartley)", "url": "https://en.wikipedia.org/wiki/Units_of_information"},
+        {"label": "Wikipedia: Logarithm (the function behind log2 N)", "url": "https://en.wikipedia.org/wiki/Logarithm"},
+        {"label": "Wikipedia: Binary number (base-2 / 0s and 1s)", "url": "https://en.wikipedia.org/wiki/Binary_number"},
+        {"label": "Khan Academy: Information theory (what is a bit, measuring information)", "url": "https://www.khanacademy.org/computing/computer-science/informationtheory"},
+        {"label": "MIT OCW 6.050J: Information and Entropy", "url": "https://ocw.mit.edu/courses/6-050j-information-and-entropy-spring-2008/"}
       ],
       "art_prompt": "a branching binary tree where each yes/no fork halves a crowd of candidate outcomes until one remains",
       "quiz": [
@@ -48,13 +56,21 @@
       "equation": "\\mathbb{E}[X]=\\sum_x x\\,p(x),\\qquad \\sum_x p(x)=1",
       "summary": "A distribution assigns nonnegative weights summing to one; expectation is the weighted average of outcomes.",
       "depths": {
-        "eli5": "If different things can happen with different chances, the expectation is what you'd get on average if you ran the whole thing many times.",
-        "core": "A discrete random variable X takes values x with probabilities p(x) ≥ 0 that sum to 1. The expectation E[X] = Σ x p(x) is the long-run average; expectation is linear: E[aX+bY] = aE[X]+bE[Y] even when X and Y are dependent. Almost every quantity in information theory is an expectation of some log-probability.",
-        "deep": "Linearity of expectation is the workhorse of algorithm analysis precisely because it needs no independence — you sum per-element contributions regardless of correlations. Variance, by contrast, does require care about covariance."
+        "eli5": "When different outcomes can happen, each with its own chance, the 'expectation' is the average result you'd get if you repeated the whole thing a huge number of times. For a fair six-sided die the outcomes 1 through 6 are equally likely, and their average is 3.5 — even though you can never actually roll a 3.5.",
+        "core": "A 'random variable' X is just a quantity whose value depends on chance (like a die roll). A 'probability distribution' lists each possible value x together with its probability p(x), where every p(x) is at least 0 and all of them add up to 1 (something must happen). The 'expectation' (or expected value, or mean) E[X] = Σ x p(x) is the probability-weighted average — the long-run average value. Expectation is 'linear': E[aX+bY] = aE[X]+bE[Y], and this holds even when X and Y influence each other. Almost every quantity in information theory turns out to be the expectation of some log-probability.",
+        "deep": "Linearity of expectation is the workhorse of algorithm analysis precisely because it needs no independence — you can sum per-element contributions regardless of how they correlate. 'Variance' (the spread around the mean), by contrast, does require care about covariance (how variables move together)."
       },
       "sources": [
         "MIT OCW 6.041 Probabilistic Systems Analysis",
         "Wikipedia (facts): Expected value"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Probability distribution", "url": "https://en.wikipedia.org/wiki/Probability_distribution"},
+        {"label": "Wikipedia: Expected value (the mean / expectation)", "url": "https://en.wikipedia.org/wiki/Expected_value"},
+        {"label": "Wikipedia: Random variable", "url": "https://en.wikipedia.org/wiki/Random_variable"},
+        {"label": "Wikipedia: Variance (spread around the mean)", "url": "https://en.wikipedia.org/wiki/Variance"},
+        {"label": "Khan Academy: Random variables and expected value", "url": "https://www.khanacademy.org/math/statistics-probability/random-variables-stats-library"},
+        {"label": "MIT OCW 6.041 Probabilistic Systems Analysis", "url": "https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/"}
       ],
       "art_prompt": "a histogram of outcome bars whose heights are probabilities, with a balance point marked at the mean",
       "quiz": [
@@ -83,15 +99,24 @@
       "equation": "H(X)=-\\sum_x p(x)\\log_2 p(x)",
       "summary": "Entropy is the average number of bits needed to describe an outcome — the exact amount of uncertainty in a distribution.",
       "depths": {
-        "eli5": "Entropy measures how surprised you'll be on average. A coin that's always heads has zero entropy (no surprise); a fair coin has one bit (maximum surprise for two outcomes).",
-        "core": "Shannon entropy H(X) = −Σ p(x) log2 p(x) is the expected 'surprise' −log2 p(x), measured in bits. It is the unique measure (up to scale) satisfying continuity, additivity over independent variables, and maximality for the uniform distribution. It sets the absolute floor on lossless compression: you cannot, on average, encode X in fewer than H(X) bits per symbol.",
-        "deep": "Surprise is −log2 p because rarer events carry more information, independent events' surprises must add (and probabilities multiply), and log is the function that converts the one into the other. Entropy is maximized by the uniform distribution and is zero exactly when one outcome is certain. It is concave in p, which is why mixing distributions never decreases uncertainty."
+        "eli5": "Entropy measures how surprised you'll be, on average, by an outcome — and that surprise is exactly the amount of information the outcome carries. A coin that always lands heads has zero entropy: you already know the result, so learning it tells you nothing. A fair coin has one bit of entropy: each flip is a genuine 50/50 surprise. The more unpredictable something is, the higher its entropy.",
+        "core": "Shannon entropy H(X) = −Σ p(x) log2 p(x) is the average 'surprise' of an outcome, where the surprise of a single outcome with probability p is defined as −log2 p (rarer outcomes are more surprising). Measured in bits, entropy is the unique measure (up to a scaling choice) that is continuous, adds up for independent variables, and is largest for the uniform (all-equally-likely) distribution. It sets the absolute floor on lossless compression: on average you cannot encode X in fewer than H(X) bits per symbol. ('Lossless' means the original can be perfectly reconstructed.)",
+        "deep": "Surprise is −log2 p because rarer events carry more information, independent events' surprises must add (while their probabilities multiply), and the logarithm is the function that converts multiplication into addition. Entropy is maximized by the uniform distribution and is exactly zero when one outcome is certain. It is concave in p, which is why blending two distributions together never decreases uncertainty."
       },
       "note": "Joint and conditional entropy obey the chain rule H(X,Y)=H(X)+H(Y|X); conditioning never increases entropy: H(X|Y) ≤ H(X).",
       "sources": [
         "Shannon, 'A Mathematical Theory of Communication' (1948, facts)",
         "MIT OCW 6.441 Information Theory",
         "Cover & Thomas, Elements of Information Theory (definitions/facts)"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Entropy (information theory) — Shannon entropy", "url": "https://en.wikipedia.org/wiki/Entropy_(information_theory)"},
+        {"label": "Wikipedia: Information content (self-information / 'surprise', −log p)", "url": "https://en.wikipedia.org/wiki/Information_content"},
+        {"label": "Wikipedia: Conditional entropy (H(X|Y))", "url": "https://en.wikipedia.org/wiki/Conditional_entropy"},
+        {"label": "Wikipedia: Joint entropy and the chain rule", "url": "https://en.wikipedia.org/wiki/Joint_entropy"},
+        {"label": "Khan Academy: Information entropy (video + unit)", "url": "https://www.khanacademy.org/computing/computer-science/informationtheory/moderninfotheory/v/information-entropy"},
+        {"label": "Wikipedia: A Mathematical Theory of Communication (Shannon 1948)", "url": "https://en.wikipedia.org/wiki/A_Mathematical_Theory_of_Communication"},
+        {"label": "MIT OCW 6.441 Information Theory", "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"}
       ],
       "art_prompt": "a dial of distributions from a stuck all-heads coin (entropy 0) to a fair coin (entropy 1 bit), with surprise meters beside each",
       "quiz": [
@@ -119,14 +144,23 @@
       "equation": "H(X)\\le \\bar L < H(X)+1,\\qquad \\sum_i 2^{-\\ell_i}\\le 1",
       "summary": "Lossless codes can compress a source down to its entropy, and no further — entropy is the compression limit.",
       "depths": {
-        "eli5": "You can give short codewords to common things and long ones to rare things, like Morse code does with 'e'. But there's a hard floor: you can't beat the entropy, on average.",
-        "core": "Shannon's source coding theorem says the minimum expected codeword length for a symbol source equals its entropy: H(X) ≤ L̄ < H(X)+1 bits per symbol, and the gap vanishes when you code long blocks. The Kraft inequality, Σ 2^(−ℓ_i) ≤ 1, characterizes exactly which sets of codeword lengths admit a uniquely decodable prefix code.",
-        "deep": "Optimal codeword lengths are ℓ_i ≈ −log2 p_i, recovering surprise as code length. Huffman coding achieves the optimal integer-length prefix code; arithmetic coding approaches the entropy bound to within o(1) bits per symbol by escaping the integer-length constraint. Kraft's inequality is what forbids 'free lunch': shortening one codeword forces lengthening others."
+        "eli5": "When you turn symbols into strings of 0s and 1s (a 'code'), you can give short codes to the things that show up a lot and longer codes to rare things — that's the trick Morse code uses, giving the common letter 'e' a single dot. Doing this shrinks your messages on average. But there's a hard floor: no matter how clever you are, you can't squeeze a message below its entropy, on average.",
+        "core": "Shannon's source coding theorem says the shortest possible average codeword length for a source equals its entropy: H(X) ≤ L̄ < H(X)+1 bits per symbol, and the leftover gap shrinks to zero when you encode long blocks of symbols at once. A 'prefix code' is one where no codeword is the start of another, so a stream of bits can be decoded with no separators ('uniquely decodable' = the bits can only be read one way). The Kraft inequality, Σ 2^(−ℓ_i) ≤ 1 (summing over codeword lengths ℓ_i), says exactly which sets of codeword lengths can form such a code.",
+        "deep": "The best codeword lengths are ℓ_i ≈ −log2 p_i, so the length of a codeword equals the surprise of its symbol. Huffman coding finds the optimal code when lengths must be whole numbers; arithmetic coding gets within a hair of the entropy bound by escaping the whole-number constraint. Kraft's inequality is what forbids a 'free lunch': shortening one codeword forces you to lengthen others."
       },
       "sources": [
         "MIT OCW 6.441 Information Theory",
         "Cover & Thomas, Elements of Information Theory (facts)",
         "Wikipedia (facts): Kraft–McMillan inequality; Huffman coding"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Shannon's source coding theorem", "url": "https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem"},
+        {"label": "Wikipedia: Kraft–McMillan inequality", "url": "https://en.wikipedia.org/wiki/Kraft%E2%80%93McMillan_inequality"},
+        {"label": "Wikipedia: Prefix code (uniquely decodable codes)", "url": "https://en.wikipedia.org/wiki/Prefix_code"},
+        {"label": "Wikipedia: Huffman coding (optimal integer-length code)", "url": "https://en.wikipedia.org/wiki/Huffman_coding"},
+        {"label": "Wikipedia: Arithmetic coding", "url": "https://en.wikipedia.org/wiki/Arithmetic_coding"},
+        {"label": "Khan Academy: Information theory (compression codes)", "url": "https://www.khanacademy.org/computing/computer-science/informationtheory"},
+        {"label": "MIT OCW 6.441 Information Theory", "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"}
       ],
       "art_prompt": "frequent symbols wearing short codeword tags and rare symbols wearing long ones, with a meter pinned at the entropy floor",
       "quiz": [
@@ -154,15 +188,24 @@
       "equation": "I(X;Y)=H(X)-H(X\\mid Y)=\\sum_{x,y}p(x,y)\\log_2\\frac{p(x,y)}{p(x)p(y)}",
       "summary": "Mutual information is the number of bits one variable reveals about another — the reduction in uncertainty from observing it.",
       "depths": {
-        "eli5": "If knowing Y makes you less unsure about X, that shared knowledge is the mutual information. If they're unrelated, it's zero.",
-        "core": "I(X;Y) = H(X) − H(X|Y) measures how much observing Y reduces uncertainty about X. It is symmetric, nonnegative, and zero exactly when X and Y are independent. Equivalently it is the Kullback–Leibler divergence between the joint distribution and the product of the marginals, quantifying how far they are from independence.",
-        "deep": "I(X;Y) ≥ 0 follows from the convexity of KL divergence (Gibbs' inequality). The data-processing inequality says no clever post-processing of Y can increase the information it carries about X: if X→Y→Z is a Markov chain then I(X;Z) ≤ I(X;Y). This is the formal reason you cannot manufacture information by computation alone."
+        "eli5": "Mutual information is how much learning one thing tells you about another. If knowing today's clouds makes you more sure whether it'll rain, clouds and rain share mutual information. If two things have nothing to do with each other — like a coin flip in Tokyo and one in Paris — their mutual information is zero.",
+        "core": "Mutual information I(X;Y) = H(X) − H(X|Y) measures how many bits observing Y removes from your uncertainty about X (here H(X) is the entropy of X and H(X|Y) is the leftover entropy once Y is known). It is symmetric (Y tells you as much about X as X tells you about Y), never negative, and exactly zero when X and Y are 'independent' (unrelated — knowing one says nothing about the other). Equivalently it is the Kullback–Leibler divergence between the true joint distribution and the product of the separate distributions, a number measuring how far the two variables are from being independent.",
+        "deep": "I(X;Y) ≥ 0 follows from the convexity of KL divergence (Gibbs' inequality). The data-processing inequality says no clever post-processing of Y can increase the information it carries about X: if X→Y→Z form a 'Markov chain' (Z depends on X only through Y) then I(X;Z) ≤ I(X;Y). This is the formal reason you cannot manufacture information by computation alone."
       },
       "note": "Mutual information is the rate quantity behind channel capacity, feature selection, and the information bottleneck in deep learning.",
       "sources": [
         "MIT OCW 6.441 Information Theory",
         "Cover & Thomas, Elements of Information Theory (facts)",
         "Wikipedia (facts): Mutual information; Data processing inequality"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Mutual information", "url": "https://en.wikipedia.org/wiki/Mutual_information"},
+        {"label": "Wikipedia: Conditional entropy (the H(X|Y) term)", "url": "https://en.wikipedia.org/wiki/Conditional_entropy"},
+        {"label": "Wikipedia: Independence (probability — when I=0)", "url": "https://en.wikipedia.org/wiki/Independence_(probability_theory)"},
+        {"label": "Wikipedia: Data processing inequality", "url": "https://en.wikipedia.org/wiki/Data_processing_inequality"},
+        {"label": "Wikipedia: Markov chain (the X→Y→Z structure)", "url": "https://en.wikipedia.org/wiki/Markov_chain"},
+        {"label": "Wikipedia: Kullback–Leibler divergence", "url": "https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence"},
+        {"label": "MIT OCW 6.441 Information Theory", "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"}
       ],
       "art_prompt": "two overlapping uncertainty circles whose intersection is shaded and labeled I(X;Y), with the union labeled H(X,Y)",
       "quiz": [
@@ -190,15 +233,24 @@
       "equation": "C=\\max_{p(x)} I(X;Y)",
       "summary": "Every noisy channel has a maximum reliable rate, the capacity C, below which error can be driven to zero and above which it cannot.",
       "depths": {
-        "eli5": "Even on a noisy line, there's a top speed at which you can talk and still be understood perfectly if you encode cleverly. Push past it and mistakes become unavoidable.",
-        "core": "The capacity of a channel is the maximum mutual information between its input and output over all input distributions: C = max_p(x) I(X;Y). Shannon's noisy-channel coding theorem says any rate R < C is achievable with arbitrarily small error using long block codes, and any rate R > C has error bounded away from zero. Reliable communication and the noise floor are thus a single number.",
-        "deep": "The achievability proof is non-constructive: it uses random codebooks and 'typical set' decoding to show good codes exist, without naming one. Closing the gap to capacity with explicit, efficiently decodable codes took decades — turbo codes, LDPC, and polar codes (the first provably capacity-achieving family for symmetric channels) finally did it. Capacity separates source and channel coding: you can compress to entropy, then protect to capacity, independently."
+        "eli5": "A 'channel' is any link that carries a message but can scramble it — a phone line with static, a scratched disc, a radio signal through interference. Shannon showed every noisy channel has a top speed (its 'capacity'): below that speed you can encode cleverly enough to be understood with essentially zero errors; push past it and mistakes become unavoidable no matter how clever you are.",
+        "core": "The capacity of a channel is the largest mutual information you can achieve between its input X and output Y, by choosing the best possible input distribution: C = max over p(x) of I(X;Y). Shannon's noisy-channel coding theorem says any transmission rate R below C can be achieved with arbitrarily small error using long 'block codes' (encoding many symbols together), while any rate above C is stuck with errors that never go to zero. So reliable communication and the noise floor are captured by a single number, C.",
+        "deep": "The proof that good codes exist is 'non-constructive': it uses random codebooks and 'typical set' decoding to prove good codes must exist, without naming one. Closing the gap to capacity with explicit, efficiently decodable codes took decades — turbo codes, LDPC codes, and polar codes (the first family proven to reach capacity on symmetric channels) finally did it. Capacity also lets you separate the two coding jobs: compress your data down to its entropy first, then protect it up to capacity, independently."
       },
       "note": "For a binary symmetric channel with crossover probability p, C = 1 − H(p) bits per use, where H(p) is the binary entropy function.",
       "sources": [
         "Shannon (1948, facts)",
         "MIT OCW 6.441 Information Theory",
         "Wikipedia (facts): Noisy-channel coding theorem; Channel capacity"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Channel capacity", "url": "https://en.wikipedia.org/wiki/Channel_capacity"},
+        {"label": "Wikipedia: Noisy-channel coding theorem (Shannon's theorem)", "url": "https://en.wikipedia.org/wiki/Noisy-channel_coding_theorem"},
+        {"label": "Wikipedia: Binary symmetric channel", "url": "https://en.wikipedia.org/wiki/Binary_symmetric_channel"},
+        {"label": "Wikipedia: Binary entropy function (the H(p) term)", "url": "https://en.wikipedia.org/wiki/Binary_entropy_function"},
+        {"label": "Wikipedia: Low-density parity-check (LDPC) code", "url": "https://en.wikipedia.org/wiki/Low-density_parity-check_code"},
+        {"label": "Khan Academy: Introduction to channel capacity (video)", "url": "https://www.khanacademy.org/computing/computer-science/informationtheory/moderninfotheory/v/intro-to-channel-capacity-information-theory"},
+        {"label": "MIT OCW 6.441 Information Theory", "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"}
       ],
       "art_prompt": "a pipe with noise sprayed across it and a throughput gauge pinned at C, with a clean signal flowing below the line and garbled above it",
       "quiz": [
@@ -226,13 +278,21 @@
       "equation": "d_{\\min}\\ge 2t+1\\ \\Rightarrow\\ \\text{corrects } t \\text{ errors}",
       "summary": "By spreading codewords far apart in Hamming distance, a code can detect and correct a bounded number of bit errors.",
       "depths": {
-        "eli5": "If valid messages are very different from each other, a few flipped bits still leave one obvious nearest valid message. So you snap a corrupted message back to it.",
-        "core": "A code maps messages to codewords separated by minimum Hamming distance d_min (the fewest bit positions in which two codewords differ). A code can detect up to d_min − 1 errors and correct up to t = ⌊(d_min − 1)/2⌋ errors, because any received word within t flips of a unique codeword decodes to it. Linear codes (Hamming, Reed–Solomon, LDPC) make encoding and decoding efficient via algebra.",
-        "deep": "Coding is a sphere-packing problem in Hamming space: nonoverlapping balls of radius t around each codeword. The Hamming bound limits how many codewords fit; the Gilbert–Varshamov bound guarantees a minimum density exists. Shannon's capacity is the asymptotic ceiling these combinatorial bounds approach. Reed–Solomon codes underlie CDs, QR codes, and deep-space links; LDPC and polar codes power modern wireless."
+        "eli5": "Suppose the only valid messages you allow are very different from one another. Then if a few bits get flipped by noise, the corrupted message is still closest to exactly one valid message — so you 'snap' it back to that one and recover the original. That is error correction: build in enough difference that small damage is fixable.",
+        "core": "A code maps each message to a longer 'codeword'. The 'Hamming distance' between two codewords is the number of bit positions where they differ; the smallest such distance over all pairs is d_min. A code can detect up to d_min − 1 flipped bits and correct up to t = ⌊(d_min − 1)/2⌋ of them, because any received word within t flips of a unique codeword decodes back to it. 'Linear codes' (Hamming, Reed–Solomon, LDPC) use algebra over finite number systems so that encoding and decoding stay fast.",
+        "deep": "Error-correcting coding is a sphere-packing problem in 'Hamming space': put non-overlapping balls of radius t around each codeword. The Hamming bound caps how many codewords fit; the Gilbert–Varshamov bound guarantees a minimum density always exists. Shannon's channel capacity is the asymptotic ceiling these combinatorial bounds approach. Reed–Solomon codes underlie CDs, QR codes, and deep-space links; LDPC and polar codes power modern wireless."
       },
       "sources": [
         "MIT OCW 6.02 Introduction to EECS II",
         "Wikipedia (facts): Hamming distance; Hamming bound; Reed–Solomon"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Error correction code", "url": "https://en.wikipedia.org/wiki/Error_correction_code"},
+        {"label": "Wikipedia: Hamming distance", "url": "https://en.wikipedia.org/wiki/Hamming_distance"},
+        {"label": "Wikipedia: Block code and minimum distance", "url": "https://en.wikipedia.org/wiki/Block_code"},
+        {"label": "Wikipedia: Hamming code (a simple linear code)", "url": "https://en.wikipedia.org/wiki/Hamming_code"},
+        {"label": "Wikipedia: Reed–Solomon error correction (CDs, QR codes)", "url": "https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction"},
+        {"label": "Wikipedia: Sphere packing (the geometric picture)", "url": "https://en.wikipedia.org/wiki/Sphere_packing"}
       ],
       "art_prompt": "codewords as points in a grid each surrounded by a protective sphere of radius t, with a corrupted point snapping to its nearest center",
       "quiz": [
@@ -261,15 +321,23 @@
       "equation": "K(x)=\\min\\{|p| : U(p)=x\\}",
       "summary": "The complexity of a string is the length of the shortest program that prints it — the algorithmic, per-object version of information.",
       "depths": {
-        "eli5": "How short can a recipe be that produces exactly this string? A million repeated 'ab' has a tiny recipe; a million truly random coin flips has no recipe shorter than itself.",
-        "core": "K(x) is the length of the shortest program (on a fixed universal Turing machine U) that outputs x and halts. Unlike Shannon entropy, which describes a distribution, K describes a single object. The invariance theorem guarantees that switching universal machines changes K by at most an additive constant, so K is well-defined up to that constant. A string is 'random' (incompressible) when K(x) ≈ |x|.",
-        "deep": "K is not computable: no algorithm outputs K(x) for all x, and Chaitin's theorem sharpens this — any consistent formal system can prove 'K(x) > c' for only finitely many x, no matter how large the true values get. This is Gödel incompleteness in information-theoretic dress. The expected Kolmogorov complexity of strings drawn from a computable distribution equals its Shannon entropy up to a constant, tying the two notions of information together."
+        "eli5": "Ask: how short can a recipe (a computer program) be that prints out exactly this string of symbols? The string 'ababab...ab' a million times has a tiny recipe ('print ab a million times'). But a million truly random coin-flip results has no recipe shorter than just writing the whole thing out. That shortest-recipe length is the string's Kolmogorov complexity — its true, per-object amount of information.",
+        "core": "K(x) is the length of the shortest program that, run on a fixed 'universal Turing machine' U (an idealized general-purpose computer; see the Turing machine atom), prints x and stops. Unlike Shannon entropy, which describes a whole probability distribution, K describes one single object. The 'invariance theorem' guarantees that switching to a different universal machine changes K by at most a fixed additive constant, so K is well-defined up to that constant. A string is called 'random' or 'incompressible' when K(x) ≈ |x|, meaning it has no description shorter than itself.",
+        "deep": "K is not computable: no algorithm can output K(x) for every x. Chaitin's theorem sharpens this — any consistent formal system can prove statements of the form 'K(x) > c' for only finitely many x, no matter how large the true complexities get. This is Gödel's incompleteness dressed in information-theoretic clothes. The expected Kolmogorov complexity of strings drawn from a computable distribution equals that distribution's Shannon entropy up to a constant, tying the two notions of information together."
       },
       "note": "Most strings are incompressible by a simple counting argument: there are 2^n strings of length n but fewer than 2^n programs shorter than n, so most strings have no short description.",
       "sources": [
         "Li & Vitányi, An Introduction to Kolmogorov Complexity (facts)",
         "Scholarpedia: Algorithmic information theory",
         "Wikipedia (facts): Kolmogorov complexity; Chaitin's incompleteness"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Kolmogorov complexity", "url": "https://en.wikipedia.org/wiki/Kolmogorov_complexity"},
+        {"label": "Wikipedia: Algorithmic information theory", "url": "https://en.wikipedia.org/wiki/Algorithmic_information_theory"},
+        {"label": "Scholarpedia: Algorithmic information theory (Hutter)", "url": "http://www.scholarpedia.org/article/Algorithmic_information_theory"},
+        {"label": "Wikipedia: Chaitin's constant and incompleteness", "url": "https://en.wikipedia.org/wiki/Chaitin%27s_constant"},
+        {"label": "Wikipedia: Berry paradox (the self-reference behind uncomputability)", "url": "https://en.wikipedia.org/wiki/Berry_paradox"},
+        {"label": "Wikipedia: Universal Turing machine (the fixed machine U)", "url": "https://en.wikipedia.org/wiki/Universal_Turing_machine"}
       ],
       "art_prompt": "two strings side by side — a regular repeating pattern with a tiny program tag, and random noise whose program tag is as long as the string itself",
       "quiz": [
@@ -293,13 +361,22 @@
       "requires": [],
       "summary": "Sets are collections; functions map each input to one output; relations are any set of input–output pairs — the vocabulary of all formal definitions.",
       "depths": {
-        "eli5": "A set is a bag of things. A function is a machine that gives exactly one answer per input. A relation is looser — it can link an input to many things.",
-        "core": "A set is an unordered collection of distinct elements. A function f: A→B assigns to each element of the domain A exactly one element of the codomain B; a relation on A×B is any subset of ordered pairs, so every function is a relation but not vice versa. Cardinality measures size, and a function is a bijection (perfect pairing) iff it is both injective and surjective.",
-        "deep": "Countable vs. uncountable hinges on bijection: a set is countable if it can be put in bijection with a subset of the naturals. Cantor's diagonal argument shows the reals (and the set of all languages over an alphabet) are uncountable, while the set of programs is only countable — the seed of why most functions are uncomputable."
+        "eli5": "A 'set' is just a bag of distinct things (the set of vowels, the set of whole numbers). A 'function' is a rule that gives exactly one output for each input — like 'double it', which turns 3 into 6 and never into anything else. A 'relation' is looser: it can link one input to several things at once, like 'is a sibling of'.",
+        "core": "A set is an unordered collection of distinct elements. A function f: A→B assigns to each element of the input set A (the 'domain') exactly one element of the output set B (the 'codomain'). A 'relation' between A and B is any collection of input–output pairs, so every function is a relation but not every relation is a function. 'Cardinality' measures a set's size. A function is a 'bijection' (a perfect one-to-one pairing) when it is both 'injective' (no two inputs share an output) and 'surjective' (every output is used).",
+        "deep": "Whether a set is 'countable' or 'uncountable' hinges on bijection: a set is countable if its elements can be paired one-to-one with the counting numbers 1, 2, 3, …. Cantor's diagonal argument shows the real numbers (and the set of all possible languages over an alphabet) are uncountable, while the set of all computer programs is only countable — the seed of why most functions can never be computed."
       },
       "sources": [
         "MIT OCW 6.042J Mathematics for Computer Science",
         "Wikipedia (facts): Function (mathematics); Cardinality"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Set (mathematics)", "url": "https://en.wikipedia.org/wiki/Set_(mathematics)"},
+        {"label": "Wikipedia: Function (mathematics)", "url": "https://en.wikipedia.org/wiki/Function_(mathematics)"},
+        {"label": "Wikipedia: Binary relation", "url": "https://en.wikipedia.org/wiki/Binary_relation"},
+        {"label": "Wikipedia: Bijection, injection and surjection", "url": "https://en.wikipedia.org/wiki/Bijection,_injection_and_surjection"},
+        {"label": "Wikipedia: Cardinality (and countable vs uncountable)", "url": "https://en.wikipedia.org/wiki/Cardinality"},
+        {"label": "Wikipedia: Cantor's diagonal argument", "url": "https://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument"},
+        {"label": "MIT OCW 6.042J Mathematics for Computer Science", "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/"}
       ],
       "art_prompt": "an arrow diagram where each domain dot sends exactly one arrow (a function) beside a looser web of arrows (a general relation)",
       "quiz": [
@@ -325,15 +402,23 @@
       ],
       "summary": "A finite automaton is a machine with finitely many states that reads input symbol by symbol and accepts or rejects.",
       "depths": {
-        "eli5": "Imagine a board game with a few squares. Each letter you read tells you which square to hop to. If you end on a 'win' square, the word is accepted.",
-        "core": "A deterministic finite automaton (DFA) has a finite set of states, a transition function moving to exactly one next state per input symbol, a start state, and accepting states. A nondeterministic finite automaton (NFA) may branch to several states (or none) and accepts if any branch reaches an accept state. DFAs and NFAs recognize exactly the same class — the regular languages.",
-        "deep": "The subset construction converts any NFA with n states into an equivalent DFA with up to 2^n states, proving the equivalence but exposing an exponential state blowup. Finite automata have no memory beyond their current state, which is exactly why they cannot count unboundedly — the limitation the pumping lemma formalizes."
+        "eli5": "Picture a board game with a few squares ('states'). You read a word one letter at a time, and each letter tells you which square to hop to next. One square is where you start; some squares are marked 'win'. If you land on a win-square after reading the whole word, the machine 'accepts' that word. That little hopping game is a finite automaton.",
+        "core": "A 'deterministic finite automaton' (DFA) has a finite set of states, a rule ('transition function') that moves it to exactly one next state for each input symbol, a designated start state, and a set of accepting ('win') states. A 'nondeterministic finite automaton' (NFA) is allowed to branch into several states at once (or get stuck with none) and accepts a word if any branch ends in an accept state. Despite the extra freedom, DFAs and NFAs recognize exactly the same family of patterns — the 'regular languages' (the patterns describable by a finite-state machine, equivalently by a regular expression).",
+        "deep": "The 'subset construction' converts any NFA with n states into an equivalent DFA with up to 2^n states, proving the two models are equally powerful while exposing an exponential blowup in state count. A finite automaton has no memory beyond which single state it is currently in, which is exactly why it cannot count without limit — the limitation the pumping lemma makes precise."
       },
       "note": "Regular expressions, DFAs, and NFAs are three faces of the same expressive power: the regular languages.",
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser, Introduction to the Theory of Computation (definitions/facts)",
         "Wikipedia (facts): Deterministic finite automaton; Subset construction"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Finite-state machine (automaton)", "url": "https://en.wikipedia.org/wiki/Finite-state_machine"},
+        {"label": "Wikipedia: Deterministic finite automaton (DFA)", "url": "https://en.wikipedia.org/wiki/Deterministic_finite_automaton"},
+        {"label": "Wikipedia: Nondeterministic finite automaton (NFA)", "url": "https://en.wikipedia.org/wiki/Nondeterministic_finite_automaton"},
+        {"label": "Wikipedia: Powerset (subset) construction", "url": "https://en.wikipedia.org/wiki/Powerset_construction"},
+        {"label": "Wikipedia: Regular language", "url": "https://en.wikipedia.org/wiki/Regular_language"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "a state diagram with labeled circles and arrows, one path traced deterministically and another fanning out into parallel nondeterministic branches",
       "quiz": [
@@ -360,14 +445,22 @@
       ],
       "summary": "Regular languages are exactly those recognized by finite automata; the pumping lemma proves some languages are not regular.",
       "depths": {
-        "eli5": "Finite-memory machines can recognize lots of patterns, but they can't truly count. So 'equal numbers of A's then B's' is beyond them — and there's a trick to prove it.",
-        "core": "A language is regular iff some DFA recognizes it. The pumping lemma states that for any regular language there is a length p such that every string of length ≥ p can be split xyz with y nonempty and within the first p symbols, where xy^i z stays in the language for all i ≥ 0. If no such p works, the language is not regular — the standard tool for proving languages like {0^n 1^n} lie outside the regular class.",
-        "deep": "The pumping lemma is really the pigeonhole principle on states: a long enough accepted string forces the automaton to revisit a state, creating a loop (the y part) you can traverse any number of times. The lemma is necessary but not sufficient for regularity, so a clean proof of non-regularity must show the pumping condition fails for every choice of decomposition."
+        "eli5": "A 'language' here just means a set of allowed words. Finite-memory machines can recognize lots of word-patterns, but they can't truly count, because they only remember which of a few states they're in. So a pattern like 'some number of A's followed by the exact same number of B's' is beyond them — and the 'pumping lemma' is a clever trick that proves it.",
+        "core": "A language is 'regular' exactly when some DFA recognizes it. The pumping lemma states that for any regular language there is a length p such that every accepted string of length ≥ p can be cut into three parts xyz — with the middle part y non-empty and sitting within the first p symbols — so that repeating that middle part any number of times, xy^i z, still gives a string in the language for every i ≥ 0. If no such p can possibly work for a language, that language is not regular. This is the standard tool for proving patterns like {0^n 1^n} (n zeros then n ones) lie outside the regular class.",
+        "deep": "The pumping lemma is really the pigeonhole principle applied to states: a long enough accepted string forces the automaton to revisit some state, creating a loop (the y part) that can be traversed any number of times. The lemma is a necessary but not sufficient condition for regularity, so a clean non-regularity proof must show the pumping condition fails for every possible way of cutting the string."
       },
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): Pumping lemma for regular languages"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Regular language", "url": "https://en.wikipedia.org/wiki/Regular_language"},
+        {"label": "Wikipedia: Pumping lemma for regular languages", "url": "https://en.wikipedia.org/wiki/Pumping_lemma_for_regular_languages"},
+        {"label": "Wikipedia: Formal language (the meaning of 'language')", "url": "https://en.wikipedia.org/wiki/Formal_language"},
+        {"label": "Wikipedia: Pigeonhole principle (the idea behind the proof)", "url": "https://en.wikipedia.org/wiki/Pigeonhole_principle"},
+        {"label": "Wikipedia: Myhill–Nerode theorem (another regularity test)", "url": "https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "an automaton path that loops through a repeated state, with the loop segment highlighted as the 'pumpable' middle of a string",
       "quiz": [
@@ -393,15 +486,23 @@
       ],
       "summary": "Context-free grammars generate nested, recursive structure (like balanced parentheses) that finite automata cannot.",
       "depths": {
-        "eli5": "Rules like 'a sentence can contain a smaller sentence inside it' let you build nested structures — matching brackets, math expressions, programming languages.",
-        "core": "A context-free grammar (CFG) has production rules rewriting a single nonterminal into a string of terminals and nonterminals. CFGs generate the context-free languages, recognized by pushdown automata — finite automata equipped with a stack. The stack supplies exactly the bounded-recursion memory needed for balanced nesting like {0^n 1^n} and the syntax of programming languages.",
-        "deep": "There is a pumping lemma for context-free languages too, with two pumpable segments instead of one, proving that languages like {0^n 1^n 2^n} are not context-free. Parsing a CFG can be done in polynomial time (CYK algorithm, O(n^3)); deterministic CFGs admit linear-time parsers, which is why real compilers restrict grammars to LL/LR subclasses."
+        "eli5": "A 'grammar' is a set of build-rules for words. Context-free grammars allow rules like 'a sentence can contain a smaller sentence inside it', which lets you build nested structures — matching brackets ( [ { } ] ), arithmetic expressions, and the syntax of programming languages — the kind of nesting that plain finite-state machines cannot handle.",
+        "core": "A 'context-free grammar' (CFG) is a set of 'production rules', each rewriting a single 'nonterminal' symbol (a placeholder) into a string of 'terminals' (actual symbols) and other nonterminals. CFGs generate the 'context-free languages', which are recognized by 'pushdown automata' — finite automata equipped with a 'stack' (a last-in-first-out memory, like a stack of plates). The stack provides exactly the bounded-recursion memory needed for balanced nesting such as {0^n 1^n} (n zeros then n ones) and programming-language syntax.",
+        "deep": "There is a pumping lemma for context-free languages too — with two pumpable segments instead of one — and it proves that languages like {0^n 1^n 2^n} are not context-free. Parsing a CFG can be done in polynomial time (the CYK algorithm runs in O(n^3)); deterministic CFGs admit linear-time parsers, which is why real compilers restrict their grammars to the well-behaved LL and LR subclasses."
       },
       "note": "Pushdown automata = finite automaton + one stack. Adding a second stack (or a tape) jumps all the way to Turing-machine power.",
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): Context-free grammar; Pushdown automaton; CYK algorithm"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Context-free grammar", "url": "https://en.wikipedia.org/wiki/Context-free_grammar"},
+        {"label": "Wikipedia: Context-free language", "url": "https://en.wikipedia.org/wiki/Context-free_language"},
+        {"label": "Wikipedia: Pushdown automaton (finite automaton + a stack)", "url": "https://en.wikipedia.org/wiki/Pushdown_automaton"},
+        {"label": "Wikipedia: Stack (the LIFO data structure)", "url": "https://en.wikipedia.org/wiki/Stack_(abstract_data_type)"},
+        {"label": "Wikipedia: CYK algorithm (parsing in O(n^3))", "url": "https://en.wikipedia.org/wiki/CYK_algorithm"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "a parse tree of balanced parentheses growing recursively, with a stack beside it pushing and popping symbols",
       "quiz": [
@@ -428,14 +529,22 @@
       ],
       "summary": "Languages stratify into four nested classes — regular ⊂ context-free ⊂ context-sensitive ⊂ recursively enumerable — each tied to a machine model.",
       "depths": {
-        "eli5": "There's a ladder of grammar power. Each rung can describe more complicated patterns than the one below, and needs a more powerful machine to recognize it.",
-        "core": "Chomsky classified grammars into Type 3 (regular, finite automata), Type 2 (context-free, pushdown automata), Type 1 (context-sensitive, linear-bounded automata), and Type 0 (recursively enumerable, Turing machines). The language classes are strictly nested: each inclusion is proper, so adding the right kind of memory to a machine strictly increases what it can recognize.",
-        "deep": "The hierarchy is a memory ladder: no memory (finite states) → one stack (pushdown) → tape bounded by input length (linear-bounded) → unbounded tape (Turing machine). The jump from Type 1 to Type 0 is the jump from 'always halts' to 'may run forever' — context-sensitive languages are decidable, while recursively enumerable languages are only semi-decidable."
+        "eli5": "There's a ladder of grammar power. Each rung can describe more complicated patterns than the one below it, and each needs a more powerful kind of machine to recognize it — from simple state-hopping machines at the bottom up to fully general computers at the top.",
+        "core": "Noam Chomsky classified grammars into four types by power: Type 3 (regular, recognized by finite automata), Type 2 (context-free, recognized by pushdown automata), Type 1 (context-sensitive, recognized by 'linear-bounded automata' — Turing machines whose tape is limited to the input length), and Type 0 (recursively enumerable, recognized by full Turing machines). The corresponding language classes are strictly nested — each inclusion is proper — so adding the right kind of memory to a machine strictly increases what it can recognize.",
+        "deep": "The hierarchy is really a memory ladder: no memory (finite states) → one stack (pushdown) → a tape bounded by the input length (linear-bounded) → an unbounded tape (Turing machine). The jump from Type 1 to Type 0 is the jump from 'always halts' to 'may run forever': context-sensitive languages are 'decidable' (a machine always halts with a yes/no), while recursively enumerable languages are only 'semi-decidable' (it halts and says yes on yes-instances but may loop forever otherwise)."
       },
       "sources": [
         "Chomsky (1956, facts)",
         "MIT OCW 18.404J Theory of Computation",
         "Wikipedia (facts): Chomsky hierarchy"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Chomsky hierarchy", "url": "https://en.wikipedia.org/wiki/Chomsky_hierarchy"},
+        {"label": "Wikipedia: Context-sensitive language (Type 1)", "url": "https://en.wikipedia.org/wiki/Context-sensitive_language"},
+        {"label": "Wikipedia: Linear bounded automaton", "url": "https://en.wikipedia.org/wiki/Linear_bounded_automaton"},
+        {"label": "Wikipedia: Recursively enumerable language (Type 0)", "url": "https://en.wikipedia.org/wiki/Recursively_enumerable_language"},
+        {"label": "Wikipedia: Formal grammar", "url": "https://en.wikipedia.org/wiki/Formal_grammar"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "four nested boxes labeled regular, context-free, context-sensitive, recursively enumerable, each paired with its machine icon",
       "quiz": [
@@ -461,15 +570,23 @@
       ],
       "summary": "A Turing machine is a finite controller with an unbounded tape — the standard mathematical model of any computation.",
       "depths": {
-        "eli5": "Picture an endless paper strip and a little head that reads a symbol, writes a symbol, and steps left or right based on simple rules. That tiny device can compute anything a computer can.",
-        "core": "A Turing machine has a finite set of states, a read/write head, and an infinite tape. At each step it reads the current symbol and, per its transition rule, writes a symbol, moves left or right, and changes state, halting when it reaches an accept/reject state. Despite its simplicity it can simulate any algorithm — its unbounded tape supplies the unlimited memory finite automata and pushdown automata lack.",
-        "deep": "A universal Turing machine takes the description of another machine plus an input and simulates it — the theoretical basis of the stored-program computer. Variations (multi-tape, nondeterministic, multi-track) are all equivalent in computing power to the basic single-tape model, differing only by polynomial-time overhead. The model fixes what 'computable' means precisely enough to prove things are impossible."
+        "eli5": "Picture an endlessly long paper strip divided into cells, and a little head sitting over one cell. Following a short table of rules, the head reads the symbol under it, writes a symbol, and steps one cell left or right — over and over. That's it. This almost absurdly simple device can compute anything any real computer can; it's the standard model of what 'computing' even means.",
+        "core": "A Turing machine has a finite set of internal 'states', a read/write 'head', and an infinitely long 'tape' of cells. At each step it reads the symbol under the head and, according to its 'transition rule', writes a symbol, moves the head one cell left or right, and switches state — halting when it reaches an accept or reject state. Despite this simplicity it can carry out any algorithm: its unbounded tape gives it the unlimited memory that finite automata and pushdown automata lack.",
+        "deep": "A 'universal Turing machine' takes the description of any other Turing machine plus an input and simulates it step by step — the theoretical basis of the stored-program computer (software running on general hardware). Variations (multiple tapes, nondeterministic branching, multiple tracks) all compute exactly the same functions as the basic single-tape model, differing only by a polynomial-time overhead. The model pins down 'computable' precisely enough that we can prove certain tasks are impossible for any computer."
       },
       "note": "All reasonable models of computation — lambda calculus, register machines, cellular automata, your laptop — compute exactly the same functions as the Turing machine.",
       "sources": [
         "Turing (1936, facts)",
         "MIT OCW 18.404J Theory of Computation",
         "Wikipedia (facts): Turing machine; Universal Turing machine"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Turing machine", "url": "https://en.wikipedia.org/wiki/Turing_machine"},
+        {"label": "Wikipedia: Universal Turing machine", "url": "https://en.wikipedia.org/wiki/Universal_Turing_machine"},
+        {"label": "Stanford Encyclopedia of Philosophy: Turing Machines", "url": "https://plato.stanford.edu/entries/turing-machine/"},
+        {"label": "SEP: Computability and Complexity", "url": "https://plato.stanford.edu/entries/computability/"},
+        {"label": "Wikipedia: Lambda calculus (an equivalent model)", "url": "https://en.wikipedia.org/wiki/Lambda_calculus"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "an infinite tape with a small read/write head poised over a cell, a state label above it, and a rule table beside it",
       "quiz": [
@@ -495,14 +612,22 @@
       ],
       "summary": "Anything effectively computable by any mechanical procedure is computable by a Turing machine — the definition of 'computable'.",
       "depths": {
-        "eli5": "Every honest step-by-step method you could ever follow can be done by a Turing machine. So 'a computer can do it' and 'there's a procedure for it' mean the same thing.",
-        "core": "The Church–Turing thesis asserts that the intuitive notion of an 'effective procedure' coincides exactly with what Turing machines (equivalently, the lambda calculus, recursive functions, etc.) can compute. It is not a theorem but a definition-fixing claim, supported by the striking fact that every independently proposed model of computation has turned out to define the same class of computable functions.",
-        "deep": "The thesis is empirical/conceptual, not provable, because it equates a formal class with an informal idea. The 'physical' or 'extended' Church–Turing thesis goes further, claiming nature itself computes nothing a Turing machine cannot (in polynomial-time form, this is challenged by quantum computing). Hypercomputation models exist on paper but require physically unrealizable resources like infinite-precision reals or completed infinite processes."
+        "eli5": "Any honest, spelled-out, step-by-step method you could ever follow by hand — a recipe with no guessing or magic — can also be carried out by a Turing machine. So 'a computer can do it' and 'there's a definite procedure for it' end up meaning the same thing.",
+        "core": "The Church–Turing thesis claims that the everyday intuitive idea of an 'effective procedure' (a mechanical, finite, unambiguous recipe) matches exactly what Turing machines — and equivalently the lambda calculus, recursive functions, and every other model — can compute. It is not a theorem but a claim that fixes a definition, made compelling by the striking fact that every independently invented model of computation has turned out to compute the very same set of functions.",
+        "deep": "The thesis is empirical and conceptual rather than provable, because it equates a precise formal class with an informal human idea. The 'physical' or 'extended' Church–Turing thesis goes further, claiming nature itself can compute nothing a Turing machine cannot (its polynomial-time version is challenged by quantum computing, which may be faster but not more capable). 'Hypercomputation' models exist on paper but need physically impossible resources like infinite-precision real numbers or completed infinite processes."
       },
       "sources": [
         "Church (1936), Turing (1936) (facts)",
         "Stanford Encyclopedia of Philosophy: The Church–Turing Thesis",
         "Wikipedia (facts): Church–Turing thesis"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Church–Turing thesis", "url": "https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis"},
+        {"label": "Stanford Encyclopedia of Philosophy: The Church–Turing Thesis", "url": "https://plato.stanford.edu/entries/church-turing/"},
+        {"label": "Wikipedia: Effective method (effective procedure)", "url": "https://en.wikipedia.org/wiki/Effective_method"},
+        {"label": "Wikipedia: Computable function", "url": "https://en.wikipedia.org/wiki/Computable_function"},
+        {"label": "Wikipedia: Hypercomputation", "url": "https://en.wikipedia.org/wiki/Hypercomputation"},
+        {"label": "SEP: Computability and Complexity", "url": "https://plato.stanford.edu/entries/computability/"}
       ],
       "art_prompt": "several different computing models — lambda terms, a register machine, a Turing tape — converging arrows into one labeled box 'the computable functions'",
       "quiz": [
@@ -528,14 +653,22 @@
       ],
       "summary": "A problem is decidable if some machine always halts with the right yes/no answer; merely recognizable if it halts on the yes-instances.",
       "depths": {
-        "eli5": "Decidable means there's a method that always finishes and tells you yes or no. Recognizable is weaker: it says yes when the answer is yes, but might run forever when the answer is no.",
-        "core": "A language is decidable (recursive) if a Turing machine halts on every input and correctly accepts or rejects. It is recognizable (recursively enumerable) if a machine halts and accepts on every yes-instance but may loop forever on no-instances. A language is decidable iff both it and its complement are recognizable — the key bridge between the two notions.",
-        "deep": "Recognizable-but-undecidable problems are the heart of computability theory: the halting problem is recognizable (run the machine; if it halts, accept) but not decidable. Its complement is not even recognizable. This asymmetry — you can confirm halting but never, in general, confirm non-halting — is the source of most undecidability proofs via reduction."
+        "eli5": "A problem is 'decidable' if there's a method that always finishes and gives you a definite yes or no. It's only 'recognizable' (a weaker property) if the method correctly says yes whenever the true answer is yes, but might run forever — never answering — when the true answer is no.",
+        "core": "A 'language' here is the set of inputs whose answer is yes. A language is 'decidable' (also called 'recursive') if some Turing machine halts on every input and correctly accepts or rejects it. It is 'recognizable' (also called 'recursively enumerable') if some machine halts and accepts on every yes-instance but is allowed to loop forever on no-instances. The key bridge: a language is decidable exactly when both it and its 'complement' (the set of no-instances) are recognizable.",
+        "deep": "Problems that are recognizable but not decidable are the heart of computability theory: the halting problem is recognizable (just run the machine — if it halts, accept) yet not decidable, and its complement is not even recognizable. This asymmetry — you can always confirm halting, but you can never, in general, confirm non-halting — is the source of most undecidability proofs, which proceed by 'reduction' (showing that solving the new problem would let you solve the halting problem)."
       },
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): Decidability (logic); Recursively enumerable set"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Decidability (logic) / decidable language", "url": "https://en.wikipedia.org/wiki/Decidability_(logic)"},
+        {"label": "Wikipedia: Recursive language (decidable set)", "url": "https://en.wikipedia.org/wiki/Recursive_language"},
+        {"label": "Wikipedia: Recursively enumerable set (recognizable)", "url": "https://en.wikipedia.org/wiki/Recursively_enumerable_set"},
+        {"label": "Wikipedia: Complement (set theory)", "url": "https://en.wikipedia.org/wiki/Complement_(set_theory)"},
+        {"label": "SEP: Computability and Complexity", "url": "https://plato.stanford.edu/entries/computability/"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "two flowcharts — a decider that always reaches HALT, and a recognizer with one branch that loops forever on 'no' inputs",
       "quiz": [
@@ -561,15 +694,23 @@
       ],
       "summary": "No algorithm can decide, for every program and input, whether that program eventually halts — the foundational undecidability result.",
       "depths": {
-        "eli5": "You can't build a perfect 'will-this-program-finish?' checker. If you could, you could feed it a program designed to do the opposite of whatever the checker predicts, creating a contradiction.",
-        "core": "The halting problem asks: given a program P and input x, does P(x) halt? Turing proved no algorithm decides this for all inputs. The proof is by diagonalization: assume a decider H exists, build a program D that halts iff H says it loops, then run D on its own description to derive a contradiction. Halting is therefore undecidable, though it remains recognizable.",
-        "deep": "Halting is the canonical undecidable problem from which countless others are proven undecidable by reduction: if solving problem A would let you solve halting, then A is undecidable too. Rice's theorem generalizes this: every nontrivial semantic property of a program's input/output behavior is undecidable. Undecidability is thus pervasive, not exotic."
+        "eli5": "You can't build a perfect 'will-this-program-eventually-finish?' checker that works for every program. Here's the catch: if such a checker existed, you could build a sneaky program that asks the checker about itself and then deliberately does the opposite of whatever the checker predicts — finishing when it's told it'll loop, looping when it's told it'll finish. That's a contradiction, so no perfect checker can exist.",
+        "core": "The halting problem asks: given a program P and an input x, will P(x) eventually stop ('halt') or run forever? Turing proved no algorithm can answer this correctly for all inputs. The proof is by 'diagonalization': assume a perfect halting-decider H exists, then build a program D that halts exactly when H predicts it loops, and run D on its own description — forcing a self-contradiction. So halting is 'undecidable' (no always-correct decider), though it remains 'recognizable' (you can confirm halting by just running and waiting).",
+        "deep": "Halting is the canonical undecidable problem from which countless others are proven undecidable by 'reduction': if solving problem A would let you solve halting, then A must be undecidable too. Rice's theorem generalizes this: every nontrivial property of the function a program computes (its input/output behavior) is undecidable. Undecidability is therefore pervasive, not some rare exotic case."
       },
       "note": "Rice's theorem: any nontrivial property of the language a program computes is undecidable — 'does this program ever output 42?' has no general algorithm.",
       "sources": [
         "Turing (1936, facts)",
         "MIT OCW 18.404J Theory of Computation",
         "Wikipedia (facts): Halting problem; Rice's theorem"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Halting problem", "url": "https://en.wikipedia.org/wiki/Halting_problem"},
+        {"label": "Wikipedia: Rice's theorem", "url": "https://en.wikipedia.org/wiki/Rice%27s_theorem"},
+        {"label": "Wikipedia: Undecidable problem", "url": "https://en.wikipedia.org/wiki/Undecidable_problem"},
+        {"label": "Wikipedia: Cantor's diagonal argument (the proof technique)", "url": "https://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument"},
+        {"label": "SEP: Computability and Complexity", "url": "https://plato.stanford.edu/entries/computability/"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "a self-referential loop where a halting-checker box feeds into a program that inverts its own prediction, with a contradiction spark at the join",
       "quiz": [
@@ -596,15 +737,23 @@
       "equation": "f(n)=O(g(n))\\iff \\exists c,n_0:\\ f(n)\\le c\\,g(n)\\ \\forall n\\ge n_0",
       "summary": "Big-O captures how a cost grows with input size, ignoring constants and small inputs — the language of efficiency.",
       "depths": {
-        "eli5": "We care how an algorithm slows down as the problem gets big, not exactly how many seconds it takes. Doubling the input might double the work, square it, or barely change it.",
-        "core": "f(n) = O(g(n)) means f grows no faster than g up to a constant factor for large n. Companion notations Ω (lower bound) and Θ (tight bound) frame matching ceilings and floors. This abstraction lets us compare algorithms by growth rate — O(log n), O(n), O(n log n), O(n^2), O(2^n) — independent of hardware and constant factors.",
-        "deep": "Asymptotics can mislead when constants or low-order terms dominate at realistic input sizes (e.g., galactic algorithms with great big-O but absurd constants). Amortized and average-case analysis refine the worst-case picture; the gap between worst-case and typical-case behavior is exactly why simplex and quicksort thrive despite bad worst cases."
+        "eli5": "When we judge an algorithm, we care how its work grows as the problem gets bigger — not the exact number of seconds, which depends on the machine. Doubling the input size might double the work, or quadruple it, or barely change it. Big-O is shorthand for that growth rate, like saying 'this takes about n-squared steps' while ignoring fussy details.",
+        "core": "Writing f(n) = O(g(n)) means: for large enough n, f grows no faster than g, ignoring constant multipliers (the formal definition: f(n) ≤ c·g(n) for some constant c once n passes some threshold). Companion notations Ω (a lower bound) and Θ (a tight bound, both upper and lower) describe matching floors and ceilings. This abstraction lets us rank algorithms by growth rate — O(log n) ≪ O(n) ≪ O(n log n) ≪ O(n^2) ≪ O(2^n) — independent of hardware and constant factors. ('log n' grows extremely slowly; '2^n' grows explosively.)",
+        "deep": "Asymptotic analysis can mislead when constants or lower-order terms dominate at realistic input sizes (e.g. 'galactic algorithms' with beautiful big-O but absurdly large hidden constants). Amortized and average-case analysis refine the worst-case picture; the gap between worst-case and typical-case behavior is exactly why the simplex method and quicksort thrive in practice despite poor worst cases."
       },
       "note": "Memorize the ladder: constant ≪ logarithmic ≪ linear ≪ n log n ≪ quadratic ≪ exponential. Crossing from polynomial to exponential is the practical wall.",
       "sources": [
         "MIT OCW 6.006 Introduction to Algorithms",
         "CLRS, Introduction to Algorithms (facts)",
         "Wikipedia (facts): Big O notation"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Big O notation", "url": "https://en.wikipedia.org/wiki/Big_O_notation"},
+        {"label": "Wikipedia: Time complexity (the growth-rate ladder)", "url": "https://en.wikipedia.org/wiki/Time_complexity"},
+        {"label": "Wikipedia: Analysis of algorithms", "url": "https://en.wikipedia.org/wiki/Analysis_of_algorithms"},
+        {"label": "Khan Academy: Asymptotic notation", "url": "https://www.khanacademy.org/computing/computer-science/algorithms/asymptotic-notation/a/asymptotic-notation"},
+        {"label": "Wikipedia: Galactic algorithm (when big-O misleads)", "url": "https://en.wikipedia.org/wiki/Galactic_algorithm"},
+        {"label": "MIT OCW 6.006 Introduction to Algorithms", "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"}
       ],
       "art_prompt": "growth curves on one axis — flat log, straight line, gentle n log n, rising parabola, exploding exponential — diverging as n increases",
       "quiz": [
@@ -632,14 +781,22 @@
       "equation": "T(n)=a\\,T(n/b)+f(n)",
       "summary": "Split a problem into smaller subproblems, solve them recursively, and combine — the recipe behind mergesort and fast multiplication.",
       "depths": {
-        "eli5": "Cut a big job into halves, solve each half the same way, then stitch the answers together. Sorting a deck by splitting, sorting each pile, and merging is the classic example.",
-        "core": "A divide-and-conquer algorithm breaks an input of size n into a subproblems of size n/b, recurses, and spends f(n) work to combine results, giving the recurrence T(n) = a T(n/b) + f(n). The Master Theorem solves this recurrence by comparing f(n) to n^(log_b a): the larger term dominates the running time. Mergesort (a=2,b=2,f=n) gives Θ(n log n).",
-        "deep": "Divide and conquer wins when subproblems are independent and combining is cheap relative to the split. Karatsuba multiplication beats the schoolbook O(n^2) by reducing four subproducts to three (T(n)=3T(n/2)+O(n) → O(n^1.585)); the FFT extends the idea to O(n log n) polynomial multiplication. When subproblems overlap instead, divide and conquer wastes work and dynamic programming is the right tool."
+        "eli5": "Take a big job, cut it into smaller pieces, solve each piece the exact same way (cutting those further until they're trivial), then stitch the partial answers back together. Sorting a shuffled deck by splitting it in half, sorting each half, then merging the two sorted halves is the classic example ('mergesort').",
+        "core": "A divide-and-conquer algorithm breaks an input of size n into 'a' subproblems each of size n/b, solves them by 'recursion' (calling itself on the smaller pieces), and spends f(n) extra work combining the results — giving the recurrence (self-referential cost formula) T(n) = a·T(n/b) + f(n). The 'Master Theorem' solves such recurrences by comparing the combine cost f(n) to n^(log_b a); whichever term is bigger sets the overall running time. Mergesort (a=2, b=2, f(n)=n) comes out to Θ(n log n).",
+        "deep": "Divide and conquer wins when the subproblems are independent and recombining is cheap compared to the split. Karatsuba multiplication beats grade-school O(n^2) by cleverly reducing four sub-multiplications to three (T(n)=3T(n/2)+O(n) → O(n^1.585)); the Fast Fourier Transform pushes the idea to O(n log n) polynomial multiplication. When the subproblems overlap and get re-solved, divide and conquer wastes work and dynamic programming is the right tool instead."
       },
       "sources": [
         "MIT OCW 6.006 Introduction to Algorithms",
         "CLRS (facts)",
         "Wikipedia (facts): Master theorem; Divide and conquer algorithm"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Divide-and-conquer algorithm", "url": "https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm"},
+        {"label": "Wikipedia: Master theorem (analysis of recurrences)", "url": "https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)"},
+        {"label": "Wikipedia: Recurrence relation", "url": "https://en.wikipedia.org/wiki/Recurrence_relation"},
+        {"label": "Wikipedia: Merge sort", "url": "https://en.wikipedia.org/wiki/Merge_sort"},
+        {"label": "Wikipedia: Karatsuba algorithm (fast multiplication)", "url": "https://en.wikipedia.org/wiki/Karatsuba_algorithm"},
+        {"label": "Khan Academy: Divide and conquer algorithms", "url": "https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/divide-and-conquer-algorithms"}
       ],
       "art_prompt": "a recursion tree halving an array at each level, with merge arrows recombining sorted halves from the leaves upward",
       "quiz": [
@@ -666,15 +823,23 @@
       ],
       "summary": "Solve overlapping subproblems once and reuse the answers, turning exponential brute force into polynomial time.",
       "depths": {
-        "eli5": "If the same little subproblem keeps coming up, solve it once and write the answer down. Don't recompute it a thousand times.",
-        "core": "Dynamic programming applies when a problem has optimal substructure (its optimum is built from subproblem optima) and overlapping subproblems (the same subproblems recur). You define a recurrence over states, then fill a table bottom-up (or memoize top-down) so each state is computed once. Fibonacci, shortest paths, edit distance, and knapsack are canonical examples.",
-        "deep": "The art is choosing the right state space so the recurrence is correct and small. Complexity is roughly (number of states) × (work per transition). Bellman's principle of optimality justifies the recurrence; for shortest paths it yields Bellman–Ford and Floyd–Warshall. Many DPs can be sped up further with monotonicity tricks (convex-hull, Knuth, divide-and-conquer optimization)."
+        "eli5": "If the same small subproblem keeps coming up while you work, solve it just once and jot the answer down — then look it up instead of redoing the work a thousand times. That bookkeeping is dynamic programming, and it can turn a hopelessly slow brute-force approach into a fast one.",
+        "core": "Dynamic programming applies when a problem has two features: 'optimal substructure' (the best overall answer is built out of best answers to subproblems) and 'overlapping subproblems' (the same subproblems come up again and again). You write a 'recurrence' (a formula expressing each case in terms of smaller cases) over a set of 'states', then either fill a table bottom-up or 'memoize' top-down (cache each result the first time you compute it) so every state is solved exactly once. Computing Fibonacci numbers, shortest paths, edit distance between strings, and the knapsack problem are canonical examples.",
+        "deep": "The art is choosing the right 'state space' so the recurrence is both correct and small; the running time is roughly (number of states) × (work per transition). Bellman's principle of optimality justifies the recurrence, and for shortest paths it yields the Bellman–Ford and Floyd–Warshall algorithms. Many dynamic programs can be sped up further with monotonicity tricks (convex-hull, Knuth, and divide-and-conquer optimization)."
       },
       "note": "Two ingredients are mandatory: optimal substructure and overlapping subproblems. Without overlap, plain divide and conquer suffices; without optimal substructure, DP is invalid.",
       "sources": [
         "MIT OCW 6.006 / 6.046 Algorithms",
         "CLRS (facts)",
         "Wikipedia (facts): Dynamic programming; Bellman equation"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Dynamic programming", "url": "https://en.wikipedia.org/wiki/Dynamic_programming"},
+        {"label": "Wikipedia: Memoization (caching subproblem answers)", "url": "https://en.wikipedia.org/wiki/Memoization"},
+        {"label": "Wikipedia: Optimal substructure", "url": "https://en.wikipedia.org/wiki/Optimal_substructure"},
+        {"label": "Wikipedia: Bellman equation (principle of optimality)", "url": "https://en.wikipedia.org/wiki/Bellman_equation"},
+        {"label": "Wikipedia: Edit distance (a classic DP example)", "url": "https://en.wikipedia.org/wiki/Edit_distance"},
+        {"label": "MIT OCW 6.006 Introduction to Algorithms", "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"}
       ],
       "art_prompt": "a filled-in table where each cell is computed once from a few neighbor cells, with reuse arrows pointing back to already-solved entries",
       "quiz": [
@@ -700,14 +865,22 @@
       ],
       "summary": "Graphs model relationships as vertices and edges; BFS and DFS explore them, underpinning shortest paths, connectivity, and ordering.",
       "depths": {
-        "eli5": "A graph is dots connected by lines — cities and roads, people and friendships. To explore it you either spread out level by level (BFS) or dive deep down one path then backtrack (DFS).",
-        "core": "A graph G = (V, E) has vertices V and edges E, directed or undirected, weighted or not. Breadth-first search explores in layers and finds shortest paths in unweighted graphs; depth-first search recurses along edges and reveals connectivity, cycles, and topological order. Dijkstra's algorithm extends BFS to nonnegative weights using a priority queue, running in O((V+E) log V).",
-        "deep": "Graph problems span the difficulty spectrum: shortest path and minimum spanning tree are polynomial, while Hamiltonian cycle and graph coloring are NP-complete. The same input can be easy or hard depending on the question — Eulerian (every edge once) is linear-time, Hamiltonian (every vertex once) is NP-complete, despite their superficial similarity."
+        "eli5": "A 'graph' (in this sense, not a chart) is just dots connected by lines — cities joined by roads, people joined by friendships. The dots are 'vertices' and the lines are 'edges'. To explore a graph you either fan out level by level from a starting dot (breadth-first search, BFS) or plunge deep down one path and back up when stuck (depth-first search, DFS).",
+        "core": "A graph G = (V, E) is a set of vertices V and a set of edges E; edges can be 'directed' (one-way) or 'undirected' (two-way), and 'weighted' (each edge has a cost) or not. Breadth-first search explores outward in layers and finds shortest paths in unweighted graphs; depth-first search recurses along edges and reveals connectivity, cycles, and 'topological order' (a valid ordering of tasks that respects all dependencies). Dijkstra's algorithm extends BFS to graphs with non-negative edge weights using a 'priority queue' (a structure that always hands back the smallest pending item), running in O((V+E) log V).",
+        "deep": "Graph problems span the whole difficulty spectrum: shortest path and minimum spanning tree are solvable in polynomial time, while Hamiltonian cycle and graph coloring are NP-complete (believed intractable). The same graph can pose an easy or a hard question — finding an Eulerian circuit (use every edge exactly once) is linear-time, but finding a Hamiltonian cycle (visit every vertex exactly once) is NP-complete, despite how similar the two sound."
       },
       "sources": [
         "MIT OCW 6.006 Introduction to Algorithms",
         "CLRS (facts)",
         "Wikipedia (facts): Breadth-first search; Dijkstra's algorithm"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Graph (discrete mathematics)", "url": "https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)"},
+        {"label": "Wikipedia: Breadth-first search (BFS)", "url": "https://en.wikipedia.org/wiki/Breadth-first_search"},
+        {"label": "Wikipedia: Depth-first search (DFS)", "url": "https://en.wikipedia.org/wiki/Depth-first_search"},
+        {"label": "Wikipedia: Dijkstra's algorithm (weighted shortest paths)", "url": "https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm"},
+        {"label": "Wikipedia: Topological sorting", "url": "https://en.wikipedia.org/wiki/Topological_sorting"},
+        {"label": "Khan Academy: Describing graphs", "url": "https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/describing-graphs"}
       ],
       "art_prompt": "a graph of dots and edges with a BFS wavefront spreading in concentric rings beside a DFS path plunging deep and backtracking",
       "quiz": [
@@ -734,15 +907,23 @@
       ],
       "summary": "Data structures trade memory for speed; hash tables give expected O(1) lookup by scattering keys across buckets.",
       "depths": {
-        "eli5": "A hash table is like a coat-check: a quick formula turns your ticket into a hook number, so you find your coat instantly instead of searching every hook.",
-        "core": "Choosing a data structure means choosing which operations are fast: arrays give O(1) indexing, balanced trees give O(log n) ordered queries, heaps give O(log n) priority access, and hash tables give expected O(1) insert/lookup by mapping keys to buckets via a hash function. Collisions (two keys, one bucket) are resolved by chaining or open addressing.",
-        "deep": "Hash-table guarantees are probabilistic and rest on the hash spreading keys uniformly; with universal hashing, expected collisions stay O(1) regardless of the input, defeating adversaries who would otherwise force O(n) worst cases. The space–time tradeoff is fundamental: Bloom filters shrink memory at the cost of false positives, and cuckoo/perfect hashing buy worst-case O(1) lookups at extra construction cost."
+        "eli5": "A 'data structure' is a way of organizing information so certain operations are fast. A hash table is like a coat-check counter: a quick formula turns your ticket number into a specific hook, so the attendant grabs your coat instantly instead of checking every hook. The formula that turns a key into a slot is the 'hash function'.",
+        "core": "Choosing a data structure means choosing which operations you want to be fast. Arrays give O(1) lookup by position; balanced search trees give O(log n) ordered queries (find, range, sort); heaps give O(log n) access to the smallest or largest item; and hash tables give expected O(1) insert and lookup by mapping each key to a 'bucket' (slot) through a hash function. When two keys land in the same bucket — a 'collision' — it is resolved by 'chaining' (keep a small list in that bucket) or 'open addressing' (probe for the next free slot).",
+        "deep": "A hash table's speed guarantees are probabilistic and depend on the hash function spreading keys roughly evenly. With 'universal hashing' (picking the hash function at random from a carefully designed family) the expected number of collisions stays O(1) for any input, defeating an adversary who would otherwise craft inputs forcing the O(n) worst case. The space–time tradeoff is fundamental: Bloom filters shrink memory in exchange for occasional false positives, while cuckoo and perfect hashing buy guaranteed worst-case O(1) lookups at extra construction cost."
       },
       "note": "Worst-case for a naive hash table is O(n) per operation; universal/randomized hashing restores expected O(1) even against adversarial inputs.",
       "sources": [
         "MIT OCW 6.006 Introduction to Algorithms",
         "CLRS (facts)",
         "Wikipedia (facts): Hash table; Universal hashing; Bloom filter"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Data structure", "url": "https://en.wikipedia.org/wiki/Data_structure"},
+        {"label": "Wikipedia: Hash table", "url": "https://en.wikipedia.org/wiki/Hash_table"},
+        {"label": "Wikipedia: Hash function", "url": "https://en.wikipedia.org/wiki/Hash_function"},
+        {"label": "Wikipedia: Universal hashing", "url": "https://en.wikipedia.org/wiki/Universal_hashing"},
+        {"label": "Wikipedia: Bloom filter (memory-saving membership test)", "url": "https://en.wikipedia.org/wiki/Bloom_filter"},
+        {"label": "MIT OCW 6.006 Introduction to Algorithms", "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"}
       ],
       "art_prompt": "keys flying through a hash function into numbered buckets, with a collision chain hanging off one bucket",
       "quiz": [
@@ -769,14 +950,22 @@
       ],
       "summary": "P is the class of problems a deterministic machine solves in polynomial time — the standard formal notion of 'tractable'.",
       "depths": {
-        "eli5": "P is the set of problems a computer can solve reasonably fast — the work grows like the size raised to some fixed power, not explosively.",
-        "core": "A decision problem is in P if some deterministic Turing machine decides it in time O(n^k) for a constant k. Polynomial time is the robust dividing line between tractable and intractable: it is closed under composition and stable across all reasonable machine models (the Cobham–Edmonds thesis), so 'polynomial' means the same thing whether you count tape steps or laptop operations.",
-        "deep": "Polynomial time is a deliberate idealization — an O(n^100) algorithm is 'efficient' in theory but useless in practice, while some exponential algorithms run fine on real inputs. Yet the polynomial/exponential boundary remains the right theoretical cut because it is model-independent and composition-stable, which finer constant-sensitive definitions are not. Sorting, shortest paths, and primality testing all live comfortably in P."
+        "eli5": "P is the collection of problems a computer can solve reasonably fast. 'Fast' here means the work grows like the input size raised to some fixed power (n, n-squared, n-cubed…) rather than exploding. A 'decision problem' is one with a yes/no answer, like 'is this number prime?'.",
+        "core": "A decision problem is in P if some deterministic Turing machine decides it in time O(n^k) for some constant power k ('polynomial time'). Polynomial time is the robust dividing line between 'tractable' (practically solvable) and 'intractable': it is closed under composition (plugging one efficient algorithm into another stays efficient) and stays the same across all reasonable machine models (the Cobham–Edmonds thesis), so 'polynomial' means the same thing whether you count tape steps or laptop operations.",
+        "deep": "Polynomial time is a deliberate idealization — an O(n^100) algorithm is 'efficient' in theory but useless in practice, while a few exponential-time algorithms run fine on real inputs. Yet the polynomial/exponential boundary stays the right theoretical cut because it is model-independent and composition-stable, which finer constant-sensitive definitions are not. Sorting, shortest paths, and primality testing all sit comfortably inside P."
       },
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): P (complexity); Cobham's thesis"
+      ],
+      "resources": [
+        {"label": "Wikipedia: P (complexity class)", "url": "https://en.wikipedia.org/wiki/P_(complexity)"},
+        {"label": "Wikipedia: Time complexity (polynomial vs exponential)", "url": "https://en.wikipedia.org/wiki/Time_complexity"},
+        {"label": "Wikipedia: Decision problem", "url": "https://en.wikipedia.org/wiki/Decision_problem"},
+        {"label": "Wikipedia: Cobham's thesis (polynomial = tractable)", "url": "https://en.wikipedia.org/wiki/Cobham%27s_thesis"},
+        {"label": "SEP: Computability and Complexity", "url": "https://plato.stanford.edu/entries/computability/"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "a clock whose hand sweeps along a polynomial curve as input grows, staying within a tractable shaded band",
       "quiz": [
@@ -802,15 +991,23 @@
       ],
       "summary": "NP is the class of problems whose 'yes' answers have short certificates checkable in polynomial time.",
       "depths": {
-        "eli5": "NP problems are ones where finding the answer might be hard, but checking a proposed answer is fast — like a jigsaw: hard to solve, instant to verify once assembled.",
-        "core": "A problem is in NP if every yes-instance has a certificate (witness) of polynomial size that a deterministic verifier can check in polynomial time. Equivalently, NP is what a nondeterministic Turing machine decides in polynomial time. P ⊆ NP, since solving outright also lets you verify; whether the inclusion is strict is the P vs NP question.",
-        "deep": "NP is fundamentally about asymmetry between finding and checking. The complement class co-NP concerns short certificates for no-instances; whether NP = co-NP is open and tied to whether short proofs of unsatisfiability always exist. Most natural search problems where solutions are recognizable but seemingly require search — SAT, clique, scheduling — live in NP."
+        "eli5": "NP problems are ones where finding the answer might be very hard, but checking a proposed answer is fast — like a completed jigsaw puzzle: hard to assemble from scratch, but you can glance at a finished one and instantly see it's right.",
+        "core": "A problem is in NP if every yes-instance comes with a 'certificate' (also called a 'witness') — a short piece of evidence, polynomial in size — that a deterministic 'verifier' can check in polynomial time. Equivalently, NP is the set of problems a nondeterministic Turing machine (one allowed to 'guess' and explore many paths at once) can decide in polynomial time. P ⊆ NP, because if you can solve a problem outright you can certainly verify a claimed answer; whether that inclusion is strict (whether some NP problems truly cannot be solved as fast as they can be checked) is the famous P vs NP question.",
+        "deep": "NP is fundamentally about the asymmetry between finding a solution and checking one. The complementary class co-NP concerns short certificates for no-instances; whether NP = co-NP is open and tied to whether short proofs of unsatisfiability always exist. Most natural search problems whose solutions are easy to recognize but seemingly require search — Boolean satisfiability (SAT), finding a large clique, scheduling — live in NP."
       },
       "note": "P ⊆ NP ⊆ PSPACE ⊆ EXP. Each inclusion is believed strict; only P ⊊ EXP is currently proven (by the time hierarchy theorem).",
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): NP (complexity)"
+      ],
+      "resources": [
+        {"label": "Wikipedia: NP (complexity class)", "url": "https://en.wikipedia.org/wiki/NP_(complexity)"},
+        {"label": "Wikipedia: P versus NP problem", "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem"},
+        {"label": "Wikipedia: Certificate (complexity) / witness", "url": "https://en.wikipedia.org/wiki/Certificate_(complexity)"},
+        {"label": "Wikipedia: Nondeterministic Turing machine", "url": "https://en.wikipedia.org/wiki/Nondeterministic_Turing_machine"},
+        {"label": "Wikipedia: co-NP", "url": "https://en.wikipedia.org/wiki/Co-NP"},
+        {"label": "SEP: Computability and Complexity", "url": "https://plato.stanford.edu/entries/computability/"}
       ],
       "art_prompt": "a maze that is hard to solve from the entrance but, given a highlighted solution path, instantly checkable as valid",
       "quiz": [
@@ -837,14 +1034,22 @@
       "equation": "A\\le_p B",
       "summary": "A reduction transforms one problem into another in polynomial time, transferring tractability and hardness between them.",
       "depths": {
-        "eli5": "If you can quickly rewrite problem A as problem B, then a solver for B solves A too. So A is 'no harder than' B.",
-        "core": "A polynomial-time many-one reduction from A to B is a poly-time map f turning instances of A into instances of B with the same yes/no answer, written A ≤_p B. It means A is no harder than B (up to polynomial factors): if B ∈ P then A ∈ P, and contrapositively, if A is hard then B is hard. Reductions are the algebra of computational difficulty.",
-        "deep": "Reductions are transitive (A ≤_p B and B ≤_p C imply A ≤_p C), which is what lets a single hard problem certify the hardness of thousands of others. The direction matters: to prove B is hard you reduce a known-hard A to B (A ≤_p B), not the reverse — a common pitfall. Turing reductions (oracle access) are more permissive than many-one and define different completeness notions."
+        "eli5": "A 'reduction' is a way of rewriting one problem as another. If you can quickly rewrite every instance of problem A as an instance of problem B, then any solver for B automatically solves A too — just translate, solve, and translate back. That means A is 'no harder than' B.",
+        "core": "A polynomial-time 'many-one reduction' from A to B is a polynomial-time function f that converts each instance of A into an instance of B with the very same yes/no answer, written A ≤_p B. It certifies that A is no harder than B up to polynomial factors: if B ∈ P then A ∈ P, and (taking the contrapositive) if A is known to be hard then B must be hard too. Reductions are, in effect, the algebra of computational difficulty.",
+        "deep": "Reductions are 'transitive' — A ≤_p B and B ≤_p C together give A ≤_p C — which is what lets a single hard problem certify the hardness of thousands of others. The direction matters: to prove B is hard you reduce a known-hard A to B (A ≤_p B), not the reverse, a very common student pitfall. 'Turing reductions' (which allow repeated oracle calls to B) are more permissive than many-one reductions and define different notions of completeness."
       },
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): Polynomial-time reduction"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Reduction (complexity)", "url": "https://en.wikipedia.org/wiki/Reduction_(complexity)"},
+        {"label": "Wikipedia: Polynomial-time reduction", "url": "https://en.wikipedia.org/wiki/Polynomial-time_reduction"},
+        {"label": "Wikipedia: Many-one reduction", "url": "https://en.wikipedia.org/wiki/Many-one_reduction"},
+        {"label": "Wikipedia: Turing reduction (oracle access)", "url": "https://en.wikipedia.org/wiki/Turing_reduction"},
+        {"label": "SEP: Computability and Complexity", "url": "https://plato.stanford.edu/entries/computability/"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "an arrow labeled f converting an instance of problem A into an instance of problem B, with a 'same answer' stamp across the transformation",
       "quiz": [
@@ -871,15 +1076,23 @@
       ],
       "summary": "The NP-complete problems are the hardest in NP; Boolean satisfiability was the first, and a fast algorithm for any one would crack them all.",
       "depths": {
-        "eli5": "Some NP problems are universal: solving one quickly would solve every NP problem quickly. SAT — deciding if a logical formula can be made true — is the original such problem.",
-        "core": "A problem is NP-complete if it is in NP and every NP problem reduces to it in polynomial time. The Cook–Levin theorem proved SAT is NP-complete by encoding a nondeterministic machine's computation as a Boolean formula. Karp then showed dozens of natural problems (3-SAT, clique, vertex cover, Hamiltonian cycle, knapsack) are NP-complete by reduction. A polynomial algorithm for any one would put all of NP in P.",
-        "deep": "NP-completeness explains why thousands of practically important problems resist efficient solution: they are all the 'same' problem in disguise, linked by a web of reductions back to SAT. This is why P vs NP is the central open question — proving P ≠ NP would confirm these problems are genuinely intractable; proving P = NP would collapse the distinction and break modern cryptography. In practice, NP-hardness signals to switch to approximation, heuristics, or special cases."
+        "eli5": "Some NP problems are universal keys: solve any one of them quickly and you'd automatically solve every NP problem quickly. SAT — deciding whether a logical formula full of ANDs, ORs, and NOTs can be made true by some setting of its variables — was the very first such universal problem found.",
+        "core": "A problem is 'NP-complete' if it is in NP and every problem in NP reduces to it in polynomial time (this second condition alone is called 'NP-hard'). The Cook–Levin theorem proved Boolean satisfiability (SAT) is NP-complete by encoding the entire run of a nondeterministic machine as one big Boolean formula. Karp then showed dozens of natural problems — 3-SAT, clique, vertex cover, Hamiltonian cycle, knapsack — are NP-complete by reducing SAT to them. A polynomial-time algorithm for any single NP-complete problem would place all of NP inside P.",
+        "deep": "NP-completeness explains why thousands of practically important problems all resist efficient solution: they are really the 'same' problem in disguise, linked by a web of reductions tracing back to SAT. This is why P vs NP is the central open question — proving P ≠ NP would confirm these problems are genuinely intractable, while proving P = NP would collapse the distinction and break most modern cryptography. In practice, discovering a problem is NP-hard is the signal to switch to approximation algorithms, heuristics, or special tractable cases."
       },
       "note": "P vs NP carries a $1M Clay Millennium Prize. Almost all experts conjecture P ≠ NP, but no proof exists.",
       "sources": [
         "Cook (1971), Levin (1973), Karp (1972) (facts)",
         "MIT OCW 18.404J Theory of Computation",
         "Wikipedia (facts): NP-completeness; Cook–Levin theorem"
+      ],
+      "resources": [
+        {"label": "Wikipedia: NP-completeness", "url": "https://en.wikipedia.org/wiki/NP-completeness"},
+        {"label": "Wikipedia: Cook–Levin theorem", "url": "https://en.wikipedia.org/wiki/Cook%E2%80%93Levin_theorem"},
+        {"label": "Wikipedia: Boolean satisfiability problem (SAT)", "url": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"},
+        {"label": "Wikipedia: Karp's 21 NP-complete problems", "url": "https://en.wikipedia.org/wiki/Karp%27s_21_NP-complete_problems"},
+        {"label": "Wikipedia: P versus NP problem (the $1M open question)", "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem"},
+        {"label": "Clay Mathematics Institute: P vs NP Millennium Prize", "url": "https://www.claymath.org/millennium/p-vs-np/"}
       ],
       "art_prompt": "SAT as a central hub with reduction arrows fanning out to clique, knapsack, coloring, and Hamiltonian cycle, all sharing one hardness core",
       "quiz": [
@@ -906,14 +1119,22 @@
       "equation": "L\\subseteq P\\subseteq NP\\subseteq PSPACE\\subseteq EXP",
       "summary": "Measuring memory instead of time gives the classes L, PSPACE, and the theorem that nondeterministic and deterministic space coincide up to squaring.",
       "depths": {
-        "eli5": "Besides 'how long does it take?', we can ask 'how much scratch paper does it need?'. Some problems are easy on memory but slow, or vice versa.",
-        "core": "Space complexity counts the work-tape cells a machine uses. PSPACE is the class solvable in polynomial space (with unbounded time); it contains NP and equals the power of polynomial-space games and quantified Boolean formulas (TQBF is PSPACE-complete). Savitch's theorem shows nondeterministic space is at most squared deterministic space: NSPACE(s) ⊆ DSPACE(s^2), so PSPACE = NPSPACE.",
-        "deep": "Space is reusable in a way time is not, which is why nondeterminism is far weaker for space (Savitch) than it is believed to be for time (P vs NP). The chain L ⊆ NL ⊆ P ⊆ NP ⊆ PSPACE ⊆ EXP has every inclusion conjectured proper, yet only L ⊊ PSPACE and P ⊊ EXP are proven, via the space and time hierarchy theorems. The immense gaps we cannot yet separate are the frontier of complexity theory."
+        "eli5": "Besides 'how long does it take?', we can ask 'how much scratch paper does it need?'. That's space complexity. Some problems are gentle on memory but slow to run, and others are quick but memory-hungry — time and space are two different costs.",
+        "core": "Space complexity counts how many work-tape cells (scratch memory) a machine uses, regardless of how long it runs. 'PSPACE' is the class of problems solvable in polynomial space (with no limit on time); it contains NP and exactly matches the difficulty of polynomial-space games and 'quantified Boolean formulas' (the problem TQBF is PSPACE-complete). Savitch's theorem shows that for space, nondeterminism barely helps: nondeterministic space s can be simulated in deterministic space s^2 (NSPACE(s) ⊆ DSPACE(s^2)), so PSPACE = NPSPACE.",
+        "deep": "Memory is reusable (you can overwrite scratch paper) in a way that elapsed time is not, which is why nondeterminism is far weaker for space (Savitch) than it is believed to be for time (P vs NP). The chain L ⊆ NL ⊆ P ⊆ NP ⊆ PSPACE ⊆ EXP has every inclusion conjectured to be strict, yet only L ⊊ PSPACE and P ⊊ EXP are actually proven (via the space and time hierarchy theorems). The huge gaps we still cannot separate are the frontier of complexity theory."
       },
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): PSPACE; Savitch's theorem"
+      ],
+      "resources": [
+        {"label": "Wikipedia: PSPACE", "url": "https://en.wikipedia.org/wiki/PSPACE"},
+        {"label": "Wikipedia: Space complexity", "url": "https://en.wikipedia.org/wiki/Space_complexity"},
+        {"label": "Wikipedia: Savitch's theorem", "url": "https://en.wikipedia.org/wiki/Savitch%27s_theorem"},
+        {"label": "Wikipedia: True quantified Boolean formula (TQBF)", "url": "https://en.wikipedia.org/wiki/True_quantified_Boolean_formula"},
+        {"label": "Wikipedia: Complexity class (the L⊆P⊆NP⊆PSPACE chain)", "url": "https://en.wikipedia.org/wiki/Complexity_class"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "a nested band diagram L ⊂ P ⊂ NP ⊂ PSPACE ⊂ EXP, with the few proven strict separations marked and the rest dashed as open",
       "quiz": [
@@ -937,13 +1158,21 @@
       "requires": [],
       "summary": "Propositional logic combines true/false statements with connectives; truth tables decide validity by enumerating cases.",
       "depths": {
-        "eli5": "Glue together yes/no facts with AND, OR, NOT, and 'if...then'. A truth table checks every combination of yes/no to see when the whole statement holds.",
-        "core": "Propositional logic builds formulas from atomic propositions and connectives (¬, ∧, ∨, →, ↔). A formula is satisfiable if some assignment makes it true, valid (a tautology) if every assignment does, and a contradiction if none does. Truth tables decide all of these by brute force over 2^n rows; satisfiability of propositional formulas is the SAT problem at the root of NP-completeness.",
-        "deep": "Propositional logic is sound and complete: a formula is provable in a proper proof system iff it is a tautology (semantic truth and syntactic provability coincide). It is also decidable — truth tables always terminate — which is exactly what predicate logic loses. Normal forms (CNF, DNF) standardize formulas; converting to CNF is the gateway to SAT solvers and resolution."
+        "eli5": "Take simple statements that are each either true or false, and glue them together with AND, OR, NOT, and 'if…then'. A 'truth table' lists every possible combination of true/false for the parts and shows when the whole glued-together statement comes out true.",
+        "core": "Propositional logic builds formulas from 'atomic propositions' (basic true/false statements) and 'connectives': ¬ (not), ∧ (and), ∨ (or), → (if…then), ↔ (if and only if). An 'assignment' is a choice of true/false for each atom. A formula is 'satisfiable' if some assignment makes it true, 'valid' (a 'tautology') if every assignment makes it true, and a 'contradiction' if none does. Truth tables settle all of these by brute force over 2^n rows. Deciding satisfiability of such formulas is exactly the SAT problem at the root of NP-completeness.",
+        "deep": "Propositional logic is 'sound and complete': a formula is provable in a proper proof system if and only if it is a tautology — syntactic provability and semantic truth coincide. It is also 'decidable', since truth tables always terminate — precisely the property predicate (first-order) logic loses. 'Normal forms' (CNF, conjunctive normal form; DNF, disjunctive normal form) standardize formulas, and converting to CNF is the gateway to SAT solvers and the resolution proof method."
       },
       "sources": [
         "MIT OCW 6.042J Mathematics for Computer Science",
         "Wikipedia (facts): Propositional calculus; Tautology (logic)"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Propositional calculus", "url": "https://en.wikipedia.org/wiki/Propositional_calculus"},
+        {"label": "Wikipedia: Logical connective (AND, OR, NOT, →)", "url": "https://en.wikipedia.org/wiki/Logical_connective"},
+        {"label": "Wikipedia: Truth table", "url": "https://en.wikipedia.org/wiki/Truth_table"},
+        {"label": "Wikipedia: Tautology (logic)", "url": "https://en.wikipedia.org/wiki/Tautology_(logic)"},
+        {"label": "Wikipedia: Conjunctive normal form (CNF)", "url": "https://en.wikipedia.org/wiki/Conjunctive_normal_form"},
+        {"label": "MIT OCW 6.042J Mathematics for Computer Science", "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/"}
       ],
       "art_prompt": "a truth table grid filling in T/F columns under AND, OR, NOT, and implication for a small formula",
       "quiz": [
@@ -970,15 +1199,23 @@
       ],
       "summary": "First-order logic adds quantifiers and predicates over objects, gaining the expressive power to formalize mathematics — at the cost of decidability.",
       "depths": {
-        "eli5": "Now you can say 'for all x' and 'there exists an x', and talk about properties of and relations among objects. That's enough to write down essentially all of math.",
-        "core": "First-order (predicate) logic extends propositional logic with variables ranging over a domain, predicates and functions, and the quantifiers ∀ (for all) and ∃ (there exists). It is expressive enough to axiomatize arithmetic, set theory, and most of mathematics. Gödel's completeness theorem shows its proof system is sound and complete: a sentence is provable iff it is true in every model.",
-        "deep": "Validity in first-order logic is undecidable (Church and Turing) but recursively enumerable — you can enumerate proofs but cannot always decide non-validity. This is the precise boundary: propositional logic is decidable, first-order logic is only semi-decidable. The completeness theorem (provable = universally true) must not be confused with the incompleteness theorems, which concern specific theories like arithmetic being unable to prove all their own truths."
+        "eli5": "Propositional logic only handles whole true/false statements. First-order logic adds the ability to say 'for all x…' and 'there exists an x…', and to talk about properties of objects and relationships between them. That extra power is enough to write down essentially all of mathematics.",
+        "core": "First-order (predicate) logic extends propositional logic with 'variables' that range over a 'domain' of objects, 'predicates' (properties and relations, like 'x is even' or 'x < y'), 'functions', and the 'quantifiers' ∀ ('for all') and ∃ ('there exists'). It is expressive enough to state the axioms of arithmetic, set theory, and most of mathematics. Gödel's completeness theorem shows its proof system is sound and complete: a sentence is provable exactly when it is true in every 'model' (every way of interpreting the symbols).",
+        "deep": "Validity in first-order logic is 'undecidable' (proved by Church and Turing) but 'recursively enumerable' — you can mechanically list all proofs, yet you cannot always decide that a non-valid sentence is non-valid. This is the precise boundary: propositional logic is decidable, first-order logic is only semi-decidable. Do not confuse the completeness theorem (provable = universally true) with the incompleteness theorems, which are about specific theories like arithmetic being unable to prove all their own truths."
       },
       "note": "Don't conflate Gödel's completeness theorem (about first-order logic's proof system) with his incompleteness theorems (about sufficiently strong arithmetic theories) — they point in opposite directions.",
       "sources": [
         "MIT OCW 6.042J Mathematics for Computer Science",
         "Stanford Encyclopedia of Philosophy: Classical Logic",
         "Wikipedia (facts): First-order logic; Gödel's completeness theorem"
+      ],
+      "resources": [
+        {"label": "Wikipedia: First-order logic", "url": "https://en.wikipedia.org/wiki/First-order_logic"},
+        {"label": "Stanford Encyclopedia of Philosophy: Classical Logic", "url": "https://plato.stanford.edu/entries/logic-classical/"},
+        {"label": "Wikipedia: Quantifier (logic) — ∀ and ∃", "url": "https://en.wikipedia.org/wiki/Quantifier_(logic)"},
+        {"label": "Wikipedia: Predicate (mathematical logic)", "url": "https://en.wikipedia.org/wiki/Predicate_(mathematical_logic)"},
+        {"label": "Wikipedia: Gödel's completeness theorem", "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_completeness_theorem"},
+        {"label": "MIT OCW 6.042J Mathematics for Computer Science", "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/"}
       ],
       "art_prompt": "a domain of objects with ∀ and ∃ quantifier lassos selecting all-of versus some-of them, predicates coloring relationships between objects",
       "quiz": [
@@ -1004,14 +1241,22 @@
       ],
       "summary": "A proof system is a set of axioms and inference rules; soundness means it proves only truths, completeness that it proves all of them.",
       "depths": {
-        "eli5": "A proof system is a rulebook for deriving new true statements from old ones. A good rulebook never lies (sound) and can reach every truth in its world (complete).",
-        "core": "A formal proof system specifies axioms and inference rules (like modus ponens) that mechanically generate theorems. Soundness means every provable statement is true (no false theorems); completeness means every true statement is provable. Natural deduction, sequent calculus, and resolution are equivalent systems for first-order logic, all sound and complete for it.",
-        "deep": "Proof complexity asks not whether a proof exists but how long it must be: resolution requires exponential-length proofs for some unsatisfiable formulas (the pigeonhole principle), and whether short propositional proofs always exist (NP =? co-NP) is open. The Curry–Howard correspondence reveals proofs as programs and propositions as types, unifying logic and computation — constructing a proof is literally writing a program."
+        "eli5": "A proof system is a rulebook for deriving new true statements from ones you already accept. A good rulebook has two virtues: it never lets you derive something false ('sound'), and it can eventually reach every truth in its world ('complete').",
+        "core": "A formal proof system specifies 'axioms' (statements taken as given) and 'inference rules' (like modus ponens: from 'A' and 'if A then B', conclude 'B') that mechanically generate 'theorems' (derived statements). 'Soundness' means every provable statement is actually true (no false theorems can be derived); 'completeness' means every true statement can be proved. Natural deduction, sequent calculus, and resolution are different but equivalent proof systems for first-order logic, all sound and complete for it.",
+        "deep": "'Proof complexity' asks not whether a proof exists but how long it must be: the resolution method requires exponentially long proofs for some unsatisfiable formulas (such as the pigeonhole principle), and whether short propositional proofs always exist is the open NP =? co-NP question. The Curry–Howard correspondence reveals a deep identity — proofs are programs and propositions are types — unifying logic and computation, so that constructing a proof is literally the same act as writing a program."
       },
       "sources": [
         "MIT OCW 6.042J / 18.404J",
         "Stanford Encyclopedia of Philosophy: Proof Theory",
         "Wikipedia (facts): Proof calculus; Curry–Howard correspondence"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Formal proof and proof calculus", "url": "https://en.wikipedia.org/wiki/Proof_calculus"},
+        {"label": "Wikipedia: Soundness", "url": "https://en.wikipedia.org/wiki/Soundness"},
+        {"label": "Wikipedia: Completeness (logic)", "url": "https://en.wikipedia.org/wiki/Completeness_(logic)"},
+        {"label": "Wikipedia: Modus ponens (a basic inference rule)", "url": "https://en.wikipedia.org/wiki/Modus_ponens"},
+        {"label": "Wikipedia: Curry–Howard correspondence", "url": "https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence"},
+        {"label": "Stanford Encyclopedia of Philosophy: Proof Theory", "url": "https://plato.stanford.edu/entries/proof-theory/"}
       ],
       "art_prompt": "an inference tree growing from axiom leaves upward to a theorem root, each step stamped by a named rule like modus ponens",
       "quiz": [
@@ -1038,15 +1283,23 @@
       ],
       "summary": "Any consistent, sufficiently strong formal system cannot prove all true statements about arithmetic, nor prove its own consistency.",
       "depths": {
-        "eli5": "Any rulebook powerful enough to do arithmetic has true statements it can never prove. And it can't prove that it itself won't ever contradict itself.",
-        "core": "Gödel's first incompleteness theorem: any consistent, effectively axiomatized theory strong enough to encode arithmetic contains true statements it cannot prove. The construction encodes 'this statement is unprovable' as an arithmetic sentence via Gödel numbering — a self-reference that is true precisely because it is unprovable. The second theorem: such a system cannot prove its own consistency (unless it is inconsistent).",
-        "deep": "The incompleteness theorems are deeply tied to undecidability: the unprovability of certain truths mirrors the halting problem's undecidability, and Chaitin recast incompleteness in terms of Kolmogorov complexity (no system can prove a string's complexity exceeds the system's own size). The lesson is not that math is broken but that truth outruns proof in any fixed formal system — there is no finite axiom set capturing all arithmetic truth."
+        "eli5": "Any logical rulebook powerful enough to do ordinary arithmetic contains true statements it can never prove from its own rules. Worse, such a rulebook can't even prove that it will never contradict itself. Truth, it turns out, always reaches a little beyond what any fixed set of rules can capture.",
+        "core": "Gödel's first incompleteness theorem: any 'consistent' (never proves a contradiction), 'effectively axiomatized' (its axioms can be mechanically listed) theory strong enough to encode arithmetic contains true statements it cannot prove. The construction uses 'Gödel numbering' (assigning numbers to statements) to encode the sentence 'this very statement is unprovable' as a statement about arithmetic — a self-reference that is true precisely because it is unprovable. The second theorem says such a system cannot prove its own consistency, unless it is in fact inconsistent.",
+        "deep": "The incompleteness theorems are tightly tied to undecidability: the unprovability of certain truths mirrors the halting problem's undecidability, and Chaitin recast incompleteness using Kolmogorov complexity (no formal system can prove that a specific string's complexity exceeds the system's own size). The lesson is not that mathematics is broken but that truth outruns proof in any fixed formal system — there is no finite set of axioms that captures every arithmetic truth."
       },
       "note": "First theorem: truth > provability. Second theorem: a consistent system can't certify its own consistency. Both require the system to be strong enough to do arithmetic.",
       "sources": [
         "Gödel (1931, facts)",
         "Stanford Encyclopedia of Philosophy: Gödel's Incompleteness Theorems",
         "Wikipedia (facts): Gödel's incompleteness theorems"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Gödel's incompleteness theorems", "url": "https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems"},
+        {"label": "Stanford Encyclopedia of Philosophy: Gödel's Incompleteness Theorems", "url": "https://plato.stanford.edu/entries/goedel-incompleteness/"},
+        {"label": "Wikipedia: Gödel numbering (encoding statements as numbers)", "url": "https://en.wikipedia.org/wiki/G%C3%B6del_numbering"},
+        {"label": "Wikipedia: Consistency (no contradictions)", "url": "https://en.wikipedia.org/wiki/Consistency"},
+        {"label": "Wikipedia: Diagonal lemma (the self-reference construction)", "url": "https://en.wikipedia.org/wiki/Diagonal_lemma"},
+        {"label": "Wikipedia: Halting problem (the undecidability cousin)", "url": "https://en.wikipedia.org/wiki/Halting_problem"}
       ],
       "art_prompt": "a self-referential sentence written in arithmetic that asserts its own unprovability, encircled by a formal system that cannot reach it",
       "quiz": [
@@ -1073,15 +1326,23 @@
       ],
       "summary": "A one-way function is easy to compute but computationally hard to invert — the conjectured bedrock of modern cryptography.",
       "depths": {
-        "eli5": "Some operations are like scrambling an egg: easy to do, practically impossible to undo. Cryptography needs functions like that.",
-        "core": "A one-way function f is computable in polynomial time, but no efficient algorithm can find a preimage of f(x) for random x (except with negligible probability). Their existence is unproven and would imply P ≠ NP, yet they are necessary and sufficient for most of cryptography — secure encryption, digital signatures, and pseudorandom generators all rest on them. Candidate examples are factoring-based and discrete-log-based functions.",
-        "deep": "Cryptography lives in average-case hardness, not worst-case: NP-hardness guarantees some hard instances, but cryptography needs functions hard on typical inputs. One-way functions formalize exactly that. They also bridge to pseudorandomness — a function computationally indistinguishable from random is the engine behind stream ciphers — and to Shannon's distinction between unconditional (information-theoretic) and computational security: one-time pads are unbreakable in principle, while practical crypto trades that for keys you can actually distribute."
+        "eli5": "Some operations are like scrambling an egg: easy to do, practically impossible to undo. A 'one-way function' is the mathematical version — quick to compute forwards, but so hard to reverse that nobody can in any reasonable time. Cryptography is built on functions like that.",
+        "core": "A one-way function f can be computed in polynomial time, but no efficient algorithm can find a 'preimage' (an input x that produces a given output f(x)) for random x, except with negligible probability. Whether such functions even exist is unproven, and their existence would imply P ≠ NP — yet they are both necessary and sufficient for most of cryptography: secure encryption, digital signatures, and pseudorandom generators all rest on them. Leading candidates are built on integer factoring and the discrete-logarithm problem.",
+        "deep": "Cryptography depends on 'average-case' hardness, not merely 'worst-case': NP-hardness only guarantees that some instances are hard, but cryptography needs a function that is hard on typical, randomly chosen inputs. One-way functions formalize exactly that. They also connect to pseudorandomness — a function whose output no efficient test can tell apart from random is the engine behind stream ciphers — and to Shannon's distinction between 'unconditional' (information-theoretic) and 'computational' security: a one-time pad is unbreakable in principle, while practical crypto trades that ideal for keys you can actually distribute."
       },
       "note": "The existence of one-way functions is the single most important open assumption in cryptography; it implies P ≠ NP but is believed to be strictly stronger.",
       "sources": [
         "MIT OCW 6.875 / 6.5620 Cryptography",
         "Katz & Lindell, Introduction to Modern Cryptography (facts)",
         "Wikipedia (facts): One-way function"
+      ],
+      "resources": [
+        {"label": "Wikipedia: One-way function", "url": "https://en.wikipedia.org/wiki/One-way_function"},
+        {"label": "Wikipedia: Average-case complexity (vs worst-case)", "url": "https://en.wikipedia.org/wiki/Average-case_complexity"},
+        {"label": "Wikipedia: Integer factorization (a candidate hard problem)", "url": "https://en.wikipedia.org/wiki/Integer_factorization"},
+        {"label": "Wikipedia: Discrete logarithm", "url": "https://en.wikipedia.org/wiki/Discrete_logarithm"},
+        {"label": "Wikipedia: One-time pad (unconditional security)", "url": "https://en.wikipedia.org/wiki/One-time_pad"},
+        {"label": "Khan Academy: Cryptography", "url": "https://www.khanacademy.org/computing/computer-science/cryptography"}
       ],
       "art_prompt": "a function arrow that is wide and easy going forward, but a narrow, fog-blocked tunnel going backward from output to input",
       "quiz": [
@@ -1107,14 +1368,22 @@
       ],
       "summary": "Public-key systems use a publishable encryption key and a secret decryption key, enabling secure communication without sharing secrets first.",
       "depths": {
-        "eli5": "Everyone can have your open padlock to lock a box, but only you hold the key to open it. So strangers can send you secrets without ever meeting to agree on a password.",
-        "core": "Public-key (asymmetric) cryptography gives each party a public key (shared openly) and a private key (kept secret). Anyone can encrypt with the public key, but only the private-key holder can decrypt; reversing the roles yields digital signatures. RSA rests on the hardness of factoring large integers; Diffie–Hellman and elliptic-curve systems rest on the discrete-logarithm problem — both trapdoor one-way functions.",
-        "deep": "The breakthrough (Diffie–Hellman 1976, then RSA) solved the key-distribution problem that crippled symmetric crypto: parties establish a shared secret over a public channel. Security is computational and conditional — Shor's algorithm factors and computes discrete logs in polynomial time on a quantum computer, threatening RSA and ECC and driving the move to post-quantum cryptography based on lattice problems believed hard even for quantum machines."
+        "eli5": "Imagine handing out copies of an open padlock to everyone, while keeping the only key for yourself. Anyone can snap a box shut with your padlock, but only you can open it. That's public-key cryptography: strangers can send you secrets without ever meeting to agree on a shared password first.",
+        "core": "Public-key (also called 'asymmetric') cryptography gives each person two matched keys: a 'public key' shared openly and a 'private key' kept secret. Anyone can encrypt a message with your public key, but only you, holding the private key, can decrypt it; swapping the roles produces 'digital signatures' (proof a message came from you). RSA relies on the difficulty of factoring large integers; Diffie–Hellman and elliptic-curve systems rely on the discrete-logarithm problem — these are 'trapdoor one-way functions' (one-way unless you hold the secret trapdoor).",
+        "deep": "The breakthrough (Diffie–Hellman in 1976, then RSA) solved the key-distribution problem that had crippled older 'symmetric' crypto: two parties can now agree on a shared secret over a fully public channel. The security is computational and conditional — Shor's algorithm can factor integers and compute discrete logs in polynomial time on a large quantum computer, threatening RSA and elliptic-curve crypto (ECC) and driving the shift to 'post-quantum cryptography' based on lattice problems believed hard even for quantum machines."
       },
       "sources": [
         "Diffie & Hellman (1976), Rivest–Shamir–Adleman (1978) (facts)",
         "MIT OCW 6.875 Cryptography",
         "Wikipedia (facts): Public-key cryptography; RSA; Shor's algorithm"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Public-key cryptography", "url": "https://en.wikipedia.org/wiki/Public-key_cryptography"},
+        {"label": "Wikipedia: RSA (cryptosystem)", "url": "https://en.wikipedia.org/wiki/RSA_(cryptosystem)"},
+        {"label": "Wikipedia: Diffie–Hellman key exchange", "url": "https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"},
+        {"label": "Wikipedia: Digital signature", "url": "https://en.wikipedia.org/wiki/Digital_signature"},
+        {"label": "Wikipedia: Shor's algorithm (the quantum threat)", "url": "https://en.wikipedia.org/wiki/Shor%27s_algorithm"},
+        {"label": "Khan Academy: Cryptography (public-key / RSA)", "url": "https://www.khanacademy.org/computing/computer-science/cryptography"}
       ],
       "art_prompt": "an open padlock distributed to many senders who snap shut their boxes, with a single private key on the recipient's side opening them",
       "quiz": [
@@ -1141,14 +1410,22 @@
       ],
       "summary": "A pseudorandom generator stretches a short seed into a long string no efficient test can distinguish from true randomness.",
       "depths": {
-        "eli5": "From a tiny truly-random seed, a clever recipe makes a long stream that looks random to anyone without unlimited computing power. It isn't random, but no fast test can tell.",
-        "core": "A pseudorandom generator (PRG) maps a short random seed to a longer output that is computationally indistinguishable from uniform — no polynomial-time test can tell the difference with non-negligible advantage. PRGs exist if one-way functions do (Håstad–Impagliazzo–Levin–Luby). They underpin stream ciphers, simulations, and derandomization, replacing scarce true randomness with cheap pseudorandom bits.",
-        "deep": "Pseudorandomness is randomness relative to an observer's computational power: a PRG output has low Kolmogorov complexity (it is generated by a short program) yet is operationally random to bounded adversaries — exposing that 'random' is not absolute but resource-relative. Derandomization conjectures (BPP = P, under strong circuit lower bounds) say true randomness may not help computation at all, only convenience."
+        "eli5": "Start with a tiny bit of genuine randomness (a 'seed'), then run it through a clever recipe that spits out a long stream of bits. To anyone without unlimited computing power, that stream looks completely random — even though it's totally determined by the seed. It isn't truly random, but no fast test can catch the difference.",
+        "core": "A 'pseudorandom generator' (PRG) is an algorithm that turns a short truly-random seed into a much longer output that is 'computationally indistinguishable' from genuinely uniform random bits — meaning no efficient (polynomial-time) test can tell the two apart with any meaningful advantage. PRGs are known to exist if one-way functions do (the Håstad–Impagliazzo–Levin–Luby theorem). They power stream ciphers, simulations, and 'derandomization', letting you replace scarce true randomness with cheap pseudorandom bits.",
+        "deep": "Pseudorandomness is randomness relative to an observer's computational power: a PRG's output has low Kolmogorov complexity (a short program generates it) yet is operationally random to any bounded adversary — showing that 'random' is not absolute but resource-relative. The derandomization conjectures (that BPP = P, assuming strong circuit lower bounds) suggest true randomness may give no extra computational power at all, only convenience."
       },
       "sources": [
         "MIT OCW 6.875 Cryptography",
         "Goldreich, Foundations of Cryptography (facts)",
         "Wikipedia (facts): Pseudorandom generator; Hardness vs. randomness"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Pseudorandom generator", "url": "https://en.wikipedia.org/wiki/Pseudorandom_generator"},
+        {"label": "Wikipedia: Pseudorandomness", "url": "https://en.wikipedia.org/wiki/Pseudorandomness"},
+        {"label": "Wikipedia: Computational indistinguishability", "url": "https://en.wikipedia.org/wiki/Computational_indistinguishability"},
+        {"label": "Wikipedia: Stream cipher", "url": "https://en.wikipedia.org/wiki/Stream_cipher"},
+        {"label": "Wikipedia: BPP (complexity) and derandomization", "url": "https://en.wikipedia.org/wiki/BPP_(complexity)"},
+        {"label": "Wikipedia: One-way function (the existence assumption)", "url": "https://en.wikipedia.org/wiki/One-way_function"}
       ],
       "art_prompt": "a short seed feeding a gear-box that spins out a long bit-stream, with a bounded observer's test failing to distinguish it from true coin flips",
       "quiz": [
@@ -1175,14 +1452,22 @@
       ],
       "summary": "PAC learning formalizes learning from examples: with high probability, output a hypothesis that is approximately correct on unseen data.",
       "depths": {
-        "eli5": "Learning is: see a bunch of labeled examples, then guess a rule that's mostly right on new examples you've never seen — and be confident you got it mostly right.",
-        "core": "In Valiant's Probably Approximately Correct framework, a concept class is PAC-learnable if there is an algorithm that, for any target concept and any unknown distribution, draws a polynomial number of samples and outputs (with probability ≥ 1 − δ) a hypothesis with error ≤ ε. The two parameters separate accuracy (ε, 'approximately') from confidence (δ, 'probably'). Learnability is about generalizing from finite data, not memorizing it.",
-        "deep": "PAC makes the distribution-free demand: the learner must succeed for every input distribution, which is what makes the guarantees meaningful. The key insight is that generalization is possible only if the hypothesis class is restricted — an unrestricted learner can always fit the training data yet fail on new points. How much restriction is needed is captured exactly by the VC dimension."
+        "eli5": "Learning from examples works like this: you see a pile of labeled examples (this photo is a cat, that one isn't), then you guess a rule. A good rule is mostly right on brand-new examples you've never seen — and you want to be confident that it really is mostly right. PAC learning makes that intuition precise.",
+        "core": "In Valiant's 'Probably Approximately Correct' (PAC) framework, a 'concept class' (a family of possible rules) is PAC-learnable if some algorithm can, for any target rule and any unknown distribution of examples, draw a polynomial number of samples and output — with probability at least 1 − δ — a 'hypothesis' (its guessed rule) whose error is at most ε. The two knobs separate accuracy (ε, the 'approximately') from confidence (δ, the 'probably'). The whole point is generalizing from finite data, not memorizing it.",
+        "deep": "PAC makes a 'distribution-free' demand: the learner must succeed no matter what distribution generates the examples, which is what makes the guarantee meaningful. The key insight is that generalization is possible only if the hypothesis class is restricted — an unrestricted learner can always fit the training data perfectly yet behave arbitrarily on new points ('overfitting'). Exactly how much restriction is needed is captured by the VC dimension."
       },
       "sources": [
         "Valiant (1984, facts)",
         "MIT OCW 6.790 / 9.520 Statistical Learning Theory",
         "Wikipedia (facts): Probably approximately correct learning"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Probably approximately correct (PAC) learning", "url": "https://en.wikipedia.org/wiki/Probably_approximately_correct_learning"},
+        {"label": "Wikipedia: Computational learning theory", "url": "https://en.wikipedia.org/wiki/Computational_learning_theory"},
+        {"label": "Wikipedia: Generalization error", "url": "https://en.wikipedia.org/wiki/Generalization_error"},
+        {"label": "Wikipedia: Overfitting", "url": "https://en.wikipedia.org/wiki/Overfitting"},
+        {"label": "Wikipedia: Sample complexity", "url": "https://en.wikipedia.org/wiki/Sample_complexity"},
+        {"label": "Wikipedia: Supervised learning (the broader setting)", "url": "https://en.wikipedia.org/wiki/Supervised_learning"}
       ],
       "art_prompt": "a cloud of labeled training points with a candidate boundary drawn through them, and faded test points checking it generalizes",
       "quiz": [
@@ -1208,15 +1493,23 @@
       ],
       "summary": "The VC dimension measures a model's capacity by the largest set of points it can label in every possible way — it sets the sample size needed to learn.",
       "depths": {
-        "eli5": "A model's 'power' is the biggest set of points it can fit no matter how you label them. More power means you need more examples before you can trust it on new data.",
-        "core": "A hypothesis class shatters a set of points if, for every possible labeling, some hypothesis in the class realizes it. The VC dimension is the size of the largest shatterable set. A class is PAC-learnable iff its VC dimension is finite, and the sample complexity scales as Θ((d/ε) + (1/ε)log(1/δ)) for VC dimension d — capacity directly determines how many examples you need.",
-        "deep": "VC dimension explains the bias–variance tradeoff quantitatively: high capacity can fit anything (low bias) but demands more data to generalize (high variance), formalizing Occam's razor — simpler classes generalize from fewer examples. For example, axis-aligned half-lines on the real line have VC dimension 1, intervals 2, and linear separators in d dimensions have VC dimension d+1. A class that shatters arbitrarily large sets (infinite VC dimension) is not PAC-learnable at all."
+        "eli5": "A model's 'power' (its capacity) is the size of the biggest set of points it can fit perfectly no matter how you label them — every yes/no combination. More power sounds good, but it means you need more examples before you can trust the model on data it hasn't seen. The VC dimension is the number that measures this power.",
+        "core": "A hypothesis class 'shatters' a set of points if, for every possible way of labeling them (every assignment of yes/no), some hypothesis in the class produces exactly that labeling. The 'VC dimension' (named for Vapnik and Chervonenkis) is the size of the largest set the class can shatter. A class is PAC-learnable if and only if its VC dimension is finite, and the number of examples needed (the 'sample complexity') scales roughly as Θ((d/ε) + (1/ε)log(1/δ)) where d is the VC dimension — capacity directly sets how much data you need.",
+        "deep": "VC dimension quantifies the 'bias–variance tradeoff': high capacity can fit almost anything (low bias) but demands far more data to generalize (high variance), formalizing Occam's razor — simpler classes generalize from fewer examples. Concretely, axis-aligned half-lines on the number line have VC dimension 1, intervals 2, and straight-line ('linear') separators in d-dimensional space have VC dimension d+1. A class that can shatter arbitrarily large sets (infinite VC dimension) is not PAC-learnable at all."
       },
       "note": "Finite VC dimension is exactly the condition for distribution-free PAC learnability — the fundamental theorem of statistical learning.",
       "sources": [
         "Vapnik & Chervonenkis (1971, facts)",
         "MIT OCW 6.790 / 9.520 Statistical Learning Theory",
         "Wikipedia (facts): VC dimension; Sauer–Shelah lemma"
+      ],
+      "resources": [
+        {"label": "Wikipedia: VC dimension (Vapnik–Chervonenkis dimension)", "url": "https://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_dimension"},
+        {"label": "Wikipedia: Shattered set", "url": "https://en.wikipedia.org/wiki/Shattered_set"},
+        {"label": "Wikipedia: Bias–variance tradeoff", "url": "https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff"},
+        {"label": "Wikipedia: Occam's razor", "url": "https://en.wikipedia.org/wiki/Occam%27s_razor"},
+        {"label": "Wikipedia: Sauer–Shelah lemma", "url": "https://en.wikipedia.org/wiki/Sauer%E2%80%93Shelah_lemma"},
+        {"label": "Wikipedia: PAC learning (where VC dimension applies)", "url": "https://en.wikipedia.org/wiki/Probably_approximately_correct_learning"}
       ],
       "art_prompt": "four points on a plane with a linear separator achieving each of their labelings except one impossible XOR-like pattern, marking the capacity limit",
       "quiz": [
@@ -1245,15 +1538,23 @@
       "equation": "S=k_B\\ln\\Omega \\ \\longleftrightarrow\\ H=-\\sum_i p_i\\log_2 p_i",
       "summary": "Shannon's information entropy and Boltzmann/Gibbs thermodynamic entropy are the same functional, linking bits to physical energy.",
       "depths": {
-        "eli5": "The 'disorder' physicists measure in a gas and the 'uncertainty' information theorists measure in a message are the very same formula, just in different units.",
-        "core": "Gibbs entropy S = −k_B Σ p_i ln p_i and Shannon entropy H = −Σ p_i log2 p_i are identical up to the unit constant k_B and the logarithm base. Jaynes recast statistical mechanics as inference: the equilibrium distribution is the maximum-entropy distribution consistent with known constraints (like average energy), recovering the Boltzmann distribution as the least-biased guess. Landauer's principle then assigns a physical energy cost k_B T ln 2 to erasing one bit.",
-        "deep": "The identification turns thermodynamics into a special case of information theory: temperature is a Lagrange multiplier on the energy constraint, and the partition function is a normalizer. Landauer's bound (and Bennett's resolution of Maxwell's demon) shows information is physical — logically irreversible erasure must dissipate heat — closing the loop between computation, entropy, and the second law. The same maximum-entropy principle reappears in machine learning as the logistic/softmax model and in statistics as exponential families."
+        "eli5": "Physicists measure 'disorder' in a box of gas; information theorists measure 'uncertainty' in a message. It turns out these are the very same formula, just written with different units. The bits in your phone and the heat in a gas are governed by one shared idea — entropy.",
+        "core": "The 'Gibbs entropy' of physics, S = −k_B Σ p_i ln p_i (where k_B is Boltzmann's constant and ln is the natural log), and the Shannon entropy H = −Σ p_i log2 p_i of information theory are the same function, differing only by the constant k_B and the choice of logarithm base. Jaynes recast statistical mechanics as 'inference': the equilibrium state of a physical system is the maximum-entropy probability distribution consistent with what you know (such as the average energy), recovering the famous Boltzmann distribution as the least-biased guess. Landauer's principle then attaches a real physical energy cost, k_B T ln 2, to erasing a single bit.",
+        "deep": "This identification turns thermodynamics into a special case of information theory: temperature plays the role of a Lagrange multiplier on the energy constraint, and the partition function is just a normalizer. Landauer's bound — together with Bennett's resolution of the Maxwell's-demon paradox — shows that information is physical: logically irreversible erasure must dissipate heat, closing the loop between computation, entropy, and the second law of thermodynamics. The same maximum-entropy principle reappears in machine learning as the logistic/softmax model and in statistics as the exponential families."
       },
       "note": "Landauer's principle: erasing one bit costs at least k_B T ln 2 ≈ 0.018 eV of dissipated energy at room temperature — the thermodynamic price of forgetting.",
       "sources": [
         "Jaynes, 'Information Theory and Statistical Mechanics' (1957, facts)",
         "Landauer (1961), Bennett (1982) (facts)",
         "Wikipedia (facts): Entropy (information theory); Landauer's principle; Maximum entropy thermodynamics"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Entropy in thermodynamics and information theory", "url": "https://en.wikipedia.org/wiki/Entropy_in_thermodynamics_and_information_theory"},
+        {"label": "Wikipedia: Landauer's principle (k_B T ln 2 per erased bit)", "url": "https://en.wikipedia.org/wiki/Landauer%27s_principle"},
+        {"label": "Wikipedia: Maximum entropy thermodynamics (Jaynes)", "url": "https://en.wikipedia.org/wiki/Maximum_entropy_thermodynamics"},
+        {"label": "Wikipedia: Boltzmann distribution", "url": "https://en.wikipedia.org/wiki/Boltzmann_distribution"},
+        {"label": "Wikipedia: Maxwell's demon (Bennett's resolution)", "url": "https://en.wikipedia.org/wiki/Maxwell%27s_demon"},
+        {"label": "Wikipedia: Second law of thermodynamics", "url": "https://en.wikipedia.org/wiki/Second_law_of_thermodynamics"}
       ],
       "art_prompt": "a box of gas microstates beside a stream of message symbols, both feeding the identical −Σ p log p formula, with a heat puff labeled kT ln2 as a bit is erased",
       "quiz": [
@@ -1281,15 +1582,23 @@
       ],
       "summary": "Deep networks fit huge parametric functions by gradient descent, and their surprising generalization stretches classical learning theory.",
       "depths": {
-        "eli5": "A neural network is a giant adjustable function. You nudge its millions of knobs a little at a time to reduce its mistakes, and somehow it learns to handle examples it never saw.",
-        "core": "A neural network composes layers of linear maps and nonlinearities into a function with millions or billions of parameters. Training minimizes a loss by gradient descent, with gradients computed efficiently via backpropagation — itself a dynamic-programming reuse of the chain rule across layers. The classical VC story predicts such over-parameterized models should overfit, yet they generalize well, which modern theory (implicit regularization, the double-descent curve) is still working to explain.",
-        "deep": "Backpropagation is exactly dynamic programming on the computation graph: each partial derivative is computed once and reused, giving cost linear in the network size rather than exponential. The frontier puzzle is generalization in the over-parameterized regime where parameters far exceed data — classical uniform-convergence bounds (VC, Rademacher) are vacuous there, so capacity alone no longer explains learning. The information-bottleneck view and links back to statistical mechanics (energy landscapes, phase transitions in learning) are active attempts to rebuild the theory."
+        "eli5": "A neural network is a giant adjustable function with millions of little knobs ('parameters'). Training nudges those knobs a tiny bit at a time to reduce its mistakes on example data. Remarkably, after enough nudging it can handle brand-new examples it never saw during training. Nobody fully understands why this works as well as it does.",
+        "core": "A neural network stacks layers, each a 'linear map' (a weighted sum) followed by a simple 'nonlinearity' (a bending function), into one huge function with millions or billions of parameters. Training minimizes a 'loss' (a mistake score) by 'gradient descent' — repeatedly stepping the parameters in the direction that lowers the loss. The needed gradients are computed efficiently by 'backpropagation', which is really dynamic programming reusing the calculus chain rule across layers. Classical VC theory predicts such hugely 'over-parameterized' models should overfit badly, yet they generalize well — a puzzle modern theory (implicit regularization, the 'double descent' curve) is still working to explain.",
+        "deep": "Backpropagation is exactly dynamic programming over the network's computation graph: each intermediate derivative is computed once and reused, so the total gradient cost is linear in network size rather than exponential. The frontier puzzle is generalization when parameters vastly outnumber the training data — classical uniform-convergence bounds (VC dimension, Rademacher complexity) become vacuous there, so model capacity alone no longer explains why learning succeeds. The information-bottleneck view and links back to statistical mechanics (energy landscapes, phase transitions in learning) are active attempts to rebuild the theory."
       },
       "note": "Backprop = reverse-mode automatic differentiation = dynamic programming over the chain rule. The same idea, three names across three fields.",
       "sources": [
         "MIT OCW 6.036 / 6.390 Introduction to Machine Learning",
         "Rumelhart–Hinton–Williams (1986, facts)",
         "arXiv: Belkin et al., 'Reconciling modern ML and the bias–variance trade-off' (double descent, facts)"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Artificial neural network", "url": "https://en.wikipedia.org/wiki/Neural_network_(machine_learning)"},
+        {"label": "Wikipedia: Backpropagation", "url": "https://en.wikipedia.org/wiki/Backpropagation"},
+        {"label": "Wikipedia: Gradient descent", "url": "https://en.wikipedia.org/wiki/Gradient_descent"},
+        {"label": "Wikipedia: Double descent (the modern generalization puzzle)", "url": "https://en.wikipedia.org/wiki/Double_descent"},
+        {"label": "Wikipedia: Automatic differentiation (reverse mode = backprop)", "url": "https://en.wikipedia.org/wiki/Automatic_differentiation"},
+        {"label": "MIT OCW 6.036 Introduction to Machine Learning", "url": "https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/"}
       ],
       "art_prompt": "a layered network with arrows flowing forward to a loss and gradient arrows flowing backward reusing cached values, beside a double-descent test-error curve dipping twice",
       "quiz": [
@@ -1316,14 +1625,22 @@
       ],
       "summary": "Algorithms that flip coins can be simpler and faster than deterministic ones, trading certainty for high-probability correctness or speed.",
       "depths": {
-        "eli5": "Sometimes letting an algorithm make random choices makes it faster or simpler, while still being almost always right — like picking a random pivot to sort quickly.",
-        "core": "Randomized algorithms use random bits during execution. Las Vegas algorithms (like randomized quicksort) always return the correct answer with random running time; Monte Carlo algorithms (like Miller–Rabin primality testing) run in fixed time but may err with small, controllable probability. Randomization often dodges worst-case adversarial inputs and simplifies design, defining the complexity class BPP (bounded-error polynomial time).",
-        "deep": "The power of randomness is subtle: under widely believed circuit lower bounds, BPP = P, meaning randomness buys convenience and speed but not fundamentally more solvable problems (derandomization via pseudorandom generators). Yet randomization is provably essential in other models — distributed consensus, communication complexity, and cryptography rely on it irreducibly. The gap between 'random helps' and 'random is necessary' tracks the model."
+        "eli5": "Sometimes letting an algorithm flip coins and make random choices makes it faster or simpler, while still being almost always right. For example, quicksort runs fast on average when it picks a random item to split the list around, side-stepping the bad cases that trip up a fixed choice.",
+        "core": "Randomized algorithms consume random bits while running. 'Las Vegas' algorithms (like randomized quicksort) always return the correct answer but have a random running time; 'Monte Carlo' algorithms (like the Miller–Rabin primality test) run in a fixed time but may give a wrong answer with a small, controllable probability. Randomness often dodges worst-case 'adversarial' inputs and simplifies design. The corresponding complexity class is BPP ('bounded-error probabilistic polynomial time') — problems solvable fast with a small error chance.",
+        "deep": "The true power of randomness is subtle: under widely believed circuit lower bounds, BPP = P, meaning randomness buys convenience and speed but not fundamentally more solvable problems ('derandomization' via pseudorandom generators). Yet in other models randomization is provably essential — distributed consensus, communication complexity, and cryptography rely on it irreducibly. The gap between 'random helps' and 'random is necessary' depends on the model."
       },
       "sources": [
         "MIT OCW 6.046 Design and Analysis of Algorithms",
         "Motwani & Raghavan, Randomized Algorithms (facts)",
         "Wikipedia (facts): Randomized algorithm; BPP (complexity)"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Randomized algorithm", "url": "https://en.wikipedia.org/wiki/Randomized_algorithm"},
+        {"label": "Wikipedia: Las Vegas algorithm", "url": "https://en.wikipedia.org/wiki/Las_Vegas_algorithm"},
+        {"label": "Wikipedia: Monte Carlo algorithm", "url": "https://en.wikipedia.org/wiki/Monte_Carlo_algorithm"},
+        {"label": "Wikipedia: Miller–Rabin primality test", "url": "https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test"},
+        {"label": "Wikipedia: BPP (bounded-error probabilistic polynomial time)", "url": "https://en.wikipedia.org/wiki/BPP_(complexity)"},
+        {"label": "MIT OCW 6.046J Design and Analysis of Algorithms", "url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/"}
       ],
       "art_prompt": "an algorithm branching on coin flips, with a Las Vegas path always reaching the right answer and a Monte Carlo path mostly right with a small error fork",
       "quiz": [
@@ -1350,15 +1667,23 @@
       "equation": "D_{KL}(p\\,\\|\\,q)=\\sum_x p(x)\\log_2\\frac{p(x)}{q(x)}",
       "summary": "KL divergence measures the extra bits wasted when you encode data from p using a code optimized for q.",
       "depths": {
-        "eli5": "If you build your compression assuming the world is q, but it's really p, you waste some bits. KL divergence counts exactly how many you waste.",
-        "core": "The Kullback–Leibler divergence D_KL(p‖q) is the expected number of extra bits incurred by coding samples from the true distribution p with a code optimal for q. It is nonnegative (Gibbs' inequality), zero iff p = q, but asymmetric and not a true metric. Mutual information is the special case D_KL(joint ‖ product of marginals), and cross-entropy = entropy + KL.",
-        "deep": "KL divergence is the natural 'distance' from a model to reality in information geometry, and minimizing it is exactly maximum-likelihood estimation — fitting a model to data minimizes D_KL(empirical ‖ model). Its asymmetry encodes a real modeling choice: D_KL(p‖q) penalizes q assigning low probability where p is high (mode-covering), while D_KL(q‖p) does the reverse (mode-seeking), a distinction that shapes variational inference and generative models."
+        "eli5": "Suppose you build your data compression assuming the world behaves like distribution q, but the world is actually distribution p. You'll waste some bits because your code was tuned to the wrong guess. KL divergence is exactly the count of how many extra bits you waste, on average.",
+        "core": "The Kullback–Leibler divergence D_KL(p‖q) is the average number of extra bits you spend by coding data from the true distribution p with a code that was optimized for a different distribution q. It is never negative (Gibbs' inequality), is zero exactly when p = q, but is 'asymmetric' (D_KL(p‖q) ≠ D_KL(q‖p)) so it is not a true distance metric. Mutual information is the special case D_KL(joint distribution ‖ product of the separate distributions), and 'cross-entropy' equals entropy plus KL divergence.",
+        "deep": "KL divergence is the natural 'distance' from a model to reality in 'information geometry', and minimizing it is exactly maximum-likelihood estimation — fitting a model to data minimizes D_KL(empirical data ‖ model). Its asymmetry encodes a real modeling choice: D_KL(p‖q) punishes q for assigning low probability where p is high ('mode-covering'), while D_KL(q‖p) does the reverse ('mode-seeking') — a distinction that shapes variational inference and generative models."
       },
       "note": "Cross-entropy loss, ubiquitous in machine learning, is entropy plus KL divergence — minimizing it fits the model distribution to the data distribution.",
       "sources": [
         "Kullback & Leibler (1951, facts)",
         "Cover & Thomas, Elements of Information Theory (facts)",
         "Wikipedia (facts): Kullback–Leibler divergence; Cross-entropy"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Kullback–Leibler divergence", "url": "https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence"},
+        {"label": "Wikipedia: Cross-entropy", "url": "https://en.wikipedia.org/wiki/Cross-entropy"},
+        {"label": "Wikipedia: Maximum likelihood estimation", "url": "https://en.wikipedia.org/wiki/Maximum_likelihood_estimation"},
+        {"label": "Wikipedia: Information geometry", "url": "https://en.wikipedia.org/wiki/Information_geometry"},
+        {"label": "Wikipedia: Mutual information (the special-case link)", "url": "https://en.wikipedia.org/wiki/Mutual_information"},
+        {"label": "Wikipedia: Entropy (information theory)", "url": "https://en.wikipedia.org/wiki/Entropy_(information_theory)"}
       ],
       "art_prompt": "two distribution curves p and q with the shaded gap between them metered as wasted bits, an arrow noting the asymmetry p‖q ≠ q‖p",
       "quiz": [
@@ -1385,14 +1710,22 @@
       "equation": "P(A\\mid B)=\\frac{P(B\\mid A)\\,P(A)}{P(B)}",
       "summary": "Bayes' rule inverts conditional probabilities, updating a prior belief into a posterior in light of evidence.",
       "depths": {
-        "eli5": "If you know how likely the evidence is when something is true, Bayes flips it to tell you how likely that something is now that you've seen the evidence.",
-        "core": "Conditional probability P(A|B) = P(A∩B)/P(B) is the probability of A given that B occurred. Bayes' rule rearranges this into P(A|B) = P(B|A)P(A)/P(B), letting you invert a known likelihood P(B|A) into the desired posterior P(A|B) using the prior P(A). It is the engine of all probabilistic inference, from spam filters to medical diagnosis.",
-        "deep": "The base-rate fallacy is Bayes ignored: a rare condition (small prior) plus an imperfect test makes most positives false positives, no matter how 'accurate' the test sounds. Bayesian updating is also the discrete analogue of the maximum-entropy / inference view of statistical mechanics — both treat probability as a state of knowledge updated by constraints, not a property of the world alone."
+        "eli5": "Bayes' rule flips a 'how likely is the evidence?' question into a 'how likely is the cause?' question. If you know how often a test beeps when someone truly has a disease, Bayes lets you compute how likely they actually have the disease once the test beeps — combining the test with how rare the disease is to begin with.",
+        "core": "'Conditional probability' P(A|B) = P(A∩B)/P(B) is the probability that A happens given that B has occurred (P(A∩B) is the chance both happen). Bayes' rule rearranges this into P(A|B) = P(B|A)·P(A)/P(B), letting you invert a known 'likelihood' P(B|A) into the 'posterior' P(A|B) you want, using your 'prior' belief P(A). It is the engine of all probabilistic inference, from spam filters to medical diagnosis.",
+        "deep": "The 'base-rate fallacy' is Bayes' rule ignored: a rare condition (small prior) combined with an imperfect test makes most positive results false positives, no matter how 'accurate' the test sounds. Bayesian updating is also the discrete cousin of the maximum-entropy / inference view of statistical mechanics — both treat probability as a state of knowledge updated by constraints, not as a property of the world alone."
       },
       "note": "P(B) in the denominator is the normalizer, expandable via the law of total probability: P(B) = Σ_A P(B|A)P(A).",
       "sources": [
         "MIT OCW 6.041 Probabilistic Systems Analysis",
         "Wikipedia (facts): Bayes' theorem; Base rate fallacy"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Bayes' theorem", "url": "https://en.wikipedia.org/wiki/Bayes%27_theorem"},
+        {"label": "Wikipedia: Conditional probability", "url": "https://en.wikipedia.org/wiki/Conditional_probability"},
+        {"label": "Wikipedia: Prior, likelihood, and posterior probability", "url": "https://en.wikipedia.org/wiki/Posterior_probability"},
+        {"label": "Wikipedia: Base rate fallacy", "url": "https://en.wikipedia.org/wiki/Base_rate_fallacy"},
+        {"label": "Wikipedia: Law of total probability (the normalizer)", "url": "https://en.wikipedia.org/wiki/Law_of_total_probability"},
+        {"label": "Khan Academy: Conditional probability and Bayes", "url": "https://www.khanacademy.org/math/ap-statistics/probability-ap/stats-conditional-probability/v/calculating-conditional-probability"}
       ],
       "art_prompt": "a prior bar being reshaped into a taller posterior bar by an arrow labeled with incoming evidence",
       "quiz": [
@@ -1418,14 +1751,22 @@
       ],
       "summary": "Regular expressions are an algebraic notation for patterns, exactly as expressive as finite automata.",
       "depths": {
-        "eli5": "A regex is a compact pattern like 'one or more digits' that a machine can match against text. It describes the same patterns a simple state machine can recognize.",
-        "core": "Regular expressions build patterns from union (|), concatenation, and the Kleene star (zero-or-more repetition), starting from single symbols and the empty string. Kleene's theorem proves they describe exactly the regular languages — every regex compiles to an equivalent NFA, and every DFA converts back to a regex. They are the practical front-end to finite automata in text processing.",
-        "deep": "The Kleene star is what gives regular expressions unbounded length from a finite description, and it corresponds precisely to a loop (a revisited state) in the automaton. Real-world 'regex' engines often add backreferences, which push them beyond regular into a strictly more powerful (and worst-case exponential) regime — a frequent source of catastrophic-backtracking denial-of-service bugs."
+        "eli5": "A 'regular expression' (regex) is a compact written pattern — like 'one or more digits' or 'a word starting with cat' — that a machine can test text against. It can describe exactly the same patterns that a simple state-hopping machine (a finite automaton) can recognize.",
+        "core": "Regular expressions are built from three operations on patterns: 'union' (written |, meaning 'this or that'), 'concatenation' (one pattern followed by another), and the 'Kleene star' (zero-or-more repetitions), starting from single symbols and the empty string. Kleene's theorem proves they describe exactly the 'regular languages' — every regex can be converted into an equivalent NFA, and every DFA back into a regex. They are the everyday practical front-end to finite automata in text processing.",
+        "deep": "The Kleene star is what lets a finite written pattern match strings of unbounded length, and it corresponds precisely to a loop (a revisited state) in the automaton. Real-world regex engines often add 'backreferences' (matching a repeat of something matched earlier), which push them beyond truly regular into a strictly more powerful — and worst-case exponential — regime, a frequent source of 'catastrophic backtracking' denial-of-service bugs (ReDoS)."
       },
       "sources": [
         "MIT OCW 18.404J Theory of Computation",
         "Sipser (facts)",
         "Wikipedia (facts): Regular expression; Kleene's theorem"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Regular expression", "url": "https://en.wikipedia.org/wiki/Regular_expression"},
+        {"label": "Wikipedia: Kleene star (the zero-or-more operation)", "url": "https://en.wikipedia.org/wiki/Kleene_star"},
+        {"label": "Wikipedia: Kleene's algorithm / theorem (regex = automata)", "url": "https://en.wikipedia.org/wiki/Kleene%27s_algorithm"},
+        {"label": "Wikipedia: Regular language", "url": "https://en.wikipedia.org/wiki/Regular_language"},
+        {"label": "Wikipedia: ReDoS (catastrophic backtracking)", "url": "https://en.wikipedia.org/wiki/ReDoS"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "a regex string compiling into an NFA diagram, with the Kleene star drawn as a loop back to an earlier state",
       "quiz": [
@@ -1451,14 +1792,22 @@
       ],
       "summary": "Greedy algorithms make the locally best choice at each step, which yields a global optimum only when the problem has matroid-like structure.",
       "depths": {
-        "eli5": "Always grab the best-looking option right now and never look back. Sometimes that lands you the best overall answer; sometimes it traps you.",
-        "core": "A greedy algorithm builds a solution incrementally by taking the choice that looks best at each step. It is correct only when the problem has the greedy-choice property (a local optimum extends to a global one) and optimal substructure. Minimum spanning tree (Kruskal, Prim), Huffman coding, and interval scheduling are classic successes; the general 0/1 knapsack is a classic failure.",
-        "deep": "The deep reason greedy works for MST and not knapsack is matroid theory: greedy is provably optimal exactly on problems whose feasible sets form a matroid. When greedy fails, dynamic programming or exchange arguments are needed. Even when greedy is not optimal, it often gives a guaranteed approximation ratio, making it a workhorse for NP-hard problems."
+        "eli5": "A greedy algorithm always grabs the best-looking option right now and never reconsiders. Sometimes that string of locally-best choices happens to land you the best overall answer; other times it walks you into a dead end. The trick is knowing which problems it's safe on.",
+        "core": "A greedy algorithm builds a solution one step at a time, each step taking whatever choice looks best at that moment. This is guaranteed correct only when the problem has the 'greedy-choice property' (a locally best choice can always be extended to a globally best solution) and 'optimal substructure'. Minimum spanning tree (Kruskal's and Prim's algorithms), Huffman coding, and interval scheduling are classic greedy successes; the general 0/1 knapsack problem is the classic failure.",
+        "deep": "The deep reason greedy works for minimum spanning tree but not knapsack is 'matroid theory': greedy is provably optimal exactly on problems whose feasible solutions form a matroid (an abstract structure capturing 'independence'). When greedy fails, dynamic programming or exchange arguments are needed. Even when greedy is not optimal, it often guarantees a fixed 'approximation ratio', making it a workhorse for NP-hard problems."
       },
       "sources": [
         "MIT OCW 6.046 Design and Analysis of Algorithms",
         "CLRS (facts)",
         "Wikipedia (facts): Greedy algorithm; Matroid"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Greedy algorithm", "url": "https://en.wikipedia.org/wiki/Greedy_algorithm"},
+        {"label": "Wikipedia: Minimum spanning tree", "url": "https://en.wikipedia.org/wiki/Minimum_spanning_tree"},
+        {"label": "Wikipedia: Knapsack problem (where greedy fails)", "url": "https://en.wikipedia.org/wiki/Knapsack_problem"},
+        {"label": "Wikipedia: Matroid (the structure greedy needs)", "url": "https://en.wikipedia.org/wiki/Matroid"},
+        {"label": "Wikipedia: Optimal substructure", "url": "https://en.wikipedia.org/wiki/Optimal_substructure"},
+        {"label": "MIT OCW 6.046J Design and Analysis of Algorithms", "url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/"}
       ],
       "art_prompt": "a path picking the steepest immediate step each time, with one branch reaching the true summit and another stuck on a lower local peak",
       "quiz": [
@@ -1484,15 +1833,23 @@
       ],
       "summary": "Amortized analysis bounds the average cost per operation over a sequence, even when individual operations are occasionally expensive.",
       "depths": {
-        "eli5": "Some operations are usually cheap but rarely costly. Amortized analysis spreads the rare big cost over the many cheap ones to find the true average.",
-        "core": "Amortized analysis measures the average cost of an operation across a worst-case sequence, not the worst single operation. A dynamic array that doubles when full costs O(n) on the resize but O(1) amortized per insertion, because resizes are rare. The aggregate, accounting (banker's), and potential methods are the three standard techniques for proving such bounds.",
-        "deep": "Amortized is not the same as average-case: it makes no probabilistic assumption, holding for every worst-case sequence. The potential method assigns the data structure a 'stored energy' Φ; the amortized cost is the actual cost plus ΔΦ, so cheap operations bank potential that expensive ones spend. This makes data structures like splay trees and Fibonacci heaps analyzable despite wild per-operation variance."
+        "eli5": "Some operations are usually cheap but every so often very expensive. Instead of judging by the rare expensive one, amortized analysis spreads that big cost across all the cheap ones to find the true average cost per operation over a whole run.",
+        "core": "Amortized analysis measures the average cost of an operation across a worst-case sequence of operations, rather than the cost of the single worst operation. For example, a 'dynamic array' that doubles its capacity when full costs O(n) on the rare resize but only O(1) 'amortized' per insertion, because resizes happen rarely enough that their total cost is spread thin. The three standard proof techniques are the aggregate method, the accounting (banker's) method, and the potential method.",
+        "deep": "Amortized is not the same as average-case: it makes no probabilistic assumption and holds for every worst-case sequence. The 'potential method' assigns the data structure a 'stored energy' Φ; the amortized cost of an operation is its actual cost plus the change ΔΦ, so cheap operations bank potential that expensive ones later spend. This makes data structures like splay trees and Fibonacci heaps analyzable despite wild swings in their per-operation cost."
       },
       "note": "Amortized O(1) per op over n ops means total O(n) — distinct from, and stronger than, an average-case probabilistic claim.",
       "sources": [
         "MIT OCW 6.046 Design and Analysis of Algorithms",
         "CLRS (facts)",
         "Wikipedia (facts): Amortized analysis; Potential method"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Amortized analysis", "url": "https://en.wikipedia.org/wiki/Amortized_analysis"},
+        {"label": "Wikipedia: Potential method", "url": "https://en.wikipedia.org/wiki/Potential_method"},
+        {"label": "Wikipedia: Dynamic array (the doubling example)", "url": "https://en.wikipedia.org/wiki/Dynamic_array"},
+        {"label": "Wikipedia: Best, worst and average case", "url": "https://en.wikipedia.org/wiki/Best,_worst_and_average_case"},
+        {"label": "Wikipedia: Splay tree (analyzed via amortization)", "url": "https://en.wikipedia.org/wiki/Splay_tree"},
+        {"label": "MIT OCW 6.046J Design and Analysis of Algorithms", "url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/"}
       ],
       "art_prompt": "a sequence of cheap insertions with an occasional tall resize bar, the tall cost averaged smoothly across the cheap ones",
       "quiz": [
@@ -1519,15 +1876,23 @@
       ],
       "summary": "More time strictly buys more computational power: there are problems solvable in O(n^3) time but not in O(n^2).",
       "depths": {
-        "eli5": "Give a computer genuinely more time and it can solve genuinely more problems. This is one of the few things about complexity we can actually prove.",
-        "core": "The time hierarchy theorem states that for time-constructible bounds with f growing sufficiently faster than g, DTIME(g) ⊊ DTIME(f): strictly more time yields strictly more decidable problems. The proof diagonalizes — it constructs a machine that, given more time, deliberately disagrees with every machine confined to less time. This is why P ⊊ EXP is a theorem, not a conjecture.",
-        "deep": "The hierarchy theorems are among the rare unconditional separations in complexity theory, and they work because diagonalization can be carried out within the time/space budget. Crucially, diagonalization alone cannot resolve P vs NP — relativization barriers (the Baker–Gill–Solovay result) show that any proof technique blind to machine internals fails on P vs NP, which is why that question remains open while hierarchy theorems are settled."
+        "eli5": "Give a computer genuinely more running time and it can genuinely solve more problems — no surprise, but here it's actually proven, not just assumed. It's one of the few clean, settled facts in complexity theory, where most of the big questions are still open.",
+        "core": "The time hierarchy theorem says that if you allow a time budget f that grows enough faster than another budget g (for well-behaved 'time-constructible' bounds), then DTIME(g) ⊊ DTIME(f): strictly more time lets you decide strictly more problems. The proof uses 'diagonalization' — it builds a machine that, given the extra time, deliberately disagrees with the output of every machine confined to less time, so it can't be in the smaller class. This is exactly why P ⊊ EXP (problems solvable in polynomial time are a strict subset of those solvable in exponential time) is a proven theorem, not merely a conjecture.",
+        "deep": "The hierarchy theorems are among the rare 'unconditional' separations in complexity theory, and they work because the diagonalization can be carried out within the allotted time/space budget. Crucially, diagonalization alone cannot resolve P vs NP: the 'relativization' barrier (the Baker–Gill–Solovay result) shows that any proof technique blind to a machine's internals fails on P vs NP, which is why that question stays open while the hierarchy theorems are settled."
       },
       "note": "Hierarchy theorems give us our only proven separations (P ⊊ EXP, L ⊊ PSPACE); the famous open separations (P vs NP) provably need non-relativizing techniques.",
       "sources": [
         "Hartmanis & Stearns (1965, facts)",
         "MIT OCW 18.404J Theory of Computation",
         "Wikipedia (facts): Time hierarchy theorem; Baker–Gill–Solovay theorem"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Time hierarchy theorem", "url": "https://en.wikipedia.org/wiki/Time_hierarchy_theorem"},
+        {"label": "Wikipedia: Diagonalization (the proof technique)", "url": "https://en.wikipedia.org/wiki/Cantor%27s_diagonal_argument"},
+        {"label": "Wikipedia: EXPTIME (the EXP class)", "url": "https://en.wikipedia.org/wiki/EXPTIME"},
+        {"label": "Wikipedia: Relativization and the Baker–Gill–Solovay barrier", "url": "https://en.wikipedia.org/wiki/Oracle_machine"},
+        {"label": "Wikipedia: P versus NP problem", "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem"},
+        {"label": "MIT OCW 18.404J Theory of Computation", "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"}
       ],
       "art_prompt": "nested time-budget rings, each strictly larger ring enclosing new problems unreachable by the inner ones, built by a diagonalizing machine",
       "quiz": [
@@ -1555,14 +1920,22 @@
       "equation": "R(D)=\\min_{p(\\hat x\\mid x):\\,\\mathbb{E}[d]\\le D} I(X;\\hat X)",
       "summary": "Rate–distortion theory gives the minimum number of bits needed to represent a source within an allowed level of distortion.",
       "depths": {
-        "eli5": "If you're willing to lose a little quality, you can use far fewer bits. Rate–distortion tells you the best possible trade between size and fidelity.",
-        "core": "Lossless coding is bounded by entropy, but accepting some distortion D lets you compress further. The rate–distortion function R(D) is the minimum bit rate achievable while keeping the expected distortion below D, expressed as the minimum mutual information I(X;X̂) over reconstructions X̂ meeting the distortion constraint. It is the lossy counterpart to the source coding theorem and the theoretical floor for JPEG, MP3, and video codecs.",
-        "deep": "R(D) is convex and decreasing: R(0) recovers the entropy (lossless), and R grows steeply as you demand near-perfect fidelity. The curve formalizes the universal engineering trade-off between file size and quality. Rate–distortion is also the conceptual ancestor of the information bottleneck in deep learning, which compresses inputs while preserving information about a target — relevance-constrained lossy coding."
+        "eli5": "Perfect, lossless compression can only shrink a file so far. But if you're willing to lose a little quality — a slightly blurrier photo, a slightly rougher song — you can use far fewer bits. Rate–distortion theory tells you the best possible trade between file size and faithfulness.",
+        "core": "Lossless coding is bounded below by entropy, but allowing some 'distortion' D (a measured amount of error in the reconstruction) lets you compress further. The 'rate–distortion function' R(D) is the smallest bit rate you can achieve while keeping the average distortion at or below D. Formally it is the minimum mutual information I(X;X̂) between the source X and its reconstruction X̂, over all reconstructions meeting the distortion limit. It is the 'lossy' counterpart of the source coding theorem and the theoretical floor underneath JPEG, MP3, and video codecs.",
+        "deep": "R(D) is convex and decreasing: R(0) recovers the entropy (perfect, lossless reconstruction), and R climbs steeply as you demand near-perfect fidelity. The curve formalizes the universal engineering trade-off between file size and quality. Rate–distortion is also the conceptual ancestor of the 'information bottleneck' in deep learning, which compresses an input while preserving the information relevant to a target — relevance-constrained lossy coding."
       },
       "sources": [
         "Shannon (1959, facts)",
         "Cover & Thomas, Elements of Information Theory (facts)",
         "Wikipedia (facts): Rate–distortion theory; Information bottleneck method"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Rate–distortion theory", "url": "https://en.wikipedia.org/wiki/Rate%E2%80%93distortion_theory"},
+        {"label": "Wikipedia: Lossy compression", "url": "https://en.wikipedia.org/wiki/Lossy_compression"},
+        {"label": "Wikipedia: Data compression (lossless vs lossy)", "url": "https://en.wikipedia.org/wiki/Data_compression"},
+        {"label": "Wikipedia: Information bottleneck method", "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"},
+        {"label": "Wikipedia: JPEG (a rate–distortion application)", "url": "https://en.wikipedia.org/wiki/JPEG"},
+        {"label": "MIT OCW 6.441 Information Theory", "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"}
       ],
       "art_prompt": "a convex R(D) curve falling from the entropy at zero distortion, with codec quality knobs sliding along it trading size for fidelity",
       "quiz": [
@@ -1589,8 +1962,8 @@
       ],
       "summary": "When a problem is NP-hard, approximation algorithms find provably near-optimal solutions in polynomial time.",
       "depths": {
-        "eli5": "If finding the perfect answer is too slow, settle for one guaranteed to be close — say, never worse than twice the best possible — but found quickly.",
-        "core": "An α-approximation algorithm runs in polynomial time and always returns a solution within a factor α of optimal. For NP-hard optimization problems this is the practical response to intractability: vertex cover has a simple 2-approximation, set cover a (ln n)-approximation, and some problems admit a PTAS (approximation arbitrarily close to optimal). The achievable α is itself a deep question tied to hardness of approximation.",
+        "eli5": "When finding the perfect answer is too slow to be practical, settle for one that's guaranteed to be close — say, provably never worse than twice the best possible — but that you can find quickly. That guarantee of closeness is what separates an approximation algorithm from a random guess.",
+        "core": "An α-approximation algorithm runs in polynomial time and always returns a solution within a factor of α of the optimal value (for example, a 2-approximation is never more than twice as costly as the best answer). For NP-hard optimization problems this is the practical response to intractability: vertex cover has a simple 2-approximation, set cover a (ln n)-approximation, and some problems admit a PTAS (a polynomial-time approximation scheme, getting arbitrarily close to optimal). The best achievable α is itself a deep question, tied to 'hardness of approximation'.",
         "deep": "The PCP theorem reveals that for some problems even approximating is NP-hard: there is a threshold ratio below which no polynomial-time algorithm can go unless P = NP (e.g., MAX-3SAT is hard to approximate beyond 7/8). So NP-hardness comes in grades — some problems approximate arbitrarily well (PTAS), some to a fixed constant, and some not at all — refining the coarse P-vs-NP picture into a rich landscape of approximability."
       },
       "note": "Hardness of approximation (via the PCP theorem) shows some problems are not just hard to solve exactly but provably hard to even approximate beyond a fixed ratio.",
@@ -1598,6 +1971,14 @@
         "MIT OCW 6.046 Design and Analysis of Algorithms",
         "Vazirani, Approximation Algorithms (facts)",
         "Wikipedia (facts): Approximation algorithm; PCP theorem"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Approximation algorithm", "url": "https://en.wikipedia.org/wiki/Approximation_algorithm"},
+        {"label": "Wikipedia: APX and approximation ratio", "url": "https://en.wikipedia.org/wiki/APX"},
+        {"label": "Wikipedia: Polynomial-time approximation scheme (PTAS)", "url": "https://en.wikipedia.org/wiki/Polynomial-time_approximation_scheme"},
+        {"label": "Wikipedia: PCP theorem (hardness of approximation)", "url": "https://en.wikipedia.org/wiki/PCP_theorem"},
+        {"label": "Wikipedia: Vertex cover (the 2-approximation example)", "url": "https://en.wikipedia.org/wiki/Vertex_cover"},
+        {"label": "MIT OCW 6.046J Design and Analysis of Algorithms", "url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/"}
       ],
       "art_prompt": "an optimal solution bar beside a quickly-found approximate bar, with a guaranteed-ratio bracket showing the approximate is within factor α",
       "quiz": [
@@ -1625,15 +2006,23 @@
       "equation": "-\\tfrac1n\\log_2 p(X_1,\\dots,X_n)\\to H(X)",
       "summary": "For long sequences of i.i.d. symbols, almost all probability concentrates on roughly 2^{nH} nearly-equiprobable 'typical' sequences.",
       "depths": {
-        "eli5": "If you flip a biased coin a million times, the result you get is almost certainly one of a predictable family of outcomes — the 'typical' ones — and there are about 2 to the power (length times entropy) of them.",
-        "core": "The asymptotic equipartition property (AEP) is the information-theoretic law of large numbers: as n grows, the per-symbol log-probability of an i.i.d. sequence converges to the entropy H(X). Consequently the probability mass concentrates on a typical set of about 2^{nH} sequences, each with probability near 2^{-nH}. This is the precise reason H bits per symbol suffice for compression — you only need to index the typical set.",
-        "deep": "The AEP is what makes Shannon's source and channel coding theorems provable: compression assigns short codes only to typical sequences (ignoring the vanishingly rare atypical ones), and channel coding picks codewords so their typical outputs barely overlap. The exponential gap between the 2^{nH} typical sequences and the |alphabet|^n total sequences is the quantitative heart of why information can be compressed at all."
+        "eli5": "Flip a biased coin a million times and the exact sequence you get is almost certainly one of a fairly predictable family — the 'typical' outcomes, the ones with roughly the expected mix of heads and tails. There are about 2 raised to the power (length × entropy) of these typical sequences, and nearly all the probability lives among them.",
+        "core": "The 'asymptotic equipartition property' (AEP) is the information-theoretic version of the law of large numbers. For a sequence of 'i.i.d.' symbols (independent and identically distributed — each drawn the same way, independently), as the length n grows the per-symbol log-probability converges to the entropy H(X). As a result, almost all of the probability concentrates on a 'typical set' of about 2^{nH} sequences, each of probability near 2^{-nH}. This is the precise reason that H bits per symbol are enough for compression: you only need to give index numbers to the typical set.",
+        "deep": "The AEP is what makes Shannon's source and channel coding theorems provable: compression hands short codes only to the typical sequences (ignoring the vanishingly rare atypical ones), and channel coding picks codewords so that their typical outputs barely overlap. The exponential gap between the 2^{nH} typical sequences and the |alphabet|^n total possible sequences is the quantitative heart of why information can be compressed at all."
       },
       "note": "Typical set size ≈ 2^{nH}; total sequence count = |X|^n. Compression works because the typical set is exponentially smaller whenever H < log|X|.",
       "sources": [
         "Shannon (1948, facts)",
         "Cover & Thomas, Elements of Information Theory (facts)",
         "Wikipedia (facts): Asymptotic equipartition property; Typical set"
+      ],
+      "resources": [
+        {"label": "Wikipedia: Asymptotic equipartition property (AEP)", "url": "https://en.wikipedia.org/wiki/Asymptotic_equipartition_property"},
+        {"label": "Wikipedia: Typical set", "url": "https://en.wikipedia.org/wiki/Typical_set"},
+        {"label": "Wikipedia: Law of large numbers", "url": "https://en.wikipedia.org/wiki/Law_of_large_numbers"},
+        {"label": "Wikipedia: Independent and identically distributed (i.i.d.)", "url": "https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables"},
+        {"label": "Wikipedia: Entropy (information theory) — the H(X) here", "url": "https://en.wikipedia.org/wiki/Entropy_(information_theory)"},
+        {"label": "MIT OCW 6.441 Information Theory", "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"}
       ],
       "art_prompt": "the space of all length-n sequences as a huge cloud, with a small dense inner blob of size 2^{nH} holding nearly all the probability mass",
       "quiz": [
