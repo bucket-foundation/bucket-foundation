@@ -1,10 +1,10 @@
 {
   "meta": {
     "branch": "01-mathematics",
-    "title": "Mathematics — general-exam nucleus",
-    "version": "0.1.0",
-    "note": "Explanations authored for Bucket Academy (original prose; equations and standard definitions are facts). Open sources only. Seed pass — foundations-first DAG from sets/functions up to the spectral and Stokes theorems.",
-    "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
+    "title": "Mathematics — the foundations of reasoning",
+    "version": "0.2.0",
+    "note": "Explanations authored for Bucket Academy (original prose; equations and standard definitions are facts). Open sources only. Foundations-first DAG spanning logic & proof, sets and number systems, elementary and abstract algebra, linear algebra, calculus and analysis, probability and combinatorics, topology and metric spaces, differential equations, and a few frontier/foundational nodes (Gödel, computability, category theory).",
+    "license": "CC-BY-4.0 (prose); equations are facts"
   },
   "atoms": [
     {
@@ -381,6 +381,1050 @@
           "level": "derive",
           "prompt": "Which classical theorem does the generalized Stokes' theorem reduce to in one dimension, and how?",
           "answer": "The Fundamental Theorem of Calculus: with Ω = [a,b] the boundary ∂Ω is the two endpoints {a,b} (with signs), so ∫_Ω df = ∫_{∂Ω} f becomes f(b) − f(a) = ∫_a^b f'."
+        }
+      ]
+    },
+    {
+      "id": "logic-proof",
+      "title": "Propositional logic and proof",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [],
+      "equation": "(P \\Rightarrow Q) \\equiv (\\lnot Q \\Rightarrow \\lnot P)",
+      "summary": "Logic fixes the rules for combining true/false statements and what counts as a valid deduction; a proof is a finite chain of such deductions from accepted premises.",
+      "depths": {
+        "eli5": "Statements are either true or false, and logic is the grammar for chaining them: 'if this, then that.' A proof is just a careful, step-by-step argument where each step follows from the ones before by an allowed rule.",
+        "core": "Propositional logic combines statements with not, and, or, implies, and iff, and assigns each compound a truth value from its parts. An argument is valid when the conclusion is true in every case the premises are. Core moves include modus ponens (from P and P⇒Q infer Q) and the contrapositive (P⇒Q is equivalent to ¬Q⇒¬P), the engine behind proof by contradiction.",
+        "deep": "Validity (truth in all interpretations) and provability (derivable by the rules) are distinct notions; Gödel's completeness theorem says for first-order logic they coincide — every semantically valid sentence has a finite proof. This soundness-and-completeness match is exactly what makes formal reasoning trustworthy, and its failure to extend to truth-in-arithmetic is the seed of incompleteness."
+      },
+      "note": "P⇒Q is false only when P is true and Q is false; a false premise makes the implication vacuously true.",
+      "sources": ["LibreTexts Introduction to Mathematical Reasoning", "OpenStax Discrete Mathematics", "MIT OCW 6.042 Mathematics for Computer Science"],
+      "art_prompt": "a truth table for P implies Q beside an arrow chain of statements each justified by a named rule",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the contrapositive of P ⇒ Q and explain why it is logically equivalent.",
+          "answer": "The contrapositive is ¬Q ⇒ ¬P. Both are false in exactly the same single case (P true, Q false), so they have identical truth tables and are equivalent."
+        },
+        {
+          "level": "apply",
+          "prompt": "An implication P ⇒ Q has a false premise P. Is the implication true or false, and what is this called?",
+          "answer": "True — it is vacuously true. An implication is only false when the premise is true and the conclusion false, so a false premise can never falsify it."
+        }
+      ]
+    },
+    {
+      "id": "quantifiers-induction",
+      "title": "Quantifiers and induction",
+      "shell": "prereq",
+      "type": "method",
+      "requires": ["logic-proof"],
+      "equation": "\\big(P(0)\\ \\wedge\\ \\forall n\\,(P(n)\\Rightarrow P(n+1))\\big)\\ \\Rightarrow\\ \\forall n\\,P(n)",
+      "summary": "Quantifiers (for all, there exists) let statements range over infinite domains; induction proves a 'for all natural numbers' claim by a base case plus a step that passes truth up the ladder.",
+      "depths": {
+        "eli5": "'For all' and 'there exists' let one sentence speak about infinitely many things. Induction is like dominoes: knock over the first, show each domino topples the next, and they all fall.",
+        "core": "Predicate logic adds ∀ (universal) and ∃ (existential) quantifiers over a domain; their order matters — ∀x∃y differs from ∃y∀x. Mathematical induction proves ∀n P(n) over the naturals: verify the base P(0), then prove the inductive step P(n)⇒P(n+1). Strong induction assumes all smaller cases at once, which is equivalent but often handier.",
+        "deep": "Induction is logically equivalent to the well-ordering principle (every nonempty set of naturals has a least element) and is in fact one of the Peano axioms, not a theorem derivable without it. It is the finite human's lever on the actual infinite: a two-line argument certifies infinitely many cases."
+      },
+      "note": "The inductive step proves an implication, not P(n) itself — you assume P(n) freely as a hypothesis and only must deliver P(n+1).",
+      "sources": ["LibreTexts Introduction to Mathematical Reasoning", "MIT OCW 6.042 Mathematics for Computer Science", "OpenStax Discrete Mathematics"],
+      "art_prompt": "a row of dominoes, the first being pushed and a glowing rule arrow from each domino to the next",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What are the two parts of a proof by mathematical induction?",
+          "answer": "A base case establishing P at the starting value, and an inductive step proving P(n) ⇒ P(n+1) for all n; together they yield P(n) for all n."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does swapping the quantifier order in 'for all x there exists y with y > x' change the meaning?",
+          "answer": "∀x∃y (y>x) is true over the reals (pick y depending on x), but ∃y∀x (y>x) claims one fixed y beats every x, which is false — order decides whether y may depend on x."
+        }
+      ]
+    },
+    {
+      "id": "set-theory-axioms",
+      "title": "Sets, relations, and cardinality",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": ["logic-proof", "set-function"],
+      "equation": "|A| = |B| \\iff \\exists\\ \\text{bijection}\\ f\\colon A \\to B",
+      "summary": "Modern mathematics is built on sets governed by axioms; relations and equivalence classes organize them, and bijections compare their sizes even when infinite.",
+      "depths": {
+        "eli5": "Everything in math can be packaged as a set. To compare two collections' sizes, try to pair them up one-to-one; if you can, they are the same size — even when both are endless.",
+        "core": "The Zermelo–Fraenkel axioms (with choice, ZFC) specify which sets exist and how to build new ones, dodging paradoxes like Russell's. Relations (subsets of A×B) capture pairings; an equivalence relation partitions a set into disjoint classes. Cardinality compares sizes by bijection: two sets are equinumerous exactly when a bijection exists between them.",
+        "deep": "Cantor's diagonal argument shows the reals cannot be listed by the naturals, so |ℝ| > |ℕ| — there is a strict hierarchy of infinities. The continuum hypothesis (no cardinality strictly between them) is independent of ZFC, proven undecidable by Gödel and Cohen: the axioms genuinely do not settle it."
+      },
+      "note": "A proper class (like 'the collection of all sets') is too big to be a set — that restriction is what defuses Russell's paradox.",
+      "sources": ["LibreTexts Introduction to Mathematical Reasoning", "MIT OCW 6.042 Mathematics for Computer Science", "OpenStax Discrete Mathematics"],
+      "art_prompt": "two infinite columns of dots joined by one-to-one pairing arrows, with a diagonal stripe escaping any attempted list",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "When do two sets have the same cardinality, and how does this work for infinite sets?",
+          "answer": "When a bijection exists between them; this criterion works for infinite sets too — e.g., the naturals and even numbers are equinumerous despite one containing the other."
+        },
+        {
+          "level": "derive",
+          "prompt": "Sketch why Cantor's diagonal argument shows the reals are uncountable.",
+          "answer": "Assume the reals in (0,1) are listed. Build a new number differing from the n-th listed number in its n-th decimal digit; it differs from every listed number, so it was missing — no list can be complete."
+        }
+      ]
+    },
+    {
+      "id": "number-systems",
+      "title": "Number systems: ℕ to ℂ",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": ["set-theory-axioms"],
+      "equation": "\\mathbb{N}\\subset\\mathbb{Z}\\subset\\mathbb{Q}\\subset\\mathbb{R}\\subset\\mathbb{C}",
+      "summary": "Each number system is built to solve equations the previous one cannot: subtraction births the integers, division the rationals, limits the reals, and square roots of negatives the complex numbers.",
+      "depths": {
+        "eli5": "Start with counting numbers. Want to subtract freely? Add negatives. Divide freely? Add fractions. Fill in every gap on the line? Add the irrationals. Take the square root of −1? Add i. Each layer fixes a missing operation.",
+        "core": "ℕ supports addition and multiplication; ℤ closes subtraction; ℚ closes division (a field). But ℚ has gaps — √2 is missing — so ℝ is its completion, adding all limits of Cauchy sequences and the least-upper-bound property. ℝ still cannot solve x²=−1, so ℂ adjoins i with i²=−1, after which every polynomial factors completely.",
+        "deep": "The reals are the unique complete ordered field; completeness (no gaps) is exactly what makes calculus work. The complex numbers trade order for algebraic closure — you cannot order ℂ compatibly with its arithmetic, but you gain that every degree-n polynomial has n roots, the Fundamental Theorem of Algebra."
+      },
+      "note": "ℝ is uncountable while ℚ is countable, so 'almost every' real number is irrational — the rationals are a measure-zero dusting on the line.",
+      "sources": ["LibreTexts Real Analysis", "MIT OCW 18.100 Real Analysis", "OpenStax Algebra and Trigonometry"],
+      "art_prompt": "nested rings labeled N, Z, Q, R, C, each ring adding a missing operation noted on its edge",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What operation or property forces each extension: ℤ from ℕ, ℚ from ℤ, ℝ from ℚ, and ℂ from ℝ?",
+          "answer": "ℤ closes subtraction (negatives), ℚ closes division (inverses), ℝ closes limits/fills gaps (completeness), and ℂ closes square roots of negatives (algebraic closure)."
+        },
+        {
+          "level": "apply",
+          "prompt": "What does the reals possess that the rationals lack, and why does calculus need it?",
+          "answer": "Completeness — the least-upper-bound property, so every bounded sequence has the limits it should. Without it, expected limits (and √2) would be 'missing,' and limits/derivatives could fail to exist."
+        }
+      ]
+    },
+    {
+      "id": "modular-arithmetic",
+      "title": "Modular arithmetic",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": ["number-systems"],
+      "equation": "a \\equiv b \\pmod n \\iff n \\mid (a-b)",
+      "summary": "Modular arithmetic works with remainders after division by a fixed modulus, turning the integers into finite cyclic systems where clock-like wraparound is the rule.",
+      "depths": {
+        "eli5": "On a 12-hour clock, 13 o'clock is just 1 o'clock — numbers wrap around after they hit the modulus. Modular arithmetic does all of addition and multiplication this way, keeping only remainders.",
+        "core": "Two integers are congruent mod n when they leave the same remainder; this is an equivalence relation, and the classes form the ring ℤ/nℤ. Addition and multiplication respect congruence, so you can reduce at any step. When n is prime, ℤ/nℤ is a field — every nonzero element has a multiplicative inverse — which underlies Fermat's little theorem.",
+        "deep": "The Chinese remainder theorem decomposes ℤ/mnℤ into ℤ/mℤ × ℤ/nℤ for coprime m,n, parallelizing computation. These finite structures are the backbone of public-key cryptography: RSA's security rests on modular exponentiation being easy while its inverse (factoring) is hard."
+      },
+      "note": "Division is delicate mod n: you can divide by a only if a is coprime to n, which is why prime moduli are so convenient.",
+      "sources": ["LibreTexts Abstract Algebra", "MIT OCW 6.042 Mathematics for Computer Science", "OpenStax Discrete Mathematics"],
+      "art_prompt": "a clock face with numbers wrapping past 12 back to 1, arithmetic arrows looping around the dial",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does a ≡ b (mod n) mean, and when does ℤ/nℤ form a field?",
+          "answer": "It means n divides a − b (same remainder mod n); ℤ/nℤ is a field exactly when n is prime, so every nonzero residue has a multiplicative inverse."
+        },
+        {
+          "level": "apply",
+          "prompt": "Compute 7 × 8 mod 5.",
+          "answer": "7 ≡ 2 and 8 ≡ 3 mod 5, so 7×8 ≡ 2×3 = 6 ≡ 1 (mod 5)."
+        }
+      ]
+    },
+    {
+      "id": "polynomials-roots",
+      "title": "Polynomials and roots",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": ["number-systems"],
+      "equation": "p(x)=a_n x^n+\\cdots+a_1 x+a_0,\\quad p(r)=0 \\iff (x-r)\\mid p(x)",
+      "summary": "A polynomial is a finite sum of scaled powers; its roots are where it vanishes, and each root corresponds to a linear factor, linking algebra to geometry.",
+      "depths": {
+        "eli5": "A polynomial is a smooth curve built from powers of x added together. Its roots are where the curve crosses zero, and each crossing means you can peel off a simple factor like (x − r).",
+        "core": "The factor theorem says r is a root of p exactly when (x − r) divides p, so a degree-n polynomial has at most n roots. Polynomial division and the remainder theorem (p(r) is the remainder on dividing by x − r) make root-finding and factoring systematic. Over a field, polynomials form a ring with unique factorization into irreducibles, mirroring the integers.",
+        "deep": "Whether all roots are expressible by radicals depends on the symmetry group of the roots — Galois theory shows the general quintic has no radical formula because its symmetry group is not solvable. The roots' existence is guaranteed only after passing to ℂ, by the Fundamental Theorem of Algebra."
+      },
+      "note": "Counting roots with multiplicity is what makes 'degree-n has n roots' exact — a double root counts twice.",
+      "sources": ["LibreTexts Abstract Algebra", "OpenStax College Algebra", "MIT OCW 18.701 Algebra"],
+      "art_prompt": "a polynomial curve crossing the x-axis at several points, each crossing tagged with its linear factor",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the factor theorem and the bound it gives on the number of roots.",
+          "answer": "r is a root of p exactly when (x − r) divides p; consequently a degree-n polynomial has at most n roots (exactly n over ℂ, counted with multiplicity)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Factor x² − 5x + 6 by finding its roots.",
+          "answer": "Its roots are 2 and 3 (they sum to 5 and multiply to 6), so x² − 5x + 6 = (x − 2)(x − 3)."
+        }
+      ]
+    },
+    {
+      "id": "combinatorics",
+      "title": "Counting and combinatorics",
+      "shell": "prereq",
+      "type": "method",
+      "requires": ["set-theory-axioms"],
+      "equation": "\\binom{n}{k}=\\dfrac{n!}{k!\\,(n-k)!}",
+      "summary": "Combinatorics is the art of counting arrangements and selections without listing them, built from the multiplication principle, permutations, and combinations.",
+      "depths": {
+        "eli5": "How many ways can you arrange or pick things? Combinatorics gives shortcuts so you never have to write them all out. Order-matters gives permutations; order-doesn't-matter gives combinations.",
+        "core": "The multiplication principle counts independent choices by multiplying their options. Permutations P(n,k)=n!/(n−k)! count ordered selections; combinations C(n,k) count unordered ones, the binomial coefficients. The binomial theorem (a+b)ⁿ = Σ C(n,k) aᵏbⁿ⁻ᵏ ties these counts to algebra, and inclusion–exclusion corrects for overcounted overlaps.",
+        "deep": "Combinatorial identities often have two proofs: an algebraic one and a bijective one that exhibits a size-preserving correspondence, the latter being more illuminating. Generating functions package an entire counting sequence into one formal power series, turning recurrences into algebra — the gateway to analytic combinatorics."
+      },
+      "note": "C(n,k) = C(n,n−k): choosing what to include is the same as choosing what to leave out.",
+      "sources": ["LibreTexts Combinatorics", "MIT OCW 6.042 Mathematics for Computer Science", "OpenStax Introductory Statistics"],
+      "art_prompt": "Pascal's triangle with one row highlighted and a small set showing the k chosen elements it counts",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the difference between a permutation and a combination, and which formula gives each?",
+          "answer": "Permutations count ordered selections, P(n,k)=n!/(n−k)!; combinations count unordered selections, C(n,k)=n!/(k!(n−k)!) — order matters for the first, not the second."
+        },
+        {
+          "level": "apply",
+          "prompt": "How many ways are there to choose a 3-person committee from 6 people?",
+          "answer": "C(6,3) = 6!/(3!·3!) = 20."
+        }
+      ]
+    },
+    {
+      "id": "probability",
+      "title": "Probability axioms",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["set-theory-axioms", "combinatorics"],
+      "equation": "P(\\Omega)=1,\\ P(A)\\ge 0,\\ P\\!\\left(\\bigcup_i A_i\\right)=\\sum_i P(A_i)\\ \\text{(disjoint)}",
+      "summary": "Probability assigns numbers in [0,1] to events under three axioms; from them flow conditional probability, independence, and Bayes' rule for updating belief.",
+      "depths": {
+        "eli5": "Probability measures how likely things are, from 0 (never) to 1 (always). The rules are simple: something must happen, chances can't be negative, and the chance of one of several non-overlapping things is the sum of their chances.",
+        "core": "Kolmogorov's axioms — non-negativity, total mass 1, and countable additivity over disjoint events — make probability a measure on a sample space. Conditional probability P(A|B)=P(A∩B)/P(B) restricts the world to B; independence is P(A∩B)=P(A)P(B). Bayes' rule, P(A|B)=P(B|A)P(A)/P(B), inverts conditionals and is the formal law of updating beliefs from evidence.",
+        "deep": "Random variables push probability onto the real line; their expectation is a Lebesgue integral against the distribution, which is why measure theory is the rigorous home of probability. The law of large numbers and central limit theorem then explain why averages stabilize and why the Gaussian appears everywhere."
+      },
+      "note": "Independence and disjointness are opposite extremes — disjoint nonzero-probability events are maximally dependent (one occurring forbids the other).",
+      "sources": ["MIT OCW 6.041 Probabilistic Systems Analysis", "OpenStax Introductory Statistics", "LibreTexts Probability"],
+      "art_prompt": "a sample-space rectangle of area one with overlapping event blobs, a conditional view zooming into one blob",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Bayes' rule and say what it lets you do.",
+          "answer": "P(A|B) = P(B|A)P(A)/P(B); it inverts a conditional probability, letting you update the probability of a cause A given observed evidence B."
+        },
+        {
+          "level": "apply",
+          "prompt": "If P(A)=0.5, P(B)=0.4, and A,B are independent, what is P(A∩B)?",
+          "answer": "Independence gives P(A∩B)=P(A)P(B)=0.5×0.4=0.2."
+        }
+      ]
+    },
+    {
+      "id": "random-variables",
+      "title": "Random variables and expectation",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["probability", "integral"],
+      "equation": "E[X]=\\sum_x x\\,P(X=x)\\quad\\text{or}\\quad E[X]=\\int x\\,f(x)\\,dx",
+      "summary": "A random variable turns outcomes into numbers; expectation is its probability-weighted average, and variance measures its spread, with linearity of expectation as the workhorse.",
+      "depths": {
+        "eli5": "A random variable is a number whose value depends on chance, like a die roll. Its expectation is the long-run average you'd see, and the variance says how wildly it swings around that average.",
+        "core": "A random variable X maps outcomes to numbers, with a distribution (pmf for discrete, pdf for continuous). Expectation E[X] is the weighted average; it is linear — E[X+Y]=E[X]+E[Y] regardless of dependence — which makes many hard counts easy. Variance Var(X)=E[(X−E[X])²]=E[X²]−E[X]² quantifies spread, and standard deviation restores the units.",
+        "deep": "The law of large numbers says sample averages converge to E[X], and the central limit theorem says their fluctuations, rescaled by √n, become Gaussian regardless of the original distribution — which is why the normal curve is universal. These two theorems are the bridge from individual randomness to predictable aggregate behavior."
+      },
+      "note": "Linearity of expectation needs no independence — that is exactly what makes it so powerful for combinatorial counting.",
+      "sources": ["MIT OCW 6.041 Probabilistic Systems Analysis", "OpenStax Introductory Statistics", "LibreTexts Probability"],
+      "art_prompt": "a distribution histogram with a marked mean line and shaded one-standard-deviation band around it",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is linearity of expectation so useful, and what condition does it require?",
+          "answer": "E[X+Y]=E[X]+E[Y] always holds, with no independence required, so you can split a complicated random quantity into simple pieces and add their averages."
+        },
+        {
+          "level": "apply",
+          "prompt": "A fair die is rolled. What is the expected value of the result?",
+          "answer": "E[X] = (1+2+3+4+5+6)/6 = 21/6 = 3.5."
+        }
+      ]
+    },
+    {
+      "id": "ring-field",
+      "title": "Rings and fields",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["group", "modular-arithmetic"],
+      "equation": "a(b+c)=ab+ac,\\quad \\text{field}\\colon a\\ne 0 \\Rightarrow \\exists\\,a^{-1}",
+      "summary": "A ring has two compatible operations — addition (a group) and multiplication (associative, distributing over addition); a field is a ring where every nonzero element is invertible.",
+      "depths": {
+        "eli5": "A ring is a number system where you can add, subtract, and multiply — like the integers. A field is a ring where you can also divide by anything nonzero — like the rationals or reals. The two operations must play nicely via distribution.",
+        "core": "A ring is an abelian group under addition plus an associative multiplication that distributes over addition. Commutative rings with a multiplicative identity (like ℤ and polynomial rings) are the setting for most arithmetic. A field strengthens this so multiplication is also a group on the nonzero elements — every nonzero element has an inverse — giving ℚ, ℝ, ℂ, and ℤ/pℤ.",
+        "deep": "Ideals are the ring-theoretic analog of normal subgroups; quotient rings R/I generalize modular arithmetic, and an ideal is maximal exactly when the quotient is a field. This machinery (ideals, quotients, homomorphisms) is the unified language behind number theory, algebraic geometry, and coding theory."
+      },
+      "note": "Every field is a ring, but ℤ is a ring that is not a field — it lacks inverses for everything except ±1.",
+      "sources": ["LibreTexts Abstract Algebra", "MIT OCW 18.701 Algebra", "MIT OCW 18.703 Modern Algebra"],
+      "art_prompt": "two operation tables side by side, addition forming a full group and multiplication a group only after removing zero",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What single property separates a field from a general commutative ring with identity?",
+          "answer": "In a field every nonzero element has a multiplicative inverse (you can divide); a general ring need not have this — e.g., ℤ."
+        },
+        {
+          "level": "apply",
+          "prompt": "Is ℤ/6ℤ a field? Why or why not?",
+          "answer": "No — 6 is not prime, so 2 and 3 are nonzero yet 2×3 ≡ 0; zero divisors exist and 2 has no inverse, so it fails to be a field."
+        }
+      ]
+    },
+    {
+      "id": "homomorphism",
+      "title": "Homomorphisms and quotients",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["group", "ring-field"],
+      "equation": "\\varphi(ab)=\\varphi(a)\\varphi(b),\\qquad G/\\ker\\varphi \\cong \\operatorname{im}\\varphi",
+      "summary": "A homomorphism is a structure-preserving map between algebraic objects; its kernel measures what it collapses, and the isomorphism theorem says the quotient by the kernel is a faithful copy of the image.",
+      "depths": {
+        "eli5": "A homomorphism is a translation between two systems that keeps the arithmetic intact: multiply then translate, or translate then multiply, and you land in the same place. What it crushes to the identity is its 'kernel,' and that crushing is exactly how much information it loses.",
+        "core": "A homomorphism φ respects the operation: φ(ab)=φ(a)φ(b). Its kernel (elements sent to the identity) is a normal subgroup (or ideal); its image is a substructure. The first isomorphism theorem, G/ker φ ≅ im φ, says quotienting out exactly what the map forgets recovers a perfect copy of what it sees — collapsing and embedding are two views of one map.",
+        "deep": "This is the organizing principle of algebra: classify objects up to isomorphism, and understand every map as an embedding composed with a quotient. Functorially, taking kernels and cokernels and asking when sequences are exact generalizes into homological algebra, which exports the same bookkeeping to topology and geometry."
+      },
+      "note": "Normality of the kernel is not optional — it is precisely the condition that makes the quotient G/ker φ a group at all.",
+      "sources": ["LibreTexts Abstract Algebra", "MIT OCW 18.701 Algebra", "MIT OCW 18.703 Modern Algebra"],
+      "art_prompt": "a map folding a large group onto a smaller one, all elements of one fiber collapsing to a single image point",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the first isomorphism theorem state?",
+          "answer": "For a homomorphism φ: G→H, the quotient G/ker φ is isomorphic to the image im φ — quotienting by what the map collapses gives a faithful copy of what it produces."
+        },
+        {
+          "level": "derive",
+          "prompt": "What does it mean if a homomorphism's kernel is trivial (just the identity)?",
+          "answer": "The map is injective: distinct elements stay distinct, since only the identity maps to the identity, so G embeds as a copy inside the target."
+        }
+      ]
+    },
+    {
+      "id": "complex-numbers",
+      "title": "Complex numbers and Euler's formula",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["number-systems", "taylor"],
+      "equation": "e^{i\\theta}=\\cos\\theta+i\\sin\\theta,\\qquad e^{i\\pi}+1=0",
+      "summary": "Complex numbers extend the reals with i (√−1); Euler's formula fuses the exponential with trigonometry, revealing rotation and oscillation as one phenomenon.",
+      "depths": {
+        "eli5": "Add a new number i whose square is −1, and suddenly every equation has solutions. Plotting these numbers on a plane, multiplying by i is a quarter turn — so complex multiplication is rotation, and that's why waves and circles speak its language.",
+        "core": "A complex number a+bi lives in the plane, with modulus |z| (length) and argument arg z (angle). Multiplication multiplies moduli and adds arguments, making rotation algebraic. Euler's formula e^{iθ}=cos θ + i sin θ — provable by matching Taylor series — packages all of trigonometry into the exponential, and the special case e^{iπ}+1=0 links five fundamental constants.",
+        "deep": "Functions of a complex variable that are differentiable (holomorphic) are automatically infinitely differentiable and equal to their power series — rigidity with no real-variable analog. This is why complex analysis yields the Fundamental Theorem of Algebra, contour-integral evaluations of real integrals, and the analytic continuation that defines the Riemann zeta function."
+      },
+      "note": "Raising to powers and extracting roots become trivial in polar form via de Moivre's theorem — the n-th roots of unity are equally spaced points on the unit circle.",
+      "sources": ["MIT OCW 18.04 Complex Variables", "OpenStax Algebra and Trigonometry", "LibreTexts Complex Variables"],
+      "art_prompt": "the complex plane with a unit vector at angle theta, its cos and sin components dropped to the axes",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Euler's formula and explain geometrically what multiplying by e^{iθ} does.",
+          "answer": "e^{iθ}=cos θ + i sin θ; multiplying by it rotates a complex number counterclockwise by angle θ about the origin without changing its length."
+        },
+        {
+          "level": "derive",
+          "prompt": "Use Euler's formula to evaluate e^{iπ}.",
+          "answer": "e^{iπ} = cos π + i sin π = −1 + 0 = −1, giving the identity e^{iπ} + 1 = 0."
+        }
+      ]
+    },
+    {
+      "id": "sequences-series",
+      "title": "Sequences and series",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["limit"],
+      "equation": "\\sum_{n=0}^{\\infty} r^n = \\dfrac{1}{1-r}\\quad(|r|<1)",
+      "summary": "A series is the limit of partial sums of a sequence; convergence tests decide when infinitely many terms add to a finite total, with absolute convergence being the well-behaved case.",
+      "depths": {
+        "eli5": "Add up infinitely many shrinking numbers — sometimes the total settles on a finite value, sometimes it blows up. There are tests to tell which, and the geometric series (each term a fixed fraction of the last) is the model example.",
+        "core": "A series Σaₙ converges if its partial sums approach a limit. The geometric series sums to 1/(1−r) for |r|<1; the ratio and root tests compare growth to a geometric benchmark; comparison and integral tests pin down others. Absolute convergence (Σ|aₙ| converges) guarantees the sum is unchanged by reordering — conditional convergence does not.",
+        "deep": "Riemann's rearrangement theorem shows a conditionally convergent series (like the alternating harmonic series) can be reordered to sum to any real number, or to diverge — proving that infinite addition is not blindly commutative. Power series, convergent on a disk, are the bridge to Taylor expansions and complex analysis."
+      },
+      "note": "The harmonic series Σ1/n diverges even though its terms go to zero — terms vanishing is necessary but never sufficient for convergence.",
+      "sources": ["MIT OCW 18.01 Single Variable Calculus", "MIT OCW 18.100 Real Analysis", "LibreTexts Calculus"],
+      "art_prompt": "a bar chart of shrinking terms stacking up to a horizontal asymptote line marking the finite sum",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the sum of the geometric series 1 + r + r² + ... for |r| < 1, and what happens if |r| ≥ 1?",
+          "answer": "It sums to 1/(1−r) when |r|<1; for |r|≥1 the terms don't shrink to zero, so the series diverges."
+        },
+        {
+          "level": "apply",
+          "prompt": "Does Σ 1/n² converge, and what test settles it most cleanly?",
+          "answer": "Yes — the integral test compares it to ∫1/x² dx, which is finite, so the series converges (in fact to π²/6)."
+        }
+      ]
+    },
+    {
+      "id": "multivariable-calculus",
+      "title": "Gradient, divergence, and curl",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["derivative", "vector-space"],
+      "equation": "\\nabla f=\\Big(\\tfrac{\\partial f}{\\partial x},\\tfrac{\\partial f}{\\partial y},\\tfrac{\\partial f}{\\partial z}\\Big)",
+      "summary": "Multivariable calculus extends differentiation to fields: the gradient points uphill steepest, divergence measures outflow, and curl measures rotation.",
+      "depths": {
+        "eli5": "On a hilly landscape, the gradient is the arrow pointing straight uphill, as steep as possible. For a flowing fluid, divergence tells you where it's spreading out and curl tells you where it's swirling.",
+        "core": "Partial derivatives measure change in one direction; the gradient ∇f assembles them into the vector of steepest ascent, perpendicular to level sets. For a vector field, divergence ∇·F is the net rate of outflow per volume (sources and sinks) and curl ∇×F is the local rotation. These three operators built from ∇ organize all of vector calculus.",
+        "deep": "Identities like curl(grad f)=0 and div(curl F)=0 are not coincidences — they are the statement d²=0 for differential forms, and they encode that conservative fields have potentials and that what circulates has no net source. This is the local face of the generalized Stokes' theorem."
+      },
+      "note": "The gradient is always perpendicular to the level set through a point — which is why it gives the direction of fastest increase.",
+      "sources": ["MIT OCW 18.02 Multivariable Calculus", "LibreTexts Calculus (Vector Calculus)", "OpenStax Calculus Volume 3"],
+      "art_prompt": "a contour map with gradient arrows crossing contours perpendicularly toward higher ground, plus a small swirl marked as curl",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the gradient of a scalar field point toward, and how does it relate to level sets?",
+          "answer": "It points in the direction of steepest increase of the function, and it is always perpendicular to the level sets (contours) of that function."
+        },
+        {
+          "level": "apply",
+          "prompt": "Compute the gradient of f(x,y) = x²y at the point (1,2).",
+          "answer": "∇f = (2xy, x²) = (2·1·2, 1²) = (4, 1) at (1,2)."
+        }
+      ]
+    },
+    {
+      "id": "ode",
+      "title": "Ordinary differential equations",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["derivative", "integral"],
+      "equation": "\\dfrac{dy}{dt}=f(t,y),\\qquad y'=ky \\Rightarrow y=y_0 e^{kt}",
+      "summary": "An ODE relates a function to its derivatives; solving one finds the function whose rate of change obeys a given law, with existence and uniqueness guaranteed under mild conditions.",
+      "depths": {
+        "eli5": "An ODE says how fast something changes in terms of where it currently is. Solving it reconstructs the whole history from that rule — like predicting a population's growth from its growth rate.",
+        "core": "A first-order ODE y'=f(t,y) prescribes the slope at every point; the solution is a curve threading that slope field. Linear ODEs with constant coefficients solve via exponentials e^{λt} whose exponents are roots of the characteristic polynomial. The Picard–Lindelöf theorem guarantees a unique solution through each initial point when f is Lipschitz in y.",
+        "deep": "Systems of ODEs y'=Ay solve by diagonalizing A — eigenvalues set growth/decay rates and oscillation frequencies, tying dynamics directly to the spectrum. Nonlinear ODEs rarely solve in closed form, so the qualitative theory (fixed points, stability, phase portraits) and numerical integration take over; sensitive dependence here is the doorway to chaos."
+      },
+      "note": "The exponential function is the eigenfunction of differentiation (d/dt of e^{λt} is λe^{λt}), which is why linear ODEs are solved by exponentials.",
+      "sources": ["MIT OCW 18.03 Differential Equations", "LibreTexts Differential Equations", "OpenStax Calculus Volume 2"],
+      "art_prompt": "a slope field of short tilted segments with one solution curve flowing tangent to them from an initial dot",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Solve y' = ky and state the role of the initial condition.",
+          "answer": "y = y₀e^{kt}; the initial value y₀ = y(0) fixes the single constant of integration, selecting one curve from the family of solutions."
+        },
+        {
+          "level": "apply",
+          "prompt": "What does the Picard–Lindelöf theorem guarantee, and what condition does it need?",
+          "answer": "A unique solution through each initial point, provided f(t,y) is continuous and Lipschitz continuous in y near that point."
+        }
+      ]
+    },
+    {
+      "id": "fourier",
+      "title": "Fourier series and transform",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["inner-product", "sequences-series", "complex-numbers"],
+      "equation": "\\hat f(\\xi)=\\int_{-\\infty}^{\\infty} f(x)\\,e^{-2\\pi i x\\xi}\\,dx",
+      "summary": "Fourier analysis decomposes a function into pure frequencies; periodic signals become discrete series and general ones become a continuous spectrum, with the basis being orthogonal exponentials.",
+      "depths": {
+        "eli5": "Any signal — a sound, a wave, an image — can be broken into pure tones of different frequencies, like splitting white light into a rainbow. The Fourier transform is the prism that tells you how much of each frequency is present.",
+        "core": "On an interval, the complex exponentials e^{2πinx} form an orthonormal basis, so a periodic function is a sum of them — its Fourier series — with coefficients given by inner products. For non-periodic functions the sum becomes the Fourier transform integral, mapping a function to its frequency content. Differentiation becomes multiplication by frequency, turning differential equations into algebra.",
+        "deep": "Fourier analysis is the spectral theorem for the differentiation operator: the exponentials are its eigenfunctions. Plancherel's theorem says the transform preserves energy (the L² norm), making it a unitary map. The uncertainty principle — a function and its transform cannot both be sharply localized — is a theorem here, not just physics."
+      },
+      "note": "Convolution in one domain is plain multiplication in the other — the property that makes the transform the backbone of signal processing and PDE solving.",
+      "sources": ["MIT OCW 18.103 Fourier Analysis", "MIT OCW 18.03 Differential Equations", "LibreTexts Harmonic Analysis"],
+      "art_prompt": "a complicated waveform splitting via a prism into a stack of pure sine waves of increasing frequency",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What basis does a Fourier series expand a periodic function in, and why is orthogonality essential?",
+          "answer": "The complex exponentials (equivalently sines and cosines); orthogonality lets each coefficient be extracted independently via an inner product, with no cross-contamination between frequencies."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does the Fourier transform simplify solving linear differential equations?",
+          "answer": "It converts differentiation into multiplication by frequency (×2πiξ), turning a differential equation into an algebraic one in the frequency domain that you solve and transform back."
+        }
+      ]
+    },
+    {
+      "id": "topology",
+      "title": "Topological spaces",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["metric-space"],
+      "equation": "\\emptyset,X\\in\\tau;\\ \\text{arbitrary unions},\\ \\text{finite intersections}\\in\\tau",
+      "summary": "Topology axiomatizes 'nearness' through open sets alone, abstracting away distance; it captures the properties of shape that survive continuous deformation, like connectedness and compactness.",
+      "depths": {
+        "eli5": "Topology is geometry without rulers — it only cares which points are 'near' which, not how far. A coffee mug and a donut are the same to a topologist because one can be reshaped into the other without tearing.",
+        "core": "A topology is a collection of 'open' subsets closed under arbitrary unions and finite intersections, with the whole space and empty set included. Continuity is defined purely by open sets (preimages of opens are open), needing no metric. The key invariants — connectedness (no splitting into two opens), compactness (every open cover has a finite subcover), and the Hausdorff separation property — classify spaces up to homeomorphism.",
+        "deep": "Compactness is the topological essence of 'closed and bounded' and is what makes continuous functions on a space attain maxima and behave; the Heine–Borel theorem says it coincides with closed-and-bounded only in finite-dimensional spaces. Algebraic invariants like the fundamental group and homology turn these qualitative shape questions into computable algebra."
+      },
+      "note": "Every metric space is a topological space (the metric defines the opens), but not every topology comes from a metric — topology is strictly more general.",
+      "sources": ["MIT OCW 18.901 Introduction to Topology", "LibreTexts Topology", "OpenStax (supplementary) Topology notes"],
+      "art_prompt": "a coffee mug morphing continuously into a donut, with open-set blobs covering the surface as it deforms",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How is continuity defined in topology without reference to distance?",
+          "answer": "A map is continuous if the preimage of every open set is open; this recovers the metric notion of continuity using only the open-set structure."
+        },
+        {
+          "level": "apply",
+          "prompt": "What does compactness guarantee for a continuous real-valued function on a compact space?",
+          "answer": "The function attains a maximum and minimum value (the extreme value theorem); its image is also compact, hence closed and bounded."
+        }
+      ]
+    },
+    {
+      "id": "determinant",
+      "title": "Determinants",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["linear-map"],
+      "equation": "\\det(AB)=\\det A\\,\\det B,\\qquad A^{-1}\\ \\text{exists}\\iff \\det A\\ne 0",
+      "summary": "The determinant is the signed volume-scaling factor of a linear map; it is zero exactly when the map collapses dimension, signaling non-invertibility.",
+      "depths": {
+        "eli5": "Feed a unit box through a transformation and see what volume comes out; the determinant is that volume (with a sign for flips). If it's zero, the box got squashed flat and the transformation can't be undone.",
+        "core": "The determinant is the unique function on square matrices that is linear in each column, alternating (swapping columns negates it), and equals 1 on the identity. Geometrically it is the factor by which the map scales oriented volume. Multiplicativity det(AB)=det A·det B mirrors composition, and det A = 0 exactly characterizes singular (non-invertible) maps with nontrivial kernel.",
+        "deep": "Determinants drive the characteristic polynomial det(A−λI) and hence eigenvalues, the Jacobian's role in the multivariable change-of-variables formula, and Cramer's rule. The sign tracks orientation, distinguishing rotations from reflections — the algebraic seed of orientation in geometry and topology."
+      },
+      "note": "det A = 0 means columns are linearly dependent — the map flattens space, so volume vanishes and inversion is impossible.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "LibreTexts Linear Algebra", "OpenStax (supplementary) Linear Algebra"],
+      "art_prompt": "a unit square transformed into a parallelogram with its area labeled as the determinant, and a degenerate flat case at det zero",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the determinant tell you geometrically, and what does det A = 0 imply?",
+          "answer": "It is the signed factor by which the map scales volume; det A = 0 means the map collapses dimension, the columns are dependent, and A is not invertible."
+        },
+        {
+          "level": "apply",
+          "prompt": "Compute the determinant of [[1,2],[3,4]] and say whether the matrix is invertible.",
+          "answer": "det = 1·4 − 2·3 = 4 − 6 = −2 ≠ 0, so the matrix is invertible."
+        }
+      ]
+    },
+    {
+      "id": "real-analysis",
+      "title": "Completeness and uniform convergence",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["limit", "sequences-series", "metric-space"],
+      "equation": "f_n\\to f\\ \\text{uniformly}\\ \\Rightarrow\\ \\lim_n\\!\\int f_n=\\int f",
+      "summary": "Real analysis rigorizes calculus: completeness of ℝ makes limits exist, and uniform convergence is the condition that lets you swap limits with integrals and derivatives.",
+      "depths": {
+        "eli5": "Calculus works because the real line has no holes — every sequence that 'should' converge actually does. And when a family of functions settles to a limit evenly everywhere at once, you can safely integrate or differentiate the limit.",
+        "core": "Completeness (every Cauchy sequence converges) is the axiom distinguishing ℝ from ℚ and underwrites the existence of suprema, limits, and integrals. Pointwise convergence is too weak — limit and integral can disagree — but uniform convergence (one rate of approach for all points) lets you interchange the limit with integration and, with care, differentiation. This control is what separates rigorous analysis from formal manipulation.",
+        "deep": "The pathologies that motivated analysis — functions continuous nowhere differentiable (Weierstrass), series whose term-by-term derivative diverges — show that intuition fails without uniform control. The Arzelà–Ascoli and dominated convergence theorems are the heavier tools that grant limit interchange under weaker hypotheses, leading into measure theory."
+      },
+      "note": "Pointwise limits of continuous functions can be discontinuous; uniform limits cannot — uniformity preserves continuity.",
+      "sources": ["MIT OCW 18.100 Real Analysis", "LibreTexts Real Analysis", "OpenStax (supplementary) Analysis notes"],
+      "art_prompt": "a sequence of curves nested inside a shrinking tube around their limit, contrasted with curves that converge only at scattered points",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the difference between pointwise and uniform convergence, and why does it matter?",
+          "answer": "Pointwise: each point converges at its own rate. Uniform: a single rate works for all points at once. Uniformity is what lets you interchange the limit with integrals/derivatives and preserves continuity."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why does completeness of ℝ, but not ℚ, make it suitable for calculus?",
+          "answer": "In ℝ every Cauchy sequence converges (no gaps), so limits, suprema, and integrals always exist; in ℚ a Cauchy sequence can approach √2, which is missing, so expected limits fail to exist."
+        }
+      ]
+    },
+    {
+      "id": "fundamental-theorem-algebra",
+      "title": "The Fundamental Theorem of Algebra",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["complex-numbers", "polynomials-roots", "ring-field"],
+      "equation": "p\\in\\mathbb{C}[z],\\ \\deg p=n\\ge 1\\ \\Rightarrow\\ p(z)=a\\prod_{k=1}^{n}(z-r_k)",
+      "summary": "Every non-constant polynomial with complex coefficients has a complex root; equivalently ℂ is algebraically closed, so every degree-n polynomial factors into n linear pieces.",
+      "depths": {
+        "eli5": "Once you allow complex numbers, every polynomial equation can be solved — there are no more 'unsolvable' ones. A degree-n polynomial always splits completely into n simple factors.",
+        "core": "The theorem states ℂ is algebraically closed: any polynomial of degree ≥ 1 with complex coefficients has at least one root in ℂ, and by induction factors completely into linear terms (with multiplicity, exactly n roots). This is why ℂ, not ℝ, is the natural home of algebra — the search for roots that began at √−1 terminates here.",
+        "deep": "Strikingly, every proof needs analysis or topology — purely algebraic methods cannot reach it, because the result is about ℂ's topological completeness. Liouville's theorem (a bounded entire function is constant) gives the slickest proof: if p had no root, 1/p would be bounded and entire, hence constant, contradicting deg p ≥ 1. The result is the keystone joining algebra, analysis, and topology."
+      },
+      "note": "It guarantees existence, not a formula — Galois theory shows degree-5+ polynomials generally have no solution by radicals even though the roots provably exist.",
+      "sources": ["MIT OCW 18.04 Complex Variables", "Wikipedia: Fundamental theorem of algebra (facts)", "LibreTexts Complex Variables"],
+      "art_prompt": "a degree-five complex polynomial's five roots marked in the complex plane with linear factors peeling off one by one",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the Fundamental Theorem of Algebra in terms of algebraic closure.",
+          "answer": "ℂ is algebraically closed: every non-constant polynomial with complex coefficients has a complex root, hence factors into exactly deg p linear factors counted with multiplicity."
+        },
+        {
+          "level": "derive",
+          "prompt": "Sketch the Liouville-theorem proof that a non-constant complex polynomial must have a root.",
+          "answer": "If p had no root, 1/p would be entire and bounded (it decays at infinity), so by Liouville it is constant, forcing p constant — contradicting deg p ≥ 1. Hence p has a root."
+        }
+      ]
+    },
+    {
+      "id": "central-limit-theorem",
+      "title": "The Central Limit Theorem",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["random-variables", "real-analysis"],
+      "equation": "\\dfrac{S_n-n\\mu}{\\sigma\\sqrt{n}}\\ \\xrightarrow{d}\\ \\mathcal{N}(0,1)",
+      "summary": "The normalized sum of many independent, finite-variance random variables converges to a Gaussian, regardless of their individual distributions — explaining why the bell curve is everywhere.",
+      "depths": {
+        "eli5": "Add up lots of independent random nudges and the total, once you center and rescale it, always looks like the same bell-shaped curve — no matter what the individual nudges looked like. That universality is why the bell curve shows up across nature.",
+        "core": "For independent, identically distributed variables with mean μ and finite variance σ², the standardized sum (Sₙ − nμ)/(σ√n) converges in distribution to the standard normal as n→∞. The original distribution's shape is washed out; only its mean and variance survive. This is the deep reason measurement errors, and many aggregates, are approximately Gaussian.",
+        "deep": "The cleanest proof uses characteristic functions: the Fourier transform of the rescaled sum converges pointwise to e^{−t²/2}, the Gaussian's transform, and Lévy's continuity theorem converts that into convergence in distribution. The Gaussian is a fixed point of this averaging-and-rescaling flow — it is the attractor, which generalizes to stable laws when variance is infinite."
+      },
+      "note": "Finite variance is essential — heavy-tailed distributions (like Cauchy) violate the hypothesis and converge to non-Gaussian stable laws instead.",
+      "sources": ["MIT OCW 6.041 Probabilistic Systems Analysis", "MIT OCW 18.175 Theory of Probability", "OpenStax Introductory Statistics"],
+      "art_prompt": "histograms of sums of more and more dice rolls, each smoother, converging to an overlaid bell curve",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Central Limit Theorem say about sums of independent random variables, and what hypothesis is essential?",
+          "answer": "Their standardized sum converges to a standard normal distribution regardless of the underlying distribution; the key hypothesis is finite (nonzero) variance."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is the average of many independent measurement errors approximately Gaussian?",
+          "answer": "Each error is an independent random variable with finite variance; by the CLT their normalized sum (hence their average) converges to a Gaussian, washing out the individual error shapes."
+        }
+      ]
+    },
+    {
+      "id": "computability",
+      "title": "Computability and the halting problem",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["set-theory-axioms", "logic-proof"],
+      "equation": "\\nexists\\,H\\ \\forall (P,x)\\colon\\ H(P,x)=\\text{halts}(P,x)",
+      "summary": "A Turing machine formalizes 'effective computation'; the halting problem proves some well-posed questions are undecidable — no algorithm can decide them all.",
+      "depths": {
+        "eli5": "A computer is, in essence, a simple rule-following machine. Some questions — like 'will this program eventually stop?' — sound answerable, but no program can answer them for all programs. There's a hard wall on what computation can ever do.",
+        "core": "The Turing machine (equivalently the lambda calculus, by the Church–Turing thesis) defines what 'computable' means. The halting problem asks for an algorithm H deciding whether an arbitrary program P halts on input x. A diagonal argument shows no such H exists: assuming one, build a program that halts exactly when H says it loops, a contradiction. Undecidability is thus a mathematical fact, not an engineering limit.",
+        "deep": "Undecidability spreads by reduction: any problem to which halting reduces is also undecidable, sweeping in program equivalence, Hilbert's tenth problem (integer solutions to polynomials), and more. Computability sits beneath complexity theory (P vs NP asks how hard the decidable problems are) and is the constructive twin of Gödel incompleteness — both are diagonal arguments about self-reference."
+      },
+      "note": "The same diagonal trick — feeding a machine its own description — drives Cantor's uncountability, Gödel's theorems, and Russell's paradox.",
+      "sources": ["MIT OCW 6.045 Automata, Computability, and Complexity", "MIT OCW 18.404 Theory of Computation", "LibreTexts Theory of Computation"],
+      "art_prompt": "a program reading its own source code as input, a decision box trying to predict its halting and contradicting itself",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the halting problem assert is impossible?",
+          "answer": "No single algorithm can decide, for every program and input, whether that program eventually halts; the halting problem is undecidable."
+        },
+        {
+          "level": "derive",
+          "prompt": "Sketch the diagonal contradiction behind the halting problem's undecidability.",
+          "answer": "Assume a decider H exists. Build D that, on input P, halts if H says P(P) loops and loops if H says P(P) halts. Running D(D) makes D halt iff it loops — a contradiction, so H cannot exist."
+        }
+      ]
+    },
+    {
+      "id": "godel-incompleteness",
+      "title": "Gödel's incompleteness theorems",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["logic-proof", "quantifiers-induction", "computability"],
+      "equation": "\\text{Con}(T)\\ \\Rightarrow\\ \\exists\\,G\\colon\\ T\\nvdash G\\ \\text{and}\\ T\\nvdash \\lnot G",
+      "summary": "Any consistent, effectively axiomatized theory rich enough for arithmetic contains true statements it cannot prove, and cannot prove its own consistency — a permanent limit on formal systems.",
+      "depths": {
+        "eli5": "Pick any consistent set of math rules powerful enough to do ordinary arithmetic. Gödel showed there will always be true statements those rules can never prove — and the system can never certify its own freedom from contradiction. You can't axiomatize all of truth.",
+        "core": "The first theorem: any consistent, recursively axiomatized theory T that can express basic arithmetic is incomplete — there is a sentence G, neither provable nor refutable in T, that is nonetheless true (it encodes 'I am not provable in T'). The second theorem: such a T cannot prove its own consistency. Together they end Hilbert's dream of a complete, self-certifying formal foundation for mathematics.",
+        "deep": "The mechanism is arithmetization: Gödel numbered formulas and proofs so that 'provable' became an arithmetic predicate, then built a self-referential sentence by diagonalization — the same self-reference behind the halting problem. Incompleteness is not a defect to be patched; adding G as an axiom yields a new theory with its own unprovable truths. The limit is structural and permanent for any sufficiently expressive, mechanically checkable system."
+      },
+      "note": "Incompleteness needs the theory to be both consistent and effectively axiomatized (machine-checkable proofs) and to encode arithmetic — drop any one and the conclusion can fail.",
+      "sources": ["MIT OCW 24.242 Logic II", "Wikipedia: Gödel's incompleteness theorems (facts)", "Stanford Encyclopedia of Philosophy: Gödel's Incompleteness Theorems"],
+      "art_prompt": "a formal proof system depicted as a sealed machine with one true statement floating outside its reach, labeled unprovable",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What do Gödel's two incompleteness theorems say, and what kind of theory do they apply to?",
+          "answer": "First: any consistent, effectively axiomatized theory that can express arithmetic has true but unprovable statements. Second: such a theory cannot prove its own consistency. They apply to recursively axiomatizable, consistent theories rich enough for arithmetic."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain to a student why adding the unprovable Gödel sentence as a new axiom does not 'fix' incompleteness.",
+          "answer": "The enlarged theory is still consistent, effectively axiomatized, and expresses arithmetic, so the theorem applies again: it has its own new Gödel sentence. Incompleteness recurs at every stage — it is structural, not a single missing axiom."
+        }
+      ]
+    },
+    {
+      "id": "category-theory",
+      "title": "Categories, functors, and universal properties",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": ["set-function", "group", "homomorphism"],
+      "equation": "F(g\\circ f)=F(g)\\circ F(f),\\qquad F(\\mathrm{id}_X)=\\mathrm{id}_{F(X)}",
+      "summary": "Category theory studies mathematical structures through their structure-preserving maps rather than their internals; functors translate between categories and universal properties define objects by their relationships.",
+      "depths": {
+        "eli5": "Instead of looking inside mathematical objects, category theory watches how they map to one another — the arrows between them. From the pattern of arrows alone you can pin down what an object is, like identifying a person purely by their relationships.",
+        "core": "A category is objects plus composable arrows (morphisms) with identities and associative composition — sets-and-functions, groups-and-homomorphisms, and spaces-and-continuous-maps are all examples. A functor maps one category to another, preserving composition and identities. Universal properties (products, limits, free objects) characterize a construction uniquely by a mapping-out or mapping-in condition, so the same definition recurs across all of mathematics.",
+        "deep": "Natural transformations are maps between functors, and the Yoneda lemma — an object is fully determined by the maps into it — formalizes 'you are who you relate to.' Adjunctions capture optimal one-sided inverses (free/forgetful pairs) and unify constructions from logic to topology. Category theory is the language in which analogies between fields become theorems, the connective tissue of modern foundations."
+      },
+      "note": "The slogan 'it's all about the arrows' is literal — categorical definitions never inspect the elements of an object, only its morphisms.",
+      "sources": ["MIT OCW 18.S996 Category Theory for Scientists", "Wikipedia: Category theory (facts)", "nLab (facts)"],
+      "art_prompt": "two dotted regions (categories) of nodes-and-arrows with a functor mapping nodes and arrows from one onto the other, structure preserved",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What are the two ingredients of a category, and what must a functor preserve?",
+          "answer": "Objects and morphisms (arrows) with associative composition and identities; a functor preserves composition and identity arrows when mapping one category to another."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain what it means to define an object by a universal property, using the example of a product.",
+          "answer": "A product of A and B is defined not by its internal elements but by a mapping property: any object with maps to A and B factors uniquely through it. This characterizes the product up to unique isomorphism by relationships alone, so the same definition works in any category."
+        }
+      ]
+    },
+    {
+      "id": "trigonometry",
+      "title": "Trigonometry and the unit circle",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": ["number-systems"],
+      "equation": "\\sin^2\\theta+\\cos^2\\theta=1",
+      "summary": "Trigonometric functions encode the coordinates of a point moving around the unit circle, turning angles into ratios and making periodic phenomena measurable.",
+      "depths": {
+        "eli5": "Walk around a circle of radius one and track your shadow on each axis: that's cosine (horizontal) and sine (vertical). Because you keep looping the circle, these functions repeat forever, which is how we describe anything that cycles.",
+        "core": "On the unit circle, cos θ and sin θ are the x and y coordinates at angle θ, so the Pythagorean identity sin²θ+cos²θ=1 is just the circle's equation. The functions are periodic with period 2π, and the angle-addition formulas express cos(α+β) and sin(α+β) in terms of the parts — the algebraic backbone of rotation and wave superposition.",
+        "deep": "Trigonometry is complex exponentials in disguise: cos θ and sin θ are the real and imaginary parts of e^{iθ}, so every trig identity is an exponential identity, and angle-addition is just e^{i(α+β)}=e^{iα}e^{iβ}. Radian measure is the natural choice because it makes d/dθ sin θ = cos θ exactly, with no stray constant."
+      },
+      "note": "Radians, not degrees, are mandatory in calculus — they are what make the derivative of sine equal cosine without a conversion factor.",
+      "sources": ["OpenStax Algebra and Trigonometry", "OpenStax Precalculus", "LibreTexts Trigonometry"],
+      "art_prompt": "a unit circle with a radius at angle theta, its horizontal and vertical projections labeled cosine and sine",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is sin²θ + cos²θ = 1, geometrically?",
+          "answer": "cos θ and sin θ are the x and y coordinates of a point on the unit circle, so the identity is just the circle's equation x² + y² = 1."
+        },
+        {
+          "level": "apply",
+          "prompt": "What are cos(π/2) and sin(π/2), and where is that point on the unit circle?",
+          "answer": "cos(π/2) = 0 and sin(π/2) = 1; the point is at the top of the circle, (0, 1)."
+        }
+      ]
+    },
+    {
+      "id": "exponential-logarithm",
+      "title": "Exponentials and logarithms",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": ["number-systems"],
+      "equation": "\\dfrac{d}{dx}e^x=e^x,\\qquad \\ln(ab)=\\ln a+\\ln b",
+      "summary": "The exponential turns addition into multiplication and is its own derivative; the logarithm inverts it, turning multiplication back into addition and taming growth across scales.",
+      "depths": {
+        "eli5": "Exponential growth means multiplying by the same factor over and over — it explodes fast. The logarithm is the undo button: it answers 'how many times did I multiply?' and compresses huge ranges into manageable numbers.",
+        "core": "The exponential function e^x is the unique function equal to its own derivative with value 1 at 0, so it solves y'=y; it converts sums to products (e^{a+b}=e^a e^b). Its inverse, the natural logarithm, converts products to sums (ln(ab)=ln a+ln b) and has derivative 1/x. Any exponential growth or decay process — compound interest, radioactive decay, population — is governed by these.",
+        "deep": "The number e arises as the limit (1+1/n)ⁿ and as the base making the growth rate equal the amount. Logarithms underlie information theory (bits are log₂ counts), entropy, and the slide-rule-era reduction of multiplication to addition; extending the exponential to complex arguments via Euler's formula unifies growth with oscillation."
+      },
+      "note": "Different bases differ only by a constant factor (logₐ x = ln x / ln a), so 'the' logarithm is the natural one up to scaling.",
+      "sources": ["MIT OCW 18.01 Single Variable Calculus", "OpenStax Algebra and Trigonometry", "LibreTexts Calculus"],
+      "art_prompt": "an exponential curve rising steeply beside its mirror-image logarithm curve, reflected across the line y equals x",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What property makes e^x special among exponential functions, and what does the logarithm do to products?",
+          "answer": "e^x is its own derivative (and equals 1 at 0), so it solves y'=y; the logarithm turns products into sums, ln(ab)=ln a + ln b."
+        },
+        {
+          "level": "apply",
+          "prompt": "Solve 2^x = 8 using logarithms.",
+          "answer": "Take log base 2: x = log₂ 8 = 3, since 2³ = 8."
+        }
+      ]
+    },
+    {
+      "id": "mean-value-theorems",
+      "title": "Intermediate, extreme, and mean value theorems",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["limit", "derivative"],
+      "equation": "f'(c)=\\dfrac{f(b)-f(a)}{b-a}\\quad\\text{for some }c\\in(a,b)",
+      "summary": "These existence theorems guarantee that continuous and differentiable functions hit intermediate values, attain extremes on closed intervals, and somewhere match their average rate of change.",
+      "depths": {
+        "eli5": "If you start below a line and end above it, somewhere you crossed it (intermediate value). On a closed stretch a continuous trip has a highest and lowest point (extreme value). And over any trip your speedometer must read the average speed at least once (mean value).",
+        "core": "The intermediate value theorem says a continuous function on [a,b] takes every value between f(a) and f(b) — the basis of root-finding. The extreme value theorem says a continuous function on a closed bounded interval attains a max and min. The mean value theorem says a differentiable function has a point where the instantaneous slope equals the average slope (f(b)−f(a))/(b−a), the engine linking derivatives to global behavior.",
+        "deep": "These are not computational tricks but consequences of completeness and compactness: IVT relies on connectedness of the interval, EVT on its compactness, and MVT on Rolle's theorem plus differentiability. The MVT is what proves that zero derivative implies constant, that the sign of f' controls monotonicity, and ultimately underwrites the Fundamental Theorem of Calculus."
+      },
+      "note": "Drop continuity or closed-and-bounded and these fail — 1/x on (0,1] attains no maximum, showing why the hypotheses are load-bearing.",
+      "sources": ["MIT OCW 18.01 Single Variable Calculus", "MIT OCW 18.100 Real Analysis", "LibreTexts Calculus"],
+      "art_prompt": "a curve crossing a horizontal target level, touching its highest point, and a tangent line drawn parallel to the secant from a to b",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the mean value theorem and one consequence of it.",
+          "answer": "If f is continuous on [a,b] and differentiable on (a,b), some c in (a,b) has f'(c) = (f(b)−f(a))/(b−a). A consequence: if f'=0 everywhere, f is constant."
+        },
+        {
+          "level": "apply",
+          "prompt": "Use the intermediate value theorem to argue x³ + x − 1 = 0 has a real root in (0,1).",
+          "answer": "At x=0 the value is −1 (negative) and at x=1 it is 1 (positive); the function is continuous, so by the IVT it must equal 0 somewhere in (0,1)."
+        }
+      ]
+    },
+    {
+      "id": "optimization",
+      "title": "Optimization and convexity",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["derivative", "multivariable-calculus"],
+      "equation": "\\nabla f(x^*)=0,\\qquad f(\\lambda x+(1-\\lambda)y)\\le \\lambda f(x)+(1-\\lambda)f(y)",
+      "summary": "Optimization finds extrema by setting the derivative to zero; convexity is the structural condition guaranteeing such critical points are global minima and that descent methods converge.",
+      "depths": {
+        "eli5": "To find the lowest point of a valley, look where the ground is flat — that's where the slope is zero. If the valley is bowl-shaped (convex), the one flat spot is guaranteed to be the true bottom, and rolling downhill always finds it.",
+        "core": "At an interior extremum the gradient vanishes (∇f=0); the second-derivative (Hessian) test classifies the critical point. Convex functions — those lying below their chords, with positive-semidefinite Hessian — have no spurious local minima: every stationary point is a global minimum. Constrained problems use Lagrange multipliers, equating the objective's gradient to a combination of constraint gradients.",
+        "deep": "Convexity is what makes large-scale optimization tractable: gradient descent and its variants provably converge for convex objectives, and duality turns a hard constrained problem into a paired one with the same optimum. Modern machine learning lives in the non-convex regime, where these guarantees weaken and the geometry of saddle points and overparameterization takes over."
+      },
+      "note": "A zero gradient marks a critical point, not necessarily a minimum — it could be a maximum or a saddle; convexity is what removes that ambiguity.",
+      "sources": ["MIT OCW 18.02 Multivariable Calculus", "MIT OCW 6.255 Optimization Methods", "LibreTexts Calculus"],
+      "art_prompt": "a convex bowl surface with a ball at the single flat bottom, beside a wavy non-convex surface trapping a ball in a false dip",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What condition holds at an interior extremum, and what does convexity add?",
+          "answer": "The gradient (or derivative) is zero there; convexity guarantees that any such stationary point is a global minimum, with no other local minima to get stuck in."
+        },
+        {
+          "level": "apply",
+          "prompt": "Find and classify the critical point of f(x) = x² − 4x + 7.",
+          "answer": "f'(x)=2x−4=0 gives x=2; f''=2>0, so it is a global minimum (the function is convex), with value f(2)=3."
+        }
+      ]
+    },
+    {
+      "id": "change-of-variables",
+      "title": "Multiple integrals and change of variables",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["integral", "determinant", "multivariable-calculus"],
+      "equation": "\\int_{T(U)} f\\,dV=\\int_{U} f(T(u))\\,|\\det DT(u)|\\,du",
+      "summary": "Integration extends to regions in many dimensions; changing coordinates rescales volume by the Jacobian determinant, the local volume-stretch factor of the transformation.",
+      "depths": {
+        "eli5": "To add up a quantity over a 2D or 3D region, slice it into tiny boxes and sum. If you switch to nicer coordinates (like polar), the tiny boxes change size, and the Jacobian is the bookkeeping factor that corrects for that stretching.",
+        "core": "Multiple integrals accumulate a function over a region, computed as iterated integrals (Fubini's theorem lets you integrate one variable at a time). Under a change of variables T, the volume element transforms by the absolute Jacobian determinant |det DT|, which is exactly the local volume-scaling of the map — connecting integration back to the determinant.",
+        "deep": "This is why polar, cylindrical, and spherical coordinates carry their characteristic factors (r, r, r²sin φ): each is a Jacobian. The same formula, read through differential forms, becomes orientation-aware and coordinate-free, feeding directly into the generalized Stokes' theorem and integration on manifolds."
+      },
+      "note": "The Jacobian is the multivariable derivative's determinant — it is the determinant atom doing the work of measuring how a coordinate change distorts volume.",
+      "sources": ["MIT OCW 18.02 Multivariable Calculus", "LibreTexts Calculus (Multiple Integrals)", "OpenStax Calculus Volume 3"],
+      "art_prompt": "a square grid in uv-coordinates warped into a curved grid in xy-coordinates, with one cell's area-change marked as the Jacobian",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What factor appears when you change variables in a multiple integral, and what does it represent?",
+          "answer": "The absolute value of the Jacobian determinant |det DT|; it represents the local factor by which the transformation stretches volume."
+        },
+        {
+          "level": "apply",
+          "prompt": "What is the area element dA in polar coordinates, and where does the extra factor come from?",
+          "answer": "dA = r dr dθ; the factor r is the Jacobian determinant of the polar-to-Cartesian map, accounting for the larger area swept at larger radius."
+        }
+      ]
+    },
+    {
+      "id": "orthogonality-least-squares",
+      "title": "Orthogonality and least squares",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["inner-product", "linear-map"],
+      "equation": "A^{\\mathsf T}A\\,\\hat x=A^{\\mathsf T}b",
+      "summary": "Projecting onto a subspace gives the closest approximation; least squares solves overdetermined systems by orthogonally projecting the target onto the column space, leaving the smallest possible residual.",
+      "depths": {
+        "eli5": "If you can't hit a target exactly, aim for the closest reachable point — the one whose 'miss' is perpendicular to everything you can reach. That perpendicular drop is the best fit, and it's how you draw the best line through scattered data.",
+        "core": "Orthogonal projection of b onto a subspace is the unique closest point; the residual b − projection is orthogonal to the subspace. For an inconsistent system Ax=b, the least-squares solution minimizes ‖Ax−b‖ and is found by the normal equations AᵀAx̂=Aᵀb, geometrically projecting b onto the column space of A. Gram–Schmidt orthogonalizes a basis to make this clean.",
+        "deep": "Least squares is the linear-algebra core of regression, signal denoising, and data fitting; the orthogonality of the residual is precisely the first-order optimality condition. Numerically the normal equations square the condition number, so QR factorization or the SVD is preferred — the same projection, computed stably."
+      },
+      "note": "The defining feature of the best approximation is that the error vector is orthogonal to the subspace — minimizing distance and enforcing orthogonality are the same condition.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "LibreTexts Linear Algebra", "OpenStax (supplementary) Linear Algebra"],
+      "art_prompt": "a point dropped perpendicularly onto a plane, the dashed projection meeting the plane at a right angle marking the closest point",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What characterizes the least-squares solution geometrically?",
+          "answer": "It is the orthogonal projection of b onto the column space of A; the residual b − Ax̂ is perpendicular to that column space, making the error norm minimal."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why do the normal equations AᵀAx̂ = Aᵀb characterize the least-squares solution?",
+          "answer": "Minimizing ‖Ax−b‖ requires the residual b−Ax̂ orthogonal to every column of A, i.e., Aᵀ(b−Ax̂)=0, which rearranges to AᵀAx̂=Aᵀb."
+        }
+      ]
+    },
+    {
+      "id": "svd",
+      "title": "The singular value decomposition",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["spectral-theorem", "orthogonality-least-squares"],
+      "equation": "A=U\\Sigma V^{\\mathsf T},\\qquad \\Sigma=\\operatorname{diag}(\\sigma_1\\ge\\sigma_2\\ge\\cdots\\ge 0)",
+      "summary": "Every matrix factors into a rotation, a coordinate-aligned stretch, and another rotation; the singular values rank the directions of greatest action and yield the best low-rank approximation.",
+      "depths": {
+        "eli5": "Any linear transformation, no matter how messy, is secretly just: turn, stretch along clean axes, turn again. The stretch amounts (singular values) tell you which directions matter most — keep the biggest few and you get the best simple approximation of the whole thing.",
+        "core": "The SVD writes any m×n matrix as A=UΣVᵀ with U,V orthogonal and Σ diagonal of nonnegative singular values. The σᵢ are the square roots of the eigenvalues of AᵀA, generalizing the spectral theorem to non-square, non-symmetric matrices. Truncating to the top k singular values gives the provably best rank-k approximation (Eckart–Young), the mathematical heart of dimensionality reduction.",
+        "deep": "The SVD unifies rank, range, null space, condition number, and pseudoinverse in one decomposition; it is the stable engine behind principal component analysis, latent semantic indexing, image compression, and recommendation systems. Geometrically it says every linear map maps the unit sphere to an ellipsoid whose axes are the singular directions."
+      },
+      "note": "Singular values always exist and are real and nonnegative even when eigenvalues are complex or absent — the SVD is the more universal decomposition.",
+      "sources": ["MIT OCW 18.06 Linear Algebra", "MIT OCW 18.065 Matrix Methods", "LibreTexts Linear Algebra"],
+      "art_prompt": "a unit circle mapped to an ellipse, the transformation broken into rotate, stretch along axes by sigma values, then rotate again",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the singular value decomposition factor a matrix into, and how do singular values relate to eigenvalues?",
+          "answer": "A = UΣVᵀ — an orthogonal rotation, a nonnegative diagonal stretch, and another orthogonal rotation; the singular values are the square roots of the eigenvalues of AᵀA."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why keeping the largest few singular values gives a good approximation of a matrix.",
+          "answer": "By Eckart–Young, truncating to the top k singular values is the best possible rank-k approximation in norm. The largest σᵢ capture the directions where the matrix acts most strongly, so dropping the small ones discards the least information — the basis of PCA and compression."
+        }
+      ]
+    },
+    {
+      "id": "graph-theory",
+      "title": "Graphs and networks",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["set-theory-axioms", "combinatorics"],
+      "equation": "\\sum_{v\\in V}\\deg(v)=2|E|",
+      "summary": "A graph is a set of vertices joined by edges; this minimal structure models networks, and properties like connectivity, trees, and colorings turn relational questions into provable theorems.",
+      "depths": {
+        "eli5": "A graph is just dots connected by lines — friends and friendships, cities and roads, web pages and links. Even this bare picture has hard rules, like 'the total number of line-ends is always even.'",
+        "core": "A graph G=(V,E) abstracts pairwise relationships. The handshake lemma — the degrees sum to twice the edge count — is the first invariant. Trees (connected, acyclic) have exactly |V|−1 edges; paths, cycles, connectivity, bipartiteness, and planarity organize the theory. Euler's formula V−E+F=2 for planar graphs ties combinatorics to topology.",
+        "deep": "Graph theory is where many famous problems live: the four-color theorem, shortest paths (Dijkstra), spanning trees, and matchings. The graph Laplacian's spectrum (spectral graph theory) connects connectivity to eigenvalues, linking this discrete world back to linear algebra and to algorithms like PageRank and clustering."
+      },
+      "note": "The handshake lemma forces the number of odd-degree vertices to be even — a parity constraint that quietly settles many puzzles.",
+      "sources": ["MIT OCW 6.042 Mathematics for Computer Science", "LibreTexts Combinatorics and Graph Theory", "OpenStax Discrete Mathematics"],
+      "art_prompt": "a network of labeled dots and connecting edges, one vertex's degree highlighted and a spanning tree drawn in bold",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the handshake lemma and one immediate consequence.",
+          "answer": "The sum of all vertex degrees equals twice the number of edges; consequently the number of vertices of odd degree is always even."
+        },
+        {
+          "level": "apply",
+          "prompt": "How many edges does a tree with 10 vertices have?",
+          "answer": "A tree on n vertices has exactly n−1 edges, so 10 vertices give 9 edges."
+        }
+      ]
+    },
+    {
+      "id": "recurrence-generating",
+      "title": "Recurrences and generating functions",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["sequences-series", "combinatorics", "linear-map"],
+      "equation": "F_n=F_{n-1}+F_{n-2},\\qquad \\sum_n a_n x^n = G(x)",
+      "summary": "A recurrence defines each term from earlier ones; generating functions encode a whole sequence as a power series, converting recurrences into algebra and yielding closed forms.",
+      "depths": {
+        "eli5": "A recurrence is a rule like 'each number is the sum of the previous two' (Fibonacci). To find a formula instead of computing forever, you pack the whole sequence into a single power series and solve for it algebraically.",
+        "core": "Linear recurrences with constant coefficients solve via their characteristic equation — the same eigenvalue idea as for linear ODEs — giving closed forms as combinations of geometric terms. Generating functions Σaₙxⁿ turn the recurrence into an equation for the series; algebraic manipulation (partial fractions) then extracts the coefficients, e.g., Binet's formula for Fibonacci.",
+        "deep": "Generating functions are a dictionary between sequences and functions: convolution of sequences is multiplication of series, so counting problems with combinatorial structure become products. This analytic-combinatorics viewpoint, due to Euler and refined by Flajolet, extracts asymptotics of counts directly from the singularities of the generating function."
+      },
+      "note": "A linear recurrence is a linear map on the vector of recent terms — its long-term behavior is governed by the dominant eigenvalue (the golden ratio for Fibonacci).",
+      "sources": ["MIT OCW 6.042 Mathematics for Computer Science", "LibreTexts Combinatorics", "OpenStax Discrete Mathematics"],
+      "art_prompt": "a Fibonacci spiral beside a power series whose coefficients are the Fibonacci numbers being read off one at a time",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does a generating function help solve a recurrence?",
+          "answer": "It encodes the whole sequence as a power series; the recurrence becomes an algebraic equation for that series, which you solve and then expand to read off a closed form for the terms."
+        },
+        {
+          "level": "apply",
+          "prompt": "What governs the growth rate of the Fibonacci numbers, and why?",
+          "answer": "The golden ratio φ ≈ 1.618 — the dominant root of the characteristic equation x²=x+1; the largest-magnitude eigenvalue sets the long-term growth, so Fₙ grows like φⁿ."
+        }
+      ]
+    },
+    {
+      "id": "complex-analysis",
+      "title": "Holomorphic functions and Cauchy's theorem",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["complex-numbers", "multivariable-calculus", "integral"],
+      "equation": "\\oint_{\\gamma} f(z)\\,dz=0,\\qquad f(a)=\\frac{1}{2\\pi i}\\oint_{\\gamma}\\frac{f(z)}{z-a}\\,dz",
+      "summary": "Complex differentiability is so rigid that a once-differentiable function is infinitely differentiable and analytic; Cauchy's theorem makes contour integrals of such functions vanish, with values determined by boundary data.",
+      "depths": {
+        "eli5": "Being differentiable in the complex sense is a very strict demand — so strict that one derivative forces infinitely many, and the function is completely pinned down by its values on any loop around a point. Knowledge on the edge determines everything inside.",
+        "core": "A holomorphic function satisfies the Cauchy–Riemann equations and is automatically analytic (equal to its power series). Cauchy's integral theorem says the contour integral of a holomorphic function around a closed loop in a simply connected region is zero, and the integral formula reconstructs interior values from boundary values. Singularities are classified by their Laurent series, and the residue theorem evaluates integrals from them.",
+        "deep": "This rigidity has no real-variable analog and powers a remarkable toolkit: the residue theorem evaluates real definite integrals, analytic continuation extends functions uniquely (defining ζ(s) beyond its series), and Liouville's theorem yields the Fundamental Theorem of Algebra. Complex analysis is where geometry, algebra, and analysis fuse most tightly."
+      },
+      "note": "Holomorphic equals analytic — a one-time complex derivative secretly guarantees infinite smoothness and a convergent power series, unlike the real case.",
+      "sources": ["MIT OCW 18.04 Complex Variables", "LibreTexts Complex Variables", "Wikipedia: Cauchy's integral theorem (facts)"],
+      "art_prompt": "a closed contour in the complex plane encircling a point, arrows showing the integral of a holomorphic function summing to zero around it",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is surprising about complex differentiability compared to the real case?",
+          "answer": "A single complex derivative forces the function to be infinitely differentiable and equal to its power series (holomorphic = analytic), whereas real differentiability does not even guarantee a second derivative."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain what Cauchy's integral formula says and why it is striking.",
+          "answer": "It says a holomorphic function's value at an interior point equals a specific contour integral of the function around any loop enclosing it. Striking because the function's value inside is fully determined by its values on the boundary — interior behavior is dictated entirely by the edge."
+        }
+      ]
+    },
+    {
+      "id": "measure-theory",
+      "title": "Measure and the Lebesgue integral",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": ["real-analysis", "set-theory-axioms"],
+      "equation": "\\int f\\,d\\mu=\\sup_{\\text{simple }s\\le f}\\int s\\,d\\mu",
+      "summary": "Measure theory assigns consistent sizes to sets and builds an integral by partitioning the range, not the domain — making limits and integration interchange and giving probability its rigorous foundation.",
+      "depths": {
+        "eli5": "Measure theory is the careful science of 'how big is this set?' — length, area, volume, probability, generalized. With it, you integrate by sorting outputs into bins instead of slicing inputs, which behaves far better when functions get wild.",
+        "core": "A measure μ assigns sizes to sets in a σ-algebra, satisfying countable additivity. The Lebesgue integral sums values weighted by the measure of the sets where they occur — partitioning the range rather than the domain — so it integrates functions Riemann cannot. Its convergence theorems (monotone, dominated) let you swap limits and integrals under mild hypotheses, the interchange real analysis needs.",
+        "deep": "Probability is exactly a measure of total mass 1, so random variables are measurable functions and expectation is a Lebesgue integral — measure theory is the rigorous language of probability. Not every set is measurable (the Banach–Tarski paradox exploits non-measurable sets via the axiom of choice), which is why σ-algebras restrict attention to the well-behaved ones."
+      },
+      "note": "Lebesgue partitions the range, Riemann the domain — that one switch is what makes badly discontinuous functions integrable and limit interchange safe.",
+      "sources": ["MIT OCW 18.125 Measure and Integration", "MIT OCW 18.100 Real Analysis", "LibreTexts Real Analysis"],
+      "art_prompt": "a wild function shown sliced horizontally into range-bands, each band's preimage measured, contrasted with vertical Riemann slices",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does the Lebesgue integral differ in approach from the Riemann integral?",
+          "answer": "Lebesgue partitions the range of the function and weights values by the measure of their preimages; Riemann partitions the domain into intervals. The Lebesgue approach integrates more functions and allows limit interchange."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why measure theory is the natural foundation for probability.",
+          "answer": "A probability is a measure with total mass 1; events are measurable sets, random variables are measurable functions, and expectation is the Lebesgue integral against the probability measure. Countable additivity gives exactly the axioms probability needs, so the whole theory is a special case of measure theory."
+        }
+      ]
+    },
+    {
+      "id": "manifolds",
+      "title": "Manifolds and differential forms",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": ["topology", "multivariable-calculus", "linear-map"],
+      "equation": "d^2\\omega=0,\\qquad \\text{(locally)}\\ M \\approx \\mathbb{R}^n",
+      "summary": "A manifold is a space that looks locally like flat Euclidean space; differential forms are the objects you integrate on it, and the exterior derivative generalizes grad, curl, and div at once.",
+      "depths": {
+        "eli5": "A manifold is a shape — a sphere, a torus, spacetime — that looks flat if you zoom in close enough, even though it curves globally. Differential forms are the things you can integrate over such shapes, and one operation generalizes all the calculus operators.",
+        "core": "An n-manifold is locally homeomorphic to ℝⁿ, stitched together by smooth coordinate charts. Calculus transfers via the tangent space at each point (a vector space of velocities) and differential forms, the objects integrated over submanifolds. The exterior derivative d unifies gradient, curl, and divergence; the identity d²=0 encodes that the boundary of a boundary is empty.",
+        "deep": "This is the language of modern geometry and physics: general relativity is the curvature of a Lorentzian manifold, gauge theory lives in fiber bundles over manifolds, and de Rham cohomology (closed forms modulo exact forms) detects a manifold's holes. The generalized Stokes' theorem ∫∂M ω = ∫M dω is the capstone, making integration intrinsically geometric."
+      },
+      "note": "The whole edifice is built so calculus is coordinate-free — forms and the exterior derivative transform correctly under any change of chart, unlike raw partial derivatives.",
+      "sources": ["MIT OCW 18.952 Theory of Differential Forms", "MIT OCW 18.965 Geometry of Manifolds", "LibreTexts Differential Geometry"],
+      "art_prompt": "a curved torus with a flat coordinate patch laid over a small region and a small oriented surface element carrying a differential form",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What defines a manifold, and what role do differential forms play on it?",
+          "answer": "A manifold looks locally like Euclidean space ℝⁿ via smooth coordinate charts; differential forms are the objects integrated over its submanifolds, with the exterior derivative generalizing grad, curl, and div."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain the meaning of the identity d²=0 and what it generalizes.",
+          "answer": "Applying the exterior derivative twice always gives zero, mirroring that the boundary of a boundary is empty. It generalizes the vector-calculus identities curl(grad f)=0 and div(curl F)=0, and underlies de Rham cohomology and the generalized Stokes' theorem."
         }
       ]
     }

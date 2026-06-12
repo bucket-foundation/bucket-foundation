@@ -1,0 +1,1592 @@
+{
+  "meta": {
+    "branch": "02-physics",
+    "title": "Physics — matter, energy, spacetime",
+    "version": "0.1.0",
+    "note": "Explanations authored for Bucket Academy (original prose; equations and standard definitions are facts). Open sources only. Foundations-first DAG: mechanics & math base → EM / thermodynamics / quantum nucleus → relativity & frontier.",
+    "license": "CC-BY-4.0 (prose); equations are facts"
+  },
+  "atoms": [
+    {
+      "id": "kinematics",
+      "title": "Kinematics — describing motion",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [],
+      "equation": "\\vec{v} = \\dfrac{d\\vec{r}}{dt},\\quad \\vec{a} = \\dfrac{d\\vec{v}}{dt}",
+      "summary": "Position, velocity, and acceleration are the three layers of motion, each the time-derivative of the one before.",
+      "depths": {
+        "eli5": "Where you are, how fast you're moving, and how quickly your speed is changing — that's all motion is, before we ask why.",
+        "core": "Kinematics describes how things move without yet asking what causes the motion. Velocity is the rate of change of position; acceleration is the rate of change of velocity. For constant acceleration these integrate into the familiar v = v₀ + at and x = x₀ + v₀t + ½at².",
+        "deep": "Velocity and acceleration are vectors, so an object moving in a circle at constant speed is still accelerating — its direction changes even though its magnitude does not. Curvilinear motion is where the vector nature stops being optional."
+      },
+      "note": "Constant speed is not the same as constant velocity: turning is acceleration.",
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "a particle on a curved path with three nested arrows at one point: position from origin, tangent velocity, and an inward-tilted acceleration",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How are velocity and acceleration related to position?",
+          "answer": "Velocity is the first time-derivative of position; acceleration is the first time-derivative of velocity (the second of position)."
+        },
+        {
+          "level": "apply",
+          "prompt": "A car drives around a roundabout at a steady 30 km/h. Is it accelerating?",
+          "answer": "Yes — its speed is constant but its velocity vector keeps changing direction, so there is a centripetal acceleration pointing toward the center."
+        }
+      ]
+    },
+    {
+      "id": "vectors",
+      "title": "Vectors and the dot/cross product",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [],
+      "equation": "\\vec{a}\\cdot\\vec{b} = ab\\cos\\theta,\\quad |\\vec{a}\\times\\vec{b}| = ab\\sin\\theta",
+      "summary": "Physical quantities with direction are vectors; the dot product measures alignment and the cross product measures perpendicular twist.",
+      "depths": {
+        "eli5": "An arrow has both a length and a direction. The dot product tells you how much two arrows point the same way; the cross product gives a new arrow sticking out sideways.",
+        "core": "Force, velocity, and field are vectors, not just numbers. The dot product a·b = ab cosθ projects one onto the other and produces a scalar (work is F·d). The cross product a×b produces a vector perpendicular to both with magnitude ab sinθ (torque is r×F).",
+        "deep": "The cross product is special to three dimensions and antisymmetric (a×b = −b×a), which is why right-hand rules pervade magnetism and rotation. In higher dimensions its true generalization is the wedge product / antisymmetric tensor."
+      },
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 18.02 Multivariable Calculus"],
+      "art_prompt": "two arrows from a shared origin, a shaded projection of one onto the other, and a third arrow rising perpendicular out of their plane",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Which product gives a scalar and which gives a vector, and what does each measure?",
+          "answer": "The dot product gives a scalar measuring alignment (ab cosθ); the cross product gives a perpendicular vector measuring the twist between them (ab sinθ)."
+        },
+        {
+          "level": "apply",
+          "prompt": "When are a·b and |a×b| each zero for nonzero vectors?",
+          "answer": "a·b = 0 when the vectors are perpendicular; |a×b| = 0 when they are parallel (or antiparallel)."
+        }
+      ]
+    },
+    {
+      "id": "calculus-physics",
+      "title": "Derivatives and integrals for physics",
+      "shell": "prereq",
+      "type": "method",
+      "requires": [],
+      "equation": "\\int_{t_1}^{t_2} \\frac{df}{dt}\\,dt = f(t_2) - f(t_1)",
+      "summary": "Differentiation extracts rates of change and integration accumulates them; physics is written almost entirely in this language.",
+      "depths": {
+        "eli5": "A derivative tells you how fast something is changing right now. An integral adds up tiny pieces to get a total. They undo each other.",
+        "core": "Nearly every physical law is a differential equation (a relation between a quantity and its rates of change), and solving it means integrating. The fundamental theorem of calculus links the two: integrating a rate over an interval recovers the net change.",
+        "deep": "Vector calculus extends this to fields: gradient, divergence, and curl are the spatial derivatives, and Stokes'/divergence theorems are the multidimensional fundamental theorem — the machinery Maxwell's equations live in."
+      },
+      "sources": ["MIT OCW 18.02 Multivariable Calculus", "OpenStax Calculus Vol. 1"],
+      "art_prompt": "a curve with a tangent-line slope marked at one point and the shaded area beneath it, linked by a two-way arrow",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the fundamental theorem of calculus say connects derivatives and integrals?",
+          "answer": "Integrating the derivative of a function over an interval returns the net change of the function across that interval."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain to a beginner why most laws of physics are differential equations.",
+          "answer": "Because nature specifies how a quantity changes from instant to instant (its rate) rather than handing you the answer directly; integrating those local rules reconstructs the global motion or field."
+        }
+      ]
+    },
+    {
+      "id": "newton-laws",
+      "title": "Newton's three laws of motion",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["kinematics", "vectors"],
+      "equation": "\\vec{F} = m\\vec{a} = \\dfrac{d\\vec{p}}{dt}",
+      "summary": "Inertia, F = ma, and action–reaction together turn forces into predicted motion.",
+      "depths": {
+        "eli5": "Things keep doing what they're doing unless pushed. A push changes motion in proportion to its strength and inversely to mass. Every push comes with an equal push back.",
+        "core": "First law: without a net force, velocity stays constant (inertia defines inertial frames). Second law: net force equals the rate of change of momentum, F = dp/dt = ma for constant mass. Third law: forces come in equal-and-opposite pairs on different bodies. Given the forces, these laws make motion deterministic.",
+        "deep": "The deep content is the second law's identification of force with dp/dt, which survives into relativity (where p is no longer mv), and the third law's guarantee of momentum conservation for isolated systems — a statement secretly about the homogeneity of space."
+      },
+      "note": "Action and reaction act on different bodies, so they never cancel on the same object.",
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "two skaters pushing off each other, each recoiling with an arrow whose length scales inversely with their mass",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Newton's second law in its momentum form and say when it reduces to F = ma.",
+          "answer": "F = dp/dt; it reduces to F = ma when mass m is constant, so dp/dt = m·dv/dt = ma."
+        },
+        {
+          "level": "apply",
+          "prompt": "A rocket pushes exhaust backward. Which law explains its forward thrust, and on what does the reaction act?",
+          "answer": "The third law: the rocket pushes gas backward and the gas pushes the rocket forward — the reaction acts on the rocket, not on the rocket itself in a self-canceling way."
+        }
+      ]
+    },
+    {
+      "id": "momentum",
+      "title": "Momentum and its conservation",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["newton-laws"],
+      "equation": "\\vec{p} = m\\vec{v},\\quad \\sum \\vec{p}_{\\text{before}} = \\sum \\vec{p}_{\\text{after}}",
+      "summary": "Total momentum of an isolated system is conserved — the cleanest bookkeeping tool for collisions.",
+      "depths": {
+        "eli5": "Momentum is mass times velocity. In any crash with no outside push, the total amount is the same right before and right after.",
+        "core": "Because internal forces cancel in third-law pairs, the total momentum of a system feeling no external force cannot change. This makes collisions solvable even when the messy internal forces are unknown — you only need before and after states.",
+        "deep": "Conservation of momentum is the dynamical shadow of translational symmetry of space (Noether's theorem). It holds in relativity and quantum mechanics too, with the relativistic p = γmv replacing mv."
+      },
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "two carts colliding on a frictionless track with before/after velocity arrows whose mass-weighted sum is visibly equal",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Under what condition is total momentum conserved?",
+          "answer": "When the net external force on the system is zero (an isolated system); internal forces cancel as third-law pairs."
+        },
+        {
+          "level": "derive",
+          "prompt": "Show that momentum conservation follows from Newton's second and third laws for two interacting bodies.",
+          "answer": "F₁₂ = −F₂₁ (third law). Each force equals dp/dt of its body, so dp₁/dt + dp₂/dt = F₂₁ + F₁₂ = 0, hence d(p₁+p₂)/dt = 0 and total momentum is constant.",
+          "eq": "\\frac{d}{dt}(\\vec{p}_1+\\vec{p}_2)=\\vec{F}_{21}+\\vec{F}_{12}=0"
+        }
+      ]
+    },
+    {
+      "id": "work-energy",
+      "title": "Work, kinetic energy, and the work–energy theorem",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["newton-laws", "calculus-physics", "vectors"],
+      "equation": "W = \\int \\vec{F}\\cdot d\\vec{r} = \\Delta\\!\\left(\\tfrac{1}{2}mv^2\\right)",
+      "summary": "The work a net force does on an object equals the change in its kinetic energy.",
+      "depths": {
+        "eli5": "Pushing something through a distance gives it energy of motion. The harder and farther you push along the way, the faster it ends up going.",
+        "core": "Work is the line integral of force along the path, W = ∫F·dr. The work–energy theorem says the net work equals the change in kinetic energy ½mv². It converts a force problem into an energy problem, often sidestepping the need to track the motion instant by instant.",
+        "deep": "Only the component of force along the displacement does work; a perpendicular force (like magnetic or centripetal) does none. The theorem is exact and follows directly from integrating F = ma over the path."
+      },
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "a block sliding right with a force arrow along the path, its speed indicator growing as a shaded area of force-times-distance fills in",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the work–energy theorem equate?",
+          "answer": "The net work done on an object equals the change in its kinetic energy, W_net = Δ(½mv²)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does the tension in a string doing circular motion at constant speed do zero work?",
+          "answer": "Tension points toward the center, perpendicular to the velocity (and displacement), so F·dr = 0 everywhere — no work, and kinetic energy stays constant."
+        }
+      ]
+    },
+    {
+      "id": "energy-conservation",
+      "title": "Conservation of energy and potential energy",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["work-energy"],
+      "equation": "E = K + U = \\text{const},\\quad \\vec{F} = -\\nabla U",
+      "summary": "For conservative forces, kinetic plus potential energy is constant, and the force is the downhill gradient of the potential.",
+      "depths": {
+        "eli5": "Energy moves between motion and stored-up forms (height, springs) but the total stays fixed if nothing wastes it. Things tend to roll 'downhill' in energy.",
+        "core": "A conservative force can be written as the gradient of a potential energy U, so its work depends only on endpoints, not path. Then total mechanical energy K + U is conserved. Friction and other non-conservative forces convert mechanical energy to heat, but total energy (including thermal) is always conserved.",
+        "deep": "Conservation of energy is the shadow of time-translation symmetry (Noether again). The condition F = −∇U is exactly that the force has zero curl; only such force fields admit a potential."
+      },
+      "note": "F = −∇U: force points from high to low potential, the direction of steepest descent.",
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "a ball oscillating in a valley-shaped potential well with kinetic and potential energy bars trading height while their sum stays level",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What relation lets you derive a conservative force from its potential energy?",
+          "answer": "F = −∇U: the force is minus the gradient of the potential energy, pointing toward lower potential."
+        },
+        {
+          "level": "apply",
+          "prompt": "A pendulum swings without friction. Where is kinetic energy maximal and where is potential energy maximal?",
+          "answer": "Kinetic energy is maximal at the lowest point (fastest); potential energy is maximal at the highest points of the swing (momentarily at rest)."
+        }
+      ]
+    },
+    {
+      "id": "rotational",
+      "title": "Rotational motion and angular momentum",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["newton-laws", "momentum", "vectors"],
+      "equation": "\\vec{\\tau} = \\vec{r}\\times\\vec{F} = \\dfrac{d\\vec{L}}{dt},\\quad \\vec{L} = I\\vec{\\omega}",
+      "summary": "Rotation mirrors linear motion: torque replaces force, moment of inertia replaces mass, and angular momentum is conserved without external torque.",
+      "depths": {
+        "eli5": "Spinning has its own version of pushing (torque) and its own version of heaviness (how spread out the mass is). A spinning thing keeps spinning the same way unless twisted.",
+        "core": "Torque τ = r×F is the rotational analog of force; the moment of inertia I (mass weighted by distance² from the axis) is the rotational analog of mass. Angular momentum L = Iω changes only under external torque, so it is conserved for isolated systems — why a figure skater speeds up when pulling in their arms.",
+        "deep": "Angular momentum conservation reflects rotational symmetry of space (Noether). Because I depends on the axis and the mass distribution, rigid-body rotation is genuinely a tensor relationship (L = Iω with I a matrix), and free rotation can be surprisingly complex."
+      },
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "a skater pulling arms inward, the spin arrow lengthening as the mass distribution contracts toward the axis",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What are the rotational analogs of force and mass?",
+          "answer": "Torque (τ = r×F) is the analog of force; moment of inertia I is the analog of mass."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does a spinning skater speed up when pulling in their arms?",
+          "answer": "Pulling in arms lowers I; with no external torque L = Iω is conserved, so ω rises to compensate for the smaller I."
+        }
+      ]
+    },
+    {
+      "id": "gravitation",
+      "title": "Newtonian gravitation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["newton-laws", "energy-conservation"],
+      "equation": "\\vec{F} = -\\dfrac{G m_1 m_2}{r^2}\\,\\hat{r}",
+      "summary": "Every mass attracts every other with a force falling off as the inverse square of distance.",
+      "depths": {
+        "eli5": "All masses pull on each other. The pull weakens fast as they get farther apart — twice as far means a quarter as strong.",
+        "core": "Newton's law of universal gravitation gives an attractive force ∝ m₁m₂/r². It explains both falling apples and planetary orbits, and combined with F = ma it reproduces Kepler's laws. The inverse-square form makes the potential U = −Gm₁m₂/r.",
+        "deep": "The equality of gravitational mass (in this law) and inertial mass (in F = ma) is unexplained here — a coincidence Newton noted and Einstein later elevated to the equivalence principle, the seed of general relativity."
+      },
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "two masses with an attractive arrow between them and faint concentric field rings that thin out as the inverse square of distance",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does gravitational force scale with distance between two masses?",
+          "answer": "As the inverse square of the separation, F ∝ 1/r²."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why the same G-based law governs both a falling apple and the Moon's orbit.",
+          "answer": "Both are responses to Earth's gravity; the apple accelerates straight down while the Moon, moving sideways, perpetually 'falls' around Earth — same inverse-square force, different initial velocity."
+        }
+      ]
+    },
+    {
+      "id": "lagrangian",
+      "title": "Lagrangian mechanics",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["energy-conservation", "calculus-physics"],
+      "equation": "\\dfrac{d}{dt}\\dfrac{\\partial L}{\\partial \\dot q} - \\dfrac{\\partial L}{\\partial q} = 0,\\quad L = T - V",
+      "summary": "Reformulates mechanics in terms of energy (L = kinetic − potential) and generalized coordinates, replacing vector forces with the Euler–Lagrange equation.",
+      "depths": {
+        "eli5": "Instead of tracking every push, you write down the difference between motion-energy and stored-energy and let one master equation grind out the motion in whatever coordinates are convenient.",
+        "core": "The Lagrangian L = T − V is a function of generalized coordinates q and their velocities. The Euler–Lagrange equation produces the equations of motion in any coordinate system, automatically handling constraints and avoiding the need to resolve forces into components. It is equivalent to Newton's laws but far more flexible.",
+        "deep": "Each coordinate q that does not appear in L yields a conserved 'momentum' ∂L/∂q̇ — Noether's theorem in action. This is the framework where symmetry and conservation become two faces of one structure."
+      },
+      "note": "A coordinate missing from L (a cyclic coordinate) means its conjugate momentum is conserved.",
+      "sources": ["MIT OCW 8.09 Classical Mechanics III", "LibreTexts Classical Mechanics (Cline)"],
+      "art_prompt": "a bead on a curved wire with coordinate q marked along the wire, the path emerging from a T-minus-V expression rather than force arrows",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the Lagrangian, and what equation generates the equations of motion from it?",
+          "answer": "L = T − V (kinetic minus potential energy); the Euler–Lagrange equation d/dt(∂L/∂q̇) − ∂L/∂q = 0 generates the motion."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why does a coordinate absent from L give a conservation law?",
+          "answer": "If q is absent then ∂L/∂q = 0, so d/dt(∂L/∂q̇) = 0, meaning the conjugate momentum ∂L/∂q̇ is constant in time."
+        }
+      ]
+    },
+    {
+      "id": "least-action",
+      "title": "The principle of least action",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["lagrangian"],
+      "equation": "\\delta S = \\delta \\int_{t_1}^{t_2} L\\,dt = 0",
+      "summary": "Nature follows the path that makes the action — the time-integral of the Lagrangian — stationary.",
+      "depths": {
+        "eli5": "Out of all the ways something could move between two moments, it 'chooses' the one where a certain total quantity is balanced at a tipping point. The laws of motion fall out of this single demand.",
+        "core": "The action S is ∫L dt over the actual path. Of all conceivable paths between fixed endpoints, the real one makes S stationary (δS = 0). Demanding this directly yields the Euler–Lagrange equations, so least action is the bedrock from which classical mechanics is derived.",
+        "deep": "'Least' is loosely stated — the action is stationary, sometimes a saddle, not always a minimum. This principle generalizes far beyond mechanics: fields, relativity, and (via Feynman's path integral) quantum mechanics are all action principles, making it arguably the deepest organizing idea in physics."
+      },
+      "note": "Stationary, not strictly minimal — the true path is a critical point of the action.",
+      "sources": ["MIT OCW 8.09 Classical Mechanics III", "LibreTexts Classical Mechanics (Cline)"],
+      "art_prompt": "a bundle of candidate trajectories between two fixed points, with the single stationary-action path highlighted among the varied alternatives",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What quantity is made stationary in the principle of least action, and over what?",
+          "answer": "The action S = ∫L dt is made stationary (δS = 0) over all paths between fixed endpoints in time."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why 'least action' is a slightly misleading name.",
+          "answer": "The true path makes the action stationary — a critical point — which can be a minimum or a saddle, not necessarily an absolute minimum."
+        }
+      ]
+    },
+    {
+      "id": "hamiltonian",
+      "title": "Hamiltonian mechanics",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["lagrangian"],
+      "equation": "\\dot q = \\dfrac{\\partial H}{\\partial p},\\quad \\dot p = -\\dfrac{\\partial H}{\\partial q}",
+      "summary": "Recasts mechanics in terms of position and momentum, with energy H generating the flow through symmetric first-order equations.",
+      "depths": {
+        "eli5": "Track where something is and how much momentum it carries. One energy function then tells you how both quietly evolve, step by step.",
+        "core": "The Hamiltonian H(q,p) is obtained from the Lagrangian by a Legendre transform and usually equals the total energy T + V. It replaces the second-order Euler–Lagrange equation with two first-order equations in phase space (q, p). This symmetric structure is the natural launchpad for statistical mechanics and quantum mechanics.",
+        "deep": "Phase-space flow preserves volume (Liouville's theorem), the foundation of statistical mechanics. The Poisson bracket structure {q,p} = 1 is what gets 'quantized' into the commutator [x̂,p̂] = iℏ — Hamiltonian mechanics is the classical skeleton of quantum theory."
+      },
+      "sources": ["MIT OCW 8.09 Classical Mechanics III", "LibreTexts Classical Mechanics (Cline)"],
+      "art_prompt": "a phase-space plane with axes q and p showing a closed elliptical orbit traced by the flow of an energy function",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What variables does the Hamiltonian formulation use, and what does H usually represent?",
+          "answer": "Position q and momentum p (phase space); H usually equals the total energy T + V."
+        },
+        {
+          "level": "apply",
+          "prompt": "What classical structure becomes the quantum commutator [x̂, p̂] = iℏ?",
+          "answer": "The Poisson bracket {q, p} = 1; quantization replaces Poisson brackets with commutators times iℏ."
+        }
+      ]
+    },
+    {
+      "id": "shm",
+      "title": "Simple harmonic motion",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["newton-laws", "energy-conservation"],
+      "equation": "\\ddot x = -\\omega^2 x,\\quad \\omega = \\sqrt{k/m}",
+      "summary": "Any system with a linear restoring force oscillates sinusoidally at a fixed natural frequency.",
+      "depths": {
+        "eli5": "Pull a spring and let go: it wobbles back and forth at its own steady rhythm, the same rhythm no matter how far you pulled.",
+        "core": "When the restoring force is proportional to displacement (F = −kx), the equation of motion is ẍ = −ω²x, whose solution is sinusoidal with angular frequency ω = √(k/m). The frequency is independent of amplitude — the hallmark of harmonic motion. Energy sloshes between kinetic and potential.",
+        "deep": "SHM is universal because almost any smooth potential looks quadratic near its minimum (Taylor expansion), so small oscillations of nearly anything are harmonic. This is why the harmonic oscillator is the most reused model in physics, from molecules to quantum fields."
+      },
+      "note": "Frequency is amplitude-independent only while the restoring force stays linear.",
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.03 Vibrations and Waves"],
+      "art_prompt": "a mass on a spring tracing a sine curve over time, with energy bars trading between kinetic and potential at each extreme",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What condition on the force produces simple harmonic motion, and what is the resulting frequency for a mass-spring system?",
+          "answer": "A restoring force proportional to displacement (F = −kx); the angular frequency is ω = √(k/m), independent of amplitude."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why the harmonic oscillator shows up everywhere in physics.",
+          "answer": "Near any potential minimum the potential is approximately quadratic, so small oscillations of almost any system reduce to SHM."
+        }
+      ]
+    },
+    {
+      "id": "waves",
+      "title": "Waves and the wave equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["shm", "calculus-physics"],
+      "equation": "\\dfrac{\\partial^2 y}{\\partial t^2} = v^2\\,\\dfrac{\\partial^2 y}{\\partial x^2},\\quad v=f\\lambda",
+      "summary": "A wave is a disturbance that propagates at speed v, obeying a second-order equation linking its curvature in space and time.",
+      "depths": {
+        "eli5": "Wiggle one end of a rope and the wiggle travels along it. The shape moves even though the rope material stays put.",
+        "core": "The 1D wave equation ∂²y/∂t² = v²∂²y/∂x² has traveling-wave solutions y = f(x ± vt) of any shape, plus sinusoidal solutions with v = fλ. Because it is linear, waves superpose — they pass through each other, interfere, and form standing-wave modes on bounded systems.",
+        "deep": "Superposition lets any wave be decomposed into sinusoids (Fourier analysis). The same equation governs sound, strings, and light; only v and the meaning of y change. Dispersion (v depending on frequency) is the first complication beyond this idealized form."
+      },
+      "sources": ["MIT OCW 8.03 Vibrations and Waves", "OpenStax University Physics Vol. 1"],
+      "art_prompt": "a sinusoidal pulse traveling rightward along a string with wavelength and a velocity arrow labeled, the medium points moving only vertically",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the relation between wave speed, frequency, and wavelength.",
+          "answer": "v = fλ — speed equals frequency times wavelength."
+        },
+        {
+          "level": "apply",
+          "prompt": "Two identical waves meet crest-to-trough. What property of the wave equation explains the cancellation, and what is it called?",
+          "answer": "Linearity allows superposition; the waves add and cancel — destructive interference."
+        }
+      ]
+    },
+    {
+      "id": "coulomb",
+      "title": "Coulomb's law and the electric field",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["vectors", "gravitation"],
+      "equation": "\\vec{F} = \\dfrac{1}{4\\pi\\varepsilon_0}\\dfrac{q_1 q_2}{r^2}\\,\\hat{r},\\quad \\vec{E}=\\vec{F}/q",
+      "summary": "Charges exert an inverse-square force on each other; the electric field is the force per unit charge that fills the space around them.",
+      "depths": {
+        "eli5": "Like charges push apart, opposites pull together, and the push or pull weakens with the square of distance — just like gravity, but it can repel.",
+        "core": "Coulomb's law gives the force between point charges, ∝ q₁q₂/r². Rather than think of action at a distance, we say each charge creates an electric field E = F/q everywhere, and another charge feels force qE. The field is the bookkeeping device that makes electromagnetism local.",
+        "deep": "Coulomb's law and Newtonian gravity share the inverse-square form, which is exactly why both obey a Gauss law. The crucial difference is sign: charge comes in two kinds, so electric fields can cancel, unlike always-attractive gravity."
+      },
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "two point charges with radial field lines, repulsive between like signs and converging between opposite signs",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Define the electric field in terms of force.",
+          "answer": "The electric field is the force per unit positive test charge, E = F/q; a charge q in the field feels F = qE."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does the Coulomb force differ qualitatively from Newtonian gravity despite both being inverse-square?",
+          "answer": "Charge has two signs, so the electric force can attract or repel and fields can cancel; gravity has one sign and only attracts."
+        }
+      ]
+    },
+    {
+      "id": "gauss-law",
+      "title": "Gauss's law",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["coulomb"],
+      "equation": "\\oint \\vec{E}\\cdot d\\vec{A} = \\dfrac{Q_{\\text{enc}}}{\\varepsilon_0},\\quad \\nabla\\cdot\\vec{E}=\\rho/\\varepsilon_0",
+      "summary": "The electric flux through any closed surface is proportional to the charge enclosed — Coulomb's law restated as a field divergence.",
+      "depths": {
+        "eli5": "Count the field lines poking out of a closed bag: the number depends only on how much charge is inside the bag, not on its shape.",
+        "core": "Gauss's law says the net electric flux through a closed surface equals the enclosed charge over ε₀. Its differential form, ∇·E = ρ/ε₀, makes charge the source of electric field divergence. For symmetric charge distributions it computes fields almost instantly.",
+        "deep": "Gauss's law is equivalent to the inverse-square law but more general: it holds even for moving charges and is one of Maxwell's four equations. Its existence is a consequence of the 1/r² geometry of three-dimensional space."
+      },
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "a charge enclosed in an arbitrary blobby closed surface with field lines piercing it, the count independent of the surface shape",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does Gauss's law relate the electric flux through a closed surface to?",
+          "answer": "To the total charge enclosed by that surface, divided by ε₀."
+        },
+        {
+          "level": "derive",
+          "prompt": "Sketch how Gauss's law gives the field of a point charge.",
+          "answer": "By symmetry E is radial and constant on a sphere of radius r; flux = E·4πr² = q/ε₀, so E = q/(4πε₀r²) — Coulomb's law recovered.",
+          "eq": "E\\cdot 4\\pi r^2 = q/\\varepsilon_0"
+        }
+      ]
+    },
+    {
+      "id": "magnetism-lorentz",
+      "title": "Magnetic field and the Lorentz force",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["coulomb", "vectors"],
+      "equation": "\\vec{F} = q\\,(\\vec{E} + \\vec{v}\\times\\vec{B})",
+      "summary": "A charge feels an electric force plus a velocity-dependent magnetic force perpendicular to both its motion and the field.",
+      "depths": {
+        "eli5": "A moving charge gets shoved sideways by a magnetic field — never along its motion, always at a right angle, so it curls.",
+        "core": "The Lorentz force law F = q(E + v×B) is the complete recipe for how fields act on charges. The magnetic part is perpendicular to velocity, so it does no work and only bends paths into circles or helices. Magnetism is, in a sense, electricity seen from a moving frame.",
+        "deep": "Because the magnetic force does no work, magnetic fields change direction but not speed. Special relativity reveals E and B as components of a single field tensor: what one observer calls magnetic, another moving observer partly calls electric."
+      },
+      "note": "The magnetic force never changes a particle's speed — only its direction.",
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "a positive charge moving right through a field pointing into the page, curving upward along a circular arc with a perpendicular force arrow",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the Lorentz force law and state why the magnetic part does no work.",
+          "answer": "F = q(E + v×B); the magnetic force qv×B is perpendicular to v, so F·v = 0 and it does no work."
+        },
+        {
+          "level": "apply",
+          "prompt": "A charged particle enters a uniform magnetic field perpendicular to its velocity. What path does it follow and why?",
+          "answer": "A circle — the magnetic force is constant in magnitude and always perpendicular to velocity, providing centripetal force without changing speed."
+        }
+      ]
+    },
+    {
+      "id": "faraday",
+      "title": "Faraday's law of induction",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["magnetism-lorentz", "calculus-physics"],
+      "equation": "\\oint \\vec{E}\\cdot d\\vec{\\ell} = -\\dfrac{d\\Phi_B}{dt},\\quad \\nabla\\times\\vec{E}=-\\dfrac{\\partial \\vec{B}}{\\partial t}",
+      "summary": "A changing magnetic flux induces a circulating electric field — the principle behind generators and transformers.",
+      "depths": {
+        "eli5": "Move a magnet near a coil and you make electricity flow. It's the change in the magnetic field that drives the current, not its mere presence.",
+        "core": "Faraday's law says the electromotive force around a loop equals minus the rate of change of magnetic flux through it. The differential form, ∇×E = −∂B/∂t, shows a time-varying magnetic field creates a curling (non-conservative) electric field. The minus sign (Lenz's law) makes induced effects oppose the change that caused them.",
+        "deep": "This is the first crack in the static picture: electric fields no longer always come from charges; they can also come from changing magnetic fields, with field lines forming closed loops. It is one of Maxwell's equations and half of the mechanism of light."
+      },
+      "note": "Lenz's law (the minus sign) is energy conservation: induced currents oppose the change driving them.",
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "a bar magnet plunging into a coil with an induced circulating current arrow and a curling electric field looping around the changing flux",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What induces an electromotive force in a loop according to Faraday's law?",
+          "answer": "A changing magnetic flux through the loop; the EMF equals minus the rate of change of that flux."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain the physical meaning of the minus sign in Faraday's law.",
+          "answer": "It is Lenz's law: the induced current flows so as to oppose the change in flux, which is required by energy conservation."
+        }
+      ]
+    },
+    {
+      "id": "ampere-maxwell",
+      "title": "Ampère–Maxwell law",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["magnetism-lorentz", "gauss-law", "faraday"],
+      "equation": "\\nabla\\times\\vec{B} = \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\dfrac{\\partial \\vec{E}}{\\partial t}",
+      "summary": "Currents and changing electric fields both create circulating magnetic fields — Maxwell's displacement-current fix completes the set.",
+      "depths": {
+        "eli5": "Electric current makes a magnetic field, and so does a changing electric field even with no wire. That second part is what lets light exist.",
+        "core": "Ampère's original law tied magnetic circulation to current; Maxwell added the displacement-current term μ₀ε₀ ∂E/∂t so the law stays consistent when charge is accumulating (as in a charging capacitor). With this addition the four Maxwell equations become complete and self-consistent.",
+        "deep": "The displacement current is the symmetric partner of Faraday's law: a changing E makes B, just as a changing B makes E. This mutual feedback is exactly what allows self-sustaining electromagnetic waves to propagate through empty space."
+      },
+      "note": "The displacement-current term is what makes Maxwell's equations consistent with charge conservation.",
+      "sources": ["Physics LibreTexts: Maxwell's Equations and Electromagnetic Waves", "OpenStax University Physics Vol. 2"],
+      "art_prompt": "a charging parallel-plate capacitor with magnetic field loops encircling the growing electric field in the empty gap between the plates",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What two things can create a circulating magnetic field according to the Ampère–Maxwell law?",
+          "answer": "An electric current J and a changing electric field (the displacement current μ₀ε₀ ∂E/∂t)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why did Maxwell need to add the displacement-current term?",
+          "answer": "To make the law consistent when current is interrupted (e.g., between capacitor plates), preserving charge conservation and enabling EM waves."
+        }
+      ]
+    },
+    {
+      "id": "maxwell-equations",
+      "title": "Maxwell's equations unified",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["gauss-law", "faraday", "ampere-maxwell"],
+      "equation": "\\nabla\\cdot\\vec{E}=\\rho/\\varepsilon_0,\\ \\nabla\\cdot\\vec{B}=0,\\ \\nabla\\times\\vec{E}=-\\partial_t\\vec{B},\\ \\nabla\\times\\vec{B}=\\mu_0\\vec{J}+\\mu_0\\varepsilon_0\\partial_t\\vec{E}",
+      "summary": "Four equations fully specify how electric and magnetic fields are made by charges and currents and how they sustain each other.",
+      "depths": {
+        "eli5": "Four rules say where fields come from and how they dance together. Together they secretly say: light is real and travels at a fixed speed.",
+        "core": "Gauss's law (charges source E), no magnetic monopoles (∇·B = 0), Faraday's law (changing B curls E), and Ampère–Maxwell (currents and changing E curl B) form a closed system. From them alone you can derive that fields propagate as waves at speed c = 1/√(μ₀ε₀), which equals the measured speed of light.",
+        "deep": "That c comes out of purely electromagnetic constants — with no reference to any observer's motion — is the contradiction with Galilean relativity that forced Einstein to special relativity. Maxwell's equations are already Lorentz-invariant; Newton's mechanics was the part that had to change."
+      },
+      "note": "c = 1/√(μ₀ε₀): the speed of light is built from electric and magnetic constants alone.",
+      "sources": ["Physics LibreTexts: Maxwell's Equations and Electromagnetic Waves", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "four field-line panels — diverging E from charge, looped B with no source, E curling around changing B, B curling around changing E — joined into one frame",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does ∇·B = 0 express physically?",
+          "answer": "There are no magnetic monopoles; magnetic field lines have no sources or sinks and always close on themselves."
+        },
+        {
+          "level": "derive",
+          "prompt": "Where does the speed of light come from in Maxwell's framework?",
+          "answer": "Combining Faraday's and Ampère–Maxwell's laws in vacuum yields a wave equation for E and B propagating at c = 1/√(μ₀ε₀).",
+          "eq": "c = 1/\\sqrt{\\mu_0\\varepsilon_0}"
+        }
+      ]
+    },
+    {
+      "id": "em-waves",
+      "title": "Electromagnetic waves",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["maxwell-equations", "waves"],
+      "equation": "c = \\dfrac{1}{\\sqrt{\\mu_0\\varepsilon_0}},\\quad \\vec{E}\\perp\\vec{B}\\perp\\hat{k}",
+      "summary": "Oscillating electric and magnetic fields sustain each other and travel through vacuum at the speed of light.",
+      "depths": {
+        "eli5": "A changing electric field makes a magnetic one, which makes an electric one again — a self-feeding ripple that races across empty space. That ripple is light.",
+        "core": "Maxwell's equations in vacuum give wave equations for E and B with speed c = 1/√(μ₀ε₀). The fields are transverse and mutually perpendicular, in phase, and carry energy and momentum. Radio, light, and X-rays are the same phenomenon at different frequencies.",
+        "deep": "EM waves need no medium — a historic shock that killed the luminiferous ether. The Poynting vector S = E×B/μ₀ tracks the energy flow, and the wave's momentum makes radiation pressure real, from solar sails to comet tails."
+      },
+      "sources": ["Physics LibreTexts: Maxwell's Equations and Electromagnetic Waves", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "perpendicular sinusoidal E and B fields oscillating in phase along a propagation arrow moving through empty space",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How are E, B, and the direction of propagation oriented in an EM wave?",
+          "answer": "All three are mutually perpendicular; E and B oscillate in phase and are transverse to the propagation direction."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain to a beginner why light needs no medium to travel.",
+          "answer": "The wave is a self-sustaining exchange between changing electric and magnetic fields; each regenerates the other, so it can propagate through pure vacuum."
+        }
+      ]
+    },
+    {
+      "id": "thermo-temperature",
+      "title": "Temperature and the zeroth/ideal-gas laws",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["kinematics", "momentum"],
+      "equation": "PV = Nk_BT,\\quad \\langle \\tfrac{1}{2}mv^2\\rangle = \\tfrac{3}{2}k_BT",
+      "summary": "Temperature measures average molecular kinetic energy; the ideal-gas law links it to pressure and volume.",
+      "depths": {
+        "eli5": "Heat is just jiggling. Hotter means atoms move faster on average, and squeezing or warming a gas raises its pressure.",
+        "core": "The zeroth law makes temperature well-defined: systems in thermal equilibrium share one number, T. Kinetic theory identifies that number with average translational kinetic energy, ⟨½mv²⟩ = (3/2)kT. The ideal-gas law PV = NkT then follows from molecules bouncing off the walls.",
+        "deep": "Each quadratic degree of freedom carries ½kT of energy on average (equipartition), connecting the microscopic count of motions to bulk heat capacity. Temperature is more fundamentally defined as ∂S/∂E held inverse — the thermodynamic, not just kinetic, definition."
+      },
+      "note": "Equipartition: ½kT per quadratic degree of freedom — translation, rotation, and vibration each count.",
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.044 Statistical Physics I"],
+      "art_prompt": "gas molecules bouncing in a box, faster arrows where it is hotter, hammering the walls to produce pressure",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What microscopic quantity does temperature measure in an ideal gas?",
+          "answer": "The average translational kinetic energy of the molecules, ⟨½mv²⟩ = (3/2)kT."
+        },
+        {
+          "level": "apply",
+          "prompt": "If you double the absolute temperature of a fixed amount of gas at constant volume, what happens to its pressure?",
+          "answer": "It doubles — by PV = NkT, with N and V fixed, P is proportional to T."
+        }
+      ]
+    },
+    {
+      "id": "first-law-thermo",
+      "title": "First law of thermodynamics",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["energy-conservation", "thermo-temperature"],
+      "equation": "dU = \\delta Q - \\delta W",
+      "summary": "Energy conservation for thermal systems: internal energy changes by heat added minus work done by the system.",
+      "depths": {
+        "eli5": "You can warm something up by heating it or by doing work on it. Energy is never lost, just moved between heat, work, and internal store.",
+        "core": "The first law extends energy conservation to include heat. The internal energy U of a system rises when heat Q flows in and falls when the system does work W on its surroundings. Heat and work are not state functions (they describe processes), but their combination dU is.",
+        "deep": "δQ and δW are inexact differentials — they depend on the path taken, while dU does not. This distinction is why you cannot store 'heat' in a system; you can only store energy, which heat and work transfer."
+      },
+      "note": "U is a state function; Q and W are path-dependent — write δ, not d, for them.",
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.044 Statistical Physics I"],
+      "art_prompt": "a gas cylinder with heat flowing in from below and a piston doing work above, internal energy shown as a central reservoir level",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the first law of thermodynamics in words.",
+          "answer": "The change in a system's internal energy equals the heat added to it minus the work it does on its surroundings."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why do we write δQ and δW but dU?",
+          "answer": "Heat and work depend on the process path (inexact differentials), whereas internal energy is a state function whose change depends only on endpoints."
+        }
+      ]
+    },
+    {
+      "id": "entropy-second-law",
+      "title": "Entropy and the second law",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["first-law-thermo"],
+      "equation": "dS \\ge \\dfrac{\\delta Q}{T},\\quad \\Delta S_{\\text{universe}} \\ge 0",
+      "summary": "Entropy never decreases in an isolated system — the arrow of time and the limit on engines.",
+      "depths": {
+        "eli5": "Things naturally get more disordered, and you can't un-mix the milk from coffee for free. That one-way tendency is the second law.",
+        "core": "Entropy S quantifies how spread-out energy and matter are. The second law states that any spontaneous process in an isolated system increases total entropy; equality holds only for reversible processes. This sets a hard ceiling on heat-engine efficiency and defines a thermodynamic arrow of time.",
+        "deep": "Thermodynamic temperature itself is defined by 1/T = ∂S/∂U. The second law is statistical, not absolute: it is overwhelmingly probable, not impossible, to violate, because high-entropy states vastly outnumber low-entropy ones."
+      },
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.044 Statistical Physics I"],
+      "art_prompt": "a partition removed between hot and cold gas, molecules mixing irreversibly into a uniform warm cloud with an entropy gauge climbing",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the second law say about the entropy of an isolated system?",
+          "answer": "It never decreases; it increases for irreversible processes and stays constant only for reversible ones."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why can't a heat engine convert all absorbed heat into work?",
+          "answer": "Doing so would lower total entropy; some heat must be dumped to a cold reservoir to keep ΔS ≥ 0, capping efficiency."
+        }
+      ]
+    },
+    {
+      "id": "boltzmann-entropy",
+      "title": "Boltzmann's entropy and the microscopic view",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["entropy-second-law"],
+      "equation": "S = k_B \\ln \\Omega",
+      "summary": "Entropy counts microstates: it is Boltzmann's constant times the log of the number of ways a macrostate can be realized.",
+      "depths": {
+        "eli5": "If there are zillions of arrangements that look the same from outside, that state has high entropy. Disorder is just having lots of indistinguishable options.",
+        "core": "Boltzmann connected thermodynamic entropy to counting: S = k ln Ω, where Ω is the number of microstates consistent with the macrostate. This explains why entropy increases — systems drift toward macrostates with vastly more microstates, simply because those are overwhelmingly more numerous.",
+        "deep": "This is the bridge from mechanics to thermodynamics. The Boltzmann distribution and partition function follow from maximizing S subject to fixed average energy; statistical mechanics is essentially the systematic exploitation of S = k ln Ω."
+      },
+      "note": "Engraved on Boltzmann's tombstone: S = k log W (his Ω).",
+      "sources": ["MIT OCW 8.044 Statistical Physics I", "LibreTexts Physical Chemistry"],
+      "art_prompt": "a single macrostate label connected to a sprawling fan of countless microscopic arrangements, the count feeding a log into the entropy value",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does Ω represent in S = k ln Ω?",
+          "answer": "The number of microstates (microscopic arrangements) consistent with the given macrostate."
+        },
+        {
+          "level": "teach",
+          "prompt": "Use S = k ln Ω to explain why entropy tends to increase.",
+          "answer": "Macrostates with more microstates are vastly more numerous, so a system explores and ends up in high-Ω (high-entropy) macrostates simply by counting."
+        }
+      ]
+    },
+    {
+      "id": "boltzmann-distribution",
+      "title": "Boltzmann distribution and partition function",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["boltzmann-entropy", "thermo-temperature"],
+      "equation": "p_i = \\dfrac{e^{-E_i/k_BT}}{Z},\\quad Z=\\sum_i e^{-E_i/k_BT}",
+      "summary": "In equilibrium the probability of a state falls exponentially with its energy, normalized by the partition function Z.",
+      "depths": {
+        "eli5": "Nature prefers low-energy states, but warmth lets it visit costlier ones now and then. Add up all those preferences and you get Z, which holds all the answers.",
+        "core": "A system coupled to a heat bath at temperature T occupies state i with probability ∝ e^(−Eᵢ/kT). The partition function Z normalizes this and, once known, yields every thermodynamic quantity by differentiation (energy, entropy, free energy). It is the central object of statistical mechanics.",
+        "deep": "Free energy is F = −kT ln Z, linking the microscopic sum directly to macroscopic thermodynamics. For independent subsystems Z factorizes, which is why two-state and lattice models are so tractable."
+      },
+      "note": "Once you can write Z, you can compute everything: F = −kT ln Z, ⟨E⟩ = −∂lnZ/∂β.",
+      "sources": ["MIT OCW 8.044 Statistical Physics I", "LibreTexts Physical Chemistry"],
+      "art_prompt": "energy levels populated by dots that thin exponentially upward, with all Boltzmann factors funneling into a single quantity Z",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the partition function and why is it central?",
+          "answer": "Z = Σ e^(−Eᵢ/kT), the sum of Boltzmann factors; it normalizes probabilities and yields all thermodynamic quantities by differentiation."
+        },
+        {
+          "level": "apply",
+          "prompt": "Two states differ by energy ΔE at temperature T. What is their population ratio?",
+          "answer": "p_high/p_low = e^(−ΔE/kT); a few kT of energy difference makes the higher state far rarer.",
+          "eq": "p_{hi}/p_{lo}=e^{-\\Delta E/k_BT}"
+        }
+      ]
+    },
+    {
+      "id": "geometric-optics",
+      "title": "Geometric optics — reflection and refraction",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["em-waves", "least-action"],
+      "equation": "n_1\\sin\\theta_1 = n_2\\sin\\theta_2",
+      "summary": "When wavelength is small, light travels in rays that reflect and bend at interfaces according to Snell's law.",
+      "depths": {
+        "eli5": "Light goes in straight lines, bounces off mirrors at equal angles, and bends when it enters water or glass. That bending is why a straw looks broken in a glass.",
+        "core": "In the short-wavelength limit, EM waves behave as rays. Reflection keeps the angle; refraction bends the ray by Snell's law n₁sinθ₁ = n₂sinθ₂, where n is the refractive index (c/v in the medium). Lenses and mirrors form images by exploiting these rules.",
+        "deep": "Snell's law follows from Fermat's principle of least time — itself a least-action principle for light — and from matching wavefront phases at the interface. Total internal reflection (no real θ₂) is the basis of fiber optics."
+      },
+      "sources": ["OpenStax University Physics Vol. 3", "MIT OCW 8.03 Vibrations and Waves"],
+      "art_prompt": "a light ray bending toward the normal as it passes from air into denser glass, with both angles measured from the surface normal",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Snell's law and define the refractive index.",
+          "answer": "n₁sinθ₁ = n₂sinθ₂; the refractive index n = c/v is the ratio of light's vacuum speed to its speed in the medium."
+        },
+        {
+          "level": "derive",
+          "prompt": "What variational principle does Snell's law follow from?",
+          "answer": "Fermat's principle of least time — light takes the path that makes its travel time stationary, which yields the sine relationship at an interface."
+        }
+      ]
+    },
+    {
+      "id": "wave-optics",
+      "title": "Wave optics — interference and diffraction",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["em-waves", "waves"],
+      "equation": "d\\sin\\theta = m\\lambda",
+      "summary": "Light's wave nature shows up as interference fringes and diffraction patterns when paths differ by whole wavelengths.",
+      "depths": {
+        "eli5": "Shine light through two tiny slits and you get bright and dark stripes — proof that light is a wave that can add up or cancel out.",
+        "core": "When light from coherent sources overlaps, path differences of whole wavelengths give constructive interference (bright) and half-wavelengths give destructive (dark). The double-slit condition is d sinθ = mλ. Diffraction — bending around edges and apertures — limits the resolution of any optical instrument.",
+        "deep": "Interference is the decisive evidence that light is a wave, yet the same double-slit setup with single photons reveals quantum superposition. The diffraction limit ~λ/D sets the ultimate resolving power of telescopes and microscopes."
+      },
+      "sources": ["OpenStax University Physics Vol. 3", "MIT OCW 8.03 Vibrations and Waves"],
+      "art_prompt": "coherent light passing two slits and projecting alternating bright and dark fringes, with overlapping wavefronts adding and canceling",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the condition for bright fringes in a two-slit interference pattern?",
+          "answer": "d sinθ = mλ — the path difference between slits is a whole number of wavelengths."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why did the double-slit experiment settle the wave-vs-particle debate for light (classically)?",
+          "answer": "Interference fringes can only arise from waves adding and canceling; particles would simply pile up behind each slit with no alternating pattern."
+        }
+      ]
+    },
+    {
+      "id": "special-relativity",
+      "title": "Special relativity — postulates and Lorentz transforms",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["maxwell-equations", "newton-laws"],
+      "equation": "t' = \\gamma\\!\\left(t - \\tfrac{vx}{c^2}\\right),\\ x'=\\gamma(x-vt),\\ \\gamma=\\dfrac{1}{\\sqrt{1-v^2/c^2}}",
+      "summary": "Demanding the same speed of light for all observers warps space and time into Lorentz-mixed coordinates.",
+      "depths": {
+        "eli5": "Light always measures the same speed no matter how fast you chase it. The price is that moving clocks tick slow and moving rulers shrink.",
+        "core": "Einstein took two postulates: physics is the same in all inertial frames, and the speed of light c is constant for everyone. The Galilean transform fails this; the Lorentz transform satisfies it. Consequences are time dilation, length contraction, and relativity of simultaneity, scaled by the factor γ.",
+        "deep": "The constancy of c is not arbitrary — it is forced by Maxwell's equations, which already had no preferred frame. Lorentz transforms are exactly the symmetry that leaves Maxwell's equations invariant; Newtonian mechanics was the part that had to be corrected."
+      },
+      "note": "γ ≈ 1 for everyday speeds; effects only become large as v approaches c.",
+      "sources": ["MIT OCW 8.20 Special Relativity", "OpenStax University Physics Vol. 3"],
+      "art_prompt": "two reference frames sliding past each other with a light pulse measured at the same speed c in both, and a moving clock visibly ticking slower",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Einstein's two postulates of special relativity.",
+          "answer": "(1) The laws of physics are identical in all inertial frames. (2) The speed of light in vacuum is the same for all inertial observers."
+        },
+        {
+          "level": "apply",
+          "prompt": "A muon travels at 0.99c. Qualitatively, why does it reach the ground despite its short lifetime?",
+          "answer": "Time dilation (large γ) stretches its lifetime in the ground frame, so it survives the trip — equivalently, length contraction shortens the distance in the muon's frame."
+        }
+      ]
+    },
+    {
+      "id": "spacetime",
+      "title": "Spacetime and the invariant interval",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": ["special-relativity"],
+      "equation": "\\Delta s^2 = -c^2\\Delta t^2 + \\Delta x^2 + \\Delta y^2 + \\Delta z^2",
+      "summary": "Space and time merge into one four-dimensional geometry where the spacetime interval, not time alone, is absolute.",
+      "depths": {
+        "eli5": "Time and space aren't separate anymore; they're woven together. Different observers disagree on time and distance but always agree on one combined 'spacetime distance.'",
+        "core": "Minkowski showed that the Lorentz transforms are rotations in a four-dimensional spacetime with a peculiar minus sign on the time term. The interval Δs² is invariant — all observers compute the same value even as they disagree on Δt and Δx. Causality is encoded in the light cone: only timelike-separated events can influence each other.",
+        "deep": "The metric signature (−,+,+,+) is the whole story: it distinguishes timelike, spacelike, and lightlike separations. This geometric viewpoint is the gateway to general relativity, where the flat Minkowski metric becomes a curved, dynamical field."
+      },
+      "sources": ["MIT OCW 8.20 Special Relativity", "OpenStax University Physics Vol. 3"],
+      "art_prompt": "a light cone in spacetime with a timelike worldline inside it and spacelike events outside, the interval labeled invariant across two tilted frames",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What quantity is invariant for all inertial observers in special relativity?",
+          "answer": "The spacetime interval Δs² = −c²Δt² + Δx² + Δy² + Δz², even though Δt and Δx individually differ between frames."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain what the light cone tells you about causality.",
+          "answer": "Only events within (or on) each other's light cones are timelike/lightlike separated and can be causally connected; spacelike-separated events cannot influence one another."
+        }
+      ]
+    },
+    {
+      "id": "mass-energy",
+      "title": "Mass–energy equivalence",
+      "shell": "frontier",
+      "type": "equation",
+      "requires": ["special-relativity", "momentum"],
+      "equation": "E^2 = (pc)^2 + (mc^2)^2,\\quad E_0 = mc^2",
+      "summary": "Mass is a concentrated form of energy; a body at rest still holds energy E₀ = mc².",
+      "depths": {
+        "eli5": "Even sitting still, matter carries enormous hidden energy. Convert a tiny bit of mass and you get a vast amount of energy — that's nuclear power and sunlight.",
+        "core": "Relativistic energy and momentum satisfy E² = (pc)² + (mc²)². For a body at rest, E₀ = mc². This means mass and energy are interconvertible: nuclear reactions release energy by converting a small mass deficit, and binding energy literally weighs less.",
+        "deep": "The relation also shows massless particles (m = 0) carry energy E = pc and must travel at c — photons. Rest mass is the Lorentz-invariant 'length' of the energy–momentum four-vector, the same for all observers."
+      },
+      "note": "Massless particles obey E = pc and must move at exactly the speed of light.",
+      "sources": ["MIT OCW 8.20 Special Relativity", "OpenStax University Physics Vol. 3"],
+      "art_prompt": "a nucleus splitting with the missing mass converting into a burst of radiated energy, an E=mc^2 ledger balancing the deficit",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the full energy–momentum relation and state what it gives for a particle at rest.",
+          "answer": "E² = (pc)² + (mc²)²; at rest p = 0 so E₀ = mc²."
+        },
+        {
+          "level": "apply",
+          "prompt": "What does the relation predict for a massless particle?",
+          "answer": "With m = 0, E = pc, so it has energy and momentum but no rest mass and must travel at c — like a photon."
+        }
+      ]
+    },
+    {
+      "id": "equivalence-principle",
+      "title": "Equivalence principle",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": ["gravitation", "special-relativity"],
+      "equation": "m_{\\text{inertial}} = m_{\\text{gravitational}}",
+      "summary": "Locally, gravity is indistinguishable from acceleration — the insight that turns gravity into geometry.",
+      "depths": {
+        "eli5": "Inside a windowless box you can't tell if you're sitting on a planet or being accelerated through space. Gravity feels exactly like acceleration.",
+        "core": "Because gravitational and inertial mass are equal, all objects fall the same way, and a freely falling observer feels no gravity at all. Einstein's equivalence principle says local physics in a uniform gravitational field is identical to physics in an accelerating frame. This 'happiest thought' makes gravity a property of motion through curved spacetime, not a force.",
+        "deep": "The principle is only local — tidal effects (gradients in the field) reveal true gravity over extended regions and cannot be transformed away. Those residual tidal forces are precisely what spacetime curvature encodes."
+      },
+      "note": "The equivalence is local: tidal forces betray real curvature over any extended region.",
+      "sources": ["MIT OCW 8.962 General Relativity", "LibreTexts General Relativity (Crowell)"],
+      "art_prompt": "a person in an accelerating rocket and the same person standing on a planet, a dropped ball falling identically in both windowless cabins",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the equivalence principle assert about gravity and acceleration?",
+          "answer": "Locally, the effects of a uniform gravitational field are indistinguishable from those of an accelerating reference frame."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why is the equivalence principle only valid locally?",
+          "answer": "Over extended regions, tidal differences in a real gravitational field (e.g., field lines converging toward a planet) appear that no single acceleration can mimic — these reveal genuine spacetime curvature."
+        }
+      ]
+    },
+    {
+      "id": "geodesics-curvature",
+      "title": "Curved spacetime and geodesics",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": ["equivalence-principle", "spacetime", "least-action"],
+      "equation": "\\dfrac{d^2 x^\\mu}{d\\tau^2} + \\Gamma^\\mu_{\\alpha\\beta}\\dfrac{dx^\\alpha}{d\\tau}\\dfrac{dx^\\beta}{d\\tau}=0",
+      "summary": "Free-falling bodies follow geodesics — the straightest possible paths through curved spacetime.",
+      "depths": {
+        "eli5": "Gravity isn't a pull; it's the shape of spacetime. Planets aren't tugged — they roll along the straightest possible track in a curved landscape.",
+        "core": "In general relativity, mass and energy curve spacetime, and objects in free fall trace geodesics, the curved-space generalization of straight lines (the path of extremal proper time). The Christoffel symbols Γ encode how the geometry bends these paths. What looks like a gravitational force is just geodesic motion in curved geometry.",
+        "deep": "The geodesic equation is the least-action principle for a curved metric — extremize proper time ∫dτ. Curvature is captured by the Riemann tensor; geodesic deviation (nearby geodesics drifting together or apart) is the precise mathematical form of tidal gravity."
+      },
+      "sources": ["MIT OCW 8.962 General Relativity", "LibreTexts General Relativity (Crowell)"],
+      "art_prompt": "a massive body denting a spacetime grid while a smaller body rolls along the straightest available curved track around the well",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What path does a freely falling body follow in general relativity?",
+          "answer": "A geodesic — the straightest possible path (extremal proper time) through curved spacetime."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain how GR reinterprets the 'force' of gravity.",
+          "answer": "There is no force; mass-energy curves spacetime, and free objects simply follow geodesics of that geometry, which we perceive as gravitational attraction."
+        }
+      ]
+    },
+    {
+      "id": "einstein-equation",
+      "title": "Einstein field equation (a glimpse)",
+      "shell": "frontier",
+      "type": "equation",
+      "requires": ["geodesics-curvature", "mass-energy"],
+      "equation": "G_{\\mu\\nu} = \\dfrac{8\\pi G}{c^4} T_{\\mu\\nu}",
+      "summary": "Matter and energy tell spacetime how to curve; the curved spacetime tells matter how to move.",
+      "depths": {
+        "eli5": "There's one master equation: stuff bends spacetime, and bent spacetime steers the stuff. Gravity is that two-way conversation.",
+        "core": "The Einstein field equation sets the Einstein curvature tensor G_μν (built from the metric and its derivatives) proportional to the stress–energy tensor T_μν, which packages energy, momentum, and pressure. Solving it for given matter yields the spacetime geometry; geodesics in that geometry then govern motion. It reduces to Newtonian gravity in the weak-field, slow-motion limit.",
+        "deep": "The full G_μν = R_μν − ½R g_μν, and a cosmological-constant term Λg_μν may be added (driving cosmic acceleration). These are ten coupled nonlinear PDEs; their solutions include black holes (Schwarzschild), expanding universes (FLRW), and gravitational waves."
+      },
+      "note": "Often written G_μν + Λg_μν = (8πG/c⁴)T_μν once the cosmological constant Λ is included.",
+      "sources": ["MIT OCW 8.962 General Relativity", "LibreTexts General Relativity (Crowell)"],
+      "art_prompt": "a balance with the curvature tensor on one pan and a glowing energy-matter distribution on the other, spacetime grid bending in response",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In one sentence, what does the Einstein field equation relate?",
+          "answer": "It relates the curvature of spacetime (G_μν) to its energy–momentum content (T_μν), with proportionality 8πG/c⁴."
+        },
+        {
+          "level": "apply",
+          "prompt": "Name two famous classes of solutions to the Einstein field equation.",
+          "answer": "The Schwarzschild solution (black holes / spherical masses) and the FLRW solutions (expanding/contracting cosmologies); gravitational waves are another."
+        }
+      ]
+    },
+    {
+      "id": "photoelectric-quantization",
+      "title": "Quantization — photons and the photoelectric effect",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["em-waves", "energy-conservation"],
+      "equation": "E = h\\nu,\\quad K_{\\max} = h\\nu - \\phi",
+      "summary": "Light energy comes in discrete quanta of size hν, the experimental crack that opened quantum mechanics.",
+      "depths": {
+        "eli5": "Light isn't a smooth stream; it arrives in tiny packets. Each packet carries an amount of energy set by its color, and only packets above a threshold can kick electrons out of metal.",
+        "core": "The photoelectric effect showed that whether light ejects electrons depends on its frequency, not its intensity — explained only if light energy comes in quanta E = hν (photons). Below the work function φ, no electrons escape regardless of brightness; above it, the ejected electron's max kinetic energy is hν − φ.",
+        "deep": "This wave–particle duality — light being a wave (interference) and a particle (photons) — forced a new mechanics. Planck's constant h is the fundamental quantum of action; its smallness is why quantization is invisible at everyday scales."
+      },
+      "note": "Planck's constant h is the quantum of action — the size of the 'graininess' of the world.",
+      "sources": ["OpenStax University Physics Vol. 3", "MIT OCW 8.04 Quantum Physics I"],
+      "art_prompt": "discrete photon packets striking a metal surface, only those above a threshold energy knocking electrons free with leftover kinetic energy",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the photoelectric effect reveal about light, and what equation captures a photon's energy?",
+          "answer": "Light energy is quantized into photons of energy E = hν; ejection depends on frequency, not intensity."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does dim blue light eject electrons from a metal while bright red light may not?",
+          "answer": "Each blue photon may exceed the work function φ while each red photon does not; intensity adds more photons but cannot raise a single photon's energy above threshold."
+        }
+      ]
+    },
+    {
+      "id": "matter-waves",
+      "title": "Matter waves — de Broglie",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["photoelectric-quantization", "momentum"],
+      "equation": "\\lambda = \\dfrac{h}{p}",
+      "summary": "Every particle has a wavelength inversely proportional to its momentum — matter is wavy too.",
+      "depths": {
+        "eli5": "If light can act like particles, particles can act like waves. The faster (more momentum) something has, the shorter its wave.",
+        "core": "De Broglie proposed that any particle of momentum p has a wavelength λ = h/p. This was confirmed by electron diffraction: electrons form interference patterns just like light. It explains why quantization arises — only whole numbers of wavelengths fit around an orbit (Bohr's condition).",
+        "deep": "The wavelength is tiny for macroscopic objects (h is minuscule), which is why we never see a baseball diffract. The matter-wave idea demanded a wave equation to govern it — Schrödinger's — and made the wavefunction unavoidable."
+      },
+      "sources": ["OpenStax University Physics Vol. 3", "MIT OCW 8.04 Quantum Physics I"],
+      "art_prompt": "a beam of electrons passing through a crystal lattice and forming a ring diffraction pattern, each electron drawn as a short wave packet",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the de Broglie relation and say what it asserts.",
+          "answer": "λ = h/p; every particle has a wavelength inversely proportional to its momentum."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why don't we observe the wave nature of everyday objects?",
+          "answer": "Their momenta are enormous compared to h, so λ = h/p is unimaginably small — far below any measurable or diffractable scale."
+        }
+      ]
+    },
+    {
+      "id": "wavefunction",
+      "title": "The wavefunction and Born rule",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["matter-waves", "calculus-physics"],
+      "equation": "P(x)\\,dx = |\\psi(x)|^2\\,dx,\\quad \\int|\\psi|^2\\,dx = 1",
+      "summary": "A quantum system's complete state is a complex wavefunction whose squared magnitude gives the probability of measurement outcomes.",
+      "depths": {
+        "eli5": "A quantum thing isn't 'here' or 'there' — it's described by a spread-out wave. Squaring that wave tells you the odds of finding it at each spot.",
+        "core": "The wavefunction ψ encodes everything knowable about a quantum system. The Born rule interprets |ψ|² as a probability density, so ψ must be normalized to total probability one. Quantum mechanics predicts probabilities, not definite outcomes — a sharp break from classical determinism.",
+        "deep": "ψ is complex, and its phase matters: relative phases produce interference, the signature of quantum behavior. Measurement appears to 'collapse' ψ to an eigenstate, the deepest and most debated feature of the theory."
+      },
+      "note": "The phase of ψ has no classical analog but is what makes interference possible.",
+      "sources": ["MIT OCW 8.04 Quantum Physics I", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "a spread-out complex wave over a line with its squared-magnitude shaded as a probability hump, total shaded area equal to one",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Born rule say |ψ(x)|² represents?",
+          "answer": "The probability density of finding the particle at position x upon measurement; integrating it over all space gives 1."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why must the wavefunction be complex rather than real?",
+          "answer": "Its phase carries physical information: relative phases between contributions produce interference, which real probabilities alone cannot encode."
+        }
+      ]
+    },
+    {
+      "id": "schrodinger",
+      "title": "Schrödinger equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["wavefunction", "hamiltonian"],
+      "equation": "i\\hbar\\dfrac{\\partial \\psi}{\\partial t} = \\hat H \\psi = \\left(-\\dfrac{\\hbar^2}{2m}\\nabla^2 + V\\right)\\psi",
+      "summary": "The wavefunction evolves deterministically in time under the Hamiltonian — quantum mechanics' equation of motion.",
+      "depths": {
+        "eli5": "There's a master equation that tells the quantum wave how to ripple forward in time, given the energy landscape it lives in.",
+        "core": "The Schrödinger equation governs how ψ changes: the Hamiltonian operator Ĥ (kinetic plus potential energy) drives the evolution. For stationary states it reduces to an eigenvalue problem Ĥψ = Eψ, whose discrete solutions explain quantized energy levels in atoms and wells.",
+        "deep": "Time evolution of ψ is fully deterministic and unitary (probability-preserving); randomness enters only at measurement. The kinetic term −(ℏ²/2m)∇² comes from p → −iℏ∇, the operator substitution that turns classical energy into a quantum equation."
+      },
+      "note": "Evolution of ψ is deterministic; only measurement injects probability.",
+      "sources": ["MIT OCW 8.04 Quantum Physics I", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "a wavefunction in a potential well morphing smoothly over time, with standing-wave eigenstates at discrete energy levels picked out",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the time-independent Schrödinger equation Ĥψ = Eψ determine?",
+          "answer": "The stationary states and their allowed (often discrete) energy eigenvalues E for a given potential."
+        },
+        {
+          "level": "derive",
+          "prompt": "What operator replaces classical momentum p to build the Hamiltonian, and what kinetic term does it give?",
+          "answer": "p → −iℏ∇, so p²/2m becomes −(ℏ²/2m)∇², the kinetic-energy operator in the Schrödinger equation.",
+          "eq": "\\hat p = -i\\hbar\\nabla \\Rightarrow \\frac{\\hat p^2}{2m}=-\\frac{\\hbar^2}{2m}\\nabla^2"
+        }
+      ]
+    },
+    {
+      "id": "operators-observables",
+      "title": "Operators, observables, and eigenstates",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["wavefunction"],
+      "equation": "\\hat A \\psi_n = a_n \\psi_n,\\quad \\langle A\\rangle = \\int \\psi^* \\hat A\\,\\psi\\,dx",
+      "summary": "Every measurable quantity is a Hermitian operator; its eigenvalues are the possible measurement results.",
+      "depths": {
+        "eli5": "In quantum mechanics, things you can measure are 'machines' that act on the wave. The only readings you can ever get are that machine's special numbers.",
+        "core": "Observables (position, momentum, energy) are represented by Hermitian operators. A measurement always returns one of the operator's eigenvalues, and afterwards the system is in the corresponding eigenstate. The expectation value ⟨A⟩ is the statistical average over many identical measurements.",
+        "deep": "Hermiticity guarantees real eigenvalues (real measurements) and orthogonal eigenstates (a complete basis). Whether two observables can be simultaneously sharp depends on whether their operators commute — the algebraic root of the uncertainty principle."
+      },
+      "note": "Hermitian operators have real eigenvalues — exactly what measured quantities must be.",
+      "sources": ["MIT OCW 8.05 Quantum Physics II", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "an operator box acting on a wavefunction and returning one highlighted eigenstate with its eigenvalue read off a dial",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What are the possible results of measuring an observable, in operator language?",
+          "answer": "The eigenvalues of the (Hermitian) operator representing that observable."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why must observables be represented by Hermitian operators?",
+          "answer": "Because Hermitian operators have real eigenvalues (measurements are real numbers) and a complete orthogonal set of eigenstates."
+        }
+      ]
+    },
+    {
+      "id": "uncertainty",
+      "title": "Heisenberg uncertainty principle",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["operators-observables", "matter-waves"],
+      "equation": "\\Delta x\\,\\Delta p \\ge \\dfrac{\\hbar}{2}",
+      "summary": "Position and momentum cannot both be sharply defined; pinning one blurs the other.",
+      "depths": {
+        "eli5": "The more exactly you know where a particle is, the less you can know how fast it's going — and vice versa. It's not a measurement flaw; it's how reality is.",
+        "core": "Because position and momentum operators do not commute, their uncertainties obey Δx·Δp ≥ ℏ/2. This is a property of the wavefunction itself (a Fourier-transform relationship), not of clumsy instruments. A narrow position wave requires a broad spread of momenta.",
+        "deep": "More generally, any two non-commuting observables A and B satisfy ΔA·ΔB ≥ ½|⟨[A,B]⟩|. The energy–time version underlies the finite lifetime–linewidth of unstable states and virtual particles in field theory."
+      },
+      "note": "It is fundamental, not instrumental — a consequence of wave/Fourier structure.",
+      "sources": ["MIT OCW 8.04 Quantum Physics I", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "a narrow position wave packet paired with its broad momentum spread, the two widths visibly trading off as one is squeezed",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the position–momentum uncertainty relation.",
+          "answer": "Δx·Δp ≥ ℏ/2 — the product of position and momentum uncertainties has a fixed lower bound."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why uncertainty is fundamental rather than a limitation of instruments.",
+          "answer": "It follows from the Fourier relationship between a wave's spatial spread and its momentum spread; a state with sharp position must contain a wide range of momenta, regardless of how it is measured."
+        }
+      ]
+    },
+    {
+      "id": "quantum-tunneling",
+      "title": "Quantum tunneling",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["schrodinger"],
+      "equation": "T \\sim e^{-2\\kappa L},\\quad \\kappa = \\dfrac{\\sqrt{2m(V_0-E)}}{\\hbar}",
+      "summary": "A particle can pass through an energy barrier it classically lacks the energy to cross.",
+      "depths": {
+        "eli5": "A quantum particle can sneak through a wall it shouldn't be able to climb. The wave leaks through and sometimes pops out the other side.",
+        "core": "The wavefunction does not stop dead at a barrier higher than the particle's energy; it decays exponentially inside and emerges with reduced amplitude on the far side. The transmission probability falls off exponentially with barrier width and height, so thin barriers are tunneled easily and thick ones almost never.",
+        "deep": "Tunneling powers nuclear fusion in stars (protons tunnel through Coulomb repulsion), radioactive alpha decay, scanning tunneling microscopy, and flash memory. It is a direct, observable consequence of the wave nature of matter."
+      },
+      "sources": ["MIT OCW 8.04 Quantum Physics I", "OpenStax University Physics Vol. 3"],
+      "art_prompt": "a wavefunction hitting a tall barrier, decaying exponentially within it, and emerging as a small transmitted wave on the far side",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is quantum tunneling?",
+          "answer": "The passage of a particle through a potential barrier higher than its energy, forbidden classically but allowed because the wavefunction penetrates and partially transmits."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does the transmission probability depend on barrier width, and name one real application.",
+          "answer": "It decays exponentially with width (T ~ e^(−2κL)); applications include stellar fusion, alpha decay, and scanning tunneling microscopy."
+        }
+      ]
+    },
+    {
+      "id": "quantum-spin",
+      "title": "Spin and the Pauli exclusion principle",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["operators-observables", "magnetism-lorentz"],
+      "equation": "S^2 = s(s+1)\\hbar^2,\\quad S_z = m_s\\hbar",
+      "summary": "Particles carry intrinsic angular momentum (spin); identical half-spin particles refuse to share a quantum state.",
+      "depths": {
+        "eli5": "Electrons act like tiny built-in magnets that can only point 'up' or 'down,' and no two can ever be in the exact same state. That rule builds the periodic table.",
+        "core": "Spin is an intrinsic angular momentum with no classical analog; electrons have spin-½, so S_z = ±ℏ/2. Particles split into fermions (half-integer spin) and bosons (integer spin). The Pauli exclusion principle forbids two identical fermions from occupying the same quantum state, which structures atoms, chemistry, and the stability of matter.",
+        "deep": "The spin–statistics connection (fermions antisymmetric, bosons symmetric under exchange) is proven only in relativistic quantum field theory. Electron degeneracy pressure from exclusion supports white dwarfs and neutron stars against gravity."
+      },
+      "note": "Fermions (half-integer spin) exclude; bosons (integer spin) pile up — the basis of all matter structure.",
+      "sources": ["MIT OCW 8.05 Quantum Physics II", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "atomic orbitals filling with up/down spin arrows, one electron per state, building shells like rungs forced apart",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Pauli exclusion principle forbid, and to which particles does it apply?",
+          "answer": "It forbids two identical fermions (half-integer-spin particles) from occupying the same quantum state."
+        },
+        {
+          "level": "teach",
+          "prompt": "How does spin and exclusion explain the structure of the periodic table?",
+          "answer": "Electrons are spin-½ fermions; exclusion forces them into successively higher energy shells rather than all collapsing to the lowest, producing the layered electron configurations behind chemical periodicity."
+        }
+      ]
+    },
+    {
+      "id": "hydrogen-atom",
+      "title": "The hydrogen atom and quantized energy levels",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["schrodinger", "coulomb", "quantum-spin"],
+      "equation": "E_n = -\\dfrac{13.6\\,\\text{eV}}{n^2}",
+      "summary": "Solving Schrödinger's equation for the Coulomb potential yields discrete energy levels and the shapes of atomic orbitals.",
+      "depths": {
+        "eli5": "An electron bound to a proton can only have certain specific energies, like stairs instead of a ramp. Jumping between steps emits or absorbs light of exact colors.",
+        "core": "The hydrogen atom is the great triumph of early quantum mechanics: the Schrödinger equation with a 1/r Coulomb potential gives bound-state energies E_n = −13.6 eV/n² and orbital wavefunctions labeled by quantum numbers (n, l, m). Transitions between levels produce the sharp spectral lines actually observed.",
+        "deep": "The quantum numbers arise naturally from separating the equation in spherical coordinates; l and m come from angular momentum operators. Adding spin and relativistic corrections produces fine structure, and the framework generalizes (approximately) to every atom and the entire periodic table."
+      },
+      "note": "13.6 eV is the ionization energy of hydrogen — the binding of its single electron.",
+      "sources": ["MIT OCW 8.04 Quantum Physics I", "OpenStax University Physics Vol. 3"],
+      "art_prompt": "a hydrogen energy-level ladder with electrons jumping between rungs and emitting photons of specific spectral-line colors, orbital shapes alongside",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the energy of the nth hydrogen level, and what does n = 1 give?",
+          "answer": "E_n = −13.6 eV/n²; the ground state (n = 1) is −13.6 eV, the ionization energy."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does hydrogen emit light only at sharp, specific wavelengths?",
+          "answer": "Because its energy levels are discrete; an electron dropping from one level to another emits a photon of energy exactly equal to the gap, giving precise spectral lines."
+        }
+      ]
+    },
+    {
+      "id": "quantum-entanglement",
+      "title": "Entanglement and Bell's theorem",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["wavefunction", "quantum-spin"],
+      "equation": "|\\Psi\\rangle = \\tfrac{1}{\\sqrt 2}\\left(|\\!\\uparrow\\downarrow\\rangle - |\\!\\downarrow\\uparrow\\rangle\\right)",
+      "summary": "Two particles can share a single quantum state with correlations no local classical theory can reproduce.",
+      "depths": {
+        "eli5": "Two particles can be linked so that measuring one instantly tells you about the other, with a coordination too strong for any 'they agreed beforehand' explanation.",
+        "core": "In an entangled state the whole has a definite description but the parts do not. Measuring one particle's spin determines the partner's outcome regardless of separation. Bell's theorem proves that the observed correlations exceed any limit allowed by local hidden-variable theories, and experiments confirm the quantum prediction.",
+        "deep": "Entanglement does not transmit information faster than light (no usable signal), preserving relativity, yet it rules out local realism. It is now a resource: the engine of quantum computing, teleportation, and cryptography."
+      },
+      "note": "Entanglement correlates outcomes but cannot send a signal — no conflict with relativity.",
+      "sources": ["MIT OCW 8.05 Quantum Physics II", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "two distant detectors measuring a shared singlet pair, anti-correlated spin readings linked by a glowing nonlocal connection",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does Bell's theorem establish about quantum correlations?",
+          "answer": "That entangled-particle correlations exceed what any local hidden-variable (local-realist) theory can produce, ruling out local realism."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why entanglement does not violate relativity despite its 'instant' correlation.",
+          "answer": "The measurement outcome on each side is random; no controllable information is transmitted, so no signal travels faster than light."
+        }
+      ]
+    },
+    {
+      "id": "qft-idea",
+      "title": "Quantum field theory — the idea",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": ["schrodinger", "special-relativity", "em-waves"],
+      "equation": "[\\hat\\phi(x),\\hat\\pi(y)] = i\\hbar\\,\\delta^3(x-y)",
+      "summary": "Particles are quantized excitations of underlying fields that fill all of space — the marriage of quantum mechanics and special relativity.",
+      "depths": {
+        "eli5": "Underneath everything are invisible fields spread through space. A 'particle' is just a ripple in one of those fields, and ripples can be created or destroyed.",
+        "core": "Quantum field theory promotes fields, not particles, to the fundamental objects. Each particle species is a quantized field whose excitations are the particles; the photon is a quantum of the electromagnetic field. QFT is required because combining quantum mechanics with relativity allows particle creation and annihilation (E = mc² lets energy become mass).",
+        "deep": "Fields obey commutation (bosons) or anticommutation (fermions) relations, which is where spin–statistics and the exclusion principle finally get proven. Interactions are computed perturbatively via Feynman diagrams; renormalization tames the infinities. QFT is the most precisely tested framework in science."
+      },
+      "note": "The photon is the quantum of the EM field — QFT is why 'particle' and 'wave' stop being a paradox.",
+      "sources": ["MIT OCW 8.323 Relativistic Quantum Field Theory I", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "a field filling all space as a vibrating grid, with localized ripples that are created and annihilated as particle excitations",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In quantum field theory, what is a particle?",
+          "answer": "A quantized excitation (a ripple) of an underlying field that pervades all of space."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why is a field theory needed when relativity meets quantum mechanics?",
+          "answer": "Relativity's E = mc² permits energy to create and destroy particles, so a fixed-particle wavefunction is inadequate; a field describing variable particle number is required."
+        }
+      ]
+    },
+    {
+      "id": "standard-model",
+      "title": "The Standard Model (a glimpse)",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["qft-idea", "quantum-spin", "maxwell-equations"],
+      "equation": "SU(3)_C \\times SU(2)_L \\times U(1)_Y",
+      "summary": "All known matter and three of the four forces are described by quantized fields with a precise gauge symmetry.",
+      "depths": {
+        "eli5": "Everything is made of a small set of building-block particles (quarks and leptons), held together by force-carrier particles. One famous field, the Higgs, gives them mass.",
+        "core": "The Standard Model is a quantum field theory of matter particles (six quarks, six leptons) interacting via force carriers (gluons for the strong force, W/Z for the weak force, the photon for electromagnetism), all dictated by the gauge symmetry SU(3)×SU(2)×U(1). The Higgs field, confirmed in 2012, gives particles their masses via symmetry breaking.",
+        "deep": "Its predictions match experiment to extraordinary precision, yet it omits gravity, dark matter, neutrino-mass origins, and the matter–antimatter asymmetry. Gauge symmetry — demanding local invariance — is what dictates the existence and form of every force in the model."
+      },
+      "note": "It excludes gravity; unifying the Standard Model with general relativity remains open.",
+      "sources": ["MIT OCW 8.323 Relativistic Quantum Field Theory I", "OpenStax University Physics Vol. 3"],
+      "art_prompt": "a tidy chart of quarks, leptons, force-carrier bosons, and the Higgs, with gauge-symmetry labels tying each force to its carrier",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Which fundamental force is NOT described by the Standard Model?",
+          "answer": "Gravity; the Standard Model covers the electromagnetic, weak, and strong forces but not gravitation."
+        },
+        {
+          "level": "teach",
+          "prompt": "What role does the Higgs field play in the Standard Model?",
+          "answer": "Through spontaneous symmetry breaking, the Higgs field gives mass to the W/Z bosons and the fundamental fermions; its quantum, the Higgs boson, was found in 2012."
+        }
+      ]
+    },
+    {
+      "id": "cosmology-glimpse",
+      "title": "Expanding universe (a glimpse)",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["einstein-equation", "em-waves"],
+      "equation": "v = H_0 d,\\quad \\left(\\dfrac{\\dot a}{a}\\right)^2 = \\dfrac{8\\pi G}{3}\\rho",
+      "summary": "Applying general relativity to the whole cosmos yields an expanding universe with a hot, dense origin.",
+      "depths": {
+        "eli5": "The whole universe is stretching: distant galaxies rush away faster the farther they are. Rewind the stretching and everything was once packed into a hot, tiny start.",
+        "core": "Hubble's law v = H₀d shows recession speed grows with distance — the signature of uniform expansion. The Friedmann equations, the Einstein field equation applied to a homogeneous universe, govern how the scale factor a(t) evolves with the energy density. Tracing back gives the hot Big Bang, evidenced by the cosmic microwave background.",
+        "deep": "Observations reveal the expansion is accelerating, attributed to dark energy (a cosmological constant Λ), while most matter is unseen dark matter. The energy budget — ordinary matter, dark matter, dark energy — remains one of physics' deepest open problems."
+      },
+      "note": "The cosmic microwave background is the relic light from when the universe first became transparent.",
+      "sources": ["MIT OCW 8.286 The Early Universe", "OpenStax University Physics Vol. 3"],
+      "art_prompt": "galaxies on an expanding grid all receding from each other, redshifted light stretching, traced back to a hot dense origin",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does Hubble's law relate, and what does it imply about the universe?",
+          "answer": "Recession velocity to distance (v = H₀d); it implies the universe is uniformly expanding."
+        },
+        {
+          "level": "apply",
+          "prompt": "What observation is taken as direct evidence of a hot early universe?",
+          "answer": "The cosmic microwave background — relic thermal radiation left over from when the universe cooled enough to become transparent."
+        }
+      ]
+    },
+    {
+      "id": "forces-friction",
+      "title": "Contact forces and friction",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": ["newton-laws"],
+      "equation": "f_s \\le \\mu_s N,\\quad f_k = \\mu_k N",
+      "summary": "Surfaces resist sliding with a friction force proportional to how hard they are pressed together.",
+      "depths": {
+        "eli5": "Rubbing surfaces grip each other. The harder you press them, the harder they resist sliding — until they finally give and slide.",
+        "core": "Static friction adjusts up to a maximum μ_s·N to prevent sliding; once motion begins, kinetic friction f_k = μ_k·N opposes it, with μ_k usually smaller than μ_s. The normal force N is the surface's perpendicular push. These empirical laws let everyday mechanics problems be solved with free-body diagrams.",
+        "deep": "Friction is not fundamental — it emerges from electromagnetic interactions and surface roughness at the microscopic scale. It dissipates mechanical energy into heat, which is why frictional processes are irreversible and tie back to the second law."
+      },
+      "note": "Static friction is a range (≤ μ_s N), not a fixed value — it matches the applied force until the surface slips.",
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "a block on an incline with a normal-force arrow perpendicular to the surface and a friction arrow opposing the tendency to slide",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does kinetic friction depend on the normal force, and how does static friction differ?",
+          "answer": "Kinetic friction is f_k = μ_k N (fixed once sliding); static friction can take any value up to a maximum μ_s N to prevent motion."
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain why friction connects mechanics to thermodynamics.",
+          "answer": "Friction converts ordered mechanical energy into disordered heat, an irreversible dissipation that increases entropy — the second law in everyday form."
+        }
+      ]
+    },
+    {
+      "id": "fluids-bernoulli",
+      "title": "Fluid flow and Bernoulli's principle",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["energy-conservation", "thermo-temperature"],
+      "equation": "P + \\tfrac{1}{2}\\rho v^2 + \\rho g h = \\text{const}",
+      "summary": "In steady flow, faster-moving fluid has lower pressure — energy conservation written for fluids.",
+      "depths": {
+        "eli5": "Where a fluid speeds up, its pressure drops. That's why a fast airflow over a wing can lift a plane.",
+        "core": "Bernoulli's equation is energy conservation per unit volume along a streamline in an ideal (incompressible, non-viscous) fluid: pressure energy plus kinetic energy plus gravitational potential is constant. Combined with continuity (Av = const), it explains lift, venturi meters, and why narrow pipes speed flow.",
+        "deep": "It assumes no viscosity and steady, irrotational flow — real fluids deviate via drag and turbulence governed by the Navier–Stokes equations. The principle is a statement of the work–energy theorem applied to a flowing parcel."
+      },
+      "sources": ["OpenStax University Physics Vol. 1", "MIT OCW 8.01 Classical Mechanics"],
+      "art_prompt": "fluid streamlines crowding through a pipe constriction, speeding up where pressure gauges read lower",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does Bernoulli's principle say about the pressure of a faster-moving fluid?",
+          "answer": "Its pressure is lower; pressure plus kinetic plus gravitational energy per volume is constant along a streamline."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does air flowing faster over the top of a wing contribute to lift?",
+          "answer": "Faster flow over the top means lower pressure there; the higher pressure below pushes the wing upward."
+        }
+      ]
+    },
+    {
+      "id": "heat-engines-carnot",
+      "title": "Heat engines and the Carnot limit",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["entropy-second-law"],
+      "equation": "\\eta \\le \\eta_{\\text{Carnot}} = 1 - \\dfrac{T_c}{T_h}",
+      "summary": "No heat engine working between two temperatures can beat the Carnot efficiency set by their ratio.",
+      "depths": {
+        "eli5": "Engines turn heat into work, but they always have to dump some heat to a cold side. The bigger the temperature gap, the more useful work you can extract.",
+        "core": "A heat engine absorbs heat from a hot reservoir, does work, and rejects heat to a cold one. The second law caps efficiency at the Carnot value 1 − T_c/T_h, achieved only by an idealized reversible cycle. Real engines fall short because of friction, finite-rate heat transfer, and other irreversibilities.",
+        "deep": "Carnot's result is independent of the working substance — it depends only on the reservoir temperatures, which is exactly what allows the absolute (Kelvin) temperature scale to be defined thermodynamically via efficiency."
+      },
+      "note": "Carnot efficiency depends only on the temperatures, never on the engine's design or fuel.",
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.044 Statistical Physics I"],
+      "art_prompt": "a cyclic engine pulling heat from a hot reservoir, outputting work, and dumping the remainder to a cold reservoir, efficiency capped by the temperature ratio",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the maximum (Carnot) efficiency of a heat engine between temperatures T_h and T_c.",
+          "answer": "η_Carnot = 1 − T_c/T_h, achievable only by a reversible engine."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why can no engine ever reach 100% efficiency converting heat to work?",
+          "answer": "Rejecting some heat to a cold reservoir is required to keep total entropy from decreasing; reaching 100% would demand T_c = 0 or violate the second law."
+        }
+      ]
+    },
+    {
+      "id": "electric-potential",
+      "title": "Electric potential and capacitance",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": ["coulomb", "energy-conservation"],
+      "equation": "V = \\dfrac{U}{q},\\quad \\vec{E} = -\\nabla V,\\quad C = \\dfrac{Q}{V}",
+      "summary": "Electric potential is potential energy per unit charge; capacitors store charge and energy by holding a voltage across a gap.",
+      "depths": {
+        "eli5": "Voltage is like electrical height — charges 'roll downhill' from high to low. A capacitor is a bucket that stores charge when you push a voltage across it.",
+        "core": "The electric potential V is potential energy per unit charge, and the field is its negative gradient, E = −∇V. Because Coulomb forces are conservative, V is path-independent. A capacitor stores charge Q ∝ V with capacitance C, holding energy ½CV² in the field between its plates.",
+        "deep": "Equipotential surfaces are always perpendicular to field lines, and conductors are equipotentials in static equilibrium. The energy ½CV² is genuinely stored in the electric field itself (energy density ∝ E²), foreshadowing that fields carry energy."
+      },
+      "note": "Voltage is energy per charge; the field points from high to low potential (E = −∇V).",
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "equipotential contour lines around charges with field arrows crossing them perpendicularly, beside a charged parallel-plate capacitor",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How are electric field and electric potential related?",
+          "answer": "The field is minus the gradient of the potential, E = −∇V; the field points toward decreasing potential."
+        },
+        {
+          "level": "apply",
+          "prompt": "A capacitor of capacitance C is charged to voltage V. How much energy does it store?",
+          "answer": "U = ½CV², stored in the electric field between the plates."
+        }
+      ]
+    },
+    {
+      "id": "circuits-ohm",
+      "title": "Circuits — Ohm's law and Kirchhoff's rules",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["electric-potential"],
+      "equation": "V = IR,\\quad \\sum_{\\text{loop}} V = 0,\\quad \\sum_{\\text{node}} I = 0",
+      "summary": "Current, voltage, and resistance obey simple linear and conservation rules that solve any DC circuit.",
+      "depths": {
+        "eli5": "Push (voltage) drives flow (current) against resistance. Charge is never lost at a junction, and voltages around any loop add back to zero.",
+        "core": "Ohm's law V = IR relates voltage across a resistor to the current through it. Kirchhoff's junction rule (charge conservation: currents in equal currents out) and loop rule (energy conservation: potential changes around a loop sum to zero) together let you solve arbitrary resistor networks.",
+        "deep": "Kirchhoff's rules are circuit-level statements of charge and energy conservation. Ohm's law is empirical, not fundamental — it holds for ohmic materials where drift velocity is proportional to field; many devices (diodes, transistors) are deliberately non-ohmic."
+      },
+      "note": "Junction rule = charge conservation; loop rule = energy conservation, in circuit clothing.",
+      "sources": ["OpenStax University Physics Vol. 2", "MIT OCW 8.02 Electricity and Magnetism"],
+      "art_prompt": "a resistor network with current arrows summing to zero at a node and voltage drops around a loop annotated to cancel",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Kirchhoff's two rules and the conservation law each expresses.",
+          "answer": "Junction rule: currents into a node equal currents out (charge conservation). Loop rule: voltage changes around any closed loop sum to zero (energy conservation)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Two resistors R₁ and R₂ are in series across voltage V. What current flows?",
+          "answer": "The same current through both, I = V/(R₁ + R₂), since series resistances add."
+        }
+      ]
+    },
+    {
+      "id": "blackbody-planck",
+      "title": "Blackbody radiation and Planck's law",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["em-waves", "boltzmann-distribution"],
+      "equation": "u(\\nu,T) = \\dfrac{8\\pi h\\nu^3}{c^3}\\dfrac{1}{e^{h\\nu/k_BT}-1}",
+      "summary": "The thermal glow of a hot body required energy to be quantized — the birth of quantum theory.",
+      "depths": {
+        "eli5": "Hot things glow, and the color of the glow depends on temperature. Explaining that glow forced physicists to say light energy comes in chunks.",
+        "core": "Classical physics predicted infinite radiated energy at short wavelengths (the 'ultraviolet catastrophe'). Planck fixed it by assuming the oscillators emitting light could only have energies in multiples of hν, yielding the correct spectrum. This quantization hypothesis, introduced in 1900, launched quantum mechanics.",
+        "deep": "Planck's law contains both Wien's displacement (peak shifts with T) and the Stefan–Boltzmann total (∝ T⁴) as limits. The cosmic microwave background is a near-perfect blackbody spectrum, making this curve one of the most precisely measured in nature."
+      },
+      "note": "Planck introduced quantization reluctantly, as a mathematical trick — it turned out to be how the world works.",
+      "sources": ["OpenStax University Physics Vol. 3", "MIT OCW 8.04 Quantum Physics I"],
+      "art_prompt": "blackbody spectral curves at several temperatures, peaks shifting toward blue as it heats, contrasted with the runaway classical prediction",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What assumption did Planck introduce to explain blackbody radiation?",
+          "answer": "That the emitting oscillators could only carry energy in discrete quanta of size hν — energy quantization."
+        },
+        {
+          "level": "teach",
+          "prompt": "What was the 'ultraviolet catastrophe' and how did quantization resolve it?",
+          "answer": "Classical theory predicted infinite emission at short wavelengths; quantizing energy makes high-frequency modes exponentially suppressed, giving a finite, correct spectrum."
+        }
+      ]
+    },
+    {
+      "id": "bohr-model",
+      "title": "Bohr model of the atom",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["matter-waves", "coulomb", "photoelectric-quantization"],
+      "equation": "L = n\\hbar,\\quad hf = E_i - E_f",
+      "summary": "Quantizing electron angular momentum produced the first correct atomic spectra, bridging to full quantum mechanics.",
+      "depths": {
+        "eli5": "Bohr guessed that electrons can only orbit at certain allowed radii. Jumping between them releases light of exact colors — and it matched hydrogen's spectrum.",
+        "core": "Bohr postulated that electron orbits with angular momentum L = nℏ are stable and that light is emitted when an electron jumps between them, with hf equal to the energy gap. This reproduced hydrogen's spectral lines and the 13.6 eV scale, though it was a semi-classical patch later superseded by Schrödinger's wave mechanics.",
+        "deep": "The quantization L = nℏ is equivalent to fitting a whole number of de Broglie wavelengths around the orbit — a hint that the real explanation is wave-like. The Schrödinger treatment of hydrogen recovers Bohr's energies while correcting his picture of definite orbits."
+      },
+      "note": "Bohr's orbits are a useful fiction — quantum mechanics replaces them with probability clouds.",
+      "sources": ["OpenStax University Physics Vol. 3", "MIT OCW 8.04 Quantum Physics I"],
+      "art_prompt": "discrete circular electron orbits around a nucleus with an electron dropping inward and emitting a colored photon equal to the energy gap",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What quantity did Bohr quantize, and what determines the frequency of emitted light?",
+          "answer": "He quantized orbital angular momentum (L = nℏ); emitted light has hf equal to the energy difference between two levels."
+        },
+        {
+          "level": "teach",
+          "prompt": "How does the de Broglie wavelength justify Bohr's angular-momentum rule?",
+          "answer": "Requiring a whole number of de Broglie wavelengths to fit around an orbit gives exactly L = nℏ, recasting the rule as a standing-wave condition."
+        }
+      ]
+    },
+    {
+      "id": "quantum-harmonic-oscillator",
+      "title": "Quantum harmonic oscillator",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["schrodinger", "shm"],
+      "equation": "E_n = \\hbar\\omega\\left(n + \\tfrac{1}{2}\\right)",
+      "summary": "A quantum oscillator has equally spaced energy levels and a nonzero ground-state energy even at absolute zero.",
+      "depths": {
+        "eli5": "A quantum spring can only hold certain energy steps, evenly spaced, and it can never be perfectly still — it always jiggles a little.",
+        "core": "Solving the Schrödinger equation for a quadratic potential gives evenly spaced levels E_n = ℏω(n + ½). The ½ is the zero-point energy: the lowest state still has energy, a consequence of the uncertainty principle forbidding simultaneous zero position and zero momentum. This model underlies molecular vibrations, phonons, and quantized fields.",
+        "deep": "The oscillator is exactly solvable via raising and lowering (creation/annihilation) operators, the same algebra used to quantize fields in QFT. Its universality — any potential minimum is locally harmonic — makes it the workhorse of quantum physics, just as SHM is classically."
+      },
+      "note": "Zero-point energy ½ℏω is real — it keeps helium liquid at absolute zero and drives the Casimir effect.",
+      "sources": ["MIT OCW 8.04 Quantum Physics I", "LibreTexts Quantum Mechanics"],
+      "art_prompt": "a parabolic potential well with evenly spaced energy rungs and a lowest level sitting above the bottom, its wavefunction never reaching zero spread",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the energy spectrum of the quantum harmonic oscillator?",
+          "answer": "E_n = ℏω(n + ½) for n = 0, 1, 2, …; levels are equally spaced by ℏω with a ½ℏω zero-point offset."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why does the quantum oscillator have nonzero energy in its ground state?",
+          "answer": "The uncertainty principle forbids simultaneously definite zero position and zero momentum, so the lowest state retains zero-point energy ½ℏω."
+        }
+      ]
+    }
+  ]
+}

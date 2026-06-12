@@ -1,0 +1,1452 @@
+{
+  "meta": {
+    "branch": "07-mind",
+    "title": "Mind — brains, computation & cognition",
+    "version": "0.1.0",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only.",
+    "license": "CC-BY-4.0 (prose); equations are facts"
+  },
+  "atoms": [
+    {
+      "id": "neuron-doctrine",
+      "title": "The neuron doctrine",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [],
+      "summary": "The nervous system is built from discrete cells — neurons — that are not continuous with one another, but signal across gaps.",
+      "depths": {
+        "eli5": "The brain isn't one continuous web. It's made of separate little cells that talk to each other across tiny gaps, like people passing notes rather than being wired together.",
+        "core": "Against the older 'reticular' view that the brain was a continuous network, Ramón y Cajal argued from Golgi-stained tissue that neurons are individual cells with their own membranes. The doctrine has four parts: the neuron is the structural and functional unit of the nervous system; neurons are discrete cells, not fused; signals flow in one direction (dendrite → soma → axon → terminal); and connections are specific, not random.",
+        "deep": "Cajal could not see synaptic clefts directly — the gap is ~20 nm, far below light-microscope resolution — so the doctrine was an inference from the morphology of stained cells and the directionality of growth cones, later confirmed by electron microscopy in the 1950s. The principle of dynamic polarization (one-way flow) is the part that makes the brain a computational device rather than a passive conductor."
+      },
+      "note": "Cajal vs Golgi: they shared the 1906 Nobel while disagreeing — Golgi's own stain, used by Cajal, defeated Golgi's reticular theory.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "Wikipedia (facts)"
+      ],
+      "art_prompt": "two adjacent neurons drawn in Golgi black, clearly separated by a thin gap, with arrows showing signal flowing dendrite to soma to axon",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the directional ('dynamic polarization') part of the neuron doctrine.",
+          "answer": "Within a neuron, signals normally flow one way: from dendrites and soma toward the axon and its terminals."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why did proving neurons are discrete cells require more than a light microscope?",
+          "answer": "The synaptic cleft (~20 nm) is below the diffraction limit of light, so discreteness was inferred from cell morphology and only directly confirmed later by electron microscopy."
+        }
+      ]
+    },
+    {
+      "id": "neuron-structure",
+      "title": "Neuron structure & compartments",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [
+        "neuron-doctrine"
+      ],
+      "summary": "A neuron is organized into dendrites (input), soma (integration), axon (transmission), and terminals (output), each with distinct molecular machinery.",
+      "depths": {
+        "eli5": "A neuron is shaped like a tree with a trunk. The leafy branches collect messages, the trunk carries the signal far away, and the tips hand it off to the next cell.",
+        "core": "Dendrites receive synaptic inputs and funnel them to the cell body (soma). The axon hillock is the decision point where inputs sum and a spike is triggered. The axon — often myelinated — carries the all-or-none signal, sometimes a meter long, to presynaptic terminals where neurotransmitter is released. Each compartment has a specialized ion-channel and receptor repertoire.",
+        "deep": "Compartmentalization is functional: the axon initial segment has the highest density of voltage-gated Na⁺ channels in the cell, which is why it is the spike-initiation zone; dendrites are dominated by receptors and slower channels for integration; nodes of Ranvier concentrate Na⁺ channels for saltatory conduction. The geometry (dendritic branching, axon diameter) directly shapes the cell's computation."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01"
+      ],
+      "art_prompt": "a labeled neuron with dendritic tree, soma, axon hillock highlighted as the trigger zone, myelinated axon with nodes, and synaptic terminals",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Which part of the neuron has the highest density of voltage-gated Na⁺ channels and why does that matter?",
+          "answer": "The axon initial segment (axon hillock region); the high channel density makes it the spike-initiation zone where summed inputs cross threshold."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is dendritic geometry considered part of a neuron's 'computation'?",
+          "answer": "Branch lengths, diameters, and the spatial arrangement of synapses determine how inputs attenuate and combine before reaching the trigger zone, shaping which input patterns produce a spike."
+        }
+      ]
+    },
+    {
+      "id": "ionic-gradients",
+      "title": "Ionic gradients & the Na⁺/K⁺ pump",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [
+        "neuron-structure"
+      ],
+      "summary": "Active pumping maintains high K⁺ inside and high Na⁺ outside, storing the electrochemical energy every neural signal spends.",
+      "depths": {
+        "eli5": "A tiny pump in the membrane keeps sodium mostly outside and potassium mostly inside, like charging a battery. Every nerve signal is the battery briefly discharging.",
+        "core": "The Na⁺/K⁺-ATPase exchanges 3 Na⁺ out for 2 K⁺ in per ATP, against their concentration gradients. This sets up the ionic disequilibrium — high intracellular K⁺ (~140 mM), high extracellular Na⁺ (~145 mM) — that is the standing reservoir of free energy. The resting potential and the action potential are both controlled releases of this stored gradient.",
+        "deep": "The pump is electrogenic (net one positive charge out per cycle), contributing a few mV directly, but its main role is maintaining the gradients that the Nernst/Goldman potentials depend on. A neuron's largest metabolic cost is restoring these gradients after activity — roughly half the brain's energy budget — which is why neural signaling is fundamentally an energy-management problem."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (brain energy budget reviews)"
+      ],
+      "art_prompt": "a membrane pump cartoon ejecting 3 sodium ions and importing 2 potassium ions per ATP, with concentration bars showing the resulting gradients",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the stoichiometry of the Na⁺/K⁺-ATPase per ATP hydrolyzed?",
+          "answer": "3 Na⁺ pumped out and 2 K⁺ pumped in per ATP."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is the resting brain still metabolically expensive even when 'idle'?",
+          "answer": "Maintaining ionic gradients against constant leak — and restoring them after each spike — consumes large amounts of ATP, making gradient maintenance roughly half the brain's energy use."
+        }
+      ]
+    },
+    {
+      "id": "nernst",
+      "title": "Nernst equilibrium potential",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [
+        "ionic-gradients"
+      ],
+      "equation": "E_X = \\frac{RT}{zF}\\ln\\frac{[X]_{out}}{[X]_{in}}",
+      "summary": "For a single permeant ion, the membrane voltage at which diffusion and electrical drift exactly cancel.",
+      "depths": {
+        "eli5": "An ion wants to spread out from where it's crowded, but voltage can push back. The Nernst potential is the exact voltage where those two pushes tie.",
+        "core": "If the membrane were permeable to only ion X, the potential would settle at E_X, where the concentration gradient driving X one way is balanced by the electrical gradient pushing it back. At body temperature, RT/F ≈ 26.7 mV, so for a 10-fold gradient E_X ≈ ±61 mV depending on charge. K⁺ has E_K ≈ −90 mV; Na⁺ has E_Na ≈ +60 mV.",
+        "deep": "Nernst is an equilibrium (zero net current) statement, derived by setting the electrochemical potential equal on both sides. It is the per-ion 'target voltage' that the real membrane is pulled toward in proportion to that ion's conductance — the conceptual basis for the Goldman equation and for thinking of each channel type as a battery in series with a resistor."
+      },
+      "note": "61 mV per decade for a monovalent ion at 37 °C is the number worth memorizing.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "LibreTexts (physiology)",
+        "Wikipedia (facts)"
+      ],
+      "art_prompt": "a membrane with a potassium gradient, two opposing arrows (diffusion vs electrical) drawn equal in length at the balance voltage E_K = -90 mV",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Roughly what are E_K and E_Na for a typical mammalian neuron?",
+          "answer": "E_K ≈ −90 mV and E_Na ≈ +60 mV."
+        },
+        {
+          "level": "derive",
+          "prompt": "For a monovalent cation 10× more concentrated outside than inside at 37 °C, compute its Nernst potential.",
+          "answer": "E = (RT/F)·ln(10) ≈ 26.7 mV × 2.303 ≈ +61 mV (positive because the cation is more concentrated outside).",
+          "eq": "E_X=\\frac{RT}{F}\\ln 10 \\approx 61\\,\\text{mV}"
+        }
+      ]
+    },
+    {
+      "id": "goldman",
+      "title": "Goldman–Hodgkin–Katz voltage equation",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [
+        "nernst"
+      ],
+      "equation": "V_m = \\frac{RT}{F}\\ln\\frac{P_{K}[K]_o + P_{Na}[Na]_o + P_{Cl}[Cl]_i}{P_{K}[K]_i + P_{Na}[Na]_i + P_{Cl}[Cl]_o}",
+      "summary": "The resting potential is a permeability-weighted blend of the individual ions' equilibrium potentials.",
+      "depths": {
+        "eli5": "The cell listens to several ions at once. Whichever ion the membrane lets through most easily gets the loudest vote in setting the voltage.",
+        "core": "When several ions are permeant, the membrane voltage is not any single Nernst potential but a weighted average set by the relative permeabilities P. At rest the membrane is most permeable to K⁺, so V_m (~ −70 mV) sits close to E_K but is nudged toward E_Na by a small resting Na⁺ leak. Note Cl⁻ appears with its concentrations flipped because of its negative charge.",
+        "deep": "The GHK equation is derived under the constant-field assumption (uniform electric field across the membrane) and treats each ion's flux independently. Its power is dynamic: an action potential is just a momentary spike in P_Na that drags V_m from near E_K toward E_Na and back. Goldman (1943) with Hodgkin and Katz (1949) turned the resting potential from a mystery into a tunable permeability ratio."
+      },
+      "note": "At rest P_K ≫ P_Na, so the membrane 'votes' mostly for E_K; during a spike that ratio briefly inverts.",
+      "sources": [
+        "Goldman equation — Wikipedia (facts)",
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (constant-field equation legacy review)"
+      ],
+      "art_prompt": "a slider bar between E_K (-90 mV) and E_Na (+60 mV) with the resting marker pinned near E_K, labeled by permeability weights",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why does the resting potential sit near E_K rather than midway between E_K and E_Na?",
+          "answer": "At rest the membrane is far more permeable to K⁺ than to Na⁺, so K⁺ dominates the permeability-weighted average."
+        },
+        {
+          "level": "apply",
+          "prompt": "Using GHK reasoning, what happens to V_m if P_Na suddenly becomes much larger than P_K?",
+          "answer": "V_m is dragged toward E_Na (~+60 mV) — this is exactly the depolarizing phase of the action potential."
+        }
+      ]
+    },
+    {
+      "id": "resting-potential",
+      "title": "The resting membrane potential",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [
+        "goldman",
+        "ionic-gradients"
+      ],
+      "summary": "At rest a neuron sits near −70 mV, a dynamic steady state held by leak permeabilities and the pump, not a true equilibrium.",
+      "depths": {
+        "eli5": "Even when doing nothing, a neuron holds a steady voltage of about −70 mV inside. It's not truly still — ions leak constantly and a pump keeps refilling the battery to maintain it.",
+        "core": "The resting potential is the steady-state voltage where the net current across the membrane is zero. Because the resting membrane is most permeable to K⁺, V_m sits close to E_K (~ −90 mV) but is pulled to ~ −70 mV by a steady Na⁺ leak, exactly as the Goldman equation predicts. The Na⁺/K⁺ pump runs continuously to replace the leaked ions, so the resting state is a maintained non-equilibrium, not a passive resting point.",
+        "deep": "Crucially this is a steady state, not thermodynamic equilibrium: K⁺ and Na⁺ are each off their own Nernst potentials, so each leaks down its gradient, and the pump spends ATP to keep the gradients constant. The cell pays energy continuously just to stay still. This standing potential is the operating point from which depolarizations are measured and the baseline the action potential springs from."
+      },
+      "note": "Resting V_m is a steady state, not equilibrium — ions constantly leak and the pump constantly restores them, burning ATP to stand still.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "LibreTexts (physiology)",
+        "Wikipedia (facts)"
+      ],
+      "art_prompt": "a neuron membrane at -70 mV with small steady K+ and Na+ leak currents and the Na/K pump restoring them, marked as a maintained non-equilibrium steady state",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why does the resting potential sit between E_K and E_Na rather than at either one?",
+          "answer": "Because both ions are permeant; the membrane is dominated by K⁺ (so V_m is near E_K ≈ −90 mV) but a steady Na⁺ leak pulls it toward E_Na, settling around −70 mV per the Goldman equation."
+        },
+        {
+          "level": "apply",
+          "prompt": "Explain why the resting potential is a steady state and not a true equilibrium.",
+          "answer": "At rest each ion is off its own Nernst potential and leaks down its gradient; the Na⁺/K⁺ pump continuously spends ATP to replace the leaked ions, maintaining constant gradients — so the cell is held away from equilibrium, not at it."
+        }
+      ]
+    },
+    {
+      "id": "passive-cable",
+      "title": "Passive membrane & the cable equation",
+      "shell": "prereq",
+      "type": "equation",
+      "requires": [
+        "neuron-structure",
+        "goldman"
+      ],
+      "equation": "\\tau_m\\frac{\\partial V}{\\partial t} = \\lambda^2\\frac{\\partial^2 V}{\\partial x^2} - V",
+      "summary": "Below threshold a neuron behaves like a leaky cable, with characteristic time and length constants that smear and attenuate signals.",
+      "depths": {
+        "eli5": "A nerve fiber is a leaky garden hose: a voltage poured in at one end spreads out, weakens, and blurs over distance and time unless it's actively boosted.",
+        "core": "Passive (subthreshold) membrane is captured by RC and cable parameters: the membrane time constant τ_m = R_m·C_m sets how fast voltage follows a current step, and the length constant λ = √(R_m/R_i) sets how far a steady voltage spreads before decaying to 1/e. These set the spatial and temporal window over which a neuron integrates its synaptic inputs.",
+        "deep": "The cable equation is a diffusion equation with leak; it explains why distal dendritic inputs are attenuated before reaching the soma, why fat, myelinated axons (large λ) conduct passively faster, and why the action potential is needed at all — passive spread alone decays over millimeters. τ_m and λ are the 'pixel size' of dendritic integration in time and space."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40 (Introduction to Neural Computation)"
+      ],
+      "art_prompt": "a dendritic cable with an injected voltage bump decaying exponentially along its length, annotated with length constant lambda",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What do the membrane time constant τ_m and length constant λ each control?",
+          "answer": "τ_m sets how quickly membrane voltage responds in time (R_m·C_m); λ sets how far a steady voltage spreads in space before decaying to 1/e."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why can't passive cable spread alone carry a signal down a long axon?",
+          "answer": "Voltage decays exponentially over λ (millimeters), so over a long axon the signal would vanish — active regeneration via voltage-gated channels (the action potential) is required."
+        }
+      ]
+    },
+    {
+      "id": "voltage-gated-channels",
+      "title": "Voltage-gated ion channels",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "goldman"
+      ],
+      "summary": "Membrane proteins whose pores open and close in response to voltage, providing the nonlinearity that makes spikes possible.",
+      "depths": {
+        "eli5": "These are tiny doors in the membrane that sense the voltage and open or shut accordingly. Their opening is what lets the nerve signal feed on itself and explode into a spike.",
+        "core": "Voltage-gated Na⁺ and K⁺ channels carry charged voltage-sensor domains (the S4 helices) that move when the membrane depolarizes, opening the pore. Na⁺ channels open fast and then inactivate; K⁺ channels open more slowly and do not inactivate quickly. This kinetic difference — fast positive feedback then delayed negative feedback — is the engine of the action potential.",
+        "deep": "Selectivity comes from the pore's selectivity filter (the K⁺ channel's signature TVGYG sequence coordinates dehydrated K⁺ ions); gating is the voltage-sensor's coupling to the pore. Inactivation in Na⁺ channels is a separate 'ball-and-chain' mechanism that limits spike duration and enforces a refractory period, capping firing rate and giving spikes their all-or-none, one-way character."
+      },
+      "note": "Fast Na⁺ activation = positive feedback; delayed K⁺ activation + Na⁺ inactivation = negative feedback. That timing IS the spike.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (ion channel structure reviews)"
+      ],
+      "art_prompt": "a voltage-gated sodium channel with an S4 voltage sensor moving outward as the membrane depolarizes, pore opening then an inactivation gate swinging shut",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What kinetic difference between Na⁺ and K⁺ voltage-gated channels makes spikes possible?",
+          "answer": "Na⁺ channels activate fast and then inactivate; K⁺ channels activate slowly and don't inactivate quickly — giving fast positive feedback followed by delayed negative feedback."
+        },
+        {
+          "level": "apply",
+          "prompt": "What role does Na⁺-channel inactivation play in limiting neural firing?",
+          "answer": "It terminates the spike and produces the refractory period, preventing immediate re-firing and capping the maximum firing rate."
+        }
+      ]
+    },
+    {
+      "id": "action-potential",
+      "title": "The action potential",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "voltage-gated-channels",
+        "passive-cable",
+        "resting-potential"
+      ],
+      "summary": "An all-or-none, self-regenerating voltage spike that carries digital signals down the axon without loss.",
+      "depths": {
+        "eli5": "When the voltage at the trigger zone passes a threshold, a chain reaction fires: a sharp spike shoots up, then snaps back down, then travels along the axon like a wave of falling dominoes.",
+        "core": "A depolarization past threshold opens Na⁺ channels, whose inflow depolarizes further and opens more Na⁺ channels — runaway positive feedback driving V_m toward E_Na. Na⁺ inactivation and delayed K⁺ efflux then repolarize the membrane, often overshooting toward E_K (the after-hyperpolarization). The spike is all-or-none: amplitude carries no information, only its presence and timing do.",
+        "deep": "Because it regenerates at every patch of membrane, the spike propagates without attenuation — solving the passive-cable decay problem. The refractory period (set by Na⁺ inactivation) makes propagation one-way and discretizes the output into a point process. The action potential is the brain's analog-to-digital converter: graded dendritic integration in, discrete spike-time code out."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40"
+      ],
+      "art_prompt": "a single action potential trace with labeled phases (threshold, rising Na+ phase, peak, falling K+ phase, after-hyperpolarization) and a propagating wave down an axon",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What makes the action potential 'all-or-none' and why does this matter for coding?",
+          "answer": "Once threshold is crossed, the spike fires at full amplitude regardless of stimulus strength; therefore information is carried by spike timing and rate, not amplitude."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does the spike propagate down the axon without decaying, unlike a passive voltage?",
+          "answer": "It actively regenerates at each membrane patch via voltage-gated Na⁺ channels, so each segment re-triggers the next rather than just passively spreading and decaying."
+        }
+      ]
+    },
+    {
+      "id": "hodgkin-huxley",
+      "title": "The Hodgkin–Huxley model",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "action-potential"
+      ],
+      "equation": "C_m\\frac{dV}{dt} = -g_{Na}m^3h(V-E_{Na}) - g_{K}n^4(V-E_K) - g_L(V-E_L) + I",
+      "summary": "A quantitative conductance-based model that reconstructs the action potential from voltage- and time-dependent gating variables.",
+      "depths": {
+        "eli5": "Hodgkin and Huxley wrote down equations for how the tiny doors open and close, and the equations reproduce a real nerve spike almost exactly. It was the first time a thought-related signal was fully predicted by math.",
+        "core": "Using voltage-clamp data from the squid giant axon, Hodgkin and Huxley (1952) modeled the membrane as a capacitor in parallel with Na⁺, K⁺, and leak conductances. Each conductance depends on gating variables (m, h for Na⁺; n for K⁺) that follow first-order kinetics with voltage-dependent rate constants. Numerically integrating the four coupled equations reproduces the spike shape, threshold, refractoriness, and conduction velocity.",
+        "deep": "The exponents (m³h, n⁴) encode that multiple independent gating particles must be in the permissive state simultaneously, a remarkably accurate guess about subunit structure made decades before channels were sequenced. The model is the founding artifact of computational neuroscience: it showed a biological computation could be a system of differential equations, earning the 1963 Nobel and seeding every conductance-based simulator since."
+      },
+      "note": "m³h and n⁴ were inspired guesses about multiple gating particles — later vindicated by the four-domain / four-subunit channel architecture.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40",
+        "Wikipedia (facts)"
+      ],
+      "art_prompt": "an equivalent-circuit diagram of the membrane: capacitor parallel to three variable resistors (Na, K, leak) each in series with a battery, plus gating-variable curves m, h, n versus voltage",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What do the gating variables m, h, and n represent in the Hodgkin–Huxley model?",
+          "answer": "m and h are the activation and inactivation of the Na⁺ conductance; n is the activation of the K⁺ conductance. Each follows voltage-dependent first-order kinetics."
+        },
+        {
+          "level": "derive",
+          "prompt": "Conceptually, why does the Na⁺ current term use m³h while the K⁺ term uses n⁴?",
+          "answer": "Each represents the probability that several independent gating particles are simultaneously in the open/permissive state — three activating Na⁺ particles times one inactivation particle, and four activating K⁺ particles — matching the channels' multi-subunit structure.",
+          "eq": "g_{Na}=\\bar g_{Na}m^3h,\\quad g_K=\\bar g_K n^4"
+        }
+      ]
+    },
+    {
+      "id": "saltatory-conduction",
+      "title": "Myelin & saltatory conduction",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "action-potential",
+        "passive-cable"
+      ],
+      "summary": "Insulating myelin forces the spike to jump between nodes of Ranvier, vastly speeding conduction at low metabolic cost.",
+      "depths": {
+        "eli5": "Wrapping the axon in insulation lets the signal leap from gap to gap instead of crawling along every inch — much faster, like a stone skipping rather than rolling.",
+        "core": "Glial cells (oligodendrocytes in CNS, Schwann cells in PNS) wrap axons in myelin, raising membrane resistance and lowering capacitance between nodes of Ranvier. Voltage-gated Na⁺ channels cluster at the nodes; the spike regenerates only there and spreads passively (and fast) through the insulated internodes — so it appears to jump, or 'saltate', from node to node.",
+        "deep": "Myelin increases the passive length constant λ and decreases C_m, so passive spread between nodes is both farther and faster, while regeneration at nodes prevents decay. The result is conduction velocities up to ~120 m/s in large myelinated fibers versus ~1 m/s unmyelinated, with far fewer Na⁺ ions to pump back out — a striking joint optimization of speed and energy. Demyelination (e.g., multiple sclerosis) breaks this, slowing or blocking conduction."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (myelin physiology reviews)"
+      ],
+      "art_prompt": "a myelinated axon with Na+ channels clustered at the bare nodes of Ranvier, the spike shown leaping from node to node over insulated internodes",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Where are voltage-gated Na⁺ channels concentrated in a myelinated axon, and what does the spike do between them?",
+          "answer": "At the nodes of Ranvier; between nodes the spike spreads passively (fast) through the insulated internodes, jumping from node to node."
+        },
+        {
+          "level": "apply",
+          "prompt": "Give one speed and one energy reason myelination is advantageous.",
+          "answer": "Speed: larger λ and lower capacitance let passive spread between nodes be fast, raising conduction velocity. Energy: regenerating only at nodes means far fewer Na⁺ ions enter, so less ATP is needed to restore gradients."
+        }
+      ]
+    },
+    {
+      "id": "chemical-synapse",
+      "title": "The chemical synapse",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "action-potential",
+        "ionic-gradients"
+      ],
+      "summary": "At most synapses, a presynaptic spike triggers Ca²⁺-dependent neurotransmitter release that changes the postsynaptic cell's voltage.",
+      "depths": {
+        "eli5": "When a spike reaches the end of one neuron, it dumps chemical messengers across a tiny gap. Those chemicals land on the next neuron and nudge it toward or away from firing.",
+        "core": "The arriving spike opens voltage-gated Ca²⁺ channels at the terminal; Ca²⁺ influx triggers fusion of neurotransmitter-filled vesicles with the membrane (exocytosis). Transmitter diffuses across the ~20 nm cleft and binds postsynaptic receptors, opening ion channels and producing a graded postsynaptic potential — excitatory (EPSP) or inhibitory (IPSP). Transmission is unidirectional and introduces a ~0.5–1 ms synaptic delay.",
+        "deep": "Release is quantal: vesicles deliver fixed packets, so postsynaptic responses come in integer multiples (Katz's quantal hypothesis). Ca²⁺ is the trigger because the SNARE/synaptotagmin fusion machinery is Ca²⁺-sensing, making release steeply (≈ 4th-power) dependent on Ca²⁺ concentration. The chemical synapse is thus a chemically gated, plastic, sign-flippable relay — the unit of computation and learning, not just a wire."
+      },
+      "note": "Quantal release (Katz): postsynaptic responses are integer multiples of a single-vesicle 'quantum'.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01",
+        "PMC open-access (synaptic release reviews)"
+      ],
+      "art_prompt": "a synaptic terminal with Ca2+ entering, vesicles fusing and releasing transmitter into the cleft, receptors opening on the postsynaptic membrane producing an EPSP",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What ion triggers neurotransmitter release, and what event lets it into the terminal?",
+          "answer": "Ca²⁺; the arriving action potential opens voltage-gated Ca²⁺ channels at the presynaptic terminal."
+        },
+        {
+          "level": "apply",
+          "prompt": "What does it mean that synaptic transmission is 'quantal'?",
+          "answer": "Neurotransmitter is released in discrete packets (vesicles), so the postsynaptic response is an integer multiple of the response to a single vesicle's 'quantum'."
+        }
+      ]
+    },
+    {
+      "id": "electrical-synapse",
+      "title": "Electrical synapses & gap junctions",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "chemical-synapse"
+      ],
+      "summary": "Gap junctions directly couple neurons electrically, giving fast, bidirectional, near-instant signal transfer.",
+      "depths": {
+        "eli5": "Some neurons skip the chemical messengers and are wired together with direct tunnels, so current flows straight from one into the next — extremely fast.",
+        "core": "At electrical synapses, connexon hemichannels from two cells dock to form gap junctions: pores that let ions and small molecules pass directly between cytoplasms. Current flows with essentially no delay and usually in both directions, so coupled neurons depolarize nearly in lockstep — ideal for synchronizing populations and for escape reflexes where speed is critical.",
+        "deep": "Compared with chemical synapses, electrical synapses trade flexibility for speed: no synaptic delay, no sign inversion (they can't easily be inhibitory), and limited plasticity, but excellent for synchrony. Many networks mix both — gap junctions among inhibitory interneurons help generate coherent gamma oscillations, while chemical synapses do the heavy computational lifting."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (gap junction reviews)"
+      ],
+      "art_prompt": "two neurons joined by gap-junction channels (docked connexons) with current flowing directly between their cytoplasms and synchronized voltage traces",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name two functional differences between electrical and chemical synapses.",
+          "answer": "Electrical synapses have essentially no synaptic delay and are usually bidirectional; chemical synapses have a ~0.5–1 ms delay, are unidirectional, can be excitatory or inhibitory, and are highly plastic."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why are electrical synapses well suited to generating synchronized network oscillations?",
+          "answer": "Their fast, bidirectional coupling makes connected neurons depolarize nearly simultaneously, promoting coherent population rhythms."
+        }
+      ]
+    },
+    {
+      "id": "neurotransmitters-receptors",
+      "title": "Neurotransmitters & receptor types",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "chemical-synapse"
+      ],
+      "summary": "Transmitters act through fast ionotropic (channel) receptors and slow metabotropic (G-protein) receptors, setting a synapse's speed and sign.",
+      "depths": {
+        "eli5": "Different chemical messengers fit different locks on the next cell. Some locks open a door instantly; others trigger a slower chain of events inside the cell.",
+        "core": "Major transmitters include glutamate (the main excitatory transmitter), GABA and glycine (inhibitory), and modulators like acetylcholine, dopamine, serotonin, and norepinephrine. Ionotropic receptors (e.g., AMPA, NMDA, GABA_A) are ligand-gated channels giving millisecond responses; metabotropic receptors (e.g., mGluR, most dopamine/serotonin receptors) act via G proteins and second messengers over hundreds of milliseconds to minutes.",
+        "deep": "The sign of a synapse is set by the postsynaptic receptor, not the transmitter alone — glutamate opens cation channels (excitatory), GABA_A opens Cl⁻ channels (usually inhibitory). The NMDA receptor is special: it is both ligand- and voltage-gated (blocked by Mg²⁺ until depolarization), making it a molecular coincidence detector — the linchpin of Hebbian plasticity. Metabotropic signaling is the basis of slow neuromodulation that retunes whole circuits."
+      },
+      "note": "The receptor, not the transmitter, sets the synapse's sign and speed — same molecule can excite at one receptor and inhibit at another.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01"
+      ],
+      "art_prompt": "side-by-side ionotropic receptor (transmitter opening an ion channel directly) and metabotropic receptor (transmitter triggering a G-protein second-messenger cascade)",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the key functional difference between ionotropic and metabotropic receptors?",
+          "answer": "Ionotropic receptors are ligand-gated ion channels producing fast (millisecond) responses; metabotropic receptors act through G proteins and second messengers, giving slower, longer-lasting effects."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is the NMDA receptor described as a 'coincidence detector'?",
+          "answer": "It opens only when glutamate is bound AND the postsynaptic cell is depolarized enough to expel its Mg²⁺ block, so it signals the coincidence of presynaptic input and postsynaptic activity — the substrate for Hebbian learning."
+        }
+      ]
+    },
+    {
+      "id": "synaptic-integration",
+      "title": "Synaptic integration & spatiotemporal summation",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "chemical-synapse",
+        "passive-cable",
+        "neurotransmitters-receptors"
+      ],
+      "summary": "A neuron decides to fire by summing many graded EPSPs and IPSPs across its dendrites in space and time.",
+      "depths": {
+        "eli5": "A neuron adds up all the little nudges it receives — pushes toward firing and pulls away from it. If the total push at the trigger zone is big enough, it fires.",
+        "core": "Each synapse produces a small graded potential; the neuron sums them. Spatial summation adds inputs arriving at different sites simultaneously; temporal summation adds inputs arriving in quick succession (set by τ_m). Excitation and inhibition combine, and the net potential at the axon initial segment determines whether threshold is reached. A single synapse is usually far too weak alone.",
+        "deep": "Summation is not simply linear: dendritic nonlinearities (NMDA spikes, local active conductances) let a dendritic branch act as a sub-unit performing AND-like operations, so a neuron approximates a small multilayer network rather than a single summing point. Inhibition placed near the soma can veto distal excitation (shunting inhibition). This is where the cell's geometry becomes computation."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40"
+      ],
+      "art_prompt": "a dendritic tree receiving multiple EPSPs and IPSPs that sum spatially and temporally, with the running total compared against threshold at the axon hillock",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Distinguish spatial from temporal summation.",
+          "answer": "Spatial summation adds inputs from different locations arriving at the same time; temporal summation adds inputs at the same location arriving close together in time (within τ_m)."
+        },
+        {
+          "level": "apply",
+          "prompt": "How can dendritic nonlinearities make a single neuron compute more than a simple weighted sum?",
+          "answer": "Local active conductances (e.g., NMDA spikes) let individual dendritic branches perform AND-like or thresholding operations before the soma, so the cell behaves like a small multilayer network rather than one linear summing point."
+        }
+      ]
+    },
+    {
+      "id": "ltp-ltd",
+      "title": "Long-term potentiation & depression",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "neurotransmitters-receptors",
+        "synaptic-integration"
+      ],
+      "summary": "Synaptic strength can be persistently increased (LTP) or decreased (LTD) by patterns of activity — the cellular basis of memory.",
+      "depths": {
+        "eli5": "Use a connection a lot in the right way and it gets stronger and stays strong; use it the wrong way and it weakens. The brain rewires itself by adjusting these dial settings.",
+        "core": "At many glutamatergic synapses, high-frequency or coincident activity that strongly activates NMDA receptors lets Ca²⁺ into the postsynaptic spine, triggering insertion of more AMPA receptors and a lasting increase in synaptic strength (LTP). Lower, prolonged Ca²⁺ signals instead remove AMPA receptors, producing LTD. Both can persist for hours to a lifetime, satisfying the requirements for a memory trace.",
+        "deep": "The Ca²⁺ amplitude/timing acts as a switch: large, fast Ca²⁺ recruits CaMKII → LTP; modest, sustained Ca²⁺ recruits phosphatases → LTD (the BCM-like sliding threshold). Early LTP is post-translational (receptor trafficking); late LTP requires gene transcription and new protein synthesis, captured/tagged at activated synapses (synaptic tagging and capture). LTP/LTD are the mechanistic content of 'Hebbian learning' at real synapses."
+      },
+      "note": "Ca²⁺ is the decision variable: a big fast rise → LTP; a small sustained rise → LTD.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (LTP/LTD and CaMKII reviews)"
+      ],
+      "art_prompt": "a dendritic spine before and after LTP: NMDA-gated Ca2+ entry leading to more AMPA receptors inserted and a larger postsynaptic response",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What postsynaptic event distinguishes LTP induction from LTD induction at glutamatergic synapses?",
+          "answer": "A large, fast NMDA-mediated Ca²⁺ rise drives LTP (more AMPA receptors); a smaller, sustained Ca²⁺ rise drives LTD (fewer AMPA receptors)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does late-phase LTP, but not early LTP, require new protein synthesis?",
+          "answer": "Early LTP is implemented by trafficking existing AMPA receptors; making the change persist for many hours requires gene transcription and new proteins, captured at tagged active synapses."
+        }
+      ]
+    },
+    {
+      "id": "hebbian-learning",
+      "title": "Hebbian learning",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "ltp-ltd"
+      ],
+      "summary": "\"Neurons that fire together wire together\" — correlated pre- and postsynaptic activity strengthens their connection.",
+      "depths": {
+        "eli5": "If one neuron reliably helps make another fire, the brain takes the hint and tightens that link. Connections that predict activity get rewarded.",
+        "core": "Hebb's 1949 postulate: when neuron A repeatedly takes part in firing neuron B, the synapse from A to B is strengthened. Formally, the weight change is proportional to the product of pre- and postsynaptic activity, Δw ∝ x·y. This makes learning local (each synapse uses only its own signals) and correlation-based — the conceptual root of unsupervised learning in neural networks.",
+        "deep": "Pure Hebbian growth is unstable (weights run away), so real systems add normalization or a sliding threshold (the BCM rule) that subtracts an activity-dependent term, allowing both strengthening and weakening and yielding selectivity (e.g., ocular dominance, orientation tuning). NMDA-receptor-dependent LTP is the canonical biophysical implementation: it fires only on pre–post coincidence, exactly Hebb's condition."
+      },
+      "note": "'Fire together, wire together' is catchy but incomplete — without a depression term or normalization, Hebbian weights diverge.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40",
+        "Wikipedia (facts)"
+      ],
+      "art_prompt": "two neurons with a strengthening synapse between them, weight growing as their activity time-series become correlated, with a normalization clamp",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Hebb's rule in one line and write its simplest mathematical form.",
+          "answer": "If A helps fire B, strengthen A→B; the weight change is proportional to the product of pre- and postsynaptic activity, Δw ∝ x·y."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why must a learning rule add depression or normalization to a pure Hebbian term?",
+          "answer": "Pure Hebbian strengthening is positive-feedback and makes weights grow without bound; a depression term or normalization (e.g., BCM's sliding threshold) stabilizes weights and produces input selectivity."
+        }
+      ]
+    },
+    {
+      "id": "stdp",
+      "title": "Spike-timing-dependent plasticity",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "hebbian-learning",
+        "action-potential"
+      ],
+      "summary": "The sign and size of synaptic change depend on the millisecond timing between pre- and postsynaptic spikes.",
+      "depths": {
+        "eli5": "Timing is everything: if the input fires just before the cell does, the link strengthens; if it fires just after, the link weakens. The order, within milliseconds, decides.",
+        "core": "STDP is a temporally precise form of Hebbian learning. When the presynaptic spike precedes the postsynaptic spike by a few milliseconds, the synapse potentiates (LTP); when it follows, it depresses (LTD). Bi and Poo (1998) measured this 'STDP window': potentiation and depression each fall off exponentially with the spike-time difference Δt, with time constants of roughly 10–20 ms and essentially no effect beyond ~40–100 ms.",
+        "deep": "The asymmetry implements causal inference: inputs that help cause a spike are strengthened, inputs that arrive too late are weakened, so STDP can learn temporal sequences and predictive relationships. Mechanistically it rides on NMDA-receptor coincidence detection and the back-propagating action potential, which reports the postsynaptic spike back into the dendrites. STDP is a leading biological model for how networks self-organize without an external teacher."
+      },
+      "note": "Pre-before-post → strengthen (causal); post-before-pre → weaken (anti-causal). The window is only tens of milliseconds wide.",
+      "sources": [
+        "Spike-timing-dependent plasticity — Wikipedia (facts)",
+        "PMC open-access (Bi & Poo; STDP reviews)",
+        "MIT OCW 9.40"
+      ],
+      "art_prompt": "the classic STDP curve: weight change on the y-axis versus pre-minus-post spike timing Δt, positive exponential lobe for negative Δt and negative exponential lobe for positive Δt",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In canonical STDP, what timing produces potentiation versus depression?",
+          "answer": "Presynaptic spike a few ms before the postsynaptic spike → potentiation (LTP); presynaptic spike after the postsynaptic spike → depression (LTD), each decaying over tens of milliseconds."
+        },
+        {
+          "level": "derive",
+          "prompt": "Explain why STDP's asymmetry lets a neuron learn causal/predictive relationships.",
+          "answer": "Inputs that consistently precede (and thus could cause) the neuron's spike are strengthened, while inputs arriving after are weakened — so the synapse comes to favor inputs that predict the postsynaptic firing, capturing temporal causality."
+        }
+      ]
+    },
+    {
+      "id": "neural-coding",
+      "title": "Neural coding: rate vs temporal codes",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "action-potential"
+      ],
+      "summary": "Information can be carried by how fast neurons fire (rate code) or by the precise timing of individual spikes (temporal code).",
+      "depths": {
+        "eli5": "Neurons can shout louder by firing more often, or send a message in the exact rhythm of their spikes. Both can carry information, and the brain uses each in different places.",
+        "core": "A rate code represents a stimulus by the average firing rate over some window — robust to noise but slow and discarding spike-time detail. A temporal code uses the precise timing or relative latency of spikes, carrying more information per spike and supporting fast responses. Real neurons often use both: rate for slowly varying signals, timing (e.g., phase relative to an oscillation) for fast or relational information.",
+        "deep": "The choice is constrained by reliability and downstream readout: rate codes need integration time but tolerate jitter; temporal codes are information-dense but require precise, reliable spiking and timing-sensitive readers (like coincidence detectors). Phase-of-firing codes (e.g., hippocampal theta phase precession) and first-spike-latency codes show the brain exploiting timing where speed or capacity demands it."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40",
+        "PMC open-access (neural coding reviews)"
+      ],
+      "art_prompt": "two spike trains for the same stimulus: one varying its firing rate (rate code) and one with identical rate but informative precise spike times (temporal code)",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the basic difference between a rate code and a temporal code?",
+          "answer": "A rate code carries information in the average firing rate over a window; a temporal code carries it in the precise timing or relative latency of individual spikes."
+        },
+        {
+          "level": "apply",
+          "prompt": "Give one advantage of a temporal code and one cost compared with a rate code.",
+          "answer": "Advantage: more information per spike and faster transmission. Cost: it requires reliable, precisely timed spiking and timing-sensitive downstream readers, making it more fragile to noise."
+        }
+      ]
+    },
+    {
+      "id": "population-coding",
+      "title": "Population & distributed coding",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neural-coding"
+      ],
+      "summary": "Many noisy neurons together represent a variable more accurately than any single cell, often via overlapping tuning curves.",
+      "depths": {
+        "eli5": "One neuron is a noisy guesser, but a crowd of differently-tuned neurons votes, and the average is sharp. Meaning lives in the pattern across many cells, not in any one.",
+        "core": "Population coding represents a stimulus by the joint activity of many neurons, each with a tuning curve (preferred direction, orientation, frequency, etc.). Averaging across the population cancels independent noise, and a population vector or maximum-likelihood readout can recover the encoded value with precision far beyond a single cell. Distributed codes are also robust to the loss of individual neurons.",
+        "deep": "Georgopoulos's population-vector showed motor cortex encodes arm direction as a vector sum of cells' preferred directions; more generally, optimal readout depends on the structure of correlated noise — correlations aligned with the signal limit information, those orthogonal to it do not. Sparse-distributed codes balance capacity, energy, and decodability, which is why neither grandmother cells nor fully dense codes dominate."
+      },
+      "note": "The population vector: each neuron 'votes' along its preferred stimulus, weighted by its firing rate; the vector sum is the estimate.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40",
+        "PMC open-access (population coding reviews)"
+      ],
+      "art_prompt": "overlapping bell-shaped tuning curves of many neurons, with their weighted preferred-direction vectors summing to recover the true stimulus direction",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why can a population of neurons represent a variable more precisely than any single neuron?",
+          "answer": "Averaging across many cells with overlapping tuning curves cancels their independent noise, so the population estimate is far sharper than a single noisy neuron's."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does the population-vector readout estimate, say, arm movement direction?",
+          "answer": "Each neuron contributes a vector along its preferred direction scaled by its firing rate; the vector sum across the population points in the estimated movement direction."
+        }
+      ]
+    },
+    {
+      "id": "neural-circuits",
+      "title": "Neural circuits: excitation, inhibition & motifs",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "synaptic-integration",
+        "electrical-synapse"
+      ],
+      "summary": "Neurons wire into recurring circuit motifs — feedforward and feedback inhibition, lateral inhibition, recurrence — that perform stereotyped computations.",
+      "depths": {
+        "eli5": "Neurons connect in repeating little wiring patterns, like Lego pieces. Each pattern does a job: sharpening signals, keeping activity balanced, or holding a memory.",
+        "core": "Circuits are built from a few canonical motifs. Feedforward inhibition sets precise timing windows; feedback (recurrent) inhibition stabilizes and normalizes activity; lateral inhibition sharpens contrast between neighbors; recurrent excitation can sustain activity (working memory) or amplify weak inputs. The interplay of excitation and inhibition (E/I balance) keeps networks operating in a sensitive, non-saturated regime.",
+        "deep": "Inhibition is not just 'off' — it implements division (gain control / normalization), gates information flow, generates oscillations, and creates winner-take-all dynamics. Tight E/I balance produces irregular, asynchronous firing that is both energy-efficient and highly responsive (operating near a dynamical critical point). These motifs are the brain's reusable subroutines, recurring from retina to cortex."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40",
+        "PMC open-access (cortical microcircuit reviews)"
+      ],
+      "art_prompt": "a small circuit diagram showing feedforward inhibition, feedback inhibition, and lateral inhibition motifs side by side with excitatory and inhibitory neurons distinguished",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does lateral inhibition compute, and where is it classically seen?",
+          "answer": "It sharpens contrast by having active neurons suppress their neighbors — classically seen in the retina (and other sensory maps), enhancing edges and boundaries."
+        },
+        {
+          "level": "apply",
+          "prompt": "Beyond simply silencing neurons, name two computational roles inhibition plays.",
+          "answer": "Gain control/normalization (divisive scaling), precise timing windows, generation of oscillations, and winner-take-all selection — any two of these."
+        }
+      ]
+    },
+    {
+      "id": "working-memory",
+      "title": "Working memory & persistent activity",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neural-circuits",
+        "synaptic-integration"
+      ],
+      "summary": "Holding information in mind for seconds may be implemented by recurrent excitation that sustains activity after a stimulus is gone.",
+      "depths": {
+        "eli5": "To keep a phone number in mind for a few seconds, a group of neurons keeps firing on its own after you stop hearing it — like an echo the brain holds active on purpose.",
+        "core": "Working memory is the brief, active maintenance and manipulation of information (the prefrontal 'mental sketchpad'). A classic mechanism is persistent neuronal activity: during the delay of a memory task, prefrontal neurons keep firing for the remembered item even with no stimulus present. Recurrent excitatory loops, balanced by inhibition, form attractor states that hold the memory; the same recurrence that sustains activity also makes it vulnerable to distraction.",
+        "deep": "Attractor-network models implement this as stable bumps of activity in a recurrent network (continuous attractors for analog quantities, discrete attractors for categories), tuned near a bifurcation so a transient input can switch the state on and off. Newer evidence suggests memories can also be held in 'activity-silent' form via short-term synaptic changes, reactivated when probed — so persistent firing may be one of several substrates. Working memory is the bridge from circuit dynamics to cognition and the gateway many theories link to conscious access."
+      },
+      "note": "Persistent delay-period firing in prefrontal cortex is the classic substrate; 'activity-silent' synaptic traces are a newer, complementary mechanism.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.40",
+        "PMC open-access (working memory & attractor reviews)"
+      ],
+      "art_prompt": "a recurrent prefrontal network sustaining a stable bump of persistent activity through a blank delay period after a cue disappears, with inhibition keeping it bounded",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What neural phenomenon classically implements short-term maintenance of an item in working memory?",
+          "answer": "Persistent (delay-period) activity — prefrontal neurons continue firing for the remembered item even after the stimulus is gone, sustained by recurrent excitation."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why are attractor networks a natural model for working memory, and what is their tradeoff?",
+          "answer": "Recurrent excitation balanced by inhibition forms stable activity states (attractors) that persist without input; the tradeoff is that the same recurrence makes the held state susceptible to distractor inputs and drift."
+        }
+      ]
+    },
+    {
+      "id": "sensory-transduction",
+      "title": "Sensory transduction",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "voltage-gated-channels",
+        "goldman"
+      ],
+      "summary": "Receptor cells convert physical stimuli — light, sound, pressure, chemicals — into graded electrical signals.",
+      "depths": {
+        "eli5": "Your senses are translators: the eye turns light into electricity, the ear turns vibrations into electricity, the skin turns pressure into electricity. Everything the brain knows arrives as voltage.",
+        "core": "Each sense has a specialized transduction mechanism that opens or closes ion channels. Phototransduction in rods/cones uses a G-protein cascade (rhodopsin → transducin → PDE → cGMP drop → channel closure). Hair cells in the cochlea open mechanically gated channels when their stereocilia bend. Mechanoreceptors and chemoreceptors gate channels by force or ligand binding. The output is a graded receptor potential proportional to stimulus intensity.",
+        "deep": "Transduction sets the dynamic range and sensitivity of perception: phototransduction's enzyme cascade gives enormous amplification (one photon → measurable current) at the cost of speed, while hair-cell mechanotransduction is direct and microsecond-fast for sound localization. Adaptation at the transduction step (e.g., calcium feedback) lets receptors operate across many orders of magnitude of intensity."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01"
+      ],
+      "art_prompt": "three sensory receptors side by side — a photoreceptor with its cGMP cascade, a hair cell with bending stereocilia opening channels, and a mechanoreceptor — each producing a graded receptor potential",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does sensory transduction produce, and how does it relate to stimulus intensity?",
+          "answer": "It produces a graded receptor potential whose size scales with stimulus intensity, by opening or closing ion channels in the receptor cell."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is phototransduction slow but extremely sensitive, while hair-cell transduction is fast?",
+          "answer": "Phototransduction uses a multi-step enzyme cascade that amplifies a single photon enormously but takes time; hair cells use direct mechanical gating of channels, which is fast enough for microsecond sound timing but with less amplification."
+        }
+      ]
+    },
+    {
+      "id": "receptive-fields",
+      "title": "Receptive fields",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "sensory-transduction",
+        "neural-circuits"
+      ],
+      "summary": "A sensory neuron responds only to stimuli in a specific region and pattern — its receptive field — built by circuit wiring.",
+      "depths": {
+        "eli5": "Each sensory neuron has a favorite spot and a favorite pattern. Show it the right thing in the right place and it fires; otherwise it stays quiet.",
+        "core": "A receptive field is the region of sensory space (and the stimulus pattern within it) that drives a neuron. Retinal ganglion and LGN cells have center-surround fields (built by lateral inhibition) that detect local contrast. Hubel and Wiesel showed primary visual cortex neurons have oriented receptive fields — simple cells respond to edges at a specific orientation and position, built by aligning several center-surround inputs.",
+        "deep": "Receptive fields are the brain's learned feature detectors: center-surround approximates a Laplacian (edge/contrast) filter; oriented simple-cell fields resemble Gabor functions, an efficient sparse code for natural-image statistics. The progression center-surround → oriented edges is the first step of a hierarchy, and it is essentially the operation a convolutional network's first layers reproduce."
+      },
+      "note": "Hubel & Wiesel (1981 Nobel): cortical simple cells are built by aligning LGN center-surround inputs along an axis → orientation tuning.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01",
+        "PMC open-access (visual receptive field reviews)"
+      ],
+      "art_prompt": "a retinal center-surround receptive field next to a cortical oriented (Gabor-like) receptive field, with arrows showing several center-surround fields aligned to build the oriented one",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What stimulus best drives a center-surround retinal ganglion cell versus a cortical simple cell?",
+          "answer": "A center-surround cell is driven by local contrast (a spot in the center against the surround); a simple cell is driven by an edge or bar at a specific orientation and position."
+        },
+        {
+          "level": "apply",
+          "prompt": "How did Hubel and Wiesel propose oriented cortical receptive fields are built?",
+          "answer": "By aligning several center-surround (LGN) inputs along a line, so the cortical cell responds best to an edge oriented along that line."
+        }
+      ]
+    },
+    {
+      "id": "hierarchical-processing",
+      "title": "Hierarchical sensory processing",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "receptive-fields",
+        "population-coding"
+      ],
+      "summary": "Sensory systems build increasingly abstract representations through successive stages, each pooling simpler features into more complex ones.",
+      "depths": {
+        "eli5": "Vision is built in layers: first edges, then corners and textures, then shapes, then whole objects and faces. Each level combines pieces from the level below.",
+        "core": "Along the visual ventral stream (V1 → V2 → V4 → IT), receptive fields grow larger and selectivity grows more abstract — from oriented edges, to contours and textures, to object parts, to whole objects and faces — with increasing invariance to position and size. The same feedforward-pooling principle recurs across sensory modalities and is the architectural inspiration for deep convolutional networks.",
+        "deep": "The hierarchy trades spatial detail for abstraction and invariance, achieved by alternating selectivity-increasing (AND-like, template-matching) and invariance-increasing (OR-like, pooling) stages — the simple/complex-cell idea generalized. Crucially the brain's hierarchy is not purely feedforward: abundant feedback connections carry context and predictions downward, which deep predictive-coding models try to capture."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01",
+        "PMC open-access (ventral stream reviews)"
+      ],
+      "art_prompt": "a feedforward stack from V1 oriented edges, to V4 shapes, to IT whole-object/face selectivity, with receptive fields growing and feedback arrows running downward",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How do receptive field size and selectivity change along the visual ventral stream?",
+          "answer": "Receptive fields grow larger and selectivity becomes more abstract and position/size-invariant — from edges in V1 to whole objects and faces in IT."
+        },
+        {
+          "level": "apply",
+          "prompt": "What two complementary operations let a hierarchy gain both selectivity and invariance?",
+          "answer": "Selectivity-increasing (AND-like template matching) stages and invariance-increasing (OR-like pooling) stages alternating — the simple/complex-cell scheme generalized."
+        }
+      ]
+    },
+    {
+      "id": "motor-control",
+      "title": "Motor control & the motor hierarchy",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neural-circuits",
+        "population-coding"
+      ],
+      "summary": "Movement is produced by a hierarchy from cortical planning through spinal circuits to motor units, with feedback correction throughout.",
+      "depths": {
+        "eli5": "To move, your brain plans the goal up top, the spinal cord handles reflexes and patterns below, and muscles do the work — while constant feedback fixes errors on the fly.",
+        "core": "The final common path is the motor unit: a motor neuron and the muscle fibers it controls; force is graded by recruiting more units and firing them faster. Spinal circuits implement reflexes and central pattern generators (e.g., locomotion). Motor and premotor cortex plan and select movements; the cerebellum and basal ganglia tune timing, coordination, and action selection. Sensory feedback and predictions (forward models) correct movement in flight.",
+        "deep": "Control theory frames this well: the brain runs internal forward models that predict the sensory consequences of motor commands, enabling fast correction despite long feedback delays and explaining why self-generated sensations are attenuated (you can't tickle yourself). Population activity in motor cortex is well described by low-dimensional dynamics that generate muscle commands, a 'dynamical systems' view that has displaced simple direct-coding pictures."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01",
+        "PMC open-access (motor control reviews)"
+      ],
+      "art_prompt": "a motor hierarchy diagram: cortex planning, basal ganglia and cerebellum tuning, spinal CPGs and reflexes, motor units at muscles, with feedback and forward-model loops",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is a motor unit and how is muscle force graded?",
+          "answer": "A motor unit is a single motor neuron plus the muscle fibers it innervates; force is graded by recruiting more motor units and increasing their firing rate."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does the brain need internal forward models for movement?",
+          "answer": "Sensory feedback is delayed, so the brain predicts the sensory consequences of its motor commands to correct movements quickly and to distinguish self-generated from external sensations."
+        }
+      ]
+    },
+    {
+      "id": "hippocampus-memory",
+      "title": "Hippocampus & declarative memory",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "ltp-ltd"
+      ],
+      "summary": "The hippocampus is required to form new conscious (declarative) memories and supports spatial mapping via place cells.",
+      "depths": {
+        "eli5": "The hippocampus is the brain's 'save' button for new facts and events. Damage it and you can still remember your childhood but can't make new lasting memories. It also acts like an inner GPS.",
+        "core": "Patient H.M., who lost both hippocampi, could not form new declarative (episodic/semantic) memories yet kept old memories and could learn motor skills — showing the hippocampus is needed to encode new conscious memories but is not their final store. The hippocampus also contains place cells (O'Keefe) that fire at specific locations, forming a cognitive map; grid cells in entorhinal cortex provide a metric.",
+        "deep": "The hippocampus binds the elements of an event into a rapidly formed conjunctive code (pattern separation in dentate gyrus, pattern completion in CA3 recurrent networks), heavily reliant on NMDA-dependent LTP. The same circuitry replays experience during sharp-wave ripples in rest/sleep, the proposed engine of transfer to neocortex. Place/grid cells suggest the memory system and the spatial system share machinery — memory as navigation through a represented space."
+      },
+      "note": "H.M. dissociates declarative (hippocampus-dependent) from procedural memory; O'Keefe + the Mosers (2014 Nobel) found place and grid cells.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01",
+        "PMC open-access (hippocampus & memory reviews)"
+      ],
+      "art_prompt": "a hippocampal circuit (dentate gyrus, CA3 recurrent net, CA1) with place-cell firing fields tiling an arena and a sharp-wave-ripple replay event",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What did patient H.M. reveal about the hippocampus's role in memory?",
+          "answer": "It is required to form new declarative (episodic/semantic) memories but not for retaining old memories or for learning motor/procedural skills."
+        },
+        {
+          "level": "apply",
+          "prompt": "How do place cells and pattern separation/completion let the hippocampus store distinct episodes?",
+          "answer": "Place cells and dentate pattern separation give each experience a distinct sparse code, while CA3 recurrent pattern completion lets a partial cue retrieve the whole stored pattern."
+        }
+      ]
+    },
+    {
+      "id": "memory-consolidation",
+      "title": "Systems consolidation",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "hippocampus-memory",
+        "stdp"
+      ],
+      "summary": "Memories initially dependent on the hippocampus are gradually stabilized into distributed neocortical stores, especially during sleep.",
+      "depths": {
+        "eli5": "A new memory starts fragile and hippocampus-dependent, then over days to years gets copied into the rest of the cortex so it survives on its own — and sleep helps do the copying.",
+        "core": "Systems consolidation is the slow reorganization by which a memory becomes independent of the hippocampus and is stored in distributed neocortical networks. The standard model: the hippocampus rapidly binds an experience, then repeatedly reactivates ('replays') it — prominently during slow-wave sleep — training cortical synapses until the cortical trace can stand alone. This is distinct from synaptic consolidation (the hours-long protein-synthesis stabilization of individual synapses).",
+        "deep": "Replay during sharp-wave ripples, coordinated with cortical slow oscillations and thalamic spindles, is the proposed teaching signal; the hippocampus acts as a fast learner that interleaves memories into a slow cortical learner to avoid catastrophic interference (complementary learning systems). Reconsolidation shows recalled memories can become labile again — consolidation is not strictly one-way, and memories can be updated."
+      },
+      "note": "Complementary learning systems: a fast hippocampal learner trains a slow cortical learner via replay, avoiding catastrophic forgetting — a key idea borrowed back into AI.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (consolidation & sleep reviews)"
+      ],
+      "art_prompt": "a timeline of a memory trace moving from a hippocampal hub to a distributed cortical web, with sleep replay arrows (ripples plus slow oscillations) doing the transfer",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the difference between synaptic consolidation and systems consolidation?",
+          "answer": "Synaptic consolidation stabilizes individual synapses over hours via protein synthesis; systems consolidation reorganizes a memory over days–years from hippocampus-dependent to distributed neocortical storage."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why is interleaved hippocampal replay during sleep useful for the cortex?",
+          "answer": "Slow, interleaved replay trains the cortex gradually so new memories are integrated without overwriting old ones, avoiding catastrophic interference."
+        }
+      ]
+    },
+    {
+      "id": "attention",
+      "title": "Attention & selective processing",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neural-circuits",
+        "hierarchical-processing"
+      ],
+      "summary": "Limited processing resources are allocated to behaviorally relevant stimuli by enhancing some signals and suppressing others.",
+      "depths": {
+        "eli5": "Your brain can't fully process everything at once, so it turns up the volume on what matters and turns down the rest — that spotlight is attention.",
+        "core": "Attention can be driven bottom-up by salient stimuli or directed top-down by goals. Its neural signature is gain modulation: attended stimuli evoke stronger, more reliable responses in sensory neurons, with competing stimuli suppressed (biased competition). Frontoparietal networks send top-down control signals; the effect appears as enhanced firing, sharpened tuning, and reduced noise correlations for attended features.",
+        "deep": "A leading account is normalization-based: attention scales the gain within a divisive-normalization circuit, so its effect (multiplicative vs additive, contrast-dependent) depends on stimulus and field size. Attention also modulates oscillatory coherence (e.g., gamma synchrony) to route information between areas. It is the gatekeeper deciding which representations reach the capacity-limited stage that many link to conscious access."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "MIT OCW 9.01",
+        "PMC open-access (attention & normalization reviews)"
+      ],
+      "art_prompt": "two competing stimuli in a receptive field with an attention spotlight boosting the attended one's response and suppressing the other, plus frontoparietal control arrows",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the typical neural signature of attention on a sensory neuron's response?",
+          "answer": "Gain modulation: stronger, more reliable, often more sharply tuned responses to attended stimuli, with suppression of competing unattended stimuli (biased competition)."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does the normalization model explain why attention's effect can look multiplicative or additive?",
+          "answer": "Attention scales gain within a divisive-normalization circuit, so the measured effect depends on stimulus contrast and the size of the stimulus relative to the receptive field."
+        }
+      ]
+    },
+    {
+      "id": "perception-inference",
+      "title": "Perception as inference",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "hierarchical-processing",
+        "population-coding"
+      ],
+      "summary": "Perception is the brain's best guess about the world's causes given ambiguous sensory data — unconscious inference.",
+      "depths": {
+        "eli5": "Your senses give incomplete, blurry clues, so your brain fills in the most likely story. What you see is partly a well-educated guess, which is why illusions work.",
+        "core": "Sensory input underdetermines the world (the inverse problem: many scenes produce the same retinal image), so the brain must infer causes using prior knowledge — Helmholtz's 'unconscious inference.' Cue combination is famously near-Bayes-optimal: humans weight visual and haptic estimates by their reliabilities, exactly as a statistically ideal observer would, demonstrating the brain effectively computes with probabilities.",
+        "deep": "Formally, perception approximates posterior inference: combine the likelihood (sensory evidence) with a prior (expectations/statistics of natural scenes) to estimate the most probable cause. Illusions, bistable percepts, and context effects are then not bugs but signatures of priors and of competing hypotheses. This 'Bayesian brain' framing is the bridge from receptive fields and population codes to predictive coding and theories of conscious content."
+      },
+      "note": "Optimal cue combination: the brain weights each sense by its reliability (inverse variance) — measurable evidence that perception is probabilistic.",
+      "sources": [
+        "MIT OCW 9.01",
+        "PMC open-access (Bayesian perception / cue combination reviews)",
+        "Wikipedia (facts)"
+      ],
+      "art_prompt": "an ambiguous image (e.g., a Necker cube or hollow-face) with a Bayesian diagram combining a sensory likelihood and a prior into a posterior percept",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why must perception involve inference rather than direct readout?",
+          "answer": "Sensory data underdetermine the world (the inverse problem) — many physical causes produce the same input — so the brain must infer the most probable cause using priors."
+        },
+        {
+          "level": "derive",
+          "prompt": "In Bayesian terms, how does optimal cue combination weight two noisy sensory estimates?",
+          "answer": "Each estimate is weighted in proportion to its reliability (inverse variance), so the more reliable cue dominates; the combined estimate has lower variance than either alone.",
+          "eq": "\\hat s=\\frac{\\sigma_2^2}{\\sigma_1^2+\\sigma_2^2}s_1+\\frac{\\sigma_1^2}{\\sigma_1^2+\\sigma_2^2}s_2"
+        }
+      ]
+    },
+    {
+      "id": "neural-oscillations",
+      "title": "Neural oscillations & synchrony",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neural-circuits",
+        "electrical-synapse"
+      ],
+      "summary": "Coordinated rhythmic activity across populations organizes timing, communication, and plasticity in the brain.",
+      "depths": {
+        "eli5": "Groups of neurons fall into shared rhythms, like a crowd clapping in time. These rhythms help different brain areas talk at the right moments.",
+        "core": "Brain rhythms span bands — delta, theta, alpha, beta, gamma — generated largely by interactions between excitatory cells and fast inhibitory interneurons (often gap-junction coupled). Oscillations provide reference clocks: they create windows of excitability, organize spike timing (e.g., theta-phase coding in hippocampus), and may route information by aligning the rhythms of communicating areas ('communication through coherence').",
+        "deep": "Gamma (~30–80 Hz) typically arises from E–I or I–I loops with a characteristic feedback delay; cross-frequency coupling (e.g., gamma amplitude nested in theta phase) can multiplex multiple items in working memory. Oscillatory phase gates STDP-relevant coincidences, tying network rhythms back to synaptic learning. Whether oscillations are causal mechanisms or epiphenomena of balanced E/I dynamics remains actively debated."
+      },
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (neural oscillation reviews)",
+        "MIT OCW 9.40"
+      ],
+      "art_prompt": "layered LFP traces in delta/theta/alpha/beta/gamma bands with spikes phase-locked to the rhythm, and two areas synchronizing their gamma to communicate",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What circuit interaction predominantly generates gamma oscillations?",
+          "answer": "Interactions between excitatory neurons and fast inhibitory interneurons (E–I or I–I loops), often supported by gap-junction coupling, with a characteristic feedback delay."
+        },
+        {
+          "level": "apply",
+          "prompt": "State the 'communication through coherence' idea in one sentence.",
+          "answer": "Two areas exchange information effectively when their oscillations are coherent, so that one area's outputs arrive during the other's windows of high excitability."
+        }
+      ]
+    },
+    {
+      "id": "neuromodulation",
+      "title": "Neuromodulation & global brain states",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neurotransmitters-receptors"
+      ],
+      "summary": "Diffuse systems (dopamine, acetylcholine, serotonin, norepinephrine) reconfigure whole networks, signaling reward, arousal, and uncertainty.",
+      "depths": {
+        "eli5": "A few small groups of neurons spray chemicals broadly across the brain, changing its overall mood and mode — alert vs drowsy, learning vs ignoring, exploring vs exploiting.",
+        "core": "Neuromodulators are released by small nuclei but broadcast widely, acting mostly through slow metabotropic receptors to change gain, excitability, and plasticity rather than carrying fast point-to-point signals. Dopamine neurons signal reward prediction error (better-than-expected → burst, worse → dip); acetylcholine and norepinephrine set arousal and signal expected vs unexpected uncertainty; serotonin influences mood, patience, and learning rate.",
+        "deep": "The dopamine reward-prediction-error signal (Schultz) matches the temporal-difference error of reinforcement learning, making it the clearest case of a brain signal implementing a known learning algorithm — and the bridge to model-free RL in AI. Neuromodulators effectively set the brain's hyperparameters (learning rate, exploration, signal-to-noise), switching it between states like attentive learning, memory replay, and sleep."
+      },
+      "note": "Dopamine ≈ temporal-difference reward prediction error (Schultz) — a biological match to a core reinforcement-learning signal.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves)",
+        "PMC open-access (dopamine RPE & neuromodulation reviews)",
+        "MIT OCW 9.01"
+      ],
+      "art_prompt": "a small midbrain dopamine nucleus broadcasting axons across the whole cortex, with a reward-prediction-error spike/dip trace beside expected and unexpected rewards",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the phasic firing of midbrain dopamine neurons signal?",
+          "answer": "A reward prediction error: a burst when reward is better than expected and a dip when it is worse than expected."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why are neuromodulators described as setting the brain's 'hyperparameters'?",
+          "answer": "They broadly and slowly adjust gain, learning rate, exploration, and arousal across many circuits, switching the brain between global states rather than transmitting specific fast signals."
+        }
+      ]
+    },
+    {
+      "id": "integrate-and-fire",
+      "title": "Integrate-and-fire neuron models",
+      "shell": "frontier",
+      "type": "equation",
+      "requires": [
+        "hodgkin-huxley",
+        "synaptic-integration"
+      ],
+      "equation": "\\tau_m\\frac{dV}{dt} = -(V-V_{rest}) + R\\,I(t),\\quad \\text{spike if } V \\geq V_{th}\\to V\\leftarrow V_{reset}",
+      "summary": "A minimal spiking model that keeps the essence — integrate inputs, fire at threshold, reset — while discarding channel detail.",
+      "depths": {
+        "eli5": "Treat a neuron like a leaky cup filling with water: inputs pour in, it leaks out, and when it overflows it 'spikes' and empties. Simple, but it captures the key behavior.",
+        "core": "The leaky integrate-and-fire (LIF) neuron models the membrane as an RC circuit: it integrates input current toward a steady value, leaks with time constant τ_m, and emits a spike whenever V reaches threshold V_th, then resets. It throws away the spike's shape (which carries no information anyway) but keeps subthreshold integration and threshold crossing, making it analytically tractable and cheap to simulate at network scale.",
+        "deep": "LIF is the workhorse of network and computational neuroscience: it gives closed-form f–I curves, supports analysis of balanced networks and irregular firing, and underlies spiking neural network models and neuromorphic hardware. Extensions (adaptive exponential, Izhikevich) add adaptation and bursting cheaply, recovering much Hodgkin–Huxley richness without integrating channel kinetics — the right abstraction level for asking network-scale questions."
+      },
+      "note": "The spike waveform is stereotyped and carries no information, so LIF deletes it and keeps only its timing — the right thing to abstract away.",
+      "sources": [
+        "MIT OCW 9.40",
+        "PMC open-access (spiking neuron model reviews)",
+        "Wikipedia (facts)"
+      ],
+      "art_prompt": "an RC-circuit neuron with input current charging the membrane toward threshold, a spike emitted at V_th, and an instantaneous reset — beside a leaky-bucket analogy",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does a leaky integrate-and-fire neuron keep and what does it discard relative to Hodgkin–Huxley?",
+          "answer": "It keeps subthreshold integration (RC dynamics), the firing threshold, and reset; it discards the detailed spike waveform and channel gating kinetics."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why is discarding the spike shape a defensible simplification for studying coding?",
+          "answer": "The action potential is stereotyped and all-or-none, so its waveform carries no information — only its timing does — making spike times the quantity worth modeling."
+        }
+      ]
+    },
+    {
+      "id": "neuronal-dynamics",
+      "title": "Neurons as dynamical systems",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "integrate-and-fire",
+        "hodgkin-huxley"
+      ],
+      "summary": "The diversity of firing patterns — tonic, bursting, resonating — emerges from the bifurcation structure of a neuron's nonlinear dynamics.",
+      "depths": {
+        "eli5": "A neuron isn't just a leaky bucket — it can fire steadily, fire in bursts, or only respond to inputs at a preferred rhythm. These behaviors come from the math of how its dynamics tip over from quiet to spiking.",
+        "core": "Treating a neuron as a low-dimensional nonlinear dynamical system explains its firing repertoire from a few variables. The transition from rest to spiking is a bifurcation, and which bifurcation a neuron has determines its 'class': integrators (saddle-node) start firing at arbitrarily low rates, while resonators (Hopf) have a preferred input frequency and a minimum firing rate. Reduced models like Izhikevich's two-variable equations reproduce most known cortical firing types at the cost of one integrate-and-fire neuron.",
+        "deep": "This dynamical-systems view (FitzHugh–Nagumo, Izhikevich) replaces taxonomy with mechanism: bursting arises from a fast spiking subsystem modulated by a slow variable; resonance and subthreshold oscillations make some neurons band-pass filters in time, biasing them toward specific input rhythms and toward STDP at those frequencies. The same lens scales up: networks have their own attractors, limit cycles, and bifurcations, making low-dimensional dynamics — not single spikes — the natural language for cortical computation."
+      },
+      "note": "Integrator (saddle-node, fires from 0 Hz) vs resonator (Hopf, has a preferred frequency) — the bifurcation type, not the cell type label, predicts the behavior.",
+      "sources": [
+        "PMC open-access (Izhikevich; dynamical systems in neuroscience)",
+        "MIT OCW 9.40",
+        "arXiv q-bio.NC"
+      ],
+      "art_prompt": "a phase-plane portrait of a neuron model with nullclines and a limit cycle, beside example traces of tonic spiking, bursting, and resonant firing, labeled by bifurcation type",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What distinguishes an 'integrator' neuron from a 'resonator' neuron dynamically?",
+          "answer": "An integrator (saddle-node bifurcation) can fire at arbitrarily low rates and sums inputs; a resonator (Hopf bifurcation) has a preferred input frequency, subthreshold oscillations, and a minimum nonzero firing rate."
+        },
+        {
+          "level": "derive",
+          "prompt": "In dynamical-systems terms, what is happening when a neuron transitions from rest to repetitive firing?",
+          "answer": "The system passes through a bifurcation: a stable resting fixed point loses stability (or a limit cycle appears), so the dynamics switch from settling at rest to following a periodic spiking orbit; the type of bifurcation sets the neuron's excitability class."
+        }
+      ]
+    },
+    {
+      "id": "perceptron",
+      "title": "The perceptron",
+      "shell": "frontier",
+      "type": "equation",
+      "requires": [
+        "hebbian-learning",
+        "synaptic-integration"
+      ],
+      "equation": "y = \\Theta\\!\\left(\\sum_i w_i x_i - b\\right)",
+      "summary": "A neuron abstracted to a thresholded weighted sum — the foundational unit of artificial neural networks, with a provable learning rule.",
+      "depths": {
+        "eli5": "Strip a neuron down to its job: multiply each input by an importance weight, add them up, and fire if the total beats a threshold. Adjust the weights from mistakes and it learns simple categories.",
+        "core": "Rosenblatt's perceptron (1958) abstracts the neuron as y = Θ(Σ w_i x_i − b): a weighted sum passed through a threshold. The perceptron learning rule nudges weights toward inputs of misclassified examples (a supervised cousin of Hebb), and the perceptron convergence theorem guarantees it finds a separating boundary if the data are linearly separable. It is the direct conceptual ancestor of every artificial neural network.",
+        "deep": "A single perceptron can only realize linearly separable functions — Minsky and Papert's XOR result, which stalled the field until multilayer networks plus backpropagation overcame it. The lineage is explicit: the perceptron's weighted-sum-and-threshold is McCulloch–Pitts and synaptic integration abstracted; stacking them and training by gradient descent yields deep learning. The biological caveat is that backprop's weight-transport is not obviously local like Hebb/STDP — a central open question."
+      },
+      "note": "One perceptron can't do XOR (Minsky–Papert); you need a hidden layer. That gap is exactly why depth matters.",
+      "sources": [
+        "MIT OCW 9.40",
+        "Wikipedia (facts)",
+        "PMC open-access (neural network history reviews)"
+      ],
+      "art_prompt": "a single artificial neuron summing weighted inputs through a step function, beside a 2D plot of a linear decision boundary separating two classes",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What class of functions can a single perceptron compute, and what famous function shows its limit?",
+          "answer": "Only linearly separable functions; it cannot compute XOR, which requires at least one hidden layer."
+        },
+        {
+          "level": "apply",
+          "prompt": "How does the perceptron learning rule relate to Hebbian learning?",
+          "answer": "Both adjust weights from local pre/post signals, but the perceptron rule is error-driven (supervised): it changes weights only on misclassified examples, moving the boundary toward correct classification."
+        }
+      ]
+    },
+    {
+      "id": "artificial-neural-networks",
+      "title": "From neurons to artificial neural networks",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "perceptron",
+        "hierarchical-processing"
+      ],
+      "summary": "Deep networks stack simple neuron-like units into trainable hierarchies, mirroring (and diverging from) cortical processing.",
+      "depths": {
+        "eli5": "Connect many simple artificial neurons in layers and train the whole stack to map inputs to outputs. It echoes how the brain builds simple features into complex ones — but it learns in a different way.",
+        "core": "Artificial neural networks compose layers of weighted-sum-plus-nonlinearity units and learn their weights by gradient descent via backpropagation. Convolutional networks borrowed the brain's receptive-field hierarchy (local filters + pooling, simple/complex cells), and trained deep nets turn out to predict responses in visual cortex (V1→IT) better than hand-designed models — a striking convergence between machine and brain representations.",
+        "deep": "The convergence is partial: the brain learns largely without labeled targets, uses local plasticity (Hebb/STDP) and recurrence/feedback heavily, and is vastly more energy-efficient, whereas standard deep nets rely on global, non-local backprop and supervised targets. Bridging them — biologically plausible credit assignment (feedback alignment, predictive coding as approximate backprop, equilibrium propagation) — is a live frontier where neuroscience and AI inform each other directly."
+      },
+      "note": "Trained CNNs predict ventral-stream neural responses surprisingly well — but they use non-local backprop, unlike the brain's local Hebbian/STDP rules.",
+      "sources": [
+        "MIT OCW 9.40",
+        "PMC open-access (deep nets as models of cortex)",
+        "arXiv q-bio.NC / cs.NE"
+      ],
+      "art_prompt": "side-by-side ventral visual stream and a deep convolutional network, each layer paired, with backprop gradients flowing one way and a question mark over biological credit assignment",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name two ways artificial neural networks borrowed from brain architecture.",
+          "answer": "Stacking simple units into feature hierarchies, and convolutional local receptive fields plus pooling modeled on simple/complex cells in visual cortex."
+        },
+        {
+          "level": "apply",
+          "prompt": "Give one major way the brain's learning differs from standard deep-net training.",
+          "answer": "The brain uses largely local, unsupervised plasticity (Hebb/STDP) with feedback and is energy-efficient, whereas deep nets rely on global, non-local backpropagation with supervised targets."
+        }
+      ]
+    },
+    {
+      "id": "predictive-coding",
+      "title": "Predictive coding & the free-energy principle",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "perception-inference",
+        "hierarchical-processing",
+        "neuromodulation"
+      ],
+      "summary": "The cortex may work by predicting its own inputs top-down and propagating only the prediction errors upward, minimizing surprise.",
+      "depths": {
+        "eli5": "Instead of passing raw senses up, the brain guesses what it expects to see and only reports the surprises. Learning is about getting better guesses so there are fewer surprises.",
+        "core": "Predictive coding (Rao & Ballard, 1999) proposes a hierarchy where each level sends top-down predictions to the level below and the lower level returns only the residual prediction error. Perception settles by iteratively reducing error; learning adjusts the generative model that makes predictions. Friston's free-energy principle generalizes this: the brain minimizes variational free energy, an upper bound on surprise, encompassing both perception (updating beliefs) and action (changing inputs to match predictions).",
+        "deep": "Mechanistically it predicts distinct prediction (deep-layer) and error (superficial-layer) units, with precision (the reliability of errors, plausibly set by neuromodulatory gain) weighting how much each error counts — linking attention to precision-weighting. Under linear-Gaussian assumptions, predictive-coding updates approximate backpropagation, offering a biologically local route to gradient learning. The framework is ambitious and contested, with ongoing debate over its empirical signatures and falsifiability."
+      },
+      "note": "Precision-weighting of prediction errors is how this framework reinterprets attention; under assumptions, the updates approximate backprop locally.",
+      "sources": [
+        "PMC open-access (Rao & Ballard; Friston free-energy)",
+        "Nature Reviews Neuroscience (free-energy review) — facts",
+        "arXiv q-bio.NC (predictive coding reviews)"
+      ],
+      "art_prompt": "a cortical hierarchy with top-down prediction arrows and bottom-up error arrows, deep-layer prediction units and superficial error units, errors weighted by precision gain",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In predictive coding, what travels top-down and what travels bottom-up?",
+          "answer": "Predictions travel top-down from higher to lower levels; only the residual prediction errors travel bottom-up."
+        },
+        {
+          "level": "derive",
+          "prompt": "How does the free-energy principle relate perception and action under one objective?",
+          "answer": "Both minimize variational free energy (a bound on surprise): perception updates internal beliefs to reduce prediction error, while action changes sensory input to match predictions — two routes to the same minimization."
+        }
+      ]
+    },
+    {
+      "id": "reinforcement-learning-brain",
+      "title": "Reinforcement learning in the brain",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "neuromodulation",
+        "hippocampus-memory"
+      ],
+      "summary": "The brain learns from reward using prediction-error signals that match temporal-difference reinforcement learning, across model-free and model-based systems.",
+      "depths": {
+        "eli5": "The brain learns what's worth doing by comparing rewards to its expectations and adjusting. Dopamine is the teaching signal — and the same math powers AI that learns games.",
+        "core": "Reinforcement learning frames behavior as maximizing long-run reward. Phasic dopamine implements the temporal-difference (TD) reward prediction error δ = r + γV(s') − V(s) that trains value estimates, supporting model-free, habit-like learning in the basal ganglia. A separate model-based system uses an internal model of the world (linked to prefrontal cortex and hippocampal 'mental simulation') for flexible, goal-directed planning. The brain arbitrates between them by reliability and cost.",
+        "deep": "The dopamine-as-TD-error match (Montague, Dayan, Schultz) is one of computational neuroscience's clearest successes, and the same algorithms (with deep-network value functions) drive modern AI game-players — a two-way exchange. Hippocampal replay may serve as offline experience generation (à la Dyna) that trains values without new actions, tying memory consolidation to reinforcement learning. Open issues include how distributional and hierarchical RL map onto neural circuits."
+      },
+      "note": "Same equation, two fields: δ = r + γV(s') − V(s) is the dopamine signal and the core update of TD reinforcement learning.",
+      "sources": [
+        "PMC open-access (dopamine & RL reviews)",
+        "MIT OCW 9.40",
+        "arXiv cs.LG / q-bio.NC"
+      ],
+      "art_prompt": "a basal-ganglia model-free loop driven by a dopamine TD-error signal beside a prefrontal/hippocampal model-based planner simulating future states",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the temporal-difference reward prediction error and name the neural signal it matches.",
+          "answer": "δ = r + γV(s′) − V(s); it matches the phasic firing of midbrain dopamine neurons.",
+          "eq": "\\delta = r + \\gamma V(s') - V(s)"
+        },
+        {
+          "level": "apply",
+          "prompt": "Distinguish model-free from model-based learning in the brain.",
+          "answer": "Model-free learning caches values via prediction errors (habitual, fast, inflexible, basal-ganglia/dopamine); model-based learning uses an internal world model to simulate outcomes (flexible, goal-directed, prefrontal/hippocampal)."
+        }
+      ]
+    },
+    {
+      "id": "neural-criticality",
+      "title": "Criticality & balanced networks",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "neural-circuits",
+        "neural-oscillations"
+      ],
+      "summary": "Cortical networks may self-organize near a critical point that maximizes dynamic range, information transmission, and storage.",
+      "depths": {
+        "eli5": "The brain seems tuned to the edge between too quiet and too chaotic — a sweet spot where it's most responsive and can carry the most information, like a perfectly balanced avalanche.",
+        "core": "Tight excitation–inhibition balance keeps cortical activity in an irregular, asynchronous regime poised near a phase transition. At this 'critical' point, activity cascades (neuronal avalanches) follow power-law size distributions, and theory and experiments suggest dynamic range, information capacity, and transmission are jointly maximized there. Balanced networks naturally produce the brain's characteristic variable, Poisson-like firing.",
+        "deep": "Criticality is attractive because power-law avalanches (Beggs & Plenz) and long-range correlations appear in cortical recordings, and a system at criticality has maximal susceptibility — tiny inputs can have large, scale-free effects, ideal for sensitivity. But the evidence is debated: power laws can arise from non-critical mechanisms, the brain may sit slightly subcritical for safety, and 'criticality' covers several distinct phase transitions. It remains a unifying-but-unsettled organizing hypothesis."
+      },
+      "note": "Neuronal avalanches with power-law size distributions are the signature evidence — but power laws alone don't prove true criticality.",
+      "sources": [
+        "PMC open-access (neuronal avalanche & criticality reviews)",
+        "arXiv q-bio.NC / cond-mat.dis-nn",
+        "MIT OCW 9.40"
+      ],
+      "art_prompt": "a cortical network poised at a critical point with scale-free neuronal avalanches and a power-law avalanche-size distribution on log-log axes",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What experimental signature is taken as evidence for cortical criticality?",
+          "answer": "Neuronal avalanches whose sizes follow a power-law distribution, along with long-range correlations."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why might operating near a critical point be computationally advantageous?",
+          "answer": "Near criticality a network has maximal susceptibility and dynamic range, jointly maximizing sensitivity, information transmission, and storage — small inputs can produce large, scale-free responses."
+        }
+      ]
+    },
+    {
+      "id": "theories-of-consciousness",
+      "title": "Theories of consciousness",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "attention",
+        "predictive-coding"
+      ],
+      "summary": "Competing frameworks — global workspace and integrated information chief among them — try to specify what physical processes give rise to subjective experience.",
+      "depths": {
+        "eli5": "Why does any of this brain activity feel like something from the inside? Two leading ideas: consciousness is what gets broadcast to the whole brain, or it's how deeply a system's information is woven together.",
+        "core": "Global Workspace Theory (Baars; Dehaene) holds that information becomes conscious when it is broadcast widely across the brain via a frontoparietal 'workspace,' making it available to many systems; the empirical marker is a late, all-or-none 'ignition' of activity. Integrated Information Theory (Tononi) instead identifies consciousness with integrated information Φ — the degree to which a system's whole specifies more than its parts — and predicts a posterior cortical 'hot zone.' The two make different, testable predictions about which brain events accompany experience.",
+        "deep": "GWT is a functional/access account (what makes information globally available and reportable); IIT is an intrinsic account starting from phenomenology and deriving physical requirements, yielding the counterintuitive claim that feedforward systems (and some non-brain structures) have low Φ regardless of behavior. Adversarial collaborations have begun testing their predictions head-to-head against neural data. The 'hard problem' — why integration or broadcast should feel like anything — remains unresolved, and measuring Φ in real brains is intractable, keeping this the most contested frontier of the branch."
+      },
+      "note": "GWT (access/broadcast, frontoparietal ignition) vs IIT (intrinsic integration Φ, posterior hot zone) — different predictions, now tested in adversarial collaborations.",
+      "sources": [
+        "PMC open-access (GWT & IIT reviews)",
+        "Wikipedia (facts)",
+        "arXiv q-bio.NC"
+      ],
+      "art_prompt": "split panel: GWT showing frontoparietal global broadcast 'ignition' of a stimulus, and IIT showing a posterior hot-zone cause-effect structure with a Φ measure",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Contrast the core claim of Global Workspace Theory with that of Integrated Information Theory.",
+          "answer": "GWT: information is conscious when broadcast widely across a frontoparietal workspace (access/ignition). IIT: consciousness is integrated information Φ — how much a system's whole specifies beyond its parts — centered on a posterior 'hot zone.'"
+        },
+        {
+          "level": "teach",
+          "prompt": "Explain to a beginner why these theories don't solve the 'hard problem' of consciousness.",
+          "answer": "Both describe which physical processes correlate with or constitute consciousness, but neither explains why those processes should be accompanied by subjective experience at all — the gap between mechanism and 'what it feels like' remains."
+        }
+      ]
+    },
+    {
+      "id": "brain-computer-interfaces",
+      "title": "Brain–computer interfaces",
+      "shell": "frontier",
+      "type": "method",
+      "requires": [
+        "population-coding",
+        "motor-control",
+        "neural-coding"
+      ],
+      "summary": "Decoding population activity lets the brain control external devices, and stimulation can write information back in.",
+      "depths": {
+        "eli5": "By listening to many neurons at once and learning what their pattern means, a computer can let a paralyzed person move a cursor or robotic arm just by intending to. Stimulation can even feed sensation back.",
+        "core": "A BCI records neural activity (spikes, local field potentials, ECoG, or non-invasive EEG/fMRI), decodes the intended action from population patterns, and drives an effector — cursor, robotic arm, or speech synthesizer. Intracortical arrays in motor/premotor cortex have enabled people with paralysis to control robotic limbs and, recently, to decode attempted speech at high rates. Writing in — microstimulation for artificial touch — closes the loop.",
+        "deep": "BCIs work because motor intention is encoded in low-dimensional population dynamics that a decoder (often a Kalman filter or recurrent network) can read even from a modest sample of neurons; closed-loop adaptation lets user and decoder co-learn. Key frontiers are stability over years (electrode/tissue interface), bandwidth, fully bidirectional sensory feedback, and the ethics of neural read/write access. BCIs are the most direct test that the population-coding and motor-control principles in this branch are literally correct — they have to be, or the device wouldn't move."
+      },
+      "note": "BCIs are an existence proof: if population codes and motor representations were wrong, decoded cursors and limbs wouldn't move — they do.",
+      "sources": [
+        "PMC open-access (intracortical BCI & speech decoding reviews)",
+        "MIT OCW 9.40",
+        "arXiv q-bio.NC / cs.HC"
+      ],
+      "art_prompt": "an intracortical electrode array in motor cortex, population spike patterns decoded by a filter into a robotic-arm movement, with a microstimulation arrow feeding touch back",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What are the three core stages of a motor brain–computer interface?",
+          "answer": "Record neural activity, decode the intended action from population patterns, and drive an external effector (cursor, robotic arm, or speech output)."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why can a decoder reconstruct intended movement from only a modest sample of cortical neurons?",
+          "answer": "Movement intention is encoded in low-dimensional population dynamics, so even a limited but representative neuron sample carries enough of the shared signal for a decoder (e.g., Kalman filter) to recover it, especially with closed-loop co-adaptation."
+        }
+      ]
+    },
+    {
+      "id": "connectomics",
+      "title": "Connectomics & network neuroscience",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "neural-circuits",
+        "neural-oscillations"
+      ],
+      "summary": "Mapping the brain's wiring at micro and macro scales seeks the structural substrate of its computations.",
+      "depths": {
+        "eli5": "Scientists are making complete wiring diagrams of brains — every neuron and every connection — to understand how structure produces function, the way a circuit diagram explains a device.",
+        "core": "Connectomics reconstructs neural wiring diagrams: the full ~302-neuron connectome of C. elegans, the complete adult fruit-fly brain connectome (~140,000 neurons), and dense electron-microscopy reconstructions of cubic-millimeter mammalian cortex. At the macro scale, diffusion MRI and functional connectivity reveal large-scale networks and hubs. The goal is to relate this graph structure to dynamics, computation, and behavior.",
+        "deep": "Brain graphs show stereotyped organization — small-world topology (high clustering + short paths), a rich club of densely interconnected hubs, and modular communities — that balances integration against wiring cost. But structure underdetermines function: the same connectome supports many dynamical states set by neuromodulation and plasticity, and C. elegans showed that even a complete wiring diagram doesn't immediately yield behavior. Connectomics provides the scaffold on which the rest of this branch's dynamics must be hung."
+      },
+      "note": "A complete connectome (C. elegans, fly) is necessary but not sufficient — structure constrains, but neuromodulation and plasticity set the actual dynamics.",
+      "sources": [
+        "PMC open-access (connectomics & network neuroscience reviews)",
+        "Wikipedia (facts)",
+        "arXiv q-bio.NC"
+      ],
+      "art_prompt": "a multiscale view: a dense EM reconstruction of cortical neurons zooming out to a macro brain network graph with hubs and modular communities",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name one organism with a complete connectome and one organizational feature seen in brain networks.",
+          "answer": "C. elegans (or the adult fruit fly) has a complete connectome; brain networks show small-world topology, hub 'rich clubs,' and modular community structure."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why doesn't having a complete connectome immediately explain behavior?",
+          "answer": "Structure underdetermines dynamics: the same wiring supports many functional states depending on neuromodulation, synaptic weights, and plasticity, so the connectome constrains but doesn't fix what the network computes."
+        }
+      ]
+    }
+  ]
+}

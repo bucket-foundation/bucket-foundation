@@ -18,15 +18,21 @@
   // Available branches (corpora). The overnight loop added the picker UI; these
   // are the definitions it referenced. Each branch keeps independent progress.
   const BRANCH_PREF_KEY = "bucket-academy/branch";
+  const DEFAULT_BRANCH = "corpus/biophysics.json";
   const BRANCHES = [
-    { file: "corpus/biophysics.json", pill: "V · Biophysics", sub: "Energy, matter & life" },
     { file: "corpus/01-mathematics.json", pill: "I · Mathematics", sub: "The foundations of reasoning" },
+    { file: "corpus/02-physics.json", pill: "II · Physics", sub: "Matter, energy & spacetime" },
+    { file: "corpus/03-chemistry.json", pill: "III · Chemistry", sub: "Matter, bonds & transformation" },
+    { file: "corpus/04-information.json", pill: "IV · Information", sub: "Entropy, computation & complexity" },
+    { file: "corpus/biophysics.json", pill: "V · Biophysics", sub: "Energy, matter & life" },
+    { file: "corpus/06-cosmology.json", pill: "VI · Cosmology", sub: "The universe at large" },
+    { file: "corpus/07-mind.json", pill: "VII · Mind", sub: "Brains, computation & cognition" },
   ];
   let currentBranchFile = (function () {
     try {
-      return localStorage.getItem(BRANCH_PREF_KEY) || BRANCHES[0].file;
+      return localStorage.getItem(BRANCH_PREF_KEY) || DEFAULT_BRANCH;
     } catch (e) {
-      return BRANCHES[0].file;
+      return DEFAULT_BRANCH;
     }
   })();
 
