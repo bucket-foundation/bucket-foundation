@@ -1,0 +1,29 @@
+{
+  "_comment": "Per-branch background-ingest config for the Bucket Learning system (bead bkt-xo0). LEGAL SOURCES ONLY. Each branch maps to canon-figures/NN-*.md and bucket-canon/NN-*. Background jobs pull open-access literature, extract Concept Atoms, and regenerate decks. Pilot = biophysics; others ingest in priority order.",
+  "sources_allowed": ["arxiv", "biorxiv", "pmc_oa", "openalex", "libretexts", "openstax", "mit_ocw", "ncbi_bookshelf", "gutenberg", "wikisource", "x402_research_gateway"],
+  "sources_forbidden": ["vk.com", "pdfdrive", "shadow_libraries"],
+  "branches": [
+    { "id": "01-mathematics", "priority": 2, "pilot": false,
+      "arxiv": ["math.HO", "math.GM", "math.LO"], "queries": ["foundations of mathematics", "proof", "linear algebra"] },
+    { "id": "02-physics", "priority": 2, "pilot": false,
+      "arxiv": ["physics.hist-ph", "cond-mat.stat-mech", "quant-ph"], "queries": ["least action", "statistical mechanics", "quantum foundations"] },
+    { "id": "03-chemistry", "priority": 3, "pilot": false,
+      "arxiv": ["physics.chem-ph"], "queries": ["chemical bonding", "reaction kinetics", "quantum chemistry"] },
+    { "id": "04-information", "priority": 3, "pilot": false,
+      "arxiv": ["cs.IT", "cs.CC", "cs.LG"], "queries": ["entropy", "computability", "learning theory"] },
+    { "id": "05-biophysics", "priority": 1, "pilot": true,
+      "arxiv": ["q-bio.BM", "physics.bio-ph", "cond-mat.soft"], "queries": ["protein folding", "molecular dynamics", "protein language model", "intrinsic disorder", "amyloid"] },
+    { "id": "06-cosmology", "priority": 4, "pilot": false,
+      "arxiv": ["astro-ph.CO", "gr-qc"], "queries": ["general relativity", "structure formation", "thermal history"] },
+    { "id": "07-mind", "priority": 3, "pilot": false,
+      "arxiv": ["q-bio.NC", "cs.NE"], "queries": ["action potential", "neural coding", "learning rules"] },
+    { "id": "08-tradition", "priority": 5, "pilot": false,
+      "arxiv": [], "queries": ["foundational texts"], "sources": ["gutenberg", "wikisource"] },
+    { "id": "09-art", "priority": 5, "pilot": false,
+      "arxiv": [], "queries": ["composition", "color theory", "form"], "sources": ["gutenberg", "wikisource"] },
+    { "id": "10-earth", "priority": 4, "pilot": false,
+      "arxiv": ["physics.geo-ph"], "queries": ["plate tectonics", "climate system", "biogeochemical cycles"] }
+  ],
+  "pipeline": ["pull (legal source)", "transcribe -> markdown", "extract Concept Atoms", "link into dependency graph", "regenerate FSRS deck", "feed gaps to Nucleus brain"],
+  "schedule": "nightly per branch, priority-ordered; pilot (biophysics) hourly during exam-prep"
+}
