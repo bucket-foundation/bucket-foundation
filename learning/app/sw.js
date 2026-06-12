@@ -1,13 +1,16 @@
 /* Bucket Academy service worker — offline-first app shell + corpus.
  * After one online load, the app (and KaTeX) work offline. Progress lives in
  * localStorage, so a returning learner needs no network at all. */
-const CACHE = "bucket-academy-v2";
+const CACHE = "bucket-academy-v3";
 const SHELL = [
   "./",
   "./index.html",
   "./css/app.css",
   "./js/fsrs.js",
   "./js/engine.js",
+  "./js/auth-config.js",
+  "./js/auth.js",
+  "./js/auth-ui.js",
   "./js/app.js",
   "./corpus/biophysics.json",
   "./manifest.webmanifest",
@@ -29,8 +32,10 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
-  // Network-first for the corpus (so new atoms appear), cache-first for everything else.
-  if (req.url.includes("/corpus/")) {
+  // Network-first for the corpus (so new atoms appear) and for auth-config.js
+  // (so the founder enabling/disabling sign-in propagates without a cache bump);
+  // cache-first for everything else.
+  if (req.url.includes("/corpus/") || req.url.includes("/js/auth-config.js")) {
     e.respondWith(
       fetch(req).then((res) => {
         const copy = res.clone();

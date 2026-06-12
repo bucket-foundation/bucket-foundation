@@ -167,3 +167,26 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 
 /* KaTeX inherits ink color on the parchment ground */
 .katex { color: var(--ink); }
+
+/* ---- optional sign-in (bkt-su9): topbar pill + email-OTP modal ---- */
+.auth-pill { font-family: var(--display); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-dim); background: var(--card); border: 1px solid var(--line); padding: 7px 12px; border-radius: 999px; cursor: pointer; min-height: 36px; display: inline-flex; align-items: center; gap: 7px; margin-left: 8px; }
+.auth-pill:hover { border-color: var(--line-strong); color: var(--aegean-deep); }
+.auth-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-faint); box-shadow: inset 0 0 0 1px rgba(31,28,22,.2); }
+.auth-dot.on { background: var(--laurel); box-shadow: 0 0 0 2px rgba(90,122,58,.22); }
+.auth-dot.syncing { background: var(--gold); animation: auth-pulse 1s ease-in-out infinite; }
+@keyframes auth-pulse { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+
+.auth-back { position: fixed; inset: 0; background: rgba(31,28,22,.36); display: flex; align-items: center; justify-content: center; z-index: 70; padding: 18px; animation: fade .2s ease; }
+.auth-card { width: 100%; max-width: 400px; background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 24px 22px calc(20px + env(safe-area-inset-bottom)); box-shadow: 0 24px 64px -24px rgba(31,28,22,.6); animation: rise .26s ease; }
+.auth-title { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 16px; color: var(--ink); margin-bottom: 8px; }
+.auth-sub { font-size: 14px; line-height: 1.5; color: var(--ink-dim); margin: 0 0 16px; }
+.auth-sub b { color: var(--ink); font-weight: 600; }
+.auth-form { display: flex; flex-direction: column; gap: 10px; }
+.auth-input { width: 100%; background: var(--card); border: 1px solid var(--line-strong); color: var(--ink); border-radius: 10px; padding: 13px 14px; font: inherit; font-size: 16px; }
+.auth-input:focus { outline: none; border-color: var(--aegean); box-shadow: inset 0 0 0 1px var(--aegean); }
+.auth-input.code { font-family: var(--mono); letter-spacing: .5em; text-align: center; font-size: 22px; }
+.auth-err { font-size: 13px; color: #8a2f24; line-height: 1.4; }
+.auth-link { display: inline-block; background: none; border: none; color: var(--aegean-deep); font: inherit; font-size: 13px; cursor: pointer; padding: 10px 0 0; text-decoration: underline; text-underline-offset: 3px; }
+.auth-foot { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); text-align: center; }
+.auth-foot .auth-link { color: var(--ink-faint); text-decoration: none; }
+.auth-foot .auth-link:hover { color: var(--ink-dim); }

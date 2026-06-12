@@ -101,3 +101,10 @@ _intake/photons/smoke.csv
 # The runner WRITES bucket-canon/**/primary-papers.yaml (committed by the data
 # pillar); this dir is just its bookkeeping and must never dirty the tree.
 _intake/canon-intake/
+
+# bkt-su9: generated Academy Supabase config in the served mirror. Built from
+# public env by scripts/sync-academy.mjs on each build (incl. Vercel). The anon
+# key is public by design, but we keep the generated copy out of git so a real
+# key is never committed via the mirror. The empty source default at
+# learning/app/js/auth-config.js IS committed (so ./serve.sh works standalone).
+public/academy-app/js/auth-config.js

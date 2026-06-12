@@ -128,6 +128,8 @@
       cur.pill +
       ' <span class="branch-caret">▾</span></button>';
     h.querySelector("#branchPill").onclick = openBranchPicker;
+    // Optional sign-in control (no-op when auth is disabled / not configured).
+    if (window.BucketAuthUI) window.BucketAuthUI.mountInto(h);
     return h;
   }
 
@@ -278,6 +280,9 @@
       const b = el("button", "rbtn " + cls, lbl);
       b.onclick = () => {
         E.grade(atom.id, g, level);
+        // If signed in, push this branch's updated blob to the server (fire-and-forget).
+        if (window.BucketAuth && window.BucketAuth.enabled && E.meta && E.meta.branch)
+          window.BucketAuth.pushActive(E.meta.branch);
         next();
       };
       rate.appendChild(b);
@@ -445,12 +450,26 @@
     root.innerHTML = "";
     root.appendChild(node);
   }
+  let currentScreen = "home";
   function go(where) {
+    currentScreen = where;
     if (where === "home") mount(screenHome());
     else if (where === "map") mount(screenMap());
     else if (where === "progress") mount(screenProgress());
     window.scrollTo(0, 0);
   }
+
+  // Called by auth-ui after a sign-in/sync merges server progress into
+  // localStorage. Reload the engine's in-memory state from the merged blob and
+  // re-render the current screen so streak/XP/schedule reflect the merge.
+  // Only refresh when we are NOT mid-study-session (don't yank a card away).
+  window.__BA_onAuthSync = function () {
+    if (session) return;
+    if (!E || !E.lsKey) return;
+    try { E._loadState(); } catch (e) {}
+    if (currentScreen === "home" || currentScreen === "map" || currentScreen === "progress")
+      go(currentScreen);
+  };
 
   async function boot() {
     try {
