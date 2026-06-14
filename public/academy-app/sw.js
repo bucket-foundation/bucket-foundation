@@ -12,10 +12,17 @@ const SHELL = [
   "./js/auth.js",
   "./js/auth-ui.js",
   "./js/app.js",
+  "./js/haptic.js",
+  "./art/art-gen.js",
   "./corpus/biophysics.json",
+  "./art/cache/05-biophysics.json",
   "./manifest.webmanifest",
   "./icon.svg",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./icons/apple-touch-icon.png",
 ];
+// best-effort: art caches for other branches are added opportunistically on first fetch.
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

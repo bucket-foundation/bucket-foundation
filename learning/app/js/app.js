@@ -127,13 +127,38 @@
     }).join("");
   }
 
+  // Build-time procedural-art cache (art/cache/<branch>.json), loaded per branch.
+  // Deterministic SVG keyed on hash(atomId) — the load-bearing-art anchor. We prefer
+  // the cached bytes (inspectable, SVGO'd at build) and fall back to live generation.
+  let artCache = {};
+  async function loadArtCache() {
+    artCache = {};
+    const branch = (E.meta && E.meta.branch) || "default";
+    try {
+      const res = await fetch("art/cache/" + branch + ".json", { cache: "force-cache" });
+      if (res.ok) artCache = await res.json();
+    } catch (e) {}
+  }
+
+  function artFor(atom) {
+    const c = artCache[atom.id];
+    if (c && c.svg) return c;
+    if (window.BucketArt) return window.BucketArt.svgFor(atom);
+    return null;
+  }
+
   function artCard(atom) {
-    // Functional placeholder "concept card": equation hero on a shell-tinted gradient.
-    // Real generated art (load-bearing-art contract) is rendered by the overnight loop.
-    const card = el("div", "art shell-" + atom.shell);
+    // Load-bearing concept anchor: a deterministic, build-time-generated procedural SVG
+    // that DEPICTS the concept (equation → real plotted curve; mechanism/concept →
+    // constrained on-brand schematic). Crisp, tiny, offline, alt-texted. No diffusion.
+    const card = el("div", "art has-fig shell-" + atom.shell);
+    const fig = artFor(atom);
+    let figHtml = "";
+    if (fig && fig.svg) figHtml = '<div class="art-fig">' + fig.svg + "</div>";
+    else if (atom.equation) figHtml = '<div class="art-eq">$$' + atom.equation + "$$</div>";
     card.innerHTML =
       '<div class="art-badge">' + SHELL_LABEL[atom.shell] + "</div>" +
-      '<div class="art-eq">' + (atom.equation ? "$$" + atom.equation + "$$" : escapeHtml(atom.title)) + "</div>" +
+      figHtml +
       '<div class="art-title">' + escapeHtml(atom.title) + "</div>";
     return card;
   }
@@ -319,6 +344,7 @@
         throw new Error("unknown branch " + key);
       }
       normalizeAtoms();
+      await loadArtCache();
     } catch (e) {
       $("#app").innerHTML =
         '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
@@ -680,7 +706,7 @@
     reveal.onclick = () => { answer.classList.remove("hidden"); reveal.classList.add("hidden"); rate.classList.remove("hidden"); };
     [[1, "Again", "again"], [2, "Hard", "hard"], [3, "Good", "good"], [4, "Easy", "easy"]].forEach(([g, lbl, cls]) => {
       const b = el("button", "rbtn " + cls, lbl);
-      b.onclick = () => { E.grade(a.id, g, "recall"); next(); };
+      b.onclick = () => { if (window.haptic) haptic(g === 1 ? "wrong" : g >= 3 ? "correct" : "tap"); E.grade(a.id, g, "recall"); next(); };
       rate.appendChild(b);
     });
     box.appendChild(reveal); box.appendChild(answer); box.appendChild(rate);
@@ -750,6 +776,16 @@
     katex(wrap);
   }
 
+  // laurel checkmark that draws itself in (transform/opacity-safe stroke animation)
+  function checkmarkSVG() {
+    return (
+      '<svg class="fb-check" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true">' +
+      '<circle class="fb-ring" cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="3"/>' +
+      '<path class="fb-tick" d="M14 25 L21 32 L35 16" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      "</svg>"
+    );
+  }
+
   function drill(atom, q, level) {
     const box = el("div", "drill");
     box.appendChild(el("div", "drill-label", "Retrieve · " + level));
@@ -757,18 +793,41 @@
     const answer = el("div", "answer hidden");
     answer.innerHTML = "<div class='a-label'>Answer</div><div class='a-text'>" + q.answer + "</div>";
     const reveal = el("button", "btn wide", "Show answer");
+    const feedback = el("div", "fb hidden"); // feedback choreography lands here
     reveal.onclick = () => {
       answer.classList.remove("hidden");
       reveal.classList.add("hidden");
       rate.classList.remove("hidden");
+      if (window.haptic) haptic("tap");
       katex(answer);
     };
     const rate = el("div", "rate hidden");
     [[1, "Again", "again"], [2, "Hard", "hard"], [3, "Good", "good"], [4, "Easy", "easy"]].forEach(([g, lbl, cls]) => {
       const b = el("button", "rbtn " + cls, lbl);
       b.onclick = () => {
-        E.grade(atom.id, g, level);
-        next();
+        // Feedback choreography (never red): a low grade = an amber, named nudge + soft
+        // double-tap haptic; a confident grade = a laurel checkmark draw + correct haptic.
+        if (g === 1) {
+          if (window.haptic) haptic("wrong");
+          const note = (atom.note && atom.note.length < 220)
+            ? atom.note
+            : "Re-read the answer above before moving on — the gap is worth a second look.";
+          feedback.className = "fb wrong";
+          feedback.innerHTML =
+            '<span class="fb-mark">↺</span><span class="fb-text"><b>Worth another pass.</b> ' +
+            escapeHtml(note) + "</span>";
+          katex(feedback);
+          box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
+          // brief beat so the learner reads the nudge, then advance
+          setTimeout(() => { E.grade(atom.id, g, level); next(); }, 1150);
+        } else {
+          if (window.haptic) haptic(g >= 3 ? "correct" : "tap");
+          feedback.className = "fb right";
+          feedback.innerHTML = '<span class="fb-mark laurel">' + checkmarkSVG() + "</span>" +
+            '<span class="fb-text">' + (g >= 4 ? "Locked in." : g >= 3 ? "Good recall." : "Noted — we'll bring it back sooner.") + "</span>";
+          rate.classList.add("hidden");
+          setTimeout(() => { E.grade(atom.id, g, level); next(); }, g >= 3 ? 620 : 420);
+        }
       };
       rate.appendChild(b);
     });
@@ -776,6 +835,7 @@
     box.appendChild(reveal);
     box.appendChild(answer);
     box.appendChild(rate);
+    box.appendChild(feedback);
     return box;
   }
 
@@ -787,6 +847,11 @@
     if (!session) return go("home");
     session.i++;
     if (session.i >= session.queue.length) {
+      // stash the highest-leverage atom we just touched so the map can animate its
+      // unlock + draw the leverage edges when the learner taps through to it.
+      const studied = session.queue.map((q) => E.byId[q.id]).filter(Boolean);
+      const lead = studied.sort((a, b) => (b.leverage || 0) - (a.leverage || 0))[0];
+      if (lead && (lead.unlocks || []).length) pendingUnlock = { id: lead.id, unlocks: lead.unlocks.slice(0, 8) };
       session = null;
       return mount(screenDone());
     }
@@ -796,6 +861,7 @@
 
   function screenDone() {
     const s = E.summary();
+    if (window.haptic) haptic("celebrate");
     const wrap = el("div", "screen done");
     wrap.appendChild(header());
     const c = el("div", "celebrate");
@@ -866,7 +932,8 @@
         wrap.appendChild(el("div", "study-section", SHELL_H[a.shell] || a.shell));
         lastShell = a.shell;
       }
-      const blk = el("div", "study-block shell-edge-" + a.shell);
+      const blk = el("div", "study-block reveal-up shell-edge-" + a.shell);
+      if (a.equation || (a.note && studyDepth !== "eli5")) blk.dataset.math = "1";
       const head = el("div", "sb-head");
       head.innerHTML = '<span class="sb-num">' + (i + 1) + "</span><span class=\"sb-title\">" + escapeHtml(a.title) + "</span>";
       const m = E.masteryFor(id);
@@ -902,7 +969,30 @@
 
     wrap.appendChild(nav("study"));
     mount(wrap);
-    katex(wrap);
+    revealAndRender(wrap, ".study-block");
+  }
+
+  // Stagger fade-up on scroll reveal + render KaTeX per visible block (once). This is
+  // the app's biggest INP/scroll win: no full-tree KaTeX, no off-screen layout cost.
+  function revealAndRender(wrap, sel) {
+    const blocks = Array.prototype.slice.call(wrap.querySelectorAll(sel));
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!("IntersectionObserver" in window)) {
+      blocks.forEach((b) => { b.classList.add("in"); if (b.dataset.math) katex(b); });
+      return;
+    }
+    let shown = 0;
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const b = en.target;
+        if (!reduce) { b.style.transitionDelay = Math.min(shown, 4) * 40 + "ms"; shown++; }
+        b.classList.add("in");
+        if (b.dataset.math) katex(b); // lazy, per-visible-block
+        obs.unobserve(b);
+      });
+    }, { rootMargin: "120px 0px", threshold: 0.01 });
+    blocks.forEach((b) => io.observe(b));
   }
 
   function screenStudyLang() {
@@ -917,7 +1007,7 @@
       wrap.appendChild(el("div", "study-section", c.charAt(0).toUpperCase() + c.slice(1)));
       cats[c].forEach((a) => {
         const tf = a.forms[target] || {};
-        const blk = el("div", "study-block lang-study");
+        const blk = el("div", "study-block lang-study reveal-up");
         const head = el("div", "sb-head");
         head.innerHTML = '<span class="sb-title">' + escapeHtml(tf.word || "—") + "</span>" +
           (tf.ipa ? '<span class="sb-ipa">/' + escapeHtml(tf.ipa) + "/</span>" : "") +
@@ -933,18 +1023,27 @@
     });
     wrap.appendChild(nav("study"));
     mount(wrap);
+    revealAndRender(wrap, ".study-block");
   }
 
   /* ---------- nucleus map (concentric shells) ---------- */
+  // when a route completes we stash the just-unlocked nodes so the map can animate them
+  let pendingUnlock = null; // { id, unlocks:[ids] }
+
+  const SVGNS = "http://www.w3.org/2000/svg";
+  function svgEl(name, attrs) {
+    const n = document.createElementNS(SVGNS, name);
+    if (attrs) for (const k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+
   function screenMap() {
     const wrap = el("div", "screen map");
     wrap.appendChild(header());
-    wrap.appendChild(el("div", "map-help", "The nucleus. Ring = shell · size = leverage · fill = your mastery. Tap a concept."));
+    const help = el("div", "map-help", "The nucleus. Ring = shell · size = leverage · fill = your mastery. Tap a concept to see its neighborhood.");
+    wrap.appendChild(help);
     const W = Math.min(window.innerWidth - 24, 680);
     const H = Math.min(W, 560);
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-    svg.setAttribute("class", "graph");
     const cx = W / 2, cy = H / 2;
     const radii = { prereq: Math.min(W, H) * 0.42, nucleus: Math.min(W, H) * 0.27, frontier: Math.min(W, H) * 0.12 };
     const pos = {};
@@ -955,38 +1054,54 @@
         pos[a.id] = { x: cx + Math.cos(ang) * radii[shell], y: cy + Math.sin(ang) * radii[shell] };
       });
     });
+
+    const holder = el("div", "graph-holder");
+    const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, class: "graph" });
+
+    // faint shell rings for structure
+    ["prereq", "nucleus", "frontier"].forEach((shell) => {
+      svg.appendChild(svgEl("circle", { cx, cy, r: radii[shell], class: "ring-guide" }));
+    });
+
     // edges
     E.atoms.forEach((a) => {
       (a.requires || []).forEach((r) => {
         if (pos[a.id] && pos[r]) {
-          const line = document.createElementNS(svg.namespaceURI, "line");
-          line.setAttribute("x1", pos[r].x); line.setAttribute("y1", pos[r].y);
-          line.setAttribute("x2", pos[a.id].x); line.setAttribute("y2", pos[a.id].y);
-          line.setAttribute("class", "edge");
-          svg.appendChild(line);
+          svg.appendChild(svgEl("line", {
+            x1: pos[r].x, y1: pos[r].y, x2: pos[a.id].x, y2: pos[a.id].y,
+            class: "edge", "data-from": r, "data-to": a.id,
+          }));
         }
       });
     });
+
     // nodes
     E.atoms.forEach((a) => {
       if (!pos[a.id]) return;
       const m = E.masteryFor(a.id);
-      const g = document.createElementNS(svg.namespaceURI, "g");
-      g.setAttribute("class", "node shell-" + a.shell + (E.cardFor(a.id) ? " seen" : ""));
-      g.setAttribute("transform", "translate(" + pos[a.id].x + "," + pos[a.id].y + ")");
+      const g = svgEl("g", {
+        class: "node shell-" + a.shell + (E.cardFor(a.id) ? " seen" : ""),
+        transform: "translate(" + pos[a.id].x + "," + pos[a.id].y + ")",
+        "data-id": a.id, tabindex: "0", role: "button",
+        "aria-label": a.title + (E.cardFor(a.id) ? " (started)" : " (locked)"),
+      });
       const rr = 6 + a.leverage * 16;
-      const base = document.createElementNS(svg.namespaceURI, "circle");
-      base.setAttribute("r", rr); base.setAttribute("class", "node-base");
-      const fill = document.createElementNS(svg.namespaceURI, "circle");
-      fill.setAttribute("r", rr * Math.max(0.15, m)); fill.setAttribute("class", "node-fill");
-      g.appendChild(base); g.appendChild(fill);
-      g.onclick = () => openAtom(a.id, true);
+      g.appendChild(svgEl("circle", { r: rr, class: "node-base" }));
+      g.appendChild(svgEl("circle", { r: rr * Math.max(0.15, m), class: "node-fill" }));
+      const open = () => { if (window.haptic) haptic("select"); openNeighborhood(a.id); };
+      g.onclick = open;
+      g.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } };
       svg.appendChild(g);
     });
-    const holder = el("div", "graph-holder");
     holder.appendChild(svg);
     wrap.appendChild(holder);
     wrap.appendChild(nav("map"));
+
+    // celebration pass: animate the just-unlocked node + draw edges to what it unlocks
+    if (pendingUnlock) {
+      const pu = pendingUnlock; pendingUnlock = null;
+      requestAnimationFrame(() => animateUnlock(svg, pu, help));
+    }
     return wrap;
   }
 
@@ -1100,6 +1215,115 @@
       .catch(() => { body.innerHTML = ""; body.appendChild(el("p", "share-hint", "Couldn't load your profile right now.")); });
 
     return box;
+  }
+
+  function animateUnlock(svg, pu, help) {
+    const center = svg.querySelector('.node[data-id="' + cssEsc(pu.id) + '"]');
+    if (center) {
+      center.classList.add("just-unlocked");
+      const t = E.byId[pu.id];
+      if (t && help) help.textContent = "✦ Unlocked " + t.title + ". Tracing what it leads to…";
+    }
+    (pu.unlocks || []).forEach((u, i) => {
+      const edge = svg.querySelector('.edge[data-from="' + cssEsc(pu.id) + '"][data-to="' + cssEsc(u) + '"]');
+      if (edge) { edge.classList.add("draw"); edge.style.animationDelay = (i * 90) + "ms"; }
+      const node = svg.querySelector('.node[data-id="' + cssEsc(u) + '"]');
+      if (node) { node.classList.add("unlock-target"); node.style.animationDelay = (120 + i * 90) + "ms"; }
+    });
+  }
+
+  function cssEsc(s) {
+    return String(s).replace(/["\\\]]/g, "\\$&");
+  }
+
+  // Local-neighborhood view: requires ← node → unlocks, as a small curated 3-column
+  // SVG. Always-useful (never the hairball), smooth transform/opacity entrance.
+  function openNeighborhood(id) {
+    const a = E.byId[id];
+    if (!a) return openAtom(id, true);
+    const reqs = (a.requires || []).filter((r) => E.byId[r]);
+    const unlocks = (a.unlocks || []).filter((u) => E.byId[u]);
+    const wrap = el("div", "screen map neighborhood");
+    wrap.appendChild(header());
+    const top = el("div", "atom-top");
+    const back = el("button", "ghost", "‹ Map"); back.onclick = () => go("map");
+    top.appendChild(back);
+    top.appendChild(el("span", "prog", SHELL_LABEL[a.shell]));
+    wrap.appendChild(top);
+    wrap.appendChild(el("h2", "nb-title", escapeHtml(a.title)));
+    wrap.appendChild(el("p", "nb-sub", escapeHtml(a.summary || "")));
+
+    const W = Math.min(window.innerWidth - 24, 680), H = 300;
+    const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, class: "graph nb-graph" });
+    const colX = { req: W * 0.16, mid: W * 0.5, unl: W * 0.84 };
+    const place = (arr, x) => arr.map((nid, i) => {
+      const y = arr.length === 1 ? H / 2 : 40 + (i / (arr.length - 1)) * (H - 80);
+      return { id: nid, x, y };
+    });
+    const reqP = place(reqs, colX.req), unlP = place(unlocks, colX.unl);
+    const midP = { id, x: colX.mid, y: H / 2 };
+
+    // edges (req → mid, mid → unl) drawn first, behind nodes
+    reqP.forEach((p, i) => {
+      const e = svgEl("path", { d: curve(p.x, p.y, midP.x, midP.y), class: "edge nb-edge draw" });
+      e.style.animationDelay = (i * 60) + "ms"; svg.appendChild(e);
+    });
+    unlP.forEach((p, i) => {
+      const e = svgEl("path", { d: curve(midP.x, midP.y, p.x, p.y), class: "edge nb-edge draw lead" });
+      e.style.animationDelay = (120 + i * 60) + "ms"; svg.appendChild(e);
+    });
+
+    const drawNode = (p, kind) => {
+      const at = E.byId[p.id];
+      const m = E.masteryFor(p.id);
+      const g = svgEl("g", {
+        class: "node nb-node shell-" + at.shell + (E.cardFor(p.id) ? " seen" : "") + " " + kind,
+        transform: "translate(" + p.x + "," + p.y + ")", tabindex: "0", role: "button",
+        "aria-label": at.title,
+      });
+      const rr = kind === "center" ? 16 : 10;
+      g.appendChild(svgEl("circle", { r: rr, class: "node-base" }));
+      g.appendChild(svgEl("circle", { r: rr * Math.max(0.15, m), class: "node-fill" }));
+      const label = svgEl("text", { class: "nb-label", x: 0, y: rr + 14, "text-anchor": "middle" });
+      label.textContent = at.title.length > 22 ? at.title.slice(0, 21) + "…" : at.title;
+      g.appendChild(label);
+      const open = () => { if (window.haptic) haptic("select"); if (p.id === id) openAtom(id, true); else openNeighborhood(p.id); };
+      g.onclick = open;
+      g.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } };
+      svg.appendChild(g);
+    };
+    reqP.forEach((p) => drawNode(p, "req"));
+    unlP.forEach((p) => drawNode(p, "unl"));
+    drawNode(midP, "center");
+
+    // column captions
+    if (reqs.length) svg.appendChild(textLabel(colX.req, 22, "Requires"));
+    svg.appendChild(textLabel(colX.mid, 22, "This concept"));
+    if (unlocks.length) svg.appendChild(textLabel(colX.unl, 22, "Unlocks →"));
+
+    const holder = el("div", "graph-holder");
+    holder.appendChild(svg);
+    wrap.appendChild(holder);
+
+    // surface the leverage line in text too
+    if (unlocks.length) {
+      wrap.appendChild(el("div", "unlocks", "Unlocks → " + unlocks.map((x) => E.byId[x].title).join(", ")));
+    }
+    const study = el("button", "btn primary wide", "Study this concept →");
+    study.onclick = () => openAtom(id, true);
+    wrap.appendChild(study);
+    wrap.appendChild(nav("map"));
+    mount(wrap);
+  }
+
+  function curve(x1, y1, x2, y2) {
+    const mx = (x1 + x2) / 2;
+    return "M" + x1 + " " + y1 + "C" + mx + " " + y1 + " " + mx + " " + y2 + " " + x2 + " " + y2;
+  }
+  function textLabel(x, y, txt) {
+    const t = svgEl("text", { x, y, class: "nb-cap", "text-anchor": "middle" });
+    t.textContent = txt;
+    return t;
   }
 
   /* ---------- progress ---------- */
@@ -1245,6 +1469,7 @@
       else if (cur && cur.data) E.loadData(cur.data, cur.id);
       else await E.load(DEFAULT_BRANCH);
       normalizeAtoms();
+      await loadArtCache();
     } catch (e) {
       $("#app").innerHTML = '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
       return;
@@ -1261,7 +1486,11 @@
 
     go("home");
     if (params) {
-      if (params.get("view") === "study") go("study");
+      const view = params.get("view");
+      if (view === "study") go("study");
+      else if (view === "map") go("map");
+      const nbParam = params.get("nb");
+      if (nbParam && E.byId[nbParam]) openNeighborhood(nbParam);
       const aParam = params.get("atom");
       if (aParam && E.byId[aParam]) openAtom(aParam, true);
     }

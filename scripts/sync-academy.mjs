@@ -12,6 +12,8 @@ const dest = join(root, "public", "academy-app");
 const EXCLUDE = new Set([
   "serve.sh", "validate.sh", "README.md", "vercel.json", "node_modules", ".vercel",
   "test-adaptive.js", // dev-only engine test (bkt-jh0); never ship to /academy-app
+  // build-time art/icon generators are dev-only; the committed cache + PNGs ship instead
+  "build-art.mjs", "build-icons.mjs", "icon-maskable.svg",
 ]);
 
 if (!existsSync(src)) {

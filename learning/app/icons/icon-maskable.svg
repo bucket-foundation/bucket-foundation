@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Bucket Academy maskable icon — on-brand: bone ground, basalt nucleus, aegean/gold/laurel
+       satellites. Full-bleed background; the nucleus motif sits inside the 80% safe zone so
+       Android/iOS mask crops never clip it. -->
+  <rect width="512" height="512" fill="#EFE8D4"/>
+  <g transform="translate(256 256)">
+    <!-- concentric shells (kept within r=150 safe radius) -->
+    <circle r="150" fill="none" stroke="#2E6B6B" stroke-width="10" opacity="0.85"/>
+    <circle r="92"  fill="none" stroke="#8A641A" stroke-width="9"  opacity="0.8"/>
+    <!-- nucleus -->
+    <circle r="40" fill="#1F1C16"/>
+    <!-- satellites on the rings -->
+    <circle cx="0"    cy="-150" r="15" fill="#2E6B6B"/>
+    <circle cx="150"  cy="0"    r="15" fill="#B8861E"/>
+    <circle cx="0"    cy="150"  r="15" fill="#5A7A3A"/>
+    <circle cx="-150" cy="0"    r="15" fill="#2E6B6B"/>
+    <circle cx="65"   cy="-65"  r="11" fill="#8A641A"/>
+    <circle cx="-65"  cy="65"   r="11" fill="#5A7A3A"/>
+  </g>
+</svg>
