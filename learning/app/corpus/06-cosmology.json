@@ -2,7 +2,7 @@
   "meta": {
     "branch": "06-cosmology",
     "title": "Cosmology — the universe at large",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.2.0: every atom enriched for zero-prior-knowledge learners — eli5/core rewritten to define jargon inline, and a verified 'resources' array (Wikipedia + NASA + MIT OCW 8.286 + Einstein Online) added to each atom.",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -25,12 +25,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Equivalence principle", "url": "https://en.wikipedia.org/wiki/Equivalence_principle"},
-        {"label": "Einstein Online — the elevator/equivalence thought experiment", "url": "https://www.einstein-online.info/en/spotlight/equivalence_principle/"},
-        {"label": "Wikipedia — Inertial mass vs gravitational mass (Mass article)", "url": "https://en.wikipedia.org/wiki/Mass#Inertial_versus_gravitational_mass"},
-        {"label": "Wikipedia — General relativity (overview)", "url": "https://en.wikipedia.org/wiki/General_relativity"},
-        {"label": "Wikipedia — Free fall", "url": "https://en.wikipedia.org/wiki/Free_fall"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe (free course)", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Equivalence principle",
+          "url": "https://en.wikipedia.org/wiki/Equivalence_principle"
+        },
+        {
+          "label": "Einstein Online — the elevator/equivalence thought experiment",
+          "url": "https://www.einstein-online.info/en/spotlight/equivalence_principle/"
+        },
+        {
+          "label": "Wikipedia — Inertial mass vs gravitational mass (Mass article)",
+          "url": "https://en.wikipedia.org/wiki/Mass#Inertial_versus_gravitational_mass"
+        },
+        {
+          "label": "Wikipedia — General relativity (overview)",
+          "url": "https://en.wikipedia.org/wiki/General_relativity"
+        },
+        {
+          "label": "Wikipedia — Free fall",
+          "url": "https://en.wikipedia.org/wiki/Free_fall"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe (free course)",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "two side-by-side sealed rooms, one accelerating in deep space and one at rest on a planet, with an apple falling identically in both",
       "quiz": [
@@ -44,7 +62,8 @@
           "prompt": "Why is the equivalence between gravity and acceleration only a LOCAL statement?",
           "answer": "Real gravity has tidal effects: over an extended region, free-fall paths converge or diverge, revealing curvature that no single accelerating frame can mimic."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nStand in a windowless elevator. If the cable snaps and you fall freely, you and everything around you drift weightlessly — exactly as an astronaut does in deep space. Now imagine the elevator parked on a rocket accelerating at $9.8\\,\\text{m/s}^2$ in empty space: you feel pressed to the floor exactly as if you were standing on Earth. **From inside, you cannot tell gravity from acceleration, nor free-fall from floating in empty space.** That single observation is the seed of general relativity.\n\n### Precisely\nThe **weak equivalence principle** states that the *inertial mass* $m_i$ (the $m$ in $F=m_i a$, resistance to being pushed) equals the *gravitational mass* $m_g$ (the \"charge\" gravity couples to, the $m$ in $F = m_g g$). Because $m_i = m_g$, the acceleration of a freely falling body, $a = (m_g/m_i)\\,g = g$, is **independent of its mass or composition**. The **Einstein equivalence principle** strengthens this: in a small enough region, *all* the laws of physics in a freely falling frame match those of special relativity with no gravity.\n\n### Worked example\nDrop a hammer ($1\\,\\text{kg}$) and a feather ($0.001\\,\\text{kg}$) in vacuum on the Moon ($g \\approx 1.62\\,\\text{m/s}^2$). Each falls with $a = g = 1.62\\,\\text{m/s}^2$. From a height of $1.0\\,\\text{m}$, the time to land is $t = \\sqrt{2h/g} = \\sqrt{2(1.0)/1.62} \\approx 1.11\\,\\text{s}$ for **both** — Apollo 15 demonstrated exactly this in 1971.\n\n### Why it's true / how it works\nWhy must they hit together? Because the same number — the body's mass — appears on both sides of $m_g g = m_i a$ and cancels. Newton noticed this cancellation but treated it as a coincidence. Einstein elevated it to a principle: if gravity affects all bodies identically, it is not really a *force* acting on matter but a property of the *spacetime* matter moves through.\n\n### Where it connects\nThis principle is the doorway to **spacetime-curvature** (gravity = geometry) and to **geodesics** (free-fall = straightest path). The exact local cancellation is why a freely falling **frame** (the **metric** locally reduces to flat Minkowski form) is the natural setting for physics.\n\n### Watch out\nThe equivalence is only **local**. Over an extended region, real gravity reveals itself through **tidal effects**: two balls dropped side by side toward Earth's center slowly converge, because they fall along lines aiming at the same point. No single accelerating frame can erase that convergence — it is genuine curvature, not a coordinate illusion."
     },
     {
       "id": "spacetime-curvature",
@@ -66,12 +85,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Introduction to general relativity (beginner)", "url": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity"},
-        {"label": "Wikipedia — Curved spacetime (General relativity)", "url": "https://en.wikipedia.org/wiki/General_relativity"},
-        {"label": "Wikipedia — Spacetime", "url": "https://en.wikipedia.org/wiki/Spacetime"},
-        {"label": "Wikipedia — Tidal force", "url": "https://en.wikipedia.org/wiki/Tidal_force"},
-        {"label": "Wikipedia — Riemann curvature tensor", "url": "https://en.wikipedia.org/wiki/Riemann_curvature_tensor"},
-        {"label": "NASA Science — The Universe (overview)", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Introduction to general relativity (beginner)",
+          "url": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity"
+        },
+        {
+          "label": "Wikipedia — Curved spacetime (General relativity)",
+          "url": "https://en.wikipedia.org/wiki/General_relativity"
+        },
+        {
+          "label": "Wikipedia — Spacetime",
+          "url": "https://en.wikipedia.org/wiki/Spacetime"
+        },
+        {
+          "label": "Wikipedia — Tidal force",
+          "url": "https://en.wikipedia.org/wiki/Tidal_force"
+        },
+        {
+          "label": "Wikipedia — Riemann curvature tensor",
+          "url": "https://en.wikipedia.org/wiki/Riemann_curvature_tensor"
+        },
+        {
+          "label": "NASA Science — The Universe (overview)",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a rubber-sheet grid dimpled by a massive sphere, with a smaller body coasting along the curved gridlines",
       "quiz": [
@@ -85,7 +122,8 @@
           "prompt": "Explain to a beginner why a single observer in free fall can't detect gravity but tidal forces still reveal it.",
           "answer": "Free fall cancels the uniform part of gravity locally, so you float. But two nearby falling objects drift relative to each other because of curvature — that residual relative acceleration (tidal effect) is the true, un-removable signature of gravity."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nPicture a stretched rubber sheet. Place a heavy ball in the middle and the sheet sags into a bowl. Roll a marble past and it curves toward the ball — not because the ball \"reaches out,\" but because the surface it rolls on is bent. Gravity works this way. The Earth does not tug the Moon with an invisible rope; the Earth bends the **spacetime** around it, and the Moon coasts along the bend.\n\n### Precisely\nIn **general relativity**, gravity *is* the curvature of four-dimensional spacetime (three space dimensions plus time). Matter and energy curve spacetime; the curvature dictates how matter moves. Curvature is quantified by the **Riemann curvature tensor** $R^{\\rho}{}_{\\sigma\\mu\\nu}$, built from second derivatives of the **metric** $g_{\\mu\\nu}$. A region is genuinely curved if and only if $R^{\\rho}{}_{\\sigma\\mu\\nu} \\neq 0$ — and unlike an apparent \"force,\" this cannot be transformed away by changing coordinates.\n\n### Worked example\nConsider geodesic deviation: two test particles a distance $\\xi$ apart, both falling freely toward Earth, accelerate toward each other at a relative rate $\\ddot{\\xi} \\sim -\\frac{GM}{r^3}\\,\\xi$. For $r = 6.4\\times10^{6}\\,\\text{m}$ (Earth's radius), $M = 6.0\\times10^{24}\\,\\text{kg}$, two particles $\\xi = 10\\,\\text{m}$ apart converge at about $\\frac{(6.67\\times10^{-11})(6.0\\times10^{24})}{(6.4\\times10^{6})^3}\\times 10 \\approx 1.5\\times10^{-5}\\,\\text{m/s}^2$ — small but nonzero, and that nonzero value is curvature.\n\n### Why it's true / how it works\nThe rubber-sheet image is a 2D cartoon of a deeper fact: parallel-transporting a vector around a closed loop in curved spacetime returns it rotated. That failure to return unchanged *is* the Riemann tensor. Because tidal convergence cannot be removed in any frame, gravity must be geometry, not a force on top of flat space.\n\n### Where it connects\nCurvature is sourced by the **stress-energy** tensor and governed by the **einstein-field-equations**. Free-falling bodies trace **geodesics** through the curved geometry. Light bending in **gravitational-lensing** is curvature acting on photons.\n\n### Watch out\nThe rubber sheet misleads in two ways: it needs gravity \"below\" to make the ball sag (circular), and it shows only space, not time. In reality, for slow objects it is the *curvature of time* — not space — that produces most of everyday gravity."
     },
     {
       "id": "metric",
@@ -107,12 +145,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Metric tensor (general relativity)", "url": "https://en.wikipedia.org/wiki/Metric_tensor_(general_relativity)"},
-        {"label": "Wikipedia — Spacetime interval (Spacetime article)", "url": "https://en.wikipedia.org/wiki/Spacetime#Spacetime_interval"},
-        {"label": "Wikipedia — Minkowski space (flat spacetime)", "url": "https://en.wikipedia.org/wiki/Minkowski_space"},
-        {"label": "Wikipedia — Tensor (what a tensor is)", "url": "https://en.wikipedia.org/wiki/Tensor"},
-        {"label": "Wikipedia — Proper time", "url": "https://en.wikipedia.org/wiki/Proper_time"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Metric tensor (general relativity)",
+          "url": "https://en.wikipedia.org/wiki/Metric_tensor_(general_relativity)"
+        },
+        {
+          "label": "Wikipedia — Spacetime interval (Spacetime article)",
+          "url": "https://en.wikipedia.org/wiki/Spacetime#Spacetime_interval"
+        },
+        {
+          "label": "Wikipedia — Minkowski space (flat spacetime)",
+          "url": "https://en.wikipedia.org/wiki/Minkowski_space"
+        },
+        {
+          "label": "Wikipedia — Tensor (what a tensor is)",
+          "url": "https://en.wikipedia.org/wiki/Tensor"
+        },
+        {
+          "label": "Wikipedia — Proper time",
+          "url": "https://en.wikipedia.org/wiki/Proper_time"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a warped coordinate grid where the spacing of gridlines stretches and compresses near a mass, with a tiny ruler measuring a curved interval",
       "quiz": [
@@ -127,7 +183,8 @@
           "answer": "Because ds² is the same for all observers regardless of coordinates, it guarantees that physical predictions don't depend on the arbitrary coordinate system chosen.",
           "eq": "ds^2 = g_{\\mu\\nu}\\,dx^\\mu dx^\\nu"
         }
-      ]
+      ],
+      "lesson": "### Intuition\nImagine a map whose grid squares are not all the same size — stretched in some places, squished in others. To find a real distance you cannot just count squares; you need a rule saying how much true distance each square is worth *at that spot*. The **metric** is exactly that rule: a position-dependent ruler.\n\n### Precisely\nThe metric tensor $g_{\\mu\\nu}$ converts coordinate differences $dx^\\mu$ into the physical squared interval:\n$$ds^2 = g_{\\mu\\nu}\\,dx^\\mu dx^\\nu$$\nThe indices $\\mu,\\nu$ run over the four spacetime coordinates $(ct, x, y, z)$, and the repeated-index summation convention is implied. In flat spacetime $g_{\\mu\\nu}$ is the constant **Minkowski metric** $\\eta_{\\mu\\nu} = \\text{diag}(-1,+1,+1,+1)$, giving $ds^2 = -c^2dt^2 + dx^2 + dy^2 + dz^2$. Units: $ds^2$ has dimensions of length squared (with $c\\,dt$ measured in length).\n\n### Worked example\nTwo events at the same place ($dx=dy=dz=0$) separated by coordinate time $dt$: $ds^2 = -c^2 dt^2$, so the **proper time** is $d\\tau = \\sqrt{-ds^2}/c = dt$ — a clock at rest just reads coordinate time. Now a light pulse moving along $x$: $0 = -c^2dt^2 + dx^2$ gives $dx/dt = c$. The metric encodes the speed of light automatically.\n\n### Why it's true / how it works\nThe interval $ds^2$ is **invariant**: every observer, in every coordinate system, computes the same value, even though they disagree on the individual $dt$ and $dx$. This is the relativistic generalization of the Pythagorean theorem — with a crucial minus sign on time that distinguishes past, future, and \"elsewhere.\"\n\n### Where it connects\nThe metric is the central object of GR: its derivatives build the **Christoffel symbols** in **geodesics**, its second derivatives build curvature in **spacetime-curvature**, and the cosmological metric is the **frw-metric**. Everything — lengths, times, redshifts — is read off $g_{\\mu\\nu}$.\n\n### Watch out\n$ds^2$ can be negative (timelike), zero (null/light), or positive (spacelike) — it is *not* an ordinary positive distance. The sign convention ($-+++$ vs $+---$) varies between books; pick one and stay consistent, because physical predictions do not depend on the choice."
     },
     {
       "id": "geodesics",
@@ -149,12 +206,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Geodesics in general relativity", "url": "https://en.wikipedia.org/wiki/Geodesics_in_general_relativity"},
-        {"label": "Wikipedia — Geodesic (the idea of a straightest path)", "url": "https://en.wikipedia.org/wiki/Geodesic"},
-        {"label": "Wikipedia — Christoffel symbols", "url": "https://en.wikipedia.org/wiki/Christoffel_symbols"},
-        {"label": "Wikipedia — Proper time", "url": "https://en.wikipedia.org/wiki/Proper_time"},
-        {"label": "Wikipedia — Great-circle distance (everyday analogy)", "url": "https://en.wikipedia.org/wiki/Great-circle_distance"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Geodesics in general relativity",
+          "url": "https://en.wikipedia.org/wiki/Geodesics_in_general_relativity"
+        },
+        {
+          "label": "Wikipedia — Geodesic (the idea of a straightest path)",
+          "url": "https://en.wikipedia.org/wiki/Geodesic"
+        },
+        {
+          "label": "Wikipedia — Christoffel symbols",
+          "url": "https://en.wikipedia.org/wiki/Christoffel_symbols"
+        },
+        {
+          "label": "Wikipedia — Proper time",
+          "url": "https://en.wikipedia.org/wiki/Proper_time"
+        },
+        {
+          "label": "Wikipedia — Great-circle distance (everyday analogy)",
+          "url": "https://en.wikipedia.org/wiki/Great-circle_distance"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a curved-spacetime grid with a particle tracing the locally-straightest line that wraps into an orbit",
       "quiz": [
@@ -168,7 +243,8 @@
           "prompt": "Massive particles and light both follow geodesics — what distinguishes their paths?",
           "answer": "Massive particles follow timelike geodesics (nonzero proper time, maximized), while light follows null geodesics where ds² = 0."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nOn a flat floor the straightest path between two points is an ordinary straight line. On a globe, the \"straightest\" route you can walk — a great circle, like the arc a long flight traces — looks curved on a flat map but is genuinely the straightest path on the sphere. In curved spacetime a freely coasting object always follows the locally straightest available route. Because spacetime is bent, that route looks like an orbit or a falling arc.\n\n### Precisely\nA **geodesic** obeys the geodesic equation:\n$$\\frac{d^2 x^\\mu}{d\\tau^2} + \\Gamma^\\mu_{\\alpha\\beta}\\frac{dx^\\alpha}{d\\tau}\\frac{dx^\\beta}{d\\tau} = 0$$\nHere $\\tau$ is **proper time** (the clock carried along the path), and the **Christoffel symbols** $\\Gamma^\\mu_{\\alpha\\beta} = \\tfrac{1}{2}g^{\\mu\\nu}(\\partial_\\alpha g_{\\nu\\beta} + \\partial_\\beta g_{\\nu\\alpha} - \\partial_\\nu g_{\\alpha\\beta})$ are built entirely from how the **metric** changes from place to place. The first term is the path's acceleration; the second corrects for the twisting of \"straight ahead.\"\n\n### Worked example\nIn flat spacetime all $\\Gamma^\\mu_{\\alpha\\beta}=0$, so the equation reduces to $d^2x^\\mu/d\\tau^2 = 0$ — constant velocity, Newton's first law. Near a mass the $\\Gamma$ terms are nonzero; solving them for the Sun's field reproduces planetary orbits and predicts Mercury's perihelion advancing an extra $43''$ per century, which Newtonian gravity could not explain.\n\n### Why it's true / how it works\nMassive particles follow **timelike** geodesics that *maximize* proper time between two events — a free-falling clock ticks more than any accelerated clock on a nearby path (the resolution of the twin \"paradox\"). Light follows **null** geodesics with $ds^2 = 0$. Setting the covariant acceleration to zero is the precise statement of \"no force but gravity.\"\n\n### Where it connects\nGeodesics realize the **equivalence-principle** (free-fall feels forceless) and the slogan of the **einstein-field-equations** (\"spacetime tells matter how to move\"). Geodesic *deviation* between neighbors is **spacetime-curvature** in action.\n\n### Watch out\n\"Straightest\" does not mean \"shortest\" for timelike paths — it means *longest proper time*. And $\\Gamma$ is not a tensor: it can be made zero at any single point (a locally free-falling frame), which is the equivalence principle expressed mathematically."
     },
     {
       "id": "stress-energy",
@@ -189,12 +265,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Stress–energy tensor", "url": "https://en.wikipedia.org/wiki/Stress%E2%80%93energy_tensor"},
-        {"label": "Wikipedia — Energy density", "url": "https://en.wikipedia.org/wiki/Energy_density"},
-        {"label": "Wikipedia — Momentum", "url": "https://en.wikipedia.org/wiki/Momentum"},
-        {"label": "Wikipedia — Pressure", "url": "https://en.wikipedia.org/wiki/Pressure"},
-        {"label": "Wikipedia — Mass–energy equivalence (E=mc²)", "url": "https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence"},
-        {"label": "Wikipedia — Conservation of energy", "url": "https://en.wikipedia.org/wiki/Conservation_of_energy"}
+        {
+          "label": "Wikipedia — Stress–energy tensor",
+          "url": "https://en.wikipedia.org/wiki/Stress%E2%80%93energy_tensor"
+        },
+        {
+          "label": "Wikipedia — Energy density",
+          "url": "https://en.wikipedia.org/wiki/Energy_density"
+        },
+        {
+          "label": "Wikipedia — Momentum",
+          "url": "https://en.wikipedia.org/wiki/Momentum"
+        },
+        {
+          "label": "Wikipedia — Pressure",
+          "url": "https://en.wikipedia.org/wiki/Pressure"
+        },
+        {
+          "label": "Wikipedia — Mass–energy equivalence (E=mc²)",
+          "url": "https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence"
+        },
+        {
+          "label": "Wikipedia — Conservation of energy",
+          "url": "https://en.wikipedia.org/wiki/Conservation_of_energy"
+        }
       ],
       "art_prompt": "a 4x4 grid of cells labeled energy density, momentum flux, and pressure, glowing as the source feeding a curved-spacetime backdrop",
       "quiz": [
@@ -208,7 +302,8 @@
           "prompt": "What physical law is automatically encoded in ∇_μ T^{μν} = 0?",
           "answer": "Local conservation of energy and momentum, which follows geometrically from the field equations."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nNewton thought only \"how much stuff\" — mass — creates gravity. Einstein found that energy, momentum, *and pressure* all bend spacetime too. The **stress-energy tensor** is a tidy inventory listing all of that at every point. It is the complete description of what gravity responds to.\n\n### Precisely\nThe stress-energy tensor $T_{\\mu\\nu}$ is a symmetric $4\\times4$ array. Its component $T^{00}$ is **energy density** (energy per unit volume, including rest-mass energy via $E=mc^2$); $T^{0i}$ are **energy flux / momentum density**; and the spatial block $T^{ij}$ holds **pressure** (on the diagonal) and **shear stress** (off-diagonal). For a **perfect fluid** — the relevant case in cosmology — it simplifies to $T^{\\mu\\nu} = (\\rho + p/c^2)\\,u^\\mu u^\\nu + p\\,g^{\\mu\\nu}$, where $\\rho$ is energy density, $p$ is pressure, and $u^\\mu$ is the fluid's 4-velocity.\n\n### Worked example\nFor ordinary cold matter (\"dust\"), $p \\approx 0$, so gravity is sourced essentially by $\\rho$ alone — the Newtonian limit. For radiation (a photon gas), $p = \\tfrac{1}{3}\\rho c^2$: pressure is one-third the energy density, which is why light gravitates differently and why radiation energy density dilutes faster as the universe expands. For **dark-energy**, $p \\approx -\\rho c^2$: large *negative* pressure, which (counterintuitively) pushes space apart.\n\n### Why it's true / how it works\nLocal conservation of energy and momentum is written $\\nabla_\\mu T^{\\mu\\nu} = 0$. Remarkably, this is not an extra assumption — it follows automatically from the **einstein-field-equations** via the geometric **Bianchi identities**. Conservation is built into the geometry.\n\n### Where it connects\n$T_{\\mu\\nu}$ is the entire right-hand side of the **einstein-field-equations** — the \"matter\" that tells spacetime how to curve. Its pressure term drives the acceleration equation in the **friedmann-equations** and underlies why **dark-energy** repels.\n\n### Watch out\nThe most common error is to think only mass density gravitates. In GR, **pressure gravitates too** — and with the *same* sign in the acceleration equation as density. That is precisely why negative-pressure dark energy can reverse cosmic deceleration."
     },
     {
       "id": "einstein-field-equations",
@@ -233,12 +328,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Einstein field equations", "url": "https://en.wikipedia.org/wiki/Einstein_field_equations"},
-        {"label": "Wikipedia — Einstein tensor", "url": "https://en.wikipedia.org/wiki/Einstein_tensor"},
-        {"label": "Wikipedia — Cosmological constant (Λ)", "url": "https://en.wikipedia.org/wiki/Cosmological_constant"},
-        {"label": "Wikipedia — Gravitational constant (G)", "url": "https://en.wikipedia.org/wiki/Gravitational_constant"},
-        {"label": "Wikipedia — Introduction to general relativity", "url": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Einstein field equations",
+          "url": "https://en.wikipedia.org/wiki/Einstein_field_equations"
+        },
+        {
+          "label": "Wikipedia — Einstein tensor",
+          "url": "https://en.wikipedia.org/wiki/Einstein_tensor"
+        },
+        {
+          "label": "Wikipedia — Cosmological constant (Λ)",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_constant"
+        },
+        {
+          "label": "Wikipedia — Gravitational constant (G)",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_constant"
+        },
+        {
+          "label": "Wikipedia — Introduction to general relativity",
+          "url": "https://en.wikipedia.org/wiki/Introduction_to_general_relativity"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a balanced equation with a glowing curved-grid geometry on the left and a luminous matter-energy cloud on the right, joined by the constant 8πG/c⁴",
       "quiz": [
@@ -252,7 +365,8 @@
           "prompt": "Summarize the physical meaning of the field equations in one sentence a student can remember.",
           "answer": "Matter and energy tell spacetime how to curve, and the curvature of spacetime tells matter how to move."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nThis is the single rule at the heart of gravity, and it is a two-way street: matter bends spacetime, and bent spacetime steers matter. John Wheeler's summary is unbeatable — *\"matter tells spacetime how to curve, and spacetime tells matter how to move.\"* Every result in this branch is a consequence of this one balanced statement.\n\n### Precisely\n$$G_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\frac{8\\pi G}{c^4}\\,T_{\\mu\\nu}$$\nThe left side is geometry: the **Einstein tensor** $G_{\\mu\\nu} = R_{\\mu\\nu} - \\tfrac{1}{2}R\\,g_{\\mu\\nu}$ (built from curvature) plus the optional **cosmological constant** $\\Lambda$ times the **metric**. The right side is contents: the **stress-energy** tensor $T_{\\mu\\nu}$. The coupling $8\\pi G/c^4 \\approx 2.1\\times10^{-43}\\,\\text{s}^2\\,\\text{kg}^{-1}\\,\\text{m}^{-1}$ is fixed by demanding agreement with Newtonian gravity in the weak, slow limit.\n\n### Worked example\nIn the weak-field, low-speed limit, the time-time component reduces to Poisson's equation $\\nabla^2 \\Phi = 4\\pi G \\rho$, exactly Newtonian gravity — confirming the constant out front. The smallness of $8\\pi G/c^4$ ($c^4$ is enormous) is why colossal mass is needed to curve spacetime appreciably: the Sun deflects starlight by only $1.75''$.\n\n### Why it's true / how it works\nThe equations are *ten coupled nonlinear* partial differential equations (the symmetric $4\\times4$ tensors each have ten independent components). The nonlinearity means **gravity gravitates** — gravitational energy itself bends spacetime — which is why exact solutions are rare and precious: Schwarzschild (black holes), Kerr (spinning), and the **frw-metric** (cosmology).\n\n### Where it connects\nFeeding the **frw-metric** into these equations yields the **friedmann-equations** that govern cosmic expansion. The $\\Lambda$ term reappears as **cosmological-constant** dark energy.\n\n### Watch out\n$\\Lambda$ was famously Einstein's \"biggest blunder\" — he added it to force a static universe, dropped it after Hubble found expansion, and it was resurrected in 1998 to explain **dark-energy**. Do not read the equation as \"force = mass\"; both sides are tensors describing geometry and content, not a Newtonian force law."
     },
     {
       "id": "cosmological-principle",
@@ -271,12 +385,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Cosmological principle", "url": "https://en.wikipedia.org/wiki/Cosmological_principle"},
-        {"label": "Wikipedia — Homogeneity (Homogeneity and heterogeneity)", "url": "https://en.wikipedia.org/wiki/Homogeneity_and_heterogeneity"},
-        {"label": "Wikipedia — Isotropy", "url": "https://en.wikipedia.org/wiki/Isotropy"},
-        {"label": "Wikipedia — Light-year", "url": "https://en.wikipedia.org/wiki/Light-year"},
-        {"label": "Einstein Online — Cosmology elementary tour", "url": "https://www.einstein-online.info/en/category/elementary/cosmology-elementary/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Cosmological principle",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_principle"
+        },
+        {
+          "label": "Wikipedia — Homogeneity (Homogeneity and heterogeneity)",
+          "url": "https://en.wikipedia.org/wiki/Homogeneity_and_heterogeneity"
+        },
+        {
+          "label": "Wikipedia — Isotropy",
+          "url": "https://en.wikipedia.org/wiki/Isotropy"
+        },
+        {
+          "label": "Wikipedia — Light-year",
+          "url": "https://en.wikipedia.org/wiki/Light-year"
+        },
+        {
+          "label": "Einstein Online — Cosmology elementary tour",
+          "url": "https://www.einstein-online.info/en/category/elementary/cosmology-elementary/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a deep field of galaxies that looks statistically identical inside several boxes placed at different positions and orientations",
       "quiz": [
@@ -290,7 +422,8 @@
           "prompt": "What is the strongest observational evidence for large-scale isotropy?",
           "answer": "The cosmic microwave background's near-perfect uniformity across the sky (anisotropies of only ~1 part in 100,000)."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nUp close the universe is lumpy — planets here, voids there. But zoom out past individual galaxies and the lumps blur into an even haze that looks the same wherever you stand and whichever way you look. There is no center, no edge, no special direction. This is the working assumption that makes cosmology tractable.\n\n### Precisely\nThe **cosmological principle** asserts that, averaged over sufficiently large scales (roughly $\\gtrsim 100\\,\\text{Mpc} \\approx 300$ million light-years), the universe is:\n- **homogeneous** — the same at every *location* (no privileged place), and\n- **isotropic** — the same in every *direction* (no privileged direction).\n\nHomogeneity and isotropy about every point together force a very restrictive geometry — exactly the **frw-metric**, with only three allowed spatial curvatures (flat, spherical, hyperbolic).\n\n### Worked example\nThe **cmb-origin** is uniform across the whole sky to about 1 part in $10^5$ after removing the dipole from our own motion. If the universe had a center, an observer off-center would see a hotter CMB on one side and cooler on the other — a large-scale anisotropy that is simply not present. That near-perfect uniformity is the strongest direct evidence for isotropy around us.\n\n### Why it's true / how it works\nIsotropy is *observed* (the CMB, galaxy counts, radio sources). Homogeneity is then inferred: if the universe is isotropic about us *and* we are not special (the Copernican principle), it must be isotropic about every point — and isotropy about every point mathematically implies homogeneity.\n\n### Where it connects\nIt is the symmetry assumption that collapses Einstein's ten **einstein-field-equations** into the two simple **friedmann-equations** for a single function, the **scale-factor**. Galaxy **large-scale-structure** and **redshift-surveys** test how well it holds.\n\n### Watch out\nIt is a statement about *large-scale averages*, not local reality — galaxies cluster strongly on small scales. And it is an assumption supported by evidence, not a theorem: the \"end of greatness\" scale beyond which the universe looks smooth is itself an active research question."
     },
     {
       "id": "frw-metric",
@@ -313,12 +446,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Friedmann–Lemaître–Robertson–Walker metric", "url": "https://en.wikipedia.org/wiki/Friedmann%E2%80%93Lema%C3%AEtre%E2%80%93Robertson%E2%80%93Walker_metric"},
-        {"label": "Wikipedia — Scale factor (cosmology)", "url": "https://en.wikipedia.org/wiki/Scale_factor_(cosmology)"},
-        {"label": "Wikipedia — Shape of the universe (flat/open/closed)", "url": "https://en.wikipedia.org/wiki/Shape_of_the_universe"},
-        {"label": "Wikipedia — Comoving and proper distances", "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"},
-        {"label": "Wikipedia — Cosmological principle", "url": "https://en.wikipedia.org/wiki/Cosmological_principle"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Friedmann–Lemaître–Robertson–Walker metric",
+          "url": "https://en.wikipedia.org/wiki/Friedmann%E2%80%93Lema%C3%AEtre%E2%80%93Robertson%E2%80%93Walker_metric"
+        },
+        {
+          "label": "Wikipedia — Scale factor (cosmology)",
+          "url": "https://en.wikipedia.org/wiki/Scale_factor_(cosmology)"
+        },
+        {
+          "label": "Wikipedia — Shape of the universe (flat/open/closed)",
+          "url": "https://en.wikipedia.org/wiki/Shape_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Comoving and proper distances",
+          "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"
+        },
+        {
+          "label": "Wikipedia — Cosmological principle",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_principle"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "three model universes side by side — flat sheet, sphere, saddle — each filled with a comoving galaxy grid stretching uniformly over time",
       "quiz": [
@@ -332,7 +483,8 @@
           "prompt": "In comoving coordinates, why don't galaxies' coordinates change as the universe expands?",
           "answer": "Galaxies sit at fixed comoving coordinates; it is the scale factor a(t) multiplying those coordinates that stretches the physical distances between them."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nOnce you accept that the universe looks the same everywhere and in every direction, its geometry becomes astonishingly simple to write down: one stretching number $a(t)$ that says how big everything is at time $t$, plus a single choice of overall shape — flat like a tabletop, closed like a sphere's surface, or open like a saddle. The FRW metric *is* that description, distilled.\n\n### Precisely\n$$ds^2 = -c^2\\,dt^2 + a(t)^2\\!\\left[\\frac{dr^2}{1 - k r^2} + r^2\\,d\\Omega^2\\right]$$\nwhere $d\\Omega^2 = d\\theta^2 + \\sin^2\\theta\\,d\\phi^2$. Here $t$ is **cosmic time** (read by clocks comoving with matter), $(r,\\theta,\\phi)$ are **comoving** coordinates, $a(t)$ is the dimensionless **scale-factor**, and $k$ is the curvature constant: $k=+1$ closed (finite, sphere-like), $k=0$ flat, $k=-1$ open (infinite, saddle-like).\n\n### Worked example\nFor a flat universe ($k=0$), the spatial part is just $a(t)^2(dr^2 + r^2 d\\Omega^2)$ — ordinary Euclidean space scaled by $a(t)$. Two galaxies at comoving separation $\\Delta r$ have physical distance $D(t) = a(t)\\,\\Delta r$. If $a$ doubles, $D$ doubles, while $\\Delta r$ stays fixed — the galaxies never \"move\" in comoving coordinates; space itself stretches.\n\n### Why it's true / how it works\nThe cosmological principle (homogeneity + isotropy about every point) is so restrictive that it *uniquely* fixes the metric to this form up to the three values of $k$ and the free function $a(t)$. All the physics then lives in determining how $a(t)$ evolves — which the **friedmann-equations** supply.\n\n### Where it connects\nThis metric, plugged into the **einstein-field-equations**, yields the **friedmann-equations**. The factor $a(t)$ drives **cosmological-redshift** ($1+z = 1/a$) and **hubble-law**. Observations (CMB **acoustic-peaks**) favor $k \\approx 0$.\n\n### Watch out\n$r$ here is a *comoving* coordinate, not a physical distance — physical distance is $a(t)$ times an integral over $r$. Also, $k=0$ \"flat\" refers to *spatial* flatness; the full 4D spacetime is still curved (it is expanding)."
     },
     {
       "id": "scale-factor",
@@ -353,12 +505,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Scale factor (cosmology)", "url": "https://en.wikipedia.org/wiki/Scale_factor_(cosmology)"},
-        {"label": "Wikipedia — Expansion of the universe", "url": "https://en.wikipedia.org/wiki/Expansion_of_the_universe"},
-        {"label": "Wikipedia — Comoving and proper distances", "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"},
-        {"label": "Wikipedia — Derivative (rate of change)", "url": "https://en.wikipedia.org/wiki/Derivative"},
-        {"label": "Einstein Online — The expanding universe (balloon analogy)", "url": "https://www.einstein-online.info/en/expansion/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Scale factor (cosmology)",
+          "url": "https://en.wikipedia.org/wiki/Scale_factor_(cosmology)"
+        },
+        {
+          "label": "Wikipedia — Expansion of the universe",
+          "url": "https://en.wikipedia.org/wiki/Expansion_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Comoving and proper distances",
+          "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"
+        },
+        {
+          "label": "Wikipedia — Derivative (rate of change)",
+          "url": "https://en.wikipedia.org/wiki/Derivative"
+        },
+        {
+          "label": "Einstein Online — The expanding universe (balloon analogy)",
+          "url": "https://www.einstein-online.info/en/expansion/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a balloon with painted galaxies inflating in three stages, the spacing between dots growing while the dots themselves stay the same size",
       "quiz": [
@@ -372,7 +542,8 @@
           "prompt": "If the scale factor was a = 0.5 at some past epoch, how do physical distances then compare to today?",
           "answer": "All distances between comoving objects were half their present values."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nDraw galaxies as dots on a balloon and inflate it. Every dot recedes from every other, yet no dot is the center. The **scale factor** $a(t)$ is essentially \"how inflated the balloon is at time $t$.\" When $a$ doubles, every distance between dots doubles — but the dots (galaxies) themselves do not grow.\n\n### Precisely\n$a(t)$ is a dimensionless function of **cosmic time**, normalized so that today $a(t_0) = 1$. The physical distance between two comoving objects scales as $D(t) = a(t)\\,D_0$, where $D_0$ is today's distance. Its first derivative $\\dot a = da/dt$ measures the expansion rate; the **Hubble parameter** is $H \\equiv \\dot a / a$. The second derivative $\\ddot a$ tells whether expansion is accelerating ($\\ddot a > 0$) or decelerating ($\\ddot a < 0$).\n\n### Worked example\nIf at some past epoch $a = 0.25$, then all comoving distances were one-quarter of today's, the universe's volume was $0.25^3 \\approx 0.016$ of today's (about 64 times denser in matter, since $\\rho_m \\propto a^{-3}$), and the **cosmological-redshift** of light emitted then is $1+z = 1/a = 4$, i.e. $z=3$.\n\n### Why it's true / how it works\n$a(t)$ is the *only* free function the **cosmological-principle** allows in the **frw-metric**. Every large-scale quantity rides on it: density $\\rho_m \\propto a^{-3}$, radiation $\\rho_r \\propto a^{-4}$, temperature $T \\propto a^{-1}$, redshift $1+z = 1/a$. It is the master clock of cosmic history.\n\n### Where it connects\nIts evolution is set by the **friedmann-equations**; its growth rate is **hubble-law**; its inverse is **cosmological-redshift**; its first instant is reshaped by **inflation**.\n\n### Watch out\n$a(t)$ itself is *not directly observable* — only *ratios* are, because its present value is a convention ($a(t_0)=1$). What we actually measure is redshift $z$, then infer $a$. Also, individual galaxies and atoms are *not* stretched by $a$ — bound systems decouple from the expansion."
     },
     {
       "id": "cosmological-redshift",
@@ -395,12 +566,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Redshift", "url": "https://en.wikipedia.org/wiki/Redshift"},
-        {"label": "Wikipedia — Wavelength", "url": "https://en.wikipedia.org/wiki/Wavelength"},
-        {"label": "Wikipedia — Photon", "url": "https://en.wikipedia.org/wiki/Photon"},
-        {"label": "Wikipedia — Doppler effect (for contrast)", "url": "https://en.wikipedia.org/wiki/Doppler_effect"},
-        {"label": "Einstein Online — Reddening galaxies / expansion redshift", "url": "https://www.einstein-online.info/en/category/elementary/cosmology-elementary/"},
-        {"label": "NASA Science — The expanding universe", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Redshift",
+          "url": "https://en.wikipedia.org/wiki/Redshift"
+        },
+        {
+          "label": "Wikipedia — Wavelength",
+          "url": "https://en.wikipedia.org/wiki/Wavelength"
+        },
+        {
+          "label": "Wikipedia — Photon",
+          "url": "https://en.wikipedia.org/wiki/Photon"
+        },
+        {
+          "label": "Wikipedia — Doppler effect (for contrast)",
+          "url": "https://en.wikipedia.org/wiki/Doppler_effect"
+        },
+        {
+          "label": "Einstein Online — Reddening galaxies / expansion redshift",
+          "url": "https://www.einstein-online.info/en/category/elementary/cosmology-elementary/"
+        },
+        {
+          "label": "NASA Science — The expanding universe",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a light wave emitted from a distant galaxy visibly lengthening as the space between gridlines expands along its path to a telescope",
       "quiz": [
@@ -414,7 +603,8 @@
           "prompt": "A galaxy is observed at z = 1. By what factor has the universe expanded since the light left?",
           "answer": "By a factor of 2, since a(t_emit) = 1/(1+z) = 1/2."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nLight is a wave, and color depends on its wavelength — shorter looks bluer, longer looks redder. Draw a wave on a rubber band and stretch the band: the wave lengthens. As the universe grows, it stretches the light waves crossing it, lengthening them and shifting them toward red. Distant galaxies, whose light spent eons crossing growing space, arrive visibly reddened.\n\n### Precisely\n$$1 + z = \\frac{\\lambda_{\\text{obs}}}{\\lambda_{\\text{emit}}} = \\frac{1}{a(t_{\\text{emit}})}$$\nThe **redshift** $z$ is the fractional increase in wavelength: $z = (\\lambda_{\\text{obs}} - \\lambda_{\\text{emit}})/\\lambda_{\\text{emit}}$. Because $a(t_0)=1$ today, the stretch factor equals exactly $1/a$ at the moment of emission. Measuring $z$ therefore directly reads off how small the universe was when the light departed.\n\n### Worked example\nA galaxy shows a spectral line at observed wavelength $\\lambda_{\\text{obs}} = 820\\,\\text{nm}$ that is known to be emitted at $\\lambda_{\\text{emit}} = 656\\,\\text{nm}$ (hydrogen-alpha). Then $1+z = 820/656 = 1.25$, so $z = 0.25$, and $a(t_{\\text{emit}}) = 1/1.25 = 0.80$ — the universe was 80% of its present size when that light left. The **cmb-origin** has $z \\approx 1100$, so $a \\approx 1/1101 \\approx 0.0009$.\n\n### Why it's true / how it works\nA photon's wavelength is carried along with the expanding space it travels through; the comoving wavelength is fixed, so the physical wavelength scales as $a(t)$. This is a property of waves propagating through the **frw-metric**, derived directly from null **geodesics**.\n\n### Where it connects\nRedshift is the master observable of cosmology: it sets the **scale-factor** at emission, drives **thermal-history** ($T \\propto 1+z$), and is the depth coordinate in **redshift-surveys** and the **hubble-law**.\n\n### Watch out\nCosmological redshift is **not** an ordinary Doppler shift from motion *through* space — it comes from space itself stretching while the light is in flight. Near home, peculiar-velocity Doppler shifts contaminate the measurement; at high $z$ the relation $1+z = 1/a$ is exact within FRW."
     },
     {
       "id": "hubble-law",
@@ -438,12 +628,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Hubble's law (Hubble–Lemaître law)", "url": "https://en.wikipedia.org/wiki/Hubble%27s_law"},
-        {"label": "Wikipedia — Hubble constant", "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_constant"},
-        {"label": "Wikipedia — Parsec / megaparsec (distance unit)", "url": "https://en.wikipedia.org/wiki/Parsec"},
-        {"label": "Wikipedia — Hubble time / age estimate", "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_time"},
-        {"label": "Einstein Online — The expanding universe", "url": "https://www.einstein-online.info/en/expansion/"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Hubble's law (Hubble–Lemaître law)",
+          "url": "https://en.wikipedia.org/wiki/Hubble%27s_law"
+        },
+        {
+          "label": "Wikipedia — Hubble constant",
+          "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_constant"
+        },
+        {
+          "label": "Wikipedia — Parsec / megaparsec (distance unit)",
+          "url": "https://en.wikipedia.org/wiki/Parsec"
+        },
+        {
+          "label": "Wikipedia — Hubble time / age estimate",
+          "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_time"
+        },
+        {
+          "label": "Einstein Online — The expanding universe",
+          "url": "https://www.einstein-online.info/en/expansion/"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a scatter plot of galaxy recession velocity versus distance forming a straight line through the origin, slope labeled H_0",
       "quiz": [
@@ -458,7 +666,8 @@
           "answer": "If expansion had been at a constant rate, a galaxy at distance d receding at v = H₀d took time d/v = 1/H₀ to get there; 1/H₀ ≈ 14 Gyr is therefore a first estimate of the age.",
           "eq": "t_H = 1/H_0"
         }
-      ]
+      ],
+      "lesson": "### Intuition\nWhen astronomers measure how fast galaxies recede, a clean pattern emerges: a galaxy twice as far away moves away twice as fast. That is exactly what you would see if *all of space* were quietly growing everywhere at once — the everyday signature of an expanding universe, and historically the discovery that launched modern cosmology.\n\n### Precisely\n$$v = H_0\\,d, \\qquad H \\equiv \\frac{\\dot a}{a}$$\n$v$ is recession velocity, $d$ is distance, and $H_0$ is the **Hubble constant** — the present value of the **Hubble parameter** $H = \\dot a/a$, the fractional growth rate of the **scale-factor**. Measured value: $H_0 \\approx 70\\,\\text{km/s/Mpc}$, where $1\\,\\text{Mpc} \\approx 3.26$ million light-years $\\approx 3.09\\times10^{19}\\,\\text{km}$. So a galaxy gains $\\sim70\\,\\text{km/s}$ of recession per megaparsec of distance.\n\n### Worked example\nA galaxy $100\\,\\text{Mpc}$ away recedes at $v = 70 \\times 100 = 7000\\,\\text{km/s}$. The **Hubble time** $t_H = 1/H_0$ gives a rough age: converting, $1/H_0 = (3.09\\times10^{19}\\,\\text{km})/(70\\,\\text{km/s}) \\approx 4.4\\times10^{17}\\,\\text{s} \\approx 14$ billion years — close to the true $13.8\\,\\text{Gyr}$.\n\n### Why it's true / how it works\nIn a uniformly expanding **frw-metric**, physical distance is $d = a(t)\\,d_{\\text{comoving}}$, so $\\dot d = \\dot a\\,d_{\\text{comoving}} = (\\dot a/a)\\,d = H d$. The proportionality is automatic and *centerless*: every comoving observer sees the same law, so our seeing recession everywhere does not put us at the middle.\n\n### Where it connects\n$H_0$ sets the age and size scale of the cosmos and anchors the **cosmic-distance-ladder**. Its precise value is the subject of the **hubble-tension**. $H(t)$ appears throughout the **friedmann-equations** and **critical-density**.\n\n### Watch out\n$v = H_0 d$ is exact only at *low* redshift, where $v \\approx cz$. At high $z$, naive \"velocity\" exceeds $c$ for very distant galaxies — which is *not* a violation, because cosmological recession is the stretching of space, not motion through it. Use the full FRW distance–redshift relation there."
     },
     {
       "id": "friedmann-equations",
@@ -481,12 +690,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Friedmann equations", "url": "https://en.wikipedia.org/wiki/Friedmann_equations"},
-        {"label": "Wikipedia — Friedmann–Lemaître–Robertson–Walker metric", "url": "https://en.wikipedia.org/wiki/Friedmann%E2%80%93Lema%C3%AEtre%E2%80%93Robertson%E2%80%93Walker_metric"},
-        {"label": "Wikipedia — Density (energy density)", "url": "https://en.wikipedia.org/wiki/Energy_density"},
-        {"label": "Wikipedia — Friedmann equations: density parameter", "url": "https://en.wikipedia.org/wiki/Friedmann_equations#Density_parameter"},
-        {"label": "Wikipedia — Chronology of the universe (the eras)", "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Friedmann equations",
+          "url": "https://en.wikipedia.org/wiki/Friedmann_equations"
+        },
+        {
+          "label": "Wikipedia — Friedmann–Lemaître–Robertson–Walker metric",
+          "url": "https://en.wikipedia.org/wiki/Friedmann%E2%80%93Lema%C3%AEtre%E2%80%93Robertson%E2%80%93Walker_metric"
+        },
+        {
+          "label": "Wikipedia — Density (energy density)",
+          "url": "https://en.wikipedia.org/wiki/Energy_density"
+        },
+        {
+          "label": "Wikipedia — Friedmann equations: density parameter",
+          "url": "https://en.wikipedia.org/wiki/Friedmann_equations#Density_parameter"
+        },
+        {
+          "label": "Wikipedia — Chronology of the universe (the eras)",
+          "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a stacked timeline bar showing radiation, then matter, then dark energy taking turns dominating the energy budget as the scale factor grows",
       "quiz": [
@@ -501,7 +728,8 @@
           "answer": "Both dilute by volume (a⁻³); radiation gets one extra factor of a⁻¹ because each photon's wavelength stretches with expansion, lowering its energy.",
           "eq": "\\rho_r \\propto a^{-4},\\ \\rho_m \\propto a^{-3}"
         }
-      ]
+      ],
+      "lesson": "### Intuition\nThis is the universe's growth equation. Tell it what the cosmos is made of right now — matter, radiation, curvature, dark energy — and it tells you how fast the universe expands and whether that expansion speeds up or slows down. Everything about cosmic history follows from integrating it.\n\n### Precisely\nThe first Friedmann equation, from plugging the **frw-metric** into the **einstein-field-equations**:\n$$\\left(\\frac{\\dot a}{a}\\right)^2 = H^2 = \\frac{8\\pi G}{3}\\rho - \\frac{k c^2}{a^2} + \\frac{\\Lambda c^2}{3}$$\n$\\rho$ is total energy density, $k$ the curvature constant, $\\Lambda$ the **cosmological-constant**. A companion **acceleration equation** $\\ddot a/a = -\\frac{4\\pi G}{3}(\\rho + 3p/c^2) + \\frac{\\Lambda c^2}{3}$ shows that *pressure* $p$, not just density, decides acceleration.\n\n### Worked example\nIn a flat ($k=0$), matter-only universe with $\\Lambda=0$: solving $H^2 = \\frac{8\\pi G}{3}\\rho$ with $\\rho \\propto a^{-3}$ yields $a(t) \\propto t^{2/3}$. Then $H = \\dot a/a = \\frac{2}{3t}$, so the age is $t_0 = \\frac{2}{3 H_0}$ — about $9.3\\,\\text{Gyr}$ for $H_0=70$, notably *younger* than the real universe, which is one early hint that matter alone is not the whole story.\n\n### Why it's true / how it works\nEach ingredient dilutes differently as $a$ grows: matter $\\rho_m \\propto a^{-3}$ (volume), radiation $\\rho_r \\propto a^{-4}$ (volume *plus* one redshift factor per photon), curvature $\\propto a^{-2}$, and $\\Lambda$ stays constant. So the universe passes through **radiation-dominated** ($a \\propto t^{1/2}$), **matter-dominated** ($a \\propto t^{2/3}$), and **$\\Lambda$-dominated** ($a \\propto e^{Ht}$) eras in turn.\n\n### Where it connects\nThese equations underpin **critical-density**, the **big-bang**, **dark-energy**, and the whole **lambda-cdm** model. The acceleration equation is what **dark-energy** exploits.\n\n### Watch out\nThe acceleration depends on $\\rho + 3p/c^2$: a component with strongly negative pressure ($p < -\\rho c^2/3$) makes $\\ddot a > 0$. Forgetting the pressure term is the classic mistake that makes cosmic acceleration seem impossible."
     },
     {
       "id": "critical-density",
@@ -523,12 +751,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Friedmann equations: density parameter Ω", "url": "https://en.wikipedia.org/wiki/Friedmann_equations#Density_parameter"},
-        {"label": "Wikipedia — Friedmann equations (critical density)", "url": "https://en.wikipedia.org/wiki/Friedmann_equations"},
-        {"label": "Wikipedia — Shape of the universe (flat/open/closed)", "url": "https://en.wikipedia.org/wiki/Shape_of_the_universe"},
-        {"label": "Wikipedia — Flatness problem", "url": "https://en.wikipedia.org/wiki/Flatness_problem"},
-        {"label": "Wikipedia — Gravitational constant (G)", "url": "https://en.wikipedia.org/wiki/Gravitational_constant"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Friedmann equations: density parameter Ω",
+          "url": "https://en.wikipedia.org/wiki/Friedmann_equations#Density_parameter"
+        },
+        {
+          "label": "Wikipedia — Friedmann equations (critical density)",
+          "url": "https://en.wikipedia.org/wiki/Friedmann_equations"
+        },
+        {
+          "label": "Wikipedia — Shape of the universe (flat/open/closed)",
+          "url": "https://en.wikipedia.org/wiki/Shape_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Flatness problem",
+          "url": "https://en.wikipedia.org/wiki/Flatness_problem"
+        },
+        {
+          "label": "Wikipedia — Gravitational constant (G)",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_constant"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a dial pointing at Omega = 1 between a closed sphere on one side and an open saddle on the other, all components summing on a stacked bar",
       "quiz": [
@@ -542,7 +788,8 @@
           "prompt": "If Ω_m ≈ 0.31 and Ω_Λ ≈ 0.69 with negligible radiation, what does this say about spatial curvature?",
           "answer": "They sum to ≈ 1.0, so Ω_k ≈ 0 — the universe is spatially flat to within measurement error."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nThere is one special amount of \"stuff\" that makes the universe come out perfectly flat — tabletop geometry, where parallel lines stay parallel forever. Pack in more and space curves closed like a sphere; pack in less and it curves open like a saddle. Measuring how much the universe actually contains tells you which shape we inhabit.\n\n### Precisely\n$$\\rho_c = \\frac{3 H^2}{8\\pi G}, \\qquad \\Omega \\equiv \\frac{\\rho}{\\rho_c}$$\n$\\rho_c$ is the **critical density** — the value that makes the curvature term $k=0$ in the **friedmann-equations**. $\\Omega$, the **density parameter**, compares actual density to critical. $\\Omega > 1 \\Rightarrow$ closed ($k=+1$); $\\Omega = 1 \\Rightarrow$ flat ($k=0$); $\\Omega < 1 \\Rightarrow$ open ($k=-1$).\n\n### Worked example\nToday $H_0 \\approx 70\\,\\text{km/s/Mpc} = 2.27\\times10^{-18}\\,\\text{s}^{-1}$. Then\n$$\\rho_c = \\frac{3 (2.27\\times10^{-18})^2}{8\\pi (6.67\\times10^{-11})} \\approx 9.2\\times10^{-27}\\,\\text{kg/m}^3,$$\nabout **5–6 hydrogen atoms per cubic meter** — an astonishingly sparse density that nonetheless dictates the geometry of the whole cosmos.\n\n### Why it's true / how it works\nRearranging the first Friedmann equation gives the identity $\\Omega_m + \\Omega_r + \\Omega_\\Lambda + \\Omega_k = 1$, where $\\Omega_k \\equiv -kc^2/(a^2H^2)$ encodes curvature. \"Flatness\" is the *measured* statement that the energy components sum to the critical density, i.e. $\\Omega_k \\approx 0$.\n\n### Where it connects\nObservations give $\\Omega_m \\approx 0.31$, $\\Omega_\\Lambda \\approx 0.69$, radiation negligible — summing to $\\approx 1.00$, so $\\Omega_k \\approx 0$ to within $\\sim0.5\\%$. This near-perfect flatness is predicted by **inflation** and confirmed by the **acoustic-peaks**, and it feeds directly into **lambda-cdm**.\n\n### Watch out\n$\\rho_c$ is *not* a fixed constant — it depends on $H$, which changes with time, so $\\rho_c$ was much higher in the past. And $\\Omega=1$ does not mean the universe will halt; fate depends on *which* components supply the density, especially **dark-energy**."
     },
     {
       "id": "big-bang",
@@ -566,12 +813,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Big Bang", "url": "https://en.wikipedia.org/wiki/Big_Bang"},
-        {"label": "NASA Science — The Big Bang", "url": "https://science.nasa.gov/universe/the-big-bang/"},
-        {"label": "Einstein Online — A tale of two big bangs", "url": "https://einstein-online.info/spotlights/big_bangs.1.html"},
-        {"label": "Wikipedia — Chronology of the universe", "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"},
-        {"label": "Wikipedia — Cosmic microwave background", "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Big Bang",
+          "url": "https://en.wikipedia.org/wiki/Big_Bang"
+        },
+        {
+          "label": "NASA Science — The Big Bang",
+          "url": "https://science.nasa.gov/universe/the-big-bang/"
+        },
+        {
+          "label": "Einstein Online — A tale of two big bangs",
+          "url": "https://einstein-online.info/spotlights/big_bangs.1.html"
+        },
+        {
+          "label": "Wikipedia — Chronology of the universe",
+          "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Cosmic microwave background",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a cone widening from a tiny hot point on the left to a cool galaxy-filled volume on the right, labeled by temperature falling as the scale factor grows",
       "quiz": [
@@ -585,7 +850,8 @@
           "prompt": "Correct the common misconception that the Big Bang was an explosion in space.",
           "answer": "It was not matter blasting outward into pre-existing space; it was the hot, dense early state of space itself expanding everywhere at once — there is no center and no edge."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nPlay the movie of the expanding universe backwards. Everything flying apart today was packed closer the further back you go — and squeezing matter together heats it (compress any gas and it warms). So long ago the whole universe was tiny, dense, and blazing hot. That hot early state *is* the Big Bang. Crucially, it was **not** an explosion at one spot in pre-existing space — it was the entire universe starting small and hot *everywhere at once*.\n\n### Precisely\nThe **Big Bang** is the hot, dense early phase when the **scale-factor** $a(t)$ was small. As $a$ grew, the universe cooled ($T \\propto 1/a$) and thinned. The model rests on **three independent pillars**: (1) the observed **hubble-law** expansion; (2) the **cmb-origin** relic glow; (3) the measured **bbn** light-element abundances. All three point to an origin about $13.8$ billion years ago.\n\n### Worked example\nEstimate the age crudely from the **hubble-law**: $t \\sim 1/H_0 \\approx 14\\,\\text{Gyr}$. A more careful integration of the **friedmann-equations** with $\\Omega_m \\approx 0.31$, $\\Omega_\\Lambda \\approx 0.69$ yields $t_0 = 13.8\\,\\text{Gyr}$ — and the independent **cmb-origin** fit agrees, a powerful consistency check.\n\n### Why it's true / how it works\nExtrapolating $a \\to 0$ makes density and temperature formally infinite — a *singularity*. But that is a breakdown of classical GR, not a verified event: the earliest instants need quantum gravity. The standard hot Big Bang is confidently described only from roughly a microsecond onward, where known physics applies and predictions (like **bbn**) match data.\n\n### Where it connects\nIt frames the entire cosmic-history sequence: **inflation**, **baryogenesis**, **bbn**, **recombination**, **cmb-origin**, structure formation, and **dark-energy** domination — synthesized in **cosmic-history-synthesis**.\n\n### Watch out\nThe deepest misconception: the Big Bang was *not* matter blasting outward into empty space. There is **no center and no edge**. Space itself expanded uniformly. Asking \"where did it happen?\" is like asking which point on a balloon's surface the inflation started from — every point did."
     },
     {
       "id": "thermal-history",
@@ -608,12 +874,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Chronology of the universe (cooling timeline)", "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"},
-        {"label": "Wikipedia — Black-body radiation", "url": "https://en.wikipedia.org/wiki/Black-body_radiation"},
-        {"label": "Wikipedia — Kelvin (temperature scale)", "url": "https://en.wikipedia.org/wiki/Kelvin"},
-        {"label": "Wikipedia — Redshift (T = 1+z relation)", "url": "https://en.wikipedia.org/wiki/Redshift"},
-        {"label": "Wikipedia — Cosmic microwave background", "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Chronology of the universe (cooling timeline)",
+          "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Black-body radiation",
+          "url": "https://en.wikipedia.org/wiki/Black-body_radiation"
+        },
+        {
+          "label": "Wikipedia — Kelvin (temperature scale)",
+          "url": "https://en.wikipedia.org/wiki/Kelvin"
+        },
+        {
+          "label": "Wikipedia — Redshift (T = 1+z relation)",
+          "url": "https://en.wikipedia.org/wiki/Redshift"
+        },
+        {
+          "label": "Wikipedia — Cosmic microwave background",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a horizontal temperature ladder from 10^9 K down to 2.7 K, with epochs (BBN, recombination, today) pinned at their characteristic temperatures",
       "quiz": [
@@ -627,7 +911,8 @@
           "prompt": "Today's CMB is 2.725 K. Roughly what was its temperature at recombination, z ≈ 1100?",
           "answer": "About 2.725 × 1101 ≈ 3000 K, the temperature at which neutral hydrogen formed."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nLet a gas expand and it cools — the reason an aerosol can feels cold while spraying. The universe does the same as it grows: it cools, and beautifully simply. Make the universe twice as big and its temperature halves. So the early, tiny universe was scorching, and it has been cooling ever since.\n\n### Precisely\n$$T \\propto \\frac{1}{a} = 1 + z$$\n$T$ is the temperature (in kelvin, K) of the cosmic radiation bath. Because photon wavelengths stretch with the **scale-factor** ($\\lambda \\propto a$) and a blackbody's temperature scales inversely with wavelength, $T \\propto 1/a$, which equals $1+z$ via the **cosmological-redshift** relation. This turns $a$ into a cosmic thermometer.\n\n### Worked example\nToday $T_0 = 2.725\\,\\text{K}$. At **recombination**, $z \\approx 1100$, so $T = 2.725 \\times (1+1100) = 2.725 \\times 1101 \\approx 3000\\,\\text{K}$ — exactly hot enough to keep hydrogen ionized until just below this. At **bbn**, $z \\approx 4\\times10^{8}$, so $T \\approx 2.725 \\times 4\\times10^{8} \\approx 10^{9}\\,\\text{K}$ — the billion-degree furnace that forged helium.\n\n### Why it's true / how it works\nThe scaling is *exact* for a thermal **blackbody** spectrum, because expansion preserves the blackbody form: a redshifted blackbody at temperature $T$ becomes a blackbody at lower temperature $T/(1+z)$, with every wavelength stretched by the same factor. This is precisely why the **cmb-origin**, stretched by a factor $\\sim1100$, remains a near-perfect Planck spectrum today.\n\n### Where it connects\nThis relation pins every epoch to a temperature: **bbn** ($\\sim10^9\\,\\text{K}$), **recombination** ($\\sim3000\\,\\text{K}$), today ($2.725\\,\\text{K}$). \"How hot was it then?\" and \"how big was it then?\" are the same question. It governs **baryogenesis** timing and the radiation era of the **friedmann-equations**.\n\n### Watch out\nThe simple $T \\propto 1/a$ holds for radiation that freely expands; it gets small corrections when relativistic particle species annihilate (e.g. electron–positron annihilation heats photons relative to neutrinos), which is why the neutrino background is slightly cooler ($\\sim1.95\\,\\text{K}$) than the photon CMB."
     },
     {
       "id": "inflation",
@@ -652,12 +937,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Cosmic inflation", "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"},
-        {"label": "Wikipedia — Horizon problem", "url": "https://en.wikipedia.org/wiki/Horizon_problem"},
-        {"label": "Wikipedia — Flatness problem", "url": "https://en.wikipedia.org/wiki/Flatness_problem"},
-        {"label": "Wikipedia — Scalar field (the inflaton)", "url": "https://en.wikipedia.org/wiki/Scalar_field"},
-        {"label": "Wikipedia — Exponential growth", "url": "https://en.wikipedia.org/wiki/Exponential_growth"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe (Alan Guth)", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Cosmic inflation",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"
+        },
+        {
+          "label": "Wikipedia — Horizon problem",
+          "url": "https://en.wikipedia.org/wiki/Horizon_problem"
+        },
+        {
+          "label": "Wikipedia — Flatness problem",
+          "url": "https://en.wikipedia.org/wiki/Flatness_problem"
+        },
+        {
+          "label": "Wikipedia — Scalar field (the inflaton)",
+          "url": "https://en.wikipedia.org/wiki/Scalar_field"
+        },
+        {
+          "label": "Wikipedia — Exponential growth",
+          "url": "https://en.wikipedia.org/wiki/Exponential_growth"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe (Alan Guth)",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a tiny smooth patch exploding in size by a vast factor in a sliver of time, with quantum ripples on it being stretched to cosmic scale",
       "quiz": [
@@ -671,7 +974,8 @@
           "prompt": "How does inflation explain why widely separated parts of the sky have the same CMB temperature?",
           "answer": "They were in causal contact in a tiny pre-inflation patch that inflation then stretched across the whole observable universe, so they share a common thermal history."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nIn the first sliver of a second after the Big Bang, the universe is thought to have ballooned in size by a staggering factor almost instantly. Imagine a wrinkled balloon blown up so violently that any wrinkle is stretched flat and smooth. That sudden growth smoothed the universe, flattened its geometry, and stretched microscopic quantum jitters into the faint lumps that later grew into galaxies.\n\n### Precisely\n**Inflation** is a brief epoch of accelerated expansion, $a(t) \\propto e^{Ht}$, driven by a **scalar field** (the \"inflaton\") whose potential energy temporarily acts like a large **cosmological-constant**. During inflation $\\ddot a > 0$ for a stretch lasting at least $N \\gtrsim 60$ **e-folds** (factors of $e$ in $a$), i.e. growth by at least $e^{60} \\approx 10^{26}$.\n\n### Worked example\nA patch needs $\\sim60$ e-folds to solve the puzzles. If inflation ran at $H \\sim 10^{36}\\,\\text{s}^{-1}$, then $60$ e-folds take $t = N/H \\approx 60/10^{36} = 6\\times10^{-35}\\,\\text{s}$ — over in a tiny fraction of a fraction of a second, yet stretching a sub-atomic patch to larger than the entire observable universe.\n\n### Why it's true / how it works\nInflation was invented to cure two puzzles of the plain Big Bang. The **horizon problem**: regions on opposite sides of the sky share the same CMB temperature despite never being in causal contact — solved if they *were* in contact in a tiny pre-inflation patch later stretched apart. The **flatness problem**: $\\Omega$ is suspiciously close to 1 — solved because exponential stretching drives $\\Omega \\to 1$ exponentially fast. As a bonus, quantum fluctuations are stretched to cosmic scale, seeding **cmb-anisotropies** and **large-scale-structure**.\n\n### Where it connects\nInflation explains the flatness measured in **critical-density**, seeds the **cmb-anisotropies**, and predicts **primordial-gravitational-waves**. Its \"never quite ending\" variants spawn the **multiverse-inflation-debate**.\n\n### Watch out\nInflation's testable prediction is a *nearly* scale-invariant spectrum with a slight red tilt, $n_s \\approx 0.965$ — confirmed by the CMB. The smoking-gun B-mode gravitational-wave signal has *not* been detected (see the BICEP2 episode), so inflation is strongly supported but not proven, and the inflaton's identity remains unknown."
     },
     {
       "id": "baryogenesis",
@@ -693,12 +997,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Baryogenesis", "url": "https://en.wikipedia.org/wiki/Baryogenesis"},
-        {"label": "Wikipedia — Antimatter", "url": "https://en.wikipedia.org/wiki/Antimatter"},
-        {"label": "Wikipedia — Baryon", "url": "https://en.wikipedia.org/wiki/Baryon"},
-        {"label": "Wikipedia — Baryon asymmetry / Sakharov conditions", "url": "https://en.wikipedia.org/wiki/Baryon_asymmetry"},
-        {"label": "Wikipedia — CP violation", "url": "https://en.wikipedia.org/wiki/CP_violation"},
-        {"label": "Wikipedia — Standard Model (of particle physics)", "url": "https://en.wikipedia.org/wiki/Standard_Model"}
+        {
+          "label": "Wikipedia — Baryogenesis",
+          "url": "https://en.wikipedia.org/wiki/Baryogenesis"
+        },
+        {
+          "label": "Wikipedia — Antimatter",
+          "url": "https://en.wikipedia.org/wiki/Antimatter"
+        },
+        {
+          "label": "Wikipedia — Baryon",
+          "url": "https://en.wikipedia.org/wiki/Baryon"
+        },
+        {
+          "label": "Wikipedia — Baryon asymmetry / Sakharov conditions",
+          "url": "https://en.wikipedia.org/wiki/Baryon_asymmetry"
+        },
+        {
+          "label": "Wikipedia — CP violation",
+          "url": "https://en.wikipedia.org/wiki/CP_violation"
+        },
+        {
+          "label": "Wikipedia — Standard Model (of particle physics)",
+          "url": "https://en.wikipedia.org/wiki/Standard_Model"
+        }
       ],
       "art_prompt": "a sea of matter-antimatter pairs annihilating into light, with one lone surviving matter particle per billion highlighted",
       "quiz": [
@@ -712,7 +1034,8 @@
           "prompt": "Why is baryogenesis considered evidence for physics beyond the Standard Model?",
           "answer": "The Standard Model's CP violation and out-of-equilibrium dynamics are far too weak to produce the observed asymmetry, so new physics is required."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nEvery matter particle has an antimatter twin with opposite charge; when a particle meets its twin, they annihilate into light. In the hot early universe there was *nearly* as much antimatter as matter, so almost everything annihilated. But for every billion-and-one bits of matter there were only a billion bits of antimatter — a tiny imbalance. After the pairs cancelled, that leftover one-in-a-billion sliver of matter became everything: every star, planet, and person.\n\n### Precisely\n**Baryogenesis** is whatever process generated the matter–antimatter asymmetry. A **baryon** is a proton or neutron. The asymmetry is captured by the **baryon-to-photon ratio**:\n$$\\eta = \\frac{n_B - n_{\\bar B}}{n_\\gamma} \\approx 6\\times10^{-10}$$\ni.e. about six extra baryons per ten billion photons.\n\n### Worked example\nIf matter and antimatter were *exactly* equal, annihilation would leave $n_B/n_\\gamma \\sim 10^{-18}$ — a universe of nearly pure light with essentially no atoms. The observed $\\eta \\approx 6\\times10^{-10}$ is about a *billion* times larger, so roughly **one baryon per billion survived** the great annihilation; the other billion-minus-one cancelled with antibaryons into the photons we now see as the CMB.\n\n### Why it's true / how it works\nAndrei Sakharov showed that generating $\\eta$ from a symmetric start requires **three conditions**: (1) **baryon-number violation** (so the baryon count can change); (2) **C and CP violation** (a built-in lopsidedness so matter and antimatter are not treated identically); (3) **departure from thermal equilibrium** (so the imbalance is not immediately undone). All three must occur together.\n\n### Where it connects\nBaryogenesis sets the $\\eta$ that the **bbn** light-element yields depend on, and fixes the ordinary-matter budget that **lambda-cdm** balances against dark matter. Its timing is governed by **thermal-history**.\n\n### Watch out\nThe Standard Model contains all three Sakharov ingredients *in principle*, but its CP violation is far too small and its electroweak transition too smooth to produce the observed $\\eta$. So baryogenesis is strong evidence for **physics beyond the Standard Model** — the mechanism is genuinely unknown."
     },
     {
       "id": "bbn",
@@ -736,12 +1059,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Big Bang nucleosynthesis", "url": "https://en.wikipedia.org/wiki/Big_Bang_nucleosynthesis"},
-        {"label": "Wikipedia — Nuclear fusion", "url": "https://en.wikipedia.org/wiki/Nuclear_fusion"},
-        {"label": "Wikipedia — Deuterium", "url": "https://en.wikipedia.org/wiki/Deuterium"},
-        {"label": "Wikipedia — Helium-4", "url": "https://en.wikipedia.org/wiki/Helium-4"},
-        {"label": "Einstein Online — The physics behind Big Bang nucleosynthesis", "url": "https://www.einstein-online.info/en/spotlight/bbn_phys/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Big Bang nucleosynthesis",
+          "url": "https://en.wikipedia.org/wiki/Big_Bang_nucleosynthesis"
+        },
+        {
+          "label": "Wikipedia — Nuclear fusion",
+          "url": "https://en.wikipedia.org/wiki/Nuclear_fusion"
+        },
+        {
+          "label": "Wikipedia — Deuterium",
+          "url": "https://en.wikipedia.org/wiki/Deuterium"
+        },
+        {
+          "label": "Wikipedia — Helium-4",
+          "url": "https://en.wikipedia.org/wiki/Helium-4"
+        },
+        {
+          "label": "Einstein Online — The physics behind Big Bang nucleosynthesis",
+          "url": "https://www.einstein-online.info/en/spotlight/bbn_phys/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a few-minute nuclear furnace with protons and neutrons assembling into deuterium and helium-4, a pie chart showing ~75% H, ~25% He by mass",
       "quiz": [
@@ -756,7 +1097,8 @@
           "answer": "BBN fixes the baryon density (via deuterium especially) at a value far below the total matter density inferred from gravity, so most matter cannot be baryons.",
           "eq": "\\Omega_b \\ll \\Omega_m"
         }
-      ]
+      ],
+      "lesson": "### Intuition\nWhen the universe was a few minutes old it was hot and dense enough to act like a giant nuclear furnace, cooking the simplest nuclei — mostly hydrogen and helium. The amazing part: when astronomers measure how much hydrogen and helium the universe actually contains, the amounts match what this few-minute furnace should have made. That agreement is one of the strongest reasons to trust the Big Bang.\n\n### Precisely\n**Big Bang nucleosynthesis** (BBN) is the fusion of light nuclei in the window $t \\approx 1\\,\\text{s}$ to a few minutes, when $T$ fell from $\\sim10^{10}\\,\\text{K}$ to $\\sim10^{9}\\,\\text{K}$. Protons and neutrons fused into deuterium ($^2$H), then mostly $^4$He, with traces of $^3$He and $^7$Li. The predicted **helium mass fraction** is $Y_p \\approx 0.247$ — about a quarter of ordinary matter by mass — with essentially nothing heavier (heavier elements await stars).\n\n### Worked example\nThe helium fraction is roughly fixed by the neutron-to-proton ratio at freeze-out. Around $T \\approx 0.8\\,\\text{MeV}$ the ratio froze near $n/p \\approx 1/7$. Essentially all neutrons end up in $^4$He (2 neutrons + 2 protons each), so\n$$Y_p \\approx \\frac{2 (n/p)}{1 + (n/p)} = \\frac{2/7}{8/7} = 0.25,$$\nmatching observation — a clean, parameter-light prediction.\n\n### Why it's true / how it works\nThe yields depend sensitively on the **baryon-to-photon ratio** $\\eta$ from **baryogenesis**. More baryons mean faster fusion and slightly more helium but much *less* leftover deuterium. **Deuterium** is so fragile that it serves as the best \"baryometer\": its measured abundance pins $\\eta$, and the value agrees with the entirely independent **acoustic-peaks** determination.\n\n### Where it connects\nBBN fixes the baryon density $\\Omega_b$ — and crucially, $\\Omega_b \\ll \\Omega_m$, meaning most matter is *non-baryonic* **dark-matter**. It is one of the three pillars of the **big-bang** and a cornerstone of **lambda-cdm**.\n\n### Watch out\nBBN only makes the *lightest* elements; carbon, oxygen, iron, and everything heavier were forged later in stars and supernovae. Also, the lithium-7 prediction is somewhat *higher* than observed — the \"lithium problem,\" a real (if minor) open puzzle."
     },
     {
       "id": "recombination",
@@ -779,12 +1121,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Recombination (cosmology)", "url": "https://en.wikipedia.org/wiki/Recombination_(cosmology)"},
-        {"label": "Wikipedia — Surface of last scattering (CMB article)", "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"},
-        {"label": "Wikipedia — Plasma (state of matter)", "url": "https://en.wikipedia.org/wiki/Plasma_(physics)"},
-        {"label": "Wikipedia — Electron", "url": "https://en.wikipedia.org/wiki/Electron"},
-        {"label": "NASA Science — The Big Bang", "url": "https://science.nasa.gov/universe/the-big-bang/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Recombination (cosmology)",
+          "url": "https://en.wikipedia.org/wiki/Recombination_(cosmology)"
+        },
+        {
+          "label": "Wikipedia — Surface of last scattering (CMB article)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "Wikipedia — Plasma (state of matter)",
+          "url": "https://en.wikipedia.org/wiki/Plasma_(physics)"
+        },
+        {
+          "label": "Wikipedia — Electron",
+          "url": "https://en.wikipedia.org/wiki/Electron"
+        },
+        {
+          "label": "NASA Science — The Big Bang",
+          "url": "https://science.nasa.gov/universe/the-big-bang/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "an opaque glowing plasma fog on the left clearing into transparent space on the right, with photons streaming off the last-scattering surface",
       "quiz": [
@@ -798,7 +1158,8 @@
           "prompt": "Explain why the universe became transparent at recombination.",
           "answer": "Free electrons (which scatter light) combined with protons into neutral hydrogen, removing the scatterers, so photons could travel freely instead of bouncing around in the plasma."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nPicture thick fog: light cannot travel far because it scatters off the droplets. The early universe was like that — a glowing fog of charged particles that endlessly scattered light, so nothing shone through. Then it cooled enough for those particles to pair into neutral atoms, the fog cleared all at once, and the trapped light flew free in every direction. That freed light is what we now detect as the **cmb-origin**.\n\n### Precisely\n**Recombination** is the epoch when free electrons combined with protons to form neutral hydrogen:\n$$p + e^- \\rightarrow \\text{H} + \\gamma.$$\nIt occurred at redshift $z \\approx 1100$, temperature $T \\approx 3000\\,\\text{K}$, about **380,000 years** after the Big Bang. Before it, the universe was an ionized **plasma** (free electrons + nuclei) that was *opaque* — photons scattered off free electrons via Thomson scattering. After it, the universe became *transparent*, and photons streamed freely from the **surface of last scattering**.\n\n### Worked example\nWhy $\\sim3000\\,\\text{K}$ and not hydrogen's $13.6\\,\\text{eV}$ ionization energy ($\\sim158{,}000\\,\\text{K}$)? Because there were a *billion* photons per baryon (the inverse of $\\eta$), the rare high-energy photons in the tail kept hydrogen ionized until the temperature dropped well below the naive value. Using **thermal-history**, $T = 2.725\\times1101 \\approx 3000\\,\\text{K}$ — consistent.\n\n### Why it's true / how it works\nFree electrons scatter photons efficiently; remove them and the scattering stops. As expansion cooled the plasma below $\\sim3000\\,\\text{K}$, electrons could finally bind to protons faster than energetic photons could re-ionize them. The free-electron fraction plummeted, the photon mean free path shot up past the horizon, and the photons decoupled.\n\n### Where it connects\nRecombination releases the **cmb-origin**; the snapshot it leaves carries the **cmb-anisotropies** and **acoustic-peaks** that encode the cosmological parameters. It is dated using **thermal-history**.\n\n### Watch out\nThe name is a misnomer — the electrons and protons were *never* combined before, so nothing \"re-\" combined. Also, recombination is not instantaneous: it has finite thickness in redshift, which slightly blurs the smallest CMB features."
     },
     {
       "id": "cmb-origin",
@@ -821,12 +1182,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Cosmic microwave background", "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"},
-        {"label": "Wikipedia — Black-body radiation", "url": "https://en.wikipedia.org/wiki/Black-body_radiation"},
-        {"label": "Wikipedia — Microwave", "url": "https://en.wikipedia.org/wiki/Microwave"},
-        {"label": "Wikipedia — Penzias and Wilson (Discovery, CMB article)", "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background#Discovery"},
-        {"label": "NASA Science — The Big Bang (CMB evidence)", "url": "https://science.nasa.gov/universe/the-big-bang/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Cosmic microwave background",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "Wikipedia — Black-body radiation",
+          "url": "https://en.wikipedia.org/wiki/Black-body_radiation"
+        },
+        {
+          "label": "Wikipedia — Microwave",
+          "url": "https://en.wikipedia.org/wiki/Microwave"
+        },
+        {
+          "label": "Wikipedia — Penzias and Wilson (Discovery, CMB article)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background#Discovery"
+        },
+        {
+          "label": "NASA Science — The Big Bang (CMB evidence)",
+          "url": "https://science.nasa.gov/universe/the-big-bang/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a full-sky oval map glowing nearly uniform microwave color with the dipole removed, labeled 2.725 K blackbody",
       "quiz": [
@@ -840,7 +1219,8 @@
           "prompt": "Why is the near-perfect blackbody form of the CMB strong evidence for the hot Big Bang?",
           "answer": "A perfect blackbody requires thermal equilibrium in a hot opaque plasma; only a hot dense early phase could produce it, and expansion preserves the blackbody shape while cooling it."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nPoint a sensitive radio antenna anywhere in the sky and you pick up a faint, even hum of microwaves from every direction. That hum is leftover light from when the universe became transparent, nearly 14 billion years ago. It is the oldest light in existence — a baby photo of the entire cosmos.\n\n### Precisely\nThe **cosmic microwave background** (CMB) is the relic radiation released at **recombination**. Expansion has stretched it by a factor $\\sim1100$, cooling it to a present temperature of $T_0 = 2.725\\,\\text{K}$ and shifting its peak into the microwave band. Its spectrum is the most perfect **blackbody** ever measured in nature, following the Planck law\n$$B_\\nu(T) = \\frac{2h\\nu^3}{c^2}\\frac{1}{e^{h\\nu/k_BT} - 1}$$\nwith deviations smaller than $\\sim50$ parts per million (measured by COBE/FIRAS).\n\n### Worked example\nWien's displacement law gives the peak wavelength: $\\lambda_{\\text{peak}} = b/T = (2.90\\times10^{-3}\\,\\text{m·K})/(2.725\\,\\text{K}) \\approx 1.06\\times10^{-3}\\,\\text{m} \\approx 1.1\\,\\text{mm}$ — squarely in the microwave band, which is why it is called the *microwave* background. There are roughly $410$ CMB photons per cubic centimeter of space everywhere.\n\n### Why it's true / how it works\nA perfect blackbody requires thermal equilibrium in a hot, opaque medium — exactly the pre-recombination plasma. Expansion then preserves the blackbody form while cooling it (see **thermal-history**), so the near-perfect Planck spectrum today is *direct evidence* the early universe was hot and in equilibrium. Penzias and Wilson discovered it by accident in 1965.\n\n### Where it connects\nThe CMB is the single richest dataset in cosmology: its **cmb-anisotropies** and **acoustic-peaks** measure the geometry, baryon density, and dark matter density that define **lambda-cdm**. It is the second pillar of the **big-bang**.\n\n### Watch out\nThe CMB is *not* uniform at the finest level: after removing the dipole from our $\\sim370\\,\\text{km/s}$ motion, residual anisotropies of $\\sim1$ part in $10^5$ remain — and those tiny ripples, not the smoothness, carry the cosmological information."
     },
     {
       "id": "cmb-anisotropies",
@@ -863,12 +1243,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — CMB anisotropies (Cosmic microwave background)", "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"},
-        {"label": "Wikipedia — Anisotropy", "url": "https://en.wikipedia.org/wiki/Anisotropy"},
-        {"label": "Wikipedia — Structure formation (seeds of galaxies)", "url": "https://en.wikipedia.org/wiki/Structure_formation"},
-        {"label": "Wikipedia — Planck (spacecraft)", "url": "https://en.wikipedia.org/wiki/Planck_(spacecraft)"},
-        {"label": "NASA Science — The Big Bang (CMB)", "url": "https://science.nasa.gov/universe/the-big-bang/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — CMB anisotropies (Cosmic microwave background)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "Wikipedia — Anisotropy",
+          "url": "https://en.wikipedia.org/wiki/Anisotropy"
+        },
+        {
+          "label": "Wikipedia — Structure formation (seeds of galaxies)",
+          "url": "https://en.wikipedia.org/wiki/Structure_formation"
+        },
+        {
+          "label": "Wikipedia — Planck (spacecraft)",
+          "url": "https://en.wikipedia.org/wiki/Planck_(spacecraft)"
+        },
+        {
+          "label": "NASA Science — The Big Bang (CMB)",
+          "url": "https://science.nasa.gov/universe/the-big-bang/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a CMB sky map with faint mottled hot and cold spots exaggerated in color, magnified to show the seed density fluctuations",
       "quiz": [
@@ -882,7 +1280,8 @@
           "prompt": "What do CMB anisotropies physically correspond to in the early universe?",
           "answer": "Tiny density fluctuations at recombination — slightly denser, hotter regions that later grew gravitationally into galaxies and clusters."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nThe leftover CMB glow looks smooth, but measure it precisely enough and it is not perfectly even — extremely faint hot spots and cold spots mottle the sky. Those spots map the tiny lumps that existed in the baby universe, and those lumps are exactly the seeds gravity later grew into galaxies and clusters.\n\n### Precisely\n**Anisotropy** means \"not the same in every direction.\" After subtracting the dipole from our motion, the CMB temperature varies by $\\Delta T/T \\approx 10^{-5}$ (about $\\pm30\\,\\mu\\text{K}$ on a $2.725\\,\\text{K}$ background). The pattern is decomposed in **spherical harmonics**,\n$$\\frac{\\Delta T}{T}(\\theta,\\phi) = \\sum_{\\ell m} a_{\\ell m} Y_{\\ell m}(\\theta,\\phi),$$\nand summarized by the **angular power spectrum** $C_\\ell = \\langle |a_{\\ell m}|^2\\rangle$, where multipole $\\ell$ corresponds to angular scale $\\sim 180^\\circ/\\ell$.\n\n### Worked example\nThe famous \"first peak\" sits near $\\ell \\approx 220$, corresponding to an angular scale of $\\sim 180^\\circ/220 \\approx 0.8^\\circ$ on the sky — about 1.6 times the angular size of the full Moon. That this scale matches the predicted **acoustic-peaks** sound horizon for a *flat* universe is how the CMB confirms $\\Omega_{\\text{tot}} \\approx 1$.\n\n### Why it's true / how it works\nThe hot and cold spots trace **density fluctuations** at **recombination**: slightly denser regions were slightly hotter (and gravitationally redshifted), appearing as warm spots. **Inflation** predicts these fluctuations are nearly *scale-invariant* ($n_s \\approx 0.965$), *Gaussian* (bell-curve random), and *adiabatic* (all components fluctuate together) — and WMAP and Planck confirmed all three.\n\n### Where it connects\nThe $C_\\ell$ spectrum, especially the **acoustic-peaks**, fixes the parameters of **lambda-cdm**. These fluctuations are the seeds of **gravitational-instability** and **large-scale-structure**, and the polarization carries **primordial-gravitational-waves** information.\n\n### Watch out\nDo not confuse the $\\sim10^{-5}$ anisotropies with the much larger ($\\sim10^{-3}$) **dipole**, which is just our own motion through the CMB rest frame and must be subtracted first. The cosmological signal lives in the tiny residual."
     },
     {
       "id": "acoustic-peaks",
@@ -905,12 +1304,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Acoustic peaks / power spectrum (CMB article)", "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"},
-        {"label": "Wikipedia — Baryon acoustic oscillations (same physics)", "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations"},
-        {"label": "Wikipedia — Sound horizon / acoustic oscillation", "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations#Acoustic_oscillations"},
-        {"label": "Wikipedia — Standard ruler", "url": "https://en.wikipedia.org/wiki/Distance_measure"},
-        {"label": "NASA Science — The Big Bang (CMB)", "url": "https://science.nasa.gov/universe/the-big-bang/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Acoustic peaks / power spectrum (CMB article)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "Wikipedia — Baryon acoustic oscillations (same physics)",
+          "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations"
+        },
+        {
+          "label": "Wikipedia — Sound horizon / acoustic oscillation",
+          "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations#Acoustic_oscillations"
+        },
+        {
+          "label": "Wikipedia — Standard ruler",
+          "url": "https://en.wikipedia.org/wiki/Distance_measure"
+        },
+        {
+          "label": "NASA Science — The Big Bang (CMB)",
+          "url": "https://science.nasa.gov/universe/the-big-bang/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a CMB angular power spectrum curve with its characteristic series of acoustic peaks, the first peak at ell about 220 marked as a standard ruler",
       "quiz": [
@@ -925,7 +1342,8 @@
           "answer": "Baryons add inertia to the oscillating plasma, enhancing compression (odd) peaks relative to rarefaction (even) peaks; the odd/even height ratio therefore scales with the baryon density.",
           "eq": "\\ell_1 \\approx 220 \\Rightarrow \\Omega_{tot}\\approx 1"
         }
-      ]
+      ],
+      "lesson": "### Intuition\nBefore atoms formed, the universe was a hot soup that could carry sound waves — and it literally rang like a struck bell, a bell whose tone froze in place the instant the universe became transparent. That frozen ringing left a pattern of preferred \"loud\" and \"quiet\" spot-sizes in the CMB. Because we know exactly how far sound could travel before the ringing stopped, that pattern is a ruler we hold up to the sky.\n\n### Precisely\nIn the pre-recombination **baryon–photon plasma**, photon pressure pushed outward while gravity pulled inward, driving **acoustic oscillations**. The **sound horizon** $r_s = \\int_0^{t_{\\text{rec}}} c_s\\,dt/a$ — the comoving distance a sound wave traveled by recombination — is $\\sim150\\,\\text{Mpc}$ comoving. The sound speed is $c_s = c/\\sqrt{3(1+R)}$, where $R \\propto \\Omega_b$. These oscillations imprint a series of **acoustic peaks** in the CMB **angular power spectrum** $C_\\ell$.\n\n### Worked example\nThe first peak at $\\ell_1 \\approx 220$ acts as a **standard ruler**: comparing the known physical size $r_s$ to its observed angular size $\\theta_1 \\approx 0.8^\\circ$ tests geometry. In a *closed* universe the spot would look larger (peak at lower $\\ell$); in *open*, smaller (higher $\\ell$). The observed $\\ell_1 \\approx 220$ corresponds to $\\Omega_{\\text{tot}} \\approx 1.00$ — spatial flatness.\n\n### Why it's true / how it works\nModes that reached maximum compression or rarefaction exactly at recombination appear loudest, producing harmonic peaks at $\\ell \\approx 220, 540, 800, \\dots$. The *odd* peaks (compressions) are enhanced relative to *even* peaks (rarefactions) by **baryon loading**: more baryons add inertia, deepening compressions. So the odd/even height ratio measures $\\Omega_b$, and the third-peak height constrains the **dark-matter** density.\n\n### Where it connects\nAcoustic peaks deliver percent-level **lambda-cdm** parameters: $\\Omega_b$, $\\Omega_c$, $\\Omega_k$, and $H_0$. The *same* physics in matter is the **baryon-acoustic-oscillations** standard ruler, and the geometry test refines **critical-density**.\n\n### Watch out\nThe \"sound\" is real pressure waves in plasma, *not* sound traveling through vacuum today. And the peaks are in *angular* (statistical) space, not literal hot rings on the sky — they emerge only after computing the power spectrum over the whole map."
     },
     {
       "id": "gravitational-instability",
@@ -948,12 +1366,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Structure formation", "url": "https://en.wikipedia.org/wiki/Structure_formation"},
-        {"label": "Wikipedia — Jeans instability (gravitational collapse)", "url": "https://en.wikipedia.org/wiki/Jeans_instability"},
-        {"label": "Wikipedia — Gravitational collapse", "url": "https://en.wikipedia.org/wiki/Gravitational_collapse"},
-        {"label": "Wikipedia — Expansion of the universe (opposing force)", "url": "https://en.wikipedia.org/wiki/Expansion_of_the_universe"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Structure formation",
+          "url": "https://en.wikipedia.org/wiki/Structure_formation"
+        },
+        {
+          "label": "Wikipedia — Jeans instability (gravitational collapse)",
+          "url": "https://en.wikipedia.org/wiki/Jeans_instability"
+        },
+        {
+          "label": "Wikipedia — Gravitational collapse",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_collapse"
+        },
+        {
+          "label": "Wikipedia — Expansion of the universe (opposing force)",
+          "url": "https://en.wikipedia.org/wiki/Expansion_of_the_universe"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a near-uniform field of dots with faint overdensities that progressively pull neighbors in, condensing into clumps over three time steps",
       "quiz": [
@@ -967,7 +1403,8 @@
           "prompt": "Why do perturbations grow only as a power of the scale factor rather than exponentially in an expanding universe?",
           "answer": "Cosmic expansion dilutes matter and works against collapse, slowing the runaway, so in the matter era the density contrast grows roughly as δ ∝ a."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nGravity rewards greed. A patch with a little extra matter pulls in nearby matter, which makes it heavier, which makes it pull harder, which makes it heavier still — a runaway snowball. Start from the faint lumps recorded in the CMB and let this run for billions of years, and those lumps grow into galaxies and clusters.\n\n### Precisely\n**Gravitational instability** is the amplification of small **density fluctuations**. Define the **density contrast** $\\delta(\\mathbf{x}) = (\\rho - \\bar\\rho)/\\bar\\rho$. In the linear regime ($|\\delta| \\ll 1$) during matter domination, it obeys\n$$\\ddot\\delta + 2H\\dot\\delta = 4\\pi G \\bar\\rho\\,\\delta,$$\nwhere the $2H\\dot\\delta$ term is **Hubble friction** from cosmic expansion fighting the collapse. The growing solution is $\\delta \\propto a$ — linear in the **scale-factor**, not exponential.\n\n### Worked example\nThe CMB shows $\\delta \\approx 10^{-5}$ at **recombination** ($a \\approx 1/1100$). Growing as $\\delta \\propto a$ until matter–$\\Lambda$ equality, $\\delta$ amplifies by a factor $\\sim1100$ to $\\delta \\sim 10^{-2}$ — still small. Nonlinear collapse ($\\delta \\sim 1$) then proceeds rapidly in the densest regions, which is why galaxies exist today despite tiny initial seeds.\n\n### Why it's true / how it works\nIn a *static* universe, overdensities would grow *exponentially* — Jeans instability. But our universe *expands*, constantly diluting matter and draining the collapse via the Hubble-friction term. The tug-of-war slows growth to a mere power law ($\\delta \\propto a$), which is exactly why it took billions of years to build structure.\n\n### Where it connects\nIt converts **cmb-anisotropies** seeds into **dark-matter-halos** and **large-scale-structure**. Because **dark-matter** ignores radiation pressure, it begins collapsing before baryons, giving structure a head start.\n\n### Watch out\nLinear theory ($\\delta \\propto a$) only holds while $\\delta \\ll 1$. Once $\\delta \\sim 1$, the growth turns nonlinear, regions collapse and **virialize**, and only N-body simulations — not the linear equation — can follow what happens."
     },
     {
       "id": "dark-matter-evidence",
@@ -989,12 +1426,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Dark matter", "url": "https://en.wikipedia.org/wiki/Dark_matter"},
-        {"label": "Wikipedia — Galaxy rotation curve", "url": "https://en.wikipedia.org/wiki/Galaxy_rotation_curve"},
-        {"label": "Wikipedia — Gravitational lens", "url": "https://en.wikipedia.org/wiki/Gravitational_lens"},
-        {"label": "Wikipedia — Bullet Cluster", "url": "https://en.wikipedia.org/wiki/Bullet_Cluster"},
-        {"label": "Wikipedia — Baryon (ordinary matter)", "url": "https://en.wikipedia.org/wiki/Baryon"},
-        {"label": "NASA Science — Dark matter (Universe overview)", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Dark matter",
+          "url": "https://en.wikipedia.org/wiki/Dark_matter"
+        },
+        {
+          "label": "Wikipedia — Galaxy rotation curve",
+          "url": "https://en.wikipedia.org/wiki/Galaxy_rotation_curve"
+        },
+        {
+          "label": "Wikipedia — Gravitational lens",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_lens"
+        },
+        {
+          "label": "Wikipedia — Bullet Cluster",
+          "url": "https://en.wikipedia.org/wiki/Bullet_Cluster"
+        },
+        {
+          "label": "Wikipedia — Baryon (ordinary matter)",
+          "url": "https://en.wikipedia.org/wiki/Baryon"
+        },
+        {
+          "label": "NASA Science — Dark matter (Universe overview)",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a galaxy rotation curve staying flat far beyond the visible disk, beside a Bullet-Cluster image with lensing mass offset from the X-ray gas",
       "quiz": [
@@ -1008,7 +1463,8 @@
           "prompt": "Why does the Bullet Cluster favor dark matter over modified gravity?",
           "answer": "The lensing mass is spatially offset from the dominant baryonic component (the hot gas), so the gravitating mass is not where most of the ordinary matter is."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nWatch the stars at a spinning galaxy's outer edge. They whirl so fast that the gravity of everything visible — all the stars and gas — should not hold them in; they ought to fly off. They do not. So something unseen must be there, adding gravity. We call it **dark matter**, and several completely independent observations all point to it.\n\n### Precisely\n**Dark matter** is matter that emits no light but exerts gravity. Multiple independent probes demand far more gravitating mass than visible matter supplies:\n1. **Galaxy rotation curves** stay *flat* at large radius, $v(r) \\approx \\text{const}$, instead of falling as $v \\propto r^{-1/2}$.\n2. **Cluster velocity dispersions** (Zwicky, 1933) imply masses far exceeding visible matter.\n3. **Gravitational lensing** is stronger than luminous mass can produce.\n4. **CMB acoustic-peaks** heights require a non-baryonic component.\nAll converge on $\\Omega_{\\text{dm}} \\approx 0.27$, about five times $\\Omega_b \\approx 0.05$.\n\n### Worked example\nFor a flat rotation curve, $v \\approx \\text{const}$ requires enclosed mass $M(r) = v^2 r/G \\propto r$ — mass keeps growing linearly with radius even where no stars are visible. For the Milky Way, $v \\approx 220\\,\\text{km/s}$ out to $r \\approx 50\\,\\text{kpc}$ gives $M \\sim v^2 r/G \\approx 5\\times10^{11}\\,M_\\odot$ — several times the visible stellar mass.\n\n### Why it's true / how it works\nThe **Bullet Cluster** is the decisive case: in a cluster collision, the hot X-ray gas (most of the *baryons*) lags behind, while gravitational **lensing** shows the bulk of the mass tracking the nearly collisionless galaxies. The mass and the baryons are *spatially separated* — exactly what collisionless dark matter predicts and hard to fake by modifying gravity.\n\n### Where it connects\nDark matter seeds **dark-matter-halos**, enables **gravitational-instability** to build **large-scale-structure**, and is the \"CDM\" in **lambda-cdm**. **bbn** independently shows most matter is non-baryonic.\n\n### Watch out\nDark matter is not \"missing\" or hypothetical hand-waving — it is *inferred* from gravity by many independent methods that agree. Modified-gravity alternatives (MOND) fit rotation curves but struggle with the Bullet Cluster and CMB peaks simultaneously."
     },
     {
       "id": "dark-matter-halos",
@@ -1031,12 +1487,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Dark matter halo", "url": "https://en.wikipedia.org/wiki/Dark_matter_halo"},
-        {"label": "Wikipedia — Cold dark matter", "url": "https://en.wikipedia.org/wiki/Cold_dark_matter"},
-        {"label": "Wikipedia — Navarro–Frenk–White profile (NFW)", "url": "https://en.wikipedia.org/wiki/Navarro%E2%80%93Frenk%E2%80%93White_profile"},
-        {"label": "Wikipedia — Galaxy formation and evolution", "url": "https://en.wikipedia.org/wiki/Galaxy_formation_and_evolution"},
-        {"label": "Wikipedia — N-body simulation", "url": "https://en.wikipedia.org/wiki/N-body_simulation"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Dark matter halo",
+          "url": "https://en.wikipedia.org/wiki/Dark_matter_halo"
+        },
+        {
+          "label": "Wikipedia — Cold dark matter",
+          "url": "https://en.wikipedia.org/wiki/Cold_dark_matter"
+        },
+        {
+          "label": "Wikipedia — Navarro–Frenk–White profile (NFW)",
+          "url": "https://en.wikipedia.org/wiki/Navarro%E2%80%93Frenk%E2%80%93White_profile"
+        },
+        {
+          "label": "Wikipedia — Galaxy formation and evolution",
+          "url": "https://en.wikipedia.org/wiki/Galaxy_formation_and_evolution"
+        },
+        {
+          "label": "Wikipedia — N-body simulation",
+          "url": "https://en.wikipedia.org/wiki/N-body_simulation"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a glowing galaxy nested at the center of a large translucent spherical dark-matter halo, with gas streaming inward to form stars",
       "quiz": [
@@ -1050,7 +1524,8 @@
           "prompt": "Explain how galaxies relate to dark matter halos.",
           "answer": "Galaxies form when gas falls into pre-existing dark matter halos, cools, and condenses into stars; the visible galaxy sits at the center of a much larger, more massive dark halo."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nInvisible dark matter clumps into big roughly-round blobs first. Later, ordinary gas drains into the middle of each blob — like water collecting in a bowl — and lights up into the stars and galaxies we actually see. So every glowing galaxy sits at the heart of a much bigger, invisible blob.\n\n### Precisely\nA **dark matter halo** is a large, roughly spherical, gravitationally bound concentration of dark matter surrounding a galaxy. N-body simulations of **cold dark matter** find a near-universal density profile, the **Navarro–Frenk–White (NFW)** form:\n$$\\rho(r) = \\frac{\\rho_0}{(r/r_s)(1 + r/r_s)^2},$$\nwith scale radius $r_s$. The halo mass typically exceeds the visible galaxy's stellar mass by a factor of $\\sim10$–$100$.\n\n### Worked example\nFor the Milky Way, the visible stellar disk is $\\sim6\\times10^{10}\\,M_\\odot$, but its dark halo is estimated at $\\sim1\\times10^{12}\\,M_\\odot$ — over ten times more mass, extending several times beyond the visible disk. The flat **rotation curve** (constant $v$) is the direct signature of this extended halo providing $M(r) \\propto r$.\n\n### Why it's true / how it works\nDark matter clumps *before* baryons because it does not feel **radiation pressure**. Before **recombination**, photons held the baryons smooth, but dark matter — invisible to light — was free to start collapsing earlier under **gravitational-instability**. Its early potential wells are the \"bowls\" into which gas later falls, cools by radiating, and condenses into stars.\n\n### Where it connects\nHalos are where galaxies form, linking **gravitational-instability** to **large-scale-structure**. Their hierarchical merging (small halos merging into big ones) builds the cosmic web. Halo masses are weighed by **gravitational-lensing**.\n\n### Watch out\nThe NFW profile predicts a steep central \"cusp,\" but some observed dwarf galaxies show flatter \"cores\" — the **cusp–core problem**, a genuine small-scale tension in the cold-dark-matter picture. Also, the visible galaxy is just the bright tip; most of a galaxy's mass and extent is dark."
     },
     {
       "id": "large-scale-structure",
@@ -1072,12 +1547,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Observable universe: large-scale structure", "url": "https://en.wikipedia.org/wiki/Observable_universe#Large-scale_structure"},
-        {"label": "Wikipedia — Galaxy filament (cosmic web)", "url": "https://en.wikipedia.org/wiki/Galaxy_filament"},
-        {"label": "Wikipedia — Void (astronomy)", "url": "https://en.wikipedia.org/wiki/Void_(astronomy)"},
-        {"label": "Wikipedia — Structure formation", "url": "https://en.wikipedia.org/wiki/Structure_formation"},
-        {"label": "Wikipedia — Sloan Digital Sky Survey (SDSS)", "url": "https://en.wikipedia.org/wiki/Sloan_Digital_Sky_Survey"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Observable universe: large-scale structure",
+          "url": "https://en.wikipedia.org/wiki/Observable_universe#Large-scale_structure"
+        },
+        {
+          "label": "Wikipedia — Galaxy filament (cosmic web)",
+          "url": "https://en.wikipedia.org/wiki/Galaxy_filament"
+        },
+        {
+          "label": "Wikipedia — Void (astronomy)",
+          "url": "https://en.wikipedia.org/wiki/Void_(astronomy)"
+        },
+        {
+          "label": "Wikipedia — Structure formation",
+          "url": "https://en.wikipedia.org/wiki/Structure_formation"
+        },
+        {
+          "label": "Wikipedia — Sloan Digital Sky Survey (SDSS)",
+          "url": "https://en.wikipedia.org/wiki/Sloan_Digital_Sky_Survey"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a 3D redshift-survey slice showing galaxies strung along filaments around dark voids, clusters glowing at the nodes of the cosmic web",
       "quiz": [
@@ -1091,7 +1584,8 @@
           "prompt": "Why does the existence of fine-grained cosmic-web structure argue for COLD rather than hot dark matter?",
           "answer": "Fast-moving (hot) dark matter would free-stream out of small overdensities and wash out small-scale structure; the observed sharp structure requires slow-moving (cold) dark matter."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nMap where all the galaxies are and they do not fill space evenly like sprinkles in batter. Instead they string into glowing threads wrapping gigantic nearly-empty bubbles — a pattern resembling a spiderweb or a sponge. This **cosmic web** is the largest structure gravity has ever built.\n\n### Precisely\n**Large-scale structure** is the arrangement of matter on scales of millions to hundreds of millions of light-years: **filaments** (threads) and **walls** (sheets) of galaxies surrounding huge **voids**, with dense **clusters** at the nodes where filaments cross. It is quantified statistically by the **two-point correlation function** $\\xi(r)$ — the excess probability over random of finding two galaxies separated by $r$ — and its Fourier transform, the **power spectrum** $P(k)$.\n\n### Worked example\nThe galaxy correlation function is well fit on intermediate scales by a power law, $\\xi(r) \\approx (r/r_0)^{-1.8}$ with $r_0 \\approx 5\\,\\text{Mpc}/h$. So galaxies $1\\,\\text{Mpc}$ apart are $\\sim5^{1.8} \\approx 17$ times more likely to be neighbors than random — strong clustering. Superimposed is a faint bump at $\\sim150\\,\\text{Mpc}$: the **baryon-acoustic-oscillations** feature.\n\n### Why it's true / how it works\nThe cosmic web is **gravitational-instability** acting on the **cmb-anisotropies** seeds inside **dark-matter-halos**. Matter flows out of voids, along filaments, into clusters — a flow simulations reproduce in detail. The observed sharp, fine-grained structure requires **cold** (slow-moving) dark matter; **hot** dark matter would free-stream out of small overdensities and erase them.\n\n### Where it connects\nIt is mapped by **redshift-surveys**, encodes the **baryon-acoustic-oscillations** ruler, and its statistics constrain the matter density and dark-energy behavior in **lambda-cdm** and **dark-energy-equation-of-state**.\n\n### Watch out\nThe cosmic web's apparent \"structures\" (like the Sloan Great Wall) are still consistent with the **cosmological-principle**, which holds only on yet-larger averaging scales. Below $\\sim100\\,\\text{Mpc}$ the universe is genuinely lumpy; above it, smooth."
     },
     {
       "id": "baryon-acoustic-oscillations",
@@ -1114,12 +1608,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Baryon acoustic oscillations", "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations"},
-        {"label": "Wikipedia — Correlation function (astronomy)", "url": "https://en.wikipedia.org/wiki/Correlation_function_(astronomy)"},
-        {"label": "Wikipedia — Comoving and proper distances", "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"},
-        {"label": "Wikipedia — Distance measures (standard ruler)", "url": "https://en.wikipedia.org/wiki/Distance_measure"},
-        {"label": "Wikipedia — Sloan Digital Sky Survey (BOSS/BAO data)", "url": "https://en.wikipedia.org/wiki/Sloan_Digital_Sky_Survey"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Baryon acoustic oscillations",
+          "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations"
+        },
+        {
+          "label": "Wikipedia — Correlation function (astronomy)",
+          "url": "https://en.wikipedia.org/wiki/Correlation_function_(astronomy)"
+        },
+        {
+          "label": "Wikipedia — Comoving and proper distances",
+          "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"
+        },
+        {
+          "label": "Wikipedia — Distance measures (standard ruler)",
+          "url": "https://en.wikipedia.org/wiki/Distance_measure"
+        },
+        {
+          "label": "Wikipedia — Sloan Digital Sky Survey (BOSS/BAO data)",
+          "url": "https://en.wikipedia.org/wiki/Sloan_Digital_Sky_Survey"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a galaxy correlation-function plot with a small bump at ~150 Mpc, illustrated as a faint shell of enhanced galaxy density around a central overdensity",
       "quiz": [
@@ -1133,7 +1645,8 @@
           "prompt": "Why is BAO called a 'standard ruler' and how is it used?",
           "answer": "Its physical length is fixed and calibrated by the CMB; measuring its apparent angular/redshift size at different epochs maps the expansion history H(z)."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nRemember the early universe rang like a bell (the **acoustic-peaks**)? That same ringing left a fingerprint in where galaxies ended up: pairs of galaxies are very slightly more likely to sit about 500 million light-years apart than any other distance. Because that special separation is a fixed, known length, astronomers use it as a giant tape measure to track cosmic expansion.\n\n### Precisely\n**Baryon acoustic oscillations** (BAO) are the imprint of the pre-recombination sound waves on the *matter* distribution. The **sound horizon** $r_s \\approx 150\\,\\text{Mpc}$ comoving ($\\approx 500$ million light-years) appears as a single bump in the galaxy **two-point correlation function** $\\xi(r)$ at $r = r_s$, equivalently as wiggles in the **power spectrum** $P(k)$. Because $r_s$ is calibrated by early-universe physics, BAO is a **standard ruler**.\n\n### Worked example\nMeasure the BAO bump's *apparent* angular size $\\theta(z)$ and redshift extent $\\Delta z$ in a galaxy survey at redshift $z$. The angular size gives the angular-diameter distance $D_A(z) = r_s/[(1+z)\\theta]$; the radial extent gives the expansion rate $H(z) = c\\,\\Delta z/r_s$. Doing this at several redshifts maps $H(z)$ directly — independent of the **standard-candles** ladder.\n\n### Why it's true / how it works\nAt **recombination**, the outward-traveling pressure wave around each overdensity froze, leaving a faint shell of enhanced density at radius $r_s$ around every initial peak. Billions of years later, galaxies preferentially form both at the original center *and* on that shell, producing the excess-probability bump at $r_s$ — the same physics as the CMB **acoustic-peaks**, now in 3D matter.\n\n### Where it connects\nBAO is one of the most powerful **dark-energy** probes, constraining $H(z)$ and the **dark-energy-equation-of-state** $w$. It is measured in **redshift-surveys** (SDSS/BOSS/DESI) and cross-calibrated against the CMB.\n\n### Watch out\nThe BAO bump is *small* — a few-percent excess on top of the smooth correlation function — and requires hundreds of thousands of galaxy redshifts to detect statistically. It is a *standard ruler* (fixed length), distinct from a *standard candle* (fixed brightness)."
     },
     {
       "id": "standard-candles",
@@ -1156,12 +1669,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Standard candle (Cosmic distance ladder)", "url": "https://en.wikipedia.org/wiki/Cosmic_distance_ladder"},
-        {"label": "Wikipedia — Cepheid variable", "url": "https://en.wikipedia.org/wiki/Cepheid_variable"},
-        {"label": "Wikipedia — Type Ia supernova", "url": "https://en.wikipedia.org/wiki/Type_Ia_supernova"},
-        {"label": "Wikipedia — Inverse-square law", "url": "https://en.wikipedia.org/wiki/Inverse-square_law"},
-        {"label": "Wikipedia — Luminosity", "url": "https://en.wikipedia.org/wiki/Luminosity"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Standard candle (Cosmic distance ladder)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_distance_ladder"
+        },
+        {
+          "label": "Wikipedia — Cepheid variable",
+          "url": "https://en.wikipedia.org/wiki/Cepheid_variable"
+        },
+        {
+          "label": "Wikipedia — Type Ia supernova",
+          "url": "https://en.wikipedia.org/wiki/Type_Ia_supernova"
+        },
+        {
+          "label": "Wikipedia — Inverse-square law",
+          "url": "https://en.wikipedia.org/wiki/Inverse-square_law"
+        },
+        {
+          "label": "Wikipedia — Luminosity",
+          "url": "https://en.wikipedia.org/wiki/Luminosity"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a distance ladder with rungs labeled parallax, Cepheids, and Type Ia supernovae, each reaching farther into a field of galaxies",
       "quiz": [
@@ -1175,7 +1706,8 @@
           "prompt": "Why are Type Ia supernovae especially valuable as standard candles?",
           "answer": "They have nearly uniform (and light-curve-standardizable) peak brightness and are extremely luminous, so they can be seen across cosmological distances to trace the expansion history."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nIf two identical bulbs sit before you and one looks dimmer, you instantly know it is farther away. Astronomers use the same trick: knowing an object's true brightness lets them judge its distance from how bright it merely appears. Certain stars and stellar explosions are dependable cosmic \"bulbs\" of known true brightness.\n\n### Precisely\nA **standard candle** is an object of known intrinsic **luminosity** $L$ (power emitted). Its observed **flux** $F$ (power received per area) gives distance via the **inverse-square law**:\n$$F = \\frac{L}{4\\pi d_L^2} \\quad\\Rightarrow\\quad d_L = \\sqrt{\\frac{L}{4\\pi F}},$$\nwhere $d_L$ is the **luminosity distance**. Two workhorses: **Cepheid variables** (pulsating stars whose period reveals $L$) for nearby galaxies, and **Type Ia supernovae** for the far universe.\n\n### Worked example\nA Type Ia supernova has peak absolute magnitude $M \\approx -19.3$. Observe one at apparent magnitude $m = 20$. The distance modulus is $m - M = 20 - (-19.3) = 39.3$, and $d_L = 10^{(m-M+5)/5}\\,\\text{pc} = 10^{(39.3+5)/5} = 10^{8.86}\\,\\text{pc} \\approx 7.2\\times10^{8}\\,\\text{pc} \\approx 720\\,\\text{Mpc}$ — over 2 billion light-years.\n\n### Why it's true / how it works\n**Type Ia supernovae** are runaway thermonuclear explosions of white dwarfs reaching the Chandrasekhar mass ($\\approx1.4\\,M_\\odot$), so they detonate at a nearly *uniform* mass and hence near-uniform peak brightness. The small spread is corrected using the **Phillips relation**: intrinsically brighter ones decline more slowly, so the light-curve shape standardizes the luminosity to $\\sim$few-percent precision.\n\n### Where it connects\nStandard candles are the upper rungs of the **cosmic-distance-ladder**, calibrated by **Cepheids** (themselves calibrated by parallax). Type Ia supernovae revealed **dark-energy** in 1998 and anchor the local **hubble-tension** value.\n\n### Watch out\nEach method has a limited distance range and inherits calibration from the rung below, so systematic errors (dust extinction, metallicity, supernova standardization) propagate up the ladder — which is precisely where a local-vs-early $H_0$ discrepancy could hide."
     },
     {
       "id": "redshift-surveys",
@@ -1198,12 +1730,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Redshift survey", "url": "https://en.wikipedia.org/wiki/Redshift_survey"},
-        {"label": "Wikipedia — Sloan Digital Sky Survey (SDSS)", "url": "https://en.wikipedia.org/wiki/Sloan_Digital_Sky_Survey"},
-        {"label": "Wikipedia — Astronomical spectroscopy", "url": "https://en.wikipedia.org/wiki/Astronomical_spectroscopy"},
-        {"label": "Wikipedia — Redshift-space distortions", "url": "https://en.wikipedia.org/wiki/Redshift-space_distortions"},
-        {"label": "Wikipedia — Galaxy filament (cosmic web mapped)", "url": "https://en.wikipedia.org/wiki/Galaxy_filament"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Redshift survey",
+          "url": "https://en.wikipedia.org/wiki/Redshift_survey"
+        },
+        {
+          "label": "Wikipedia — Sloan Digital Sky Survey (SDSS)",
+          "url": "https://en.wikipedia.org/wiki/Sloan_Digital_Sky_Survey"
+        },
+        {
+          "label": "Wikipedia — Astronomical spectroscopy",
+          "url": "https://en.wikipedia.org/wiki/Astronomical_spectroscopy"
+        },
+        {
+          "label": "Wikipedia — Redshift-space distortions",
+          "url": "https://en.wikipedia.org/wiki/Redshift-space_distortions"
+        },
+        {
+          "label": "Wikipedia — Galaxy filament (cosmic web mapped)",
+          "url": "https://en.wikipedia.org/wiki/Galaxy_filament"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a wedge diagram of a galaxy redshift survey fanning out from Earth, each galaxy placed by its redshift, revealing filaments and voids",
       "quiz": [
@@ -1217,7 +1767,8 @@
           "prompt": "What are redshift-space distortions and why are they useful rather than just a nuisance?",
           "answer": "Peculiar velocities shift apparent positions along the line of sight; this distortion measures the growth rate of structure and tests gravity on large scales."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nWe already know a galaxy's **cosmological-redshift** tells us roughly how far away it is. Do that for *millions* of galaxies across the sky and you can place each one at its proper depth — turning a flat picture of dots into a real three-dimensional map showing where the threads and empty bubbles of the cosmic web actually lie.\n\n### Precisely\nA **redshift survey** records the **spectrum** of large numbers of galaxies; each spectrum's redshift $z$ converts to a distance, placing the galaxy in 3D. Two angular coordinates (RA, Dec) plus the redshift-derived distance give full positions. The resulting catalog yields the **power spectrum** $P(k)$, **correlation function** $\\xi(r)$, and the **baryon-acoustic-oscillations** ruler. The Sloan Digital Sky Survey (SDSS) has mapped *millions* of galaxies this way; DESI is now mapping tens of millions.\n\n### Worked example\nA galaxy at $z = 0.1$ sits at comoving distance $d \\approx cz/H_0 = (3\\times10^5\\,\\text{km/s})(0.1)/(70\\,\\text{km/s/Mpc}) \\approx 430\\,\\text{Mpc}$ (low-$z$ approximation). Repeat for every galaxy in the catalog, bin by separation, and the **baryon-acoustic-oscillations** bump emerges at $\\sim150\\,\\text{Mpc}$ — a literal ruler read off the 3D map.\n\n### Why it's true / how it works\nSpectroscopy spreads a galaxy's light into a rainbow; known emission/absorption lines appear shifted by $(1+z)$, giving a precise redshift. Photometric surveys estimate $z$ more crudely from broadband colors for far more objects. Together they reconstruct the **large-scale-structure** in three dimensions.\n\n### Where it connects\nSurveys turn **cosmological-redshift** into cosmic cartography, revealing **large-scale-structure**, measuring **baryon-acoustic-oscillations**, and constraining the **dark-energy-equation-of-state**.\n\n### Watch out\nRedshift maps suffer **redshift-space distortions**: galaxies' peculiar velocities (infall toward overdensities) add to the cosmological redshift, squashing structures along the line of sight (\"Fingers of God\" and the Kaiser effect). Far from being mere noise, this distortion *measures* the growth rate of structure and tests gravity — but it must be modeled, not ignored."
     },
     {
       "id": "dark-energy",
@@ -1241,12 +1792,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Dark energy", "url": "https://en.wikipedia.org/wiki/Dark_energy"},
-        {"label": "Wikipedia — Accelerating expansion of the universe", "url": "https://en.wikipedia.org/wiki/Accelerating_expansion_of_the_universe"},
-        {"label": "Wikipedia — Type Ia supernova (the evidence)", "url": "https://en.wikipedia.org/wiki/Type_Ia_supernova"},
-        {"label": "Wikipedia — Negative pressure (Equation of state, cosmology)", "url": "https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"},
-        {"label": "Wikipedia — Friedmann equations (acceleration equation)", "url": "https://en.wikipedia.org/wiki/Friedmann_equations"},
-        {"label": "NASA Science — Dark energy (Universe overview)", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Dark energy",
+          "url": "https://en.wikipedia.org/wiki/Dark_energy"
+        },
+        {
+          "label": "Wikipedia — Accelerating expansion of the universe",
+          "url": "https://en.wikipedia.org/wiki/Accelerating_expansion_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Type Ia supernova (the evidence)",
+          "url": "https://en.wikipedia.org/wiki/Type_Ia_supernova"
+        },
+        {
+          "label": "Wikipedia — Negative pressure (Equation of state, cosmology)",
+          "url": "https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"
+        },
+        {
+          "label": "Wikipedia — Friedmann equations (acceleration equation)",
+          "url": "https://en.wikipedia.org/wiki/Friedmann_equations"
+        },
+        {
+          "label": "NASA Science — Dark energy (Universe overview)",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a Hubble diagram where distant supernovae fall below the decelerating-universe curve, with an expansion timeline bending upward into acceleration",
       "quiz": [
@@ -1261,7 +1830,8 @@
           "answer": "A component with p < −ρc²/3 makes the right side positive, so ä > 0 — strongly negative pressure drives accelerated expansion.",
           "eq": "\\ddot a/a \\propto -(\\rho + 3p/c^2)"
         }
-      ]
+      ],
+      "lesson": "### Intuition\nYou would expect gravity to slowly brake cosmic expansion — everything pulling on everything else. The shock of 1998 was the opposite: expansion is *speeding up*. Something invisible acts like anti-gravity, pushing space apart. We call it **dark energy**.\n\n### Precisely\n**Dark energy** is a component with strongly **negative pressure** that drives accelerated expansion. From the **friedmann-equations** acceleration equation,\n$$\\frac{\\ddot a}{a} = -\\frac{4\\pi G}{3}\\left(\\rho + \\frac{3p}{c^2}\\right),$$\n$\\ddot a > 0$ requires $p < -\\tfrac{1}{3}\\rho c^2$. The simplest dark energy has $p = -\\rho c^2$ (equation of state $w = -1$). It makes up $\\Omega_\\Lambda \\approx 0.69$ of the cosmic budget and dominates today.\n\n### Worked example\nIn 1998 the Supernova Cosmology Project and High-z Supernova Search Team found distant Type Ia supernovae at $z \\sim 0.5$ about $0.25$ magnitudes *fainter* (hence $\\sim10$–$15\\%$ farther) than a decelerating, matter-only universe predicts. Fitting the **friedmann-equations** to the supernova **standard-candles** Hubble diagram required $\\Omega_\\Lambda \\approx 0.7$ — acceleration.\n\n### Why it's true / how it works\nWhy does negative pressure push *outward*? In GR, the source of gravity is $\\rho + 3p/c^2$ (pressure gravitates, see **stress-energy**). A sufficiently negative $p$ flips that combination negative, so the gravitational effect becomes *repulsive* on cosmic scales — counterintuitive but a direct consequence of the field equations.\n\n### Where it connects\nDark energy is the \"Λ\" in **lambda-cdm** and the **cosmological-constant** if $w=-1$. Whether $w$ truly equals $-1$ or evolves is the **dark-energy-equation-of-state** question, and it determines the **cosmic-fate**.\n\n### Watch out\nDark energy is *not* dark matter — dark matter clumps and *attracts*; dark energy is smooth and *repels*. And acceleration does not mean the expansion *rate* $H$ increases — $H$ actually decreases toward a constant; it is $\\ddot a$, the growth of $a$ itself, that turns positive."
     },
     {
       "id": "cosmological-constant",
@@ -1284,12 +1854,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Cosmological constant", "url": "https://en.wikipedia.org/wiki/Cosmological_constant"},
-        {"label": "Wikipedia — Vacuum energy", "url": "https://en.wikipedia.org/wiki/Vacuum_energy"},
-        {"label": "Wikipedia — Equation of state (cosmology), w = −1", "url": "https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"},
-        {"label": "Wikipedia — Cosmological constant problem", "url": "https://en.wikipedia.org/wiki/Cosmological_constant_problem"},
-        {"label": "Wikipedia — Dark energy", "url": "https://en.wikipedia.org/wiki/Dark_energy"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Cosmological constant",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_constant"
+        },
+        {
+          "label": "Wikipedia — Vacuum energy",
+          "url": "https://en.wikipedia.org/wiki/Vacuum_energy"
+        },
+        {
+          "label": "Wikipedia — Equation of state (cosmology), w = −1",
+          "url": "https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"
+        },
+        {
+          "label": "Wikipedia — Cosmological constant problem",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_constant_problem"
+        },
+        {
+          "label": "Wikipedia — Dark energy",
+          "url": "https://en.wikipedia.org/wiki/Dark_energy"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "empty space depicted as faintly glowing with constant vacuum energy, its density unchanged across three expansion stages while matter dots thin out",
       "quiz": [
@@ -1303,7 +1891,8 @@
           "prompt": "Why does the cosmological constant inevitably come to dominate the universe over time?",
           "answer": "Its energy density stays constant while matter and radiation densities dilute as the universe expands, so eventually Λ outweighs everything else."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nHere is the simplest possible dark energy: empty space itself carries a fixed energy that never thins out, no matter how much the universe grows. Ordinary matter spreads thinner as space expands, but this energy-of-empty-space stays the same density forever — so as everything else fades, its steady outward push eventually wins and expansion accelerates.\n\n### Precisely\nThe **cosmological constant** $\\Lambda$ is the term Einstein added to the **einstein-field-equations**. Interpreted as dark energy, it is a uniform **vacuum energy density** $\\rho_\\Lambda = \\frac{\\Lambda c^2}{8\\pi G}$, constant in time, with **equation of state**\n$$w \\equiv \\frac{p}{\\rho c^2} = -1.$$\nThis $w=-1$ — pressure exactly equal to minus the energy density — is the defining signature of a true constant.\n\n### Worked example\nDensities dilute as $\\rho \\propto a^{-3(1+w)}$. For matter ($w=0$): $\\rho \\propto a^{-3}$. For radiation ($w=1/3$): $\\rho \\propto a^{-4}$. For $\\Lambda$ ($w=-1$): $\\rho \\propto a^{0} = $ constant. So as $a$ grows, matter and radiation fade while $\\Lambda$ holds steady — guaranteeing $\\Lambda$ eventually dominates, which is exactly what we observe happening now ($\\Omega_\\Lambda \\approx 0.69$ today).\n\n### Why it's true / how it works\nBecause $\\rho_\\Lambda$ is constant, an expanding volume gains energy \"for free\" — but it does so against the work done by its negative pressure, conserving energy via the **stress-energy** continuity equation $\\dot\\rho + 3H(\\rho + p/c^2) = 0$, which gives $\\dot\\rho = 0$ precisely when $p = -\\rho c^2$.\n\n### Where it connects\n$\\Lambda$ is the \"Λ\" of **lambda-cdm** and the leading **dark-energy** candidate. Its constancy ($w=-1$) is what the **dark-energy-equation-of-state** searches test, and its dominance sets the heat-death **cosmic-fate**.\n\n### Watch out\nIdentifying $\\Lambda$ with quantum **vacuum energy** predicts a value $\\sim10^{120}$ times too large — the **cosmological constant problem**, perhaps the worst quantitative mismatch in physics. Plus the **coincidence problem**: why are $\\Omega_\\Lambda$ and $\\Omega_m$ comparable *right now*, of all epochs?"
     },
     {
       "id": "lambda-cdm",
@@ -1329,12 +1918,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Lambda-CDM model", "url": "https://en.wikipedia.org/wiki/Lambda-CDM_model"},
-        {"label": "Wikipedia — Cold dark matter", "url": "https://en.wikipedia.org/wiki/Cold_dark_matter"},
-        {"label": "Wikipedia — Cosmological constant (Λ)", "url": "https://en.wikipedia.org/wiki/Cosmological_constant"},
-        {"label": "Wikipedia — Planck (spacecraft) parameters", "url": "https://en.wikipedia.org/wiki/Planck_(spacecraft)"},
-        {"label": "Wikipedia — Cosmic inflation (seeds the model)", "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Lambda-CDM model",
+          "url": "https://en.wikipedia.org/wiki/Lambda-CDM_model"
+        },
+        {
+          "label": "Wikipedia — Cold dark matter",
+          "url": "https://en.wikipedia.org/wiki/Cold_dark_matter"
+        },
+        {
+          "label": "Wikipedia — Cosmological constant (Λ)",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_constant"
+        },
+        {
+          "label": "Wikipedia — Planck (spacecraft) parameters",
+          "url": "https://en.wikipedia.org/wiki/Planck_(spacecraft)"
+        },
+        {
+          "label": "Wikipedia — Cosmic inflation (seeds the model)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a pie chart of the cosmic energy budget — ~5% atoms, ~27% dark matter, ~68% dark energy — beside a CMB power spectrum fit by a single model curve",
       "quiz": [
@@ -1348,7 +1955,8 @@
           "prompt": "Explain why ΛCDM is celebrated yet considered incomplete.",
           "answer": "With only ~six parameters it fits the CMB, structure, BBN, and supernovae together — a huge success — but it merely labels dark matter and dark energy without explaining what they are, and faces tensions like the Hubble tension."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nCosmology's grand summary is one short recipe for the whole universe: a pinch of ordinary atoms, a big helping of invisible cold dark matter, and an even bigger helping of dark energy, in a flat universe seeded by inflation. Remarkably, that single recipe with a handful of dials explains almost every cosmic observation at once.\n\n### Precisely\n**ΛCDM** (\"Lambda Cold Dark Matter\"), the **standard model of cosmology** or **concordance model**, describes a spatially flat universe ($\\Omega_k \\approx 0$) governed by the **friedmann-equations** with a **cosmological-constant** $\\Lambda$ plus **cold** (slow-moving) **dark matter**, with **inflation**-seeded, nearly scale-invariant, Gaussian, adiabatic fluctuations. The present budget is approximately:\n$$\\Omega_b \\approx 0.05,\\quad \\Omega_c \\approx 0.27,\\quad \\Omega_\\Lambda \\approx 0.68.$$\n\n### Worked example\nThe model has only about **six free parameters** (e.g. $\\Omega_b h^2$, $\\Omega_c h^2$, the optical depth $\\tau$, the scalar amplitude $A_s$ and tilt $n_s$, and the acoustic-scale angle $\\theta_*$). From those six, it predicts the *entire* CMB **acoustic-peaks** spectrum (thousands of multipoles), the **bbn** abundances, the **baryon-acoustic-oscillations** scale, and the supernova **standard-candles** Hubble diagram — and they all match.\n\n### Why it's true / how it works\nΛCDM's strength is economy: six numbers fit datasets spanning $z \\sim 1100$ (the CMB) to $z \\sim 0$ (local galaxies), across radiation, matter, and dark-energy eras. The agreement of *independent* probes on the *same* parameters is why it is called the \"concordance\" model.\n\n### Where it connects\nIt synthesizes essentially every atom in this branch: **inflation**, **bbn**, **recombination**, **cmb-anisotropies**, **dark-matter-halos**, **large-scale-structure**, and **dark-energy** — the unified picture of **cosmic-history-synthesis**.\n\n### Watch out\nΛCDM is *descriptive, not explanatory*: it names dark matter and dark energy without identifying them. And it faces growing tensions — most prominently the **hubble-tension** (a $\\sim5\\sigma$ disagreement in $H_0$) and hints of evolving **dark-energy-equation-of-state** — which probe whether the model is complete."
     },
     {
       "id": "cosmic-distance-ladder",
@@ -1371,12 +1979,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Cosmic distance ladder", "url": "https://en.wikipedia.org/wiki/Cosmic_distance_ladder"},
-        {"label": "Wikipedia — Parallax (stellar parallax)", "url": "https://en.wikipedia.org/wiki/Parallax"},
-        {"label": "Wikipedia — Cepheid variable", "url": "https://en.wikipedia.org/wiki/Cepheid_variable"},
-        {"label": "Wikipedia — Type Ia supernova", "url": "https://en.wikipedia.org/wiki/Type_Ia_supernova"},
-        {"label": "Wikipedia — Hubble constant (the goal)", "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_constant"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Cosmic distance ladder",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_distance_ladder"
+        },
+        {
+          "label": "Wikipedia — Parallax (stellar parallax)",
+          "url": "https://en.wikipedia.org/wiki/Parallax"
+        },
+        {
+          "label": "Wikipedia — Cepheid variable",
+          "url": "https://en.wikipedia.org/wiki/Cepheid_variable"
+        },
+        {
+          "label": "Wikipedia — Type Ia supernova",
+          "url": "https://en.wikipedia.org/wiki/Type_Ia_supernova"
+        },
+        {
+          "label": "Wikipedia — Hubble constant (the goal)",
+          "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_constant"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a literal ladder leaning into deep space, rungs labeled parallax, Cepheids, Type Ia supernovae, each reaching a more distant galaxy field",
       "quiz": [
@@ -1390,7 +2016,8 @@
           "prompt": "Why does a calibration error in one rung threaten the whole ladder?",
           "answer": "Each rung is calibrated by the one below it, so a systematic error propagates upward and biases the final distance and H₀ estimate."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nNo single tool measures every cosmic distance, so astronomers climb a ladder. The bottom rung measures nearby stars directly by geometry; that result calibrates a tool good for slightly farther objects; that calibrates a tool for even farther ones; and so on out to distant galaxies. Each rung leans on the one beneath — which is why it is a *ladder*.\n\n### Precisely\nThe **cosmic distance ladder** is a chain of distance methods, each calibrating the next:\n1. **Parallax** — pure geometry: a nearby star shifts by angle $p$ as Earth orbits, giving $d\\,[\\text{pc}] = 1/p\\,[\\text{arcsec}]$.\n2. **Cepheid variables** — the period–luminosity relation gives $L$, calibrated by parallax.\n3. **Type Ia supernovae** — uniform peak brightness, calibrated by Cepheids in host galaxies.\nSupernovae reach far enough to measure the **hubble-law** and expansion history.\n\n### Worked example\nA star with parallax $p = 0.01''$ lies at $d = 1/0.01 = 100\\,\\text{pc}$. The Gaia mission measures parallaxes to $\\sim10\\,\\mu\\text{as}$, reaching $\\sim10\\,\\text{kpc}$ — far enough to calibrate Milky Way **Cepheids**, which (being $10^3$–$10^4$ times brighter than the Sun) are visible in galaxies tens of Mpc away, where Type Ia **standard-candles** then take over to billions of light-years.\n\n### Why it's true / how it works\nEach rung is *anchored* by the rung below: parallax fixes Cepheid luminosities, Cepheids fix supernova luminosities. Combining the ladder's distances with measured redshifts yields $H_0$ — the SH0ES program gets $H_0 \\approx 73\\,\\text{km/s/Mpc}$ this way.\n\n### Where it connects\nThe ladder anchors the local **hubble-law** and is one side of the **hubble-tension**. Its top rung, Type Ia **standard-candles**, revealed **dark-energy**.\n\n### Watch out\nCalibration errors *propagate upward*: a systematic in Cepheid distances (metallicity, crowding, dust) biases every supernova distance above it, and hence $H_0$. This propagation is exactly where the local ladder value of $H_0$ might genuinely diverge from the early-universe CMB value."
     },
     {
       "id": "observable-universe",
@@ -1413,12 +2040,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Observable universe", "url": "https://en.wikipedia.org/wiki/Observable_universe"},
-        {"label": "Wikipedia — Particle horizon (Cosmological horizon)", "url": "https://en.wikipedia.org/wiki/Cosmological_horizon"},
-        {"label": "Wikipedia — Comoving and proper distances", "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"},
-        {"label": "Wikipedia — Light-year", "url": "https://en.wikipedia.org/wiki/Light-year"},
-        {"label": "Wikipedia — Event horizon (cosmological)", "url": "https://en.wikipedia.org/wiki/Cosmological_horizon"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Observable universe",
+          "url": "https://en.wikipedia.org/wiki/Observable_universe"
+        },
+        {
+          "label": "Wikipedia — Particle horizon (Cosmological horizon)",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_horizon"
+        },
+        {
+          "label": "Wikipedia — Comoving and proper distances",
+          "url": "https://en.wikipedia.org/wiki/Comoving_and_proper_distances"
+        },
+        {
+          "label": "Wikipedia — Light-year",
+          "url": "https://en.wikipedia.org/wiki/Light-year"
+        },
+        {
+          "label": "Wikipedia — Event horizon (cosmological)",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_horizon"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "Earth at the center of a translucent sphere of comoving radius ~46 billion light-years, with galaxies fading out at the particle horizon",
       "quiz": [
@@ -1432,7 +2077,8 @@
           "prompt": "Why is the observable universe larger than 13.8 billion light-years despite light only traveling for 13.8 billion years?",
           "answer": "Space expanded while the light was in transit, so the regions that emitted ancient light are now much farther away than the distance the light covered."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nLight travels fast but not instantly, and the universe is only so old. So we can see only things whose light has had time to reach us since the beginning. That sets an edge to what we can *observe* — not an edge of the universe itself, just an edge of our view. Beyond it the universe almost certainly continues; its light simply has not arrived yet.\n\n### Precisely\nBecause the universe has finite age ($\\approx13.8\\,\\text{Gyr}$), light has traveled only so far, defining the **particle horizon** — the greatest comoving distance from which light could have reached us. The **observable universe** is everything inside it. Its present **comoving radius** is about **46 billion light-years** ($\\approx14\\,\\text{Gpc}$), making the observable universe roughly $93$ billion light-years across.\n\n### Worked example\nWhy 46, not 13.8, billion light-years? Because space expanded *while the light traveled*. A photon emitted at **recombination** ($z\\approx1100$) traveled for $13.8\\,\\text{Gyr}$, but its source has since been carried far away by expansion. The comoving particle horizon is $d_p = c\\int_0^{t_0} dt/a(t)$, which for ΛCDM evaluates to $\\sim46\\,\\text{Gly}$ — over three times the naive light-travel distance.\n\n### Why it's true / how it works\nThe integral $\\int dt/a$ weights early times (small $a$) heavily, so most of the comoving horizon was accumulated when the universe was young and small. Expansion then stretched those early-emitted regions to their present great distances, producing a horizon much larger than $c\\,t_0$.\n\n### Where it connects\nThe horizon frames what cosmology can ever measure; it caps the reach of the **hubble-law** and the **big-bang** observability. In an accelerating universe (**dark-energy**), there is also a future **event horizon** that limits what we will *ever* see.\n\n### Watch out\nThe observable universe is *our* view, centered on us — not the whole universe, which is at least this big and probably vastly (possibly infinitely) larger. And distant galaxies receding faster than $c$ are *not* breaking relativity: cosmological recession is space stretching, not motion through space."
     },
     {
       "id": "gravitational-lensing",
@@ -1456,12 +2102,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Gravitational lens", "url": "https://en.wikipedia.org/wiki/Gravitational_lens"},
-        {"label": "Wikipedia — Einstein ring", "url": "https://en.wikipedia.org/wiki/Einstein_ring"},
-        {"label": "Wikipedia — Weak gravitational lensing (cosmic shear)", "url": "https://en.wikipedia.org/wiki/Weak_gravitational_lensing"},
-        {"label": "Wikipedia — Eddington experiment (1919 eclipse test)", "url": "https://en.wikipedia.org/wiki/Eddington_experiment"},
-        {"label": "Wikipedia — Tests of general relativity", "url": "https://en.wikipedia.org/wiki/Tests_of_general_relativity"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Gravitational lens",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_lens"
+        },
+        {
+          "label": "Wikipedia — Einstein ring",
+          "url": "https://en.wikipedia.org/wiki/Einstein_ring"
+        },
+        {
+          "label": "Wikipedia — Weak gravitational lensing (cosmic shear)",
+          "url": "https://en.wikipedia.org/wiki/Weak_gravitational_lensing"
+        },
+        {
+          "label": "Wikipedia — Eddington experiment (1919 eclipse test)",
+          "url": "https://en.wikipedia.org/wiki/Eddington_experiment"
+        },
+        {
+          "label": "Wikipedia — Tests of general relativity",
+          "url": "https://en.wikipedia.org/wiki/Tests_of_general_relativity"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a foreground galaxy cluster bending background galaxies into bright arcs and an Einstein ring, with a faint total-mass contour map overlaid",
       "quiz": [
@@ -1475,7 +2139,8 @@
           "prompt": "Distinguish strong from weak gravitational lensing.",
           "answer": "Strong lensing produces visible arcs, multiple images, and Einstein rings; weak lensing produces tiny statistical shape distortions ('cosmic shear') measured over many galaxies."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nJust as a glass lens bends light to form an image, a heavy object in space bends light passing near it. So when a massive galaxy or cluster sits between us and something farther, it warps and magnifies the background object's light. By studying exactly how the light bends, astronomers can weigh the foreground mass — including mass we cannot see at all.\n\n### Precisely\nGeneral relativity (**spacetime-curvature**) predicts mass deflects light. A point mass $M$ deflects a ray with impact parameter $b$ by\n$$\\hat\\alpha = \\frac{4GM}{c^2 b},$$\ntwice the Newtonian prediction. A foreground **lens** (galaxy or cluster) produces magnified, distorted, or multiple images. **Strong lensing** gives dramatic arcs, multiple images, and complete **Einstein rings**; **weak lensing** produces subtle $\\sim1\\%$ statistical shape distortions (\"cosmic shear\") across millions of galaxies.\n\n### Worked example\nThe Sun's deflection of grazing starlight: $b = R_\\odot = 6.96\\times10^{8}\\,\\text{m}$, $M_\\odot = 2.0\\times10^{30}\\,\\text{kg}$, so\n$$\\hat\\alpha = \\frac{4(6.67\\times10^{-11})(2.0\\times10^{30})}{(3\\times10^8)^2(6.96\\times10^8)} \\approx 8.5\\times10^{-6}\\,\\text{rad} \\approx 1.75''.$$\nEddington's 1919 eclipse expedition measured exactly this — an early triumph of general relativity.\n\n### Why it's true / how it works\nLight follows null **geodesics** through curved spacetime; near mass, those geodesics bend. Crucially, lensing responds to *all* mass — luminous or dark — so it maps the **total** gravitating mass directly, making it one of the best **dark-matter** probes and a clean geometric tool.\n\n### Where it connects\nLensing weighs **dark-matter-halos**, provides decisive **dark-matter-evidence** (the Bullet Cluster), and — via weak-lensing cosmic shear — constrains the matter density and **dark-energy-equation-of-state** independently of galaxy bias.\n\n### Watch out\nThe GR deflection is *twice* the naive Newtonian \"falling photon\" value — the factor of 2 comes from the curvature of *space* as well as time, and getting it right was a key test. Weak lensing's $\\sim1\\%$ signal is buried under galaxies' intrinsic shapes, so it only emerges *statistically* over huge samples."
     },
     {
       "id": "hubble-tension",
@@ -1500,12 +2165,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Hubble tension (Hubble's law)", "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_tension"},
-        {"label": "Wikipedia — Hubble constant", "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_constant"},
-        {"label": "Wikipedia — Cosmic distance ladder (the local method)", "url": "https://en.wikipedia.org/wiki/Cosmic_distance_ladder"},
-        {"label": "Wikipedia — Planck (spacecraft) (the early-universe method)", "url": "https://en.wikipedia.org/wiki/Planck_(spacecraft)"},
-        {"label": "Wikipedia — Standard deviation (what σ means)", "url": "https://en.wikipedia.org/wiki/Standard_deviation"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Hubble tension (Hubble's law)",
+          "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_tension"
+        },
+        {
+          "label": "Wikipedia — Hubble constant",
+          "url": "https://en.wikipedia.org/wiki/Hubble%27s_law#Hubble_constant"
+        },
+        {
+          "label": "Wikipedia — Cosmic distance ladder (the local method)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_distance_ladder"
+        },
+        {
+          "label": "Wikipedia — Planck (spacecraft) (the early-universe method)",
+          "url": "https://en.wikipedia.org/wiki/Planck_(spacecraft)"
+        },
+        {
+          "label": "Wikipedia — Standard deviation (what σ means)",
+          "url": "https://en.wikipedia.org/wiki/Standard_deviation"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "two measurement bands on an H_0 axis — a local ~73 band and an early-universe ~67 band — with a clearly non-overlapping gap labeled ~5 sigma",
       "quiz": [
@@ -1519,7 +2202,8 @@
           "prompt": "Explain why the Hubble tension is taken seriously rather than dismissed as measurement error.",
           "answer": "Multiple independent methods cluster around two distinct values with a ~5σ separation, and early-universe probes (CMB, BAO+BBN) agree with each other, so simple random error is an unlikely explanation."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nTwo trustworthy methods both try to measure how fast the universe expands today, and they keep getting different answers. The gap is now too big to blame on luck or sloppy measuring. So either there is a subtle mistake nobody has spotted, or our theory is missing something. This unsolved disagreement is the **Hubble tension**.\n\n### Precisely\nBoth numbers are the **Hubble constant** $H_0$. The **local** route (**cosmic-distance-ladder**: parallax → Cepheids → Type Ia supernovae, as in SH0ES) measures the nearby universe directly and gets\n$$H_0 \\approx 73.0 \\pm 1.0\\,\\text{km/s/Mpc}.$$\nThe **early-universe** route reads $H_0$ off the Planck **cmb-anisotropies** assuming **lambda-cdm** and gets\n$$H_0 \\approx 67.4 \\pm 0.5\\,\\text{km/s/Mpc}.$$\nThe gap is about **$5\\sigma$**.\n\n### Worked example\nWhat does \"$5\\sigma$\" mean? Combine the uncertainties: the difference is $73.0 - 67.4 = 5.6$, with combined error $\\sqrt{1.0^2 + 0.5^2} \\approx 1.1$. So the discrepancy is $5.6/1.1 \\approx 5$ standard deviations. For a Gaussian, a $5\\sigma$ fluke has probability $\\sim 1$ in $3.5$ million — far too unlikely to dismiss as chance.\n\n### Why it's true / how it works\nIndependent early-universe probes — the CMB *and* **baryon-acoustic-oscillations** combined with **bbn** — cluster near the *low* value, while multiple local measurements (Cepheids, plus the independent TRGB and surface-brightness methods) cluster near the *high* value. With each side internally consistent, simple random error is implausible.\n\n### Where it connects\nThe tension pits the **cosmic-distance-ladder** against the **acoustic-peaks** and **lambda-cdm**. Proposed fixes (e.g. *early dark energy* shrinking the pre-recombination sound horizon) touch the **dark-energy-equation-of-state**.\n\n### Watch out\n\"Tension\" does not yet mean \"ΛCDM is wrong\" — an undiscovered **systematic** in either method remains possible. But no single proposed new-physics model resolves $H_0$ without worsening some other dataset, so the puzzle is genuinely open."
     },
     {
       "id": "dark-energy-equation-of-state",
@@ -1543,12 +2227,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Equation of state (cosmology)", "url": "https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"},
-        {"label": "Wikipedia — Dark energy", "url": "https://en.wikipedia.org/wiki/Dark_energy"},
-        {"label": "Wikipedia — Quintessence (dynamical dark energy)", "url": "https://en.wikipedia.org/wiki/Quintessence_(physics)"},
-        {"label": "Wikipedia — DESI (Dark Energy Spectroscopic Instrument)", "url": "https://en.wikipedia.org/wiki/Dark_Energy_Spectroscopic_Instrument"},
-        {"label": "Wikipedia — Baryon acoustic oscillations (a key probe)", "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Equation of state (cosmology)",
+          "url": "https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"
+        },
+        {
+          "label": "Wikipedia — Dark energy",
+          "url": "https://en.wikipedia.org/wiki/Dark_energy"
+        },
+        {
+          "label": "Wikipedia — Quintessence (dynamical dark energy)",
+          "url": "https://en.wikipedia.org/wiki/Quintessence_(physics)"
+        },
+        {
+          "label": "Wikipedia — DESI (Dark Energy Spectroscopic Instrument)",
+          "url": "https://en.wikipedia.org/wiki/Dark_Energy_Spectroscopic_Instrument"
+        },
+        {
+          "label": "Wikipedia — Baryon acoustic oscillations (a key probe)",
+          "url": "https://en.wikipedia.org/wiki/Baryon_acoustic_oscillations"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a plot of the dark-energy equation of state w versus redshift, a flat line at w = -1 compared against a gently sloping evolving-w curve with error bands",
       "quiz": [
@@ -1562,7 +2264,8 @@
           "prompt": "Why would detecting w ≠ −1 be a major result?",
           "answer": "It would rule out a simple constant vacuum energy and require dark energy to be a dynamical entity, pointing to new physics beyond ΛCDM."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nIs dark energy a fixed, unchanging feature of empty space — steady for all time? Or a slowly shifting something that was different in the past and may change in the future? We cannot yet be sure, and settling it would be a huge clue to what dark energy actually *is*.\n\n### Precisely\nThe **equation of state** of dark energy is the single parameter $w \\equiv p/(\\rho c^2)$, the ratio of its pressure to energy density. A true **cosmological-constant** has $w = -1$, fixed forever. A **dynamical** dark energy (e.g. **quintessence**, an evolving scalar field) can have $w \\neq -1$ or a *time-varying* $w$, often parametrized as\n$$w(a) = w_0 + w_a(1 - a),$$\nwhere $w_0$ is today's value and $w_a$ its rate of change.\n\n### Worked example\nThe dilution law $\\rho \\propto a^{-3(1+w)}$ makes the difference observable. For $w=-1$: $\\rho$ constant. For $w=-0.9$: $\\rho \\propto a^{-0.3}$, slowly *decreasing* into the future. For $w=-1.1$ (\"phantom\"): $\\rho \\propto a^{+0.3}$, *growing*. Surveys measure $H(z)$ via **baryon-acoustic-oscillations** and **standard-candles** to distinguish these few-percent differences in the expansion history.\n\n### Why it's true / how it works\nDifferent $w$ histories produce slightly different $H(z)$ and growth of structure. Combining **standard-candles** supernovae, **baryon-acoustic-oscillations**, and weak **gravitational-lensing** breaks degeneracies and pins $w_0, w_a$. Any robust, reproducible departure from $w=-1$ would rule out a simple constant and demand new physics.\n\n### Where it connects\nThis is the frontier test of whether the \"Λ\" in **lambda-cdm** is truly constant. It determines the **cosmic-fate** (heat death vs. Big Rip) and intertwines with the **hubble-tension** through early-dark-energy proposals.\n\n### Watch out\nRecent DESI **baryon-acoustic-oscillations** data have *hinted* at evolving dark energy ($w_0 > -1$, $w_a < 0$) at modest significance — but the result depends on which datasets are combined and on systematics. It is a live, unsettled debate, *not* a confirmed discovery."
     },
     {
       "id": "primordial-gravitational-waves",
@@ -1586,12 +2289,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Gravitational wave", "url": "https://en.wikipedia.org/wiki/Gravitational_wave"},
-        {"label": "Wikipedia — CMB polarization (E-modes and B-modes)", "url": "https://en.wikipedia.org/wiki/Polarization_(cosmology)"},
-        {"label": "Wikipedia — Polarization of light", "url": "https://en.wikipedia.org/wiki/Polarization_(waves)"},
-        {"label": "Wikipedia — BICEP and Keck Array (the 2014 episode)", "url": "https://en.wikipedia.org/wiki/BICEP_and_Keck_Array"},
-        {"label": "Wikipedia — Cosmic inflation (the prediction)", "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Gravitational wave",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_wave"
+        },
+        {
+          "label": "Wikipedia — CMB polarization (E-modes and B-modes)",
+          "url": "https://en.wikipedia.org/wiki/Polarization_(cosmology)"
+        },
+        {
+          "label": "Wikipedia — Polarization of light",
+          "url": "https://en.wikipedia.org/wiki/Polarization_(waves)"
+        },
+        {
+          "label": "Wikipedia — BICEP and Keck Array (the 2014 episode)",
+          "url": "https://en.wikipedia.org/wiki/BICEP_and_Keck_Array"
+        },
+        {
+          "label": "Wikipedia — Cosmic inflation (the prediction)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a CMB polarization map showing a faint curl-pattern B-mode swirl, contrasted with the gradient E-mode pattern, with a dust-foreground caution overlay",
       "quiz": [
@@ -1605,7 +2326,8 @@
           "prompt": "Why was the 2014 BICEP2 'detection' of primordial B-modes later retracted?",
           "answer": "The signal was largely due to polarized emission from galactic dust, a foreground that mimics the B-mode pattern, rather than primordial gravitational waves."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nIf **inflation** really happened, that violent burst of expansion would have rippled spacetime itself, sending out **gravitational waves** — stretching-and-squeezing ripples in space. Those ripples would leave a faint, twisty swirl pattern in how the CMB's light is oriented. Finding that swirl would be a smoking gun for inflation, and teams are hunting it hard.\n\n### Precisely\n**Gravitational waves** are propagating ripples in the **metric** $g_{\\mu\\nu}$. Inflation should produce a stochastic background of **primordial** (tensor) ones, whose amplitude relative to ordinary density (scalar) fluctuations is the **tensor-to-scalar ratio**\n$$r = \\frac{A_t}{A_s}.$$\n$r$ encodes inflation's energy scale: $V^{1/4} \\sim 10^{16}\\,\\text{GeV}\\,(r/0.01)^{1/4}$. These waves stamp a curl-shaped **B-mode** polarization on the CMB, distinct from the gradient-shaped **E-mode**.\n\n### Worked example\nLight is **polarized** when its waves favor one orientation. CMB polarization splits into E-modes (produced by density fluctuations) and B-modes (produced by gravitational waves and by lensing). A detection of *primordial* B-modes at, say, $r = 0.01$ would imply inflation occurred at $V^{1/4} \\sim 10^{16}\\,\\text{GeV}$ — energies a *trillion* times beyond the LHC, accessible no other way.\n\n### Why it's true / how it works\nA gravitational wave passing the last-scattering surface alternately stretches and squeezes the plasma in a quadrupole pattern, which Thomson scattering converts into a polarization with a *handedness* (curl) that density fluctuations cannot produce. That parity-odd curl is the B-mode signature.\n\n### Where it connects\nThis is the most direct test of **inflation** and a probe of the **cmb-anisotropies** polarization. A confirmed signal would rank among physics' greatest discoveries.\n\n### Watch out\nPrimordial B-modes have *not* been detected; current limits are $r \\lesssim 0.03$, already excluding some inflation models. The hunt is plagued by **galactic dust**, whose polarized emission mimics B-modes — the lesson of the 2014 BICEP2 episode, where a claimed detection was reattributed to foreground dust once Planck mapped the dust."
     },
     {
       "id": "multiverse-inflation-debate",
@@ -1626,12 +2348,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Eternal inflation", "url": "https://en.wikipedia.org/wiki/Eternal_inflation"},
-        {"label": "Wikipedia — Multiverse", "url": "https://en.wikipedia.org/wiki/Multiverse"},
-        {"label": "Wikipedia — String theory landscape", "url": "https://en.wikipedia.org/wiki/String_theory_landscape"},
-        {"label": "Wikipedia — Falsifiability", "url": "https://en.wikipedia.org/wiki/Falsifiability"},
-        {"label": "Wikipedia — Cosmic inflation", "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Eternal inflation",
+          "url": "https://en.wikipedia.org/wiki/Eternal_inflation"
+        },
+        {
+          "label": "Wikipedia — Multiverse",
+          "url": "https://en.wikipedia.org/wiki/Multiverse"
+        },
+        {
+          "label": "Wikipedia — String theory landscape",
+          "url": "https://en.wikipedia.org/wiki/String_theory_landscape"
+        },
+        {
+          "label": "Wikipedia — Falsifiability",
+          "url": "https://en.wikipedia.org/wiki/Falsifiability"
+        },
+        {
+          "label": "Wikipedia — Cosmic inflation",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_inflation"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "an ever-inflating foam spawning many bubble universes, each labeled with different constants, with a question mark over how to assign probabilities",
       "quiz": [
@@ -1645,7 +2385,8 @@
           "prompt": "Summarize the core scientific criticism of the inflationary multiverse.",
           "answer": "If the theory allows essentially any outcome to occur somewhere, it may make no falsifiable predictions, which challenges whether it qualifies as testable science."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nIn many versions of **inflation**, that runaway expansion never completely ends. It halts in some patches — which become universes like ours — but keeps going elsewhere, sprouting new bubbles forever. That would make our universe one bubble among countless others: a **multiverse**. Whether this is real science or untestable speculation is fiercely argued, even among inflation's inventors.\n\n### Precisely\n**Eternal inflation** is the result that, in many inflaton potentials, *quantum* fluctuations of the field outpace its classical rolling in some regions, so those regions keep inflating while others exit and reheat into **pocket universes**. Combined with the **string-theory landscape** (an estimated $\\sim10^{500}$ metastable vacua), different pockets could have different effective constants of physics — a genuine **multiverse**.\n\n### Worked example\nConsider the \"anthropic\" argument for the **cosmological-constant**: its observed value is $\\sim10^{120}$ times smaller than naive expectation. In a multiverse where $\\Lambda$ varies pocket to pocket, only pockets with small $\\Lambda$ form galaxies and observers — so we *must* find ourselves in one. Weinberg used this reasoning in 1987 to predict $\\Lambda$ should be small but nonzero, before its 1998 discovery — a rare case where multiverse logic made a (controversial) prediction.\n\n### Why it's true / how it works\nThe trouble is the **measure problem**: with infinitely many pockets, computing \"the probability of observing X\" requires a way to count infinities, and different counting schemes give wildly different answers. Worse, if anything happens *somewhere*, the framework risks predicting nothing — threatening **falsifiability**, a basic requirement of science.\n\n### Where it connects\nIt is a direct extrapolation of **inflation** and intertwines with the anthropic interpretation of the **cosmological-constant** fine-tuning.\n\n### Watch out\nThis is the most *philosophically* loaded atom in the branch. Critics (including some original inflation architects) argue a theory predicting \"anything can happen somewhere\" makes no testable predictions; defenders point to possible bubble-collision imprints in the CMB — *none observed*. Treat it as an open, partly philosophical debate, not established physics."
     },
     {
       "id": "cosmic-fate",
@@ -1669,12 +2410,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Ultimate fate of the universe", "url": "https://en.wikipedia.org/wiki/Ultimate_fate_of_the_universe"},
-        {"label": "Wikipedia — Heat death of the universe", "url": "https://en.wikipedia.org/wiki/Heat_death_of_the_universe"},
-        {"label": "Wikipedia — Big Rip (phantom energy)", "url": "https://en.wikipedia.org/wiki/Big_Rip"},
-        {"label": "Wikipedia — Cosmological horizon (event horizon)", "url": "https://en.wikipedia.org/wiki/Cosmological_horizon"},
-        {"label": "Wikipedia — Dark energy", "url": "https://en.wikipedia.org/wiki/Dark_energy"},
-        {"label": "NASA Science — Universe overview", "url": "https://science.nasa.gov/universe/overview/"}
+        {
+          "label": "Wikipedia — Ultimate fate of the universe",
+          "url": "https://en.wikipedia.org/wiki/Ultimate_fate_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Heat death of the universe",
+          "url": "https://en.wikipedia.org/wiki/Heat_death_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Big Rip (phantom energy)",
+          "url": "https://en.wikipedia.org/wiki/Big_Rip"
+        },
+        {
+          "label": "Wikipedia — Cosmological horizon (event horizon)",
+          "url": "https://en.wikipedia.org/wiki/Cosmological_horizon"
+        },
+        {
+          "label": "Wikipedia — Dark energy",
+          "url": "https://en.wikipedia.org/wiki/Dark_energy"
+        },
+        {
+          "label": "NASA Science — Universe overview",
+          "url": "https://science.nasa.gov/universe/overview/"
+        }
       ],
       "art_prompt": "a three-panel future timeline: a galaxy-rich sky, then galaxies receding past a horizon, then a near-empty cold dark sky with only the Local Group",
       "quiz": [
@@ -1688,7 +2447,8 @@
           "prompt": "What different fate could a 'phantom' dark energy with w < −1 produce?",
           "answer": "A 'Big Rip,' in which accelerating expansion grows without bound and eventually tears apart galaxies, stars, and even atoms."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nHow the universe ends depends almost entirely on dark energy. If it keeps pushing space apart at a steady rate, galaxies drift ever farther apart, stars run out of fuel and burn out, and the cosmos coasts into a dark, cold, empty, lonely future. But if dark energy behaves differently than we think, stranger endings become possible.\n\n### Precisely\nThe **ultimate fate** hinges on the **dark-energy-equation-of-state** $w$:\n- $w = -1$ (true **cosmological-constant**): eternal accelerated expansion toward **heat death** — a cold, maximally entropic, dilute universe where no work can be done.\n- $w < -1$ (**phantom energy**): density *grows*, ending in a **Big Rip** that tears apart clusters, galaxies, stars, then atoms at a finite future time.\n- $w$ weakening over time: expansion could slow or reverse into a collapse (\"Big Crunch\").\n\n### Worked example\nUnder ΛCDM, the **event horizon** in physical terms is $d_{\\text{eh}} = c/H_\\infty$ where $H_\\infty = \\sqrt{\\Lambda c^2/3}$. In tens of billions of years, every galaxy outside the gravitationally bound **Local Group** will redshift beyond this horizon and vanish from view. A far-future astronomer would see an empty sky and could not deduce the **big-bang** or the **cmb-origin** at all — cosmic knowledge is *contingent on when you look*.\n\n### Why it's true / how it works\nA constant $\\Lambda$ makes $H \\to H_\\infty = $ const, so $a \\propto e^{H_\\infty t}$ — exponential, like a late-time **inflation**. Anything not gravitationally bound is carried across the event horizon and causally severed. Star formation ends as gas is exhausted, and the universe cools toward maximum entropy.\n\n### Where it connects\nIt is the long-term extrapolation of **lambda-cdm** and **dark-energy**, gated by the **observable-universe** horizon and decided by the **dark-energy-equation-of-state**.\n\n### Watch out\n\"Heat death\" does not mean the universe gets hot — quite the opposite: it grows ever colder and more dilute. The name refers to thermodynamic *heat* (energy) becoming uniformly spread so no gradients remain to do work, i.e. maximum entropy."
     },
     {
       "id": "cosmic-history-synthesis",
@@ -1714,12 +2474,30 @@
         "Wikipedia (facts)"
       ],
       "resources": [
-        {"label": "Wikipedia — Chronology of the universe", "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"},
-        {"label": "Wikipedia — Big Bang (the framework)", "url": "https://en.wikipedia.org/wiki/Big_Bang"},
-        {"label": "Wikipedia — Lambda-CDM model (ties it together)", "url": "https://en.wikipedia.org/wiki/Lambda-CDM_model"},
-        {"label": "Wikipedia — Cosmic Calendar (timeline scaled to one year)", "url": "https://en.wikipedia.org/wiki/Cosmic_Calendar"},
-        {"label": "NASA Science — The Big Bang (cosmic history)", "url": "https://science.nasa.gov/universe/the-big-bang/"},
-        {"label": "MIT OpenCourseWare 8.286 — The Early Universe", "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"}
+        {
+          "label": "Wikipedia — Chronology of the universe",
+          "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Big Bang (the framework)",
+          "url": "https://en.wikipedia.org/wiki/Big_Bang"
+        },
+        {
+          "label": "Wikipedia — Lambda-CDM model (ties it together)",
+          "url": "https://en.wikipedia.org/wiki/Lambda-CDM_model"
+        },
+        {
+          "label": "Wikipedia — Cosmic Calendar (timeline scaled to one year)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_Calendar"
+        },
+        {
+          "label": "NASA Science — The Big Bang (cosmic history)",
+          "url": "https://science.nasa.gov/universe/the-big-bang/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
       ],
       "art_prompt": "a single horizontal cosmic timeline from inflation through BBN, recombination (CMB), galaxy formation, to dark-energy acceleration, with key ages marked",
       "quiz": [
@@ -1733,7 +2511,8 @@
           "prompt": "Why is it significant that the same ΛCDM parameters fit CMB, BBN, BAO, and supernovae?",
           "answer": "These probes span vastly different epochs and physics; a single parameter set fitting all of them is strong cross-validation that turns the cosmic narrative into a quantitatively tested model."
         }
-      ]
+      ],
+      "lesson": "### Intuition\nThis atom puts every chapter into one timeline. In order: a flash of **inflation** in the first instant; a few minutes of nuclear cooking forging the light elements; the clearing of the cosmic fog 380,000 years in (releasing the CMB); the slow gravitational building of galaxies and the cosmic web over billions of years; and finally, in recent cosmic times, **dark-energy** taking the wheel and accelerating expansion. One coherent $\\sim13.8$-billion-year story.\n\n### Precisely\nThe standard chronology, with characteristic times, redshifts, and temperatures (via **thermal-history**, $T \\propto 1+z$):\n- **Inflation** ($t \\sim 10^{-34}\\,\\text{s}$): quantum seeds stretched; flatness and uniformity set.\n- **Baryogenesis**: tiny matter surplus $\\eta \\approx 6\\times10^{-10}$.\n- **BBN** ($t \\sim 1$–$200\\,\\text{s}$, $T \\sim 10^{9}\\,\\text{K}$): $^4$He, D, $^7$Li forged.\n- **Recombination** ($t \\approx 380{,}000\\,\\text{yr}$, $z\\approx1100$, $T\\approx3000\\,\\text{K}$): CMB released.\n- **Structure formation** (millions–billions of yr): the **large-scale-structure** cosmic web grows.\n- **Dark-energy domination** ($z \\lesssim 0.7$): accelerated expansion begins.\n\n### Worked example\nCross-check two epochs with one tool. At **recombination**, $T = 2.725 \\times 1101 \\approx 3000\\,\\text{K}$. At **bbn**, the same $T \\propto 1+z$ relation with $T \\sim 10^9\\,\\text{K}$ gives $z \\sim 4\\times10^8$. The *single* scaling law placing both epochs consistently is a small example of the framework's internal coherence.\n\n### Why it's true / how it works\nThe deep point is not merely that each stage is independently evidenced — it is that the *same six* **lambda-cdm** parameters that fit the **cmb-anisotropies** also predict the **bbn** abundances, the **baryon-acoustic-oscillations** scale, and the supernova **standard-candles** distance–redshift relation. Cross-validation across vastly different epochs and physics is what elevates this from a story to a tested model.\n\n### Where it connects\nThis atom ties together the entire branch: **inflation**, **bbn**, **recombination**, **cmb-origin**, **gravitational-instability**, **large-scale-structure**, and **dark-energy** — the unified narrative behind **lambda-cdm**, with open edges at the **hubble-tension** and **dark-energy-equation-of-state**.\n\n### Watch out\nThe coherence is real but the model is *incomplete*: dark matter and dark energy — about 95% of the budget — remain unidentified, and the earliest pre-BBN instants rely on unverified physics. A tested framework is not a finished one."
     }
   ]
 }

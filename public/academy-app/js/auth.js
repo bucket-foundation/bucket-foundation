@@ -16,6 +16,16 @@
  *    most recent review (`lastReview`), then push the merged blob up and write
  *    it back down, so every device converges.
  *
+ * Storage transport (bkt-aja): the cross-device rows live in `bucket.academy_progress`
+ * on a MULTI-TENANT self-hosted Supabase whose shared PostgREST does NOT expose
+ * the `bucket` schema. So progress reads/writes do NOT go through supabase-js
+ * `.from()` / PostgREST — they go through the same-origin Next.js API route
+ * `/api/academy/progress`, which verifies this user's access token server-side
+ * and uses a service-role client to touch ONLY that user's rows. Authentication
+ * (email-OTP) still uses gotrue directly via the supabase-js client (the auth
+ * endpoints ARE exposed); only the table I/O is proxied. This keeps the `bucket`
+ * schema private and requires zero shared-infra changes.
+ *
  * This module is intentionally framework-free and self-contained, mirroring the
  * rest of the static app. It exposes `window.BucketAuth`.
  */
@@ -28,6 +38,14 @@
 
   var cfg = global.__BUCKET_SUPABASE || null;
   var enabled = !!(cfg && cfg.url && cfg.anonKey);
+
+  // Progress I/O goes through the same-origin Next.js API route (see header).
+  // When the Academy is served under the Next.js site it lives at /academy-app,
+  // so a root-relative path resolves to the right origin. An explicit override
+  // (cfg.apiBase) is honored for standalone hosting.
+  var API_PROGRESS =
+    (cfg && cfg.apiBase ? String(cfg.apiBase).replace(/\/$/, "") : "") +
+    "/api/academy/progress";
 
   var sb = null; // Supabase client (lazy)
   var session = null; // current Supabase session (or null)
@@ -162,38 +180,47 @@
     });
   }
 
-  // Pull every server row → { branch: { data, updated_at } }
-  function pullServer() {
-    return sb
-      .from("academy_progress")
-      .select("branch,data,updated_at")
-      .then(function (res) {
-        if (res.error) throw res.error;
-        var map = {};
-        (res.data || []).forEach(function (row) {
-          map[row.branch] = { data: row.data, updated_at: row.updated_at };
-        });
-        return map;
-      });
+  // The current session's access token, used to authenticate API-route calls.
+  function accessToken() {
+    return session && session.access_token ? session.access_token : null;
   }
 
-  // Upsert one branch blob.
-  function pushBranch(uid, branch, state) {
-    return sb
-      .from("academy_progress")
-      .upsert(
-        {
-          user_id: uid,
-          branch: branch,
-          data: state,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: "user_id,branch" }
-      )
-      .then(function (res) {
-        if (res.error) throw res.error;
-        return true;
+  // Pull every server row → { branch: { data, updated_at } } via the API route.
+  // The route verifies the bearer token server-side and returns only this
+  // user's rows (the `bucket` schema is never exposed to the browser).
+  function pullServer() {
+    var tok = accessToken();
+    if (!tok) return Promise.resolve({});
+    return fetch(API_PROGRESS, {
+      method: "GET",
+      headers: { Authorization: "Bearer " + tok },
+      credentials: "omit",
+    }).then(function (res) {
+      if (!res.ok) throw new Error("progress pull failed: " + res.status);
+      return res.json().then(function (body) {
+        return (body && body.branches) || {};
       });
+    });
+  }
+
+  // Upsert one branch blob via the API route. `uid` is accepted for call-site
+  // compatibility but intentionally NOT trusted — the route forces ownership to
+  // the verified token's user, so a client can never write another user's rows.
+  function pushBranch(uid, branch, state) {
+    var tok = accessToken();
+    if (!tok) return Promise.resolve(false);
+    return fetch(API_PROGRESS, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + tok,
+        "Content-Type": "application/json",
+      },
+      credentials: "omit",
+      body: JSON.stringify({ branch: branch, data: state }),
+    }).then(function (res) {
+      if (!res.ok) throw new Error("progress push failed: " + res.status);
+      return true;
+    });
   }
 
   /* ---------- the merge/sync orchestration ---------- */

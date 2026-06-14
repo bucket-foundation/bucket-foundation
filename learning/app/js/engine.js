@@ -20,10 +20,17 @@
   Engine.prototype.load = async function (corpusUrl) {
     const res = await fetch(corpusUrl, { cache: "no-store" });
     const data = await res.json();
-    this.atoms = data.atoms || [];
-    this.meta = data.meta || {};
+    return this.loadData(data);
+  };
+
+  // Load a corpus from an already-parsed object (built-in file OR a user-generated /
+  // custom deck held in memory). `keyOverride` forces a distinct localStorage namespace
+  // so custom decks keep independent FSRS state even if they reuse a branch slug.
+  Engine.prototype.loadData = function (data, keyOverride) {
+    this.atoms = (data && data.atoms) || [];
+    this.meta = (data && data.meta) || {};
     // Per-branch storage so each branch keeps independent FSRS state + xp/streak.
-    this.lsKey = LS_BASE + "/" + (this.meta.branch || "default");
+    this.lsKey = LS_BASE + "/" + (keyOverride || this.meta.branch || "default");
     this.byId = {};
     this.atoms.forEach((a) => (this.byId[a.id] = a));
     this._computeLeverage();

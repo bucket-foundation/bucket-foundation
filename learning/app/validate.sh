@@ -7,7 +7,11 @@ echo "== corpus JSON integrity =="
 for f in corpus/*.json; do
   python3 - "$f" <<'PY'
 import json,sys,collections
-f=sys.argv[1]; d=json.load(open(f)); a=d['atoms']; ids=[x['id'] for x in a]
+f=sys.argv[1]; d=json.load(open(f))
+# index.json is the branch MANIFEST (a list of decks), not a corpus — skip it.
+if 'atoms' not in d:
+    print(f"  -- {f}: manifest ({len(d.get('decks',[]))} decks), skipping corpus checks"); sys.exit(0)
+a=d['atoms']; ids=[x['id'] for x in a]
 kind=d.get('meta',{}).get('kind','concept')
 dup=[k for k,v in collections.Counter(ids).items() if v>1]
 miss=sorted({r for x in a for r in x.get('requires',[]) if r not in ids})
@@ -28,6 +32,18 @@ else:
     print(f"  OK {f}: {len(a)} atoms, no dupes/missing/empty")
 PY
 done
+echo "== manifest consistency =="
+python3 - <<'PY'
+import json,os
+m=json.load(open('corpus/index.json'))
+decks=m.get('decks',[])
+ids=[d['id'] for d in decks]
+assert len(ids)==len(set(ids)), f"manifest: duplicate deck ids {ids}"
+for d in decks:
+    assert d.get('id') and d.get('file') and d.get('pill'), f"manifest: deck missing id/file/pill: {d}"
+    assert os.path.exists(d['file']), f"manifest: deck file not found: {d['file']}"
+print(f"  OK corpus/index.json: {len(decks)} built-in decks, all files present")
+PY
 echo "== JS syntax =="
 for f in js/*.js; do node --check "$f" && echo "  OK $f"; done
 echo "== engine simulation =="

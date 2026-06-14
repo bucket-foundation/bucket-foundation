@@ -15,20 +15,67 @@
   const SHELL_RANK = { prereq: 0, nucleus: 1, frontier: 2 };
   const SHELL_LABEL = { prereq: "Prerequisite", nucleus: "Nucleus", frontier: "Frontier" };
 
-  // Available branches (corpora). The overnight loop added the picker UI; these
-  // are the definitions it referenced. Each branch keeps independent progress.
+  // Available branches (corpora). The picker is now data-driven: built-in decks are
+  // LOADED from corpus/index.json at boot (see loadManifest()), and user-created decks
+  // (any topic / any language, generated on demand) are merged in from BucketLibrary.
+  // Adding a built-in deck = drop a corpus file + a manifest entry. BRANCHES is mutable
+  // and rebuilt by refreshBranches(); BUILTIN_FALLBACK is used only if the fetch fails.
   const BRANCH_PREF_KEY = "bucket-academy/branch";
   const DEFAULT_BRANCH = "corpus/biophysics.json";
-  const BRANCHES = [
-    { file: "corpus/01-mathematics.json", pill: "I · Mathematics", sub: "The foundations of reasoning" },
-    { file: "corpus/02-physics.json", pill: "II · Physics", sub: "Matter, energy & spacetime" },
-    { file: "corpus/03-chemistry.json", pill: "III · Chemistry", sub: "Matter, bonds & transformation" },
-    { file: "corpus/04-information.json", pill: "IV · Information", sub: "Entropy, computation & complexity" },
-    { file: "corpus/biophysics.json", pill: "V · Biophysics", sub: "Energy, matter & life" },
-    { file: "corpus/06-cosmology.json", pill: "VI · Cosmology", sub: "The universe at large" },
-    { file: "corpus/07-mind.json", pill: "VII · Mind", sub: "Brains, computation & cognition" },
-    { file: "corpus/lang-core.json", pill: "✺ · Languages", sub: "Learn a language through the ones you know" },
+  const BUILTIN_FALLBACK = [
+    { id: "01-mathematics", file: "corpus/01-mathematics.json", pill: "I · Mathematics", sub: "The foundations of reasoning" },
+    { id: "02-physics", file: "corpus/02-physics.json", pill: "II · Physics", sub: "Matter, energy & spacetime" },
+    { id: "03-chemistry", file: "corpus/03-chemistry.json", pill: "III · Chemistry", sub: "Matter, bonds & transformation" },
+    { id: "04-information", file: "corpus/04-information.json", pill: "IV · Information", sub: "Entropy, computation & complexity" },
+    { id: "05-biophysics", file: "corpus/biophysics.json", pill: "V · Biophysics", sub: "Energy, matter & life" },
+    { id: "06-cosmology", file: "corpus/06-cosmology.json", pill: "VI · Cosmology", sub: "The universe at large" },
+    { id: "07-mind", file: "corpus/07-mind.json", pill: "VII · Mind", sub: "Brains, computation & cognition" },
+    { id: "lang-core", file: "corpus/lang-core.json", pill: "✺ · Languages", sub: "Learn a language through the ones you know", kind: "language", languages: ["en", "es", "fr", "it", "pt", "de", "la"] },
   ];
+  let BUILTINS = BUILTIN_FALLBACK.slice(); // populated from manifest at boot
+  let BRANCHES = BUILTIN_FALLBACK.slice(); // built-ins + user decks; rebuilt by refreshBranches()
+
+  // Load the built-in deck manifest. Falls back to the baked-in list on any failure
+  // so the app always boots even offline / if corpus/index.json is missing.
+  async function loadManifest() {
+    try {
+      const res = await fetch("corpus/index.json", { cache: "no-store" });
+      const data = await res.json();
+      const decks = (data && data.decks) || [];
+      if (decks.length) BUILTINS = decks.map((d) => Object.assign({}, d));
+    } catch (e) {
+      BUILTINS = BUILTIN_FALLBACK.slice();
+    }
+    refreshBranches();
+  }
+
+  // Rebuild BRANCHES = built-ins + the user's custom decks (each given a synthetic
+  // `file`-less record carrying its in-memory corpus `data`). Custom decks render in
+  // the picker with a delete control.
+  function refreshBranches() {
+    const custom = (window.BucketLibrary ? window.BucketLibrary.list() : []).map((d) => ({
+      id: d.id,
+      file: null,
+      data: d.data,
+      pill: d.pill,
+      sub: d.sub,
+      kind: d.kind,
+      languages: d.languages,
+      generated: true,
+    }));
+    BRANCHES = BUILTINS.concat(custom);
+  }
+
+  // Find a branch record by its current selection key (file for built-ins, id for customs).
+  function findBranch(key) {
+    return BRANCHES.find((b) => (b.file ? b.file === key : b.id === key));
+  }
+  function branchKey(b) {
+    return b.file || b.id;
+  }
+  function currentBranch() {
+    return findBranch(currentBranchFile) || BRANCHES[0];
+  }
   // canon branch slug per corpus → links into bucket.foundation/canon/<slug>
   const CANON_SLUG = {
     "01-mathematics": "mathematics", "02-physics": "physics", "03-chemistry": "chemistry",
@@ -63,6 +110,22 @@
       } catch (e) {}
   }
 
+  // Render a markdown lesson to HTML (marked if loaded; minimal fallback otherwise).
+  function mdToHtml(src) {
+    src = String(src || "");
+    if (window.marked && window.marked.parse) {
+      try { return window.marked.parse(src, { breaks: false, mangle: false, headerIds: false }); } catch (e) {}
+    }
+    // fallback: headings, bold, lists, paragraphs (math left for KaTeX)
+    return src.split(/\n{2,}/).map((blk) => {
+      const t = blk.trim();
+      const h = t.match(/^#{1,6}\s+(.*)$/);
+      if (h) return "<h3>" + escapeHtml(h[1]) + "</h3>";
+      if (/^[-*]\s+/m.test(t)) return "<ul>" + t.split(/\n/).map((li) => "<li>" + escapeHtml(li.replace(/^[-*]\s+/, "")) + "</li>").join("") + "</ul>";
+      return "<p>" + escapeHtml(t).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") + "</p>";
+    }).join("");
+  }
+
   function artCard(atom) {
     // Functional placeholder "concept card": equation hero on a shell-tinted gradient.
     // Real generated art (load-bearing-art contract) is rendered by the overnight loop.
@@ -88,7 +151,7 @@
     wrap.appendChild(header());
 
     const hero = el("div", "hero");
-    const curBranch = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
+    const curBranch = currentBranch();
     const branchName = curBranch.pill.replace(/^\S+ · /, "");
     hero.appendChild(el("div", "kicker", branchName + " · learn"));
     hero.appendChild(el("h1", null, next.length ? "Keep learning." : "You've covered it all. 🎉"));
@@ -153,36 +216,78 @@
 
   function header() {
     const h = el("div", "topbar");
-    const cur = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
+    const cur = currentBranch();
     h.innerHTML =
       '<div class="brand">Bucket <span>Academy</span></div>' +
       '<button class="branch-pill" id="branchPill" title="Switch branch">' +
       cur.pill +
       ' <span class="branch-caret">▾</span></button>';
     h.querySelector("#branchPill").onclick = openBranchPicker;
-    // Optional sign-in control (no-op when auth is disabled / not configured).
-    if (window.BucketAuthUI) window.BucketAuthUI.mountInto(h);
     return h;
   }
 
   function openBranchPicker() {
+    refreshBranches();
     const back = el("div", "sheet-back");
     const sheet = el("div", "sheet");
     sheet.innerHTML = '<div class="sheet-title">Choose a branch</div>';
-    BRANCHES.forEach((b) => {
-      const on = b.file === currentBranchFile;
+
+    function addRow(b) {
+      const key = branchKey(b);
+      const on = key === currentBranchFile;
       const row = el(
-        "button",
-        "branch-row" + (on ? " on" : ""),
-        '<span class="branch-row-name">' + b.pill + "</span>" +
-          '<span class="branch-row-sub">' + b.sub + "</span>"
+        "div",
+        "branch-row" + (on ? " on" : "") + (b.generated ? " generated" : "")
       );
-      row.onclick = () => {
+      const main = el(
+        "button",
+        "branch-row-main",
+        '<span class="branch-row-name">' + escapeHtml(b.pill) +
+          (b.generated ? ' <span class="branch-tag">created</span>' : "") + "</span>" +
+          '<span class="branch-row-sub">' + escapeHtml(b.sub || "") + "</span>"
+      );
+      main.onclick = () => {
         back.remove();
-        if (b.file !== currentBranchFile) switchBranch(b.file);
+        if (key !== currentBranchFile) switchBranch(key);
       };
+      row.appendChild(main);
+      if (b.generated) {
+        const del = el("button", "branch-row-del", "🗑");
+        del.title = "Delete this deck";
+        del.onclick = (e) => {
+          e.stopPropagation();
+          if (!confirm("Delete “" + (b.pill || b.id) + "”? This removes the deck and its progress on this device.")) return;
+          if (window.BucketLibrary) window.BucketLibrary.remove(b.id);
+          if (key === currentBranchFile) {
+            // fell out from under us — jump back to the default built-in
+            currentBranchFile = DEFAULT_BRANCH;
+            try { localStorage.setItem(BRANCH_PREF_KEY, currentBranchFile); } catch (er) {}
+            back.remove();
+            switchBranch(currentBranchFile);
+            return;
+          }
+          back.remove();
+          openBranchPicker();
+        };
+        row.appendChild(del);
+      }
       sheet.appendChild(row);
-    });
+    }
+
+    BUILTINS.forEach(addRow);
+    const customs = BRANCHES.filter((b) => b.generated);
+    if (customs.length) {
+      sheet.appendChild(el("div", "sheet-sub", "Your topics"));
+      customs.forEach(addRow);
+    }
+
+    // ✦ New… — generate ANY topic or ANY language on demand.
+    const create = el("button", "branch-row create-row",
+      '<span class="branch-row-name">✦ New topic or language…</span>' +
+      '<span class="branch-row-sub">Generate a deck for anything you want to learn</span>');
+    create.onclick = () => { back.remove(); openCreateSheet(); };
+    sheet.appendChild(create);
+
     back.appendChild(sheet);
     back.onclick = (e) => {
       if (e.target === back) back.remove();
@@ -190,14 +295,23 @@
     document.body.appendChild(back);
   }
 
-  async function switchBranch(file) {
-    currentBranchFile = file;
+  // Load a branch by selection key. Built-ins fetch their file; custom decks load
+  // their in-memory corpus via Engine.loadData (no network, namespaced by deck id).
+  async function switchBranch(key) {
+    const b = findBranch(key);
+    currentBranchFile = key;
     try {
-      localStorage.setItem(BRANCH_PREF_KEY, file);
+      localStorage.setItem(BRANCH_PREF_KEY, key);
     } catch (e) {}
     session = null;
     try {
-      await E.load(file);
+      if (b && b.file) {
+        await E.load(b.file);
+      } else if (b && b.data) {
+        E.loadData(b.data, b.id);
+      } else {
+        throw new Error("unknown branch " + key);
+      }
       normalizeAtoms();
     } catch (e) {
       $("#app").innerHTML =
@@ -205,6 +319,212 @@
       return;
     }
     go("home");
+  }
+
+  /* ---------- create ANY topic / ANY language ---------- */
+  // Languages offered for the polyglot generator. Covers the built-in set plus a few
+  // common targets; the generate route accepts free-text too, but a curated list keeps
+  // the form tidy and the schema's `forms` keys predictable.
+  const CREATE_LANGS = [
+    ["en", "English"], ["es", "Spanish"], ["fr", "French"], ["it", "Italian"],
+    ["pt", "Portuguese"], ["de", "German"], ["la", "Latin"], ["nl", "Dutch"],
+    ["sv", "Swedish"], ["ru", "Russian"], ["pl", "Polish"], ["ja", "Japanese"],
+    ["zh", "Mandarin Chinese"], ["ko", "Korean"], ["ar", "Arabic"], ["hi", "Hindi"],
+    ["el", "Greek"], ["tr", "Turkish"], ["he", "Hebrew"], ["vi", "Vietnamese"],
+  ];
+
+  function openCreateSheet() {
+    const back = el("div", "sheet-back");
+    const sheet = el("div", "sheet create-sheet");
+    sheet.innerHTML =
+      '<div class="sheet-title">Create a new deck</div>' +
+      '<div class="sheet-sub">Bucket generates an original, foundations-first deck. Cite-real-sources, no marketing fluff.</div>';
+
+    // mode toggle: topic vs language
+    const modeRow = el("div", "create-modes");
+    let mode = "topic";
+    const topicBtn = el("button", "create-mode on", "📚 Topic");
+    const langBtn = el("button", "create-mode", "✺ Language");
+    modeRow.appendChild(topicBtn);
+    modeRow.appendChild(langBtn);
+    sheet.appendChild(modeRow);
+
+    const formHost = el("div", "create-form-host");
+    sheet.appendChild(formHost);
+
+    function renderTopic() {
+      formHost.innerHTML = "";
+      const f = el("div", "create-form");
+      f.appendChild(el("label", "create-label", "What do you want to learn?"));
+      const topic = el("input", "create-input");
+      topic.type = "text";
+      topic.placeholder = "e.g. Linear algebra, Roman history, Music theory…";
+      topic.maxLength = 80;
+      f.appendChild(topic);
+
+      f.appendChild(el("label", "create-label", "Depth"));
+      const lvl = el("select", "create-input");
+      [["intro", "Intro — gentle, zero assumed background"],
+       ["standard", "Standard — a solid working foundation"],
+       ["advanced", "Advanced — rigorous, derivation-heavy"]].forEach(([v, lbl]) => {
+        const o = el("option", null, lbl); o.value = v; lvl.appendChild(o);
+      });
+      lvl.value = "standard";
+      f.appendChild(lvl);
+
+      const go = el("button", "btn primary wide", "Generate deck →");
+      go.onclick = () => {
+        const t = (topic.value || "").trim();
+        if (!t) { topic.focus(); topic.classList.add("err"); return; }
+        runGenerate(back, { kind: "topic", topic: t, level: lvl.value });
+      };
+      f.appendChild(go);
+      formHost.appendChild(f);
+      topic.focus();
+    }
+
+    function renderLang() {
+      formHost.innerHTML = "";
+      const f = el("div", "create-form");
+      f.appendChild(el("label", "create-label", "Language you want to learn"));
+      const target = el("select", "create-input");
+      CREATE_LANGS.forEach(([code, name]) => {
+        const o = el("option", null, name); o.value = code; target.appendChild(o);
+      });
+      target.value = "es";
+      f.appendChild(target);
+
+      f.appendChild(el("label", "create-label", "Languages you already know (used as anchors)"));
+      const known = el("div", "lang-known create-known");
+      const chosen = new Set(["en"]);
+      function paintChips() {
+        known.innerHTML = "";
+        CREATE_LANGS.forEach(([code, name]) => {
+          if (code === target.value) return;
+          const on = chosen.has(code);
+          const chip = el("button", "lang-chip" + (on ? " on" : ""), escapeHtml(name));
+          chip.onclick = () => {
+            if (chosen.has(code)) chosen.delete(code); else chosen.add(code);
+            if (!chosen.size) chosen.add(code);
+            paintChips();
+          };
+          known.appendChild(chip);
+        });
+      }
+      target.onchange = () => { chosen.delete(target.value); if (!chosen.size) chosen.add("en"); paintChips(); };
+      paintChips();
+      f.appendChild(known);
+
+      const go = el("button", "btn primary wide", "Generate deck →");
+      go.onclick = () => {
+        const t = target.value;
+        const knownArr = Array.from(chosen).filter((c) => c !== t);
+        if (!knownArr.length) knownArr.push("en");
+        runGenerate(back, { kind: "language", target: t, known: knownArr });
+      };
+      f.appendChild(go);
+      formHost.appendChild(f);
+    }
+
+    topicBtn.onclick = () => { mode = "topic"; topicBtn.classList.add("on"); langBtn.classList.remove("on"); renderTopic(); };
+    langBtn.onclick = () => { mode = "language"; langBtn.classList.add("on"); topicBtn.classList.remove("on"); renderLang(); };
+    renderTopic();
+
+    back.appendChild(sheet);
+    back.onclick = (e) => { if (e.target === back) back.remove(); };
+    document.body.appendChild(back);
+  }
+
+  // POST to the Next API generate route, store the deck, and load it.
+  async function runGenerate(back, req) {
+    const sheet = back.querySelector(".create-sheet");
+    sheet.innerHTML =
+      '<div class="sheet-title">Generating…</div>' +
+      '<div class="sheet-sub">Building an original deck for you. This can take 20–40 seconds.</div>' +
+      '<div class="gen-spinner">✦</div>';
+    let data;
+    try {
+      const res = await fetch("/api/academy/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req),
+      });
+      if (!res.ok) {
+        let msg = "Generation failed (" + res.status + ").";
+        try { const j = await res.json(); if (j && j.error) msg = j.error; } catch (e) {}
+        throw new Error(msg);
+      }
+      data = await res.json();
+    } catch (e) {
+      sheet.innerHTML =
+        '<div class="sheet-title">Couldn’t generate</div>' +
+        '<div class="sheet-sub gen-err">' + escapeHtml(e.message || "Unknown error") + "</div>";
+      const retry = el("button", "btn ghost wide", "Back");
+      retry.onclick = () => { back.remove(); openCreateSheet(); };
+      sheet.appendChild(retry);
+      return;
+    }
+
+    // data = { meta, atoms }. Wrap as a library record.
+    const deck = normalizeGenerated(data, req);
+    if (!deck) {
+      sheet.innerHTML =
+        '<div class="sheet-title">Couldn’t generate</div>' +
+        '<div class="sheet-sub gen-err">The generated deck was empty or malformed. Please try again.</div>';
+      const r = el("button", "btn ghost wide", "Back");
+      r.onclick = () => { back.remove(); openCreateSheet(); };
+      sheet.appendChild(r);
+      return;
+    }
+    if (window.BucketLibrary) window.BucketLibrary.save(deck);
+    refreshBranches();
+    back.remove();
+    switchBranch(deck.id);
+  }
+
+  // Turn a generate-route payload into a persisted library record (with a stable id,
+  // picker pill/sub, and a clean meta.branch namespace). Defensive against partial output.
+  function normalizeGenerated(data, req) {
+    const atoms = (data && data.atoms) || [];
+    if (!atoms.length) return null;
+    const isLangDeck = (data.meta && data.meta.kind === "language") || req.kind === "language";
+    const taken = BUILTINS.map((b) => b.id);
+    let title, pill, sub;
+    if (isLangDeck) {
+      const tName = (LANG_NAMES[req.target] || (CREATE_LANGS.find((l) => l[0] === req.target) || [])[1] || req.target);
+      title = tName + " — vocabulary";
+      pill = "✺ · " + tName;
+      sub = "Polyglot deck · " + atoms.length + " words";
+    } else {
+      title = (data.meta && data.meta.title) || req.topic;
+      pill = "✦ · " + req.topic;
+      sub = (req.level ? req.level.charAt(0).toUpperCase() + req.level.slice(1) + " · " : "") + atoms.length + " concepts";
+    }
+    const slug = isLangDeck ? "lang-" + (req.target || "x") : (req.topic || "topic");
+    const id = window.BucketLibrary ? window.BucketLibrary.makeId(slug, taken)
+      : "user:" + Date.now();
+    const meta = Object.assign({}, data.meta || {}, {
+      branch: id, // namespace FSRS/progress under the deck id
+      title,
+      generated: true,
+    });
+    if (isLangDeck) {
+      meta.kind = "language";
+      if (!Array.isArray(meta.languages) || !meta.languages.length) {
+        meta.languages = [req.target].concat(req.known || []).filter(Boolean);
+      }
+    }
+    return {
+      id,
+      file: null,
+      pill,
+      sub,
+      kind: isLangDeck ? "language" : undefined,
+      languages: isLangDeck ? meta.languages : undefined,
+      generated: true,
+      createdAt: Date.now(),
+      data: { meta, atoms },
+    };
   }
 
   function nav(active) {
@@ -442,9 +762,6 @@
       const b = el("button", "rbtn " + cls, lbl);
       b.onclick = () => {
         E.grade(atom.id, g, level);
-        // If signed in, push this branch's updated blob to the server (fire-and-forget).
-        if (window.BucketAuth && window.BucketAuth.enabled && E.meta && E.meta.branch)
-          window.BucketAuth.pushActive(E.meta.branch);
         next();
       };
       rate.appendChild(b);
@@ -491,7 +808,7 @@
   }
 
   /* ---------- study / read mode (learn the material in order) ---------- */
-  let studyDepth = "core";
+  let studyDepth = "lesson";
 
   // Topological learning order (prerequisites first), foundations-weighted.
   function studyOrder() {
@@ -518,13 +835,16 @@
     if (isLang()) return screenStudyLang();
     const wrap = el("div", "screen study");
     wrap.appendChild(header());
-    const cur = BRANCHES.find((b) => b.file === currentBranchFile) || BRANCHES[0];
+    const cur = currentBranch();
     wrap.appendChild(el("h1", "study-h1", cur.pill.replace(/^\S+ · /, "")));
     wrap.appendChild(el("p", "study-sub", "Read straight through — foundations first. Switch depth any time; tap a concept to drill it."));
 
-    // global depth toggle
+    // global depth toggle — full Lesson by default, with quick-blurb depths
+    const hasLessons = E.atoms.some((x) => x.lesson);
     const tabs = el("div", "depth-tabs study-depth");
-    [["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]].forEach(([k, lbl]) => {
+    const opts = hasLessons ? [["lesson", "Lesson"], ["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]] : [["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]];
+    if (studyDepth === "lesson" && !hasLessons) studyDepth = "core";
+    opts.forEach(([k, lbl]) => {
       const b = el("button", studyDepth === k ? "on" : null, lbl);
       b.onclick = () => { studyDepth = k; go("study"); };
       tabs.appendChild(b);
@@ -546,10 +866,15 @@
       const m = E.masteryFor(id);
       if (E.cardFor(id)) head.appendChild(el("span", "sb-mastery" + (m >= 0.7 ? " on" : ""), m >= 0.7 ? "✓ known" : "seen"));
       blk.appendChild(head);
-      const txt = (a.depths && a.depths[studyDepth]) || a.summary || "";
-      blk.appendChild(el("p", "sb-text", escapeHtml(txt)));
-      if (a.equation) { const eq = el("div", "eqbox", "$$" + a.equation + "$$"); blk.appendChild(eq); }
-      if (a.note && studyDepth !== "eli5") blk.appendChild(el("p", "sb-note", escapeHtml(a.note)));
+      if (studyDepth === "lesson" && a.lesson) {
+        // full markdown lesson (the thorough read)
+        blk.appendChild(el("div", "sb-lesson", mdToHtml(a.lesson)));
+      } else {
+        const txt = (a.depths && a.depths[studyDepth]) || a.summary || "";
+        blk.appendChild(el("p", "sb-text", escapeHtml(txt)));
+        if (a.equation) { const eq = el("div", "eqbox", "$$" + a.equation + "$$"); blk.appendChild(eq); }
+        if (a.note && studyDepth !== "eli5") blk.appendChild(el("p", "sb-note", escapeHtml(a.note)));
+      }
       // compact references
       const det = el("details", "sb-more");
       det.appendChild(el("summary", null, "Sources & links"));
@@ -760,9 +1085,7 @@
     root.innerHTML = "";
     root.appendChild(node);
   }
-  let currentScreen = "home";
   function go(where) {
-    currentScreen = where;
     if (where === "home") mount(screenHome());
     else if (where === "study") screenStudy();
     else if (where === "map") mount(screenMap());
@@ -770,28 +1093,35 @@
     window.scrollTo(0, 0);
   }
 
-  // Called by auth-ui after a sign-in/sync merges server progress into
-  // localStorage. Reload the engine's in-memory state from the merged blob and
-  // re-render the current screen so streak/XP/schedule reflect the merge.
-  // Only refresh when we are NOT mid-study-session (don't yank a card away).
-  window.__BA_onAuthSync = function () {
-    if (session) return;
-    if (!E || !E.lsKey) return;
-    try { E._loadState(); } catch (e) {}
-    if (currentScreen === "home" || currentScreen === "map" || currentScreen === "progress")
-      go(currentScreen);
-  };
-
   async function boot() {
+    // Load the built-in deck manifest (with fallback) + the user's saved decks first,
+    // so BRANCHES is fully populated before we resolve the current selection / deep link.
+    await loadManifest();
+    if (window.BucketLibrary) {
+      try { await window.BucketLibrary.pull(); } catch (e) {}
+    }
+    refreshBranches();
+
     // optional deep link: ?branch=<id>&atom=<id>
     let params = null;
     try { params = new URLSearchParams(location.search); } catch (e) {}
     if (params) {
       const bParam = params.get("branch");
-      if (bParam) { const m = BRANCHES.find((b) => b.file.includes(bParam)); if (m) currentBranchFile = m.file; }
+      if (bParam) {
+        const m = BRANCHES.find((b) => (b.file && b.file.includes(bParam)) || b.id === bParam);
+        if (m) currentBranchFile = branchKey(m);
+      }
     }
+
+    // Make sure the persisted selection still exists (a custom deck may have been deleted
+    // on another device); otherwise fall back to the default built-in branch.
+    if (!findBranch(currentBranchFile)) currentBranchFile = DEFAULT_BRANCH;
+
+    const cur = findBranch(currentBranchFile) || BRANCHES[0];
     try {
-      await E.load(currentBranchFile);
+      if (cur && cur.file) await E.load(cur.file);
+      else if (cur && cur.data) E.loadData(cur.data, cur.id);
+      else await E.load(DEFAULT_BRANCH);
       normalizeAtoms();
     } catch (e) {
       $("#app").innerHTML = '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';
