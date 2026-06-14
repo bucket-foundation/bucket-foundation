@@ -98,6 +98,7 @@
   let session = null; // {queue:[{id,kind}], i, current, level, revealed}
   let diag = null;    // active placement-diagnostic session ({d, item, revealed})
   let currentScreen = "home"; // last routed screen (for post-sync re-render)
+  let shareProfileHandle = null; // cached {handle,isPublic} for the share action (bkt-vjb)
 
   function katex(root) {
     if (window.renderMathInElement)
@@ -915,6 +916,9 @@
     const map = el("button", "btn ghost wide", "See what you unlocked on the map");
     map.onclick = () => go("map");
     c.appendChild(map);
+    const share = el("button", "btn ghost wide", "↗ Share Bucket Academy");
+    share.onclick = shareAcademy;
+    c.appendChild(share);
     wrap.appendChild(c);
     wrap.appendChild(nav("home"));
     return wrap;
@@ -1252,7 +1256,12 @@
     }
 
     Auth.getProfile()
-      .then((res) => { render(res && res.profile ? res.profile : null); })
+      .then((res) => {
+        const rec = res && res.profile ? res.profile : null;
+        // cache for the global "Share Bucket Academy" action (prefer public profile)
+        shareProfileHandle = rec && rec.handle ? { handle: rec.handle, isPublic: !!rec.isPublic } : null;
+        render(rec);
+      })
       .catch(() => { body.innerHTML = ""; body.appendChild(el("p", "share-hint", "Couldn't load your profile right now.")); });
 
     return box;
@@ -1461,6 +1470,20 @@
       const place = el("button", "btn ghost wide", "Re-take placement");
       place.onclick = () => go("diagnostic");
       settings.appendChild(place);
+    }
+
+    // Share the academy (growth loop) + replay the first-run intro.
+    const shareBtn = el("button", "btn ghost wide", "↗ Share Bucket Academy");
+    shareBtn.onclick = shareAcademy;
+    settings.appendChild(shareBtn);
+
+    if (window.BucketOnboarding) {
+      const replay = el("button", "btn ghost wide", "Replay intro");
+      replay.onclick = () => {
+        window.BucketOnboarding.clearOnboarded();
+        runOnboarding((where) => go(where || "home"));
+      };
+      settings.appendChild(replay);
     }
 
     const reset = el("button", "btn ghost wide danger", "Reset all progress");
@@ -1681,6 +1704,96 @@
     katex(wrap);
   }
 
+  /* ---------- share Bucket Academy (growth loop) ---------- */
+  // Canonical public URL of the academy. Defaults to /academy on the current origin;
+  // no hardcoded production secret.
+  function academyUrl() {
+    try {
+      const o = window.location && window.location.origin && window.location.origin !== "null"
+        ? window.location.origin : "https://bucket.foundation";
+      return o.replace(/\/$/, "") + "/academy";
+    } catch (e) { return "https://bucket.foundation/academy"; }
+  }
+  // Prefer the learner's PUBLIC Mastery Profile (bkt-coh) when they have a public handle.
+  function shareTarget() {
+    try {
+      const Auth = window.BucketAuth;
+      if (Auth && Auth.enabled && shareProfileHandle && shareProfileHandle.handle && shareProfileHandle.isPublic) {
+        const o = (window.location && window.location.origin) || "https://bucket.foundation";
+        return { url: o.replace(/\/$/, "") + "/m/" + shareProfileHandle.handle,
+                 title: "My Bucket Academy mastery profile", isProfile: true };
+      }
+    } catch (e) {}
+    return { url: academyUrl(), title: "Bucket Academy · learn the nucleus", isProfile: false };
+  }
+  function shareAcademy() {
+    const t = shareTarget();
+    const text = t.isProfile
+      ? "Here's what I've mastered on Bucket Academy — learn the nucleus of any field:"
+      : "Learn the nucleus of any field — the foundations, made unforgettable.";
+    if (navigator.share) { navigator.share({ title: t.title, text, url: t.url }).catch(() => {}); return; }
+    const done = (ok) => toast(ok ? "Link copied — share it with a friend." : t.url);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t.url).then(() => done(true), () => done(false));
+    } else { done(false); }
+  }
+  function toast(msg) {
+    const t = el("div", "ba-toast", escapeHtml(msg));
+    document.body.appendChild(t);
+    requestAnimationFrame(() => t.classList.add("on"));
+    setTimeout(() => { t.classList.remove("on"); setTimeout(() => t.remove(), 300); }, 2600);
+  }
+
+  /* ---------- first-run onboarding wiring (bkt-vjb) ---------- */
+  // The best "first real concept": a foundational (prereq) atom with a full lesson,
+  // no prerequisites, highest leverage. Falls back gracefully.
+  function firstLessonAtom() {
+    const withLesson = E.atoms.filter((a) => a.lesson);
+    const pool = withLesson.length ? withLesson : E.atoms;
+    const rank = (a) =>
+      (a.shell === "prereq" ? 0 : a.shell === "nucleus" ? 1 : 2) * 100 -
+      (a.requires && a.requires.length ? 50 : 0) - (a.leverage || 0);
+    return pool.slice().sort((a, b) => rank(a) - rank(b))[0] || E.atoms[0];
+  }
+
+  function runOnboarding(onDone) {
+    if (!window.BucketOnboarding) return onDone();
+    window.BucketOnboarding.start({
+      E, mount, isLang, firstLessonAtom,
+      // reuse the app's REAL renderers so the lesson + art match Study mode exactly
+      mdToHtml, artCard,
+      switchBranch: (file) => {
+        const m = findBranch(file) || BRANCHES.find((b) => b.file === file);
+        currentBranchFile = m ? branchKey(m) : file;
+        try { localStorage.setItem(BRANCH_PREF_KEY, currentBranchFile); } catch (e) {}
+        const target = m && m.file ? m.file : file;
+        return E.load(target).then(() => { normalizeAtoms(); return loadArtCache(); }).catch(() => {});
+      },
+      gradeWin: (id, level) => { if (!E.cardFor(id)) E.grade(id, 3, level || "recall"); },
+      langPair: () => {
+        const { target, known } = langSettings();
+        const a = firstLessonAtom();
+        const tf = (a && a.forms && a.forms[target]) || {};
+        return { target, targetName: LANG_NAMES[target] || target, known,
+                 gloss: (a && (a.gloss || a.title)) || "", word: tf.word || "", ipa: tf.ipa || "" };
+      },
+      // real diagnostic (js/diagnostic.js)
+      hasDiagnostic: () => !isLang() && typeof window.Diagnostic === "function",
+      startDiagnostic: () => go("diagnostic"),
+      // real auth (js/auth.js + auth-ui.js) — feature-detected, never required
+      hasAuth: () => !!(window.BucketAuth && window.BucketAuth.enabled),
+      signIn: () => new Promise((resolve) => {
+        // open the existing sign-in modal via the topbar pill once the app is mounted
+        setTimeout(() => { const pill = document.getElementById("authPill"); if (pill) pill.click(); resolve(); }, 60);
+      }),
+      share: shareAcademy,
+      finish: (opts) => {
+        opts = opts || {};
+        return onDone(opts.goTo || "home");
+      },
+    });
+  }
+
   /* ---------- router ---------- */
   function mount(node) {
     const root = $("#app");
@@ -1742,15 +1855,30 @@
       go(currentScreen);
     };
 
-    go("home");
-    if (params) {
-      const view = params.get("view");
-      if (view === "study") go("study");
-      else if (view === "map") go("map");
-      const nbParam = params.get("nb");
-      if (nbParam && E.byId[nbParam]) openNeighborhood(nbParam);
-      const aParam = params.get("atom");
-      if (aParam && E.byId[aParam]) openAtom(aParam, true);
+    // Deep links (shared atom / view / neighborhood) bypass first-run onboarding.
+    const deepLink = params && (params.get("atom") || params.get("nb") ||
+      params.get("view") === "study" || params.get("view") === "map" || params.get("onboard") === "0");
+    const forceOnboard = params && params.get("onboard") === "1";
+
+    function enter() {
+      go("home");
+      if (params) {
+        const view = params.get("view");
+        if (view === "study") go("study");
+        else if (view === "map") go("map");
+        const nbParam = params.get("nb");
+        if (nbParam && E.byId[nbParam]) openNeighborhood(nbParam);
+        const aParam = params.get("atom");
+        if (aParam && E.byId[aParam]) openAtom(aParam, true);
+      }
+    }
+
+    // First-run commitment ladder — only for brand-new visitors (or explicit replay).
+    if (window.BucketOnboarding && !deepLink &&
+        (forceOnboard || window.BucketOnboarding.shouldRun())) {
+      runOnboarding((where) => go(where || "home"));
+    } else {
+      enter();
     }
   }
   document.addEventListener("DOMContentLoaded", boot);
