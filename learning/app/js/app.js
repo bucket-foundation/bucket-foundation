@@ -619,6 +619,32 @@
     try { localStorage.setItem(LANG_PREF_KEY, JSON.stringify({ target, known })); } catch (e) {}
   }
 
+  // "Ask the tutor" — opens a focused, grounded Socratic chat scoped to this
+  // atom. Degrades silently if the tutor module didn't load (atom screen must
+  // never break). The panel itself handles the not-enabled (503) state.
+  function tutorAffordance(a) {
+    const wrap = el("div", "tutor-cta");
+    const btn = el(
+      "button",
+      "tutor-cta-btn",
+      '<span class="tutor-cta-ico">✦</span>' +
+        '<span class="tutor-cta-txt"><b>Ask the tutor</b>' +
+        '<span class="tutor-cta-sub">Grounded to this concept · Socratic hints, not answers</span></span>' +
+        '<span class="tutor-cta-caret">›</span>'
+    );
+    btn.setAttribute("aria-label", "Ask the tutor about " + (a.title || "this concept"));
+    btn.onclick = () => {
+      if (!window.BucketTutor || typeof window.BucketTutor.open !== "function") return;
+      window.BucketTutor.open({
+        atom: a,
+        branch: (E.meta && E.meta.branch) || null,
+        byId: E.byId,
+      });
+    };
+    wrap.appendChild(btn);
+    return wrap;
+  }
+
   // "Go deeper" (external resources) + "Related in Bucket" (canon links) for any atom.
   function deeperSection(a) {
     const wrap = el("div", "deeper");
@@ -767,6 +793,8 @@
 
     // source citation
     if (a.sources) body.appendChild(el("div", "cite", "Learn from: " + escapeHtml((a.sources || []).join(" · "))));
+    // Ask the tutor — a grounded, Socratic aid scoped to THIS concept (bkt-5jj).
+    body.appendChild(tutorAffordance(a));
     wrap.appendChild(body);
 
     // drill

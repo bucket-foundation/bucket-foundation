@@ -279,6 +279,64 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 .lang-ex { margin-top: 12px; }
 .lang-ans { font-family: var(--serif); font-size: 22px; font-weight: 600; }
 
+/* ---- Ask the tutor (CTA on the atom screen) ---- */
+.tutor-cta { margin-top: 16px; }
+.tutor-cta-btn { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; background: var(--card); border: 1px solid var(--line-strong); border-left: 3px solid var(--aegean); border-radius: 12px; padding: 13px 15px; cursor: pointer; font: inherit; color: var(--ink); min-height: 48px; transition: background .16s var(--ease, ease), border-color .16s, transform .12s; }
+.tutor-cta-btn:hover { background: var(--card-2); border-left-color: var(--aegean-deep); }
+.tutor-cta-btn:active { transform: scale(.99); }
+.tutor-cta-ico { font-size: 16px; color: var(--gold-deep); flex: none; }
+.tutor-cta-txt { display: flex; flex-direction: column; flex: 1; line-height: 1.3; }
+.tutor-cta-txt b { font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
+.tutor-cta-sub { font-size: 12.5px; color: var(--ink-faint); margin-top: 2px; }
+.tutor-cta-caret { font-size: 20px; color: var(--ink-faint); flex: none; }
+
+/* ---- tutor panel (focused chat sheet) ---- */
+.tutor-back { position: fixed; inset: 0; background: rgba(31,28,22,.34); display: flex; align-items: flex-end; justify-content: center; z-index: 80; animation: fade .2s ease; }
+.tutor-back.closing { animation: fade .18s ease reverse; }
+.tutor-panel { width: 100%; max-width: 720px; max-height: 88vh; display: flex; flex-direction: column; background: var(--bg); border-top-left-radius: 18px; border-top-right-radius: 18px; border: 1px solid var(--line); box-shadow: 0 -16px 48px -20px rgba(31,28,22,.5); animation: rise var(--dur, .26s) var(--ease-out, ease); }
+.tutor-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 16px 18px 10px; border-bottom: 1px solid var(--line); }
+.tutor-kicker { font-family: var(--display); text-transform: uppercase; letter-spacing: .14em; font-size: 10px; color: var(--gold-deep); }
+.tutor-concept { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: -.01em; margin-top: 2px; }
+.tutor-close { background: var(--card); border: 1px solid var(--line); color: var(--ink-dim); border-radius: 999px; width: 36px; height: 36px; min-height: 36px; cursor: pointer; font-size: 14px; flex: none; }
+.tutor-close:hover { border-color: var(--line-strong); color: var(--ink); }
+.tutor-ground { font-size: 12.5px; color: var(--ink-dim); background: var(--card); border-bottom: 1px solid var(--line); padding: 9px 18px; line-height: 1.45; }
+.tutor-ground b { color: var(--aegean-deep); }
+.tutor-log { flex: 1; overflow-y: auto; padding: 14px 18px 6px; display: flex; flex-direction: column; gap: 12px; -webkit-overflow-scrolling: touch; }
+.tutor-msg { display: flex; }
+.tutor-msg.user { justify-content: flex-end; }
+.tutor-bubble { max-width: 86%; border-radius: 14px; padding: 11px 14px; font-size: 15.5px; line-height: 1.5; }
+.tutor-msg.user .tutor-bubble { background: var(--aegean-deep); color: var(--bg); border-bottom-right-radius: 5px; }
+.tutor-msg.tutor .tutor-bubble { background: var(--card); border: 1px solid var(--line); color: var(--ink); border-bottom-left-radius: 5px; }
+.tutor-bubble.abstained { border-color: rgba(138,100,26,.4); border-left: 3px solid var(--gold); }
+.tutor-bubble.notice { background: var(--card-2); border-style: dashed; color: var(--ink-dim); }
+.tutor-abstain-tag { font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 9px; color: var(--gold-deep); margin-bottom: 5px; }
+.tutor-reply { white-space: pre-wrap; }
+.tutor-meta { margin-top: 7px; display: flex; align-items: center; gap: 8px; }
+.tutor-conf { font-family: var(--display); text-transform: uppercase; letter-spacing: .05em; font-size: 9px; }
+.tutor-conf.conf-high { color: var(--laurel-deep); }
+.tutor-conf.conf-medium { color: var(--gold-deep); }
+.tutor-conf.conf-low { color: var(--ink-faint); }
+.tutor-cites { margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.tutor-cites-label { font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 9px; color: var(--ink-faint); }
+.tutor-cite { font-size: 12.5px; color: var(--aegean-deep); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; background: var(--bg); }
+.tutor-cite:hover { border-color: var(--aegean); }
+.tutor-cite.static { color: var(--ink-faint); }
+.tutor-bubble.thinking { display: inline-flex; gap: 5px; align-items: center; }
+.tdot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); display: inline-block; animation: tdot 1s infinite ease-in-out; }
+.tdot:nth-child(2) { animation-delay: .15s; } .tdot:nth-child(3) { animation-delay: .3s; }
+@keyframes tdot { 0%,80%,100% { opacity: .3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+.tutor-sugg { padding: 4px 18px 8px; }
+.tutor-sugg-label { font-family: var(--display); text-transform: uppercase; letter-spacing: .1em; font-size: 10px; color: var(--ink-faint); margin-bottom: 7px; }
+.tutor-sugg-row { display: flex; flex-wrap: wrap; gap: 7px; }
+.tutor-chip { font-size: 13px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--card); color: var(--ink-dim); cursor: pointer; font: inherit; min-height: 38px; }
+.tutor-chip:hover { background: var(--card-2); color: var(--aegean-deep); border-color: var(--aegean); }
+.tutor-form { display: flex; gap: 8px; padding: 10px 18px calc(14px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--bg); }
+.tutor-input { flex: 1; background: var(--card); border: 1px solid var(--line-strong); color: var(--ink); border-radius: 11px; padding: 12px 14px; font: inherit; font-size: 15.5px; min-height: 46px; }
+.tutor-input:focus { outline: none; border-color: var(--aegean); }
+.tutor-send { background: var(--laurel-deep); color: var(--bg); border: none; border-radius: 11px; padding: 0 20px; min-height: 46px; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 12px; cursor: pointer; flex: none; }
+.tutor-send:hover { background: var(--aegean-deep); }
+.tutor-send:disabled { opacity: .5; cursor: default; }
+
 /* ---- language settings ---- */
 .set-hint { font-size: 12px; color: var(--ink-faint); margin: 10px 2px 6px; }
 .lang-sel { background: var(--bg); border: 1px solid var(--line-strong); color: var(--ink); border-radius: 8px; padding: 7px 10px; font: inherit; }
