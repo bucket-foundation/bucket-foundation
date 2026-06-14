@@ -84,16 +84,21 @@ grounded, validated) + canon grounding (human-reviewed T0 canon vs. generated pe
 
 **Profile layer (Engineering + Product):** public `bucket.foundation/m/<handle>` →
 **Open Badges 3.0 / W3C VC 2.0** signed credential (machine-verifiable without our servers,
-`Alignment`-linked to canon skill IDs, `Evidence`-embedded) → optional **Story Protocol**
-on-chain hash anchor (durable, survives the issuer; reuses Bucket's existing IP-mint path).
-Unifies **learn → master → author → mint** on one provenance rail.
+`Alignment`-linked to canon skill IDs, `Evidence`-embedded), cryptographically signed by
+Bucket as issuer. Optional durable anchor = a content-hash timestamp (e.g. a transparency
+log), **not** an NFT/chain mint. Path: **learn → master → author → share**.
+
+> **Decision (2026-06-14): no Story Protocol.** Credentials use Open Badges 3.0 / W3C VC
+> only (issuer-signed, no blockchain). The creator rail is author + share + attribution —
+> no on-chain mint, no token royalties. Anywhere the research docs reference Story Protocol
+> minting/attestation, treat it as superseded by signed VCs + plain attribution.
 
 **Monetization (Revenue + Operations):** four objects, none paywalls knowledge —
 (1) knowledge free forever (grant-funded, Khan model); (2) **Pro $12/mo** = AI horsepower +
 PDF-import + Exam-Simulator + analytics (needs the 3 cost controls: caching, cheap-default
 routing, frontier cap); (3) **verified credentials free to the learner, monetized on the
 verifier side** (recruiter verification API + institutional issuance); (4) **Scholar creator
-rail** ~2% + Story Protocol royalties.
+rail** ~2% cost-recovery (author + share decks; attribution, no on-chain mint/royalties).
 
 ---
 
@@ -117,8 +122,8 @@ generation + dynamic deck manifest + per-user library · polyglot mode.
 
 **Phase 3 — Mastery Profile (the resume):**
 - Public Mastery Profile page (map + honest rating + evidence) at `/m/<handle>` — **MVP**.
-- Open Badges 3.0 / W3C VC issuance + verify flow.
-- Story Protocol attestation anchor.
+- Open Badges 3.0 / W3C VC issuance + verify flow (issuer-signed, no blockchain).
+- Optional content-hash transparency-log anchor (durable timestamp; NOT an NFT mint).
 - Recruiter/employer verification API + skill search (the revenue line).
 
 **Phase 4 — Product polish & growth** (the 12 moves not yet covered):
@@ -127,7 +132,7 @@ generation + dynamic deck manifest + per-user library · polyglot mode.
 - Grounded non-punishing "Explain my answer" feedback moment.
 - AI tutor inside the scheduler+graph (S1–S7 safety, SymPy/CAS split).
 - Comprehensible-input "learn from the actual papers" mode + known-concepts counter.
-- Scholar/Studio creator rail (Story Protocol mint + entitlement).
+- Scholar/Studio creator rail — author + share decks + attribution (no on-chain mint).
 - Onboarding commitment ladder + placement quiz before signup.
 
 **Phase 5 — Trust / ops / monetization:**
