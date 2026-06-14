@@ -96,6 +96,7 @@
   })();
 
   let session = null; // {queue:[{id,kind}], i, current, level, revealed}
+  let currentScreen = "home"; // last routed screen (for post-sync re-render)
 
   function katex(root) {
     if (window.renderMathInElement)
@@ -223,6 +224,11 @@
       cur.pill +
       ' <span class="branch-caret">▾</span></button>';
     h.querySelector("#branchPill").onclick = openBranchPicker;
+    // Optional sign-in / "Save progress" control (bkt-su9). No-op when auth is
+    // disabled (empty auth-config) — keeps anonymous local-first use intact.
+    if (window.BucketAuthUI) {
+      try { window.BucketAuthUI.mountInto(h); } catch (e) {}
+    }
     return h;
   }
 
@@ -984,6 +990,118 @@
     return wrap;
   }
 
+  /* ---------- share your public Mastery Profile (bkt-coh) ---------- */
+  // Opt-in, signed-in-only. Lets a learner claim a handle, make the profile
+  // public (default private), and copy the public link bucket.foundation/m/<h>.
+  // Honest-signal framing: an evolving learning record, not a certified score.
+  function shareProfileSection() {
+    const box = el("div", "share-profile");
+    const Auth = window.BucketAuth;
+    box.appendChild(el("div", "section-label", "Share your Mastery Profile"));
+
+    // Auth disabled (no backend) — nothing to share.
+    if (!Auth || !Auth.enabled) {
+      box.appendChild(el("p", "share-hint", "Sign-in isn't configured here, so a public profile isn't available."));
+      return box;
+    }
+    const s = Auth.state();
+    if (!s.signedIn) {
+      box.appendChild(el("p", "share-hint",
+        "Your public profile is the map of what you've mastered — a learning record you build by learning. Sign in (top right · “Save progress”) to claim your handle."));
+      return box;
+    }
+
+    const body = el("div", "share-body");
+    body.appendChild(el("p", "share-hint", "Loading your profile…"));
+    box.appendChild(body);
+
+    function render(rec) {
+      body.innerHTML = "";
+      const origin = (window.location && window.location.origin) || "https://bucket.foundation";
+      const handle = rec && rec.handle ? rec.handle : "";
+      const isPublic = !!(rec && rec.isPublic);
+
+      // handle input + claim/save
+      const form = el("form", "share-form");
+      const label = el("label", "share-label", handle ? "Your handle" : "Claim a handle");
+      const inWrap = el("div", "share-handle-row");
+      inWrap.appendChild(el("span", "share-prefix", "/m/"));
+      const input = el("input", "share-input");
+      input.type = "text";
+      input.placeholder = "your-handle";
+      input.value = handle;
+      input.maxLength = 32;
+      input.autocapitalize = "off";
+      input.autocomplete = "off";
+      input.spellcheck = false;
+      inWrap.appendChild(input);
+      form.appendChild(label);
+      form.appendChild(inWrap);
+      const err = el("div", "share-err hidden");
+      form.appendChild(err);
+      const save = el("button", "btn primary wide", handle ? "Update handle" : "Claim handle");
+      save.type = "submit";
+      form.appendChild(save);
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const h = (input.value || "").trim().toLowerCase();
+        if (!h) return;
+        err.classList.add("hidden");
+        save.disabled = true; save.textContent = "Saving…";
+        Auth.setProfile({ handle: h })
+          .then((r) => { render((r && r.profile) || { handle: h, isPublic: isPublic }); })
+          .catch((ex) => {
+            save.disabled = false; save.textContent = handle ? "Update handle" : "Claim handle";
+            let msg = (ex && ex.message) || "Couldn't save that handle.";
+            if (ex && ex.code === "handle_taken") msg = "That handle is taken — try another.";
+            else if (ex && ex.code === "invalid_handle") msg = "3–32 chars: lowercase letters, numbers, and single internal - or _.";
+            err.textContent = msg; err.classList.remove("hidden");
+          });
+      };
+      body.appendChild(form);
+
+      if (handle) {
+        // public toggle
+        const toggleRow = el("label", "set-row share-toggle", isPublic ? "Public — anyone with the link can view" : "Private — only you");
+        const sw = el("input"); sw.type = "checkbox"; sw.checked = isPublic;
+        sw.onchange = () => {
+          sw.disabled = true;
+          Auth.setProfile({ is_public: sw.checked })
+            .then((r) => { render((r && r.profile) || { handle: handle, isPublic: sw.checked }); })
+            .catch(() => { sw.checked = !sw.checked; sw.disabled = false; });
+        };
+        toggleRow.appendChild(sw);
+        body.appendChild(toggleRow);
+
+        // public link + copy (only meaningful once public)
+        const url = origin + "/m/" + handle;
+        const linkRow = el("div", "share-link-row");
+        const linkA = el("a", "share-link", url);
+        linkA.href = "/m/" + handle; linkA.target = "_blank"; linkA.rel = "noopener";
+        linkRow.appendChild(linkA);
+        const copy = el("button", "share-copy", "Copy");
+        copy.onclick = () => {
+          const done = () => { copy.textContent = "Copied ✓"; setTimeout(() => { copy.textContent = "Copy"; }, 1400); };
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, done);
+          else { try { input.value = url; input.select(); document.execCommand("copy"); } catch (e) {} done(); }
+        };
+        linkRow.appendChild(copy);
+        body.appendChild(linkRow);
+
+        body.appendChild(el("p", "share-note",
+          isPublic
+            ? "This is an evolving learning record — concepts mastered, depth, recency — with visible uncertainty. Not a certified score."
+            : "Make it public to share the link. Your map shows concepts you've mastered by learning — an honest record, not a certified score."));
+      }
+    }
+
+    Auth.getProfile()
+      .then((res) => { render(res && res.profile ? res.profile : null); })
+      .catch(() => { body.innerHTML = ""; body.appendChild(el("p", "share-hint", "Couldn't load your profile right now.")); });
+
+    return box;
+  }
+
   /* ---------- progress ---------- */
   function screenProgress() {
     const s = E.summary();
@@ -1024,6 +1142,9 @@
       list.appendChild(row);
     });
     wrap.appendChild(list);
+
+    // Share your Mastery Profile (bkt-coh) — opt-in public, signed-in only.
+    wrap.appendChild(shareProfileSection());
 
     const settings = el("div", "settings");
     settings.appendChild(el("div", "section-label", "Settings"));
@@ -1086,6 +1207,7 @@
     root.appendChild(node);
   }
   function go(where) {
+    currentScreen = where;
     if (where === "home") mount(screenHome());
     else if (where === "study") screenStudy();
     else if (where === "map") mount(screenMap());
@@ -1128,6 +1250,15 @@
       return;
     }
     window.__BA = E; // debug handle
+
+    // When an auth sync merges new state into localStorage, reload the active
+    // branch's engine state and re-render the current screen so progress (and
+    // the share-profile section) reflect the merged data (bkt-su9, bkt-coh).
+    window.__BA_onAuthSync = function () {
+      try { E._loadState && E._loadState(); } catch (e) {}
+      go(currentScreen);
+    };
+
     go("home");
     if (params) {
       if (params.get("view") === "study") go("study");

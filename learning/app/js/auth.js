@@ -43,9 +43,11 @@
   // When the Academy is served under the Next.js site it lives at /academy-app,
   // so a root-relative path resolves to the right origin. An explicit override
   // (cfg.apiBase) is honored for standalone hosting.
-  var API_PROGRESS =
-    (cfg && cfg.apiBase ? String(cfg.apiBase).replace(/\/$/, "") : "") +
-    "/api/academy/progress";
+  var API_BASE =
+    cfg && cfg.apiBase ? String(cfg.apiBase).replace(/\/$/, "") : "";
+  var API_PROGRESS = API_BASE + "/api/academy/progress";
+  // bkt-coh — the public Mastery Profile API (claim handle + toggle visibility).
+  var API_PROFILE = API_BASE + "/api/academy/profile";
 
   var sb = null; // Supabase client (lazy)
   var session = null; // current Supabase session (or null)
@@ -340,6 +342,52 @@
     });
   }
 
+  /* ---------- public Mastery Profile (bkt-coh) ---------- */
+
+  // Fetch the signed-in user's own profile record + assembled preview.
+  // Resolves { profile: {handle,displayName,isPublic,url}|null, preview } or
+  // null when sync isn't configured / not signed in.
+  function getProfile() {
+    var tok = accessToken();
+    if (!enabled || !tok) return Promise.resolve(null);
+    return fetch(API_PROFILE + "?me=1", {
+      method: "GET",
+      headers: { Authorization: "Bearer " + tok },
+      credentials: "omit",
+    }).then(function (res) {
+      if (res.status === 503) return null; // sync unavailable
+      if (!res.ok) throw new Error("profile fetch failed: " + res.status);
+      return res.json();
+    });
+  }
+
+  // Claim a handle and/or set display name and/or toggle visibility.
+  // `patch` = { handle?, display_name?, is_public? }. Resolves the API JSON
+  // (which includes { ok, profile } on success) or rejects with a typed error
+  // whose `.code` is the API error string (e.g. "handle_taken").
+  function setProfile(patch) {
+    var tok = accessToken();
+    if (!enabled || !tok) return Promise.reject(new Error("not signed in"));
+    return fetch(API_PROFILE, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + tok,
+        "Content-Type": "application/json",
+      },
+      credentials: "omit",
+      body: JSON.stringify(patch || {}),
+    }).then(function (res) {
+      return res.json().then(function (body) {
+        if (!res.ok || (body && body.error)) {
+          var err = new Error((body && (body.message || body.error)) || ("HTTP " + res.status));
+          err.code = body && body.error;
+          throw err;
+        }
+        return body;
+      });
+    });
+  }
+
   // Best-effort: if a magic-link redirect lands us here already signed in,
   // ensureClient() picks up the session and fires onAuthStateChange.
   function init() {
@@ -357,6 +405,8 @@
     signOut: signOut,
     sync: syncAll,
     pushActive: pushActive,
+    getProfile: getProfile,
+    setProfile: setProfile,
     // exposed for tests
     _mergeState: mergeState,
   };
