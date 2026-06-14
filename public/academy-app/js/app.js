@@ -96,6 +96,7 @@
   })();
 
   let session = null; // {queue:[{id,kind}], i, current, level, revealed}
+  let diag = null;    // active placement-diagnostic session ({d, item, revealed})
   let currentScreen = "home"; // last routed screen (for post-sync re-render)
 
   function katex(root) {
@@ -193,6 +194,18 @@
       hero.appendChild(rev);
     }
     wrap.appendChild(hero);
+
+    // Placement diagnostic entry — most prominent on a fresh branch (nothing started),
+    // but always available. Honest framing: a starting estimate, fully skippable.
+    if (!isLang() && typeof window.Diagnostic === "function" && s.introduced === 0) {
+      const cta = el("button", "place-cta",
+        '<span class="pc-ico">✶</span>' +
+        '<span class="pc-copy"><span class="pc-title">Know some of this already?</span>' +
+        '<span class="pc-sub">Answer a few questions and we\'ll place you on the graph.</span></span>' +
+        '<span class="pc-go">→</span>');
+      cta.onclick = () => go("diagnostic");
+      wrap.appendChild(cta);
+    }
 
     const stats = el("div", "stats");
     stats.appendChild(stat("🔥", s.streak, "day streak"));
@@ -1415,6 +1428,13 @@
       settings.appendChild(kWrap);
     }
 
+    // Re-take placement — re-run the adaptive diagnostic to re-estimate the frontier.
+    if (!isLang() && typeof window.Diagnostic === "function") {
+      const place = el("button", "btn ghost wide", "Re-take placement");
+      place.onclick = () => go("diagnostic");
+      settings.appendChild(place);
+    }
+
     const reset = el("button", "btn ghost wide danger", "Reset all progress");
     reset.onclick = () => { if (confirm("Erase all learning progress?")) { E.reset(); go("home"); } };
     settings.appendChild(reset);
@@ -1422,6 +1442,215 @@
 
     wrap.appendChild(nav("progress"));
     return wrap;
+  }
+
+  /* ---------- placement diagnostic (ALEKS-style binary search over the graph) ----------
+   * Honest framing: a STARTING ESTIMATE, never a certified rating (public ratings are
+   * gated on bkt-4at). The learner can always study any concept regardless, and the
+   * whole flow is skippable. Correct answers credit prerequisites via the encompassing
+   * graph; placement seeds modest FSRS state, never "mastered". */
+
+  // Seed engine state honestly for a set of placed-known atoms. We introduce each with
+  // a "Hard" grade (rating 2): present + low-but-real stability + a modest proficiency,
+  // NOT certified-mastered. FIRe/encompassing credit then flows to prerequisites through
+  // the engine's grade() path. This makes the route + "Continue learning" resume past
+  // what the learner already knows while leaving everything overridable.
+  function seedPlacement(knownIds) {
+    let n = 0;
+    knownIds.forEach((id) => {
+      if (!E.byId[id]) return;
+      if (E.cardFor(id)) return;       // never clobber real progress
+      const lvl = pickLevel(id);       // honor the atom's available quiz depth
+      E.grade(id, 2, lvl || "recall"); // 2 = "Hard": introduced, modest stability + prof
+      n++;
+    });
+    E.save();
+    return n;
+  }
+
+  function startDiagnostic() {
+    if (typeof window.Diagnostic !== "function") return go("home");
+    const d = new window.Diagnostic({ atoms: E.atoms, byId: E.byId, isLang: isLang() });
+    d.start();
+    diag = { d: d, item: null, revealed: false };
+    renderDiagIntro();
+  }
+
+  function renderDiagIntro() {
+    const wrap = el("div", "screen diagnostic");
+    wrap.appendChild(header());
+    const intro = el("div", "diag-intro");
+    intro.innerHTML =
+      '<div class="di-mark">✶</div>' +
+      "<h1>Place me on the graph</h1>" +
+      "<p>We'll ask a handful of questions, jumping around the map to find what you " +
+      "already know. Answer honestly — there's no score, no grade.</p>" +
+      '<p class="diag-honest">This is a starting estimate. You can study any concept ' +
+      "regardless, and re-take it any time.</p>";
+    const start = el("button", "btn primary wide", "Start →");
+    start.onclick = () => diagNext();
+    intro.appendChild(start);
+    const skip = el("button", "diag-skip", "Skip — just let me study");
+    skip.onclick = () => { diag = null; go("home"); };
+    intro.appendChild(skip);
+    wrap.appendChild(intro);
+    mount(wrap);
+  }
+
+  // Render the current diagnostic question (prompt → reveal → I knew it / I didn't).
+  function diagNext() {
+    if (!diag) return go("home");
+    if (diag.d.done()) return diagFinish();
+    const item = diag.d.next();
+    if (!item) return diagFinish();
+    diag.item = item;
+    diag.revealed = false;
+    renderDiagQuestion();
+  }
+
+  function renderDiagQuestion() {
+    const item = diag.item;
+    const a = item.atom;
+    const wrap = el("div", "screen diagnostic");
+    wrap.appendChild(header());
+
+    const top = el("div", "atom-top");
+    const skip = el("button", "ghost", "Skip placement");
+    skip.onclick = () => { diag = null; go("home"); };
+    top.appendChild(skip);
+    top.appendChild(el("span", "diag-step", "Q" + item.qIndex + " · placing"));
+    wrap.appendChild(top);
+
+    // progress bar (approximate — diagnostic may early-stop before the cap)
+    const bar = el("div", "diag-bar");
+    const frac = Math.min(1, item.qIndex / Math.max(1, item.total));
+    bar.appendChild(el("i")).style.width = Math.round(frac * 100) + "%";
+    wrap.appendChild(bar);
+
+    const box = el("div", "diag-q");
+    box.appendChild(el("div", "dq-label", "Do you know this?"));
+    box.appendChild(el("div", "dq-concept", escapeHtml(a.title || a.gloss || item.id)));
+
+    // Build the prompt. Concept atoms use their quiz prompt; language atoms ask for
+    // the target word given the gloss (mirrors the polyglot drill).
+    let promptHtml, answerHtml;
+    if (item.isLang) {
+      const { target, known } = langSettings();
+      const tf = (a.forms && a.forms[target]) || {};
+      const hintLang = known[0];
+      const hint = hintLang && a.forms[hintLang];
+      promptHtml = "How do you say <b>“" + escapeHtml(a.gloss || a.title || "") + "”</b>" +
+        (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
+        " in " + escapeHtml(LANG_NAMES[target] || target) + "?";
+      answerHtml = escapeHtml(tf.word || "—") + (tf.ipa ? " <i>/" + escapeHtml(tf.ipa) + "/</i>" : "");
+    } else {
+      promptHtml = item.prompt || escapeHtml(a.title || "");
+      answerHtml = item.answer || "";
+    }
+    box.appendChild(el("div", "dq-prompt", promptHtml));
+
+    const answer = el("div", "answer hidden");
+    answer.innerHTML = "<div class='a-label'>Answer</div><div class='a-text" +
+      (item.isLang ? " lang-ans" : "") + "'>" + answerHtml + "</div>";
+    const reveal = el("button", "btn wide", "Show answer");
+    const choice = el("div", "diag-choice hidden");
+    reveal.onclick = () => {
+      answer.classList.remove("hidden");
+      reveal.classList.add("hidden");
+      choice.classList.remove("hidden");
+      if (diag) diag.revealed = true;
+      katex(answer);
+    };
+    const knew = el("button", "dc knew", "✓ I knew it");
+    knew.onclick = () => diagAnswer(true);
+    const didnt = el("button", "dc didnt", "I didn't");
+    didnt.onclick = () => diagAnswer(false);
+    choice.appendChild(knew);
+    choice.appendChild(didnt);
+
+    box.appendChild(reveal);
+    box.appendChild(answer);
+    box.appendChild(choice);
+    wrap.appendChild(box);
+
+    // an explicit "haven't learned this yet" supplies clean negative evidence without
+    // forcing a reveal (ADAPTIVE-SOTA §a.3 — measurably reduces questions needed).
+    const dunno = el("button", "diag-skip", "I haven't learned this yet");
+    dunno.onclick = () => diagAnswer(false);
+    wrap.appendChild(dunno);
+
+    mount(wrap);
+    katex(wrap);
+  }
+
+  function diagAnswer(correct) {
+    if (!diag || !diag.item) return;
+    diag.d.answer(diag.item.id, correct);
+    if (diag.d.done()) return diagFinish();
+    renderDiagPlacing(); // brief "thinking" beat, then the next question
+    setTimeout(diagNext, 360);
+  }
+
+  function renderDiagPlacing() {
+    const wrap = el("div", "screen diagnostic");
+    wrap.appendChild(header());
+    const p = el("div", "diag-placing");
+    p.innerHTML = '<div class="dp-mark">✶</div><p>Placing you…</p>';
+    wrap.appendChild(p);
+    mount(wrap);
+  }
+
+  function diagFinish() {
+    const res = diag ? diag.d.result() : { known: [], frontier: [], placedCount: 0 };
+    diag = null;
+    const placed = seedPlacement(res.known);
+    renderDiagResult(res, placed);
+  }
+
+  function renderDiagResult(res, placed) {
+    const wrap = el("div", "screen diagnostic");
+    wrap.appendChild(header());
+    const box = el("div", "diag-result");
+    const headline = placed > 0
+      ? "Started you at " + placed + " concept" + (placed === 1 ? "" : "s")
+      : "Starting from the foundations";
+    box.innerHTML =
+      '<div class="dr-mark">✶</div>' +
+      "<h1>" + headline + ".</h1>" +
+      '<p class="dr-sub">' +
+      (placed > 0
+        ? "We placed you past what you already know. Here's where to go next — and you " +
+          "can always revisit anything earlier."
+        : "No problem — we'll build you up from first principles. Every concept is open " +
+          "to study whenever you like.") +
+      "</p>";
+
+    // "here's where to go next" — the next learnable concepts in study order.
+    const next = studyOrder().filter((id) => !E.cardFor(id)).slice(0, 5);
+    if (next.length) {
+      const list = el("div", "route-list dr-next");
+      list.appendChild(el("div", "section-label", "Where to go next"));
+      next.forEach((id) => {
+        const a = E.byId[id];
+        const row = el("div", "route-row");
+        row.appendChild(el("span", "dot shell-dot-" + a.shell));
+        row.appendChild(el("span", "rtitle", escapeHtml(a.title)));
+        row.appendChild(el("span", "rtag new", "learn"));
+        row.onclick = () => openAtom(a.id, true);
+        list.appendChild(row);
+      });
+      box.appendChild(list);
+    }
+
+    const cont = el("button", "btn primary wide", "Start learning →");
+    cont.onclick = () => go("home");
+    box.appendChild(cont);
+    const study = el("button", "btn ghost wide", "Browse everything (Study)");
+    study.onclick = () => go("study");
+    box.appendChild(study);
+    wrap.appendChild(box);
+    mount(wrap);
+    katex(wrap);
   }
 
   /* ---------- router ---------- */
@@ -1436,6 +1665,7 @@
     else if (where === "study") screenStudy();
     else if (where === "map") mount(screenMap());
     else if (where === "progress") mount(screenProgress());
+    else if (where === "diagnostic") startDiagnostic();
     window.scrollTo(0, 0);
   }
 

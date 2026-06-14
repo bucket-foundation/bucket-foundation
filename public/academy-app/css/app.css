@@ -391,3 +391,48 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
   .node.just-unlocked .node-base, .node.just-unlocked .node-fill,
   .node.unlock-target { animation: none !important; }
 }
+
+/* ---- placement diagnostic (bkt-efk) ---- */
+/* "Place me" entry card on the home/empty state + Progress re-take button. */
+.place-cta { margin: 14px 0 8px; background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--aegean); border-radius: 12px; padding: 15px 16px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: background var(--dur) var(--ease-out), border-color var(--dur), transform var(--dur-fast) var(--ease-out); text-align: left; width: 100%; font: inherit; color: var(--ink); }
+.place-cta:hover { background: var(--card-2); border-left-color: var(--aegean-deep); }
+.place-cta:active { transform: scale(.99); }
+.place-cta .pc-ico { font-size: 22px; color: var(--aegean); flex: none; }
+.place-cta .pc-copy { display: flex; flex-direction: column; gap: 2px; }
+.place-cta .pc-title { font-family: var(--serif); font-weight: 600; font-size: 16px; letter-spacing: -.005em; }
+.place-cta .pc-sub { font-size: 13.5px; color: var(--ink-faint); }
+.place-cta .pc-go { margin-left: auto; color: var(--aegean-deep); font-size: 20px; flex: none; }
+
+/* diagnostic question flow — reuses the .drill / .rate visual language */
+.diag-intro { padding: 36px 4px 12px; text-align: center; }
+.diag-intro .di-mark { font-size: 40px; color: var(--gold); }
+.diag-intro h1 { font-family: var(--serif); font-weight: 500; font-size: 30px; letter-spacing: -.01em; margin: 12px 0 6px; }
+.diag-intro p { color: var(--ink-dim); font-size: 16px; margin: 0 auto 20px; max-width: 30em; }
+.diag-honest { font-size: 13px; color: var(--ink-faint); font-style: italic; margin-top: 8px; }
+
+.diag-bar { height: 5px; background: var(--line); border-radius: 6px; overflow: hidden; margin: 14px 0 18px; }
+.diag-bar i { display: block; height: 100%; background: var(--aegean); border-radius: 6px; transition: width var(--dur) var(--ease-out); }
+.diag-step { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); letter-spacing: .02em; }
+
+.diag-q { margin-top: 8px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; animation: rise var(--dur) var(--ease-out); }
+.diag-q .dq-label { font-family: var(--display); text-transform: uppercase; letter-spacing: .1em; font-size: 11px; color: var(--aegean); }
+.diag-q .dq-concept { font-family: var(--display); text-transform: uppercase; letter-spacing: .05em; font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+.diag-q .dq-prompt { font-size: 18.5px; font-weight: 500; line-height: 1.5; margin: 10px 0 4px; }
+
+.diag-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.diag-choice .dc { border: 1px solid var(--line-strong); background: var(--bg); color: var(--ink); font-family: var(--display); text-transform: uppercase; letter-spacing: .05em; font-size: 11px; padding: 14px 8px; border-radius: 10px; cursor: pointer; min-height: 50px; transition: transform var(--dur-fast) var(--ease-out), background var(--dur); }
+.diag-choice .dc:active { transform: scale(.97); }
+.diag-choice .dc.knew { color: var(--laurel-deep); border-color: rgba(90,122,58,.45); }
+.diag-choice .dc.didnt { color: var(--gold-deep); border-color: rgba(138,100,26,.4); }
+.diag-skip { display: block; margin: 16px auto 0; background: none; border: none; color: var(--ink-faint); font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+
+.diag-placing { text-align: center; padding: 70px 12px; }
+.diag-placing .dp-mark { font-size: 40px; color: var(--aegean); animation: diagpulse 1.1s ease-in-out infinite; }
+@keyframes diagpulse { 0%,100% { opacity: .45; transform: scale(.94); } 50% { opacity: 1; transform: scale(1.04); } }
+.diag-placing p { color: var(--ink-dim); margin-top: 14px; font-size: 16px; }
+
+.diag-result { text-align: center; padding: 40px 8px 12px; }
+.diag-result .dr-mark { font-size: 44px; color: var(--gold); animation: pop var(--dur-slow) cubic-bezier(.2,1.4,.3,1); }
+.diag-result h1 { font-family: var(--serif); font-weight: 500; font-size: 28px; letter-spacing: -.01em; margin: 12px 0 6px; }
+.diag-result .dr-sub { color: var(--ink-dim); font-size: 16px; margin: 0 auto 14px; max-width: 28em; }
+.diag-result .dr-next { text-align: left; margin: 18px 0; }

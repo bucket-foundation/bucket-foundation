@@ -62,4 +62,8 @@ if(s.introduced!==E.atoms.length){console.error("FAIL: not all introduced",s);pr
 console.log("  OK engine: all",s.introduced,"introduced, xp",s.xp,"streak",s.streak);
 })().catch(e=>{console.error("FAIL",e);process.exit(1);});
 '
+echo "== placement diagnostic (bkt-efk) =="
+node test-diagnostic.mjs
+echo "== placement flow headless smoke (bkt-efk) =="
+node test-headless-flow.mjs | tail -2
 echo "ALL VALIDATIONS PASSED"
