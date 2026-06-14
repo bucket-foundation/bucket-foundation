@@ -11,6 +11,7 @@ const src = join(root, "learning", "app");
 const dest = join(root, "public", "academy-app");
 const EXCLUDE = new Set([
   "serve.sh", "validate.sh", "README.md", "vercel.json", "node_modules", ".vercel",
+  "test-adaptive.js", // dev-only engine test (bkt-jh0); never ship to /academy-app
 ]);
 
 if (!existsSync(src)) {

@@ -54,6 +54,75 @@ export function masteryFromStability(stability: number | null | undefined): numb
 // engine.js summary(): a concept counts as "mastered" at mastery >= 0.70.
 export const MASTERED_THRESHOLD = 0.7;
 
+/* ---------------- bkt-uzx: proficiency x retention fusion ------------------ */
+// These MUST mirror learning/app/js/adaptive.js EXACTLY so the public profile
+// shows the same fused mastery a learner sees in the Academy. (No import: that
+// file is browser-vanilla-JS; this typed copy is the server port, same as the
+// FSRS constants above.)
+const ADAPTIVE = {
+  PROF_SLOPE: 1.0,
+  PROF_DEPTH_B: { recall: -0.8, apply: -0.2, derive: 0.6, teach: 1.2 } as Record<string, number>,
+  MASTERY_ALPHA: 1.0,
+  MASTERY_BETA: 1.0,
+  RETENTION_HORIZON_DAYS: 90,
+};
+
+function clamp01(x: number): number {
+  return x < 0 ? 0 : x > 1 ? 1 : x;
+}
+function sigmoid(x: number): number {
+  return 1 / (1 + Math.exp(-x));
+}
+
+/** Per-concept proficiency state as engine.js persists it in state.prof[id]. */
+export interface ProficiencyState {
+  theta?: number;
+  n?: number;
+}
+
+/** Proficiency as a 0..1 readout at a reference difficulty (the `apply` depth).
+ *  Mirrors adaptive.js `proficiencyScore`. No graded evidence => 0 (honest). */
+export function proficiencyScore(prof: ProficiencyState | null | undefined): number {
+  if (!prof || typeof prof.theta !== "number" || !prof.n) return 0;
+  return clamp01(sigmoid(ADAPTIVE.PROF_SLOPE * (prof.theta - ADAPTIVE.PROF_DEPTH_B.apply)));
+}
+
+/** FSRS retrievability at the credential horizon T (90d). Mirrors adaptive.js. */
+export function retentionAtHorizon(stability: number | null | undefined): number {
+  if (!stability || stability <= 0) return 0;
+  return clamp01(retrievability(ADAPTIVE.RETENTION_HORIZON_DAYS, stability));
+}
+
+/** M = P^alpha * R^beta. Mirrors adaptive.js `fuseMastery`. */
+export function fuseMastery(P: number, R: number): number {
+  P = clamp01(P);
+  R = clamp01(R);
+  if (P <= 0 || R <= 0) return 0;
+  return clamp01(Math.pow(P, ADAPTIVE.MASTERY_ALPHA) * Math.pow(R, ADAPTIVE.MASTERY_BETA));
+}
+
+/**
+ * The HONEST fused mastery for one concept, mirroring engine.masteryFor():
+ *  - if there is graded proficiency evidence, return P^alpha * R^beta;
+ *  - otherwise fall back to the legacy stability proxy (cold-start / pre-P1
+ *    state) so we never report a dishonest 0.
+ * Returns { mastery, proficiency|null, retention|null }.
+ */
+export function fusedConceptMastery(
+  card: StoredCard | undefined,
+  prof: ProficiencyState | undefined
+): { mastery: number; proficiency: number | null; retention: number | null } {
+  if (!card) return { mastery: 0, proficiency: null, retention: null };
+  const stability = card.stability ?? null;
+  if (!prof || !prof.n) {
+    // No proficiency evidence yet — legacy proxy (matches engine fallback).
+    return { mastery: masteryFromStability(stability), proficiency: null, retention: null };
+  }
+  const P = proficiencyScore(prof);
+  const R = retentionAtHorizon(stability);
+  return { mastery: fuseMastery(P, R), proficiency: P, retention: R };
+}
+
 /* ------------------------------- shapes ----------------------------------- */
 
 /** One FSRS card as engine.js persists it (only the fields we read). */
@@ -70,6 +139,9 @@ export interface StoredCard {
 /** The per-branch engine state blob stored in bucket.academy_progress.data. */
 export interface StoredEngineState {
   cards?: Record<string, StoredCard>;
+  // bkt-uzx: per-concept Elo-lite proficiency. Absent in pre-P1 state (we then
+  // fall back to the stability proxy per concept — graceful migration).
+  prof?: Record<string, ProficiencyState>;
   settings?: Record<string, unknown>;
   stats?: {
     xp?: number;
@@ -117,8 +189,13 @@ export interface ConceptSignal {
   shell: string;
   leverage: number;
   started: boolean;
-  mastery: number; // 0..1 learning-progress proxy (NOT a certified score)
+  mastery: number; // 0..1 fused learning-progress proxy (NOT a certified score)
   mastered: boolean; // mastery >= 0.70
+  // bkt-uzx fused-mastery components (null until there's graded proficiency
+  // evidence; then mastery == proficiency^alpha * retention^beta).
+  proficiency: number | null; // Elo-lite ability readout at the `apply` depth
+  retention: number | null; // FSRS retrievability at the 90-day horizon
+  attempts: number; // graded proficiency attempts (evidence volume)
   depth: Depth; // highest depth reached (inferred)
   depthLabel: string;
   retrievability: number | null; // live FSRS retrievability now (recency readout)
@@ -203,6 +280,7 @@ export function rollupBranch(
 ): BranchSummary {
   const atoms = (corpus.atoms || []).slice();
   const cards = (state && state.cards) || {};
+  const prof = (state && state.prof) || {};
   const isLang = corpus.meta?.kind === "language";
 
   const concepts: ConceptSignal[] = [];
@@ -218,8 +296,12 @@ export function rollupBranch(
   for (const atom of atoms) {
     const card = cards[atom.id];
     const started = !!card;
-    const mastery = masteryFromStability(card?.stability);
+    // bkt-uzx: fused mastery (proficiency x retention) with legacy fallback,
+    // identical to engine.masteryFor() so the profile matches the app exactly.
+    const fused = fusedConceptMastery(card, prof[atom.id]);
+    const mastery = fused.mastery;
     const mastered = mastery >= MASTERED_THRESHOLD;
+    const attempts = prof[atom.id]?.n || 0;
     const shell = atom.shell || "nucleus";
 
     let retr: number | null = null;
@@ -258,6 +340,9 @@ export function rollupBranch(
       started,
       mastery: +mastery.toFixed(3),
       mastered,
+      proficiency: fused.proficiency != null ? +fused.proficiency.toFixed(3) : null,
+      retention: fused.retention != null ? +fused.retention.toFixed(3) : null,
+      attempts,
       depth,
       depthLabel: DEPTH_LABEL[depth],
       retrievability: retr,
