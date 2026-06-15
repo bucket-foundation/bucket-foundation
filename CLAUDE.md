@@ -169,3 +169,58 @@ agfarms 'grep LONGTAIL_HMAC_SECRET ~/longtail-mono/longtail-hub/.env'
 ```
 Note: `~/longtail/longtail-pipeline/.env` has a *different* (orphaned)
 secret — do not use it. Cleanup tracked in `bkt-*` bead.
+
+## Bucket Academy + Polingual — the learning system (epic `bkt-jh0` / `bkt-2ea`)
+
+**Bucket Academy** is a learning app shipped 2026-06-12..15. Lives in `learning/app/`
+(vanilla-JS PWA: `js/{fsrs,engine,adaptive,diagnostic,assess,auth,auth-ui,tutor,
+onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
+`corpus/*.json`), mirrored to `public/academy-app/` by `scripts/sync-academy.mjs`
+(predev/prebuild hooks), framed at Next route `src/app/academy/page.tsx` → live at
+**bucket.foundation/academy**. Validate: `learning/app/validate.sh`. Design+research:
+`learning/EPIC.md` + `learning/research/` (these live on branch `data/sacred-history-ai-analysis`, not yet on main — loose end).
+
+- **Content:** 358 science atoms across the 7 canon branches, each with a full markdown
+  `lesson` + 3-depth + quiz + `resources` (Wikipedia/open, link) + deterministic
+  procedural-SVG art. Branch manifest = `learning/app/corpus/index.json`.
+- **Engine:** FSRS-5 + two-layer graph + FIRe + honest mastery (`M=proficiency^α·retention^β`).
+  ALEKS-style diagnostic placement. "Test yourself" assessment w/ deterministic grader.
+- **Auth + profile:** email-OTP via the self-hosted Supabase at **db.agfarms.dev**
+  (`agf-supabase-*` on Hetzner). Tables `bucket.academy_progress` + `bucket.academy_profiles`
+  (in the **private `bucket` schema** — NOT PostgREST-exposed; reached via service-role Next
+  API routes `src/app/api/academy/{progress,profile}/route.ts`). Public Mastery Profile at
+  `/m/<handle>` (honest signal; NO certified rating until `bkt-4at` validates vs real exams).
+- **AI features (dark until founder sets `ANTHROPIC_API_KEY` in Vercel):** grounded Socratic
+  tutor (`src/app/api/academy/tutor`, S1–S7 safety: closed-set citations, abstain, fail-safe).
+
+**Product decisions (final):**
+- **NO Story Protocol** anywhere. Credentials = Open Badges 3.0 / W3C VC (issuer-signed, no blockchain). (2026-06-14)
+- **Any-topic AI generation REMOVED** — not the product. (2026-06-15)
+- **AI tutor = FREE, no paywall** — focus on getting users. (2026-06-15)
+- **Languages honest status:** working *pieces*, NOT a finished course (small deck, TTS-not-recorded audio, residual sense-noise). Don't oversell.
+
+### Polingual — language surface on the photon substrate (`bkt-2ea` / `bkt-nhy`)
+`PHOTON-SPEC.md` + `POLINGUAL.md` are the contract/vision. Comparison axes:
+semantic / phonetic / spelling / etymology / translation.
+
+**Two photon copies — RECONCILE; the Hetzner one is authoritative:**
+- **LOCAL** `_intake/photons/`: `index.sqlite` (45k photons, 27 langs) + LaBSE-768 semantic
+  + 64-d phonetic vectors (`*.f32.bin`, gitignored, ~150MB). Builders + query engine in
+  `scripts/photon/` (`common,semantic_build,phonetic_build,query,build_subset,proof`).
+- **HETZNER (AUTHORITATIVE)** — `polingual` schema on `agf-supabase-db` →
+  **`polingual.photons` = 6.5M rows, 35 langs**. Cols: id, kind, lang, surface, meaning_en,
+  tier, branch[], pos, ipa, provenance jsonb, **`relations` jsonb** (translation/etymology
+  edges, populated — local copy's were empty), payload jsonb, **`surface_tsv`/`meaning_tsv`**
+  (full-text search). **Exposed via PostgREST** (`polingual` in `PGRST_DB_SCHEMAS`). **No
+  pgvector yet. No k3s namespace.** Reach the DB via `agfarms 'docker exec agf-supabase-db psql -U postgres ...'`.
+
+**Architecture decision (use existing infra, don't duplicate):** the full Polingual index
+should run on the EXISTING `polingual` schema — `create extension if not exists vector`,
+add semantic/phonetic vector columns, expose query via a Postgres RPC through the existing
+PostgREST, with a Next proxy `src/app/api/polingual/route.ts`. Do NOT transfer/duplicate the
+local 45k copy or stand up a parallel service unless pgvector truly can't be enabled.
+
+**Academy "Languages" branch:** polyglot deck `corpus/lang-core.json` (kind:`language`) +
+typed accent-tolerant drill + on-device TTS (`lang-audio.js`) + a client word-explorer
+(`polingual.js`) over a ~6,500-word baked starter subset (`learning/app/polingual/`). All
+Polingual data = **Wiktionary via Kaikki, CC-BY-SA — must attribute.**
