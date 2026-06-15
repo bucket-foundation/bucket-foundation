@@ -66,4 +66,8 @@ echo "== placement diagnostic (bkt-efk) =="
 node test-diagnostic.mjs
 echo "== placement flow headless smoke (bkt-efk) =="
 node test-headless-flow.mjs | tail -2
+echo "== test-yourself assessment + deterministic grader (bkt-v7y / bkt-3so) =="
+node test-assess.mjs | tail -3
+echo "== test-yourself flow headless smoke (bkt-v7y) =="
+node test-assess-flow.mjs | tail -2
 echo "ALL VALIDATIONS PASSED"

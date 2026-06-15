@@ -496,6 +496,44 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 .diag-result .dr-next { text-align: left; margin: 18px 0; }
 
 /* ===================================================================== *
+   "Test yourself" assessment (bkt-v7y). Sealed self-test, deterministic
+   grading where possible (laurel ✓ / amber, never red), honest self-check
+   fallback clearly flagged as lower-trust (the practice/credential firewall).
+ * ===================================================================== */
+.assess-cta .pc-ico { color: var(--gold); }
+.assess-cta { border-left-color: var(--gold); }
+.assess-cta:hover { border-left-color: var(--gold-deep); }
+.assess-intro { padding: 36px 4px 12px; text-align: center; }
+.assess-intro .as-mark { font-size: 38px; color: var(--gold); }
+.assess-intro h1 { font-family: var(--serif); font-weight: 500; font-size: 30px; letter-spacing: -.01em; margin: 12px 0 6px; }
+.assess-intro p { color: var(--ink-dim); font-size: 16px; margin: 0 auto 16px; max-width: 30em; }
+.assess-honest { font-size: 13px; color: var(--ink-faint); font-style: italic; margin-top: 8px !important; }
+.assess-skip { display: block; margin: 16px auto 0; background: none; border: none; color: var(--ink-faint); font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+.assess-q .dq-label { color: var(--gold-deep); }
+.assess-input-row { margin-top: 16px; }
+.assess-input { width: 100%; font-family: var(--mono); font-size: 16px; padding: 13px 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--bg); color: var(--ink); }
+.assess-input:focus { outline: none; box-shadow: var(--focus); border-color: var(--aegean); }
+.assess-q .answer { margin-top: 14px; }
+.assess-yours { margin-top: 14px; }
+.assess-yours .a-text { font-family: var(--mono); font-size: 14.5px; color: var(--ink-dim); }
+.assess-selfq { margin-top: 16px; font-size: 15.5px; font-weight: 500; }
+.assess-trust { margin-top: 12px; font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 10px; padding: 5px 10px; border-radius: 999px; display: inline-block; }
+.assess-trust.auto { color: var(--laurel-deep); background: rgba(90,122,58,.10); border: 1px solid rgba(90,122,58,.3); }
+.assess-trust.self { color: var(--gold-deep); background: rgba(138,100,26,.08); border: 1px solid rgba(138,100,26,.3); }
+.assess-result { text-align: center; padding: 38px 8px 12px; }
+.assess-result .ar-mark { font-size: 40px; color: var(--gold); animation: pop var(--dur-slow) cubic-bezier(.2,1.4,.3,1); }
+.assess-result h1 { font-family: var(--serif); font-weight: 500; font-size: 36px; letter-spacing: -.01em; margin: 10px 0 2px; }
+.assess-result .ar-score { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--gold-deep); }
+.assess-result .ar-sub { color: var(--ink-faint); font-size: 14px; font-style: italic; margin: 10px auto 16px; max-width: 28em; }
+.ar-trust { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+.art-pill { font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 10px; padding: 6px 11px; border-radius: 999px; }
+.art-pill.auto { color: var(--laurel-deep); background: rgba(90,122,58,.10); border: 1px solid rgba(90,122,58,.3); }
+.art-pill.self { color: var(--gold-deep); background: rgba(138,100,26,.08); border: 1px solid rgba(138,100,26,.3); }
+.ar-levels { text-align: left; margin: 18px 0; }
+.ar-weak { text-align: left; margin: 18px 0; }
+.ar-clean { color: var(--laurel-deep); font-size: 14.5px; margin: 14px 0 18px; }
+
+/* ===================================================================== *
    First-run onboarding (the commitment ladder, bkt-vjb). On-brand, mascot-free.
  * ===================================================================== */
 .ob-screen { padding: 0 20px 40px; min-height: 100vh; }

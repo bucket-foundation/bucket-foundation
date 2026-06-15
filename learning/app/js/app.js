@@ -97,6 +97,7 @@
 
   let session = null; // {queue:[{id,kind}], i, current, level, revealed}
   let diag = null;    // active placement-diagnostic session ({d, item, revealed})
+  let assess = null;  // active "Test yourself" assessment run (bkt-v7y)
   let currentScreen = "home"; // last routed screen (for post-sync re-render)
   let shareProfileHandle = null; // cached {handle,isPublic} for the share action (bkt-vjb)
 
@@ -1389,6 +1390,24 @@
     grid.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(grid);
 
+    // "Test yourself" — a sealed self-test that sharpens the mastery estimate (bkt-v7y).
+    // Concept branches only (polyglot keeps its own recall drill), and only once the
+    // learner has started something to be tested on. Fully skippable; never blocks Study.
+    if (!isLang() && window.Assess && s.introduced > 0) {
+      const log = readAssessLog();
+      const last = (log.runs || [])[log.runs.length - 1];
+      const subTxt = last
+        ? "Last: " + last.correct + "/" + last.total + " · " + Math.round((last.score || 0) * 100) + "%"
+        : "Sharpen your mastery estimate with a sealed self-test.";
+      const cta = el("button", "place-cta assess-cta",
+        '<span class="pc-ico">▰</span>' +
+        '<span class="pc-copy"><span class="pc-title">Test yourself</span>' +
+        '<span class="pc-sub">' + escapeHtml(subTxt) + "</span></span>" +
+        '<span class="pc-go">→</span>');
+      cta.onclick = () => go("assess");
+      wrap.appendChild(cta);
+    }
+
     // per-shell mastery bars
     ["prereq", "nucleus", "frontier"].forEach((shell) => {
       const items = E.atoms.filter((a) => a.shell === shell);
@@ -1704,6 +1723,314 @@
     katex(wrap);
   }
 
+  /* ---------- "Test yourself" assessment (bkt-v7y) ----------
+   * A SEALED self-test, deliberately separate from practice (Study + drill). Practice is
+   * show-answer-then-self-rate (FSRS, retries — farmable by design); an assessment hides
+   * the answer until you respond, grades numeric/short-symbolic answers DETERMINISTICALLY
+   * (bkt-3so), and falls back to an HONEST, clearly-marked self-check for prose (lower
+   * trust). Results are stored in a SEPARATE log (the practice/credential firewall
+   * STRUCTURE, bkt-dji) and fed into the engine proficiency so the Mastery Profile reflects
+   * TESTED proficiency — never a certified or public rating (that's gated on bkt-4at + the
+   * AI key: real held-out, freshly-generated transfer items + anti-gaming come later). */
+
+  // Firewall: assessment results live in their OWN localStorage namespace, kept apart from
+  // the engine's practice state (FSRS cards / xp / streak). This is the structural
+  // separation between practice and credential signal (bkt-dji).
+  function assessLogKey() {
+    const branch = (E.meta && E.meta.branch) || "default";
+    return "bucket-academy/assess/" + branch;
+  }
+  function readAssessLog() {
+    try { return JSON.parse(localStorage.getItem(assessLogKey())) || { runs: [] }; }
+    catch (e) { return { runs: [] }; }
+  }
+  function appendAssessRun(record) {
+    const log = readAssessLog();
+    log.runs = (log.runs || []).concat(record).slice(-50); // keep last 50 runs
+    try { localStorage.setItem(assessLogKey(), JSON.stringify(log)); } catch (e) {}
+  }
+
+  // Entry point: build a sealed run over the current branch (or a chosen concept set).
+  function startAssessment(conceptIds) {
+    if (!window.Assess || typeof window.Assess.buildRun !== "function") return go("home");
+    const graph = { atoms: E.atoms, byId: E.byId, branch: (E.meta && E.meta.branch) || null };
+    const state = { cardForId: (id) => E.cardFor(id) };
+    const run = window.Assess.buildRun(graph, state, {
+      size: 10,
+      conceptIds: conceptIds && conceptIds.length ? conceptIds : null,
+    });
+    if (!run.items.length) {
+      toast("Study a few concepts first, then test yourself.");
+      return go("study");
+    }
+    assess = { run, i: 0, results: [], revealed: false, item: null, startedAt: Date.now(), itemStart: 0 };
+    renderAssessIntro();
+  }
+
+  function renderAssessIntro() {
+    const wrap = el("div", "screen assess");
+    wrap.appendChild(header());
+    const intro = el("div", "assess-intro");
+    const n = assess.run.items.length;
+    intro.innerHTML =
+      '<div class="as-mark">▰</div>' +
+      "<h1>Test yourself</h1>" +
+      "<p>A sealed self-test of <b>" + n + "</b> question" + (n === 1 ? "" : "s") +
+      " across what you've been learning. You'll answer first, then see the solution — " +
+      "no peeking.</p>" +
+      '<p class="assess-honest">This sharpens your mastery estimate. It is not a grade or ' +
+      "a certificate — just an honest signal, for you.</p>";
+    const start = el("button", "btn primary wide", "Begin →");
+    start.onclick = () => assessNext();
+    intro.appendChild(start);
+    const skip = el("button", "assess-skip", "Not now");
+    skip.onclick = () => { assess = null; go("progress"); };
+    intro.appendChild(skip);
+    wrap.appendChild(intro);
+    mount(wrap);
+  }
+
+  function assessNext() {
+    if (!assess) return go("home");
+    if (assess.i >= assess.run.items.length) return assessFinish();
+    assess.item = assess.run.items[assess.i];
+    assess.revealed = false;
+    assess.itemStart = Date.now();
+    renderAssessQuestion();
+  }
+
+  function renderAssessQuestion() {
+    const item = assess.item;
+    const wrap = el("div", "screen assess");
+    wrap.appendChild(header());
+
+    const top = el("div", "atom-top");
+    const quit = el("button", "ghost", "End test");
+    quit.onclick = () => { if (confirm("End this self-test? Your answers so far won't be saved.")) { assess = null; go("progress"); } };
+    top.appendChild(quit);
+    top.appendChild(el("span", "diag-step", "Q" + (assess.i + 1) + " / " + assess.run.items.length + " · " + item.level));
+    wrap.appendChild(top);
+
+    const bar = el("div", "diag-bar");
+    bar.appendChild(el("i")).style.width = Math.round((assess.i / assess.run.items.length) * 100) + "%";
+    wrap.appendChild(bar);
+
+    const box = el("div", "diag-q assess-q");
+    box.appendChild(el("div", "dq-label", "Retrieve · " + item.level));
+    box.appendChild(el("div", "dq-concept", escapeHtml(item.title || item.atomId)));
+    box.appendChild(el("div", "dq-prompt", item.prompt));
+    if (item.eq) box.appendChild(el("div", "q-eq", "$$" + item.eq + "$$"));
+
+    // sealed input — the learner types their answer BEFORE the solution exists on screen.
+    const inWrap = el("div", "assess-input-row");
+    const input = el("input", "assess-input");
+    input.type = "text";
+    input.placeholder = "Your answer…";
+    input.autocapitalize = "off";
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    inWrap.appendChild(input);
+    box.appendChild(inWrap);
+
+    const submit = el("button", "btn primary wide", "Submit answer");
+    submit.onclick = () => assessGrade(item, input.value);
+    box.appendChild(submit);
+    input.onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); assessGrade(item, input.value); } };
+
+    wrap.appendChild(box);
+    mount(wrap);
+    katex(wrap);
+    setTimeout(() => { try { input.focus(); } catch (e) {} }, 40);
+  }
+
+  // Grade the submitted answer. Deterministic where possible (laurel ✓ / amber — never
+  // red); otherwise reveal the solution and ask for an HONEST self-check (lower trust).
+  function assessGrade(item, userInput) {
+    const verdict = window.Assess.gradeAnswer(userInput, item.answer);
+    const latency = Math.max(0, Date.now() - assess.itemStart);
+    if (verdict.gradable) {
+      // deterministic verdict — record + animate, no self-report needed.
+      recordAssessItem(item, verdict.correct, true, latency);
+      renderAssessVerdict(item, userInput, verdict, /*auto*/ true);
+    } else {
+      // honest fallback: reveal the canonical answer, let the learner self-check.
+      renderAssessSelfCheck(item, userInput, latency);
+    }
+  }
+
+  // Deterministic verdict moment: laurel check for correct, amber nudge for incorrect.
+  function renderAssessVerdict(item, userInput, verdict, auto) {
+    const wrap = el("div", "screen assess");
+    wrap.appendChild(header());
+    const top = el("div", "atom-top");
+    top.appendChild(el("span", "prog", ""));
+    top.appendChild(el("span", "diag-step", "Q" + (assess.i + 1) + " / " + assess.run.items.length));
+    wrap.appendChild(top);
+
+    const box = el("div", "diag-q assess-q");
+    box.appendChild(el("div", "dq-concept", escapeHtml(item.title || item.atomId)));
+    box.appendChild(el("div", "dq-prompt", item.prompt));
+
+    const fb = el("div", "fb " + (verdict.correct ? "right" : "wrong"));
+    fb.innerHTML = verdict.correct
+      ? '<span class="fb-mark laurel">' + checkmarkSVG() + "</span>" +
+        '<span class="fb-text"><b>Correct.</b> ' + escapeHtml(auto ? "Graded automatically." : "") + "</span>"
+      : '<span class="fb-mark">↺</span><span class="fb-text"><b>Not quite.</b> ' +
+        "Your answer: " + escapeHtml(userInput || "—") + ". Auto-graded.</span>";
+    box.appendChild(fb);
+
+    const ans = el("div", "answer");
+    ans.innerHTML = "<div class='a-label'>Solution</div><div class='a-text'>" + item.answer + "</div>";
+    box.appendChild(ans);
+
+    const badge = el("div", "assess-trust auto", "✓ Auto-graded · deterministic");
+    box.appendChild(badge);
+
+    const cont = el("button", "btn primary wide", assess.i + 1 >= assess.run.items.length ? "See results →" : "Next →");
+    cont.onclick = () => { assess.i++; assessNext(); };
+    box.appendChild(cont);
+    wrap.appendChild(box);
+    mount(wrap);
+    katex(wrap);
+    if (window.haptic) haptic(verdict.correct ? "correct" : "tap");
+  }
+
+  // Honest self-check moment for non-auto-gradable (prose) answers. We reveal the
+  // canonical solution and the learner reports — clearly flagged as self-reported, lower
+  // trust, kept apart from the deterministic signal in the firewall log.
+  function renderAssessSelfCheck(item, userInput, latency) {
+    const wrap = el("div", "screen assess");
+    wrap.appendChild(header());
+    const top = el("div", "atom-top");
+    top.appendChild(el("span", "prog", ""));
+    top.appendChild(el("span", "diag-step", "Q" + (assess.i + 1) + " / " + assess.run.items.length));
+    wrap.appendChild(top);
+
+    const box = el("div", "diag-q assess-q");
+    box.appendChild(el("div", "dq-concept", escapeHtml(item.title || item.atomId)));
+    box.appendChild(el("div", "dq-prompt", item.prompt));
+
+    if (userInput && userInput.trim()) {
+      const yours = el("div", "assess-yours");
+      yours.innerHTML = "<div class='a-label'>Your answer</div><div class='a-text'>" + escapeHtml(userInput) + "</div>";
+      box.appendChild(yours);
+    }
+    const ans = el("div", "answer");
+    ans.innerHTML = "<div class='a-label'>Solution</div><div class='a-text'>" + item.answer + "</div>";
+    box.appendChild(ans);
+
+    box.appendChild(el("div", "assess-selfq", "This one's open-ended — did you get it right?"));
+    const choice = el("div", "diag-choice");
+    const yes = el("button", "dc knew", "✓ I got it");
+    yes.onclick = () => { recordAssessItem(item, true, false, latency); assess.i++; assessNext(); };
+    const no = el("button", "dc didnt", "Missed it");
+    no.onclick = () => { recordAssessItem(item, false, false, latency); assess.i++; assessNext(); };
+    choice.appendChild(yes);
+    choice.appendChild(no);
+    box.appendChild(choice);
+    box.appendChild(el("div", "assess-trust self", "Self-reported · counts for less than auto-graded"));
+
+    wrap.appendChild(box);
+    mount(wrap);
+    katex(wrap);
+  }
+
+  // Record a graded item: push to the in-memory results AND feed the engine proficiency
+  // through the EXISTING grade() path (so masteryDetail reflects tested proficiency). We
+  // never clobber practice signal dishonestly: a self-reported verdict is flagged so the
+  // firewall log marks it lower-trust. Auto-graded correctness is the trustworthy signal.
+  function recordAssessItem(item, correct, autoGraded, latencyMs) {
+    assess.results.push({ atomId: item.atomId, level: item.level, correct, autoGraded, latencyMs });
+    // Feed proficiency via the engine grade path. Only an INTRODUCED concept gets a card;
+    // for a not-yet-started concept we still introduce it (a tested concept IS now seen).
+    try {
+      const rating = window.Assess.ratingFor(correct);
+      E.grade(item.atomId, rating, item.level || "recall");
+    } catch (e) {}
+  }
+
+  function assessFinish() {
+    const summary = window.Assess.summarize(assess.results);
+    const record = {
+      at: Date.now(),
+      branch: (E.meta && E.meta.branch) || null,
+      total: summary.total, correct: summary.correct, score: summary.score,
+      auto: summary.auto, self: summary.self, byLevel: summary.byLevel,
+      weakConcepts: summary.weakConcepts, trust: summary.trust,
+    };
+    appendAssessRun(record); // firewall log (separate from practice state)
+    const results = assess.results.slice();
+    assess = null;
+    renderAssessResults(summary);
+  }
+
+  function renderAssessResults(summary) {
+    const wrap = el("div", "screen assess");
+    wrap.appendChild(header());
+    const box = el("div", "assess-result");
+    const pct = Math.round(summary.score * 100);
+    if (window.haptic) haptic("celebrate");
+    box.innerHTML =
+      '<div class="ar-mark">▰</div>' +
+      "<h1>" + summary.correct + " / " + summary.total + "</h1>" +
+      '<div class="ar-score">' + pct + "% on this self-test</div>" +
+      '<p class="ar-sub">An honest signal to sharpen your estimate — not a grade or a certificate.</p>';
+
+    // trust split (the firewall, made visible)
+    const trust = el("div", "ar-trust");
+    trust.innerHTML =
+      '<span class="art-pill auto">' + summary.auto.correct + "/" + summary.auto.total + " auto-graded</span>" +
+      '<span class="art-pill self">' + summary.self.correct + "/" + summary.self.total + " self-reported</span>";
+    box.appendChild(trust);
+
+    // by-level breakdown
+    const levels = window.Assess.ASSESS.LEVELS.filter((l) => summary.byLevel[l]);
+    if (levels.length) {
+      const bl = el("div", "ar-levels");
+      bl.appendChild(el("div", "section-label", "By depth"));
+      levels.forEach((l) => {
+        const d = summary.byLevel[l];
+        const row = el("div", "bar-row");
+        row.innerHTML = '<div class="bar-label">' + l.charAt(0).toUpperCase() + l.slice(1) + "</div>";
+        const bar = el("div", "bar");
+        bar.appendChild(el("div", "fill shell-bar-nucleus", "")).style.width = Math.round((d.correct / d.total) * 100) + "%";
+        row.appendChild(bar);
+        row.appendChild(el("div", "bar-pct", d.correct + "/" + d.total));
+        bl.appendChild(row);
+      });
+      box.appendChild(bl);
+    }
+
+    // weak concepts → link back to Study
+    if (summary.weakConcepts.length) {
+      const weak = el("div", "route-list ar-weak");
+      weak.appendChild(el("div", "section-label", "Review these"));
+      summary.weakConcepts.slice(0, 8).forEach((id) => {
+        const a = E.byId[id];
+        if (!a) return;
+        const row = el("div", "route-row");
+        row.appendChild(el("span", "dot shell-dot-" + a.shell));
+        row.appendChild(el("span", "rtitle", escapeHtml(a.title)));
+        row.appendChild(el("span", "rtag", "study"));
+        row.onclick = () => openAtom(id, true); // back to Study (peek), never blocks
+        weak.appendChild(row);
+      });
+      box.appendChild(weak);
+    } else if (summary.total) {
+      box.appendChild(el("p", "ar-clean", "Nothing flagged to review — clean run."));
+    }
+
+    const done = el("button", "btn primary wide", "Done");
+    done.onclick = () => go("progress");
+    box.appendChild(done);
+    const again = el("button", "btn ghost wide", "Test again");
+    again.onclick = () => startAssessment();
+    box.appendChild(again);
+    wrap.appendChild(box);
+    mount(wrap);
+    katex(wrap);
+  }
+
   /* ---------- share Bucket Academy (growth loop) ---------- */
   // Canonical public URL of the academy. Defaults to /academy on the current origin;
   // no hardcoded production secret.
@@ -1807,6 +2134,7 @@
     else if (where === "map") mount(screenMap());
     else if (where === "progress") mount(screenProgress());
     else if (where === "diagnostic") startDiagnostic();
+    else if (where === "assess") startAssessment();
     window.scrollTo(0, 0);
   }
 

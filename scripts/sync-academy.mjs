@@ -13,6 +13,7 @@ const EXCLUDE = new Set([
   "serve.sh", "validate.sh", "README.md", "vercel.json", "node_modules", ".vercel",
   "test-adaptive.js", // dev-only engine test (bkt-jh0); never ship to /academy-app
   "test-diagnostic.mjs", "test-headless-flow.mjs", // dev-only diagnostic tests (bkt-efk)
+  "test-assess.mjs", "test-assess-flow.mjs", // dev-only assessment tests (bkt-v7y / bkt-3so)
   // build-time art/icon generators are dev-only; the committed cache + PNGs ship instead
   "build-art.mjs", "build-icons.mjs", "icon-maskable.svg",
 ]);
