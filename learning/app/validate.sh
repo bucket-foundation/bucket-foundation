@@ -70,4 +70,12 @@ echo "== test-yourself assessment + deterministic grader (bkt-v7y / bkt-3so) =="
 node test-assess.mjs | tail -3
 echo "== test-yourself flow headless smoke (bkt-v7y) =="
 node test-assess-flow.mjs | tail -2
+echo "== Polingual word explorer smoke (bkt-nhy) =="
+# CDP/Chrome test — gated on a chrome binary + the baked subset being present.
+if { [ -x /usr/bin/google-chrome ] || [ -x /usr/bin/chromium-browser ]; } \
+   && [ -f polingual/subset.json ] && [ -f polingual/vectors.bin ]; then
+  node test-explorer.mjs | tail -3
+else
+  echo "  -- chrome or polingual asset missing; skipping explorer smoke"
+fi
 echo "ALL VALIDATIONS PASSED"

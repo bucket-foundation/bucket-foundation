@@ -58,12 +58,21 @@ KAIKKI = {
 # --------------------------------------------------------------------------- #
 #  Index (loaded once)                                                        #
 # --------------------------------------------------------------------------- #
+# When the user types a bare word with no explicit language, the headword should
+# prefer the language they're most likely querying in. English first (the gloss
+# lingua franca + the explorer's default), then the major Romance/Germanic langs.
+DEFAULT_LANG = "en"
+LANG_PREFERENCE = [
+    "en", "es", "fr", "de", "it", "pt", "la", "nl", "sv", "ru", "el", "sa",
+]
+
+
 class PhotonIndex:
     def __init__(self):
         self.conn = open_db()
         rows = self.conn.execute(
             "SELECT rowid, id, lang, surface, meaning_en, pos, ipa, "
-            "semantic_row, phonetic_row FROM photons ORDER BY rowid"
+            "semantic_row, phonetic_row, payload FROM photons ORDER BY rowid"
         ).fetchall()
         self.rowid = np.array([r[0] for r in rows])
         self.id = [r[1] for r in rows]
@@ -74,15 +83,34 @@ class PhotonIndex:
         self.ipa = [r[6] for r in rows]
         self.sem_row = [r[7] for r in rows]
         self.pho_row = [r[8] for r in rows]
+        self._payload_raw = [r[9] for r in rows]
+        self._payload_cache = {}
         self.n = len(rows)
         # idx within these arrays == rowid-1 (dense), so row i maps to vec row i
         self._sem = None
         self._pho = None
-        # quick lookup (lang, surface) -> array index
+        # exact (lang, surface) -> array index
         self.by_key = {}
+        # surface -> all candidate indices (for language-priority headword pick)
+        self.by_surface = {}
+        self.by_lower = {}
         for i in range(self.n):
             self.by_key.setdefault((self.lang[i], self.surface[i]), i)
-            self.by_key.setdefault(self.surface[i], i)  # surface-only fallback
+            self.by_surface.setdefault(self.surface[i], []).append(i)
+            self.by_lower.setdefault(self.surface[i].lower(), []).append(i)
+
+    def payload(self, i):
+        if i in self._payload_cache:
+            return self._payload_cache[i]
+        try:
+            p = json.loads(self._payload_raw[i]) if self._payload_raw[i] else {}
+        except Exception:
+            p = {}
+        self._payload_cache[i] = p
+        return p
+
+    def senses(self, i):
+        return self.payload(i).get("senses", []) or []
 
     @property
     def sem(self):
@@ -99,10 +127,30 @@ class PhotonIndex:
         return self._pho
 
     def find(self, surface, lang=None):
-        """Array index for a (lang, surface) word, or None."""
+        """Array index for a word — language-priority headword resolution.
+
+        Exact (lang, surface) wins if an explicit lang is given; otherwise, among
+        all photons sharing this surface, pick the one whose language is highest
+        in LANG_PREFERENCE (English first). This is what stops English "light"
+        from resolving to the Portuguese dietary loanword.
+        """
         if lang and (lang, surface) in self.by_key:
             return self.by_key[(lang, surface)]
-        return self.by_key.get(surface)
+        cands = self.by_surface.get(surface) or self.by_lower.get((surface or "").lower())
+        if not cands:
+            return None
+        if lang:
+            for i in cands:
+                if self.lang[i] == lang:
+                    return i
+
+        def rank(i):
+            try:
+                pref = LANG_PREFERENCE.index(self.lang[i])
+            except ValueError:
+                pref = len(LANG_PREFERENCE) + 1
+            return (pref, -len(self.senses(i)))
+        return min(cands, key=rank)
 
 
 _IDX = None
@@ -150,7 +198,43 @@ def _pho_valid(ix):
     return m
 
 
-def semantic_topk(surface, lang=None, k=10, cross_lingual=True):
+# Sense-noise control (the quality knobs, bkt-nhy). With the "surface: gloss"
+# LaBSE embedding, true cross-lingual translations of the SAME sense land high
+# (~0.55-0.90); incompatible senses (low-fat "light", "high") sit below.
+SEM_MIN_COS = 0.50
+SEM_REL_GAP = 0.22       # also drop hits >this far below the best hit
+ONE_PER_LANG = True      # prefer the single best translation per language
+
+
+def _norm_gloss(g):
+    return " ".join((g or "").lower().split())[:50]
+
+
+def _headword(ix, i):
+    """The resolved headword: language-priority + primary-sense gloss + senses."""
+    p = ix.payload(i)
+    return {
+        "surface": ix.surface[i], "lang": ix.lang[i], "pos": ix.pos[i],
+        "ipa": ix.ipa[i],
+        "meaning_en": ix.meaning[i],            # PRIMARY sense (core/illumination)
+        "senses": [{"gloss": s.get("gloss"), "pos": s.get("pos"),
+                    "tags": s.get("tags", [])} for s in ix.senses(i)[:6]],
+        "source": "Wiktionary via Kaikki (CC-BY-SA 4.0)",
+        "source_uri": p.get("provenance", {}).get("wiktionary")
+                      or f"https://en.wiktionary.org/wiki/{ix.surface[i]}",
+    }
+
+
+def semantic_topk(surface, lang=None, k=10, cross_lingual=True,
+                  min_cos=SEM_MIN_COS, one_per_lang=ONE_PER_LANG):
+    """Cross-lingual 'means the same' neighbors — sense-consistent.
+
+    Filters that cut the cross-sense noise:
+      - cosine threshold (drop off-sense hits below `min_cos`) + a relative gap
+        below the best hit;
+      - one-per-language (luz/lumière/luce/Licht, not five synonyms);
+      - dedup near-identical glosses.
+    """
     ix = idx()
     i = ix.find(surface, lang)
     if i is None or ix.sem_row[i] is None:
@@ -161,8 +245,28 @@ def semantic_topk(surface, lang=None, k=10, cross_lingual=True):
         for j in range(ix.n):
             if ix.lang[j] != lang:
                 mask[j] = False
-    hits = _cosine_topk(ix.sem, mask, vec, k + 1, exclude=i)
-    return _fmt(ix, surface, lang, hits[:k])
+    raw = _cosine_topk(ix.sem, mask, vec, max(k * 6, 40), exclude=i)
+    top_s = raw[0][1] if raw else 0.0
+    floor = max(min_cos, top_s - SEM_REL_GAP)
+    seen_lang, seen_gloss, kept = set(), set(), []
+    for j, s in raw:
+        if s < floor:
+            break  # sorted desc
+        if one_per_lang and ix.lang[j] in seen_lang:
+            continue
+        gkey = (ix.lang[j], _norm_gloss(ix.meaning[j]))
+        if gkey in seen_gloss:
+            continue
+        if ix.surface[j] == surface:
+            continue
+        seen_lang.add(ix.lang[j])
+        seen_gloss.add(gkey)
+        kept.append((j, s))
+        if len(kept) >= k:
+            break
+    out = _fmt(ix, surface, lang, kept)
+    out["headword"] = _headword(ix, i)
+    return out
 
 
 def phonetic_topk(surface, lang=None, k=10):

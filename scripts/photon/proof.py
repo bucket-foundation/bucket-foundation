@@ -41,6 +41,20 @@ def main():
 
     timings = []
 
+    # ---- EXPLORER QUALITY PROOF (bkt-nhy) ----
+    # The fix: headword = queried language + PRIMARY/core sense; neighbors =
+    # sense-consistent cross-lingual translations (NOT the dietary/weight/high mix).
+    hr("EXPLORER QUALITY — headword (lang-priority + primary sense) + clean neighbors")
+    for w in ["light", "water", "love", "free"]:
+        t = time.time(); res = Q.semantic_topk(w, "en", k=8); dt = (time.time()-t)*1000
+        timings.append(dt)
+        hw = res.get("headword", {})
+        print(f"\n  '{w}'  [{dt:.1f} ms]")
+        print(f"    HEADWORD: {hw.get('lang','?')}:{hw.get('surface','?')} "
+              f"[{hw.get('pos','')}] — {(hw.get('meaning_en') or '')[:64]}")
+        print(f"    MEANS THE SAME: " +
+              ", ".join(f"{r['lang']}:{r['surface']}" for r in res.get("results", [])))
+
     # ---- SEMANTIC (cross-lingual) ----
     hr("AXIS 1 — SEMANTIC neighbors (cross-lingual, by meaning)")
     for w, lg in [("love", "en"), ("book", "en"), ("free", "en")]:

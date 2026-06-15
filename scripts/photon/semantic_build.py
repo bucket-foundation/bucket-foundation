@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
 """
-semantic_build.py — semantic vectors for every photon (multilingual, 384-d).
+semantic_build.py — semantic vectors for every photon (cross-lingual, 768-d LaBSE).
 
-Embeds each photon's `meaning_en` (falling back to `surface` if meaning is
-empty) with an OPEN multilingual sentence-embedding model
-(paraphrase-multilingual-MiniLM-L12-v2, 384-d). Cross-lingual: "light"/"luz"/
-"lumière" land in the same region, which is what the translate / semantic
-axes need across the 27 languages in the substrate.
+Embeds **"surface: primary-sense gloss"** (the dominant sense `meaning_en` from
+ingest_cache.py — NOT the old ` · `-joined all-senses blob) with **sentence-
+transformers/LaBSE** (768-d, Apache-2.0, purpose-built cross-lingual over 109
+languages). "light"/"luz"/"lumière"/"Licht" land together by meaning, which is
+what the translate / semantic axes need across the 27 languages.
 
-  - Writes _intake/photons/semantic-vectors.f32.bin (row-aligned, L2-norm).
+The "surface: " prefix is load-bearing: LaBSE knows luz/Licht/amor/愛 as tokens,
+so pairing the foreign surface with the English gloss pulls true translations
+together far harder than the gloss alone (measured: light↔Licht 0.53→0.80,
+love↔Liebe 0.19→0.64). The gloss anchors meaning; the surface anchors the word.
+
+  - Writes _intake/photons/semantic-vectors.f32.bin (row-aligned, 768-d, L2-norm).
   - Sets photons.semantic_row = stable row index for every photon.
   - Idempotent + resumable: a row whose vector is already non-zero AND whose
-    semantic_row is set is skipped, so re-running only fills the gaps.
-  - CPU by default (the ROCm path has hung on long ST loops); pass --gpu to
-    try the GPU, with an automatic CPU fallback if it stalls/raises.
-
-NOTE: the pre-existing 1,472 vectors were English-only (bge-small-en) and are
-NOT comparable cross-lingually, so the default run re-embeds all rows for a
-single coherent multilingual space. Use --only-missing to keep existing rows.
+    semantic_row is set is skipped. A dim change (384→768) makes every old row
+    read as zero-norm, so the default run cleanly rebuilds the whole 768-d space.
+  - CPU by default (the ROCm path has hung on long ST loops); pass --gpu to try
+    the GPU. LaBSE is heavier — budget ~20-40 min for 45k on CPU.
 
 Run:  python3 scripts/photon/semantic_build.py            # rebuild all, CPU
       python3 scripts/photon/semantic_build.py --limit 500
@@ -95,6 +97,20 @@ def main() -> int:
     # Capacity = max rowid we will touch (rowid is 1-based; store at rowid-1).
     cur = conn.execute("SELECT MAX(rowid) FROM photons")
     max_row = cur.fetchone()[0]
+
+    # Dimensionality guard: the bin holds SEM_DIM floats/row. An old file written
+    # at a DIFFERENT dim (e.g. the 384-d MiniLM space) is garbage under the new
+    # 768-d LaBSE geometry. Unless we're resuming a same-dim fill (--only-missing),
+    # start the bin fresh so we never mix dims.
+    bin_real = os.path.realpath(SEMANTIC_BIN)
+    if not args.only_missing and os.path.exists(bin_real):
+        os.remove(bin_real)
+        print(f"[semantic] removed stale bin (dim change -> {SEM_DIM}-d rebuild)", flush=True)
+    if os.path.exists(SEMANTIC_BIN):
+        sz = os.path.getsize(SEMANTIC_BIN)
+        if sz % (FLOAT_SIZE * SEM_DIM) != 0:
+            os.remove(os.path.realpath(SEMANTIC_BIN))
+            print("[semantic] bin size not a multiple of SEM_DIM — reset", flush=True)
     ensure_bin_capacity(SEMANTIC_BIN, SEM_DIM, max_row)
 
     # Resume map: which rows already have a non-zero vector on disk.
@@ -108,7 +124,14 @@ def main() -> int:
                    and bin_norm(mm, idx) > 0.5)
         if already:
             continue
-        text = (meaning or "").strip() or (surface or "").strip()
+        # Embed "surface: primary-gloss". The surface token anchors the
+        # cross-lingual signal — LaBSE knows luz/Licht/amor/愛 as tokens, so
+        # pairing them with the English primary gloss pulls true translations
+        # together MUCH harder than the gloss alone (measured: light↔Licht
+        # 0.53→0.80, love↔Liebe 0.19→0.64).
+        s = (surface or "").strip()
+        g = (meaning or "").strip()
+        text = f"{s}: {g}" if (s and g) else (g or s)
         todo.append((idx, pid, text))
 
     del mm

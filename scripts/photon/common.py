@@ -30,9 +30,9 @@ DB_PATH = os.path.join(PHOTONS_DIR, "index.sqlite")
 SEMANTIC_BIN = os.path.join(PHOTONS_DIR, "semantic-vectors.f32.bin")
 PHONETIC_BIN = os.path.join(PHOTONS_DIR, "phonetic-vectors.f32.bin")
 
-SEM_DIM = 384            # paraphrase-multilingual-MiniLM-L12-v2
+SEM_DIM = 768            # sentence-transformers/LaBSE (cross-lingual, 109 langs)
 PHON_DIM = 64            # IPA feature vector (see phonetic_build.py)
-SEM_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+SEM_MODEL = "sentence-transformers/LaBSE"
 
 FLOAT_SIZE = 4          # float32
 

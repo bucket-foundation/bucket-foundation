@@ -44,7 +44,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(__file__))
 from common import (  # noqa: E402
-    PHOTONS_DIR, SEMANTIC_BIN, PHONETIC_BIN, SEM_DIM, PHON_DIM, open_db,
+    PHOTONS_DIR, SEMANTIC_BIN, PHONETIC_BIN, SEM_DIM, PHON_DIM, SEM_MODEL, open_db,
 )
 
 OUT_DIR = os.path.abspath(
@@ -162,7 +162,7 @@ def select_spine(conn, min_langs: int):
     core concept attested in >= min_langs languages."""
     rows = conn.execute(
         "SELECT rowid, id, lang, surface, meaning_en, pos, ipa, "
-        "semantic_row, phonetic_row, provenance_uri "
+        "semantic_row, phonetic_row, provenance_uri, payload "
         "FROM photons ORDER BY rowid"
     ).fetchall()
 
@@ -171,6 +171,7 @@ def select_spine(conn, min_langs: int):
         meaning=[r[4] for r in rows], pos=[r[5] for r in rows],
         ipa=[r[6] for r in rows], sem_row=[r[7] for r in rows],
         pho_row=[r[8] for r in rows], prov_uri=[r[9] for r in rows],
+        payload=[r[10] for r in rows],
         pid=[r[1] for r in rows], n=len(rows),
     )
 
@@ -190,6 +191,25 @@ def select_spine(conn, min_langs: int):
 
     keep = [i for i, c in cand.items() if len(concept_langs[c]) >= min_langs]
     concept_of = {i: cand[i] for i in keep}
+
+    # HARD-INCLUDE the universal core English vocabulary (bkt-nhy). The concept-
+    # spine matcher checks only the gloss LEAD, so clean primary glosses like
+    # "Electromagnetic radiation… visible light" (= light) or "Unconstrained"
+    # (= free) get dropped even though they are THE words people type. Force the
+    # core English headwords to the FRONT of keep so they always survive the
+    # global max_words cap, mapped to their own concept for translate() grouping.
+    keep_set = set(keep)
+    core_front = []
+    for i in range(arrays["n"]):
+        if arrays["lang"][i] != "en":
+            continue
+        surf = arrays["surface"][i]
+        if surf in CORE_CONCEPTS:
+            concept_of[i] = surf
+            if i not in keep_set:
+                core_front.append(i)
+                keep_set.add(i)
+    keep = core_front + keep
     return keep, concept_of, arrays
 
 
@@ -345,6 +365,16 @@ def main(argv):
             "ipa": (arrays["ipa"][i] or "").strip("/ "),
             "hv": pi is not None,
         }
+        # additional structured senses (gloss + pos + tags) so the explorer can
+        # show "this is the CORE sense" and label others (bkt-nhy).
+        try:
+            pl = json.loads(arrays["payload"][i]) if arrays["payload"][i] else {}
+        except Exception:
+            pl = {}
+        sn = pl.get("senses", []) or []
+        if len(sn) > 1:
+            rec["senses"] = [{"g": s.get("gloss"), "p": s.get("pos"),
+                              "t": s.get("tags", [])} for s in sn[1:5]]
         c = concept_of.get(i)
         if c:
             rec["c"] = c
@@ -371,9 +401,17 @@ def main(argv):
         "concepts": sorted(concept_index.keys()),
         "sem_dim": SEM_DIM,
         "phon_dim": PHON_DIM,
+        "model": SEM_MODEL,
         "vec_quant": "int8 (value = stored/127); rows are [semantic||phonetic], "
                      "row-aligned with words[]",
         "vectors_bin": "vectors.bin",
+        # quality knobs for the client's MEANING lens (bkt-nhy) — keep in sync
+        # with scripts/photon/query.py SEM_MIN_COS / SEM_REL_GAP / LANG_PREFERENCE.
+        "default_lang": "en",
+        "lang_preference": ["en", "es", "fr", "de", "it", "pt", "la", "nl",
+                            "sv", "ru", "el", "sa"],
+        "min_cos": 0.50,
+        "rel_gap": 0.22,
     }
     attribution = {
         "data": "Wiktionary via Kaikki (kaikki.org)",

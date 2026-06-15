@@ -12,31 +12,38 @@ surfaced, never long excerpts.
 | File | Role |
 |------|------|
 | `common.py` | paths, dims, memmap row helpers (capacity grow, random-access write) |
-| `semantic_build.py` | semantic vectors for all 45k (multilingual, 384-d) |
+| `ingest_cache.py` | **rebuild `index.sqlite` from the raw Kaikki cache** with CLEAN primary-sense glosses + structured `senses[]`/`translations[]` + guaranteed core vocab (the data-quality fix, bkt-nhy) |
+| `semantic_build.py` | semantic vectors for all 45k — **LaBSE 768-d, embedding "surface: primary-gloss"** (cross-lingual) |
 | `phonetic_build.py` | phonetic vectors for all IPA-bearing rows (IPA→64-d feature vec) |
-| `query.py` | the five query axes + CLI |
+| `query.py` | the five query axes + CLI — **sense-aware, language-priority headword + noise-filtered neighbors** |
+| `build_subset.py` | bake the client starter asset (`learning/app/polingual/{subset.json,vectors.bin}`, int8) |
 | `proof.py` | end-to-end demonstration on real words + latency report |
 
 Build artifacts are **gitignored** (already in `.gitignore`):
 `_intake/photons/index.sqlite`, `_intake/photons/*.f32.bin`. Regenerate with
-the builders below.
+the builders below. The committed starter asset (`learning/app/polingual/`) is
+the small int8 subset shipped to the browser.
 
 ## Build (local, CPU-safe, idempotent)
 
 ```bash
-# phonetic first (no model, ~1s)
-python3 scripts/photon/phonetic_build.py            # all IPA rows
-# semantic (multilingual model, CPU, ~8-9 min for 45k)
-python3 scripts/photon/semantic_build.py            # all rows
-# resume only the gaps (no-op if complete):
-python3 scripts/photon/semantic_build.py --only-missing
-python3 scripts/photon/phonetic_build.py --only-missing
+# 1. rebuild the index with clean primary-sense glosses (~5 min, reads kaikki-cache)
+python3 scripts/photon/ingest_cache.py               # 27 langs, 45k photons
+# 2. phonetic (no model, ~seconds) — delete the stale bin first (index changed)
+rm -f _intake/photons/phonetic-vectors.f32.bin
+python3 scripts/photon/phonetic_build.py
+# 3. semantic — LaBSE 768-d on CPU (~20-40 min; auto-rebuilds the bin on dim change)
+python3 scripts/photon/semantic_build.py
+# 4. bake the starter subset for the client
+python3 scripts/photon/build_subset.py
 ```
 
-- **Semantic model**: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
-  (384-d, open, multilingual). CPU by default — the ROCm path has hung on long
-  sentence-transformers loops, so the builder hard-disables the accelerator
-  unless you pass `--gpu` (which falls back on stall/error).
+- **Semantic model**: `sentence-transformers/LaBSE` (768-d, Apache-2.0,
+  purpose-built cross-lingual over 109 languages). Embeds **"surface:
+  primary-sense gloss"** (the dominant Kaikki sense, NOT the old joined blob) so
+  "light"/"luz"/"Licht"/"luce" land together by meaning. CPU by default — the
+  ROCm path has hung on long sentence-transformers loops, so the builder
+  hard-disables the accelerator unless you pass `--gpu`.
 - **Phonetic**: deterministic IPA → 64-d articulatory feature vector
   (place/manner/voicing for consonants, height/backness/rounding for vowels,
   ordered onset/nucleus/coda sketch, length/stress + hashed bigram sketch).
