@@ -241,6 +241,24 @@ subset). **Migration to the authoritative 6.5M `polingual` schema = just repoint
 Hetzner box has none; future bead). Client (`learning/app/js/polingual.js`) is WIRED to `/api/polingual` (hybrid: live full
 index first, offline 6,500-word subset fallback) as of `ed819c9e7`.
 
+**LOCAL FULL pgvector (2026-06-15) — the complete 6.5M version, on Gian's box.**
+Rather than risk the shared prod DB (7.5GB free, 15 tenants), the full corpus runs
+locally in docker `bucket-pgvector` (PostgreSQL 16 + **pgvector 0.8.2**, `127.0.0.1:5433`,
+data on the 288GB `/home` disk). Table `photons_full` = **6,564,942 rows / 35 langs**.
+Pipeline (all in `scripts/photon/`, reproducible + resumable): `pull_full_prod.sh` (COPY the
+6.5M metadata from prod → 154MB csv.gz) → `load_full.sh` (COPY + trgm/FTS indexes; 4 axes
+work immediately) → `embed_full.py` (LaBSE-768 on the **AMD Radeon GPU via ROCm, ~309/s,
+full embed ~6-7h**; 164k pre-filled from the existing `.f32.bin`) → `finalize_full.sh`
+(phonetic 64-d vectors via `phonetic_full.py` + **HNSW** indexes on both vector cols).
+Query API = `services/photon-api/server_pg.py` (FastAPI, **pgvector backend**, identical
+routes/shapes to `server.py`, all 5 axes via `<=>`/`pg_trgm`/jsonb) on `:8090`. App wired
+locally via `.env.local` `POLINGUAL_API_URL=http://127.0.0.1:8090`. Empirical sizing:
+209k = 1.7GB, **full 6.5M ≈ 54GB** (fits local 288GB, NOT prod's 7.5GB free — measured, not
+guessed). Verified: `gold→es:oro` 0.81, `money→fr:monnaie` 0.70, `light` cross-lingual
+→ he:אור/it:luce/fi:valo. **pgvector is also installed on prod** (`vector` ext enabled) but
+the vectors are NOT loaded there (disk) — prod stays on the file-memmap 209k service until a
+volume expansion. The Next `POLINGUAL_API_URL` proxy is the one-line cutover seam.
+
 **Known infra issues (2026-06-15):** (1) the Nucleus issues API (`*.nucleus.agfarms.dev`) is
 returning **502** — K3s Traefik at `172.19.0.2:30080` down, affects ALL tenants; bead filing
 via the API is broken until it's fixed. (2) `scripts/photon/common.py` says MiniLM-384 but the
