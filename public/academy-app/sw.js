@@ -1,7 +1,7 @@
 /* Bucket Academy service worker — offline-first app shell + corpus.
  * After one online load, the app (and KaTeX) work offline. Progress lives in
  * localStorage, so a returning learner needs no network at all. */
-const CACHE = "bucket-academy-v3";
+const CACHE = "bucket-academy-v4";
 const SHELL = [
   "./",
   "./index.html",
@@ -11,6 +11,7 @@ const SHELL = [
   "./js/auth-config.js",
   "./js/auth.js",
   "./js/auth-ui.js",
+  "./js/polingual.js",
   "./js/app.js",
   "./js/haptic.js",
   "./art/art-gen.js",
