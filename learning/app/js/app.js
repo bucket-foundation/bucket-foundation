@@ -170,6 +170,125 @@
     return String(s || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
 
+  /* ---------- language answer checking (bkt-n2v / C3 typed grading) ----------
+   * Real recognition-free recall: the learner TYPES the target word and we grade
+   * the actual answer (correct / close-typo / wrong), then drive FSRS from the
+   * real result instead of self-report. Tolerant of diacritics, case, whitespace,
+   * surrounding articles, and a single typo. */
+
+  // Strip diacritics for all 7 deck languages: é→e ñ→n ü→u ç→c ã→a ò→o ï→i ß→ss …
+  // Uses NFD canonical decomposition + combining-mark removal, plus explicit maps
+  // for characters that don't decompose (ß, ø, æ, œ, ð, þ).
+  function foldAccents(s) {
+    s = String(s == null ? "" : s).toLowerCase().trim();
+    // collapse internal whitespace
+    s = s.replace(/\s+/g, " ");
+    // characters with no canonical decomposition → expand explicitly
+    s = s
+      .replace(/ß/g, "ss")
+      .replace(/æ/g, "ae").replace(/œ/g, "oe")
+      .replace(/ø/g, "o")
+      .replace(/ð/g, "d").replace(/þ/g, "th")
+      .replace(/ł/g, "l");
+    // canonical decompose, then drop combining diacritical marks (U+0300–U+036F)
+    try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) {}
+    // drop apostrophes/hyphens that don't change identity (l'eau → leau, etc.)
+    s = s.replace(/[’'`\-]/g, "");
+    return s.trim();
+  }
+
+  // Articles we accept as optional prefixes for gendered nouns, per language.
+  var LANG_ARTICLES = {
+    es: ["el", "la", "los", "las", "un", "una"],
+    fr: ["le", "la", "les", "l", "un", "une", "des", "du", "de"],
+    it: ["il", "lo", "la", "i", "gli", "le", "un", "uno", "una", "l"],
+    pt: ["o", "a", "os", "as", "um", "uma"],
+    de: ["der", "die", "das", "ein", "eine", "den", "dem"],
+    la: [],
+    en: ["the", "a", "an"],
+  };
+
+  // Remove a leading article token (folded) so "el agua"/"la casa"/"der Hund"
+  // match the article-less deck word, and vice-versa.
+  function stripArticle(folded, lang) {
+    var arts = LANG_ARTICLES[lang] || [];
+    var parts = folded.split(" ");
+    if (parts.length > 1 && arts.indexOf(parts[0]) !== -1) {
+      return parts.slice(1).join(" ").trim();
+    }
+    return folded;
+  }
+
+  // Levenshtein edit distance (bounded use: short words only).
+  function editDistance(a, b) {
+    a = a || ""; b = b || "";
+    if (a === b) return 0;
+    var la = a.length, lb = b.length;
+    if (!la) return lb;
+    if (!lb) return la;
+    var prev = new Array(lb + 1), cur = new Array(lb + 1), i, j;
+    for (j = 0; j <= lb; j++) prev[j] = j;
+    for (i = 1; i <= la; i++) {
+      cur[0] = i;
+      for (j = 1; j <= lb; j++) {
+        var cost = a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1;
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+      }
+      var t = prev; prev = cur; cur = t;
+    }
+    return prev[lb];
+  }
+
+  // Grade a typed answer against the deck's target word.
+  // Returns { verdict: "correct"|"close"|"wrong", accentOnly, expected, dist }.
+  //   correct  → exact match after case/whitespace/article normalization
+  //              (accentOnly flags a right-but-for-diacritics answer — still correct,
+  //               we just note it so the reveal can nudge the accent)
+  //   close    → within 1 edit of the (folded) target = an honest typo
+  //   wrong    → otherwise
+  function checkLangAnswer(typed, target, lang) {
+    var expected = String(target == null ? "" : target).trim();
+    var out = { verdict: "wrong", accentOnly: false, expected: expected, dist: 99 };
+    if (!typed || !typed.trim()) return out;
+
+    // Tier 1: exact (case + whitespace only) — diacritics intact.
+    var tRaw = typed.toLowerCase().replace(/\s+/g, " ").trim();
+    var eRaw = expected.toLowerCase().replace(/\s+/g, " ").trim();
+    var tRawNA = stripRawArticle(tRaw, lang);
+    if (tRaw === eRaw || tRawNA === eRaw || tRaw === stripRawArticle(eRaw, lang)) {
+      out.verdict = "correct"; out.dist = 0; return out;
+    }
+
+    // Tier 2: accent/diacritic + article folded exact match → still correct,
+    // flag accentOnly so we can show the precise spelling.
+    var tf = stripArticle(foldAccents(typed), lang);
+    var ef = stripArticle(foldAccents(expected), lang);
+    if (tf && tf === ef) {
+      out.verdict = "correct"; out.dist = 0;
+      out.accentOnly = (tRawNA !== eRaw); // matched only after folding
+      return out;
+    }
+
+    // Tier 3: close (single typo) on the folded form.
+    var d = editDistance(tf, ef);
+    out.dist = d;
+    // 1 edit for short words, allow 2 for longer (>=8 chars) words.
+    var tol = ef.length >= 8 ? 2 : 1;
+    if (ef.length >= 3 && d <= tol) { out.verdict = "close"; return out; }
+
+    return out;
+  }
+
+  // Like stripArticle but operates on a raw (un-folded) lowercased string.
+  function stripRawArticle(raw, lang) {
+    var arts = LANG_ARTICLES[lang] || [];
+    var parts = raw.split(" ");
+    if (parts.length > 1 && arts.indexOf(foldAccents(parts[0])) !== -1) {
+      return parts.slice(1).join(" ").trim();
+    }
+    return raw;
+  }
+
   /* ---------- screens ---------- */
   function screenHome() {
     const s = E.summary();
@@ -694,10 +813,15 @@
     const card = el("div", "art lang-card shell-" + a.shell);
     card.innerHTML =
       '<div class="art-badge">' + escapeHtml(LANG_NAMES[target] || target) + "</div>" +
-      '<div class="lang-word">' + escapeHtml(tf.word || "—") + "</div>" +
+      '<div class="lang-word-row"><span class="lang-word">' + escapeHtml(tf.word || "—") + "</span></div>" +
       (tf.ipa ? '<div class="lang-ipa">/' + escapeHtml(tf.ipa) + "/</div>" : "") +
       '<div class="art-title">' + escapeHtml(a.gloss || a.title || "") +
         (a.pos ? " · " + escapeHtml(a.pos) : "") + (tf.gender ? " · " + escapeHtml(tf.gender) : "") + "</div>";
+    // 🔊 listen on the target word (on-device Web Speech; hidden if unavailable)
+    if (tf.word && window.LangAudio && window.LangAudio.supported()) {
+      const row = card.querySelector(".lang-word-row");
+      if (row) row.appendChild(window.LangAudio.button(tf.word, target, { label: "Hear " + tf.word + " in " + (LANG_NAMES[target] || target), cls: "big" }));
+    }
     wrap.appendChild(card);
 
     const body = el("div", "atom-body");
@@ -705,9 +829,13 @@
     ref.appendChild(el("div", "section-label", "In the languages you know"));
     known.forEach((l) => {
       const f = a.forms[l]; if (!f) return;
-      ref.appendChild(el("div", "lang-row",
+      const r = el("div", "lang-row",
         '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span>" +
-        '<span class="lang-w">' + escapeHtml(f.word) + (f.ipa ? ' <i>/' + escapeHtml(f.ipa) + "/</i>" : "") + "</span>"));
+        '<span class="lang-w">' + escapeHtml(f.word) + (f.ipa ? ' <i>/' + escapeHtml(f.ipa) + "/</i>" : "") + "</span>");
+      if (f.word && window.LangAudio && window.LangAudio.supported()) {
+        r.appendChild(window.LangAudio.button(f.word, l, { label: "Hear " + f.word + " in " + (LANG_NAMES[l] || l) }));
+      }
+      ref.appendChild(r);
     });
     body.appendChild(ref);
     if (a.note) body.appendChild(el("div", "lang-note", escapeHtml(a.note)));
@@ -729,28 +857,119 @@
     mount(wrap);
   }
 
+  // Typed-recall language drill (bkt-n2v / C3). The learner TYPES the target word;
+  // we check it (accent/case/article/typo-tolerant), show correct ✓ / close / wrong
+  // (amber, never red), reveal the right spelling, and grade FSRS from the ACTUAL
+  // result — Good/Easy on a correct answer (Easy if it was fast & accent-perfect),
+  // Hard on a close typo, Again on wrong. An honesty "I actually knew it" override
+  // stays available so a learner whose intent was right isn't penalised by a slip.
   function langDrill(a, target, known) {
-    const box = el("div", "drill");
-    box.appendChild(el("div", "drill-label", "Recall · " + (LANG_NAMES[target] || target)));
+    const box = el("div", "drill lang-drill");
+    box.appendChild(el("div", "drill-label", "Type it · " + (LANG_NAMES[target] || target)));
     const hintLang = known[0];
     const hint = hintLang && a.forms[hintLang];
     box.appendChild(el("div", "q",
       "How do you say <b>“" + escapeHtml(a.gloss || a.title || "") + "”</b>" +
       (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
       " in " + escapeHtml(LANG_NAMES[target] || target) + "?"));
+
     const tf = a.forms[target] || {};
-    const answer = el("div", "answer hidden");
-    answer.innerHTML = "<div class='a-label'>Answer</div><div class='a-text lang-ans'>" +
-      escapeHtml(tf.word || "") + (tf.ipa ? " <i>/" + escapeHtml(tf.ipa) + "/</i>" : "") + "</div>";
-    const reveal = el("button", "btn wide", "Show answer");
-    const rate = el("div", "rate hidden");
-    reveal.onclick = () => { answer.classList.remove("hidden"); reveal.classList.add("hidden"); rate.classList.remove("hidden"); };
-    [[1, "Again", "again"], [2, "Hard", "hard"], [3, "Good", "good"], [4, "Easy", "easy"]].forEach(([g, lbl, cls]) => {
-      const b = el("button", "rbtn " + cls, lbl);
-      b.onclick = () => { if (window.haptic) haptic(g === 1 ? "wrong" : g >= 3 ? "correct" : "tap"); E.grade(a.id, g, "recall"); next(); };
-      rate.appendChild(b);
-    });
-    box.appendChild(reveal); box.appendChild(answer); box.appendChild(rate);
+    const correctWord = tf.word || "";
+
+    // input row
+    const form = el("form", "lang-typed");
+    const input = el("input", "lang-input");
+    input.type = "text";
+    input.setAttribute("autocomplete", "off");
+    input.setAttribute("autocapitalize", "off");
+    input.setAttribute("autocorrect", "off");
+    input.setAttribute("spellcheck", "false");
+    input.setAttribute("aria-label", "Type the word in " + (LANG_NAMES[target] || target));
+    input.placeholder = "Type in " + (LANG_NAMES[target] || target) + "…";
+    const submit = el("button", "btn primary wide", "Check →");
+    submit.type = "submit";
+    form.appendChild(input);
+    form.appendChild(submit);
+    box.appendChild(form);
+
+    // result + reveal block (hidden until checked)
+    const result = el("div", "lang-result hidden");
+    box.appendChild(result);
+
+    const started = Date.now();
+    let graded = false;
+
+    function grade(g) {
+      if (graded) return;
+      graded = true;
+      if (window.haptic) haptic(g === 1 ? "wrong" : g >= 3 ? "correct" : "tap");
+      E.grade(a.id, g, "recall");
+      next();
+    }
+
+    function reveal(res) {
+      input.disabled = true;
+      submit.disabled = true;
+      const fast = (Date.now() - started) < 9000;
+
+      let cls, icon, label;
+      let g; // FSRS grade derived from the real result
+      if (res.verdict === "correct") {
+        cls = "correct"; icon = "✓";
+        label = res.accentOnly ? "Right — mind the accent" : "Correct";
+        g = (fast && !res.accentOnly) ? 4 : 3; // fast & accent-perfect → Easy, else Good
+      } else if (res.verdict === "close") {
+        cls = "close"; icon = "≈"; label = "So close — a typo"; g = 2; // Hard
+      } else {
+        cls = "wrong"; icon = "·"; label = "Not quite"; g = 1; // Again
+      }
+
+      const head = el("div", "lr-head " + cls,
+        '<span class="lr-icon">' + icon + "</span><span class=\"lr-label\">" + label + "</span>");
+      result.appendChild(head);
+
+      // always reveal the correct spelling (+ IPA + audio)
+      const ans = el("div", "lr-answer");
+      ans.innerHTML = '<span class="a-label">Answer</span> ' +
+        '<span class="lang-ans">' + escapeHtml(correctWord) +
+        (tf.ipa ? " <i>/" + escapeHtml(tf.ipa) + "/</i>" : "") + "</span>";
+      if (window.LangAudio && window.LangAudio.supported()) {
+        ans.appendChild(window.LangAudio.button(correctWord, target, { label: "Hear it", cls: "inline" }));
+      }
+      result.appendChild(ans);
+
+      result.classList.remove("hidden");
+
+      // continue / honesty override
+      const actions = el("div", "lr-actions");
+      const cont = el("button", "btn primary wide", "Continue →");
+      cont.onclick = () => grade(g);
+      actions.appendChild(cont);
+      if (res.verdict !== "correct") {
+        // honesty: learner's intent was right (slip / different valid form)
+        const knew = el("button", "btn ghost wide", "I actually knew it");
+        knew.onclick = () => grade(3);
+        actions.appendChild(knew);
+      }
+      result.appendChild(actions);
+
+      cont.focus();
+    }
+
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      if (graded || input.disabled) return;
+      const res = checkLangAnswer(input.value, correctWord, target);
+      reveal(res);
+    };
+
+    // "I don't know" → reveal as a miss without forcing a guess.
+    const giveUp = el("button", "lang-giveup", "Reveal · I don't know");
+    giveUp.type = "button";
+    giveUp.onclick = () => { if (graded || input.disabled) return; reveal({ verdict: "wrong", accentOnly: false, expected: correctWord, dist: 99 }); };
+    box.appendChild(giveUp);
+
+    setTimeout(() => { try { input.focus(); } catch (e) {} }, 30);
     return box;
   }
 
@@ -1212,6 +1431,10 @@
     top.innerHTML =
       '<span class="xpl-surface">' + escapeHtml(rec.surface) + "</span>" +
       (rec.ipa ? '<span class="xpl-ipa">/' + escapeHtml(rec.ipa) + "/</span>" : "");
+    // 🔊 hear the looked-up word (on-device Web Speech; hidden if unavailable).
+    if (rec.surface && rec.lang && window.LangAudio && window.LangAudio.supported()) {
+      top.appendChild(window.LangAudio.button(rec.surface, rec.lang, { label: "Hear " + rec.surface + " in " + (rec.langName || rec.lang) }));
+    }
     card.appendChild(top);
     const meta = el("div", "xpl-meta");
     meta.innerHTML =

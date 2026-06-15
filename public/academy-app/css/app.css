@@ -279,6 +279,37 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 .lang-ex { margin-top: 12px; }
 .lang-ans { font-family: var(--serif); font-size: 22px; font-weight: 600; }
 
+/* ---- 🔊 listen button (bkt-n2v / C2 on-device audio) ---- */
+.lang-audio-btn { display: inline-flex; align-items: center; justify-content: center; flex: none; margin-left: 8px; width: 32px; height: 32px; min-height: 32px; padding: 0; font-size: 14px; line-height: 1; border: 1px solid var(--line-strong); background: var(--card); border-radius: 999px; cursor: pointer; color: var(--ink); transition: background .14s, border-color .14s, transform .1s; }
+.lang-audio-btn:hover { background: var(--card-2); border-color: var(--aegean-deep); }
+.lang-audio-btn:active { transform: scale(.92); }
+.lang-audio-btn.speaking { background: var(--aegean); border-color: var(--aegean-deep); }
+.lang-audio-btn.big { width: 40px; height: 40px; font-size: 18px; }
+.lang-audio-btn.inline { width: 28px; height: 28px; min-height: 28px; font-size: 13px; vertical-align: middle; }
+.lang-word-row { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.lang-row .lang-audio-btn, .ex-row .lang-audio-btn { margin-left: auto; }
+
+/* ---- typed-recall language drill (bkt-n2v / C3) ---- */
+.lang-typed { display: flex; gap: 8px; align-items: stretch; margin-top: 14px; flex-wrap: wrap; }
+.lang-input { flex: 1 1 160px; min-width: 0; font-family: var(--serif); font-size: 19px; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--bg); color: var(--ink); min-height: 48px; }
+.lang-input:focus { outline: none; border-color: var(--aegean); box-shadow: 0 0 0 3px rgba(46,107,107,.16); }
+.lang-typed .btn { flex: 0 0 auto; }
+.lang-giveup { display: block; width: 100%; margin-top: 10px; background: none; border: none; color: var(--ink-faint); font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 11px; cursor: pointer; padding: 8px; min-height: 40px; }
+.lang-giveup:hover { color: var(--ink-dim); }
+
+.lang-result { margin-top: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px; animation: rise .26s ease; }
+.lr-head { display: flex; align-items: center; gap: 9px; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 13px; font-weight: 600; }
+.lr-icon { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 999px; font-size: 14px; flex: none; }
+.lr-head.correct { color: var(--laurel-deep); }
+.lr-head.correct .lr-icon { background: rgba(90,122,58,.16); color: var(--laurel-deep); }
+.lr-head.close { color: var(--gold-deep); }
+.lr-head.close .lr-icon { background: rgba(184,134,30,.16); color: var(--gold-deep); }
+.lr-head.wrong { color: var(--amber); } /* amber, never red */
+.lr-head.wrong .lr-icon { background: rgba(138,100,26,.14); color: var(--amber); }
+.lr-answer { margin-top: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.lr-answer .a-label { font-family: var(--display); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); }
+.lr-actions { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+
 /* ---- Ask the tutor (CTA on the atom screen) ---- */
 .tutor-cta { margin-top: 16px; }
 .tutor-cta-btn { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; background: var(--card); border: 1px solid var(--line-strong); border-left: 3px solid var(--aegean); border-radius: 12px; padding: 13px 15px; cursor: pointer; font: inherit; color: var(--ink); min-height: 48px; transition: background .16s var(--ease, ease), border-color .16s, transform .12s; }
