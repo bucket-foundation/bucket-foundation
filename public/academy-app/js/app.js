@@ -15,11 +15,10 @@
   const SHELL_RANK = { prereq: 0, nucleus: 1, frontier: 2 };
   const SHELL_LABEL = { prereq: "Prerequisite", nucleus: "Nucleus", frontier: "Frontier" };
 
-  // Available branches (corpora). The picker is now data-driven: built-in decks are
-  // LOADED from corpus/index.json at boot (see loadManifest()), and user-created decks
-  // (any topic / any language, generated on demand) are merged in from BucketLibrary.
-  // Adding a built-in deck = drop a corpus file + a manifest entry. BRANCHES is mutable
-  // and rebuilt by refreshBranches(); BUILTIN_FALLBACK is used only if the fetch fails.
+  // Available branches (corpora). The picker is data-driven: built-in decks are
+  // LOADED from corpus/index.json at boot (see loadManifest()). Adding a built-in
+  // deck = drop a corpus file + a manifest entry. BRANCHES is mutable and rebuilt
+  // by refreshBranches(); BUILTIN_FALLBACK is used only if the fetch fails.
   const BRANCH_PREF_KEY = "bucket-academy/branch";
   const DEFAULT_BRANCH = "corpus/biophysics.json";
   const BUILTIN_FALLBACK = [
@@ -49,21 +48,10 @@
     refreshBranches();
   }
 
-  // Rebuild BRANCHES = built-ins + the user's custom decks (each given a synthetic
-  // `file`-less record carrying its in-memory corpus `data`). Custom decks render in
-  // the picker with a delete control.
+  // Rebuild BRANCHES from the built-in deck manifest. (Custom/AI-generated decks were
+  // removed — the Academy ships only curated, foundations-first built-in branches.)
   function refreshBranches() {
-    const custom = (window.BucketLibrary ? window.BucketLibrary.list() : []).map((d) => ({
-      id: d.id,
-      file: null,
-      data: d.data,
-      pill: d.pill,
-      sub: d.sub,
-      kind: d.kind,
-      languages: d.languages,
-      generated: true,
-    }));
-    BRANCHES = BUILTINS.concat(custom);
+    BRANCHES = BUILTINS.slice();
   }
 
   // Find a branch record by its current selection key (file for built-ins, id for customs).
@@ -219,22 +207,33 @@
     return folded;
   }
 
-  // Levenshtein edit distance (bounded use: short words only).
+  // Damerau-Levenshtein edit distance (bounded use: short words only). Counts an
+  // ADJACENT TRANSPOSITION ("agau"→"agua") as a SINGLE edit, not two — so a real
+  // typo where two neighbouring letters are swapped grades "close", not "wrong".
+  // (Optimal String Alignment variant: sufficient for single-typo tolerance, and
+  // we keep three rolling rows so the transposition term `prev2[j-2]` is available.)
   function editDistance(a, b) {
     a = a || ""; b = b || "";
     if (a === b) return 0;
     var la = a.length, lb = b.length;
     if (!la) return lb;
     if (!lb) return la;
-    var prev = new Array(lb + 1), cur = new Array(lb + 1), i, j;
+    var prev2 = new Array(lb + 1), prev = new Array(lb + 1), cur = new Array(lb + 1), i, j;
     for (j = 0; j <= lb; j++) prev[j] = j;
     for (i = 1; i <= la; i++) {
       cur[0] = i;
       for (j = 1; j <= lb; j++) {
         var cost = a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1;
-        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+        var v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+        // adjacent transposition: a[i-1]==b[j-2] && a[i-2]==b[j-1] → one edit
+        if (i > 1 && j > 1 &&
+            a.charCodeAt(i - 1) === b.charCodeAt(j - 2) &&
+            a.charCodeAt(i - 2) === b.charCodeAt(j - 1)) {
+          v = Math.min(v, prev2[j - 2] + 1);
+        }
+        cur[j] = v;
       }
-      var t = prev; prev = cur; cur = t;
+      var t = prev2; prev2 = prev; prev = cur; cur = t;
     }
     return prev[lb];
   }
@@ -400,15 +399,11 @@
     function addRow(b) {
       const key = branchKey(b);
       const on = key === currentBranchFile;
-      const row = el(
-        "div",
-        "branch-row" + (on ? " on" : "") + (b.generated ? " generated" : "")
-      );
+      const row = el("div", "branch-row" + (on ? " on" : ""));
       const main = el(
         "button",
         "branch-row-main",
-        '<span class="branch-row-name">' + escapeHtml(b.pill) +
-          (b.generated ? ' <span class="branch-tag">created</span>' : "") + "</span>" +
+        '<span class="branch-row-name">' + escapeHtml(b.pill) + "</span>" +
           '<span class="branch-row-sub">' + escapeHtml(b.sub || "") + "</span>"
       );
       main.onclick = () => {
@@ -416,42 +411,10 @@
         if (key !== currentBranchFile) switchBranch(key);
       };
       row.appendChild(main);
-      if (b.generated) {
-        const del = el("button", "branch-row-del", "🗑");
-        del.title = "Delete this deck";
-        del.onclick = (e) => {
-          e.stopPropagation();
-          if (!confirm("Delete “" + (b.pill || b.id) + "”? This removes the deck and its progress on this device.")) return;
-          if (window.BucketLibrary) window.BucketLibrary.remove(b.id);
-          if (key === currentBranchFile) {
-            // fell out from under us — jump back to the default built-in
-            currentBranchFile = DEFAULT_BRANCH;
-            try { localStorage.setItem(BRANCH_PREF_KEY, currentBranchFile); } catch (er) {}
-            back.remove();
-            switchBranch(currentBranchFile);
-            return;
-          }
-          back.remove();
-          openBranchPicker();
-        };
-        row.appendChild(del);
-      }
       sheet.appendChild(row);
     }
 
     BUILTINS.forEach(addRow);
-    const customs = BRANCHES.filter((b) => b.generated);
-    if (customs.length) {
-      sheet.appendChild(el("div", "sheet-sub", "Your topics"));
-      customs.forEach(addRow);
-    }
-
-    // ✦ New… — generate ANY topic or ANY language on demand.
-    const create = el("button", "branch-row create-row",
-      '<span class="branch-row-name">✦ New topic or language…</span>' +
-      '<span class="branch-row-sub">Generate a deck for anything you want to learn</span>');
-    create.onclick = () => { back.remove(); openCreateSheet(); };
-    sheet.appendChild(create);
 
     back.appendChild(sheet);
     back.onclick = (e) => {
@@ -485,212 +448,6 @@
       return;
     }
     go("home");
-  }
-
-  /* ---------- create ANY topic / ANY language ---------- */
-  // Languages offered for the polyglot generator. Covers the built-in set plus a few
-  // common targets; the generate route accepts free-text too, but a curated list keeps
-  // the form tidy and the schema's `forms` keys predictable.
-  const CREATE_LANGS = [
-    ["en", "English"], ["es", "Spanish"], ["fr", "French"], ["it", "Italian"],
-    ["pt", "Portuguese"], ["de", "German"], ["la", "Latin"], ["nl", "Dutch"],
-    ["sv", "Swedish"], ["ru", "Russian"], ["pl", "Polish"], ["ja", "Japanese"],
-    ["zh", "Mandarin Chinese"], ["ko", "Korean"], ["ar", "Arabic"], ["hi", "Hindi"],
-    ["el", "Greek"], ["tr", "Turkish"], ["he", "Hebrew"], ["vi", "Vietnamese"],
-  ];
-
-  function openCreateSheet() {
-    const back = el("div", "sheet-back");
-    const sheet = el("div", "sheet create-sheet");
-    sheet.innerHTML =
-      '<div class="sheet-title">Create a new deck</div>' +
-      '<div class="sheet-sub">Bucket generates an original, foundations-first deck. Cite-real-sources, no marketing fluff.</div>';
-
-    // mode toggle: topic vs language
-    const modeRow = el("div", "create-modes");
-    let mode = "topic";
-    const topicBtn = el("button", "create-mode on", "📚 Topic");
-    const langBtn = el("button", "create-mode", "✺ Language");
-    modeRow.appendChild(topicBtn);
-    modeRow.appendChild(langBtn);
-    sheet.appendChild(modeRow);
-
-    const formHost = el("div", "create-form-host");
-    sheet.appendChild(formHost);
-
-    function renderTopic() {
-      formHost.innerHTML = "";
-      const f = el("div", "create-form");
-      f.appendChild(el("label", "create-label", "What do you want to learn?"));
-      const topic = el("input", "create-input");
-      topic.type = "text";
-      topic.placeholder = "e.g. Linear algebra, Roman history, Music theory…";
-      topic.maxLength = 80;
-      f.appendChild(topic);
-
-      f.appendChild(el("label", "create-label", "Depth"));
-      const lvl = el("select", "create-input");
-      [["intro", "Intro — gentle, zero assumed background"],
-       ["standard", "Standard — a solid working foundation"],
-       ["advanced", "Advanced — rigorous, derivation-heavy"]].forEach(([v, lbl]) => {
-        const o = el("option", null, lbl); o.value = v; lvl.appendChild(o);
-      });
-      lvl.value = "standard";
-      f.appendChild(lvl);
-
-      const go = el("button", "btn primary wide", "Generate deck →");
-      go.onclick = () => {
-        const t = (topic.value || "").trim();
-        if (!t) { topic.focus(); topic.classList.add("err"); return; }
-        runGenerate(back, { kind: "topic", topic: t, level: lvl.value });
-      };
-      f.appendChild(go);
-      formHost.appendChild(f);
-      topic.focus();
-    }
-
-    function renderLang() {
-      formHost.innerHTML = "";
-      const f = el("div", "create-form");
-      f.appendChild(el("label", "create-label", "Language you want to learn"));
-      const target = el("select", "create-input");
-      CREATE_LANGS.forEach(([code, name]) => {
-        const o = el("option", null, name); o.value = code; target.appendChild(o);
-      });
-      target.value = "es";
-      f.appendChild(target);
-
-      f.appendChild(el("label", "create-label", "Languages you already know (used as anchors)"));
-      const known = el("div", "lang-known create-known");
-      const chosen = new Set(["en"]);
-      function paintChips() {
-        known.innerHTML = "";
-        CREATE_LANGS.forEach(([code, name]) => {
-          if (code === target.value) return;
-          const on = chosen.has(code);
-          const chip = el("button", "lang-chip" + (on ? " on" : ""), escapeHtml(name));
-          chip.onclick = () => {
-            if (chosen.has(code)) chosen.delete(code); else chosen.add(code);
-            if (!chosen.size) chosen.add(code);
-            paintChips();
-          };
-          known.appendChild(chip);
-        });
-      }
-      target.onchange = () => { chosen.delete(target.value); if (!chosen.size) chosen.add("en"); paintChips(); };
-      paintChips();
-      f.appendChild(known);
-
-      const go = el("button", "btn primary wide", "Generate deck →");
-      go.onclick = () => {
-        const t = target.value;
-        const knownArr = Array.from(chosen).filter((c) => c !== t);
-        if (!knownArr.length) knownArr.push("en");
-        runGenerate(back, { kind: "language", target: t, known: knownArr });
-      };
-      f.appendChild(go);
-      formHost.appendChild(f);
-    }
-
-    topicBtn.onclick = () => { mode = "topic"; topicBtn.classList.add("on"); langBtn.classList.remove("on"); renderTopic(); };
-    langBtn.onclick = () => { mode = "language"; langBtn.classList.add("on"); topicBtn.classList.remove("on"); renderLang(); };
-    renderTopic();
-
-    back.appendChild(sheet);
-    back.onclick = (e) => { if (e.target === back) back.remove(); };
-    document.body.appendChild(back);
-  }
-
-  // POST to the Next API generate route, store the deck, and load it.
-  async function runGenerate(back, req) {
-    const sheet = back.querySelector(".create-sheet");
-    sheet.innerHTML =
-      '<div class="sheet-title">Generating…</div>' +
-      '<div class="sheet-sub">Building an original deck for you. This can take 20–40 seconds.</div>' +
-      '<div class="gen-spinner">✦</div>';
-    let data;
-    try {
-      const res = await fetch("/api/academy/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(req),
-      });
-      if (!res.ok) {
-        let msg = "Generation failed (" + res.status + ").";
-        try { const j = await res.json(); if (j && j.error) msg = j.error; } catch (e) {}
-        throw new Error(msg);
-      }
-      data = await res.json();
-    } catch (e) {
-      sheet.innerHTML =
-        '<div class="sheet-title">Couldn’t generate</div>' +
-        '<div class="sheet-sub gen-err">' + escapeHtml(e.message || "Unknown error") + "</div>";
-      const retry = el("button", "btn ghost wide", "Back");
-      retry.onclick = () => { back.remove(); openCreateSheet(); };
-      sheet.appendChild(retry);
-      return;
-    }
-
-    // data = { meta, atoms }. Wrap as a library record.
-    const deck = normalizeGenerated(data, req);
-    if (!deck) {
-      sheet.innerHTML =
-        '<div class="sheet-title">Couldn’t generate</div>' +
-        '<div class="sheet-sub gen-err">The generated deck was empty or malformed. Please try again.</div>';
-      const r = el("button", "btn ghost wide", "Back");
-      r.onclick = () => { back.remove(); openCreateSheet(); };
-      sheet.appendChild(r);
-      return;
-    }
-    if (window.BucketLibrary) window.BucketLibrary.save(deck);
-    refreshBranches();
-    back.remove();
-    switchBranch(deck.id);
-  }
-
-  // Turn a generate-route payload into a persisted library record (with a stable id,
-  // picker pill/sub, and a clean meta.branch namespace). Defensive against partial output.
-  function normalizeGenerated(data, req) {
-    const atoms = (data && data.atoms) || [];
-    if (!atoms.length) return null;
-    const isLangDeck = (data.meta && data.meta.kind === "language") || req.kind === "language";
-    const taken = BUILTINS.map((b) => b.id);
-    let title, pill, sub;
-    if (isLangDeck) {
-      const tName = (LANG_NAMES[req.target] || (CREATE_LANGS.find((l) => l[0] === req.target) || [])[1] || req.target);
-      title = tName + " — vocabulary";
-      pill = "✺ · " + tName;
-      sub = "Polyglot deck · " + atoms.length + " words";
-    } else {
-      title = (data.meta && data.meta.title) || req.topic;
-      pill = "✦ · " + req.topic;
-      sub = (req.level ? req.level.charAt(0).toUpperCase() + req.level.slice(1) + " · " : "") + atoms.length + " concepts";
-    }
-    const slug = isLangDeck ? "lang-" + (req.target || "x") : (req.topic || "topic");
-    const id = window.BucketLibrary ? window.BucketLibrary.makeId(slug, taken)
-      : "user:" + Date.now();
-    const meta = Object.assign({}, data.meta || {}, {
-      branch: id, // namespace FSRS/progress under the deck id
-      title,
-      generated: true,
-    });
-    if (isLangDeck) {
-      meta.kind = "language";
-      if (!Array.isArray(meta.languages) || !meta.languages.length) {
-        meta.languages = [req.target].concat(req.known || []).filter(Boolean);
-      }
-    }
-    return {
-      id,
-      file: null,
-      pill,
-      sub,
-      kind: isLangDeck ? "language" : undefined,
-      languages: isLangDeck ? meta.languages : undefined,
-      generated: true,
-      createdAt: Date.now(),
-      data: { meta, atoms },
-    };
   }
 
   function nav(active) {
@@ -904,7 +661,14 @@
       graded = true;
       if (window.haptic) haptic(g === 1 ? "wrong" : g >= 3 ? "correct" : "tap");
       E.grade(a.id, g, "recall");
-      next();
+      // If this atom carries a usable target-language example sentence, follow the
+      // word drill with a short cloze (fill-in-the-blank) sentence drill on the SAME
+      // screen — practising the word IN CONTEXT — before advancing. The cloze is
+      // bonus practice (typed-checked with the same accent-tolerant grader) and does
+      // NOT re-grade FSRS, so the word recall stays the single scheduling signal.
+      const cloze = clozeForAtom(a, target);
+      if (cloze) { box.appendChild(langSentenceDrill(a, target, known, cloze, next)); }
+      else next();
     }
 
     function reveal(res) {
@@ -968,6 +732,119 @@
     giveUp.type = "button";
     giveUp.onclick = () => { if (graded || input.disabled) return; reveal({ verdict: "wrong", accentOnly: false, expected: correctWord, dist: 99 }); };
     box.appendChild(giveUp);
+
+    setTimeout(() => { try { input.focus(); } catch (e) {} }, 30);
+    return box;
+  }
+
+  // Build a cloze (fill-in-the-blank) task from an atom's target-language example,
+  // by blanking out the target word inside the sentence. Returns null when there's
+  // no example, or the target word doesn't appear verbatim in it (so we never show
+  // a sentence drill we can't honestly check). The hint sentence is a known-language
+  // rendering of the same example when available.
+  function clozeForAtom(a, target) {
+    const ex = a.example;
+    if (!ex || !ex[target]) return null;
+    const sentence = String(ex[target]);
+    const word = (a.forms[target] || {}).word || "";
+    if (!word) return null;
+    // case-insensitive, whole-word match on the target word inside the sentence;
+    // accent-/letter-exact (we blank the literal surface so the answer is unambiguous).
+    var re;
+    try { re = new RegExp("(^|[^\\p{L}])(" + escapeRegex(word) + ")(?=$|[^\\p{L}])", "iu"); }
+    catch (e) { re = new RegExp("(^|[^A-Za-z\\u00C0-\\u024F])(" + escapeRegex(word) + ")(?=$|[^A-Za-z\\u00C0-\\u024F])", "i"); }
+    const m = sentence.match(re);
+    if (!m) return null;
+    const found = m[2]; // the actual surface as it appears (preserves case)
+    const idx = sentence.indexOf(found, m.index);
+    if (idx < 0) return null;
+    const before = sentence.slice(0, idx);
+    const after = sentence.slice(idx + found.length);
+    // a known-language gloss of the sentence to anchor meaning (first known lang that has it)
+    return { sentence, before, after, answer: found, word };
+  }
+
+  function escapeRegex(s) {
+    return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  // Sentence/cloze drill: show the target-language example with the word blanked,
+  // ask the learner to TYPE the missing word, check it with the SAME accent/typo-
+  // tolerant grader (checkLangAnswer), reveal the full sentence, then advance via
+  // `done()`. Bonus practice — does not re-grade FSRS (the word drill already did).
+  function langSentenceDrill(a, target, known, cloze, done) {
+    const box = el("div", "drill lang-drill cloze-drill");
+    box.appendChild(el("div", "drill-label", "Use it in a sentence · " + (LANG_NAMES[target] || target)));
+
+    // a known-language rendering of the same example, to anchor meaning
+    const hintLang = (known || []).find((l) => a.example && a.example[l]);
+    if (hintLang) {
+      box.appendChild(el("div", "cloze-hint",
+        '<span class="lang-name">' + escapeHtml(LANG_NAMES[hintLang] || hintLang) + "</span> " +
+        escapeHtml(a.example[hintLang])));
+    }
+
+    // the sentence with a blank where the word goes
+    box.appendChild(el("div", "cloze-q",
+      escapeHtml(cloze.before) + '<span class="cloze-blank">_____</span>' + escapeHtml(cloze.after)));
+
+    const form = el("form", "lang-typed");
+    const input = el("input", "lang-input");
+    input.type = "text";
+    input.setAttribute("autocomplete", "off");
+    input.setAttribute("autocapitalize", "off");
+    input.setAttribute("autocorrect", "off");
+    input.setAttribute("spellcheck", "false");
+    input.setAttribute("aria-label", "Fill in the missing word in " + (LANG_NAMES[target] || target));
+    input.placeholder = "Fill the blank…";
+    const submit = el("button", "btn primary wide", "Check →");
+    submit.type = "submit";
+    form.appendChild(input);
+    form.appendChild(submit);
+    box.appendChild(form);
+
+    const result = el("div", "lang-result hidden");
+    box.appendChild(result);
+
+    let done2 = false;
+    function reveal(res) {
+      if (done2) return;
+      input.disabled = true; submit.disabled = true;
+      let cls, icon, label;
+      if (res.verdict === "correct") { cls = "correct"; icon = "✓"; label = res.accentOnly ? "Right — mind the accent" : "Correct"; }
+      else if (res.verdict === "close") { cls = "close"; icon = "≈"; label = "So close — a typo"; }
+      else { cls = "wrong"; icon = "·"; label = "Not quite"; }
+      if (window.haptic) haptic(res.verdict === "correct" ? "correct" : res.verdict === "close" ? "tap" : "wrong");
+      result.appendChild(el("div", "lr-head " + cls,
+        '<span class="lr-icon">' + icon + '</span><span class="lr-label">' + label + "</span>"));
+      // reveal the full sentence with the answer filled in
+      const full = el("div", "lr-answer");
+      full.innerHTML = '<span class="a-label">Sentence</span> ' +
+        '<span class="lang-ans">' + escapeHtml(cloze.before) +
+        "<b>" + escapeHtml(cloze.answer) + "</b>" + escapeHtml(cloze.after) + "</span>";
+      if (window.LangAudio && window.LangAudio.supported()) {
+        full.appendChild(window.LangAudio.button(cloze.sentence, target, { label: "Hear the sentence", cls: "inline" }));
+      }
+      result.appendChild(full);
+      result.classList.remove("hidden");
+      const actions = el("div", "lr-actions");
+      const cont = el("button", "btn primary wide", "Continue →");
+      cont.onclick = () => { if (done2) return; done2 = true; done(); };
+      actions.appendChild(cont);
+      result.appendChild(actions);
+      cont.focus();
+    }
+
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      if (done2 || input.disabled) return;
+      reveal(checkLangAnswer(input.value, cloze.answer, target));
+    };
+
+    const skip = el("button", "lang-giveup", "Reveal · I don't know");
+    skip.type = "button";
+    skip.onclick = () => { if (done2 || input.disabled) return; reveal({ verdict: "wrong", accentOnly: false, expected: cloze.answer, dist: 99 }); };
+    box.appendChild(skip);
 
     setTimeout(() => { try { input.focus(); } catch (e) {} }, 30);
     return box;
@@ -2668,12 +2545,9 @@
   }
 
   async function boot() {
-    // Load the built-in deck manifest (with fallback) + the user's saved decks first,
-    // so BRANCHES is fully populated before we resolve the current selection / deep link.
+    // Load the built-in deck manifest (with fallback) first, so BRANCHES is fully
+    // populated before we resolve the current selection / deep link.
     await loadManifest();
-    if (window.BucketLibrary) {
-      try { await window.BucketLibrary.pull(); } catch (e) {}
-    }
     refreshBranches();
 
     // optional deep link: ?branch=<id>&atom=<id>

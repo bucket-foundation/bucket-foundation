@@ -15,8 +15,10 @@ const EXCLUDE = new Set([
   "test-diagnostic.mjs", "test-headless-flow.mjs", // dev-only diagnostic tests (bkt-efk)
   "test-assess.mjs", "test-assess-flow.mjs", // dev-only assessment tests (bkt-v7y / bkt-3so)
   "test-explorer.mjs", // dev-only Polingual explorer smoke test (bkt-nhy)
+  "test-lang-flow.mjs", // dev-only language word+cloze drill smoke test (bkt-m9j)
   // build-time art/icon generators are dev-only; the committed cache + PNGs ship instead
   "build-art.mjs", "build-icons.mjs", "icon-maskable.svg",
+  "_build", // dev-only corpus builders (e.g. corpus/_build/build-lang-core.py); never ship
 ]);
 
 if (!existsSync(src)) {

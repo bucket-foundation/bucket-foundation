@@ -77,31 +77,9 @@ a { -webkit-touch-callout: none; }
 .branch-row-name { font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 13px; }
 .branch-row-sub { font-size: 13px; color: var(--ink-faint); }
 
-/* custom-deck rows: a flex container (main button + delete) instead of a plain button */
-.branch-row.generated { flex-direction: row; align-items: stretch; padding: 0; gap: 0; overflow: hidden; }
+/* branch picker rows (built-in decks only — AI-generated custom decks were removed) */
 .branch-row-main { flex: 1; min-width: 0; text-align: left; display: flex; flex-direction: column; gap: 2px; background: none; border: none; padding: 13px 14px; cursor: pointer; font: inherit; color: var(--ink); }
 .branch-row-main:hover { background: var(--card-2); }
-.branch-row-del { flex: none; width: 46px; background: none; border: none; border-left: 1px solid var(--line); color: var(--ink-faint); font-size: 15px; cursor: pointer; }
-.branch-row-del:hover { color: #8a2f24; background: rgba(138,47,36,.06); }
-.branch-tag { font-family: var(--display); text-transform: uppercase; font-size: 8px; letter-spacing: .08em; color: var(--gold-deep); border: 1px solid var(--line); border-radius: 999px; padding: 2px 6px; margin-left: 6px; vertical-align: middle; }
-.sheet-sub { font-family: var(--display); text-transform: uppercase; letter-spacing: .1em; font-size: 10px; color: var(--ink-faint); margin: 14px 4px 8px; }
-.create-row { border-style: dashed; border-color: var(--line-strong); }
-.create-row .branch-row-name { color: var(--aegean-deep); }
-
-/* create-deck sheet */
-.create-sheet .sheet-sub { text-transform: none; letter-spacing: 0; font-family: var(--serif); font-size: 13.5px; color: var(--ink-dim); margin: -6px 4px 14px; }
-.create-modes { display: flex; gap: 8px; margin: 0 0 14px; }
-.create-mode { flex: 1; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 11px 0; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 11px; color: var(--ink-dim); cursor: pointer; min-height: 44px; }
-.create-mode.on { border-color: var(--aegean); color: var(--aegean-deep); box-shadow: inset 0 0 0 1px var(--aegean); }
-.create-form { display: flex; flex-direction: column; gap: 4px; }
-.create-label { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 10px; color: var(--ink-faint); margin: 12px 2px 4px; }
-.create-input { font: inherit; font-size: 15px; color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: 10px; padding: 12px 12px; min-height: 46px; }
-.create-input:focus { outline: none; border-color: var(--aegean); }
-.create-input.err { border-color: #8a2f24; }
-.create-known { margin: 4px 0 2px; }
-.gen-spinner { font-size: 34px; text-align: center; color: var(--gold-deep); margin: 26px 0; animation: spin 1.4s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.gen-err { color: #8a2f24; }
 
 /* ---- hero ---- */
 .hero { padding: 20px 0 8px; }
@@ -296,6 +274,13 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 .lang-typed .btn { flex: 0 0 auto; }
 .lang-giveup { display: block; width: 100%; margin-top: 10px; background: none; border: none; color: var(--ink-faint); font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 11px; cursor: pointer; padding: 8px; min-height: 40px; }
 .lang-giveup:hover { color: var(--ink-dim); }
+
+/* sentence / cloze drill — a fill-in-the-blank follow-up that practices the word in context */
+.cloze-drill { margin-top: 14px; border-top: 2px solid var(--line); }
+.cloze-hint { font-family: var(--serif); font-size: 14px; color: var(--ink-dim); margin: 10px 0 6px; }
+.cloze-hint .lang-name { font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 10px; color: var(--ink-faint); margin-right: 6px; }
+.cloze-q { font-family: var(--serif); font-size: 19px; line-height: 1.5; margin: 6px 0 4px; }
+.cloze-blank { display: inline-block; min-width: 64px; border-bottom: 2px solid var(--gold-deep); color: var(--gold-deep); letter-spacing: .12em; text-align: center; margin: 0 2px; }
 
 .lang-result { margin-top: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px; animation: rise .26s ease; }
 .lr-head { display: flex; align-items: center; gap: 9px; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 13px; font-weight: 600; }
