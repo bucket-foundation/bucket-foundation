@@ -169,6 +169,25 @@ class PhotonIndex:
         )
         self.langs = sorted(set(self.lang))
 
+        # Vectorized lang array + per-lang boolean mask cache. At 200k+ rows the
+        # old per-request `np.array([lg == lang for lg in self.lang])` list
+        # comprehension dominated latency on the semantic/translate axes; a
+        # numpy `==` over a precomputed array is ~100x faster and the result is
+        # cached so a hot lang pays the cost once.
+        self._lang_arr = np.array(self.lang)
+        self._lang_mask_cache: dict[str, np.ndarray] = {}
+        # surfaces as a lowercased numpy array for the spelling axis prefilter.
+        self._surface_arr = np.array(self.surface)
+        self._surface_lower = np.array([(s or "").lower() for s in self.surface])
+        self._surface_len = np.array([len(s or "") for s in self.surface])
+
+    def lang_mask(self, lang: str) -> np.ndarray:
+        m = self._lang_mask_cache.get(lang)
+        if m is None:
+            m = (self._lang_arr == lang)
+            self._lang_mask_cache[lang] = m
+        return m
+
     @property
     def sem(self):
         if self._sem is None and self.sem_dim:
@@ -235,9 +254,10 @@ def semantic_topk(ix, surface, lang=None, k=10, cross_lingual=True):
         return {"error": f"no semantic vector for {surface!r} ({lang})",
                 "results": []}
     vec = ix.sem[ix.sem_row[i]]
-    mask = ix._sem_valid.copy()
     if not cross_lingual and lang:
-        mask &= np.array([lg == lang for lg in ix.lang])
+        mask = ix._sem_valid & ix.lang_mask(lang)
+    else:
+        mask = ix._sem_valid
     hits = _cosine_topk(ix.sem, mask, vec, k + 1, exclude=i)
     res = _fmt(ix, surface, lang, hits[:k])
     res["axis"] = "semantic"
@@ -276,13 +296,27 @@ def _norm_edit(a, b):
 
 
 def spelling_topk(ix, surface, lang=None, k=10):
+    # Vectorized candidate prefilter so the O(len*len) Python edit-distance only
+    # runs on plausible neighbors (was a full n-row Python loop — too slow at
+    # 200k). A normalized edit distance < 1 requires the candidate to share at
+    # least one character AND not differ wildly in length; we gate on lang +
+    # |len diff| <= max(2, 40% of the query length).
+    sl = (surface or "").lower()
+    L = len(sl)
+    if L == 0:
+        res = {"query": surface, "lang": lang, "results": [], "axis": "spelling"}
+        return res
+    len_tol = max(2, int(L * 0.4) + 1)
+    cand_mask = np.abs(ix._surface_len - L) <= len_tol
+    if lang:
+        cand_mask &= ix.lang_mask(lang)
+    cand_idx = np.nonzero(cand_mask)[0]
     scored = []
-    for j in range(ix.n):
-        if lang and ix.lang[j] != lang:
+    for j in cand_idx:
+        j = int(j)
+        if ix._surface_lower[j] == sl and (not lang or ix.lang[j] == lang):
             continue
-        if ix.surface[j] == surface and ix.lang[j] == lang:
-            continue
-        d = _norm_edit(surface, ix.surface[j])
+        d = _norm_edit(sl, ix._surface_lower[j])
         if d < 1.0:
             scored.append((j, 1.0 - d))
     scored.sort(key=lambda x: -x[1])
@@ -337,17 +371,21 @@ def translate(ix, surface, frm, to, k=8):
     if i is None:
         return {"error": f"{surface!r} not found in {frm}", "results": []}
     src_meaning = ix.meaning[i] or ""
+    # Only scan rows in the target language (vectorized mask -> index list),
+    # instead of a full n-row Python loop.
     exact = []
-    for j in range(ix.n):
-        if ix.lang[j] == to and (ix.meaning[j] or "") == src_meaning and j != i:
-            exact.append({
-                "surface": ix.surface[j], "meaning_en": ix.meaning[j],
-                "ipa": ix.ipa[j], "provenance": ix.provenance(j),
-            })
+    if src_meaning:
+        for j in np.nonzero(ix.lang_mask(to))[0]:
+            j = int(j)
+            if j != i and (ix.meaning[j] or "") == src_meaning:
+                exact.append({
+                    "surface": ix.surface[j], "meaning_en": ix.meaning[j],
+                    "ipa": ix.ipa[j], "provenance": ix.provenance(j),
+                })
     sem = []
     if ix.sem_row[i] is not None and ix.sem is not None:
         vec = ix.sem[ix.sem_row[i]]
-        mask = ix._sem_valid & np.array([lg == to for lg in ix.lang])
+        mask = ix._sem_valid & ix.lang_mask(to)
         hits = _cosine_topk(ix.sem, mask, vec, k, exclude=i)
         sem = [{
             "surface": ix.surface[h], "score": round(s, 4),

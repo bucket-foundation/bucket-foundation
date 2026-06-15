@@ -23,10 +23,24 @@ keeping:
   - guaranteed CORE vocabulary per language (Swadesh-ish seed list) so the
     common words a learner actually types are always present and correct.
 
-Selection per language = a commonness proxy (Kaikki has no frequencies):
-  score = (#translations) + 3*(#senses) + core_bonus + short_bonus
-Common words get translated into many langs (water→3761, light→170) and carry
-many senses — a robust, source-honest proxy.
+Selection per language = a commonness signal. Two ingredients, combined:
+  1. word-frequency (the everyday-word signal). `wordfreq` (MIT, 24 of our 27
+     langs incl. all Academy langs) gives a Zipf score in [0,8]: gold=5.2,
+     entropy=3.3, gene=4.4 vs quux=0.0. This is the DOMINANT term, because it
+     is the only signal that doesn't depend on Kaikki's spotty structured data.
+  2. a Kaikki-structure proxy: (#translations across senses + top-level) +
+     3*(#senses). Common words carry many senses and many translation edges.
+Combined: score = 18*zipf + n_trans + 3*n_senses + core_bonus + short_bonus.
+
+WHY zipf was added (2026-06-15, bead "expand to ~200k common words"): the live
+45k slice MISSED everyday words — gold/iron/energy/gene/planet/ocean. Root
+cause: this dump stores translations UNDER each sense (`senses[].translations`),
+not at the top-level `entry.translations` the old proxy read, so gold scored
+n_trans=0 → rank 4066, entropy 12290, gene 54227. We now (a) count sense-level
+translations too, and (b) weight by real corpus frequency. wordfreq is OPTIONAL:
+if unavailable the zipf term is 0 and we fall back to the structure proxy.
+For the 3 langs without wordfreq (la/sa/th — classical/low-resource) the proxy
+alone is used, which is appropriate (Latin/Sanskrit have no everyday corpus).
 
 Output: a FRESH index.sqlite with the SAME schema the rest of the backbone
 reads (query.py / semantic_build.py / build_subset.py), plus the richer payload.
@@ -54,6 +68,41 @@ sys.path.insert(0, os.path.dirname(__file__))
 from common import PHOTONS_DIR, DB_PATH  # noqa: E402
 
 CACHE_DIR = os.path.join(PHOTONS_DIR, "kaikki-cache")
+
+# --- word-frequency coreness signal (optional; the everyday-word ranker) ----
+# wordfreq (MIT) ships Zipf-scale corpus frequencies for 40+ langs. It is the
+# single most reliable "is this an everyday word" signal and does not depend on
+# Kaikki's inconsistent structured fields. If it's not installed, ZIPF_OK=False
+# and the score falls back to the translations+senses structure proxy.
+try:
+    from wordfreq import zipf_frequency as _zipf  # type: ignore
+    from wordfreq import available_languages as _wf_langs  # type: ignore
+    _WF_AVAIL = set(_wf_langs().keys())
+    ZIPF_OK = True
+except Exception:  # pragma: no cover - graceful degrade
+    _zipf = None
+    _WF_AVAIL = set()
+    ZIPF_OK = False
+
+# weight on the Zipf term. Zipf is [0,8]; ×18 puts a Zipf-5 everyday word
+# (gold/water/light ~ 90 pts) on par with a 60-translation Kaikki headword,
+# and well above obscure forms. Tuned so gold/entropy/iron/gene clear typical
+# per-lang caps while genuine junk (Zipf 0) stays out.
+ZIPF_WEIGHT = 18.0
+
+
+def zipf_score(surface: str, code: str) -> float:
+    """Corpus Zipf frequency for (surface, lang), or 0.0 if unavailable.
+
+    Falls back to 0 for langs wordfreq doesn't cover (la/sa/th) and when the
+    library isn't installed — the structure proxy still ranks those langs.
+    """
+    if not ZIPF_OK or code not in _WF_AVAIL:
+        return 0.0
+    try:
+        return float(_zipf(surface, code))
+    except Exception:
+        return 0.0
 
 # kaikki lang_code -> (cache filename, source_uri lang slug)
 LANGS = {
@@ -178,22 +227,48 @@ def pick_ipa(entry):
     return ""
 
 
+def _iter_translation_blocks(entry):
+    """Yield every translations[] list in the entry.
+
+    Kaikki dumps are inconsistent: some put translations at the TOP level
+    (`entry.translations`), others (this English dump) nest them under each
+    sense (`entry.senses[].translations`). Reading only the top level made the
+    old ranker blind to a word's true cross-lingual weight (gold scored 0).
+    """
+    top = entry.get("translations")
+    if top:
+        yield top
+    for s in entry.get("senses", []) or []:
+        st = s.get("translations")
+        if st:
+            yield st
+
+
 def extract_translations(entry, cap=60):
+    """Merge translations from BOTH the top level and every sense, deduped by
+    (code, word). The dedup makes `n_trans` a faithful count of distinct
+    cross-lingual targets regardless of where the dump stored them."""
     out = []
-    for t in entry.get("translations", []) or []:
-        w = t.get("word")
-        code = t.get("code") or t.get("lang_code")
-        if not w or not code:
-            continue
-        out.append({
-            "code": code,
-            "lang": t.get("lang") or code,
-            "word": w,
-            "sense": t.get("sense") or "",
-            "roman": t.get("roman") or "",
-        })
-        if len(out) >= cap:
-            break
+    seen = set()
+    for block in _iter_translation_blocks(entry):
+        for t in block:
+            w = t.get("word")
+            code = t.get("code") or t.get("lang_code")
+            if not w or not code:
+                continue
+            key = (code, w)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append({
+                "code": code,
+                "lang": t.get("lang") or code,
+                "word": w,
+                "sense": t.get("sense") or "",
+                "roman": t.get("roman") or "",
+            })
+            if len(out) >= cap:
+                return out
     return out
 
 
@@ -270,14 +345,19 @@ def finalize_surface(a, source_uri):
     }
 
 
-def rank_score(rec, core):
-    sc = rec["n_trans"] + 3 * len(rec["senses"])
+def rank_score(rec, core, code):
+    # everyday-word signal (dominant): real corpus frequency.
+    z = zipf_score(rec["surface"], code)
+    sc = ZIPF_WEIGHT * z
+    # Kaikki-structure proxy (now counts sense-level translations too).
+    sc += rec["n_trans"] + 3 * len(rec["senses"])
     if core:
         sc += 100000
     if 1 <= len(rec["surface"]) <= 12:
         sc += 5
     if " " in rec["surface"]:
         sc -= 10
+    rec["_zipf"] = round(z, 2)
     return sc
 
 
@@ -316,7 +396,7 @@ def ingest_lang(code, per_lang, core_set, pin_surfaces=None):
     records = [finalize_surface(a, source_uri) for a in agg.values() if a["entries"]]
     for r in records:
         pinned = r["surface"] in pin_surfaces
-        r["_score"] = rank_score(r, is_en and r["surface"] in core_set)
+        r["_score"] = rank_score(r, is_en and r["surface"] in core_set, code)
         if pinned:
             r["_score"] += 500000  # hard-include core-translation targets
     records.sort(key=lambda r: -r["_score"])
@@ -375,6 +455,12 @@ def build_db(records, db_path):
                 "captured_at": captured,
             },
             "relations": [],
+            "coreness": {
+                "zipf": rec.get("_zipf", 0.0),
+                "n_trans": rec.get("n_trans", 0),
+                "n_senses": len(rec.get("senses", [])),
+                "score": rec.get("_score", 0),
+            },
         }
         rows.append((
             pid, "word", code, rec["surface"], rec["meaning_en"], "functional",
@@ -398,13 +484,22 @@ def build_db(records, db_path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--per-lang", type=int, default=1500)
-    ap.add_argument("--en", type=int, default=3000)
-    ap.add_argument("--big", type=int, default=3000,
+    # Defaults sized for the ~200k common-word interim index (2026-06-15).
+    # 20k EN + 26×~7k other + classical bump ≈ 200k after small-lang shortfall.
+    ap.add_argument("--per-lang", type=int, default=7000)
+    ap.add_argument("--en", type=int, default=20000)
+    ap.add_argument("--big", type=int, default=8000,
                     help="cap for la/sa (classical langs Bucket favors)")
     ap.add_argument("--langs", default="",
                     help="comma list to restrict (default: all in LANGS)")
     args = ap.parse_args()
+
+    if ZIPF_OK:
+        print(f"[ingest] wordfreq ACTIVE — Zipf coreness on "
+              f"{len(_WF_AVAIL)} langs (weight {ZIPF_WEIGHT})", flush=True)
+    else:
+        print("[ingest] wordfreq NOT installed — falling back to "
+              "translations+senses proxy only (pip install wordfreq)", flush=True)
 
     core_set = set(CORE_EN)
     langs = args.langs.split(",") if args.langs else list(LANGS.keys())

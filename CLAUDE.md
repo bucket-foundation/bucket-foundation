@@ -178,7 +178,7 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 `corpus/*.json`), mirrored to `public/academy-app/` by `scripts/sync-academy.mjs`
 (predev/prebuild hooks), framed at Next route `src/app/academy/page.tsx` → live at
 **bucket.foundation/academy**. Validate: `learning/app/validate.sh`. Design+research:
-`learning/EPIC.md` + `learning/research/` (these live on branch `data/sacred-history-ai-analysis`, not yet on main — loose end).
+`learning/EPIC.md` + `learning/research/` (now on main).
 
 - **Content:** 358 science atoms across the 7 canon branches, each with a full markdown
   `lesson` + 3-depth + quiz + `resources` (Wikipedia/open, link) + deterministic
@@ -220,7 +220,7 @@ add semantic/phonetic vector columns, expose query via a Postgres RPC through th
 PostgREST, with a Next proxy `src/app/api/polingual/route.ts`. Do NOT transfer/duplicate the
 local 45k copy or stand up a parallel service unless pgvector truly can't be enabled.
 
-**Academy "Languages" branch:** polyglot deck `corpus/lang-core.json` (kind:`language`) +
+**Academy "Languages" branch:** polyglot deck `corpus/lang-core.json` (kind:`language`, **448 entries** across 7 langs, IPA from the live API) +
 typed accent-tolerant drill + on-device TTS (`lang-audio.js`) + a client word-explorer
 (`polingual.js`) over a ~6,500-word baked starter subset (`learning/app/polingual/`). All
 Polingual data = **Wiktionary via Kaikki, CC-BY-SA — must attribute.**
@@ -234,8 +234,8 @@ as a **systemd --user service on the box (127.0.0.1:8088)** behind host nginx + 
 `src/app/api/polingual/route.ts` (env `POLINGUAL_API_URL`; graceful 503 fallback to the baked
 subset). **Migration to the authoritative 6.5M `polingual` schema = just repoint
 `POLINGUAL_API_URL`** once pgvector + embeddings land there (needs a GPU/compute plan — the
-Hetzner box has none; future bead). Client (`learning/app/js/polingual.js`) still uses the
-6,500 baked subset — wiring it to `/api/polingual` is the next step.
+Hetzner box has none; future bead). Client (`learning/app/js/polingual.js`) is WIRED to `/api/polingual` (hybrid: live full
+index first, offline 6,500-word subset fallback) as of `ed819c9e7`.
 
 **Known infra issues (2026-06-15):** (1) the Nucleus issues API (`*.nucleus.agfarms.dev`) is
 returning **502** — K3s Traefik at `172.19.0.2:30080` down, affects ALL tenants; bead filing
