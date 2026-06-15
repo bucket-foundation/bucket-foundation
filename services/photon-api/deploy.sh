@@ -31,7 +31,16 @@ REPO_ROOT="$(cd "$HERE/../.." && pwd)"
 PHOTONS_SRC="${PHOTONS_SRC:-$REPO_ROOT/_intake/photons}"
 
 ssh_e()  { sshpass -p "$PASS" ssh -o StrictHostKeyChecking=accept-new "$HOST" "$@"; }
-sudo_e() { sshpass -p "$PASS" ssh -o StrictHostKeyChecking=accept-new "$HOST" "printf '%s\n' '$PASS' | sudo -S -p '' bash -c $(printf '%q' "$1")"; }
+sudo_e() {
+  # Run a (possibly multi-line) privileged script on the box WITHOUT letting the
+  # remote login shell (dash/sh) re-parse it: ship the body to a remote temp file
+  # via stdin, then `sudo -S bash <file>` feeding the password on stdin. This
+  # avoids the bash-%q-vs-dash "Unterminated quoted string" failure.
+  local _rf="/tmp/_sudo_$$_${RANDOM}.sh"
+  printf '%s\n' "$1" | sshpass -p "$PASS" ssh -o StrictHostKeyChecking=accept-new "$HOST" "cat > $_rf"
+  sshpass -p "$PASS" ssh -o StrictHostKeyChecking=accept-new "$HOST" \
+    "printf '%s\n' '$PASS' | sudo -S -p '' bash $_rf; _rc=\$?; rm -f $_rf; exit \$_rc"
+}
 rsync_e(){ sshpass -p "$PASS" rsync -e "ssh -o StrictHostKeyChecking=accept-new" "$@"; }
 
 say(){ printf '\n\033[1;36m== %s\033[0m\n' "$*"; }

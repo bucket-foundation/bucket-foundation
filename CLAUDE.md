@@ -204,7 +204,7 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 semantic / phonetic / spelling / etymology / translation.
 
 **Two photon copies — RECONCILE; the Hetzner one is authoritative:**
-- **LOCAL** `_intake/photons/`: `index.sqlite` (45k photons, 27 langs) + LaBSE-768 semantic
+- **LOCAL** `_intake/photons/`: `index.sqlite` (**209k** photons, 27 langs — grown from 45k 2026-06-15) + LaBSE-768 semantic
   + 64-d phonetic vectors (`*.f32.bin`, gitignored, ~150MB). Builders + query engine in
   `scripts/photon/` (`common,semantic_build,phonetic_build,query,build_subset,proof`).
 - **HETZNER (AUTHORITATIVE)** — `polingual` schema on `agf-supabase-db` →
@@ -227,7 +227,11 @@ Polingual data = **Wiktionary via Kaikki, CC-BY-SA — must attribute.**
 
 
 **Polingual API — LIVE (interim, 2026-06-15):** `https://polingual.agfarms.dev` serves the
-full **local 45k photons / 27 langs / all 5 axes** (~80-105ms). It's a FastAPI service
+full **local 209k photons / 27 langs / all 5 axes** (~0-105ms). **Verified public 2026-06-15:**
+`/healthz` → `photons:209000, semantic_dim:768`; `gold`/`entropy`/`energy` now resolve (the old
+45k slice missed everyday words — root cause: the commonness proxy in `scripts/photon/ingest_cache.py`
+read only top-level translations, blind to per-sense ones, and had no frequency signal; fixed by
+counting per-sense translations + **wordfreq Zipf** weighting). It's a FastAPI service
 (`services/photon-api/server.py`, memmaps the LaBSE-768 + 64-d phonetic `.f32.bin`) running
 as a **systemd --user service on the box (127.0.0.1:8088)** behind host nginx + Let's Encrypt
 — NOT in K3s, touches no tenant. Web app reaches it via the same-origin Next proxy
@@ -241,3 +245,8 @@ index first, offline 6,500-word subset fallback) as of `ed819c9e7`.
 returning **502** — K3s Traefik at `172.19.0.2:30080` down, affects ALL tenants; bead filing
 via the API is broken until it's fixed. (2) `scripts/photon/common.py` says MiniLM-384 but the
 live vectors are **LaBSE-768** (stale config; the server auto-detects dims from file size).
+(3) **Box disk at 97%** (7.5GB free); `~/polingual-photon` is **19GB** — needs a cleanup pass
+(stale venv/old artifacts) before the next big sync. (4) `services/photon-api/deploy.sh` `sudo_e()`
+used `bash -c $(printf %q)` which broke on the box's dash login shell ("Unterminated quoted string")
+— **FIXED** 2026-06-15: now ships the privileged script to a remote temp file + `sudo -S bash <file>`
+(verified). Deploy is idempotent + `--partial --inplace` so a dropped rsync (code 255) just resumes.

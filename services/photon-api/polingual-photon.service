@@ -13,9 +13,13 @@ WorkingDirectory=%h/polingual-photon
 ExecStart=%h/polingual-photon/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8088
 Restart=on-failure
 RestartSec=3
-# Modest memory cap so a leak can never starve other tenants on the box.
-MemoryMax=1500M
-MemoryHigh=1200M
+# Bounded memory cap so a leak can never starve other tenants on the box.
+# Sized for the ~209k-photon index: ~425MB sqlite metadata loaded into Python
+# lists at startup + the 612MB semantic memmap whose pages are touched by each
+# semantic matmul (memmapped, not copied). Headroom to ~2GB resident; the box
+# has 30GB so this is still a small, safe slice. Bump if photons grows again.
+MemoryMax=2500M
+MemoryHigh=2000M
 # Light hardening (user service; no root).
 NoNewPrivileges=true
 PrivateTmp=true
