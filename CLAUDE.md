@@ -224,3 +224,20 @@ local 45k copy or stand up a parallel service unless pgvector truly can't be ena
 typed accent-tolerant drill + on-device TTS (`lang-audio.js`) + a client word-explorer
 (`polingual.js`) over a ~6,500-word baked starter subset (`learning/app/polingual/`). All
 Polingual data = **Wiktionary via Kaikki, CC-BY-SA — must attribute.**
+
+
+**Polingual API — LIVE (interim, 2026-06-15):** `https://polingual.agfarms.dev` serves the
+full **local 45k photons / 27 langs / all 5 axes** (~80-105ms). It's a FastAPI service
+(`services/photon-api/server.py`, memmaps the LaBSE-768 + 64-d phonetic `.f32.bin`) running
+as a **systemd --user service on the box (127.0.0.1:8088)** behind host nginx + Let's Encrypt
+— NOT in K3s, touches no tenant. Web app reaches it via the same-origin Next proxy
+`src/app/api/polingual/route.ts` (env `POLINGUAL_API_URL`; graceful 503 fallback to the baked
+subset). **Migration to the authoritative 6.5M `polingual` schema = just repoint
+`POLINGUAL_API_URL`** once pgvector + embeddings land there (needs a GPU/compute plan — the
+Hetzner box has none; future bead). Client (`learning/app/js/polingual.js`) still uses the
+6,500 baked subset — wiring it to `/api/polingual` is the next step.
+
+**Known infra issues (2026-06-15):** (1) the Nucleus issues API (`*.nucleus.agfarms.dev`) is
+returning **502** — K3s Traefik at `172.19.0.2:30080` down, affects ALL tenants; bead filing
+via the API is broken until it's fixed. (2) `scripts/photon/common.py` says MiniLM-384 but the
+live vectors are **LaBSE-768** (stale config; the server auto-detects dims from file size).
