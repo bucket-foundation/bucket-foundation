@@ -602,6 +602,545 @@ A("i-dont-know","phrase","phrase","frontier","I don't know",
   {"en":"Sorry, I don't know.","es":"Perdón, no sé.","fr":"Désolé, je ne sais pas.","it":"Scusa, non lo so.","de":"Sorry, ich weiß nicht."})
 
 
+# ===== BATCH 3 (added 2026-06-15, bkt-2ea/bkt-nhy) ==================
+# ~150 more high-frequency beginner entries. Translations are standard facts;
+# IPA values baked below were pulled from the LIVE photon API
+# (polingual.agfarms.dev/lookup -> Wiktionary via Kaikki, CC-BY-SA) and are
+# absent where the API had no entry (never guessed). Examples original & simple.
+
+A("to-can","verb","verb","nucleus","to be able to / can",
+  {"en":("can",None,"ˈkæn"), "es":("poder",None,"poˈdeɾ"), "fr":("pouvoir",None,"pu.vwaʁ"), "it":"potere", "pt":("poder",None,"poˈdeʁ"), "de":"können", "la":("posse",None,"ˈpɔs.sɛ")},
+  {"en":"I can swim.", "es":"Yo poder nadar.", "fr":"Je veux pouvoir nager.", "it":"Voglio potere nuotare.", "de":"Ich will schwimmen können."})
+A("to-put","verb","verb","nucleus","to put",
+  {"en":"put", "es":("poner",None,"poˈneɾ"), "fr":("mettre",None,"mɛtʁ"), "it":("mettere",None,"ˈmet.te.re"), "pt":("pôr",None,"ˈpoʁ"), "de":("setzen",None,"ˈzɛtsən"), "la":"ponere"},
+  {"en":"I want to put it here.", "es":"Quiero poner esto aquí.", "fr":"Je veux mettre ça ici.", "it":"Voglio mettere questo qui.", "de":"Ich will es hier setzen."})
+A("to-take","verb","verb","nucleus","to take",
+  {"en":("take",None,"teɪk"), "es":("tomar",None,"toˈma(ʁ)"), "fr":("prendre",None,"pʁɑ̃.dʁə"), "it":("prendere",None,"ˈprɛn.de.re"), "pt":("tomar",None,"toˈma(ʁ)"), "de":("nehmen",None,"ˈneːmən"), "la":"capere"},
+  {"en":"I want to take the bus.", "es":"Quiero tomar el autobús.", "fr":"Je veux prendre le bus.", "it":"Voglio prendere il bus.", "de":"Ich will den Bus nehmen."})
+A("to-call","verb","verb","nucleus","to call",
+  {"en":("call",None,"kɔːl"), "es":"llamar", "fr":"appeler", "it":"chiamare", "pt":"chamar", "de":("rufen",None,"ˈʁuːfən"), "la":"vocare"},
+  {"en":"I want to call my friend.", "es":"Quiero llamar a mi amigo.", "fr":"Je veux appeler mon ami.", "it":"Voglio chiamare il mio amico.", "de":"Ich will meinen Freund rufen."})
+A("to-ask","verb","verb","nucleus","to ask",
+  {"en":("ask",None,"ɑːsk"), "es":"preguntar", "fr":"demander", "it":"chiedere", "pt":"perguntar", "de":"fragen", "la":"rogare"},
+  {"en":"I want to ask a question.", "es":"Quiero preguntar algo.", "fr":"Je veux demander quelque chose.", "it":"Voglio chiedere una cosa.", "de":"Ich will etwas fragen."})
+A("to-answer","verb","verb","nucleus","to answer",
+  {"en":("answer",None,"ˈɑːn.sə"), "es":("responder",None,"responˈdeɾ"), "fr":"répondre", "it":"rispondere", "pt":("responder",None,"ʁes.põˈde(ʁ)"), "de":"antworten", "la":"respondere"},
+  {"en":"Please answer me.", "es":"Por favor responder.", "fr":"Tu peux répondre?", "it":"Puoi rispondere?", "de":"Bitte antworten."})
+A("to-pay","verb","verb","nucleus","to pay",
+  {"en":("pay",None,"peɪ"), "es":"pagar", "fr":("payer",None,"pɛ.je"), "it":"pagare", "pt":"pagar", "de":"zahlen", "la":"solvere"},
+  {"en":"I want to pay now.", "es":"Quiero pagar ahora.", "fr":"Je veux payer maintenant.", "it":"Voglio pagare adesso.", "de":"Ich will jetzt zahlen."})
+A("to-cook","verb","verb","nucleus","to cook",
+  {"en":"cook", "es":"cocinar", "fr":"cuisiner", "it":"cucinare", "pt":"cozinhar", "de":("kochen",None,"ˈkɔχən"), "la":"coquere"},
+  {"en":"I like to cook.", "es":"Me gusta cocinar.", "fr":"J'aime cuisiner.", "it":"Mi piace cucinare.", "de":"Ich will heute kochen."})
+A("to-wash","verb","verb","nucleus","to wash",
+  {"en":"wash", "es":"lavar", "fr":"laver", "it":"lavare", "pt":"lavar", "de":"waschen", "la":"lavare"},
+  {"en":"I want to wash the car.", "es":"Quiero lavar el coche.", "fr":"Je veux laver la voiture.", "it":"Voglio lavare l'auto.", "de":"Ich will das Auto waschen."})
+A("to-wait","verb","verb","nucleus","to wait",
+  {"en":"wait", "es":("esperar",None,"espeˈɾaɾ"), "fr":"attendre", "it":"aspettare", "pt":("esperar",None,"espeˈɾaɾ"), "de":"warten", "la":"exspectare"},
+  {"en":"Please wait here.", "es":"Por favor esperar aquí.", "fr":"Tu peux attendre ici.", "it":"Puoi aspettare qui.", "de":"Bitte hier warten."})
+A("to-run","verb","verb","nucleus","to run",
+  {"en":("run",None,"ɹʌn"), "es":("correr",None,"koˈreɾ"), "fr":"courir", "it":("correre",None,"ˈkor.re.re"), "pt":("correr",None,"koˈʁe(ʁ)"), "de":("laufen",None,"ˈlaʊ̯fən"), "la":"currere"},
+  {"en":"I like to run.", "es":"Me gusta correr.", "fr":"J'aime courir.", "it":"Mi piace correre.", "de":"Ich will jetzt laufen."})
+A("to-play","verb","verb","nucleus","to play",
+  {"en":("play",None,"pleɪ̯/ [pɫ̥eɪ̯ ~ pʰɫeɪ̯"), "es":"jugar", "fr":("jouer",None,"ʒwe"), "it":("giocare",None,"d͡ʒoˈka.re"), "pt":("jogar",None,"ʒoˈɡa(ʁ)"), "de":("spielen",None,"ˈʃpiːlən"), "la":"ludere"},
+  {"en":"The children play.", "es":"Los niños jugar.", "fr":"Les enfants aiment jouer.", "it":"I bambini vogliono giocare.", "de":"Die Kinder wollen spielen."})
+A("to-sing","verb","verb","nucleus","to sing",
+  {"en":("sing",None,"ˈsɪŋ"), "es":("cantar",None,"kɐ̃ˈta(ʁ)"), "fr":"chanter", "it":"cantare", "pt":("cantar",None,"kɐ̃ˈta(ʁ)"), "de":"singen", "la":"cantare"},
+  {"en":"She likes to sing.", "es":"Le gusta cantar.", "fr":"Elle aime chanter.", "it":"Le piace cantare.", "de":"Sie will gern singen."})
+A("to-travel","verb","verb","nucleus","to travel",
+  {"en":"travel", "es":"viajar", "fr":"voyager", "it":"viaggiare", "pt":"viajar", "de":"reisen", "la":"peregrinari"},
+  {"en":"We want to travel.", "es":"Queremos viajar.", "fr":"Nous voulons voyager.", "it":"Vogliamo viaggiare.", "de":"Wir wollen reisen."})
+A("to-arrive","verb","verb","nucleus","to arrive",
+  {"en":("arrive",None,"əˈɹaɪv"), "es":"llegar", "fr":("arriver",None,"a.ʁi.ve"), "it":"arrivare", "pt":("chegar",None,"ʃeˈɡa(ʁ)"), "de":("ankommen",None,"ˈʔanˌkɔmən"), "la":"advenire"},
+  {"en":"The train will arrive.", "es":"El tren va a llegar.", "fr":"Le train va arriver.", "it":"Il treno deve arrivare.", "de":"Der Zug muss ankommen."})
+A("to-leave","verb","verb","nucleus","to leave",
+  {"en":("leave",None,"ˈliːv"), "es":("salir",None,"saˈliɾ"), "fr":("partir",None,"paʁ.tiʁ"), "it":("partire",None,"parˈti.re"), "pt":("sair",None,"saˈi(ʁ)"), "de":("gehen",None,"ˈɡeːən"), "la":"discedere"},
+  {"en":"I want to leave now.", "es":"Quiero salir ahora.", "fr":"Je veux partir maintenant.", "it":"Voglio partire adesso.", "de":"Ich will jetzt gehen."})
+A("to-stay","verb","verb","nucleus","to stay",
+  {"en":"stay", "es":("quedar",None,"keˈdaɾ"), "fr":("rester",None,"ʁɛs.te"), "it":("restare",None,"resˈta.re"), "pt":("ficar",None,"fiˈka(ʁ)"), "de":("bleiben",None,"ˈblaɪ̯bən"), "la":"manere"},
+  {"en":"I want to stay home.", "es":"Quiero quedar en casa.", "fr":"Je veux rester ici.", "it":"Voglio restare qui.", "de":"Ich will hier bleiben."})
+A("to-meet","verb","verb","nucleus","to meet",
+  {"en":"meet", "es":"conocer", "fr":"rencontrer", "it":"incontrare", "pt":"conhecer", "de":"treffen", "la":"convenire"},
+  {"en":"I want to meet you.", "es":"Quiero conocer.", "fr":"Je veux rencontrer.", "it":"Voglio incontrare.", "de":"Ich will dich treffen."})
+A("to-show","verb","verb","nucleus","to show",
+  {"en":"show", "es":"mostrar", "fr":"montrer", "it":"mostrare", "pt":"mostrar", "de":"zeigen", "la":"monstrare"},
+  {"en":"Can you show me?", "es":"¿Puedes mostrar?", "fr":"Tu peux montrer?", "it":"Puoi mostrare?", "de":"Kannst du es zeigen?"})
+A("to-bring","verb","verb","nucleus","to bring",
+  {"en":"bring", "es":("traer",None,"tɾaˈeɾ"), "fr":("apporter",None,"a.pɔʁ.te"), "it":("portare",None,"porˈta.re"), "pt":"trazer", "de":("bringen",None,"ˈbrɪŋən"), "la":"afferre"},
+  {"en":"Please bring water.", "es":"Por favor traer agua.", "fr":"Tu peux apporter de l'eau?", "it":"Puoi portare l'acqua?", "de":"Bitte Wasser bringen."})
+A("to-start","verb","verb","nucleus","to start / begin",
+  {"en":"start", "es":("empezar",None,"empeˈθaɾ"), "fr":"commencer", "it":"cominciare", "pt":("começar",None,"ko.meˈsa(ʁ)"), "de":"beginnen", "la":"incipere"},
+  {"en":"We start at eight.", "es":"Vamos a empezar.", "fr":"On va commencer.", "it":"Dobbiamo cominciare.", "de":"Wir wollen beginnen."})
+A("to-finish","verb","verb","nucleus","to finish",
+  {"en":"finish", "es":("terminar",None,"teɾmiˈnaɾ"), "fr":"finir", "it":"finire", "pt":("terminar",None,"teʁ.miˈna(ʁ)"), "de":"enden", "la":"finire"},
+  {"en":"I want to finish.", "es":"Quiero terminar.", "fr":"Je veux finir.", "it":"Voglio finire.", "de":"Es muss bald enden."})
+A("to-lose","verb","verb","nucleus","to lose",
+  {"en":("lose",None,"luːz"), "es":("perder",None,"peɾˈdeɾ"), "fr":"perdre", "it":"perdere", "pt":("perder",None,"peʁˈde(ʁ)"), "de":("verlieren",None,"fɛɐ̯ˈliːʁən"), "la":"perdere"},
+  {"en":"I don't want to lose it.", "es":"No quiero perder.", "fr":"Je ne veux pas perdre.", "it":"Non voglio perdere.", "de":"Ich will es nicht verlieren."})
+A("to-win","verb","verb","nucleus","to win",
+  {"en":("win",None,"wɪn"), "es":("ganar",None,"ɡaˈnaɾ"), "fr":"gagner", "it":"vincere", "pt":"ganhar", "de":("gewinnen",None,"ɡəˈvɪnən"), "la":"vincere"},
+  {"en":"We want to win.", "es":"Queremos ganar.", "fr":"Nous voulons gagner.", "it":"Vogliamo vincere.", "de":"Wir wollen gewinnen."})
+A("to-feel","verb","verb","nucleus","to feel",
+  {"en":("feel",None,"fiːl"), "es":("sentir",None,"senˈtiɾ"), "fr":("sentir",None,"sɑ̃.tiʁ"), "it":("sentire",None,"senˈti.re"), "pt":("sentir",None,"sẽˈt͡ʃi(ʁ)"), "de":("fühlen",None,"ˈfyːlən"), "la":("sentire",None,"senˈti.re")},
+  {"en":"I feel good.", "es":"Quiero sentir bien.", "fr":"Je veux sentir le vent.", "it":"Voglio sentire la musica.", "de":"Ich will mich gut fühlen."})
+A("to-listen","verb","verb","nucleus","to listen / hear",
+  {"en":("hear",None,"ˈhɪə"), "es":"oír", "fr":("entendre",None,"ɑ̃.tɑ̃dʁ"), "it":("sentire",None,"senˈti.re"), "pt":("ouvir",None,"o(w)ˈvi(ʁ)"), "de":("hören",None,"ˈhøːrən"), "la":"audire"},
+  {"en":"I can hear you.", "es":"Quiero oír.", "fr":"Je veux entendre.", "it":"Devo sentire bene.", "de":"Ich will Musik hören."})
+A("to-sit","verb","verb","nucleus","to sit",
+  {"en":"sit", "es":"sentarse", "fr":"asseoir", "it":"sedere", "pt":("sentar",None,"sẽˈta(ʁ)"), "de":("sitzen",None,"ˈzɪtsn̩"), "la":"sedere"},
+  {"en":"I want to sit here.", "es":"Quiero sentarse aquí.", "fr":"Je veux asseoir ici.", "it":"Voglio sedere qui.", "de":"Ich will hier sitzen."})
+A("to-stand","verb","verb","nucleus","to stand",
+  {"en":("stand",None,"stɑnt"), "es":"estar de pie", "fr":"lever", "it":"stare in piedi", "pt":"ficar de pé", "de":("stehen",None,"ˈʃteː.ən"), "la":("stare",None,"ˈsta.re")},
+  {"en":"Please stand up.", "es":"Quiero estar de pie.", "fr":"Je veux me lever.", "it":"Voglio stare in piedi.", "de":"Bitte hier stehen."})
+A("to-drive","verb","verb","nucleus","to drive",
+  {"en":"drive", "es":"conducir", "fr":"conduire", "it":"guidare", "pt":("dirigir",None,"d͡ʒi.ɾiˈʒi(ʁ)"), "de":"fahren", "la":"agere"},
+  {"en":"I can drive a car.", "es":"Quiero conducir.", "fr":"Je veux conduire.", "it":"Voglio guidare.", "de":"Ich will fahren."})
+A("to-study","verb","verb","nucleus","to study",
+  {"en":"study", "es":"estudiar", "fr":"étudier", "it":("studiare",None,"stuˈdja.re"), "pt":"estudar", "de":"studieren", "la":"studere"},
+  {"en":"I want to study now.", "es":"Quiero estudiar.", "fr":"Je veux étudier.", "it":"Voglio studiare.", "de":"Ich will studieren."})
+A("hard","adjective","adjective","nucleus","hard (firm)",
+  {"en":("hard",None,"hɑːd"), "es":("duro",None,"ˈduɾo"), "fr":("dur",None,"dyʁ"), "it":("duro",None,"ˈdu.ro"), "pt":("duro",None,"ˈdu.ɾu"), "de":("hart",None,"hart"), "la":("durus",None,"ˈduː.rʊs")},
+  {"en":"The bread is hard.", "es":"El pan está duro.", "fr":"Le pain est dur.", "it":"Il pane è duro.", "de":"Das Brot ist hart."})
+A("soft","adjective","adjective","nucleus","soft",
+  {"en":("soft",None,"sɒft"), "es":("suave",None,"suˈa.vi"), "fr":("doux",None,"du"), "it":"morbido", "pt":"macio", "de":"weich", "la":("mollis",None,"ˈmɔl.lɪs")},
+  {"en":"The bed is soft.", "es":"La cama es suave.", "fr":"Le lit est doux.", "it":"Il letto è morbido.", "de":"Das Bett ist weich."})
+A("heavy","adjective","adjective","nucleus","heavy",
+  {"en":("heavy",None,"ˈhɛv.i"), "es":("pesado",None,"peˈsado"), "fr":("lourd",None,"luʁ"), "it":"pesante", "pt":("pesado",None,"peˈsado"), "de":("schwer",None,"ʃveːɐ̯"), "la":("gravis",None,"ˈɡra.wɪs")},
+  {"en":"The box is heavy.", "es":"El libro es pesado.", "fr":"Le sac est lourd.", "it":"Il sacco è pesante.", "de":"Die Kiste ist schwer."})
+A("light-weight","adjective","adjective","nucleus","light (not heavy)",
+  {"en":("light",None,"laɪt"), "es":"ligero", "fr":"léger", "it":"leggero", "pt":"leve", "de":("leicht",None,"laɪ̯çt"), "la":("levis",None,"ˈɫɛ.wɪs")},
+  {"en":"The bag is light.", "es":"El libro es ligero.", "fr":"Le sac est léger.", "it":"Il libro è leggero.", "de":"Die Tasche ist leicht."})
+A("fast","adjective","adjective","nucleus","fast / quick",
+  {"en":("fast",None,"fɑːst"), "es":"rápido", "fr":("rapide",None,"ʁa.pid"), "it":"veloce", "pt":"rápido", "de":("schnell",None,"ʃnɛl"), "la":"celer"},
+  {"en":"The car is fast.", "es":"El coche es rápido.", "fr":"La voiture est rapide.", "it":"L'auto è veloce.", "de":"Das Auto ist schnell."})
+A("slow","adjective","adjective","nucleus","slow",
+  {"en":("slow",None,"sləʊ"), "es":("lento",None,"ˈlento"), "fr":("lent",None,"lɑ̃"), "it":("lento",None,"ˈlɛn.to"), "pt":("lento",None,"ˈlẽ.tu"), "de":("langsam",None,"ˈlaŋzaːm"), "la":("lentus",None,"ˈɫɛn.tʊs")},
+  {"en":"The bus is slow.", "es":"El autobús es lento.", "fr":"Le bus est lent.", "it":"Il bus è lento.", "de":"Der Bus ist langsam."})
+A("high","adjective","adjective","nucleus","high / tall",
+  {"en":"high", "es":"alto", "fr":"haut", "it":"alto", "pt":"alto", "de":"hoch", "la":"altus"},
+  {"en":"The wall is high.", "es":"El muro es alto.", "fr":"Le mur est haut.", "it":"Il muro è alto.", "de":"Die Mauer ist hoch."})
+A("low","adjective","adjective","nucleus","low",
+  {"en":"low", "es":("bajo",None,"ˈbaxo"), "fr":"bas", "it":"basso", "pt":("baixo",None,"ˈbaj.ʃu"), "de":("niedrig",None,"ˈniːdʁɪç"), "la":("humilis",None,"ˈhʊ.mɪ.lɪs")},
+  {"en":"The chair is low.", "es":"El muro es bajo.", "fr":"Le mur est bas.", "it":"Il muro è basso.", "de":"Der Stuhl ist niedrig."})
+A("wide","adjective","adjective","nucleus","wide / broad",
+  {"en":"wide", "es":"ancho", "fr":("large",None,"laʁʒ"), "it":("largo",None,"ˈlar.ɡo"), "pt":("largo",None,"ˈlaʁ.ɡu"), "de":"breit", "la":("latus",None,"ˈɫa.tʊs")},
+  {"en":"The river is wide.", "es":"El río es ancho.", "fr":"Le fleuve est large.", "it":"Il fiume è largo.", "de":"Der Fluss ist breit."})
+A("narrow","adjective","adjective","nucleus","narrow",
+  {"en":"narrow", "es":("estrecho",None,"esˈtɾet͡ʃo"), "fr":"étroit", "it":("stretto",None,"ˈstret.to"), "pt":"estreito", "de":("eng",None,"ɛŋ"), "la":"angustus"},
+  {"en":"The street is narrow.", "es":"El camino es estrecho.", "fr":"Le chemin est étroit.", "it":"Il sentiero è stretto.", "de":"Die Straße ist eng."})
+A("expensive","adjective","adjective","nucleus","expensive",
+  {"en":"expensive", "es":("caro",None,"ˈka.roː"), "fr":("cher",None,"ʃɛʁ"), "it":("caro",None,"ˈka.roː"), "pt":("caro",None,"ˈka.roː"), "de":"teuer", "la":"carus"},
+  {"en":"The hotel is expensive.", "es":"El hotel es caro.", "fr":"L'hôtel est cher.", "it":"L'albergo è caro.", "de":"Das Hotel ist teuer."})
+A("cheap","adjective","adjective","nucleus","cheap",
+  {"en":"cheap", "es":("barato",None,"baˈɾa.tu"), "fr":"bon marché", "it":"economico", "pt":("barato",None,"baˈɾa.tu"), "de":"billig", "la":"vilis"},
+  {"en":"The bread is cheap.", "es":"El pan es barato.", "fr":"Le pain est bon marché.", "it":"Il pane è economico.", "de":"Das Brot ist billig."})
+A("open-adj","adjective","adjective","nucleus","open",
+  {"en":("open",None,"ˈəʊ.pən"), "es":("abierto",None,"aˈbjeɾto"), "fr":"ouvert", "it":"aperto", "pt":"aberto", "de":("offen",None,"ˈɔfən"), "la":("apertus",None,"aˈpɛr.tʊs")},
+  {"en":"The shop is open.", "es":"El museo está abierto.", "fr":"Le magasin est ouvert.", "it":"Il negozio è aperto.", "de":"Der Laden ist offen."})
+A("closed-adj","adjective","adjective","nucleus","closed",
+  {"en":("closed",None,"kləʊzd"), "es":("cerrado",None,"seˈʁa.du"), "fr":"fermé", "it":"chiuso", "pt":("fechado",None,"feˈʃa.du"), "de":"geschlossen", "la":("clausus",None,"ˈkɫau̯.sʊs")},
+  {"en":"The door is closed.", "es":"El banco está cerrado.", "fr":"Le magasin est fermé.", "it":"Il bar è chiuso.", "de":"Die Tür ist geschlossen."})
+A("dry","adjective","adjective","nucleus","dry",
+  {"en":("dry",None,"ˈdɹaɪ̯"), "es":("seco",None,"ˈsɛ.koː"), "fr":("sec",None,"sɛk"), "it":("secco",None,"ˈsek.ko"), "pt":("seco",None,"ˈsɛ.ku"), "de":("trocken",None,"ˈtʁɔkən"), "la":"siccus"},
+  {"en":"The towel is dry.", "es":"El suelo está seco.", "fr":"Le linge est sec.", "it":"Il panno è secco.", "de":"Das Tuch ist trocken."})
+A("wet","adjective","adjective","nucleus","wet",
+  {"en":("wet",None,"ʋɛt"), "es":"mojado", "fr":"mouillé", "it":"bagnato", "pt":"molhado", "de":"nass", "la":"madidus"},
+  {"en":"The grass is wet.", "es":"El suelo está mojado.", "fr":"Le sol est mouillé.", "it":"Il prato è bagnato.", "de":"Das Gras ist nass."})
+A("tired","adjective","adjective","nucleus","tired",
+  {"en":"tired", "es":("cansado",None,"kanˈsado"), "fr":"fatigué", "it":"stanco", "pt":("cansado",None,"kanˈsado"), "de":"müde", "la":"fessus"},
+  {"en":"I am tired.", "es":"Estoy cansado.", "fr":"Je suis fatigué.", "it":"Sono stanco.", "de":"Ich bin müde."})
+A("sick","adjective","adjective","nucleus","sick / ill",
+  {"en":("sick",None,"ˈsɪk"), "es":"enfermo", "fr":("malade",None,"ma.lad"), "it":"malato", "pt":("doente",None,"duˈẽ.t͡ʃi"), "de":"krank", "la":("aeger",None,"ˈae̯.ɡɛr")},
+  {"en":"He is sick today.", "es":"Hoy está enfermo.", "fr":"Il est malade.", "it":"È malato oggi.", "de":"Er ist heute krank."})
+A("hungry","adjective","adjective","nucleus","hungry",
+  {"en":"hungry", "es":"hambriento", "fr":"affamé", "it":"affamato", "pt":"faminto", "de":"hungrig", "la":"esuriens"},
+  {"en":"The child is hungry.", "es":"El niño está hambriento.", "fr":"L'enfant est affamé.", "it":"Il bambino è affamato.", "de":"Das Kind ist hungrig."})
+A("ready","adjective","adjective","nucleus","ready",
+  {"en":("ready",None,"ˈɹɛd.i"), "es":("listo",None,"ˈlisto"), "fr":"prêt", "it":("pronto",None,"ˈpɾõ.tu"), "pt":("pronto",None,"ˈpɾõ.tu"), "de":"bereit", "la":("paratus",None,"paˈraː.tʊs")},
+  {"en":"I am ready.", "es":"Estoy listo.", "fr":"Je suis prêt.", "it":"Sono pronto.", "de":"Ich bin bereit."})
+A("important","adjective","adjective","nucleus","important",
+  {"en":"important", "es":"importante", "fr":"important", "it":"importante", "pt":"importante", "de":"wichtig", "la":("gravis",None,"ˈɡra.wɪs")},
+  {"en":"This is important.", "es":"Esto es importante.", "fr":"C'est important.", "it":"Questo è importante.", "de":"Das ist wichtig."})
+A("right-correct","adjective","adjective","nucleus","right / correct",
+  {"en":"correct", "es":"correcto", "fr":"correct", "it":"corretto", "pt":"correto", "de":("richtig",None,"ˈʁɪçtɪç"), "la":"rectus"},
+  {"en":"The answer is correct.", "es":"El resultado es correcto.", "fr":"Le résultat est correct.", "it":"Il risultato è corretto.", "de":"Die Antwort ist richtig."})
+A("wrong","adjective","adjective","nucleus","wrong",
+  {"en":("wrong",None,"ˈɹɒŋ"), "es":"incorrecto", "fr":("faux",None,"fo"), "it":("sbagliato",None,"zbaʎˈʎa.to"), "pt":("errado",None,"eˈʁa.du"), "de":("falsch",None,"falʃ"), "la":("falsus",None,"ˈfaɫ.sʊs")},
+  {"en":"The answer is wrong.", "es":"El número es incorrecto.", "fr":"Le numéro est faux.", "it":"Il numero è sbagliato.", "de":"Die Antwort ist falsch."})
+A("house-2","place","noun","nucleus","room",
+  {"en":"room", "es":("habitación","f"), "fr":("chambre","f"), "it":("stanza","f"), "pt":("quarto","m","ˈkwaʁ.tu"), "de":("Zimmer","n"), "la":("cubiculum","n")},
+  {"en":"The room is big.", "es":"La habitación es grande.", "fr":"La chambre est grande.", "it":"La stanza è grande.", "de":"Das Zimmer ist groß."})
+A("kitchen","place","noun","nucleus","kitchen",
+  {"en":("kitchen",None,"ˈkɪt͡ʃ(ɪ)n"), "es":("cocina","f","koˈθina"), "fr":("cuisine","f"), "it":("cucina","f"), "pt":("cozinha","f"), "de":("Küche","f"), "la":("culina","f")},
+  {"en":"The kitchen is clean.", "es":"La cocina está limpia.", "fr":"La cuisine est propre.", "it":"La cucina è pulita.", "de":"Die Küche ist sauber."})
+A("floor","object","noun","nucleus","floor",
+  {"en":"floor", "es":("suelo","m"), "fr":("sol","m"), "it":("pavimento","m"), "pt":("chão","m"), "de":("Boden","m"), "la":("solum","n")},
+  {"en":"The floor is cold.", "es":"El suelo está frío.", "fr":"Le sol est froid.", "it":"Il pavimento è freddo.", "de":"Der Boden ist kalt."})
+A("wall","object","noun","nucleus","wall",
+  {"en":"wall", "es":("pared","f"), "fr":("mur","m"), "it":("muro","m"), "pt":("parede","f"), "de":("Wand","f","wɒnd"), "la":("paries","m")},
+  {"en":"The wall is white.", "es":"La pared es blanca.", "fr":"Le mur est blanc.", "it":"Il muro è bianco.", "de":"Die Wand ist weiß."})
+A("lamp","object","noun","nucleus","lamp",
+  {"en":("lamp",None,"ˈlæ̞mp"), "es":("lámpara","f"), "fr":("lampe","f"), "it":("lampada","f"), "pt":("lâmpada","f"), "de":("Lampe","f"), "la":("lucerna","f")},
+  {"en":"The lamp is bright.", "es":"La lámpara es brillante.", "fr":"La lampe est claire.", "it":"La lampada è chiara.", "de":"Die Lampe ist hell."})
+A("plate","object","noun","nucleus","plate",
+  {"en":("plate",None,"ˈpleɪ̯t"), "es":("plato","m","ˈplato"), "fr":("assiette","f","a.sjɛt"), "it":("piatto","m","ˈpjat.to"), "pt":("prato","m"), "de":("Teller","m"), "la":("patina","f")},
+  {"en":"The plate is empty.", "es":"El plato está vacío.", "fr":"Une assiette est vide.", "it":"Il piatto è vuoto.", "de":"Der Teller ist leer."})
+A("glass-cup","object","noun","nucleus","glass (cup)",
+  {"en":"glass", "es":("vaso","m"), "fr":("verre","m"), "it":("bicchiere","m"), "pt":("copo","m"), "de":("Glas","n"), "la":("vitrum","n")},
+  {"en":"The glass is full.", "es":"El vaso está lleno.", "fr":"Le verre est plein.", "it":"Il bicchiere è pieno.", "de":"Das Glas ist voll."})
+A("knife","object","noun","nucleus","knife",
+  {"en":"knife", "es":("cuchillo","m"), "fr":("couteau","m"), "it":("coltello","m"), "pt":("faca","f"), "de":("Messer","n"), "la":("culter","m")},
+  {"en":"The knife is sharp.", "es":"El cuchillo está afilado.", "fr":"Le couteau est neuf.", "it":"Il coltello è nuovo.", "de":"Das Messer ist neu."})
+A("bag","object","noun","nucleus","bag",
+  {"en":("bag",None,"ˈbæɡ"), "es":("bolsa","f","ˈbolsa"), "fr":("sac","m","sad͡ʒ"), "it":("borsa","f","ˈbor.sa"), "pt":("bolsa","f","ˈbolsa"), "de":("Tasche","f"), "la":("saccus","m")},
+  {"en":"The bag is heavy.", "es":"La bolsa es pesada.", "fr":"Le sac est lourd.", "it":"La borsa è pesante.", "de":"Die Tasche ist schwer."})
+A("letter-mail","object","noun","nucleus","letter (mail)",
+  {"en":("letter",None,"ˈlɛtə"), "es":("carta","f","ˈkaʁ.tɐ"), "fr":("lettre","f"), "it":("lettera","f","ˈlet.te.ra"), "pt":("carta","f","ˈkaʁ.tɐ"), "de":("Brief","m"), "la":("epistula","f")},
+  {"en":"I write a letter.", "es":"Escribo una carta.", "fr":"J'écris une lettre.", "it":"Scrivo una lettera.", "de":"Ich schreibe einen Brief."})
+A("clock","object","noun","nucleus","clock / watch",
+  {"en":"clock", "es":("reloj","m"), "fr":("horloge","f"), "it":("orologio","m"), "pt":("relógio","m"), "de":("Uhr","f","uːr"), "la":("horologium","n")},
+  {"en":"The clock is new.", "es":"El reloj es nuevo.", "fr":"Une horloge est ancienne.", "it":"Un orologio è nuovo.", "de":"Die Uhr ist neu."})
+A("shirt","object","noun","nucleus","shirt",
+  {"en":"shirt", "es":("camisa","f"), "fr":("chemise","f"), "it":("camicia","f"), "pt":("camisa","f"), "de":("Hemd","n"), "la":("tunica","f","ˈtʊ.nɪ.ka")},
+  {"en":"The shirt is blue.", "es":"La camisa es azul.", "fr":"La chemise est bleue.", "it":"La camicia è blu.", "de":"Das Hemd ist blau."})
+A("shoe","object","noun","nucleus","shoe",
+  {"en":("shoe",None,"ˈʃuː"), "es":("zapato","m"), "fr":("chaussure","f"), "it":("scarpa","f"), "pt":("sapato","m"), "de":("Schuh","m"), "la":("calceus","m")},
+  {"en":"My shoe is black.", "es":"Mi zapato es negro.", "fr":"Ma chaussure est noire.", "it":"La mia scarpa è nera.", "de":"Mein Schuh ist schwarz."})
+A("hat","object","noun","nucleus","hat",
+  {"en":"hat", "es":("sombrero","m"), "fr":("chapeau","m","ʃa.po"), "it":("cappello","m"), "pt":("chapéu","m","ʃaˈpɛw"), "de":("Hut","m","ɦʏt"), "la":("pileus","m")},
+  {"en":"The hat is old.", "es":"El sombrero es viejo.", "fr":"Le chapeau est vieux.", "it":"Il cappello è vecchio.", "de":"Der Hut ist alt."})
+A("coat","object","noun","nucleus","coat",
+  {"en":"coat", "es":("abrigo","m","aˈbɾiɡo"), "fr":("manteau","m","mɑ̃.to"), "it":("cappotto","m"), "pt":("casaco","m"), "de":("Mantel","m","ˈmɑn.təl"), "la":("pallium","n")},
+  {"en":"The coat is warm.", "es":"El abrigo es cálido.", "fr":"Le manteau est chaud.", "it":"Il cappotto è caldo.", "de":"Der Mantel ist warm."})
+A("work-noun","abstract","noun","nucleus","work (the noun)",
+  {"en":("work",None,"wɜː(ɹ)k"), "es":("trabajo","m"), "fr":("travail","m"), "it":("lavoro","m"), "pt":("trabalho","m","tɾaˈba.ʎu"), "de":("Arbeit","f","ˈaʁbaɪ̯t"), "la":("labor","m","ˈɫa.bɔr")},
+  {"en":"The work is hard.", "es":"El trabajo es duro.", "fr":"Le travail est dur.", "it":"Il lavoro è duro.", "de":"Die Arbeit ist hart."})
+A("school","place","noun","nucleus","school",
+  {"en":("school",None,"sxoːl"), "es":("escuela","f"), "fr":("école","f"), "it":("scuola","f"), "pt":("escola","f","isˈkɔ.lɐ"), "de":("Schule","f","ˈʃuːlə"), "la":("schola","f","ˈskʰɔ.ɫa")},
+  {"en":"The school is near.", "es":"La escuela está cerca.", "fr":"Une école est proche.", "it":"La scuola è vicina.", "de":"Die Schule ist nah."})
+A("office","place","noun","nucleus","office",
+  {"en":("office",None,"ˈɒf.ɪs"), "es":("oficina","f"), "fr":("bureau","m","by.ʁo"), "it":("ufficio","m","ufˈfi.t͡ʃo"), "pt":("escritório","m"), "de":("Büro","n"), "la":("officium","n")},
+  {"en":"The office is closed.", "es":"La oficina está cerrada.", "fr":"Le bureau est fermé.", "it":"Un ufficio è chiuso.", "de":"Das Büro ist geschlossen."})
+A("pen","object","noun","nucleus","pen",
+  {"en":"pen", "es":("bolígrafo","m"), "fr":("stylo","m"), "it":("penna","f"), "pt":("caneta","f"), "de":("Stift","m"), "la":("calamus","m")},
+  {"en":"The pen is blue.", "es":"El bolígrafo es azul.", "fr":"Le stylo est bleu.", "it":"La penna è blu.", "de":"Der Stift ist blau."})
+A("question","abstract","noun","nucleus","question",
+  {"en":"question", "es":("pregunta","f"), "fr":("question","f"), "it":("domanda","f"), "pt":("pergunta","f"), "de":("Frage","f"), "la":("quaestio","f","ˈkʷae̯s.ti.oː")},
+  {"en":"I have a question.", "es":"Tengo una pregunta.", "fr":"J'ai une question.", "it":"Ho una domanda.", "de":"Ich habe eine Frage."})
+A("answer-noun","abstract","noun","nucleus","answer (the noun)",
+  {"en":("answer",None,"ˈɑːn.sə"), "es":("respuesta","f"), "fr":("réponse","f"), "it":("risposta","f"), "pt":("resposta","f"), "de":("Antwort","f"), "la":("responsum","n","rɛsˈpõː.sũː")},
+  {"en":"The answer is easy.", "es":"La respuesta es fácil.", "fr":"La réponse est facile.", "it":"La risposta è facile.", "de":"Die Antwort ist einfach."})
+A("language","abstract","noun","nucleus","language",
+  {"en":"language", "es":("idioma","m"), "fr":("langue","f"), "it":("lingua","f","ˈlin.ɡwa"), "pt":("idioma","m"), "de":("Sprache","f"), "la":("lingua","f","ˈlin.ɡwa")},
+  {"en":"I learn a language.", "es":"Aprendo un idioma.", "fr":"J'apprends une langue.", "it":"Imparo una lingua.", "de":"Ich lerne eine Sprache."})
+A("shop","place","noun","nucleus","shop / store",
+  {"en":"shop", "es":("tienda","f"), "fr":("magasin","m","ma.ɡa.zɛ̃"), "it":("negozio","m"), "pt":("loja","f"), "de":("Laden","m","ˈlaːdən"), "la":("taberna","f","taˈbɛr.na")},
+  {"en":"The shop is open.", "es":"La tienda está abierta.", "fr":"Le magasin est ouvert.", "it":"Il negozio è aperto.", "de":"Der Laden ist offen."})
+A("price","abstract","noun","nucleus","price",
+  {"en":"price", "es":("precio","m"), "fr":("prix","m"), "it":("prezzo","m","ˈprɛt.t͡so"), "pt":("preço","m"), "de":("Preis","m"), "la":("pretium","n","ˈprɛ.ti.ũː")},
+  {"en":"The price is high.", "es":"El precio es alto.", "fr":"Le prix est haut.", "it":"Il prezzo è alto.", "de":"Der Preis ist hoch."})
+A("car","object","noun","nucleus","car",
+  {"en":"car", "es":("coche","m","ˈkot͡ʃe"), "fr":("voiture","f"), "it":("auto","f","ˈaw.tu"), "pt":("carro","m","ˈkaro"), "de":("Auto","n","ˈaw.tu"), "la":("carrus","m","ˈkar.rʊs")},
+  {"en":"The car is red.", "es":"El coche es rojo.", "fr":"La voiture est rouge.", "it":"Una auto è rossa.", "de":"Das Auto ist rot."})
+A("bus","object","noun","nucleus","bus",
+  {"en":("bus",None,"bʏs"), "es":("autobús","m"), "fr":("bus","m","bʏs"), "it":("autobus","m"), "pt":("ônibus","m"), "de":("Bus","m","bʏs"), "la":("laophorium","n")},
+  {"en":"The bus is late.", "es":"El autobús llega tarde.", "fr":"Le bus est en retard.", "it":"Un autobus è in ritardo.", "de":"Der Bus ist spät."})
+A("train","object","noun","nucleus","train",
+  {"en":("train",None,"ˈtɹeɪn"), "es":("tren","m"), "fr":("train","m","ˈtɹeɪn"), "it":("treno","m"), "pt":("trem","m","ˈtɾẽj̃"), "de":("Zug","m","t͡suːk"), "la":("hamaxostichus","m")},
+  {"en":"The train is fast.", "es":"El tren es rápido.", "fr":"Le train est rapide.", "it":"Il treno è veloce.", "de":"Der Zug ist schnell."})
+A("airplane","object","noun","nucleus","airplane",
+  {"en":("airplane",None,"ˈɛəˌpleɪ̯n"), "es":("avión","m"), "fr":("avion","m"), "it":("aereo","m"), "pt":("avião","m"), "de":("Flugzeug","n"), "la":("aeroplanum","n")},
+  {"en":"The airplane is big.", "es":"El avión es grande.", "fr":"Un avion est grand.", "it":"Un aereo è grande.", "de":"Das Flugzeug ist groß."})
+A("road","place","noun","nucleus","road / way",
+  {"en":("road",None,"ɾoːɖ"), "es":("camino","m"), "fr":("route","f","ɹuːt"), "it":("strada","f"), "pt":("estrada","f"), "de":("Weg","m","veːk"), "la":("via","f","ˈwi.a")},
+  {"en":"The road is long.", "es":"El camino es largo.", "fr":"La route est longue.", "it":"La strada è lunga.", "de":"Der Weg ist lang."})
+A("ticket","object","noun","nucleus","ticket",
+  {"en":"ticket", "es":("billete","m"), "fr":("billet","m"), "it":("biglietto","m","biʎˈʎet.to"), "pt":("bilhete","m"), "de":("Fahrkarte","f"), "la":("tessera","f","ˈtɛs.sɛ.ra")},
+  {"en":"I need a ticket.", "es":"Necesito un billete.", "fr":"J'ai besoin d'un billet.", "it":"Ho bisogno di un biglietto.", "de":"Ich brauche eine Fahrkarte."})
+A("doctor-place","place","noun","nucleus","hospital",
+  {"en":"hospital", "es":("hospital","m"), "fr":("hôpital","m"), "it":("ospedale","m"), "pt":("hospital","m"), "de":("Krankenhaus","n"), "la":("valetudinarium","n")},
+  {"en":"The hospital is big.", "es":"El hospital es grande.", "fr":"Un hôpital est grand.", "it":"Un ospedale è grande.", "de":"Das Krankenhaus ist groß."})
+A("medicine","abstract","noun","nucleus","medicine",
+  {"en":("medicine",None,"ˈmɛd.ɪ.s(ɪ)n"), "es":("medicina","f"), "fr":("médicament","m"), "it":("medicina","f"), "pt":("remédio","m"), "de":("Medizin","f"), "la":("medicina","f")},
+  {"en":"I need medicine.", "es":"Necesito medicina.", "fr":"J'ai besoin d'un médicament.", "it":"Ho bisogno di medicina.", "de":"Ich brauche Medizin."})
+A("pain","abstract","noun","nucleus","pain",
+  {"en":("pain",None,"ˈpeɪ̯n"), "es":("dolor","m","doˈloɾ"), "fr":("douleur","f"), "it":("dolore","m"), "pt":("dor","f"), "de":("Schmerz","m"), "la":("dolor","m","doˈloɾ")},
+  {"en":"I have a pain.", "es":"Tengo un dolor.", "fr":"J'ai une douleur.", "it":"Ho un dolore.", "de":"Ich habe einen Schmerz."})
+A("blood","body","noun","nucleus","blood",
+  {"en":("blood",None,"blʌd"), "es":("sangre","f"), "fr":("sang","m","saːŋ˧˧"), "it":("sangue","m","ˈsan.ɡwe"), "pt":("sangue","m","ˈsan.ɡwe"), "de":("Blut","n"), "la":("sanguis","m")},
+  {"en":"The blood is red.", "es":"La sangre es roja.", "fr":"Le sang est rouge.", "it":"Il sangue è rosso.", "de":"Das Blut ist rot."})
+A("bone","body","noun","nucleus","bone",
+  {"en":("bone",None,"bəʊn"), "es":("hueso","m","ˈw̝eso"), "fr":("os","m","ˈoːs"), "it":("osso","m","ˈo.su"), "pt":("osso","m","ˈo.su"), "de":("Knochen","m"), "la":("os","n","ˈoːs")},
+  {"en":"The bone is white.", "es":"El hueso es blanco.", "fr":"Un os est blanc.", "it":"Un osso è bianco.", "de":"Der Knochen ist weiß."})
+A("skin","body","noun","nucleus","skin",
+  {"en":("skin",None,"skɪn"), "es":("piel","f"), "fr":("peau","f"), "it":("pelle","f"), "pt":("pele","f"), "de":("Haut","f"), "la":("cutis","f")},
+  {"en":"The skin is soft.", "es":"La piel es suave.", "fr":"La peau est douce.", "it":"La pelle è morbida.", "de":"Die Haut ist weich."})
+A("tooth","body","noun","nucleus","tooth",
+  {"en":"tooth", "es":("diente","m"), "fr":("dent","f"), "it":("dente","m"), "pt":("dente","m"), "de":("Zahn","m","t͡saːn"), "la":("dens","m")},
+  {"en":"The tooth is white.", "es":"El diente es blanco.", "fr":"La dent est blanche.", "it":"Il dente è bianco.", "de":"Der Zahn ist weiß."})
+A("finger","body","noun","nucleus","finger",
+  {"en":"finger", "es":("dedo","m","ˈdedo"), "fr":("doigt","m"), "it":("dito","m","ˈdi.toː"), "pt":("dedo","m","ˈdedo"), "de":("Finger","m"), "la":("digitus","m","ˈdɪ.ɡɪ.tʊs")},
+  {"en":"My finger hurts.", "es":"Me duele el dedo.", "fr":"J'ai mal au doigt.", "it":"Mi fa male il dito.", "de":"Mein Finger tut weh."})
+A("hair","body","noun","nucleus","hair",
+  {"en":("hair",None,"ˈhɛə̯"), "es":("pelo","m","ˈpe.lo"), "fr":("cheveux","m"), "it":("capelli","m"), "pt":("cabelo","m"), "de":("Haar","n","ɦaːr"), "la":("capillus","m")},
+  {"en":"Her hair is long.", "es":"Su pelo es largo.", "fr":"Ses cheveux sont longs.", "it":"I suoi capelli sono lunghi.", "de":"Ihr Haar ist lang."})
+A("face","body","noun","nucleus","face",
+  {"en":"face", "es":("cara","f","ˈkaɾa"), "fr":("visage","m"), "it":("faccia","f","ˈfat.t͡ʃa"), "pt":("rosto","m"), "de":("Gesicht","n","ɡəˈzɪçt"), "la":("facies","f","ˈfa.ki.eːs")},
+  {"en":"Her face is kind.", "es":"Su cara es amable.", "fr":"Son visage est doux.", "it":"La sua faccia è gentile.", "de":"Ihr Gesicht ist freundlich."})
+A("water-2","food","noun","nucleus","butter",
+  {"en":("butter",None,"ˈbʌtəɹ"), "es":("mantequilla","f"), "fr":("beurre","m"), "it":("burro","m","ˈburo"), "pt":("manteiga","f"), "de":("Butter","f","ˈbʌtəɹ"), "la":("butyrum","n")},
+  {"en":"Bread with butter.", "es":"Pan con mantequilla.", "fr":"Du pain avec du beurre.", "it":"Pane con burro.", "de":"Brot mit Butter."})
+A("potato","food","noun","nucleus","potato",
+  {"en":"potato", "es":("patata","f"), "fr":("pomme de terre","f"), "it":("patata","f"), "pt":("batata","f"), "de":("Kartoffel","f"), "la":("solanum","n")},
+  {"en":"I eat a potato.", "es":"Como una patata.", "fr":"Je mange une pomme de terre.", "it":"Mangio una patata.", "de":"Ich esse eine Kartoffel."})
+A("orange-fruit","food","noun","nucleus","orange (fruit)",
+  {"en":("orange",None,"ˈɒɹ.ɪnd͡ʒ"), "es":("naranja","f","naˈɾanxa"), "fr":("orange","f","ˈɒɹ.ɪnd͡ʒ"), "it":("arancia","f"), "pt":("laranja","f"), "de":("Orange","f","ˈɒɹ.ɪnd͡ʒ"), "la":("aurantium","n")},
+  {"en":"The orange is sweet.", "es":"La naranja es dulce.", "fr":"Une orange est douce.", "it":"Una arancia è dolce.", "de":"Die Orange ist süß."})
+A("juice","drink","noun","nucleus","juice",
+  {"en":("juice",None,"d͡ʒuːs"), "es":("zumo","m"), "fr":("jus","m","ʒy"), "it":("succo","m"), "pt":("suco","m"), "de":("Saft","m","zaft"), "la":("sucus","m","ˈsuː.kʊs")},
+  {"en":"I drink juice.", "es":"Bebo zumo.", "fr":"Je bois du jus.", "it":"Bevo il succo.", "de":"Ich trinke Saft."})
+A("dinner","food","noun","nucleus","dinner",
+  {"en":"dinner", "es":("cena","f","ˈsẽ.nɐ"), "fr":("dîner","m"), "it":("cena","f","ˈsẽ.nɐ"), "pt":("jantar","m"), "de":("Abendessen","n"), "la":("cena","f","ˈsẽ.nɐ")},
+  {"en":"Dinner is ready.", "es":"La cena está lista.", "fr":"Le dîner est prêt.", "it":"La cena è pronta.", "de":"Das Abendessen ist fertig."})
+A("lunch","food","noun","nucleus","lunch",
+  {"en":"lunch", "es":("almuerzo","m"), "fr":("déjeuner","m"), "it":("pranzo","m"), "pt":("almoço","m"), "de":("Mittagessen","n"), "la":("prandium","n")},
+  {"en":"Lunch is good.", "es":"El almuerzo es bueno.", "fr":"Le déjeuner est bon.", "it":"Il pranzo è buono.", "de":"Das Mittagessen ist gut."})
+A("pig","animal","noun","nucleus","pig",
+  {"en":("pig",None,"pɪɡ"), "es":("cerdo","m"), "fr":("cochon","m"), "it":("maiale","m"), "pt":("porco","m","ˈpoʁ.ku"), "de":("Schwein","n"), "la":("porcus","m","ˈpɔr.kʊs")},
+  {"en":"The pig is pink.", "es":"El cerdo es rosa.", "fr":"Le cochon est rose.", "it":"Il maiale è rosa.", "de":"Das Schwein ist rosa."})
+A("duck","animal","noun","nucleus","duck",
+  {"en":"duck", "es":("pato","m"), "fr":("canard","m","ka.naʁ"), "it":("anatra","f"), "pt":("pato","m"), "de":("Ente","f","ˈɛntə"), "la":("anas","f")},
+  {"en":"The duck swims.", "es":"El pato nada.", "fr":"Le canard nage.", "it":"Una anatra nuota.", "de":"Die Ente schwimmt."})
+A("rabbit","animal","noun","nucleus","rabbit",
+  {"en":"rabbit", "es":("conejo","m","koˈnexo"), "fr":("lapin","m"), "it":("coniglio","m"), "pt":("coelho","m"), "de":("Kaninchen","n"), "la":("cuniculus","m")},
+  {"en":"The rabbit is fast.", "es":"El conejo es rápido.", "fr":"Le lapin est rapide.", "it":"Il coniglio è veloce.", "de":"Das Kaninchen ist schnell."})
+A("insect","animal","noun","nucleus","insect",
+  {"en":"insect", "es":("insecto","m"), "fr":("insecte","m"), "it":("insetto","m"), "pt":("inseto","m"), "de":("Insekt","n"), "la":("insectum","n")},
+  {"en":"The insect is small.", "es":"El insecto es pequeño.", "fr":"Un insecte est petit.", "it":"Un insetto è piccolo.", "de":"Das Insekt ist klein."})
+A("cloud","weather","noun","nucleus","cloud",
+  {"en":"cloud", "es":("nube","f","ˈnube"), "fr":("nuage","m"), "it":("nuvola","f"), "pt":("nuvem","f"), "de":("Wolke","f"), "la":("nubes","f","ˈnuː.beːs")},
+  {"en":"The cloud is white.", "es":"La nube es blanca.", "fr":"Le nuage est blanc.", "it":"La nuvola è bianca.", "de":"Die Wolke ist weiß."})
+A("ice","weather","noun","nucleus","ice",
+  {"en":("ice",None,"aɪs"), "es":("hielo","m"), "fr":("glace","f","ɡlas"), "it":("ghiaccio","m"), "pt":("gelo","m","ˈʒe.lu"), "de":("Eis","n","aɪ̯s"), "la":("glacies","f")},
+  {"en":"The ice is cold.", "es":"El hielo está frío.", "fr":"La glace est froide.", "it":"Il ghiaccio è freddo.", "de":"Das Eis ist kalt."})
+A("field","nature","noun","nucleus","field",
+  {"en":("field",None,"ˈfi(ː)ld"), "es":("campo","m","ˈkampo"), "fr":("champ","m"), "it":("campo","m"), "pt":("campo","m"), "de":("Feld","n"), "la":("ager","m")},
+  {"en":"The field is green.", "es":"El campo es verde.", "fr":"Le champ est vert.", "it":"Il campo è verde.", "de":"Das Feld ist grün."})
+A("island","nature","noun","nucleus","island",
+  {"en":"island", "es":("isla","f"), "fr":("île","f"), "it":("isola","f"), "pt":("ilha","f"), "de":("Insel","f"), "la":("insula","f")},
+  {"en":"The island is small.", "es":"La isla es pequeña.", "fr":"Une île est petite.", "it":"Una isola è piccola.", "de":"Die Insel ist klein."})
+A("leaf","nature","noun","nucleus","leaf",
+  {"en":("leaf",None,"liːf"), "es":("hoja","f","ˈoxa"), "fr":("feuille","f"), "it":("foglia","f"), "pt":("folha","f"), "de":("Blatt","n","blat"), "la":("folium","n","ˈfɔ.li.ũː")},
+  {"en":"The leaf is green.", "es":"La hoja es verde.", "fr":"La feuille est verte.", "it":"La foglia è verde.", "de":"Das Blatt ist grün."})
+A("afternoon","time","noun","nucleus","afternoon",
+  {"en":"afternoon", "es":("tarde","f","ˈtaʁ.d͡ʒi"), "fr":("après-midi","m"), "it":("pomeriggio","m"), "pt":("tarde","f","ˈtaʁ.d͡ʒi"), "de":("Nachmittag","m"), "la":("postmeridies","m")},
+  {"en":"We meet in the afternoon.", "es":"Trabajo por la tarde.", "fr":"Bon après-midi à toi.", "it":"Studio il pomeriggio.", "de":"Wir treffen uns am Nachmittag."})
+A("today-2","time","noun","nucleus","spring (season)",
+  {"en":("spring",None,"ˈspɹɪŋ"), "es":("primavera","f","pɾimaˈbeɾa"), "fr":("printemps","m"), "it":("primavera","f","pɾimaˈbeɾa"), "pt":("primavera","f","pɾimaˈbeɾa"), "de":("Frühling","m"), "la":("ver","n","ˈbeɾ")},
+  {"en":"Spring is warm.", "es":"La primavera es cálida.", "fr":"Le printemps est doux.", "it":"La primavera è mite.", "de":"Der Frühling ist warm."})
+A("summer","time","noun","nucleus","summer",
+  {"en":"summer", "es":("verano","m"), "fr":("été","m"), "it":("estate","f"), "pt":("verão","m"), "de":("Sommer","m"), "la":("aestas","f")},
+  {"en":"Summer is hot.", "es":"El verano es caluroso.", "fr":"En été il fait chaud.", "it":"In estate fa caldo.", "de":"Der Sommer ist heiß."})
+A("autumn","time","noun","nucleus","autumn / fall",
+  {"en":"autumn", "es":("otoño","m"), "fr":("automne","m"), "it":("autunno","m"), "pt":("outono","m"), "de":("Herbst","m"), "la":("autumnus","m")},
+  {"en":"Autumn is cool.", "es":"El otoño es fresco.", "fr":"En automne il fait frais.", "it":"In autunno fa fresco.", "de":"Der Herbst ist kühl."})
+A("winter","time","noun","nucleus","winter",
+  {"en":"winter", "es":("invierno","m"), "fr":("hiver","m"), "it":("inverno","m"), "pt":("inverno","m"), "de":("Winter","m"), "la":("hiems","f")},
+  {"en":"Winter is cold.", "es":"El invierno es frío.", "fr":"En hiver il fait froid.", "it":"In inverno fa freddo.", "de":"Der Winter ist kalt."})
+A("but","function","function","prereq","but",
+  {"en":("but",None,"byt"), "es":("pero",None,"ˈpeɾo"), "fr":("mais",None,"ˈmajs"), "it":("ma",None,"ma"), "pt":("mas",None,"mas"), "de":("aber",None,"ˈaːbɐ"), "la":"sed"},
+  {"en":"Small but good.", "es":"Pequeño pero bueno.", "fr":"Petit mais bon.", "it":"Piccolo ma buono.", "de":"Klein aber gut."})
+A("because","function","function","nucleus","because",
+  {"en":"because", "es":"porque", "fr":"parce que", "it":"perché", "pt":"porque", "de":"weil", "la":"quia"},
+  {"en":"I stay because it rains.", "es":"Me quedo porque llueve.", "fr":"Je reste parce que il pleut.", "it":"Resto perché piove.", "de":"Ich bleibe, weil es regnet."})
+A("if","function","function","nucleus","if",
+  {"en":("if",None,"ɪf"), "es":("si",None,"si"), "fr":("si",None,"si"), "it":("se",None,"se"), "pt":("se",None,"si"), "de":"wenn", "la":("si",None,"si")},
+  {"en":"If you want, come.", "es":"Si quieres, ven.", "fr":"Si tu veux, viens.", "it":"Se vuoi, vieni.", "de":"Wenn du willst, komm."})
+A("under","function","preposition","nucleus","under",
+  {"en":("under",None,"ˈʌndə"), "es":("bajo",None,"ˈbaxo"), "fr":"sous", "it":("sotto",None,"ˈsot.to"), "pt":"sob", "de":("unter",None,"ˈʊntɐ"), "la":("sub",None,"ˈsʊb")},
+  {"en":"The cat is under the table.", "es":"El gato está bajo la mesa.", "fr":"Le chat est sous la table.", "it":"Il gatto è sotto il tavolo.", "de":"Die Katze ist unter dem Tisch."})
+A("between","function","preposition","nucleus","between",
+  {"en":"between", "es":("entre",None,"ˈentɾe"), "fr":("entre",None,"ˈentɾe"), "it":("tra",None,"t͡ɕaː˧˧"), "pt":("entre",None,"ˈẽ.tɾi"), "de":"zwischen", "la":"inter"},
+  {"en":"It is between us.", "es":"Está entre nosotros.", "fr":"C'est entre nous.", "it":"È tra noi.", "de":"Es ist zwischen uns."})
+A("without","function","preposition","nucleus","without",
+  {"en":"without", "es":"sin", "fr":"sans", "it":"senza", "pt":"sem", "de":"ohne", "la":"sine"},
+  {"en":"Coffee without sugar.", "es":"Café sin azúcar.", "fr":"Café sans sucre.", "it":"Caffè senza zucchero.", "de":"Kaffee ohne Zucker."})
+A("after","function","preposition","nucleus","after",
+  {"en":("after",None,"ˈɑːftə"), "es":"después", "fr":"après", "it":"dopo", "pt":"depois", "de":("nach",None,"naːx"), "la":("post",None,"ˈpɔst")},
+  {"en":"We eat after the film.", "es":"Comemos después.", "fr":"On mange après.", "it":"Mangiamo dopo.", "de":"Wir essen nach dem Film."})
+A("before","function","preposition","nucleus","before",
+  {"en":"before", "es":("antes",None,"ˈantes"), "fr":("avant",None,"a.vɑ̃"), "it":("prima",None,"ˈpri.ma"), "pt":("antes",None,"ˈantes"), "de":("vor",None,"foːr"), "la":("ante",None,"ˈante")},
+  {"en":"Wash before you eat.", "es":"Lávate antes.", "fr":"Lave-toi avant.", "it":"Lavati prima.", "de":"Wasch dich vor dem Essen."})
+A("about","function","preposition","nucleus","about (concerning)",
+  {"en":("about",None,"əˈbaʊ̯t"), "es":("sobre",None,"ˈsobɾe"), "fr":("sur",None,"syʁ"), "it":("su",None,"ˈsu"), "pt":("sobre",None,"ˈsobɾe"), "de":("über",None,"ˈyːbɐ"), "la":("de",None,"ˈdeː")},
+  {"en":"A book about birds.", "es":"Un libro sobre aves.", "fr":"Un livre sur les oiseaux.", "it":"Un libro su uccelli.", "de":"Ein Buch über Vögel."})
+A("also","function","adverb","nucleus","also / too",
+  {"en":("also",None,"ˈʔalzoː"), "es":"también", "fr":"aussi", "it":"anche", "pt":"também", "de":("auch",None,"aʊ̯x"), "la":("etiam",None,"ˈɛ.ti.ãː")},
+  {"en":"I also want tea.", "es":"También quiero té.", "fr":"Je veux aussi du thé.", "it":"Anche io voglio il tè.", "de":"Ich will auch Tee."})
+A("only","function","adverb","nucleus","only",
+  {"en":"only", "es":"solo", "fr":"seulement", "it":"solo", "pt":"só", "de":"nur", "la":"tantum"},
+  {"en":"Only one apple.", "es":"Solo una manzana.", "fr":"Seulement une pomme.", "it":"Solo una mela.", "de":"Nur ein Apfel."})
+A("here-now","function","adverb","nucleus","far",
+  {"en":"far", "es":"lejos", "fr":"loin", "it":"lontano", "pt":"longe", "de":("weit",None,"vaɪ̯t"), "la":"procul"},
+  {"en":"The city is far.", "es":"La ciudad está lejos.", "fr":"La ville est loin.", "it":"Il paese è lontano.", "de":"Die Stadt ist weit."})
+A("again","function","adverb","nucleus","again",
+  {"en":"again", "es":"otra vez", "fr":("encore",None,"ɑ̃.kɔʁ"), "it":("ancora",None,"ˈan.ko.ra"), "pt":"outra vez", "de":"wieder", "la":"iterum"},
+  {"en":"Say it again.", "es":"Dilo otra vez.", "fr":"Dis-le encore.", "it":"Dillo ancora.", "de":"Sag es wieder."})
+A("together","function","adverb","nucleus","together",
+  {"en":"together", "es":"juntos", "fr":("ensemble",None,"ɑ̃.sɑ̃bl"), "it":"insieme", "pt":"juntos", "de":"zusammen", "la":("simul",None,"ˈsɪ.mʊɫ")},
+  {"en":"We work together.", "es":"Trabajamos juntos.", "fr":"On travaille ensemble.", "it":"Lavoriamo insieme.", "de":"Wir arbeiten zusammen."})
+A("maybe","function","adverb","nucleus","maybe / perhaps",
+  {"en":"maybe", "es":"quizás", "fr":"peut-être", "it":"forse", "pt":"talvez", "de":"vielleicht", "la":"fortasse"},
+  {"en":"Maybe tomorrow.", "es":"Quizás mañana.", "fr":"Peut-être demain.", "it":"Forse domani.", "de":"Vielleicht morgen."})
+A("our","function","pronoun","nucleus","our",
+  {"en":("our",None,"ˈaʊ̯.əː"), "es":"nuestro", "fr":"notre", "it":("nostro",None,"ˈnɔs.tro"), "pt":"nosso", "de":"unser", "la":"noster"},
+  {"en":"This is our house.", "es":"Este es nuestro libro.", "fr":"C'est notre maison.", "it":"Questo è il nostro libro.", "de":"Das ist unser Haus."})
+A("their","function","pronoun","nucleus","their",
+  {"en":"their", "es":("su",None,"ˈsu"), "fr":"leur", "it":("loro",None,"ˈlo.ro"), "pt":"deles", "de":("ihr",None,"iːr"), "la":"eorum"},
+  {"en":"That is their car.", "es":"Ese es su coche.", "fr":"C'est leur voiture.", "it":"È la loro auto.", "de":"Das ist ihr Auto."})
+A("all","function","function","nucleus","all",
+  {"en":("all",None,"ɔːl"), "es":"todo", "fr":("tout",None,"tu"), "it":("tutto",None,"ˈtut.to"), "pt":("tudo",None,"ˈtu.du"), "de":"alle", "la":("omnis",None,"ˈɔm.nɪs")},
+  {"en":"All the bread is gone.", "es":"Todo el pan se acabó.", "fr":"Tout le pain est parti.", "it":"Tutto il pane è finito.", "de":"Alle das Brot ist weg."})
+A("many","function","adjective","nucleus","many / much",
+  {"en":("many",None,"ˈmɛni"), "es":"muchos", "fr":"beaucoup", "it":"molti", "pt":"muitos", "de":"viele", "la":"multi"},
+  {"en":"Many people came.", "es":"Vinieron muchos.", "fr":"Beaucoup sont venus.", "it":"Molti sono venuti.", "de":"Viele kamen."})
+A("few","function","adjective","nucleus","few",
+  {"en":("few",None,"fjuː"), "es":"pocos", "fr":"peu", "it":"pochi", "pt":"poucos", "de":"wenige", "la":"pauci"},
+  {"en":"Few people stayed.", "es":"Pocos se quedaron.", "fr":"Peu sont restés.", "it":"Pochi sono rimasti.", "de":"Wenige blieben."})
+A("other","function","adjective","nucleus","other / another",
+  {"en":"other", "es":"otro", "fr":"autre", "it":"altro", "pt":("outro",None,"ˈo(w).tɾu"), "de":"andere", "la":("alius",None,"ˈa.li.ʊs")},
+  {"en":"I want the other one.", "es":"Quiero el otro.", "fr":"Je veux un autre.", "it":"Voglio un altro.", "de":"Ich will eine andere Farbe."})
+A("same","function","adjective","nucleus","same",
+  {"en":"same", "es":("mismo",None,"ˈmismo"), "fr":"même", "it":"stesso", "pt":("mesmo",None,"ˈmez.mu"), "de":("gleich",None,"ɡlaɪ̯ç"), "la":"idem"},
+  {"en":"It is the same book.", "es":"Es el mismo libro.", "fr":"C'est le même livre.", "it":"È lo stesso libro.", "de":"Wir sind gleich groß."})
+A("sixty","number","numeral","prereq","sixty (60)",
+  {"en":"sixty", "es":"sesenta", "fr":"soixante", "it":"sessanta", "pt":"sessenta", "de":"sechzig", "la":"sexaginta"},
+  {"en":"He is sixty.", "es":"Tiene sesenta.", "fr":"Il a soixante ans.", "it":"Ha sessanta anni.", "de":"Er ist sechzig."})
+A("seventy","number","numeral","prereq","seventy (70)",
+  {"en":"seventy", "es":"setenta", "fr":"soixante-dix", "it":"settanta", "pt":"setenta", "de":"siebzig", "la":"septuaginta"},
+  {"en":"She is seventy.", "es":"Tiene setenta.", "fr":"Elle a soixante-dix ans.", "it":"Ha settanta anni.", "de":"Sie ist siebzig."})
+A("eighty","number","numeral","prereq","eighty (80)",
+  {"en":"eighty", "es":"ochenta", "fr":"quatre-vingts", "it":"ottanta", "pt":"oitenta", "de":"achtzig", "la":"octoginta"},
+  {"en":"He is eighty.", "es":"Tiene ochenta.", "fr":"Il a quatre-vingts ans.", "it":"Ha ottanta anni.", "de":"Er ist achtzig."})
+A("ninety","number","numeral","prereq","ninety (90)",
+  {"en":"ninety", "es":"noventa", "fr":"quatre-vingt-dix", "it":"novanta", "pt":"noventa", "de":"neunzig", "la":"nonaginta"},
+  {"en":"She is ninety.", "es":"Tiene noventa.", "fr":"Elle a quatre-vingt-dix ans.", "it":"Ha novanta anni.", "de":"Sie ist neunzig."})
+A("first","number","adjective","nucleus","first",
+  {"en":"first", "es":("primero",None,"pɾiˈmeɾo"), "fr":("premier",None,"pʁə.mje"), "it":("primo",None,"ˈpri.mo"), "pt":("primeiro",None,"pɾiˈme(j).ɾu"), "de":"erste", "la":"primus"},
+  {"en":"The first day.", "es":"El primero día.", "fr":"Le premier jour.", "it":"Il primo giorno.", "de":"Der erste Tag."})
+A("second-ord","number","adjective","nucleus","second (ordinal)",
+  {"en":"second", "es":("segundo",None,"seˈɡundo"), "fr":"deuxième", "it":("secondo",None,"seˈkon.do"), "pt":("segundo",None,"seˈɡũ.du"), "de":"zweite", "la":("secundus",None,"sɛˈkʊn.dʊs")},
+  {"en":"The second book.", "es":"El segundo libro.", "fr":"Le deuxième livre.", "it":"Il secondo libro.", "de":"Das zweite Buch."})
+A("last","number","adjective","nucleus","last",
+  {"en":("last",None,"lɑst"), "es":"último", "fr":"dernier", "it":("ultimo",None,"ˈul.ti.mo"), "pt":"último", "de":"letzte", "la":"ultimus"},
+  {"en":"The last day.", "es":"El último día.", "fr":"Le dernier jour.", "it":"Questo è ultimo giorno.", "de":"Der letzte Tag."})
+A("half","number","noun","nucleus","half",
+  {"en":"half", "es":("mitad","f"), "fr":("moitié","f"), "it":("metà","f"), "pt":("metade","f"), "de":("Hälfte","f"), "la":("dimidium","n")},
+  {"en":"Half the bread.", "es":"La mitad del pan.", "fr":"La moitié du pain.", "it":"La metà del pane.", "de":"Die Hälfte vom Brot."})
+A("baby","people","noun","nucleus","baby",
+  {"en":"baby", "es":("bebé","m"), "fr":("bébé","m"), "it":("bambino","m"), "pt":("bebê","m"), "de":("Baby","n","ˈbeɪ̯.bi"), "la":("infans","m","ˈĩː.fãːs")},
+  {"en":"The baby sleeps.", "es":"El bebé duerme.", "fr":"Le bébé dort.", "it":"Il bambino dorme.", "de":"Das Baby schläft."})
+A("boy","people","noun","nucleus","boy",
+  {"en":("boy",None,"bɔɪ"), "es":("niño","m"), "fr":("garçon","m"), "it":("ragazzo","m"), "pt":("menino","m"), "de":("Junge","m"), "la":("puer","m","ˈpu.ɛr")},
+  {"en":"The boy plays.", "es":"El niño juega.", "fr":"Le garçon joue.", "it":"Il ragazzo gioca.", "de":"Der Junge spielt."})
+A("girl","people","noun","nucleus","girl",
+  {"en":("girl",None,"ˈɡɜːl"), "es":("niña","f"), "fr":("fille","f"), "it":("ragazza","f"), "pt":("menina","f","miˈnĩ.nɐ"), "de":("Mädchen","n"), "la":("puella","f","puˈɛl.la")},
+  {"en":"The girl reads.", "es":"La niña lee.", "fr":"La fille lit.", "it":"La ragazza legge.", "de":"Das Mädchen liest."})
+A("people","people","noun","nucleus","people",
+  {"en":("people",None,"ˈpi.pəl"), "es":("gente","f","ˈd͡ʒɛn.te"), "fr":("gens","m","ˈɡẽːs"), "it":("gente","f","ˈd͡ʒɛn.te"), "pt":("gente","f","ˈd͡ʒɛn.te"), "de":("Leute","f"), "la":("populus","m","ˈpɔ.pʊ.ɫʊs")},
+  {"en":"The people are kind.", "es":"La gente es amable.", "fr":"Les gens sont gentils.", "it":"La gente è gentile.", "de":"Die Leute sind nett."})
+A("neighbor","people","noun","nucleus","neighbour",
+  {"en":"neighbour", "es":("vecino","m"), "fr":("voisin","m"), "it":("vicino","m"), "pt":("vizinho","m","viˈzĩ.ɲu"), "de":("Nachbar","m"), "la":("vicinus","m")},
+  {"en":"My neighbour is kind.", "es":"Mi vecino es amable.", "fr":"Mon voisin est gentil.", "it":"Il mio vicino è gentile.", "de":"Mein Nachbar ist nett."})
+A("worker","people","noun","nucleus","worker",
+  {"en":"worker", "es":("trabajador","m"), "fr":("ouvrier","m"), "it":("operaio","m"), "pt":("trabalhador","m"), "de":("Arbeiter","m"), "la":("operarius","m")},
+  {"en":"The worker is tired.", "es":"El trabajador está cansado.", "fr":"Un ouvrier est fatigué.", "it":"Un operaio è stanco.", "de":"Der Arbeiter ist müde."})
+A("life","abstract","noun","nucleus","life",
+  {"en":("life",None,"ˈlaɪ̯f"), "es":("vida","f","ˈbida"), "fr":("vie","f","vi"), "it":("vita","f","ˈwiː.ta"), "pt":("vida","f","ˈbida"), "de":("Leben","n","ˈleːbən"), "la":("vita","f","ˈwiː.ta")},
+  {"en":"Life is good.", "es":"La vida es buena.", "fr":"La vie est belle.", "it":"La vita è bella.", "de":"Das Leben ist gut."})
+A("world","abstract","noun","nucleus","world",
+  {"en":("world",None,"wɜːld"), "es":("mundo","m","ˈmundo"), "fr":("monde","m","mɔ̃d"), "it":("mondo","m","ˈmon.do"), "pt":("mundo","m","ˈmũ.du"), "de":("Welt","f"), "la":("mundus","m")},
+  {"en":"The world is big.", "es":"El mundo es grande.", "fr":"Le monde est grand.", "it":"Il mondo è grande.", "de":"Die Welt ist groß."})
+A("story","abstract","noun","nucleus","story",
+  {"en":"story", "es":("historia","f","isˈtoɾja"), "fr":("histoire","f"), "it":("storia","f"), "pt":("história","f"), "de":("Geschichte","f"), "la":("fabula","f","ˈfaː.bʊ.ɫa")},
+  {"en":"A good story.", "es":"Una buena historia.", "fr":"Une bonne histoire.", "it":"Una bella storia.", "de":"Eine gute Geschichte."})
+A("music","abstract","noun","nucleus","music",
+  {"en":"music", "es":("música","f","ˈmu.zi.kɐ"), "fr":("musique","f"), "it":("musica","f"), "pt":("música","f","ˈmu.zi.kɐ"), "de":("Musik","f","muˈziːk"), "la":("musica","f")},
+  {"en":"The music is nice.", "es":"La música es bonita.", "fr":"La musique est belle.", "it":"La musica è bella.", "de":"Die Musik ist schön."})
+A("game","abstract","noun","nucleus","game",
+  {"en":"game", "es":("juego","m","ˈxweɡo"), "fr":("jeu","m","ʒø"), "it":("gioco","m","ˈd͡ʒɔ.ko"), "pt":("jogo","m","ˈʒo.ɡu"), "de":("Spiel","n","ʃpiːl"), "la":("ludus","m","ˈɫuː.dʊs")},
+  {"en":"The game is fun.", "es":"El juego es divertido.", "fr":"Le jeu est amusant.", "it":"Il gioco è divertente.", "de":"Das Spiel ist lustig."})
+A("idea","abstract","noun","nucleus","idea",
+  {"en":"idea", "es":("idea","f"), "fr":("idée","f"), "it":("idea","f"), "pt":("ideia","f","iˈdɛj.ɐ"), "de":("Idee","f"), "la":("idea","f")},
+  {"en":"A good idea.", "es":"Una buena idea.", "fr":"Une bonne idée.", "it":"Una buona idea.", "de":"Eine gute Idee."})
+A("problem","abstract","noun","nucleus","problem",
+  {"en":("problem",None,"ˈpɹɒbləm"), "es":("problema","m"), "fr":("problème","m"), "it":("problema","m"), "pt":("problema","m"), "de":("Problem","n","ˈpɹɒbləm"), "la":("problema","n")},
+  {"en":"It is a small problem.", "es":"Es un problema pequeño.", "fr":"C'est un petit problème.", "it":"È un piccolo problema.", "de":"Es ist ein kleines Problem."})
+A("help-noun","abstract","noun","nucleus","help (the noun)",
+  {"en":"help", "es":("ayuda","f","aˈʝuda"), "fr":("aide","f"), "it":("aiuto","m","aˈju.to"), "pt":("ajuda","f","aˈʒu.dɐ"), "de":("Hilfe","f"), "la":("auxilium","n")},
+  {"en":"I need help.", "es":"Necesito ayuda.", "fr":"Voici une aide utile.", "it":"Ho bisogno di aiuto.", "de":"Ich brauche Hilfe."})
+A("good-afternoon","greeting","phrase","frontier","good afternoon",
+  {"en":"good afternoon", "es":"buenas tardes", "fr":"bon après-midi", "it":"buon pomeriggio", "pt":"boa tarde", "de":"guten Tag", "la":"salve"},
+  {"en":"Good afternoon, madam.", "es":"Buenas tardes, señora.", "fr":"Bon après-midi, madame.", "it":"Buon pomeriggio, signora.", "de":"Guten Tag, gnädige Frau."})
+A("you-are-welcome","phrase","phrase","frontier","you're welcome",
+  {"en":"you're welcome", "es":"de nada", "fr":"de rien", "it":("prego",None,"ˈprɛ.ɡo"), "pt":"de nada", "de":"bitte schön", "la":"libenter"},
+  {"en":"You're welcome, friend.", "es":"De nada, amigo.", "fr":"De rien, mon ami.", "it":"Prego, amico.", "de":"Bitte schön, mein Freund."})
+A("nice-to-meet-you","phrase","phrase","frontier","nice to meet you",
+  {"en":"nice to meet you", "es":"mucho gusto", "fr":"enchanté", "it":"piacere", "pt":"prazer", "de":"freut mich", "la":"gaudeo te videre"},
+  {"en":"Hello, nice to meet you.", "es":"Hola, mucho gusto.", "fr":"Bonjour, enchanté.", "it":"Ciao, piacere.", "de":"Hallo, freut mich."})
+A("can-you-help","phrase","phrase","frontier","can you help me?",
+  {"en":"can you help me", "es":"puedes ayudarme", "fr":"pouvez-vous m'aider", "it":"può aiutarmi", "pt":"pode me ajudar", "de":"können Sie mir helfen", "la":"potesne me iuvare"},
+  {"en":"Please, can you help me?", "es":"Por favor, ¿puedes ayudarme?", "fr":"Pouvez-vous m'aider, s'il vous plaît?", "it":"Scusi, può aiutarmi?", "de":"Bitte, können Sie mir helfen?"})
+A("i-would-like","phrase","phrase","frontier","I would like",
+  {"en":"I would like", "es":"quisiera", "fr":"je voudrais", "it":"vorrei", "pt":"gostaria", "de":"ich möchte", "la":"velim"},
+  {"en":"I would like a coffee.", "es":"Quisiera un café.", "fr":"Je voudrais un café.", "it":"Vorrei un caffè.", "de":"Ich möchte einen Kaffee."})
+A("what-time","phrase","phrase","frontier","what time is it?",
+  {"en":"what time is it", "es":"qué hora es", "fr":"quelle heure est-il", "it":"che ora è", "pt":"que horas são", "de":"wie spät ist es", "la":"quota hora est"},
+  {"en":"Excuse me, what time is it?", "es":"Perdón, ¿qué hora es?", "fr":"Pardon, quelle heure est-il?", "it":"Scusi, che ora è?", "de":"Entschuldigung, wie spät ist es?"})
+A("i-dont-speak","phrase","phrase","frontier","I don't speak (the language)",
+  {"en":"I don't speak", "es":"no hablo", "fr":"je ne parle pas", "it":"non parlo", "pt":"não falo", "de":"ich spreche nicht", "la":"non loquor"},
+  {"en":"Sorry, I don't speak it well.", "es":"Lo siento, no hablo bien.", "fr":"Désolé, je ne parle pas bien.", "it":"Mi dispiace, non parlo bene.", "de":"Entschuldigung, ich spreche nicht gut."})
+A("see-you-later","phrase","phrase","frontier","see you later",
+  {"en":"see you later", "es":"hasta luego", "fr":"à bientôt", "it":"a dopo", "pt":"até logo", "de":"bis später", "la":"vale"},
+  {"en":"Goodbye, see you later.", "es":"Adiós, hasta luego.", "fr":"Au revoir, à bientôt.", "it":"Ciao, a dopo.", "de":"Tschüss, bis später."})
+A("welcome","phrase","phrase","frontier","welcome",
+  {"en":"welcome", "es":"bienvenido", "fr":"bienvenue", "it":"benvenuto", "pt":"bem-vindo", "de":"willkommen", "la":"salve"},
+  {"en":"Welcome to my house.", "es":"Bienvenido a mi casa.", "fr":"Bienvenue chez moi.", "it":"Benvenuto a casa mia.", "de":"Willkommen in meinem Haus."})
+A("how-do-you-say","phrase","phrase","frontier","how do you say...?",
+  {"en":"how do you say", "es":"cómo se dice", "fr":"comment dit-on", "it":"come si dice", "pt":"como se diz", "de":"wie sagt man", "la":"quomodo dicitur"},
+  {"en":"How do you say this?", "es":"¿Cómo se dice esto?", "fr":"Comment dit-on ça?", "it":"Come si dice questo?", "de":"Wie sagt man das?"})
+A("i-am-hungry","phrase","phrase","frontier","I am hungry",
+  {"en":"I am hungry", "es":"tengo hambre", "fr":"j'ai faim", "it":"ho fame", "pt":"estou com fome", "de":"ich habe Hunger", "la":"esurio"},
+  {"en":"I am hungry now.", "es":"Ahora tengo hambre.", "fr":"Maintenant j'ai faim.", "it":"Adesso ho fame.", "de":"Mama, ich habe Hunger."})
+A("i-am-thirsty","phrase","phrase","frontier","I am thirsty",
+  {"en":"I am thirsty", "es":"tengo sed", "fr":"j'ai soif", "it":"ho sete", "pt":"estou com sede", "de":"ich habe Durst", "la":("sitio",None,"ˈsitjo")},
+  {"en":"I am thirsty too.", "es":"También tengo sed.", "fr":"J'ai soif aussi.", "it":"Ho sete anch'io.", "de":"Mama, ich habe Durst."})
+A("it-is-cold","phrase","phrase","frontier","it is cold (weather)",
+  {"en":"it is cold", "es":"hace frío", "fr":"il fait froid", "it":"fa freddo", "pt":"está frio", "de":"es ist kalt", "la":"frigus est"},
+  {"en":"Today it is cold.", "es":"Hoy hace frío.", "fr":"Aujourd'hui il fait froid.", "it":"Oggi fa freddo.", "de":"Brrr, es ist kalt heute."})
+A("it-is-hot","phrase","phrase","frontier","it is hot (weather)",
+  {"en":"it is hot", "es":"hace calor", "fr":"il fait chaud", "it":"fa caldo", "pt":"está quente", "de":"es ist heiß", "la":"calidum est"},
+  {"en":"In summer it is hot.", "es":"En verano hace calor.", "fr":"En été il fait chaud.", "it":"D'estate fa caldo.", "de":"Im Sommer es ist heiß und sonnig."})
+A("the-bill","phrase","phrase","frontier","the bill / check, please",
+  {"en":"the bill please", "es":"la cuenta por favor", "fr":"l'addition s'il vous plaît", "it":"il conto per favore", "pt":"a conta por favor", "de":"die Rechnung bitte", "la":"ratio quaeso"},
+  {"en":"Excuse me, the bill please.", "es":"Perdón, la cuenta por favor.", "fr":"Pardon, l'addition s'il vous plaît.", "it":"Scusi, il conto per favore.", "de":"Entschuldigung, die Rechnung bitte."})
+A("i-like-it","phrase","phrase","frontier","I like it",
+  {"en":"I like it", "es":"me gusta", "fr":"j'aime", "it":"mi piace", "pt":"eu gosto", "de":"es gefällt mir", "la":"mihi placet"},
+  {"en":"This is good, I like it.", "es":"Esto es bueno, me gusta.", "fr":"C'est bon, j'aime.", "it":"È buono, mi piace.", "de":"Das ist gut, es gefällt mir."})
+A("help-me","phrase","phrase","frontier","help! (emergency)",
+  {"en":"help", "es":"socorro", "fr":"au secours", "it":("aiuto",None,"aˈju.to"), "pt":"socorro", "de":"Hilfe", "la":"succurre"},
+  {"en":"Help, please!", "es":"¡Socorro, por favor!", "fr":"Au secours, s'il vous plaît!", "it":"Aiuto, per favore!", "de":"Hilfe, bitte!"})
+A("good-luck","phrase","phrase","frontier","good luck",
+  {"en":"good luck", "es":"buena suerte", "fr":"bonne chance", "it":"buona fortuna", "pt":"boa sorte", "de":"viel Glück", "la":"bona fortuna"},
+  {"en":"Good luck to you.", "es":"Buena suerte.", "fr":"Bonne chance.", "it":"Buona fortuna.", "de":"Viel Glück."})
+A("happy-birthday","phrase","phrase","frontier","happy birthday",
+  {"en":"happy birthday", "es":"feliz cumpleaños", "fr":"joyeux anniversaire", "it":"buon compleanno", "pt":"feliz aniversário", "de":"alles Gute zum Geburtstag", "la":"felix natalis dies"},
+  {"en":"Happy birthday, friend!", "es":"¡Feliz cumpleaños, amigo!", "fr":"Joyeux anniversaire, mon ami!", "it":"Buon compleanno, amico!", "de":"Alles Gute zum Geburtstag, mein Freund!"})
+A("i-am-fine","phrase","phrase","frontier","I am fine",
+  {"en":"I am fine", "es":"estoy bien", "fr":"je vais bien", "it":"sto bene", "pt":"estou bem", "de":"mir geht es gut", "la":"valeo"},
+  {"en":"Thank you, I am fine.", "es":"Gracias, estoy bien.", "fr":"Merci, je vais bien.", "it":"Grazie, sto bene.", "de":"Danke, mir geht es gut."})
+
+
 # ----------------------------------------------------------------------------
 # Materialize tuples -> atom dicts, attaching IPA from the subset where missing.
 # ----------------------------------------------------------------------------
@@ -634,7 +1173,13 @@ def main():
     corpus = json.load(open(CORPUS))
     existing = corpus["atoms"]
     existing_ids = {a["id"] for a in existing}
-    new = build_new()
+    built = build_new()
+
+    # Idempotency: the D list accumulates across batches and the corpus already
+    # holds previously-appended atoms, so only APPEND ids not already present.
+    # Re-running therefore converges (adds nothing) instead of colliding.
+    new = [a for a in built if a["id"] not in existing_ids]
+    skipped = len(built) - len(new)
 
     # validate
     errs = []
@@ -644,7 +1189,6 @@ def main():
         i = a["id"]
         if i in seen: errs.append(f"dup new id {i}")
         seen.add(i)
-        if i in existing_ids: errs.append(f"new id collides with existing {i}")
         if not a.get("gloss"): errs.append(f"{i}: no gloss")
         for l in LANGS:
             if not a["forms"].get(l, {}).get("word"):
@@ -670,17 +1214,19 @@ def main():
 
     merged = existing + new
     corpus["atoms"] = merged
-    corpus["meta"]["version"] = "0.2.0"
+    corpus["meta"]["version"] = "0.3.0"
     corpus["meta"]["title"] = "Polyglot Core — a beginner course across 7 languages"
     corpus["meta"]["license"] = (
         "Translations & IPA are facts cross-checked against Wiktionary (CC-BY-SA, "
-        "attributed via Kaikki); example sentences are original and beginner-simple."
+        "attributed via Kaikki — IPA pulled from the live photon dictionary at "
+        "polingual.agfarms.dev); example sentences are original and beginner-simple."
     )
     json.dump(corpus, open(CORPUS, "w"), ensure_ascii=False, indent=2)
     open(CORPUS, "a").write("\n")
     import collections
     cats = collections.Counter(a.get("category", "?") for a in merged)
-    print(f"OK: {len(existing)} existing + {len(new)} new = {len(merged)} atoms x {len(LANGS)} languages")
+    print(f"OK: {len(existing)} existing + {len(new)} new (skipped {skipped} already present) "
+          f"= {len(merged)} atoms x {len(LANGS)} languages")
     print("categories:", dict(sorted(cats.items())))
 
 if __name__ == "__main__":

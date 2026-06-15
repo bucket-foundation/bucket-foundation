@@ -12,8 +12,8 @@
       "de",
       "la"
     ],
-    "version": "0.2.0",
-    "license": "Translations & IPA are facts cross-checked against Wiktionary (CC-BY-SA, attributed via Kaikki); example sentences are original and beginner-simple."
+    "version": "0.3.0",
+    "license": "Translations & IPA are facts cross-checked against Wiktionary (CC-BY-SA, attributed via Kaikki — IPA pulled from the live photon dictionary at polingual.agfarms.dev); example sentences are original and beginner-simple."
   },
   "atoms": [
     {
@@ -12909,6 +12909,7617 @@
         "fr": "Désolé, je ne sais pas.",
         "it": "Scusa, non lo so.",
         "de": "Sorry, ich weiß nicht."
+      }
+    },
+    {
+      "id": "to-can",
+      "gloss": "to be able to / can",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "can",
+          "ipa": "ˈkæn"
+        },
+        "es": {
+          "word": "poder",
+          "ipa": "poˈdeɾ"
+        },
+        "fr": {
+          "word": "pouvoir",
+          "ipa": "pu.vwaʁ"
+        },
+        "it": {
+          "word": "potere"
+        },
+        "pt": {
+          "word": "poder",
+          "ipa": "poˈdeʁ"
+        },
+        "de": {
+          "word": "können"
+        },
+        "la": {
+          "word": "posse",
+          "ipa": "ˈpɔs.sɛ"
+        }
+      },
+      "example": {
+        "en": "I can swim.",
+        "es": "Yo poder nadar.",
+        "fr": "Je veux pouvoir nager.",
+        "it": "Voglio potere nuotare.",
+        "de": "Ich will schwimmen können."
+      }
+    },
+    {
+      "id": "to-put",
+      "gloss": "to put",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "put"
+        },
+        "es": {
+          "word": "poner",
+          "ipa": "poˈneɾ"
+        },
+        "fr": {
+          "word": "mettre",
+          "ipa": "mɛtʁ"
+        },
+        "it": {
+          "word": "mettere",
+          "ipa": "ˈmet.te.re"
+        },
+        "pt": {
+          "word": "pôr",
+          "ipa": "ˈpoʁ"
+        },
+        "de": {
+          "word": "setzen",
+          "ipa": "ˈzɛtsən"
+        },
+        "la": {
+          "word": "ponere"
+        }
+      },
+      "example": {
+        "en": "I want to put it here.",
+        "es": "Quiero poner esto aquí.",
+        "fr": "Je veux mettre ça ici.",
+        "it": "Voglio mettere questo qui.",
+        "de": "Ich will es hier setzen."
+      }
+    },
+    {
+      "id": "to-take",
+      "gloss": "to take",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "take",
+          "ipa": "teɪk"
+        },
+        "es": {
+          "word": "tomar",
+          "ipa": "toˈma(ʁ)"
+        },
+        "fr": {
+          "word": "prendre",
+          "ipa": "pʁɑ̃.dʁə"
+        },
+        "it": {
+          "word": "prendere",
+          "ipa": "ˈprɛn.de.re"
+        },
+        "pt": {
+          "word": "tomar",
+          "ipa": "toˈma(ʁ)"
+        },
+        "de": {
+          "word": "nehmen",
+          "ipa": "ˈneːmən"
+        },
+        "la": {
+          "word": "capere"
+        }
+      },
+      "example": {
+        "en": "I want to take the bus.",
+        "es": "Quiero tomar el autobús.",
+        "fr": "Je veux prendre le bus.",
+        "it": "Voglio prendere il bus.",
+        "de": "Ich will den Bus nehmen."
+      }
+    },
+    {
+      "id": "to-call",
+      "gloss": "to call",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "call",
+          "ipa": "kɔːl"
+        },
+        "es": {
+          "word": "llamar"
+        },
+        "fr": {
+          "word": "appeler"
+        },
+        "it": {
+          "word": "chiamare"
+        },
+        "pt": {
+          "word": "chamar"
+        },
+        "de": {
+          "word": "rufen",
+          "ipa": "ˈʁuːfən"
+        },
+        "la": {
+          "word": "vocare"
+        }
+      },
+      "example": {
+        "en": "I want to call my friend.",
+        "es": "Quiero llamar a mi amigo.",
+        "fr": "Je veux appeler mon ami.",
+        "it": "Voglio chiamare il mio amico.",
+        "de": "Ich will meinen Freund rufen."
+      }
+    },
+    {
+      "id": "to-ask",
+      "gloss": "to ask",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "ask",
+          "ipa": "ɑːsk"
+        },
+        "es": {
+          "word": "preguntar"
+        },
+        "fr": {
+          "word": "demander"
+        },
+        "it": {
+          "word": "chiedere"
+        },
+        "pt": {
+          "word": "perguntar"
+        },
+        "de": {
+          "word": "fragen"
+        },
+        "la": {
+          "word": "rogare"
+        }
+      },
+      "example": {
+        "en": "I want to ask a question.",
+        "es": "Quiero preguntar algo.",
+        "fr": "Je veux demander quelque chose.",
+        "it": "Voglio chiedere una cosa.",
+        "de": "Ich will etwas fragen."
+      }
+    },
+    {
+      "id": "to-answer",
+      "gloss": "to answer",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "answer",
+          "ipa": "ˈɑːn.sə"
+        },
+        "es": {
+          "word": "responder",
+          "ipa": "responˈdeɾ"
+        },
+        "fr": {
+          "word": "répondre"
+        },
+        "it": {
+          "word": "rispondere"
+        },
+        "pt": {
+          "word": "responder",
+          "ipa": "ʁes.põˈde(ʁ)"
+        },
+        "de": {
+          "word": "antworten"
+        },
+        "la": {
+          "word": "respondere"
+        }
+      },
+      "example": {
+        "en": "Please answer me.",
+        "es": "Por favor responder.",
+        "fr": "Tu peux répondre?",
+        "it": "Puoi rispondere?",
+        "de": "Bitte antworten."
+      }
+    },
+    {
+      "id": "to-pay",
+      "gloss": "to pay",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "pay",
+          "ipa": "peɪ"
+        },
+        "es": {
+          "word": "pagar"
+        },
+        "fr": {
+          "word": "payer",
+          "ipa": "pɛ.je"
+        },
+        "it": {
+          "word": "pagare"
+        },
+        "pt": {
+          "word": "pagar"
+        },
+        "de": {
+          "word": "zahlen"
+        },
+        "la": {
+          "word": "solvere"
+        }
+      },
+      "example": {
+        "en": "I want to pay now.",
+        "es": "Quiero pagar ahora.",
+        "fr": "Je veux payer maintenant.",
+        "it": "Voglio pagare adesso.",
+        "de": "Ich will jetzt zahlen."
+      }
+    },
+    {
+      "id": "to-cook",
+      "gloss": "to cook",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "cook"
+        },
+        "es": {
+          "word": "cocinar"
+        },
+        "fr": {
+          "word": "cuisiner"
+        },
+        "it": {
+          "word": "cucinare"
+        },
+        "pt": {
+          "word": "cozinhar"
+        },
+        "de": {
+          "word": "kochen",
+          "ipa": "ˈkɔχən"
+        },
+        "la": {
+          "word": "coquere"
+        }
+      },
+      "example": {
+        "en": "I like to cook.",
+        "es": "Me gusta cocinar.",
+        "fr": "J'aime cuisiner.",
+        "it": "Mi piace cucinare.",
+        "de": "Ich will heute kochen."
+      }
+    },
+    {
+      "id": "to-wash",
+      "gloss": "to wash",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "wash"
+        },
+        "es": {
+          "word": "lavar"
+        },
+        "fr": {
+          "word": "laver"
+        },
+        "it": {
+          "word": "lavare"
+        },
+        "pt": {
+          "word": "lavar"
+        },
+        "de": {
+          "word": "waschen"
+        },
+        "la": {
+          "word": "lavare"
+        }
+      },
+      "example": {
+        "en": "I want to wash the car.",
+        "es": "Quiero lavar el coche.",
+        "fr": "Je veux laver la voiture.",
+        "it": "Voglio lavare l'auto.",
+        "de": "Ich will das Auto waschen."
+      }
+    },
+    {
+      "id": "to-wait",
+      "gloss": "to wait",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "wait"
+        },
+        "es": {
+          "word": "esperar",
+          "ipa": "espeˈɾaɾ"
+        },
+        "fr": {
+          "word": "attendre"
+        },
+        "it": {
+          "word": "aspettare"
+        },
+        "pt": {
+          "word": "esperar",
+          "ipa": "espeˈɾaɾ"
+        },
+        "de": {
+          "word": "warten"
+        },
+        "la": {
+          "word": "exspectare"
+        }
+      },
+      "example": {
+        "en": "Please wait here.",
+        "es": "Por favor esperar aquí.",
+        "fr": "Tu peux attendre ici.",
+        "it": "Puoi aspettare qui.",
+        "de": "Bitte hier warten."
+      }
+    },
+    {
+      "id": "to-run",
+      "gloss": "to run",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "run",
+          "ipa": "ɹʌn"
+        },
+        "es": {
+          "word": "correr",
+          "ipa": "koˈreɾ"
+        },
+        "fr": {
+          "word": "courir"
+        },
+        "it": {
+          "word": "correre",
+          "ipa": "ˈkor.re.re"
+        },
+        "pt": {
+          "word": "correr",
+          "ipa": "koˈʁe(ʁ)"
+        },
+        "de": {
+          "word": "laufen",
+          "ipa": "ˈlaʊ̯fən"
+        },
+        "la": {
+          "word": "currere"
+        }
+      },
+      "example": {
+        "en": "I like to run.",
+        "es": "Me gusta correr.",
+        "fr": "J'aime courir.",
+        "it": "Mi piace correre.",
+        "de": "Ich will jetzt laufen."
+      }
+    },
+    {
+      "id": "to-play",
+      "gloss": "to play",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "play",
+          "ipa": "pleɪ̯/ [pɫ̥eɪ̯ ~ pʰɫeɪ̯"
+        },
+        "es": {
+          "word": "jugar"
+        },
+        "fr": {
+          "word": "jouer",
+          "ipa": "ʒwe"
+        },
+        "it": {
+          "word": "giocare",
+          "ipa": "d͡ʒoˈka.re"
+        },
+        "pt": {
+          "word": "jogar",
+          "ipa": "ʒoˈɡa(ʁ)"
+        },
+        "de": {
+          "word": "spielen",
+          "ipa": "ˈʃpiːlən"
+        },
+        "la": {
+          "word": "ludere"
+        }
+      },
+      "example": {
+        "en": "The children play.",
+        "es": "Los niños jugar.",
+        "fr": "Les enfants aiment jouer.",
+        "it": "I bambini vogliono giocare.",
+        "de": "Die Kinder wollen spielen."
+      }
+    },
+    {
+      "id": "to-sing",
+      "gloss": "to sing",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "sing",
+          "ipa": "ˈsɪŋ"
+        },
+        "es": {
+          "word": "cantar",
+          "ipa": "kɐ̃ˈta(ʁ)"
+        },
+        "fr": {
+          "word": "chanter"
+        },
+        "it": {
+          "word": "cantare"
+        },
+        "pt": {
+          "word": "cantar",
+          "ipa": "kɐ̃ˈta(ʁ)"
+        },
+        "de": {
+          "word": "singen"
+        },
+        "la": {
+          "word": "cantare"
+        }
+      },
+      "example": {
+        "en": "She likes to sing.",
+        "es": "Le gusta cantar.",
+        "fr": "Elle aime chanter.",
+        "it": "Le piace cantare.",
+        "de": "Sie will gern singen."
+      }
+    },
+    {
+      "id": "to-travel",
+      "gloss": "to travel",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "travel"
+        },
+        "es": {
+          "word": "viajar"
+        },
+        "fr": {
+          "word": "voyager"
+        },
+        "it": {
+          "word": "viaggiare"
+        },
+        "pt": {
+          "word": "viajar"
+        },
+        "de": {
+          "word": "reisen"
+        },
+        "la": {
+          "word": "peregrinari"
+        }
+      },
+      "example": {
+        "en": "We want to travel.",
+        "es": "Queremos viajar.",
+        "fr": "Nous voulons voyager.",
+        "it": "Vogliamo viaggiare.",
+        "de": "Wir wollen reisen."
+      }
+    },
+    {
+      "id": "to-arrive",
+      "gloss": "to arrive",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "arrive",
+          "ipa": "əˈɹaɪv"
+        },
+        "es": {
+          "word": "llegar"
+        },
+        "fr": {
+          "word": "arriver",
+          "ipa": "a.ʁi.ve"
+        },
+        "it": {
+          "word": "arrivare"
+        },
+        "pt": {
+          "word": "chegar",
+          "ipa": "ʃeˈɡa(ʁ)"
+        },
+        "de": {
+          "word": "ankommen",
+          "ipa": "ˈʔanˌkɔmən"
+        },
+        "la": {
+          "word": "advenire"
+        }
+      },
+      "example": {
+        "en": "The train will arrive.",
+        "es": "El tren va a llegar.",
+        "fr": "Le train va arriver.",
+        "it": "Il treno deve arrivare.",
+        "de": "Der Zug muss ankommen."
+      }
+    },
+    {
+      "id": "to-leave",
+      "gloss": "to leave",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "leave",
+          "ipa": "ˈliːv"
+        },
+        "es": {
+          "word": "salir",
+          "ipa": "saˈliɾ"
+        },
+        "fr": {
+          "word": "partir",
+          "ipa": "paʁ.tiʁ"
+        },
+        "it": {
+          "word": "partire",
+          "ipa": "parˈti.re"
+        },
+        "pt": {
+          "word": "sair",
+          "ipa": "saˈi(ʁ)"
+        },
+        "de": {
+          "word": "gehen",
+          "ipa": "ˈɡeːən"
+        },
+        "la": {
+          "word": "discedere"
+        }
+      },
+      "example": {
+        "en": "I want to leave now.",
+        "es": "Quiero salir ahora.",
+        "fr": "Je veux partir maintenant.",
+        "it": "Voglio partire adesso.",
+        "de": "Ich will jetzt gehen."
+      }
+    },
+    {
+      "id": "to-stay",
+      "gloss": "to stay",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "stay"
+        },
+        "es": {
+          "word": "quedar",
+          "ipa": "keˈdaɾ"
+        },
+        "fr": {
+          "word": "rester",
+          "ipa": "ʁɛs.te"
+        },
+        "it": {
+          "word": "restare",
+          "ipa": "resˈta.re"
+        },
+        "pt": {
+          "word": "ficar",
+          "ipa": "fiˈka(ʁ)"
+        },
+        "de": {
+          "word": "bleiben",
+          "ipa": "ˈblaɪ̯bən"
+        },
+        "la": {
+          "word": "manere"
+        }
+      },
+      "example": {
+        "en": "I want to stay home.",
+        "es": "Quiero quedar en casa.",
+        "fr": "Je veux rester ici.",
+        "it": "Voglio restare qui.",
+        "de": "Ich will hier bleiben."
+      }
+    },
+    {
+      "id": "to-meet",
+      "gloss": "to meet",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "meet"
+        },
+        "es": {
+          "word": "conocer",
+          "ipa": "konoˈθeɾ"
+        },
+        "fr": {
+          "word": "rencontrer"
+        },
+        "it": {
+          "word": "incontrare"
+        },
+        "pt": {
+          "word": "conhecer",
+          "ipa": "kõ.ɲeˈse(ʁ)"
+        },
+        "de": {
+          "word": "treffen"
+        },
+        "la": {
+          "word": "convenire"
+        }
+      },
+      "example": {
+        "en": "I want to meet you.",
+        "es": "Quiero conocer.",
+        "fr": "Je veux rencontrer.",
+        "it": "Voglio incontrare.",
+        "de": "Ich will dich treffen."
+      }
+    },
+    {
+      "id": "to-show",
+      "gloss": "to show",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "show"
+        },
+        "es": {
+          "word": "mostrar"
+        },
+        "fr": {
+          "word": "montrer"
+        },
+        "it": {
+          "word": "mostrare"
+        },
+        "pt": {
+          "word": "mostrar"
+        },
+        "de": {
+          "word": "zeigen"
+        },
+        "la": {
+          "word": "monstrare"
+        }
+      },
+      "example": {
+        "en": "Can you show me?",
+        "es": "¿Puedes mostrar?",
+        "fr": "Tu peux montrer?",
+        "it": "Puoi mostrare?",
+        "de": "Kannst du es zeigen?"
+      }
+    },
+    {
+      "id": "to-bring",
+      "gloss": "to bring",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "bring"
+        },
+        "es": {
+          "word": "traer",
+          "ipa": "tɾaˈeɾ"
+        },
+        "fr": {
+          "word": "apporter",
+          "ipa": "a.pɔʁ.te"
+        },
+        "it": {
+          "word": "portare",
+          "ipa": "porˈta.re"
+        },
+        "pt": {
+          "word": "trazer"
+        },
+        "de": {
+          "word": "bringen",
+          "ipa": "ˈbrɪŋən"
+        },
+        "la": {
+          "word": "afferre"
+        }
+      },
+      "example": {
+        "en": "Please bring water.",
+        "es": "Por favor traer agua.",
+        "fr": "Tu peux apporter de l'eau?",
+        "it": "Puoi portare l'acqua?",
+        "de": "Bitte Wasser bringen."
+      }
+    },
+    {
+      "id": "to-start",
+      "gloss": "to start / begin",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "start"
+        },
+        "es": {
+          "word": "empezar",
+          "ipa": "empeˈθaɾ"
+        },
+        "fr": {
+          "word": "commencer"
+        },
+        "it": {
+          "word": "cominciare"
+        },
+        "pt": {
+          "word": "começar",
+          "ipa": "ko.meˈsa(ʁ)"
+        },
+        "de": {
+          "word": "beginnen"
+        },
+        "la": {
+          "word": "incipere"
+        }
+      },
+      "example": {
+        "en": "We start at eight.",
+        "es": "Vamos a empezar.",
+        "fr": "On va commencer.",
+        "it": "Dobbiamo cominciare.",
+        "de": "Wir wollen beginnen."
+      }
+    },
+    {
+      "id": "to-finish",
+      "gloss": "to finish",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "finish"
+        },
+        "es": {
+          "word": "terminar",
+          "ipa": "teɾmiˈnaɾ"
+        },
+        "fr": {
+          "word": "finir"
+        },
+        "it": {
+          "word": "finire"
+        },
+        "pt": {
+          "word": "terminar",
+          "ipa": "teʁ.miˈna(ʁ)"
+        },
+        "de": {
+          "word": "enden"
+        },
+        "la": {
+          "word": "finire"
+        }
+      },
+      "example": {
+        "en": "I want to finish.",
+        "es": "Quiero terminar.",
+        "fr": "Je veux finir.",
+        "it": "Voglio finire.",
+        "de": "Es muss bald enden."
+      }
+    },
+    {
+      "id": "to-lose",
+      "gloss": "to lose",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "lose",
+          "ipa": "luːz"
+        },
+        "es": {
+          "word": "perder",
+          "ipa": "peɾˈdeɾ"
+        },
+        "fr": {
+          "word": "perdre"
+        },
+        "it": {
+          "word": "perdere"
+        },
+        "pt": {
+          "word": "perder",
+          "ipa": "peʁˈde(ʁ)"
+        },
+        "de": {
+          "word": "verlieren",
+          "ipa": "fɛɐ̯ˈliːʁən"
+        },
+        "la": {
+          "word": "perdere"
+        }
+      },
+      "example": {
+        "en": "I don't want to lose it.",
+        "es": "No quiero perder.",
+        "fr": "Je ne veux pas perdre.",
+        "it": "Non voglio perdere.",
+        "de": "Ich will es nicht verlieren."
+      }
+    },
+    {
+      "id": "to-win",
+      "gloss": "to win",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "win",
+          "ipa": "wɪn"
+        },
+        "es": {
+          "word": "ganar",
+          "ipa": "ɡaˈnaɾ"
+        },
+        "fr": {
+          "word": "gagner"
+        },
+        "it": {
+          "word": "vincere"
+        },
+        "pt": {
+          "word": "ganhar"
+        },
+        "de": {
+          "word": "gewinnen",
+          "ipa": "ɡəˈvɪnən"
+        },
+        "la": {
+          "word": "vincere"
+        }
+      },
+      "example": {
+        "en": "We want to win.",
+        "es": "Queremos ganar.",
+        "fr": "Nous voulons gagner.",
+        "it": "Vogliamo vincere.",
+        "de": "Wir wollen gewinnen."
+      }
+    },
+    {
+      "id": "to-feel",
+      "gloss": "to feel",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "feel",
+          "ipa": "fiːl"
+        },
+        "es": {
+          "word": "sentir",
+          "ipa": "senˈtiɾ"
+        },
+        "fr": {
+          "word": "sentir",
+          "ipa": "sɑ̃.tiʁ"
+        },
+        "it": {
+          "word": "sentire",
+          "ipa": "senˈti.re"
+        },
+        "pt": {
+          "word": "sentir",
+          "ipa": "sẽˈt͡ʃi(ʁ)"
+        },
+        "de": {
+          "word": "fühlen",
+          "ipa": "ˈfyːlən"
+        },
+        "la": {
+          "word": "sentire",
+          "ipa": "senˈti.re"
+        }
+      },
+      "example": {
+        "en": "I feel good.",
+        "es": "Quiero sentir bien.",
+        "fr": "Je veux sentir le vent.",
+        "it": "Voglio sentire la musica.",
+        "de": "Ich will mich gut fühlen."
+      }
+    },
+    {
+      "id": "to-listen",
+      "gloss": "to listen / hear",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "hear",
+          "ipa": "ˈhɪə"
+        },
+        "es": {
+          "word": "oír"
+        },
+        "fr": {
+          "word": "entendre",
+          "ipa": "ɑ̃.tɑ̃dʁ"
+        },
+        "it": {
+          "word": "sentire",
+          "ipa": "senˈti.re"
+        },
+        "pt": {
+          "word": "ouvir",
+          "ipa": "o(w)ˈvi(ʁ)"
+        },
+        "de": {
+          "word": "hören",
+          "ipa": "ˈhøːrən"
+        },
+        "la": {
+          "word": "audire"
+        }
+      },
+      "example": {
+        "en": "I can hear you.",
+        "es": "Quiero oír.",
+        "fr": "Je veux entendre.",
+        "it": "Devo sentire bene.",
+        "de": "Ich will Musik hören."
+      }
+    },
+    {
+      "id": "to-sit",
+      "gloss": "to sit",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "sit"
+        },
+        "es": {
+          "word": "sentarse"
+        },
+        "fr": {
+          "word": "asseoir"
+        },
+        "it": {
+          "word": "sedere"
+        },
+        "pt": {
+          "word": "sentar",
+          "ipa": "sẽˈta(ʁ)"
+        },
+        "de": {
+          "word": "sitzen",
+          "ipa": "ˈzɪtsn̩"
+        },
+        "la": {
+          "word": "sedere"
+        }
+      },
+      "example": {
+        "en": "I want to sit here.",
+        "es": "Quiero sentarse aquí.",
+        "fr": "Je veux asseoir ici.",
+        "it": "Voglio sedere qui.",
+        "de": "Ich will hier sitzen."
+      }
+    },
+    {
+      "id": "to-stand",
+      "gloss": "to stand",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "stand",
+          "ipa": "stɑnt"
+        },
+        "es": {
+          "word": "estar de pie"
+        },
+        "fr": {
+          "word": "lever"
+        },
+        "it": {
+          "word": "stare in piedi"
+        },
+        "pt": {
+          "word": "ficar de pé"
+        },
+        "de": {
+          "word": "stehen",
+          "ipa": "ˈʃteː.ən"
+        },
+        "la": {
+          "word": "stare",
+          "ipa": "ˈsta.re"
+        }
+      },
+      "example": {
+        "en": "Please stand up.",
+        "es": "Quiero estar de pie.",
+        "fr": "Je veux me lever.",
+        "it": "Voglio stare in piedi.",
+        "de": "Bitte hier stehen."
+      }
+    },
+    {
+      "id": "to-drive",
+      "gloss": "to drive",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "drive"
+        },
+        "es": {
+          "word": "conducir"
+        },
+        "fr": {
+          "word": "conduire"
+        },
+        "it": {
+          "word": "guidare"
+        },
+        "pt": {
+          "word": "dirigir",
+          "ipa": "d͡ʒi.ɾiˈʒi(ʁ)"
+        },
+        "de": {
+          "word": "fahren"
+        },
+        "la": {
+          "word": "agere"
+        }
+      },
+      "example": {
+        "en": "I can drive a car.",
+        "es": "Quiero conducir.",
+        "fr": "Je veux conduire.",
+        "it": "Voglio guidare.",
+        "de": "Ich will fahren."
+      }
+    },
+    {
+      "id": "to-study",
+      "gloss": "to study",
+      "category": "verb",
+      "pos": "verb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "study"
+        },
+        "es": {
+          "word": "estudiar"
+        },
+        "fr": {
+          "word": "étudier"
+        },
+        "it": {
+          "word": "studiare",
+          "ipa": "stuˈdja.re"
+        },
+        "pt": {
+          "word": "estudar"
+        },
+        "de": {
+          "word": "studieren"
+        },
+        "la": {
+          "word": "studere"
+        }
+      },
+      "example": {
+        "en": "I want to study now.",
+        "es": "Quiero estudiar.",
+        "fr": "Je veux étudier.",
+        "it": "Voglio studiare.",
+        "de": "Ich will studieren."
+      }
+    },
+    {
+      "id": "hard",
+      "gloss": "hard (firm)",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "hard",
+          "ipa": "hɑːd"
+        },
+        "es": {
+          "word": "duro",
+          "ipa": "ˈduɾo"
+        },
+        "fr": {
+          "word": "dur",
+          "ipa": "dyʁ"
+        },
+        "it": {
+          "word": "duro",
+          "ipa": "ˈdu.ro"
+        },
+        "pt": {
+          "word": "duro",
+          "ipa": "ˈdu.ɾu"
+        },
+        "de": {
+          "word": "hart",
+          "ipa": "hart"
+        },
+        "la": {
+          "word": "durus",
+          "ipa": "ˈduː.rʊs"
+        }
+      },
+      "example": {
+        "en": "The bread is hard.",
+        "es": "El pan está duro.",
+        "fr": "Le pain est dur.",
+        "it": "Il pane è duro.",
+        "de": "Das Brot ist hart."
+      }
+    },
+    {
+      "id": "soft",
+      "gloss": "soft",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "soft",
+          "ipa": "sɒft"
+        },
+        "es": {
+          "word": "suave",
+          "ipa": "suˈa.vi"
+        },
+        "fr": {
+          "word": "doux",
+          "ipa": "du"
+        },
+        "it": {
+          "word": "morbido"
+        },
+        "pt": {
+          "word": "macio"
+        },
+        "de": {
+          "word": "weich"
+        },
+        "la": {
+          "word": "mollis",
+          "ipa": "ˈmɔl.lɪs"
+        }
+      },
+      "example": {
+        "en": "The bed is soft.",
+        "es": "La cama es suave.",
+        "fr": "Le lit est doux.",
+        "it": "Il letto è morbido.",
+        "de": "Das Bett ist weich."
+      }
+    },
+    {
+      "id": "heavy",
+      "gloss": "heavy",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "heavy",
+          "ipa": "ˈhɛv.i"
+        },
+        "es": {
+          "word": "pesado",
+          "ipa": "peˈsado"
+        },
+        "fr": {
+          "word": "lourd",
+          "ipa": "luʁ"
+        },
+        "it": {
+          "word": "pesante"
+        },
+        "pt": {
+          "word": "pesado",
+          "ipa": "peˈsado"
+        },
+        "de": {
+          "word": "schwer",
+          "ipa": "ʃveːɐ̯"
+        },
+        "la": {
+          "word": "gravis",
+          "ipa": "ˈɡra.wɪs"
+        }
+      },
+      "example": {
+        "en": "The box is heavy.",
+        "es": "El libro es pesado.",
+        "fr": "Le sac est lourd.",
+        "it": "Il sacco è pesante.",
+        "de": "Die Kiste ist schwer."
+      }
+    },
+    {
+      "id": "light-weight",
+      "gloss": "light (not heavy)",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "light",
+          "ipa": "laɪt"
+        },
+        "es": {
+          "word": "ligero"
+        },
+        "fr": {
+          "word": "léger"
+        },
+        "it": {
+          "word": "leggero"
+        },
+        "pt": {
+          "word": "leve"
+        },
+        "de": {
+          "word": "leicht",
+          "ipa": "laɪ̯çt"
+        },
+        "la": {
+          "word": "levis",
+          "ipa": "ˈɫɛ.wɪs"
+        }
+      },
+      "example": {
+        "en": "The bag is light.",
+        "es": "El libro es ligero.",
+        "fr": "Le sac est léger.",
+        "it": "Il libro è leggero.",
+        "de": "Die Tasche ist leicht."
+      }
+    },
+    {
+      "id": "fast",
+      "gloss": "fast / quick",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "fast",
+          "ipa": "fɑːst"
+        },
+        "es": {
+          "word": "rápido"
+        },
+        "fr": {
+          "word": "rapide",
+          "ipa": "ʁa.pid"
+        },
+        "it": {
+          "word": "veloce"
+        },
+        "pt": {
+          "word": "rápido"
+        },
+        "de": {
+          "word": "schnell",
+          "ipa": "ʃnɛl"
+        },
+        "la": {
+          "word": "celer"
+        }
+      },
+      "example": {
+        "en": "The car is fast.",
+        "es": "El coche es rápido.",
+        "fr": "La voiture est rapide.",
+        "it": "L'auto è veloce.",
+        "de": "Das Auto ist schnell."
+      }
+    },
+    {
+      "id": "slow",
+      "gloss": "slow",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "slow",
+          "ipa": "sləʊ"
+        },
+        "es": {
+          "word": "lento",
+          "ipa": "ˈlento"
+        },
+        "fr": {
+          "word": "lent",
+          "ipa": "lɑ̃"
+        },
+        "it": {
+          "word": "lento",
+          "ipa": "ˈlɛn.to"
+        },
+        "pt": {
+          "word": "lento",
+          "ipa": "ˈlẽ.tu"
+        },
+        "de": {
+          "word": "langsam",
+          "ipa": "ˈlaŋzaːm"
+        },
+        "la": {
+          "word": "lentus",
+          "ipa": "ˈɫɛn.tʊs"
+        }
+      },
+      "example": {
+        "en": "The bus is slow.",
+        "es": "El autobús es lento.",
+        "fr": "Le bus est lent.",
+        "it": "Il bus è lento.",
+        "de": "Der Bus ist langsam."
+      }
+    },
+    {
+      "id": "high",
+      "gloss": "high / tall",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "high",
+          "ipa": "haɪ"
+        },
+        "es": {
+          "word": "alto"
+        },
+        "fr": {
+          "word": "haut"
+        },
+        "it": {
+          "word": "alto"
+        },
+        "pt": {
+          "word": "alto"
+        },
+        "de": {
+          "word": "hoch"
+        },
+        "la": {
+          "word": "altus"
+        }
+      },
+      "example": {
+        "en": "The wall is high.",
+        "es": "El muro es alto.",
+        "fr": "Le mur est haut.",
+        "it": "Il muro è alto.",
+        "de": "Die Mauer ist hoch."
+      }
+    },
+    {
+      "id": "low",
+      "gloss": "low",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "low"
+        },
+        "es": {
+          "word": "bajo",
+          "ipa": "ˈbaxo"
+        },
+        "fr": {
+          "word": "bas"
+        },
+        "it": {
+          "word": "basso"
+        },
+        "pt": {
+          "word": "baixo",
+          "ipa": "ˈbaj.ʃu"
+        },
+        "de": {
+          "word": "niedrig",
+          "ipa": "ˈniːdʁɪç"
+        },
+        "la": {
+          "word": "humilis",
+          "ipa": "ˈhʊ.mɪ.lɪs"
+        }
+      },
+      "example": {
+        "en": "The chair is low.",
+        "es": "El muro es bajo.",
+        "fr": "Le mur est bas.",
+        "it": "Il muro è basso.",
+        "de": "Der Stuhl ist niedrig."
+      }
+    },
+    {
+      "id": "wide",
+      "gloss": "wide / broad",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "wide"
+        },
+        "es": {
+          "word": "ancho"
+        },
+        "fr": {
+          "word": "large",
+          "ipa": "laʁʒ"
+        },
+        "it": {
+          "word": "largo",
+          "ipa": "ˈlar.ɡo"
+        },
+        "pt": {
+          "word": "largo",
+          "ipa": "ˈlaʁ.ɡu"
+        },
+        "de": {
+          "word": "breit"
+        },
+        "la": {
+          "word": "latus",
+          "ipa": "ˈɫa.tʊs"
+        }
+      },
+      "example": {
+        "en": "The river is wide.",
+        "es": "El río es ancho.",
+        "fr": "Le fleuve est large.",
+        "it": "Il fiume è largo.",
+        "de": "Der Fluss ist breit."
+      }
+    },
+    {
+      "id": "narrow",
+      "gloss": "narrow",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "narrow"
+        },
+        "es": {
+          "word": "estrecho",
+          "ipa": "esˈtɾet͡ʃo"
+        },
+        "fr": {
+          "word": "étroit"
+        },
+        "it": {
+          "word": "stretto",
+          "ipa": "ˈstret.to"
+        },
+        "pt": {
+          "word": "estreito"
+        },
+        "de": {
+          "word": "eng",
+          "ipa": "ɛŋ"
+        },
+        "la": {
+          "word": "angustus"
+        }
+      },
+      "example": {
+        "en": "The street is narrow.",
+        "es": "El camino es estrecho.",
+        "fr": "Le chemin est étroit.",
+        "it": "Il sentiero è stretto.",
+        "de": "Die Straße ist eng."
+      }
+    },
+    {
+      "id": "expensive",
+      "gloss": "expensive",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "expensive"
+        },
+        "es": {
+          "word": "caro",
+          "ipa": "ˈka.roː"
+        },
+        "fr": {
+          "word": "cher",
+          "ipa": "ʃɛʁ"
+        },
+        "it": {
+          "word": "caro",
+          "ipa": "ˈka.roː"
+        },
+        "pt": {
+          "word": "caro",
+          "ipa": "ˈka.roː"
+        },
+        "de": {
+          "word": "teuer"
+        },
+        "la": {
+          "word": "carus"
+        }
+      },
+      "example": {
+        "en": "The hotel is expensive.",
+        "es": "El hotel es caro.",
+        "fr": "L'hôtel est cher.",
+        "it": "L'albergo è caro.",
+        "de": "Das Hotel ist teuer."
+      }
+    },
+    {
+      "id": "cheap",
+      "gloss": "cheap",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "cheap"
+        },
+        "es": {
+          "word": "barato",
+          "ipa": "baˈɾa.tu"
+        },
+        "fr": {
+          "word": "bon marché"
+        },
+        "it": {
+          "word": "economico"
+        },
+        "pt": {
+          "word": "barato",
+          "ipa": "baˈɾa.tu"
+        },
+        "de": {
+          "word": "billig"
+        },
+        "la": {
+          "word": "vilis"
+        }
+      },
+      "example": {
+        "en": "The bread is cheap.",
+        "es": "El pan es barato.",
+        "fr": "Le pain est bon marché.",
+        "it": "Il pane è economico.",
+        "de": "Das Brot ist billig."
+      }
+    },
+    {
+      "id": "open-adj",
+      "gloss": "open",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "open",
+          "ipa": "ˈəʊ.pən"
+        },
+        "es": {
+          "word": "abierto",
+          "ipa": "aˈbjeɾto"
+        },
+        "fr": {
+          "word": "ouvert"
+        },
+        "it": {
+          "word": "aperto"
+        },
+        "pt": {
+          "word": "aberto"
+        },
+        "de": {
+          "word": "offen",
+          "ipa": "ˈɔfən"
+        },
+        "la": {
+          "word": "apertus",
+          "ipa": "aˈpɛr.tʊs"
+        }
+      },
+      "example": {
+        "en": "The shop is open.",
+        "es": "El museo está abierto.",
+        "fr": "Le magasin est ouvert.",
+        "it": "Il negozio è aperto.",
+        "de": "Der Laden ist offen."
+      }
+    },
+    {
+      "id": "closed-adj",
+      "gloss": "closed",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "closed",
+          "ipa": "kləʊzd"
+        },
+        "es": {
+          "word": "cerrado",
+          "ipa": "seˈʁa.du"
+        },
+        "fr": {
+          "word": "fermé"
+        },
+        "it": {
+          "word": "chiuso"
+        },
+        "pt": {
+          "word": "fechado",
+          "ipa": "feˈʃa.du"
+        },
+        "de": {
+          "word": "geschlossen"
+        },
+        "la": {
+          "word": "clausus",
+          "ipa": "ˈkɫau̯.sʊs"
+        }
+      },
+      "example": {
+        "en": "The door is closed.",
+        "es": "El banco está cerrado.",
+        "fr": "Le magasin est fermé.",
+        "it": "Il bar è chiuso.",
+        "de": "Die Tür ist geschlossen."
+      }
+    },
+    {
+      "id": "dry",
+      "gloss": "dry",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "dry",
+          "ipa": "ˈdɹaɪ̯"
+        },
+        "es": {
+          "word": "seco",
+          "ipa": "ˈsɛ.koː"
+        },
+        "fr": {
+          "word": "sec",
+          "ipa": "sɛk"
+        },
+        "it": {
+          "word": "secco",
+          "ipa": "ˈsek.ko"
+        },
+        "pt": {
+          "word": "seco",
+          "ipa": "ˈsɛ.ku"
+        },
+        "de": {
+          "word": "trocken",
+          "ipa": "ˈtʁɔkən"
+        },
+        "la": {
+          "word": "siccus"
+        }
+      },
+      "example": {
+        "en": "The towel is dry.",
+        "es": "El suelo está seco.",
+        "fr": "Le linge est sec.",
+        "it": "Il panno è secco.",
+        "de": "Das Tuch ist trocken."
+      }
+    },
+    {
+      "id": "wet",
+      "gloss": "wet",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "wet",
+          "ipa": "ʋɛt"
+        },
+        "es": {
+          "word": "mojado"
+        },
+        "fr": {
+          "word": "mouillé"
+        },
+        "it": {
+          "word": "bagnato"
+        },
+        "pt": {
+          "word": "molhado"
+        },
+        "de": {
+          "word": "nass"
+        },
+        "la": {
+          "word": "madidus"
+        }
+      },
+      "example": {
+        "en": "The grass is wet.",
+        "es": "El suelo está mojado.",
+        "fr": "Le sol est mouillé.",
+        "it": "Il prato è bagnato.",
+        "de": "Das Gras ist nass."
+      }
+    },
+    {
+      "id": "tired",
+      "gloss": "tired",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "tired"
+        },
+        "es": {
+          "word": "cansado",
+          "ipa": "kanˈsado"
+        },
+        "fr": {
+          "word": "fatigué"
+        },
+        "it": {
+          "word": "stanco"
+        },
+        "pt": {
+          "word": "cansado",
+          "ipa": "kanˈsado"
+        },
+        "de": {
+          "word": "müde"
+        },
+        "la": {
+          "word": "fessus"
+        }
+      },
+      "example": {
+        "en": "I am tired.",
+        "es": "Estoy cansado.",
+        "fr": "Je suis fatigué.",
+        "it": "Sono stanco.",
+        "de": "Ich bin müde."
+      }
+    },
+    {
+      "id": "sick",
+      "gloss": "sick / ill",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "sick",
+          "ipa": "ˈsɪk"
+        },
+        "es": {
+          "word": "enfermo"
+        },
+        "fr": {
+          "word": "malade",
+          "ipa": "ma.lad"
+        },
+        "it": {
+          "word": "malato"
+        },
+        "pt": {
+          "word": "doente",
+          "ipa": "duˈẽ.t͡ʃi"
+        },
+        "de": {
+          "word": "krank"
+        },
+        "la": {
+          "word": "aeger",
+          "ipa": "ˈae̯.ɡɛr"
+        }
+      },
+      "example": {
+        "en": "He is sick today.",
+        "es": "Hoy está enfermo.",
+        "fr": "Il est malade.",
+        "it": "È malato oggi.",
+        "de": "Er ist heute krank."
+      }
+    },
+    {
+      "id": "hungry",
+      "gloss": "hungry",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "hungry"
+        },
+        "es": {
+          "word": "hambriento"
+        },
+        "fr": {
+          "word": "affamé"
+        },
+        "it": {
+          "word": "affamato"
+        },
+        "pt": {
+          "word": "faminto"
+        },
+        "de": {
+          "word": "hungrig"
+        },
+        "la": {
+          "word": "esuriens"
+        }
+      },
+      "example": {
+        "en": "The child is hungry.",
+        "es": "El niño está hambriento.",
+        "fr": "L'enfant est affamé.",
+        "it": "Il bambino è affamato.",
+        "de": "Das Kind ist hungrig."
+      }
+    },
+    {
+      "id": "ready",
+      "gloss": "ready",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "ready",
+          "ipa": "ˈɹɛd.i"
+        },
+        "es": {
+          "word": "listo",
+          "ipa": "ˈlisto"
+        },
+        "fr": {
+          "word": "prêt"
+        },
+        "it": {
+          "word": "pronto",
+          "ipa": "ˈpɾõ.tu"
+        },
+        "pt": {
+          "word": "pronto",
+          "ipa": "ˈpɾõ.tu"
+        },
+        "de": {
+          "word": "bereit"
+        },
+        "la": {
+          "word": "paratus",
+          "ipa": "paˈraː.tʊs"
+        }
+      },
+      "example": {
+        "en": "I am ready.",
+        "es": "Estoy listo.",
+        "fr": "Je suis prêt.",
+        "it": "Sono pronto.",
+        "de": "Ich bin bereit."
+      }
+    },
+    {
+      "id": "important",
+      "gloss": "important",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "important"
+        },
+        "es": {
+          "word": "importante"
+        },
+        "fr": {
+          "word": "important"
+        },
+        "it": {
+          "word": "importante"
+        },
+        "pt": {
+          "word": "importante"
+        },
+        "de": {
+          "word": "wichtig"
+        },
+        "la": {
+          "word": "gravis",
+          "ipa": "ˈɡra.wɪs"
+        }
+      },
+      "example": {
+        "en": "This is important.",
+        "es": "Esto es importante.",
+        "fr": "C'est important.",
+        "it": "Questo è importante.",
+        "de": "Das ist wichtig."
+      }
+    },
+    {
+      "id": "right-correct",
+      "gloss": "right / correct",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "correct"
+        },
+        "es": {
+          "word": "correcto"
+        },
+        "fr": {
+          "word": "correct"
+        },
+        "it": {
+          "word": "corretto"
+        },
+        "pt": {
+          "word": "correto"
+        },
+        "de": {
+          "word": "richtig",
+          "ipa": "ˈʁɪçtɪç"
+        },
+        "la": {
+          "word": "rectus"
+        }
+      },
+      "example": {
+        "en": "The answer is correct.",
+        "es": "El resultado es correcto.",
+        "fr": "Le résultat est correct.",
+        "it": "Il risultato è corretto.",
+        "de": "Die Antwort ist richtig."
+      }
+    },
+    {
+      "id": "wrong",
+      "gloss": "wrong",
+      "category": "adjective",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "wrong",
+          "ipa": "ˈɹɒŋ"
+        },
+        "es": {
+          "word": "incorrecto"
+        },
+        "fr": {
+          "word": "faux",
+          "ipa": "fo"
+        },
+        "it": {
+          "word": "sbagliato",
+          "ipa": "zbaʎˈʎa.to"
+        },
+        "pt": {
+          "word": "errado",
+          "ipa": "eˈʁa.du"
+        },
+        "de": {
+          "word": "falsch",
+          "ipa": "falʃ"
+        },
+        "la": {
+          "word": "falsus",
+          "ipa": "ˈfaɫ.sʊs"
+        }
+      },
+      "example": {
+        "en": "The answer is wrong.",
+        "es": "El número es incorrecto.",
+        "fr": "Le numéro est faux.",
+        "it": "Il numero è sbagliato.",
+        "de": "Die Antwort ist falsch."
+      }
+    },
+    {
+      "id": "house-2",
+      "gloss": "room",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "room"
+        },
+        "es": {
+          "word": "habitación",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "chambre",
+          "gender": "f"
+        },
+        "it": {
+          "word": "stanza",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "quarto",
+          "ipa": "ˈkwaʁ.tu",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Zimmer",
+          "gender": "n"
+        },
+        "la": {
+          "word": "cubiculum",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The room is big.",
+        "es": "La habitación es grande.",
+        "fr": "La chambre est grande.",
+        "it": "La stanza è grande.",
+        "de": "Das Zimmer ist groß."
+      }
+    },
+    {
+      "id": "kitchen",
+      "gloss": "kitchen",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "kitchen",
+          "ipa": "ˈkɪt͡ʃ(ɪ)n"
+        },
+        "es": {
+          "word": "cocina",
+          "ipa": "koˈθina",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "cuisine",
+          "gender": "f"
+        },
+        "it": {
+          "word": "cucina",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "cozinha",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Küche",
+          "gender": "f"
+        },
+        "la": {
+          "word": "culina",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The kitchen is clean.",
+        "es": "La cocina está limpia.",
+        "fr": "La cuisine est propre.",
+        "it": "La cucina è pulita.",
+        "de": "Die Küche ist sauber."
+      }
+    },
+    {
+      "id": "floor",
+      "gloss": "floor",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "floor"
+        },
+        "es": {
+          "word": "suelo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "sol",
+          "ipa": "sɔl",
+          "gender": "m"
+        },
+        "it": {
+          "word": "pavimento",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "chão",
+          "ipa": "ˈʃɐ̃w̃",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Boden",
+          "gender": "m"
+        },
+        "la": {
+          "word": "solum",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The floor is cold.",
+        "es": "El suelo está frío.",
+        "fr": "Le sol est froid.",
+        "it": "Il pavimento è freddo.",
+        "de": "Der Boden ist kalt."
+      }
+    },
+    {
+      "id": "wall",
+      "gloss": "wall",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "wall"
+        },
+        "es": {
+          "word": "pared",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "mur",
+          "gender": "m"
+        },
+        "it": {
+          "word": "muro",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "parede",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Wand",
+          "ipa": "wɒnd",
+          "gender": "f"
+        },
+        "la": {
+          "word": "paries",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The wall is white.",
+        "es": "La pared es blanca.",
+        "fr": "Le mur est blanc.",
+        "it": "Il muro è bianco.",
+        "de": "Die Wand ist weiß."
+      }
+    },
+    {
+      "id": "lamp",
+      "gloss": "lamp",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "lamp",
+          "ipa": "ˈlæ̞mp"
+        },
+        "es": {
+          "word": "lámpara",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "lampe",
+          "gender": "f"
+        },
+        "it": {
+          "word": "lampada",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "lâmpada",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Lampe",
+          "gender": "f"
+        },
+        "la": {
+          "word": "lucerna",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The lamp is bright.",
+        "es": "La lámpara es brillante.",
+        "fr": "La lampe est claire.",
+        "it": "La lampada è chiara.",
+        "de": "Die Lampe ist hell."
+      }
+    },
+    {
+      "id": "plate",
+      "gloss": "plate",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "plate",
+          "ipa": "ˈpleɪ̯t"
+        },
+        "es": {
+          "word": "plato",
+          "ipa": "ˈplato",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "assiette",
+          "ipa": "a.sjɛt",
+          "gender": "f"
+        },
+        "it": {
+          "word": "piatto",
+          "ipa": "ˈpjat.to",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "prato",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Teller",
+          "gender": "m"
+        },
+        "la": {
+          "word": "patina",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The plate is empty.",
+        "es": "El plato está vacío.",
+        "fr": "Une assiette est vide.",
+        "it": "Il piatto è vuoto.",
+        "de": "Der Teller ist leer."
+      }
+    },
+    {
+      "id": "glass-cup",
+      "gloss": "glass (cup)",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "glass"
+        },
+        "es": {
+          "word": "vaso",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "verre",
+          "gender": "m"
+        },
+        "it": {
+          "word": "bicchiere",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "copo",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Glas",
+          "gender": "n"
+        },
+        "la": {
+          "word": "vitrum",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The glass is full.",
+        "es": "El vaso está lleno.",
+        "fr": "Le verre est plein.",
+        "it": "Il bicchiere è pieno.",
+        "de": "Das Glas ist voll."
+      }
+    },
+    {
+      "id": "knife",
+      "gloss": "knife",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "knife"
+        },
+        "es": {
+          "word": "cuchillo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "couteau",
+          "gender": "m"
+        },
+        "it": {
+          "word": "coltello",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "faca",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Messer",
+          "gender": "n"
+        },
+        "la": {
+          "word": "culter",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The knife is sharp.",
+        "es": "El cuchillo está afilado.",
+        "fr": "Le couteau est neuf.",
+        "it": "Il coltello è nuovo.",
+        "de": "Das Messer ist neu."
+      }
+    },
+    {
+      "id": "bag",
+      "gloss": "bag",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "bag",
+          "ipa": "ˈbæɡ"
+        },
+        "es": {
+          "word": "bolsa",
+          "ipa": "ˈbolsa",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "sac",
+          "ipa": "sad͡ʒ",
+          "gender": "m"
+        },
+        "it": {
+          "word": "borsa",
+          "ipa": "ˈbor.sa",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "bolsa",
+          "ipa": "ˈbolsa",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Tasche",
+          "gender": "f"
+        },
+        "la": {
+          "word": "saccus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The bag is heavy.",
+        "es": "La bolsa es pesada.",
+        "fr": "Le sac est lourd.",
+        "it": "La borsa è pesante.",
+        "de": "Die Tasche ist schwer."
+      }
+    },
+    {
+      "id": "letter-mail",
+      "gloss": "letter (mail)",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "letter",
+          "ipa": "ˈlɛtə"
+        },
+        "es": {
+          "word": "carta",
+          "ipa": "ˈkaʁ.tɐ",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "lettre",
+          "gender": "f"
+        },
+        "it": {
+          "word": "lettera",
+          "ipa": "ˈlet.te.ra",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "carta",
+          "ipa": "ˈkaʁ.tɐ",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Brief",
+          "gender": "m"
+        },
+        "la": {
+          "word": "epistula",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "I write a letter.",
+        "es": "Escribo una carta.",
+        "fr": "J'écris une lettre.",
+        "it": "Scrivo una lettera.",
+        "de": "Ich schreibe einen Brief."
+      }
+    },
+    {
+      "id": "clock",
+      "gloss": "clock / watch",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "clock"
+        },
+        "es": {
+          "word": "reloj",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "horloge",
+          "gender": "f"
+        },
+        "it": {
+          "word": "orologio",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "relógio",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Uhr",
+          "ipa": "uːr",
+          "gender": "f"
+        },
+        "la": {
+          "word": "horologium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The clock is new.",
+        "es": "El reloj es nuevo.",
+        "fr": "Une horloge est ancienne.",
+        "it": "Un orologio è nuovo.",
+        "de": "Die Uhr ist neu."
+      }
+    },
+    {
+      "id": "shirt",
+      "gloss": "shirt",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "shirt"
+        },
+        "es": {
+          "word": "camisa",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "chemise",
+          "gender": "f"
+        },
+        "it": {
+          "word": "camicia",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "camisa",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Hemd",
+          "gender": "n"
+        },
+        "la": {
+          "word": "tunica",
+          "ipa": "ˈtʊ.nɪ.ka",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The shirt is blue.",
+        "es": "La camisa es azul.",
+        "fr": "La chemise est bleue.",
+        "it": "La camicia è blu.",
+        "de": "Das Hemd ist blau."
+      }
+    },
+    {
+      "id": "shoe",
+      "gloss": "shoe",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "shoe",
+          "ipa": "ˈʃuː"
+        },
+        "es": {
+          "word": "zapato",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "chaussure",
+          "gender": "f"
+        },
+        "it": {
+          "word": "scarpa",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "sapato",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Schuh",
+          "gender": "m"
+        },
+        "la": {
+          "word": "calceus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "My shoe is black.",
+        "es": "Mi zapato es negro.",
+        "fr": "Ma chaussure est noire.",
+        "it": "La mia scarpa è nera.",
+        "de": "Mein Schuh ist schwarz."
+      }
+    },
+    {
+      "id": "hat",
+      "gloss": "hat",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "hat"
+        },
+        "es": {
+          "word": "sombrero",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "chapeau",
+          "ipa": "ʃa.po",
+          "gender": "m"
+        },
+        "it": {
+          "word": "cappello",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "chapéu",
+          "ipa": "ʃaˈpɛw",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Hut",
+          "ipa": "ɦʏt",
+          "gender": "m"
+        },
+        "la": {
+          "word": "pileus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The hat is old.",
+        "es": "El sombrero es viejo.",
+        "fr": "Le chapeau est vieux.",
+        "it": "Il cappello è vecchio.",
+        "de": "Der Hut ist alt."
+      }
+    },
+    {
+      "id": "coat",
+      "gloss": "coat",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "coat"
+        },
+        "es": {
+          "word": "abrigo",
+          "ipa": "aˈbɾiɡo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "manteau",
+          "ipa": "mɑ̃.to",
+          "gender": "m"
+        },
+        "it": {
+          "word": "cappotto",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "casaco",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Mantel",
+          "ipa": "ˈmɑn.təl",
+          "gender": "m"
+        },
+        "la": {
+          "word": "pallium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The coat is warm.",
+        "es": "El abrigo es cálido.",
+        "fr": "Le manteau est chaud.",
+        "it": "Il cappotto è caldo.",
+        "de": "Der Mantel ist warm."
+      }
+    },
+    {
+      "id": "work-noun",
+      "gloss": "work (the noun)",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "work",
+          "ipa": "wɜː(ɹ)k"
+        },
+        "es": {
+          "word": "trabajo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "travail",
+          "gender": "m"
+        },
+        "it": {
+          "word": "lavoro",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "trabalho",
+          "ipa": "tɾaˈba.ʎu",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Arbeit",
+          "ipa": "ˈaʁbaɪ̯t",
+          "gender": "f"
+        },
+        "la": {
+          "word": "labor",
+          "ipa": "ˈɫa.bɔr",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The work is hard.",
+        "es": "El trabajo es duro.",
+        "fr": "Le travail est dur.",
+        "it": "Il lavoro è duro.",
+        "de": "Die Arbeit ist hart."
+      }
+    },
+    {
+      "id": "school",
+      "gloss": "school",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "school",
+          "ipa": "sxoːl"
+        },
+        "es": {
+          "word": "escuela",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "école",
+          "gender": "f"
+        },
+        "it": {
+          "word": "scuola",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "escola",
+          "ipa": "isˈkɔ.lɐ",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Schule",
+          "ipa": "ˈʃuːlə",
+          "gender": "f"
+        },
+        "la": {
+          "word": "schola",
+          "ipa": "ˈskʰɔ.ɫa",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The school is near.",
+        "es": "La escuela está cerca.",
+        "fr": "Une école est proche.",
+        "it": "La scuola è vicina.",
+        "de": "Die Schule ist nah."
+      }
+    },
+    {
+      "id": "office",
+      "gloss": "office",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "office",
+          "ipa": "ˈɒf.ɪs"
+        },
+        "es": {
+          "word": "oficina",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "bureau",
+          "ipa": "by.ʁo",
+          "gender": "m"
+        },
+        "it": {
+          "word": "ufficio",
+          "ipa": "ufˈfi.t͡ʃo",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "escritório",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Büro",
+          "gender": "n"
+        },
+        "la": {
+          "word": "officium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The office is closed.",
+        "es": "La oficina está cerrada.",
+        "fr": "Le bureau est fermé.",
+        "it": "Un ufficio è chiuso.",
+        "de": "Das Büro ist geschlossen."
+      }
+    },
+    {
+      "id": "pen",
+      "gloss": "pen",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "pen"
+        },
+        "es": {
+          "word": "bolígrafo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "stylo",
+          "gender": "m"
+        },
+        "it": {
+          "word": "penna",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "caneta",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Stift",
+          "gender": "m"
+        },
+        "la": {
+          "word": "calamus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The pen is blue.",
+        "es": "El bolígrafo es azul.",
+        "fr": "Le stylo est bleu.",
+        "it": "La penna è blu.",
+        "de": "Der Stift ist blau."
+      }
+    },
+    {
+      "id": "question",
+      "gloss": "question",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "question"
+        },
+        "es": {
+          "word": "pregunta",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "question",
+          "gender": "f"
+        },
+        "it": {
+          "word": "domanda",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "pergunta",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Frage",
+          "gender": "f"
+        },
+        "la": {
+          "word": "quaestio",
+          "ipa": "ˈkʷae̯s.ti.oː",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "I have a question.",
+        "es": "Tengo una pregunta.",
+        "fr": "J'ai une question.",
+        "it": "Ho una domanda.",
+        "de": "Ich habe eine Frage."
+      }
+    },
+    {
+      "id": "answer-noun",
+      "gloss": "answer (the noun)",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "answer",
+          "ipa": "ˈɑːn.sə"
+        },
+        "es": {
+          "word": "respuesta",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "réponse",
+          "gender": "f"
+        },
+        "it": {
+          "word": "risposta",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "resposta",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Antwort",
+          "gender": "f"
+        },
+        "la": {
+          "word": "responsum",
+          "ipa": "rɛsˈpõː.sũː",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The answer is easy.",
+        "es": "La respuesta es fácil.",
+        "fr": "La réponse est facile.",
+        "it": "La risposta è facile.",
+        "de": "Die Antwort ist einfach."
+      }
+    },
+    {
+      "id": "language",
+      "gloss": "language",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "language"
+        },
+        "es": {
+          "word": "idioma",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "langue",
+          "gender": "f"
+        },
+        "it": {
+          "word": "lingua",
+          "ipa": "ˈlin.ɡwa",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "idioma",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Sprache",
+          "gender": "f"
+        },
+        "la": {
+          "word": "lingua",
+          "ipa": "ˈlin.ɡwa",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "I learn a language.",
+        "es": "Aprendo un idioma.",
+        "fr": "J'apprends une langue.",
+        "it": "Imparo una lingua.",
+        "de": "Ich lerne eine Sprache."
+      }
+    },
+    {
+      "id": "shop",
+      "gloss": "shop / store",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "shop"
+        },
+        "es": {
+          "word": "tienda",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "magasin",
+          "ipa": "ma.ɡa.zɛ̃",
+          "gender": "m"
+        },
+        "it": {
+          "word": "negozio",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "loja",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Laden",
+          "ipa": "ˈlaːdən",
+          "gender": "m"
+        },
+        "la": {
+          "word": "taberna",
+          "ipa": "taˈbɛr.na",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The shop is open.",
+        "es": "La tienda está abierta.",
+        "fr": "Le magasin est ouvert.",
+        "it": "Il negozio è aperto.",
+        "de": "Der Laden ist offen."
+      }
+    },
+    {
+      "id": "price",
+      "gloss": "price",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "price"
+        },
+        "es": {
+          "word": "precio",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "prix",
+          "gender": "m"
+        },
+        "it": {
+          "word": "prezzo",
+          "ipa": "ˈprɛt.t͡so",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "preço",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Preis",
+          "gender": "m"
+        },
+        "la": {
+          "word": "pretium",
+          "ipa": "ˈprɛ.ti.ũː",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The price is high.",
+        "es": "El precio es alto.",
+        "fr": "Le prix est haut.",
+        "it": "Il prezzo è alto.",
+        "de": "Der Preis ist hoch."
+      }
+    },
+    {
+      "id": "car",
+      "gloss": "car",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "car"
+        },
+        "es": {
+          "word": "coche",
+          "ipa": "ˈkot͡ʃe",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "voiture",
+          "gender": "f"
+        },
+        "it": {
+          "word": "auto",
+          "ipa": "ˈaw.tu",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "carro",
+          "ipa": "ˈkaro",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Auto",
+          "ipa": "ˈaw.tu",
+          "gender": "n"
+        },
+        "la": {
+          "word": "carrus",
+          "ipa": "ˈkar.rʊs",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The car is red.",
+        "es": "El coche es rojo.",
+        "fr": "La voiture est rouge.",
+        "it": "Una auto è rossa.",
+        "de": "Das Auto ist rot."
+      }
+    },
+    {
+      "id": "bus",
+      "gloss": "bus",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "bus",
+          "ipa": "bʏs"
+        },
+        "es": {
+          "word": "autobús",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "bus",
+          "ipa": "bʏs",
+          "gender": "m"
+        },
+        "it": {
+          "word": "autobus",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "ônibus",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Bus",
+          "ipa": "bʏs",
+          "gender": "m"
+        },
+        "la": {
+          "word": "laophorium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The bus is late.",
+        "es": "El autobús llega tarde.",
+        "fr": "Le bus est en retard.",
+        "it": "Un autobus è in ritardo.",
+        "de": "Der Bus ist spät."
+      }
+    },
+    {
+      "id": "train",
+      "gloss": "train",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "train",
+          "ipa": "ˈtɹeɪn"
+        },
+        "es": {
+          "word": "tren",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "train",
+          "ipa": "ˈtɹeɪn",
+          "gender": "m"
+        },
+        "it": {
+          "word": "treno",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "trem",
+          "ipa": "ˈtɾẽj̃",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Zug",
+          "ipa": "t͡suːk",
+          "gender": "m"
+        },
+        "la": {
+          "word": "hamaxostichus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The train is fast.",
+        "es": "El tren es rápido.",
+        "fr": "Le train est rapide.",
+        "it": "Il treno è veloce.",
+        "de": "Der Zug ist schnell."
+      }
+    },
+    {
+      "id": "airplane",
+      "gloss": "airplane",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "airplane",
+          "ipa": "ˈɛəˌpleɪ̯n"
+        },
+        "es": {
+          "word": "avión",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "avion",
+          "gender": "m"
+        },
+        "it": {
+          "word": "aereo",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "avião",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Flugzeug",
+          "gender": "n"
+        },
+        "la": {
+          "word": "aeroplanum",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The airplane is big.",
+        "es": "El avión es grande.",
+        "fr": "Un avion est grand.",
+        "it": "Un aereo è grande.",
+        "de": "Das Flugzeug ist groß."
+      }
+    },
+    {
+      "id": "road",
+      "gloss": "road / way",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "road",
+          "ipa": "ɾoːɖ"
+        },
+        "es": {
+          "word": "camino",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "route",
+          "ipa": "ɹuːt",
+          "gender": "f"
+        },
+        "it": {
+          "word": "strada",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "estrada",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Weg",
+          "ipa": "veːk",
+          "gender": "m"
+        },
+        "la": {
+          "word": "via",
+          "ipa": "ˈwi.a",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The road is long.",
+        "es": "El camino es largo.",
+        "fr": "La route est longue.",
+        "it": "La strada è lunga.",
+        "de": "Der Weg ist lang."
+      }
+    },
+    {
+      "id": "ticket",
+      "gloss": "ticket",
+      "category": "object",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "ticket"
+        },
+        "es": {
+          "word": "billete",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "billet",
+          "gender": "m"
+        },
+        "it": {
+          "word": "biglietto",
+          "ipa": "biʎˈʎet.to",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "bilhete",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Fahrkarte",
+          "gender": "f"
+        },
+        "la": {
+          "word": "tessera",
+          "ipa": "ˈtɛs.sɛ.ra",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "I need a ticket.",
+        "es": "Necesito un billete.",
+        "fr": "J'ai besoin d'un billet.",
+        "it": "Ho bisogno di un biglietto.",
+        "de": "Ich brauche eine Fahrkarte."
+      }
+    },
+    {
+      "id": "doctor-place",
+      "gloss": "hospital",
+      "category": "place",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "hospital"
+        },
+        "es": {
+          "word": "hospital",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "hôpital",
+          "gender": "m"
+        },
+        "it": {
+          "word": "ospedale",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "hospital",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Krankenhaus",
+          "gender": "n"
+        },
+        "la": {
+          "word": "valetudinarium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The hospital is big.",
+        "es": "El hospital es grande.",
+        "fr": "Un hôpital est grand.",
+        "it": "Un ospedale è grande.",
+        "de": "Das Krankenhaus ist groß."
+      }
+    },
+    {
+      "id": "medicine",
+      "gloss": "medicine",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "medicine",
+          "ipa": "ˈmɛd.ɪ.s(ɪ)n"
+        },
+        "es": {
+          "word": "medicina",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "médicament",
+          "gender": "m"
+        },
+        "it": {
+          "word": "medicina",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "remédio",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Medizin",
+          "gender": "f"
+        },
+        "la": {
+          "word": "medicina",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "I need medicine.",
+        "es": "Necesito medicina.",
+        "fr": "J'ai besoin d'un médicament.",
+        "it": "Ho bisogno di medicina.",
+        "de": "Ich brauche Medizin."
+      }
+    },
+    {
+      "id": "pain",
+      "gloss": "pain",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "pain",
+          "ipa": "ˈpeɪ̯n"
+        },
+        "es": {
+          "word": "dolor",
+          "ipa": "doˈloɾ",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "douleur",
+          "gender": "f"
+        },
+        "it": {
+          "word": "dolore",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "dor",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Schmerz",
+          "gender": "m"
+        },
+        "la": {
+          "word": "dolor",
+          "ipa": "doˈloɾ",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "I have a pain.",
+        "es": "Tengo un dolor.",
+        "fr": "J'ai une douleur.",
+        "it": "Ho un dolore.",
+        "de": "Ich habe einen Schmerz."
+      }
+    },
+    {
+      "id": "blood",
+      "gloss": "blood",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "blood",
+          "ipa": "blʌd"
+        },
+        "es": {
+          "word": "sangre",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "sang",
+          "ipa": "saːŋ˧˧",
+          "gender": "m"
+        },
+        "it": {
+          "word": "sangue",
+          "ipa": "ˈsan.ɡwe",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "sangue",
+          "ipa": "ˈsan.ɡwe",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Blut",
+          "gender": "n"
+        },
+        "la": {
+          "word": "sanguis",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The blood is red.",
+        "es": "La sangre es roja.",
+        "fr": "Le sang est rouge.",
+        "it": "Il sangue è rosso.",
+        "de": "Das Blut ist rot."
+      }
+    },
+    {
+      "id": "bone",
+      "gloss": "bone",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "bone",
+          "ipa": "bəʊn"
+        },
+        "es": {
+          "word": "hueso",
+          "ipa": "ˈw̝eso",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "os",
+          "ipa": "ˈoːs",
+          "gender": "m"
+        },
+        "it": {
+          "word": "osso",
+          "ipa": "ˈo.su",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "osso",
+          "ipa": "ˈo.su",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Knochen",
+          "gender": "m"
+        },
+        "la": {
+          "word": "os",
+          "ipa": "ˈoːs",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The bone is white.",
+        "es": "El hueso es blanco.",
+        "fr": "Un os est blanc.",
+        "it": "Un osso è bianco.",
+        "de": "Der Knochen ist weiß."
+      }
+    },
+    {
+      "id": "skin",
+      "gloss": "skin",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "skin",
+          "ipa": "skɪn"
+        },
+        "es": {
+          "word": "piel",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "peau",
+          "gender": "f"
+        },
+        "it": {
+          "word": "pelle",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "pele",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Haut",
+          "gender": "f"
+        },
+        "la": {
+          "word": "cutis",
+          "ipa": "[ˈkʊ.tɪs]",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The skin is soft.",
+        "es": "La piel es suave.",
+        "fr": "La peau est douce.",
+        "it": "La pelle è morbida.",
+        "de": "Die Haut ist weich."
+      }
+    },
+    {
+      "id": "tooth",
+      "gloss": "tooth",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "tooth",
+          "ipa": "tuːθ"
+        },
+        "es": {
+          "word": "diente",
+          "ipa": "ˈdjente",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "dent",
+          "ipa": "dɑ̃",
+          "gender": "f"
+        },
+        "it": {
+          "word": "dente",
+          "ipa": "ˈdɛn.te",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "dente",
+          "ipa": "ˈdẽ.t͡ʃi",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Zahn",
+          "ipa": "t͡saːn",
+          "gender": "m"
+        },
+        "la": {
+          "word": "dens",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The tooth is white.",
+        "es": "El diente es blanco.",
+        "fr": "La dent est blanche.",
+        "it": "Il dente è bianco.",
+        "de": "Der Zahn ist weiß."
+      }
+    },
+    {
+      "id": "finger",
+      "gloss": "finger",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "finger"
+        },
+        "es": {
+          "word": "dedo",
+          "ipa": "ˈdedo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "doigt",
+          "gender": "m"
+        },
+        "it": {
+          "word": "dito",
+          "ipa": "ˈdi.toː",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "dedo",
+          "ipa": "ˈdedo",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Finger",
+          "gender": "m"
+        },
+        "la": {
+          "word": "digitus",
+          "ipa": "ˈdɪ.ɡɪ.tʊs",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "My finger hurts.",
+        "es": "Me duele el dedo.",
+        "fr": "J'ai mal au doigt.",
+        "it": "Mi fa male il dito.",
+        "de": "Mein Finger tut weh."
+      }
+    },
+    {
+      "id": "hair",
+      "gloss": "hair",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "hair",
+          "ipa": "ˈhɛə̯"
+        },
+        "es": {
+          "word": "pelo",
+          "ipa": "ˈpe.lo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "cheveux",
+          "gender": "m"
+        },
+        "it": {
+          "word": "capelli",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "cabelo",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Haar",
+          "ipa": "ɦaːr",
+          "gender": "n"
+        },
+        "la": {
+          "word": "capillus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "Her hair is long.",
+        "es": "Su pelo es largo.",
+        "fr": "Ses cheveux sont longs.",
+        "it": "I suoi capelli sono lunghi.",
+        "de": "Ihr Haar ist lang."
+      }
+    },
+    {
+      "id": "face",
+      "gloss": "face",
+      "category": "body",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "face"
+        },
+        "es": {
+          "word": "cara",
+          "ipa": "ˈkaɾa",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "visage",
+          "gender": "m"
+        },
+        "it": {
+          "word": "faccia",
+          "ipa": "ˈfat.t͡ʃa",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "rosto",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Gesicht",
+          "ipa": "ɡəˈzɪçt",
+          "gender": "n"
+        },
+        "la": {
+          "word": "facies",
+          "ipa": "ˈfa.ki.eːs",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "Her face is kind.",
+        "es": "Su cara es amable.",
+        "fr": "Son visage est doux.",
+        "it": "La sua faccia è gentile.",
+        "de": "Ihr Gesicht ist freundlich."
+      }
+    },
+    {
+      "id": "water-2",
+      "gloss": "butter",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "butter",
+          "ipa": "ˈbʌtəɹ"
+        },
+        "es": {
+          "word": "mantequilla",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "beurre",
+          "gender": "m"
+        },
+        "it": {
+          "word": "burro",
+          "ipa": "ˈburo",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "manteiga",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Butter",
+          "ipa": "ˈbʌtəɹ",
+          "gender": "f"
+        },
+        "la": {
+          "word": "butyrum",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "Bread with butter.",
+        "es": "Pan con mantequilla.",
+        "fr": "Du pain avec du beurre.",
+        "it": "Pane con burro.",
+        "de": "Brot mit Butter."
+      }
+    },
+    {
+      "id": "potato",
+      "gloss": "potato",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "potato"
+        },
+        "es": {
+          "word": "patata",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "pomme de terre",
+          "gender": "f"
+        },
+        "it": {
+          "word": "patata",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "batata",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Kartoffel",
+          "gender": "f"
+        },
+        "la": {
+          "word": "solanum",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "I eat a potato.",
+        "es": "Como una patata.",
+        "fr": "Je mange une pomme de terre.",
+        "it": "Mangio una patata.",
+        "de": "Ich esse eine Kartoffel."
+      }
+    },
+    {
+      "id": "orange-fruit",
+      "gloss": "orange (fruit)",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "orange",
+          "ipa": "ˈɒɹ.ɪnd͡ʒ"
+        },
+        "es": {
+          "word": "naranja",
+          "ipa": "naˈɾanxa",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "orange",
+          "ipa": "ˈɒɹ.ɪnd͡ʒ",
+          "gender": "f"
+        },
+        "it": {
+          "word": "arancia",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "laranja",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Orange",
+          "ipa": "ˈɒɹ.ɪnd͡ʒ",
+          "gender": "f"
+        },
+        "la": {
+          "word": "aurantium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The orange is sweet.",
+        "es": "La naranja es dulce.",
+        "fr": "Une orange est douce.",
+        "it": "Una arancia è dolce.",
+        "de": "Die Orange ist süß."
+      }
+    },
+    {
+      "id": "juice",
+      "gloss": "juice",
+      "category": "drink",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "juice",
+          "ipa": "d͡ʒuːs"
+        },
+        "es": {
+          "word": "zumo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "jus",
+          "ipa": "ʒy",
+          "gender": "m"
+        },
+        "it": {
+          "word": "succo",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "suco",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Saft",
+          "ipa": "zaft",
+          "gender": "m"
+        },
+        "la": {
+          "word": "sucus",
+          "ipa": "ˈsuː.kʊs",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "I drink juice.",
+        "es": "Bebo zumo.",
+        "fr": "Je bois du jus.",
+        "it": "Bevo il succo.",
+        "de": "Ich trinke Saft."
+      }
+    },
+    {
+      "id": "dinner",
+      "gloss": "dinner",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "dinner"
+        },
+        "es": {
+          "word": "cena",
+          "ipa": "ˈsẽ.nɐ",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "dîner",
+          "gender": "m"
+        },
+        "it": {
+          "word": "cena",
+          "ipa": "ˈsẽ.nɐ",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "jantar",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Abendessen",
+          "gender": "n"
+        },
+        "la": {
+          "word": "cena",
+          "ipa": "ˈsẽ.nɐ",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "Dinner is ready.",
+        "es": "La cena está lista.",
+        "fr": "Le dîner est prêt.",
+        "it": "La cena è pronta.",
+        "de": "Das Abendessen ist fertig."
+      }
+    },
+    {
+      "id": "lunch",
+      "gloss": "lunch",
+      "category": "food",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "lunch"
+        },
+        "es": {
+          "word": "almuerzo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "déjeuner",
+          "gender": "m"
+        },
+        "it": {
+          "word": "pranzo",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "almoço",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Mittagessen",
+          "gender": "n"
+        },
+        "la": {
+          "word": "prandium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "Lunch is good.",
+        "es": "El almuerzo es bueno.",
+        "fr": "Le déjeuner est bon.",
+        "it": "Il pranzo è buono.",
+        "de": "Das Mittagessen ist gut."
+      }
+    },
+    {
+      "id": "pig",
+      "gloss": "pig",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "pig",
+          "ipa": "pɪɡ"
+        },
+        "es": {
+          "word": "cerdo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "cochon",
+          "gender": "m"
+        },
+        "it": {
+          "word": "maiale",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "porco",
+          "ipa": "ˈpoʁ.ku",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Schwein",
+          "gender": "n"
+        },
+        "la": {
+          "word": "porcus",
+          "ipa": "ˈpɔr.kʊs",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The pig is pink.",
+        "es": "El cerdo es rosa.",
+        "fr": "Le cochon est rose.",
+        "it": "Il maiale è rosa.",
+        "de": "Das Schwein ist rosa."
+      }
+    },
+    {
+      "id": "duck",
+      "gloss": "duck",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "duck"
+        },
+        "es": {
+          "word": "pato",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "canard",
+          "ipa": "ka.naʁ",
+          "gender": "m"
+        },
+        "it": {
+          "word": "anatra",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "pato",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Ente",
+          "ipa": "ˈɛntə",
+          "gender": "f"
+        },
+        "la": {
+          "word": "anas",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The duck swims.",
+        "es": "El pato nada.",
+        "fr": "Le canard nage.",
+        "it": "Una anatra nuota.",
+        "de": "Die Ente schwimmt."
+      }
+    },
+    {
+      "id": "rabbit",
+      "gloss": "rabbit",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "rabbit"
+        },
+        "es": {
+          "word": "conejo",
+          "ipa": "koˈnexo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "lapin",
+          "gender": "m"
+        },
+        "it": {
+          "word": "coniglio",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "coelho",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Kaninchen",
+          "gender": "n"
+        },
+        "la": {
+          "word": "cuniculus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The rabbit is fast.",
+        "es": "El conejo es rápido.",
+        "fr": "Le lapin est rapide.",
+        "it": "Il coniglio è veloce.",
+        "de": "Das Kaninchen ist schnell."
+      }
+    },
+    {
+      "id": "insect",
+      "gloss": "insect",
+      "category": "animal",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "insect"
+        },
+        "es": {
+          "word": "insecto",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "insecte",
+          "gender": "m"
+        },
+        "it": {
+          "word": "insetto",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "inseto",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Insekt",
+          "gender": "n"
+        },
+        "la": {
+          "word": "insectum",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The insect is small.",
+        "es": "El insecto es pequeño.",
+        "fr": "Un insecte est petit.",
+        "it": "Un insetto è piccolo.",
+        "de": "Das Insekt ist klein."
+      }
+    },
+    {
+      "id": "cloud",
+      "gloss": "cloud",
+      "category": "weather",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "cloud"
+        },
+        "es": {
+          "word": "nube",
+          "ipa": "ˈnube",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "nuage",
+          "gender": "m"
+        },
+        "it": {
+          "word": "nuvola",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "nuvem",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Wolke",
+          "gender": "f"
+        },
+        "la": {
+          "word": "nubes",
+          "ipa": "ˈnuː.beːs",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The cloud is white.",
+        "es": "La nube es blanca.",
+        "fr": "Le nuage est blanc.",
+        "it": "La nuvola è bianca.",
+        "de": "Die Wolke ist weiß."
+      }
+    },
+    {
+      "id": "ice",
+      "gloss": "ice",
+      "category": "weather",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "ice",
+          "ipa": "aɪs"
+        },
+        "es": {
+          "word": "hielo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "glace",
+          "ipa": "ɡlas",
+          "gender": "f"
+        },
+        "it": {
+          "word": "ghiaccio",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "gelo",
+          "ipa": "ˈʒe.lu",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Eis",
+          "ipa": "aɪ̯s",
+          "gender": "n"
+        },
+        "la": {
+          "word": "glacies",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The ice is cold.",
+        "es": "El hielo está frío.",
+        "fr": "La glace est froide.",
+        "it": "Il ghiaccio è freddo.",
+        "de": "Das Eis ist kalt."
+      }
+    },
+    {
+      "id": "field",
+      "gloss": "field",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "field",
+          "ipa": "ˈfi(ː)ld"
+        },
+        "es": {
+          "word": "campo",
+          "ipa": "ˈkampo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "champ",
+          "gender": "m"
+        },
+        "it": {
+          "word": "campo",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "campo",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Feld",
+          "gender": "n"
+        },
+        "la": {
+          "word": "ager",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The field is green.",
+        "es": "El campo es verde.",
+        "fr": "Le champ est vert.",
+        "it": "Il campo è verde.",
+        "de": "Das Feld ist grün."
+      }
+    },
+    {
+      "id": "island",
+      "gloss": "island",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "island"
+        },
+        "es": {
+          "word": "isla",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "île",
+          "gender": "f"
+        },
+        "it": {
+          "word": "isola",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "ilha",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Insel",
+          "gender": "f"
+        },
+        "la": {
+          "word": "insula",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The island is small.",
+        "es": "La isla es pequeña.",
+        "fr": "Une île est petite.",
+        "it": "Una isola è piccola.",
+        "de": "Die Insel ist klein."
+      }
+    },
+    {
+      "id": "leaf",
+      "gloss": "leaf",
+      "category": "nature",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "leaf",
+          "ipa": "liːf"
+        },
+        "es": {
+          "word": "hoja",
+          "ipa": "ˈoxa",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "feuille",
+          "gender": "f"
+        },
+        "it": {
+          "word": "foglia",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "folha",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Blatt",
+          "ipa": "blat",
+          "gender": "n"
+        },
+        "la": {
+          "word": "folium",
+          "ipa": "ˈfɔ.li.ũː",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "The leaf is green.",
+        "es": "La hoja es verde.",
+        "fr": "La feuille est verte.",
+        "it": "La foglia è verde.",
+        "de": "Das Blatt ist grün."
+      }
+    },
+    {
+      "id": "afternoon",
+      "gloss": "afternoon",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "afternoon"
+        },
+        "es": {
+          "word": "tarde",
+          "ipa": "ˈtaʁ.d͡ʒi",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "après-midi",
+          "gender": "m"
+        },
+        "it": {
+          "word": "pomeriggio",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "tarde",
+          "ipa": "ˈtaʁ.d͡ʒi",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Nachmittag",
+          "gender": "m"
+        },
+        "la": {
+          "word": "postmeridies",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "We meet in the afternoon.",
+        "es": "Trabajo por la tarde.",
+        "fr": "Bon après-midi à toi.",
+        "it": "Studio il pomeriggio.",
+        "de": "Wir treffen uns am Nachmittag."
+      }
+    },
+    {
+      "id": "today-2",
+      "gloss": "spring (season)",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "spring",
+          "ipa": "ˈspɹɪŋ"
+        },
+        "es": {
+          "word": "primavera",
+          "ipa": "pɾimaˈbeɾa",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "printemps",
+          "gender": "m"
+        },
+        "it": {
+          "word": "primavera",
+          "ipa": "pɾimaˈbeɾa",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "primavera",
+          "ipa": "pɾimaˈbeɾa",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Frühling",
+          "gender": "m"
+        },
+        "la": {
+          "word": "ver",
+          "ipa": "ˈbeɾ",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "Spring is warm.",
+        "es": "La primavera es cálida.",
+        "fr": "Le printemps est doux.",
+        "it": "La primavera è mite.",
+        "de": "Der Frühling ist warm."
+      }
+    },
+    {
+      "id": "summer",
+      "gloss": "summer",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "summer"
+        },
+        "es": {
+          "word": "verano",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "été",
+          "gender": "m"
+        },
+        "it": {
+          "word": "estate",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "verão",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Sommer",
+          "gender": "m"
+        },
+        "la": {
+          "word": "aestas",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "Summer is hot.",
+        "es": "El verano es caluroso.",
+        "fr": "En été il fait chaud.",
+        "it": "In estate fa caldo.",
+        "de": "Der Sommer ist heiß."
+      }
+    },
+    {
+      "id": "autumn",
+      "gloss": "autumn / fall",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "autumn"
+        },
+        "es": {
+          "word": "otoño",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "automne",
+          "gender": "m"
+        },
+        "it": {
+          "word": "autunno",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "outono",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Herbst",
+          "gender": "m"
+        },
+        "la": {
+          "word": "autumnus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "Autumn is cool.",
+        "es": "El otoño es fresco.",
+        "fr": "En automne il fait frais.",
+        "it": "In autunno fa fresco.",
+        "de": "Der Herbst ist kühl."
+      }
+    },
+    {
+      "id": "winter",
+      "gloss": "winter",
+      "category": "time",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "winter"
+        },
+        "es": {
+          "word": "invierno",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "hiver",
+          "gender": "m"
+        },
+        "it": {
+          "word": "inverno",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "inverno",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Winter",
+          "gender": "m"
+        },
+        "la": {
+          "word": "hiems",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "Winter is cold.",
+        "es": "El invierno es frío.",
+        "fr": "En hiver il fait froid.",
+        "it": "In inverno fa freddo.",
+        "de": "Der Winter ist kalt."
+      }
+    },
+    {
+      "id": "but",
+      "gloss": "but",
+      "category": "function",
+      "pos": "function",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "but",
+          "ipa": "byt"
+        },
+        "es": {
+          "word": "pero",
+          "ipa": "ˈpeɾo"
+        },
+        "fr": {
+          "word": "mais",
+          "ipa": "ˈmajs"
+        },
+        "it": {
+          "word": "ma",
+          "ipa": "ma"
+        },
+        "pt": {
+          "word": "mas",
+          "ipa": "mas"
+        },
+        "de": {
+          "word": "aber",
+          "ipa": "ˈaːbɐ"
+        },
+        "la": {
+          "word": "sed"
+        }
+      },
+      "example": {
+        "en": "Small but good.",
+        "es": "Pequeño pero bueno.",
+        "fr": "Petit mais bon.",
+        "it": "Piccolo ma buono.",
+        "de": "Klein aber gut."
+      }
+    },
+    {
+      "id": "because",
+      "gloss": "because",
+      "category": "function",
+      "pos": "function",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "because"
+        },
+        "es": {
+          "word": "porque"
+        },
+        "fr": {
+          "word": "parce que"
+        },
+        "it": {
+          "word": "perché"
+        },
+        "pt": {
+          "word": "porque"
+        },
+        "de": {
+          "word": "weil"
+        },
+        "la": {
+          "word": "quia"
+        }
+      },
+      "example": {
+        "en": "I stay because it rains.",
+        "es": "Me quedo porque llueve.",
+        "fr": "Je reste parce que il pleut.",
+        "it": "Resto perché piove.",
+        "de": "Ich bleibe, weil es regnet."
+      }
+    },
+    {
+      "id": "if",
+      "gloss": "if",
+      "category": "function",
+      "pos": "function",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "if",
+          "ipa": "ɪf"
+        },
+        "es": {
+          "word": "si",
+          "ipa": "si"
+        },
+        "fr": {
+          "word": "si",
+          "ipa": "si"
+        },
+        "it": {
+          "word": "se",
+          "ipa": "se"
+        },
+        "pt": {
+          "word": "se",
+          "ipa": "si"
+        },
+        "de": {
+          "word": "wenn"
+        },
+        "la": {
+          "word": "si",
+          "ipa": "si"
+        }
+      },
+      "example": {
+        "en": "If you want, come.",
+        "es": "Si quieres, ven.",
+        "fr": "Si tu veux, viens.",
+        "it": "Se vuoi, vieni.",
+        "de": "Wenn du willst, komm."
+      }
+    },
+    {
+      "id": "under",
+      "gloss": "under",
+      "category": "function",
+      "pos": "preposition",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "under",
+          "ipa": "ˈʌndə"
+        },
+        "es": {
+          "word": "bajo",
+          "ipa": "ˈbaxo"
+        },
+        "fr": {
+          "word": "sous"
+        },
+        "it": {
+          "word": "sotto",
+          "ipa": "ˈsot.to"
+        },
+        "pt": {
+          "word": "sob"
+        },
+        "de": {
+          "word": "unter",
+          "ipa": "ˈʊntɐ"
+        },
+        "la": {
+          "word": "sub",
+          "ipa": "ˈsʊb"
+        }
+      },
+      "example": {
+        "en": "The cat is under the table.",
+        "es": "El gato está bajo la mesa.",
+        "fr": "Le chat est sous la table.",
+        "it": "Il gatto è sotto il tavolo.",
+        "de": "Die Katze ist unter dem Tisch."
+      }
+    },
+    {
+      "id": "between",
+      "gloss": "between",
+      "category": "function",
+      "pos": "preposition",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "between"
+        },
+        "es": {
+          "word": "entre",
+          "ipa": "ˈentɾe"
+        },
+        "fr": {
+          "word": "entre",
+          "ipa": "ˈentɾe"
+        },
+        "it": {
+          "word": "tra",
+          "ipa": "t͡ɕaː˧˧"
+        },
+        "pt": {
+          "word": "entre",
+          "ipa": "ˈẽ.tɾi"
+        },
+        "de": {
+          "word": "zwischen"
+        },
+        "la": {
+          "word": "inter"
+        }
+      },
+      "example": {
+        "en": "It is between us.",
+        "es": "Está entre nosotros.",
+        "fr": "C'est entre nous.",
+        "it": "È tra noi.",
+        "de": "Es ist zwischen uns."
+      }
+    },
+    {
+      "id": "without",
+      "gloss": "without",
+      "category": "function",
+      "pos": "preposition",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "without"
+        },
+        "es": {
+          "word": "sin"
+        },
+        "fr": {
+          "word": "sans"
+        },
+        "it": {
+          "word": "senza"
+        },
+        "pt": {
+          "word": "sem"
+        },
+        "de": {
+          "word": "ohne"
+        },
+        "la": {
+          "word": "sine"
+        }
+      },
+      "example": {
+        "en": "Coffee without sugar.",
+        "es": "Café sin azúcar.",
+        "fr": "Café sans sucre.",
+        "it": "Caffè senza zucchero.",
+        "de": "Kaffee ohne Zucker."
+      }
+    },
+    {
+      "id": "after",
+      "gloss": "after",
+      "category": "function",
+      "pos": "preposition",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "after",
+          "ipa": "ˈɑːftə"
+        },
+        "es": {
+          "word": "después"
+        },
+        "fr": {
+          "word": "après"
+        },
+        "it": {
+          "word": "dopo"
+        },
+        "pt": {
+          "word": "depois"
+        },
+        "de": {
+          "word": "nach",
+          "ipa": "naːx"
+        },
+        "la": {
+          "word": "post",
+          "ipa": "ˈpɔst"
+        }
+      },
+      "example": {
+        "en": "We eat after the film.",
+        "es": "Comemos después.",
+        "fr": "On mange après.",
+        "it": "Mangiamo dopo.",
+        "de": "Wir essen nach dem Film."
+      }
+    },
+    {
+      "id": "before",
+      "gloss": "before",
+      "category": "function",
+      "pos": "preposition",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "before"
+        },
+        "es": {
+          "word": "antes",
+          "ipa": "ˈantes"
+        },
+        "fr": {
+          "word": "avant",
+          "ipa": "a.vɑ̃"
+        },
+        "it": {
+          "word": "prima",
+          "ipa": "ˈpri.ma"
+        },
+        "pt": {
+          "word": "antes",
+          "ipa": "ˈantes"
+        },
+        "de": {
+          "word": "vor",
+          "ipa": "foːr"
+        },
+        "la": {
+          "word": "ante",
+          "ipa": "ˈante"
+        }
+      },
+      "example": {
+        "en": "Wash before you eat.",
+        "es": "Lávate antes.",
+        "fr": "Lave-toi avant.",
+        "it": "Lavati prima.",
+        "de": "Wasch dich vor dem Essen."
+      }
+    },
+    {
+      "id": "about",
+      "gloss": "about (concerning)",
+      "category": "function",
+      "pos": "preposition",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "about",
+          "ipa": "əˈbaʊ̯t"
+        },
+        "es": {
+          "word": "sobre",
+          "ipa": "ˈsobɾe"
+        },
+        "fr": {
+          "word": "sur",
+          "ipa": "syʁ"
+        },
+        "it": {
+          "word": "su",
+          "ipa": "ˈsu"
+        },
+        "pt": {
+          "word": "sobre",
+          "ipa": "ˈsobɾe"
+        },
+        "de": {
+          "word": "über",
+          "ipa": "ˈyːbɐ"
+        },
+        "la": {
+          "word": "de",
+          "ipa": "ˈdeː"
+        }
+      },
+      "example": {
+        "en": "A book about birds.",
+        "es": "Un libro sobre aves.",
+        "fr": "Un livre sur les oiseaux.",
+        "it": "Un libro su uccelli.",
+        "de": "Ein Buch über Vögel."
+      }
+    },
+    {
+      "id": "also",
+      "gloss": "also / too",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "also",
+          "ipa": "ˈʔalzoː"
+        },
+        "es": {
+          "word": "también"
+        },
+        "fr": {
+          "word": "aussi"
+        },
+        "it": {
+          "word": "anche"
+        },
+        "pt": {
+          "word": "também"
+        },
+        "de": {
+          "word": "auch",
+          "ipa": "aʊ̯x"
+        },
+        "la": {
+          "word": "etiam",
+          "ipa": "ˈɛ.ti.ãː"
+        }
+      },
+      "example": {
+        "en": "I also want tea.",
+        "es": "También quiero té.",
+        "fr": "Je veux aussi du thé.",
+        "it": "Anche io voglio il tè.",
+        "de": "Ich will auch Tee."
+      }
+    },
+    {
+      "id": "only",
+      "gloss": "only",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "only"
+        },
+        "es": {
+          "word": "solo"
+        },
+        "fr": {
+          "word": "seulement"
+        },
+        "it": {
+          "word": "solo"
+        },
+        "pt": {
+          "word": "só"
+        },
+        "de": {
+          "word": "nur"
+        },
+        "la": {
+          "word": "tantum"
+        }
+      },
+      "example": {
+        "en": "Only one apple.",
+        "es": "Solo una manzana.",
+        "fr": "Seulement une pomme.",
+        "it": "Solo una mela.",
+        "de": "Nur ein Apfel."
+      }
+    },
+    {
+      "id": "here-now",
+      "gloss": "far",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "far",
+          "ipa": "fɑː"
+        },
+        "es": {
+          "word": "lejos"
+        },
+        "fr": {
+          "word": "loin"
+        },
+        "it": {
+          "word": "lontano"
+        },
+        "pt": {
+          "word": "longe"
+        },
+        "de": {
+          "word": "weit",
+          "ipa": "vaɪ̯t"
+        },
+        "la": {
+          "word": "procul"
+        }
+      },
+      "example": {
+        "en": "The city is far.",
+        "es": "La ciudad está lejos.",
+        "fr": "La ville est loin.",
+        "it": "Il paese è lontano.",
+        "de": "Die Stadt ist weit."
+      }
+    },
+    {
+      "id": "again",
+      "gloss": "again",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "again"
+        },
+        "es": {
+          "word": "otra vez"
+        },
+        "fr": {
+          "word": "encore",
+          "ipa": "ɑ̃.kɔʁ"
+        },
+        "it": {
+          "word": "ancora",
+          "ipa": "ˈan.ko.ra"
+        },
+        "pt": {
+          "word": "outra vez"
+        },
+        "de": {
+          "word": "wieder"
+        },
+        "la": {
+          "word": "iterum"
+        }
+      },
+      "example": {
+        "en": "Say it again.",
+        "es": "Dilo otra vez.",
+        "fr": "Dis-le encore.",
+        "it": "Dillo ancora.",
+        "de": "Sag es wieder."
+      }
+    },
+    {
+      "id": "together",
+      "gloss": "together",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "together"
+        },
+        "es": {
+          "word": "juntos"
+        },
+        "fr": {
+          "word": "ensemble",
+          "ipa": "ɑ̃.sɑ̃bl"
+        },
+        "it": {
+          "word": "insieme"
+        },
+        "pt": {
+          "word": "juntos"
+        },
+        "de": {
+          "word": "zusammen"
+        },
+        "la": {
+          "word": "simul",
+          "ipa": "ˈsɪ.mʊɫ"
+        }
+      },
+      "example": {
+        "en": "We work together.",
+        "es": "Trabajamos juntos.",
+        "fr": "On travaille ensemble.",
+        "it": "Lavoriamo insieme.",
+        "de": "Wir arbeiten zusammen."
+      }
+    },
+    {
+      "id": "maybe",
+      "gloss": "maybe / perhaps",
+      "category": "function",
+      "pos": "adverb",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "maybe"
+        },
+        "es": {
+          "word": "quizás"
+        },
+        "fr": {
+          "word": "peut-être"
+        },
+        "it": {
+          "word": "forse"
+        },
+        "pt": {
+          "word": "talvez"
+        },
+        "de": {
+          "word": "vielleicht"
+        },
+        "la": {
+          "word": "fortasse"
+        }
+      },
+      "example": {
+        "en": "Maybe tomorrow.",
+        "es": "Quizás mañana.",
+        "fr": "Peut-être demain.",
+        "it": "Forse domani.",
+        "de": "Vielleicht morgen."
+      }
+    },
+    {
+      "id": "our",
+      "gloss": "our",
+      "category": "function",
+      "pos": "pronoun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "our",
+          "ipa": "ˈaʊ̯.əː"
+        },
+        "es": {
+          "word": "nuestro"
+        },
+        "fr": {
+          "word": "notre"
+        },
+        "it": {
+          "word": "nostro",
+          "ipa": "ˈnɔs.tro"
+        },
+        "pt": {
+          "word": "nosso"
+        },
+        "de": {
+          "word": "unser"
+        },
+        "la": {
+          "word": "noster"
+        }
+      },
+      "example": {
+        "en": "This is our house.",
+        "es": "Este es nuestro libro.",
+        "fr": "C'est notre maison.",
+        "it": "Questo è il nostro libro.",
+        "de": "Das ist unser Haus."
+      }
+    },
+    {
+      "id": "their",
+      "gloss": "their",
+      "category": "function",
+      "pos": "pronoun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "their"
+        },
+        "es": {
+          "word": "su",
+          "ipa": "ˈsu"
+        },
+        "fr": {
+          "word": "leur"
+        },
+        "it": {
+          "word": "loro",
+          "ipa": "ˈlo.ro"
+        },
+        "pt": {
+          "word": "deles"
+        },
+        "de": {
+          "word": "ihr",
+          "ipa": "iːr"
+        },
+        "la": {
+          "word": "eorum"
+        }
+      },
+      "example": {
+        "en": "That is their car.",
+        "es": "Ese es su coche.",
+        "fr": "C'est leur voiture.",
+        "it": "È la loro auto.",
+        "de": "Das ist ihr Auto."
+      }
+    },
+    {
+      "id": "all",
+      "gloss": "all",
+      "category": "function",
+      "pos": "function",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "all",
+          "ipa": "ɔːl"
+        },
+        "es": {
+          "word": "todo"
+        },
+        "fr": {
+          "word": "tout",
+          "ipa": "tu"
+        },
+        "it": {
+          "word": "tutto",
+          "ipa": "ˈtut.to"
+        },
+        "pt": {
+          "word": "tudo",
+          "ipa": "ˈtu.du"
+        },
+        "de": {
+          "word": "alle"
+        },
+        "la": {
+          "word": "omnis",
+          "ipa": "ˈɔm.nɪs"
+        }
+      },
+      "example": {
+        "en": "All the bread is gone.",
+        "es": "Todo el pan se acabó.",
+        "fr": "Tout le pain est parti.",
+        "it": "Tutto il pane è finito.",
+        "de": "Alle das Brot ist weg."
+      }
+    },
+    {
+      "id": "many",
+      "gloss": "many / much",
+      "category": "function",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "many",
+          "ipa": "ˈmɛni"
+        },
+        "es": {
+          "word": "muchos"
+        },
+        "fr": {
+          "word": "beaucoup"
+        },
+        "it": {
+          "word": "molti"
+        },
+        "pt": {
+          "word": "muitos"
+        },
+        "de": {
+          "word": "viele"
+        },
+        "la": {
+          "word": "multi"
+        }
+      },
+      "example": {
+        "en": "Many people came.",
+        "es": "Vinieron muchos.",
+        "fr": "Beaucoup sont venus.",
+        "it": "Molti sono venuti.",
+        "de": "Viele kamen."
+      }
+    },
+    {
+      "id": "few",
+      "gloss": "few",
+      "category": "function",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "few",
+          "ipa": "fjuː"
+        },
+        "es": {
+          "word": "pocos"
+        },
+        "fr": {
+          "word": "peu"
+        },
+        "it": {
+          "word": "pochi"
+        },
+        "pt": {
+          "word": "poucos"
+        },
+        "de": {
+          "word": "wenige"
+        },
+        "la": {
+          "word": "pauci"
+        }
+      },
+      "example": {
+        "en": "Few people stayed.",
+        "es": "Pocos se quedaron.",
+        "fr": "Peu sont restés.",
+        "it": "Pochi sono rimasti.",
+        "de": "Wenige blieben."
+      }
+    },
+    {
+      "id": "other",
+      "gloss": "other / another",
+      "category": "function",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "other"
+        },
+        "es": {
+          "word": "otro"
+        },
+        "fr": {
+          "word": "autre"
+        },
+        "it": {
+          "word": "altro"
+        },
+        "pt": {
+          "word": "outro",
+          "ipa": "ˈo(w).tɾu"
+        },
+        "de": {
+          "word": "andere"
+        },
+        "la": {
+          "word": "alius",
+          "ipa": "ˈa.li.ʊs"
+        }
+      },
+      "example": {
+        "en": "I want the other one.",
+        "es": "Quiero el otro.",
+        "fr": "Je veux un autre.",
+        "it": "Voglio un altro.",
+        "de": "Ich will eine andere Farbe."
+      }
+    },
+    {
+      "id": "same",
+      "gloss": "same",
+      "category": "function",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "same"
+        },
+        "es": {
+          "word": "mismo",
+          "ipa": "ˈmismo"
+        },
+        "fr": {
+          "word": "même"
+        },
+        "it": {
+          "word": "stesso"
+        },
+        "pt": {
+          "word": "mesmo",
+          "ipa": "ˈmez.mu"
+        },
+        "de": {
+          "word": "gleich",
+          "ipa": "ɡlaɪ̯ç"
+        },
+        "la": {
+          "word": "idem"
+        }
+      },
+      "example": {
+        "en": "It is the same book.",
+        "es": "Es el mismo libro.",
+        "fr": "C'est le même livre.",
+        "it": "È lo stesso libro.",
+        "de": "Wir sind gleich groß."
+      }
+    },
+    {
+      "id": "sixty",
+      "gloss": "sixty (60)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "sixty"
+        },
+        "es": {
+          "word": "sesenta"
+        },
+        "fr": {
+          "word": "soixante"
+        },
+        "it": {
+          "word": "sessanta"
+        },
+        "pt": {
+          "word": "sessenta"
+        },
+        "de": {
+          "word": "sechzig"
+        },
+        "la": {
+          "word": "sexaginta"
+        }
+      },
+      "example": {
+        "en": "He is sixty.",
+        "es": "Tiene sesenta.",
+        "fr": "Il a soixante ans.",
+        "it": "Ha sessanta anni.",
+        "de": "Er ist sechzig."
+      }
+    },
+    {
+      "id": "seventy",
+      "gloss": "seventy (70)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "seventy"
+        },
+        "es": {
+          "word": "setenta"
+        },
+        "fr": {
+          "word": "soixante-dix"
+        },
+        "it": {
+          "word": "settanta"
+        },
+        "pt": {
+          "word": "setenta"
+        },
+        "de": {
+          "word": "siebzig"
+        },
+        "la": {
+          "word": "septuaginta"
+        }
+      },
+      "example": {
+        "en": "She is seventy.",
+        "es": "Tiene setenta.",
+        "fr": "Elle a soixante-dix ans.",
+        "it": "Ha settanta anni.",
+        "de": "Sie ist siebzig."
+      }
+    },
+    {
+      "id": "eighty",
+      "gloss": "eighty (80)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "eighty"
+        },
+        "es": {
+          "word": "ochenta"
+        },
+        "fr": {
+          "word": "quatre-vingts"
+        },
+        "it": {
+          "word": "ottanta"
+        },
+        "pt": {
+          "word": "oitenta"
+        },
+        "de": {
+          "word": "achtzig"
+        },
+        "la": {
+          "word": "octoginta"
+        }
+      },
+      "example": {
+        "en": "He is eighty.",
+        "es": "Tiene ochenta.",
+        "fr": "Il a quatre-vingts ans.",
+        "it": "Ha ottanta anni.",
+        "de": "Er ist achtzig."
+      }
+    },
+    {
+      "id": "ninety",
+      "gloss": "ninety (90)",
+      "category": "number",
+      "pos": "numeral",
+      "shell": "prereq",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "ninety"
+        },
+        "es": {
+          "word": "noventa"
+        },
+        "fr": {
+          "word": "quatre-vingt-dix"
+        },
+        "it": {
+          "word": "novanta"
+        },
+        "pt": {
+          "word": "noventa"
+        },
+        "de": {
+          "word": "neunzig"
+        },
+        "la": {
+          "word": "nonaginta"
+        }
+      },
+      "example": {
+        "en": "She is ninety.",
+        "es": "Tiene noventa.",
+        "fr": "Elle a quatre-vingt-dix ans.",
+        "it": "Ha novanta anni.",
+        "de": "Sie ist neunzig."
+      }
+    },
+    {
+      "id": "first",
+      "gloss": "first",
+      "category": "number",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "first"
+        },
+        "es": {
+          "word": "primero",
+          "ipa": "pɾiˈmeɾo"
+        },
+        "fr": {
+          "word": "premier",
+          "ipa": "pʁə.mje"
+        },
+        "it": {
+          "word": "primo",
+          "ipa": "ˈpri.mo"
+        },
+        "pt": {
+          "word": "primeiro",
+          "ipa": "pɾiˈme(j).ɾu"
+        },
+        "de": {
+          "word": "erste"
+        },
+        "la": {
+          "word": "primus"
+        }
+      },
+      "example": {
+        "en": "The first day.",
+        "es": "El primero día.",
+        "fr": "Le premier jour.",
+        "it": "Il primo giorno.",
+        "de": "Der erste Tag."
+      }
+    },
+    {
+      "id": "second-ord",
+      "gloss": "second (ordinal)",
+      "category": "number",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "second"
+        },
+        "es": {
+          "word": "segundo",
+          "ipa": "seˈɡundo"
+        },
+        "fr": {
+          "word": "deuxième"
+        },
+        "it": {
+          "word": "secondo",
+          "ipa": "seˈkon.do"
+        },
+        "pt": {
+          "word": "segundo",
+          "ipa": "seˈɡũ.du"
+        },
+        "de": {
+          "word": "zweite"
+        },
+        "la": {
+          "word": "secundus",
+          "ipa": "sɛˈkʊn.dʊs"
+        }
+      },
+      "example": {
+        "en": "The second book.",
+        "es": "El segundo libro.",
+        "fr": "Le deuxième livre.",
+        "it": "Il secondo libro.",
+        "de": "Das zweite Buch."
+      }
+    },
+    {
+      "id": "last",
+      "gloss": "last",
+      "category": "number",
+      "pos": "adjective",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "last",
+          "ipa": "lɑst"
+        },
+        "es": {
+          "word": "último"
+        },
+        "fr": {
+          "word": "dernier"
+        },
+        "it": {
+          "word": "ultimo",
+          "ipa": "ˈul.ti.mo"
+        },
+        "pt": {
+          "word": "último"
+        },
+        "de": {
+          "word": "letzte"
+        },
+        "la": {
+          "word": "ultimus"
+        }
+      },
+      "example": {
+        "en": "The last day.",
+        "es": "El último día.",
+        "fr": "Le dernier jour.",
+        "it": "Questo è ultimo giorno.",
+        "de": "Der letzte Tag."
+      }
+    },
+    {
+      "id": "half",
+      "gloss": "half",
+      "category": "number",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "half",
+          "ipa": "ˈhɑːf"
+        },
+        "es": {
+          "word": "mitad",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "moitié",
+          "gender": "f"
+        },
+        "it": {
+          "word": "metà",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "metade",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Hälfte",
+          "gender": "f"
+        },
+        "la": {
+          "word": "dimidium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "Half the bread.",
+        "es": "La mitad del pan.",
+        "fr": "La moitié du pain.",
+        "it": "La metà del pane.",
+        "de": "Die Hälfte vom Brot."
+      }
+    },
+    {
+      "id": "baby",
+      "gloss": "baby",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "baby",
+          "ipa": "ˈbeɪ̯.bi"
+        },
+        "es": {
+          "word": "bebé",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "bébé",
+          "gender": "m"
+        },
+        "it": {
+          "word": "bambino",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "bebê",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Baby",
+          "ipa": "ˈbeɪ̯.bi",
+          "gender": "n"
+        },
+        "la": {
+          "word": "infans",
+          "ipa": "ˈĩː.fãːs",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The baby sleeps.",
+        "es": "El bebé duerme.",
+        "fr": "Le bébé dort.",
+        "it": "Il bambino dorme.",
+        "de": "Das Baby schläft."
+      }
+    },
+    {
+      "id": "boy",
+      "gloss": "boy",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "boy",
+          "ipa": "bɔɪ"
+        },
+        "es": {
+          "word": "niño",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "garçon",
+          "gender": "m"
+        },
+        "it": {
+          "word": "ragazzo",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "menino",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Junge",
+          "gender": "m"
+        },
+        "la": {
+          "word": "puer",
+          "ipa": "ˈpu.ɛr",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The boy plays.",
+        "es": "El niño juega.",
+        "fr": "Le garçon joue.",
+        "it": "Il ragazzo gioca.",
+        "de": "Der Junge spielt."
+      }
+    },
+    {
+      "id": "girl",
+      "gloss": "girl",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "girl",
+          "ipa": "ˈɡɜːl"
+        },
+        "es": {
+          "word": "niña",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "fille",
+          "gender": "f"
+        },
+        "it": {
+          "word": "ragazza",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "menina",
+          "ipa": "miˈnĩ.nɐ",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Mädchen",
+          "gender": "n"
+        },
+        "la": {
+          "word": "puella",
+          "ipa": "puˈɛl.la",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The girl reads.",
+        "es": "La niña lee.",
+        "fr": "La fille lit.",
+        "it": "La ragazza legge.",
+        "de": "Das Mädchen liest."
+      }
+    },
+    {
+      "id": "people",
+      "gloss": "people",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "people",
+          "ipa": "ˈpi.pəl"
+        },
+        "es": {
+          "word": "gente",
+          "ipa": "ˈd͡ʒɛn.te",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "gens",
+          "ipa": "ˈɡẽːs",
+          "gender": "m"
+        },
+        "it": {
+          "word": "gente",
+          "ipa": "ˈd͡ʒɛn.te",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "gente",
+          "ipa": "ˈd͡ʒɛn.te",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Leute",
+          "gender": "f"
+        },
+        "la": {
+          "word": "populus",
+          "ipa": "ˈpɔ.pʊ.ɫʊs",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The people are kind.",
+        "es": "La gente es amable.",
+        "fr": "Les gens sont gentils.",
+        "it": "La gente è gentile.",
+        "de": "Die Leute sind nett."
+      }
+    },
+    {
+      "id": "neighbor",
+      "gloss": "neighbour",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "neighbour"
+        },
+        "es": {
+          "word": "vecino",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "voisin",
+          "gender": "m"
+        },
+        "it": {
+          "word": "vicino",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "vizinho",
+          "ipa": "viˈzĩ.ɲu",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Nachbar",
+          "gender": "m"
+        },
+        "la": {
+          "word": "vicinus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "My neighbour is kind.",
+        "es": "Mi vecino es amable.",
+        "fr": "Mon voisin est gentil.",
+        "it": "Il mio vicino è gentile.",
+        "de": "Mein Nachbar ist nett."
+      }
+    },
+    {
+      "id": "worker",
+      "gloss": "worker",
+      "category": "people",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "worker"
+        },
+        "es": {
+          "word": "trabajador",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "ouvrier",
+          "gender": "m"
+        },
+        "it": {
+          "word": "operaio",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "trabalhador",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Arbeiter",
+          "gender": "m"
+        },
+        "la": {
+          "word": "operarius",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The worker is tired.",
+        "es": "El trabajador está cansado.",
+        "fr": "Un ouvrier est fatigué.",
+        "it": "Un operaio è stanco.",
+        "de": "Der Arbeiter ist müde."
+      }
+    },
+    {
+      "id": "life",
+      "gloss": "life",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "life",
+          "ipa": "ˈlaɪ̯f"
+        },
+        "es": {
+          "word": "vida",
+          "ipa": "ˈbida",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "vie",
+          "ipa": "vi",
+          "gender": "f"
+        },
+        "it": {
+          "word": "vita",
+          "ipa": "ˈwiː.ta",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "vida",
+          "ipa": "ˈbida",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Leben",
+          "ipa": "ˈleːbən",
+          "gender": "n"
+        },
+        "la": {
+          "word": "vita",
+          "ipa": "ˈwiː.ta",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "Life is good.",
+        "es": "La vida es buena.",
+        "fr": "La vie est belle.",
+        "it": "La vita è bella.",
+        "de": "Das Leben ist gut."
+      }
+    },
+    {
+      "id": "world",
+      "gloss": "world",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "world",
+          "ipa": "wɜːld"
+        },
+        "es": {
+          "word": "mundo",
+          "ipa": "ˈmundo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "monde",
+          "ipa": "mɔ̃d",
+          "gender": "m"
+        },
+        "it": {
+          "word": "mondo",
+          "ipa": "ˈmon.do",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "mundo",
+          "ipa": "ˈmũ.du",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Welt",
+          "gender": "f"
+        },
+        "la": {
+          "word": "mundus",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The world is big.",
+        "es": "El mundo es grande.",
+        "fr": "Le monde est grand.",
+        "it": "Il mondo è grande.",
+        "de": "Die Welt ist groß."
+      }
+    },
+    {
+      "id": "story",
+      "gloss": "story",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "story"
+        },
+        "es": {
+          "word": "historia",
+          "ipa": "isˈtoɾja",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "histoire",
+          "gender": "f"
+        },
+        "it": {
+          "word": "storia",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "história",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Geschichte",
+          "gender": "f"
+        },
+        "la": {
+          "word": "fabula",
+          "ipa": "ˈfaː.bʊ.ɫa",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "A good story.",
+        "es": "Una buena historia.",
+        "fr": "Une bonne histoire.",
+        "it": "Una bella storia.",
+        "de": "Eine gute Geschichte."
+      }
+    },
+    {
+      "id": "music",
+      "gloss": "music",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "music"
+        },
+        "es": {
+          "word": "música",
+          "ipa": "ˈmu.zi.kɐ",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "musique",
+          "gender": "f"
+        },
+        "it": {
+          "word": "musica",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "música",
+          "ipa": "ˈmu.zi.kɐ",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Musik",
+          "ipa": "muˈziːk",
+          "gender": "f"
+        },
+        "la": {
+          "word": "musica",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "The music is nice.",
+        "es": "La música es bonita.",
+        "fr": "La musique est belle.",
+        "it": "La musica è bella.",
+        "de": "Die Musik ist schön."
+      }
+    },
+    {
+      "id": "game",
+      "gloss": "game",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "game"
+        },
+        "es": {
+          "word": "juego",
+          "ipa": "ˈxweɡo",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "jeu",
+          "ipa": "ʒø",
+          "gender": "m"
+        },
+        "it": {
+          "word": "gioco",
+          "ipa": "ˈd͡ʒɔ.ko",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "jogo",
+          "ipa": "ˈʒo.ɡu",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Spiel",
+          "ipa": "ʃpiːl",
+          "gender": "n"
+        },
+        "la": {
+          "word": "ludus",
+          "ipa": "ˈɫuː.dʊs",
+          "gender": "m"
+        }
+      },
+      "example": {
+        "en": "The game is fun.",
+        "es": "El juego es divertido.",
+        "fr": "Le jeu est amusant.",
+        "it": "Il gioco è divertente.",
+        "de": "Das Spiel ist lustig."
+      }
+    },
+    {
+      "id": "idea",
+      "gloss": "idea",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "idea"
+        },
+        "es": {
+          "word": "idea",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "idée",
+          "gender": "f"
+        },
+        "it": {
+          "word": "idea",
+          "gender": "f"
+        },
+        "pt": {
+          "word": "ideia",
+          "ipa": "iˈdɛj.ɐ",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Idee",
+          "gender": "f"
+        },
+        "la": {
+          "word": "idea",
+          "gender": "f"
+        }
+      },
+      "example": {
+        "en": "A good idea.",
+        "es": "Una buena idea.",
+        "fr": "Une bonne idée.",
+        "it": "Una buona idea.",
+        "de": "Eine gute Idee."
+      }
+    },
+    {
+      "id": "problem",
+      "gloss": "problem",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "problem",
+          "ipa": "ˈpɹɒbləm"
+        },
+        "es": {
+          "word": "problema",
+          "gender": "m"
+        },
+        "fr": {
+          "word": "problème",
+          "gender": "m"
+        },
+        "it": {
+          "word": "problema",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "problema",
+          "gender": "m"
+        },
+        "de": {
+          "word": "Problem",
+          "ipa": "ˈpɹɒbləm",
+          "gender": "n"
+        },
+        "la": {
+          "word": "problema",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "It is a small problem.",
+        "es": "Es un problema pequeño.",
+        "fr": "C'est un petit problème.",
+        "it": "È un piccolo problema.",
+        "de": "Es ist ein kleines Problem."
+      }
+    },
+    {
+      "id": "help-noun",
+      "gloss": "help (the noun)",
+      "category": "abstract",
+      "pos": "noun",
+      "shell": "nucleus",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "help"
+        },
+        "es": {
+          "word": "ayuda",
+          "ipa": "aˈʝuda",
+          "gender": "f"
+        },
+        "fr": {
+          "word": "aide",
+          "gender": "f"
+        },
+        "it": {
+          "word": "aiuto",
+          "ipa": "aˈju.to",
+          "gender": "m"
+        },
+        "pt": {
+          "word": "ajuda",
+          "ipa": "aˈʒu.dɐ",
+          "gender": "f"
+        },
+        "de": {
+          "word": "Hilfe",
+          "gender": "f"
+        },
+        "la": {
+          "word": "auxilium",
+          "gender": "n"
+        }
+      },
+      "example": {
+        "en": "I need help.",
+        "es": "Necesito ayuda.",
+        "fr": "Voici une aide utile.",
+        "it": "Ho bisogno di aiuto.",
+        "de": "Ich brauche Hilfe."
+      }
+    },
+    {
+      "id": "good-afternoon",
+      "gloss": "good afternoon",
+      "category": "greeting",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "good afternoon"
+        },
+        "es": {
+          "word": "buenas tardes"
+        },
+        "fr": {
+          "word": "bon après-midi"
+        },
+        "it": {
+          "word": "buon pomeriggio"
+        },
+        "pt": {
+          "word": "boa tarde"
+        },
+        "de": {
+          "word": "guten Tag"
+        },
+        "la": {
+          "word": "salve"
+        }
+      },
+      "example": {
+        "en": "Good afternoon, madam.",
+        "es": "Buenas tardes, señora.",
+        "fr": "Bon après-midi, madame.",
+        "it": "Buon pomeriggio, signora.",
+        "de": "Guten Tag, gnädige Frau."
+      }
+    },
+    {
+      "id": "you-are-welcome",
+      "gloss": "you're welcome",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "you're welcome"
+        },
+        "es": {
+          "word": "de nada"
+        },
+        "fr": {
+          "word": "de rien"
+        },
+        "it": {
+          "word": "prego",
+          "ipa": "ˈprɛ.ɡo"
+        },
+        "pt": {
+          "word": "de nada"
+        },
+        "de": {
+          "word": "bitte schön"
+        },
+        "la": {
+          "word": "libenter"
+        }
+      },
+      "example": {
+        "en": "You're welcome, friend.",
+        "es": "De nada, amigo.",
+        "fr": "De rien, mon ami.",
+        "it": "Prego, amico.",
+        "de": "Bitte schön, mein Freund."
+      }
+    },
+    {
+      "id": "nice-to-meet-you",
+      "gloss": "nice to meet you",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "nice to meet you"
+        },
+        "es": {
+          "word": "mucho gusto"
+        },
+        "fr": {
+          "word": "enchanté"
+        },
+        "it": {
+          "word": "piacere"
+        },
+        "pt": {
+          "word": "prazer"
+        },
+        "de": {
+          "word": "freut mich"
+        },
+        "la": {
+          "word": "gaudeo te videre"
+        }
+      },
+      "example": {
+        "en": "Hello, nice to meet you.",
+        "es": "Hola, mucho gusto.",
+        "fr": "Bonjour, enchanté.",
+        "it": "Ciao, piacere.",
+        "de": "Hallo, freut mich."
+      }
+    },
+    {
+      "id": "can-you-help",
+      "gloss": "can you help me?",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "can you help me"
+        },
+        "es": {
+          "word": "puedes ayudarme"
+        },
+        "fr": {
+          "word": "pouvez-vous m'aider"
+        },
+        "it": {
+          "word": "può aiutarmi"
+        },
+        "pt": {
+          "word": "pode me ajudar"
+        },
+        "de": {
+          "word": "können Sie mir helfen"
+        },
+        "la": {
+          "word": "potesne me iuvare"
+        }
+      },
+      "example": {
+        "en": "Please, can you help me?",
+        "es": "Por favor, ¿puedes ayudarme?",
+        "fr": "Pouvez-vous m'aider, s'il vous plaît?",
+        "it": "Scusi, può aiutarmi?",
+        "de": "Bitte, können Sie mir helfen?"
+      }
+    },
+    {
+      "id": "i-would-like",
+      "gloss": "I would like",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "I would like"
+        },
+        "es": {
+          "word": "quisiera"
+        },
+        "fr": {
+          "word": "je voudrais"
+        },
+        "it": {
+          "word": "vorrei"
+        },
+        "pt": {
+          "word": "gostaria"
+        },
+        "de": {
+          "word": "ich möchte"
+        },
+        "la": {
+          "word": "velim"
+        }
+      },
+      "example": {
+        "en": "I would like a coffee.",
+        "es": "Quisiera un café.",
+        "fr": "Je voudrais un café.",
+        "it": "Vorrei un caffè.",
+        "de": "Ich möchte einen Kaffee."
+      }
+    },
+    {
+      "id": "what-time",
+      "gloss": "what time is it?",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "what time is it"
+        },
+        "es": {
+          "word": "qué hora es"
+        },
+        "fr": {
+          "word": "quelle heure est-il"
+        },
+        "it": {
+          "word": "che ora è"
+        },
+        "pt": {
+          "word": "que horas são"
+        },
+        "de": {
+          "word": "wie spät ist es"
+        },
+        "la": {
+          "word": "quota hora est"
+        }
+      },
+      "example": {
+        "en": "Excuse me, what time is it?",
+        "es": "Perdón, ¿qué hora es?",
+        "fr": "Pardon, quelle heure est-il?",
+        "it": "Scusi, che ora è?",
+        "de": "Entschuldigung, wie spät ist es?"
+      }
+    },
+    {
+      "id": "i-dont-speak",
+      "gloss": "I don't speak (the language)",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "I don't speak"
+        },
+        "es": {
+          "word": "no hablo"
+        },
+        "fr": {
+          "word": "je ne parle pas"
+        },
+        "it": {
+          "word": "non parlo"
+        },
+        "pt": {
+          "word": "não falo"
+        },
+        "de": {
+          "word": "ich spreche nicht"
+        },
+        "la": {
+          "word": "non loquor"
+        }
+      },
+      "example": {
+        "en": "Sorry, I don't speak it well.",
+        "es": "Lo siento, no hablo bien.",
+        "fr": "Désolé, je ne parle pas bien.",
+        "it": "Mi dispiace, non parlo bene.",
+        "de": "Entschuldigung, ich spreche nicht gut."
+      }
+    },
+    {
+      "id": "see-you-later",
+      "gloss": "see you later",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "see you later"
+        },
+        "es": {
+          "word": "hasta luego"
+        },
+        "fr": {
+          "word": "à bientôt"
+        },
+        "it": {
+          "word": "a dopo"
+        },
+        "pt": {
+          "word": "até logo"
+        },
+        "de": {
+          "word": "bis später"
+        },
+        "la": {
+          "word": "vale"
+        }
+      },
+      "example": {
+        "en": "Goodbye, see you later.",
+        "es": "Adiós, hasta luego.",
+        "fr": "Au revoir, à bientôt.",
+        "it": "Ciao, a dopo.",
+        "de": "Tschüss, bis später."
+      }
+    },
+    {
+      "id": "welcome",
+      "gloss": "welcome",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "welcome"
+        },
+        "es": {
+          "word": "bienvenido"
+        },
+        "fr": {
+          "word": "bienvenue"
+        },
+        "it": {
+          "word": "benvenuto"
+        },
+        "pt": {
+          "word": "bem-vindo"
+        },
+        "de": {
+          "word": "willkommen"
+        },
+        "la": {
+          "word": "salve"
+        }
+      },
+      "example": {
+        "en": "Welcome to my house.",
+        "es": "Bienvenido a mi casa.",
+        "fr": "Bienvenue chez moi.",
+        "it": "Benvenuto a casa mia.",
+        "de": "Willkommen in meinem Haus."
+      }
+    },
+    {
+      "id": "how-do-you-say",
+      "gloss": "how do you say...?",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "how do you say"
+        },
+        "es": {
+          "word": "cómo se dice"
+        },
+        "fr": {
+          "word": "comment dit-on"
+        },
+        "it": {
+          "word": "come si dice"
+        },
+        "pt": {
+          "word": "como se diz"
+        },
+        "de": {
+          "word": "wie sagt man"
+        },
+        "la": {
+          "word": "quomodo dicitur"
+        }
+      },
+      "example": {
+        "en": "How do you say this?",
+        "es": "¿Cómo se dice esto?",
+        "fr": "Comment dit-on ça?",
+        "it": "Come si dice questo?",
+        "de": "Wie sagt man das?"
+      }
+    },
+    {
+      "id": "i-am-hungry",
+      "gloss": "I am hungry",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "I am hungry"
+        },
+        "es": {
+          "word": "tengo hambre"
+        },
+        "fr": {
+          "word": "j'ai faim"
+        },
+        "it": {
+          "word": "ho fame"
+        },
+        "pt": {
+          "word": "estou com fome"
+        },
+        "de": {
+          "word": "ich habe Hunger"
+        },
+        "la": {
+          "word": "esurio"
+        }
+      },
+      "example": {
+        "en": "I am hungry now.",
+        "es": "Ahora tengo hambre.",
+        "fr": "Maintenant j'ai faim.",
+        "it": "Adesso ho fame.",
+        "de": "Mama, ich habe Hunger."
+      }
+    },
+    {
+      "id": "i-am-thirsty",
+      "gloss": "I am thirsty",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "I am thirsty"
+        },
+        "es": {
+          "word": "tengo sed"
+        },
+        "fr": {
+          "word": "j'ai soif"
+        },
+        "it": {
+          "word": "ho sete"
+        },
+        "pt": {
+          "word": "estou com sede"
+        },
+        "de": {
+          "word": "ich habe Durst"
+        },
+        "la": {
+          "word": "sitio",
+          "ipa": "ˈsitjo"
+        }
+      },
+      "example": {
+        "en": "I am thirsty too.",
+        "es": "También tengo sed.",
+        "fr": "J'ai soif aussi.",
+        "it": "Ho sete anch'io.",
+        "de": "Mama, ich habe Durst."
+      }
+    },
+    {
+      "id": "it-is-cold",
+      "gloss": "it is cold (weather)",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "it is cold"
+        },
+        "es": {
+          "word": "hace frío"
+        },
+        "fr": {
+          "word": "il fait froid"
+        },
+        "it": {
+          "word": "fa freddo"
+        },
+        "pt": {
+          "word": "está frio"
+        },
+        "de": {
+          "word": "es ist kalt"
+        },
+        "la": {
+          "word": "frigus est"
+        }
+      },
+      "example": {
+        "en": "Today it is cold.",
+        "es": "Hoy hace frío.",
+        "fr": "Aujourd'hui il fait froid.",
+        "it": "Oggi fa freddo.",
+        "de": "Brrr, es ist kalt heute."
+      }
+    },
+    {
+      "id": "it-is-hot",
+      "gloss": "it is hot (weather)",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "it is hot"
+        },
+        "es": {
+          "word": "hace calor"
+        },
+        "fr": {
+          "word": "il fait chaud"
+        },
+        "it": {
+          "word": "fa caldo"
+        },
+        "pt": {
+          "word": "está quente"
+        },
+        "de": {
+          "word": "es ist heiß"
+        },
+        "la": {
+          "word": "calidum est"
+        }
+      },
+      "example": {
+        "en": "In summer it is hot.",
+        "es": "En verano hace calor.",
+        "fr": "En été il fait chaud.",
+        "it": "D'estate fa caldo.",
+        "de": "Im Sommer es ist heiß und sonnig."
+      }
+    },
+    {
+      "id": "the-bill",
+      "gloss": "the bill / check, please",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "the bill please"
+        },
+        "es": {
+          "word": "la cuenta por favor"
+        },
+        "fr": {
+          "word": "l'addition s'il vous plaît"
+        },
+        "it": {
+          "word": "il conto per favore"
+        },
+        "pt": {
+          "word": "a conta por favor"
+        },
+        "de": {
+          "word": "die Rechnung bitte"
+        },
+        "la": {
+          "word": "ratio quaeso"
+        }
+      },
+      "example": {
+        "en": "Excuse me, the bill please.",
+        "es": "Perdón, la cuenta por favor.",
+        "fr": "Pardon, l'addition s'il vous plaît.",
+        "it": "Scusi, il conto per favore.",
+        "de": "Entschuldigung, die Rechnung bitte."
+      }
+    },
+    {
+      "id": "i-like-it",
+      "gloss": "I like it",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "I like it"
+        },
+        "es": {
+          "word": "me gusta"
+        },
+        "fr": {
+          "word": "j'aime"
+        },
+        "it": {
+          "word": "mi piace"
+        },
+        "pt": {
+          "word": "eu gosto"
+        },
+        "de": {
+          "word": "es gefällt mir"
+        },
+        "la": {
+          "word": "mihi placet"
+        }
+      },
+      "example": {
+        "en": "This is good, I like it.",
+        "es": "Esto es bueno, me gusta.",
+        "fr": "C'est bon, j'aime.",
+        "it": "È buono, mi piace.",
+        "de": "Das ist gut, es gefällt mir."
+      }
+    },
+    {
+      "id": "help-me",
+      "gloss": "help! (emergency)",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "help"
+        },
+        "es": {
+          "word": "socorro"
+        },
+        "fr": {
+          "word": "au secours"
+        },
+        "it": {
+          "word": "aiuto",
+          "ipa": "aˈju.to"
+        },
+        "pt": {
+          "word": "socorro"
+        },
+        "de": {
+          "word": "Hilfe"
+        },
+        "la": {
+          "word": "succurre"
+        }
+      },
+      "example": {
+        "en": "Help, please!",
+        "es": "¡Socorro, por favor!",
+        "fr": "Au secours, s'il vous plaît!",
+        "it": "Aiuto, per favore!",
+        "de": "Hilfe, bitte!"
+      }
+    },
+    {
+      "id": "good-luck",
+      "gloss": "good luck",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "good luck"
+        },
+        "es": {
+          "word": "buena suerte"
+        },
+        "fr": {
+          "word": "bonne chance"
+        },
+        "it": {
+          "word": "buona fortuna"
+        },
+        "pt": {
+          "word": "boa sorte"
+        },
+        "de": {
+          "word": "viel Glück"
+        },
+        "la": {
+          "word": "bona fortuna"
+        }
+      },
+      "example": {
+        "en": "Good luck to you.",
+        "es": "Buena suerte.",
+        "fr": "Bonne chance.",
+        "it": "Buona fortuna.",
+        "de": "Viel Glück."
+      }
+    },
+    {
+      "id": "happy-birthday",
+      "gloss": "happy birthday",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "happy birthday"
+        },
+        "es": {
+          "word": "feliz cumpleaños"
+        },
+        "fr": {
+          "word": "joyeux anniversaire"
+        },
+        "it": {
+          "word": "buon compleanno"
+        },
+        "pt": {
+          "word": "feliz aniversário"
+        },
+        "de": {
+          "word": "alles Gute zum Geburtstag"
+        },
+        "la": {
+          "word": "felix natalis dies"
+        }
+      },
+      "example": {
+        "en": "Happy birthday, friend!",
+        "es": "¡Feliz cumpleaños, amigo!",
+        "fr": "Joyeux anniversaire, mon ami!",
+        "it": "Buon compleanno, amico!",
+        "de": "Alles Gute zum Geburtstag, mein Freund!"
+      }
+    },
+    {
+      "id": "i-am-fine",
+      "gloss": "I am fine",
+      "category": "phrase",
+      "pos": "phrase",
+      "shell": "frontier",
+      "requires": [],
+      "forms": {
+        "en": {
+          "word": "I am fine"
+        },
+        "es": {
+          "word": "estoy bien"
+        },
+        "fr": {
+          "word": "je vais bien"
+        },
+        "it": {
+          "word": "sto bene"
+        },
+        "pt": {
+          "word": "estou bem"
+        },
+        "de": {
+          "word": "mir geht es gut"
+        },
+        "la": {
+          "word": "valeo"
+        }
+      },
+      "example": {
+        "en": "Thank you, I am fine.",
+        "es": "Gracias, estoy bien.",
+        "fr": "Merci, je vais bien.",
+        "it": "Grazie, sto bene.",
+        "de": "Danke, mir geht es gut."
       }
     }
   ]
