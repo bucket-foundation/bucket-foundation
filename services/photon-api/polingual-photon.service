@@ -1,0 +1,24 @@
+[Unit]
+Description=Polingual Photon API (full 45k-photon dictionary, 5 axes)
+After=network.target
+
+[Service]
+Type=simple
+# %h = the running user's home. Data + venv live under ~/polingual-photon.
+Environment=PHOTONS_DIR=%h/polingual-photon/photons
+Environment=PORT=8088
+Environment=POLINGUAL_RATE=120
+Environment=POLINGUAL_CORS=https://bucket.foundation,https://www.bucket.foundation,https://bucket-foundation.vercel.app
+WorkingDirectory=%h/polingual-photon
+ExecStart=%h/polingual-photon/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8088
+Restart=on-failure
+RestartSec=3
+# Modest memory cap so a leak can never starve other tenants on the box.
+MemoryMax=1500M
+MemoryHigh=1200M
+# Light hardening (user service; no root).
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target
