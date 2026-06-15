@@ -1177,12 +1177,33 @@
     revealAndRender(wrap, ".study-block");
   }
 
-  /* ---------- Polingual word explorer (bkt-nhy) ----------
-   * Client-side, five-lens cross-lingual comparison over the baked starter
-   * subset. Lazy-loads window.Polingual's asset on first open. Honest empty
-   * states; mobile + keyboard friendly; offline (it's static).
+  /* ---------- Polingual word explorer (bkt-nhy / bkt-2ea) ----------
+   * HYBRID five-lens cross-lingual comparison. Each lens tries the LIVE full
+   * 45k-photon index first (same-origin proxy `/api/polingual`, via the new
+   * Polingual.*Async wrappers) and falls back to the baked ~6.5k-word starter
+   * subset when offline / the service is unavailable. Lazy-loads the subset
+   * asset on first open (instant default + offline engine). Honest empty
+   * states; async loading states on lookup + lens switch; mobile + keyboard
+   * friendly. `ref` identifies a word: a numeric subset row, OR {surface,lang}
+   * for a full-index word that isn't in the baked subset.
    */
-  let explorerState = { query: "", lang: "", row: null, lens: "meaning" };
+  let explorerState = { query: "", lang: "", ref: null, lens: "meaning", source: null };
+  // monotonic token so a slow in-flight lens/lookup can't overwrite a newer one
+  let xplToken = 0;
+
+  function xplRefKey(ref) {
+    if (ref == null) return "";
+    if (typeof ref === "number") return "row:" + ref;
+    return (ref.lang || "") + ":" + (ref.surface != null ? ref.surface : ref.s || "");
+  }
+
+  // The "offline — showing starter set" note, shown ONLY on the subset path.
+  function xplSourceNote(source) {
+    if (source !== "subset") return null;
+    return el("div", "xpl-offline-note",
+      '<span class="xpl-offline-dot">●</span> Offline — showing the starter set ' +
+      '(~6.5k words). The full 45-language index loads when you’re back online.');
+  }
 
   function screenExplorer() {
     const wrap = el("div", "screen explorer");
@@ -1226,7 +1247,7 @@
     form.onsubmit = (e) => {
       e.preventDefault();
       explorerState.query = input.value.trim();
-      explorerState.row = null;
+      explorerState.ref = null;
       runExplorerSearch(results, input.value.trim());
     };
 
@@ -1237,8 +1258,8 @@
       return;
     }
     window.Polingual.load().then(() => {
-      if (explorerState.row != null) {
-        renderExplorerWord(results, explorerState.row);
+      if (explorerState.ref != null) {
+        renderExplorerWord(results, explorerState.ref);
       } else if (explorerState.query) {
         runExplorerSearch(results, explorerState.query);
       } else {
@@ -1277,30 +1298,66 @@
     host.appendChild(intro);
   }
 
-  // Run a free-text lookup. Resolves the best matching word, else honest empty.
+  // Run a free-text lookup. Tries the LIVE full index first (so a word NOT in
+  // the baked subset still resolves when online), else the subset's fuzzy
+  // lookup, else honest empty. Async with a loading state.
   function runExplorerSearch(host, q) {
     if (!q) { renderExplorerSeed(host, null); return; }
     const P = window.Polingual;
-    const rec = P.lookup(q);
-    if (!rec) {
-      host.innerHTML =
-        '<div class="xpl-empty">No match for <b>' + escapeHtml(q) + '</b> in the starter index.' +
-        '<br><span class="xpl-empty-sub">The starter tier holds ~4,500 core words across 27 ' +
-        'languages — the full 45k index is a later phase. Try a common word like ' +
-        '<i>light</i>, <i>water</i> or <i>star</i>.</span></div>';
-      return;
-    }
-    explorerState.row = rec.row;
-    renderExplorerWord(host, rec.row);
+    const myToken = ++xplToken;
+    host.innerHTML = '<div class="xpl-loading">Looking up <b>' + escapeHtml(q) + '</b>…</div>';
+    P.lookupAsync(q).then((res) => {
+      if (myToken !== xplToken) return; // a newer search superseded this one
+      const rec = res && res.record;
+      if (!rec) {
+        host.innerHTML =
+          '<div class="xpl-empty">No match for <b>' + escapeHtml(q) + '</b>.' +
+          '<br><span class="xpl-empty-sub">Try a common word like ' +
+          '<i>light</i>, <i>water</i> or <i>star</i>' +
+          (res && res.source === "subset"
+            ? ' — you appear to be offline, so only the ~6.5k-word starter set is available.'
+            : '.') +
+          '</span></div>';
+        return;
+      }
+      explorerState.ref = rec.ref != null ? rec.ref : rec.row;
+      explorerState.source = res.source;
+      renderExplorerWordRec(host, rec, res.source, res.attribution);
+    }).catch(() => {
+      if (myToken !== xplToken) return;
+      host.innerHTML = '<div class="xpl-empty">Couldn’t look up <b>' + escapeHtml(q) + '</b>.</div>';
+    });
   }
 
-  // The result card + lens sections for one word (by subset row index).
-  function renderExplorerWord(host, row) {
+  // Navigate to a word by ref (numeric subset row OR {surface,lang} full-index).
+  // Resolves the headword (live-first) then renders. Async with a loading card.
+  function renderExplorerWord(host, ref) {
     const P = window.Polingual;
-    const rec = P.record(row);
+    const myToken = ++xplToken;
+    host.innerHTML = '<div class="xpl-loading">Loading…</div>';
+    P.lookupAsync(ref).then((res) => {
+      if (myToken !== xplToken) return;
+      const rec = res && res.record;
+      if (!rec) { renderExplorerSeed(host, null); return; }
+      explorerState.ref = rec.ref != null ? rec.ref : rec.row;
+      explorerState.source = res.source;
+      renderExplorerWordRec(host, rec, res.source, res.attribution);
+    }).catch(() => {
+      if (myToken !== xplToken) return;
+      renderExplorerSeed(host, null);
+    });
+  }
+
+  // The result card + lens sections for one already-resolved word record.
+  function renderExplorerWordRec(host, rec, source, attribution) {
     if (!rec) { renderExplorerSeed(host, null); return; }
-    explorerState.row = row;
+    const ref = rec.ref != null ? rec.ref : rec.row;
+    explorerState.ref = ref;
     host.innerHTML = "";
+
+    // subtle source note (only shown on the offline / subset fallback path)
+    const note = xplSourceNote(source);
+    if (note) host.appendChild(note);
 
     // headline card
     const card = el("div", "xpl-card reveal-up");
@@ -1344,7 +1401,7 @@
           t.classList.toggle("on", on);
           t.setAttribute("aria-selected", on ? "true" : "false");
         });
-        renderExplorerLens(panel, row, k);
+        renderExplorerLens(panel, ref, k, rec);
       };
       tabs.appendChild(b);
     });
@@ -1353,14 +1410,14 @@
     const panel = el("div", "xpl-panel");
     panel.setAttribute("role", "tabpanel");
     host.appendChild(panel);
-    renderExplorerLens(panel, row, explorerState.lens);
+    renderExplorerLens(panel, ref, explorerState.lens, rec);
 
     // a "back to top / new search" affordance lives in the search box above.
     revealAndRender(host, ".xpl-card");
     window.scrollTo(0, 0);
   }
 
-  // A clickable neighbor row (taps navigate to that word).
+  // A clickable neighbor row (taps navigate to that word — full-index aware).
   function explorerNeighborRow(rec, scoreText) {
     const r = el("button", "xpl-row");
     r.type = "button";
@@ -1372,7 +1429,8 @@
       (scoreText ? '<span class="xpl-row-score">' + scoreText + "</span>" : "");
     r.onclick = () => {
       const host = $(".xpl-results");
-      if (host) renderExplorerWord(host, rec.row);
+      const navRef = rec.ref != null ? rec.ref : rec.row;
+      if (host && navRef != null) renderExplorerWord(host, navRef);
     };
     return r;
   }
@@ -1381,100 +1439,155 @@
     return el("div", "xpl-lens-empty", escapeHtml(msg));
   }
 
-  function renderExplorerLens(panel, row, lens) {
+  function xplLensLoading() {
+    return el("div", "xpl-lens-loading", "Comparing across languages…");
+  }
+
+  // Render a lens for a word `ref`, async (live-first, subset fallback). `self`
+  // is the already-resolved headword record (so we know hasPhonetic etc.).
+  function renderExplorerLens(panel, ref, lens, self) {
     const P = window.Polingual;
     panel.innerHTML = "";
-    let list, caption;
+    const myToken = ++xplToken;
+    // capture which lens this render is for, so a stale resolve can't paint over
+    // a tab the user has since switched away from.
+    const myLens = lens;
+    const stillCurrent = () => myToken === xplToken && explorerState.lens === myLens;
+
+    const renderNeighbors = (caption, res, emptyMsg) => {
+      if (!stillCurrent()) return;
+      panel.innerHTML = "";
+      panel.appendChild(el("p", "xpl-lens-cap", caption));
+      const recs = (res && res.records) || [];
+      const note = xplSourceNote(res && res.source);
+      if (note) panel.appendChild(note);
+      if (!recs.length) { panel.appendChild(explorerEmpty(emptyMsg)); return; }
+      recs.forEach((r) => panel.appendChild(explorerNeighborRow(r, null)));
+    };
 
     if (lens === "meaning") {
-      caption = "Words that mean the same — across languages (semantic vectors).";
-      list = P.semanticTopK(row, 12, { crossLingualOnly: false });
+      const caption = "Words that mean the same — across languages (semantic vectors).";
       panel.appendChild(el("p", "xpl-lens-cap", caption));
-      if (!list.length) { panel.appendChild(explorerEmpty("No semantic neighbors found.")); return; }
-      list.forEach((r) => panel.appendChild(explorerNeighborRow(r, null)));
+      panel.appendChild(xplLensLoading());
+      P.semanticAsync(ref, 12, { crossLingualOnly: false })
+        .then((res) => renderNeighbors(caption, res, "No semantic neighbors found."))
+        .catch(() => { if (stillCurrent()) { panel.innerHTML = ""; panel.appendChild(el("p", "xpl-lens-cap", caption)); panel.appendChild(explorerEmpty("No semantic neighbors found.")); } });
 
     } else if (lens === "sound") {
-      caption = "Words that sound alike — language-agnostic (phonetic vectors over IPA).";
+      const caption = "Words that sound alike — language-agnostic (phonetic vectors over IPA).";
       panel.appendChild(el("p", "xpl-lens-cap", caption));
-      const self = P.record(row);
-      if (!self.hasPhonetic) { panel.appendChild(explorerEmpty("This word has no IPA transcription, so the sound lens is unavailable.")); return; }
-      list = P.phoneticTopK(row, 12);
-      if (!list.length) { panel.appendChild(explorerEmpty("No phonetic neighbors found.")); return; }
-      list.forEach((r) => panel.appendChild(explorerNeighborRow(r, null)));
+      if (self && self.hasPhonetic === false) {
+        panel.appendChild(explorerEmpty("This word has no IPA transcription, so the sound lens is unavailable."));
+        return;
+      }
+      panel.appendChild(xplLensLoading());
+      P.phoneticAsync(ref, 12)
+        .then((res) => renderNeighbors(caption, res, "No phonetic neighbors found."))
+        .catch(() => { if (stillCurrent()) { panel.innerHTML = ""; panel.appendChild(el("p", "xpl-lens-cap", caption)); panel.appendChild(explorerEmpty("No phonetic neighbors found.")); } });
 
     } else if (lens === "spelling") {
-      caption = "Words spelled similarly (normalized edit distance).";
+      const caption = "Words spelled similarly (normalized edit distance).";
       panel.appendChild(el("p", "xpl-lens-cap", caption));
-      list = P.spellingTopK(row, 12);
-      if (!list.length) { panel.appendChild(explorerEmpty("No similarly-spelled words in the starter index.")); return; }
-      list.forEach((r) => panel.appendChild(explorerNeighborRow(r, null)));
+      panel.appendChild(xplLensLoading());
+      P.spellingAsync(ref, 12)
+        .then((res) => renderNeighbors(caption, res, "No similarly-spelled words found."))
+        .catch(() => { if (stillCurrent()) { panel.innerHTML = ""; panel.appendChild(el("p", "xpl-lens-cap", caption)); panel.appendChild(explorerEmpty("No similarly-spelled words found.")); } });
 
     } else if (lens === "root") {
-      renderEtymologyLens(panel, row);
+      renderEtymologyLens(panel, ref, stillCurrent);
 
     } else if (lens === "translate") {
-      renderTranslateLens(panel, row);
+      renderTranslateLens(panel, ref, stillCurrent);
     }
   }
 
-  function renderTranslateLens(panel, row) {
+  function renderTranslateLens(panel, ref, stillCurrent) {
     const P = window.Polingual;
-    const t = P.translate(row);
-    panel.appendChild(el("p", "xpl-lens-cap",
-      t.concept ? 'The concept "' + escapeHtml(t.concept) + '" across languages.'
-                : "Translations across languages."));
-    if (!t.results.length) {
-      panel.appendChild(explorerEmpty(
-        t.concept ? "No other languages for this concept in the starter index."
-                  : "This word isn't anchored to a shared concept in the starter index — try the Meaning lens for cross-lingual neighbors."));
-      return;
-    }
-    const table = el("div", "xpl-trans");
-    t.results.forEach((r) => table.appendChild(explorerNeighborRow(r, null)));
-    panel.appendChild(table);
+    const ok = stillCurrent || (() => true);
+    panel.appendChild(el("p", "xpl-lens-cap", "Translations across languages."));
+    panel.appendChild(xplLensLoading());
+    P.translateAsync(ref).then((t) => {
+      if (!ok()) return;
+      panel.innerHTML = "";
+      panel.appendChild(el("p", "xpl-lens-cap",
+        t.concept ? 'The concept "' + escapeHtml(t.concept) + '" across languages.'
+                  : "Translations across languages."));
+      const note = xplSourceNote(t.origin);
+      if (note) panel.appendChild(note);
+      const results = t.results || [];
+      if (!results.length) {
+        panel.appendChild(explorerEmpty(
+          t.origin === "subset"
+            ? "This word isn't anchored to a shared concept in the starter index — try the Meaning lens for cross-lingual neighbors."
+            : "No translations available for this word."));
+        return;
+      }
+      const table = el("div", "xpl-trans");
+      results.forEach((r) => table.appendChild(explorerNeighborRow(r, null)));
+      panel.appendChild(table);
+    }).catch(() => {
+      if (!ok()) return;
+      panel.innerHTML = "";
+      panel.appendChild(el("p", "xpl-lens-cap", "Translations across languages."));
+      panel.appendChild(explorerEmpty("No translations available for this word."));
+    });
   }
 
-  // Etymology: the Kaikki snippet for this word + a simple root chain when other
-  // languages in the same concept also carry etymology (a light, honest "tree").
-  function renderEtymologyLens(panel, row) {
+  // Etymology: the Kaikki snippet for this word (live-first), then — on the
+  // subset fallback — a simple root chain across same-concept siblings.
+  function renderEtymologyLens(panel, ref, stillCurrent) {
     const P = window.Polingual;
-    const ety = P.etymology(row);
-    if (ety) {
-      const box = el("div", "xpl-ety");
-      box.appendChild(el("p", "xpl-ety-text", escapeHtml(ety.text)));
-      const src = el("p", "xpl-ety-src",
-        '<a href="' + ety.url + '" target="_blank" rel="noopener">' +
-        escapeHtml(ety.surface) + " on Wiktionary</a> · " + escapeHtml(ety.source));
-      box.appendChild(src);
-      panel.appendChild(box);
-    } else {
-      panel.appendChild(explorerEmpty("No etymology recorded for this word in the starter index."));
-    }
-    // sibling roots: same concept, other langs, that have etymology — a simple tree.
-    const t = P.translate(row);
-    const sibs = (t.results || []).filter((r) => {
-      const e = P.etymology(r.row);
-      return e && e.text;
-    }).slice(0, 6);
-    if (sibs.length) {
-      panel.appendChild(el("p", "xpl-lens-cap xpl-ety-rel", "Related roots (same concept)"));
-      const tree = el("div", "xpl-tree");
-      sibs.forEach((r) => {
-        const e = P.etymology(r.row);
-        const node = el("div", "xpl-tree-node");
-        node.innerHTML =
-          '<button class="xpl-tree-head" type="button">' +
-          '<span class="xpl-row-lang">' + escapeHtml(r.langName) + "</span>" +
-          '<span class="xpl-row-surface">' + escapeHtml(r.surface) + "</span></button>" +
-          '<p class="xpl-tree-ety">' + escapeHtml((e.text || "").slice(0, 160) + (e.text && e.text.length > 160 ? "…" : "")) + "</p>";
-        node.querySelector(".xpl-tree-head").onclick = () => {
-          const host = $(".xpl-results");
-          if (host) renderExplorerWord(host, r.row);
-        };
-        tree.appendChild(node);
-      });
-      panel.appendChild(tree);
-    }
+    const ok = stillCurrent || (() => true);
+    panel.appendChild(xplLensLoading());
+    P.etymologyAsync(ref).then((res) => {
+      if (!ok()) return;
+      panel.innerHTML = "";
+      const ety = res && res.ety;
+      const note = xplSourceNote(res && res.source);
+      if (note) panel.appendChild(note);
+      if (ety) {
+        const box = el("div", "xpl-ety");
+        box.appendChild(el("p", "xpl-ety-text", escapeHtml(ety.text)));
+        const src = el("p", "xpl-ety-src",
+          '<a href="' + ety.url + '" target="_blank" rel="noopener">' +
+          escapeHtml(ety.surface) + " on Wiktionary</a> · " + escapeHtml(ety.source));
+        box.appendChild(src);
+        panel.appendChild(box);
+      } else {
+        panel.appendChild(explorerEmpty("No etymology recorded for this word."));
+      }
+      // sibling roots only make sense on the subset path (concept-anchored).
+      if (res && res.source === "subset" && typeof ref === "number") {
+        const t = P.translate(ref);
+        const sibs = (t.results || []).filter((r) => {
+          const e = P.etymology(r.row);
+          return e && e.text;
+        }).slice(0, 6);
+        if (sibs.length) {
+          panel.appendChild(el("p", "xpl-lens-cap xpl-ety-rel", "Related roots (same concept)"));
+          const tree = el("div", "xpl-tree");
+          sibs.forEach((r) => {
+            const e = P.etymology(r.row);
+            const node = el("div", "xpl-tree-node");
+            node.innerHTML =
+              '<button class="xpl-tree-head" type="button">' +
+              '<span class="xpl-row-lang">' + escapeHtml(r.langName) + "</span>" +
+              '<span class="xpl-row-surface">' + escapeHtml(r.surface) + "</span></button>" +
+              '<p class="xpl-tree-ety">' + escapeHtml((e.text || "").slice(0, 160) + (e.text && e.text.length > 160 ? "…" : "")) + "</p>";
+            node.querySelector(".xpl-tree-head").onclick = () => {
+              const host = $(".xpl-results");
+              if (host) renderExplorerWord(host, r.row);
+            };
+            tree.appendChild(node);
+          });
+          panel.appendChild(tree);
+        }
+      }
+    }).catch(() => {
+      if (!ok()) return;
+      panel.innerHTML = "";
+      panel.appendChild(explorerEmpty("No etymology recorded for this word."));
+    });
   }
 
   /* ---------- nucleus map (concentric shells) ---------- */

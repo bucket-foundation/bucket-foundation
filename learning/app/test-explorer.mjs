@@ -198,8 +198,19 @@ if (!haveAsset) {
 const subset = JSON.parse(readFileSync(subsetPath, "utf8"));
 const vectorsBuf = readFileSync(vectorsPath);
 
+// Track whether the LIVE proxy was ever attempted — proves the hybrid path
+// reaches for the full index first. In this OFFLINE shim we make the proxy
+// FAIL (network unreachable), which forces the subset fallback the test gates.
+let proxyAttempts = 0;
 const fetchShim = async (url) => {
   const u = String(url || "");
+  // The hybrid explorer hits the same-origin full-index proxy first. There is
+  // no network in this shim, so reject it like an offline device would — the
+  // engine must then fall back to the baked subset (the path this test gates).
+  if (u.includes("/api/polingual")) {
+    proxyAttempts++;
+    throw new TypeError("Failed to fetch"); // simulate offline / no proxy
+  }
   if (u.includes("index.json")) return { ok: true, json: async () => manifest };
   if (u.includes("polingual/subset.json")) return { ok: true, json: async () => subset };
   if (u.includes("polingual/vectors.bin")) {
@@ -269,13 +280,27 @@ if (win.Polingual.ready()) {
     ((man.languages && man.languages.length) || "?") + " langs)");
 }
 
+// helper: poll until a selector appears (the explorer is now async — each lens
+// and lookup is a Promise that tries the live proxy, fails over to the subset).
+async function waitFor(sel, tries = 80, ms = 15) {
+  for (let i = 0; i < tries; i++) {
+    if (appRoot.querySelector(sel)) return appRoot.querySelector(sel);
+    await sleep(ms);
+  }
+  return appRoot.querySelector(sel);
+}
+
 // ---- 3. look up "light" → resolves the English illumination headword ----
 const input = appRoot.querySelector(".xpl-input");
 assert("explorer search input present", !!input);
 input.value = "light";
 const form = appRoot.querySelector(".xpl-search");
 if (form && typeof form.onsubmit === "function") form.onsubmit({ preventDefault() {}, target: form });
-await sleep(30);
+await waitFor(".xpl-card");
+
+// the hybrid engine must have REACHED for the live full-index proxy first
+// (before failing over to the baked subset in this offline shim).
+assert("hybrid: live full-index proxy was attempted first", proxyAttempts > 0);
 
 const card = appRoot.querySelector(".xpl-card");
 assert("result card rendered for 'light'", !!card);
@@ -288,7 +313,8 @@ assert("card shows an illumination-sense gloss",
   !!gloss && /light|illumin|bright|electromagn|radiat/i.test(gloss.textContent));
 
 // ---- 4. MEANING lens — must be CROSS-LINGUAL ----
-// (meaning is the default lens; the rows are already rendered in .xpl-panel)
+// (meaning is the default lens; rows render async after the subset fallback)
+await waitFor(".xpl-panel .xpl-row");
 let rows = appRoot.querySelectorAll(".xpl-panel .xpl-row");
 assert("meaning lens rendered neighbor rows", rows.length > 0);
 const srcLangText = srcLang ? srcLang.textContent.trim() : "";
@@ -309,28 +335,34 @@ function clickTab(rx) {
   return !!t;
 }
 function lensRendered() {
-  // a lens "rendered" iff it produced rows OR an honest empty state OR ety content
+  // a lens "rendered" iff it produced rows OR an honest empty state OR ety
+  // content — but NOT while it's still showing its async loading placeholder.
+  if (appRoot.querySelector(".xpl-lens-loading")) return false;
   return appRoot.querySelectorAll(".xpl-panel .xpl-row").length > 0 ||
     !!appRoot.querySelector(".xpl-lens-empty") ||
     !!appRoot.querySelector(".xpl-ety") ||
     appRoot.querySelectorAll(".xpl-trans .xpl-row").length > 0;
 }
+async function waitLens(tries = 80, ms = 15) {
+  for (let i = 0; i < tries; i++) { if (lensRendered()) return true; await sleep(ms); }
+  return lensRendered();
+}
 
 // ---- 5. SOUND / SPELLING / ETYMOLOGY / TRANSLATIONS each render ----
-assert("Sound tab exists", clickTab(/sound/i)); await sleep(10);
+assert("Sound tab exists", clickTab(/sound/i)); await waitLens();
 assert("sound lens rendered (rows or honest empty)", lensRendered());
 
-assert("Spelling tab exists", clickTab(/spelling/i)); await sleep(10);
+assert("Spelling tab exists", clickTab(/spelling/i)); await waitLens();
 assert("spelling lens rendered", lensRendered());
 
-assert("Etymology tab exists", clickTab(/etymology/i)); await sleep(10);
+assert("Etymology tab exists", clickTab(/etymology/i)); await waitLens();
 assert("etymology lens rendered", lensRendered());
 
-assert("Translations tab exists", clickTab(/translation/i)); await sleep(10);
+assert("Translations tab exists", clickTab(/translation/i)); await waitLens();
 assert("translations lens rendered", lensRendered());
 
 // ---- 6. neighbor tap NAVIGATES to a new word ----
-clickTab(/meaning/i); await sleep(10);
+clickTab(/meaning/i); await waitFor(".xpl-panel .xpl-row");
 const beforeSurface = (appRoot.querySelector(".xpl-surface") || {}).textContent;
 const beforeLang = (appRoot.querySelector(".xpl-meta .xpl-lang") || {}).textContent;
 rows = appRoot.querySelectorAll(".xpl-panel .xpl-row");
@@ -345,7 +377,16 @@ if (!target && rows.length) target = { r: rows[0], s: null, l: null };
 assert("a navigable neighbor row exists", !!target);
 if (target) {
   target.r.click();
-  await sleep(30);
+  // navigation re-resolves the headword async (live-first → subset fallback);
+  // it briefly shows a loading card with NO .xpl-surface — wait until the new
+  // headword card has actually painted (surface present AND changed).
+  for (let i = 0; i < 80; i++) {
+    const sEl = appRoot.querySelector(".xpl-surface");
+    const s = sEl ? sEl.textContent : "";
+    const l = (appRoot.querySelector(".xpl-meta .xpl-lang") || {}).textContent;
+    if (sEl && (s !== beforeSurface || l !== beforeLang)) break;
+    await sleep(15);
+  }
   const afterSurface = (appRoot.querySelector(".xpl-surface") || {}).textContent;
   const afterLang = (appRoot.querySelector(".xpl-meta .xpl-lang") || {}).textContent;
   const moved = afterSurface !== beforeSurface || afterLang !== beforeLang;
@@ -365,6 +406,6 @@ console.error = origError;
 assert("zero console errors during the explorer flow", errors.length === 0);
 if (errors.length) errors.forEach((e) => origError("  console.error:", e));
 
-const NEED = 20;
+const NEED = 21; // +1 for the hybrid "live proxy attempted first" assertion
 console.log("\n" + (errors.length || ok < NEED ? "EXPLORER SMOKE FAILED" : "EXPLORER SMOKE PASSED"));
 process.exit(errors.length || ok < NEED ? 1 : 0);

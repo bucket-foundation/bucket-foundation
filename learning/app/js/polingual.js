@@ -1,18 +1,27 @@
-/* polingual.js — client-side Polingual word explorer engine (dependency-free).
+/* polingual.js — Polingual word explorer engine (dependency-free).
  *
- * Loads the baked STARTER-TIER asset (learning/app/polingual/{subset.json,vectors.bin})
- * lazily — only when the explorer first opens — and runs all five comparison
- * lenses entirely in the browser over the few-thousand int8-quantized vectors:
+ * HYBRID index (bkt-2ea / bkt-nhy): each lens tries the LIVE full-index API
+ * first (same-origin Next proxy `/api/polingual?op=…`, which forwards to the
+ * 45k-photon / 27-lang Hetzner service) and, on failure / timeout / offline,
+ * falls back to the baked STARTER-TIER subset computed entirely in the browser.
  *
- *   lookup(surface, lang)      exact (or fuzzy) word record
- *   semanticTopK(ref, k)       words that MEAN the same, cross-lingual (cosine)
- *   phoneticTopK(ref, k)       words that SOUND the same, language-agnostic (cosine)
- *   spellingTopK(ref, k)       words SPELLED similarly (normalized edit distance)
- *   translate(ref)             the same core concept across languages
- *   etymology(ref)             the Kaikki etymology snippet (CC-BY-SA, attributed)
+ * The synchronous *TopK / translate / etymology / lookup functions are the
+ * subset engine and are unchanged — they remain the offline fallback and are
+ * what the headless DOM-shim test exercises (no network in the shim). The new
+ * *Async wrappers are what the explorer UI calls; they return
+ *   { records|result, source: "live" | "subset", attribution }
+ * so the UI can render provenance and surface an honest "offline — starter set"
+ * note only on the fallback path.
  *
- * Cosine over ~4.5k×448 int8 rows is a trivial dot-product loop in JS (<5 ms).
- * This is the Vercel starter tier; the full 45k index lives on Hetzner (later phase).
+ *   lookupAsync(surface, lang)       exact (or fuzzy) word record
+ *   semanticAsync(ref, k)            words that MEAN the same, cross-lingual
+ *   phoneticAsync(ref, k)            words that SOUND the same
+ *   spellingAsync(ref, k)            words SPELLED similarly
+ *   translateAsync(ref)              the same core concept across languages
+ *   etymologyAsync(ref)              the Kaikki etymology snippet (CC-BY-SA)
+ *
+ * The baked subset is ~4.5k×768 int8 rows — cosine is a trivial dot-product
+ * loop in JS (<5 ms). The full 45k index lives behind the proxy on Hetzner.
  *
  * Data: Wiktionary via Kaikki (CC-BY-SA). Attribution is REQUIRED — see .attribution.
  */
@@ -20,6 +29,26 @@
   "use strict";
 
   var ASSET_BASE = "polingual/";
+
+  /* ---- LIVE full-index proxy ------------------------------------------ */
+  // Same-origin Next route → polingual.agfarms.dev (45k photons, 27 langs).
+  var PROXY_BASE = "/api/polingual";
+  var PROXY_TIMEOUT_MS = 6000;
+  // Once the proxy is known to be unreachable we stop hammering it for a short
+  // window so lens switches stay snappy (purely a UX optimization; re-probes).
+  var liveCooldownUntil = 0;
+  var LIVE_COOLDOWN_MS = 30000;
+
+  // ISO-639-1 names for the full-index languages the API can return (27 of
+  // them). The subset manifest's language_names take precedence when present.
+  var LANG_NAMES_FULL = {
+    ar: "Arabic", cs: "Czech", de: "German", el: "Greek", en: "English",
+    es: "Spanish", fa: "Persian", fi: "Finnish", fr: "French", he: "Hebrew",
+    hi: "Hindi", id: "Indonesian", it: "Italian", ja: "Japanese", ko: "Korean",
+    la: "Latin", nl: "Dutch", pl: "Polish", pt: "Portuguese", ru: "Russian",
+    sa: "Sanskrit", sv: "Swedish", ta: "Tamil", th: "Thai", tr: "Turkish",
+    vi: "Vietnamese", zh: "Chinese",
+  };
   // Vector dims come from the manifest (the substrate moved to LaBSE 768-d for
   // bkt-nhy); these are defaults until subset.json is read.
   var SEM_DIM = 768;
@@ -164,8 +193,9 @@
     return (state.manifest && state.manifest.languages) || [];
   }
   function languageName(code) {
+    if (!code) return code;
     var m = state.manifest && state.manifest.language_names;
-    return (m && m[code]) || code;
+    return (m && m[code]) || LANG_NAMES_FULL[code] || code;
   }
   function word(rowIdx) {
     return state.words[rowIdx];
@@ -415,6 +445,230 @@
     return out;
   }
 
+  /* ==================================================================== *
+   *  LIVE full-index layer (proxy-first, subset fallback)                *
+   * ==================================================================== */
+
+  // A neighbor/headword record from the LIVE API, shaped to MATCH record() so
+  // the renderer treats live + subset rows identically. There is no numeric
+  // `row` for full-index words — navigation uses `ref:{surface,lang}` instead.
+  function liveRecord(o, scoreField) {
+    if (!o) return null;
+    var lang = o.lang || o.l || "";
+    var surface = o.surface != null ? o.surface : o.s;
+    var rec = {
+      row: -1,
+      ref: { surface: surface, lang: lang },
+      surface: surface,
+      lang: lang,
+      langName: languageName(lang),
+      gloss: o.meaning_en != null ? o.meaning_en : (o.gloss || ""),
+      pos: o.pos || "",
+      ipa: o.ipa || "",
+      concept: null,
+      etymology: o.etymology || null,
+      hasPhonetic: o.has_phonetic != null ? !!o.has_phonetic : !!o.ipa,
+      live: true,
+    };
+    if (scoreField && typeof o[scoreField] === "number") {
+      rec[scoreField] = Math.round(o[scoreField] * 1000) / 1000;
+    }
+    return rec;
+  }
+
+  // Normalize a provenance blob (per-result or service-level) into a small
+  // attribution object the UI can render.
+  function liveAttribution(prov) {
+    var p = prov || {};
+    if (typeof p === "string") return { source: p, license: "CC-BY-SA" };
+    return {
+      source: p.source || "Wiktionary via Kaikki (CC-BY-SA 3.0)",
+      license: p.license || "CC-BY-SA",
+      uri: p.uri || null,
+    };
+  }
+
+  function liveAvailable() {
+    if (typeof fetch !== "function") return false;
+    if (Date.now() < liveCooldownUntil) return false;
+    return true;
+  }
+
+  // GET the proxy with a short timeout. Resolves the parsed JSON on a 2xx that
+  // is NOT a proxy fallback note (503 upstream_unreachable/timeout). Rejects on
+  // anything else so the caller drops to the subset.
+  function proxyGet(op, params) {
+    if (!liveAvailable()) return Promise.reject(new Error("live-unavailable"));
+    var qs = "op=" + encodeURIComponent(op);
+    for (var k in params) {
+      if (params[k] == null || params[k] === "") continue;
+      qs += "&" + encodeURIComponent(k) + "=" + encodeURIComponent(params[k]);
+    }
+    var url = PROXY_BASE + "?" + qs;
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, PROXY_TIMEOUT_MS) : null;
+    return fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (r) {
+        if (timer) clearTimeout(timer);
+        // 503 = the proxy's graceful "upstream down" fallback note → go subset.
+        if (r.status === 503) {
+          liveCooldownUntil = Date.now() + LIVE_COOLDOWN_MS;
+          return Promise.reject(new Error("upstream-down"));
+        }
+        if (!r.ok) return Promise.reject(new Error("proxy " + r.status));
+        return r.json();
+      })
+      .then(function (j) {
+        if (j && j.error) return Promise.reject(new Error(String(j.error.code || "api-error")));
+        return j;
+      })
+      .catch(function (e) {
+        if (timer) clearTimeout(timer);
+        // Network failure / offline / abort → cool down briefly, fail over.
+        if (e && (e.name === "AbortError" || /Failed to fetch|NetworkError|live-unavailable|upstream-down/i.test(String(e.message || e)))) {
+          if (Date.now() >= liveCooldownUntil) liveCooldownUntil = Date.now() + LIVE_COOLDOWN_MS;
+        }
+        throw e;
+      });
+  }
+
+  // Headword lookup. ref = "surface" | {surface,lang} | rowIdx (subset).
+  // Tries the live index first; falls back to the subset lookup() (which itself
+  // does fuzzy spelling resolution). Always resolves with { record, source }.
+  function lookupAsync(ref, lang) {
+    var surface, lg;
+    if (typeof ref === "number") {
+      // already a subset row — no need to hit the network
+      return Promise.resolve({ record: record(ref), source: "subset", attribution: state.attribution });
+    } else if (ref && typeof ref === "object") {
+      surface = ref.surface != null ? ref.surface : ref.s;
+      lg = ref.lang != null ? ref.lang : (ref.l != null ? ref.l : lang);
+    } else {
+      surface = ref == null ? "" : String(ref);
+      lg = lang;
+    }
+    var subsetFallback = function () {
+      return { record: lookup(surface, lg), source: "subset", attribution: state.attribution };
+    };
+    if (!surface) return Promise.resolve(subsetFallback());
+    return proxyGet("lookup", { surface: surface, lang: lg })
+      .then(function (j) {
+        if (!j || j.found === false) return subsetFallback();
+        return { record: liveRecord(j), source: "live", attribution: liveAttribution(j.provenance) };
+      })
+      .catch(function () { return subsetFallback(); });
+  }
+
+  // Resolve the {surface,lang} for any ref (subset row OR live ref) so the
+  // neighbor lenses can be driven off a stable identity.
+  function refSurfaceLang(ref) {
+    if (ref && typeof ref === "object" && ref.surface != null) return { surface: ref.surface, lang: ref.lang || "" };
+    if (typeof ref === "number") {
+      var w = state.words && state.words[ref];
+      return w ? { surface: w.s, lang: w.l } : null;
+    }
+    var i = resolve(ref);
+    if (i >= 0) { var ww = state.words[i]; return { surface: ww.s, lang: ww.l }; }
+    if (typeof ref === "string") return { surface: ref, lang: "" };
+    return null;
+  }
+
+  // Generic neighbor-lens runner: live proxy → mapped records, else subset fn.
+  function neighborAsync(op, ref, k, subsetFn, extraParams) {
+    var sl = refSurfaceLang(ref);
+    var subsetFallback = function () {
+      return { records: subsetFn(ref, k) || [], source: "subset", attribution: state.attribution };
+    };
+    if (!sl || !sl.surface) return Promise.resolve(subsetFallback());
+    var params = { surface: sl.surface, lang: sl.lang, k: k || 12 };
+    if (extraParams) for (var p in extraParams) params[p] = extraParams[p];
+    var scoreField = op === "spelling" ? "similarity" : "score";
+    return proxyGet(op, params)
+      .then(function (j) {
+        var arr = (j && j.results) || [];
+        var recs = arr.map(function (o) { return liveRecord(o, scoreField); }).filter(Boolean);
+        if (!recs.length) return subsetFallback();
+        var attr = liveAttribution(arr[0] && arr[0].provenance);
+        return { records: recs, source: "live", attribution: attr };
+      })
+      .catch(function () { return subsetFallback(); });
+  }
+
+  function semanticAsync(ref, k, opts) {
+    opts = opts || {};
+    var extra = opts.crossLingualOnly ? { cross: 1 } : null;
+    return neighborAsync("semantic", ref, k, function (r, kk) {
+      return semanticTopK(r, kk, opts);
+    }, extra);
+  }
+  function phoneticAsync(ref, k) {
+    return neighborAsync("phonetic", ref, k, phoneticTopK);
+  }
+  function spellingAsync(ref, k) {
+    return neighborAsync("spelling", ref, k, spellingTopK);
+  }
+
+  // Translation lens. The API returns exact_meaning_matches + semantic_neighbors
+  // (all in the target lang); the subset returns a concept-grouped table. We
+  // normalize both to { concept, source, results, source:"live"|"subset" }.
+  function translateAsync(ref) {
+    var sl = refSurfaceLang(ref);
+    var subsetFallback = function () {
+      var t = translate(ref);
+      return { concept: t.concept, source: t.source, results: t.results || [], origin: "subset", attribution: state.attribution };
+    };
+    if (!sl || !sl.surface) return Promise.resolve(subsetFallback());
+    return proxyGet("translate", { surface: sl.surface, from: sl.lang || "en", k: 12 })
+      .then(function (j) {
+        var ex = (j && j.exact_meaning_matches) || [];
+        var nb = (j && j.semantic_neighbors) || [];
+        var toLang = (j && j.to) || "";
+        var arr = ex.concat(nb);
+        var results = arr.map(function (o) {
+          // these carry no `lang` field — they're all in the target language
+          var oo = { surface: o.surface, lang: o.lang || toLang, meaning_en: o.meaning_en, ipa: o.ipa, pos: o.pos };
+          var rec = liveRecord(oo, "score");
+          return rec;
+        }).filter(Boolean);
+        if (!results.length) return subsetFallback();
+        return {
+          concept: null,
+          source: liveRecord({ surface: j.word, lang: j.from, meaning_en: j.meaning_en }),
+          results: results,
+          origin: "live",
+          attribution: liveAttribution(j.provenance),
+        };
+      })
+      .catch(function () { return subsetFallback(); });
+  }
+
+  function etymologyAsync(ref) {
+    var sl = refSurfaceLang(ref);
+    var subsetFallback = function () {
+      return { ety: etymology(ref), source: "subset", attribution: state.attribution };
+    };
+    if (!sl || !sl.surface) return Promise.resolve(subsetFallback());
+    return proxyGet("etymology", { surface: sl.surface, lang: sl.lang })
+      .then(function (j) {
+        var text = j && j.etymology;
+        if (!text) return subsetFallback();
+        var prov = liveAttribution(j.provenance);
+        return {
+          ety: {
+            surface: j.surface || sl.surface,
+            lang: j.lang || sl.lang,
+            langName: languageName(j.lang || sl.lang),
+            text: text,
+            source: prov.source,
+            url: (prov.uri) || ("https://en.wiktionary.org/wiki/" + encodeURIComponent(j.surface || sl.surface)),
+          },
+          source: "live",
+          attribution: prov,
+        };
+      })
+      .catch(function () { return subsetFallback(); });
+  }
+
   /* ---- public API ----------------------------------------------------- */
   window.Polingual = {
     load: load,
@@ -432,5 +686,12 @@
     spellingTopK: spellingTopK,
     translate: translate,
     etymology: etymology,
+    // hybrid live-first async layer (subset fallback) — what the explorer uses
+    lookupAsync: lookupAsync,
+    semanticAsync: semanticAsync,
+    phoneticAsync: phoneticAsync,
+    spellingAsync: spellingAsync,
+    translateAsync: translateAsync,
+    etymologyAsync: etymologyAsync,
   };
 })();

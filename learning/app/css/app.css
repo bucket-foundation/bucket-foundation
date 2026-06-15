@@ -668,6 +668,14 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 .xpl-panel { animation: fade var(--dur) var(--ease-out); }
 .xpl-lens-cap { font-size: 13.5px; color: var(--ink-faint); margin: 0 0 12px; line-height: 1.45; }
 
+/* async loading state (lens switch / lookup over the live full index) */
+.xpl-lens-loading { color: var(--ink-faint); font-size: 14px; padding: 14px 4px; line-height: 1.5; opacity: .85; animation: xplPulse 1.1s var(--ease-out) infinite; }
+@keyframes xplPulse { 0%,100% { opacity: .45; } 50% { opacity: .9; } }
+
+/* honest "offline — starter set" note (ONLY on the subset fallback path) */
+.xpl-offline-note { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-faint); background: var(--card-2, var(--card)); border: 1px solid var(--line); border-radius: 8px; padding: 7px 11px; margin: 0 0 12px; line-height: 1.4; }
+.xpl-offline-dot { color: var(--gold-deep); font-size: 8px; line-height: 1; }
+
 /* neighbor / translation rows */
 .xpl-row { display: grid; grid-template-columns: 64px minmax(0,1fr) auto; grid-template-areas: "lang surface ipa" "lang gloss gloss"; gap: 1px 10px; align-items: baseline; width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; margin-bottom: 7px; cursor: pointer; font: inherit; color: var(--ink); transition: background var(--dur) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
 .xpl-row:hover { background: var(--card-2); }
