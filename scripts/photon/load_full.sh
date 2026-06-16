@@ -29,6 +29,9 @@ t=$(date +%s)
 "${PG[@]}" <<'SQL'
 CREATE INDEX ix_pf_lang ON photons_full(lang);
 CREATE INDEX ix_pf_surface_lower ON photons_full(lower(surface));
+-- plain (surface,lang) btree: the API queries WHERE surface=%s [AND lang=%s]
+-- directly (not lower(surface)), so this is what makes lookup/_qvec fast.
+CREATE INDEX ix_pf_surface_lang ON photons_full(surface, lang);
 CREATE INDEX ix_pf_surface_trgm ON photons_full USING gin (lower(surface) gin_trgm_ops);
 ALTER TABLE photons_full ADD COLUMN meaning_tsv tsvector
   GENERATED ALWAYS AS (to_tsvector('english', coalesce(meaning_en,''))) STORED;

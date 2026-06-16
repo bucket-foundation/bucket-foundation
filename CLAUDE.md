@@ -259,6 +259,24 @@ guessed). Verified: `gold→es:oro` 0.81, `money→fr:monnaie` 0.70, `light` cro
 the vectors are NOT loaded there (disk) — prod stays on the file-memmap 209k service until a
 volume expansion. The Next `POLINGUAL_API_URL` proxy is the one-line cutover seam.
 
+**FULL FINAL STATE reached (2026-06-16):** all **6,564,942 embedded** (LaBSE-768) +
+**1,979,896 phonetic** (every row with IPA) + **HNSW** on both (`ix_pf_emb_hnsw` 23GB,
+`ix_pf_pho_hnsw` 993MB); table+indexes = **56GB** (the measured full footprint). Per-axis
+latency through `server_pg.py`: lookup **1ms**, semantic **3ms**, phonetic **1.5ms**,
+translate **3ms**, spelling ~160ms (trgm). Gotchas fixed along the way, all in
+`scripts/photon/`: (1) **missing plain `surface` btree** — the API queries `WHERE surface=%s`
+(not `lower(surface)`), so without `ix_pf_surface_lang` every lookup/_qvec seq-scanned 6.5M
+(~550ms); added in `load_full.sh`. (2) **HNSW build spills** — a 16GB `maintenance_work_mem`
+spilled at 69% and crawled on disk 1.6h+; rebuild with **30GB** (graph needs ~19GB resident)
+finished in 55min — see `rebuild_hnsw_hi.sh`. (3) **parallel HNSW needs shm** — the container's
+1GB `/dev/shm` is too small for parallel maintenance workers; build single-threaded
+(`max_parallel_maintenance_workers=0`). Speedup: 4 parallel CPU `embed_worker.py` ran
+alongside the GPU job (no pause), ~7h→~4h. **Honest quality note:** semantic is strong for
+words that have neighbors (gold→silver/golden, king→monarch, money→currency, cross-lingual
+light→אור/luce/valo); *isolated* scientific concepts (e.g. `entropy`, nearest at 0.52 cosine
+dist) get weak neighbors, and the corpus has gaps (`water/en` absent) — these are dictionary-
+corpus characteristics, not defects. translate (lang-filtered) is consistently excellent.
+
 **Known infra issues (2026-06-15):** (1) the Nucleus issues API (`*.nucleus.agfarms.dev`) is
 returning **502** — K3s Traefik at `172.19.0.2:30080` down, affects ALL tenants; bead filing
 via the API is broken until it's fixed. (2) `scripts/photon/common.py` says MiniLM-384 but the
