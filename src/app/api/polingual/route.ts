@@ -14,7 +14,14 @@
 //   etymology  surface, lang
 //   translate  surface, from, to, k
 //
-// Upstream: https://polingual.agfarms.dev (override with POLINGUAL_API_URL).
+// Upstream chain (tried in order, deduped):
+//   1. POLINGUAL_API_URL          — primary (e.g. the local full-6.5M box via a
+//                                    Cloudflare tunnel). May be down/unreachable.
+//   2. POLINGUAL_FALLBACK_API_URL  — fallback (the always-on 209k prod service,
+//                                    default https://polingual.agfarms.dev).
+//   3. (client) baked ~6,500-word offline subset, on a 503 from here.
+// We only fail over on a network error / timeout / 5xx — NOT on a valid 2xx/4xx
+// (a "word not found" is a real answer, not an outage).
 // Data: Wiktionary via Kaikki (CC-BY-SA); provenance travels in every payload.
 
 import { NextRequest } from "next/server";
@@ -22,11 +29,14 @@ import { NextRequest } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const UPSTREAM = (
-  process.env.POLINGUAL_API_URL ?? "https://polingual.agfarms.dev"
-).replace(/\/$/, "");
+const clean = (u: string) => u.replace(/\/$/, "");
+const PRIMARY = clean(process.env.POLINGUAL_API_URL ?? "https://polingual.agfarms.dev");
+const FALLBACK = clean(process.env.POLINGUAL_FALLBACK_API_URL ?? "https://polingual.agfarms.dev");
+// deduped, order-preserving chain (avoid Set-spread for older TS targets)
+const UPSTREAMS = PRIMARY === FALLBACK ? [PRIMARY] : [PRIMARY, FALLBACK];
 
-const TIMEOUT_MS = Number(process.env.POLINGUAL_TIMEOUT_MS ?? "8000");
+// Short by default so a dead primary fails over to the fallback quickly.
+const TIMEOUT_MS = Number(process.env.POLINGUAL_TIMEOUT_MS ?? "4000");
 
 // op -> upstream path + the query params it accepts
 const OPS: Record<string, { path: string; params: string[] }> = {
@@ -65,49 +75,70 @@ export async function GET(req: NextRequest) {
     return err(400, "missing_surface");
   }
 
-  // Build the upstream URL from only the params this op accepts.
-  const upstream = new URL(UPSTREAM + spec.path);
-  for (const p of spec.params) {
-    const v = url.searchParams.get(p);
-    if (v !== null && v !== "") upstream.searchParams.set(p, v);
-  }
-
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  // Try each upstream in order; fail over on network error / timeout / 5xx.
   const t0 = Date.now();
-  try {
-    const res = await fetch(upstream.toString(), {
-      signal: controller.signal,
-      headers: { accept: "application/json" },
-      // server-side fetch; no credentials, no cookies forwarded
-    });
-    const body = await res.text();
-    return new Response(body, {
-      status: res.status,
-      headers: { ...JSON_HEADERS, "x-polingual-took-ms": String(Date.now() - t0) },
-    });
-  } catch (e) {
-    const aborted = e instanceof Error && e.name === "AbortError";
-    // Graceful, explicit fallback note so the client can degrade to the baked
-    // subset rather than break, and surface a clear status to the user.
-    return new Response(
-      JSON.stringify(
-        {
-          error: { code: aborted ? "upstream_timeout" : "upstream_unreachable" },
-          op,
-          note:
-            "The full Polingual dictionary service is temporarily unavailable; " +
-            "the explorer may fall back to its baked subset.",
-          provenance: "Wiktionary via Kaikki (CC-BY-SA)",
+  let lastAborted = false;
+  for (let i = 0; i < UPSTREAMS.length; i++) {
+    const base = UPSTREAMS[i];
+    const isLast = i === UPSTREAMS.length - 1;
+    const tier = i === 0 ? "primary" : "fallback";
+
+    const upstream = new URL(base + spec.path);
+    for (const p of spec.params) {
+      const v = url.searchParams.get(p);
+      if (v !== null && v !== "") upstream.searchParams.set(p, v);
+    }
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+    try {
+      const res = await fetch(upstream.toString(), {
+        signal: controller.signal,
+        headers: { accept: "application/json" },
+        // server-side fetch; no credentials, no cookies forwarded
+      });
+      // A 5xx means the upstream is unhealthy — try the next one if any.
+      if (res.status >= 500 && !isLast) {
+        clearTimeout(timer);
+        continue;
+      }
+      const body = await res.text();
+      return new Response(body, {
+        status: res.status,
+        headers: {
+          ...JSON_HEADERS,
+          "x-polingual-took-ms": String(Date.now() - t0),
+          "x-polingual-upstream": tier,
         },
-        null,
-        2,
-      ),
-      { status: 503, headers: JSON_HEADERS },
-    );
-  } finally {
-    clearTimeout(timer);
+      });
+    } catch (e) {
+      lastAborted = e instanceof Error && e.name === "AbortError";
+      if (!isLast) {
+        clearTimeout(timer);
+        continue; // primary unreachable/timed out → try the fallback
+      }
+      // Every upstream failed → 503 so the client degrades to the baked subset.
+      return new Response(
+        JSON.stringify(
+          {
+            error: { code: lastAborted ? "upstream_timeout" : "upstream_unreachable" },
+            op,
+            note:
+              "The full Polingual dictionary service is temporarily unavailable; " +
+              "the explorer may fall back to its baked subset.",
+            provenance: "Wiktionary via Kaikki (CC-BY-SA)",
+          },
+          null,
+          2,
+        ),
+        { status: 503, headers: { ...JSON_HEADERS, "x-polingual-upstream": "none" } },
+      );
+    } finally {
+      clearTimeout(timer);
+    }
   }
+  // Unreachable (loop always returns), but satisfies the type checker.
+  return err(503, "upstream_unreachable", { op });
 }
 
 export async function OPTIONS() {

@@ -277,6 +277,19 @@ light→אור/luce/valo); *isolated* scientific concepts (e.g. `entropy`, neare
 dist) get weak neighbors, and the corpus has gaps (`water/en` absent) — these are dictionary-
 corpus characteristics, not defects. translate (lang-filtered) is consistently excellent.
 
+**Accessibility tiers (2026-06-16):** the full 6.5M is reachable three ways via the
+`/api/polingual` proxy's upstream chain (`src/app/api/polingual/route.ts`): **(1) primary**
+`POLINGUAL_API_URL` (the local box's 6.5M, exposed over a Cloudflare quick tunnel —
+`scripts/photon/tunnel.sh`, ephemeral `*.trycloudflare.com` URL; for a stable hostname use a
+named tunnel), **(2) fallback** `POLINGUAL_FALLBACK_API_URL` (default `polingual.agfarms.dev`,
+the always-on 209k service), **(3) offline** the client's baked ~6,500-word subset on a 503.
+Fail-over is on network-error/timeout/5xx only (4s default), NOT on a valid not-found; the
+served tier is in the `x-polingual-upstream` response header. Verified: dead primary → fallback
+served `gold` transparently; tunnel serves the full 6.56M publicly. So: **deployed site uses
+whatever `POLINGUAL_API_URL` is set to in Vercel** (unset → 209k prod); local `npm run dev`
+hits `127.0.0.1:8090` (full 6.5M) via `.env.local`. To put the 6.5M behind the live site, set
+Vercel `POLINGUAL_API_URL` to the tunnel URL — it auto-degrades when the box is offline.
+
 **Known infra issues (2026-06-15):** (1) the Nucleus issues API (`*.nucleus.agfarms.dev`) is
 returning **502** — K3s Traefik at `172.19.0.2:30080` down, affects ALL tenants; bead filing
 via the API is broken until it's fixed. (2) `scripts/photon/common.py` says MiniLM-384 but the
