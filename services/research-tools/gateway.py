@@ -89,7 +89,11 @@ INLINE_BUDGET_S = float(os.environ.get("TOOLS_INLINE_BUDGET_S", "30"))
 # against this same set before forwarding.
 CPU_TOOLS = ["labbrain", "proteinscout", "stabilitydesigner", "screenserver", "patchseqml"]
 DEMO_TOOLS = ["trajmine", "cryotriage"]
-ALL_TOOLS = CPU_TOOLS + DEMO_TOOLS
+# T1 RAG/agent/data tools — REAL logic over live OpenAlex + the research-atlas
+# grant corpus (services/research-tools/tools_rag.py). CPU/inline, no GPU, no
+# subprocess. They render "json" typed views.
+RAG_TOOLS = ["paperradar", "grantdraft", "methodsmatcher", "reviewguard"]
+ALL_TOOLS = CPU_TOOLS + RAG_TOOLS + DEMO_TOOLS
 
 # price block travels from day one (zeroed). Metering seam lives in the Next
 # proxy, not here — the gateway stays payment-agnostic. See doc §6.
@@ -101,7 +105,21 @@ PRICE: dict[str, dict[str, Any]] = {
     "patchseqml": {"tier": "analyze", "usd": 0.0, "metered": False},
     "trajmine": {"tier": "demo", "usd": 0.0, "metered": False},
     "cryotriage": {"tier": "demo", "usd": 0.0, "metered": False},
+    "paperradar": {"tier": "feed", "usd": 0.0, "metered": False},
+    "grantdraft": {"tier": "draft", "usd": 0.0, "metered": False},
+    "methodsmatcher": {"tier": "match", "usd": 0.0, "metered": False},
+    "reviewguard": {"tier": "review", "usd": 0.0, "metered": False},
 }
+
+# import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
+try:
+    import tools_rag  # type: ignore
+    _RAG_OK = True
+    _RAG_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_rag = None  # type: ignore
+    _RAG_OK = False
+    _RAG_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
 app.add_middleware(
@@ -471,6 +489,32 @@ def _tool_report(job: Job, cwd: Any, args: list[str], timeout: int) -> Optional[
         shutil.rmtree(out, ignore_errors=True)
 
 
+# --- T1 RAG/agent/data runners (REAL logic; no subprocess, no GPU) ----------
+# Each wraps a pure-ish function from tools_rag.py (live OpenAlex + the
+# research-atlas grant corpus, disk-cached) in the uniform job lifecycle. They
+# emit render="json" typed views, exactly like labbrain/stabilitydesigner.
+def _make_rag_runner(tool: str) -> Callable[[Job, dict], None]:
+    def runner(job: Job, payload: dict) -> None:
+        job.status, job.started_at = "running", _now()
+        if not _RAG_OK or tools_rag is None:
+            return _fail(job, "backend_unavailable",
+                         f"tools_rag import failed: {_RAG_IMPORT_ERR}")
+        fn = tools_rag.RAG_RUNNERS.get(tool)
+        if fn is None:  # pragma: no cover - guarded by registry
+            return _fail(job, "unknown_tool", tool)
+        try:
+            out = fn(payload)
+            if isinstance(out, dict) and out.get("error"):
+                return _fail(job, "bad_request", out["error"])
+            # `degraded` (network unavailable, no cache) is a successful but
+            # partial result — the UI shows the degraded banner, never crashes.
+            _ok(job, "json", out)
+        except Exception as e:  # never leave a job stuck running
+            _fail(job, "internal", str(e)[:200])
+
+    return runner
+
+
 RUNNERS: dict[str, Callable[[Job, dict], None]] = {
     "labbrain": _run_labbrain,
     "proteinscout": _run_proteinscout,
@@ -479,6 +523,7 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
     "patchseqml": _run_patchseqml,
     "trajmine": _run_trajmine,
     "cryotriage": _run_cryotriage,
+    **{t: _make_rag_runner(t) for t in RAG_TOOLS},
 }
 
 
@@ -546,10 +591,39 @@ class TrajMineSubmit(BaseModel):
     demo: str = "md"  # "md" | "static"
 
 
+class PaperRadarSubmit(BaseModel):
+    interests: str
+    since_days: int = 540
+    limit: int = 12
+
+
+class GrantDraftSubmit(BaseModel):
+    topic: str
+    limit: int = 8
+
+
+class MethodsMatcherSubmit(BaseModel):
+    question: str
+
+
+class ReviewGuardSubmit(BaseModel):
+    claim: str
+    papers: Optional[list[str]] = None
+    limit: int = 12
+
+
 # --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
-    return {"ok": True, "tools": ALL_TOOLS, "cpu": CPU_TOOLS, "demo": DEMO_TOOLS, "version": "v1"}
+    return {
+        "ok": True,
+        "tools": ALL_TOOLS,
+        "cpu": CPU_TOOLS,
+        "rag": RAG_TOOLS,
+        "demo": DEMO_TOOLS,
+        "rag_backend": _RAG_OK,
+        "version": "v1",
+    }
 
 
 @app.post("/v1/labbrain/submit")
@@ -608,6 +682,39 @@ async def submit_cryotriage(file: UploadFile = File(None)) -> dict:
     # CPU triage path. TODO(deploy): real GPU cryo-EM triage worker.
     file_path = _stage_upload(file) if file is not None else None
     return _dispatch("cryotriage", {"file_path": file_path})
+
+
+# --- T1 RAG/agent/data submit endpoints ------------------------------------
+@app.post("/v1/paperradar/submit")
+def submit_paperradar(r: PaperRadarSubmit) -> dict:
+    if len((r.interests or "").strip()) < 3:
+        raise HTTPException(400, "interests required (a few topics/keywords)")
+    return _dispatch("paperradar", {
+        "interests": r.interests.strip(), "since_days": r.since_days, "limit": r.limit,
+    })
+
+
+@app.post("/v1/grantdraft/submit")
+def submit_grantdraft(r: GrantDraftSubmit) -> dict:
+    if len((r.topic or "").strip()) < 4:
+        raise HTTPException(400, "topic required")
+    return _dispatch("grantdraft", {"topic": r.topic.strip(), "limit": r.limit})
+
+
+@app.post("/v1/methodsmatcher/submit")
+def submit_methodsmatcher(r: MethodsMatcherSubmit) -> dict:
+    if len((r.question or "").strip()) < 8:
+        raise HTTPException(400, "ask a research question (>= 8 chars)")
+    return _dispatch("methodsmatcher", {"question": r.question.strip()})
+
+
+@app.post("/v1/reviewguard/submit")
+def submit_reviewguard(r: ReviewGuardSubmit) -> dict:
+    if len((r.claim or "").strip()) < 8:
+        raise HTTPException(400, "claim required (>= 8 chars)")
+    return _dispatch("reviewguard", {
+        "claim": r.claim.strip(), "papers": r.papers or [], "limit": r.limit,
+    })
 
 
 def _status_envelope(job: Job) -> dict:

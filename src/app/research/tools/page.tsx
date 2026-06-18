@@ -13,8 +13,10 @@ type Tool = {
   slug: string;
   name: string;
   blurb: string;
-  klass: "CPU" | "GPU";
-  // "live" = inline CPU tool; "demo" = GPU/long tool running synthetic mode.
+  // CPU = inline biophysics tool; GPU = synthetic until compute lands;
+  // RAG = live data/agent tool (OpenAlex + grant corpus, real logic).
+  klass: "CPU" | "GPU" | "RAG";
+  // "live" = inline CPU/RAG tool; "demo" = GPU/long tool running synthetic mode.
   status: "live" | "demo";
 };
 
@@ -69,6 +71,39 @@ const TOOLS: Tool[] = [
     klass: "GPU",
     status: "demo",
   },
+  // --- T1 ship-now tools: RAG / agent / data, real logic over live data ---
+  {
+    slug: "paperradar",
+    name: "PaperRadar",
+    blurb:
+      "Personalized recent-paper feed. Queries the live OpenAlex index for your topics, ranks by relevance + recency + citation velocity, and explains why each matters to you.",
+    klass: "RAG",
+    status: "live",
+  },
+  {
+    slug: "grantdraft",
+    name: "GrantDraft",
+    blurb:
+      "Funder finder + specific-aims drafter, grounded in real awarded NSF grants (research-atlas corpus). Shows who funds your area and drafts aims anchored to actual awards.",
+    klass: "RAG",
+    status: "live",
+  },
+  {
+    slug: "methodsmatcher",
+    name: "MethodsMatcher",
+    blurb:
+      "Which method answers your question? Mines the recurring methods in the live OpenAlex literature and points you to the Bucket tool that runs it.",
+    klass: "RAG",
+    status: "live",
+  },
+  {
+    slug: "reviewguard",
+    name: "ReviewGuard",
+    blurb:
+      "Cross-paper consistency check. State a claim; ReviewGuard sorts the OpenAlex literature into supporting vs contradicting, quoting the deciding sentence.",
+    klass: "RAG",
+    status: "live",
+  },
 ];
 
 export default function Page() {
@@ -83,10 +118,12 @@ export default function Page() {
           <span className="inlay-gold">instruments.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Seven biophysics tools, each running its real pipeline on your input —
-          literature retrieval, protein stability, ADMET screening, trajectory
-          mining, ephys, and cryo-EM triage. Run one, read the result, and
-          publish it to canon as a citeable, paid-once artifact.
+          Eleven tools, each running real logic on your input — protein
+          stability, ADMET screening, trajectory mining, ephys, and cryo-EM
+          triage, plus four literature/agent tools that hit the live OpenAlex
+          index and a real awarded-grant corpus: PaperRadar, GrantDraft,
+          MethodsMatcher, ReviewGuard. Run one, read the result, and publish it
+          to canon as a citeable, paid-once artifact.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 
