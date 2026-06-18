@@ -4,16 +4,18 @@ import Link from "next/link";
 // served through bucket.foundation (FastAPI gateway on Hetzner → /api/research/<tool>
 // proxy → this UI). See docs/research-tools/04-implementation-architecture.md.
 //
-// FIRST SLICE: only LabBrain is wired to the UI + proxy. The other six exist in
-// the gateway (ported from tools_api/app.py) but are marked "coming soon" here
-// until their run pages + proxy routes land (drop-in copies of the LabBrain four).
+// All 7 tools are now wired UI → proxy → gateway. CPU tools run inline; the two
+// GPU/long tools (trajmine, cryotriage) run in demo/synthetic mode until a GPU
+// compute plan lands (the async contract is built so flipping on a GPU worker is
+// a deploy, not a redesign).
 
 type Tool = {
   slug: string;
   name: string;
   blurb: string;
   klass: "CPU" | "GPU";
-  status: "live" | "soon";
+  // "live" = inline CPU tool; "demo" = GPU/long tool running synthetic mode.
+  status: "live" | "demo";
 };
 
 const TOOLS: Tool[] = [
@@ -30,42 +32,42 @@ const TOOLS: Tool[] = [
     name: "StabilityDesigner",
     blurb: "Predict ΔΔG of point mutations; deep-mutational scan a position.",
     klass: "CPU",
-    status: "soon",
+    status: "live",
   },
   {
     slug: "proteinscout",
     name: "ProteinScout",
     blurb: "ML structural / disorder / feature analysis from a sequence or UniProt accession.",
     klass: "CPU",
-    status: "soon",
+    status: "live",
   },
   {
     slug: "screenserver",
     name: "ScreenServer",
     blurb: "13 ADMET models over a SMILES library; ranked drug-likeness report.",
     klass: "CPU",
-    status: "soon",
+    status: "live",
   },
   {
     slug: "trajmine",
     name: "TrajMine",
-    blurb: "Mine molecular-dynamics trajectories for conformational structure (demo until GPU compute lands).",
+    blurb: "Mine molecular-dynamics trajectories for conformational structure (demo trajectory until GPU compute lands).",
     klass: "GPU",
-    status: "soon",
+    status: "demo",
   },
   {
     slug: "patchseqml",
     name: "PatchSeqML",
     blurb: "ML over patch-clamp electrophysiology recordings; cell-type signatures.",
     klass: "CPU",
-    status: "soon",
+    status: "live",
   },
   {
     slug: "cryotriage",
     name: "CryoTriage",
-    blurb: "Triage cryo-EM micrographs for quality (demo until GPU compute lands).",
+    blurb: "Triage cryo-EM micrographs for quality (synthetic session until GPU compute lands).",
     klass: "GPU",
-    status: "soon",
+    status: "demo",
   },
 ];
 
@@ -107,7 +109,7 @@ function ToolCard({ tool }: { tool: Tool }) {
         </div>
         <span className="text-[10px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
           {tool.klass}
-          {tool.status === "live" ? " · live" : " · soon"}
+          {tool.status === "live" ? " · live" : " · demo"}
         </span>
       </div>
       <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
@@ -115,23 +117,17 @@ function ToolCard({ tool }: { tool: Tool }) {
         {tool.blurb}
       </p>
       <div className="mt-auto pt-3 text-[11px] small-caps tracking-[0.14em]">
-        {tool.status === "live" ? (
-          <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
-            open tool →
-          </span>
-        ) : (
-          <span className="text-[color:var(--basalt-3)]">coming soon</span>
-        )}
+        <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+          {tool.status === "demo" ? "open tool · demo →" : "open tool →"}
+        </span>
       </div>
     </div>
   );
 
-  if (tool.status === "live") {
-    return (
-      <Link href={`/research/tools/${tool.slug}`} className="block h-full">
-        {inner}
-      </Link>
-    );
-  }
-  return <div className="opacity-70">{inner}</div>;
+  // Every tool is wired and openable; demo tools just label themselves as such.
+  return (
+    <Link href={`/research/tools/${tool.slug}`} className="block h-full">
+      {inner}
+    </Link>
+  );
 }
