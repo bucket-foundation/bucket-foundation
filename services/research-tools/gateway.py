@@ -99,8 +99,20 @@ DNARNA_TOOLS = ["rnastructure", "grnaoptimizer", "rnafmembeds"]
 # Neuroscience cluster (services/research-tools/tools_neuro.py) — REAL scipy
 # numerical fits + spike detection. CPU/inline, render "json".
 NEURO_TOOLS = ["hhfit", "spikefeatures"]
+# QuantumBioRAG lives in tools_rag.py (claim-strength RAG over live OpenAlex);
+# it shares the RAG backend + registry, so it is added to RAG_TOOLS above.
+RAG_TOOLS.append("quantumbiorag")
+# ProtocolGPT (services/research-tools/tools_protocol.py) — REAL rule/template
+# extraction over a methods knowledge base. CPU/inline, no network, render "json".
+PROTOCOL_TOOLS = ["protocolgpt"]
+# ToxinChannelFinder (services/research-tools/tools_toxin.py) — REAL curated
+# venom-peptide pharmacology KB + live OpenAlex co-occurrence. CPU/inline.
+TOXIN_TOOLS = ["toxinchannelfinder"]
+# CitationGraph (services/research-tools/tools_citation.py) — REAL OpenAlex
+# citation-neighborhood graph + degree centrality. CPU/inline.
+CITATION_TOOLS = ["citationgraph"]
 # REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
-PURE_TOOLS = RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS
+PURE_TOOLS = RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS + PROTOCOL_TOOLS + TOXIN_TOOLS + CITATION_TOOLS
 ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
 # price block travels from day one (zeroed). Metering seam lives in the Next
@@ -122,6 +134,10 @@ PRICE: dict[str, dict[str, Any]] = {
     "rnafmembeds": {"tier": "embed", "usd": 0.0, "metered": False},
     "hhfit": {"tier": "fit", "usd": 0.0, "metered": False},
     "spikefeatures": {"tier": "analyze", "usd": 0.0, "metered": False},
+    "quantumbiorag": {"tier": "triage", "usd": 0.0, "metered": False},
+    "protocolgpt": {"tier": "structure", "usd": 0.0, "metered": False},
+    "toxinchannelfinder": {"tier": "map", "usd": 0.0, "metered": False},
+    "citationgraph": {"tier": "graph", "usd": 0.0, "metered": False},
 }
 
 # import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
@@ -153,6 +169,36 @@ except Exception as _e:  # pragma: no cover - import guard
     tools_neuro = None  # type: ignore
     _NEURO_OK = False
     _NEURO_IMPORT_ERR = str(_e)
+
+# import the REAL ProtocolGPT backend (rule/template extraction, no network).
+try:
+    import tools_protocol  # type: ignore
+    _PROTOCOL_OK = True
+    _PROTOCOL_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_protocol = None  # type: ignore
+    _PROTOCOL_OK = False
+    _PROTOCOL_IMPORT_ERR = str(_e)
+
+# import the REAL ToxinChannelFinder backend (curated KB + live OpenAlex).
+try:
+    import tools_toxin  # type: ignore
+    _TOXIN_OK = True
+    _TOXIN_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_toxin = None  # type: ignore
+    _TOXIN_OK = False
+    _TOXIN_IMPORT_ERR = str(_e)
+
+# import the REAL CitationGraph backend (live OpenAlex citation graph).
+try:
+    import tools_citation  # type: ignore
+    _CITATION_OK = True
+    _CITATION_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_citation = None  # type: ignore
+    _CITATION_OK = False
+    _CITATION_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
 # CORS allow-list. The intended caller is the same-origin Bucket Next proxy
@@ -605,6 +651,30 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
         )
         for t in NEURO_TOOLS
     },
+    **{
+        t: _make_pure_runner(
+            t, _PROTOCOL_OK, _PROTOCOL_IMPORT_ERR,
+            tools_protocol.PROTOCOL_RUNNERS if tools_protocol is not None else None,
+            "tools_protocol",
+        )
+        for t in PROTOCOL_TOOLS
+    },
+    **{
+        t: _make_pure_runner(
+            t, _TOXIN_OK, _TOXIN_IMPORT_ERR,
+            tools_toxin.TOXIN_RUNNERS if tools_toxin is not None else None,
+            "tools_toxin",
+        )
+        for t in TOXIN_TOOLS
+    },
+    **{
+        t: _make_pure_runner(
+            t, _CITATION_OK, _CITATION_IMPORT_ERR,
+            tools_citation.CITATION_RUNNERS if tools_citation is not None else None,
+            "tools_citation",
+        )
+        for t in CITATION_TOOLS
+    },
 }
 
 
@@ -726,6 +796,28 @@ class SpikeFeaturesSubmit(BaseModel):
     thresh_mad: float = 5.0
 
 
+# --- gap-research cluster submit bodies (ProtocolGPT / QuantumBioRAG /
+#     ToxinChannelFinder / CitationGraph) ---
+class ProtocolGPTSubmit(BaseModel):
+    methods: str
+    title: Optional[str] = None
+
+
+class QuantumBioRAGSubmit(BaseModel):
+    claim: str
+    limit: int = 15
+
+
+class ToxinChannelSubmit(BaseModel):
+    toxin: str
+    limit: int = 10
+
+
+class CitationGraphSubmit(BaseModel):
+    paper: str
+    limit: int = 15
+
+
 # --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
@@ -736,10 +828,16 @@ def health() -> dict:
         "rag": RAG_TOOLS,
         "dnarna": DNARNA_TOOLS,
         "neuro": NEURO_TOOLS,
+        "protocol": PROTOCOL_TOOLS,
+        "toxin": TOXIN_TOOLS,
+        "citation": CITATION_TOOLS,
         "demo": DEMO_TOOLS,
         "rag_backend": _RAG_OK,
         "dnarna_backend": _DNARNA_OK,
         "neuro_backend": _NEURO_OK,
+        "protocol_backend": _PROTOCOL_OK,
+        "toxin_backend": _TOXIN_OK,
+        "citation_backend": _CITATION_OK,
         "version": "v1",
     }
 
@@ -873,6 +971,35 @@ def submit_spikefeatures(r: SpikeFeaturesSubmit) -> dict:
     return _dispatch("spikefeatures", {
         "trace": r.trace, "fs_hz": r.fs_hz, "thresh_mad": r.thresh_mad,
     })
+
+
+# --- gap-research cluster submit endpoints ---------------------------------
+@app.post("/v1/protocolgpt/submit")
+def submit_protocolgpt(r: ProtocolGPTSubmit) -> dict:
+    if len((r.methods or "").strip()) < 15:
+        raise HTTPException(400, "paste a methods/SOP description (>= 15 chars)")
+    return _dispatch("protocolgpt", {"methods": r.methods.strip(), "title": (r.title or "").strip()})
+
+
+@app.post("/v1/quantumbiorag/submit")
+def submit_quantumbiorag(r: QuantumBioRAGSubmit) -> dict:
+    if len((r.claim or "").strip()) < 8:
+        raise HTTPException(400, "state a quantum-biology claim (>= 8 chars)")
+    return _dispatch("quantumbiorag", {"claim": r.claim.strip(), "limit": r.limit})
+
+
+@app.post("/v1/toxinchannelfinder/submit")
+def submit_toxinchannelfinder(r: ToxinChannelSubmit) -> dict:
+    if len((r.toxin or "").strip()) < 3:
+        raise HTTPException(400, "enter a toxin/peptide name or sequence (>= 3 chars)")
+    return _dispatch("toxinchannelfinder", {"toxin": r.toxin.strip(), "limit": r.limit})
+
+
+@app.post("/v1/citationgraph/submit")
+def submit_citationgraph(r: CitationGraphSubmit) -> dict:
+    if len((r.paper or "").strip()) < 4:
+        raise HTTPException(400, "enter a DOI, OpenAlex ID, or paper title")
+    return _dispatch("citationgraph", {"paper": r.paper.strip(), "limit": r.limit})
 
 
 def _status_envelope(job: Job) -> dict:

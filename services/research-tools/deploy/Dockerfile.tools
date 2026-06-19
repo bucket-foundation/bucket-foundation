@@ -57,8 +57,10 @@ COPY deploy/requirements.tools.txt /app/requirements.tools.txt
 RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu torch==2.5.1 \
     && pip install --no-cache-dir -r /app/requirements.tools.txt
 
-# App + the three REAL backends.
-COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py /app/
+# App + the REAL self-contained backends (RAG x5 incl. quantumbiorag, DNA/RNA,
+# neuro, protocolgpt, toxinchannelfinder, citationgraph).
+COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py \
+     tools_protocol.py tools_toxin.py tools_citation.py /app/
 
 # Vendored tool source + baked weights/corpora.
 COPY vendor/ /app/vendor/

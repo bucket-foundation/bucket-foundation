@@ -27,8 +27,12 @@ HF="${HF:-$HOME/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM
 rm -rf "$STAGE"
 mkdir -p "$STAGE/vendor/tools" "$STAGE/deploy" "$STAGE/hf-cache/hub"
 
-# gateway + the 3 self-contained REAL backends (same as the lean image)
-cp "$RT/gateway.py" "$RT/tools_rag.py" "$RT/tools_dnarna.py" "$RT/tools_neuro.py" "$STAGE/"
+# gateway + the self-contained REAL backends (same as the lean image):
+# tools_rag (RAG x5 incl. quantumbiorag), tools_dnarna, tools_neuro,
+# tools_protocol (ProtocolGPT), tools_toxin (ToxinChannelFinder),
+# tools_citation (CitationGraph). All stdlib/CPU; no extra deps.
+cp "$RT/gateway.py" "$RT/tools_rag.py" "$RT/tools_dnarna.py" "$RT/tools_neuro.py" \
+   "$RT/tools_protocol.py" "$RT/tools_toxin.py" "$RT/tools_citation.py" "$STAGE/"
 cp "$RT/deploy/requirements.tools.txt" "$RT/deploy/Dockerfile.tools" "$STAGE/deploy/"
 
 ex=(--exclude '__pycache__' --exclude 'out' --exclude '.pytest_cache')

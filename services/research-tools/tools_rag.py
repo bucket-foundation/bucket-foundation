@@ -867,10 +867,151 @@ def run_review_guard(payload: dict) -> dict:
     }
 
 
+# ===========================================================================
+# 5. QuantumBioRAG — claim-strength RAG for quantum-biology / biophysics claims
+# ===========================================================================
+# Quantum biology is a high-signal-to-noise field: the literature mixes rigorous
+# results with hype. QuantumBioRAG retrieves the live OpenAlex evidence for a
+# claim, then scores SUPPORT STRENGTH (not just "does a paper mention it") and
+# CONSENSUS, with citeable sources. It reuses the deterministic stance detector
+# (stance_for_paper) — supports/contradicts/neutral — and adds an evidence-
+# quality weighting (venue uptake via citations + recency + on-topic overlap) so
+# a well-supported, well-cited, replicated claim scores higher than a fringe one.
+
+# A small domain vocabulary used to (a) detect whether a claim is in-scope for
+# quantum biology and (b) bias retrieval toward the right corpus.
+_QBIO_TERMS = {
+    "quantum", "coherence", "coherent", "tunneling", "tunnelling", "entanglement",
+    "spin", "radical", "pair", "magnetoreception", "cryptochrome", "photosynthesis",
+    "exciton", "fmo", "vibronic", "decoherence", "proton", "olfaction", "enzyme",
+    "biophoton", "superposition", "qubit", "nontrivial", "phonon", "isotope",
+}
+
+
+def evidence_strength(work: dict, claim_terms: set[str], now_year: int) -> float:
+    """Per-paper evidence weight for claim-strength scoring. Pure function.
+
+    Combines on-topic overlap, citation uptake (log-damped), and recency. A
+    highly-cited, on-topic, recent paper carries more evidentiary weight than a
+    fringe, uncited mention — this is what separates evidence from hype.
+    """
+    text = f"{work.get('title','')} {work.get('abstract','')} {' '.join(work.get('concepts',[]))}"
+    overlap = jaccard(keyword_set(text), claim_terms)
+    cites = work.get("cited_by_count", 0)
+    uptake = math.log1p(cites) / math.log1p(200.0)  # ~1.0 at 200 cites
+    age = max(now_year - (work.get("publication_year") or now_year), 0)
+    recency = math.exp(-age / 8.0)  # gentle: old landmark papers still count
+    return round(min(1.0, 0.5 * overlap + 0.35 * min(uptake, 1.0) + 0.15 * recency), 4)
+
+
+def run_quantum_bio_rag(payload: dict) -> dict:
+    """payload: { claim: str, limit?: int }
+
+    Claim-strength RAG over the live quantum-biology literature. Retrieves real
+    OpenAlex evidence, scores support strength + consensus with a deterministic
+    stance + evidence-quality model, and cites sources. Evidence, not hype.
+    """
+    claim = (payload.get("claim") or "").strip()
+    if len(claim) < 8:
+        return {"error": "state a quantum-biology claim (>= 8 chars)"}
+    limit = max(3, min(int(payload.get("limit") or 15), 30))
+    claim_terms = keyword_set(claim)
+    claim_pol = _claim_polarity(claim)
+    now_year = datetime.now(timezone.utc).year
+
+    # is the claim plausibly in quantum-biology scope? (informational, not a gate)
+    in_scope = bool(claim_terms & _QBIO_TERMS)
+    # bias retrieval toward the domain when the claim itself is sparse on QB terms
+    query = search_query(claim)
+    if not in_scope:
+        query = (query + " quantum biology").strip()
+
+    degraded = False
+    works: list[dict] = []
+    try:
+        works = search_works(query, per_page=limit, sort="cited_by_count:desc")
+    except NetworkUnavailable:
+        degraded = True
+
+    rows: list[dict] = []
+    for w in works:
+        st = stance_for_paper(claim, claim_terms, claim_pol, w)
+        if st["stance"] == "off-topic":
+            continue
+        strength = evidence_strength(w, claim_terms, now_year)
+        rows.append({
+            "title": w["title"],
+            "venue": w["venue"],
+            "year": w["publication_year"],
+            "cited_by_count": w["cited_by_count"],
+            "url": w["oa_url"],
+            "stance": st["stance"],
+            "evidence": st["evidence"],
+            "stance_confidence": st["confidence"],
+            "evidence_strength": strength,
+        })
+    rows.sort(key=lambda r: (r["evidence_strength"], r["cited_by_count"]), reverse=True)
+
+    support = [r for r in rows if r["stance"] == "supports"]
+    contra = [r for r in rows if r["stance"] == "contradicts"]
+    neutral = [r for r in rows if r["stance"] == "neutral"]
+
+    # weighted support / consensus: weight each paper by its evidence strength.
+    w_sup = sum(r["evidence_strength"] for r in support)
+    w_con = sum(r["evidence_strength"] for r in contra)
+    w_tot = w_sup + w_con
+    support_score = round(w_sup / w_tot, 3) if w_tot > 0 else 0.0
+    # consensus = how lopsided the weighted evidence is (1 = unanimous one way)
+    consensus = round(abs(w_sup - w_con) / w_tot, 3) if w_tot > 0 else 0.0
+
+    if not rows:
+        verdict = "no on-topic evidence retrieved"
+        strength_label = "none"
+    elif w_tot == 0:
+        verdict = "discussed but only neutral mentions — inconclusive"
+        strength_label = "weak"
+    elif support_score >= 0.75 and consensus >= 0.5:
+        verdict = "WELL-SUPPORTED by the retrieved literature"
+        strength_label = "strong"
+    elif support_score >= 0.55:
+        verdict = "LEANS SUPPORTED, but with notable dissent or thin evidence"
+        strength_label = "moderate"
+    elif support_score <= 0.25:
+        verdict = "POORLY SUPPORTED / largely contradicted — treat as hype until replicated"
+        strength_label = "weak"
+    else:
+        verdict = "CONTESTED — supporting and contradicting evidence are balanced"
+        strength_label = "contested"
+
+    return {
+        "method": "claim-strength RAG over live OpenAlex (evidence-weighted stance + consensus)",
+        "claim": claim,
+        "in_quantum_biology_scope": in_scope,
+        "claim_polarity": "positive" if claim_pol > 0 else "negative",
+        "degraded": degraded,
+        "verdict": verdict,
+        "support_strength": strength_label,
+        "support_score": support_score,        # weighted fraction supporting (0..1)
+        "consensus": consensus,                # 0 = split, 1 = unanimous
+        "counts": {"supports": len(support), "contradicts": len(contra), "neutral": len(neutral)},
+        "top_supporting": support[:6],
+        "top_contradicting": contra[:6],
+        "neutral": neutral[:4],
+        "note": (
+            "Support strength weights each paper by on-topic overlap, citation "
+            "uptake, and recency, so a replicated, well-cited result outweighs a "
+            "fringe mention. Stance is deterministic sentence-level cue analysis "
+            "(transparent, not an LLM). This separates evidence from hype — but it "
+            "is triage: read the cited sentences before concluding."
+        ),
+    }
+
+
 # Registry the gateway imports.
 RAG_RUNNERS = {
     "paperradar": run_paper_radar,
     "grantdraft": run_grant_draft,
     "methodsmatcher": run_methods_matcher,
     "reviewguard": run_review_guard,
+    "quantumbiorag": run_quantum_bio_rag,
 }

@@ -1,17 +1,19 @@
 import Link from "next/link";
 
-// Research-tools directory. Sixteen tools served through bucket.foundation
+// Research-tools directory. Twenty tools served through bucket.foundation
 // (FastAPI gateway on Hetzner → /api/research/<tool> proxy → this UI). See
 // docs/research-tools/04-implementation-architecture.md.
 //
-// The 7 original biophysics tools (5 CPU inline + 2 GPU demo) + 4 RAG/agent
-// tools (live OpenAlex + grant corpus) + the DNA/RNA cluster (RNAStructure,
-// gRNA-Optimizer, RNA-FM-Embeds; ViennaRNA + numpy) + the neuroscience cluster
-// (HH-FitML, SpikeFeatures; scipy fits + spike detection). All are wired UI →
-// proxy → gateway. CPU/RAG/DNA/NEURO tools run inline; the two GPU/long tools
-// (trajmine, cryotriage) run in demo/synthetic mode until a GPU compute plan
-// lands (the async contract is built so flipping on a GPU worker is a deploy,
-// not a redesign).
+// The 7 original biophysics tools (5 CPU inline + 2 GPU demo) + 5 RAG/agent
+// tools (live OpenAlex + grant corpus: PaperRadar, GrantDraft, MethodsMatcher,
+// ReviewGuard, QuantumBioRAG) + the DNA/RNA cluster (RNAStructure, gRNA-
+// Optimizer, RNA-FM-Embeds; ViennaRNA + numpy) + the neuroscience cluster
+// (HH-FitML, SpikeFeatures; scipy fits + spike detection) + the gap-research
+// cluster (ProtocolGPT rule extraction, ToxinChannelFinder, CitationGraph). All
+// are wired UI → proxy → gateway. CPU/RAG/DNA/NEURO/GAP tools run inline; the
+// two GPU/long tools (trajmine, cryotriage) run in demo/synthetic mode until a
+// GPU compute plan lands (the async contract is built so flipping on a GPU
+// worker is a deploy, not a redesign).
 
 type Tool = {
   slug: string;
@@ -20,9 +22,10 @@ type Tool = {
   // CPU = inline biophysics tool; GPU = synthetic until compute lands;
   // RAG = live data/agent tool (OpenAlex + grant corpus, real logic);
   // DNA = DNA/RNA cluster (ViennaRNA + numpy, real algorithms);
-  // NEURO = neuroscience cluster (scipy fits + spike detection, real logic).
-  klass: "CPU" | "GPU" | "RAG" | "DNA" | "NEURO";
-  // "live" = inline CPU/RAG/DNA/NEURO tool; "demo" = GPU/long tool (synthetic).
+  // NEURO = neuroscience cluster (scipy fits + spike detection, real logic);
+  // GAP = gap-research cluster (rule extraction / curated KB / OpenAlex graph).
+  klass: "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP";
+  // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: "live" | "demo";
 };
 
@@ -110,6 +113,14 @@ const TOOLS: Tool[] = [
     klass: "RAG",
     status: "live",
   },
+  {
+    slug: "quantumbiorag",
+    name: "QuantumBioRAG",
+    blurb:
+      "Evidence, not hype. State a quantum-biology claim; QuantumBioRAG scores how strongly the live OpenAlex literature supports it — weighting each paper by overlap, citations, and recency — with a consensus score and the deciding sentences.",
+    klass: "RAG",
+    status: "live",
+  },
   // --- DNA/RNA cluster: real algorithms over ViennaRNA + numpy (1,105-PI cohort) ---
   {
     slug: "rnastructure",
@@ -152,6 +163,31 @@ const TOOLS: Tool[] = [
     klass: "NEURO",
     status: "live",
   },
+  // --- gap-research cluster: rule extraction / curated KB / OpenAlex graph ---
+  {
+    slug: "protocolgpt",
+    name: "ProtocolGPT",
+    blurb:
+      "Methods prose → a structured, runnable protocol. Deterministic rule extraction over a methods knowledge base: ordered steps with timings/temps/volumes, a reagent table, and safety flags. No network, no GPU.",
+    klass: "GAP",
+    status: "live",
+  },
+  {
+    slug: "toxinchannelfinder",
+    name: "ToxinChannelFinder",
+    blurb:
+      "Map a toxin/peptide (name or sequence) to its likely ion-channel targets. Fuses a curated venom-peptide pharmacology KB with live OpenAlex co-occurrence; sequences classified by cysteine framework. Ranked targets, honest confidence, cited exemplars.",
+    klass: "GAP",
+    status: "live",
+  },
+  {
+    slug: "citationgraph",
+    name: "CitationGraph",
+    blurb:
+      "Build a paper's local citation neighborhood from the live OpenAlex graph (DOI / OpenAlex ID / title). Surfaces the key related works and ranks them by degree centrality — the most-connected neighbors first.",
+    klass: "GAP",
+    status: "live",
+  },
 ];
 
 export default function Page() {
@@ -166,14 +202,16 @@ export default function Page() {
           <span className="inlay-gold">instruments.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Sixteen tools, each running real logic on your input — protein
+          Twenty tools, each running real logic on your input — protein
           stability, ADMET screening, trajectory mining, ephys, and cryo-EM
-          triage; four literature/agent tools over the live OpenAlex index and a
+          triage; five literature/agent tools over the live OpenAlex index and a
           real awarded-grant corpus (PaperRadar, GrantDraft, MethodsMatcher,
-          ReviewGuard); a DNA/RNA cluster (RNAStructure folding via ViennaRNA,
-          gRNA-Optimizer, RNA-FM-Embeds); and a neuroscience cluster (HH-FitML
-          membrane fits, SpikeFeatures detection). Run one, read the result, and
-          publish it to canon as a citeable, paid-once artifact.
+          ReviewGuard, QuantumBioRAG); a DNA/RNA cluster (RNAStructure folding via
+          ViennaRNA, gRNA-Optimizer, RNA-FM-Embeds); a neuroscience cluster
+          (HH-FitML membrane fits, SpikeFeatures detection); and a gap-research
+          cluster (ProtocolGPT methods structuring, ToxinChannelFinder,
+          CitationGraph). Run one, read the result, and publish it to canon as a
+          citeable, paid-once artifact.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 

@@ -109,6 +109,145 @@ WORKS_CLAIM = [
     },
 ]
 
+# --- QuantumBioRAG: works with clear stance toward a quantum-bio claim --------
+QBIO_CLAIM = "quantum coherence enhances photosynthetic energy transfer"
+WORKS_QBIO = [
+    {
+        "id": "https://openalex.org/WQ1",
+        "title": "Long-lived quantum coherence enhances photosynthetic energy transfer in FMO",
+        "abstract": "We demonstrate that quantum coherence significantly increases the "
+        "efficiency of energy transfer in the FMO photosynthetic complex; coherent "
+        "dynamics support enhanced transport.",
+        "publication_date": "2024-01-01",
+        "publication_year": 2024,
+        "cited_by_count": 320,
+        "venue": "Nature",
+        "is_oa": True,
+        "oa_url": "https://example.org/wq1",
+        "doi": "",
+        "authors": ["Q. One"],
+        "concepts": ["Quantum coherence", "Photosynthesis", "Exciton"],
+        "specific_concepts": ["Quantum coherence", "Energy transfer"],
+    },
+    {
+        "id": "https://openalex.org/WQ2",
+        "title": "Quantum coherence does not enhance photosynthetic transport at physiological temperature",
+        "abstract": "Coherence was negligible and did not increase energy transfer "
+        "efficiency; the effect was unchanged relative to classical models.",
+        "publication_date": "2023-01-01",
+        "publication_year": 2023,
+        "cited_by_count": 90,
+        "venue": "J Phys Chem",
+        "is_oa": True,
+        "oa_url": "https://example.org/wq2",
+        "doi": "",
+        "authors": ["Q. Two"],
+        "concepts": ["Quantum coherence", "Photosynthesis"],
+        "specific_concepts": ["Decoherence"],
+    },
+    {
+        "id": "https://openalex.org/WQ3",
+        "title": "A study of soil nitrogen cycling",
+        "abstract": "We measure nitrogen flux in agricultural soils. No quantum content.",
+        "publication_date": "2022-01-01",
+        "publication_year": 2022,
+        "cited_by_count": 4,
+        "venue": "Soil Sci",
+        "is_oa": True,
+        "oa_url": "https://example.org/wq3",
+        "doi": "",
+        "authors": ["S. Three"],
+        "concepts": ["Soil"],
+        "specific_concepts": ["Nitrogen cycle"],
+    },
+]
+
+# A fringe claim: only weak/contradicting evidence in the fixture set.
+QBIO_FRINGE_CLAIM = "quantum entanglement controls human consciousness in microtubules"
+WORKS_QBIO_FRINGE = [
+    {
+        "id": "https://openalex.org/WF1",
+        "title": "No evidence that quantum entanglement controls consciousness in microtubules",
+        "abstract": "Decoherence times in warm microtubules are far too short; we find no "
+        "support and the proposal is inconsistent with the measured timescales.",
+        "publication_date": "2021-01-01",
+        "publication_year": 2021,
+        "cited_by_count": 40,
+        "venue": "Phys Rev",
+        "is_oa": True,
+        "oa_url": "https://example.org/wf1",
+        "doi": "",
+        "authors": ["F. One"],
+        "concepts": ["Quantum", "Consciousness", "Microtubule"],
+        "specific_concepts": ["Decoherence"],
+    },
+]
+
+# --- ToxinChannelFinder: literature works co-mentioning toxin + channel -------
+WORKS_TOXIN_CONOTOXIN = [
+    {
+        "id": "https://openalex.org/WT1",
+        "title": "Omega-conotoxin MVIIA blocks N-type calcium channels (Cav2.2)",
+        "abstract": "Omega-conotoxin selectively inhibits the voltage-gated calcium channel "
+        "Cav2.2, the N-type calcium channel, in sensory neurons.",
+        "publication_date": "2020-01-01",
+        "publication_year": 2020,
+        "cited_by_count": 150,
+        "venue": "J Neurosci",
+        "is_oa": True,
+        "oa_url": "https://example.org/wt1",
+        "doi": "",
+        "authors": ["T. One"],
+        "concepts": ["Calcium channel", "Conotoxin"],
+        "specific_concepts": ["Voltage-gated calcium channel"],
+    },
+    {
+        "id": "https://openalex.org/WT2",
+        "title": "Ziconotide, an omega-conotoxin, in chronic pain",
+        "abstract": "Ziconotide targets the N-type calcium channel for analgesia.",
+        "publication_date": "2019-01-01",
+        "publication_year": 2019,
+        "cited_by_count": 80,
+        "venue": "Pain",
+        "is_oa": True,
+        "oa_url": "https://example.org/wt2",
+        "doi": "",
+        "authors": ["T. Two"],
+        "concepts": ["Calcium channel"],
+        "specific_concepts": ["Calcium channel"],
+    },
+]
+
+# --- CitationGraph: a seed work + references + citing works (normalized) -------
+# Each carries `referenced_ids` (short OpenAlex ids) so the graph builder can
+# induce co-citation edges with zero network.
+SEED_WORK = {
+    "id": "https://openalex.org/W100",
+    "title": "A landmark paper on protein folding kinetics",
+    "abstract": "We measure folding kinetics.",
+    "publication_year": 2015,
+    "venue": "Science",
+    "cited_by_count": 500,
+    "oa_url": "https://example.org/w100",
+    "referenced_ids": ["W10", "W11", "W12"],
+}
+REFERENCES_WORKS = [
+    {"id": "https://openalex.org/W10", "title": "Folding theory I", "publication_year": 2000,
+     "venue": "PNAS", "cited_by_count": 300, "oa_url": "https://example.org/w10",
+     "referenced_ids": ["W11"]},  # W10 cites W11 -> neighbor-neighbor edge
+    {"id": "https://openalex.org/W11", "title": "Folding theory II", "publication_year": 2001,
+     "venue": "PNAS", "cited_by_count": 200, "oa_url": "https://example.org/w11",
+     "referenced_ids": []},
+    {"id": "https://openalex.org/W12", "title": "Folding theory III", "publication_year": 2002,
+     "venue": "JMB", "cited_by_count": 50, "oa_url": "https://example.org/w12",
+     "referenced_ids": []},
+]
+CITING_WORKS = [
+    {"id": "https://openalex.org/W200", "title": "Builds on the landmark", "publication_year": 2018,
+     "venue": "Cell", "cited_by_count": 30, "oa_url": "https://example.org/w200",
+     "referenced_ids": ["W100", "W10"]},  # cites seed AND W10 -> shared edge
+]
+
 # --- raw NSF-shaped awards (input shape of tools_rag._grant_record) ----------
 NSF_AWARDS = [
     {

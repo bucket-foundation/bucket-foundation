@@ -34,9 +34,17 @@ WORKDIR /app
 COPY deploy/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# App + the three REAL backends. (We copy explicitly rather than `COPY . .` to
-# keep the heavy sibling-repo subprocess tools out and the image lean.)
-COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py /app/
+# App + the REAL self-contained backends. (We copy explicitly rather than
+# `COPY . .` to keep the heavy sibling-repo subprocess tools out + image lean.)
+#   tools_rag       — RAG x5 (paperradar, grantdraft, methodsmatcher,
+#                     reviewguard, quantumbiorag) over live OpenAlex
+#   tools_dnarna    — RNAStructure, gRNA-Optimizer, RNA-FM-Embeds
+#   tools_neuro     — HH-FitML, SpikeFeatures
+#   tools_protocol  — ProtocolGPT (rule extraction, stdlib-only, no network)
+#   tools_toxin     — ToxinChannelFinder (curated KB + live OpenAlex)
+#   tools_citation  — CitationGraph (live OpenAlex citation graph)
+COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py \
+     tools_protocol.py tools_toxin.py tools_citation.py /app/
 
 # Non-root + a writable cache/atlas dir.
 RUN useradd -m -u 10001 tools \

@@ -9,7 +9,10 @@
 # CPU-only. torch is pulled CPU-only (see Dockerfile --index-url) for labbrain's
 # sentence-transformers; no CUDA, no GPU. Sized for the Hetzner CPX42 (no GPU).
 
-# --- the 9 lean-image tools (unchanged) ---
+# --- the 9 lean-image tools + the 4 gap-research tools (unchanged deps) ---
+# The gap-research cluster (ProtocolGPT, ToxinChannelFinder, CitationGraph) and
+# QuantumBioRAG are pure stdlib (re/math/urllib) over the existing fastapi/
+# pydantic + the tools_rag OpenAlex client — they add NO new dependencies.
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 pydantic==2.10.4

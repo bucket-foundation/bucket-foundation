@@ -24,8 +24,12 @@ import tools_rag as t  # noqa: E402
 from fixtures import (  # noqa: E402
     CLAIM,
     NSF_AWARDS,
+    QBIO_CLAIM,
+    QBIO_FRINGE_CLAIM,
     WORKS_CLAIM,
     WORKS_PROTEIN_DYNAMICS,
+    WORKS_QBIO,
+    WORKS_QBIO_FRINGE,
 )
 
 
@@ -193,6 +197,40 @@ def test_run_review_guard_validation():
     assert t.run_review_guard({"claim": "short"}).get("error")
 
 
+# =========================================================================
+# QuantumBioRAG — claim-strength RAG (evidence-weighted stance + consensus)
+# =========================================================================
+def test_evidence_strength_rewards_cited_ontopic_recent():
+    terms = t.keyword_set(QBIO_CLAIM)
+    strong = t.evidence_strength(WORKS_QBIO[0], terms, 2026)  # 320 cites, on-topic, 2024
+    weak = t.evidence_strength(WORKS_QBIO[2], terms, 2026)    # 4 cites, off-topic, 2022
+    assert strong > weak
+    assert 0.0 <= strong <= 1.0
+
+
+def test_run_quantum_bio_rag_well_supported_outscores_fringe(monkeypatch):
+    # a well-supported claim: strong supporting paper (320 cites) + weaker contra
+    monkeypatch.setattr(t, "search_works", lambda *a, **k: list(WORKS_QBIO))
+    good = t.run_quantum_bio_rag({"claim": QBIO_CLAIM})
+    assert good.get("error") is None
+    assert good["in_quantum_biology_scope"] is True
+    assert good["counts"]["supports"] >= 1
+    # the heavily-cited supporting paper dominates the weighted support score
+    assert good["support_score"] > 0.5
+
+    # a fringe claim: only a contradicting paper in the set -> poorly supported
+    monkeypatch.setattr(t, "search_works", lambda *a, **k: list(WORKS_QBIO_FRINGE))
+    fringe = t.run_quantum_bio_rag({"claim": QBIO_FRINGE_CLAIM})
+    assert fringe["support_score"] < good["support_score"], (
+        "a fringe/contradicted claim must score lower than a well-supported one"
+    )
+    assert fringe["support_strength"] in ("weak", "contested")
+
+
+def test_run_quantum_bio_rag_validation():
+    assert t.run_quantum_bio_rag({"claim": "short"}).get("error")
+
+
 def test_offline_degraded_paths(monkeypatch):
     # With TOOLS_OFFLINE=1 and a cache miss, search_works raises NetworkUnavailable;
     # the run_* functions must degrade gracefully (no exception, degraded flag).
@@ -209,6 +247,8 @@ def test_offline_degraded_paths(monkeypatch):
     assert mm.get("degraded") is True
     rg = t.run_review_guard({"claim": "a real claim about something measurable"})
     assert rg.get("degraded") is True
+    qb = t.run_quantum_bio_rag({"claim": "quantum coherence in some biological process"})
+    assert qb.get("degraded") is True
 
 
 if __name__ == "__main__":

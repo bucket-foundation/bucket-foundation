@@ -13,3 +13,8 @@ python-multipart==0.0.20
 numpy==2.2.1
 scipy==1.15.0
 ViennaRNA==2.7.0
+# The gap-research cluster (ProtocolGPT, ToxinChannelFinder, CitationGraph) and
+# QuantumBioRAG are pure stdlib (re/math/urllib) + the existing fastapi/pydantic
+# above — they add NO new dependencies. ProtocolGPT touches no network at all;
+# ToxinChannelFinder + CitationGraph reuse the stdlib-urllib OpenAlex client in
+# tools_rag.py. So this image already serves all of them with no change.
