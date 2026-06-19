@@ -42,8 +42,9 @@ export default function Page() {
           research-atlas is the canonical, normalized graph of the global
           research economy — funders, grants, organizations, people, and fields,
           every row carrying provenance and a fetch timestamp. Each table is
-          published here as an open dataset: free to read, priced-once to cite,
-          and born ready to mint as a Story Protocol IP artifact.
+          published here as an open dataset: free to read, priced-once to cite
+          over feed402/x402, and born with a real DOI (via Zenodo) so it is
+          citeable forever.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
@@ -74,7 +75,7 @@ export default function Page() {
             href="/research"
             className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
           >
-            publish · mint · be cited
+            publish · cite · be cited
           </Link>
           <Link
             href="/cite-forever/v0.1"

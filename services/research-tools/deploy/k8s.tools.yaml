@@ -1,0 +1,133 @@
+# research-tools-gateway — K3s manifests for the STANDARD (fat) image.
+# =====================================================================
+# Same Deployment/Service/Ingress as k8s.yaml, but for the fat image that vendors
+# the 5 CPU subprocess tools + 2 demo tools (labbrain, proteinscout,
+# stabilitydesigner, screenserver, patchseqml, trajmine-demo, cryotriage-demo) in
+# ADDITION to the 9 self-contained REAL tools — i.e. ALL 16 endpoints answer live.
+#
+# Differences from the lean k8s.yaml:
+#   • image: farmera/research-tools-gateway:tools-v2  (imported via ctr; see DEPLOY.md)
+#   • command: 1 uvicorn worker — REQUIRED. The job table is in-memory per worker;
+#     async tools (labbrain build, trajmine, cryotriage) are polled by job_id and
+#     would 404 on a different worker. Keep replicas:1 + workers:1 until the job
+#     table moves to Redis (follow-up).
+#   • memory: 3Gi limit — torch (labbrain) + the 381M stabilitydesigner sklearn
+#     model + rdkit (screenserver) need real headroom; the lean image's 1Gi is not
+#     enough once a heavy tool loads.
+#   • TOOLS_INLINE_BUDGET_S=45 — more of the heavier CPU tools return inline.
+#
+# Apply: docker exec -i agfarms-k3s kubectl apply -f - < k8s.tools.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: research-tools-gateway
+  namespace: inst-bucket-foundation
+  labels:
+    app: research-tools-gateway
+    variant: tools-fat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: research-tools-gateway
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: research-tools-gateway
+        variant: tools-fat
+    spec:
+      containers:
+        - name: gateway
+          image: farmera/research-tools-gateway:tools-v2
+          imagePullPolicy: IfNotPresent
+          # 1 worker: in-memory job table must be shared across the submit + poll
+          # of an async job. Do NOT raise without an external job store.
+          command: ["python3", "-m", "uvicorn", "gateway:app",
+                    "--host", "0.0.0.0", "--port", "8732", "--workers", "1"]
+          ports:
+            - name: http
+              containerPort: 8732
+          env:
+            - name: TOOLS_CORS_ORIGINS
+              value: "https://bucket.foundation,https://www.bucket.foundation,http://localhost:3000,http://127.0.0.1:3000"
+            - name: OPENALEX_MAILTO
+              value: "research-tools@agfarms.dev"
+            - name: TOOLS_CACHE_DIR
+              value: "/data/cache"
+            # heavier CPU tools (proteinscout/stabilitydesigner/screenserver) often
+            # finish just over 30s; 45s lets more of them return inline.
+            - name: TOOLS_INLINE_BUDGET_S
+              value: "45"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 4
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 4
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "3Gi"
+          volumeMounts:
+            - name: cache
+              mountPath: /data/cache
+            # /data/mpl + /data/hf are baked into the image (read-only is fine);
+            # only the OpenAlex HTTP cache needs a writable mount.
+      volumes:
+        - name: cache
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: research-tools-gateway
+  namespace: inst-bucket-foundation
+  labels:
+    app: research-tools-gateway
+spec:
+  type: ClusterIP
+  selector:
+    app: research-tools-gateway
+  ports:
+    - name: http
+      port: 8732
+      targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: research-tools-gateway
+  namespace: inst-bucket-foundation
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: research-tools.agfarms.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: research-tools-gateway
+                port:
+                  number: 8732

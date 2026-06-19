@@ -15,11 +15,12 @@
  * Bucket's mission: open research that's free-to-read / paid-to-cite. Each
  * dataset listed here is born citeable — the dataset page emits the same
  * feed402/0.2 cite-forever envelope shape the rest of Bucket uses, so a
- * downstream publisher knows exactly what it would owe to re-publish.
+ * downstream publisher knows exactly what it would owe to re-publish over
+ * feed402/x402.
  *
- * The on-chain MINT (Story Protocol IP-NFT + Walrus pin) reuses the existing
- * /research publish→mint flow and is marked as a clearly-labelled seam where it
- * is referenced — it is NOT required to read, list, or cite a dataset.
+ * Permanence is a real DOI (via Zenodo), marked as a clearly-labelled seam where
+ * it is referenced — NO blockchain, NO Story Protocol, NO IP-NFT. The DOI is
+ * NOT required to read, list, or cite a dataset.
  */
 import manifestJson from "@/data/research-atlas-manifest.json";
 

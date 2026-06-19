@@ -113,9 +113,9 @@ function datasetEnvelope(d: AtlasDataset) {
     // they publish as candidate, never canon. Mirrors /api/research precedence.
     canon_tier: "candidate" as const,
     provenance: datasetProvenance(d),
-    // TODO(publish): Story Protocol mint via the existing /research flow attaches
-    // a mint_url / ip_asset_id here once a dataset is minted. No wallet needed to
-    // read or cite — this is the optional on-chain permanence seam.
+    // TODO(publish): attach a real `doi` (minted via Zenodo) here once a dataset
+    // is deposited. No wallet, no chain — a DOI + the feed402/0.2 cite-forever
+    // block is the whole permanence story.
     ...agentNotice(),
   };
 }

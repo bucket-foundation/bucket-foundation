@@ -8,7 +8,7 @@
 ## Status snapshot (2026-06-18)
 - research-atlas: 887,016 grants · 99,650 orgs · 170,408 people · 69 funders · $532.0B · 4.17M rows (NIH/NSF/CORDIS/UKRI, recent years). **0 orgs ROR-resolved. No output side. Not yet a graph.**
 - Tools: 11/54 built (7 biophysics + PaperRadar/GrantDraft/MethodsMatcher/ReviewGuard). **None deployed live.**
-- Publish surface built; **flywheel not turning** (GitHub-raw downloads, no DOI/mint).
+- Publish surface built; **flywheel not turning** (GitHub-raw downloads, no real DOI yet).
 
 ## A · [graph] Entity resolution → the real graph  *(highest leverage)*
 1. ROR-resolve all 99,650 orgs + cross-funder dedup/merge **(P1, #1 task)**
@@ -38,9 +38,9 @@
 25. Async job queue (Redis/RQ) + workers · 26. GPU worker plane · 27. Supabase job store
 28. Viatika/x402 metering per run **(P1)** · 29. Auth + tiers · 30. TOOLS_GATEWAY_URL + K3s secrets **(P1)**
 
-## E · [flywheel] Publish → cite → paid
-31. Hosted content-addressed DOI'd dataset releases **(P1)** · 32. Story Protocol mint (founder-gated wallet)
-33. Walrus pinning · 34. cite-forever x402 payout · 35. Mint the funding-landscape dataset (turn it once) **(P1)**
+## E · [flywheel] Publish → cite → paid  *(NO blockchain — free-to-read, paid-to-cite over feed402/x402; real DOI via Zenodo)*
+31. Hosted content-addressed dataset releases + **real DOI via Zenodo** **(P1)** · 32. Open Badges 3.0 / W3C VC credentials (issuer-signed, no chain)
+34. cite-forever x402 payout · 35. Register + DOI the funding-landscape dataset (turn the flywheel once) **(P1)**
 
 ## F · [science] Metascience research (the PhD spine)
 37. Funding-flow analyses · 38. Field-dynamics / science-of-science
@@ -53,5 +53,5 @@ FX refresh · idempotent full-rerun cron · schema versioning/migrations · scal
 ---
 ### Execution order (the "real" milestone first)
 **Wave now:** A1–A4 (graph linkage) + C16–C17 (DNA/RNA + neuro tools).
-**Next:** D24/D30 (deploy gateway live) + E31/E35 (DOI release + mint once).
+**Next:** D24/D30 (deploy gateway live) + E31/E35 (DOI release + turn the flywheel once).
 **Then:** B (funder breadth) + remaining C tools + F (science/preprint) continuously.

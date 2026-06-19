@@ -19,8 +19,10 @@
 ## 1. Vision — one screen
 
 **Bucket is where researchers RUN the tools, READ the results, PUBLISH the findings into the
-canon, get CITED, and get PAID.** Today Bucket is a publish-mint-cite surface plus a canon/RAG
+canon, get CITED, and get PAID.** Today Bucket is a publish-cite surface plus a canon/RAG
 read surface. The next layer makes Bucket a *place you do work*, not just a place you deposit it.
+Publishing is **free-to-read, paid-to-cite over feed402/x402** with a real DOI for permanence —
+**NO blockchain, NO Story Protocol, NO IP-NFT** (org-wide rule).
 
 The flywheel:
 
@@ -41,7 +43,7 @@ Why this is *Bucket's* flywheel and not a generic SaaS tool farm:
    inputs, model versions, and a `cite` block — the same envelope shape `/api/research` already
    returns. A run is a publishable artifact from the first second.
 2. **Publish-to-canon is one hop, not a re-write.** The tool's structured output is already in the
-   shape the `/research` publish-mint flow wants. Run → Publish is a button, not a project.
+   shape the `/research` publish-cite flow wants. Run → Publish is a button, not a project.
 3. **Citation routes money to the author.** The cite-forever v0.1 license + x402 payout wallet
    already exist (`src/app/api/research/route.ts`). A tool result that gets cited downstream pays
    the researcher who ran it — the thing no Colab notebook, no Tamarind job, no HuggingFace Space
@@ -84,8 +86,9 @@ tool page under `/research/tools/<slug>`, a structured run, a readable output su
   retrieval with citation grounding.
 - **Productize in Bucket:** `/research/tools/labbrain`. **Inputs:** a corpus (upload PDFs / connect
   a Zotero or folder / point at a canon branch). **Readable output:** answer + inline citations +
-  retrieved-passage cards with provenance. **Publish hook:** "Publish this synthesis" → mints the
-  Q→A→evidence bundle as a citeable note (canon_tier:`candidate` until promoted). This is the
+  retrieved-passage cards with provenance. **Publish hook:** "Publish this synthesis" → registers the
+  Q→A→evidence bundle as a citeable note with its feed402 cite-forever block (canon_tier:`candidate`
+  until promoted). This is the
   **reference implementation** (see §5) — it already shares the `/api/research` envelope shape.
 
 ### 2.2 ProteinScout — *per-residue biophysics*
@@ -98,7 +101,7 @@ tool page under `/research/tools/<slug>`, a structured run, a readable output su
 - **Productize in Bucket:** `/research/tools/proteinscout`. **Inputs:** PDB/CIF or sequence.
   **Readable output:** an interactive residue table + a 3D viewer (NGL/Mol*) colored by score +
   a downloadable per-residue CSV. **Publish hook:** publish the annotated structure as a citeable
-  dataset artifact (Walrus-pinned CSV + viewer state).
+  dataset artifact (CSV + viewer state, free-to-read / paid-to-cite over feed402/x402, DOI'd via Zenodo).
 
 ### 2.3 StabilityDesigner — *ΔΔG of mutations*
 - **Value prop:** Predict + rank stabilizing/destabilizing mutations (ΔΔG) without a costly
@@ -221,11 +224,11 @@ build-tier C). Ship 1–2 only as *signals of competence* to a target advisor, n
 ## 4. Information architecture (tools inside Bucket)
 
 Goal: a researcher (and the founder) can **discover a tool → run it → READ the output → publish it**,
-all within Bucket, reusing the existing `/research` publish-mint surface and the `/api/research`
+all within Bucket, reusing the existing `/research` publish-cite surface and the `/api/research`
 envelope shape.
 
 ```
-/research                         existing — publish · mint · cite (KEEP as the publish hub)
+/research                         existing — publish · cite · be cited (KEEP as the publish hub)
 /research/tools                   NEW — Tool Directory (the catalog landing)
    ├─ card per tool: name, one-line value prop, persona tag, subfield, "run" CTA
    ├─ grouped by subfield (Protein · Cryo-EM · Ion channels · Drug discovery · Literature · …)
@@ -235,7 +238,7 @@ envelope shape.
    ├─ "Run" → creates a Run record (id, status, inputs hash)
    ├─ live status (queued → running → done) for GPU tools
    ├─ READABLE OUTPUT surface (table / 3D viewer / plots / report) — the core read experience
-   └─ "Publish to canon" button → prefills the existing /research mint flow with the run artifact
+   └─ "Publish to canon" button → prefills the existing /research publish-cite flow with the run artifact
 /research/runs                    NEW — "My Runs / Outputs" surface
    ├─ list of every run (tool, inputs, status, date), newest first
    ├─ open any run → its readable output (so founder + researchers can READ outputs)
@@ -342,7 +345,7 @@ Bucket thesis.
 ### Proposed IA
 
 ```
-/research                      publish · mint · cite          (existing publish hub — keep)
+/research                      publish · cite · be cited      (existing publish hub — keep)
 /research/tools                Tool Directory                 (NEW — catalog, persona/subfield tags)
 /research/tools/<slug>         per-tool RUN page              (NEW — inputs → run → readable output → "Publish to canon")
 /research/runs                 My Runs / Outputs              (NEW — read every output; founder + researcher window)

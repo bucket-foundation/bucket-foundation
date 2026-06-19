@@ -1,0 +1,80 @@
+# research-tools-gateway — STANDARD (fat) image: the 9 lean tools + 5 vendored CPU tools
+# =======================================================================================
+# Builds the FastAPI gateway (gateway.py) + the three self-contained REAL backends
+# (tools_rag, tools_dnarna, tools_neuro) AND vendors the source + weights of the five
+# CPU-feasible subprocess tools so they run live WITHOUT shelling out to ~/agfarms:
+#
+#   labbrain          → /app/vendor/tools/labbrain   (sentence-transformers all-MiniLM-L6-v2,
+#                        baked HF cache; corpus cache + data mirror baked; OpenAlex at runtime)
+#   proteinscout      → /app/vendor/tools/proteinscout       (sklearn pickles baked)
+#   stabilitydesigner → /app/vendor/tools/stabilitydesigner  (381M ddg_model.pkl baked)
+#   patchseqml        → /app/vendor/tools/patchseqml         (sim path; numpy/scipy only)
+#   screenserver      → /app/vendor/screenserver             (RDKit + 13 sklearn models baked)
+#
+# The gateway already reads TOOLS_REPO_DIR + SCREENSERVER_DIR; we set them to the vendored
+# in-image paths so the EXISTING subprocess logic dispatches to the vendored code — NO
+# gateway code change. trajmine + cryotriage stay in demo/synthetic mode (no GPU on the box).
+#
+# Build context = a staging dir produced by deploy/build-tools-context.sh:
+#   gateway.py tools_rag.py tools_dnarna.py tools_neuro.py
+#   vendor/tools/{labbrain,proteinscout,stabilitydesigner,patchseqml}
+#   vendor/screenserver
+#   hf-cache/hub/models--sentence-transformers--all-MiniLM-L6-v2
+#   deploy/requirements.tools.txt
+#
+#   docker build -f deploy/Dockerfile.tools -t farmera/research-tools-gateway:tools-<tag> .
+FROM python:3.12-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    TOOLS_CACHE_DIR=/data/cache \
+    RESEARCH_ATLAS_DIR=/data/research-atlas \
+    OPENALEX_MAILTO=research-tools@agfarms.dev \
+    # gateway path overrides → the vendored tool tree (no subprocess into ~/)
+    TOOLS_REPO_DIR=/app/vendor/tools \
+    SCREENSERVER_DIR=/app/vendor/screenserver \
+    # keep all HF/torch caches inside /data (writable, non-root) and force offline
+    # so labbrain loads the baked all-MiniLM weights and never hits huggingface.co
+    HF_HOME=/data/hf \
+    HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1 \
+    MPLCONFIGDIR=/data/mpl \
+    OMP_NUM_THREADS=2
+
+WORKDIR /app
+
+# Some sklearn/scipy/matplotlib wheels need libgomp; rdkit's drawing module
+# (rdMolDraw2D) needs libxrender/libxext + libexpat at runtime.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       libgomp1 libxrender1 libxext6 libexpat1 libsm6 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Deps first for layer caching. torch is CPU-only (no CUDA) — install it from the
+# CPU index BEFORE sentence-transformers so the latter doesn't pull the CUDA build.
+COPY deploy/requirements.tools.txt /app/requirements.tools.txt
+RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu torch==2.5.1 \
+    && pip install --no-cache-dir -r /app/requirements.tools.txt
+
+# App + the three REAL backends.
+COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py /app/
+
+# Vendored tool source + baked weights/corpora.
+COPY vendor/ /app/vendor/
+
+# Baked all-MiniLM-L6-v2 HF cache (so labbrain never downloads at runtime).
+COPY hf-cache/ /data/hf/
+
+# Non-root + writable cache/atlas/hf/mpl dirs.
+RUN useradd -m -u 10001 tools \
+    && mkdir -p /data/cache /data/research-atlas /data/mpl \
+    && chown -R tools:tools /app /data
+USER tools
+
+EXPOSE 8732
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+    CMD python3 -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8732/health',timeout=4).status==200 else 1)"
+
+CMD ["python3", "-m", "uvicorn", "gateway:app", "--host", "0.0.0.0", "--port", "8732", "--workers", "2"]

@@ -8,7 +8,10 @@
 Goal: move the 7 biophysics research tools **off `gianyrox.com/research`** and host
 them **inside `bucket.foundation`** — Python backends on Hetzner/K3s, fronted by the
 existing Next.js app, payment-metered via x402/Viatika at the seam, with a
-"publish result to canon" hook into the existing Story Protocol mint flow.
+"publish result to canon" hook that registers the artifact + its feed402/0.2
+cite-forever block and (for datasets) a real DOI via Zenodo. **NO Story Protocol,
+NO Walrus, NO IP-NFT, no blockchain** anywhere — org-wide rule; credentials, if
+any, use Open Badges 3.0 / W3C VC.
 
 This doc is the engineering contract. It does **not** build x402/Viatika or the
 GPU compute plane — it defines the seams so those land cleanly later.
@@ -52,7 +55,7 @@ in front. Nothing about the tools' science changes.
  ┌─────────────────────────────────────────────────────────────┐
  │  bucket.foundation  (Next.js on Vercel)                      │
  │                                                             │
- │  /research                 ← existing publish→mint page      │
+ │  /research                 ← existing publish→cite page      │
  │  /research/tools           ← NEW directory of the 7 tools    │
  │  /research/tools/<tool>    ← NEW per-tool run page (island)  │
  │                                                             │
@@ -61,7 +64,7 @@ in front. Nothing about the tools' science changes.
  │       • poll status → backend                                │
  │       • fetch result → backend                               │
  │       • [SEAM] x402/Viatika meter per submit                 │
- │       • [HOOK] publish result → existing /api/research mint   │
+ │       • [HOOK] publish result → existing /api/research cite   │
  └──────────────────────────────┬──────────────────────────────┘
                                 │  server→server HTTPS
                                 │  TOOLS_GATEWAY_URL (env)
@@ -145,7 +148,7 @@ body (per-tool typed payload; examples):
 429 → { "error": { "code": "rate_limited" | "queue_full", ... } }
 ```
 - For **inline** tools the gateway MAY return `status:"succeeded"` immediately with the
-  result already attached under `result` (so the UI can skip polling). It MUST still mint
+  result already attached under `result` (so the UI can skip polling). It MUST still issue
   a `job_id` so the same code path works and the result is fetchable/permalinkable.
 
 ### 2.2 Status (poll)
@@ -202,7 +205,7 @@ that adds the metering seam and the canon hook:
 POST /api/research/<tool>            → forwards to gateway POST /v1/<tool>/submit
 GET  /api/research/<tool>?job=<id>   → forwards to gateway GET  /v1/jobs/<id>
 GET  /api/research/<tool>?job=<id>&result=1 → gateway GET /v1/jobs/<id>/result
-POST /api/research/<tool>/publish    → result → existing /api/research mint flow (§5)
+POST /api/research/<tool>/publish    → result → existing /api/research publish-cite flow (§5)
 ```
 `<tool>` is validated against a server-side allow-list (the 7 names) before any forward.
 `TOOLS_GATEWAY_URL` is server-only env; the gateway URL is **never** sent to the client
@@ -290,22 +293,25 @@ touch the queue.
   - **Small JSON / self-contained HTML** (most tools) → store the result blob in the job
     record / Supabase row (HTML reports are already self-contained, typically < a few MB).
   - **Large artifacts** (MD trajectories, cryo-EM stacks) → **object store** (S3-compatible
-    bucket or the Walrus blob layer Bucket already uses) keyed by `job_id`; the result
-    references them by URL.
-  - **Walrus** is reserved for the *permanent* path: when a result is **published to canon**
-    (§5), its canonical artifact is pinned to Walrus and minted — the same Story Protocol
-    flow `/api/research` already uses for PDFs. Walrus is **not** the hot scratch store.
+    bucket) keyed by `job_id`; the result references them by URL. **No blockchain blob layer.**
+  - **DOI deposit (Zenodo)** is reserved for the *permanent* path: when a result is
+    **published to canon** (§5), its canonical artifact is deposited to **Zenodo** and gets a
+    **real DOI**. There is **no on-chain minting, no Story Protocol, no Walrus.** The object
+    store is **not** the hot scratch store.
 - **Retention:** unpublished job results expire (e.g. 7 days) from the hot store; published
-  ones are permanent via Walrus/mint. TTL is a gateway config, not in the contract.
+  ones are permanent via their Zenodo DOI + the durable Supabase row. TTL is a gateway
+  config, not in the contract.
 
 ---
 
-## 5. "Publish result to canon" hook (into the existing mint flow)
+## 5. "Publish result to canon" hook (register + cite-forever + DOI; NO blockchain)
 
-`bucket.foundation/research` already does **PDF → Walrus pin → Story Protocol IP-NFT mint**
-via `src/app/research/ResearchPublishClient.tsx` + `src/app/research/PublishForm.tsx` +
-`/api/research` (the mint side). The tools surface plugs into *that*, it does not invent a
-new permanence path.
+Founder decision (matches the org-wide "NO Story Protocol anywhere" rule): the tools surface
+**does NOT mint IP-NFTs and does NOT pin to Walrus.** Publishing a tool result to canon means
+**registering the artifact + its feed402/0.2 cite-forever block** (free-to-read, paid-to-cite
+over feed402/x402) and, for dataset-shaped artifacts, depositing it to **Zenodo for a real
+DOI**. Credentials, if any, use **Open Badges 3.0 / W3C VC** (issuer-signed, no chain). This
+is a separate, self-contained permanence path — it does not invoke any blockchain flow.
 
 Seam:
 1. A succeeded result with `canon_candidate:true` shows a **"Publish to canon"** button on
@@ -313,12 +319,13 @@ Seam:
 2. Clicking it calls `POST /api/research/<tool>/publish` with `{ job_id }`.
 3. The proxy fetches the stored result, renders the **canonical artifact** (the
    self-contained HTML report, or a generated PDF for JSON tools — a small server-side
-   render step), attaches **provenance** (`tool`, inputs, `job_id`, timestamps), and hands
-   it to the **existing mint pipeline** (Walrus pin → Story Protocol mint) the same way an
-   uploaded PDF is handled today.
-4. Result: a canon entry whose `citation`/`canonical_url` point at the minted IP-NFT, with
-   `feed402` cite-forever metadata, identical to a published paper. The tool run becomes a
-   citeable, paid-once artifact.
+   render step), attaches **provenance** (`tool`, inputs, `job_id`, timestamps) + the
+   **feed402/0.2 cite-forever block**, and (for datasets) **deposits the artifact to Zenodo
+   for a real DOI**.
+4. Result: a canon entry whose `citation`/`canonical_url` point at the hosted artifact (and
+   its Zenodo DOI where applicable), with `feed402` cite-forever metadata, identical to a
+   published paper. The tool run becomes a citeable, paid-once artifact — **no wallet, no
+   chain.**
 
 > Canon-thesis guardrail (per Bucket `CLAUDE.md`): tool *outputs* are **downstream
 > applications/derived analyses**, not foundations. They publish as `canon_tier:"derived"`
@@ -378,7 +385,7 @@ the whole job contract.
 3. `bucket-foundation/src/app/research/tools/labbrain/LabBrainClient.tsx`
    — client island: author + question form → `POST /api/research/labbrain` → poll
    `GET ?job=<id>` → `GET ?job=<id>&result=1` → render the `{answer}` (json render) with a
-   "Publish to canon" button (wired to the existing mint flow, TODO backend).
+   "Publish to canon" button (registers the artifact + feed402 cite-forever block; TODO backend).
 
 4. `bucket-foundation/src/app/api/research/labbrain/route.ts`
    — the generic proxy specialized to LabBrain: `POST` (submit, with metering-seam shim),
@@ -422,7 +429,7 @@ export async function GET(req: NextRequest): Promise<Response>    // status / re
 
 ### 7.3 Non-breaking guarantees
 - New routes only; nothing under `/research`, `/api/research`, `/api/kruse` is modified.
-- The existing `/api/research` GET (canon proxy) and the publish→mint page are untouched.
+- The existing `/api/research` GET (canon proxy) and the existing `/research` publish page are untouched.
 - The gateway wrapper is a **new file** in `services/research-tools/`; the old
   `tools_api/app.py` keeps working until the gateway is cut over.
 - With `TOOLS_GATEWAY_URL` unset/unreachable, the LabBrain proxy returns a clean `503`

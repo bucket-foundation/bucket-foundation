@@ -182,9 +182,10 @@ export function HtmlReport({ html }: { html: string }) {
   );
 }
 
-// "Publish to canon" stub — identical hook across every tool. Wires to the
-// existing Story Protocol mint flow (Walrus pin → IP-NFT) once the publish
-// endpoint lands. See docs §5.
+// "Publish to canon" stub — identical hook across every tool. Registers the run
+// artifact + its feed402/0.2 cite-forever block (free-to-read, paid-to-cite over
+// feed402/x402). NO blockchain, NO Story Protocol, NO IP-NFT — credentials, if
+// any, use Open Badges 3.0 / W3C VC (issuer-signed). See docs §5.
 export function PublishToCanon({ result }: { result: ResultEnvelope }) {
   const [publishing, setPublishing] = useState(false);
   const [publishMsg, setPublishMsg] = useState("");
@@ -194,8 +195,9 @@ export function PublishToCanon({ result }: { result: ResultEnvelope }) {
     setPublishMsg("");
     // [PUBLISH-TO-CANON HOOK — TODO(deploy) backend wiring]
     // POST the job to the publish endpoint, which renders the canonical artifact
-    // + provenance and hands it to the EXISTING Story Protocol mint flow
-    // (Walrus pin → IP-NFT). See docs §5. Endpoint not built in this slice.
+    // + provenance and registers it with its feed402/0.2 cite-forever block
+    // (free-to-read, paid-to-cite over x402). No minting, no chain. See docs §5.
+    // Endpoint not built in this slice.
     //   await fetch(`/api/research/${result.tool}/publish`, {
     //     method: "POST", headers: { "content-type": "application/json" },
     //     body: JSON.stringify({ job_id: result.job_id }),
@@ -203,7 +205,7 @@ export function PublishToCanon({ result }: { result: ResultEnvelope }) {
     setTimeout(() => {
       setPublishing(false);
       setPublishMsg(
-        "Publish-to-canon is wired into the existing mint flow — backend hook lands with the full gateway.",
+        "Publish-to-canon registers the artifact + its feed402 cite-forever block — backend hook lands with the full gateway.",
       );
     }, 400);
     // result.tool is only read by the (TODO) publish fetch above; no live dep.

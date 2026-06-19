@@ -203,8 +203,9 @@ function ResultView({ result }: { result: ResultEnvelope }) {
     setPublishMsg("");
     // [PUBLISH-TO-CANON HOOK — TODO backend wiring]
     // POST the job to the publish endpoint, which renders the canonical
-    // artifact + provenance and hands it to the EXISTING Story Protocol mint
-    // flow (Walrus pin → IP-NFT). See docs §5. Endpoint not built in this slice.
+    // artifact + provenance and registers it with its feed402/0.2 cite-forever
+    // block (free-to-read, paid-to-cite over x402). No minting, no chain. See
+    // docs §5. Endpoint not built in this slice.
     //   await fetch("/api/research/labbrain/publish", {
     //     method: "POST",
     //     headers: { "content-type": "application/json" },
@@ -213,7 +214,7 @@ function ResultView({ result }: { result: ResultEnvelope }) {
     setTimeout(() => {
       setPublishing(false);
       setPublishMsg(
-        "Publish-to-canon is wired into the existing mint flow — backend hook lands with the full gateway.",
+        "Publish-to-canon registers the artifact + its feed402 cite-forever block — backend hook lands with the full gateway.",
       );
     }, 400);
   }, []);

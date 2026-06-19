@@ -70,7 +70,7 @@ Recall **1 credit = $0.001**, so $1.00 = 1,000 credits.
 - **CPU/RAG-light tools** (LabBrain, ScreenServer, PatchSeqML) are near-free to run, so price them low — they are adoption drivers and citation generators, not revenue centers. LabBrain at ~$0.12/run undercuts the personal mental anchor of Elicit/SciSpace/Scite ($10–20/mo) on a per-use basis and is the front door.
 - **Volume / batch discounts** for screening-class tools (ScreenServer): credits/unit drop with batch size, matching how compute actually amortizes.
 - **Free tier**: e.g. 5,000 free credits/mo (= ~40 LabBrain runs, or ~5 ProteinScout runs, or ~2 TrajMine runs). Enough to get hooked and into a methods section; not enough to run a production pipeline free.
-- **Citable run upgrade**: any run can be "minted" as a citable canon artifact for a small premium (see §5).
+- **Citable run upgrade**: any run can be registered as a citable canon artifact (real DOI via Zenodo + feed402 cite-forever block; no blockchain) for a small premium (see §5).
 
 ### Lab subscription (convenience bundle, not a paywall)
 - **Lab Sustaining tier ≈ $50/mo or $500/yr** → includes ~600,000 credits/yr ($600 of compute at face — i.e. a ~17% prepay bonus), private/version-pinned projects, free citable-DOI minting on runs, priority queue. Sized to be an invisible direct-cost line inside any funded grant. Anchored *below* Elicit Enterprise / SciSpace Labs ($18/user/mo) on a per-lab basis, far below CryoSPARC-commercial / Benchling territory.
@@ -107,8 +107,9 @@ This is what makes a nonprofit research-tools platform self-reinforcing instead 
    Researcher runs a tool (metered credits)  ──┐
             │ produces an output                │
             ▼                                    │
-   Output minted as a CITABLE canon artifact    │ tool-run revenue
-   (small premium; gets a DOI + canonical_url)  │ funds compute + sustaining
+   Output registered as a CITABLE canon artifact│ tool-run revenue
+   (small premium; real DOI via Zenodo +         │ funds compute + sustaining
+    canonical_url; no blockchain)               │
             │                                    │
             ▼                                    │
    Paper cites the artifact over x402           │
@@ -122,7 +123,7 @@ This is what makes a nonprofit research-tools platform self-reinforcing instead 
 ```
 
 **Why each arrow is real money / real pull:**
-1. **Tool-run → citable artifact.** A reproducible, version-pinned, DOI-bearing run is *more valuable in a paper* than an ad-hoc Colab notebook. Researchers pay a small mint premium because it makes their methods section bulletproof and reproducible. This converts free-OSS-model output into a *citable* asset — the one thing ColabFold-in-a-notebook can't easily give them.
+1. **Tool-run → citable artifact.** A reproducible, version-pinned, DOI-bearing run is *more valuable in a paper* than an ad-hoc Colab notebook. Researchers pay a small premium for the DOI registration (via Zenodo; no blockchain) because it makes their methods section bulletproof and reproducible. This converts free-OSS-model output into a *citable* asset — the one thing ColabFold-in-a-notebook can't easily give them.
 2. **Citable artifact → paid-to-cite revenue.** Bucket's existing free-to-read / paid-to-cite canon over x402 now has a *supply engine*: every tool run is a candidate citation. Citation fees route to authors (the foundation's mission), with a protocol cut sustaining the platform.
 3. **Citations → better RAG.** LabBrain's literature-RAG ranks canon artifacts; highly-cited tool outputs surface more, making the cheapest tool (LabBrain) more useful, pulling more users into the metered funnel.
 4. **Compute-cost coupling.** Tool-run credits *fund the GPU bill* directly (cost-recovery), so the flywheel is solvent at every turn — we never subsidize compute out of nothing.
@@ -157,7 +158,7 @@ This is the same supply-side bootstrap as feed402's thesis (x402 has middleware 
 | **Grant-budget timing & approval friction** | Medium | "General-purpose computing" can be pushed to indirect costs ([NIH 7.9](https://grants.nih.gov/grants/policy/nihgps/html5/section_7/7.9_allowability_of_costs_activities.htm)); a PI may not have a clean line for our charge. | Provide a one-line budget-justification template ("metered scientific computing, primarily used in the conduct of this project"). Make invoices/receipts grant-audit-clean. |
 | **x402/Base + crypto-rail friction for academics** | Medium-High | Most PIs will not touch a wallet; university procurement won't pay in crypto. | Viatika's Stripe↔x402 bridge is essential — researchers pay by card/invoice in USD; x402 settlement is invisible plumbing. Never expose the wallet to the buyer. |
 | **Compute-cost underpricing (GPU tools)** | Medium | A flat fee on TrajMine/CryoTriage can lose money on large jobs. | Meter GPU-seconds + GB for the heavy four; flat anchors are illustrative only. Alert when a run's real cost exceeds its charged credits. |
-| **Reproducibility/scientific-trust bar** | Medium | If a tool's output is wrong, citability becomes a liability, not an asset. | Version-pin everything; publish methods; only mint citable artifacts from validated tool versions. |
+| **Reproducibility/scientific-trust bar** | Medium | If a tool's output is wrong, citability becomes a liability, not an asset. | Version-pin everything; publish methods; only register/DOI citable artifacts from validated tool versions. |
 
 ---
 

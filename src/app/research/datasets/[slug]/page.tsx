@@ -20,8 +20,8 @@ import {
 // and renders: description, schema (columns), provenance, row counts, a DOWNLOAD
 // link (parquet — CSV is a TODO seam), and a CITE block reusing the existing
 // feed402/cite-forever envelope shape (so each dataset is born citeable). The
-// on-chain MINT is a clearly-labelled seam (it reuses the existing /research
-// publish→mint flow) and is NOT required to read, download, or cite a dataset.
+// model: free-to-read, paid-to-cite over feed402/x402, with a real DOI (via
+// Zenodo) for permanence — NO blockchain, NO Story Protocol, NO IP-NFT.
 // Stone-bone styling matches /research. See docs/research-tools/05-open-datasets.md.
 
 // Statically pre-render one page per published dataset.
@@ -191,8 +191,9 @@ export default function Page({ params }: { params: { slug: string } }) {
           <p className="mt-4 text-[12px] leading-[1.6] text-[color:var(--basalt-3)] font-mono break-all">
             {d.path}
           </p>
-          {/* TODO(publish): replace the GitHub-raw parquet with a hosted, DOI'd,
-              content-addressed release once the dataset hosting layer is built. */}
+          {/* TODO(publish): replace the GitHub-raw parquet with a hosted,
+              content-addressed release that gets a real DOI via Zenodo once the
+              dataset hosting layer is built. No blockchain involved. */}
         </Section>
 
         {/* SCHEMA */}
@@ -264,29 +265,26 @@ export default function Page({ params }: { params: { slug: string } }) {
           </p>
         </Section>
 
-        {/* MINT — seam */}
-        <Section n="05" title="mint — be cited forever (seam)">
+        {/* DOI — permanence seam (Zenodo; no blockchain) */}
+        <Section n="05" title="doi — be cited forever (seam)">
           <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
-            Minting this dataset as a Story Protocol IP NFT — pinning the parquet
-            hash to Walrus and routing every downstream citation fee to its
-            authors — reuses the existing{" "}
-            <Link
-              href="/research"
-              className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
-            >
-              publish → mint
-            </Link>{" "}
-            flow. No wallet is required to read, download, or cite; the mint is the
-            optional permanence step.
+            For permanent, scholarly-citeable identity, a published dataset gets a
+            real <strong>DOI via Zenodo</strong> — the content-addressed parquet is
+            deposited and the DOI is recorded alongside its feed402/0.2
+            cite-forever block. Reading and citing stay free; citation fees flow to
+            the dataset&rsquo;s authors over feed402/x402. There is{" "}
+            <strong>no blockchain, no Story Protocol, no IP-NFT</strong> — just a
+            DOI and the open cite-forever envelope. No wallet is ever required to
+            read, download, or cite.
           </p>
-          {/* TODO(publish): Story Protocol mint via the existing /research flow —
-              register the manifest entry + parquet hash as an IP asset, pin the
-              parquet to Walrus, record in gdrive bucket-canon CANON_INDEX.md.
-              Citation fees route to the dataset's authors. Does NOT require a
-              wallet to read or cite; this is the optional on-chain permanence seam.
+          {/* TODO(publish): deposit the content-addressed parquet to Zenodo, mint
+              a real DOI, and record it in gdrive bucket-canon CANON_INDEX.md
+              alongside the feed402/0.2 cite block. Citation fees route to the
+              dataset's authors over feed402/x402. No wallet, no chain — a DOI +
+              the open cite-forever envelope is the whole permanence story.
               See research-atlas/docs/ARCHITECTURE.md §"Publish-to-Bucket seam" (2). */}
           <div className="mt-4 inline-block border border-dashed border-[color:var(--hairline)] px-5 py-2.5 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
-            mint to canon — seam (publish→mint flow, no wallet needed to cite)
+            register doi — seam (zenodo + feed402 cite-forever; no wallet, no chain)
           </div>
         </Section>
 

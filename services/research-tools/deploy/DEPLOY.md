@@ -4,7 +4,11 @@
 K3s-in-Docker (`agfarms-k3s`), namespace `inst-bucket-foundation`, TLS via host
 nginx + certbot. Same proven pattern as the nucleus tenants + the Polingual API.
 
-**Status: LIVE (verified 2026-06-19).** See [§7 Verification](#7-verification-what-was-checked-live).
+**Status: LIVE.** The **lean 9-tool image** (§0–§7) was verified 2026-06-19. The
+**standard 16-tool fat image** (§8b, `tools-v3`) superseded it the same day and is
+the current live image — all 16 endpoints answer over public HTTPS. See
+[§8b](#8b-the-standard-fat-image--all-16-tools-live-shipped-2026-06-19) and
+[§7 Verification](#7-verification-what-was-checked-live).
 
 ---
 
@@ -217,13 +221,65 @@ K 'delete deploy,svc,ingress research-tools-gateway'
 
 ---
 
-## 9. Remaining / follow-up (out of scope for this slice)
+## 8b. The STANDARD (fat) image — all 16 tools live (shipped 2026-06-19)
 
-1. **Vendor the 7 subprocess/demo tools** into a second (large) image — RDKit/ADMET
-   (screenserver), MDAnalysis (trajmine), MiniLM corpus (labbrain), ESM
-   (proteinscout/stabilitydesigner), ephys ML (patchseqml). Behind the SAME
-   gateway API; the contract + UI don't change. Needs a GPU plan for `cryotriage`
-   + real-MD `trajmine` (Hetzner CPX42 has no GPU — they stay demo-only).
+The lean image above serves 9 tools. A **second, standard image** vendors the
+remaining 7 so **all 16 endpoints answer live** from the same gateway API (no UI
+or contract change). It is the live image as of 2026-06-19 (`tools-v3`).
+
+Artifacts (all in `deploy/`):
+- `Dockerfile.tools` — fat CPU image (~3.18 GB). Base + scientific stack + CPU-only
+  torch (`--index-url .../whl/cpu`) + RDKit. Vendors the 7 tools' source + weights
+  under `/app/vendor/`, and sets `TOOLS_REPO_DIR=/app/vendor/tools` +
+  `SCREENSERVER_DIR=/app/vendor/screenserver` so the gateway's **existing**
+  subprocess logic dispatches to the vendored code — **no gateway code change**.
+  Bakes the all-MiniLM-L6-v2 HF cache (`HF_HUB_OFFLINE=1`) so labbrain never
+  downloads its embedder.
+- `requirements.tools.txt` — the fat deps. **`scikit-learn==1.6.1` is pinned**: the
+  screenserver HistGradientBoosting pickles fail to unpickle on sklearn 1.9+
+  (`No module named '_loss'`). numpy is left to the resolver (`>=1.26,<2.3`) because
+  mdtraj/deeptime cap it below the lean image's 2.2.1.
+- `build-tools-context.sh` — reproducibly assembles the build context from the
+  sibling repos (excludes the 3.7 GB cryotriage data, 296 MB stabilitydesigner
+  train data, 156 MB patchseqml data, 1.6 GB `.esm_cache` — none needed on the
+  invoked paths).
+- `k8s.tools.yaml` — the fat Deployment. **`--workers 1` (REQUIRED)** — the job
+  table is in-memory per worker; async tools (labbrain build, trajmine, cryotriage)
+  are polled by `job_id` and would 404 on a different worker. `memory: 3Gi` limit
+  (torch + the 381 MB stabilitydesigner sklearn model + RDKit need headroom).
+  `TOOLS_INLINE_BUDGET_S=45` so more heavy CPU tools return inline.
+
+What runs live in the fat image (verified 2026-06-19 via public HTTPS):
+
+| Tool | Backend | Status |
+|---|---|---|
+| proteinscout | sklearn pickles (vendored) | ✅ live, REAL |
+| stabilitydesigner | 381 MB sklearn ddG model (vendored) | ✅ live, REAL (ddG=0.364 for Y5F) |
+| screenserver | RDKit + 13 sklearn ensembles (vendored) | ✅ live, REAL |
+| patchseqml | numpy/scipy Hodgkin-Huxley `sim` | ✅ live, REAL |
+| labbrain | sentence-transformers all-MiniLM (baked) + OpenAlex | ✅ live, REAL (cache-hit fast; uncached author goes async) |
+| trajmine | mdtraj+deeptime **demo-md** (no GPU) | ✅ live, DEMO (real-shaped MSM) |
+| cryotriage | scikit-image+mrcfile **synthetic** (no GPU) | ✅ live, DEMO (real-shaped triage) |
+
+Build + deploy (same proven path as §2–§4):
+```bash
+# on a host with the sibling repos:
+bash deploy/build-tools-context.sh                       # → /tmp/rt-tools-build
+# copy context to the box, then on the box:
+docker build -f deploy/Dockerfile.tools -t farmera/research-tools-gateway:tools-v3 .
+docker save farmera/research-tools-gateway:tools-v3 | docker exec -i agfarms-k3s ctr -n k8s.io images import -
+docker exec -i agfarms-k3s kubectl apply -f - < deploy/k8s.tools.yaml
+docker exec agfarms-k3s kubectl rollout status deploy/research-tools-gateway -n inst-bucket-foundation
+```
+Rollback to the lean 9-tool image: `kubectl set image deploy/research-tools-gateway gateway=farmera/research-tools-gateway:v1` (the lean `:v1` is kept in containerd).
+
+## 9. Remaining / follow-up
+
+1. ~~**Vendor the 7 subprocess/demo tools** into a second image.~~ **DONE 2026-06-19**
+   — see §8b. All 16 endpoints live. **trajmine real-MD + cryotriage real cryo-EM
+   stay demo/synthetic** because the Hetzner CPX42 has **no GPU**; flipping them to
+   real is a GPU-worker deploy (a separate node/queue), not a redesign — the async
+   contract is already in place. That GPU plane is the only remaining tool gap.
 2. **Set `TOOLS_GATEWAY_URL` in Vercel** (step 6) and redeploy Bucket — optional
    (the proxy already defaults to this URL) but recommended for explicitness.
 3. **Push `farmera/research-tools-gateway` to Docker Hub** if you want pull-based
