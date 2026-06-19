@@ -1,0 +1,123 @@
+# research-tools-gateway — K3s manifests (Deployment + Service + Ingress)
+# ========================================================================
+# Target: the agfarms-k3s cluster (rancher/k3s in Docker on prod-hetzner-1),
+# namespace inst-bucket-foundation (already exists). Traefik is the ingress
+# controller; it listens on the in-container NodePort 30080 which the host
+# nginx vhost for research-tools.agfarms.dev proxies to (TLS terminated at
+# nginx via certbot — the proven org pattern, no cert-manager in this cluster).
+#
+# Image: farmera/research-tools-gateway:<tag>, imported into k3s containerd via
+#   docker save ... | docker exec -i agfarms-k3s ctr -n k8s.io images import -
+# (see DEPLOY.md). imagePullPolicy: IfNotPresent so it uses the imported image
+# and never tries an external registry pull.
+#
+# Apply:  docker exec -i agfarms-k3s kubectl apply -f - < k8s.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: research-tools-gateway
+  namespace: inst-bucket-foundation
+  labels:
+    app: research-tools-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: research-tools-gateway
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: research-tools-gateway
+    spec:
+      containers:
+        - name: gateway
+          image: farmera/research-tools-gateway:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8732
+          env:
+            # CORS allow-list (defense-in-depth; the Next proxy is server->server).
+            - name: TOOLS_CORS_ORIGINS
+              value: "https://bucket.foundation,https://www.bucket.foundation,http://localhost:3000,http://127.0.0.1:3000"
+            # OpenAlex polite-pool identity for the RAG tools.
+            - name: OPENALEX_MAILTO
+              value: "research-tools@agfarms.dev"
+            # On-disk HTTP cache for OpenAlex (RAG tools). emptyDir below.
+            - name: TOOLS_CACHE_DIR
+              value: "/data/cache"
+            # Inline budget: pure tools finish well under this.
+            - name: TOOLS_INLINE_BUDGET_S
+              value: "30"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 4
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            timeoutSeconds: 4
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+          volumeMounts:
+            - name: cache
+              mountPath: /data/cache
+      volumes:
+        - name: cache
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: research-tools-gateway
+  namespace: inst-bucket-foundation
+  labels:
+    app: research-tools-gateway
+spec:
+  type: ClusterIP
+  selector:
+    app: research-tools-gateway
+  ports:
+    - name: http
+      port: 8732
+      targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: research-tools-gateway
+  namespace: inst-bucket-foundation
+  annotations:
+    # Match the host vhost: Traefik routes by Host header forwarded from nginx.
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: research-tools.agfarms.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: research-tools-gateway
+                port:
+                  number: 8732

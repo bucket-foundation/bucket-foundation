@@ -1,0 +1,37 @@
+# research-tools-gateway — docker-compose (box alternative to K3s)
+# ================================================================
+# Optional lower-friction path: run the gateway as a plain Docker container on
+# prod-hetzner-1 bound to 127.0.0.1:8732, fronted by the SAME host nginx vhost
+# but with `proxy_pass http://127.0.0.1:8732;` instead of the Traefik NodePort.
+# Use this if you do NOT want to go through k3s. The K8s manifests (k8s.yaml)
+# are the primary, recommended path; this is the systemd/Polingual-style
+# equivalent the architecture doc §3.2 Phase A describes.
+#
+#   docker compose -f deploy/docker-compose.yml up -d --build
+services:
+  research-tools-gateway:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: farmera/research-tools-gateway:latest
+    container_name: research-tools-gateway
+    restart: unless-stopped
+    # Bind to loopback only — host nginx terminates TLS in front of it.
+    ports:
+      - "127.0.0.1:8732:8732"
+    environment:
+      TOOLS_CORS_ORIGINS: "https://bucket.foundation,https://www.bucket.foundation,http://localhost:3000,http://127.0.0.1:3000"
+      OPENALEX_MAILTO: "research-tools@agfarms.dev"
+      TOOLS_CACHE_DIR: "/data/cache"
+      TOOLS_INLINE_BUDGET_S: "30"
+    volumes:
+      - research_tools_cache:/data/cache
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8732/health',timeout=4).status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  research_tools_cache:

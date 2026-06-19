@@ -155,10 +155,25 @@ except Exception as _e:  # pragma: no cover - import guard
     _NEURO_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
+# CORS allow-list. The intended caller is the same-origin Bucket Next proxy
+# (server->server, no browser CORS at all), so this is defense-in-depth for any
+# direct browser hit. Defaults to bucket.foundation + localhost dev; override
+# with TOOLS_CORS_ORIGINS (comma-separated) without a code change.
+_DEFAULT_CORS = [
+    "https://bucket.foundation",
+    "https://www.bucket.foundation",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+CORS_ORIGINS = [
+    o.strip()
+    for o in os.environ.get("TOOLS_CORS_ORIGINS", ",".join(_DEFAULT_CORS)).split(",")
+    if o.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # the Next proxy is the only intended caller
-    allow_methods=["*"],
+    allow_origins=CORS_ORIGINS,
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 

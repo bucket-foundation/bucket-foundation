@@ -1,0 +1,15 @@
+# research-tools-gateway — runtime deps for the 9 self-contained REAL tools
+# (RAG x4 over OpenAlex stdlib-http, DNA/RNA x3 over ViennaRNA+numpy, neuro x2
+# over scipy). CPU-only. The 7 subprocess/demo tools (labbrain, proteinscout,
+# stabilitydesigner, screenserver, patchseqml, trajmine, cryotriage) shell out
+# to heavy sibling repos + ML weights that are NOT vendored into this image —
+# they are a separate, larger image (Dockerfile.gpu / a future bead). The
+# gateway degrades gracefully for those (returns a clean tool error), so the 9
+# real tools run live regardless. See DEPLOY.md §scope.
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+python-multipart==0.0.20
+numpy==2.2.1
+scipy==1.15.0
+ViennaRNA==2.7.0
