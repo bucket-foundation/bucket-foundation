@@ -93,7 +93,15 @@ DEMO_TOOLS = ["trajmine", "cryotriage"]
 # grant corpus (services/research-tools/tools_rag.py). CPU/inline, no GPU, no
 # subprocess. They render "json" typed views.
 RAG_TOOLS = ["paperradar", "grantdraft", "methodsmatcher", "reviewguard"]
-ALL_TOOLS = CPU_TOOLS + RAG_TOOLS + DEMO_TOOLS
+# DNA/RNA cluster (services/research-tools/tools_dnarna.py) — REAL algorithms
+# over ViennaRNA + numpy. CPU/inline, no subprocess, render "json".
+DNARNA_TOOLS = ["rnastructure", "grnaoptimizer", "rnafmembeds"]
+# Neuroscience cluster (services/research-tools/tools_neuro.py) — REAL scipy
+# numerical fits + spike detection. CPU/inline, render "json".
+NEURO_TOOLS = ["hhfit", "spikefeatures"]
+# REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
+PURE_TOOLS = RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS
+ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
 # price block travels from day one (zeroed). Metering seam lives in the Next
 # proxy, not here — the gateway stays payment-agnostic. See doc §6.
@@ -109,6 +117,11 @@ PRICE: dict[str, dict[str, Any]] = {
     "grantdraft": {"tier": "draft", "usd": 0.0, "metered": False},
     "methodsmatcher": {"tier": "match", "usd": 0.0, "metered": False},
     "reviewguard": {"tier": "review", "usd": 0.0, "metered": False},
+    "rnastructure": {"tier": "fold", "usd": 0.0, "metered": False},
+    "grnaoptimizer": {"tier": "design", "usd": 0.0, "metered": False},
+    "rnafmembeds": {"tier": "embed", "usd": 0.0, "metered": False},
+    "hhfit": {"tier": "fit", "usd": 0.0, "metered": False},
+    "spikefeatures": {"tier": "analyze", "usd": 0.0, "metered": False},
 }
 
 # import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
@@ -120,6 +133,26 @@ except Exception as _e:  # pragma: no cover - import guard
     tools_rag = None  # type: ignore
     _RAG_OK = False
     _RAG_IMPORT_ERR = str(_e)
+
+# import the REAL DNA/RNA backend (ViennaRNA + numpy).
+try:
+    import tools_dnarna  # type: ignore
+    _DNARNA_OK = True
+    _DNARNA_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_dnarna = None  # type: ignore
+    _DNARNA_OK = False
+    _DNARNA_IMPORT_ERR = str(_e)
+
+# import the REAL neuroscience backend (scipy fits + spike detection).
+try:
+    import tools_neuro  # type: ignore
+    _NEURO_OK = True
+    _NEURO_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_neuro = None  # type: ignore
+    _NEURO_OK = False
+    _NEURO_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
 app.add_middleware(
@@ -493,26 +526,43 @@ def _tool_report(job: Job, cwd: Any, args: list[str], timeout: int) -> Optional[
 # Each wraps a pure-ish function from tools_rag.py (live OpenAlex + the
 # research-atlas grant corpus, disk-cached) in the uniform job lifecycle. They
 # emit render="json" typed views, exactly like labbrain/stabilitydesigner.
-def _make_rag_runner(tool: str) -> Callable[[Job, dict], None]:
+# Each pure-logic tool shares ONE runner shape: look up run_<tool>(payload) in
+# its module's registry, call it, wrap the returned dict in the v1 envelope.
+# `ok`/`err`/`registry_fn` are bound per backend so DNA/RNA + neuro reuse the
+# exact RAG pattern without copy-paste.
+def _make_pure_runner(
+    tool: str,
+    backend_ok: bool,
+    backend_err: str,
+    registry: Optional[dict],
+    backend_name: str,
+) -> Callable[[Job, dict], None]:
     def runner(job: Job, payload: dict) -> None:
         job.status, job.started_at = "running", _now()
-        if not _RAG_OK or tools_rag is None:
+        if not backend_ok or registry is None:
             return _fail(job, "backend_unavailable",
-                         f"tools_rag import failed: {_RAG_IMPORT_ERR}")
-        fn = tools_rag.RAG_RUNNERS.get(tool)
+                         f"{backend_name} import failed: {backend_err}")
+        fn = registry.get(tool)
         if fn is None:  # pragma: no cover - guarded by registry
             return _fail(job, "unknown_tool", tool)
         try:
             out = fn(payload)
             if isinstance(out, dict) and out.get("error"):
                 return _fail(job, "bad_request", out["error"])
-            # `degraded` (network unavailable, no cache) is a successful but
-            # partial result — the UI shows the degraded banner, never crashes.
+            # `degraded` (e.g. ViennaRNA missing, network down) is a successful
+            # but partial result — the UI shows a banner, never crashes.
             _ok(job, "json", out)
         except Exception as e:  # never leave a job stuck running
             _fail(job, "internal", str(e)[:200])
 
     return runner
+
+
+def _make_rag_runner(tool: str) -> Callable[[Job, dict], None]:
+    return _make_pure_runner(
+        tool, _RAG_OK, _RAG_IMPORT_ERR,
+        tools_rag.RAG_RUNNERS if tools_rag is not None else None, "tools_rag",
+    )
 
 
 RUNNERS: dict[str, Callable[[Job, dict], None]] = {
@@ -524,6 +574,22 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
     "trajmine": _run_trajmine,
     "cryotriage": _run_cryotriage,
     **{t: _make_rag_runner(t) for t in RAG_TOOLS},
+    **{
+        t: _make_pure_runner(
+            t, _DNARNA_OK, _DNARNA_IMPORT_ERR,
+            tools_dnarna.DNARNA_RUNNERS if tools_dnarna is not None else None,
+            "tools_dnarna",
+        )
+        for t in DNARNA_TOOLS
+    },
+    **{
+        t: _make_pure_runner(
+            t, _NEURO_OK, _NEURO_IMPORT_ERR,
+            tools_neuro.NEURO_RUNNERS if tools_neuro is not None else None,
+            "tools_neuro",
+        )
+        for t in NEURO_TOOLS
+    },
 }
 
 
@@ -612,6 +678,39 @@ class ReviewGuardSubmit(BaseModel):
     limit: int = 12
 
 
+# --- DNA/RNA cluster submit bodies ---
+class RNAStructureSubmit(BaseModel):
+    sequence: str
+
+
+class GRNAOptimizerSubmit(BaseModel):
+    sequence: str
+    pam: str = "NGG"
+    guide_len: int = 20
+    limit: int = 20
+
+
+class RNAFMEmbedsSubmit(BaseModel):
+    sequence: str
+    k: int = 3
+
+
+# --- Neuroscience cluster submit bodies ---
+class HHFitSubmit(BaseModel):
+    # trace: JSON list of mV samples, or the string "demo" for a synthetic trace.
+    trace: Any = "demo"
+    current_pa: float = 100.0
+    dt_ms: float = 0.1
+    stim_onset_ms: Optional[float] = None
+
+
+class SpikeFeaturesSubmit(BaseModel):
+    # trace: JSON list of samples, or the string "demo" for a synthetic train.
+    trace: Any = "demo"
+    fs_hz: float = 30000.0
+    thresh_mad: float = 5.0
+
+
 # --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
@@ -620,8 +719,12 @@ def health() -> dict:
         "tools": ALL_TOOLS,
         "cpu": CPU_TOOLS,
         "rag": RAG_TOOLS,
+        "dnarna": DNARNA_TOOLS,
+        "neuro": NEURO_TOOLS,
         "demo": DEMO_TOOLS,
         "rag_backend": _RAG_OK,
+        "dnarna_backend": _DNARNA_OK,
+        "neuro_backend": _NEURO_OK,
         "version": "v1",
     }
 
@@ -714,6 +817,46 @@ def submit_reviewguard(r: ReviewGuardSubmit) -> dict:
         raise HTTPException(400, "claim required (>= 8 chars)")
     return _dispatch("reviewguard", {
         "claim": r.claim.strip(), "papers": r.papers or [], "limit": r.limit,
+    })
+
+
+# --- DNA/RNA cluster submit endpoints --------------------------------------
+@app.post("/v1/rnastructure/submit")
+def submit_rnastructure(r: RNAStructureSubmit) -> dict:
+    if len((r.sequence or "").strip()) < 4:
+        raise HTTPException(400, "sequence required (>= 4 nt)")
+    return _dispatch("rnastructure", {"sequence": r.sequence})
+
+
+@app.post("/v1/grnaoptimizer/submit")
+def submit_grnaoptimizer(r: GRNAOptimizerSubmit) -> dict:
+    if len((r.sequence or "").strip()) < 23:
+        raise HTTPException(400, "target DNA too short (need ~23 nt)")
+    return _dispatch("grnaoptimizer", {
+        "sequence": r.sequence, "pam": r.pam, "guide_len": r.guide_len, "limit": r.limit,
+    })
+
+
+@app.post("/v1/rnafmembeds/submit")
+def submit_rnafmembeds(r: RNAFMEmbedsSubmit) -> dict:
+    if len((r.sequence or "").strip()) < 4:
+        raise HTTPException(400, "sequence required (>= 4 nt)")
+    return _dispatch("rnafmembeds", {"sequence": r.sequence, "k": r.k})
+
+
+# --- Neuroscience cluster submit endpoints ---------------------------------
+@app.post("/v1/hhfit/submit")
+def submit_hhfit(r: HHFitSubmit) -> dict:
+    return _dispatch("hhfit", {
+        "trace": r.trace, "current_pa": r.current_pa,
+        "dt_ms": r.dt_ms, "stim_onset_ms": r.stim_onset_ms,
+    })
+
+
+@app.post("/v1/spikefeatures/submit")
+def submit_spikefeatures(r: SpikeFeaturesSubmit) -> dict:
+    return _dispatch("spikefeatures", {
+        "trace": r.trace, "fs_hz": r.fs_hz, "thresh_mad": r.thresh_mad,
     })
 
 

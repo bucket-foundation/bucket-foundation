@@ -1,22 +1,28 @@
 import Link from "next/link";
 
-// Research-tools directory. The 7 biophysics tools, hosted off gianyrox.com and
-// served through bucket.foundation (FastAPI gateway on Hetzner → /api/research/<tool>
-// proxy → this UI). See docs/research-tools/04-implementation-architecture.md.
+// Research-tools directory. Sixteen tools served through bucket.foundation
+// (FastAPI gateway on Hetzner → /api/research/<tool> proxy → this UI). See
+// docs/research-tools/04-implementation-architecture.md.
 //
-// All 7 tools are now wired UI → proxy → gateway. CPU tools run inline; the two
-// GPU/long tools (trajmine, cryotriage) run in demo/synthetic mode until a GPU
-// compute plan lands (the async contract is built so flipping on a GPU worker is
-// a deploy, not a redesign).
+// The 7 original biophysics tools (5 CPU inline + 2 GPU demo) + 4 RAG/agent
+// tools (live OpenAlex + grant corpus) + the DNA/RNA cluster (RNAStructure,
+// gRNA-Optimizer, RNA-FM-Embeds; ViennaRNA + numpy) + the neuroscience cluster
+// (HH-FitML, SpikeFeatures; scipy fits + spike detection). All are wired UI →
+// proxy → gateway. CPU/RAG/DNA/NEURO tools run inline; the two GPU/long tools
+// (trajmine, cryotriage) run in demo/synthetic mode until a GPU compute plan
+// lands (the async contract is built so flipping on a GPU worker is a deploy,
+// not a redesign).
 
 type Tool = {
   slug: string;
   name: string;
   blurb: string;
   // CPU = inline biophysics tool; GPU = synthetic until compute lands;
-  // RAG = live data/agent tool (OpenAlex + grant corpus, real logic).
-  klass: "CPU" | "GPU" | "RAG";
-  // "live" = inline CPU/RAG tool; "demo" = GPU/long tool running synthetic mode.
+  // RAG = live data/agent tool (OpenAlex + grant corpus, real logic);
+  // DNA = DNA/RNA cluster (ViennaRNA + numpy, real algorithms);
+  // NEURO = neuroscience cluster (scipy fits + spike detection, real logic).
+  klass: "CPU" | "GPU" | "RAG" | "DNA" | "NEURO";
+  // "live" = inline CPU/RAG/DNA/NEURO tool; "demo" = GPU/long tool (synthetic).
   status: "live" | "demo";
 };
 
@@ -104,6 +110,48 @@ const TOOLS: Tool[] = [
     klass: "RAG",
     status: "live",
   },
+  // --- DNA/RNA cluster: real algorithms over ViennaRNA + numpy (1,105-PI cohort) ---
+  {
+    slug: "rnastructure",
+    name: "RNAStructure",
+    blurb:
+      "RNA secondary-structure prediction via ViennaRNA: MFE dot-bracket structure, free energy, partition-function base-pair probabilities, and a readable helix/loop summary. Fully real thermodynamics.",
+    klass: "DNA",
+    status: "live",
+  },
+  {
+    slug: "grnaoptimizer",
+    name: "gRNA-Optimizer",
+    blurb:
+      "CRISPR SpCas9 guide design: PAM scan on both strands, transparent on-target efficiency scoring, and a local seed-region off-target risk flag. Ranked, defensible guide table.",
+    klass: "DNA",
+    status: "live",
+  },
+  {
+    slug: "rnafmembeds",
+    name: "RNA-FM-Embeds",
+    blurb:
+      "RNA → ML embedding. Real RNA-FM language-model representation when its weights are installed; otherwise an honest, reproducible k-mer + structural-feature embedding (mode reported).",
+    klass: "DNA",
+    status: "live",
+  },
+  // --- Neuroscience cluster: real scipy fits + spike detection (938-PI cohort) ---
+  {
+    slug: "hhfit",
+    name: "HH-FitML",
+    blurb:
+      "Fit passive-membrane (RC) parameters — R, C, τ, V₀ — to a current-clamp trace via scipy least-squares, with fit quality (R²/RMSE). A demo trace with known params verifies recovery.",
+    klass: "NEURO",
+    status: "live",
+  },
+  {
+    slug: "spikefeatures",
+    name: "SpikeFeatures",
+    blurb:
+      "Detect spikes in a voltage trace (MAD-robust threshold + refractory + alignment) and extract real waveform features — amplitude, width, half-width, firing rate, ISI stats. Demo train has a known spike count.",
+    klass: "NEURO",
+    status: "live",
+  },
 ];
 
 export default function Page() {
@@ -118,12 +166,14 @@ export default function Page() {
           <span className="inlay-gold">instruments.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Eleven tools, each running real logic on your input — protein
+          Sixteen tools, each running real logic on your input — protein
           stability, ADMET screening, trajectory mining, ephys, and cryo-EM
-          triage, plus four literature/agent tools that hit the live OpenAlex
-          index and a real awarded-grant corpus: PaperRadar, GrantDraft,
-          MethodsMatcher, ReviewGuard. Run one, read the result, and publish it
-          to canon as a citeable, paid-once artifact.
+          triage; four literature/agent tools over the live OpenAlex index and a
+          real awarded-grant corpus (PaperRadar, GrantDraft, MethodsMatcher,
+          ReviewGuard); a DNA/RNA cluster (RNAStructure folding via ViennaRNA,
+          gRNA-Optimizer, RNA-FM-Embeds); and a neuroscience cluster (HH-FitML
+          membrane fits, SpikeFeatures detection). Run one, read the result, and
+          publish it to canon as a citeable, paid-once artifact.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 
