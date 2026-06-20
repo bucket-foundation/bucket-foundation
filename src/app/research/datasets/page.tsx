@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import {
   getManifest,
   listDatasets,
@@ -6,6 +7,8 @@ import {
   datasetTitle,
   datasetDescription,
   datasetEntityTypes,
+  DATA_LICENSE,
+  ATLAS_REPO,
   type AtlasDataset,
 } from "@/lib/research-atlas";
 
@@ -18,9 +21,23 @@ import {
 // matches /research and /research/tools. See docs/research-tools/05-open-datasets.md.
 
 export const metadata = {
-  title: "Open datasets · research-atlas — bucket.foundation",
+  title: "Open datasets · research-atlas",
   description:
     "Every research-atlas dataset, free to read and priced-once to cite. The open research-economy graph: funders, grants, organizations, people, and fields.",
+  alternates: { canonical: "/research/datasets" },
+  openGraph: {
+    type: "website",
+    url: "https://www.bucket.foundation/research/datasets",
+    title: "Open datasets · research-atlas — bucket.foundation",
+    description:
+      "The open research-economy graph as datasets: funders, grants, organizations, people, and fields. Free to read, CC-BY-4.0, born with a real DOI.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Open datasets · research-atlas — bucket.foundation",
+    description:
+      "Funders, grants, organizations, people, fields — the open research-economy graph as CC-BY-4.0 datasets.",
+  },
 };
 
 export default function Page() {
@@ -28,8 +45,52 @@ export default function Page() {
   const datasets = listDatasets();
   const totalRows = m.totals?.rows ?? datasets.reduce((s, d) => s + d.row_count, 0);
 
+  // DataCatalog JSON-LD: the catalog + one Dataset node per published table.
+  const catalogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "DataCatalog",
+    "@id": "https://www.bucket.foundation/research/datasets#catalog",
+    name: "research-atlas open datasets",
+    url: "https://www.bucket.foundation/research/datasets",
+    description:
+      "The research-atlas research-economy graph published as open datasets — funders, grants, organizations, people, works, and fields.",
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    creator: {
+      "@type": ["NGO", "Organization"],
+      name: "Bucket Foundation",
+      url: "https://www.bucket.foundation",
+    },
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "DOI",
+      value: "10.5281/zenodo.20774322",
+    },
+    dataset: datasets.map((d) => ({
+      "@type": "Dataset",
+      "@id": `https://www.bucket.foundation/research/datasets/${datasetSlug(d)}#dataset`,
+      name: datasetTitle(d),
+      url: `https://www.bucket.foundation/research/datasets/${datasetSlug(d)}`,
+      description: datasetDescription(d),
+      license: "https://creativecommons.org/licenses/by/4.0/",
+      isAccessibleForFree: true,
+      creator: {
+        "@type": ["NGO", "Organization"],
+        name: "Bucket Foundation",
+        url: "https://www.bucket.foundation",
+      },
+      sameAs: ATLAS_REPO,
+    })),
+  };
+  void DATA_LICENSE;
+
   return (
     <main className="stone-bone relative grain">
+      <Script
+        id="ld-datasets"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogJsonLd) }}
+      />
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Research · open datasets

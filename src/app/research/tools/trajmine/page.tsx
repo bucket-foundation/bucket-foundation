@@ -1,4 +1,9 @@
 import Link from "next/link";
+import Script from "next/script";
+import { toolMetadata, toolJsonLd } from "@/lib/tools";
+
+export const metadata = toolMetadata("trajmine");
+const _jsonld = toolJsonLd("trajmine");
 import TrajMineClient from "./TrajMineClient";
 
 // TrajMine run page — server-component shell (matches /research styling).
@@ -6,6 +11,14 @@ import TrajMineClient from "./TrajMineClient";
 export default function Page() {
   return (
     <main className="stone-bone relative grain">
+      {_jsonld && (
+        <Script
+          id="ld-tool-trajmine"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(_jsonld) }}
+        />
+      )}
       <div className="max-w-[900px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           <Link href="/research/tools" className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)]">

@@ -7,7 +7,25 @@ import { BRANCHES as STATIC_BRANCHES, REPO_TREE, DRIVE_URL } from "@/lib/canon";
 import { GlobeBranch } from "@/components/CanonGlobe";
 import CanonGlobeMount from "./CanonGlobeMount";
 
-export const metadata = { title: "Canon · bucket.foundation" };
+export const metadata = {
+  title: "Canon · eight branches of foundations",
+  description:
+    "The bucket canon: eight branches of foundations — mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth. Only axioms, real math, laws, principles, and primary derivations. Free to read, free to cite.",
+  alternates: { canonical: "/canon" },
+  openGraph: {
+    type: "website" as const,
+    url: "https://www.bucket.foundation/canon",
+    title: "The bucket canon — eight branches of foundations",
+    description:
+      "Mathematics, physics, chemistry, information, biophysics, cosmology, mind, earth — only foundations, carved to be cited forever. Free to read.",
+  },
+  twitter: {
+    card: "summary_large_image" as const,
+    title: "The bucket canon — eight branches of foundations",
+    description:
+      "Only foundations: axioms, real math, laws, principles, primary derivations. Free to read, free to cite.",
+  },
+};
 export const dynamic = "force-static";
 
 const STATUS_BADGE: Record<string, string> = {

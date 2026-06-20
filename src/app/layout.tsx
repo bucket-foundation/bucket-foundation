@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -258,6 +260,12 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          {/* Vercel data tracking. Web Analytics must be enabled in the Vercel
+              dashboard (Project → Analytics → Enable) for events to be recorded;
+              Speed Insights (Core Web Vitals) works once the project is deployed
+              on Vercel. Both are no-ops in local dev. */}
+          <Analytics />
+          <SpeedInsights />
         </body>
       </Web3Providers>
     </html>

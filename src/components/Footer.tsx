@@ -4,7 +4,7 @@ import InverseOmega from "./InverseOmega";
 export default function Footer() {
   return (
     <footer className="mt-0 stone-basalt border-t-4 border-[color:var(--gold)]">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-5 gap-10 text-[color:var(--bone-3)]">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-10 text-[color:var(--bone-3)]">
         <div className="flex flex-col gap-4">
           <InverseOmega size={48} variant="inlay" />
           <div className="font-display uppercase text-lg text-[color:var(--bone)] tracking-[0.06em]">
@@ -45,7 +45,19 @@ export default function Footer() {
             <li><Link href="/canon/graph" className="hover:text-[color:var(--bone)] transition">Knowledge graph</Link></li>
             <li><Link href="/canon/timeline" className="hover:text-[color:var(--bone)] transition">Timeline</Link></li>
             <li><Link href="/canon/claims" className="hover:text-[color:var(--bone)] transition">All claims</Link></li>
+            <li><Link href="/sacred-history" className="hover:text-[color:var(--bone)] transition">Sacred history</Link></li>
             <li><Link href="/access" className="hover:text-[color:var(--bone)] transition">How to access</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Get involved</div>
+          <ul className="space-y-2 text-sm">
+            <li><Link href="/contribute" className="hover:text-[color:var(--bone)] transition">Contribute</Link></li>
+            <li><Link href="/support" className="hover:text-[color:var(--bone)] transition">Support / fund</Link></li>
+            <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Publish research</Link></li>
+            <li><Link href="/research/tools" className="hover:text-[color:var(--bone)] transition">Research tools</Link></li>
+            <li><Link href="/join" className="hover:text-[color:var(--bone)] transition">Join</Link></li>
           </ul>
         </div>
 
@@ -53,7 +65,8 @@ export default function Footer() {
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Open source</div>
           <ul className="space-y-2 text-sm">
             <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">bucket-foundation</a></li>
-            <li><a href="https://github.com/AGFarms/x402-research-gateway" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">x402-gateway</a></li>
+            <li><a href="https://github.com/bucket-foundation/x402-research-gateway" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">x402-gateway</a></li>
+            <li><a href="https://github.com/bucket-foundation/research-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">research-atlas</a></li>
             <li><a href="/feed.xml" className="hover:text-[color:var(--bone)] transition">RSS feed</a></li>
             <li><Link href="/manifesto" className="hover:text-[color:var(--bone)] transition">Manifesto</Link></li>
             <li><Link href="/governance" className="hover:text-[color:var(--bone)] transition">Governance</Link></li>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import {
   listDatasets,
@@ -16,6 +17,8 @@ import {
   type AtlasDataset,
 } from "@/lib/research-atlas";
 
+const SITE = "https://www.bucket.foundation";
+
 // Dataset detail page. Reads the vendored research-atlas manifest at build time
 // and renders: description, schema (columns), provenance, row counts, a DOWNLOAD
 // link (parquet — CSV is a TODO seam), and a CITE block reusing the existing
@@ -31,10 +34,57 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const d = getDatasetBySlug(params.slug);
-  if (!d) return { title: "Dataset not found · bucket.foundation" };
+  if (!d) return { title: "Dataset not found" };
+  const description = datasetDescription(d);
   return {
-    title: `${datasetTitle(d)} · research-atlas — bucket.foundation`,
+    title: `${datasetTitle(d)} · research-atlas dataset`,
+    description,
+    alternates: { canonical: `/research/datasets/${datasetSlug(d)}` },
+    openGraph: {
+      type: "website" as const,
+      url: `${SITE}/research/datasets/${datasetSlug(d)}`,
+      title: `${datasetTitle(d)} · research-atlas dataset`,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title: `${datasetTitle(d)} · research-atlas dataset`,
+      description,
+    },
+  };
+}
+
+// Per-dataset schema.org Dataset JSON-LD.
+function datasetJsonLd(d: AtlasDataset) {
+  const dl = datasetDownload(d);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "@id": `${SITE}/research/datasets/${datasetSlug(d)}#dataset`,
+    name: datasetTitle(d),
+    url: `${SITE}/research/datasets/${datasetSlug(d)}`,
     description: datasetDescription(d),
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    isAccessibleForFree: true,
+    creator: {
+      "@type": ["NGO", "Organization"],
+      name: "Bucket Foundation",
+      url: SITE,
+    },
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "DOI",
+      value: "10.5281/zenodo.20774322",
+    },
+    sameAs: [ATLAS_REPO, "https://doi.org/10.5281/zenodo.20774322"],
+    variableMeasured: d.columns,
+    distribution: [
+      {
+        "@type": "DataDownload",
+        encodingFormat: "application/vnd.apache.parquet",
+        contentUrl: dl.parquet_url,
+      },
+    ],
   };
 }
 
@@ -123,6 +173,12 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <main className="stone-bone relative grain">
+      <Script
+        id={`ld-dataset-${datasetSlug(d)}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetJsonLd(d)) }}
+      />
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           <Link

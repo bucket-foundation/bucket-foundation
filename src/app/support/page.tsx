@@ -20,9 +20,23 @@ import {
 // email + the donation links — lives in src/lib/support.ts (one knob).
 
 export const metadata = {
-  title: "Support · fund always-on research — bucket.foundation",
+  title: "Support · fund always-on research",
   description:
     "Fund always-on cloud-GPU hosting so bucket.foundation's research tools and local-LLM features are available to everyone, 24/7. A real, honest ask — not a checkout.",
+  alternates: { canonical: "/support" },
+  openGraph: {
+    type: "website",
+    url: "https://www.bucket.foundation/support",
+    title: "Support · fund always-on research — bucket.foundation",
+    description:
+      "Fund always-on cloud-GPU hosting so bucket.foundation's free research tools stay available to everyone, 24/7. A nonprofit — no equity, no investors, no exit.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Support · fund always-on research — bucket.foundation",
+    description:
+      "Help keep the free research instruments always on. A nonprofit ask, not a checkout.",
+  },
 };
 
 export default function Page() {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import { getManifest } from "@/lib/research-atlas";
 
 // /research/atlas — describes the research-atlas graph: the reconciled, normalized
@@ -7,9 +8,23 @@ import { getManifest } from "@/lib/research-atlas";
 // atlas" panel for the future live API. Stone-bone styling.
 
 export const metadata = {
-  title: "research-atlas · the research-economy graph — bucket.foundation",
+  title: "research-atlas · the research-economy graph",
   description:
     "research-atlas reconciles the world's public research funding into one normalized graph: 73 funders, ~958k grants, ~$658B, ~8.1M rows. Open, citeable, reproducible.",
+  alternates: { canonical: "/research/atlas" },
+  openGraph: {
+    type: "website",
+    url: "https://www.bucket.foundation/research/atlas",
+    title: "research-atlas · the open research-economy graph",
+    description:
+      "One reconciled graph of the world's public research funding: 73 funders, ~958k grants, ~$658B, ~8.1M rows. Open, citeable, reproducible.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "research-atlas · the open research-economy graph",
+    description:
+      "73 funders · ~958k grants · ~$658B · ~8.1M rows. The open, citeable research-economy graph.",
+  },
 };
 
 // The full published graph (see github.com/bucket-foundation/research-atlas
@@ -36,6 +51,49 @@ const ENTITIES = [
   { name: "Field", body: "The OpenAlex topic taxonomy, joined to works by work_field edges." },
 ];
 
+// schema.org Dataset JSON-LD for the research-atlas graph.
+const ATLAS_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "@id": "https://www.bucket.foundation/research/atlas#dataset",
+  name: "research-atlas — the global research-economy graph",
+  url: "https://www.bucket.foundation/research/atlas",
+  description:
+    "A reconciled, normalized graph of the world's public research funding: 73 funders, ~958k grants, ~$658B awarded, ~8.1M rows across funders, grants, organizations, people, works, and fields. Entities merged on ROR/ORCID/DOI; outputs linked via OpenAlex acknowledgements.",
+  creator: {
+    "@type": ["NGO", "Organization"],
+    name: "Bucket Foundation",
+    url: "https://www.bucket.foundation",
+  },
+  license: "https://creativecommons.org/licenses/by/4.0/",
+  isAccessibleForFree: true,
+  keywords: [
+    "research funding",
+    "grants",
+    "NIH",
+    "NSF",
+    "European Commission",
+    "UKRI",
+    "OpenAlex",
+    "ROR",
+    "ORCID",
+    "open science",
+  ],
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "DOI",
+    value: ATLAS.doi,
+  },
+  sameAs: [ATLAS.doiUrl, ATLAS.github],
+  distribution: [
+    {
+      "@type": "DataDownload",
+      encodingFormat: "application/vnd.apache.parquet",
+      contentUrl: ATLAS.github,
+    },
+  ],
+};
+
 export default function Page() {
   const m = getManifest();
   const sampleRows = m.totals?.rows ?? 0;
@@ -43,6 +101,12 @@ export default function Page() {
 
   return (
     <main className="stone-bone relative grain">
+      <Script
+        id="ld-atlas"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ATLAS_JSON_LD) }}
+      />
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Research · the atlas

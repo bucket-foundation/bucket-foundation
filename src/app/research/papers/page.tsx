@@ -6,9 +6,23 @@ import { listPapers } from "@/lib/papers";
 // /research, /research/tools and /research/datasets.
 
 export const metadata = {
-  title: "Papers · primary research — bucket.foundation",
+  title: "Papers · primary research",
   description:
     "Papers published by Bucket Foundation. Free to read, born with a real DOI, citeable forever.",
+  alternates: { canonical: "/research/papers" },
+  openGraph: {
+    type: "website",
+    url: "https://www.bucket.foundation/research/papers",
+    title: "Papers · primary research — bucket.foundation",
+    description:
+      "Primary research published by Bucket Foundation: free to read, born with a real DOI via Zenodo, fully reproducible, citeable forever.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Papers · primary research — bucket.foundation",
+    description:
+      "Primary research, free to read, born with a real DOI, fully reproducible.",
+  },
 };
 
 export default function Page() {

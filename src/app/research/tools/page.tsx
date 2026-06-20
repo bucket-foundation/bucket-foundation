@@ -1,224 +1,62 @@
 import Link from "next/link";
-import type { ToolHosting } from "@/lib/support";
+import type { Metadata } from "next";
+import Script from "next/script";
+import { TOOLS, type Tool } from "@/lib/tools";
 
 // Research-tools directory. Twenty tools served through bucket.foundation
 // (FastAPI gateway on Hetzner → /api/research/<tool> proxy → this UI). See
-// docs/research-tools/04-implementation-architecture.md.
-//
-// The 7 original biophysics tools (5 CPU inline + 2 GPU demo) + 5 RAG/agent
-// tools (live OpenAlex + grant corpus: PaperRadar, GrantDraft, MethodsMatcher,
-// ReviewGuard, QuantumBioRAG) + the DNA/RNA cluster (RNAStructure, gRNA-
-// Optimizer, RNA-FM-Embeds; ViennaRNA + numpy) + the neuroscience cluster
-// (HH-FitML, SpikeFeatures; scipy fits + spike detection) + the gap-research
-// cluster (ProtocolGPT rule extraction, ToxinChannelFinder, CitationGraph). All
-// are wired UI → proxy → gateway. CPU/RAG/DNA/NEURO/GAP tools run inline; the
-// two GPU/long tools (trajmine, cryotriage) run in demo/synthetic mode until a
-// GPU compute plan lands (the async contract is built so flipping on a GPU
-// worker is a deploy, not a redesign).
+// docs/research-tools/04-implementation-architecture.md. The TOOLS registry
+// lives in src/lib/tools.ts (one source of truth — also drives per-tool
+// metadata, per-tool JSON-LD, and the sitemap).
 
-type Tool = {
-  slug: string;
-  name: string;
-  blurb: string;
-  // CPU = inline biophysics tool; GPU = synthetic until compute lands;
-  // RAG = live data/agent tool (OpenAlex + grant corpus, real logic);
-  // DNA = DNA/RNA cluster (ViennaRNA + numpy, real algorithms);
-  // NEURO = neuroscience cluster (scipy fits + spike detection, real logic);
-  // GAP = gap-research cluster (rule extraction / curated KB / OpenAlex graph).
-  klass: "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP";
-  // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
-  status: "live" | "demo";
-  // "always-on" = runs on the Hetzner CPU gateway, up 24/7.
-  // "founder-gpu" = runs on the founder's personal laptop GPU (local LLM / GPU
-  // jobs) over a tunnel — unreachable when the laptop is closed. Drives the
-  // founder-GPU-offline notice + a directory badge. See src/lib/support.ts.
-  hosting: ToolHosting;
+export const metadata: Metadata = {
+  title: "Research tools · run real instruments",
+  description:
+    "Twenty free research instruments on bucket.foundation: protein stability (ΔΔG), ADMET screening, RNA folding, ephys fits, cryo-EM triage, plus literature/agent tools over the live OpenAlex index and a real awarded-grant corpus. Run on your input, publish to canon — the reader pays nothing.",
+  alternates: { canonical: "/research/tools" },
+  openGraph: {
+    type: "website",
+    url: "https://www.bucket.foundation/research/tools",
+    title: "Twenty free research tools · bucket.foundation",
+    description:
+      "Real research instruments — protein stability, ADMET, RNA folding, ephys, and literature/agent tools over live OpenAlex — free to run, citeable forever.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Twenty free research tools · bucket.foundation",
+    description:
+      "Real research instruments — protein stability, ADMET, RNA folding, ephys, and live-literature agent tools — free to run.",
+  },
 };
 
-const TOOLS: Tool[] = [
-  {
-    slug: "labbrain",
-    name: "LabBrain",
-    blurb:
-      "Grounded literature assistant over a research PI's corpus. Resolves the lab on OpenAlex, ingests open-access full text, hybrid dense+BM25 retrieval, answers with citations.",
-    klass: "CPU",
-    status: "live",
-    hosting: "founder-gpu",
-  },
-  {
-    slug: "stabilitydesigner",
-    name: "StabilityDesigner",
-    blurb: "Predict ΔΔG of point mutations; deep-mutational scan a position.",
-    klass: "CPU",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "proteinscout",
-    name: "ProteinScout",
-    blurb: "ML structural / disorder / feature analysis from a sequence or UniProt accession.",
-    klass: "CPU",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "screenserver",
-    name: "ScreenServer",
-    blurb: "13 ADMET models over a SMILES library; ranked drug-likeness report.",
-    klass: "CPU",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "trajmine",
-    name: "TrajMine",
-    blurb: "Mine molecular-dynamics trajectories for conformational structure (demo trajectory until GPU compute lands).",
-    klass: "GPU",
-    status: "demo",
-    hosting: "founder-gpu",
-  },
-  {
-    slug: "patchseqml",
-    name: "PatchSeqML",
-    blurb: "ML over patch-clamp electrophysiology recordings; cell-type signatures.",
-    klass: "CPU",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "cryotriage",
-    name: "CryoTriage",
-    blurb: "Triage cryo-EM micrographs for quality (synthetic session until GPU compute lands).",
-    klass: "GPU",
-    status: "demo",
-    hosting: "founder-gpu",
-  },
-  // --- T1 ship-now tools: RAG / agent / data, real logic over live data ---
-  {
-    slug: "paperradar",
-    name: "PaperRadar",
-    blurb:
-      "Personalized recent-paper feed. Queries the live OpenAlex index for your topics, ranks by relevance + recency + citation velocity, and explains why each matters to you.",
-    klass: "RAG",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "grantdraft",
-    name: "GrantDraft",
-    blurb:
-      "Funder finder + specific-aims drafter, grounded in real awarded NSF grants (research-atlas corpus). Shows who funds your area and drafts aims anchored to actual awards.",
-    klass: "RAG",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "methodsmatcher",
-    name: "MethodsMatcher",
-    blurb:
-      "Which method answers your question? Mines the recurring methods in the live OpenAlex literature and points you to the Bucket tool that runs it.",
-    klass: "RAG",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "reviewguard",
-    name: "ReviewGuard",
-    blurb:
-      "Cross-paper consistency check. State a claim; ReviewGuard sorts the OpenAlex literature into supporting vs contradicting, quoting the deciding sentence.",
-    klass: "RAG",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "quantumbiorag",
-    name: "QuantumBioRAG",
-    blurb:
-      "Evidence, not hype. State a quantum-biology claim; QuantumBioRAG scores how strongly the live OpenAlex literature supports it — weighting each paper by overlap, citations, and recency — with a consensus score and the deciding sentences.",
-    klass: "RAG",
-    status: "live",
-    hosting: "always-on",
-  },
-  // --- DNA/RNA cluster: real algorithms over ViennaRNA + numpy (1,105-PI cohort) ---
-  {
-    slug: "rnastructure",
-    name: "RNAStructure",
-    blurb:
-      "RNA secondary-structure prediction via ViennaRNA: MFE dot-bracket structure, free energy, partition-function base-pair probabilities, and a readable helix/loop summary. Fully real thermodynamics.",
-    klass: "DNA",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "grnaoptimizer",
-    name: "gRNA-Optimizer",
-    blurb:
-      "CRISPR SpCas9 guide design: PAM scan on both strands, transparent on-target efficiency scoring, and a local seed-region off-target risk flag. Ranked, defensible guide table.",
-    klass: "DNA",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "rnafmembeds",
-    name: "RNA-FM-Embeds",
-    blurb:
-      "RNA → ML embedding. Real RNA-FM language-model representation when its weights are installed; otherwise an honest, reproducible k-mer + structural-feature embedding (mode reported).",
-    klass: "DNA",
-    status: "live",
-    hosting: "always-on",
-  },
-  // --- Neuroscience cluster: real scipy fits + spike detection (938-PI cohort) ---
-  {
-    slug: "hhfit",
-    name: "HH-FitML",
-    blurb:
-      "Fit passive-membrane (RC) parameters — R, C, τ, V₀ — to a current-clamp trace via scipy least-squares, with fit quality (R²/RMSE). A demo trace with known params verifies recovery.",
-    klass: "NEURO",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "spikefeatures",
-    name: "SpikeFeatures",
-    blurb:
-      "Detect spikes in a voltage trace (MAD-robust threshold + refractory + alignment) and extract real waveform features — amplitude, width, half-width, firing rate, ISI stats. Demo train has a known spike count.",
-    klass: "NEURO",
-    status: "live",
-    hosting: "always-on",
-  },
-  // --- gap-research cluster: rule extraction / curated KB / OpenAlex graph ---
-  {
-    slug: "protocolgpt",
-    name: "ProtocolGPT",
-    blurb:
-      "Methods prose → a structured, runnable protocol. Deterministic rule extraction over a methods knowledge base: ordered steps with timings/temps/volumes, a reagent table, and safety flags. No network, no GPU.",
-    klass: "GAP",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "toxinchannelfinder",
-    name: "ToxinChannelFinder",
-    blurb:
-      "Map a toxin/peptide (name or sequence) to its likely ion-channel targets. Fuses a curated venom-peptide pharmacology KB with live OpenAlex co-occurrence; sequences classified by cysteine framework. Ranked targets, honest confidence, cited exemplars.",
-    klass: "GAP",
-    status: "live",
-    hosting: "always-on",
-  },
-  {
-    slug: "citationgraph",
-    name: "CitationGraph",
-    blurb:
-      "Build a paper's local citation neighborhood from the live OpenAlex graph (DOI / OpenAlex ID / title). Surfaces the key related works and ranks them by degree centrality — the most-connected neighbors first.",
-    klass: "GAP",
-    status: "live",
-    hosting: "always-on",
-  },
-];
+// ItemList JSON-LD: the catalog of 20 SoftwareApplication tools, so search
+// engines and agents can enumerate the directory.
+const TOOLS_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": "https://www.bucket.foundation/research/tools#list",
+  name: "bucket.foundation research tools",
+  description:
+    "Twenty free research instruments served through bucket.foundation.",
+  numberOfItems: TOOLS.length,
+  itemListElement: TOOLS.map((t, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    url: `https://www.bucket.foundation/research/tools/${t.slug}`,
+    name: t.name,
+  })),
+};
+
 
 export default function Page() {
   return (
     <main className="stone-bone relative grain">
+      <Script
+        id="ld-tools"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(TOOLS_JSON_LD) }}
+      />
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-14 md:py-32">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Research · tools

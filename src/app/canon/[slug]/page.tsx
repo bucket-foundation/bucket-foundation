@@ -27,10 +27,22 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const b = getBranch(params.slug) || getStaticBranch(params.slug);
-  if (!b) return { title: "Canon · bucket.foundation" };
+  if (!b) return { title: "Canon" };
   const name = (b as any).name;
+  const note = (b as any).note as string | undefined;
+  const description = note
+    ? `The ${name} branch of the bucket canon — ${note}. Foundations only: axioms, real math, laws, principles, primary derivations. Free to read, free to cite.`
+    : `The ${name} branch of the bucket canon — foundations only: axioms, laws, first principles, primary derivations. Free to read, free to cite.`;
   return {
-    title: `${name} — canon · bucket.foundation`,
+    title: `${name} — canon`,
+    description,
+    alternates: { canonical: `/canon/${params.slug}` },
+    openGraph: {
+      type: "website" as const,
+      url: `https://www.bucket.foundation/canon/${params.slug}`,
+      title: `${name} — the bucket canon`,
+      description,
+    },
   };
 }
 

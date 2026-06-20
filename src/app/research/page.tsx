@@ -1,5 +1,26 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import ResearchPublishClient from "./ResearchPublishClient";
+
+export const metadata: Metadata = {
+  title: "Research · tools, datasets, atlas, papers",
+  description:
+    "The bucket.foundation research hub: twenty free research instruments, the open research-economy datasets, the research-atlas graph, and primary papers born with a real DOI. Free to read, paid to cite — the reader pays nothing.",
+  alternates: { canonical: "/research" },
+  openGraph: {
+    type: "website",
+    url: "https://www.bucket.foundation/research",
+    title: "Research · bucket.foundation",
+    description:
+      "Twenty free research tools, open research-economy datasets, the research-atlas graph, and primary papers with real DOIs.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Research · bucket.foundation",
+    description:
+      "Twenty free research tools, open datasets, the research-atlas graph, and primary papers with real DOIs.",
+  },
+};
 
 // Server component shell — always renders the stone-bone "ready state" and
 // lets the client island decide whether to show the interactive publish form

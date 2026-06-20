@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 import { BRANCHES } from "@/lib/canon";
+import { TOOLS } from "@/lib/tools";
+import { listPapers } from "@/lib/papers";
+import { listDatasets, datasetSlug } from "@/lib/research-atlas";
 
 const BASE = "https://www.bucket.foundation";
 
@@ -35,8 +38,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/about",              pri: 0.7,  freq: "monthly" as const },
     { p: "/join",               pri: 0.7,  freq: "monthly" as const },
     { p: "/contributors",       pri: 0.7,  freq: "weekly"  as const },
+    { p: "/research",           pri: 0.85, freq: "weekly"  as const },
+    { p: "/research/tools",     pri: 0.85, freq: "weekly"  as const },
+    { p: "/research/atlas",     pri: 0.85, freq: "weekly"  as const },
+    { p: "/research/datasets",  pri: 0.8,  freq: "weekly"  as const },
+    { p: "/research/papers",    pri: 0.8,  freq: "weekly"  as const },
+    { p: "/support",            pri: 0.7,  freq: "monthly" as const },
+    { p: "/contribute",         pri: 0.75, freq: "monthly" as const },
+    { p: "/academy",            pri: 0.7,  freq: "weekly"  as const },
     { p: "/knowledge",          pri: 0.6,  freq: "weekly"  as const },
-    { p: "/research",           pri: 0.6,  freq: "weekly"  as const },
     { p: "/library",            pri: 0.6,  freq: "weekly"  as const },
     { p: "/assets",             pri: 0.6,  freq: "monthly" as const },
     { p: "/whats-new",          pri: 0.6,  freq: "daily"   as const },
@@ -65,5 +75,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...top, ...branchRoutes, ...figureRoutes];
+  // The 20 research tools — one URL each.
+  const toolRoutes = TOOLS.map((t) => ({
+    url: `${BASE}/research/tools/${t.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // Published papers.
+  const paperRoutes = listPapers().map((p) => ({
+    url: `${BASE}/research/papers/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
+  // Open datasets (research-atlas).
+  const datasetRoutes = listDatasets().map((d) => ({
+    url: `${BASE}/research/datasets/${datasetSlug(d)}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [
+    ...top,
+    ...branchRoutes,
+    ...figureRoutes,
+    ...toolRoutes,
+    ...paperRoutes,
+    ...datasetRoutes,
+  ];
 }

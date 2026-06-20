@@ -1,7 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { getPaper, listPapers } from "@/lib/papers";
+
+const SITE = "https://www.bucket.foundation";
 
 // /research/papers/[slug] — a single paper: title, abstract, the figures, a
 // link to the PDF, the DOI, and a citation block. Statically generated from
@@ -13,10 +16,62 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const p = getPaper(params.slug);
-  if (!p) return { title: "Paper not found — bucket.foundation" };
+  if (!p) return { title: "Paper not found" };
+  const url = `${SITE}/research/papers/${p.slug}`;
+  const description = p.abstract[0]?.slice(0, 180) ?? p.title.slice(0, 180);
   return {
-    title: `${p.title.slice(0, 70)}… — bucket.foundation`,
-    description: p.abstract[0]?.slice(0, 180),
+    title: `${p.title.slice(0, 110)} · paper`,
+    description,
+    alternates: { canonical: `/research/papers/${p.slug}` },
+    openGraph: {
+      type: "article",
+      url,
+      title: p.title,
+      description,
+      publishedTime: p.date,
+      authors: ["Gianangelo Dichio"],
+      tags: ["research funding", "open science", "research-atlas"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: p.title.slice(0, 110),
+      description,
+    },
+  };
+}
+
+// ScholarlyArticle JSON-LD — headline, author, DOI, datePublished, abstract.
+function paperJsonLd(p: NonNullable<ReturnType<typeof getPaper>>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": `${SITE}/research/papers/${p.slug}#article`,
+    headline: p.title,
+    name: p.title,
+    url: `${SITE}/research/papers/${p.slug}`,
+    author: {
+      "@type": "Person",
+      name: "Gianangelo Dichio",
+      url: "https://github.com/gianyrox",
+    },
+    datePublished: p.date,
+    publisher: {
+      "@type": ["NGO", "Organization"],
+      name: "Bucket Foundation",
+      url: SITE,
+    },
+    inLanguage: "en",
+    isAccessibleForFree: true,
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    abstract: p.abstract.join(" "),
+    description: p.abstract[0],
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "DOI",
+      value: p.doi,
+    },
+    sameAs: p.doiUrl,
+    image: p.figures.map((f) => `${SITE}${f.src}`),
   };
 }
 
@@ -26,6 +81,12 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <main className="stone-bone relative grain">
+      <Script
+        id={`ld-paper-${p.slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(paperJsonLd(p)) }}
+      />
       <div className="max-w-[820px] mx-auto px-4 md:px-6 py-14 md:py-28">
         <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] mb-5">
           § Research · paper
