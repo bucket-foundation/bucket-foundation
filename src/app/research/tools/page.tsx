@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ToolHosting } from "@/lib/support";
 
 // Research-tools directory. Twenty tools served through bucket.foundation
 // (FastAPI gateway on Hetzner → /api/research/<tool> proxy → this UI). See
@@ -27,6 +28,11 @@ type Tool = {
   klass: "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP";
   // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: "live" | "demo";
+  // "always-on" = runs on the Hetzner CPU gateway, up 24/7.
+  // "founder-gpu" = runs on the founder's personal laptop GPU (local LLM / GPU
+  // jobs) over a tunnel — unreachable when the laptop is closed. Drives the
+  // founder-GPU-offline notice + a directory badge. See src/lib/support.ts.
+  hosting: ToolHosting;
 };
 
 const TOOLS: Tool[] = [
@@ -37,6 +43,7 @@ const TOOLS: Tool[] = [
       "Grounded literature assistant over a research PI's corpus. Resolves the lab on OpenAlex, ingests open-access full text, hybrid dense+BM25 retrieval, answers with citations.",
     klass: "CPU",
     status: "live",
+    hosting: "founder-gpu",
   },
   {
     slug: "stabilitydesigner",
@@ -44,6 +51,7 @@ const TOOLS: Tool[] = [
     blurb: "Predict ΔΔG of point mutations; deep-mutational scan a position.",
     klass: "CPU",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "proteinscout",
@@ -51,6 +59,7 @@ const TOOLS: Tool[] = [
     blurb: "ML structural / disorder / feature analysis from a sequence or UniProt accession.",
     klass: "CPU",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "screenserver",
@@ -58,6 +67,7 @@ const TOOLS: Tool[] = [
     blurb: "13 ADMET models over a SMILES library; ranked drug-likeness report.",
     klass: "CPU",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "trajmine",
@@ -65,6 +75,7 @@ const TOOLS: Tool[] = [
     blurb: "Mine molecular-dynamics trajectories for conformational structure (demo trajectory until GPU compute lands).",
     klass: "GPU",
     status: "demo",
+    hosting: "founder-gpu",
   },
   {
     slug: "patchseqml",
@@ -72,6 +83,7 @@ const TOOLS: Tool[] = [
     blurb: "ML over patch-clamp electrophysiology recordings; cell-type signatures.",
     klass: "CPU",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "cryotriage",
@@ -79,6 +91,7 @@ const TOOLS: Tool[] = [
     blurb: "Triage cryo-EM micrographs for quality (synthetic session until GPU compute lands).",
     klass: "GPU",
     status: "demo",
+    hosting: "founder-gpu",
   },
   // --- T1 ship-now tools: RAG / agent / data, real logic over live data ---
   {
@@ -88,6 +101,7 @@ const TOOLS: Tool[] = [
       "Personalized recent-paper feed. Queries the live OpenAlex index for your topics, ranks by relevance + recency + citation velocity, and explains why each matters to you.",
     klass: "RAG",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "grantdraft",
@@ -96,6 +110,7 @@ const TOOLS: Tool[] = [
       "Funder finder + specific-aims drafter, grounded in real awarded NSF grants (research-atlas corpus). Shows who funds your area and drafts aims anchored to actual awards.",
     klass: "RAG",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "methodsmatcher",
@@ -104,6 +119,7 @@ const TOOLS: Tool[] = [
       "Which method answers your question? Mines the recurring methods in the live OpenAlex literature and points you to the Bucket tool that runs it.",
     klass: "RAG",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "reviewguard",
@@ -112,6 +128,7 @@ const TOOLS: Tool[] = [
       "Cross-paper consistency check. State a claim; ReviewGuard sorts the OpenAlex literature into supporting vs contradicting, quoting the deciding sentence.",
     klass: "RAG",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "quantumbiorag",
@@ -120,6 +137,7 @@ const TOOLS: Tool[] = [
       "Evidence, not hype. State a quantum-biology claim; QuantumBioRAG scores how strongly the live OpenAlex literature supports it — weighting each paper by overlap, citations, and recency — with a consensus score and the deciding sentences.",
     klass: "RAG",
     status: "live",
+    hosting: "always-on",
   },
   // --- DNA/RNA cluster: real algorithms over ViennaRNA + numpy (1,105-PI cohort) ---
   {
@@ -129,6 +147,7 @@ const TOOLS: Tool[] = [
       "RNA secondary-structure prediction via ViennaRNA: MFE dot-bracket structure, free energy, partition-function base-pair probabilities, and a readable helix/loop summary. Fully real thermodynamics.",
     klass: "DNA",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "grnaoptimizer",
@@ -137,6 +156,7 @@ const TOOLS: Tool[] = [
       "CRISPR SpCas9 guide design: PAM scan on both strands, transparent on-target efficiency scoring, and a local seed-region off-target risk flag. Ranked, defensible guide table.",
     klass: "DNA",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "rnafmembeds",
@@ -145,6 +165,7 @@ const TOOLS: Tool[] = [
       "RNA → ML embedding. Real RNA-FM language-model representation when its weights are installed; otherwise an honest, reproducible k-mer + structural-feature embedding (mode reported).",
     klass: "DNA",
     status: "live",
+    hosting: "always-on",
   },
   // --- Neuroscience cluster: real scipy fits + spike detection (938-PI cohort) ---
   {
@@ -154,6 +175,7 @@ const TOOLS: Tool[] = [
       "Fit passive-membrane (RC) parameters — R, C, τ, V₀ — to a current-clamp trace via scipy least-squares, with fit quality (R²/RMSE). A demo trace with known params verifies recovery.",
     klass: "NEURO",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "spikefeatures",
@@ -162,6 +184,7 @@ const TOOLS: Tool[] = [
       "Detect spikes in a voltage trace (MAD-robust threshold + refractory + alignment) and extract real waveform features — amplitude, width, half-width, firing rate, ISI stats. Demo train has a known spike count.",
     klass: "NEURO",
     status: "live",
+    hosting: "always-on",
   },
   // --- gap-research cluster: rule extraction / curated KB / OpenAlex graph ---
   {
@@ -171,6 +194,7 @@ const TOOLS: Tool[] = [
       "Methods prose → a structured, runnable protocol. Deterministic rule extraction over a methods knowledge base: ordered steps with timings/temps/volumes, a reagent table, and safety flags. No network, no GPU.",
     klass: "GAP",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "toxinchannelfinder",
@@ -179,6 +203,7 @@ const TOOLS: Tool[] = [
       "Map a toxin/peptide (name or sequence) to its likely ion-channel targets. Fuses a curated venom-peptide pharmacology KB with live OpenAlex co-occurrence; sequences classified by cysteine framework. Ranked targets, honest confidence, cited exemplars.",
     klass: "GAP",
     status: "live",
+    hosting: "always-on",
   },
   {
     slug: "citationgraph",
@@ -187,6 +212,7 @@ const TOOLS: Tool[] = [
       "Build a paper's local citation neighborhood from the live OpenAlex graph (DOI / OpenAlex ID / title). Surfaces the key related works and ranks them by degree centrality — the most-connected neighbors first.",
     klass: "GAP",
     status: "live",
+    hosting: "always-on",
   },
 ];
 
@@ -215,7 +241,27 @@ export default function Page() {
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
+        {/* Hosting legend: distinguish always-on (Hetzner CPU, up 24/7) from
+            founder-GPU tools (local LLM / GPU jobs on the founder's laptop,
+            offline when it's closed). */}
+        <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.13em] text-[color:var(--basalt-3)]">
+          <span className="inline-flex items-center gap-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--laurel-deep,var(--aegean-deep))]" />
+            always-on · Hetzner CPU, 24/7
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--gold-deep,var(--basalt-3))]" />
+            founder GPU · offline when the laptop is closed
+          </span>
+          <Link
+            href="/support"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            fund always-on hosting →
+          </Link>
+        </div>
+
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
           {TOOLS.map((t) => (
             <ToolCard key={t.slug} tool={t} />
           ))}
@@ -238,6 +284,24 @@ function ToolCard({ tool }: { tool: Tool }) {
         </span>
       </div>
       <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
+      <div>
+        <span
+          className={`inline-flex items-center gap-1.5 text-[10px] small-caps tracking-[0.12em] border px-2 py-0.5 ${
+            tool.hosting === "founder-gpu"
+              ? "border-[color:var(--gold-deep,var(--basalt-3))] text-[color:var(--gold-deep,var(--basalt-3))]"
+              : "border-[color:var(--hairline)] text-[color:var(--basalt-3)]"
+          }`}
+        >
+          <span
+            className={`inline-block w-1.5 h-1.5 rounded-full ${
+              tool.hosting === "founder-gpu"
+                ? "bg-[color:var(--gold-deep,var(--basalt-3))]"
+                : "bg-[color:var(--laurel-deep,var(--aegean-deep))]"
+            }`}
+          />
+          {tool.hosting === "founder-gpu" ? "founder GPU" : "always-on"}
+        </span>
+      </div>
       <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
         {tool.blurb}
       </p>

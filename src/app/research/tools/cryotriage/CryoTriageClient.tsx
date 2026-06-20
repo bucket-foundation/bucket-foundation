@@ -11,7 +11,8 @@ import {
 
 export default function CryoTriageClient() {
   const [file, setFile] = useState<File | null>(null);
-  const { phase, busy, statusText, result, errorMsg, submit } = useToolRun("cryotriage");
+  const { phase, busy, statusText, result, errorMsg, errorStatus, submit } =
+    useToolRun("cryotriage");
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +50,13 @@ export default function CryoTriageClient() {
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />
-      <RunError phase={phase} errorMsg={errorMsg} />
+      <RunError
+        phase={phase}
+        errorMsg={errorMsg}
+        errorStatus={errorStatus}
+        founderGpu
+        toolName="CryoTriage"
+      />
 
       {phase === "done" && result && result.render === "html" && (
         <div className="mt-10">

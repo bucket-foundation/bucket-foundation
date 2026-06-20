@@ -52,6 +52,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { selectProvider } from "./provider";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -59,6 +60,61 @@ export const dynamic = "force-dynamic";
 // Current as of 2026-06. Sonnet is enough for a grounded Socratic turn — the
 // grounding does the factual work, not the model — and keeps per-turn cost low.
 const MODEL = "claude-sonnet-4-5";
+
+// ---- LLM provider seam --------------------------------------------------
+// DEFAULT is the LOCAL GPU LLM via an OpenAI-compatible endpoint (Ollama on
+// Gian's AMD RX 7600, or the prod auth-shim/tunnel in front of it). Set
+// LLM_BASE_URL to enable it. The hosted Anthropic path stays as an ALTERNATIVE
+// when ANTHROPIC_API_KEY is set and LLM_BASE_URL is not — same S1–S7 safety
+// runs in code either way. If neither is configured => 503 (dark), exactly as
+// before. All factual safety is enforced in code (S7), so the model behind the
+// seam is interchangeable.
+const LLM_BASE_URL = process.env.LLM_BASE_URL?.replace(/\/+$/, "");
+const LLM_MODEL = process.env.LLM_MODEL || "qwen3.5:latest";
+const LLM_API_KEY = process.env.LLM_API_KEY;
+const LLM_TIMEOUT_MS = Number(process.env.LLM_TIMEOUT_S || 20) * 1000;
+
+// Provider selection lives in ./provider (testable; Next.js forbids non-handler
+// exports from a route file). Local LLM is the default; Anthropic is the fallback.
+
+/** Call the local OpenAI-compatible chat endpoint. Returns the assistant text,
+ *  or throws an error tagged with `.status` for the caller's catch (mirrors the
+ *  Anthropic error contract so the existing 401/429/502 handling applies). */
+async function callLocalLLM(
+  system: string,
+  messages: Array<{ role: "user" | "assistant"; content: string }>,
+): Promise<string> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), LLM_TIMEOUT_MS);
+  try {
+    const resp = await fetch(`${LLM_BASE_URL}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(LLM_API_KEY ? { Authorization: `Bearer ${LLM_API_KEY}` } : {}),
+      },
+      body: JSON.stringify({
+        model: LLM_MODEL,
+        max_tokens: MAX_TOKENS,
+        temperature: 0.2,
+        stream: false,
+        messages: [{ role: "system", content: system }, ...messages],
+      }),
+      signal: controller.signal,
+    });
+    if (!resp.ok) {
+      const err = new Error(`local LLM HTTP ${resp.status}`) as Error & { status?: number };
+      err.status = resp.status;
+      throw err;
+    }
+    const data = (await resp.json()) as {
+      choices?: Array<{ message?: { content?: string } }>;
+    };
+    return (data.choices?.[0]?.message?.content || "").trim();
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 // Tight caps — a Socratic turn is a hint or a question, not an essay (keeps
 // responses tight, bounds cost, and limits the blast radius of any error).
@@ -279,11 +335,12 @@ export async function POST(req: NextRequest) {
     return bad(400, "Grounding payload too large.");
   }
 
-  // 503 when the key is absent — same graceful contract as the generate route.
+  // 503 when NO provider is configured — same graceful contract as the generate
+  // route. Local LLM (LLM_BASE_URL) is the default; Anthropic is the fallback.
   // The UI reads this and shows a "tutor not enabled yet" state without breaking.
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return bad(503, "Tutor isn't enabled yet (missing ANTHROPIC_API_KEY).");
+  const provider = selectProvider();
+  if (!provider) {
+    return bad(503, "Tutor isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
   }
 
   // TODO(bkt-jh0): route this spend through Viatika via `@/lib/meter` meterUsage()
@@ -294,7 +351,7 @@ export async function POST(req: NextRequest) {
   const { display: allowList, byKey } = buildCitationAllowList(g!);
   const context = groundingBlock(g!, allowList);
 
-  const messages: Anthropic.MessageParam[] = [
+  const messages: Array<{ role: "user" | "assistant"; content: string }> = [
     ...clampHistory(body.history),
     {
       role: "user",
@@ -304,22 +361,29 @@ export async function POST(req: NextRequest) {
 
   let text = "";
   try {
-    const anthropic = new Anthropic({ apiKey });
-    const resp = await anthropic.messages.create({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      system: SYSTEM,
-      messages,
-    });
-    text = resp.content
-      .filter((b): b is Anthropic.TextBlock => b.type === "text")
-      .map((b) => b.text)
-      .join("\n")
-      .trim();
+    if (provider === "local") {
+      // Default path: local GPU LLM via OpenAI-compatible endpoint. Same SYSTEM
+      // prompt + grounding; all S1–S7 validation below runs identically.
+      text = await callLocalLLM(SYSTEM, messages);
+    } else {
+      const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+      const resp = await anthropic.messages.create({
+        model: MODEL,
+        max_tokens: MAX_TOKENS,
+        system: SYSTEM,
+        messages: messages as Anthropic.MessageParam[],
+      });
+      text = resp.content
+        .filter((b): b is Anthropic.TextBlock => b.type === "text")
+        .map((b) => b.text)
+        .join("\n")
+        .trim();
+    }
   } catch (e: unknown) {
-    const err = e as { status?: number; message?: string };
+    const err = e as { status?: number; message?: string; name?: string };
     if (err?.status === 401) return bad(503, "Tutor credentials are invalid on the server.");
     if (err?.status === 429) return bad(429, "Rate limited — please try again in a moment.");
+    // Timeout / network error to the local LLM, or any other failure: fail safe.
     return bad(502, "Tutor request failed. Please try again.");
   }
 

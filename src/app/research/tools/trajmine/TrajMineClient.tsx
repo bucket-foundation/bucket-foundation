@@ -13,7 +13,8 @@ type Demo = "md" | "static";
 
 export default function TrajMineClient() {
   const [demo, setDemo] = useState<Demo>("md");
-  const { phase, busy, statusText, result, errorMsg, submit } = useToolRun("trajmine");
+  const { phase, busy, statusText, result, errorMsg, errorStatus, submit } =
+    useToolRun("trajmine");
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,7 +68,13 @@ export default function TrajMineClient() {
       </form>
 
       <RunStatus busy={busy} statusText={statusText} />
-      <RunError phase={phase} errorMsg={errorMsg} />
+      <RunError
+        phase={phase}
+        errorMsg={errorMsg}
+        errorStatus={errorStatus}
+        founderGpu
+        toolName="TrajMine"
+      />
 
       {phase === "done" && result && result.render === "html" && (
         <div className="mt-10">

@@ -10,6 +10,7 @@
 // report. See docs/research-tools/04-implementation-architecture.md §2.
 
 import { useCallback, useRef, useState } from "react";
+import { ToolOfflineNotice, detectToolOffline } from "./ToolOfflineNotice";
 
 export type Phase = "idle" | "submitting" | "running" | "done" | "error";
 
@@ -37,6 +38,8 @@ export function useToolRun(tool: string) {
   const [statusText, setStatusText] = useState("");
   const [result, setResult] = useState<ResultEnvelope | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
+  // HTTP status of the last failing call (drives the founder-GPU-offline UI).
+  const [errorStatus, setErrorStatus] = useState<number | null>(null);
   const startedRef = useRef(0);
 
   const base = `/api/research/${tool}`;
@@ -69,12 +72,14 @@ export function useToolRun(tool: string) {
         r = await fetch(`${base}?job=${encodeURIComponent(jobId)}`);
       } catch {
         setPhase("error");
+        setErrorStatus(null);
         setErrorMsg("Lost connection to the tools backend.");
         return;
       }
       if (!r.ok) {
         const e = await r.json().catch(() => ({}));
         setPhase("error");
+        setErrorStatus(r.status);
         setErrorMsg(e?.error?.message ?? `status fetch failed (${r.status})`);
         return;
       }
@@ -103,6 +108,7 @@ export function useToolRun(tool: string) {
     async (init: RequestInit, runningText = "Running…") => {
       setResult(null);
       setErrorMsg("");
+      setErrorStatus(null);
       setPhase("submitting");
       setStatusText("Submitting…");
       startedRef.current = Date.now();
@@ -112,12 +118,14 @@ export function useToolRun(tool: string) {
         r = await fetch(base, { method: "POST", ...init });
       } catch {
         setPhase("error");
+        setErrorStatus(null);
         setErrorMsg("Could not reach the tools backend.");
         return;
       }
       if (!r.ok) {
         const err = await r.json().catch(() => ({}));
         setPhase("error");
+        setErrorStatus(r.status);
         setErrorMsg(err?.error?.message ?? `submit failed (${r.status})`);
         return;
       }
@@ -142,7 +150,7 @@ export function useToolRun(tool: string) {
   );
 
   const busy = phase === "submitting" || phase === "running";
-  return { phase, busy, statusText, result, errorMsg, submit };
+  return { phase, busy, statusText, result, errorMsg, errorStatus, submit };
 }
 
 // --- presentational primitives (stone-bone styling, matches /research) -----
@@ -157,8 +165,25 @@ export function RunStatus({ busy, statusText }: { busy: boolean; statusText: str
   );
 }
 
-export function RunError({ phase, errorMsg }: { phase: Phase; errorMsg: string }) {
+export function RunError({
+  phase,
+  errorMsg,
+  errorStatus = null,
+  founderGpu = false,
+  toolName,
+}: {
+  phase: Phase;
+  errorMsg: string;
+  errorStatus?: number | null;
+  // When true, an offline/unreachable error renders the friendly
+  // "founder's GPU is offline → fund it" notice instead of a raw error.
+  founderGpu?: boolean;
+  toolName?: string;
+}) {
   if (phase !== "error") return null;
+  if (founderGpu && detectToolOffline(errorStatus, errorMsg)) {
+    return <ToolOfflineNotice toolName={toolName} />;
+  }
   return (
     <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">
       <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-2">

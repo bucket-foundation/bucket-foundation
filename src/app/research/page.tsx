@@ -23,7 +23,35 @@ export default function Page() {
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
+        {/* Research hub — the four surfaces of bucket.foundation research. */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
+          <HubCard
+            href="/research/tools"
+            title="Tools"
+            body="Twenty research instruments — protein stability, ADMET, ephys, RNA folding, literature/agent tools over live OpenAlex — run on your input and publish to canon."
+          />
+          <HubCard
+            href="/research/datasets"
+            title="Datasets"
+            body="The research-atlas tables as open datasets: funders, grants, organizations, people, fields. Free to read, born with a real DOI."
+          />
+          <HubCard
+            href="/research/atlas"
+            title="Atlas"
+            body="The reconciled research-economy graph — 73 funders, ~958k grants, ~$658B, ~8.1M rows. The source behind every dataset and paper."
+          />
+          <HubCard
+            href="/research/papers"
+            title="Papers"
+            body="Papers published by Bucket on the atlas and the canon. Free to read, fully reproducible, citeable forever."
+          />
+        </div>
+
+        <div className="mt-12 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+          § Publish · how it works
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <Step
             n="01"
             title="upload"
@@ -67,6 +95,35 @@ export default function Page() {
         </div>
       </div>
     </main>
+  );
+}
+
+function HubCard({
+  href,
+  title,
+  body,
+}: {
+  href: string;
+  title: string;
+  body: string;
+}) {
+  return (
+    <Link href={href} className="block h-full">
+      <div className="bg-[color:var(--bone)] p-7 md:p-8 flex flex-col gap-3 min-h-[170px] h-full shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]">
+        <div className="font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
+          {title}
+        </div>
+        <div className="w-8 h-0.5 bg-[color:var(--gold)]" />
+        <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
+          {body}
+        </p>
+        <div className="mt-auto pt-3 text-[11px] small-caps tracking-[0.14em]">
+          <span className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4">
+            open {title.toLowerCase()} →
+          </span>
+        </div>
+      </div>
+    </Link>
   );
 }
 

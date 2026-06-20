@@ -101,8 +101,12 @@ shorts-runs/
 gtm/video-v*/
 brand/workshop/
 
-# Sibling project (deployed separately to polingual.com)
-polingual/
+# Sibling project (deployed separately to polingual.com). MUST be anchored:
+# an unanchored `polingual/` also matched `public/academy-app/polingual/`
+# (the baked offline language subset) and `src/app/api/polingual/route.ts`
+# (the live Polingual proxy the academy needs), stripping both from the
+# Vercel upload. Anchor to the repo-root sibling dir only.
+/polingual/
 
 # Local sqlite + fts artifacts
 .fts.sqlite
@@ -135,5 +139,11 @@ BEADS-PENDING.jsonl
 BEADS-DISPATCHED.jsonl
 .longtail-submissions.jsonl
 
-# Tooling source (the Python ingesters live in agfarms/tools/canon, not here)
-tools/
+# Tooling source (the Python ingesters live in agfarms/tools/canon, not here).
+# MUST be anchored with a leading slash. An unanchored `tools/` is a
+# gitignore/`ignore`-style pattern that matches a `tools` directory at ANY
+# depth — including `src/app/research/tools/`, which silently stripped all 20
+# research-tool routes from the Vercel upload and 404'd them in production
+# (the routes built fine locally; they just never reached Vercel). Anchor to
+# the repo-root tools/ only. (bkt research-tools 404 fix, 2026-06-20)
+/tools/

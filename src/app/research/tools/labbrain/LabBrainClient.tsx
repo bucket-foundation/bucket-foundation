@@ -9,6 +9,7 @@
 // See docs/research-tools/04-implementation-architecture.md §2 + §7.
 
 import { useCallback, useRef, useState } from "react";
+import { ToolOfflineNotice, detectToolOffline } from "../_shared/ToolOfflineNotice";
 
 type Phase = "idle" | "submitting" | "running" | "done" | "error";
 
@@ -34,6 +35,7 @@ export default function LabBrainClient() {
   const [statusText, setStatusText] = useState("");
   const [result, setResult] = useState<ResultEnvelope | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
+  const [errorStatus, setErrorStatus] = useState<number | null>(null);
   const startedRef = useRef(0);
 
   const fetchResult = useCallback(async (jobId: string) => {
@@ -61,12 +63,14 @@ export default function LabBrainClient() {
         r = await fetch(`/api/research/labbrain?job=${encodeURIComponent(jobId)}`);
       } catch {
         setPhase("error");
+        setErrorStatus(null);
         setErrorMsg("Lost connection to the tools backend.");
         return;
       }
       if (!r.ok) {
         const e = await r.json().catch(() => ({}));
         setPhase("error");
+        setErrorStatus(r.status);
         setErrorMsg(e?.error?.message ?? `status fetch failed (${r.status})`);
         return;
       }
@@ -95,6 +99,7 @@ export default function LabBrainClient() {
       e.preventDefault();
       setResult(null);
       setErrorMsg("");
+      setErrorStatus(null);
       setPhase("submitting");
       setStatusText("Submitting…");
       startedRef.current = Date.now();
@@ -108,12 +113,14 @@ export default function LabBrainClient() {
         });
       } catch {
         setPhase("error");
+        setErrorStatus(null);
         setErrorMsg("Could not reach the tools backend.");
         return;
       }
       if (!r.ok) {
         const err = await r.json().catch(() => ({}));
         setPhase("error");
+        setErrorStatus(r.status);
         setErrorMsg(err?.error?.message ?? `submit failed (${r.status})`);
         return;
       }
@@ -178,7 +185,11 @@ export default function LabBrainClient() {
         </div>
       )}
 
-      {phase === "error" && (
+      {phase === "error" && detectToolOffline(errorStatus, errorMsg) && (
+        <ToolOfflineNotice toolName="LabBrain" />
+      )}
+
+      {phase === "error" && !detectToolOffline(errorStatus, errorMsg) && (
         <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">
           <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-2">
             could not complete
