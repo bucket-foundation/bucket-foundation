@@ -13,6 +13,20 @@
 # The gap-research cluster (ProtocolGPT, ToxinChannelFinder, CitationGraph) and
 # QuantumBioRAG are pure stdlib (re/math/urllib) over the existing fastapi/
 # pydantic + the tools_rag OpenAlex client — they add NO new dependencies.
+#
+# NEW (2026-06-21) — three more REAL clusters, all CPU, no GPU:
+#   * imaging/mechanobiology (tools_imaging.py): CalciumTraceML, CellSegTrack,
+#     AFM-CurveML, TractionForceML — scipy + scikit-image (already present for
+#     cryotriage) + numpy. CellSegTrack uses Cellpose ONLY if installed; it is
+#     NOT pinned here (heavy) — the classical Otsu+watershed path is the default.
+#   * FigureMiner (tools_figure.py): text-layer caption + statistics mining —
+#     stdlib re + an optional PDF text backend (PyMuPDF preferred, pypdf
+#     fallback; both already present below for labbrain/screenserver). Raw-text
+#     input needs NO PDF backend.
+#   * genomics/sequence (tools_genomics.py): ChromatinAccess, AggregatePredict,
+#     ChannelDwell — pure numpy + stdlib re. NO new dependencies.
+# Net new hard dependency vs the prior fat image: PyMuPDF (for FigureMiner PDF
+# input). scikit-image + scipy + numpy + pypdf are already pinned below.
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 pydantic==2.10.4
@@ -43,6 +57,11 @@ rdkit>=2024.3             # featurization, FilterCatalog, SA score, drawing (CPU
 sentence-transformers>=3.0   # pulls transformers; model weights baked, see Dockerfile
 rank-bm25>=0.2.2
 pypdf>=5.0
+
+# --- FigureMiner PDF text backend (optional but preferred over pypdf) ---
+# PyMuPDF gives a far cleaner text layer for caption/stat mining. Raw-text
+# input works without it; PDF input degrades to pypdf if this is absent.
+PyMuPDF>=1.24
 
 # --- trajmine + cryotriage DEMO/SYNTHETIC mode (CPU; NO GPU) ---
 # These two stay demo-only (no GPU on the Hetzner box). Their demo/synthetic

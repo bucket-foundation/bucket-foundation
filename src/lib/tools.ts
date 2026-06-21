@@ -1,7 +1,7 @@
 /**
  * bucket.foundation — research-tools registry
  * -------------------------------------------
- * Single source of truth for the 20 research tools served through
+ * Single source of truth for the 28 research tools served through
  * bucket.foundation (FastAPI gateway on Hetzner → /api/research/<tool> proxy →
  * the per-tool UI). This was previously inlined in
  * src/app/research/tools/page.tsx; it now lives here so the same data drives:
@@ -15,7 +15,7 @@
 
 import type { ToolHosting } from "@/lib/support";
 
-export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP";
+export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG";
 export type ToolStatus = "live" | "demo";
 
 export type Tool = {
@@ -26,7 +26,9 @@ export type Tool = {
   // RAG = live data/agent tool (OpenAlex + grant corpus, real logic);
   // DNA = DNA/RNA cluster (ViennaRNA + numpy, real algorithms);
   // NEURO = neuroscience cluster (scipy fits + spike detection, real logic);
-  // GAP = gap-research cluster (rule extraction / curated KB / OpenAlex graph).
+  // GAP = gap-research cluster (rule extraction / curated KB / OpenAlex graph);
+  // IMG = imaging/mechanobiology cluster (scipy + scikit-image signal/image
+  //       processing: calcium ΔF/F, cell segmentation, AFM modulus, PIV).
   klass: ToolClass;
   // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: ToolStatus;
@@ -211,6 +213,81 @@ export const TOOLS: Tool[] = [
     name: "CitationGraph",
     blurb:
       "Build a paper's local citation neighborhood from the live OpenAlex graph (DOI / OpenAlex ID / title). Surfaces the key related works and ranks them by degree centrality — the most-connected neighbors first.",
+    klass: "GAP",
+    status: "live",
+    hosting: "always-on",
+  },
+  // --- imaging / mechanobiology cluster: real scipy + scikit-image (311M-funding cohort) ---
+  {
+    slug: "calciumtraceml",
+    name: "CalciumTraceML",
+    blurb:
+      "Calcium-imaging ΔF/F + event detection. Real rolling-percentile F0 baseline, ΔF/F, MAD-robust transient detection with single-exponential decay-τ fits, and firing-rate stats. Demo trace has a known event count.",
+    klass: "IMG",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "cellsegtrack",
+    name: "CellSegTrack",
+    blurb:
+      "Cell / nuclei segmentation. Cellpose on CPU when installed; otherwise a real classical pipeline — Otsu threshold + distance-transform seeded watershed — with per-object area, centroid, and bounding box. Demo image has a known cell count.",
+    klass: "IMG",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "afmcurveml",
+    name: "AFM-CurveML",
+    blurb:
+      "AFM force-curve analysis. Real contact-point detection + Hertz (sphere) / Sneddon (cone) least-squares fit for Young's modulus in SI units, plus adhesion from the retract minimum. Demo curve has a known modulus.",
+    klass: "IMG",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "tractionforceml",
+    name: "TractionForceML",
+    blurb:
+      "Traction-force / PIV displacement field. Real block-matching (normalized cross-correlation) between a relaxed and a deformed bead image → per-window vectors + a strain-energy proxy. Classical, honestly labelled. Demo recovers a known shift.",
+    klass: "IMG",
+    status: "live",
+    hosting: "always-on",
+  },
+  // --- FigureMiner: real text-layer caption + statistics mining (no GPU) ---
+  {
+    slug: "figureminer",
+    name: "FigureMiner",
+    blurb:
+      "Mine a paper's figures + stats. Real text-layer extraction of figure/table captions, reported statistics (p-values, n=, CIs, R²/r, mean±SD, fold-change), and unit-bearing measurements, linked per-figure. PDF or pasted text; pixel-level plot digitization is a documented GPU/vision extension.",
+    klass: "GAP",
+    status: "live",
+    hosting: "always-on",
+  },
+  // --- genomics / sequence cluster: real interpretable algorithms (no GPU) ---
+  {
+    slug: "chromatinaccess",
+    name: "ChromatinAccess",
+    blurb:
+      "DNA accessibility / regulatory-potential from sequence. Real interpretable feature model — GC content, Gardiner-Garden CpG islands, core-promoter motif scan (TATA / GC-box / CAAT / Initiator) — into a 0–1 accessibility score. A deep DNA-LM (Enformer/Evo) is the documented GPU path.",
+    klass: "DNA",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "aggregatepredict",
+    name: "AggregatePredict",
+    blurb:
+      "Amyloid / aggregation propensity from a protein sequence. Real windowed model — Chou-Fasman β-sheet propensity + Kyte-Doolittle hydrophobicity − net charge — flagging contiguous aggregation hot-spots. Interpretable and deterministic.",
+    klass: "GAP",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "channeldwell",
+    name: "ChannelDwell",
+    blurb:
+      "Single-channel idealization. Real half-amplitude threshold idealization of a single-channel current record into open/closed states, with open probability, dwell-time histograms, and ML single-exponential dwell constants. Demo recovers a known open probability.",
     klass: "GAP",
     status: "live",
     hosting: "always-on",

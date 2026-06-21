@@ -52,6 +52,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
+try:  # the shared LLM seam (optional synthesis only; never required)
+    import llm_client
+except Exception:  # pragma: no cover - import guard
+    llm_client = None  # type: ignore
+
 # --- config ----------------------------------------------------------------
 OPENALEX = "https://api.openalex.org"
 MAILTO = os.environ.get("OPENALEX_MAILTO", "gianyrox@gmail.com")
@@ -904,6 +909,54 @@ def evidence_strength(work: dict, claim_terms: set[str], now_year: int) -> float
     return round(min(1.0, 0.5 * overlap + 0.35 * min(uptake, 1.0) + 0.15 * recency), 4)
 
 
+_QBIO_SYNTH_SYSTEM = (
+    "You are a careful biophysics evidence summarizer. You are given a CLAIM, a "
+    "deterministic VERDICT already computed from retrieved literature, and the "
+    "actual retrieved EVIDENCE rows (title, year, venue, stance, snippet). Write "
+    "2-4 plain-sentence synthesis of what the retrieved evidence shows, FAITHFUL "
+    "to the supplied verdict and rows. Use ONLY the supplied evidence — do not "
+    "add facts, papers, numbers, or claims not present in the rows. If the "
+    "evidence is thin or contradictory, say so. Do not contradict the VERDICT. "
+    "No markdown, no citations beyond paper titles already given. Plain prose."
+)
+
+
+def _synthesize_qbio_with_llm(
+    claim: str, verdict: str, support: list[dict], contra: list[dict], neutral: list[dict]
+) -> Optional[str]:
+    """Optional grounded synthesis of the retrieved evidence. Returns a short
+    paragraph, or None if the LLM seam is unconfigured / unreachable / empty.
+    The deterministic verdict + scores remain the product regardless."""
+    if llm_client is None or not llm_client.enabled():
+        return None
+    if not (support or contra or neutral):
+        return None
+
+    def _slim(rows: list[dict], k: int) -> list[dict]:
+        out = []
+        for r in rows[:k]:
+            out.append({
+                "title": r.get("title"),
+                "year": r.get("year"),
+                "venue": r.get("venue"),
+                "stance": r.get("stance"),
+                "evidence": (r.get("evidence") or "")[:300],
+            })
+        return out
+
+    user = json.dumps({
+        "claim": claim,
+        "deterministic_verdict": verdict,
+        "supporting": _slim(support, 6),
+        "contradicting": _slim(contra, 6),
+        "neutral": _slim(neutral, 3),
+    }, ensure_ascii=False)
+    out = llm_client.chat(_QBIO_SYNTH_SYSTEM, user, max_tokens=400, temperature=0.2)
+    if not out:
+        return None
+    return out.strip()[:2000]
+
+
 def run_quantum_bio_rag(payload: dict) -> dict:
     """payload: { claim: str, limit?: int }
 
@@ -983,6 +1036,11 @@ def run_quantum_bio_rag(payload: dict) -> dict:
         verdict = "CONTESTED — supporting and contradicting evidence are balanced"
         strength_label = "contested"
 
+    # Optional grounded synthesis over the retrieved rows. Additive only — the
+    # deterministic verdict/scores above are the product; this is a readable
+    # summary of the SAME evidence, and is omitted entirely if the LLM is down.
+    synthesis = _synthesize_qbio_with_llm(claim, verdict, support, contra, neutral)
+
     return {
         "method": "claim-strength RAG over live OpenAlex (evidence-weighted stance + consensus)",
         "claim": claim,
@@ -990,6 +1048,8 @@ def run_quantum_bio_rag(payload: dict) -> dict:
         "claim_polarity": "positive" if claim_pol > 0 else "negative",
         "degraded": degraded,
         "verdict": verdict,
+        "synthesis": synthesis,                 # LLM summary of evidence, or None
+        "synthesis_available": bool(llm_client and llm_client.enabled()),
         "support_strength": strength_label,
         "support_score": support_score,        # weighted fraction supporting (0..1)
         "consensus": consensus,                # 0 = split, 1 = unanimous

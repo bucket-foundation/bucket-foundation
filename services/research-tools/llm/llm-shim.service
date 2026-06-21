@@ -1,0 +1,16 @@
+[Unit]
+Description=LLM auth-shim — bearer-gated reverse proxy in front of local Ollama (/v1/* only)
+After=network-online.target ollama.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Secret + config live in an EnvironmentFile that is NOT in git (chmod 600).
+# Installed by setup.sh to ~/.config/research-tools-llm/llm-shim.env
+EnvironmentFile=%h/.config/research-tools-llm/llm-shim.env
+ExecStart=/usr/bin/env python3 %h/agfarms/bucket-foundation/services/research-tools/llm/llm_shim.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

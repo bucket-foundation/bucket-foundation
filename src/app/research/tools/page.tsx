@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { TOOLS, type Tool } from "@/lib/tools";
 
-// Research-tools directory. Twenty tools served through bucket.foundation
+// Research-tools directory. Twenty-eight tools served through bucket.foundation
 // (FastAPI gateway on Hetzner → /api/research/<tool> proxy → this UI). See
 // docs/research-tools/04-implementation-architecture.md. The TOOLS registry
 // lives in src/lib/tools.ts (one source of truth — also drives per-tool
@@ -12,32 +12,32 @@ import { TOOLS, type Tool } from "@/lib/tools";
 export const metadata: Metadata = {
   title: "Research tools · run real instruments",
   description:
-    "Twenty free research instruments on bucket.foundation: protein stability (ΔΔG), ADMET screening, RNA folding, ephys fits, cryo-EM triage, plus literature/agent tools over the live OpenAlex index and a real awarded-grant corpus. Run on your input, publish to canon — the reader pays nothing.",
+    "Twenty-eight free research instruments on bucket.foundation: protein stability (ΔΔG), ADMET screening, RNA folding, ephys fits, calcium ΔF/F, cell segmentation, AFM modulus, traction PIV, figure mining, cryo-EM triage, plus literature/agent tools over the live OpenAlex index and a real awarded-grant corpus. Run on your input, publish to canon — the reader pays nothing.",
   alternates: { canonical: "/research/tools" },
   openGraph: {
     type: "website",
     url: "https://www.bucket.foundation/research/tools",
-    title: "Twenty free research tools · bucket.foundation",
+    title: "Twenty-eight free research tools · bucket.foundation",
     description:
-      "Real research instruments — protein stability, ADMET, RNA folding, ephys, and literature/agent tools over live OpenAlex — free to run, citeable forever.",
+      "Real research instruments — protein stability, ADMET, RNA folding, ephys, imaging/mechanobiology, and literature/agent tools over live OpenAlex — free to run, citeable forever.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Twenty free research tools · bucket.foundation",
+    title: "Twenty-eight free research tools · bucket.foundation",
     description:
-      "Real research instruments — protein stability, ADMET, RNA folding, ephys, and live-literature agent tools — free to run.",
+      "Real research instruments — protein stability, ADMET, RNA folding, ephys, imaging/mechanobiology, and live-literature agent tools — free to run.",
   },
 };
 
-// ItemList JSON-LD: the catalog of 20 SoftwareApplication tools, so search
-// engines and agents can enumerate the directory.
+// ItemList JSON-LD: the catalog of SoftwareApplication tools, so search engines
+// and agents can enumerate the directory.
 const TOOLS_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "@id": "https://www.bucket.foundation/research/tools#list",
   name: "bucket.foundation research tools",
   description:
-    "Twenty free research instruments served through bucket.foundation.",
+    "Free research instruments served through bucket.foundation.",
   numberOfItems: TOOLS.length,
   itemListElement: TOOLS.map((t, i) => ({
     "@type": "ListItem",
@@ -66,16 +66,19 @@ export default function Page() {
           <span className="inlay-gold">instruments.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Twenty tools, each running real logic on your input — protein
+          Twenty-eight tools, each running real logic on your input — protein
           stability, ADMET screening, trajectory mining, ephys, and cryo-EM
           triage; five literature/agent tools over the live OpenAlex index and a
           real awarded-grant corpus (PaperRadar, GrantDraft, MethodsMatcher,
           ReviewGuard, QuantumBioRAG); a DNA/RNA cluster (RNAStructure folding via
-          ViennaRNA, gRNA-Optimizer, RNA-FM-Embeds); a neuroscience cluster
-          (HH-FitML membrane fits, SpikeFeatures detection); and a gap-research
-          cluster (ProtocolGPT methods structuring, ToxinChannelFinder,
-          CitationGraph). Run one, read the result, and publish it to canon as a
-          citeable, paid-once artifact.
+          ViennaRNA, gRNA-Optimizer, RNA-FM-Embeds, ChromatinAccess); a
+          neuroscience cluster (HH-FitML membrane fits, SpikeFeatures detection,
+          ChannelDwell idealization); an imaging / mechanobiology cluster
+          (CalciumTraceML ΔF/F, CellSegTrack segmentation, AFM-CurveML modulus,
+          TractionForceML PIV); and a gap-research cluster (ProtocolGPT,
+          ToxinChannelFinder, CitationGraph, FigureMiner, AggregatePredict). Run
+          one, read the result, and publish it to canon as a citeable, paid-once
+          artifact.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 

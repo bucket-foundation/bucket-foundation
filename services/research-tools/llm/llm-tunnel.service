@@ -1,0 +1,20 @@
+[Unit]
+Description=LLM tunnel — exposes the bearer-gated shim (NOT raw Ollama) over cloudflared
+After=network-online.target llm-shim.service
+Wants=network-online.target
+Requires=llm-shim.service
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/research-tools-llm/llm-shim.env
+# Tunnels the SHIM (127.0.0.1:${LLM_SHIM_PORT}), never Ollama directly.
+# Named tunnel preferred for a stable hostname; this unit runs whatever
+# `tunnel.sh run` resolves to (named if configured, else quick tunnel).
+ExecStart=/bin/bash %h/agfarms/bucket-foundation/services/research-tools/llm/tunnel.sh run
+Restart=always
+RestartSec=10
+StandardOutput=append:%h/agfarms/bucket-foundation/services/research-tools/llm/tunnel.log
+StandardError=append:%h/agfarms/bucket-foundation/services/research-tools/llm/tunnel.log
+
+[Install]
+WantedBy=default.target

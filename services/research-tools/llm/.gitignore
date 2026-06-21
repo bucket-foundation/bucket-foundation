@@ -1,0 +1,5 @@
+# NEVER commit the live secret / env file or tunnel logs.
+llm-shim.env
+*.env
+quick-tunnel.log
+tunnel.log

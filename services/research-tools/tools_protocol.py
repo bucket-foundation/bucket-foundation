@@ -40,9 +40,15 @@ code change.
 """
 from __future__ import annotations
 
+import json
 import os
 import re
 from typing import Any, Optional
+
+try:  # the shared LLM seam (optional polish only; never required)
+    import llm_client
+except Exception:  # pragma: no cover - import guard
+    llm_client = None  # type: ignore
 
 # ===========================================================================
 # Methods knowledge base (the "templates" + lexicons the extractor runs on)
@@ -323,10 +329,74 @@ def _infer_title(text: str) -> str:
 
 
 # ===========================================================================
-# Optional LLM cleanup (OFF unless a key is present). Schema always enforced.
+# Optional LLM cleanup (OFF unless the LLM seam is configured). The rule
+# extractor always runs first and the schema is enforced; the model may ONLY
+# rewrite the human-readable `action` wording of existing steps — it cannot add,
+# remove, reorder, or renumber steps, and it cannot touch the parsed reagents,
+# timings, amounts, or safety flags. If the model is unreachable or returns
+# anything unexpected, we keep the deterministic steps verbatim.
 # ===========================================================================
 def _llm_available() -> bool:
+    # Configured local/remote OpenAI-compatible seam (default: Gian's local GPU
+    # LLM), OR a legacy hosted key. The seam is the preferred path.
+    if llm_client is not None and llm_client.enabled():
+        return True
     return bool(os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("OPENAI_API_KEY"))
+
+
+_POLISH_SYSTEM = (
+    "You are a lab-protocol copy-editor. You are given an ORDERED list of "
+    "protocol steps, each already parsed by a deterministic extractor. Rewrite "
+    "ONLY the wording of each step's action to read as a clear, imperative, "
+    "single-sentence lab instruction. You MUST NOT add, remove, reorder, merge, "
+    "or split steps; you MUST NOT change any numbers, volumes, times, "
+    "temperatures, reagents, or concentrations; you MUST NOT invent anything. "
+    "Return ONLY a JSON object of the exact shape "
+    '{"steps": [{"n": <int>, "action": <string>}]} with one entry per input '
+    "step, same `n` values, no markdown."
+)
+
+
+def _polish_steps_with_llm(steps: list[dict]) -> Optional[dict[int, str]]:
+    """Ask the LLM to refine ONLY the `action` text of the existing steps.
+
+    Returns a {n: polished_action} map for steps the model returned cleanly, or
+    None if the LLM is unavailable / failed / returned an unusable shape. The
+    caller keeps the deterministic action for any step not in the map, so this is
+    always safe and additive.
+    """
+    if llm_client is None or not llm_client.enabled() or not steps:
+        return None
+    valid_ns = {int(s["n"]) for s in steps}
+    user = json.dumps(
+        {"steps": [{"n": int(s["n"]), "action": s["action"]} for s in steps]},
+        ensure_ascii=False,
+    )
+    raw = llm_client.chat(_POLISH_SYSTEM, user, max_tokens=1200, temperature=0.1)
+    if not raw:
+        return None
+    txt = raw.strip()
+    # tolerate ```json fences
+    if txt.startswith("```"):
+        txt = re.sub(r"^```(?:json)?", "", txt).rsplit("```", 1)[0].strip()
+    start, end = txt.find("{"), txt.rfind("}")
+    if start == -1 or end == -1 or end < start:
+        return None
+    try:
+        obj = json.loads(txt[start:end + 1])
+    except (ValueError, TypeError):
+        return None
+    out: dict[int, str] = {}
+    for item in (obj.get("steps") or []):
+        try:
+            n = int(item.get("n"))
+            action = str(item.get("action") or "").strip()
+        except (TypeError, ValueError):
+            continue
+        # only accept rewrites for steps that actually exist (no injection)
+        if n in valid_ns and action:
+            out[n] = action if action.endswith((".", "!", "?")) else action + "."
+    return out or None
 
 
 # ===========================================================================
@@ -362,10 +432,22 @@ def run_protocol_gpt(payload: dict) -> dict:
             "n_steps": 0,
         }
 
+    # Optional LLM polish: refine ONLY the wording of existing steps. The
+    # deterministic structure (count, order, numbers, reagents, timings, safety)
+    # is preserved; if the LLM is down or misbehaves, steps are unchanged.
+    llm_applied = False
+    polished = _polish_steps_with_llm(proto["steps"])
+    if polished:
+        for s in proto["steps"]:
+            new_action = polished.get(int(s["n"]))
+            if new_action:
+                s["action"] = new_action
+        llm_applied = True
+
     return {
         "method": "deterministic rule/template extraction over a methods knowledge base",
         "llm_cleanup_available": _llm_available(),
-        "llm_cleanup_applied": False,  # TODO(deploy): wire optional model cleanup
+        "llm_cleanup_applied": llm_applied,
         "title": proto["title"],
         "n_steps": proto["n_steps"],
         "steps": proto["steps"],

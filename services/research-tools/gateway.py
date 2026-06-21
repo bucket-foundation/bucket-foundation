@@ -111,8 +111,28 @@ TOXIN_TOOLS = ["toxinchannelfinder"]
 # CitationGraph (services/research-tools/tools_citation.py) — REAL OpenAlex
 # citation-neighborhood graph + degree centrality. CPU/inline.
 CITATION_TOOLS = ["citationgraph"]
+# Imaging / mechanobiology cluster (services/research-tools/tools_imaging.py) —
+# REAL scipy + scikit-image signal/image processing. CPU/inline, no GPU.
+#   calciumtraceml  — ΔF/F + transient detection (signal processing)
+#   cellsegtrack    — cell segmentation (cellpose if installed, else watershed)
+#   afmcurveml      — AFM force-curve Hertz/Sneddon modulus fit
+#   tractionforceml — block-matching PIV displacement field (classical)
+IMAGING_TOOLS = ["calciumtraceml", "cellsegtrack", "afmcurveml", "tractionforceml"]
+# FigureMiner (services/research-tools/tools_figure.py) — REAL text-layer caption
+# + statistics + measurement mining (PDF via PyMuPDF/pypdf, or raw text). The
+# pixel-level plot-digitization stage is a documented GPU/vision extension.
+FIGURE_TOOLS = ["figureminer"]
+# Genomics / sequence cluster (services/research-tools/tools_genomics.py) — REAL
+# interpretable sequence + signal algorithms. CPU/inline, no GPU.
+#   chromatinaccess  — accessibility/regulatory potential from DNA (feature model)
+#   aggregatepredict — amyloid/aggregation propensity from a protein sequence
+#   channeldwell     — single-channel idealization + dwell-time analysis
+GENOMICS_TOOLS = ["chromatinaccess", "aggregatepredict", "channeldwell"]
 # REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
-PURE_TOOLS = RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS + PROTOCOL_TOOLS + TOXIN_TOOLS + CITATION_TOOLS
+PURE_TOOLS = (
+    RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS + PROTOCOL_TOOLS + TOXIN_TOOLS
+    + CITATION_TOOLS + IMAGING_TOOLS + FIGURE_TOOLS + GENOMICS_TOOLS
+)
 ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
 # price block travels from day one (zeroed). Metering seam lives in the Next
@@ -138,6 +158,14 @@ PRICE: dict[str, dict[str, Any]] = {
     "protocolgpt": {"tier": "structure", "usd": 0.0, "metered": False},
     "toxinchannelfinder": {"tier": "map", "usd": 0.0, "metered": False},
     "citationgraph": {"tier": "graph", "usd": 0.0, "metered": False},
+    "calciumtraceml": {"tier": "analyze", "usd": 0.0, "metered": False},
+    "cellsegtrack": {"tier": "segment", "usd": 0.0, "metered": False},
+    "afmcurveml": {"tier": "fit", "usd": 0.0, "metered": False},
+    "tractionforceml": {"tier": "analyze", "usd": 0.0, "metered": False},
+    "figureminer": {"tier": "mine", "usd": 0.0, "metered": False},
+    "chromatinaccess": {"tier": "predict", "usd": 0.0, "metered": False},
+    "aggregatepredict": {"tier": "predict", "usd": 0.0, "metered": False},
+    "channeldwell": {"tier": "analyze", "usd": 0.0, "metered": False},
 }
 
 # import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
@@ -199,6 +227,36 @@ except Exception as _e:  # pragma: no cover - import guard
     tools_citation = None  # type: ignore
     _CITATION_OK = False
     _CITATION_IMPORT_ERR = str(_e)
+
+# import the REAL imaging/mechanobiology backend (scipy + scikit-image).
+try:
+    import tools_imaging  # type: ignore
+    _IMAGING_OK = True
+    _IMAGING_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_imaging = None  # type: ignore
+    _IMAGING_OK = False
+    _IMAGING_IMPORT_ERR = str(_e)
+
+# import the REAL FigureMiner backend (PDF/text caption + statistics mining).
+try:
+    import tools_figure  # type: ignore
+    _FIGURE_OK = True
+    _FIGURE_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_figure = None  # type: ignore
+    _FIGURE_OK = False
+    _FIGURE_IMPORT_ERR = str(_e)
+
+# import the REAL genomics/sequence backend (interpretable sequence algorithms).
+try:
+    import tools_genomics  # type: ignore
+    _GENOMICS_OK = True
+    _GENOMICS_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_genomics = None  # type: ignore
+    _GENOMICS_OK = False
+    _GENOMICS_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
 # CORS allow-list. The intended caller is the same-origin Bucket Next proxy
@@ -675,6 +733,30 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
         )
         for t in CITATION_TOOLS
     },
+    **{
+        t: _make_pure_runner(
+            t, _IMAGING_OK, _IMAGING_IMPORT_ERR,
+            tools_imaging.IMAGING_RUNNERS if tools_imaging is not None else None,
+            "tools_imaging",
+        )
+        for t in IMAGING_TOOLS
+    },
+    **{
+        t: _make_pure_runner(
+            t, _FIGURE_OK, _FIGURE_IMPORT_ERR,
+            tools_figure.FIGURE_RUNNERS if tools_figure is not None else None,
+            "tools_figure",
+        )
+        for t in FIGURE_TOOLS
+    },
+    **{
+        t: _make_pure_runner(
+            t, _GENOMICS_OK, _GENOMICS_IMPORT_ERR,
+            tools_genomics.GENOMICS_RUNNERS if tools_genomics is not None else None,
+            "tools_genomics",
+        )
+        for t in GENOMICS_TOOLS
+    },
 }
 
 
@@ -818,6 +900,60 @@ class CitationGraphSubmit(BaseModel):
     limit: int = 15
 
 
+# --- imaging / mechanobiology cluster submit bodies ---
+class CalciumTraceSubmit(BaseModel):
+    # trace: JSON list of fluorescence samples, or "demo".
+    trace: Any = "demo"
+    fs_hz: float = 30.0
+    baseline_window_s: float = 3.0
+    thresh_mad: float = 3.0
+
+
+class CellSegSubmit(BaseModel):
+    # image: 2-D list-of-rows, or "demo".
+    image: Any = "demo"
+    min_distance: int = 5
+    sigma: float = 1.0
+
+
+class AFMCurveSubmit(BaseModel):
+    # z + force: JSON lists (same length); or z="demo".
+    z: Any = "demo"
+    force: Optional[list[float]] = None
+    radius_nm: float = 1000.0
+    geometry: str = "sphere"  # "sphere" | "cone"
+
+
+class TractionForceSubmit(BaseModel):
+    # reference + deformed: 2-D lists (same shape); or reference="demo".
+    reference: Any = "demo"
+    deformed: Optional[list[list[float]]] = None
+    window: int = 16
+    step: int = 8
+    search: int = 8
+
+
+# --- FigureMiner submit body ---
+class FigureMinerSubmit(BaseModel):
+    # text: paper text, or "demo".
+    text: str = "demo"
+
+
+# --- genomics / sequence cluster submit bodies ---
+class ChromatinAccessSubmit(BaseModel):
+    sequence: str
+
+
+class AggregatePredictSubmit(BaseModel):
+    sequence: str
+
+
+class ChannelDwellSubmit(BaseModel):
+    # trace: JSON list of pA samples, or "demo".
+    trace: Any = "demo"
+    fs_hz: float = 10000.0
+
+
 # --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
@@ -831,6 +967,9 @@ def health() -> dict:
         "protocol": PROTOCOL_TOOLS,
         "toxin": TOXIN_TOOLS,
         "citation": CITATION_TOOLS,
+        "imaging": IMAGING_TOOLS,
+        "figure": FIGURE_TOOLS,
+        "genomics": GENOMICS_TOOLS,
         "demo": DEMO_TOOLS,
         "rag_backend": _RAG_OK,
         "dnarna_backend": _DNARNA_OK,
@@ -838,6 +977,9 @@ def health() -> dict:
         "protocol_backend": _PROTOCOL_OK,
         "toxin_backend": _TOXIN_OK,
         "citation_backend": _CITATION_OK,
+        "imaging_backend": _IMAGING_OK,
+        "figure_backend": _FIGURE_OK,
+        "genomics_backend": _GENOMICS_OK,
         "version": "v1",
     }
 
@@ -1000,6 +1142,83 @@ def submit_citationgraph(r: CitationGraphSubmit) -> dict:
     if len((r.paper or "").strip()) < 4:
         raise HTTPException(400, "enter a DOI, OpenAlex ID, or paper title")
     return _dispatch("citationgraph", {"paper": r.paper.strip(), "limit": r.limit})
+
+
+# --- imaging / mechanobiology cluster submit endpoints ---------------------
+def _is_demo(v: Any) -> bool:
+    return isinstance(v, str) and v.strip().lower() == "demo"
+
+
+@app.post("/v1/calciumtraceml/submit")
+def submit_calciumtraceml(r: CalciumTraceSubmit) -> dict:
+    if not _is_demo(r.trace) and not (isinstance(r.trace, (list, tuple)) and len(r.trace) > 0):
+        raise HTTPException(400, 'trace must be a numeric array or the string "demo"')
+    return _dispatch("calciumtraceml", {
+        "trace": r.trace, "fs_hz": r.fs_hz,
+        "baseline_window_s": r.baseline_window_s, "thresh_mad": r.thresh_mad,
+    })
+
+
+@app.post("/v1/cellsegtrack/submit")
+def submit_cellsegtrack(r: CellSegSubmit) -> dict:
+    if not _is_demo(r.image) and not (isinstance(r.image, (list, tuple)) and len(r.image) > 0):
+        raise HTTPException(400, 'image must be a 2-D array or the string "demo"')
+    return _dispatch("cellsegtrack", {
+        "image": r.image, "min_distance": r.min_distance, "sigma": r.sigma,
+    })
+
+
+@app.post("/v1/afmcurveml/submit")
+def submit_afmcurveml(r: AFMCurveSubmit) -> dict:
+    if not _is_demo(r.z):
+        if not (isinstance(r.z, (list, tuple)) and r.force):
+            raise HTTPException(400, 'provide z + force arrays, or z="demo"')
+    if r.geometry not in ("sphere", "cone"):
+        raise HTTPException(400, "geometry must be 'sphere' or 'cone'")
+    return _dispatch("afmcurveml", {
+        "z": r.z, "force": r.force, "radius_nm": r.radius_nm, "geometry": r.geometry,
+    })
+
+
+@app.post("/v1/tractionforceml/submit")
+def submit_tractionforceml(r: TractionForceSubmit) -> dict:
+    if not _is_demo(r.reference):
+        if not (isinstance(r.reference, (list, tuple)) and r.deformed):
+            raise HTTPException(400, 'provide reference + deformed images, or reference="demo"')
+    return _dispatch("tractionforceml", {
+        "reference": r.reference, "deformed": r.deformed,
+        "window": r.window, "step": r.step, "search": r.search,
+    })
+
+
+# --- FigureMiner submit endpoint -------------------------------------------
+@app.post("/v1/figureminer/submit")
+def submit_figureminer(r: FigureMinerSubmit) -> dict:
+    if not _is_demo(r.text) and len((r.text or "").strip()) < 20:
+        raise HTTPException(400, 'paste paper text (>= 20 chars) or use "demo"')
+    return _dispatch("figureminer", {"text": r.text})
+
+
+# --- genomics / sequence cluster submit endpoints --------------------------
+@app.post("/v1/chromatinaccess/submit")
+def submit_chromatinaccess(r: ChromatinAccessSubmit) -> dict:
+    if not _is_demo(r.sequence) and len(_seq(r.sequence)) < 20:
+        raise HTTPException(400, 'enter a DNA sequence (>= 20 nt) or "demo"')
+    return _dispatch("chromatinaccess", {"sequence": r.sequence})
+
+
+@app.post("/v1/aggregatepredict/submit")
+def submit_aggregatepredict(r: AggregatePredictSubmit) -> dict:
+    if not _is_demo(r.sequence) and len(_seq(r.sequence)) < 7:
+        raise HTTPException(400, 'enter a protein sequence (>= 7 aa) or "demo"')
+    return _dispatch("aggregatepredict", {"sequence": r.sequence})
+
+
+@app.post("/v1/channeldwell/submit")
+def submit_channeldwell(r: ChannelDwellSubmit) -> dict:
+    if not _is_demo(r.trace) and not (isinstance(r.trace, (list, tuple)) and len(r.trace) > 0):
+        raise HTTPException(400, 'trace must be a numeric array or the string "demo"')
+    return _dispatch("channeldwell", {"trace": r.trace, "fs_hz": r.fs_hz})
 
 
 def _status_envelope(job: Job) -> dict:

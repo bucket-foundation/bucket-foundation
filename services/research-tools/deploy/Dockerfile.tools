@@ -1,5 +1,10 @@
-# research-tools-gateway — STANDARD (fat) image: the 9 lean tools + 5 vendored CPU tools
+# research-tools-gateway — STANDARD (fat) image: the lean tools + 5 vendored CPU tools
 # =======================================================================================
+# 2026-06-21: + three new REAL CPU clusters (no GPU, no extra vendoring):
+#   imaging/mechanobiology (tools_imaging: CalciumTraceML, CellSegTrack, AFM-CurveML,
+#   TractionForceML — scipy + scikit-image), FigureMiner (tools_figure — text/PDF
+#   mining), genomics/sequence (tools_genomics: ChromatinAccess, AggregatePredict,
+#   ChannelDwell — numpy). Suite is now 28 tools.
 # Builds the FastAPI gateway (gateway.py) + the three self-contained REAL backends
 # (tools_rag, tools_dnarna, tools_neuro) AND vendors the source + weights of the five
 # CPU-feasible subprocess tools so they run live WITHOUT shelling out to ~/agfarms:
@@ -58,9 +63,12 @@ RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu 
     && pip install --no-cache-dir -r /app/requirements.tools.txt
 
 # App + the REAL self-contained backends (RAG x5 incl. quantumbiorag, DNA/RNA,
-# neuro, protocolgpt, toxinchannelfinder, citationgraph).
+# neuro, protocolgpt, toxinchannelfinder, citationgraph, AND the three new CPU
+# clusters: imaging/mechanobiology (tools_imaging), FigureMiner (tools_figure),
+# genomics/sequence (tools_genomics)).
 COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py \
-     tools_protocol.py tools_toxin.py tools_citation.py /app/
+     tools_protocol.py tools_toxin.py tools_citation.py \
+     tools_imaging.py tools_figure.py tools_genomics.py /app/
 
 # Vendored tool source + baked weights/corpora.
 COPY vendor/ /app/vendor/
