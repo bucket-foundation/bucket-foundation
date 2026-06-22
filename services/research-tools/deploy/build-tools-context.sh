@@ -34,9 +34,14 @@ mkdir -p "$STAGE/vendor/tools" "$STAGE/deploy" "$STAGE/hf-cache/hub"
 # tools_imaging (CalciumTraceML/CellSegTrack/AFM-CurveML/TractionForceML),
 # tools_figure (FigureMiner), tools_genomics (ChromatinAccess/AggregatePredict/
 # ChannelDwell). All stdlib/CPU (scipy/scikit-image/numpy); no extra vendoring.
+# NOTE: tools_fair (FAIRCheck) + tools_repli (RepliCheck) are the 2026-06-22
+# all-field horizontal tools; llm_client is the OPTIONAL shared LLM seam
+# (tools_rag + tools_protocol import it under a try/except — it no-ops without
+# an API key). All three MUST be staged or the Dockerfile COPY fails.
 cp "$RT/gateway.py" "$RT/tools_rag.py" "$RT/tools_dnarna.py" "$RT/tools_neuro.py" \
    "$RT/tools_protocol.py" "$RT/tools_toxin.py" "$RT/tools_citation.py" \
-   "$RT/tools_imaging.py" "$RT/tools_figure.py" "$RT/tools_genomics.py" "$STAGE/"
+   "$RT/tools_imaging.py" "$RT/tools_figure.py" "$RT/tools_genomics.py" \
+   "$RT/tools_fair.py" "$RT/tools_repli.py" "$RT/llm_client.py" "$STAGE/"
 cp "$RT/deploy/requirements.tools.txt" "$RT/deploy/Dockerfile.tools" "$STAGE/deploy/"
 
 ex=(--exclude '__pycache__' --exclude 'out' --exclude '.pytest_cache')

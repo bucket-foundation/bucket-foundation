@@ -73,7 +73,7 @@ RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu 
 COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py \
      tools_protocol.py tools_toxin.py tools_citation.py \
      tools_imaging.py tools_figure.py tools_genomics.py \
-     tools_fair.py tools_repli.py /app/
+     tools_fair.py tools_repli.py llm_client.py /app/
 
 # Vendored tool source + baked weights/corpora.
 COPY vendor/ /app/vendor/
