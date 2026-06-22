@@ -4,7 +4,11 @@
 #   imaging/mechanobiology (tools_imaging: CalciumTraceML, CellSegTrack, AFM-CurveML,
 #   TractionForceML — scipy + scikit-image), FigureMiner (tools_figure — text/PDF
 #   mining), genomics/sequence (tools_genomics: ChromatinAccess, AggregatePredict,
-#   ChannelDwell — numpy). Suite is now 28 tools.
+#   ChannelDwell — numpy). Suite was 28 tools.
+# 2026-06-22: + two ALL-FIELD horizontal metascience tools (no GPU, no new deps):
+#   FAIRCheck (tools_fair — Wilkinson-2016 FAIR rubric, pure stdlib) and
+#   RepliCheck (tools_repli — statcheck p-value recompute + GRIM, scipy.stats).
+#   These serve EVERY discipline (the 1.17M researchers). Suite is now 30 tools.
 # Builds the FastAPI gateway (gateway.py) + the three self-contained REAL backends
 # (tools_rag, tools_dnarna, tools_neuro) AND vendors the source + weights of the five
 # CPU-feasible subprocess tools so they run live WITHOUT shelling out to ~/agfarms:
@@ -68,7 +72,8 @@ RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu 
 # genomics/sequence (tools_genomics)).
 COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py \
      tools_protocol.py tools_toxin.py tools_citation.py \
-     tools_imaging.py tools_figure.py tools_genomics.py /app/
+     tools_imaging.py tools_figure.py tools_genomics.py \
+     tools_fair.py tools_repli.py /app/
 
 # Vendored tool source + baked weights/corpora.
 COPY vendor/ /app/vendor/

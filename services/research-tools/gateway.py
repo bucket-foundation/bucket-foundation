@@ -128,10 +128,19 @@ FIGURE_TOOLS = ["figureminer"]
 #   aggregatepredict — amyloid/aggregation propensity from a protein sequence
 #   channeldwell     — single-channel idealization + dwell-time analysis
 GENOMICS_TOOLS = ["chromatinaccess", "aggregatepredict", "channeldwell"]
+# All-field HORIZONTAL tools (services/research-tools/tools_fair.py +
+# tools_repli.py) — serve EVERY discipline (the 1.17M researchers), not one
+# field. FAIR data management + statistics reproducibility are funder-mandated
+# across NIH/NSF/Horizon/Wellcome/Gates. REAL deterministic rubric + scipy math,
+# CPU/inline, no network, no GPU, render "json".
+#   faircheck   — FAIR (Findable/Accessible/Interoperable/Reusable) rubric
+#   replicheck  — statcheck p-value recomputation + GRIM test + reporting flags
+HORIZONTAL_TOOLS = ["faircheck", "replicheck"]
 # REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
 PURE_TOOLS = (
     RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS + PROTOCOL_TOOLS + TOXIN_TOOLS
     + CITATION_TOOLS + IMAGING_TOOLS + FIGURE_TOOLS + GENOMICS_TOOLS
+    + HORIZONTAL_TOOLS
 )
 ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
@@ -166,6 +175,8 @@ PRICE: dict[str, dict[str, Any]] = {
     "chromatinaccess": {"tier": "predict", "usd": 0.0, "metered": False},
     "aggregatepredict": {"tier": "predict", "usd": 0.0, "metered": False},
     "channeldwell": {"tier": "analyze", "usd": 0.0, "metered": False},
+    "faircheck": {"tier": "assess", "usd": 0.0, "metered": False},
+    "replicheck": {"tier": "check", "usd": 0.0, "metered": False},
 }
 
 # import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
@@ -257,6 +268,26 @@ except Exception as _e:  # pragma: no cover - import guard
     tools_genomics = None  # type: ignore
     _GENOMICS_OK = False
     _GENOMICS_IMPORT_ERR = str(_e)
+
+# import the REAL FAIRCheck backend (Wilkinson-2016 FAIR rubric, no network).
+try:
+    import tools_fair  # type: ignore
+    _FAIR_OK = True
+    _FAIR_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_fair = None  # type: ignore
+    _FAIR_OK = False
+    _FAIR_IMPORT_ERR = str(_e)
+
+# import the REAL RepliCheck backend (statcheck + GRIM via scipy.stats).
+try:
+    import tools_repli  # type: ignore
+    _REPLI_OK = True
+    _REPLI_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_repli = None  # type: ignore
+    _REPLI_OK = False
+    _REPLI_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
 # CORS allow-list. The intended caller is the same-origin Bucket Next proxy
@@ -757,6 +788,14 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
         )
         for t in GENOMICS_TOOLS
     },
+    "faircheck": _make_pure_runner(
+        "faircheck", _FAIR_OK, _FAIR_IMPORT_ERR,
+        tools_fair.FAIR_RUNNERS if tools_fair is not None else None, "tools_fair",
+    ),
+    "replicheck": _make_pure_runner(
+        "replicheck", _REPLI_OK, _REPLI_IMPORT_ERR,
+        tools_repli.REPLI_RUNNERS if tools_repli is not None else None, "tools_repli",
+    ),
 }
 
 
@@ -954,6 +993,19 @@ class ChannelDwellSubmit(BaseModel):
     fs_hz: float = 10000.0
 
 
+# --- all-field horizontal cluster submit bodies (FAIRCheck / RepliCheck) ---
+class FAIRCheckSubmit(BaseModel):
+    # record: a dict of metadata fields, a JSON string of the same, or "demo".
+    record: Any = "demo"
+
+
+class RepliCheckSubmit(BaseModel):
+    # text: a Results section (string), or "demo".
+    text: str = "demo"
+    alpha: float = 0.05
+    items: int = 1  # integer items averaged per mean (GRIM scale granularity)
+
+
 # --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
@@ -970,6 +1022,7 @@ def health() -> dict:
         "imaging": IMAGING_TOOLS,
         "figure": FIGURE_TOOLS,
         "genomics": GENOMICS_TOOLS,
+        "horizontal": HORIZONTAL_TOOLS,
         "demo": DEMO_TOOLS,
         "rag_backend": _RAG_OK,
         "dnarna_backend": _DNARNA_OK,
@@ -980,6 +1033,8 @@ def health() -> dict:
         "imaging_backend": _IMAGING_OK,
         "figure_backend": _FIGURE_OK,
         "genomics_backend": _GENOMICS_OK,
+        "fair_backend": _FAIR_OK,
+        "repli_backend": _REPLI_OK,
         "version": "v1",
     }
 
@@ -1219,6 +1274,30 @@ def submit_channeldwell(r: ChannelDwellSubmit) -> dict:
     if not _is_demo(r.trace) and not (isinstance(r.trace, (list, tuple)) and len(r.trace) > 0):
         raise HTTPException(400, 'trace must be a numeric array or the string "demo"')
     return _dispatch("channeldwell", {"trace": r.trace, "fs_hz": r.fs_hz})
+
+
+# --- all-field horizontal cluster submit endpoints (FAIRCheck / RepliCheck) -
+@app.post("/v1/faircheck/submit")
+def submit_faircheck(r: FAIRCheckSubmit) -> dict:
+    rec = r.record
+    if _is_demo(rec):
+        return _dispatch("faircheck", {"record": "demo"})
+    if isinstance(rec, dict):
+        if not rec:
+            raise HTTPException(400, "record is empty — supply at least one metadata field")
+        return _dispatch("faircheck", {"record": rec})
+    if isinstance(rec, str):
+        if len(rec.strip()) < 2:
+            raise HTTPException(400, 'provide a metadata record (JSON object or fields), or "demo"')
+        return _dispatch("faircheck", {"record": rec})
+    raise HTTPException(400, 'record must be a metadata object, a JSON string, or "demo"')
+
+
+@app.post("/v1/replicheck/submit")
+def submit_replicheck(r: RepliCheckSubmit) -> dict:
+    if not _is_demo(r.text) and len((r.text or "").strip()) < 8:
+        raise HTTPException(400, 'paste a Results section with reported statistics, or use "demo"')
+    return _dispatch("replicheck", {"text": r.text, "alpha": r.alpha, "items": r.items})
 
 
 def _status_envelope(job: Job) -> dict:

@@ -5,22 +5,28 @@
 > Turn the foundation (887k grants / $532B, 11 tools, research-atlas schema) into a
 > **complete, connected, LIVE** platform. **Milestone for "real": make it a graph + make it live + turn the flywheel once.**
 
-## Status snapshot (2026-06-21)
+## Status snapshot (2026-06-22)
 - research-atlas: 887,016 grants · 99,650 orgs · 170,408 people · 69 funders · $532.0B · 4.17M rows (NIH/NSF/CORDIS/UKRI, recent years). **0 orgs ROR-resolved. No output side. Not yet a graph.**
-- Tools: **28 built** (was 20 → +8 real CPU tools on 2026-06-21). **None deployed live.**
+- Tools: **30 built** (was 20 → +8 real CPU tools on 2026-06-21 → +2 all-field horizontal tools on 2026-06-22). **None deployed live.**
   - 7 biophysics subprocess (LabBrain, ProteinScout, StabilityDesigner, ScreenServer, PatchSeqML) + 2 GPU-demo (TrajMine, CryoTriage)
   - RAG x5 (PaperRadar, GrantDraft, MethodsMatcher, ReviewGuard, QuantumBioRAG)
   - DNA/RNA x3 (RNAStructure, gRNA-Optimizer, RNA-FM-Embeds)
   - neuro x2 (HH-FitML, SpikeFeatures)
   - gap x3 (ProtocolGPT, ToxinChannelFinder, CitationGraph)
-  - **NEW imaging/mechanobiology x4** (CalciumTraceML, CellSegTrack, AFM-CurveML, TractionForceML)
-  - **NEW gap x3** (FigureMiner, AggregatePredict, ChannelDwell)
-  - **NEW DNA x1** (ChromatinAccess)
-- All 8 new tools: REAL scipy/scikit-image/numpy algorithms, JSON contract, no-network correctness tests (suite 89 → 120 passing).
+  - imaging/mechanobiology x4 (CalciumTraceML, CellSegTrack, AFM-CurveML, TractionForceML)
+  - gap x3 (FigureMiner, AggregatePredict, ChannelDwell)
+  - DNA x1 (ChromatinAccess)
+  - **NEW all-field horizontal x2** (FAIRCheck, RepliCheck) — these serve EVERY discipline (the 1.17M researchers), not one field: FAIR data management + statistics reproducibility, funder-mandated across NIH/NSF/Horizon/Wellcome/Gates.
+- All 10 new tools: REAL scipy/scikit-image/numpy algorithms (FAIRCheck = pure-stdlib deterministic rubric; RepliCheck = exact scipy.stats + GRIM integer math), JSON contract, no-network correctness tests (suite 89 → 120 → 148 passing).
 - Publish surface built; **flywheel not turning** (GitHub-raw downloads, no real DOI yet).
 
-### Built vs the 54-tool needs map (2026-06-21)
-**Built (CPU, real, no GPU) — the 8 added this pass:**
+### Built vs the 54-tool needs map (2026-06-22)
+**Built (CPU, real, no GPU) — the 2 ALL-FIELD horizontal tools added 2026-06-22:**
+- FAIRCheck — FAIR (Findable/Accessible/Interoperable/Reusable) rubric over Wilkinson 2016's 15 sub-principles (F1–F4, A1/A1.1/A2, I1–I3, R1/R1.1–R1.3): concrete deterministic checks (persistent identifier, open license, machine-readable/standard formats, community vocabularies, provenance) → per-principle subscores + overall 0–100 FAIR score + a priority-ranked fix list. Pure stdlib. Funder-mandated (NIH/NSF/Horizon/Wellcome/Gates DMSP).
+- RepliCheck — statistics reproducibility: statcheck-style p-value recomputation (t/F/χ²/r + df → exact two-tailed scipy.stats; Nuijten 2016) + GRIM test (Brown & Heathers 2017, exact integer arithmetic) + reporting flags (missing multiple-comparison correction / CIs / effect sizes / underpowered hints). Parses pasted Results text with regex; never crashes on malformed input.
+- *These two are the horizontal tools that serve every discipline (the 1.17M-researcher corpus), per the atlas USERS_NEEDS roadmap — FAIR data management + statistics reproducibility are the cross-cutting, funder-mandated needs.*
+
+**Built (CPU, real, no GPU) — the 8 added 2026-06-21:**
 - CalciumTraceML — ΔF/F (rolling-percentile F0) + MAD transient detection + decay-τ fit.
 - CellSegTrack — Cellpose-if-installed, else Otsu + distance-transform seeded watershed + per-object metrics.
 - AFM-CurveML — contact-point detection + Hertz/Sneddon Young's-modulus least-squares fit + adhesion.

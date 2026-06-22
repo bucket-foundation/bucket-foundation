@@ -27,6 +27,16 @@
 #     ChannelDwell — pure numpy + stdlib re. NO new dependencies.
 # Net new hard dependency vs the prior fat image: PyMuPDF (for FigureMiner PDF
 # input). scikit-image + scipy + numpy + pypdf are already pinned below.
+#
+# NEW (2026-06-22) — two ALL-FIELD horizontal metascience tools, CPU, NO GPU,
+# NO new dependencies:
+#   * FAIRCheck (tools_fair.py): FAIR (Findable/Accessible/Interoperable/Reusable)
+#     rubric over Wilkinson 2016's 15 sub-principles + funder DMSP — pure stdlib
+#     (json + re). NO new dependencies.
+#   * RepliCheck (tools_repli.py): statcheck-style p-value recomputation + GRIM
+#     test + reporting flags — uses scipy.stats (already pinned `scipy>=1.13`
+#     below) for exact two-tailed distributions. NO new dependencies.
+# These serve EVERY discipline (the 1.17M-researcher corpus), not one field.
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 pydantic==2.10.4

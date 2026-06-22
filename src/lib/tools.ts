@@ -1,7 +1,7 @@
 /**
  * bucket.foundation — research-tools registry
  * -------------------------------------------
- * Single source of truth for the 28 research tools served through
+ * Single source of truth for the 30 research tools served through
  * bucket.foundation (FastAPI gateway on Hetzner → /api/research/<tool> proxy →
  * the per-tool UI). This was previously inlined in
  * src/app/research/tools/page.tsx; it now lives here so the same data drives:
@@ -15,7 +15,7 @@
 
 import type { ToolHosting } from "@/lib/support";
 
-export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG";
+export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG" | "META";
 export type ToolStatus = "live" | "demo";
 
 export type Tool = {
@@ -28,7 +28,9 @@ export type Tool = {
   // NEURO = neuroscience cluster (scipy fits + spike detection, real logic);
   // GAP = gap-research cluster (rule extraction / curated KB / OpenAlex graph);
   // IMG = imaging/mechanobiology cluster (scipy + scikit-image signal/image
-  //       processing: calcium ΔF/F, cell segmentation, AFM modulus, PIV).
+  //       processing: calcium ΔF/F, cell segmentation, AFM modulus, PIV);
+  // META = all-field horizontal metascience tool (FAIR data management,
+  //        statistics reproducibility) — serves EVERY discipline, not one field.
   klass: ToolClass;
   // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: ToolStatus;
@@ -289,6 +291,26 @@ export const TOOLS: Tool[] = [
     blurb:
       "Single-channel idealization. Real half-amplitude threshold idealization of a single-channel current record into open/closed states, with open probability, dwell-time histograms, and ML single-exponential dwell constants. Demo recovers a known open probability.",
     klass: "GAP",
+    status: "live",
+    hosting: "always-on",
+  },
+  // --- all-field HORIZONTAL metascience tools: serve every discipline (the
+  //     1.17M researchers), not one field. Funder-mandated (DMSP + reproducibility). ---
+  {
+    slug: "faircheck",
+    name: "FAIRCheck",
+    blurb:
+      "Score a dataset's metadata for FAIR compliance. Real deterministic rubric over Wilkinson 2016's 15 sub-principles — persistent identifier, open license, machine-readable/standard formats, community vocabularies, provenance — into per-principle subscores, an overall 0–100 FAIR score, and a prioritized fix list. Funder-mandated (NIH/NSF/Horizon/Wellcome/Gates DMSP).",
+    klass: "META",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "replicheck",
+    name: "RepliCheck",
+    blurb:
+      "Check reported statistics for reproducibility. Real statcheck-style p-value recomputation (t/F/χ²/r + df → exact two-tailed scipy), the GRIM test for impossible means, and flags for missing multiple-comparison correction, CIs, and effect sizes. Paste a Results section; deterministic, never guesses.",
+    klass: "META",
     status: "live",
     hosting: "always-on",
   },
