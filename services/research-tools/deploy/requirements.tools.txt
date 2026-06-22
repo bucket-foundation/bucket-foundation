@@ -37,6 +37,20 @@
 #     test + reporting flags — uses scipy.stats (already pinned `scipy>=1.13`
 #     below) for exact two-tailed distributions. NO new dependencies.
 # These serve EVERY discipline (the 1.17M-researcher corpus), not one field.
+#
+# NEW (2026-06-22, later) — FIVE per-field NON-bio tools, CPU, NO GPU:
+#   * CausalDesigner (tools_causal.py): DAG construction + Pearl back-door
+#     criterion + valid adjustment set via d-separation — uses networkx (the ONE
+#     new dependency below).
+#   * MaterialsFeaturizer (tools_materials.py): Magpie-style composition
+#     descriptors from a built-in element table — pure stdlib (re). NO new dep.
+#   * PowerPlan (tools_power.py): statistical power & sample size — scipy.stats
+#     noncentral t/F + normal/Fisher-z (already pinned scipy>=1.13). NO new dep.
+#   * GeoSummary (tools_geo.py): trend (Mann-Kendall/Theil-Sen) + seasonality +
+#     spatial extent — numpy + scipy.stats (already pinned). NO new dep.
+#   * MLReproCard (tools_mlrepro.py): ML reproducibility rubric + model card —
+#     pure stdlib (json + re). NO new dep.
+# Net new hard dependency: networkx (CausalDesigner only).
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 pydantic==2.10.4
@@ -46,6 +60,7 @@ python-multipart==0.0.20
 numpy>=1.26,<2.3
 scipy>=1.13
 ViennaRNA==2.7.0
+networkx>=3.0               # CausalDesigner: DAG + d-separation / backdoor criterion
 
 # --- shared scientific stack for the vendored CPU tools ---
 # (loose lower-bound pins so the resolver can satisfy mdtraj/deeptime/scikit-image

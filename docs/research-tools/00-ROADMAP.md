@@ -7,7 +7,7 @@
 
 ## Status snapshot (2026-06-22)
 - research-atlas: 887,016 grants · 99,650 orgs · 170,408 people · 69 funders · $532.0B · 4.17M rows (NIH/NSF/CORDIS/UKRI, recent years). **0 orgs ROR-resolved. No output side. Not yet a graph.**
-- Tools: **30 built** (was 20 → +8 real CPU tools on 2026-06-21 → +2 all-field horizontal tools on 2026-06-22). **None deployed live.**
+- Tools: **35 built** (was 20 → +8 real CPU tools on 2026-06-21 → +2 all-field horizontal tools on 2026-06-22 → +5 per-field non-bio tools on 2026-06-22). **None deployed live.**
   - 7 biophysics subprocess (LabBrain, ProteinScout, StabilityDesigner, ScreenServer, PatchSeqML) + 2 GPU-demo (TrajMine, CryoTriage)
   - RAG x5 (PaperRadar, GrantDraft, MethodsMatcher, ReviewGuard, QuantumBioRAG)
   - DNA/RNA x3 (RNAStructure, gRNA-Optimizer, RNA-FM-Embeds)
@@ -16,11 +16,20 @@
   - imaging/mechanobiology x4 (CalciumTraceML, CellSegTrack, AFM-CurveML, TractionForceML)
   - gap x3 (FigureMiner, AggregatePredict, ChannelDwell)
   - DNA x1 (ChromatinAccess)
-  - **NEW all-field horizontal x2** (FAIRCheck, RepliCheck) — these serve EVERY discipline (the 1.17M researchers), not one field: FAIR data management + statistics reproducibility, funder-mandated across NIH/NSF/Horizon/Wellcome/Gates.
-- All 10 new tools: REAL scipy/scikit-image/numpy algorithms (FAIRCheck = pure-stdlib deterministic rubric; RepliCheck = exact scipy.stats + GRIM integer math), JSON contract, no-network correctness tests (suite 89 → 120 → 148 passing).
+  - all-field horizontal x2 (FAIRCheck, RepliCheck) — serve EVERY discipline (the 1.17M researchers), not one field: FAIR data management + statistics reproducibility, funder-mandated across NIH/NSF/Horizon/Wellcome/Gates.
+  - **NEW per-field NON-bio x5** (CausalDesigner, MaterialsFeaturizer, PowerPlan, GeoSummary, MLReproCard) — the biggest CPU-feasible non-bio fields in the USERS_NEEDS roadmap: econ-social causal inference, materials featurization, universal power analysis, earth-climate series summary, cs-ml reproducibility.
+- All 15 new tools: REAL scipy/scikit-image/numpy/networkx algorithms (FAIRCheck/MaterialsFeaturizer/MLReproCard = pure-stdlib deterministic rubrics; RepliCheck/PowerPlan = exact scipy.stats; CausalDesigner = real do-calculus via networkx d-separation; GeoSummary = numpy/scipy Mann-Kendall/Theil-Sen), JSON contract, no-network correctness tests (suite 89 → 120 → 148 → 199 passing).
 - Publish surface built; **flywheel not turning** (GitHub-raw downloads, no real DOI yet).
 
 ### Built vs the 54-tool needs map (2026-06-22)
+**Built (CPU, real, no GPU) — the 5 PER-FIELD non-bio tools added 2026-06-22 (later):**
+These target the biggest CPU-feasible NON-bio fields in `research-atlas/docs/USERS_NEEDS.md`.
+- CausalDesigner *(econ-social, 42,276 PIs)* — DAG construction (networkx) → backdoor-path enumeration (Pearl's back-door criterion) → valid minimal adjustment set via d-separation in the proper back-door graph (`nx.is_d_separator`, so the set is *checked*, and never includes a collider/mediator/post-treatment node) → estimator recommendation (DiD/RDD/IV/matching/regression) with identifying assumptions + threats. Verified: on the classic smoking→cancer DAG with a genetic confounder, a mediator (tar), and a collider (hospitalized), the recovered adjustment set is exactly {gene}.
+- MaterialsFeaturizer *(materials, 44,536 PIs)* — formula parser (subscripts/fractions/nested parens) → Magpie-style composition descriptors (Ward 2016) from a built-in element table: composition-weighted mean/range/avg-deviation/mode of atomic weight, Pauling EN, atomic radius, melting point, period/group, valence electrons + a flat ML feature vector. Verified: NaCl mean Pauling EN = 2.045, molar mass ≈ 58.44 g/mol.
+- PowerPlan *(universal; esp. social/biomed)* — closed-form statistical power & sample size via scipy noncentral-t (t-tests), noncentral-F (one-way ANOVA / Cohen's f), normal-approx z (two proportions), and the Fisher-z transform (correlation); solve for n / power / minimum-detectable-effect / alpha by monotone bracketing. Verified: d=0.5, α=.05 two-tailed, power=.80 → n=64 per group (the G*Power textbook value); ANOVA f=0.25/4 groups → 45; r=0.3 → 85.
+- GeoSummary *(earth-climate, 116,840 PIs)* — descriptives + missing-data accounting; trend via OLS AND the distribution-free Mann-Kendall test + Theil-Sen slope (the standard climatological trend test); per-phase seasonal climatology + variance explained; lag-1 autocorrelation; haversine spatial extent. Verified: recovers a planted +0.10/step slope (Theil-Sen exact) and a significant increasing Mann-Kendall trend on a synthetic monthly series.
+- MLReproCard *(cs-ml, 44,999 PIs)* — deterministic reproducibility rubric (18 weighted checks across data/code/training/evaluation/compute/sharing; NeurIPS/ICML checklists + Mitchell 2019 Model Cards + Gundersen taxonomy) → flags missing repro elements, per-dimension subscores + overall 0–100 score, an R0–R3 level, and a normalized model card. Verified: a ResNet-50/ImageNet experiment missing seed/dataset-version/environment/hardware flags exactly those gaps and scores below a fully-specified version (which reaches R3).
+
 **Built (CPU, real, no GPU) — the 2 ALL-FIELD horizontal tools added 2026-06-22:**
 - FAIRCheck — FAIR (Findable/Accessible/Interoperable/Reusable) rubric over Wilkinson 2016's 15 sub-principles (F1–F4, A1/A1.1/A2, I1–I3, R1/R1.1–R1.3): concrete deterministic checks (persistent identifier, open license, machine-readable/standard formats, community vocabularies, provenance) → per-principle subscores + overall 0–100 FAIR score + a priority-ranked fix list. Pure stdlib. Funder-mandated (NIH/NSF/Horizon/Wellcome/Gates DMSP).
 - RepliCheck — statistics reproducibility: statcheck-style p-value recomputation (t/F/χ²/r + df → exact two-tailed scipy.stats; Nuijten 2016) + GRIM test (Brown & Heathers 2017, exact integer arithmetic) + reporting flags (missing multiple-comparison correction / CIs / effect sizes / underpowered hints). Parses pasted Results text with regex; never crashes on malformed input.

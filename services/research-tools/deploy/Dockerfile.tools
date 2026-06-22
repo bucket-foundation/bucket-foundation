@@ -8,7 +8,15 @@
 # 2026-06-22: + two ALL-FIELD horizontal metascience tools (no GPU, no new deps):
 #   FAIRCheck (tools_fair — Wilkinson-2016 FAIR rubric, pure stdlib) and
 #   RepliCheck (tools_repli — statcheck p-value recompute + GRIM, scipy.stats).
-#   These serve EVERY discipline (the 1.17M researchers). Suite is now 30 tools.
+#   These serve EVERY discipline (the 1.17M researchers). Suite was 30 tools.
+# 2026-06-22 (later): + FIVE per-field NON-bio tools for the biggest CPU-feasible
+#   fields in research-atlas/docs/USERS_NEEDS.md (no GPU):
+#     CausalDesigner (tools_causal — DAG + backdoor/adjustment set; adds networkx),
+#     MaterialsFeaturizer (tools_materials — Magpie descriptors, pure stdlib),
+#     PowerPlan (tools_power — scipy.stats noncentral power),
+#     GeoSummary (tools_geo — numpy/scipy Mann-Kendall/Theil-Sen),
+#     MLReproCard (tools_mlrepro — deterministic repro rubric, pure stdlib).
+#   ONE new hard dependency: networkx (CausalDesigner). Suite is now 35 tools.
 # Builds the FastAPI gateway (gateway.py) + the three self-contained REAL backends
 # (tools_rag, tools_dnarna, tools_neuro) AND vendors the source + weights of the five
 # CPU-feasible subprocess tools so they run live WITHOUT shelling out to ~/agfarms:
@@ -73,7 +81,9 @@ RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu 
 COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py \
      tools_protocol.py tools_toxin.py tools_citation.py \
      tools_imaging.py tools_figure.py tools_genomics.py \
-     tools_fair.py tools_repli.py llm_client.py /app/
+     tools_fair.py tools_repli.py \
+     tools_causal.py tools_materials.py tools_power.py \
+     tools_geo.py tools_mlrepro.py llm_client.py /app/
 
 # Vendored tool source + baked weights/corpora.
 COPY vendor/ /app/vendor/

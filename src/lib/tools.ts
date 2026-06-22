@@ -15,7 +15,7 @@
 
 import type { ToolHosting } from "@/lib/support";
 
-export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG" | "META";
+export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG" | "META" | "FIELD";
 export type ToolStatus = "live" | "demo";
 
 export type Tool = {
@@ -31,6 +31,11 @@ export type Tool = {
   //       processing: calcium ΔF/F, cell segmentation, AFM modulus, PIV);
   // META = all-field horizontal metascience tool (FAIR data management,
   //        statistics reproducibility) — serves EVERY discipline, not one field.
+  // FIELD = per-field tool for the biggest NON-bio fields (econ-social causal
+  //        inference, materials featurization, universal power analysis,
+  //        earth-climate series summary, cs-ml reproducibility) — REAL CPU
+  //        algorithms (networkx do-calculus, Magpie descriptors, scipy power,
+  //        Mann-Kendall/Theil-Sen, a deterministic repro rubric).
   klass: ToolClass;
   // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: ToolStatus;
@@ -311,6 +316,54 @@ export const TOOLS: Tool[] = [
     blurb:
       "Check reported statistics for reproducibility. Real statcheck-style p-value recomputation (t/F/χ²/r + df → exact two-tailed scipy), the GRIM test for impossible means, and flags for missing multiple-comparison correction, CIs, and effect sizes. Paste a Results section; deterministic, never guesses.",
     klass: "META",
+    status: "live",
+    hosting: "always-on",
+  },
+  // --- per-field NON-bio tools: the biggest CPU-feasible fields in the atlas
+  //     USERS_NEEDS roadmap (econ-social, materials, universal stats,
+  //     earth-climate, cs-ml). REAL algorithms, no GPU, always-on. ---
+  {
+    slug: "causaldesigner",
+    name: "CausalDesigner",
+    blurb:
+      "Design a causal study (econ/social). Describe treatment, outcome, confounders, and the assumed causal graph; CausalDesigner builds the DAG, enumerates the backdoor paths, finds a valid minimal adjustment set via real do-calculus (Pearl's back-door criterion + networkx d-separation — it never conditions on colliders or mediators), and recommends an estimator (DiD/RDD/IV/matching/regression) with its identifying assumptions and threats to validity.",
+    klass: "FIELD",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "materialsfeaturizer",
+    name: "MaterialsFeaturizer",
+    blurb:
+      "Featurize a composition for materials-property ML. Parse a chemical formula (subscripts, fractions, nested parentheses) and compute real Magpie-style descriptors (Ward 2016) — composition-weighted mean/range/average-deviation of atomic weight, Pauling electronegativity, atomic radius, melting point, valence-electron count — from a built-in element table. A ready-to-model feature vector, no GPU.",
+    klass: "FIELD",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "powerplan",
+    name: "PowerPlan",
+    blurb:
+      "Statistical power & sample-size calculator (universal; esp. social/biomed). Solve for n, power, the minimum detectable effect, or alpha for the two-sample/one-sample t-test, one-way ANOVA (Cohen's f), two proportions, and Pearson correlation — real closed-form scipy noncentral-distribution power (the G*Power equations), recovering the textbook n=64 for a medium two-sample effect. A priori power planning is funder/IRB-expected.",
+    klass: "FIELD",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "geosummary",
+    name: "GeoSummary",
+    blurb:
+      "Summarize a geospatial / time-series dataset (earth-climate). Descriptives + missing-data accounting, trend via OLS AND the distribution-free Mann-Kendall test + Theil-Sen slope (the standard climatological trend test), per-phase seasonal climatology + variance explained, lag-1 autocorrelation, and spatial extent (bbox/centroid/haversine span). Real numpy/scipy, reproducible, for non-specialists.",
+    klass: "FIELD",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "mlreprocard",
+    name: "MLReproCard",
+    blurb:
+      "Score an ML experiment's reproducibility + emit a model card (cs-ml). Describe the dataset, splits, seed, hyperparameters, training, compute, eval, and what you shared; MLReproCard scores a real weighted rubric (NeurIPS/ICML checklists, Mitchell 2019 Model Cards, Gundersen's taxonomy) across data/code/training/evaluation/compute/sharing, flags exactly which repro elements are missing, assigns an R0–R3 level, and fills in a normalized model card. Deterministic, no LLM.",
+    klass: "FIELD",
     status: "live",
     hosting: "always-on",
   },

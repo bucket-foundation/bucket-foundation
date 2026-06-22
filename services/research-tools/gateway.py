@@ -136,11 +136,20 @@ GENOMICS_TOOLS = ["chromatinaccess", "aggregatepredict", "channeldwell"]
 #   faircheck   — FAIR (Findable/Accessible/Interoperable/Reusable) rubric
 #   replicheck  — statcheck p-value recomputation + GRIM test + reporting flags
 HORIZONTAL_TOOLS = ["faircheck", "replicheck"]
+# Per-field NON-bio cluster (services/research-tools/tools_{causal,materials,power,
+# geo,mlrepro}.py) — REAL algorithms for the biggest CPU-feasible non-bio fields
+# named in research-atlas/docs/USERS_NEEDS.md. CPU/inline, no GPU, render "json".
+#   causaldesigner     — econ-social: DAG + backdoor/adjustment set (networkx do-calc)
+#   materialsfeaturizer— materials: Magpie-style composition descriptors (element KB)
+#   powerplan          — universal/stats: power & sample-size (scipy noncentral dists)
+#   geosummary         — earth-climate: trend (Mann-Kendall/Theil-Sen) + seasonality
+#   mlreprocard        — cs-ml: ML reproducibility rubric + model card (deterministic)
+FIELD_TOOLS = ["causaldesigner", "materialsfeaturizer", "powerplan", "geosummary", "mlreprocard"]
 # REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
 PURE_TOOLS = (
     RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS + PROTOCOL_TOOLS + TOXIN_TOOLS
     + CITATION_TOOLS + IMAGING_TOOLS + FIGURE_TOOLS + GENOMICS_TOOLS
-    + HORIZONTAL_TOOLS
+    + HORIZONTAL_TOOLS + FIELD_TOOLS
 )
 ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
@@ -177,6 +186,11 @@ PRICE: dict[str, dict[str, Any]] = {
     "channeldwell": {"tier": "analyze", "usd": 0.0, "metered": False},
     "faircheck": {"tier": "assess", "usd": 0.0, "metered": False},
     "replicheck": {"tier": "check", "usd": 0.0, "metered": False},
+    "causaldesigner": {"tier": "design", "usd": 0.0, "metered": False},
+    "materialsfeaturizer": {"tier": "featurize", "usd": 0.0, "metered": False},
+    "powerplan": {"tier": "plan", "usd": 0.0, "metered": False},
+    "geosummary": {"tier": "summarize", "usd": 0.0, "metered": False},
+    "mlreprocard": {"tier": "assess", "usd": 0.0, "metered": False},
 }
 
 # import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
@@ -288,6 +302,52 @@ except Exception as _e:  # pragma: no cover - import guard
     tools_repli = None  # type: ignore
     _REPLI_OK = False
     _REPLI_IMPORT_ERR = str(_e)
+
+# import the REAL per-field NON-bio backends (one module per field cluster).
+try:
+    import tools_causal  # type: ignore
+    _CAUSAL_OK = True
+    _CAUSAL_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_causal = None  # type: ignore
+    _CAUSAL_OK = False
+    _CAUSAL_IMPORT_ERR = str(_e)
+
+try:
+    import tools_materials  # type: ignore
+    _MATERIALS_OK = True
+    _MATERIALS_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_materials = None  # type: ignore
+    _MATERIALS_OK = False
+    _MATERIALS_IMPORT_ERR = str(_e)
+
+try:
+    import tools_power  # type: ignore
+    _POWER_OK = True
+    _POWER_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_power = None  # type: ignore
+    _POWER_OK = False
+    _POWER_IMPORT_ERR = str(_e)
+
+try:
+    import tools_geo  # type: ignore
+    _GEO_OK = True
+    _GEO_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_geo = None  # type: ignore
+    _GEO_OK = False
+    _GEO_IMPORT_ERR = str(_e)
+
+try:
+    import tools_mlrepro  # type: ignore
+    _MLREPRO_OK = True
+    _MLREPRO_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_mlrepro = None  # type: ignore
+    _MLREPRO_OK = False
+    _MLREPRO_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
 # CORS allow-list. The intended caller is the same-origin Bucket Next proxy
@@ -796,6 +856,26 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
         "replicheck", _REPLI_OK, _REPLI_IMPORT_ERR,
         tools_repli.REPLI_RUNNERS if tools_repli is not None else None, "tools_repli",
     ),
+    "causaldesigner": _make_pure_runner(
+        "causaldesigner", _CAUSAL_OK, _CAUSAL_IMPORT_ERR,
+        tools_causal.CAUSAL_RUNNERS if tools_causal is not None else None, "tools_causal",
+    ),
+    "materialsfeaturizer": _make_pure_runner(
+        "materialsfeaturizer", _MATERIALS_OK, _MATERIALS_IMPORT_ERR,
+        tools_materials.MATERIALS_RUNNERS if tools_materials is not None else None, "tools_materials",
+    ),
+    "powerplan": _make_pure_runner(
+        "powerplan", _POWER_OK, _POWER_IMPORT_ERR,
+        tools_power.POWER_RUNNERS if tools_power is not None else None, "tools_power",
+    ),
+    "geosummary": _make_pure_runner(
+        "geosummary", _GEO_OK, _GEO_IMPORT_ERR,
+        tools_geo.GEO_RUNNERS if tools_geo is not None else None, "tools_geo",
+    ),
+    "mlreprocard": _make_pure_runner(
+        "mlreprocard", _MLREPRO_OK, _MLREPRO_IMPORT_ERR,
+        tools_mlrepro.MLREPRO_RUNNERS if tools_mlrepro is not None else None, "tools_mlrepro",
+    ),
 }
 
 
@@ -1006,6 +1086,52 @@ class RepliCheckSubmit(BaseModel):
     items: int = 1  # integer items averaged per mean (GRIM scale granularity)
 
 
+# --- per-field NON-bio cluster submit bodies ---
+class CausalDesignerSubmit(BaseModel):
+    treatment: str = "demo"
+    outcome: Optional[str] = None
+    confounders: Any = None           # list[str] or comma string
+    edges: Any = None                 # list[[from,to]] or "A->B, C->D" string
+    design: Optional[str] = None
+    instrument: Optional[str] = None
+    demo: bool = False
+
+
+class MaterialsFeaturizerSubmit(BaseModel):
+    formula: str = "demo"             # e.g. "Fe2O3", or "demo"
+    demo: bool = False
+
+
+class PowerPlanSubmit(BaseModel):
+    test: str = "two_sample_t"        # two_sample_t|one_sample_t|anova|two_proportion|correlation
+    solve_for: str = "n"              # n|power|effect_size|alpha
+    effect_size: Optional[float] = None
+    alpha: float = 0.05
+    power: float = 0.80
+    n: Optional[float] = None
+    tails: int = 2
+    k_groups: int = 3
+    p1: Optional[float] = None
+    p2: Optional[float] = None
+    ratio: float = 1.0
+    demo: bool = False
+
+
+class GeoSummarySubmit(BaseModel):
+    values: Any = "demo"              # list[float] (NaN/None allowed) or "demo"
+    times: Optional[list] = None
+    period: Optional[int] = None
+    lat: Optional[list[float]] = None
+    lon: Optional[list[float]] = None
+    demo: bool = False
+
+
+class MLReproCardSubmit(BaseModel):
+    # record: a dict of experiment fields, a JSON string, or "demo".
+    record: Any = "demo"
+    demo: bool = False
+
+
 # --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
@@ -1023,6 +1149,7 @@ def health() -> dict:
         "figure": FIGURE_TOOLS,
         "genomics": GENOMICS_TOOLS,
         "horizontal": HORIZONTAL_TOOLS,
+        "field": FIELD_TOOLS,
         "demo": DEMO_TOOLS,
         "rag_backend": _RAG_OK,
         "dnarna_backend": _DNARNA_OK,
@@ -1035,6 +1162,11 @@ def health() -> dict:
         "genomics_backend": _GENOMICS_OK,
         "fair_backend": _FAIR_OK,
         "repli_backend": _REPLI_OK,
+        "causal_backend": _CAUSAL_OK,
+        "materials_backend": _MATERIALS_OK,
+        "power_backend": _POWER_OK,
+        "geo_backend": _GEO_OK,
+        "mlrepro_backend": _MLREPRO_OK,
         "version": "v1",
     }
 
@@ -1298,6 +1430,64 @@ def submit_replicheck(r: RepliCheckSubmit) -> dict:
     if not _is_demo(r.text) and len((r.text or "").strip()) < 8:
         raise HTTPException(400, 'paste a Results section with reported statistics, or use "demo"')
     return _dispatch("replicheck", {"text": r.text, "alpha": r.alpha, "items": r.items})
+
+
+# --- per-field NON-bio cluster submit endpoints ----------------------------
+@app.post("/v1/causaldesigner/submit")
+def submit_causaldesigner(r: CausalDesignerSubmit) -> dict:
+    demo = r.demo or _is_demo(r.treatment)
+    if not demo:
+        if len((r.treatment or "").strip()) < 1 or not (r.outcome or "").strip():
+            raise HTTPException(400, "treatment and outcome are required (or use demo)")
+    return _dispatch("causaldesigner", {
+        "treatment": r.treatment, "outcome": r.outcome, "confounders": r.confounders,
+        "edges": r.edges, "design": r.design, "instrument": r.instrument, "demo": demo,
+    })
+
+
+@app.post("/v1/materialsfeaturizer/submit")
+def submit_materialsfeaturizer(r: MaterialsFeaturizerSubmit) -> dict:
+    demo = r.demo or _is_demo(r.formula)
+    if not demo and len((r.formula or "").strip()) < 1:
+        raise HTTPException(400, 'enter a chemical formula (e.g. "Fe2O3"), or use demo')
+    return _dispatch("materialsfeaturizer", {"formula": r.formula, "demo": demo})
+
+
+@app.post("/v1/powerplan/submit")
+def submit_powerplan(r: PowerPlanSubmit) -> dict:
+    demo = r.demo or _is_demo(r.test)
+    return _dispatch("powerplan", {
+        "test": r.test, "solve_for": r.solve_for, "effect_size": r.effect_size,
+        "alpha": r.alpha, "power": r.power, "n": r.n, "tails": r.tails,
+        "k_groups": r.k_groups, "p1": r.p1, "p2": r.p2, "ratio": r.ratio, "demo": demo,
+    })
+
+
+@app.post("/v1/geosummary/submit")
+def submit_geosummary(r: GeoSummarySubmit) -> dict:
+    demo = r.demo or _is_demo(r.values)
+    if not demo and not (isinstance(r.values, (list, tuple)) and len(r.values) > 0):
+        raise HTTPException(400, 'values must be a non-empty numeric array, or use demo')
+    return _dispatch("geosummary", {
+        "values": r.values, "times": r.times, "period": r.period,
+        "lat": r.lat, "lon": r.lon, "demo": demo,
+    })
+
+
+@app.post("/v1/mlreprocard/submit")
+def submit_mlreprocard(r: MLReproCardSubmit) -> dict:
+    rec = r.record
+    demo = r.demo or _is_demo(rec)
+    if not demo:
+        if isinstance(rec, dict):
+            if not rec:
+                raise HTTPException(400, "record is empty — supply at least one experiment field")
+        elif isinstance(rec, str):
+            if len(rec.strip()) < 2:
+                raise HTTPException(400, 'provide an experiment record (JSON object or fields), or "demo"')
+        else:
+            raise HTTPException(400, 'record must be an experiment object, a JSON string, or "demo"')
+    return _dispatch("mlreprocard", {"record": rec, "demo": demo})
 
 
 def _status_envelope(job: Job) -> dict:
