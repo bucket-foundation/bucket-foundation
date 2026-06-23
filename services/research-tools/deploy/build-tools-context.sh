@@ -38,10 +38,16 @@ mkdir -p "$STAGE/vendor/tools" "$STAGE/deploy" "$STAGE/hf-cache/hub"
 # all-field horizontal tools; llm_client is the OPTIONAL shared LLM seam
 # (tools_rag + tools_protocol import it under a try/except — it no-ops without
 # an API key). All three MUST be staged or the Dockerfile COPY fails.
+# tools_causal/materials/power/geo/mlrepro are the 2026-06-22 (later) FIVE
+# per-field NON-bio tools — they MUST be staged too or the Dockerfile COPY
+# (deploy/Dockerfile.tools lines 85-86) fails. CausalDesigner adds networkx
+# (already pinned in requirements.tools.txt); the other four reuse scipy/numpy.
 cp "$RT/gateway.py" "$RT/tools_rag.py" "$RT/tools_dnarna.py" "$RT/tools_neuro.py" \
    "$RT/tools_protocol.py" "$RT/tools_toxin.py" "$RT/tools_citation.py" \
    "$RT/tools_imaging.py" "$RT/tools_figure.py" "$RT/tools_genomics.py" \
-   "$RT/tools_fair.py" "$RT/tools_repli.py" "$RT/llm_client.py" "$STAGE/"
+   "$RT/tools_fair.py" "$RT/tools_repli.py" \
+   "$RT/tools_causal.py" "$RT/tools_materials.py" "$RT/tools_power.py" \
+   "$RT/tools_geo.py" "$RT/tools_mlrepro.py" "$RT/llm_client.py" "$STAGE/"
 cp "$RT/deploy/requirements.tools.txt" "$RT/deploy/Dockerfile.tools" "$STAGE/deploy/"
 
 ex=(--exclude '__pycache__' --exclude 'out' --exclude '.pytest_cache')
