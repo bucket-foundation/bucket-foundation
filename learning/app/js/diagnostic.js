@@ -38,6 +38,15 @@
   const W_SLOW = 0.55;      // correct-but-slow gets diminished weight (timing first-class)
   const PROP_DECAY = 0.62;  // belief propagated one prereq/unlock hop away is attenuated
   const PROP_FLOOR = 0.18;  // stop propagating once the nudge falls below this
+  // KST prerequisite-closure inference: a CONFIDENT (non-slow) correct answer is strong
+  // evidence the learner already holds EVERY transitive prerequisite (Falmagne–Doignon
+  // closure). Rather than a single decayed nudge that lands prereqs barely over threshold
+  // (P≈0.63 — still inside the ask-band, so the diagnostic wastes budget re-probing them),
+  // we floor the whole requires-closure to a confident-known log-odds. This is what makes
+  // an expert place MANY concepts from FEW questions (the headline ALEKS property): one
+  // correct answer high in the graph settles its entire foundation in a single step.
+  const INFER_FLOOR = 1.40; // log-odds ≈ P 0.80 — above UNCERTAIN_HI, so closure leaves the ask-band
+  const CLOSURE_BIAS = 0.15; // selection bias toward high requires-closure atoms once knowledge is proven
   const UNCERTAIN_LO = 0.32; // band [LO,HI] = still-informative atoms worth asking
   const UNCERTAIN_HI = 0.68;
   const MAX_Q_DEFAULT = 18;  // hard cap (ALEKS caps ~30; small graphs converge faster)
@@ -159,13 +168,22 @@
    * higher graph betweenness/leverage. Returns the question payload, or null if done. */
   Diagnostic.prototype.next = function () {
     if (this.done()) return null;
+    // Closure-payoff bias: once the learner has demonstrated SOME knowledge, prefer asking
+    // atoms high in the graph — a correct answer there floods a large requires-closure in one
+    // step (the headline ALEKS efficiency: place many from few). We GATE this on a prior
+    // correct answer so a beginner (zero correct) stays on pure binary search and early-stops
+    // instead of being marched through deep, uninformative questions.
+    const proven = this.asked.some((a) => a.correct);
+    let maxReqC = 1;
+    if (proven) this.atoms.forEach((a) => { if (this.reqC[a.id].size > maxReqC) maxReqC = this.reqC[a.id].size; });
     let best = null, bestScore = Infinity;
     this.atoms.forEach((a) => {
       if (this.askedSet.has(a.id)) return;
       const p = this.p(a.id);
       // primary: distance from 0.5 (smaller = better). secondary: prefer central atoms
       // (subtract a small centrality bonus so high-betweenness wins ties).
-      const score = Math.abs(p - 0.5) - this.between[a.id] * 0.12;
+      let score = Math.abs(p - 0.5) - this.between[a.id] * 0.12;
+      if (proven) score -= (this.reqC[a.id].size / maxReqC) * CLOSURE_BIAS;
       if (score < bestScore) { bestScore = score; best = a; }
     });
     if (!best) return null;
@@ -212,11 +230,19 @@
       const base = meta.slow ? W_SLOW : W_CORRECT;
       this.logodds[id] += base;
       // propagate DOWN: knowing B raises belief you know B's prerequisites.
-      this._propagate(this.reqC[id], +1, base);
+      // A confident (non-slow) correct triggers full KST closure inference — flood every
+      // transitive prerequisite to a confident-known floor so it places and exits the
+      // ask-band. A slow correct is weaker evidence, so it only gets the decayed nudge.
+      if (meta.slow) this._propagate(this.reqC[id], +1, base);
+      else this._inferKnown(this.reqC[id]);
     } else {
       this.logodds[id] -= W_INCORRECT;
-      // propagate UP: not knowing B lowers belief you know what B unlocks.
-      this._propagate(this.unlC[id], -1, W_INCORRECT);
+      // propagate UP (symmetric KST): if you don't know B you cannot know anything that
+      // REQUIRES B — flood B's full unlocks-closure to a confident-unknown floor so those
+      // consequences leave the ask-band. This is what lets the diagnostic EARLY-STOP for a
+      // beginner (one missed foundation collapses everything above it) instead of grinding
+      // to the question cap. We deliberately underestimate; a slip self-corrects in study.
+      this._inferUnknown(this.unlC[id]);
     }
   };
 
@@ -230,6 +256,32 @@
     closure.forEach((cid) => {
       if (this.askedSet.has(cid)) return; // don't override direct measurement
       this.logodds[cid] += sign * nudge;
+    });
+  };
+
+  /* KST prerequisite-closure inference (down direction, confident-correct only).
+   * Raise every transitive prerequisite to at least the confident-known floor — a
+   * monotone floor, not an additive nudge, so it neither runs away on repeated corrects
+   * nor overrides a stronger existing belief. Atoms answered directly are skipped (direct
+   * measurement always wins, which also protects against a later up-propagation conflict). */
+  Diagnostic.prototype._inferKnown = function (closure) {
+    if (!closure) return;
+    closure.forEach((cid) => {
+      if (this.askedSet.has(cid)) return; // direct evidence wins
+      if (this.logodds[cid] < INFER_FLOOR) this.logodds[cid] = INFER_FLOOR;
+    });
+  };
+
+  /* KST consequence-closure inference (up direction, on an incorrect answer): lower every
+   * atom that transitively REQUIRES the missed atom to a confident-unknown floor — you
+   * cannot hold a concept whose prerequisite you just failed. Monotone floor (min), direct
+   * answers skipped. Mirror image of _inferKnown; together they implement the full
+   * prerequisite-closure collapse that makes placement efficient in both directions. */
+  Diagnostic.prototype._inferUnknown = function (closure) {
+    if (!closure) return;
+    closure.forEach((cid) => {
+      if (this.askedSet.has(cid)) return; // direct evidence wins
+      if (this.logodds[cid] > -INFER_FLOOR) this.logodds[cid] = -INFER_FLOOR;
     });
   };
 

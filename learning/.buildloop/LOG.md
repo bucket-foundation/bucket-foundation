@@ -104,3 +104,44 @@ unblocks adding the 6 ready-written atoms above. Guard the change against the
 diagnostic, the 6 atoms could instead seed a polymer-physics cluster in 02-physics (NOT
 engine-tested), but they're framed for biophysics. Cheaper safe wins also remain: more
 `derive` quizzes (46 atoms still lack one), `note` fields, and art generation.
+
+## 2026-06-24 — run 4 (UNBLOCKED the diagnostic; +4 real biophysics atoms)
+Fixed the diagnostic-inference blocker that run 3 documented and that had stalled the
+build-loop's PRIMARY mission (biophysics growth). Root cause was real: the placement
+diagnostic placed barely more concepts than questions asked (expert: 51 known, placed
+19 from 18 questions — margin +1), so ANY added atom tipped `placedCount > questionsAsked`
+to failure. Implemented full symmetric **Knowledge-Space-Theory prerequisite-closure
+inference** in `js/diagnostic.js`: (a) a confident (non-slow) CORRECT answer floods the
+atom's entire transitive requires-closure to a confident-known floor (`_inferKnown`,
+INFER_FLOOR=1.40≈P0.80) so prerequisites PLACE and leave the ask-band instead of landing
+at P≈0.63 and getting re-probed; (b) an INCORRECT answer floods the transitive
+unlocks-closure to a confident-unknown floor (`_inferUnknown`, −1.40) so a missed
+foundation collapses everything above it — which restores BEGINNER early-stop (8 q, was
+going to cap); (c) `next()` gains a **correctness-gated** closure-payoff bias
+(CLOSURE_BIAS=0.15) that, only after the learner has answered ≥1 correctly, prefers asking
+high-requires-closure atoms (one correct floods many prereqs = the headline ALEKS
+property) — gated so a pure beginner stays on plain binary search and still early-stops.
+Tuned empirically (8 parameter sweeps); chosen point: expert margin **+4** (placed 22 /
+asked 18, prereq shell 6/6), beginner 8 q / placed 0, prereq-only 6 placed / 0 stray.
+Stress-tested: margin holds at +4 through +8 added atoms, +2 at +12 — the blocker is
+genuinely gone, biophysics additions are UNBLOCKED.
+Then realized the unblock: added **4 new nucleus atoms, 74 → 78**, filling the §1.9
+computational/sampling gap runs 1–3 kept flagging — `verlet` (velocity-Verlet symplectic
+integrator, timestep↔fastest-motion, SHAKE/LINCS; requires md), `rmsf` (per-atom
+RMS fluctuation, B=(8π²/3)⟨Δr²⟩ bridge to crystallographic B-factors, RMSF vs RMSD;
+requires md), `replica-exchange` (parallel tempering, Metropolis swap min(1,
+e^{(β_i−β_j)(U_i−U_j)}), √N replica scaling, REST; requires md+boltzmann),
+`coarse-graining` (beads + potential-of-mean-force = free energy, MARTINI, transferability
++ accelerated-time caveats; requires md+free-energy). All original prose, verified
+numerics (8π²/3≈26.3 etc.), OPEN sources, full lesson + 3 depths + 2 varied-level quiz
+(3 of the 8 new quiz items are `derive`-level) + note + resources + art_prompt. Clean
+requires-edges into existing nucleus atoms. validate.sh PASSES end-to-end (78 atoms intro
+in 60-day sim; diagnostic green at +2 margin with the 4 added; assess/lang/explorer
+smokes all green). Mirrored to public/academy-app via sync-academy. meta 0.5.1→0.5.2.
+NEXT: biophysics growth is now unblocked — add the remaining §1.9/§1.2 atoms run 3 wrote
+(flory-scaling [requires random-walk], rouse-model [requires langevin], plus TICA/
+collective-variables, normal-mode/elastic-network) in batches of ~4, re-running
+validate.sh each time (current diagnostic margin +2 → keep batches small or add a few
+mid-graph atoms whose closures flood to widen the margin again). The diagnostic fix is
+principled and stable; don't re-tune it. Other safe wins still open: ~40 atoms still lack
+a `derive` quiz item; `note` fields; art generation if a GPU image model is reachable.
