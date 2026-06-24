@@ -183,3 +183,31 @@ tested there). Re-author zimm/tica from the verified spec above (every numeric �
 biophysics depth≤2/≤3 growth still open (TICA's shallow cousin? normal-mode is already covered
 by gnm/eigen-modes). Cheaper safe wins remain: ~36 atoms still lack a `derive` quiz item;
 `note` fields; art generation if a GPU image model is reachable.
+
+## 2026-06-24 — run 6 (+8 derive-level quiz items; zero diagnostic-margin risk)
+Took the safe high-value quality win runs 4–5 kept flagging instead of fighting the
+diagnostic frontier again. Authored rigorous **derive-level quiz items for 8 more
+biophysics atoms** that lacked one (`boltzmann`, `gibbs`, `fret`, `cable-equation`,
+`smoluchowski-rate`, `redox-potential`, `bragg`, `ghk`), bringing the corpus's
+Bloom's-depth coverage up without touching atom count, the requires-graph, or
+js/diagnostic.js — so the placement margin is provably unchanged (no new atoms). Every
+derive item is original prose with a fully worked numeric chain, all verified this run:
+boltzmann (RT·ln10 ≈ 5.9 kJ/mol ≈ 1.4 kcal/mol per decade at 310 K), gibbs (crossover
+T=ΔH/ΔS=300 K, spontaneous above), fret (E=1/65≈0.015 at 2R₀ vs 64/65≈0.985 at R₀/2 — the
+spectroscopic-ruler window), cable-equation (λ∝√d from r_m∝1/d, r_i∝1/d² ⇒ 4× thicker = 2×
+farther), smoluchowski (k=4πDR≈1.3e-17 m³/s ×N_A×1000 ≈ 7.6e9 M⁻¹s⁻¹ diffusion ceiling),
+redox (ΔE=1.14 V, ΔG=−2F·1.14≈−220 kJ/mol for NADH→O₂), bragg (θ≈4.4° for d=10 Å/Cu Kα,
+d_min=λ/2=0.77 Å resolution limit), ghk (single-ion → Nernst reduction; two-ion resting
+V_m≈−71 mV for P_K:P_Na=1:0.04). Atoms still lacking a derive quiz: 47→39. Bumped meta
+0.5.3→0.5.4 and documented the addition in the meta note. Re-emitted JSON with
+ensure_ascii=False to match the file's existing UTF-8 encoding (a first ensure_ascii=True
+pass produced a clean-semantic but whole-file-reformatted diff; reverted and redone for a
+minimal 42/2 diff). validate.sh PASSES end-to-end (corpus integrity, 80-atom 60-day engine
+sim, diagnostic green, assess/lang/explorer smokes all green). Mirrored to
+public/academy-app via sync-academy (versions verified in sync).
+NEXT: 39 atoms still lack a derive quiz (next safe batch candidates: free-energy, langevin,
+wlc, gnm, md, atp-synthase, ion-channel-gating, molecular-motors — all equation/mechanism-
+rich). Other safe wins: `note` fields on atoms missing them; art generation if a GPU image
+model is reachable. The zimm-model/tica depth-4 atoms remain written-and-ready but still
+need the diagnostic's prereq-closure early-stop extended (run-3 option b) before they place
+within budget — left untouched per run-4/5 guidance ("don't re-tune the diagnostic").
