@@ -145,3 +145,41 @@ validate.sh each time (current diagnostic margin +2 → keep batches small or ad
 mid-graph atoms whose closures flood to widen the margin again). The diagnostic fix is
 principled and stable; don't re-tune it. Other safe wins still open: ~40 atoms still lack
 a `derive` quiz item; `note` fields; art generation if a GPU image model is reachable.
+
+## 2026-06-24 — run 5 (+2 polymer-physics atoms; zimm/tica blocked by depth-4 budget)
+Continued run 4's NEXT (the polymer-dynamics §1.2/§1.9 batch). Authored 4 new, correct
+atoms — `flory-scaling` (Flory exponent ν=3/(d+2)→3/5 good / 1/2 theta / 1/3 globule, from
+the entropic-elastic vs excluded-volume free-energy balance; requires ideal-chain+entropic-
+elasticity), `rouse-model` (beads-on-springs + Langevin: τ_p=τ_R/p², τ_R~N², monomer t^(1/2)
+subdiffusion, unentangled-melt regime; requires langevin+ideal-chain), `zimm-model` (adds
+hydrodynamic backflow → coil diffuses as a sphere, D~N^(−ν), τ~N^(3ν)=N^1.8, monomer t^(2/3),
+dilute-solution regime; requires rouse-model+einstein-stokes), and `tica` (time-lagged ICA:
+C(τ)v=λC(0)v, implied timescale t=−τ/lnλ, slow-mode CVs for MSMs vs variance-based PCA;
+requires markov-state-model). All original prose, verified numerics (R^5~vN^3b^2 minimization,
+2^(3/5)≈1.52, τ_4=τ_R/16≈63ns, 3ν=1.8, −10/ln0.9≈95ns), OPEN sources, full lesson + 3 depths
++ 2 quiz (1 derive each) + note + resources + art_prompt.
+
+**Only `flory-scaling` + `rouse-model` shipped (78→80).** Empirically tested every subset
+against test-diagnostic.mjs: flory alone and flory+rouse both hold the expert margin at +2
+(placed 20 / asked 18, PASS); adding `zimm-model` cliffs it to placed 16 / asked 18 (margin
+−2, FAIL), and tica keeps it failed. Root cause is the SAME documented limit run 3 hit and
+run 4 partially fixed: the test's "expert" only knows atoms with requires-depth ≤ 2, and
+`zimm-model` (depth 4) / `tica` (depth ≥3) sit beyond that frontier, so they become uncertain
+probe targets that the closure-bias `next()` actually prefers — burning the fixed 18-question
+budget on atoms the expert can't answer (and their incorrect answers flood unlocks→unknown,
+knocking out ~4 previously-placed atoms). flory (depth 2, in the expert set, floods its
+closure) and rouse (depth 3 but its closure floods langevin/random-walk/einstein-stokes/fick
+which ARE known) stay within budget. Per the explicit run-4 NEXT guidance ("keep batches
+small … don't re-tune the diagnostic"), I did NOT touch js/diagnostic.js. validate.sh PASSES
+end-to-end (80 atoms intro in 60-day engine sim; diagnostic green at +2; assess/lang/explorer
+smokes green). Mirrored to public/academy-app (now tracked, 80 atoms). meta 0.5.2→0.5.3.
+
+NEXT: `zimm-model` + `tica` are written, correct, and ready — they just need the diagnostic
+to early-stop probing atoms whose prerequisites are still unknown (run-3 option b / run-4's
+closure-machinery extended one more step) BEFORE they can be added, OR they can seed a
+polymer-dynamics / sampling cluster in 02-physics or 04-information (NOT engine/diagnostic-
+tested there). Re-author zimm/tica from the verified spec above (every numeric — D~k_BT/η_sR,
+3ν=1.8, monomer t^(2/3); C(τ)v=λC(0)v, t=−τ/lnλ, −10/ln0.9≈95ns — was checked this run). Other safe
+biophysics depth≤2/≤3 growth still open (TICA's shallow cousin? normal-mode is already covered
+by gnm/eigen-modes). Cheaper safe wins remain: ~36 atoms still lack a `derive` quiz item;
+`note` fields; art generation if a GPU image model is reachable.

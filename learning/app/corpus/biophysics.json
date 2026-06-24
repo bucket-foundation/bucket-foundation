@@ -2,8 +2,8 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.5.2",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis).",
+    "version": "0.5.3",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended).",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
   "atoms": [
@@ -4794,6 +4794,124 @@
         }
       ],
       "lesson": "### Intuition\n\nMost questions about a membrane or a protein assembly do not need every hydrogen. Coarse-graining throws away that fine detail on purpose: it groups several atoms into one fat 'bead' and gives the beads simple effective interactions. With far fewer particles and no fast vibrations, the simulation reaches sizes and times — whole vesicles, milliseconds — that all-atom MD cannot touch.\n\n### Precisely\n\nDefine a mapping $\\mathbf{M}$ from atomic coordinates $\\mathbf{r}$ to bead coordinates $\\mathbf{R}$. The exact effective potential reproducing the bead-level structure is the **potential of mean force**\n\n$$U_{\\text{CG}}(\\mathbf{R}) = -k_BT\\,\\ln\\!\\int e^{-U(\\mathbf{r})/k_BT}\\,\\delta\\big(\\mathbf{R}-\\mathbf{M}(\\mathbf{r})\\big)\\,d\\mathbf{r},$$\n\ni.e. the **free energy** after integrating out everything the mapping discards. It is an average over the hidden atomic detail, not a mechanical bond energy.\n\n### Worked example\n\nMARTINI maps about four heavy atoms to one bead. A lipid becomes ~12 beads instead of ~50 atoms; with the smoother landscape the timestep rises and the effective speed-up is often quoted as ~$10^3\\times$ or more — enough to watch a lipid bilayer self-assemble or a protein insert into a membrane.\n\n### Why it's true / how it works\n\nIntegrating out degrees of freedom always produces a **free energy**, because you are summing $e^{-U/k_BT}$ over the eliminated coordinates. That is why the bead potential carries entropy from the hidden atoms — and why it inherits a temperature and concentration dependence that a true mechanical potential would not have.\n\n### Where it connects\n\nIt rests on **free energy** and the **potential of mean force**, runs through **molecular dynamics**, and is the route to mesoscale phenomena — membrane shapes (Helfrich elasticity), polymer melts, and large macromolecular assemblies — that atomistic detail cannot reach.\n\n### Watch out\n\nThe CG potential is a free energy, so it is **state-point dependent**: a model tuned at 300 K and one salt concentration may misbehave elsewhere (transferability). And because the landscape is smoothed, **dynamics are sped up unevenly** — coarse-grained 'time' is not physical time, so rate comparisons need a friction rescaling.\n\n### Numbers & nuance\n\nThere are two philosophies. **Bottom-up** methods (iterative Boltzmann inversion, force matching, relative-entropy minimization) try to reproduce the true PMF from atomistic reference data; **top-down** models (MARTINI) instead fit experimental partitioning free energies and densities. Each trades a different kind of accuracy: bottom-up is structurally faithful at its reference state but poorly transferable; top-down is robust across systems but coarser about any single one."
+    },
+    {
+      "id": "flory-scaling",
+      "title": "Flory scaling (real chains in solvent)",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "ideal-chain",
+        "entropic-elasticity"
+      ],
+      "summary": "A real polymer swells beyond the ideal random-walk size because its own segments cannot overlap; balancing that excluded-volume repulsion against entropic elasticity gives R ~ N^(3/5) in good solvent.",
+      "equation": "$R \\sim b\\,N^{\\nu},\\qquad \\nu = \\dfrac{3}{d+2}\\ \\Rightarrow\\ \\nu=\\tfrac{3}{5}\\ (d=3,\\ \\text{good solvent})$",
+      "depths": {
+        "eli5": "An ideal chain is allowed to walk back through itself, like a ghost. A real chain is made of atoms that take up space, so it has to puff out a bit to avoid crowding itself. Flory worked out exactly how much puffier it gets: a real chain in a friendly solvent is fatter than the ghost version, and he predicted the exact swelling with a one-line energy argument.",
+        "core": "An ideal chain of N segments of length b has size R0 ~ b·N^(1/2). Real segments cannot occupy the same space (excluded volume), so in a 'good' solvent the chain swells. Flory estimated the free energy as a sum of an entropic-elastic term that resists stretching, F_el/k_BT ~ R^2/(N b^2), and a repulsive excluded-volume term from segment-segment contacts, F_rep/k_BT ~ v N^2/R^3 (in 3D), where v is the excluded volume per segment. Minimizing the sum over R gives R ~ v^(1/5) b^(2/5) N^(3/5): the Flory exponent v = 3/5 in three dimensions, larger than the ideal 1/2.",
+        "deep": "The general-dimension result of the same balance is nu = 3/(d+2), giving 3/4 in 2D, 3/5 in 3D, and 1/2 (ideal) at the upper critical dimension d=4. The 3D value is famously close to the exact renormalization-group value nu ~ 0.588 - Flory's success is partly a cancellation of two errors (he overestimates both the repulsion and the elasticity). Solvent quality tunes the regime: in a good solvent v>0 and the chain is swollen (nu=3/5); at the theta temperature the effective two-body term vanishes and the chain is nearly ideal (nu=1/2); in a poor solvent v<0 and the chain collapses into a dense globule, R ~ N^(1/3). The swollen-to-globule change is the coil-globule transition, the toy model for the entropic side of protein folding."
+      },
+      "note": "nu = 1/2 is the ghost (ideal) chain, nu = 3/5 is the self-avoiding chain in good solvent, nu = 1/3 is the collapsed globule. Reading a measured size exponent off a log-log plot of R vs N immediately tells you which solvent regime a polymer is in.",
+      "sources": [
+        "Polymer Physics (Rubinstein & Colby) - concepts only",
+        "MIT OCW polymer-physics notes",
+        "Wikipedia (ideal chain; Flory theory; self-avoiding walk)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia - Ideal chain (the nu=1/2 baseline)",
+          "url": "https://en.wikipedia.org/wiki/Ideal_chain"
+        },
+        {
+          "label": "Wikipedia - Self-avoiding walk (the nu~3/5 real chain)",
+          "url": "https://en.wikipedia.org/wiki/Self-avoiding_walk"
+        },
+        {
+          "label": "Wikipedia - Flory-Huggins solution theory (solvent quality)",
+          "url": "https://en.wikipedia.org/wiki/Flory%E2%80%93Huggins_solution_theory"
+        },
+        {
+          "label": "Wikipedia - Excluded volume",
+          "url": "https://en.wikipedia.org/wiki/Excluded_volume"
+        },
+        {
+          "label": "Wikipedia - Coil-globule transition",
+          "url": "https://en.wikipedia.org/wiki/Globule"
+        }
+      ],
+      "art_prompt": "two polymer coils side by side over a faint log-log grid: a compact translucent 'ghost' coil labeled N^(1/2) and a visibly puffier self-avoiding coil labeled N^(3/5), with little repulsion arrows pushing segments apart in the second",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the Flory exponent nu for a flexible polymer in a good solvent, in a theta solvent, and in a poor solvent?",
+          "answer": "Good solvent: nu = 3/5 (swollen, self-avoiding). Theta solvent: nu = 1/2 (effectively ideal, excluded volume cancelled). Poor solvent: nu = 1/3 (collapsed globule). Size scales as R ~ b·N^nu in all three."
+        },
+        {
+          "level": "derive",
+          "prompt": "Flory writes the chain free energy as F/k_BT ~ R^2/(Nb^2) + vN^2/R^3 in 3D. Minimize it to show R ~ N^(3/5).",
+          "answer": "Differentiate with respect to R and set to zero: 2R/(Nb^2) - 3vN^2/R^4 = 0, so R^5 ~ v N^3 b^2, giving R ~ v^(1/5) b^(2/5) N^(3/5). The elastic term wants R small, the repulsion wants R large; their balance fixes the exponent nu = 3/5. (The general-d balance R^(d+2) ~ vN^3 b^2 gives nu = 3/(d+2).)"
+        }
+      ],
+      "lesson": "### Intuition\n\nThe **ideal chain** treats a polymer as a random walk that is allowed to pass through itself - a ghost. Real chains are made of atoms that take up room, so a chain cannot fold back onto its own segments. That self-avoidance pushes the coil open, making it bigger than the ideal $N^{1/2}$ prediction. Flory's genius was to capture exactly how much bigger with a single back-of-envelope energy balance.\n\n### Precisely\n\nWrite the free energy of a coil of size $R$ as two competing pieces:\n\n$$\\frac{F}{k_BT} \\;\\sim\\; \\underbrace{\\frac{R^2}{N b^2}}_{\\text{entropic elasticity (resists stretching)}} \\;+\\; \\underbrace{\\frac{v\\,N^2}{R^3}}_{\\text{excluded-volume repulsion (resists crowding)}}.$$\n\nThe first term is the entropic-elastic cost of holding the chain out to size $R$; the second counts the $\\sim N^2/R^3$ pairwise contacts, each costing an excluded volume $v$. Minimizing over $R$:\n\n$$R \\sim v^{1/5} b^{2/5} N^{3/5}, \\qquad \\nu = \\tfrac{3}{5}.$$\n\n### Worked example\n\nDouble the length of a chain in good solvent, $N\\to 2N$. An ideal chain would grow by $2^{1/2}\\approx1.41\\times$; a real chain grows by $2^{3/5}\\approx1.52\\times$. The self-avoiding chain swells faster - measurable directly by light or neutron scattering as a steeper slope on a $\\log R$ vs $\\log N$ plot.\n\n### Why it's true / how it works\n\nNeither term alone has a minimum: elasticity alone collapses the chain, repulsion alone explodes it. The *competition* picks a unique size, and the power that survives the algebra is the universal exponent - independent of the chemical details buried in $b$ and $v$.\n\n### Where it connects\n\nIt sits directly on top of the **ideal chain** ($\\nu=1/2$) and **entropic elasticity** (the $R^2/Nb^2$ spring), and it underlies the **worm-like chain**, polymer-solution thermodynamics, and the coil-globule collapse that is a toy model for protein folding.\n\n### Watch out\n\nThe exponent depends on **solvent quality**. Good solvent $\\Rightarrow v>0\\Rightarrow \\nu=3/5$. At the *theta* temperature the effective two-body repulsion vanishes ($v=0$) and the chain is nearly ideal, $\\nu=1/2$. In a poor solvent $v<0$ and the chain collapses, $R\\sim N^{1/3}$.\n\n### Numbers & nuance\n\nFlory's $\\nu=3/5=0.600$ is uncannily close to the exact renormalization-group value $\\nu\\approx0.588$ - a near-miss cancellation of two opposite errors. The general dimension formula $\\nu=3/(d+2)$ even gives the right ideal limit at the upper critical dimension $d=4$."
+    },
+    {
+      "id": "rouse-model",
+      "title": "Rouse model (chain dynamics)",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "langevin",
+        "ideal-chain"
+      ],
+      "summary": "Treat a polymer as beads joined by entropic springs, each bead obeying a Langevin equation with independent drag - the simplest dynamics of a chain, giving a longest relaxation time that grows as N^2 and monomer motion that subdiffuses as t^(1/2).",
+      "equation": "$\\tau_R \\sim \\dfrac{\\zeta\\,N^2 b^2}{3\\pi^2 k_B T},\\qquad \\langle\\Delta r^2(t)\\rangle \\sim t^{1/2}\\ (t<\\tau_R)$",
+      "depths": {
+        "eli5": "Picture a chain as beads connected by tiny springs, each bead jiggled by the surrounding fluid and dragged by it. The Rouse model is the simplest way to ask 'how fast does a floppy chain wiggle and rearrange?' Its answer: a single bead at first wanders strangely slowly (it is tied to its neighbors), and the whole chain takes a time that grows like the square of its length to forget its shape.",
+        "core": "The Rouse model couples the ideal chain's entropic springs to Langevin dynamics. Each of the N beads feels (i) spring forces from its two neighbors, with spring constant 3k_BT/b^2, (ii) a local friction -zeta(dr/dt), and (iii) independent thermal noise. Diagonalizing the connectivity into normal (Rouse) modes p = 1..N-1, each mode relaxes exponentially with tau_p = tau_R/p^2, so the longest mode tau_R = zeta N^2 b^2/(3 pi^2 k_BT) sets the time to relax the whole chain. The center of mass diffuses with D = k_BT/(N zeta), proportional to 1/N, and a tagged monomer subdiffuses, <dr^2> ~ t^(1/2), until t ~ tau_R, after which it crosses over to ordinary diffusion.",
+        "deep": "The crucial omissions are excluded volume and hydrodynamic interactions: beads pass through each other and the solvent does not transmit backflow from one bead to another. That makes Rouse the correct picture for unentangled polymer MELTS, where surrounding chains screen both effects - there it predicts viscosity eta proportional to N and the t^(1/2) monomer subdiffusion seen by neutron spin-echo. In dilute SOLUTION, hydrodynamics matters and the Zimm model (tau ~ N^(3nu), monomer t^(2/3)) replaces it. Above the entanglement length the chain is confined to a tube and reptation (tau ~ N^3) takes over. So Rouse is the unentangled baseline from which the harder theories branch."
+      },
+      "note": "Two numbers are the Rouse signature: the longest relaxation time scales as N^2 (each mode tau_p = tau_R/p^2) and a single monomer subdiffuses as t^(1/2), slower than free diffusion because it is tethered to the rest of the chain.",
+      "sources": [
+        "Doi & Edwards, Theory of Polymer Dynamics - concepts only",
+        "Polymer Physics (Rubinstein & Colby) - concepts only",
+        "Wikipedia (Rouse model; Langevin equation)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia - Rouse model",
+          "url": "https://en.wikipedia.org/wiki/Rouse_model"
+        },
+        {
+          "label": "Wikipedia - Langevin equation (the per-bead dynamics)",
+          "url": "https://en.wikipedia.org/wiki/Langevin_equation"
+        },
+        {
+          "label": "Wikipedia - Ideal chain (the spring connectivity)",
+          "url": "https://en.wikipedia.org/wiki/Ideal_chain"
+        },
+        {
+          "label": "Wikipedia - Normal mode (the Rouse modes)",
+          "url": "https://en.wikipedia.org/wiki/Normal_mode"
+        },
+        {
+          "label": "Wikipedia - Reptation (what takes over when entangled)",
+          "url": "https://en.wikipedia.org/wiki/Reptation"
+        }
+      ],
+      "art_prompt": "a beads-on-springs chain floating in a stippled solvent, with one tagged bead tracing a slow tangled subdiffusive path labeled t^(1/2), and a faint set of standing-wave Rouse modes p=1,2,3 sketched beneath it",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Rouse model represent a polymer as, and what does it deliberately ignore?",
+          "answer": "Beads connected by entropic springs, each bead obeying a Langevin equation (local drag + thermal noise). It ignores excluded volume (beads can overlap) and hydrodynamic interactions (no solvent backflow between beads), which makes it the right model for unentangled melts rather than dilute solutions."
+        },
+        {
+          "level": "derive",
+          "prompt": "Rouse mode p relaxes with tau_p = tau_R/p^2. If the longest relaxation time of a chain is 1 microsecond, roughly how fast does the p=4 internal mode relax, and what does that mode physically represent?",
+          "answer": "tau_4 = tau_R/4^2 = 1 us / 16 ~ 63 ns. Higher-p modes relax faster as 1/p^2 because they describe shorter sub-sections of the chain (mode p involves ~N/p beads); small-scale wiggles equilibrate quickly while the whole-chain shape (p=1) takes the full tau_R."
+        }
+      ],
+      "lesson": "### Intuition\n\nThe **ideal chain** tells you a polymer's *shape* statistics but says nothing about *motion*. The Rouse model is the simplest way to set that chain moving: keep the entropic springs that hold neighboring beads together, drop each bead into a **Langevin** bath of drag plus random kicks, and ask how fast the chain wiggles and forgets its conformation.\n\n### Precisely\n\nBead $n$ obeys\n\n$$\\zeta\\frac{d\\mathbf{r}_n}{dt} = k\\,(\\mathbf{r}_{n+1}-2\\mathbf{r}_n+\\mathbf{r}_{n-1}) + \\boldsymbol{\\xi}_n(t),\\qquad k=\\frac{3k_BT}{b^2}.$$\n\nDiagonalizing the connectivity gives independent **Rouse modes** $p$, each an exponential relaxation with\n\n$$\\tau_p = \\frac{\\tau_R}{p^2},\\qquad \\tau_R \\sim \\frac{\\zeta N^2 b^2}{3\\pi^2 k_BT}.$$\n\nThe center of mass diffuses with $D = k_BT/(N\\zeta)\\propto 1/N$, and a single monomer subdiffuses, $\\langle\\Delta r^2\\rangle\\sim t^{1/2}$, until $t\\approx\\tau_R$.\n\n### Worked example\n\nDouble the chain length. The longest relaxation time grows by $2^2=4\\times$ and the center-of-mass diffusion halves ($D\\propto 1/N$). A neutron spin-echo experiment on a melt sees the tagged-monomer mean-square displacement rise as $t^{1/2}$ - the fingerprint that distinguishes a connected chain from free Brownian beads (which would give $t^1$).\n\n### Why it's true / how it works\n\nThe springs couple neighbors, so a bead cannot move freely - it must drag its neighbors along. Mathematically the coupling diagonalizes into standing-wave modes; the slowest (whole-chain) mode controls relaxation and scales as $N^2$ because the restoring force per mode weakens as the chain lengthens while the friction it must move grows.\n\n### Where it connects\n\nIt is **Langevin dynamics** applied to the **ideal chain**. Add hydrodynamic backflow and you get the **Zimm model** (dilute solution); add entanglements and you get reptation; coarse-grain further and you reach the rheology of polymer melts.\n\n### Watch out\n\nRouse has no excluded volume and no hydrodynamics, so it is *wrong* for a single chain in dilute solution - there the solvent carries momentum from bead to bead and Zimm dynamics ($\\tau\\sim N^{3\\nu}$, monomer $t^{2/3}$) win. Rouse is right for **unentangled melts**, where neighboring chains screen both effects.\n\n### Numbers & nuance\n\nThe Rouse melt viscosity grows only linearly, $\\eta\\propto N$, until chains get long enough to entangle; above that the experimental viscosity jumps to $\\eta\\propto N^{3.4}$ and you have crossed from Rouse into reptation."
     }
   ]
 }
