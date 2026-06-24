@@ -16,7 +16,15 @@
 #     PowerPlan (tools_power — scipy.stats noncentral power),
 #     GeoSummary (tools_geo — numpy/scipy Mann-Kendall/Theil-Sen),
 #     MLReproCard (tools_mlrepro — deterministic repro rubric, pure stdlib).
-#   ONE new hard dependency: networkx (CausalDesigner). Suite is now 35 tools.
+#   ONE new hard dependency: networkx (CausalDesigner). Suite was 35 tools.
+# 2026-06-24: + FIVE per-field CLASSICAL-algorithm tools for the biggest
+#   CPU-feasible fields/tasks in USERS_NEEDS not yet covered (no GPU, NO new deps):
+#     SeqAlign (tools_seqalign — Needleman-Wunsch + Smith-Waterman, BLOSUM62; stdlib),
+#     StoichBalance (tools_stoich — null-space equation balancing; stdlib fractions),
+#     UnitDimCheck (tools_units — SI dimensional analysis; stdlib fractions),
+#     SurvivalFit (tools_survival — Kaplan-Meier + log-rank; numpy + scipy.stats),
+#     TimeSeriesForecast (tools_forecast — Holt-Winters + backtest; numpy).
+#   numpy + scipy are already pinned; NO new dependency. Suite is now 40 tools.
 # Builds the FastAPI gateway (gateway.py) + the three self-contained REAL backends
 # (tools_rag, tools_dnarna, tools_neuro) AND vendors the source + weights of the five
 # CPU-feasible subprocess tools so they run live WITHOUT shelling out to ~/agfarms:
@@ -83,7 +91,9 @@ COPY gateway.py tools_rag.py tools_dnarna.py tools_neuro.py \
      tools_imaging.py tools_figure.py tools_genomics.py \
      tools_fair.py tools_repli.py \
      tools_causal.py tools_materials.py tools_power.py \
-     tools_geo.py tools_mlrepro.py llm_client.py /app/
+     tools_geo.py tools_mlrepro.py \
+     tools_seqalign.py tools_stoich.py tools_units.py \
+     tools_survival.py tools_forecast.py llm_client.py /app/
 
 # Vendored tool source + baked weights/corpora.
 COPY vendor/ /app/vendor/

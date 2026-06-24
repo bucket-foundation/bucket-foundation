@@ -15,7 +15,7 @@
 
 import type { ToolHosting } from "@/lib/support";
 
-export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG" | "META" | "FIELD";
+export type ToolClass = "CPU" | "GPU" | "RAG" | "DNA" | "NEURO" | "GAP" | "IMG" | "META" | "FIELD" | "CLASSIC";
 export type ToolStatus = "live" | "demo";
 
 export type Tool = {
@@ -36,6 +36,10 @@ export type Tool = {
   //        earth-climate series summary, cs-ml reproducibility) — REAL CPU
   //        algorithms (networkx do-calculus, Magpie descriptors, scipy power,
   //        Mann-Kendall/Theil-Sen, a deterministic repro rubric).
+  // CLASSIC = per-field exact CLASSICAL algorithms for the biggest CPU-feasible
+  //        fields/tasks not yet covered (pairwise sequence alignment, chemical-
+  //        equation balancing, SI dimensional analysis, Kaplan-Meier survival,
+  //        Holt-Winters forecasting) — textbook-exact, no GPU, no heuristics.
   klass: ToolClass;
   // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: ToolStatus;
@@ -364,6 +368,56 @@ export const TOOLS: Tool[] = [
     blurb:
       "Score an ML experiment's reproducibility + emit a model card (cs-ml). Describe the dataset, splits, seed, hyperparameters, training, compute, eval, and what you shared; MLReproCard scores a real weighted rubric (NeurIPS/ICML checklists, Mitchell 2019 Model Cards, Gundersen's taxonomy) across data/code/training/evaluation/compute/sharing, flags exactly which repro elements are missing, assigns an R0–R3 level, and fills in a normalized model card. Deterministic, no LLM.",
     klass: "FIELD",
+    status: "live",
+    hosting: "always-on",
+  },
+  // --- per-field exact CLASSICAL algorithms: the biggest CPU-feasible
+  //     fields/tasks in the atlas USERS_NEEDS roadmap not yet covered
+  //     (bio sequence alignment, chemistry reaction arithmetic, universal
+  //     dimensional analysis, biomed/stats survival, econ/earth forecasting).
+  //     REAL textbook-exact algorithms, no GPU, always-on. ---
+  {
+    slug: "seqalign",
+    name: "SeqAlign",
+    blurb:
+      "Pairwise sequence alignment (biomed-bio, the largest field). Exact dynamic programming — Needleman-Wunsch global and Smith-Waterman local — with the real BLOSUM62 substitution matrix for proteins (or an identity matrix for nucleotides) and a linear gap penalty. Returns the aligned strings, optimal score, match/mismatch/gap counts, and percent identity. The bedrock operation of every sequence pipeline, no heuristics, no GPU.",
+    klass: "CLASSIC",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "stoichbalance",
+    name: "StoichBalance",
+    blurb:
+      "Balance a chemical equation + stoichiometry (chemistry). Balancing is solved as a null-space problem on the element matrix via exact rational Gaussian elimination, scaled to the smallest positive integers and re-verified element-by-element (H2 + O2 → H2O gives 2, 1, 2). Supply reactant amounts and it computes the limiting reagent, extent of reaction, and theoretical product yields. Real linear algebra, no lookup tables.",
+    klass: "CLASSIC",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "unitdimcheck",
+    name: "UnitDimCheck",
+    blurb:
+      "Dimensional analysis, unit conversion & equation consistency (universal; physics/engineering). Parses unit expressions into exact rational exponents over the 7 SI base dimensions, converts between compatible units (with affine °C/°F), and checks that an equation is dimensionally homogeneous — catching F = m·a (consistent) vs a wrong F = m·v (mass·length·time⁻¹ ≠ force). The cheapest correctness check in physical science, zero dependencies.",
+    klass: "CLASSIC",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "survivalfit",
+    name: "SurvivalFit",
+    blurb:
+      "Survival / time-to-event analysis (biomed + econ-social). The exact Kaplan-Meier product-limit estimator with Greenwood standard errors and median survival, per group, plus the Mantel-Cox log-rank test (hypergeometric expected/variance, χ² on 1 df via scipy) between two groups. Handles right-censoring. The workhorse of trials, epidemiology, and event-history models — real, reproducible, no GPU.",
+    klass: "CLASSIC",
+    status: "live",
+    hosting: "always-on",
+  },
+  {
+    slug: "timeseriesforecast",
+    name: "TimeSeriesForecast",
+    blurb:
+      "Decompose & forecast a time series (econ-social, earth-climate, universal). Holt-Winters triple exponential smoothing (level/trend/seasonal, α/β/γ fit by minimizing in-sample SSE) with classical additive decomposition, and — the honest part — a holdout backtest reporting MAE/RMSE/MAPE against a naive last-value baseline. Dependency-light real numpy (statsmodels if installed); a forecast that doesn't beat naive adds nothing.",
+    klass: "CLASSIC",
     status: "live",
     hosting: "always-on",
   },

@@ -42,12 +42,19 @@ mkdir -p "$STAGE/vendor/tools" "$STAGE/deploy" "$STAGE/hf-cache/hub"
 # per-field NON-bio tools — they MUST be staged too or the Dockerfile COPY
 # (deploy/Dockerfile.tools lines 85-86) fails. CausalDesigner adds networkx
 # (already pinned in requirements.tools.txt); the other four reuse scipy/numpy.
+# tools_seqalign/stoich/units/survival/forecast are the 2026-06-24 FIVE per-field
+# CLASSICAL-algorithm tools (Needleman-Wunsch/Smith-Waterman, equation balancing,
+# SI dimensional analysis, Kaplan-Meier+log-rank, Holt-Winters). They MUST be
+# staged too or the Dockerfile COPY fails. All reuse numpy/scipy (already pinned)
+# — NO new dependency.
 cp "$RT/gateway.py" "$RT/tools_rag.py" "$RT/tools_dnarna.py" "$RT/tools_neuro.py" \
    "$RT/tools_protocol.py" "$RT/tools_toxin.py" "$RT/tools_citation.py" \
    "$RT/tools_imaging.py" "$RT/tools_figure.py" "$RT/tools_genomics.py" \
    "$RT/tools_fair.py" "$RT/tools_repli.py" \
    "$RT/tools_causal.py" "$RT/tools_materials.py" "$RT/tools_power.py" \
-   "$RT/tools_geo.py" "$RT/tools_mlrepro.py" "$RT/llm_client.py" "$STAGE/"
+   "$RT/tools_geo.py" "$RT/tools_mlrepro.py" \
+   "$RT/tools_seqalign.py" "$RT/tools_stoich.py" "$RT/tools_units.py" \
+   "$RT/tools_survival.py" "$RT/tools_forecast.py" "$RT/llm_client.py" "$STAGE/"
 cp "$RT/deploy/requirements.tools.txt" "$RT/deploy/Dockerfile.tools" "$STAGE/deploy/"
 
 ex=(--exclude '__pycache__' --exclude 'out' --exclude '.pytest_cache')

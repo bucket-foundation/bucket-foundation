@@ -51,6 +51,22 @@
 #   * MLReproCard (tools_mlrepro.py): ML reproducibility rubric + model card —
 #     pure stdlib (json + re). NO new dep.
 # Net new hard dependency: networkx (CausalDesigner only).
+#
+# NEW (2026-06-24) — FIVE per-field CLASSICAL-algorithm tools, CPU, NO GPU,
+# NO new dependencies:
+#   * SeqAlign (tools_seqalign.py): Needleman-Wunsch (global) + Smith-Waterman
+#     (local) pairwise alignment with a baked BLOSUM62 matrix — pure stdlib.
+#   * StoichBalance (tools_stoich.py): chemical-equation balancing via exact
+#     rational null-space of the element matrix + limiting reagent — pure stdlib
+#     (fractions, math).
+#   * UnitDimCheck (tools_units.py): SI dimensional analysis / unit conversion /
+#     equation consistency over the 7 SI base dims — pure stdlib (fractions, re).
+#   * SurvivalFit (tools_survival.py): Kaplan-Meier + Greenwood + median +
+#     Mantel-Cox log-rank — numpy + scipy.stats (already pinned).
+#   * TimeSeriesForecast (tools_forecast.py): Holt-Winters triple exponential
+#     smoothing + additive decomposition + holdout backtest — numpy (scipy
+#     optional for the Nelder-Mead param refinement; both already pinned).
+# Net new hard dependency: NONE (numpy/scipy already present).
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 pydantic==2.10.4

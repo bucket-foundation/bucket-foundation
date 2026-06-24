@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { TOOLS, type Tool } from "@/lib/tools";
 
-// Research-tools directory. Thirty-five tools served through bucket.foundation
+// Research-tools directory. Forty tools served through bucket.foundation
 // (FastAPI gateway on Hetzner → /api/research/<tool> proxy → this UI). See
 // docs/research-tools/04-implementation-architecture.md. The TOOLS registry
 // lives in src/lib/tools.ts (one source of truth — also drives per-tool
@@ -12,18 +12,18 @@ import { TOOLS, type Tool } from "@/lib/tools";
 export const metadata: Metadata = {
   title: "Research tools · run real instruments",
   description:
-    "Thirty-five free research instruments on bucket.foundation: protein stability (ΔΔG), ADMET screening, RNA folding, ephys fits, imaging, plus per-field tools — causal-study design (DAG + adjustment set), materials featurization, statistical power & sample size, geospatial/time-series summary, ML reproducibility cards — and literature/agent tools over the live OpenAlex index and a real awarded-grant corpus. Run on your input, publish to canon — the reader pays nothing.",
+    "Forty free research instruments on bucket.foundation: protein stability (ΔΔG), ADMET screening, RNA folding, ephys fits, imaging, plus per-field tools — causal-study design (DAG + adjustment set), materials featurization, statistical power & sample size, geospatial/time-series summary, ML reproducibility cards — and literature/agent tools over the live OpenAlex index and a real awarded-grant corpus. Run on your input, publish to canon — the reader pays nothing.",
   alternates: { canonical: "/research/tools" },
   openGraph: {
     type: "website",
     url: "https://www.bucket.foundation/research/tools",
-    title: "Thirty-five free research tools · bucket.foundation",
+    title: "Forty free research tools · bucket.foundation",
     description:
       "Real research instruments across fields — protein/RNA/ephys/imaging, causal design, materials featurization, power analysis, geospatial summary, ML reproducibility, and live-literature agents — free to run, citeable forever.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Thirty-five free research tools · bucket.foundation",
+    title: "Forty free research tools · bucket.foundation",
     description:
       "Real research instruments across fields — biophysics, econ-social causal design, materials, stats power, earth-climate, cs-ml — free to run.",
   },
@@ -66,7 +66,7 @@ export default function Page() {
           <span className="inlay-gold">instruments.</span>
         </h1>
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
-          Thirty-five tools, each running real logic on your input — protein
+          Forty tools, each running real logic on your input — protein
           stability, ADMET screening, trajectory mining, ephys, and cryo-EM
           triage; five literature/agent tools over the live OpenAlex index and a
           real awarded-grant corpus (PaperRadar, GrantDraft, MethodsMatcher,
@@ -77,12 +77,16 @@ export default function Page() {
           (CalciumTraceML ΔF/F, CellSegTrack segmentation, AFM-CurveML modulus,
           TractionForceML PIV); a gap-research cluster (ProtocolGPT,
           ToxinChannelFinder, CitationGraph, FigureMiner, AggregatePredict);
-          all-field metascience tools (FAIRCheck, RepliCheck); and a per-field
+          all-field metascience tools (FAIRCheck, RepliCheck); a per-field
           set for the biggest non-bio fields — CausalDesigner (econ/social
           do-calculus), MaterialsFeaturizer (Magpie descriptors), PowerPlan
           (power &amp; sample size), GeoSummary (earth-climate trend/seasonality),
-          and MLReproCard (cs-ml reproducibility). Run one, read the result, and
-          publish it to canon as a citeable, paid-once artifact.
+          and MLReproCard (cs-ml reproducibility); and a classical-algorithm set
+          — SeqAlign (Needleman-Wunsch / Smith-Waterman), StoichBalance (equation
+          balancing), UnitDimCheck (SI dimensional analysis), SurvivalFit
+          (Kaplan-Meier + log-rank), and TimeSeriesForecast (Holt-Winters). Run
+          one, read the result, and publish it to canon as a citeable, paid-once
+          artifact.
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 

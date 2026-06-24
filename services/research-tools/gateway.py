@@ -62,7 +62,7 @@ from typing import Any, Callable, Optional
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 # --- paths / config (mirrors tools_api/app.py) -----------------------------
 # This file lives at bucket-foundation/services/research-tools/; the tools live
@@ -145,11 +145,21 @@ HORIZONTAL_TOOLS = ["faircheck", "replicheck"]
 #   geosummary         — earth-climate: trend (Mann-Kendall/Theil-Sen) + seasonality
 #   mlreprocard        — cs-ml: ML reproducibility rubric + model card (deterministic)
 FIELD_TOOLS = ["causaldesigner", "materialsfeaturizer", "powerplan", "geosummary", "mlreprocard"]
+# Per-field CLASSICAL-algorithm cluster (services/research-tools/tools_{seqalign,
+# stoich,units,survival,forecast}.py) — REAL exact algorithms for the biggest
+# CPU-feasible fields/tasks in research-atlas/docs/USERS_NEEDS.md not yet covered.
+# CPU/inline, no GPU, no subprocess, render "json".
+#   seqalign          — bio/genomics: Needleman-Wunsch + Smith-Waterman (BLOSUM62)
+#   stoichbalance     — chemistry: equation balancing (null-space) + limiting reagent
+#   unitdimcheck      — physics/universal: SI dimensional analysis + unit conversion
+#   survivalfit       — biomed/stats: Kaplan-Meier + median + log-rank test
+#   timeseriesforecast— econ/earth/universal: Holt-Winters decompose + forecast + backtest
+CLASSIC_TOOLS = ["seqalign", "stoichbalance", "unitdimcheck", "survivalfit", "timeseriesforecast"]
 # REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
 PURE_TOOLS = (
     RAG_TOOLS + DNARNA_TOOLS + NEURO_TOOLS + PROTOCOL_TOOLS + TOXIN_TOOLS
     + CITATION_TOOLS + IMAGING_TOOLS + FIGURE_TOOLS + GENOMICS_TOOLS
-    + HORIZONTAL_TOOLS + FIELD_TOOLS
+    + HORIZONTAL_TOOLS + FIELD_TOOLS + CLASSIC_TOOLS
 )
 ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
@@ -191,6 +201,11 @@ PRICE: dict[str, dict[str, Any]] = {
     "powerplan": {"tier": "plan", "usd": 0.0, "metered": False},
     "geosummary": {"tier": "summarize", "usd": 0.0, "metered": False},
     "mlreprocard": {"tier": "assess", "usd": 0.0, "metered": False},
+    "seqalign": {"tier": "align", "usd": 0.0, "metered": False},
+    "stoichbalance": {"tier": "balance", "usd": 0.0, "metered": False},
+    "unitdimcheck": {"tier": "check", "usd": 0.0, "metered": False},
+    "survivalfit": {"tier": "fit", "usd": 0.0, "metered": False},
+    "timeseriesforecast": {"tier": "forecast", "usd": 0.0, "metered": False},
 }
 
 # import the REAL T1 backend (live OpenAlex + research-atlas grant corpus).
@@ -348,6 +363,52 @@ except Exception as _e:  # pragma: no cover - import guard
     tools_mlrepro = None  # type: ignore
     _MLREPRO_OK = False
     _MLREPRO_IMPORT_ERR = str(_e)
+
+# import the REAL per-field CLASSICAL-algorithm backends (one module each).
+try:
+    import tools_seqalign  # type: ignore
+    _SEQALIGN_OK = True
+    _SEQALIGN_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_seqalign = None  # type: ignore
+    _SEQALIGN_OK = False
+    _SEQALIGN_IMPORT_ERR = str(_e)
+
+try:
+    import tools_stoich  # type: ignore
+    _STOICH_OK = True
+    _STOICH_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_stoich = None  # type: ignore
+    _STOICH_OK = False
+    _STOICH_IMPORT_ERR = str(_e)
+
+try:
+    import tools_units  # type: ignore
+    _UNITS_OK = True
+    _UNITS_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_units = None  # type: ignore
+    _UNITS_OK = False
+    _UNITS_IMPORT_ERR = str(_e)
+
+try:
+    import tools_survival  # type: ignore
+    _SURVIVAL_OK = True
+    _SURVIVAL_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_survival = None  # type: ignore
+    _SURVIVAL_OK = False
+    _SURVIVAL_IMPORT_ERR = str(_e)
+
+try:
+    import tools_forecast  # type: ignore
+    _FORECAST_OK = True
+    _FORECAST_IMPORT_ERR = ""
+except Exception as _e:  # pragma: no cover - import guard
+    tools_forecast = None  # type: ignore
+    _FORECAST_OK = False
+    _FORECAST_IMPORT_ERR = str(_e)
 
 app = FastAPI(title="research-tools-gateway", version="v1")
 # CORS allow-list. The intended caller is the same-origin Bucket Next proxy
@@ -876,6 +937,26 @@ RUNNERS: dict[str, Callable[[Job, dict], None]] = {
         "mlreprocard", _MLREPRO_OK, _MLREPRO_IMPORT_ERR,
         tools_mlrepro.MLREPRO_RUNNERS if tools_mlrepro is not None else None, "tools_mlrepro",
     ),
+    "seqalign": _make_pure_runner(
+        "seqalign", _SEQALIGN_OK, _SEQALIGN_IMPORT_ERR,
+        tools_seqalign.SEQALIGN_RUNNERS if tools_seqalign is not None else None, "tools_seqalign",
+    ),
+    "stoichbalance": _make_pure_runner(
+        "stoichbalance", _STOICH_OK, _STOICH_IMPORT_ERR,
+        tools_stoich.STOICH_RUNNERS if tools_stoich is not None else None, "tools_stoich",
+    ),
+    "unitdimcheck": _make_pure_runner(
+        "unitdimcheck", _UNITS_OK, _UNITS_IMPORT_ERR,
+        tools_units.UNITS_RUNNERS if tools_units is not None else None, "tools_units",
+    ),
+    "survivalfit": _make_pure_runner(
+        "survivalfit", _SURVIVAL_OK, _SURVIVAL_IMPORT_ERR,
+        tools_survival.SURVIVAL_RUNNERS if tools_survival is not None else None, "tools_survival",
+    ),
+    "timeseriesforecast": _make_pure_runner(
+        "timeseriesforecast", _FORECAST_OK, _FORECAST_IMPORT_ERR,
+        tools_forecast.FORECAST_RUNNERS if tools_forecast is not None else None, "tools_forecast",
+    ),
 }
 
 
@@ -1132,6 +1213,51 @@ class MLReproCardSubmit(BaseModel):
     demo: bool = False
 
 
+# --- per-field CLASSICAL-algorithm cluster submit bodies -------------------
+class SeqAlignSubmit(BaseModel):
+    seq_a: str = "demo"
+    seq_b: Optional[str] = None
+    mode: str = "global"            # "global" | "local"
+    matrix: str = "auto"            # "blosum62" | "identity" | "auto"
+    gap: Optional[int] = None
+    match: int = 1
+    mismatch: int = -1
+
+
+class StoichBalanceSubmit(BaseModel):
+    equation: str = "demo"          # e.g. "H2 + O2 -> H2O", or "demo"
+    amounts: Optional[dict] = None  # {species: moles}
+    amounts_g: Optional[dict] = None  # {species: grams}
+    demo: bool = False
+
+
+class UnitDimCheckSubmit(BaseModel):
+    # `from` is a Python keyword; accept it from JSON via a field alias.
+    model_config = {"populate_by_name": True}
+    op: str = "demo"                # "convert" | "check" | "parse" | "demo"
+    value: Optional[float] = None
+    from_unit: Optional[str] = Field(default=None, alias="from")
+    to: Optional[str] = None
+    equation: Optional[str] = None
+    unit: Optional[str] = None
+    demo: bool = False
+
+
+class SurvivalFitSubmit(BaseModel):
+    durations: Any = "demo"         # list[float], or "demo"
+    events: Optional[list] = None   # 0/1 list (default all events)
+    groups: Optional[list] = None   # optional group labels (2 → log-rank)
+    demo: bool = False
+
+
+class TimeSeriesForecastSubmit(BaseModel):
+    values: Any = "demo"            # list[float], or "demo"
+    period: int = 0                 # seasonal period (0 = none)
+    horizon: int = 6
+    test: Optional[int] = None      # backtest holdout size
+    demo: bool = False
+
+
 # --- endpoints -------------------------------------------------------------
 @app.get("/health")
 def health() -> dict:
@@ -1150,6 +1276,7 @@ def health() -> dict:
         "genomics": GENOMICS_TOOLS,
         "horizontal": HORIZONTAL_TOOLS,
         "field": FIELD_TOOLS,
+        "classic": CLASSIC_TOOLS,
         "demo": DEMO_TOOLS,
         "rag_backend": _RAG_OK,
         "dnarna_backend": _DNARNA_OK,
@@ -1167,6 +1294,11 @@ def health() -> dict:
         "power_backend": _POWER_OK,
         "geo_backend": _GEO_OK,
         "mlrepro_backend": _MLREPRO_OK,
+        "seqalign_backend": _SEQALIGN_OK,
+        "stoich_backend": _STOICH_OK,
+        "units_backend": _UNITS_OK,
+        "survival_backend": _SURVIVAL_OK,
+        "forecast_backend": _FORECAST_OK,
         "version": "v1",
     }
 
@@ -1488,6 +1620,68 @@ def submit_mlreprocard(r: MLReproCardSubmit) -> dict:
         else:
             raise HTTPException(400, 'record must be an experiment object, a JSON string, or "demo"')
     return _dispatch("mlreprocard", {"record": rec, "demo": demo})
+
+
+# --- per-field CLASSICAL-algorithm cluster submit endpoints ----------------
+@app.post("/v1/seqalign/submit")
+def submit_seqalign(r: SeqAlignSubmit) -> dict:
+    demo = _is_demo(r.seq_a)
+    if not demo:
+        if len((r.seq_a or "").strip()) < 1 or len((r.seq_b or "").strip()) < 1:
+            raise HTTPException(400, "provide two sequences (seq_a, seq_b), or use demo")
+    return _dispatch("seqalign", {
+        "seq_a": r.seq_a, "seq_b": r.seq_b, "mode": r.mode, "matrix": r.matrix,
+        "gap": r.gap, "match": r.match, "mismatch": r.mismatch,
+    })
+
+
+@app.post("/v1/stoichbalance/submit")
+def submit_stoichbalance(r: StoichBalanceSubmit) -> dict:
+    demo = r.demo or _is_demo(r.equation)
+    if not demo and len((r.equation or "").strip()) < 3:
+        raise HTTPException(400, 'enter a chemical equation (e.g. "H2 + O2 -> H2O"), or use demo')
+    return _dispatch("stoichbalance", {
+        "equation": r.equation, "amounts": r.amounts, "amounts_g": r.amounts_g, "demo": demo,
+    })
+
+
+@app.post("/v1/unitdimcheck/submit")
+def submit_unitdimcheck(r: UnitDimCheckSubmit) -> dict:
+    demo = r.demo or (r.op or "").strip().lower() == "demo"
+    op = (r.op or "").strip().lower()
+    if not demo:
+        if op not in ("convert", "check", "parse"):
+            raise HTTPException(400, 'op must be "convert", "check", "parse", or use demo')
+        if op == "convert" and (r.value is None or not (r.from_unit or "").strip() or not (r.to or "").strip()):
+            raise HTTPException(400, "convert needs value, from, and to")
+        if op == "check" and not (r.equation or "").strip():
+            raise HTTPException(400, "check needs an equation (e.g. 'N = kg*m/s^2')")
+        if op == "parse" and not (r.unit or "").strip():
+            raise HTTPException(400, "parse needs a unit string")
+    return _dispatch("unitdimcheck", {
+        "op": r.op, "value": r.value, "from": r.from_unit, "to": r.to,
+        "equation": r.equation, "unit": r.unit, "demo": demo,
+    })
+
+
+@app.post("/v1/survivalfit/submit")
+def submit_survivalfit(r: SurvivalFitSubmit) -> dict:
+    demo = r.demo or _is_demo(r.durations)
+    if not demo and not (isinstance(r.durations, (list, tuple)) and len(r.durations) >= 2):
+        raise HTTPException(400, "durations must be a numeric array (length >= 2), or use demo")
+    return _dispatch("survivalfit", {
+        "durations": r.durations, "events": r.events, "groups": r.groups, "demo": demo,
+    })
+
+
+@app.post("/v1/timeseriesforecast/submit")
+def submit_timeseriesforecast(r: TimeSeriesForecastSubmit) -> dict:
+    demo = r.demo or _is_demo(r.values)
+    if not demo and not (isinstance(r.values, (list, tuple)) and len(r.values) >= 4):
+        raise HTTPException(400, "values must be a numeric array (length >= 4), or use demo")
+    return _dispatch("timeseriesforecast", {
+        "values": r.values, "period": r.period, "horizon": r.horizon, "test": r.test, "demo": demo,
+    })
 
 
 def _status_envelope(job: Job) -> dict:
