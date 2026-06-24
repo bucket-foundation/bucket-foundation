@@ -52,3 +52,55 @@ engine.js load() and validate.sh both hardcode biophysics.json, so a multi-branc
 needs engine.js to accept a corpus path + validate.sh's engine sim to loop or stay on
 biophysics. Lowest-risk: add the second corpus file first (validate.sh's JSON-integrity
 loop already covers corpus/*.json), then wire the picker.
+
+## 2026-06-24 — run 3 (assessment-quality pass + diagnostic-cap blocker discovered)
+State on entry was FAR ahead of this log: corpus is now 7 branches + Languages
+(biophysics 74, math 49, physics 55, chem 49, info 48, cosmology 41, mind 42, lang-core
+448) with a branch picker (corpus/index.json) — runs 1–2's "start a second branch" NEXT
+is long done. Baseline validate.sh GREEN.
+
+**Intended work (expand biophysics) hit a hard blocker — documented here so the next run
+doesn't repeat the dead end.** I authored 6 new, correct biophysics atoms (verlet, rmsf,
+replica-exchange, coarse-graining, flory-scaling, rouse-model — the exact §1.9/§1.2 gaps
+runs 1–2 flagged: Verlet integrator, RMSF/B-factor, enhanced sampling, coarse-graining,
+Flory solvent-quality scaling, Rouse chain dynamics). They validate as JSON and introduce
+fine in the 60-day engine sim. BUT **every one of them fails `test-diagnostic.mjs`**. Root
+cause: that test asserts `expert.placedCount > questionsAsked`, and at baseline the margin
+was exactly **+1** (placed 19, asked 18 at the hard `MAX_Q_DEFAULT = 18` cap). The
+diagnostic gets ~zero prereq-inference leverage on the grown 74-atom graph (one correct
+answer propagates DOWN only ~1 prereq hop before attenuating below KNOWN_THRESHOLD), so
+placed ≈ asked. ANY added biophysics atom becomes an uncertain-band probe target that
+consumes the fixed budget at 1:1, tipping placed to = asked → FAIL. I measured the
+placed−asked surplus vs. cap with the 4 depth-3 atoms added: cap 18→+0, 23→0, 26→−1,
+30→−5, 40→−8, 60→−14 — i.e. **raising the cap makes it WORSE**, because the extra
+questions land on atoms beyond the expert's frontier. Deepening requires-edges (done
+honestly: rouse→langevin, flory→entropic-elasticity+free-energy, coarse-graining→free-
+energy) pulls atoms out of the depth≤2 expert set but does NOT fix it. Conclusion: this is
+a real pre-existing diagnostic-inference limitation, not a content defect — and it blocks
+the build-loop's PRIMARY mission (biophysics growth). I reverted all 6 atoms + the cap
+experiment to keep the app green (do NOT redesign the diagnostic blindly in an autonomous
+run — it risks the no-false-placement and seed-sanity checks too).
+
+**Shipped instead (provably can't touch the diagnostic — no atom/prereq change):** added
+rigorous, original **`derive`-level quiz items to 8 equation-type nucleus atoms** that had
+only recall+apply — debye (linearized Poisson–Boltzmann → exponential screening), ddg
+(ΔΔG → ~10× fold-population shift per 1.4 kcal/mol), hill (Hill-plot slope = n), eyring
+(~1.4 kcal/mol per rate-decade), fick (steady-state Laplace + linear profile/flux),
+random-walk (⟨x²⟩=Nδ²=2Dt, D=δ²/2τ), nernst (electrochemical-potential equality → 61
+mV/decade at 310 K), chemiosmosis (Δp=180 mV → −17.4 kJ/mol·H⁺ → why 3–4 H⁺/ATP). All
+numerics verified. derive-quiz coverage 20→28 of 74 atoms. meta 0.5.0→0.5.1. validate.sh
+PASSES (all stages incl. diagnostic, engine sim, explorer smoke).
+
+NEXT: **the high-value unblock is fixing the diagnostic's prereq inference** so it places
+many concepts from few questions (the real ALEKS property) — until then biophysics atom
+additions are blocked. Concretely: in js/diagnostic.js the DOWN-propagation on a correct
+answer dies after ~1 hop (W_CORRECT 1.55 × PROP_DECAY 0.62 from prior logit(0.4) clears
+KNOWN_THRESHOLD 0.62 at hop 1 but not hop 2). Either (a) propagate full requires-CLOSURE
+on a confident-correct (not just decaying hop-by-hop), or (b) change `done()` to early-stop
+once every remaining uncertain atom has an unknown prerequisite (so the expert stops
+probing beyond its frontier instead of burning budget). EITHER restores placed≫asked and
+unblocks adding the 6 ready-written atoms above. Guard the change against the
+`no-false-placement` (line ~131) and `seed-sanity` checks. If you'd rather not touch the
+diagnostic, the 6 atoms could instead seed a polymer-physics cluster in 02-physics (NOT
+engine-tested), but they're framed for biophysics. Cheaper safe wins also remain: more
+`derive` quizzes (46 atoms still lack one), `note` fields, and art generation.
