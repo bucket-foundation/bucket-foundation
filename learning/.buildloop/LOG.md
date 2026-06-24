@@ -211,3 +211,35 @@ rich). Other safe wins: `note` fields on atoms missing them; art generation if a
 model is reachable. The zimm-model/tica depth-4 atoms remain written-and-ready but still
 need the diagnostic's prereq-closure early-stop extended (run-3 option b) before they place
 within budget — left untouched per run-4/5 guidance ("don't re-tune the diagnostic").
+
+## 2026-06-24 — run 7 (+3 foundational depth<=2 atoms; biophysics 80->83, margin-safe)
+Resumed the PRIMARY mission -- biophysics corpus growth -- via run 4's explicitly-recommended
+safe path ("add a few mid-graph atoms whose closures flood to widen the margin"), instead of
+grinding more quiz items (run 6) or fighting the depth-4 budget cliff (run 5's zimm/tica). Root
+re-analysis of test-diagnostic.mjs confirmed the margin-eroding risk comes ONLY from depth>=3
+atoms (beyond the expert's depth<=2 frontier -> they become uncertain probe targets that burn the
+fixed 18-question budget). So I added 3 genuinely-missing FOUNDATIONAL atoms that sit at depth
+<=2 and fill real syllabus gaps: equipartition (1/2 k_BT per quadratic DOF, Dulong-Petit/freeze-
+out, C_V=(3/2)R; syllabus 0.2, requires boltzmann, depth 1), chemical-potential (mu=mu0+RT ln a,
+partial molar G, entropy-of-mixing, -RT ln10 ~ -5.9 kJ/mol per decade; 0.4, requires gibbs,
+depth 1), and electrochemical-potential (mu~=mu+zF psi; Nernst as its equilibrium, pmf=dpsi-61*dpH mV,
+~200 mV ~ 20 kJ/mol per proton; 1.1/1.6, requires chemical-potential+nernst, depth 2). All original
+prose, every numeric verified this run (k_BT=4.3e-21 J / 0.62 kcal/mol @310K; RT ln10=5.9 kJ/mol;
+2.303RT/F=61 mV/decade; (3/2)R=12.5 J/mol/K), OPEN sources only (LibreTexts/NCBI Bookshelf/MIT OCW
++ Wikipedia resources), full lesson (7 sections) + 3 depths + 2 quiz (1 derive/apply each) +
+art_prompt. No existing atom modified -> existing depths/graph stable. PITFALL hit + fixed: first
+pass marked equipartition/chemical-potential shell="prereq" (syllabus-faithful), which expanded the
+test's special prereq shell 6->8 and tripped "all prereqs placed" (only 6/8 placed) -- the prereq
+shell is a small TESTED set, not "anything foundational." Recategorized both to shell="nucleus"
+(electrochemical-potential already nucleus). Result: diagnostic GREEN, expert margin holds at
++2 (placed 20 / asked 18), prereq shell 6/6, beginner early-stops at 7 q. validate.sh PASSES
+end-to-end (corpus integrity, 83-atom 60-day engine sim, diagnostic, assess/lang/explorer smokes).
+Mirrored to public/academy-app (83 atoms). meta 0.5.4->0.5.5.
+NEXT: more depth<=2 foundational additions remain margin-safe and high-value -- candidates:
+mass-action/equilibrium-constant (dG0=-RT ln K, requires gibbs), fluctuation-dissipation as its
+own atom (currently only inside langevin), arrhenius (empirical k=A e^{-Ea/RT}, requires boltzmann),
+or osmotic-pressure (van 't Hoff, requires chemical-potential -- would now be depth 2). Keep batches
+to ~3 and re-run test-diagnostic.mjs each time; depth>=3/frontier atoms (zimm/tica) STILL need the
+prereq-closure early-stop (run-3 option b) before they place within budget -- leave the diagnostic
+untuned per run-4/5/6 guidance. Cheaper safe wins also still open: 39 atoms lack a derive quiz item;
+note fields; GPU art generation.

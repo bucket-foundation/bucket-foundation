@@ -2,8 +2,8 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.5.4",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched.",
+    "version": "0.5.5",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified.",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
   "atoms": [
@@ -4952,6 +4952,190 @@
         }
       ],
       "lesson": "### Intuition\n\nThe **ideal chain** tells you a polymer's *shape* statistics but says nothing about *motion*. The Rouse model is the simplest way to set that chain moving: keep the entropic springs that hold neighboring beads together, drop each bead into a **Langevin** bath of drag plus random kicks, and ask how fast the chain wiggles and forgets its conformation.\n\n### Precisely\n\nBead $n$ obeys\n\n$$\\zeta\\frac{d\\mathbf{r}_n}{dt} = k\\,(\\mathbf{r}_{n+1}-2\\mathbf{r}_n+\\mathbf{r}_{n-1}) + \\boldsymbol{\\xi}_n(t),\\qquad k=\\frac{3k_BT}{b^2}.$$\n\nDiagonalizing the connectivity gives independent **Rouse modes** $p$, each an exponential relaxation with\n\n$$\\tau_p = \\frac{\\tau_R}{p^2},\\qquad \\tau_R \\sim \\frac{\\zeta N^2 b^2}{3\\pi^2 k_BT}.$$\n\nThe center of mass diffuses with $D = k_BT/(N\\zeta)\\propto 1/N$, and a single monomer subdiffuses, $\\langle\\Delta r^2\\rangle\\sim t^{1/2}$, until $t\\approx\\tau_R$.\n\n### Worked example\n\nDouble the chain length. The longest relaxation time grows by $2^2=4\\times$ and the center-of-mass diffusion halves ($D\\propto 1/N$). A neutron spin-echo experiment on a melt sees the tagged-monomer mean-square displacement rise as $t^{1/2}$ - the fingerprint that distinguishes a connected chain from free Brownian beads (which would give $t^1$).\n\n### Why it's true / how it works\n\nThe springs couple neighbors, so a bead cannot move freely - it must drag its neighbors along. Mathematically the coupling diagonalizes into standing-wave modes; the slowest (whole-chain) mode controls relaxation and scales as $N^2$ because the restoring force per mode weakens as the chain lengthens while the friction it must move grows.\n\n### Where it connects\n\nIt is **Langevin dynamics** applied to the **ideal chain**. Add hydrodynamic backflow and you get the **Zimm model** (dilute solution); add entanglements and you get reptation; coarse-grain further and you reach the rheology of polymer melts.\n\n### Watch out\n\nRouse has no excluded volume and no hydrodynamics, so it is *wrong* for a single chain in dilute solution - there the solvent carries momentum from bead to bead and Zimm dynamics ($\\tau\\sim N^{3\\nu}$, monomer $t^{2/3}$) win. Rouse is right for **unentangled melts**, where neighboring chains screen both effects.\n\n### Numbers & nuance\n\nThe Rouse melt viscosity grows only linearly, $\\eta\\propto N$, until chains get long enough to entangle; above that the experimental viscosity jumps to $\\eta\\propto N^{3.4}$ and you have crossed from Rouse into reptation."
+    },
+    {
+      "id": "equipartition",
+      "title": "Equipartition theorem",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "\\langle E\\rangle = \\tfrac{1}{2}k_BT \\;\\text{per quadratic degree of freedom}",
+      "summary": "At thermal equilibrium every quadratic degree of freedom carries an average energy of ½k_BT — the universal currency of thermal motion.",
+      "depths": {
+        "eli5": "Heat is just jiggling, and thermodynamics shares the jiggling out fairly. Every independent way a thing can store motion-energy — sliding left-right, spinning, stretching like a spring — gets the same average ration: about half of a tiny fixed amount called k_BT. That single number (roughly 0.6 kcal per mole at body temperature) is the size of one 'kick' of thermal energy, and it sets how fast molecules rattle around.",
+        "core": "The equipartition theorem says that, in classical thermal equilibrium, each degree of freedom that appears as a quadratic term in the energy (½mv² for a velocity component, ½kx² for a spring coordinate) holds an average energy of exactly ½k_BT. A free atom has three translational degrees of freedom, so its average kinetic energy is (3/2)k_BT; this fixes the thermal speed of molecules and the energy scale of Brownian motion. A harmonic bond has two quadratic terms (kinetic + potential), so it averages k_BT. The theorem is what makes k_BT 'the' energy unit of biophysics: bond fluctuations, the stretch of DNA under thermal forces, and the diffusive kicks in the Langevin equation are all measured in units of k_BT.",
+        "deep": "Equipartition is a *classical* result and fails when quantum spacing matters. A degree of freedom is 'frozen out' and stops absorbing ½k_BT once its energy-level spacing ħω exceeds k_BT — which is why molecular vibrations (stiff, high ω) contribute little at room temperature while translations and rotations (soft) are fully active, and why the heat capacity of solids drops below the Dulong–Petit value 3R as temperature falls. Equipartition is the classical limit of the full quantum statistical-mechanical average."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OCW 8.044"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Equipartition theorem",
+          "url": "https://en.wikipedia.org/wiki/Equipartition_theorem"
+        },
+        {
+          "label": "Wikipedia — Degrees of freedom (physics and chemistry)",
+          "url": "https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)"
+        },
+        {
+          "label": "Wikipedia — Thermal energy (the k_BT scale)",
+          "url": "https://en.wikipedia.org/wiki/Thermal_energy"
+        },
+        {
+          "label": "Wikipedia — Heat capacity (Dulong–Petit, freeze-out)",
+          "url": "https://en.wikipedia.org/wiki/Heat_capacity"
+        },
+        {
+          "label": "Wikipedia — Maxwell–Boltzmann distribution (the speeds it sets)",
+          "url": "https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution"
+        },
+        {
+          "label": "LibreTexts Chemistry — Physical & Theoretical Chemistry texts",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        }
+      ],
+      "art_prompt": "a molecule with arrows for sliding, spinning, and a stretching spring, each labeled with an equal energy bucket of one-half k_B T",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How much average energy does a single quadratic degree of freedom carry at thermal equilibrium?",
+          "answer": "½k_BT — half of k_BT per quadratic degree of freedom."
+        },
+        {
+          "level": "derive",
+          "prompt": "Use equipartition to find the average kinetic energy of a free molecule and its molar heat capacity, then explain why a stiff covalent bond's vibration contributes far less than ½k_BT at 300 K.",
+          "answer": "A free molecule has 3 translational (quadratic kinetic) degrees of freedom, so ⟨KE⟩ = 3 × ½k_BT = (3/2)k_BT; for a mole U = (3/2)RT and C_V = (3/2)R ≈ 12.5 J/mol/K (the monatomic-gas value). A vibration adds 2 quadratic terms (kinetic + potential) → k_BT each when active, but equipartition is classical: a degree of freedom only absorbs its full share when its quantum spacing ħω ≲ k_BT. A stiff bond has ħω ≫ k_BT at 300 K, so it is 'frozen out' and stores almost no thermal energy — the same reason solids fall below the Dulong–Petit 3R heat capacity as they cool.",
+          "eq": "\\langle KE\\rangle = \\tfrac{3}{2}k_BT,\\quad C_V=\\tfrac{3}{2}R"
+        }
+      ],
+      "lesson": "### Intuition\n\nTemperature is a measure of jiggling, and equilibrium shares the jiggle out with perfect democracy. Every *independent quadratic way* a system can store energy — a velocity that appears as $\\tfrac12 mv^2$, a spring coordinate that appears as $\\tfrac12 kx^2$ — receives, on average, the **same** ration: $\\tfrac12 k_BT$. This is why a single number, $k_BT$, is the natural currency of all of biophysics.\n\n### Precisely\n\nThe **equipartition theorem**: in classical thermal equilibrium, each degree of freedom whose energy is a *quadratic* function of a coordinate or momentum contributes\n\n$$\\langle E\\rangle = \\tfrac12 k_BT$$\n\nto the average energy. A point particle moving in three dimensions has three translational degrees of freedom ($\\tfrac12 m v_x^2,\\tfrac12 m v_y^2,\\tfrac12 m v_z^2$), so its mean kinetic energy is $\\tfrac32 k_BT$. A harmonic oscillator has *two* quadratic terms (one kinetic, one potential) and so averages $k_BT$ in total.\n\n### Worked example\n\nAt body temperature $T=310$ K, the thermal quantum is\n\n$$k_BT = (1.38\\times10^{-23}\\,\\text{J/K})(310\\,\\text{K}) = 4.3\\times10^{-21}\\,\\text{J},$$\n\nor, per mole, $RT = N_A k_BT \\approx 2.6$ kJ/mol $\\approx 0.62$ kcal/mol. This is the size of one thermal kick — and it is why $k_BT \\approx 0.6$ kcal/mol shows up everywhere as the yardstick against which binding energies, folding stabilities, and barrier heights are compared.\n\n### Why it's true / how it works\n\nFor a coordinate $q$ whose energy is $E=\\tfrac12 \\alpha q^2$, the Boltzmann-weighted average $\\langle \\tfrac12\\alpha q^2\\rangle = \\dfrac{\\int \\tfrac12\\alpha q^2\\, e^{-\\alpha q^2/2k_BT}\\,dq}{\\int e^{-\\alpha q^2/2k_BT}\\,dq}$ is a standard Gaussian integral that evaluates to $\\tfrac12 k_BT$ — **independently of the stiffness $\\alpha$**. The mass or spring constant cancels, leaving only the temperature. That cancellation is the heart of equipartition: nature does not care *how* you store the energy, only *how many* independent quadratic slots there are.\n\n### Where it connects\n\nEquipartition fixes the thermal speed of molecules (used in **Einstein–Stokes** diffusion and the **Maxwell–Boltzmann** distribution), sets the magnitude of the random force in the **Langevin** equation, and provides the energy scale for every entropic-spring argument — the $k_BT$ in **entropic elasticity**, **worm-like-chain** stretching, and the **ideal chain**.\n\n### Watch out\n\nThe theorem counts only *quadratic* degrees of freedom and only in the *classical* regime. A rigid rotor's tumbling counts; a stiff covalent stretch effectively does not at room temperature because it is quantum-frozen. Do not assume every atom contributes $3k_BT$ of vibrational energy — most bond vibrations are silent until the sample is hot.\n\n### Numbers & nuance\n\nThe freeze-out condition is $\\hbar\\omega \\gtrsim k_BT$. At 300 K, $k_BT$ corresponds to about $200\\ \\text{cm}^{-1}$ in spectroscopic units; vibrations stiffer than that (most C–H, C=O stretches sit at $1000$–$3000\\ \\text{cm}^{-1}$) are frozen, while soft modes, rotations, and translations are fully thermally populated. This staircase of activating degrees of freedom as temperature rises is exactly what the temperature-dependence of heat capacity records — from the gas-phase $\\tfrac32 R,\\,\\tfrac52 R,\\,\\tfrac72 R$ ladder to the Dulong–Petit $3R$ ceiling of a classical solid."
+    },
+    {
+      "id": "chemical-potential",
+      "title": "Chemical potential",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "gibbs"
+      ],
+      "equation": "\\mu_i = \\mu_i^\\circ + k_BT\\,\\ln a_i",
+      "summary": "The free-energy cost of adding one more particle of a species — the master variable whose gradients drive diffusion, transport, binding, and phase separation.",
+      "depths": {
+        "eli5": "Chemical potential is the 'price' of one more molecule of something — how much free energy a system gains or loses when you add a single particle. Crowded, concentrated places have a high price; dilute places have a low price. Just as water flows downhill, particles flow from high chemical potential to low, and everything stops moving when the price is equal everywhere. That balance point is what we call equilibrium.",
+        "core": "The chemical potential μ_i of a species is the partial molar Gibbs free energy: the change in G when you add an infinitesimal amount of species i while holding temperature, pressure, and the other species fixed, μ_i = (∂G/∂n_i). For a dilute ideal solution it takes the simple logarithmic form μ_i = μ_i° + k_BT ln a_i, where a_i is the activity (≈ concentration for dilute, ideal cases) and μ_i° is a reference value. Two consequences make it the workhorse of biophysics: (1) species move down chemical-potential gradients, so a concentration ratio sets a driving free energy of k_BT ln(c_high/c_low); (2) at equilibrium the chemical potential of a species is equal across every phase and location it can reach — equal μ is what 'equilibrium' actually means.",
+        "deep": "The logarithmic concentration term is the same entropy of mixing that appears throughout statistical mechanics: spreading particles over more accessible volume raises entropy and lowers μ. Non-ideal interactions are folded into the activity coefficient γ (a_i = γ_i c_i/c°), which captures crowding, electrostatics, and excluded volume. Reaction equilibrium (ΔG° = −RT ln K), osmotic pressure, colligative properties, and phase coexistence are all just statements that the relevant chemical potentials are equal — μ is the single variable that unifies them."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "NCBI Bookshelf"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Chemical potential",
+          "url": "https://en.wikipedia.org/wiki/Chemical_potential"
+        },
+        {
+          "label": "Wikipedia — Activity (chemistry)",
+          "url": "https://en.wikipedia.org/wiki/Thermodynamic_activity"
+        },
+        {
+          "label": "Wikipedia — Partial molar property",
+          "url": "https://en.wikipedia.org/wiki/Partial_molar_property"
+        },
+        {
+          "label": "Wikipedia — Entropy of mixing",
+          "url": "https://en.wikipedia.org/wiki/Entropy_of_mixing"
+        },
+        {
+          "label": "Wikipedia — Gibbs free energy (its derivative)",
+          "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy"
+        },
+        {
+          "label": "LibreTexts Chemistry — Physical & Theoretical Chemistry texts",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        }
+      ],
+      "art_prompt": "two compartments at different concentrations connected by a channel, with a downhill free-energy slope labeled mu flowing from crowded to dilute",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In thermodynamic terms, what is the chemical potential of a species, and what is true about it at equilibrium?",
+          "answer": "It is the partial molar Gibbs free energy, μ_i = (∂G/∂n_i) — the free-energy cost of adding one more particle. At equilibrium μ_i is equal across every phase and location the species can reach."
+        },
+        {
+          "level": "derive",
+          "prompt": "From μ_i = μ_i° + RT ln a_i, derive the free energy released when one mole of an uncharged solute moves from a compartment at concentration c_high to one at c_low, and evaluate it for a tenfold concentration ratio at 310 K.",
+          "answer": "ΔG = μ(low) − μ(high) = RT ln(c_low/c_high) = −RT ln(c_high/c_low); for c_high/c_low = 10, ΔG = −RT ln 10 = −(8.314)(310)(2.303) ≈ −5.9 kJ/mol ≈ −1.4 kcal/mol released. The reference μ° cancels because it is identical in both compartments, leaving only the concentration ratio.",
+          "eq": "\\Delta G = -RT\\ln\\frac{c_{\\text{high}}}{c_{\\text{low}}}=-RT\\ln 10\\approx-5.9\\,\\text{kJ/mol}"
+        }
+      ],
+      "lesson": "### Intuition\n\nThink of chemical potential as the **price of one more molecule**. Adding a particle to a crowded, concentrated region costs free energy (high price); adding it to a dilute region costs less (low price). Particles, like money, flow from where the price is high to where it is low — and all flow stops when the price is the same everywhere. That equal-price condition is precisely what equilibrium *is*.\n\n### Precisely\n\nThe **chemical potential** of species $i$ is its partial molar Gibbs free energy,\n\n$$\\mu_i = \\left(\\frac{\\partial G}{\\partial n_i}\\right)_{T,P,n_{j\\neq i}},$$\n\nthe free-energy change per particle added. For a dilute, ideal solution it reduces to the logarithmic form\n\n$$\\mu_i = \\mu_i^\\circ + k_BT\\,\\ln a_i,$$\n\nwhere $a_i$ is the **activity** (the effective concentration; $a_i \\approx c_i/c^\\circ$ when dilute and ideal) and $\\mu_i^\\circ$ is a fixed reference value at the standard state.\n\n### Worked example\n\nA solute sits at 100 mM on one side of a membrane and 10 mM on the other. The free energy available to move one mole down this gradient is\n\n$$\\Delta G = RT\\ln\\frac{[\\text{low}]}{[\\text{high}]} = -RT\\ln 10 \\approx -5.9\\ \\text{kJ/mol} \\approx -1.4\\ \\text{kcal/mol}.$$\n\nThe reference $\\mu^\\circ$ cancels — only the *ratio* of concentrations matters — and the negative sign says the move is spontaneous. This $\\sim$1.4 kcal/mol per tenfold gradient is the energy that secondary transporters harvest.\n\n### Why it's true / how it works\n\nThe $k_BT\\ln a$ term is **entropy of mixing** in disguise. Letting particles explore more volume increases the number of accessible arrangements, raising entropy and therefore *lowering* the free energy per particle in dilute regions. Equating $\\mu$ across regions is equivalent to maximizing total entropy subject to conservation of particles — the same variational principle behind the Boltzmann distribution.\n\n### Where it connects\n\nChemical potential is the parent of an enormous amount of biophysics. Set it equal across a phase boundary and you get **osmotic pressure** and **phase coexistence** (the engine of biomolecular **condensates**). Add an electrical term and you get the **electrochemical potential**, whose equilibrium is the **Nernst** equation and the **GHK** voltage. Apply it to a reaction and you recover $\\Delta G^\\circ = -RT\\ln K$ and **binding** equilibria.\n\n### Watch out\n\nUse *activity*, not raw concentration, when interactions matter: $a_i = \\gamma_i c_i/c^\\circ$, with the activity coefficient $\\gamma_i$ absorbing crowding, ion screening, and excluded volume. In the cytoplasm, where macromolecules occupy a large volume fraction, $\\gamma$ can differ substantially from 1, and treating concentration as activity will misestimate driving forces.\n\n### Numbers & nuance\n\nAt 310 K, $RT \\approx 2.58$ kJ/mol and $RT\\ln 10 \\approx 5.9$ kJ/mol $\\approx 1.4$ kcal/mol per *decade* of concentration. This is the same per-decade energy that reappears (divided by Faraday's constant) as the $\\sim$61 mV/decade slope of the Nernst equation — a direct fingerprint that the membrane voltage is just a chemical potential wearing an electrical coat. Because the logarithm is gentle, even large concentration ratios translate into only a few $k_BT$: a $10^3$-fold gradient is worth merely $\\sim$4.2 kcal/mol, which is why cells must chain several such gradients (or couple to ATP) to drive steeply uphill chemistry."
+    },
+    {
+      "id": "electrochemical-potential",
+      "title": "Electrochemical potential",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "chemical-potential",
+        "nernst"
+      ],
+      "equation": "\\tilde\\mu_i = \\mu_i^\\circ + RT\\ln a_i + z_i F\\psi",
+      "summary": "Chemical potential plus the electrical work z_iFψ — the true driving force for every ion across a membrane, and the quantity the Nernst equilibrium sets equal on both sides.",
+      "depths": {
+        "eli5": "An ion deciding which way to move across a membrane is weighing two things at once: how crowded it is (concentration) and how the voltage pushes or pulls its charge (electricity). The electrochemical potential simply adds those two pressures into one total 'urge to move.' The ion flows until that total is equal on both sides — even if the concentrations are still lopsided, because the voltage can exactly cancel the concentration push. That standoff is the resting state of a nerve cell.",
+        "core": "The electrochemical potential μ̃_i extends the chemical potential by adding the electrical work needed to bring a charged particle to a region at electrical potential ψ: μ̃_i = μ_i + z_iFψ = μ_i° + RT ln a_i + z_iFψ, where z_i is the ion's charge number and F is Faraday's constant. Ions flow down gradients of μ̃, not of concentration alone — a steep concentration gradient can be perfectly opposed by a voltage. Setting μ̃ equal on both sides of a membrane (the equilibrium condition) yields exactly the Nernst equation, E = (RT/z_iF) ln(a_out/a_in). When several ions and active pumps are involved, the steady (not equilibrium) balance gives the GHK voltage, and the stored μ̃ of protons is the proton-motive force that powers ATP synthesis.",
+        "deep": "Electrochemical potential is the bookkeeping that makes membrane bioenergetics quantitative. The proton-motive force is Δμ̃_H+/F = Δψ − (2.303RT/F)ΔpH, combining a voltage term and a pH (concentration) term into a single energy per charge — typically ~150–200 mV across a mitochondrial or bacterial membrane, enough to drive the rotary ATP synthase. Secondary active transporters (symporters/antiporters) work by letting one ion run down its μ̃ gradient to drag another up its own, conserving total μ̃ change ≤ 0. Every 'active' transport step is ultimately a statement about the sign of a sum of electrochemical potentials."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "NCBI Bookshelf"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Electrochemical potential",
+          "url": "https://en.wikipedia.org/wiki/Electrochemical_potential"
+        },
+        {
+          "label": "Wikipedia — Membrane potential",
+          "url": "https://en.wikipedia.org/wiki/Membrane_potential"
+        },
+        {
+          "label": "Wikipedia — Nernst equation (the equilibrium case)",
+          "url": "https://en.wikipedia.org/wiki/Nernst_equation"
+        },
+        {
+          "label": "Wikipedia — Chemiosmosis / proton-motive force",
+          "url": "https://en.wikipedia.org/wiki/Chemiosmosis"
+        },
+        {
+          "label": "Wikipedia — Active transport (secondary transport)",
+          "url": "https://en.wikipedia.org/wiki/Active_transport"
+        },
+        {
+          "label": "NCBI Bookshelf — Molecular Biology of the Cell (membrane transport)",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK26910/"
+        }
+      ],
+      "art_prompt": "an ion at a membrane with two stacked arrows — a concentration arrow and a voltage arrow — summing into one net driving-force arrow that goes to zero at balance",
+      "quiz": [
+        {
+          "level": "apply",
+          "prompt": "A potassium ion is more concentrated inside a cell than outside, yet at the resting potential there is no net K+ flux. How does the electrochemical potential explain this?",
+          "answer": "The outward concentration force on K+ is exactly cancelled by the inward electrical force from the negative-inside membrane voltage. Net flux is zero when the electrochemical potential μ̃_K is equal inside and out — i.e. when the voltage equals the K+ Nernst potential — even though the concentrations remain unequal."
+        },
+        {
+          "level": "derive",
+          "prompt": "Set the electrochemical potential of an ion equal across a membrane and derive the Nernst equation. Then write the proton-motive force and evaluate its magnitude for Δψ = 150 mV and ΔpH = 1 at 310 K.",
+          "answer": "Equilibrium means μ̃_in = μ̃_out: μ° + RT ln a_in + zF ψ_in = μ° + RT ln a_out + zF ψ_out. Cancel μ° and rearrange: zF(ψ_in − ψ_out) = RT ln(a_out/a_in), so the equilibrium voltage E = ψ_in − ψ_out = (RT/zF) ln(a_out/a_in) — the Nernst equation. For protons the stored energy per charge is the proton-motive force pmf = Δμ̃_H+/F = Δψ − (2.303RT/F)ΔpH. At 310 K, 2.303RT/F ≈ 61 mV. With Δψ = 150 mV and a ΔpH worth another 61 mV (the two terms add for the way mitochondria orient their gradient), pmf ≈ 150 + 61 ≈ 211 mV ≈ 0.21 V, i.e. F·0.21 ≈ 20 kJ/mol of free energy per proton transported.",
+          "eq": "E=\\frac{RT}{z_iF}\\ln\\frac{a_{\\text{out}}}{a_{\\text{in}}},\\qquad \\text{pmf}=\\Delta\\psi-\\frac{2.303RT}{F}\\Delta\\text{pH}"
+        }
+      ],
+      "lesson": "### Intuition\n\nA charged particle facing a membrane is pushed by **two** forces at once: the crowding force of concentration, and the electrical force of voltage acting on its charge. The **electrochemical potential** adds these two into a single number — the ion's total urge to move. The ion flows until that total is equal on both sides, which can happen *even while the concentrations stay lopsided*, because the voltage can exactly cancel the concentration push. That precarious balance is the resting state of every nerve and muscle cell.\n\n### Precisely\n\nThe **electrochemical potential** of ion $i$ adds electrical work to the chemical potential:\n\n$$\\tilde\\mu_i = \\mu_i + z_iF\\psi = \\mu_i^\\circ + RT\\ln a_i + z_iF\\psi,$$\n\nwhere $z_i$ is the charge number (e.g. $+1$ for K$^+$, $-1$ for Cl$^-$), $F = 96{,}485$ C/mol is Faraday's constant, and $\\psi$ is the local electrical potential. Ions move down gradients of $\\tilde\\mu$, not of concentration alone.\n\n### Worked example\n\nPotassium is $\\sim$140 mM inside a neuron and $\\sim$5 mM outside, a 28-fold gradient pushing K$^+$ *out*. Yet at rest there is essentially no net K$^+$ current. The reason: the inside-negative membrane voltage pulls K$^+$ *in* with exactly enough electrical force to cancel the chemical push. Equality of $\\tilde\\mu_{\\text{K}}$ inside and out is reached when the voltage equals the K$^+$ Nernst potential, $\\approx (RT/F)\\ln(5/140) \\approx -89$ mV.\n\n### Why it's true / how it works\n\nSetting $\\tilde\\mu_i$ equal on the two sides *is* the Nernst equation. Writing $\\tilde\\mu_{\\text{in}} = \\tilde\\mu_{\\text{out}}$, the reference $\\mu^\\circ$ cancels and rearranging gives\n\n$$E = \\psi_{\\text{in}}-\\psi_{\\text{out}} = \\frac{RT}{z_iF}\\ln\\frac{a_{\\text{out}}}{a_{\\text{in}}}.$$\n\nSo the membrane voltage is nothing more than a chemical potential wearing an electrical coat: the $\\sim$61 mV-per-decade Nernst slope is exactly the $RT\\ln 10$ per-decade chemical-potential energy divided by $F$.\n\n### Where it connects\n\nElectrochemical potential is the hinge between molecular thermodynamics and bioenergetics. Its equilibrium gives the **Nernst** potential; its multi-ion steady state gives the **GHK** voltage and feeds **Hodgkin–Huxley** excitability; its stored proton form is the **proton-motive force** that the **chemiosmosis** chapter converts into ATP. **Secondary active transporters** run one ion downhill in $\\tilde\\mu$ to drag another uphill.\n\n### Watch out\n\nDistinguish *equilibrium* from *steady state*. A single ion at equilibrium has equal $\\tilde\\mu$ and zero flux (Nernst). A resting membrane with several leak channels and active pumps is in a *steady state* with ongoing fluxes that cancel — described by GHK, not by a single Nernst potential. Conflating the two is the most common error in electrophysiology.\n\n### Numbers & nuance\n\nThe proton-motive force combines voltage and pH into one energy per charge,\n\n$$\\text{pmf} = \\Delta\\psi - \\frac{2.303\\,RT}{F}\\Delta\\text{pH},$$\n\nwith $2.303RT/F \\approx 61$ mV at 310 K. A typical mitochondrion runs $\\Delta\\psi \\approx 150$–180 mV with a $\\Delta$pH worth another $\\sim$30–60 mV, totaling $\\sim$200 mV $\\approx 19$ kJ/mol per proton — and roughly three to four protons flowing back down this gradient turn the rotary ATP synthase enough to make one ATP. The entire economy of the cell is denominated in electrochemical potential."
     }
   ]
 }
