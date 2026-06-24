@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import { getManifest } from "@/lib/research-atlas";
+import AtlasExplorer from "./AtlasExplorer";
 
 // /research/atlas — describes the research-atlas graph: the reconciled, normalized
 // graph of the global research economy. Headline scale, the DOI, the GitHub link,
@@ -187,41 +188,25 @@ export default function Page() {
           ))}
         </div>
 
-        {/* Query panel — clearly marked placeholder */}
+        {/* Query panel — LIVE interactive explorer */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           query the atlas
         </h2>
-        <div className="mt-6 border border-dashed border-[color:var(--gold-deep,var(--basalt-3))] bg-[color:var(--bone)] p-7 md:p-8">
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] small-caps tracking-[0.16em] text-[color:var(--gold-deep,var(--basalt-3))] border border-[color:var(--gold-deep,var(--basalt-3))] px-2 py-0.5">
-              coming soon · placeholder
-            </span>
-          </div>
-          <p className="mt-4 text-[15px] leading-[1.8] text-[color:var(--basalt-2)]">
-            A live, paid-per-query API over the full {ATLAS.rows}-row graph is on
-            the roadmap — ask &ldquo;who funds CRISPR delivery?&rdquo; or &ldquo;which
-            institutions co-publish with the ERC?&rdquo; and get a cited answer over
-            feed402/x402. It is not wired yet.
-          </p>
-          <div className="mt-5 opacity-60 pointer-events-none select-none" aria-hidden>
-            <div className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-2">
-              ask the graph (disabled)
-            </div>
-            <div className="flex gap-3">
-              <div className="flex-1 bg-[color:var(--bone-2,var(--bone))] border border-[color:var(--hairline)] px-4 py-3 text-[14px] text-[color:var(--basalt-3)]">
-                e.g. who are the top co-funders of NSF in quantum information?
-              </div>
-              <div className="font-display uppercase text-[13px] tracking-[0.06em] px-5 py-3 bg-[color:var(--basalt)] text-[color:var(--bone)]">
-                query
-              </div>
-            </div>
-          </div>
-          <p className="mt-5 text-[13px] leading-[1.7] text-[color:var(--basalt-3)]">
-            Until the live API lands, the full graph is available as open
-            datasets (a {sampleRows.toLocaleString()}-row sample manifest is
-            published now) and as the reproducible pipeline on GitHub.
-          </p>
-        </div>
+        <p className="mt-3 text-[15px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
+          Explore the live graph — search a funder, field, or organization and
+          read its portfolio straight from the read-only query API. Ask &ldquo;who
+          funds CRISPR?&rdquo; (search <em>crispr</em>, pick the field) and get the
+          top funders + most-cited works, cited to DOI. Funder / org / field /
+          aggregate level only — no personal data.
+        </p>
+
+        <AtlasExplorer />
+
+        <p className="mt-5 text-[13px] leading-[1.7] text-[color:var(--basalt-3)]">
+          The full graph is also available as open datasets (a{" "}
+          {sampleRows.toLocaleString()}-row sample manifest is published now) and
+          as the reproducible pipeline on GitHub.
+        </p>
 
         <div className="mt-16 flex flex-wrap gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
           <Link
