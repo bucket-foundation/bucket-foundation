@@ -5,10 +5,32 @@ A GPU-accelerated, OpenAI-compatible chat-LLM endpoint on Gian's AMD **RX 7700S*
 **no Anthropic key**. Three `systemd --user` services (survive logout; linger is on):
 
 ```
-bkt-llm-server  llama.cpp on the dGPU (Vulkan)        127.0.0.1:11435  /v1/*, /health
-   └─ bkt-llm-shim   bearer-auth proxy (the ONLY thing exposed)  127.0.0.1:11500  /v1/*, /health
-        └─ bkt-llm-tunnel  cloudflared quick tunnel              https://<rand>.trycloudflare.com
+bkt-llm-server     llama.cpp on the dGPU (Vulkan)               127.0.0.1:11435  /v1/*, /health
+   └─ bkt-llm-shim       bearer-auth proxy (the ONLY thing exposed)  127.0.0.1:11500  /v1/*, /health
+        └─ bkt-llm-revtunnel  reverse SSH tunnel → Hetzner          Hetzner 127.0.0.1:18011
 ```
+
+## Public endpoint — STABLE (production, since 2026-06-25)
+
+`LLM_BASE_URL = https://atlas-api.agfarms.dev/llm/v1` — a **permanent** URL that
+never changes. The home box opens a reverse SSH tunnel (`bkt-llm-revtunnel`,
+`systemd --user`) binding the shim onto the **always-on Hetzner box**
+(`5.161.236.151`, fixed IP, existing Let's Encrypt cert). Host nginx adds a
+`location /llm/` on the `atlas-api.agfarms.dev` vhost → `127.0.0.1:18011` (the
+tunnel) → the shim → GPU. Reproduce the nginx side with `setup-llm-nginx.sh`
+(idempotent, backs up + `nginx -t` + rolls back on failure; run `sudo bash` on
+the box). Port 18011 is firewalled from the public internet; only nginx + the
+bearer reach the shim.
+
+> **Why not Cloudflare named tunnel?** `agfarms.dev` DNS is on **Namecheap**
+> (`registrar-servers.com`), NOT Cloudflare — so `cloudflared tunnel route dns`
+> can't create `llm.agfarms.dev`. The Hetzner reverse-tunnel reuses infra we
+> already own (fixed IP + TLS) and needs no DNS change. `make-stable-tunnel.sh`
+> (the Cloudflare path) is kept only for if `agfarms.dev` ever moves to Cloudflare.
+
+> **Previously** the public hop was a cloudflared **quick tunnel** (`bkt-llm-tunnel`,
+> `https://<rand>.trycloudflare.com`) — ephemeral + drops connections; retired
+> 2026-06-25 in favour of the stable reverse tunnel above.
 
 ## Why llama.cpp, not the system Ollama
 
