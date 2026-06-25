@@ -309,3 +309,40 @@ Langmuir isotherm** (would feed binding-kd's neighborhood); **Onsager reciprocit
 fluctuation-dissipation, feeds membrane-transport); **microstate counting / Stirling** under
 boltzmann. Keep batches ~3, wire downstream edges, re-run test-diagnostic.mjs each time. Cheaper
 zero-graph-risk wins still open: ~39 atoms lack a derive quiz item; `note` fields; GPU art.
+
+## 2026-06-24 — run 10 (+3 foundational math-prerequisite atoms; biophysics 89→92; margin IMPROVED to +7)
+Continued the PRIMARY mission via run 9's NEXT, applying the leaf-leverage lesson *correctly
+from the start* (no pitfall this run). Added three genuinely-missing math foundations that sit
+UNDER the existing stat-mech/diffusion/kinetics atoms: **stirling-approximation** (ln N! ≈ N ln N
+− N + ½ln(2πN); the shortcut that turns microstate counting into calculus and underlies the
+Boltzmann distribution / partition function / entropy of mixing), **central-limit-theorem**
+((S_N−Nμ)/(σ√N)→N(0,1); why displacements/noise are Gaussian and why diffusion spreads as √t),
+and **master-equation** (dP_i/dt = Σ_j(W_ji P_j − W_ij P_i); the bookkeeping for any discrete-state
+Markov hopper, the parent framework in which detailed balance is the no-current stationary case).
+All three have requires=[] (diagnostic-depth 0 → squarely in the expert frontier). Per run-9's
+leaf-leverage rule, each was wired as a REAL prereq of an existing atom chosen so its depth does
+NOT rise: stirling→partition-function (stays depth 2), central-limit-theorem→random-walk (stays
+depth 2), master-equation→detailed-balance (stays depth 2). Verified zero depth cascade
+(free-energy/monte-carlo/markov-state-model all unchanged at depth 3). Because the new atoms now
+sit beneath heavily-depended-on nodes (partition-function→free-energy subtree; random-walk←langevin/
+markov-state-model/molecular-motors/nmr-relaxation; detailed-balance←monte-carlo/markov-state-model),
+they gain strong downstream encompassing leverage — the diagnostic margin IMPROVED to **expert
+placed 25 / asked 18 (+7)**, up from +4 in run 9. All original prose; every numeric verified this
+run (ln(100!): 2-term Stirling 360.52 vs exact 363.74 = 0.9% rel err, closed exactly by +½ln(2πN);
+random walk 10⁴×1nm steps → 100 nm RMS, quadrupling steps doubles to 200 nm; two-state A⇌B with
+k₊=10/k₋=2 s⁻¹ → P_A=1/6, P_B=5/6, τ=1/(k₊+k₋)=83 ms). OPEN sources only (LibreTexts Math/Stats/
+Chem + MIT OCW + 6 Wikipedia resources each); full 7-section lesson + 3 depths + 2 quiz (1 derive
+each) + art_prompt per atom. meta 0.5.7→0.5.8. validate.sh PASSES end-to-end (corpus integrity,
+92-atom 60-day engine sim, diagnostic GREEN at +7, assess/lang/explorer smokes). Mirrored to
+public/academy-app (92 atoms, ver 0.5.8 verified in sync).
+NEXT: the leaf-leverage insertion pattern is now proven and repeatable — pick a new foundational
+atom, find an EXISTING dependent already deep enough that adding the edge won't raise its depth,
+wire it, re-run test-diagnostic. Remaining margin-safe foundational math/physics candidates with
+natural existing dependents: **gaussian-integral** (∫e^{−ax²}=√(π/a); feed partition-function/
+equipartition/wlc), **lagrange-multipliers** (constrained extremization; feed partition-function —
+NOT boltzmann, which would cascade the whole tree), **harmonic-approximation** (quadratic potential
+near a minimum; feed equipartition/eigen-modes — note eigen-modes is a depth-1 ROOT so that edge
+WOULD cascade, prefer equipartition which is depth 2), **onsager-reciprocity** (coupled linear fluxes;
+pairs with fluctuation-dissipation, could feed membrane-transport but check its depth first to avoid
+cascade). Keep batches ~3, always verify no depth change on the edited atom + re-run test-diagnostic.
+Cheaper zero-graph-risk wins still open: ~39 atoms lack a derive quiz item; `note` fields; GPU art.
