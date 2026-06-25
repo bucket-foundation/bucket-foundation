@@ -47,9 +47,14 @@ export default function Page() {
         {/* Research hub — the four surfaces of bucket.foundation research. */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <HubCard
+            href="/research/agent"
+            title="Agent"
+            body="Ask a research question; the agent plans, retrieves from the canon + live OpenAlex/PubMed + the atlas, routes it through real instruments, and writes a brief where every claim cites a source — or abstains. Reproducible."
+          />
+          <HubCard
             href="/research/tools"
             title="Tools"
-            body="Twenty research instruments — protein stability, ADMET, ephys, RNA folding, literature/agent tools over live OpenAlex — run on your input and publish to canon."
+            body="Forty research instruments — protein stability, ADMET, ephys, RNA folding, literature/agent tools over live OpenAlex — run on your input and publish to canon."
           />
           <HubCard
             href="/research/datasets"

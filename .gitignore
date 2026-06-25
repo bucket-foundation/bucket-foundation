@@ -39,6 +39,11 @@ next-env.d.ts
 # gtm video build artifacts (binaries, mirror to gdrive instead)
 gtm/video-v*/
 
+# local GPU LLM endpoint (auth-shim secret, runtime logs, tunnel URL) — never commit
+scripts/llm/.bearer-secret
+scripts/llm/logs/
+scripts/llm/.tunnel-url
+
 # Site mirrors (large binaries — mirror to gdrive instead)
 bucket-canon/**/site-mirror/
 __pycache__/
@@ -108,3 +113,4 @@ _intake/canon-intake/
 # key is never committed via the mirror. The empty source default at
 # learning/app/js/auth-config.js IS committed (so ./serve.sh works standalone).
 public/academy-app/js/auth-config.js
+scripts/llm/shim.env

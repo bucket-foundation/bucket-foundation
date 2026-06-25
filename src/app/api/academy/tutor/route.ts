@@ -62,15 +62,18 @@ export const dynamic = "force-dynamic";
 const MODEL = "claude-sonnet-4-5";
 
 // ---- LLM provider seam --------------------------------------------------
-// DEFAULT is the LOCAL GPU LLM via an OpenAI-compatible endpoint (Ollama on
-// Gian's AMD RX 7600, or the prod auth-shim/tunnel in front of it). Set
-// LLM_BASE_URL to enable it. The hosted Anthropic path stays as an ALTERNATIVE
-// when ANTHROPIC_API_KEY is set and LLM_BASE_URL is not — same S1–S7 safety
-// runs in code either way. If neither is configured => 503 (dark), exactly as
-// before. All factual safety is enforced in code (S7), so the model behind the
-// seam is interchangeable.
+// DEFAULT is the LOCAL GPU LLM via an OpenAI-compatible endpoint. In prod that
+// is the bearer-protected auth-shim + cloudflared tunnel in front of a
+// llama.cpp server running Qwen2.5-Coder-7B-Instruct on Gian's AMD RX 7700S
+// (Vulkan GPU offload, ~13 tok/s — the system Ollama could only do CPU because
+// its build ships no Vulkan/ROCm backend). Set LLM_BASE_URL (e.g.
+// https://<tunnel>/v1) + LLM_API_KEY (the shim bearer) to enable it. The hosted
+// Anthropic path stays as an ALTERNATIVE when ANTHROPIC_API_KEY is set and
+// LLM_BASE_URL is not — same S1–S7 safety runs in code either way. If neither is
+// configured => 503 (dark). All factual safety is enforced in code (S7), so the
+// model behind the seam is interchangeable.
 const LLM_BASE_URL = process.env.LLM_BASE_URL?.replace(/\/+$/, "");
-const LLM_MODEL = process.env.LLM_MODEL || "qwen3.5:latest";
+const LLM_MODEL = process.env.LLM_MODEL || "qwen2.5-coder-7b";
 const LLM_API_KEY = process.env.LLM_API_KEY;
 const LLM_TIMEOUT_MS = Number(process.env.LLM_TIMEOUT_S || 20) * 1000;
 
