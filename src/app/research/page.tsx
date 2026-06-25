@@ -69,7 +69,12 @@ export default function Page() {
           <HubCard
             href="/research/papers"
             title="Papers"
-            body="Papers published by Bucket on the atlas and the canon. Free to read, fully reproducible, citeable forever."
+            body="Four metascience papers on the research-atlas graph — funding structure, paper-ranking, funder specialization, funding & careers. Free to read, each born with a real DOI."
+          />
+          <HubCard
+            href="/research/education"
+            title="Education"
+            body="The education-atlas corpus — Bucket's founding education-reform research, led by The Knowledge-Access Gradient. Three crises, a 270× access cliff, the consume-vs-produce gap. Free to read."
           />
         </div>
 

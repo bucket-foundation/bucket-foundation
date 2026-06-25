@@ -57,6 +57,9 @@ export default function Footer() {
             <li><Link href="/contribute" className="hover:text-[color:var(--bone)] transition">Contribute</Link></li>
             <li><Link href="/support" className="hover:text-[color:var(--bone)] transition">Support / fund</Link></li>
             <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Publish research</Link></li>
+            <li><Link href="/research/papers" className="hover:text-[color:var(--bone)] transition">Atlas papers</Link></li>
+            <li><Link href="/research/education" className="hover:text-[color:var(--bone)] transition">Education research</Link></li>
+            <li><Link href="/research/education/knowledge-access-gradient" className="hover:text-[color:var(--bone)] transition">Knowledge-Access Gradient</Link></li>
             <li><Link href="/research/tools" className="hover:text-[color:var(--bone)] transition">Research tools</Link></li>
             <li><Link href="/join" className="hover:text-[color:var(--bone)] transition">Join</Link></li>
           </ul>

@@ -22,12 +22,11 @@ export const metadata: Metadata = {
 };
 
 const ATLAS_REPO = "https://github.com/bucket-foundation/education-atlas";
-const FLAGSHIP =
-  "https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md";
-const REFORM_THESIS =
-  "https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md";
-const PROBLEMS =
-  "https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md";
+// On-site education research (the corpus is now fully browsable on bucket.foundation).
+const EDUCATION_HUB = "/research/education";
+const FLAGSHIP = "/research/education/knowledge-access-gradient";
+const REFORM_THESIS = "/research/education/reform-thesis";
+const PROBLEMS = "/research/education/education-problems";
 
 export default function Page() {
   return (
@@ -162,22 +161,24 @@ export default function Page() {
         </p>
 
         <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.14em]">
-          <a
+          <Link
             href={FLAGSHIP}
-            target="_blank"
-            rel="noreferrer"
             className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
           >
-            the knowledge-access gradient ↗
-          </a>
-          <a
+            the knowledge-access gradient →
+          </Link>
+          <Link
             href={PROBLEMS}
-            target="_blank"
-            rel="noreferrer"
             className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
           >
-            the three crises ↗
-          </a>
+            the three crises →
+          </Link>
+          <Link
+            href={EDUCATION_HUB}
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            the full education corpus →
+          </Link>
           <a
             href={ATLAS_REPO}
             target="_blank"

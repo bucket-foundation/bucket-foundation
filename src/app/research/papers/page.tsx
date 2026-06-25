@@ -41,7 +41,15 @@ export default function Page() {
         <p className="mt-7 text-[17px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           Papers published by Bucket Foundation on the research-atlas graph and
           the canon. Each is free to read, born with a real DOI via Zenodo, and
-          fully reproducible — every headline number pinned by a test suite.
+          fully reproducible — every headline number pinned by a test suite. For
+          the education-reform research corpus, see{" "}
+          <Link
+            href="/research/education"
+            className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            the education-atlas
+          </Link>
+          .
         </p>
 
         <div className="carved-rule max-w-xs mt-10" />
@@ -90,6 +98,12 @@ export default function Page() {
             className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
           >
             open datasets
+          </Link>
+          <Link
+            href="/research/education"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            education corpus
           </Link>
           <Link
             href="/research"

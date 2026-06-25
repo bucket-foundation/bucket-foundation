@@ -72,6 +72,14 @@ figma-export/
 feed/2026-*
 *.png
 
+# …EXCEPT the vendored paper/research figures under public/, which are part of
+# the shipped site (the research-atlas paper pages + the education-atlas corpus
+# render them) and MUST reach Vercel. Without these negations the blanket
+# `*.png` above silently strips every figure from git — which is exactly why the
+# paper-01 figures were missing in production. Keep these tracked.
+!public/papers/**/*.png
+!public/education/**/*.png
+
 # Trained ML artifacts.
 # Large weights go to HuggingFace Hub for collaborators (see REPRODUCE.md):
 _intake/training/canon-bge-small-v1/model.safetensors
