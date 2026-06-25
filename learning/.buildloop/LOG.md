@@ -243,3 +243,30 @@ to ~3 and re-run test-diagnostic.mjs each time; depth>=3/frontier atoms (zimm/ti
 prereq-closure early-stop (run-3 option b) before they place within budget -- leave the diagnostic
 untuned per run-4/5/6 guidance. Cheaper safe wins also still open: 39 atoms lack a derive quiz item;
 note fields; GPU art generation.
+
+## 2026-06-24 — run 8 (+3 foundational depth≤2 atoms; biophysics 83→86, margin-safe)
+Continued the PRIMARY mission via run 7's explicit NEXT (more depth≤2 foundational additions,
+batches of ~3, re-run the diagnostic). Added the three run-7-named candidates, all genuinely
+missing and filling real syllabus gaps: **mass-action** (law of mass action / equilibrium
+constant, ΔG°=−RT ln K, requires gibbs, depth 1 — the bridge from thermodynamics to
+concentrations, parent of Kd/Michaelis/pKa/Nernst), **arrhenius** (k=A e^(−Ea/RT), requires
+boltzmann, depth 1 — empirical kinetics, Boltzmann fraction over the barrier, cousin of eyring/
+kramers), and **osmotic-pressure** (van 't Hoff Π=cRT, requires chemical-potential, depth 2 —
+colligative property derived from solvent chemical-potential balance, sets membrane-transport/
+condensate/turgor stakes). All original prose; every numeric verified this run (RT@310K=2.577
+kJ/mol; ΔG°(K=1000)=−17.8 kJ/mol; Arrhenius Q10 for Ea=50 kJ/mol = e^0.647≈1.9; plasma 300 mOsm
+→ Π≈7.7×10⁵ Pa≈7.6 atm). OPEN sources only (LibreTexts/NCBI Bookshelf/MIT OCW + Wikipedia
+resources, 6 each); full 7-section lesson + 3 depths + 2 quiz (1 derive/apply each) + art_prompt
+per atom. All three sit in the expert's depth≤2 frontier and use shell="nucleus" (NOT the small
+tested "prereq" shell — the pitfall run 7 documented), so the placement margin is provably
+unchanged: diagnostic GREEN, expert margin holds at +2 (placed 20 / asked 18), prereq shell 6/6,
+beginner early-stops at 7 q. No existing atom modified. validate.sh PASSES end-to-end (corpus
+integrity, 86-atom 60-day engine sim, diagnostic, assess/lang/explorer smokes). Mirrored to
+public/academy-app (86 atoms, ver 0.5.6 verified in sync). meta 0.5.5→0.5.6.
+NEXT: more depth≤2 foundational additions remain margin-safe and high-value — remaining
+candidates: fluctuation-dissipation as its own atom (currently only inside langevin, requires
+boltzmann), Le Chatelier as a corollary atom (requires mass-action), or saturation/Langmuir
+isotherm framing. Keep batches ~3 and re-run test-diagnostic.mjs each time; depth≥3/frontier
+atoms (zimm-model/tica) STILL need the prereq-closure early-stop (run-3 option b) before they
+place within budget — leave the diagnostic untuned per run-4..7 guidance. Cheaper safe wins still
+open: ~39 atoms lack a derive quiz item; `note` fields; GPU art generation if reachable.

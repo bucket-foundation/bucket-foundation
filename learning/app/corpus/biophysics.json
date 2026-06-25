@@ -2,8 +2,8 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.5.5",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified.",
+    "version": "0.5.6",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified.",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
   "atoms": [
@@ -5136,6 +5136,189 @@
         }
       ],
       "lesson": "### Intuition\n\nA charged particle facing a membrane is pushed by **two** forces at once: the crowding force of concentration, and the electrical force of voltage acting on its charge. The **electrochemical potential** adds these two into a single number — the ion's total urge to move. The ion flows until that total is equal on both sides, which can happen *even while the concentrations stay lopsided*, because the voltage can exactly cancel the concentration push. That precarious balance is the resting state of every nerve and muscle cell.\n\n### Precisely\n\nThe **electrochemical potential** of ion $i$ adds electrical work to the chemical potential:\n\n$$\\tilde\\mu_i = \\mu_i + z_iF\\psi = \\mu_i^\\circ + RT\\ln a_i + z_iF\\psi,$$\n\nwhere $z_i$ is the charge number (e.g. $+1$ for K$^+$, $-1$ for Cl$^-$), $F = 96{,}485$ C/mol is Faraday's constant, and $\\psi$ is the local electrical potential. Ions move down gradients of $\\tilde\\mu$, not of concentration alone.\n\n### Worked example\n\nPotassium is $\\sim$140 mM inside a neuron and $\\sim$5 mM outside, a 28-fold gradient pushing K$^+$ *out*. Yet at rest there is essentially no net K$^+$ current. The reason: the inside-negative membrane voltage pulls K$^+$ *in* with exactly enough electrical force to cancel the chemical push. Equality of $\\tilde\\mu_{\\text{K}}$ inside and out is reached when the voltage equals the K$^+$ Nernst potential, $\\approx (RT/F)\\ln(5/140) \\approx -89$ mV.\n\n### Why it's true / how it works\n\nSetting $\\tilde\\mu_i$ equal on the two sides *is* the Nernst equation. Writing $\\tilde\\mu_{\\text{in}} = \\tilde\\mu_{\\text{out}}$, the reference $\\mu^\\circ$ cancels and rearranging gives\n\n$$E = \\psi_{\\text{in}}-\\psi_{\\text{out}} = \\frac{RT}{z_iF}\\ln\\frac{a_{\\text{out}}}{a_{\\text{in}}}.$$\n\nSo the membrane voltage is nothing more than a chemical potential wearing an electrical coat: the $\\sim$61 mV-per-decade Nernst slope is exactly the $RT\\ln 10$ per-decade chemical-potential energy divided by $F$.\n\n### Where it connects\n\nElectrochemical potential is the hinge between molecular thermodynamics and bioenergetics. Its equilibrium gives the **Nernst** potential; its multi-ion steady state gives the **GHK** voltage and feeds **Hodgkin–Huxley** excitability; its stored proton form is the **proton-motive force** that the **chemiosmosis** chapter converts into ATP. **Secondary active transporters** run one ion downhill in $\\tilde\\mu$ to drag another uphill.\n\n### Watch out\n\nDistinguish *equilibrium* from *steady state*. A single ion at equilibrium has equal $\\tilde\\mu$ and zero flux (Nernst). A resting membrane with several leak channels and active pumps is in a *steady state* with ongoing fluxes that cancel — described by GHK, not by a single Nernst potential. Conflating the two is the most common error in electrophysiology.\n\n### Numbers & nuance\n\nThe proton-motive force combines voltage and pH into one energy per charge,\n\n$$\\text{pmf} = \\Delta\\psi - \\frac{2.303\\,RT}{F}\\Delta\\text{pH},$$\n\nwith $2.303RT/F \\approx 61$ mV at 310 K. A typical mitochondrion runs $\\Delta\\psi \\approx 150$–180 mV with a $\\Delta$pH worth another $\\sim$30–60 mV, totaling $\\sim$200 mV $\\approx 19$ kJ/mol per proton — and roughly three to four protons flowing back down this gradient turn the rotary ATP synthase enough to make one ATP. The entire economy of the cell is denominated in electrochemical potential."
+    },
+    {
+      "id": "mass-action",
+      "title": "Law of mass action",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "gibbs"
+      ],
+      "equation": "\\Delta G^\\circ = -RT\\ln K_{\\text{eq}}",
+      "summary": "At equilibrium the ratio of products to reactants is fixed by a single number K, and that number is set exponentially by the standard free-energy change — the bridge between thermodynamics and concentrations.",
+      "depths": {
+        "eli5": "Mix some chemicals and they react until they reach a standstill — not because everything is used up, but because the forward and backward reactions run at the same speed. At that balance point the amounts of products and reactants settle into a fixed ratio called the equilibrium constant K. A reaction that 'wants' to go forward (releases free energy) has a big K; one that barely budges has a small K. The connection is exponential: a little more free energy released multiplies K a lot.",
+        "core": "For a reaction aA + bB ⇌ cC + dD, the law of mass action says the reaction quotient Q = [C]^c[D]^d / [A]^a[B]^b moves until it reaches a fixed value, the equilibrium constant K. Thermodynamics fixes that value: ΔG = ΔG° + RT ln Q, and at equilibrium ΔG = 0 with Q = K, giving ΔG° = −RT ln K. The standard free-energy change is the logarithm of the equilibrium constant scaled by RT. Kinetically, K is also the ratio of the forward and reverse rate constants, K = k_f/k_r, so the same equilibrium can be reached from either direction.",
+        "deep": "The exponential sensitivity, K = exp(−ΔG°/RT), is the same Boltzmann factor that weights microstates: products and reactants are two macrostates whose populations sit in ratio exp(−ΔG°/RT). Because RT ≈ 2.6 kJ/mol at body temperature, each extra 5.9 kJ/mol (one RT·ln10) shifts K by a full factor of ten. This is why catalysts — which lower the barrier, not ΔG° — change the speed but never the final ratio, and why coupling an unfavorable reaction to ATP hydrolysis (ΔG° ≈ −30 kJ/mol) can multiply its equilibrium constant by ~10^5."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "NCBI Bookshelf"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Law of mass action",
+          "url": "https://en.wikipedia.org/wiki/Law_of_mass_action"
+        },
+        {
+          "label": "Wikipedia — Equilibrium constant",
+          "url": "https://en.wikipedia.org/wiki/Equilibrium_constant"
+        },
+        {
+          "label": "Wikipedia — Reaction quotient",
+          "url": "https://en.wikipedia.org/wiki/Reaction_quotient"
+        },
+        {
+          "label": "Wikipedia — Standard Gibbs free energy of reaction",
+          "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy"
+        },
+        {
+          "label": "LibreTexts Chemistry — Free Energy and Equilibrium",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        },
+        {
+          "label": "NCBI Bookshelf — Biochemistry (free energy & equilibrium)",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK22591/"
+        }
+      ],
+      "art_prompt": "a balance beam with reactant flasks on one pan and product flasks on the other, settling at a tilt set by a free-energy gauge labeled delta-G-naught, with an exponential curve mapping delta-G to K",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the equilibrium constant K describe, and how is it related to the standard free-energy change of a reaction?",
+          "answer": "K is the fixed ratio of products to reactants (each raised to its stoichiometric power) reached at equilibrium. It is related to the standard free-energy change by ΔG° = −RT ln K, equivalently K = exp(−ΔG°/RT)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Starting from ΔG = ΔG° + RT ln Q, derive the relation ΔG° = −RT ln K, then compute ΔG° for a reaction with K = 1000 at 310 K.",
+          "answer": "At equilibrium the reaction has no driving force, ΔG = 0, and the quotient Q equals its equilibrium value K. Substituting: 0 = ΔG° + RT ln K, so ΔG° = −RT ln K. For K = 1000 at 310 K: ΔG° = −(8.314)(310) ln(1000) = −(2577)(6.908) ≈ −17.8 kJ/mol. The reaction is favorable by about 18 kJ/mol, three RT·ln10 steps for three decades of K.",
+          "eq": "\\Delta G^\\circ = -RT\\ln K = -(8.314)(310)\\ln 1000 \\approx -17.8\\,\\text{kJ/mol}"
+        }
+      ],
+      "lesson": "### Intuition\n\nLet a reversible reaction run and it reaches a **standstill** — but not because the reactants are exhausted. The forward and reverse reactions simply end up running at the *same rate*, so the net change stops. At that point the amounts settle into a fixed ratio, the **equilibrium constant** $K$. A reaction that strongly favors products has a large $K$; one that barely proceeds has a small $K$.\n\n### Precisely\n\nFor a general reaction $a\\mathrm{A} + b\\mathrm{B} \\rightleftharpoons c\\mathrm{C} + d\\mathrm{D}$, define the **reaction quotient**\n\n$$Q = \\frac{[\\mathrm{C}]^c[\\mathrm{D}]^d}{[\\mathrm{A}]^a[\\mathrm{B}]^b}.$$\n\nThe system evolves until $Q$ reaches the fixed value $K$. Thermodynamics pins that value through\n\n$$\\Delta G = \\Delta G^\\circ + RT\\ln Q,$$\n\nand at equilibrium $\\Delta G = 0$ with $Q = K$, which gives the central result\n\n$$\\Delta G^\\circ = -RT\\ln K.$$\n\n### Worked example\n\nA reaction has $K = 1000$ at body temperature. Its standard free-energy change is\n\n$$\\Delta G^\\circ = -RT\\ln 1000 = -(8.314)(310)(6.908) \\approx -17.8\\ \\text{kJ/mol}.$$\n\nThree decades of $K$ cost three $RT\\ln 10 \\approx 5.9$ kJ/mol steps — about 18 kJ/mol of favorable free energy.\n\n### Why it's true / how it works\n\nThe relation is a **Boltzmann factor in disguise**. Products and reactants are two macrostates, and their equilibrium populations sit in the ratio $K = \\exp(-\\Delta G^\\circ/RT)$ — the same exponential weighting that governs energy levels in statistical mechanics. Equivalently, $K = k_f/k_r$: equilibrium is where the forward rate constant times reactant concentrations equals the reverse rate constant times product concentrations.\n\n### Where it connects\n\nMass action is the parent of nearly every concentration law in biophysics. Apply it to binding and you get the **dissociation constant** $K_d$; to enzyme saturation, the **Michaelis** constant; to acids, $\\mathrm{p}K_a$ and the Henderson–Hasselbalch equation; to membranes, the **Nernst** equilibrium. The logarithmic form is the same $\\Delta G^\\circ = -RT\\ln K$ that connects every one of them to the underlying free energy.\n\n### Watch out\n\nA **catalyst lowers the barrier, not $\\Delta G^\\circ$** — it speeds the approach to equilibrium but cannot change $K$ or the final ratio. Also, $Q$ and $K$ must be written with activities (or properly referenced concentrations); using raw molarities for charged or crowded species can shift the apparent $K$.\n\n### Numbers & nuance\n\nBecause $RT \\approx 2.6$ kJ/mol, every additional $RT\\ln 10 \\approx 5.9$ kJ/mol multiplies $K$ by ten. This exponential lever is how cells perform 'impossible' chemistry: coupling an unfavorable step to ATP hydrolysis ($\\Delta G^\\circ \\approx -30$ kJ/mol) multiplies its equilibrium constant by roughly $10^5$, turning a reaction that would never proceed into one that runs to near-completion."
+    },
+    {
+      "id": "arrhenius",
+      "title": "Arrhenius equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "k = A\\,e^{-E_a/RT}",
+      "summary": "Reaction rates rise exponentially with temperature because only the small Boltzmann-weighted fraction of molecules carrying enough energy to clear the activation barrier can react.",
+      "depths": {
+        "eli5": "Chemical reactions usually have to climb an energy 'hill' before they can happen. Only molecules that happen to be moving fast enough — carrying enough energy — make it over. Heat the system and a much larger fraction of molecules have that energy, so the reaction speeds up fast. The Arrhenius equation captures this: the rate depends exponentially on how high the hill is and how hot it is. A roughly 10°C rise often doubles a biological rate.",
+        "core": "The Arrhenius equation, k = A e^(−E_a/RT), expresses how a rate constant k depends on temperature. E_a is the activation energy (the barrier height), R is the gas constant, T the absolute temperature, and A is the pre-exponential factor (collision frequency × orientation). The exponential term is exactly the Boltzmann fraction of molecules with energy at least E_a. Taking logs gives ln k = ln A − E_a/(RT), a straight line of slope −E_a/R when ln k is plotted against 1/T — the standard way to measure an activation energy experimentally.",
+        "deep": "Arrhenius is the empirical, phenomenological face of transition-state theory: the Eyring equation k = (k_BT/h) exp(−ΔG‡/RT) gives the same exponential temperature dependence but resolves the barrier into enthalpic (ΔH‡) and entropic (ΔS‡) parts, with A absorbing k_BT/h and exp(ΔS‡/R). The pre-factor A is weakly temperature-dependent, so over a narrow biological range the simple Arrhenius form is an excellent fit. Enzymes act by lowering E_a (stabilizing the transition state), which — because the dependence is exponential — buys enormous rate enhancements: dropping E_a by ~6 kJ/mol multiplies the rate roughly tenfold at body temperature."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OpenCourseWare"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Arrhenius equation",
+          "url": "https://en.wikipedia.org/wiki/Arrhenius_equation"
+        },
+        {
+          "label": "Wikipedia — Activation energy",
+          "url": "https://en.wikipedia.org/wiki/Activation_energy"
+        },
+        {
+          "label": "Wikipedia — Q10 (temperature coefficient)",
+          "url": "https://en.wikipedia.org/wiki/Q10_(temperature_coefficient)"
+        },
+        {
+          "label": "Wikipedia — Pre-exponential factor",
+          "url": "https://en.wikipedia.org/wiki/Pre-exponential_factor"
+        },
+        {
+          "label": "LibreTexts Chemistry — The Arrhenius Law",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        },
+        {
+          "label": "MIT OCW — Thermodynamics & Kinetics (5.60)",
+          "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/"
+        }
+      ],
+      "art_prompt": "an energy-landscape hill with reactant valley on the left and product valley on the right, a labeled activation-energy barrier E_a, and two Boltzmann population curves (cold vs hot) showing far more molecules above the barrier when hot",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the Arrhenius equation k = A e^(−E_a/RT), what does each symbol mean, and why does raising temperature increase the rate?",
+          "answer": "k is the rate constant, A the pre-exponential factor (collision frequency and orientation), E_a the activation energy (barrier height), R the gas constant, and T absolute temperature. Raising T increases the Boltzmann fraction e^(−E_a/RT) of molecules carrying at least the barrier energy, so more collisions are reactive and the rate climbs exponentially."
+        },
+        {
+          "level": "derive",
+          "prompt": "A reaction has an activation energy of 50 kJ/mol. By what factor does its rate change when temperature rises from 300 K to 310 K (its Q10)? Show the ratio.",
+          "answer": "The pre-factor cancels in a ratio: k(310)/k(300) = exp[−E_a/R · (1/310 − 1/300)] = exp[(E_a/R)(1/300 − 1/310)]. With E_a/R = 50000/8.314 = 6014 K and (1/300 − 1/310) = 1.075×10⁻⁴ K⁻¹, the exponent is 6014 × 1.075×10⁻⁴ = 0.647, so the ratio = e^0.647 ≈ 1.9. The rate nearly doubles — the classic Q10 ≈ 2 of biochemistry.",
+          "eq": "\\frac{k(310)}{k(300)} = \\exp\\!\\left[\\frac{E_a}{R}\\left(\\frac{1}{300}-\\frac{1}{310}\\right)\\right] \\approx e^{0.647} \\approx 1.9"
+        }
+      ],
+      "lesson": "### Intuition\n\nMost reactions must climb an **energy hill** before products can form. Only molecules that happen to carry enough energy make it over the top. Because the fraction of energetic molecules grows steeply with temperature, modest heating speeds reactions dramatically — a roughly $10^\\circ$C rise often doubles a biological rate.\n\n### Precisely\n\nThe **Arrhenius equation** gives the temperature dependence of a rate constant:\n\n$$k = A\\,e^{-E_a/RT},$$\n\nwhere $E_a$ is the **activation energy** (barrier height), $A$ the **pre-exponential factor** (collision frequency times the chance of correct orientation), $R$ the gas constant, and $T$ the absolute temperature. The exponential is exactly the **Boltzmann fraction** of molecules with energy $\\ge E_a$.\n\n### Worked example\n\nFor $E_a = 50$ kJ/mol, going from 300 K to 310 K multiplies the rate by\n\n$$\\frac{k(310)}{k(300)} = \\exp\\!\\left[\\frac{E_a}{R}\\left(\\frac{1}{300}-\\frac{1}{310}\\right)\\right] = e^{0.647} \\approx 1.9.$$\n\nThe rate nearly doubles — the familiar $Q_{10}\\approx 2$.\n\n### Why it's true / how it works\n\nTaking the logarithm linearizes it: $\\ln k = \\ln A - E_a/(RT)$. Plotting $\\ln k$ against $1/T$ yields a straight line of slope $-E_a/R$, which is how activation energies are measured. The exponential form is inherited directly from the Boltzmann distribution: the probability a molecule has at least the barrier energy falls off as $e^{-E_a/k_BT}$ per molecule, $e^{-E_a/RT}$ per mole.\n\n### Where it connects\n\nArrhenius is the **empirical cousin of the Eyring equation** from transition-state theory, $k = (k_BT/h)\\,e^{-\\Delta G^\\ddagger/RT}$, which splits the barrier into enthalpy and entropy. Both share the same exponential temperature law. **Enzymes** work by lowering $E_a$ (stabilizing the transition state), and **Kramers theory** refines the pre-factor $A$ to include friction and barrier curvature.\n\n### Watch out\n\nThe pre-factor $A$ is itself weakly temperature-dependent, so a perfectly straight Arrhenius plot is an approximation valid over a limited range. Biological systems also break the rule above ~40°C, where proteins denature and rates *fall* despite rising temperature — the barrier picture no longer describes an intact catalyst.\n\n### Numbers & nuance\n\nBecause the dependence is exponential, small changes in $E_a$ have outsized effects: at body temperature, lowering $E_a$ by one $RT\\ln 10 \\approx 5.9$ kJ/mol multiplies the rate tenfold. This is the lever enzymes pull — a barrier reduction of 30–50 kJ/mol corresponds to rate enhancements of $10^5$ to $10^9$, turning geological-timescale reactions into millisecond ones."
+    },
+    {
+      "id": "osmotic-pressure",
+      "title": "Osmotic pressure",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "chemical-potential"
+      ],
+      "equation": "\\Pi = c\\,RT",
+      "summary": "A solute lowers the solvent's chemical potential, so pure solvent pushes across a semipermeable membrane until a pressure builds that exactly restores the balance — a pressure proportional to solute concentration.",
+      "depths": {
+        "eli5": "Put pure water on one side of a barrier that lets water through but not sugar, and sugar-water on the other. Water flows toward the sugary side, as if trying to dilute it. It keeps going until the extra height (pressure) of liquid on the sugary side pushes back hard enough to stop the flow. That pushback is the osmotic pressure, and it grows in proportion to how many dissolved particles there are — not what they are. This is why cells swell in fresh water and shrivel in brine.",
+        "core": "Osmotic pressure Π is the pressure that must be applied to a solution to stop pure solvent from flowing into it across a semipermeable membrane. For a dilute solution it follows the van 't Hoff relation Π = cRT, where c is the total molar concentration of dissolved particles (osmolarity), R the gas constant, and T temperature — strikingly similar in form to the ideal-gas law. The driving force is the chemical potential of the solvent: dissolving solute lowers the solvent's chemical potential by RT ln(x_solvent), and solvent flows from high to low potential until an opposing pressure raises it back to equality.",
+        "deep": "Osmotic pressure is a direct consequence of equating the solvent chemical potential across the membrane: μ_solvent(pure) = μ_solvent(solution) + V_m ΔP at equilibrium, where the pressure work V_mΔP compensates the entropic lowering RT ln x_solvent ≈ −RT·x_solute. With x_solute ≈ c·V_m one recovers Π = cRT. It is a colligative property: it counts particles, so it dissociates electrolytes (van 't Hoff factor i) and is the same physics behind boiling-point elevation and freezing-point depression. In cells, the large osmotic pressure from impermeant macromolecules and ions must be balanced — by rigid walls in plants and bacteria, by active ion pumping and the Donnan equilibrium in animal cells — or the cell lyses."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "NCBI Bookshelf"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Osmotic pressure",
+          "url": "https://en.wikipedia.org/wiki/Osmotic_pressure"
+        },
+        {
+          "label": "Wikipedia — Osmosis",
+          "url": "https://en.wikipedia.org/wiki/Osmosis"
+        },
+        {
+          "label": "Wikipedia — Colligative properties",
+          "url": "https://en.wikipedia.org/wiki/Colligative_properties"
+        },
+        {
+          "label": "Wikipedia — van 't Hoff factor",
+          "url": "https://en.wikipedia.org/wiki/Van_%27t_Hoff_factor"
+        },
+        {
+          "label": "Wikipedia — Tonicity",
+          "url": "https://en.wikipedia.org/wiki/Tonicity"
+        },
+        {
+          "label": "NCBI Bookshelf — Molecular Biology of the Cell (transport)",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK26910/"
+        }
+      ],
+      "art_prompt": "a U-tube with a semipermeable membrane at the bottom, pure solvent on one arm and solute particles on the other, the solute arm risen to a higher level with a pressure gauge labeled Pi equals cRT",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is osmotic pressure, and why is it called a colligative property?",
+          "answer": "It is the pressure that must be applied to a solution to stop pure solvent from flowing into it across a semipermeable membrane (Π = cRT for dilute solutions). It is colligative because it depends only on the number of dissolved particles, not their chemical identity — so it counts osmolarity, treating one mole of glucose and one mole of dissociated ions differently only through how many particles each yields."
+        },
+        {
+          "level": "apply",
+          "prompt": "Human blood plasma has an osmolarity of about 300 mOsm (0.30 mol of dissolved particles per litre). Estimate its osmotic pressure at 310 K, and explain what this means for a red blood cell placed in pure water.",
+          "answer": "Π = cRT = (300 mol/m³)(8.314 J/mol·K)(310 K) ≈ 7.7×10⁵ Pa ≈ 7.6 atm. A red cell in pure water faces this large inward osmotic drive: water rushes in, the cell swells, and — having no rigid wall — it bursts (hemolysis). This is why intravenous fluids are made isotonic (~300 mOsm) to match plasma.",
+          "eq": "\\Pi = cRT = (300)(8.314)(310) \\approx 7.7\\times10^{5}\\,\\text{Pa} \\approx 7.6\\,\\text{atm}"
+        }
+      ],
+      "lesson": "### Intuition\n\nSeparate pure water from sugar-water by a membrane that passes water but not sugar. Water flows toward the sugary side — as if to dilute it — and keeps flowing until the extra liquid height pushes back hard enough to stop it. That pushback is the **osmotic pressure**, and it depends on *how many* dissolved particles there are, not *what* they are.\n\n### Precisely\n\nOsmotic pressure $\\Pi$ is the pressure that must be applied to a solution to **stop** pure solvent from entering it across a semipermeable membrane. For dilute solutions it obeys the **van 't Hoff relation**\n\n$$\\Pi = cRT,$$\n\nwhere $c$ is the total molar concentration of dissolved particles (the **osmolarity**), $R$ the gas constant, and $T$ absolute temperature — a form strikingly parallel to the ideal-gas law.\n\n### Worked example\n\nBlood plasma is about 300 mOsm ($c = 300\\ \\mathrm{mol/m^3}$). At 310 K,\n\n$$\\Pi = cRT = (300)(8.314)(310) \\approx 7.7\\times10^{5}\\ \\text{Pa} \\approx 7.6\\ \\text{atm}.$$\n\nThat is a substantial pressure — the reason a red cell in pure water swells and bursts, and why IV fluids are made isotonic.\n\n### Why it's true / how it works\n\nThe origin is the **solvent chemical potential**. Dissolving solute lowers it by $RT\\ln x_{\\text{solvent}} \\approx -RT\\,x_{\\text{solute}}$. Solvent flows from high to low potential; at equilibrium the pressure work $V_m\\Delta P$ on the solution side exactly restores equality, $\\mu_{\\text{pure}} = \\mu_{\\text{solution}} + V_m\\Pi$. With $x_{\\text{solute}} \\approx cV_m$ this collapses to $\\Pi = cRT$. Osmotic pressure is therefore just chemical-potential balance rewritten as a pressure.\n\n### Where it connects\n\nBecause it counts particles, osmotic pressure is a **colligative property**, the same physics as freezing-point depression and boiling-point elevation, and it dissociates electrolytes through the van 't Hoff factor $i$. It sets the stakes for **membrane transport** and the **Donnan equilibrium**, drives the assembly thermodynamics of **biomolecular condensates** (polymer osmotic pressure), and is the load that molecular machines and cell walls work against.\n\n### Watch out\n\nUse the concentration of *all* independent particles: $1$ mol of NaCl contributes nearly $2$ osmoles because it dissociates. And $\\Pi = cRT$ is the dilute limit — concentrated or strongly interacting solutions (crowded cytoplasm, charged polymers) show large deviations captured by a concentration-dependent osmotic coefficient.\n\n### Numbers & nuance\n\nThe per-osmolar pressure is steep: $RT \\approx 2.58$ kJ/mol means each milliosmole adds $\\sim$2.5 kPa, so physiological 300 mOsm reaches $\\sim$7.6 atm. Cells cannot ignore this — plants and bacteria contain it with rigid walls (turgor pressure), while animal cells, lacking walls, must continuously pump ions to hold their internal osmolarity in check or risk lysis."
     }
   ]
 }
