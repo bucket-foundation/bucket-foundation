@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import DepthLadder from "@/components/DepthLadder";
 
 export const metadata: Metadata = {
   title: "Mission · reform the knowledge layer",
@@ -236,7 +237,7 @@ export default function Page() {
             title="the academy · learning-to-learn"
             href="/academy"
             cta="open the academy"
-            body="Spaced-repetition mastery over the canon's seven branches. Targets the highest-leverage missing skill the research names — metacognition and self-regulation — where 84% of students reread and 72% wrongly believe massing beats spacing."
+            body="Spaced-repetition mastery over the canon's seven branches — and a first-class 'Learning to learn' branch that TEACHES the highest-leverage missing skill the research names (metacognition, retrieval, spacing) as content you master, where 84% of students reread and 72% wrongly believe massing beats spacing. Most systems only USE this science; Bucket also teaches it."
           />
           <Lever
             n="05"
@@ -245,6 +246,30 @@ export default function Page() {
             cta="contribute"
             body="Non-institutional, any-age access to the full boundaries of knowledge, plus an open path to extend them — for the small number of people who can take a model and an axiom and reach a layer of reality nobody has reached before."
           />
+        </div>
+
+        {/* ═══════════════════ THE DEPTH LADDER ═══════════════════ */}
+        <div className="carved-rule max-w-xs mt-20" />
+        <div className="mt-16 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
+          § The depth ladder · the on-ramp across the empty cell
+        </div>
+        <h2 className="mt-4 font-display uppercase text-[clamp(1.5rem,3.5vw,2.25rem)] leading-[1.1] chisel text-[color:var(--basalt)]">
+          one continuous climb, no gap between the rungs.
+        </h2>
+        <p className="mt-7 text-[16px] leading-[1.75] text-[color:var(--basalt-2)]">
+          The levers above are not five separate products — they are{" "}
+          <strong className="text-[color:var(--basalt)]">rungs on one ladder</strong>.
+          The same L0→L5 depth scale that produced the access cliff is the path
+          out of it: Academy mastery carries a learner up the consume side (L1–L2),
+          the canon bridges to the frontier (L3–L4), and the research tools and the
+          research agent are the produce-side terminus (L4–L5). The point is that
+          there is <em>no gap</em>: &ldquo;I learned mitochondrial bioenergetics&rdquo; →
+          &ldquo;read the canon on it&rdquo; → &ldquo;use the research agent to do frontier
+          work on it.&rdquo; That continuity is Bucket&rsquo;s answer to the empty
+          scalable-and-production-reaching cell.
+        </p>
+        <div className="mt-10">
+          <DepthLadder showThesis={false} missionLink={false} heading="L0 → L5 · the rungs, and the Bucket piece that serves each" />
         </div>
 
         {/* ═══════════════════ THE HONEST BOUNDARY ═══════════════════ */}

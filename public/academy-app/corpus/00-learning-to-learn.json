@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "branch": "00-learning-to-learn",
+    "title": "Learning to learn — the meta-skill the system skips",
+    "version": "0.1.0",
+    "note": "The diagnosis from the education-atlas (docs/deep/03-what-systems-lack-learning-to-learn.md): education SYSTEMS use good cognitive science but never TEACH it to learners. 84% of students study by rereading; 72% wrongly believe massed practice beats spaced. This branch makes the evidence-based mechanisms of learning into CONTENT the learner masters — so the Academy doesn't just USE FSRS/retrieval on you, it teaches you WHY they work. Every atom is grounded in the learning-science literature actually cited in deep/03 (Dunlosky 2013, Kornell & Bjork 2008, Flavell 1979, Zimmerman, Panadero 2017, Stanton 2021, Pashler 2008) — no fabricated references. Authored as original prose for Bucket Academy; the empirical claims (effect tiers, percentages) are facts traceable to the cited sources. Follows the same atom schema as the seven science branches so the engine ingests it natively (diagnostic, FSRS scheduling, mastery). Placed first (00-) and listed first in corpus/index.json so it surfaces early — it is the meta-skill that accelerates every other branch. HONEST GAP: deep/03 does not carry dedicated dual-coding (Paivio) or sleep-consolidation citations, so those atoms are deliberately NOT included rather than grounded in fabricated refs; add them only when a real citation is sourced into the evidence base.",
+    "license": "CC-BY-4.0 (prose); empirical claims are facts traceable to cited sources"
+  },
+  "atoms": [
+    {
+      "id": "how-learning-works",
+      "title": "The science of learning is settled — the learner is the last to know",
+      "shell": "prereq",
+      "type": "concept",
+      "requires": [],
+      "equation": "",
+      "summary": "There is a usable, replicated, decades-deep evidence base for HOW learning works — and almost none of it is taught to the people who would benefit most: learners themselves. The two best-evidenced study techniques are among the least used; the techniques students rely on most are the weakest.",
+      "depths": {
+        "eli5": "Scientists have actually figured out, with a lot of careful experiments, which ways of studying work and which don't. The surprising part: the ways that work best (testing yourself, spreading practice out) are the ones almost nobody uses, and the ways most people use (rereading, highlighting) barely work. The bad news is school usually teaches you WHAT to learn but almost never teaches you HOW to learn — so most people study with habits they copied, and the habits are wrong.",
+        "core": "The cognitive psychology of how learning works is one of the most settled, replicated evidence bases in all of education. The landmark synthesis is Dunlosky, Rawson, Marsh, Nathan & Willingham (2013), which graded ten common study techniques by the breadth and strength of their evidence. High utility: practice testing (retrieval practice) and distributed practice (spacing) — both work across ages, abilities, materials, and subjects. Moderate: interleaving, elaborative interrogation, self-explanation. Low: rereading, highlighting, summarization. The cruel inversion is that the two techniques that work best are among the least used, while the techniques students rely on most sit in the low-utility tier — 84% of students study by rereading. This is not contested frontier science; it is settled, teachable, and high-leverage — and the learner is almost never taught it.",
+        "deep": "This branch exists because of a structural gap the education-atlas names directly: systems USE good cognitive science (spaced-repetition schedulers, retrieval-based assessment) but do not TEACH it. The Academy you are reading this in runs an FSRS spaced-repetition engine and grades you by retrieval — it already uses the high-utility techniques on you. The point of teaching them as content is to close the use-versus-teach loop: a learner who knows WHY the schedule spaces them, and that the feeling of fluency is not the same as durable memory, can run these strategies themselves long after any app or course is gone. That portability is the entire payoff of learning-to-learn."
+      },
+      "note": "The full grading of all ten techniques is in Dunlosky et al. (2013); the accessible summary in American Educator is the fastest way in.",
+      "sources": [
+        "Dunlosky, Rawson, Marsh, Nathan & Willingham (2013), Psychological Science in the Public Interest",
+        "Education-atlas deep brief 03 — what systems lack: learning-to-learn"
+      ],
+      "resources": [
+        { "label": "Dunlosky et al. (2013) — \"Improving Students' Learning With Effective Learning Techniques\" (PSPI)", "url": "https://journals.sagepub.com/doi/abs/10.1177/1529100612453266" },
+        { "label": "American Educator — \"Strengthening the Student Toolbox\" (accessible summary)", "url": "https://www.aft.org/ae/fall2013/dunlosky" }
+      ],
+      "art_prompt": "a ranked ladder of ten study techniques, the top two (a test sheet and a calendar of spread-out dots) glowing gold, the bottom two (a highlighter and a re-read page) faded",
+      "quiz": [
+        { "level": "recall", "prompt": "Which two study techniques did Dunlosky et al. (2013) rate as HIGH utility, and which two of the most-used techniques did they rate LOW?", "answer": "High utility: practice testing (retrieval practice) and distributed practice (spacing). Low utility: rereading and highlighting — despite rereading being used by ~84% of students." },
+        { "level": "apply", "prompt": "A friend says \"the science of how to study isn't settled, it's all opinion.\" On what grounds does the evidence base contradict that?", "answer": "The cognitive psychology of learning is one of the most replicated evidence bases in education; Dunlosky's synthesis grades techniques by breadth and strength of evidence, and retrieval practice and spacing replicate across ages, abilities, materials, and subjects — including in real classrooms, not just labs." }
+      ],
+      "lesson": "### The settled science nobody teaches the learner\n\nIf there is one place education has a usable, decades-deep evidence base, it is the cognitive psychology of **how learning works**. The landmark synthesis — Dunlosky, Rawson, Marsh, Nathan & Willingham (2013) — graded ten common study techniques by the breadth and strength of the evidence behind them.\n\n- **High utility:** *practice testing* (retrieval practice) and *distributed practice* (spacing).\n- **Moderate:** interleaving, elaborative interrogation, self-explanation.\n- **Low:** rereading, highlighting, summarization.\n\n### The cruel inversion\n\nThe two techniques that work best are among the **least used**. The techniques students rely on most — **84% reread** — sit in the low tier. This is not frontier science; it is settled. The problem is that the people who would benefit most, the learners, are almost never taught it. Schools spend twelve-plus years on *what* to learn and almost none on *how*.\n\n### Why this branch exists\n\nThe Academy already *uses* the high-utility techniques on you: it runs a spaced-repetition engine and grades you by retrieval. This branch *teaches* you those same techniques as content you master — so you can run them yourself, anywhere, for the rest of your life."
+    },
+    {
+      "id": "metacognition",
+      "title": "Metacognition — thinking about your own thinking",
+      "shell": "nucleus",
+      "type": "definition",
+      "requires": ["how-learning-works"],
+      "equation": "",
+      "summary": "Metacognition is cognition about cognition: actively monitoring and regulating your own thinking in service of a goal. It is the meta-skill that makes all other learning compound — a learner who can monitor and correct their own understanding is, in effect, their own teacher.",
+      "depths": {
+        "eli5": "Metacognition is just thinking about your own thinking. It's the little voice that asks 'do I actually understand this, or does it just look familiar?' and then does something about the answer. People who get good at that voice can teach themselves anything, because they notice when they're lost and fix it instead of plowing ahead.",
+        "core": "Metacognition — 'cognition about cognition' — was given its foundational definition by John Flavell (1979): the active monitoring and consequent regulation and orchestration of cognitive processes in service of a goal. Flavell split it into two parts: metacognitive KNOWLEDGE (what you know about how you learn — declarative, procedural, and conditional knowledge, the last being knowing WHEN and WHY to use a strategy) and metacognitive MONITORING/REGULATION (noticing whether you actually understand, and adjusting). It is the leverage point because it is the meta-skill that makes every other learning strategy compound: a learner who can set a goal, choose an effective strategy, monitor whether it is working, and course-correct is their own teacher — and keeps learning after any course or institution is gone.",
+        "deep": "Reviews repeatedly find metacognitive and self-regulatory instruction among the highest-impact, lowest-cost interventions available (Stanton et al., 2021). Flavell's 'conditional' knowledge — knowing when and why a strategy applies — is also the hinge for transfer: a strategy learned in one place is only useful elsewhere if the learner recognizes the new situation as one where it applies. That is why learning-to-learn must be taught with deliberate attention to transfer across domains, with explicit reflection on when and why a strategy works, rather than as a one-off study-skills unit."
+      },
+      "note": "Metacognitive knowledge = what you know about your own learning. Metacognitive regulation = noticing in the moment whether you understand, and adjusting. You need both.",
+      "sources": [
+        "Flavell (1979), American Psychologist 34(10):906–911",
+        "Stanton et al. (2021), CBE—Life Sciences Education"
+      ],
+      "resources": [
+        { "label": "Flavell (1979) — \"Metacognition and Cognitive Monitoring\" (PDF)", "url": "https://jgregorymcverry.com/readings/flavell1979MetacognitionAndCogntiveMonitoring.pdf" },
+        { "label": "Stanton et al. (2021) — \"Fostering Metacognition to Support Student Learning\" (CBE—LSE)", "url": "https://www.lifescied.org/doi/10.1187/cbe.20-12-0289" }
+      ],
+      "art_prompt": "a head in profile containing a smaller head in profile, the inner one holding a magnifying glass turned back on the outer one's thoughts",
+      "quiz": [
+        { "level": "recall", "prompt": "What are the two components of metacognition in Flavell's framing?", "answer": "Metacognitive knowledge (what you know about how you learn — declarative, procedural, and conditional) and metacognitive monitoring/regulation (noticing whether you actually understand, and adjusting)." },
+        { "level": "apply", "prompt": "Why is metacognition described as THE leverage point for learning rather than just one more study tip?", "answer": "Because it is the meta-skill that makes all other strategies compound: a learner who can set goals, pick strategies, monitor whether they work, and correct course becomes their own teacher and keeps learning after any course, app, or institution is gone." },
+        { "level": "teach", "prompt": "Explain to a beginner why 'conditional knowledge' (knowing when and why to use a strategy) matters for whether learning-to-learn transfers to new subjects.", "answer": "A strategy is only useful in a new situation if you recognize that situation as one where it applies. Conditional knowledge is exactly that recognition; without it, a strategy stays trapped in the context where it was first learned, which is why transfer is not automatic." }
+      ],
+      "lesson": "### Cognition about cognition\n\n**Metacognition** is thinking about your own thinking. John Flavell's foundational 1979 definition: the *active monitoring and consequent regulation and orchestration* of cognitive processes in service of a goal.\n\nIt has two parts:\n\n- **Metacognitive knowledge** — what you know about how *you* learn (declarative, procedural, and *conditional* — knowing **when and why** a strategy applies).\n- **Metacognitive regulation** — noticing, in the moment, whether you actually understand, and adjusting.\n\n### Why it's the leverage point\n\nA learner who can set a goal, choose a strategy, monitor whether it's working, and correct course is, in effect, **their own teacher** — and keeps learning long after any course ends. Reviews find metacognitive instruction among the highest-impact, lowest-cost interventions there are (Stanton et al., 2021).\n\nThe conditional piece is also the hinge for **transfer**: a strategy is only useful in a new subject if you recognize the new subject as a place it applies."
+    },
+    {
+      "id": "fluency-illusion",
+      "title": "The fluency illusion — why what feels like learning often isn't",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["metacognition"],
+      "equation": "",
+      "summary": "Rereading and highlighting produce a feeling of familiarity that learners misread as a feeling of mastery. Students systematically misjudge their own learning — in one study 90% learned better from spaced practice yet 72% believed massing was better. The strategies that feel productive are weak; the ones that work feel harder.",
+      "depths": {
+        "eli5": "When you reread something, it starts to feel easy and familiar — and your brain mistakes 'this feels familiar' for 'I've learned this.' But familiar isn't the same as remembered. That's why people who reread feel confident and then bomb the test: the good feeling was an illusion. The methods that actually work feel harder, so people quit them too early.",
+        "core": "Kornell and Bjork's work is the cleanest demonstration that learners' intuitions about learning are actively, measurably wrong. In one study, 90% of students learned better after spaced practice than massed practice — yet 72% of them believed massing was the more effective method. They got the right outcome from the right strategy and concluded the wrong strategy was right. The mechanism is the FLUENCY ILLUSION: rereading and highlighting produce a feeling of familiarity that students misread as a feeling of mastery. The strategies that feel productive (smooth, easy, fluent) are the weak ones; the strategies that work feel harder and slower, so learners abandon them. A 2024 classroom study put it in its title: students don't learn the way they think they do.",
+        "deep": "This is why metacognition (the prior atom) is not optional fine-tuning but the corrective: a learner whose judgments of learning are calibrated against the fluency illusion will trust the harder, effective strategies even when they feel worse in the moment. The corollary is an indictment of the system — many students have never been taught how to study at all; their strategies are folk-theories picked up by imitation, and frequently wrong. Explicit instruction in metacognitive strategy helps, but is 'not universally provided' (Stanton et al., 2021)."
+      },
+      "note": "Familiarity is not memory. The feeling that you 'know it' after rereading is a fluency signal, not a retrieval signal — and only retrieval predicts whether you'll have it on the test.",
+      "sources": [
+        "Kornell & Bjork (2008), Memory",
+        "Bjork, Dunlosky & Kornell — \"Self-Regulated Learning: Beliefs, Techniques, and Illusions\"",
+        "CBE—Life Sciences Education (2024)"
+      ],
+      "resources": [
+        { "label": "Kornell & Bjork (2008) — \"Learning concepts and categories: is spacing the enemy of induction?\" (PDF)", "url": "https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/Kornell_Bjork_2008_Memory.pdf" },
+        { "label": "Bjork, Dunlosky & Kornell — \"Self-Regulated Learning: Beliefs, Techniques, and Illusions\" (PDF)", "url": "https://gwern.net/doc/psychology/spaced-repetition/2013-bjork.pdf" },
+        { "label": "CBE—LSE (2024) — students don't learn the way they think they do (replication)", "url": "https://www.lifescied.org/doi/10.1187/cbe.24-10-0251" }
+      ],
+      "art_prompt": "a person smiling at a glassy-smooth reflective page while behind them their actual memory of it is a faint, fading sketch",
+      "quiz": [
+        { "level": "recall", "prompt": "In Kornell & Bjork's study, what fraction of students learned better from spacing, and what fraction believed massing was more effective?", "answer": "90% learned better from spaced practice, yet 72% believed massing was the more effective method." },
+        { "level": "apply", "prompt": "You reread a chapter twice and it feels easy and familiar. Why is that feeling a poor predictor of test performance?", "answer": "Because it is the fluency illusion: rereading produces familiarity, which the brain misreads as mastery. Familiarity is not the same as the ability to retrieve the material; only retrieval predicts durable memory." },
+        { "level": "derive", "prompt": "Given the fluency illusion, why would a rational learner who only trusts their in-the-moment feeling of ease systematically choose the WORST study strategies?", "answer": "Because the weak strategies (rereading, massing) feel smooth and easy and the effective ones (retrieval, spacing, interleaving) feel hard and slow. A learner optimizing for momentary ease will pick exactly the strategies that produce the least durable learning." }
+      ],
+      "lesson": "### Familiar is not the same as learned\n\nKornell and Bjork ran the cleanest demonstration that our intuitions about learning are *actively wrong*. In one study: **90% of students learned better from spaced practice — yet 72% believed massing was better.** They got the right answer from the right method and concluded the wrong method was right.\n\n### The mechanism: the fluency illusion\n\nRereading and highlighting produce a feeling of **familiarity**, which the brain misreads as a feeling of **mastery**. But familiarity is not memory. The strategies that *feel* productive (smooth, easy) are weak; the strategies that work feel **harder and slower**, so learners quit them too early.\n\n> A 2024 classroom replication put it in its title: students don't learn the way they think they do.\n\nThis is exactly why metacognition matters: a learner whose self-judgments are calibrated against the fluency illusion will keep trusting the harder, effective strategies even when they feel worse in the moment."
+    },
+    {
+      "id": "retrieval-practice",
+      "title": "Retrieval practice — the testing effect",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["how-learning-works", "fluency-illusion"],
+      "equation": "",
+      "summary": "Actively recalling material strengthens memory far more than re-exposing yourself to it. The testing effect is one of the most robust results in all of psychology and now replicates in real primary-school classrooms — yet it feels harder than rereading, which is exactly why it works and why it's underused.",
+      "depths": {
+        "eli5": "Instead of reading your notes again, close them and try to remember what was in them. That act of pulling the answer out of your head — even when it's hard, even when you get it wrong and check — is what burns it in. Testing yourself isn't just measuring what you know; it's one of the strongest ways to actually learn it.",
+        "core": "Retrieval practice — testing yourself by actively recalling material rather than re-reading it — is rated HIGH utility by Dunlosky et al. (2013) and is one of the most robust results in all of psychology, known as the 'testing effect.' Actively recalling material strengthens memory far more than re-exposing yourself to it, and it now replicates in real primary-school classrooms, not just labs. The key reframe: a test is not only a measurement of learning, it is an EVENT of learning — the effortful act of reconstruction is what consolidates the memory.",
+        "deep": "Retrieval is a 'desirable difficulty' (see that atom): it feels harder than rereading and produces a worse in-the-moment feeling of fluency, which is precisely why learners under-use it and why it works. The effort of reconstructing an answer from memory — including the effort of failing, then checking — strengthens the retrieval path more than passive re-exposure ever could. This is the technique the Academy operationalizes most directly: every card is a retrieval attempt, not a re-reading, and your grade on it feeds the spacing schedule."
+      },
+      "note": "A failed retrieval attempt followed by feedback is still valuable — the effort of trying to recall primes the memory even when you get it wrong. Don't avoid testing yourself because you might miss.",
+      "sources": [
+        "Dunlosky et al. (2013), PSPI — practice testing rated high utility",
+        "Retrieval practice in primary schools (2024), NIH/PMC"
+      ],
+      "resources": [
+        { "label": "American Educator — \"Strengthening the Student Toolbox\" (Dunlosky summary; testing effect)", "url": "https://www.aft.org/ae/fall2013/dunlosky" },
+        { "label": "NIH/PMC (2024) — retrieval practice replicates in real primary-school classrooms", "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12372469/" }
+      ],
+      "art_prompt": "a closed book with a hand pulling a glowing thread of words out of a person's head, the effort shown as the thread straining taut",
+      "quiz": [
+        { "level": "recall", "prompt": "What is the 'testing effect' and how does Dunlosky et al. rate retrieval practice?", "answer": "The testing effect is the finding that actively recalling material strengthens memory far more than re-exposing yourself to it. Dunlosky et al. (2013) rate practice testing (retrieval practice) as HIGH utility — one of the two best-evidenced techniques." },
+        { "level": "apply", "prompt": "Reframe what a quiz IS, given the testing effect.", "answer": "A quiz is not only a measurement of what you know — it is itself an event of learning. The effortful act of reconstructing the answer from memory consolidates it, so testing teaches as well as measures." },
+        { "level": "teach", "prompt": "A learner avoids self-testing because it feels harder than rereading and they sometimes get answers wrong. What do you tell them?", "answer": "The difficulty is the point — retrieval is a desirable difficulty, and the effort is what strengthens memory. Even a failed attempt followed by feedback helps, because trying to recall primes the memory. Rereading feels easier but is one of the weakest techniques." }
+      ],
+      "lesson": "### Recall, don't reread\n\n**Retrieval practice** means testing yourself — actively pulling material out of memory rather than re-reading it. Dunlosky et al. rate it **high utility**, and the underlying 'testing effect' is one of the most robust results in all of psychology. It now replicates in real **primary-school classrooms**, not just labs.\n\n### A test is an event of learning\n\nThe key reframe: a quiz isn't only a *measurement* of what you know — it's an *act* of learning. The effort of reconstructing an answer from memory is what consolidates it.\n\n### Why it's underused\n\nRetrieval feels **harder** than rereading and gives a worse feeling of fluency in the moment — a desirable difficulty. That's exactly why people avoid it, and exactly why it works. Even a *failed* retrieval followed by feedback helps.\n\n> This is the technique the Academy leans on most: every card is a retrieval attempt, and your result feeds the spacing schedule."
+    },
+    {
+      "id": "spacing",
+      "title": "Spacing — distributed practice beats cramming",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["how-learning-works", "fluency-illusion"],
+      "equation": "",
+      "summary": "Spreading practice across time produces far more durable memory than massing it into one session. Distributed practice is rated high utility and works across ages and subjects — yet most learners cram, because cramming feels productive in the moment and spacing's payoff is delayed.",
+      "depths": {
+        "eli5": "Studying a little bit on several different days beats studying a lot in one big session, even if the total time is the same. Each time you come back after a gap and have to dig the memory up again, it gets stronger. Cramming feels great because everything's fresh — but most of it leaks out by next week.",
+        "core": "Distributed practice (spacing) — spreading study sessions across time rather than massing them together — is rated HIGH utility by Dunlosky et al. (2013), alongside retrieval practice, and works across ages, abilities, materials, and subjects. The reason it works connects to retrieval: returning to material after a delay forces you to retrieve it from a partly-decayed state, and that effortful reconstruction strengthens the memory more than a smooth re-read while it's still fresh. Spacing and retrieval are partners — the spacing schedule decides WHEN to retrieve.",
+        "deep": "Spacing is the technique most directly mishandled by intuition: Kornell & Bjork found 90% of learners did better with spacing yet 72% believed massing was better (the misconception atom). The payoff is delayed and the in-the-moment feeling is worse, so learners default to massing. A spaced-repetition algorithm exists precisely to remove this judgment from the fallible learner: it models how memory decays and schedules each review at the moment retrieval is hard enough to strengthen the memory but not so late that it is lost. That is what the FSRS engine in this Academy does — see the 'how this app schedules you' explainer."
+      },
+      "note": "Same total study time, spread across days, beats one long session. The gaps are not wasted time — the partial forgetting between sessions is what makes the next retrieval strengthening.",
+      "sources": [
+        "Dunlosky et al. (2013), PSPI — distributed practice rated high utility",
+        "Kornell & Bjork (2008), Memory"
+      ],
+      "resources": [
+        { "label": "American Educator — \"Strengthening the Student Toolbox\" (Dunlosky summary; distributed practice)", "url": "https://www.aft.org/ae/fall2013/dunlosky" },
+        { "label": "Kornell & Bjork (2008) — spacing vs massing (PDF)", "url": "https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/Kornell_Bjork_2008_Memory.pdf" }
+      ],
+      "art_prompt": "the same seed planted in five pots spaced across a calendar week growing taller than one crowded pot stuffed with five seeds at once",
+      "quiz": [
+        { "level": "recall", "prompt": "How does Dunlosky et al. rate distributed practice, and what is the one-line difference between spacing and massing?", "answer": "Distributed practice (spacing) is rated HIGH utility. Spacing spreads study across time; massing crams it into one session. Same total time, spacing produces far more durable memory." },
+        { "level": "apply", "prompt": "Why does returning to material after a delay strengthen it more than rereading it while still fresh?", "answer": "After a delay the memory has partly decayed, so retrieving it requires effortful reconstruction — and that effort is what strengthens the memory. Rereading while fresh is smooth and does little. Spacing and retrieval work as partners." },
+        { "level": "derive", "prompt": "Explain why a spaced-repetition algorithm can outperform a learner's own sense of when to review.", "answer": "Learners' judgments are biased by the fluency illusion and the spacing-vs-massing misconception, so they review too early (while fluent) or cram. An algorithm models memory decay and schedules each review at the point retrieval is hard enough to strengthen but not so late it's lost — removing the fallible judgment." }
+      ],
+      "lesson": "### Spread it out\n\n**Distributed practice** — spacing study across time instead of massing it into one session — is rated **high utility** by Dunlosky et al., right alongside retrieval practice. It works across ages, abilities, materials, and subjects.\n\n### Why gaps help\n\nReturning to material after a delay forces you to retrieve it from a partly-faded state, and that effortful reconstruction strengthens the memory more than a smooth re-read while it's still fresh. **Spacing and retrieval are partners** — spacing decides *when* you retrieve.\n\n### Why we don't do it on our own\n\nThe payoff is delayed and the moment-to-moment feeling is worse, so we cram. This is the single most mishandled technique (see the spacing-vs-massing misconception). A **spaced-repetition algorithm** exists to take this judgment away from the fallible learner — which is exactly what this Academy's FSRS engine does."
+    },
+    {
+      "id": "spacing-vs-massing-misconception",
+      "title": "The spacing-vs-massing misconception — the textbook case of a wrong belief",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": ["spacing", "fluency-illusion"],
+      "equation": "",
+      "summary": "The clearest single demonstration that learners' beliefs about learning are wrong: 90% learned better from spacing, yet 72% believed massing was better. The belief is not just absent — it is inverted, in a measurable, repeatable way.",
+      "depths": {
+        "eli5": "Almost everyone thinks cramming works better than spreading study out. The experiments show the opposite: spreading out wins for nearly everyone. So most people hold a belief about their own learning that is not just missing — it's backwards. Knowing that is itself useful: when your gut says 'cram,' you now know your gut is the unreliable part.",
+        "core": "This is the textbook case of a metacognitive belief being not merely absent but inverted. Kornell & Bjork (2008): 90% of students learned better after spaced practice than massed — yet 72% of them believed massing was more effective. They were getting the right outcome from the right strategy and concluding the wrong strategy was right. The misconception persists because massing produces a strong in-the-moment fluency signal (everything's fresh, it feels mastered) while spacing's superiority only shows up later, on a delayed test.",
+        "deep": "This single result is the keystone of the whole learning-to-learn case, because it shows that the problem is not ignorance you can fix by adding information — it is an active misconception driven by a perceptual illusion (fluency). Telling a learner 'spacing is better' is not enough; they have to experience the inversion and learn to distrust the fluency signal. That is the pedagogical reason this Academy both USES spacing (the engine) and TEACHES it (this branch): the belief only updates when the learner sees the engine's spaced schedule outperform their own instinct to cram."
+      },
+      "note": "When your instinct says 'study it all now while it's fresh,' that instinct is the documented misconception. The fresh feeling is the fluency illusion, not evidence of learning.",
+      "sources": [
+        "Kornell & Bjork (2008), Memory",
+        "Bjork, Dunlosky & Kornell — beliefs, techniques, and illusions"
+      ],
+      "resources": [
+        { "label": "Kornell & Bjork (2008) — 90% learn better spaced / 72% believe massed is better (PDF)", "url": "https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/07/Kornell_Bjork_2008_Memory.pdf" },
+        { "label": "Bjork, Dunlosky & Kornell — \"Self-Regulated Learning: Beliefs, Techniques, and Illusions\" (PDF)", "url": "https://gwern.net/doc/psychology/spaced-repetition/2013-bjork.pdf" }
+      ],
+      "art_prompt": "a crowd of small figures all pointing at a 'cram' sign while a single scale behind them tips decisively toward a 'spaced' sign they aren't looking at",
+      "quiz": [
+        { "level": "recall", "prompt": "State the spacing-vs-massing misconception with its two numbers.", "answer": "Although 90% of students learned better from spaced practice than massed practice, 72% believed massing was the more effective method — the belief is inverted relative to reality." },
+        { "level": "apply", "prompt": "Why isn't simply telling a learner 'spacing beats massing' enough to fix this misconception?", "answer": "Because it's an active misconception driven by the fluency illusion, not mere ignorance. Massing feels more effective in the moment, so the learner has to experience the inversion — see spacing outperform their cramming instinct — to actually update the belief and distrust the fluency signal." },
+        { "level": "teach", "prompt": "Use this result to explain why an app that both USES and TEACHES spacing is more effective than one that only does one.", "answer": "Teaching alone leaves the fluency-driven misconception intact; using alone never tells the learner why. Doing both lets the learner watch the spaced engine beat their own cram instinct, which is what actually updates the inverted belief — closing the use-versus-teach loop." }
+      ],
+      "lesson": "### A belief that is backwards, not just missing\n\nThe cleanest single result in the learning-to-learn case: Kornell & Bjork (2008) found **90% of students learned better from spacing — yet 72% believed massing was better.** The belief about their own learning is not merely absent; it is **inverted**, measurably and repeatably.\n\n### Why the misconception survives\n\nMassing produces a strong **fluency signal** — everything's fresh, it feels mastered — while spacing's advantage only appears later, on a delayed test. So the moment-to-moment feeling rewards the wrong strategy.\n\n### The pedagogical consequence\n\nYou can't fix an *active misconception* just by stating the fact. The learner has to **experience the inversion** — watch a spaced schedule beat their own cram instinct. That's why this Academy both **uses** spacing (the engine) and **teaches** it (this branch)."
+    },
+    {
+      "id": "desirable-difficulties",
+      "title": "Desirable difficulties — when harder is better",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": ["retrieval-practice", "spacing", "fluency-illusion"],
+      "equation": "",
+      "summary": "Robert Bjork's principle that conditions which make learning feel slower and harder in the moment — retrieval, spacing, interleaving — often produce more durable long-term learning. The difficulty is not a bug; it is the signal that learning is happening.",
+      "depths": {
+        "eli5": "Some things that make studying feel harder actually make you learn better — like quizzing yourself, spreading practice out, or mixing up topics. The struggle is the point. The catch is that because they feel harder, people quit them and go back to the easy stuff that doesn't work.",
+        "core": "Bjork's concept of DESIRABLE DIFFICULTIES is the unifying idea behind the high-utility techniques: conditions that make learning feel harder and slower in the moment — retrieval practice, spacing, interleaving — often produce stronger, more durable long-term learning than smooth, fluent study. The difficulty is desirable because the extra effort (reconstructing a memory, switching between problem types) is what consolidates learning. The trap is the fluency illusion: because these strategies feel worse, learners abandon them for the smooth ones (rereading, massing) that feel like progress but aren't.",
+        "deep": "'Desirable' is doing real work in the name: not all difficulty is good. A difficulty is desirable only when the learner has the resources to overcome it and the struggle engages the retrieval or discrimination process that produces durable learning; difficulty that just confuses or overwhelms is not desirable. This is the synthesizing principle of the branch — retrieval, spacing, and interleaving are all instances of it, and the fluency illusion is exactly the cognitive bias that makes desirable difficulties feel undesirable."
+      },
+      "note": "Not all difficulty is desirable. The difficulty has to be one the learner can overcome and one that engages real retrieval or discrimination — confusion and overload are not desirable difficulties.",
+      "sources": [
+        "Bjork — desirable difficulties",
+        "Dunlosky et al. (2013), PSPI"
+      ],
+      "resources": [
+        { "label": "Bjork — desirable difficulties (teacher's guide summary)", "url": "https://www.structural-learning.com/post/robert-bjork-teachers-guide-desirable" },
+        { "label": "Bjork, Dunlosky & Kornell — beliefs, techniques, and illusions (PDF)", "url": "https://gwern.net/doc/psychology/spaced-repetition/2013-bjork.pdf" }
+      ],
+      "art_prompt": "an uphill path marked 'harder' leading to a high bright summit, beside a smooth flat path marked 'easier' that loops back to where it started",
+      "quiz": [
+        { "level": "recall", "prompt": "What is a 'desirable difficulty,' and name three techniques that are instances of it.", "answer": "A desirable difficulty is a condition that makes learning feel harder and slower in the moment but produces more durable long-term learning. Retrieval practice, spacing, and interleaving are all instances." },
+        { "level": "apply", "prompt": "Why does the fluency illusion make desirable difficulties hard to stick with?", "answer": "Because desirable difficulties feel worse in the moment (slower, harder), and the fluency illusion makes smooth, easy study feel like progress. So learners abandon the effective-but-hard strategies for the easy-but-weak ones." },
+        { "level": "derive", "prompt": "Argue why 'all struggle is good for learning' is a misreading of desirable difficulties.", "answer": "The word 'desirable' is load-bearing: a difficulty only helps when the learner can overcome it and the struggle engages retrieval or discrimination. Difficulty that merely confuses or overwhelms produces no learning benefit, so the principle is selective, not a blanket endorsement of hardship." }
+      ],
+      "lesson": "### When harder is better\n\nRobert Bjork's **desirable difficulties** is the principle that unifies the high-utility techniques: conditions that make learning feel *harder and slower* in the moment — retrieval, spacing, interleaving — often produce **more durable** long-term learning.\n\nThe extra effort (reconstructing a memory, switching between problem types) is what consolidates learning. The difficulty isn't a bug; it's the signal that learning is happening.\n\n### The trap\n\nBecause these strategies feel worse, the **fluency illusion** makes learners abandon them for the smooth ones (rereading, massing) that feel like progress but aren't.\n\n### 'Desirable' is selective\n\nNot all difficulty helps. A difficulty is *desirable* only when the learner can overcome it and the struggle engages real retrieval or discrimination — confusion and overload are not desirable difficulties."
+    },
+    {
+      "id": "interleaving",
+      "title": "Interleaving — mix it up instead of blocking",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["desirable-difficulties"],
+      "equation": "",
+      "summary": "Interleaving — mixing different problem types or topics within a study session rather than practicing one to exhaustion before moving on — improves the ability to tell categories apart and to choose the right approach. It is a desirable difficulty: it feels harder and slower but transfers better.",
+      "depths": {
+        "eli5": "Instead of doing twenty of the same kind of problem in a row, mix different kinds together. It feels messier and harder, but it trains you to recognize which kind of problem you're looking at — which is the part that actually matters on a real test, where the problems don't come labeled.",
+        "core": "Interleaving — mixing different problem types or topics within a session, rather than 'blocking' (doing all of one type before the next) — is rated MODERATE utility by Dunlosky et al. (2013). Its main benefit is on DISCRIMINATION and choice: blocked practice lets you apply the same method on autopilot, but interleaving forces you to first figure out WHICH method a problem calls for, which is the skill you actually need when problems aren't pre-sorted. It is a desirable difficulty — it feels harder and lowers in-session performance while improving later transfer.",
+        "deep": "Interleaving illustrates a subtlety of desirable difficulties: it can make practice-session performance look WORSE even as it makes test performance better, which is exactly the kind of signal the fluency illusion misreads. A learner judging by how smoothly the session went would wrongly prefer blocking. This is also why interleaving is rated 'moderate' rather than 'high' — the benefit is real but more context-dependent (strongest when the categories are confusable and the skill is choosing among them) than the across-the-board wins of retrieval and spacing."
+      },
+      "note": "Interleaving lowers how well practice FEELS while raising how well you do on the test. Mixing related-but-confusable topics is where it helps most — it trains you to tell them apart.",
+      "sources": [
+        "Dunlosky et al. (2013), PSPI — interleaving rated moderate utility",
+        "Bjork — desirable difficulties"
+      ],
+      "resources": [
+        { "label": "American Educator — \"Strengthening the Student Toolbox\" (Dunlosky summary; interleaving)", "url": "https://www.aft.org/ae/fall2013/dunlosky" },
+        { "label": "Bjork — desirable difficulties (interleaving as an instance)", "url": "https://www.structural-learning.com/post/robert-bjork-teachers-guide-desirable" }
+      ],
+      "art_prompt": "two decks of differently shaped cards being shuffled together into one mixed stack, beside a tidy unmixed stack that looks easier but duller",
+      "quiz": [
+        { "level": "recall", "prompt": "What is interleaving, and how is it rated by Dunlosky et al.?", "answer": "Interleaving is mixing different problem types or topics within a study session rather than blocking (doing all of one type first). Dunlosky et al. (2013) rate it MODERATE utility." },
+        { "level": "apply", "prompt": "Why does interleaving help most with the skill of CHOOSING the right method, and why does that matter on a real test?", "answer": "Blocked practice lets you apply one method on autopilot; interleaving forces you to first identify which method a problem needs. On a real test problems aren't pre-sorted, so the discrimination skill interleaving trains is exactly what's needed." },
+        { "level": "teach", "prompt": "Explain why a learner judging by how a practice session 'felt' would wrongly prefer blocking over interleaving.", "answer": "Interleaving lowers in-session performance and feels harder, even as it raises later test performance. A learner reading the smooth feeling of a blocked session as a sign of learning (the fluency illusion) would prefer blocking and lose the transfer benefit." }
+      ],
+      "lesson": "### Mix it up\n\n**Interleaving** means mixing different problem types or topics within a session, instead of *blocking* (doing all of one type before moving on). Dunlosky et al. rate it **moderate utility**.\n\n### What it actually trains\n\nBlocked practice lets you run the same method on autopilot. Interleaving forces you to first figure out **which** method a problem calls for — and that discrimination skill is exactly what you need on a real test, where problems don't come labeled.\n\n### A desirable difficulty with a twist\n\nInterleaving can make your *practice session* look worse even as it makes your *test* better. A learner judging by how smoothly the session went (the fluency illusion) would wrongly prefer blocking. It's rated 'moderate' rather than 'high' because the benefit is more context-dependent — strongest when categories are confusable."
+    },
+    {
+      "id": "elaboration-self-explanation",
+      "title": "Elaboration and self-explanation — make it mean something",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": ["retrieval-practice", "metacognition"],
+      "equation": "",
+      "summary": "Elaborative interrogation (asking WHY a fact is true) and self-explanation (explaining how a new idea connects to what you already know, in your own words) deepen learning by tying new material into existing knowledge. Both are rated moderate utility — solid, learner-runnable techniques.",
+      "depths": {
+        "eli5": "Don't just memorize a fact — ask yourself WHY it's true and explain it back in your own words, connecting it to things you already know. The act of explaining forces you to notice the gaps in your understanding and fill them. If you can't explain it simply, you don't understand it yet.",
+        "core": "Two related techniques rated MODERATE utility by Dunlosky et al. (2013). Elaborative interrogation: generating an explanation for why a stated fact is true (asking and answering 'why?'). Self-explanation: explaining, in your own words, how new information relates to what you already know, or what steps you took to solve a problem. Both work by forcing you to integrate new material with prior knowledge rather than leaving it as an isolated fact — which makes it both more memorable and more usable. They also surface gaps: the moment you can't explain a step is the moment you've found what you don't actually understand.",
+        "deep": "Elaboration and self-explanation are where metacognition and content learning meet: the act of explaining is simultaneously a learning technique and a monitoring technique — it produces the deeper encoding AND reveals (via the points where the explanation breaks down) exactly where understanding is thin. This is why the Academy includes 'teach'-level quiz prompts that ask you to explain a concept to a beginner: a teach prompt is an elaboration/self-explanation exercise that also calibrates your metacognitive judgment of what you know."
+      },
+      "note": "If you can explain why it's true and how it connects to what you already know, you understand it. The place your explanation breaks down is the place to study next.",
+      "sources": [
+        "Dunlosky et al. (2013), PSPI — elaborative interrogation & self-explanation rated moderate utility"
+      ],
+      "resources": [
+        { "label": "American Educator — \"Strengthening the Student Toolbox\" (Dunlosky summary; elaboration & self-explanation)", "url": "https://www.aft.org/ae/fall2013/dunlosky" },
+        { "label": "Dunlosky et al. (2013) — full technique grading (PSPI)", "url": "https://journals.sagepub.com/doi/abs/10.1177/1529100612453266" }
+      ],
+      "art_prompt": "a single new puzzle piece being woven by threads into a large existing picture, the threads labeled 'why?' and 'how does this connect?'",
+      "quiz": [
+        { "level": "recall", "prompt": "Define elaborative interrogation and self-explanation, and give their utility rating.", "answer": "Elaborative interrogation = generating an explanation for why a stated fact is true. Self-explanation = explaining in your own words how new information connects to what you know, or the steps you took. Both are rated MODERATE utility by Dunlosky et al. (2013)." },
+        { "level": "apply", "prompt": "How do these techniques double as a metacognitive monitoring tool?", "answer": "The act of explaining reveals where understanding is thin — the point where your explanation breaks down is exactly what you don't yet understand. So explaining both deepens encoding and surfaces gaps, which is metacognitive monitoring." },
+        { "level": "teach", "prompt": "Why does the Academy include 'teach a beginner' quiz prompts, in terms of this atom?", "answer": "A 'teach' prompt is an elaboration/self-explanation exercise: explaining a concept to a beginner forces you to integrate and reconstruct it (deeper encoding) and reveals what you can't yet articulate (metacognitive calibration), getting both benefits at once." }
+      ],
+      "lesson": "### Make it mean something\n\nTwo related techniques, both rated **moderate utility** by Dunlosky et al.:\n\n- **Elaborative interrogation** — ask and answer *why* a fact is true.\n- **Self-explanation** — explain, in your own words, how a new idea connects to what you already know (or the steps you took to solve a problem).\n\nBoth work by **integrating** new material with prior knowledge instead of leaving it as an isolated fact — making it more memorable and more usable.\n\n### Explaining is also monitoring\n\nThe moment your explanation breaks down is the moment you've found what you *don't* understand. So explaining is simultaneously a learning technique and a **metacognitive** one.\n\n> This is why the Academy asks you to *teach* concepts back: a 'teach' prompt is an elaboration exercise that also calibrates what you actually know."
+    },
+    {
+      "id": "learning-styles-myth",
+      "title": "Learning styles — a debunked myth, named plainly",
+      "shell": "frontier",
+      "type": "result",
+      "requires": ["how-learning-works", "metacognition"],
+      "equation": "",
+      "summary": "The idea that each person has a visual/auditory/kinesthetic 'learning style' and learns best when instruction matches it (the meshing hypothesis) is NOT supported by evidence. Pashler et al. (2008) found virtually no evidence for it. Naming a debunked-but-popular idea is itself part of learning to learn.",
+      "depths": {
+        "eli5": "A lot of people believe you have a 'learning style' — visual, auditory, hands-on — and that you learn best when teaching matches your style. It sounds reasonable, but careful experiments don't back it up. Believing it can actually hurt, because it makes you avoid useful material in the 'wrong' format. The real high-leverage stuff (testing yourself, spacing) is what people HAVEN'T heard of.",
+        "core": "The 'learning styles' idea — that each student has a visual/auditory/kinesthetic style and learns best when instruction is matched to it (the 'meshing hypothesis') — is not supported by evidence. Pashler, McDaniel, Rohrer & Bjork (2008) found 'virtually no evidence' for the crossover interaction the theory requires, and concluded there is 'no adequate evidence base to justify incorporating learning-styles assessments into general educational practice.' The consensus has held since (APA; a 2024 meta-analysis still failed to vindicate matching). This matters in two ways: it is a precise example of the gap (the FALSE idea is the one most people have heard of, while the TRUE high-leverage ideas — retrieval, spacing, metacognition — are the ones most learners have never been taught), and it models the standard: when the evidence kills a popular idea, name it.",
+        "deep": "Note what is and isn't being claimed. It is NOT claimed that people are identical, or that preferences don't exist — people do have preferences and material does come in different formats. What is unsupported is the specific 'meshing' claim that matching instruction to a measured style improves learning. Believing the myth carries an opportunity cost: it crowds out the techniques that actually work and can make a learner dismiss effective material because it's in the 'wrong' modality. This atom is marked frontier/honesty-tier because it demonstrates the intellectual discipline the whole branch depends on — being honest when the record undercuts a popular belief, including a belief you might hold."
+      },
+      "note": "Preferences are real; the 'meshing' claim — that matching instruction to a measured style improves learning — is what lacks evidence. Don't avoid material because it's in the 'wrong' format for you.",
+      "sources": [
+        "Pashler, McDaniel, Rohrer & Bjork (2008), PSPI",
+        "APA — the learning-style myth",
+        "Frontiers in Psychology (2024) meta-analysis"
+      ],
+      "resources": [
+        { "label": "Pashler, McDaniel, Rohrer & Bjork (2008) — \"Learning Styles: Concepts and Evidence\" (PSPI)", "url": "https://journals.sagepub.com/doi/full/10.1111/j.1539-6053.2009.01038.x" },
+        { "label": "APA — \"Toward a Deeper Understanding of the Learning Style Myth\" (PDF)", "url": "https://www.apa.org/pubs/journals/releases/edu-edu0000366.pdf" },
+        { "label": "Frontiers in Psychology (2024) — \"Is it really a neuromyth?\" (still fails to vindicate matching)", "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1428732/full" }
+      ],
+      "art_prompt": "three labeled boxes ('visual' 'auditory' 'kinesthetic') being crossed out by a single bold line, with a small gold label reading 'the meshing hypothesis: unsupported'",
+      "quiz": [
+        { "level": "recall", "prompt": "What specific claim about learning styles is unsupported, and who showed it?", "answer": "The 'meshing hypothesis' — that matching instruction to a person's visual/auditory/kinesthetic style improves learning. Pashler, McDaniel, Rohrer & Bjork (2008) found virtually no evidence for the required crossover interaction." },
+        { "level": "apply", "prompt": "Why is it telling that the learning-styles myth is the idea most people HAVE heard of, while retrieval and spacing are the ones they HAVEN'T?", "answer": "It is a precise picture of the gap: the false, low-value idea spread widely while the true, high-leverage techniques stayed untaught — showing the system propagates intuitive-but-wrong beliefs and omits the settled, effective ones." },
+        { "level": "teach", "prompt": "Distinguish what IS and ISN'T being claimed when we say 'learning styles is a myth.'", "answer": "It is NOT claimed that preferences don't exist or that everyone is identical — people do have format preferences. What's unsupported is the meshing claim that matching instruction to a measured style improves learning outcomes. The myth also carries an opportunity cost: it can make learners avoid effective material in the 'wrong' format." }
+      ],
+      "lesson": "### Name the debunked idea\n\nA branch on learning-to-learn that smuggled in pop-neuroscience would deserve to be ignored. So, plainly: the **learning styles** idea — that each person has a visual/auditory/kinesthetic style and learns best when instruction *matches* it (the **meshing hypothesis**) — is **not supported by evidence**.\n\nPashler, McDaniel, Rohrer & Bjork (2008) found 'virtually no evidence' for the required crossover interaction. The consensus has held (APA; a 2024 meta-analysis still failed to vindicate matching).\n\n### Why it's in this branch\n\nTwo reasons. First, it's a precise picture of the gap: the **false** idea is the one most people have heard of, while the **true** high-leverage ideas (retrieval, spacing, metacognition) are the ones most learners were never taught. Second, it models the standard — *when the evidence kills a popular idea, name it.*\n\n### What is NOT being claimed\n\nPreferences are real; material does come in formats. What's unsupported is that **matching** instruction to a measured style improves learning. Believing the myth has a cost: it can make you dismiss effective material because it's in the 'wrong' modality."
+    }
+  ]
+}

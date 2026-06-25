@@ -228,7 +228,7 @@
    *                    startDiagnostic, signIn, share }
    * ====================================================================== */
   function start(ctx) {
-    var STEPS = 5;
+    var STEPS = 6;
     var chosenGoal = null;
 
     // Prefer the host app's real lesson renderer (marked-based, matches Study mode);
@@ -326,10 +326,10 @@
         var got = el("button", "btn primary wide", "Got it → save this win");
         got.onclick = function () {
           ctx.gradeWin(atom.id, "recall"); // banks the first concept in the engine
-          stepDiagnostic();
+          stepHowItWorks();
         };
         var notyet = el("button", "ob-link", "Not yet — show me from the start");
-        notyet.onclick = stepDiagnostic;
+        notyet.onclick = stepHowItWorks;
         done.appendChild(got);
         done.appendChild(notyet);
         reveal.onclick = function () {
@@ -343,7 +343,7 @@
         drill.appendChild(done);
       } else {
         var cont = el("button", "btn primary wide", "Got it →");
-        cont.onclick = function () { ctx.gradeWin(atom.id, "recall"); stepDiagnostic(); };
+        cont.onclick = function () { ctx.gradeWin(atom.id, "recall"); stepHowItWorks(); };
         drill.appendChild(cont);
       }
       w.appendChild(drill);
@@ -369,7 +369,7 @@
       var reveal = el("button", "btn wide", "Show answer");
       var done = el("div", "ob-drill-done hidden");
       var got = el("button", "btn primary wide", "Got it → save this win");
-      got.onclick = function () { if (atom) ctx.gradeWin(atom.id, "recall"); stepDiagnostic(); };
+      got.onclick = function () { if (atom) ctx.gradeWin(atom.id, "recall"); stepHowItWorks(); };
       done.appendChild(got);
       reveal.onclick = function () {
         ans.classList.remove("hidden"); reveal.classList.add("hidden"); done.classList.remove("hidden");
@@ -379,7 +379,49 @@
       frame(2, w);
     }
 
-    /* 4 — offer the diagnostic (place me) OR start from the beginning */
+    /* 4 — close the use↔teach loop: explain HOW this app schedules you, and WHY,
+     * connecting the FSRS engine the learner just used (the retrieval win above) to
+     * the evidence-based mechanisms taught as content in the Learning-to-learn branch.
+     * Systems USE good cognitive science but rarely TEACH it; this step + that branch
+     * are how Bucket teaches it. (education-atlas deep brief 03.) */
+    function stepHowItWorks() {
+      var w = el("div", "ob-body");
+      w.appendChild(el("div", "ob-kicker", "Why that just worked"));
+      w.appendChild(el("h1", "ob-h1", "How this app schedules you — and why."));
+      w.appendChild(el("p", "ob-lead",
+        "You didn't just reread that concept — you <b>recalled</b> it. That's <b>retrieval practice</b>, and pulling an answer out of memory strengthens it far more than reading it again. It's one of the two best-evidenced study techniques there is."));
+      var rows = el("div", "ob-howrows");
+      function howRow(k, v) {
+        var r = el("div", "ob-howrow");
+        r.appendChild(el("div", "ob-how-k", k));
+        r.appendChild(el("div", "ob-how-v", v));
+        rows.appendChild(r);
+      }
+      howRow("Retrieval",
+        "Every card asks you to <b>recall</b>, not reread. The effort is the point — that's what burns it in.");
+      howRow("Spacing",
+        "An <b>FSRS</b> spaced-repetition engine models how your memory fades and brings each idea back right as you're about to forget it. Spread-out practice beats cramming — even at the same total time.");
+      howRow("The catch",
+        "These feel <i>harder</i> than rereading, so most people quit them: <b>90%</b> learn better from spacing, yet <b>72%</b> believe cramming works better. The good feeling of rereading is a <b>fluency illusion</b>, not learning.");
+      w.appendChild(rows);
+      w.appendChild(el("p", "ob-fine",
+        "Most apps just <i>use</i> this science on you. Bucket also <b>teaches</b> it — the “✦ Learning to learn” branch makes these mechanisms (retrieval, spacing, interleaving, metacognition) concepts you master, so you can run them anywhere, for life. Grounded in Dunlosky et al. (2013) and Kornell & Bjork (2008)."));
+      var teachMe = el("button", "btn primary wide", "Teach me how to learn →");
+      teachMe.onclick = function () {
+        // open the meta-skill branch directly, then drop into study
+        Promise.resolve(ctx.switchBranch("corpus/00-learning-to-learn.json")).then(
+          function () { markOnboarded(); ctx.finish({ goTo: "study" }); },
+          function () { stepDiagnostic(); }
+        );
+      };
+      var later = el("button", "btn ghost wide", "Got it — keep going");
+      later.onclick = stepDiagnostic;
+      w.appendChild(teachMe);
+      w.appendChild(later);
+      frame(3, w);
+    }
+
+    /* 5 — offer the diagnostic (place me) OR start from the beginning */
     function stepDiagnostic() {
       var w = el("div", "ob-body ob-center");
       w.appendChild(el("div", "ob-kicker", "Nicely done"));
@@ -400,7 +442,7 @@
       if (!hasDiag) {
         w.appendChild(el("p", "ob-fine", "Placement opens the full curriculum so you can jump in where it gets interesting."));
       }
-      frame(3, w);
+      frame(4, w);
     }
 
     /* 5 — soft, skippable signup (benefit-framed, never a gate) */
@@ -434,7 +476,7 @@
       share.onclick = function () { ctx.share(); };
       w.appendChild(share);
       w.appendChild(el("p", "ob-fine", "Your progress is already saved on this device. Account is optional."));
-      frame(4, w);
+      frame(5, w);
     }
 
     stepWelcome();

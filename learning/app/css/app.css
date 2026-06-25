@@ -610,6 +610,13 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 .ob-a-text { margin-top: 4px; font-size: 16px; }
 .ob-drill-done { margin-top: 6px; }
 
+/* "how this app schedules you, and why" — the use↔teach loop step */
+.ob-howrows { margin: 16px 0 4px; display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.ob-howrow { display: grid; grid-template-columns: 116px 1fr; gap: 14px; background: var(--card); padding: 14px 16px; }
+.ob-how-k { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 11px; color: var(--gold-deep); align-self: start; padding-top: 2px; }
+.ob-how-v { font-size: 14px; line-height: 1.55; color: var(--ink); }
+@media (max-width: 480px) { .ob-howrow { grid-template-columns: 1fr; gap: 4px; } }
+
 /* toast (share confirmation) */
 .ba-toast { position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 16px); background: var(--ink); color: var(--bg); font-size: 14px; padding: 12px 18px; border-radius: 999px; box-shadow: 0 12px 32px -12px rgba(31,28,22,.6); opacity: 0; transition: opacity .28s ease, transform .28s ease; z-index: 80; max-width: 88vw; text-align: center; }
 .ba-toast.on { opacity: 1; transform: translate(-50%, 0); }

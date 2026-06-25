@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,16 +20,47 @@ export const metadata: Metadata = {
 // header/nav as a real tab while keeping its own local-first engine intact.
 export default function AcademyPage() {
   return (
-    <iframe
-      src="/academy-app/index.html"
-      title="Bucket Academy"
-      loading="eager"
-      style={{
-        width: "100%",
-        height: "calc(100dvh - 58px)",
-        border: 0,
-        display: "block",
-      }}
-    />
+    <>
+      {/* On-ramp strip: the Academy is the consume side of the depth ladder
+          (L1–L2). When a learner reaches mastery, the climb continues —
+          canon (L3–L4) → research tools + agent (L4–L5). Make that visible. */}
+      <div className="w-full border-b border-[color:var(--hairline)] bg-[color:var(--bone-2)]/90">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-2.5 flex items-center gap-x-5 gap-y-1 flex-wrap text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-2)]">
+          <span className="text-[color:var(--gold-deep)]">§</span>
+          <span>
+            mastered a branch? the climb keeps going —
+          </span>
+          <Link
+            href="/ladder"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            the depth ladder →
+          </Link>
+          <Link
+            href="/canon"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            read the canon →
+          </Link>
+          <Link
+            href="/research/agent"
+            className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+          >
+            the research agent →
+          </Link>
+        </div>
+      </div>
+      <iframe
+        src="/academy-app/index.html"
+        title="Bucket Academy"
+        loading="eager"
+        style={{
+          width: "100%",
+          height: "calc(100dvh - 58px - 41px)",
+          border: 0,
+          display: "block",
+        }}
+      />
+    </>
   );
 }

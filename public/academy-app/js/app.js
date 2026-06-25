@@ -22,6 +22,7 @@
   const BRANCH_PREF_KEY = "bucket-academy/branch";
   const DEFAULT_BRANCH = "corpus/biophysics.json";
   const BUILTIN_FALLBACK = [
+    { id: "00-learning-to-learn", file: "corpus/00-learning-to-learn.json", pill: "✦ · Learning to learn", sub: "The meta-skill that accelerates every branch" },
     { id: "01-mathematics", file: "corpus/01-mathematics.json", pill: "I · Mathematics", sub: "The foundations of reasoning" },
     { id: "02-physics", file: "corpus/02-physics.json", pill: "II · Physics", sub: "Matter, energy & spacetime" },
     { id: "03-chemistry", file: "corpus/03-chemistry.json", pill: "III · Chemistry", sub: "Matter, bonds & transformation" },
