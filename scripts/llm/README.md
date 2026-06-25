@@ -71,7 +71,19 @@ Set on the Vercel **bucket-foundation** project:
 Do **not** set `ANTHROPIC_API_KEY` (would still be overridden by `LLM_BASE_URL`,
 but local-only is the point here). All S1–S7 safety runs in code regardless.
 
-> The quick-tunnel hostname **changes on each tunnel restart**. For a stable
-> hostname use a NAMED tunnel (same as polingual): `cloudflared tunnel login`
-> then `cloudflared tunnel create bkt-llm` + DNS route to e.g. `llm.agfarms.dev`,
-> and point the tunnel unit at the named config. Then `LLM_BASE_URL` never changes.
+> The quick-tunnel hostname **changes on each tunnel restart** (and trycloudflare
+> quick tunnels drop connections — observed in prod 2026-06-25). For a STABLE
+> hostname that never changes, do the one founder step then run the finisher:
+>
+> ```bash
+> cloudflared tunnel login                 # 2-min browser login → pick agfarms.dev
+> bash scripts/llm/make-stable-tunnel.sh   # creates bkt-llm tunnel, routes
+>                                          # llm.agfarms.dev, repoints the systemd
+>                                          # unit, verifies /health, prints the
+>                                          # one-time Vercel value
+> ```
+>
+> After that, set `LLM_BASE_URL=https://llm.agfarms.dev/v1` on Vercel ONCE and it
+> never needs touching again. The finisher is idempotent and touches neither the
+> GPU server nor the auth-shim — it only swaps the public hop. (Same named-tunnel
+> pattern Polingual uses.)
