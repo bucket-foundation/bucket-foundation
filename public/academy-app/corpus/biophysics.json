@@ -2,8 +2,8 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.5.5",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified.",
+    "version": "0.5.7",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2.",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
   "atoms": [
@@ -2097,7 +2097,8 @@
       "type": "concept",
       "requires": [
         "random-walk",
-        "einstein-stokes"
+        "einstein-stokes",
+        "fluctuation-dissipation"
       ],
       "summary": "Newton's law for a particle in a fluid: deterministic drag plus a random kicking force, with the two tied together by fluctuation–dissipation.",
       "depths": {
@@ -2734,7 +2735,8 @@
       "shell": "nucleus",
       "type": "method",
       "requires": [
-        "boltzmann"
+        "boltzmann",
+        "detailed-balance"
       ],
       "summary": "A stochastic algorithm that samples configurations with their Boltzmann probabilities by accepting or rejecting random moves — computing equilibrium averages without ever solving the dynamics.",
       "depths": {
@@ -2858,7 +2860,8 @@
       "type": "method",
       "requires": [
         "md",
-        "random-walk"
+        "random-walk",
+        "detailed-balance"
       ],
       "summary": "Coarse-grains long or many short simulations into a network of metastable states with transition probabilities, recovering slow kinetics and rare-event rates that no single trajectory could reach.",
       "depths": {
@@ -4724,7 +4727,8 @@
       "type": "method",
       "requires": [
         "md",
-        "boltzmann"
+        "boltzmann",
+        "detailed-balance"
       ],
       "summary": "Run many copies at a ladder of temperatures and swap them by a Metropolis rule, so the barrier-crossing freedom of the hot copies flows down to give correct, fast sampling at the cold one.",
       "equation": "$P_{\\text{swap}} = \\min\\!\\big(1,\\ e^{(\\beta_i-\\beta_j)(U_i-U_j)}\\big)$",
@@ -5136,6 +5140,372 @@
         }
       ],
       "lesson": "### Intuition\n\nA charged particle facing a membrane is pushed by **two** forces at once: the crowding force of concentration, and the electrical force of voltage acting on its charge. The **electrochemical potential** adds these two into a single number — the ion's total urge to move. The ion flows until that total is equal on both sides, which can happen *even while the concentrations stay lopsided*, because the voltage can exactly cancel the concentration push. That precarious balance is the resting state of every nerve and muscle cell.\n\n### Precisely\n\nThe **electrochemical potential** of ion $i$ adds electrical work to the chemical potential:\n\n$$\\tilde\\mu_i = \\mu_i + z_iF\\psi = \\mu_i^\\circ + RT\\ln a_i + z_iF\\psi,$$\n\nwhere $z_i$ is the charge number (e.g. $+1$ for K$^+$, $-1$ for Cl$^-$), $F = 96{,}485$ C/mol is Faraday's constant, and $\\psi$ is the local electrical potential. Ions move down gradients of $\\tilde\\mu$, not of concentration alone.\n\n### Worked example\n\nPotassium is $\\sim$140 mM inside a neuron and $\\sim$5 mM outside, a 28-fold gradient pushing K$^+$ *out*. Yet at rest there is essentially no net K$^+$ current. The reason: the inside-negative membrane voltage pulls K$^+$ *in* with exactly enough electrical force to cancel the chemical push. Equality of $\\tilde\\mu_{\\text{K}}$ inside and out is reached when the voltage equals the K$^+$ Nernst potential, $\\approx (RT/F)\\ln(5/140) \\approx -89$ mV.\n\n### Why it's true / how it works\n\nSetting $\\tilde\\mu_i$ equal on the two sides *is* the Nernst equation. Writing $\\tilde\\mu_{\\text{in}} = \\tilde\\mu_{\\text{out}}$, the reference $\\mu^\\circ$ cancels and rearranging gives\n\n$$E = \\psi_{\\text{in}}-\\psi_{\\text{out}} = \\frac{RT}{z_iF}\\ln\\frac{a_{\\text{out}}}{a_{\\text{in}}}.$$\n\nSo the membrane voltage is nothing more than a chemical potential wearing an electrical coat: the $\\sim$61 mV-per-decade Nernst slope is exactly the $RT\\ln 10$ per-decade chemical-potential energy divided by $F$.\n\n### Where it connects\n\nElectrochemical potential is the hinge between molecular thermodynamics and bioenergetics. Its equilibrium gives the **Nernst** potential; its multi-ion steady state gives the **GHK** voltage and feeds **Hodgkin–Huxley** excitability; its stored proton form is the **proton-motive force** that the **chemiosmosis** chapter converts into ATP. **Secondary active transporters** run one ion downhill in $\\tilde\\mu$ to drag another uphill.\n\n### Watch out\n\nDistinguish *equilibrium* from *steady state*. A single ion at equilibrium has equal $\\tilde\\mu$ and zero flux (Nernst). A resting membrane with several leak channels and active pumps is in a *steady state* with ongoing fluxes that cancel — described by GHK, not by a single Nernst potential. Conflating the two is the most common error in electrophysiology.\n\n### Numbers & nuance\n\nThe proton-motive force combines voltage and pH into one energy per charge,\n\n$$\\text{pmf} = \\Delta\\psi - \\frac{2.303\\,RT}{F}\\Delta\\text{pH},$$\n\nwith $2.303RT/F \\approx 61$ mV at 310 K. A typical mitochondrion runs $\\Delta\\psi \\approx 150$–180 mV with a $\\Delta$pH worth another $\\sim$30–60 mV, totaling $\\sim$200 mV $\\approx 19$ kJ/mol per proton — and roughly three to four protons flowing back down this gradient turn the rotary ATP synthase enough to make one ATP. The entire economy of the cell is denominated in electrochemical potential."
+    },
+    {
+      "id": "mass-action",
+      "title": "Law of mass action",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "gibbs"
+      ],
+      "equation": "\\Delta G^\\circ = -RT\\ln K_{\\text{eq}}",
+      "summary": "At equilibrium the ratio of products to reactants is fixed by a single number K, and that number is set exponentially by the standard free-energy change — the bridge between thermodynamics and concentrations.",
+      "depths": {
+        "eli5": "Mix some chemicals and they react until they reach a standstill — not because everything is used up, but because the forward and backward reactions run at the same speed. At that balance point the amounts of products and reactants settle into a fixed ratio called the equilibrium constant K. A reaction that 'wants' to go forward (releases free energy) has a big K; one that barely budges has a small K. The connection is exponential: a little more free energy released multiplies K a lot.",
+        "core": "For a reaction aA + bB ⇌ cC + dD, the law of mass action says the reaction quotient Q = [C]^c[D]^d / [A]^a[B]^b moves until it reaches a fixed value, the equilibrium constant K. Thermodynamics fixes that value: ΔG = ΔG° + RT ln Q, and at equilibrium ΔG = 0 with Q = K, giving ΔG° = −RT ln K. The standard free-energy change is the logarithm of the equilibrium constant scaled by RT. Kinetically, K is also the ratio of the forward and reverse rate constants, K = k_f/k_r, so the same equilibrium can be reached from either direction.",
+        "deep": "The exponential sensitivity, K = exp(−ΔG°/RT), is the same Boltzmann factor that weights microstates: products and reactants are two macrostates whose populations sit in ratio exp(−ΔG°/RT). Because RT ≈ 2.6 kJ/mol at body temperature, each extra 5.9 kJ/mol (one RT·ln10) shifts K by a full factor of ten. This is why catalysts — which lower the barrier, not ΔG° — change the speed but never the final ratio, and why coupling an unfavorable reaction to ATP hydrolysis (ΔG° ≈ −30 kJ/mol) can multiply its equilibrium constant by ~10^5."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "NCBI Bookshelf"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Law of mass action",
+          "url": "https://en.wikipedia.org/wiki/Law_of_mass_action"
+        },
+        {
+          "label": "Wikipedia — Equilibrium constant",
+          "url": "https://en.wikipedia.org/wiki/Equilibrium_constant"
+        },
+        {
+          "label": "Wikipedia — Reaction quotient",
+          "url": "https://en.wikipedia.org/wiki/Reaction_quotient"
+        },
+        {
+          "label": "Wikipedia — Standard Gibbs free energy of reaction",
+          "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy"
+        },
+        {
+          "label": "LibreTexts Chemistry — Free Energy and Equilibrium",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        },
+        {
+          "label": "NCBI Bookshelf — Biochemistry (free energy & equilibrium)",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK22591/"
+        }
+      ],
+      "art_prompt": "a balance beam with reactant flasks on one pan and product flasks on the other, settling at a tilt set by a free-energy gauge labeled delta-G-naught, with an exponential curve mapping delta-G to K",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the equilibrium constant K describe, and how is it related to the standard free-energy change of a reaction?",
+          "answer": "K is the fixed ratio of products to reactants (each raised to its stoichiometric power) reached at equilibrium. It is related to the standard free-energy change by ΔG° = −RT ln K, equivalently K = exp(−ΔG°/RT)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Starting from ΔG = ΔG° + RT ln Q, derive the relation ΔG° = −RT ln K, then compute ΔG° for a reaction with K = 1000 at 310 K.",
+          "answer": "At equilibrium the reaction has no driving force, ΔG = 0, and the quotient Q equals its equilibrium value K. Substituting: 0 = ΔG° + RT ln K, so ΔG° = −RT ln K. For K = 1000 at 310 K: ΔG° = −(8.314)(310) ln(1000) = −(2577)(6.908) ≈ −17.8 kJ/mol. The reaction is favorable by about 18 kJ/mol, three RT·ln10 steps for three decades of K.",
+          "eq": "\\Delta G^\\circ = -RT\\ln K = -(8.314)(310)\\ln 1000 \\approx -17.8\\,\\text{kJ/mol}"
+        }
+      ],
+      "lesson": "### Intuition\n\nLet a reversible reaction run and it reaches a **standstill** — but not because the reactants are exhausted. The forward and reverse reactions simply end up running at the *same rate*, so the net change stops. At that point the amounts settle into a fixed ratio, the **equilibrium constant** $K$. A reaction that strongly favors products has a large $K$; one that barely proceeds has a small $K$.\n\n### Precisely\n\nFor a general reaction $a\\mathrm{A} + b\\mathrm{B} \\rightleftharpoons c\\mathrm{C} + d\\mathrm{D}$, define the **reaction quotient**\n\n$$Q = \\frac{[\\mathrm{C}]^c[\\mathrm{D}]^d}{[\\mathrm{A}]^a[\\mathrm{B}]^b}.$$\n\nThe system evolves until $Q$ reaches the fixed value $K$. Thermodynamics pins that value through\n\n$$\\Delta G = \\Delta G^\\circ + RT\\ln Q,$$\n\nand at equilibrium $\\Delta G = 0$ with $Q = K$, which gives the central result\n\n$$\\Delta G^\\circ = -RT\\ln K.$$\n\n### Worked example\n\nA reaction has $K = 1000$ at body temperature. Its standard free-energy change is\n\n$$\\Delta G^\\circ = -RT\\ln 1000 = -(8.314)(310)(6.908) \\approx -17.8\\ \\text{kJ/mol}.$$\n\nThree decades of $K$ cost three $RT\\ln 10 \\approx 5.9$ kJ/mol steps — about 18 kJ/mol of favorable free energy.\n\n### Why it's true / how it works\n\nThe relation is a **Boltzmann factor in disguise**. Products and reactants are two macrostates, and their equilibrium populations sit in the ratio $K = \\exp(-\\Delta G^\\circ/RT)$ — the same exponential weighting that governs energy levels in statistical mechanics. Equivalently, $K = k_f/k_r$: equilibrium is where the forward rate constant times reactant concentrations equals the reverse rate constant times product concentrations.\n\n### Where it connects\n\nMass action is the parent of nearly every concentration law in biophysics. Apply it to binding and you get the **dissociation constant** $K_d$; to enzyme saturation, the **Michaelis** constant; to acids, $\\mathrm{p}K_a$ and the Henderson–Hasselbalch equation; to membranes, the **Nernst** equilibrium. The logarithmic form is the same $\\Delta G^\\circ = -RT\\ln K$ that connects every one of them to the underlying free energy.\n\n### Watch out\n\nA **catalyst lowers the barrier, not $\\Delta G^\\circ$** — it speeds the approach to equilibrium but cannot change $K$ or the final ratio. Also, $Q$ and $K$ must be written with activities (or properly referenced concentrations); using raw molarities for charged or crowded species can shift the apparent $K$.\n\n### Numbers & nuance\n\nBecause $RT \\approx 2.6$ kJ/mol, every additional $RT\\ln 10 \\approx 5.9$ kJ/mol multiplies $K$ by ten. This exponential lever is how cells perform 'impossible' chemistry: coupling an unfavorable step to ATP hydrolysis ($\\Delta G^\\circ \\approx -30$ kJ/mol) multiplies its equilibrium constant by roughly $10^5$, turning a reaction that would never proceed into one that runs to near-completion."
+    },
+    {
+      "id": "arrhenius",
+      "title": "Arrhenius equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "k = A\\,e^{-E_a/RT}",
+      "summary": "Reaction rates rise exponentially with temperature because only the small Boltzmann-weighted fraction of molecules carrying enough energy to clear the activation barrier can react.",
+      "depths": {
+        "eli5": "Chemical reactions usually have to climb an energy 'hill' before they can happen. Only molecules that happen to be moving fast enough — carrying enough energy — make it over. Heat the system and a much larger fraction of molecules have that energy, so the reaction speeds up fast. The Arrhenius equation captures this: the rate depends exponentially on how high the hill is and how hot it is. A roughly 10°C rise often doubles a biological rate.",
+        "core": "The Arrhenius equation, k = A e^(−E_a/RT), expresses how a rate constant k depends on temperature. E_a is the activation energy (the barrier height), R is the gas constant, T the absolute temperature, and A is the pre-exponential factor (collision frequency × orientation). The exponential term is exactly the Boltzmann fraction of molecules with energy at least E_a. Taking logs gives ln k = ln A − E_a/(RT), a straight line of slope −E_a/R when ln k is plotted against 1/T — the standard way to measure an activation energy experimentally.",
+        "deep": "Arrhenius is the empirical, phenomenological face of transition-state theory: the Eyring equation k = (k_BT/h) exp(−ΔG‡/RT) gives the same exponential temperature dependence but resolves the barrier into enthalpic (ΔH‡) and entropic (ΔS‡) parts, with A absorbing k_BT/h and exp(ΔS‡/R). The pre-factor A is weakly temperature-dependent, so over a narrow biological range the simple Arrhenius form is an excellent fit. Enzymes act by lowering E_a (stabilizing the transition state), which — because the dependence is exponential — buys enormous rate enhancements: dropping E_a by ~6 kJ/mol multiplies the rate roughly tenfold at body temperature."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OpenCourseWare"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Arrhenius equation",
+          "url": "https://en.wikipedia.org/wiki/Arrhenius_equation"
+        },
+        {
+          "label": "Wikipedia — Activation energy",
+          "url": "https://en.wikipedia.org/wiki/Activation_energy"
+        },
+        {
+          "label": "Wikipedia — Q10 (temperature coefficient)",
+          "url": "https://en.wikipedia.org/wiki/Q10_(temperature_coefficient)"
+        },
+        {
+          "label": "Wikipedia — Pre-exponential factor",
+          "url": "https://en.wikipedia.org/wiki/Pre-exponential_factor"
+        },
+        {
+          "label": "LibreTexts Chemistry — The Arrhenius Law",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        },
+        {
+          "label": "MIT OCW — Thermodynamics & Kinetics (5.60)",
+          "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/"
+        }
+      ],
+      "art_prompt": "an energy-landscape hill with reactant valley on the left and product valley on the right, a labeled activation-energy barrier E_a, and two Boltzmann population curves (cold vs hot) showing far more molecules above the barrier when hot",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the Arrhenius equation k = A e^(−E_a/RT), what does each symbol mean, and why does raising temperature increase the rate?",
+          "answer": "k is the rate constant, A the pre-exponential factor (collision frequency and orientation), E_a the activation energy (barrier height), R the gas constant, and T absolute temperature. Raising T increases the Boltzmann fraction e^(−E_a/RT) of molecules carrying at least the barrier energy, so more collisions are reactive and the rate climbs exponentially."
+        },
+        {
+          "level": "derive",
+          "prompt": "A reaction has an activation energy of 50 kJ/mol. By what factor does its rate change when temperature rises from 300 K to 310 K (its Q10)? Show the ratio.",
+          "answer": "The pre-factor cancels in a ratio: k(310)/k(300) = exp[−E_a/R · (1/310 − 1/300)] = exp[(E_a/R)(1/300 − 1/310)]. With E_a/R = 50000/8.314 = 6014 K and (1/300 − 1/310) = 1.075×10⁻⁴ K⁻¹, the exponent is 6014 × 1.075×10⁻⁴ = 0.647, so the ratio = e^0.647 ≈ 1.9. The rate nearly doubles — the classic Q10 ≈ 2 of biochemistry.",
+          "eq": "\\frac{k(310)}{k(300)} = \\exp\\!\\left[\\frac{E_a}{R}\\left(\\frac{1}{300}-\\frac{1}{310}\\right)\\right] \\approx e^{0.647} \\approx 1.9"
+        }
+      ],
+      "lesson": "### Intuition\n\nMost reactions must climb an **energy hill** before products can form. Only molecules that happen to carry enough energy make it over the top. Because the fraction of energetic molecules grows steeply with temperature, modest heating speeds reactions dramatically — a roughly $10^\\circ$C rise often doubles a biological rate.\n\n### Precisely\n\nThe **Arrhenius equation** gives the temperature dependence of a rate constant:\n\n$$k = A\\,e^{-E_a/RT},$$\n\nwhere $E_a$ is the **activation energy** (barrier height), $A$ the **pre-exponential factor** (collision frequency times the chance of correct orientation), $R$ the gas constant, and $T$ the absolute temperature. The exponential is exactly the **Boltzmann fraction** of molecules with energy $\\ge E_a$.\n\n### Worked example\n\nFor $E_a = 50$ kJ/mol, going from 300 K to 310 K multiplies the rate by\n\n$$\\frac{k(310)}{k(300)} = \\exp\\!\\left[\\frac{E_a}{R}\\left(\\frac{1}{300}-\\frac{1}{310}\\right)\\right] = e^{0.647} \\approx 1.9.$$\n\nThe rate nearly doubles — the familiar $Q_{10}\\approx 2$.\n\n### Why it's true / how it works\n\nTaking the logarithm linearizes it: $\\ln k = \\ln A - E_a/(RT)$. Plotting $\\ln k$ against $1/T$ yields a straight line of slope $-E_a/R$, which is how activation energies are measured. The exponential form is inherited directly from the Boltzmann distribution: the probability a molecule has at least the barrier energy falls off as $e^{-E_a/k_BT}$ per molecule, $e^{-E_a/RT}$ per mole.\n\n### Where it connects\n\nArrhenius is the **empirical cousin of the Eyring equation** from transition-state theory, $k = (k_BT/h)\\,e^{-\\Delta G^\\ddagger/RT}$, which splits the barrier into enthalpy and entropy. Both share the same exponential temperature law. **Enzymes** work by lowering $E_a$ (stabilizing the transition state), and **Kramers theory** refines the pre-factor $A$ to include friction and barrier curvature.\n\n### Watch out\n\nThe pre-factor $A$ is itself weakly temperature-dependent, so a perfectly straight Arrhenius plot is an approximation valid over a limited range. Biological systems also break the rule above ~40°C, where proteins denature and rates *fall* despite rising temperature — the barrier picture no longer describes an intact catalyst.\n\n### Numbers & nuance\n\nBecause the dependence is exponential, small changes in $E_a$ have outsized effects: at body temperature, lowering $E_a$ by one $RT\\ln 10 \\approx 5.9$ kJ/mol multiplies the rate tenfold. This is the lever enzymes pull — a barrier reduction of 30–50 kJ/mol corresponds to rate enhancements of $10^5$ to $10^9$, turning geological-timescale reactions into millisecond ones."
+    },
+    {
+      "id": "osmotic-pressure",
+      "title": "Osmotic pressure",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "chemical-potential"
+      ],
+      "equation": "\\Pi = c\\,RT",
+      "summary": "A solute lowers the solvent's chemical potential, so pure solvent pushes across a semipermeable membrane until a pressure builds that exactly restores the balance — a pressure proportional to solute concentration.",
+      "depths": {
+        "eli5": "Put pure water on one side of a barrier that lets water through but not sugar, and sugar-water on the other. Water flows toward the sugary side, as if trying to dilute it. It keeps going until the extra height (pressure) of liquid on the sugary side pushes back hard enough to stop the flow. That pushback is the osmotic pressure, and it grows in proportion to how many dissolved particles there are — not what they are. This is why cells swell in fresh water and shrivel in brine.",
+        "core": "Osmotic pressure Π is the pressure that must be applied to a solution to stop pure solvent from flowing into it across a semipermeable membrane. For a dilute solution it follows the van 't Hoff relation Π = cRT, where c is the total molar concentration of dissolved particles (osmolarity), R the gas constant, and T temperature — strikingly similar in form to the ideal-gas law. The driving force is the chemical potential of the solvent: dissolving solute lowers the solvent's chemical potential by RT ln(x_solvent), and solvent flows from high to low potential until an opposing pressure raises it back to equality.",
+        "deep": "Osmotic pressure is a direct consequence of equating the solvent chemical potential across the membrane: μ_solvent(pure) = μ_solvent(solution) + V_m ΔP at equilibrium, where the pressure work V_mΔP compensates the entropic lowering RT ln x_solvent ≈ −RT·x_solute. With x_solute ≈ c·V_m one recovers Π = cRT. It is a colligative property: it counts particles, so it dissociates electrolytes (van 't Hoff factor i) and is the same physics behind boiling-point elevation and freezing-point depression. In cells, the large osmotic pressure from impermeant macromolecules and ions must be balanced — by rigid walls in plants and bacteria, by active ion pumping and the Donnan equilibrium in animal cells — or the cell lyses."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "NCBI Bookshelf"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Osmotic pressure",
+          "url": "https://en.wikipedia.org/wiki/Osmotic_pressure"
+        },
+        {
+          "label": "Wikipedia — Osmosis",
+          "url": "https://en.wikipedia.org/wiki/Osmosis"
+        },
+        {
+          "label": "Wikipedia — Colligative properties",
+          "url": "https://en.wikipedia.org/wiki/Colligative_properties"
+        },
+        {
+          "label": "Wikipedia — van 't Hoff factor",
+          "url": "https://en.wikipedia.org/wiki/Van_%27t_Hoff_factor"
+        },
+        {
+          "label": "Wikipedia — Tonicity",
+          "url": "https://en.wikipedia.org/wiki/Tonicity"
+        },
+        {
+          "label": "NCBI Bookshelf — Molecular Biology of the Cell (transport)",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK26910/"
+        }
+      ],
+      "art_prompt": "a U-tube with a semipermeable membrane at the bottom, pure solvent on one arm and solute particles on the other, the solute arm risen to a higher level with a pressure gauge labeled Pi equals cRT",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is osmotic pressure, and why is it called a colligative property?",
+          "answer": "It is the pressure that must be applied to a solution to stop pure solvent from flowing into it across a semipermeable membrane (Π = cRT for dilute solutions). It is colligative because it depends only on the number of dissolved particles, not their chemical identity — so it counts osmolarity, treating one mole of glucose and one mole of dissociated ions differently only through how many particles each yields."
+        },
+        {
+          "level": "apply",
+          "prompt": "Human blood plasma has an osmolarity of about 300 mOsm (0.30 mol of dissolved particles per litre). Estimate its osmotic pressure at 310 K, and explain what this means for a red blood cell placed in pure water.",
+          "answer": "Π = cRT = (300 mol/m³)(8.314 J/mol·K)(310 K) ≈ 7.7×10⁵ Pa ≈ 7.6 atm. A red cell in pure water faces this large inward osmotic drive: water rushes in, the cell swells, and — having no rigid wall — it bursts (hemolysis). This is why intravenous fluids are made isotonic (~300 mOsm) to match plasma.",
+          "eq": "\\Pi = cRT = (300)(8.314)(310) \\approx 7.7\\times10^{5}\\,\\text{Pa} \\approx 7.6\\,\\text{atm}"
+        }
+      ],
+      "lesson": "### Intuition\n\nSeparate pure water from sugar-water by a membrane that passes water but not sugar. Water flows toward the sugary side — as if to dilute it — and keeps flowing until the extra liquid height pushes back hard enough to stop it. That pushback is the **osmotic pressure**, and it depends on *how many* dissolved particles there are, not *what* they are.\n\n### Precisely\n\nOsmotic pressure $\\Pi$ is the pressure that must be applied to a solution to **stop** pure solvent from entering it across a semipermeable membrane. For dilute solutions it obeys the **van 't Hoff relation**\n\n$$\\Pi = cRT,$$\n\nwhere $c$ is the total molar concentration of dissolved particles (the **osmolarity**), $R$ the gas constant, and $T$ absolute temperature — a form strikingly parallel to the ideal-gas law.\n\n### Worked example\n\nBlood plasma is about 300 mOsm ($c = 300\\ \\mathrm{mol/m^3}$). At 310 K,\n\n$$\\Pi = cRT = (300)(8.314)(310) \\approx 7.7\\times10^{5}\\ \\text{Pa} \\approx 7.6\\ \\text{atm}.$$\n\nThat is a substantial pressure — the reason a red cell in pure water swells and bursts, and why IV fluids are made isotonic.\n\n### Why it's true / how it works\n\nThe origin is the **solvent chemical potential**. Dissolving solute lowers it by $RT\\ln x_{\\text{solvent}} \\approx -RT\\,x_{\\text{solute}}$. Solvent flows from high to low potential; at equilibrium the pressure work $V_m\\Delta P$ on the solution side exactly restores equality, $\\mu_{\\text{pure}} = \\mu_{\\text{solution}} + V_m\\Pi$. With $x_{\\text{solute}} \\approx cV_m$ this collapses to $\\Pi = cRT$. Osmotic pressure is therefore just chemical-potential balance rewritten as a pressure.\n\n### Where it connects\n\nBecause it counts particles, osmotic pressure is a **colligative property**, the same physics as freezing-point depression and boiling-point elevation, and it dissociates electrolytes through the van 't Hoff factor $i$. It sets the stakes for **membrane transport** and the **Donnan equilibrium**, drives the assembly thermodynamics of **biomolecular condensates** (polymer osmotic pressure), and is the load that molecular machines and cell walls work against.\n\n### Watch out\n\nUse the concentration of *all* independent particles: $1$ mol of NaCl contributes nearly $2$ osmoles because it dissociates. And $\\Pi = cRT$ is the dilute limit — concentrated or strongly interacting solutions (crowded cytoplasm, charged polymers) show large deviations captured by a concentration-dependent osmotic coefficient.\n\n### Numbers & nuance\n\nThe per-osmolar pressure is steep: $RT \\approx 2.58$ kJ/mol means each milliosmole adds $\\sim$2.5 kPa, so physiological 300 mOsm reaches $\\sim$7.6 atm. Cells cannot ignore this — plants and bacteria contain it with rigid walls (turgor pressure), while animal cells, lacking walls, must continuously pump ions to hold their internal osmolarity in check or risk lysis."
+    },
+    {
+      "id": "detailed-balance",
+      "title": "Detailed balance",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "P_i\\,W_{i\\to j} = P_j\\,W_{j\\to i}",
+      "summary": "At thermal equilibrium every microscopic transition is exactly balanced by its reverse, so the ratio of forward and backward rates between any two states is fixed by their Boltzmann factor — the condition that pins kinetics to thermodynamics and that Monte Carlo algorithms enforce by construction.",
+      "depths": {
+        "eli5": "Imagine a busy room where people keep moving between two corners. If the crowd in each corner never changes, it's tempting to think nobody is moving — but really, the number stepping from corner A to corner B each minute exactly equals the number stepping back. Detailed balance says equilibrium in nature works this way: not frozen, but every flow matched by an equal counter-flow, pair by pair. Because of that matching, the chance of being in a high-energy spot versus a low-energy spot is set purely by the energy difference, which is the Boltzmann rule.",
+        "core": "Detailed balance is the equilibrium condition that, for every pair of states i and j, the probability flux one way equals the flux the other: P_i W_{i→j} = P_j W_{j→i}, where P is the occupancy and W the transition rate. Rearranging, the ratio of rates W_{i→j}/W_{j→i} = P_j/P_i = e^{−(E_j−E_i)/k_BT} is fixed entirely by the Boltzmann factor of the energy gap — independent of the (often unknown) barrier between them. This is stronger than mere steady state (which only requires total inflow = total outflow at each node); detailed balance forbids net circulating currents and is the signature of true thermal equilibrium rather than a driven non-equilibrium steady state.",
+        "deep": "Microscopically, detailed balance follows from time-reversal symmetry of the underlying dynamics (microscopic reversibility). For a chemical reaction it gives the Haldane-type relation k_f/k_r = K_eq = e^{−ΔG°/RT}, so a catalyst that speeds the forward step must speed the reverse by the same factor — enzymes cannot shift equilibria, only reach them faster. Algorithmically it is the load-bearing trick of Markov-chain Monte Carlo: the Metropolis acceptance rule min(1, e^{−ΔE/k_BT}) is engineered precisely so the constructed chain satisfies P_i W_{i→j} = P_j W_{j→i} with P the Boltzmann distribution, guaranteeing the sampler converges to the right ensemble. Breaking detailed balance — by coupling to two reservoirs at different potentials, burning ATP, or applying a non-conservative force — is the defining feature of living, dissipative systems, where steady cyclic currents (molecular motors, ion pumps) persist and entropy is continuously produced."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OpenCourseWare"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Detailed balance",
+          "url": "https://en.wikipedia.org/wiki/Detailed_balance"
+        },
+        {
+          "label": "Wikipedia — Microscopic reversibility",
+          "url": "https://en.wikipedia.org/wiki/Microscopic_reversibility"
+        },
+        {
+          "label": "Wikipedia — Metropolis–Hastings algorithm",
+          "url": "https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm"
+        },
+        {
+          "label": "Wikipedia — Master equation",
+          "url": "https://en.wikipedia.org/wiki/Master_equation"
+        },
+        {
+          "label": "LibreTexts Chemistry — Chemical Kinetics",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        },
+        {
+          "label": "MIT OCW — Statistical Mechanics (8.333)",
+          "url": "https://ocw.mit.edu/courses/8-333-statistical-mechanics-i-statistical-mechanics-of-particles-fall-2013/"
+        }
+      ],
+      "art_prompt": "two energy wells i and j connected by a barrier, with two arrows of equal thickness pointing opposite ways across the barrier (forward flux = reverse flux), and a side panel showing the population ratio fixed by e^{-(E_j-E_i)/kT}; contrast inset showing a three-state cycle with a net circulating current labeled 'driven / detailed balance broken'",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does detailed balance require at equilibrium, and how is it stronger than just being in a steady state?",
+          "answer": "Detailed balance requires that for every pair of states the forward probability flux equals the reverse flux: P_i W_{i→j} = P_j W_{j→i}. Steady state only requires that the total flux into each state equals the total flux out, which permits net cyclic currents around loops. Detailed balance forbids such currents pair-by-pair, and is the signature of true thermal equilibrium rather than a driven non-equilibrium steady state."
+        },
+        {
+          "level": "derive",
+          "prompt": "Two conformations have an energy gap E_j − E_i = 2 k_BT. If the forward rate W_{i→j} = 1×10⁶ s⁻¹, what must the reverse rate W_{j→i} be at equilibrium, and what is the population ratio P_j/P_i?",
+          "answer": "Detailed balance gives W_{i→j}/W_{j→i} = P_j/P_i = e^{−(E_j−E_i)/k_BT} = e^{−2} = 0.135. So P_j/P_i = 0.135 (the higher-energy state j is less populated). The reverse rate is W_{j→i} = W_{i→j} / 0.135 = 1×10⁶ / 0.135 = 7.4×10⁶ s⁻¹ — downhill transitions are faster, exactly enough to keep the matched fluxes P_i W_{i→j} = P_j W_{j→i} balanced.",
+          "eq": "\\frac{W_{i\\to j}}{W_{j\\to i}} = \\frac{P_j}{P_i} = e^{-(E_j-E_i)/k_BT} = e^{-2} \\approx 0.135"
+        }
+      ],
+      "lesson": "### Intuition\n\nEquilibrium is not stillness. Molecules keep hopping between states; what makes it equilibrium is that **every hop is matched by an equal hop the other way**. Count the transitions from state A to state B in a second, and exactly that many go from B back to A. This pairwise matching is **detailed balance**.\n\n### Precisely\n\nFor any two states $i$ and $j$ with occupancies $P_i, P_j$ and transition rates $W_{i\\to j}, W_{j\\to i}$,\n\n$$P_i\\,W_{i\\to j} = P_j\\,W_{j\\to i}.$$\n\nRearranged, the rate ratio is fixed by the energy gap alone:\n\n$$\\frac{W_{i\\to j}}{W_{j\\to i}} = \\frac{P_j}{P_i} = e^{-(E_j-E_i)/k_BT}.$$\n\n### Why it's true / how it works\n\nDetailed balance follows from **microscopic reversibility** — the underlying equations of motion look the same run forward or backward in time. It is strictly stronger than *steady state*: a steady state only needs total inflow to equal total outflow at each node, which still allows a net current to circulate around a loop of three or more states. Detailed balance kills those loop currents, balancing each pair separately. That absence of net circulation is the fingerprint of genuine thermal equilibrium.\n\n### Worked example\n\nSuppose two protein conformations differ by $2\\,k_BT$. Then $P_j/P_i = e^{-2} \\approx 0.135$, so the higher state is about seven times rarer. If the uphill rate is $10^6\\,\\text{s}^{-1}$, the downhill rate must be $10^6/0.135 \\approx 7.4\\times10^6\\,\\text{s}^{-1}$ — fast enough to keep the two fluxes equal.\n\n### Where it connects\n\nFor a reaction it becomes the **Haldane relation** $k_f/k_r = K_\\text{eq} = e^{-\\Delta G^\\circ/RT}$: a catalyst speeding the forward step speeds the reverse identically, so **enzymes change rates, never equilibria**. It is also the engine of **Markov-chain Monte Carlo** — the **Metropolis** acceptance rule $\\min(1, e^{-\\Delta E/k_BT})$ is built precisely so the sampled chain obeys detailed balance with the Boltzmann distribution, guaranteeing correct sampling. It underlies **Markov state models** and the **master equation**.\n\n### Watch out\n\nLiving systems deliberately **break** detailed balance. Couple a system to two reservoirs at different potentials, or burn ATP, and persistent cyclic currents appear — molecular motors stepping, ion pumps pushing uphill, the whole machinery of metabolism. These non-equilibrium steady states continuously produce entropy; detailed balance is exactly the condition they violate.\n\n### Numbers & nuance\n\nBecause the rate ratio depends only on the energy difference and not the barrier, detailed balance lets you infer one rate from the other plus thermodynamics — a powerful constraint when a backward rate is too slow to measure directly. The barrier sets *how fast* equilibrium is reached (Arrhenius/Eyring); detailed balance sets *where* it lands."
+    },
+    {
+      "id": "fluctuation-dissipation",
+      "title": "Fluctuation–dissipation theorem",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "boltzmann"
+      ],
+      "equation": "D = \\frac{k_BT}{\\gamma}",
+      "summary": "The same molecular collisions that randomly jiggle a particle also produce the drag that resists its motion, so a system's spontaneous fluctuations and its response to a small push are two faces of one quantity — fixed in size by k_BT.",
+      "depths": {
+        "eli5": "Drop a speck of dust in water and it trembles forever, kicked around by water molecules. Now drag that same speck slowly through the water and you feel resistance — also from water molecules. The fluctuation–dissipation idea says these are not two separate facts: whatever bumps you around at rest is exactly what slows you down when you move. The strength of both is set by temperature, k_BT. Hotter means more jiggle and, in the right units, more push-back. Knowing how strongly something wanders at equilibrium tells you how it will respond when you nudge it.",
+        "core": "The fluctuation–dissipation theorem (FDT) links the spontaneous, equilibrium fluctuations of a quantity to the dissipative response of the system when that quantity is perturbed. The cleanest instance is Einstein's relation, D = k_BT/γ: the diffusion constant D (size of random wandering) equals k_BT divided by the friction coefficient γ (strength of drag). More generally, the response function χ(t) that says how the system relaxes after a small kick is proportional to the time-correlation of the equilibrium fluctuations, with k_BT as the proportionality scale. Because both the noise and the friction come from the same bath of molecular collisions, you cannot have one without the other — a frictionless bath would also be a noiseless one.",
+        "deep": "Formally, for a variable A perturbed by a field f coupling as −fA, the FDT states the imaginary part of the response χ''(ω) is tied to the fluctuation spectrum S_A(ω) by S_A(ω) = (2k_BT/ω) χ''(ω) in the classical limit — a single temperature linking the two. Concrete realizations are everywhere in biophysics: Einstein–Stokes (D = k_BT/6πηr) for a diffusing protein; Johnson–Nyquist voltage noise across a resistor, S_V = 4k_BT R, which sets the noise floor of patch-clamp and electrophysiology; and the equipartition variance of a trapped bead, ⟨x²⟩ = k_BT/k, used to calibrate optical tweezers. The deep content is that thermal noise is not a nuisance bolted onto otherwise deterministic dynamics — it is mandated by the same coupling to the environment that produces dissipation. Active, ATP-driven systems violate the FDT, and measuring the gap between the measured response and the measured fluctuations (the 'effective temperature' or violation of FDT) is a standard probe of how far a living system sits from equilibrium."
+      },
+      "sources": [
+        "LibreTexts P-Chem",
+        "MIT OpenCourseWare"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Fluctuation–dissipation theorem",
+          "url": "https://en.wikipedia.org/wiki/Fluctuation-dissipation_theorem"
+        },
+        {
+          "label": "Wikipedia — Johnson–Nyquist noise",
+          "url": "https://en.wikipedia.org/wiki/Johnson%E2%80%93Nyquist_noise"
+        },
+        {
+          "label": "Wikipedia — Einstein relation (kinetic theory)",
+          "url": "https://en.wikipedia.org/wiki/Einstein_relation_(kinetic_theory)"
+        },
+        {
+          "label": "Wikipedia — Brownian motion",
+          "url": "https://en.wikipedia.org/wiki/Brownian_motion"
+        },
+        {
+          "label": "LibreTexts — Statistical Mechanics",
+          "url": "https://stats.libretexts.org"
+        },
+        {
+          "label": "MIT OCW — Statistical Physics II (8.08)",
+          "url": "https://ocw.mit.edu/courses/8-08-statistical-physics-ii-spring-2005/"
+        }
+      ],
+      "art_prompt": "a small bead in a fluid shown twice: left panel at rest with random jittering arrows (fluctuation), right panel being dragged with a backward drag arrow (dissipation), and a bridge between them labeled k_BT; small insets list D=k_BT/gamma, <x^2>=k_BT/k, and S_V=4k_BT R",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the fluctuation–dissipation theorem assert, and why must a system that fluctuates also dissipate?",
+          "answer": "It asserts that a system's spontaneous equilibrium fluctuations and its dissipative response to a small perturbation are proportional, with k_BT setting the scale (e.g. D = k_BT/γ). They are inseparable because both arise from the same coupling to the thermal bath: the random molecular collisions that kick the system around at equilibrium are the very collisions that produce drag when it moves. A bath with no friction would also deliver no noise."
+        },
+        {
+          "level": "derive",
+          "prompt": "An optical trap holds a microsphere with stiffness k = 0.10 pN/nm at T = 300 K. Use the fluctuation–dissipation/equipartition result ⟨x²⟩ = k_BT/k to find the RMS positional fluctuation of the bead.",
+          "answer": "Convert the stiffness: k = 0.10 pN/nm = 0.10×10⁻¹² N / 10⁻⁹ m = 1.0×10⁻⁴ N/m. With k_BT = 1.38×10⁻²³ × 300 = 4.14×10⁻²¹ J, ⟨x²⟩ = k_BT/k = 4.14×10⁻²¹ / 1.0×10⁻⁴ = 4.14×10⁻¹⁷ m². The RMS displacement is √⟨x²⟩ = 6.4×10⁻⁹ m ≈ 6.4 nm. This equilibrium jitter is exactly what is measured to calibrate the trap stiffness.",
+          "eq": "\\langle x^2\\rangle = \\frac{k_BT}{k} = \\frac{4.14\\times10^{-21}\\,\\text{J}}{1.0\\times10^{-4}\\,\\text{N/m}} = 4.14\\times10^{-17}\\,\\text{m}^2 \\Rightarrow x_\\text{rms}\\approx 6.4\\,\\text{nm}"
+        }
+      ],
+      "lesson": "### Intuition\n\nA speck of pollen in still water never sits still — it is endlessly kicked by molecular collisions. Try to *drag* that same speck and you feel resistance, also from molecular collisions. The **fluctuation–dissipation theorem** says these are one phenomenon: whatever jiggles you at rest is what brakes you in motion.\n\n### Precisely\n\nThe canonical case is **Einstein's relation**,\n\n$$D = \\frac{k_BT}{\\gamma},$$\n\nwhere $D$ measures the size of random wandering (diffusion) and $\\gamma$ measures drag (friction). More generally, the response $\\chi$ to a small perturbation is proportional to the time-correlation of the equilibrium fluctuations, with $k_BT$ as the bridge between them.\n\n### Why it's true / how it works\n\nBoth the noise and the friction are produced by the *same* bath of colliding molecules. You cannot keep one and discard the other: a frictionless environment would also be a silent, noiseless one. Temperature sets the strength of both — raise $T$ and a particle both wanders more and (per unit velocity, in the linked combination) couples to the bath more strongly.\n\n### Worked example\n\nA bead in an optical trap of stiffness $k = 0.10$ pN/nm behaves like a spring in a thermal bath, so equipartition gives $\\langle x^2\\rangle = k_BT/k$. With $k = 1.0\\times10^{-4}$ N/m and $k_BT = 4.14\\times10^{-21}$ J, $\\langle x^2\\rangle = 4.14\\times10^{-17}\\,\\text{m}^2$, an RMS jitter of $\\approx 6.4$ nm. Measuring this jitter is exactly how the trap is calibrated.\n\n### Where it connects\n\nIt specializes to **Einstein–Stokes** ($D = k_BT/6\\pi\\eta r$) for a diffusing protein, to **Johnson–Nyquist** voltage noise $S_V = 4k_BT R$ that sets the noise floor of **patch-clamp** recordings, and to the **Langevin** equation, whose random force and friction term must satisfy exactly this relation for the particle to thermalize correctly.\n\n### Watch out\n\nThermal noise is not an optional add-on to clean dynamics — it is *required* by the same coupling that causes dissipation. And the theorem holds only at equilibrium: **active, ATP-driven systems break it**, and the measured gap between response and fluctuation (an 'effective temperature') is a standard gauge of how far a living system sits from equilibrium.\n\n### Numbers & nuance\n\nJohnson noise across a 1 kΩ resistor at 300 K is $\\sqrt{4k_BT R} \\approx 4$ nV/√Hz — the irreducible electrical hiss every electrophysiology amplifier fights. The same $k_BT \\approx 4.1\\times10^{-21}$ J at body temperature is the universal energy scale that fixes how loudly anything molecular fluctuates."
+    },
+    {
+      "id": "le-chatelier",
+      "title": "Le Chatelier's principle",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "mass-action"
+      ],
+      "equation": "\\frac{d\\ln K}{dT} = \\frac{\\Delta H^\\circ}{RT^2}",
+      "summary": "Push an equilibrium — change a concentration, the pressure, or the temperature — and it shifts in the direction that partly absorbs the change; for temperature this shift is quantified exactly by the van 't Hoff equation through the reaction enthalpy.",
+      "depths": {
+        "eli5": "A system at chemical equilibrium is like a balanced seesaw. Pile a little weight on one side — add more of a reactant — and the seesaw tips to use some of it up, settling at a new balance. Take product away and it tips forward to make more. Squeeze a gas reaction and it shifts toward whichever side has fewer gas molecules. Heat it and it shifts in whichever direction soaks up heat. The system always responds so as to *partly* undo whatever you did — it never fully cancels it, just relieves it.",
+        "core": "Le Chatelier's principle states that a system at equilibrium, when disturbed, responds in the direction that partially counteracts the disturbance. Adding a reactant (raising its activity) drives the reaction forward to consume it; removing product pulls it forward too — both follow directly from the reaction quotient Q chasing the fixed equilibrium constant K (mass action). Changing pressure shifts a gas equilibrium toward the side with fewer moles of gas. Temperature is the subtle case because it changes K itself: for an endothermic reaction (ΔH° > 0) heating increases K (more product), while for an exothermic reaction heating decreases K. This temperature dependence is made exact by the van 't Hoff equation, d(ln K)/dT = ΔH°/RT², so the qualitative 'shift to absorb added heat' is really a quantitative statement about the sign and size of ΔH°.",
+        "deep": "Le Chatelier is a heuristic, not an independent law — it is a consequence of equilibrium thermodynamics, and it can mislead when applied naively (e.g. adding an inert gas at constant volume changes nothing; adding a reactant to a reaction with unusual stoichiometry can occasionally shift it the 'wrong' way in mole-fraction terms). The rigorous content lives in two equations. Concentration and pressure shifts are mass action: Q moves away from K and the reaction proceeds until Q = K again. The temperature shift is the integrated van 't Hoff relation, ln(K₂/K₁) = −(ΔH°/R)(1/T₂ − 1/T₁), the exact mirror image of the Arrhenius rate law but for the *equilibrium* rather than the *rate*. In biophysics this governs why protein folding (typically exothermic with a negative ΔH°) is destabilized by heat, why oxygen binding to hemoglobin is temperature-sensitive (the Bohr/temperature effect aiding O₂ release in warm tissue), and how coupled reactions in metabolism are pulled forward by continuously removing product — Le Chatelier weaponized as flux control."
+      },
+      "sources": [
+        "LibreTexts Chemistry",
+        "NCBI Bookshelf"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Le Chatelier's principle",
+          "url": "https://en.wikipedia.org/wiki/Le_Chatelier%27s_principle"
+        },
+        {
+          "label": "Wikipedia — Van 't Hoff equation",
+          "url": "https://en.wikipedia.org/wiki/Van_%27t_Hoff_equation"
+        },
+        {
+          "label": "Wikipedia — Chemical equilibrium",
+          "url": "https://en.wikipedia.org/wiki/Chemical_equilibrium"
+        },
+        {
+          "label": "Wikipedia — Reaction quotient",
+          "url": "https://en.wikipedia.org/wiki/Reaction_quotient"
+        },
+        {
+          "label": "Chemistry LibreTexts — Le Chatelier's Principle",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        },
+        {
+          "label": "NCBI Bookshelf — Biochemistry (Berg), Equilibria",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK21154/"
+        }
+      ],
+      "art_prompt": "a balance/seesaw labeled reactants vs products at equilibrium, with three labeled disturbances pushing on it (add reactant, increase pressure, raise temperature) each producing a small restoring shift arrow; a side graph of ln K vs 1/T as a straight line of slope -dH/R",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Le Chatelier's principle, and explain why heating an exothermic reaction reduces the yield of product.",
+          "answer": "Le Chatelier's principle says a system at equilibrium responds to a disturbance in the direction that partially counteracts it. An exothermic reaction releases heat (ΔH° < 0), so heat behaves like a product. Adding heat (raising T) pushes the equilibrium backward to absorb it, consuming product and lowering the yield — equivalently, the equilibrium constant K decreases with temperature, exactly as the van 't Hoff equation d(ln K)/dT = ΔH°/RT² predicts for negative ΔH°."
+        },
+        {
+          "level": "derive",
+          "prompt": "An exothermic binding reaction has ΔH° = −50 kJ/mol. Using the integrated van 't Hoff equation, by what factor does its equilibrium constant K change when temperature rises from 300 K to 310 K?",
+          "answer": "ln(K₂/K₁) = −(ΔH°/R)(1/T₂ − 1/T₁). Here −ΔH°/R = +50000/8.314 = 6014 K, and (1/310 − 1/300) = −1.075×10⁻⁴ K⁻¹, so ln(K₂/K₁) = 6014 × (−1.075×10⁻⁴) = −0.647, giving K₂/K₁ = e^{−0.647} ≈ 0.52. The equilibrium constant roughly halves: heating an exothermic reaction shifts it backward, the quantitative form of Le Chatelier and the exact mirror of the Arrhenius Q10 (which instead nearly doubles the rate).",
+          "eq": "\\ln\\frac{K_2}{K_1} = -\\frac{\\Delta H^\\circ}{R}\\left(\\frac{1}{T_2}-\\frac{1}{T_1}\\right) = -0.647 \\Rightarrow \\frac{K_2}{K_1}\\approx 0.52"
+        }
+      ],
+      "lesson": "### Intuition\n\nA chemical equilibrium is a balanced seesaw. Lean on it — add a reactant, squeeze the volume, turn up the heat — and it tips in whatever direction *partly relieves* your push, settling at a new balance. It never fully cancels the disturbance; it just absorbs some of it.\n\n### Precisely\n\n**Le Chatelier's principle:** a system at equilibrium disturbed by a change responds in the direction that partially counteracts that change. Concentration and pressure shifts follow from the **reaction quotient** $Q$ chasing the fixed constant $K$ (mass action). The temperature shift is made exact by the **van 't Hoff equation**\n\n$$\\frac{d\\ln K}{dT} = \\frac{\\Delta H^\\circ}{RT^2}.$$\n\n### Why it's true / how it works\n\nFor concentration and pressure, $K$ is fixed, so when you perturb the mixture $Q \\ne K$ and the reaction runs until $Q = K$ again. Temperature is different: it changes $K$ itself. If the reaction is **endothermic** ($\\Delta H^\\circ > 0$) heating raises $K$ (more product); if **exothermic** ($\\Delta H^\\circ < 0$) heating lowers $K$. So 'shift to absorb added heat' is really a statement about the sign of $\\Delta H^\\circ$.\n\n### Worked example\n\nAn exothermic reaction with $\\Delta H^\\circ = -50$ kJ/mol, heated from 300 K to 310 K:\n\n$$\\ln\\frac{K_2}{K_1} = -\\frac{\\Delta H^\\circ}{R}\\left(\\frac{1}{T_2}-\\frac{1}{T_1}\\right) = -0.647,\\quad \\frac{K_2}{K_1}\\approx 0.52.$$\n\nThe equilibrium constant roughly halves — the exact mirror of the Arrhenius $Q_{10}\\approx 2$, but for *where* the reaction lands rather than *how fast* it gets there.\n\n### Where it connects\n\nIt is a corollary of **mass action** and the twin of the **Arrhenius/Eyring** rate laws. In biophysics it explains why heat **destabilizes protein folding** (typically exothermic), the temperature sensitivity of **hemoglobin** oxygen binding, and how metabolic pathways are pulled forward by continuously **removing product** — Le Chatelier used deliberately as flux control.\n\n### Watch out\n\nLe Chatelier is a *heuristic*, not a law, and it can mislead. Adding an **inert gas at constant volume** changes nothing (no activity changed). Adding a reactant to certain stoichiometries can shift the equilibrium the 'wrong' way in mole-fraction terms. When in doubt, fall back to the rigorous criteria: $Q$ versus $K$ for matter, van 't Hoff for temperature.\n\n### Numbers & nuance\n\nThe van 't Hoff slope means a plot of $\\ln K$ against $1/T$ is a straight line of slope $-\\Delta H^\\circ/R$ — the standard way to extract a reaction enthalpy from equilibrium measurements at several temperatures, the thermodynamic counterpart of the Arrhenius plot for kinetics."
     }
   ]
 }

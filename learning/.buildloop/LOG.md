@@ -270,3 +270,42 @@ isotherm framing. Keep batches ~3 and re-run test-diagnostic.mjs each time; dept
 atoms (zimm-model/tica) STILL need the prereq-closure early-stop (run-3 option b) before they
 place within budget — leave the diagnostic untuned per run-4..7 guidance. Cheaper safe wins still
 open: ~39 atoms lack a derive quiz item; `note` fields; GPU art generation if reachable.
+
+## 2026-06-24 — run 9 (+3 foundational depth≤2 atoms; biophysics 86→89; margin IMPROVED to +4)
+Continued the PRIMARY mission via run 8's NEXT (more depth≤2 foundational additions). Added the
+three run-8-named candidates, all genuinely missing and filling real gaps: **detailed-balance**
+(P_i W_{i→j}=P_j W_{j→i}; microscopic reversibility, k_f/k_r=K_eq=e^{−ΔG°/RT} Haldane relation,
+the load-bearing condition of Metropolis MCMC and the thing living systems break; requires
+boltzmann, depth 1), **fluctuation-dissipation** (D=k_BT/γ; equilibrium noise and dissipative
+response are one quantity scaled by k_BT — Einstein, Johnson–Nyquist S_V=4k_BT R, trap variance
+⟨x²⟩=k_BT/k; requires boltzmann, depth 1), and **le-chatelier** (equilibrium shifts; concentration/
+pressure via Q→K, temperature exactly via van 't Hoff d ln K/dT=ΔH°/RT²; requires mass-action,
+depth 2). All original prose; every numeric verified this run (e^{−2}=0.135 population ratio;
+trap ⟨x²⟩=4.14e−17 m² → 6.4 nm rms @ k=0.10 pN/nm, 300 K; Johnson 4 nV/√Hz @ 1 kΩ; van 't Hoff
+K₂/K₁=e^{−0.647}≈0.52 for ΔH°=−50 kJ/mol, 300→310 K — exact mirror of the Arrhenius Q10). OPEN
+sources only (LibreTexts/NCBI Bookshelf/MIT OCW + 6 Wikipedia resources each); full 7-section
+lesson + 3 depths + 2 quiz (1 derive each) + art_prompt per atom.
+
+PITFALL HIT + FIXED (correcting a wrong assumption in runs 5–8): "depth≤2 nucleus atom ⇒
+margin-safe" is FALSE for **graph leaves**. As pure leaves (nothing required them), the 3 new
+atoms had zero encompassing leverage, so the diagnostic could only place them by direct probing,
+burning the fixed 18-q budget — expert placement DROPPED 20→16 (margin +2 → −2), FAILING
+test-diagnostic. Root cause confirmed by isolating the committed 86-atom file (placed 20) vs the
+89-atom file (placed 16). FIX (scientifically correct, not a diagnostic tune): wired the new atoms
+as prereqs of atoms that genuinely depend on them — detailed-balance → monte-carlo /
+markov-state-model / replica-exchange (Metropolis, MSM, and REMD swaps all enforce detailed
+balance), fluctuation-dissipation → langevin (its random force and friction must satisfy FDT).
+That restored downstream encompassing leverage and IMPROVED the margin to **placed 22 / asked 18
+(+4)**, above baseline. Depths of the 4 edited atoms stay ≤2 (monte-carlo 1→2, others already 2),
+so none leaves/enters the expert frontier. le-chatelier remains a leaf but the overall margin
+absorbs it. meta 0.5.6→0.5.7. validate.sh PASSES end-to-end (corpus integrity, 89-atom 60-day
+engine sim, diagnostic GREEN at +4, assess/lang/explorer smokes). Mirrored to public/academy-app.
+
+NEXT: the leaf-leverage lesson generalizes — any new atom should be wired as a prerep of at least
+one existing dependent (or be a genuine frontier atom the diagnostic can encompass), else it
+erodes the placement margin regardless of depth. Remaining margin-safe foundational candidates
+with natural dependents: **eyring↔detailed-balance** cross-link is already implicit; **saturation/
+Langmuir isotherm** (would feed binding-kd's neighborhood); **Onsager reciprocity** (pairs with
+fluctuation-dissipation, feeds membrane-transport); **microstate counting / Stirling** under
+boltzmann. Keep batches ~3, wire downstream edges, re-run test-diagnostic.mjs each time. Cheaper
+zero-graph-risk wins still open: ~39 atoms lack a derive quiz item; `note` fields; GPU art.
