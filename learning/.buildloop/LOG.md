@@ -346,3 +346,40 @@ WOULD cascade, prefer equipartition which is depth 2), **onsager-reciprocity** (
 pairs with fluctuation-dissipation, could feed membrane-transport but check its depth first to avoid
 cascade). Keep batches ~3, always verify no depth change on the edited atom + re-run test-diagnostic.
 Cheaper zero-graph-risk wins still open: ~39 atoms lack a derive quiz item; `note` fields; GPU art.
+
+## 2026-06-24 — run 11 (+3 foundational math-prerequisite atoms; biophysics 92→95; margin IMPROVED to +13)
+Continued the PRIMARY mission via run 10's NEXT (more margin-safe foundational math under the
+stat-mech subtree), applying the leaf-leverage rule correctly from the start (no pitfall). Added
+three genuinely-missing math foundations, all requires=[] (diagnostic-depth 0, in expert frontier):
+**gaussian-integral** (∫e^{−ax²}dx=√(π/a); the master integral that normalizes every Gaussian/
+Boltzmann weight of a quadratic energy, its moment ⟨x²⟩=1/2a giving equipartition's k_BT/k, and its
+multidim form (2π)^{N/2}/√det A being the partition function of coupled harmonic modes),
+**lagrange-multipliers** (∇f=λ∇g; constrained optimization — max entropy at fixed energy/number
+yields the Boltzmann distribution, with β=1/k_BT *being* the energy multiplier; multipliers are
+shadow prices, and T/P/μ are all multipliers), and **harmonic-approximation** (U≈U(x0)+½U''(x0)(x−x0)²;
+near any stable minimum the energy is a parabola with k=U''(x0), the move that turns bonds/traps/
+proteins into springs and grounds equipartition + normal modes). Per the leaf-leverage rule, each was
+wired as a REAL prereq of an existing dependent chosen so its depth does NOT rise: gaussian-integral→
+partition-function + equipartition + wlc (all depth 1, stay 1), lagrange-multipliers→partition-function,
+harmonic-approximation→equipartition. Verified zero depth cascade (partition-function/equipartition/wlc
+stay depth 1, free-energy stays 2, rouse-model stays 3). Because gaussian-integral now sits beneath
+partition-function (→free-energy subtree), equipartition, and wlc — all heavily-depended-on — the new
+atoms gained strong downstream encompassing leverage: diagnostic margin IMPROVED to **expert placed 31
+/ asked 18 (+13)**, up from +7 in run 10. All original prose; every numeric verified this run
+(∫x²e^{−ax²}=½√π a^{−3/2}=(1/2a)√(π/a) ⇒ ⟨x²⟩=1/2a, trap k=0.10 pN/nm → 6.4 nm rms; max-ent Lagrangian
+∂/∂p_i=−k_B(ln p_i+1)−α−β'E_i=0 ⇒ p_i=e^{−βE_i}/Z; Lennard-Jones r_min=2^{1/6}σ, U''(r_min)=
+(4ε/σ²)(39/2^{1/3}−42/2^{4/3})=(4ε/σ²)(30.95−16.67)=57.1 ε/σ²). OPEN sources only (LibreTexts Math/
+Physics + MIT OCW + 6 Wikipedia resources each); full 7-section lesson + 3 depths + 2 quiz (1 derive
+each) + art_prompt per atom. meta 0.5.8→0.5.9. validate.sh PASSES end-to-end (corpus integrity,
+95-atom 60-day engine sim, diagnostic GREEN at +13, assess/lang/explorer smokes). Mirrored to
+public/academy-app (95 atoms, ver 0.5.9 verified in sync).
+NEXT: the leaf-leverage insertion pattern keeps paying off — the highest-leverage new atoms are math/
+stat-mech foundations that sit UNDER the partition-function/diffusion/kinetics subtrees. Remaining
+margin-safe candidates with natural existing dependents (verify no depth rise on the edited atom first):
+**onsager-reciprocity** (L_ij=L_ji coupled linear fluxes; pairs with fluctuation-dissipation, could feed
+membrane-transport — check its depth), **legendre-transform** (the U↔F↔G↔H ensemble-bridge; could feed
+gibbs/free-energy/chemical-potential, but gibbs is depth-1 so prefer free-energy depth 2), **saddle-point/
+laplace method** (∫e^{Nf}≈ via the max; feeds partition-function/stirling neighborhood), **gaussian-
+elimination-free: covariance/correlation-function** under fluctuation-dissipation. Keep batches ~3, always
+verify no depth change on the edited atom + re-run test-diagnostic.mjs each time. Cheaper zero-graph-risk
+wins still open: ~39 atoms lack a derive quiz item; `note` fields; GPU art generation if reachable.

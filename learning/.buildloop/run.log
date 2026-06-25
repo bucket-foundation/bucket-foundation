@@ -1937,3 +1937,47 @@ Each is original prose with verified numerics (k_BT = 0.62 kcal/mol @310 K; RT l
 
 ========== build run 2026-06-24T23:56:22Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Run complete. Summary of this bounded build-loop run:
+
+**Run 8 — biophysics corpus growth (83 → 86 atoms)**
+
+Continued the primary mission per run 7's explicit NEXT. Added three depth≤2 foundational atoms, all genuinely missing and filling real syllabus gaps:
+
+1. **mass-action** — Law of mass action / equilibrium constant, `ΔG° = −RT ln K` (requires `gibbs`). The bridge from thermodynamics to concentrations; parent of Kd/Michaelis/pKa/Nernst.
+2. **arrhenius** — `k = A e^(−Ea/RT)` (requires `boltzmann`). Empirical kinetics as a Boltzmann fraction over the barrier; cousin of eyring/kramers.
+3. **osmotic-pressure** — van 't Hoff `Π = cRT` (requires `chemical-potential`). Colligative property derived from solvent chemical-potential balance.
+
+Each has original 7-section prose, 3 depths, 2 quiz items (one derive/apply), open sources only (LibreTexts/NCBI/MIT OCW + Wikipedia), and an art prompt. Every numeric was verified this run (RT@310K = 2.577 kJ/mol; ΔG°(K=1000) = −17.8 kJ/mol; Arrhenius Q10 for Ea=50 kJ/mol ≈ 1.9; plasma 300 mOsm → ≈7.6 atm).
+
+**Margin safety:** all three sit in the expert's depth≤2 frontier and use `shell="nucleus"` (avoiding the small tested `prereq` shell that tripped run 7). Diagnostic stayed **GREEN at +2** (20 placed / 18 asked), prereq shell 6/6. No existing atom modified.
+
+**validation:** `./validate.sh` passes end-to-end (corpus integrity, 86-atom 60-day engine sim, diagnostic, assess/lang/explorer smokes). Mirrored to `public/academy-app` (86 atoms, v0.5.6 verified). Committed locally (`981267887`), LOG.md updated with NEXT guidance.
+
+Exiting (bounded single run).
+---------- run done 2026-06-25T00:00:37Z ----------
+
+========== build run 2026-06-25T00:21:26Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+---------- run done 2026-06-25T00:29:49Z ----------
+
+========== build run 2026-06-25T00:46:55Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Run complete. Summary of this bounded build-loop run:
+
+**What I did (run 10):** Added 3 new, correct foundational atoms to the biophysics corpus (89 → 92), advancing the primary mission of a richer, still-working learning system.
+
+- **stirling-approximation** (`ln N! ≈ N ln N − N + ½ln(2πN)`) — the bridge from microstate counting to thermodynamics
+- **central-limit-theorem** (`(S_N−Nμ)/(σ√N) → N(0,1)`) — why noise is Gaussian and diffusion spreads as √t
+- **master-equation** (`dP_i/dt = Σ_j(W_ji P_j − W_ij P_i)`) — the discrete-state Markov framework that detailed balance lives inside
+
+Each has a full 7-section lesson + 3 depths + 2 quiz items (1 derive each, all numbers independently verified) + art prompt, and uses **open sources only** (LibreTexts, MIT OCW, Wikipedia).
+
+**Applied run-9's leaf-leverage lesson correctly from the start** (no pitfall this run): all three are `requires=[]` (in the expert frontier) and wired as *real* prereqs of existing atoms chosen so their depth doesn't rise — stirling→partition-function, CLT→random-walk, master-equation→detailed-balance. Verified **zero depth cascade**, and the placement margin **improved to placed 25 / asked 18 (+7)**, up from +4.
+
+**Validation:** `./validate.sh` passes end-to-end (corpus integrity, 92-atom engine sim, diagnostic GREEN at +7, assess/lang/explorer smokes). Mirrored to `public/academy-app` (92 atoms, v0.5.8). Committed locally; LOG.md updated with what the next run should pick up (gaussian-integral / lagrange-multipliers / harmonic-approximation via the same insertion pattern, or the ~39 atoms still lacking a derive quiz item).
+
+This was a single bounded run — stopping here.
+---------- run done 2026-06-25T00:56:31Z ----------
+
+========== build run 2026-06-25T01:12:15Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors

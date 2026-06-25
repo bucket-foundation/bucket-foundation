@@ -2,8 +2,8 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.5.8",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved.",
+    "version": "0.5.9",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade.",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
   "atoms": [
@@ -83,7 +83,9 @@
       "type": "equation",
       "requires": [
         "boltzmann",
-        "stirling-approximation"
+        "stirling-approximation",
+        "gaussian-integral",
+        "lagrange-multipliers"
       ],
       "equation": "Z = \\sum_i e^{-E_i/k_BT}",
       "summary": "The sum of all Boltzmann factors — the normalizer that turns energies into probabilities and free energies.",
@@ -638,7 +640,8 @@
       "shell": "nucleus",
       "type": "concept",
       "requires": [
-        "ideal-chain"
+        "ideal-chain",
+        "gaussian-integral"
       ],
       "summary": "Stiff polymers (like DNA) are characterized by a persistence length — the distance over which the chain 'forgets' its direction.",
       "depths": {
@@ -4965,7 +4968,9 @@
       "shell": "nucleus",
       "type": "equation",
       "requires": [
-        "boltzmann"
+        "boltzmann",
+        "gaussian-integral",
+        "harmonic-approximation"
       ],
       "equation": "\\langle E\\rangle = \\tfrac{1}{2}k_BT \\;\\text{per quadratic degree of freedom}",
       "summary": "At thermal equilibrium every quadratic degree of freedom carries an average energy of ½k_BT — the universal currency of thermal motion.",
@@ -5686,6 +5691,183 @@
         }
       ],
       "lesson": "### Intuition\n\nA molecule that flips randomly among a few discrete states — folded/unfolded, open/closed, bound/free — can't be predicted instant by instant, but its *probabilities* can. The master equation is the accounting rule: the probability of a state rises when the system hops *in* from elsewhere and falls when it hops *out*. Write gain-minus-loss for every state and the random dance is fully described.\n\n### Precisely\n\nFor probabilities $P_i(t)$ and transition rates $W_{ij}$ (from $i$ to $j$):\n\n$$\\frac{dP_i}{dt}=\\sum_j\\left(W_{ji}P_j - W_{ij}P_i\\right).$$\n\nTotal probability is conserved, and a connected system relaxes to a unique stationary distribution where every $dP_i/dt=0$.\n\n### Why it's true / how it works\n\nIt is exact bookkeeping for a continuous-time Markov process: in a small interval $dt$, the chance of leaving $i$ for $j$ is $W_{ij}\\,dt$. Summing all in-flows and out-flows gives the rate of change of $P_i$. Stationarity means the *net* current into each state vanishes. **Detailed balance** is the stronger statement that each *pair* balances individually, $W_{ij}P_i^{eq}=W_{ji}P_j^{eq}$, leaving no circulating current — and with Boltzmann statistics this fixes $W_{ij}/W_{ji}=e^{-(E_j-E_i)/k_BT}$.\n\n### Worked example\n\nTwo conformations $A\\rightleftharpoons B$, with $k_+=10\\,\\mathrm{s}^{-1}$ and $k_-=2\\,\\mathrm{s}^{-1}$. Setting $dP_A/dt=k_-P_B-k_+P_A=0$ gives $P_B/P_A=k_+/k_-=5$, so $P_A=\\tfrac16\\approx0.17$, $P_B=\\tfrac56\\approx0.83$. The approach to equilibrium decays with rate $k_++k_-=12\\,\\mathrm{s}^{-1}$, i.e. $\\tau\\approx83\\,\\mathrm{ms}$.\n\n### Where it connects\n\nThe master equation is the parent framework in which **detailed balance** is a special (no-current) stationary condition, and the discrete cousin of the **Smoluchowski/Fokker–Planck** equation in the continuum limit. It is the backbone of **ion-channel gating** kinetics, enzyme state cycles, and **Markov state models** fitted from molecular-dynamics trajectories.\n\n### Watch out\n\nStationary $\\ne$ equilibrium. A system driven by ATP, light, or a sustained gradient reaches a *nonequilibrium* steady state with persistent cyclic currents that violates detailed balance — molecular motors, active transport, and kinetic proofreading all live here. Detecting a net cycle current (the Kolmogorov criterion failing) is the signature of an actively driven system.\n\n### Numbers & nuance\n\nIn matrix form the stationary distribution is the null eigenvector of the rate matrix and the relaxation timescales are set by its other eigenvalues — a spectral gap means a clean separation of fast and slow conformational motions, exactly what Markov state models exploit to coarse-grain a protein's dynamics into a few metastable states."
+    },
+    {
+      "id": "gaussian-integral",
+      "title": "The Gaussian integral",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [],
+      "equation": "\\int_{-\\infty}^{\\infty} e^{-a x^2}\\,dx = \\sqrt{\\pi/a}",
+      "summary": "The single integral that normalizes every Gaussian and Boltzmann weight of a quadratic energy: the area under e^(-ax^2) is sqrt(pi/a). Its moment cousins give the variance of a harmonic degree of freedom, making it the computational heart of equipartition, the partition function of vibrational modes, and the end-to-end statistics of polymer chains.",
+      "depths": {
+        "eli5": "You cannot integrate the bell curve e^(-x^2) with the usual tricks - there is no elementary antiderivative. Yet the *total area* under it is one of the cleanest numbers in mathematics: the square root of pi. Scale the width by a constant a and the area is sqrt(pi/a). Physics is full of energies that look like a spring, U proportional to x^2, and the Boltzmann rule weights each state by e^(-U/kT), which is exactly a bell curve. So every time you ask 'how likely is this stretch, this wiggle, this velocity', the answer is built from this one magic area.",
+        "core": "The Gaussian integral I = integral of e^(-ax^2) over the whole line equals sqrt(pi/a). The standard proof squares it: I^2 = double integral of e^(-a(x^2+y^2)) over the plane, which in polar coordinates becomes integral of e^(-a r^2) 2 pi r dr = pi/a, so I = sqrt(pi/a). Differentiating under the integral sign with respect to a generates the moments: integral of x^2 e^(-ax^2) = (1/2a) sqrt(pi/a). Dividing the second by the first gives the mean square of a Gaussian-distributed coordinate, <x^2> = 1/(2a). In physics a quadratic energy U = (1/2)k x^2 at temperature T makes a = k/(2 k_B T), so <x^2> = k_B T / k - the equipartition result, and the variance of an optically trapped bead, of a bond length, of a normal-mode amplitude.",
+        "deep": "The Gaussian is the fixed point of statistical physics because quadratic energies are everywhere: near any potential minimum the energy is harmonic, and the central limit theorem makes sums of many small contributions Gaussian. The full moment hierarchy follows from I(a) = sqrt(pi) a^(-1/2): the 2n-th moment is (2n-1)!! / (2a)^n times the normalization, encoding Wick's theorem and the entire diagrammatic expansion of Gaussian (free) field theories. The multidimensional version, integral of exp(-(1/2) x^T A x) d^N x = (2 pi)^(N/2) / sqrt(det A), is the partition function of any system of coupled harmonic modes - phonons, elastic networks, the Rouse and Zimm polymer models - and its logarithm gives the free energy as (1/2) ln det A, i.e. a sum of (1/2) k_B T per mode. The same determinant appears in the propagator of the diffusion equation, whose Green's function is itself a normalized Gaussian, tying this integral to random walks and the heat kernel."
+      },
+      "sources": [
+        "LibreTexts Mathematics",
+        "MIT OpenCourseWare"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia - Gaussian integral",
+          "url": "https://en.wikipedia.org/wiki/Gaussian_integral"
+        },
+        {
+          "label": "Wikipedia - Normal distribution",
+          "url": "https://en.wikipedia.org/wiki/Normal_distribution"
+        },
+        {
+          "label": "Wikipedia - Equipartition theorem",
+          "url": "https://en.wikipedia.org/wiki/Equipartition_theorem"
+        },
+        {
+          "label": "Wikipedia - Wick's theorem",
+          "url": "https://en.wikipedia.org/wiki/Wick%27s_theorem"
+        },
+        {
+          "label": "Math LibreTexts - Multiple Integrals (polar)",
+          "url": "https://math.libretexts.org/Bookshelves/Calculus"
+        },
+        {
+          "label": "MIT OCW - Statistical Mechanics (8.044)",
+          "url": "https://ocw.mit.edu/courses/8-044-statistical-physics-i-spring-2013/"
+        }
+      ],
+      "art_prompt": "a bell curve e^(-a x^2) with its shaded area labeled sqrt(pi/a); to the side the classic polar-coordinates trick - the squared integral becoming a 2D dome over the plane sliced into rings 2*pi*r*dr; a small inset linking it to a harmonic spring U=1/2 k x^2 and the result <x^2>=kT/k",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why does the Gaussian integral show up so relentlessly in statistical physics, even though e^(-x^2) has no elementary antiderivative?",
+          "answer": "Because almost every energy near a stable configuration is quadratic (harmonic), and the Boltzmann factor turns a quadratic energy U=(1/2)k x^2 into a Gaussian weight e^(-k x^2 / 2 k_B T). Computing any thermal average - a normalization, a variance, a partition function - then reduces to integrating a Gaussian or one of its moments. The definite integral sqrt(pi/a) and its derivatives with respect to a supply all of these in closed form, so the bell curve is the workhorse even though its indefinite integral is not elementary."
+        },
+        {
+          "level": "derive",
+          "prompt": "Starting from integral of e^(-a x^2) = sqrt(pi/a), obtain integral of x^2 e^(-a x^2), then use the Boltzmann weight of a spring U=(1/2)k x^2 at temperature T to show <x^2> = k_B T / k.",
+          "answer": "Differentiate the master integral with respect to a: d/da of integral e^(-a x^2) = - integral x^2 e^(-a x^2), and d/da of sqrt(pi) a^(-1/2) = -(1/2) sqrt(pi) a^(-3/2). So integral x^2 e^(-a x^2) = (1/2) sqrt(pi) a^(-3/2) = (1/2a) sqrt(pi/a). The thermal mean square is the ratio <x^2> = [integral x^2 e^(-a x^2)] / [integral e^(-a x^2)] = (1/2a). For a spring the Boltzmann weight is e^(-k x^2 / 2 k_B T), so a = k/(2 k_B T) and <x^2> = 1/(2a) = k_B T / k. This is equipartition: the trapped bead, the stretched bond, the normal mode each store (1/2) k_B T of energy.",
+          "eq": "\\langle x^2\\rangle = \\frac{\\int x^2 e^{-ax^2}dx}{\\int e^{-ax^2}dx}=\\frac{1}{2a},\\quad a=\\frac{k}{2k_BT}\\ \\Rightarrow\\ \\langle x^2\\rangle=\\frac{k_BT}{k}"
+        }
+      ],
+      "lesson": "### Intuition\n\nThe curve $e^{-x^2}$ - the bell - cannot be integrated with the antiderivative tricks of first-year calculus. But the *total area underneath it* is astonishingly simple: $\\sqrt{\\pi}$. Widen or narrow the bell with a constant $a$ and the area is $\\sqrt{\\pi/a}$. This matters because physics is full of energies shaped like a spring, $U\\propto x^2$, and the Boltzmann rule weights each configuration by $e^{-U/k_BT}$ - a bell curve. Every thermal question about a quadratic energy is answered by this one area or its close relatives.\n\n### Precisely\n\n$$\\int_{-\\infty}^{\\infty} e^{-a x^2}\\,dx = \\sqrt{\\pi/a}\\qquad(a>0).$$\n\nDifferentiating with respect to $a$ generates the moments, e.g. $\\int x^2 e^{-ax^2}dx = \\tfrac{1}{2a}\\sqrt{\\pi/a}$.\n\n### Why it's true / how it works\n\nSquare the integral and read it as an area over the plane: $I^2=\\iint e^{-a(x^2+y^2)}\\,dx\\,dy$. In polar coordinates this is $\\int_0^\\infty e^{-ar^2}\\,2\\pi r\\,dr=\\pi/a$, an elementary integral because the extra $r$ is exactly the derivative needed. Hence $I=\\sqrt{\\pi/a}$. The trick that defeats one dimension succeeds in two.\n\n### Worked example\n\nA bead in an optical trap feels $U=\\tfrac12 k x^2$. Its position is Boltzmann-distributed as $e^{-kx^2/2k_BT}$, a Gaussian with $a=k/2k_BT$. The mean-square displacement is $\\langle x^2\\rangle=1/(2a)=k_BT/k$. For $k=0.10$ pN/nm at $300$ K, $k_BT=4.14$ pN nm, so $\\langle x^2\\rangle=41.4$ nm$^2$, an rms jiggle of $6.4$ nm - measurable, and a direct readout of temperature.\n\n### Where it connects\n\nThis integral normalizes the **partition function** of any harmonic mode, delivers **equipartition's** $\\tfrac12 k_BT$ per quadratic degree of freedom, and sets the Gaussian end-to-end distribution of an **ideal polymer chain**. Its multidimensional form $\\int e^{-\\frac12 \\mathbf{x}^TA\\mathbf{x}}d^N\\!x=(2\\pi)^{N/2}/\\sqrt{\\det A}$ is the partition function of coupled springs - phonons, elastic networks, Rouse/Zimm chains - and the heat-kernel solution of the diffusion equation is itself a normalized Gaussian.\n\n### Watch out\n\nThe formula needs $a>0$ (a confining, upward parabola); a negative or zero curvature has no finite integral, the mathematical signal of an unstable or marginal mode. And $\\sqrt{\\pi/a}$ is the *area*, not a probability - you still divide by it to normalize, which is precisely why it appears as the denominator $Z$ everywhere.\n\n### Numbers & nuance\n\nThe even moments follow a clean pattern, $\\langle x^{2n}\\rangle=(2n-1)!!\\,(2a)^{-n}$ relative to the area, which is Wick's theorem in disguise and the seed of all Gaussian (free-field) perturbation theory. Odd moments vanish by symmetry. This is why 'everything is Gaussian to leading order' is not a slogan but a computational fact."
+    },
+    {
+      "id": "lagrange-multipliers",
+      "title": "Lagrange multipliers",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [],
+      "equation": "\\nabla f = \\lambda\\,\\nabla g \\quad\\text{subject to}\\quad g(\\mathbf{x})=c",
+      "summary": "The method for optimizing a quantity under constraints: at a constrained extremum the gradient of the objective is parallel to the gradient of each constraint, with the proportionality constants (the multipliers) measuring how hard the constraint pushes back. Maximizing entropy at fixed energy and particle number this way is exactly how the Boltzmann distribution and the meaning of temperature drop out of statistical mechanics.",
+      "depths": {
+        "eli5": "Suppose you want the highest point on a hill, but you are forced to stay on a fixed walking trail. You are at the best allowed spot when the trail runs *level* - when moving along it no longer takes you uphill. Mathematically that happens where the uphill direction of the hill points straight across the trail, perpendicular to it. Lagrange's idea packages this: introduce one knob (a multiplier) per constraint, and the best constrained point is where the objective's push and the constraints' pushes exactly balance. Statistical physics uses this to find the most likely arrangement of energy among molecules.",
+        "core": "To extremize f(x) subject to g(x)=c, you cannot just set grad f = 0, because the true optimum sits on the constraint surface. Instead, at the constrained optimum grad f must be a linear combination of the constraint gradients: grad f = sum of lambda_k grad g_k. Equivalently, define the Lagrangian L = f - sum lambda_k (g_k - c_k) and set all its partial derivatives (including those with respect to the lambda_k, which just re-impose the constraints) to zero. Each multiplier lambda_k is the sensitivity of the optimum to relaxing that constraint: dL*/dc_k = lambda_k. In statistical mechanics one maximizes the entropy S = -k_B sum p_i ln p_i subject to normalization sum p_i = 1 and fixed mean energy sum p_i E_i = U. The two multipliers produce p_i proportional to e^(-beta E_i); the multiplier conjugate to energy is beta = 1/(k_B T), so temperature itself is a Lagrange multiplier.",
+        "deep": "Geometrically the constraint g=c is a surface, and feasible moves are tangent to it; an extremum is reached when f has no component along any feasible direction, i.e. grad f lies entirely in the span of the constraint normals grad g_k - hence grad f = sum lambda_k grad g_k. The multipliers are shadow prices: lambda_k = d(optimum)/dc_k. This is the bridge between the microcanonical and canonical ensembles. Maximizing -sum p_i ln p_i with constraints on normalization and energy yields the canonical Boltzmann distribution; the energy multiplier is beta and the normalization multiplier fixes ln Z, so the partition function and free energy F = -k_B T ln Z appear as the value of the constrained optimum. Adding a particle-number constraint introduces a second multiplier, the chemical potential mu (the grand-canonical ensemble). The same maximum-entropy logic, due to Jaynes, derives the Gaussian (fixed variance), the exponential (fixed mean), and the power law (fixed log-mean) as the least-biased distributions consistent with what is known - each constraint contributing one multiplier. Inequality constraints generalize this to the Karush-Kuhn-Tucker conditions that underlie modern optimization and machine learning."
+      },
+      "sources": [
+        "LibreTexts Mathematics",
+        "MIT OpenCourseWare"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia - Lagrange multiplier",
+          "url": "https://en.wikipedia.org/wiki/Lagrange_multiplier"
+        },
+        {
+          "label": "Wikipedia - Maximum entropy probability distribution",
+          "url": "https://en.wikipedia.org/wiki/Maximum_entropy_probability_distribution"
+        },
+        {
+          "label": "Wikipedia - Partition function (statistical mechanics)",
+          "url": "https://en.wikipedia.org/wiki/Partition_function_(statistical_mechanics)"
+        },
+        {
+          "label": "Wikipedia - Karush-Kuhn-Tucker conditions",
+          "url": "https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"
+        },
+        {
+          "label": "Math LibreTexts - Lagrange Multipliers",
+          "url": "https://math.libretexts.org/Bookshelves/Calculus"
+        },
+        {
+          "label": "MIT OCW - Statistical Mechanics (8.044)",
+          "url": "https://ocw.mit.edu/courses/8-044-statistical-physics-i-spring-2013/"
+        }
+      ],
+      "art_prompt": "a contour map of a hill with a curved trail (the constraint) drawn across it; at the optimal point the hill's gradient arrow points perpendicular to the trail, equal to lambda times the constraint's normal arrow; beside it the statistical-mechanics payoff: maximize -sum p ln p with two tags (normalization, energy) yielding p ~ e^(-beta E) and the label 'beta = 1/kT is a Lagrange multiplier'",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the statistical-mechanics derivation of the Boltzmann distribution, what do the two Lagrange multipliers correspond to physically?",
+          "answer": "You maximize the entropy -k_B sum p_i ln p_i subject to two constraints. The multiplier enforcing normalization (sum p_i = 1) fixes the overall constant and turns into the partition function Z (it sets ln Z). The multiplier enforcing the fixed average energy (sum p_i E_i = U) is beta = 1/(k_B T) - i.e. temperature is the Lagrange multiplier conjugate to energy. So one multiplier is bookkeeping for probability conservation; the other *is* inverse temperature."
+        },
+        {
+          "level": "derive",
+          "prompt": "Maximize the entropy functional S = -k_B sum p_i ln p_i subject to sum p_i = 1 and sum p_i E_i = U. Show that p_i is proportional to e^(-beta E_i) and identify Z.",
+          "answer": "Form the Lagrangian L = -k_B sum p_i ln p_i - alpha (sum p_i - 1) - beta' (sum p_i E_i - U). Take dL/dp_i = -k_B(ln p_i + 1) - alpha - beta' E_i = 0, so ln p_i = -(1 + alpha/k_B) - (beta'/k_B) E_i. Writing beta = beta'/k_B gives p_i = e^(-(1+alpha/k_B)) e^(-beta E_i). The normalization constraint sets the prefactor: e^(-(1+alpha/k_B)) = 1/Z with Z = sum_j e^(-beta E_j). Hence p_i = e^(-beta E_i) / Z, the Boltzmann distribution; matching to thermodynamics identifies beta = 1/(k_B T).",
+          "eq": "p_i = \\frac{e^{-\\beta E_i}}{Z},\\quad Z=\\sum_j e^{-\\beta E_j},\\quad \\beta=\\frac{1}{k_BT}"
+        }
+      ],
+      "lesson": "### Intuition\n\nYou want the best value of something - the highest entropy, the lowest energy - but you are not free to roam: a constraint pins you to a surface. Standing on a hiking trail across a hill, the highest point you can reach is where the trail goes level, which is where the hill's steepest-uphill arrow points straight across the trail. Lagrange's method makes this precise with one tunable number, a *multiplier*, for each constraint.\n\n### Precisely\n\nTo extremize $f(\\mathbf{x})$ subject to $g(\\mathbf{x})=c$,\n\n$$\\nabla f = \\lambda\\,\\nabla g,\\qquad g(\\mathbf{x})=c.$$\n\nWith several constraints, $\\nabla f=\\sum_k \\lambda_k\\nabla g_k$. Equivalently, extremize the Lagrangian $L=f-\\sum_k\\lambda_k(g_k-c_k)$ freely over both $\\mathbf{x}$ and the $\\lambda_k$.\n\n### Why it's true / how it works\n\nAllowed moves stay tangent to the constraint surface. At a constrained optimum, $f$ can have no slope along any allowed direction - so $\\nabla f$ must point purely *normal* to the surface, i.e. along $\\nabla g$. The multiplier is the ratio of those parallel gradients, and it has a meaning: $\\lambda_k=\\partial(\\text{optimum})/\\partial c_k$, the rate at which the best value improves as you loosen constraint $k$ (its 'shadow price').\n\n### Worked example\n\nMaximize the entropy $S=-k_B\\sum_i p_i\\ln p_i$ subject to $\\sum_i p_i=1$ and $\\sum_i p_i E_i=U$. The Lagrangian's derivative gives $\\ln p_i=-(1+\\alpha/k_B)-\\beta E_i$, so $p_i\\propto e^{-\\beta E_i}$. Normalization sets the constant to $1/Z$ with $Z=\\sum_j e^{-\\beta E_j}$. The result is the **Boltzmann distribution**, and the energy multiplier is $\\beta=1/k_BT$ - temperature is literally a Lagrange multiplier.\n\n### Where it connects\n\nThis is the engine of the **partition function** and of maximum-entropy inference: fix the mean and you get the exponential; fix the variance and you get the **Gaussian**; add a particle-number constraint and the new multiplier is the **chemical potential** $\\mu$ (grand-canonical ensemble). Free energy $F=-k_BT\\ln Z$ is the *value* of this constrained optimum. The same idea, generalized to inequalities (Karush-Kuhn-Tucker), is the backbone of optimization and machine learning.\n\n### Watch out\n\nThe condition is necessary, not automatically a maximum - check the second-order behaviour or the physics (entropy maximization is concave, so here the stationary point is the maximum). And the constraints must be independent (their gradients linearly independent) for the multipliers to be well defined; degenerate constraints signal a redundancy to remove first.\n\n### Numbers & nuance\n\nThe deep payoff is conceptual: intensive thermodynamic variables - temperature, pressure, chemical potential - are *all* Lagrange multipliers enforcing conservation of energy, volume, and particle number. That is why they are equal between systems in equilibrium: two systems in contact share the constraint, hence share the multiplier."
+    },
+    {
+      "id": "harmonic-approximation",
+      "title": "The harmonic approximation",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [],
+      "equation": "U(x)\\approx U(x_0)+\\tfrac{1}{2}U''(x_0)\\,(x-x_0)^2,\\quad k\\equiv U''(x_0)",
+      "summary": "Near any stable equilibrium the potential energy is, to leading order, a parabola: the linear term vanishes at the minimum and the curvature U''(x0) acts as an effective spring constant. This single move turns bonds, traps, membranes, and entire proteins into networks of springs, justifying equipartition, normal modes, and the harmonic backbone of vibrational spectroscopy.",
+      "depths": {
+        "eli5": "Zoom in close enough on the bottom of any smooth valley and it looks like a parabola - the same shape as a spring's energy. So no matter how complicated the real force law is (a chemical bond, a molecule held in light, an atom in a crystal), as long as the system sits near a stable resting point, small wiggles around that point behave like a simple spring. That is why physicists can model staggeringly complex molecules as balls connected by springs and still get the vibrations, heat capacities, and fluctuations right.",
+        "core": "Expand a potential U(x) in a Taylor series about an equilibrium x0: U(x) = U(x0) + U'(x0)(x-x0) + (1/2)U''(x0)(x-x0)^2 + ... At a stable equilibrium the force vanishes, U'(x0)=0, so the leading variation is quadratic with effective stiffness k = U''(x0) (positive because the equilibrium is a minimum). The dynamics then reduce to a harmonic oscillator: m x'' = -k(x-x0), angular frequency omega = sqrt(k/m). Thermally, the Boltzmann weight e^(-k x^2 / 2 k_B T) is Gaussian, so each such quadratic coordinate carries (1/2) k_B T of energy (equipartition) and fluctuates with variance k_B T / k. For a system of many coordinates the expansion uses the Hessian matrix of second derivatives, whose eigenvectors are the normal modes and whose eigenvalues set their frequencies.",
+        "deep": "The harmonic approximation is the universal leading-order description of stability because the first non-trivial term of any smooth potential at a minimum is quadratic. Multidimensionally, U(x) ~ U0 + (1/2)(x-x0)^T H (x-x0) with the Hessian H; diagonalizing H gives 3N-6 normal modes (for a nonlinear molecule), each an independent oscillator. This underlies normal-mode analysis, elastic network models of proteins, phonons in solids, and the quasi-harmonic estimate of vibrational entropy and free energy (the (1/2) ln det H term of the Gaussian partition function). Crystallographic B-factors and NMR order parameters are read as harmonic mean-square displacements k_B T / k. The approximation's failures are equally informative: anharmonicity (the cubic and quartic terms) produces thermal expansion, finite phonon lifetimes, and chemical reactivity, while a curvature that goes to zero signals a soft mode and an instability or phase transition, and a negative curvature marks a transition state - the saddle whose single imaginary frequency sets the reaction coordinate in transition-state and Kramers theory. A concrete benchmark: expanding the Lennard-Jones potential about its minimum r_min = 2^(1/6) sigma gives an effective stiffness k = U''(r_min) = 57.1 epsilon/sigma^2."
+      },
+      "sources": [
+        "LibreTexts Physics",
+        "MIT OpenCourseWare"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia - Harmonic oscillator",
+          "url": "https://en.wikipedia.org/wiki/Harmonic_oscillator"
+        },
+        {
+          "label": "Wikipedia - Taylor series",
+          "url": "https://en.wikipedia.org/wiki/Taylor_series"
+        },
+        {
+          "label": "Wikipedia - Normal mode",
+          "url": "https://en.wikipedia.org/wiki/Normal_mode"
+        },
+        {
+          "label": "Wikipedia - Hessian matrix",
+          "url": "https://en.wikipedia.org/wiki/Hessian_matrix"
+        },
+        {
+          "label": "Physics LibreTexts - Small Oscillations",
+          "url": "https://phys.libretexts.org/Bookshelves/Classical_Mechanics"
+        },
+        {
+          "label": "MIT OCW - Classical Mechanics (8.01)",
+          "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/"
+        }
+      ],
+      "art_prompt": "a complicated asymmetric potential-energy curve with a parabola fitted snugly inside its minimum, the fit labeled k = U''(x0); arrows showing the linear term canceling at the bottom; a small molecule rendered as balls-and-springs beside the equation omega = sqrt(k/m), with a faint hint that far from the minimum the parabola and the true curve diverge (anharmonicity)",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is the leading correction to the energy near any stable equilibrium quadratic rather than linear, and what physical quantity is the coefficient?",
+          "answer": "Taylor-expanding U(x) about an equilibrium x0 gives U(x0) + U'(x0)(x-x0) + (1/2)U''(x0)(x-x0)^2 + ... At a stable equilibrium the net force is zero, which means U'(x0)=0, so the linear term vanishes and the first varying term is the quadratic one. Its coefficient U''(x0) is the curvature of the potential, which plays the role of an effective spring constant k; it is positive precisely because a stable equilibrium is a minimum. This is why small motions around any stable state are harmonic, with omega = sqrt(k/m)."
+        },
+        {
+          "level": "derive",
+          "prompt": "A diatomic bond is modeled by the Lennard-Jones potential U(r) = 4 epsilon[(sigma/r)^12 - (sigma/r)^6]. Find the equilibrium separation and show the effective spring constant there is k = U''(r_min) = 57.1 epsilon/sigma^2.",
+          "answer": "Set U'(r)=0: U'(r) = 4 epsilon[-12 sigma^12 r^-13 + 6 sigma^6 r^-7] = 0, giving 12 sigma^12 r^-13 = 6 sigma^6 r^-7, so r^6 = 2 sigma^6 and r_min = 2^(1/6) sigma. Differentiate again: U''(r) = 4 epsilon[156 sigma^12 r^-14 - 42 sigma^6 r^-8]. Substitute r_min, using r_min^6 = 2 sigma^6 so r_min^14 = 4 * 2^(1/3) sigma^14 and r_min^8 = 2^(4/3) sigma^8: U''(r_min) = (4 epsilon/sigma^2)[156/(4*2^(1/3)) - 42/2^(4/3)] = (4 epsilon/sigma^2)[39/2^(1/3) - 42/2^(4/3)] = (4 epsilon/sigma^2)(30.95 - 16.67) = (4 epsilon/sigma^2)(14.29) = 57.1 epsilon/sigma^2. The bond's vibration frequency is then omega = sqrt(k/mu) with mu the reduced mass.",
+          "eq": "r_{min}=2^{1/6}\\sigma,\\quad k=U''(r_{min})=\\frac{57.1\\,\\epsilon}{\\sigma^2},\\quad \\omega=\\sqrt{k/\\mu}"
+        }
+      ],
+      "lesson": "### Intuition\n\nZoom in on the bottom of any smooth valley and it looks like a parabola - exactly the energy of a spring. So however complicated a real force law is - a chemical bond, an atom in a crystal, a bead in an optical trap - as long as it rests near a stable point, small motions behave like a simple harmonic oscillator. This is why one can model a protein with thousands of atoms as a network of balls and springs and still capture its vibrations and fluctuations.\n\n### Precisely\n\nExpand the potential about an equilibrium $x_0$:\n\n$$U(x)=U(x_0)+U'(x_0)(x-x_0)+\\tfrac12 U''(x_0)(x-x_0)^2+\\cdots$$\n\nAt a stable equilibrium $U'(x_0)=0$, leaving $U\\approx U(x_0)+\\tfrac12 k\\,(x-x_0)^2$ with effective stiffness $k\\equiv U''(x_0)>0$.\n\n### Why it's true / how it works\n\nThe force is $-U'$, which vanishes at equilibrium, so there is no linear term. The next term is quadratic, and its coefficient is the curvature $U''(x_0)$. Newton's law becomes $m\\ddot x=-k(x-x_0)$, a harmonic oscillator with $\\omega=\\sqrt{k/m}$. The minimum condition guarantees $k>0$, so the motion is oscillatory rather than runaway.\n\n### Worked example\n\nModel a bond by the Lennard-Jones potential $U(r)=4\\epsilon[(\\sigma/r)^{12}-(\\sigma/r)^6]$. Setting $U'=0$ gives $r_{\\min}=2^{1/6}\\sigma$; the second derivative there is $U''(r_{\\min})=57.1\\,\\epsilon/\\sigma^2$. That single number is the effective spring constant, and $\\omega=\\sqrt{k/\\mu}$ (with $\\mu$ the reduced mass) is the bond's vibrational frequency - the basis of infrared spectroscopy.\n\n### Where it connects\n\nThe harmonic picture grounds **equipartition** ($\\tfrac12 k_BT$ per quadratic coordinate), **normal modes** (diagonalizing the Hessian of second derivatives), phonons, elastic-network models of proteins, and the quasi-harmonic free energy $\\propto\\tfrac12\\ln\\det H$. Crystallographic B-factors and the variance $k_BT/k$ of a trapped bead are direct harmonic readouts.\n\n### Watch out\n\nIt is a *local* approximation. Far from the minimum the neglected cubic and quartic (anharmonic) terms matter: they produce thermal expansion, finite phonon lifetimes, and ultimately bond breaking - things a pure parabola can never describe. A curvature that softens toward zero warns of an instability or phase transition, and a *negative* curvature marks a transition state, not a stable point.\n\n### Numbers & nuance\n\nIn many dimensions the expansion uses the Hessian matrix $H_{ij}=\\partial^2U/\\partial x_i\\partial x_j$; its eigenvalues are squared mode frequencies and its eigenvectors the normal modes. A single negative eigenvalue (one imaginary frequency) is the signature of a saddle point - the reaction coordinate of transition-state and Kramers theory - tying the harmonic approximation directly to chemical kinetics."
     }
   ]
 }
