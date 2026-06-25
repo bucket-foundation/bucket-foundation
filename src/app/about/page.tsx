@@ -33,6 +33,18 @@ export default function Page() {
       </div>
 
       <h2 className="font-serif-display text-3xl text-[color:var(--parchment)] mt-16 mb-6">
+        Why education — the founding research.
+      </h2>
+      <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">
+        <p>
+          Bucket exists to <strong className="text-[color:var(--parchment)]">reform education</strong> — and reform that is not grounded in evidence is opinion. The founding research is the <a href="https://github.com/bucket-foundation/education-atlas" target="_blank" rel="noreferrer" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">education-atlas</a>: 78,326 observations finding that for five thousand years every knowledge technology widened access to <em>consume</em> knowledge and none widened access to <em>produce</em> it — leaving 99.86% of humanity only ever consuming, and just ~0.14% reaching the frontier where it is produced.
+        </p>
+        <p>
+          <Link href="/mission" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Read the mission</Link> for the full evidence — the three crises, the 270× access cliff, the consume-vs-produce gap — and an honest map of what Bucket reforms (the knowledge layer) and what it explicitly does not (schooling logistics, K-12 funding, the floor-access crisis).
+        </p>
+      </div>
+
+      <h2 className="font-serif-display text-3xl text-[color:var(--parchment)] mt-16 mb-6">
         History, briefly.
       </h2>
       <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">

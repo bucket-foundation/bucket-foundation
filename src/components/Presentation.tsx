@@ -485,6 +485,14 @@ export default function Presentation() {
           <p className="mt-8 text-[color:var(--basalt-2)] text-[19px]">
             If that is you — the foundation is open.
           </p>
+          <p className="mt-4 text-[13px] small-caps tracking-[0.14em]">
+            <Link
+              href="/mission"
+              className="text-[color:var(--aegean-deep)] hover:text-[color:var(--basalt)] underline decoration-[color:var(--gold)] underline-offset-4"
+            >
+              why bucket reforms education — the founding research →
+            </Link>
+          </p>
           <div className="mt-14 flex justify-center gap-3 flex-wrap">
             <Link
               href="/canon"

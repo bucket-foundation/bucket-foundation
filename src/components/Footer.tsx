@@ -53,6 +53,7 @@ export default function Footer() {
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Get involved</div>
           <ul className="space-y-2 text-sm">
+            <li><Link href="/mission" className="hover:text-[color:var(--bone)] transition">Mission · reform education</Link></li>
             <li><Link href="/contribute" className="hover:text-[color:var(--bone)] transition">Contribute</Link></li>
             <li><Link href="/support" className="hover:text-[color:var(--bone)] transition">Support / fund</Link></li>
             <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Publish research</Link></li>
@@ -67,6 +68,8 @@ export default function Footer() {
             <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">bucket-foundation</a></li>
             <li><a href="https://github.com/bucket-foundation/x402-research-gateway" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">x402-gateway</a></li>
             <li><a href="https://github.com/bucket-foundation/research-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">research-atlas</a></li>
+            <li><a href="https://github.com/bucket-foundation/education-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">education-atlas</a></li>
+            <li><a href="https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">knowledge-access gradient</a></li>
             <li><a href="/feed.xml" className="hover:text-[color:var(--bone)] transition">RSS feed</a></li>
             <li><Link href="/manifesto" className="hover:text-[color:var(--bone)] transition">Manifesto</Link></li>
             <li><Link href="/governance" className="hover:text-[color:var(--bone)] transition">Governance</Link></li>
