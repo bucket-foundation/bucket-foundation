@@ -37,16 +37,18 @@ Folder: **https://drive.google.com/open?id=1Tt9e7spkQSQWm2V9SFRcNZ6bvZ-QlR9q**
 Duolingo, Brilliant, Khan, Math Academy (`how-it-works` shows the real product: diagnostic → knowledge-graph → tasks), Anki manual.
 
 ## Case-study completeness (per platform)
-| Platform | Captured | Gated / missing |
-|---|---|---|
-| **Duolingo** | ✅ **Complete** — onboarding (every step) + lesson + reward (`map/duolingo*`, video) | — |
-| **Brilliant** | landing + courses + **course detail = leveled path** (`map/brilliant-lesson/03-06`) | interactive problem-solving (age-gate/signup after preview) |
-| **Khan** | landing + exercise page + hint (`map/khan-exercise/`) | exercise buried behind donation/cookie modals; full flow needs login |
-| **Math Academy** | landing + `how-it-works` (product screenshots, `refs/d-mathacademy-how.png`) | **live app login-gated** (session expired) — our closest analog (diagnostic+graph+mastery) |
-| **Anki** | manual reference only | desktop app, not installed; conceptually = our FSRS engine |
-| **Apple HIG / Whop** | principles in `UX-CASE-STUDIES.md` | — (design refs, not apps to capture) |
+**Scope decision (founder, 2026-06-26): FREE platforms only — skip the paid ones.**
 
-**To finish the gated ones the reliable way:** screen-record them like Duolingo (Math Academy is the highest-value — it's the diagnostic→knowledge-graph→mastery analog).
+| Platform | Cost | Status |
+|---|---|---|
+| **Duolingo** | free | ✅ **Complete** — onboarding (every step) + lesson + reward (`map/duolingo*`, video) |
+| **Khan** | free | ✅ **Complete** — exercise + "Not quite!" feedback + hint + streak/level chrome (`map/khan-exercise/`) |
+| **Anki** | free / OSS | ✅ Captured — canonical UI from the official manual: review+grading (Again/Hard/Good/Easy), deck list, interface (`map/anki/`). Conceptually = our FSRS engine. |
+| **Brilliant** | **paid** | ⊘ **Excluded** (subscription). Have only landing + the leveled-path structure (`map/brilliant-lesson/`). |
+| **Math Academy** | **paid** | ⊘ **Excluded** (subscription). Have only landing + `how-it-works` product screenshots (`refs/d-mathacademy-how.png`). |
+| **Apple HIG / Whop** | — | ✅ principles in `UX-CASE-STUDIES.md` (design refs, not apps) |
+
+All **free** case studies are complete. Paid platforms intentionally left at landing-level.
 
 ## 🔓 Duolingo lesson + reward — CAPTURED (founder screen-recording)
 The Duolingo lesson + reward animations are **anti-bot-blocked for automation** (a guest `/learn` reloads to the splash; logged-in automation gets dropped between navigations). Resolved by a **founder screen recording** (`duolingo-lesson-reward.mp4`) → key frames in `map/duolingo-lesson/`. Brilliant's interactive lesson is still un-captured (same gating) — record it the same way if needed.
