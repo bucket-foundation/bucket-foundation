@@ -29,6 +29,7 @@ import {
 } from "@/lib/academy/profile";
 import type { BranchSummary } from "@/lib/academy/mastery";
 import MasteryMap from "./MasteryMap";
+import CredentialPanel from "./CredentialPanel";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -167,6 +168,11 @@ export default async function MasteryProfilePage({
         {profile.framing.disclaimer}
       </div>
 
+      {/* bkt-52p: verifiable-credential surface. Owner sees "issue"; everyone
+          sees a "Verify" affordance (the viral backlink). Client island —
+          ownership + issuance are re-verified server-side from the token. */}
+      <CredentialPanel handle={profile.handle} />
+
       {profile.branches.length === 0 ? (
         <div className="mp-empty">
           No public branches yet — {name} is just getting started.
@@ -297,9 +303,10 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
           <p className="mp-evidence-note">
             Each mastered concept here was reached by retrieval with feedback and
             re-demonstrated over time (spaced repetition), not by reading or
-            clicking through. A full evidence trail — the actual derivations,
-            teach-backs, and spaced-verification history — and a cryptographic{" "}
-            <em>Verify</em> credential are coming next.
+            clicking through. Concepts demonstrated to Derive or Teach-back, with a
+            spaced re-demonstration trail, can be issued as a cryptographically
+            signed credential (Open Badges 3.0 / W3C VC) that attests evidence of
+            demonstrated mastery — not a score.
           </p>
           {topMastered.length > 0 && (
             <ul className="mp-evidence-list">
@@ -312,13 +319,12 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
               ))}
             </ul>
           )}
-          <div className="mp-verify" aria-disabled="true">
+          <a className="mp-verify" href="/verify">
             <span className="mp-verify-ico">⛉</span>
             <span className="mp-verify-txt">
-              Verify (Open Badges 3.0 / W3C VC)
+              Verify a credential (Open Badges 3.0 / W3C VC)
             </span>
-            <span className="mp-verify-soon">coming soon</span>
-          </div>
+          </a>
         </div>
       </details>
 
@@ -410,9 +416,9 @@ function Styles() {
 .mp-evidence-list{list-style:none;padding:0;margin:8px 0;display:flex;flex-direction:column;gap:5px;}
 .mp-evidence-list li,.mp-inspect-list li{font-size:13.5px;display:flex;align-items:center;gap:6px;}
 .mp-evi-depth,.mp-ic-meta{margin-left:auto;font-size:11px;color:var(--ink-faint);font-variant-numeric:tabular-nums;}
-.mp-verify{display:inline-flex;align-items:center;gap:8px;margin-top:8px;padding:8px 12px;border:1px dashed var(--line);border-radius:10px;color:var(--ink-faint);font-size:13px;}
+.mp-verify{display:inline-flex;align-items:center;gap:8px;margin-top:8px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;color:var(--aegean-deep);font-size:13px;text-decoration:none;}
+.mp-verify:hover{border-color:rgba(46,107,107,.4);background:rgba(46,107,107,.06);}
 .mp-verify-ico{color:var(--gold-deep);font-size:15px;}
-.mp-verify-soon{font-size:10px;text-transform:uppercase;letter-spacing:.08em;background:var(--bone-2);padding:2px 7px;border-radius:999px;}
 .mp-inspect-list{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:6px;}
 .mp-ic-title{flex:0 1 auto;}
 .mp-foot{text-align:center;margin-top:34px;}
