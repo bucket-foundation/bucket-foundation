@@ -6,8 +6,12 @@ gdrive (too large for the repo); **stills** live here.
 
 ## 🎥 Videos (gdrive)
 Folder: **https://drive.google.com/open?id=1Tt9e7spkQSQWm2V9SFRcNZ6bvZ-QlR9q**
-- `duolingo-onboarding.webm` — Duolingo's logged-out onboarding funnel: mascot "Hi there! I'm Duo!" welcome → single green CONTINUE → language picker → goal → "how did you hear" choice screen. Note the **do-first, one-decision-per-screen, progress-bar, friendly-motion** pacing.
+- `duolingo-onboarding-full.webm` (≈4 min) — **the ENTIRE Duolingo onboarding, end to end**, into the first lesson. Every step (see below). The reference for do-first onboarding + how a language course removes ambiguity.
 - `our-academy.webm` — our Academy: 6-slide intro carousel → Skip → home → Study & Learn (reading) → drill → MAP / PROGRESS tabs. Note: **calm, but the home is a menu and the default is reading.**
+
+### Duolingo onboarding — every step (captured, `map/duolingo-onboarding-full/`)
+`00 landing` → `01 language-picker` ("I want to learn…") → `04 how-did-you-hear` → `05 learning-reason` (the "why") → `06 proficiency-placement` ("How much Spanish do you know?" — self-rated A1→C1) → `07 course-overview` → `08 daily-goal` → `09 notification-primer` → `10 choose-path` ("Start from scratch") → `13 first-lesson` (**"NEW WORD — Which one of these is 'tea'?"** with 3 image tiles + hearts + CHECK).
+**The crux for our language fix:** Duolingo's *first* rep is a **3-image multiple-choice you cannot fail**; our language deck's first rep is **cold typed recall** ("type `oro`"). That single difference is most of why ours "feels confusing."
 
 ## 🖼 Stills
 
