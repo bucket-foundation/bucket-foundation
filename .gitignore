@@ -79,6 +79,8 @@ feed/2026-*
 # paper-01 figures were missing in production. Keep these tracked.
 !public/papers/**/*.png
 !public/education/**/*.png
+# …and the UX research captures (evidence for the UX gap analysis).
+!learning/research/ux/captures/**/*.png
 
 # Trained ML artifacts.
 # Large weights go to HuggingFace Hub for collaborators (see REPRODUCE.md):
