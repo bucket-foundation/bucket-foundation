@@ -193,11 +193,58 @@ for (const b of blocks) {
 (chosen || drillBtn).click();
 await sleep(20);
 
-// ---- the word drill renders a typed input ----
+// ---- NEW: the drill now SEQUENCES exercises by difficulty (bkt-2ot redesign):
+//      (a) multiple-choice recognition → (b) word-bank assembly → (c) typed recall.
+// A brand-new word (mastery 0) starts at the multiple-choice stage. Advance through
+// each stage to reach the typed drill (the existing accent/typo-tolerant recall). ----
+
+// The atom we're drilling, derived from whatever stage is on screen.
+let cur = atom;
+// Stage (a): multiple choice — pick the correct word, then Continue.
+let mc = appRoot.querySelector(".lang-mc");
+assert("can't-fail multiple-choice is the FIRST exposure (recognition)", !!mc);
+if (mc) {
+  // find the option whose text matches the chosen atom's target word
+  cur = findCurrentAtomFromMC() || cur;
+  const correctWord = (cur.forms[target] && cur.forms[target].word) || "";
+  const opts = appRoot.querySelectorAll(".lang-mc .mc-opt");
+  assert("multiple choice offers options with at least one distractor", opts.length >= 2);
+  let picked = null;
+  for (const o of opts) { if ((o.textContent || "").includes(correctWord)) { picked = o; break; } }
+  (picked || opts[0]).click();
+  await sleep(10);
+  assert("correct multiple-choice shows green 'Correct!' feedback", !!appRoot.querySelector(".lang-mc .lr-head.correct"));
+  const mcCont = appRoot.querySelector(".lang-mc .lr-actions .btn.primary");
+  assert("multiple choice shows a Continue button", !!mcCont);
+  if (mcCont) mcCont.click();
+  await sleep(10);
+}
+
+// Stage (b): word-bank assembly (if the word is long enough). Use "Show me → continue"
+// to advance deterministically to the typed stage without re-implementing tile order.
+let bank = appRoot.querySelector(".lang-bank");
+if (bank) {
+  assert("word-bank assembly stage renders tappable tiles", appRoot.querySelectorAll(".lang-bank .bank-tile").length > 0);
+  // submit nothing → gentle "Not quite" → "Show me → continue"
+  const bankCheck = appRoot.querySelector(".lang-bank .bank-actions .btn.primary");
+  if (bankCheck) bankCheck.click();
+  await sleep(10);
+  const showMe = appRoot.querySelectorAll(".lang-bank .lr-actions .btn.primary");
+  if (showMe.length) showMe[showMe.length - 1].click(); // "Show me → continue"
+  await sleep(10);
+}
+
+function findCurrentAtomFromMC() {
+  const q = appRoot.querySelector(".lang-mc .q");
+  const txt = q ? q.textContent : "";
+  return E.atoms.find((a) => txt.includes(a.gloss));
+}
+
+// ---- the typed-recall drill renders a typed input (stage c) ----
 let drill = appRoot.querySelector(".lang-drill");
 let input = appRoot.querySelector(".lang-input");
 let form = appRoot.querySelector(".lang-typed");
-assert("language word drill renders a typed input", !!(drill && input && form));
+assert("typed-recall drill (hardest stage) renders a typed input", !!(drill && input && form));
 
 // Which atom did we actually land on? read the prompt to map back.
 // Safer: use the atom we navigated to via session.
@@ -210,7 +257,7 @@ function findCurrentAtom() {
   const txt = q ? q.textContent : "";
   return E.atoms.find((a) => txt.includes(a.gloss)) || atom;
 }
-let cur = findCurrentAtom();
+cur = findCurrentAtom();
 let word = (cur.forms[target] && cur.forms[target].word) || "";
 // build a transposition typo (swap first two distinct adjacent letters)
 function transpose(w) {

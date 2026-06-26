@@ -295,6 +295,69 @@ code { background: var(--card); padding: 2px 6px; border-radius: 6px; font-famil
 .lr-answer .a-label { font-family: var(--display); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-faint); }
 .lr-actions { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
 
+/* ---- Language: leveled course (bkt-2ot redesign) ---- */
+/* honesty banner — early-experiment framing, calm not alarming */
+.lang-honesty { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--gold-deep); border-radius: 12px; font-family: var(--serif); font-size: 13.5px; line-height: 1.45; color: var(--ink-dim); }
+.lang-honesty .lh-ico { font-size: 18px; color: var(--gold-deep); flex: none; line-height: 1.3; }
+.lang-honesty b { color: var(--ink); }
+
+/* language picker — explicit course setup */
+.lang-picker .picker-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px; margin-top: 8px; }
+.picker-kicker { font-family: var(--display); text-transform: uppercase; letter-spacing: .14em; font-size: 11px; color: var(--aegean); }
+.picker-h1 { font-family: var(--serif); font-size: 28px; letter-spacing: -.01em; margin: 4px 0 6px; }
+.picker-sub { font-family: var(--serif); font-size: 15px; color: var(--ink-faint); line-height: 1.5; margin-bottom: 18px; }
+.picker-field { margin-bottom: 18px; }
+.picker-label { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: var(--ink-dim); margin-bottom: 8px; }
+.picker-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.picker-opt { font-family: var(--serif); font-size: 16px; padding: 10px 16px; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--bg); color: var(--ink); cursor: pointer; transition: background .14s, border-color .14s, transform .1s; }
+.picker-opt:hover { background: var(--card-2); }
+.picker-opt:active { transform: scale(.97); }
+.picker-opt.on { background: var(--aegean); border-color: var(--aegean-deep); color: #F5F0E1; }
+.picker-start { margin-top: 6px; }
+.picker-start:disabled { opacity: .5; cursor: not-allowed; }
+
+/* level chip on the atom screen */
+.lang-level-chip { font-family: var(--display); text-transform: uppercase; letter-spacing: .08em; font-size: 11px; color: var(--gold-deep); margin: 2px 0 10px; }
+
+/* leveled path on home */
+.lang-path { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+.lvl-tile { display: flex; align-items: center; gap: 13px; width: 100%; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 13px 15px; cursor: pointer; font: inherit; color: var(--ink); transition: background .15s, border-color .15s, transform .1s; }
+.lvl-tile:hover { background: var(--card-2); }
+.lvl-tile:active { transform: scale(.995); }
+.lvl-tile.current { border-color: var(--aegean); border-left: 3px solid var(--aegean); }
+.lvl-tile.done { opacity: .82; }
+.lvl-badge { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; background: var(--bg-2); color: var(--ink-dim); font-family: var(--display); font-size: 15px; flex: none; }
+.lvl-tile.current .lvl-badge { background: var(--aegean); color: #F5F0E1; }
+.lvl-tile.done .lvl-badge { background: rgba(90,122,58,.18); color: var(--laurel-deep); }
+.lvl-body { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.lvl-name { font-family: var(--serif); font-weight: 600; font-size: 16px; letter-spacing: -.005em; }
+.lvl-meta { font-size: 12.5px; color: var(--ink-faint); }
+.lvl-bar { height: 5px; border-radius: 999px; background: var(--line); overflow: hidden; margin-top: 2px; }
+.lvl-bar i { display: block; height: 100%; background: var(--aegean); border-radius: 999px; transition: width .3s var(--ease-out, ease); }
+.lvl-tile.done .lvl-bar i { background: var(--laurel); }
+.lvl-go { color: var(--aegean-deep); font-size: 18px; flex: none; }
+
+/* multiple-choice recognition stage */
+.lang-mc .mc-options { display: flex; flex-direction: column; gap: 9px; margin-top: 14px; }
+.mc-opt { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; font-family: var(--serif); font-size: 19px; padding: 13px 16px; min-height: 52px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--bg); color: var(--ink); cursor: pointer; transition: background .14s, border-color .14s, transform .1s; }
+.mc-opt:hover { background: var(--card-2); }
+.mc-opt:active { transform: scale(.98); }
+.mc-opt .lang-audio-btn { margin-left: auto; }
+.mc-opt.mc-right { background: rgba(90,122,58,.16); border-color: var(--laurel); color: var(--laurel-deep); }
+.mc-opt.mc-wrong { background: rgba(138,100,26,.12); border-color: var(--amber); color: var(--amber); opacity: .8; }
+.mc-opt:disabled { cursor: default; }
+.mc-nudge { margin-top: 10px; font-family: var(--display); text-transform: uppercase; letter-spacing: .06em; font-size: 12px; color: var(--amber); }
+
+/* word-bank assembly stage */
+.lang-bank .bank-assembled { display: flex; flex-wrap: wrap; gap: 6px; min-height: 52px; margin-top: 14px; padding: 10px; border-radius: 12px; background: var(--bg); border: 1px dashed var(--line-strong); align-items: center; }
+.bank-chip { font-family: var(--serif); font-size: 20px; padding: 6px 12px; min-height: 40px; border: 1px solid var(--aegean); border-radius: 9px; background: var(--card); color: var(--ink); cursor: pointer; }
+.lang-bank .bank-tray { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.bank-tile { font-family: var(--serif); font-size: 20px; padding: 8px 14px; min-height: 48px; min-width: 44px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--bg); color: var(--ink); cursor: pointer; transition: background .12s, transform .1s, opacity .12s; }
+.bank-tile:hover { background: var(--card-2); }
+.bank-tile:active { transform: scale(.95); }
+.bank-tile.used { opacity: .28; cursor: default; }
+.bank-actions { margin-top: 14px; }
+
 /* ---- Ask the tutor (CTA on the atom screen) ---- */
 .tutor-cta { margin-top: 16px; }
 .tutor-cta-btn { width: 100%; display: flex; align-items: center; gap: 12px; text-align: left; background: var(--card); border: 1px solid var(--line-strong); border-left: 3px solid var(--aegean); border-radius: 12px; padding: 13px 15px; cursor: pointer; font: inherit; color: var(--ink); min-height: 48px; transition: background .16s var(--ease, ease), border-color .16s, transform .12s; }

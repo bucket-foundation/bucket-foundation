@@ -291,6 +291,9 @@
 
   /* ---------- screens ---------- */
   function screenHome() {
+    // Languages: force the explicit setup picker before anything (fix #1). No silent
+    // auto-Spanish default — the learner chooses target + known first, once.
+    if (isLang() && !langPrefChosen()) return screenLangPicker();
     const s = E.summary();
     const route = E.route();
     const dueReviews = route.filter((r) => r.kind === "review");
@@ -301,20 +304,53 @@
     const hero = el("div", "hero");
     const curBranch = currentBranch();
     const branchName = curBranch.pill.replace(/^\S+ · /, "");
-    hero.appendChild(el("div", "kicker", branchName + " · learn"));
-    hero.appendChild(el("h1", null, next.length ? "Keep learning." : "You've covered it all. 🎉"));
-    hero.appendChild(el("p", "sub",
-      s.introduced + " of " + s.total + " concepts started" +
-      (dueReviews.length ? " · " + dueReviews.length + " due to review" : "")));
-    const studyCta = el("button", "btn primary", "📖 Study & learn →");
-    studyCta.onclick = () => go("study");
-    hero.appendChild(studyCta);
-    if (dueReviews.length) {
-      const rev = el("button", "btn ghost hero-study", "Review " + dueReviews.length + " due →");
-      rev.onclick = () => startSession(dueReviews);
-      hero.appendChild(rev);
+    if (isLang()) {
+      // Course-style hero: name the languages, lead with the current level, retrieval-first.
+      const ls = langSettings();
+      const levels = langLevels();
+      const lv = langCurrentLevel(levels);
+      hero.appendChild(el("div", "kicker",
+        (LANG_NAMES[ls.target] || ls.target) + " · from " + (LANG_NAMES[ls.primaryKnown] || ls.primaryKnown)));
+      const allDone = !next.length;
+      hero.appendChild(el("h1", null, allDone ? "You've covered the deck. 🎉" : "Keep building your " + (LANG_NAMES[ls.target] || ls.target) + "."));
+      hero.appendChild(el("p", "sub",
+        (lv ? "Level " + lv.n + " · " + lv.label + " — " + lv.done + "/" + lv.total + " words" : (s.introduced + " of " + s.total + " words started")) +
+        (dueReviews.length ? " · " + dueReviews.length + " to review" : "")));
+      // primary verb = practice (retrieval-first), starting at the current level
+      const startCta = el("button", "btn primary", (lv && lv.done ? "Continue level " + lv.n + " →" : "Start level " + (lv ? lv.n : 1) + " →"));
+      startCta.onclick = () => {
+        const queue = (lv ? lv.ids : next).filter((id) => !E.cardFor(id)).slice(0, LANG_LEVEL_SIZE);
+        if (queue.length) startSession(queue.map((id) => ({ id, kind: "new" })));
+        else if (dueReviews.length) startSession(dueReviews);
+        else go("study");
+      };
+      hero.appendChild(startCta);
+      const browse = el("button", "btn ghost hero-study", "Browse all words →");
+      browse.onclick = () => go("study");
+      hero.appendChild(browse);
+      if (dueReviews.length) {
+        const rev = el("button", "btn ghost hero-study", "Review " + dueReviews.length + " due →");
+        rev.onclick = () => startSession(dueReviews);
+        hero.appendChild(rev);
+      }
+    } else {
+      hero.appendChild(el("div", "kicker", branchName + " · learn"));
+      hero.appendChild(el("h1", null, next.length ? "Keep learning." : "You've covered it all. 🎉"));
+      hero.appendChild(el("p", "sub",
+        s.introduced + " of " + s.total + " concepts started" +
+        (dueReviews.length ? " · " + dueReviews.length + " due to review" : "")));
+      const studyCta = el("button", "btn primary", "📖 Study & learn →");
+      studyCta.onclick = () => go("study");
+      hero.appendChild(studyCta);
+      if (dueReviews.length) {
+        const rev = el("button", "btn ghost hero-study", "Review " + dueReviews.length + " due →");
+        rev.onclick = () => startSession(dueReviews);
+        hero.appendChild(rev);
+      }
     }
     wrap.appendChild(hero);
+    // honest framing right under the hero on the language branch (fix #5)
+    if (isLang()) wrap.appendChild(langHonestyBanner());
 
     // Placement diagnostic entry — most prominent on a fresh branch (nothing started),
     // but always available. Honest framing: a starting estimate, fully skippable.
@@ -334,6 +370,38 @@
     stats.appendChild(stat("◎", s.introduced + "/" + s.total, "started"));
     stats.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(stats);
+
+    // Languages: a leveled PATH (fix #5) instead of a flat word list — units the
+    // learner can see progress through. Each level tile starts a session of its words.
+    if (isLang()) {
+      const levels = langLevels();
+      const cur = langCurrentLevel(levels);
+      const path = el("div", "lang-path");
+      path.appendChild(el("div", "section-label", "Your path"));
+      levels.forEach((lv) => {
+        const complete = lv.done >= lv.total;
+        const isCur = cur && lv.n === cur.n;
+        const tile = el("button", "lvl-tile" + (complete ? " done" : "") + (isCur ? " current" : ""));
+        const pct = Math.round((lv.done / lv.total) * 100);
+        tile.innerHTML =
+          '<span class="lvl-badge">' + (complete ? "✓" : lv.n) + "</span>" +
+          '<span class="lvl-body"><span class="lvl-name">Level ' + lv.n + " · " + escapeHtml(lv.label) + "</span>" +
+          '<span class="lvl-meta">' + lv.done + "/" + lv.total + " words" + (lv.mastered ? " · " + lv.mastered + " mastered" : "") + "</span>" +
+          '<span class="lvl-bar"><i style="width:' + pct + '%"></i></span></span>' +
+          '<span class="lvl-go">' + (complete ? "↺" : "→") + "</span>";
+        tile.onclick = () => {
+          // start with the not-yet-learned words first; if all learned, review them
+          let queue = lv.ids.filter((id) => !E.cardFor(id));
+          if (!queue.length) queue = lv.ids; // revisit a completed level
+          startSession(queue.slice(0, LANG_LEVEL_SIZE).map((id) => ({ id, kind: E.cardFor(id) ? "review" : "new" })));
+        };
+        path.appendChild(tile);
+      });
+      wrap.appendChild(path);
+      wrap.appendChild(nav("home"));
+      katex(wrap);
+      return wrap;
+    }
 
     // Continue learning — next concepts in learning order, NO daily cap. Always something.
     if (next.length) {
@@ -485,17 +553,53 @@
     // language atoms use `gloss`; give them a display title so shared UI works.
     E.atoms.forEach((a) => { if (!a.title) a.title = a.gloss || a.id; });
   }
-  function langSettings() {
-    const langs = (E.meta && E.meta.languages) || ["en"];
+  // Read the raw persisted language preference (or {} if none).
+  function langPrefRaw() {
     let p = {};
     try { p = JSON.parse(localStorage.getItem(LANG_PREF_KEY)) || {}; } catch (e) {}
-    let target = p.target && langs.includes(p.target) ? p.target : (langs.find((l) => l !== "en") || langs[0]);
-    let known = (p.known || ["en"]).filter((l) => langs.includes(l) && l !== target);
-    if (!known.length) known = langs.filter((l) => l !== target).slice(0, 1);
-    return { target, known, langs };
+    return p && typeof p === "object" ? p : {};
   }
-  function setLangPref(target, known) {
-    try { localStorage.setItem(LANG_PREF_KEY, JSON.stringify({ target, known })); } catch (e) {}
+  // Has the learner ever made an explicit "I want to learn ___ / I already know ___"
+  // choice? Drives the first-run picker (fix #1 — explicit setup, not silent defaults).
+  function langPrefChosen() {
+    const p = langPrefRaw();
+    return !!(p && p.chosen && p.target);
+  }
+  // Polyglot mode = the advanced "show the word in EVERY language I know" view.
+  // OFF by default (fix #2 — beginners see one clean source→target mapping).
+  function langPolyglot() {
+    return !!langPrefRaw().polyglot;
+  }
+  function langSettings() {
+    const langs = (E.meta && E.meta.languages) || ["en"];
+    const p = langPrefRaw();
+    let target = p.target && langs.includes(p.target) ? p.target : (langs.find((l) => l !== "en") || langs[0]);
+    // `known` = the languages the learner already knows. We keep the full list (so the
+    // settings UI + advanced polyglot view can use it), but beginners are SHOWN only the
+    // first (the primary source language) unless polyglot mode is on. Default known = [en].
+    let known = (Array.isArray(p.known) ? p.known : ["en"]).filter((l) => langs.includes(l) && l !== target);
+    if (!known.length) known = (langs.includes("en") && "en" !== target ? ["en"] : langs.filter((l) => l !== target).slice(0, 1));
+    // The single primary source language a beginner learns FROM (fix #2).
+    const primaryKnown = p.primaryKnown && known.includes(p.primaryKnown) ? p.primaryKnown : known[0];
+    // What the per-card reference list should show: just the primary by default; all
+    // known languages when polyglot (advanced) mode is on.
+    const shown = langPolyglot() ? known : (primaryKnown ? [primaryKnown] : known.slice(0, 1));
+    return { target, known, shown, primaryKnown, polyglot: langPolyglot(), langs };
+  }
+  // Persist the learner's choice. `opts` may carry { primaryKnown, polyglot, chosen }.
+  // Marks the pref as explicitly chosen so the first-run picker doesn't reappear.
+  function setLangPref(target, known, opts) {
+    opts = opts || {};
+    const prev = langPrefRaw();
+    const kn = Array.isArray(known) && known.length ? known : (prev.known || ["en"]);
+    const rec = {
+      target,
+      known: kn,
+      primaryKnown: opts.primaryKnown || (kn.includes(prev.primaryKnown) ? prev.primaryKnown : kn[0]),
+      polyglot: opts.polyglot != null ? !!opts.polyglot : !!prev.polyglot,
+      chosen: opts.chosen != null ? !!opts.chosen : (prev.chosen || false),
+    };
+    try { localStorage.setItem(LANG_PREF_KEY, JSON.stringify(rec)); } catch (e) {}
   }
 
   // "Ask the tutor" — opens a focused, grounded Socratic chat scoped to this
@@ -555,37 +659,14 @@
     return wrap;
   }
 
-  /* ---------- language (polyglot) atom ---------- */
-  function renderLangAtom(id, peek) {
-    const a = E.byId[id];
-    const { target, known } = langSettings();
-    const tf = a.forms[target] || {};
-    const wrap = el("div", "screen atom lang");
-    wrap.appendChild(header());
-    const top = el("div", "atom-top");
-    const back = el("button", "ghost", "‹ Route"); back.onclick = () => go("home");
-    top.appendChild(back);
-    top.appendChild(el("span", "prog", session ? session.i + 1 + " / " + session.queue.length : ""));
-    wrap.appendChild(top);
-
-    const card = el("div", "art lang-card shell-" + a.shell);
-    card.innerHTML =
-      '<div class="art-badge">' + escapeHtml(LANG_NAMES[target] || target) + "</div>" +
-      '<div class="lang-word-row"><span class="lang-word">' + escapeHtml(tf.word || "—") + "</span></div>" +
-      (tf.ipa ? '<div class="lang-ipa">/' + escapeHtml(tf.ipa) + "/</div>" : "") +
-      '<div class="art-title">' + escapeHtml(a.gloss || a.title || "") +
-        (a.pos ? " · " + escapeHtml(a.pos) : "") + (tf.gender ? " · " + escapeHtml(tf.gender) : "") + "</div>";
-    // 🔊 listen on the target word (on-device Web Speech; hidden if unavailable)
-    if (tf.word && window.LangAudio && window.LangAudio.supported()) {
-      const row = card.querySelector(".lang-word-row");
-      if (row) row.appendChild(window.LangAudio.button(tf.word, target, { label: "Hear " + tf.word + " in " + (LANG_NAMES[target] || target), cls: "big" }));
-    }
-    wrap.appendChild(card);
-
-    const body = el("div", "atom-body");
+  // Build the per-card cross-language reference rows. By default (beginner) this shows
+  // ONLY the primary source language (fix #2 — one clean source→target). When polyglot
+  // (advanced) mode is on, it shows every known language. `langs` = which to render.
+  function langRefSection(a, langsToShow) {
     const ref = el("div", "lang-ref");
-    ref.appendChild(el("div", "section-label", "In the languages you know"));
-    known.forEach((l) => {
+    ref.appendChild(el("div", "section-label",
+      langsToShow.length > 1 ? "In the languages you know" : "In " + (LANG_NAMES[langsToShow[0]] || langsToShow[0])));
+    langsToShow.forEach((l) => {
       const f = a.forms[l]; if (!f) return;
       const r = el("div", "lang-row",
         '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span>" +
@@ -595,24 +676,317 @@
       }
       ref.appendChild(r);
     });
-    body.appendChild(ref);
-    if (a.note) body.appendChild(el("div", "lang-note", escapeHtml(a.note)));
-    if (a.example) {
-      const ex = el("div", "lang-ex");
-      ex.appendChild(el("div", "section-label", "Example"));
-      [target].concat(known).forEach((l) => {
-        if (!a.example[l]) return;
-        ex.appendChild(el("div", "ex-row",
-          '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span> " + escapeHtml(a.example[l])));
-      });
-      body.appendChild(ex);
-    }
-    wrap.appendChild(body);
+    return ref;
+  }
 
-    if (!peek) wrap.appendChild(langDrill(a, target, known));
-    else { const cont = el("button", "btn primary wide", "Got it →"); cont.onclick = () => { if (!E.cardFor(id)) E.grade(id, 3, "recall"); go("home"); }; wrap.appendChild(cont); }
+  /* ---------- language atom ---------- */
+  function renderLangAtom(id, peek) {
+    const a = E.byId[id];
+    const ls = langSettings();
+    const target = ls.target, known = ls.known, shown = ls.shown;
+    const tf = a.forms[target] || {};
+    const wrap = el("div", "screen atom lang");
+    wrap.appendChild(header());
+    const top = el("div", "atom-top");
+    const back = el("button", "ghost", "‹ Route"); back.onclick = () => go("home");
+    top.appendChild(back);
+    top.appendChild(el("span", "prog", session ? session.i + 1 + " / " + session.queue.length : ""));
+    wrap.appendChild(top);
+
+    // Level badge (fix #5 — "where am I"). Small, calm, serif.
+    wrap.appendChild(el("div", "lang-level-chip", "Level " + langLevelOf(id) + " · " + (LANG_NAMES[target] || target)));
+
+    if (peek) {
+      // ---- PEEK / preview (browsing from the path): reveal the full card, no spoiler worry.
+      const card = el("div", "art lang-card shell-" + a.shell);
+      card.innerHTML =
+        '<div class="art-badge">' + escapeHtml(LANG_NAMES[target] || target) + "</div>" +
+        '<div class="lang-word-row"><span class="lang-word">' + escapeHtml(tf.word || "—") + "</span></div>" +
+        (tf.ipa ? '<div class="lang-ipa">/' + escapeHtml(tf.ipa) + "/</div>" : "") +
+        '<div class="art-title">' + escapeHtml(a.gloss || a.title || "") +
+          (a.pos ? " · " + escapeHtml(a.pos) : "") + (tf.gender ? " · " + escapeHtml(tf.gender) : "") + "</div>";
+      if (tf.word && window.LangAudio && window.LangAudio.supported()) {
+        const row = card.querySelector(".lang-word-row");
+        if (row) row.appendChild(window.LangAudio.button(tf.word, target, { label: "Hear " + tf.word + " in " + (LANG_NAMES[target] || target), cls: "big" }));
+      }
+      wrap.appendChild(card);
+
+      const body = el("div", "atom-body");
+      body.appendChild(langRefSection(a, shown));
+      if (a.note) body.appendChild(el("div", "lang-note", escapeHtml(a.note)));
+      if (a.example) {
+        const ex = el("div", "lang-ex");
+        ex.appendChild(el("div", "section-label", "Example"));
+        [target].concat(shown).forEach((l) => {
+          if (!a.example[l]) return;
+          ex.appendChild(el("div", "ex-row",
+            '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span> " + escapeHtml(a.example[l])));
+        });
+        body.appendChild(ex);
+      }
+      wrap.appendChild(body);
+      const cont = el("button", "btn primary wide", "Got it →");
+      cont.onclick = () => { if (!E.cardFor(id)) E.grade(id, 3, "recall"); go("home"); };
+      wrap.appendChild(cont);
+      wrap.appendChild(deeperSection(a));
+      mount(wrap);
+      return;
+    }
+
+    // ---- DRILL mode: a sequenced exercise (fix #3). We do NOT reveal the target word
+    // up front (that would defeat recall) — instead a prompt asking for the meaning,
+    // then the sequenced exercise stages render below. The full reference card is shown
+    // by each stage AFTER the learner answers.
+    const stage = el("div", "lang-stage");
+    wrap.appendChild(stage);
     wrap.appendChild(deeperSection(a));
     mount(wrap);
+    langExercise(a, target, known, shown, stage);
+  }
+
+  // Sequenced language exercise (fix #3 + #4). Difficulty ramps WITHIN an atom:
+  //   (a) image-or-word multiple choice  → recognition, can't-fail FIRST exposure
+  //   (b) word-bank / tap-the-tokens     → assembly with support
+  //   (c) typed recall (langDrill)       → hardest, last; the single FSRS signal
+  // The stage shown to START at scales with mastery (a brand-new word starts at MC; a
+  // well-known word jumps straight to typed recall — no babying a learner who's got it).
+  // MC + word-bank are warm-ups (gentle amber/green feedback, no FSRS grade); the typed
+  // drill is the one that grades + schedules (and chains the sentence cloze), exactly as
+  // before. So FSRS scheduling is unchanged — we only ADD recognition ramps in front.
+  function langExercise(a, target, known, shown, mountEl) {
+    const m = E.masteryFor(a.id);
+    // stage order; entry point by mastery
+    const stages = ["mc", "bank", "typed"];
+    let idx = m >= 0.7 ? 2 : m >= 0.35 ? 1 : 0;
+
+    function clear() {
+      // shim-safe: drop all children + any innerHTML so the next stage is the only content
+      if (mountEl.children) Array.prototype.slice.call(mountEl.children).forEach((c) => c.remove());
+      mountEl.innerHTML = "";
+    }
+    function advance() {
+      idx++;
+      if (idx >= stages.length) return; // typed stage drives next() itself
+      runStage();
+    }
+    function runStage() {
+      clear();
+      const s = stages[idx];
+      if (s === "mc") {
+        const node = langMultipleChoice(a, target, known, shown, advance);
+        if (!node) { advance(); return; } // not enough distractors → skip to assembly
+        mountEl.appendChild(node);
+      } else if (s === "bank") {
+        const node = langWordBank(a, target, known, shown, advance);
+        if (!node) { advance(); return; } // word too short to assemble → skip to typed
+        mountEl.appendChild(node);
+      } else {
+        // typed recall — the existing accent/typo-tolerant drill; it grades FSRS and
+        // chains the sentence cloze, then advances the session via next().
+        mountEl.appendChild(langDrill(a, target, known));
+      }
+    }
+    runStage();
+  }
+
+  // Gather sibling atoms in the SAME category as distractors for multiple choice /
+  // word-bank decoys (fix #3 — "distractors drawn from sibling atoms in the same deck").
+  function langSiblings(a, target, n) {
+    const want = (a.forms[target] || {}).word || "";
+    const sameCat = E.atoms.filter((x) =>
+      x.id !== a.id && x.category === a.category && x.forms && x.forms[target] && x.forms[target].word && x.forms[target].word !== want);
+    // fall back to any atom if the category is too small
+    let pool = sameCat;
+    if (pool.length < n) {
+      const extra = E.atoms.filter((x) => x.id !== a.id && x.forms && x.forms[target] && x.forms[target].word && x.forms[target].word !== want && pool.indexOf(x) < 0);
+      pool = pool.concat(shuffle(extra));
+    }
+    return shuffle(pool).slice(0, n);
+  }
+
+  function shuffle(arr) {
+    arr = arr.slice();
+    for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = arr[i]; arr[i] = arr[j]; arr[j] = t; }
+    return arr;
+  }
+
+  // Stage (a): multiple-choice recognition — "Which one is '<gloss>'?" → pick the
+  // target word from options. Can't-fail first exposure. Gentle feedback: green Correct
+  // → continue; amber Not-quite → reveal the right one + try again. No FSRS grade.
+  // Returns null if there aren't enough distinct options (caller falls through).
+  function langMultipleChoice(a, target, known, shown, done) {
+    const tf = a.forms[target] || {};
+    const correct = tf.word || "";
+    if (!correct) return null;
+    const distractors = langSiblings(a, target, 2).map((x) => x.forms[target].word);
+    if (distractors.length < 1) return null; // need at least one decoy
+    const options = shuffle([correct].concat(distractors));
+
+    const box = el("div", "drill lang-drill lang-mc");
+    box.appendChild(el("div", "drill-label", "Choose · " + (LANG_NAMES[target] || target)));
+    // anchor the meaning via the primary known language (fix #2 — one source)
+    const hintLang = shown[0] || known[0];
+    const hint = hintLang && a.forms[hintLang];
+    box.appendChild(el("div", "q",
+      "Which one means <b>“" + escapeHtml(a.gloss || a.title || "") + "”</b>" +
+      (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
+      " in " + escapeHtml(LANG_NAMES[target] || target) + "?"));
+
+    const opts = el("div", "mc-options");
+    let answered = false;
+    const result = el("div", "lang-result hidden");
+
+    options.forEach((w) => {
+      const o = el("button", "mc-opt", escapeHtml(w));
+      o.type = "button";
+      // 🔊 hear the option (recognition is helped by sound)
+      if (window.LangAudio && window.LangAudio.supported()) {
+        o.appendChild(window.LangAudio.button(w, target, { label: "Hear " + w, cls: "inline" }));
+      }
+      o.onclick = () => {
+        if (answered) return;
+        const right = w === correct;
+        if (!right) {
+          // gentle, non-punishing: amber nudge, mark the wrong choice, let them try again
+          if (window.haptic) haptic("wrong");
+          o.classList.add("mc-wrong");
+          o.disabled = true;
+          box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
+          if (!box.querySelector(".mc-nudge")) box.appendChild(el("div", "mc-nudge", "Not quite — try another."));
+          return;
+        }
+        answered = true;
+        if (window.haptic) haptic("correct");
+        opts.querySelectorAll(".mc-opt").forEach((b) => { b.disabled = true; });
+        o.classList.add("mc-right");
+        const nudge = box.querySelector(".mc-nudge"); if (nudge) nudge.remove();
+        // green "Correct!" + continue (Duolingo/Khan style)
+        result.appendChild(el("div", "lr-head correct",
+          '<span class="lr-icon">✓</span><span class="lr-label">Correct!</span>'));
+        const ans = el("div", "lr-answer");
+        ans.innerHTML = '<span class="a-label">' + escapeHtml(a.gloss || "") + "</span> " +
+          '<span class="lang-ans">' + escapeHtml(correct) + (tf.ipa ? " <i>/" + escapeHtml(tf.ipa) + "/</i>" : "") + "</span>";
+        if (window.LangAudio && window.LangAudio.supported()) ans.appendChild(window.LangAudio.button(correct, target, { label: "Hear it", cls: "inline" }));
+        result.appendChild(ans);
+        const actions = el("div", "lr-actions");
+        const cont = el("button", "btn primary wide", "Continue →");
+        cont.onclick = done;
+        actions.appendChild(cont);
+        result.appendChild(actions);
+        result.classList.remove("hidden");
+        try { cont.focus(); } catch (e) {}
+      };
+      opts.appendChild(o);
+    });
+    box.appendChild(opts);
+    box.appendChild(result);
+    return box;
+  }
+
+  // Stage (b): word-bank / tap-the-tokens assembly — like Duolingo's "Write this in
+  // <lang>" with tappable letter/syllable tiles. The learner builds the target word by
+  // tapping tiles (the correct letters + a few decoy letters), then checks. Reuses the
+  // accent/typo-tolerant grader. Gentle feedback. No FSRS grade (the typed drill does that).
+  // Returns null for very short words (≤2 chars) where assembly adds no value.
+  function langWordBank(a, target, known, shown, done) {
+    const tf = a.forms[target] || {};
+    const correct = tf.word || "";
+    if (correct.length < 3) return null;
+
+    const box = el("div", "drill lang-drill lang-bank");
+    box.appendChild(el("div", "drill-label", "Build it · " + (LANG_NAMES[target] || target)));
+    const hintLang = shown[0] || known[0];
+    const hint = hintLang && a.forms[hintLang];
+    box.appendChild(el("div", "q",
+      "Spell <b>“" + escapeHtml(a.gloss || a.title || "") + "”</b>" +
+      (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
+      " in " + escapeHtml(LANG_NAMES[target] || target) + " — tap the tiles in order:"));
+
+    // tokens = the word's characters (spaces kept as a visible gap), plus a few decoy
+    // letters drawn from a sibling word so it isn't a trivial in-order tap.
+    const letters = Array.from(correct);
+    const sib = langSiblings(a, target, 1)[0];
+    const decoySrc = sib ? Array.from(sib.forms[target].word) : [];
+    const decoys = shuffle(decoySrc).filter((c) => c.trim()).slice(0, Math.min(3, Math.max(1, Math.round(letters.length / 3))));
+    const tiles = shuffle(letters.concat(decoys));
+
+    const assembled = el("div", "bank-assembled");
+    const tray = el("div", "bank-tray");
+    const result = el("div", "lang-result hidden");
+    let built = []; // [{ch, tileEl}]
+    let done2 = false;
+
+    function refresh() {
+      assembled.innerHTML = "";
+      built.forEach((b, i) => {
+        const chip = el("button", "bank-chip", escapeHtml(b.ch === " " ? "␣" : b.ch));
+        chip.type = "button";
+        chip.onclick = () => { if (done2) return; b.tileEl.disabled = false; b.tileEl.classList.remove("used"); built.splice(i, 1); refresh(); };
+        assembled.appendChild(chip);
+      });
+    }
+    tiles.forEach((ch) => {
+      const t = el("button", "bank-tile", escapeHtml(ch === " " ? "␣" : ch));
+      t.type = "button";
+      t.onclick = () => { if (done2 || t.disabled) return; t.disabled = true; t.classList.add("used"); built.push({ ch, tileEl: t }); refresh(); };
+      tray.appendChild(t);
+    });
+
+    box.appendChild(assembled);
+    box.appendChild(tray);
+
+    const form = el("div", "bank-actions");
+    const check = el("button", "btn primary wide", "Check →");
+    check.type = "button";
+    function finish() {
+      if (done2) return;
+      const typed = built.map((b) => b.ch).join("");
+      const res = checkLangAnswer(typed, correct, target);
+      if (res.verdict === "wrong") {
+        // gentle: amber, reveal, offer "show me" / try again — never harsh (fix #4)
+        if (window.haptic) haptic("wrong");
+        box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
+        result.innerHTML = "";
+        result.appendChild(el("div", "lr-head wrong",
+          '<span class="lr-icon">·</span><span class="lr-label">Not quite — try again</span>'));
+        const ans = el("div", "lr-answer");
+        ans.innerHTML = '<span class="a-label">It\'s</span> <span class="lang-ans">' + escapeHtml(correct) + "</span>";
+        if (window.LangAudio && window.LangAudio.supported()) ans.appendChild(window.LangAudio.button(correct, target, { label: "Hear it", cls: "inline" }));
+        result.appendChild(ans);
+        const actions = el("div", "lr-actions");
+        const retry = el("button", "btn ghost wide", "↺ Clear & try again");
+        retry.onclick = () => { built.forEach((b) => { b.tileEl.disabled = false; b.tileEl.classList.remove("used"); }); built = []; refresh(); result.classList.add("hidden"); };
+        const showMe = el("button", "btn primary wide", "Show me → continue");
+        showMe.onclick = () => { done2 = true; done(); };
+        actions.appendChild(retry); actions.appendChild(showMe);
+        result.appendChild(actions);
+        result.classList.remove("hidden");
+        return;
+      }
+      // correct (or close-typo) → green, continue
+      done2 = true;
+      if (window.haptic) haptic("correct");
+      result.innerHTML = "";
+      result.appendChild(el("div", "lr-head correct",
+        '<span class="lr-icon">✓</span><span class="lr-label">' + (res.verdict === "close" ? "Close enough!" : "Correct!") + "</span>"));
+      const ans = el("div", "lr-answer");
+      ans.innerHTML = '<span class="a-label">' + escapeHtml(a.gloss || "") + "</span> " +
+        '<span class="lang-ans">' + escapeHtml(correct) + (tf.ipa ? " <i>/" + escapeHtml(tf.ipa) + "/</i>" : "") + "</span>";
+      if (window.LangAudio && window.LangAudio.supported()) ans.appendChild(window.LangAudio.button(correct, target, { label: "Hear it", cls: "inline" }));
+      result.appendChild(ans);
+      const actions = el("div", "lr-actions");
+      const cont = el("button", "btn primary wide", "Continue →");
+      cont.onclick = () => done();
+      actions.appendChild(cont);
+      result.appendChild(actions);
+      result.classList.remove("hidden");
+      try { cont.focus(); } catch (e) {}
+    }
+    check.onclick = finish;
+    form.appendChild(check);
+    box.appendChild(form);
+    box.appendChild(result);
+    return box;
   }
 
   // Typed-recall language drill (bkt-n2v / C3). The learner TYPES the target word;
@@ -1046,6 +1420,121 @@
     return out;
   }
 
+  // Leveled path for the LANGUAGE deck (fix #5). Chunk the topo study order into
+  // bite-size units (~14 words each) so the learner sees a sequence of levels with a
+  // clear "where am I", instead of one flat 448-word list. Each level is named after
+  // its dominant category. Returns [{ n, label, ids[], total, done, mastered }].
+  const LANG_LEVEL_SIZE = 14;
+  function langLevels() {
+    const order = studyOrder();
+    const levels = [];
+    for (let i = 0; i < order.length; i += LANG_LEVEL_SIZE) {
+      const ids = order.slice(i, i + LANG_LEVEL_SIZE);
+      // name the level by the most common category in the chunk
+      const counts = {};
+      ids.forEach((id) => { const c = (E.byId[id] || {}).category || "words"; counts[c] = (counts[c] || 0) + 1; });
+      const cat = Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0] || "words";
+      const done = ids.filter((id) => E.cardFor(id)).length;
+      const mastered = ids.filter((id) => E.masteryFor(id) >= 0.7).length;
+      levels.push({
+        n: levels.length + 1,
+        label: cat.charAt(0).toUpperCase() + cat.slice(1),
+        ids, total: ids.length, done, mastered,
+      });
+    }
+    return levels;
+  }
+  // The level a given atom id belongs to (1-based), for the atom-screen badge.
+  function langLevelOf(id) {
+    const order = studyOrder();
+    const idx = order.indexOf(id);
+    return idx < 0 ? 1 : Math.floor(idx / LANG_LEVEL_SIZE) + 1;
+  }
+  // The next not-yet-completed level (or the last one once all are done).
+  function langCurrentLevel(levels) {
+    levels = levels || langLevels();
+    return levels.find((lv) => lv.done < lv.total) || levels[levels.length - 1] || null;
+  }
+
+  // ---------- language picker (fix #1: explicit setup, not silent defaults) ----------
+  // The FIRST thing a learner sees on the Languages branch before any drilling:
+  // a clear "I want to learn ___ / I already know ___" choice. Persists via setLangPref
+  // (marking the pref `chosen`) so it appears once. No more silent auto-Spanish.
+  function screenLangPicker() {
+    const langs = (E.meta && E.meta.languages) || ["en"];
+    const cur = langSettings();
+    // working selection (defaults sensible, but the learner must confirm)
+    let pick = { target: cur.target, known: cur.primaryKnown || (langs.includes("en") ? "en" : langs[0]) };
+
+    const wrap = el("div", "screen lang-picker");
+    wrap.appendChild(header());
+    const card = el("div", "picker-card");
+    card.appendChild(el("div", "picker-kicker", "Languages"));
+    card.appendChild(el("h1", "picker-h1", "Set up your course"));
+    card.appendChild(el("p", "picker-sub", "Pick one language to learn and the language you already know. You can change both later in Progress."));
+
+    function langGrid(role, getVal, setVal) {
+      const grid = el("div", "picker-grid");
+      langs.forEach((l) => {
+        // for "I already know", don't offer the target; for "I want to learn", don't offer the known
+        const opt = el("button", "picker-opt", escapeHtml(LANG_NAMES[l] || l));
+        opt.dataset.l = l;
+        const sync = () => grid.querySelectorAll(".picker-opt").forEach((b) => b.classList.toggle("on", b.dataset.l === getVal()));
+        opt.onclick = () => {
+          setVal(l);
+          // keep target != known
+          if (pick.target === pick.known) {
+            if (role === "target") pick.known = langs.find((x) => x !== pick.target) || pick.known;
+            else pick.target = langs.find((x) => x !== pick.known) || pick.target;
+          }
+          render();
+        };
+        grid.appendChild(opt);
+      });
+      // mark current
+      grid.querySelectorAll(".picker-opt").forEach((b) => b.classList.toggle("on", b.dataset.l === getVal()));
+      return grid;
+    }
+
+    const body = el("div", "picker-body");
+    function render() {
+      body.innerHTML = "";
+      const t = el("div", "picker-field");
+      t.appendChild(el("div", "picker-label", "I want to learn"));
+      t.appendChild(langGrid("target", () => pick.target, (l) => { pick.target = l; }));
+      body.appendChild(t);
+      const k = el("div", "picker-field");
+      k.appendChild(el("div", "picker-label", "I already know"));
+      k.appendChild(langGrid("known", () => pick.known, (l) => { pick.known = l; }));
+      body.appendChild(k);
+      const start = el("button", "btn primary wide picker-start",
+        "Start learning " + escapeHtml(LANG_NAMES[pick.target] || pick.target) + " →");
+      start.disabled = pick.target === pick.known;
+      start.onclick = () => {
+        setLangPref(pick.target, [pick.known], { primaryKnown: pick.known, polyglot: false, chosen: true });
+        go("home");
+      };
+      body.appendChild(start);
+    }
+    render();
+    card.appendChild(body);
+    // honesty: this is an experiment, set expectations up front
+    card.appendChild(langHonestyBanner());
+    wrap.appendChild(card);
+    return wrap;
+  }
+
+  // Honesty banner (fix #5): Languages is an early experiment, not a finished course.
+  // Mirrors CLAUDE.md's "don't oversell" rule (small deck, TTS-not-recorded audio,
+  // residual sense-noise). Reused on the picker, study, and home screens.
+  function langHonestyBanner() {
+    return el("div", "lang-honesty",
+      '<span class="lh-ico">⚗</span>' +
+      '<span class="lh-txt"><b>Languages is an early experiment</b>, not a finished course — ' +
+      'a small starter deck, spoken aloud by your device (not studio audio), with the occasional rough edge. ' +
+      'We\'re sharing it honestly while it grows.</span>');
+  }
+
   function screenStudy() {
     if (isLang()) return screenStudyLang();
     const wrap = el("div", "screen study");
@@ -1141,9 +1630,13 @@
   function screenStudyLang() {
     const wrap = el("div", "screen study");
     wrap.appendChild(header());
-    const { target, known } = langSettings();
-    wrap.appendChild(el("h1", "study-h1", (LANG_NAMES[target] || target) + " — vocabulary"));
-    wrap.appendChild(el("p", "study-sub", "Study the words grouped by topic. Your known languages are shown to anchor each one. Tap to drill."));
+    const ls = langSettings();
+    const target = ls.target, shown = ls.shown;
+    wrap.appendChild(el("h1", "study-h1", (LANG_NAMES[target] || target) + " — all words"));
+    wrap.appendChild(el("p", "study-sub", ls.polyglot
+      ? "Every word grouped by topic, shown across the languages you know. Tap to practice."
+      : "Every word grouped by topic, anchored in " + (LANG_NAMES[ls.primaryKnown] || ls.primaryKnown) + ". Tap to practice."));
+    wrap.appendChild(langHonestyBanner());
 
     // Word explorer entry — the Polingual cross-lingual comparison surface.
     const exploreCta = el("button", "explore-cta reveal-up",
@@ -1165,7 +1658,7 @@
           (tf.ipa ? '<span class="sb-ipa">/' + escapeHtml(tf.ipa) + "/</span>" : "") +
           '<span class="sb-gloss">' + escapeHtml(a.gloss || "") + "</span>";
         blk.appendChild(head);
-        known.forEach((l) => { const f = a.forms[l]; if (f) blk.appendChild(el("div", "lang-row", '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span><span class=\"lang-w\">" + escapeHtml(f.word) + "</span>")); });
+        shown.forEach((l) => { const f = a.forms[l]; if (f) blk.appendChild(el("div", "lang-row", '<span class="lang-name">' + escapeHtml(LANG_NAMES[l] || l) + "</span><span class=\"lang-w\">" + escapeHtml(f.word) + "</span>")); });
         if (a.note) blk.appendChild(el("p", "sb-note", escapeHtml(a.note)));
         const drill = el("button", "sb-drill", "Drill this →");
         drill.onclick = () => openAtom(a.id, false);
@@ -1970,9 +2463,10 @@
     sw.onchange = () => { E.state.settings.requestRetention = sw.checked ? 0.95 : 0.9; E.save(); };
     rr.appendChild(sw); settings.appendChild(rr);
 
-    // language branch: choose target + known languages
+    // language branch: choose target + primary source + advanced polyglot toggle
     if (isLang()) {
-      const { target, known, langs } = langSettings();
+      const ls = langSettings();
+      const target = ls.target, known = ls.known, langs = ls.langs;
       const tRow = el("label", "set-row", "Language I'm learning");
       const tSel = el("select", "lang-sel");
       langs.forEach((l) => {
@@ -1981,26 +2475,63 @@
       tSel.onchange = () => {
         const nt = tSel.value;
         const nk = (langSettings().known || []).filter((l) => l !== nt);
-        setLangPref(nt, nk.length ? nk : langs.filter((l) => l !== nt).slice(0, 1));
+        const finalKnown = nk.length ? nk : langs.filter((l) => l !== nt).slice(0, 1);
+        const pk = finalKnown.includes(ls.primaryKnown) ? ls.primaryKnown : finalKnown[0];
+        setLangPref(nt, finalKnown, { primaryKnown: pk, chosen: true });
         go("progress");
       };
       tRow.appendChild(tSel); settings.appendChild(tRow);
 
-      settings.appendChild(el("div", "set-hint", "Languages I already know (used as hints + reinforcement):"));
+      // Primary source language — the ONE language a beginner learns FROM (fix #2).
+      const pRow = el("label", "set-row", "I learn from (my main language)");
+      const pSel = el("select", "lang-sel");
+      langs.filter((l) => l !== target).forEach((l) => {
+        const o = el("option", null, LANG_NAMES[l] || l); o.value = l; if (l === ls.primaryKnown) o.selected = true; pSel.appendChild(o);
+      });
+      pSel.onchange = () => {
+        const pk = pSel.value;
+        // ensure the primary is in the known set
+        let nk = (langSettings().known || []).slice();
+        if (!nk.includes(pk)) nk = [pk].concat(nk);
+        setLangPref(target, nk, { primaryKnown: pk, chosen: true });
+        go("progress");
+      };
+      pRow.appendChild(pSel); settings.appendChild(pRow);
+
+      // Advanced: polyglot mode — show each word in EVERY language you know at once.
+      // OFF by default (fix #2). A real toggle, not the lead experience.
+      const polyRow = el("label", "set-row", "Polyglot mode (advanced — show all my languages)");
+      const polySw = el("input"); polySw.type = "checkbox"; polySw.checked = ls.polyglot;
+      polySw.onchange = () => { setLangPref(target, langSettings().known, { polyglot: polySw.checked, chosen: true }); go("progress"); };
+      polyRow.appendChild(polySw); settings.appendChild(polyRow);
+
+      // The extra languages used by polyglot mode (only meaningful when polyglot is on).
+      settings.appendChild(el("div", "set-hint", ls.polyglot
+        ? "Languages shown alongside each word in polyglot mode:"
+        : "Extra languages you know (only used in polyglot mode):"));
       const kWrap = el("div", "lang-known");
       langs.filter((l) => l !== target).forEach((l) => {
         const on = known.includes(l);
-        const chip = el("button", "lang-chip" + (on ? " on" : ""), escapeHtml(LANG_NAMES[l] || l));
+        const isPrimary = l === ls.primaryKnown;
+        const chip = el("button", "lang-chip" + (on ? " on" : "") + (isPrimary ? " primary" : ""),
+          escapeHtml(LANG_NAMES[l] || l) + (isPrimary ? " ·main" : ""));
         chip.onclick = () => {
+          if (isPrimary) return; // the primary source is always known; change it above
           let nk = (langSettings().known || []).slice();
           nk = nk.includes(l) ? nk.filter((x) => x !== l) : nk.concat(l);
+          if (!nk.includes(ls.primaryKnown)) nk = [ls.primaryKnown].concat(nk);
           if (!nk.length) nk = [l];
-          setLangPref(target, nk);
+          setLangPref(target, nk, { chosen: true });
           go("progress");
         };
         kWrap.appendChild(chip);
       });
       settings.appendChild(kWrap);
+
+      // Re-run the explicit course setup picker.
+      const redo = el("button", "btn ghost wide", "Redo course setup");
+      redo.onclick = () => go("lang-picker");
+      settings.appendChild(redo);
     }
 
     // Re-take placement — re-run the adaptive diagnostic to re-estimate the frontier.
@@ -2648,7 +3179,8 @@
   }
   function go(where) {
     currentScreen = where;
-    if (where === "home") mount(screenHome());
+    if (where === "lang-picker") mount(screenLangPicker());
+    else if (where === "home") mount(screenHome());
     else if (where === "study") screenStudy();
     else if (where === "map") mount(screenMap());
     else if (where === "progress") mount(screenProgress());
