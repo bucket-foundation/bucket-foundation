@@ -210,7 +210,11 @@ if (mc) {
   const opts = appRoot.querySelectorAll(".lang-mc .mc-opt");
   assert("multiple choice offers options with at least one distractor", opts.length >= 2);
   let picked = null;
-  for (const o of opts) { if ((o.textContent || "").includes(correctWord)) { picked = o; break; } }
+  // prefer an EXACT word match (option text can collide as a substring across the
+  // bigger deck — e.g. "dos" inside "todos"); fall back to substring, then first opt.
+  const norm = (s) => (s || "").trim();
+  for (const o of opts) { if (norm(o.textContent) === norm(correctWord)) { picked = o; break; } }
+  if (!picked) for (const o of opts) { if ((o.textContent || "").includes(correctWord)) { picked = o; break; } }
   (picked || opts[0]).click();
   await sleep(10);
   assert("correct multiple-choice shows green 'Correct!' feedback", !!appRoot.querySelector(".lang-mc .lr-head.correct"));
@@ -235,6 +239,13 @@ if (bank) {
 }
 
 function findCurrentAtomFromMC() {
+  // Picture-MC (emoji prompt) no longer puts the gloss in the question text, so the
+  // box carries data-concept = atom id (bkt-3s9). Prefer that; fall back to gloss text.
+  const box = appRoot.querySelector(".lang-mc");
+  if (box && box.dataset && box.dataset.concept) {
+    const byId = E.atoms.find((a) => a.id === box.dataset.concept);
+    if (byId) return byId;
+  }
   const q = appRoot.querySelector(".lang-mc .q");
   const txt = q ? q.textContent : "";
   return E.atoms.find((a) => txt.includes(a.gloss));

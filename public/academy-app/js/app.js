@@ -30,7 +30,7 @@
     { id: "05-biophysics", file: "corpus/biophysics.json", pill: "V · Biophysics", sub: "Energy, matter & life" },
     { id: "06-cosmology", file: "corpus/06-cosmology.json", pill: "VI · Cosmology", sub: "The universe at large" },
     { id: "07-mind", file: "corpus/07-mind.json", pill: "VII · Mind", sub: "Brains, computation & cognition" },
-    { id: "lang-core", file: "corpus/lang-core.json", pill: "✺ · Languages", sub: "Learn a language through the ones you know", kind: "language", languages: ["en", "es", "fr", "it", "pt", "de", "la"] },
+    { id: "lang-core", file: "corpus/lang-core.json", pill: "✺ · Languages", sub: "Learn a language through the ones you know", kind: "language", languages: ["en", "es", "fr", "it", "pt", "de", "nl", "sv", "ru", "ja", "zh", "el", "fi", "pl"] },
   ];
   let BUILTINS = BUILTIN_FALLBACK.slice(); // populated from manifest at boot
   let BRANCHES = BUILTIN_FALLBACK.slice(); // built-ins + user decks; rebuilt by refreshBranches()
@@ -73,7 +73,12 @@
   };
   const LANG_NAMES = {
     en: "English", es: "Spanish", fr: "French", it: "Italian",
-    pt: "Portuguese", de: "German", la: "Latin",
+    pt: "Portuguese", de: "German", la: "Latin", nl: "Dutch",
+    sv: "Swedish", pl: "Polish", fi: "Finnish", el: "Greek",
+    ru: "Russian", ja: "Japanese", zh: "Chinese", ko: "Korean",
+    hi: "Hindi", ar: "Arabic", fa: "Persian", he: "Hebrew",
+    cs: "Czech", id: "Indonesian", sa: "Sanskrit", ta: "Tamil",
+    th: "Thai", tr: "Turkish", vi: "Vietnamese",
   };
   const LANG_PREF_KEY = "bucket-academy/lang";
   let currentBranchFile = (function () {
@@ -570,15 +575,37 @@
   function langPolyglot() {
     return !!langPrefRaw().polyglot;
   }
+  // The languages a learner may pick as the TARGET (the one being learned). This is
+  // meta.languages (guaranteed on every atom) PLUS bonusLanguages (ko/hi/ar — present
+  // on most-but-not-all atoms; well above the ~80-word usability bar). Sorted by code
+  // for a stable order; the picker re-sorts by display name. (bkt-3s9)
+  function langDeckLangs() {
+    const meta = (E.meta && E.meta.languages) || ["en"];
+    const bonus = (E.meta && E.meta.bonusLanguages) || [];
+    const seen = {}, out = [];
+    [...meta, ...bonus].forEach((l) => { if (l && !seen[l]) { seen[l] = 1; out.push(l); } });
+    return out;
+  }
+  // How many atoms actually carry a form in language `l` (for the picker's coverage
+  // filter — only offer languages with a real, learnable amount of content).
+  function langCoverage(l) {
+    if (!E.atoms) return 0;
+    let n = 0; for (const a of E.atoms) if (a.forms && a.forms[l] && a.forms[l].word) n++;
+    return n;
+  }
   function langSettings() {
-    const langs = (E.meta && E.meta.languages) || ["en"];
+    // target may be any deck language (incl. bonus ko/hi/ar); known (the source you
+    // learn FROM) must be a guaranteed meta language so every atom can anchor it.
+    const deckLangs = langDeckLangs();
+    const metaLangs = (E.meta && E.meta.languages) || ["en"];
+    const langs = deckLangs;
     const p = langPrefRaw();
     let target = p.target && langs.includes(p.target) ? p.target : (langs.find((l) => l !== "en") || langs[0]);
     // `known` = the languages the learner already knows. We keep the full list (so the
     // settings UI + advanced polyglot view can use it), but beginners are SHOWN only the
     // first (the primary source language) unless polyglot mode is on. Default known = [en].
-    let known = (Array.isArray(p.known) ? p.known : ["en"]).filter((l) => langs.includes(l) && l !== target);
-    if (!known.length) known = (langs.includes("en") && "en" !== target ? ["en"] : langs.filter((l) => l !== target).slice(0, 1));
+    let known = (Array.isArray(p.known) ? p.known : ["en"]).filter((l) => metaLangs.includes(l) && l !== target);
+    if (!known.length) known = (metaLangs.includes("en") && "en" !== target ? ["en"] : metaLangs.filter((l) => l !== target).slice(0, 1));
     // The single primary source language a beginner learns FROM (fix #2).
     const primaryKnown = p.primaryKnown && known.includes(p.primaryKnown) ? p.primaryKnown : known[0];
     // What the per-card reference list should show: just the primary by default; all
@@ -823,14 +850,29 @@
     const options = shuffle([correct].concat(distractors));
 
     const box = el("div", "drill lang-drill lang-mc");
+    box.dataset.concept = a.id; // lets pic-MC (emoji prompt) be mapped back to its atom
     box.appendChild(el("div", "drill-label", "Choose · " + (LANG_NAMES[target] || target)));
     // anchor the meaning via the primary known language (fix #2 — one source)
     const hintLang = shown[0] || known[0];
     const hint = hintLang && a.forms[hintLang];
-    box.appendChild(el("div", "q",
-      "Which one means <b>“" + escapeHtml(a.gloss || a.title || "") + "”</b>" +
-      (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
-      " in " + escapeHtml(LANG_NAMES[target] || target) + "?"));
+    // PICTURE multiple-choice (bkt-3s9): when the concept has a curated emoji, show
+    // the emoji as the prompt — a true can't-fail picture choice (the Duolingo hook).
+    // Falls back to the word/gloss prompt for abstract concepts with no honest picture.
+    const emoji = window.LangEmoji && window.LangEmoji.emojiFor(a.id);
+    if (emoji) {
+      box.classList.add("lang-mc-pic");
+      const pic = el("div", "mc-emoji", '<span class="mc-emoji-glyph" role="img" aria-label="' +
+        escapeHtml(a.gloss || a.id || "") + '">' + emoji + "</span>");
+      box.appendChild(pic);
+      box.appendChild(el("div", "q",
+        "Which one is this in <b>" + escapeHtml(LANG_NAMES[target] || target) + "</b>?" +
+        (hint ? ' <span class="mc-q-hint">(' + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")</span>" : "")));
+    } else {
+      box.appendChild(el("div", "q",
+        "Which one means <b>“" + escapeHtml(a.gloss || a.title || "") + "”</b>" +
+        (hint ? " (" + escapeHtml(LANG_NAMES[hintLang] || hintLang) + ": " + escapeHtml(hint.word) + ")" : "") +
+        " in " + escapeHtml(LANG_NAMES[target] || target) + "?"));
+    }
 
     const opts = el("div", "mc-options");
     let answered = false;
@@ -1417,6 +1459,13 @@
       (adj[id] || []).forEach((n) => { indeg[n]--; if (indeg[n] === 0) q.push(n); });
     }
     atoms.forEach((a) => { if (!seen.has(a.id)) out.push(a.id); }); // any leftovers (cycles)
+    // On a language deck, drop atoms that lack a form in the chosen TARGET language
+    // (relevant for bonus targets like ko/hi/ar, which don't cover every concept) so
+    // the level path + queue never serve an empty/unanswerable card. (bkt-3s9)
+    if (isLang()) {
+      const target = langSettings().target;
+      return out.filter((id) => { const a = E.byId[id]; return a && a.forms && a.forms[target] && a.forms[target].word; });
+    }
     return out;
   }
 
@@ -1461,37 +1510,44 @@
   // a clear "I want to learn ___ / I already know ___" choice. Persists via setLangPref
   // (marking the pref `chosen`) so it appears once. No more silent auto-Spanish.
   function screenLangPicker() {
-    const langs = (E.meta && E.meta.languages) || ["en"];
+    // TARGET options = every deck language with real coverage (≥80 words), sorted by
+    // display name — this is what surfaces the full breadth (14 guaranteed + bonus).
+    const metaLangs = (E.meta && E.meta.languages) || ["en"];
+    const byName = (a, b) => (LANG_NAMES[a] || a).localeCompare(LANG_NAMES[b] || b);
+    const COVER_MIN = 80;
+    const targetLangs = langDeckLangs().filter((l) => l !== "en" && langCoverage(l) >= COVER_MIN).sort(byName);
+    // KNOWN (source) options = guaranteed meta languages only, so every atom anchors it.
+    const knownLangs = metaLangs.slice().sort(byName);
     const cur = langSettings();
     // working selection (defaults sensible, but the learner must confirm)
-    let pick = { target: cur.target, known: cur.primaryKnown || (langs.includes("en") ? "en" : langs[0]) };
+    let pick = {
+      target: targetLangs.includes(cur.target) ? cur.target : targetLangs[0],
+      known: knownLangs.includes(cur.primaryKnown) ? cur.primaryKnown : (knownLangs.includes("en") ? "en" : knownLangs[0]),
+    };
 
     const wrap = el("div", "screen lang-picker");
     wrap.appendChild(header());
     const card = el("div", "picker-card");
     card.appendChild(el("div", "picker-kicker", "Languages"));
     card.appendChild(el("h1", "picker-h1", "Set up your course"));
-    card.appendChild(el("p", "picker-sub", "Pick one language to learn and the language you already know. You can change both later in Progress."));
+    card.appendChild(el("p", "picker-sub", "Pick one of " + targetLangs.length + " languages to learn and the language you already know. You can change both later in Progress."));
 
-    function langGrid(role, getVal, setVal) {
+    function langGrid(role, options, getVal, setVal) {
       const grid = el("div", "picker-grid");
-      langs.forEach((l) => {
-        // for "I already know", don't offer the target; for "I want to learn", don't offer the known
+      options.forEach((l) => {
         const opt = el("button", "picker-opt", escapeHtml(LANG_NAMES[l] || l));
         opt.dataset.l = l;
-        const sync = () => grid.querySelectorAll(".picker-opt").forEach((b) => b.classList.toggle("on", b.dataset.l === getVal()));
         opt.onclick = () => {
           setVal(l);
           // keep target != known
           if (pick.target === pick.known) {
-            if (role === "target") pick.known = langs.find((x) => x !== pick.target) || pick.known;
-            else pick.target = langs.find((x) => x !== pick.known) || pick.target;
+            if (role === "target") pick.known = knownLangs.find((x) => x !== pick.target) || pick.known;
+            else pick.target = targetLangs.find((x) => x !== pick.known) || pick.target;
           }
           render();
         };
         grid.appendChild(opt);
       });
-      // mark current
       grid.querySelectorAll(".picker-opt").forEach((b) => b.classList.toggle("on", b.dataset.l === getVal()));
       return grid;
     }
@@ -1501,11 +1557,11 @@
       body.innerHTML = "";
       const t = el("div", "picker-field");
       t.appendChild(el("div", "picker-label", "I want to learn"));
-      t.appendChild(langGrid("target", () => pick.target, (l) => { pick.target = l; }));
+      t.appendChild(langGrid("target", targetLangs, () => pick.target, (l) => { pick.target = l; }));
       body.appendChild(t);
       const k = el("div", "picker-field");
       k.appendChild(el("div", "picker-label", "I already know"));
-      k.appendChild(langGrid("known", () => pick.known, (l) => { pick.known = l; }));
+      k.appendChild(langGrid("known", knownLangs, () => pick.known, (l) => { pick.known = l; }));
       body.appendChild(k);
       const start = el("button", "btn primary wide picker-start",
         "Start learning " + escapeHtml(LANG_NAMES[pick.target] || pick.target) + " →");
