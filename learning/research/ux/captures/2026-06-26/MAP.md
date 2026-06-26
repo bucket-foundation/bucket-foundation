@@ -36,7 +36,19 @@ Folder: **https://drive.google.com/open?id=1Tt9e7spkQSQWm2V9SFRcNZ6bvZ-QlR9q**
 ### refs/ — reference landings (mobile/desktop)
 Duolingo, Brilliant, Khan, Math Academy (`how-it-works` shows the real product: diagnostic → knowledge-graph → tasks), Anki manual.
 
-## 🔓 Lesson + reward — CAPTURED (founder screen-recording)
+## Case-study completeness (per platform)
+| Platform | Captured | Gated / missing |
+|---|---|---|
+| **Duolingo** | ✅ **Complete** — onboarding (every step) + lesson + reward (`map/duolingo*`, video) | — |
+| **Brilliant** | landing + courses + **course detail = leveled path** (`map/brilliant-lesson/03-06`) | interactive problem-solving (age-gate/signup after preview) |
+| **Khan** | landing + exercise page + hint (`map/khan-exercise/`) | exercise buried behind donation/cookie modals; full flow needs login |
+| **Math Academy** | landing + `how-it-works` (product screenshots, `refs/d-mathacademy-how.png`) | **live app login-gated** (session expired) — our closest analog (diagnostic+graph+mastery) |
+| **Anki** | manual reference only | desktop app, not installed; conceptually = our FSRS engine |
+| **Apple HIG / Whop** | principles in `UX-CASE-STUDIES.md` | — (design refs, not apps to capture) |
+
+**To finish the gated ones the reliable way:** screen-record them like Duolingo (Math Academy is the highest-value — it's the diagnostic→knowledge-graph→mastery analog).
+
+## 🔓 Duolingo lesson + reward — CAPTURED (founder screen-recording)
 The Duolingo lesson + reward animations are **anti-bot-blocked for automation** (a guest `/learn` reloads to the splash; logged-in automation gets dropped between navigations). Resolved by a **founder screen recording** (`duolingo-lesson-reward.mp4`) → key frames in `map/duolingo-lesson/`. Brilliant's interactive lesson is still un-captured (same gating) — record it the same way if needed.
 
 ## How to re-capture
