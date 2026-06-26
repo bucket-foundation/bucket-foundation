@@ -1,0 +1,22 @@
+[Unit]
+Description=Bucket Academy LLM — reverse SSH tunnel exposing the auth-shim on Hetzner (atlas-api.agfarms.dev/llm)
+After=bkt-llm-shim.service network-online.target
+Wants=network-online.target
+Requires=bkt-llm-shim.service
+
+[Service]
+Type=simple
+# Bind Hetzner's 127.0.0.1:18011 -> this box's shim 127.0.0.1:11500.
+# Key auth already established (we SSH to the box non-interactively).
+ExecStart=/usr/bin/ssh -N \
+  -o ServerAliveInterval=30 -o ServerAliveCountMax=3 \
+  -o ExitOnForwardFailure=yes -o StrictHostKeyChecking=accept-new \
+  -o BatchMode=yes \
+  -R 127.0.0.1:18011:127.0.0.1:11500 \
+  giany@5.161.236.151
+Restart=always
+RestartSec=10
+Environment=HOME=/home/gian
+
+[Install]
+WantedBy=default.target

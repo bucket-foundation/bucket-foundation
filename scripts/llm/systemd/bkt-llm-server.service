@@ -1,0 +1,18 @@
+[Unit]
+Description=Bucket Academy LLM — llama.cpp server on AMD RX 7700S (Vulkan GPU)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/home/gian/agfarms/bucket-foundation/scripts/llm/llm-server.sh
+Restart=always
+RestartSec=10
+Environment=HOME=/home/gian
+Environment=PATH=/home/gian/.local/bin:/usr/local/bin:/usr/bin:/bin
+# dGPU isolation + ROCm parity (see llm-server.sh header)
+Environment=GGML_VK_VISIBLE_DEVICES=1
+Environment=HSA_OVERRIDE_GFX_VERSION=11.0.0
+
+[Install]
+WantedBy=default.target

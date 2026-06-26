@@ -10,6 +10,19 @@ bkt-llm-server     llama.cpp on the dGPU (Vulkan)               127.0.0.1:11435 
         └─ bkt-llm-revtunnel  reverse SSH tunnel → Hetzner          Hetzner 127.0.0.1:18011
 ```
 
+## Stand up the whole stack from the repo (fresh machine)
+
+```bash
+bash scripts/llm/install-services.sh   # checks prereqs, installs the 3 systemd
+                                       # --user units, enables linger, starts them
+```
+
+The three unit files are versioned in `scripts/llm/systemd/`. The installer is
+idempotent and verifies prerequisites (llama.cpp Vulkan build, node, ssh key to
+the box, and the gitignored secret files `shim.env` + `.bearer-secret` — it prints
+the one-liner to create them). The box-side nginx is reproduced separately with
+`setup-llm-nginx.sh` (run with `sudo` on prod-hetzner-1).
+
 ## Public endpoint — STABLE (production, since 2026-06-25)
 
 `LLM_BASE_URL = https://atlas-api.agfarms.dev/llm/v1` — a **permanent** URL that

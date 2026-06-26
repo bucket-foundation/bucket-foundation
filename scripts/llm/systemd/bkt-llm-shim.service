@@ -1,0 +1,20 @@
+[Unit]
+Description=Bucket Academy LLM auth-shim (bearer gate in front of llama.cpp)
+After=bkt-llm-server.service network-online.target
+Wants=network-online.target
+Requires=bkt-llm-server.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env node /home/gian/agfarms/bucket-foundation/scripts/llm/llm-shim.mjs
+Restart=always
+RestartSec=5
+Environment=HOME=/home/gian
+Environment=PATH=/home/gian/.nvm/versions/node/v22.21.0/bin:/home/gian/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=LLM_SHIM_PORT=11500
+Environment=LLM_UPSTREAM=http://127.0.0.1:11435
+# Secret loaded from the gitignored env file (mode 600), not inlined in the unit.
+EnvironmentFile=/home/gian/agfarms/bucket-foundation/scripts/llm/shim.env
+
+[Install]
+WantedBy=default.target
