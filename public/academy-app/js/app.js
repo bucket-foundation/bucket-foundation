@@ -376,6 +376,23 @@
     stats.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(stats);
 
+    // Discoverable LANGUAGES entry (epic bkt-w0t fix #1 — the founder couldn't find
+    // how to pick a language). A prominent card on every NON-language branch home that
+    // jumps straight into the dedicated Duolingo-style language experience.
+    if (!isLang()) {
+      const langBranch = BRANCHES.find((b) => b.kind === "language" || /lang-core/.test(b.file || ""));
+      if (langBranch) {
+        const cta = el("button", "lang-discover-cta");
+        cta.innerHTML =
+          '<span class="ldc-ico">🗣️</span>' +
+          '<span class="ldc-copy"><span class="ldc-title">Want to learn a language?</span>' +
+          '<span class="ldc-sub">Spanish, Japanese, Arabic & 14 more — a playful path of bite-size lessons.</span></span>' +
+          '<span class="ldc-go">→</span>';
+        cta.onclick = () => switchBranch(branchKey(langBranch));
+        wrap.appendChild(cta);
+      }
+    }
+
     // Languages: a leveled PATH (fix #5) instead of a flat word list — units the
     // learner can see progress through. Each level tile starts a session of its words.
     if (isLang()) {
@@ -3227,6 +3244,30 @@
     });
   }
 
+  /* ---------- DuoLang bridge (epic bkt-w0t) ----------
+   * Expose exactly the closure-private helpers the dedicated Duolingo-style language
+   * UI (js/duo.js) needs, without leaking app internals or forcing a refactor. The
+   * canon "atom/study" screens are untouched; only the LANGUAGE branch reroutes here. */
+  window.__DuoBridge = {
+    E,
+    isLang,
+    langSettings,
+    setLangPref,
+    langPrefChosen,
+    langDeckLangs,
+    langCoverage,
+    studyOrder,
+    checkLangAnswer,
+    grade: (id, rating, level, now) => E.grade(id, rating, level, now),
+    LANG_NAMES,
+    mount: (node) => mount(node),
+    nav: (active) => nav(active),
+  };
+  // Does the dedicated Duo language experience own the current view?
+  function duoActive() {
+    return isLang() && window.DuoLang && window.DuoLang.available();
+  }
+
   /* ---------- router ---------- */
   function mount(node) {
     const root = $("#app");
@@ -3235,6 +3276,11 @@
   }
   function go(where) {
     currentScreen = where;
+    // LANGUAGE branch → the dedicated Duolingo-style experience (path home + lesson player).
+    if (where === "home" && duoActive()) {
+      if (window.DuoLang.shouldOnboard()) return mount(window.DuoLang.onboarding(() => go("home")));
+      return mount(window.DuoLang.path(go));
+    }
     if (where === "lang-picker") mount(screenLangPicker());
     else if (where === "home") mount(screenHome());
     else if (where === "study") screenStudy();
@@ -3307,7 +3353,11 @@
     }
 
     // First-run commitment ladder — only for brand-new visitors (or explicit replay).
-    if (window.BucketOnboarding && !deepLink &&
+    // EXCEPTION: on the language branch the dedicated Duo experience (go("home") →
+    // DuoLang.onboarding) owns first-run, so we skip the canon onboarding there.
+    if (duoActive() && !deepLink) {
+      enter();
+    } else if (window.BucketOnboarding && !deepLink &&
         (forceOnboard || window.BucketOnboarding.shouldRun())) {
       runOnboarding((where) => go(where || "home"));
     } else {

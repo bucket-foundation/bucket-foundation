@@ -31,6 +31,17 @@
     pt: "pt-PT",
     de: "de-DE",
     la: "it-IT", // Latin fallback → Italian voice
+    nl: "nl-NL",
+    sv: "sv-SE",
+    ru: "ru-RU",
+    ja: "ja-JP",
+    zh: "zh-CN",
+    el: "el-GR",
+    fi: "fi-FI",
+    pl: "pl-PL",
+    ko: "ko-KR",
+    hi: "hi-IN",
+    ar: "ar-SA",
   };
   // Acceptable voice-language prefixes per deck lang (so es-MX still works for es,
   // pt-BR for pt, en-GB for en, etc.). First entry is the preferred exact region.
@@ -42,6 +53,17 @@
     pt: ["pt-pt", "pt-br", "pt"],
     de: ["de-de", "de-at", "de"],
     la: ["it-it", "it", "la"],
+    nl: ["nl-nl", "nl-be", "nl"],
+    sv: ["sv-se", "sv"],
+    ru: ["ru-ru", "ru"],
+    ja: ["ja-jp", "ja"],
+    zh: ["zh-cn", "zh-hans", "cmn-hans-cn", "zh"],
+    el: ["el-gr", "el"],
+    fi: ["fi-fi", "fi"],
+    pl: ["pl-pl", "pl"],
+    ko: ["ko-kr", "ko"],
+    hi: ["hi-in", "hi"],
+    ar: ["ar-sa", "ar-eg", "ar"],
   };
 
   function supported() {

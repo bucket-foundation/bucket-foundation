@@ -25,6 +25,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/app.css" />
+    <!-- Duolingo-style Languages experience styles (epic bkt-w0t), scoped under .duo. -->
+    <link rel="stylesheet" href="css/duo.css" />
     <!-- KaTeX for equation rendering (degrades to raw TeX offline). -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
@@ -65,6 +67,10 @@
     <!-- Polingual word explorer engine (bkt-nhy): client-side 5-lens cross-lingual
          comparison over a baked starter subset. Lazy-loads its asset on first open. -->
     <script src="js/polingual.js"></script>
+    <!-- Dedicated Duolingo-style Languages experience (epic bkt-w0t): onboarding,
+         winding PATH home, full-screen lesson player, reward screen. Defines
+         window.DuoLang; reads window.__DuoBridge set up by app.js. -->
+    <script src="js/duo.js"></script>
     <script src="js/app.js"></script>
     <script>
       if ("serviceWorker" in navigator)
