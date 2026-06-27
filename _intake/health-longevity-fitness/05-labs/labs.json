@@ -1,0 +1,425 @@
+[
+  {
+    "id": "buck-institute",
+    "institution": "Buck Institute for Research on Aging",
+    "type": "nonprofit",
+    "subtype": "independent research institute",
+    "country": "US",
+    "location": "Novato, California",
+    "key_people": [
+      {"name": "Eric Verdin", "card": "verdin", "role": "President & CEO; NAD+/immunometabolism"},
+      {"name": "Judith Campisi", "card": "campisi", "role": "cellular senescence, SASP (emerita)"},
+      {"name": "Gordon Lithgow", "card": null, "role": "C. elegans geroscience, chief academic officer"},
+      {"name": "Brian Kennedy", "card": "brian-kennedy", "role": "former president; geroscience hypothesis (now NUS)"}
+    ],
+    "focus": "Geroscience: cellular senescence/SASP, NAD+ metabolism, proteostasis, model-organism lifespan. The first US institute dedicated solely to aging biology.",
+    "notable_output": "SASP (senescence-associated secretory phenotype) characterization (Campisi); senolytics rationale; the geroscience hypothesis (Kennedy/Kaeberlein 2014, Cell).",
+    "funding": "NIA grants, philanthropy, Larry Ellison Medical Foundation legacy; ~$60M endowment-era founding gift from Buck Trust.",
+    "openalex": {"id": "I1337826666", "ror": "https://ror.org/050sv4x28", "works_count": 4397, "cited_by_count": 1163569},
+    "domain": "K",
+    "notes": "Anchor academic-nonprofit node of the geroscience field."
+  },
+  {
+    "id": "salk-institute",
+    "institution": "Salk Institute for Biological Studies",
+    "type": "nonprofit",
+    "subtype": "independent research institute",
+    "country": "US",
+    "location": "La Jolla, California",
+    "key_people": [
+      {"name": "Satchin Panda", "card": "panda", "role": "circadian biology, time-restricted eating"},
+      {"name": "Juan Carlos Izpisua Belmonte", "card": "izpisua-belmonte", "role": "partial reprogramming/rejuvenation (left for Altos 2022)"},
+      {"name": "Gerald Shadel", "card": null, "role": "mitochondria, mtDNA stress signaling"}
+    ],
+    "focus": "Circadian/metabolic biology, partial epigenetic reprogramming, mitochondrial aging.",
+    "notable_output": "Ocampo et al. 2016 Cell (in-vivo partial reprogramming extends lifespan in progeroid mice); Panda time-restricted feeding mouse work.",
+    "funding": "NIH/NIA, NSF, private philanthropy.",
+    "openalex": {"id": "I1307098950", "ror": "https://ror.org/03xez1567", "works_count": 18224, "cited_by_count": 6995134},
+    "domain": "K",
+    "notes": "Reprogramming work seeded Altos Labs hiring (Izpisua Belmonte)."
+  },
+  {
+    "id": "harvard-aging",
+    "institution": "Harvard University / Harvard Medical School",
+    "type": "academic",
+    "subtype": "university",
+    "country": "US",
+    "location": "Boston/Cambridge, Massachusetts",
+    "key_people": [
+      {"name": "David Sinclair", "card": "sinclair", "role": "sirtuins, NAD+, information theory of aging (frontier-contested)"},
+      {"name": "Vadim Gladyshev", "card": "gladyshev", "role": "comparative biology of aging, redox, aging clocks"},
+      {"name": "George Church", "card": "church", "role": "genomics, gene-therapy approaches to aging"},
+      {"name": "Amy Wagers", "card": "wagers", "role": "parabiosis / circulating youth factors (GDF11 dispute)"}
+    ],
+    "focus": "Sirtuin/NAD+ biology, epigenetic clocks & reprogramming, comparative genomics of lifespan, gene therapy.",
+    "notable_output": "Lu et al. 2020 Nature (OSK reprogramming restores vision in mice); sirtuin activation literature (contested); Gladyshev pan-mammalian methylation clocks.",
+    "funding": "NIH/NIA, HHMI, Glenn Foundation for Medical Research (Paul F. Glenn Center at HMS), industry sponsorships.",
+    "openalex": {"id": "I136199984", "ror": "https://ror.org/03vek6s52", "works_count": 703135, "cited_by_count": 143125124},
+    "domain": "K",
+    "notes": "Sinclair's claims carry COI/hype flags; grade primary sources, not the spokesperson."
+  },
+  {
+    "id": "stanford-wyss-coray",
+    "institution": "Stanford University (Wyss-Coray Lab / Knight Initiative)",
+    "type": "academic",
+    "subtype": "university",
+    "country": "US",
+    "location": "Stanford, California",
+    "key_people": [
+      {"name": "Tony Wyss-Coray", "card": "wyss-coray", "role": "young plasma, parabiosis, brain aging, organ aging clocks"},
+      {"name": "Saul Villeda", "card": "villeda", "role": "young-blood factors and cognition (now UCSF)"}
+    ],
+    "focus": "Systemic factors of aging (young vs old plasma), brain aging, plasma-proteomic 'organ age' clocks.",
+    "notable_output": "Villeda/Wyss-Coray heterochronic parabiosis cognition studies (Nature 2011/2014); organ-specific aging clocks from plasma proteomics (Nature 2023).",
+    "funding": "NIA, NOMIS Foundation, Alkahest (spinout) partnership.",
+    "openalex": {"id": "I97018004", "ror": "https://ror.org/00f54p054", "works_count": 526663, "cited_by_count": 86746499},
+    "domain": "K",
+    "notes": "Spawned Alkahest (plasma-fraction therapeutics)."
+  },
+  {
+    "id": "uw-kaeberlein-pollack",
+    "institution": "University of Washington (Kaeberlein / Pollack groups)",
+    "type": "academic",
+    "subtype": "university",
+    "country": "US",
+    "location": "Seattle, Washington",
+    "key_people": [
+      {"name": "Matt Kaeberlein", "card": "kaeberlein", "role": "rapamycin/mTOR, Dog Aging Project (left UW 2023 → Optispan)"},
+      {"name": "Gerald Pollack", "card": null, "role": "EZ/structured water, fourth phase (bioengineering, frontier-contested)"}
+    ],
+    "focus": "mTOR/rapamycin geroscience and companion-dog aging (Kaeberlein); structured/EZ water biophysics (Pollack — bridges to bucket-canon biophysics).",
+    "notable_output": "Dog Aging Project + TRIAD rapamycin companion-dog trial; Pollack 'The Fourth Phase of Water' (2013).",
+    "funding": "NIA U19 (Dog Aging Project, ~$23M), Glenn Foundation; Pollack work largely independently/privately funded.",
+    "openalex": {"id": "I201448701", "ror": "https://ror.org/00cvxb145", "works_count": 520572, "cited_by_count": 94033356},
+    "domain": "K",
+    "notes": "Kaeberlein now runs Optispan (industry) but UW remains the Dog Aging Project home; Pollack's EZ-water is a fringe-to-canon biophysics node."
+  },
+  {
+    "id": "berkeley-conboy",
+    "institution": "University of California, Berkeley (Conboy Lab)",
+    "type": "academic",
+    "subtype": "university",
+    "country": "US",
+    "location": "Berkeley, California",
+    "key_people": [
+      {"name": "Irina Conboy", "card": "conboy", "role": "heterochronic parabiosis, blood dilution / plasma exchange"},
+      {"name": "Michael Conboy", "card": "conboy", "role": "muscle stem-cell aging, shared lab"}
+    ],
+    "focus": "Heterochronic parabiosis, stem-cell aging reversibility, neutral blood exchange (TPE) as a rejuvenation lever.",
+    "notable_output": "Conboy et al. 2005 Nature (young systemic environment rejuvenates old stem cells); 2020 blood-dilution / plasma-exchange reframing of parabiosis.",
+    "funding": "NIH/NIA, CIRM (California stem-cell agency).",
+    "openalex": {"id": "I95457486", "ror": "https://ror.org/01an7q238", "works_count": 448805, "cited_by_count": 55925808},
+    "domain": "K",
+    "notes": "Conboy reframes 'young blood' benefit as dilution of old pro-aging factors, not addition of youth factors — a live conflict with the GDF11/Wagers camp."
+  },
+  {
+    "id": "tufts-levin-calerie",
+    "institution": "Tufts University (Levin / Allen Discovery Center; HNRCA; CALERIE coordinating site)",
+    "type": "academic",
+    "subtype": "university",
+    "country": "US",
+    "location": "Medford/Boston, Massachusetts",
+    "key_people": [
+      {"name": "Michael Levin", "card": null, "role": "bioelectricity, morphogenetic fields, regeneration (bridges to bucket-canon biophysics)"}
+    ],
+    "focus": "Bioelectric control of growth/regeneration & morphogenesis (Levin); human caloric-restriction biology (HNRCA, CALERIE coordinating center).",
+    "notable_output": "Levin xenobots and bioelectric pattern-control work; CALERIE Legacy Study (NCT05651620) tracking long-term biological-age effects of 2-year CR.",
+    "funding": "NIA (CALERIE), Allen Discovery Center / Paul G. Allen Frontiers Group (Levin), Astera/Templeton (Levin).",
+    "openalex": {"id": "I121934306", "ror": "https://ror.org/05wvpxv85", "works_count": 117113, "cited_by_count": 12787477},
+    "domain": "K",
+    "notes": "Levin is a fringe-to-canon biophysics figure (per Becker/Levin in the ideal-state map A-branch); CALERIE is the landmark human CR program."
+  },
+  {
+    "id": "einstein-barzilai",
+    "institution": "Albert Einstein College of Medicine (Institute for Aging Research)",
+    "type": "academic",
+    "subtype": "medical school",
+    "country": "US",
+    "location": "Bronx, New York",
+    "key_people": [
+      {"name": "Nir Barzilai", "card": "barzilai", "role": "centenarian genetics, metformin/TAME principal investigator"},
+      {"name": "Ana Maria Cuervo", "card": null, "role": "chaperone-mediated autophagy, proteostasis"}
+    ],
+    "focus": "Centenarian/longevity genetics (Longevity Genes Project, Ashkenazi cohort), metformin as a geroprotector, autophagy.",
+    "notable_output": "TAME (Targeting Aging with Metformin) trial design & advocacy; centenarian CETP/IGF-1/APOC3 longevity-gene findings; Cuervo CMA mechanism.",
+    "funding": "NIA, AFAR (American Federation for Aging Research, which administers TAME), Glenn Foundation, philanthropy. TAME (~$75M target) chronically underfunded.",
+    "openalex": {"id": "I129975664", "ror": "https://ror.org/05cf8a891", "works_count": 100068, "cited_by_count": 12832916},
+    "domain": "K",
+    "notes": "Barzilai/TAME is the field's bid for an FDA 'aging-as-indication' precedent; trial still not fully funded/launched as of 2026."
+  },
+  {
+    "id": "usc-longo",
+    "institution": "USC Leonard Davis School of Gerontology (Longevity Institute)",
+    "type": "academic",
+    "subtype": "university",
+    "country": "US",
+    "location": "Los Angeles, California",
+    "key_people": [
+      {"name": "Valter Longo", "card": "longo", "role": "director; fasting-mimicking diet, IGF-1, ProLon (clinical-translator)"}
+    ],
+    "focus": "Dietary/fasting interventions, IGF-1/GH axis, fasting-mimicking diet (FMD), nutrition-longevity translation.",
+    "notable_output": "Fasting-mimicking diet protocol & human trials; Laron-syndrome (GHR deficiency) cancer/diabetes protection cohort; 'The Longevity Diet'.",
+    "funding": "NIA, NCI; Longo COI: founder of L-Nutra (ProLon) — donates equity to charity per his statements.",
+    "openalex": {"id": "I1174212", "ror": "https://ror.org/03taz7m60", "works_count": 273586, "cited_by_count": 27736769},
+    "domain": "K",
+    "notes": "Longo COI (ProLon/L-Nutra) is documented; champions the high-protein-shortens-lifespan side of the protein/mTOR conflict."
+  },
+  {
+    "id": "altos-labs",
+    "institution": "Altos Labs",
+    "type": "industry",
+    "subtype": "company (private)",
+    "country": "US/UK",
+    "location": "San Diego / Bay Area / Cambridge UK",
+    "key_people": [
+      {"name": "Juan Carlos Izpisua Belmonte", "card": "izpisua-belmonte", "role": "partial reprogramming"},
+      {"name": "Steve Horvath", "card": "horvath", "role": "epigenetic clocks (principal investigator)"},
+      {"name": "Morgan Levine", "card": "morgan-levine", "role": "biological-age measurement (founding PI)"},
+      {"name": "Shinya Yamanaka", "card": "yamanaka", "role": "senior scientific advisor (unpaid)"}
+    ],
+    "focus": "Cellular rejuvenation programming (partial Yamanaka-factor reprogramming) to restore cell health and reverse disease.",
+    "notable_output": "Largest-ever biotech launch (~$3B initial funding, 2022); recruited star reprogramming/clock scientists.",
+    "funding": "~$3B private (reported backers include Jeff Bezos and Yuri Milner). No public product yet.",
+    "openalex": {"id": "I4387153853", "ror": "https://ror.org/05467hx49", "works_count": 520, "cited_by_count": 28639},
+    "domain": "K",
+    "notes": "Pulled academic talent (Belmonte/Salk, Levine/Yale, Horvath/UCLA) into industry; reprogramming-centric thesis."
+  },
+  {
+    "id": "calico",
+    "institution": "Calico Life Sciences",
+    "type": "industry",
+    "subtype": "company (Alphabet subsidiary)",
+    "country": "US",
+    "location": "South San Francisco, California",
+    "key_people": [
+      {"name": "Cynthia Kenyon", "card": "kenyon", "role": "VP Aging Research; daf-2/IGF lifespan pioneer"},
+      {"name": "David Botstein", "card": null, "role": "founding chief scientific officer (genomics)"}
+    ],
+    "focus": "Basic biology of aging and lifespan; naked mole-rat & comparative biology; computational/genomic discovery. Famously secretive.",
+    "notable_output": "Naked mole-rat non-aging mortality data (Ruby et al. 2018, eLife); AbbVie drug-development partnership.",
+    "funding": "Alphabet (Google) + AbbVie, ~$2.5B committed. Little public clinical output after 10+ years — a cautionary data point.",
+    "openalex": {"id": "I4405261977", "ror": "https://ror.org/00mrxhs61", "works_count": 0, "cited_by_count": 0},
+    "domain": "K",
+    "notes": "OpenAlex shows ~0 indexed works under the company entity (publishes via partners/affiliations); long-horizon, low-disclosure model."
+  },
+  {
+    "id": "retro-biosciences",
+    "institution": "Retro Biosciences",
+    "type": "industry",
+    "subtype": "company (private)",
+    "country": "US",
+    "location": "Redwood City, California",
+    "key_people": [
+      {"name": "Joe Betts-LaCroix", "card": null, "role": "CEO/co-founder"}
+    ],
+    "focus": "Cellular reprogramming, autophagy, and plasma-fraction approaches to add 10 years to human healthy lifespan.",
+    "notable_output": "Launched 2022 with $180M, reportedly funded substantially by Sam Altman ($180M personal). Early-stage.",
+    "funding": "~$180M (Sam Altman). Private.",
+    "openalex": null,
+    "domain": "K",
+    "notes": "Not meaningfully indexed in OpenAlex (private, early). Reprogramming + autophagy + young-plasma thesis."
+  },
+  {
+    "id": "newlimit",
+    "institution": "NewLimit",
+    "type": "industry",
+    "subtype": "company (private)",
+    "country": "US",
+    "location": "South San Francisco, California",
+    "key_people": [
+      {"name": "Brian Armstrong", "card": null, "role": "co-founder (Coinbase CEO)"},
+      {"name": "Blake Byers", "card": null, "role": "co-founder"},
+      {"name": "Mark Davis", "card": null, "role": "co-founder/CSO"}
+    ],
+    "focus": "Epigenetic reprogramming guided by machine learning to restore youthful gene-expression in specific cell types (hepatocytes, T cells).",
+    "notable_output": "Published preprints on ML-discovered reprogramming factor combinations; $130M Series A (2024).",
+    "funding": "~$110M+ initial (Brian Armstrong), $130M Series A led by Kleiner Perkins.",
+    "openalex": null,
+    "domain": "K",
+    "notes": "ML-first reprogramming-factor discovery; publishes more openly than most peers."
+  },
+  {
+    "id": "bioage-labs",
+    "institution": "BioAge Labs",
+    "type": "industry",
+    "subtype": "company (public, NASDAQ: BIOA)",
+    "country": "US",
+    "location": "Richmond, California",
+    "key_people": [
+      {"name": "Kristen Fortney", "card": null, "role": "CEO/co-founder"}
+    ],
+    "focus": "Human-data-driven drug discovery using longitudinal aging biobanks to find targets; metabolic aging & muscle (apelin/NLRP3 pathways), now obesity/metabolic.",
+    "notable_output": "IPO'd 2024; lead program azelaprag (apelin agonist) for muscle preservation with GLP-1s (program setbacks 2024). Aging-biobank target-discovery platform.",
+    "funding": "Public (IPO ~$200M+, 2024); prior VC (Andreessen Horowitz, others).",
+    "openalex": null,
+    "domain": "K",
+    "notes": "Pivoted toward metabolic/obesity-adjacent indications (the GLP-1 longevity-overlap thread)."
+  },
+  {
+    "id": "unity-biotechnology",
+    "institution": "Unity Biotechnology",
+    "type": "industry",
+    "subtype": "company (public, NASDAQ: UBX)",
+    "country": "US",
+    "location": "South San Francisco, California",
+    "key_people": [
+      {"name": "Nathaniel David", "card": null, "role": "co-founder"},
+      {"name": "Judith Campisi", "card": "campisi", "role": "scientific co-founder (senescence)"},
+      {"name": "Jan van Deursen", "card": null, "role": "scientific co-founder (p16/senescence clearance)"}
+    ],
+    "focus": "Senolytics — selectively clearing senescent cells. Pivoted from osteoarthritis (UBX0101 failed Ph2, 2020) to ophthalmology (UBX1325/foselutoclax for diabetic macular edema).",
+    "notable_output": "First senolytics company to go public (2018); UBX0101 knee-OA Phase 2 failure is a key negative datapoint for systemic senolytics hype; UBX1325 eye program ongoing.",
+    "funding": "Public; backers included ARCH, Venrock, Jeff Bezos, Peter Thiel.",
+    "openalex": {"id": "I4210092599", "ror": null, "works_count": 59, "cited_by_count": null},
+    "domain": "K",
+    "notes": "The cautionary senolytics case: strong mouse data (van Deursen p16-clearance, Nature 2011/2016) did NOT translate to the first human joint trial."
+  },
+  {
+    "id": "loyal-cellular-longevity",
+    "institution": "Loyal (Cellular Longevity, Inc.)",
+    "type": "industry",
+    "subtype": "company (private)",
+    "country": "US",
+    "location": "San Francisco, California",
+    "key_people": [
+      {"name": "Celine Halioua", "card": null, "role": "CEO/founder"}
+    ],
+    "focus": "Drugs to extend healthy lifespan in dogs (LOY-001/003 large-breed via IGF-1 reduction; LOY-002 senior dogs via metabolic).",
+    "notable_output": "First company to receive FDA Center for Veterinary Medicine 'reasonable expectation of effectiveness' for a canine lifespan-extension drug (2023) — a regulatory first for aging-as-indication.",
+    "funding": "~$150M+ VC (Khosla, First Round, others).",
+    "openalex": null,
+    "domain": "K",
+    "notes": "Dog longevity is the realistic near-term regulatory wedge for 'aging as a treatable indication.' IGF-1 axis ties to Bartke/Barzilai biology."
+  },
+  {
+    "id": "gero",
+    "institution": "Gero",
+    "type": "industry",
+    "subtype": "company (private)",
+    "country": "US/Singapore",
+    "location": "Singapore / remote",
+    "key_people": [
+      {"name": "Peter Fedichev", "card": null, "role": "CEO/co-founder (physicist)"}
+    ],
+    "focus": "Physics-of-aging modeling — dynamic biomarkers of aging, resilience/recovery rate from biobank time-series, target discovery from the 'aging as loss of resilience' framework.",
+    "notable_output": "Pyrkov/Fedichev 2021 Nat Commun: human dynamic-organism-state-indicator (DOSI) implies an absolute ~120-150 yr limit from loss of resilience; partnership with Pfizer.",
+    "openalex": null,
+    "funding": "VC; pharma partnerships (Pfizer).",
+    "domain": "K",
+    "notes": "Physics/dynamical-systems framing of aging — bridges to bucket-canon (resilience as a measurable order parameter)."
+  },
+  {
+    "id": "rejuveron",
+    "institution": "Rejuveron Life Sciences",
+    "type": "industry",
+    "subtype": "company (private)",
+    "country": "Switzerland",
+    "location": "Zurich, Switzerland",
+    "key_people": [],
+    "focus": "Portfolio/pipeline company for senescence, regeneration, and aging-associated disease therapeutics.",
+    "notable_output": "Multiple programs (e.g., RJx senolytic/anti-fibrotic assets); founded with Max Planck / ETH ties.",
+    "funding": "VC + strategic (founded with backing including the Max Planck-adjacent ecosystem).",
+    "openalex": null,
+    "domain": "K",
+    "notes": "European industry node; less public output than US peers."
+  },
+  {
+    "id": "sens-lev-foundation",
+    "institution": "SENS Research Foundation / Longevity Escape Velocity (LEV) Foundation",
+    "type": "nonprofit",
+    "subtype": "research-funding nonprofit",
+    "country": "US",
+    "location": "Mountain View, California",
+    "key_people": [
+      {"name": "Aubrey de Grey", "card": "de-grey", "role": "co-founder SENS; founder & president, LEV Foundation"}
+    ],
+    "focus": "Damage-repair paradigm of aging (SENS: seven categories of damage). LEV Foundation runs Robust Mouse Rejuvenation (combination interventions in already-old mice).",
+    "notable_output": "SENS framework (de Grey 2007, 'Ending Aging'); LEV Robust Mouse Rejuvenation Study 1 (rapamycin + senolytics + HSC + plasma combos), results emerging.",
+    "funding": "Philanthropy (crypto donors incl. Vitalik Buterin to SENS; de Grey's inherited bequest). De Grey left SENS 2021 amid governance controversy, founded LEV.",
+    "openalex": {"id": "I4210150525", "ror": null, "works_count": 116, "cited_by_count": null},
+    "domain": "K",
+    "notes": "Frontier-contested; the damage-repair 'engineering' paradigm vs the mainstream geroscience 'slow the rate' paradigm is a foundational framing conflict."
+  },
+  {
+    "id": "methuselah-foundation",
+    "institution": "Methuselah Foundation",
+    "type": "nonprofit",
+    "subtype": "research-funding nonprofit",
+    "country": "US",
+    "location": "Springfield, Virginia",
+    "key_people": [
+      {"name": "David Gobel", "card": null, "role": "co-founder/CEO"},
+      {"name": "Aubrey de Grey", "card": "de-grey", "role": "co-founder"}
+    ],
+    "focus": "Incentive prizes and seed funding for regenerative/longevity science.",
+    "notable_output": "Mprize (Methuselah Mouse Prize) for mouse-longevity records; New Organ Prize; early funder of Organovo, Oisin, Leucadia, Viscient.",
+    "funding": "Philanthropy; revolving venture-philanthropy model (reinvests exits).",
+    "openalex": null,
+    "domain": "K",
+    "notes": "The original prize-driven catalyst of modern longevity philanthropy (Mprize, 2003)."
+  },
+  {
+    "id": "hevolution-foundation",
+    "institution": "Hevolution Foundation",
+    "type": "nonprofit",
+    "subtype": "research-funding nonprofit",
+    "country": "Saudi Arabia",
+    "location": "Riyadh, Saudi Arabia",
+    "key_people": [
+      {"name": "Mehmood Khan", "card": null, "role": "CEO (former PepsiCo/Mayo)"}
+    ],
+    "focus": "Largest-ever dedicated healthspan funder — grants and venture investment in geroscience worldwide. Pledged up to ~$1B/year.",
+    "notable_output": "Hevolution-AFAR New Investigator awards; co-funds TAME-adjacent work; Geroscience grant program.",
+    "funding": "Saudi sovereign / royal backing (PIF-adjacent), targeting ~$1B/yr deployment.",
+    "openalex": null,
+    "domain": "K",
+    "notes": "Single most significant new funding source in the field (since ~2021); reshapes who gets funded globally."
+  },
+  {
+    "id": "astera-institute",
+    "institution": "Astera Institute",
+    "type": "nonprofit",
+    "subtype": "research nonprofit / focused-research-organization funder",
+    "country": "US",
+    "location": "Berkeley, California",
+    "key_people": [
+      {"name": "Jed McCaleb", "card": null, "role": "founder (Ripple/Stellar)"}
+    ],
+    "focus": "High-risk 'open science' bets and Focused Research Organizations (FROs); funds metascience, neuro, and some aging/biology moonshots.",
+    "notable_output": "Backs FROs and open-science infrastructure; funder adjacent to Levin-style frontier biology.",
+    "funding": "Jed McCaleb personal philanthropy.",
+    "openalex": null,
+    "domain": "K",
+    "notes": "Mechanism-design funder (FRO model) rather than a bench lab."
+  },
+  {
+    "id": "impetus-grants",
+    "institution": "Impetus Grants",
+    "type": "nonprofit",
+    "subtype": "fast-grants funder",
+    "country": "US",
+    "location": "remote / Bay Area",
+    "key_people": [],
+    "focus": "Fast, low-bureaucracy grants for aging biology research (modeled on Fast Grants). Funds high-risk early geroscience.",
+    "notable_output": "Rapid 'apply in a weekend' aging-research grants (~$25M+ deployed since 2021).",
+    "funding": "Philanthropy (Vitalik Buterin, Open Philanthropy, Jaan Tallinn, others); operated with Norn Group / Patrick Collison-adjacent metascience ethos.",
+    "openalex": null,
+    "domain": "K",
+    "notes": "Speed-of-funding experiment; lowers activation energy for unconventional aging projects."
+  },
+  {
+    "id": "nia-nih",
+    "institution": "National Institute on Aging (NIA), NIH",
+    "type": "government",
+    "subtype": "federal research institute & funder",
+    "country": "US",
+    "location": "Baltimore/Bethesda, Maryland",
+    "key_people": [],
+    "focus": "Largest public funder of aging research; runs the Interventions Testing Program (ITP), Baltimore Longitudinal Study of Aging (BLSA), and most US geroscience grants.",
+    "notable_output": "NIA Interventions Testing Program (ITP) — the gold-standard multi-site mouse-lifespan testbed that validated rapamycin, acarbose, 17-α-estradiol, canagliflozin; BLSA; funds CALERIE, Dog Aging Project, much of the field.",
+    "funding": "US federal appropriation (~$4.5B/yr, the majority earmarked for Alzheimer's by Congress).",
+    "openalex": {"id": "I4210136897", "ror": null, "works_count": 21422, "cited_by_count": null},
+    "domain": "K",
+    "notes": "The ITP is the field's quality filter (Richard Miller / Strong / Harrison) — separates real geroprotectors from hype. Funding skewed to Alzheimer's by congressional mandate."
+  }
+]

@@ -1,0 +1,12 @@
+# Media binaries mirror to gdrive, not git (Bucket convention)
+video/
+images/
+transcripts/
+*.mp4
+*.jpg
+*.jpeg
+*.png
+*.webm
+# Keep the manifest + structure
+!MANIFEST.jsonl
+!.gitignore

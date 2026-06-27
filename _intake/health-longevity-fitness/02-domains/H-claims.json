@@ -1,0 +1,196 @@
+[
+  {
+    "id": "sauna-frequency-mortality-kihd",
+    "statement": "More frequent Finnish sauna bathing is associated with substantially lower cardiovascular and all-cause mortality in a dose-dependent fashion: 4-7 sessions/week vs 1/week had ~40% lower all-cause and ~50% lower fatal-CVD mortality.",
+    "claim_type": "outcome",
+    "domain": "H-thermal",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "4-7x/week vs 1x/week: all-cause mortality HR ~0.60; fatal CVD HR ~0.50; sudden cardiac death HR ~0.37. Longer single sessions also lower risk.",
+    "population": "2,315 middle-aged Finnish men, KIHD prospective cohort, ~20y follow-up",
+    "provenance": {
+      "primary": "Laukkanen, Laukkanen et al. — 'Association Between Sauna Bathing and Fatal Cardiovascular and All-Cause Mortality Events', JAMA Internal Medicine 2015",
+      "doi": "10.1001/jamainternmed.2014.8187",
+      "surfaced_via": "OpenAlex direct-DOI (named in brief)"
+    },
+    "conflicts_with": [
+      "conflict-sauna-healthy-user"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Observational. Healthy-user bias and reverse causation (sick men sauna less) are NOT excluded; no RCT exists. Direction is strong and dose-dependent but causality is unproven. Men-only cohort.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sauna-dementia-association",
+    "statement": "Frequent sauna bathing is associated with lower incidence of dementia and Alzheimer's disease in the same Finnish cohort.",
+    "claim_type": "outcome",
+    "domain": "H-thermal",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "4-7x/week vs 1x/week: dementia HR ~0.34; Alzheimer's HR ~0.35.",
+    "population": "2,315 middle-aged Finnish men, KIHD cohort, ~20y follow-up",
+    "provenance": {
+      "primary": "Laukkanen et al. — 'Sauna bathing is inversely associated with dementia and Alzheimer's disease in middle-aged Finnish men', Age and Ageing 2016",
+      "doi": "10.1093/ageing/afw212",
+      "surfaced_via": "OpenAlex sauna dementia Laukkanen"
+    },
+    "conflicts_with": [
+      "conflict-sauna-healthy-user"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Same cohort/limitations as the mortality finding. Association only; mechanism (cardiovascular, HSP, relaxation) is hypothesized not proven.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sauna-cardiovascular-physiology",
+    "statement": "Sauna heat exposure acutely raises heart rate, cardiac output and skin blood flow and lowers blood pressure, producing a cardiovascular load and post-session vasodilation broadly comparable to moderate exercise; repeated exposure is proposed to improve endothelial function.",
+    "claim_type": "mechanism",
+    "domain": "H-thermal",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "HR rises to ~100-150 bpm; transient BP changes; improved arterial compliance proposed.",
+    "population": "Human physiology (review of the evidence)",
+    "provenance": {
+      "primary": "Laukkanen & Kunutsor — 'Cardiovascular and Other Health Benefits of Sauna Bathing: A Review of the Evidence', Mayo Clinic Proceedings 2018",
+      "doi": "10.1016/j.mayocp.2018.04.008",
+      "surfaced_via": "OpenAlex sauna benefits review"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism/physiology. The 'sauna mimics exercise' framing is partially supported but should not be read as equivalence for fitness outcomes.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "heat-shock-proteins-mechanism",
+    "statement": "Heat stress induces heat-shock proteins (HSPs, e.g. HSP70/HSP90) that act as molecular chaperones supporting proteostasis, and underlies physiological heat acclimation (plasma-volume expansion, earlier sweating, lower thermal strain).",
+    "claim_type": "mechanism",
+    "domain": "H-thermal",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Upregulated HSP expression + integrated thermoregulatory/cardiovascular acclimation adaptations.",
+    "population": "Human heat-acclimation physiology (review)",
+    "provenance": {
+      "primary": "Periard, Racinais, Sawka — 'Adaptations and mechanisms of human heat acclimation', Scand J Med Sci Sports 2015",
+      "doi": "10.1111/sms.12408",
+      "surfaced_via": "OpenAlex heat acclimation HSP"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (proteostasis, protein folding)",
+    "confidence_notes": "MECHANISM — HSP induction is real; the leap from 'sauna raises HSPs' to 'sauna extends lifespan' is exactly the mechanism->outcome gap the schema forbids conflating. Cross-links to the proteostasis aging hallmark (Domain B).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cold-activated-bat-adult-humans",
+    "statement": "Functional, cold-activated brown adipose tissue (BAT) exists in adult humans (not just infants) and is recruited by cold exposure, demonstrated independently by three 2009 studies using FDG-PET/CT.",
+    "claim_type": "mechanism",
+    "domain": "H-thermal",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Cold-stimulated BAT detectable in the large majority of healthy adults; activity inversely related to BMI/age.",
+    "population": "Healthy adults (3 independent human imaging studies)",
+    "provenance": {
+      "primary": "van Marken Lichtenbelt et al. (NEJM 2009, 10.1056/NEJMoa0808718); Cypess et al. (NEJM 2009, 10.1056/NEJMoa0810780); Virtanen et al. (NEJM 2009, 10.1056/NEJMoa0808949)",
+      "doi": "10.1056/NEJMoa0808718",
+      "surfaced_via": "OpenAlex direct-DOI cold BAT NEJM x3"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mitochondrial uncoupling, UCP1, thermogenesis)",
+    "confidence_notes": "Mechanism, replicated. Establishes the SUBSTRATE for cold-thermogenesis claims. Does NOT by itself establish metabolic-disease or longevity outcomes.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cold-norepinephrine-thermogenesis-mechanism",
+    "statement": "Acute cold-water immersion sharply raises plasma norepinephrine (and metabolic rate via shivering and non-shivering/BAT thermogenesis); cold immersion increased norepinephrine roughly 2-5x in human studies.",
+    "claim_type": "mechanism",
+    "domain": "H-thermal",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Cold (14 C) immersion: norepinephrine ~+530%, dopamine ~+250%; metabolic rate rises (shivering > non-shivering at acute exposure).",
+    "population": "Healthy adults, controlled water-immersion thermophysiology",
+    "provenance": {
+      "primary": "Sramek et al. — 'Human physiological responses to immersion into water of different temperatures', Eur J Appl Physiol 2000",
+      "doi": "10.1007/s004210050065",
+      "surfaced_via": "OpenAlex cold immersion norepinephrine"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "MECHANISM ONLY. 'Cold raises norepinephrine' is the most-laundered claim in cold-exposure media — it is NOT 'cold improves mood/focus/longevity' as an outcome. Acute thermogenesis is dominated by shivering; non-shivering/BAT contribution grows with acclimation.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "shivering-vs-nonshivering-thermogenesis",
+    "statement": "Repeated cold exposure (cold acclimation) shifts thermogenesis from shivering toward non-shivering (BAT-mediated) thermogenesis and recruits BAT — a genuine adaptive remodeling of how the body produces heat.",
+    "claim_type": "mechanism",
+    "domain": "H-thermal",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Acclimation increases BAT volume/activity and non-shivering capacity; reduces reliance on shivering at a given cold load.",
+    "population": "Winter swimmers vs controls; cold-acclimation human studies",
+    "provenance": {
+      "primary": "Soberg et al. — 'Altered brown fat thermoregulation and enhanced cold-induced thermogenesis in young, healthy, winter-swimming men', Cell Reports Medicine 2021",
+      "doi": "10.1016/j.xcrm.2021.100408",
+      "surfaced_via": "OpenAlex winter swimmers BAT"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (UCP1, mitochondrial uncoupling)",
+    "confidence_notes": "Mechanism. Winter-swimmer study is small and combines cold + heat (sauna) exposure, complicating attribution. Adaptive thermogenesis is real; metabolic-health OUTCOMES are a separate, weaker claim.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cold-acclimation-insulin-sensitivity-t2d",
+    "statement": "Ten days of mild cold acclimation improved peripheral insulin sensitivity in patients with type 2 diabetes, associated with increased skeletal-muscle GLUT4 translocation (largely independent of classical BAT).",
+    "claim_type": "outcome",
+    "domain": "H-thermal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~43% increase in insulin-stimulated glucose uptake after 10 days of cold acclimation.",
+    "population": "Small intervention study, patients with type 2 diabetes",
+    "provenance": {
+      "primary": "Hanssen et al. — 'Short-term cold acclimation improves insulin sensitivity in patients with type 2 diabetes mellitus', Nature Medicine 2015",
+      "doi": "10.1038/nm.3891",
+      "surfaced_via": "OpenAlex cold acclimation insulin sensitivity"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A real human OUTCOME (surrogate: insulin sensitivity, not hard endpoints). Small n, short duration, uses prolonged mild cold (hours/day at ~14-15 C) — NOT the 'cold plunge' protocol popularly marketed.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cold-showering-sick-leave-rct",
+    "statement": "A randomized trial of routine cold (or cold-finishing) showering reduced self-reported sickness absence from work, though it did not reduce the number of sick days per illness episode.",
+    "claim_type": "outcome",
+    "domain": "H-thermal",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "~29% reduction in sickness-absence; no change in illness-day count per episode; quality-of-life/energy self-reports improved.",
+    "population": "3,018 adults, randomized to 30-90s cold shower vs control, Netherlands",
+    "provenance": {
+      "primary": "Buijze et al. — 'The Effect of Cold Showering on Health and Work: A Randomized Controlled Trial', PLoS ONE 2016",
+      "doi": "10.1371/journal.pone.0161749",
+      "surfaced_via": "OpenAlex cold shower RCT"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Rare ACTUAL RCT in this space. Self-reported outcomes, unblinded, no biological mechanism confirmed; the absence reduction without fewer sick-days-per-illness is hard to interpret (possible behavioral/expectancy effect).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "hormesis-unifying-frame",
+    "statement": "Thermal stress (heat and cold), like exercise and fasting, is framed as a hormetic stressor: a sub-damaging dose triggers adaptive stress-response programs (HSPs, antioxidant defenses, mitochondrial/thermogenic remodeling) that confer net benefit, while excessive dose is harmful.",
+    "claim_type": "hypothesis",
+    "domain": "H-thermal",
+    "evidence_tier": "theoretical",
+    "direction": "mixed",
+    "effect_size": "Dose-response is biphasic (J/U-shaped) by hypothesis; the beneficial dose window is not precisely defined for humans.",
+    "population": "Cross-stressor conceptual framework",
+    "provenance": {
+      "primary": "Hormesis framework (Calabrese; mitohormesis: Ristow) applied to thermal stress; synthesized across Laukkanen (heat), Soberg/Hanssen (cold)",
+      "doi": "",
+      "surfaced_via": "cross-cutting thread from IDEAL-STATE-MAP (hormesis unifies thermal/exercise/fasting)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mitohormesis, redox signaling)",
+    "confidence_notes": "FRAMEWORK/HYPOTHESIS, not an outcome. Useful organizing lens but risks being unfalsifiable if used to explain any result post hoc. The human beneficial-dose window for cold/heat is genuinely unknown.",
+    "added_on": "2026-06-27"
+  }
+]

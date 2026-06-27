@@ -1,0 +1,253 @@
+[
+  {
+    "id": "crf-vo2max-strongest-mortality-predictor",
+    "statement": "Higher cardiorespiratory fitness (CRF/VO2max, measured by exercise treadmill testing) is associated with progressively lower all-cause mortality with no observed upper limit of benefit; elite-fit individuals had ~5x lower mortality risk than low-fit, an effect magnitude comparable to or larger than smoking, diabetes, or coronary disease.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Low vs elite fitness adjusted HR ~5.04 (i.e. ~80% lower risk for elite); low vs below-average HR ~1.95. No upper benefit threshold ('more fit = lower mortality').",
+    "population": "122,007 adults undergoing treadmill testing, Cleveland Clinic, median 8.4y follow-up",
+    "provenance": {
+      "primary": "Mandsager, Harb, Cremer, Phelan, Nissen, Jaber — 'Association of Cardiorespiratory Fitness With Long-term Mortality Among Adults Undergoing Exercise Treadmill Testing', JAMA Network Open 2018",
+      "doi": "10.1001/jamanetworkopen.2018.3605",
+      "surfaced_via": "OpenAlex direct-DOI (named in brief)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Observational cohort: CRF partly reflects underlying health (reverse causation), so the magnitude overstates the causal effect of training. Still the single strongest fitness-mortality dataset; direction is robust and consistent across cohorts.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "crf-per-met-mortality-meta",
+    "statement": "Each 1-MET higher cardiorespiratory fitness is associated with roughly 13% lower all-cause mortality and ~15% lower CHD/CVD events, in a pooled analysis of healthy adults.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Per 1-MET increment: all-cause mortality RR ~0.87; CHD/CVD RR ~0.85.",
+    "population": "Meta-analysis, ~33 cohorts, >100,000 healthy participants",
+    "provenance": {
+      "primary": "Kodama et al. — 'Cardiorespiratory Fitness as a Quantitative Predictor of All-Cause Mortality and Cardiovascular Events in Healthy Men and Women', JAMA 2009",
+      "doi": "10.1001/jama.2009.681",
+      "surfaced_via": "OpenAlex CRF mortality predictor"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta of prospective cohorts (still observational). Gives a clean per-unit dose figure; 1 MET ~ 3.5 ml/kg/min VO2.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "exercise-mitochondrial-biogenesis-holloszy",
+    "statement": "Endurance training increases skeletal-muscle mitochondrial content and respiratory-enzyme capacity (mitochondrial biogenesis) — the foundational mechanism by which aerobic exercise raises oxidative metabolic capacity.",
+    "claim_type": "mechanism",
+    "domain": "E-exercise",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "~2x rise in muscle mitochondrial respiratory enzymes after endurance training (rat).",
+    "population": "Rat skeletal muscle (foundational); replicated in humans",
+    "provenance": {
+      "primary": "Holloszy — 'Biochemical Adaptations in Muscle: Effects of Exercise on Mitochondrial Oxygen Uptake and Respiratory Enzyme Activity', J Biol Chem 1967",
+      "doi": "10.1016/S0021-9258(18)96046-1",
+      "surfaced_via": "OpenAlex direct-DOI Holloszy"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mitochondria, electron transport, oxidative phosphorylation)",
+    "confidence_notes": "Mechanism, not a longevity outcome. The 1967 origin paper; PGC-1alpha was later identified as the master regulator. UP-link to biophysics canon.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "lactate-threshold-metabolic-flexibility-zone2",
+    "statement": "Fitter individuals oxidize more fat and produce less blood lactate at a given submaximal intensity (greater metabolic flexibility), reflecting superior mitochondrial function; the 'Zone 2' intensity is operationally defined near the first lactate turn-point (~2 mmol/L).",
+    "claim_type": "mechanism",
+    "domain": "E-exercise",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Endurance athletes vs less-fit: higher fat-oxidation rates and lower [lactate] across submaximal workloads.",
+    "population": "Professional endurance athletes vs less-fit adults (cross-sectional metabolic testing)",
+    "provenance": {
+      "primary": "San-Millan & Brooks — 'Assessment of Metabolic Flexibility by Measuring Blood Lactate, Fat, and Carbohydrate Oxidation Responses to Exercise...', Sports Medicine 2018",
+      "doi": "10.1007/s40279-017-0751-x",
+      "surfaced_via": "OpenAlex San-Millan Brooks lactate"
+    },
+    "conflicts_with": [
+      "conflict-zone2-optimal-mito"
+    ],
+    "canon_link": "bucket-canon/05-biophysics/ (mitochondria, lactate shuttle)",
+    "confidence_notes": "MECHANISM/correlate. The popular claim that 'Zone 2 is THE optimal intensity for mitochondrial biogenesis' is an extrapolation beyond this cross-sectional data — see conflict. Lactate-shuttle framing is Brooks'.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "muscle-energy-metabolism-intensity",
+    "statement": "Substrate use during exercise shifts with intensity and duration — fat oxidation dominates at low intensity, carbohydrate/glycolysis at high intensity — providing the physiological basis for intensity-zoned training prescriptions.",
+    "claim_type": "mechanism",
+    "domain": "E-exercise",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Crossover from predominantly fat to predominantly carbohydrate fuel as intensity rises past ~moderate.",
+    "population": "Human skeletal-muscle metabolism (review)",
+    "provenance": {
+      "primary": "Hargreaves & Spriet — 'Skeletal muscle energy metabolism during exercise', Nature Metabolism 2020",
+      "doi": "10.1038/s42255-020-0251-4",
+      "surfaced_via": "OpenAlex muscle energy metabolism exercise"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Mechanism. Underpins the zone-training rationale without itself proving any zone is uniquely 'best'.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "muscle-endocrine-organ-myokines",
+    "statement": "Contracting skeletal muscle secretes hundreds of 'myokines' (e.g. IL-6, irisin, BDNF, SPARC) that signal to fat, liver, bone, pancreas and brain — establishing muscle as an endocrine organ and a mechanistic basis for the systemic, anti-inflammatory benefits of exercise.",
+    "claim_type": "mechanism",
+    "domain": "E-exercise",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Exercise-induced myokine release mediating inter-organ crosstalk.",
+    "population": "Human/rodent muscle physiology (reviews)",
+    "provenance": {
+      "primary": "Pedersen & Febbraio — 'Muscles, exercise and obesity: skeletal muscle as a secretory organ', Nat Rev Endocrinol 2012; Severinsen & Pedersen — 'Muscle-Organ Crosstalk: The Emerging Roles of Myokines', Endocrine Reviews 2020",
+      "doi": "10.1038/nrendo.2012.49",
+      "surfaced_via": "OpenAlex myokines Pedersen"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism. Note: irisin specifically has been controversial (antibody/quantification disputes); the broader muscle-as-endocrine-organ concept is well supported.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "resistance-training-mortality-meta",
+    "statement": "Muscle-strengthening (resistance) activity is associated with ~10-17% lower all-cause, cardiovascular, cancer and diabetes mortality, independent of aerobic activity, with a J-shaped dose-response maximal around 30-60 minutes per week.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~10-17% lower all-cause/CVD/cancer mortality; benefit peaks ~30-60 min/week then plateaus/attenuates.",
+    "population": "Systematic review + meta-analysis of prospective cohort studies",
+    "provenance": {
+      "primary": "Momma, Kawakami, Honda, Sawada — 'Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases', Br J Sports Med 2022",
+      "doi": "10.1136/bjsports-2021-105061",
+      "surfaced_via": "OpenAlex direct-DOI (named in brief)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta of cohorts (observational). The J-shape (benefit plateaus/reverses at high volumes) is a notable, often-omitted nuance. Combined resistance+aerobic gives the lowest risk.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "grip-strength-mortality-pure",
+    "statement": "Lower grip strength is an independent predictor of all-cause and cardiovascular mortality: each 5-kg decrement was associated with ~16% higher all-cause and ~17% higher CVD mortality, and grip predicted death better than systolic blood pressure.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Per 5-kg lower grip: all-cause mortality HR ~1.16; CVD mortality HR ~1.17; MI/stroke also raised.",
+    "population": "139,691 adults across 17 countries, PURE prospective cohort, ~4y median follow-up",
+    "provenance": {
+      "primary": "Leong et al. — 'Prognostic value of grip strength: findings from the Prospective Urban Rural Epidemiology (PURE) study', Lancet 2015 (PMID 25982160)",
+      "doi": "10.1016/S0140-6736(14)62000-6",
+      "surfaced_via": "PubMed esummary PMID 25982160 (OpenAlex DOI record collided; PubMed-confirmed)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong, large, multi-country cohort. Grip is a BIOMARKER of whole-body strength/health, not proof that training grip lowers mortality. Reverse causation (illness lowers grip) contributes.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "grip-strength-biomarker-aging",
+    "statement": "Grip strength is a cheap, reliable biomarker of overall muscular strength, nutritional status, frailty and biological aging in older adults.",
+    "claim_type": "mechanism",
+    "domain": "E-exercise",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Correlates with total strength, mobility, multimorbidity, cognition, recovery.",
+    "population": "Older-adult populations (review)",
+    "provenance": {
+      "primary": "Bohannon — 'Grip Strength: An Indispensable Biomarker For Older Adults', Clin Interv Aging 2019",
+      "doi": "10.2147/cia.s194543",
+      "surfaced_via": "OpenAlex grip strength biomarker"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Biomarker/correlate framing — supports why grip predicts outcomes, not an intervention claim.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sarcopenia-strength-defining-ewgsop2",
+    "statement": "Sarcopenia (age-related loss of muscle) is now defined primarily by low muscle STRENGTH rather than mass; strength declines faster than mass with age (dynapenia), and low strength predicts falls, disability, hospitalization and mortality.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Strength loss outpaces mass loss; low strength is the strongest functional/mortality predictor of the sarcopenia construct.",
+    "population": "European consensus + quantitative aging-muscle reviews",
+    "provenance": {
+      "primary": "Cruz-Jentoft et al. — 'Sarcopenia: revised European consensus on definition and diagnosis (EWGSOP2)', Age and Ageing 2018; Mitchell et al. — 'Sarcopenia, Dynapenia...', Front Physiol 2012",
+      "doi": "10.1093/ageing/afy169",
+      "surfaced_via": "OpenAlex sarcopenia EWGSOP2"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Consensus definition + cohort-backed prognosis. The mass->strength reframe (2018) is the key conceptual move; resistance training is the primary countermeasure.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "hiit-crf-cardiometabolic-meta",
+    "statement": "High-intensity interval training (HIIT), including low-volume protocols, improves VO2max and cardiometabolic markers, frequently producing equal or greater gains per unit of training time than moderate continuous exercise.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "HIIT raised VO2peak ~19% greater than moderate continuous training in lifestyle-disease patients (Weston meta).",
+    "population": "Meta-analysis (lifestyle-induced cardiometabolic disease) + time-efficiency review",
+    "provenance": {
+      "primary": "Weston, Wisloff, Coombes — 'High-intensity interval training in patients with lifestyle-induced cardiometabolic disease: a systematic review and meta-analysis', Br J Sports Med 2014; Gillen & Gibala — APNM 2014",
+      "doi": "10.1136/bjsports-2013-092576",
+      "surfaced_via": "OpenAlex HIIT meta-analysis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT-meta for surrogate endpoints (VO2, cardiometabolic), not mortality. Time-efficient but higher RPE/adherence cost; not categorically superior for all goals.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "physical-activity-dose-response-mortality",
+    "statement": "Higher total physical activity (any intensity), and especially replacing sedentary time with movement, is associated with steeply lower all-cause mortality, with the largest marginal gains at the low-active end of the curve.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Most-active vs least-active (accelerometer) ~5x lower mortality; steep early dose-response, plateau at higher volumes.",
+    "population": "Harmonised meta-analysis of accelerometer cohorts (>36,000 adults)",
+    "provenance": {
+      "primary": "Ekelund et al. — 'Dose-response associations between accelerometry measured physical activity and sedentary time and all cause mortality', BMJ 2019",
+      "doi": "10.1136/bmj.l4570",
+      "surfaced_via": "OpenAlex physical activity dose-response mortality"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Device-measured (less recall bias) but observational. 'Doing something beats nothing' is the strongest, lowest-confounded signal in this domain.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "concurrent-training-interference",
+    "statement": "Performing endurance training concurrently with resistance training can attenuate gains in strength, power and hypertrophy (the 'interference effect'), with the magnitude depending on the modality, frequency, intensity and duration of the endurance work.",
+    "claim_type": "mechanism",
+    "domain": "E-exercise",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Interference is greatest for power/hypertrophy and with high-frequency/long-duration running; minimal for cycling/low volume; aerobic gains are largely preserved.",
+    "population": "Meta-analysis of concurrent-training studies",
+    "provenance": {
+      "primary": "Wilson et al. — 'Concurrent Training: A Meta-Analysis Examining Interference of Aerobic and Resistance Exercises', J Strength Cond Res 2012",
+      "doi": "10.1519/JSC.0b013e31823a3e2d",
+      "surfaced_via": "OpenAlex concurrent training interference"
+    },
+    "conflicts_with": [
+      "conflict-concurrent-interference"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Real but modality/dose-dependent and often overstated; molecular AMPK-vs-mTOR antagonism is a proposed mechanism. Programmable around (separate sessions, cycling over running).",
+    "added_on": "2026-06-27"
+  }
+]

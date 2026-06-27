@@ -1,0 +1,734 @@
+[
+  {
+    "id": "hallmarks-2013-nine",
+    "statement": "Aging can be organized into nine interconnected cellular/molecular hallmarks: genomic instability, telomere attrition, epigenetic alterations, loss of proteostasis, deregulated nutrient sensing, mitochondrial dysfunction, cellular senescence, stem-cell exhaustion, and altered intercellular communication.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Framework (9 hallmarks); each must be measurable, aggravate aging when worsened, and ameliorate aging when reversed.",
+    "population": "Cross-species synthesis (yeast→mouse→human)",
+    "provenance": {
+      "primary": "López-Otín, Blasco, Partridge, Serrano, Kroemer — 'The Hallmarks of Aging', Cell 2013",
+      "doi": "10.1016/j.cell.2013.05.039",
+      "surfaced_via": "OpenAlex hallmarks-of-aging seed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Organizing taxonomy, not a causal proof; modeled on Hanahan & Weinberg's Hallmarks of Cancer. ~15k citations.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "hallmarks-2023-twelve",
+    "statement": "The hallmarks framework was expanded to twelve: the original nine plus disabled macroautophagy, chronic inflammation (inflammaging), and dysbiosis. Hallmarks are grouped as primary (causes of damage), antagonistic (responses that become deleterious), and integrative (culprits of phenotype).",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Framework (12 hallmarks, 3 categories).",
+    "population": "Cross-species synthesis",
+    "provenance": {
+      "primary": "López-Otín, Blasco, Partridge, Serrano, Kroemer — 'Hallmarks of aging: an expanding universe', Cell 2023",
+      "doi": "10.1016/j.cell.2022.11.001",
+      "surfaced_via": "OpenAlex hallmarks expanding universe"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Update/expansion of the 2013 taxonomy; remains a conceptual map, not a unified mechanism.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mtor-rapamycin-mouse-lifespan",
+    "statement": "Rapamycin (mTOR inhibitor) fed from late life (600 days) extends median and maximal lifespan in genetically heterogeneous mice in both sexes.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Median lifespan +9% (males) / +14% (females); first drug to extend mammalian lifespan started late in life.",
+    "population": "Genetically heterogeneous (UM-HET3) mice, NIA ITP, 3 sites",
+    "provenance": {
+      "primary": "Harrison, Strong, Sharp et al. — Nature 2009",
+      "doi": "10.1038/nature08221",
+      "surfaced_via": "OpenAlex mTOR rapamycin lifespan mice"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Robust, replicated across the NIA Interventions Testing Program. Mouse outcome — NOT a demonstrated human lifespan effect.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mtor-pathway-mechanism",
+    "statement": "mTORC1 is a central nutrient/growth sensor; chronic mTORC1 activation suppresses autophagy and drives anabolic, pro-aging programs. Inhibiting it phenocopies aspects of caloric restriction.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Pathway-level mechanism.",
+    "population": "Yeast→mammal conserved",
+    "provenance": {
+      "primary": "Panwar et al. (review) — Signal Transduct Target Ther 2023; orig. concept Kaeberlein/Kennedy",
+      "doi": "10.1038/s41392-023-01608-z",
+      "surfaced_via": "OpenAlex mTOR signaling review"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism claim only — do not read as a human outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "ampk-energy-sensor",
+    "statement": "AMPK is an energy-sensing kinase activated by rising AMP:ATP (low energy); it restores energy homeostasis and is a proposed mediator of CR/metformin/exercise longevity effects.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Pathway mechanism.",
+    "population": "Conserved eukaryote",
+    "provenance": {
+      "primary": "Hardie, Ross, Hawley — 'AMPK: a nutrient and energy sensor', Nat Rev Mol Cell Biol 2012",
+      "doi": "10.1038/nrm3311",
+      "surfaced_via": "OpenAlex AMPK rapamycin search"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Mechanism; links metabolism to aging but human longevity outcome is inferential.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "everolimus-immune-elderly-rct",
+    "statement": "Low-dose mTOR inhibition (RAD001/everolimus) for 6 weeks improved the antibody response to influenza vaccine in elderly humans (a healthspan-relevant surrogate of immunosenescence).",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~20% increase in vaccine antibody titers vs placebo.",
+    "population": "218 adults ≥65y, randomized placebo-controlled (Mannick/Novartis)",
+    "provenance": {
+      "primary": "Mannick et al. — 'mTOR inhibition improves immune function in the elderly', Sci Transl Med 2014",
+      "doi": "10.1126/scitranslmed.3009892",
+      "surfaced_via": "OpenAlex mTOR inhibitor elderly vaccine"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Human RCT but the OUTCOME is an immune surrogate (vaccine response), NOT lifespan or disease endpoints.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sirtuins-nad-decline",
+    "statement": "Sirtuins (NAD+-dependent deacylases, esp. SIRT1/SIRT3/SIRT6) regulate metabolism and genome maintenance; tissue NAD+ levels decline with age, reducing sirtuin activity.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Age-associated NAD+ decline; SIRT6 OE extends male mouse lifespan (Kanfi 2012).",
+    "population": "Mouse/human tissue",
+    "provenance": {
+      "primary": "Imai & Guarente (sirtuin/NAD axis reviews); Kanfi 2012 Nature for SIRT6",
+      "doi": "10.1038/nrm3311",
+      "surfaced_via": "random-walk from AMPK/NAD node"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Mechanistic. The resveratrol→SIRT1 activation story is contested (see CONFLICTS).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "nad-precursor-nr-human-surrogate",
+    "statement": "Oral nicotinamide riboside (NR) is well tolerated and raises blood NAD+ ~40-60% in healthy middle-aged/older humans; it modestly reduced blood pressure/arterial stiffness in a pilot but has NOT shown disease or longevity outcomes.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "NAD+ ~+60%; BP signal exploratory and unconfirmed; no hard outcomes.",
+    "population": "24-140 healthy adults, randomized crossover/parallel pilots",
+    "provenance": {
+      "primary": "Martens et al. — Nat Commun 2018 (9:1286)",
+      "doi": "10.1038/s41467-018-03421-7",
+      "surfaced_via": "OpenAlex nicotinamide riboside NAD humans"
+    },
+    "conflicts_with": [
+      "conflict-nad-precursor-efficacy"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Surrogate (NAD+ level) is proven; clinical OUTCOME is not. Heavily marketed beyond the evidence.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "igf-insulin-daf2-worm",
+    "statement": "Reducing insulin/IGF-1-like signaling (daf-2 mutation) doubles lifespan in C. elegans via the FOXO transcription factor daf-16; this established nutrient-sensing/IIS as a conserved longevity lever.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "~2x lifespan extension in worms.",
+    "population": "C. elegans daf-2 mutants",
+    "provenance": {
+      "primary": "Kenyon, Chang, Gensch, Rudner, Tabtiang — 'A C. elegans mutant that lives twice as long as wild type', Nature 1993",
+      "doi": "10.1038/366461a0",
+      "surfaced_via": "random-walk from FOXO3/nutrient-sensing"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Foundational invertebrate genetics. Worm outcome; mammalian translation is partial (IGF-1 tradeoffs).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "senescence-accumulation-mechanism",
+    "statement": "Senescent cells (irreversible cell-cycle arrest with a pro-inflammatory SASP) accumulate with age and in age-related disease, contributing to tissue dysfunction and chronic inflammation.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "SASP-driven paracrine damage.",
+    "population": "Human/mouse tissue",
+    "provenance": {
+      "primary": "Hernandez-Segura, Nehme, Demaria — 'Hallmarks of Cellular Senescence', Trends Cell Biol 2018",
+      "doi": "10.1016/j.tcb.2018.02.001",
+      "surfaced_via": "OpenAlex senescence senolytics"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism. Senescence is also anti-cancer/wound-healing — context-dependent, not purely harmful.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "p16-clearance-delays-aging-mouse",
+    "statement": "Genetic clearance of p16Ink4a-positive senescent cells delays the onset of age-related pathologies (in a progeroid BubR1 model and, later, in naturally aged mice).",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Delayed sarcopenia, cataract, adipose loss; (2016) extended median lifespan ~25-27% in naturally aged mice.",
+    "population": "INK-ATTAC transgenic mice",
+    "provenance": {
+      "primary": "Baker et al. — Nature 2011 (10.1038/nature10600) and Baker et al. — Nature 2016",
+      "doi": "10.1038/nature16932",
+      "surfaced_via": "OpenAlex direct-DOI p16 clearance"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Proof-of-concept that senescent cells are causal in mice. Genetic ablation tool, not a drug.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "senolytics-dq-discovery-invitro",
+    "statement": "Dasatinib + quercetin (D+Q) was identified as the first senolytic combination by targeting pro-survival 'SCAP' networks that senescent cells depend on, selectively killing them in vitro and in mice.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "invitro",
+    "direction": "supports",
+    "effect_size": "Selective senescent-cell apoptosis.",
+    "population": "Human/mouse senescent cell assays + aged mice",
+    "provenance": {
+      "primary": "Zhu et al. — 'The Achilles' heel of senescent cells', Aging Cell 2015",
+      "doi": "10.1111/acel.12344",
+      "surfaced_via": "OpenAlex senolytics dasatinib quercetin"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Discovery/mechanism. Not a human outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "senolytics-extend-function-mouse",
+    "statement": "Intermittent senolytic treatment improved physical function and extended median post-treatment lifespan (~36%) in old mice, and alleviated dysfunction when senescent cells were transplanted into young mice.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Post-treatment median lifespan +36%; improved gait/grip/endurance.",
+    "population": "Aged (24-27mo) and senescent-cell-transplanted mice",
+    "provenance": {
+      "primary": "Xu et al. — 'Senolytics improve physical function and increase lifespan in old age', Nat Med 2018",
+      "doi": "10.1038/s41591-018-0092-9",
+      "surfaced_via": "OpenAlex senolytics"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong mouse outcome. Human lifespan effect NOT shown.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "fisetin-senotherapeutic-mouse",
+    "statement": "The flavonoid fisetin acts as a senotherapeutic, reducing senescent-cell burden and extending median and maximum lifespan in mice even when started late in life.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Reduced senescence markers; extended median+max lifespan.",
+    "population": "Wild-type and progeroid mice",
+    "provenance": {
+      "primary": "Yousefzadeh et al. — 'Fisetin is a senotherapeutic that extends health and lifespan', EBioMedicine 2018",
+      "doi": "10.1016/j.ebiom.2018.09.015",
+      "surfaced_via": "OpenAlex direct-DOI fisetin"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mouse outcome; widely sold as a supplement on the strength of animal data.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "dq-ipf-first-in-human-pilot",
+    "statement": "A first-in-human open-label pilot of D+Q in idiopathic pulmonary fibrosis (n=14) reported improved physical function (6-min walk, gait speed) over 3 weeks.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Improved 6MWD/gait/chair-stand; no control arm, tiny n, short.",
+    "population": "14 patients with IPF, open-label single-arm",
+    "provenance": {
+      "primary": "Justice et al. — EBioMedicine 2019",
+      "doi": "10.1016/j.ebiom.2018.12.052",
+      "surfaced_via": "OpenAlex caloric-restriction search incidental"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Earliest human senolytic signal but UNCONTROLLED pilot — do NOT treat as efficacy. Larger RCTs ongoing.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "autophagy-genes-ohsumi",
+    "statement": "Yeast genetic screens defined the essential autophagy (ATG) genes and the molecular machinery of macroautophagy — the regulated lysosomal self-digestion that recycles damaged components (Ohsumi, Nobel Prize 2016).",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Defined ~15 core ATG genes / autophagosome pathway.",
+    "population": "S. cerevisiae → conserved to mammals",
+    "provenance": {
+      "primary": "Tsukada & Ohsumi 1993; Mizushima (review) — Genes Dev 2007",
+      "doi": "10.1101/gad.1599207",
+      "surfaced_via": "OpenAlex autophagy ATG Ohsumi"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism. 2016 Nobel in Physiology/Medicine to Ohsumi.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "autophagy-decline-hallmark",
+    "statement": "Macroautophagy declines with age; restoring autophagy (genetically, by CR, rapamycin, or spermidine) is required for many longevity interventions, and 'disabled macroautophagy' is a 2023 hallmark.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Autophagy is necessary downstream of CR/rapamycin/spermidine for lifespan effects.",
+    "population": "Worm/fly/mouse",
+    "provenance": {
+      "primary": "López-Otín et al. 2023 (hallmark); spermidine: Eisenberg 2009",
+      "doi": "10.1016/j.cell.2022.11.001",
+      "surfaced_via": "random-walk from hallmarks 2023"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Mechanism/animal. Human autophagy-induction outcomes not established.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "horvath-clock-2013",
+    "statement": "DNA-methylation levels at 353 CpG sites form a multi-tissue 'epigenetic clock' that predicts chronological age across human tissues with median error ~3.6 years.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Multi-tissue age predictor; r~0.96, MAE ~3.6y.",
+    "population": "~8000 samples, 51 tissue/cell types",
+    "provenance": {
+      "primary": "Horvath — 'DNA methylation age of human tissues and cell types', Genome Biol 2013",
+      "doi": "10.1186/gb-2013-14-10-r115",
+      "surfaced_via": "OpenAlex DNA methylation age Horvath"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A biomarker/correlate of age — NOT proof methylation causes aging. First-gen clock trained on chronological age.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "phenoage-clock-2018",
+    "statement": "PhenoAge, a second-generation epigenetic clock trained on a composite clinical phenotype, predicts all-cause mortality and healthspan better than chronological-age clocks.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Each year of PhenoAge acceleration ~ +9% mortality hazard (cohort).",
+    "population": "Multiple human cohorts (e.g., InCHIANTI, WHI)",
+    "provenance": {
+      "primary": "Levine et al. — 'An epigenetic biomarker of aging for lifespan and healthspan', Aging 2018",
+      "doi": "10.18632/aging.101414",
+      "surfaced_via": "OpenAlex direct-DOI PhenoAge"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Predictive biomarker (association). Acceleration is associated with mortality — not shown to be modifiable→outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "grimage-clock-2019",
+    "statement": "GrimAge, a methylation clock built on DNAm surrogates of plasma proteins and smoking-pack-years, strongly predicts time-to-death and time-to-disease.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Strongest mortality prediction among DNAm clocks (cohort).",
+    "population": "Framingham + validation cohorts",
+    "provenance": {
+      "primary": "Lu et al. — 'DNA methylation GrimAge strongly predicts lifespan and healthspan', Aging 2019",
+      "doi": "10.18632/aging.101684",
+      "surfaced_via": "OpenAlex direct-DOI GrimAge"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Association/prediction. Best-performing clock for mortality, still observational.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "dunedinpace-2022",
+    "statement": "DunedinPACE estimates the RATE of biological aging (years of aging per calendar year) from a single methylation sample, trained on longitudinal multi-organ decline in the Dunedin birth cohort.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Faster pace associated with morbidity, disability, mortality.",
+    "population": "Dunedin 1972-73 birth cohort (n~1000) + validation",
+    "provenance": {
+      "primary": "Belsky et al. — 'DunedinPACE', eLife 2022",
+      "doi": "10.7554/elife.73420",
+      "surfaced_via": "OpenAlex DunedinPACE"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Pace-of-aging biomarker; used as a surrogate endpoint in intervention trials but not validated to causally track interventions.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "yamanaka-ipsc-2006",
+    "statement": "Four transcription factors (Oct4, Sox2, Klf4, c-Myc — 'Yamanaka factors') can reprogram differentiated somatic cells into induced pluripotent stem cells, resetting cellular identity and epigenetic age.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "invitro",
+    "direction": "supports",
+    "effect_size": "Defined-factor reprogramming to pluripotency; resets DNAm age toward zero.",
+    "population": "Mouse/human fibroblasts",
+    "provenance": {
+      "primary": "Takahashi & Yamanaka — Cell 2006",
+      "doi": "10.1016/j.cell.2006.07.024",
+      "surfaced_via": "OpenAlex direct-DOI Yamanaka"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Foundational mechanism (2012 Nobel). Full reprogramming erases identity/causes teratomas — basis for PARTIAL reprogramming.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "partial-reprogramming-ocampo-2016",
+    "statement": "Cyclic, partial expression of Yamanaka factors ameliorates age-associated hallmarks and extends lifespan in a progeroid (LAKI) mouse without full dedifferentiation.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Extended lifespan in progeroid mice; improved tissue function in aged WT.",
+    "population": "LAKI progeroid + aged wild-type mice",
+    "provenance": {
+      "primary": "Ocampo et al. — 'In Vivo Amelioration of Age-Associated Hallmarks by Partial Reprogramming', Cell 2016",
+      "doi": "10.1016/j.cell.2016.11.052",
+      "surfaced_via": "OpenAlex direct-DOI reprogramming"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Animal proof-of-concept; progeroid model inflates effect. Teratoma/identity-loss risk is the central open hazard.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "reprogramming-vision-lu-2020",
+    "statement": "Partial reprogramming with OSK (omitting c-Myc) restored youthful methylation patterns and regenerated optic-nerve axons, restoring vision in aged and glaucomatous mice — evidence that aging involves recoverable epigenetic information.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Axon regeneration + visual-function recovery in aged/injured mouse retina.",
+    "population": "Mouse retinal ganglion cells in vivo",
+    "provenance": {
+      "primary": "Lu, Brommer, Tian, Sinclair et al. — Nature 2020",
+      "doi": "10.1038/s41586-020-2975-4",
+      "surfaced_via": "OpenAlex direct-DOI reprogramming vision"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Supports the 'information theory of aging.' Animal/tissue-specific outcome; human application is early (Altos, NewLimit).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cr-conserved-lifespan-extension",
+    "statement": "Caloric restriction (20-40% without malnutrition) extends lifespan across yeast, worms, flies, and rodents and is the most reproducible non-genetic longevity intervention in short-lived species.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Up to +50% lifespan in rodents; effect size strain/diet-dependent.",
+    "population": "Multiple model organisms",
+    "provenance": {
+      "primary": "de Cabo & Mattson (review) — NEJM 2019; Weindruch & Walford foundational",
+      "doi": "10.1056/nejmra1905136",
+      "surfaced_via": "OpenAlex caloric restriction lifespan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong in short-lived animals; magnitude shrinks and reverses in some mouse strains (ITP/genetic-background dependent).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cr-rhesus-wisconsin-positive",
+    "statement": "In the Wisconsin (WNPRC) rhesus-monkey CR study, calorie restriction delayed disease onset and reduced age-related and all-cause mortality.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Reduced age-related death (HR favoring CR); less diabetes, cancer, CVD, brain atrophy.",
+    "population": "Adult-onset rhesus macaques, WNPRC",
+    "provenance": {
+      "primary": "Colman et al. — Science 2009 (10.1126/science.1173635) & Nat Commun 2014",
+      "doi": "10.1038/ncomms4557",
+      "surfaced_via": "OpenAlex caloric restriction rhesus Wisconsin"
+    },
+    "conflicts_with": [
+      "conflict-cr-primate-survival"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Primate outcome — but CONFLICTS with the NIA study; difference largely attributed to control-diet quality and onset age.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cr-rhesus-nia-null-survival",
+    "statement": "In the parallel NIA rhesus-monkey CR study, calorie restriction improved several healthspan markers but did NOT significantly extend survival overall.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "mixed",
+    "effect_size": "No significant survival benefit overall; metabolic improvements present.",
+    "population": "Rhesus macaques, NIA",
+    "provenance": {
+      "primary": "Mattison et al. — Nature 2012",
+      "doi": "10.1038/nature11432",
+      "surfaced_via": "OpenAlex caloric restriction rhesus NIA"
+    },
+    "conflicts_with": [
+      "conflict-cr-primate-survival"
+    ],
+    "canon_link": "",
+    "confidence_notes": "The famous null primate result. Control monkeys were fed less/healthier than Wisconsin controls.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cr-rhesus-reconciliation-2017",
+    "statement": "A joint re-analysis of both rhesus studies concluded CR does benefit primate health/survival, with discrepancies explained by age of onset, diet composition, sex, and feeding of controls.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "mixed",
+    "effect_size": "Adult-onset CR benefits survival; juvenile-onset and ad-lib-control design altered results.",
+    "population": "Pooled Wisconsin + NIA cohorts",
+    "provenance": {
+      "primary": "Mattison, Colman et al. — 'Caloric restriction improves health and survival of rhesus monkeys', Nat Commun 2017",
+      "doi": "10.1038/ncomms14063",
+      "surfaced_via": "OpenAlex rhesus reconciliation"
+    },
+    "conflicts_with": [
+      "conflict-cr-primate-survival"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Partial reconciliation; underlines that CR outcome is context-dependent, not universal.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "calerie-human-cr-rct",
+    "statement": "In CALERIE-2, ~25% (achieved ~12%) calorie restriction for 2 years in healthy non-obese humans improved cardiometabolic risk markers and slowed the pace of aging (DunedinPACE) — but used surrogate, not mortality, endpoints.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved LDL, BP, CRP, insulin sensitivity; ~2-3% slower DunedinPACE.",
+    "population": "218 healthy non-obese adults, 2-yr RCT",
+    "provenance": {
+      "primary": "Ravussin et al. 2015 (CALERIE); Waziry et al. Nat Aging 2023 (DunedinPACE re-analysis)",
+      "doi": "10.1056/nejmra1905136",
+      "surfaced_via": "random-walk CALERIE from CR node"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Best human CR RCT. OUTCOME is biomarker/surrogate; long-term mortality effect unknown.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "intermittent-fasting-mechanisms",
+    "statement": "Intermittent fasting / time-restricted regimens trigger a metabolic switch to ketone-body fuel and engage stress-resistance, autophagy and circadian pathways; human trials show metabolic benefits but disease/longevity outcomes remain mixed.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Ketogenic switch + autophagy; weight/metabolic benefit ≈ caloric restriction in many trials.",
+    "population": "Rodent mechanism + human metabolic RCTs",
+    "provenance": {
+      "primary": "de Cabo & Mattson — 'Effects of Intermittent Fasting on Health, Aging, and Disease', NEJM 2019",
+      "doi": "10.1056/nejmra1905136",
+      "surfaced_via": "OpenAlex fasting NEJM"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism + modest human metabolic outcomes. Much popular benefit may reduce to caloric/weight effects.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mito-dysfunction-hallmark",
+    "statement": "Mitochondrial dysfunction — reduced bioenergetic efficiency, increased ROS leak, and impaired mitophagy/biogenesis — is a core aging hallmark linking metabolism, redox state and senescence.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Bioenergetic decline + ROS; mitohormesis (low ROS can be beneficial).",
+    "population": "Conserved",
+    "provenance": {
+      "primary": "López-Otín et al. 2013/2023; Sun, Sadighi Akha, Wallace",
+      "doi": "10.1016/j.cell.2022.11.001",
+      "surfaced_via": "random-walk hallmarks"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mitochondria, redox, electron transport)",
+    "confidence_notes": "MECHANISM and a key UP-link to biophysics canon. The simple 'free-radical theory' is contested (see CONFLICTS).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "inflammaging-franceschi",
+    "statement": "'Inflammaging' — chronic, sterile, low-grade systemic inflammation — rises with age and predicts frailty, multimorbidity and mortality; it is now a recognized aging hallmark.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Elevated IL-6/CRP/TNF predict mortality and frailty in elderly cohorts.",
+    "population": "Multiple aging cohorts",
+    "provenance": {
+      "primary": "Franceschi et al. (inflammaging); López-Otín 2023 (hallmark)",
+      "doi": "10.3389/fmed.2018.00061",
+      "surfaced_via": "random-walk from immunosenescence"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort-level association of inflammatory markers with outcomes; causality vs. consequence is debated.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "telomere-attrition-hallmark",
+    "statement": "Telomeres shorten with cell division and age; critically short telomeres trigger senescence/apoptosis. Short leukocyte telomere length is associated with mortality, though effect sizes are modest and confounded.",
+    "claim_type": "outcome",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Short LTL associated with higher mortality (modest HR); Mendelian-randomization signals are mixed/bidirectional with cancer.",
+    "population": "Human cohorts + MR studies",
+    "provenance": {
+      "primary": "López-Otín 2013 (hallmark); Blackburn/Epel telomere biology",
+      "doi": "10.1016/j.cell.2013.05.039",
+      "surfaced_via": "random-walk hallmarks"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hallmark mechanism is solid; the LTL-as-biomarker outcome is weaker/confounded than popular framing.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "foxo3-longevity-association",
+    "statement": "Specific FOXO3A genotypes are strongly and reproducibly associated with human longevity across multiple ethnic populations — the most replicated longevity gene after APOE.",
+    "claim_type": "outcome",
+    "domain": "C-genetics",
+    "evidence_tier": "case-control",
+    "direction": "supports",
+    "effect_size": "OR ~1.3-1.5 for reaching extreme old age (per allele/genotype, varies).",
+    "population": "Centenarian vs control cohorts (Hawaii, German, Italian, Japanese, etc.)",
+    "provenance": {
+      "primary": "Willcox et al. — 'FOXO3A genotype is strongly associated with human longevity', PNAS 2008",
+      "doi": "10.1073/pnas.0801030105",
+      "surfaced_via": "OpenAlex direct-DOI FOXO3"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Genetic ASSOCIATION (case-control/GWAS), not causal/interventional. FOXO3 = human ortholog of worm daf-16.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "apoe-longevity-genetics",
+    "statement": "APOE is the most consistent genetic locus affecting human lifespan: the ε4 allele shortens lifespan and raises Alzheimer's/CVD risk, while ε2 is associated with longevity.",
+    "claim_type": "outcome",
+    "domain": "C-genetics",
+    "evidence_tier": "case-control",
+    "direction": "supports",
+    "effect_size": "ε4 carriers reduced odds of longevity; ε2 enriched in centenarians (GWAS-significant).",
+    "population": "Centenarian GWAS / longevity meta-analyses",
+    "provenance": {
+      "primary": "Deelen et al. 2019 (longevity GWAS); Sebastiani/Perls centenarian studies",
+      "doi": "10.1038/s41467-019-11558-2",
+      "surfaced_via": "random-walk centenarian GWAS"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Robust association from GWAS; APOE and FOXO3 are the only loci replicated across most longevity GWAS.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "centenarian-gwas-polygenic",
+    "statement": "Extreme human longevity is highly polygenic with small per-variant effects; genome-wide longevity GWAS reliably implicate APOE and FOXO3 but most other hits are non-replicating, and heritability of lifespan is modest (~10-25%).",
+    "claim_type": "mechanism",
+    "domain": "C-genetics",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Lifespan heritability ~10-25%; few robust loci beyond APOE/FOXO3.",
+    "population": "Centenarian and parental-lifespan GWAS",
+    "provenance": {
+      "primary": "Deelen et al., Nat Commun 2019; Timmers et al. (parental lifespan)",
+      "doi": "10.1038/s41467-019-11558-2",
+      "surfaced_via": "random-walk centenarian GWAS"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Tempers gene-hype: most longevity is environmental/stochastic, not a few 'longevity genes'.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "metformin-mortality-cohort",
+    "statement": "Type-2 diabetics initiated on metformin monotherapy showed lower all-cause mortality than matched non-diabetic controls in one large observational analysis — the headline rationale for testing metformin as a geroprotector.",
+    "claim_type": "outcome",
+    "domain": "C-genetics",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Metformin initiators ~survived longer than matched non-diabetic controls (observational).",
+    "population": "~180k UK CPRD records (diabetic vs matched non-diabetic)",
+    "provenance": {
+      "primary": "Bannister et al. — Diabetes Obes Metab 2014",
+      "doi": "10.1111/dom.12354",
+      "surfaced_via": "random-walk metformin TAME"
+    },
+    "conflicts_with": [
+      "conflict-metformin-geroprotection"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Observational and confounded (prevalent-user/immortal-time concerns); later analyses (e.g., MILES) are equivocal. NOT proof metformin slows aging.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "tame-trial-design",
+    "statement": "TAME (Targeting Aging with Metformin) is a proposed multi-center RCT designed to test whether metformin delays a composite of age-related diseases — built primarily to establish 'aging' as a regulatory endpoint with the FDA.",
+    "claim_type": "protocol",
+    "domain": "C-genetics",
+    "evidence_tier": "theoretical",
+    "direction": "unfalsifiable",
+    "effect_size": "Design: ~3000 elderly, composite morbidity/mortality endpoint; not yet fully funded/completed as of 2026.",
+    "population": "Planned RCT (Barzilai/AFAR)",
+    "provenance": {
+      "primary": "Barzilai et al. — Cell Metab 2016 (TAME rationale)",
+      "doi": "10.1016/j.cmet.2016.05.011",
+      "surfaced_via": "random-walk metformin TAME"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PROTOCOL/design, not a result. Its real target is the regulatory precedent, not a single drug.",
+    "added_on": "2026-06-27"
+  }
+]

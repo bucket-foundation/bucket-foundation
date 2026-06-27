@@ -1,0 +1,306 @@
+[
+  {
+    "id": "glymphatic-clearance-sleep",
+    "statement": "During sleep (and anesthesia) the brain's interstitial space expands ~60% and convective CSF-interstitial fluid exchange increases markedly, accelerating clearance of metabolic waste including amyloid-beta — i.e. sleep actively drives glymphatic clearance.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Interstitial volume fraction ~14%→~23% awake→asleep; ~2x faster Abeta clearance during sleep.",
+    "population": "Mice (in vivo two-photon imaging + radiolabeled tracer kinetics)",
+    "provenance": {
+      "primary": "Xie, Kang, Xu et al. — 'Sleep Drives Metabolite Clearance from the Adult Brain', Science 2013",
+      "doi": "10.1126/science.1241224",
+      "surfaced_via": "OpenAlex direct-DOI (Nedergaard/Xie 2013, named in brief)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (cell-water / interstitial fluid physics)",
+    "confidence_notes": "Foundational mechanistic finding but demonstrated in MICE. Human-glymphatic measurement is harder and the magnitude/clinical relevance in humans remains partly contested. A mechanism, not the outcome 'sleep prevents Alzheimer's'.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "glymphatic-system-paravascular",
+    "statement": "A brain-wide paravascular ('glymphatic') pathway dependent on astrocytic aquaporin-4 channels routes CSF through the parenchyma and clears interstitial solutes including amyloid-beta; AQP4 deletion sharply reduces clearance.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "~70% reduction in interstitial solute (Abeta) clearance with AQP4 knockout.",
+    "population": "Mice (in vivo fluorescence + radiotracer)",
+    "provenance": {
+      "primary": "Iliff, Wang, Liao et al. — 'A Paravascular Pathway Facilitates CSF Flow Through the Brain Parenchyma and the Clearance of Interstitial Solutes, Including Amyloid Beta', Science Translational Medicine 2012",
+      "doi": "10.1126/scitranslmed.3003748",
+      "surfaced_via": "OpenAlex (glymphatic discovery paper, Nedergaard group)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The anatomical substrate for the sleep-clearance claim. Mouse model; the existence/quantitative importance of the glymphatic system in humans is an active, partly disputed research area.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sleep-deprivation-amyloid-human",
+    "statement": "A single night of total sleep deprivation increased amyloid-beta burden in the human brain (hippocampus and thalamus) measured by PET, linking acute sleep loss to reduced Abeta clearance in humans.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "~5% rise in Abeta PET signal (hippocampus/thalamus) after one sleepless night.",
+    "population": "20 healthy adults, within-subject PET (human)",
+    "provenance": {
+      "primary": "Shokri-Kojori, Wang, Wiers et al. — 'Beta-Amyloid accumulation in the human brain after one night of sleep deprivation', PNAS 2018",
+      "doi": "10.1073/pnas.1721694115",
+      "surfaced_via": "OpenAlex (human translation of the glymphatic-sleep mechanism)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Human, but small (n=20), acute (one night), and a surrogate biomarker (PET Abeta), not a clinical/dementia outcome. Shows the mechanism translates to humans; does NOT show chronic short sleep causes Alzheimer's.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sleep-duration-mortality-ushape",
+    "statement": "Both short AND long habitual sleep duration are associated with increased all-cause mortality — a U-shaped relationship; long sleep often carries the larger association.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Short sleep RR ~1.12; long sleep RR ~1.30 for all-cause mortality (vs reference ~7h).",
+    "population": "Meta-analysis, 16 prospective cohorts, >1.3 million participants",
+    "provenance": {
+      "primary": "Cappuccio, D'Elia, Strazzullo et al. — 'Sleep Duration and All-Cause Mortality: A Systematic Review and Meta-Analysis of Prospective Studies', SLEEP 2010",
+      "doi": "10.1093/sleep/33.5.585",
+      "surfaced_via": "OpenAlex direct-DOI (the canonical U-shape meta)"
+    },
+    "conflicts_with": ["conflict-walker-sleep-claims", "conflict-sleep-duration-causality"],
+    "canon_link": "",
+    "confidence_notes": "Observational. The U-shape directly complicates the popular 'shorter sleep = shorter life' message: long sleep associates with HIGHER mortality, plausibly via reverse causation (illness causes long sleep). Association, not causation.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "kripke-7h-optimal-mortality",
+    "statement": "Mortality is lowest among adults sleeping ~6.5-7.5 hours; both <6.5h and >=8h are associated with higher mortality, and reported insomnia adds little independent risk after controlling for sleep duration and hypnotic use.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Lowest hazard ~7h; elevated hazard at long sleep (>=8h) and very short sleep (<4.5h).",
+    "population": "~1.1 million adults, American Cancer Society prospective cohort, 6y follow-up",
+    "provenance": {
+      "primary": "Kripke, Garfinkel, Wingard et al. — 'Mortality Associated With Sleep Duration and Insomnia', Archives of General Psychiatry 2002",
+      "doi": "10.1001/archpsyc.59.2.131",
+      "surfaced_via": "OpenAlex (large cohort corroborating the U-shape)"
+    },
+    "conflicts_with": ["conflict-walker-sleep-claims"],
+    "canon_link": "",
+    "confidence_notes": "Large but observational; self-reported sleep; the '8h is optimal' folk target is not what the mortality data show (7h is the nadir, 8h+ associates with higher mortality). Reverse causation not excluded.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "aasm-7h-consensus",
+    "statement": "Professional consensus (AASM / Sleep Research Society) recommends adults regularly sleep >=7 hours/night for optimal health; <7h is associated with adverse cardiometabolic, immune, cognitive and mortality outcomes.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": ">=7h/night recommended floor; no explicit upper bound endorsed by the panel (>9h flagged as possibly harmful/uncertain).",
+    "population": "Expert consensus panel synthesizing the adult sleep-health literature",
+    "provenance": {
+      "primary": "Watson, Badr, Belenky et al. — 'Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the AASM and Sleep Research Society', J Clin Sleep Med / SLEEP 2015",
+      "doi": "10.5664/jcsm.4758",
+      "surfaced_via": "OpenAlex (guideline anchor)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Consensus/guideline tier — synthesis + expert judgment, not a single trial. Sets a floor (7h) not a precise individual prescription; the panel itself noted the long-sleep association is harder to interpret.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sleep-debt-metabolic-endocrine",
+    "statement": "Experimental sleep restriction (4h/night for several nights) impairs glucose tolerance and insulin sensitivity, raises evening cortisol, and increases sympathetic tone in healthy young adults.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Glucose tolerance reduced ~30-40%; slower glucose clearance; elevated evening cortisol.",
+    "population": "11 healthy young men, within-subject sleep-restriction vs recovery (controlled lab)",
+    "provenance": {
+      "primary": "Spiegel, Leproult, Van Cauter — 'Impact of sleep debt on metabolic and endocrine function', The Lancet 1999",
+      "doi": "10.1016/S0140-6736(99)01376-8",
+      "surfaced_via": "OpenAlex direct-DOI (foundational sleep-metabolism experiment)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Genuine controlled human experiment but tiny (n=11), young healthy men, short-term, surrogate endpoints (glucose, cortisol). Establishes the acute mechanism, not chronic disease causation.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "light-melatonin-action-spectrum",
+    "statement": "Nocturnal melatonin suppression in humans peaks for short-wavelength ('blue', ~446-477 nm) light, with an action spectrum distinct from the rod/cone visual photopigments — evidence for a novel non-visual circadian photoreceptor (later identified as melanopsin in ipRGCs).",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Peak melatonin-suppression sensitivity ~446-477 nm; not predicted by photopic (visual) sensitivity.",
+    "population": "Healthy adults, controlled monochromatic-light exposures",
+    "provenance": {
+      "primary": "Brainard, Hanifin, Greeson et al. — 'Action Spectrum for Melatonin Regulation in Humans: Evidence for a Novel Circadian Photoreceptor', Journal of Neuroscience 2001",
+      "doi": "10.1523/JNEUROSCI.21-16-06405.2001",
+      "surfaced_via": "OpenAlex direct-DOI (mechanistic basis of 'blue light at night')"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (light & non-visual photoreception, melanopsin/ipRGC)",
+    "confidence_notes": "Settled photobiology. THIS is the real mechanism that both mainstream sleep science and Kruse's circadian-light thesis rest on. It is a mechanism (melatonin suppression), not by itself an outcome (disease).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "room-light-melatonin-suppression",
+    "statement": "Exposure to ordinary indoor room light (<200 lux) before bedtime suppresses melatonin onset and shortens the nocturnal melatonin window in most people — circadian disruption does not require bright light.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Room light suppressed melatonin by ~50% and shortened melatonin duration by ~90 min vs dim light.",
+    "population": "116 healthy adults, controlled in-lab light protocol",
+    "provenance": {
+      "primary": "Gooley, Chamberlain, Smith et al. — 'Exposure to Room Light before Bedtime Suppresses Melatonin Onset and Shortens Melatonin Duration in Humans', J Clinical Endocrinology & Metabolism 2010",
+      "doi": "10.1210/jc.2010-2098",
+      "surfaced_via": "OpenAlex (quantifies the everyday-light circadian hit)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Controlled human study, real circadian endpoint (melatonin). Large inter-individual variability in light sensitivity. Mechanism/physiology, not a hard health outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "evening-screen-light-circadian-delay",
+    "statement": "Evening use of a light-emitting e-reader (vs a print book) suppressed melatonin, delayed circadian timing, lengthened sleep-onset latency, reduced REM, and impaired next-morning alertness.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Melatonin suppressed ~55%; circadian phase delayed ~1.5h; reduced morning alertness next day.",
+    "population": "12 healthy adults, in-lab randomized crossover",
+    "provenance": {
+      "primary": "Chang, Aeschbach, Duffy, Czeisler — 'Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness', PNAS 2014",
+      "doi": "10.1073/pnas.1418490112",
+      "surfaced_via": "OpenAlex direct-DOI (the 'screens before bed' study)"
+    },
+    "conflicts_with": ["conflict-blue-blocking-glasses"],
+    "canon_link": "",
+    "confidence_notes": "Real randomized crossover but tiny (n=12), highly controlled (e-reader at close range in dim lab) — generalization to ordinary phone/TV use is plausible but not proven. Supports avoiding evening light; does NOT validate any specific blue-blocking product.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "social-jetlag-obesity",
+    "statement": "Greater 'social jetlag' (the misalignment between biological/chronotype-preferred sleep timing and socially-imposed schedules) is associated with higher BMI and overweight, independent of sleep duration.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Each hour of social jetlag associated with higher odds of overweight (BMI rises across social-jetlag tertiles).",
+    "population": "~65,000 in the Munich ChronoType Questionnaire database (cross-sectional)",
+    "provenance": {
+      "primary": "Roenneberg, Allebrandt, Merrow, Vetter — 'Social Jetlag and Obesity', Current Biology 2012",
+      "doi": "10.1016/j.cub.2012.03.038",
+      "surfaced_via": "OpenAlex direct-DOI (Roenneberg, named in brief)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-sectional self-report; association only, confounded by socioeconomic and behavioral factors. Introduced the influential 'social jetlag' construct; causality unproven.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "tre-mice-metabolic-protection",
+    "statement": "Time-restricted feeding (food access limited to ~8-9h/day) WITHOUT reducing total calories protects mice on a high-fat diet from obesity, hyperinsulinemia, hepatic steatosis and inflammation — caloric content held constant, only timing changed.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "TRF mice gained far less weight and had improved metabolic profile vs ad-lib mice on identical caloric intake.",
+    "population": "Mice (Panda lab)",
+    "provenance": {
+      "primary": "Hatori, Vollmers, Zarrinpar et al. (Panda lab) — 'Time-Restricted Feeding without Reducing Caloric Intake Prevents Metabolic Diseases in Mice Fed a High-Fat Diet', Cell Metabolism 2012",
+      "doi": "10.1016/j.cmet.2012.04.019",
+      "surfaced_via": "OpenAlex direct-DOI (Panda, named in brief)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong, clean ANIMAL evidence that meal TIMING (independent of calories) matters metabolically. Mouse circadian/metabolic physiology differs from human; do not read as a proven human longevity intervention.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "tre-human-metabolic-syndrome",
+    "statement": "In adults with metabolic syndrome, self-selected 10-hour time-restricted eating reduced body weight, waist circumference, blood pressure and atherogenic lipids over 12 weeks.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "~3% weight/waist reduction; modest BP and LDL/non-HDL improvements over 12 weeks.",
+    "population": "19 adults with metabolic syndrome (most on statins/antihypertensives)",
+    "provenance": {
+      "primary": "Wilkinson, Manoogian, Zadourian et al. (Panda/Taub) — 'Ten-Hour Time-Restricted Eating Reduces Weight, Blood Pressure, and Atherogenic Lipids in Patients with Metabolic Syndrome', Cell Metabolism 2019",
+      "doi": "10.1016/j.cmet.2019.11.004",
+      "surfaced_via": "OpenAlex direct-DOI (human TRE pilot)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Weakest interventional design: single-arm UNCONTROLLED pre-post pilot, n=19, on background medication. No control group; regression-to-mean, expectancy, and concurrent lifestyle change not excluded. Hypothesis-supporting, not confirmatory.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "hrv-autonomic-recovery-biomarker",
+    "statement": "Heart-rate variability indexes autonomic (predominantly vagal/parasympathetic) regulation of the heart; higher resting/recovery HRV broadly reflects better autonomic flexibility and is used as a non-invasive recovery and health biomarker, while chronically low HRV is associated with stress, poor adaptation and higher cardiovascular/all-cause risk.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Time/frequency-domain metrics (RMSSD, HF, SDNN); norms vary widely by age/sex/method.",
+    "population": "Human autonomic physiology (metrics + norms review)",
+    "provenance": {
+      "primary": "Shaffer & Ginsberg — 'An Overview of Heart Rate Variability Metrics and Norms', Frontiers in Public Health 2017",
+      "doi": "10.3389/fpubh.2017.00258",
+      "surfaced_via": "OpenAlex (HRV metrics/norms reference)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "HRV is a biomarker, not an intervention. It is noisy, method-dependent, and only interpretable WITHIN a person over time (cross-person comparisons are weak). The mortality association (Tsuji/Framingham lineage) is real but observational. 'Raise your HRV' is not itself a validated health outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "allostatic-load-stress-mediators",
+    "statement": "Stress mediators (cortisol, catecholamines, inflammatory cytokines) are protective when acutely mobilized but cause cumulative multi-system damage when chronically or dysregulatedly activated — the 'allostatic load' framework for how chronic stress 'weathers' the body.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Composite allostatic-load indices (HPA, autonomic, metabolic, inflammatory markers) predict morbidity/mortality in cohorts.",
+    "population": "Conceptual framework synthesizing human + animal stress physiology",
+    "provenance": {
+      "primary": "McEwen — 'Protective and Damaging Effects of Stress Mediators', New England Journal of Medicine 1998",
+      "doi": "10.1056/NEJM199801153380307",
+      "surfaced_via": "OpenAlex direct-DOI (allostatic-load foundational review)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A widely-adopted explanatory FRAMEWORK (theoretical/mechanistic), not a single tested hypothesis. The allostatic-load index has predictive validity in cohorts but the construct is broad and operationalized inconsistently. Links sleep/circadian/autonomic stress to downstream disease.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "blue-blocking-lenses-no-clear-benefit",
+    "statement": "Blue-light-filtering spectacle lenses show no clear evidence of benefit for sleep quality, visual performance, or protecting macular/retinal health in adults — a Cochrane systematic review found the evidence insufficient to support routine use.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No clinically meaningful benefit demonstrated; very low- to low-certainty evidence across outcomes.",
+    "population": "Systematic review, 17 RCTs, ~600 adults",
+    "provenance": {
+      "primary": "Singh, Keller, Busija et al. — 'Blue-light filtering spectacle lenses for visual performance, sleep, and macular health in adults', Cochrane Database of Systematic Reviews 2023",
+      "doi": "10.1002/14651858.CD013244.pub2",
+      "surfaced_via": "OpenAlex (counter-evidence to blue-blocker product hype)"
+    },
+    "conflicts_with": ["conflict-blue-blocking-glasses"],
+    "canon_link": "",
+    "confidence_notes": "Crucial distinction: this refutes the blue-blocking LENS PRODUCT, NOT the underlying claim that evening short-wavelength light suppresses melatonin (which is well established, see light-melatonin-action-spectrum). Avoiding/dimming evening light != wearing amber glasses works. Both the wellness industry and some critics conflate these.",
+    "added_on": "2026-06-27"
+  }
+]

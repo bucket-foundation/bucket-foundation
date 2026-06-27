@@ -1,0 +1,4 @@
+Domain C OpenAlex raw pulls — 2026-06-27
+Generic searches (sort cited_by_count desc, per_page=12): c-<topic>.json (18 queries)
+Direct-DOI landmark fetches: c-d-<slug>.json (20 papers, 2 corrected: timmers->10.7554/elife.39856, wilmanski->10.1038/s42255-021-00348-0)
+All via api.openalex.org, mailto=gianyrox@gmail.com. Hook-safe: curl to file, parsed in separate python3 step.

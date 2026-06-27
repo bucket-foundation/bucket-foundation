@@ -1,0 +1,215 @@
+[
+  {
+    "id": "wim-hof-voluntary-sns-immune-attenuation",
+    "statement": "Trained practitioners of the Wim Hof method (cyclic hyperventilation + breath-holds + cold + meditation) could voluntarily activate the sympathetic nervous system (raising adrenaline) and attenuate the systemic inflammatory response to an injected endotoxin (lower TNF/IL-6, higher anti-inflammatory IL-10).",
+    "claim_type": "outcome",
+    "domain": "G-breath",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Trained group: higher plasma epinephrine and IL-10, ~50% lower pro-inflammatory cytokines and fewer flu-like symptoms vs untrained controls after endotoxin.",
+    "population": "Randomized controlled trial, 24 healthy men (12 trained vs 12 control), experimental endotoxemia",
+    "provenance": {
+      "primary": "Kox, van Eijk, Pickkers et al. — 'Voluntary activation of the sympathetic nervous system and attenuation of the innate immune response in humans', PNAS 2014",
+      "doi": "10.1073/pnas.1322174111",
+      "surfaced_via": "OpenAlex direct-DOI (named in brief)"
+    },
+    "conflicts_with": [
+      "conflict-wim-hof-mechanism"
+    ],
+    "canon_link": "",
+    "confidence_notes": "A genuine RCT with a real immune OUTCOME, but: small n, healthy young men, acute endotoxemia model (not clinical disease). The intervention is a BUNDLE (breathing + cold + meditation) so the breathing component cannot be isolated. Adrenaline surge (mechanism) drives the anti-inflammatory effect.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "wim-hof-lactate-mediated-antiinflammatory",
+    "statement": "The acute anti-inflammatory effect of the Wim Hof breathing protocol is associated with a rise in plasma lactate/pyruvate during the practice, proposed as a metabolic mediator (alongside adrenaline) of cytokine suppression.",
+    "claim_type": "mechanism",
+    "domain": "G-breath",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Practice-induced lactate rise correlates with epinephrine and the dampened cytokine response.",
+    "population": "Healthy adults practicing the method (mechanistic study)",
+    "provenance": {
+      "primary": "Zwaag, Naaktgeboren, Kox, Pickkers et al. — 'Involvement of Lactate and Pyruvate in the Anti-Inflammatory Effects Exerted by Voluntary Activation of the Sympathetic Nervous System', Metabolites 2020",
+      "doi": "10.3390/metabo10040148",
+      "surfaced_via": "OpenAlex Wim Hof lactate mechanism"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism. Helps explain the PNAS 2014 outcome; not itself a clinical outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "wim-hof-disease-axspa-proof-of-concept",
+    "statement": "An add-on Wim Hof-style program (breathing + cold + meditation) reduced inflammatory markers and disease activity in patients with axial spondyloarthritis in a controlled proof-of-concept trial.",
+    "claim_type": "outcome",
+    "domain": "G-breath",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Lower ESR/CRP and disease-activity scores vs control over 8 weeks (small, open-label, proof-of-concept).",
+    "population": "24 patients with axial spondyloarthritis, controlled trial",
+    "provenance": {
+      "primary": "Buijze et al. — 'An add-on training program involving breathing exercises, cold exposure, and meditation attenuates inflammation and disease activity in axial spondyloarthritis', PLoS ONE 2019",
+      "doi": "10.1371/journal.pone.0225749",
+      "surfaced_via": "OpenAlex Wim Hof spondyloarthritis"
+    },
+    "conflicts_with": [
+      "conflict-wim-hof-mechanism"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Disease OUTCOME but tiny, not blinded, bundled intervention. Hypothesis-generating, not confirmatory.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "wim-hof-systematic-review-caution",
+    "statement": "A systematic review of the Wim Hof method found small, low-quality evidence: the most reproducible finding is acute anti-inflammatory/sympathetic effects, while broader physiological and psychological benefit claims are not yet supported by robust trials.",
+    "claim_type": "outcome",
+    "domain": "G-breath",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Few studies, small samples, high risk of bias; consistent signal only for acute inflammation modulation.",
+    "population": "Systematic review of WHM studies (healthy + clinical)",
+    "provenance": {
+      "primary": "Almahayni & Hammond — 'Does the Wim Hof Method have a beneficial impact on physiological and psychological outcomes...? A systematic review', PLoS ONE 2024",
+      "doi": "10.1371/journal.pone.0286933",
+      "surfaced_via": "OpenAlex Wim Hof systematic review"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The skeptical counterweight: highest-tier source in this domain and it counsels caution. Important guard against media over-claiming.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "slow-breathing-autonomic-hrv",
+    "statement": "Slow breathing (~6 breaths/min, near 0.1 Hz) increases heart-rate variability and shifts autonomic balance toward parasympathetic (vagal) dominance, and is associated with improved psychological measures (reduced anxiety/arousal).",
+    "claim_type": "mechanism",
+    "domain": "G-breath",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Increased HRV/RSA amplitude and baroreflex sensitivity at ~5-6 breaths/min; subjective relaxation.",
+    "population": "Systematic review of slow-breathing studies in healthy humans",
+    "provenance": {
+      "primary": "Zaccaro et al. — 'How Breath-Control Can Change Your Life: A Systematic Review on Psycho-Physiological Correlates of Slow Breathing', Front Hum Neurosci 2018; Russo et al. — Breathe 2017",
+      "doi": "10.3389/fnhum.2018.00353",
+      "surfaced_via": "OpenAlex slow breathing review"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism/physiological-correlate, well replicated for acute autonomic effects. Long-term clinical OUTCOMES are weaker/heterogeneous. Resonance frequency ~0.1 Hz aligns with baroreflex.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "exhalation-vagal-mechanism",
+    "statement": "The respiratory rhythm modulates cardiac vagal tone breath-by-breath (respiratory sinus arrhythmia): heart rate rises on inhalation and falls on exhalation, so prolonged exhalation increases parasympathetic activation — the proposed mechanism behind 'extended-exhale' and physiological-sigh practices.",
+    "claim_type": "mechanism",
+    "domain": "G-breath",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Longer/relatively greater exhalation increases HRV and vagal output vs equal or inhale-weighted ratios.",
+    "population": "Human autonomic physiology (model + reviews)",
+    "provenance": {
+      "primary": "Gerritsen & Band — 'Breath of Life: The Respiratory Vagal Stimulation Model of Contemplative Activity', Front Hum Neurosci 2018; Jerath et al. — Med Hypotheses 2006",
+      "doi": "10.3389/fnhum.2018.00397",
+      "surfaced_via": "OpenAlex respiratory vagal model"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism. Grounds why exhale-emphasis breathing calms; does not by itself prove downstream health outcomes.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cyclic-sighing-mood-arousal-rct",
+    "statement": "Five minutes/day of cyclic sighing (a deliberate physiological-sigh, exhale-emphasized pattern) improved mood and reduced respiratory rate and physiological arousal more than equal-time mindfulness meditation or other breathwork in a randomized trial.",
+    "claim_type": "outcome",
+    "domain": "G-breath",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Cyclic sighing produced the largest daily positive-affect improvement and lowered resting respiratory rate vs meditation/box-breathing/cyclic-hyperventilation.",
+    "population": "114 healthy adults, randomized, 28-day daily-practice trial",
+    "provenance": {
+      "primary": "Balban, Huberman et al. — 'Brief structured respiration practices enhance mood and reduce physiological arousal', Cell Reports Medicine 2023",
+      "doi": "10.1016/j.xcrm.2022.100895",
+      "surfaced_via": "OpenAlex cyclic sighing breathwork RCT"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real RCT, real (self-reported) outcome. Short trial, healthy participants, subjective primary outcome; exhale-emphasis breathwork modestly beat meditation. Promising, not definitive.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "buteyko-asthma-symptoms-rct",
+    "statement": "The Buteyko breathing technique (nasal breathing + reduced breathing volume to raise CO2 tolerance) improved asthma symptoms and reduced reliever-medication use in randomized trials, but did not change underlying lung function or airway hyper-responsiveness.",
+    "claim_type": "outcome",
+    "domain": "G-breath",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Reduced symptoms and bronchodilator use vs control; no improvement in objective lung function (FEV1) or airway inflammation.",
+    "population": "Randomized controlled trial, adults with asthma (Buteyko + pranayama vs control)",
+    "provenance": {
+      "primary": "Cooper et al. — 'Effect of two breathing exercises (Buteyko and pranayama) in asthma: a randomised controlled trial', Thorax 2003",
+      "doi": "10.1136/thorax.58.8.674",
+      "surfaced_via": "OpenAlex Buteyko asthma RCT"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "OUTCOME is symptom/medication (subjective + behavioral), NOT disease modification — the distinction matters. Buteyko's CO2/Bohr-effect rationale is contested; benefit may be from breathing-pattern normalization and reduced over-reliance on relievers.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "diaphragmatic-breathing-stress-cortisol",
+    "statement": "Diaphragmatic (slow, deep) breathing practice improved sustained attention and reduced negative affect and cortisol in healthy adults.",
+    "claim_type": "outcome",
+    "domain": "G-breath",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Lower cortisol and negative affect, improved attention vs control after an 8-week diaphragmatic-breathing intervention.",
+    "population": "40 healthy adults, randomized intervention vs control",
+    "provenance": {
+      "primary": "Ma et al. — 'The Effect of Diaphragmatic Breathing on Attention, Negative Affect and Stress in Healthy Adults', Front Psychol 2017",
+      "doi": "10.3389/fpsyg.2017.00874",
+      "surfaced_via": "OpenAlex diaphragmatic breathing cortisol"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Small RCT, surrogate/psychological outcomes. Consistent with the slow-breathing autonomic mechanism.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "nasal-breathing-nitric-oxide",
+    "statement": "Nitric oxide (NO) is produced in the paranasal sinuses and is present in nasally-breathed air; nasal (vs mouth) breathing delivers this NO to the lungs, where it is a vasodilator proposed to improve ventilation-perfusion matching and oxygen uptake.",
+    "claim_type": "mechanism",
+    "domain": "G-breath",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Substantial nasal NO output; absent/low in mouth breathing; NO is a known pulmonary vasodilator.",
+    "population": "Human respiratory physiology (ERS measurement standard + airway NO biology)",
+    "provenance": {
+      "primary": "Kharitonov et al. — 'Exhaled and nasal nitric oxide measurements: ERS Task Force recommendations', Eur Respir J 1997 (nasal NO); origin of nasal NO: Lundberg et al., Eur Respir J 1995",
+      "doi": "10.1183/09031936.97.10071683",
+      "surfaced_via": "OpenAlex nasal nitric oxide"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "MECHANISM. The existence and nasal origin of NO is solid; the leap to 'nasal breathing meaningfully boosts athletic O2 uptake/performance' is a weaker, popularized extrapolation not well demonstrated in performance OUTCOMES.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "bohr-effect-co2-tolerance",
+    "statement": "The Bohr effect: elevated CO2 (lower blood pH) shifts the oxyhemoglobin dissociation curve rightward, promoting O2 release to tissues. CO2-tolerance breathwork (e.g. Buteyko, breath-holds) is built on raising tolerance to CO2/blunting chemoreflex-driven air hunger.",
+    "claim_type": "mechanism",
+    "domain": "G-breath",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Classical physiology: higher pCO2 lowers Hb-O2 affinity (rightward shift), enhancing tissue oxygen unloading.",
+    "population": "Foundational respiratory physiology",
+    "provenance": {
+      "primary": "Bohr, Hasselbalch & Krogh 1904 (classical Bohr-effect physiology); chronic over-breathing/CO2-tolerance framing reviewed in modern breathwork literature",
+      "doi": "",
+      "surfaced_via": "textbook/classical anchor (no single modern DOI; canonical physiology)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (gas exchange, hemoglobin allostery)",
+    "confidence_notes": "Foundational MECHANISM (textbook, no single primary DOI pulled this pass). The Bohr effect is settled physiology; the claim that habitual 'over-breathing' impairs tissue oxygenation, and that CO2-tolerance training corrects it for health/performance, is a contested EXTRAPOLATION, not an established outcome.",
+    "added_on": "2026-06-27"
+  }
+]

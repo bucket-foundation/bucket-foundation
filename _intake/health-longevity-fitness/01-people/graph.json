@@ -1,0 +1,2528 @@
+{
+  "schema": "people-lab-trial relationship graph (bucket-foundation health-longevity-fitness)",
+  "generated": "2026-06-27",
+  "edge_types": [
+    "mentor",
+    "colleague",
+    "rival",
+    "affiliation",
+    "builds-on"
+  ],
+  "note": "Edges are scientific/institutional relations. 'rival' denotes a documented scientific disagreement, not personal animus. INCLUSION != ENDORSEMENT.",
+  "counts": {
+    "nodes": 184,
+    "edges": 136,
+    "people": 155,
+    "labs": 24,
+    "trials": 5
+  },
+  "nodes": [
+    {
+      "id": "kenyon",
+      "label": "Cynthia Kenyon",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "ohsumi",
+      "label": "Yoshinori Ohsumi",
+      "kind": "person",
+      "domains": [
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "lopez-otin",
+      "label": "Carlos López-Otín",
+      "kind": "person",
+      "domains": [
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "campisi",
+      "label": "Judith Campisi",
+      "kind": "person",
+      "domains": [
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "verdin",
+      "label": "Eric Verdin",
+      "kind": "person",
+      "domains": [
+        "B",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kaeberlein",
+      "label": "Matt Kaeberlein",
+      "kind": "person",
+      "domains": [
+        "B",
+        "K"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "barzilai",
+      "label": "Nir Barzilai",
+      "kind": "person",
+      "domains": [
+        "C",
+        "K"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "longo",
+      "label": "Valter Longo",
+      "kind": "person",
+      "domains": [
+        "D",
+        "B"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "gladyshev",
+      "label": "Vadim Gladyshev",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "horvath",
+      "label": "Steve Horvath",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "morgan-levine",
+      "label": "Morgan Levine",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "wyss-coray",
+      "label": "Tony Wyss-Coray",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "conboy",
+      "label": "Irina & Michael Conboy",
+      "kind": "person",
+      "domains": [
+        "B",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "yamanaka",
+      "label": "Shinya Yamanaka",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "izpisua-belmonte",
+      "label": "Juan Carlos Izpisúa Belmonte",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "sinclair",
+      "label": "David Sinclair",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "de-grey",
+      "label": "Aubrey de Grey",
+      "kind": "person",
+      "domains": [
+        "B"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "church",
+      "label": "George Church",
+      "kind": "person",
+      "domains": [
+        "C",
+        "K"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "picard",
+      "label": "Martin Picard",
+      "kind": "person",
+      "domains": [
+        "A",
+        "B",
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "attia",
+      "label": "Peter Attia",
+      "kind": "person",
+      "domains": [
+        "J",
+        "E",
+        "L",
+        "D"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "patrick",
+      "label": "Rhonda Patrick",
+      "kind": "person",
+      "domains": [
+        "D",
+        "H",
+        "J"
+      ],
+      "posture": "mainstream-communicator"
+    },
+    {
+      "id": "huberman",
+      "label": "Andrew Huberman",
+      "kind": "person",
+      "domains": [
+        "I",
+        "G",
+        "H",
+        "J"
+      ],
+      "posture": "mainstream-communicator"
+    },
+    {
+      "id": "bryan-johnson",
+      "label": "Bryan Johnson",
+      "kind": "person",
+      "domains": [
+        "J",
+        "L",
+        "D"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "kruse",
+      "label": "Jack Kruse",
+      "kind": "person",
+      "domains": [
+        "A",
+        "H",
+        "I"
+      ],
+      "posture": "fringe-to-canon"
+    },
+    {
+      "id": "frohlich",
+      "label": "Herbert Fröhlich",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "boros",
+      "label": "László Boros",
+      "kind": "person",
+      "domains": [
+        "A",
+        "D"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "somlyai",
+      "label": "Gábor Somlyai",
+      "kind": "person",
+      "domains": [
+        "A",
+        "D"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "galpin",
+      "label": "Andy Galpin",
+      "kind": "person",
+      "domains": [
+        "E"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "mcgill",
+      "label": "Stuart McGill",
+      "kind": "person",
+      "domains": [
+        "F",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "starrett",
+      "label": "Kelly Starrett",
+      "kind": "person",
+      "domains": [
+        "F"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "tsatsouline",
+      "label": "Pavel Tsatsouline",
+      "kind": "person",
+      "domains": [
+        "E"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "ido-portal",
+      "label": "Ido Portal",
+      "kind": "person",
+      "domains": [
+        "F"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "efferding",
+      "label": "Stan Efferding",
+      "kind": "person",
+      "domains": [
+        "E",
+        "D"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "wim-hof",
+      "label": "Wim Hof",
+      "kind": "person",
+      "domains": [
+        "G",
+        "H"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "mckeown",
+      "label": "Patrick McKeown",
+      "kind": "person",
+      "domains": [
+        "G"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "nestor",
+      "label": "James Nestor",
+      "kind": "person",
+      "domains": [
+        "G"
+      ],
+      "posture": "mainstream-communicator"
+    },
+    {
+      "id": "laukkanen",
+      "label": "Jari Laukkanen",
+      "kind": "person",
+      "domains": [
+        "H",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "soberg",
+      "label": "Susanna Søberg",
+      "kind": "person",
+      "domains": [
+        "H"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "van-marken-lichtenbelt",
+      "label": "Wouter van Marken Lichtenbelt",
+      "kind": "person",
+      "domains": [
+        "H"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "walker",
+      "label": "Matthew Walker",
+      "kind": "person",
+      "domains": [
+        "I"
+      ],
+      "posture": "mainstream-communicator"
+    },
+    {
+      "id": "panda",
+      "label": "Satchin Panda",
+      "kind": "person",
+      "domains": [
+        "I",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "nedergaard",
+      "label": "Maiken Nedergaard",
+      "kind": "person",
+      "domains": [
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "sabatini",
+      "label": "David M. Sabatini",
+      "kind": "person",
+      "domains": [
+        "B",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "michael-hall",
+      "label": "Michael N. Hall",
+      "kind": "person",
+      "domains": [
+        "B",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "guarente",
+      "label": "Leonard Guarente",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "blackburn",
+      "label": "Elizabeth Blackburn",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "greider",
+      "label": "Carol W. Greider",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "partridge",
+      "label": "Linda Partridge",
+      "kind": "person",
+      "domains": [
+        "B",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "brian-kennedy",
+      "label": "Brian K. Kennedy",
+      "kind": "person",
+      "domains": [
+        "B",
+        "K"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kirkland",
+      "label": "James L. Kirkland",
+      "kind": "person",
+      "domains": [
+        "B",
+        "K"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "austad",
+      "label": "Steven Austad",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "richard-miller",
+      "label": "Richard A. Miller",
+      "kind": "person",
+      "domains": [
+        "B",
+        "K"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "rando",
+      "label": "Thomas Rando",
+      "kind": "person",
+      "domains": [
+        "B",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "wagers",
+      "label": "Amy Wagers",
+      "kind": "person",
+      "domains": [
+        "B",
+        "E"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "villeda",
+      "label": "Saul Villeda",
+      "kind": "person",
+      "domains": [
+        "B",
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "topol",
+      "label": "Eric Topol",
+      "kind": "person",
+      "domains": [
+        "L",
+        "B",
+        "K"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "fontana",
+      "label": "Luigi Fontana",
+      "kind": "person",
+      "domains": [
+        "D",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "mattson",
+      "label": "Mark Mattson",
+      "kind": "person",
+      "domains": [
+        "D",
+        "H",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "brenner",
+      "label": "Charles Brenner",
+      "kind": "person",
+      "domains": [
+        "B",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "imai",
+      "label": "Shin-ichiro Imai",
+      "kind": "person",
+      "domains": [
+        "B",
+        "D"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "de-cabo",
+      "label": "Rafael de Cabo",
+      "kind": "person",
+      "domains": [
+        "D",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "ruvkun",
+      "label": "Gary Ruvkun",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "bartke",
+      "label": "Andrzej Bartke",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kirkwood",
+      "label": "Thomas Kirkwood",
+      "kind": "person",
+      "domains": [
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "harman",
+      "label": "Denham Harman",
+      "kind": "person",
+      "domains": [
+        "B",
+        "A"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "hayflick",
+      "label": "Leonard Hayflick",
+      "kind": "person",
+      "domains": [
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "walford",
+      "label": "Roy Walford",
+      "kind": "person",
+      "domains": [
+        "D",
+        "B"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "mccay",
+      "label": "Clive McCay",
+      "kind": "person",
+      "domains": [
+        "D",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "selye",
+      "label": "Hans Selye",
+      "kind": "person",
+      "domains": [
+        "H",
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "ancel-keys",
+      "label": "Ancel Keys",
+      "kind": "person",
+      "domains": [
+        "D",
+        "L"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "cooper",
+      "label": "Kenneth H. Cooper",
+      "kind": "person",
+      "domains": [
+        "E",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "san-millan",
+      "label": "Iñigo San Millán",
+      "kind": "person",
+      "domains": [
+        "E",
+        "D"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "stuart-phillips",
+      "label": "Stuart Phillips",
+      "kind": "person",
+      "domains": [
+        "E",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "schoenfeld",
+      "label": "Brad Schoenfeld",
+      "kind": "person",
+      "domains": [
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "tim-spector",
+      "label": "Tim Spector",
+      "kind": "person",
+      "domains": [
+        "C",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "eran-segal",
+      "label": "Eran Segal",
+      "kind": "person",
+      "domains": [
+        "D",
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "buteyko",
+      "label": "Konstantin Buteyko",
+      "kind": "person",
+      "domains": [
+        "G"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "iyengar",
+      "label": "B. K. S. Iyengar",
+      "kind": "person",
+      "domains": [
+        "F"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "pilates",
+      "label": "Joseph Pilates",
+      "kind": "person",
+      "domains": [
+        "F",
+        "E"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "feldenkrais",
+      "label": "Moshe Feldenkrais",
+      "kind": "person",
+      "domains": [
+        "F",
+        "I"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "myers",
+      "label": "Thomas Myers",
+      "kind": "person",
+      "domains": [
+        "F"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "murphy",
+      "label": "Coleen Murphy",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C",
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "lamming",
+      "label": "Dudley Lamming",
+      "kind": "person",
+      "domains": [
+        "B",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "pollack",
+      "label": "Gerald Pollack",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "becker",
+      "label": "Robert O. Becker",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "ling",
+      "label": "Gilbert Ling",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "wallace",
+      "label": "Douglas C. Wallace",
+      "kind": "person",
+      "domains": [
+        "A",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "nick-lane",
+      "label": "Nick Lane",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "peter-mitchell",
+      "label": "Peter D. Mitchell",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "jennifer-moyle",
+      "label": "Jennifer Moyle",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "lynn-margulis",
+      "label": "Lynn Margulis",
+      "kind": "person",
+      "domains": [
+        "A",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "william-martin",
+      "label": "William F. (Bill) Martin",
+      "kind": "person",
+      "domains": [
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "carl-woese",
+      "label": "Carl Woese",
+      "kind": "person",
+      "domains": [
+        "C",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "hans-krebs",
+      "label": "Hans Adolf Krebs",
+      "kind": "person",
+      "domains": [
+        "A",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "joris-deelen",
+      "label": "Joris Deelen",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "paola-sebastiani",
+      "label": "Paola Sebastiani",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "thomas-perls",
+      "label": "Thomas Perls",
+      "kind": "person",
+      "domains": [
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "aleksandra-trifunovic",
+      "label": "Aleksandra Trifunovic",
+      "kind": "person",
+      "domains": [
+        "C",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "nils-goran-larsson",
+      "label": "Nils-Goran Larsson",
+      "kind": "person",
+      "domains": [
+        "C",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "tomas-prolla",
+      "label": "Tomas Prolla",
+      "kind": "person",
+      "domains": [
+        "C",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "ake-lu",
+      "label": "Ake T. Lu",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "albert-higgins-chen",
+      "label": "Albert Higgins-Chen",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "daniel-belsky",
+      "label": "Daniel Belsky",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "benoit-lehallier",
+      "label": "Benoit Lehallier",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "hamilton-oh",
+      "label": "Hamilton Oh",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "michael-snyder",
+      "label": "Michael P. Snyder",
+      "kind": "person",
+      "domains": [
+        "C",
+        "D",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "luigi-ferrucci",
+      "label": "Luigi Ferrucci",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "mahdi-moqri",
+      "label": "Mahdi Moqri",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "tomasz-wilmanski",
+      "label": "Tomasz Wilmanski",
+      "kind": "person",
+      "domains": [
+        "C",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "sean-gibbons",
+      "label": "Sean Gibbons",
+      "kind": "person",
+      "domains": [
+        "C",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kenya-honda",
+      "label": "Kenya Honda",
+      "kind": "person",
+      "domains": [
+        "C",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "elena-biagi",
+      "label": "Elena Biagi",
+      "kind": "person",
+      "domains": [
+        "C",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "claudio-franceschi",
+      "label": "Claudio Franceschi",
+      "kind": "person",
+      "domains": [
+        "B",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "fedor-galkin",
+      "label": "Fedor Galkin",
+      "kind": "person",
+      "domains": [
+        "C",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "william-kraus",
+      "label": "William E. Kraus",
+      "kind": "person",
+      "domains": [
+        "D",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "krista-varady",
+      "label": "Krista A. Varady",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "stephen-simpson",
+      "label": "Stephen J. Simpson",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "david-le-couteur",
+      "label": "David G. Le Couteur",
+      "kind": "person",
+      "domains": [
+        "D",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "samantha-solon-biet",
+      "label": "Samantha M. Solon-Biet",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "jaime-guevara-aguirre",
+      "label": "Jaime Guevara-Aguirre",
+      "kind": "person",
+      "domains": [
+        "D",
+        "C"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "jurgen-bauer",
+      "label": "Jurgen M. Bauer",
+      "kind": "person",
+      "domains": [
+        "D",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "dariush-mozaffarian",
+      "label": "Dariush Mozaffarian",
+      "kind": "person",
+      "domains": [
+        "D",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "christopher-ramsden",
+      "label": "Christopher E. Ramsden",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "james-dinicolantonio",
+      "label": "James J. DiNicolantonio",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "james-okeefe",
+      "label": "James H. O'Keefe",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "ramon-estruch",
+      "label": "Ramon Estruch",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "saul-justin-newman",
+      "label": "Saul Justin Newman",
+      "kind": "person",
+      "domains": [
+        "D",
+        "L"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "john-newman",
+      "label": "John C. Newman",
+      "kind": "person",
+      "domains": [
+        "D",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "mike-joyner",
+      "label": "Michael J. Joyner",
+      "kind": "person",
+      "domains": [
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "bruce-ames",
+      "label": "Bruce Ames",
+      "kind": "person",
+      "domains": [
+        "D",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "don-layman",
+      "label": "Donald K. (Don) Layman",
+      "kind": "person",
+      "domains": [
+        "D",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "dan-garner",
+      "label": "Dan Garner",
+      "kind": "person",
+      "domains": [
+        "E",
+        "L"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "william-harris",
+      "label": "William S. Harris",
+      "kind": "person",
+      "domains": [
+        "D",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "jill-miller",
+      "label": "Jill Miller",
+      "kind": "person",
+      "domains": [
+        "F",
+        "G"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "brian-mackenzie",
+      "label": "Brian Mackenzie",
+      "kind": "person",
+      "domains": [
+        "G",
+        "E"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "ori-hofmekler",
+      "label": "Ori Hofmekler",
+      "kind": "person",
+      "domains": [
+        "D"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "glen-jeffery",
+      "label": "Glen Jeffery",
+      "kind": "person",
+      "domains": [
+        "A",
+        "I",
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "alexis-cowan",
+      "label": "Alexis Cowan",
+      "kind": "person",
+      "domains": [
+        "D",
+        "A"
+      ],
+      "posture": "mainstream-communicator"
+    },
+    {
+      "id": "que-collins",
+      "label": "T. Que Collins",
+      "kind": "person",
+      "domains": [
+        "A",
+        "D"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "roberts-ddw",
+      "label": "Richard J. Roberts (deuterium research)",
+      "kind": "person",
+      "domains": [
+        "A",
+        "D"
+      ],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "karl-friston",
+      "label": "Karl J. Friston",
+      "kind": "person",
+      "domains": [],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "donald-hoffman",
+      "label": "Donald D. Hoffman",
+      "kind": "person",
+      "domains": [],
+      "posture": "frontier-contested"
+    },
+    {
+      "id": "nolan-williams",
+      "label": "Nolan Williams",
+      "kind": "person",
+      "domains": [
+        "I"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "paul-conti",
+      "label": "Paul Conti",
+      "kind": "person",
+      "domains": [
+        "I"
+      ],
+      "posture": "clinical-translator"
+    },
+    {
+      "id": "dave-asprey",
+      "label": "Dave Asprey",
+      "kind": "person",
+      "domains": [
+        "J",
+        "D",
+        "A"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "ben-greenfield",
+      "label": "Ben Greenfield",
+      "kind": "person",
+      "domains": [
+        "J",
+        "A"
+      ],
+      "posture": "practitioner-n1"
+    },
+    {
+      "id": "jeffrey-iliff",
+      "label": "Jeffrey J. Iliff",
+      "kind": "person",
+      "domains": [
+        "I",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "till-roenneberg",
+      "label": "Till Roenneberg",
+      "kind": "person",
+      "domains": [
+        "I",
+        "C"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "eve-van-cauter",
+      "label": "Eve Van Cauter",
+      "kind": "person",
+      "domains": [
+        "I",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "george-brainard",
+      "label": "George C. Brainard",
+      "kind": "person",
+      "domains": [
+        "I",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "charles-czeisler",
+      "label": "Charles A. Czeisler",
+      "kind": "person",
+      "domains": [
+        "I",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "bruce-mcewen",
+      "label": "Bruce S. McEwen",
+      "kind": "person",
+      "domains": [
+        "I",
+        "H"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "fred-shaffer",
+      "label": "Fred Shaffer",
+      "kind": "person",
+      "domains": [
+        "L",
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "joshua-gooley",
+      "label": "Joshua J. Gooley",
+      "kind": "person",
+      "domains": [
+        "I",
+        "A"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "alexei-guzey",
+      "label": "Alexei Guzey",
+      "kind": "person",
+      "domains": [
+        "I"
+      ],
+      "posture": "mainstream-communicator"
+    },
+    {
+      "id": "buck-institute",
+      "label": "Buck Institute for Research on Aging",
+      "kind": "lab",
+      "type": "nonprofit"
+    },
+    {
+      "id": "salk-institute",
+      "label": "Salk Institute for Biological Studies",
+      "kind": "lab",
+      "type": "nonprofit"
+    },
+    {
+      "id": "harvard-aging",
+      "label": "Harvard University / Harvard Medical School",
+      "kind": "lab",
+      "type": "academic"
+    },
+    {
+      "id": "stanford-wyss-coray",
+      "label": "Stanford University (Wyss-Coray Lab / Knight Initiative)",
+      "kind": "lab",
+      "type": "academic"
+    },
+    {
+      "id": "uw-kaeberlein-pollack",
+      "label": "University of Washington (Kaeberlein / Pollack groups)",
+      "kind": "lab",
+      "type": "academic"
+    },
+    {
+      "id": "berkeley-conboy",
+      "label": "University of California, Berkeley (Conboy Lab)",
+      "kind": "lab",
+      "type": "academic"
+    },
+    {
+      "id": "tufts-levin-calerie",
+      "label": "Tufts University (Levin / Allen Discovery Center; HNRCA; CALERIE coordinating site)",
+      "kind": "lab",
+      "type": "academic"
+    },
+    {
+      "id": "einstein-barzilai",
+      "label": "Albert Einstein College of Medicine (Institute for Aging Research)",
+      "kind": "lab",
+      "type": "academic"
+    },
+    {
+      "id": "usc-longo",
+      "label": "USC Leonard Davis School of Gerontology (Longevity Institute)",
+      "kind": "lab",
+      "type": "academic"
+    },
+    {
+      "id": "altos-labs",
+      "label": "Altos Labs",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "calico",
+      "label": "Calico Life Sciences",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "retro-biosciences",
+      "label": "Retro Biosciences",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "newlimit",
+      "label": "NewLimit",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "bioage-labs",
+      "label": "BioAge Labs",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "unity-biotechnology",
+      "label": "Unity Biotechnology",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "loyal-cellular-longevity",
+      "label": "Loyal (Cellular Longevity, Inc.)",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "gero",
+      "label": "Gero",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "rejuveron",
+      "label": "Rejuveron Life Sciences",
+      "kind": "lab",
+      "type": "industry"
+    },
+    {
+      "id": "sens-lev-foundation",
+      "label": "SENS Research Foundation / Longevity Escape Velocity (LEV) Foundation",
+      "kind": "lab",
+      "type": "nonprofit"
+    },
+    {
+      "id": "methuselah-foundation",
+      "label": "Methuselah Foundation",
+      "kind": "lab",
+      "type": "nonprofit"
+    },
+    {
+      "id": "hevolution-foundation",
+      "label": "Hevolution Foundation",
+      "kind": "lab",
+      "type": "nonprofit"
+    },
+    {
+      "id": "astera-institute",
+      "label": "Astera Institute",
+      "kind": "lab",
+      "type": "nonprofit"
+    },
+    {
+      "id": "impetus-grants",
+      "label": "Impetus Grants",
+      "kind": "lab",
+      "type": "nonprofit"
+    },
+    {
+      "id": "nia-nih",
+      "label": "National Institute on Aging (NIA), NIH",
+      "kind": "lab",
+      "type": "government"
+    },
+    {
+      "id": "TAME-unregistered",
+      "label": "TAME",
+      "kind": "trial"
+    },
+    {
+      "id": "NCT03675724",
+      "label": "AFFIRM-LITE",
+      "kind": "trial"
+    },
+    {
+      "id": "NCT04063124",
+      "label": "SToMP-AD",
+      "kind": "trial"
+    },
+    {
+      "id": "NCT05651620",
+      "label": "CALERIE Legacy",
+      "kind": "trial"
+    },
+    {
+      "id": "NCT04733534",
+      "label": "Open-Label Trial to Reduce Senescence and Improve Frailty in Adult Survivors of Childhood Cancer",
+      "kind": "trial"
+    }
+  ],
+  "edges": [
+    {
+      "from": "verdin",
+      "to": "buck-institute",
+      "type": "affiliation",
+      "note": "President & CEO; NAD+/immunometabolism @ Buck Institute for Research on Aging"
+    },
+    {
+      "from": "campisi",
+      "to": "buck-institute",
+      "type": "affiliation",
+      "note": "cellular senescence, SASP (emerita) @ Buck Institute for Research on Aging"
+    },
+    {
+      "from": "brian-kennedy",
+      "to": "buck-institute",
+      "type": "affiliation",
+      "note": "former president; geroscience hypothesis (now NUS) @ Buck Institute for Research on Aging"
+    },
+    {
+      "from": "panda",
+      "to": "salk-institute",
+      "type": "affiliation",
+      "note": "circadian biology, time-restricted eating @ Salk Institute for Biological Studies"
+    },
+    {
+      "from": "izpisua-belmonte",
+      "to": "salk-institute",
+      "type": "affiliation",
+      "note": "partial reprogramming/rejuvenation (left for Altos 2022) @ Salk Institute for Biological Studies"
+    },
+    {
+      "from": "sinclair",
+      "to": "harvard-aging",
+      "type": "affiliation",
+      "note": "sirtuins, NAD+, information theory of aging (frontier-contested) @ Harvard University / Harvard Medical School"
+    },
+    {
+      "from": "gladyshev",
+      "to": "harvard-aging",
+      "type": "affiliation",
+      "note": "comparative biology of aging, redox, aging clocks @ Harvard University / Harvard Medical School"
+    },
+    {
+      "from": "church",
+      "to": "harvard-aging",
+      "type": "affiliation",
+      "note": "genomics, gene-therapy approaches to aging @ Harvard University / Harvard Medical School"
+    },
+    {
+      "from": "wagers",
+      "to": "harvard-aging",
+      "type": "affiliation",
+      "note": "parabiosis / circulating youth factors (GDF11 dispute) @ Harvard University / Harvard Medical School"
+    },
+    {
+      "from": "wyss-coray",
+      "to": "stanford-wyss-coray",
+      "type": "affiliation",
+      "note": "young plasma, parabiosis, brain aging, organ aging clocks @ Stanford University (Wyss-Coray Lab / Knight Initiative)"
+    },
+    {
+      "from": "villeda",
+      "to": "stanford-wyss-coray",
+      "type": "affiliation",
+      "note": "young-blood factors and cognition (now UCSF) @ Stanford University (Wyss-Coray Lab / Knight Initiative)"
+    },
+    {
+      "from": "kaeberlein",
+      "to": "uw-kaeberlein-pollack",
+      "type": "affiliation",
+      "note": "rapamycin/mTOR, Dog Aging Project (left UW 2023 → Optispan) @ University of Washington (Kaeberlein / Pollack groups)"
+    },
+    {
+      "from": "conboy",
+      "to": "berkeley-conboy",
+      "type": "affiliation",
+      "note": "heterochronic parabiosis, blood dilution / plasma exchange @ University of California, Berkeley (Conboy Lab)"
+    },
+    {
+      "from": "barzilai",
+      "to": "einstein-barzilai",
+      "type": "affiliation",
+      "note": "centenarian genetics, metformin/TAME principal investigator @ Albert Einstein College of Medicine (Institute for Aging Research)"
+    },
+    {
+      "from": "longo",
+      "to": "usc-longo",
+      "type": "affiliation",
+      "note": "director; fasting-mimicking diet, IGF-1, ProLon (clinical-translator) @ USC Leonard Davis School of Gerontology (Longevity Institute)"
+    },
+    {
+      "from": "izpisua-belmonte",
+      "to": "altos-labs",
+      "type": "affiliation",
+      "note": "partial reprogramming @ Altos Labs"
+    },
+    {
+      "from": "horvath",
+      "to": "altos-labs",
+      "type": "affiliation",
+      "note": "epigenetic clocks (principal investigator) @ Altos Labs"
+    },
+    {
+      "from": "morgan-levine",
+      "to": "altos-labs",
+      "type": "affiliation",
+      "note": "biological-age measurement (founding PI) @ Altos Labs"
+    },
+    {
+      "from": "yamanaka",
+      "to": "altos-labs",
+      "type": "affiliation",
+      "note": "senior scientific advisor (unpaid) @ Altos Labs"
+    },
+    {
+      "from": "kenyon",
+      "to": "calico",
+      "type": "affiliation",
+      "note": "VP Aging Research; daf-2/IGF lifespan pioneer @ Calico Life Sciences"
+    },
+    {
+      "from": "campisi",
+      "to": "unity-biotechnology",
+      "type": "affiliation",
+      "note": "scientific co-founder (senescence) @ Unity Biotechnology"
+    },
+    {
+      "from": "de-grey",
+      "to": "sens-lev-foundation",
+      "type": "affiliation",
+      "note": "co-founder SENS; founder & president, LEV Foundation @ SENS Research Foundation / Longevity Escape Velocity (LEV) Foundation"
+    },
+    {
+      "from": "de-grey",
+      "to": "methuselah-foundation",
+      "type": "affiliation",
+      "note": "co-founder @ Methuselah Foundation"
+    },
+    {
+      "from": "benoit-lehallier",
+      "to": "stanford-wyss-coray",
+      "type": "affiliation",
+      "note": "plasma-proteome aging waves (Wyss-Coray lab)"
+    },
+    {
+      "from": "hamilton-oh",
+      "to": "stanford-wyss-coray",
+      "type": "affiliation",
+      "note": "organ aging clocks (Wyss-Coray lab)"
+    },
+    {
+      "from": "john-newman",
+      "to": "buck-institute",
+      "type": "affiliation",
+      "note": "BHB/ketogenic healthspan (Buck geroscience)"
+    },
+    {
+      "from": "mahdi-moqri",
+      "to": "harvard-aging",
+      "type": "affiliation",
+      "note": "Biomarkers of Aging Consortium (Gladyshev/Harvard)"
+    },
+    {
+      "from": "ake-lu",
+      "to": "altos-labs",
+      "type": "affiliation",
+      "note": "epigenetic clocks (moved from UCLA Horvath lab)"
+    },
+    {
+      "from": "blackburn",
+      "to": "greider",
+      "type": "mentor",
+      "note": "Greider was Blackburn's PhD student; co-discovered telomerase"
+    },
+    {
+      "from": "guarente",
+      "to": "sinclair",
+      "type": "mentor",
+      "note": "Sinclair was a postdoc in the Guarente lab (sirtuins)"
+    },
+    {
+      "from": "guarente",
+      "to": "imai",
+      "type": "mentor",
+      "note": "Imai co-authored the founding Sir2/NAD+ paper as Guarente postdoc"
+    },
+    {
+      "from": "guarente",
+      "to": "kaeberlein",
+      "type": "mentor",
+      "note": "Kaeberlein did his PhD with Guarente (yeast RLS)"
+    },
+    {
+      "from": "guarente",
+      "to": "brian-kennedy",
+      "type": "mentor",
+      "note": "Kennedy did his PhD with Guarente (yeast aging)"
+    },
+    {
+      "from": "kenyon",
+      "to": "murphy",
+      "type": "mentor",
+      "note": "Coleen Murphy was a postdoc in the Kenyon lab (DAF-16 targets)"
+    },
+    {
+      "from": "sabatini",
+      "to": "lamming",
+      "type": "mentor",
+      "note": "Lamming was a postdoc with Sabatini (mTOR)"
+    },
+    {
+      "from": "rando",
+      "to": "conboy",
+      "type": "mentor",
+      "note": "Irina Conboy trained with Rando; co-authored the 2005 parabiosis paper"
+    },
+    {
+      "from": "wyss-coray",
+      "to": "villeda",
+      "type": "mentor",
+      "note": "Villeda was a postdoc with Wyss-Coray (young blood/cognition)"
+    },
+    {
+      "from": "wyss-coray",
+      "to": "benoit-lehallier",
+      "type": "mentor",
+      "note": "Lehallier built the proteomic clock in the Wyss-Coray lab"
+    },
+    {
+      "from": "wyss-coray",
+      "to": "hamilton-oh",
+      "type": "mentor",
+      "note": "Oh built organ clocks in the Wyss-Coray lab"
+    },
+    {
+      "from": "horvath",
+      "to": "ake-lu",
+      "type": "mentor",
+      "note": "Lu was lead analyst in the Horvath lab (GrimAge, mammalian clock)"
+    },
+    {
+      "from": "horvath",
+      "to": "morgan-levine",
+      "type": "mentor",
+      "note": "Levine was a postdoc with Horvath (PhenoAge)"
+    },
+    {
+      "from": "morgan-levine",
+      "to": "albert-higgins-chen",
+      "type": "mentor",
+      "note": "Higgins-Chen developed PC-clocks with Levine at Yale"
+    },
+    {
+      "from": "gladyshev",
+      "to": "mahdi-moqri",
+      "type": "mentor",
+      "note": "Moqri works with Gladyshev on the Biomarkers of Aging Consortium"
+    },
+    {
+      "from": "nils-goran-larsson",
+      "to": "aleksandra-trifunovic",
+      "type": "mentor",
+      "note": "Trifunovic was first author of the mutator mouse from the Larsson lab"
+    },
+    {
+      "from": "sean-gibbons",
+      "to": "tomasz-wilmanski",
+      "type": "mentor",
+      "note": "Wilmanski worked in the Gibbons lab at ISB"
+    },
+    {
+      "from": "stephen-simpson",
+      "to": "samantha-solon-biet",
+      "type": "mentor",
+      "note": "Solon-Biet did her PhD with Simpson (Geometric Framework)"
+    },
+    {
+      "from": "nedergaard",
+      "to": "jeffrey-iliff",
+      "type": "mentor",
+      "note": "Iliff co-discovered the glymphatic system in the Nedergaard lab"
+    },
+    {
+      "from": "bruce-ames",
+      "to": "patrick",
+      "type": "mentor",
+      "note": "Rhonda Patrick did her postdoctoral training with Bruce Ames"
+    },
+    {
+      "from": "somlyai",
+      "to": "boros",
+      "type": "mentor",
+      "note": "Boros entered deuterium research through Somlyai (2002)"
+    },
+    {
+      "from": "peter-mitchell",
+      "to": "jennifer-moyle",
+      "type": "mentor",
+      "note": "Moyle was Mitchell's lifelong research partner at Glynn"
+    },
+    {
+      "from": "nick-lane",
+      "to": "peter-mitchell",
+      "type": "builds-on",
+      "note": "Lane's bioenergetic synthesis rests on chemiosmotic theory"
+    },
+    {
+      "from": "nick-lane",
+      "to": "lynn-margulis",
+      "type": "builds-on",
+      "note": "builds on endosymbiotic origin of mitochondria"
+    },
+    {
+      "from": "william-martin",
+      "to": "lynn-margulis",
+      "type": "builds-on",
+      "note": "extends endosymbiosis to the hydrogen hypothesis"
+    },
+    {
+      "from": "peter-mitchell",
+      "to": "hans-krebs",
+      "type": "builds-on",
+      "note": "chemiosmosis consumes the reducing power produced by the TCA cycle"
+    },
+    {
+      "from": "kruse",
+      "to": "peter-mitchell",
+      "type": "builds-on",
+      "note": "Kruse invokes chemiosmosis/proton flow in his mitochondrial claims"
+    },
+    {
+      "from": "kruse",
+      "to": "pollack",
+      "type": "builds-on",
+      "note": "Kruse builds on EZ/structured-water"
+    },
+    {
+      "from": "kruse",
+      "to": "becker",
+      "type": "builds-on",
+      "note": "Kruse builds on bioelectricity/regeneration"
+    },
+    {
+      "from": "ruvkun",
+      "to": "kenyon",
+      "type": "builds-on",
+      "note": "Ruvkun defined the molecular identity of the daf-2 pathway Kenyon discovered"
+    },
+    {
+      "from": "campisi",
+      "to": "hayflick",
+      "type": "builds-on",
+      "note": "SASP biology builds on Hayflick's replicative senescence"
+    },
+    {
+      "from": "blackburn",
+      "to": "hayflick",
+      "type": "builds-on",
+      "note": "telomere attrition is the molecular basis of the Hayflick limit"
+    },
+    {
+      "from": "kirkland",
+      "to": "campisi",
+      "type": "builds-on",
+      "note": "senolytics translate Campisi's senescence/SASP biology"
+    },
+    {
+      "from": "sabatini",
+      "to": "michael-hall",
+      "type": "builds-on",
+      "note": "mTOR discovery built on Hall's discovery of TOR in yeast"
+    },
+    {
+      "from": "bruce-ames",
+      "to": "harman",
+      "type": "builds-on",
+      "note": "mitochondrial-decay theory extends Harman's oxidative theory"
+    },
+    {
+      "from": "walford",
+      "to": "mccay",
+      "type": "builds-on",
+      "note": "Walford carried McCay's caloric restriction toward humans"
+    },
+    {
+      "from": "longo",
+      "to": "walford",
+      "type": "builds-on",
+      "note": "Longo's fasting work descends from the CR lineage"
+    },
+    {
+      "from": "fontana",
+      "to": "walford",
+      "type": "builds-on",
+      "note": "Fontana's human-CR studies descend from Walford"
+    },
+    {
+      "from": "mattson",
+      "to": "selye",
+      "type": "builds-on",
+      "note": "fasting/hormesis builds on Selye's stress-adaptation concept"
+    },
+    {
+      "from": "bruce-mcewen",
+      "to": "selye",
+      "type": "builds-on",
+      "note": "allostatic load builds on Selye's general adaptation syndrome"
+    },
+    {
+      "from": "dariush-mozaffarian",
+      "to": "ancel-keys",
+      "type": "builds-on",
+      "note": "carries forward the diet-heart / saturated-fat lineage"
+    },
+    {
+      "from": "john-newman",
+      "to": "verdin",
+      "type": "builds-on",
+      "note": "BHB-signaling work co-developed with Verdin"
+    },
+    {
+      "from": "eran-segal",
+      "to": "michael-snyder",
+      "type": "builds-on",
+      "note": "personalized-nutrition CGM work parallels Snyder's glucotypes"
+    },
+    {
+      "from": "nick-lane",
+      "to": "william-martin",
+      "type": "colleague",
+      "note": "principal origin-of-life collaborators"
+    },
+    {
+      "from": "carl-woese",
+      "to": "william-martin",
+      "type": "colleague",
+      "note": "deep phylogeny / early-life evolution"
+    },
+    {
+      "from": "wallace",
+      "to": "nick-lane",
+      "type": "colleague",
+      "note": "mitochondrial genetics / bioenergetics of aging"
+    },
+    {
+      "from": "kenyon",
+      "to": "ruvkun",
+      "type": "colleague",
+      "note": "parallel C. elegans insulin/IGF longevity programs"
+    },
+    {
+      "from": "ruvkun",
+      "to": "murphy",
+      "type": "colleague",
+      "note": "C. elegans longevity-gene networks"
+    },
+    {
+      "from": "longo",
+      "to": "fontana",
+      "type": "colleague",
+      "note": "human caloric/dietary restriction biomarkers"
+    },
+    {
+      "from": "conboy",
+      "to": "wagers",
+      "type": "colleague",
+      "note": "heterochronic parabiosis / circulating factors"
+    },
+    {
+      "from": "rando",
+      "to": "wagers",
+      "type": "colleague",
+      "note": "stem-cell aging and systemic factors"
+    },
+    {
+      "from": "wagers",
+      "to": "villeda",
+      "type": "colleague",
+      "note": "young-blood circulating-factor program"
+    },
+    {
+      "from": "richard-miller",
+      "to": "kaeberlein",
+      "type": "colleague",
+      "note": "NIA Interventions Testing Program (rapamycin)"
+    },
+    {
+      "from": "de-cabo",
+      "to": "fontana",
+      "type": "colleague",
+      "note": "caloric restriction and fasting"
+    },
+    {
+      "from": "mattson",
+      "to": "longo",
+      "type": "colleague",
+      "note": "fasting/hormesis for brain and lifespan"
+    },
+    {
+      "from": "mattson",
+      "to": "panda",
+      "type": "colleague",
+      "note": "meal-timing / fasting and circadian metabolism"
+    },
+    {
+      "from": "panda",
+      "to": "de-cabo",
+      "type": "colleague",
+      "note": "timing vs amount of food in CR"
+    },
+    {
+      "from": "kirkwood",
+      "to": "partridge",
+      "type": "colleague",
+      "note": "evolutionary theory of aging"
+    },
+    {
+      "from": "partridge",
+      "to": "lopez-otin",
+      "type": "colleague",
+      "note": "Hallmarks of Aging co-authors"
+    },
+    {
+      "from": "thomas-perls",
+      "to": "paola-sebastiani",
+      "type": "colleague",
+      "note": "centenarian-genetics co-authors (New England Centenarian Study)"
+    },
+    {
+      "from": "barzilai",
+      "to": "thomas-perls",
+      "type": "colleague",
+      "note": "exceptional-longevity / centenarian genetics"
+    },
+    {
+      "from": "stephen-simpson",
+      "to": "david-le-couteur",
+      "type": "colleague",
+      "note": "Geometric Framework of Nutrition co-architects"
+    },
+    {
+      "from": "david-le-couteur",
+      "to": "samantha-solon-biet",
+      "type": "colleague",
+      "note": "macronutrient-ratio mouse-lifespan team"
+    },
+    {
+      "from": "stuart-phillips",
+      "to": "don-layman",
+      "type": "colleague",
+      "note": "muscle protein synthesis / leucine threshold"
+    },
+    {
+      "from": "stuart-phillips",
+      "to": "jurgen-bauer",
+      "type": "colleague",
+      "note": "protein needs in older adults (PROT-AGE side)"
+    },
+    {
+      "from": "james-dinicolantonio",
+      "to": "james-okeefe",
+      "type": "colleague",
+      "note": "co-authors of the OXLAM seed-oil hypothesis"
+    },
+    {
+      "from": "christopher-ramsden",
+      "to": "james-dinicolantonio",
+      "type": "colleague",
+      "note": "seed-oil-skeptic camp (Ramsden the rigorous end)"
+    },
+    {
+      "from": "william-kraus",
+      "to": "daniel-belsky",
+      "type": "colleague",
+      "note": "CALERIE trial and its pace-of-aging re-analysis"
+    },
+    {
+      "from": "krista-varady",
+      "to": "longo",
+      "type": "colleague",
+      "note": "intermittent-fasting / fasting-mimicking field"
+    },
+    {
+      "from": "morgan-levine",
+      "to": "daniel-belsky",
+      "type": "colleague",
+      "note": "second-generation aging clocks / biomarkers consortium"
+    },
+    {
+      "from": "benoit-lehallier",
+      "to": "hamilton-oh",
+      "type": "colleague",
+      "note": "plasma-proteome clock -> organ-specific clocks"
+    },
+    {
+      "from": "eran-segal",
+      "to": "tim-spector",
+      "type": "colleague",
+      "note": "PREDICT personalized-nutrition collaboration"
+    },
+    {
+      "from": "michael-snyder",
+      "to": "eran-segal",
+      "type": "colleague",
+      "note": "CGM / personalized nutrition in healthy people"
+    },
+    {
+      "from": "eve-van-cauter",
+      "to": "walker",
+      "type": "colleague",
+      "note": "sleep loss and metabolic/health consequences"
+    },
+    {
+      "from": "glen-jeffery",
+      "to": "kruse",
+      "type": "colleague",
+      "note": "red/near-infrared light and mitochondria (academic vs popular ends)"
+    },
+    {
+      "from": "boros",
+      "to": "que-collins",
+      "type": "colleague",
+      "note": "deuterium-depletion / metabolic-water research"
+    },
+    {
+      "from": "somlyai",
+      "to": "que-collins",
+      "type": "colleague",
+      "note": "deuterium-depleted water clinical lineage"
+    },
+    {
+      "from": "que-collins",
+      "to": "roberts-ddw",
+      "type": "colleague",
+      "note": "deuterium-depletion / metabolic-water circle"
+    },
+    {
+      "from": "boros",
+      "to": "roberts-ddw",
+      "type": "colleague",
+      "note": "deuterium / metabolic-water co-workers"
+    },
+    {
+      "from": "kruse",
+      "to": "que-collins",
+      "type": "colleague",
+      "note": "deuterium thread (light/water/mitochondria milieu)"
+    },
+    {
+      "from": "dave-asprey",
+      "to": "ben-greenfield",
+      "type": "colleague",
+      "note": "biohacking popularizers"
+    },
+    {
+      "from": "dave-asprey",
+      "to": "que-collins",
+      "type": "colleague",
+      "note": "deuterium-depletion popularization"
+    },
+    {
+      "from": "attia",
+      "to": "topol",
+      "type": "colleague",
+      "note": "clinical-longevity / genomics synthesis"
+    },
+    {
+      "from": "attia",
+      "to": "mike-joyner",
+      "type": "colleague",
+      "note": "VO2max and the limits of human performance"
+    },
+    {
+      "from": "attia",
+      "to": "san-millan",
+      "type": "colleague",
+      "note": "Zone 2 / mitochondrial exercise physiology"
+    },
+    {
+      "from": "patrick",
+      "to": "william-harris",
+      "type": "colleague",
+      "note": "omega-3 / Omega-3 Index"
+    },
+    {
+      "from": "patrick",
+      "to": "bruce-ames",
+      "type": "colleague",
+      "note": "micronutrient triage theory (postdoc lineage)"
+    },
+    {
+      "from": "huberman",
+      "to": "nolan-williams",
+      "type": "colleague",
+      "note": "platformed neuromodulation (TMS/SAINT)"
+    },
+    {
+      "from": "huberman",
+      "to": "paul-conti",
+      "type": "colleague",
+      "note": "platformed trauma/agency clinical model"
+    },
+    {
+      "from": "huberman",
+      "to": "walker",
+      "type": "colleague",
+      "note": "platformed sleep science"
+    },
+    {
+      "from": "dan-garner",
+      "to": "galpin",
+      "type": "colleague",
+      "note": "Rapid Health Optimization lab partners"
+    },
+    {
+      "from": "jill-miller",
+      "to": "myers",
+      "type": "colleague",
+      "note": "fascia / myofascial movement"
+    },
+    {
+      "from": "brian-mackenzie",
+      "to": "mckeown",
+      "type": "colleague",
+      "note": "performance breathwork lineage"
+    },
+    {
+      "from": "brenner",
+      "to": "sinclair",
+      "type": "rival",
+      "note": "NAD+ biochemistry: Brenner is the empirical counterweight to Sinclair's NMN/NAD+ claims"
+    },
+    {
+      "from": "tomas-prolla",
+      "to": "aleksandra-trifunovic",
+      "type": "rival",
+      "note": "parallel/competing independent mutator-mouse lines (2004 vs 2005)"
+    },
+    {
+      "from": "samantha-solon-biet",
+      "to": "stuart-phillips",
+      "type": "rival",
+      "note": "protein-restriction-for-longevity vs protein-for-muscle (the protein conflict)"
+    },
+    {
+      "from": "jurgen-bauer",
+      "to": "samantha-solon-biet",
+      "type": "rival",
+      "note": "more protein for elderly vs less protein for lifespan"
+    },
+    {
+      "from": "dariush-mozaffarian",
+      "to": "james-dinicolantonio",
+      "type": "rival",
+      "note": "mainstream PUFA evidence vs seed-oils-cause-CHD hypothesis"
+    },
+    {
+      "from": "ancel-keys",
+      "to": "christopher-ramsden",
+      "type": "rival",
+      "note": "Ramsden's trial re-analyses challenge the Keys-era diet-heart hypothesis"
+    },
+    {
+      "from": "alexei-guzey",
+      "to": "walker",
+      "type": "rival",
+      "note": "Guzey's documented critique of 'Why We Sleep'"
+    },
+    {
+      "from": "saul-justin-newman",
+      "to": "barzilai",
+      "type": "rival",
+      "note": "Blue-Zone/supercentenarian data-quality critique vs exceptional-longevity cohorts"
+    },
+    {
+      "from": "wagers",
+      "to": "villeda",
+      "type": "rival",
+      "note": "GDF11 young-blood-factor dispute (opposing results)"
+    },
+    {
+      "from": "brenner",
+      "to": "imai",
+      "type": "rival",
+      "note": "NAD+ precursor biochemistry debate (NMN efficacy)"
+    },
+    {
+      "from": "barzilai",
+      "to": "TAME-unregistered",
+      "type": "leads",
+      "note": "Principal investigator, TAME (metformin)"
+    },
+    {
+      "from": "kirkland",
+      "to": "NCT03675724",
+      "type": "leads",
+      "note": "senolytic (D+Q) frailty trial lineage"
+    },
+    {
+      "from": "kirkland",
+      "to": "NCT04063124",
+      "type": "leads",
+      "note": "senolytic therapy in Alzheimer's (SToMP-AD)"
+    },
+    {
+      "from": "william-kraus",
+      "to": "NCT05651620",
+      "type": "leads",
+      "note": "CALERIE Legacy follow-up"
+    },
+    {
+      "from": "conboy",
+      "to": "NCT04733534",
+      "type": "associated",
+      "note": "therapeutic plasma exchange / blood dilution rationale"
+    }
+  ]
+}

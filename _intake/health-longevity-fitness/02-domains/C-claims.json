@@ -1,0 +1,477 @@
+[
+  {
+    "id": "deelen-2019-longevity-meta-gwas",
+    "statement": "A meta-analysis of genome-wide association studies (GWAS) for human longevity (survival to the 90th/99th percentile) found only two genome-wide-significant loci: APOE/TOMM40 (chr19) and a locus at 5q33.3 (near EBF1); polygenic longevity scores also captured GWAS signal for parental lifespan.",
+    "claim_type": "outcome",
+    "domain": "C-genetics",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Two genome-wide-significant loci (APOE/TOMM40, 5q33.3); APOE is by far the strongest. Most candidate longevity loci did NOT replicate.",
+    "population": "Meta-analysis of GWAS, ~36k long-lived cases + ~365k controls, European ancestry",
+    "provenance": {
+      "primary": "Deelen, Evans, Arking et al. — 'A meta-analysis of genome-wide association studies identifies multiple longevity genes', Nat Commun 2019",
+      "doi": "10.1038/s41467-019-11558-2",
+      "surfaced_via": "OpenAlex direct-DOI Deelen meta-GWAS"
+    },
+    "conflicts_with": ["conflict-longevity-gwas-reproducibility"],
+    "canon_link": "",
+    "confidence_notes": "Meta-analysis of OBSERVATIONAL genetic association (not interventional). The headline is deflationary: beyond APOE, almost nothing replicates at genome-wide significance. Extends the centenarian-gwas-polygenic claim in B-claims.json with the actual meta result.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "timmers-2019-parental-lifespan-gwas",
+    "statement": "A GWAS of ~1 million parental lifespans implicated loci tied to smoking behavior (CHRNA3/5), lipid metabolism (LPA, APOE, CETP), blood pressure, diabetes, and immune/cancer pathways — i.e., human lifespan genetics is largely the genetics of common age-related disease, not a separate 'longevity program'.",
+    "claim_type": "outcome",
+    "domain": "C-genetics",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~12 genome-wide-significant lifespan loci; effects translate to months of life expectancy per allele; dominated by smoking + cardiometabolic disease genes.",
+    "population": "UK Biobank + LifeGen, ~1,012,240 parental lifespans, European ancestry",
+    "provenance": {
+      "primary": "Timmers, Mounier et al. — 'Genomics of 1 million parent lifespans...', eLife 2019",
+      "doi": "10.7554/elife.39856",
+      "surfaced_via": "OpenAlex direct-DOI Timmers parental lifespan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Kin-cohort GWAS (association). Reframes 'longevity genes' as mostly disease/behavior genes — tempers the search for dedicated longevity loci.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sebastiani-2012-longevity-signature",
+    "statement": "A genetic signature of ~281 SNPs distinguished centenarians from controls with ~60-85% accuracy and defined longevity-associated genetic subgroups — but this paper is the corrected re-publication after the original 2010 Science report was retracted for a genotyping-array artifact.",
+    "claim_type": "outcome",
+    "domain": "C-genetics",
+    "evidence_tier": "case-control",
+    "direction": "mixed",
+    "effect_size": "281-SNP model, AUC ~0.6 (whole sample) up to ~0.85 (oldest/901+). Predictive in-sample; weak generalization.",
+    "population": "New England Centenarian Study: ~800-1000 centenarians vs controls",
+    "provenance": {
+      "primary": "Sebastiani, Solovieff, Perls et al. — 'Genetic Signatures of Exceptional Longevity in Humans', PLoS ONE 2012",
+      "doi": "10.1371/journal.pone.0029848",
+      "surfaced_via": "OpenAlex direct-DOI Sebastiani signatures"
+    },
+    "conflicts_with": ["conflict-longevity-gwas-reproducibility"],
+    "canon_link": "",
+    "confidence_notes": "CAUTIONARY TALE: the 2010 Science version (Sebastiani 2010) was RETRACTED due to a technical genotyping artifact on a subset of arrays; the 2012 PLoS ONE version re-ran with corrected genotyping and reduced (but non-zero) accuracy. Index this as a reproducibility object, not a settled predictor.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "barzilai-2003-cetp-apoc3-longevity",
+    "statement": "Ashkenazi-Jewish centenarians and their offspring show a distinctive lipoprotein phenotype (large LDL/HDL particle size) linked to a CETP variant (and APOC3) — among the first specific gene-longevity associations beyond APOE.",
+    "claim_type": "outcome",
+    "domain": "C-genetics",
+    "evidence_tier": "case-control",
+    "direction": "supports",
+    "effect_size": "Homozygous CETP I405V (VV) more frequent in probands/offspring; associated with larger lipoprotein particles, lower CVD/dementia.",
+    "population": "Longevity Genes Project: Ashkenazi centenarians, offspring, controls (Albert Einstein, Barzilai)",
+    "provenance": {
+      "primary": "Barzilai, Atzmon, Schechter et al. — 'Unique Lipoprotein Phenotype and Genotype Associated With Exceptional Longevity', JAMA 2003",
+      "doi": "10.1001/jama.290.15.2030",
+      "surfaced_via": "OpenAlex CETP longevity search"
+    },
+    "conflicts_with": ["conflict-cetp-longevity-vs-drug"],
+    "canon_link": "",
+    "confidence_notes": "Candidate-gene case-control in a founder population — CETP association is population/context-specific and not consistently replicated; pharmacological CETP inhibition has NOT reproduced a longevity benefit (see conflict).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "marioni-2015-dnam-age-mortality",
+    "statement": "Accelerated DNA-methylation age of blood (DNAm age minus chronological age) predicts higher all-cause mortality independent of chronological age and classical risk factors — the first demonstration that an epigenetic clock tracks death risk.",
+    "claim_type": "outcome",
+    "domain": "C-epigenetics",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~5% higher mortality risk per year of epigenetic age acceleration (pooled across 4 cohorts).",
+    "population": "4 longitudinal cohorts (Lothian Birth Cohorts + others), ~5000 individuals",
+    "provenance": {
+      "primary": "Marioni, Shah, McRae et al. — 'DNA methylation age of blood predicts all-cause mortality in later life', Genome Biol 2015",
+      "doi": "10.1186/s13059-015-0584-6",
+      "surfaced_via": "OpenAlex direct-DOI Marioni mortality"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "Cohort association (prediction), not causal proof methylation drives death. Built on the first-gen Hannum clock; second-gen clocks (GrimAge, see B-claims) predict mortality more strongly.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "chen-2016-dnam-meta-mortality",
+    "statement": "A meta-analysis pooling DNA-methylation clock data across multiple cohorts confirmed that epigenetic age acceleration robustly predicts time-to-death, establishing the epigenetic clock as a reproducible mortality biomarker.",
+    "claim_type": "outcome",
+    "domain": "C-epigenetics",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Each ~5-year increase in epigenetic age acceleration associated with materially higher mortality hazard; replicated across cohorts.",
+    "population": "Meta-analysis, ~13,000 individuals across 13 cohorts",
+    "provenance": {
+      "primary": "Chen, Marioni, Colicino et al. — 'DNA methylation-based measures of biological age: meta-analysis predicting time to death', Aging 2016",
+      "doi": "10.18632/aging.101020",
+      "surfaced_via": "OpenAlex direct-DOI Chen meta-clock"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "META-tier for the predictive (association) claim. Does NOT establish that methylation changes are causal in aging — only that they forecast death better than chance.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "bell-2019-clock-consensus",
+    "statement": "A consensus review classifies epigenetic clocks into first-generation (Horvath, Hannum — trained on chronological age) and second-generation (PhenoAge, GrimAge — trained on clinical/mortality outcomes), and concludes clocks are CORRELATIVE biomarkers whose causal role in aging is unestablished.",
+    "claim_type": "mechanism",
+    "domain": "C-epigenetics",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Framework + recommendations; flags that different clocks capture different signals and correlate imperfectly with each other.",
+    "population": "Multi-author consensus / methodological review",
+    "provenance": {
+      "primary": "Bell, Lowe, Adams et al. — 'DNA methylation aging clocks: challenges and recommendations', Genome Biol 2019",
+      "doi": "10.1186/s13059-019-1824-y",
+      "surfaced_via": "OpenAlex direct-DOI Bell clock review"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "The discipline document for this sub-domain: separates clock GENERATION and warns against reading a methylation correlate as a cause of aging. Mechanism/review tier.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "higgins-chen-2022-pc-clocks",
+    "statement": "Original epigenetic clocks have poor technical reliability (low test-retest ICC at individual CpGs), inflating apparent intervention effects; principal-component (PC) versions of the clocks dramatically improve reliability and are recommended for longitudinal/clinical-trial use.",
+    "claim_type": "mechanism",
+    "domain": "C-epigenetics",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "PC-clocks raise test-retest reliability (ICC) to >0.95 vs as low as ~0.6-0.8 for original clocks; reduces spurious 'age reversal' from measurement noise.",
+    "population": "Technical re-analysis across multiple methylation datasets (Yale, Levine/Higgins-Chen)",
+    "provenance": {
+      "primary": "Higgins-Chen, Thrush, Wang et al. — 'A computational solution for bolstering reliability of epigenetic clocks', Nat Aging 2022",
+      "doi": "10.1038/s43587-022-00248-2",
+      "surfaced_via": "OpenAlex pc-clock reliability"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "Crucial methodological caveat: many published 'epigenetic age reversal' effects are within the measurement noise of the original clocks. Validity > effect-size here.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "fahy-2019-triim-epigenetic-reversal",
+    "statement": "In a 1-year, single-arm pilot (TRIIM, n=9 men) a regimen of recombinant growth hormone + DHEA + metformin was associated with thymus regeneration and a ~1.5-2.5-year decrease in epigenetic (DNAm) age.",
+    "claim_type": "outcome",
+    "domain": "C-epigenetics",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Mean epigenetic age reversal ~2.5y (some clocks) over 12 months; thymic fat→tissue conversion on MRI.",
+    "population": "9 healthy men aged 51-65, open-label single-arm",
+    "provenance": {
+      "primary": "Fahy, Brooke, Watson et al. — 'Reversal of epigenetic aging and immunosenescent trends in humans', Aging Cell 2019",
+      "doi": "10.1111/acel.13028",
+      "surfaced_via": "OpenAlex direct-DOI Fahy TRIIM"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "Widely cited as 'first human age reversal' but it is a TINY UNCONTROLLED PILOT; the GH arm confounds; the effect size is near the reliability limit flagged by Higgins-Chen 2022. Do NOT treat as efficacy.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mammalian-methylation-clock-2023",
+    "statement": "A universal pan-mammalian DNA-methylation clock built across 348 species predicts age in all of them from conserved CpG sites, showing that methylation-based aging is an evolutionarily conserved feature of mammalian biology, not a human statistical artifact.",
+    "claim_type": "mechanism",
+    "domain": "C-epigenetics",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Single clock generalizes across 348 mammal species; conserved age-related CpGs map to development/polycomb targets.",
+    "population": "~11,000 samples, 348 mammalian species (Mammalian Methylation Consortium, Horvath/Lu)",
+    "provenance": {
+      "primary": "Lu, Fei, Haghani et al. — 'Universal DNA methylation age across mammalian tissues', Nat Aging 2023",
+      "doi": "10.1038/s43587-023-00462-6",
+      "surfaced_via": "OpenAlex direct-DOI mammalian clock"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Strengthens the case that the epigenetic clock reflects a conserved biological process (vs pure curve-fitting). Cross-species/animal evidence — still a correlate, not a demonstrated cause of aging.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "lehallier-2019-proteomic-waves",
+    "statement": "The human plasma proteome changes NON-LINEARLY across the lifespan in three distinct waves of differential expression peaking at roughly ages 34, 60, and 78; a proteomic clock predicts chronological age and deviations track health.",
+    "claim_type": "outcome",
+    "domain": "C-omics",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~1379 proteins change with age; 3 'waves'; proteomic clock predicts age within ~3 years.",
+    "population": "Cross-sectional plasma from ~4,263 adults aged 18-95",
+    "provenance": {
+      "primary": "Lehallier, Gate, Schaum, Wyss-Coray et al. — 'Undulating changes in human plasma proteome profiles across the lifespan', Nat Med 2019",
+      "doi": "10.1038/s41591-019-0673-2",
+      "surfaced_via": "OpenAlex direct-DOI Lehallier proteomic waves"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-sectional (the 'waves' are inferred across people, not followed within individuals). Landmark for the idea that aging is non-linear and proteomically measurable.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "oh-2023-organ-aging-clocks",
+    "statement": "Organ-specific plasma-proteomic aging clocks reveal that organs age at different rates within one person; ~1 in 5 healthy adults shows strongly accelerated aging in at least one organ, and accelerated organ age predicts that organ's future disease and mortality.",
+    "claim_type": "outcome",
+    "domain": "C-omics",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Accelerated heart age → ~2.5x heart-failure risk; accelerated brain/vasculature age → Alzheimer's risk; organ age adds prognostic info beyond chronological age.",
+    "population": "~5,676 adults across multiple cohorts (Stanford, Wyss-Coray lab)",
+    "provenance": {
+      "primary": "Oh, Rutledge, Nachun, Wyss-Coray et al. — 'Organ aging signatures in the plasma proteome track health and disease', Nature 2023",
+      "doi": "10.1038/s41586-023-06802-1",
+      "surfaced_via": "OpenAlex direct-DOI Oh organ clocks"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort prediction. Reframes 'biological age' as organ-specific rather than a single number. Surrogate/biomarker endpoints, not interventional.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "ahadi-2020-ageotypes",
+    "statement": "Deep longitudinal multi-omic profiling of individuals over years identifies distinct 'ageotypes' — people age predominantly along different molecular axes (metabolic, immune, hepatic, nephrotic) — so a single biological-age number obscures system-specific aging.",
+    "claim_type": "outcome",
+    "domain": "C-omics",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "≥4 ageotype classes; individuals show consistent personal aging trajectories across visits.",
+    "population": "43 adults followed 2-4 years, dense multi-omics (Snyder lab, Stanford)",
+    "provenance": {
+      "primary": "Ahadi, Zhou, Snyder et al. — 'Personal aging markers and ageotypes revealed by deep longitudinal profiling', Nat Med 2020",
+      "doi": "10.1038/s41591-019-0719-5",
+      "surfaced_via": "OpenAlex direct-DOI Ahadi ageotypes"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Small n but longitudinal (within-person). Supports personalized, multi-axis aging over a single clock value.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sayed-2021-iage-inflammatory-clock",
+    "statement": "A deep-learning 'inflammatory aging clock' (iAge) built from circulating immune markers tracks multimorbidity, frailty, and immunosenescence; the chemokine CXCL9 emerges as a dominant driver of age-related systemic inflammation.",
+    "claim_type": "outcome",
+    "domain": "C-omics",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "iAge associates with multimorbidity, frailty, cardiovascular aging; CXCL9 identified as a central node.",
+    "population": "1000 Immunomes Project + validation cohorts (Stanford, Furman lab)",
+    "provenance": {
+      "primary": "Sayed, Huang, Furman et al. — 'An inflammatory aging clock (iAge)...', Nat Aging 2021",
+      "doi": "10.1038/s43587-021-00082-y",
+      "surfaced_via": "OpenAlex proteomic-waves co-result"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Operationalizes inflammaging (see B-claims) as a measurable proteomic clock. Association/prediction, points to CXCL9 as a mechanistic candidate.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "biagi-2010-centenarian-gut-remodel",
+    "statement": "The gut microbiota remodels with extreme age: centenarians show reduced diversity, loss of short-chain-fatty-acid (SCFA)-producing/anti-inflammatory taxa (e.g., Faecalibacterium prausnitzii), and enrichment of pathobionts, paralleling rising inflammatory markers ('inflammaging').",
+    "claim_type": "outcome",
+    "domain": "C-microbiome",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Distinct centenarian community structure; loss of butyrate producers; correlated rise in IL-6/IL-8.",
+    "population": "Young adults, elderly (~70y), centenarians — Italian cohort (Biagi/Franceschi)",
+    "provenance": {
+      "primary": "Biagi, Nylund, Franceschi et al. — 'Through Ageing, and Beyond: Gut Microbiota and Inflammatory Status in Seniors and Centenarians', PLoS ONE 2010",
+      "doi": "10.1371/journal.pone.0010667",
+      "surfaced_via": "OpenAlex centenarian microbiome"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "",
+    "confidence_notes": "Cross-sectional correlation (composition ↔ inflammation); cannot tell whether dysbiosis causes inflammaging or reflects diet/drugs/reduced motility in the very old.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "le-chatelier-2013-gene-richness",
+    "statement": "Low gut microbial gene richness ('low gene count' enterotype) is associated with greater adiposity, insulin resistance, dyslipidemia, and a more inflammatory phenotype than high-richness microbiomes.",
+    "claim_type": "outcome",
+    "domain": "C-microbiome",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "~23% of individuals 'low gene count'; worse metabolic markers; partly modifiable by diet.",
+    "population": "292 Danish adults, metagenomic sequencing (MetaHIT)",
+    "provenance": {
+      "primary": "Le Chatelier, Nielsen, Ehrlich et al. — 'Richness of human gut microbiome correlates with metabolic markers', Nature 2013",
+      "doi": "10.1038/nature12506",
+      "surfaced_via": "OpenAlex gut microbiome aging"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "",
+    "confidence_notes": "Cross-sectional association linking microbiome richness to metabolic health (a longevity-relevant intermediate). Not causal; diet is a major confounder/lever.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "wilmanski-2021-microbiome-uniqueness-survival",
+    "statement": "In healthy aging the gut microbiome becomes increasingly UNIQUE to the individual (drifting away from a shared Bacteroides-dominated core); higher uniqueness is associated with favorable metabolites and predicts survival, whereas less-healthy older adults retain the 'average' microbiome.",
+    "claim_type": "outcome",
+    "domain": "C-microbiome",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Microbiome 'uniqueness' rises from mid-life; high uniqueness associated with ~lower mortality over 4-year follow-up in the healthy.",
+    "population": "~9,000 adults across 3 cohorts (Arivale + validation, Gibbons/Wilmanski, ISB)",
+    "provenance": {
+      "primary": "Wilmanski, Diener, Gibbons et al. — 'Gut microbiome pattern reflects healthy ageing and predicts survival in humans', Nat Metab 2021",
+      "doi": "10.1038/s42255-021-00348-0",
+      "surfaced_via": "OpenAlex direct-DOI Wilmanski uniqueness"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "",
+    "confidence_notes": "Cohort prediction. The 'uniqueness' signal is health-state-dependent (absent in unhealthy aging), which is itself evidence that microbiome is partly a readout of host health.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sato-2021-centenarian-bile-acids",
+    "statement": "Centenarian gut microbiomes are enriched for bacteria that produce unusual bile acids (notably isoallo-lithocholic acid, isoalloLCA) with potent activity against Gram-positive pathogens including C. difficile — a candidate mechanism for resistance to enteric infection in the very old.",
+    "claim_type": "mechanism",
+    "domain": "C-microbiome",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "isoalloLCA among the most potent endogenous antimicrobials identified; producing taxa enriched in centenarians vs younger/elderly controls.",
+    "population": "Japanese centenarians vs controls + isolate/gnotobiotic mechanistic work (Honda lab)",
+    "provenance": {
+      "primary": "Sato, Atarashi, Plichta, Honda et al. — 'Novel bile acid biosynthetic pathways are enriched in the microbiome of centenarians', Nature 2021",
+      "doi": "10.1038/s41586-021-03832-5",
+      "surfaced_via": "OpenAlex direct-DOI Sato centenarian bile acids"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism with isolate/gnotobiotic backing (stronger than pure correlation). Whether isoalloLCA contributes to longevity itself (vs infection resistance) is not shown.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "galkin-2020-microbiome-aging-clock",
+    "statement": "A deep-learning 'microbiome aging clock' predicts an individual's chronological age from gut taxonomic profiles, demonstrating that community composition carries an age signal usable as a biomarker.",
+    "claim_type": "outcome",
+    "domain": "C-microbiome",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "Predicts age with mean absolute error ~6 years from ~95 microbial features.",
+    "population": "~4,000 gut metagenome/16S samples, healthy individuals (Galkin/Zhavoronkov, Insilico/Deep Longevity)",
+    "provenance": {
+      "primary": "Galkin, Mamoshina, Zhavoronkov et al. — 'Human Gut Microbiome Aging Clock Based on Taxonomic Profiling and Deep Learning', iScience 2020",
+      "doi": "10.1016/j.isci.2020.101199",
+      "surfaced_via": "OpenAlex direct-DOI Galkin microbiome clock"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "",
+    "confidence_notes": "Biomarker/predictor only (and from a commercial longevity-testing group). A composition-age correlation is not evidence the microbiome drives aging.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "scfa-gut-barrier-anti-inflammatory-mechanism",
+    "statement": "Short-chain fatty acids (butyrate, propionate, acetate) produced by bacterial fermentation of dietary fiber are the primary colonocyte fuel and support gut-barrier integrity and regulatory-T-cell/anti-inflammatory tone; age-related loss of SCFA producers is a proposed mechanistic link from dysbiosis to inflammaging.",
+    "claim_type": "mechanism",
+    "domain": "C-microbiome",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Butyrate fuels colonocytes, induces colonic Tregs (FOXP3), strengthens tight junctions; SCFA decline tracks reduced fiber-fermenters in aging.",
+    "population": "Mouse mechanistic + human associative",
+    "provenance": {
+      "primary": "Furman et al. — 'Chronic inflammation in the etiology of disease across the life span', Nat Med 2019 (synthesis); SCFA/Treg: Smith/Arpaia 2013",
+      "doi": "10.1038/s41591-019-0675-0",
+      "surfaced_via": "OpenAlex SCFA aging + chronic inflammation"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "MECHANISM (gut barrier + immune tone). The 'fiber→SCFA→longevity' chain is biologically grounded but the human OUTCOME (lifespan) is inferential.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "wallace-2013-heteroplasmy-threshold",
+    "statement": "Mitochondrial DNA (mtDNA) is maternally inherited, present in high and variable copy number, and frequently heteroplasmic (a mix of mutant and wild-type genomes); a pathogenic mutation only causes dysfunction once its heteroplasmy fraction crosses a tissue-specific threshold.",
+    "claim_type": "mechanism",
+    "domain": "C-mitochondrial-genetics",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Threshold effect (often ~60-90% mutant load) before biochemical defect manifests; mtDNA mutation rate >> nuclear DNA.",
+    "population": "Human mitochondrial genetics synthesis (Wallace)",
+    "provenance": {
+      "primary": "Wallace & Chalkia — 'Mitochondrial DNA Genetics and the Heteroplasmy Conundrum in Evolution and Disease', Cold Spring Harb Perspect Biol 2013",
+      "doi": "10.1101/cshperspect.a021220",
+      "surfaced_via": "OpenAlex direct-DOI Wallace heteroplasmy"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mitochondria, electron transport)",
+    "confidence_notes": "Foundational mitochondrial-genetics mechanism and a direct UP-link to the biophysics canon. Threshold/heteroplasmy is the key concept under mtDNA-aging claims.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "trifunovic-2004-mutator-mouse",
+    "statement": "Mice engineered with a proofreading-deficient mitochondrial DNA polymerase (POLG 'mutator' mice) accumulate mtDNA point mutations and deletions and develop a premature-aging phenotype with reduced lifespan — causal evidence that mtDNA mutation load can drive aging features.",
+    "claim_type": "outcome",
+    "domain": "C-mitochondrial-genetics",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "3-5x increased mtDNA mutation burden; premature greying, alopecia, kyphosis, osteoporosis, anemia, reduced lifespan.",
+    "population": "PolgA(D257A) mutator mice",
+    "provenance": {
+      "primary": "Trifunovic, Wredenberg, Larsson et al. — 'Premature ageing in mice expressing defective mitochondrial DNA polymerase', Nature 2004",
+      "doi": "10.1038/nature02517",
+      "surfaced_via": "OpenAlex direct-DOI mutator mouse"
+    },
+    "conflicts_with": ["conflict-mtdna-mutation-causality"],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Animal outcome. Powerful proof-of-principle but the mutation loads FAR exceed those seen in normal human aging — limits direct translation (see conflict).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "kujoth-2005-mutator-apoptosis",
+    "statement": "An independent mtDNA mutator-mouse line confirmed the premature-aging phenotype and showed it is driven by mtDNA-mutation-induced APOPTOSIS and tissue loss rather than by elevated reactive-oxygen-species damage — challenging the ROS-centric free-radical theory of aging.",
+    "claim_type": "mechanism",
+    "domain": "C-mitochondrial-genetics",
+    "evidence_tier": "animal",
+    "direction": "mixed",
+    "effect_size": "Increased apoptotic markers in high-turnover tissues; little evidence of increased oxidative damage.",
+    "population": "POLG mutator mice (Prolla/Kujoth lab)",
+    "provenance": {
+      "primary": "Kujoth, Hiona, Prolla et al. — 'Mitochondrial DNA Mutations, Oxidative Stress, and Apoptosis in Mammalian Aging', Science 2005",
+      "doi": "10.1126/science.1112125",
+      "surfaced_via": "OpenAlex direct-DOI Kujoth mutator"
+    },
+    "conflicts_with": ["conflict-mtdna-mutation-causality"],
+    "canon_link": "bucket-canon/05-biophysics/ (redox)",
+    "confidence_notes": "Decouples mtDNA-mutation aging from the naive free-radical/ROS theory (cross-links to the free-radical conflict in B-CONFLICTS). Mechanism via apoptosis, animal model.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "somatic-mtdna-heteroplasmy-accumulates-with-age",
+    "statement": "Somatic mtDNA mutations and heteroplasmy accumulate clonally with age in human post-mitotic and high-turnover tissues (brain, muscle, colonic crypts, substantia nigra), producing mosaic respiratory-chain-deficient cells — but their causal contribution to NORMAL human aging (vs being a correlate) remains debated.",
+    "claim_type": "mechanism",
+    "domain": "C-mitochondrial-genetics",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Age-dependent rise in mtDNA deletions/point mutations and COX-deficient cells; loads in normal aging usually below the mutator-mouse range.",
+    "population": "Human tissue studies + reviews (Bratić & Larsson synthesis)",
+    "provenance": {
+      "primary": "Bratić & Larsson — 'The role of mitochondria in aging', J Clin Invest 2013 (review); supported by human single-cell/tissue mtDNA studies",
+      "doi": "10.1172/jci64125",
+      "surfaced_via": "OpenAlex mtDNA mutations aging"
+    },
+    "conflicts_with": ["conflict-mtdna-mutation-causality"],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Observational accumulation is well-established; the leap to 'mtDNA mutations cause normal aging' is the contested step (loads, threshold, clonal expansion). Cross-links to free-radical-theory conflict.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "biomarkers-of-aging-consortium-validation-gap",
+    "statement": "A field consensus holds that no omics biomarker of aging (epigenetic, proteomic, metabolomic, microbiomic) is yet validated as a surrogate endpoint that reliably MOVES with interventions and predicts their clinical benefit; standardized validation frameworks are an explicit open need.",
+    "claim_type": "mechanism",
+    "domain": "C-omics",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Consensus/roadmap; defines criteria a biomarker must meet (reliability, responsiveness, predictiveness) — most current aging biomarkers fail ≥1.",
+    "population": "Biomarkers of Aging Consortium / multi-author consensus",
+    "provenance": {
+      "primary": "Moqri, Herzog, Gladyshev et al. — 'Biomarkers of aging for the identification and evaluation of longevity interventions', Cell 2023",
+      "doi": "10.1016/j.cell.2023.08.003",
+      "surfaced_via": "OpenAlex pc-clock co-result (Moqri 2023)"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "The honest meta-statement for all of Domain C's biomarkers: predictive ≠ validated surrogate. Anchors the 'which clock is valid' conflict at the consensus level.",
+    "added_on": "2026-06-27"
+  }
+]

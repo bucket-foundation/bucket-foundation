@@ -1,0 +1,363 @@
+[
+  {
+    "id": "vo2max-gold-standard-clinical-vital-sign",
+    "statement": "Cardiorespiratory fitness (VO2max), best measured directly by cardiopulmonary exercise testing (CPET) and approximated by treadmill/cycle time or submaximal/non-exercise equations, is recommended as a clinical 'vital sign': it adds prognostic information beyond traditional risk factors and is the single strongest exercise-related predictor of all-cause mortality.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "CRF reclassifies mortality risk beyond standard factors; AHA recommends routine assessment. (Magnitude itself: see Mandsager ~5x, Kodama ~13%/MET in E-claims.)",
+    "population": "AHA Scientific Statement synthesizing large CRF-mortality cohorts",
+    "provenance": {
+      "primary": "Ross, Blair, Arena, Church et al. — 'Importance of Assessing Cardiorespiratory Fitness in Clinical Practice: A Case for Fitness as a Clinical Vital Sign', Circulation 2016",
+      "doi": "10.1161/CIR.0000000000000461",
+      "surfaced_via": "OpenAlex direct-DOI (Domain L measurement walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Measurement-side companion to E-claims crf-vo2max-strongest-mortality-predictor and crf-per-met-mortality-meta (the magnitude lives there). Honest caveat: directly-measured (CPET) and treadmill-time CRF carry the mortality data; consumer-wearable and non-exercise ESTIMATED VO2max are substantially less accurate (large individual error), so they are trend tools, not calibrated risk instruments.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "dexa-bmd-predicts-fracture",
+    "statement": "Bone mineral density measured by DEXA predicts osteoporotic fracture: each 1-SD decrease in BMD is associated with roughly a 1.5-3x increase in fracture risk (site-specific measurement predicts that site best), making DXA the reference test for osteoporosis diagnosis.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Relative risk ~1.5 per SD for general fracture, up to ~2.6 for hip BMD predicting hip fracture.",
+    "population": "Meta-analysis of prospective BMD-fracture cohorts (~90,000 person-years)",
+    "provenance": {
+      "primary": "Marshall, Johnell, Wedel — 'Meta-analysis of how well measures of bone mineral density predict occurrence of osteoporotic fractures', BMJ 1996",
+      "doi": "10.1136/bmj.312.7041.1254",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong predictor but with a key limitation the headline hides: because most people fall in the non-osteoporotic BMD range, the MAJORITY of fragility fractures occur in people whose BMD is not in the osteoporotic range (low sensitivity). Hence FRAX-style tools combine BMD with clinical risk factors. Gradient is robust; single-threshold screening misses most events.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "dexa-strength-not-mass-predicts-mortality",
+    "statement": "DXA-measured muscle (lean) mass does NOT independently predict mortality once muscle STRENGTH is accounted for; low strength predicts death whereas low lean mass largely does not — so body-composition mass alone is a weaker longevity biomarker than function.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Quadriceps/grip strength associated with mortality (top vs bottom tertile HR materially lower); DXA-measured lean/muscle mass NOT independently associated after adjusting for strength and fat.",
+    "population": "Health, Aging and Body Composition Study, ~2,292 adults aged 70-79, ~4.9y follow-up",
+    "provenance": {
+      "primary": "Newman, Kupelian, Visser, Simonsick et al. — 'Strength, But Not Muscle Mass, Is Associated With Mortality in the Health, Aging and Body Composition Study Cohort', J Gerontol A Biol Sci Med Sci 2006",
+      "doi": "10.1093/gerona/61.1.72",
+      "surfaced_via": "OpenAlex search (DXA appendicular lean mass sarcopenia)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The empirical basis for the EWGSOP2 shift from mass to strength (see E-claims sarcopenia-strength-defining-ewgsop2). Practical implication: DXA is excellent for BONE and for tracking fat distribution, but for longevity the cheap strength/function tests (grip, gait, chair-rise) out-predict the expensive lean-mass scan.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "visceral-fat-independent-mortality-predictor",
+    "statement": "Visceral adipose tissue (VAT) is an independent predictor of all-cause mortality, adding risk information beyond BMI, total fat and waist circumference; central/visceral adiposity is metabolically harmful in a way total body weight is not.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Higher VAT associated with elevated all-cause mortality independent of total adiposity (men).",
+    "population": "~291 men, mortality follow-up, VAT by imaging (Kuk/Katzmarzyk)",
+    "provenance": {
+      "primary": "Kuk, Katzmarzyk, Nichaman, Church, Blair, Ross — 'Visceral Fat Is an Independent Predictor of All-cause Mortality in Men', Obesity 2006",
+      "doi": "10.1038/oby.2006.43",
+      "surfaced_via": "OpenAlex search (visceral adipose tissue mortality); initial DOI .34 collided, corrected to .43"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Modest sample, men only; CT/MRI are the imaging reference standard for VAT while DXA VAT is an ESTIMATE (good correlation, not interchangeable). Supports tracking fat DISTRIBUTION over scale weight; cross-links to metabolic-health Domain D (insulin resistance, ectopic fat).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "gait-speed-survival-studenski",
+    "statement": "Usual gait speed predicts survival in older adults across the whole range of speeds, comparably to a model using age, sex, chronic conditions, smoking, blood pressure and hospitalization; each 0.1 m/s faster gait is associated with meaningfully lower mortality.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Per 0.1 m/s higher gait speed: ~12% lower mortality hazard; predicted survival varied widely (e.g. ~19% to ~87% 10-yr survival) by speed within age/sex strata.",
+    "population": "Pooled analysis of 9 cohorts, ~34,485 community-dwelling adults aged >=65",
+    "provenance": {
+      "primary": "Studenski, Perera, Patel, Guralnik et al. — 'Gait Speed and Survival in Older Adults', JAMA 2011",
+      "doi": "10.1001/jama.2010.1923",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Large pooled cohort — among the cheapest, most reproducible biomarkers in geriatrics (a stopwatch over 4 m). BIOMARKER of integrated health (cardiopulmonary, neuromuscular, cognitive), not proof that walking faster on command lowers mortality; reverse causation (subclinical disease slows gait) contributes. Cross-ref grip-strength-mortality-pure (E).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "gait-speed-mortality-meta",
+    "statement": "Meta-analysis of prospective cohorts confirms slow gait speed is associated with higher all-cause and cardiovascular mortality, validating gait speed as a generalizable prognostic biomarker beyond any single cohort.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Slowest vs fastest gait speed associated with substantially higher all-cause and CVD mortality (pooled).",
+    "population": "Systematic review + meta-analysis of prospective cohort studies",
+    "provenance": {
+      "primary": "Veronese, Stubbs, Volpato et al. — 'Association Between Gait Speed With Mortality, Cardiovascular Disease and Cancer: A Systematic Review and Meta-analysis of Prospective Cohort Studies', J Am Med Dir Assoc 2018",
+      "doi": "10.1016/j.jamda.2018.06.007",
+      "surfaced_via": "OpenAlex search (gait speed mortality meta-analysis)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta of OBSERVATIONAL cohorts. Confirms direction/generalizability; same reverse-causation caveat as Studenski.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "physical-capability-battery-mortality-meta",
+    "statement": "Objectively measured physical capability — grip strength, walking/gait speed, chair-rise (sit-to-stand) time and standing balance — each independently predicts all-cause mortality in community populations; simple performance tests are robust, low-cost biomarkers of survival.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Weakest vs strongest grip HR ~1.67; slowest vs fastest gait HR ~2.87; slowest vs fastest chair-rise HR ~1.96; worst vs best balance HR ~2.14 (pooled).",
+    "population": "Systematic review + meta-analysis, dozens of cohorts, >50,000 participants",
+    "provenance": {
+      "primary": "Cooper, Kuh, Hardy et al. — 'Objectively measured physical capability levels and mortality: systematic review and meta-analysis', BMJ 2010",
+      "doi": "10.1136/bmj.c4467",
+      "surfaced_via": "OpenAlex search (gait speed mortality meta)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The omnibus meta tying together the cheap functional biomarkers. Extends grip-strength-mortality-pure (E, PURE/Leong) to a broader battery. All observational; capability is a READOUT of integrated organ-system reserve. The practical headline: four stopwatch/dynamometer tests rival expensive panels for prognosis.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "apob-superior-to-ldlc",
+    "statement": "Apolipoprotein B (apoB), which counts the number of atherogenic lipoprotein particles, is a more accurate marker of cardiovascular risk than LDL-cholesterol (which measures cholesterol mass); when apoB and LDL-C disagree (discordance — common in high-triglyceride, diabetic and metabolic-syndrome states), risk tracks apoB (particle number), not LDL-C.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "ApoB outperforms LDL-C and non-HDL-C in head-to-head risk discrimination; in discordance analyses apoB-defined risk dominates. Marston 2022: apoB-containing particle number drives MI risk in and out of established atherosclerosis.",
+    "population": "Meta-analyses + large cohorts (Sniderman reviews; Marston UK Biobank/FOURIER analyses)",
+    "provenance": {
+      "primary": "Sniderman, Thanassoulis, Glavinovic et al. — 'Apolipoprotein B Particles and Cardiovascular Disease: A Narrative Review', JAMA Cardiology 2019; Sniderman et al. — 'A Meta-Analysis of LDL-C, non-HDL-C, and ApoB as Markers of Cardiovascular Risk', Circ Cardiovasc Qual Outcomes 2011 (10.1161/circoutcomes.110.959247); Marston et al., JAMA Cardiol 2022 (10.1001/jamacardio.2021.5083)",
+      "doi": "10.1001/jamacardio.2019.3780",
+      "surfaced_via": "OpenAlex direct-DOI trio"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong, convergent evidence apoB is the better METRIC. Practical: one apoB measure subsumes LDL-C/non-HDL/particle-count debates. Still observational for risk DISCRIMINATION; the CAUSAL claim is separate (see ldl-apob-causal-ascvd). LDL-C remains the historical guideline target mainly for inertia/assay availability.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "ldl-apob-causal-ascvd",
+    "statement": "LDL and other apoB-containing lipoproteins are CAUSAL for atherosclerotic cardiovascular disease — established by triangulating genetic (Mendelian randomization), epidemiologic and randomized-trial evidence — and the effect depends on cumulative lifetime exposure (area under the apoB-x-time curve), not just current level.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Dose-dependent, log-linear, cumulative causal relationship; multivariable MR isolates apoB as the causal lipid trait (LDL-C/TG effects attenuate to apoB).",
+    "population": "EAS consensus synthesis (genetic + epi + RCT) + multivariable MR (UK Biobank etc.)",
+    "provenance": {
+      "primary": "Ference, Ginsberg, Graham, Ray et al. — 'Low-density lipoproteins cause atherosclerotic cardiovascular disease... A consensus statement from the EAS', Eur Heart J 2017; Richardson et al. — multivariable MR, PLoS Med 2020 (10.1371/journal.pmed.1003062)",
+      "doi": "10.1093/eurheartj/ehx144",
+      "surfaced_via": "OpenAlex direct-DOI + MR search"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the FEW genuinely CAUSAL (not merely associational) outcome claims in this whole corpus — earns its tier because genetics + RCT + epi all converge. The cumulative-exposure framing is why early/lifelong apoB lowering matters more than late correction. This is the highest-confidence modifiable blood biomarker.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "lpa-causal-genetic-cvd",
+    "statement": "Lipoprotein(a) [Lp(a)] is a genetically-determined, causal risk factor for myocardial infarction, coronary and aortic-valve disease: genetic variants raising Lp(a) raise event risk (Mendelian randomization), and the level is ~70-90% heritable and largely stable through life — so it need only be measured once.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Top vs bottom Lp(a)/LPA-genotype tertiles: ~2x+ MI risk; risk rises with LPA kringle-IV-type-2 copy number / corrected for genotype.",
+    "population": "Copenhagen City Heart Study + genetic cohorts (Kamstrup); PROCARDIS genetic study (Clarke)",
+    "provenance": {
+      "primary": "Kamstrup, Tybjaerg-Hansen, Steffensen, Nordestgaard — 'Genetically Elevated Lipoprotein(a) and Increased Risk of Myocardial Infarction', JAMA 2009; Clarke et al. — 'Genetic Variants Associated with Lp(a) Lipoprotein Level and Coronary Disease', NEJM 2009",
+      "doi": "10.1001/jama.2009.801",
+      "surfaced_via": "OpenAlex direct-DOI (both)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Causal via MR (genetics fix the level, so confounding/reverse-causation are excluded). Practically: a once-in-a-lifetime test that identifies a high-risk subgroup (~20% of people) currently with no approved Lp(a)-specific therapy (RNA-targeted agents in trials). High measurement value, limited intervention value as of 2026.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "hscrp-predicts-not-causal",
+    "statement": "High-sensitivity C-reactive protein (hsCRP) predicts coronary heart disease, stroke and vascular mortality as a marker of systemic inflammation, but Mendelian randomization shows CRP itself is NOT causal — it is a readout of the inflammatory state, not a lever to pull.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Predictive: per ~1-SD higher log-CRP, CHD risk ratio ~1.37 (adjusted, Kaptoge/ERFC). Causal: CRP genetic variants that raise CRP do NOT raise CHD risk (null MR, CCGC 2011).",
+    "population": "ERFC: 160,000+ participants, 54 prospective studies (predictive); CCGC: 47 studies / 194,418 individuals (Mendelian randomization)",
+    "provenance": {
+      "primary": "Kaptoge et al. (Emerging Risk Factors Collaboration) — 'C-reactive protein concentration and risk of CHD, stroke, and mortality: an individual participant meta-analysis', Lancet 2010; C-Reactive Protein CHD Genetics Collaboration — 'Association between CRP and CHD: mendelian randomisation analysis', BMJ 2011",
+      "doi": "10.1016/S0140-6736(09)61717-7",
+      "surfaced_via": "OpenAlex direct-DOI (both)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Textbook predictor-vs-cause case and a discipline anchor for this domain: hsCRP is a USEFUL risk marker (cheap, tracks inflammaging — cross-ref C iAge/CXCL9) but lowering CRP per se is not the goal; the JUPITER RCT (Ridker 2008, 10.1056/NEJMoa0807646) used hsCRP to SELECT patients but benefit came via LDL/apoB lowering, not CRP reduction. Grade direction 'mixed' precisely because predictive!=causal.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "hba1c-predicts-cvd-nondiabetic",
+    "statement": "HbA1c (glycated hemoglobin, a 2-3 month average of blood glucose) predicts cardiovascular disease and all-cause mortality even within the non-diabetic range, and does so at least as well as — with practical advantages over — fasting glucose.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Vs HbA1c 5.0-5.4%: at 6.0-6.5% (non-diabetic) adjusted HR for CVD ~1.4-1.9 and for death elevated; J/threshold shape with risk rising above ~5.5-6.0%.",
+    "population": "ARIC study, ~11,092 non-diabetic Black and White adults, ~14-15y follow-up",
+    "provenance": {
+      "primary": "Selvin, Steffes, Zhu, Matsushita et al. — 'Glycated Hemoglobin, Diabetes, and Cardiovascular Risk in Nondiabetic Adults', NEJM 2010",
+      "doi": "10.1056/NEJMoa0908359",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort. HbA1c integrates glycemia over months (less day-to-day noise than a single fasting glucose) and needs no fasting. Caveats: distorted by anything changing red-cell lifespan (anemia, hemoglobinopathies, recent blood loss) — a real false-signal source. Cross-ref Domain D metabolic claims.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "fasting-glucose-vascular-threshold",
+    "statement": "Fasting plasma glucose is associated with vascular disease risk in a threshold/J-shaped manner: risk is roughly flat across the normal range and rises above ~5.6 mmol/L (~100 mg/dL), with diabetes itself roughly doubling vascular risk.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Diabetes: ~2x vascular disease HR; non-diabetic fasting glucose <~5.6 mmol/L largely non-linear/weak; modest rise in the impaired-fasting-glucose band.",
+    "population": "Emerging Risk Factors Collaboration: 102 prospective studies, ~698,782 individuals",
+    "provenance": {
+      "primary": "Emerging Risk Factors Collaboration — 'Diabetes mellitus, fasting blood glucose concentration, and risk of vascular disease: a collaborative meta-analysis of 102 prospective studies', Lancet 2010",
+      "doi": "10.1016/S0140-6736(10)60484-9",
+      "surfaced_via": "OpenAlex search (fasting insulin/glucose mortality)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta-tier for fasting glucose. The flat-then-rising shape matters: a single fasting glucose in the normal range is reassuring but low-resolution. HbA1c and HOMA-IR/fasting insulin catch dysmetabolism earlier (insulin rises years before glucose). Cross-ref Domain D.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "homair-fasting-insulin-predicts-cvd",
+    "statement": "Insulin resistance quantified by HOMA-IR (from fasting glucose x fasting insulin) predicts incident cardiovascular disease, and fasting hyperinsulinemia is an early marker of metabolic dysfunction that rises years before fasting glucose or HbA1c become abnormal.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Higher HOMA-IR associated with greater incident CVD independent of other risk factors (top vs bottom strata elevated HR).",
+    "population": "Insulin Resistance Atherosclerosis Study (IRAS) / San Antonio Heart Study, non-diabetic adults",
+    "provenance": {
+      "primary": "Hanley, Williams, Stern, Haffner et al. — 'Homeostasis Model Assessment of Insulin Resistance in Relation to the Incidence of Cardiovascular Disease', Diabetes Care 2002",
+      "doi": "10.2337/diacare.25.7.1177",
+      "surfaced_via": "OpenAlex search (HOMA-IR mortality)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort. The main practical caveat is ASSAY: insulin immunoassays are poorly standardized between labs, so HOMA-IR cut-points are not universally portable (track within-person trend on one assay). Conceptually the earliest-warning metabolic biomarker; cross-ref Domain D (insulin sensitivity, CGM).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "igf1-u-shaped-mortality",
+    "statement": "Circulating IGF-1 has a U-shaped (non-monotonic) relationship with mortality: BOTH low and high IGF-1 are associated with higher all-cause and cardiovascular mortality, so 'lower IGF-1 = longer life' (the simple extrapolation from worm/mouse insulin/IGF longevity genetics) does not hold cleanly in humans.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Both tails of the IGF-1 distribution carry excess mortality (dose-response metaregression); the safest zone is mid-range, not lowest.",
+    "population": "Meta-analysis + dose-response metaregression of circulating IGF-1 and mortality",
+    "provenance": {
+      "primary": "Burgers, Biermasz, Schoones, Pereira et al. — 'Meta-Analysis and Dose-Response Metaregression: Circulating Insulin-Like Growth Factor I (IGF-I) and Mortality', J Clin Endocrinol Metab 2011",
+      "doi": "10.1210/jc.2011-1377",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "bucket-canon/05-biophysics/ (IGF-1/insulin nutrient-sensing)",
+    "confidence_notes": "Directly tempers naive 'suppress IGF-1/mTOR for longevity' biohacking and links to the protein/mTOR conflict (Domain D) and GH/IGF-1 longevity genetics (Bartke, Laron — C/D). As a tracked biomarker IGF-1 is a context-dependent dial (cancer/anabolism tradeoff), not a 'minimize' target.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "biological-age-tests-not-validated-surrogate",
+    "statement": "Epigenetic / biological-age tests (Horvath, PhenoAge, GrimAge, DunedinPACE and consumer derivatives) predict mortality and morbidity at the population level, but NONE is yet a validated surrogate endpoint: no test is proven to MOVE with an intervention in a way that reliably forecasts that intervention's clinical benefit, and first-generation clocks have measurement-reliability problems that make individual 'age reversal' readings untrustworthy.",
+    "claim_type": "mechanism",
+    "domain": "L-biomarkers",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Population-level mortality prediction is real (2nd-gen clocks strongest); individual-level reliability is low for original clocks (ICC up to PC-clock fix), and surrogate validity is unestablished by consensus.",
+    "population": "Biomarkers of Aging Consortium consensus + reliability re-analyses (cross-domain)",
+    "provenance": {
+      "primary": "Moqri, Herzog, Gladyshev et al. — 'Biomarkers of aging for the identification and evaluation of longevity interventions', Cell 2023 (10.1016/j.cell.2023.08.003); Higgins-Chen et al., Nat Aging 2022 (PC-clocks, 10.1038/s43587-022-00248-2)",
+      "doi": "10.1016/j.cell.2023.08.003",
+      "surfaced_via": "Cross-ref Domain C (biomarkers-of-aging-consortium-validation-gap, higgins-chen-2022-pc-clocks, marioni-2015-dnam-age-mortality, chen-2016-dnam-meta-mortality)"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "This is the measurement-side restatement of Domain C's central finding, placed in L because consumers BUY these tests to make decisions. Honest verdict: useful research/population biomarker; premature and noisy as a personal scorecard for judging whether your protocol is 'working'. Use trend over many measures, never a single number.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "hrv-reduced-predicts-mortality",
+    "statement": "Reduced heart-rate variability (HRV) — a readout of cardiac autonomic (vagal/parasympathetic) tone — predicts all-cause and cardiac mortality in population cohorts; lower HRV signals worse autonomic regulation and higher risk.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lower HRV (e.g. low SDNN) associated with elevated mortality hazard over follow-up (Framingham elderly cohort).",
+    "population": "Framingham Heart Study elderly cohort (~736 subjects, ~4y); replicated in later/larger cohorts",
+    "provenance": {
+      "primary": "Tsuji, Venditti, Manders, Evans et al. — 'Reduced heart rate variability and mortality risk in an elderly cohort. The Framingham Heart Study', Circulation 1994",
+      "doi": "10.1161/01.CIR.90.2.878",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort biomarker. BIG measurement caveat: HRV is highly variable and method/context dependent (metric chosen, recording length, posture, breathing, time of day, age) — see Shaffer & Ginsberg 2017 norms (10.3389/fpubh.2017.00258). Consumer overnight HRV (Oura/Whoop/Garmin) is a WITHIN-PERSON trend/recovery tool, NOT a calibrated cross-person mortality instrument; absolute values are not comparable between people or devices. Cross-ref Domains G (breath) and I (sleep/recovery).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "consumer-sleep-trackers-stage-poorly",
+    "statement": "Consumer sleep trackers estimate total sleep time and basic sleep/wake reasonably well but are unreliable for sleep STAGING (light/deep/REM) and sleep architecture when compared against polysomnography, the clinical gold standard.",
+    "claim_type": "mechanism",
+    "domain": "L-biomarkers",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Devices track sleep/wake and total sleep time with moderate agreement; stage-classification accuracy (especially deep and REM) is substantially worse and varies by device.",
+    "population": "Head-to-head validation of 7 consumer devices vs in-lab PSG in healthy adults (Chinoy 2021)",
+    "provenance": {
+      "primary": "Chinoy, Cuellar, Huwa, Jameson et al. — 'Performance of seven consumer sleep-tracking devices compared with polysomnography', SLEEP 2021",
+      "doi": "10.1093/sleep/zsaa291",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Validity/measurement claim. Practical: trust your tracker's DURATION and consistency (bed/wake timing) signal; treat its 'deep sleep %' and stage breakdown as approximate. Useful for behavior change (timing, regularity), not for diagnosing sleep disorders. Cross-ref Domain I.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cgm-accurate-diabetes-unvalidated-healthy",
+    "statement": "Modern continuous glucose monitors are accurate enough for diabetes management (reported MARD ~9-10%), but sensor-to-sensor and sensor-vs-blood disagreement is non-trivial, and CGM is NOT validated to improve health OUTCOMES in non-diabetic ('worried-well') users — the wellness use case rests on glucose variability that has no proven outcome benefit in healthy people.",
+    "claim_type": "mechanism",
+    "domain": "L-biomarkers",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Accuracy varies materially across sensors/conditions (Kovatchev: numerical+clinical accuracy differ across 4 devices); validated metric is time-in-range for diabetes (Danne consensus). No outcome RCT in healthy people.",
+    "population": "Head-to-head CGM accuracy comparison (Kovatchev 2008) + international CGM consensus (Danne 2017)",
+    "provenance": {
+      "primary": "Kovatchev, Anderson, Heinemann, Clarke — 'Comparison of the Numerical and Clinical Accuracy of Four Continuous Glucose Monitors', Diabetes Care 2008; Danne et al. — 'International Consensus on Use of Continuous Glucose Monitoring', Diabetes Care 2017",
+      "doi": "10.2337/dc07-2401",
+      "surfaced_via": "OpenAlex search (CGM accuracy MARD)"
+    },
+    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "canon_link": "",
+    "confidence_notes": "Measurement-side companion to Domain D's conflict-cgm-healthy-utility. Honest split: genuine, validated tool in diabetes (time-in-range is consensus); unproven gadget for healthy biohackers, where two sensors on the same person can disagree and 'spikes' have no demonstrated outcome meaning. Real tool, oversold market.",
+    "added_on": "2026-06-27"
+  }
+]

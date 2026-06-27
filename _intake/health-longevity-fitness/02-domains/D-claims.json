@@ -1,0 +1,496 @@
+[
+  {
+    "id": "cgm-personalized-glycemic-response-variability",
+    "statement": "Postprandial glucose responses to identical meals vary widely between individuals; a machine-learning model integrating microbiome, blood markers and meal data predicts an individual's glycemic response better than carbohydrate counting, and personalized diets based on it lowered post-meal glucose in a short validation arm.",
+    "claim_type": "mechanism",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "High interpersonal variability in PPGR to the same food; personalized-diet arm reduced postprandial glucose vs control over 1 week (small n).",
+    "population": "800-person Israeli cohort with CGM + microbiome; small blinded dietary-crossover validation arm",
+    "provenance": {
+      "primary": "Zeevi, Korem, Segal et al. — 'Personalized Nutrition by Prediction of Glycemic Responses', Cell 2015",
+      "doi": "10.1016/j.cell.2015.11.001",
+      "surfaced_via": "OpenAlex direct-DOI (Eran Segal, named in brief)"
+    },
+    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "canon_link": "",
+    "confidence_notes": "Establishes that glycemic response is individualized (real). Does NOT establish that acting on CGM data improves hard health outcomes in non-diabetics. Mechanism/predictive, not an outcome trial. Commercial conflict (DayTwo) downstream of this work.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cgm-glucotypes-nondiabetic-excursions",
+    "statement": "Continuous glucose monitoring of people without diabetes reveals 'glucotypes' — many normoglycemic individuals spend time in pre-diabetic or diabetic glucose ranges that an HbA1c or fasting glucose would miss.",
+    "claim_type": "mechanism",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Substantial fraction of 'non-diabetic' participants showed severe glucose-variability glucotypes; standardized-meal responses clustered into distinct patterns.",
+    "population": "57 adults without diabetes diagnosis wearing CGM, Stanford",
+    "provenance": {
+      "primary": "Hall, Snyder et al. — 'Glucotypes reveal new patterns of glucose dysregulation', PLoS Biology 2018",
+      "doi": "10.1371/journal.pbio.2005143",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "canon_link": "",
+    "confidence_notes": "Descriptive cross-sectional (n=57). Demonstrates variability exists; says nothing about whether reacting on it changes morbidity/mortality. The honest gap: no RCT links non-diabetic CGM use to improved hard outcomes.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cgm-healthy-no-outcome-rct",
+    "statement": "As of the indexing date, no randomized controlled trial demonstrates that continuous glucose monitoring in metabolically healthy (non-diabetic) people improves any hard health or longevity outcome; the consumer-CGM-for-wellness case rests on mechanism, surrogate variability, and engagement, not on outcome evidence.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "theoretical",
+    "direction": "refutes",
+    "effect_size": "Absence of hard-endpoint RCT evidence in non-diabetics (refutes the marketed claim).",
+    "population": "N/A — evidence-absence claim re: non-diabetic populations",
+    "provenance": {
+      "primary": "Synthesis of Zeevi 2015 (10.1016/j.cell.2015.11.001) + Hall 2018 (10.1371/journal.pbio.2005143); no outcome RCT located in non-diabetics",
+      "doi": "",
+      "surfaced_via": "Gap analysis across CGM literature"
+    },
+    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "canon_link": "",
+    "confidence_notes": "Graded honestly per brief: CGM is diagnostically real and useful in diabetes; its wellness use in healthy people is biomarker-driven, not outcome-proven. Tagged theoretical (absence-of-evidence) rather than given a fabricated supportive citation.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "calerie-cr-cardiometabolic-humans",
+    "statement": "Sustained ~12% caloric restriction for 2 years in healthy non-obese adults improved cardiometabolic risk markers (LDL, blood pressure, CRP, insulin sensitivity, metabolic-syndrome score) without harming quality of life, bone, or lean mass beyond expectation.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Achieved ~11.9% CR (target 25%); broad, modest improvements across cardiometabolic risk factors over 24 months.",
+    "population": "CALERIE phase 2 RCT, 218 healthy non-obese adults (BMI 22-28), 2 years",
+    "provenance": {
+      "primary": "Kraus et al. — '2 years of calorie restriction and cardiometabolic risk (CALERIE): exploratory outcomes', Lancet Diabetes & Endocrinology 2019",
+      "doi": "10.1016/S2213-8587(19)30151-2",
+      "surfaced_via": "OpenAlex direct-DOI (CALERIE, named in brief)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (nutrient sensing, mTOR/IGF-1)",
+    "confidence_notes": "The only long-term randomized human CR trial. Surrogate endpoints (risk markers), not mortality — you cannot randomize humans to CR for lifespan. Actual CR was ~12%, not the 25% target, so effect sizes are for modest CR.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "calerie-cr-slows-pace-of-aging",
+    "statement": "In the CALERIE trial, two years of caloric restriction slowed the DunedinPACE 'pace of aging' biomarker by roughly 2-3% versus ad-libitum controls, while first-generation epigenetic age clocks (Horvath, PhenoAge, GrimAge) showed no significant change.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "DunedinPACE slowed ~2-3% (significant); methylation-age clocks unchanged.",
+    "population": "CALERIE participants (subset with methylation data)",
+    "provenance": {
+      "primary": "Waziry et al. — 'Effect of long-term caloric restriction on DNA methylation measures of biological aging (CALERIE)', Nature Aging 2023",
+      "doi": "10.1038/s43587-023-00432-y",
+      "surfaced_via": "OpenAlex direct-DOI (record served the author-correction; base work same DOI)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/ (epigenetic clocks)",
+    "confidence_notes": "First RCT evidence that CR moves a pace-of-aging biomarker in humans. The effect is small and clock-dependent (only DunedinPACE moved); it is a surrogate, not a demonstrated lifespan/healthspan outcome. Bridges Domain C (epigenetic clocks).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "if-metabolic-switching-mechanism",
+    "statement": "Intermittent fasting triggers a metabolic switch from glucose/glycogen to fatty-acid-derived ketones, and the proposed health benefits are attributed to this switching plus cellular stress-response signaling (autophagy, mitochondrial biogenesis, reduced inflammation) rather than to weight loss alone.",
+    "claim_type": "mechanism",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic/narrative; ketone (BHB) rise + adaptive cellular-stress signaling during fasting periods.",
+    "population": "Human + animal mechanistic synthesis (review)",
+    "provenance": {
+      "primary": "de Cabo & Mattson — 'Effects of Intermittent Fasting on Health, Aging, and Disease', New England Journal of Medicine 2019",
+      "doi": "10.1056/NEJMra1905136",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "bucket-canon/05-biophysics/ (ketone bodies, metabolic flexibility)",
+    "confidence_notes": "MECHANISM/review by fasting proponents — frames the rationale, not proof of clinical superiority. The mechanism (metabolic switching) is real; whether IF beats simple calorie restriction in humans is the open conflict.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "etrf-insulin-sensitivity-weight-independent",
+    "statement": "Early time-restricted feeding (all meals within a ~6-hour window ending by mid-afternoon), under isocaloric conditions with no weight loss, improved insulin sensitivity, beta-cell responsiveness, blood pressure and oxidative stress in prediabetic men.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved insulin sensitivity, lower insulin, lower BP and oxidative-stress markers vs control window — independent of weight change.",
+    "population": "8 prediabetic men, 5-week randomized isocaloric crossover (eTRF vs 12h window)",
+    "provenance": {
+      "primary": "Sutton, Peterson et al. — 'Early Time-Restricted Feeding Improves Insulin Sensitivity, Blood Pressure, and Oxidative Stress...', Cell Metabolism 2018",
+      "doi": "10.1016/j.cmet.2018.04.010",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Best mechanistic human evidence that meal TIMING (circadian alignment) helps independent of calories — but n=8, men only, prediabetic, 5 weeks, surrogate endpoints. Early-window TRF is not the same as the popular skip-breakfast late 16:8 (see Lowe TREAT). Bridges Domain I (circadian).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "tre-treat-null-weight-loss",
+    "statement": "A 16:8 time-restricted-eating schedule (no calorie counting) produced no significant weight loss versus a three-meal control over 12 weeks, and was associated with a possible loss of lean (appendicular) mass.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Weight change not significantly different from control; significant fraction of lost mass was lean tissue.",
+    "population": "TREAT trial, 116 adults with overweight/obesity, 12 weeks",
+    "provenance": {
+      "primary": "Lowe, Weiss et al. — 'Effects of Time-Restricted Eating on Weight Loss and Other Metabolic Parameters (TREAT)', JAMA Internal Medicine 2020",
+      "doi": "10.1001/jamainternmed.2020.4153",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Skeptic anchor: prescriptive late 16:8 without calorie control did little and may cost lean mass. Contrast with Sutton eTRF (early window, isocaloric, mechanistic gains). The window TIMING and calorie control matter more than 'fasting' per se.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "tre-adds-nothing-to-cr-nejm",
+    "statement": "In a 12-month randomized trial, combining time-restricted eating (8-hour window) with calorie restriction produced weight loss and metabolic improvement no greater than calorie restriction alone.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "TRE+CR vs CR alone: no significant difference in weight loss or cardiometabolic outcomes at 12 months.",
+    "population": "139 adults with obesity, China, 12-month RCT",
+    "provenance": {
+      "primary": "Liu, Zhang et al. — 'Calorie Restriction with or without Time-Restricted Eating in Weight Loss', New England Journal of Medicine 2022",
+      "doi": "10.1056/NEJMoa2114833",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Strongest test isolating timing from calories: once calories are matched, the eating window added no benefit. Supports the view that most real-world TRE benefit IS calorie restriction by another name.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "adf-not-superior-to-cr",
+    "statement": "Alternate-day fasting did not produce superior weight loss, weight maintenance, or cardioprotection compared with daily caloric restriction over one year, and had a higher dropout rate.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "ADF vs daily CR: equivalent weight outcomes; ADF higher attrition (38% vs 29%).",
+    "population": "100 metabolically healthy obese adults, 1-year RCT",
+    "provenance": {
+      "primary": "Trepanowski, Varady et al. — 'Effect of Alternate-Day Fasting on Weight Loss, Weight Maintenance, and Cardioprotection...', JAMA Internal Medicine 2017",
+      "doi": "10.1001/jamainternmed.2017.0936",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Adherence is the hidden variable: the more dramatic the fasting protocol, the worse the adherence, erasing any theoretical edge. Notably from Varady's own lab (a fasting researcher) — strengthens the null.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "fmd-human-risk-markers",
+    "statement": "Three monthly cycles of a 5-day fasting-mimicking diet (low-calorie, low-protein, low-sugar) reduced body weight, trunk fat, blood pressure, IGF-1, fasting glucose and CRP in a randomized human trial, with larger effects in participants at elevated baseline risk.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced weight, IGF-1, glucose, CRP, BP after 3 monthly FMD cycles vs control; benefits concentrated in higher-risk participants.",
+    "population": "Randomized crossover, ~100 generally healthy adults, 3 cycles",
+    "provenance": {
+      "primary": "Wei, Longo et al. — 'Fasting-mimicking diet and markers/risk factors for aging, diabetes, cancer, and cardiovascular disease', Science Translational Medicine 2017",
+      "doi": "10.1126/scitranslmed.aai8700",
+      "surfaced_via": "OpenAlex direct-DOI (Longo, named in brief)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (IGF-1/mTOR nutrient sensing)",
+    "confidence_notes": "Surrogate risk markers, short-term; commercialized as ProLon (Longo COI — he co-founded L-Nutra). Lowers IGF-1, the mechanistic link to the protein/mTOR conflict. No hard-endpoint or longevity outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "fmd-mouse-healthspan-lifespan",
+    "statement": "Periodic fasting-mimicking-diet cycles in mice promoted multi-system regeneration, reduced visceral fat and cancer incidence, improved cognition and extended healthspan/median lifespan, motivating the human FMD program.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Mouse: reduced IGF-1/visceral fat/cancer, improved healthspan and median lifespan with periodic FMD cycles.",
+    "population": "Mice (lifespan/healthspan), plus a small human pilot in the same paper",
+    "provenance": {
+      "primary": "Brandhorst, Longo et al. — 'A Periodic Diet that Mimics Fasting Promotes Multi-System Regeneration, Enhanced Cognitive Performance, and Healthspan', Cell Metabolism 2015",
+      "doi": "10.1016/j.cmet.2015.05.012",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (IGF-1/mTOR, stem-cell regeneration)",
+    "confidence_notes": "ANIMAL lifespan + human surrogate pilot. The mouse lifespan claim does not transfer to a human outcome. Mechanistically anchors FMD to IGF-1/mTOR downregulation.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "ketogenic-diet-mouse-longevity",
+    "statement": "A cyclic ketogenic diet (isocaloric, to avoid obesity) extended median lifespan and improved healthspan/memory in aging male mice, an effect attributed to ketone-body (BHB) signaling rather than to carbohydrate restriction per se.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Mouse: increased median lifespan and preserved physiological function with cyclic KD vs control diet.",
+    "population": "Aging male mice (isocaloric cyclic ketogenic vs control)",
+    "provenance": {
+      "primary": "Roberts, Newman, Verdin et al. — 'A Ketogenic Diet Extends Longevity and Healthspan in Adult Mice', Cell Metabolism 2017",
+      "doi": "10.1016/j.cmet.2017.08.005",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (ketone bodies, mitochondrial metabolism)",
+    "confidence_notes": "ANIMAL only; required cyclic/isocaloric design to separate ketosis from obesity. No human ketogenic-diet longevity outcome exists. Ad-libitum high-fat keto in humans raises distinct ApoB/LDL questions (Domain L) not captured here.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "bhb-signaling-metabolite",
+    "statement": "Beta-hydroxybutyrate is not merely a fuel but a signaling molecule — it inhibits class-I histone deacetylases, blocks the NLRP3 inflammasome, and binds specific GPCRs — providing a mechanistic basis for proposed effects of ketosis on inflammation and gene expression.",
+    "claim_type": "mechanism",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "BHB: HDAC inhibition, NLRP3 inflammasome suppression, GPR109A/FFAR3 signaling (in vitro + animal).",
+    "population": "Cell + animal mechanistic studies",
+    "provenance": {
+      "primary": "Newman & Verdin — 'Beta-Hydroxybutyrate: A Signaling Metabolite', Annual Review of Nutrition 2017",
+      "doi": "10.1146/annurev-nutr-071816-064916",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (metabolite signaling, epigenetics)",
+    "confidence_notes": "MECHANISM, not outcome. Explains how ketosis/fasting could act beyond energy; does not prove a clinical or longevity benefit in humans.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "protein-igf1-age-dependent-mortality",
+    "statement": "High protein intake in adults aged 50-65 was associated with a 75% increase in all-cause and a roughly 4-fold increase in cancer mortality (tracking with higher IGF-1), but in adults over 65 the association REVERSED — high protein was associated with LOWER cancer and overall mortality. The effect is age-dependent.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Ages 50-65: high vs low protein HR ~1.75 all-cause, ~4x cancer mortality; ages 65+: association reversed (protective). Mouse tumor data supportive.",
+    "population": "NHANES III cohort (n~6,381), plus mouse tumor-progression experiments",
+    "provenance": {
+      "primary": "Levine, Longo et al. — 'Low Protein Intake Is Associated with a Major Reduction in IGF-1, Cancer, and Overall Mortality in the 65 and Younger but Not Older Population', Cell Metabolism 2014",
+      "doi": "10.1016/j.cmet.2014.02.006",
+      "surfaced_via": "OpenAlex direct-DOI (the central protein/mTOR-conflict paper)"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "bucket-canon/05-biophysics/ (IGF-1/mTOR nutrient sensing)",
+    "confidence_notes": "THE paper Longo's side rests on. Cohort (observational, FFQ-based, reverse-causation risk) + mechanistic mouse data. Crucially it is ITSELF age-stratified — the 'high protein is bad' headline omits that the paper found protein PROTECTIVE in the elderly. This age-dependence is the key to the whole conflict.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "protein-carb-ratio-mouse-lifespan",
+    "statement": "In mice, lifespan and cardiometabolic health were maximized by a LOW-protein, high-carbohydrate diet (not by caloric restriction), with the protein-to-carbohydrate ratio — acting through mTOR, FGF21 and branched-chain amino acids — being the dominant dietary driver of longevity.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Longest median lifespan on low-protein/high-carb; mTOR activation in liver tracked protein intake.",
+    "population": "Mice, 25 diets, Geometric Framework of Nutrition (n~858)",
+    "provenance": {
+      "primary": "Solon-Biet, Simpson, Le Couteur et al. — 'The Ratio of Macronutrients, Not Caloric Intake, Dictates Cardiometabolic Health, Aging, and Longevity in Ad Libitum-Fed Mice', Cell Metabolism 2014",
+      "doi": "10.1016/j.cmet.2014.02.009",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "bucket-canon/05-biophysics/ (mTOR, FGF21, BCAA sensing)",
+    "confidence_notes": "ANIMAL — the strongest controlled support for 'protein restriction extends lifespan via mTOR.' Mouse lifespan does not equal human outcome, and the low-protein optimum collides directly with the sarcopenia-prevention evidence in older humans (the conflict).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "laron-ghr-deficiency-cancer-diabetes-protection",
+    "statement": "People with Laron syndrome (growth-hormone-receptor deficiency, hence very low IGF-1) show a near-absence of cancer and diabetes despite frequent obesity, supporting the GH/IGF-1/mTOR axis as a driver of age-related disease.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Ecuadorian Laron cohort: cancer essentially absent and diabetes very rare vs matched relatives over decades.",
+    "population": "~100 Ecuadorian individuals with Laron syndrome, multi-decade follow-up",
+    "provenance": {
+      "primary": "Guevara-Aguirre, Longo et al. — 'Growth Hormone Receptor Deficiency Is Associated with a Major Reduction in Pro-Aging Signaling, Cancer, and Diabetes in Humans', Science Translational Medicine 2011",
+      "doi": "10.1126/scitranslmed.3001845",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "bucket-canon/05-biophysics/ (GH/IGF-1 axis)",
+    "confidence_notes": "Rare-population natural experiment supporting the low-IGF-1 side. Caveat: Laron individuals do NOT live longer on average (deaths from accidents, alcohol, untreated illness); the protection is disease-specific, not a demonstrated lifespan extension — a nuance often dropped.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "elderly-higher-protein-prevents-sarcopenia",
+    "statement": "Older adults require MORE dietary protein than the standard RDA (expert consensus: ~1.0-1.2 g/kg/day, up to 1.2-1.5 g/kg in acute/illness states) to offset anabolic resistance and preserve muscle mass, strength and function.",
+    "claim_type": "protocol",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Recommended intake ~1.0-1.2 g/kg/day for healthy elderly (vs 0.8 RDA); higher with acute illness; combined with resistance exercise.",
+    "population": "PROT-AGE expert group, evidence-based recommendations synthesizing RCTs/cohorts in older adults",
+    "provenance": {
+      "primary": "Bauer et al. (PROT-AGE Study Group) — 'Evidence-Based Recommendations for Optimal Dietary Protein Intake in Older People', J Am Med Dir Assoc (JAMDA) 2013",
+      "doi": "10.1016/j.jamda.2013.05.021",
+      "surfaced_via": "OpenAlex direct-DOI (Attia/Phillips side)"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "",
+    "confidence_notes": "Consensus/guideline (graded meta-of-evidence) — the elderly-protein side of the conflict. Directly contradicts the low-protein-longevity prescription FOR OLDER ADULTS, reconciling with Levine 2014's own 65+ reversal. Bridges Domain E (sarcopenia).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "protein-augments-resistance-training-gains",
+    "statement": "Protein supplementation significantly augments gains in muscle mass and strength from resistance training in adults, with benefit plateauing around ~1.6 g/kg/day of total protein; the effect is larger in younger/trained individuals.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Protein supplementation increased lean mass and 1RM strength vs placebo across RCTs; total-intake benefit plateaued ~1.6 g/kg/d.",
+    "population": "Meta-analysis, 49 RCTs, 1,863 resistance-trained participants",
+    "provenance": {
+      "primary": "Morton, Phillips et al. — 'A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance-training-induced gains in muscle mass and strength', British Journal of Sports Medicine 2018",
+      "doi": "10.1136/bjsports-2017-097608",
+      "surfaced_via": "OpenAlex direct-DOI (Phillips, named in brief)"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "",
+    "confidence_notes": "META-tier — Phillips' core evidence that protein (~1.6 g/kg) builds functional muscle. Functional/body-comp outcomes, not mortality. The ~1.6 g/kg optimum for muscle is well ABOVE the low-protein-longevity prescription — the practical heart of the conflict. Bridges Domain E.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "linoleic-acid-rct-no-chd-mortality-benefit",
+    "statement": "Recovered data from the Minnesota Coronary Experiment showed that replacing saturated fat with linoleic-acid-rich vegetable oil lowered serum cholesterol but did NOT reduce coronary or all-cause mortality — and, paradoxically, greater cholesterol lowering tracked with higher mortality in older participants.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "~14% serum-cholesterol reduction in the LA group; no mortality benefit; inverse cholesterol-to-mortality signal in those >65.",
+    "population": "Minnesota Coronary Experiment (1968-73), 9,423 institutionalized adults — data recovered and re-analyzed 2016",
+    "provenance": {
+      "primary": "Ramsden et al. — 'Re-evaluation of the traditional diet-heart hypothesis: analysis of recovered data from Minnesota Coronary Experiment (1968-73)', BMJ 2016",
+      "doi": "10.1136/bmj.i1246",
+      "surfaced_via": "OpenAlex direct-DOI (seed-oils conflict)"
+    },
+    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "canon_link": "",
+    "confidence_notes": "Old trial (corn-oil margarine, high trans-fat era), incomplete recovered data, surrogate diet-heart focus — LOW rigor by modern standards despite RCT label. The seed-oils-skeptic camp leans heavily on it; counterweighted by Mozaffarian meta and Marklund biomarker cohorts (opposite direction). Grade: contested, low-certainty.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "pufa-replacement-reduces-chd-meta",
+    "statement": "Pooled randomized trials found that replacing saturated fat with polyunsaturated fat (largely omega-6 linoleic acid) reduced coronary heart disease events by roughly 19%, supporting PUFA substitution rather than the 'seed oils are toxic' claim.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~10% CHD risk reduction per 5% energy from PUFA replacing saturated fat (~19% overall across trials).",
+    "population": "Meta-analysis of 8 RCTs, ~13,600 participants",
+    "provenance": {
+      "primary": "Mozaffarian, Micha, Wallace — 'Effects on Coronary Heart Disease of Increasing Polyunsaturated Fat in Place of Saturated Fat', PLoS Medicine 2010",
+      "doi": "10.1371/journal.pmed.1000252",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "canon_link": "",
+    "confidence_notes": "META of RCTs — the mainstream cardiology side. CHD events (surrogate-ish, hard-ish), not all-cause mortality. Directly opposes the seed-oils-bad narrative. Note residual confounding from concurrent trans-fat/other changes in older trials.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "linoleic-biomarker-lower-cvd-mortality",
+    "statement": "Across pooled prospective cohorts, higher circulating/tissue linoleic acid (an objective biomarker of intake) was associated with LOWER risk of cardiovascular disease and all-cause mortality — the opposite of what the 'linoleic acid is pro-inflammatory and harmful' hypothesis predicts.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "Higher linoleic-acid biomarker tertiles: significantly lower CVD events and total mortality (pooled HRs <1).",
+    "population": "Pooled biomarker analysis, ~30 cohorts, >68,000 participants (multiple outcomes)",
+    "provenance": {
+      "primary": "Marklund et al. — 'Biomarkers of Dietary Omega-6 Fatty Acids and Incident Cardiovascular Disease and Mortality', Circulation 2019",
+      "doi": "10.1161/CIRCULATIONAHA.118.038908",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "canon_link": "",
+    "confidence_notes": "Biomarker cohorts (objective intake measure, sidesteps FFQ error) strongly oppose the seed-oils-toxic claim. Still observational. Together with Mozaffarian and Hooper/Cochrane, the weight of higher-tier evidence runs AGAINST the popular anti-seed-oil position.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "omega6-cochrane-little-or-no-effect",
+    "statement": "A Cochrane systematic review found that increasing omega-6 fat intake makes little or no difference to cardiovascular events, mortality, or coronary events, with the evidence rated low-to-moderate quality.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "No clear benefit or harm of higher omega-6 on CVD/mortality; evidence quality low-moderate.",
+    "population": "Cochrane review, 19 RCTs, ~6,461 participants",
+    "provenance": {
+      "primary": "Hooper et al. — 'Omega-6 fats for the primary and secondary prevention of cardiovascular disease', Cochrane Database of Systematic Reviews 2018",
+      "doi": "10.1002/14651858.CD011094.pub4",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "canon_link": "",
+    "confidence_notes": "The most honest top-tier read: neither clear benefit nor harm; the data cannot support the strong claims of EITHER camp on hard endpoints. This is the 'we don't actually know' anchor that punctures the polarized certainty on both sides.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "omega6-oxlam-chd-hypothesis",
+    "statement": "A mechanistic/narrative hypothesis holds that industrial omega-6 vegetable oils drive coronary disease via oxidized linoleic-acid metabolites (OXLAMs), LDL oxidation and pro-inflammatory eicosanoids — the core of the 'seed oils are uniquely harmful' position.",
+    "claim_type": "hypothesis",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic narrative; no hard-endpoint trial demonstrating the proposed OXLAM-to-CHD causal chain in humans.",
+    "population": "Narrative review (mechanistic argument)",
+    "provenance": {
+      "primary": "DiNicolantonio & O'Keefe — 'Omega-6 vegetable oils as a driver of coronary heart disease: the oxidized linoleic acid hypothesis', Open Heart 2018",
+      "doi": "10.1136/openhrt-2018-000898",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "canon_link": "",
+    "confidence_notes": "HYPOTHESIS, explicitly graded as such per brief (seed-oils debate is polarized and low-rigor). Plausible mechanism, but contradicted by the biomarker-cohort and meta evidence above. The popular 'seed oils' movement cites this class of narrative review as if it were outcome proof — it is not.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mediterranean-diet-predimed-cv-events",
+    "statement": "A Mediterranean diet supplemented with extra-virgin olive oil or mixed nuts reduced major cardiovascular events (MI, stroke, CV death) by roughly 30% versus a control low-fat diet in a primary-prevention RCT of high-risk adults.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Composite major CV events HR ~0.69 (EVOO) and ~0.72 (nuts) vs control.",
+    "population": "PREDIMED, ~7,447 high-CV-risk adults, Spain, ~4.8y median",
+    "provenance": {
+      "primary": "Estruch et al. — 'Primary Prevention of Cardiovascular Disease with a Mediterranean Diet Supplemented with Extra-Virgin Olive Oil or Nuts' (retracted and REPUBLISHED with corrected analysis), New England Journal of Medicine 2018",
+      "doi": "10.1056/NEJMoa1800389",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The strongest dietary-pattern RCT for CV outcomes — but with an asterisk: the original 2013 paper was retracted and republished after randomization irregularities (some sites enrolled households/clinics non-randomly). The corrected analysis still showed benefit, now framed cautiously as risk-factor reduction. Hard-ish endpoint, not all-cause-mortality-significant.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "blue-zones-data-quality-critique",
+    "statement": "The reported extreme-longevity clustering of 'Blue Zones' and supercentenarian records correlates strongly with poor birth-and-death registration, high poverty, and pension/old-age-benefit incentives — patterns consistent with clerical error and age exaggeration rather than genuine exceptional survival.",
+    "claim_type": "hypothesis",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "theoretical",
+    "direction": "refutes",
+    "effect_size": "Remarkable-age records concentrate in regions with absent birth certificates, high poverty, and pension-fraud incentives; old-age records often vanish after birth registration is introduced.",
+    "population": "Cross-jurisdiction analysis of supercentenarian and 'remarkable age' records (preprint)",
+    "provenance": {
+      "primary": "Saul Justin Newman — 'Supercentenarian and remarkable age records exhibit patterns indicative of clerical errors and pension fraud', bioRxiv 2019 (Ig Nobel 2024)",
+      "doi": "10.1101/704080",
+      "surfaced_via": "OpenAlex title search (Blue Zones data-quality critique)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PREPRINT, not peer-reviewed; provocative and contested. Graded low-tier honestly per brief. It does NOT prove Blue Zone diets are worthless — it undercuts the DATA QUALITY of the longevity-clustering claim that anchors Blue Zones marketing. The dietary-pattern evidence (PREDIMED) stands on separate, stronger footing than the centenarian-counting claims.",
+    "added_on": "2026-06-27"
+  }
+]
