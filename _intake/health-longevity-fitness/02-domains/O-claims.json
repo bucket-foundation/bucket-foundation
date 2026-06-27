@@ -1,0 +1,173 @@
+[
+  {
+    "id": "hif1-oxygen-sensing-discovery",
+    "statement": "HIF-1 (hypoxia-inducible factor) is the master transcription factor by which cells sense oxygen: under hypoxia it is stabilized and drives erythropoietin, VEGF/angiogenesis, glycolytic enzymes and metabolic reprogramming; under normoxia it is degraded via prolyl-hydroxylase/VHL.",
+    "claim_type": "mechanism",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Foundational pathway; the oxygen-homeostasis switch (Nobel Prize 2019)",
+    "population": "Molecular/cell biology (foundational, broadly validated)",
+    "provenance": {
+      "primary": "Semenza & Wang - 'A nuclear factor induced by hypoxia via de novo protein synthesis binds to the human erythropoietin gene enhancer at a site required for transcriptional activation', Molecular and Cellular Biology 1992",
+      "doi": "10.1128/mcb.12.12.5447",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (oxygen-sensing molecular biology - PROMOTION CANDIDATE)",
+    "confidence_notes": "FOUNDATION-grade mechanism (Kaelin/Ratcliffe/Semenza, Nobel 2019). Canon-promotion candidate. Being Nobel-grade does NOT license any downstream hypoxia longevity protocol - that is the strict mechanism->outcome firewall for this domain.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "epas1-tibetan-selection",
+    "statement": "EPAS1 (HIF-2alpha) shows the strongest signal of recent natural selection distinguishing high-altitude Tibetans from lowland Han Chinese - among the most extreme allele-frequency differences known between human populations.",
+    "claim_type": "mechanism",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "EPAS1 = top genome-wide selection signal in Tibetans (extreme Fst vs Han)",
+    "population": "50 Tibetan exomes vs Han Chinese (genetic)",
+    "provenance": {
+      "primary": "Yi et al. - 'Sequencing of 50 Human Exomes Reveals Adaptation to High Altitude', Science 2010",
+      "doi": "10.1126/science.1190371",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (HIF pathway)",
+    "confidence_notes": "Genetic mechanism, not an outcome. Demonstrates HIF-pathway adaptation to chronic hypoxia - says nothing about hypoxia CAUSING longevity. Different populations (Andean, Ethiopian) adapted differently: no single altitude-gene-longevity story.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "epas1-egln1-selection-confirmation",
+    "statement": "Independent evidence confirms EPAS1 and EGLN1 (the prolyl-hydroxylase that targets HIF for degradation) are under positive selection in Tibetans - converging on the HIF oxygen-sensing axis as the adaptation locus.",
+    "claim_type": "mechanism",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "EPAS1 + EGLN1 selection signals in Tibetan highlanders",
+    "population": "Tibetan vs lowland populations (genetic)",
+    "provenance": {
+      "primary": "Simonson et al. - 'Genetic Evidence for High-Altitude Adaptation in Tibet', Science 2010",
+      "doi": "10.1126/science.1189406",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (HIF pathway)",
+    "confidence_notes": "Replication of the EPAS1 finding plus EGLN1, both on the HIF axis. Genetic/cross-sectional mechanism.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "epas1-low-hemoglobin-phenotype",
+    "statement": "Tibetan EPAS1 variants associate with LOWER hemoglobin concentration at altitude - the adaptation is to tolerate chronic hypoxia WITHOUT maladaptive polycythemia, not to over-produce red blood cells.",
+    "claim_type": "mechanism",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "EPAS1 genotype associated with reduced hemoglobin in Tibetan highlanders",
+    "population": "Tibetan highlanders (genetic-phenotype association)",
+    "provenance": {
+      "primary": "Beall et al. - 'Natural selection on EPAS1 (HIF2alpha) associated with low hemoglobin concentration in Tibetan highlanders', PNAS 2010",
+      "doi": "10.1073/pnas.1002443107",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (HIF pathway)",
+    "confidence_notes": "The adaptive phenotype is the OPPOSITE of the naive 'more EPO/red cells' intuition - it avoids the Andean chronic-mountain-sickness polycythemia route. Anti-laundering: altitude adaptation = tolerating hypoxia, not a longevity mechanism.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "altitude-mortality-epidemiology",
+    "statement": "Higher residential altitude is associated with lower cardiovascular (CHD/stroke) and some-cause mortality in population cohorts - but the association is heavily confounded.",
+    "claim_type": "outcome",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Lower CHD and stroke mortality per ~1,000 m residential altitude (Swiss National Cohort)",
+    "population": "Swiss National Cohort (~national, prospective)",
+    "provenance": {
+      "primary": "Faeh, Gutzwiller & Bopp (Swiss National Cohort) - 'Lower mortality from coronary heart disease and stroke at higher altitudes in Switzerland', Circulation 2009",
+      "doi": "10.1161/CIRCULATIONAHA.108.840579",
+      "surfaced_via": "named in Wave-5 brief; DOI from established citation (OpenAlex auto-lookup rate-limited this session, not machine-verified)"
+    },
+    "conflicts_with": ["conflict-altitude-longevity-confounding"],
+    "canon_link": "",
+    "confidence_notes": "Most confounded cohort claim in the domain. Altitude correlates with lower obesity, more physical activity (terrain), cooler temperature, higher UV, diet, migration/healthy-mover selection, air quality. Direction real, CAUSE unknown; not attributable to hypoxia per se. MR on altitude infeasible. NOTE: DOI is from established knowledge; OpenAlex verification failed (rate limit), flagged honestly.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "intermittent-hypoxia-dose-dependent",
+    "statement": "Intermittent hypoxia is dose-dependent and bidirectional: low-dose (mild, few brief cycles/day) drives beneficial respiratory/motor/vascular/metabolic plasticity, while high-dose (severe, many cycles, as in obstructive sleep apnea) is pathological - hypertension, oxidative stress, cardiovascular and cognitive harm.",
+    "claim_type": "mechanism",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Therapeutic plasticity at low dose; OSA-equivalent pathology at high dose - same stimulus, opposite outcomes by dose",
+    "population": "Review of human + animal intermittent-hypoxia physiology",
+    "provenance": {
+      "primary": "Navarrete-Opazo & Mitchell - 'Therapeutic potential of intermittent hypoxia: a matter of dose', Am J Physiol Regul Integr Comp Physiol 2014",
+      "doi": "10.1152/ajpregu.00208.2014",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The MOST important claim in the domain and the purest hormesis illustration in the corpus: identical intermittent hypoxia is therapeutic at low dose and the pathological engine of sleep apnea at high dose. Any 'hypoxic training' claim that omits dose is laundering. Cross-links Domain H (hormesis) and Domain I (OSA).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "ihht-elderly-surrogates",
+    "statement": "Intermittent hypoxia-hyperoxia training (IHHT) in older adults reportedly improves exercise tolerance, body composition and some cognitive measures in small early trials.",
+    "claim_type": "outcome",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved exercise tolerance / cognitive / body-composition surrogates in small RCTs",
+    "population": "Small RCTs in older / cardiometabolic-risk adults",
+    "provenance": {
+      "primary": "Body of small IHHT RCTs (e.g., Bayer/Glazachev/Behrendt groups); see Navarrete-Opazo & Mitchell 2014 framework (10.1152/ajpregu.00208.2014) for the dose rationale",
+      "doi": "",
+      "surfaced_via": "Wave-5 domain build; specific trial DOIs not individually OpenAlex-verified this session"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Promising but small, short, surrogate-endpoint RCTs - NOT established outcome. Hard-endpoint trials in aging do not exist. Graded rct but flagged as low-power/surrogate; specific trial citations to be pinned in Wave 6.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "breath-hold-splenic-contraction",
+    "statement": "Repeated maximal breath-holds trigger splenic contraction, transiently raising circulating hematocrit and oxygen-carrying capacity - a genuine acute hematological adaptation, enhanced in trained freedivers.",
+    "claim_type": "mechanism",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Acute spleen volume reduction with transient hematocrit rise across repeated apneas",
+    "population": "Human apnea physiology (trained and untrained subjects)",
+    "provenance": {
+      "primary": "Bakovic et al. - 'Spleen volume and blood flow response to repeated breath-hold apneas', Journal of Applied Physiology 2003",
+      "doi": "10.1152/japplphysiol.00221.2003",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real mechanistic adaptation (spleen, plus transient EPO and improved chemoreflex tolerance over training). NOT evidence of healthspan extension. HARD SAFETY BOUNDARY: hypoxic breath-holds, especially near water, risk shallow-water blackout/drowning (cross-link Domain G / Wim Hof hazard).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "altitude-training-performance-not-lifespan",
+    "statement": "Altitude/hypoxic exposure for athletes ('live high, train low', altitude tents) improves erythropoietic and some endurance-performance markers, but this is a performance literature with no demonstrated transfer to longevity or healthspan.",
+    "claim_type": "outcome",
+    "domain": "O-hypoxia-altitude",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved EPO/erythropoietic and endurance-performance surrogates (performance, not health endpoints)",
+    "population": "Athlete altitude-training studies (performance surrogates)",
+    "provenance": {
+      "primary": "Live-high-train-low athletic-performance literature (Levine & Stray-Gundersen lineage); indexed for completeness",
+      "doi": "",
+      "surfaced_via": "Wave-5 domain build; performance-domain cross-reference (specific DOIs not pinned this session)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Explicitly flagged: performance != healthspan. Indexed so the map is complete; the longevity transfer is unestablished. Cross-link Domain E (exercise).",
+    "added_on": "2026-06-27"
+  }
+]

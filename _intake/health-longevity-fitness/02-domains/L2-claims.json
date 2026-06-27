@@ -1,0 +1,200 @@
+[
+  {
+    "id": "steps-mortality-meta-paluch",
+    "statement": "Higher daily step count is associated with progressively lower all-cause mortality in a curvilinear dose-response, with most of the benefit accrued by ~6,000-8,000 steps/day in older adults (~8,000-10,000 in younger adults) and a plateau thereafter; step INTENSITY (cadence) adds little once total volume is accounted for.",
+    "claim_type": "outcome",
+    "domain": "L2-wearables",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Pooled ~47,000 adults across 15 cohorts; lowest-vs-highest step quartile HR ~0.40-0.47; benefit plateaus age-dependently (~6k-8k older / ~8k-10k younger). No clear additional benefit above the plateau.",
+    "population": "Steps for Health Collaborative — meta-analysis of 15 international accelerometer cohorts (Paluch et al.)",
+    "provenance": {
+      "primary": "Paluch AE, Bajpai S, Bassett DR, et al. — 'Daily steps and all-cause mortality: a meta-analysis of 15 international cohorts', Lancet Public Health 2022",
+      "doi": "10.1016/S2468-2667(21)00302-9",
+      "surfaced_via": "Europe PMC (Domain L2 wearables/activity walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Device-MEASURED steps (research accelerometers), so less self-report bias than questionnaire PA — one of the least-confounded activity signals. Still observational: reverse causation (subclinical illness lowers steps) inflates the low-step risk. The '10,000 steps' target is a 1960s marketing figure, not the data; the data say the steepest gains are at the sedentary->modest end and the curve flattens well before 10k. Step COUNT is a predictor wearables measure decently; it is also a plausible lever (it indexes physical activity), but the RCT showing 'increasing tracked steps lowers mortality' does not exist."
+  },
+  {
+    "id": "steps-mortality-saint-maurice-us",
+    "statement": "In US adults, higher accelerometer-measured daily step volume is associated with lower all-cause mortality, while step intensity (peak cadence) is NOT associated with mortality after adjusting for total steps.",
+    "claim_type": "outcome",
+    "domain": "L2-wearables",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~4,840 US adults (NHANES, mean ~10y follow-up): vs 4,000 steps/day, 8,000 steps/day HR ~0.49 and 12,000 steps/day HR ~0.35 for all-cause mortality; intensity null after volume adjustment.",
+    "population": "NHANES 2003-2006 accelerometer subsample, US adults >=40y (Saint-Maurice et al.)",
+    "provenance": {
+      "primary": "Saint-Maurice PF, Troiano RP, Bassett DR, et al. — 'Association of Daily Step Count and Step Intensity With Mortality Among US Adults', JAMA 2020",
+      "doi": "10.1001/jama.2020.1382",
+      "surfaced_via": "Europe PMC (Domain L2 wearables/activity walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "The 'intensity adds nothing once volume is counted' finding is the practically important one: total movement, not how fast you walk, carries the signal. Same reverse-causation caveat as Paluch."
+  },
+  {
+    "id": "steps-mortality-lee-older-women",
+    "statement": "In older women, ~4,400 measured steps/day is associated with substantially lower all-cause mortality than ~2,700 steps/day, with benefit leveling off at roughly 7,500 steps/day.",
+    "claim_type": "outcome",
+    "domain": "L2-wearables",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~16,741 women, mean age 72: highest vs lowest step quartile HR ~0.42; plateau ~7,500 steps/day.",
+    "population": "Women's Health Study accelerometer cohort, older women (Lee IM et al.)",
+    "provenance": {
+      "primary": "Lee IM, Shiroma EJ, Kamada M, Bassett DR, Matthews CE, Buring JE — 'Association of Step Volume and Intensity With All-Cause Mortality in Older Women', JAMA Intern Med 2019",
+      "doi": "10.1001/jamainternmed.2019.0899",
+      "surfaced_via": "Europe PMC (Domain L2 wearables/activity walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Independent replication of the plateau pattern in a different population (older women), reinforcing that the dose-response saturates far below 10,000. Reverse causation especially relevant in an elderly cohort."
+  },
+  {
+    "id": "wearable-step-count-validity",
+    "statement": "Consumer wrist-worn devices count steps reasonably well at normal/brisk walking speeds but systematically undercount at slow speeds and during pushing/carrying, and overcount with arm movement; the mortality cohorts used research-grade hip/wrist accelerometers, so a wrist tracker's step number is a usable trend signal, not the exact quantity the survival curves were built on.",
+    "claim_type": "hypothesis",
+    "domain": "L2-wearables",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Device-vs-reference step error commonly within ~5-15% at moderate pace but can exceed 30% at slow gait or with confounding arm motion; placement (wrist vs hip) and algorithm differ between consumer and research devices.",
+    "population": "Pooled wearable step-validation literature (treadmill + free-living protocols)",
+    "provenance": {
+      "primary": "Validity-tier synthesis of consumer step-count validation studies vs research accelerometers / direct count",
+      "doi": null,
+      "surfaced_via": "Domain L2 wearables walk (measurement-validity tier)"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Measurement-validity tier, separated from the outcome claims above. Slow walkers (often the highest-risk group) are exactly where wrist counts undercount most, which can distort an individual's read. Good enough for 'more vs less / am I moving today', not for matching a published HR to a specific step number."
+  },
+  {
+    "id": "consumer-hrv-overnight-trend-not-absolute",
+    "statement": "Consumer wearables (Oura, Whoop, Apple Watch) estimate nocturnal RESTING HEART RATE with small error vs ECG, but their overnight HEART-RATE-VARIABILITY estimates carry materially wider limits of agreement; consumer overnight HRV is a within-person night-to-night trend/recovery signal, not a cross-person or cross-device calibrated value, and absolute HRV numbers are not comparable between people or between devices.",
+    "claim_type": "hypothesis",
+    "domain": "L2-wearables",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Nocturnal resting HR: typically within ~1-3 bpm of ECG. HRV (rMSSD): mean bias often small but Bland-Altman limits of agreement wide (tens of ms), device- and algorithm-dependent; sleep-stage-gated sampling differs by brand.",
+    "population": "Consumer wearable HR/HRV validation studies vs research ECG (overnight / resting)",
+    "provenance": {
+      "primary": "Dial MB, Hollander ME, Vatne EA, et al. — 'Validation of nocturnal resting heart rate and heart rate variability' (consumer wearable vs reference), Physiol Rep 2025; with broader consumer-HRV agreement literature",
+      "doi": "10.14814/phy2.70527",
+      "surfaced_via": "Europe PMC (Domain L2 wearables HRV-validity walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Extends L-claim hrv-reduced-predicts-mortality (Tsuji 1994) on the MEASUREMENT side. The underlying biomarker (HRV as vagal/autonomic readout) predicts mortality; whether a $300 ring's nightly rMSSD trend has any outcome meaning is unestablished. Treat it as a noisy autonomic-stress/recovery trend, useful only relative to your own baseline. Predictor, not proven lever: 'raising my Oura HRV' is not a validated intervention target."
+  },
+  {
+    "id": "resting-heart-rate-mortality-meta",
+    "statement": "Higher resting heart rate is associated with higher all-cause and cardiovascular mortality in the general population, with risk rising roughly continuously above ~60-70 bpm — a predictor that consumer wearables happen to measure accurately.",
+    "claim_type": "outcome",
+    "domain": "L2-wearables",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Each 10 bpm higher resting HR associated with ~9% higher all-cause mortality and ~8% higher CV mortality (pooled cohorts).",
+    "population": "Meta-analysis of general-population cohorts (Zhang et al., CMAJ 2016)",
+    "provenance": {
+      "primary": "Zhang D, Shen X, Qi X — 'Resting heart rate and all-cause and cardiovascular mortality: a meta-analysis', CMAJ 2016",
+      "doi": "10.1503/cmaj.150535",
+      "surfaced_via": "Europe PMC (Domain L2 wearables resting-HR walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "RHR is the consumer-wearable measurement with the BEST validity (small error vs ECG) AND a real population predictor — unusual combination here. But it is largely a READOUT of fitness, autonomic tone, and subclinical disease (reverse causation): lowering RHR via beta-blockade does not generically lower mortality, whereas lowering it via training does. Predictor that you measure well; not a number to drug downward in isolation."
+  },
+  {
+    "id": "glucotypes-cgm-nondiabetic-variability",
+    "statement": "Continuous glucose monitoring in people without diagnosed diabetes reveals substantial, individually-patterned glycemic variability ('glucotypes'), and a meaningful fraction of metabolically 'normal' people spike into prediabetic/diabetic glucose ranges after standardized meals — the variability is real and personalized.",
+    "claim_type": "mechanism",
+    "domain": "L2-wearables",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "57 participants without diabetes classified into low/moderate/severe 'glucotypes'; many normoglycemic-by-HbA1c individuals showed glucose excursions into impaired/diabetic ranges to identical standardized meals.",
+    "population": "Stanford CGM cohort, non-diabetic adults (Hall, Perelman, ... Snyder MP)",
+    "provenance": {
+      "primary": "Hall H, Perelman D, Breschi A, et al. (Snyder MP) — 'Glucotypes reveal new patterns of glucose dysregulation', PLoS Biology 2018",
+      "doi": "10.1371/journal.pbio.2005143",
+      "surfaced_via": "Europe PMC (Domain L2 CGM-in-healthy walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "This is the strongest pro-CGM-in-healthy result and it is genuinely interesting MECHANISTICALLY (glycemic responses are personal; population averages hide individual spikes). But it is a phenotyping/variability finding, NOT evidence that knowing your glucotype, or flattening spikes, changes any hard outcome. It establishes 'the signal exists', not 'the signal is actionable'."
+  },
+  {
+    "id": "cgm-healthy-no-outcome-rct-restated",
+    "statement": "Despite accurate CGM hardware (modern MARD ~9-10%) and real measurable variability in non-diabetics, there is still NO randomized trial showing that CGM use, or reducing glucose spikes, improves any clinical outcome in healthy people; commercial 'metabolic health' CGM programs that report weight/glycemia improvements bundle coaching, diet change, and selection, so the device's independent benefit remains unproven.",
+    "claim_type": "outcome",
+    "domain": "L2-wearables",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "No outcome RCT isolating CGM in healthy/non-diabetic populations as of 2026. Digital-health programs pairing CGM with coaching report glycemic/weight improvement, but CGM's marginal contribution is confounded by the co-interventions.",
+    "population": "Non-diabetic / metabolically-healthy adults (commercial CGM 'wellness' use case)",
+    "provenance": {
+      "primary": "Restatement of Wave-1 grade (L-claim cgm-accurate-diabetes-unvalidated-healthy; Kovatchev 2008 accuracy; Danne 2017 consensus); newer context: Veluvali et al., 'digital health interventions on glycemic control and weight', NPJ Digit Med 2025 (confounded by coaching)",
+      "doi": "10.1038/s41746-025-01430-7",
+      "surfaced_via": "Europe PMC (Domain L2 CGM-in-healthy walk)"
+    },
+    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "canon_link": null,
+    "confidence_notes": "Carries forward the Wave-1 honest grade unchanged: real tool in diabetes (time-in-range is consensus), oversold gadget for the worried-well. Newer 2025 digital-health evidence does not change the verdict because it cannot separate the sensor from the behavior-change wrapper. Glucotype work (above) shows the variability is real; this claim is that the UTILITY of acting on it is still unproven. Predictor/variable != lever."
+  },
+  {
+    "id": "consumer-sleep-trackers-overestimate-and-stage-poorly",
+    "statement": "Consumer sleep wearables are good at total sleep time and sleep/wake on regular nights but tend to OVERESTIMATE sleep (high sensitivity to sleep, low specificity for wake — they miss wakefulness) and stage sleep (light/deep/REM) only moderately vs polysomnography; staging and disrupted-sleep performance are the weakest, so 'deep sleep %' should be read as approximate.",
+    "claim_type": "hypothesis",
+    "domain": "L2-wearables",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Across multi-device head-to-head studies: high sleep-detection sensitivity (~0.9+) but low wake specificity; sleep-staging epoch-by-epoch agreement moderate (kappa typically ~0.4-0.6), with a tendency to overestimate total sleep and light/deep proportions vs PSG.",
+    "population": "Healthy adults, consumer devices vs in-lab polysomnography (Chinoy; Stucky; Kanady)",
+    "provenance": {
+      "primary": "Chinoy ED, et al. 'Performance of Four Commercial Wearable Sleep-Tracking Devices Tested Against PSG', Nat Sci Sleep 2022 (10.2147/nss.s348795); Stucky et al., 'Validation of Fitbit Charge 2 Sleep and Heart Rate Against PSG', JMIR 2021 (10.2196/26476); Kanady et al., 'Validation of sleep measurement in a multisensor consumer-grade wearable', J Clin Sleep Med 2020 (10.5664/jcsm.8362)",
+      "doi": "10.2147/nss.s348795",
+      "surfaced_via": "Europe PMC (Domain L2 sleep-staging-validity walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Extends L-claim consumer-sleep-trackers-stage-poorly (Chinoy 2021) with the DIRECTION of error: devices overestimate sleep and under-detect wake, so a tracker tends to flatter your night. Trust duration + timing regularity (Domain I's actual levers); treat stage percentages as soft. Behavior-change/awareness tool, not a diagnostic — and 'orthosomnia' (anxiety driven by chasing sleep scores) is a documented harm of over-trusting them."
+  },
+  {
+    "id": "wearable-vo2max-estimation-error",
+    "statement": "Consumer-wearable estimated VO2max (e.g., Apple Watch, Garmin) tracks measured cardiorespiratory fitness at the GROUP level but has wide individual limits of agreement and systematic bias vs gold-standard cardiopulmonary exercise testing, so a wearable VO2max number is a within-person trend tool, not a calibrated risk instrument.",
+    "claim_type": "hypothesis",
+    "domain": "L2-wearables",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Wearable-vs-CPET VO2max: reasonable group correlation but Bland-Altman limits of agreement commonly span several mL/kg/min with mean bias; accuracy degrades for individuals at the extremes.",
+    "population": "Adults, consumer-wearable estimated VO2max vs laboratory CPET (Lambe et al.)",
+    "provenance": {
+      "primary": "Lambe R, Schumann M, Donnelly L, Harper... — 'Accuracy of VO2max Estimates From Apple Watch' (vs CPET), Mayo Clin Proc Digit Health 2026",
+      "doi": "10.1016/j.mcpdig.2026.100357",
+      "surfaced_via": "Europe PMC (Domain L2 wearable VO2max-validity walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Measurement-validity companion to L-claim vo2max-gold-standard-clinical-vital-sign. The biomarker (VO2max) is the single strongest exercise-mortality predictor (Domain E); the GADGET'S estimate is the weak link. Use the wearable number to watch your own trend (is it rising with training?), not to place yourself on a population mortality nomogram — for that you need measured CRF (CPET or a hard field test)."
+  },
+  {
+    "id": "n-of-1-self-tracking-epistemics",
+    "statement": "Quantified-self / N=1 self-tracking is epistemically valid for detecting LARGE within-person effects, personalizing responses, and generating hypotheses, but is structurally weak for small effects and for any survival/longevity claim: it has no control group, no randomization, and is biased by regression-to-the-mean, placebo, seasonality, and multiple comparisons. A dense, openly-published N=1 protocol (e.g., Bryan Johnson's Blueprint) is a contribution of MEASUREMENT TRANSPARENCY, not evidence that the protocol extends life.",
+    "claim_type": "hypothesis",
+    "domain": "L2-wearables",
+    "evidence_tier": "nequals1",
+    "direction": "mixed",
+    "effect_size": "Methodological: N=1 can resolve effects large relative to within-person noise (e.g., a food that reliably spikes one's glucose) but cannot, by construction, establish population-level outcome causation (mortality, healthspan).",
+    "population": "Self-experimentation / quantified-self methodology (anchored to Blueprint as the canonical instrumented N=1)",
+    "provenance": {
+      "primary": "Epistemics-of-self-tracking synthesis; reference implementation: Bryan Johnson 'Blueprint'/'Don't Die' open protocol (04-protocols/bryan-johnson-blueprint.md; J-claims protocol-not-evidence-axiom, bj-rapamycin-discontinued)",
+      "doi": null,
+      "surfaced_via": "Domain L2 quantified-self methodology walk"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Ties the whole wearables domain together: a device that accurately measures X (RHR, steps, glucose) plus an N=1 protocol can validly PERSONALIZE and detect big effects, but cannot upgrade a predictor into a proven lever or prove a longevity outcome. The honest value of Blueprint is the open instrumented dataset; its rapamycin discontinuation (bj-rapamycin-discontinued) is itself a clean example of N=1 surfacing a self-reported negative. Noise-chasing failure mode: optimizing a noisy nightly score (HRV, deep-sleep %) whose night-to-night variation exceeds any real signal."
+  }
+]

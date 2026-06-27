@@ -1,0 +1,173 @@
+[
+  {
+    "id": "health-survival-paradox",
+    "statement": "Women live longer than men but report worse health and more disability across most of adult life - the male-female health-survival ('morbidity-mortality') paradox: men have good health and high mortality, women have higher survival with higher morbidity burden.",
+    "claim_type": "outcome",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Female life-expectancy advantage (~5y in developed nations) coexisting with higher disability/morbidity prevalence",
+    "population": "Review of population health-survey + mortality epidemiology",
+    "provenance": {
+      "primary": "Oksuzyan, Juel, Vaupel & Christensen - 'Men: good health and high mortality. Sex differences in health and aging', Aging Clinical and Experimental Research 2008",
+      "doi": "10.1007/BF03324754",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Robust, replicated epidemiological pattern. Partly explained by survival selection (frailer men die earlier), reporting differences, and biological factors. The key implication: lifespan-centric longevity advice mis-targets the sex that needs HEALTHSPAN/function, not more years.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "whi-estrogen-progestin-harm",
+    "statement": "In the Women's Health Initiative, combined estrogen+progestin therapy in postmenopausal women (mean age ~63) increased coronary heart disease, stroke, venous thromboembolism and invasive breast cancer, leading to early termination of the trial arm.",
+    "claim_type": "outcome",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Increased CHD, stroke, VTE, invasive breast cancer; reduced fractures and colorectal cancer; arm halted early. Hazard ratios ~1.2-1.4 for the harms.",
+    "population": "WHI randomized trial, n=16,608 postmenopausal women, mean age ~63",
+    "provenance": {
+      "primary": "Writing Group for the WHI Investigators (Rossouw et al.) - 'Risks and Benefits of Estrogen Plus Progestin in Healthy Postmenopausal Women', JAMA 2002",
+      "doi": "10.1001/jama.288.3.321",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-hrt-timing"],
+    "canon_link": "",
+    "confidence_notes": "High-tier RCT, but the population was a DECADE+ past menopause. The result is valid for late-initiation HRT and was wrongly universalized to all women including symptomatic women starting at menopause. 'refutes' applies to HRT-as-late-CVD-prevention, not to HRT-for-menopausal-symptoms.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "whi-age-dependent-riskbenefit",
+    "statement": "On extended WHI follow-up, the risk/benefit balance of hormone therapy is age-dependent: women aged 50-59 or within 10 years of menopause had a more favorable profile (including more favorable all-cause mortality signals) than older women.",
+    "claim_type": "outcome",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "More favorable risk/benefit and mortality trend in the 50-59 / <10y-since-menopause subgroup vs older initiators",
+    "population": "WHI both trial arms, intervention + post-stopping follow-up",
+    "provenance": {
+      "primary": "Manson et al. - 'Menopausal Hormone Therapy and Health Outcomes During the Intervention and Extended Poststopping Phases of the Women's Health Initiative Randomized Trials', JAMA 2013",
+      "doi": "10.1001/jama.2013.278040",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-hrt-timing"],
+    "canon_link": "",
+    "confidence_notes": "Subgroup analysis of an RCT - lower inferential weight than the primary result, and not powered as a timing trial. Motivates but does not prove the timing hypothesis.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "estrogen-timing-elite",
+    "statement": "Estrogen timing hypothesis: initiating estradiol early (<6 years post-menopause) slowed carotid atherosclerosis progression, whereas late initiation (>=10 years) did not - consistent with estrogen being vasculo-protective on healthy but not aged/atherosclerotic vasculature.",
+    "claim_type": "outcome",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Slower carotid intima-media thickness (CIMT) progression in early-postmenopause stratum; no effect in late stratum",
+    "population": "ELITE RCT, postmenopausal women stratified by time-since-menopause",
+    "provenance": {
+      "primary": "Hodis et al. - 'Vascular Effects of Early versus Late Postmenopausal Treatment with Estradiol', NEJM 2016",
+      "doi": "10.1056/NEJMoa1505241",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-hrt-timing"],
+    "canon_link": "",
+    "confidence_notes": "RCT but SURROGATE endpoint (CIMT, not CVD events or mortality). Supports 'early HRT not vascularly harmful / possibly protective' - does NOT establish hard-outcome longevity benefit. The definitive event-driven timing RCT does not exist.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "keeps-hrt-recent-menopause",
+    "statement": "In recently menopausal women, hormone therapy showed no significant effect on atherosclerosis progression (CIMT) but improved some symptom, mood and metabolic markers.",
+    "claim_type": "outcome",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "No significant CIMT/coronary-calcium effect; improvements in some menopausal-symptom, mood and metabolic measures",
+    "population": "KEEPS RCT, recently menopausal women",
+    "provenance": {
+      "primary": "Harman et al. - 'Arterial Imaging Outcomes and Cardiovascular Risk Factors in Recently Menopausal Women', Annals of Internal Medicine 2014",
+      "doi": "10.7326/M14-0353",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-hrt-timing"],
+    "canon_link": "",
+    "confidence_notes": "Tempers ELITE: in a young cohort the cardiovascular surrogate did NOT clearly move. Together with ELITE, supports 'early HRT is reasonable for symptoms / not clearly harmful' rather than 'protective'. The timing hypothesis is supported-but-unproven.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "menopause-bone-loss-acceleration",
+    "statement": "Estrogen withdrawal at menopause drives accelerated bone loss (the dominant cause of female osteoporosis) and adverse cardiometabolic shifts (lipids, visceral fat, insulin sensitivity) - a sex-specific aging inflection with no direct male equivalent.",
+    "claim_type": "mechanism",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Rapid perimenopausal/early-postmenopausal bone mineral density decline; menopausal lipid and central-adiposity shifts",
+    "population": "Human menopausal physiology (mechanistic + cohort)",
+    "provenance": {
+      "primary": "Established menopausal endocrinology; bone-density->fracture link per Marshall et al. BMD meta (Domain L, 10.1136/bmj.312.7041.1254)",
+      "doi": "",
+      "surfaced_via": "Wave-5 mechanism synthesis; cross-linked to Domain L BMD meta"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (estrogen-receptor signaling, RANKL/OPG bone remodeling)",
+    "confidence_notes": "Mechanism is well-established. 'Therefore replace estrogen for healthspan' is the separate HRT-timing OUTCOME question (above), NOT licensed by the mechanism. Makes loading exercise (Domain E) and BMD tracking (Domain L) disproportionately load-bearing for women.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "male-default-cohort-problem",
+    "statement": "Core longevity/fitness mortality findings in this corpus rest on male or male-dominant cohorts (e.g., the sauna-mortality cohort is men-only; Whitehall I is male; many VO2max/strength-mortality cohorts skew male), and have not been adequately replicated with sex-specific estimates in women.",
+    "claim_type": "outcome",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "cross-sectional",
+    "direction": "unfalsifiable",
+    "effect_size": "Absence flag - sex-specific effect sizes for women are not established for several anchor findings",
+    "population": "Meta-observation across Domains E, H, L cohorts",
+    "provenance": {
+      "primary": "Cross-domain audit: KIHD sauna cohort (men-only, Laukkanen 2015, 10.1001/jamainternmed.2014.8187); Whitehall I (male, 10.1136/jech.32.4.244); skewed VO2max/strength cohorts",
+      "doi": "",
+      "surfaced_via": "Wave-5 unbiased-completeness audit"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Recorded as an explicit ABSENCE, not a null result and not 'applies equally'. Direction 'unfalsifiable' = the women's-specific claim cannot be evaluated as stated because the data do not exist. This absence-ledger is the domain's main unbiased-completeness contribution.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "supplement-trials-underenroll-women",
+    "statement": "Many supplement and pharmacologic longevity-adjacent RCTs historically under-enroll women or do not power sex-stratified analyses, despite documented pharmacokinetic and hormonal sex differences - so efficacy/safety in women is frequently extrapolated rather than measured.",
+    "claim_type": "outcome",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "cross-sectional",
+    "direction": "unfalsifiable",
+    "effect_size": "Absence flag - sex-stratified supplement efficacy/safety frequently unmeasured",
+    "population": "Meta-observation on trial-design history",
+    "provenance": {
+      "primary": "Documented sex-representation gaps in clinical-trial enrollment (NIH sex-as-biological-variable policy rationale)",
+      "doi": "",
+      "surfaced_via": "Wave-5 unbiased-completeness audit"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Absence flag. The NIH 'sex as a biological variable' policy (2016) exists precisely because of this gap. Tagged as a structural caveat over Domains D/J supplement claims, not a specific efficacy claim.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "exercise-doseresponse-male-derived",
+    "statement": "Exercise dose-response prescriptions (hypertrophy, zone-2, HIIT) are largely characterized in young male subjects and extrapolated to women, including across the menopausal transition where muscle, bone and hormonal milieu differ substantially.",
+    "claim_type": "protocol",
+    "domain": "N-womens-longevity",
+    "evidence_tier": "cross-sectional",
+    "direction": "unfalsifiable",
+    "effect_size": "Absence flag - female and peri/post-menopausal dose-response under-characterized",
+    "population": "Meta-observation across exercise-science cohorts (Domain E)",
+    "provenance": {
+      "primary": "Cross-reference Domain E exercise literature; documented male-subject predominance in resistance/endurance training studies",
+      "doi": "",
+      "surfaced_via": "Wave-5 unbiased-completeness audit"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Absence/extrapolation flag. The male-derived curves are plausibly applicable but unverified for women, especially perimenopause. Makes Domain E's confident dose advice provisional for half the population.",
+    "added_on": "2026-06-27"
+  }
+]

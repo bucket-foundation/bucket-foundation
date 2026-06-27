@@ -1,0 +1,211 @@
+[
+  {
+    "id": "social-relationships-mortality-meta",
+    "statement": "Stronger social relationships are associated with substantially higher survival odds — an effect the authors benchmark as comparable to smoking cessation and larger than obesity or physical inactivity.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "OR 1.50 (95% CI 1.42-1.59) increased likelihood of survival for stronger vs weaker social relationships",
+    "population": "Meta-analysis of 148 prospective studies, n=308,849, mean follow-up 7.5y",
+    "provenance": {
+      "primary": "Holt-Lunstad, Smith & Layton - 'Social Relationships and Mortality Risk: A Meta-analytic Review', PLoS Medicine 2010",
+      "doi": "10.1371/journal.pmed.1000316",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Top-of-ladder (meta) but observational. Effect size rivals or exceeds most consumer longevity interventions in this corpus while sitting at a HIGHER evidence tier. Confounding/reverse causation (illness -> isolation) not fully excluded, but survives meta-scale adjustment. This is the domain's anchor finding.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "isolation-loneliness-living-alone-mortality-meta",
+    "statement": "Objective social isolation, subjective loneliness, and living alone are each independently associated with increased all-cause mortality.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Mortality OR ~1.29 (isolation), ~1.26 (loneliness), ~1.32 (living alone), all significant after adjustment",
+    "population": "Meta-analysis of 70 studies, n=3,407,134",
+    "provenance": {
+      "primary": "Holt-Lunstad et al. - 'Loneliness and Social Isolation as Risk Factors for Mortality: A Meta-Analytic Review', Perspectives on Psychological Science 2015",
+      "doi": "10.1177/1745691614568352",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-loneliness-vs-isolation"],
+    "canon_link": "",
+    "confidence_notes": "Establishes objective isolation and subjective loneliness as partly distinct risk factors. meta-tier, observational. Effect sizes are smaller than the social-relationships meta but more specifically about deficit states.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "isolation-over-loneliness-mortality-elsa",
+    "statement": "When objective social isolation and subjective loneliness are modeled together, isolation predicts mortality while the loneliness association attenuates after adjustment — suggesting isolation, not loneliness per se, carries the mortality signal in this cohort.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Isolation HR ~1.26 (fully adjusted); loneliness HR non-significant after demographic/health adjustment",
+    "population": "English Longitudinal Study of Ageing (ELSA), n~6,500, age 52+",
+    "provenance": {
+      "primary": "Steptoe, Shankar, Demakakos & Wardle - 'Social isolation, loneliness, and all-cause mortality in older men and women', PNAS 2013",
+      "doi": "10.1073/pnas.1219686110",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-loneliness-vs-isolation"],
+    "canon_link": "",
+    "confidence_notes": "Directly conflicts with studies foregrounding loneliness. Likely the two act via different pathways (isolation = practical/biological access; loneliness = psychological/behavioral). Open question, not resolved.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "life-purpose-mortality-hrs",
+    "statement": "Lower sense of life purpose is associated with substantially higher all-cause mortality in older US adults.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lowest vs highest purpose tercile: HR ~2.43 all-cause mortality over ~4y",
+    "population": "Health and Retirement Study (HRS), n=6,985, age >50",
+    "provenance": {
+      "primary": "Alimujiang et al. - 'Association Between Life Purpose and Mortality Among US Adults Older Than 50 Years', JAMA Network Open 2019",
+      "doi": "10.1001/jamanetworkopen.2019.4270",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Large effect size, but short follow-up and observational. Purpose plausibly mediates via behavior (adherence, engagement) and stress axis; outcome is association not demonstrated lever. 'Ikigai' is the popular face of the same construct.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "purpose-mortality-rush",
+    "statement": "Greater purpose in life is associated with lower all-cause mortality in community-dwelling older adults.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "High vs low purpose: HR ~0.57 mortality",
+    "population": "Rush Memory and Aging Project / Minority Aging Research Study, older adults",
+    "provenance": {
+      "primary": "Boyle, Barnes, Buchman & Bennett - 'Purpose in Life Is Associated With Mortality Among Community-Dwelling Older Persons', Psychosomatic Medicine 2009",
+      "doi": "10.1097/PSY.0b013e3181a5a7c0",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Independent cohort replicating the purpose->mortality direction. Observational; healthy-personality and reverse-causation confounds.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "purpose-alzheimer-mci",
+    "statement": "Greater purpose in life is associated with lower risk of incident Alzheimer disease and mild cognitive impairment, and slower cognitive decline.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "High vs low purpose: ~2.4x lower risk of incident AD; reduced MCI risk and slower decline",
+    "population": "Rush MAP, older adults without dementia at baseline",
+    "provenance": {
+      "primary": "Boyle, Buchman, Barnes & Bennett - 'Effect of a Purpose in Life on Risk of Incident Alzheimer Disease and Mild Cognitive Impairment in Community-Dwelling Older Persons', Archives of General Psychiatry 2010",
+      "doi": "10.1001/archgenpsychiatry.2009.208",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort. Reverse causation plausible (early subclinical AD could erode sense of purpose). Cross-links Domain I (cognition) and the ikigai/Blue-Zones framing.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "ses-gradient-whitehall-1",
+    "statement": "Lower occupational/employment grade is associated with a stepwise inverse gradient in coronary heart disease mortality among British civil servants - the effect is graded across the whole hierarchy, not a poverty threshold.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lowest vs highest employment grade: ~3x CHD mortality; stepwise gradient at every grade",
+    "population": "Whitehall I, ~18,000 male British civil servants",
+    "provenance": {
+      "primary": "Marmot, Rose, Shipley & Hamilton - 'Employment grade and coronary heart disease in British civil servants', Journal of Epidemiology and Community Health 1978",
+      "doi": "10.1136/jech.32.4.244",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the most robust findings in epidemiology. The GRADIENT (not just poverty) is the key result - implicates relative position/autonomy/status, not only material deprivation. Male cohort. Partly mediated by classic risk factors but with a residual.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "ses-gradient-whitehall-2-autonomy",
+    "statement": "The social gradient in mortality and morbidity replicates in a newer mixed-sex civil-servant cohort and is associated with low job control/decision latitude, pointing to psychosocial work stress as a mediator beyond classic risk factors.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Persistent inverse social gradient; low job control associated with higher CHD risk",
+    "population": "Whitehall II, ~10,000 male and female British civil servants",
+    "provenance": {
+      "primary": "Marmot et al. - 'Health inequalities among British civil servants: the Whitehall II study', The Lancet 1991",
+      "doi": "10.1016/0140-6736(91)93068-K",
+      "surfaced_via": "named in Wave-5 brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Adds the job-control/autonomy mediation hypothesis. The autonomy->stress->CVD chain is plausible but the mediation claim is weaker (mechanistic) than the gradient association itself (cohort).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "allostatic-load-framework",
+    "statement": "Chronic activation of stress mediators (HPA/cortisol, sympathetic, inflammatory, metabolic) imposes a cumulative physiological cost - 'allostatic load' - proposed as the biological bridge linking psychosocial adversity (isolation, low status, low purpose) to cardiometabolic and immune aging.",
+    "claim_type": "mechanism",
+    "domain": "M-psychosocial",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Framework; composite allostatic-load indices predict morbidity/mortality in some cohorts",
+    "population": "Conceptual framework + human cohort operationalizations",
+    "provenance": {
+      "primary": "McEwen - 'Protective and Damaging Effects of Stress Mediators', New England Journal of Medicine 1998",
+      "doi": "10.1056/NEJM199801153380307",
+      "surfaced_via": "OpenAlex (record already archived from Domain I wave); cross-referenced"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (HPA-axis, redox stress signaling)",
+    "confidence_notes": "Bridge HYPOTHESIS connecting the social-epi outcomes to biology. Inconsistently operationalized; risks unfalsifiability (explains more than it predicts). Tagged theoretical, NOT outcome - same discipline applied to hormesis in Domain H. Also indexed in Domain I.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "religious-attendance-mortality",
+    "statement": "Frequent attendance at religious services is associated with lower all-cause mortality, mediated largely by social support, optimism, lower depression and reduced smoking - suggesting community/ritual, not metaphysics, is the active ingredient.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Attendance >1x/week vs never: HR ~0.67 all-cause mortality over 20y",
+    "population": "Nurses' Health Study, n~74,534 women, 20y follow-up",
+    "provenance": {
+      "primary": "Li, Stampfer, Williams & VanderWeele - 'Association of Religious Service Attendance With Mortality Among Women', JAMA Internal Medicine 2016",
+      "doi": "10.1001/jamainternmed.2016.1615",
+      "surfaced_via": "OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "All-female cohort; heavy healthy-adherer confounding. Sits alongside connection and purpose as another route to the same psychosocial substrate (regular community ritual). Association, not lever.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "psychosocial-vs-biohack-effect-size",
+    "statement": "By the corpus's own evidence-grading rules, the leading psychosocial mortality factors (social connection, purpose, socioeconomic position) carry larger hard-endpoint effect sizes at a HIGHER evidence tier (meta/cohort) than most supplement and device interventions (mechanistic/surrogate) - yet receive disproportionately less attention.",
+    "claim_type": "outcome",
+    "domain": "M-psychosocial",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Connection OR ~1.50 (meta); SES gradient ~3x; purpose HR ~2.4 (cohort) vs most supplements: surrogate-only / small",
+    "population": "Cross-domain synthesis (this corpus)",
+    "provenance": {
+      "primary": "Synthesis of Holt-Lunstad 2010/2015, Marmot 1978/1991, Alimujiang 2019, Boyle 2009/2010 vs the supplement/device claim tiers across Domains D/H/L",
+      "doi": "",
+      "surfaced_via": "Wave-5 unbiased-completeness synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A meta-observation about the FIELD's attention allocation, not a single primary study - graded by the tiers of its component claims. The honest point: these factors are under-sold because they are unmonetizable (no SKU for friendship/autonomy/meaning), which is exactly the market-driven bias an unbiased map must correct. Causation still tangled.",
+    "added_on": "2026-06-27"
+  }
+]
