@@ -46,6 +46,32 @@
     return this;
   };
 
+  // bkt-h9k: re-namespace the PERSISTED state to a different localStorage key
+  // WITHOUT reloading the corpus. Used by the multi-course Languages mode so each
+  // target language (e.g. "lang:es", "lang:ja") keeps fully independent FSRS state
+  // (cards, proficiency, xp, streak) while sharing the one in-memory deck. The atoms,
+  // leverage, and encompassing map are untouched — only `lsKey` + `state` change.
+  // Saves the current state first so a switch never drops in-flight progress.
+  Engine.prototype.useNamespace = function (keyOverride) {
+    if (!keyOverride) return this;
+    var next = LS_BASE + "/" + keyOverride;
+    if (this.lsKey === next) return this; // already on this namespace
+    if (this.state) this.save();          // flush current namespace before switching
+    this.lsKey = next;
+    this._loadState();
+    return this;
+  };
+
+  // bkt-h9k: peek at a namespace's persisted stats WITHOUT switching the live engine.
+  // Returns the raw saved state object (or null) for the given keyOverride. Used by the
+  // "My Languages" view to show per-language streak/xp/progress for courses that aren't
+  // currently active. Pure read — never mutates lsKey/state.
+  Engine.prototype.peekNamespace = function (keyOverride) {
+    if (!keyOverride) return null;
+    try { return JSON.parse(localStorage.getItem(LS_BASE + "/" + keyOverride)); }
+    catch (e) { return null; }
+  };
+
   // bkt-ecr: derive the encompassing layer from the requires DAG (weights decay
   // by graph distance). Exposed for FIRe and any future UI ("this exercises …").
   Engine.prototype._buildEncompassing = function () {

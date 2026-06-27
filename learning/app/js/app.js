@@ -532,6 +532,7 @@
         throw new Error("unknown branch " + key);
       }
       normalizeAtoms();
+      syncLangNamespace(); // bkt-h9k: per-language state when entering the lang branch
       await loadArtCache();
     } catch (e) {
       $("#app").innerHTML =
@@ -644,6 +645,72 @@
       chosen: opts.chosen != null ? !!opts.chosen : (prev.chosen || false),
     };
     try { localStorage.setItem(LANG_PREF_KEY, JSON.stringify(rec)); } catch (e) {}
+  }
+
+  /* ===================================================================== *
+   *  MULTI-COURSE LANGUAGES (bkt-h9k)
+   *  Each target language is a separate course with fully independent engine
+   *  state (FSRS cards, proficiency, xp, streak), namespaced in the engine as
+   *  "lang:<target>" (e.g. "lang:es", "lang:ja"). The shared deck (lang-core)
+   *  provides the atoms/study order; only the PROGRESS is per-language. The
+   *  canon/science branches keep using their own branch-keyed state untouched.
+   * ===================================================================== */
+  // The engine namespace key for a given target language course.
+  function langStateKey(target) { return "lang:" + target; }
+  // Point the live engine at the active target's per-language state. No-op off the
+  // language branch (so science branches are never re-namespaced). Idempotent.
+  function syncLangNamespace() {
+    if (!isLang()) return;
+    const target = langSettings().target;
+    if (target) E.useNamespace(langStateKey(target));
+  }
+
+  // Started-courses registry: the set of target languages the learner has begun a
+  // course in (so "My Languages" knows what to list). Stored as an ordered list.
+  const DUO_COURSES_KEY = "bucket-academy/duo-courses";
+  function startedCourses() {
+    let v = [];
+    try { v = JSON.parse(localStorage.getItem(DUO_COURSES_KEY)) || []; } catch (e) {}
+    return Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
+  }
+  function markCourseStarted(target) {
+    if (!target) return;
+    const list = startedCourses();
+    if (list.indexOf(target) < 0) {
+      list.push(target);
+      try { localStorage.setItem(DUO_COURSES_KEY, JSON.stringify(list)); } catch (e) {}
+    }
+  }
+  // Per-language stats for the "My Languages" view. Reads the target's OWN namespace
+  // (live engine if it's the active course, otherwise a pure peek) and counts words
+  // learned against the deck's coverage for that target. Never mutates the live engine.
+  function courseStats(target) {
+    const key = langStateKey(target);
+    const active = isLang() && langSettings().target === target;
+    const st = active ? E.state : E.peekNamespace(key);
+    const cards = (st && st.cards) || {};
+    const stats = (st && st.stats) || {};
+    // words "learned" = atoms with a card AND (for the active course) mastery >= .55;
+    // for a peeked (inactive) course we can't cheaply compute fused mastery without
+    // swapping namespaces, so we count introduced cards as the honest signal there.
+    let learned = 0, introduced = 0;
+    const total = langCoverage(target);
+    Object.keys(cards).forEach((id) => {
+      const a = E.byId[id];
+      if (!a || !a.forms || !a.forms[target] || !a.forms[target].word) return;
+      introduced++;
+      if (active) { if (E.masteryFor(id) >= 0.55) learned++; }
+    });
+    if (!active) learned = introduced; // honest peek signal (see note above)
+    return {
+      target,
+      learned,
+      introduced,
+      total,
+      xp: stats.xp || 0,
+      streak: stats.streak || 0,
+      active,
+    };
   }
 
   // "Ask the tutor" — opens a focused, grounded Socratic chat scoped to this
@@ -3262,6 +3329,13 @@
     LANG_NAMES,
     mount: (node) => mount(node),
     nav: (active) => nav(active),
+    // bkt-h9k multi-course hooks
+    langStateKey,
+    syncLangNamespace,       // re-point the live engine at the active target's state
+    startedCourses,          // [target,...] languages the learner has begun
+    markCourseStarted,       // register a target as a started course
+    courseStats,             // per-language { learned, total, xp, streak, active }
+    flag: (l) => l,          // duo.js owns its own flag map; placeholder for parity
   };
   // Does the dedicated Duo language experience own the current view?
   function duoActive() {
@@ -3278,8 +3352,23 @@
     currentScreen = where;
     // LANGUAGE branch → the dedicated Duolingo-style experience (path home + lesson player).
     if (where === "home" && duoActive()) {
+      syncLangNamespace(); // bkt-h9k: load the ACTIVE language's own state before rendering
       if (window.DuoLang.shouldOnboard()) return mount(window.DuoLang.onboarding(() => go("home")));
       return mount(window.DuoLang.path(go));
+    }
+    // bkt-h9k: "My Languages" course switcher (Duo-style). Reachable from the flag
+    // pill on the path and from the Progress tab while on the language branch.
+    if (where === "languages" && duoActive() && window.DuoLang.myLanguages) {
+      return mount(window.DuoLang.myLanguages(go));
+    }
+    // bkt-h9k: "+ Add a language" — force the onboarding language picker even though a
+    // course already exists, to START a new course (fresh per-language state).
+    if (where === "add-language" && duoActive()) {
+      return mount(window.DuoLang.onboarding(() => go("home")));
+    }
+    // On the language branch the Progress tab IS "My Languages" (course list).
+    if (where === "progress" && duoActive() && window.DuoLang.myLanguages) {
+      return mount(window.DuoLang.myLanguages(go));
     }
     if (where === "lang-picker") mount(screenLangPicker());
     else if (where === "home") mount(screenHome());
@@ -3319,6 +3408,7 @@
       else if (cur && cur.data) E.loadData(cur.data, cur.id);
       else await E.load(DEFAULT_BRANCH);
       normalizeAtoms();
+      syncLangNamespace(); // bkt-h9k: per-language state on boot if starting on lang branch
       await loadArtCache();
     } catch (e) {
       $("#app").innerHTML = '<div class="screen"><div class="hero"><h1>Corpus failed to load</h1><p class="sub">Run via a local server: <code>./serve.sh</code></p></div></div>';

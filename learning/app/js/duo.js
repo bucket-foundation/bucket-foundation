@@ -94,6 +94,14 @@
   function settings() { return B().langSettings(); }
   function setPref(target, known, opts) { return B().setLangPref(target, known, opts); }
   function grade(id, rating, level, now) { return B().grade(id, rating, level, now); }
+  /* ---- bkt-h9k multi-course helpers (independent per-language state) ---- */
+  // Re-point the live engine at the active target's per-language namespace. MUST be
+  // called after setPref(target,…) and before buildUnits()/startLesson() so the path
+  // and lesson read/write THAT language's own FSRS state — not a shared one.
+  function syncNamespace() { var b = B(); if (b && b.syncLangNamespace) b.syncLangNamespace(); }
+  function startedCourses() { var b = B(); return (b && b.startedCourses) ? b.startedCourses() : []; }
+  function markCourseStarted(t) { var b = B(); if (b && b.markCourseStarted) b.markCourseStarted(t); }
+  function courseStats(t) { var b = B(); return (b && b.courseStats) ? b.courseStats(t) : null; }
   function check(typed, target, lang) { return B().checkLangAnswer(typed, target, lang); }
   function audioBtn(word, lang, opt) {
     if (root.LangAudio && root.LangAudio.supported()) return root.LangAudio.button(word, lang, opt);
@@ -383,6 +391,11 @@
       // persist language choice via the SHARED pref so the rest of the app agrees
       setPref(state.target, [state.known], { primaryKnown: state.known, polyglot: false, chosen: true });
       saveDuoPrefs({ reason: state.reason, placement: state.placement, goal: state.goal });
+      // bkt-h9k: switch the engine to THIS language's own state BEFORE we grade any
+      // placement words or build the path, so a new course starts truly fresh and an
+      // existing course resumes its own progress. Then register it as a started course.
+      syncNamespace();
+      markCourseStarted(state.target);
       // PLACEMENT: pre-introduce the first <skip> words so the learner starts further
       // along the path (a real, honest head start — they're marked seen, not mastered).
       if (state.skip) {
@@ -426,9 +439,9 @@
     var chrome = el("div", "duo-chrome");
     var langPill = el("button", "duo-lang-pill",
       '<span class="dlp-flag">' + flag(ls.target) + '</span>');
-    langPill.title = "Learning " + langName(ls.target) + " · change language";
-    langPill.setAttribute("aria-label", "Change language");
-    langPill.onclick = function () { changeLanguage(go); };
+    langPill.title = "Learning " + langName(ls.target) + " · my languages";
+    langPill.setAttribute("aria-label", "My languages — switch or add a course");
+    langPill.onclick = function () { go("languages"); };
     chrome.appendChild(langPill);
     var hearts = duoHearts();
     chrome.appendChild(chromeStat("🔥", s.streak, "duo-streak", (s.streak || 0) + " day streak"));
@@ -553,32 +566,71 @@
     setTimeout(function () { t.classList.remove("in"); setTimeout(function () { t.remove(); }, 250); }, 1900);
   }
 
-  // small language switcher sheet (lets the founder change target without losing the path UI)
-  function changeLanguage(go) {
-    var b = B(), e = E();
-    var deckLangs = b.langDeckLangs();
-    var targets = deckLangs.filter(function (l) { return l !== "en" && b.langCoverage(l) >= 60; })
-      .sort(function (x, y) { return langName(x).localeCompare(langName(y)); });
+  /* ===================================================================== *
+   *  SURFACE #2b — "MY LANGUAGES" (the Duo course switcher / dropdown)
+   *  Lists every language the learner has STARTED (has progress), each row
+   *  showing flag + name, words-learned signal, streak and XP for THAT course.
+   *  Tapping a course switches to it (loads its own state → path). A prominent
+   *  "+ Add a language" opens the onboarding picker to start a new course.
+   *  Reachable from the flag pill on the path AND from the Progress tab.
+   * ===================================================================== */
+  function myLanguages(go) {
+    var b = B();
     var cur = settings();
-    var back = el("div", "sheet-back");
-    var sheet = el("div", "sheet duo-lang-sheet");
-    sheet.appendChild(el("div", "sheet-title", "I want to learn"));
-    var grid = el("div", "duo-lang-grid in-sheet");
-    targets.forEach(function (l) {
-      var card = el("button", "duo-lang-card" + (cur.target === l ? " on" : ""));
-      card.innerHTML = '<span class="dlc-flag">' + flag(l) + "</span>" +
-        '<span class="dlc-name">' + esc(langName(l)) + "</span>";
-      card.onclick = function () {
+    var started = startedCourses();
+    // Always include the active target even if it somehow wasn't registered yet, so a
+    // freshly-switched course still appears at the top of its own list.
+    if (cur.target && started.indexOf(cur.target) < 0) started = [cur.target].concat(started);
+
+    var wrap = el("div", "screen duo duo-courses");
+
+    var head = el("div", "duo-courses-head");
+    head.appendChild(el("h1", "duo-courses-h1", "My Languages"));
+    head.appendChild(el("p", "duo-courses-sub",
+      "Each course keeps its own progress, streak and XP. Pick up where you left off, or start a new one."));
+    wrap.appendChild(head);
+
+    var list = el("div", "duo-courses-list");
+    started.forEach(function (l) {
+      var st = courseStats(l) || { learned: 0, total: b.langCoverage(l), xp: 0, streak: 0 };
+      var isCur = l === cur.target;
+      var row = el("button", "duo-course-row" + (isCur ? " current" : ""));
+      row.setAttribute("aria-label",
+        langName(l) + " course — " + st.learned + " of " + st.total + " words, " +
+        (st.streak || 0) + " day streak, " + (st.xp || 0) + " XP" + (isCur ? " (current)" : ""));
+      var pct = st.total ? Math.round((st.learned / st.total) * 100) : 0;
+      row.innerHTML =
+        '<span class="dcr-flag">' + flag(l) + "</span>" +
+        '<span class="dcr-main">' +
+          '<span class="dcr-name">' + esc(langName(l)) +
+            (isCur ? ' <span class="dcr-badge">Learning</span>' : "") + "</span>" +
+          '<span class="dcr-bar"><i style="width:' + pct + '%"></i></span>' +
+          '<span class="dcr-meta">' + esc(st.learned) + " / " + esc(st.total) + " words</span>" +
+        "</span>" +
+        '<span class="dcr-stats">' +
+          '<span class="dcr-stat">🔥 ' + esc(st.streak || 0) + "</span>" +
+          '<span class="dcr-stat">✦ ' + esc(st.xp || 0) + "</span>" +
+        "</span>";
+      row.onclick = function () {
+        if (l === cur.target) { go("home"); return; }
+        // switch course: persist the new target, then let go("home") re-namespace the
+        // engine to THIS language's own state before rendering its (independent) path.
         setPref(l, cur.known, { primaryKnown: cur.primaryKnown, chosen: true });
-        back.remove();
         go("home");
       };
-      grid.appendChild(card);
+      list.appendChild(row);
     });
-    sheet.appendChild(grid);
-    back.appendChild(sheet);
-    back.onclick = function (ev) { if (ev.target === back) back.remove(); };
-    document.body.appendChild(back);
+    wrap.appendChild(list);
+
+    // prominent "+ Add a language" → forces the onboarding picker to start a NEW course
+    var add = el("button", "duo-add-lang", '<span class="dal-plus">+</span> Add a language');
+    add.setAttribute("aria-label", "Add a new language course");
+    add.onclick = function () { go("add-language"); };
+    wrap.appendChild(add);
+
+    wrap.appendChild(honesty());
+    if (b.nav) wrap.appendChild(b.nav("progress"));
+    return wrap;
   }
 
   /* ===================================================================== *
@@ -727,6 +779,7 @@
       // mark the node done by ensuring each word has a card (lightly), bump logs
       node.ids.forEach(function (id) { if (!e.cardFor(id)) grade(id, 3, "recall"); });
       bumpLessonsToday();
+      markCourseStarted(target); // bkt-h9k: this language now has progress → list it
       var xpEarned = Math.max(0, e.summary().xp - xpStart) + correctCount * 2; // ensure a visible reward
       var stats = {
         xp: xpEarned,
@@ -1155,6 +1208,7 @@
     shouldOnboard: shouldOnboard,
     onboarding: onboarding,
     path: path,
+    myLanguages: myLanguages,
     startLesson: startLesson,
     _buildUnits: buildUnits, // for tests
   };
