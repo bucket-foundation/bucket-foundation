@@ -1,0 +1,211 @@
+[
+  {
+    "id": "wastyk-2021-fermented-foods-diversity-inflammation",
+    "statement": "A 17-week randomized diet trial found that a high-fermented-food diet increased gut microbiome DIVERSITY and decreased 19 inflammatory proteins (including IL-6), while an isolated high-fiber diet did NOT raise diversity and produced person-dependent (microbiome-state-dependent) inflammatory responses.",
+    "claim_type": "outcome",
+    "domain": "C2-microbiome",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Fermented-food arm: significant rise in microbiota diversity + decrease in 19 inflammatory markers incl. IL-6/IL-10/IL-12b; fiber arm: no diversity change, heterogeneous inflammatory response by baseline microbiome.",
+    "population": "~36 healthy adults, randomized to high-fiber vs high-fermented-food, 17 weeks (Stanford)",
+    "provenance": {
+      "primary": "Wastyk, Fragiadakis, Perelman, Gardner, Sonnenburg et al. — 'Gut-microbiota-targeted diets modulate human immune status', Cell 2021",
+      "doi": "10.1016/j.cell.2021.06.019",
+      "surfaced_via": "Wave 4 microbiome deepening → OpenAlex DOI lookup"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Best human RCT here, but: small n, surrogate (diversity + inflammatory proteins) NOT a hard health/aging endpoint, 17 weeks, single site. Counterintuitive fiber null is the honest headline — fiber's benefit appears gated on whether the baseline microbiome can ferment it. Does not show longevity.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "parker-2022-fmt-young-old-reverses-inflammaging",
+    "statement": "Fecal microbiota transfer from young donor mice into aged mice reversed inflammaging signatures in the gut, eye, and brain (and the reciprocal aged-into-young transfer induced them), implicating the aged microbiome as a transmissible contributor to multi-organ inflammaging in this model.",
+    "claim_type": "mechanism",
+    "domain": "C2-microbiome",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Young→aged FMT reduced age-associated intestinal, retinal, and brain inflammation markers; aged→young FMT raised them. Bidirectional transfer design.",
+    "population": "Young (3mo), old (18mo), aged (24mo) mice, FMT exchange + shotgun metagenomics/metabolomics",
+    "provenance": {
+      "primary": "Parker, Romano, Carding et al. — 'Fecal microbiota transfer between young and aged mice reverses hallmarks of the aging gut, eye, and brain', Microbiome 2022",
+      "doi": "10.1186/s40168-022-01243-w",
+      "surfaced_via": "Wave 4 — FMT young→old rejuvenation gap (C-domain Wave-2 gap #5)"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "",
+    "confidence_notes": "Strong CAUSAL hint in mice (intervention, bidirectional) but it is a mouse model of inflammaging markers, not lifespan, and not human. Do not present as evidence the microbiome causes NORMAL human aging.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "smith-2017-killifish-fmt-lifespan-extension",
+    "statement": "Recolonizing the gut of middle-aged African turquoise killifish with bacteria from young donors extended lifespan and delayed behavioral decline, the clearest causal demonstration that the gut microbiota can modulate vertebrate lifespan.",
+    "claim_type": "outcome",
+    "domain": "C2-microbiome",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Young-donor recolonization at middle age extended median/maximal lifespan and preserved young-like microbial diversity and locomotor behavior vs controls.",
+    "population": "Nothobranchius furzeri (naturally short-lived vertebrate)",
+    "provenance": {
+      "primary": "Smith, Willemsen, Valenzano et al. — 'Regulation of life span by the gut microbiota in the short-lived African turquoise killifish', eLife 2017",
+      "doi": "10.7554/elife.27014",
+      "surfaced_via": "Wave 4 — killifish FMT lifespan (named in conflict-microbiome-cause-or-consequence)"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "",
+    "confidence_notes": "A lifespan (not just marker) effect, but in a uniquely short-lived fish whose rapid aging may exaggerate microbiome leverage. Vertebrate proof-of-principle, not a mammalian or human result.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "everard-2013-akkermansia-reverses-diet-obesity",
+    "statement": "Akkermansia muciniphila, a mucin-degrading bacterium of the gut mucus layer, is depleted in obese/diabetic mice; administering it (live, or its membrane protein) restored the mucus barrier, reduced metabolic endotoxemia, and reversed diet-induced obesity and insulin resistance.",
+    "claim_type": "mechanism",
+    "domain": "C2-microbiome",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "A. muciniphila abundance inversely correlates with body weight; oral administration reversed high-fat-diet metabolic disorders and restored gut barrier (mucus thickness, antimicrobial peptides) in mice.",
+    "population": "Diet-induced-obese mice; correlative human/rodent abundance data",
+    "provenance": {
+      "primary": "Everard, Belzer, Geurts, Cani et al. — 'Cross-talk between Akkermansia muciniphila and intestinal epithelium controls diet-induced obesity', PNAS 2013",
+      "doi": "10.1073/pnas.1219451110",
+      "surfaced_via": "Wave 4 — akkermansia mechanism gap"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanistically rich mouse work; the basis of Akkermansia's reputation as a 'good' barrier-protective taxon. Mouse metabolic endpoints, not aging or human outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "depommier-2019-akkermansia-human-proof-of-concept",
+    "statement": "A small exploratory placebo-controlled trial of (pasteurized) Akkermansia muciniphila supplementation in overweight/obese humans was safe and improved insulin sensitivity and several cardiometabolic markers — a proof-of-concept, not a demonstrated clinical or longevity benefit.",
+    "claim_type": "outcome",
+    "domain": "C2-microbiome",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Pasteurized A. muciniphila improved insulin sensitivity (HOMA-IR), insulinemia, plasma total cholesterol, and reduced markers of liver dysfunction/inflammation vs placebo; surrogate endpoints only.",
+    "population": "n=40 overweight/obese insulin-resistant adults, 3-month exploratory RCT",
+    "provenance": {
+      "primary": "Depommier, Everard, Druart, Cani et al. — 'Supplementation with Akkermansia muciniphila in overweight and obese human volunteers: a proof-of-concept exploratory study', Nat Med 2019",
+      "doi": "10.1038/s41591-019-0495-2",
+      "surfaced_via": "Wave 4 — akkermansia human translation"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Explicitly labeled exploratory/proof-of-concept (small n, surrogate markers, short). A single probiotic moving HOMA-IR is not a longevity claim. The strongest signal came from the PASTEURIZED (dead) bacterium — a notable wrinkle for the 'live probiotic' narrative.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "furusawa-2013-butyrate-induces-colonic-treg",
+    "statement": "Commensal-derived butyrate (an SCFA) drives the differentiation of colonic regulatory T cells via histone-deacetylase inhibition at the Foxp3 locus, giving a concrete molecular route from fiber fermentation to immune tolerance / anti-inflammatory tone.",
+    "claim_type": "mechanism",
+    "domain": "C2-microbiome",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Butyrate increased colonic Foxp3+ Treg numbers/function and ameliorated colitis in mice; mechanism = HDAC inhibition enhancing Foxp3 acetylation/expression.",
+    "population": "Gnotobiotic / SCFA-fed mice; in-vitro T-cell differentiation",
+    "provenance": {
+      "primary": "Furusawa, Obata, Fukuda, Ohno et al. — 'Commensal microbe-derived butyrate induces the differentiation of colonic regulatory T cells', Nature 2013",
+      "doi": "10.1038/nature12721",
+      "surfaced_via": "Wave 4 — SCFA→immune mechanism deepening"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Solid mechanism in mice; canon-relevant (epigenetic/HDAC link). Mechanism, NOT an outcome — does not by itself show fiber/SCFA extends human healthspan.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "desai-2016-fiber-deprivation-degrades-mucus-barrier",
+    "statement": "Under dietary fiber deprivation, the gut microbiota switches to degrading the host colonic mucus layer as a nutrient source, thinning the protective barrier and increasing susceptibility to enteric pathogens — a mechanistic basis for 'feed your microbes fiber'.",
+    "claim_type": "mechanism",
+    "domain": "C2-microbiome",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Low/zero-fiber diet shifted gnotobiotic community to mucin-degrading taxa, eroded the inner mucus layer, and worsened Citrobacter rodentium infection.",
+    "population": "Gnotobiotic mice colonized with a defined 14-member human microbiota",
+    "provenance": {
+      "primary": "Desai, Seekatz, Koropatkin, Martens et al. — 'A Dietary Fiber-Deprived Gut Microbiota Degrades the Colonic Mucus Barrier and Enhances Pathogen Susceptibility', Cell 2016",
+      "doi": "10.1016/j.cell.2016.10.043",
+      "surfaced_via": "Wave 4 — fiber/MACs mechanism"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Clean mechanism in a defined-community mouse model; does not establish a fiber→longevity outcome in humans. Bridges to the Wastyk fiber-arm null (fiber benefit is microbiome-context-dependent).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "sonnenburg-2014-macs-depletion-hypothesis",
+    "statement": "The microbiota-accessible-carbohydrate (MAC) hypothesis: the low-fiber industrialized diet starves fiber-fermenting gut microbes, lowering SCFA output and diversity in a way that may compound across generations and contribute to non-communicable 'Western' disease.",
+    "claim_type": "hypothesis",
+    "domain": "C2-microbiome",
+    "evidence_tier": "theoretical",
+    "direction": "mixed",
+    "effect_size": "Framework/review; predicts diversity + SCFA loss under chronic low-MAC intake (later supported in transgenerational mouse work, Sonnenburg 2016).",
+    "population": "Review/hypothesis (human + mouse synthesis)",
+    "provenance": {
+      "primary": "Sonnenburg & Sonnenburg — 'Starving our Microbial Self: The Deleterious Consequences of a Diet Deficient in Microbiota-Accessible Carbohydrates', Cell Metabolism 2014",
+      "doi": "10.1016/j.cmet.2014.07.003",
+      "surfaced_via": "Wave 4 — Sonnenburg fiber thesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Influential organizing hypothesis by proponents — frames, does not prove. Graded theoretical. The Wastyk RCT later complicated it (fiber alone did not raise diversity short-term).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "poulain-2004-akea-sardinia-blue-zone",
+    "statement": "The AKEA study used validated record-linkage demography to identify a province of Sardinia (Nuoro/Ogliastra) with an exceptional male-centenarian rate — the original peer-reviewed 'Blue Zone' (the blue pen used to circle the area gave the concept its name).",
+    "claim_type": "outcome",
+    "domain": "C2-population-longevity",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "Identified an Extreme Longevity Index hotspot with a near-1:1 male:female centenarian ratio (vs ~1:4-1:5 elsewhere) in inland Sardinia.",
+    "population": "Sardinian birth/death registries, validated ages",
+    "provenance": {
+      "primary": "Poulain, Pes, Grasland, Deiana et al. — 'Identification of a geographic area characterized by extreme longevity in the Sardinia island: the AKEA study', Experimental Gerontology 2004",
+      "doi": "10.1016/j.exger.2004.06.016",
+      "surfaced_via": "Wave 4 — Blue Zones origin (Poulain)"
+    },
+    "conflicts_with": ["conflict-blue-zones-data-quality"],
+    "canon_link": "",
+    "confidence_notes": "The DEMOGRAPHIC seed of the Blue Zones idea, and the one with the most age-validation effort. Even so it is a geographic correlation of a longevity statistic — it identifies WHERE, not WHY, and is the cleaner end of a literature whose later popularizations (and some other zones) Newman argues rest on poor age records.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "buettner-power9-blue-zones-lifestyle",
+    "statement": "The popular Blue Zones synthesis distilled five long-lived regions (Sardinia, Okinawa, Nicoya, Ikaria, Loma Linda) into nine shared lifestyle 'Power 9' traits — mostly plant-based diet, moderate constant activity, social connection, purpose, moderate alcohol, and stress-down-shifting.",
+    "claim_type": "hypothesis",
+    "domain": "C2-population-longevity",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "9 cross-region commonalities ('Power 9'); descriptive/observational, no controlled comparison or causal weighting of any single factor.",
+    "population": "5 self-selected longevity regions, observational synthesis (National Geographic origin)",
+    "provenance": {
+      "primary": "Buettner & Skemp — 'Blue Zones: Lessons From the World's Longest-Lived', American Journal of Lifestyle Medicine 2016",
+      "doi": "10.1177/1559827616637066",
+      "surfaced_via": "Wave 4 — Blue Zones popular concept (Buettner)"
+    },
+    "conflicts_with": ["conflict-blue-zones-data-quality"],
+    "canon_link": "",
+    "confidence_notes": "The Power 9 are biologically plausible and individually echoed by stronger evidence (PREDIMED for diet, social-connection cohorts), BUT as a Blue-Zones inference they are uncontrolled cross-sectional correlations resting on age data Newman shows is unreliable for some zones. Grade the underlying levers on their OWN evidence, not on centenarian counts.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "newman-2024-supercentenarian-clerical-fraud-deepdive",
+    "statement": "A demographic data-quality analysis (Ig Nobel 2024) argues that extreme-age and 'Blue Zone' longevity records are predicted by markers of error and fraud — late/absent birth registration, poverty, missing death certificates, and pension incentives — rather than by genuine survival, undermining the centenarian-count data the lifestyle inferences rest on.",
+    "claim_type": "hypothesis",
+    "domain": "C2-population-longevity",
+    "evidence_tier": "theoretical",
+    "direction": "refutes",
+    "effect_size": "Onset of birth registration coincided with up to ~69-82% drops in apparent supercentenarian rates; remaining hotspots correlate with poverty, old-age, and pension/welfare conditions associated with age misreporting. Preprint/working analysis, contested, not yet a peer-reviewed meta.",
+    "population": "Cross-national supercentenarian/centenarian records (incl. Blue Zone regions, US, Italy, Japan)",
+    "provenance": {
+      "primary": "Saul Justin Newman — 'Supercentenarian and remarkable age records exhibit patterns indicative of clerical errors and pension fraud', bioRxiv 2019 (Ig Nobel Prize in Demography, 2024)",
+      "doi": "10.1101/704080",
+      "surfaced_via": "Wave 4 — DEEPENS D-claims 'blue-zones-data-quality-critique'; the unbiased-grading test case"
+    },
+    "conflicts_with": ["conflict-blue-zones-data-quality"],
+    "canon_link": "",
+    "confidence_notes": "DEEPENS (does not duplicate) D's blue-zones-data-quality-critique. Itself graded honestly: a preprint/critique (theoretical tier), high-profile but not consensus-resolved, and disputed by demographers (e.g., GRG/Robine validation work). It does NOT prove Blue-Zone lifestyles are useless — it shows the AGE DATA is unreliable enough that diet/lifestyle claims built on centenarian counts must be graded theoretical/contested, not cohort.",
+    "added_on": "2026-06-27"
+  }
+]
