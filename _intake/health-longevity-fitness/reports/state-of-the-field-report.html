@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Health · Longevity · Fitness — State of the Field</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 18mm 18mm;
+    @top-left { content: "Bucket Foundation · Longevity-Fitness Canon"; font-size: 7.5pt; color: #8a8170; letter-spacing: .04em; }
+    @top-right { content: "Nucleus Brain · 2026-06-28"; font-size: 7.5pt; color: #8a8170; }
+    @bottom-center { content: counter(page) " / " counter(pages); font-size: 8pt; color: #8a8170; }
+  }
+  @page :first { @top-left { content: ""; } @top-right { content: ""; } }
+
+  html { font-size: 10pt; }
+  body {
+    font-family: "Charter", "Georgia", "Times New Roman", serif;
+    color: #1c1a17; line-height: 1.42; text-align: justify; hyphens: auto;
+  }
+  h1,h2,h3,h4 { font-family: "Helvetica Neue","Arial",sans-serif; color: #14110c; line-height: 1.15; }
+  h2 { font-size: 15pt; margin: 18pt 0 6pt; padding-bottom: 3pt; border-bottom: 2px solid #b08d3a; letter-spacing: -.01em; }
+  h3 { font-size: 11.5pt; margin: 12pt 0 3pt; color: #6b5418; }
+  h4 { font-size: 10pt; margin: 8pt 0 2pt; }
+  p { margin: 0 0 6pt; }
+  a { color: #6b5418; text-decoration: none; }
+  code, .cid { font-family: "SF Mono","Consolas",monospace; font-size: 8pt; color: #7a5b14; background: #f6f1e3; padding: 0 2px; border-radius: 2px; }
+  strong { color: #0d0b08; }
+  .small { font-size: 8.5pt; color: #5e574a; }
+
+  /* cover */
+  .cover { height: 245mm; display: flex; flex-direction: column; justify-content: center; page-break-after: always; }
+  .cover .kicker { font-family:"Helvetica Neue",sans-serif; font-size: 9pt; letter-spacing: .32em; text-transform: uppercase; color: #b08d3a; }
+  .cover h1 { font-size: 33pt; margin: 8pt 0 0; line-height: 1.04; letter-spacing: -.02em; }
+  .cover .sub { font-size: 13pt; color: #4a4339; margin-top: 10pt; font-style: italic; }
+  .cover .rule { height: 3px; width: 64px; background: #b08d3a; margin: 20pt 0; }
+  .cover .meta { font-family:"Helvetica Neue",sans-serif; font-size: 9pt; color: #5e574a; line-height: 1.7; }
+  .cover .stats { display: flex; gap: 0; margin-top: 26pt; border-top: 1px solid #ddd3bb; border-bottom: 1px solid #ddd3bb; }
+  .cover .stat { flex: 1; padding: 10pt 6pt; border-right: 1px solid #ece4d0; text-align: center; }
+  .cover .stat:last-child { border-right: none; }
+  .cover .stat .n { font-family:"Helvetica Neue",sans-serif; font-size: 19pt; font-weight: 700; color: #14110c; display: block; }
+  .cover .stat .l { font-size: 7pt; text-transform: uppercase; letter-spacing: .08em; color: #8a8170; }
+
+  /* callouts */
+  .callout { border-left: 3px solid #b08d3a; background: #faf6ec; padding: 7pt 11pt; margin: 9pt 0; font-size: 9.2pt; }
+  .callout.warn { border-color: #b5471f; background: #fbf0ea; }
+  .callout .ch { font-family:"Helvetica Neue",sans-serif; font-weight: 700; font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; color: #6b5418; display:block; margin-bottom: 2pt; }
+  .callout.warn .ch { color: #b5471f; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8pt 0; font-size: 8.4pt; }
+  th { background: #2c2820; color: #f4eeddff; font-family:"Helvetica Neue",sans-serif; text-align: left; padding: 4pt 6pt; font-size: 7.6pt; text-transform: uppercase; letter-spacing: .04em; }
+  td { padding: 4pt 6pt; border-bottom: .5px solid #e3dcc9; vertical-align: top; }
+  tr:nth-child(even) td { background: #faf7ef; }
+  .tier-a { color: #1d6b2e; font-weight: 700; }
+  .tier-b { color: #8a6d12; font-weight: 700; }
+  .tier-c { color: #b5471f; font-weight: 700; }
+  .badge { font-family:"Helvetica Neue",sans-serif; font-size: 6.8pt; font-weight: 700; padding: 1px 4px; border-radius: 7px; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
+  .b-open { background: #fae3dc; color: #9c3414; }
+  .b-part { background: #f3ecd2; color: #6b5418; }
+
+  ol.levers { counter-reset: lv; list-style: none; padding-left: 0; }
+  ol.levers > li { counter-increment: lv; position: relative; padding: 3pt 0 3pt 26pt; border-bottom: .5px solid #efe9d8; }
+  ol.levers > li::before { content: counter(lv); position: absolute; left: 0; top: 3pt; font-family:"Helvetica Neue",sans-serif; font-weight: 700; font-size: 13pt; color: #b08d3a; width: 20pt; text-align: right; }
+
+  .two-col { column-count: 2; column-gap: 14pt; }
+  .avoid { break-inside: avoid; }
+  .section-break { page-break-before: always; }
+  .lead { font-size: 11pt; color: #2c2820; }
+  ul.tight { margin: 4pt 0 8pt; padding-left: 14pt; }
+  ul.tight li { margin-bottom: 3pt; }
+  .epigraph { font-style: italic; color: #4a4339; border-left: 2px solid #ddd3bb; padding-left: 10pt; margin: 6pt 0 12pt; font-size: 9.4pt; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="kicker">Bucket Foundation · Outcome-Tier Research Canon</div>
+  <h1>Health, Longevity &amp; Fitness:<br>The State of the Field</h1>
+  <div class="sub">An unbiased, evidence-graded synthesis tied to the biophysics canon —<br>where the science is strong, where it is sold harder than it is true.</div>
+  <div class="rule"></div>
+  <div class="meta">
+    <strong>Prepared by</strong> Nucleus Brain (AI orchestrator) · AG Farms Venture Studio<br>
+    <strong>Corpus</strong> <code>_intake/health-longevity-fitness</code> · bead <code>bkt-bg6</code><br>
+    <strong>Method</strong> 5 waves · ~15 parallel research agents · OpenAlex / PubMed / Europe PMC / ClinicalTrials.gov / YouTube<br>
+    <strong>Date</strong> 28 June 2026 · <strong>Doctrine</strong> index-all · grade-everything · mechanism ≠ outcome ≠ protocol
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="n">247</span><span class="l">Graded claims</span></div>
+    <div class="stat"><span class="n">176</span><span class="l">People carded</span></div>
+    <div class="stat"><span class="n">35</span><span class="l">Live conflicts</span></div>
+    <div class="stat"><span class="n">14</span><span class="l">Domains</span></div>
+    <div class="stat"><span class="n">24</span><span class="l">Labs mapped</span></div>
+  </div>
+</section>
+
+<!-- ============ ABSTRACT ============ -->
+<h2>Abstract &amp; reading instructions</h2>
+<p class="lead">This report distills a 247-claim research corpus on human healthspan into a single
+intellectually honest map. Its central finding is structural, not a discovery: <strong>the field's
+evidence is lopsidedly distributed against its attention.</strong> The interventions with the largest,
+most replicated effects are behavioral and dull (don't smoke; build fitness and strength; move; sleep;
+keep apoB low; stay connected). The interventions that command the market and the podcast hours
+(NAD⁺, senolytics, cold plunges, glucose monitors, biological-age clocks) are supported mostly by
+mechanism and mice. The report's job is to keep those two categories from being confused.</p>
+
+<div class="callout">
+  <span class="ch">The three epistemic rules that govern every claim below</span>
+  <strong>(1) Predictor ≠ lever.</strong> A biomarker that predicts death is not automatically something
+  that, when changed, prevents it. <strong>(2) Cohort ≠ RCT.</strong> You cannot randomize fitness, sleep,
+  or smoking across decades; healthy-user and reverse-causation bias inflate the strongest-looking numbers.
+  <strong>(3) "Something beats nothing" is the most robust signal in the corpus</strong> — the steepest
+  gains sit at the low end of every dose-response curve; optimization past that is real but smaller and
+  noisier than it is marketed.
+</div>
+
+<p class="small">Every assertion resolves to a graded entry of the form
+<code>claim-id</code> → <code>02-domains/*-claims.json</code> (effect size, population, tier, DOI,
+confidence note). Disagreements are first-class objects in <code>06-evidence/CONFLICTS.md</code>.
+Tiering follows a ten-rung evidence ladder from <code>meta</code> (systematic review of RCTs) down
+through <code>rct · cohort · mechanistic · animal · in-vitro · n=1 · anecdotal</code> to
+<code>speculative</code>. The corpus is the substrate; this document is the read-out.</p>
+
+<h3>The corpus in one table</h3>
+<p>The tier distribution <em>is</em> the headline. Of 247 graded claims, only a minority sit at the
+rigorous end; the field's loudest interventions cluster in <code>mechanistic</code> and
+<code>animal</code>.</p>
+<table>
+  <tr><th>Evidence tier</th><th>Meaning</th><th>Weight in corpus</th></tr>
+  <tr><td><code>meta</code> / <code>rct</code></td><td>Systematic reviews of, and individual, randomized human trials</td><td><strong>~56 claims</strong> — the rigorous core; concentrated in lipids, exercise, sleep restriction, a few diet trials</td></tr>
+  <tr><td><code>cohort</code> / <code>cross-sectional</code> / <code>case-control</code></td><td>Observational human data — associations, not proof</td><td><strong>~60 claims</strong> — where the <em>strongest-effect</em> levers (fitness, strength, social ties) actually live</td></tr>
+  <tr><td><code>mechanistic</code> / <code>animal</code> / <code>in-vitro</code></td><td>Plausible biology; model organisms; cells</td><td><strong>~70 claims</strong> — where the <em>loudest</em> interventions (NAD⁺, senolytics, reprogramming, cold) actually live</td></tr>
+  <tr><td><code>n=1</code> / <code>anecdotal</code> / <code>theoretical</code> / <code>speculative</code></td><td>Self-experiment, testimony, untested models</td><td><strong>~16 claims</strong> — quantified-self protocols and contested fringe biophysics</td></tr>
+</table>
+<p class="small">The asymmetry is the whole story: <strong>strong interventions, weak evidence tier;
+weak interventions, strong marketing.</strong> Longevity is a field where the best things to do are
+proven by observation and the most-sold things are proven by mechanism.</p>
+
+<!-- ============ TIER 1 ============ -->
+<h2 class="section-break">I. What the evidence actually supports — the high-confidence levers</h2>
+<p class="epigraph">The honest ranking is dull on purpose. These eight individually outrank every exotic
+intervention in the corpus, and they are mutually reinforcing. A program that does not start here is
+optimizing noise.</p>
+
+<ol class="levers">
+  <li><strong>Don't smoke.</strong> The single largest modifiable mortality factor. A quietly devastating
+  corollary from longevity genetics: the celebrated "longevity genes" of lifespan GWAS are largely
+  <em>smoking-behavior and cardiometabolic</em> genes — the heritability of long life is substantially
+  the heritability of not doing the obviously harmful thing. <span class="cid">timmers-2019-parental-lifespan-gwas</span></li>
+
+  <li><strong>Build and keep cardiorespiratory fitness (VO₂max).</strong> The strongest exercise–mortality
+  relationship in preventive medicine: roughly <strong>5× lower all-cause mortality</strong> elite-vs-low
+  fitness, ~13% per MET, with <strong>no observed upper limit of benefit</strong> — a magnitude rivaling
+  or exceeding smoking and diabetes. Treat CRF as a clinical vital sign. (Cohort-tier — unrandomizable —
+  but so large and dose-graded it is as close to certain as the field offers.)
+  <span class="cid">crf-vo2max-strongest-mortality-predictor</span></li>
+
+  <li><strong>Resistance-train for strength.</strong> It is <em>strength and grip — not muscle mass —</em>
+  that independently predicts mortality; resistance activity ~10–17% lower mortality, on a
+  <strong>J-curve where more is not better</strong> (benefit peaks ~30–60 min/week). The sarcopenia
+  field itself reframed from mass to strength on exactly this evidence.
+  <span class="cid">grip-strength-mortality-pure</span> <span class="cid">dexa-strength-not-mass-predicts-mortality</span></li>
+
+  <li><strong>Move more; break up sitting.</strong> The steepest dose-response is at the
+  sedentary→active transition, and because it is device-measured it is the <strong>least-confounded</strong>
+  signal in the entire domain. <span class="cid">physical-activity-dose-response-mortality</span></li>
+
+  <li><strong>Lower lifetime apoB / LDL.</strong> One of the <strong>only causal blood levers</strong> in
+  the corpus — Mendelian genetics, epidemiology and RCTs converge, and because <em>cumulative</em>
+  exposure is what matters, earlier is structurally better than later. apoB outperforms LDL-C as the
+  measure. <span class="cid">ldl-apob-causal-ascvd</span> <span class="cid">apob-superior-to-ldlc</span></li>
+
+  <li><strong>Sleep ~7 hours, regularly.</strong> U-shaped mortality with a ~7h nadir — both short
+  <em>and</em> long sleep worse — with regularity and timing carrying independent weight. The causal
+  direction is partly contested (illness drives both tails). <span class="cid">sleep-duration-mortality-ushape</span></li>
+
+  <li><strong>Keep a healthy metabolic profile.</strong> Diabetes ~2× vascular risk; HbA1c predicts
+  within the non-diabetic range; visceral fat predicts beyond BMI. Metabolic health is upstream of most
+  of the others. <span class="cid">hba1c-predicts-cvd-nondiabetic</span> <span class="cid">visceral-fat-independent-mortality-predictor</span></li>
+
+  <li><strong>Protect social connection.</strong> Among the largest psychosocial mortality associations
+  in the literature — an effect size that rivals smoking cessation (Holt-Lunstad meta-analyses) — and
+  routinely omitted from optimization stacks <em>precisely because nothing is sold for it.</em> Its
+  omission is itself a bias the corpus is built to correct. <span class="cid">social-connection-mortality-meta</span></li>
+</ol>
+
+<div class="callout">
+  <span class="ch">The shape of the truth</span>
+  The high-confidence levers are <strong>functional and behavioral</strong> (fitness, strength, movement,
+  sleep, connection) plus <strong>two causal blood levers</strong> (apoB, glucose). The most useful
+  <em>measurements</em> mirror this: they are functional (VO₂max, grip, gait speed, chair-rise, the
+  10-second balance test) plus a few causal/early blood markers (apoB, Lp(a) measured once, HbA1c,
+  fasting insulin) — not the commercial age-clocks and continuous monitors.
+</div>
+
+<!-- ============ TIER 2 ============ -->
+<h2 class="section-break">II. Promising but unproven — real signal, lower tier</h2>
+<p>Worth doing or watching, but honestly tiered down — because the endpoint is a surrogate, the dose
+studied differs from the dose sold, or the evidence is a single cohort. This is the zone where most
+defensible "optimization" actually lives.</p>
+
+<table>
+  <tr><th>Intervention</th><th>The real signal</th><th>The honest caveat</th></tr>
+  <tr><td><strong>Zone 2 + VO₂max intervals</strong></td><td>Both efficiently raise CRF, the Tier-I lever</td><td>"Zone 2 is <em>uniquely</em> optimal for mitochondria" is an over-extrapolation; HIIT drives strong biogenesis too <span class="b-part badge">open</span></td></tr>
+  <tr><td><strong>Sauna / heat stress</strong></td><td>Dose-response to mortality &amp; dementia + plausible HSP/CV mechanism</td><td>From <strong>one Finnish men's cohort</strong>, healthy-user bias unexcluded, no RCT. Infrared saunas do <em>not</em> inherit this evidence</td></tr>
+  <tr><td><strong>Protein adequacy + leucine threshold</strong></td><td>Protects muscle &amp; survival, especially in older adults</td><td>A genuine mid-life vs late-life tradeoff with IGF-1/mTOR; not "more is always better" (IGF-1 is U-shaped vs mortality)</td></tr>
+  <tr><td><strong>Early time-restricted eating</strong></td><td>Early-window circadian alignment improves insulin sensitivity &amp; BP</td><td><strong>Most TRE benefit is just the caloric restriction it causes</strong>; matched calories erase the edge; late 16:8 is null</td></tr>
+  <tr><td><strong>Light hygiene (bright AM, dim PM)</strong></td><td>Strong melatonin action-spectrum mechanism</td><td>Thinner outcome data; blue-blocking <em>glasses</em> specifically show no clear benefit (avoidance ≠ amber lenses)</td></tr>
+  <tr><td><strong>Modest caloric restriction</strong></td><td>CALERIE — the only long-term human CR RCT</td><td>~12% CR, surrogate endpoints, moved only one epigenetic clock. Modest and honest</td></tr>
+  <tr><td><strong>Slow breathing / HRV practice</strong></td><td>Real acute autonomic effects; RCT-rich</td><td>Surrogate, short, small studies; longevity outcome unproven</td></tr>
+  <tr><td><strong>Microbiome interventions</strong></td><td>Young→old FMT extends lifespan &amp; reverses inflammaging <em>in animals</em></td><td>All human data surrogate; cause-vs-consequence unresolved <span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Yoga / meditation</strong></td><td>Reliable acute stress/BP/HRV effects</td><td>Unblindable, expectancy-prone, allegiance-biased (esp. TM); Goyal 2014 finds only small effects vs <em>active</em> controls</td></tr>
+</table>
+
+<!-- ============ TIER 3 ============ -->
+<h2 class="section-break">III. Hype &amp; overclaim — the laundering gap</h2>
+<p class="lead">Each item below is sold harder than its evidence. The corpus's single most common failure
+mode is the <strong>laundering gap</strong>: a real <em>mechanism</em>, or a <em>mouse</em> result, is
+marketed as a hard human <em>outcome</em> it has not earned. Naming the gap is the antidote.</p>
+
+<div class="two-col">
+  <div class="avoid"><h4>NAD⁺ boosting (NR / NMN)</h4><p class="small">NAD⁺ decline with age is real; human RCTs
+  move only surrogates. No demonstrated longevity or hard-endpoint benefit. <em>Mechanism real, outcome
+  unproven.</em> <span class="cid">nad-precursor-nr-human-surrogate</span></p></div>
+
+  <div class="avoid"><h4>Resveratrol / sirtuin activation</h4><p class="small">The in-vitro SIRT1 activation
+  was substantially a <strong>fluorophore assay artifact</strong>; lifespan extension fails in lean
+  animals. <span class="cid">conflict-resveratrol-sirtuin</span></p></div>
+
+  <div class="avoid"><h4>Senolytics (D+Q, fisetin)</h4><p class="small">Striking in mice; human evidence is
+  tiny first-in-human pilots. Not established for healthy people. <span class="cid">senolytics-extend-function-mouse</span></p></div>
+
+  <div class="avoid"><h4>Metformin / rapamycin off-label</h4><p class="small">Metformin = a confounded cohort
+  signal plus a trial (TAME) designed but not yet run; rapamycin = mouse lifespan plus one immune RCT,
+  human geroprotective dose unknown. <span class="cid">conflict-rapamycin-dosing</span></p></div>
+
+  <div class="avoid"><h4>Partial epigenetic reprogramming</h4><p class="small">Mouse only. Genuinely
+  exciting biology; <strong>not a human intervention.</strong> <span class="cid">partial-reprogramming-ocampo-2016</span></p></div>
+
+  <div class="avoid"><h4>Cold plunge "for longevity"</h4><p class="small">Rich BAT/norepinephrine mechanism,
+  but the one human metabolic <em>outcome</em> used <strong>prolonged mild cold (hours)</strong>, not the
+  brief plunge sold — a dose↔evidence mismatch. <span class="cid">cold-acclimation-insulin-sensitivity-t2d</span></p></div>
+
+  <div class="avoid"><h4>Wim Hof method</h4><p class="small">One RCT shows trainable immune suppression —
+  but acute-adrenaline-driven, bundled, small, short, healthy subjects. <strong>⚠ Lethal in/near
+  water.</strong> <span class="cid">conflict-wim-hof-mechanism</span></p></div>
+
+  <div class="avoid"><h4>CGM / "glucose spikes" for the healthy</h4><p class="small">No outcome RCT in
+  non-diabetics; glucose variability has no proven outcome meaning; sensors disagree with each other.
+  <span class="cid">conflict-cgm-healthy-utility</span></p></div>
+
+  <div class="avoid"><h4>Seed-oil panic</h4><p class="small">Polarized, low-rigor; higher-tier evidence runs
+  the <em>other</em> way (PUFA replacing saturated fat lowers CHD). Certainty exceeds evidence on both
+  sides. <span class="cid">conflict-seed-oils-linoleic-acid</span></p></div>
+
+  <div class="avoid"><h4>Biological-age clocks as a scorecard</h4><p class="small">Predict at the population
+  level but are <strong>not a validated surrogate</strong>; first-gen clocks are noisy, clocks disagree,
+  one number can't tell you if a protocol "worked." <span class="cid">conflict-which-clock-is-valid</span></p></div>
+
+  <div class="avoid"><h4>Consumer HRV / sleep-stage numbers</h4><p class="small">Wearables measure sleep
+  stages poorly <em>and</em> in a flattering direction; overnight HRV is a within-person trend only.
+  "Orthosomnia" is a documented harm.</p></div>
+
+  <div class="avoid"><h4>Blue Zones as proof of a lifestyle</h4><p class="small">Extreme-age records partly
+  track clerical error and pension fraud; verified demography collapses the rates. The strong claim is
+  contested. <span class="cid">conflict-blue-zones-data-quality</span></p></div>
+</div>
+
+<div class="callout warn">
+  <span class="ch">The 10,000-step example, in one line</span>
+  The step target is a 1960s Japanese marketing figure; the mortality benefit <strong>plateaus at
+  ~7,000–8,000 steps</strong>, and intensity adds nothing over volume. A perfect miniature of the whole
+  field — a sold number that the evidence does not support, doing real but smaller good than advertised.
+</div>
+
+<!-- ============ CONFLICTS ============ -->
+<h2 class="section-break">IV. The contested core — 35 first-class conflicts</h2>
+<p>Disagreement is treated as data, not noise. The corpus holds <strong>35 conflict objects</strong>;
+roughly <strong>half remain fully <span class="b-open badge">open</span></strong> — usually because no
+human longevity RCT exists or is feasible to run. None is ever marked "closed"; resolution is recorded,
+not deleted. The conflicts that would most change the picture if resolved:</p>
+
+<table>
+  <tr><th style="width:21%">Conflict</th><th>Side A</th><th>Side B</th><th style="width:12%">Status</th></tr>
+  <tr><td><strong>Protein ↔ mTOR ↔ longevity</strong></td><td>High protein → IGF-1/mTOR → faster aging &amp; cancer</td><td>Protein protects muscle/survival, esp. elderly</td><td><span class="b-open badge">open</span> likely age-dependent</td></tr>
+  <tr><td><strong>Do NAD⁺ precursors move a hard endpoint?</strong></td><td>Raise NAD⁺ &amp; improve surrogates → benefit</td><td>Only surrogate moved; hype exceeds data</td><td><span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Which biological-age clock is valid?</strong></td><td>2nd-gen clocks strongly predict mortality</td><td>Correlative; clocks disagree; poor reliability</td><td><span class="b-open badge">open</span> gates the whole age-test market</td></tr>
+  <tr><td><strong>mtDNA mutations cause normal aging?</strong></td><td>Mutator mice age early; mutations accumulate</td><td>Mutator loads far exceed human aging; ROS-independent</td><td><span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Microbiome — cause or consequence?</strong></td><td>Dysbiosis drives inflammaging; FMT helps (animal)</td><td>Composition is downstream of diet/drugs/health</td><td><span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Sleep duration — causal or reverse?</strong></td><td>Restriction causes real metabolic harm</td><td>U-shape: illness/frailty drive both tails</td><td><span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Sauna — benefit or healthy-user marker?</strong></td><td>Dose-dependent mortality reduction + mechanism</td><td>Single male cohort; bias unexcluded; no RCT</td><td><span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Metformin geroprotection in non-diabetics?</strong></td><td>Users outlive non-diabetics; AMPK/mTOR</td><td>Confounded; blunts exercise; no hard-endpoint RCT</td><td><span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Free-radical theory of aging</strong></td><td>ROS drive aging; antioxidants should help</td><td>Mitohormesis: low ROS beneficial; antioxidants null</td><td><span class="b-part badge">resolved against</span></td></tr>
+  <tr><td><strong>Resveratrol = direct SIRT1 activator?</strong></td><td>CR-mimetic, extends lifespan</td><td>In-vitro activation an artifact; no extension in lean animals</td><td><span class="b-open badge">open</span> weight against</td></tr>
+  <tr><td><strong>CR survival in primates</strong></td><td>Reduces mortality (Wisconsin)</td><td>Healthspan but not survival (NIA)</td><td><span class="b-part badge">context-dependent</span></td></tr>
+  <tr><td><strong>Seed oils / linoleic acid harmful?</strong></td><td>OXLAMs → oxidation/inflammation → CHD</td><td>PUFA-for-saturated lowers CHD; biomarker tracks lower CVD</td><td><span class="b-open badge">open</span> weight against toxicity</td></tr>
+  <tr><td><strong>CGM benefit for the healthy</strong></td><td>Response is individual; hidden dysglycemia</td><td>Only surrogate; no outcome RCT; excursions benign</td><td><span class="b-open badge">open</span></td></tr>
+  <tr><td><strong>Blue Zones — real or artifact?</strong></td><td>Validated demography found a real cluster</td><td>Records track clerical error / pension fraud</td><td><span class="b-open badge">open</span> against strong claim</td></tr>
+</table>
+<p class="small">Full register (all 35, both sides, tiers, DOIs, resolution notes):
+<code>06-evidence/CONFLICTS.md</code> + <code>CONFLICTS-REGISTER.md</code>. 59 of the graded claims
+carry a <code>conflicts_with</code> edge into these objects.</p>
+
+<!-- ============ STRUCTURE / BRIDGE ============ -->
+<h2 class="section-break">V. The structural finding — bioenergetics as the bridge to the canon</h2>
+<p>Above the individual debates sits a structural result that emerged from the research itself. Every
+actionable longevity domain — exercise (mitochondrial biogenesis, VO₂max as integrated mitochondrial
+capacity), metabolism (substrate load, ketone signaling), aging (the "mitochondrial dysfunction"
+hallmark), genetics (mtDNA heteroplasmy), thermal (UCP1 uncoupling) — <strong>reaches up to the same
+place: the proton-motive force across the mitochondrial membrane.</strong></p>
+
+<p>That place is not an outcome claim. It is a <em>law</em> — Peter Mitchell's chemiosmosis. The
+corpus's own structure therefore forced a question the canon exists to answer: which findings are
+<strong>foundations</strong> (axioms, laws, primary derivations) and which are <strong>outcomes</strong>
+(applications that consume a foundation)? The bioenergetics lineage is the bridge precisely because it
+sits on the foundation side of that line while every health domain sits on the outcome side and reaches
+up to it. Critically, it is the <em>uncontested</em> spine that connects the inherited — and more
+speculative — biophysics layer (structured water, biophotons, non-native EMF) to textbook mitochondrial
+medicine, letting the canon hold a 05-biophysics branch that is rigorous at its core and explicit about
+its frontier.</p>
+
+<div class="callout">
+  <span class="ch">Acted on this report cycle — canon promotions</span>
+  Three foundation-tier figures were promoted into <code>bucket-canon/05-biophysics</code>:
+  <strong>Hans Krebs</strong> (citric-acid cycle), <strong>Jennifer Moyle</strong> (co-proved
+  chemiosmosis; an attribution-parity correction), and <strong>William Martin</strong> (alkaline-vent
+  origin of life, with Lane) — joining Mitchell, Margulis, Lane, Wallace and Szent-Györgyi already
+  carded. A new concept node, <strong>chemiosmosis / proton-motive force / redox bioenergetics</strong>,
+  now anchors the foundation that the outcome layer cites upward to.
+</div>
+
+<p>The inherited Kruse-tier biophysics is handled by the same discipline rather than by dismissal: the
+<strong>circadian-light spine is validated</strong> by mainstream chronobiology (melanopsin → SCN;
+evening blue light disruptive), while its <strong>extensions remain <code>speculative</code></strong>
+(sunlight's metabolic primacy over food, UV/IR systemic therapy, deuterium/water coupling). Foundation
+and frontier, labeled — not merged, not excluded.</p>
+
+<!-- ============ LANDSCAPE ============ -->
+<h2 class="section-break">VI. The human &amp; institutional landscape</h2>
+<p>The corpus carded <strong>176 figures</strong> into a 180-node, 155-edge relationship graph spanning
+mentor lineages (Guarente→Sinclair/Imai; Kenyon→Ruvkun; Mitchell→Lane), institutional affiliations, and
+documented rivalries. They are indexed without endorsement — mainstream and fringe sit on the same list,
+separated by an <code>evidence_posture</code> tag (<em>mainstream-rigorous, clinical-translator,
+mainstream-communicator, frontier-contested, fringe-to-canon, practitioner-n1</em>), never by exclusion.</p>
+
+<h3>Institutions &amp; the trial reality</h3>
+<p>24 labs are mapped across academia (Buck, Salk, Harvard, Stanford, UW, Berkeley, Tufts, Einstein,
+USC), industry (Altos, Calico, Retro, NewLimit, BioAge, Unity, Loyal) and funders (NIA, Hevolution,
+SENS/LEV, Methuselah). The single most important institutional finding is sobering: across the 15
+mapped human aging trials, <strong>every active trial uses a surrogate endpoint</strong> (VO₂max, DXA
+fat, gait speed, an epigenetic clock). The one trial proposing a hard morbidity/mortality endpoint —
+<strong>TAME (metformin)</strong> — remains unfunded and unregistered. There is, as of this writing,
+<strong>no hard-endpoint human longevity trial running anywhere.</strong> This is why so many claims in
+Section III are structurally stuck at <code>animal</code> or <code>surrogate</code>: the experiment that
+would promote them has not been run.</p>
+
+<!-- ============ CAPSTONE ============ -->
+<h2 class="section-break">VII. The capstone — read this if nothing else</h2>
+<p class="lead">The evidence is lopsided toward a short list of <strong>boring, powerful, mostly-functional
+levers</strong>: don't smoke; build and keep cardiorespiratory fitness and strength; move more; sleep
+~7 hours regularly; keep apoB/LDL low across life; keep a healthy metabolic profile; protect social
+connection. These individually outrank every exotic biohack in the corpus, and they compound.</p>
+
+<p>The one causal, modifiable <em>blood</em> lever is <strong>apoB/LDL</strong> (measure
+<strong>Lp(a)</strong> once). The highest-signal <em>measurements</em> are <strong>functional</strong>
+(VO₂max, grip, gait, chair-rise, the 10-second one-leg stand — each an independent mortality predictor)
+plus a few causal/early blood markers (apoB, Lp(a), HbA1c, fasting insulin). Almost everything that gets
+<em>sold</em> — biological-age clocks, CGM for the healthy, consumer HRV and sleep-stage numbers,
+senolytics / NAD⁺ / rapamycin for healthy people, cold plunges, seed-oil panic — is either a
+<strong>correlate dressed as a scorecard</strong>, a <strong>mouse result not yet in humans</strong>, or
+a <strong>dose that does not match the studied dose.</strong></p>
+
+<p><strong>The operating instruction:</strong> spend attention on the Tier-I levers; treat the Tier-II
+set as trends worth following; enjoy the Tier-III items as experiments, not protocols. And above the
+practice, hold the discipline that produced this report — keep foundation-tier <em>laws</em> separate
+from outcome-tier <em>applications</em>, grade every claim by what it has actually earned, and let the
+disagreements stand as objects rather than collapsing them into false certainty.
+
+<div class="callout">
+  <span class="ch">Provenance &amp; reproducibility</span>
+  This report is a synthesis layer over <code>_intake/health-longevity-fitness</code> (committed to
+  <code>bucket-foundation</code>, mirrored to <code>gdrive:…/research/longevity-fitness-canon/</code>).
+  Every number is a live count as of 28 June 2026; effect sizes, populations and DOIs live in the linked
+  <code>02-domains/*-claims.json</code>; conflicts in <code>06-evidence/CONFLICTS.md</code>. The corpus
+  is idempotent — re-running the research waves converges rather than duplicates. Doctrine throughout:
+  <strong>index all · exclude nothing · grade everything · the grade is the neutrality.</strong>
+</div>
+</p>
+
+<p class="small" style="margin-top:14pt; text-align:center; color:#8a8170;">— End of report · Nucleus Brain · AG Farms Venture Studio · bead bkt-bg6 —</p>
+
+</body>
+</html>
