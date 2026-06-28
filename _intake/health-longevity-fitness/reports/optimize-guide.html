@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>The Optimize Layer</title>
+<style>
+@page { size:A4; margin:18mm 16mm;
+  @top-left{content:"Bucket Foundation · Optimize Layer";font-size:7.5pt;color:#8a8170;}
+  @top-right{content:"Evidence-tiered · 2026-06-28";font-size:7.5pt;color:#8a8170;}
+  @bottom-center{content:counter(page) " / " counter(pages);font-size:8pt;color:#8a8170;} }
+@page :first{ @top-left{content:""} @top-right{content:""} }
+html{font-size:10pt}
+body{font-family:"Charter","Georgia",serif;color:#1c1a17;line-height:1.4;text-align:justify;hyphens:auto}
+h1,h2,h3,h4{font-family:"Helvetica Neue","Arial",sans-serif;color:#14110c;line-height:1.15}
+h2{font-size:14.5pt;margin:16pt 0 5pt;padding-bottom:3pt;border-bottom:2px solid #b08d3a}
+h3{font-size:11pt;margin:11pt 0 3pt;color:#6b5418}
+p{margin:0 0 6pt}
+code,.cid{font-family:"SF Mono","Consolas",monospace;font-size:8pt;color:#7a5b14;background:#f6f1e3;padding:0 2px;border-radius:2px}
+strong{color:#0d0b08}
+.small{font-size:8.5pt;color:#5e574a}
+.cover{height:250mm;display:flex;flex-direction:column;justify-content:center;page-break-after:always}
+.cover .kick{font-family:"Helvetica Neue",sans-serif;font-size:9pt;letter-spacing:.3em;text-transform:uppercase;color:#b08d3a}
+.cover h1{font-size:34pt;margin:8pt 0 0;letter-spacing:-.02em;line-height:1.03}
+.cover .sub{font-size:13pt;color:#4a4339;font-style:italic;margin-top:10pt}
+.cover .rule{height:3px;width:64px;background:#b08d3a;margin:18pt 0}
+.cover .meta{font-family:"Helvetica Neue",sans-serif;font-size:9pt;color:#5e574a;line-height:1.7}
+.tierbar{display:flex;margin-top:24pt;border:1px solid #ddd3bb}
+.tierbar div{flex:1;padding:8pt;font-family:"Helvetica Neue",sans-serif;font-size:8pt;border-right:1px solid #ece4d0}
+.tierbar div:last-child{border-right:none}
+.tierbar .t{font-weight:700;font-size:9pt;display:block;margin-bottom:2pt}
+.ta{color:#1d6b2e}.tb{color:#8a6d12}.tc{color:#b5471f}
+.callout{border-left:3px solid #b08d3a;background:#faf6ec;padding:7pt 11pt;margin:9pt 0;font-size:9.2pt}
+.callout .ch{font-family:"Helvetica Neue",sans-serif;font-weight:700;font-size:8pt;text-transform:uppercase;letter-spacing:.07em;color:#6b5418;display:block;margin-bottom:2pt}
+.callout.warn{border-color:#b5471f;background:#fbf0ea}.callout.warn .ch{color:#b5471f}
+table{width:100%;border-collapse:collapse;margin:8pt 0;font-size:8.6pt}
+th{background:#2c2820;color:#f4eedd;font-family:"Helvetica Neue",sans-serif;text-align:left;padding:4pt 6pt;font-size:7.6pt;text-transform:uppercase}
+td{padding:4pt 6pt;border-bottom:.5px solid #e3dcc9;vertical-align:top}
+tr:nth-child(even) td{background:#faf7ef}
+.badge{font-family:"Helvetica Neue",sans-serif;font-size:6.8pt;font-weight:700;padding:1px 5px;border-radius:7px;text-transform:uppercase;white-space:nowrap}
+.ba{background:#dceadd;color:#1d6b2e}.bb{background:#f3ecd2;color:#6b5418}.bc{background:#fae3dc;color:#9c3414}
+.grid2{display:flex;flex-wrap:wrap;gap:10pt;margin:8pt 0}
+.fig{width:48%;break-inside:avoid;text-align:center}
+.fig img{width:100%;border:1px solid #e3dcc9;border-radius:4px}
+.fig .cap{font-family:"Helvetica Neue",sans-serif;font-size:7.6pt;color:#6b5418;margin-top:2pt}
+.avoid{break-inside:avoid}
+.section-break{page-break-before:always}
+.lead{font-size:11pt;color:#2c2820}
+.epigraph{font-style:italic;color:#4a4339;border-left:2px solid #ddd3bb;padding-left:10pt;margin:6pt 0 12pt;font-size:9.4pt}
+ul.tight{margin:4pt 0 8pt;padding-left:15pt}ul.tight li{margin-bottom:3pt}
+</style></head><body>
+
+<section class="cover">
+  <div class="kick">Bucket Foundation · Health-Longevity-Fitness Canon</div>
+  <h1>The Optimize Layer:<br>Exercises &amp; Lifestyle Habits</h1>
+  <div class="sub">What to actually do — ranked by evidence, illustrated, and honest about the<br>gap between what's proven and what's sold.</div>
+  <div class="rule"></div>
+  <div class="meta">
+    <strong>Companion to</strong> the State-of-the-Field report · derived from <code>04-protocols/WHAT-TO-TRACK-SYNTHESIS.md</code><br>
+    <strong>Diagrams</strong> procedurally generated (vector, reproducible, no hallucinated anatomy)<br>
+    <strong>Rule</strong> start at Tier A · treat Tier B as trends · enjoy Tier C as experiments, not protocols
+  </div>
+  <div class="tierbar">
+    <div><span class="t ta">TIER A — DO FIRST</span>Large effects, converging evidence. Fitness, strength, movement, sleep, apoB, metabolic health, connection.</div>
+    <div><span class="t tb">TIER B — WORTH IT</span>Real but smaller / surrogate / dose-uncertain. Zone 2, sauna, mobility, breath, early-TRE, light hygiene.</div>
+    <div><span class="t tc">TIER C — OPTIONAL</span>Sold harder than proven. Cold plunge "for longevity", NAD⁺, CGM-for-healthy, age clocks.</div>
+  </div>
+</section>
+
+<h2>The one idea behind this guide</h2>
+<p class="lead">The interventions with the largest, most replicated effects on how long and how well you
+live are <strong>behavioral and unglamorous</strong>. They are not for sale, which is exactly why they get
+crowded out by supplements and gadgets. This guide puts them first, illustrates the foundational movements,
+and labels everything by what the evidence has actually earned.</p>
+
+<div class="callout"><span class="ch">Three rules that govern every recommendation here</span>
+<strong>(1) Predictor ≠ lever</strong> — a number that predicts death isn't automatically something that,
+when changed, prevents it. <strong>(2) Cohort ≠ proof</strong> — you can't randomize fitness or sleep over
+decades, so the strong-looking numbers carry bias. <strong>(3) Something beats nothing</strong> — the
+steepest gains are at the <em>start</em> of every dose-response curve; optimization past that is real but
+smaller than advertised.</div>
+
+<!-- ============ EXERCISE ============ -->
+<h2 class="section-break">Part 1 — The movement program</h2>
+<p class="epigraph">Four capacities carry almost all the mortality signal: <strong>cardiorespiratory
+fitness, strength, the ability to move/balance, and not sitting all day.</strong> A week that touches all
+four beats any single "optimal" protocol.</p>
+
+<h3>A. Strength — the two patterns that matter most</h3>
+<p>Strength (and grip), <em>not muscle mass</em>, independently predicts mortality — and the dose-response is
+a <strong>J-curve: benefit peaks around 30–60 minutes per week</strong>, then flattens. Two compound patterns
+cover most of the body: a <strong>squat</strong> (knee-dominant) and a <strong>hip hinge</strong>
+(hip-dominant). Add a push, a pull, and a carry and you have a complete program.</p>
+<div class="grid2">
+  <div class="fig"><img src="../media/generated-diagrams/01-bodyweight-squat.png"><div class="cap">Squat — knee-dominant lower-body strength</div></div>
+  <div class="fig"><img src="../media/generated-diagrams/02-hip-hinge-deadlift.png"><div class="cap">Hip hinge — the posterior-chain pattern</div></div>
+</div>
+<p class="small"><span class="badge ba">Tier A</span> <code>resistance-training-mortality-meta</code> ·
+<code>grip-strength-mortality-pure</code> (PURE, n=139k) · <code>dexa-strength-not-mass-predicts-mortality</code>.
+Practical: 2–3 sessions/week, progressive load, the 5 patterns (squat / hinge / push / pull / carry).</p>
+
+<h3>B. Cardiorespiratory fitness — the single strongest lever</h3>
+<p>VO₂max is the strongest mortality predictor in preventive medicine (~5× elite-vs-low, ~13% per MET,
+<strong>no observed ceiling of benefit</strong>). You raise it two complementary ways, and the evidence does
+<em>not</em> support one being uniquely magic:</p>
+<ul class="tight">
+  <li><strong>Zone 2 (conversational pace), ~150–180 min/week</strong> — builds the aerobic base efficiently. <span class="badge bb">Tier B caveat</span> the "uniquely optimal for mitochondria" claim is overstated (<code>conflict-zone2-optimal-mito</code>).</li>
+  <li><strong>VO₂max intervals / HIIT, 1–2× week</strong> — efficiently lifts the ceiling (<code>hiit-crf-cardiometabolic-meta</code>).</li>
+  <li><strong>Just move &amp; break up sitting</strong> — the steepest, <em>least-confounded</em> gain is sedentary→active (<code>physical-activity-dose-response-mortality</code>). Steps help, but the benefit <strong>plateaus ~7–8k</strong>, not 10k.</li>
+</ul>
+
+<h3>C. Balance &amp; capacity — free tests that are also the training</h3>
+<p>Two bodyweight tests independently predict all-cause mortality — and practicing them <em>is</em> the
+intervention. They cost nothing and double as your progress metric.</p>
+<div class="grid2">
+  <div class="fig"><img src="../media/generated-diagrams/03-one-leg-stand-balance.png"><div class="cap">10-second one-leg stand (HR 1.84 if you can't)</div></div>
+  <div class="fig"><img src="../media/generated-diagrams/04-sit-to-rise-test.png"><div class="cap">Sit-to-rise — strength + balance + flexibility</div></div>
+</div>
+<p class="small"><span class="badge ba">Tier A</span> <code>one-leg-stance-10s-mortality</code> (Araújo 2022) ·
+<code>sit-to-rise-mortality</code> (Brito 2014). Both are <em>predictors</em> — but the capacities they test
+(balance, lower-body strength, mobility) are trainable and worth training directly.</p>
+
+<h3>D. Mobility &amp; breath — the supporting tier</h3>
+<p>Mobility keeps the range you need to keep moving; slow breathing shifts autonomic balance. Both are
+worth doing; both are honestly Tier B (real acute effects, longevity outcome unproven).</p>
+<div class="grid2">
+  <div class="fig"><img src="../media/generated-diagrams/05-90-90-hip-mobility.png"><div class="cap">90/90 hip rotations — counters chronic sitting</div></div>
+  <div class="fig"><img src="../media/generated-diagrams/06-box-breathing.png"><div class="cap">Box breathing — ~6 breaths/min raises HRV acutely</div></div>
+</div>
+
+<h3>A simple weekly template</h3>
+<table>
+<tr><th>Day</th><th>Primary</th><th>Capacity trained</th></tr>
+<tr><td>Mon</td><td>Strength (squat + push + carry)</td><td>Strength <span class="badge ba">A</span></td></tr>
+<tr><td>Tue</td><td>Zone 2, 45–60 min (walk/bike/row)</td><td>CRF base <span class="badge ba">A</span></td></tr>
+<tr><td>Wed</td><td>Mobility + balance practice (10 min)</td><td>Capacity <span class="badge bb">B</span></td></tr>
+<tr><td>Thu</td><td>Strength (hinge + pull)</td><td>Strength <span class="badge ba">A</span></td></tr>
+<tr><td>Fri</td><td>VO₂max intervals (e.g. 4×4 min hard)</td><td>CRF ceiling <span class="badge ba">A</span></td></tr>
+<tr><td>Sat</td><td>Long easy Zone 2 (hike/ride)</td><td>CRF + recovery <span class="badge ba">A</span></td></tr>
+<tr><td>Sun</td><td>Rest · sauna · easy walk</td><td>Recovery <span class="badge bb">B</span></td></tr>
+</table>
+<p class="small">Every day: break up sitting, hit the step floor, run through the two balance tests. The
+template is illustrative — consistency across the four capacities matters more than the exact split.</p>
+
+<!-- ============ LIFESTYLE ============ -->
+<h2 class="section-break">Part 2 — Lifestyle habits</h2>
+<p class="epigraph">Outside the gym, a handful of habits carry effect sizes that rival or exceed anything
+in a supplement stack — and one of them (social connection) is almost never on the list <em>because nothing
+is sold for it.</em></p>
+
+<table>
+<tr><th>Habit</th><th>What the evidence supports</th><th>Tier</th></tr>
+<tr><td><strong>Don't smoke</strong></td><td>The single largest modifiable mortality factor; the "longevity genes" of GWAS are largely the genetics of not doing harmful things.</td><td><span class="badge ba">A</span></td></tr>
+<tr><td><strong>Protect social connection</strong></td><td>Among the largest psychosocial mortality associations — effect size rivals smoking cessation (Holt-Lunstad). Purpose/ikigai adds independently.</td><td><span class="badge ba">A</span></td></tr>
+<tr><td><strong>Sleep ~7 h, regularly</strong></td><td>U-shaped mortality with a ~7 h nadir; <em>regularity and timing</em> carry independent weight. Protect it like training.</td><td><span class="badge ba">A</span></td></tr>
+<tr><td><strong>Lower lifetime apoB / LDL</strong></td><td>One of the only <em>causal</em> blood levers; cumulative exposure means earlier is better. Diet + (if indicated) medication.</td><td><span class="badge ba">A</span></td></tr>
+<tr><td><strong>Keep metabolic health</strong></td><td>Protein-adequate, fiber-rich, mostly-whole-food diet; manage visceral fat &amp; glucose. The pattern matters more than the brand-name diet.</td><td><span class="badge ba">A</span></td></tr>
+<tr><td><strong>Protein adequacy (esp. older adults)</strong></td><td>Supports muscle &amp; survival in the elderly — but a genuine mid-life vs late-life tradeoff with mTOR. Not "more is always better".</td><td><span class="badge bb">B</span></td></tr>
+<tr><td><strong>Morning light, dim evenings</strong></td><td>Strong circadian mechanism; bright AM / dim PM. (Blue-blocking <em>glasses</em> specifically show no clear benefit — the behavior, not the product.)</td><td><span class="badge bb">B</span></td></tr>
+<tr><td><strong>Early time-restricted eating</strong></td><td>Early-window alignment helps insulin/BP — but most of the benefit is the calorie restriction it causes. Late 16:8 is null.</td><td><span class="badge bb">B</span></td></tr>
+<tr><td><strong>Sauna / heat</strong></td><td>Dose-response to mortality &amp; dementia — from one Finnish cohort, no RCT. Promising. Infrared ≠ traditional evidence.</td><td><span class="badge bb">B</span></td></tr>
+<tr><td><strong>Cold plunge "for longevity"</strong></td><td>Great for mood/alertness; the metabolic <em>outcome</em> data used hours of mild cold, not a 3-min plunge. Enjoy it, don't oversell it.</td><td><span class="badge bc">C</span></td></tr>
+</table>
+
+<div class="callout warn"><span class="ch">Safety — non-negotiable</span>
+<strong>Never do Wim Hof / breath-hold breathing in or near water</strong> (shallow-water blackout drowns
+people). Cold immersion carries cardiac risk — never combine with breath-holds. Heat/sauna: hydrate, avoid
+with alcohol, pregnancy, or uncontrolled cardiovascular disease. Loaded spine work: keep it neutral, progress
+slowly. When in doubt, a clinician beats a protocol.</div>
+
+<h3>Test yourself — the high-signal, mostly-free panel</h3>
+<p>Measurement should be <strong>functional first</strong>. These predict more, and cost less, than the
+commercial age-tests and continuous monitors.</p>
+<table>
+<tr><th>Measure</th><th>Signal</th><th>Tier</th></tr>
+<tr><td>VO₂max (hard field test or CPET)</td><td>Strongest single mortality predictor</td><td><span class="badge ba">A</span></td></tr>
+<tr><td>Grip · gait speed · chair-rise · 10-s balance · sit-to-rise</td><td>Integrated reserve; rivals expensive panels; free</td><td><span class="badge ba">A</span></td></tr>
+<tr><td>apoB (one draw) + Lp(a) (once in life)</td><td>The causal blood levers; act on apoB</td><td><span class="badge ba">A</span></td></tr>
+<tr><td>HbA1c + fasting insulin / HOMA-IR</td><td>Glycemic control + earliest metabolic warning</td><td><span class="badge ba">A</span></td></tr>
+<tr><td>Overnight HRV · sleep total/timing (wearable)</td><td>Within-person <em>trend</em> only — not staging, not cross-device</td><td><span class="badge bb">B</span></td></tr>
+<tr><td>Biological-age clocks · CGM for the healthy</td><td>Not a validated personal scorecard; clocks disagree; no outcome RCT</td><td><span class="badge bc">C</span></td></tr>
+</table>
+
+<h2 class="section-break">The bottom line, in one paragraph</h2>
+<p class="lead">Build and keep <strong>cardiorespiratory fitness</strong> and <strong>strength</strong>;
+<strong>move more</strong> and sit less; <strong>sleep ~7 h regularly</strong>; keep <strong>apoB/LDL</strong>
+low across life; eat a protein-adequate, mostly-whole-food pattern; and <strong>protect your relationships</strong>.
+Train the four capacities — cardio, strength, balance, mobility — and use the free functional tests (VO₂max,
+grip, gait, sit-to-rise, the 10-second stand) as both training and scorecard. Treat sauna, breathwork, early
+eating windows and light hygiene as worthwhile <em>trends</em>. Treat cold plunges, NAD⁺, glucose monitors for
+the healthy and biological-age tests as <em>experiments you enjoy</em>, not protocols you depend on. The dull
+list is the powerful list — and it is almost entirely free.</p>
+
+<div class="callout"><span class="ch">About these illustrations</span>
+The six exercise diagrams are <strong>procedurally generated vector figures</strong>
+(<code>reports/gen_exercise_diagrams.py</code> → SVG → PNG), not AI photos and not stock images. They are
+reproducible, anatomy-honest (no hallucinated joints), evidence-tagged, and regenerate from code. The corpus
+also holds <strong>212 real demonstration frames + 29 licensed anatomy images</strong> in
+<code>media/</code> for a future photographic library.</div>
+
+<p class="small" style="margin-top:12pt;text-align:center;color:#8a8170;">— Optimize Layer · Nucleus Brain · AG Farms · bead bkt-bg6 · not medical advice —</p>
+</body></html>
