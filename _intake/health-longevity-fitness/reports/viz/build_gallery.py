@@ -118,6 +118,11 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("M04-glute-bridge.png","Glute Bridge","hip extension, spares the back"),
  ("M05-side-plank.png","Side Plank","anti-lateral-flexion core"),
  ("M06-kettlebell-swing.png","Kettlebell Swing","the ballistic hip hinge"),
+ ("M07-bent-over-row.png","Bent-Over Row","the horizontal pull"),
+ ("M08-suitcase-carry.png","Suitcase Carry","loaded carry, anti-tilt"),
+ ("M09-calf-raise.png","Calf Raise","lower-leg + tendon health"),
+ ("M10-wall-sit.png","Wall Sit","isometric quad endurance"),
+ ("M11-bird-dog.png","Bird-Dog","anti-rotation, spine-sparing"),
 ]
 
 def b64(p):
