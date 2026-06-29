@@ -87,6 +87,20 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("78-insulin-resistance.png","Insulin Resistance","the central dysfunction"),
  ("79-inflammation-paths.png","Acute vs Chronic Inflammation","heals vs harms"),
  ("80-prevention-by-decade.png","Prevention by Decade","build → defend → maintain"),
+ ("81-lifespan-over-time.png","Lifespan Over Time","roughly doubled in 150 yrs"),
+ ("82-bmi-jcurve.png","BMI & Mortality","a U — but BMI is crude"),
+ ("83-testosterone-age.png","Testosterone & Age","slow decline"),
+ ("94-menopause-timeline.png","Menopause Transition","the estrogen drop"),
+ ("84-cancer-incidence.png","Cancer & Aging","a disease of age"),
+ ("85-calerie.png","Caloric Restriction (CALERIE)","modest & real"),
+ ("86-vo2max-age.png","VO₂max & Age","training buys a decade"),
+ ("87-hormesis-curve.png","The Hormesis Curve","the right dose of stress"),
+ ("88-dementia-checklist.png","Dementia Prevention","the actionable list"),
+ ("89-fasting-protocols.png","Fasting Protocols","compared"),
+ ("90-recovery-toolkit.png","Recovery Toolkit","what actually helps"),
+ ("91-minimal-equipment.png","No-Gym Training","train anywhere"),
+ ("92-autonomic-ns.png","Autonomic Nervous System","sympathetic vs parasympathetic"),
+ ("93-fight-or-flight.png","Fight-or-Flight","the stress cascade"),
 ]
 
 def b64(p):
@@ -110,7 +124,9 @@ h1{{font-family:Archivo;font-weight:800;font-size:30px;margin:6px 0 4px}} .sub{{
 <div class="grid">{cards}</div></body></html>'''
 open(os.path.join(OUT,"figures-gallery.html"),"w").write(doc)
 print(f"gallery: {n} figures")
-subprocess.run(["weasyprint",os.path.join(OUT,"figures-gallery.html"),os.path.join(OUT,"figures-gallery.pdf")],capture_output=True)
+# PDF render is slow on big galleries; opt-in via PDF=1 to avoid timeouts
+if os.environ.get("PDF"):
+    subprocess.run(["weasyprint",os.path.join(OUT,"figures-gallery.html"),os.path.join(OUT,"figures-gallery.pdf")],capture_output=True,timeout=600)
 # contact sheet
 files=[os.path.join(FIG,fn) for fn,_,_ in present]
 import math
