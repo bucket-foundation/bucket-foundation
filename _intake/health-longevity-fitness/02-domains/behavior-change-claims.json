@@ -1,0 +1,325 @@
+[
+  {
+    "id": "intention-behavior-gap-experimental",
+    "statement": "Experimentally changing people's intentions produces a much smaller change in their behavior: a medium-to-large change in intention (d~0.66) yields only a small-to-medium change in behavior (d~0.36). Roughly half of people who form an intention fail to act on it.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Intention change d~0.66 -> behavior change d~0.36 (experimental, causal)",
+    "population": "Meta-analysis of 47 experimental studies manipulating intention then measuring behavior",
+    "provenance": {
+      "primary": "Webb & Sheeran - 'Does changing behavioral intentions engender behavior change? A meta-analysis of the experimental evidence', Psychological Bulletin 2006",
+      "doi": "10.1037/0033-2909.132.2.249",
+      "surfaced_via": "behavior-change deep research (intention-behavior gap)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Experimental (not just correlational) meta-analysis, which is what makes it causal evidence for the gap. The central empirical finding of the field: knowing/deciding is necessary and far from sufficient.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "implementation-intentions-meta",
+    "statement": "Forming a specific if-then implementation intention ('if situation X, then I will do Y') substantially increases goal attainment over merely holding the goal, with a medium-to-large pooled effect (d~0.65) across 94 studies.",
+    "claim_type": "protocol",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "d~0.65 on goal attainment over goal intention alone (94 independent tests)",
+    "population": "Meta-analysis of 94 studies across multiple behavior domains",
+    "provenance": {
+      "primary": "Gollwitzer & Sheeran - 'Implementation intentions and goal achievement: A meta-analysis of effects and processes', Advances in Experimental Social Psychology 2006",
+      "doi": "10.1016/S0065-2601(06)38002-1",
+      "surfaced_via": "behavior-change deep research (Gollwitzer)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the best-evidenced individual techniques. Honest limit: real-world health-behavior effects (e.g. physical activity) are typically smaller than the cross-domain lab average; stronger for initiation/simple actions than long-term effortful maintenance.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "habit-formation-66-days",
+    "statement": "Automaticity of a new daily behavior takes a median of ~66 days to plateau in real-world conditions, with a wide individual range of 18 to 254 days; a single missed day does not measurably reset the habit-formation curve.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Median ~66 days to automaticity plateau; range 18-254 days",
+    "population": "96 volunteers adopting a self-chosen daily eating/drinking/activity behavior, tracked 12 weeks",
+    "provenance": {
+      "primary": "Lally, van Jaarsveld, Potts, Wardle - 'How are habits formed: Modelling habit formation in the real world', European Journal of Social Psychology 2010",
+      "doi": "10.1002/ejsp.674",
+      "surfaced_via": "behavior-change deep research (Lally)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Single good naturalistic study; the 66-day figure is directional, not a law (huge between-person and between-behavior variance). Directly refutes the popular '21-day habit' myth.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "habit-context-cue-mechanism",
+    "statement": "Habits are learned cue-response associations strengthened by repetition in a stable context; once formed they are triggered by the context cue with little deliberation, and are therefore context-dependent (disrupting the context, e.g. moving or travel, weakens them).",
+    "claim_type": "mechanism",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Qualitative mechanism (context-dependence of automatic behavior)",
+    "population": "Review of habit research across lab and field studies",
+    "provenance": {
+      "primary": "Wood & Runger - 'Psychology of Habit', Annual Review of Psychology 2016",
+      "doi": "10.1146/annurev-psych-122414-033417",
+      "surfaced_via": "behavior-change deep research (Wood)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/07-mind/",
+    "confidence_notes": "Mechanism claim (cue-response automaticity), not an outcome claim. Well-supported as the basis for 'habit stacking' and for why life transitions both break good habits and offer windows to change bad ones.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "com-b-behaviour-change-wheel",
+    "statement": "The COM-B model holds that behavior occurs only when Capability, Opportunity, and Motivation are jointly sufficient; the Behaviour Change Wheel maps each deficit to intervention types. Its value is diagnostic - identifying which component is actually missing before choosing a technique.",
+    "claim_type": "protocol",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Framework (no single effect size); consensus scaffolding in implementation science",
+    "population": "Synthesis of 19 behavior-change frameworks; foundational methods paper",
+    "provenance": {
+      "primary": "Michie, van Stralen, West - 'The behaviour change wheel: a new method for characterising and designing behaviour change interventions', Implementation Science 2011 (PMID 21513547)",
+      "doi": "10.1186/1748-5908-6-42",
+      "surfaced_via": "behavior-change deep research (PubMed, PMID 21513547 confirmed)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A framework, not an intervention - it organizes and diagnoses rather than 'working' or 'failing'. Now the consensus scaffolding; paired with the BCT Taxonomy v1 (93 techniques, doi 10.1007/s12160-013-9486-6) as the field's shared vocabulary.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sdt-health-meta",
+    "statement": "Self-Determination Theory's basic-need satisfaction (autonomy, competence, relatedness) and autonomous (vs controlled) motivation are reliably associated with better health behaviors and mental/physical health; autonomous motivation predicts behavior maintenance far better than externally controlled motivation.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Consistent positive associations between autonomy support / need satisfaction and health outcomes (correlational meta-analysis)",
+    "population": "Meta-analysis of 184 data sets in health contexts",
+    "provenance": {
+      "primary": "Ng, Ntoumanis, Thogersen-Ntoumani, Deci, Ryan, Duda, Williams - 'Self-Determination Theory Applied to Health Contexts: A Meta-Analysis', Perspectives on Psychological Science 2012",
+      "doi": "10.1177/1745691612447309",
+      "surfaced_via": "behavior-change deep research (PubMed, PMID 26168470 confirmed)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Largely correlational/cross-sectional (predictor relationships), so causal magnitude is uncertain. Best-supported motivational theory in the chapter; grounds the caveat that controlling rewards/gamification can crowd out intrinsic motivation.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ego-depletion-failed-replication",
+    "statement": "The 'ego depletion' model (self-control draws on a single limited resource that is used up and refueled by glucose) failed a large pre-registered multi-lab replication, which found an effect statistically indistinguishable from zero.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Pooled effect ~0 (95% CI spanning zero) across 23 labs",
+    "population": "Pre-registered Registered Replication Report, 23 labs, ~2000 participants",
+    "provenance": {
+      "primary": "Hagger et al. - 'A Multilab Preregistered Replication of the Ego-Depletion Effect', Perspectives on Psychological Science 2016 (PMID 27474142)",
+      "doi": "10.1177/1745691616652873",
+      "surfaced_via": "behavior-change deep research (PubMed, PMID 27474142 confirmed)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Pre-registered multi-lab design is high-quality refutation. Carter & McCullough 2014 (doi 10.3389/fpsyg.2014.00823) had already shown the original literature was likely a publication-bias artifact. Debunks the 'willpower is a muscle' / 'eat sugar to restore willpower' claims.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nudge-effect-publication-bias",
+    "statement": "Choice-architecture 'nudges' show a moderate average effect (d~0.43) in the largest meta-analysis, but a reanalysis correcting for publication bias shrinks the average toward zero; default-change and physical-environment/friction nudges are the most robust categories, informational nudges the weakest.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Uncorrected pooled d~0.43 (Mertens 2022); near-zero after publication-bias correction (Maier 2022)",
+    "population": "Meta-analysis of 447 effect sizes across choice-architecture interventions, plus a bias-correction reanalysis",
+    "provenance": {
+      "primary": "Mertens et al. - 'The effectiveness of nudging: A meta-analysis of choice architecture interventions', PNAS 2022 (PMID 34983836)",
+      "doi": "10.1073/pnas.2107346118",
+      "surfaced_via": "behavior-change deep research (PubMed, PMID 34983836 confirmed)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Open dispute at population/policy scale; Maier et al. 2022 PNAS (doi 10.1073/pnas.2200300119) is the bias-correction critique. For an INDIVIDUAL designing their own environment, defaults/friction are real and near-zero cost - the leverage is practical even where the population literature is contested.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ttm-stages-weak-evidence",
+    "statement": "The Transtheoretical Model (stages of change: precontemplation -> ... -> maintenance) is widely taught but stage-tailored interventions show little or no benefit over non-staged interventions; the 'stages' are arbitrary cut-points on continuous variables.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No significant benefit of stage-based tailoring over non-staged interventions (weight, smoking, activity)",
+    "population": "Cochrane review of TTM-based interventions for weight management; corroborated across smoking/PA literatures",
+    "provenance": {
+      "primary": "Tuah et al. - 'Transtheoretical model stages of change for dietary and physical exercise modification in weight loss management for overweight and obese adults', Cochrane Database 2011",
+      "doi": "10.1002/14651858.CD008066.pub2",
+      "surfaced_via": "behavior-change deep research (transtheoretical model effectiveness)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Popular and intuitively appealing but the formal staged-tailoring machinery has not earned its reputation. West 2005 critique: stages are arbitrary cut-points. Prefer COM-B for design.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "medication-nonadherence-50pct",
+    "statement": "In chronic disease, roughly 50% of patients do not take their medications as prescribed, causing substantial avoidable morbidity, hospitalization, and cost. Non-adherence splits into unintentional (forgetting/complexity/cost - the larger share) and intentional (beliefs/side-effect fears/distrust).",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~50% non-adherence in long-term/chronic therapy",
+    "population": "WHO synthesis of adherence across chronic-disease populations in developed countries",
+    "provenance": {
+      "primary": "World Health Organization - 'Adherence to Long-Term Therapies: Evidence for Action', WHO 2003 (Sabate, ed.)",
+      "doi": "",
+      "surfaced_via": "behavior-change deep research (medication adherence)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The ~50% figure is an aggregate across conditions and varies by disease/regimen; it is the most-cited adherence statistic. The two-bucket (unintentional vs intentional) split is important because they need different interventions.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "adherence-interventions-cochrane",
+    "statement": "Across 182 RCTs, interventions to improve medication adherence are mostly complex, labor-intensive, and only modestly effective, with generally low-quality evidence and no simple reliable fix; the most consistent winner is regimen simplification (fewer daily doses / fixed-dose combinations).",
+    "claim_type": "protocol",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Modest, inconsistent improvements; even effective interventions were complex; regimen simplification most consistent",
+    "population": "Cochrane systematic review of 182 randomized controlled trials",
+    "provenance": {
+      "primary": "Nieuwlaat et al. - 'Interventions for enhancing medication adherence', Cochrane Database of Systematic Reviews 2014",
+      "doi": "10.1002/14651858.CD000011.pub4",
+      "surfaced_via": "behavior-change deep research (medication adherence Cochrane)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Deflating but definitive: no silver bullet. Structural levers (simplify regimen, reminders tied to routine, reduce cost friction) beat exhortation. Reminder apps/SMS show small, often short-lived effects and do nothing for intentional non-adherence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fitness-apps-modest-effect",
+    "statement": "Mobile health / fitness apps produce small-to-moderate short-term effects on physical activity, diet, and weight that attenuate over time and are heavily moderated by sustained engagement; most users abandon health apps within weeks. Effective apps embed real behavior-change techniques (self-monitoring, goals, reminders, social support) rather than just delivering information.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small-to-moderate short-term effects; attenuate with time; engagement-dependent",
+    "population": "Systematic reviews/meta-analyses of mHealth interventions for activity/diet/weight",
+    "provenance": {
+      "primary": "Multiple contemporary systematic reviews of mHealth for physical activity and weight (e.g. Int J Behav Nutr Phys Act / JMIR mHealth uHealth 2025)",
+      "doi": "10.1186/s12966-025-01868-8",
+      "surfaced_via": "behavior-change deep research (PubMed app meta-analyses, 2025-2026)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The engagement cliff is the real story: theoretical efficacy is irrelevant once the app is deleted (the intention-behavior gap one level up). Apps are scaffolding for the §2 levers, not the intervention.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gamification-small-effect",
+    "statement": "Gamification (points, streaks, badges, challenges) produces a small but statistically significant increase in physical activity, but extrinsic game rewards risk undermining intrinsic motivation, so behavior gains made while the game runs may not persist after the rewards stop.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small significant effect on physical activity (gamified vs control)",
+    "population": "Meta-analysis of gamified physical-activity interventions",
+    "provenance": {
+      "primary": "Mazeas et al. - 'Evaluating the Effectiveness of Gamification on Physical Activity: Systematic Review and Meta-Analysis', JMIR 2022",
+      "doi": "10.2196/26779",
+      "surfaced_via": "behavior-change deep research (gamification meta-analysis)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The SDT caveat (sdt-health-meta) is load-bearing: extrinsic rewards can crowd out autonomous motivation. Best designs use game elements to build competence/autonomy (visible mastery, self-chosen challenges), not to bribe.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "self-monitoring-active-ingredient",
+    "statement": "Self-monitoring of a target behavior is one of the most consistently effective single components of behavior-change interventions, especially when combined with at least one other self-regulation technique (goal-setting, feedback).",
+    "claim_type": "protocol",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Self-monitoring + >=1 other self-regulation technique among the most effective BCT clusters",
+    "population": "Meta-regression of behavior-change techniques in healthy-eating/physical-activity interventions",
+    "provenance": {
+      "primary": "Michie, Abraham, Whittington, McAteer, Gupta - 'Effective techniques in healthy eating and physical activity interventions: a meta-regression', Health Psychology 2009",
+      "doi": "10.1037/a0016136",
+      "surfaced_via": "behavior-change deep research (self-monitoring active ingredient)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grounded in Control Theory (feedback loop). Real as a component; the practical fragility is sustaining the tracking itself (links to fitness-apps-modest-effect engagement problem).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "goal-setting-health-honest",
+    "statement": "Specific, challenging goals reliably outperform 'do your best' for short-term task performance, but the evidence transfers imperfectly and more weakly to long-term health-behavior change; for novices, learning goals can beat performance goals, overly difficult goals can backfire, and SMART is a clarity convention rather than a separately evidence-based intervention.",
+    "claim_type": "protocol",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Strong for cognitive/motor tasks (Locke & Latham); weaker/mixed for physical-activity health behaviors",
+    "population": "Critical conceptual review of goal-setting in physical-activity promotion",
+    "provenance": {
+      "primary": "Swann et al. - 'Updating goal-setting theory in physical activity promotion: a critical conceptual review', Health Psychology Review 2021",
+      "doi": "10.1080/17437199.2019.1706616",
+      "surfaced_via": "behavior-change deep research (PubMed, PMID 31900043 confirmed)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mildly useful, frequently overstated. No trials show 'SMART goals' beat 'non-SMART goals' for health outcomes. Process/behavior goals beat outcome goals for adherence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "learning-styles-debunked",
+    "statement": "There is no credible evidence for the 'meshing hypothesis' that matching instruction to a learner's preferred style (visual/auditory/kinesthetic) improves learning; people have style preferences, but matching them does not help.",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No interaction effect supporting style-matched instruction",
+    "population": "Review of the experimental evidence required to validate learning-styles instruction",
+    "provenance": {
+      "primary": "Pashler, McDaniel, Rohrer, Bjork - 'Learning Styles: Concepts and Evidence', Psychological Science in the Public Interest 2008",
+      "doi": "10.1111/j.1539-6053.2009.01038.x",
+      "surfaced_via": "behavior-change deep research (learning styles debunk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The education cousin of body-type/cycle-syncing destiny-typing (see 04-individual-variation). Included as a debunk because 'find your learning style' is sold alongside discipline/habit pseudoscience.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "twenty-one-day-habit-myth",
+    "statement": "The claim that it takes 21 days to form a habit is a myth originating from Maxwell Maltz's 1960 'Psycho-Cybernetics' observation about patients adjusting to a new self-image - not a habit-formation study. Real habit automaticity takes a median of ~66 days (range 18-254).",
+    "claim_type": "outcome",
+    "domain": "behavior-change",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "21 days has no empirical basis; actual median ~66 days",
+    "population": "Origin trace (Maltz 1960) vs naturalistic habit-formation data (Lally 2010)",
+    "provenance": {
+      "primary": "Lally et al. 2010 (doi 10.1002/ejsp.674) refuting the popularized 21-day figure (Maltz, Psycho-Cybernetics 1960)",
+      "doi": "10.1002/ejsp.674",
+      "surfaced_via": "behavior-change deep research (21-day myth)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-references habit-formation-66-days. The '21 days' number was an aesthetic-adjustment observation laundered into a fake behavioral law over decades of self-help.",
+    "added_on": "2026-06-28"
+  }
+]

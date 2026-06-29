@@ -1,0 +1,439 @@
+[
+  {
+    "id": "stroke-iv-tpa-ninds-window",
+    "statement": "Intravenous thrombolysis (alteplase) given within ~3 hours of ischemic stroke onset improves 3-month functional outcomes; the window extends to 4.5 hours and, in imaging-selected patients, out to 24 hours.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "NINDS: absolute increase in favorable outcome; HOPE 2025 extended benefit to selected 4.5-24h patients",
+    "population": "Acute ischemic stroke adults (NINDS 1995; ECASS-3; HOPE 2025)",
+    "provenance": {
+      "primary": "NINDS rt-PA Stroke Study Group - 'Tissue plasminogen activator for acute ischemic stroke', NEJM 1995",
+      "doi": "10.1056/NEJM199512143332401",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (HOPE: Zhou 2025 10.1001/jama.2025.12063)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Time-dependent and modeled '~1.9M neurons/min' framing is mechanistic. Benefit is real but window- and access-limited; intracerebral hemorrhage must be excluded by CT first (thrombolysis is harmful in hemorrhagic stroke).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "stroke-thrombectomy-hermes-nnt",
+    "statement": "Endovascular thrombectomy for large-vessel-occlusion ischemic stroke roughly doubles the odds of functional independence, with a number-needed-to-treat of about 2.6 - one of the best NNTs in medicine.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Pooled cOR 2.49 for reduced disability; NNT ~2.6 for one less disabled patient (HERMES)",
+    "population": "1287 patients, 5 RCTs, large-vessel occlusion (HERMES individual-patient-data meta-analysis)",
+    "provenance": {
+      "primary": "Goyal M, et al. - 'Endovascular thrombectomy after large-vessel ischaemic stroke: a meta-analysis of individual patient data from five randomised trials', Lancet 2016",
+      "doi": "10.1016/S0140-6736(16)00163-X",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Window later extended to 24h in imaging-selected patients (DAWN, DEFUSE-3). Main real-world limit is access to comprehensive stroke centers.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "stroke-prevention-bp-af-upstream",
+    "statement": "Most strokes are preventable upstream: blood-pressure control is the single largest modifiable risk factor, and anticoagulation in atrial fibrillation cuts AF-related stroke by roughly 60-70%.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Anticoagulation: ~64% relative risk reduction in AF stroke (warfarin meta-analyses); BP lowering largest population-attributable lever",
+    "population": "Adults with hypertension / atrial fibrillation",
+    "provenance": {
+      "primary": "Cross-ref Section 07 (clinical prevention) + AF anticoagulation literature; Sharma R, et al. BMJ 2025 stroke treatment review",
+      "doi": "10.1136/bmj-2023-076161",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; cross-referenced to clinical-prevention section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The acute reperfusion story is dramatic but the population-level wins are in BP and AF management. Cross-ref Section 07.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "epilepsy-asm-two-thirds-seizure-free",
+    "statement": "With appropriate anti-seizure medication, roughly two-thirds of people with epilepsy become seizure-free; the remaining ~one-third have drug-resistant epilepsy (failure of two adequate trials), for whom surgery, neurostimulation, and dietary therapy are options.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~65-70% seizure-free on ASMs; ~30% drug-resistant",
+    "population": "Adults with epilepsy (Lancet seminar synthesis)",
+    "provenance": {
+      "primary": "Thijs RD, Surges R, O'Brien TJ, Sander JW - 'Epilepsy in adults', Lancet 2019",
+      "doi": "10.1016/S0140-6736(18)32596-0",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Epilepsy surgery for drug-resistant focal epilepsy can be curative and is underused. Ketogenic diet has rct-grade evidence specifically in drug-resistant childhood epilepsy - NOT evidence for keto as a general diet.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ms-dmt-relapse-reduction",
+    "statement": "Disease-modifying therapies for relapsing multiple sclerosis reduce relapse rates substantially (the most effective, e.g. anti-CD20 B-cell depletion and natalizumab, by ~70-90%), and early high-efficacy treatment preserves long-term function.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Annualized relapse-rate reductions ranging from ~30% (interferons) to ~70-90% (high-efficacy mAbs)",
+    "population": "Relapsing-remitting MS adults (20+ approved DMTs across RCTs)",
+    "provenance": {
+      "primary": "Reich DS, Lucchinetti CF, Calabresi PA - 'Multiple Sclerosis', NEJM 2018",
+      "doi": "10.1056/NEJMra1401483",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (McDonald criteria: Thompson 2018 10.1016/S1474-4422(17)30470-2)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A genuine treatment revolution for RELAPSING MS. Honest gaps: progressive MS remains under-served (smoldering neurodegeneration), no cure, real risks (PML, infection). EBV is a near-necessary antecedent. 'MS reversal' diets (Wahls, Swank) are nequals1/anecdotal and must not displace DMTs.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "parkinson-symptom-control-no-disease-modification",
+    "statement": "Parkinson's disease has excellent symptomatic treatment (levodopa remains the most effective drug 50+ years on) but NO proven disease-modifying therapy - nothing on the market slows the underlying dopaminergic neurodegeneration.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Levodopa: large symptomatic benefit; disease-modification trials uniformly null/unproven to date",
+    "population": "Parkinson's disease adults (Lancet seminar synthesis)",
+    "provenance": {
+      "primary": "Bloem BR, Okun MS, Klein C - 'Parkinson's disease', Lancet 2021",
+      "doi": "10.1016/S0140-6736(21)00218-X",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The cleanest 'symptom control vs disease modification' honesty gap in the section. Levodopa long-term brings motor fluctuations/dyskinesias; non-dopaminergic features (falls, cognition, dysautonomia) drive late disability regardless. Exercise has rct-grade symptom/function benefit; disease-modification claim is mechanistic/cohort.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "migraine-cgrp-mab-prevention",
+    "statement": "Anti-CGRP monoclonal antibodies are the first drug class designed specifically to prevent migraine; they reduce monthly migraine days by roughly 2-3 days more than placebo on average - a meaningful, well-tolerated advance, but not a cure.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~1.5-2.5 fewer monthly migraine days vs placebo (placebo response in migraine is large)",
+    "population": "Episodic/chronic migraine adults (erenumab, fremanezumab, galcanezumab, eptinezumab RCTs)",
+    "provenance": {
+      "primary": "Edvinsson L, Haanes KA, Warfvinge K, Krause DN - 'CGRP as the target of new migraine therapies - successful translation from bench to clinic', Nat Rev Neurol 2018",
+      "doi": "10.1038/s41582-018-0003-1",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (Ferrari Nat Rev Dis Primers 2022 10.1038/s41572-021-00328-4; Ailani AHS 2021 10.1111/head.14153)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real breakthrough but an improvement, not a cure. Modest absolute effect against a large migraine placebo response. Older preventives (propranolol, topiramate, Botox) still work and are far cheaper.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "headache-three-distinct-diseases",
+    "statement": "Migraine, tension-type headache, and cluster headache are mechanistically distinct diseases, not severity grades of one thing; conflating them (e.g. treating cluster as migraine) wastes years of patient time.",
+    "claim_type": "mechanism",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Distinct pathophysiology (trigeminovascular/CGRP vs muscular/stress vs trigeminal autonomic cephalalgia) and distinct treatments (triptans/CGRP vs simple analgesia vs high-flow O2/verapamil)",
+    "population": "Primary headache disorders (ICHD classification)",
+    "provenance": {
+      "primary": "Ferrari MD, et al. - 'Migraine', Nat Rev Dis Primers 2022",
+      "doi": "10.1038/s41572-021-00328-4",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Medication-overuse headache (acute analgesics >10-15 days/month) is one of the most common reversible causes of 'intractable' daily headache - the biggest avoidable harm in headache medicine.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "neuropathy-symptom-meds-nnt",
+    "statement": "First-line drugs for painful peripheral neuropathy (duloxetine, pregabalin/gabapentin, amitriptyline) have a number-needed-to-treat of roughly 4-8 for 50% pain relief; glycemic control is the only disease-modifying lever for diabetic neuropathy.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "NNT ~4-8 for 50% pain relief; most patients do not get major relief from any single drug",
+    "population": "Adults with painful diabetic/peripheral neuropathic pain (NeuPSIG systematic review)",
+    "provenance": {
+      "primary": "Finnerup NB, et al. - 'Pharmacotherapy for neuropathic pain in adults: a systematic review and meta-analysis', Lancet Neurology 2015",
+      "doi": "10.1016/S1474-4422(14)70251-0",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; cross-ref Section 14 V-nervous-claims (already indexed)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Genuinely hard to treat. Supplements (alpha-lipoic acid weak/modest, benfotiamine) are oversold; high-dose B6 can itself CAUSE neuropathy. Cross-ref Section 14 6.4.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cte-real-but-unquantified",
+    "statement": "Chronic traumatic encephalopathy is a real tau neurodegenerative disease caused by repetitive head impacts, but its population risk, dose threshold, and in-life diagnosis are not yet known - the landmark series are autopsy case series with severe selection bias.",
+    "claim_type": "mechanism",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "case-control",
+    "direction": "mixed",
+    "effect_size": "CTE found in 110/111 examined NFL-player brains (Mez 2017) - but brains donated because disease was suspected (selection bias)",
+    "population": "Convenience/autopsy samples of contact-sport athletes and military (not population samples)",
+    "provenance": {
+      "primary": "Mez J, et al. - 'Clinicopathological Evaluation of Chronic Traumatic Encephalopathy in Players of American Football', JAMA 2017",
+      "doi": "10.1001/jama.2017.8334",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; recalled landmark (McKee Brain 2013 10.1093/brain/aws307)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Both 'CTE is a myth' and 'every concussion causes dementia' overstate the evidence. CTE cannot currently be diagnosed in the living (no validated biomarker). Most single concussions resolve in ~2-4 weeks; modern management is brief rest then graded return.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "oa-whole-joint-not-just-wear",
+    "statement": "Osteoarthritis is a whole-joint disease (cartilage loss + subchondral bone remodeling + synovial inflammation), not simple mechanical wear of inert cartilage; radiographic severity correlates poorly with pain.",
+    "claim_type": "mechanism",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Active remodeling process; obesity contributes both mechanically and metabolically; X-ray-pain discordance well documented",
+    "population": "Osteoarthritis (Lancet seminar synthesis)",
+    "provenance": {
+      "primary": "Hunter DJ, Bierma-Zeinstra S - 'Osteoarthritis', Lancet 2019",
+      "doi": "10.1016/S0140-6736(19)30417-9",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The 'wear-and-tear' framing is a trap that drives harmful immobilization of joints that need loading.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "oa-exercise-first-no-dmoad",
+    "statement": "First-line osteoarthritis treatment is exercise and weight loss (effect sizes rivaling or beating drugs); there is NO disease-modifying OA drug, and joint replacement is highly effective for end-stage disease while arthroscopic debridement for OA is no better than sham.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Exercise/weight-loss: moderate pain/function benefit; arthroscopy for OA: null vs sham; arthroplasty: large function restoration",
+    "population": "Knee/hip osteoarthritis adults (guideline/meta synthesis)",
+    "provenance": {
+      "primary": "Hunter DJ, Bierma-Zeinstra S - 'Osteoarthritis', Lancet 2019",
+      "doi": "10.1016/S0140-6736(19)30417-9",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Glucosamine/chondroitin have at best a small, much-debated (largely null in unbiased trials) effect; low-risk but oversold. The real lever (movement, weight) is unsellable.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ra-treat-to-target-biologics",
+    "statement": "Rheumatoid arthritis is now treated to target (escalate from methotrexate to TNF/IL-6/B-cell/JAK-inhibitor therapy until remission/low disease activity), and early treatment within the 'window of opportunity' makes clinical remission a realistic goal.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Biologics + treat-to-target: remission now achievable in a large fraction; early treatment preserves joints",
+    "population": "Rheumatoid arthritis adults (RCT + guideline synthesis)",
+    "provenance": {
+      "primary": "Smolen JS, Aletaha D, McInnes IB - 'Rheumatoid arthritis', Lancet 2016",
+      "doi": "10.1016/S0140-6736(16)30173-8",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (mechanism: McInnes & Schett Lancet 2017 10.1016/S0140-6736(17)31472-1)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/ (immune tolerance failure)",
+    "confidence_notes": "A clear biologic-revolution success. Caveats: infection risk (mandatory TB screening), JAKi CV/clot signal in older at-risk patients, cost. Anti-CCP/RF autoantibodies often precede symptoms by years.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gout-mostly-genetic-not-dietary",
+    "statement": "Hyperuricemia is dominated by renal under-excretion that is largely genetically determined (SLC2A9, ABCG2); diet raises urate and triggers attacks but contributes only a few percent to serum urate compared with genetics - so 'just change your diet' routinely fails.",
+    "claim_type": "mechanism",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Dietary contribution to serum urate small (~few %) vs genetic; purine-rich foods/alcohol/fructose raise risk but modestly",
+    "population": "Men (Health Professionals Follow-up Study) + genetic association studies",
+    "provenance": {
+      "primary": "Choi HK, Atkinson K, Karlson EW, Willett W, Curhan G - 'Purine-rich foods, dairy and protein intake, and the risk of gout in men', NEJM 2004",
+      "doi": "10.1056/NEJMoa035700",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Corrects the 'rich man's gluttony' framing. Crystals ignite NLRP3 inflammasome -> IL-1-beta (basis of acute attack and IL-1 blockade for refractory cases).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gout-curable-urate-to-target-undertreated",
+    "statement": "Gout is in principle curable: urate-lowering therapy (allopurinol first-line) titrated to a serum urate target below ~6 mg/dL dissolves crystals and stops the disease - yet it is chronically under-prescribed, under-titrated, and stopped early.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Treat-to-target <6 mg/dL: crystal dissolution and attack cessation over months",
+    "population": "Gout patients with recurrent attacks/tophi/urate stones (ACR 2020 guideline)",
+    "provenance": {
+      "primary": "FitzGerald JD, et al. - '2020 American College of Rheumatology Guideline for the Management of Gout', Arthritis Rheumatol 2020",
+      "doi": "10.1002/art.41247",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (febuxostat CV: White CARES NEJM 2018 10.1056/NEJMoa1710895)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The honest failure is execution: ULT started without colchicine prophylaxis triggers early attacks and patients quit. Febuxostat carries a debated CV-safety signal (CARES).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lupus-hcq-backbone",
+    "statement": "Hydroxychloroquine is the near-universal backbone of SLE treatment, reducing flares, organ damage, and mortality; it is the one high-value drug for essentially every lupus patient, while the rest of management is organ- and severity-tailored.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "HCQ associated with fewer flares, less organ damage, lower mortality across cohorts",
+    "population": "Systemic lupus erythematosus adults (Nat Rev Dis Primers synthesis)",
+    "provenance": {
+      "primary": "Kaul A, et al. - 'Systemic lupus erythematosus', Nat Rev Dis Primers 2016",
+      "doi": "10.1038/nrdp.2016.39",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Type-I interferon signature drives inflammation (basis of belimumab/anifrolumab). Lupus nephritis is the prognosis-defining complication. Chronic glucocorticoid causes much of lupus's long-term damage - minimize dose. CAR-T (Schett Lancet 2023 10.1016/S0140-6736(23)01126-1) is a frontier, not yet standard.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "spondyloarthritis-treatable-diagnostic-delay",
+    "statement": "Axial spondyloarthritis is highly treatable (exercise foundational; NSAIDs first-line; TNF and IL-17 inhibitors highly effective), but the dominant failure is diagnostic delay of ~7-10 years from mistaking inflammatory back pain for mechanical back pain.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "TNF/IL-17 inhibitors: large response in inadequate NSAID responders; IL-23 inhibition works for psoriatic but NOT axial disease",
+    "population": "Axial/peripheral spondyloarthritis adults (Nat Rev Dis Primers / Nat Rev Rheumatol synthesis)",
+    "provenance": {
+      "primary": "Sieper J, Poddubnyy D - 'Axial spondyloarthritis', Nat Rev Dis Primers 2015",
+      "doi": "10.1038/nrdp.2015.13",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (treatment update: Danve & Deodhar Nat Rev Rheumatol 2022 10.1038/s41584-022-00761-z)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Pattern to know: back pain WORSE with rest and BETTER with movement, in a young person, >3 months, HLA-B27 - the reverse of mechanical back pain. IL-23-axial dissociation shows the subtypes are mechanistically distinct.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fibromyalgia-central-sensitization-real",
+    "statement": "Fibromyalgia is a real disorder of central pain processing (nociplastic pain / central sensitization) with normal inflammatory markers and imaging; 'it's central' is not 'it's imaginary.'",
+    "claim_type": "mechanism",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Lowered pain thresholds, augmented central responses, impaired descending inhibition",
+    "population": "Fibromyalgia patients; central-sensitization framework (IASP nociplastic category)",
+    "provenance": {
+      "primary": "Woolf CJ - 'Central sensitization: implications for the diagnosis and treatment of pain', Pain 2011",
+      "doi": "10.1016/j.pain.2010.09.030",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (review: Siracusa Int J Mol Sci 2021 10.3390/ijms22083891)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-ref Section 14 6 (central sensitization physiology). The normality of labs/imaging is why it was historically dismissed - a real injustice.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fibromyalgia-management-modest-multimodal",
+    "statement": "Fibromyalgia's best-supported treatments are graded aerobic exercise (the single strongest), CBT, sleep treatment, and patient education; FDA-approved drugs (duloxetine, milnacipran, pregabalin) help a minority modestly, and opioids are harmful.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "All effects modest; no single large lever; exercise best-supported",
+    "population": "Fibromyalgia adults (meta-analytic synthesis)",
+    "provenance": {
+      "primary": "Siracusa R, et al. - 'Fibromyalgia: Pathogenesis, Mechanisms, Diagnosis and Treatment Options Update', Int J Mol Sci 2021",
+      "doi": "10.3390/ijms22083891",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Multimodal, self-management-centered, modest. The genuine levers (exercise, sleep, CBT, validation) are unsellable, so the supplement market dominates instead (see fibromyalgia-supplements-weak).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pmr-gca-glucocorticoids-gca-emergency",
+    "statement": "Polymyalgia rheumatica and giant cell arteritis respond dramatically to glucocorticoids (near-diagnostic); GCA is a medical emergency - high-dose steroids must start immediately on clinical suspicion, before biopsy, to prevent irreversible vision loss.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "PMR resolves in days on low-dose prednisone; tocilizumab is a proven steroid-sparing agent in GCA",
+    "population": "Adults over ~50 with PMR/GCA (systematic review + treat-to-target synthesis)",
+    "provenance": {
+      "primary": "Buttgereit F, Dejaco C, Matteson EL, Dasgupta B - 'Polymyalgia Rheumatica and Giant Cell Arteritis: A Systematic Review', JAMA 2016",
+      "doi": "10.1001/jama.2016.5444",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (treat-to-target: Dejaco Ann Rheum Dis 2024 10.1136/ard-2022-223429)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The critical clinical rule: new headache + visual symptoms + high inflammatory markers in someone over 50 = treat now, biopsy later. Strong IL-6 signature (basis for tocilizumab and sky-high CRP).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "aip-diet-low-evidence-overreach",
+    "statement": "The autoimmune protocol (AIP) elimination diet has only small, mostly uncontrolled pilot evidence (almost all in inflammatory bowel disease) for symptom/quality-of-life improvement; there are no RCTs and no evidence it modifies RA, lupus, MS, or thyroid disease.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "anecdotal",
+    "direction": "mixed",
+    "effect_size": "Small single-arm IBD pilots show symptom/QoL improvement; no controlled disease-modification evidence",
+    "population": "Mostly IBD pilots (Konijeti 2017 n~15; Chandrasekaran 2019); review across autoimmune diseases",
+    "provenance": {
+      "primary": "Konijeti GG, et al. - 'Efficacy of the Autoimmune Protocol Diet for Inflammatory Bowel Disease', Inflamm Bowel Dis 2017",
+      "doi": "10.1097/MIB.0000000000001221",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (review: Pardali Metabol Open 2025 10.1016/j.metop.2024.100342)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Marketed far beyond its evidence as a treatment for 'all autoimmune disease.' Real harm is using it to REPLACE DMTs/biologics that work; very restrictive, can drive disordered eating and nutrient gaps. Mechanism->outcome overreach.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "chronic-lyme-long-antibiotics-refuted",
+    "statement": "Prolonged-antibiotic treatment for 'chronic Lyme' (chronic symptoms without evidence of ever having had Lyme, diagnosed by non-validated labs) is refuted by RCTs showing no durable benefit and real harm; this is distinct from post-treatment Lyme disease syndrome (PTLDS), which is real and under-researched.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Multiple RCTs of prolonged antibiotics: no durable benefit; harms include line infections and C. difficile",
+    "population": "Patients with persistent symptoms attributed to Lyme (RCTs + systematic review)",
+    "provenance": {
+      "primary": "Dersch R, et al. - 'Treatment of post-treatment Lyme disease symptoms - a systematic review', Eur J Neurol 2024",
+      "doi": "10.1111/ene.16293",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; PubMed esearch verified (Beaman Intern Med J 2016 10.1111/imj.13278; Arias guidelines 2025 10.1016/j.idnow.2025.105205)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hold both truths: PTLDS (persistent symptoms AFTER documented, treated Lyme) deserves research and compassion; 'chronic Lyme' long-antibiotic protocols are refuted and dangerous. The controversy is genuine but the antibiotic question is settled.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fibromyalgia-supplements-weak",
+    "statement": "Supplements marketed for fibromyalgia (magnesium, D-ribose, CoQ10, SAMe, 'mitochondrial/adrenal support') have weak, inconsistent, high-bias evidence and no meta-grade support for changing the disease; most present an in-vitro mechanism as a clinical outcome.",
+    "claim_type": "outcome",
+    "domain": "disease-neuro-rheum",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No supplement has meta-grade support; trials small and high-bias",
+    "population": "Fibromyalgia supplement trials (heterogeneous, low quality)",
+    "provenance": {
+      "primary": "Siracusa R, et al. - 'Fibromyalgia: Pathogenesis, Mechanisms, Diagnosis and Treatment Options Update', Int J Mol Sci 2021 (treatment-evidence synthesis)",
+      "doi": "10.3390/ijms22083891",
+      "surfaced_via": "Wave-24 neuro/rheum disease atlas; mechanism!=outcome grading per SCHEMA.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Adjuncts at best; should never displace exercise/CBT/sleep/duloxetine. Same logic applies to most 'natural RA/lupus reversal' protocols. 'Adrenal fatigue' (cross-ref Section 13) is not a real diagnosis.",
+    "added_on": "2026-06-28"
+  }
+]

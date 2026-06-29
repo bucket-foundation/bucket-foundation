@@ -1,0 +1,401 @@
+[
+  {
+    "id": "moud-halves-opioid-mortality-sordo",
+    "statement": "Opioid agonist maintenance treatment (methadone or buprenorphine) roughly halves all-cause and overdose mortality in people with opioid use disorder versus being out of treatment.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~50% reduction in all-cause and overdose mortality during treatment; highest risk in the weeks after leaving treatment",
+    "population": "People with opioid use disorder (systematic review/meta-analysis of cohort studies)",
+    "provenance": {
+      "primary": "Sordo et al., BMJ 2017 — Mortality risk during and after opioid substitution treatment",
+      "doi": "10.1136/bmj.j1550",
+      "surfaced_via": "PubMed PMID 28446428"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest treatment-mortality finding in addiction medicine. Cohort (not RCT) by ethical necessity but large and consistent. Detox-alone without maintenance is associated with WORSE outcomes (tolerance loss -> overdose).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "brain-disease-model-addiction-volkow",
+    "statement": "Addiction involves real, measurable neuroadaptations in reward, motivation, learning/memory, and prefrontal inhibitory circuits across three stages (binge/intoxication, withdrawal/negative affect, preoccupation/anticipation).",
+    "claim_type": "mechanism",
+    "domain": "addiction",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Qualitative circuit-level model with neuroimaging support",
+    "population": "Humans and animal models with substance use disorders",
+    "provenance": {
+      "primary": "Volkow, Koob & McLellan, NEJM 2016 — Neurobiologic Advances from the Brain Disease Model of Addiction",
+      "doi": "10.1056/NEJMra1511480",
+      "surfaced_via": "PubMed PMID 26816013"
+    },
+    "conflicts_with": ["addiction-disorder-of-choice-heyman"],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "The neuroadaptation is real (mechanism). The strong inference 'therefore chronic, choiceless brain disease' is an outcome/framing claim that overreaches the mechanism (honesty rule #1) and conflicts with remission data.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "addiction-disorder-of-choice-heyman",
+    "statement": "Most people who meet criteria for drug dependence remit, the majority by their early thirties and most without formal treatment, a natural-recovery pattern inconsistent with a purely chronic progressive brain disease.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Majority remission among ever-dependent in national surveys; much of it untreated ('maturing out')",
+    "population": "US national epidemiological surveys (NESARC/NCS) of substance dependence",
+    "provenance": {
+      "primary": "Heyman, Addiction: A Disorder of Choice (Harvard University Press, 2009); Robins Vietnam veteran studies (1970s)",
+      "doi": "",
+      "surfaced_via": "Reference mining + corpus synthesis"
+    },
+    "conflicts_with": ["brain-disease-model-addiction-volkow"],
+    "canon_link": "",
+    "confidence_notes": "Serious critique, not fringe. Does NOT mean addiction is trivial or pure willpower; means it is responsive to incentives/context. Corpus indexes the disease-vs-choice conflict as open-but-converging (both partly true).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "most-users-never-become-dependent-lopezquintero",
+    "statement": "For every common drug, the majority of people who ever use it never transition to dependence; transition probability varies by drug (nicotine highest ~68%, then opioids/alcohol/cocaine ~21-23%, cannabis ~9%).",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Cumulative probability of dependence among ever-users: nicotine ~68%, cocaine ~21%, alcohol ~22%, cannabis ~9% (order-of-magnitude)",
+    "population": "~43,000 US adults, NESARC",
+    "provenance": {
+      "primary": "Lopez-Quintero et al., Drug Alcohol Depend 2011 — Probability and predictors of transition from first use to dependence",
+      "doi": "10.1016/j.drugalcdep.2010.11.004",
+      "surfaced_via": "PubMed PMID 21145178"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #2 in data form: refutes 'one hit and you're hooked.' Relative addiction potential, not precision. Consistent with Anthony/Warner/Kessler 1994.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dependence-not-addiction-distinction",
+    "statement": "Physical dependence (tolerance + withdrawal) is normal pharmacological adaptation and is not the same as addiction (compulsive use despite harm); DSM-5 abolished the abuse/dependence split for a single dimensional substance use disorder.",
+    "claim_type": "mechanism",
+    "domain": "addiction",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Definitional/categorical",
+    "population": "General (clinical nosology, DSM-5 2013)",
+    "provenance": {
+      "primary": "DSM-5 (APA, 2013) reclassification of substance use disorders as a dimensional construct",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "High-confidence definitional point. Conflating dependence with addiction underlies the 'replacing one drug with another' anti-MAT canard and the mislabeling of pain patients as addicts.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "varenicline-combination-nrt-smoking-cessation",
+    "statement": "Varenicline and combination nicotine-replacement therapy are the most effective pharmacological smoking-cessation aids (~2-3x placebo quit rates); cytisine is non-inferior; behavioural support multiplies effect.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Varenicline RR ~2.3 vs placebo; combination NRT superior to single-form; cytisine non-inferior to varenicline",
+    "population": "Adult smokers attempting cessation (network meta-analysis of RCTs)",
+    "provenance": {
+      "primary": "Cahill et al., Cochrane 2013 — Pharmacological interventions for smoking cessation: network meta-analysis; Courtney et al., JAMA 2021 (cytisine, DOI 10.1001/jama.2021.7621)",
+      "doi": "10.1002/14651858.CD009329.pub2",
+      "surfaced_via": "PubMed PMID 23728690"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Varenicline's earlier neuropsychiatric black-box concern was cleared by EAGLES. Cross-ref Section 09 for combustion-vs-nicotine harm and vaping harm-reduction grading.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "naltrexone-acamprosate-alcohol-modest",
+    "statement": "Naltrexone (reduces heavy drinking) and acamprosate (supports abstinence) have real but modest efficacy for alcohol use disorder (number-needed-to-treat ~12); both are cheap, generic, and under-prescribed.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "NNT ~12 (acamprosate for return-to-any-drinking; naltrexone for return-to-heavy-drinking)",
+    "population": "Adults with alcohol use disorder, outpatient (systematic review/meta-analysis of RCTs)",
+    "provenance": {
+      "primary": "Jonas et al., JAMA 2014 — Pharmacotherapy for Adults With Alcohol Use Disorders in Outpatient Settings",
+      "doi": "10.1001/jama.2014.3628",
+      "surfaced_via": "PubMed PMID 24825644"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Modest but real and comparable to many accepted treatments. The treatment gap is cultural as much as clinical. Disulfiram works only with supervised adherence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alcohol-benzo-withdrawal-can-kill",
+    "statement": "Abrupt cessation in physically dependent heavy alcohol or benzodiazepine users can cause seizures and delirium tremens with real mortality; severe cases require benzodiazepine-supported supervised detox (alcohol) or slow taper (benzodiazepines).",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Delirium tremens carries meaningful mortality if unmanaged; benzodiazepine withdrawal can cause seizures",
+    "population": "Physically dependent heavy alcohol / chronic benzodiazepine users",
+    "provenance": {
+      "primary": "Established clinical-toxicology consensus (e.g., ASAM alcohol-withdrawal management guidelines)",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Distinguishes alcohol/benzo from opioids: opioid withdrawal is agonizing but rarely directly fatal; alcohol/benzo withdrawal can be. 'Cold turkey' is safe advice for nicotine, dangerous for severe alcohol/benzo dependence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "no-effective-medication-stimulant-use-disorder",
+    "statement": "No pharmacotherapy is robustly effective or FDA-approved for cocaine or methamphetamine use disorder; the best-evidenced treatment is the behavioural intervention contingency management.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No medication with consistent benefit for cocaine use disorder; modest signal for bupropion + naltrexone in methamphetamine",
+    "population": "Adults with cocaine/methamphetamine use disorder (systematic reviews of RCTs)",
+    "provenance": {
+      "primary": "Chan et al., J Gen Intern Med 2019 — Pharmacotherapy for Cocaine Use Disorder: a systematic review and meta-analysis",
+      "doi": "10.1007/s11606-019-05074-8",
+      "surfaced_via": "PubMed PMID 31183685"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest null on medication. The field's biggest pharmacological hole. Behavioural lever (CM) exists but is under-used.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "contingency-management-best-behavioural-underused",
+    "statement": "Contingency management (tangible rewards for verified abstinence) is the most effective psychosocial treatment for stimulant use disorder, with an observed mortality association, yet it is severely under-used because rewarding abstinence offends a moral intuition.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Largest effect sizes among psychosocial treatments for stimulants; CM participation associated with lower mortality in cohort data",
+    "population": "Adults with stimulant use disorder (meta-analyses of RCTs + cohort)",
+    "provenance": {
+      "primary": "AJP 2025 — Contingency Management for Stimulant Use Disorder and Association With Mortality (cohort); broad CM meta-analytic literature",
+      "doi": "10.1176/appi.ajp.20250053",
+      "surfaced_via": "PubMed PMID 40926572"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Under-deployment is driven by moralism over evidence. Where pharmacology fails (stimulants), CM is the main lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "naloxone-distribution-reduces-overdose-death",
+    "statement": "Community overdose education and naloxone distribution (OEND) reduces opioid overdose mortality by putting a fast-acting reversal agent in the hands of people who use drugs and bystanders.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Reduced overdose mortality in communities with real, wide distribution",
+    "population": "People who use opioids and their social networks; syringe-service-program participants",
+    "provenance": {
+      "primary": "CDC MMWR 2020 — Overdose Education and Naloxone Distribution Within Syringe Service Programs; multiple program evaluations",
+      "doi": "10.15585/mmwr.mm6933a2",
+      "surfaced_via": "PubMed PMID 32817603"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Does not treat addiction; keeps people alive long enough to access treatment. Keystone of harm reduction.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "twelve-step-facilitation-effective-not-universal",
+    "statement": "Manualized Twelve-Step Facilitation (clinician-delivered linkage to AA) produces alcohol-abstinence outcomes at least as good as, and often better than, other active treatments and is more cost-effective; the bare advice 'go to meetings' is not the same intervention, and AA's culture fits some people and repels others.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "TSF >= CBT/other active treatments on continuous abstinence; superior cost-effectiveness",
+    "population": "Adults with alcohol use disorder (Cochrane review of RCTs)",
+    "provenance": {
+      "primary": "Kelly et al., Cochrane 2020 — Alcoholics Anonymous and other 12-step programs for alcohol use disorder",
+      "doi": "10.1002/14651858.CD012880.pub2",
+      "surfaced_via": "PubMed PMID 32159228"
+    },
+    "conflicts_with": ["one-size-12step-only-real-recovery-myth"],
+    "canon_link": "",
+    "confidence_notes": "Strong evidence is for STRUCTURED TSF, not the bare slogan. Real, effective, free, widely available -- but one tool, not the only tool, and not a substitute for MAT in opioid/alcohol use disorder.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gambling-established-behavioural-addiction",
+    "statement": "Gambling disorder is the only broadly accepted behavioural addiction; DSM-5 reclassified it with substance addictions on the basis of shared phenomenology and reward-circuit biology, and it carries high suicide risk.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Shared reward-circuit biology and clinical course with substance addictions; elevated suicide risk",
+    "population": "Adults with gambling disorder",
+    "provenance": {
+      "primary": "Potenza et al., Nat Rev Dis Primers 2019 — Gambling disorder",
+      "doi": "10.1038/s41572-019-0099-7",
+      "surfaced_via": "PubMed PMID 31346179"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The bar the contested behavioural constructs (food/sex/internet/phone) have not cleared. CBT best-evidenced; naltrexone shows a signal; Gamblers Anonymous thinly evidenced.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "food-sex-internet-phone-addiction-contested",
+    "statement": "Food, sex, internet/gaming, and phone/social-media 'addiction' are contested constructs where the addiction label outruns the evidence; the WHO (ICD-11) and APA (DSM-5) openly disagree on gaming and explicitly classify compulsive sexual behaviour as an impulse-control disorder, not an addiction.",
+    "claim_type": "hypothesis",
+    "domain": "addiction",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "Real compulsive/harmful patterns in a minority; construct validity and substance-vs-behaviour classification unresolved",
+    "population": "General population (heterogeneous self-report instruments)",
+    "provenance": {
+      "primary": "DSM-5 (gaming = condition for further study; no sex/porn/phone diagnosis) vs ICD-11 (gaming disorder included; compulsive sexual behaviour = impulse-control, not addiction)",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: 'addiction' doing rhetorical work the evidence hasn't licensed. Self-labelled 'porn addiction' correlates more with moral disapproval of one's use than with amount of use. Grade the construct, not the vibe.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cannabis-real-disorder-not-harmless",
+    "statement": "Cannabis use disorder is real (~9% of ever-users, ~17% with adolescent onset, higher in daily users); adolescent and high-THC exposure is associated with psychosis risk in the vulnerable; chronic use can cause cannabinoid hyperemesis syndrome.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~9% lifetime dependence among ever-users (rising to ~17% with adolescent onset); dose-related psychosis association",
+    "population": "Cannabis users (cohort/epidemiological)",
+    "provenance": {
+      "primary": "Volkow et al., NEJM 2014 — Adverse Health Effects of Marijuana Use; Hall, Addiction 2016 (DOI 10.1111/add.13428)",
+      "doi": "10.1056/NEJMra1402309",
+      "surfaced_via": "PubMed PMID 24897085"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Not harmless, not the devil. Cannabis-psychosis causation vs shared vulnerability still debated but signal consistent. Today's high-THC product is not the plant of older epidemiology. No approved medication for the disorder.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "psychedelics-low-addiction-potential",
+    "statement": "Classic psychedelics (psilocybin, LSD, mescaline, DMT) have very low addiction potential -- not reliably reinforcing, rapid tolerance discourages bingeing -- with risks that are psychological rather than dependence-related.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Negligible dependence/compulsive-use signature",
+    "population": "Psychedelic users (epidemiological + pharmacological)",
+    "provenance": {
+      "primary": "Established pharmacology of 5-HT2A agonist psychedelics; cross-ref Section 20 6.4 for the therapy frontier",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Belong outside the addiction conversation prohibition lumped them into. The psychedelic-assisted-therapy frontier (incl. as treatments FOR addiction) is early/unblindable/not-approved -- graded in Section 20 6.4.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "caffeine-dependence-yes-disorder-mostly-no",
+    "statement": "Caffeine produces genuine physical dependence with a recognized withdrawal syndrome, but DSM-5 lists caffeine use disorder only as a condition for further study; for most users it is a benign dependence.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reliable withdrawal (headache, fatigue, low mood) peaking ~1-2 days after cessation; clinically significant addiction uncommon",
+    "population": "Regular caffeine users",
+    "provenance": {
+      "primary": "DSM-5 (caffeine withdrawal/intoxication recognized; use disorder = condition for further study); controlled caffeine-withdrawal trials",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Illustrates honesty rule #2: dependence is common and usually benign, and is not the same as addiction. Taper to quit without withdrawal.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "rock-bottom-myth-debunked",
+    "statement": "The belief that an addicted person must hit 'rock bottom' before recovery is possible is false; early intervention works, people recover from every severity, and motivational approaches are built on the opposite premise that ambivalence is workable now.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Motivational interviewing and early intervention effective without any 'bottom'",
+    "population": "People with substance use disorders",
+    "provenance": {
+      "primary": "Motivational interviewing evidence base (Miller & Rollnick); natural-remission data (Heyman)",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Dangerous myth that rationalizes withholding help and waiting for catastrophe. Refuted by MI efficacy and remission-from-all-depths data.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "rapid-detox-harmful-not-treatment",
+    "statement": "Anaesthesia-assisted ('ultra-rapid') opioid detox is expensive, medically risky (deaths have occurred), and does nothing for the addiction itself -- detox is not treatment, and by lowering tolerance it can raise overdose risk.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "No benefit over standard care for sustained recovery; serious adverse events including death",
+    "population": "People with opioid use disorder",
+    "provenance": {
+      "primary": "Clinical evidence on anaesthesia-assisted rapid opioid detoxification; tolerance-loss overdose mechanism (cf. Sordo 2017)",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Detox is not treatment. Compresses withdrawal while leaving craving/cues/context intact; lowered tolerance makes relapse more lethal.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "one-size-12step-only-real-recovery-myth",
+    "statement": "The claim that one-size-fits-all 12-step abstinence is the only legitimate path to recovery is an overclaim; multiple effective paths exist (MAT, CBT, contingency management, motivational interviewing, and for some, moderation rather than abstinence).",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Several evidence-based treatment paths with comparable or superior outcomes for different people",
+    "population": "People with substance use disorders",
+    "provenance": {
+      "primary": "Composite of MAT (Sordo 2017), pharmacotherapy (Jonas 2014), CM, MI, and TSF (Kelly 2020) evidence bases",
+      "doi": "",
+      "surfaced_via": "Corpus synthesis"
+    },
+    "conflicts_with": ["twelve-step-facilitation-effective-not-universal"],
+    "canon_link": "",
+    "confidence_notes": "TSF works AND is not universal -- both true. Historic insistence that everyone must do AA and be abstinent forever failed the large minority it didn't fit. Goal should be severity-stratified, not dogmatic.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "harm-reduction-does-not-increase-drug-use",
+    "statement": "Syringe service programs reduce HIV/HCV transmission without increasing drug use, and harm-reduction measures (naloxone, drug checking, supervised consumption) keep people alive and connected to care; the abstinence-vs-harm-reduction framing is a false binary.",
+    "claim_type": "outcome",
+    "domain": "addiction",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Reduced infectious-disease transmission and overdose death; no increase in drug use ('enabling' worry not supported)",
+    "population": "People who use drugs accessing harm-reduction services",
+    "provenance": {
+      "primary": "Syringe-service-program and OEND evidence base (incl. CDC MMWR 10.15585/mmwr.mm6933a2)",
+      "doi": "10.15585/mmwr.mm6933a2",
+      "surfaced_via": "PubMed PMID 32817603 + corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Controversy is moral/political more than empirical. Abstinence is a fine goal but a deadly precondition for receiving help; harm reduction keeps people alive to reach abstinence if/when they choose it.",
+    "added_on": "2026-06-28"
+  }
+]

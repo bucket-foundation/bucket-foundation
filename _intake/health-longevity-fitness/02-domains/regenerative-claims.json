@@ -1,0 +1,344 @@
+[
+  {
+    "id": "hsct-established-curative",
+    "statement": "Hematopoietic (bone-marrow) stem-cell transplant rebuilds the entire blood and immune system from donor or autologous blood-forming stem cells and is curative for many leukemias, lymphomas, and inherited blood disorders.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Standard of care since the 1970s; >1M performed worldwide; curative in many blood malignancies/disorders (carries real GVHD/infection risk).",
+    "population": "Patients with hematologic malignancies and inherited blood/immune disorders",
+    "provenance": {
+      "primary": "E. Donnall Thomas (Nobel Prize in Physiology or Medicine, 1990); decades of RCT + registry data (CIBMTR/EBMT)",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The gold standard of what 'stem-cell therapy' should mean: defined cell type, native target tissue, hard endpoint, decades of evidence. Distinguishes real stem-cell medicine from the predatory clinic tier.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ipsc-yamanaka-reprogramming-discovery",
+    "statement": "Four transcription factors (OCT4, SOX2, KLF4, MYC) can revert an adult somatic cell to an embryonic-like pluripotent state (induced pluripotent stem cells), proving cell identity is reversible.",
+    "claim_type": "mechanism",
+    "domain": "regenerative",
+    "evidence_tier": "invitro",
+    "direction": "supports",
+    "effect_size": "Foundational; dissolved the one-way-street dogma of differentiation and removed the embryonic-stem-cell ethical bottleneck.",
+    "population": "Mouse then human fibroblasts (in vitro)",
+    "provenance": {
+      "primary": "Takahashi & Yamanaka, Cell 2006; Nobel Prize 2012 (shared with Gurdon)",
+      "doi": "10.1016/j.cell.2006.07.024",
+      "surfaced_via": "regenerative-frontier chapter (31) build; cross-ref B-aging-mechanisms.md §4"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ + 04-information/ (gene regulation, cell identity)",
+    "confidence_notes": "Settled as discovery. iPSCs are an unambiguous research/drug-screening tool; iPSC-derived THERAPIES (retina, islets, neurons) are early-stage with real tumorigenicity and immune-rejection hazards.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ipsc-therapy-early-clinical",
+    "statement": "iPSC-derived cell therapies are in early human trials (macular degeneration, Parkinson's, type-1 diabetes islets, cardiac patches) with promising but preliminary results.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "animal",
+    "direction": "mixed",
+    "effect_size": "Early human pilots (e.g., stem-cell-derived islets restoring insulin); not yet approved products.",
+    "population": "Small first-in-human cohorts",
+    "provenance": {
+      "primary": "Takahashi 2014 (retinal sheet, Japan); Vertex VX-880 islet program; multiple Phase 1/2 trials",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Legitimate, careful, early. The two governing hazards are teratoma risk from residual pluripotent cells and immune rejection/manufacturing consistency. Correctly moving slowly.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "stem-cell-clinics-predatory-unproven",
+    "statement": "The commercial 'stem-cell clinic' industry sells IV infusions and joint injections (adipose, 'amniotic', umbilical, exosome products) for a long menu of unrelated conditions with no controlled evidence of benefit and documented serious harm.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No proven benefit; documented harms include permanent blindness, infection outbreaks, tumors, and death.",
+    "population": "Cash-pay patients at hundreds of US clinics + medical-tourism sites",
+    "provenance": {
+      "primary": "Kuriyan et al. NEJM 2017 (3 patients blinded after intravitreal adipose cells, 10.1056/NEJMoa1609583); FDA injunction vs US Stem Cell Inc. 2019; CDC 2018 cord-blood infection outbreak",
+      "doi": "10.1056/NEJMoa1609583",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The chapter's sharpest honesty point. Predatory-tier signature: cash-only, long unrelated-condition menu, not in a registered trial, promises regeneration of tissue the cells don't natively build. Burden of proof unmet.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "crispr-doudna-charpentier-tool",
+    "statement": "CRISPR-Cas9 is a programmable guide-RNA-directed DNA-cutting system, adapted from a bacterial immune system into a general-purpose gene-editing tool.",
+    "claim_type": "mechanism",
+    "domain": "regenerative",
+    "evidence_tier": "invitro",
+    "direction": "supports",
+    "effect_size": "Foundational editing platform; base-pairing lets a ~20-nt guide RNA address one site in a 3-billion-bp genome.",
+    "population": "Universal molecular tool",
+    "provenance": {
+      "primary": "Jinek/Doudna & Charpentier, Science 2012; Nobel Prize in Chemistry 2020",
+      "doi": "10.1126/science.1225829",
+      "surfaced_via": "regenerative-frontier chapter (31) build; tie to 01-foundations DNA fundamentals"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/ + 05-biophysics/ (DNA base pairing, molecular recognition)",
+    "confidence_notes": "Settled. Rests directly on the DNA/base-pairing fundamentals in 01-foundations.md.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "luxturna-gene-therapy-blindness",
+    "statement": "Voretigene neparvovec (Luxturna), an AAV2 vector delivering a working RPE65 gene under the retina, restored functional vision in RPE65-mediated inherited retinal dystrophy and was the first directly-administered gene therapy approved in the US.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved multi-luminance mobility (functional navigation in dim light); FDA-approved 2017.",
+    "population": "Patients with biallelic RPE65 retinal dystrophy",
+    "provenance": {
+      "primary": "Russell et al., Lancet 2017 (Phase 3, AAV2-hRPE65v2)",
+      "doi": "10.1016/S0140-6736(17)31868-8",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Gene ADDITION (not editing). Durable real success; one of the field's proofs the translation gap can be crossed.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "zolgensma-gene-therapy-sma",
+    "statement": "A single intravenous dose of onasemnogene abeparvovec (Zolgensma, AAV9 carrying SMN1) produced motor milestones and survival in type-1 spinal muscular atrophy infants who would otherwise have died.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Infants sat/walked who were expected to die; FDA-approved 2019; ~$2.1M list price.",
+    "population": "Type-1 SMA infants",
+    "provenance": {
+      "primary": "Mendell et al., NEJM 2017 (single-dose gene-replacement for SMA)",
+      "doi": "10.1056/NEJMoa1706198",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Dramatic, real. Headline 'most expensive drug' of its era — the access/cost asterisk that recurs across approved gene therapies.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "casgevy-crispr-sickle-cell-cure",
+    "statement": "Exagamglogene autotemcel (Casgevy/exa-cel), an ex-vivo CRISPR edit of the patient's own blood stem cells disrupting the BCL11A enhancer to reactivate fetal hemoglobin, freed most severe sickle-cell patients from vaso-occlusive crises and became the first approved CRISPR medicine (FDA, Dec 2023).",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Majority of treated severe SCD patients free of vaso-occlusive crises; also approved for transfusion-dependent beta-thalassemia; ~$2.2M.",
+    "population": "Severe sickle-cell disease and transfusion-dependent beta-thalassemia patients",
+    "provenance": {
+      "primary": "Frangoul et al., NEJM 2021 (CRISPR-Cas9 for SCD and beta-thalassemia); CLIMB program; FDA approval Dec 2023",
+      "doi": "10.1056/NEJMoa2031054",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The landmark: first approved gene-EDITING medicine; functional cure for most treated patients. Cruel equity gap: SCD overwhelmingly affects populations least able to access a $2.2M myeloablative therapy.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gene-therapy-cost-access-reality",
+    "statement": "Approved gene therapies are among the most expensive medicines in history (Zolgensma ~$2.1M, Casgevy ~$2.2M, Hemgenix ~$3.5M, Lenmeldy ~$4.25M), and the populations most affected by some target diseases are least able to access them.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Per-patient prices $2M-$4.25M; rare-disease economics + per-patient manufacturing limit scale and global reach.",
+    "population": "Patients with approved gene-therapy indications worldwide",
+    "provenance": {
+      "primary": "FDA approvals + manufacturer list prices (Novartis, Vertex/CRISPR Tx, CSL Behring, Orchard); Lenmeldy 2024 most-expensive-drug reporting",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "'Cured in principle' does heavy lifting for most of the world's patients. Real, unsolved equity problem, not a footnote.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "he-jiankui-germline-editing-scandal",
+    "statement": "Heritable human germline genome editing crosses the field's ethical bright line; the one documented case (He Jiankui's 2018 CRISPR-edited twins) was scientifically reckless, addressed no unmet need, and was condemned worldwide and criminally prosecuted.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "Edits were imprecise/mosaic, CCR5-disruption HIV rationale was unjustified, consent/oversight violated; He convicted/imprisoned in China (2019); global moratorium calls followed.",
+    "population": "Two edited human embryos ('Lulu and Nana')",
+    "provenance": {
+      "primary": "He Jiankui 2018 announcement; international scientific condemnation; Chinese court conviction 2019",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Distinct from somatic editing (which is not inherited and underlies all approved gene therapies). Heritable germline editing is currently prohibited/unfunded across essentially all serious jurisdictions; consensus: not safe or justified.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "partial-reprogramming-mouse-only",
+    "statement": "Cyclic partial (Yamanaka-factor) reprogramming reverses cellular aging hallmarks and, in mice, extends lifespan (progeroid) and restores vision (aged/glaucomatous) without erasing cell identity.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "Lifespan extension in progeroid mice (Ocampo); vision restoration in aged mice (Lu/Sinclair). No human efficacy data.",
+    "population": "Mice (progeroid and naturally aged)",
+    "provenance": {
+      "primary": "Ocampo et al., Cell 2016 (10.1016/j.cell.2016.11.052); Lu/Sinclair et al., Nature 2020 (10.1038/s41586-020-2975-4)",
+      "doi": "10.1016/j.cell.2016.11.052",
+      "surfaced_via": "regenerative-frontier chapter (31) build; cross-ref B-aging-mechanisms.md §4"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (epigenetic information, the 'information theory of aging')",
+    "confidence_notes": "ANIMAL-tier only. The Altos (~$3B)/Retro/NewLimit bet. Funding is provenance, not evidence (LABS.md rule). No human has been age-reversed by reprogramming.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "partial-reprogramming-cancer-risk",
+    "statement": "The central, non-theoretical hazard of cellular reprogramming is cancer: the factors are reprogramming factors, MYC is an oncogene, and incomplete/excessive reprogramming can cause teratomas and loss of cell identity.",
+    "claim_type": "mechanism",
+    "domain": "regenerative",
+    "evidence_tier": "animal",
+    "direction": "refutes",
+    "effect_size": "Whole research problem is dosing rejuvenation without tipping into oncogenesis; this safety margin is unproven in humans.",
+    "population": "Mouse models; in-vitro",
+    "provenance": {
+      "primary": "Reprogramming-toxicity literature; rationale for OSK (dropping MYC) in Lu/Sinclair 2020",
+      "doi": "10.1038/s41586-020-2975-4",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Also: epigenetic-clock 'rejuvenation' is a surrogate, not an outcome. Moving a Horvath/PhenoAge reading is not extending healthy human life.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "xenotransplant-pig-organ-firsts",
+    "statement": "Gene-edited pig organs were transplanted into humans for the first time in 2021-2022 (kidneys; a heart into David Bennett Sr., Jan 2022), but all earliest recipients died within weeks to months.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "case-control",
+    "direction": "mixed",
+    "effect_size": "First pig-to-human heart recipient survived ~2 months (porcine CMV + rejection implicated); historic firsts, none durable.",
+    "population": "Brain-dead and compassionate-use living recipients (n very small)",
+    "provenance": {
+      "primary": "Griffith et al., NEJM 2022 (genetically modified porcine-to-human cardiac xenotransplantation); NYU/UAB/MGH pig-kidney cases",
+      "doi": "10.1056/NEJMoa2201422",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real, historic, very early. Cross-species rejection, latent animal viruses, and long-term function remain unsolved. Not a clinical option; experimental compassionate-use only.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "bioprinting-organoids-tool-not-transplant",
+    "statement": "3D bioprinting can produce flat/thin tissue constructs (pre-clinical) but not solid vascularized organs; organoids are a valuable research/drug-screening tool, not a transplantable product.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "invitro",
+    "direction": "mixed",
+    "effect_size": "Vascularizing thick tissue is the unsolved bottleneck for printed solid organs (years-to-decades). Organoids are mm-scale, unvascularized, incomplete.",
+    "population": "Pre-clinical / in-vitro",
+    "provenance": {
+      "primary": "Tissue-engineering and organoid literature (Lancaster/Knoblich organoid reviews; bioprinting vascularization reviews)",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "'We grew a brain organoid' is not 'we can replace a brain' — exactly the mechanism-to-outcome laundering SCHEMA.md forbids.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "prp-knee-oa-no-better-than-placebo",
+    "statement": "Intra-articular platelet-rich plasma is no better than saline placebo for pain or cartilage volume in knee osteoarthritis in the best-designed trial, despite heavy marketing as regenerative healing.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "RESTORE RCT: no significant benefit vs placebo for pain or medial tibial cartilage volume at 12 months.",
+    "population": "Patients with symptomatic knee osteoarthritis",
+    "provenance": {
+      "primary": "Bennell et al., JAMA 2021 (RESTORE randomized clinical trial)",
+      "doi": "10.1001/jama.2021.19415",
+      "surfaced_via": "regenerative-frontier chapter (31) build; cross-ref 21-pain-injury-rehab.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta-analyses heterogeneous and dominated by small high-bias trials; rigorous blinding shrinks effect toward placebo. PRP is non-standardized (a dozen preparations). Possible modest signal in lateral epicondylitis/some tendinopathies; inconsistent. Low harm, largely unproven value.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "regenerative-joint-injections-oversold",
+    "statement": "Commercial 'regenerative' joint injections (adipose SVF, bone-marrow aspirate concentrate, amniotic and exosome products) have weak, small, inconsistent evidence; many 'amniotic stem-cell' products contain no living stem cells and the FDA has acted against marketers.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No established efficacy for OA/tendon injury; products unstandardized and frequently mislabeled.",
+    "population": "Cash-pay orthopedic/sports-medicine patients",
+    "provenance": {
+      "primary": "FDA enforcement actions + product-characterization studies showing absent viable cells",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Joint-injection cousins of the §2.3 clinic tier. Sold far ahead of evidence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "prolotherapy-modest-mixed",
+    "statement": "Prolotherapy (hypertonic dextrose injection) has a mixed evidence base with some modest-benefit RCT signals in knee osteoarthritis and chronic lateral epicondylitis, but small heterogeneous trials and no high-quality confirmation.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Possible modest niche effect; not established; not a regenerative cure.",
+    "population": "Knee OA and chronic lateral epicondylitis patients",
+    "provenance": {
+      "primary": "Prolotherapy RCTs (e.g., Rabago knee-OA dextrose trials) + systematic reviews noting heterogeneity/bias",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build; cross-ref 21-pain-injury-rehab.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Slightly better-than-PRP but still mixed/low-quality base. For joint/tendon pain the strongest-evidence interventions remain load-management and progressive exercise.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "longevity-biotech-translation-gap",
+    "statement": "The well-capitalized 'cure aging' industry reliably extends mouse lifespan but has produced thin human clinical output; Calico (~$2.5B, 10+ yrs) shows minimal translation and Unity's lead senolytic UBX0101 failed its first human knee-OA trial.",
+    "claim_type": "outcome",
+    "domain": "regenerative",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Mouse lifespan extension is reproducible; human hard-endpoint translation is largely absent. Human trials mostly repurposed drugs vs surrogate endpoints.",
+    "population": "Industry programs (Altos, Calico, Retro, NewLimit, Unity, BioAge, Gero)",
+    "provenance": {
+      "primary": "LABS.md industry synthesis; Unity UBX0101 Phase 2 failure (2020); Loyal FDA RXE for canine aging drug (2023); TAME trial design",
+      "doi": "",
+      "surfaced_via": "regenerative-frontier chapter (31) build; cross-ref 05-labs/LABS.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mice are short-lived/inbred/lab-housed/cancer-prone in ways that flatter interventions. The mouse result is the beginning of the question, not the answer. Loyal's canine RXE is the closest a regulator has come to treating aging itself as an indication.",
+    "added_on": "2026-06-28"
+  }
+]

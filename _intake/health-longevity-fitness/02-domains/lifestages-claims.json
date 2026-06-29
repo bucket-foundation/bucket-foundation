@@ -1,0 +1,401 @@
+[
+  {
+    "id": "barker-low-birthweight-adult-cvd",
+    "statement": "Lower birthweight / impaired fetal growth is associated with higher adult coronary heart disease, hypertension, stroke and type 2 diabetes (the Barker / developmental-origins / DOHaD hypothesis).",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Inverse gradient of birthweight with adult cardiometabolic disease across multiple cohorts; reverses interpretation of disease as purely adult-lifestyle-driven",
+    "population": "Historical birth cohorts (Hertfordshire, south India, others); ecological + individual epidemiology",
+    "provenance": {
+      "primary": "Barker DJP et al., 'Fetal growth and coronary heart disease in south India', Lancet 1996; reviewed in Gluckman, Hanson, Cooper & Thornburg, NEJM 2008",
+      "doi": "10.1056/NEJMra0708473",
+      "surfaced_via": "Wave life-stages brief; PubMed E-utilities verified (PMID 18596274, 8909379)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information",
+    "confidence_notes": "Strong, replicated, mechanistically coherent but fundamentally OBSERVATIONAL (cannot randomize a fetus). Birthweight is a predictor, not a fixed sentence; adult lifestyle still moves the same risks. Value is upstream/population-level.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "thrifty-phenotype-fetal-programming",
+    "statement": "Fetal undernutrition reprograms metabolism toward fuel-sparing (fewer beta-cells, more insulin resistance); adaptive in a scarce later environment, but a liability ('predictive adaptive mismatch') in a calorie-rich one, raising type 2 diabetes risk.",
+    "claim_type": "mechanism",
+    "domain": "lifestages",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic model explaining the birthweight-diabetes association",
+    "population": "Human cohorts + animal models; Dutch Hunger Winter natural experiment",
+    "provenance": {
+      "primary": "Hales CN & Barker DJP, 'Type 2 (non-insulin-dependent) diabetes mellitus: the thrifty phenotype hypothesis', Diabetologia 1992",
+      "doi": "10.1007/BF00400248",
+      "surfaced_via": "PubMed E-utilities verified (PMID 1644236)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics",
+    "confidence_notes": "Mechanism claim; must not be presented as a confirmed adult OUTCOME for an individual. The thrifty-genotype vs thrifty-phenotype debate is ongoing.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dutch-famine-developmental-programming",
+    "statement": "Prenatal exposure to the time-limited Dutch Hunger Winter famine (1944-45) is associated with altered adult metabolic, cardiovascular and late-life brain outcomes 60-70+ years later, with effects dependent on gestational timing of exposure and some epigenetic (DNA-methylation) signatures.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Timing-dependent effects (early-gestation: obesity/lipids/CVD; late-gestation: glucose intolerance); persistent methylation differences (e.g. IGF2)",
+    "population": "Dutch famine birth cohort, longitudinal follow-up (Roseboom and colleagues)",
+    "provenance": {
+      "primary": "Roseboom TJ et al., Dutch Hunger Winter cohort program; recent late-life brain analyses Neuroimage 2025 / Brain Res 2025",
+      "doi": "10.1016/j.neuroimage.2025.121505",
+      "surfaced_via": "PubMed E-utilities verified (PMID 41046062)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information",
+    "confidence_notes": "Strongest quasi-causal evidence for DOHaD (well-documented, time-limited exposure on a previously well-nourished population). Still observational at the individual level.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "folate-neural-tube-defect-prevention",
+    "statement": "Periconceptional folic acid supplementation markedly reduces neural-tube-defect risk (~72% reduction in recurrence in the MRC RCT); must begin before conception because the neural tube closes by ~week 4.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~72% relative reduction in NTD recurrence",
+    "population": "MRC Vitamin Study RCT, women at high recurrence risk; basis for population flour fortification",
+    "provenance": {
+      "primary": "MRC Vitamin Study Research Group, 'Prevention of neural tube defects: results of the Medical Research Council Vitamin Study', Lancet 1991",
+      "doi": "",
+      "surfaced_via": "PubMed E-utilities verified (PMID 1677062)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT-grade, the best-evidenced perinatal supplement. Timing is load-bearing: must start pre-conception, which is why fortification works.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "iodine-deficiency-pregnancy-child-cognition",
+    "statement": "Maternal iodine deficiency impairs fetal brain development; even mild-to-moderate deficiency in a developed-country population is associated with lower child IQ and reading ability. Iodine deficiency is the leading preventable cause of intellectual impairment worldwide.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lower verbal IQ and reading scores in children of mildly iodine-deficient mothers (ALSPAC); large effects from overt deficiency globally",
+    "population": "ALSPAC UK pregnancy cohort (mild deficiency); global public-health data (overt)",
+    "provenance": {
+      "primary": "Bath SC et al., 'Effect of inadequate iodine status in UK pregnant women on cognitive outcomes in their children (ALSPAC)', Lancet 2013",
+      "doi": "10.1016/S0140-6736(13)60436-5",
+      "surfaced_via": "PubMed E-utilities verified (PMID 23706508)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mild-deficiency evidence is cohort (residual confounding possible); overt-deficiency causation is established public-health/RCT. Deficiency-correction lever, not a mega-dose-better story.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "omega3-pregnancy-preterm-birth",
+    "statement": "Omega-3 (DHA/EPA) supplementation in pregnancy modestly reduces preterm and early-preterm birth and low birthweight; the marketed cognitive ('smarter baby') benefit is not robustly supported.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Reduced preterm (<37wk) and early preterm (<34wk) birth; cognition endpoints inconsistent",
+    "population": "Cochrane review of 70 RCTs (~20,000 women)",
+    "provenance": {
+      "primary": "Middleton P et al., 'Omega-3 fatty acid addition during pregnancy', Cochrane Database Syst Rev 2018",
+      "doi": "10.1002/14651858.CD003402.pub3",
+      "surfaced_via": "PubMed E-utilities verified (PMID 30480773)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real but modest for preterm birth (meta/strong); 'smarter baby' cognitive claim is mixed/overstated relative to the marketing.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "exercise-in-pregnancy-safe-beneficial",
+    "statement": "For uncomplicated pregnancies, regular moderate exercise is safe and beneficial (reduces gestational diabetes and excessive weight gain, likely reduces pre-eclampsia and cesarean) without increasing preterm birth - refuting the old 'rest, don't exert' advice.",
+    "claim_type": "protocol",
+    "domain": "lifestages",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Lower GDM and excess gestational weight gain; no increase in adverse fetal outcomes",
+    "population": "Meta-analyses + obstetric guideline consensus (ACOG and equivalents)",
+    "provenance": {
+      "primary": "ACOG and international obstetric guideline consensus on physical activity in pregnancy; supporting meta-analyses",
+      "doi": "",
+      "surfaced_via": "Wave life-stages brief; guideline-tier synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Applies to UNCOMPLICATED pregnancy; specific precautions (supine late, contact sports, overheating, high-risk obstetric conditions) apply. Folklore (rest) refuted by evidence (activity).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gdm-treatment-improves-outcomes",
+    "statement": "Treating gestational diabetes (diet, glucose monitoring, insulin as needed) reduces serious perinatal complications, establishing that screening and treatment are worthwhile.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced serious perinatal outcomes (death, shoulder dystocia, fractures, nerve palsy) vs routine care",
+    "population": "ACHOIS RCT, n=1000 women with GDM",
+    "provenance": {
+      "primary": "Crowther CA et al., 'Effect of treatment of gestational diabetes mellitus on pregnancy outcomes', NEJM 2005",
+      "doi": "10.1056/NEJMoa042973",
+      "surfaced_via": "PubMed E-utilities verified (PMID 15951574)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT-grade. GDM also carries a DOHaD link to the child's later metabolic risk.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "aspirin-preterm-preeclampsia-prevention",
+    "statement": "Low-dose aspirin started in the first trimester in screened high-risk women markedly reduces preterm pre-eclampsia.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~62% reduction in preterm pre-eclampsia vs placebo (ASPRE)",
+    "population": "ASPRE RCT, ~1620 high-risk women identified by first-trimester screening",
+    "provenance": {
+      "primary": "Rolnik DL et al., 'Aspirin versus Placebo in Pregnancies at High Risk for Preterm Preeclampsia', NEJM 2017",
+      "doi": "10.1056/NEJMoa1704559",
+      "surfaced_via": "Wave life-stages brief; companion AJOG analyses PubMed-verified (PMID 28888591)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT-grade; now standard guideline care. DOI from author knowledge; companion trial papers verified on PubMed.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "female-fertility-age-decline",
+    "statement": "Female fertility declines with age - gradually from the late 20s, more steeply after ~35 and sharply after ~40 - driven primarily by declining oocyte QUALITY (aneuploidy), not just quantity; the egg pool is fixed at birth and non-renewing.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Per-cycle conception probability and fertile-window duration both decline with age",
+    "population": "Prospective fecundability studies (Dunson et al.)",
+    "provenance": {
+      "primary": "Dunson DB et al., 'Changes with age in the level and duration of fertility in the menstrual cycle', Human Reproduction 2002",
+      "doi": "10.1093/humrep/17.5.1399",
+      "surfaced_via": "PubMed E-utilities verified (PMID 11980771)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong, replicated. The dominant fertility lever and the one no supplement moves - a predictor that is also near-destiny.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "paternal-age-sperm-quality-decline",
+    "statement": "Male fertility also declines with age (later and more gradually than female): sperm count, motility and especially DNA integrity worsen with paternal age, and advanced paternal age is associated with modestly higher rates of some offspring conditions.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Rising sperm DNA fragmentation (SCSA) with age across large clinic series",
+    "population": "Large infertility-clinic cohorts (e.g. 25,445 men, SCSA)",
+    "provenance": {
+      "primary": "Evenson DP et al., sperm chromatin structure assay vs age, Fertility & Sterility 2020",
+      "doi": "10.1016/j.fertnstert.2020.03.028",
+      "surfaced_via": "PubMed E-utilities verified (PMID 32653083)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "'Men can father at any age' is half-true: possible, but with rising sperm-quality and offspring-risk caveats.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "egg-freezing-probabilistic-insurance",
+    "statement": "Elective oocyte vitrification (egg freezing) is a real but probabilistic fertility-preservation option, not a guarantee; outcomes depend heavily on age at freezing (younger better) and number of eggs stored, and many women who freeze never use them.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Live-birth probability rises with more eggs and younger freezing age; substantial non-return rate",
+    "population": "Large vitrification registry/clinic series (Cobo et al.)",
+    "provenance": {
+      "primary": "Cobo A et al., 'Oocyte vitrification for fertility preservation for both medical and nonmedical reasons', Fertility & Sterility 2021",
+      "doi": "10.1016/j.fertnstert.2021.02.006",
+      "surfaced_via": "PubMed E-utilities verified (PMID 33933172)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Technology works; honest counseling is in probabilities and egg-counts, not promises. IVF success overall is dominated by egg age (donor-egg cycles erase recipient age effect).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fertility-antioxidant-supplements-low-evidence",
+    "statement": "Antioxidant/fertility supplements for subfertility (female and male) have low-quality evidence and no reliable demonstrated benefit on live birth - the fertility-supplement industry is sold with far more confidence than the trials support.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No reliable effect on live birth; evidence graded low / very low certainty",
+    "population": "Cochrane reviews of antioxidant RCTs in subfertile women and men",
+    "provenance": {
+      "primary": "Showell MG et al., 'Antioxidants for female subfertility', Cochrane 2020 (CD007807.pub4); de Ligny W et al., 'Antioxidants for male subfertility', Cochrane 2022 (CD007411.pub5)",
+      "doi": "10.1002/14651858.CD007807.pub4",
+      "surfaced_via": "PubMed E-utilities verified (PMID 32851663, 35506389)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta-tier but LOW certainty / largely null. CoQ10/DHEA/inositol have small context-specific signals (e.g. inositol in PCOS) but are not general 'fertility boosters'. Predictor-vs-lever: hopeful mechanism != proven outcome.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "peak-bone-mass-built-young",
+    "statement": "~90% of adult bone mass is laid down by ~age 18-20 and peak bone mass is reached by the late 20s; weight-bearing/impact exercise, adequate calcium and vitamin D, and avoiding smoking/under-fueling in youth build a higher peak and more margin before the later fracture threshold.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Childhood/adolescent loading raises peak BMD; the asset later aging/menopause spends",
+    "population": "Systematic review / National Osteoporosis Foundation position statement",
+    "provenance": {
+      "primary": "Weaver CM et al., 'The National Osteoporosis Foundation's position statement on peak bone mass development and lifestyle factors', Osteoporos Int 2016",
+      "doi": "10.1007/s00198-015-3440-3",
+      "surfaced_via": "PubMed E-utilities verified (PMID 26856587)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong. The 'build the account' foundation; cross-ref the menopausal bone-loss slope (Domain N / section 13) that draws it down.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "adolescent-brain-maturation-mismatch",
+    "statement": "The adolescent brain matures unevenly: the limbic/reward system matures early (driving sensation-seeking) while the prefrontal cortex (judgment, impulse control, planning) matures last, into the mid-20s - a developmental mismatch that is the neurobiological basis of elevated adolescent risk-taking.",
+    "claim_type": "mechanism",
+    "domain": "lifestages",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Earlier limbic vs later prefrontal maturation gap",
+    "population": "Developmental neuroscience (neuroimaging + behavioral)",
+    "provenance": {
+      "primary": "Steinberg L and developmental-neuroscience literature on dual-systems adolescent brain maturation",
+      "doi": "",
+      "surfaced_via": "Wave life-stages brief; developmental neuroscience synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanistic/cohort; a stage, not a defect. Practical reading: adolescents need scaffolding (structure, sleep, guardrails) while internal regulators are still wiring.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "screen-time-adolescent-sleep",
+    "statement": "Screen time is consistently associated with worse sleep (later bedtimes, shorter duration) in children and adolescents; combined with the pubertal circadian phase-delay, this is the strongest argument for protecting teen sleep and later school start times.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Adverse screen-sleep association in the majority of reviewed studies",
+    "population": "Systematic review of school-aged children and adolescents",
+    "provenance": {
+      "primary": "Hale L & Guan S, 'Screen time and sleep among school-aged children and adolescents: a systematic literature review', Sleep Med Rev 2015",
+      "doi": "10.1016/j.smrv.2014.07.007",
+      "surfaced_via": "PubMed E-utilities verified (PMID 25193149)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Largely correlational and partly bidirectional, but consistent and mechanistically plausible (displacement + light + arousal). Low-risk lever; the pubertal melatonin phase-delay is independently established (cross-ref Domain I).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fried-frailty-phenotype",
+    "statement": "Frailty is a distinct, measurable state of diminished physiological reserve (>=3 of 5: unintentional weight loss, exhaustion, weakness/low grip, slow gait, low activity) that predicts falls, hospitalization, disability and death - separate from age or comorbidity alone.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Frailty phenotype predicts adverse outcomes; pre-frail (1-2 criteria) is an intervention window",
+    "population": "Cardiovascular Health Study (>5000 older adults)",
+    "provenance": {
+      "primary": "Fried LP et al., 'Frailty in older adults: evidence for a phenotype', J Gerontol A Biol Sci Med Sci 2001",
+      "doi": "10.1093/gerona/56.3.m146",
+      "surfaced_via": "PubMed E-utilities verified (PMID 11253156)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Foundational cohort. A powerful PREDICTOR (readout of reserve), not a single lever; the modifiable core is sarcopenia (resistance/power/protein). Complements the deficit-accumulation Frailty Index (Rockwood).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "deprescribing-polypharmacy-older-adults",
+    "statement": "In older adults, accumulated medications become a leading cause of harm (falls, confusion, hospitalization, interactions); supervised deprescribing - planned reduction/stopping of drugs whose harms now outweigh benefits - is a recognized, evidence-informed clinical discipline.",
+    "claim_type": "protocol",
+    "domain": "lifestages",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Reduced medication burden and drug-related harm; tools = STOPP/START, Beers criteria",
+    "population": "Geriatric clinical literature; deprescribing-process guidance and growing RCT base",
+    "provenance": {
+      "primary": "Scott IA et al., 'Reducing inappropriate polypharmacy: the process of deprescribing', JAMA Internal Medicine 2015",
+      "doi": "10.1001/jamainternmed.2015.0324",
+      "surfaced_via": "PubMed E-utilities verified (PMID 25798731)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The geriatric inversion of 'predictor != lever': sometimes the lever is REMOVING a thing. Deprescribing RCTs are growing and broadly favorable for specific drug classes; harm-reduction is well established.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "compression-of-morbidity",
+    "statement": "If the onset of chronic disability can be postponed faster than the age of death advances, the period of end-of-life morbidity is compressed into a shorter window - more healthy years, fewer years of decline ('compression of morbidity'). This is the rigorous statement of healthspan>lifespan.",
+    "claim_type": "hypothesis",
+    "domain": "lifestages",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Conceptual target ('squaring the curve'); component levers individually evidence-graded",
+    "population": "Population health theory (Fries)",
+    "provenance": {
+      "primary": "Fries JF, 'Aging, natural death, and the compression of morbidity', NEJM 1980",
+      "doi": "10.1056/NEJM198007173030304",
+      "surfaced_via": "PubMed E-utilities verified (PMID 7383070)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hypothesis/framework (theoretical-cohort), debated empirically (does morbidity actually compress?). The COMPONENTS (exercise, deprescribing, falls prevention) are individually graded across the manual.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "early-palliative-care-quality-and-survival",
+    "statement": "Early integration of palliative care alongside standard oncology improved quality of life and mood, reduced aggressive end-of-life treatment, AND was associated with longer survival - palliative care is symptom-and-meaning-focused care, not the abandonment of care.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Better QoL/mood, less aggressive EOL care, and longer median survival vs standard care",
+    "population": "RCT, metastatic non-small-cell lung cancer patients (n=151)",
+    "provenance": {
+      "primary": "Temel JS et al., 'Early palliative care for patients with metastatic non-small-cell lung cancer', NEJM 2010",
+      "doi": "10.1056/NEJMoa1000678",
+      "surfaced_via": "PubMed E-utilities verified (PMID 20818875)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT-grade and counter-intuitive: more comfort-focused care delivered BOTH better quality and (at least non-inferior, here superior) survival. Corrects the 'palliative = giving up' misconception.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "advance-care-planning-improves-eol",
+    "statement": "Advance care planning (living will + designated healthcare proxy) in elderly patients improves end-of-life care, makes it more likely patients' wishes are known and followed, and reduces stress, anxiety and depression in surviving relatives.",
+    "claim_type": "outcome",
+    "domain": "lifestages",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Wishes more often known/followed; higher patient+family satisfaction; lower relative bereavement distress",
+    "population": "RCT, elderly inpatients (n=309)",
+    "provenance": {
+      "primary": "Detering KM et al., 'The impact of advance care planning on end of life care in elderly patients: randomised controlled trial', BMJ 2010",
+      "doi": "10.1136/bmj.c1345",
+      "surfaced_via": "PubMed E-utilities verified (PMID 20332506)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT-supports. A high-value, low-cost, evidence-backed intervention most people defer until too late.",
+    "added_on": "2026-06-28"
+  }
+]

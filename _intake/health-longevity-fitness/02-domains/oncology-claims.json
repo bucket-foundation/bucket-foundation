@@ -1,0 +1,325 @@
+[
+  {
+    "id": "cancer-is-somatic-mutation-disease",
+    "statement": "Cancer is fundamentally a disease of the genome: a somatic cell lineage that has accumulated mutations (and epigenetic changes) in the genes governing the cell cycle, DNA repair, and apoptosis, causing it to proliferate when it should not, ignore stop signals, and refuse to die.",
+    "claim_type": "mechanism",
+    "domain": "oncology",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Foundational; cancer = corruption of the cell's own growth/repair/death software, not a foreign invader.",
+    "population": "Universal across human cancers",
+    "provenance": {
+      "primary": "Hanahan & Weinberg, Cell 2000; Vogelstein et al., Science 2013 (Cancer Genome Landscapes)",
+      "doi": "10.1016/S0092-8674(00)81683-9",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/ + 05-biophysics/ (DNA, cell cycle, replication)",
+    "confidence_notes": "Settled. Ties cancer to the genome/cell-cycle fundamentals in 01-foundations.md. Vogelstein Cancer Genome Landscapes DOI 10.1126/science.1235122.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hallmarks-of-cancer-framework",
+    "statement": "Despite thousands of distinct mutations, cancers converge on a small set of acquired capabilities (the Hallmarks of Cancer): sustained proliferative signalling, evading growth suppressors, resisting cell death, replicative immortality, angiogenesis, invasion/metastasis (2000), plus deregulated energetics and immune evasion + the enabling characteristics genome instability and tumour-promoting inflammation (2011), and proposed new dimensions (2022).",
+    "claim_type": "mechanism",
+    "domain": "oncology",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Organising framework; therapies typically work by knocking out one hallmark (anti-angiogenics #5, checkpoint inhibitors #8).",
+    "population": "Universal conceptual scaffold across cancer types",
+    "provenance": {
+      "primary": "Hanahan & Weinberg, Cell 2000 + Cell 2011 (Next Generation); Hanahan, Cancer Discov 2022 (New Dimensions)",
+      "doi": "10.1016/j.cell.2011.02.013",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (the Hallmarks of Aging were modelled on this)",
+    "confidence_notes": "2000 six + 2011 four are bedrock; 2022 New Dimensions (plasticity, non-mutational epigenetics, microbiome, senescent cells) are provisional. 2022 DOI 10.1158/2159-8290.CD-21-1059. Most-cited papers in cancer biology.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "oncogenes-tumor-suppressors-gas-brakes",
+    "statement": "Cancer is driven by activation of oncogenes (hyperactive gas pedals, dominant, one mutation suffices; e.g. RAS in ~25-30% of cancers, MYC, HER2, EGFR, BRAF) and loss of tumour suppressors (brakes, recessive, typically need both copies lost; e.g. TP53/p53 'guardian of the genome', mutated in ~50% of tumours; RB, APC, PTEN, BRCA1/2).",
+    "claim_type": "mechanism",
+    "domain": "oncology",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "TP53 mutated in ~50% of all human cancers; RAS in ~25-30%. Knudson two-hit model (1971, retinoblastoma) for suppressors.",
+    "population": "Across human cancers",
+    "provenance": {
+      "primary": "Knudson two-hit hypothesis 1971; Lane, p53 'guardian of the genome' 1992; Vogelstein/Kinzler oncogene-suppressor framework",
+      "doi": "10.1126/science.1235122",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/ (the cell-cycle control logic)",
+    "confidence_notes": "Settled. Therapeutic asymmetry: oncogenes are druggable (block the accelerator); restoring a lost suppressor (e.g. p53) remains largely unsolved.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "multi-hit-model-clonal-evolution",
+    "statement": "Cancer requires sequential accumulation of several driver mutations (typically 2-8 among many passengers) conferring stepwise selective advantage — the multi-hit/multistage model — and a tumour evolves as a branching, heterogeneous population of subclones under Darwinian selection (clonal evolution), the central reason cancers recur and resist therapy.",
+    "claim_type": "mechanism",
+    "domain": "oncology",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Colorectal paradigm: APC -> KRAS -> 18q/SMAD4 -> TP53. Vogelstein 2013: 2-8 drivers per tumour.",
+    "population": "Colorectal (Fearon-Vogelstein paradigm); generalises across solid tumours",
+    "provenance": {
+      "primary": "Fearon & Vogelstein, Cell 1990 (genetic model for colorectal tumorigenesis); Nowell, Science 1976 (clonal evolution); Vogelstein, Science 2013",
+      "doi": "10.1016/0092-8674(90)90186-i",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (genomic-instability hallmark of aging overlap)",
+    "confidence_notes": "Settled. Clonal evolution explains near-universal acquired resistance in advanced disease (PMID 2188735).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cancer-is-age-related-disease",
+    "statement": "Cancer is overwhelmingly a disease of aging: because each driver mutation is rare and several are needed, incidence rises steeply (roughly a power law) with age — the same accumulating genomic instability and telomere/senescence biology that drives aging also drives cancer.",
+    "claim_type": "mechanism",
+    "domain": "oncology",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Age-incidence approximates a 4th-6th power law (Armitage-Doll multistage model).",
+    "population": "Population-wide age-incidence curves",
+    "provenance": {
+      "primary": "Armitage & Doll 1954 (multistage model); links to Hallmarks of Aging (Lopez-Otin et al. 2013)",
+      "doi": "10.1038/bjc.1954.1",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/; cross-ref 16-telomeres-cellular-aging.md, B-aging-mechanisms.md",
+    "confidence_notes": "Mechanistically tied to genomic-instability and telomere-attrition hallmarks of aging. Replicative immortality (cancer) is the inverse of telomere attrition (aging).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tomasetti-vogelstein-stem-cell-divisions",
+    "statement": "Variation in lifetime cancer risk between tissues correlates strongly with the number of stem-cell divisions that tissue undergoes, implying a large stochastic ('bad luck') replication-error contribution to inter-tissue risk variation.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "Strong correlation across tissue types between stem-cell division count and lifetime cancer risk.",
+    "population": "Cross-tissue analysis (Science 2015)",
+    "provenance": {
+      "primary": "Tomasetti & Vogelstein, Science 2015",
+      "doi": "10.1126/science.1260825",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": ["conflict-bad-luck-cancer-interpretation"],
+    "canon_link": null,
+    "confidence_notes": "Widely MISREPORTED as 'two-thirds of cancers are unpreventable bad luck'. It explains variation BETWEEN tissues, not the preventable fraction. Stochastic error is one of three contributors (heredity, environment, chance); large cancer fractions remain preventable. PMID 25554788.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "heritable-cancer-brca-germline",
+    "statement": "About 5-10% of cancers are hereditary: a germline tumour-suppressor mutation means one 'hit' is present in every cell from birth, so fewer additional hits are needed (earlier, clustered cancers). Canonical: BRCA1/2 (breast/ovarian), Lynch (colorectal/endometrial), Li-Fraumeni (germline TP53), FAP (APC), retinoblastoma (RB1).",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "BRCA1: ~55-72% lifetime breast, ~39-44% ovarian; BRCA2: ~45-69% breast, ~11-17% ovarian (Kuchenbaecker 2017).",
+    "population": "BRCA1/2 carriers, prospective cohort (Kuchenbaecker, JAMA 2017)",
+    "provenance": {
+      "primary": "Kuchenbaecker et al., JAMA 2017; Knudson two-hit",
+      "doi": "10.1001/jama.2017.7112",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "BRCA deficiency also confers PARP-inhibitor sensitivity (synthetic lethality). Cross-ref 18-genetics-anatomy.md, C-genetics-omics.md. Genetic counselling changes screening + treatment.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "surgery-curative-localized-cancer",
+    "statement": "Surgical removal is the single most curative modality in oncology for localized solid tumours; its limit is that it cannot cure cancer that has already metastasised, hence pairing with adjuvant/neoadjuvant systemic therapy.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "outcome",
+    "direction": "supports",
+    "effect_size": "Mainstay cure for early breast, colorectal, lung, prostate, melanoma and others.",
+    "population": "Localized solid cancers",
+    "provenance": {
+      "primary": "Standard oncology practice; NCCN/ASCO guidelines",
+      "doi": null,
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Responsible for a large share of all cancer cures; the rationale for early-detection screening (07-clinical-prevention.md).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "chemotherapy-cures-specific-cancers",
+    "statement": "Cytotoxic chemotherapy attacks rapidly dividing cells systemically and CURES several cancers outright — testicular cancer, childhood ALL (~90% cured today vs near-uniformly fatal in the 1960s), Hodgkin lymphoma, choriocarcinoma — while for most advanced solid tumours it extends life and controls disease rather than curing.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Childhood ALL ~90% cure rate; testicular cancer high cure even when metastatic.",
+    "population": "Blood/germ-cell cancers (curative); advanced solid tumours (control/palliation)",
+    "provenance": {
+      "primary": "Decades of RCTs; pediatric oncology cooperative-group trials",
+      "doi": null,
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Counterweight to the alternative-oncology 'chemo never works' trope. Honest distinction: cure (some) vs control/time (most advanced solid tumours) vs palliation. Toxicity from non-selectivity (marrow, gut, follicles).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "targeted-therapy-imatinib-cml",
+    "statement": "Targeted therapy against a defining oncogenic driver can produce dramatic low-toxicity responses: imatinib (Gleevec) inhibits the BCR-ABL fusion kinase of chronic myeloid leukemia, converting a fatal leukemia into a chronically managed condition with near-normal life expectancy. Other wins: EGFR/ALK inhibitors (lung), trastuzumab (HER2 breast), BRAF+MEK (melanoma), PARP inhibitors (BRCA).",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "CML: near-normal life expectancy for most on imatinib. Others: deep responses, often not durable in advanced disease.",
+    "population": "Cancers harbouring the matching molecular driver",
+    "provenance": {
+      "primary": "Druker et al. imatinib CML trials (IRIS); subsequent targeted-therapy RCTs",
+      "doi": null,
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "HONEST LIMITS: only works if the target is present (must profile the tumour); resistance is near-universal in advanced disease via clonal evolution; responses often deep but not durable. 'Controlled for years' is usually not 'cured'.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "checkpoint-inhibitor-immunotherapy-survival",
+    "statement": "Immune checkpoint inhibitors (anti-CTLA-4 ipilimumab; anti-PD-1/PD-L1 pembrolizumab, nivolumab) release the patient's own T-cells against the tumour and produce durable, sometimes curative overall-survival benefit. CheckMate 067: nivolumab+ipilimumab gave ~52% 5-year overall survival in advanced melanoma, a disease near-uniformly fatal within months a decade earlier.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Ipilimumab: first therapy to improve OS in metastatic melanoma (Hodi 2010). Nivo+ipi: ~52% OS at 5 yr (Larkin 2019).",
+    "population": "Advanced melanoma (and broadening to lung, kidney, bladder, head/neck, MSI-high tumours)",
+    "provenance": {
+      "primary": "Hodi et al., NEJM 2010 (ipilimumab); Larkin et al., NEJM 2019 (CheckMate 067 5-yr); Allison & Honjo 2018 Nobel",
+      "doi": "10.1056/NEJMoa1910836",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": ["conflict-immunotherapy-cure-framing"],
+    "canon_link": null,
+    "confidence_notes": "The real breakthrough, hard OS endpoint (Hodi 2010 DOI 10.1056/NEJMoa1003466; Larkin PMID 31562797). HONEST: only a minority (~15-40%) respond durably; many common cancers (prostate, most CRC, pancreatic) barely respond; response tracks tumour mutational burden / MSI status; own serious autoimmune toxicity (colitis, hepatitis, pneumonitis).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "car-t-blood-cancer",
+    "statement": "CAR-T (chimeric antigen receptor T-cell) therapy genetically engineers a patient's own T-cells to recognise a cancer antigen (e.g. CD19) and produces striking remission rates in relapsed/refractory B-cell leukemias and lymphomas — but works almost exclusively in blood cancers, costs ~$400k+, and carries life-threatening cytokine-release syndrome and neurotoxicity.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Tisagenlecleucel in pediatric relapsed ALL (ELIANA): ~80% remission in patients out of other options.",
+    "population": "Relapsed/refractory B-cell ALL and lymphomas",
+    "provenance": {
+      "primary": "Maude et al., ELIANA, NEJM 2018 (tisagenlecleucel)",
+      "doi": "10.1056/NEJMoa1709866",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "Genuine breakthrough with a very narrow footprint: blood cancers only (solid tumours lack clean antigens), extreme cost, CRS + ICANS toxicity requiring ICU-level care.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "mced-galleri-promising-unproven",
+    "statement": "Multi-cancer early-detection (MCED) blood tests such as Galleri read cell-free-DNA methylation patterns to flag a cancer signal and predict tissue of origin in asymptomatic people, but have modest sensitivity for early-stage cancer and have NOT demonstrated a reduction in cancer mortality — the only endpoint that justifies a screening test.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Good specificity (low false-positive rate) but modest early-stage sensitivity; PATHFINDER found cancers but with false-positive work-ups and no mortality endpoint.",
+    "population": "Asymptomatic screening populations (PATHFINDER, Schrag 2023; CCGA)",
+    "provenance": {
+      "primary": "Schrag et al., PATHFINDER, Lancet 2023; Klein et al., CCGA, Ann Oncol 2021",
+      "doi": "10.1016/S0140-6736(23)01700-2",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": ["conflict-mced-galleri-unproven"],
+    "canon_link": null,
+    "confidence_notes": "Promising, plausible, UNPROVEN. Predictor-vs-lever trap at scale. Definitive mortality RCTs ongoing (NHS-Galleri ~140k). Not a recommended screen until they read out. Cross-ref 07-clinical-prevention.md §6.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sugar-feeds-cancer-oversimplified",
+    "statement": "The claim that dietary sugar 'feeds cancer' and that cutting carbs starves a tumour is an oversimplification of the Warburg effect (cancer cells preferentially use aerobic glycolysis). All cells use glucose; blood glucose is tightly regulated and cannot be selectively withheld from a tumour by avoiding sugar, and no human trial shows a low-sugar/ketogenic diet treats cancer.",
+    "claim_type": "mechanism",
+    "domain": "oncology",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "Warburg effect is real (basis of PET imaging) but is about biosynthesis, not a 'starve the tumour by avoiding sugar' lever.",
+    "population": "General public health claim",
+    "provenance": {
+      "primary": "Warburg, Science 1956; Vander Heiden, Cantley & Thompson, Science 2009 (Understanding the Warburg effect)",
+      "doi": "10.1126/science.1160809",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": ["conflict-sugar-feeds-cancer"],
+    "canon_link": "bucket-canon/05-biophysics/ (cellular metabolism)",
+    "confidence_notes": "Real version: avoid obesity/insulin resistance (raises risk of >=13 cancers, a prevention lever per 07 §4.2) - NOT a 'starve my tumour' mechanism. Ketogenic diet studied as adjunct in narrow settings, not a cure.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alkaline-diet-cancer-false",
+    "statement": "The 'alkaline diet' claim that cancer cannot survive in an alkaline body, and that diet can alkalinise the body to prevent/treat cancer, is biochemically false: blood pH is tightly buffered at ~7.4 and unchangeable by diet (food alters only urine pH); tumours create their own acidic microenvironment regardless of diet.",
+    "claim_type": "mechanism",
+    "domain": "oncology",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "No evidence an alkaline diet prevents or treats cancer.",
+    "population": "General public health claim",
+    "provenance": {
+      "primary": "Basic acid-base physiology; systematic reviews of diet-acid-load and cancer find no causal benefit",
+      "doi": null,
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/03-chemistry/ (acid-base buffering)",
+    "confidence_notes": "Harmless as 'eat more vegetables'; dangerous as a substitute for treatment.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "laetrile-amygdalin-disproven-toxic",
+    "statement": "Laetrile / amygdalin / 'vitamin B17' / apricot-seed therapy, long promoted as a natural cancer cure, was definitively disproven: the NCI-sponsored clinical trial (Moertel et al., NEJM 1982) found no benefit and documented cyanide toxicity (amygdalin metabolises to cyanide). It is not a vitamin and is both ineffective and dangerous.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No therapeutic benefit; deaths reported from cyanide poisoning on apricot-seed regimens.",
+    "population": "Cancer patients, prospective clinical trial (Moertel 1982, n=178)",
+    "provenance": {
+      "primary": "Moertel et al., NEJM 1982 (clinical trial of amygdalin/laetrile)",
+      "doi": "10.1056/NEJM198201283060403",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "The model of how a popular alternative cancer cure is tested and falsified - ineffective AND toxic. Unambiguous.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alternative-cures-instead-of-treatment-deadly",
+    "statement": "Using alternative therapies (high-dose IV vitamin C, Gerson therapy, coffee enemas, Rife machines, etc.) INSTEAD OF effective standard treatment for a curable cancer is associated with substantially higher mortality; the shared fatal cost is time. As complements for wellbeing some are reasonable; as replacements for proven therapy they convert curable disease into fatal disease.",
+    "claim_type": "outcome",
+    "domain": "oncology",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "Cohort analyses link use of alternative medicine in lieu of standard treatment to markedly higher all-cause and cancer-specific mortality.",
+    "population": "Cancer patients choosing alternative vs conventional treatment (e.g. Johnson et al., JNCI 2018; J Clin Oncol 2018)",
+    "provenance": {
+      "primary": "Johnson et al., JNCI 2018 (alternative medicine and survival); J Clin Oncol 2018 (complementary medicine, refusal of conventional treatment, survival)",
+      "doi": "10.1093/jnci/djx145",
+      "surfaced_via": "oncology chapter (25) build"
+    },
+    "conflicts_with": [],
+    "canon_link": null,
+    "confidence_notes": "The 'Big Pharma suppresses cures' conspiracy is false: real breakthroughs (immunotherapy, CAR-T) came from the mainstream research enterprise; rejected modalities failed when tested, not from suppression. Testimonials are anecdotal-tier (survivorship bias + spontaneous-remission noise) - provenance, not evidence.",
+    "added_on": "2026-06-28"
+  }
+]

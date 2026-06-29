@@ -1,0 +1,610 @@
+[
+  {
+    "id": "asthma-ics-controller-not-saba-only",
+    "statement": "All asthma, including mild, should be managed with an inhaled-corticosteroid-containing inhaler rather than short-acting beta-agonist (SABA) reliever alone; ICS-formoterol used as the reliever reduces severe exacerbations.",
+    "claim_type": "protocol",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Lower severe exacerbation rate with ICS-formoterol anti-inflammatory reliever / MART vs SABA-reliever regimens; SABA-only use associated with worse outcomes and asthma death",
+    "population": "Adults and adolescents with asthma, pooled RCTs / GINA evidence base",
+    "provenance": {
+      "primary": "Global Initiative for Asthma (GINA) strategy; SYGMA/Novel-START and MART trial program",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas; Europe PMC asthma management review scan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Controls inflammation, does not cure. Biggest real-world failures are ICS under-use and poor inhaler technique. Non-type-2 (neutrophilic/obesity) asthma responds less to steroids.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "asthma-biologics-severe-type2",
+    "statement": "Biologics targeting the type-2 inflammatory pathway (anti-IgE, anti-IL-5, anti-IL-4Ralpha, anti-TSLP) are effective add-on therapy for severe eosinophilic/allergic asthma.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced exacerbations and oral-steroid burden in phenotype-selected severe asthma",
+    "population": "Severe type-2-high asthma, RCTs",
+    "provenance": {
+      "primary": "Omalizumab/mepolizumab/benralizumab/dupilumab/tezepelumab phase-3 programs",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Transformative but phenotype-specific and expensive; not for non-type-2 asthma.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "copd-smoking-cessation-only-slope-changer",
+    "statement": "Smoking cessation is the only intervention that changes the rate of FEV1 decline in COPD; no drug reverses established COPD or restores lost lung function.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Cessation resets decline slope toward never-smoker rate; benefit at any age (earlier = greater)",
+    "population": "Smokers with/at risk of COPD; Fletcher-Peto and successor cohorts",
+    "provenance": {
+      "primary": "Fletcher C, Peto R, BMJ 1977; Lange P et al., NEJM 2015 (trajectories)",
+      "doi": "10.1056/NEJMoa1411532",
+      "surfaced_via": "Wave-23 disease atlas; cross-ref 17 organ-systems"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Irreversibility is the honest core. Drugs (LAMA/LABA +/- ICS), rehab, vaccines, oxygen, LVR reduce symptoms/exacerbations/hospitalization, some improve survival, but disease remains progressive.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "copd-pulmonary-rehab-function",
+    "statement": "Exercise-based pulmonary rehabilitation improves exercise capacity and quality of life in COPD but does not regenerate lung tissue.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Clinically meaningful gains in exercise capacity and health-related quality of life vs usual care",
+    "population": "COPD patients, pooled RCTs",
+    "provenance": {
+      "primary": "McCarthy B et al., Cochrane Database Syst Rev 2015",
+      "doi": "10.1002/14651858.CD003793.pub3",
+      "surfaced_via": "Wave-23 disease atlas (shared with Wave-17)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A function/symptom lever, not a structural cure.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "osa-underdiagnosed",
+    "statement": "Obstructive sleep apnea is among the most underdiagnosed conditions in medicine; a large majority of moderate-to-severe cases are undiagnosed.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Most moderate-severe OSA undiagnosed; high prevalence with obesity",
+    "population": "General adult population, epidemiological estimates",
+    "provenance": {
+      "primary": "Population sleep epidemiology (e.g., Wisconsin Sleep Cohort lineage) + 2026 OSA reviews",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas; Europe PMC OSA review scan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Daytime signal is nonspecific; home sleep apnea testing has improved detection. Worth actively ruling out with snoring + sleepiness + HTN/AFib/obesity.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cpap-symptoms-yes-cv-outcomes-null",
+    "statement": "CPAP reliably improves daytime sleepiness, quality of life, blood pressure and glucose measures in OSA, but randomized trials did NOT show CPAP reduces hard cardiovascular events when added to standard care in largely non-sleepy, under-adherent patients.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "SAVE: no reduction in composite CV death/MI/stroke (HR ~1.10, ns) despite improved sleepiness/QoL; ISAACC similar null",
+    "population": "OSA + established/high CV risk; SAVE n~2717, ISAACC ACS patients",
+    "provenance": {
+      "primary": "McEvoy RD et al., SAVE trial, NEJM 2016",
+      "doi": "10.1056/NEJMoa1606599",
+      "surfaced_via": "Wave-23 disease atlas; DOI verified via crossref"
+    },
+    "conflicts_with": ["osa-cohort-predicts-cv"],
+    "canon_link": "",
+    "confidence_notes": "Predictor != lever. Null attributed to low adherence (~3-4 h/night) and enrollment of non-sleepy patients; newer analyses suggest benefit may concentrate in high-hypoxic-burden / adherent subgroups (cohort-grade). Treat OSA for symptoms/BP/metabolism + weight loss as durable lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "osa-cohort-predicts-cv",
+    "statement": "Untreated OSA is observationally associated with hypertension, atrial fibrillation, heart failure, stroke, type-2 diabetes and mortality.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Consistent association across cohorts (confounded)",
+    "population": "Observational OSA cohorts",
+    "provenance": {
+      "primary": "Sleep-cohort cardiovascular literature (review-level)",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": ["cpap-symptoms-yes-cv-outcomes-null"],
+    "canon_link": "",
+    "confidence_notes": "The association is real; the RCT failure of CPAP-added-on to change the endpoint is the honesty point, not evidence OSA is harmless.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "osa-weight-loss-glp1-disease-modifier",
+    "statement": "Weight loss is a true disease-modifier for obesity-related OSA, and GLP-1-class drugs reduce OSA severity.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced AHI with substantial weight loss; incretin therapy lowers OSA severity",
+    "population": "Obese OSA patients, RCTs",
+    "provenance": {
+      "primary": "Weight-loss/bariatric OSA trials; tirzepatide OSA program (SURMOUNT-OSA lineage)",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Addresses the root cause; complements CPAP/oral appliance/positional/hypoglossal-nerve stimulation.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "respiratory-vaccines-prevent-lrti",
+    "statement": "Vaccination (pneumococcal, influenza, COVID-19, RSV) reduces serious lower-respiratory infection and death, especially in older adults and those with COPD/heart disease.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced incidence of serious LRTI/hospitalization/death",
+    "population": "Older adults, chronic-disease populations, RCTs + meta-analyses",
+    "provenance": {
+      "primary": "Pneumococcal/influenza/COVID/RSV vaccine trial programs",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Highest-leverage pneumonia lever is prevention by vaccination, not supplements.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ipf-antifibrotics-slow-not-reverse",
+    "statement": "Antifibrotic drugs (pirfenidone, nintedanib) slow the rate of lung-function decline in idiopathic pulmonary fibrosis but do not reverse fibrosis; prognosis remains poor.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced annual FVC decline vs placebo (~50% slowing); no reversal",
+    "population": "IPF patients, phase-3 RCTs (ASCEND, INPULSIS)",
+    "provenance": {
+      "primary": "Pirfenidone (ASCEND) and nintedanib (INPULSIS) phase-3 trials",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Slow-the-decline, not cure. Transplant is the only definitive option for selected patients.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gerd-lifestyle-first-weight-loss",
+    "statement": "GERD guideline care front-loads lifestyle levers (weight loss best-evidenced, head-of-bed elevation, meal timing, trigger foods) before or alongside acid suppression, because reflux is often a weight-and-mechanics problem.",
+    "claim_type": "protocol",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Weight loss reduces reflux symptoms dose-dependently; mechanics (hiatal hernia, late meals) drive acid exposure",
+    "population": "GERD patients; ACG 2022 guideline base",
+    "provenance": {
+      "primary": "Katz PO et al., ACG Clinical Guideline for GERD, Am J Gastroenterol 2022",
+      "doi": "10.14309/ajg.0000000000001538",
+      "surfaced_via": "Wave-23 disease atlas (shared with Wave-17 §4.2)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Aim for lowest effective acid-suppression dose; fix mechanics. Barrett's/erosive disease are legitimate reasons for long-term therapy.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ppi-long-term-fears-mostly-not-causal",
+    "statement": "The widely-publicized harms of long-term PPI use (dementia, kidney disease, fractures, early death) derive mainly from confounded observational studies; a large RCT (COMPASS) found no significant excess except a small enteric-infection signal.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Pantoprazole vs placebo (~17,000 patients, ~3 yr): no significant excess of feared outcomes; small increase in enteric infections only",
+    "population": "Stable cardiovascular-disease patients, COMPASS sub-study",
+    "provenance": {
+      "primary": "Moayyedi P et al., Safety of PPIs based on a large RCT (COMPASS), Gastroenterology 2019",
+      "doi": "10.1053/j.gastro.2019.05.056",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PPIs far safer than viral fear suggests, but still use lowest effective dose / shortest duration; real considerations: C. difficile/enteric infection, possible Mg/B12 effects with long use, rebound on stopping. DOI cited from memory for the COMPASS PPI-safety analysis - verify.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "peptic-ulcer-is-infection-hpylori",
+    "statement": "Most peptic ulcer disease is caused by Helicobacter pylori infection (or NSAIDs), not stress/acid alone; eradicating H. pylori cures the ulcer diathesis and sharply reduces recurrence.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Eradication markedly reduces ulcer recurrence vs acid-suppression alone; H. pylori is a WHO class-I gastric carcinogen",
+    "population": "Peptic ulcer patients, eradication RCTs/meta-analyses",
+    "provenance": {
+      "primary": "Marshall BJ, Warren JR (Lancet 1984; Med J Aust 1985 self-experiment); 2005/2006 Nobel; modern eradication meta-analyses",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas; Europe PMC H. pylori scan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of medicine's cleanest 'find the cause -> cure the disease' wins. Rising clarithromycin resistance has shifted regimens to bismuth-quadruple / vonoprazan-based; confirm cure. Most H. pylori carriers never develop an ulcer.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ibs-is-real-dgbi",
+    "statement": "IBS is a genuine disorder of gut-brain interaction (visceral hypersensitivity, altered motility, post-infectious and microbiome changes, stress interaction) - a real disease with real mechanisms, not 'in the patient's head'.",
+    "claim_type": "mechanism",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Affects ~5-10% of adults; Rome IV symptom-based diagnosis after excluding alarm features",
+    "population": "General adult population; gastroenterology cohorts",
+    "provenance": {
+      "primary": "Rome Foundation DGBI framework; IBS management position papers 2026",
+      "doi": "10.1097/mcg.0000000000002388",
+      "surfaced_via": "Wave-23 disease atlas; Europe PMC IBS scan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The 'it's real' framing matters - historic stigma harms patients. Cross-ref 17 §4.3 gut-brain axis and C2 microbiome.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ibs-low-fodmap-short-term",
+    "statement": "A structured low-FODMAP diet reduces IBS symptoms in randomized controlled feeding trials, but it is a 3-phase, dietitian-guided, not-long-term protocol with a partial response rate.",
+    "claim_type": "protocol",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Significant symptom reduction vs typical/Australian diet; ~50-70% respond",
+    "population": "IBS patients, controlled feeding trial (n=30 crossover) + subsequent RCTs",
+    "provenance": {
+      "primary": "Halmos EP, Power VA, Shepherd SJ, Gibson PR, Muir JG, Gastroenterology 2014",
+      "doi": "10.1053/j.gastro.2013.09.046",
+      "surfaced_via": "Wave-23 disease atlas; DOI verified via Europe PMC"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Three phases: strict restriction -> systematic reintroduction -> personalization. Chronic restriction harms microbiome/nutrition; not a forever diet. Soluble fiber (psyllium) helps esp. IBS-C; insoluble bran can worsen.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ibs-gut-brain-therapies-work",
+    "statement": "Brain-directed therapies (CBT, gut-directed hypnotherapy, low-dose neuromodulators) improve IBS symptoms via the gut-brain axis - a real therapeutic target, not a psychological dismissal.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Meaningful symptom improvement vs control; effects modest",
+    "population": "IBS patients, pooled RCTs",
+    "provenance": {
+      "primary": "Gut-brain behavioral therapy and neuromodulator meta-analyses (ACG/AGA guideline base)",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Best results combine gut (FODMAP/fiber/targeted drugs) + brain therapies. Probiotics: mixed, strain-specific, modest. Rifaximin: modest/transient.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ibd-biologics-disease-modifying",
+    "statement": "Biologics and small molecules (anti-TNF, anti-integrin, anti-IL-23, JAK inhibitors, S1P modulators) induce and maintain remission in IBD (Crohn's/UC) - genuinely disease-modifying but not a cure, with real risks.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Significant induction and maintenance of clinical/endoscopic remission vs placebo across multiple classes",
+    "population": "Moderate-severe Crohn's disease and ulcerative colitis, phase-3 RCTs",
+    "provenance": {
+      "primary": "Anti-TNF, vedolizumab, ustekinumab/risankizumab, tofacitinib/upadacitinib, ozanimod phase-3 programs",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas; Europe PMC IBD scan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "IBD is objective immune-mediated inflammation (NOT IBS). Treat-to-target + early effective therapy improve outcomes. Risks: infection, agent-specific malignancy/thrombosis signals. Colectomy is curative for UC only.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "celiac-is-autoimmune-needs-pre-dx",
+    "statement": "Celiac disease is a true HLA-DQ2/DQ8-restricted autoimmune disease causing villous atrophy; it must be diagnosed (tTG-IgA serology + biopsy) BEFORE removing gluten, because a gluten-free diet normalizes the tests and prevents confirmation.",
+    "claim_type": "mechanism",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "~1% prevalence; strict lifelong gluten-free diet is the only effective treatment and is medically necessary",
+    "population": "Genetically susceptible (HLA-DQ2/DQ8) individuals",
+    "provenance": {
+      "primary": "Celiac diagnosis/management guidelines (ACG/ESsCD); tTG-IgA + duodenal biopsy standard",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas; Europe PMC celiac/NCGS scan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real, measurable autoimmunity with tissue destruction and cancer risk if untreated. The 'get tested before going gluten-free' rule is the load-bearing clinical point.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ncgs-real-symptoms-often-fructans-no-test",
+    "statement": "Non-celiac gluten/wheat sensitivity is a real symptom experience but, in double-blind rechallenge studies, the trigger for many is fructans (a FODMAP in wheat) or nocebo rather than gluten; there is no validated diagnostic test, and gluten-free diets have no proven benefit for people without celiac/wheat allergy.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Blinded rechallenge often fails to confirm gluten specificity; fructan/FODMAP overlap with IBS",
+    "population": "Self-reported gluten-sensitive adults without celiac/allergy, blinded crossover trials",
+    "provenance": {
+      "primary": "Biesiekierski/Gibson blinded rechallenge studies; Skodje et al. (fructans vs gluten) Gastroenterology 2018",
+      "doi": "10.1053/j.gastro.2017.10.040",
+      "surfaced_via": "Wave-23 disease atlas; Europe PMC NCGS scan"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Respect the symptoms but the 'gluten' attribution is often wrong; the likely culprit is FODMAPs/IBS. Skodje 2018 DOI cited from memory - verify. 'Gluten-free for everyone' wellness trend is not evidence-based and can lower fiber/raise cost.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "diverticulitis-often-no-antibiotics",
+    "statement": "Uncomplicated acute diverticulitis can often be managed without antibiotics in selected patients, and dietary avoidance of nuts/seeds/popcorn does not reduce diverticulitis risk - both reversals of prior dogma.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "No difference in recovery/complications with vs without antibiotics in uncomplicated diverticulitis (AVOD, DIABOLO); no increased risk from nuts/seeds (cohort)",
+    "population": "Uncomplicated acute diverticulitis, RCTs; men's health cohort for seeds",
+    "provenance": {
+      "primary": "AVOD (Chabok et al., Br J Surg 2012) and DIABOLO trials; Strate et al. nut/seed cohort JAMA 2008",
+      "doi": "10.1002/bjs.8688",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Fiber is the main prevention lever (cross-ref 17 §4.4). AVOD DOI cited from memory - verify. Surgery reserved for complications/recurrent severe disease.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "crc-screening-reduces-incidence-mortality",
+    "statement": "Colorectal cancer screening (colonoscopy/FIT/sigmoidoscopy) reduces CRC incidence and mortality by interrupting the multi-year adenoma-to-carcinoma sequence; normal-risk screening should begin at age 45.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "NordICC: reduced CRC incidence; per-protocol mortality reduction; sigmoidoscopy/FIT RCTs show mortality benefit",
+    "population": "Average-risk adults, NordICC (n~84,500) and screening RCTs",
+    "provenance": {
+      "primary": "Bretthauer M et al., NordICC, NEJM 2022",
+      "doi": "10.1056/NEJMoa2208375",
+      "surfaced_via": "Wave-23 disease atlas; DOI verified via crossref"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-ref oncology/screening section for biology and staged treatment. One of the few RCT-grade effective cancer screens.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "masld-weight-loss-reverses-histology",
+    "statement": "Weight loss reverses liver histology in MASLD/MASH (>=7% resolves MASH in most, >=10% regresses fibrosis in a majority); fibrosis stage, not steatosis, is the prognostic axis.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Dose-response on paired-biopsy histology; meta-confirmed as determinant of histological improvement across modalities",
+    "population": "MASH patients, paired-biopsy lifestyle cohort + meta-analysis",
+    "provenance": {
+      "primary": "Vilar-Gomez E et al., Gastroenterology 2015; Monami M et al., Diabetes Obes Metab 2026",
+      "doi": "10.1111/dom.70617",
+      "surfaced_via": "Wave-23 disease atlas (shared with Wave-17 §3.4); DOI verified via Europe PMC"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The liver has no special supplement lever; it heals when metabolism does. Leading cause of death in MASLD is cardiovascular.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "masld-first-drugs-resmetirom-semaglutide",
+    "statement": "Resmetirom (THR-beta agonist) is the first FDA-approved drug for MASH with fibrosis, and semaglutide (GLP-1) showed MASH resolution and fibrosis benefit in phase 3 - the first pharmacotherapy beyond weight loss.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "MAESTRO-NASH: significant MASH resolution and fibrosis improvement vs placebo; ESSENCE: significant MASH resolution and fibrosis benefit",
+    "population": "Noncirrhotic MASH with fibrosis, phase-3 RCTs",
+    "provenance": {
+      "primary": "Harrison SA et al., MAESTRO-NASH, NEJM 2024; Sanyal AJ et al., ESSENCE semaglutide, NEJM 2025",
+      "doi": "10.1056/NEJMoa2309000",
+      "surfaced_via": "Wave-23 disease atlas; both DOIs verified via crossref"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "ESSENCE DOI 10.1056/NEJMoa2413258 (Sanyal, NEJM 2025-06-05, verified). Drugs augment, not replace, the weight/metabolic lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hcv-curable-daa",
+    "statement": "Hepatitis C is curable for nearly everyone with 8-12 weeks of well-tolerated oral direct-acting antivirals achieving >95% sustained virologic response; the remaining barrier is diagnosis/access, not the science.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": ">95% SVR (cure) across DAA regimens; cure reduces cirrhosis, HCC and mortality risk",
+    "population": "Chronic HCV patients, phase-3 DAA trials + real-world meta-analyses",
+    "provenance": {
+      "primary": "Afdhal N et al., ledipasvir-sofosbuvir, NEJM 2014 (ION program)",
+      "doi": "10.1056/NEJMoa1402454",
+      "surfaced_via": "Wave-23 disease atlas; DOI verified via Europe PMC"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Landmark proof that 'chronic and incurable' reflects current knowledge, not destiny. Universal screening now recommended.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hbv-vaccine-prevents-suppression-controls",
+    "statement": "Hepatitis B is vaccine-preventable (the HBV vaccine is effectively an anti-cancer vaccine, preventing HBV-driven hepatocellular carcinoma) and chronic HBV is controlled - not yet routinely cured - by lifelong nucleos(t)ide suppression.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Vaccine prevents chronic infection and HCC; tenofovir/entecavir suppress virus, halt progression, reduce cancer risk but usually require long-term therapy (cccDNA persists)",
+    "population": "HBV-exposed/infected populations; vaccine and antiviral trials",
+    "provenance": {
+      "primary": "HBV vaccine HCC-prevention cohorts (Taiwan) + nucleos(t)ide analogue trials",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong prevention + control story; functional cure (cccDNA elimination) is an active frontier, not standard.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cirrhosis-remove-cause-partial-regression",
+    "statement": "Compensated cirrhosis is not always one-way: removing the cause early (curing HCV, stopping alcohol, reversing MASH) can stabilize or partially regress fibrosis; decompensated cirrhosis is far more serious and may need transplant.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Fibrosis stabilization/partial regression after cause removal in compensated disease",
+    "population": "Cirrhosis cohorts (post-HCV-cure, alcohol abstinence, MASH reversal)",
+    "provenance": {
+      "primary": "Hepatology fibrosis-regression literature (post-DAA, abstinence cohorts)",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The load-bearing point: identify and remove the cause before decompensation. Screen for varices/HCC; manage complications.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gallstones-operate-only-if-symptomatic",
+    "statement": "Most gallstones are silent and should be left alone; cholecystectomy is indicated only for symptomatic stones or complications - operating on asymptomatic stones is not recommended.",
+    "claim_type": "protocol",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Low rate of asymptomatic stones ever becoming symptomatic; harms of prophylactic surgery outweigh benefit",
+    "population": "Adults with gallstones, natural-history cohorts + guidelines",
+    "provenance": {
+      "primary": "Gallstone natural-history studies + surgical guidelines",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Rapid/crash weight loss paradoxically causes stones - a caveat for aggressive dieting advice elsewhere.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pancreatitis-early-feeding-remove-cause",
+    "statement": "Acute pancreatitis is managed with early aggressive fluids, pain control and early enteral nutrition (the old 'starve the gut' dogma is out) plus cause removal; chronic pancreatitis is largely irreversible, making alcohol and smoking cessation the real lever.",
+    "claim_type": "protocol",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Early enteral nutrition improves outcomes vs nil-by-mouth/parenteral; cholecystectomy after gallstone pancreatitis prevents recurrence",
+    "population": "Acute and chronic pancreatitis patients, RCTs/guidelines",
+    "provenance": {
+      "primary": "Acute pancreatitis nutrition RCTs + IAP/APA and ACG guidelines",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Chronic pancreatitis: exocrine (enzyme replacement) and endocrine (diabetes) insufficiency; preventable causes (alcohol, smoking) are the lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "leaky-gut-syndrome-overstated",
+    "statement": "Intestinal permeability is real biology associated with established diseases, but 'leaky gut syndrome' as a standalone diagnosis causing diffuse systemic symptoms and curable by supplements is not supported - permeability is more often a consequence/correlate than a proven root cause, and no supplement is proven to 'seal' the gut.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No validated supplement cure; causal direction mostly unestablished in humans",
+    "population": "Wellness-marketed general population",
+    "provenance": {
+      "primary": "Intestinal-permeability physiology reviews vs the consumer 'leaky gut' construct",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas (debunk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real phenomenon (mechanistic) but the syndrome-and-cure narrative is anecdotal/refutes. Treat the real disease if present.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "igg-food-sensitivity-tests-invalid",
+    "statement": "IgG/IgG4 food-sensitivity blood panels are not valid for diagnosing food sensitivity or intolerance; food-specific IgG is a normal marker of exposure and tolerance, not pathology, and major allergy societies recommend against the tests.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No diagnostic validity; positive results reflect dietary exposure, not harm",
+    "population": "Direct-to-consumer testing market; allergy/immunology society reviews",
+    "provenance": {
+      "primary": "AAAAI / EAACI / CSACI position statements against IgG/IgG4 food testing",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas (debunk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the clearest debunks. True IgE allergy, celiac serology, and lactose breath testing are the valid tests; the IgG food panel is the fake one. Acting on it causes needless restriction.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gut-health-supplements-unproven",
+    "statement": "No over-the-counter probiotic is proven to extend healthspan or 'optimize' a healthy person's gut; probiotic effects are strain- and condition-specific and generally modest, and most products lack trial-matched strains/doses.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "mixed",
+    "direction": "mixed",
+    "effect_size": "Specific strains help specific conditions (antibiotic-associated diarrhea, some IBS) modestly; generic 'gut health' claims unsupported",
+    "population": "General wellness market; probiotic RCTs/meta-analyses",
+    "provenance": {
+      "primary": "Probiotic meta-analyses + microbiome-aging evidence (cross-ref C2-microbiome-deepdive.md)",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas (debunk); cross-ref C2"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Better-evidenced gut levers are fiber + whole/fermented foods + movement + sleep (cross-ref 17 §4.4 and C2 fermented-foods RCT). Generic probiotic = a hope, not a result.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "detox-cleanses-useless-or-harmful",
+    "statement": "Juice cleanses, colon cleanses/coffee enemas, and 'liver detox' protocols do not remove toxins and are not health interventions; colon cleansing can cause dehydration/electrolyte disturbance/bowel injury, and some herbal 'detox' products cause supplement-induced liver injury.",
+    "claim_type": "outcome",
+    "domain": "disease-respiratory-gi",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No quality evidence of benefit; documented harms from colon cleansing and hepatotoxic 'detox' supplements",
+    "population": "Wellness-marketed general population",
+    "provenance": {
+      "primary": "Detox-diet systematic reviews; DILI case literature (cross-ref 17 §3.5, 09-exposures-environment.md)",
+      "doi": "",
+      "surfaced_via": "Wave-23 disease atlas (debunk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The liver/kidney detoxify continuously; the colon needs no cleansing. Help the gut/liver by giving them less to do (less alcohol/excess calories/unnecessary supplements).",
+    "added_on": "2026-06-28"
+  }
+]

@@ -1,0 +1,439 @@
+[
+  {
+    "id": "acne-combination-topical-best",
+    "statement": "Combination topical therapy (retinoid + benzoyl peroxide, with or without a topical antibiotic) is the most effective topical strategy for acne vulgaris; oral isotretinoin is the most effective single agent for severe nodulocystic/scarring disease.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dermatology",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Network meta-analysis: combination topicals lead among topical options; isotretinoin highest for severe acne",
+    "population": "Network meta-analysis of acne treatment RCTs",
+    "provenance": {
+      "primary": "Network meta-analysis of topical/oral/physical/combined treatments for acne, Br J Dermatol 2022",
+      "doi": "10.1111/bjd.21739",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Anchors AAD 2024 guideline (10.1016/j.jaad.2023.12.017). Benzoyl peroxide also prevents antibiotic resistance (10.3109/09546634.2012.699179), which is why guidelines pair it with any antibiotic.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "acne-diet-glycemic-modifier-not-cause",
+    "statement": "High-glycemic-load diets and skim/low-fat milk are modestly associated with worse acne, but diet is a minor real modifier (plausibly via insulin/IGF-1 -> androgen/sebum signaling), not the cause and not a substitute for retinoids/benzoyl peroxide. Chocolate and greasy food per se remain unproven.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dermatology",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Low-glycemic-load diets give modest improvement in small RCTs; skim milk associated in cohorts",
+    "population": "Observational cohorts + small dietary-intervention RCTs",
+    "provenance": {
+      "primary": "Glycemic-load and dairy acne literature; AAD 2024 acne guideline diet section",
+      "doi": "10.1016/j.jaad.2023.12.017",
+      "surfaced_via": "Wave-27 surface/sensory brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: the dietary signal is a cohort/small-RCT modifier, not the lever that clears moderate-severe acne. The honest middle between 'diet doesn't matter' and 'diet causes acne'.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dupilumab-atopic-dermatitis",
+    "statement": "Dupilumab (anti-IL-4-receptor-alpha, blocking IL-4/IL-13 type-2 inflammation) dramatically improves moderate-to-severe atopic dermatitis (eczema) vs placebo across the SOLO 1 and SOLO 2 phase-3 RCTs, improving EASI-75, itch, and quality of life with a clean safety profile (notable conjunctivitis).",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dermatology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~38% achieved EASI-75 with dupilumab vs ~10-12% placebo at 16 weeks (SOLO trials)",
+    "population": "Two phase-3 RCTs, moderate-to-severe adult atopic dermatitis",
+    "provenance": {
+      "primary": "Simpson EL et al. - 'Two Phase 3 Trials of Dupilumab versus Placebo in Atopic Dermatitis', NEJM 2016",
+      "doi": "10.1056/NEJMoa1610020",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Proof that targeting type-2 cytokines controls severe eczema; opened the biologic era beyond psoriasis. For moderate-severe disease, NOT first-line mild eczema (which is emollients + topical steroids).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "psoriasis-il17-il23-biologics",
+    "statement": "Anti-IL-17 and anti-IL-23 biologics (bimekizumab, ixekizumab, risankizumab, secukinumab, guselkumab) achieve the highest rates of near-complete skin clearance (PASI 90) for chronic plaque psoriasis, outperforming older systemics in network meta-analysis. Psoriasis is a systemic IL-23/Th17/IL-17-driven immune disease, not cosmetic dry skin.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dermatology",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "IL-17/IL-23 biologics top PASI-90 rankings vs placebo and conventional systemics",
+    "population": "Cochrane network meta-analysis of systemic psoriasis treatments",
+    "provenance": {
+      "primary": "Sbidian E et al. - 'Systemic pharmacological treatments for chronic plaque psoriasis: a network meta-analysis', Cochrane 2023",
+      "doi": "10.1002/14651858.CD011535.pub6",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the cleanest bench-to-clinic stories: cytokine node mapped, drugs built against it, they work. Caveats: immunosuppressants (infection screening, cost), none is a cure (relapse on stopping). Anti-inflammatory diets do not control moderate-severe disease.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "rosacea-managed-not-cured",
+    "statement": "Rosacea is best treated with topical ivermectin, azelaic acid, brimonidine, and oral (sub-antimicrobial-dose) doxycycline per Cochrane/GRADE assessment; low-dose isotretinoin helps refractory disease. It is a chronic inflammatory facial condition managed, not cured, distinct from acne (no comedones).",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dermatology",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Topical ivermectin/azelaic acid/brimonidine and doxycycline have the best GRADE support",
+    "population": "Cochrane systematic review of rosacea interventions",
+    "provenance": {
+      "primary": "van Zuuren EJ et al. - 'Interventions for rosacea: abridged updated Cochrane systematic review including GRADE assessments', Br J Dermatol 2015",
+      "doi": "10.1111/bjd.13956",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Low-dose isotretinoin meta (10.1111/jdv.20315) supports refractory use. Daily sun protection is backbone; 'rosacea diets' mostly help by removing irritant triggers.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "melanoma-abcde-lethality-gradient",
+    "statement": "Skin cancers form a lethality gradient: basal cell carcinoma is the most common cancer in humans but almost never metastasizes; squamous cell carcinoma can metastasize (low but real); melanoma is ~1% of skin cancers but causes most skin-cancer deaths and is stage-dependent for survival. The ABCDE rule (Asymmetry, Border, Color, Diameter >6mm, Evolving) plus the ugly-duckling sign guides early melanoma detection.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dermatology",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Evolving/change is the highest-value single ABCDE feature; early excision is curative",
+    "population": "Consensus diagnostic criteria + descriptive epidemiology",
+    "provenance": {
+      "primary": "Abbasi NR et al. - 'Early diagnosis of cutaneous melanoma: revisiting the ABCD criteria', JAMA 2004",
+      "doi": "10.1001/jama.292.22.2771",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-ref Section 11 sunscreen prevention (Green 1999/2011) and Section 25 oncology (advanced-melanoma checkpoint/BRAF therapy). The difference between BCC and melanoma is caught with the eyes.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "skincare-price-not-quality-signal",
+    "statement": "The skin actives with real evidence are cheap and decades-old: sunscreen and topical retinoids (tier-1, RCT), with modest secondary support for vitamin C, niacinamide, alpha-hydroxy acids, and azelaic acid. There is no correlation between product price and efficacy; peptides, growth factors, 'stem cell' and exosome serums have weak/mechanistic-only evidence.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dermatology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "A $12 drugstore retinoid + sunscreen outperforms a $300 serum with neither",
+    "population": "Synthesis of topical-active RCT evidence",
+    "provenance": {
+      "primary": "Extends Section 11 skincare hierarchy (Hughes 2013 sunscreen 10.7326/0003-4819-158-11-201306040-00002; Weiss 1988 tretinoin 10.1001/jama.1988.03720040019020)",
+      "doi": "10.1001/jama.1988.03720040019020",
+      "surfaced_via": "Wave-27 surface/sensory brief; cross-ref Section 11 1.5"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: most serum claims are mechanistic/invitro sold as outcome. Price buys packaging/scent/texture, not better skin.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "caries-biofilm-acid-mechanism",
+    "statement": "Dental caries is a dysbiotic-biofilm acid disease: acid-producing bacteria (S. mutans, Lactobacilli) ferment dietary sugar to organic acids that demineralize enamel below ~pH 5.5; saliva and fluoride remineralize between attacks. Decay is the net balance of demineralization vs remineralization over time, so frequency of sugar exposure matters more than total amount.",
+    "claim_type": "mechanism",
+    "domain": "surface-sensory/dental",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Frequency of fermentable-carbohydrate exposure drives demineralization more than quantity; dry mouth -> rampant caries",
+    "population": "Established cariology / oral microbiology",
+    "provenance": {
+      "primary": "Cariology consensus (Stephan-curve acid model; ecological plaque hypothesis)",
+      "doi": "",
+      "surfaced_via": "Wave-27 surface/sensory brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/03-chemistry/ (hydroxyapatite dissolution / pH) + 05-biophysics (oral microbiome)",
+    "confidence_notes": "Corrects the naive 'sugar rots teeth' and the fringe 'caries is a vitamin deficiency'. Explains why fluoride (shifts remineralization to acid-resistant fluorapatite) and sugar-frequency reduction are the levers.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fluoride-toothpaste-caries-prevention",
+    "statement": "Fluoride toothpaste prevents dental caries vs placebo (prevented-fraction ~24% on DMFS in children), with a dose-dependent benefit by concentration (>=1000 ppm; 1000-1500 ppm standard adult range). It is one of the best-evidenced and most cost-effective preventive interventions in medicine.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dental",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~24% caries reduction (DMFS) vs placebo; benefit increases with fluoride concentration",
+    "population": "Cochrane meta-analyses of fluoride-toothpaste RCTs",
+    "provenance": {
+      "primary": "Marinho VCC et al. - 'Fluoride toothpastes for preventing dental caries in children and adolescents', Cochrane 2003; concentration: Walsh 2019",
+      "doi": "10.1002/14651858.CD002278",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Concentration-dependence: Walsh 2019 Cochrane 10.1002/14651858.CD007868.pub3. Practical: brush twice daily, 'spit, don't rinse' to leave a fluoride film. Sealants for kids' molars have strong RCT support.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "interdental-cleaning-gingivitis",
+    "statement": "Interdental cleaning (floss, interdental brushes, water flossers) added to toothbrushing reduces gingivitis (low-to-moderate certainty); interdental brushes have somewhat better evidence than string floss where gaps allow. Direct caries-prevention evidence for flossing is weak because the trials are small/short, not because the practice is useless.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dental",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small-to-moderate gingivitis reduction; weak/low-quality plaque and caries data",
+    "population": "Cochrane review, interdental cleaning devices added to brushing",
+    "provenance": {
+      "primary": "Worthington HV et al. - 'Home use of interdental cleaning devices, in addition to toothbrushing, for preventing and controlling periodontal diseases and dental caries', Cochrane 2019",
+      "doi": "10.1002/14651858.CD012018.pub2",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #2 (cross-ref Section 11 2.4, Sambunjak 2011): the trials are weak, not the practice. Mechanistically sound for interproximal surfaces a brush can't reach. Low-cost, low-risk.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "amalgam-mercury-fear-unfounded",
+    "statement": "Dental amalgam releases trace mercury vapor at levels far below toxicity thresholds; large reviews and FDA/WHO/ADA find no evidence of systemic harm from amalgam fillings in the general population. Removing sound amalgams 'to detox' actually spikes mercury exposure during drilling and is net-harmful. Composite resins are preferred for aesthetic/conservative reasons, not safety, and have a higher failure/recurrent-caries rate than amalgam in posterior load-bearing teeth.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dental",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Composite fillings: higher risk of failure and secondary caries vs amalgam in posterior teeth (Cochrane)",
+    "population": "Cochrane review of composite vs amalgam posterior fillings + amalgam-safety reviews",
+    "provenance": {
+      "primary": "Cochrane (Innes/Schwendicke et al.) - 'Direct composite resin fillings versus amalgam fillings for permanent posterior teeth', Cochrane 2021",
+      "doi": "10.1002/14651858.CD005620.pub3",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk: 'silver fillings poison you' is unfounded; the actual harm is removal-for-detox. A red flag of fringe 'holistic dentistry' alongside fluoride-rejection.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "oil-pulling-charcoal-overhyped",
+    "statement": "Oil pulling (swishing coconut/sesame oil) has at best weak, low-quality evidence vs chlorhexidine/standard care and is not a substitute for brushing/fluoride. Charcoal toothpaste 'whitens' only by abrasion (no detox mechanism), is highly abrasive to enamel, and usually contains no fluoride - forgoing the one proven benefit. Peroxide-based whitening, by contrast, genuinely works.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dental",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Oil pulling: small, unreplicated plaque effects; charcoal: abrasion only, net-negative if it replaces fluoride; peroxide whitening: real bleaching",
+    "population": "Systematic reviews of oil pulling + abrasivity/whitening evidence",
+    "provenance": {
+      "primary": "Systematic review - 'The effect of oil pulling with coconut oil to improve dental hygiene and oral health', Heliyon 2020",
+      "doi": "10.1016/j.heliyon.2020.e04789",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk cluster. The filter: anything telling you to stop using fluoride is selling fear. Professional/peroxide whitening is the one cosmetic dental claim that does what it says.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "oral-cancer-hpv-tobacco-dual",
+    "statement": "Oral and oropharyngeal squamous cell carcinomas have two distinct causal stories: tobacco (all forms) plus alcohol (synergistic) drive classic oral-cavity SCC (declining), while high-risk HPV (esp. type 16) drives oropharyngeal SCC (rising, now dominant in many high-income countries, better prognosis). HPV vaccination is primary prevention; the dental oral-cancer screen and the >2-3 week non-healing-lesion rule are the detection levers.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/dental",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Tobacco+alcohol synergistic; HPV now the leading cause of oropharyngeal cancer in many high-income countries",
+    "population": "Descriptive epidemiology + HPV cohort/trend data",
+    "provenance": {
+      "primary": "Oral/oropharyngeal cancer epidemiology consensus (HPV-trend literature, Chaturvedi et al.)",
+      "doi": "",
+      "surfaced_via": "Wave-27 surface/sensory brief; cross-ref Section 25/26"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "HPV-vaccine -> oropharyngeal-cancer prevention is a genuine modern prevention win. Routine dental visits matter beyond cleaning because of the oral-cancer screen.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tinnitus-no-cure-cbt-habituation",
+    "statement": "There is no proven drug or device that eliminates tinnitus; the evidence-based approach reduces the distress and attention it commands (habituation), not the loudness. CBT improves tinnitus-related quality of life and reduces depression/anxiety with little/no effect on subjective loudness; hearing aids help when hearing loss coexists.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ent",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "CBT improves tinnitus QoL and reduces anxiety/depression; loudness largely unchanged",
+    "population": "Cochrane review of CBT for tinnitus",
+    "provenance": {
+      "primary": "Fuller T et al. - 'Cognitive behavioural therapy for tinnitus', Cochrane 2020",
+      "doi": "10.1002/14651858.CD012614.pub2",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (maladaptive central plasticity / phantom percept; cross-ref central sensitization Section 21)",
+    "confidence_notes": "Honest: tinnitus 'cure' pills/apps target desperate people. Mechanism = central gain increase after cochlear damage. Sudden unilateral tinnitus with hearing loss/vertigo needs prompt ENT eval. Ginkgo/zinc supplements show no reliable benefit.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "epley-cures-bppv",
+    "statement": "Benign paroxysmal positional vertigo (BPPV) - the most common cause of vertigo - is caused by displaced otoconia (calcium-carbonate crystals) in a semicircular canal, and is physically cured by the Epley canalith-repositioning maneuver, a ~60-second bedside procedure that resolves vertigo in a single session in the majority of cases.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ent",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Epley significantly increases resolution of vertigo and conversion of Dix-Hallpike to negative vs sham/control",
+    "population": "Cochrane review + AAO-HNS systematic reviews, posterior-canal BPPV",
+    "provenance": {
+      "primary": "Hilton MP, Pinder DK - 'The Epley (canalith repositioning) manoeuvre for benign paroxysmal positional vertigo', Cochrane",
+      "doi": "10.1002/14651858.CD003162",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the cleanest 'free treatment that works' facts in medicine. Vestibular suppressants (meclizine) only mask and delay recovery. Spontaneous/neurological vertigo is NOT BPPV - rule out central causes (stroke).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sinusitis-mostly-viral-no-antibiotics",
+    "statement": "Most acute rhinosinusitis is self-limiting viral illness for which antibiotics do not help; evidence-based care is saline irrigation, analgesia, and time, with intranasal corticosteroids for chronic disease. Antibiotics are reserved for genuine acute bacterial sinusitis (>10 days without improvement, double-worsening, high fever + purulence).",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ent",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Antibiotics provide little/no benefit for uncomplicated acute sinusitis; major source of antibiotic overuse",
+    "population": "Acute rhinosinusitis trials + chronic rhinosinusitis guidelines",
+    "provenance": {
+      "primary": "Acute/chronic rhinosinusitis evidence syntheses (saline irrigation + intranasal corticosteroid levers)",
+      "doi": "",
+      "surfaced_via": "Wave-27 surface/sensory brief; cross-ref Section 26 antibiotic stewardship"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Chronic rhinosinusitis is an inflammatory disease (steroids/irrigation/biologics), not repeated antibiotic courses. Cross-ref antibiotic-resistance section.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cpap-symptoms-yes-cv-events-unproven",
+    "statement": "CPAP unambiguously improves obstructive-sleep-apnea symptoms (daytime sleepiness, quality of life, modest blood-pressure reduction), but the randomized SAVE trial found no reduction in cardiovascular events vs usual care - a null confounded by low adherence (~3.3 h/night); observational/meta data suggest good adherence (>=4 h) may reduce events.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ent",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "SAVE: no CV-event reduction (HR ~1.10, ns); robust symptom/QoL/BP benefit; adherence-dependent event signal in meta-analysis",
+    "population": "SAVE RCT (n~2700, OSA + established CVD)",
+    "provenance": {
+      "primary": "McEvoy RD et al. - 'CPAP for Prevention of Cardiovascular Events in Obstructive Sleep Apnea (SAVE)', NEJM 2016",
+      "doi": "10.1056/NEJMoa1606599",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rules #1 (predictor vs lever) and #3 (dose/adherence matters). Adherence-confounded null; meta 10.1001/jama.2023.17465 suggests benefit with good use. Treat OSA for symptoms (real), CV-prevention claim weaker. Cross-ref Section 22.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "outdoor-time-prevents-childhood-myopia",
+    "statement": "Adding outdoor time during childhood reduces the incidence of new myopia: a cluster-RCT adding 40 minutes of outdoor class time per school day over 3 years lowered myopia incidence vs control. The mechanism is bright-light-driven retinal dopamine slowing axial elongation, not 'looking far away'. This is the one primary-prevention myopia lever with randomized support.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ophthalmology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "3-year cumulative myopia incidence 30.4% (outdoor) vs 39.5% (control) - ~9 percentage-point absolute reduction",
+    "population": "He 2015 Guangzhou cluster-RCT, ~1900 children; replicated by later objectively-monitored RCTs",
+    "provenance": {
+      "primary": "He M et al. - 'Effect of Time Spent Outdoors at School on the Development of Myopia Among Children in China: A Randomized Clinical Trial', JAMA 2015",
+      "doi": "10.1001/jama.2015.10803",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Replication: Ophthalmology 2022 10.1016/j.ophtha.2022.06.024; meta Acta Ophthalmol 2017 10.1111/aos.13403. For progression in already-myopic kids: low-dose atropine, ortho-K, myopia-control lenses (RCT). Cross-ref Section 11 4.5.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "glaucoma-iop-lowering-proven-lever",
+    "statement": "Glaucoma is a progressive optic neuropathy causing irreversible, painless, peripheral-first vision loss; elevated intraocular pressure (IOP) is both its biggest risk factor and a proven lever - randomly lowering IOP in the Early Manifest Glaucoma Trial slowed progression (45% treated vs 62% control). USPSTF 'insufficient evidence' applies to population mass-screening, not to treating detected cases.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ophthalmology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "EMGT: progression 45% (IOP-lowering) vs 62% (control) over ~6 years; each 1 mmHg lower IOP reduced progression risk ~10%",
+    "population": "EMGT RCT, newly-detected open-angle glaucoma",
+    "provenance": {
+      "primary": "Heijl A et al. - 'Reduction of intraocular pressure and glaucoma progression: results from the Early Manifest Glaucoma Trial (EMGT)', Arch Ophthalmol 2002",
+      "doi": "10.1001/archopht.120.10.1268",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Rare case where IOP is BOTH predictor and proven lever (drops/SLT laser/surgery). USPSTF 2022 screening I-statement (Section 11 4.3) is about programs, not treatment. Lost vision is unrecoverable, so risk-based detection is everything. No supplement/diet/exercise treats it.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "anti-vegf-wet-amd-revolution",
+    "statement": "Intravitreal anti-VEGF injections (ranibizumab in the MARINA RCT) transformed neovascular (wet) age-related macular degeneration from a near-certain blinding disease into a treatable one - not only preventing vision loss but improving vision in a substantial fraction (~95% lost <15 letters; ~34% gained >=15 letters vs sham).",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ophthalmology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "MARINA: ~95% lost <15 letters (vs ~62% sham); ~34% gained >=15 letters (vs ~5% sham) at 12 months",
+    "population": "MARINA RCT, neovascular AMD",
+    "provenance": {
+      "primary": "Rosenfeld PJ et al. - 'Ranibizumab for Neovascular Age-Related Macular Degeneration (MARINA)', NEJM 2006",
+      "doi": "10.1056/NEJMoa054481",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the biggest modern ophthalmology advances. Wet AMD = urgent (sudden central distortion -> same-week ophthalmology). Dry AMD: AREDS2 slows intermediate stage only (Section 11 4.1); smoking is the strongest modifiable risk factor.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "diabetic-retinopathy-glucose-control-prevents",
+    "statement": "Diabetic retinopathy is a leading cause of working-age blindness and is largely preventable: intensive glucose control in the DCCT reduced development/progression of retinopathy by ~76%/~54% vs conventional control. The progression is silent until advanced, so annual dilated screening from diagnosis plus glucose/blood-pressure control are the levers; laser and anti-VEGF preserve vision in detected disease.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ophthalmology",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "DCCT: ~76% reduction in retinopathy development, ~54% reduction in progression with intensive glucose control",
+    "population": "DCCT RCT (type 1 diabetes); UKPDS parallel in type 2",
+    "provenance": {
+      "primary": "DCCT Research Group - 'The effect of intensive treatment of diabetes on the development and progression of long-term complications in IDDM', NEJM 1993",
+      "doi": "10.1056/NEJM199309303291401",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "By the time vision blurs, damage is often advanced - the win is screening + early treatment. Cross-ref Section 22 (diabetes).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dry-eye-inflammatory-mgd-disease",
+    "statement": "Dry eye disease is a chronic inflammatory disease of the tear film and ocular surface (tear-film instability + hyperosmolarity -> surface inflammation), most commonly evaporative from meibomian-gland dysfunction rather than pure aqueous deficiency. Stepped care: artificial tears/lid hygiene/warm compresses, then anti-inflammatory drops (ciclosporin, lifitegrast), then procedures.",
+    "claim_type": "mechanism",
+    "domain": "surface-sensory/ophthalmology",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Majority of dry eye is evaporative/MGD-driven; treating MGD (warm compresses/lid hygiene) is highest-yield self-care",
+    "population": "TFOS DEWS II consensus + systematic evidence",
+    "provenance": {
+      "primary": "TFOS DEWS II Management and Therapy Report, Ocul Surf 2017 (definition: 10.1016/j.jtos.2017.05.008)",
+      "doi": "10.1016/j.jtos.2017.05.006",
+      "surfaced_via": "Wave-27 surface/sensory brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reframes dry eye from 'just use drops' to a treatable inflammatory disease. Screen-time blink reduction overlaps with benign digital eye strain (Section 11 4.5); 20-20-20 manages strain, not the disease.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "eye-exercises-dont-fix-refractive-error",
+    "statement": "Eye exercises, the Bates method, and 'improve your eyesight naturally' programs cannot reduce myopia/hyperopia/astigmatism or eliminate the need for glasses - refractive error is a structural/optical property (eyeball axial length, corneal/lens optics) that no muscular exercise changes; the American Academy of Ophthalmology finds no scientific evidence of benefit. The only legitimate 'eye exercise' use is orthoptic vision therapy for binocular disorders like convergence insufficiency, which is unrelated to refractive error.",
+    "claim_type": "outcome",
+    "domain": "surface-sensory/ophthalmology",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No effect on refractive error; vision therapy effective ONLY for convergence insufficiency (CITT RCT)",
+    "population": "AAO position + behavioural-vision-therapy review evidence",
+    "provenance": {
+      "primary": "American Academy of Ophthalmology position on eye exercises/Bates method for refractive error; CITT RCT (convergence insufficiency exception)",
+      "doi": "",
+      "surfaced_via": "Wave-27 surface/sensory brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/02-physics/ (geometric optics: focal length set by axial length + refracting surfaces, not muscle tone)",
+    "confidence_notes": "Settled debunk. Marketing exploits the real convergence-insufficiency kernel to oversell 'throw away your glasses'. Only proven myopia levers: outdoor time (prevention) + atropine/ortho-K/control lenses (progression) - none an 'exercise'.",
+    "added_on": "2026-06-28"
+  }
+]

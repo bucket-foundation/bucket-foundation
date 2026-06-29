@@ -1,0 +1,458 @@
+[
+  {
+    "id": "acupuncture-chronic-pain-modest-over-sham",
+    "statement": "Acupuncture produces a moderate effect over no-treatment (~0.5 SD) but only a small effect over sham/placebo needling (~0.2 SD) for chronic pain (back/neck, osteoarthritis, headache, shoulder), with effects persisting ~12 months; most of the benefit is context/ritual/placebo, not point-specific.",
+    "claim_type": "outcome",
+    "domain": "CAM-acupuncture",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "~0.5 SD vs no-acupuncture; ~0.2 SD vs sham; ~15% decay at 1 year",
+    "population": "39 high-quality RCTs / ~20,827 chronic-pain patients (individual patient data)",
+    "provenance": {
+      "primary": "Vickers et al., Arch Intern Med 2012; update J Pain 2018",
+      "doi": "10.1016/j.jpain.2017.11.005",
+      "surfaced_via": "CAM chapter (30) build — PubMed/IPD meta-analysis"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (descending pain modulation, endogenous opioids)",
+    "confidence_notes": "Grade: works-for-some-things. The sham-vs-real gap is the truth serum; small real specific effect, large placebo/counter-irritation component. Not evidence for non-pain indications.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "acupuncture-pc6-antiemesis",
+    "statement": "Acupuncture/acupressure at the PC6 point reduces post-operative and chemotherapy-induced nausea and vomiting — the most robust specific (non-placebo-explained) acupuncture effect.",
+    "claim_type": "outcome",
+    "domain": "CAM-acupuncture",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Significant reduction in PONV/CINV vs control",
+    "population": "Cochrane PC6 antiemesis reviews (Lee et al.)",
+    "provenance": {
+      "primary": "Lee A et al., Cochrane Database Syst Rev (PC6 acupoint stimulation for nausea/vomiting)",
+      "doi": "10.1002/14651858.CD003281.pub4",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: works-for-some-things. One of the few acupuncture signals that survives decent blinding.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "acupuncture-meridians-qi-not-biology",
+    "statement": "The traditional acupuncture framework (qi flowing through meridians) corresponds to no known anatomical structure; sham/non-penetrating needling at 'wrong' points works almost as well as 'real' acupuncture, refuting point-specificity and the meridian theory.",
+    "claim_type": "mechanism",
+    "domain": "CAM-acupuncture",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Sham ≈ verum in most blinded trials",
+    "population": "Across sham-controlled acupuncture RCTs",
+    "provenance": {
+      "primary": "Multiple sham-controlled RCTs; synthesized in Ernst & Singh, Trick or Treatment 2008",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: no-evidence (the theory). Mechanism is plausibly diffuse noxious inhibitory control + placebo, not qi/meridians.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "st-johns-wort-depression-effective",
+    "statement": "St John's Wort (Hypericum perforatum) extracts are superior to placebo and about as effective as standard antidepressants for mild-to-moderate major depression, with fewer side-effect dropouts than SSRIs.",
+    "claim_type": "outcome",
+    "domain": "CAM-herbal",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Response rates ~ equal to SSRIs (e.g. 52% vs 52%); fewer adverse-effect dropouts (OR ~0.53)",
+    "population": "Cochrane review, 29 RCTs",
+    "provenance": {
+      "primary": "Linde K et al., Cochrane Database Syst Rev 2008, CD000448.pub3",
+      "doi": "10.1002/14651858.CD000448.pub3",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: works (narrow). German-language trials skewed more positive (heterogeneity caveat). Restricted to mild-moderate depression.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "st-johns-wort-interaction-harm",
+    "statement": "St John's Wort is a potent CYP3A4 and P-glycoprotein inducer that can reduce efficacy of oral contraceptives, warfarin, ciclosporin, and HIV antiretrovirals, and can precipitate serotonin syndrome with SSRIs/SNRIs.",
+    "claim_type": "mechanism",
+    "domain": "CAM-herbal",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Clinically significant loss of drug levels; documented transplant rejection and contraceptive failure cases",
+    "population": "Pharmacokinetic + case literature",
+    "provenance": {
+      "primary": "Pharmacology literature; summarized in CAM reviews",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: harmful (interactions). The most-cited 'natural is not safe' example: a real antidepressant that is also a dangerous enzyme inducer.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "peppermint-oil-ibs-effective",
+    "statement": "Enteric-coated peppermint oil (a smooth-muscle antispasmodic) improves global symptoms and abdominal pain in irritable bowel syndrome vs placebo.",
+    "claim_type": "outcome",
+    "domain": "CAM-herbal",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "RR ~2.4 for global symptom improvement",
+    "population": "Pooled RCT meta-analysis (12 trials, ~835 patients)",
+    "provenance": {
+      "primary": "Alammar N et al., BMC Complement Altern Med 2019 (peppermint oil IBS meta-analysis)",
+      "doi": "10.1186/s12906-018-2409-0",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: works. In mainstream gastroenterology guidance. Main side-effect: reflux.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ginger-nausea-modest",
+    "statement": "Ginger is a modest, real antiemetic for pregnancy-related nausea and as an adjunct for post-operative and chemotherapy-induced nausea.",
+    "claim_type": "outcome",
+    "domain": "CAM-herbal",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Moderate reduction in nausea; not a cure",
+    "population": "RCT/meta-analyses across nausea indications",
+    "provenance": {
+      "primary": "Multiple RCT meta-analyses (ginger for nausea of pregnancy / chemotherapy)",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: works-for-some-things (nausea only).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "curcumin-bioavailability-limits-evidence",
+    "statement": "Curcumin (turmeric) has strong in-vitro anti-inflammatory mechanism but near-zero oral bioavailability; human trials in osteoarthritis are small, short, on subjective/surrogate endpoints, often industry-linked and using enhanced formulations, so the 'natural anti-inflammatory' outcome claim remains unproven.",
+    "claim_type": "mechanism",
+    "domain": "CAM-herbal",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Some OA pain trials ~ on par with NSAIDs but low quality",
+    "population": "Small OA RCTs + pharmacokinetic data",
+    "provenance": {
+      "primary": "Curcumin OA RCTs + bioavailability literature (Nelson et al., J Med Chem 2017 'curcumin is a PAINS/IMPS')",
+      "doi": "10.1021/acs.jmedchem.6b00975",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: no-evidence -> emerging. Mechanism is real; outcome claim outruns the evidence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "saw-palmetto-bph-null",
+    "statement": "Saw palmetto (Serenoa repens) is no better than placebo for lower-urinary-tract symptoms of benign prostatic hyperplasia, even at double and triple doses.",
+    "claim_type": "outcome",
+    "domain": "CAM-herbal",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "AUASI change 0.68 (saw palmetto) vs 0.72 (placebo) at 12 mo — no clinical difference",
+    "population": "STEP RCT + Cochrane review",
+    "provenance": {
+      "primary": "Bent S et al., NEJM 2006 (STEP); Franco JVA et al., Cochrane 2023",
+      "doi": "10.1056/NEJMoa053085",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: placebo-level (settled). Case study in how early low-quality positive trials evaporate under rigorous design.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ginkgo-dementia-null",
+    "statement": "Ginkgo biloba does not prevent dementia, Alzheimer's disease, or cognitive decline in older adults.",
+    "claim_type": "outcome",
+    "domain": "CAM-herbal",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No reduction in dementia incidence over ~6 years",
+    "population": "GEM study, >3,000 elderly",
+    "provenance": {
+      "primary": "DeKosky ST et al. (Ginkgo Evaluation of Memory / GEM), JAMA 2008",
+      "doi": "10.1001/jama.2008.683",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: placebo-level / no-evidence for the headline claim.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "traditional-systems-theory-not-biology",
+    "statement": "The explanatory theories of Traditional Chinese Medicine (qi, meridians, five phases) and Ayurveda (doshas, five elements) are pre-scientific models that make no falsifiable physiology-level predictions that survive testing — they are not descriptions of biology.",
+    "claim_type": "hypothesis",
+    "domain": "CAM-traditional",
+    "evidence_tier": "theoretical",
+    "direction": "unfalsifiable",
+    "effect_size": "No measurable correspondence between traditional diagnoses (pulse/tongue->dosha) and disease states",
+    "population": "Conceptual / systems-level",
+    "provenance": {
+      "primary": "Ernst & Singh, Trick or Treatment 2008; general scientific critique",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: no-evidence (the system). Separate from the pharmacology of individual compounds — same standard applied to any historical medical system.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "traditional-systems-compound-pharmacology",
+    "statement": "Some compounds in traditional pharmacopeias have real pharmacology (e.g. artemisinin from Artemisia annua, a TCM remedy, now a frontline WHO antimalarial; ephedrine from ma huang), but the validated win is the isolated, purified, dosed, and trialled molecule — not a vindication of qi or doshas.",
+    "claim_type": "mechanism",
+    "domain": "CAM-traditional",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Artemisinin: Nobel Prize 2015 (Tu Youyou); frontline antimalarial",
+    "population": "Drug-discovery history",
+    "provenance": {
+      "primary": "Tu Youyou, Nobel Lecture 2015; artemisinin clinical literature",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Tradition as a source of leads is provenance, not proof (SCHEMA hard rule). The molecule, validated by modern method, is the evidence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ayurveda-heavy-metal-contamination",
+    "statement": "About 1 in 5 Ayurvedic medicines (US- and Indian-manufactured, bought via the Internet) contain detectable lead, mercury, or arsenic; rasa shastra products (which intentionally combine herbs with metals) are worse (~40%), and metal-containing products exceeded acceptable daily-intake limits.",
+    "claim_type": "outcome",
+    "domain": "CAM-traditional",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "~20% of products with Pb/Hg/As; ~40% of rasa shastra products",
+    "population": "193 Ayurvedic products purchased online",
+    "provenance": {
+      "primary": "Saper RB et al., JAMA 2008",
+      "doi": "10.1001/jama.2008.629",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: harmful. Documented lead-poisoning clusters traced to these products. Distinct toxicology hazard, separate from efficacy.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "spinal-manipulation-acute-lbp-modest",
+    "statement": "Spinal manipulative therapy (SMT) produces modest short-term pain and function improvement for acute and chronic non-specific low-back pain — about the same as other recommended active therapies (exercise, NSAIDs, physiotherapy), not superior to them.",
+    "claim_type": "outcome",
+    "domain": "CAM-manual",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small benefit; clinically similar to other active treatments",
+    "population": "Cochrane / Rubinstein systematic reviews of LBP RCTs",
+    "provenance": {
+      "primary": "Rubinstein SM et al., BMJ 2019 (SMT for chronic LBP SR/meta)",
+      "doi": "10.1136/bmj.l689",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: works-for-some-things. A reasonable option within guideline care, not magic. Cross-ref Section 21 (back pain).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "chiropractic-subluxation-no-basis",
+    "statement": "The chiropractic 'vertebral subluxation' that allegedly impedes 'Innate Intelligence' and causes systemic/visceral disease is not visible on imaging, has no demonstrated pathophysiology, and spinal adjustment does not treat internal disease (asthma, ear infections, hypertension, immune function).",
+    "claim_type": "hypothesis",
+    "domain": "CAM-manual",
+    "evidence_tier": "theoretical",
+    "direction": "refutes",
+    "effect_size": "No supported effect on non-musculoskeletal disease",
+    "population": "Conceptual / clinical-trial absence",
+    "provenance": {
+      "primary": "Ernst E, critical reviews of chiropractic; Trick or Treatment 2008",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: no-evidence. Must be graded separately from evidence-based SMT for back pain.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cervical-manipulation-arterial-dissection",
+    "statement": "Cervical (neck) high-velocity manipulation is associated with cervical artery (vertebral/carotid) dissection causing stroke; absolute per-manipulation risk is low and the causal fraction is debated (reverse causation possible), but the catastrophic consequence and modest, replaceable benefit make the risk-benefit unfavourable for neck pain.",
+    "claim_type": "outcome",
+    "domain": "CAM-manual",
+    "evidence_tier": "case-control",
+    "direction": "mixed",
+    "effect_size": "Rare (order ~1 in tens-of-thousands to millions of manipulations); causality debated",
+    "population": "Case-control + case-series of post-manipulation dissection/stroke",
+    "provenance": {
+      "primary": "Cassidy JD et al., Spine 2008 (population-based, reverse-causation argument); neurology case literature",
+      "doi": "10.1097/BRS.0b013e3181644600",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: works-for-some-things with a load-bearing safety caveat. Prefer lower-risk options (exercise, mobilisation) for the neck.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "energy-healing-reiki-placebo",
+    "statement": "Reiki, Therapeutic Touch, and other 'energy healing' modalities show no specific effect beyond placebo in sham-controlled trials, and the postulated human 'energy field' has never been demonstrated — practitioners could not detect it above chance.",
+    "claim_type": "outcome",
+    "domain": "CAM-mindbody",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No detection of 'energy field' above chance; no specific clinical effect vs sham",
+    "population": "Emily Rosa Therapeutic Touch experiment + sham-controlled trials",
+    "provenance": {
+      "primary": "Rosa L, Rosa E, Sarner L, Barrett S, JAMA 1998",
+      "doi": "10.1001/jama.279.13.1005",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: placebo-level. Benefit is relaxation/attention/human contact, not the claimed mechanism. Contrast with meditation/yoga/tai chi (works) in F2.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "homeopathy-no-effect-beyond-placebo",
+    "statement": "Homeopathy is chemically empty (typical 30C remedies contain on average not a single molecule of the original substance, violating Avogadro/stoichiometry) and shows no effect beyond placebo across the clinical literature — a settled scientific verdict, not an open question.",
+    "claim_type": "outcome",
+    "domain": "CAM-homeopathy",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Effects consistent with placebo; shrink toward null as trial quality rises",
+    "population": "Shang Lancet meta-analysis; NHMRC review of 176 studies / 61 conditions; UK House of Commons S&T 2010",
+    "provenance": {
+      "primary": "Shang A et al., Lancet 2005; NHMRC Australia 2015 Information Paper",
+      "doi": "10.1016/S0140-6736(05)67177-2",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/03-chemistry/ (Avogadro's number, stoichiometry)",
+    "confidence_notes": "Grade: placebo-level (settled). NHMRC 2015: 'no health conditions for which there is reliable evidence that homeopathy is effective.' Danger = opportunity cost when used instead of real treatment.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "naturopathy-functional-medicine-mixed",
+    "statement": "Naturopathy and 'functional medicine' bundle genuinely evidence-based lifestyle counselling (diet, exercise, sleep, stress) with unvalidated testing (IgG food-sensitivity, 'adrenal fatigue', hair mineral analysis) and unproven treatments (high-dose IV vitamins, chelation for non-poisoning, prolonged antibiotics for 'chronic Lyme') — each must be graded on its own merits.",
+    "claim_type": "protocol",
+    "domain": "CAM-naturopathy",
+    "evidence_tier": "anecdotal",
+    "direction": "mixed",
+    "effect_size": "Lifestyle half: real; proprietary testing/treatment half: no-evidence to harmful",
+    "population": "Practice-pattern description",
+    "provenance": {
+      "primary": "Offit PA, Do You Believe in Magic? 2013; NCCIH; specific-test critiques",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: mixed. 'Functional medicine' is an organisational/marketing category, not an evidentiary tier. Keep the lifestyle advice, decline the proprietary tests.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "placebo-real-but-bounded",
+    "statement": "Placebo produces measurable changes in subjective, brain-mediated outcomes (pain via naloxone-reversible endogenous opioids, nausea, fatigue, mood) but has little reliable effect on objective/binary outcomes (tumour size, infection, blood glucose, fracture healing, arterial patency) — it modulates the experience of illness, not the pathology.",
+    "claim_type": "mechanism",
+    "domain": "CAM-placebo",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Real effect on subjective outcomes; little reliable effect on objective outcomes vs no-treatment",
+    "population": "Hrobjartsson & Gotzsche analysis of placebo-vs-no-treatment trials",
+    "provenance": {
+      "primary": "Hrobjartsson A, Gotzsche PC, NEJM 2001 ('Is the placebo powerless?'); Cochrane update 2010",
+      "doi": "10.1056/NEJM200105243442106",
+      "surfaced_via": "CAM chapter (30) build; cross-ref Section 14 §6"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/07-mind/ (expectation, prediction); 05-biophysics/ (endogenous opioids)",
+    "confidence_notes": "The bounding principle: a placebo-only modality can be humane comfort alongside real care, lethal substitute instead of it.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alternative-instead-of-cancer-mortality",
+    "statement": "Patients who chose alternative medicine as the SOLE treatment for curable breast/prostate/lung/colorectal cancer had ~55% vs 78% 5-year survival (HR 2.50 overall, HR 5.68 for breast); a companion study showed 'complementary' medicine users were far more likely to refuse conventional treatment, and once refusal was accounted for, the excess mortality disappeared — i.e. the harm is the displacement of proven care, not CAM alongside it.",
+    "claim_type": "outcome",
+    "domain": "CAM-harm",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "HR 2.50 (alternative as sole Rx); HR 5.68 breast; excess mortality mediated by treatment refusal",
+    "population": "Johnson 2018: 281 alternative-medicine patients (JNCI) + complementary-medicine cohort (JAMA Oncol), NCDB curable cancers",
+    "provenance": {
+      "primary": "Johnson SB et al., JNCI 2018 (alternative, sole Rx) + JAMA Oncol 2018 (complementary + refusal)",
+      "doi": "10.1093/jnci/djx145",
+      "surfaced_via": "CAM chapter (30) build; cross-ref Section 25 oncology"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: harmful (instead-of). The single most important CAM safety datum. Harm is overwhelmingly opportunity-cost, largest where conventional medicine works best. JAMA Oncol DOI 10.1001/jamaoncol.2018.2487.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "natural-not-equal-safe",
+    "statement": "'Natural' predicts nothing about safety, purity, dose, or interactions: herbs are unstandardised drugs (tenfold batch variation), supplements can be adulterated with undeclared pharmaceuticals, traditional metal-bearing preparations can poison, and the most dangerous interactions come from natural products (St John's Wort, ginkgo) taken alongside prescriptions.",
+    "claim_type": "mechanism",
+    "domain": "CAM-harm",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Real hepatotoxicity (kava, comfrey, green-tea-extract), interactions, contamination",
+    "population": "Pharmacovigilance + product-testing literature",
+    "provenance": {
+      "primary": "FDA adulteration reports; herb hepatotoxicity literature; Saper 2008 (metals)",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Foundational honesty rule. Hemlock, arsenic, aristolochic acid, amanita are all natural.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dshea-regulation-gap",
+    "statement": "Under the US Dietary Supplement Health and Education Act (DSHEA, 1994), supplements, herbs, and homeopathic products reach the market without pre-market proof of efficacy, purity, or safety; the FDA must demonstrate harm after the fact — the structural cause of CAM-product contamination, mislabelling, and overstated claims.",
+    "claim_type": "outcome",
+    "domain": "CAM-regulation",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Post-market-only enforcement; 'sold in a pharmacy' is not evidence of testing",
+    "population": "US regulatory framework",
+    "provenance": {
+      "primary": "DSHEA 1994 (Public Law 103-417); FDA guidance",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Regulation gap, not a clinical claim. Explains the supplement-aisle landscape.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "integrative-not-equal-evidence",
+    "statement": "Co-locating an unproven therapy with a proven one ('integrative oncology', hospital acupuncture clinics) is an institutional choice, not an evidentiary upgrade; the fair, non-dismissive treatment of CAM is to grade each modality x indication on the same evidence ladder as everything else.",
+    "claim_type": "hypothesis",
+    "domain": "CAM-regulation",
+    "evidence_tier": "theoretical",
+    "direction": "unfalsifiable",
+    "effect_size": "Label is organisational, not evidentiary",
+    "population": "Conceptual",
+    "provenance": {
+      "primary": "Corpus doctrine (06-evidence/SCHEMA.md); Ernst critiques of 'integrative medicine'",
+      "doi": "",
+      "surfaced_via": "CAM chapter (30) build"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The grade is the neutrality. CAM grades out as a patchwork: a few real narrow tools, a large middle of expensive placebo, a toxicology hazard at the edges, and one dangerous failure mode (instead-of).",
+    "added_on": "2026-06-28"
+  }
+]

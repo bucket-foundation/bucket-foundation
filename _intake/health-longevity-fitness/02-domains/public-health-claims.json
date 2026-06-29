@@ -1,0 +1,249 @@
+[
+  {
+    "id": "clean-water-mortality-decline-share",
+    "statement": "Clean-water technologies (filtration + chlorination) account for roughly half of the total mortality decline, three-quarters of the infant-mortality decline, and two-thirds of the child-mortality decline in major U.S. cities in the early 20th century.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~43% of total, ~74% of infant, ~62% of child mortality reduction; social rate of return >23:1, ~$500/life-year (2003 USD)",
+    "population": "Major U.S. cities, ~1900-1936; staggered adoption used as a natural experiment",
+    "provenance": {
+      "primary": "Cutler D, Miller G - 'The Role of Public Health Improvements in Health Advances: The Twentieth-Century United States', Demography 2005",
+      "doi": "10.1353/dem.2005.0002",
+      "surfaced_via": "Wave public-health brief; SSRN/Harvard Scholar + PRB summary verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Quasi-experimental (timing/location of technology adoption). Replication debate (Anderson, Charles, Rees 2018/2019) revises the exact share downward but not the direction. Graded cohort/natural-experiment, not RCT.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "medical-care-share-of-longevity-gains",
+    "statement": "Clinical medical care explains only a minority of 20th-century life-expectancy gains; of ~30 years gained, roughly 5 (~15-18%) are attributable to medical care, with the bulk from public health and improved living conditions.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "~5 of 30 years (20th c.); ~3 of 7.5 years gained after 1950 attributable to medical care",
+    "population": "Population-level demographic/historical analysis (UK/US 20th century)",
+    "provenance": {
+      "primary": "Bunker JP, Frazier HS, Mosteller F - 'Improving health: measuring effects of medical care', Milbank Q 1994; Bunker JP, 'Medicine Matters After All' 2001",
+      "doi": "10.2307/3350225",
+      "surfaced_via": "Wave public-health brief; NBER w25330 (Catillon/Cutler/Getzen) corroboration"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Order-of-magnitude attribution, not a precise causal partition; method-dependent (4 estimation methods reviewed in Mackenbach/PMC6827626). The DIRECTION (medicine is the minority share) is robust across methods.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "determinants-of-health-allocation",
+    "statement": "Health outcomes are determined approximately 40% by behavioral patterns, 30% by genetics, 15% by social circumstances, 10% by medical care, and 5% by environmental exposure; medical care is the smallest modifiable bucket.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Behavior ~40%, genetics ~30%, social ~15%, medical care ~10%, environment ~5%",
+    "population": "U.S. population synthesis (used by County Health Rankings)",
+    "provenance": {
+      "primary": "McGinnis JM, Williams-Russo P, Knickman JR - 'The case for more active policy attention to health promotion', Health Affairs 2002; Schroeder SA, 'We Can Do Better', NEJM 2007",
+      "doi": "10.1377/hlthaff.21.2.78",
+      "surfaced_via": "Wave public-health brief; NEJM 10.1056/NEJMsa073350 + GoInvo/Health Affairs visualizations"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "These percentages are heuristic order-of-magnitude allocations, contested at the margins (alternative weightings give behavior ~36%, social ~24%, genetics ~22%, care ~11%, env ~7%). The headline (~10-20% medical care) is the robust, direction-stable takeaway.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "epidemiologic-transition",
+    "statement": "Societies undergo an epidemiologic transition from an age of pestilence/famine (high, volatile, infectious-dominated mortality) to an age of degenerative and man-made (chronic) disease; the chronic diseases targeted by modern longevity work are the diseases of the post-transition world.",
+    "claim_type": "mechanism",
+    "domain": "public-health-systems",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Qualitative framework; cause-of-death profile inverts from infectious to chronic/degenerative",
+    "population": "Cross-national demographic history",
+    "provenance": {
+      "primary": "Omran AR - 'The Epidemiologic Transition: A Theory of the Epidemiology of Population Change', Milbank Memorial Fund Quarterly 1971",
+      "doi": "10.2307/3349375",
+      "surfaced_via": "Wave public-health brief; foundational demographic-epidemiology framework"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A descriptive framework, not a tested intervention. Later refined (protracted/double-burden transitions in LMICs). Foundational for framing why chronic disease dominates rich-world mortality.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "marmot-social-gradient-mortality",
+    "statement": "Health and mortality follow a stepwise social gradient running the entire length of the hierarchy; even comfortable mid-grade workers have higher mortality than the grade above them, with low control/autonomy and chronic psychosocial stress as mediators.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Whitehall I: lowest employment grade ~3x the coronary mortality of the highest; continuous gradient",
+    "population": "~18,000 male British civil servants (Whitehall I); replicated incl. women (Whitehall II)",
+    "provenance": {
+      "primary": "Marmot MG, Rose G, Shipley M, Hamilton PJ - 'Employment grade and coronary heart disease in British civil servants', J Epidemiol Community Health 1978; Whitehall II, Lancet 1991",
+      "doi": "10.1136/jech.32.4.244",
+      "surfaced_via": "cross-ref Domain M (M-psychosocial-determinants.md sec 3); social-epidemiology canon"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-referenced to Domain M. Observational; partly mediated by behavior/access with a residual pointing at autonomy/stress biology. One of the most robust findings in epidemiology; dwarfs most consumer longevity interventions.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "rose-prevention-paradox",
+    "statement": "A large number of people exposed to a small risk generates more cases than a small number exposed to high risk; therefore a small shift in the whole population's risk distribution prevents more total events than aggressively treating the high-risk tail (the population strategy beats the high-risk strategy).",
+    "claim_type": "mechanism",
+    "domain": "public-health-systems",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Conceptual; validated repeatedly in CVD epidemiology (most MIs arise from moderate-risk majority, not extreme-risk tail)",
+    "population": "Cardiovascular epidemiology (general populations)",
+    "provenance": {
+      "primary": "Rose G - 'Sick Individuals and Sick Populations', International Journal of Epidemiology 1985 (reprinted 2001); Rose, 'The Strategy of Preventive Medicine', 1992",
+      "doi": "10.1093/ije/14.1.32",
+      "surfaced_via": "Wave public-health brief; population-prevention canon"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Foundational framework, not an intervention. The paradox: population measures offer large community benefit but little perceptible individual benefit, which is why they are chronically under-funded despite being cheaper and more effective.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "frieden-health-impact-pyramid",
+    "statement": "Public-health interventions form a five-tier leverage hierarchy: socioeconomic factors (base, largest impact, least individual effort), changing context/healthy defaults, long-lasting protective interventions, clinical interventions, and counseling/education (apex, smallest impact). Most consumer longevity products live at the weak apex.",
+    "claim_type": "mechanism",
+    "domain": "public-health-systems",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Qualitative leverage ranking; lower tiers reach more people with less effort",
+    "population": "Public-health policy framework (general)",
+    "provenance": {
+      "primary": "Frieden TR - 'A Framework for Public Health Action: The Health Impact Pyramid', American Journal of Public Health 2010",
+      "doi": "10.2105/AJPH.2009.185652",
+      "surfaced_via": "Wave public-health brief; AJPH direct"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Conceptual framework, widely adopted (CDC, County Health Rankings). Direct corollary for this corpus: supplements/protocols/coaching are tier-5 levers with the least population impact.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "population-prevention-best-buys-cost-effective",
+    "statement": "The most cost-effective health interventions are population-level primary prevention: tobacco taxation and salt reduction are WHO 'best buys', with vaccination, water fluoridation, seatbelts, and trans-fat elimination among the highest-ROI life-savers ever deployed.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Tobacco tax ~US$20-75/DALY, salt reduction ~<US$150/DALY in LMICs; fluoridation ~US$1 saves ~US$20-50 dental cost; seatbelts ~45% fatal-injury reduction",
+    "population": "WHO/LMIC cost-effectiveness modeling + policy natural experiments",
+    "provenance": {
+      "primary": "WHO - \"'Best Buys' and other recommended interventions for the prevention and control of NCDs\" (WHO/NMH/NVI/17.9), 2017; updated 2023",
+      "doi": "",
+      "surfaced_via": "Wave public-health brief; WHO Appendix 3 + NCD Alliance; CDC 'Ten Great Public Health Achievements'"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cost-effectiveness is modeling-based (WHO-CHOICE/DCP3) but anchored to RCT/quasi-experimental effect sizes. Threshold for 'best buy' = <I$100/DALY in low/lower-middle-income settings.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "us-health-system-spending-outcomes-paradox",
+    "statement": "The United States spends roughly double the OECD average on health (>16% of GDP, ~$13,000+ per capita) yet ranks last among wealthy nations on overall performance and health outcomes, with the shortest lives and most avoidable deaths.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "US 10th of 10 overall and last in health outcomes; >16% GDP vs 8-12% for peers; lowest life expectancy of the ten",
+    "population": "10 high-income countries, 70 performance measures (Mirror Mirror 2024)",
+    "provenance": {
+      "primary": "Schneider EC, Blumenthal D et al. (Commonwealth Fund) - 'Mirror, Mirror 2024: A Portrait of the Failing U.S. Health System', 2024",
+      "doi": "",
+      "surfaced_via": "Wave public-health brief; commonwealthfund.org direct"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Ecological/cross-national; confounded by diet, inequality, firearms, vehicle deaths, obesity. Confounders cut TOWARD the thesis (much of the US shortfall is social/behavioral, not fixable by more clinical spending). Graded ecological, not causal.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "global-life-expectancy-gap",
+    "statement": "There is a roughly 33-year gap in life expectancy between the highest- and lowest-life-expectancy countries; children in poor countries are ~13x more likely to die before age 5, and 94% of maternal deaths occur in low/lower-middle-income countries.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "~33-year national life-expectancy gap; ~13x under-5 mortality ratio; 94% of maternal deaths in LMICs",
+    "population": "Global (WHO member states), 2023-2025 data",
+    "provenance": {
+      "primary": "WHO - 'World Report on Social Determinants of Health Equity', 2025",
+      "doi": "",
+      "surfaced_via": "Wave public-health brief; who.int 06-05-2025 + UN News verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Descriptive global-burden statistics; robust. Where one is born is a larger health input than nearly any individual choice in the corpus (the global version of the zip-code finding).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "marginal-dollar-global-primary-prevention",
+    "statement": "The cost per life saved varies by 100-1000x across interventions and geographies; the cheapest life-years on Earth are global primary public health (bednets, childhood vaccination, vitamin A, ORS, deworming), not marginal rich-world clinical care.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Bednets ~US$3,000-5,500/life; ORS/vitamin A pennies-dollars per child-year; vs US$100,000s+/QALY for end-of-line clinical care",
+    "population": "LMIC global-health RCTs/meta-analyses vs rich-world cost-utility studies",
+    "provenance": {
+      "primary": "GiveWell cost-effectiveness analyses; Disease Control Priorities (DCP3) 2017; WHO-CHOICE",
+      "doi": "",
+      "surfaced_via": "Wave public-health brief; bednet RCT meta + DCP3"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Anchored to RCT/meta effect sizes (e.g. Lengeler Cochrane bednet review) with modeled cost-effectiveness. A graded quantitative fact: the longevity industry spends at the flattest, most expensive end of the global health-production curve.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ai-diagnostics-benchmark-vs-outcome-gap",
+    "statement": "AI matches or beats average human readers on curated benchmarks for narrow image tasks (diabetic retinopathy screening is FDA-authorized as autonomous AI), but few RCTs show improved PATIENT OUTCOMES, and models degrade under distribution shift and dataset bias; accuracy-on-benchmark is not outcome-benefit.",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "IDx-DR/LumineticsCore: first FDA-authorized autonomous AI diagnostic (2018, diabetic retinopathy); most other claims retrospective/benchmark-only",
+    "population": "Narrow imaging tasks (retina, mammography, chest imaging, pathology); curated datasets",
+    "provenance": {
+      "primary": "Abramoff MD et al. - 'Pivotal trial of an autonomous AI-based diagnostic system for detection of diabetic retinopathy in primary care', npj Digital Medicine 2018",
+      "doi": "10.1038/s41746-018-0040-6",
+      "surfaced_via": "Wave public-health brief; FDA De Novo authorization + AI-imaging literature"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "rct-tier ONLY for the few narrow tasks with prospective trials (DR screening). The vast majority of 'AI beats doctors' claims are retrospective/benchmark (mechanistic-equivalent). Grade the deployment evidence, not the press release. Same benchmark-vs-outcome rule as the rest of the corpus.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "wearable-af-screening-feasible-not-outcome-proven",
+    "statement": "Consumer wearables can detect atrial fibrillation at population scale (feasible), but it is not established that mass wearable screening lowers stroke or mortality; wearables skew toward low-risk, wealthy, healthy users least likely to benefit (a reverse prevention paradox).",
+    "claim_type": "outcome",
+    "domain": "public-health-systems",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Apple Heart Study ~419,000 participants: AF notification feasible; hard-endpoint (stroke/mortality) benefit unproven; USPSTF AF-screening question open",
+    "population": "~419,000 (Apple Heart Study) + general consumer-wearable populations",
+    "provenance": {
+      "primary": "Perez MV et al. - 'Large-Scale Assessment of a Smartwatch to Identify Atrial Fibrillation', NEJM 2019",
+      "doi": "10.1056/NEJMoa1901183",
+      "surfaced_via": "Wave public-health brief; cross-ref Domain L2 (wearables) + section 07 USPSTF AF"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "AF detection is cohort-grade real; most consumer-grade metrics (HRV, readiness, sleep stages) are mechanistic/surrogate. Reverse Rose paradox: reaches the low-risk worried-well, not those who would benefit most. Cross-ref Domain L2.",
+    "added_on": "2026-06-28"
+  }
+]

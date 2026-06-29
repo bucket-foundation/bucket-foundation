@@ -1,0 +1,420 @@
+[
+  {
+    "id": "bpc157-no-human-efficacy-trials",
+    "statement": "BPC-157 ('body protection compound') has striking tissue-healing and angiogenesis effects in rats and cell models, but there are no published randomized controlled human efficacy trials for any indication; it is unapproved and grey-market (unverified purity/dose).",
+    "claim_type": "outcome",
+    "domain": "biohacking-peptides",
+    "evidence_tier": "animal",
+    "direction": "unfalsifiable",
+    "effect_size": "Preclinical (rat/cell) tendon, gut, and angiogenesis effects; no quantified human outcome exists.",
+    "population": "Rodent and in-vitro models; no controlled human cohort",
+    "provenance": {
+      "primary": "Seiwerth/Sikiric group syntheses; 'Multifunctionality and Possible Medical Application of the BPC 157 Peptide', Pharmaceuticals (Basel) 2025",
+      "doi": "10.3390/ph18020185",
+      "surfaced_via": "PubMed E-utilities (BPC-157 human)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism real, human outcome untested. FDA barred from compounding (2023). Independent unregulated-product harm risk. Grade: NO-EVIDENCE.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tb500-thymosin-b4-no-human-rct",
+    "statement": "TB-500 (a thymosin beta-4 fragment) has genuine actin-regulating, wound-healing, and angiogenesis mechanisms in animal models but no human efficacy RCTs; it is WADA-banned and sold grey-market.",
+    "claim_type": "outcome",
+    "domain": "biohacking-peptides",
+    "evidence_tier": "animal",
+    "direction": "unfalsifiable",
+    "effect_size": "Animal wound-healing/angiogenesis; no human efficacy data.",
+    "population": "Animal models; no controlled human cohort",
+    "provenance": {
+      "primary": "Thymosin beta-4 preclinical wound-healing literature (parent molecule); TB-500 fragment unstudied clinically",
+      "doi": "",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "WADA Prohibited List. Grade: NO-EVIDENCE.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gh-secretagogues-against-longevity-genetics",
+    "statement": "GH secretagogues (ipamorelin, CJC-1295, sermorelin, MK-677) reliably raise GH/IGF-1, but reduced GH/IGF-1 signaling is one of the most robust lifespan-extending interventions across model organisms and tracks with human longevity; deliberately and chronically raising GH/IGF-1 for 'anti-aging' pushes the lever in the life-shortening direction, with no human healthspan data.",
+    "claim_type": "mechanism",
+    "domain": "biohacking-peptides",
+    "evidence_tier": "animal",
+    "direction": "refutes",
+    "effect_size": "Ipamorelin raises pulsatile GH/IGF-1 (real); GHR-knockout/dwarf models and low-IGF-1 human longevity run opposite to the anti-aging claim; MK-677 raises lean mass + fasting glucose/water retention, no healthspan endpoint.",
+    "population": "Worm/fly/mouse longevity models + human IGF-1 longevity cohorts; short-term human body-composition studies",
+    "provenance": {
+      "primary": "Raun et al., 'Ipamorelin, the first selective growth hormone secretagogue', Eur J Endocrinol 1998; longevity-genetics literature (GHR-KO, IGF-1)",
+      "doi": "10.1530/eje.0.1390552",
+      "surfaced_via": "PubMed E-utilities (ipamorelin growth hormone secretagogue)"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Cross-ref igf1-u-shaped-mortality. Body-composition effect real with metabolic costs; longevity direction is net-harmful by mechanism. Grade: POTENTIALLY-HARMFUL (longevity claim).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ghk-cu-topical-skin-real-systemic-unstudied",
+    "statement": "GHK-Cu (copper tripeptide) has modest controlled evidence for topical cosmetic skin benefit (firmness, fine lines, wound parameters) and a real copper-delivery/wound-healing mechanism, but systemic-injection claims (longevity, organ regeneration) have no human trials.",
+    "claim_type": "outcome",
+    "domain": "biohacking-peptides",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Small topical cosmetic improvements comparable to other cosmeceutical peptides; injected systemic effect unquantified (no trials).",
+    "population": "Small dermatology RCTs (topical); no controlled cohort for systemic injection",
+    "provenance": {
+      "primary": "GHK-Cu dermatology / wound-healing literature (Pickart)",
+      "doi": "",
+      "surfaced_via": "PubMed E-utilities (GHK-Cu copper peptide skin)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Split verdict: PROMISING (topical skin) / NO-EVIDENCE (injected systemic).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "photobiomodulation-skin-pain-real-wholebody-unproven",
+    "statement": "Red/near-infrared photobiomodulation has real, narrow human evidence for skin (reduced fine lines/wrinkles, improved collagen) and small short-term pain reduction in some conditions, but no human outcome evidence supports whole-body longevity, fat-loss, or hormonal claims.",
+    "claim_type": "outcome",
+    "domain": "biohacking-light",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Skin: real cosmetic improvement (controlled trials). Pain: small, heterogeneous short-term reduction. Whole-body longevity/metabolic: no human outcome data.",
+    "population": "Controlled cosmetic dermatology trials; PBM/LLLT pain systematic reviews",
+    "provenance": {
+      "primary": "Wunsch & Matuschka, 'A controlled trial...red and near-infrared light...wrinkles', Photomed Laser Surg 2014; Low-Level Laser Therapy for Fibromyalgia SR/meta, Pain Physician 2019",
+      "doi": "10.1089/pho.2013.3616",
+      "surfaced_via": "PubMed E-utilities (photobiomodulation skin rejuvenation; LLLT systematic review)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Biphasic dose-response: tuned parameters in trials are not replicated by arbitrary consumer panel distance. Mechanism (cytochrome-c-oxidase) is mechanistic-tier. Grade: REAL (skin/pain) / NO-EVIDENCE (whole-body longevity).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hbot-approved-indications-real",
+    "statement": "Hyperbaric oxygen therapy has roughly 15 evidence-based approved indications (decompression sickness, carbon-monoxide poisoning, gas gangrene, non-healing diabetic/radiation wounds, crush injury, certain refractory infections) where it is established medicine.",
+    "claim_type": "outcome",
+    "domain": "biohacking-hbot",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Clinically meaningful for the specific approved indications.",
+    "population": "Patients with approved indications",
+    "provenance": {
+      "primary": "Undersea & Hyperbaric Medical Society approved-indications list; clinical HBOT literature",
+      "doi": "",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Distinguish sharply from the longevity claim. Grade: REAL (approved indications).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hbot-telomere-aging-uncontrolled-surrogate",
+    "statement": "The claim that HBOT 'reverses aging / lengthens telomeres' rests on a single small single-arm trial (n=35) reporting ~20% increased blood-cell telomere length and fewer senescent cells after 60 sessions; it has no control group, uses a surrogate biomarker, and is unreplicated.",
+    "claim_type": "outcome",
+    "domain": "biohacking-hbot",
+    "evidence_tier": "nequals1",
+    "direction": "mixed",
+    "effect_size": "~20% reported telomere-length increase in isolated blood cells (surrogate); no clinical aging outcome.",
+    "population": "35 healthy older adults, single-arm, single-center",
+    "provenance": {
+      "primary": "Hachmo et al., 'Hyperbaric oxygen therapy increases telomere length and decreases immunosenescence in isolated blood cells: a prospective trial', Aging (Albany NY) 2020",
+      "doi": "10.18632/aging.202188",
+      "surfaced_via": "PubMed E-utilities (hyperbaric oxygen telomere Hachmo)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "No control, surrogate endpoint, commercial interest, unreplicated; telomere-length-to-aging link itself contested. Grade: PROMISING bordering on hype for longevity.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "whole-body-cryotherapy-no-added-benefit",
+    "statement": "Whole-body cryotherapy chambers show low-quality, inconsistent recovery/inflammation evidence with no demonstrated clinically meaningful benefit and no proven advantage over far cheaper cold-water immersion; the FDA has cleared no WBC device for any medical claim, and there is a real frostbite/asphyxiation harm tail.",
+    "claim_type": "outcome",
+    "domain": "biohacking-thermal",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No established benefit beyond short-term subjective recovery; no superiority over cold-water immersion.",
+    "population": "Athletes/recovery cohorts in low-quality trials and systematic reviews",
+    "provenance": {
+      "primary": "Whole-body cryotherapy recovery systematic reviews; FDA consumer safety communication (no cleared WBC device, 2016)",
+      "doi": "",
+      "surfaced_via": "PubMed E-utilities (whole-body cryotherapy systematic review; cryotherapy adverse events)"
+    },
+    "conflicts_with": ["conflict-infrared-vs-traditional-sauna"],
+    "canon_link": "",
+    "confidence_notes": "Cross-ref 05-recovery-sleep-stress.md sec3 cold (dose-sold != dose-studied). Grade: NO-EVIDENCE (+ harm).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "iv-vitamin-drips-placebo-myers",
+    "statement": "Wellness IV vitamin drips (Myers' cocktail, 'immune'/'recovery'/'hydration') show no benefit over placebo in the one placebo-controlled test, lack outcome RCTs in healthy people, and produce mostly renal excretion of excess water-soluble vitamins; benefit is ritual/expectancy, with small infection/cost/electrolyte risk.",
+    "claim_type": "outcome",
+    "domain": "biohacking-iv",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No significant benefit over placebo (both arms improved) in the Myers' cocktail fibromyalgia pilot.",
+    "population": "34 fibromyalgia patients, placebo-controlled pilot; no healthy-population outcome trials",
+    "provenance": {
+      "primary": "Ali A et al., 'Intravenous micronutrient therapy (Myers' Cocktail) for fibromyalgia: a placebo-controlled pilot study', J Altern Complement Med 2009",
+      "doi": "10.1089/acm.2008.0410",
+      "surfaced_via": "PubMed E-utilities (Myers cocktail randomized)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "High-dose vitamin C contraindicated in G6PD deficiency / oxalate stones. Grade: PLACEBO-LEVEL.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nad-iv-no-longevity-outcome",
+    "statement": "Intravenous NAD+ infusions raise NAD (a real mechanism) but have no human hard-endpoint or longevity outcome evidence; the IV route adds discomfort (flushing/nausea), cost, and IV risk without adding to the failed precursor-outcome evidence base.",
+    "claim_type": "outcome",
+    "domain": "biohacking-iv",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Raises NAD (surrogate); no demonstrated anti-aging or hard-endpoint outcome.",
+    "population": "No outcome RCT for IV NAD+ in healthy people",
+    "provenance": {
+      "primary": "Inherits NAD-precursor RCT evidence (Martens 2018 NR null on outcomes); IV-route adds no outcome data",
+      "doi": "10.1038/s41467-018-03421-7",
+      "surfaced_via": "cross-ref 03-nutrition-supplements.md sec5"
+    },
+    "conflicts_with": ["conflict-nad-precursor-efficacy"],
+    "canon_link": "",
+    "confidence_notes": "Cross-ref nad-precursor-nr-human-surrogate. Mechanism real, outcome unproven. Grade: NO-EVIDENCE (longevity).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ozone-therapy-no-benefit-harm",
+    "statement": "Systemic ozone therapy has no credible human outcome RCTs for its claimed indications (infection, autoimmune, cancer), weak low-quality data even for narrow topical uses, and documented serious harms including gas embolism (fatal), pulmonary irritation, and hemolysis; the FDA calls ozone a toxic gas with no known useful general medical application.",
+    "claim_type": "outcome",
+    "domain": "biohacking-detox",
+    "evidence_tier": "invitro",
+    "direction": "refutes",
+    "effect_size": "No proven systemic benefit; documented embolism and hemolysis harms.",
+    "population": "Low-quality/uncontrolled human reports; FDA regulatory position",
+    "provenance": {
+      "primary": "Ozone Therapy for Dermatological Conditions: A Systematic Review, J Clin Aesthet Dermatol 2022; FDA position on ozone",
+      "doi": "",
+      "surfaced_via": "PubMed E-utilities (ozone therapy systematic review)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: POTENTIALLY-HARMFUL.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "chelation-nonpoisoning-tact-fragile-harm",
+    "statement": "EDTA chelation is real, standard therapy for genuine heavy-metal poisoning, but for cardiovascular disease the entire case rests on the TACT trial's marginal, statistically fragile, subgroup-driven, unreplicated result (not guideline-endorsed); for 'detox'/autism in non-poisoned people there is no evidence, and iatrogenic hypocalcemia has caused deaths.",
+    "claim_type": "outcome",
+    "domain": "biohacking-detox",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "TACT: marginal composite-endpoint reduction, fragile and unreplicated; no benefit for non-poisoning 'detox'; documented fatal hypocalcemia.",
+    "population": "TACT: 1708 post-MI patients; pediatric/adult chelation-death case reports",
+    "provenance": {
+      "primary": "Lamas GA et al. (TACT), 'Effect of disodium EDTA chelation regimen on cardiovascular events in patients with previous myocardial infarction', JAMA 2013",
+      "doi": "10.1001/jama.2013.2107",
+      "surfaced_via": "PubMed E-utilities (EDTA chelation TACT trial)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "REAL only for true poisoning. Grade: POTENTIALLY-HARMFUL for non-poisoning use.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "coffee-enema-detox-no-mechanism-harm",
+    "statement": "Coffee enemas and 'detox/cleanse' protocols have no physiological mechanism (the colon does not access hepatic detoxification) and no efficacy evidence, with documented proctocolitis, severe electrolyte disturbance, colonic perforation, and deaths.",
+    "claim_type": "outcome",
+    "domain": "biohacking-detox",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No benefit; documented serious and fatal harms.",
+    "population": "Case reports of harm; no efficacy cohort",
+    "provenance": {
+      "primary": "Case-report literature on coffee-enema colitis/electrolyte deaths; Gerson-protocol critiques",
+      "doi": "",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: POTENTIALLY-HARMFUL (coffee enemas); NO-EVIDENCE for 'detox' generally.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "grounding-earthing-no-outcome-evidence",
+    "statement": "Grounding/earthing claims (skin contact with the Earth transfers 'free electrons' to reduce inflammation and improve sleep) rest on small, unblinded, surrogate-endpoint, advocate-authored studies with no rigorous replication and no health-outcome trial; the proposed biophysical mechanism is not established.",
+    "claim_type": "outcome",
+    "domain": "biohacking-fringe-biophysics",
+    "evidence_tier": "anecdotal",
+    "direction": "unfalsifiable",
+    "effect_size": "Reported surrogate changes (blood viscosity, cortisol, subjective sleep); no replicated outcome.",
+    "population": "Small unblinded studies, often advocate-authored",
+    "provenance": {
+      "primary": "Chevalier G et al., 'Earthing: health implications of reconnecting the human body to the Earth's surface electrons', J Environ Public Health 2012",
+      "doi": "10.1155/2012/291541",
+      "surfaced_via": "PubMed E-utilities (earthing grounding human health)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: NO-EVIDENCE.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "structured-ez-water-vs-hydrogen-water",
+    "statement": "Molecular hydrogen (H2) water has a thin, mostly surrogate RCT literature reporting modest oxidative-stress/metabolic marker changes (PROMISING-surrogate), whereas 'structured/EZ/hexagonal water' as a health product has no human evidence; the exclusion-zone water phenomenon is a real lab observation under study, not a basis for a wellness claim.",
+    "claim_type": "outcome",
+    "domain": "biohacking-fringe-biophysics",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "H2-water: small surrogate marker changes. Structured/EZ water health product: no human outcome data.",
+    "population": "Small H2-water RCTs (surrogate endpoints); no structured-water outcome trials",
+    "provenance": {
+      "primary": "Molecular-hydrogen water surrogate-endpoint RCT literature; Pollack exclusion-zone (EZ) water lab work (foundation-candidate, not outcome)",
+      "doi": "",
+      "surfaced_via": "domain synthesis + cross-ref 05/STATE-OF-THE-FIELD sec4"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "EZ-water/deuterium graded speculative in canon (under review, not an outcome). Grade: PROMISING (H2, surrogate) / NO-EVIDENCE (structured water).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "emf-protection-no-demonstrated-harm",
+    "statement": "At consumer (non-ionizing, below-thermal-threshold) exposures, decades of review have not established a reproducible non-thermal health effect of 'non-native EMF', so there is no demonstrated harm to protect against; EMF-shielding/'blocker' products are unvalidated, and some have contained radioactive material.",
+    "claim_type": "outcome",
+    "domain": "biohacking-fringe-biophysics",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No reproducible non-thermal harm at consumer exposures; products unvalidated.",
+    "population": "Population review evidence on non-ionizing RF exposure",
+    "provenance": {
+      "primary": "Non-ionizing RF/EMF health-effects review literature; consumer 'EMF blocker' product safety findings",
+      "doi": "",
+      "surfaced_via": "domain synthesis + cross-ref 05 (non-native-EMF graded speculative)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Kruse-adjacent 'non-native EMF' harm thesis graded speculative/unsupported in 05. Grade: NO-EVIDENCE.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cgm-healthy-no-outcome-cross-ref",
+    "statement": "Continuous glucose monitors have no outcome RCT in healthy non-diabetics; glucose 'spikes' and variability have no proven outcome meaning in people with normal HbA1c, sensors disagree, and the 'flatten the curve' framing can drive food anxiety.",
+    "claim_type": "outcome",
+    "domain": "biohacking-optimization",
+    "evidence_tier": "cross-sectional",
+    "direction": "refutes",
+    "effect_size": "No demonstrated healthy-person outcome benefit; variability has no proven outcome meaning.",
+    "population": "Healthy non-diabetics (no outcome RCT)",
+    "provenance": {
+      "primary": "Inherits cgm-accurate-diabetes-unvalidated-healthy (L) and conflict-cgm-healthy-utility",
+      "doi": "",
+      "surfaced_via": "cross-ref L2-wearables-quantified-self.md"
+    },
+    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "canon_link": "",
+    "confidence_notes": "Measurement-validity != outcome-utility (L2 razor). Grade: NO-EVIDENCE (healthy optimization).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "blueprint-total-optimization-discipline-not-proof",
+    "statement": "'Blueprint'-style total optimization (measuring/optimizing dozens of biomarkers, ~100 supplements, scored sleep to slow aging) is a disciplined n=1 whose foundation is the corpus's Tier-A levers, but it cannot demonstrate a slowed-aging outcome: no control, regression-to-mean, multiple comparisons, and biological-age clocks are not validated surrogates.",
+    "claim_type": "protocol",
+    "domain": "biohacking-optimization",
+    "evidence_tier": "nequals1",
+    "direction": "mixed",
+    "effect_size": "Validly detects large within-person effects and personalizes; cannot prove small effects or a longevity outcome.",
+    "population": "n=1 self-experiment (Bryan Johnson Blueprint as anchor)",
+    "provenance": {
+      "primary": "n=1 epistemics framing (L2); biological-age-tests-not-validated-surrogate; conflict-which-clock-is-valid",
+      "doi": "",
+      "surfaced_via": "cross-ref L2-wearables-quantified-self.md + 01-STATE-OF-THE-FIELD.md"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "Grade: PROMISING as discipline / NO-EVIDENCE as proof of slowed aging.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nicotine-noncombusted-acute-cognition-addictive",
+    "statement": "Non-combusted nicotine (pouches/gum/patch) produces a real small acute improvement in attention/fine-motor/short-term memory, but is strongly addictive, vasoconstrictive and cardiovascular-loading, and harms adolescent brain development; removing combustion removes the carcinogen delivery, not the dependence or cardiovascular cost.",
+    "claim_type": "outcome",
+    "domain": "biohacking-nootropic",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small but genuine acute attention/short-term-memory enhancement in non-smokers; offset by addiction + cardiovascular load.",
+    "population": "Non-smoker cognitive RCTs (meta-analytic)",
+    "provenance": {
+      "primary": "Heishman et al., meta-analysis of acute nicotine effects on human cognition, Psychopharmacology 2010",
+      "doi": "10.1007/s00213-010-1848-1",
+      "surfaced_via": "PubMed E-utilities (nicotine cognition meta-analysis)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grade: REAL (acute effect) / POTENTIALLY-HARMFUL (chronic habit).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "methylene-blue-mechanism-real-antiaging-unproven",
+    "statement": "Methylene blue has a genuine low-dose mitochondrial redox/electron-carrier mechanism and one small human fMRI study reporting modest memory/attention/brain-metabolism effects, but no human anti-aging or healthspan outcome evidence; the dose window is narrow and harms are real (serotonin syndrome with SSRIs/SNRIs, hemolysis in G6PD deficiency, MAOI activity), and grey-market product is non-pharmaceutical-grade.",
+    "claim_type": "outcome",
+    "domain": "biohacking-nootropic",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Small acute memory/attention + brain-metabolism signal in one low-dose fMRI study; no anti-aging outcome.",
+    "population": "Healthy adults, single small fMRI study (Rodriguez et al.); approved drug for methemoglobinemia",
+    "provenance": {
+      "primary": "Rodriguez P et al., low-dose methylene blue fMRI memory/attention study, Radiology 2016; methylene blue mitochondrial redox pharmacology",
+      "doi": "10.1148/radiol.2016152893",
+      "surfaced_via": "PubMed E-utilities (methylene blue memory cognition)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Serotonergic interaction is a serious common contraindication. Grade: PROMISING (mechanism) / NO-EVIDENCE (anti-aging), not benign.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "modafinil-real-racetams-unproven",
+    "statement": "Among grey-market 'smart drugs', modafinil has real wakefulness/cognitive benefit in sleep deprivation and approved sleep disorders (smaller task-specific effects when rested), whereas racetams/noopept and most 'stacks' have thin-to-absent human RCT support in healthy adults; the few that work are characterized prescription drugs, the rest ride their reputation on an unregulated supply.",
+    "claim_type": "outcome",
+    "domain": "biohacking-nootropic",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Modafinil: real in sleep-deprivation, modest task-specific in rested. Racetams/most stacks: no reliable healthy-adult effect.",
+    "population": "Sleep-deprivation and disorder cohorts (modafinil); healthy adults (racetams, mostly null)",
+    "provenance": {
+      "primary": "Modafinil cognitive-enhancement reviews; nootropic-stack evidence syntheses",
+      "doi": "",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Modafinil prescription-only; unregulated online supply is the risk. Grade: mixed (REAL modafinil / NO-EVIDENCE most racetams).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "biohacking-laundering-gap-meta",
+    "statement": "The structural failure mode across biohacking is a laundering gap: a real mechanism or a mouse/cell result is marketed as a human outcome it has not earned, and the supporting testimonial base is distorted by survivorship, bundling, regression to the mean, and placebo - so n=1 anecdote cannot establish the small or longevity effects being sold.",
+    "claim_type": "hypothesis",
+    "domain": "biohacking-meta",
+    "evidence_tier": "theoretical",
+    "direction": "supports",
+    "effect_size": "Pattern claim: mechanism/animal -> marketed-outcome substitution + survivorship/anecdote bias.",
+    "population": "The biohacking category as a whole",
+    "provenance": {
+      "primary": "06-evidence/SCHEMA.md (mechanism != outcome hard rule); L2 n=1 epistemics; 01-STATE-OF-THE-FIELD.md sec3 laundering gap",
+      "doi": "",
+      "surfaced_via": "corpus synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The organizing principle of the section; resolves most individual verdicts. Grade: the meta-rule.",
+    "added_on": "2026-06-28"
+  }
+]

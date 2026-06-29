@@ -1,0 +1,382 @@
+[
+  {
+    "id": "antidepressants-beat-placebo-modest-cipriani",
+    "statement": "All 21 antidepressants studied beat placebo for acute treatment of major depression in adults, but the average effect is small-to-moderate (pooled standardized mean difference ~0.30).",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "SMD ~0.30 (small-to-moderate) vs placebo across 522 trials, ~116,000 patients",
+    "population": "Adults with major depressive disorder (network meta-analysis)",
+    "provenance": {
+      "primary": "Cipriani et al., Lancet 2018 — Comparative efficacy and acceptability of 21 antidepressant drugs",
+      "doi": "10.1016/S0140-6736(17)32802-7",
+      "surfaced_via": "Cross-ref Section 08 §5.3 + PubMed PMID 29477251"
+    },
+    "conflicts_with": ["antidepressants-clinically-insignificant-kirsch"],
+    "canon_link": "",
+    "confidence_notes": "Statistically real, clinically modest on average. The drug works despite the serotonin-deficiency mechanism being false (mechanism != outcome).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "antidepressant-effect-severity-dependent",
+    "statement": "The antidepressant-vs-placebo difference is smallest in mild depression and largest in severe depression.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Negligible-to-small in mild MDD; substantial in severe MDD",
+    "population": "Adults with MDD, stratified by baseline severity",
+    "provenance": {
+      "primary": "Fournier et al., JAMA 2010 — Antidepressant drug effects and depression severity",
+      "doi": "10.1001/jama.2009.1943",
+      "surfaced_via": "PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The reconciling fact in the antidepressant debate; average effect hides the subgroup for whom it is decisive (honesty rule: average != individual).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "antidepressants-clinically-insignificant-kirsch",
+    "statement": "Once unpublished negative trials are included, the antidepressant-placebo difference falls below conventional clinical significance for all but the most severe depression, with much of the apparent benefit attributable to a large placebo response.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Drug-placebo difference reaches clinical significance only at high baseline severity",
+    "population": "FDA-submitted antidepressant trials (incl. unpublished)",
+    "provenance": {
+      "primary": "Kirsch et al., PLoS Medicine 2008 — Initial severity and antidepressant benefits (The Emperor's New Drugs)",
+      "doi": "10.1371/journal.pmed.0050045",
+      "surfaced_via": "PubMed"
+    },
+    "conflicts_with": ["antidepressants-beat-placebo-modest-cipriani"],
+    "canon_link": "",
+    "confidence_notes": "Partly vindicated (large placebo response + publication bias are real and were corrected by trial registration); the strong 'they don't work' version overshoots Cipriani's larger all-trials analysis. Status: contested, severity-dependent.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cbt-first-line-anxiety",
+    "statement": "Exposure-based cognitive behavioral therapy is an effective first-line treatment for anxiety disorders (GAD, panic, social and specific phobia) versus placebo.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Moderate effect vs placebo/control across anxiety disorders",
+    "population": "Adults with anxiety and related disorders (meta-analysis of RCTs)",
+    "provenance": {
+      "primary": "Carpenter, Hofmann et al., Depression & Anxiety 2018 — CBT for anxiety and related disorders",
+      "doi": "10.1002/da.22728",
+      "surfaced_via": "PubMed PMID 29451967"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanistically coherent: exposure directly reverses the avoidance that maintains the disorder. SSRIs/SNRIs comparable short-term; CBT more durable after stopping.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ocd-needs-erp-not-generic-talk",
+    "statement": "OCD requires exposure and response prevention (ERP) specifically; generic supportive talk therapy is not an effective treatment, though SSRIs (often at higher doses) also help.",
+    "claim_type": "protocol",
+    "domain": "mentalhealth",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "ERP superior to control and to non-specific therapy; response often partial",
+    "population": "Adults and youth with obsessive-compulsive disorder",
+    "provenance": {
+      "primary": "OCD treatment guideline literature (APA/NICE); ERP RCTs",
+      "doi": "",
+      "surfaced_via": "Clinical guidelines synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The specificity is the point: it must be ERP, not 'talk therapy.' Partial response is the norm; OCD is genuinely hard.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "benzodiazepines-acute-relief-chronic-harm",
+    "statement": "Benzodiazepines relieve acute anxiety rapidly and reliably but are a poor long-term treatment due to tolerance, dependence, withdrawal, cognitive impairment, fall/accident risk, and undermining of exposure therapy.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Large acute anxiolysis; net harm with chronic daily use",
+    "population": "Adults with anxiety disorders",
+    "provenance": {
+      "primary": "Benzodiazepine pharmacology and dependence literature; anxiety treatment guidelines",
+      "doi": "",
+      "surfaced_via": "Clinical guidelines synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Legitimate short-term/crisis role; large illegitimate chronic-use role. As a safety behaviour they short-circuit the disconfirmation that makes exposure work.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lithium-best-mood-stabilizer-anti-suicide",
+    "statement": "Lithium reduces the risk of suicide and all-cause mortality in people with mood disorders, an effect partly independent of its mood-stabilizing action, making it uniquely valuable and chronically under-prescribed.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Significant reduction in suicide and all-cause mortality vs placebo",
+    "population": "Patients with mood disorders (bipolar and unipolar), meta-analysis of RCTs",
+    "provenance": {
+      "primary": "Cipriani et al., BMJ 2013 — Lithium in the prevention of suicide in mood disorders",
+      "doi": "10.1136/bmj.f3646",
+      "surfaced_via": "PubMed PMID 23814104"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Rare direct anti-suicide signal in psychiatry. Caveats (narrow therapeutic window, thyroid/kidney monitoring, overdose danger) are manageable and do not justify how far lithium has fallen out of fashion.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "antipsychotics-work-positive-symptoms-metabolic-cost",
+    "statement": "Antipsychotics are effective for positive symptoms and relapse prevention in schizophrenia (all 15 studied beat placebo), but second-generation agents (especially olanzapine, clozapine) cause substantial metabolic harm (weight gain, dyslipidemia, diabetes) contributing to reduced life expectancy.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Meaningful efficacy vs placebo; meaningful metabolic harm; ~15-20yr reduced life expectancy in serious mental illness (multifactorial)",
+    "population": "Adults with schizophrenia (multiple-treatments meta-analysis, 212 trials, ~43,000 patients)",
+    "provenance": {
+      "primary": "Leucht et al., Lancet 2013 — Comparative efficacy and tolerability of 15 antipsychotic drugs in schizophrenia",
+      "doi": "10.1016/S0140-6736(13)60733-3",
+      "surfaced_via": "PubMed PMID 23810019"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Two-sided ledger: efficacy and harm both real. Clozapine is most effective for treatment-resistant schizophrenia and is under-used due to monitoring burden.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "early-intervention-psychosis-improves-outcomes",
+    "statement": "Coordinated specialty care for first-episode psychosis improves quality of life and symptoms versus usual care, with greater benefit the shorter the duration of untreated psychosis.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved quality of life and symptom outcomes vs usual care; benefit scales inversely with DUP",
+    "population": "First-episode psychosis patients (RAISE-ETP cluster RCT)",
+    "provenance": {
+      "primary": "Kane et al., Am J Psychiatry 2016 — RAISE-ETP, comprehensive vs usual care for first-episode psychosis",
+      "doi": "10.1176/appi.ajp.2015.15050632",
+      "surfaced_via": "PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The lever is not just the drug but catching it early and wrapping psychosocial support (family education, supported employment/education) around it.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "adhd-stimulants-largest-effect-size",
+    "statement": "Stimulant medications (methylphenidate in children, amphetamines in adults) are first-line for ADHD and have among the largest effect sizes of any drug class in psychiatry.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Large effect on core symptoms vs placebo; methylphenidate preferred first in youth, amphetamines in adults",
+    "population": "Children, adolescents, and adults with ADHD (network meta-analysis)",
+    "provenance": {
+      "primary": "Cortese et al., Lancet Psychiatry 2018 — Comparative efficacy and tolerability of medications for ADHD",
+      "doi": "10.1016/S2215-0366(18)30269-4",
+      "surfaced_via": "PubMed PMID 30097390"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "ADHD is real and highly heritable (~70-80%). Treatment is also associated with reduced accidents/injuries in observational data. Honest nuance: genuinely over-diagnosed in some settings (relative-age effect) and under-diagnosed in others (girls/women, adults).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ptsd-trauma-focused-therapy-first-line",
+    "statement": "Trauma-focused psychotherapies (Prolonged Exposure, Cognitive Processing Therapy, trauma-focused CBT) are first-line for PTSD, ahead of medication; SSRIs have a real but more modest second-line role.",
+    "claim_type": "protocol",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Trauma-focused therapy superior to control and to medication as first-line",
+    "population": "Adults with PTSD (guideline-level synthesis: APA/NICE/VA-DoD)",
+    "provenance": {
+      "primary": "APA/NICE/VA-DoD PTSD guidelines; trauma-focused therapy RCT meta-analyses",
+      "doi": "",
+      "surfaced_via": "Clinical guidelines synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism mirrors anxiety: PTSD maintained by avoidance; effective therapies approach and process the memory.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "emdr-works-eye-movements-inert",
+    "statement": "EMDR is an effective treatment for PTSD, but dismantling studies indicate the signature eye movements add little or nothing; the active ingredient appears to be the exposure component.",
+    "claim_type": "mechanism",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "EMDR efficacious vs waitlist/placebo; eye-movement component ~null in dismantling trials",
+    "population": "Adults with PTSD (efficacy trials + dismantling studies)",
+    "provenance": {
+      "primary": "EMDR efficacy guidelines + dismantling-study meta-analyses (eye-movement component)",
+      "doi": "",
+      "surfaced_via": "Clinical literature synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: the treatment is real, the proprietary mechanism is doubtful. EMDR is best understood as exposure therapy with a likely-inert ritual attached.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "mdma-therapy-ptsd-promising-not-approved",
+    "statement": "MDMA-assisted therapy produced large reductions in PTSD severity in phase-3 trials, but the FDA rejected the application in August 2024 and requested an additional phase-3 trial, citing functional unblinding, trial-conduct, and safety concerns.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Large reduction in CAPS-5 PTSD severity vs placebo+therapy; substantial fraction no longer met PTSD criteria",
+    "population": "Adults with severe PTSD (MAPP1 2021, confirmatory MAPP2 2023)",
+    "provenance": {
+      "primary": "Mitchell et al., Nature Medicine 2021 (MAPP1) + 2023 (MAPP2); FDA Complete Response Letter Aug 2024 (Lykos)",
+      "doi": "10.1038/s41591-021-01336-3",
+      "surfaced_via": "PubMed PMID 33972795"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Genuinely promising, plausibly transformative for a hard-to-treat condition, but NOT approved/available. Structural problem: psychedelic trials cannot be blinded, inflating expectancy effects. Tier sits below the excitement.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "psilocybin-depression-early-not-superior",
+    "statement": "Psilocybin-assisted therapy was not statistically superior to escitalopram on the primary endpoint in a head-to-head depression trial, though some secondary measures favored psilocybin.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "No significant difference on primary endpoint (QIDS-SR-16 change) vs escitalopram",
+    "population": "Adults with moderate-to-severe major depression",
+    "provenance": {
+      "primary": "Carhart-Harris et al., NEJM 2021 — Trial of Psilocybin versus Escitalopram for Depression",
+      "doi": "10.1056/NEJMoa2032994",
+      "surfaced_via": "PubMed PMID 33852780"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Promising signal, not a demonstrated knockout, early. FDA 'breakthrough therapy' designation is about review speed, not proof of efficacy. Unblindable, like all psychedelic trials.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "anorexia-highest-mortality-psychiatric",
+    "statement": "Anorexia nervosa has among the highest mortality of any psychiatric disorder, with a standardized mortality ratio of roughly 5-6 from both medical complications and elevated suicide.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "SMR ~5-6 for anorexia nervosa (elevated for bulimia and EDNOS as well)",
+    "population": "Patients with eating disorders (meta-analysis of 36 studies)",
+    "provenance": {
+      "primary": "Arcelus et al., Archives of General Psychiatry 2011 — Mortality rates in patients with anorexia nervosa and other eating disorders",
+      "doi": "10.1001/archgenpsychiatry.2011.74",
+      "surfaced_via": "PubMed PMID 21727255"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reframes eating disorders from vanity/lifestyle misread to serious, sometimes fatal medical illness.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fbt-best-for-adolescent-anorexia",
+    "statement": "Family-Based Treatment (the Maudsley approach) is the best-evidenced treatment for adolescent anorexia nervosa, outperforming individual therapy; CBT-E is first-line for bulimia and binge-eating disorder.",
+    "claim_type": "protocol",
+    "domain": "mentalhealth",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "FBT superior to individual adolescent therapy for AN; CBT-E effective for bulimia/BED; lisdexamfetamine reduces binge frequency in BED",
+    "population": "Adolescents with anorexia (FBT); adults with bulimia/BED (CBT-E)",
+    "provenance": {
+      "primary": "Lock & Le Grange FBT RCTs; Fairburn CBT-E trials; lisdexamfetamine BED approval trials",
+      "doi": "",
+      "surfaced_via": "Clinical trials synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Weight restoration is the foundation; you cannot therapy your way out of starvation while still starving. Adult anorexia remains genuinely hard with no dominant treatment; early intervention matters most.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "exercise-treats-depression",
+    "statement": "Exercise is an effective treatment for depression, with effect sizes that rival psychotherapy and medication in head-to-head arms.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Moderate-to-large effect; larger at higher intensity; shrinks but stays positive in low-bias trials",
+    "population": "Adults with depression (network meta-analysis of 218 RCTs, ~14,000 participants)",
+    "provenance": {
+      "primary": "Noetel et al., BMJ 2024 — Effect of exercise for depression",
+      "doi": "10.1136/bmj-2023-075847",
+      "surfaced_via": "Cross-ref Section 08 §5.2"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A real RCT-supported lever with a benefit profile most drugs would envy; authors flag high risk of bias in many included trials. Cross-referenced, not re-derived here.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "serotonin-deficiency-myth",
+    "statement": "There is no consistent evidence that depression is caused by low serotonin; the 'chemical imbalance' model is not supported, but this does not negate the modest real efficacy of antidepressants.",
+    "claim_type": "mechanism",
+    "domain": "mentalhealth",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No consistent serotonin-depression association across the major research strands (umbrella review)",
+    "population": "Umbrella review of serotonin-depression studies",
+    "provenance": {
+      "primary": "Moncrieff et al., Mol Psychiatry 2022 — The serotonin theory of depression: a systematic umbrella review",
+      "doi": "10.1038/s41380-022-01661-0",
+      "surfaced_via": "Cross-ref Section 08 §5.3 / Section 14 §3.2"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Mechanism != outcome: the marketing mechanism is false AND the drugs still modestly work. Mood disorders are distributed circuit dysfunction, not a single low chemical.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "mood-supplements-mostly-unsupported",
+    "statement": "Most supplements marketed for mood (vitamin D, magnesium, oral GABA, 5-HTP) lack outcome evidence; omega-3 (EPA-predominant) has a modest mixed adjunct signal, and St John's Wort works for mild depression but has dangerous drug interactions.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "mixed",
+    "direction": "mixed",
+    "effect_size": "Most null/thin; omega-3 modest-mixed adjunct; St John's Wort effective for mild depression with serious enzyme-induction interactions",
+    "population": "Adults with depression/low mood (heterogeneous trials)",
+    "provenance": {
+      "primary": "Supplement-for-depression meta-analyses (omega-3, St John's Wort); supplement pharmacology",
+      "doi": "",
+      "surfaced_via": "Clinical literature synthesis; cross-ref Section 03"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Correcting a genuine deficiency (B12, vitamin D) is real medicine; supplementing the replete for mood is mostly not. 'Natural = safe' is exactly wrong for St John's Wort (induces CYP enzymes, wrecks contraceptive/anticoagulant/antiretroviral levels).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "means-restriction-reduces-suicide",
+    "statement": "Restricting access to lethal means at the moment of crisis (barriers, safer medication packaging, firearm access reduction, pesticide restriction) measurably reduces suicide deaths at the population level.",
+    "claim_type": "outcome",
+    "domain": "mentalhealth",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Population-level reductions in suicide following means-restriction interventions",
+    "population": "Population-level suicide-prevention studies (systematic review)",
+    "provenance": {
+      "primary": "Mann et al., JAMA 2005 — Suicide prevention strategies: a systematic review",
+      "doi": "10.1001/jama.294.16.2064",
+      "surfaced_via": "PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Works because suicidal crises are usually transient and method-substitution is incomplete. Asking about suicide does NOT plant the idea. Individual-level prediction remains genuinely poor.",
+    "added_on": "2026-06-28"
+  }
+]

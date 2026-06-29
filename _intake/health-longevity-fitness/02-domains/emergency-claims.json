@@ -1,0 +1,439 @@
+[
+  {
+    "id": "bystander-cpr-survival-doubles",
+    "statement": "Bystander CPR before EMS arrival is associated with roughly a doubling to tripling of survival from out-of-hospital cardiac arrest; in a Swedish national registry, 30-day survival was 10.5% with bystander CPR versus 4.0% without.",
+    "claim_type": "outcome",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "30-day survival 10.5% vs 4.0% (bystander CPR vs none); association independent of later links",
+    "population": "~30,381 witnessed OHCA, Sweden 1990-2011",
+    "provenance": {
+      "primary": "Hasselqvist-Ax I, et al. 'Early Cardiopulmonary Resuscitation in Out-of-Hospital Cardiac Arrest', N Engl J Med 2015",
+      "doi": "10.1056/NEJMoa1405796",
+      "surfaced_via": "Wave-34 emergency brief; PubMed PMID 26061835 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Observational; residual confounding (arrests in public/witnessed get more bystander CPR) cannot be fully excluded, but effect is large, consistent across registries, and biologically coherent. The single highest-leverage layperson action in acute medicine.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hands-only-cpr-noninferior-adult",
+    "statement": "For adult, witnessed, sudden (presumed cardiac) out-of-hospital arrest, compression-only ('hands-only') bystander CPR yields outcomes at least as good as conventional CPR with rescue breaths, and is performed by more bystanders because it removes the mouth-to-mouth barrier.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Non-inferior survival vs 30:2 for adult cardiac-cause arrest; higher bystander willingness/uptake",
+    "population": "Adult OHCA (SOS-KANTO observational + dispatcher-CPR RCTs)",
+    "provenance": {
+      "primary": "SOS-KANTO Study Group, Lancet 2007; corroborated by dispatcher-assisted CPR RCTs and AHA 2020 guidelines",
+      "doi": "10.1016/S0140-6736(07)60451-6",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Applies to ADULT cardiac-cause arrest. Does NOT extend to children, drowning, or other asphyxial arrests, where rescue breaths add real value (oxygen is the deficit). The simplification is what makes it work at population scale.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "public-access-defibrillation-doubles-survival",
+    "statement": "Training laypeople to use public-access AEDs roughly doubles the number of survivors of out-of-hospital cardiac arrest compared with CPR alone, because most survivable sudden adult arrests are shockable (ventricular fibrillation) and survival falls ~7-10% per minute without defibrillation.",
+    "claim_type": "outcome",
+    "domain": "emergency",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Roughly 2x survivors (PAD vs CPR-only); ~7-10% survival decrement per minute of delay to shock",
+    "population": "PAD Trial: ~19,000 community volunteers, 993 community units",
+    "provenance": {
+      "primary": "Hallstrom AP, et al. (Public Access Defibrillation Trial Investigators) 'Public-access defibrillation and survival after out-of-hospital cardiac arrest', N Engl J Med 2004",
+      "doi": "10.1056/NEJMoa040566",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "AEDs are layperson-safe: they analyze the rhythm and will not deliver a shock unless a shockable rhythm is present. Limiting factor is AED availability/proximity and bystander willingness, not device risk.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ohca-overall-survival-honest",
+    "statement": "Overall survival to hospital discharge after out-of-hospital cardiac arrest is only about 8-12%, far below the ~70% portrayed in television; however, witnessed shockable arrests that receive prompt bystander CPR and early defibrillation can exceed 30-40% survival.",
+    "claim_type": "outcome",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~8-12% overall survival to discharge; >30-40% for witnessed shockable + early CPR/AED",
+    "population": "Global/US OHCA registries (e.g., CARES, Utstein reporting)",
+    "provenance": {
+      "primary": "OHCA registry meta-data (CARES; Utstein-style reporting); AHA Heart Disease & Stroke Statistics",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest framing matters: it both motivates the high-leverage links (bystander CPR + early AED) and sets realistic expectations so rescuers understand that excellent CPR on a person who still dies is not a failure.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "epinephrine-first-line-anaphylaxis",
+    "statement": "Intramuscular epinephrine into the outer mid-thigh is the first-line, life-saving treatment for anaphylaxis and should be given immediately on recognition; there is no absolute contraindication when anaphylaxis is suspected, and delayed epinephrine is a recurring feature of fatal cases.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "First-line; delay to epinephrine associated with fatal/biphasic outcomes",
+    "population": "All-ages anaphylaxis (practice parameter + consensus)",
+    "provenance": {
+      "primary": "Shaker MS, et al. 'Anaphylaxis-a 2020 practice parameter update, systematic review, and GRADE analysis', J Allergy Clin Immunol 2020; 2024 international consensus (Cardona/Golden et al.)",
+      "doi": "10.1016/j.jaci.2020.01.017",
+      "surfaced_via": "Wave-34 emergency brief; PubMed PMID 32001253 verified; 2024 consensus 10.1016/j.jaci.2025.01.021"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT evidence is ethically limited, but guideline consensus is unanimous and grounded in mechanism + fatality series. The intervention is extraordinarily safe in this indication.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "antihistamines-not-sufficient-anaphylaxis",
+    "statement": "Antihistamines (e.g., diphenhydramine) and bronchodilator inhalers are NOT adequate treatment for anaphylaxis; they act too slowly and only address skin/airway-smooth-muscle symptoms, not airway angioedema or circulatory collapse. Relying on them in place of epinephrine is a documented cause of preventable death.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "Antihistamines treat cutaneous symptoms only; no effect on the lethal airway/circulatory components",
+    "population": "Anaphylaxis management",
+    "provenance": {
+      "primary": "JTF anaphylaxis practice parameter 2020; Pumphrey RSH 'Lessons for management of anaphylaxis from a study of fatal reactions', Clin Exp Allergy 2000",
+      "doi": "10.1046/j.1365-2222.2000.00864.x",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "High-value public debunk. Antihistamines are at most adjunctive; epinephrine is the only first-line agent.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "naloxone-oend-reduces-overdose-death",
+    "statement": "Community overdose education and naloxone distribution (OEND) to laypeople is associated with significantly lower opioid-overdose death rates; naloxone reverses opioid-induced respiratory depression within minutes and is safe to administer even if the cause is not an opioid.",
+    "claim_type": "outcome",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lower overdose mortality in communities with higher OEND implementation",
+    "population": "Massachusetts communities, interrupted time-series comparison",
+    "provenance": {
+      "primary": "Walley AY, et al. 'Opioid overdose rates and implementation of overdose education and nasal naloxone distribution in Massachusetts: interrupted time series analysis', BMJ 2013",
+      "doi": "10.1136/bmj.f174",
+      "surfaced_via": "Wave-34 emergency brief; PubMed PMID 23372174 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Quasi-experimental design; the supply-side reversal mechanism is unambiguous. Fentanyl-era supply often requires repeat dosing; naloxone outlasted by long-acting opioids means re-overdose risk after it wears off (30-90 min).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "prehospital-tourniquet-saves-lives",
+    "statement": "For life-threatening extremity hemorrhage, a properly applied tourniquet applied before the onset of shock substantially improves survival, and limb loss is rare and usually attributable to the injury rather than the tourniquet; the older 'tourniquets cost the limb / last resort only' caution is now considered wrong for major limb bleeding.",
+    "claim_type": "outcome",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Higher survival with pre-shock tourniquet application; amputation rare and injury-driven",
+    "population": "Combat casualties (Baghdad combat support hospital cohort) + civilian Stop-the-Bleed era data",
+    "provenance": {
+      "primary": "Kragh JF Jr, et al. 'Survival with emergency tourniquet use to stop bleeding in major limb trauma', Ann Surg 2009",
+      "doi": "10.1097/SLA.0b013e31818842ba",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Military-derived; civilian translation supported by Stop the Bleed outcomes. First-line for most bleeding is still firm direct pressure; tourniquet is for limb bleeding that direct pressure cannot control. A loosely applied tourniquet is worse than none (occludes venous return, hides ongoing arterial loss).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "burn-cool-running-water-20min",
+    "statement": "Cooling a thermal burn with cool (not ice-cold) running water for approximately 20 minutes, ideally within the first 3 hours, reduces burn depth, the need for skin grafting, and scarring; ice and freezing water worsen injury by causing vasoconstriction and a cold burn.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Adequate cool-water first aid (~20 min) associated with reduced depth, grafting, and reconstructive need",
+    "population": "Burn-registry/cohort analyses of first-aid cooling duration",
+    "provenance": {
+      "primary": "Wood FM, et al. 'Water First Aid Is Beneficial In Humans Post-Burn', PLoS One 2016; ANZBA / EMSB first-aid guidance",
+      "doi": "10.1371/journal.pone.0147259",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Observational human + experimental animal support. Pairs with the high-value debunk that butter/oil/toothpaste and ice are harmful. Refer face/hands/genital/circumferential/airway/electrical/chemical burns and any deep/large burn to the ER.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "drowning-is-hypoxic-arrest-breaths-matter",
+    "statement": "Drowning causes a hypoxic (asphyxial) cardiac arrest, so rescue breaths/ventilation are a priority in the resuscitation sequence (unlike adult sudden cardiac arrest where compression-only is adequate); attempts to 'drain water from the lungs' are ineffective and delay ventilation.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Ventilation-first sequence; abdominal-thrust/postural-drainage 'water removal' not recommended",
+    "population": "Drowning resuscitation",
+    "provenance": {
+      "primary": "Szpilman D, et al. 'Drowning', N Engl J Med 2012",
+      "doi": "10.1056/NEJMra1013317",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref G-breath.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism-grounded and guideline-endorsed (ILCOR/ERC drowning chapters). Real drowning is silent and fast, not the thrashing Hollywood version.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "shallow-water-blackout-hyperventilation",
+    "statement": "Hyperventilating before underwater breath-hold swimming lowers arterial CO2 without meaningfully raising oxygen, suppressing the urge to breathe so that a swimmer can lose consciousness underwater (shallow-water blackout) before feeling air hunger, and drown silently; breath-hold swimming should never be done alone.",
+    "claim_type": "mechanism",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "CO2 is the breathing stimulus; pre-hyperventilation delays it past the hypoxic-syncope threshold",
+    "population": "Breath-hold/freediving and competitive swimmers",
+    "provenance": {
+      "primary": "Respiratory physiology of breath-hold (CO2 vs O2 drive); CDC and aquatics-safety guidance on shallow-water blackout",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref G-breath.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Textbook respiratory mechanism; kills fit, strong swimmers, which is why it is emphasized. Cross-ref breath domain G.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "heat-stroke-cool-first-immersion",
+    "statement": "Heat stroke (core temp roughly >=40 C with altered mental status) is a time-critical emergency in which aggressive cooling should begin immediately and BEFORE/while arranging transport; cold-water immersion is the most effective method for exertional heat stroke and lowers mortality, while antipyretics (paracetamol/ibuprofen) do not work because this is impaired heat dissipation, not a fever.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Cold-water immersion = fastest cooling, lowest mortality for exertional heat stroke; 'cool first, transport second'",
+    "population": "Exertional heat stroke (military, athletic) cohorts",
+    "provenance": {
+      "primary": "Casa DJ, et al. exertional heat stroke cooling literature; cross-ref H-thermal.md",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref H-thermal.md / H-claims.json"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong cohort/practical support; the 'cool first' priority inverts the usual scoop-and-run instinct and is the key teachable. Classic (non-exertional) heat stroke in the elderly may present with hot, dry skin.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hypothermia-gentle-handling-core-rewarm",
+    "statement": "In severe hypothermia the cold heart is electrically irritable, so patients must be handled gently (rough movement or limb-rubbing can trigger fatal arrhythmia), insulated and rewarmed at the core rather than the extremities; profoundly cold patients can be resuscitated ('not dead until warm and dead'), so CPR continues during rewarming.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Gentle handling + core rewarming; resuscitation continued through rewarming in deep hypothermia",
+    "population": "Accidental hypothermia management",
+    "provenance": {
+      "primary": "Brown DJA, et al. 'Accidental Hypothermia', N Engl J Med 2012; ERC/WMS hypothermia guidance",
+      "doi": "10.1056/NEJMra1114208",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref H-thermal.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism + case-series supported; documented neurologically-intact survivals after prolonged deep-hypothermic arrest underpin the 'warm and dead' rule. No alcohol, no vigorous rubbing, no direct scalding heat.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "stroke-time-window-treatment",
+    "statement": "Acute ischemic stroke is treatable with reperfusion (IV thrombolysis within ~4.5 h; endovascular thrombectomy up to ~24 h in selected large-vessel occlusions), making rapid recognition (BE-FAST) and documentation of symptom-onset time directly determinant of eligibility and outcome ('time is brain').",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Thrombectomy ~doubles functional independence (NNT ~2.6, HERMES); benefit is time-dependent",
+    "population": "Acute ischemic stroke (NINDS, ECASS-3, HERMES pooled analyses)",
+    "provenance": {
+      "primary": "Goyal M, et al. HERMES collaboration, Lancet 2016; NINDS rt-PA Study Group, NEJM 1995; cross-ref section 24 sec3",
+      "doi": "10.1016/S0140-6736(16)00163-X",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref 24-disease-neuro-rheum.md sec3"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Owned in full by section 24; reproduced here for the recognize->act layer. Do NOT give aspirin for suspected stroke until a bleed is excluded by CT.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "aspirin-suspected-mi-chew",
+    "statement": "For a suspected heart attack in a conscious person without contraindication, calling emergency services and having the patient chew 162-325 mg of aspirin is a reasonable first-aid measure (chewing speeds antiplatelet effect); patients should not drive themselves, as an ambulance can manage an arrest en route.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Aspirin in acute MI reduces vascular mortality (ISIS-2 ~23% relative reduction)",
+    "population": "Suspected acute MI",
+    "provenance": {
+      "primary": "ISIS-2 Collaborative Group, Lancet 1988 (aspirin in suspected acute MI); AHA acute coronary syndrome guidance",
+      "doi": "10.1016/S0140-6736(88)92833-4",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref 22-disease-cardiometabolic-renal.md sec1.1"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong RCT basis for aspirin in confirmed/suspected MI. Caveat: aspirin is contraindicated if a STROKE (possible bleed) is the real diagnosis, so it is only for the chest-pain/cardiac pattern, not for stroke.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sepsis-time-to-antibiotics-survival",
+    "statement": "Sepsis is a dysregulated, organ-threatening host response to infection; early recognition and time-to-antibiotics are major determinants of survival, so lay escalation (going to the ER and explicitly naming 'sepsis') changes the speed of care. A normal or low body temperature does not rule sepsis out.",
+    "claim_type": "outcome",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Delays in antibiotics/bundle completion associated with higher mortality in septic shock",
+    "population": "Sepsis/septic shock (Surviving Sepsis Campaign evidence base)",
+    "provenance": {
+      "primary": "Evans L, et al. 'Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021', Crit Care Med 2021",
+      "doi": "10.1097/CCM.0000000000005337",
+      "surfaced_via": "Wave-34 emergency brief; PubMed PMID 34643578 (exec summary) verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Time-to-antibiotic association is strong for septic shock and more debated for milder sepsis; the lay teaching point (recognize the subtle signs, escalate fast, say the word) is robust regardless. Subtle signs: confusion, very fast breathing, mottled skin, no urine.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "seizure-do-not-restrain-or-mouth-objects",
+    "statement": "During a generalized seizure, bystanders must NOT put anything in the mouth (the tongue cannot be swallowed; objects cause dental/airway injury) and must NOT restrain the person; correct action is to protect from injury, time the event, and place them in the recovery position once convulsions stop.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "Mouth objects and restraint cause harm without benefit; protect-and-position is the standard",
+    "population": "Generalized tonic-clonic seizure first aid",
+    "provenance": {
+      "primary": "Epilepsy Foundation / NICE seizure first-aid guidance; AHA/Red Cross first aid",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref 24-disease-neuro-rheum.md sec4"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Universal guideline consensus debunk. Call emergency services if >5 min (status epilepticus), first-ever, repeated without recovery, in water, in pregnancy/diabetes, or if injury occurs.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "rice-superseded-peace-and-love",
+    "statement": "The RICE protocol for acute soft-tissue injury has been superseded; prolonged rest and aggressive icing are not the goal. Current sports-medicine guidance (PEACE & LOVE) emphasizes brief protection followed by early, graded, optimistic loading and movement.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Shift from rest/ice doctrine to early loading; ice retained only for short-term pain relief",
+    "population": "Acute musculoskeletal soft-tissue injury",
+    "provenance": {
+      "primary": "Dubois B, Esculier J-F. 'Soft-tissue injuries simply need PEACE & LOVE', Br J Sports Med 2020",
+      "doi": "10.1136/bjsports-2019-101253",
+      "surfaced_via": "Wave-34 emergency brief; cross-ref 21-pain-injury-rehab.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Owned in depth by section 21. Acute (day-1) first aid still uses relative protection and ice for pain control; the change is not to camp in prolonged rest. Always exclude fracture (deformity, can't bear weight, point bony tenderness).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nosebleed-lean-forward-not-back",
+    "statement": "For a nosebleed, the head should be leaned forward (not tilted back) while pinching the soft part of the nose firmly for 10-15 uninterrupted minutes; tilting back sends blood down the throat causing nausea/vomiting and obscures whether bleeding has stopped.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "Lean-forward + sustained pinch; head-tilt-back is a harmful myth",
+    "population": "Anterior epistaxis first aid",
+    "provenance": {
+      "primary": "AAO-HNS / Red Cross epistaxis first-aid guidance",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Standard guideline debunk. Seek care if bleeding persists beyond ~20-30 min, follows head trauma, or the person is anticoagulated.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "choking-back-blows-abdominal-thrusts",
+    "statement": "For a responsive choking adult or child with a complete airway obstruction (cannot speak, cough, or breathe), alternate 5 back blows between the shoulder blades with 5 abdominal thrusts (Heimlich) until the obstruction clears or the person becomes unresponsive (then begin CPR); a person able to cough forcefully has partial obstruction and should be encouraged to keep coughing.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Back blows + abdominal thrusts standard for complete obstruction; encourage cough if partial",
+    "population": "Foreign-body airway obstruction (adults/children >1y); infants and pregnant/obese use chest thrusts",
+    "provenance": {
+      "primary": "ERC/AHA/Red Cross choking (FBAO) algorithms",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Guideline consensus. No blind finger sweeps (push object deeper). Infants: 5 back blows + 5 chest thrusts, never abdominal. Pregnant/obese: chest thrusts.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "head-injury-red-flags-er",
+    "statement": "A head injury warrants emergency evaluation for any of: loss of consciousness, repeated vomiting, worsening or worst-ever headache, confusion/drowsiness/difficulty waking, seizure, unequal pupils, focal weakness/numbness, fluid or blood from nose/ears, a high-risk mechanism, or anticoagulant use; the 'second-impact' risk underlies the sports rule 'if in doubt, sit them out'.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Validated red-flag criteria predict clinically important intracranial injury",
+    "population": "Head-injury triage (Canadian CT Head Rule / NICE head-injury guidance)",
+    "provenance": {
+      "primary": "Stiell IG, et al. Canadian CT Head Rule, Lancet 2001; NICE head injury guideline",
+      "doi": "10.1016/S0140-6736(00)04561-X",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Decision rules are clinician tools; reproduced here as lay red flags for when to seek care. Anticoagulated patients can bleed slowly and dangerously even after a minor mechanism.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "do-not-induce-vomiting-poisoning",
+    "statement": "In poisoning, inducing vomiting (including syrup of ipecac) is no longer recommended and can cause harm (aspiration, repeat caustic injury); correct action is to remove the person from the source, call poison control / emergency services, bring the container, and follow expert telephone guidance.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "Ipecac/induced emesis abandoned; no outcome benefit, real harm",
+    "population": "Acute poisoning first aid",
+    "provenance": {
+      "primary": "AAP / AACT-EAPCCT position statements on ipecac and gastric decontamination; US Poison Help 1-800-222-1222",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Major guideline reversal from older home first-aid advice. Carbon monoxide is a special invisible/odorless case: get everyone to fresh air and call emergency services; own a CO alarm.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "recovery-position-unconscious-breathing",
+    "statement": "An unconscious person who is breathing normally (and not in cardiac arrest) should be placed on their side in the recovery position so the tongue falls forward and vomit drains away from the airway, reducing aspiration risk while awaiting help.",
+    "claim_type": "protocol",
+    "domain": "emergency",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Lateral recovery position protects the airway in the unconscious, spontaneously breathing patient",
+    "population": "Unconscious but breathing (non-arrest)",
+    "provenance": {
+      "primary": "ERC/AHA/Red Cross first-aid recovery-position guidance",
+      "doi": "",
+      "surfaced_via": "Wave-34 emergency brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Guideline-standard. If suspected spinal injury but the patient is vomiting, airway protection takes priority over a theoretical spine concern.",
+    "added_on": "2026-06-28"
+  }
+]

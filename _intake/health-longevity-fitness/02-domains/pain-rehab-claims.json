@@ -1,0 +1,401 @@
+[
+  {
+    "id": "pain-not-equal-tissue-damage",
+    "statement": "Pain is an output the brain constructs by weighing nociceptive input against context, expectation, mood, and meaning; it can be present without tissue damage (e.g. phantom-limb, chronic pain) and absent despite major injury (e.g. soldiers/athletes mid-event). Nociception (detection) and pain (experience) are distinct.",
+    "claim_type": "mechanism",
+    "domain": "pain-rehab",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Placebo analgesia is opioid-mediated and naloxone-reversible (a real neurochemical event), demonstrating top-down modulation of pain",
+    "population": "Human experimental + clinical neuroscience",
+    "provenance": {
+      "primary": "Gatchel RJ, Peng YB, Peters ML, et al. - 'The biopsychosocial approach to chronic pain: scientific advances and future directions', Psychol Bull 2007; foundational pain-neuroscience literature",
+      "doi": "10.1037/0033-2909.133.4.581",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; cross-ref Section 14 §6"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (membrane excitability / nociception rests on Na+/K+ gradient + Hodgkin-Huxley foundations)",
+    "confidence_notes": "Load-bearing modern correction. Clinical, not just theoretical: drives the case against over-imaging and fear-based care. The biopsychosocial model is the operational framework.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "central-sensitization-chronic-pain",
+    "statement": "In many chronic pain states the central nervous system becomes an amplifier (central sensitization): increased responsiveness of central nociceptive neurons produces pain that persists, spreads, and is triggered by normally non-painful input (allodynia/hyperalgesia), independent of ongoing tissue damage.",
+    "claim_type": "mechanism",
+    "domain": "pain-rehab",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Reframes fibromyalgia, much chronic LBP, chronic whiplash as 'nociplastic' (altered processing) rather than tissue-driven",
+    "population": "Human + animal nociceptive physiology",
+    "provenance": {
+      "primary": "Woolf CJ - 'Central sensitization: implications for the diagnosis and treatment of pain', Pain 2011",
+      "doi": "10.1016/j.pain.2010.09.030",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Explains 'clean scan but still hurts.' Not 'in your head' dismissively; a measurable change in nervous-system gain. Treatment targets the system (graded movement, sleep, education), not the tissue.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "spine-imaging-findings-asymptomatic",
+    "statement": "Degenerative spine findings on MRI (disc degeneration, bulges, protrusions, annular fissures) are highly prevalent in PAIN-FREE people and rise steeply with age (e.g. disc degeneration ~37% at age 20 to ~96% at age 80; disc bulge ~30%/age-20 to ~84%/age-80), so they correlate poorly with symptoms and cannot, alone, explain or guide treatment of non-specific low back pain.",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Asymptomatic prevalence: disc degeneration ~52% (age 30) -> ~88% (age 60); disc bulge ~40% -> ~69%",
+    "population": "Systematic review, 33 studies, 3110 asymptomatic individuals",
+    "provenance": {
+      "primary": "Brinjikji W, Luetmer PH, Comstock B, et al. - 'Systematic literature review of imaging features of spinal degeneration in asymptomatic populations', AJNR Am J Neuroradiol 2015",
+      "doi": "10.3174/ajnr.A4173",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The 'wrinkles on the inside' fact. Basis for guideline recommendations AGAINST routine imaging for non-specific LBP (Qaseem/ACP 2017). Over-imaging worsens outcomes via fear and over-treatment.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lbp-leading-disability-mismanaged",
+    "statement": "Low back pain is the leading cause of years lived with disability worldwide; ~90-95% is 'non-specific' (no identifiable structural cause), and the dominant global care model is wrong - overusing imaging, opioids, injections, and surgery while underusing the effective core (stay active, exercise, education).",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Global #1 cause of disability; widespread low-value and harmful care documented across health systems",
+    "population": "Global; Lancet LBP Series evidence synthesis",
+    "provenance": {
+      "primary": "Hartvigsen J, Hancock MJ, Kongsted A, et al. - 'What low back pain is and why we need to pay attention', Lancet 2018; Foster NE et al. (10.1016/S0140-6736(18)30489-6); Buchbinder R et al. (10.1016/S0140-6736(18)30488-4)",
+      "doi": "10.1016/S0140-6736(18)30480-X",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified (all three series papers)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The Lancet LBP Series (3 papers, 2018). A public-health indictment of standard back-pain care.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lbp-stay-active-exercise-first-line",
+    "statement": "For low back pain the evidence-based first line is staying active and exercise (for chronic LBP), with education/reassurance; bed rest is harmful, no single exercise type is clearly superior (adherence beats modality), and paracetamol is no better than placebo for acute LBP.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Exercise types (motor-control, Pilates, strength, walking, yoga) roughly equivalent; first-line non-pharmacological per ACP guideline",
+    "population": "Cochrane review + ACP clinical practice guideline",
+    "provenance": {
+      "primary": "Saragiotto BT, Maher CG, Yamato TP, et al. - 'Motor control exercise for chronic non-specific low-back pain', Cochrane 2016 (10.1002/14651858.CD012004); Qaseem A et al. - ACP guideline, Ann Intern Med 2017 (10.7326/M16-2367)",
+      "doi": "10.7326/M16-2367",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-ref Section 02 (training) - the rehab ladder is the training ladder. 'The best exercise is the one you'll do.'",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fusion-not-better-than-rehab-nonspecific-lbp",
+    "statement": "For chronic NON-SPECIFIC low back pain (no clear structural surgical target), instrumented lumbar fusion surgery is not meaningfully better than a structured cognitive-intervention-plus-exercise rehabilitation program, at far higher cost and risk.",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No clinically important difference fusion vs cognitive intervention + exercises at 1 year",
+    "population": "RCT, chronic LBP patients (Brox et al.)",
+    "provenance": {
+      "primary": "Brox JI, Sorensen R, Friis A, et al. - 'Randomized clinical trial of lumbar instrumented fusion and cognitive intervention and exercises in patients with chronic low back pain and disc degeneration', Spine 2003",
+      "doi": "10.1097/01.BRS.0000083234.62751.7A",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk: fusing a 'degenerated' disc to treat axial back pain is over-sold. Surgery has clear roles (cauda equina, progressive deficit, fracture, infection, tumour, some radicular pain) - match operation to a real target.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tendinopathy-load-not-rest",
+    "statement": "Chronic tendon pain is 'tendinopathy' (failed healing / disordered collagen, little classic inflammation), not 'tendinitis'; the evidence-based treatment is progressive mechanical loading (isometrics, then heavy-slow-resistance or eccentric programs), NOT rest, which transiently relieves pain but de-conditions the tendon.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Eccentric/heavy-slow loading programs produce good outcomes; no single protocol clearly superior; benefit over rest/passive care",
+    "population": "Achilles & patellar tendinopathy RCTs and systematic reviews",
+    "provenance": {
+      "primary": "Cook JL, Purdam CR - 'Is tendon pathology a continuum?', Br J Sports Med 2009 (10.1136/bjsm.2008.051193); Alfredson H et al. - eccentric Achilles, Am J Sports Med 1998 (10.1177/03635465980260030301); Malliaras P et al. - Sports Med 2013 (10.1007/s40279-013-0019-z); Scott A et al. - ICON 2019, BJSM 2020 (10.1136/bjsports-2019-100885)",
+      "doi": "10.1136/bjsm.2008.051193",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified (all four)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mechano-adaptation of tissue to load)",
+    "confidence_notes": "The 'rest is wrong' inversion. Recovery is slow (3-6+ months), through (not around) tolerable pain. Cross-ref tennis elbow (lateral epicondylalgia is a tendinopathy).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "rice-to-peace-and-love",
+    "statement": "The RICE acute-injury protocol (Rest, Ice, Compression, Elevation) has been retired in favour of PEACE & LOVE (Protect, Elevate, Avoid anti-inflammatories/ice, Compress, Educate, then Load, Optimism, Vascularisation, Exercise); prolonged rest and aggressive icing may impair healing by blunting the inflammatory signalling that drives repair.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "anecdotal",
+    "direction": "supports",
+    "effect_size": "Consensus/editorial framework; emphasis shift from rest+ice to brief protection then early graded loading",
+    "population": "Soft-tissue (musculoskeletal) injury management, consensus guidance",
+    "provenance": {
+      "primary": "Dubois B, Esculier JF - 'Soft-tissue injuries simply need PEACE and LOVE', Br J Sports Med 2020",
+      "doi": "10.1136/bjsports-2019-101253",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Editorial/consensus tier, not RCT - the framework codifies a direction the loading evidence supports (brief protection then early loading). Ice for short-term pain relief is fine; the 'ice speeds healing' claim is what fell.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "opioids-not-superior-chronic-noncancer-pain",
+    "statement": "For chronic non-cancer pain (back, hip/knee osteoarthritis), opioids are not superior to non-opioid medication for pain-related function over 12 months - and produced slightly worse pain and more side effects - so opioids are not first-line; they retain a role in acute, post-surgical, cancer, and palliative pain.",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No benefit of opioids on pain-related function vs non-opioids; pain intensity slightly worse in opioid group; more adverse effects (SPACE, 12 months)",
+    "population": "RCT, 240 patients with chronic back pain or hip/knee OA (SPACE trial)",
+    "provenance": {
+      "primary": "Krebs EE, Gravely A, Nugent S, et al. - 'Effect of Opioid vs Nonopioid Medications on Pain-Related Function in Patients With Chronic Back Pain or Hip or Knee Osteoarthritis Pain: The SPACE Randomized Clinical Trial', JAMA 2018; CDC guideline Dowell D et al., MMWR 2016 (10.15585/mmwr.rr6501e1)",
+      "doi": "10.1001/jama.2018.0899",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; cross-ref Section 14 §6.3"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Decisive negative for the over-prescribed indication. Pair with CDC opioid guideline and the opioid-epidemic harm record.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "chronic-pain-multimodal-biopsychosocial",
+    "statement": "Best-practice chronic musculoskeletal pain care is multimodal and biopsychosocial: patient-centred education + self-management, exercise/physical activity first-line, psychological therapies (CBT/ACT, modest but real), sleep and stress management, limited imaging, and non-surgical care before surgery - not a single pill or procedure.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "11 consistent recommendations distilled from high-quality MSK clinical guidelines; pain-neuroscience-education effect small-to-moderate and combination-dependent",
+    "population": "Synthesis of musculoskeletal pain guidelines",
+    "provenance": {
+      "primary": "Lin I, Wiles L, Waller R, et al. - 'What does best practice care for musculoskeletal pain look like? Eleven consistent recommendations from high-quality clinical practice guidelines', Br J Sports Med 2020 (10.1136/bjsports-2018-099878); Wood L, Hendrick PA - PNE meta-analysis, Eur J Pain 2018 (10.1002/ejp.1314)",
+      "doi": "10.1136/bjsports-2018-099878",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest expectation-set: meaningful improvement in function/quality of life, not always zero pain. ACT reframe (live well alongside pain) often the more honest target for persistent pain.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "oa-exercise-first-line",
+    "statement": "For osteoarthritis the first-line treatment is education plus exercise (strength + aerobic) plus weight management - ahead of any drug or procedure; structured education-and-exercise programs (e.g. GLA:D) reduce pain, medication use, and progression to surgery in large registries. Joints need load to stay healthy; 'don't load it' is backwards.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "GLA:D registry: reduced pain, lower analgesic use, fewer proceeding to surgery; exercise first-line across OARSI/ACR/NICE guidelines",
+    "population": "Knee/hip OA; GLA:D program + guideline syntheses",
+    "provenance": {
+      "primary": "Skou ST, Roos EM - 'Good Life with osteoArthritis in Denmark (GLA:D): evidence-based education and supervised neuromuscular exercise...', BMC Musculoskelet Disord 2017",
+      "doi": "10.1186/s12891-017-1439-y",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mechano-adaptation; load->tissue health)",
+    "confidence_notes": "Total joint replacement IS effective for end-stage OA failing conservative care - the issue is timing/indication, not that surgery never works.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "arthroscopy-no-better-than-sham-knee",
+    "statement": "Arthroscopic surgery for knee osteoarthritis is no better than sham (placebo) surgery, and arthroscopic partial meniscectomy for a degenerative meniscal tear is no better than sham surgery - these common operations largely treat the incidental MRI finding, not the pain.",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No benefit over sham/placebo surgery in two independent placebo-controlled RCTs",
+    "population": "Knee OA (Moseley, n=180) and degenerative meniscal tear (Sihvonen FIDELITY, n=146), placebo-surgery-controlled",
+    "provenance": {
+      "primary": "Moseley JB, O'Malley K, Petersen NJ, et al. - 'A controlled trial of arthroscopic surgery for osteoarthritis of the knee', NEJM 2002 (10.1056/NEJMoa013259); Sihvonen R et al. - 'Arthroscopic partial meniscectomy versus sham surgery for a degenerative meniscal tear', NEJM 2013 (10.1056/NEJMoa1305189)",
+      "doi": "10.1056/NEJMoa1305189",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified (both)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Among the clearest placebo-surgery results in orthopaedics. Distinguish from total joint replacement (effective for end-stage OA).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "glucosamine-chondroitin-mostly-null",
+    "statement": "Glucosamine and chondroitin are, in the best independent trials, essentially no better than placebo for knee osteoarthritis pain, and there is no good evidence they rebuild cartilage; they are safe and cheap but the marketing claims are unsupported (industry-funded trials are systematically more positive than independent ones).",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No significant benefit vs placebo overall in the large independent GAIT trial; possible moderate-severe subgroup signal not robust",
+    "population": "RCT, 1583 knee-OA patients (GAIT)",
+    "provenance": {
+      "primary": "Clegg DO, Reda DJ, Harris CL, et al. - 'Glucosamine, chondroitin sulfate, and the two in combination for painful knee osteoarthritis', NEJM 2006 (GAIT)",
+      "doi": "10.1056/NEJMoa052771",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk. Safe/cheap so a time-limited personal trial is low-risk, but no cartilage rebuilding and no robust placebo-beating effect. Provenance red flag: funding source predicts result.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tennis-elbow-corticosteroid-worse-longterm",
+    "statement": "For lateral epicondylalgia (tennis elbow, a tendinopathy), corticosteroid injection gives good short-term relief but worse long-term outcomes and higher recurrence than physiotherapy or wait-and-see; first-line is activity/load modification plus progressive loading exercise and time (most resolve over 6-12 months).",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Corticosteroid: worse 1-year recovery and higher recurrence vs physiotherapy/wait-and-see",
+    "population": "RCT, unilateral lateral epicondylalgia (Coombes et al.)",
+    "provenance": {
+      "primary": "Coombes BK, Bisset L, Brooks P, et al. - 'Effect of corticosteroid injection, physiotherapy, or both on clinical outcomes in patients with unilateral lateral epicondylalgia', JAMA 2013",
+      "doi": "10.1001/jama.2013.129",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Injection trades a good month for a worse year. Generalizes a caution about corticosteroid injections for tendinopathy.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "plantar-fasciitis-loading-self-limiting",
+    "statement": "Plantar fasciitis (plantar heel pain) is mostly self-limiting (majority resolve within ~12 months) but slow; high-load slow-resistance calf/plantar-fascia loading improves outcomes vs stretching alone, alongside stretching, supportive footwear, and load management. Corticosteroid injection gives short-term relief but risks fat-pad atrophy/fascia rupture.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "High-load strength training superior to plantar-fascia stretching at 3 months (faster improvement)",
+    "population": "RCT, 48 patients with plantar fasciitis (Rathleff et al.)",
+    "provenance": {
+      "primary": "Rathleff MS, Molgaard CM, Fredberg U, et al. - 'High-load strength training improves outcome in patients with plantar fasciitis: A randomized controlled trial', Scand J Med Sci Sports 2015",
+      "doi": "10.1111/sms.12313",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Small RCT; consistent with the load-not-rest theme for tendon/fascia. Self-limiting natural history is the dominant fact.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "frozen-shoulder-self-limiting-slow",
+    "statement": "Frozen shoulder (adhesive capsulitis) is largely self-limiting but slow (often 1-3 years through freezing/frozen/thawing phases); early intra-articular corticosteroid injection plus supervised exercise helps pain and function in the early painful phase, while aggressive forced stretching in the painful phase can worsen it. Surgery is reserved for the stubborn minority.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Steroid injection + exercise improves early-phase pain/function; natural resolution over months-years",
+    "population": "Systematic review / HTA of frozen-shoulder management",
+    "provenance": {
+      "primary": "Maund E, Craig D, Suekarran S, et al. - 'Management of frozen shoulder: a systematic review and cost-effectiveness analysis', Health Technol Assess 2012",
+      "doi": "10.3310/hta16110",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; PubMed direct-search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "More common with diabetes. Most important intervention is often calibrated patience plus pain control, not heroics.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sciatica-mostly-conservative",
+    "statement": "Sciatica (lumbar radicular pain, usually disc herniation) mostly improves without surgery - herniated discs frequently resorb spontaneously and pain settles over weeks to months with active conservative care; discectomy speeds EARLY leg-pain relief in selected cases but long-term outcomes converge with conservative care. Progressive deficit or cauda-equina signs override and warrant urgent surgery.",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Surgery faster early relief; ~1-2 year outcomes similar to conservative care; spontaneous disc resorption common",
+    "population": "Lumbar disc herniation / radiculopathy literature (e.g. SPORT-style trials, natural-history studies)",
+    "provenance": {
+      "primary": "Lumbar radicular pain natural-history and surgical-vs-conservative literature; red-flag screening per Downie A et al., BMJ 2013 (10.1136/bmj.f7095)",
+      "doi": "10.1136/bmj.f7095",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; clinical-guideline synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Decision is about speed of relief vs surgical risk when no progressive deficit. Red flags (saddle anaesthesia, bladder/bowel change, progressive weakness) = emergency.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "stretching-does-not-prevent-injury",
+    "statement": "Static stretching does not meaningfully prevent injury in most activities (a robust replicated negative); it improves flexibility/range but is not an injury-prevention tool. The older claim that pre-exercise static stretching 'kills performance' was an overcorrection - the deficit is small, short-lived, and abolished by short holds (<60s) plus a dynamic warm-up.",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No injury-prevention benefit from static stretching; acute performance deficit small and short-lived",
+    "population": "Systematic reviews of stretching and injury/performance",
+    "provenance": {
+      "primary": "Stretching-and-injury-prevention systematic-review literature; cross-ref Section 02 §4.2 (conflict-static-stretch-performance)",
+      "doi": "",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; cross-ref Section 02 training"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Practical rule: dynamic warm-up before; long static/PNF/loaded stretching after or separate session if range is the goal. No DOI assigned (synthesis-level claim, cross-referenced to Section 02).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "foam-rolling-acute-rom-not-fascia-release",
+    "statement": "Foam-rolling / self-myofascial release produces a small, short-lived acute increase in range of motion and a modest reduction in perceived soreness without the performance penalty of static stretching, so it is a reasonable warm-up/recovery adjunct - but it does NOT 'break up adhesions,' 'release fascia,' or 'release toxins'; the acute ROM effect is neural/sensory (altered stretch tolerance), not structural.",
+    "claim_type": "mechanism",
+    "domain": "pain-rehab",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small acute ROM gain + modest soreness reduction; no evidence of structural fascial remodeling",
+    "population": "Systematic reviews/meta-analyses of foam-rolling",
+    "provenance": {
+      "primary": "Foam-rolling acute-effects meta-analytic literature (ROM, DOMS, performance); cross-ref Section 02 mobility",
+      "doi": "",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; cross-ref Section 02 training"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism marketing is wrong; the modest effect is real. Use because it feels good and adds a little ROM, not because it 'fixes' tissue. No single DOI (synthesis-level).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "rehab-progressive-loading-pain-as-dial",
+    "statement": "Rehabilitation works by progressive mechanical loading matched to current tissue tolerance, using pain as a dial not a stop sign (pain up to ~3-4/10 during/after loading is acceptable if it settles by next morning and trends down), starting low on the regression->standard->progression ladder and returning to activity by capacity criteria (e.g. ~90% strength symmetry, pain-free control, sport-specific tolerance), not the calendar.",
+    "claim_type": "protocol",
+    "domain": "pain-rehab",
+    "evidence_tier": "anecdotal",
+    "direction": "supports",
+    "effect_size": "Pain-monitored progressive loading; criteria-based (not time-based) return-to-sport reduces re-injury",
+    "population": "Rehabilitation/return-to-sport practice and tendinopathy loading trials",
+    "provenance": {
+      "primary": "Tendon/MSK loading and return-to-sport literature; cross-ref Section 02 §2/§6 (regression->progression ladder, progressive overload)",
+      "doi": "",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief; cross-ref Section 02 training"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (mechano-adaptation of tissue)",
+    "confidence_notes": "Practice-consensus tier for the specific numeric thresholds; the underlying load->adapt principle is mechanistic and well-supported. Rushing return (calendar over capacity) drives the re-injury cycle.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "posture-does-not-cause-pain-simply",
+    "statement": "The claim that specific 'bad posture' causes pain (and 'good posture' prevents it) is largely unsupported: population studies find weak-to-no consistent link between sitting posture, forward-head, mild scoliosis, or leg-length difference and pain. The best ergonomic advice is to move and vary position ('the next posture is the best posture'), not hold one 'correct' alignment.",
+    "claim_type": "outcome",
+    "domain": "pain-rehab",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "Weak/inconsistent association between static postural measures and pain prevalence",
+    "population": "Observational posture-pain epidemiology",
+    "provenance": {
+      "primary": "Posture-pain association literature (systematic reviews finding weak/no link); biopsychosocial framing per Gatchel et al. 2007 (10.1037/0033-2909.133.4.581)",
+      "doi": "",
+      "surfaced_via": "Wave-21 pain/injury/rehab brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk. Posture-correction products/moral framing mostly sell fear. Some specific large postural changes matter for specific conditions; the blanket 'bad posture -> pain' does not survive the data.",
+    "added_on": "2026-06-28"
+  }
+]

@@ -1,0 +1,382 @@
+[
+  {
+    "id": "antibiotic-selective-toxicity",
+    "statement": "Antibiotics work by exploiting bacterial-specific targets (peptidoglycan cell wall, 70S ribosome, DNA gyrase, folate synthesis) absent or distinct in human cells, which is why they are selectively toxic to bacteria and useless against viruses (which have no such machinery and use the host's).",
+    "claim_type": "mechanism",
+    "domain": "infectious-disease",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Foundational pharmacology; selective toxicity (Ehrlich 'magic bullet')",
+    "population": "General microbiology/pharmacology",
+    "provenance": {
+      "primary": "Standard medical microbiology (selective toxicity principle; Ehrlich)",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Textbook mechanism. Explains directly why antibiotics for viral illness give all risk and no benefit (see antibiotics-no-effect-on-viruses claim).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "amr-global-death-burden-2019",
+    "statement": "In 2019, bacterial antimicrobial resistance was directly responsible for an estimated 1.27 million deaths and associated with approximately 4.95 million deaths worldwide, ranking AMR among the top global public health threats.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~1.27M deaths attributable; ~4.95M deaths associated (2019)",
+    "population": "Global, systematic analysis across 204 countries (GRAM)",
+    "provenance": {
+      "primary": "Murray CJL, Ikuta KS, Sharara F, et al. - 'Global burden of bacterial antimicrobial resistance in 2019: a systematic analysis', Lancet 2022",
+      "doi": "10.1016/S0140-6736(21)02724-0",
+      "surfaced_via": "Wave-26 infectious-disease brief; PubMed PMID 35065702 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Modeled burden estimate (GBD-style); wide uncertainty intervals but the scale (comparable to or exceeding HIV/malaria) is robust. Drivers: over-prescription + industrial agriculture.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "amr-evolution-by-selection",
+    "statement": "Antimicrobial resistance arises by natural selection accelerated by horizontal gene transfer: antibiotic exposure kills susceptible bacteria and selects resistant survivors, whose resistance genes (e.g. beta-lactamases) spread within and across species via plasmids.",
+    "claim_type": "mechanism",
+    "domain": "infectious-disease",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Evolutionary/genetic mechanism; well established",
+    "population": "Bacterial populations",
+    "provenance": {
+      "primary": "Standard microbial evolution / molecular biology (horizontal gene transfer, beta-lactamases)",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Resistance is a real-time demonstration of evolution. Human drivers (over-prescription, incomplete courses, agricultural growth-promoter use) are the controllable variables.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "antibiotics-no-effect-on-viruses",
+    "statement": "Antibiotics have no effect against viral illnesses (colds, flu, COVID, most sore throats/bronchitis/sinusitis); taking them for a virus confers all the risk (side effects, C. difficile, microbiome disruption, resistance selection) and none of the benefit.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "No benefit for viral URIs; measurable harms (C. diff, resistance)",
+    "population": "Outpatients with viral respiratory illness",
+    "provenance": {
+      "primary": "Antibiotic stewardship consensus (CDC/WHO/IDSA); Cochrane reviews of antibiotics for acute URIs/bronchitis",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Highest-leverage consumer-level stewardship rule. Follows mechanistically from selective toxicity. 'Just in case' antibiotics for colds are a net negative.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sanitation-not-medicine-drove-lifespan",
+    "statement": "Most of the dramatic rise in human life expectancy over the past ~170 years came from public-health measures (clean water, sewage, food safety) and later vaccines, not from antibiotics or curative medicine; life expectancy climbed for decades on sanitation before antibiotics existed (the epidemiologic transition).",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Largest single-source mortality decline in history; transition from infectious to chronic-disease dominance",
+    "population": "Industrialized populations, 19th-20th centuries",
+    "provenance": {
+      "primary": "Epidemiologic-transition literature (Omran 1971); historical mortality demography (McKeown thesis, with revisions)",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The under-appreciated punchline: the highest-leverage interventions were collective/preventive infrastructure, not heroic cures. McKeown's exact attribution is debated, but the primacy of sanitation+nutrition over clinical medicine for early gains is well supported.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "smallpox-eradication-vaccine",
+    "statement": "Smallpox, which killed an estimated ~300 million people in the 20th century alone, was eradicated by global vaccination (last natural case 1977; WHO-declared eradicated 1980) - the only human disease ever eradicated.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Complete eradication; ~300M 20th-century deaths ended",
+    "population": "Global",
+    "provenance": {
+      "primary": "Fenner F, Henderson DA, Arita I, et al. - 'Smallpox and its Eradication', WHO 1988",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Historical fact; the single greatest demonstration of vaccination's power. Polio is the near-eradication parallel (>99% reduction since 1988).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "herd-immunity-threshold-measles",
+    "statement": "Herd immunity protects the unvaccinated (infants, immunocompromised) when enough of a population is immune to break transmission chains; the threshold scales with contagiousness, so highly transmissible measles (R0 ~12-18) requires ~95% vaccination coverage, and outbreaks appear first where coverage falls.",
+    "claim_type": "mechanism",
+    "domain": "infectious-disease",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Measles herd-immunity threshold ~95%; R0 ~12-18",
+    "population": "Population-level transmission dynamics",
+    "provenance": {
+      "primary": "Epidemiological transmission theory (R0, herd-immunity threshold); measles outbreak surveillance",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/",
+    "confidence_notes": "Well-established dynamics; measles is the canonical demonstration of herd immunity in reverse. Reframes vaccination as a public good. Immunology owned by section 15.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "mmr-does-not-cause-autism",
+    "statement": "MMR vaccine does not cause autism; the 1998 Wakefield paper claiming a link was retracted as fraudulent and the claim has been refuted by studies covering millions of children, including a Danish cohort of >650,000.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "No association across cohorts totaling millions of children",
+    "population": ">650,000 Danish children (Hviid 2019) plus multiple large cohorts/meta-analyses",
+    "provenance": {
+      "primary": "Hviid A, Hansen JV, Frisch M, Melbye M. - 'Measles, Mumps, Rubella Vaccination and Autism: A Nationwide Cohort Study', Annals of Internal Medicine 2019",
+      "doi": "10.7326/M18-2101",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the most thoroughly refuted claims in medicine. The resulting hesitancy has measurably cost lives via measles resurgence. Honesty: real but rare vaccine adverse events exist and are quantified separately.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vaccine-safety-honest-risk-vs-disease",
+    "statement": "Vaccines are among the most studied and safest medical interventions; real adverse events exist but are rare and quantified (anaphylaxis ~1 per million doses; rare self-limited myocarditis in young males after mRNA COVID vaccines), and the correct comparison is always vaccine risk vs disease risk, which is lopsided in the vaccine's favor for routine vaccines.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Anaphylaxis ~1/million doses; mRNA myocarditis rare, usually mild; COVID infection itself carries higher myocarditis risk",
+    "population": "Hundreds of millions of vaccine doses under active surveillance (VAERS/VSD)",
+    "provenance": {
+      "primary": "Post-marketing vaccine safety surveillance consensus (CDC/VSD, WHO GACVS); mRNA myocarditis surveillance literature",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest both-halves framing: adverse events acknowledged and quantified; net benefit overwhelming for routine vaccines. Demanding zero risk is a category error. Cross-ref section 15 (no 'boost immunity' alternative exists).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hiv-art-near-normal-lifespan-uu",
+    "statement": "Modern antiretroviral therapy turns HIV into a manageable chronic condition with near-normal life expectancy, and effective treatment renders a person non-infectious (U=U, undetectable = untransmittable); HIV remains incurable and requires lifelong therapy.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Treatment-as-prevention reduced linked HIV transmission by ~96% (HPTN 052)",
+    "population": "Serodiscordant couples (HPTN 052); large ART cohorts for life-expectancy",
+    "provenance": {
+      "primary": "Cohen MS, Chen YQ, McCauley M, et al. - 'Prevention of HIV-1 Infection with Early Antiretroviral Therapy' (HPTN 052), NEJM 2011",
+      "doi": "10.1056/NEJMoa1105243",
+      "surfaced_via": "Wave-26 infectious-disease brief; PubMed PMID 21767103 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "U=U is RCT-grade (HPTN 052). Near-normal life expectancy is cohort-grade. Pair with START (treat-early, NEJM 2015) and Partners PrEP (prevention).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hepatitis-c-curable-daa",
+    "statement": "Chronic hepatitis C is curable: direct-acting antiviral regimens introduced from ~2014 achieve sustained virologic response (cure) in over 95% of patients in 8-12 weeks of oral therapy; the remaining bottleneck is diagnosis and access, not cure.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": ">95% cure (SVR) in 8-12 weeks",
+    "population": "Chronic HCV patients across multiple DAA RCTs",
+    "provenance": {
+      "primary": "Direct-acting antiviral RCT program (sofosbuvir/velpatasvir and related; ASTRAL trials)",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A genuine medical miracle that arrived quietly. Contrast with hepatitis B (preventable by vaccine, suppressible not yet curable).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hbv-hpv-vaccines-prevent-cancer",
+    "statement": "Two vaccines prevent cancers caused by oncogenic viruses: the hepatitis B vaccine prevents HBV-driven hepatocellular carcinoma (the first anti-cancer vaccine), and the HPV vaccine prevents HPV-driven invasive cervical (and other) cancers.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "HPV vaccine: substantial reduction in invasive cervical cancer (population cohort); HBV vaccine: marked decline in childhood HBV and downstream liver cancer",
+    "population": "Population cohorts (Sweden HPV; Taiwan HBV programs)",
+    "provenance": {
+      "primary": "Lei J, Ploner A, Elfstrom KM, et al. - 'HPV Vaccination and the Risk of Invasive Cervical Cancer', NEJM 2020",
+      "doi": "10.1056/NEJMoa1917338",
+      "surfaced_via": "Wave-26 infectious-disease brief; cross-ref 07-clinical-prevention"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Vaccines that prevent cancer - among the cleanest cases of infection-cancer causation being broken prophylactically. Cross-ref clinical-prevention for the oncogenic-virus story.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tb-leading-single-agent-infectious-killer",
+    "statement": "Tuberculosis is again the world's leading cause of death from a single infectious agent (>1 million deaths/year), having briefly ceded the position to COVID-19; ~a quarter of humanity carries latent M. tuberculosis, and drug-resistant TB (MDR/XDR) is a growing crisis.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": ">1M deaths/yr; ~25% of humanity latently infected",
+    "population": "Global (WHO surveillance)",
+    "provenance": {
+      "primary": "WHO Global Tuberculosis Report (annual)",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Surveillance-grade. TB is the clearest reminder that the infectious-disease era is 'over' only for the wealthy; overwhelmingly a disease of poverty, crowding, HIV co-infection.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sepsis-one-in-five-global-deaths",
+    "statement": "Sepsis - the body's dysregulated, life-threatening response to infection causing organ failure - was estimated at ~48.9 million cases and 11 million deaths in 2017, roughly 1 in 5 deaths worldwide, and is a time-critical emergency where every hour to antibiotics matters.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~48.9M cases, ~11M deaths (2017); ~19.7% of all global deaths",
+    "population": "Global Burden of Disease 2017 analysis",
+    "provenance": {
+      "primary": "Rudd KE, Johnson SC, Agesa KM, et al. - 'Global, regional, and national sepsis incidence and mortality, 1990-2017', Lancet 2020",
+      "doi": "10.1016/S0140-6736(19)32989-7",
+      "surfaced_via": "Wave-26 infectious-disease brief; PubMed PMID 31954465 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Modeled GBD estimate; far higher than prior estimates because it captured low/middle-income settings. The 'silent emergency' - vastly under-recognized by the public. Post-sepsis syndrome is a real long-term sequela.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "covid-mrna-vaccine-efficacy",
+    "statement": "The BNT162b2 mRNA COVID-19 vaccine was ~95% effective at preventing symptomatic COVID-19 in a pivotal randomized controlled trial, validating the mRNA platform and credited with preventing millions of deaths.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~95% efficacy vs symptomatic COVID-19",
+    "population": "~43,000 participants, randomized placebo-controlled",
+    "provenance": {
+      "primary": "Polack FP, Thomas SJ, Kitchin N, et al. - 'Safety and Efficacy of the BNT162b2 mRNA Covid-19 Vaccine', NEJM 2020",
+      "doi": "10.1056/NEJMoa2034577",
+      "surfaced_via": "Wave-26 infectious-disease brief; PubMed PMID 33301246 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The strongest single piece of COVID science. Efficacy vs severe disease was the durable benefit; efficacy vs infection/transmission waned with variants - an honest distinction. Anchors the 'the vaccines worked; the communication and social-policy trade-offs were the hard lessons' framing.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pandemics-zoonotic-spillover-ecological",
+    "statement": "Most emerging human pathogens are zoonotic (jump from animals to humans via spillover), and the rate of spillover is driven by human ecological pressures - deforestation, wildlife trade, industrial animal farming, habitat encroachment - making pandemic risk substantially a land-use and ecological problem, not only a medical one.",
+    "claim_type": "mechanism",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Majority of emerging infectious diseases are zoonotic in origin",
+    "population": "Global emerging-infectious-disease surveillance",
+    "provenance": {
+      "primary": "Emerging-infectious-disease ecology literature (Jones et al. 2008 Nature; One Health framework)",
+      "doi": "10.1038/nature06536",
+      "surfaced_via": "Wave-26 infectious-disease brief; cross-ref 09-exposures-environment"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "HIV, influenza, Ebola, SARS/MERS/COVID all zoonotic. Ties pandemic preparedness to environmental/land-use policy. Lab-leak-vs-natural-origin for SARS-CoV-2 specifically remains unresolved.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "microbiome-mostly-commensal-colonization-resistance",
+    "statement": "The overwhelming majority of human-associated microbes are commensal or beneficial: they train the immune system, occupy niches that exclude pathogens (colonization resistance), maintain the gut barrier, and synthesize vitamins; broad-spectrum antibiotics disrupt this protective community (enabling e.g. C. difficile overgrowth).",
+    "claim_type": "mechanism",
+    "domain": "infectious-disease",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Colonization resistance; C. difficile as the canonical post-antibiotic overgrowth",
+    "population": "Human microbiome / gnotobiotic models",
+    "provenance": {
+      "primary": "Colonization-resistance and microbiome-immunity literature (cross-ref C2-microbiome-deepdive); Blaser 'Missing Microbes' 2014",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief; cross-ref C2 and section 15 sec5"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "The reframe that fixes the mental model: target pathogens, don't pursue sterility. Microbiome detail owned by C2; immune-education ('old friends') owned by section 15.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "antibacterial-products-no-benefit-over-soap",
+    "statement": "Antibacterial consumer products (triclosan soaps, antibacterial-coated goods) show no proven benefit over plain soap and water for everyday use and contribute to resistance; the FDA banned triclosan and related agents from consumer hand soaps for this reason. Plain hand-washing remains one of the highest-leverage health behaviors.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No demonstrated benefit of triclosan soap over plain soap; FDA 2016/2017 bans",
+    "population": "Consumer hand-hygiene products",
+    "provenance": {
+      "primary": "US FDA final rule on consumer antiseptic wash (2016) banning triclosan/triclocarban; hand-hygiene effectiveness literature",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hygiene that matters (plain soap, food safety, clean water, vaccines) vs hygiene theater (antibacterial everything, compulsive surface sterilization, immune-boosting products). The mega-lever is plain hand-washing, not antibacterial additives.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "prions-untreatable-protein-only",
+    "statement": "Prion diseases are caused by a misfolded protein (PrP) that templates further misfolding with no nucleic acid involved; they are uniformly fatal, evade the immune system (the protein is self), and have no treatment - and their templating mechanism is a conceptual bridge to protein-misfolding diseases of aging (amyloid-beta, alpha-synuclein).",
+    "claim_type": "mechanism",
+    "domain": "infectious-disease",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Uniformly fatal; no nucleic acid; no treatment",
+    "population": "Prion disease (CJD, kuru, vCJD, FFI)",
+    "provenance": {
+      "primary": "Prusiner SB - prion hypothesis (Nobel 1997); protein-only inheritance",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief; cross-ref 08-brain-cognitive"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "The exception that proves the pathogen rules: no genome, no metabolism, no immune target, no therapy. Prion-like templating now invoked for neurodegenerative protein aggregation (cross-ref brain/cognition).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "respiratory-infection-lethality-elderly",
+    "statement": "Lower-respiratory infections (influenza, COVID-19, RSV, pneumococcal pneumonia) are collectively among the top global causes of death and are disproportionately lethal in immunosenescent older adults, which is why age-appropriate respiratory vaccination is one of the highest-leverage longevity interventions in older adults.",
+    "claim_type": "outcome",
+    "domain": "infectious-disease",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lower-respiratory infections among leading global causes of death; steep age gradient in severity",
+    "population": "Global; older-adult mortality",
+    "provenance": {
+      "primary": "Global Burden of Disease lower-respiratory-infection estimates; immunosenescence literature (cross-ref section 15 sec2)",
+      "doi": "",
+      "surfaced_via": "Wave-26 infectious-disease brief; cross-ref 15 and pharma sec5"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Ties the infectious-disease map to the immunosenescence 'why' (section 15) and the vaccines-as-longevity-medicine framing (pharma section 5). Flu/COVID/RSV/pneumococcal vaccination = best-evidence elder longevity lever.",
+    "added_on": "2026-06-28"
+  }
+]

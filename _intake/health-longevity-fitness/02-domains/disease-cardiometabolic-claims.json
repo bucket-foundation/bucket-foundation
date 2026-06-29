@@ -1,0 +1,458 @@
+[
+  {
+    "id": "apob-retention-causal-atherosclerosis",
+    "statement": "Atherosclerosis (and thus coronary artery disease / myocardial infarction) is driven by retention of apoB-containing lipoproteins (LDL, remnants, Lp(a)) in the arterial wall, with subsequent inflammation, foam-cell formation, and plaque growth; cumulative apoB exposure is causal.",
+    "claim_type": "mechanism",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "apoB particle count predicts cardiovascular events better than LDL-C concentration; lowering apoB stabilizes/regresses plaque. Most MIs arise from rupture of non-obstructive plaque, not the tightest stenosis.",
+    "population": "Mendelian randomization + statin/PCSK9 RCT meta-analyses; consensus (EAS)",
+    "provenance": {
+      "primary": "Ference et al. - EAS Consensus 'Low-density lipoproteins cause atherosclerotic cardiovascular disease', Eur Heart J 2017",
+      "doi": "10.1093/eurheartj/ehx144",
+      "surfaced_via": "Domain disease-cardiometabolic walk; cross-ref L-biomarkers apob-superior-to-ldlc"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Causal core of CAD; graded as mechanism here because the outcome (event reduction) is graded under statin/PCSK9 trials in L-claims. The 'one apoB per particle' point is why apoB beats LDL-C for risk.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ischemia-stable-cad-no-mortality-benefit",
+    "statement": "In stable coronary artery disease, an initial invasive strategy (routine revascularization/stenting) does not reduce death or myocardial infarction versus optimal medical therapy; it improves angina symptoms only.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "No significant reduction in the primary composite (CV death, MI, etc.) over ~3.2 yr; durable angina/quality-of-life improvement in the invasive arm. Contrast: primary PCI in acute STEMI is a large, time-critical mortality benefit.",
+    "population": "5179 patients with stable CAD and moderate-severe ischemia (ISCHEMIA trial)",
+    "provenance": {
+      "primary": "Maron, Hochman et al. - 'Initial Invasive or Conservative Strategy for Stable Coronary Disease', NEJM 2020",
+      "doi": "10.1056/NEJMoa1915922",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Key honesty correction: stents save lives in acute occlusion, not in stable disease. Optimal medical therapy (apoB lowering, BP, antiplatelet) is the survival lever in stable CAD.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "arni-superior-enalapril-hfref-paradigm",
+    "statement": "In heart failure with reduced ejection fraction, sacubitril/valsartan (ARNI) reduces cardiovascular death and heart-failure hospitalization compared with the ACE inhibitor enalapril.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Primary composite (CV death/HF hospitalization) HR 0.80 (20% reduction); all-cause mortality HR 0.84. Trial stopped early for benefit.",
+    "population": "8442 patients with HFrEF (EF <=40%), NYHA II-IV (PARADIGM-HF)",
+    "provenance": {
+      "primary": "McMurray et al. - 'Angiotensin-Neprilysin Inhibition versus Enalapril in Heart Failure', NEJM 2014",
+      "doi": "10.1056/NEJMoa1409077",
+      "surfaced_via": "PubMed esearch verified (PMID 25176015)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "First of the HFrEF 'four pillars'. Mechanism = neurohormonal blockade (RAAS) plus natriuretic-peptide augmentation. The deep principle: the compensatory neurohormonal response is itself toxic; effective HF drugs block it (inotropes that whip the heart raise mortality).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sglt2-reduces-hf-events-dapa-hf",
+    "statement": "SGLT2 inhibitors reduce worsening heart failure and cardiovascular death in HFrEF regardless of diabetes status, establishing them as a heart-failure drug class (the fourth pillar).",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Dapagliflozin: primary composite (worsening HF or CV death) HR 0.74 (26% reduction); benefit consistent in patients WITHOUT diabetes.",
+    "population": "4744 patients with HFrEF, ~55% without diabetes (DAPA-HF)",
+    "provenance": {
+      "primary": "McMurray et al. - 'Dapagliflozin in Patients with Heart Failure and a Reduced Ejection Fraction', NEJM 2019",
+      "doi": "10.1056/NEJMoa1911303",
+      "surfaced_via": "PubMed esearch verified (PMID 31535829)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A glucose drug that works in non-diabetics for HF; the single biggest cardiology development of the decade. Mechanistic vindication that cardiometabolic-renal disease is one interlinked process.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sglt2-benefit-hfpef-emperor-preserved",
+    "statement": "SGLT2 inhibitors are the first drug class with clear outcome benefit in heart failure with preserved ejection fraction (HFpEF), reducing heart-failure hospitalization.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Empagliflozin (EMPEROR-Preserved): primary composite (CV death/HF hospitalization) HR 0.79; driven mainly by fewer HF hospitalizations. Replicated by dapagliflozin (DELIVER).",
+    "population": "5988 patients with HF and EF >40% (EMPEROR-Preserved)",
+    "provenance": {
+      "primary": "Anker et al. - 'Empagliflozin in Heart Failure with a Preserved Ejection Fraction', NEJM 2021",
+      "doi": "10.1056/NEJMoa2107038",
+      "surfaced_via": "PubMed esearch verified (PMID 34449189)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "HFpEF was a graveyard of failed trials (ACEi/ARB/beta-blockers) until SGLT2. Mortality signal weaker than in HFrEF (honest). STEP-HFpEF showed semaglutide improved symptoms in obesity-related HFpEF.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "early-rhythm-control-af-east-afnet4",
+    "statement": "In patients with recently diagnosed atrial fibrillation, early rhythm control (antiarrhythmics or ablation) reduces adverse cardiovascular outcomes versus usual (rate-control-first) care.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Primary composite (CV death, stroke, hospitalization for HF/ACS) HR 0.79; trial stopped early. Contrasts with older AFFIRM (2002), which found no survival difference rate vs rhythm in established AF.",
+    "population": "2789 patients with early AF (<=1 yr) plus CV conditions (EAST-AFNET 4)",
+    "provenance": {
+      "primary": "Kirchhof et al. - 'Early Rhythm-Control Therapy in Patients with Atrial Fibrillation', NEJM 2020",
+      "doi": "10.1056/NEJMoa2019422",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Anticoagulation (DOAC) is the survival lever for AF stroke (graded in 07/P-claims); this is the separate rhythm decision. Ablation > drugs for sinus-rhythm maintenance (CABANA neutral on mortality, positive on recurrence/QoL; CASTLE-AF positive for AF+HFrEF).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tavr-noninferior-surgery-aortic-stenosis",
+    "statement": "Transcatheter aortic valve replacement (TAVR) is non-inferior or superior to surgical replacement across the risk spectrum (including low-risk patients) for symptomatic severe aortic stenosis; there is no effective medical therapy.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "PARTNER 3 (low-risk): composite of death/stroke/rehospitalization at 1 yr lower with TAVR (8.5% vs 15.1%). Earlier PARTNER trials proved superiority over medical therapy (inoperable) and non-inferiority to surgery (high/intermediate risk). Statins do NOT slow established AS.",
+    "population": "PARTNER trial series, walking down the surgical-risk ladder",
+    "provenance": {
+      "primary": "Mack, Leon et al. - 'Transcatheter Aortic-Valve Replacement with a Balloon-Expandable Valve in Low-Risk Patients' (PARTNER 3), NEJM 2019",
+      "doi": "10.1056/NEJMoa1814052",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "AS is now understood as an active atherosclerosis-like calcification process, not passive wear; statin failure to slow it is the humbling negative. TAVR = a device that genuinely changed the disease. SAVR still preferred in younger patients / bicuspid valves.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "t2d-insulin-resistance-plus-beta-cell-failure",
+    "statement": "Type 2 diabetes requires both insulin resistance (compensated for years by hyperinsulinemia) and progressive pancreatic beta-cell failure; it is not insulin resistance alone, which is why it is progressive and why early intervention preserves beta-cell function.",
+    "claim_type": "mechanism",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Glucose stays normal during the compensated (prediabetes) phase; overt T2D appears when beta cells decompensate. Ectopic (liver/pancreatic) fat is central (twin-cycle hypothesis).",
+    "population": "Pathophysiology consensus; UKPDS natural history; Taylor twin-cycle work",
+    "provenance": {
+      "primary": "DeFronzo - 'From the Triumvirate to the Ominous Octet' (Banting Lecture), Diabetes 2009; Taylor twin-cycle hypothesis",
+      "doi": "10.2337/db09-9028",
+      "surfaced_via": "Domain disease-cardiometabolic walk; cross-ref D-metabolic-nutrition"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The beta-cell-failure requirement is the load-bearing nuance for why remission is possible only early, before exhaustion. Insulin resistance mechanism graded in D-metabolic-nutrition.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lifestyle-prevents-t2d-dpp",
+    "statement": "Intensive lifestyle intervention (modest weight loss + physical activity) prevents or delays progression from prediabetes to type 2 diabetes, outperforming metformin.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Lifestyle reduced incidence of T2D by 58% vs placebo; metformin by 31%; over ~2.8 yr. (Look AHEAD later found intensive lifestyle did NOT reduce CV events in established T2D despite weight/fitness gains - honest negative.)",
+    "population": "3234 adults with prediabetes (Diabetes Prevention Program)",
+    "provenance": {
+      "primary": "Knowler et al. (DPP Research Group) - 'Reduction in the Incidence of Type 2 Diabetes with Lifestyle Intervention or Metformin', NEJM 2002",
+      "doi": "10.1056/NEJMoa012512",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cleanest proof T2D is substantially preventable. The Look AHEAD CV null is the honest counterweight: weight loss in ESTABLISHED T2D did not cut events, though it drove remission and many secondary improvements.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "empareg-sglt2-cv-mortality-t2d",
+    "statement": "In type 2 diabetes with established cardiovascular disease, SGLT2 inhibitors reduce cardiovascular death, heart-failure hospitalization, and kidney outcomes - benefits largely independent of glucose lowering.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Empagliflozin: CV death HR 0.62 (38% reduction), all-cause death HR 0.68, HF hospitalization HR 0.65.",
+    "population": "7020 patients with T2D and established CVD (EMPA-REG OUTCOME)",
+    "provenance": {
+      "primary": "Zinman et al. - 'Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes', NEJM 2015",
+      "doi": "10.1056/NEJMoa1504720",
+      "surfaced_via": "PubMed esearch verified (PMID 26378978)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The landmark that shifted T2D management from glucose-centric to cardiorenal-outcome-centric. Contrast ACCORD: intensive GLUCOSE lowering increased mortality - so it is drug choice, not lower A1c per se, that drives the outcome wins.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "glp1-cv-benefit-leader-sustain6",
+    "statement": "GLP-1 receptor agonists reduce major adverse cardiovascular events in type 2 diabetes and drive major weight loss; semaglutide also reduces CV events in obesity without diabetes.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Liraglutide (LEADER): 3-point MACE HR 0.87; semaglutide (SUSTAIN-6): HR 0.74. STEP trials: ~15% body-weight loss with semaglutide. SELECT (2023): semaglutide cut CV events 20% in obesity WITHOUT diabetes.",
+    "population": "LEADER 9340; SUSTAIN-6 3297; SELECT 17604",
+    "provenance": {
+      "primary": "Marso et al. - 'Liraglutide and Cardiovascular Outcomes in Type 2 Diabetes' (LEADER), NEJM 2016; 'Semaglutide and Cardiovascular Outcomes' (SUSTAIN-6), NEJM 2016",
+      "doi": "10.1056/NEJMoa1603827",
+      "surfaced_via": "PubMed esearch verified (PMID 27295427, 27633186)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "SUSTAIN-6 DOI 10.1056/NEJMoa1607141. Genuinely transformative AND being oversold; cost/access is the real constraint. Tirzepatide (dual GIP/GLP-1) achieves larger weight loss.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "t2d-remission-weight-loss-direct",
+    "statement": "Type 2 diabetes can be put into remission (normal glucose off all diabetes medication) by substantial weight loss, in a dose-dependent manner, especially when diabetes is of short duration.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "DiRECT: 46% remission at 1 yr (vs 4% control); 86% remission in those losing >=15 kg; 36% remission sustained at 2 yr. Dose-dependent on weight loss.",
+    "population": "298 primary-care patients with T2D <6 yr duration (DiRECT, total diet replacement)",
+    "provenance": {
+      "primary": "Lean et al. - 'Primary care-led weight management for remission of type 2 diabetes (DiRECT)', Lancet 2018; 2-yr Lancet Diabetes Endocrinol 2019",
+      "doi": "10.1016/S0140-6736(17)33102-1",
+      "surfaced_via": "PubMed esearch verified (PMID 29221645; 2-yr PMID 30852132 DOI 10.1016/S2213-8587(19)30068-3)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reframes T2D as often reversible, not inevitably progressive. Caveats: most achievable early (before beta-cell exhaustion), requires SUSTAINED weight loss, is remission not cure. GLP-1 agonists offer a pharmacological route to the same weight loss.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dcct-tight-control-t1d-complications",
+    "statement": "In type 1 diabetes, intensive insulin therapy (tight glucose control) substantially reduces microvascular complications (retinopathy, nephropathy, neuropathy), with a durable later cardiovascular benefit ('metabolic memory').",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Intensive therapy reduced retinopathy ~76%, microalbuminuria ~39%, clinical neuropathy ~60% vs conventional. EDIC follow-up showed durable CV-event reduction decades later.",
+    "population": "1441 patients with T1D (DCCT), followed in EDIC",
+    "provenance": {
+      "primary": "DCCT Research Group - 'The Effect of Intensive Treatment of Diabetes on the Development and Progression of Long-Term Complications in IDDM', NEJM 1993",
+      "doi": "10.1056/NEJM199309303291401",
+      "surfaced_via": "PubMed esearch verified (PMID 8366922)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Foundational; the cost is hypoglycemia risk, which CGM + hybrid-closed-loop pump tech is steadily reducing. T1D is autoimmune (beta-cell destruction), NOT lifestyle-caused - a persistent harmful misconception. Teplizumab (anti-CD3) can delay clinical onset in high-risk autoantibody-positive relatives.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "levothyroxine-subclinical-hypothyroid-no-benefit-elderly",
+    "statement": "Levothyroxine treatment of mild subclinical hypothyroidism in older adults provides no symptomatic benefit, arguing against reflexively treating a mildly elevated TSH; overt hypothyroidism, by contrast, is clearly treated with levothyroxine.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "TRUST: no improvement in hypothyroid-symptom or tiredness scores with levothyroxine vs placebo in older adults with subclinical hypothyroidism.",
+    "population": "737 adults >=65 yr with subclinical hypothyroidism (TRUST trial)",
+    "provenance": {
+      "primary": "Stott et al. - 'Thyroid Hormone Therapy for Older Adults with Subclinical Hypothyroidism' (TRUST), NEJM 2017",
+      "doi": "10.1056/NEJMoa1603825",
+      "surfaced_via": "Domain disease-cardiometabolic walk; cross-ref 13-endocrine-hormones thyroid"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Treat OVERT hypothyroidism (high TSH + low free T4); individualize subclinical by age/antibodies/symptoms. Separately: 'natural'/T3-desiccated superiority over levothyroxine is NOT supported by blinded trials for most patients.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "thyroid-cancer-overdiagnosis",
+    "statement": "The rise in thyroid cancer incidence is largely overdiagnosis of indolent papillary (micro)carcinoma driven by increased neck imaging, without a matching rise in mortality; active surveillance is a legitimate alternative to immediate surgery for small low-risk tumors.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Incidence rose several-fold (most stark in South Korea) with flat mortality - the textbook overdiagnosis signature. Active-surveillance cohorts (Ito/Kuma Hospital) show very low progression of papillary microcarcinoma.",
+    "population": "Population cancer registries; active-surveillance cohorts",
+    "provenance": {
+      "primary": "Ahn, Welch et al. - 'Korea's Thyroid-Cancer Epidemic - Screening and Overdiagnosis', NEJM 2014; Ito active-surveillance series",
+      "doi": "10.1056/NEJMp1409841",
+      "surfaced_via": "Domain disease-cardiometabolic walk; cross-ref 07 cancer-screening overdiagnosis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Finding a thyroid cancer is not the same as benefiting from treating it. Nodules are very common and mostly benign; evaluation is risk-stratified (TI-RADS ultrasound -> selective FNA).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pcos-insulin-resistance-central",
+    "statement": "Polycystic ovary syndrome is a combined reproductive-metabolic disorder centered on insulin resistance and hyperandrogenism, carrying elevated risk of type 2 diabetes and metabolic syndrome - not merely a fertility/cosmetic condition.",
+    "claim_type": "mechanism",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Diagnosis by Rotterdam criteria (>=2 of: hyperandrogenism, ovulatory dysfunction, polycystic ovarian morphology). Insulin resistance present independent of weight, worsened by it; drives ovarian/adrenal androgen excess. Most common endocrine disorder in reproductive-age women (~6-13%).",
+    "population": "International guideline + cohort evidence (Rotterdam/ESHRE-ASRM)",
+    "provenance": {
+      "primary": "Teede et al. - 'International evidence-based guideline for the assessment and management of PCOS', 2018/2023",
+      "doi": "10.1093/humrep/dey256",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Management goal-directed: lifestyle, combined OCP (cycle/androgen/endometrial protection), metformin/GLP-1 (metabolic), anti-androgens (hirsutism). For fertility, letrozole is first-line.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "letrozole-first-line-ovulation-pcos",
+    "statement": "For ovulation induction in PCOS, letrozole (aromatase inhibitor) produces higher live-birth rates than clomiphene and is now first-line.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Live births 27.5% (letrozole) vs 19.1% (clomiphene); higher cumulative ovulation.",
+    "population": "750 women with PCOS (Legro et al. RCT)",
+    "provenance": {
+      "primary": "Legro et al. - 'Letrozole versus Clomiphene for Infertility in the Polycystic Ovary Syndrome', NEJM 2014",
+      "doi": "10.1056/NEJMoa1313517",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Clean, practice-changing result. Note letrozole's off-label history for ovulation despite being an oncology (breast cancer) drug.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ckd-driven-by-diabetes-hypertension",
+    "statement": "Chronic kidney disease is overwhelmingly a vascular disease of the nephron, with diabetes and hypertension the two leading causes worldwide; it is staged by GFR x albuminuria (KDIGO) and is asymptomatic until advanced.",
+    "claim_type": "mechanism",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Diabetes + hypertension are the majority of dialysis cases. Albuminuria is an independent predictor of both CKD progression and cardiovascular death. CKD defined by GFR <60 OR albuminuria persisting >3 months.",
+    "population": "KDIGO; global CKD epidemiology (cross-ref 17 Romagnani/Kalantar-Zadeh)",
+    "provenance": {
+      "primary": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD; Romagnani et al. Nat Rev Dis Primers 2017",
+      "doi": "10.1038/nrdp.2017.88",
+      "surfaced_via": "Domain disease-cardiometabolic walk; cross-ref 17-organ-systems-atlas renal"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Through-line of the section: what protects blood vessels protects the kidney. Screen high-risk (diabetics, hypertensives); do not wait for symptoms. Protein-harms-healthy-kidneys is a myth (17 sec 2.5); modest restriction is a lever only in established CKD.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sglt2-glp1-kidney-protection-credence-dapackd-flow",
+    "statement": "SGLT2 inhibitors slow chronic kidney disease progression and reduce kidney failure (including in non-diabetic CKD), and GLP-1 receptor agonists reduce kidney-disease events in diabetic CKD.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "CREDENCE (canagliflozin): renal composite HR 0.70. DAPA-CKD (dapagliflozin): primary composite HR 0.61, benefit in NON-diabetic CKD too. EMPA-KIDNEY confirmed. FLOW (semaglutide 2024): major kidney-disease events reduced 24% (HR 0.76).",
+    "population": "CREDENCE 4401; DAPA-CKD 4304; FLOW 3533",
+    "provenance": {
+      "primary": "Perkovic et al. - 'Canagliflozin and Renal Outcomes in Type 2 Diabetes and Nephropathy' (CREDENCE), NEJM 2019; Heerspink et al. DAPA-CKD NEJM 2020; Perkovic et al. FLOW NEJM 2024",
+      "doi": "10.1056/NEJMoa1811744",
+      "surfaced_via": "PubMed esearch verified (FLOW PMID 38785209 DOI 10.1056/NEJMoa2403347; DAPA-CKD 10.1056/NEJMoa2024816)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Among the most important nephrology advances in decades. DAPA-CKD's non-diabetic benefit is key. Finerenone (non-steroidal MRA, FIDELIO/FIGARO) adds cardiorenal protection in diabetic CKD. Foundation remains BP control + RAAS blockade (RENAAL/IDNT).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dialysis-poor-survival-transplant-superior",
+    "statement": "Survival on chronic dialysis is poor (comparable to several cancers), and kidney transplantation provides better survival and quality of life; the dominant goal of CKD care is to slow progression to delay or avoid renal replacement therapy.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "5-year survival on dialysis is low (roughly 40% or less, varies by age/comorbidity). Transplant recipients have markedly better survival than waitlisted dialysis patients (classic Wolfe et al. analysis), limited by organ scarcity and lifelong immunosuppression.",
+    "population": "USRDS / registry survival data; Wolfe transplant-vs-dialysis cohort",
+    "provenance": {
+      "primary": "Wolfe et al. - 'Comparison of mortality in all patients on dialysis, awaiting transplantation, and recipients of a first cadaveric transplant', NEJM 1999; USRDS reports",
+      "doi": "10.1056/NEJM199912023412303",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest reality check on end-stage disease: dialysis treats symptoms, not the disease, at a heavy life cost. This is exactly why the upstream SGLT2/RAAS/BP levers (buying years off dialysis) are so consequential.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "high-fluid-prevents-kidney-stone-recurrence",
+    "statement": "High fluid intake (targeting ~2-2.5 L of urine per day) roughly halves kidney-stone recurrence; normal (not low) dietary calcium with reduced sodium and animal protein further lowers calcium-oxalate stone risk.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Borghi high-fluid RCT: 5-yr recurrence 12% (high fluid) vs 27% (no specific advice) - roughly halved. Borghi calcium RCT: normal-calcium/low-sodium/low-protein diet beat low-calcium diet for recurrence in hypercalciuric stone formers.",
+    "population": "Borghi et al. RCTs in recurrent calcium-oxalate stone formers",
+    "provenance": {
+      "primary": "Borghi et al. - 'Urinary volume, water and recurrences in idiopathic calcium nephrolithiasis', J Urol 1996; Borghi NEJM 2002 (calcium/diet)",
+      "doi": "10.1056/NEJMoa010369",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Rare lifestyle measure with clean RCT backing. Counterintuitive but robust: restricting dietary calcium RAISES oxalate-stone risk (binds less oxalate in the gut). Citrate (lemon/potassium citrate) inhibits stones.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "bph-combination-therapy-mtops",
+    "statement": "In benign prostatic hyperplasia, combined alpha-blocker plus 5-alpha-reductase inhibitor therapy reduces long-term clinical progression more than either agent alone; alpha-blockers give fast symptom relief while 5-ARIs shrink the gland.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "MTOPS: combination reduced overall BPH clinical progression by 66% vs placebo, more than doxazosin (39%) or finasteride (34%) alone. 5-ARIs reduce acute retention and need for surgery; alpha-blockers relax prostatic smooth muscle for rapid symptom relief.",
+    "population": "3047 men with BPH (MTOPS trial)",
+    "provenance": {
+      "primary": "McConnell et al. - 'The Long-Term Effect of Doxazosin, Finasteride, and Combination Therapy on the Clinical Progression of BPH' (MTOPS), NEJM 2003",
+      "doi": "10.1056/NEJMoa030656",
+      "surfaced_via": "Domain disease-cardiometabolic walk; cross-ref 17 sec 6.2"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "BPH is distinct from prostate cancer (graded in 07 sec 6). 5-ARIs lower PSA ~50% (must adjust cancer screening) and have sexual side effects. Surgery (TURP/laser) for refractory/complicated disease.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "asymptomatic-bacteriuria-do-not-treat",
+    "statement": "Asymptomatic bacteriuria should generally not be treated with antibiotics (exceptions: pregnancy, before urologic procedures); treating it drives resistance without benefit. Symptomatic UTIs are treated with short antibiotic courses.",
+    "claim_type": "protocol",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "RCT/guideline consensus: screening/treating asymptomatic bacteriuria in non-pregnant adults provides no benefit and increases resistance and adverse events. Cranberry evidence for UTI prevention is weak/mixed.",
+    "population": "IDSA guideline + Cochrane reviews",
+    "provenance": {
+      "primary": "Nicolle et al. - 'IDSA Clinical Practice Guideline for the Management of Asymptomatic Bacteriuria', Clin Infect Dis 2019",
+      "doi": "10.1093/cid/ciy1121",
+      "surfaced_via": "Domain disease-cardiometabolic walk"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A clear antibiotic-stewardship lesson. In the elderly, UTIs can present atypically (confusion) - but a positive culture without symptoms is still not an indication to treat.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pelvic-floor-training-first-line-incontinence",
+    "statement": "Pelvic-floor muscle training is first-line, evidence-based therapy for stress urinary incontinence (and helps urge incontinence); incontinence is far more treatable than commonly assumed.",
+    "claim_type": "outcome",
+    "domain": "disease-cardiometabolic-renal",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Cochrane: women doing pelvic-floor muscle training are markedly more likely to report cure/improvement of stress incontinence than controls. Behavioral measures (bladder training, weight loss) add benefit.",
+    "population": "Cochrane systematic review of pelvic-floor training RCTs",
+    "provenance": {
+      "primary": "Dumoulin et al. - 'Pelvic floor muscle training versus no treatment for urinary incontinence in women', Cochrane Database Syst Rev 2018",
+      "doi": "10.1002/14651858.CD005654.pub4",
+      "surfaced_via": "Domain disease-cardiometabolic walk; cross-ref 11 pelvic floor"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Underused first-line lever. Overactive-bladder drugs (antimuscarinics) carry anticholinergic cognitive-burden risk in the elderly - a real concern; beta-3 agonists (mirabegron) avoid it. Procedures (slings, Botox, neuromodulation) for refractory cases.",
+    "added_on": "2026-06-28"
+  }
+]
