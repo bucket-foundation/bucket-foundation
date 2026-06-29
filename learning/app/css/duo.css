@@ -17,6 +17,13 @@
   font-family: var(--serif);
   color: var(--duo-ink);
 }
+/* bkt-alw: reliable touch on every interactive control in the Languages module —
+   removes the 300ms tap delay + double-tap-zoom + grey tap flash. Child spans of a
+   button never steal the tap (so a tap at the button's center always registers). */
+.duo button, .duo [role="button"] { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+/* spans/icons inside a button pass the tap through to the button; nested controls
+   (e.g. an inline audio button) keep their own pointer-events. */
+.duo button > span, .duo button > i, .duo [role="button"] > span, .duo [role="button"] > i { pointer-events: none; }
 .duo .duo-cont, .duo .duo-check {
   font-family: var(--display);
 }
@@ -173,7 +180,7 @@
 .duo-lesson { padding: 0 16px; display: flex; flex-direction: column; min-height: 100vh; }
 .duo-lesson-top { display: flex; align-items: center; gap: 12px; padding: 16px 0 10px; }
 .duo-close { border: none; background: none; font-size: 22px; color: var(--ink-faint); cursor: pointer;
-  width: 34px; height: 34px; border-radius: 50%; }
+  width: 44px; height: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
 .duo-close:hover { background: rgba(31,28,22,.06); color: var(--duo-ink); }
 .duo-prog-wrap { flex: 1; position: relative; }
 .duo-combo-flag { position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
@@ -212,6 +219,11 @@
 .duo-mc-card .dmc-num { position: absolute; top: 6px; left: 8px; font-size: 11px; color: var(--ink-faint);
   border: 1px solid var(--duo-line); border-radius: 5px; padding: 0 5px; }
 .duo-mc-card .dmc-word { font-size: 18px; font-weight: 500; }
+/* bkt-alw: the inline 🔊 button used to sit dead-center under the word, so a tap
+   meant to ANSWER the card landed on audio instead. Pin it to the top-right corner
+   (like the match-tile pattern) so the whole card center is a clean answer tap zone. */
+.duo-mc-card .lang-audio-btn.inline { position: absolute; top: 6px; right: 6px; }
+.duo-mc-opts.listen .duo-mc-card .lang-audio-btn.inline { position: static; }
 .duo-mc-card.right { border-color: var(--duo-green); background: var(--duo-green-bg); }
 .duo-mc-card.wrong { border-color: var(--duo-soft); background: var(--duo-soft-bg); }
 .duo-mc-card[disabled] { cursor: default; }

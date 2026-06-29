@@ -3347,6 +3347,15 @@
     const root = $("#app");
     root.innerHTML = "";
     root.appendChild(node);
+    // bkt-alw: the bottom tab bar is `position:fixed`, but screens animate with a
+    // `transform` (@keyframes rise), and a transformed ancestor becomes the
+    // containing block for fixed descendants — which pinned the tab bar to the
+    // bottom of the (tall) document instead of the viewport, pushing its tap zone
+    // off-screen so MAP/PROGRESS taps landed on nothing. Hoist any .tabbar out of
+    // the animated .screen up to #app (which never transforms) so it's anchored to
+    // the viewport and its buttons are the real tap target on touch devices.
+    const bar = node.querySelector && node.querySelector(".tabbar");
+    if (bar) root.appendChild(bar);
   }
   function go(where) {
     currentScreen = where;
