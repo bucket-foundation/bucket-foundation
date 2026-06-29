@@ -9,20 +9,7 @@
 > sections together.
 > **Companion data:** `02-domains/Z-genetics-claims.json` (graded claim set added with this section).
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied
-> throughout Part A — they are the entire reason this section exists:
-> 1. **Predictor ≠ lever.** A variant that *predicts* a disease is almost never a *thing you change*.
->    Your genome is fixed at conception. APOE-ε4 predicts Alzheimer's risk; you cannot edit it. What
->    you *can* change is the environment it acts in. (Cross-ref §A.6, and the grip-strength /
->    biomarker logic in `04-individual-variation.md` §intro.)
-> 2. **Cohort ≠ RCT.** Nearly all human genetics is *observational association*. "Carriers of variant
->    X have higher risk of Y" (case-control / cohort) is not "X causes Y" and is *never* "fixing X
->    fixes Y." A handful of variants (Lp(a), familial hypercholesterolemia, monogenic disease) clear
->    this bar via Mendelian randomization or Mendelian inheritance; most "wellness SNPs" do not.
-> 3. **Something beats nothing.** The flip side of "you can't change your genes" is liberating: the
->    universal lifestyle levers (move, don't smoke, sleep, eat real food, treat blood pressure and
->    lipids) work *regardless of genotype*, and they work most for the people at highest genetic risk.
->    Genes load the gun; environment pulls the trigger — and the trigger is the part you hold.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 ---
 

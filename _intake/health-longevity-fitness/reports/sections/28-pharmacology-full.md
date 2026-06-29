@@ -21,17 +21,13 @@
 > value of understanding the *mechanism* is that it lets you ask better questions, not that it lets you
 > self-prescribe.
 
-> **The three honesty rules, in pharmacology dialect** (carried from `06-evidence/SCHEMA.md`):
-> 1. **Mechanism ≠ outcome.** "Binds the receptor / moves the number" is pharmacodynamics; "changes how
->    long or how well you live" is a trial result. Most drug *marketing* — and nearly all supplement
->    marketing — lives in that gap. A drug that "should work" on paper has an unbroken history of
->    failing in trials (see the homocysteine story, §18 A.5).
-> 2. **Average ≠ you.** A dose-response curve and a half-life are *population* statistics. Your CYP
->    genotype, age, and organ function move you off the average — which is the entire subject of the
->    pharmacogenomics part.
-> 3. **Benefit and harm are one ledger.** Every drug is a *net* calculation (efficacy minus toxicity
->    minus interaction risk), not a binary "works / doesn't." NNT and NNH (section 10) are how that
->    ledger is kept honest.
+> *The three honesty rules (defined in "Start Here"), in pharmacology dialect: **mechanism ≠ outcome** —
+> "binds the receptor / moves the number" is pharmacodynamics, not a trial result, and a drug that "should
+> work" on paper has an unbroken history of failing in trials (the homocysteine story, §18 A.5); **average ≠
+> you** — a dose-response curve and half-life are population statistics that your CYP genotype, age, and
+> organ function move you off of (the whole subject of the pharmacogenomics part); and **benefit and harm are
+> one ledger** — every drug is a net calculation (efficacy minus toxicity minus interaction risk), kept honest
+> by NNT and NNH (§10).*
 
 ---
 

@@ -13,7 +13,9 @@
       "doi": "10.1038/s41467-019-11558-2",
       "surfaced_via": "OpenAlex direct-DOI Deelen meta-GWAS"
     },
-    "conflicts_with": ["conflict-longevity-gwas-reproducibility"],
+    "conflicts_with": [
+      "conflict-longevity-gwas-reproducibility"
+    ],
     "canon_link": "",
     "confidence_notes": "Meta-analysis of OBSERVATIONAL genetic association (not interventional). The headline is deflationary: beyond APOE, almost nothing replicates at genome-wide significance. Extends the centenarian-gwas-polygenic claim in B-claims.json with the actual meta result.",
     "added_on": "2026-06-27"
@@ -51,7 +53,9 @@
       "doi": "10.1371/journal.pone.0029848",
       "surfaced_via": "OpenAlex direct-DOI Sebastiani signatures"
     },
-    "conflicts_with": ["conflict-longevity-gwas-reproducibility"],
+    "conflicts_with": [
+      "conflict-longevity-gwas-reproducibility"
+    ],
     "canon_link": "",
     "confidence_notes": "CAUTIONARY TALE: the 2010 Science version (Sebastiani 2010) was RETRACTED due to a technical genotyping artifact on a subset of arrays; the 2012 PLoS ONE version re-ran with corrected genotyping and reduced (but non-zero) accuracy. Index this as a reproducibility object, not a settled predictor.",
     "added_on": "2026-06-27"
@@ -70,7 +74,9 @@
       "doi": "10.1001/jama.290.15.2030",
       "surfaced_via": "OpenAlex CETP longevity search"
     },
-    "conflicts_with": ["conflict-cetp-longevity-vs-drug"],
+    "conflicts_with": [
+      "conflict-cetp-longevity-vs-drug"
+    ],
     "canon_link": "",
     "confidence_notes": "Candidate-gene case-control in a founder population — CETP association is population/context-specific and not consistently replicated; pharmacological CETP inhibition has NOT reproduced a longevity benefit (see conflict).",
     "added_on": "2026-06-27"
@@ -89,7 +95,9 @@
       "doi": "10.1186/s13059-015-0584-6",
       "surfaced_via": "OpenAlex direct-DOI Marioni mortality"
     },
-    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "conflicts_with": [
+      "conflict-which-clock-is-valid"
+    ],
     "canon_link": "",
     "confidence_notes": "Cohort association (prediction), not causal proof methylation drives death. Built on the first-gen Hannum clock; second-gen clocks (GrimAge, see B-claims) predict mortality more strongly.",
     "added_on": "2026-06-27"
@@ -127,7 +135,9 @@
       "doi": "10.1186/s13059-019-1824-y",
       "surfaced_via": "OpenAlex direct-DOI Bell clock review"
     },
-    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "conflicts_with": [
+      "conflict-which-clock-is-valid"
+    ],
     "canon_link": "",
     "confidence_notes": "The discipline document for this sub-domain: separates clock GENERATION and warns against reading a methylation correlate as a cause of aging. Mechanism/review tier.",
     "added_on": "2026-06-27"
@@ -146,7 +156,9 @@
       "doi": "10.1038/s43587-022-00248-2",
       "surfaced_via": "OpenAlex pc-clock reliability"
     },
-    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "conflicts_with": [
+      "conflict-which-clock-is-valid"
+    ],
     "canon_link": "",
     "confidence_notes": "Crucial methodological caveat: many published 'epigenetic age reversal' effects are within the measurement noise of the original clocks. Validity > effect-size here.",
     "added_on": "2026-06-27"
@@ -165,7 +177,9 @@
       "doi": "10.1111/acel.13028",
       "surfaced_via": "OpenAlex direct-DOI Fahy TRIIM"
     },
-    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "conflicts_with": [
+      "conflict-which-clock-is-valid"
+    ],
     "canon_link": "",
     "confidence_notes": "Widely cited as 'first human age reversal' but it is a TINY UNCONTROLLED PILOT; the GH arm confounds; the effect size is near the reliability limit flagged by Higgins-Chen 2022. Do NOT treat as efficacy.",
     "added_on": "2026-06-27"
@@ -279,7 +293,9 @@
       "doi": "10.1371/journal.pone.0010667",
       "surfaced_via": "OpenAlex centenarian microbiome"
     },
-    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "conflicts_with": [
+      "conflict-microbiome-cause-or-consequence"
+    ],
     "canon_link": "",
     "confidence_notes": "Cross-sectional correlation (composition ↔ inflammation); cannot tell whether dysbiosis causes inflammaging or reflects diet/drugs/reduced motility in the very old.",
     "added_on": "2026-06-27"
@@ -298,7 +314,9 @@
       "doi": "10.1038/nature12506",
       "surfaced_via": "OpenAlex gut microbiome aging"
     },
-    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "conflicts_with": [
+      "conflict-microbiome-cause-or-consequence"
+    ],
     "canon_link": "",
     "confidence_notes": "Cross-sectional association linking microbiome richness to metabolic health (a longevity-relevant intermediate). Not causal; diet is a major confounder/lever.",
     "added_on": "2026-06-27"
@@ -317,7 +335,9 @@
       "doi": "10.1038/s42255-021-00348-0",
       "surfaced_via": "OpenAlex direct-DOI Wilmanski uniqueness"
     },
-    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "conflicts_with": [
+      "conflict-microbiome-cause-or-consequence"
+    ],
     "canon_link": "",
     "confidence_notes": "Cohort prediction. The 'uniqueness' signal is health-state-dependent (absent in unhealthy aging), which is itself evidence that microbiome is partly a readout of host health.",
     "added_on": "2026-06-27"
@@ -355,7 +375,9 @@
       "doi": "10.1016/j.isci.2020.101199",
       "surfaced_via": "OpenAlex direct-DOI Galkin microbiome clock"
     },
-    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "conflicts_with": [
+      "conflict-microbiome-cause-or-consequence"
+    ],
     "canon_link": "",
     "confidence_notes": "Biomarker/predictor only (and from a commercial longevity-testing group). A composition-age correlation is not evidence the microbiome drives aging.",
     "added_on": "2026-06-27"
@@ -412,7 +434,9 @@
       "doi": "10.1038/nature02517",
       "surfaced_via": "OpenAlex direct-DOI mutator mouse"
     },
-    "conflicts_with": ["conflict-mtdna-mutation-causality"],
+    "conflicts_with": [
+      "conflict-mtdna-mutation-causality"
+    ],
     "canon_link": "bucket-canon/05-biophysics/",
     "confidence_notes": "Animal outcome. Powerful proof-of-principle but the mutation loads FAR exceed those seen in normal human aging — limits direct translation (see conflict).",
     "added_on": "2026-06-27"
@@ -431,7 +455,9 @@
       "doi": "10.1126/science.1112125",
       "surfaced_via": "OpenAlex direct-DOI Kujoth mutator"
     },
-    "conflicts_with": ["conflict-mtdna-mutation-causality"],
+    "conflicts_with": [
+      "conflict-mtdna-mutation-causality"
+    ],
     "canon_link": "bucket-canon/05-biophysics/ (redox)",
     "confidence_notes": "Decouples mtDNA-mutation aging from the naive free-radical/ROS theory (cross-links to the free-radical conflict in B-CONFLICTS). Mechanism via apoptosis, animal model.",
     "added_on": "2026-06-27"
@@ -450,7 +476,9 @@
       "doi": "10.1172/jci64125",
       "surfaced_via": "OpenAlex mtDNA mutations aging"
     },
-    "conflicts_with": ["conflict-mtdna-mutation-causality"],
+    "conflicts_with": [
+      "conflict-mtdna-mutation-causality"
+    ],
     "canon_link": "bucket-canon/05-biophysics/",
     "confidence_notes": "Observational accumulation is well-established; the leap to 'mtDNA mutations cause normal aging' is the contested step (loads, threshold, clonal expansion). Cross-links to free-radical-theory conflict.",
     "added_on": "2026-06-27"
@@ -469,9 +497,13 @@
       "doi": "10.1016/j.cell.2023.08.003",
       "surfaced_via": "OpenAlex pc-clock co-result (Moqri 2023)"
     },
-    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "conflicts_with": [
+      "conflict-which-clock-is-valid"
+    ],
     "canon_link": "",
     "confidence_notes": "The honest meta-statement for all of Domain C's biomarkers: predictive ≠ validated surrogate. Anchors the 'which clock is valid' conflict at the consensus level.",
-    "added_on": "2026-06-27"
+    "added_on": "2026-06-27",
+    "duplicate_of": "biological-age-tests-not-validated-surrogate",
+    "dedup_note": "Same finding as canonical claim 'biological-age-tests-not-validated-surrogate' (Biological-age clocks not validated as a personal surrogate endpoint); retained for chapter coverage, not counted as an independent claim."
   }
 ]

@@ -6,17 +6,7 @@
 > smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get
 > the least airtime because nobody monetizes "don't smoke" or "filter your air."
 
-This section runs on the three honesty rules that govern the corpus (`06-evidence/SCHEMA.md`):
-
-1. **Predictor ≠ lever.** That a thing *associates* with death in a cohort does not prove that *removing it*
-   adds years. Exposures are unusually prone to confounding (people who drink moderately are also richer,
-   thinner, and more socially connected; people who avoid the sun are also sicker to begin with).
-2. **Cohort ≠ RCT.** Almost none of this can be randomized — you cannot assign people to smoke, or to breathe
-   PM2.5. So the evidence ceiling here is *quasi-experimental*: Mendelian randomization, natural experiments,
-   dose-response gradients, and the rare air-purifier RCT. We grade to that ceiling, not above it.
-3. **Something beats nothing, and dose matters.** The shape of the dose-response curve *is* the finding. "No
-   safe level" (cancer from alcohol, tobacco) and "lower is better but the last increment is cheap" (PM2.5)
-   are different practical worlds, and we keep them separate.
+*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 **The one-line verdict up front:** the exposures with the biggest, best-established mortality effects are, in
 order, **tobacco** (catastrophic, causal, ~10 years of life), **air pollution** (a top-10 *global* killer, causal

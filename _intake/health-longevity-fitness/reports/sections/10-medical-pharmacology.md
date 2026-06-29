@@ -20,20 +20,17 @@
 > on evidence that ranges from thin to absent — those are flagged explicitly so you can ask the right
 > skeptical questions, not so you can self-prescribe.
 
-## The three honesty rules, applied to drugs
+## How the three honesty rules cut for drugs
 
-1. **Predictor ≠ lever.** A drug that moves a *number* (LDL, HbA1c, testosterone, NAD⁺) has not thereby moved
-   an *outcome*. The whole value of this section is that for several of these drugs the lever question has
-   actually been answered with a hard-endpoint RCT — and for several others (rapamycin, metformin-for-aging,
-   peptides) it explicitly has **not**, no matter how good the number looks.
-2. **Cohort ≠ RCT.** "People who take metformin seem to outlive non-diabetics" (Bannister 2014, observational,
-   confounded — see Domain B) is a different and weaker claim than "in a randomized trial, drug X cut events by
-   Y%." Both appear below, always tier-labeled. The drugs that have *graduated* from cohort to RCT (GLP-1s,
-   statins, SGLT2 inhibitors, the SPRINT BP target) are the strongest material in this entire manual.
-3. **Something beats nothing — but in medicine, *net* benefit is the only thing that counts.** Every drug has a
-   harm column. The honest unit is not "does it help" but "does the benefit outweigh the harm **for this person**"
-   — which is why **number-needed-to-treat (NNT)** and **number-needed-to-harm (NNH)** appear throughout, and
-   why aspirin gets a whole section as the cautionary tale.
+The rules (defined in "Start Here") bite in a specific way here. **Predictor ≠ lever:** moving a number — LDL,
+HbA1c, testosterone, NAD⁺ — is not moving an outcome; for several drugs below that lever question has a
+hard-endpoint RCT answer, and for rapamycin, off-label metformin-for-aging, and peptides it explicitly does
+**not**, no matter how good the number looks. **Cohort ≠ RCT:** "metformin users seem to outlive non-diabetics"
+(Bannister 2014, confounded — Domain B) is far weaker than a randomized event reduction; the drugs that have
+*graduated* from cohort to RCT — GLP-1s, statins, SGLT2 inhibitors, the SPRINT BP target — are the strongest
+material in this manual. **Net benefit is the only unit:** every drug carries a harm column, so
+**number-needed-to-treat (NNT)** and **-to-harm (NNH)** run throughout, and aspirin gets its own section as the
+cautionary tale.
 
 **Cross-references (read alongside):** geroprotector mechanisms (metformin/rapamycin/senolytics) are graded in
 `02-domains/B-aging-mechanisms.md`; the **apoB/LDL causal story** that justifies lipid-lowering is in

@@ -8,7 +8,11 @@
     "direction": "unfalsifiable",
     "effect_size": "N/A (methodological rule)",
     "population": "N/A",
-    "provenance": {"primary": "06-evidence/SCHEMA.md hard rules", "doi": "", "surfaced_via": "labs/trials/protocols build"},
+    "provenance": {
+      "primary": "06-evidence/SCHEMA.md hard rules",
+      "doi": "",
+      "surfaced_via": "labs/trials/protocols build"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Operationalizes the SCHEMA rule: 'a practitioner's name attached to a claim is provenance, not evidence.' Every claim below honors this separation.",
@@ -23,7 +27,11 @@
     "direction": "mixed",
     "effect_size": "Self-reported pace-of-aging <1.0; various biomarker improvements (single subject)",
     "population": "N=1 (Bryan Johnson)",
-    "provenance": {"primary": "blueprint.bryanjohnson.com self-published data; Rejuvenation Olympics leaderboard", "doi": "", "surfaced_via": "04-protocols/bryan-johnson-blueprint.md"},
+    "provenance": {
+      "primary": "blueprint.bryanjohnson.com self-published data; Rejuvenation Olympics leaderboard",
+      "doi": "",
+      "surfaced_via": "04-protocols/bryan-johnson-blueprint.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "N=1, no control, no randomization, dozens of simultaneous interventions → no component-level causal inference. Commercial COI (sells the stack). The dataset's value is transparency, not proof.",
@@ -38,8 +46,14 @@
     "direction": "refutes",
     "effect_size": "Self-reported: discontinued; no perceived benefit, adverse effects (e.g. lipid/glucose/soft-tissue issues)",
     "population": "N=1 (Bryan Johnson)",
-    "provenance": {"primary": "Bryan Johnson public statements / Blueprint updates 2024", "doi": "", "surfaced_via": "04-protocols/bryan-johnson-blueprint.md"},
-    "conflicts_with": ["mtor-rapamycin-mouse-lifespan"],
+    "provenance": {
+      "primary": "Bryan Johnson public statements / Blueprint updates 2024",
+      "doi": "",
+      "surfaced_via": "04-protocols/bryan-johnson-blueprint.md"
+    },
+    "conflicts_with": [
+      "mtor-rapamycin-mouse-lifespan"
+    ],
     "canon_link": "",
     "confidence_notes": "A self-reported NEGATIVE — more informative than the marketing positives. Consistent with PEARL (NCT04488601) showing only modest surrogate signal. Animal lifespan benefit has NOT translated to a clear personal human benefit here.",
     "added_on": "2026-06-27"
@@ -53,11 +67,17 @@
     "direction": "supports",
     "effect_size": "Elite vs low fitness: HR ~0.20 for all-cause mortality (~5x risk gradient); low fitness adjusted HR ~5 vs elite",
     "population": "122,007 patients undergoing treadmill testing (Cleveland Clinic)",
-    "provenance": {"primary": "Mandsager et al., JAMA Network Open 2018", "doi": "10.1001/jamanetworkopen.2018.3605", "surfaced_via": "Attia Outlive → primary source"},
+    "provenance": {
+      "primary": "Mandsager et al., JAMA Network Open 2018",
+      "doi": "10.1001/jamanetworkopen.2018.3605",
+      "surfaced_via": "Attia Outlive → primary source"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Observational — strong, consistent gradient but residual confounding (reverse causation: sick people exercise less) not fully excluded. This is the single strongest-evidence pillar of the Attia framework. Domain E.",
-    "added_on": "2026-06-27"
+    "added_on": "2026-06-27",
+    "duplicate_of": "crf-vo2max-strongest-mortality-predictor",
+    "dedup_note": "Same finding as canonical claim 'crf-vo2max-strongest-mortality-predictor' (VO2max/CRF strongest mortality predictor); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "attia-strength-mortality",
@@ -68,7 +88,11 @@
     "direction": "supports",
     "effect_size": "Grip strength inversely associated with mortality (per-5kg-decrease HR ~1.16 all-cause, PURE study)",
     "population": "~140,000 adults, 17 countries (PURE)",
-    "provenance": {"primary": "Leong et al., Lancet 2015 (grip strength & mortality)", "doi": "10.1016/S0140-6736(14)62000-6", "surfaced_via": "Attia Outlive centenarian-decathlon"},
+    "provenance": {
+      "primary": "Leong et al., Lancet 2015 (grip strength & mortality)",
+      "doi": "10.1016/S0140-6736(14)62000-6",
+      "surfaced_via": "Attia Outlive centenarian-decathlon"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Grip strength is a biomarker/proxy of total strength and frailty, associated not proven-causal. Supports training-for-reserve heuristic. Domain E.",
@@ -83,11 +107,19 @@
     "direction": "mixed",
     "effect_size": "MPS plateaus ~1.6 g/kg/day (Morton meta); muscle preservation benefit in elderly",
     "population": "Resistance-training adults (Morton 2018 meta of RCTs); elderly cohorts",
-    "provenance": {"primary": "Morton et al., Br J Sports Med 2018 (protein RCT meta); Stuart Phillips body of work", "doi": "10.1136/bjsports-2017-097608", "surfaced_via": "04-protocols/peter-attia-medicine3.md"},
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "provenance": {
+      "primary": "Morton et al., Br J Sports Med 2018 (protein RCT meta); Stuart Phillips body of work",
+      "doi": "10.1136/bjsports-2017-097608",
+      "surfaced_via": "04-protocols/peter-attia-medicine3.md"
+    },
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "",
     "confidence_notes": "DIRECTLY CONFLICTS with the Longo/IGF-1/mTOR protein-restriction-for-longevity position (animal+epi tier). Likely age- and context-dependent (Attia/Phillips champion elderly muscle; Longo champions mid-life mTOR restraint). See 06-evidence/CONFLICTS.md conflict-protein-mtor-longevity — status OPEN.",
-    "added_on": "2026-06-27"
+    "added_on": "2026-06-27",
+    "duplicate_of": "protein-resistance-training-plateau-1.6",
+    "dedup_note": "Same finding as canonical claim 'protein-resistance-training-plateau-1.6' (Protein augments RT, ~1.6 g/kg plateau); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "rp-omega3-mixed",
@@ -98,7 +130,11 @@
     "direction": "mixed",
     "effect_size": "Modest CV event reduction in some meta-analyses (esp. high-dose EPA, REDUCE-IT); null in others (VITAL, STRENGTH primary)",
     "population": "Multiple large RCTs / meta-analyses (VITAL n=25,871; REDUCE-IT n=8,179; STRENGTH)",
-    "provenance": {"primary": "Manson et al. NEJM 2019 (VITAL, null); Bhatt et al. NEJM 2019 (REDUCE-IT, positive icosapent ethyl)", "doi": "10.1056/NEJMoa1811403", "surfaced_via": "04-protocols/rhonda-patrick-stack.md"},
+    "provenance": {
+      "primary": "Manson et al. NEJM 2019 (VITAL, null); Bhatt et al. NEJM 2019 (REDUCE-IT, positive icosapent ethyl)",
+      "doi": "10.1056/NEJMoa1811403",
+      "surfaced_via": "04-protocols/rhonda-patrick-stack.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "A clean MIXED case: surrogate/biomarker benefits real; hard-outcome benefit depends on dose, formulation (EPA vs EPA+DHA), and baseline risk. Do not present as settled. Domain D/L.",
@@ -113,11 +149,17 @@
     "direction": "mixed",
     "effect_size": "VITAL: no significant reduction in invasive cancer or major CV events; some signal for cancer mortality on follow-up",
     "population": "VITAL RCT n=25,871; multiple meta-analyses",
-    "provenance": {"primary": "Manson et al., NEJM 2019 (VITAL)", "doi": "10.1056/NEJMoa1809944", "surfaced_via": "04-protocols/rhonda-patrick-stack.md"},
+    "provenance": {
+      "primary": "Manson et al., NEJM 2019 (VITAL)",
+      "doi": "10.1056/NEJMoa1809944",
+      "surfaced_via": "04-protocols/rhonda-patrick-stack.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Benefit concentrated in deficient/low-baseline individuals; supplementing the already-replete shows little hard-outcome effect. Surrogate (serum 25-OH-D) easily raised; outcome benefit limited. Domain D/L.",
-    "added_on": "2026-06-27"
+    "added_on": "2026-06-27",
+    "duplicate_of": "vitamin-d-null-in-replete-VITAL",
+    "dedup_note": "Same finding as canonical claim 'vitamin-d-null-in-replete-VITAL' (Vitamin D null in the replete); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "rp-sulforaphane-mechanism",
@@ -128,7 +170,11 @@
     "direction": "supports",
     "effect_size": "Robust Nrf2/ARE induction; downstream human clinical-outcome benefit largely unproven",
     "population": "Human/animal mechanistic + small clinical studies (e.g. airway/autism/detox pilots)",
-    "provenance": {"primary": "Fahey/Talalay sulforaphane Nrf2 body of work", "doi": "", "surfaced_via": "04-protocols/rhonda-patrick-stack.md"},
+    "provenance": {
+      "primary": "Fahey/Talalay sulforaphane Nrf2 body of work",
+      "doi": "",
+      "surfaced_via": "04-protocols/rhonda-patrick-stack.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "MECHANISM, not outcome — flagged explicitly per SCHEMA (a mechanism claim may never be presented as an outcome). Strong biology, thin hard-endpoint human data. Domain D.",
@@ -143,11 +189,17 @@
     "direction": "supports",
     "effect_size": "HR ~0.60 all-cause mortality (4-7x/week vs 1x/week)",
     "population": "2,315 Finnish men, KIHD cohort",
-    "provenance": {"primary": "Laukkanen et al., JAMA Intern Med 2015", "doi": "10.1001/jamainternmed.2014.8187", "surfaced_via": "04-protocols/rhonda-patrick-stack.md → 01-people/cards/laukkanen.md"},
+    "provenance": {
+      "primary": "Laukkanen et al., JAMA Intern Med 2015",
+      "doi": "10.1001/jamainternmed.2014.8187",
+      "surfaced_via": "04-protocols/rhonda-patrick-stack.md → 01-people/cards/laukkanen.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Observational; healthy-user and reverse-causation not fully excluded (sicker people sauna less). Same study cited as the H-thermal SCHEMA example. Domain H.",
-    "added_on": "2026-06-27"
+    "added_on": "2026-06-27",
+    "duplicate_of": "sauna-frequency-mortality-kihd",
+    "dedup_note": "Same finding as canonical claim 'sauna-frequency-mortality-kihd' (Sauna 4-7x/week associated with lower mortality); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "huberman-morning-light-circadian",
@@ -158,7 +210,11 @@
     "direction": "supports",
     "effect_size": "Robust circadian phase-setting via short-wavelength-sensitive ipRGCs; outdoor lux (1k-100k) >> indoor",
     "population": "Human circadian physiology (melanopsin/ipRGC action-spectrum literature)",
-    "provenance": {"primary": "Brainard 2001 / Berson 2002 ipRGC + melanopsin action spectrum; popularized by Huberman Lab", "doi": "", "surfaced_via": "04-protocols/huberman.md"},
+    "provenance": {
+      "primary": "Brainard 2001 / Berson 2002 ipRGC + melanopsin action spectrum; popularized by Huberman Lab",
+      "doi": "",
+      "surfaced_via": "04-protocols/huberman.md"
+    },
     "conflicts_with": [],
     "canon_link": "bucket-canon/05-biophysics/ (melanopsin/circadian photoreception)",
     "confidence_notes": "MECHANISM (circadian entrainment), well established; the specific 'morning sunlight cures X' OUTCOME framing is heuristic. Cross-ref I-claims light-melatonin-action-spectrum, room-light-melatonin-suppression. Domain I.",
@@ -173,7 +229,11 @@
     "direction": "mixed",
     "effect_size": "No controlled trial of the 'delay' benefit; adenosine-antagonism mechanism of caffeine is established",
     "population": "N/A (practitioner heuristic)",
-    "provenance": {"primary": "Huberman Lab podcast (mechanistic argument); caffeine-adenosine pharmacology", "doi": "", "surfaced_via": "04-protocols/huberman.md"},
+    "provenance": {
+      "primary": "Huberman Lab podcast (mechanistic argument); caffeine-adenosine pharmacology",
+      "doi": "",
+      "surfaced_via": "04-protocols/huberman.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Mechanism real (caffeine blocks adenosine receptors), but the specific timing benefit is a low-risk heuristic with essentially no RCT. One of the items most uniquely 'his' and among the thinnest-evidence.",
@@ -188,7 +248,11 @@
     "direction": "mixed",
     "effect_size": "Small early studies on yoga nidra (mood, autonomic, striatal dopamine pilot); limited rigor",
     "population": "Small yoga-nidra / guided-relaxation studies",
-    "provenance": {"primary": "Kjaer 2002 (yoga nidra striatal dopamine PET, n small); Huberman 'NSDR' branding/aggregation", "doi": "10.1016/S0926-6410(01)00106-9", "surfaced_via": "04-protocols/huberman.md"},
+    "provenance": {
+      "primary": "Kjaer 2002 (yoga nidra striatal dopamine PET, n small); Huberman 'NSDR' branding/aggregation",
+      "doi": "10.1016/S0926-6410(01)00106-9",
+      "surfaced_via": "04-protocols/huberman.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "NSDR is an umbrella term Huberman coined; the underlying practices have small/early evidence. Low-risk; not an established clinical intervention. Overlaps G-domain slow-breathing/relaxation mechanisms.",
@@ -203,7 +267,11 @@
     "direction": "mixed",
     "effect_size": "Practical heuristic; broadly consistent with sweat-rate-based fluid-replacement guidance (e.g. ACSM) but not a trial-derived formula",
     "population": "N/A (practitioner heuristic)",
-    "provenance": {"primary": "Andy Galpin via Huberman Lab guest series; hydration/sweat-rate exercise-physiology literature", "doi": "", "surfaced_via": "04-protocols/galpin.md"},
+    "provenance": {
+      "primary": "Andy Galpin via Huberman Lab guest series; hydration/sweat-rate exercise-physiology literature",
+      "doi": "",
+      "surfaced_via": "04-protocols/galpin.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Reasonable, mechanism-consistent heuristic for individualizing fluid intake; the specific numbers are a usable rule of thumb, NOT an outcome-validated dose. Over-drinking risk (hyponatremia) at the high end during ultra-endurance.",
@@ -218,7 +286,11 @@
     "direction": "supports",
     "effect_size": "Lowest SRT band (0-3) vs highest (8-10): ~5-6x higher all-cause mortality; each point ~21% lower mortality risk",
     "population": "2,002 adults aged 51-80 (68% men), ~6.3 yr follow-up",
-    "provenance": {"primary": "Brito et al., Eur J Prev Cardiol 2014", "doi": "10.1177/2047487312471759", "surfaced_via": "04-protocols/starrett.md"},
+    "provenance": {
+      "primary": "Brito et al., Eur J Prev Cardiol 2014",
+      "doi": "10.1177/2047487312471759",
+      "surfaced_via": "04-protocols/starrett.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Observational; SRT is a composite BIOMARKER of strength + balance + flexibility + body composition. Predictive association - NOT evidence that practicing the test changes mortality. Healthy-user/reverse-causation not excluded. Domain E/F.",
@@ -233,7 +305,11 @@
     "direction": "mixed",
     "effect_size": "High sitting + low activity: elevated HR; ~60-75 min/day MVPA appears to offset the mortality association of high sitting (harmonized meta)",
     "population": "Harmonized meta-analyses (>1 million adults, Ekelund 2016/2019); Whitehall II",
-    "provenance": {"primary": "Ekelund et al., Lancet 2016 (harmonized meta); van der Ploeg/Whitehall II", "doi": "10.1016/S0140-6736(16)30370-1", "surfaced_via": "04-protocols/starrett.md"},
+    "provenance": {
+      "primary": "Ekelund et al., Lancet 2016 (harmonized meta); van der Ploeg/Whitehall II",
+      "doi": "10.1016/S0140-6736(16)30370-1",
+      "surfaced_via": "04-protocols/starrett.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "MIXED: sitting is partly a proxy for low activity, not a clean independent exposure. 'Sitting is the new smoking' is overstated. Breaking up sitting + total activity is the defensible message. Domain E.",
@@ -248,7 +324,11 @@
     "direction": "supports",
     "effect_size": "Small RCT(s): pain + functional-disability improvement comparable to (some measures favoring) conventional physiotherapy",
     "population": "Small RCTs in chronic non-specific low-back pain + McGill's spine-load/EMG biomechanics lab work",
-    "provenance": {"primary": "McGill spine-biomechanics body of work; small McGill-stabilization RCTs (e.g. PMC5908986)", "doi": "", "surfaced_via": "04-protocols/mcgill.md"},
+    "provenance": {
+      "primary": "McGill spine-biomechanics body of work; small McGill-stabilization RCTs (e.g. PMC5908986)",
+      "doi": "",
+      "surfaced_via": "04-protocols/mcgill.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Spine-sparing biomechanics (low disc load, anti-repeated-flexion) are mechanistically strong; clinical trials are small and show comparability-to-PT, not decisive superiority. Back-pain management, NOT a longevity claim. Domain F.",
@@ -263,7 +343,11 @@
     "direction": "mixed",
     "effect_size": "Breath-hold time does index CO2 tolerance; the specific 25/40s cutoffs and their health/performance predictive validity are a proprietary heuristic, not independently validated",
     "population": "N/A (Oxygen Advantage program metric)",
-    "provenance": {"primary": "Patrick McKeown, The Oxygen Advantage / oxygenadvantage.com", "doi": "", "surfaced_via": "04-protocols/mckeown.md"},
+    "provenance": {
+      "primary": "Patrick McKeown, The Oxygen Advantage / oxygenadvantage.com",
+      "doi": "",
+      "surfaced_via": "04-protocols/mckeown.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Face-valid measure of breath-hold/CO2 tolerance; the branded cutoffs as health/performance predictors are heuristic, not RCT-validated. Treat as a program target, not a clinical threshold. Cross-ref G bohr-effect-co2-tolerance. Domain G.",
@@ -278,7 +362,11 @@
     "direction": "supports",
     "effect_size": "Cold-induced energy expenditure substantially elevated in winter-swimmers vs controls; altered BAT thermoregulatory pattern",
     "population": "n~8 winter-swimming men vs n~8 controls (small, cross-sectional)",
-    "provenance": {"primary": "Soberg et al., Cell Reports Medicine 2021 (PMID 34755128)", "doi": "10.1016/j.xcrm.2021.100408", "surfaced_via": "04-protocols/soberg.md"},
+    "provenance": {
+      "primary": "Soberg et al., Cell Reports Medicine 2021 (PMID 34755128)",
+      "doi": "10.1016/j.xcrm.2021.100408",
+      "surfaced_via": "04-protocols/soberg.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Small, CROSS-SECTIONAL, trained men, cold+heat bundled - generates the thermogenesis mechanism; does NOT prove a dose causes metabolic-health outcomes. Cross-ref H cold-activated-bat-adult-humans, shivering-vs-nonshivering-thermogenesis. Domain H.",
@@ -293,7 +381,11 @@
     "direction": "mixed",
     "effect_size": "Practitioner-distilled minimum-threshold heuristic; not a trial-derived dose tied to a health OUTCOME",
     "population": "N/A (practitioner synthesis)",
-    "provenance": {"primary": "Susanna Soberg, Winter Swimming / Soeberg Institute; synthesis over her + adjacent cold literature", "doi": "", "surfaced_via": "04-protocols/soberg.md"},
+    "provenance": {
+      "primary": "Susanna Soberg, Winter Swimming / Soeberg Institute; synthesis over her + adjacent cold literature",
+      "doi": "",
+      "surfaced_via": "04-protocols/soberg.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "The '11 min/week + end on cold' figure is a usable heuristic, NOT an outcome-validated dose. Note: the cold-acclimation insulin-sensitivity OUTCOME (H cold-acclimation-insulin-sensitivity-t2d) came from a 6h/day x10-day protocol, not 11 min/week - keep dose<->evidence honest. Domain H.",
@@ -308,7 +400,11 @@
     "direction": "refutes",
     "effect_size": "Pfizer/Amgen: in-vitro SIRT1 'activation' was a fluorophore-substrate assay artifact; GSK discontinued SRT501 (2010); no human anti-aging outcome",
     "population": "In-vitro biochemistry + failed clinical development (Sirtris/GSK SRT501)",
-    "provenance": {"primary": "Pacholec et al., J Biol Chem 2010 (SRT1720/resveratrol not direct SIRT1 activators); Beher 2009; GSK Sirtris discontinuation", "doi": "10.1074/jbc.M109.088682", "surfaced_via": "04-protocols/sinclair.md"},
+    "provenance": {
+      "primary": "Pacholec et al., J Biol Chem 2010 (SRT1720/resveratrol not direct SIRT1 activators); Beher 2009; GSK Sirtris discontinuation",
+      "doi": "10.1074/jbc.M109.088682",
+      "surfaced_via": "04-protocols/sinclair.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "CONTESTED. The direct-activation mechanism is disputed as an assay artifact; Sinclair contests the reading. GSK bought Sirtris ~$720M (2008), discontinued SRT501 (2010). No human longevity outcome for resveratrol. Canonical mechanism-hype example. Domain B.",
@@ -323,7 +419,11 @@
     "direction": "unfalsifiable",
     "effect_size": "N=1, no control, no published personal outcome data; many simultaneous interventions",
     "population": "N=1 (David Sinclair, self-report/advocacy)",
-    "provenance": {"primary": "David Sinclair public statements / Lifespan podcast", "doi": "", "surfaced_via": "04-protocols/sinclair.md"},
+    "provenance": {
+      "primary": "David Sinclair public statements / Lifespan podcast",
+      "doi": "",
+      "surfaced_via": "04-protocols/sinclair.md"
+    },
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "N=1 advocacy with DENSE financial COI (founder/equity across longevity ventures). 'NMN raises NAD+' (surrogate, B nad-precursor-nr-human-surrogate) is routinely upgraded to 'reverses aging' (outcome, unproven) - the canonical SCHEMA mechanism!=outcome violation. Indexed, not endorsed.",
@@ -338,8 +438,14 @@
     "direction": "mixed",
     "effect_size": "Composite of CR/fasting/IGF-1 + Mediterranean evidence; component RCTs are surrogate-marker (FMD risk markers), plus animal + epi; no human-longevity-endpoint trial of the whole pattern",
     "population": "Synthesis: FMD RCT (n~100), IGF-1 epi (NHANES), mouse lifespan, PREDIMED",
-    "provenance": {"primary": "Longo, The Longevity Diet; Wei et al. Sci Transl Med 2017 (FMD RCT); Levine/Longo 2014 Cell Metab (protein-IGF1)", "doi": "10.1126/scitranslmed.aai8700", "surfaced_via": "04-protocols/longo.md"},
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "provenance": {
+      "primary": "Longo, The Longevity Diet; Wei et al. Sci Transl Med 2017 (FMD RCT); Levine/Longo 2014 Cell Metab (protein-IGF1)",
+      "doi": "10.1126/scitranslmed.aai8700",
+      "surfaced_via": "04-protocols/longo.md"
+    },
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "",
     "confidence_notes": "Most trial-anchored protocol in this set, but still mostly surrogate/animal, NOT human-longevity outcome. The mid-life protein-restriction stance is the direct counterweight to Attia/Galpin/Phillips (conflict-protein-mtor-longevity, OPEN). Cross-ref D fmd-human-risk-markers, protein-igf1-age-dependent-mortality. COI: ProLon/L-Nutra. Domain D.",
     "added_on": "2026-06-27"

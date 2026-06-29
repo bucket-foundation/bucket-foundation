@@ -260,10 +260,14 @@
       "doi": "10.1016/j.cell.2023.08.003",
       "surfaced_via": "cross-ref Domain C C-claims.json (biomarkers-of-aging-consortium-validation-gap, higgins-chen-2022-pc-clocks)"
     },
-    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "conflicts_with": [
+      "conflict-which-clock-is-valid"
+    ],
     "canon_link": "",
     "confidence_notes": "Practical-layer reframing of Domain C's clock claims: predictor (cohort) != validated surrogate, and the consumer test is noisy at the individual level. Act on validated Domain L biomarkers instead.",
-    "added_on": "2026-06-28"
+    "added_on": "2026-06-28",
+    "duplicate_of": "biological-age-tests-not-validated-surrogate",
+    "dedup_note": "Same finding as canonical claim 'biological-age-tests-not-validated-surrogate' (Biological-age clocks not validated as a personal surrogate endpoint); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "gene-environment-heritability-not-destiny",

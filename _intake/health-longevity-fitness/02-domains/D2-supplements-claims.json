@@ -108,7 +108,9 @@
       "doi": "10.1016/j.ypmed.2004.02.030",
       "surfaced_via": "PubMed E-utilities (omega-3 index Harris)"
     },
-    "conflicts_with": ["conflict-omega3-predictor-vs-lever"],
+    "conflicts_with": [
+      "conflict-omega3-predictor-vs-lever"
+    ],
     "canon_link": "",
     "confidence_notes": "Honesty rule #1: predictor != lever. The index tracking with risk does not establish that supplementing to raise it improves outcomes. Grade: predictor (real), lever (unproven).",
     "added_on": "2026-06-28"
@@ -127,7 +129,9 @@
       "doi": "10.1056/NEJMoa1811403",
       "surfaced_via": "PubMed E-utilities (VITAL omega-3; REDUCE-IT)"
     },
-    "conflicts_with": ["conflict-omega3-predictor-vs-lever"],
+    "conflicts_with": [
+      "conflict-omega3-predictor-vs-lever"
+    ],
     "canon_link": "",
     "confidence_notes": "REDUCE-IT secondary DOI 10.1056/NEJMoa1812792. Net: OTC low-dose for primary prevention mostly null; high-dose Rx EPA in high-risk high-TG patients real. Grade: CONTEXT-ONLY (events).",
     "added_on": "2026-06-28"
@@ -203,7 +207,9 @@
       "doi": "10.1136/bjsports-2017-097608",
       "surfaced_via": "PubMed E-utilities (protein resistance training meta Phillips)"
     },
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "bucket-canon/05-biophysics/",
     "confidence_notes": "The functional-muscle optimum (~1.6 g/kg) sits far above any protein-restriction longevity prescription; the tension resolves on the age axis (mid-life caution vs elderly need). Grade: REAL.",
     "added_on": "2026-06-28"
@@ -298,7 +304,9 @@
       "doi": "",
       "surfaced_via": "PubMed E-utilities (probiotics healthy adults systematic review) + corpus cross-ref C2"
     },
-    "conflicts_with": ["conflict-microbiome-causality"],
+    "conflicts_with": [
+      "conflict-microbiome-causality"
+    ],
     "canon_link": "",
     "confidence_notes": "Microbiome benefits in the corpus come from fermented foods/fiber, not generic capsules, and even those stop at small surrogate RCTs. Grade: CONTEXT-ONLY.",
     "added_on": "2026-06-28"
@@ -393,7 +401,9 @@
       "doi": "10.1056/NEJMoa1800389",
       "surfaced_via": "Domain D cross-ref + PubMed E-utilities"
     },
-    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "conflicts_with": [
+      "conflict-seed-oils-linoleic-acid"
+    ],
     "canon_link": "",
     "confidence_notes": "PREDIMED carries a retraction/republication asterisk (randomization irregularities; corrected analysis still positive). No mortality-endpoint diet RCT exists. Grade: REAL (pattern), with the limits noted.",
     "added_on": "2026-06-28"
@@ -412,9 +422,13 @@
       "doi": "10.1056/NEJMoa2114833",
       "surfaced_via": "Domain D cross-ref (D-metabolic-nutrition.md sec 3)"
     },
-    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "conflicts_with": [
+      "conflict-tre-efficacy-vs-cr"
+    ],
     "canon_link": "",
     "confidence_notes": "Secondary DOI Sutton 10.1016/j.cmet.2018.04.010. Should-not-fast groups: disordered-eating history, underweight/frail/sarcopenic, pregnant/breastfeeding, glucose-lowering meds, heavy-training athletes. Grade: tool for CR (real); circadian timing (small real).",
-    "added_on": "2026-06-28"
+    "added_on": "2026-06-28",
+    "duplicate_of": "tre-adds-nothing-to-cr-nejm",
+    "dedup_note": "Same finding as canonical claim 'tre-adds-nothing-to-cr-nejm' (TRE benefit is mostly the calorie restriction it causes); retained for chapter coverage, not counted as an independent claim."
   }
 ]

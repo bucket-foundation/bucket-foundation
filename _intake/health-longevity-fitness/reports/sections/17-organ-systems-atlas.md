@@ -16,18 +16,11 @@ exactly why they get skipped and exactly why a few cheap, boring habits (don't s
 glucose in range, stay lean, don't reach for NSAIDs by reflex) outperform anything sold as an organ
 "detox" or "cleanse."
 
-Three honesty rules run through every line, same as the rest of the corpus:
-
-1. **Predictor ≠ lever.** A declining eGFR *predicts* mortality; whether any given supplement *changes* that
-   trajectory is a separate question. Erectile dysfunction *predicts* heart attacks; treating the symptom with a
-   PDE5 inhibitor does not treat the artery. Low VO₂max *predicts* death better than almost any lab — but the
-   causal lever is the *training*, not the number.
-2. **Cohort ≠ RCT.** "People who donate blood have fewer cardiac events" (confounded cohort) is a far weaker
-   claim than "weight loss of ≥10% resolves steatohepatitis in most patients" (prospective histology). Both
-   appear below, always tier-labeled.
-3. **Something beats nothing, and dose/context matters.** High dietary protein does nothing bad to a *healthy*
-   kidney but must be moderated in established CKD. Hydration matters — but the honest signal is "avoid chronic
-   under-hydration," not "drink a gallon." The grade is the neutrality.
+*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something
+beats nothing — are defined up front in "Start Here," and bite hard in this atlas: a declining eGFR or low VO₂max
+predicts death, but the lever is upstream (blood pressure, glucose, training), not the number; erectile
+dysfunction predicts heart attacks, yet a PDE5 inhibitor treats the symptom, not the artery; and dose/context
+rules everything — high protein is fine for a healthy kidney but must be moderated in established CKD.*
 
 **One-line verdict up front:** the highest-yield, most-skipped levers in this section are **(1) protect the
 kidney and liver indirectly** — they have almost no direct levers, so the play is blood pressure, glucose,

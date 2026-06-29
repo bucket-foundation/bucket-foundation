@@ -28,16 +28,7 @@
 > resistance as a *mechanism* is in `D-metabolic-nutrition.md`; here it becomes type 2 diabetes as a
 > *disease*.
 
-> **The honesty rules (carried from [`06-evidence/SCHEMA.md`](../../06-evidence/SCHEMA.md)).**
-> 1. **Mechanism ≠ outcome.** "SGLT2 inhibitors offload sodium and reduce preload" is a mechanism;
->    "dapagliflozin cut heart-failure hospitalization and CV death (HR 0.74)" is an outcome. We never
->    let the first masquerade as the second.
-> 2. **Cohort ≠ RCT.** Most of what is *strongest* in this section — the heart-failure pillars, the
->    SGLT2/GLP-1 cardiorenal trials, DCCT, DiRECT — is **randomized**, the top of the ladder. Where a
->    claim is only observational or mechanistic, it is flagged.
-> 3. **A drug class is not a miracle.** GLP-1s and SGLT2s are genuinely transformative *and* they are
->    being oversold. We grade the trial endpoints, name the absolute (not just relative) effects, and
->    flag the harms.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 ---
 

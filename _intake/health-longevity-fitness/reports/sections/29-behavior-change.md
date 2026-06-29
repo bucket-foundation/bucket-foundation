@@ -4,16 +4,7 @@
 > *what* to do. This one is about the only thing that determines whether any of it matters: **whether you
 > actually do it, and keep doing it.** Knowing the protocol is necessary and nearly worthless on its own.
 >
-> **Three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Predictor ≠ lever.** "Motivated people exercise more" is a correlation. It does **not** follow that
->    *trying to feel more motivated* changes behavior — and mostly it doesn't (§3). The levers that move
->    behavior are structural (environment, cues, plans), not emotional.
-> 2. **Cohort ≠ RCT.** Most of behavior science's *popular* claims (the 21-day habit, "willpower is a
->    muscle," learning styles, stages-of-change) come from weak designs or have **failed replication** under
->    strong ones. Graded honestly, the field is much smaller and more humbling than the self-help shelf.
-> 3. **Something beats nothing.** The single most robust finding is the same shape as the exercise
->    dose-response: a *tiny, specific, environmentally-supported* behavior practiced consistently beats the
->    perfect plan you abandon in week two. Adherence is the binding constraint, not optimization.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 This section is the corpus's correction term for a quiet failure mode that runs through every health book
 ever written: the implicit assumption that **information changes behavior.** It doesn't, or barely. The

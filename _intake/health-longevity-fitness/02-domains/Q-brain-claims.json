@@ -89,7 +89,9 @@
       "doi": "10.1073/pnas.1015950108",
       "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
     },
-    "conflicts_with": ["conflict-exercise-prevents-dementia"],
+    "conflicts_with": [
+      "conflict-exercise-prevents-dementia"
+    ],
     "canon_link": "bucket-canon/05-biophysics/",
     "confidence_notes": "Strong MECHANISM/surrogate (imaging) result. Does NOT establish the OUTCOME 'exercise prevents dementia' - RCTs of exercise on cognitive decline in MCI/older adults are MIXED-to-null. Mechanism solid, fitness predicts cognition strongly, but the prevention outcome is not settled.",
     "added_on": "2026-06-28"
@@ -127,7 +129,9 @@
       "doi": "10.1056/NEJMoa2302368",
       "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
     },
-    "conflicts_with": ["conflict-mind-diet-cognition"],
+    "conflicts_with": [
+      "conflict-mind-diet-cognition"
+    ],
     "canon_link": "",
     "confidence_notes": "Textbook predictor-vs-lever / cohort-vs-RCT case: strong observational signal did NOT survive randomization. Caveats: both RCT arms lost weight and improved (control was not a junk-food arm); 3y may be too short. Honest grade: reasonable heart-healthy pattern, strong cohort signal, null RCT for cognition.",
     "added_on": "2026-06-28"
@@ -187,7 +191,9 @@
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Hold two things at once: the serotonin-deficiency MECHANISM/marketing story is false, AND antidepressants have modest real OUTCOME efficacy. A drug can work without the folk-mechanism being true - the schema's mechanism-vs-outcome rule exactly.",
-    "added_on": "2026-06-28"
+    "added_on": "2026-06-28",
+    "duplicate_of": "serotonin-deficiency-myth",
+    "dedup_note": "Same finding as canonical claim 'serotonin-deficiency-myth' (Serotonin chemical-imbalance theory of depression unsupported); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "smiles-diet-depression-rct",

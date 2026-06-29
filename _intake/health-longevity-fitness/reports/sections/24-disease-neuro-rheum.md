@@ -29,17 +29,7 @@
 >   pressure, lipids) and the **atrial-fibrillation / anticoagulation** story; gout and OA pain
 >   management cross-ref **Section 14 §6** (pain) and **Section 10** (pharmacology).
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`):
-> 1. **Predictor ≠ lever.** A biomarker that tracks a disease is not automatically a thing you can
->    push to change it. "Serum urate predicts gout" *is* a lever (lower it and gout stops);
->    "hsCRP predicts RA flares" is mostly a readout, not a target you treat in isolation.
-> 2. **Cohort ≠ RCT, and mechanism ≠ outcome.** That a diet lowers an inflammatory marker (mechanism)
->    is not that it changes the course of an autoimmune disease (outcome). Almost the entire
->    "autoimmune diet" industry lives in exactly that gap.
-> 3. **Something beats nothing — and for these diseases the unglamorous "something" is enormous.**
->    Thrombolysis-and-thrombectomy for stroke, DMTs for MS, urate-lowering for gout, treat-to-target
->    biologics for RA: these are among the largest, most real treatment effects in all of medicine.
->    The honest move is to *not* let the supplement aisle distract from them.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 ---
 
@@ -63,7 +53,7 @@ grade each disease on four honest axes:
    doesn't have.
 
 The diseases below are sorted into **neurology** (§3–§9) and **rheumatology / autoimmunity**
-(§10–§16), with the **honest debunks** collected at the end (§17). First, the summary table.
+(§10–§16), with the **honest debunks** collected at the end (§17).
 
 ---
 
@@ -384,7 +374,7 @@ factors), SPRINT-MIND (BP), ACHIEVE (hearing), the **amyloid-drug saga** (lecane
 marginal benefit, real risk), and the brain-training / nootropic debunks. The 2025 Alzheimer's
 outlook (Frisoni, *Lancet* 2025, `10.1016/S0140-6736(25)01389-3`) and ALS as the motor-neuron
 neurodegeneration (Ravits, *JAMA* 2026, `10.1001/jama.2026.6385`; Goutman, *Lancet Neurol* 2022)
-round out the degenerative map. **This section does not duplicate that material** — see Section 08.
+round out the degenerative map.
 
 ---
 

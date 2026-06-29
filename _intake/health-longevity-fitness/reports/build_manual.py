@@ -70,7 +70,9 @@ STRUCT = [
     ("measure", corpus("04-protocols/WHAT-TO-TRACK-SYNTHESIS.md"), None)]),
  ("Part XI", "The Open Questions", [
     ("conflicts", corpus("06-evidence/CONFLICTS-REGISTER.md"), None)]),
- ("Part XII", "Go Deeper", [
+ ("Part XII", "The Discourse — claims vs the evidence", [
+    ("practitioner", S("46-practitioner-claims-vs-evidence.md"), None)]),
+ ("Part XIII", "Go Deeper", [
     ("library", S("06-go-deeper-library.md"), None)]),
 ]
 
@@ -223,7 +225,7 @@ COVER = """<div class="cover">
     Sources: OpenAlex · PubMed · Europe PMC · ClinicalTrials.gov · the Bucket biophysics canon<br>
     Doctrine: index all · grade everything · mechanism &#8800; outcome &#8800; protocol
   </div>
-  <div class="stat">48 chapters · 997 graded claims · 660 figures · 37 conflicts · 12 body systems · ~264,000 words</div>
+  <div class="stat">49 chapters · 1007 graded claims · 660 figures · 37 conflicts · 12 body systems · ~265,000 words</div>
 </div>"""
 
 HOWTO = """<section class="front">
@@ -260,12 +262,14 @@ account for your individual history. Talk to a qualified clinician before changi
 training or fasting regimen, or acting on anything here — especially the pharmacology and clinical chapters.</div>
 </section>"""
 
+STARTHERE = ('<section class="front starthere">'
+  '<h1>Start Here — If You Read Nothing Else</h1>' + pandoc(S("00-start-here.md")) + '</section>')
 DOC = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <title>The Longevity &amp; Fitness Operating Manual</title><style>{CSS}</style></head>
-<body>{COVER}{HOWTO}{toc_html}{body_html}
+<body>{COVER}{STARTHERE}{HOWTO}{toc_html}{body_html}
 <section class="front"><h1>Colophon</h1>
 <p class="small">Assembled by Nucleus Brain from the <code>health-longevity-fitness</code> research corpus
-(Bucket Foundation, bead <code>bkt-bg6</code>): 48 chapters, 997 graded claims across 53 domain files, a
+(Bucket Foundation, bead <code>bkt-bg6</code>): 49 chapters, 1007 graded claims across 53 domain files, a
 660-figure people map, 24 labs, 15 trials, 37 conflict objects, and a 53-movement illustrated library.
 Research drew on OpenAlex, PubMed/Europe PMC, ClinicalTrials.gov and the Bucket biophysics canon; every
 chapter was written under the index-all / grade-everything doctrine and visually or numerically verified.

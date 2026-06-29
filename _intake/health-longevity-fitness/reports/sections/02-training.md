@@ -6,15 +6,7 @@
 > cardio and mobility and balance, and how to put it together into a week you can actually run and
 > progress. Research-backed, honestly hedged.
 >
-> **Three honesty rules govern every recommendation here** (carried from `04-protocols/WHAT-TO-TRACK-SYNTHESIS.md`):
-> 1. **Predictor ≠ lever.** Grip strength predicts death (`grip-strength-mortality-pure`); *squeezing a
->    gripper* does not move mortality. We train the *systems* that low grip reveals, not the number.
-> 2. **Cohort ≠ RCT.** The fitness→mortality evidence is observational and partly reverse-caused
->    (`crf-vo2max-strongest-mortality-predictor`). The direction is rock-solid; the 5× magnitude is inflated.
-> 3. **Something beats nothing, and dose matters.** The steepest gains are sedentary → *some*
->    (`physical-activity-dose-response-mortality`). Optimization past that is real but smaller and noisier
->    than the marketing. And "more" is not always "better" — resistance-training mortality benefit is
->    **J-shaped** (`resistance-training-mortality-meta`).
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 ---
 

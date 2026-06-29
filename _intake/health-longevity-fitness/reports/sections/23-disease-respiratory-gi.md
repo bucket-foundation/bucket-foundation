@@ -5,8 +5,7 @@
 > **Not medical advice.** This is an evidence-graded map of the major diseases of the airways, the gut,
 > and the liver/pancreas — what they are, the mechanism (tied to fundamentals), how they are managed, and
 > how strong the evidence actually is. It is written to help you reason and ask better questions, not to
-> diagnose or treat. Diagnosis and prescriptions are clinical acts; use this to walk into that conversation
-> informed, not to replace it.
+> diagnose or treat.
 
 This is the **disease companion** to the physiology in `17-organ-systems-atlas.md`. Section 17 maps how the
 respiratory, hepatic, and digestive systems *age* and what the everyday levers are (don't smoke, stay lean,
@@ -15,17 +14,7 @@ a person actually gets diagnosed with — and grades the management honestly. Wh
 (lung-function decline, MASLD physiology, the gut-brain axis, the "liver detox" debunk, fiber), this section
 **points there rather than re-deriving it**, and adds the clinical disease layer on top.
 
-Three honesty rules from the corpus run through every line:
-
-1. **Predictor ≠ lever, and symptom-relief ≠ disease-modification.** An inhaler that opens airways relieves
-   symptoms; whether it changes the *trajectory* of the disease is a separate, often weaker claim. A PPI
-   silences reflux; it does not fix the mechanics causing it. The grade tracks this gap, because most
-   over-promising lives in it.
-2. **Cohort ≠ RCT.** "OSA is associated with cardiovascular events" (confounded cohort) is a weaker claim than
-   "CPAP, randomized, did *not* reduce those events in already-treated patients" (RCT) — and both are true at
-   once, which is the whole point of grading.
-3. **Something beats nothing, and the boring lever usually wins.** Smoking cessation, weight loss, and (for
-   the curable infections) *actually taking the cure* outperform almost everything sold around them.
+*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 **One-line verdict up front.** The highest-yield facts in this section are: **(1)** for the lungs, *nothing
 matches not smoking* — every drug here is downstream of that; **(2)** obstructive sleep apnea is *massively
@@ -305,8 +294,7 @@ It is extremely common (~5–10% of adults) and a leading reason for gastroenter
 **The honest "it's real" framing.** Because there's no lesion to point to, IBS has historically been dismissed
 as "in your head" or "just stress" — a stigma that harms patients. The modern, evidence-based framing is that
 IBS is a genuine **disorder of gut-brain interaction (DGBI)**: the gut and brain miscommunicate, producing real
-symptoms via real mechanisms. It is *not* imaginary, and it is *not* a diagnosis of exclusion you should be
-ashamed of. `mechanistic`/guideline.
+symptoms via real mechanisms — not imaginary, and not a diagnosis of exclusion to be ashamed of. `mechanistic`/guideline.
 
 **Mechanism (→ gut-brain axis, microbiome, immune).** Contributing mechanisms include **visceral
 hypersensitivity** (the gut's pain signaling is turned up — normal distension hurts), **altered motility**,

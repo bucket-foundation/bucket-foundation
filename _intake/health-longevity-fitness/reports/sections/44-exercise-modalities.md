@@ -12,18 +12,7 @@
 > build, sex, age, and limitations), **Section 21** (`21-pain-injury-rehab.md` — the injury/rehab counterpart),
 > and **Section 29** (`29-behavior-change.md` — why adherence, not optimality, picks the winning modality).
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Predictor ≠ lever.** A modality that *correlates* with low mortality in a cohort (swimmers, runners,
->    racquet players) is selecting for healthy people as much as it is causing health. We grade the
->    association honestly and separate "this sport's players live longer" (cohort) from "this sport *makes*
->    you live longer" (rarely proven).
-> 2. **Cohort ≠ RCT.** The sport-specific mortality data are observational and heavily self-selected
->    (people who swim laps at 60 are *already* different from people who can't). Direction is often robust;
->    the magnitudes are inflated by who chooses the activity.
-> 3. **Something beats nothing — and the best modality is the one you'll keep doing.** This is the
->    load-bearing meta-point of the entire section. The differences *between* sensible modalities are small
->    next to the difference between *doing one* and *doing none* (`physical-activity-dose-response-mortality`).
->    Optimization is real but second-order; **adherence is first-order** (§11, cross-ref Section 29).
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." The load-bearing meta-point here: the differences between sensible modalities are small next to the difference between doing one and doing none (`physical-activity-dose-response-mortality`) — the best modality is the one you'll keep doing.*
 
 ---
 
@@ -52,8 +41,7 @@ neutrality — nothing is dismissed for being unfashionable, nothing is inflated
 
 > **One honest framing to carry through:** almost every modality "works" for general health, because almost
 > any structured loading of the capacities beats sedentary living. The interesting question is never "does
-> X work?" (mostly yes) but **"what does X train, what does it cost, and who is it *for*?"** That is what the
-> cards answer.
+> X work?" (mostly yes) but **"what does X train, what does it cost, and who is it *for*?"**
 
 ---
 
@@ -96,7 +84,7 @@ the highest-ceiling tools for the **strength** and **power** capacities.
 ### 2.3 Kettlebells (swings · Turkish get-ups · cleans · snatches)
 
 The kettlebell is the **ballistic hybrid** — a hip-hinge power tool *and* a conditioning tool in one
-implement, which is exactly why it is over-claimed and why the honest version is worth stating carefully.
+implement, which is exactly why it is over-claimed.
 
 | Field | Verdict |
 |---|---|

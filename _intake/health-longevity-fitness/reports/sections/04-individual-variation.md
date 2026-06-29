@@ -3,15 +3,7 @@
 > **Status:** v0.1 — 2026-06-28. The "you are not the average subject" section of the manual.
 > **Companion data:** Domain N (`02-domains/N-womens-longevity.md`, `N-claims.json`) and Domain E
 > (`02-domains/E-exercise.md`, `E-claims.json`).
-> **Three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Predictor ≠ lever.** A trait that predicts an outcome is not automatically a thing you can train to
->    change the outcome (grip strength predicts mortality; squeezing a gripper does not move it — see
->    `grip-strength-mortality-pure` / `grip-strength-biomarker-aging`).
-> 2. **Cohort ≠ RCT.** "Associated with" and "causes" are different tiers and are never merged.
-> 3. **Something beats nothing.** The lowest-confounded, most universal finding in the whole field is that
->    *any* movement replacing sedentary time lowers mortality, with the steepest marginal gains at the
->    least-active end (`physical-activity-dose-response-mortality`). When in doubt, this is the floor every
->    individual stands on regardless of body type, sex, age, or limitation.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 The rest of this manual gives population-level recommendations. This section is the correction term. It
 answers a single question honestly: **how should the advice change for *you*** — given your build, your

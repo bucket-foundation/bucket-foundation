@@ -21,20 +21,7 @@
 > - **§26 (vaccines/infectious disease)** and **§31 (hematology / sickle cell)** and **§22 (diabetes)** and
 >   **§25 (oncology)** — cross-referenced at each point, not restated.
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Predictor ≠ lever, and "genetic" ≠ "your fault" or "hopeless."** A trisomy or a *CFTR* mutation is
->    fixed at conception; you cannot parent it away or supplement it away, and nothing a mother did or didn't
->    do during pregnancy *caused* most of them. But "unchangeable cause" does **not** mean "unchangeable
->    outcome": newborn screening, modulator drugs, early intervention, and ordinary medical care move the
->    *trajectory* enormously. The cause is fixed; the future is not.
-> 2. **Mechanism ≠ outcome, and a plausible story is not a cure.** This is the section where that gap has the
->    highest body count. "Heavy metals cause autism" (a false mechanism) became "chelate your child" (a
->    dangerous non-treatment that has killed children). The honest grading of the **vaccine–autism myth, the
->    chelation industry, and the MMS/bleach "cures"** is not a side-note here — it is a core deliverable.
-> 3. **Something beats nothing, and the unglamorous public-health wins are the biggest levers in the whole
->    manual.** Folate fortification, newborn screening, childhood vaccination, and "Back to Sleep" each
->    prevent more childhood death and disability than any boutique intervention ever will — and they are
->    nearly free. They are the floor that the wellness industry never mentions because no one sells them.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." One corollary carries the highest body count in this section: "unchangeable cause" (a trisomy, a CFTR mutation) does **not** mean "unchangeable outcome" — screening, modulators, and early intervention move the trajectory enormously.*
 
 > ## ⚠️ This is not medical advice
 >

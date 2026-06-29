@@ -19,21 +19,17 @@
 > *regulation and resolution*, not failures of raw firepower. Hold that distinction and most "immune support"
 > marketing collapses on contact.
 
-## The three honesty rules, applied to immunity
+## How the three honesty rules cut for immunity
 
-1. **Predictor ≠ lever.** Inflammatory markers — **hsCRP, IL-6, TNF-α** — are among the strongest *predictors*
-   of frailty, disease, and mortality in all of geroscience (`cohort`, robust, replicated). That does **not**
-   make them *levers*: driving a number down with a supplement or a drug has not been shown to extend
-   healthspan unless an intervention with a hard endpoint does it. The whole inflammaging field lives or dies
-   on this distinction — see `L-biomarkers.md` (Ridker, hsCRP/JUPITER) and the inflammation thread.
-2. **Cohort ≠ RCT, and mechanism ≠ outcome.** "CMV-seropositive elders die sooner" (observational) and
-   "vitamin C raises neutrophil function in a dish" (mechanistic) are real findings that are routinely
-   laundered into "clear your CMV to live longer" and "take vitamin C to not get sick." Almost every immune
-   over-claim is exactly this laundering — graded explicitly below.
-3. **Something beats nothing — but for immunity, *regulation* beats *more*.** The interventions that actually
-   help (sleep, exercise, nutritional adequacy, not smoking, vaccines) work by keeping the system
-   well-*regulated*, not by cranking it up. The interventions that don't (megadose vitamin C, "immune-boosting"
-   blends, cleanses) are sold on the cranking-it-up fantasy.
+**Predictor ≠ lever:** inflammatory markers — **hsCRP, IL-6, TNF-α** — are among the strongest predictors of
+frailty and mortality in geroscience, but driving the number down hasn't been shown to extend healthspan absent
+a hard-endpoint intervention; the whole inflammaging field lives on this distinction (`L-biomarkers.md`,
+Ridker/JUPITER). **Cohort ≠ RCT, and mechanism ≠ outcome:** "CMV-seropositive elders die sooner" (observational)
+and "vitamin C raises neutrophil function in a dish" (mechanistic) get laundered into "clear your CMV to live
+longer" and "take vitamin C to not get sick" — nearly every immune over-claim is exactly this laundering. **For
+immunity, *regulation* beats *more*:** what helps (sleep, exercise, nutritional adequacy, not smoking, vaccines)
+keeps the system well-regulated; what doesn't (megadose vitamin C, "immune-boosting" blends, cleanses) is sold
+on the crank-it-up fantasy.
 
 **Cross-references (read alongside):** inflammaging / cellular senescence / SASP mechanisms are graded in
 `02-domains/B-aging-mechanisms.md`; the integrative inflammation map is `02-domains/threads/thread-inflammation.md`;

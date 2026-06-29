@@ -16,18 +16,7 @@
 > Domain D. The Horsemen are interlinked — metabolic disease accelerates all three of the others — so
 > read this beside `D-metabolic-nutrition.md`.
 >
-> **Three honesty rules govern every claim here** (carried from `06-evidence/SCHEMA.md` and the
-> training/nutrition sections):
-> 1. **Predictor ≠ lever.** A coronary calcium score *predicts* events superbly; it is not a thing you
->    "treat." We separate **risk-stratification tools** (CAC, apoB, Lp(a)) from **interventions** (BP
->    lowering, statins, screening).
-> 2. **Cohort ≠ RCT.** Blood-pressure lowering, statins, colonoscopy, LDCT, and HPV vaccine are
->    backed by **randomized trials** — the strongest tier in this whole corpus. Where the evidence is
->    only observational (most screening-mortality estimates outside RCTs), it is flagged.
-> 3. **Something beats nothing — and "more screening" is not always better.** The steepest mortality
->    gains come from treating *high* blood pressure and screening the *right high-risk people*.
->    Past that, marginal screening adds **overdiagnosis and harm** (mammography overdiagnosis, PSA,
->    whole-body MRI). Honest prevention means knowing where the curve flattens *and bends down*.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 > **Cross-references (do not duplicate):** lipids, apoB, Lp(a), hsCRP, HbA1c, fasting insulin are
 > graded in `L-biomarkers.md` / `L-claims.json` — this section *uses* them for risk stratification and

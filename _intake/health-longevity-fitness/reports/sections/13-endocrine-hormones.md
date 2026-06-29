@@ -19,23 +19,18 @@
 > protocols, anti-aging HGH, growth-hormone secretagogues, thyroid hormone for the euthyroid) are sold hard
 > on weak or absent evidence — those are flagged explicitly.
 
-## The three honesty rules, applied to hormones
+## How the three honesty rules cut for hormones
 
-1. **Predictor ≠ lever.** A hormone *level* that tracks aging or disease (testosterone falling, IGF-1
-   sitting at some value, cortisol rhythm flattening) is usually a **readout**, not a dial you should
-   blindly turn. The single sharpest example in the whole endocrine map is **IGF-1**, where the level
-   predicts mortality in a **U-shape** (both low and high are worse) *and* where the most robust longevity
-   genetics point toward **lower** signaling — so "boost your growth hormone" is pushing a lever the wrong
-   way (Domain L `igf1-u-shaped-mortality`; Domains B/C).
-2. **Cohort ≠ RCT.** "Men with low testosterone have higher mortality" (cohort, heavily confounded by
-   illness — low T is often a *marker* of being sick, not a cause) is a different and weaker claim than
-   "replacing testosterone changed an outcome in a randomized trial." The few places hormone therapy has
-   *graduated* to hard-outcome RCTs (TRAVERSE for TRT safety, the timing-stratified HRT trials, GLP-1
-   trials) are flagged; most "hormone optimization" rests on the cohort/surrogate tier.
-3. **Something beats nothing — but the honest unit is net benefit in the right person.** Replacing a
-   hormone to treat a **diagnosed deficiency** is medicine with a favorable ledger. Pushing a hormone
-   **above normal in a healthy person to chase youth** is experimentation with a worse one — and is
-   routinely sold as the former. The dividing line *is* the section.
+**Predictor ≠ lever:** a hormone *level* that tracks aging (falling testosterone, IGF-1, a flattening cortisol
+rhythm) is usually a readout, not a dial to turn. The sharpest case is **IGF-1**, whose level predicts mortality
+in a **U-shape** while the most robust longevity genetics point to *lower* signaling — so "boost your growth
+hormone" pushes the lever the wrong way (Domain L `igf1-u-shaped-mortality`; Domains B/C). **Cohort ≠ RCT:**
+"men with low testosterone have higher mortality" (heavily confounded — low T is often a *marker* of being sick)
+is weaker than a randomized outcome change; the few hormone therapies that have *graduated* to hard endpoints
+(TRAVERSE for TRT safety, timing-stratified HRT, GLP-1 trials) are flagged, while most "hormone optimization"
+rests on cohort/surrogate evidence. **Net benefit in the right person:** replacing a hormone for a *diagnosed
+deficiency* is medicine with a favorable ledger; pushing one *above normal in a healthy person to chase youth*
+is experimentation sold as the former — that dividing line is the section.
 
 **Cross-references (read alongside):** the **drugs** (TRT, levothyroxine, GLP-1s, the peptide world) are
 prescribed-reality-graded in `reports/sections/10-medical-pharmacology.md`; **menopausal HRT and the

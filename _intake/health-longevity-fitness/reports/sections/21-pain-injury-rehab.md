@@ -12,17 +12,7 @@
 > the rehab ladder), **Section 11** (`11-body-systems.md` §3 — bone/osteoporosis, §6 — feet & mobility),
 > and **Section 05** (`05-recovery-sleep-stress.md` — recovery, sleep as a pain modulator).
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied
-> throughout:
-> 1. **Pain ≠ tissue damage, and imaging ≠ diagnosis.** A disc bulge on MRI is as common in pain-free
->    people as in people who hurt. The picture is provenance, not a verdict.
-> 2. **Mechanism ≠ outcome; cohort ≠ RCT.** "Eccentric loading remodels tendon collagen" (mechanism) is
->    not "this exercise fixed your tendon" (outcome) — though here, unusually, the outcome trials are
->    mostly *on the side* of active loading. We still grade them apart.
-> 3. **Something beats nothing, and the unglamorous thing wins.** For the big disablers — low back pain,
->    osteoarthritis, tendinopathy — the evidence-based core is **stay active, load progressively, and
->    understand your pain**, not bed rest, scans, injections, or surgery. That *is* the answer, and it
->    outperforms almost everything sold against it.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." (In this section, predictor ≠ lever bites hardest as **pain ≠ tissue damage, imaging ≠ diagnosis** — see §1.)*
 
 ---
 

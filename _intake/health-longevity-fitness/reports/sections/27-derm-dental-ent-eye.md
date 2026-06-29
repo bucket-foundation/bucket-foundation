@@ -295,9 +295,6 @@ modern prevention win (cross-ref Section 25/26).
 
 ### B.5 The honest take on "holistic dentistry," charcoal, oil-pulling, whitening, and amalgam fear
 
-This is the section's densest honesty cluster — a wellness-marketing minefield over a field with strong real
-evidence.
-
 | Claim | Reality | Grade |
 |---|---|---|
 | **Charcoal toothpaste "detoxifies / whitens"** | Whitens only by **abrasion** (it's a mild scrub); no detox mechanism; **high abrasivity can wear enamel**; usually **no fluoride** (so it forgoes the one proven benefit). No RCT of caries/whitening outcomes. | `mechanistic`/marketing — **net-negative** if it replaces fluoride toothpaste |
@@ -365,8 +362,7 @@ Sudden unilateral tinnitus, or tinnitus with hearing loss/vertigo, needs prompt 
 ### C.3 Vertigo & BPPV — where a 60-second maneuver actually *cures* the disease
 
 "Dizziness" is a wastebasket; the high-yield distinction is **vertigo** (a false sense of spinning/movement,
-usually an inner-ear/vestibular problem) vs presyncope/disequilibrium. The single most important fact in this whole
-section's "things that work" column:
+usually an inner-ear/vestibular problem) vs presyncope/disequilibrium. The single most important fact here:
 
 - **Benign Paroxysmal Positional Vertigo (BPPV)** — the most common cause of vertigo — is caused by **displaced
   otoconia (calcium-carbonate "ear rocks")** drifting into a semicircular canal, where they make the canal

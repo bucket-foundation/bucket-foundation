@@ -19,25 +19,21 @@
 > claims) are sold hard on weak or absent evidence; those are flagged. STI screening and cancer screening
 > are the two highest-value actions in this whole section, and both are under-used.
 
-## The three honesty rules, applied to reproductive & sexual health
+## How the three honesty rules cut for reproductive & sexual health
 
-1. **Predictor ≠ lever.** A sex-hormone *level* or a symptom can be a **readout** of something upstream
-   rather than a dial to turn. The sharpest example in this section is **erectile dysfunction**: in men
-   under ~60 it is one of the best early **predictors** of future cardiovascular disease — the penis is a
-   vascular bed with small arteries that clog first — so ED is a reason to check the heart, not just a
-   reason to prescribe a pill (cross-ref `11-body-systems.md`). Likewise a sperm count or an AMH (ovarian
-   reserve) number predicts fertility *potential* without being a thing you reliably "boost."
-2. **Cohort ≠ RCT.** "Women on combined oral contraceptives have a slightly higher breast-cancer
-   detection rate" (cohort, small absolute effect, reversing after stopping) is a different and weaker
-   claim than a randomized outcome. The few places reproductive medicine has hard **RCT** evidence —
-   LARC effectiveness, HPV-vaccine cancer prevention, low-dose aspirin for preeclampsia, the TRAVERSE
-   testosterone-safety trial — are flagged and weighted accordingly; most "fertility optimization" rests
-   far down the ladder.
-3. **Something beats nothing — but the honest unit is net benefit in the right person.** Replacing a
-   **diagnosed deficiency** (estrogen for symptomatic menopause within the window, testosterone for true
-   hypogonadism) is medicine with a favorable ledger. Pushing a hormone **above normal in a healthy
-   person to chase performance or youth** is experimentation sold as the former — the dividing line is the
-   same one that governs §13.
+**Predictor ≠ lever:** a sex-hormone level or symptom can be a readout of something upstream rather than a dial.
+The sharpest example is **erectile dysfunction** — in men under ~60 it is one of the best early predictors of
+future cardiovascular disease (the penis is a vascular bed whose small arteries clog first), so ED is a reason
+to check the heart, not just to prescribe a pill (cross-ref `11-body-systems.md`); likewise a sperm count or AMH
+predicts fertility *potential* without being a thing you reliably "boost." **Cohort ≠ RCT:** "women on combined
+oral contraceptives have a slightly higher breast-cancer detection rate" (cohort, small, reversing after
+stopping) is weaker than a randomized outcome; the few places reproductive medicine has hard RCT evidence — LARC
+effectiveness, HPV-vaccine cancer prevention, low-dose aspirin for preeclampsia, the TRAVERSE testosterone-safety
+trial — are weighted accordingly, while most "fertility optimization" rests far down the ladder. **Net benefit
+in the right person:** replacing a *diagnosed deficiency* (estrogen for symptomatic menopause within the window,
+testosterone for true hypogonadism) is favorable-ledger medicine; pushing a hormone *above normal in a healthy
+person to chase performance or youth* is experimentation sold as the former — the same dividing line that
+governs §13.
 
 **Cross-references (read alongside, NOT duplicated here):** **fertility, pregnancy, and the prenatal/early-life
 window** are owned by `reports/sections/19-life-stages.md` (this section extends the *clinical workup and ART

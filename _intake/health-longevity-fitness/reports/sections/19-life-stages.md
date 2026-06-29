@@ -15,22 +15,18 @@
 > clinician — not a protocol to self-apply. Several stages here (fertility supplements, "detox for two,"
 > anti-aging hormones in elders) are sold hard on weak evidence; those are flagged explicitly.
 
-## The three honesty rules, applied to the lifespan
+## How the three honesty rules cut across the lifespan
 
-1. **Predictor ≠ lever.** Low birthweight *predicts* adult heart disease (Barker); it does not follow that
-   any single postnatal "fix" reverses the programmed risk. A frailty score *predicts* death; it is a
-   readout of accumulated deficit, not a dial you turn directly. The lifespan is full of powerful
-   **predictors** whose corresponding **levers** are either upstream (maternal/early-life) or
-   multi-factorial (the whole-life accumulation), not a pill.
-2. **Cohort ≠ RCT.** Almost the entire developmental-origins (DOHaD) field is **observational** — you
-   cannot randomize a fetus to famine. The associations are strong and replicated, but the causal arrows
-   are inferred from natural experiments (the Dutch Hunger Winter, sibling designs, animal models), not
-   trials. Pregnancy and paediatric *interventions*, by contrast, do have RCTs (folate, aspirin, GDM
-   treatment) — and those are where the confident recommendations live.
-3. **Something beats nothing — and the floor moves with age.** The universal "any movement beats sedentary"
-   floor (Domain E, §04) still holds at every age, but *what* the floor is changes: in youth it is building
-   the peak; in old age it is defending independence (the resistance-training inversion, §04 §4.3); at the
-   very end it is comfort and meaning, where *less* intervention is sometimes the higher-value choice.
+**Predictor ≠ lever:** low birthweight predicts adult heart disease (Barker) but no single postnatal fix
+reverses the programmed risk; a frailty score is a readout of accumulated deficit, not a dial — the lifespan is
+full of powerful predictors whose levers are upstream (maternal/early-life) or multifactorial, not a pill.
+**Cohort ≠ RCT:** almost the entire developmental-origins (DOHaD) field is observational — you cannot randomize
+a fetus to famine — so causal arrows come from natural experiments (Dutch Hunger Winter, sibling designs);
+pregnancy and paediatric *interventions* (folate, aspirin, GDM treatment) do have RCTs, and that is where the
+confident recommendations live. **The floor moves with age:** "any movement beats sedentary" holds at every age,
+but in youth the floor is building the peak, in old age defending independence (the resistance-training
+inversion, §04 §4.3), and at the very end comfort and meaning, where *less* intervention is sometimes
+higher-value.
 
 **Cross-references (read alongside):** **age-specific training** (youth=build, midlife=defend, 65+=the
 resistance inversion) is owned by `reports/sections/04-individual-variation.md §4` — this section does **not**

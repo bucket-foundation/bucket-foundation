@@ -1,0 +1,212 @@
+[
+  {
+    "id": "upf-overconsumption-hall-2019-rct",
+    "statement": "An ultra-processed diet drives spontaneous overconsumption versus a matched-macronutrient unprocessed diet: in a tightly controlled inpatient crossover RCT, participants ate ~500 kcal/day more and gained weight on the UPF arm despite menus matched for calories presented, sugar, fat, fiber, and macronutrients.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "+508 kcal/day intake on UPF; ~+0.9 kg over 2 weeks vs ~-0.9 kg on unprocessed",
+    "population": "20 weight-stable adults, NIH Metabolic Clinical Research Unit, randomized crossover inpatient feeding",
+    "provenance": {
+      "primary": "Hall, Ayuketah, Brychta et al. — 'Ultra-Processed Diets Cause Excess Calorie Intake and Weight Gain: An Inpatient Randomized Controlled Trial of Ad Libitum Food Intake', Cell Metabolism 2019",
+      "doi": "10.1016/j.cmet.2019.05.008",
+      "surfaced_via": "Lustig YT cluster (metabolic-n1 wave) -> practitioner cross-check"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Small n but one of the cleanest experimental designs in all of nutrition (metabolic-ward, matched macros, crossover). Surfaced by Lustig as his strongest UPF claim; corpus had no graded D-claim for it. Note: this is an energy-INTAKE/overconsumption result, NOT support for the carbohydrate-insulin model (see conflict-carbohydrate-insulin-model). Verdict: NOT-YET-IN-CORPUS -> PROMOTE to D-claims.json.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "D-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "omega3-biological-aging-do-health",
+    "statement": "Omega-3 supplementation (alone and combined with vitamin D and exercise) may slow biological aging as measured by epigenetic clocks, and reduced falls, infections, and pre-frailty in a large RCT of older adults (DO-HEALTH).",
+    "claim_type": "outcome",
+    "domain": "D2-supplements",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "DO-HEALTH: modest reductions in infections/falls/pre-frailty; epigenetic-clock slowing reported in post-hoc analysis (small, clock-dependent)",
+    "population": "2157 adults >=70y, DO-HEALTH RCT (Europe); epigenetic-aging sub-analysis",
+    "provenance": {
+      "primary": "Bischoff-Ferrari et al. DO-HEALTH (JAMA 2020); omega-3 epigenetic-aging sub-analysis 2024",
+      "doi": "10.1001/jama.2020.16909",
+      "surfaced_via": "Rhonda Patrick + Attia YT clusters -> practitioner cross-check"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "The falls/infection RCT signal is real. The 'slows biological aging' headline rests on epigenetic-clock readouts that are NOT a validated surrogate (biological-age-tests-not-validated-surrogate; conflict-which-clock-is-valid, open). Grade the hard endpoints as real; treat the clock-slowing as clock-as-outcome marketing. Verdict: NOT-YET-IN-CORPUS, grade under the clock caveat.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "D2-supplements-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "fructose-uric-acid-metabolic-syndrome",
+    "statement": "Fructose metabolism generates uric acid (via ATP depletion / AMP catabolism), and elevated uric acid is hypothesized to causally drive hypertension and features of metabolic syndrome rather than being a passive marker.",
+    "claim_type": "mechanism",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "n/a (mechanistic hypothesis; causal human-outcome data contested)",
+    "population": "Mechanistic + animal + observational human; causal step in humans unresolved",
+    "provenance": {
+      "primary": "Richard J. Johnson et al. — fructose/uric-acid hypothesis (multiple, incl. Am J Clin Nutr 2007)",
+      "doi": "10.1093/ajcn/86.4.899",
+      "surfaced_via": "Lustig YT cluster (metabolic-n1 wave) -> practitioner cross-check"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanistically specific and testable. The fructose->uric-acid step is real biochemistry; the uric-acid->hypertension/metabolic-syndrome CAUSAL step in humans is contested (urate-lowering RCTs are mixed). Lustig presents it more confidently than the causal data support. Verdict: NOT-YET-IN-CORPUS (mechanistic-contested).",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "D-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "soberg-11min-cold-dose-end-on-cold",
+    "statement": "Roughly 11 minutes per week of deliberate cold exposure (split across sessions), and 'ending on cold' after sauna, is a sufficient dose to recruit/activate brown adipose tissue and improve metabolic markers (the 'Soberg principle').",
+    "claim_type": "protocol",
+    "domain": "H-thermal",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "n/a (dose heuristic; BAT recruitment real, downstream metabolic OUTCOME unproven at this dose)",
+    "population": "Derived from BAT/cold-acclimation literature + Soberg's winter-swimmer cohort work",
+    "provenance": {
+      "primary": "Soberg et al. — cold/heat exposure and brown fat (Cell Reports Medicine 2021); popularized via Huberman Lab",
+      "doi": "10.1016/j.xcrm.2021.100408",
+      "surfaced_via": "Huberman YT cluster -> practitioner cross-check"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "BAT recruitment by cold is real (cold-activated-bat-adult-humans). The specific 11-min/week dose and 'end on cold' rule are a practitioner heuristic without graded outcome evidence; the only human metabolic OUTCOME used prolonged mild cold (hours), not brief plunges (cold-acclimation-insulin-sensitivity-t2d). Usable, falsifiable dose claim worth grading. Verdict: NOT-YET-IN-CORPUS.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "H-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "caffeine-delay-90-120min-after-waking",
+    "statement": "Delaying caffeine intake 90-120 minutes after waking allows residual adenosine to clear and reduces the early-afternoon energy crash, improving sustained daytime alertness and protecting sleep.",
+    "claim_type": "protocol",
+    "domain": "D2-supplements",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "n/a (mechanistic rationale; no RCT shows the delay changes afternoon energy or sleep)",
+    "population": "Mechanistic (adenosine/caffeine pharmacodynamics); no outcome trial of the timing rule",
+    "provenance": {
+      "primary": "Adenosine-receptor/caffeine pharmacology; popularized as protocol by Huberman Lab",
+      "doi": "",
+      "surfaced_via": "Huberman YT cluster -> practitioner cross-check"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The adenosine-clearance story is plausible but there is no graded RCT showing the DELAY changes afternoon energy or sleep. Huberman presents it as established protocol; it is a testable hypothesis. Acute ergogenic effect of caffeine itself is separately graded (caffeine-acute-ergogenic). Verdict: NOT-YET-IN-CORPUS.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "D2-supplements-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "ames-triage-theory-longevity-vitamins",
+    "statement": "Under modest micronutrient shortfall, the body triages scarce vitamins/minerals toward short-term survival functions at the expense of long-term maintenance/repair ('longevity vitamins'), so subclinical insufficiency may accelerate age-related disease even without overt deficiency.",
+    "claim_type": "hypothesis",
+    "domain": "D2-supplements",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "n/a (mechanistic triage hypothesis; multivitamin-in-replete outcome data generally null)",
+    "population": "Mechanistic/theoretical (Ames); human outcome data limited",
+    "provenance": {
+      "primary": "Bruce Ames — 'Prolonging healthy aging: Longevity vitamins and proteins', PNAS 2018",
+      "doi": "10.1073/pnas.1809045115",
+      "surfaced_via": "Rhonda Patrick YT cluster -> practitioner cross-check"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Coherent, named hypothesis absent from the corpus. The skeptic baseline: multivitamin supplementation in already-replete populations is largely null for hard outcomes. Grade the triage mechanism as a hypothesis; do not let it license blanket high-dose supplementation. Verdict: NOT-YET-IN-CORPUS.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "D2-supplements-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "sit-to-rise-test-mortality-predictor",
+    "statement": "The sit-to-rise (floor-transfer) test — scored on ability to lower to and rise from the floor without using hands/knees for support — independently predicts all-cause mortality in middle-aged and older adults.",
+    "claim_type": "outcome",
+    "domain": "E-exercise",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lowest vs highest sit-to-rise score associated with markedly higher all-cause mortality (HR several-fold) over ~6y",
+    "population": "~2000 adults 51-80y, Brazilian cohort (Brito et al.)",
+    "provenance": {
+      "primary": "Brito, Ricardo, Araujo et al. — 'Ability to sit and rise from the floor as a predictor of all-cause mortality', Eur J Prev Cardiol 2014",
+      "doi": "10.1177/2047487312471759",
+      "surfaced_via": "Kelly Starrett 'Built to Move' (movement-breath wave) -> practitioner cross-check"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A functional-capacity predictor that slots beside gait-speed, grip, chair-rise, and one-leg-stance in the L/E mortality-predictor cluster. Cohort-tier (predictor, not lever) like the rest. Surfaced by Starrett; ungraded in corpus. Verdict: NOT-YET-IN-CORPUS -> PROMOTE.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "E-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "cd38-nadase-drives-nad-decline",
+    "statement": "CD38, an NAD-consuming enzyme (NADase) that rises with age and inflammation, is a major driver of the age-related decline in tissue NAD+ levels; inhibiting CD38 restores NAD+ in animal models.",
+    "claim_type": "mechanism",
+    "domain": "B-aging-mechanisms",
+    "evidence_tier": "animal",
+    "direction": "supports",
+    "effect_size": "n/a (mechanistic/animal; CD38 inhibition raises tissue NAD+ in mice)",
+    "population": "Mouse and cell models (Chini lab and others)",
+    "provenance": {
+      "primary": "Camacho-Pereira, Chini et al. — 'CD38 Dictates Age-Related NAD Decline and Mitochondrial Dysfunction through an SIRT3-Dependent Mechanism', Cell Metabolism 2016",
+      "doi": "10.1016/j.cmet.2016.05.006",
+      "surfaced_via": "Eric Verdin YT cluster (longevity-sci wave) -> practitioner cross-check"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Pairs with the existing mechanistic claim sirtuins-nad-decline. Animal/cell-tier; the human therapeutic step (CD38 inhibition as an intervention) is unproven and shares the open outcome gap of conflict-nad-precursor-efficacy. Verdict: NOT-YET-IN-CORPUS (mechanistic lead).",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "B-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "dog-aging-project-rapamycin-cardiac",
+    "statement": "In companion dogs (a better translational aging model than mice), rapamycin improves age-related cardiac function (ejection fraction/diastolic measures); the Dog Aging Project's TRIAD study tests rapamycin for healthy-aging endpoints.",
+    "claim_type": "outcome",
+    "domain": "S-pharma",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Pilot: improvements in echocardiographic cardiac function vs placebo over 10 weeks (small n)",
+    "population": "Middle-aged companion dogs; Dog Aging Project / TRIAD (Kaeberlein, Promislow)",
+    "provenance": {
+      "primary": "Urfer, Kaeberlein et al. — 'A randomized controlled trial to establish effects of short-term rapamycin treatment in 24 middle-aged companion dogs', GeroScience 2017",
+      "doi": "10.1007/s11357-017-9972-z",
+      "surfaced_via": "Matt Kaeberlein YT cluster (longevity-sci wave) -> practitioner cross-check"
+    },
+    "conflicts_with": ["conflict-rapamycin-dosing"],
+    "canon_link": "",
+    "confidence_notes": "Companion-dog model shares human environment/comorbidities; stronger translation than mice. Consistent with the direction of mtor-rapamycin-mouse-lifespan; human geroprotective dose still open (conflict-rapamycin-dosing). Surfaced by Kaeberlein (the corpus's external validator) honestly. Verdict: NOT-YET-IN-CORPUS.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "S-pharma-claims.json",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "hispanic-mortality-paradox-epigenetic-aging",
+    "statement": "The 'Hispanic mortality paradox' (lower mortality than non-Hispanic whites despite worse socioeconomic risk profiles) is paralleled by slower epigenetic aging in Latino populations measured by DNA-methylation clocks.",
+    "claim_type": "outcome",
+    "domain": "C-genetics-omics",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Latino samples show lower epigenetic age acceleration vs other groups in clock analyses",
+    "population": "Population epigenetic-aging analyses (Horvath et al.)",
+    "provenance": {
+      "primary": "Horvath et al. — 'An epigenetic clock analysis of race/ethnicity, sex, and coronary heart disease', Genome Biology 2016",
+      "doi": "10.1186/s13059-016-1030-0",
+      "surfaced_via": "Steve Horvath YT cluster (longevity-sci wave) -> practitioner cross-check"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "Population-specific epigenetic-aging finding; intriguing but rides on epigenetic clocks whose validity as a causal/biological-age surrogate is itself open (conflict-which-clock-is-valid). A new lead, not a settled outcome. Verdict: NOT-YET-IN-CORPUS.",
+    "verdict": "NOT-YET-IN-CORPUS",
+    "promote_to": "C-claims.json",
+    "added_on": "2026-06-29"
+  }
+]

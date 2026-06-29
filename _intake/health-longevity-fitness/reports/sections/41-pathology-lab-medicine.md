@@ -27,16 +27,12 @@
 >   (anemia workup), §22 cardiometabolic (lipids, glucose/HbA1c), §25 oncology (staging/grading,
 >   liquid biopsy), §07 clinical/prevention (screening).
 >
-> **The three honesty rules from the corpus schema** (`06-evidence/SCHEMA.md`), as they bite *here*:
-> 1. **Predictor ≠ lever.** A test that *flags* risk (hsCRP, a tumor marker, a calcium score) is not a
->    *thing to drive to zero*. Treating the readout instead of the disease is the most common lab-driven
->    error.
-> 2. **Cohort ≠ RCT.** "This marker is associated with the disease" (the basis of almost every assay) is
->    not "screening with this marker saves lives." That second claim needs a randomized screening trial,
->    and most markers fail it.
-> 3. **Something beats nothing — but more testing is not more health.** Past a person's actual pre-test
->    probability, additional tests *generate* false positives, cascades, and harm. The discipline is
->    knowing when *not* to test.
+> *The three honesty rules (defined in "Start Here") bite hard here: a test that **flags** risk (hsCRP, a tumor
+> marker, a calcium score) is not a thing to drive to zero — treating the readout instead of the disease is the
+> commonest lab error; "this marker is associated with the disease" (the basis of almost every assay) is not
+> "screening with it saves lives," which needs a randomized screening trial most markers fail; and past a
+> person's actual pre-test probability, more testing **generates** false positives, cascades, and harm — the
+> discipline is knowing when **not** to test.*
 
 ---
 

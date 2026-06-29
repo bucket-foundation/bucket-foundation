@@ -828,3 +828,39 @@ demographic data is contested. Grade the demography and the lifestyle claims sep
 ```json
 {"id":"conflict-telomere-lengthening-benefit-vs-cancer-risk","question":"Is lengthening telomeres / activating telomerase good for you, or is it a cancer-enabling step?","side_a":{"claim":"telomere attrition causes senescence/stem-cell exhaustion, so re-lengthening / telomerase activation restores divisional capacity and slows aging (premise of the telomere-activator market; TA-65)","champions":["Harley","telomerase-activator industry"],"tier":"invitro/animal-mechanism+rct-surrogate"},"side_b":{"claim":"somatic telomerase silencing is a tumour suppressor; telomerase is reactivated in ~85-90% of cancers and Mendelian randomization shows genetically longer telomeres -> higher cancer risk; lengthening trades degenerative risk for cancer risk","champions":["Haycock","Telomeres MR Collaboration","Blackburn","Greider"],"tier":"rct-proxy-MR+cancer-surveys"},"status":"partially-resolved","resolution_notes":"Causal MR evidence makes the cancer trade-off the default; the consumer 'lengthen your telomeres' pitch is refuted as obviously beneficial. Still open: tightly-targeted transient telomerase for defined telomere-diseases (a gated clinical question, not a supplement). Do NOT take telomerase activators for longevity."}
 ```
+
+---
+
+## conflict-carbohydrate-insulin-model — Does the carbohydrate-insulin model explain obesity, or does energy balance?
+*(Wave: practitioner YT cross-check, metabolic & N=1 cluster — see `reports/sections/46-practitioner-claims-vs-evidence.md`)*
+- **side_a (carbohydrate-insulin model / CIM):** obesity is not fundamentally about calories but about
+  **hormonal partitioning** — dietary carbohydrate raises insulin, insulin drives fat storage and suppresses
+  fat oxidation, and the resulting energy sequestration *causes* both increased hunger and reduced energy
+  expenditure. The strong form: "a calorie is not a calorie," refined carbohydrate is uniquely fattening, and
+  calorie counting is the wrong model. Champions: Gary Taubes, Ben Bikman, David Ludwig, Robert Lustig
+  (sugar-specific variant). Tier: `mechanistic` + selected short-term/`metabolic-ward` feeding studies +
+  observational. Surfaced via Taubes (`rSl4Kcx4XY8`, `tpavkD7ot8I`, `DFY0iPmzNqU`) and Bikman (`tGMrgcUeGeM`,
+  `AhRCX3nNhA4`).
+- **side_b (energy balance / first law holds):** fat balance obeys thermodynamics; at **matched calories and
+  protein**, varying carbohydrate vs fat produces no meaningful difference in fat loss, and isocaloric
+  controlled-feeding studies do not show the insulin-driven energy-expenditure or fat-storage advantage the
+  CIM predicts. The CIM's surviving, defensible kernel is about **appetite/overconsumption** (palatable
+  refined/ultra-processed food drives higher intake — Hall's 2019 UPF inpatient RCT, +~500 kcal/day), which is
+  an energy-*intake* claim, not a hormonal-partitioning law. Champions: Kevin Hall, the controlled-feeding /
+  metabolic-ward literature, DIETFITS-class matched-diet trials. Tier: `rct` (controlled-feeding /
+  metabolic-ward) — higher than side_a.
+- **status:** `open-leaning-against-strong-form`. The strong CIM ("insulin partitions fat independent of
+  calories; a calorie is not a calorie") is **weighed against** by the higher-tier isocaloric data. What
+  remains genuinely live: the *appetite/overconsumption* route (refined carbs and UPF promote eating more),
+  which is real and consequential but is a behavioral energy-intake mechanism, not a refutation of energy
+  balance. No standalone CIM claim-id existed before this wave; corpus parity analogues are
+  `tre-adds-nothing-to-cr-nejm`, `adf-not-superior-to-cr`, `tre-treat-null-weight-loss`.
+- **resolution_notes:** No `meta`-tier source rehabilitates the strong CIM; controlled-feeding RCTs are the
+  decisive design and they run against it. Practical: macronutrient ratio matters for adherence, glycemic
+  control, and appetite — not as a thermodynamic loophole. The honest residue of Taubes/Bikman/Lustig is
+  "refined/ultra-processed carbohydrate promotes overconsumption," which the corpus should grade separately
+  (Hall 2019 = promote-candidate; see `02-domains/practitioner-claims.json`).
+
+```json
+{"id":"conflict-carbohydrate-insulin-model","question":"Does the carbohydrate-insulin model (carbs->insulin->fat storage) explain obesity, or does energy balance?","side_a":{"claim":"obesity is driven by insulin-mediated fat partitioning, not calories; 'a calorie is not a calorie'; refined carbs are uniquely fattening","champions":["Taubes","Bikman","Ludwig","Lustig"],"tier":"mechanistic+short-term-feeding+observational"},"side_b":{"claim":"fat balance obeys thermodynamics; at matched calories/protein, varying carb vs fat shows no meaningful fat-loss or energy-expenditure advantage (isocaloric controlled feeding); CIM's surviving kernel is appetite/overconsumption (UPF, Hall 2019 +~500 kcal/d), an energy-intake claim not a partitioning law","champions":["Hall","controlled-feeding/metabolic-ward literature","DIETFITS"],"tier":"rct-controlled-feeding"},"status":"open-leaning-against-strong-form","resolution_notes":"Higher-tier isocaloric RCTs weigh against the strong CIM; no meta rehabilitates it. Live residue is appetite/overconsumption (refined carbs/UPF promote eating more), a behavioral energy-intake mechanism, not a refutation of energy balance. Parity analogues: tre-adds-nothing-to-cr-nejm, adf-not-superior-to-cr, tre-treat-null-weight-loss. Hall 2019 UPF RCT = promote-candidate."}
+```

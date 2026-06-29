@@ -14,17 +14,7 @@ retinoids are among the most rigorously RCT-tested interventions in all of "anti
 the few supplement *wins* with hard endpoints. They get skipped because they are unglamorous, not because they
 are unproven.
 
-Three honesty rules run through every line, same as the rest of the corpus:
-
-1. **Predictor ≠ lever.** Low bone density *predicts* fracture; whether a given drug *prevents* the fracture is
-   a separate, drug-specific question. Periodontitis *associates* with heart disease; treating gums has not
-   been shown to prevent heart attacks. Vision loss *predicts* dementia; restoring vision preventing dementia
-   is not yet proven.
-2. **Cohort ≠ RCT.** "People with gum disease get more dementia" (cohort) is weaker than "scaling lowers HbA1c
-   by ~0.4%" (RCT). Both appear below, always tier-labeled.
-3. **Something beats nothing, and dose/context matters.** Vitamin D and calcium do little in the already-replete
-   but matter in deficiency; sunscreen's benefit is real but the *sun itself* has a two-sided ledger (vitamin D,
-   mood, circadian anchoring — cross-ref Domain I and the exposures map).
+*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 **One-line verdict up front:** the four best-evidenced, most-skipped levers in this section are **(1) daily
 broad-spectrum sunscreen** (photoaging + skin-cancer RCT evidence), **(2) topical retinoids** (the single

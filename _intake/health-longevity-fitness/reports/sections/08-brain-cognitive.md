@@ -6,18 +6,7 @@
 > **Companion data:** `02-domains/Q-brain-claims.json` (this section's graded claims). Cross-references
 > Domain I (`02-domains/I-sleep-circadian.md` — sleep / glymphatic / amyloid clearance) and Domain M
 > (`02-domains/M-psychosocial-determinants.md` — loneliness, purpose, social connection).
-> **Three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Predictor ≠ lever.** A risk factor that *predicts* dementia in a population is not automatically a
->    thing you can change in yourself to *prevent* it. A population-attributable fraction (PAF) is a
->    population-counterfactual statistic, not a personal guarantee.
-> 2. **Cohort ≠ RCT.** "Associated with lower dementia risk" (observational) and "prevents dementia"
->    (randomized) are different tiers and are never merged. Almost the entire dementia-prevention field
->    lives at the observational tier; the handful of RCTs (FINGER, ACHIEVE, MIND-diet) are where the
->    honest action is — and they are more modest than the headlines.
-> 3. **Something beats nothing.** The most defensible message in this whole section is unglamorous:
->    the same things that protect the heart protect the brain (control blood pressure, LDL, glucose;
->    move; don't smoke; stay connected; protect your hearing and vision). There is no brain supplement,
->    no game, and as of 2026 no drug that comes close to that bundle.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 This section answers the question the longevity-and-biohacking world is strangely quiet about: **what
 actually protects the brain as it ages, and what is being sold to you that does not?** The asymmetry

@@ -10,18 +10,7 @@
 > response), and **autonomic balance** (vagal/sympathetic tone, read out as HRV). Get those four
 > moving in the right direction and most of the "recovery stack" is already covered.
 >
-> **Three honesty rules govern every recommendation here** (carried from the domain grading):
-> 1. **Predictor ≠ lever.** Low HRV *predicts* worse cardiovascular outcomes
->    (`hrv-autonomic-recovery-biomarker`); *raising the HRV number* is not itself a validated health
->    outcome. We move the systems HRV reveals, not the readout.
-> 2. **Cohort ≠ RCT.** The two biggest results in this whole section — sauna→mortality
->    (`sauna-frequency-mortality-kihd`) and social connection→mortality
->    (`social-relationships-mortality-meta`) — are *observational*. The direction is strong and
->    replicated; the magnitudes are inflated by healthy-user bias and reverse causation.
-> 3. **Something beats nothing.** Most of the durable wins here are *floor-clearing*, not optimization:
->    going from chaotic sleep to regular sleep, from zero to *some* social connection, from
->    mouth-breathing-all-night to nasal. The marginal "stack" past that is real but smaller and noisier
->    than it's sold.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 ---
 

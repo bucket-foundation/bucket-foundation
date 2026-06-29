@@ -12,19 +12,7 @@
 > neurotransmitters-aren't-feelings, the dopamine-detox debunk, the circuit-not-chemical model of mood).
 > Read those first for the mechanism layer; this section is the **conditions-and-treatments** layer.
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Mechanism ≠ outcome.** "Depression involves serotonin signalling" is a mechanism claim; "an SSRI
->    will make *you* better" is an outcome claim. They are graded separately. Most psychiatric hype, and
->    most psychiatric despair, lives in the gap between them. A drug can work without the folk-mechanism
->    being true (antidepressants), and a folk-mechanism can be false without the treatment being useless.
-> 2. **Average ≠ individual, and statistical ≠ clinical.** Nearly every number here is an *average* effect
->    in a *trial population*. A drug-vs-placebo difference can be statistically real and still small for
->    the average person — while being life-saving for a subgroup. Severity changes everything: the same
->    treatment that barely beats placebo in mild illness can be decisively effective in severe illness.
-> 3. **Something beats nothing, and the unglamorous bundle is load-bearing.** Sleep, exercise, social
->    connection, and not drinking your way through it are not a substitute for treating serious mental
->    illness — but they are real, evidence-backed levers, they are free, and they are under-used precisely
->    because no one profits from prescribing them. They are the floor, not the ceiling.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 > **A word on tone.** This is the one section where getting the evidence-grading right has a body count.
 > Underselling treatment talks people out of care that would help them; overselling it sets up

@@ -13,7 +13,9 @@
       "doi": "10.1016/j.cell.2015.11.001",
       "surfaced_via": "OpenAlex direct-DOI (Eran Segal, named in brief)"
     },
-    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "conflicts_with": [
+      "conflict-cgm-healthy-utility"
+    ],
     "canon_link": "",
     "confidence_notes": "Establishes that glycemic response is individualized (real). Does NOT establish that acting on CGM data improves hard health outcomes in non-diabetics. Mechanism/predictive, not an outcome trial. Commercial conflict (DayTwo) downstream of this work.",
     "added_on": "2026-06-27"
@@ -32,7 +34,9 @@
       "doi": "10.1371/journal.pbio.2005143",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "conflicts_with": [
+      "conflict-cgm-healthy-utility"
+    ],
     "canon_link": "",
     "confidence_notes": "Descriptive cross-sectional (n=57). Demonstrates variability exists; says nothing about whether reacting on it changes morbidity/mortality. The honest gap: no RCT links non-diabetic CGM use to improved hard outcomes.",
     "added_on": "2026-06-27"
@@ -51,7 +55,9 @@
       "doi": "",
       "surfaced_via": "Gap analysis across CGM literature"
     },
-    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "conflicts_with": [
+      "conflict-cgm-healthy-utility"
+    ],
     "canon_link": "",
     "confidence_notes": "Graded honestly per brief: CGM is diagnostically real and useful in diabetes; its wellness use in healthy people is biomarker-driven, not outcome-proven. Tagged theoretical (absence-of-evidence) rather than given a fabricated supportive citation.",
     "added_on": "2026-06-27"
@@ -108,7 +114,9 @@
       "doi": "10.1056/NEJMra1905136",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "conflicts_with": [
+      "conflict-tre-efficacy-vs-cr"
+    ],
     "canon_link": "bucket-canon/05-biophysics/ (ketone bodies, metabolic flexibility)",
     "confidence_notes": "MECHANISM/review by fasting proponents — frames the rationale, not proof of clinical superiority. The mechanism (metabolic switching) is real; whether IF beats simple calorie restriction in humans is the open conflict.",
     "added_on": "2026-06-27"
@@ -127,7 +135,9 @@
       "doi": "10.1016/j.cmet.2018.04.010",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "conflicts_with": [
+      "conflict-tre-efficacy-vs-cr"
+    ],
     "canon_link": "",
     "confidence_notes": "Best mechanistic human evidence that meal TIMING (circadian alignment) helps independent of calories — but n=8, men only, prediabetic, 5 weeks, surrogate endpoints. Early-window TRF is not the same as the popular skip-breakfast late 16:8 (see Lowe TREAT). Bridges Domain I (circadian).",
     "added_on": "2026-06-27"
@@ -146,7 +156,9 @@
       "doi": "10.1001/jamainternmed.2020.4153",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "conflicts_with": [
+      "conflict-tre-efficacy-vs-cr"
+    ],
     "canon_link": "",
     "confidence_notes": "Skeptic anchor: prescriptive late 16:8 without calorie control did little and may cost lean mass. Contrast with Sutton eTRF (early window, isocaloric, mechanistic gains). The window TIMING and calorie control matter more than 'fasting' per se.",
     "added_on": "2026-06-27"
@@ -165,7 +177,9 @@
       "doi": "10.1056/NEJMoa2114833",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "conflicts_with": [
+      "conflict-tre-efficacy-vs-cr"
+    ],
     "canon_link": "",
     "confidence_notes": "Strongest test isolating timing from calories: once calories are matched, the eating window added no benefit. Supports the view that most real-world TRE benefit IS calorie restriction by another name.",
     "added_on": "2026-06-27"
@@ -184,7 +198,9 @@
       "doi": "10.1001/jamainternmed.2017.0936",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "conflicts_with": [
+      "conflict-tre-efficacy-vs-cr"
+    ],
     "canon_link": "",
     "confidence_notes": "Adherence is the hidden variable: the more dramatic the fasting protocol, the worse the adherence, erasing any theoretical edge. Notably from Varady's own lab (a fasting researcher) — strengthens the null.",
     "added_on": "2026-06-27"
@@ -279,7 +295,9 @@
       "doi": "10.1016/j.cmet.2014.02.006",
       "surfaced_via": "OpenAlex direct-DOI (the central protein/mTOR-conflict paper)"
     },
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "bucket-canon/05-biophysics/ (IGF-1/mTOR nutrient sensing)",
     "confidence_notes": "THE paper Longo's side rests on. Cohort (observational, FFQ-based, reverse-causation risk) + mechanistic mouse data. Crucially it is ITSELF age-stratified — the 'high protein is bad' headline omits that the paper found protein PROTECTIVE in the elderly. This age-dependence is the key to the whole conflict.",
     "added_on": "2026-06-27"
@@ -298,7 +316,9 @@
       "doi": "10.1016/j.cmet.2014.02.009",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "bucket-canon/05-biophysics/ (mTOR, FGF21, BCAA sensing)",
     "confidence_notes": "ANIMAL — the strongest controlled support for 'protein restriction extends lifespan via mTOR.' Mouse lifespan does not equal human outcome, and the low-protein optimum collides directly with the sarcopenia-prevention evidence in older humans (the conflict).",
     "added_on": "2026-06-27"
@@ -317,7 +337,9 @@
       "doi": "10.1126/scitranslmed.3001845",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "bucket-canon/05-biophysics/ (GH/IGF-1 axis)",
     "confidence_notes": "Rare-population natural experiment supporting the low-IGF-1 side. Caveat: Laron individuals do NOT live longer on average (deaths from accidents, alcohol, untreated illness); the protection is disease-specific, not a demonstrated lifespan extension — a nuance often dropped.",
     "added_on": "2026-06-27"
@@ -336,7 +358,9 @@
       "doi": "10.1016/j.jamda.2013.05.021",
       "surfaced_via": "OpenAlex direct-DOI (Attia/Phillips side)"
     },
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "",
     "confidence_notes": "Consensus/guideline (graded meta-of-evidence) — the elderly-protein side of the conflict. Directly contradicts the low-protein-longevity prescription FOR OLDER ADULTS, reconciling with Levine 2014's own 65+ reversal. Bridges Domain E (sarcopenia).",
     "added_on": "2026-06-27"
@@ -355,10 +379,14 @@
       "doi": "10.1136/bjsports-2017-097608",
       "surfaced_via": "OpenAlex direct-DOI (Phillips, named in brief)"
     },
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "",
     "confidence_notes": "META-tier — Phillips' core evidence that protein (~1.6 g/kg) builds functional muscle. Functional/body-comp outcomes, not mortality. The ~1.6 g/kg optimum for muscle is well ABOVE the low-protein-longevity prescription — the practical heart of the conflict. Bridges Domain E.",
-    "added_on": "2026-06-27"
+    "added_on": "2026-06-27",
+    "duplicate_of": "protein-resistance-training-plateau-1.6",
+    "dedup_note": "Same finding as canonical claim 'protein-resistance-training-plateau-1.6' (Protein augments RT, ~1.6 g/kg plateau); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "linoleic-acid-rct-no-chd-mortality-benefit",
@@ -374,7 +402,9 @@
       "doi": "10.1136/bmj.i1246",
       "surfaced_via": "OpenAlex direct-DOI (seed-oils conflict)"
     },
-    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "conflicts_with": [
+      "conflict-seed-oils-linoleic-acid"
+    ],
     "canon_link": "",
     "confidence_notes": "Old trial (corn-oil margarine, high trans-fat era), incomplete recovered data, surrogate diet-heart focus — LOW rigor by modern standards despite RCT label. The seed-oils-skeptic camp leans heavily on it; counterweighted by Mozaffarian meta and Marklund biomarker cohorts (opposite direction). Grade: contested, low-certainty.",
     "added_on": "2026-06-27"
@@ -393,7 +423,9 @@
       "doi": "10.1371/journal.pmed.1000252",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "conflicts_with": [
+      "conflict-seed-oils-linoleic-acid"
+    ],
     "canon_link": "",
     "confidence_notes": "META of RCTs — the mainstream cardiology side. CHD events (surrogate-ish, hard-ish), not all-cause mortality. Directly opposes the seed-oils-bad narrative. Note residual confounding from concurrent trans-fat/other changes in older trials.",
     "added_on": "2026-06-27"
@@ -412,7 +444,9 @@
       "doi": "10.1161/CIRCULATIONAHA.118.038908",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "conflicts_with": [
+      "conflict-seed-oils-linoleic-acid"
+    ],
     "canon_link": "",
     "confidence_notes": "Biomarker cohorts (objective intake measure, sidesteps FFQ error) strongly oppose the seed-oils-toxic claim. Still observational. Together with Mozaffarian and Hooper/Cochrane, the weight of higher-tier evidence runs AGAINST the popular anti-seed-oil position.",
     "added_on": "2026-06-27"
@@ -431,7 +465,9 @@
       "doi": "10.1002/14651858.CD011094.pub4",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "conflicts_with": [
+      "conflict-seed-oils-linoleic-acid"
+    ],
     "canon_link": "",
     "confidence_notes": "The most honest top-tier read: neither clear benefit nor harm; the data cannot support the strong claims of EITHER camp on hard endpoints. This is the 'we don't actually know' anchor that punctures the polarized certainty on both sides.",
     "added_on": "2026-06-27"
@@ -450,7 +486,9 @@
       "doi": "10.1136/openhrt-2018-000898",
       "surfaced_via": "OpenAlex direct-DOI"
     },
-    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "conflicts_with": [
+      "conflict-seed-oils-linoleic-acid"
+    ],
     "canon_link": "",
     "confidence_notes": "HYPOTHESIS, explicitly graded as such per brief (seed-oils debate is polarized and low-rigor). Plausible mechanism, but contradicted by the biomarker-cohort and meta evidence above. The popular 'seed oils' movement cites this class of narrative review as if it were outcome proof — it is not.",
     "added_on": "2026-06-27"

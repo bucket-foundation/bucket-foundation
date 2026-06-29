@@ -123,7 +123,9 @@
     },
     "conflicts_with": [],
     "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
-    "confidence_notes": "This is the strongest pro-CGM-in-healthy result and it is genuinely interesting MECHANISTICALLY (glycemic responses are personal; population averages hide individual spikes). But it is a phenotyping/variability finding, NOT evidence that knowing your glucotype, or flattening spikes, changes any hard outcome. It establishes 'the signal exists', not 'the signal is actionable'."
+    "confidence_notes": "This is the strongest pro-CGM-in-healthy result and it is genuinely interesting MECHANISTICALLY (glycemic responses are personal; population averages hide individual spikes). But it is a phenotyping/variability finding, NOT evidence that knowing your glucotype, or flattening spikes, changes any hard outcome. It establishes 'the signal exists', not 'the signal is actionable'.",
+    "duplicate_of": "cgm-glucotypes-nondiabetic-excursions",
+    "dedup_note": "Same finding as canonical claim 'cgm-glucotypes-nondiabetic-excursions' (Glucotypes / glycemic variability in CGM non-diabetics); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "cgm-healthy-no-outcome-rct-restated",
@@ -139,7 +141,9 @@
       "doi": "10.1038/s41746-025-01430-7",
       "surfaced_via": "Europe PMC (Domain L2 CGM-in-healthy walk)"
     },
-    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "conflicts_with": [
+      "conflict-cgm-healthy-utility"
+    ],
     "canon_link": null,
     "confidence_notes": "Carries forward the Wave-1 honest grade unchanged: real tool in diabetes (time-in-range is consensus), oversold gadget for the worried-well. Newer 2025 digital-health evidence does not change the verdict because it cannot separate the sensor from the behavior-change wrapper. Glucotype work (above) shows the variability is real; this claim is that the UTILITY of acting on it is still unproven. Predictor/variable != lever."
   },

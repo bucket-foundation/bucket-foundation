@@ -35,13 +35,18 @@
 
 ---
 
-## 40.0 — The three honesty rules, applied to imaging
+## 40.0 — How the three honesty rules cut for imaging
 
-| Rule (from `SCHEMA.md`) | How it bites here |
-|---|---|
-| **predictor ≠ lever** | An image *finds* an abnormality; it does not, by itself, change a death. A 4 mm lung nodule, a 1 cm adrenal mass, a disc bulge on a back-pain MRI are *predictors* (mostly of nothing). The intervention that follows is where benefit **or** harm is created. Imaging's harm is almost entirely **downstream of the finding** — the workup, not the photons. |
-| **cohort ≠ RCT** | The radiation–cancer link at CT-scale doses is **modelled and observational** (LNT extrapolation + childhood-CT cohorts), *not* RCT-proven — and that uncertainty must be stated, not hidden in either direction. Conversely, a few imaging-*guided* therapies (mechanical thrombectomy for stroke) and one screening AI (MASAI) are **RCT-backed**, and earn the stronger tier. |
-| **something-beats-nothing — but more is not better** | The same scanner that saves a life in a symptomatic patient manufactures a problem in an asymptomatic one. The value of imaging is **entirely conditional on the pre-test question.** "More imaging = better care" is the single most expensive false belief in the field. |
+The rules (defined in "Start Here") bite hard in imaging. **Predictor ≠ lever:** an image *finds* an abnormality
+but does not by itself change a death — a 4 mm lung nodule, a 1 cm adrenal mass, a disc bulge on a back-pain MRI
+are predictors (mostly of nothing), and the harm is almost entirely **downstream of the finding** (the workup,
+not the photons). **Cohort ≠ RCT:** the radiation–cancer link at CT-scale doses is *modelled and observational*
+(LNT extrapolation + childhood-CT cohorts), not RCT-proven, and that uncertainty must be stated in either
+direction — whereas a few imaging-*guided* therapies (mechanical thrombectomy for stroke) and one screening AI
+(MASAI) **are** RCT-backed and earn the stronger tier. **Something beats nothing, but more is not better:** the
+same scanner that saves a symptomatic patient manufactures a problem in an asymptomatic one — imaging's value is
+entirely conditional on the pre-test question, and "more imaging = better care" is the most expensive false
+belief in the field.
 
 ---
 

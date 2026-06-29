@@ -27,9 +27,8 @@
 
 The foundations chapter argued (§2.7) that **bioenergetic capacity is the master variable** of the
 whole manual — that exercise, fasting, cold, aging, and most of metabolic disease all reach *up* to
-one object, the proton-motive force across the mitochondrial inner membrane. That argument was made at
-the level of the body. This chapter makes it at the level of the organelle, and the move buys three
-things you cannot get from the foundations summary alone:
+one object, the proton-motive force across the mitochondrial inner membrane. That argument was made at the body
+level; making it at the organelle level buys three things the foundations summary can't:
 
 1. **A reason the convergence is literal, not poetic.** When five domains "all act through the
    mitochondrion," they are not acting through a metaphor for health — they are acting on a specific,
@@ -282,9 +281,9 @@ blunting it with antioxidants blunts biogenesis itself.
 ## 37.5 — ROS as signals: the most important correction in the chapter
 
 The foundations chapter introduced this (§2.6) and the mechanism bridge formalized it (rows 14–15,
-§12.3.8). Because it is the conceptual hinge of mitochondrial *health* — the difference between
+§12.3.8). It is the conceptual hinge of mitochondrial *health* — the difference between
 "protect your mitochondria from damage" (mostly wrong) and "let your mitochondria signal, then repair"
-(right) — it gets its full statement here.
+(right).
 
 ### 37.5.1 — The free-radical theory, and its honest update
 
@@ -425,7 +424,7 @@ adjunct, and at worst it cancels the exercise.**
 ## 37.8 — The supplements, graded honestly
 
 Every product below borrows the prestige of the chemiosmotic law. Here is the actual trial data,
-graded on the *outcome* axis. The summary verdict table first, then the honest detail.
+graded on the *outcome* axis.
 
 ### Supplement verdict table
 

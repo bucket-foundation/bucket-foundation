@@ -35,7 +35,9 @@
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "The rigorous version of 'chronic stress damages you'. Bridge from psychosocial stress (Domain M) to endocrine aging. Honest limit: allostatic load is a measured-burden correlate, not a single lever you lower with a product.",
-    "added_on": "2026-06-28"
+    "added_on": "2026-06-28",
+    "duplicate_of": "allostatic-load-framework",
+    "dedup_note": "Same finding as canonical claim 'allostatic-load-framework' (Allostatic-load framework); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "testosterone-declines-gradually-with-age",
@@ -168,7 +170,9 @@
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Human echo of long-lived GH/IGF-1-deficient dwarf mice (Bartke, Domain C) and daf-2 worms (Kenyon, Domain B). Small cohort, rare genotype. Core of the growth-longevity tradeoff: less GH/IGF-1 signaling = less cancer/diabetes (mortality from non-aging causes, e.g. accidents, complicates lifespan readout).",
-    "added_on": "2026-06-28"
+    "added_on": "2026-06-28",
+    "duplicate_of": "laron-ghr-deficiency-cancer-diabetes-protection",
+    "dedup_note": "Same finding as canonical claim 'laron-ghr-deficiency-cancer-diabetes-protection' (Laron/GHR-deficiency cancer-diabetes protection); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "low-igf1-predicts-survival-exceptional-longevity",
@@ -184,7 +188,9 @@
       "doi": "10.1111/acel.12213",
       "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
     },
-    "conflicts_with": ["igf1-u-shaped-mortality"],
+    "conflicts_with": [
+      "igf1-u-shaped-mortality"
+    ],
     "canon_link": "",
     "confidence_notes": "Tempers 'higher IGF-1 is better'. Apparent tension with the IGF-1 U-shape (Domain L) is resolved by context: very low IGF-1 is also bad (frailty); the longevity-favorable region is NOT 'youthful-high'. IGF-1 is a context-dependent dial, not a minimize- or maximize-target.",
     "added_on": "2026-06-28"
@@ -263,7 +269,9 @@
     "conflicts_with": [],
     "canon_link": "",
     "confidence_notes": "Vitamin D is a secosteroid HORMONE (nuclear VDR, transcription factor). Correct DOCUMENTED deficiency (real win for bone/elderly); do not mega-dose past repletion chasing non-skeletal outcomes. Low vitamin D in observational data is largely a marker of poor health/obesity/inactivity (reverse causation). Dosing detail in supplements section 03.",
-    "added_on": "2026-06-28"
+    "added_on": "2026-06-28",
+    "duplicate_of": "vitamin-d-null-in-replete-VITAL",
+    "dedup_note": "Same finding as canonical claim 'vitamin-d-null-in-replete-VITAL' (Vitamin D null in the replete); retained for chapter coverage, not counted as an independent claim."
   },
   {
     "id": "endocrine-negative-feedback-architecture",

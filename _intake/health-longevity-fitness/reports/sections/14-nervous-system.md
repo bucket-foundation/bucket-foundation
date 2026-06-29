@@ -14,15 +14,7 @@
 > *foundations* (`bucket-canon/05-biophysics/` — bioelectricity, ion gradients, Hodgkin–Huxley
 > excitability), not outcomes.
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied
-> throughout:
-> 1. **Predictor ≠ lever.** "HRV predicts mortality" is not "raise your HRV to live longer."
->    "Cognitive reserve correlates with education" is not "do crosswords to prevent dementia."
-> 2. **Cohort ≠ RCT.** A mechanism (BDNF rises with exercise; a synapse strengthens with use) is
->    not an outcome (you rewired your brain to be better). The hype lives in exactly that gap.
-> 3. **Something beats nothing.** Where the honest answer is unglamorous — sleep, movement, social
->    contact, treating the vascular risk factors, and for chronic pain a graded return to activity
->    — that *is* the answer, and it outperforms almost everything being sold.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 ---
 

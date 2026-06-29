@@ -16,9 +16,7 @@
 > | **contested** | `frontier-contested` / `fringe-to-canon` — real ideas, unproven or disputed claims | Interesting frontier; treat as hypothesis, not protocol |
 > | **practitioner (N=1)** | `practitioner-n1` — method-builders, self-experimenters | Useful *what people try*; anecdotal tier, no causal inference |
 >
-> **Three honesty rules** (from `00-map/01-STATE-OF-THE-FIELD.md`) govern this whole library:
-> **(1) predictor ≠ lever**; **(2) cohort ≠ RCT**; **(3) "something beats nothing" is the most robust
-> signal in the field.** Cross-references: people → `01-people/figures.json`; conflicts →
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."* Cross-references: people → `01-people/figures.json`; conflicts →
 > `06-evidence/CONFLICTS-REGISTER.md`; orgs/trials → `05-labs/LABS.md`; verified DOIs →
 > `02-domains/*-claims.json`.
 

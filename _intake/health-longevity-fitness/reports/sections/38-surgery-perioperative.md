@@ -34,22 +34,7 @@
 >   named as a **subspecialty**.
 > - **Section 11 / 17** (body systems / organ atlas) — the **anatomy** the surgeon operates on.
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Mechanism ≠ outcome.** "This stent restores blood flow through the narrowed artery" is a *mechanism*
->    claim, and it is true. "This stent will make you live longer / stop your stable angina better than
->    pills" is an *outcome* claim — and for **stable** coronary disease the best blinded trials say it does
->    not. The plumbing improves; the patient-important outcome often does not. Most of the over-use in
->    surgery lives in exactly that gap.
-> 2. **Predictor ≠ lever, and average ≠ individual.** Fitness *predicts* who survives surgery well
->    (Section 02) — that is a strong, repeated signal. Whether *raising* fitness before an operation
->    (prehabilitation) *causes* better outcomes is a separate, weaker, still-maturing question. Hold them
->    apart. And a procedure with a fine average result can still be the wrong call for *this* body.
-> 3. **Something beats nothing — and the something is sometimes a scalpel and sometimes a sham.** Cataract
->    surgery, hip and knee replacement for end-stage arthritis, appendectomy for appendicitis, and
->    bariatric surgery for severe obesity-with-diabetes are among the **highest-value interventions in all
->    of medicine** — they clear sham controls and external scepticism easily. Arthroscopy for knee OA,
->    vertebroplasty for an osteoporotic fracture, and a stent for stable angina largely **did not** clear
->    a placebo operation. The same word — "surgery" — covers both. Grade each one on its own evidence.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 > **A word on tone.** Surgery is where medicine is at its most heroic *and* at its most over-confident, in
 > the same hospital, often in the same week. A transplant team will give someone a second life down the

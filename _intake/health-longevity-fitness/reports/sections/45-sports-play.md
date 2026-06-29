@@ -15,20 +15,7 @@ energy. They are the ones that are **social, skillful, and intermittently intens
 150 min/week" and stops there has thrown away the single most actionable insight in the data — that *what you
 play, and with whom*, is itself a dose.
 
-Three honesty rules govern everything below — the same rules the rest of the corpus runs on (`06-evidence/SCHEMA.md`):
-
-1. **Predictor ≠ lever.** Almost all of the headline numbers here are **cohort** (observational). "Tennis players
-   live ~9.7 years longer than sedentary people" is an *association* in a population that self-selected into
-   tennis — wealthier, healthier, more social, with the knees to play it. It is **not** a prescription that says
-   "take up tennis, bank 9.7 years." Healthy-user and reverse-causation confounding is the governing caveat.
-   We never launder a `cohort` association into a demonstrated intervention effect.
-2. **Something beats nothing — and this is the one place that rule is nearly unconditional.** The gap between
-   *sedentary* and *any sport you'll actually keep doing* is the largest, cheapest, best-evidenced gap in this
-   whole corpus. The arguments below about *which* sport is "best" are second-order. The first-order fact is:
-   adherence is the master variable, and **a sport you love beats a superior protocol you quit.**
-3. **The benefit and the harm both live in the same place.** The collision, the cutting, the overhead serve, the
-   takedown — the things that make a sport *engaging* are frequently the things that injure you. We grade the
-   upside and the injury profile in the same breath, because honest sport selection is a trade, not a free lunch.
+*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." One caveat is specific to this section: the benefit and the harm live in the same place — the collision, the cutting, the takedown that make a sport engaging are frequently the things that injure you, so the upside and the injury profile are graded in the same breath.*
 
 ---
 

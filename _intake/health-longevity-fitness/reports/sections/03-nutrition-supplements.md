@@ -5,15 +5,7 @@
 > (`_C2-SUMMARY.md`, microbiome / fiber). Read those for the diet-pattern and microbiome detail; this file owns
 > **supplements** + the practical **protein / pattern / fasting** numbers.
 
-This section runs on three honesty rules, applied to every line:
-
-1. **Predictor ≠ lever.** A blood marker that *tracks* with health (omega-3 index, vitamin D level) is not proof
-   that *raising it with a pill* changes outcomes. Most supplement marketing lives in this gap.
-2. **Cohort ≠ RCT.** "People who eat more fiber live longer" (association) is a weaker claim than "fiber lowers
-   LDL by X" (randomized). Both appear below — always tier-labeled.
-3. **Something beats nothing, and dose matters.** Most real supplement effects are (a) *only* present when you're
-   deficient/inadequate, or (b) dose- and adherence-dependent. A correct dose of a real supplement does little if
-   the diet underneath it is broken; a megadose of a hyped one does nothing but cost money (or cause harm).
+*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
 **The one-line verdict up front:** of everything sold as a longevity/fitness supplement, only a short list has
 real human evidence — **creatine, omega-3 (EPA/DHA), vitamin D *in deficiency*, magnesium *in inadequacy*,

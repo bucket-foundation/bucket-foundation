@@ -17,21 +17,7 @@
 >   pathway, and the "dopamine detox" debunk. Read 14 for how reward signalling actually works; this
 >   section is the **disease-and-treatment** layer built on top of it.
 >
-> **The three honesty rules carried from the corpus schema** (`06-evidence/SCHEMA.md`), applied throughout:
-> 1. **Mechanism ≠ outcome.** "Drug X floods the nucleus accumbens with dopamine" is a mechanism claim;
->    "you are powerless and can never use again" is an outcome claim dressed as biology. The mechanism is
->    real; the fatalistic conclusion does not follow from it. Most of both the *disease* overclaim and the
->    *willpower* overclaim live in that gap.
-> 2. **Average ≠ individual, and dependence ≠ addiction.** Most people who use most drugs do **not** become
->    addicted; most people who *do* become addicted **remit**, often without treatment. Those are population
->    facts that say nothing about whether *this* person in front of you can stop unaided — and physical
->    **dependence** (tolerance + withdrawal, which a hospital patient on opioids develops) is **not the same
->    thing** as **addiction** (compulsive use despite harm). Conflating them is the single most common error
->    in the whole field.
-> 3. **Something beats nothing, and the unglamorous, evidence-based thing is load-bearing.** For opioids,
->    a daily medication (methadone/buprenorphine) roughly **halves death**; for alcohol, two cheap generic
->    pills modestly but really help; for tobacco, the boring combination of a drug plus support triples
->    quit rates. None of it is dramatic. All of it works better than the dramatic things.
+> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." Two domain-specific corollaries run through this section: physical **dependence** (tolerance + withdrawal) is **not** **addiction** (compulsive use despite harm), and most people who use most drugs do not become addicted while most who do eventually remit.*
 
 > **A word on tone.** This is the section where the framing has a body count and a prison population
 > attached. Call it pure moral weakness and you justify punishing sick people and you ignore that
