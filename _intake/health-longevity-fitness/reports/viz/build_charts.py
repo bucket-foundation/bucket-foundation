@@ -88,3 +88,29 @@ if __name__=="__main__":
     claims_by_tier(); print("1 ok")
     copenhagen();     print("2 ok")
     vo2max();         print("3 ok")
+
+def lancet14_dementia():
+    # Lancet Commission 2024 — 14 modifiable risk factors, population-attributable fractions (~45%)
+    data=[("Hearing loss",7,"mid"),("High LDL cholesterol",7,"mid"),("Less education",5,"early"),
+          ("Social isolation",5,"late"),("Depression",3,"mid"),("Air pollution",3,"late"),
+          ("Traumatic brain injury",3,"mid"),("Physical inactivity",2,"mid"),("Diabetes",2,"mid"),
+          ("Smoking",2,"mid"),("Hypertension",2,"mid"),("Untreated vision loss",2,"late"),
+          ("Obesity",1,"mid"),("Excess alcohol",1,"mid")]
+    stage_c={"early":"#3a6ea5","mid":"#b08d3a","late":"#1d6b2e"}
+    labels=[d[0] for d in data]; vals=[d[1] for d in data]; cols=[stage_c[d[2]] for d in data]
+    fig,ax=ds.new_fig(8.8,6.0); yp=list(range(len(labels)))[::-1]
+    ax.barh(yp,vals,color=cols,height=0.74,edgecolor=ds.PAPER,linewidth=1.1)
+    ax.set_yticks(yp); ax.set_yticklabels(labels,fontsize=10.5)
+    for y,v in zip(yp,vals): ax.text(v+0.12,y,f"{v}%",va="center",ha="left",fontsize=10,color=ds.INK,fontweight="bold")
+    ax.set_xlim(0,8); ax.grid(axis="y",visible=False); ax.set_xlabel("population-attributable fraction (%)",fontsize=10,color=ds.MUT)
+    # legend for life-stage
+    import matplotlib.patches as mp
+    handles=[mp.Patch(color=stage_c[k],label=l) for k,l in [("early","early life"),("mid","midlife"),("late","later life")]]
+    ax.legend(handles=handles,loc="lower right",fontsize=9,title="life stage",title_fontsize=9)
+    ds.title(ax,"Brain & Dementia","~45% of dementia is potentially preventable",
+             "The 14 modifiable risk factors — Lancet Commission 2024. Addressing them could prevent or delay nearly half of cases.")
+    ds.footer(ax,"Livingston et al., Lancet 2024 Commission on dementia prevention","lancet-2024-dementia-modifiable",tier="meta")
+    ds.save(fig,f"{FIG}/09-lancet14-dementia.png",left=0.205)
+
+if "__main__" in __name__:
+    lancet14_dementia(); print("lancet ok")
