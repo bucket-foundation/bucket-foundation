@@ -244,17 +244,26 @@
     var targets = deckLangs.filter(function (l) {
       return l !== "en" && b.langCoverage(l) >= COVER_MIN;
     }).sort(function (x, y) { return langName(x).localeCompare(langName(y)); });
-    // known/source langs (guaranteed meta languages)
+    // known/source langs MUST be guaranteed meta languages (every atom anchors them),
+    // sorted by display name; English first if present so it's the natural default.
     var metaLangs = (e.meta && e.meta.languages) || ["en"];
+    var knownLangs = metaLangs.slice().sort(function (x, y) {
+      return langName(x).localeCompare(langName(y));
+    });
+    // bkt-4vq: BOTH sections are multi-select. `known` = ordered array of source langs
+    // (first = primaryKnown); `learn` = ordered array of target langs (first = active).
     var state = {
       step: 0,
-      target: null,
-      known: metaLangs.indexOf("en") >= 0 ? "en" : metaLangs[0],
+      known: metaLangs.indexOf("en") >= 0 ? ["en"] : (metaLangs.length ? [metaLangs[0]] : ["en"]),
+      learn: [],
       reason: null,
       placement: null,
       goal: 3,
     };
     var STEPS = ["pick", "reason", "placement", "goal"];
+    // the active (first-chosen) target — the course the reason/placement/goal apply to,
+    // and the one we drop into after onboarding. Other targets seed at 0 progress.
+    function activeTarget() { return state.learn[0] || null; }
 
     var wrap = el("div", "screen duo duo-onboard");
     var bar = el("div", "duo-ob-bar");
@@ -296,35 +305,104 @@
       if (step === "goal") return renderGoal();
     }
 
-    /* step 0 — "I want to learn ___" (the 17 langs, flags, learner counts vibe) */
+    /* step 0 — multi-select BOTH sections (bkt-4vq):
+     *   "I already know ___"  → toggle several source langs (first = primaryKnown)
+     *   "I want to learn ___" → toggle several target langs (each seeds a course)
+     * A language can't be in both lists at once: picking it on one side removes it from
+     * the other (and known-side languages are greyed/disabled on the learn side that
+     * already know them, since you can't learn the language you anchor from). */
+    function pickContLabel() {
+      var n = state.learn.length;
+      if (n <= 1) return "CONTINUE";
+      return "START " + n + " COURSES →";
+    }
+    function pickReady() { return state.known.length > 0 && state.learn.length > 0; }
+    function refreshPickCont() {
+      // when exactly one target → flow continues to reason/placement/goal (CONTINUE);
+      // the label still reflects the count once >1 are chosen.
+      setCont(pickReady(), pickContLabel(), goNext);
+    }
+    function toggleIn(arr, l) {
+      var i = arr.indexOf(l);
+      if (i >= 0) arr.splice(i, 1); else arr.push(l);
+    }
     function renderPick() {
-      body.appendChild(el("h1", "duo-ob-h1", "I want to learn…"));
-      var grid = el("div", "duo-lang-grid");
-      targets.forEach(function (l) {
-        var card = el("button", "duo-lang-card" + (state.target === l ? " on" : ""));
+      body.appendChild(el("h1", "duo-ob-h1", "Set up your languages"));
+      body.appendChild(el("p", "duo-ob-lede",
+        "Pick the languages you know and the ones you want to learn — you can learn several at once."));
+
+      // -- "I already know" (source / multi-select) --
+      body.appendChild(el("h2", "duo-ob-h2", "I already know…"));
+      var knownGrid = el("div", "duo-lang-grid");
+      // -- "I want to learn" (target / multi-select) --
+      var learnGrid = el("div", "duo-lang-grid");
+
+      function paint() {
+        knownGrid.querySelectorAll(".duo-lang-card").forEach(function (c) {
+          var l = c.dataset.l;
+          c.classList.toggle("on", state.known.indexOf(l) >= 0);
+        });
+        learnGrid.querySelectorAll(".duo-lang-card").forEach(function (c) {
+          var l = c.dataset.l;
+          var conflict = state.known.indexOf(l) >= 0; // can't learn a language you know-anchor from
+          c.classList.toggle("on", state.learn.indexOf(l) >= 0);
+          c.classList.toggle("conflict", conflict);
+          c.disabled = conflict;
+          c.setAttribute("aria-disabled", conflict ? "true" : "false");
+        });
+        refreshPickCont();
+      }
+
+      knownLangs.forEach(function (l) {
+        var card = el("button", "duo-lang-card");
+        card.type = "button";
         card.dataset.l = l;
+        card.setAttribute("aria-pressed", state.known.indexOf(l) >= 0 ? "true" : "false");
         card.innerHTML =
           '<span class="dlc-flag">' + flag(l) + "</span>" +
           '<span class="dlc-name">' + esc(langName(l)) + "</span>" +
-          '<span class="dlc-sub">' + esc(b.langCoverage(l)) + " words</span>";
+          '<span class="dlc-check" aria-hidden="true">✓</span>';
         card.onclick = function () {
-          state.target = l;
-          grid.querySelectorAll(".duo-lang-card").forEach(function (c) {
-            c.classList.toggle("on", c.dataset.l === l);
-          });
-          setCont(true, "CONTINUE", goNext);
+          toggleIn(state.known, l);
+          // a language you now "know" can't also be a learn target — drop the conflict
+          var li = state.learn.indexOf(l);
+          if (li >= 0) state.learn.splice(li, 1);
+          card.setAttribute("aria-pressed", state.known.indexOf(l) >= 0 ? "true" : "false");
+          paint();
         };
-        grid.appendChild(card);
+        knownGrid.appendChild(card);
       });
-      body.appendChild(grid);
+      body.appendChild(knownGrid);
+
+      body.appendChild(el("h2", "duo-ob-h2", "I want to learn…"));
+      targets.forEach(function (l) {
+        var card = el("button", "duo-lang-card");
+        card.type = "button";
+        card.dataset.l = l;
+        card.setAttribute("aria-pressed", state.learn.indexOf(l) >= 0 ? "true" : "false");
+        card.innerHTML =
+          '<span class="dlc-flag">' + flag(l) + "</span>" +
+          '<span class="dlc-name">' + esc(langName(l)) + "</span>" +
+          '<span class="dlc-sub">' + esc(b.langCoverage(l)) + " words</span>" +
+          '<span class="dlc-check" aria-hidden="true">✓</span>';
+        card.onclick = function () {
+          if (state.known.indexOf(l) >= 0) return; // disabled conflict — ignore
+          toggleIn(state.learn, l);
+          card.setAttribute("aria-pressed", state.learn.indexOf(l) >= 0 ? "true" : "false");
+          paint();
+        };
+        learnGrid.appendChild(card);
+      });
+      body.appendChild(learnGrid);
+
       // CC-BY-SA attribution lives on the first screen of the flow
       body.appendChild(attribution());
-      setCont(!!state.target, "CONTINUE", goNext);
+      paint();
     }
 
-    /* step 1 — why are you learning <lang>? */
+    /* step 1 — why are you learning <lang>? (applies to the active/first course) */
     function renderReason() {
-      body.appendChild(speech("Why are you learning " + langName(state.target) + "?"));
+      body.appendChild(speech("Why are you learning " + langName(activeTarget()) + "?"));
       var grid = el("div", "duo-opt-grid two");
       REASONS.forEach(function (r) {
         var o = el("button", "duo-opt" + (state.reason === r.k ? " on" : ""));
@@ -343,10 +421,10 @@
 
     /* step 2 — placement: How much <lang> do you know? (sets path start) */
     function renderPlacement() {
-      body.appendChild(speech("How much " + langName(state.target) + " do you know?"));
+      body.appendChild(speech("How much " + langName(activeTarget()) + " do you know?"));
       var list = el("div", "duo-opt-grid one");
       PLACEMENT.forEach(function (p) {
-        var label = p.k === "new" ? (p.t + langName(state.target)) : p.t;
+        var label = p.k === "new" ? (p.t + langName(activeTarget())) : p.t;
         var o = el("button", "duo-opt place" + (state.placement === p.k ? " on" : ""));
         var bars = "";
         for (var i = 1; i <= 4; i++) bars += '<i class="' + (i <= p.bars ? "on" : "") + '"></i>';
@@ -388,16 +466,24 @@
     function goNext() { if (state.step < STEPS.length - 1) { state.step++; render(); } }
 
     function finish() {
-      // persist language choice via the SHARED pref so the rest of the app agrees
-      setPref(state.target, [state.known], { primaryKnown: state.known, polyglot: false, chosen: true });
+      var known = state.known.slice();
+      var primaryKnown = known[0] || "en";
+      var first = activeTarget();
+      // bkt-4vq: seed a course per selected target so they ALL appear in My Languages.
+      // The first selected target becomes the ACTIVE course; the rest start at 0 progress,
+      // ready to begin when the learner switches to them. Each keeps its own per-language
+      // FSRS namespace ("lang:<target>"), so they're fully independent.
+      state.learn.forEach(function (t) { markCourseStarted(t); });
+      // persist the ACTIVE language choice via the SHARED pref so the rest of the app
+      // agrees; `known` is the FULL multi-select array, first = primaryKnown.
+      setPref(first, known, { primaryKnown: primaryKnown, polyglot: false, chosen: true });
       saveDuoPrefs({ reason: state.reason, placement: state.placement, goal: state.goal });
-      // bkt-h9k: switch the engine to THIS language's own state BEFORE we grade any
+      // bkt-h9k: switch the engine to the ACTIVE language's own state BEFORE we grade any
       // placement words or build the path, so a new course starts truly fresh and an
-      // existing course resumes its own progress. Then register it as a started course.
+      // existing course resumes its own progress.
       syncNamespace();
-      markCourseStarted(state.target);
       // PLACEMENT: pre-introduce the first <skip> words so the learner starts further
-      // along the path (a real, honest head start — they're marked seen, not mastered).
+      // along the active course's path (a real, honest head start — marked seen, not mastered).
       if (state.skip) {
         var ids = targetOrder().slice(0, state.skip);
         ids.forEach(function (id) { if (!e.cardFor(id)) grade(id, 3, "recall"); });
