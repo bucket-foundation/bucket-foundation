@@ -49,6 +49,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("12-befast-card.png","BE-FAST Stroke","recognition card"),
  ("13-anaphylaxis-card.png","Anaphylaxis","epinephrine-first"),
  ("19-emergency-wallet.png","Emergency Wallet","recognize → act"),
+ ("43-grip-mortality.png","Grip Strength → Mortality","a cheap whole-body proxy"),
+ ("44-sleep-hypnogram.png","Sleep Hypnogram","deep early, REM late"),
+ ("45-cortisol-rhythm.png","Cortisol Rhythm","high AM, low PM"),
+ ("46-action-potential.png","The Action Potential","how a nerve fires"),
+ ("52-innate-adaptive.png","Innate vs Adaptive Immunity","fast generalist, slow specialist"),
+ ("54-gut-brain-axis.png","Gut–Brain Axis","both ways"),
+ ("47-vaccines-longevity.png","Vaccines as Longevity","beyond infection"),
+ ("48-hrt-timing.png","HRT — It's About Timing","the estrogen window"),
+ ("49-imaging-matrix.png","Imaging Modalities","what each sees · radiation"),
+ ("50-ckd-heatmap.png","KDIGO CKD Heat-Map","filtration × protein leak"),
+ ("53-cancer-screening.png","Cancer Screening","what saves lives"),
+ ("51-pain-biopsychosocial.png","Pain is Biopsychosocial","not just damage"),
 ]
 
 def b64(p):

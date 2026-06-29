@@ -75,11 +75,12 @@ def responder_distribution():
     rng=np.random.default_rng(7); v=rng.normal(17,11,4000)
     fig,ax=ds.new_fig(8.6,5.2)
     ax.hist(v,bins=32,range=(-10,46),color=ds.GOLD,edgecolor=ds.PAPER,linewidth=0.6)  # no clipping -> no edge spikes
-    ymax=ax.get_ylim()[1]; ax.set_ylim(0,ymax*1.16)
+    ymax=ax.get_ylim()[1]; ax.set_ylim(0,ymax*1.05)
     ax.axvspan(-10,2,color="#fbf0ea",zorder=0); ax.axvspan(38,46,color="#e9f3ea",zorder=0)
     ax.axvline(2,color="#b5471f",lw=1.6,ls="--"); ax.axvline(38,color="#1d6b2e",lw=1.6,ls="--")
-    ax.text(-4,ymax*1.08,"non-responders",fontsize=10,color="#b5471f",fontweight="bold",ha="center")
-    ax.text(42,ymax*1.08,"high responders",fontsize=10,color="#1d6b2e",fontweight="bold",ha="center")
+    # vertical labels INSIDE the bands (clear of the dashed lines and the bars)
+    ax.text(-6,ymax*0.55,"non-responders",rotation=90,ha="center",va="center",fontsize=10.5,color="#b5471f",fontweight="bold")
+    ax.text(42,ymax*0.55,"high responders",rotation=90,ha="center",va="center",fontsize=10.5,color="#1d6b2e",fontweight="bold")
     ax.set_xlabel("VO₂max change after the SAME 20-week program (%)",fontsize=10,color=ds.MUT); ax.set_ylabel("number of people",fontsize=10,color=ds.MUT); ax.grid(axis="x",visible=False)
     ds.title(ax,"Personalization","Same program, wildly different results",
              "Trainability is ~47% heritable. If a stimulus isn't working, change the stimulus — not the goal.")
