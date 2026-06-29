@@ -112,6 +112,12 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("102-cholesterol-particles.png","Cholesterol & apoB","the particle that matters"),
  ("104-longevity-pipeline.png","The Longevity Pipeline","proven → predatory"),
  ("105-red-flags.png","Red-Flag Symptoms","when not to wait"),
+ ("M01-push-up.png","Push-Up","the horizontal push"),
+ ("M02-overhead-press.png","Overhead Press","the vertical push"),
+ ("M03-pull-up.png","Pull-Up","the vertical pull"),
+ ("M04-glute-bridge.png","Glute Bridge","hip extension, spares the back"),
+ ("M05-side-plank.png","Side Plank","anti-lateral-flexion core"),
+ ("M06-kettlebell-swing.png","Kettlebell Swing","the ballistic hip hinge"),
 ]
 
 def b64(p):
