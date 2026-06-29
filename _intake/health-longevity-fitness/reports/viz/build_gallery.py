@@ -128,6 +128,11 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("M14-jump-rope.png","Jump Rope","portable conditioning"),
  ("M15-hip-flexor-stretch.png","Hip-Flexor Stretch","counters sitting"),
  ("M16-deep-squat-hold.png","Deep Squat Hold","hip + ankle mobility"),
+ ("M17-deadlift.png","Deadlift","the loaded hinge"),
+ ("M18-goblet-squat.png","Goblet Squat","front-loaded squat"),
+ ("M19-bench-press.png","Bench Press","loaded horizontal push"),
+ ("M20-farmer-carry.png","Farmer Carry","bilateral loaded carry"),
+ ("M21-single-leg-rdl.png","Single-Leg RDL","unilateral hinge + balance"),
 ]
 
 def b64(p):
