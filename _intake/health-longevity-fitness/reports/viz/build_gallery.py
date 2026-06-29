@@ -153,6 +153,14 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("B12-hip-fracture-mortality.png","Hip Fracture Mortality","a mortality event"),
  ("B13-noise-dose.png","Noise Dose","+3 dB halves safe time"),
  ("B14-fiber-mortality.png","Fiber & Mortality","a clean dose-response"),
+ ("BX1-actionable-variants.png","Actionable Gene Variants","the 7 that change a decision"),
+ ("BX2-neurotransmitters.png","Neurotransmitters","what they do vs the pop myth"),
+ ("BX3-immune-ladder.png","Immune Modulators","regulate, don't boost"),
+ ("BX4-telomere-grading.png","Telomere Lengthening","graded honestly"),
+ ("BX5-skincare-hierarchy.png","Skincare Hierarchy","two actives do the work"),
+ ("BX6-sti-matrix.png","STIs at a Glance","curable / manageable / preventable"),
+ ("BX7-gynecologic.png","Gynecologic Disorders","what they are, what to do"),
+ ("BX8-innate-components.png","Innate Immunity","components and how they age"),
 ]
 
 def b64(p):
