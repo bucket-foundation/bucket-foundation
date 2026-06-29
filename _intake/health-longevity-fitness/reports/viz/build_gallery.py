@@ -169,6 +169,20 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("BS6-masld-progression.png","Fatty-Liver Progression","and the reversal point"),
  ("BS7-iron-two-sided.png","Iron — Two-Sided","too little / too much"),
  ("BS8-inflammaging-hub.png","The Inflammaging Hub","many sources, one fire"),
+ ("D01-direct-remission.png","T2D Remission (DiRECT)","tracks weight lost"),
+ ("D02-hf-four-pillars.png","Heart-Failure Four Pillars","each cuts mortality"),
+ ("D03-cancer-survival.png","Cancer 5-Year Survival","varies enormously"),
+ ("D04-stroke-nnt.png","Stroke Reperfusion NNT","time is brain"),
+ ("D05-amr-burden.png","Antimicrobial Resistance","rivals the big killers"),
+ ("D06-herd-immunity.png","Herd Immunity vs R₀","measles needs ~95%"),
+ ("D07-antidepressant-severity.png","Antidepressants by Severity","clearest when severe"),
+ ("D08-moud-mortality.png","MOUD Halves Mortality","retention is the mechanism"),
+ ("D09-addictiveness-lethality.png","Addictiveness vs Lethality","different axes"),
+ ("D10-smoking-cessation.png","Smoking Cessation Aids","support multiplies them"),
+ ("D11-bp-lifestyle.png","Lifestyle BP-Lowering","rivals a drug"),
+ ("D12-hepc-cure.png","Hepatitis C Cure","grim → curable in a decade"),
+ ("D13-finger.png","FINGER Multidomain","cognition improved"),
+ ("D14-lecanemab.png","Lecanemab","marginal benefit, real risk"),
 ]
 
 def b64(p):
