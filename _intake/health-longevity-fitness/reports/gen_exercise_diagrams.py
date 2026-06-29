@@ -1,144 +1,118 @@
 #!/usr/bin/env python3
-"""Generate clean instructional exercise diagrams (stick-figure SVG -> PNG).
-Evidence-tied to the corpus's Tier-A levers. Reproducible, no hallucinated anatomy."""
+"""Instructional exercise diagrams v3 — anatomically-reasoned, hand-placed joints.
+Each pose uses explicit, biomechanically-correct coordinates (verified visually).
+SVG -> PNG via cairosvg. No AI images, no hallucinated anatomy."""
 import os, math, cairosvg
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "media", "generated-diagrams")
 os.makedirs(OUT, exist_ok=True)
-
 INK="#1c1a17"; GOLD="#b08d3a"; PAPER="#faf7ef"; MUT="#6b5418"; RED="#b5471f"; GREEN="#1d6b2e"
-W,H = 460, 540
+W,H = 460, 600
+G = 405          # ground y
+HEADR=17
 
-def seg(x1,y1,x2,y2,w=9,c=INK):
-    return f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="{c}" stroke-width="{w}" stroke-linecap="round"/>'
-def circ(x,y,r,c=INK,fill=INK):
-    return f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" stroke="{c}" stroke-width="6" fill="{fill}"/>'
-def figure(joints, color=INK):
-    """joints: dict with head, neck, hip, kn/kn2, ank/ank2, sho, elb, wri ... draw torso+limbs"""
-    j=joints; s=[]
-    # torso
-    s.append(seg(*j['neck'],*j['hip'],11,color))
-    # head
-    hx,hy=j['head']; s.append(circ(hx,hy,17,color,PAPER))
-    # legs
-    if 'knee' in j: s.append(seg(*j['hip'],*j['knee'],10,color)); s.append(seg(*j['knee'],*j['ankle'],10,color))
-    if 'knee2' in j: s.append(seg(*j['hip'],*j['knee2'],10,color)); s.append(seg(*j['knee2'],*j['ankle2'],10,color))
-    # arms from neck
-    if 'elbow' in j: s.append(seg(*j['neck'],*j['elbow'],8,color)); s.append(seg(*j['elbow'],*j['wrist'],8,color))
-    if 'elbow2' in j: s.append(seg(*j['neck'],*j['elbow2'],8,color)); s.append(seg(*j['elbow2'],*j['wrist2'],8,color))
-    return "".join(s)
+def L(a,b,w=11,c=INK): return f'<line x1="{a[0]:.1f}" y1="{a[1]:.1f}" x2="{b[0]:.1f}" y2="{b[1]:.1f}" stroke="{c}" stroke-width="{w}" stroke-linecap="round"/>'
+def D(p,r=5,c=INK): return f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{r}" fill="{c}"/>'
+def HEAD(p,c=INK): return f'<circle cx="{p[0]:.1f}" cy="{p[1]:.1f}" r="{HEADR}" fill="{PAPER}" stroke="{c}" stroke-width="7"/>'
+def GND(): return f'<line x1="60" y1="{G}" x2="{W-35}" y2="{G}" stroke="{INK}" stroke-width="4"/>'
+def esc(t): return str(t).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
 
-def esc(t):
-    return str(t).replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
-def panel(title, badge, badge_col, subtitle, body_svg, cues, cite):
-    title,badge,subtitle,cite=esc(title),esc(badge),esc(subtitle),esc(cite)
-    cues=[esc(c) for c in cues]
-    cue_y=405
-    cue_svg=""
+def frame(title,badge,bcol,subtitle,body,cues,cite):
+    title,badge,subtitle,cite=map(esc,(title,badge,subtitle,cite)); cues=[esc(c) for c in cues]
+    cy=G+40; cl=""
     for c in cues:
-        cue_svg+=f'<circle cx="40" cy="{cue_y-4}" r="3.5" fill="{GOLD}"/><text x="54" y="{cue_y}" font-size="14" fill="{INK}" font-family="Helvetica,Arial">{c}</text>'
-        cue_y+=24
+        cl+=f'<circle cx="44" cy="{cy-4}" r="3.5" fill="{GOLD}"/><text x="58" y="{cy}" font-size="14.5" fill="{INK}" font-family="Helvetica,Arial">{c}</text>'; cy+=25
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">
-<rect width="{W}" height="{H}" fill="{PAPER}"/>
-<rect x="0" y="0" width="{W}" height="8" fill="{GOLD}"/>
+<rect width="{W}" height="{H}" fill="{PAPER}"/><rect width="{W}" height="8" fill="{GOLD}"/>
+<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="{RED}"/></marker></defs>
 <text x="30" y="48" font-size="23" font-weight="700" fill="{INK}" font-family="Helvetica,Arial">{title}</text>
-<rect x="30" y="62" width="{14+len(badge)*7.4:.0f}" height="20" rx="10" fill="{badge_col}"/>
-<text x="37" y="77" font-size="11.5" font-weight="700" fill="#fff" font-family="Helvetica,Arial" letter-spacing="0.5">{badge}</text>
-<text x="{44+len(badge)*7.4:.0f}" y="77" font-size="13" fill="{MUT}" font-family="Helvetica,Arial" font-style="italic">{subtitle}</text>
-<g transform="translate(33,2) scale(0.83)">{body_svg}</g>
-{cue_svg}
-<line x1="30" y1="{H-44}" x2="{W-30}" y2="{H-44}" stroke="#ddd3bb" stroke-width="1"/>
-<text x="30" y="{H-24}" font-size="9.3" fill="#8a8170" font-family="Helvetica,Arial">{cite}</text>
-</svg>'''
+<rect x="30" y="62" width="{16+len(badge)*7.4:.0f}" height="20" rx="10" fill="{bcol}"/>
+<text x="38" y="77" font-size="11.5" font-weight="700" fill="#fff" font-family="Helvetica,Arial">{badge}</text>
+<text x="{48+len(badge)*7.4:.0f}" y="77" font-size="13" fill="{MUT}" font-style="italic" font-family="Helvetica,Arial">{subtitle}</text>
+{body}
+{cl}
+<line x1="30" y1="{H-38}" x2="{W-30}" y2="{H-38}" stroke="#ddd3bb" stroke-width="1"/>
+<text x="30" y="{H-20}" font-size="9.2" fill="#8a8170" font-family="Helvetica,Arial">{cite}</text></svg>'''
 
-figs={}
+def render(name,svg):
+    open(os.path.join(OUT,name+".svg"),"w").write(svg)
+    cairosvg.svg2png(bytestring=svg.encode(),write_to=os.path.join(OUT,name+".png"),output_width=W*2,output_height=H*2)
+    print("rendered",name)
 
-# 1. Bodyweight squat (strength / Tier A)
-body=figure({'head':(230,150),'neck':(230,178),'hip':(248,300),
-  'knee':(300,318),'ankle':(300,400),'knee2':(300,318),'ankle2':(300,400),
-  'elbow':(190,250),'wrist':(160,300),'elbow2':(190,250),'wrist2':(160,300)})
-ground='<line x1="120" y1="400" x2="360" y2="400" stroke="#1c1a17" stroke-width="4"/>'
-arrow='<path d="M248 300 q -55 -5 -60 -55" stroke="#b5471f" stroke-width="3" fill="none" marker-end="url(#a)"/>'
-defs='<defs><marker id="a" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
-figs['01-bodyweight-squat']=panel("Bodyweight Squat","TIER A · STRENGTH",GREEN,
-  "builds & retains lower-body strength",defs+body+ground+arrow,
-  ["Hips travel back & down, below parallel","Knees track over toes, heels planted",
-   "Chest up, neutral spine","Strength (not mass) predicts mortality"],
-  "~10–17% lower mortality · J-curve ~30–60 min/wk · claim: resistance-training-mortality-meta (E)")
+# ===== 1. AIR SQUAT (side, facing right) — deep, hips back, below parallel =====
+ankle=(245,G); knee=(290,G-74); hip=(220,G-58); sho=(252,G-180); hd=(266,G-202)
+el=(300,G-178); wr=(340,G-174); toe=(278,G)
+par=f'<line x1="{hip[0]-28:.0f}" y1="{hip[1]:.0f}" x2="{knee[0]+24:.0f}" y2="{hip[1]:.0f}" stroke="{RED}" stroke-width="2" stroke-dasharray="4 4"/>'
+parlbl=f'<text x="{hip[0]-118:.0f}" y="{hip[1]+4:.0f}" font-size="11" fill="{RED}" font-family="Helvetica,Arial">hip below knee</text>'
+sq="".join([GND(),par,parlbl, L(hip,knee),L(knee,ankle),L(ankle,toe,9), L(hip,sho,12), L(sho,el,9),L(el,wr,9),
+  HEAD(hd), D(hip),D(knee),D(ankle),D(el,4)])
+render("01-air-squat", frame("Air Squat (bottom)","TIER A · STRENGTH",GREEN,"side view — knee-dominant",sq,
+  ["Hips sit BACK and down; weight on mid-foot","Hip crease drops below the knee (red line)",
+   "Shins angle forward; heels stay planted","Chest up, spine long; arms counterbalance"],
+  "claim: resistance-training-mortality-meta (E) · strength predicts mortality · J-curve ~30-60 min/wk"))
 
-# 2. Hip hinge / deadlift pattern (strength)
-body=figure({'head':(185,165),'neck':(205,188),'hip':(290,250),
-  'knee':(305,330),'ankle':(300,405),'knee2':(305,330),'ankle2':(300,405),
-  'elbow':(255,300),'wrist':(300,355),'elbow2':(255,300),'wrist2':(300,355)})
-spine='<line x1="205" y1="188" x2="290" y2="250" stroke="#1d6b2e" stroke-width="4" stroke-dasharray="2 6"/>'
-ground='<line x1="120" y1="405" x2="360" y2="405" stroke="#1c1a17" stroke-width="4"/>'
-figs['02-hip-hinge-deadlift']=panel("Hip Hinge / Deadlift","TIER A · STRENGTH",GREEN,
-  "the fundamental posterior-chain pattern",body+spine+ground,
-  ["Hips travel BACK, not down","Spine stays neutral (green line)",
-   "Shins near-vertical, weight over mid-foot","Grip strength itself predicts mortality"],
-  "claim: grip-strength-mortality-pure (PURE n=139k) · dexa-strength-not-mass (L)")
+# ===== 2. HIP HINGE / DEADLIFT (side, facing right) — hips BEHIND heels =====
+ankle=(265,G); knee=(279,G-74); hip=(203,G-150); sho=(272,G-220); hd=(289,G-242)
+el=(272,G-172); wr=(272,G-128); bar=(272,G); toe=(296,G)
+flat=f'<line x1="{hip[0]:.0f}" y1="{hip[1]:.0f}" x2="{sho[0]:.0f}" y2="{sho[1]:.0f}" stroke="{GREEN}" stroke-width="4" stroke-dasharray="2 7"/>'
+arr=f'<line x1="{hip[0]-12:.0f}" y1="{hip[1]-2:.0f}" x2="{hip[0]-62:.0f}" y2="{hip[1]-2:.0f}" stroke="{RED}" stroke-width="3" marker-end="url(#ah)"/>'
+arrlbl=f'<text x="{hip[0]-78:.0f}" y="{hip[1]-12:.0f}" font-size="11" fill="{RED}" font-family="Helvetica,Arial">hips back</text>'
+hng="".join([GND(),L(hip,knee),L(knee,ankle),L(ankle,toe,9), L(hip,sho,12),flat, L(sho,el,9),L(el,wr,9),
+  D(bar,9,INK), arr,arrlbl, HEAD(hd), D(hip),D(knee),D(ankle)])
+render("02-hip-hinge", frame("Hip Hinge / Deadlift","TIER A · STRENGTH",GREEN,"side view — hip-dominant",hng,
+  ["Push hips BACK (not down); shins near-vertical","Back stays flat and long (green line)",
+   "Hinge to ~45 deg; arms hang straight to the bar","Soft knees; weight in the heels"],
+  "claim: grip-strength-mortality-pure (PURE n=139k) · dexa-strength-not-mass (L)"))
 
-# 3. One-leg stand (balance — mortality biomarker)
-body=figure({'head':(230,150),'neck':(230,178),'hip':(230,290),
-  'knee':(230,345),'ankle':(230,405),
-  'knee2':(285,320),'ankle2':(300,300),
-  'elbow':(180,255),'wrist':(150,295),'elbow2':(280,255),'wrist2':(310,295)})
-ground='<line x1="120" y1="405" x2="360" y2="405" stroke="#1c1a17" stroke-width="4"/>'
-timer='<circle cx="370" cy="150" r="34" fill="none" stroke="#b08d3a" stroke-width="6"/><text x="370" y="158" font-size="22" font-weight="700" fill="#6b5418" text-anchor="middle" font-family="Helvetica,Arial">10s</text>'
-figs['03-one-leg-stand-balance']=panel("10-Second One-Leg Stand","TIER A · BALANCE TEST",GREEN,
-  "a free, validated mortality biomarker",body+ground+timer,
-  ["Stand on one leg, eyes OPEN","Hold 10 seconds, each side",
-   "Inability → 1.84× all-cause mortality","Train it: it's also the test"],
-  "claim: one-leg-stance-10s-mortality · Araújo et al., Br J Sports Med 2022 (HR 1.84)")
+# ===== 3. DEEP LUNGE / HIP-FLEXOR MOBILITY (side, facing right) =====
+fa=(290,G); fknee=(286,G-78); fhip=(232,G-150); sho=(238,G-248); hd=(240,G-272)
+bk=(168,G-92); ba=(120,G); el=(250,G-200); wr=(256,G-160)
+lng="".join([GND(),
+  L(fhip,fknee),L(fknee,fa),L(fa,(fa[0]+28,G),9),                 # front leg
+  L(fhip,bk,11,GOLD),L(bk,ba,11,GOLD),L(ba,(ba[0]-26,G),9,GOLD),  # back leg (gold)
+  L(fhip,sho,12),L(sho,el,9),L(el,wr,9), HEAD(hd),
+  D(fhip),D(fknee),D(bk,5,GOLD)])
+render("03-deep-lunge-mobility", frame("Deep Lunge (hip mobility)","TIER B · MOBILITY",GOLD,"side view — opens the hip flexors",lng,
+  ["Front knee stacked over the ankle (~90 deg)","Back leg long (gold); sink the hips forward",
+   "Torso tall, ribs down; feel the back hip-front","Counters the shortening from chronic sitting"],
+  "maps to movement-library/mobility · supports the Tier-A 'move more' lever"))
 
-# 4. Sit-to-rise test
-floor='<line x1="120" y1="405" x2="360" y2="405" stroke="#1c1a17" stroke-width="4"/>'
-body=figure({'head':(205,250),'neck':(212,278),'hip':(235,360),
-  'knee':(300,345),'ankle':(330,402),'knee2':(300,372),'ankle2':(330,402),
-  'elbow':(185,330),'wrist':(180,400),'elbow2':(185,330),'wrist2':(180,400)})
-up='<path d="M235 360 q 30 -90 0 -150" stroke="#b5471f" stroke-width="3" fill="none" marker-end="url(#a2)"/><defs><marker id="a2" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
-figs['04-sit-to-rise-test']=panel("Sit-to-Rise Test","TIER A · COMPOSITE",GREEN,
-  "strength + balance + flexibility in one move",floor+body+up,
-  ["Lower to floor & rise again","Start 10 pts; −1 each hand/knee support",
-   "Score predicts all-cause mortality","Tests the capacities that matter together"],
-  "claim: sit-to-rise-mortality · Brito et al. 2014 (Eur J Prev Cardiol)")
+# ===== 4. FOREARM PLANK (side, head to the right) =====
+el=(330,G); hand=(300,G); sho=(330,G-92); hip=(212,G-58); ankle=(95,G-22); toe=(73,G); hd=(348,G-100)
+line=f'<line x1="{sho[0]:.0f}" y1="{sho[1]-2:.0f}" x2="{ankle[0]:.0f}" y2="{ankle[1]-2:.0f}" stroke="{GREEN}" stroke-width="3" stroke-dasharray="2 7"/>'
+pl="".join([GND(), L(hand,el,9),L(el,sho,9), L(sho,hip,12),L(hip,ankle,12),L(ankle,toe,9),
+  line, HEAD(hd), D(hip),D(sho),D(ankle)])
+render("04-forearm-plank", frame("Forearm Plank","TIER A · CORE / STRENGTH",GREEN,"side view — one straight line",pl,
+  ["Ears, hips and ankles on ONE line (green)","Elbows under shoulders; forearms grounded",
+   "Brace the belly; squeeze glutes; no sag, no pike","Quality over time: hold only while the line holds"],
+  "trains the trunk that transmits force in every lift · supports strength + posture"))
 
-# 5. 90/90 hip mobility (seated)
-floor='<line x1="90" y1="380" x2="390" y2="380" stroke="#1c1a17" stroke-width="4"/>'
-# seated figure, two legs at 90/90
-s=[]
-s.append(circ(170,210,17,INK,PAPER))           # head
-s.append(seg(170,228,200,300,11))              # torso
-s.append(seg(200,300,265,300,10))              # front thigh
-s.append(seg(265,300,265,360,10))              # front shin down
-s.append(seg(200,300,200,360,10,GOLD))         # back thigh (behind)
-s.append(seg(200,360,270,360,10,GOLD))         # back shin
-s.append(seg(170,228,210,275,8)); s.append(seg(210,275,250,290,8))  # arm
-figs['05-90-90-hip-mobility']=panel("90/90 Hip Mobility","TIER B · MOBILITY",GOLD,
-  "trains internal + external hip rotation",floor+"".join(s),
-  ["Both knees bent 90°, front & back","Sit tall over the hips",
-   "Rotate side to side without hands","Counters the cost of chronic sitting"],
-  "Mobility = controllable range. Maps to movement-library/mobility · supports Tier-A 'move more'")
+# ===== 5. ONE-LEG STAND (front view, balance test) =====
+cx=235; hip=(cx,G-200); sk=(cx-2,G-100); sa=(cx,G)            # standing leg
+lk=(cx+60,G-150); la=(cx+42,G-92)                              # lifted leg (gold)
+neck=(cx,G-292); hd=(cx,G-315); le=(cx-50,G-150); lw=(cx-60,G-108)
+timer=f'<circle cx="378" cy="150" r="33" fill="none" stroke="{GOLD}" stroke-width="6"/><text x="378" y="158" font-size="21" font-weight="700" fill="{MUT}" text-anchor="middle" font-family="Helvetica,Arial">10s</text>'
+ol="".join([GND(), L(hip,sk),L(sk,sa),L(sa,(sa[0]+26,G),9),
+  L(hip,lk,11,GOLD),L(lk,la,11,GOLD), L(hip,neck,12),L(neck,le,9),L(le,lw,9),
+  HEAD(hd), D(hip),D(sk),D(lk,5,GOLD), timer])
+render("05-one-leg-stand", frame("10-Second One-Leg Stand","TIER A · BALANCE TEST",GREEN,"front view — a free mortality biomarker",ol,
+  ["Stand on ONE leg, eyes open, hands off support","Lift the other knee; hold 10 seconds each side",
+   "Failing it is linked to ~1.84x mortality","The test IS the training; practice daily"],
+  "claim: one-leg-stance-10s-mortality · Araujo et al., Br J Sports Med 2022 (HR 1.84)"))
 
-# 6. Box breathing (4-4-4-4) — autonomic / HRV
-box=f'''<rect x="150" y="150" width="170" height="170" fill="none" stroke="{INK}" stroke-width="6"/>
-<text x="235" y="138" font-size="14" fill="{MUT}" text-anchor="middle" font-family="Helvetica,Arial">inhale 4s ▶</text>
-<text x="235" y="345" font-size="14" fill="{MUT}" text-anchor="middle" font-family="Helvetica,Arial">◀ exhale 4s</text>
-<text x="138" y="240" font-size="14" fill="{MUT}" text-anchor="end" font-family="Helvetica,Arial">hold 4s</text>
-<text x="332" y="240" font-size="14" fill="{MUT}" font-family="Helvetica,Arial">hold 4s</text>
-<circle cx="150" cy="150" r="8" fill="{GOLD}"/>'''
-figs['06-box-breathing']=panel("Box Breathing (4-4-4-4)","TIER B · BREATH / HRV",GOLD,
-  "slow breathing shifts autonomic balance",box,
+# ===== 6. BOX BREATHING (diagram) =====
+tri={'t':'M231,143 L243,150 L231,157 Z','r':'M313,231 L320,243 L327,231 Z',
+     'b':'M239,313 L227,320 L239,327 Z','l':'M157,239 L150,227 L143,239 Z'}
+box=f'''<rect x="150" y="150" width="170" height="170" rx="6" fill="none" stroke="{INK}" stroke-width="6"/>
+{''.join(f'<path d="{d}" fill="{GOLD}"/>' for d in tri.values())}
+<text x="235" y="138" font-size="14" fill="{MUT}" text-anchor="middle" font-family="Helvetica,Arial">inhale · 4s</text>
+<text x="235" y="348" font-size="14" fill="{MUT}" text-anchor="middle" font-family="Helvetica,Arial">exhale · 4s</text>
+<text x="138" y="240" font-size="14" fill="{MUT}" text-anchor="end" font-family="Helvetica,Arial">hold · 4s</text>
+<text x="332" y="240" font-size="14" fill="{MUT}" font-family="Helvetica,Arial">hold · 4s</text>
+<text x="235" y="245" font-size="11" fill="#b9af97" text-anchor="middle" font-family="Helvetica,Arial">clockwise</text>'''
+render("06-box-breathing", frame("Box Breathing (4-4-4-4)","TIER B · BREATH / HRV",GOLD,"slow breathing shifts autonomic balance",box,
   ["Inhale 4 · hold 4 · exhale 4 · hold 4","~6 breaths/min raises HRV acutely",
-   "Real acute effect; longevity outcome unproven","Nasal, quiet, diaphragmatic"],
-  "claim: hrv-autonomic-recovery-biomarker (I) · thread-autonomic-hrv · honest tier: surrogate")
+   "Nasal, quiet, diaphragmatic (belly, not chest)","Real acute effect; longevity outcome unproven"],
+  "claim: hrv-autonomic-recovery-biomarker (I) · thread-autonomic-hrv · honest tier: surrogate"))
 
-# render all
-index=[]
-for name,svg in figs.items():
-    svg_path=os.path.join(OUT,name+".svg"); png_path=os.path.join(OUT,name+".png")
-    open(svg_path,"w").write(svg)
-    cairosvg.svg2png(bytestring=svg.encode(),write_to=png_path,output_width=W*2,output_height=H*2)
-    index.append(name)
-    print("rendered",name+".png")
-print("TOTAL",len(index),"diagrams ->",os.path.abspath(OUT))
+print("DONE 6 ->", os.path.abspath(OUT))
