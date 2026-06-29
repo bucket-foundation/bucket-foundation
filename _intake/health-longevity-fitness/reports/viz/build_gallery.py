@@ -139,6 +139,20 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("M25-thoracic-rotation.png","T-Spine Rotation","open-book reach"),
  ("M26-running-form.png","Running Form","gait / locomotion"),
  ("M27-box-jump.png","Box Jump","plyometric power"),
+ ("B01-hormone-age.png","Hormones & Age","some fall, some rise"),
+ ("B02-igf1-u-curve.png","IGF-1 & Mortality","the U-curve — more isn't better"),
+ ("B03-apoe-gene-dose.png","APOE Gene-Dose","risk ≠ destiny"),
+ ("B04-fev1-fletcher-peto.png","Lung Function (FEV₁)","quitting resets the slope"),
+ ("B05-egfr-decline.png","eGFR Decline","the silent organ"),
+ ("B06-ovarian-reserve.png","Ovarian Reserve","only ever falls"),
+ ("B07-ivf-by-age.png","IVF by Age","it's the egg's age"),
+ ("B08-contraception.png","Contraception","LARC vs the pill"),
+ ("B09-menstrual-cycle.png","Menstrual Cycle","in four hormones"),
+ ("B10-common-rare-variants.png","Common vs Rare Variants","what gene chips miss"),
+ ("B11-bone-load.png","Bone Loads, Not Cardio","LIFTMOR"),
+ ("B12-hip-fracture-mortality.png","Hip Fracture Mortality","a mortality event"),
+ ("B13-noise-dose.png","Noise Dose","+3 dB halves safe time"),
+ ("B14-fiber-mortality.png","Fiber & Mortality","a clean dose-response"),
 ]
 
 def b64(p):
