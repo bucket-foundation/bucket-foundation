@@ -61,6 +61,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("50-ckd-heatmap.png","KDIGO CKD Heat-Map","filtration × protein leak"),
  ("53-cancer-screening.png","Cancer Screening","what saves lives"),
  ("51-pain-biopsychosocial.png","Pain is Biopsychosocial","not just damage"),
+ ("55-omega3-index.png","Omega-3 Index","predictor, RCTs mixed"),
+ ("56-visceral-fat.png","Visceral Fat","the fat that matters"),
+ ("57-mediterranean.png","Mediterranean Diet","best-evidenced pattern"),
+ ("62-longevity-plate.png","The Whole-Food Plate","½ plants · ¼ protein · ¼ carbs"),
+ ("59-metabolic-flexibility.png","Metabolic Flexibility","switching fuels cleanly"),
+ ("58-hearing-dementia.png","Hearing & Dementia","a real lever (ACHIEVE)"),
+ ("60-four-capacities.png","The Four Capacities","build + test each"),
+ ("63-sleep-hygiene.png","Sleep Hygiene","what actually works"),
+ ("61-endocrine-axes.png","Endocrine Axes","the three master loops"),
+ ("65-hpa-axis.png","The HPA Stress Axis","cortisol + feedback"),
+ ("66-synapse.png","The Synapse","how neurons talk"),
+ ("64-geroprotector-matrix.png","Geroprotector Drugs","by evidence stage"),
 ]
 
 def b64(p):
