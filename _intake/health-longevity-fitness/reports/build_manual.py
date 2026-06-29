@@ -15,7 +15,8 @@ STRUCT = [
     ("atlas", S("00-atlas.md"), None)]),
  ("Part II", "First Principles — the biophysics, chemistry & biology", [
     ("foundations", S("01-foundations.md"), None),
-    ("mechanism", S("12-mechanism-bridge.md"), None)]),
+    ("mechanism", S("12-mechanism-bridge.md"), None),
+    ("mitochondria", S("37-mitochondrial-health.md"), None)]),
  ("Part III", "The Evidence Landscape", [
     ("stateoffield", corpus("00-map/01-STATE-OF-THE-FIELD.md"), None)]),
  ("Part IV", "The Body — system by system", [
@@ -25,7 +26,8 @@ STRUCT = [
     ("immune", S("15-immune-system.md"), None),
     ("telomeres", S("16-telomeres-cellular-aging.md"), None),
     ("bodysys", S("11-body-systems.md"), None),
-    ("organatlas", S("17-organ-systems-atlas.md"), None)]),
+    ("organatlas", S("17-organ-systems-atlas.md"), None),
+    ("reproductive", S("42-reproductive-sexual-health.md"), None)]),
  ("Part V", "Clinical Medicine — the diseases & their treatment", [
     ("clinical", S("07-clinical-prevention.md"), None),
     ("dz_cardiometabolic", S("22-disease-cardiometabolic-renal.md"), None),
@@ -38,28 +40,37 @@ STRUCT = [
     ("addiction", S("35-addiction-substance-use.md"), None),
     ("pain", S("21-pain-injury-rehab.md"), None),
     ("surface", S("27-derm-dental-ent-eye.md"), None),
+    ("pediatric", S("43-developmental-congenital-pediatric.md"), None),
     ("emergency", S("34-emergency-acute.md"), None)]),
- ("Part VI", "Medicine, Drugs & the Frontier", [
+ ("Part VI", "How Medicine Is Practiced", [
+    ("surgery", S("38-surgery-perioperative.md"), None),
+    ("anesthesia", S("39-anesthesia-critical-care.md"), None),
+    ("imaging", S("40-imaging-radiology.md"), None),
+    ("pathology", S("41-pathology-lab-medicine.md"), None)]),
+ ("Part VII", "Drugs, Therapeutics & the Frontier", [
     ("pharmafull", S("28-pharmacology-full.md"), None),
     ("pharma_longevity", S("10-medical-pharmacology.md"), None),
     ("regenerative", S("31-regenerative-frontier.md"), None),
     ("complementary", S("30-complementary-medicine.md"), None),
     ("biohacking", S("32-biohacking-fringe.md"), None)]),
- ("Part VII", "The Levers — what you actually do", [
+ ("Part VIII", "The Levers — what you actually do", [
     ("training", S("02-training.md"), None),
+    ("modalities", S("44-exercise-modalities.md"), None),
+    ("sports", S("45-sports-play.md"), None),
     ("nutrition", S("03-nutrition-supplements.md"), None),
+    ("fasting", S("36-fasting-cleanses-protocols.md"), None),
     ("recovery", S("05-recovery-sleep-stress.md"), None),
     ("behavior", S("29-behavior-change.md"), None)]),
- ("Part VIII", "Life, Environment & Society", [
+ ("Part IX", "Life, Environment & Society", [
     ("lifestages", S("19-life-stages.md"), None),
     ("exposures", S("09-exposures-environment.md"), None),
     ("publichealth", S("33-public-health-systems.md"), None)]),
- ("Part IX", "Personalization", [
+ ("Part X", "Personalization", [
     ("variation", S("04-individual-variation.md"), None),
     ("measure", corpus("04-protocols/WHAT-TO-TRACK-SYNTHESIS.md"), None)]),
- ("Part X", "The Open Questions", [
+ ("Part XI", "The Open Questions", [
     ("conflicts", corpus("06-evidence/CONFLICTS-REGISTER.md"), None)]),
- ("Part XI", "Go Deeper", [
+ ("Part XII", "Go Deeper", [
     ("library", S("06-go-deeper-library.md"), None)]),
 ]
 
@@ -212,7 +223,7 @@ COVER = """<div class="cover">
     Sources: OpenAlex · PubMed · Europe PMC · ClinicalTrials.gov · the Bucket biophysics canon<br>
     Doctrine: index all · grade everything · mechanism &#8800; outcome &#8800; protocol
   </div>
-  <div class="stat">36 chapters · 836 graded claims · 660 figures · 37 conflicts · 12 body systems · ~199,000 words</div>
+  <div class="stat">48 chapters · 997 graded claims · 660 figures · 37 conflicts · 12 body systems · ~264,000 words</div>
 </div>"""
 
 HOWTO = """<section class="front">
@@ -254,7 +265,7 @@ DOC = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <body>{COVER}{HOWTO}{toc_html}{body_html}
 <section class="front"><h1>Colophon</h1>
 <p class="small">Assembled by Nucleus Brain from the <code>health-longevity-fitness</code> research corpus
-(Bucket Foundation, bead <code>bkt-bg6</code>): 36 chapters, 836 graded claims across 43 domain files, a
+(Bucket Foundation, bead <code>bkt-bg6</code>): 48 chapters, 997 graded claims across 53 domain files, a
 660-figure people map, 24 labs, 15 trials, 37 conflict objects, and a 53-movement illustrated library.
 Research drew on OpenAlex, PubMed/Europe PMC, ClinicalTrials.gov and the Bucket biophysics canon; every
 chapter was written under the index-all / grade-everything doctrine and visually or numerically verified.

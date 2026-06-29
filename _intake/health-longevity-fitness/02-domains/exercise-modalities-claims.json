@@ -1,0 +1,268 @@
+[
+  {
+    "id": "running-mortality-lee",
+    "statement": "Leisure-time running, even at low doses (5-10 min/day, <51 min/week, slow speeds <6 mph), is associated with markedly lower all-cause (~30%) and cardiovascular (~45%) mortality versus non-runners, with a ~3-year life-expectancy benefit; the benefit was broadly flat across quintiles of running time, distance, frequency, and speed (more running gave little extra).",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "All-cause mortality HR ~0.70; CVD mortality HR ~0.55; persistent runners HR ~0.71 / ~0.50. Benefit plateaus early (low dose suffices).",
+    "population": "55,137 adults aged 18-100 (Aerobics Center Longitudinal Study), mean ~15y follow-up, 3,413 all-cause / 1,217 CVD deaths",
+    "provenance": {
+      "primary": "Lee, Pate, Lavie, Sui, Church, Blair - 'Leisure-time running reduces all-cause and cardiovascular mortality risk', J Am Coll Cardiol 2014",
+      "doi": "10.1016/j.jacc.2014.04.058",
+      "surfaced_via": "PubMed esearch (leisure-time running mortality) 2026-06-29"
+    },
+    "conflicts_with": ["swimming-mortality-oja"],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Observational cohort, healthy-user and reverse-causation confounding (runners differ at baseline). Note: in the Oja 2017 British cohort running's mortality association was NOT significant while swimming/racquet/aerobics were - self-selected sport cohorts disagree, so magnitude is uncertain though direction across the literature is positive. The dose-flat finding (slow/brief is enough) is the practically important and robust part.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "running-longevity-review",
+    "statement": "Running is positioned as a high-leverage 'lifestyle medicine' for longevity: a synthesis argues regular running confers substantial all-cause and cardiovascular mortality benefit relative to its low cost and accessibility, with benefit attainable at modest doses.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Narrative/review synthesis of cohort data (cf. Lee 2014 ~30%/45% reductions); no new pooled estimate.",
+    "population": "Review of running and mortality cohorts",
+    "provenance": {
+      "primary": "Lavie, Lee, Sui, Arena, O'Keefe, Church, Milani, Blair - 'Running as a Key Lifestyle Medicine for Longevity', Prog Cardiovasc Dis 2017",
+      "doi": "10.1016/j.pcad.2017.03.005",
+      "surfaced_via": "PubMed esearch (running longevity) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Review/advocacy-forward synthesis (overlapping author group with Lee 2014). Useful for framing; inherits the cohort confounding of its sources. Direction-positive, not a new causal proof.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "running-knee-oa-recreational",
+    "statement": "Recreational running is associated with LOWER hip/knee osteoarthritis prevalence than a sedentary lifestyle; OA prevalence was 3.5% in recreational runners vs 10.2% in sedentary controls vs 13.3% in competitive/elite runners. Risk rises only at elite/high-volume/high-intensity exposure - debunking 'running destroys your knees' for typical recreational runners.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Hip/knee OA prevalence: recreational runners 3.5% (95% CI 3.4-3.6), controls 10.2% (9.9-10.6), competitive 13.3% (11.6-15.2). OR for recreational vs control 0.86; <15y exposure OR 0.6.",
+    "population": "Systematic review/meta-analysis, 25 studies / 125,810 individuals (17 studies / 114,829 meta-analyzed)",
+    "provenance": {
+      "primary": "Alentorn-Geli, Samuelsson, Musahl, Green, Bhandari, Karlsson - 'The Association of Recreational and Competitive Running With Hip and Knee Osteoarthritis: A Systematic Review and Meta-analysis', J Orthop Sports Phys Ther 2017",
+      "doi": "10.2519/jospt.2017.7137",
+      "surfaced_via": "PubMed esearch (running osteoarthritis meta-analysis) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta of observational data (level 2a etiology/harm); causation vs confounding (e.g. prior injury, self-selection of the already-healthy into running) cannot be resolved. The U-shaped pattern (sedentary AND elite worse than recreational) is consistent across the running-OA literature and supported by cartilage-imaging studies showing no lasting degradation in healthy knees. Refutes the lay 'finite-miles/wear-and-tear' model for recreational running.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "swimming-mortality-oja",
+    "statement": "Participation in specific sports carries differing all-cause and CVD mortality associations: in a large British cohort, swimming (all-cause HR 0.72; CVD HR 0.59), racquet sports (all-cause HR 0.53; CVD HR 0.44), aerobics (HR 0.73) and cycling (all-cause HR 0.85) were significantly associated with lower mortality, while running and football were NOT significantly associated in this cohort.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "All-cause mortality HR: swimming 0.72 (0.65-0.80), racquet sports 0.53 (0.40-0.69), aerobics 0.73 (0.63-0.85), cycling 0.85 (0.76-0.95); running/football non-significant. CVD: swimming 0.59, racquet 0.44, aerobics 0.64.",
+    "population": "Pooled Scottish/English population cohort, 80,306 adults (54% women, mean age 52), Cox regression with confounder adjustment",
+    "provenance": {
+      "primary": "Oja, Kelly, Pedisic, Titze, Bauman, Foster, Hamer, Hillsdon, Stamatakis - 'Associations of specific types of sports and exercise with all-cause and cardiovascular-disease mortality: a cohort study of 80 306 British adults', Br J Sports Med 2017",
+      "doi": "10.1136/bjsports-2016-096822",
+      "surfaced_via": "PubMed esearch (swimming all-cause mortality cohort) 2026-06-29"
+    },
+    "conflicts_with": ["running-mortality-lee"],
+    "canon_link": "",
+    "confidence_notes": "Observational; heavily self-selected (lap swimming and racquet sports require access, skill, and baseline health - a classic predictor-not-lever situation, so magnitudes overstate any causal effect). The disagreement with Lee 2014 on running (null here, strongly protective there) is itself the honest lesson: sport-specific cohorts are confounded by who chooses the sport. Swimming/cycling/swimming are non-weight-bearing (no bone benefit).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "kettlebell-bell-trial-older",
+    "statement": "Supervised high-intensity hardstyle kettlebell training improved grip strength and multiple health-related fitness measures in insufficiently-active older adults, with high adherence and only minor adverse events - evidence that kettlebell training is safe and effective for older populations when coached.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "After 3 months: grip strength +~7.1 kg (R) / +6.3 kg (L), 6-min walk +41.7 m, 1RM deadlift +16.2 kg, 30s sit-to-stand +3.3 reps, appendicular lean mass +0.65 kg, resting HR -7.4 bpm; 91.5% compliance; 4 non-serious adverse events.",
+    "population": "BELL pragmatic controlled trial: 32 insufficiently-active adults aged 59-79 (16 M, 16 F), 3 months usual activity then 3 months progressive kettlebell training (within-subject repeated measures)",
+    "provenance": {
+      "primary": "Meigh, Keogh, Schram, Hing, Rathbone - 'Effects of supervised high-intensity hardstyle kettlebell training on grip strength and health-related physical fitness in insufficiently active older adults: the BELL pragmatic controlled trial', BMC Geriatr 2022",
+      "doi": "10.1186/s12877-022-02958-z",
+      "surfaced_via": "PubMed esearch (kettlebell training older adults) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Pragmatic controlled trial with a within-subject usual-activity control period (not a parallel-group RCT), small n=32, supervised. Lead author is a kettlebell instructor (disclosed COI). Supports safety/efficacy in older adults under supervision; the back/form caveat (ballistic hinge done badly loads the lumbar spine) is the real-world risk this controlled-and-coached setting minimizes.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "kettlebell-transfer",
+    "statement": "Kettlebell training transfers to gains in maximal/explosive strength and aerobic capacity in healthy adults, supporting its use as a hybrid strength-power-conditioning tool - though dedicated heavy resistance training builds maximal strength faster and dedicated endurance work builds VO2max faster.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Significant improvements in strength (e.g. clean-and-jerk, back squat) and explosive/power and aerobic measures vs control over ~6-10 weeks; effect smaller than mode-specific training for the matched quality.",
+    "population": "Small RCTs / controlled trials in healthy recreationally-active adults (e.g. Lake & Lauder; Manocchia et al.)",
+    "provenance": {
+      "primary": "Manocchia, Spierer, Lufkin, Minichiello, Castro - 'Transference of kettlebell training to strength, power, and endurance', J Strength Cond Res 2013",
+      "doi": "10.1519/JSC.0b013e31825770fe",
+      "surfaced_via": "PubMed esearch (kettlebell training strength power) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Small RCTs/controlled trials, short duration. Supports the 'generalist tool' framing: kettlebells improve several capacities but are bettered at each by specialist modalities - which is precisely their value for time/space-limited general trainees.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "taichi-falls-meta",
+    "statement": "Tai chi reduces fall rate and improves balance in older adults, with meta-analytic and RCT evidence; a landmark RCT found a therapeutic tai chi program reduced falls MORE than conventional multimodal exercise and stretching in older adults at high fall risk - the strongest mind-body-modality outcome evidence.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Meta-analyses: significant reductions in fall risk/rate and improved balance vs control. Li 2018 RCT: tai chi cut injurious falls substantially vs stretching and outperformed multimodal exercise in high-risk older adults.",
+    "population": "Systematic reviews/meta-analyses of RCTs in community-dwelling older adults; Li et al. 2018 RCT in adults >=70 at high fall risk",
+    "provenance": {
+      "primary": "Tai Chi for fall prevention and balance improvement in older adults: a systematic review and meta-analysis of RCTs, Front Public Health 2023 (with landmark RCT: Li et al., 'Effectiveness of a Therapeutic Tai Ji Quan Intervention vs Multimodal Exercise...', JAMA Intern Med 2018, 10.1001/jamainternmed.2018.1320)",
+      "doi": "10.3389/fpubh.2023.1236050",
+      "surfaced_via": "PubMed esearch (tai chi falls older adults randomized) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Meta/RCT-tier - well above the mechanism/anecdotal grade most 'mobility' modalities carry. Balance/falls is a domain where tai chi has genuine, replicated RCT support (and balance tests are themselves validated mortality biomarkers - cross-ref Section 02 section 5). The clearest who-it's-for in the modalities chapter: older adults / fall prevention.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pilates-lbp-equivalent",
+    "statement": "Pilates reduces pain and disability in chronic low back pain - but is about as effective as other active exercise modalities (strength, motor-control, general exercise), not superior. Across the chronic-LBP literature no single exercise type is clearly best; adherence beats modality.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Pilates superior to minimal/no intervention for pain and disability; broadly comparable to other exercise modes in network meta-analyses (no consistent ranking advantage).",
+    "population": "Network meta-analyses and systematic reviews of RCTs in adults with chronic non-specific low back pain",
+    "provenance": {
+      "primary": "Fernandez-Rodriguez et al. - 'Best Exercise Options for Reducing Pain and Disability in Adults With Chronic Low Back Pain: Pilates, Strength, Core-Based, and Mind-Body. A Network Meta-analysis', J Orthop Sports Phys Ther 2022 (also Pilates-LBP SR meta, Disabil Rehabil 2023, 10.1080/09638288.2023.2251404)",
+      "doi": "10.2519/jospt.2022.10671",
+      "surfaced_via": "PubMed esearch (Pilates low back pain meta-analysis) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Consistent with Section 21 section 2.3 (Saragiotto Cochrane 2016): for chronic LBP no single exercise type is clearly best - the modality-equivalence finding. Pilates builds real core endurance/control; the 'lengthens muscles / realigns spine' claims are marketing. Graded mixed because it works but is not uniquely superior.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "crossfit-injury-rate",
+    "statement": "CrossFit injury rates are comparable to other recreational and strength sports (roughly 0.2-3.3 injuries per 1000 training hours), not dramatically higher as critics claim; shoulders, spine, and knees are the most-injured sites, and risk is modifiable by coaching quality and appropriate scaling.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Pooled/reported injury incidence ~0.2-3.3 per 1000 training hours; shoulder, lumbar spine, and knee most common; higher with less coaching/experience and competition focus.",
+    "population": "Systematic reviews of CrossFit injury epidemiology (survey/retrospective cohort data)",
+    "provenance": {
+      "primary": "Injury in CrossFit: A Systematic Review of Epidemiology and Risk Factors, Phys Sportsmed 2022 (consistent with Klimek et al. 2018, Weisenthal et al. 2014)",
+      "doi": "10.1080/00913847.2020.1864675",
+      "surfaced_via": "PubMed esearch (CrossFit injury rate systematic review) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mostly retrospective/survey data with recall and selection bias and heterogeneous injury definitions - so the absolute rate is uncertain. The honest conclusion is comparative: CrossFit is middle-of-the-pack among recreational sports, NOT a bloodbath, and risk is dominated by coaching quality and the form-under-fatigue mechanism (high-skill movements performed for time to exhaustion). Graded mixed: real adherence/intensity benefit, real modifiable fatigue-form risk.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "dancing-dementia-verghese",
+    "statement": "Frequent participation in dancing was associated with a markedly lower risk of incident dementia among older adults - and was the only physical leisure activity in the cohort with a significant association, plausibly because dance couples aerobic exertion with continuous cognitive demand (steps, rhythm, partnering) and social engagement.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Frequent dancing associated with ~76% lower dementia risk (HR ~0.24) vs infrequent in the leisure-activity analysis; cognitive leisure activities (reading, board games, instruments) also protective.",
+    "population": "Bronx Aging Study: 469 community-dwelling adults >75, prospective, median ~5y follow-up, 124 dementia cases",
+    "provenance": {
+      "primary": "Verghese, Lipton, Katz, Hall, Derby, Kuslansky, Ambrose, Sliwinski, Buschke - 'Leisure activities and the risk of dementia in the elderly', N Engl J Med 2003",
+      "doi": "10.1056/NEJMoa022252",
+      "surfaced_via": "PubMed esearch (dancing dementia leisure cohort) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Observational cohort, heavily confounded (people who dance frequently differ in health, sociality, cognitive reserve, and may have subclinical preclinical dementia reducing participation - reverse causation; predictor not proven lever). Cannot conclude dancing prevents dementia. BUT the mechanistic bundle (aerobic + motor learning + social engagement, each independently linked to brain health) is unusually coherent. Direction-positive, defensible as a choice, not a proven cure. Cross-ref Section 08.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "leisure-activity-types-mortality",
+    "statement": "Among older adults, several leisure-time physical activity types (including racquet sports, running, walking, and others) are each associated with lower all-cause, cardiovascular, and cancer mortality - supporting that multiple modalities deliver longevity benefit and that activity type is somewhat interchangeable.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Multiple activity types each associated with significantly lower all-cause/CVD/cancer mortality vs none; racquet sports and running among the strongest in some analyses.",
+    "population": "NIH-AARP Diet and Health Study cohort of older adults (hundreds of thousands), prospective",
+    "provenance": {
+      "primary": "Association of Leisure Time Physical Activity Types and Risks of All-Cause, Cardiovascular, and Cancer Mortality Among Older Adults, JAMA Netw Open 2022",
+      "doi": "10.1001/jamanetworkopen.2022.28510",
+      "surfaced_via": "PubMed esearch (leisure activity types mortality older adults) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Large observational cohort, self-reported activity, healthy-user confounding. Supports the interchangeability/variety theme (section 10): several modalities each lower mortality, reinforcing that capacity coverage and adherence matter more than the specific tool.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "physical-activity-variety-mortality",
+    "statement": "Engaging in a greater VARIETY of physical activity types is associated with lower mortality, independent of total activity volume - suggesting that mixing modalities (broader capacity coverage and sustained engagement) may add benefit beyond any single activity.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Higher activity-type variety associated with lower all-cause mortality after adjusting for total activity (modest independent association).",
+    "population": "Two prospective cohort studies (pooled analysis)",
+    "provenance": {
+      "primary": "Physical activity types, variety, and mortality: results from two prospective cohort studies, BMJ Med 2026",
+      "doi": "10.1136/bmjmed-2025-001513",
+      "surfaced_via": "PubMed esearch (physical activity types variety mortality) 2026-06-29"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Observational; variety correlates with health, leisure, and resources (confounding). Direction sensible (variety -> broader capacity coverage + better adherence). Mild-evidence support for the 'mix modalities' recommendation; not a strong causal claim.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "spot-reduction-myth",
+    "statement": "Spot reduction - selectively burning fat from a specific body area by exercising the muscle beneath it (e.g. crunches for belly fat, inner-thigh machines for thigh fat) - does not occur. Fat loss is systemic and hormonally driven; localized muscle work does not preferentially mobilize adjacent fat.",
+    "claim_type": "mechanism",
+    "domain": "exercise-modalities",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Targeted resistance training of a limb/region produces no preferential local fat loss vs systemic fat loss in controlled trials (e.g. abdominal-exercise and unilateral-training studies).",
+    "population": "Controlled exercise trials measuring regional fat change (e.g. abdominal exercise studies; single-limb training designs)",
+    "provenance": {
+      "primary": "Vispute et al. 2011 (abdominal exercise, J Strength Cond Res) and Ramirez-Campillo et al. 2013 (unilateral leg training) - representative controlled trials finding no spot reduction",
+      "doi": "",
+      "surfaced_via": "exercise-modalities section debunks (waist-trainers / toning / spot-reduction)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/ (lipolysis / endocrine fat mobilization)",
+    "confidence_notes": "Well-established negative: lipolysis is body-wide and hormonally regulated, not locally targeted by adjacent muscle contraction. Underpins the debunks of waist trainers, ab-belts, and 'toning' workouts. Mechanism + supporting RCTs both point the same way.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "youth-resistance-training-safe",
+    "statement": "Supervised, age-appropriate resistance training is safe and beneficial for children and adolescents and does NOT stunt growth or damage growth plates; the historical injuries attributed to youth lifting came from unsupervised maximal/ego loading, not from resistance training per se.",
+    "claim_type": "outcome",
+    "domain": "exercise-modalities",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Youth resistance training improves strength, motor skill, and bone health with low injury risk under supervision; no evidence of growth stunting or epiphyseal harm.",
+    "population": "Position statements / reviews synthesizing pediatric resistance-training trials (e.g. international consensus on youth resistance training)",
+    "provenance": {
+      "primary": "Lloyd et al. - 'Position statement on youth resistance training: the 2014 International Consensus', Br J Sports Med 2014 (and NSCA youth resistance training position)",
+      "doi": "10.1136/bjsports-2013-092952",
+      "surfaced_via": "exercise-modalities section debunks (lifting stunts growth)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong consensus/synthesis-tier refutation of a persistent myth. Builds on the broader point (Section 04 section 4.1) that youth is the highest-leverage window for building strength and peak bone mass. The safety caveat is supervision and appropriate loading, not avoidance.",
+    "added_on": "2026-06-29"
+  }
+]

@@ -1,0 +1,401 @@
+[
+  {
+    "id": "tre-late-16-8-not-superior-to-control",
+    "statement": "Late time-restricted eating (16:8) produces only small weight loss that is not significantly greater than a non-restricted control eating schedule, and a notable fraction of the lost weight is lean mass.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Modest weight loss (~1 kg) not different from control; significant proportion lean mass.",
+    "population": "116 adults with overweight/obesity, 12-week RCT (TREAT)",
+    "provenance": {
+      "primary": "Lowe DA et al., 'Effects of Time-Restricted Eating... TREAT Randomized Clinical Trial', JAMA Intern Med 2020",
+      "doi": "10.1001/jamainternmed.2020.4153",
+      "surfaced_via": "Europe PMC (time-restricted eating RCT)"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Single RCT; late window is the weakest TRE variant. Grade: MODERATE — benefit is the deficit/adherence, not the clock.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "early-tre-weight-independent-benefit",
+    "statement": "Early time-restricted eating (6-hour early window, isocaloric, no weight loss) improves insulin sensitivity, blood pressure, and oxidative-stress markers — a genuine circadian, weight-independent effect.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved insulin sensitivity, beta-cell responsiveness, BP; isocaloric (no weight change).",
+    "population": "8 men with prediabetes, randomized crossover (small)",
+    "provenance": {
+      "primary": "Sutton EF, Peterson CM et al., 'Early Time-Restricted Feeding Improves Insulin Sensitivity...', Cell Metab 2018",
+      "doi": "10.1016/j.cmet.2018.04.010",
+      "surfaced_via": "cross-ref 03-nutrition-supplements.md / Europe PMC"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Tiny n, short, but tightly controlled (isocaloric) — the cleanest evidence that TIMING (early) matters beyond calories. Grade: MODERATE+.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "adf-equals-continuous-restriction",
+    "statement": "Alternate-day fasting produces weight loss and cardiometabolic change no better than daily continuous calorie restriction, with higher dropout and no preferential sparing of lean mass.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Weight loss ~6% at 6 months, equal to daily CR; higher attrition in ADF arm.",
+    "population": "100 adults, 1-year RCT (ADF vs daily CR vs control)",
+    "provenance": {
+      "primary": "Trepanowski JF et al., 'Effect of Alternate-Day Fasting...', JAMA Intern Med 2017",
+      "doi": "10.1001/jamainternmed.2017.0936",
+      "surfaced_via": "Europe PMC (alternate-day fasting RCT)"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Deflates the 'ADF is metabolically special' claim. Grade: MODERATE (= continuous restriction).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "5-2-equals-continuous-restriction",
+    "statement": "The 5:2 diet (two ~500-600 kcal days per week) achieves weight loss and metabolic improvement comparable to, not greater than, daily continuous energy restriction; it is a delivery format for a weekly deficit.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Intermittent vs continuous energy restriction: similar weight and cardiometabolic outcomes across meta-analyses.",
+    "population": "Meta-analyses of intermittent vs continuous energy restriction RCTs",
+    "provenance": {
+      "primary": "Multiple meta-analyses of intermittent vs continuous energy restriction (e.g. MASLD SR/meta, Front Nutr 2026)",
+      "doi": "10.3389/fnut.2026.1833688",
+      "surfaced_via": "Europe PMC (intermittent vs continuous energy restriction)"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Choose by adherence preference. Grade: MODERATE (= CR).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "omad-thin-evidence-glucose-cortisol",
+    "statement": "One-meal-a-day (OMAD) eating has only thin human evidence (case reports, small studies); isocaloric single-meal eating can raise fasting glucose, morning cortisol, and blood pressure versus multiple meals.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "case-control",
+    "direction": "mixed",
+    "effect_size": "Case-level weight/glycemic improvement in deficit; crossover signals of raised fasting glucose/cortisol.",
+    "population": "Case reports and small crossover studies",
+    "provenance": {
+      "primary": "OMAD prediabetes/obesity case management, J Family Med Prim Care 2025; older single-meal crossover physiology",
+      "doi": "10.4103/jfmpc.jfmpc_247_25",
+      "surfaced_via": "Europe PMC (one meal a day)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Extreme TRE; nutrient/protein adequacy hard to hit in one meal. Grade: WEAK.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "if-muscle-loss-caveat",
+    "statement": "Intermittent fasting patterns that cluster protein into fewer boluses (especially ADF and OMAD) can blunt the per-meal anabolic signal; without high protein (~1.6 g/kg) and resistance training, a larger share of weight lost is lean mass.",
+    "claim_type": "mechanism",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Greater lean-mass loss risk vs evenly-distributed protein; mitigated by protein + resistance training.",
+    "population": "Inference from leucine-threshold MPS physiology + IF body-composition data",
+    "provenance": {
+      "primary": "Leucine-threshold MPS literature (cross-ref 03-nutrition-supplements.md §2.2); IF body-composition trials",
+      "doi": "",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism + supportive trial signal; the most important practical caveat for IF. Grade: real caveat.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "extended-fasting-buchinger-observational",
+    "statement": "Prolonged periodic (Buchinger ~200-250 kcal/day) fasting of 4-21 days improved weight, blood pressure, lipids, and glycemia with good tolerability in a large observational series — but the study has no control group, so benefit cannot be cleanly attributed to fasting per se.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Weight/BP/lipid/glucose improvements; few serious adverse events across 1422 subjects.",
+    "population": "1422 subjects (BP analysis 1610), single-arm observational, Buchinger Wilhelmi clinic",
+    "provenance": {
+      "primary": "Wilhelmi de Toledo F et al., 'Safety, health improvement and well-being during a 4 to 21-day fasting period...', PLoS One 2019",
+      "doi": "10.1371/journal.pone.0209353",
+      "surfaced_via": "Europe PMC (Buchinger fasting)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Uncontrolled, self-selected, supervised. Directional safety/effect signal, not causal proof. Grade: WEAK-MODERATE.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "water-fasting-goldhamer-truenorth-observational",
+    "statement": "Medically supervised water-only fasting (Goldhamer / TrueNorth) followed by a whole-plant-food diet is associated with reductions in blood pressure and Lp(a) and favorable metabolic shifts in single-arm case series.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "BP and Lp(a) reductions; metabolic improvement post-fast + whole-plant-food diet.",
+    "population": "Supervised single-arm case series, TrueNorth Health Center",
+    "provenance": {
+      "primary": "Reduction in Lp(a) after a medically supervised, prolonged water-only fast, Front Nutr 2024; Nutrients 2024",
+      "doi": "10.3389/fnut.2024.1418705",
+      "surfaced_via": "Europe PMC (water-only fasting Goldhamer)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Single-arm, supervised, self-selected, includes refeeding protocol. Grade: WEAK (supervised-only).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "refeeding-syndrome-dangerous",
+    "statement": "Refeeding syndrome — acute hypophosphatemia/hypokalemia/hypomagnesemia and fluid shifts on reintroducing nutrition (especially carbohydrate) after prolonged fasting/starvation — is a genuine, potentially fatal danger; documented harms include arrhythmia, seizures, and (with thiamine depletion) Wernicke's encephalopathy.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Refeeding hypophosphatemia incidence/mortality measurable in critically ill; case reports of severe outcomes after long self-directed fasts.",
+    "population": "Critically ill/malnourished cohorts + fasting case reports",
+    "provenance": {
+      "primary": "Refeeding-syndrome incidence/mortality SR/meta, Sci Rep 2026; Wernicke's after 40-day water fast, Clin Case Rep 2026",
+      "doi": "10.1038/s41598-026-41063-8",
+      "surfaced_via": "Europe PMC (refeeding syndrome prolonged fasting)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The genuinely dangerous part of extended fasting; mandates slow, thiamine-supplemented, monitored refeed. Grade: real hazard.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "dry-fasting-1day-equals-3days-fabricated-and-harmful",
+    "statement": "The dry-fasting claim that 'one day of dry fasting equals three days of water fasting' has no human evidence; withholding water drives dehydration and raises risk of acute kidney injury, stones, hypernatremia, and thrombosis (Ramadan/CKD data).",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "case-control",
+    "direction": "refutes",
+    "effect_size": "No evidence for the 1:3 ratio; elevated renal risk in CKD and with heat/long fasting hours.",
+    "population": "Ramadan cohorts incl. chronic kidney disease patients",
+    "provenance": {
+      "primary": "Ramadan Fasting and Its Impact on Patients With Chronic Kidney Disease, Cureus 2024; heat + prolonged fasting nephrology, Int J Nephrol 2023",
+      "doi": "10.7759/cureus.57522",
+      "surfaced_via": "Europe PMC (dry fasting Ramadan kidney)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Claim unsupported; harm mechanistically obvious. Grade: WEAK-EVIDENCE + POTENTIALLY-HARMFUL — not endorsed.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "fmd-prolon-human-rct-biomarkers",
+    "statement": "The fasting-mimicking diet (FMD/ProLon, Longo) run as 3 monthly 5-day cycles improved body weight, blood pressure, fasting glucose, IGF-1, and CRP in a human RCT, with the largest effects in higher-risk participants — but outcomes are surrogate markers, trials are short, and the work is commercially entangled.",
+    "claim_type": "outcome",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved weight, BP, fasting glucose, IGF-1, CRP after 3 monthly cycles; biological-age estimate reductions in later analyses.",
+    "population": "~100 generally healthy adults, randomized (Wei 2017)",
+    "provenance": {
+      "primary": "Wei M et al. (Longo group), 'Fasting-mimicking diet and markers/risk factors for aging, diabetes, cancer, and cardiovascular disease', Sci Transl Med 2017",
+      "doi": "10.1126/scitranslmed.aai8700",
+      "surfaced_via": "Europe PMC (fasting mimicking diet Longo)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Best-evidenced branded protocol; surrogate-level, short, COI (Longo foundation/product). Mechanism: Brandhorst 2015 Cell Metab 10.1016/j.cmet.2015.05.012. Grade: MODERATE.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "autophagy-fasting-clock-not-established-in-humans",
+    "statement": "Popular fasting-autophagy timing claims (e.g. '16h triggers, 24h maximizes autophagy') are extrapolated from rodent and cell studies; human autophagy flux is hard to measure, autophagy is also induced by exercise/sleep/CR/spermidine, and no human study establishes a fasting clock or a resulting health outcome.",
+    "claim_type": "mechanism",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "animal",
+    "direction": "mixed",
+    "effect_size": "Fasting plausibly increases human autophagy (inferred); specific hour-thresholds and uniqueness are unsupported; outcome undemonstrated.",
+    "population": "Rodent/in-vitro mechanism; indirect human surrogate markers only",
+    "provenance": {
+      "primary": "Ohsumi autophagy machinery (Nobel 2016, cross-ref 01-foundations.md §3.2); human autophagy-measurement limitations literature",
+      "doi": "",
+      "surfaced_via": "domain synthesis + Europe PMC (autophagy fasting humans)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Autophagy is foundation-tier real; the marketed dose-response is mechanism over-extended into outcome. Grade: WEAK / mechanism-over-extended.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "master-cleanse-no-detox-crash-diet",
+    "statement": "The Master Cleanse (lemon/maple/cayenne liquid fast, Stanley Burroughs) has no evidence for 'detox' or disease cure; it is a protein-free very-low-calorie crash diet whose weight loss is the deficit and is reliably regained.",
+    "claim_type": "outcome",
+    "domain": "J-cleanses",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No detox effect; transient deficit-driven weight loss skewed to water/glycogen/lean mass.",
+    "population": "No controlled human evidence",
+    "provenance": {
+      "primary": "Detox-diet critical reviews (no quality evidence for detox concept), e.g. Klein & Kiat, J Hum Nutr Diet 2015",
+      "doi": "10.1111/jhn.12286",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-ref liver-detox debunk 17-organ-systems-atlas.md §3.5. Grade: PSEUDOSCIENCE (detox) / crash diet.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "juice-cleanse-no-detox",
+    "statement": "Juice cleanses have no detox evidence; they strip fiber, concentrate sugar, provide near-zero protein, and any weight loss is a rebounding deficit. Whole vegetables and fruit are superior on every axis.",
+    "claim_type": "outcome",
+    "domain": "J-cleanses",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No detox effect; glycemic load; no nutritional advantage over whole foods.",
+    "population": "No controlled human evidence",
+    "provenance": {
+      "primary": "Detox-diet critical reviews; whole-food vs juice nutrition",
+      "doi": "10.1111/jhn.12286",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Risky in diabetes (sugar) and CKD (potassium); unpasteurized juice infection risk. Grade: PSEUDOSCIENCE (detox).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "colon-cleanse-no-benefit-harmful",
+    "statement": "Colon cleanses / colonic hydrotherapy to remove 'impacted waste' or 'mucoid plaque' have no evidence of benefit ('mucoid plaque' is not a real anatomical entity) and a documented record of harm: electrolyte disturbance, infection, bowel perforation, and deaths.",
+    "claim_type": "outcome",
+    "domain": "J-cleanses",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No benefit; documented serious harms (perforation, electrolyte deaths, infection).",
+    "population": "Case reports / adverse-event literature",
+    "provenance": {
+      "primary": "Coffee-enema / colon-cleanse adverse-event literature (cross-ref 32-biohacking-fringe.md §6.3); colonic hydrotherapy complication reports",
+      "doi": "",
+      "surfaced_via": "cross-ref + Europe PMC (colonic adverse)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Distinct from legitimate medical bowel prep before colonoscopy. Grade: PSEUDOSCIENCE + POTENTIALLY-HARMFUL.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "liver-gallbladder-flush-stones-are-saponified-oil",
+    "statement": "The 'stones' passed after an olive-oil-and-citrus liver/gallbladder flush are saponified fatty-acid soap complexes formed in the gut, not gallstones or 'liver stones'; the flush cannot clear the biliary tree and the claim is debunked.",
+    "claim_type": "outcome",
+    "domain": "J-cleanses",
+    "evidence_tier": "case-control",
+    "direction": "refutes",
+    "effect_size": "Chemical analysis: passed 'stones' = saponified oil, no cholesterol/bile-stone constituents.",
+    "population": "Chemical analysis of passed material (Lancet 2005 letter)",
+    "provenance": {
+      "primary": "Sies H, Brinkmann J, 'Liver cleansing reports' / analysis showing saponified oil, The Lancet 2005",
+      "doi": "10.1016/S0140-6736(05)67459-5",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Epsom-salt purge causes dehydration; can dislodge a real stone into the bile duct. Grade: PSEUDOSCIENCE (debunked).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "parasite-cleanse-false-premise",
+    "statement": "Parasite cleanses rest on a false premise that most people in developed settings harbor symptomatic parasites; 'ropeworms' shown as evidence are sloughed intestinal mucus/epithelium, not organisms. Real parasitic infection is diagnosed and treated with specific drugs.",
+    "claim_type": "outcome",
+    "domain": "J-cleanses",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No benefit; 'ropeworms' = intestinal mucus/lining.",
+    "population": "No controlled evidence; parasitology baseline",
+    "provenance": {
+      "primary": "Parasitology consensus that 'ropeworms' are sloughed mucosa; diagnosis-and-treat standard of care",
+      "doi": "",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real danger = herbal toxicity (thujone), unsafe self-dosed antiparasitics, and missing a true diagnosis. Grade: PSEUDOSCIENCE.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "detox-teas-hidden-laxatives-diuretics",
+    "statement": "Marketed 'detox'/teatox teas produce apparent weight loss largely through undisclosed laxatives (often senna) and diuretics causing water loss, with no detox evidence; chronic use causes laxative dependence and electrolyte loss.",
+    "claim_type": "outcome",
+    "domain": "J-cleanses",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "Water loss from hidden senna/diuretics, not fat loss; no detox effect.",
+    "population": "Mini-review of diet/detox teas",
+    "provenance": {
+      "primary": "'Safety and effectiveness of diet and detox teas for weight loss: a mini-review', Front Nutr 2026",
+      "doi": "10.3389/fnut.2026.1777795",
+      "surfaced_via": "Europe PMC (detox diets review)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hypokalemia (cardiac) risk; dangerous overlap with eating-disorder purging. Grade: PSEUDOSCIENCE + POTENTIALLY-HARMFUL.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "snake-diet-electrolyte-kernel-unsafe-program",
+    "statement": "The Snake Diet (Cole Robinson) pairs a valid kernel — electrolytes ('snake juice': sodium/potassium/magnesium) genuinely matter during extended fasting — with an unsafe, evidence-free program of extreme recurrent fasting and anti-medical, 'fasting cures everything' messaging.",
+    "claim_type": "protocol",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "anecdotal",
+    "direction": "mixed",
+    "effect_size": "Electrolyte component real; program weight loss is the (often excessive) deficit; no trial base for the program.",
+    "population": "No controlled evidence for the program",
+    "provenance": {
+      "primary": "Extended-fasting electrolyte physiology (real kernel); Snake Diet program description (no trial base)",
+      "doi": "",
+      "surfaced_via": "domain synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Anti-medical framing discourages supervision exactly where extended fasting needs it; disordered-eating risk. Grade: MIXED.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "extended-fast-supervision-threshold",
+    "statement": "Self-directed fasts beyond ~24-48 hours warrant medical input and beyond ~72 hours should be supervised with electrolyte monitoring and a planned refeed; the benign safety record of clinic fasting series reflects the supervision and screening, not the duration alone.",
+    "claim_type": "protocol",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "anecdotal",
+    "direction": "supports",
+    "effect_size": "Conservative supervision threshold derived from refeeding/electrolyte risk and clinical practice.",
+    "population": "Clinical practice synthesis + supervised fasting series",
+    "provenance": {
+      "primary": "International consensus on fasting terminology, Cell Metab 2024; Buchinger/Goldhamer supervised protocols",
+      "doi": "10.1016/j.cmet.2024.06.013",
+      "surfaced_via": "Europe PMC (international consensus fasting terminology)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Practice-based safety guidance, not a trial result. Grade: prudent default.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "fasting-contraindications-safety-box",
+    "statement": "Fasting is contraindicated or requires medical supervision in: type 1 diabetes and any diabetic on insulin/sulfonylureas (hypoglycemia/DKA; SGLT2i euglycemic DKA), pregnancy/breastfeeding, eating-disorder history, underweight/frail/older-sarcopenic adults, children/adolescents, certain medications (diuretics, narrow-therapeutic-window drugs), and advanced kidney/liver disease.",
+    "claim_type": "protocol",
+    "domain": "J-fasting-protocols",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Defined exclusion set with mechanistic harm rationale (hypoglycemia, DKA, muscle loss, ED reactivation, electrolyte/fluid risk).",
+    "population": "Clinical risk synthesis",
+    "provenance": {
+      "primary": "Diabetes/fasting safety guidance; eating-disorder and sarcopenia literature; refeeding/electrolyte physiology",
+      "doi": "",
+      "surfaced_via": "domain synthesis (cross-ref 03-nutrition-supplements.md §4)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The load-bearing safety box of the chapter. Grade: established clinical guidance.",
+    "added_on": "2026-06-29"
+  }
+]

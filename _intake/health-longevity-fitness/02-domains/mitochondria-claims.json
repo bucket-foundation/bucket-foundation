@@ -1,0 +1,363 @@
+[
+  {
+    "id": "mito-cristae-micos-atp-synthase-curvature",
+    "statement": "Mitochondrial inner-membrane cristae are shaped functional structures: their junction necks are held by the MICOS complex and ATP synthase dimerizes along the curved cristae rims, generating the curvature that packs ETC machinery and maximizes proton-motive-force-generating surface area.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Structural (cristae density/shape track bioenergetic capacity)",
+    "population": "Cross-species cell biology (cryo-EM, mammalian + yeast)",
+    "provenance": {
+      "primary": "Cogliati, Enriquez & Scorrano — cristae shape & OXPHOS efficiency (Trends Biochem Sci 2016); MICOS/ATP-synthase-dimer literature",
+      "doi": "10.1016/j.tibs.2016.01.001",
+      "surfaced_via": "deep-dive 37-mitochondrial-health structural section"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Established cell biology; the link cristae-density <-> capacity is robust, the in-vivo dynamics of remodeling are an active area.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "complex-I-principal-ros-site-reverse-electron-transport",
+    "statement": "Complex I is a principal site of mitochondrial ROS production, especially via reverse electron transport (RET) when the proton-motive force is high and the CoQ pool is reduced (e.g. succinate accumulation after ischemia drives the RET-ROS burst of reperfusion injury).",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic (RET as a major superoxide source)",
+    "population": "Mammalian (mouse heart ischemia-reperfusion; isolated mitochondria)",
+    "provenance": {
+      "primary": "Chouchani et al. — Ischaemic accumulation of succinate controls reperfusion injury through ROS, Nature 2014",
+      "doi": "10.1038/nature13909",
+      "surfaced_via": "deep-dive ETC complex-by-complex table"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "RET as a dominant physiological ROS source is well supported in heart I/R; relative contribution across tissues/conditions still studied.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "mtdna-37-genes-two-genome-collaboration",
+    "statement": "Human mtDNA is a ~16.5 kb circular genome encoding 37 genes (13 ETC protein subunits, 22 tRNAs, 2 rRNAs); the other ~1,500 mitochondrial proteins are nuclear-encoded and imported, so the organelle runs on a two-genome collaboration requiring mito-nuclear coordination.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "37 mtDNA genes; ~1,500 nuclear-encoded mito proteins",
+    "population": "Human (genome-sequence fact)",
+    "provenance": {
+      "primary": "Anderson et al. — Sequence and organization of the human mitochondrial genome, Nature 1981; MitoCarta inventory (Calvo/Mootha)",
+      "doi": "10.1038/290457a0",
+      "surfaced_via": "deep-dive mtDNA section"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Settled fact; the ~1,500 figure tracks MitoCarta updates.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "mtdna-maternal-inheritance-heteroplasmy-threshold",
+    "statement": "mtDNA is maternally inherited; cells carry hundreds-to-thousands of copies that can be a mix of wild-type and mutant (heteroplasmy); a mutant load usually causes no phenotype until it crosses a tissue-specific threshold (~60-80% mutant), beyond which the most energy-demanding tissues fail first.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Threshold typically ~60-80% mutant load (tissue-dependent)",
+    "population": "Human mitochondrial genetics / disease",
+    "provenance": {
+      "primary": "Wallace, D. C. — mtDNA, heteroplasmy and the threshold effect (Annu Rev Genet 2005; Science 1999)",
+      "doi": "10.1146/annurev.genet.39.110304.095751",
+      "surfaced_via": "thread-mitochondria wallace-2013-heteroplasmy-threshold"
+    },
+    "conflicts_with": [],
+    "canon_link": "canon-figures/05-biophysics.md#wallace-doug",
+    "confidence_notes": "Uncontested foundation of mitochondrial medicine; threshold value varies by mutation and tissue energy demand.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pink1-parkin-mitophagy-membrane-potential-sensor",
+    "statement": "PINK1/Parkin mitophagy uses inner-membrane potential as the honesty signal: PINK1 is imported and degraded in healthy (polarized) mitochondria, but when membrane potential collapses, PINK1 accumulates on the outer membrane, recruits/activates Parkin, which ubiquitinates the organelle for selective autophagic destruction.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic (depolarization-gated selective mitophagy)",
+    "population": "Mammalian cell biology",
+    "provenance": {
+      "primary": "Narendra, Tanaka, Suen & Youle — Parkin recruited selectively to impaired mitochondria, J Cell Biol 2008; Narendra et al. PLoS Biol 2010 (PINK1)",
+      "doi": "10.1083/jcb.200809125",
+      "surfaced_via": "deep-dive mitophagy section"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Established; PINK1/Parkin-independent routes (BNIP3, NIX, FUNDC1) also exist. Loss-of-function mutations cause early-onset Parkinson's.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pink1-parkin-loss-early-onset-parkinsons",
+    "statement": "Loss-of-function mutations in PINK1 and PARKIN (PARK2) cause autosomal-recessive early-onset Parkinson's disease, implicating failed mitochondrial quality control (mitophagy) in dopaminergic neurodegeneration.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Monogenic causal (recessive early-onset PD)",
+    "population": "Human genetics",
+    "provenance": {
+      "primary": "Kitada et al. Nature 1998 (Parkin); Valente et al. Science 2004 (PINK1)",
+      "doi": "10.1126/science.1096284",
+      "surfaced_via": "deep-dive mitophagy disease relevance"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Monogenic causation is solid for these rare familial forms; their relevance to common sporadic PD is suggestive, not proven.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pgc1a-master-regulator-biogenesis-convergence",
+    "statement": "PGC-1alpha is the master transcriptional co-activator of mitochondrial biogenesis; the four classic good-stress signals (rising AMP:ATP via AMPK, Ca2+ via CaMK, transient ROS, and NAD+/SIRT1) all converge on it to induce NRF1/2, ERRalpha and TFAM, which build new ETC complexes and replicate mtDNA. This convergence is why exercise, fasting, cold and CR share a final common biogenesis pathway.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic (single convergent master regulator)",
+    "population": "Mammalian (mouse + human muscle)",
+    "provenance": {
+      "primary": "Wu et al. Cell 1999; Puigserver & Spiegelman Endocr Rev 2003; Lin, Handschin & Spiegelman Cell Metab 2005",
+      "doi": "10.1016/S0092-8674(00)80611-X",
+      "surfaced_via": "12-mechanism-bridge PGC-1a deep-dive + deep-dive biogenesis section"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Established as the central node; biogenesis is multi-regulator and PGC-1a is necessary-but-not-sole in some contexts.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "fission-fusion-balance-quality-control",
+    "statement": "Mitochondria continuously fuse (MFN1/2 outer, OPA1 inner; mixes contents, dilutes damage, favored under nutrient scarcity) and divide (DRP1; segregates damaged units for mitophagy, enables distribution/division); aging and metabolic disease skew toward chronic fragmentation, and MFN2 (CMT2A) / OPA1 (dominant optic atrophy) mutations prove the machinery is essential.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic (dynamic network quality control)",
+    "population": "Mammalian cell biology + human dynamics-gene disease",
+    "provenance": {
+      "primary": "Chan, D. C. — Mitochondrial dynamics and its involvement in disease, Annu Rev Pathol 2020; Youle & van der Bliek Science 2012",
+      "doi": "10.1146/annurev-pathmechdis-012419-032711",
+      "surfaced_via": "deep-dive dynamics section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Molecular biology established; 'improve your fission-fusion balance' as a consumer protocol does not exist independent of exercise/fasting.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "free-radical-theory-resolved-against-naive-form",
+    "statement": "The naive free-radical/oxidative-damage theory of aging is mostly resolved against itself: large antioxidant-supplement RCTs (vitamin E, beta-carotene, vitamin A) show no mortality benefit and some harm; supplemental vitamin C+E blunts the mitochondrial-biogenesis adaptation to exercise; and genetically boosting most antioxidant defenses does not extend mouse lifespan as predicted.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Antioxidant RCTs null-to-harmful; vit C+E reduce training adaptation",
+    "population": "Human RCT meta-analyses + human exercise trials + mouse genetics",
+    "provenance": {
+      "primary": "Bjelakovic et al. JAMA 2007 (antioxidant mortality meta); Ristow et al. PNAS 2009 (antioxidants blunt exercise)",
+      "doi": "10.1001/jama.297.8.842",
+      "surfaced_via": "conflict-free-radical-theory + 01-foundations 2.6"
+    },
+    "conflicts_with": ["conflict-free-radical-theory"],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "The NAIVE damage/antioxidant form is refuted; ROS-as-damage still occurs - the correction is that ROS are also required signals (mitohormesis).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "mitohormesis-transient-ros-adaptive-signal",
+    "statement": "Mitohormesis: a transient, sub-damaging burst of mitochondrial ROS is an adaptive signal that activates NRF2 (endogenous antioxidant/phase-II program) and PGC-1alpha (biogenesis), making the system net-stronger - a biphasic dose-response. Transient mitochondrial ROS is the shared engine under exercise, fasting, cold, and xenohormetic polyphenols.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Mechanistic (biphasic; signal not just damage)",
+    "population": "Human + model organism",
+    "provenance": {
+      "primary": "Ristow, M. & Schmeisser, K. — Mitohormesis: promoting health and lifespan by increased ROS, Dose-Response 2014; Ristow PNAS 2009",
+      "doi": "10.2203/dose-response.13-035.Ristow",
+      "surfaced_via": "thread-hormesis + thread-mitochondria"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Molecular mechanism well supported; the hormesis frame becomes unfalsifiable if used to retro-explain any result (see hormesis-unifying-frame).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "mito-dysfunction-declines-with-age-phenomenon-solid",
+    "statement": "Mitochondrial function declines with age across tissues (oxidative capacity, membrane potential, biogenesis/PGC-1a signaling, mitophagy, supercomplex organization, NAD+ availability) - a robust phenomenon and a named Hallmark of Aging (antagonistic category).",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Cross-tissue decline (phenomenon)",
+    "population": "Human + mammalian, cross-tissue",
+    "provenance": {
+      "primary": "Lopez-Otin et al. Hallmarks of Aging, Cell 2013/2023; Sun, Youle & Finkel Mol Cell 2016",
+      "doi": "10.1016/j.cell.2013.05.039",
+      "surfaced_via": "mito-dysfunction-hallmark"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "The decline as a phenomenon is solid; whether it is a DRIVER of aging or a downstream readout is open (see conflict-mtdna-mutation-causality).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "mtdna-mutation-causality-normal-aging-contested",
+    "statement": "Somatic mtDNA mutations accumulate and clonally expand with age (solid); the POLG mutator mouse ages prematurely (solid) but at mutation loads far above human levels and via apoptosis rather than ROS damage; whether somatic mtDNA mutation CAUSES normal human aging remains contested/open.",
+    "claim_type": "hypothesis",
+    "domain": "mitochondria",
+    "evidence_tier": "animal",
+    "direction": "mixed",
+    "effect_size": "Mutator-mouse premature aging at supraphysiologic loads; causality in normal aging unresolved",
+    "population": "Mouse (POLG mutator) + human somatic-mtDNA studies",
+    "provenance": {
+      "primary": "Trifunovic et al. Nature 2004; Kujoth et al. Science 2005 (apoptosis not ROS)",
+      "doi": "10.1038/nature02517",
+      "surfaced_via": "conflict-mtdna-mutation-causality"
+    },
+    "conflicts_with": ["conflict-mtdna-mutation-causality"],
+    "canon_link": "canon-figures/05-biophysics.md#wallace-doug",
+    "confidence_notes": "Phenomenon solid, causal role in NORMAL human aging open - a flagship example of a robust phenomenon with unresolved causality.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "exercise-strongest-mitochondrial-lever",
+    "statement": "Aerobic/Zone-2 + HIIT endurance training is the strongest, best-evidenced mitochondrial lever: it drives PGC-1a biogenesis (Holloszy 1967: ~doubles mitochondrial enzyme content), and VO2max - which physiologically IS integrated mitochondrial capacity - is the strongest mortality predictor in preventive medicine.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Endurance training ~doubles mito enzyme content; VO2max strongest mortality predictor (cohort)",
+    "population": "Human (training studies + large fitness cohorts)",
+    "provenance": {
+      "primary": "Holloszy J Biol Chem 1967; Mandsager et al. JAMA Netw Open 2018 (CRF & mortality)",
+      "doi": "10.1001/jamanetworkopen.2018.3605",
+      "surfaced_via": "exercise-mitochondrial-biogenesis-holloszy + crf-vo2max-strongest-mortality-predictor"
+    },
+    "conflicts_with": ["conflict-zone2-optimal-mito"],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Biogenesis mechanism certain; VO2max-mortality link is cohort/meta (cannot randomize decades of fitness; partial reverse causation). Zone-2-uniquely-optimal is over-extrapolated.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "photobiomodulation-cytochrome-c-oxidase-narrow",
+    "statement": "Red/near-infrared light (~660-850 nm) is absorbed by cytochrome c oxidase (Complex IV) and can increase its activity in vitro/animal models (photobiomodulation); human outcome data are small, heterogeneous and indication-specific (skin, some muscle recovery, retinal), not a validated general mitochondrial booster.",
+    "claim_type": "mechanism",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Real Cx IV photochemistry; human outcomes small/narrow",
+    "population": "In vitro/animal + small human trials",
+    "provenance": {
+      "primary": "Hamblin, M. R. — Mechanisms and mitochondrial redox signaling in photobiomodulation, Photochem Photobiol 2018",
+      "doi": "10.1111/php.12864",
+      "surfaced_via": "deep-dive levers table (PBM honest narrow evidence)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Mechanism plausible/real; graded promising-but-thin, not established for general use. Distinct from Kruse's broader speculative light claims.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "coq10-real-in-heart-failure-not-healthy",
+    "statement": "CoQ10/ubiquinol has a positive hard-endpoint RCT in moderate-severe heart failure (Q-SYMBIO: 300 mg/d ~halved MACE and all-cause mortality over 2 years) and is genuinely therapeutic in primary CoQ10 deficiency; but in healthy people it shows no demonstrated benefit and statin-myalgia RCTs are mostly null.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Q-SYMBIO HR ~0.5 for MACE/mortality in HF; null for statin myalgia; no benefit in healthy",
+    "population": "n=420 NYHA III-IV heart failure (Q-SYMBIO)",
+    "provenance": {
+      "primary": "Mortensen et al. — Q-SYMBIO, JACC Heart Failure 2014 (PMID 25282031)",
+      "doi": "10.1016/j.jchf.2014.06.008",
+      "surfaced_via": "PubMed Q-SYMBIO + deep-dive supplement section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest outcome evidence of any supplement in this chapter, but context-specific (HF/deficiency); do not generalize to healthy people.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "urolithin-a-mitophagy-real-mechanism-modest-outcome",
+    "statement": "Urolithin A (Mitopure) is a genuine, replicated mitophagy inducer in cells and animals; human RCTs (Andreux 2019 first-in-human safety/molecular signature; Singh 2022 older adults; Liu 2022 middle-aged) show small, mostly-surrogate effects (muscle endurance, mitochondrial gene expression, ~+12% strength), missed some primary endpoints (6-min walk), have no hard endpoints, and are industry (Amazentis)-funded.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Modest/surrogate: muscle endurance + mito gene expression; ~+12% strength (Liu); no hard endpoints",
+    "population": "Middle-aged & older adults (multiple Amazentis RCTs)",
+    "provenance": {
+      "primary": "Andreux et al. Nat Metab 2019; Singh et al. JAMA Netw Open 2022 (PMID 35050355); Liu et al. Cell Rep Med 2022 (PMID 35584623)",
+      "doi": "10.1038/s42255-019-0073-4",
+      "surfaced_via": "PubMed urolithin A trials + deep-dive supplement section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Best-evidenced 'mitophagy supplement' but mechanism != outcome: real mechanism, modest surrogate effects, no hard endpoints, all sponsor-funded. Promising, not proven.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "mitoq-targeted-antioxidant-mixed",
+    "statement": "MitoQ (CoQ conjugated to a triphenylphosphonium cation that concentrates it ~hundredfold in the mitochondrial matrix; developed by Michael P. Murphy & Robin Smith) improved endothelial function (FMD ~42%) in older adults in one RCT (Rossman 2018) but exercise/redox trials are inconsistent (some peak-power benefit, no change in mitochondrial content); as a targeted antioxidant it risks blunting training adaptation.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "FMD +~42% (Rossman, older adults); exercise outcomes inconsistent",
+    "population": "Healthy older adults (Rossman 2018); trained cyclists/older adults (exercise trials)",
+    "provenance": {
+      "primary": "Rossman et al. — Chronic MitoQ improves vascular function in healthy older adults, Hypertension 2018 (PMID 29661838)",
+      "doi": "10.1161/HYPERTENSIONAHA.117.10787",
+      "surfaced_via": "PubMed MitoQ trials + deep-dive supplement section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Elegant targeting, one real endothelial signal, inconsistent elsewhere; antioxidant-blunting concern applies. Unproven for general use.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pqq-biogenesis-claim-weak",
+    "statement": "PQQ (pyrroloquinoline quinone) is marketed as a PGC-1alpha/mitochondrial-biogenesis activator, but the supporting human trials are small, frequently industry-funded, and report inconsistent surrogate endpoints (cognition scores, mitochondrial biomarkers, modest aerobic markers in untrained men); the biogenesis claim is largely preclinical.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Small/inconsistent surrogate effects; biogenesis claim mostly preclinical",
+    "population": "Small human trials (healthy volunteers, untrained men, elderly)",
+    "provenance": {
+      "primary": "Hwang et al. J Am Coll Nutr 2020 (PMID 31860387, aerobic/biogenesis markers); Itoh et al. cognition trials",
+      "doi": "10.1080/07315724.2019.1641166",
+      "surfaced_via": "PubMed PQQ randomized + deep-dive supplement section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Weak tier; not established. Rides mitochondrial-biogenesis prestige past the human data.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "primary-mitochondrial-disease-high-demand-tissues-fail-first",
+    "statement": "Primary (inherited) mitochondrial diseases - the most common inherited metabolic disorders (~1 in 4,300), caused by mtDNA (maternal, heteroplasmic) or nuclear-gene mutations - selectively damage the most energy-demanding post-mitotic tissues first (brain, heart, muscle, retina, cochlea), and even in these defined-lesion patients the 'mitochondrial cocktail' supplements have modest-to-weak evidence and no cure.",
+    "claim_type": "outcome",
+    "domain": "mitochondria",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Prevalence ~1/4300; tissue-selective by energy demand; supplement cocktails weak",
+    "population": "Human mitochondrial-disease patients (MELAS, MERRF, Leigh, LHON, Kearns-Sayre)",
+    "provenance": {
+      "primary": "Gorman et al. — Mitochondrial diseases, Nat Rev Dis Primers 2016; Pfeffer et al. Cochrane 2012 (treatment for mito disorders)",
+      "doi": "10.1038/nrdp.2016.80",
+      "surfaced_via": "deep-dive primary mitochondrial disease section"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md",
+    "confidence_notes": "Tissue-selectivity is the clinical proof of the master-variable thesis; weak supplement evidence even here lowers the prior for healthy-person 'optimization'.",
+    "added_on": "2026-06-29"
+  }
+]

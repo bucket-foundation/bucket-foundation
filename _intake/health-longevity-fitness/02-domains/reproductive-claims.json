@@ -1,0 +1,363 @@
+[
+  {
+    "id": "larc-most-effective-reversible",
+    "statement": "Long-acting reversible contraception (IUDs and implants) is 20x more effective than the pill/patch/ring in typical real-world use, because effectiveness does not depend on user action.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Pill/patch/ring users had ~20x the contraceptive failure rate of LARC users (hazard ratio 21.8) in a prospective cohort",
+    "population": "9256 women, Contraceptive CHOICE Project, St. Louis",
+    "provenance": {
+      "primary": "Winner B et al., 'Effectiveness of long-acting reversible contraception', NEJM 2012;366:1998-2007",
+      "doi": "10.1056/NEJMoa1110855",
+      "surfaced_via": "Wave-42 reproductive brief; PubMed PMID 22621627 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Large prospective cohort with free method provision (removes cost confounder). The typical-use vs perfect-use gap is the core mechanism: LARC removes the human from the loop. IUDs do NOT cause infertility (separate refuted myth).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "contraceptive-typical-vs-perfect-use",
+    "statement": "Contraceptive failure rates differ greatly between perfect use and typical use; combined pills fail ~7% and condoms ~13% in typical first-year use versus <1% for IUDs and implants.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "1st-yr typical-use failure: implant ~0.05%, hormonal IUD ~0.2%, copper IUD ~0.8%, pill ~7%, male condom ~13%, withdrawal ~20%",
+    "population": "US national survey data synthesis (NSFG)",
+    "provenance": {
+      "primary": "Trussell J, 'Contraceptive failure in the United States', Contraception 2011;83:397-404",
+      "doi": "10.1016/j.contraception.2011.01.021",
+      "surfaced_via": "Wave-42 reproductive brief; PubMed PMID 21477680 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The canonical US contraceptive-failure dataset. Typical use is the honest comparison unit. Condoms are mediocre contraception but the only method that also prevents STIs (dual-protection is their real value).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "hpv-vaccine-prevents-invasive-cervical-cancer",
+    "statement": "HPV vaccination reduces the risk of invasive cervical cancer at the population level, with the largest effect when given before age 17 (~88% reduction).",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Vaccinated before age 17: IRR 0.12 (~88% reduction) for invasive cervical cancer; before age 30 overall ~63% reduction",
+    "population": "~1.67 million Swedish girls/women aged 10-30, national registry, 2006-2017",
+    "provenance": {
+      "primary": "Lei J et al., 'HPV Vaccination and the Risk of Invasive Cervical Cancer', NEJM 2020;383:1340-1348",
+      "doi": "10.1056/NEJMoa1917338",
+      "surfaced_via": "Wave-42 reproductive brief; PubMed PMID 32997908 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "First demonstration that an HPV vaccine prevents an INVASIVE cancer (prior trials showed precancer endpoints). Registry-grade. Underpins WHO cervical-cancer elimination strategy. Cross-ref oncogenic-virus story in section 26.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "ed-predicts-cardiovascular-disease",
+    "statement": "Erectile dysfunction is an early marker of cardiovascular disease; new-onset ED in younger men predicts roughly 50% higher future cardiovascular event risk because penile arteries are small and clog first.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "ED associated with ~hazard ratio 1.25-1.5 for incident CV events; effect strongest in men <60",
+    "population": "Olmsted County men cohort (Inman) + multiple meta-analyses",
+    "provenance": {
+      "primary": "Inman BA et al., 'A population-based, longitudinal study of erectile dysfunction and future coronary artery disease', Mayo Clin Proc 2009;84:108-113",
+      "doi": "10.4065/84.2.108",
+      "surfaced_via": "Wave-42 reproductive brief; cross-ref section 11 vascular"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Predictor-not-just-symptom: ED is a cardiovascular work-up trigger in younger men. PDE5 inhibitors treat the symptom; the vascular/metabolic disease (diabetes, hypertension, smoking) is the real target. Cross-ref section 11, 22.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "testosterone-trt-cardiovascular-safety-traverse",
+    "statement": "In middle-aged/older men with genuine hypogonadism and cardiovascular risk, testosterone-replacement therapy was non-inferior to placebo for major adverse cardiovascular events; it did not demonstrate benefit for optimizing healthy men.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "MACE 7.0% (TRT) vs 7.3% (placebo), met non-inferiority; higher rates of AFib, AKI, pulmonary embolism in TRT arm",
+    "population": "5246 men aged 45-80 with hypogonadism + CV risk, randomized placebo-controlled",
+    "provenance": {
+      "primary": "Lincoff AM et al. (TRAVERSE), 'Cardiovascular Safety of Testosterone-Replacement Therapy', NEJM 2023;389:107-117",
+      "doi": "10.1056/NEJMoa2215025",
+      "surfaced_via": "Wave-42 reproductive brief; PubMed PMID 37326322 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reassured on CV safety in DIAGNOSED hypogonadism; did NOT validate 'low-T' clinic optimization of the worried-well. TRT suppresses endogenous production and fertility. Cross-ref section 13 testosterone-clinic debunk.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "psa-screening-modest-mortality-benefit-overdiagnosis",
+    "statement": "PSA-based prostate cancer screening reduces prostate-cancer mortality modestly but at the cost of substantial over-diagnosis and over-treatment, making it a shared individual decision rather than a blanket recommendation.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "~21% relative reduction in prostate-cancer mortality; ~1 death prevented per ~1000 men screened over 11 years; ~27 extra cancers diagnosed per death prevented",
+    "population": "162,000+ men, European Randomized Study of Screening for Prostate Cancer (ERSPC)",
+    "provenance": {
+      "primary": "Schröder FH et al. (ERSPC), 'Prostate-cancer mortality at 11 years of follow-up', NEJM 2012;366:981-990",
+      "doi": "10.1056/NEJMoa1113135",
+      "surfaced_via": "Wave-42 reproductive brief; PubMed PMID 22417251 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The over-diagnosis problem drives the shift to active surveillance for low-risk disease. Harms of treatment = incontinence and erectile dysfunction. Cross-ref section 25 oncology, 07 prevention.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "ivf-success-declines-steeply-with-egg-age",
+    "statement": "IVF live-birth rate per cycle using a woman's own eggs declines steeply with maternal age, from ~40-50% under 35 to under 5% over 42, driven by egg chromosomal quality.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Live birth per cycle (own eggs): <35 ~40-50%, 38-40 ~20-25%, 41-42 ~10-15%, >42 <5%",
+    "population": "US national ART surveillance (CDC/SART registry data)",
+    "provenance": {
+      "primary": "CDC/SART National ART Surveillance System annual reports; ASRM committee opinions on age and fertility",
+      "doi": "",
+      "surfaced_via": "Wave-42 reproductive brief; extends section 19 fertility"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "No clinic protocol overrides egg age. Clinics quote favorable denominators (per-transfer/cumulative/subgroup) vs per-cycle-started. Donor eggs track the donor's young age (~50%+). Honest fertility-industry framing.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "ivf-add-ons-lack-evidence",
+    "statement": "Most IVF 'add-ons' (endometrial scratch, assisted hatching, time-lapse imaging, immune therapies, many supplements) lack good RCT evidence for improving live-birth rates yet are routinely sold at extra cost.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "UK HFEA rates most add-ons amber or red (insufficient or no evidence of live-birth benefit)",
+    "population": "HFEA evidence-rating reviews; multiple Cochrane reviews",
+    "provenance": {
+      "primary": "HFEA Treatment Add-ons ratings (UK Human Fertilisation and Embryology Authority); Cochrane reviews of IVF adjuncts",
+      "doi": "",
+      "surfaced_via": "Wave-42 reproductive brief; predator-on-hope market"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Clearest example of an evidence-light market sold to desperate patients. The regulator (HFEA) explicitly flags the lack of evidence.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "egg-freezing-probability-not-guarantee",
+    "statement": "Elective egg freezing is a probability not a guarantee; per-oocyte live-birth chance is only ~6-7%, so meaningful odds require banking many eggs, and freezing before ~35 materially beats freezing later.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Cumulative live-birth probability rises with oocyte number and falls with age at freezing; per-mature-oocyte ~6.5% in younger women",
+    "population": "Large vitrified-oocyte cohorts (Cobo et al., Spain)",
+    "provenance": {
+      "primary": "Cobo A et al., 'Oocyte vitrification as an efficient option for elective fertility preservation', Fertil Steril 2016;105:755-764",
+      "doi": "10.1016/j.fertnstert.2015.11.027",
+      "surfaced_via": "Wave-42 reproductive brief; extends section 19"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Vitrification is real technological progress but is marketed as insurance it cannot fully be. Sperm freezing, by contrast, is cheap and reliable. Ovarian tissue cryopreservation is now non-experimental.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "endometriosis-diagnostic-delay",
+    "statement": "Endometriosis affects ~10% of reproductive-age women but has a mean diagnostic delay of roughly 7 years because pelvic pain is normalized and definitive diagnosis historically required laparoscopy.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Mean diagnostic delay ~6.7 years across 10 countries; prevalence ~10% of reproductive-age women",
+    "population": "1418 women across 10 countries (Nnoaham multicenter study)",
+    "provenance": {
+      "primary": "Nnoaham KE et al., 'Impact of endometriosis on quality of life and work productivity: a multicenter study across ten countries', Fertil Steril 2011;96:366-373",
+      "doi": "10.1016/j.fertnstert.2011.05.090",
+      "surfaced_via": "Wave-42 reproductive brief; flagship under-diagnosed pain condition"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Pain severity does not track lesion size. Treatment is symptom-led, not curative. The clearest case where believing women's pain is itself the intervention.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pcos-is-metabolic-not-only-reproductive",
+    "statement": "Polycystic ovary syndrome is the most common endocrine disorder of reproductive-age women (~6-13%) and is a metabolic disorder (insulin resistance, raised cardiometabolic/diabetes risk) as much as a reproductive one.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Prevalence ~6% (NIH criteria) up to ~10-13% (Rotterdam criteria) by meta-analysis",
+    "population": "Systematic review/meta-analysis of community-based prevalence studies",
+    "provenance": {
+      "primary": "Bozdag G et al., 'The prevalence and phenotypic features of polycystic ovary syndrome: a systematic review and meta-analysis', Hum Reprod 2016;31:2841-2855",
+      "doi": "10.1093/humrep/dew218",
+      "surfaced_via": "Wave-42 reproductive brief; cross-ref section 13 androgen axis, Domain D"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "First-line levers are weight/insulin/lifestyle. Letrozole beats clomiphene for ovulation induction (Legro 2014, NEJM). Cross-ref insulin resistance Domain D.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "letrozole-beats-clomiphene-pcos-ovulation",
+    "statement": "Letrozole is superior to clomiphene for ovulation induction and live birth in women with PCOS, making it first-line.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Live birth 27.5% (letrozole) vs 19.1% (clomiphene); higher ovulation and cumulative live-birth rates",
+    "population": "750 women with PCOS, randomized double-blind trial",
+    "provenance": {
+      "primary": "Legro RS et al., 'Letrozole versus Clomiphene for Infertility in the Polycystic Ovary Syndrome', NEJM 2014;371:119-129",
+      "doi": "10.1056/NEJMoa1313517",
+      "surfaced_via": "Wave-42 reproductive brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "RCT-grade. Changed first-line practice for PCOS ovulation induction.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "aspirin-prevents-preterm-preeclampsia",
+    "statement": "Low-dose aspirin started in early pregnancy substantially reduces preterm preeclampsia in high-risk women.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Preterm preeclampsia 1.6% (aspirin 150mg) vs 4.3% (placebo), ~62% relative reduction",
+    "population": "1776 high-risk pregnant women, multicenter RCT (ASPRE)",
+    "provenance": {
+      "primary": "Rolnik DL et al. (ASPRE), 'Aspirin versus Placebo in Pregnancies at High Risk for Preterm Preeclampsia', NEJM 2017;377:613-622",
+      "doi": "10.1056/NEJMoa1704559",
+      "surfaced_via": "Wave-42 reproductive brief; cross-ref section 19 pregnancy"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the highest-value prenatal interventions; RCT-grade. Preeclampsia is a leading cause of maternal death. Cross-ref section 19.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "vaginal-detox-jade-eggs-no-evidence-harmful",
+    "statement": "The vagina is a self-cleaning organ; 'vaginal detox' products, jade eggs, yoni pearls, and douching have no benefit and are associated with harm (douching linked to bacterial vaginosis, PID, and ectopic pregnancy).",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "Douching associated with increased BV, PID, and ectopic pregnancy risk; jade-egg claims unsupported (GOOP settled a regulatory lawsuit)",
+    "population": "Multiple observational studies on vaginal douching; regulatory action on jade eggs",
+    "provenance": {
+      "primary": "Cottrell BH, 'An updated review of evidence to discourage douching', MCN Am J Matern Child Nurs 2010; CA regulatory settlement re: GOOP jade-egg claims 2018",
+      "doi": "10.1097/NMC.0b013e3181de3c8a",
+      "surfaced_via": "Wave-42 reproductive brief; debunk section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The 'cleaning' product causes the problems it claims to prevent. A self-cleaning organ does not need a product. Vaginal steaming can cause burns.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "fertility-supplements-weak-evidence",
+    "statement": "Beyond correcting deficiency and preconception folate (which prevents neural-tube defects), most marketed 'fertility-boosting' supplements have weak-to-absent live-birth evidence.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Cochrane review of antioxidants for male subfertility: evidence for live birth low-quality and inconclusive",
+    "population": "Cochrane systematic reviews (antioxidants, male and female subfertility)",
+    "provenance": {
+      "primary": "de Ligny W et al., 'Antioxidants for male subfertility', Cochrane Database Syst Rev 2022",
+      "doi": "10.1002/14651858.CD007411.pub5",
+      "surfaced_via": "Wave-42 reproductive brief; debunk section"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Folate genuinely prevents NTDs. Myo-inositol (PCOS), CoQ10, vitamin D (if deficient) are least-bad candidates with preliminary support, not guarantees. Most 'fertility blends' are hope sold by the bottle.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "female-desire-drugs-small-effect",
+    "statement": "Drugs marketed for female low sexual desire (flibanserin, bremelanotide) have small average effects, meaningful side-effects, and are not a 'female Viagra'.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Flibanserin: ~0.5 additional satisfying sexual events/month over placebo, with dizziness/somnolence/hypotension; modest benefit-risk",
+    "population": "Meta-analysis of flibanserin RCTs (~5914 women)",
+    "provenance": {
+      "primary": "Jaspers L et al., 'Efficacy and Safety of Flibanserin for the Treatment of Hypoactive Sexual Desire Disorder in Women: A Systematic Review and Meta-analysis', JAMA Intern Med 2016;176:453-462",
+      "doi": "10.1001/jamainternmed.2015.8565",
+      "surfaced_via": "Wave-42 reproductive brief; sexual dysfunction"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Female sexual dysfunction is biopsychosocial and under-researched; psychological/relational/contextual factors dominate desire complaints. Vaginal estrogen helps genitourinary syndrome of menopause.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pelvic-floor-training-incontinence-rct",
+    "statement": "Pelvic-floor muscle training (Kegels) has RCT/meta-analytic evidence for treating stress and mixed urinary incontinence in women and for speeding continence recovery after prostatectomy in men.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Women doing PFMT ~8x more likely to report cure of stress incontinence vs controls (Cochrane)",
+    "population": "Cochrane reviews (women's urinary incontinence; post-prostatectomy)",
+    "provenance": {
+      "primary": "Dumoulin C et al., 'Pelvic floor muscle training versus no treatment for urinary incontinence in women', Cochrane Database Syst Rev 2018",
+      "doi": "10.1002/14651858.CD005654.pub4",
+      "surfaced_via": "Wave-42 reproductive brief; cross-ref section 11 pelvic floor"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Genuinely effective and under-prescribed; technique matters (a physiotherapist improves results). Hypertonic pelvic floors need DOWN-training, not more Kegels. Cross-ref section 11 section 6.3.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "paternal-age-effect-real",
+    "statement": "Despite lifelong sperm production, male fertility declines with paternal age: sperm DNA fragmentation rises, time-to-pregnancy lengthens, and offspring risk of certain conditions increases modestly.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Advancing paternal age associated with longer time-to-pregnancy, higher miscarriage, increased de-novo mutations and modest rises in offspring autism/schizophrenia risk",
+    "population": "Multiple large cohort and registry studies",
+    "provenance": {
+      "primary": "du Fosse NA et al., 'Advanced paternal age is associated with an increased risk of spontaneous miscarriage: a systematic review and meta-analysis', Hum Reprod Update 2020;26:650-669",
+      "doi": "10.1093/humupd/dmaa010",
+      "surfaced_via": "Wave-42 reproductive brief; male fertility decline"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Refutes the 'men have no fertility clock' myth; the decline is more gradual and later than the female one but real. The secular sperm-count decline (Levine) is contested and flagged as an open question, not a settled outcome.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pmdd-ssri-effective",
+    "statement": "Premenstrual dysphoric disorder is a real, DSM-recognized severe form of PMS caused by abnormal sensitivity to normal hormone fluctuation (not abnormal hormone levels); SSRIs are effective and act rapidly.",
+    "claim_type": "outcome",
+    "domain": "AB-reproductive",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "SSRIs (continuous or luteal-phase dosing) significantly reduce PMDD symptoms vs placebo (Cochrane)",
+    "population": "Cochrane review of SSRIs for PMS/PMDD (31 RCTs)",
+    "provenance": {
+      "primary": "Marjoribanks J et al., 'Selective serotonin reuptake inhibitors for premenstrual syndrome', Cochrane Database Syst Rev 2013",
+      "doi": "10.1002/14651858.CD001396.pub3",
+      "surfaced_via": "Wave-42 reproductive brief; cross-ref section 20"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PMDD is disabling and distinct from near-universal mild PMS. SSRIs work fast for PMDD (unlike in depression), supporting a distinct serotonergic mechanism. Cross-ref section 20 psychiatry.",
+    "added_on": "2026-06-29"
+  }
+]

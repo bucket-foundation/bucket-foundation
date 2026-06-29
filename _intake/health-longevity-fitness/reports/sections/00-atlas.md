@@ -9,7 +9,7 @@
 **Coverage key:** ✅ covered (dedicated chapter + graded claims) · 🟡 partial (covered inside another
 chapter, not yet standalone) · ⚪ deferred (named, not yet researched — the honest edge of the map).
 
-**Corpus at a glance:** 36 chapters · ~199,000 words · **836 graded claims** across 43 domain files ·
+**Corpus at a glance:** 48 chapters · ~264,000 words · **997 graded claims** across 53 domain files ·
 **660 carded figures** · 37 first-class conflicts · 24 labs · 15 trials · a 53-movement illustrated
 library. Every claim carries an evidence tier + source; every disagreement is a first-class object.
 *(This is the "map everything" build — the body, the diseases, the medicine, and the levers, end to end.)*

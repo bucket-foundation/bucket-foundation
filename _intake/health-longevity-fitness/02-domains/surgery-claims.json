@@ -1,0 +1,310 @@
+[
+  {
+    "id": "pci-stable-angina-no-better-than-sham",
+    "statement": "In stable angina with severe single-vessel coronary stenosis on optimal medical therapy, percutaneous coronary intervention (stenting) produced no statistically significant improvement in exercise time at 6 weeks compared with a blinded placebo (sham) procedure.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Between-group difference in exercise-time increment ~16.6 s, 95% CI -8.9 to 42.0, not significant; double-blind, placebo-controlled",
+    "population": "ORBITA: 200 patients, stable angina, severe single-vessel stenosis, on optimized anti-anginal meds",
+    "provenance": {
+      "primary": "Al-Lamee R, Thompson D, Dehbi HM, et al. - 'Percutaneous coronary intervention in stable angina (ORBITA): a double-blind, randomised controlled trial', Lancet 2018",
+      "doi": "10.1016/S0140-6736(17)32714-9",
+      "surfaced_via": "Section 38 surgery brief; PubMed PMID 29103656 verified"
+    },
+    "conflicts_with": ["orbita-2-symptom-benefit-off-meds"],
+    "canon_link": "",
+    "confidence_notes": "The purest mechanism-not-equal-outcome demonstration in the corpus. Does NOT mean stents never relieve symptoms (ORBITA-2, in patients off anti-anginal meds, found a real symptom benefit); it retired the reflex that a stenosis seen must be stented in stable disease. Not applicable to acute MI (primary PCI saves lives).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pci-stable-cad-no-mortality-benefit",
+    "statement": "In stable coronary artery disease, an initial invasive strategy (PCI/revascularization) added to optimal medical therapy does not reduce death or myocardial infarction compared with initial medical therapy alone.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "COURAGE: no reduction in death/MI; ISCHEMIA (moderate-severe ischemia, n=5179): no reduction in CV events or death over median ~3.2 yr, though more angina relief in symptomatic patients",
+    "population": "COURAGE (n=2287, stable CAD) and ISCHEMIA (n=5179, stable CAD with moderate-to-severe ischemia)",
+    "provenance": {
+      "primary": "Boden WE, et al. - 'Optimal medical therapy with or without PCI for stable coronary disease', NEJM 2007 (COURAGE); Maron DJ, Hochman JS, et al. - 'Initial Invasive or Conservative Strategy for Stable Coronary Disease', NEJM 2020 (ISCHEMIA)",
+      "doi": "10.1056/NEJMoa070829",
+      "doi_secondary": "10.1056/NEJMoa1915922",
+      "surfaced_via": "Section 38 surgery brief; PubMed PMID 17387127 + 32227755 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Revascularization in stable CAD is for symptom relief in patients limited despite good medical therapy, not a longevity intervention. CABG DOES improve survival in defined high-risk anatomy (left-main, multivessel + diabetes/low EF). Cross-ref Section 22.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "knee-arthroscopy-oa-no-better-than-sham",
+    "statement": "Arthroscopic surgery for knee osteoarthritis, and arthroscopic partial meniscectomy for a degenerative meniscal tear, are no better than sham (placebo) surgery for pain or function.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Moseley: no benefit over skin-incision sham at any timepoint to 24 months; Sihvonen (FIDELITY): no benefit over sham arthroscopy at 12 months for degenerative meniscal tear",
+    "population": "Moseley n=180 (knee OA); FIDELITY n=146 (degenerative meniscal tear, no OA)",
+    "provenance": {
+      "primary": "Moseley JB, et al. - 'A controlled trial of arthroscopic surgery for osteoarthritis of the knee', NEJM 2002; Sihvonen R, et al. - 'Arthroscopic partial meniscectomy versus sham surgery for a degenerative meniscal tear', NEJM 2013 (FIDELITY)",
+      "doi": "10.1056/NEJMoa013259",
+      "doi_secondary": "10.1056/NEJMoa1305189",
+      "surfaced_via": "Section 38 surgery brief; cross-ref Section 21 §6 (covered in detail there)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Discipline-level lesson generalized here; orthopaedic specifics live in Section 21. Arthroscopy retains clear roles (mechanical locking from a true unstable tear, acute injury, infection) - the issue is the degenerative/incidental-finding indication.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "vertebroplasty-failed-twin-sham-trials",
+    "statement": "Vertebroplasty (injecting cement into a painful osteoporotic vertebral compression fracture) is no better than a sham procedure for pain relief, as shown by two simultaneously published placebo-controlled trials.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Both 2009 NEJM trials found no significant benefit of vertebroplasty over a sham injection for pain or disability",
+    "population": "Buchbinder n=78; Kallmes (INVEST) n=131; painful osteoporotic vertebral fractures",
+    "provenance": {
+      "primary": "Buchbinder R, et al. - 'A randomized trial of vertebroplasty for painful osteoporotic vertebral fractures', NEJM 2009; Kallmes DF, et al. - 'A randomized trial of vertebroplasty for osteoporotic spinal fractures' (INVEST), NEJM 2009",
+      "doi": "10.1056/NEJMoa0900563",
+      "doi_secondary": "10.1056/NEJMoa0900429",
+      "surfaced_via": "Section 38 surgery brief; PubMed PMID 19657121 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Classic sham-surgery overturn. Subsequent VAPOUR trial in very acute/severe fractures suggested possible benefit in a narrow subgroup, keeping the indication debated - but the routine-use reflex was retired by the twin 2009 trials.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "robotic-surgery-equivalent-not-superior",
+    "statement": "Robotic-assisted surgery produces outcomes equivalent (not superior) to conventional laparoscopic surgery for most established indications, at substantially higher cost and often longer operating times.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "ROLARR (rectal cancer): no significant reduction in conversion to open surgery (primary endpoint), OR 0.61, 95% CI 0.31-1.21; comparable functional/oncologic outcomes for robotic vs open prostatectomy in RCTs",
+    "population": "ROLARR n=471 (robotic vs laparoscopic rectal resection); plus prostatectomy RCT evidence",
+    "provenance": {
+      "primary": "Jayne D, et al. - 'Effect of Robotic-Assisted vs Conventional Laparoscopic Surgery on Risk of Conversion to Open Laparotomy Among Patients Undergoing Resection for Rectal Cancer (ROLARR)', JAMA 2017",
+      "doi": "10.1001/jama.2017.7219",
+      "surfaced_via": "Section 38 surgery brief; PubMed PMID 29067426 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk of 'robotic = better outcomes'. The technology has real ergonomic/deep-field advantages (3D vision, wristed instruments, tremor filtering) but the blanket outcome-superiority claim is not supported. Case study in technology adoption outrunning evidence.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "bariatric-surgery-most-effective-obesity-diabetes",
+    "statement": "Bariatric (metabolic) surgery is the most effective intervention available for severe obesity and for type-2 diabetes in people with obesity: it produces durable weight loss, high rates of diabetes remission, and is associated with reduced overall mortality.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "STAMPEDE: far higher glycemic control/diabetes remission vs intensive medical therapy at 5 yr; SOS (cohort): reduced all-cause mortality (adjusted HR ~0.71) and lower incidence of diabetes, MI, some cancers over long follow-up",
+    "population": "STAMPEDE n=150 RCT (T2D + obesity); SOS n=4047 prospective controlled cohort",
+    "provenance": {
+      "primary": "Schauer PR, et al. - 'Bariatric Surgery versus Intensive Medical Therapy for Diabetes - 5-Year Outcomes' (STAMPEDE), NEJM 2017; Sjostrom L, et al. - 'Effects of bariatric surgery on mortality in Swedish obese subjects' (SOS), NEJM 2007",
+      "doi": "10.1056/NEJMoa1600869",
+      "doi_secondary": "10.1056/NEJMoa066254",
+      "surfaced_via": "Section 38 surgery brief; PubMed PMID 28199805 + 17715408 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "An honest, evidence-backed strong claim (unusual for surgery). Metabolic effect is partly weight-loss-independent (gut-hormone changes within days). Requires lifelong nutritional follow-up; GLP-1 agonists (Section 28) are reshaping the decision. Cross-ref Section 22.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "total-knee-replacement-effective-end-stage",
+    "statement": "Total knee replacement plus rehabilitation is superior to non-surgical rehabilitation alone for pain and function in severe end-stage knee osteoarthritis, but carries higher risk of serious adverse events and leaves a meaningful minority with residual pain.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Greater improvement in KOOS pain/function with TKR + rehab vs rehab alone at 12 months; more serious adverse events in the surgical group",
+    "population": "Skou et al., n=100 RCT, moderate-to-severe knee OA eligible for TKR",
+    "provenance": {
+      "primary": "Skou ST, et al. - 'A Randomized, Controlled Trial of Total Knee Replacement', NEJM 2015",
+      "doi": "10.1056/NEJMoa1505467",
+      "surfaced_via": "Section 38 surgery brief; PubMed PMID 26488691 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Genuinely effective for SEVERE disease, but over-offered earlier than indicated and satisfies less uniformly than hip replacement. Indication is end-stage disease after fair conservative trial, not an incidental 'bone-on-bone' report. Cross-ref Section 21.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "crf-predicts-perioperative-outcome",
+    "statement": "Objectively measured cardiorespiratory fitness (e.g. anaerobic threshold and peak VO2 on cardiopulmonary exercise testing) is one of the strongest predictors of post-operative morbidity and mortality after major surgery: fitter patients reliably do better.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Low anaerobic threshold / low peak VO2 associated with markedly higher post-operative complications and mortality across major abdominal, thoracic, and vascular surgery cohorts",
+    "population": "Multiple perioperative CPET cohorts (major non-cardiac surgery)",
+    "provenance": {
+      "primary": "Older P, West M, et al. - perioperative CPET literature (anaerobic-threshold risk stratification); Snowden et al. and subsequent cohorts",
+      "doi": "",
+      "surfaced_via": "Section 38 perioperative brief; dovetails with VO2max-as-longevity-predictor (Section 02/07)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/ (mitochondrial oxygen flux / aerobic capacity)",
+    "confidence_notes": "PREDICTOR, not yet established as a lever via this evidence. Strong, repeated observational/physiologic signal. Must not be silently upgraded into 'training before surgery is proven to change outcomes' (see prehab-lever claim).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "prehabilitation-lever-promising-not-settled",
+    "statement": "Prehabilitation (deliberately raising fitness, nutrition, and readiness before surgery) improves fitness markers and, in several trials/meta-analyses, reduces pulmonary complications and length of stay, but evidence that it changes hard outcomes is heterogeneous across studies and surgery types.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Meta-analyses show improved pre-op fitness and fewer pulmonary complications / shorter stay in abdominal and thoracic surgery and in frailer patients; effect on mortality and on outcomes in other surgery types inconsistent",
+    "population": "Prehabilitation RCTs and meta-analyses across major surgery",
+    "provenance": {
+      "primary": "Prehabilitation meta-analyses (e.g. multimodal prehab in colorectal/abdominal surgery); ERAS-adjacent literature",
+      "doi": "",
+      "surfaced_via": "Section 38 perioperative brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The predictor-vs-lever discipline applied: fitness PREDICTS outcome strongly (separate claim); whether RAISING it via prehab CAUSES better hard outcomes is promising but maturing. Honest synthesis: the pre-op window is not dead time; optimizing fitness/nutrition/glycemia and stopping smoking are low-risk and at minimum improve the starting line.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "eras-shortens-recovery",
+    "statement": "Enhanced Recovery After Surgery (ERAS) protocols - bundles including avoiding prolonged fasting, multimodal opioid-sparing analgesia, early feeding and early mobilization, and goal-directed fluids - are associated with shorter length of stay and fewer complications without increasing readmissions.",
+    "claim_type": "protocol",
+    "domain": "surgery",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Consistent reductions in length of stay and complication rates across colorectal and other specialty ERAS implementations",
+    "population": "ERAS Society protocol implementations; colorectal then multi-specialty",
+    "provenance": {
+      "primary": "ERAS Society guidelines (Gustafsson et al. colorectal, and procedure-specific guidelines); multiple implementation meta-analyses",
+      "doi": "",
+      "surfaced_via": "Section 38 perioperative brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Treats recovery as engineered rather than awaited. The operational home of 'fitter patients do better' - front-loads the patient's own physiology into recovery.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "who-surgical-safety-checklist-saves-lives",
+    "statement": "Implementing a 19-item WHO Surgical Safety Checklist is associated with lower post-operative death and complication rates.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "In an 8-hospital global study, death fell from 1.5% to 0.8% and inpatient complications from 11.0% to 7.0% after checklist introduction (pre/post design)",
+    "population": "8 hospitals across 8 cities (high- and low-income), ~7700 patients",
+    "provenance": {
+      "primary": "Haynes AB, et al. - 'A surgical safety checklist to reduce morbidity and mortality in a global population', NEJM 2009",
+      "doi": "10.1056/NEJMsa0810119",
+      "surfaced_via": "Section 38 perioperative brief; PubMed PMID 19144931 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Pre/post design (not RCT) so secular trends/Hawthorne effects not fully excluded, and some later large rollouts showed weaker effects - but the principle (a reliably-used checklist as a safety intervention) is robust. The Gawande 'Checklist Manifesto' story.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "csection-lifesaving-but-overused-above-threshold",
+    "statement": "Caesarean section is unambiguously life-saving for many indications (obstructed labour, fetal distress, placenta praevia), but at the population level C-section rates much above roughly 10-15% are not associated with further reductions in maternal or neonatal mortality.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "Ecological/cross-country analyses: maternal & neonatal mortality fall as C-section rate rises up to ~10-15%, with no further mortality benefit above that",
+    "population": "WHO ecological analyses of national C-section rates vs maternal/neonatal mortality",
+    "provenance": {
+      "primary": "WHO statements on caesarean section rates (Betran et al. ecological analyses)",
+      "doi": "",
+      "surfaced_via": "Section 38 surgery brief; cross-ref Section 19 (life stages) / 23"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Ecological/cross-sectional evidence (weaker tier) - the optimal individual indication is clinical, not a population target. The honest 'both things are true' operation: magnificent emergency procedure that, past a threshold, is performed on many who would have been safer with vaginal birth.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "surgery-under-rct-vs-drugs",
+    "statement": "Surgical procedures are tested with randomized (especially placebo/sham-controlled) trials far less than drugs, because there is no FDA-equivalent gate for procedures, blinding requires an ethically fraught sham operation, clinical equipoise erodes once surgeons believe a procedure works, and operator/learning-curve effects confound trials.",
+    "claim_type": "mechanism",
+    "domain": "surgery",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Systematic reviews find only a small number of placebo-controlled surgical trials exist; a majority found the sham as good as the real procedure",
+    "population": "Methodologic literature on surgical RCTs",
+    "provenance": {
+      "primary": "Wartolowska K, et al. - 'Use of placebo controls in the evaluation of surgery: systematic review', BMJ 2014 (53 trials; sham as effective as surgery in ~half)",
+      "doi": "10.1136/bmj.g3253",
+      "surfaced_via": "Section 38 surgery brief"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The structural root of 'surgical bias': the system under-tests surgery and over-trusts it. Apply the same evidence skepticism to an operation that the corpus applies to a supplement.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "cataract-surgery-high-value",
+    "statement": "Cataract extraction with intraocular lens implantation restores sight rapidly and is among the most cost-effective interventions in medicine; cohort data associate it with lower risk of falls/hip fracture, reduced depression, and lower all-cause mortality.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Large cohorts report lower fall/fracture risk and lower all-cause mortality after cataract surgery (healthy-operee confounding present); among the best cost-per-QALY interventions",
+    "population": "Large observational cohorts (e.g. WHI cataract-surgery mortality analysis) + decades of clinical experience",
+    "provenance": {
+      "primary": "Cataract-surgery mortality/fall cohort literature (e.g. Tseng et al. JAMA 2012; WHI analyses)",
+      "doi": "",
+      "surfaced_via": "Section 38 surgery brief; cross-ref Section 27 (eye)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mortality association is a PREDICTOR relationship with healthy-operee confounding, but the sight-restoration and cost-effectiveness are not in doubt. The exemplar of surgery at its best.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "uncomplicated-appendicitis-antibiotics-option",
+    "statement": "For uncomplicated appendicitis, an antibiotics-first strategy is an evidence-based alternative to immediate appendectomy: most patients avoid surgery, though a substantial minority require appendectomy later.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "CODA: antibiotics non-inferior on 30-day health status; ~quarter to ~third underwent appendectomy within 90 days to 1 year",
+    "population": "CODA (n=1552, US) and APPAC (Finland) RCTs, uncomplicated appendicitis",
+    "provenance": {
+      "primary": "CODA Collaborative - 'A Randomized Trial Comparing Antibiotics with Appendectomy for Appendicitis', NEJM 2020; Salminen et al. APPAC, JAMA 2015/2018",
+      "doi": "10.1056/NEJMoa2014320",
+      "surfaced_via": "Section 38 surgery brief; cross-ref Section 23"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A genuine shared decision for UNCOMPLICATED disease; appendectomy remains standard/life-saving for perforating or complicated appendicitis. Not for complicated cases.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "inguinal-hernia-watchful-waiting-safe",
+    "statement": "For minimally symptomatic or asymptomatic inguinal hernia, watchful waiting is a safe strategy; surgery can be offered when symptoms warrant rather than merely because a hernia exists.",
+    "claim_type": "outcome",
+    "domain": "surgery",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Fitzgibbons RCT: low rate of acute incarceration during watchful waiting; many crossed over to repair over time as symptoms developed, with no excess harm from waiting",
+    "population": "Fitzgibbons et al., n=720 men, minimally symptomatic inguinal hernia",
+    "provenance": {
+      "primary": "Fitzgibbons RJ Jr, et al. - 'Watchful waiting vs repair of inguinal hernia in minimally symptomatic men', JAMA 2006",
+      "doi": "10.1001/jama.295.3.285",
+      "surfaced_via": "Section 38 surgery brief; cross-ref Section 23"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Operate when it bothers you, not merely because it exists. Symptomatic hernia repair remains high-value.",
+    "added_on": "2026-06-29"
+  }
+]

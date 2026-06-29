@@ -1,0 +1,325 @@
+[
+  {
+    "id": "copenhagen-sport-life-expectancy-gradient",
+    "statement": "In the Copenhagen City Heart Study, different leisure sports were associated with widely divergent life-expectancy gains vs sedentary: tennis +9.7y, badminton +6.2y, soccer +4.7y, cycling +3.7y, swimming +3.4y, jogging +3.2y, calisthenics +3.1y, health-club +1.5y.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "LE gain vs sedentary: tennis +9.7y; badminton +6.2y; soccer +4.7y; cycling +3.7y; swimming +3.4y; jogging +3.2y; calisthenics +3.1y; health-club +1.5y (fully adjusted).",
+    "population": "8,577 adults, Copenhagen City Heart Study, up to 25y follow-up",
+    "provenance": {
+      "primary": "Schnohr P, O'Keefe JH, Holtermann A, Lavie CJ, et al., 'Various Leisure-Time Physical Activities Associated With Widely Divergent Life Expectancies', Mayo Clin Proc 2018",
+      "doi": "10.1016/j.mayocp.2018.06.025",
+      "surfaced_via": "Europe PMC (Schnohr Copenhagen leisure sports life expectancy)"
+    },
+    "conflicts_with": ["conflict-which-sport-dimension-drives-longevity"],
+    "canon_link": "",
+    "confidence_notes": "Observational; authors explicitly note causality uncertain and that the MOST SOCIAL sports topped the list. Point estimates inflated by self-selection (who can play tennis into their 70s). The RANKING (social/skill > solo cardio > gym) is the durable signal, not the exact years.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "copenhagen-social-interaction-hypothesis",
+    "statement": "The Copenhagen authors' own interpretation is that leisure sports involving more social interaction were associated with the best longevity, suggesting the social (and skill/intermittent) dimensions, not calories, drive the racquet/team-sport edge.",
+    "claim_type": "hypothesis",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Qualitative: social-interaction sports topped the LE table despite lower caloric expenditure than running.",
+    "population": "8,577 adults, Copenhagen City Heart Study",
+    "provenance": {
+      "primary": "Schnohr P et al., Mayo Clin Proc 2018 (discussion section)",
+      "doi": "10.1016/j.mayocp.2018.06.025",
+      "surfaced_via": "Europe PMC abstract"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hypothesis-generating, flagged by the authors themselves as warranting further investigation. Coheres with Holt-Lunstad social-connection meta (M-domain). Not a demonstrated mechanism.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "racquet-sports-lowest-mortality-cohort",
+    "statement": "In a pooled cohort of 80,306 British adults, racquet sports were associated with the largest all-cause mortality reduction of any discipline (HR 0.53) and the largest CVD mortality reduction (HR 0.44); swimming was second (HR 0.72 all-cause, 0.59 CVD).",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Racquet sports: HR 0.53 all-cause, 0.44 CVD. Swimming: 0.72/0.59. Aerobics: 0.73/0.64. Cycling: 0.85 all-cause. Football and running: not significant.",
+    "population": "80,306 adults, pooled Scottish/English Health Survey cohort, mean age 52",
+    "provenance": {
+      "primary": "Oja P, Kelly P, Pedisic Z, et al., 'Associations of specific types of sports and exercise with all-cause and cardiovascular disease mortality', Br J Sports Med 2017",
+      "doi": "10.1136/bjsports-2016-096822",
+      "surfaced_via": "Europe PMC (Oja racquet sports mortality)"
+    },
+    "conflicts_with": ["conflict-which-sport-dimension-drives-longevity"],
+    "canon_link": "",
+    "confidence_notes": "Independent national cohort corroborating Copenhagen's racquet-sport top ranking. Observational; healthy-user confounding. Note football/running NOT significant here, unlike Copenhagen soccer +4.7y — a genuine cross-cohort dissonance at the margins.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "social-connection-mortality-applies-to-sport",
+    "statement": "Strong social relationships are associated with ~50% greater survival odds (effect benchmarked as comparable to smoking cessation); sport delivers this social-connection lever automatically, the most likely driver of the social-sport longevity edge.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "OR ~1.50 survival for stronger social relationships (Holt-Lunstad meta, n>300k).",
+    "population": "Meta of 148 studies, n>=308,849 (social-connection literature, applied to sport context)",
+    "provenance": {
+      "primary": "Holt-Lunstad J, Smith TB, Layton JB, 'Social Relationships and Mortality Risk: A Meta-analytic Review', PLoS Med 2010",
+      "doi": "10.1371/journal.pmed.1000316",
+      "surfaced_via": "cross-ref 02-domains/M-psychosocial-determinants.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The social-connection effect is meta-tier; the INFERENCE that sport's social dose is what drives the sport-longevity ranking is hypothesis-level. Strong, replicated, observational. The corpus's single largest mortality lever.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "recreational-football-rct-cardiometabolic",
+    "statement": "Recreational small-sided football in untrained adults produces RCT-grade improvements in blood pressure, VO2max, fat loss, lipids, and bone mineral density, often matching or exceeding continuous endurance training, with adherence advantages because it is a game.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced BP, increased VO2max, fat loss, improved lipids/glycemia, increased BMD across the Football is Medicine RCT body; antihypertensive effect supported by recent meta-analyses.",
+    "population": "Multiple RCTs of untrained/hypertensive/at-risk adults (Krustrup/Bangsbo Football is Medicine program); 2025-26 systematic reviews",
+    "provenance": {
+      "primary": "Krustrup P, Bangsbo J et al., Football is Medicine RCT body; e.g. recreational football & hypertension meta (BMC Sports Sci Med Rehabil 2025, 10.1186/s13102-025-01361-6)",
+      "doi": "10.1186/s13102-025-01361-6",
+      "surfaced_via": "Europe PMC (recreational football health Krustrup)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The best-evidenced TEAM sport for health endpoints: cohort signal (Copenhagen +4.7y) plus RCT cardiometabolic data. Note Oja cohort found no football mortality benefit, so hold the LE figure loosely while trusting the RCT physiology.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "table-tennis-parkinsons-pilot",
+    "statement": "Table tennis is being studied as therapy for Parkinson's disease, with a single-center pilot reporting improvements in motor symptoms (speech, handwriting, gait, balance) after a 6-month program; promising but not established.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved clinical motor scores (speech, handwriting, gait, balance, neck stiffness) over 6 months in a pilot; small n.",
+    "population": "12-patient single-center prospective pilot (Inoue 2021); subsequent small trials/reviews",
+    "provenance": {
+      "primary": "Inoue K et al., 'Table tennis for patients with Parkinson's disease: A single-center, prospective pilot study', Clin Park Relat Disord 2021",
+      "doi": "10.1016/j.prdoa.2020.100086",
+      "surfaced_via": "Europe PMC (table tennis Parkinson disease)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Small, uncontrolled/pilot tier. Plausible mechanism: combined aerobic + motor-learning + dual-task + social stimulus. Promising signal, NOT proven therapy. Cross-ref 24-disease-neuro-rheum.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "bouldering-psychotherapy-depression",
+    "statement": "Indoor rock climbing / bouldering psychotherapy reduces depressive symptoms in controlled trials, plausibly via exercise + forced present-moment focus + mastery + climbing-gym community.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Clinically meaningful reductions in depression scores in controlled trials; systematic review (2025) narratively positive, GRADE certainty limited by heterogeneity.",
+    "population": "Adults with moderate depression; controlled trials + 2025 systematic review",
+    "provenance": {
+      "primary": "Larsson R et al., 'Effectiveness of indoor rock climbing and bouldering as treatment for depression - a systematic review', BMC Psychiatry 2025 (with the German bouldering-psychotherapy RCT program)",
+      "doi": "10.1186/s12888-025-07292-3",
+      "surfaced_via": "Europe PMC (bouldering psychotherapy depression)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Among the better-evidenced mental-health sports here (small RCTs + systematic review). Heterogeneous interventions/comparators; effect real but magnitude uncertain. Cross-ref 20-mental-health.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pickleball-injury-uptick",
+    "statement": "Pickleball's rapid growth, especially among adults 50-75, has produced a measurable surge in injuries (lower-extremity strains/tears, falls with fractures in older players, and notable ocular trauma) presenting to clinics and EDs.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Rising injury presentations: calf/Achilles/hamstring strains, older-player falls/fractures, and a distinct eye-injury signal (ball/paddle at close range).",
+    "population": "ED and clinic injury series, US, 2020-2026",
+    "provenance": {
+      "primary": "Lacher CR, Koc I, Tsui JC, 'Pickleball-Related Ocular Injuries Among Patients Presenting to Emergency Departments', JAMA Ophthalmol 2025; plus multiple 2025-26 lower-extremity injury reviews",
+      "doi": "10.1001/jamaophthalmol.2025.3577",
+      "surfaced_via": "Europe PMC (pickleball injury epidemiology)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest counterweight to pickleball's accessibility. The injury COUNT rises largely because participation is exploding in deconditioned older bodies new to lateral cutting, not because the sport is uniquely dangerous. Mitigation: eyewear, warm-up, build a base.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "pickleball-longevity-extrapolated-not-cohort",
+    "statement": "Pickleball has no dedicated longevity cohort; it inherits the plausibility of the racquet-sport signal but must not be sold as having tennis's +9.7-year life-expectancy gain, which is tennis-specific and population-confounded.",
+    "claim_type": "hypothesis",
+    "domain": "SP-sports-play",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "No pickleball-specific mortality data; longevity benefit extrapolated from the racquet-sport family (social + skill + intermittent).",
+    "population": "n/a (gap statement)",
+    "provenance": {
+      "primary": "Inference from Schnohr 2018 + Oja 2017; pickleball longevity literature absent as of 2026",
+      "doi": "",
+      "surfaced_via": "corpus honesty rule (predictor != lever; do not transfer tennis's point estimate)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk of a common claim. Pickleball is likely valuable via its UNMATCHED accessibility and social on-ramp for sedentary older adults, independent of any borrowed point estimate.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "bjj-mental-health-association",
+    "statement": "Brazilian jiu-jitsu practice is associated with resilience, self-control, life satisfaction, lower aggression, and better mental-health profiles; promising on mental health and behavior, unproven on lifespan.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Cross-sectional associations: higher resilience/self-control/life satisfaction, lower aggression as predictors of mental-health outcomes in BJJ practitioners.",
+    "population": "BJJ practitioner samples (e.g., de Lorenco-Lima 2025)",
+    "provenance": {
+      "primary": "de Lorenco-Lima L, Gaines SA, Waterbury EM, 'Aggression, self-control, life satisfaction, and resilience as predictors of mental health in BJJ', Front Sports Act Living 2025",
+      "doi": "10.3389/fspor.2025.1692536",
+      "surfaced_via": "Europe PMC (Brazilian jiu-jitsu health mental)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cross-sectional, self-selected practitioners (reverse causation likely). Key SAFETY point: grappling delivers full-body fitness + physical-chess cognition + tight community WITHOUT repetitive head strikes - its main advantage over striking arts.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "contact-striking-cte-trade",
+    "statement": "Competitive boxing/MMA sparring and bouts involve repetitive (including sub-concussive) head impacts, the established driver of chronic traumatic encephalopathy and dementia risk; the fitness/community benefit is separable from this head-trauma dose.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Dose-dependent repetitive-head-impact exposure linked to CTE neuropathology and dementia (dementia pugilistica is the longest-documented sport neurodegeneration).",
+    "population": "Boxers, contact-sport athletes; neuropathology and cohort series",
+    "provenance": {
+      "primary": "CTE / repetitive-head-impact literature (cross-ref 24-disease-neuro-rheum.md CTE section)",
+      "doi": "",
+      "surfaced_via": "Europe PMC (CTE boxing repetitive head impacts) + cross-ref Section 24"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/",
+    "confidence_notes": "Established, not speculative. The honest debunk: keep the sport (grappling, NON-CONTACT boxing fitness, walking football), manage the head-impact dose. Non-contact boxing has the fitness benefit with none of the CTE risk. Youth risk calculus is more conservative.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "golf-walking-longevity-cohort",
+    "statement": "Golfers (notably walking golfers) show longer life expectancy / lower mortality than the general population (~5 years / ~40% lower in a Swedish cohort), driven by the walking + outdoor + social + lifelong package but heavily confounded by socioeconomic self-selection.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~40% lower mortality / ~5y longer LE for golfers vs general population (Swedish cohort, walking golfers).",
+    "population": "~300,000 Swedish golfers vs general population (Farahmand et al.)",
+    "provenance": {
+      "primary": "Farahmand B et al., Scand J Med Sci Sports (Swedish golf cohort); corroborated by leisure-activity mortality cohorts",
+      "doi": "",
+      "surfaced_via": "domain knowledge + Europe PMC (golf longevity mortality)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Heavy healthy-user/SES confounding (golf skews wealthy and healthy). The walking is the mechanistically plausible active ingredient - riding a cart removes most of it. Cohort, not intervention.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "dance-dementia-protection",
+    "statement": "Dancing is among the few physical leisure activities associated with lower dementia risk in elderly cohorts, plausibly because it fuses aerobic exercise, motor learning, social interaction, and music.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Dancing associated with reduced dementia risk among leisure activities studied (Verghese 2003).",
+    "population": "469 elderly adults, Bronx Aging Study, ~5y follow-up",
+    "provenance": {
+      "primary": "Verghese J et al., 'Leisure Activities and the Risk of Dementia in the Elderly', N Engl J Med 2003",
+      "doi": "10.1056/NEJMoa022252",
+      "surfaced_via": "domain knowledge; cross-ref 08-brain-cognitive.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Observational; reverse causation (preclinical dementia reduces dancing) not excluded. Dance is uniquely brain-relevant: highest combined cognitive + social + musical load of any sport here.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "tai-chi-fall-prevention-rct",
+    "statement": "Tai chi has RCT-grade evidence for fall prevention, balance improvement, and blood-pressure reduction in older adults, making it one of the better-evidenced movement practices for aging.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced fall rate and improved balance/BP in older-adult RCTs and meta-analyses.",
+    "population": "Older adults, multiple RCTs and meta-analyses",
+    "provenance": {
+      "primary": "Tai chi fall-prevention RCT/meta literature (cross-ref 30-complementary-medicine.md and 02-training.md balance work)",
+      "doi": "",
+      "surfaced_via": "cross-ref existing corpus (CAM / training sections)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the safest and most age-friendly activities in the chapter, with genuine RCT support for the outcomes older adults most need (falls, balance). Striking martial arts inherit combat caveats only if they spar to the head.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "masters-athletes-disuse-not-chronology",
+    "statement": "Masters athletes maintain VO2max, muscle mass, bone density, and metabolic profiles far above sedentary age-matched peers, demonstrating that much of the 'normal aging' decline is disuse rather than chronology; it is not too late to start.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Masters athletes show physiological profiles decades younger than sedentary peers across VO2max, lean mass, BMD; late-starting intervention trials still improve strength/balance/VO2max/mood.",
+    "population": "Masters-athlete cohorts and late-life exercise intervention trials",
+    "provenance": {
+      "primary": "Masters-athlete physiology literature + masters cardiovascular consensus statements (Eur Heart J / JACC 2026)",
+      "doi": "10.1016/j.jacc.2026.03.025",
+      "surfaced_via": "Europe PMC (masters athletes aging cardiovascular)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Athlete self-selection caveat, but the 'decline is mostly disuse' signal is robust. Real cardiac-screening nuances exist at the extreme-endurance end (consensus statements), but the population-level signal is overwhelmingly protective. Refutes 'too old to start'.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "early-sport-specialization-harm",
+    "statement": "Early single-sport specialization in youth is associated with higher overuse-injury rates, burnout, and dropout, with little long-term performance advantage for most sports; multi-sport sampling is linked to better long-term development and lower injury.",
+    "claim_type": "outcome",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Higher overuse-injury and burnout/dropout rates with early specialization; multi-sport sampling protective and not performance-disadvantageous for most sports.",
+    "population": "Youth athletes; specialization injury/HRQoL cohorts and reviews",
+    "provenance": {
+      "primary": "Youth sport-specialization injury literature (e.g., specialization & overuse-injury cohorts; HRQoL studies 2026)",
+      "doi": "",
+      "surfaced_via": "Europe PMC (early sport specialization injury youth) + cross-ref 19-life-stages.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk of 'specialize early to go pro'. The lifelong goal - a love of playing - is more likely killed than created by year-round single-sport grinding in childhood. Cross-ref 19-life-stages.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "sport-beats-gym-adherence-mechanism",
+    "statement": "Sport tends to out-perform solitary gym training on hard outcomes largely via adherence (it is fun, social-obligatory, and goal-structured) plus the social-connection lever, skill/cognitive engagement, and natural intermittent-HIIT physiology, rather than via greater caloric expenditure.",
+    "claim_type": "hypothesis",
+    "domain": "SP-sports-play",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Health-club activities were the LOWEST life-expectancy line in Copenhagen (+1.5y) despite programmable load; social/skill sports topped it.",
+    "population": "Synthesis across Copenhagen, Oja, Holt-Lunstad, and behavior-change literature",
+    "provenance": {
+      "primary": "Synthesis: Schnohr 2018 + Oja 2017 + Holt-Lunstad 2010 + behavior-change adherence literature",
+      "doi": "10.1016/j.mayocp.2018.06.025",
+      "surfaced_via": "chapter synthesis"
+    },
+    "conflicts_with": ["conflict-which-sport-dimension-drives-longevity"],
+    "canon_link": "",
+    "confidence_notes": "Hypothesis-level synthesis, not a single demonstrated effect. The 'gym is worse than sport' framing must not dismiss resistance training (its strength/sarcopenia benefits are established elsewhere); the point is about adherence + social + cognitive packaging, not that the gym is useless.",
+    "added_on": "2026-06-29"
+  }
+]

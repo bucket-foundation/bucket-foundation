@@ -1,0 +1,192 @@
+[
+  {
+    "id": "predictive-value-depends-on-pretest-probability",
+    "statement": "The positive and negative predictive value of a diagnostic test (the probability that a positive/negative result is correct for a given patient) depends not only on the test's sensitivity and specificity but critically on the pre-test probability (disease prevalence) in the population tested; the same test yields a very different PPV in a high-prevalence versus a low-prevalence population.",
+    "claim_type": "mechanism",
+    "domain": "pathology-lab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Worked example: a 99%-sensitive/99%-specific test applied to a disease with 0.1% prevalence yields PPV ~9% (about 10 false positives per true positive); the identical test at 10% prevalence yields PPV >90%.",
+    "population": "Bayesian test-performance theory (probability identity, universally applicable)",
+    "provenance": {
+      "primary": "Lijmer JG, Bossuyt PMM — 'A readers' guide to the interpretation of diagnostic test properties: clinical example of sepsis', Intensive Care Med 2003",
+      "doi": "",
+      "surfaced_via": "PubMed esearch (pretest probability bayes diagnostic test) PMID 12734652"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/",
+    "confidence_notes": "This is a mathematical identity (Bayes' theorem), not an empirical finding — it is true by construction. Tier 'meta' used to denote highest certainty; direction 'supports' the proposition that pre-test probability governs result meaning. The single most load-bearing fact in test interpretation.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "reference-range-95pct-false-positive-math",
+    "statement": "A laboratory reference range is conventionally the central 95% of values in a presumed-healthy reference population, so by construction ~1 in 20 (5%) of healthy people fall 'out of range' on any single analyte; running a multi-analyte panel makes at least one false flag the expected outcome (e.g. ~64% probability of one or more flags on 20 independent analytes).",
+    "claim_type": "mechanism",
+    "domain": "pathology-lab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "P(>=1 flag) = 1 - 0.95^n; n=14 (CMP) ~51%, n=20 ~64%.",
+    "population": "Reference-interval statistics (Gaussian 95% interval convention)",
+    "provenance": {
+      "primary": "Galen RS, Gambino SR — 'Beyond Normality: The Predictive Value and Efficiency of Medical Diagnoses', Wiley 1975; CLSI EP28-A3c reference-interval guidance",
+      "doi": "",
+      "surfaced_via": "Domain knowledge (lab-medicine standard); cross-ref WHAT-TO-TRACK-SYNTHESIS reference-range honesty"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Statistical identity given the 95% convention and independence assumption (real analytes are correlated, so true joint false-positive rate is somewhat lower than the independence estimate, but still high). Statistical-normal is not optimal and not healthy — three distinct concepts routinely conflated.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "sensitivity-specificity-fixed-not-predictive-value",
+    "statement": "Sensitivity and specificity are (approximately) intrinsic properties of a test that do not depend on disease prevalence, whereas predictive values do; high sensitivity makes a NEGATIVE result informative (SnNout) and high specificity makes a POSITIVE result informative (SpPin), and the positivity threshold trades one against the other.",
+    "claim_type": "mechanism",
+    "domain": "pathology-lab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Likelihood ratios summarize the pair: LR+ = sens/(1-spec), LR- = (1-sens)/spec; LR+ >10 or LR- <0.1 = large, often conclusive shifts; LR near 1 = uninformative regardless of how abnormal the value looks.",
+    "population": "Diagnostic test theory (Sackett clinical-epidemiology tradition)",
+    "provenance": {
+      "primary": "Sackett DL, Haynes RB, Guyatt GH, Tugwell P — 'Clinical Epidemiology: A Basic Science for Clinical Medicine'; Deeks JJ, Altman DG — 'Diagnostic tests 4: likelihood ratios', BMJ 2004",
+      "doi": "",
+      "surfaced_via": "Domain knowledge; PubMed LR literature (Sackett tradition)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/",
+    "confidence_notes": "Sensitivity/specificity are only APPROXIMATELY prevalence-independent — they can shift with disease spectrum (spectrum bias) and verification bias. The SnNout/SpPin mnemonics are heuristics, strongest at extreme values.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "broad-screening-low-prevalence-false-positive-flood",
+    "statement": "Screening low-pre-test-probability (healthy/asymptomatic) populations with broad or non-targeted testing generates predominantly false positives, because there are far more well people available to misflag than sick people to detect; this drives cascades (incidentaloma workups, benign biopsies, overtreatment) with documented physical, financial, and psychological harm and no demonstrated outcome benefit for untargeted broad screening of healthy adults.",
+    "claim_type": "outcome",
+    "domain": "pathology-lab",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Direct consequence of low PPV at low prevalence (see predictive-value claim); harm is the cascade, not the single test.",
+    "population": "Screening epidemiology / overdiagnosis literature",
+    "provenance": {
+      "primary": "Welch HG — 'Less Medicine, More Health' / 'Overdiagnosed: Making People Sick in the Pursuit of Health' (2011)",
+      "doi": "",
+      "surfaced_via": "Domain knowledge (overdiagnosis canon); Bayesian derivation"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The mechanism (false-positive flood) is a mathematical certainty; the OUTCOME claim (net harm from untargeted broad screening) rests on observational/overdiagnosis evidence plus absence of benefit trials, which is strong but not RCT-per-panel. Targeted screening with proven benefit (e.g. colonoscopy, where pre-test reasoning and outcome trials exist) is explicitly excluded from this debunk.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "psa-screening-small-benefit-large-overdiagnosis",
+    "statement": "Population PSA screening produces at best a small reduction in prostate-cancer-specific mortality (ERSPC ~20% relative reduction, with large number-needed-to-screen/treat; other trials show little to none) at the cost of substantial overdiagnosis — detection and treatment of indolent cancers that would never have harmed the patient — making PSA the canonical example of the threshold/pre-test-probability problem rather than a clearly beneficial screen.",
+    "claim_type": "outcome",
+    "domain": "pathology-lab",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "ERSPC: ~20% relative reduction in prostate-cancer mortality; systematic review/meta-analysis: small, uncertain mortality benefit with significant overdiagnosis and treatment-related harms (incontinence, impotence).",
+    "population": "ERSPC RCT (~162,000 men) + Ilic BMJ 2018 systematic review/meta-analysis of PSA screening RCTs",
+    "provenance": {
+      "primary": "Schröder FH et al. — 'Screening and Prostate-Cancer Mortality in a Randomized European Study', NEJM 2009 (PMID 19297566); Ilic D et al. — 'Prostate cancer screening with PSA: a systematic review and meta-analysis', BMJ 2018 (PMID 30185521)",
+      "doi": "",
+      "surfaced_via": "PubMed esearch (PSA screening overdiagnosis) PMID 30185521, 19297566"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Direction 'mixed' is correct: there IS a real mortality signal in the best trial, AND real overdiagnosis harm — both true, which is the point. PSA is prostate-specific, not cancer-specific (raised by BPH, prostatitis, cycling), so its specificity for cancer is poor. Cross-ref oncology-claims (section 25). Modern practice uses shared decision-making, not blanket screening.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "tumor-markers-poor-screening-good-monitoring",
+    "statement": "Most serum tumor markers (CA-125, CEA, CA 19-9, CA 15-3, etc.) are appropriate for monitoring a KNOWN cancer (treatment response, recurrence) but are poor general-population SCREENING tests, because their modest sensitivity and low specificity applied to low-prevalence populations yield low positive predictive value and a high false-alarm/cascade burden.",
+    "claim_type": "outcome",
+    "domain": "pathology-lab",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "A good monitoring marker (high pre-test probability, trend in known patient) is usually a bad screening test (low pre-test probability, single value) — the same marker at opposite ends of the prevalence spectrum.",
+    "population": "Tumor-marker clinical-utility literature; screening-trial evidence (e.g. CA-125/ovarian)",
+    "provenance": {
+      "primary": "NACB/EGTM laboratory-medicine practice guidelines on tumor markers; ovarian-cancer screening trials (UKCTOCS, PLCO) showing no mortality benefit from CA-125-based screening",
+      "doi": "",
+      "surfaced_via": "Domain knowledge; Bayesian derivation from prevalence"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "AFP+ultrasound surveillance in high-risk cirrhosis and a few defined high-risk contexts are legitimate screening exceptions because they raise pre-test probability — the rule is about the general low-risk population.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "biopsy-gold-standard-but-fallible",
+    "statement": "Histopathology (tissue biopsy examined by a pathologist) is the diagnostic gold standard for cancer and many diseases and the reference against which imaging, blood markers, and liquid biopsies are validated — but it is not infallible: sampling error means a negative biopsy does not zero risk (NPV < 100%), and inter-observer variability among pathologists is real and quantifiable, worst for tumor GRADING and borderline lesions.",
+    "claim_type": "mechanism",
+    "domain": "pathology-lab",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Gleason grading agreement is good for clear high/low-grade tumors but materially weaker in the intermediate range where treatment decisions hinge; diagnosis is more reproducible than grading.",
+    "population": "Pathology reproducibility studies; ISUP grading-system revisions (2005, 2014) and subsequent updates",
+    "provenance": {
+      "primary": "'Prostate Cancer Grading: An Update', Urol Clin North Am 2026 (PMID 41266001); ISUP consensus conferences on Gleason grading",
+      "doi": "",
+      "surfaced_via": "PubMed esearch (interobserver variability gleason grading) PMID 41266001"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "'Gold standard' is a relative term — it is the best available reference, not ground truth. The inter-observer-variability finding is why second opinions change management more often than patients expect. Cross-ref oncology-claims (section 25).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "mced-liquid-biopsy-mechanism-plausible-outcome-unproven",
+    "statement": "Multi-cancer early detection (MCED) liquid-biopsy tests (e.g. cell-free DNA methylation assays) can detect cancer signals and localize them from a single blood draw, but in screening populations the majority of positive results are false or unactionable (PATHFINDER PPV ~38-43%), and no randomized trial has yet demonstrated that MCED screening reduces mortality — a mechanism-plausible, outcome-unproven technology that must not be presented as a validated screen.",
+    "claim_type": "hypothesis",
+    "domain": "pathology-lab",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "PATHFINDER prospective cohort: cancer-signal-detected PPV ~38-43%; signal-of-origin prediction accurate in most true positives; mortality benefit not yet established (randomized trials ongoing).",
+    "population": "PATHFINDER prospective cohort (~6,600 adults >=50), Galleri MCED test",
+    "provenance": {
+      "primary": "Schrag D et al. — 'Blood-based tests for multicancer early detection (PATHFINDER): a prospective cohort study', Lancet 2023",
+      "doi": "10.1016/S0140-6736(23)01700-2",
+      "surfaced_via": "PubMed esearch (PATHFINDER multicancer early detection) PMID 37805216"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Established/legitimate liquid-biopsy use IS in KNOWN cancer (ctDNA genotyping, minimal residual disease, recurrence monitoring) — high pre-test probability. The unproven use is screening healthy people. Direction 'mixed': real detection capability, unproven outcome. Cross-ref section 07/25.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "consumer-blood-panels-harm-without-pretest-reasoning",
+    "statement": "Direct-to-consumer broad blood panels run on validated, CLIA-certified assays (the legitimate ones) still cause net harm when ordered without an indication in low-pre-test-probability people, because the reference-range false-positive math and low PPV produce statistically-inevitable false flags and downstream cascades; the harm is structural (absence of pre-test reasoning), distinct from the outright analytical fraud exemplified by Theranos.",
+    "claim_type": "outcome",
+    "domain": "pathology-lab",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Same Bayesian/reference-range mechanism as broad-screening-low-prevalence-false-positive-flood; Theranos = separate failure mode (assays did not work, results fabricated).",
+    "population": "DTC laboratory market; Theranos as documented analytical-validity failure (2015-2022)",
+    "provenance": {
+      "primary": "Carreyrou J — 'Bad Blood' (2018) for Theranos; reference-range/Bayesian derivation for the legitimate-lab over-testing trap",
+      "doi": "",
+      "surfaced_via": "Domain knowledge; cross-ref section 18 A.6 DTC-genetics Bayesian trap"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Two distinct claims bundled for clarity: (1) Theranos = analytical/clinical-validity fraud (well documented, criminal convictions); (2) legitimate DTC labs = sound assays but the over-testing-without-pre-test-reasoning trap (mechanistic derivation, strong but not RCT). The lesson from Theranos is that analytical+clinical validity is the un-skippable hard part of lab medicine.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "single-out-of-range-value-usually-not-disease",
+    "statement": "A single isolated out-of-range laboratory value in an asymptomatic person with low pre-test probability usually does not indicate disease, because biological variation, assay imprecision (analytical CV), pre-analytical error (fasting, time of day, hemolysis, biotin and other interferents), and the 1-in-20 reference-range statistics make regression-to-normal on a repeat draw the most likely explanation; the correct first response to one mild flag is often to repeat it, not to treat or image it.",
+    "claim_type": "protocol",
+    "domain": "pathology-lab",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Many immunoassays (hormones) carry 10-20%+ CV; changes smaller than the reference-change value are noise. Between-method bias means absolute values are not comparable across labs/platforms.",
+    "population": "Analytical-variability and biological-variation literature",
+    "provenance": {
+      "primary": "Tietz / Henry's Clinical Diagnosis and Management by Laboratory Methods (assay imprecision, interferences, biological variation)",
+      "doi": "",
+      "surfaced_via": "Domain knowledge; cross-ref section 13 endocrine assay variability, WHAT-TO-TRACK-SYNTHESIS"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Applies to asymptomatic mild flags at low pre-test probability — a grossly abnormal value, or any abnormality with concordant symptoms/high pre-test probability, is a different situation and should not be dismissed. Trend on one lab/one method, not across providers.",
+    "added_on": "2026-06-29"
+  }
+]

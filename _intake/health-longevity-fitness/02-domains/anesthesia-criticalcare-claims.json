@@ -1,0 +1,287 @@
+[
+  {
+    "id": "general-anesthesia-mechanism-unsolved",
+    "statement": "General anesthetics' molecular targets are reasonably mapped (most potentiate inhibitory GABA_A receptors; ketamine/nitrous oxide/xenon block excitatory NMDA receptors), but the leap from these molecular actions to the reversible abolition of consciousness is unsolved; the leading account is that anesthesia is a drug-induced reversible coma that disrupts integration/long-range communication across thalamocortical and cortico-cortical networks.",
+    "claim_type": "mechanism",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "theoretical",
+    "direction": "mixed",
+    "effect_size": "n/a (mechanistic targets solid; molecules-to-consciousness bridge open)",
+    "population": "Human + animal neurophysiology; EEG/imaging studies",
+    "provenance": {
+      "primary": "Brown EN, Lydic R, Schiff ND. 'General Anesthesia, Sleep, and Coma', N Engl J Med 2010",
+      "doi": "10.1056/NEJMra0808281",
+      "surfaced_via": "Wave-39 anesthesia/critical-care brief; PubMed PMID 21190458 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/07-mind/ (consciousness as unsolved foundation); bucket-canon/05-biophysics/ (membrane excitability)",
+    "confidence_notes": "Receptor pharmacology is mechanistic-solid; the molecules-to-mind bridge is genuinely open and ties anesthesiology to the canon 07-mind problem. We use the tool safely tens of millions of times/year without a complete theory of why it works.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "anesthesia-attributable-mortality-fell-orderofmagnitude",
+    "statement": "Anesthesia-solely-attributable mortality has fallen by more than an order of magnitude over the past half-century, from roughly 357 per million before the 1970s to about 34 per million (~1 in 29,000) in the 1990s-2000s in developed countries, and to roughly 1 in 100,000 or better in healthy patients undergoing routine surgery; mortality remains substantially higher in low-resource settings.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~357 -> ~34 per million anesthesia-attributable deaths (developed countries); developed-vs-developing gap large",
+    "population": "Systematic review/meta-analysis across decades and countries",
+    "provenance": {
+      "primary": "Bainbridge D, et al. 'Perioperative and anaesthetic-related mortality in developed and developing countries', Lancet 2012",
+      "doi": "10.1016/S0140-6736(12)60990-8",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 22998717 verified; corroborated by Lagasse, Anesthesiology 2002, 10.1097/00000542-200212000-00038"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "State honestly both ways: the anesthetic itself in a healthy patient in a well-resourced setting is extraordinarily safe; total perioperative mortality is much higher and is driven by patient sickness and surgical magnitude, not the anesthetic. Driven by pulse oximetry/capnography, difficult-airway algorithms, and a genuine safety culture.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "accidental-awareness-rare-paralysis-driven",
+    "statement": "Explicit accidental awareness with recall under general anesthesia is rare; a large US study found ~0.13% (about 1-2 per 1,000) while the UK NAP5 patient-self-report audit found ~1 in 19,000, with episodes disproportionately associated with neuromuscular blockade (paralysis), cesarean and cardiac surgery, and induction/emergence.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~0.13% (Sebel, clinician-detected) vs ~1 in 19,000 (NAP5, patient-reported); paralysis a key risk factor",
+    "population": "Sebel: ~20,000 US patients; NAP5: UK national audit (~3 million anesthetics)",
+    "provenance": {
+      "primary": "Sebel PS, et al. 'The incidence of awareness during anesthesia: a multicenter United States study', Anesth Analg 2004; Pandit JJ, et al. NAP5, Br J Anaesth 2014",
+      "doi": "10.1213/01.ANE.0000130261.90896.6C",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 15333419 + 25204697 (10.1093/bja/aeu313) verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Incidence estimates vary widely by detection method (structured interview vs spontaneous report). Paralysis is what makes awareness terrifying. Depth-of-anesthesia (BIS) monitoring evidence is mixed: B-Aware (Myles, Lancet 2004, 10.1016/S0140-6736(04)16300-9) showed benefit in high-risk patients, but later trials found BIS no better than ensuring adequate volatile dose.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "postoperative-cognitive-change-real-not-simply-anesthetic",
+    "statement": "Postoperative delirium is common in older surgical patients (often ~15-50% after major/hip-fracture/cardiac surgery) and postoperative cognitive dysfunction was documented in ~26% at one week and ~10% at three months after major non-cardiac surgery; the relationship to surgery is real but is best explained by the whole insult (surgery, inflammation, pain, sleep disruption, immobility, baseline frailty/cognitive vulnerability) rather than the anesthetic drug alone, and substituting regional for general anesthesia has not cleanly shown the predicted brain protection.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "POCD ~26% at 1 week, ~10% at 3 months (ISPOCD1); POD ~15-50% in older major surgery",
+    "population": "ISPOCD1: ~1,200 older patients, major non-cardiac surgery; Monk: ~1,000",
+    "provenance": {
+      "primary": "Moller JT, et al. ISPOCD1, Lancet 1998; Monk TG, et al. 'Predictors of cognitive dysfunction after major noncardiac surgery', Anesthesiology 2008",
+      "doi": "10.1016/S0140-6736(97)07382-0",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 9525362 + 18156878 (10.1097/01.anes.0000296071.19434.1e) verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Predictor-vs-cause problem. The folk story 'the anesthetic rotted the brain' is not supported; the honest statement is that the aged/frail brain responds to a major physiologic stress, and the change is partly preventable via the delirium-prevention bundle.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "multimodal-opioid-sparing-perioperative-analgesia",
+    "statement": "Perioperative pain control has shifted from opioid-centered to multimodal, opioid-sparing analgesia: a scheduled non-opioid backbone (acetaminophen + NSAID) plus regional anesthesia (epidurals, peripheral nerve blocks) provides better analgesia with lower opioid load, fewer side effects, and reduced risk of new persistent opioid use; opioids retain a legitimate role as a rescue layer for acute/post-surgical/cancer/palliative pain.",
+    "claim_type": "protocol",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Regional/multimodal techniques reduce opioid consumption and PONV; opioids not superior to non-opioids for function in chronic pain (SPACE)",
+    "population": "Perioperative surgical populations; SPACE in chronic back/OA pain",
+    "provenance": {
+      "primary": "Krebs EE, et al. SPACE trial, JAMA 2018 (chronic-pain evidence current applied perioperatively); ERAS/multimodal literature",
+      "doi": "10.1001/jama.2018.0899",
+      "surfaced_via": "Wave-39 brief; cross-ref Section 14 6.3, Sections 21/28"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The perioperative window is precisely where opioids still legitimately belong (acute/surgical pain), but dose and duration are now disciplined because surgery is a common on-ramp to long-term opioid use. Regional blocks are the single biggest opioid-sparer.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "lung-protective-ventilation-reduces-ards-mortality",
+    "statement": "In ARDS, ventilating with low tidal volumes (~6 mL/kg predicted body weight) rather than traditional larger volumes reduces mortality by roughly 9 percentage points (~22% relative), because large breaths over-stretch and injure the fragile lung (ventilator-induced lung injury); gentler, smaller-breath support saves more lives.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Mortality ~31% (low Vt) vs ~40% (traditional Vt); ~9 percentage-point absolute reduction",
+    "population": "861 patients with acute lung injury/ARDS (ARDSNet)",
+    "provenance": {
+      "primary": "Acute Respiratory Distress Syndrome Network. 'Ventilation with lower tidal volumes...', N Engl J Med 2000",
+      "doi": "10.1056/NEJM200005043421801",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 10793162 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of critical care's cleanest wins and a profound lesson: less aggressive support saved more lives. Complemented by prone positioning (PROSEVA, Guerin NEJM 2013, 10.1056/NEJMoa1214103) and, in severe COVID, dexamethasone (RECOVERY, NEJM 2021, 10.1056/NEJMoa2021436).",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "prone-positioning-reduces-severe-ards-mortality",
+    "statement": "In severe ARDS, early prolonged prone positioning (turning the patient face-down) significantly reduces mortality compared with supine positioning.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "28-day mortality 16.0% (prone) vs 32.8% (supine); HR ~0.39",
+    "population": "466 patients with severe ARDS (PROSEVA)",
+    "provenance": {
+      "primary": "Guerin C, et al. 'Prone positioning in severe acute respiratory distress syndrome', N Engl J Med 2013",
+      "doi": "10.1056/NEJMoa1214103",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 23688302 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Became a defining bedside image of the COVID pandemic. Benefit is for SEVERE ARDS with experienced teams; applied to the right population.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "dexamethasone-reduces-severe-covid-mortality",
+    "statement": "In hospitalized COVID-19 patients requiring respiratory support, dexamethasone reduced mortality, with the largest benefit in those receiving invasive mechanical ventilation (roughly a one-third reduction); the cheap old steroid was the clearest mortality-lowering drug in severe COVID, while many heavily-promoted COVID-specific therapies failed in trials.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "28-day mortality reduced ~one-third in ventilated patients; benefit confined to those needing oxygen/ventilation",
+    "population": "6,425 hospitalized COVID-19 patients (RECOVERY)",
+    "provenance": {
+      "primary": "RECOVERY Collaborative Group. 'Dexamethasone in Hospitalized Patients with Covid-19', N Engl J Med 2021",
+      "doi": "10.1056/NEJMoa2021436",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 32678530 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "No benefit (signal toward harm) in patients NOT requiring oxygen. A triumph of large, fast RCTs over enthusiasm. The durable ARDS backbone (lung-protective ventilation + proning) outperformed most COVID-specific hype.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "norepinephrine-first-line-vasopressor-shock",
+    "statement": "Norepinephrine is the preferred first-line vasopressor for shock: compared with dopamine it caused fewer arrhythmic events and, in a cardiogenic-shock subgroup, lower mortality, with no overall mortality difference between agents.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "More arrhythmias with dopamine; higher mortality with dopamine in cardiogenic-shock subgroup; no overall 28-day mortality difference",
+    "population": "1,679 patients with shock (SOAP II)",
+    "provenance": {
+      "primary": "De Backer D, et al. 'Comparison of dopamine and norepinephrine in the treatment of shock', N Engl J Med 2010",
+      "doi": "10.1056/NEJMoa0907118",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 20200382 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Basis for norepinephrine as default vasopressor in current shock/sepsis guidance.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "egdt-sepsis-protocol-deflated-by-trials",
+    "statement": "The aggressive Early Goal-Directed Therapy (EGDT) sepsis bundle from Rivers 2001, once standard, showed no mortality benefit over usual care when retested in three large multicenter RCTs (ProCESS, ARISE, ProMISe); the generalizable high-leverage core (early recognition, prompt antibiotics, timely fluids) had become routine care, so the extra invasive monitoring and rigid targets added no benefit.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No mortality difference EGDT/protocol vs usual care across ProCESS, ARISE, ProMISe (single-center Rivers benefit not reproduced)",
+    "population": "ProCESS (US, n=1,341), ARISE (Australasia, n=1,600), ProMISe (UK, n=1,260)",
+    "provenance": {
+      "primary": "ProCESS Investigators, N Engl J Med 2014; ARISE Investigators, N Engl J Med 2014; ProMISe (Mouncey PR, et al.), N Engl J Med 2015",
+      "doi": "10.1056/NEJMoa1401602",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 24635773 + 25272316 (10.1056/NEJMoa1404380) + 25776532 (10.1056/NEJMoa1500896) verified"
+    },
+    "conflicts_with": ["rivers-egdt-mortality-benefit"],
+    "canon_link": "",
+    "confidence_notes": "Textbook case of evidence turning over: the celebrated protocol and its proven core were different claims, separable only by RCT. Current Surviving Sepsis Campaign 2021 (Evans, Crit Care Med 2021, 10.1097/CCM.0000000000005337) keeps the early/simple core and retreats from one-size-fits-all aggressive fluid loading.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "icu-survival-not-recovery-pics-cognitive",
+    "statement": "Surviving intensive care is not the same as recovering: a large fraction of ICU survivors carry post-intensive-care syndrome (new/worsened physical disability, cognitive impairment, and psychological harm) lasting months to years, and a large proportion of survivors-including young, previously healthy ones-have long-term global cognition resembling mild TBI or early Alzheimer's, with longer ICU delirium predicting worse cognition.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "BRAIN-ICU: ~40% with global cognition ~1.5 SD below mean (mild-TBI-like) and ~26% ~2 SD below (Alzheimer's-like) at 12 months; longer delirium -> worse cognition",
+    "population": "BRAIN-ICU: 821 ICU patients with respiratory failure/shock",
+    "provenance": {
+      "primary": "Pandharipande PP, et al. 'Long-term cognitive impairment after critical illness', N Engl J Med 2013; Needham DM, et al. PICS conference, Crit Care Med 2012",
+      "doi": "10.1056/NEJMoa1301372",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 24088092 + 21946660 (10.1097/CCM.0b013e318232da75) verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reframed the honest ICU question from 'will they live?' to 'live in what state?'. Delirium is a marker of, and plausibly a contributor to, lasting brain injury.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "delirium-prevention-bundle-works-low-tech",
+    "statement": "Delirium is common, under-recognized (especially the hypoactive form), consequential, and preventable by a low-tech multicomponent bundle: reorientation, sleep protection, early mobilization, vision/hearing aids, hydration, pain control, light sedation, daily awakening, and family engagement (HELP; the ICU ABCDEF bundle). Antipsychotics do not prevent or shorten delirium; the bundle does.",
+    "claim_type": "protocol",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "HELP reduced incident delirium ~40% (15.0% intervention vs 9.9%... lower with intervention); ABCDEF implementation: dose-dependent less delirium/coma/ventilation and lower mortality",
+    "population": "HELP: 852 hospitalized patients >=70; ICU Liberation: >15,000 adults",
+    "provenance": {
+      "primary": "Inouye SK, et al. 'A multicomponent intervention to prevent delirium in hospitalized older patients', N Engl J Med 1999; Pun BT, Ely EW, et al. ICU Liberation/ABCDEF, Crit Care Med 2019",
+      "doi": "10.1056/NEJM199903043400901",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 10053175 + 30339549 (10.1097/CCM.0000000000003482) verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Highest-yield literacy topic for families. The recurring corpus lesson holds at the extreme edge of medicine: unglamorous, low-tech, multicomponent care beats any drug. Prevention, not sedation, is the lever.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "end-of-life-icu-overtreatment-structural",
+    "statement": "Intensive care can prolong dying as readily as it saves life; over-treatment at the end of life is well-documented and often unwanted-the landmark SUPPORT study found many seriously ill patients died in pain, physicians frequently did not know or follow resuscitation wishes, and a communication intervention failed to change this, revealing a deep structural bias toward aggressive treatment. A large fraction of ICU deaths now follow a deliberate decision to withhold/withdraw life-sustaining treatment.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "SUPPORT intervention produced no improvement in physician-patient communication, DNR timing, pain, or resource use",
+    "population": "SUPPORT: 9,105 seriously ill hospitalized adults",
+    "provenance": {
+      "primary": "The SUPPORT Principal Investigators. 'A controlled trial to improve care for seriously ill hospitalized patients', JAMA 1995",
+      "doi": "10.1001/jama.1995.03530200027032",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 7474243 verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The patient's real lever is a specific, shared advance directive plus a named proxy (cross-ref Section 19, Section 34 7). Palliative care alongside disease treatment improves quality of life and family outcomes and does not clearly shorten life-contradicting the folk belief that comfort care hastens death.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "monitoring-not-equal-outcomes-pac-bis",
+    "statement": "Monitoring improves clinicians' control but is not automatically a survival benefit: pulse oximetry and capnography are genuine monitoring-to-outcome wins (detecting hypoxia and lost airway within seconds), but information-rich invasive monitors can fail to improve survival-the pulmonary artery (Swan-Ganz) catheter did not improve survival in RCTs and could cause harm, and depth-of-anesthesia (BIS) monitoring was not the universal awareness-eliminator it was marketed as.",
+    "claim_type": "outcome",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Oximetry/capnography: large historical reduction in anesthetic catastrophe; PAC: no survival benefit and possible harm in RCTs",
+    "population": "Anesthetic and ICU populations; multiple PAC RCTs",
+    "provenance": {
+      "primary": "Pulmonary-artery catheter RCTs (e.g., PAC-Man, ESCAPE) showing no survival benefit; pulse-oximetry/capnography safety literature",
+      "doi": "",
+      "surfaced_via": "Wave-39 brief; predictor-vs-lever framing per 06-evidence/SCHEMA.md"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Predictor != lever. More data helps a clinician act; it does not, by itself, heal a patient. Each monitor must earn its claim on a hard endpoint; several famous ones, when finally tested, did not.",
+    "added_on": "2026-06-29"
+  },
+  {
+    "id": "ponv-multimodal-prevention",
+    "statement": "Postoperative nausea and vomiting is common and predictable from a simple risk score (female sex, non-smoker, history of PONV/motion sickness, postoperative opioids); prevention is multimodal-combining antiemetics from different classes, using propofol/regional techniques, and sparing opioids reduces it more than any single agent.",
+    "claim_type": "protocol",
+    "domain": "anesthesia-criticalcare",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Each Apfel risk factor adds ~20% absolute risk; antiemetic interventions act independently and roughly additively (IMPACT)",
+    "population": "Apfel: cross-validated cohorts; IMPACT: 5,199 patients factorial RCT",
+    "provenance": {
+      "primary": "Apfel CC, et al. 'A simplified risk score for predicting PONV', Anesthesiology 1999; Apfel CC, et al. IMPACT factorial trial, N Engl J Med 2004",
+      "doi": "10.1097/00000542-199909000-00022",
+      "surfaced_via": "Wave-39 brief; PubMed PMID 10485781 + 15190136 (10.1056/NEJMoa032196) verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A quality-of-recovery problem taken seriously precisely because the big anesthetic risks are now so rare. Multimodal/combination antiemesis beats single-agent.",
+    "added_on": "2026-06-29"
+  }
+]
