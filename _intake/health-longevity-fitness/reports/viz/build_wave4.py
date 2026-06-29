@@ -44,9 +44,10 @@ def cortisol_rhythm():
     h=np.linspace(0,24,200); c=14*np.exp(-((h-8)**2)/8)+3+2*np.exp(-((h-15)**2)/6)
     fig,ax=ds.new_fig(8.6,5.0)
     ax.plot(h,c,color=ds.GOLD,lw=3); ax.fill_between(h,c,color=ds.GOLD,alpha=0.16)
-    ax.axvspan(6,9,color="#e9f3ea",zorder=0); ax.text(7.5,15.5,"cortisol\nawakening\nresponse",ha="center",fontsize=9,color="#1d6b2e",fontweight="bold")
+    ax.axvspan(6,9,color="#e9f3ea",zorder=0)
     ax.set_xlim(0,24); ax.set_xticks([0,4,8,12,16,20,24]); ax.set_xticklabels(["mid","4a","8a","noon","4p","8p","mid"],fontsize=10)
-    ax.set_ylim(0,19); ax.set_xlabel("time of day",fontsize=10,color=ds.MUT); ax.set_ylabel("blood cortisol (relative)",fontsize=10,color=ds.MUT)
+    ax.set_ylim(0,21); ax.set_xlabel("time of day",fontsize=10,color=ds.MUT); ax.set_ylabel("blood cortisol (relative)",fontsize=10,color=ds.MUT)
+    ax.text(7.5,19.6,"morning peak — cortisol awakening response",ha="center",fontsize=9.5,color="#1d6b2e",fontweight="bold")  # above the curve, clear
     ds.title(ax,"Endocrine","Cortisol has a daily rhythm — high AM, low PM",
              "Healthy stress hormone, on a clock. ('Adrenal fatigue' is not a real diagnosis.)")
     ds.footer(ax,"Typical diurnal cortisol curve (illustrative)","cortisol-circadian-rhythm",tier="mechanistic")
@@ -157,9 +158,10 @@ def pain_biopsychosocial():
     for x,y,c,lab,desc in circ:
         s.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r}" fill="{c}" fill-opacity="0.16" stroke="{c}" stroke-width="2.5"/>')
     for x,y,c,lab,desc in circ:
-        ly = y-58 if lab!="SOCIAL" else y+34
-        s.append(ds.text(x,ly,lab,size=15,fill=c,font=ds.DISPLAY,weight="900",anchor="middle"))
-        for k,ln in enumerate(desc.split("\n")): s.append(ds.text(x,ly+18+k*14,ln,size=10,fill=ds.INK,font=ds.BODY,anchor="middle"))
+        lx = x + (-58 if lab=="BIO" else 58 if lab=="PSYCHO" else 0)   # push labels into single-circle regions
+        ly = y-64 if lab!="SOCIAL" else y+40
+        s.append(ds.text(lx,ly,lab,size=15,fill=c,font=ds.DISPLAY,weight="900",anchor="middle"))
+        for k,ln in enumerate(desc.split("\n")): s.append(ds.text(lx,ly+18+k*14,ln,size=10,fill=ds.INK,font=ds.BODY,anchor="middle"))
     s.append(ds.text(cx,cy+6,"PAIN",size=14,fill=ds.INK2,font=ds.DISPLAY,weight="900",anchor="middle"))
     s.append(ds.text(W/2,H-58,"Why the best back-pain care is stay-active + education — not bed rest, scans, or most surgery.",size=11,fill=ds.INK,font=ds.BODY,weight="600",anchor="middle"))
     s.append(foot); ds.render("".join(s), f"{FIG}/51-pain-biopsychosocial.png")

@@ -66,16 +66,17 @@ def title(ax, kicker, head, sub=None):
                               transform=fig.transFigure, solid_capstyle="round"))
 
 def footer(ax, source, claim_id=None, tier=None):
-    """Provenance footer: source (left) + claim-id mono + optional tier badge (right). Lives below the axes."""
+    """Provenance footer: source (left) + claim-id mono + optional tier badge (right). Lives below the axes.
+    Two lines kept well-separated so descenders never touch the line below."""
     fig=ax.figure
-    fig.add_artist(plt.Line2D([0.022,0.978],[0.060,0.060], color=RULE, lw=0.8, transform=fig.transFigure))
-    fig.text(0.022, 0.036, source, color=FAINT, fontsize=8.2, ha="left", va="center", fontfamily=BODY)
+    fig.add_artist(plt.Line2D([0.022,0.978],[0.072,0.072], color=RULE, lw=0.8, transform=fig.transFigure))
+    fig.text(0.022, 0.048, source, color=FAINT, fontsize=8.0, ha="left", va="center", fontfamily=BODY)
     if claim_id:
-        fig.text(0.022, 0.016, "claim: "+claim_id, color=GOLD_D, fontsize=7.6, ha="left", va="center",
+        fig.text(0.022, 0.018, "claim: "+claim_id, color=GOLD_D, fontsize=7.4, ha="left", va="center",
                  fontfamily=MONO)
     if tier:
         c=TIER.get(tier.lower(),FAINT)
-        fig.text(0.978, 0.030, tier.upper(), color="white", fontsize=7.8, ha="right", va="center",
+        fig.text(0.978, 0.044, tier.upper(), color="white", fontsize=7.8, ha="right", va="center",
                  fontfamily=DISPLAY, fontweight="bold",
                  bbox=dict(boxstyle="round,pad=0.35", fc=c, ec="none"))
 
@@ -86,7 +87,7 @@ def flag(ax, text, kind="caution"):
             fontsize=8.6, color=c, fontfamily=BODY, fontweight="bold",
             bbox=dict(boxstyle="round,pad=0.4", fc="#fbf0ea" if kind!="ok" else "#e9f3ea", ec=c, lw=0.8))
 
-def save(fig, path, left=0.085, right=0.965, top=0.815, bottom=0.165):
+def save(fig, path, left=0.085, right=0.965, top=0.815, bottom=0.195):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fig.subplots_adjust(left=left, right=right, top=top, bottom=bottom)
     fig.savefig(path); plt.close(fig); return path
