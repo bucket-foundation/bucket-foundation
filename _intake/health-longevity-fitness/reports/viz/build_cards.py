@@ -119,7 +119,7 @@ def mechanism_convergence():
         "Every lever converges on the same handful of cellular controls.",
         "§Mechanism Bridge — practice → pathway → fundamental layer","mechanism-convergence")
     s=[head]
-    practices=["Zone 2 / VO₂max","Resistance training","Protein / leucine","Fasting / CR",
+    practices=["Zone 2 / VO2max","Resistance training","Protein / leucine","Fasting / CR",
                "Sauna / heat","Cold exposure","Polyphenols","Sleep"]
     layers=[("Mitochondria / ATP","#1d6b2e"),("mTOR ↔ AMPK","#b08d3a"),
             ("Proteostasis (HSP, autophagy)","#3a6ea5"),("Redox / NRF2 signalling","#b5471f")]

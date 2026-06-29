@@ -60,7 +60,7 @@ def what_to_track():
         "Synthesis across the graded corpus · 04-protocols/WHAT-TO-TRACK","what-to-track")
     s=[head]
     cols=[("MEASURE", 40, [
-            ("A","VO₂max — or a hard field test","#1d6b2e"),
+            ("A","VO2max — or a hard field test","#1d6b2e"),
             ("A","Grip · gait speed · sit-to-rise · 10-s balance","#1d6b2e"),
             ("A","apoB (best lipid metric)","#1d6b2e"),
             ("A","Lp(a) — once in your life","#1d6b2e"),
@@ -69,7 +69,7 @@ def what_to_track():
             ("C","Biological-age clocks · CGM if healthy","#b5471f")]),
           ("DO", 520, [
             ("A","Don't smoke / vape; keep alcohol low","#1d6b2e"),
-            ("A","Build & keep VO₂max (Zone 2 + intervals)","#1d6b2e"),
+            ("A","Build & keep VO2max (Zone 2 + intervals)","#1d6b2e"),
             ("A","Resistance-train for strength 2–3×/wk","#1d6b2e"),
             ("A","Move all day; sleep ~7 h, regular","#1d6b2e"),
             ("A","Lower lifetime apoB · protein-adequate diet","#1d6b2e"),

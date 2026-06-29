@@ -28,29 +28,28 @@ def energy_stack():
     # compartment labels + shading
     s.append(f'<rect x="{mx0}" y="{y0+8}" width="{mx1-mx0}" height="{yT-(y0+8)}" fill="#f1ead8"/>')
     s.append(f'<rect x="{mx0}" y="{yB}" width="{mx1-mx0}" height="{H-110-yB}" fill="#f6f1e2"/>')
-    s.append(ds.text(mx0+6,y0+30,"INTERMEMBRANE SPACE — H⁺ accumulates (high charge)",size=11,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold"))
-    s.append(ds.text(mx0+6,yB+86,"MATRIX — low H⁺",size=11,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold"))
+    s.append(ds.text(mx0+6,y0+30,"INTERMEMBRANE SPACE — H+ accumulates (high charge)",size=11,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold"))
+    s.append(ds.text(mx0+6,yB+86,"MATRIX — low H+",size=11,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold"))
     # membrane band (lipid bilayer)
     s.append(f'<rect x="{mx0}" y="{yT}" width="{mx1-mx0}" height="{yB-yT}" fill="#e3d8bd" stroke="#cdbf9a" stroke-width="1"/>')
     # electron flow arrow along the chain
     s.append(arrow(150,yT-92,560,yT-92,ds.GOLD,2.6,"ah","1 6"))
-    s.append(ds.text(150,yT-100,"e⁻  from NADH / FADH₂  →  …  →  ½O₂ → H₂O",size=11,fill=ds.GOLD_D,font=ds.BODY,weight="600"))
-    # ETC complexes pump H+ UP
+    s.append(ds.text(150,yT-100,"e-  from NADH / FADH2  →  …  →  ½O2 → H2O",size=11,fill=ds.GOLD_D,font=ds.BODY,weight="600"))
+    # ETC complexes — H+ pumped UP, arrow to the RIGHT of each box (never through it)
     comps=[("I",150,"#2f8a4b"),("III",330,"#b08d3a"),("IV",510,"#b5471f")]
     for lab,cx,c in comps:
-        s.append(f'<rect x="{cx-26}" y="{yT-12}" width="52" height="{yB-yT+24}" rx="7" fill="{c}"/>')
-        s.append(ds.text(cx,yB+ (yT-yB)/2 +4,lab,size=16,fill="white",font=ds.DISPLAY,weight="900",anchor="middle"))
-        s.append(arrow(cx,yB+34,cx,yT-26,ds.MUT,2,"am"))
-        s.append(ds.text(cx-40,yB+30,"H⁺",size=11,fill=ds.MUT,font=ds.BODY,weight="700"))
-    s.append(ds.text(330,yB+58,"Electron transport chain — pumps protons OUT, building the gradient",size=11,fill=ds.MUT,font=ds.BODY,anchor="middle"))
-    # ATP synthase — H+ flows back DOWN, makes ATP
-    ax=760
-    s.append(f'<rect x="{ax-34}" y="{yT-12}" width="68" height="{yB-yT+24}" rx="9" fill="#3a6ea5"/>')
-    s.append(ds.text(ax,yT-2,"ATP",size=12,fill="white",font=ds.DISPLAY,weight="900",anchor="middle"))
-    s.append(ds.text(ax,yT+14,"synthase",size=10,fill="white",font=ds.BODY,anchor="middle"))
-    s.append(arrow(ax,yT-30,ax,yB+30,"#3a6ea5",2.4,"ab"))
-    s.append(ds.text(ax+44,yT-22,"H⁺ flows back down",size=11,fill="#3a6ea5",font=ds.BODY,weight="600"))
-    s.append(ds.text(ax+44,yB+24,"ADP + Pᵢ  →  ATP",size=13,fill="#3a6ea5",font=ds.DISPLAY,weight="800"))
+        s.append(f'<rect x="{cx-24}" y="{yT-10}" width="48" height="{yB-yT+20}" rx="7" fill="{c}"/>')
+        s.append(ds.text(cx,(yT+yB)/2+5,lab,size=15,fill="white",font=ds.DISPLAY,weight="900",anchor="middle"))
+        s.append(arrow(cx+44,yB+28,cx+44,yT-22,ds.MUT,2,"am"))
+        s.append(ds.text(cx+44,yB+44,"H+",size=11,fill=ds.MUT,font=ds.BODY,weight="700",anchor="middle"))
+    s.append(ds.text(330,yB+72,"Electron transport chain — pumps protons OUT, building the gradient",size=11,fill=ds.MUT,font=ds.BODY,anchor="middle"))
+    # ATP synthase — H+ flows back DOWN (arrow beside the box), making ATP
+    ax=775
+    s.append(ds.text(ax,yT-24,"ATP synthase",size=12.5,fill="#3a6ea5",font=ds.DISPLAY,weight="800",anchor="middle"))
+    s.append(f'<rect x="{ax-36}" y="{yT-8}" width="72" height="{yB-yT+16}" rx="9" fill="#3a6ea5"/>')
+    s.append(arrow(ax-56,yT-22,ax-56,yB+26,"#3a6ea5",2.2,"ab"))
+    s.append(ds.text(ax-56,yB+42,"H+ in",size=10.5,fill="#3a6ea5",font=ds.BODY,weight="600",anchor="middle"))
+    s.append(ds.text(ax+8,yB+44,"ADP + Pi  ->  ATP",size=13,fill="#3a6ea5",font=ds.DISPLAY,weight="800",anchor="middle"))
     # the law callout
     s.append(f'<rect x="{mx0}" y="{H-96}" width="{mx1-mx0}" height="36" rx="6" fill="{ds.CARD}" stroke="{ds.GOLD}" stroke-width="1.2"/>')
     s.append(ds.text(mx0+14,H-73,"The proton-motive force (Δp) IS the cell's energy currency. Exercise builds the machinery; aging erodes it; mitochondria run it.",
@@ -65,25 +64,28 @@ def mitochondria_section():
         "Quantity, quality, efficiency — the three things training and fasting actually change.",
         "§Mitochondrial Health","mitochondria-three-dials")
     s=[head, arrowdefs()]
-    # cross-section ellipse on the left
-    cx,cy,rx,ry=270,y0+170,200,120
-    s.append(f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="#f3ead6" stroke="#b08d3a" stroke-width="3"/>')           # outer membrane
-    s.append(f'<ellipse cx="{cx}" cy="{cy}" rx="{rx-14}" ry="{ry-14}" fill="none" stroke="#8a6d12" stroke-width="2"/>')          # inner membrane
-    # cristae folds (inner membrane infoldings)
-    folds=""
-    for k in range(5):
-        fx=cx-rx+50+k*68
-        folds+=f'<path d="M{fx} {cy-ry+22} q 26 {ry-30} 0 {2*(ry-22)}" fill="none" stroke="#8a6d12" stroke-width="2.4"/>'
+    # cross-section ellipse on the left — cristae CLIPPED to the inner membrane
+    cx,cy,rx,ry=250,y0+148,178,98
+    s.append(ds.text(cx,y0+18,"cross-section",size=10.5,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold",anchor="middle"))
+    s.append(f'<clipPath id="mclip"><ellipse cx="{cx}" cy="{cy}" rx="{rx-14}" ry="{ry-14}"/></clipPath>')
+    s.append(f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="#f3ead6" stroke="#b08d3a" stroke-width="3"/>')
+    s.append(f'<ellipse cx="{cx}" cy="{cy}" rx="{rx-11}" ry="{ry-11}" fill="#f6efde" stroke="#8a6d12" stroke-width="2"/>')
+    folds='<g clip-path="url(#mclip)">'
+    for k in range(6):
+        fx=cx-rx+30+k*54
+        folds+=f'<path d="M{fx} {cy-ry} q 20 {ry} 0 {2*ry}" fill="none" stroke="#8a6d12" stroke-width="2.2"/>'
+    folds+='</g>'
     s.append(folds)
-    s.append(f'<circle cx="{cx-70}" cy="{cy+50}" r="13" fill="none" stroke="#b5471f" stroke-width="2.4"/>')
-    s.append(ds.text(cx-70,cy+54,"mtDNA",size=8,fill="#b5471f",font=ds.MONO,anchor="middle"))
-    # labels via leaders
-    def leader(lx,ly,tx,ty,txt):
-        return arrow(tx,ty,lx,ly,ds.MUT,1.4,"am")+ds.text(tx,ty-6 if ty<cy else ty+14,txt,size=10.5,fill=ds.INK,font=ds.BODY,weight="600",anchor="middle")
-    s.append(leader(cx,cy-ry, cx, y0+34, "outer membrane"))
-    s.append(leader(cx+rx-30,cy-40, cx+rx+60, y0+70, "cristae (inner-membrane folds —"))
-    s.append(ds.text(cx+rx+60,y0+86,"where chemiosmosis happens)",size=10.5,fill=ds.MUT,font=ds.BODY,anchor="middle"))
-    s.append(ds.text(cx,cy+ry+24,"matrix (Krebs cycle runs here)",size=10.5,fill=ds.MUT,font=ds.BODY,anchor="middle"))
+    s.append(f'<circle cx="{cx}" cy="{cy}" r="13" fill="#f3ead6" stroke="#b5471f" stroke-width="2.2"/>')
+    s.append(ds.text(cx,cy+3,"mtDNA",size=7.5,fill="#b5471f",font=ds.MONO,anchor="middle"))
+    # legend below the ellipse — no overlapping leaders
+    leg=[("#b08d3a","outer membrane"),
+         ("#8a6d12","inner membrane / cristae — chemiosmosis happens here"),
+         ("#f3ead6","matrix — the Krebs cycle runs here")]
+    ly=cy+ry+34
+    for col,txt in leg:
+        s.append(f'<rect x="{cx-rx}" y="{ly-11}" width="16" height="13" rx="2" fill="{col}" stroke="#cdbf9a" stroke-width="1"/>')
+        s.append(ds.text(cx-rx+24,ly,txt,size=10.5,fill=ds.INK,font=ds.BODY)); ly+=23
     # the three dials on the right
     dials=[("QUANTITY","biogenesis — more mitochondria","raised by: Zone 2 / endurance (PGC-1α)","#2f8a4b"),
            ("QUALITY","mitophagy — clear the broken ones","raised by: fasting, exercise (PINK1/Parkin)","#3a6ea5"),
@@ -172,7 +174,7 @@ def nutrient_switchboard():
     # inputs (left)  -> switch
     inputs=[("Protein / leucine","mTOR",0,"↑"),("Resistance training","mTOR",0,"↑"),
             ("Fasting / CR","AMPK",1,"↑"),("Endurance / Zone 2","AMPK",1,"↑"),
-            ("NAD⁺ / fasting","Sirtuins",2,"↑"),("Carbs / frequent eating","IGF-1 / insulin",3,"↑")]
+            ("NAD+ / fasting","Sirtuins",2,"↑"),("Carbs / frequent eating","IGF-1 / insulin",3,"↑")]
     lx=80
     for i,(name,_,si,sign) in enumerate(inputs):
         yy=y0+50+i*72
