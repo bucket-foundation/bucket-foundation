@@ -1,0 +1,477 @@
+[
+  {
+    "id": "sunscreen-slows-photoaging-rct",
+    "statement": "Daily broad-spectrum sunscreen use slows visible skin photoaging compared with discretionary use, with no detectable increase in skin aging over 4.5 years in the daily-use group.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~24% less skin aging (microtopography of dorsal hand) in daily vs discretionary sunscreen group over 4.5y",
+    "population": "~900 adults <55y, Nambour Skin Cancer Prevention Trial, Australia",
+    "provenance": {
+      "primary": "Hughes MC, Williams GM, Baker P, Green AC - 'Sunscreen and Prevention of Skin Aging: A Randomized Trial', Annals of Internal Medicine 2013",
+      "doi": "10.7326/0003-4819-158-11-201306040-00002",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest RCT evidence that sunscreen slows visible aging. Honest caveat: the sun has a two-sided ledger (vitamin D, mood, circadian) - protect face/hands, not pursue zero whole-body sun.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sunscreen-prevents-scc-rct",
+    "statement": "Daily sunscreen application reduces the incidence of cutaneous squamous cell carcinoma; betacarotene supplementation had no effect.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Reduced SCC incidence with daily vs discretionary sunscreen; no effect of betacarotene",
+    "population": "1621 adults, Nambour trial, Australia, ~4.5y",
+    "provenance": {
+      "primary": "Green A, Williams G, Neale R, et al. - 'Daily sunscreen application and betacarotene supplementation in prevention of basal-cell and squamous-cell carcinomas of the skin', The Lancet 1999",
+      "doi": "10.1016/S0140-6736(98)12168-2",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Daily sunscreen reduced SCC but not basal-cell carcinoma in the original trial period. A hard-endpoint skin-cancer RCT.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sunscreen-reduces-melanoma-rct-followup",
+    "statement": "Regular sunscreen use reduces the incidence of invasive melanoma on long-term follow-up of a randomized sunscreen trial.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~50% fewer invasive melanomas in regular-sunscreen group at 10-year follow-up",
+    "population": "1621 adults, Nambour trial, 10y follow-up",
+    "provenance": {
+      "primary": "Green AC, Williams GM, Logan V, Strutton GM - 'Reduced Melanoma After Regular Sunscreen Use: Randomized Trial Follow-Up', Journal of Clinical Oncology 2011",
+      "doi": "10.1200/JCO.2010.28.7078",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Melanoma was a long-term follow-up endpoint, not the original primary outcome - graded one notch below a primary RCT result, but still randomized-derived. Among the strongest evidence that sunscreen prevents melanoma.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "indoor-tanning-raises-melanoma",
+    "statement": "Indoor tanning (artificial UV) increases melanoma risk in a dose-dependent manner, with greater risk from younger-age exposure.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Dose-dependent increase in melanoma risk; higher with younger initiation",
+    "population": "Prospective Norwegian Women and Cancer cohort",
+    "provenance": {
+      "primary": "Ghiasvand R, Rueegg CS, Weiderpass E, et al. - 'Indoor Tanning and Melanoma Risk: Long-Term Evidence From a Prospective Population-Based Cohort Study', American Journal of Epidemiology 2016",
+      "doi": "10.1093/aje/kww148",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The mirror image of the sunscreen finding: artificial UV is a net-negative exposure with no health upside.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tretinoin-improves-photoaged-skin-rct",
+    "statement": "Topical tretinoin measurably improves photoaged skin (fine wrinkling, pigmentation, roughness) versus vehicle in a double-blind randomized controlled trial.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Significant improvement in photoaging severity vs vehicle; histologic increase in dermal collagen",
+    "population": "Double-blind vehicle-controlled trial in photoaged adults",
+    "provenance": {
+      "primary": "Weiss JS, Ellis CN, Headington JT, et al. - 'Topical Tretinoin Improves Photoaged Skin: A Double-Blind Vehicle-Controlled Study', JAMA 1988",
+      "doi": "10.1001/jama.1988.03720040019020",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The landmark RCT establishing retinoids as the best-evidenced anti-aging topical. Effect is slow (months), dose-dependent in irritation, and maintained only with continued use.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "retinol-improves-naturally-aged-skin-rct",
+    "statement": "Over-the-counter topical retinol improves naturally aged (intrinsically aged, not just photoaged) skin versus vehicle.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Improved fine wrinkling and skin roughness vs vehicle on intrinsically aged skin",
+    "population": "Older adults, retinol vs vehicle on inner upper arm",
+    "provenance": {
+      "primary": "Kafi R, Kwak HSR, Schumacher WE, et al. - 'Improvement of Naturally Aged Skin With Vitamin A (Retinol)', Archives of Dermatology 2007",
+      "doi": "10.1001/archderm.143.5.606",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Shows even non-prescription retinol works on intrinsic aging, weaker/slower than prescription tretinoin. Mechanism review: Mukherjee 2006 (10.2147/ciia.2006.1.4.327).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "collagen-supplement-skin-modest",
+    "statement": "Oral hydrolyzed collagen supplementation produces modest improvements in skin hydration and elasticity versus placebo.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small-to-moderate improvement in skin hydration and elasticity; wrinkle effects less consistent",
+    "population": "Pooled RCTs in adults (many small, several industry-funded)",
+    "provenance": {
+      "primary": "de Miranda RB, Weimer P, Rossi RC - 'Effects of hydrolyzed collagen supplementation on skin aging: a systematic review and meta-analysis', International Journal of Dermatology 2021",
+      "doi": "10.1111/ijd.15518",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: ingested collagen is digested to amino acids; the fibroblast-signaling mechanism is plausible but unproven. Modest, not magic. Cross-ref Section 03 supplements (context-only/emerging grade).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "periodontitis-cvd-association",
+    "statement": "Periodontitis is independently associated with atherosclerotic cardiovascular disease, but no randomized trial shows periodontal treatment prevents cardiovascular events.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Independent association with ASCVD; mediators plausible (bacteremia, systemic inflammation); treatment-prevents-events unproven",
+    "population": "EFP/World Heart Federation consensus review of cohort + mechanistic evidence",
+    "provenance": {
+      "primary": "Sanz M, Marco del Castillo A, Jepsen S, et al. - 'Periodontitis and cardiovascular diseases: Consensus report', Journal of Clinical Periodontology 2020",
+      "doi": "10.1111/jcpe.13189",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong predictor, unproven lever (honesty rule #1). The consensus is explicit that no RCT demonstrates event prevention from treating gums.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "periodontitis-diabetes-bidirectional",
+    "statement": "Periodontitis and diabetes have a bidirectional epidemiologic relationship: periodontitis associates with incident diabetes and worse glycemic control, and diabetes worsens periodontal disease.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Bidirectional association; periodontitis linked to higher incident diabetes and poorer glycemic control",
+    "population": "Systematic review/meta-analysis of observational studies",
+    "provenance": {
+      "primary": "Graziani F, Gennai S, Solini A, Petrini M - 'A systematic review and meta-analysis of epidemiologic observational evidence on the effect of periodontitis on diabetes', Journal of Clinical Periodontology 2018",
+      "doi": "10.1111/jcpe.12837",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Observational meta - association is robust and bidirectional. The intervention question is answered separately (and positively) by Simpson 2022 Cochrane.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "perio-treatment-lowers-hba1c-rct",
+    "statement": "Periodontal treatment (scaling/root planing) reduces HbA1c in people with diabetes versus no treatment - the one oral-systemic intervention with randomized hard-ish-endpoint support.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "HbA1c reduction ~0.3-0.4 percentage points at 3-4 months vs no treatment (comparable to adding a second oral hypoglycemic)",
+    "population": "Cochrane meta-analysis of RCTs in people with diabetes and periodontitis",
+    "provenance": {
+      "primary": "Simpson TC, Clarkson JE, Worthington HV, et al. - 'Treatment of periodontitis for glycaemic control in people with diabetes mellitus', Cochrane Database of Systematic Reviews 2022",
+      "doi": "10.1002/14651858.CD004714.pub4",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The strongest proven lever in the oral-systemic story. Effect may attenuate by 6-12 months; durability less certain than the short-term effect.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pgingivalis-alzheimer-mechanistic",
+    "statement": "Porphyromonas gingivalis and its gingipain toxins are present in Alzheimer's disease brains, and gingipain inhibition reduced neurodegeneration in mice - an emerging, unproven causal lead linking periodontal infection to Alzheimer's.",
+    "claim_type": "mechanism",
+    "domain": "T-systems",
+    "evidence_tier": "animal",
+    "direction": "mixed",
+    "effect_size": "P. gingivalis/gingipains identified in AD brains; gingipain inhibitor reduced neurodegeneration in mice",
+    "population": "Human autopsy brains + mouse models",
+    "provenance": {
+      "primary": "Dominy SS, Lynch C, Ermini F, et al. - 'Porphyromonas gingivalis in Alzheimer's disease brains: Evidence for disease causation and treatment with small-molecule inhibitors', Science Advances 2019",
+      "doi": "10.1126/sciadv.aau3333",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism/animal tier - NOT outcome. The subsequent human gingipain-inhibitor trial (COR388/atuzaginstat) did not meet its primary endpoint, so this remains an open, exciting, unproven causal hypothesis. Dementia endpoint owned by brain agent.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "periodontitis-dementia-cohort",
+    "statement": "Clinical and bacterial markers of periodontitis (including P. gingivalis antibodies) are associated with incident dementia and Alzheimer mortality in a national cohort.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Periodontal markers associated with higher incident dementia and Alzheimer mortality",
+    "population": "US NHANES III-linked national cohort",
+    "provenance": {
+      "primary": "Beydoun MA, Beydoun HA, Hossain S, et al. - 'Clinical and Bacterial Markers of Periodontitis and Their Association with Incident All-Cause and Alzheimer's Disease Dementia in a Large National Survey', Journal of Alzheimer's Disease 2020",
+      "doi": "10.3233/JAD-200064",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort association, cannot establish causation. Consistent with the Dominy hypothesis. Dementia endpoint owned by brain agent.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "flossing-weak-trial-evidence",
+    "statement": "Flossing plus brushing versus brushing alone shows a small reduction in gingivitis and weak, low-quality evidence on plaque - reflecting poor trials, not a demonstrated lack of benefit.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small reduction in gingivitis; very low quality evidence for plaque; no data on periodontitis/caries hard endpoints",
+    "population": "Cochrane meta-analysis of 12 short-duration trials in adults",
+    "provenance": {
+      "primary": "Sambunjak D, Nickerson JW, Poklepovic T, et al. - 'Flossing for the management of periodontal diseases and dental caries in adults', Cochrane Database of Systematic Reviews 2011",
+      "doi": "10.1002/14651858.CD008829.pub2",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #2: this is absence of good evidence (small, short, biased trials), NOT evidence of absence. Interdental cleaning is low-cost, low-risk, and mechanistically sound; interdental brushes have somewhat better evidence than string floss.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hip-fracture-excess-mortality",
+    "statement": "A hip fracture in an older adult is followed by 2-3x excess mortality versus age-matched peers, concentrated in the first 3-6 months and persisting for years; men fare worse than women.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~2-3x excess all-cause mortality after hip fracture; highest in first 3-6 months",
+    "population": "Meta-analysis of prospective cohort studies of older women and men",
+    "provenance": {
+      "primary": "Haentjens P, Magaziner J, Colon-Emeric CS, et al. - 'Meta-analysis: Excess Mortality After Hip Fracture Among Older Women and Men', Annals of Internal Medicine 2010",
+      "doi": "10.7326/0003-4819-152-6-201003160-00008",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The core reason bone matters for longevity, not just orthopedics. Some excess mortality reflects pre-existing frailty (reverse causation), but the post-fracture cascade is itself a major path to death.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "liftmor-loading-builds-bone-rct",
+    "statement": "Eight months of supervised high-intensity resistance and impact training increased bone mineral density and improved function in postmenopausal women with osteopenia/osteoporosis, and did so safely.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Increased lumbar-spine BMD and femoral-neck parameters; improved functional performance; low adverse-event rate",
+    "population": "LIFTMOR RCT, 101 postmenopausal women with low bone mass, 8 months",
+    "provenance": {
+      "primary": "Watson SL, Weeks BK, Weis LJ, et al. - 'High-Intensity Resistance and Impact Training Improves Bone Mineral Density and Physical Function in Postmenopausal Women With Osteopenia and Osteoporosis: The LIFTMOR Randomized Controlled Trial', Journal of Bone and Mineral Research 2018",
+      "doi": "10.1002/jbmr.3284",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Refutes the belief that fragile older women shouldn't lift heavy. Cross-ref Domain N (loading disproportionately load-bearing for women post-menopause) and Domain E (resistance training).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vitd-no-fracture-benefit-replete",
+    "statement": "In generally vitamin-D-replete midlife/older adults, supplemental vitamin D (2000 IU/day) does not reduce fractures.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No significant reduction in total, nonvertebral, or hip fractures vs placebo",
+    "population": "VITAL ancillary, ~25,871 generally replete US adults (men >=50, women >=55)",
+    "provenance": {
+      "primary": "LeBoff MS, Chou SH, Ratliff KA, et al. - 'Supplemental Vitamin D and Incident Fractures in Midlife and Older Adults', New England Journal of Medicine 2022",
+      "doi": "10.1056/NEJMoa2202106",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #3: vitamin D (+/- calcium) benefit is confined to deficiency/inadequate intake and frail institutionalized populations. 'refutes' applies to supplementation in the replete, NOT to treating documented deficiency. Cross-ref Section 03 (vitamin D = context-only).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "frax-fracture-risk-tool",
+    "statement": "FRAX combines clinical risk factors (with or without femoral-neck BMD) into a 10-year fracture probability, improving on the low sensitivity of BMD alone for identifying high-risk individuals.",
+    "claim_type": "protocol",
+    "domain": "T-systems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "10-year probability of major osteoporotic and hip fracture from validated risk-factor model",
+    "population": "Derived/validated across multiple international population cohorts",
+    "provenance": {
+      "primary": "Kanis JA, Johnell O, Oden A, Johansson H, McCloskey E - 'FRAX and the assessment of fracture probability in men and women from the UK', Osteoporosis International 2008",
+      "doi": "10.1007/s00198-007-0543-5",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A decision-making input, not a lever. Fixes DEXA's low sensitivity (most fragility fractures occur without osteoporotic BMD - cross-ref Domain L Marshall 1996).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "bisphosphonates-prevent-fractures-highrisk",
+    "statement": "Bisphosphonates (alendronate; once-yearly zoledronic acid) substantially reduce vertebral and hip fractures in high-risk patients, with the clearest benefit in those with osteoporotic BMD or prior fragility fracture.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Zoledronic acid: ~70% vertebral and ~40% hip fracture reduction over 3y (HORIZON). Alendronate: reduces vertebral, hip, wrist fractures (Cochrane)",
+    "population": "Postmenopausal women with osteoporosis (HORIZON n=7765; Cochrane meta of alendronate trials)",
+    "provenance": {
+      "primary": "Black DM, Delmas PD, Eastell R, et al. - 'Once-Yearly Zoledronic Acid for Treatment of Postmenopausal Osteoporosis', NEJM 2007 (10.1056/NEJMoa067312); Wells GA, et al. - alendronate Cochrane review 2008 (10.1002/14651858.CD001155.pub2)",
+      "doi": "10.1056/NEJMoa067312",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A high-risk-population lever decided by FRAX/DEXA, not a population supplement. Risk/benefit worsens in low-risk people where rare harms (atypical femoral fracture, osteonecrosis of jaw) aren't outweighed.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "osteosarcopenia-bone-muscle-collide",
+    "statement": "Bone loss (osteoporosis) and muscle loss (sarcopenia) co-occur, share drivers, and compound each other ('osteosarcopenia'), predicting falls, fractures, and mortality worse than either alone.",
+    "claim_type": "mechanism",
+    "domain": "T-systems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Combined osteosarcopenia phenotype carries higher fall/fracture/mortality risk than osteoporosis or sarcopenia alone",
+    "population": "Review + observational cohorts of older adults",
+    "provenance": {
+      "primary": "Hirschfeld HP, Kinsella R, Duque G - 'Osteosarcopenia: where bone, muscle, and fat collide', Osteoporosis International 2017",
+      "doi": "10.1007/s00198-017-4151-8",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Unifies the bone and muscle stories: loading exercise + adequate protein is the shared lever. Cross-ref Domain L (strength-not-mass predicts mortality) and Domain E (sarcopenia).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "areds-supplements-slow-amd",
+    "statement": "High-dose antioxidant + zinc supplementation slows progression to advanced AMD by ~25% in people with intermediate AMD; AREDS2 replaced beta-carotene with lutein+zeaxanthin (safer in smokers) and confirmed the benefit.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~25% reduction in progression to advanced AMD over ~5y in intermediate/unilateral-advanced AMD",
+    "population": "AREDS n=3640 (2001); AREDS2 n=4203 (2013), intermediate or unilateral advanced AMD",
+    "provenance": {
+      "primary": "Age-Related Eye Disease Study 2 (AREDS2) Research Group - 'Lutein + Zeaxanthin and Omega-3 Fatty Acids for Age-Related Macular Degeneration', JAMA 2013 (10.1001/jama.2013.4997); original AREDS - Arch Ophthalmol 2001 (10.1001/archopht.119.10.1417)",
+      "doi": "10.1001/jama.2013.4997",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the few supplement WINS with hard endpoints. Honest scope: works ONLY for intermediate/unilateral-advanced AMD - does not prevent AMD in those without it, and does not help early AMD.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cataract-surgery-lower-dementia-cohort",
+    "statement": "Cataract extraction is associated with ~30% lower dementia risk versus no surgery; no such association exists for glaucoma surgery (a negative control).",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "HR ~0.71 for dementia after cataract extraction; null for glaucoma surgery",
+    "population": "Adult Changes in Thought prospective cohort, >3000 participants",
+    "provenance": {
+      "primary": "Lee CS, Gibbons LE, Lee AY, et al. - 'Association Between Cataract Extraction and Development of Dementia', JAMA Internal Medicine 2022",
+      "doi": "10.1001/jamainternmed.2021.6990",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort - not causal, but the glaucoma-surgery negative control makes residual confounding less likely than usual. A possible 'fix the eyes, protect the brain' lever. Dementia endpoint owned by brain agent.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "glaucoma-screening-insufficient-evidence",
+    "statement": "The US Preventive Services Task Force found insufficient evidence (I statement) to recommend for or against population screening for primary open-angle glaucoma - reflecting an unproven screening-to-outcome chain, not that glaucoma is benign.",
+    "claim_type": "protocol",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Insufficient evidence to assess balance of benefits/harms of population screening",
+    "population": "USPSTF systematic-review-based recommendation",
+    "provenance": {
+      "primary": "US Preventive Services Task Force - 'Screening for Primary Open-Angle Glaucoma: US Preventive Services Task Force Recommendation Statement', JAMA 2022",
+      "doi": "10.1001/jama.2022.7013",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "An I statement is NOT 'skip your eye exam.' Glaucoma causes irreversible silent vision loss; risk-based exams remain standard care, and early treatment preserves vision in detected cases.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vision-impairment-dementia-link",
+    "statement": "Vision impairment is associated with higher incident dementia and faster cognitive decline; the Lancet Commission added untreated vision loss to its modifiable dementia-risk factors in 2024.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Vision impairment associated with elevated incident dementia risk and accelerated cognitive decline",
+    "population": "Systematic review/meta-analysis of cohort studies (Shang 2021); Lancet standing Commission synthesis (2024)",
+    "provenance": {
+      "primary": "Shang X, Zhu Z, Wang W, et al. - 'The Association between Vision Impairment and Incidence of Dementia and Cognitive Decline: A Systematic Review and Meta-analysis', Ophthalmology 2021 (10.1016/j.ophtha.2020.12.029); Livingston G, et al. - Lancet 2024 Commission (10.1016/S0140-6736(24)01296-0)",
+      "doi": "10.1016/j.ophtha.2020.12.029",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: the modifiable-risk-factor framing rests on associations, not yet a vision-correction RCT showing dementia reduction. Dementia endpoint owned by brain agent.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hearing-intervention-slows-cognitive-decline",
+    "statement": "A hearing intervention (hearing aids + counseling) slowed cognitive decline by ~48% in a higher-risk older subgroup, though not in the overall lower-risk healthy-volunteer arm.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "~48% reduction in 3-year cognitive decline in the higher-risk ARIC subgroup; null in overall cohort",
+    "population": "ACHIEVE RCT, 977 older adults with untreated hearing loss",
+    "provenance": {
+      "primary": "Lin FR, Pike JR, Albert MS, et al. - 'Hearing intervention versus health education control to reduce cognitive decline in older adults with hearing loss in the USA (ACHIEVE): a multicentre, randomised controlled trial', The Lancet 2023",
+      "doi": "10.1016/S0140-6736(23)01406-X",
+      "surfaced_via": "Wave-11 body-systems brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Subgroup benefit, not overall - graded mixed. First randomized evidence that treating hearing loss may protect cognition. Dementia endpoint owned by the brain/cognition agent; cross-ref Livingston 2024 (untreated hearing loss = modifiable dementia factor).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pelvic-floor-training-incontinence",
+    "statement": "Pelvic-floor muscle training reduces stress and mixed urinary incontinence in women and speeds continence recovery after prostatectomy in men - a first-line, low-risk, underused lever for both sexes.",
+    "claim_type": "outcome",
+    "domain": "T-systems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Higher cure/improvement of stress and mixed urinary incontinence vs no treatment in women; faster post-prostatectomy continence recovery in men",
+    "population": "Cochrane-level meta-analyses of RCTs in women; RCTs in post-prostatectomy men",
+    "provenance": {
+      "primary": "Dumoulin C, Cacciari LP, Hay-Smith EJC - Cochrane review 'Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women' 2018 (10.1002/14651858.CD005654.pub4)",
+      "doi": "10.1002/14651858.CD005654.pub4",
+      "surfaced_via": "Wave-11 body-systems brief; Cochrane reference (DOI not re-verified via OpenAlex in this wave)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest caveats: technique matters (many contract the wrong muscles; a pelvic-floor physiotherapist improves results) and PFMT treats the muscular component, not prolapse/structural causes. DOI cited from Cochrane catalogue, not OpenAlex-verified in this wave.",
+    "added_on": "2026-06-28"
+  }
+]

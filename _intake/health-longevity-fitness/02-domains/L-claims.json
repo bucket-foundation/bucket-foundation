@@ -359,5 +359,24 @@
     "canon_link": "",
     "confidence_notes": "Measurement-side companion to Domain D's conflict-cgm-healthy-utility. Honest split: genuine, validated tool in diabetes (time-in-range is consensus); unproven gadget for healthy biohackers, where two sensors on the same person can disagree and 'spikes' have no demonstrated outcome meaning. Real tool, oversold market.",
     "added_on": "2026-06-27"
+  },
+  {
+    "id": "one-leg-stance-10s-mortality",
+    "statement": "The inability to complete a 10-second one-legged (single-leg) stance is associated with higher all-cause mortality in middle-aged and older adults, and adds prognostic information beyond age, sex, BMI and comorbidities — making a simple, equipment-free balance test a mortality biomarker.",
+    "claim_type": "outcome",
+    "domain": "L-biomarkers",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Inability to complete 10-s OLS: adjusted HR for all-cause mortality 1.84 (95% CI 1.23-2.78). 20.4% could not complete it; over median 7y follow-up 17.5% of 'NO' vs 4.6% of 'YES' died. Adding 10-s OLS to established risk factors significantly improved mortality prediction (IDI).",
+    "population": "1702 individuals aged 51-75 (68% men), Brazil (CLINIMEX), assessed 2008-2020, median 7y follow-up",
+    "provenance": {
+      "primary": "Araujo, Silva, Laukkanen, Fiatarone Singh, Kunutsor et al. — 'Successful 10-second one-legged stance performance predicts survival in middle-aged and older individuals', British Journal of Sports Medicine 2022",
+      "doi": "10.1136/bjsports-2021-105360",
+      "surfaced_via": "OpenAlex direct-DOI (Wave 4; flagged not-yet-graded in MOVEMENT-EVIDENCE.md single-leg-balance row)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Completes the five 'movement biomarkers' set (joins gait-speed-survival-studenski, physical-capability-battery-mortality-meta, sit-to-rise-mortality [J], grip strength [E]). Single cohort, mostly men, one center (CLINIMEX/Brazil) — less validated than gait speed (pooled cohorts). Same reverse-causation caveat: subclinical disease/frailty impairs balance, so the test is a READOUT of integrated neuromuscular/vestibular/cognitive reserve, not proof that practicing balance lowers mortality. Pairs with movement-library single-leg-balance demonstration (the measurement and the trainable movement collapse into one object).",
+    "added_on": "2026-06-27"
   }
 ]

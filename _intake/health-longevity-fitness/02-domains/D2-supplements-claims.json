@@ -1,0 +1,420 @@
+[
+  {
+    "id": "creatine-strength-muscle-resistance-training",
+    "statement": "Creatine monohydrate (3-5 g/day) combined with resistance training produces consistent additional gains in muscular strength and lean/regional muscle mass versus training alone; it amplifies training output and does not build muscle without the training stimulus.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Small-to-moderate additive gains in strength and regional hypertrophy over resistance training alone; raises intramuscular phosphocreatine ~10-40%.",
+    "population": "Healthy training adults across hundreds of RCTs (meta-analyses; Burke 2023 hypertrophy, Wang 2024 strength <50y)",
+    "provenance": {
+      "primary": "Burke et al., Nutrients 2023 (regional hypertrophy SR/meta); Wang et al., Nutrients 2024 (strength meta, adults <50)",
+      "doi": "10.3390/nu15092116",
+      "surfaced_via": "PubMed E-utilities (creatine + resistance training meta-analysis)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest evidence base of any sports supplement. Monohydrate is the only form with this evidence; alternative forms are marketing. Effect requires the training stimulus. Grade: REAL.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "creatine-cognition-stress-aging",
+    "statement": "Creatine supplementation produces a small improvement in memory and cognitive function in healthy individuals, with the largest effects under metabolic stress (sleep deprivation, aging) and in people with low baseline stores (e.g. vegetarians); the effect in young, rested omnivores is small.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small, real improvement in memory/cognition; concentrated in older adults and stressed/sleep-deprived states; modest-to-null in young rested omnivores.",
+    "population": "Healthy adults across RCTs (Avgerinos 2018 SR; Prokopidis 2023 memory meta)",
+    "provenance": {
+      "primary": "Avgerinos et al., Exp Gerontol 2018 (cognition SR); Prokopidis et al., Nutr Rev 2023 (memory meta-analysis)",
+      "doi": "10.1016/j.exger.2018.04.013",
+      "surfaced_via": "PubMed E-utilities (creatine cognition meta-analysis)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real but smaller than the strength effect, and state-dependent (stress/aging/vegetarian). Not a general nootropic. Grade: REAL (context-dependent).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "creatine-safety-no-renal-harm-healthy",
+    "statement": "Long-term creatine monohydrate supplementation at recommended doses is safe in healthy individuals, with no evidence of kidney damage; the 'creatine harms kidneys' belief derives from a confounded serum-creatinine reading, not from outcome data.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "No demonstrated renal or other harm in healthy populations over long-term use.",
+    "population": "Healthy adults; ISSN position-stand evidence synthesis",
+    "provenance": {
+      "primary": "Kreider et al. — International Society of Sports Nutrition position stand: safety and efficacy of creatine, J Int Soc Sports Nutr 2017",
+      "doi": "10.1186/s12970-017-0173-z",
+      "surfaced_via": "PubMed E-utilities (ISSN creatine position stand)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Canonical safety reference. People with pre-existing kidney disease should consult a clinician. Grade: REAL.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "creatine-bone-density-null-older",
+    "statement": "Creatine supplementation during resistance training does NOT produce a meaningful increase in bone mineral density in older adults, despite early hopeful claims.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No significant bone-mineral-density benefit over resistance training alone.",
+    "population": "Older adults in resistance-training RCTs (brief meta-analysis)",
+    "provenance": {
+      "primary": "Forbes et al. — Creatine Supplementation During Resistance Training Does Not Lead to Greater Bone Mineral Density in Older Humans, Front Nutr 2018",
+      "doi": "10.3389/fnut.2018.00027",
+      "surfaced_via": "PubMed E-utilities (creatine bone older adults meta)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest null logged alongside the positive creatine claims. The muscle/strength/cognition benefits stand; the bone claim does not.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "omega3-triglyceride-lowering-dose-dependent",
+    "statement": "High-dose EPA/DHA (around 4 g/day) reliably lowers blood triglycerides ~20-30% in a dose-dependent manner and is endorsed by the American Heart Association as effective triglyceride-lowering therapy.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~20-30% triglyceride reduction at ~4 g/day EPA/DHA; dose-dependent.",
+    "population": "Adults with elevated triglycerides across RCTs (AHA science advisory synthesis)",
+    "provenance": {
+      "primary": "Skulas-Ray et al. — Omega-3 Fatty Acids for the Management of Hypertriglyceridemia: AHA Science Advisory, Circulation 2019",
+      "doi": "10.1161/CIR.0000000000000709",
+      "surfaced_via": "PubMed E-utilities (omega-3 triglyceride AHA advisory)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The cleanest real effect of fish oil. Distinct from cardiovascular-event reduction, which is equivocal. Grade: REAL (triglycerides).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "omega3-index-predictor-not-proven-lever",
+    "statement": "The omega-3 index (EPA+DHA as a percentage of red-cell fatty acids) is a risk predictor: low index tracks with higher cardiac death and worse inflammatory/mortality markers. This is a predictor, not proof that raising the index with supplements changes outcomes.",
+    "claim_type": "mechanism",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Low omega-3 index (<4%) associates with higher cardiac-death risk vs high (>8%); low status associates with worse inflammatory and mortality biomarkers in large cohorts.",
+    "population": "Cohort/biomarker studies (Harris & von Schacky 2004 concept; McBurney 2023 UK Biobank)",
+    "provenance": {
+      "primary": "Harris & von Schacky — The Omega-3 Index: a new risk factor for death from coronary heart disease?, Prev Med 2004; McBurney et al., Prostaglandins Leukot Essent Fatty Acids 2023 (UK Biobank)",
+      "doi": "10.1016/j.ypmed.2004.02.030",
+      "surfaced_via": "PubMed E-utilities (omega-3 index Harris)"
+    },
+    "conflicts_with": ["conflict-omega3-predictor-vs-lever"],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: predictor != lever. The index tracking with risk does not establish that supplementing to raise it improves outcomes. Grade: predictor (real), lever (unproven).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "omega3-cvd-events-equivocal",
+    "statement": "Low-dose (1 g/day) marine omega-3 supplementation in the general population does not significantly reduce major cardiovascular events or cancer (VITAL); high-dose (4 g/day) prescription EPA (icosapent ethyl) reduced major cardiovascular events ~25% in high-triglyceride patients already on statins (REDUCE-IT), though the placebo choice is debated.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "VITAL: null primary CVD/cancer endpoints at 1 g/day. REDUCE-IT: ~25% relative reduction in major CV events at 4 g/day EPA in high-risk high-TG patients.",
+    "population": "VITAL ~25,900 general-population adults; REDUCE-IT high-TG statin-treated high-risk patients",
+    "provenance": {
+      "primary": "Manson et al. — Marine n-3 Fatty Acids and Prevention of Cardiovascular Disease and Cancer (VITAL), NEJM 2019; Bhatt et al. — Icosapent Ethyl for Hypertriglyceridemia (REDUCE-IT), NEJM 2019",
+      "doi": "10.1056/NEJMoa1811403",
+      "surfaced_via": "PubMed E-utilities (VITAL omega-3; REDUCE-IT)"
+    },
+    "conflicts_with": ["conflict-omega3-predictor-vs-lever"],
+    "canon_link": "",
+    "confidence_notes": "REDUCE-IT secondary DOI 10.1056/NEJMoa1812792. Net: OTC low-dose for primary prevention mostly null; high-dose Rx EPA in high-risk high-TG patients real. Grade: CONTEXT-ONLY (events).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vitamin-d-null-in-replete-VITAL",
+    "statement": "Vitamin D3 supplementation (2000 IU/day) does not reduce cancer incidence, major cardiovascular events, fractures, or progression to diabetes in generally-replete adult populations; the strong association between low vitamin D blood levels and disease largely reflects the level being a marker of poor health, not a causal lever.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Null for cancer/CVD (VITAL), fractures (VITAL/LeBoff), and diabetes prevention (D2d non-significant trend) in replete populations.",
+    "population": "VITAL ~25,900 adults; LeBoff fracture analysis; D2d ~2,400 prediabetic adults (4000 IU/day)",
+    "provenance": {
+      "primary": "Manson et al. — Vitamin D Supplements and Prevention of Cancer and CVD (VITAL), NEJM 2019; LeBoff et al. — Supplemental Vitamin D and Incident Fractures, NEJM 2022; Pittas et al. — Vitamin D and Prevention of Type 2 Diabetes (D2d), NEJM 2019",
+      "doi": "10.1056/NEJMoa1809944",
+      "surfaced_via": "PubMed E-utilities (VITAL vitamin D; D2d; LeBoff)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Secondary DOIs: fractures 10.1056/NEJMoa2202106; diabetes 10.1056/NEJMoa1900906; synthesis 10.1016/j.jsbmb.2019.105522. Classic predictor != lever case. Grade: CONTEXT-ONLY (deficiency).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vitamin-d-real-in-deficiency",
+    "statement": "Correcting genuine vitamin D deficiency (e.g. blood level under ~20 ng/mL / 50 nmol/L), with adequate calcium, supports bone health and is worthwhile; recommended maintenance/correction dose is 800-2000 IU/day, treating to a blood level rather than megadosing.",
+    "claim_type": "protocol",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Benefit confined to deficient/inadequate and housebound/malabsorption populations; megadosing offers no added benefit and very high doses may increase fall/fracture risk.",
+    "population": "Deficient, housebound, dark-climate, or malabsorption populations",
+    "provenance": {
+      "primary": "Manson et al. — Principal results of VITAL and updated meta-analyses of relevant vitamin D trials, J Steroid Biochem Mol Biol 2020",
+      "doi": "10.1016/j.jsbmb.2019.105522",
+      "surfaced_via": "PubMed E-utilities (VITAL principal results / vitamin D meta)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Test, don't guess. The deficiency-correction case is real; the replete-population longevity case is not. Grade: CONTEXT-ONLY.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "magnesium-blood-pressure-small-real",
+    "statement": "Oral magnesium supplementation (~300-400 mg/day) produces a small but real reduction in blood pressure (~2 mmHg systolic), larger in people with low magnesium status; it corrects a common dietary inadequacy.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~2 mmHg systolic reduction at ~300 mg/day over ~1 month in double-blind RCT meta-analysis; larger with low baseline status.",
+    "population": "Adults across double-blind placebo-controlled RCTs (Zhang 2016); type-2 diabetes (Asbaghi 2021)",
+    "provenance": {
+      "primary": "Zhang et al. — Effects of Magnesium Supplementation on Blood Pressure: A Meta-Analysis of RCTs, Hypertension 2016",
+      "doi": "10.1161/HYPERTENSIONAHA.116.07664",
+      "surfaced_via": "PubMed E-utilities (magnesium blood pressure meta)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Effects small and real. Glycinate/citrate preferred (oxide poorly absorbed). Sleep claims weak/low-quality. Grade: CONTEXT-ONLY.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "protein-resistance-training-plateau-1.6",
+    "statement": "Dietary protein augments resistance-training-induced gains in muscle mass and strength, with benefit plateauing around 1.6 g/kg body weight per day in healthy training adults.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Protein supplementation increases lean mass and strength gains during resistance training; dose-response plateaus near 1.6 g/kg/day.",
+    "population": "49 RCTs of resistance-trained and untrained adults (Morton & Phillips meta-regression)",
+    "provenance": {
+      "primary": "Morton, Phillips et al. — Effect of protein supplementation on resistance-training-induced gains, Br J Sports Med 2018",
+      "doi": "10.1136/bjsports-2017-097608",
+      "surfaced_via": "PubMed E-utilities (protein resistance training meta Phillips)"
+    },
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "The functional-muscle optimum (~1.6 g/kg) sits far above any protein-restriction longevity prescription; the tension resolves on the age axis (mid-life caution vs elderly need). Grade: REAL.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "protein-leucine-threshold-per-meal",
+    "statement": "Muscle protein synthesis is switched on past a per-meal leucine threshold of roughly 2-3 g (about 20-40 g high-quality protein per meal); older and larger individuals show anabolic resistance and need a higher per-meal dose to reach the same synthetic response, partly overcome by resistance exercise.",
+    "claim_type": "mechanism",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Per-meal leucine ~2-3 g maximizes MPS; aging blunts the response at lower doses; higher per-meal protein + exercise restores it.",
+    "population": "Healthy young and older adults in MPS/amino-acid infusion and feeding studies (Shad 2016 SR; Wilkinson 2023; Layman 2015)",
+    "provenance": {
+      "primary": "Shad et al. — Does the MPS response to exercise and amino-acid nutrition diminish with age? A systematic review, Am J Physiol Endocrinol Metab 2016; Wilkinson et al., Physiol Rep 2023; Layman et al., Am J Clin Nutr 2015",
+      "doi": "10.1152/ajpendo.00213.2016",
+      "surfaced_via": "PubMed E-utilities (leucine threshold muscle protein synthesis aging)"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Mechanism/surrogate (MPS), not a hard outcome. Distribution across 3-4 meals plausibly optimizes daily MPS; total daily intake matters most. Grade: REAL (mechanism).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fiber-mortality-and-cardiometabolic-benefit",
+    "statement": "Higher dietary fiber intake (25-29+ g/day) is associated with 15-30% lower all-cause and cardiovascular mortality and lower incidence of coronary disease, stroke, type-2 diabetes and colorectal cancer (cohort), with RCT evidence for lower LDL cholesterol, body weight and blood pressure.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~15-30% lower all-cause/CV mortality across cohorts; RCT-confirmed reductions in LDL, weight, BP; dose-response continues past 25-29 g/day.",
+    "population": "Pooled cohorts (~135 million person-years) plus randomized trials (Reynolds & Mann Lancet series)",
+    "provenance": {
+      "primary": "Reynolds, Mann et al. — Carbohydrate quality and human health: a series of systematic reviews and meta-analyses, Lancet 2019",
+      "doi": "10.1016/S0140-6736(18)31809-9",
+      "surfaced_via": "PubMed E-utilities (Reynolds fiber Lancet 2019)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Blends strong cohort mortality signal with RCT surrogate proof; among the highest-confidence dietary levers. Food-first; psyllium has its own LDL RCT support. Grade: REAL.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "caffeine-acute-ergogenic",
+    "statement": "Caffeine at 3-6 mg/kg taken ~30-60 minutes before exercise reliably improves endurance, power, sprint performance and alertness; higher doses add side effects without added performance, and tolerance develops with daily use.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Consistent acute improvements in aerobic endurance, power and cognitive alertness at 3-6 mg/kg; no added benefit above ~9 mg/kg.",
+    "population": "Healthy exercising adults across RCTs (ISSN position-stand synthesis)",
+    "provenance": {
+      "primary": "Guest et al. — International Society of Sports Nutrition position stand: caffeine and exercise performance, J Int Soc Sports Nutr 2021",
+      "doi": "10.1186/s12970-020-00383-4",
+      "surfaced_via": "PubMed E-utilities (ISSN caffeine position stand)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Acute ergogenic, not a longevity intervention. Coffee-mortality cohort associations are observational. CYP1A2 genotype modulates response. Grade: REAL (acute performance).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "collagen-tendon-skin-emerging",
+    "statement": "Collagen/gelatin peptides (~15 g with ~50 mg vitamin C) taken 30-60 minutes before loading a connective tissue increase markers of collagen synthesis, and ~2.5-15 g/day modestly improve skin elasticity/hydration; collagen does NOT build muscle and is an inferior muscle-protein source.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Roughly doubled collagen-synthesis markers in a small tendon study; small skin-elasticity improvements in meta-analyses (many industry-funded).",
+    "population": "Small RCTs of athletes/healthy adults (Shaw & Baar 2017 tendon); skin meta-analyses",
+    "provenance": {
+      "primary": "Shaw, Baar et al. — Vitamin C-enriched gelatin supplementation before intermittent activity augments collagen synthesis, Am J Clin Nutr 2017",
+      "doi": "10.3945/ajcn.116.138594",
+      "surfaced_via": "PubMed E-utilities (collagen gelatin vitamin C Baar)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Synthesis-marker and surrogate outcomes, small/industry-influenced studies; not long-term injury outcomes. Low leucine/incomplete profile = poor for hypertrophy. Grade: CONTEXT-ONLY / EMERGING.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "probiotics-condition-specific-not-wellness",
+    "statement": "Probiotics have real, evidence-backed benefits for specific indications (antibiotic-associated diarrhea, some IBS symptoms, certain pediatric/infectious settings) that are strain- and condition-specific; there is no evidence that a general probiotic improves healthspan, longevity, immunity or metabolic health in healthy people.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Real for specific clinical indications (strain-specific); null/unproven for general wellness or healthspan.",
+    "population": "Clinical RCT populations by indication; no healthspan endpoint in healthy adults",
+    "provenance": {
+      "primary": "Synthesis of strain/condition-specific probiotic meta-analyses; microbiome-aging evidence summarized in Domain C2 (_C2-SUMMARY.md)",
+      "doi": "",
+      "surfaced_via": "PubMed E-utilities (probiotics healthy adults systematic review) + corpus cross-ref C2"
+    },
+    "conflicts_with": ["conflict-microbiome-causality"],
+    "canon_link": "",
+    "confidence_notes": "Microbiome benefits in the corpus come from fermented foods/fiber, not generic capsules, and even those stop at small surrogate RCTs. Grade: CONTEXT-ONLY.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nmn-nr-raise-nad-no-outcome",
+    "statement": "NAD+ precursors (NMN, nicotinamide riboside) reliably raise blood/tissue NAD+ levels but have not produced meaningful clinical or healthspan outcomes in humans; nicotinamide riboside elevated NAD+ with no functional benefit, and NMN's strongest human signal is a single small trial of improved muscle insulin sensitivity.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "NR raises NAD+ but no change in blood pressure, arterial stiffness or metabolic outcomes; NMN one small RCT improved muscle insulin sensitivity (prediabetic women), no aging/healthspan endpoint.",
+    "population": "Martens 2018: healthy middle-aged/older adults; Yoshino 2021: prediabetic postmenopausal women (small n)",
+    "provenance": {
+      "primary": "Martens et al. — Chronic nicotinamide riboside supplementation elevates NAD+ in healthy middle-aged and older adults, Nat Commun 2018; Yoshino et al. — NMN increases muscle insulin sensitivity in prediabetic women, Science 2021",
+      "doi": "10.1038/s41467-018-03421-7",
+      "surfaced_via": "PubMed E-utilities (NR Martens; NMN Yoshino)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "NMN secondary DOI 10.1126/science.abe9985. Raising the NAD+ biomarker != outcome (predictor != lever). Grade: HYPE.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "resveratrol-human-null",
+    "statement": "Resveratrol extends lifespan in yeast and some mouse models but human RCTs are inconsistent and largely null on meaningful clinical endpoints, compounded by poor bioavailability.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Robust in model organisms; inconsistent/null in human trials on hard endpoints.",
+    "population": "Model organisms (animal) plus mixed human RCTs",
+    "provenance": {
+      "primary": "Synthesis of human resveratrol RCT/meta-analysis literature (PubMed E-utilities)",
+      "doi": "",
+      "surfaced_via": "PubMed E-utilities (resveratrol humans randomized meta-analysis)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Classic animal-to-human translation failure; the red-wine longevity story does not survive RCTs. Grade: HYPE.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "antioxidant-supplements-null-or-harm",
+    "statement": "High-dose antioxidant supplements (vitamin A, E, beta-carotene) do not reduce mortality in healthy people and may increase it (beta-carotene, vitamin A, vitamin E); blunting exercise-induced reactive oxygen species can also impair training adaptation.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No mortality benefit overall; beta-carotene and vitamin A/E associated with increased mortality in the Cochrane meta-analysis.",
+    "population": "~78 RCTs, ~296,000 participants (Bjelakovic Cochrane review)",
+    "provenance": {
+      "primary": "Bjelakovic et al. — Antioxidant supplements for prevention of mortality in healthy participants and patients with various diseases, Cochrane Database Syst Rev 2012",
+      "doi": "10.1002/14651858.CD007176.pub2",
+      "surfaced_via": "PubMed E-utilities (Bjelakovic antioxidant mortality Cochrane)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the strongest 'hype can harm' results. ROS signaling is partly adaptive (hormesis, Domain H). Grade: HYPE (can harm).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "multivitamin-null-in-replete",
+    "statement": "Multivitamin supplementation in well-nourished people produces no clear cardiovascular benefit and at most a marginal cancer and possible small cognition signal; it is largely null for hard outcomes in replete populations.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "PHS II: no CVD benefit, ~8% relative reduction in total cancer (marginal). COSMOS: small possible cognition/MCI signal, not robust.",
+    "population": "PHS II ~14,600 male physicians; COSMOS older adults",
+    "provenance": {
+      "primary": "Sesso et al. (PHS II CVD), JAMA 2012; Gaziano et al. (PHS II cancer), JAMA 2012; Vyas et al. (COSMOS cognition), Am J Clin Nutr 2024; Sachs et al. (COSMOS MCI/dementia), Alzheimers Dement 2023",
+      "doi": "10.1001/jama.2012.14805",
+      "surfaced_via": "PubMed E-utilities (multivitamin PHS II; COSMOS)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Secondary DOIs: cancer 10.1001/jama.2012.14641; COSMOS cognition 10.1016/j.ajcnut.2023.12.011; COSMOS dementia 10.1002/alz.13078. Context-only if diet is genuinely poor. Grade: HYPE (context-only).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "whole-food-fiber-protein-adequate-pattern",
+    "statement": "Across the higher-tier evidence (PREDIMED, fiber meta-analyses, cohort data), what converges is a dietary PATTERN rather than a brand: mostly whole/minimally-processed foods, fiber-rich and plant-forward, protein-adequate, unsaturated-fat-emphasized, low in added sugar/refined starch; no diet has a hard-endpoint mortality RCT, so adherence and energy balance dominate macro tribalism.",
+    "claim_type": "protocol",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "PREDIMED MedDiet cut major CV events ~30% (HR ~0.69) in high-risk adults; pattern components (fiber, unsaturated fat) carry their own meta-level support.",
+    "population": "PREDIMED high-CV-risk adults (RCT); supporting cohorts and fiber meta-analyses",
+    "provenance": {
+      "primary": "Estruch et al. — PREDIMED (republished), NEJM 2018; Reynolds et al. fiber series, Lancet 2019",
+      "doi": "10.1056/NEJMoa1800389",
+      "surfaced_via": "Domain D cross-ref + PubMed E-utilities"
+    },
+    "conflicts_with": ["conflict-seed-oils-linoleic-acid"],
+    "canon_link": "",
+    "confidence_notes": "PREDIMED carries a retraction/republication asterisk (randomization irregularities; corrected analysis still positive). No mortality-endpoint diet RCT exists. Grade: REAL (pattern), with the limits noted.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tre-benefit-is-mostly-the-cr-it-causes",
+    "statement": "Most real-world benefit of time-restricted eating is the calorie restriction it produces; calorie-matched trials show TRE no better than calorie restriction alone. The weight-independent exception is early time-restricted eating (circadian alignment), which improves insulin sensitivity and blood pressure isocalorically but is supported only by small short trials.",
+    "claim_type": "outcome",
+    "domain": "D-metabolic-nutrition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Calorie-matched TRE = CR alone (Liu 2022, Trepanowski 2017); early TRE improved insulin sensitivity/BP with no weight loss but tiny n and short duration (Sutton 2018).",
+    "population": "Liu 2022 n=139 12mo; Sutton 2018 n=8 prediabetic men 5 weeks; Trepanowski 2017 n=100 1yr",
+    "provenance": {
+      "primary": "Liu et al. — Calorie Restriction with or without TRE, NEJM 2022; Sutton/Peterson et al. — Early TRF, Cell Metab 2018",
+      "doi": "10.1056/NEJMoa2114833",
+      "surfaced_via": "Domain D cross-ref (D-metabolic-nutrition.md sec 3)"
+    },
+    "conflicts_with": ["conflict-tre-efficacy-vs-cr"],
+    "canon_link": "",
+    "confidence_notes": "Secondary DOI Sutton 10.1016/j.cmet.2018.04.010. Should-not-fast groups: disordered-eating history, underweight/frail/sarcopenic, pregnant/breastfeeding, glucose-lowering meds, heavy-training athletes. Grade: tool for CR (real); circadian timing (small real).",
+    "added_on": "2026-06-28"
+  }
+]

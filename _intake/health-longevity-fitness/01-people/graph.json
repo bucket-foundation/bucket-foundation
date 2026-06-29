@@ -10,9 +10,9 @@
   ],
   "note": "Edges are scientific/institutional relations. 'rival' denotes a documented scientific disagreement, not personal animus. INCLUSION != ENDORSEMENT.",
   "counts": {
-    "nodes": 184,
-    "edges": 136,
-    "people": 155,
+    "nodes": 203,
+    "edges": 155,
+    "people": 174,
     "labs": 24,
     "trials": 5
   },
@@ -1705,6 +1705,194 @@
       "id": "NCT04733534",
       "label": "Open-Label Trial to Reduce Senescence and Improve Frailty in Adult Survivors of Childhood Cancer",
       "kind": "trial"
+    },
+    {
+      "id": "sniderman",
+      "label": "Allan D. Sniderman",
+      "kind": "person",
+      "domains": [
+        "L",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "ference",
+      "label": "Brian A. Ference",
+      "kind": "person",
+      "domains": [
+        "L",
+        "B",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kamstrup",
+      "label": "Pia R. Kamstrup",
+      "kind": "person",
+      "domains": [
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "nordestgaard",
+      "label": "Borge G. Nordestgaard",
+      "kind": "person",
+      "domains": [
+        "L",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "robert-clarke",
+      "label": "Robert Clarke",
+      "kind": "person",
+      "domains": [
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "ridker",
+      "label": "Paul M. Ridker",
+      "kind": "person",
+      "domains": [
+        "L",
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "danesh",
+      "label": "John Danesh (Emerging Risk Factors Collaboration)",
+      "kind": "person",
+      "domains": [
+        "L"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "selvin",
+      "label": "Elizabeth Selvin",
+      "kind": "person",
+      "domains": [
+        "L",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "studenski",
+      "label": "Stephanie A. Studenski",
+      "kind": "person",
+      "domains": [
+        "L",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "cooper-kuh",
+      "label": "Rachel Cooper & Diana Kuh",
+      "kind": "person",
+      "domains": [
+        "L",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "anne-newman",
+      "label": "Anne B. Newman",
+      "kind": "person",
+      "domains": [
+        "L",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kuk-katzmarzyk",
+      "label": "Jennifer L. Kuk & Peter T. Katzmarzyk",
+      "kind": "person",
+      "domains": [
+        "L",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "robert-ross",
+      "label": "Robert Ross",
+      "kind": "person",
+      "domains": [
+        "L",
+        "E"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "hisako-tsuji",
+      "label": "Hisako Tsuji",
+      "kind": "person",
+      "domains": [
+        "L",
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "chinoy",
+      "label": "Evan D. Chinoy",
+      "kind": "person",
+      "domains": [
+        "L",
+        "I"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kovatchev",
+      "label": "Boris Kovatchev",
+      "kind": "person",
+      "domains": [
+        "L",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "hanley",
+      "label": "Anthony J. Hanley",
+      "kind": "person",
+      "domains": [
+        "L",
+        "D"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "kay-ahn",
+      "label": "Kay Ahn (Pfizer SIRT1 biochemistry group)",
+      "kind": "person",
+      "domains": [
+        "B"
+      ],
+      "posture": "mainstream-rigorous"
+    },
+    {
+      "id": "brito-araujo",
+      "label": "Leonardo Brito & Claudio Gil Araujo",
+      "kind": "person",
+      "domains": [
+        "L",
+        "E",
+        "F"
+      ],
+      "posture": "mainstream-rigorous"
     }
   ],
   "edges": [
@@ -2523,6 +2711,120 @@
       "to": "NCT04733534",
       "type": "associated",
       "note": "therapeutic plasma exchange / blood dilution rationale"
+    },
+    {
+      "from": "sniderman",
+      "to": "ference",
+      "type": "colleague",
+      "note": "apoB-causal lipid camp; particle-number framework"
+    },
+    {
+      "from": "ference",
+      "to": "nordestgaard",
+      "type": "colleague",
+      "note": "Mendelian randomization of lipids"
+    },
+    {
+      "from": "ference",
+      "to": "kamstrup",
+      "type": "colleague",
+      "note": "genetic lipid causality (Lp(a)/LDL MR)"
+    },
+    {
+      "from": "nordestgaard",
+      "to": "kamstrup",
+      "type": "mentor",
+      "note": "Copenhagen genetic-epidemiology program"
+    },
+    {
+      "from": "nordestgaard",
+      "to": "danesh",
+      "type": "colleague",
+      "note": "large-cohort lipid/biomarker epidemiology"
+    },
+    {
+      "from": "robert-clarke",
+      "to": "kamstrup",
+      "type": "colleague",
+      "note": "Lp(a) genetic-causality evidence"
+    },
+    {
+      "from": "ridker",
+      "to": "danesh",
+      "type": "colleague",
+      "note": "CRP biomarker-mortality meta-analysis"
+    },
+    {
+      "from": "selvin",
+      "to": "hanley",
+      "type": "colleague",
+      "note": "glycemic / insulin-resistance biomarker epidemiology"
+    },
+    {
+      "from": "studenski",
+      "to": "cooper-kuh",
+      "type": "colleague",
+      "note": "functional-capability mortality biomarkers"
+    },
+    {
+      "from": "studenski",
+      "to": "anne-newman",
+      "type": "colleague",
+      "note": "Health ABC / physical-function aging cohorts"
+    },
+    {
+      "from": "cooper-kuh",
+      "to": "studenski",
+      "type": "builds-on",
+      "note": "extends gait-speed to multi-test capability panel"
+    },
+    {
+      "from": "anne-newman",
+      "to": "studenski",
+      "type": "colleague",
+      "note": "Health ABC physical-function aging cohort"
+    },
+    {
+      "from": "kuk-katzmarzyk",
+      "to": "robert-ross",
+      "type": "colleague",
+      "note": "visceral-adiposity imaging cohorts"
+    },
+    {
+      "from": "robert-ross",
+      "to": "mike-joyner",
+      "type": "colleague",
+      "note": "cardiorespiratory-fitness / VO2max physiology"
+    },
+    {
+      "from": "fred-shaffer",
+      "to": "hisako-tsuji",
+      "type": "builds-on",
+      "note": "HRV-mortality cohort basis for HRV norms methodology"
+    },
+    {
+      "from": "kovatchev",
+      "to": "michael-snyder",
+      "type": "colleague",
+      "note": "continuous-glucose-monitoring measurement"
+    },
+    {
+      "from": "kay-ahn",
+      "to": "sinclair",
+      "type": "rival",
+      "note": "resveratrol/STAC SIRT1 activation: assay-artifact dispute"
+    },
+    {
+      "from": "kay-ahn",
+      "to": "guarente",
+      "type": "colleague",
+      "note": "sirtuin enzymology (contested activation mechanism)"
+    },
+    {
+      "from": "starrett",
+      "to": "brito-araujo",
+      "type": "builds-on",
+      "note": "sit-to-rise vital sign cites SRT mortality cohort"
     }
   ]
 }

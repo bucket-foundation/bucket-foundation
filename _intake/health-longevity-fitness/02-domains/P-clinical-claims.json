@@ -1,0 +1,249 @@
+[
+  {
+    "id": "intensive-bp-control-reduces-mortality-sprint",
+    "statement": "In high-cardiovascular-risk adults without diabetes, targeting systolic blood pressure <120 mm Hg (intensive) versus <140 mm Hg (standard) reduced the composite cardiovascular endpoint and all-cause mortality.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Primary composite HR 0.75 (95% CI 0.64-0.89); all-cause mortality HR 0.73 (0.60-0.90, P=0.003). Achieved SBP 121.4 vs 136.2 mm Hg. Stopped early at median 3.26 y. Higher rates of hypotension, syncope, electrolyte abnormality, AKI (not injurious falls) in intensive arm.",
+    "population": "9361 adults, SBP >=130, elevated CV risk, NO diabetes (SPRINT)",
+    "provenance": {
+      "primary": "SPRINT Research Group - 'A Randomized Trial of Intensive versus Standard Blood-Pressure Control', NEJM 2015; Final Report NEJM 2021",
+      "doi": "10.1056/NEJMoa1511939",
+      "surfaced_via": "OpenAlex direct-DOI (Domain P clinical-prevention walk)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest single trial behind modern BP targets and the 2017 ACC/AHA <130/80 goal. CRITICAL measurement caveat: SPRINT used standardized (often unattended automated) office BP that reads several mm Hg lower than a routine clinic cuff, so a SPRINT '120' is not a clinic '120'. Excluded diabetics and prior-stroke patients; ACCORD-BP in diabetics did not replicate the clean mortality signal. Target is individualized; relax in the frail elderly (fall/over-treatment risk). Final Report (10.1056/NEJMoa1901281) confirmed durable benefit.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dash-diet-lowers-bp",
+    "statement": "A dietary pattern rich in vegetables, fruits, and low-fat dairy and low in saturated fat (DASH) lowers blood pressure versus a typical control diet, and combining DASH with sodium reduction produces additive, drug-sized reductions.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "DASH alone ~5-6 mm Hg systolic (Appel 1997, more in hypertensives). DASH + low sodium vs control + high sodium: -7.1 mm Hg systolic (normotensive) and -11.5 mm Hg (hypertensive) (Sacks 2001 DASH-Sodium). Sodium reduction within-diet ~1.3-4.6 mm Hg dose-dependent.",
+    "population": "Appel: 459 adults; Sacks DASH-Sodium: 412 adults, controlled feeding RCTs",
+    "provenance": {
+      "primary": "Appel et al. - 'A Clinical Trial of the Effects of Dietary Patterns on Blood Pressure', NEJM 1997; Sacks et al. - 'Effects on Blood Pressure of Reduced Dietary Sodium and the DASH Diet', NEJM 2001",
+      "doi": "10.1056/NEJM199704173361601",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Controlled-feeding RCTs (high internal validity, but supplied-food adherence is easier than free-living). The combined DASH+low-sodium ~11.5 mm Hg drop in hypertensives exceeds many single antihypertensive drugs - lifestyle here is genuinely medicine, not a soft alternative. DASH-Sodium DOI 10.1056/NEJM200101043440101. Cross-ref exercise BP effect in Domain E.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cac-score-refines-cv-risk-mesa",
+    "statement": "Coronary artery calcium (CAC) score predicts coronary heart disease events independently of standard risk factors and reclassifies risk, with a score of zero conferring low near-term risk.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Versus CAC=0: score 101-300 -> ~7.7x and >300 -> ~9.7x adjusted risk of a coronary event; doubling of CAC raised major event risk 15-35%. Adding CAC improved the ROC/discrimination beyond standard risk factors. Multi-ethnic.",
+    "population": "6722 adults free of clinical CVD, 4 racial/ethnic groups, median 3.8 y (MESA)",
+    "provenance": {
+      "primary": "Detrano et al. - 'Coronary Calcium as a Predictor of Coronary Events in Four Racial or Ethnic Groups', NEJM 2008",
+      "doi": "10.1056/NEJMoa072100",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PREDICTOR, NOT A LEVER: you do not treat the calcium (statins can even raise the score as plaque stabilizes). Value is purely in RECLASSIFYING who should be on therapy - best for the 40-70 y intermediate-risk person on the fence about a statin. 'Power of zero' (CAC=0 -> defer statin in borderline cases) is the load-bearing clinical use. Carries ~1 mSv radiation + incidentaloma risk. Not for the clearly high- or low-risk.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "anticoagulation-prevents-afib-stroke",
+    "statement": "In nonvalvular atrial fibrillation, adjusted-dose oral anticoagulation markedly reduces stroke; warfarin is far more effective than antiplatelet therapy, and direct oral anticoagulants (DOACs) are at least as effective as warfarin with less intracranial bleeding.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Warfarin cut stroke 64% (95% CI 49-74%); antiplatelet only 22% (6-35%); warfarin 39% better than antiplatelet (22-52%). Absolute major extracranial bleeding increase <=0.3%/yr (Hart 2007). DOACs >= warfarin efficacy with significantly less intracranial hemorrhage (Ruff 2014 meta; ARISTOTLE/apixaban Granger 2011).",
+    "population": "Hart: 29 trials / 28,044 patients with nonvalvular AF; Ruff: 4 DOAC RCTs ~71,683",
+    "provenance": {
+      "primary": "Hart, Pearce, Aguilar - 'Meta-analysis: Antithrombotic Therapy to Prevent Stroke in Patients Who Have Nonvalvular Atrial Fibrillation', Ann Intern Med 2007; Ruff et al. Lancet 2014",
+      "doi": "10.7326/0003-4819-146-12-200706190-00007",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Among the most decisive evidence in cardiology. KEY PRACTICE POINT: AF stroke prevention is anticoagulation, NOT aspirin - aspirin is largely obsolete for AF (weak protection, comparable bleeding). Risk-stratify with CHA2DS2-VASc. Detection is the open question (AF is often silent/paroxysmal); whether mass wearable screening lowers population stroke is not yet established. Ruff DOI 10.1016/S0140-6736(13)62343-0; ARISTOTLE 10.1056/NEJMoa1107039.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "aspirin-primary-prevention-net-harm-aspree",
+    "statement": "Low-dose aspirin for PRIMARY prevention in healthy older adults provides no net benefit: no improvement in disability-free survival, a non-significant cardiovascular effect, increased major hemorrhage, and higher all-cause mortality (cancer-driven).",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Disability-free survival HR 1.01 (0.92-1.11); CVD HR 0.95 (0.83-1.08, NS); major hemorrhage HR 1.38 (1.18-1.62, P<0.001); all-cause mortality HR 1.14 (1.01-1.29), mainly excess cancer deaths.",
+    "population": "19,114 community-dwelling healthy adults >=70 (>=65 for US Black/Hispanic), no CVD/dementia/disability, median 4.7 y (ASPREE)",
+    "provenance": {
+      "primary": "McNeil et al. - ASPREE: 'Effect of Aspirin on Disability-free Survival / on Cardiovascular Events and Bleeding / on All-Cause Mortality in the Healthy Elderly', NEJM 2018 (three papers)",
+      "doi": "10.1056/NEJMoa1805819",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Model 'null/harm' RCT that overturned entrenched practice; USPSTF 2022 downgraded routine primary-prevention aspirin (at most a narrow 40-59 high-CV/low-bleed individualized call). DO NOT conflate with SECONDARY prevention (established ASCVD/prior MI/stroke/stents), where aspirin remains indicated - that benefit is not in question. ARRIVE and ASCEND (2018) reinforce. Companion DOIs: disability-free 10.1056/NEJMoa1800722, all-cause mortality 10.1056/NEJMoa1803955.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "colonoscopy-reduces-crc-incidence-nordicc",
+    "statement": "Invitation to a single screening colonoscopy reduced 10-year colorectal cancer incidence in intention-to-screen analysis; the colorectal-cancer death reduction was diluted by low uptake but substantial among those actually screened.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "10-y CRC incidence 0.98% (invited) vs 1.20% (usual care), RR 0.82 (95% CI 0.70-0.93) = 18% reduction, ITT. CRC death not significant in ITT (only 42% of invited got scoped), but per-protocol (adjusted for actual screening) ~50% CRC-death reduction. No perforations/screening-related deaths within 30 d.",
+    "population": "~84,585 adults 55-64 from population registries (Poland, Norway, Sweden), median 10 y (NordICC)",
+    "provenance": {
+      "primary": "Bretthauer et al. - 'Effect of Colonoscopy Screening on Risks of Colorectal Cancer and Related Death', NEJM 2022",
+      "doi": "10.1056/NEJMoa2208375",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The honest reading: colonoscopy works; the modest ITT result reflects low real-world uptake, which IS the lesson - the best screen is the one people actually do. Sigmoidoscopy RCTs independently show reduced CRC incidence AND mortality. FIT (annual, at-home, lower cost) is a validated alternative; adherence beats theoretical sensitivity. USPSTF Grade A (50-75), B (45-49). Start at 45.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ldct-lung-screening-reduces-mortality-nlst-nelson",
+    "statement": "Annual low-dose CT screening of high-risk smokers reduces lung-cancer mortality versus chest X-ray or no screening.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "NLST: 20% relative reduction in lung-cancer mortality (247 vs 309 deaths/100,000 person-years) vs chest X-ray. NELSON (volume CT): 24% lower lung-cancer mortality in men, rate ratio 0.76 (95% CI 0.61-0.94) at 10 y. High false-positive rate (~96% of positive LDCTs not cancer in NLST).",
+    "population": "NLST: 53,454 US high-risk (>=30 pack-yr); NELSON: 13,195 men + 2594 women, Netherlands/Belgium",
+    "provenance": {
+      "primary": "Aberle et al. (NLST) - 'Reduced Lung-Cancer Mortality with Low-Dose Computed Tomographic Screening', NEJM 2011; de Koning et al. (NELSON), NEJM 2020",
+      "doi": "10.1056/NEJMoa1102873",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "USPSTF Grade B: adults 50-80 with >=20 pack-years who currently smoke or quit within 15 years. Benefit concentrates entirely in the high-pack-year population; screening low-risk never-smokers is not supported. Harms: high false-positive rate (follow-up scans/biopsies/anxiety) + small radiation dose. The dominant lever remains NOT smoking. NELSON DOI 10.1056/NEJMoa1911793.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "mammography-benefit-with-overdiagnosis",
+    "statement": "Mammography screening produces a real but modest reduction in breast-cancer mortality, bundled with meaningful overdiagnosis of cancers that would never have become symptomatic.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "~20% relative reduction in breast-cancer mortality (UK Independent Review). Overdiagnosis ~19% of screen-detected cancers; roughly 3 cancers overdiagnosed per 1 breast-cancer death prevented; ~1 death prevented per ~235 women invited over 20 years (UK framing).",
+    "population": "Marmot/UK Independent Panel synthesis of mammography RCTs and observational data",
+    "provenance": {
+      "primary": "Marmot et al. - 'The benefits and harms of breast cancer screening: an independent review', Lancet 2012",
+      "doi": "10.1016/S0140-6736(12)61611-0",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Textbook case of screening's double edge. Overdiagnosis = real treatment (surgery/radiation/endocrine therapy, often for DCIS) of a 'cancer' that was never going to cause harm. Benefit is real but modest in ABSOLUTE terms and comes bundled with overdiagnosis - which is exactly why guidelines legitimately differ on start age (40 vs 50) and interval (annual vs biennial). A genuine informed, preference-sensitive decision, not one side misreading the data. USPSTF Grade B (40-74).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hpv-vaccination-prevents-cervical-cancer",
+    "statement": "Quadrivalent HPV vaccination substantially reduces the risk of invasive cervical cancer, with the strongest protection when given before HPV exposure (younger age).",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Cumulative cervical-cancer incidence 47 vs 94 per 100,000; fully adjusted incidence rate ratio 0.37 (95% CI 0.21-0.57) overall, and 0.12 among those vaccinated before age 17.",
+    "population": "1,672,983 girls/women aged 10-30, Swedish national registers, 2006-2017",
+    "provenance": {
+      "primary": "Lei, Ploner, Elfstrom, Sparen et al. - 'HPV Vaccination and the Risk of Invasive Cervical Cancer', NEJM 2020",
+      "doi": "10.1056/NEJMoa1917338",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Large national-registry cohort (not RCT, but the hard cancer-incidence endpoint that earlier vaccine RCTs - limited to precancer lesions - could not yet show). Vaccinate EARLY (before exposure). HPV vaccination + HPV/Pap screening together make cervical cancer a target for elimination. Companion lever: Hepatitis B vaccine -> reduced hepatocellular carcinoma (Taiwan childhood HBV program). These are the two infections that cause cancer and have vaccines.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "processed-red-meat-colorectal-cancer-iarc",
+    "statement": "Processed meat is a Group 1 carcinogen and red meat a Group 2A (probable) carcinogen for colorectal cancer; higher consumption raises colorectal-cancer risk.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Each 50 g/day of processed meat associated with ~18% higher colorectal-cancer risk. Processed meat = IARC Group 1 (sufficient evidence); red meat = Group 2A (probable).",
+    "population": "IARC Working Group synthesis of >800 epidemiological studies",
+    "provenance": {
+      "primary": "Bouvard, Loomis, Guyton, Grosse et al. (IARC Monographs Working Group) - 'Carcinogenicity of consumption of red and processed meat', Lancet Oncology 2015",
+      "doi": "10.1016/S1470-2045(15)00444-1",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "HONESTY NOTE: the IARC Group-1 label means the EVIDENCE is strong (same category as tobacco for classification confidence), NOT that the effect SIZE is large - the absolute risk increase from processed meat is modest (a relative % off a moderate baseline). 'Shift the pattern' lever, not 'one hot dog = doom'. Pairs with higher dietary fiber lowering colorectal cancer and all-cause mortality (Reynolds 2019, Lancet, graded in Domain D). WCRF/AICR synthesis is the practical guide.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "psa-screening-contested-overdiagnosis",
+    "statement": "PSA screening for prostate cancer has at best a modest mortality benefit offset by substantial overdiagnosis and overtreatment; trial evidence is conflicting, making it an individualized rather than default decision.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "ERSPC (European): ~20% relative reduction in prostate-cancer mortality but high number-needed-to-screen and substantial overdiagnosis/overtreatment. PLCO (US): null (heavily contaminated by control-arm PSA testing). USPSTF Grade C (55-69, shared decision), D (>=70).",
+    "population": "ERSPC: 162,243 men 55-69 (Schroder 2009); PLCO: 76,693 men (Andriole 2009)",
+    "provenance": {
+      "primary": "Schroder et al. - 'Screening and Prostate-Cancer Mortality in a Randomized European Study' (ERSPC), NEJM 2009; Andriole et al. (PLCO), NEJM 2009",
+      "doi": "10.1056/NEJMoa0810084",
+      "surfaced_via": "OpenAlex direct-DOI"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Contested by design conflict: ERSPC positive but with high NNS; PLCO null but contaminated (control arm got widespread PSA testing). Overdiagnosis harm = incontinence/impotence from treating indolent cancers that would never have caused symptoms. Active surveillance of low-grade disease has since reduced the overtreatment harm. Net: informed individual decision, not a default screen. PLCO (Andriole) DOI 10.1056/NEJMoa0810696.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "whole-body-mri-screening-unproven-net-harm",
+    "statement": "Whole-body MRI ('executive' health scans) for asymptomatic average-risk people has no demonstrated mortality benefit and a high rate of incidental findings that trigger harmful, costly downstream testing.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No RCT showing mortality benefit; high incidentaloma rate (benign findings -> cascades of follow-up imaging, biopsies, cost, anxiety). Reasonable only in specific high-risk genetic syndromes (e.g., Li-Fraumeni).",
+    "population": "Asymptomatic average-risk adults (marketed direct-to-consumer)",
+    "provenance": {
+      "primary": "No outcome trial; consensus radiology/preventive-medicine guidance on incidental findings (e.g., ACR incidental findings white papers; USPSTF has no recommendation for whole-body screening)",
+      "doi": "",
+      "surfaced_via": "Domain P clinical-prevention 'oversold/contested' analysis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Graded LOW deliberately: marketed on fear, not outcomes; the absence of an outcome trial is the point. For the average worried-well person, expected harm/cost (incidentaloma cascades) exceeds expected benefit. Same logic as multi-cancer early-detection (MCED) blood tests - promising but unproven for mortality, randomized outcome trials ongoing, not yet recommended screens. Use targeted (high-risk), not universal, advanced imaging.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hypertension-leading-attributable-mortality-risk",
+    "statement": "High blood pressure is the leading modifiable attributable risk factor for death worldwide, driving stroke, heart failure, coronary disease, kidney failure, and vascular dementia while remaining asymptomatic until damage is done.",
+    "claim_type": "outcome",
+    "domain": "P-clinical-prevention",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Leading single attributable risk factor for global deaths (Global Burden of Disease) - ahead of smoking, high BMI, and high glucose. Combination of huge attributable risk + asymptomatic + cheap to measure + highly treatable makes it the highest-yield preventive target.",
+    "population": "Global Burden of Disease attributable-risk analyses; out-of-office BP outcome cohorts",
+    "provenance": {
+      "primary": "GBD Risk Factor Collaborators (attributable-risk analyses); ACC/AHA 2017 Hypertension Guideline (Whelton et al.)",
+      "doi": "",
+      "surfaced_via": "Domain P clinical-prevention frame"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Attributable-risk (population epidemiology) - directionally robust and consistently #1 across GBD iterations. Operationalized via out-of-office measurement: home BP monitoring / 24-h ambulatory monitoring predict outcomes better than clinic readings and are guideline-endorsed for diagnosis (home avg >=135/85 ~ clinic >=140/90; home runs lower). The treatment evidence (SPRINT, lifestyle RCTs) is what makes this the single highest-yield lever in preventive medicine.",
+    "added_on": "2026-06-28"
+  }
+]

@@ -1,6 +1,6 @@
 # Domain I — Sleep, Circadian & Recovery
 
-> **Status:** v0.1 (Wave 1) — 2026-06-27. Graded claim set; companion data in `I-claims.json` (16 claims).
+> **Status:** v0.1 (Wave 1) — 2026-06-27. Graded claim set; companion data in `I-claims.json` (20 claims; +4 yoga/meditation, Wave 4).
 > **Discipline:** sleep & circadian neuroscience + autonomic/stress physiology. The **outcome/application
 > layer** — mechanisms resting on foundations (non-visual photoreception / melanopsin, cell-water &
 > interstitial-fluid physics, redox) carry `canon_link` UP to `bucket-canon/05-biophysics/`.
@@ -94,6 +94,34 @@ Chronotype & meal timing:
 only interpretable **within a person over time** — cross-person "my HRV is higher than yours" comparisons are
 weak. "Raise your HRV" is not itself a validated health outcome. (Autonomic axis cross-links to Domain G
 breath and Domain H cold.)
+
+### 4a. Yoga & meditation → autonomic / stress (the movement-library bridge)
+
+Added Wave 4 to back-fill the yoga rows in `03-movement-library/MOVEMENT-EVIDENCE.md`, which had library
+coverage but no graded Domain I evidence. The contemplative-practice evidence is **directionally supportive but
+mostly low-tier** — index it honestly:
+
+- **Tyagi & Cohen, Int J Yoga 2016** (`10.4103/0973-6131.183712`, systematic review, 59 studies / 2358
+  participants / 15 RCTs): yoga **increases HRV and vagal dominance during practice**; regular practitioners
+  show higher resting vagal tone. BUT the authors **explicitly caution it is premature to conclude** — most
+  studies small, single-session, healthy male Indian practitioners, poorly reported. `meta` tier, weak content.
+  (`yoga-hrv-vagal-increase`)
+- **Cramer et al., Am J Hypertens 2014** (`10.1093/ajh/hpu078`, meta, 7 RCTs / 452): yoga lowers BP vs usual
+  care — **systolic MD -9.65 mmHg, diastolic MD -7.22 mmHg** — but **GRADE very-low quality, I²~90%**, effect
+  attenuates vs active controls and is clearest in already-hypertensive patients. `meta`. (`yoga-blood-pressure-meta`)
+- **Pascoe & Bauer, J Psychiatr Res 2015** (`10.1016/j.jpsychires.2015.07.013`, systematic review of RCTs): yoga
+  reduces stress markers (incl. cortisol) and improves mood; heterogeneous, mixed quality. `meta`.
+  (`yoga-stress-mood-rct-review`)
+- **Pascoe et al., J Psychiatr Res 2017** (`10.1016/j.jpsychires.2017.08.004`, meta, 45 controlled studies): the
+  strongest of the set — **mindfulness/meditation reduces cortisol, CRP, systolic BP, heart rate, triglycerides**
+  vs controls (modest, surrogate). Note: seated meditation overlaps with but is **not identical** to physical
+  yoga (movement+breath+attention); don't assume full transfer either way. (`mindfulness-meditation-physiological-stress-meta`)
+
+**Watch the gap.** All of these are **surrogate/biomarker** outcomes (HRV, cortisol, BP), not hard endpoints,
+and the yoga-specific evidence (vs meditation) is the weaker, more heterogeneous, more bias-prone half. The
+honest read: yoga/meditation **plausibly improve autonomic balance and stress markers** (consistent direction
+across HRV, BP and cortisol), but the trial quality does not support precise effect claims or longevity-outcome
+claims. These bridge the movement library's yoga demonstrations to the autonomic axis (Domains G breath, H cold).
 
 ## 5. Stress, cortisol & allostatic load
 

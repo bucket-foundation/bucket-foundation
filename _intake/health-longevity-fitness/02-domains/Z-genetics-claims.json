@@ -1,0 +1,287 @@
+[
+  {
+    "id": "omnigenic-polygenicity-no-fitness-genes",
+    "statement": "Most complex human traits (height, performance, longevity, body weight) are highly polygenic to omnigenic: thousands of common variants each contribute tiny effects, so single-gene 'fitness/longevity/trait genes' read off a consumer chip have negligible individual predictive value.",
+    "claim_type": "mechanism",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "For a typical complex trait, heritability is spread across ~thousands of loci; 'core' genes carry a minority of it. Marquee variants (e.g. ACTN3 R577X) explain ~1-3% of performance variance.",
+    "population": "Theory + large GWAS synthesis (human)",
+    "provenance": {
+      "primary": "Boyle, Li & Pritchard — 'An Expanded View of Complex Traits: From Polygenic to Omnigenic', Cell 2017",
+      "doi": "10.1016/j.cell.2017.05.038",
+      "surfaced_via": "PubMed verify PMID 28622505"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The foundational reason DTC 'fitness/nutrition' single-gene reports are noise for an individual. Mechanism/theory tier; not an outcome claim.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "apoe-e4-alzheimer-gene-dose",
+    "statement": "The APOE-epsilon4 allele is the strongest common genetic risk factor for late-onset Alzheimer's disease, with a gene-dose effect: one copy raises lifetime risk roughly 2-3x and two copies roughly 8-12x versus epsilon3/epsilon3; the effect is modified by sex (larger in women) and ancestry (smaller in some African-ancestry groups).",
+    "claim_type": "outcome",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "OR ~2-3x per epsilon4 (heterozygous), ~8-12x homozygous; effect attenuated in African ancestry, amplified in women (Farrer 1997 meta).",
+    "population": "Meta-analysis across 40+ studies, multiple ancestries (Farrer 1997); original gene-dose Corder 1993",
+    "provenance": {
+      "primary": "Farrer, Cupples, Haines et al. — 'Effects of age, sex, and ethnicity on the association between APOE genotype and Alzheimer disease', JAMA 1997; Corder et al. Science 1993",
+      "doi": "10.1126/science.8346443",
+      "surfaced_via": "PubMed verify PMID 9343467 (Farrer); Corder DOI 10.1126/science.8346443"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Robust ASSOCIATION (case-control/meta). A risk allele, NOT a diagnosis: most AD patients are not epsilon4 homozygous, and many epsilon4/epsilon4 carriers never develop dementia. Predictor, not lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "apoe-predictor-without-lever-counseling",
+    "statement": "APOE-epsilon4 is a strong predictor with no genotype-specific therapy: there is no proven intervention that neutralizes epsilon4 risk, so disclosure carries counseling, right-not-to-know, and insurance harms, while the only available levers are the generic dementia-risk-reduction measures that benefit everyone (possibly more in epsilon4 carriers).",
+    "claim_type": "protocol",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "No epsilon4-specific pharmacologic lever validated; generic levers (BP/lipid control, exercise, hearing correction, sleep) apply regardless of genotype.",
+    "population": "Genetic-counseling practice + dementia-prevention evidence (human)",
+    "provenance": {
+      "primary": "REVEAL APOE-disclosure studies (Green et al.) + dementia risk-reduction literature; manual section 08",
+      "doi": "",
+      "surfaced_via": "section 18 PART A synthesis; cross-ref section 08"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The cleanest predictor-not-lever case in practical genetics. The 'epsilon4 carriers benefit more from lifestyle' angle is suggestive, not settled. Treat as counseling guidance, not an outcome claim.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lpa-genetic-causal-cvd-mendelian",
+    "statement": "Lipoprotein(a) level is largely genetically determined by the LPA locus, and genetic variants raising Lp(a) causally raise risk of coronary heart disease (and aortic stenosis), as shown by Mendelian randomization - making a one-time Lp(a) measurement a high-value, lifelong-risk test.",
+    "claim_type": "outcome",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "LPA variants associated with both Lp(a) level and CHD in a dose-consistent (causal) pattern; ~20% of people have clinically elevated Lp(a).",
+    "population": "Mendelian-randomization / large association studies (Clarke 2009, PROCARDIS, European ancestry)",
+    "provenance": {
+      "primary": "Clarke, Peden, Watkins et al. — 'Genetic variants associated with Lp(a) lipoprotein level and coronary disease', NEJM 2009",
+      "doi": "10.1056/NEJMoa0902604",
+      "surfaced_via": "PubMed verify PMID 20032323"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the few common-variant findings that clears the cohort-not-RCT bar via Mendelian randomization (genetics as a natural experiment). Cross-ref Domain L. Note: Lp(a)-LOWERING outcome trials are still pending - causal risk factor != proven drug target yet.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "mthfr-testing-not-recommended",
+    "statement": "Testing for common MTHFR polymorphisms (C677T, A1298C) is NOT recommended for the general or healthy population: the ACMG found no evidence of utility for recurrent pregnancy loss or thrombophilia, the variants are very common, and homocysteine-lowering RCTs failed to reduce cardiovascular events - the popular 'MTHFR causes X, treat with methylfolate' narrative is unsupported.",
+    "claim_type": "outcome",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "C677T TT genotype present in ~10-15% of many populations; modest homocysteine elevation only; homocysteine-lowering trials null for CVD events.",
+    "population": "ACMG practice guideline synthesizing clinical evidence (human)",
+    "provenance": {
+      "primary": "Hickey, Curry, Toriello (ACMG) — 'ACMG Practice Guideline: lack of evidence for MTHFR polymorphism testing', Genet Med 2013",
+      "doi": "10.1038/gim.2012.165",
+      "surfaced_via": "PubMed verify PMID 23288205"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "DEBUNK. The single most overhyped variant in consumer/functional-medicine genetics. Mechanism (mild folate-cycle effect) is real and small; the marketed outcomes and special 'methylated' supplement upsell are not supported. Clean mechanism-not-outcome failure.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hfe-hemochromatosis-low-penetrance",
+    "statement": "HFE C282Y homozygosity (the commonest hereditary-hemochromatosis genotype) has low clinical penetrance: only a minority develop iron-overload disease (~28% of men, <2% of women in the HealthIron cohort), so a positive genotype is a reason to monitor iron studies, not a diagnosis - and the treatment (phlebotomy) is decided on ferritin/transferrin saturation, not the SNP.",
+    "claim_type": "outcome",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Iron-overload-related disease in ~28.4% of male and ~1.2% of female C282Y homozygotes over ~12y follow-up.",
+    "population": "HealthIron / Melbourne Collaborative Cohort, C282Y homozygotes vs controls",
+    "provenance": {
+      "primary": "Allen, Gurrin, Olynyk et al. — 'Iron-overload-related disease in HFE hereditary hemochromatosis', NEJM 2008",
+      "doi": "10.1056/NEJMoa073286",
+      "surfaced_via": "PubMed verify PMID 18199861"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Illustrates 'a Mendelian disease that mostly doesn't happen' - genotype != phenotype. Actionable (cheap monitoring + curative phlebotomy) but the lever is the iron blood test, not the variant. Predictor-not-lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "acmg-secondary-findings-define-actionable",
+    "statement": "The ACMG Secondary Findings list (SF v3.2, 81 genes) operationally defines 'actionable' genetics: highly penetrant, medically actionable conditions (hereditary cancers, familial hypercholesterolemia, cardiomyopathies/arrhythmias, aortopathies, malignant hyperthermia) worth reporting opportunistically from clinical sequencing.",
+    "claim_type": "protocol",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "81 genes meeting penetrance + actionability criteria (SF v3.2, 2023).",
+    "population": "ACMG expert-consensus curation",
+    "provenance": {
+      "primary": "Miller, Lee, Abul-Husn et al. (ACMG) — 'ACMG SF v3.2 list for reporting of secondary findings in clinical exome and genome sequencing', Genet Med 2023",
+      "doi": "10.1016/j.gim.2023.100866",
+      "surfaced_via": "PubMed verify PMID 37347242"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The professional yardstick for 'which genetic findings are worth acting on'. Anything not at roughly this penetrance-plus-action caliber is information, not a lever. Consensus/protocol tier.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pharmacogenomics-clinical-utility-cpic",
+    "statement": "Pharmacogenomic variants (CYP2C19, CYP2D6, DPYD, TPMT/NUDT15, SLCO1B1, HLA-B*57:01, HLA-B*15:02) are the highest-value 'health' genetics for most people: single large-effect variants with defined clinical actions (change drug or dose), codified in CPIC guidelines - several (DPYD, TPMT, HLA-B) prevent severe or fatal toxicity.",
+    "claim_type": "protocol",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Examples: CYP2C19 LoF -> reduced clopidogrel efficacy (alternative agent advised); HLA-B*57:01 -> abacavir hypersensitivity (testing mandatory); DPYD deficiency -> fluoropyrimidine toxicity risk.",
+    "population": "CPIC guideline evidence base (RCT + pharmacogenetic cohorts, human)",
+    "provenance": {
+      "primary": "CPIC guidelines (cpicpgx.org); framework Relling & Klein, Clin Pharmacol Ther 2011 (10.1038/clpt.2011.34); clopidogrel Lee et al. 2022",
+      "doi": "10.1002/cpt.2526",
+      "surfaced_via": "section 18 PART A; CPIC canonical guidelines"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The genuinely useful clinical genetics: large effect + defined action. Strength varies by gene-drug pair (HLA-B*57:01/abacavir and DPYD among the strongest). DOI cited for clopidogrel guideline; framework Relling & Klein 2011 from canonical literature.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dtc-genotype-does-not-predict-diet-response",
+    "statement": "Pre-specified 'diet-responsive' genotype patterns do NOT predict which healthy diet (low-fat vs low-carbohydrate) produces more weight loss: in the DIETFITS RCT (>600 adults) genotype-diet matching had no effect, refuting 'eat for your genotype / DNA-based diet' claims.",
+    "claim_type": "outcome",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No significant genotype x diet interaction on 12-month weight change; both diets produced similar (modest) average loss.",
+    "population": "DIETFITS RCT, 609 overweight adults randomized, pre-genotyped",
+    "provenance": {
+      "primary": "Gardner, Trepanowski, King et al. — 'Effect of Low-Fat vs Low-Carbohydrate Diet on 12-Month Weight Loss... and Association With Genotype Pattern or Insulin Secretion', JAMA 2018",
+      "doi": "10.1001/jama.2018.0245",
+      "surfaced_via": "PubMed verify PMID 29466592"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest direct test of personalized-by-genotype dieting; negative. 'DNA-based diet' products are not supported. RCT tier.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fto-genotype-no-weightloss-difference",
+    "statement": "FTO genotype (the 'obesity gene') does NOT modify weight-loss response to dietary, physical-activity, or drug interventions: across a meta-analysis of 9,563 individuals, carriers and non-carriers lost equivalent weight - so the FTO risk allele is no barrier to, and no special protocol for, weight loss.",
+    "claim_type": "outcome",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No significant difference in intervention-induced weight loss by FTO rs9939609 genotype (8 RCTs, n=9,563).",
+    "population": "Meta-analysis of randomized weight-loss intervention trials",
+    "provenance": {
+      "primary": "Livingstone, Celis-Morales, Mathers et al. — 'FTO genotype and weight loss: systematic review and meta-analysis of 9563 individual participant data', BMJ 2016",
+      "doi": "10.1136/bmj.i4707",
+      "surfaced_via": "PubMed verify PMID 27650503"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "FTO predicts higher average body weight (real association) but is NOT a lever for tailoring weight-loss strategy. Predictor != lever, in the most-cited 'obesity gene'. Meta tier.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "prs-eurocentric-poor-portability",
+    "statement": "Polygenic risk scores stratify disease risk at the population level but have limited individual accuracy and transfer poorly across ancestries (trained mostly on European-ancestry data), and prediction accuracy varies even WITHIN an ancestry group - so consumer 'polygenic scores' are population instruments, not validated personal predictors, and naive deployment could widen health disparities.",
+    "claim_type": "mechanism",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "PRS prediction accuracy substantially lower in non-European ancestries; meaningful within-ancestry variation by age/SES/environment.",
+    "population": "Methods studies on PRS portability (UK Biobank + multi-ancestry, human)",
+    "provenance": {
+      "primary": "Martin, Kanai, Kamatani et al. — 'Clinical use of current polygenic risk scores may exacerbate health disparities', Nat Genet 2019; Mostafavi et al., eLife 2020",
+      "doi": "10.1038/s41588-019-0379-x",
+      "surfaced_via": "section 18 PART A; canonical PRS-portability literature (Mostafavi eLife 10.7554/eLife.48376)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Tempers PRS hype: real at population scale, weak and ancestry-biased at the individual level. DOIs from canonical literature (Martin 2019; Mostafavi 2020). Mechanism/methods tier.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dtc-wellness-fitness-reports-are-noise",
+    "statement": "Consumer-genomics 'wellness / fitness / nutrition' reports (endurance-vs-power type, 'ideal diet', vitamin/caffeine 'needs') read small-effect common variants explaining a rounding error of polygenic traits and are entertainment-grade, not decision-grade; their relative-risk framing without absolute risk routinely misleads.",
+    "claim_type": "outcome",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "Marquee fitness variants explain low-single-digit percent of trait variance; absolute risks often tiny even at elevated relative risk.",
+    "population": "Inference from polygenicity (Boyle 2017) + DTC product reality (human)",
+    "provenance": {
+      "primary": "Synthesis: Boyle/Li/Pritchard omnigenic 2017 (10.1016/j.cell.2017.05.038) + DIETFITS 2018 + FTO 2016; section 18 PART A",
+      "doi": "10.1016/j.cell.2017.05.038",
+      "surfaced_via": "section 18 PART A synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "DEBUNK rooted in polygenicity + the negative diet-genotype trials. The good DTC uses (ancestry, carrier status, some PGx, a few clinically-confirmable actionable variants) are real and distinct from the wellness-report noise.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dtc-negative-not-clearance-confirm-clinically",
+    "statement": "A consumer-chip result tests only pre-selected spots (e.g. 3 Ashkenazi BRCA founder variants out of thousands), so a 'negative' rules out only those variants and is not clinical clearance; conversely, rare 'pathogenic' calls from raw DTC data have a high false-positive rate and must be confirmed in a diagnostic lab before any action.",
+    "claim_type": "protocol",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Genotyping chips read common SNPs, not whole genes; raw-data third-party 'pathogenic' findings show high false-positive rates on clinical confirmation.",
+    "population": "Clinical-laboratory / consumer-genomics methods evidence (human)",
+    "provenance": {
+      "primary": "FDA 23andMe BRCA authorization (3 founder variants, 2018) + clinical-confirmation literature on DTC raw-data false positives; section 18 PART A",
+      "doi": "",
+      "surfaced_via": "section 18 PART A synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Operational safety rule for DTC results: treat actionable outputs as leads to confirm, never as endpoints; never read a negative as an all-clear, especially against family history. Protocol/mechanism tier.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "methylation-age-not-validated-personal-surrogate",
+    "statement": "Consumer methylation-age ('epigenetic clock') tests are not validated personal surrogates: no aging biomarker yet reliably moves with an intervention AND predicts its clinical benefit (consortium consensus), original clocks have poor test-retest reliability (many 'age-reversal' results sit within measurement noise), and different clocks disagree - so the number is a weakly-reliable correlate, not a personal aging dashboard.",
+    "claim_type": "mechanism",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Original-clock ICC as low as ~0.6-0.8; clocks correlate imperfectly; no validated surrogate status (Moqri 2023 consensus).",
+    "population": "Biomarkers-of-aging consensus + reliability re-analyses (human)",
+    "provenance": {
+      "primary": "Moqri, Herzog, Gladyshev et al. — Biomarkers of aging consensus, Cell 2023 (10.1016/j.cell.2023.08.003); Higgins-Chen et al. Nat Aging 2022",
+      "doi": "10.1016/j.cell.2023.08.003",
+      "surfaced_via": "cross-ref Domain C C-claims.json (biomarkers-of-aging-consortium-validation-gap, higgins-chen-2022-pc-clocks)"
+    },
+    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "canon_link": "",
+    "confidence_notes": "Practical-layer reframing of Domain C's clock claims: predictor (cohort) != validated surrogate, and the consumer test is noisy at the individual level. Act on validated Domain L biomarkers instead.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gene-environment-heritability-not-destiny",
+    "statement": "Heritability is a population-variance statement, not a personal forecast or a ceiling: lifespan (~10-25% heritable) and exercise trainability (~47% heritable) describe between-person spread in a given environment, not how fixed an individual's outcome is - and changing the environment (e.g. higher training dose for apparent non-responders) still moves the outcome.",
+    "claim_type": "mechanism",
+    "domain": "Z-genetics-practical",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "HERITAGE: identical 20-week program -> VO2max gains 0% to >40%, training-response heritability ~47%; Montero & Lundby: 'non-responders' respond at higher dose.",
+    "population": "HERITAGE Family Study + dose-escalation trials (human)",
+    "provenance": {
+      "primary": "Bouchard et al. HERITAGE (10.1152/jappl.1999.87.3.1003); Montero & Lundby J Physiol 2017 (10.1113/JP273480)",
+      "doi": "10.1152/jappl.1999.87.3.1003",
+      "surfaced_via": "cross-ref reports/sections/04-individual-variation.md sections 2.1-2.2"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The gene x environment spine of Part A: genes load the gun, environment pulls the trigger. Genetics shapes the dose-response curve you're on but does not lock the outcome; the lever (change the stimulus) still works.",
+    "added_on": "2026-06-28"
+  }
+]

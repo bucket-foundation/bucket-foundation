@@ -1,0 +1,306 @@
+[
+  {
+    "id": "lancet-commission-45pct-modifiable-dementia",
+    "statement": "Around 45% of dementia worldwide is attributable to 14 modifiable risk factors acting across the life course; eliminating or reducing them could in principle prevent or delay that share of cases at the population level.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "PAF ~45% across 14 factors (2024); was ~40% across 12 factors (2020). Largest single factors: hearing loss 7%, high LDL 7%, less education 5%, social isolation 5%.",
+    "population": "Lancet standing Commission synthesis of global observational evidence (meta of cohorts + prevalence weighting)",
+    "provenance": {
+      "primary": "Livingston et al. - 'Dementia prevention, intervention, and care: 2024 report of the Lancet standing Commission', Lancet 2024 (2020 report: 10.1016/S0140-6736(20)30367-6)",
+      "doi": "10.1016/S0140-6736(24)01296-0",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The spine of dementia prevention. PAF is a POPULATION counterfactual, NOT a personal risk reduction (predictor != lever). The PAFs are weighted for factor overlap and rest LARGELY on observational risk estimates; only a few factors (hearing, vascular, multidomain lifestyle) have randomized prevention support. The ~55% remainder is non-modifiable/unknown (age, APOE4, unknown causes).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hearing-loss-incident-dementia-blsa",
+    "statement": "Greater baseline hearing-loss severity is associated with higher incident dementia risk in a dose-dependent manner.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Hazard rising with severity: mild/moderate/severe hearing loss ~ 2x / 3x / 5x dementia risk vs normal hearing",
+    "population": "Baltimore Longitudinal Study of Aging, n~639, baseline age 36-90",
+    "provenance": {
+      "primary": "Lin, Metter, O'Brien et al. - 'Hearing Loss and Incident Dementia', Arch Neurol 2011",
+      "doi": "10.1001/archneurol.2010.362",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong observational signal but cannot separate cause from marker (hearing loss could be an early sign of the same neurodegeneration). The causal test is ACHIEVE (separate claim).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "achieve-hearing-aids-cognitive-decline-rct",
+    "statement": "A hearing intervention (hearing aids + audiologic support) did NOT significantly slow 3-year cognitive decline in the full cohort, but slowed decline by ~48% in the prespecified higher-risk subgroup.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Full cohort: null (no significant difference). At-risk (ARIC) subgroup: ~48% slower 3-year global cognitive decline vs control",
+    "population": "977 adults aged 70-84 with untreated mild-to-moderate hearing loss; ~half from the higher-risk ARIC cardiovascular cohort",
+    "provenance": {
+      "primary": "Lin et al. - 'Hearing intervention versus health education control to reduce cognitive decline in older adults with hearing loss in the USA (ACHIEVE)', Lancet 2023",
+      "doi": "10.1016/S0140-6736(23)01406-X",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The field's best recent CAUSAL evidence that treating a single factor can protect cognition - but the primary endpoint was NULL overall and the striking 48% is a subgroup. Honest read: reasonable and low-risk to treat hearing loss; overstatement to say 'hearing aids prevent dementia' full-stop.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sprint-mind-intensive-bp-mci",
+    "statement": "Intensive blood-pressure control (target <120 mmHg systolic) significantly reduced mild cognitive impairment and the combined MCI-or-dementia endpoint versus standard control; the dementia-alone endpoint missed significance.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Significant reduction in MCI and MCI-or-dementia composite; dementia-alone hazard reduced but not statistically significant (trial stopped early, underpowered for the rarer endpoint)",
+    "population": "SPRINT hypertension trial cognition substudy, n~9,361 hypertensive adults >=50",
+    "provenance": {
+      "primary": "Williamson et al. (SPRINT MIND Investigators) - 'Effect of Intensive vs Standard Blood Pressure Control on Probable Dementia', JAMA 2019",
+      "doi": "10.1001/jama.2018.21442",
+      "surfaced_via": "Wave-8 brain brief; verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Best randomized evidence that a vascular lever moves a COGNITIVE outcome. Dementia-alone null is a power artifact (early stop for CV benefit), not evidence of no effect. Supports the vascular cluster of the Lancet PAF table.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "exercise-hippocampal-volume-bdnf",
+    "statement": "A year of moderate aerobic exercise increased hippocampal volume ~2% (reversing 1-2 years of age-related shrinkage) and improved spatial memory, with BDNF as a mediator.",
+    "claim_type": "mechanism",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~2% increase in anterior hippocampus volume vs ~1.4% decline in stretching control; improved spatial memory; BDNF mediation",
+    "population": "120 older adults (avg 67y), 1-year aerobic-exercise vs stretching RCT",
+    "provenance": {
+      "primary": "Erickson et al. - 'Exercise training increases size of hippocampus and improves memory', PNAS 2011",
+      "doi": "10.1073/pnas.1015950108",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-exercise-prevents-dementia"],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Strong MECHANISM/surrogate (imaging) result. Does NOT establish the OUTCOME 'exercise prevents dementia' - RCTs of exercise on cognitive decline in MCI/older adults are MIXED-to-null. Mechanism solid, fitness predicts cognition strongly, but the prevention outcome is not settled.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "finger-multidomain-cognition-rct",
+    "statement": "A 2-year multidomain lifestyle intervention (diet + exercise + cognitive training + vascular monitoring) preserved cognition versus general health advice in at-risk older adults - the first RCT to show this.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Intervention group composite cognitive (NTB) score improved ~25% more than control over 2 years; executive function and processing speed effects larger",
+    "population": "FINGER trial, 1260 at-risk Finns aged 60-77, normal-to-slightly-impaired cognition",
+    "provenance": {
+      "primary": "Ngandu et al. - 'A 2 year multidomain intervention ... to prevent cognitive decline in at-risk elderly people (FINGER): a randomised controlled trial', Lancet 2015",
+      "doi": "10.1016/S0140-6736(15)60461-5",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Proof-of-concept that bundled lifestyle CAN move cognition in an RCT. Outcome is cognitive TEST performance, not dementia diagnosis; effect modest; control also got lighter advice. World-Wide FINGERS network now replicating (US-POINTER etc.) - generalization still open.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "mind-diet-cognition-observational-vs-rct",
+    "statement": "Higher MIND/Mediterranean diet adherence is associated with slower cognitive decline and lower Alzheimer's risk in cohorts, but a 3-year RCT found no significant cognitive benefit of the MIND diet over a control diet.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Cohort: MIND adherence assoc. with ~53% lower AD risk (top vs bottom tertile, Morris 2015). RCT: both arms improved cognition, no significant between-group difference (Barnes 2023)",
+    "population": "Cohort: Rush Memory and Aging Project, n~923. RCT: 604 older adults at risk, 3 years, both arms with mild caloric restriction",
+    "provenance": {
+      "primary": "Barnes et al. - 'Trial of the MIND Diet for Prevention of Cognitive Decline in Older Persons', NEJM 2023 (cohort: Morris et al., Alzheimers Dement 2015, 10.1016/j.jalz.2015.04.007)",
+      "doi": "10.1056/NEJMoa2302368",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["conflict-mind-diet-cognition"],
+    "canon_link": "",
+    "confidence_notes": "Textbook predictor-vs-lever / cohort-vs-RCT case: strong observational signal did NOT survive randomization. Caveats: both RCT arms lost weight and improved (control was not a junk-food arm); 3y may be too short. Honest grade: reasonable heart-healthy pattern, strong cohort signal, null RCT for cognition.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "depression-all-cause-mortality",
+    "statement": "Depression is associated with roughly 1.5-2x higher all-cause mortality, and is a bidirectional dementia risk factor (cause and early symptom).",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~1.5-2x all-cause mortality (meta-analyses); Lancet dementia PAF for depression ~3%",
+    "population": "Multiple meta-analyses of prospective cohorts",
+    "provenance": {
+      "primary": "Cuijpers & Smit - 'Excess mortality in depression: a meta-analysis of community studies', J Affect Disord 2002 (10.1016/S0165-0327(01)00413-X); Lancet Commission 2024 for dementia PAF",
+      "doi": "10.1016/S0165-0327(01)00413-X",
+      "surfaced_via": "Wave-8 brain brief; cross-ref Domain M"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real and important but causally tangled - reverse causation strong for the dementia link (depression is an early symptom of incipient neurodegeneration). Cross-ref Domain M psychosocial determinants.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "exercise-for-depression-network-meta",
+    "statement": "Exercise is an effective treatment for depression (walking/jogging, yoga, strength training, mixed aerobic all beneficial), with larger effects at higher intensity.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Moderate-to-large reductions in depression; effects rival/approach psychotherapy and medication in head-to-head arms; effects shrink but stay positive in lowest-bias studies",
+    "population": "Network meta-analysis of 218 RCTs, ~14,170 participants",
+    "provenance": {
+      "primary": "Noetel et al. - 'Effect of exercise for depression: systematic review and network meta-analysis of randomised controlled trials', BMJ 2024",
+      "doi": "10.1136/bmj-2023-075847",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the cleaner INTERVENTIONAL mental-health stories. Authors flag most included trials have HIGH risk of bias and effects attenuate in low-bias studies - but stay positive. A real, RCT-supported lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "serotonin-depression-no-evidence",
+    "statement": "There is no consistent evidence that depression is caused by low serotonin; the 'chemical imbalance' narrative is not supported - which does NOT negate the modest, RCT-proven efficacy of antidepressants.",
+    "claim_type": "mechanism",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Umbrella review: no consistent low-serotonin signal in depression. Separately, antidepressant efficacy SMD ~0.30 vs placebo (Cipriani 2018) - small-to-moderate, larger in severe depression",
+    "population": "Moncrieff: umbrella review of systematic reviews. Cipriani: network meta of 522 trials, 116,477 participants, 21 antidepressants",
+    "provenance": {
+      "primary": "Moncrieff et al. - 'The serotonin theory of depression: a systematic umbrella review', Mol Psychiatry 2022 (10.1038/s41380-022-01661-0); Cipriani et al., Lancet 2018 (10.1016/S0140-6736(17)32802-7)",
+      "doi": "10.1038/s41380-022-01661-0",
+      "surfaced_via": "Wave-8 brain brief; verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hold two things at once: the serotonin-deficiency MECHANISM/marketing story is false, AND antidepressants have modest real OUTCOME efficacy. A drug can work without the folk-mechanism being true - the schema's mechanism-vs-outcome rule exactly.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "smiles-diet-depression-rct",
+    "statement": "Dietary improvement (Mediterranean-style) produced significantly greater remission of major depression than social support over 12 weeks.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Remission ~32% (diet) vs ~8% (control) at 12 weeks; NNT ~4",
+    "population": "SMILES trial, n=67 adults with major depression, single-site, unblinded",
+    "provenance": {
+      "primary": "Jacka et al. - 'A randomised controlled trial of dietary improvement for adults with major depression (the SMILES trial)', BMC Medicine 2017",
+      "doi": "10.1186/s12916-017-0791-y",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Encouraging FIRST RCT for 'food as treatment' but small (n=67), single, unblinded (can't blind a diet), not robustly replicated at scale. Promising, not settled.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "shingles-vaccine-dementia-natural-experiment",
+    "statement": "Herpes zoster (shingles) vaccination reduced new dementia diagnoses, demonstrated via a date-of-birth eligibility cutoff that approximates randomization (natural experiment).",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "case-control",
+    "direction": "supports",
+    "effect_size": "Vaccination reduced 7-year dementia diagnosis by ~3.5 percentage points (~20% relative reduction), stronger in women (Wales). Recombinant Shingrix: ~17% more diagnosis-free time over 6y vs live vaccine (Taquet)",
+    "population": "Wales population around the 2 Sept 1933 eligibility birthdate cutoff (regression-discontinuity natural experiment); replicated in Canada",
+    "provenance": {
+      "primary": "Eyting, Geldsetzer et al. - 'A natural experiment on the effect of herpes zoster vaccination on dementia', Nature 2025; Taquet et al., Nat Med 2024 (10.1038/s41591-024-03201-5); Pomirchy et al., Lancet Neurol 2026 (10.1016/S1474-4422(25)00455-7)",
+      "doi": "10.1038/s41586-025-08800-x",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "QUASI-EXPERIMENTAL (natural experiment / regression-discontinuity) - much stronger than typical observation because the birthdate cutoff is as-good-as-random, and now replicated in Canada. But NOT a randomized prevention trial; residual confounding (who gets vaccinated) not fully excluded; mechanism (zoster reactivation -> neuroinflammation? off-target immune training?) unresolved. One of the most interesting leads in dementia prevention - flag loudly, grade carefully. Tagged case-control as the nearest ladder rung; design is stronger than ordinary case-control.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lecanemab-clarity-ad-marginal",
+    "statement": "Lecanemab slowed cognitive decline in early Alzheimer's by a statistically significant but clinically marginal amount, with meaningful risks (brain edema/microhemorrhage).",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "CDR-SB decline 1.21 (lecanemab) vs 1.66 (placebo) over 18 months = -0.45 points (~27% relative slowing) on an 18-point scale - at/below most minimal clinically important difference estimates. ARIA-E ~12.6%, ARIA-H ~17.3%, infusion reactions ~26%; deaths in extension esp. with anticoagulants / APOE4 homozygotes",
+    "population": "CLARITY-AD, 1795 people with early Alzheimer's disease, 18 months",
+    "provenance": {
+      "primary": "van Dyck et al. - 'Lecanemab in Early Alzheimer's Disease', NEJM 2023 (donanemab: Sims et al., JAMA 2023, 10.1001/jama.2023.13239)",
+      "doi": "10.1056/NEJMoa2212948",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Statistically significant != clinically meaningful. Everyone still declined; drug group declined slightly less. 0.45/18 points is likely imperceptible to patients/families over 18 months, against real ARIA risk, infusion burden, MRI monitoring, and high cost. A scientific milestone (amyloid removal modestly slows decline) and a marginal clinical tool. Donanemab tells the same story.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "brain-training-far-transfer-weak",
+    "statement": "Cognitive/brain-training improves the trained task durably but shows limited transfer to untrained abilities and everyday function; commercial brain games lack evidence of improving general cognition.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "ACTIVE: durable gains in TRAINED domain at 10 years; far-transfer limited. Consensus: little evidence brain games improve general cognition/daily life beyond the games. FTC fined Lumos Labs $2M (2016) for deceptive dementia-prevention claims",
+    "population": "ACTIVE RCT, 2832 older adults, 10-year follow-up; Simons et al. 2016 expert consensus review",
+    "provenance": {
+      "primary": "Rebok et al. - 'Ten-Year Effects of the ACTIVE Cognitive Training Trial', JAGS 2014; Simons et al., Psychol Sci Public Interest 2016 (10.1177/1529100616661983)",
+      "doi": "10.1111/jgs.12607",
+      "surfaced_via": "Wave-8 brain brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Near-transfer real (you get good at the practiced task); far-transfer weak. The speed-of-processing arm's later dementia signal (Edwards 2017) is contested. Commercial brain-training is mostly marketing - FTC enforcement is the honest tell.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lions-mane-cognition-tiny-rct",
+    "statement": "Lion's mane (Hericium erinaceus) produced transient cognitive improvement in a tiny short RCT that reversed after stopping; not replicated at scale.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Improved cognitive scores during 16 weeks of supplementation in MCI; benefit reversed by 4 weeks after cessation",
+    "population": "Mori et al., n~30 older Japanese adults with mild cognitive impairment, single-site",
+    "provenance": {
+      "primary": "Mori et al. - 'Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment: a double-blind placebo-controlled clinical trial', Phytother Res 2009",
+      "doi": "10.1002/ptr.2634",
+      "surfaced_via": "Wave-8 brain brief; verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Tiny (n~30), short, single-site, never replicated at scale; effect reversed on stopping. Animal NGF/mechanistic data is interesting but human OUTCOME data is thin. Representative of the 'brain supplement' tier - mechanism or marketing, not proven prevention.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ginkgo-no-dementia-prevention",
+    "statement": "Ginkgo biloba did not prevent dementia or cognitive decline in a large long-term RCT.",
+    "claim_type": "outcome",
+    "domain": "Q-brain-cognition",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No reduction in incident dementia or Alzheimer's; null on cognitive decline",
+    "population": "GEM Study, ~3069 adults aged 75+, median ~6 years",
+    "provenance": {
+      "primary": "DeKosky et al. - 'Ginkgo biloba for prevention of dementia: a randomized controlled trial (GEM Study)', JAMA 2008",
+      "doi": "10.1001/jama.2008.2470",
+      "surfaced_via": "Wave-8 brain brief; verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A clean negative from a large, long, well-powered RCT - the gold-standard refutation of a popular 'brain supplement.' Pairs with mostly-null omega-3 cognition RCTs (e.g. VITAL-COG) to illustrate the predictor-vs-lever gap monetized.",
+    "added_on": "2026-06-28"
+  }
+]

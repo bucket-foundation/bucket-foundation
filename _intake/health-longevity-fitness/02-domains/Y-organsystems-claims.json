@@ -1,0 +1,595 @@
+[
+  {
+    "id": "fev1-declines-with-age",
+    "statement": "FEV1 declines progressively with age in healthy adults (~25-30 mL/yr after the mid-20s plateau), with smoking steepening the slope and cessation resetting the rate of decline toward that of a never-smoker.",
+    "claim_type": "mechanism",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~25-30 mL/yr FEV1 decline in healthy never-smokers; steeper in smokers; cessation normalizes decline rate (not recovers lost function)",
+    "population": "Working men, original Fletcher-Peto cohort and successors",
+    "provenance": {
+      "primary": "Fletcher C, Peto R - 'The natural history of chronic airflow obstruction', BMJ 1977",
+      "doi": "10.1136/bmj.1.6077.1645",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed PMID lookup"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Foundational COPD/lung-aging framework. Quitting does not reverse lost FEV1 but changes the future slope - the central honest message for respiratory longevity.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "copd-lung-trajectories",
+    "statement": "COPD can arise either from accelerated FEV1 decline from a normal peak OR from never reaching a normal peak in early adulthood; lung aging is partly set in childhood.",
+    "claim_type": "mechanism",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~half of COPD cases in the cohort arose from low peak lung function rather than accelerated decline",
+    "population": "Three large longitudinal cohorts (Framingham Offspring, CCHS, COPDGene)",
+    "provenance": {
+      "primary": "Lange P, Celli B, et al. - 'Lung-Function Trajectories Leading to Chronic Obstructive Pulmonary Disease', NEJM 2015",
+      "doi": "10.1056/NEJMoa1411532",
+      "surfaced_via": "Wave-17 organ-systems atlas; OpenAlex"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reframes lung aging as partly developmental; refines the single-slope Fletcher-Peto model.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pulmonary-rehab-improves-copd-function",
+    "statement": "Exercise-based pulmonary rehabilitation improves exercise capacity and quality of life in COPD.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Clinically meaningful improvements in exercise capacity and health-related quality of life vs usual care",
+    "population": "COPD patients, pooled RCTs",
+    "provenance": {
+      "primary": "McCarthy B, et al. - 'Pulmonary rehabilitation for chronic obstructive pulmonary disease', Cochrane Database Syst Rev 2015",
+      "doi": "10.1002/14651858.CD003793.pub3",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Improves function/symptoms; does not regenerate lung tissue. Honest: a function lever, not a structural cure.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "imt-lowers-blood-pressure",
+    "statement": "High-resistance inspiratory muscle strength training (~5 min/day) lowers systolic blood pressure and improves endothelial function in midlife/older adults.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "~9 mmHg reduction in systolic BP; improved endothelial function vs sham",
+    "population": "Midlife and older adults with above-normal BP",
+    "provenance": {
+      "primary": "Craighead DH, et al. - 'Time-Efficient Inspiratory Muscle Strength Training Lowers Blood Pressure and Improves Endothelial Function', J Am Heart Assoc 2021",
+      "doi": "10.1161/JAHA.121.020980",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The strongest 'breathing device' evidence - but the benefit is CARDIOVASCULAR (BP), not increased lung capacity. Do not conflate with 'growing your lungs'.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "imt-adds-little-over-pulm-rehab",
+    "statement": "Inspiratory muscle training increases inspiratory muscle strength but adds little to patient-important outcomes over pulmonary rehabilitation alone in COPD.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Improved inspiratory muscle strength; limited incremental benefit over rehab alone",
+    "population": "COPD patients, pooled RCTs",
+    "provenance": {
+      "primary": "Ammous O, et al. - 'Inspiratory muscle training, with or without concomitant pulmonary rehabilitation, for COPD', Cochrane Database Syst Rev 2023",
+      "doi": "10.1002/14651858.CD013778.pub2",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Tempers IMT hype for respiratory disease specifically.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "crf-mortality-no-upper-limit",
+    "statement": "Higher cardiorespiratory fitness is associated with lower all-cause mortality with no observed upper limit of benefit; the lowest-fitness quintile carries risk comparable to or exceeding smoking, diabetes, or end-stage renal disease.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Monotonic mortality reduction with fitness; lowest vs elite fitness HR comparable to major chronic diseases",
+    "population": "122,007 patients undergoing exercise treadmill testing",
+    "provenance": {
+      "primary": "Mandsager K, et al. - 'Association of Cardiorespiratory Fitness With Long-term Mortality Among Adults Undergoing Exercise Treadmill Testing', JAMA Network Open 2018",
+      "doi": "10.1001/jamanetworkopen.2018.3605",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "VO2max is a spectacular PREDICTOR; the LEVER is the aerobic training that raises it (predictor != lever). Cross-ref Domain E.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "crf-per-met-mortality",
+    "statement": "Each 1-MET increase in cardiorespiratory fitness is associated with ~13% lower all-cause and ~15% lower cardiovascular mortality.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~13% lower all-cause and ~15% lower CHD/CVD mortality per 1-MET higher fitness",
+    "population": "Meta-analysis of >100,000 participants across cohorts",
+    "provenance": {
+      "primary": "Kodama S, et al. - 'Cardiorespiratory Fitness as a Quantitative Predictor of All-Cause Mortality and Cardiovascular Events', JAMA 2009",
+      "doi": "10.1001/jama.2009.681",
+      "surfaced_via": "Wave-17 organ-systems atlas; OpenAlex"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Quantifies the fitness-mortality gradient; observational, healthy-user effects not fully excluded.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "egfr-declines-with-age",
+    "statement": "Estimated GFR declines roughly 0.8-1.0 mL/min/1.73m2 per year after age ~40 due to nephron dropout, and the kidney is clinically silent until advanced disease.",
+    "claim_type": "mechanism",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~0.8-1.0 mL/min/1.73m2/yr eGFR decline after 40 ('~1%/yr')",
+    "population": "General aging populations",
+    "provenance": {
+      "primary": "Romagnani P, et al. - 'Chronic kidney disease', Nature Reviews Disease Primers 2017",
+      "doi": "10.1038/nrdp.2017.88",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Raises the interpretive question of how much late-life CKD-stage-3 is disease vs expected aging. Silent system - prevention played on proxy numbers, not symptoms.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "egfr-decline-predicts-frailty-mortality",
+    "statement": "Declining eGFR independently predicts incident frailty and mortality in older adults.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "eGFR decline associated with higher incident frailty and mortality independent of baseline",
+    "population": "Community-dwelling older adults",
+    "provenance": {
+      "primary": "Guerville F, et al. - 'Estimated Glomerular Filtration Rate Decline and Incident Frailty in Older Adults', Clin J Am Soc Nephrol 2019",
+      "doi": "10.2215/CJN.03750319",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Predictor, not necessarily a modifiable lever in the elderly (predictor != lever).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "bp-glucose-are-ckd-levers",
+    "statement": "Hypertension and diabetes are the two dominant modifiable drivers of kidney function loss; blood pressure and glucose control slow CKD progression.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "BP control, glucose control, RAAS blockade and SGLT2 inhibition slow eGFR decline in CKD",
+    "population": "Patients with CKD and/or diabetes/hypertension",
+    "provenance": {
+      "primary": "Kalantar-Zadeh K, et al. - 'Chronic kidney disease', Lancet 2021",
+      "doi": "10.1016/S0140-6736(21)00519-5",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The kidney has almost no direct lever - you protect it by protecting the vasculature/metabolism.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "under-hydration-associates-aging",
+    "statement": "Chronic under-hydration, reflected in higher-normal serum sodium, is associated with accelerated biological aging, more chronic disease, and earlier mortality.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Higher-normal serum sodium associated with higher biological age, chronic disease risk and mortality",
+    "population": "~11,000 adults, ARIC cohort (NHLBI)",
+    "provenance": {
+      "primary": "Dmitrieva NI, et al. - 'Middle-age high normal serum sodium as a risk factor for accelerated biological aging, chronic diseases, and premature mortality', EBioMedicine 2023",
+      "doi": "10.1016/j.ebiom.2022.104404",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest reading: 'avoid chronic under-hydration', NOT 'force liters'. Association only; no RCT shows pushing extra fluid in adequately-hydrated people extends life (predictor != lever).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "protein-does-not-harm-healthy-kidneys",
+    "statement": "High dietary protein intake does not cause kidney disease in people with healthy kidneys; transient hyperfiltration is a normal adaptation, and protein needs in older adults may exceed the RDA.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "No evidence of renal harm from high protein in normal-kidney adults; higher intakes support muscle preservation",
+    "population": "Healthy adults; athletes; older adults",
+    "provenance": {
+      "primary": "Phillips SM, et al. - 'Protein requirements beyond the RDA: implications for optimizing health', Appl Physiol Nutr Metab 2016",
+      "doi": "10.1139/apnm-2015-0550",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [
+      "animal-protein-faster-egfr-decline-ckd"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Debunks the protein-harms-kidneys myth for HEALTHY kidneys. Different conversation in established CKD. Don't let the myth talk an aging adult out of needed protein.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "animal-protein-faster-egfr-decline-ckd",
+    "statement": "In adults with reduced kidney function, higher animal (but not plant) protein intake is associated with faster eGFR decline.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Higher animal protein associated with faster eGFR decline; plant protein neutral-to-protective",
+    "population": "Adults with and without CKD, observational cohort",
+    "provenance": {
+      "primary": "Bernier-Jean A, et al. - 'Dietary plant and animal protein intake and decline in estimated glomerular filtration rate', Nephrol Dial Transplant 2021",
+      "doi": "10.1093/ndt/gfaa081",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [
+      "protein-does-not-harm-healthy-kidneys"
+    ],
+    "canon_link": "",
+    "confidence_notes": "Context nuance: applies to established/reduced kidney function and points to protein SOURCE. Not a contradiction of the healthy-kidney finding - a context split (cohort != RCT).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nsaids-cause-aki-and-ckd-risk",
+    "statement": "NSAIDs reduce renal blood flow and can cause acute kidney injury (especially with dehydration, older age, or ACE-inhibitor/diuretic co-use), and chronic heavy use is associated with CKD progression.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Increased AKI risk (esp. 'triple whammy'); association with CKD progression with chronic heavy use",
+    "population": "General and at-risk adults",
+    "provenance": {
+      "primary": "Baker M, Perazella MA - 'NSAIDs in CKD: Are They Safe?', Am J Kidney Dis 2020",
+      "doi": "10.1053/j.ajkd.2020.03.023",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A free, modifiable lever most people ignore: don't make NSAIDs a daily default, hydrate when using, caution if older/on BP meds.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "masld-prevalence-30pct",
+    "statement": "Metabolic dysfunction-associated steatotic liver disease (MASLD, formerly NAFLD) now affects ~30%+ of adults globally and is rising; fibrosis stage is the key prognostic axis.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Global prevalence ~30-38% of adults and increasing",
+    "population": "Global adult populations, pooled epidemiology",
+    "provenance": {
+      "primary": "Younossi ZM, et al. - 'The Global Epidemiology of Nonalcoholic Fatty Liver Disease and Nonalcoholic Steatohepatitis', Clin Gastroenterol Hepatol 2024",
+      "doi": "10.1016/j.cgh.2024.03.006",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The hepatic face of insulin resistance; fibrosis (not steatosis) predicts mortality. Tightly linked to obesity/T2D/CVD.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nafld-renamed-masld",
+    "statement": "NAFLD was renamed MASLD (metabolic dysfunction-associated steatotic liver disease) by multisociety consensus to center the metabolic etiology.",
+    "claim_type": "protocol",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Nomenclature change adopted by major hepatology societies (Delphi consensus)",
+    "population": "N/A (nomenclature consensus)",
+    "provenance": {
+      "primary": "Rinella ME, et al. - 'A multisociety Delphi consensus statement on new fatty liver disease nomenclature', J Hepatol 2023",
+      "doi": "10.1016/j.jhep.2023.06.003",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Definitional/framing claim; reflects the metabolic-liver reframe.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "weight-loss-reverses-liver-histology",
+    "statement": "Weight loss reverses liver histology in NASH/MASH in a dose-response manner: >=7% loss resolves steatohepatitis in most patients and >=10% produces fibrosis regression in a majority.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": ">=7% weight loss resolved NASH in ~64-90%; >=10% regressed fibrosis in a majority (paired biopsies)",
+    "population": "261 patients with biopsy-proven NASH, 52-week lifestyle program",
+    "provenance": {
+      "primary": "Vilar-Gomez E, et al. - 'Weight Loss Through Lifestyle Modification Significantly Reduces Features of Nonalcoholic Steatohepatitis', Gastroenterology 2015",
+      "doi": "10.1053/j.gastro.2015.04.005",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Prospective paired-histology dose-response - about as strong as the field gets. The one intervention that reverses liver histology. The liver has no special lever; it heals when metabolism does.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "liver-detox-cleanses-no-evidence",
+    "statement": "Commercial 'liver detox' teas, juices, and cleanse protocols have no credible evidence of enhancing hepatic detoxification or removing toxins, and some such products are themselves hepatotoxic.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No quality clinical evidence for detox/cleanse efficacy; documented cases of supplement-induced liver injury",
+    "population": "General public (consumer products)",
+    "provenance": {
+      "primary": "Klein AV, Kiat H - 'Detox diets for toxin elimination and weight management: a critical review of the evidence', J Hum Nutr Diet 2015 (and herbal/supplement DILI literature)",
+      "doi": "10.1111/jhn.12286",
+      "surfaced_via": "Wave-17 organ-systems atlas; domain knowledge + DILI literature"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Flat debunk. The liver detoxifies itself; the only evidence-based help is LESS work (less alcohol, fewer excess calories, fewer needless supplements, weight loss).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gi-motility-slows-with-age",
+    "statement": "Gastrointestinal motility slows with age (reduced enteric neuron density, weaker peristalsis, impaired esophageal clearance), but much age-attributed constipation is secondary to medications, immobility, low fiber/fluid and comorbidity.",
+    "claim_type": "mechanism",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Slowed transit and higher constipation prevalence with age; large secondary/modifiable component",
+    "population": "Older adults",
+    "provenance": {
+      "primary": "Gidwaney NG, et al. - 'Gastrointestinal Dysmotility in the Elderly', J Clin Gastroenterol 2016",
+      "doi": "10.1097/MCG.0000000000000650",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "More modifiable than 'old gut' fatalism implies - fiber, fluid, movement, medication review.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gerd-lifestyle-first-line",
+    "statement": "Lifestyle measures (especially weight loss, plus head-of-bed elevation, avoiding late meals, and trigger-food identification) are first-line for GERD and reduce reliance on chronic acid suppression.",
+    "claim_type": "protocol",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Weight loss is the best-evidenced lifestyle lever; positional and dietary measures add benefit",
+    "population": "Adults with GERD",
+    "provenance": {
+      "primary": "Katz PO, et al. - 'ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease', Am J Gastroenterol 2022",
+      "doi": "10.14309/ajg.0000000000001538",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PPIs effective when indicated; chronic reflux is often a weight-and-mechanics problem. Goal: lowest effective drug dose, not reflexive indefinite suppression.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "fiber-lowers-all-cause-mortality",
+    "statement": "Higher dietary fiber intake is associated with 15-30% lower all-cause and cardiovascular mortality, with a dose-response and lower incidence of CHD, stroke, type 2 diabetes and colorectal cancer.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "~15-30% lower all-cause and CVD mortality (highest vs lowest fiber); dose-response",
+    "population": "WHO-commissioned series: 185 prospective studies + 58 RCTs (intermediate endpoints)",
+    "provenance": {
+      "primary": "Reynolds A, et al. - 'Carbohydrate quality and human health: a series of systematic reviews and meta-analyses', Lancet 2019",
+      "doi": "10.1016/S0140-6736(18)31809-9",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mortality endpoints are cohort-derived ('strongly associated'), but mechanism + intermediate-endpoint RCTs + consistent cohorts make it about as solid as nutritional epidemiology gets. Cross-ref C2/D.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "anemia-in-aging-is-a-disease-flag",
+    "statement": "Anemia prevalence climbs steeply after 65 and independently predicts hospitalization, disability and mortality; it usually signals an underlying disease rather than 'old blood'.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Anemia independently associated with higher hospitalization and mortality in older adults",
+    "population": "Community and clinical older-adult cohorts",
+    "provenance": {
+      "primary": "Culleton BF, et al. - 'Impact of anemia on hospitalization and mortality in older adults', Blood 2006",
+      "doi": "10.1182/blood-2005-10-4308",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Predictor/flag - the lever is finding and treating the CAUSE (iron, B12, CKD, occult bleed), not the number (predictor != lever).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hemochromatosis-treated-by-phlebotomy",
+    "statement": "Hereditary (HFE) hemochromatosis causes iron overload damaging liver, heart, pancreas and joints; therapeutic phlebotomy (regular bloodletting/donation) depletes iron stores and normalizes life expectancy if started before organ damage.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Phlebotomy to target ferritin prevents/limits organ damage; near-normal life expectancy if pre-cirrhotic",
+    "population": "Patients with hereditary hemochromatosis",
+    "provenance": {
+      "primary": "Kowdley KV, et al. - 'ACG Clinical Guideline: Hereditary Hemochromatosis', Am J Gastroenterol 2019",
+      "doi": "10.14309/ajg.0000000000000315",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The one genetic disease where a blood-donation needle is the treatment ('donation angle'). Guideline/long-standing standard of care.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "blood-donation-cvd-iron-hypothesis-confounded",
+    "statement": "The 'iron hypothesis' that routine blood donation reduces cardiovascular risk by lowering body iron is a plausible mechanism with confounded and inconsistent human evidence (healthy-donor effect).",
+    "claim_type": "hypothesis",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Some donor cohorts show lower CVD/IMT, but confounded by healthy-donor selection; not consistently replicated",
+    "population": "Blood-donor cohorts",
+    "provenance": {
+      "primary": "Sullivan JL - 'Blood donation may be good for the donor. Iron, heart disease, and donor recruitment', Vox Sang 1991",
+      "doi": "10.1111/j.1423-0410.1991.tb00940.x",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Donate to help others and as therapy if you have iron overload - NOT as a proven longevity hack for the general population.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "b12-deficiency-common-underdiagnosed-elderly",
+    "statement": "Vitamin B12 deficiency is common and under-diagnosed in older adults (atrophic gastritis, reduced acid, metformin use) and causes anemia plus a potentially irreversible neurologic/cognitive picture.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Elevated deficiency prevalence with age and metformin use; reversible if caught early, neuro damage can be permanent if not",
+    "population": "Older adults; metformin users",
+    "provenance": {
+      "primary": "Green R, et al. - 'Vitamin B12 deficiency', Vitamins and Hormones 2022",
+      "doi": "10.1016/bs.vh.2022.02.003",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cheap, high-value test in older/symptomatic adults; repletion easy and effective. Metformin lowers B12 (Bell, Diabetes Obes Metab 2022, 10.1111/dom.14734).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vte-incidence-rises-with-age",
+    "statement": "Venous thromboembolism incidence rises sharply (roughly exponentially) with age due to slower venous flow, more procoagulant factors, immobility and accumulating provoking events.",
+    "claim_type": "mechanism",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Roughly exponential rise in VTE incidence with age",
+    "population": "Population-based cohort (men and women)",
+    "provenance": {
+      "primary": "Lind MM, et al. - 'Incidence and risk factors of venous thromboembolism in men and women', Thromb Res 2022",
+      "doi": "10.1016/j.thromres.2022.04.014",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Non-pharmacologic levers: mobility, hydration, awareness of provoking situations. Anticoagulation is a clinical decision (owned by section 07).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "erectile-dysfunction-predicts-cvd",
+    "statement": "Erectile dysfunction is an independent early-warning marker of systemic vascular disease, often preceding coronary events by years because penile arteries are small and show endothelial dysfunction first.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "ED independently associated with increased incident cardiovascular disease (umbrella review)",
+    "population": "Men, pooled cohorts and umbrella review",
+    "provenance": {
+      "primary": "Mostafaei H, et al. - 'Association of erectile dysfunction and cardiovascular disease: an umbrella review of systematic reviews and meta-analyses', BJU Int 2021",
+      "doi": "10.1111/bju.15313",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Purest predictor != lever case: ED predicts heart disease; the lever is CV work-up + risk-factor control, NOT silencing the symptom with a PDE5 inhibitor. A useful, free signal.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "menopause-ht-timing-hypothesis",
+    "statement": "The benefit/risk of menopausal hormone therapy depends on timing relative to menopause onset (the 'timing hypothesis'); early initiation has a more favorable cardiovascular/bone profile.",
+    "claim_type": "hypothesis",
+    "domain": "Y-organsystems",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "More favorable risk/benefit when started near menopause onset vs later; still-evolving evidence",
+    "population": "Recently menopausal women (KEEPS and related trials)",
+    "provenance": {
+      "primary": "Miller VM, et al. - 'The Kronos Early Estrogen Prevention Study (KEEPS): what have we learned?', Menopause 2019",
+      "doi": "10.1097/GME.0000000000001326",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Brief cross-ref to N-womens-longevity.md / Domain 13 for full treatment. Hormones are powerful levers with real trade-offs, not free anti-aging.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lymphatic-cdt-for-lymphedema",
+    "statement": "Complete decongestive therapy (compression, exercise, skin care, and manual lymphatic drainage) reduces limb volume in diagnosed lymphedema, but compression and exercise do most of the work and the MLD-massage component adds modest, sometimes non-significant value.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "CDT reduces limb volume; MLD adds little over compression alone in pooled RCTs",
+    "population": "Patients with (mostly breast-cancer-related) lymphedema",
+    "provenance": {
+      "primary": "Thompson B, et al. - 'Manual lymphatic drainage treatment for lymphedema: a systematic review of the literature', J Cancer Surviv 2021",
+      "doi": "10.1007/s11764-020-00928-1",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Two-tier honesty: CDT is standard care for real lymphedema, but the massage component is the weakest part. Basis for the wellness-MLD debunk.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "wellness-lymphatic-drainage-unsupported",
+    "statement": "Claims that 'lymphatic drainage massage' detoxifies, boosts immunity, removes toxins, or reduces cellulite in healthy people are not supported by evidence; a healthy lymphatic system drains without manual help.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No credible evidence for 'detox/immunity/cellulite' lymphatic-massage claims in healthy individuals",
+    "population": "Healthy general public",
+    "provenance": {
+      "primary": "Extrapolated from Thompson B, et al. J Cancer Surviv 2021 (MLD adds little even in disease) + absence of supporting evidence in healthy people",
+      "doi": "10.1007/s11764-020-00928-1",
+      "surfaced_via": "Wave-17 organ-systems atlas; domain reasoning"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunk. Pleasant/relaxing is a fine reason to enjoy a massage; it is not a health intervention. The honest lymphatic lever is movement - muscle contraction is the lymphatic pump.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "smoking-cessation-respiratory-lever",
+    "statement": "Smoking cessation is the single most effective respiratory-longevity intervention and resets the FEV1 decline rate toward that of a never-smoker at any age of quitting.",
+    "claim_type": "outcome",
+    "domain": "Y-organsystems",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Cessation normalizes decline rate; earlier quitting yields larger life-expectancy gains (cross-ref section 09 tobacco magnitude)",
+    "population": "Smokers across age ranges",
+    "provenance": {
+      "primary": "Fletcher C, Peto R - 'The natural history of chronic airflow obstruction', BMJ 1977 (decline framework); cessation magnitude in section 09 tobacco literature",
+      "doi": "10.1136/bmj.1.6077.1645",
+      "surfaced_via": "Wave-17 organ-systems atlas; PubMed"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Something beats nothing even in older quitters. Cross-ref 09-exposures-environment.md for the ~10-years-of-life tobacco magnitude.",
+    "added_on": "2026-06-28"
+  }
+]

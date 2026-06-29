@@ -1,0 +1,287 @@
+[
+  {
+    "id": "adrenal-fatigue-does-not-exist",
+    "statement": "'Adrenal fatigue' is not a real medical condition; there is no scientific basis for the concept and no validated test for it.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Systematic review of 58 studies found no substantiation of the concept; diagnostic methods heterogeneous and unvalidated",
+    "population": "58 studies reviewed (saliva/serum cortisol assessment methods)",
+    "provenance": {
+      "primary": "Cadegiani FA, Kater CE - 'Adrenal fatigue does not exist: a systematic review', BMC Endocrine Disorders 2016",
+      "doi": "10.1186/s12902-016-0128-4",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Debunks the cash-clinic 'adrenal fatigue' diagnosis. Distinct from real adrenal insufficiency/Addison's (diagnosable via ACTH stimulation, life-threatening). Levers for chronic-stress symptoms are sleep/stress/exercise/light, not cortisol supplements.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "allostatic-load-stress-mediators",
+    "statement": "The same neuroendocrine mediators that protect acutely (cortisol, catecholamines, inflammatory cytokines) cause cumulative multi-system damage ('allostatic load') when chronically over- or under-activated.",
+    "claim_type": "mechanism",
+    "domain": "U-endocrine",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Conceptual/framework; cumulative-burden construct linked to cardiometabolic, immune, and neural aging",
+    "population": "Review/framework (human and animal stress physiology)",
+    "provenance": {
+      "primary": "McEwen BS - 'Protective and Damaging Effects of Stress Mediators', New England Journal of Medicine 1998",
+      "doi": "10.1056/NEJM199801153380307",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The rigorous version of 'chronic stress damages you'. Bridge from psychosocial stress (Domain M) to endocrine aging. Honest limit: allostatic load is a measured-burden correlate, not a single lever you lower with a product.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "testosterone-declines-gradually-with-age",
+    "statement": "Serum total and especially free testosterone decline gradually with age in healthy men (~1%/year from ~30-40), with free testosterone falling faster as SHBG rises.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~1%/year decline; free fraction declines faster than total",
+    "population": "Healthy men, Baltimore Longitudinal Study of Aging (BLSA)",
+    "provenance": {
+      "primary": "Harman SM, Metter EJ, Tobin JD, Pearson J, Blackman MR - 'Longitudinal Effects of Aging on Serum Total and Free Testosterone Levels in Healthy Men', JCEM 2001",
+      "doi": "10.1210/jcem.86.2.7219",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A slope, not a cliff (contrast female menopause). Most older men in the biochemically 'low' range are asymptomatic; a low number alone is not a disease. Lifestyle (sleep, fat loss, resistance training) raises endogenous T.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "trt-benefits-modest-symptomatic-hypogonadism",
+    "statement": "Testosterone replacement in older men with confirmed low testosterone plus symptoms produces modest benefits: real improvement in sexual function/libido, smaller effects on mood and walking, and no meaningful cognitive benefit.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Significant improvement in sexual function/libido; null memory/cognition sub-trial; small mood/mobility effects",
+    "population": "~790 men aged >=65 with unequivocally low T and symptoms (The Testosterone Trials)",
+    "provenance": {
+      "primary": "Snyder PJ, et al. - 'Effects of Testosterone Treatment in Older Men', New England Journal of Medicine 2016",
+      "doi": "10.1056/NEJMoa1506119",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Legitimate treatment for confirmed symptomatic hypogonadism; NOT a longevity drug for normal-range T. CV safety addressed by TRAVERSE (Lincoff 2023, section 10). Endocrine Society guideline = Bhasin 2018 (10.1210/jc.2018-00229). Supraphysiologic/aesthetic dosing is a different, worse-risk drug.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "dhea-replacement-no-benefit-elderly",
+    "statement": "DHEA replacement to youthful levels in elderly adults produces no beneficial effect on body composition, physical performance, insulin sensitivity, or quality of life.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "Null across body composition, physical performance, insulin sensitivity, and QoL despite restored DHEA levels",
+    "population": "2-year placebo-controlled RCT, elderly women (DHEA) and men (DHEA or testosterone)",
+    "provenance": {
+      "primary": "Nair KS, et al. - 'DHEA in Elderly Women and DHEA or Testosterone in Elderly Men', New England Journal of Medicine 2006",
+      "doi": "10.1056/NEJMoa054629",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The cleanest predictor-not-lever result in the endocrine section: restoring the number did not deliver outcomes. Debunks OTC 'youth hormone' marketing. Narrow legitimate uses exist (documented adrenal insufficiency, some fertility contexts).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "subclinical-hypothyroid-risk-high-tsh-only",
+    "statement": "Subclinical hypothyroidism is associated with higher coronary heart disease events and mortality mainly at higher TSH levels (>=10 mIU/L), not at the mild elevations most people have.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Increased CHD events/mortality concentrated at TSH >=10 mIU/L; little/no signal at mild elevation",
+    "population": "Individual-participant-data meta-analysis of multiple prospective cohorts",
+    "provenance": {
+      "primary": "Rodondi N, et al. - 'Subclinical Hypothyroidism and the Risk of Coronary Heart Disease and Mortality', JAMA 2010",
+      "doi": "10.1001/jama.2010.1361",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Predictor (cohort/meta), not a treatment trial. Pair with TRUST (Stott 2017, section 10) which found levothyroxine for subclinical hypothyroidism in older adults gave NO symptom/QoL benefit (rct-null). Honest practice: treat overt disease; resist medicating a borderline TSH.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "thyroid-t4-to-t3-deiodinase-peripheral",
+    "statement": "Most active thyroid hormone (T3) is generated outside the thyroid by deiodinase enzymes that convert T4 to T3 tissue-by-tissue, providing local control of thyroid hormone action.",
+    "claim_type": "mechanism",
+    "domain": "U-endocrine",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Tissue-specific deiodinase (D1/D2/D3) control of intracellular T3 availability",
+    "population": "Molecular/physiological review",
+    "provenance": {
+      "primary": "Gereben B, et al. - 'Cellular and Molecular Basis of Deiodinase-Regulated Thyroid Hormone Signaling', Endocrine Reviews 2008",
+      "doi": "10.1210/er.2008-0019",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Explains why whole-body labs don't capture all thyroid action and why 'free T3 optimization' claims overreach. Mechanism, not an outcome lever.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "insulin-resistance-ectopic-fat-mechanism",
+    "statement": "Ectopic fat accumulation in liver and muscle directly impairs insulin signaling there, making insulin resistance the central, reversible node of cardiometabolic disease.",
+    "claim_type": "mechanism",
+    "domain": "U-endocrine",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Intracellular lipid intermediates impair insulin signaling in liver/skeletal muscle",
+    "population": "Mechanistic review (human/animal physiology)",
+    "provenance": {
+      "primary": "Shulman GI - 'Ectopic Fat in Insulin Resistance, Dyslipidemia, and Cardiometabolic Disease', New England Journal of Medicine 2014",
+      "doi": "10.1056/NEJMra1011035",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Why visceral/ectopic fat (not weight alone) drives insulin resistance, and why emptying those depots reverses it. Cross-ref Domain L (homair-fasting-insulin-predicts-cvd, hba1c) and Domain D. Insulin/IGF-1 signaling = nutrient-sensing aging hallmark (Domain B).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "laron-gh-deficiency-reduced-cancer-diabetes",
+    "statement": "Humans with growth-hormone-receptor deficiency (Laron syndrome, very low IGF-1) show a major reduction in pro-aging signaling, cancer, and diabetes.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Near-absence of diabetes and very low cancer incidence in decades-followed Laron cohort vs relatives",
+    "population": "Ecuadorian Laron-syndrome cohort followed for decades + relatives",
+    "provenance": {
+      "primary": "Guevara-Aguirre J, et al. - 'Growth Hormone Receptor Deficiency Is Associated with a Major Reduction in Pro-Aging Signaling, Cancer, and Diabetes in Humans', Science Translational Medicine 2011",
+      "doi": "10.1126/scitranslmed.3001845",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Human echo of long-lived GH/IGF-1-deficient dwarf mice (Bartke, Domain C) and daf-2 worms (Kenyon, Domain B). Small cohort, rare genotype. Core of the growth-longevity tradeoff: less GH/IGF-1 signaling = less cancer/diabetes (mortality from non-aging causes, e.g. accidents, complicates lifespan readout).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "low-igf1-predicts-survival-exceptional-longevity",
+    "statement": "Among people who have already reached exceptional age, lower IGF-1 predicts longer subsequent survival, most notably in women and those with a cancer history.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Lower IGF-1 tertile associated with longer survival among nonagenarians/centenarians",
+    "population": "Ashkenazi Jewish centenarians/offspring (Longevity Genes Project)",
+    "provenance": {
+      "primary": "Milman S, et al. - 'Low insulin-like growth factor-1 level predicts survival in humans with exceptional longevity', Aging Cell 2014",
+      "doi": "10.1111/acel.12213",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["igf1-u-shaped-mortality"],
+    "canon_link": "",
+    "confidence_notes": "Tempers 'higher IGF-1 is better'. Apparent tension with the IGF-1 U-shape (Domain L) is resolved by context: very low IGF-1 is also bad (frailty); the longevity-favorable region is NOT 'youthful-high'. IGF-1 is a context-dependent dial, not a minimize- or maximize-target.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gh-healthy-elderly-surrogate-only-harms",
+    "statement": "Growth hormone in healthy elderly adults produces small body-composition changes (more lean mass, less fat) but no proven functional benefit and a high rate of adverse effects.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Small lean-mass gain / fat loss (surrogate); increased edema, arthralgia, carpal tunnel, gynecomastia, glucose intolerance; no functional benefit",
+    "population": "Systematic review of GH trials in the healthy elderly",
+    "provenance": {
+      "primary": "Liu H, et al. - 'Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly', Annals of Internal Medicine 2007",
+      "doi": "10.7326/0003-4819-146-2-200701160-00005",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The systematic-review counterweight to the single 1990 Rudman study (NEJM, 10.1056/NEJM199007053230101) used to sell anti-aging HGH. Body-composition benefit is a surrogate that CONTRADICTS the longevity direction (raising GH/IGF-1). Prescribing GH for anti-aging is illegal in the US. Cross-ref section 10.7.4 (secretagogues).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "leptin-deficiency-vs-resistance",
+    "statement": "Recombinant leptin dramatically reverses obesity in rare congenital leptin deficiency, but produces only modest, inconsistent weight loss in common obesity, where people are leptin-resistant (already have high leptin).",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Dramatic fat loss in congenital deficiency; modest/inconsistent loss in common obesity",
+    "population": "Congenital leptin-deficient child (Farooqi 1999) vs obese/lean adults RCT (Heymsfield 1999)",
+    "provenance": {
+      "primary": "Heymsfield SB, et al. - 'Recombinant Leptin for Weight Loss in Obese and Lean Adults', JAMA 1999",
+      "doi": "10.1001/jama.282.16.1568",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Leptin discovery = Zhang 1994 (Nature, 10.1038/372425a0); deficiency rescue = Farooqi 1999 (NEJM, 10.1056/NEJM199909163411204). Common obesity is leptin RESISTANCE (a cousin of insulin resistance), so more leptin doesn't help. The working appetite-drug lever is the gut incretin (GLP-1) axis, not leptin (section 10).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "melatonin-modest-circadian-not-sedative",
+    "statement": "Exogenous melatonin produces a modest, real but small improvement in sleep (shortens sleep onset by roughly a few minutes, slightly increases total sleep and efficiency), best explained as a circadian timing signal rather than a hypnotic.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Sleep onset reduced ~7 min; small increases in total sleep time and sleep efficiency",
+    "population": "Meta-analyses of melatonin RCTs for primary sleep disorders",
+    "provenance": {
+      "primary": "Ferracioli-Oda E, Qawasmi A, Bloch MH - 'Meta-Analysis: Melatonin for the Treatment of Primary Sleep Disorders', PLoS ONE 2013",
+      "doi": "10.1371/journal.pone.0063773",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Pair with Brzezinski 2004 (Sleep Med Rev, 10.1016/j.smrv.2004.06.004). Strongest for timing problems (jet lag, delayed sleep phase). Low dose (~0.3-1 mg) timed correctly often beats 3-10 mg OTC megadoses. Not a sedative for chronic insomnia (use CBT-I + light timing). Cross-ref Domain I / recovery section.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vitamin-d-supplement-null-in-replete",
+    "statement": "Vitamin D supplementation (2000 IU/day) in a general, largely non-deficient population does not reduce cancer or cardiovascular events, nor prevent fractures.",
+    "claim_type": "outcome",
+    "domain": "U-endocrine",
+    "evidence_tier": "rct",
+    "direction": "refutes",
+    "effect_size": "No significant reduction in invasive cancer or major cardiovascular events over ~5y; no fracture benefit in general population",
+    "population": "~25,871 adults (men >=50, women >=55), VITAL trial",
+    "provenance": {
+      "primary": "Manson JE, et al. - 'Vitamin D Supplements and Prevention of Cancer and Cardiovascular Disease' (VITAL), New England Journal of Medicine 2019",
+      "doi": "10.1056/NEJMoa1809944",
+      "surfaced_via": "Wave-13 endocrine brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Vitamin D is a secosteroid HORMONE (nuclear VDR, transcription factor). Correct DOCUMENTED deficiency (real win for bone/elderly); do not mega-dose past repletion chasing non-skeletal outcomes. Low vitamin D in observational data is largely a marker of poor health/obesity/inactivity (reverse causation). Dosing detail in supplements section 03.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "endocrine-negative-feedback-architecture",
+    "statement": "Most endocrine axes are three-tier negative-feedback loops (hypothalamus -> pituitary -> target gland -> hormone -> feedback up) that defend a set-point; the effector hormone inhibits its own upstream drive.",
+    "claim_type": "mechanism",
+    "domain": "U-endocrine",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Foundational control architecture (HPA, HPG, HPT axes)",
+    "population": "Endocrine physiology (foundational)",
+    "provenance": {
+      "primary": "Standard endocrine physiology (Guyton & Hall; Williams Textbook of Endocrinology) - foundational, not a single primary paper",
+      "doi": "",
+      "surfaced_via": "Wave-13 endocrine brief; physiology foundation"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/",
+    "confidence_notes": "The fundamental that grounds the section: read each axis by the stimulating-signal + effector PAIR (locates the lesion); exogenous hormones suppress endogenous production via feedback; and homeostasis is the deep reason 'predictor != lever' (levels are defended outputs, not free knobs). Links to control-theory/feedback in canon 04-information.",
+    "added_on": "2026-06-28"
+  }
+]

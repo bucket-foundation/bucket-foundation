@@ -1,0 +1,306 @@
+[
+  {
+    "id": "inflammaging-evolutionary-trade-off",
+    "statement": "Aging is accompanied by chronic, sterile, low-grade systemic inflammation ('inflammaging') that arises from immune machinery which is adaptive early in life but maladaptive when chronically engaged late in life.",
+    "claim_type": "mechanism",
+    "domain": "W-immune",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Conceptual/integrative; IL-6/CRP/TNF rise with age; a 2023 Hallmark of Aging",
+    "population": "Human aging; centenarian and cross-sectional cohorts",
+    "provenance": {
+      "primary": "Franceschi C, Bonafe M, Valensin S, et al. - 'Inflamm-aging: An Evolutionary Perspective on Immunosenescence', Annals of the New York Academy of Sciences 2000",
+      "doi": "10.1111/j.1749-6632.2000.tb06651.x",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "Founding framing; still load-bearing. Cause-vs-consequence (driver vs read-out) is explicitly unresolved - graded mechanistic, not outcome. Cross-ref B-aging-mechanisms and thread-inflammation.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "il6-crp-predict-mortality-frailty",
+    "statement": "Inflammatory markers (IL-6, hsCRP, TNF-alpha) are among the strongest predictors of frailty, multimorbidity, disability, and all-cause mortality in aging - but they are predictors, not validated levers.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Robust, replicated association of elevated IL-6/CRP with mortality and frailty across cohorts",
+    "population": "Multiple large prospective aging cohorts (synthesized)",
+    "provenance": {
+      "primary": "Furman D, Campisi J, Verdin E, et al. - 'Chronic inflammation in the etiology of disease across the life span', Nature Medicine 2019",
+      "doi": "10.1038/s41591-019-0675-0",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #1: predictor != lever. Lowering hsCRP with a product has NOT been shown to extend healthspan; canakinumab/CANTOS lowered inflammation and CV events but raised fatal infections (no net longevity win). hsCRP/IL-6 owned by L-biomarkers.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sasp-senescent-cells-drive-sterile-inflammation",
+    "statement": "Senescent cells secrete a pro-inflammatory senescence-associated secretory phenotype (SASP - IL-6, IL-1beta, IL-8, TNF, proteases) that is a mechanistic source of much age-related sterile inflammation and can spread senescence to neighboring cells.",
+    "claim_type": "mechanism",
+    "domain": "W-immune",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Senescent cells secrete IL-6/IL-1beta/IL-8/chemokines; paracrine spread of senescence",
+    "population": "Human and mouse cells/tissues",
+    "provenance": {
+      "primary": "Coppe JP, Patil CK, Rodier F, et al. - 'Senescence-Associated Secretory Phenotypes Reveal Cell-Nonautonomous Functions of Oncogenic RAS and the p53 Tumor Suppressor', PLoS Biology 2008",
+      "doi": "10.1371/journal.pbio.0060301",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism tier. The clearest causal handle on inflammaging: senolytic/genetic clearance reduces inflammation in mice (Baker 2016, see B) but human outcome data is one tiny pilot. Cross-ref B-aging-mechanisms (senolytics).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "resolution-of-inflammation-is-active-spm",
+    "statement": "Resolution of inflammation is an active, programmed process driven by specialized pro-resolving mediators (resolvins, protectins, maresins, lipoxins) - not merely the passive fading of inflammation; chronic inflammation reflects failed resolution as much as excess initiation.",
+    "claim_type": "mechanism",
+    "domain": "W-immune",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "SPMs derived from omega-3/omega-6 fatty acids actively terminate inflammation",
+    "population": "Human and animal models",
+    "provenance": {
+      "primary": "Serhan CN, Chiang N, Dalli J - 'Lipid Mediators in the Resolution of Inflammation', Cold Spring Harbor Perspectives in Biology 2014",
+      "doi": "10.1101/cshperspect.a016311",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reframes 'anti-inflammatory': goal is to RESOLVE, not blanket-block. Important caveat against naive 'all inflammation is bad' product claims (acute resolving inflammation is health). Pair with Basil & Levy 2015 (10.1038/nri.2015.4).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "thymic-involution-drives-immunosenescence",
+    "statement": "The thymus involutes from around puberty and thymic output of naive T cells declines steadily through life (measurable via T-cell receptor excision circles), narrowing the T-cell repertoire - a fundamental and largely irreversible driver of immune aging.",
+    "claim_type": "mechanism",
+    "domain": "W-immune",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "TREC levels (marker of new naive T cells) decline sharply with age",
+    "population": "Human (TREC quantification; thymic histology)",
+    "provenance": {
+      "primary": "Douek DC, McFarland RD, Keiser PH, et al. - 'Changes in thymic function with age and during the treatment of HIV infection', Nature 1998",
+      "doi": "10.1038/25374",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Among the most fundamental immune-aging mechanisms. Thymic regeneration is an active but unproven frontier - no established intervention reverses it. Pair with Palmer 2013 (10.3389/fimmu.2013.00316).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "immunosenescence-worse-vaccine-infection-response",
+    "statement": "Immunosenescence (fewer naive T cells, narrowed repertoire, exhausted effectors, weaker dendritic-cell priming and antibody responses) makes older adults more susceptible to infection and less responsive to vaccines.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Older adults mount weaker, shorter-lived vaccine responses and suffer more severe infections",
+    "population": "Human aging populations; vaccine-response studies",
+    "provenance": {
+      "primary": "Goronzy JJ, Weyand CM - 'Understanding immunosenescence to improve responses to vaccines', Nature Immunology 2013",
+      "doi": "10.1038/ni.2588",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Motivates high-dose/adjuvanted vaccines for elders (a real partial workaround). Pair with Crooke & Poland 2019 (10.1186/s12979-019-0164-9). Cross-ref pharma section 10.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "cmv-drives-tcell-aging-mortality-association",
+    "statement": "Chronic cytomegalovirus (CMV) infection consumes a large share of the T-cell repertoire ('memory inflation'), accumulates terminally-differentiated exhausted T cells, and CMV seropositivity is associated with inflammation and all-cause/cardiovascular mortality - an association, not a proven lever.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "CMV seropositivity associated with inflammation and elevated all-cause/CVD mortality; large CD8+ repertoire devoted to CMV in old CMV+ individuals",
+    "population": "US NHANES-linked cohort (Simanek); longitudinal elderly studies (immune risk phenotype)",
+    "provenance": {
+      "primary": "Simanek AM, Dowd JB, Pawelec G, et al. - 'Seropositivity to Cytomegalovirus, Inflammation, All-Cause and Cardiovascular Disease-Related Mortality in the United States', PLoS ONE 2011",
+      "doi": "10.1371/journal.pone.0016103",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strong, coherent association ('is immunosenescence infectious?', Pawelec 2005, 10.1111/j.0105-2896.2005.00271.x) but NOT actionable: no trial shows suppressing CMV in healthy elders extends healthspan, and anti-CMV drugs are toxic. Index as driver, not intervention.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "sleep-loss-impairs-immunity-raises-cold-risk",
+    "statement": "Short or poor-quality sleep impairs immune defense and raises inflammatory tone; behaviorally-measured short sleep predicts substantially higher susceptibility to the common cold.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Sleeping <6h/night ~4x more likely to develop a cold than >=7h after viral exposure (Prather 2015)",
+    "population": "164 healthy adults, prospective viral-challenge (Prather); broader sleep-immune review (Besedovsky)",
+    "provenance": {
+      "primary": "Prather AA, Janicki-Deverts D, Hall MH, Cohen S - 'Behaviorally Assessed Sleep and Susceptibility to the Common Cold', Sleep 2015",
+      "doi": "10.5665/sleep.4968",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Among the most reliable immune levers. Mechanistic/cohort synthesis in Besedovsky 2019 (10.1152/physrev.00010.2018). Cross-ref Domain I (sleep/circadian).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "exercise-immunosuppression-myth-overstated",
+    "statement": "Moderate regular exercise is immune-supportive and lowers chronic inflammation; the classic claim that intense exercise causes an 'open window' of immunosuppression that raises infection risk is substantially overstated - post-exercise lymphocyte changes largely reflect immune-cell redistribution (surveillance), not suppression.",
+    "claim_type": "mechanism",
+    "domain": "W-immune",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Moderate exercise lowers infection risk vs sedentary; the J-curve's 'overtraining immunosuppression' second half is contested/reinterpreted",
+    "population": "Athletes and general population (review/reinterpretation)",
+    "provenance": {
+      "primary": "Campbell JP, Turner JE - 'Debunking the Myth of Exercise-Induced Immune Suppression: Redefining the Impact of Exercise on Immunological Health Across the Lifespan', Frontiers in Immunology 2018",
+      "doi": "10.3389/fimmu.2018.00648",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "First half (moderate exercise protects) is solid; second half (J-curve immunosuppression) is genuinely contested. Real caveat for athletes in heavy blocks; dominant risk is too little, not too much. Anti-inflammatory mechanism = myokines (cross-ref E).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vitamin-c-no-incidence-modest-duration",
+    "statement": "Regular vitamin C supplementation does not reduce the incidence of common colds in the general population; it produces a modest reduction in cold duration/severity only with consistent prophylactic intake, and taking it after symptom onset has essentially no effect.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "No incidence reduction in general population; ~8% (adults)/~14% (children) shorter cold duration with regular prophylaxis; meaningful incidence reduction only in extreme physical stress (marathoners, soldiers)",
+    "population": "Cochrane systematic review of RCTs (Hemila & Chalker); reviewed in Hemila 2017",
+    "provenance": {
+      "primary": "Hemila H - 'Vitamin C and Infections', Nutrients 2017 (summarizing Hemila & Chalker Cochrane review 'Vitamin C for preventing and treating the common cold', CD000980.pub4)",
+      "doi": "10.3390/nu9040339",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex (Hemila 2017) verified; Cochrane review cited by name"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honesty rule #2: real mechanistic role (Carr & Maggini 2017, 10.3390/nu9111211) sold as a clinical 'boost.' Megadosing in the replete is unsupported and excreted. The stressed/deficient exception fits a demand effect, not a boost. Cross-ref Section 03 supplements.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "zinc-lozenge-modest-deficiency-correction",
+    "statement": "Zinc lozenges started within ~24h of cold onset may modestly shorten cold duration, and correcting zinc deficiency restores impaired immune function - but trials are heterogeneous, formulations vary, side effects are common, and chronic high-dose zinc is harmful.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Modest reduction in cold duration with early high-dose lozenges; heterogeneous trials",
+    "population": "Systematic review of zinc lozenge RCTs (Hemila)",
+    "provenance": {
+      "primary": "Hemila H - 'Zinc Lozenges May Shorten the Duration of Colds: A Systematic Review', The Open Respiratory Medicine Journal 2011",
+      "doi": "10.2174/1874306401105010051",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Small, real, narrow - and oversold. Zinc is required for immunity (Read 2019, 10.1093/advances/nmz013); the win is deficiency correction (common in elders/vegetarians), not 'boosting.' Chronic high-dose zinc causes copper deficiency.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "echinacea-null-for-colds",
+    "statement": "Individual echinacea products show no statistically significant clinical benefit for preventing or treating the common cold, though small effects cannot be fully excluded given product heterogeneity.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "No significant benefit for prevention or treatment in individual products",
+    "population": "Cochrane systematic review of echinacea RCTs",
+    "provenance": {
+      "primary": "Karsch-Volk M, Barrett B, Kiefer D, et al. - 'Echinacea for preventing and treating the common cold', Cochrane Database of Systematic Reviews 2014",
+      "doi": "10.1002/14651858.cd000530.pub3",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Null-to-trivial. A flagship 'immune-boosting' product with essentially no clinical support. Heterogeneity (different species/preparations) limits a fully definitive negative, but the burden of proof is unmet.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "elderberry-promising-but-weak",
+    "statement": "Black elderberry (Sambucus nigra) has a positive small-trial meta-analysis for reducing upper-respiratory symptom duration and in-vitro antiviral activity, but the trials are small, often industry-adjacent, and at risk of bias, with a theoretical cytokine-stimulation safety concern unresolved.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Reduced upper-respiratory symptom duration in pooled small RCTs",
+    "population": "Meta-analysis of small randomized elderberry trials (Hawkins 2018)",
+    "provenance": {
+      "primary": "Hawkins J, Baker C, Cherry L, Dunne E - 'Black elderberry (Sambucus nigra) supplementation effectively treats upper respiratory symptoms: A meta-analysis of randomized, controlled clinical trials', Complementary Therapies in Medicine 2018",
+      "doi": "10.1016/j.ctim.2018.12.004",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Promising-but-weak: do not mistake a handful of small, bias-prone RCTs for a settled result. Pair with Tiralongo 2016 air-travellers RCT (10.3390/nu8040182). Safety: theoretical immune-overstimulation concern for severe viral illness (not established).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "immune-cleanses-no-evidence",
+    "statement": "'Immune cleanses,' detoxes, IV vitamin drips, and generic 'immune-boosting' blends have no credible hard-outcome evidence; the immune system cannot be safely 'boosted' generically in a way that maps to better health outcomes.",
+    "claim_type": "outcome",
+    "domain": "W-immune",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "No credible clinical-outcome evidence",
+    "population": "n/a (marketing claims)",
+    "provenance": {
+      "primary": "Synthesis - no controlled hard-outcome evidence; 'detox/cleanse' is not a physiological immune process (liver/kidneys handle clearance)",
+      "doi": "",
+      "surfaced_via": "Wave-15 immune-system brief; honest-debunk synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The 'boost vs regulate' bottom line: more immunity is not better immunity (see autoimmunity/allergy). Achievable wins = correcting deficiency, regulating the system (sleep/exercise/no smoking), and directing it with vaccines. Everything sold as 'boosting' trades on a false model.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hygiene-hypothesis-revised-old-friends",
+    "statement": "Reduced early-life microbial exposure is associated with higher allergic and autoimmune disease (the hygiene hypothesis), but the better-supported modern version is the 'old friends'/biodiversity hypothesis: early-life exposure to co-evolved commensal and environmental microbes educates regulatory immunity - not a license to court pathogens.",
+    "claim_type": "mechanism",
+    "domain": "W-immune",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Larger family/early-infection exposure assoc. with less hay fever/eczema (Strachan 1989); biodiversity/commensal exposure educates Tregs",
+    "population": "Epidemiologic cohorts + developmental immunology (Rook; Haahtela)",
+    "provenance": {
+      "primary": "Rook GAW - 'Hygiene Hypothesis and Autoimmune Diseases', Clinical Reviews in Allergy & Immunology 2011",
+      "doi": "10.1007/s12016-011-8285-8",
+      "surfaced_via": "Wave-15 immune-system brief; OpenAlex search verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Honest framing: 'let kids get sick' is the wrong takeaway; 'value microbial diversity, don't over-sterilize' is right. Explains rising allergy/autoimmunity in hyper-sanitized environments. Ties to gut microbe immune education (cross-ref C2: SCFA->Treg). Pair Haahtela 2013 (10.1186/1939-4551-6-3).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "gut-scfa-immune-regulation-axis",
+    "statement": "Roughly 70% of immune tissue is gut-associated; microbiota-derived short-chain fatty acids (especially butyrate from fiber fermentation) induce regulatory T cells and support gut-barrier integrity, dampening inflammaging at its source - while dysbiosis/fiber-starvation degrades the barrier and raises systemic inflammation.",
+    "claim_type": "mechanism",
+    "domain": "W-immune",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Butyrate induces colonic Tregs (HDAC inhibition); fiber-starvation degrades mucus barrier",
+    "population": "Mouse mechanistic + human centenarian microbiome associations",
+    "provenance": {
+      "primary": "Furusawa Y, Obata Y, Honda K, et al. - 'Commensal microbe-derived butyrate induces the differentiation of colonic regulatory T cells', Nature 2013 (cross-ref C2)",
+      "doi": "10.1038/nature12721",
+      "surfaced_via": "Wave-15 immune-system brief; cross-ref C2-microbiome-deepdive (DOI from C2 wave, not re-verified here)"
+    },
+    "conflicts_with": ["conflict-microbiome-cause-or-consequence"],
+    "canon_link": "",
+    "confidence_notes": "Mechanism strong; centenarian-microbiome associations real (Biagi, Wilmanski, Honda - see C2); human interventional proof that microbiome manipulation modifies immune-aging endpoints still thin. Actionable lever underneath: eat enough diverse-plant fiber. DOI carried from C2 wave.",
+    "added_on": "2026-06-28"
+  }
+]

@@ -1,15 +1,15 @@
 [
   {
     "id": "glymphatic-clearance-sleep",
-    "statement": "During sleep (and anesthesia) the brain's interstitial space expands ~60% and convective CSF-interstitial fluid exchange increases markedly, accelerating clearance of metabolic waste including amyloid-beta — i.e. sleep actively drives glymphatic clearance.",
+    "statement": "During sleep (and anesthesia) the brain's interstitial space expands ~60% and convective CSF-interstitial fluid exchange increases markedly, accelerating clearance of metabolic waste including amyloid-beta \u2014 i.e. sleep actively drives glymphatic clearance.",
     "claim_type": "mechanism",
     "domain": "I-sleep-circadian",
     "evidence_tier": "animal",
     "direction": "supports",
-    "effect_size": "Interstitial volume fraction ~14%→~23% awake→asleep; ~2x faster Abeta clearance during sleep.",
+    "effect_size": "Interstitial volume fraction ~14%\u2192~23% awake\u2192asleep; ~2x faster Abeta clearance during sleep.",
     "population": "Mice (in vivo two-photon imaging + radiolabeled tracer kinetics)",
     "provenance": {
-      "primary": "Xie, Kang, Xu et al. — 'Sleep Drives Metabolite Clearance from the Adult Brain', Science 2013",
+      "primary": "Xie, Kang, Xu et al. \u2014 'Sleep Drives Metabolite Clearance from the Adult Brain', Science 2013",
       "doi": "10.1126/science.1241224",
       "surfaced_via": "OpenAlex direct-DOI (Nedergaard/Xie 2013, named in brief)"
     },
@@ -28,7 +28,7 @@
     "effect_size": "~70% reduction in interstitial solute (Abeta) clearance with AQP4 knockout.",
     "population": "Mice (in vivo fluorescence + radiotracer)",
     "provenance": {
-      "primary": "Iliff, Wang, Liao et al. — 'A Paravascular Pathway Facilitates CSF Flow Through the Brain Parenchyma and the Clearance of Interstitial Solutes, Including Amyloid Beta', Science Translational Medicine 2012",
+      "primary": "Iliff, Wang, Liao et al. \u2014 'A Paravascular Pathway Facilitates CSF Flow Through the Brain Parenchyma and the Clearance of Interstitial Solutes, Including Amyloid Beta', Science Translational Medicine 2012",
       "doi": "10.1126/scitranslmed.3003748",
       "surfaced_via": "OpenAlex (glymphatic discovery paper, Nedergaard group)"
     },
@@ -47,7 +47,7 @@
     "effect_size": "~5% rise in Abeta PET signal (hippocampus/thalamus) after one sleepless night.",
     "population": "20 healthy adults, within-subject PET (human)",
     "provenance": {
-      "primary": "Shokri-Kojori, Wang, Wiers et al. — 'Beta-Amyloid accumulation in the human brain after one night of sleep deprivation', PNAS 2018",
+      "primary": "Shokri-Kojori, Wang, Wiers et al. \u2014 'Beta-Amyloid accumulation in the human brain after one night of sleep deprivation', PNAS 2018",
       "doi": "10.1073/pnas.1721694115",
       "surfaced_via": "OpenAlex (human translation of the glymphatic-sleep mechanism)"
     },
@@ -58,7 +58,7 @@
   },
   {
     "id": "sleep-duration-mortality-ushape",
-    "statement": "Both short AND long habitual sleep duration are associated with increased all-cause mortality — a U-shaped relationship; long sleep often carries the larger association.",
+    "statement": "Both short AND long habitual sleep duration are associated with increased all-cause mortality \u2014 a U-shaped relationship; long sleep often carries the larger association.",
     "claim_type": "outcome",
     "domain": "I-sleep-circadian",
     "evidence_tier": "meta",
@@ -66,11 +66,14 @@
     "effect_size": "Short sleep RR ~1.12; long sleep RR ~1.30 for all-cause mortality (vs reference ~7h).",
     "population": "Meta-analysis, 16 prospective cohorts, >1.3 million participants",
     "provenance": {
-      "primary": "Cappuccio, D'Elia, Strazzullo et al. — 'Sleep Duration and All-Cause Mortality: A Systematic Review and Meta-Analysis of Prospective Studies', SLEEP 2010",
+      "primary": "Cappuccio, D'Elia, Strazzullo et al. \u2014 'Sleep Duration and All-Cause Mortality: A Systematic Review and Meta-Analysis of Prospective Studies', SLEEP 2010",
       "doi": "10.1093/sleep/33.5.585",
       "surfaced_via": "OpenAlex direct-DOI (the canonical U-shape meta)"
     },
-    "conflicts_with": ["conflict-walker-sleep-claims", "conflict-sleep-duration-causality"],
+    "conflicts_with": [
+      "conflict-walker-sleep-claims",
+      "conflict-sleep-duration-causality"
+    ],
     "canon_link": "",
     "confidence_notes": "Observational. The U-shape directly complicates the popular 'shorter sleep = shorter life' message: long sleep associates with HIGHER mortality, plausibly via reverse causation (illness causes long sleep). Association, not causation.",
     "added_on": "2026-06-27"
@@ -85,11 +88,13 @@
     "effect_size": "Lowest hazard ~7h; elevated hazard at long sleep (>=8h) and very short sleep (<4.5h).",
     "population": "~1.1 million adults, American Cancer Society prospective cohort, 6y follow-up",
     "provenance": {
-      "primary": "Kripke, Garfinkel, Wingard et al. — 'Mortality Associated With Sleep Duration and Insomnia', Archives of General Psychiatry 2002",
+      "primary": "Kripke, Garfinkel, Wingard et al. \u2014 'Mortality Associated With Sleep Duration and Insomnia', Archives of General Psychiatry 2002",
       "doi": "10.1001/archpsyc.59.2.131",
       "surfaced_via": "OpenAlex (large cohort corroborating the U-shape)"
     },
-    "conflicts_with": ["conflict-walker-sleep-claims"],
+    "conflicts_with": [
+      "conflict-walker-sleep-claims"
+    ],
     "canon_link": "",
     "confidence_notes": "Large but observational; self-reported sleep; the '8h is optimal' folk target is not what the mortality data show (7h is the nadir, 8h+ associates with higher mortality). Reverse causation not excluded.",
     "added_on": "2026-06-27"
@@ -104,13 +109,13 @@
     "effect_size": ">=7h/night recommended floor; no explicit upper bound endorsed by the panel (>9h flagged as possibly harmful/uncertain).",
     "population": "Expert consensus panel synthesizing the adult sleep-health literature",
     "provenance": {
-      "primary": "Watson, Badr, Belenky et al. — 'Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the AASM and Sleep Research Society', J Clin Sleep Med / SLEEP 2015",
+      "primary": "Watson, Badr, Belenky et al. \u2014 'Recommended Amount of Sleep for a Healthy Adult: A Joint Consensus Statement of the AASM and Sleep Research Society', J Clin Sleep Med / SLEEP 2015",
       "doi": "10.5664/jcsm.4758",
       "surfaced_via": "OpenAlex (guideline anchor)"
     },
     "conflicts_with": [],
     "canon_link": "",
-    "confidence_notes": "Consensus/guideline tier — synthesis + expert judgment, not a single trial. Sets a floor (7h) not a precise individual prescription; the panel itself noted the long-sleep association is harder to interpret.",
+    "confidence_notes": "Consensus/guideline tier \u2014 synthesis + expert judgment, not a single trial. Sets a floor (7h) not a precise individual prescription; the panel itself noted the long-sleep association is harder to interpret.",
     "added_on": "2026-06-27"
   },
   {
@@ -123,7 +128,7 @@
     "effect_size": "Glucose tolerance reduced ~30-40%; slower glucose clearance; elevated evening cortisol.",
     "population": "11 healthy young men, within-subject sleep-restriction vs recovery (controlled lab)",
     "provenance": {
-      "primary": "Spiegel, Leproult, Van Cauter — 'Impact of sleep debt on metabolic and endocrine function', The Lancet 1999",
+      "primary": "Spiegel, Leproult, Van Cauter \u2014 'Impact of sleep debt on metabolic and endocrine function', The Lancet 1999",
       "doi": "10.1016/S0140-6736(99)01376-8",
       "surfaced_via": "OpenAlex direct-DOI (foundational sleep-metabolism experiment)"
     },
@@ -134,7 +139,7 @@
   },
   {
     "id": "light-melatonin-action-spectrum",
-    "statement": "Nocturnal melatonin suppression in humans peaks for short-wavelength ('blue', ~446-477 nm) light, with an action spectrum distinct from the rod/cone visual photopigments — evidence for a novel non-visual circadian photoreceptor (later identified as melanopsin in ipRGCs).",
+    "statement": "Nocturnal melatonin suppression in humans peaks for short-wavelength ('blue', ~446-477 nm) light, with an action spectrum distinct from the rod/cone visual photopigments \u2014 evidence for a novel non-visual circadian photoreceptor (later identified as melanopsin in ipRGCs).",
     "claim_type": "mechanism",
     "domain": "I-sleep-circadian",
     "evidence_tier": "mechanistic",
@@ -142,7 +147,7 @@
     "effect_size": "Peak melatonin-suppression sensitivity ~446-477 nm; not predicted by photopic (visual) sensitivity.",
     "population": "Healthy adults, controlled monochromatic-light exposures",
     "provenance": {
-      "primary": "Brainard, Hanifin, Greeson et al. — 'Action Spectrum for Melatonin Regulation in Humans: Evidence for a Novel Circadian Photoreceptor', Journal of Neuroscience 2001",
+      "primary": "Brainard, Hanifin, Greeson et al. \u2014 'Action Spectrum for Melatonin Regulation in Humans: Evidence for a Novel Circadian Photoreceptor', Journal of Neuroscience 2001",
       "doi": "10.1523/JNEUROSCI.21-16-06405.2001",
       "surfaced_via": "OpenAlex direct-DOI (mechanistic basis of 'blue light at night')"
     },
@@ -153,7 +158,7 @@
   },
   {
     "id": "room-light-melatonin-suppression",
-    "statement": "Exposure to ordinary indoor room light (<200 lux) before bedtime suppresses melatonin onset and shortens the nocturnal melatonin window in most people — circadian disruption does not require bright light.",
+    "statement": "Exposure to ordinary indoor room light (<200 lux) before bedtime suppresses melatonin onset and shortens the nocturnal melatonin window in most people \u2014 circadian disruption does not require bright light.",
     "claim_type": "mechanism",
     "domain": "I-sleep-circadian",
     "evidence_tier": "rct",
@@ -161,7 +166,7 @@
     "effect_size": "Room light suppressed melatonin by ~50% and shortened melatonin duration by ~90 min vs dim light.",
     "population": "116 healthy adults, controlled in-lab light protocol",
     "provenance": {
-      "primary": "Gooley, Chamberlain, Smith et al. — 'Exposure to Room Light before Bedtime Suppresses Melatonin Onset and Shortens Melatonin Duration in Humans', J Clinical Endocrinology & Metabolism 2010",
+      "primary": "Gooley, Chamberlain, Smith et al. \u2014 'Exposure to Room Light before Bedtime Suppresses Melatonin Onset and Shortens Melatonin Duration in Humans', J Clinical Endocrinology & Metabolism 2010",
       "doi": "10.1210/jc.2010-2098",
       "surfaced_via": "OpenAlex (quantifies the everyday-light circadian hit)"
     },
@@ -180,13 +185,15 @@
     "effect_size": "Melatonin suppressed ~55%; circadian phase delayed ~1.5h; reduced morning alertness next day.",
     "population": "12 healthy adults, in-lab randomized crossover",
     "provenance": {
-      "primary": "Chang, Aeschbach, Duffy, Czeisler — 'Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness', PNAS 2014",
+      "primary": "Chang, Aeschbach, Duffy, Czeisler \u2014 'Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness', PNAS 2014",
       "doi": "10.1073/pnas.1418490112",
       "surfaced_via": "OpenAlex direct-DOI (the 'screens before bed' study)"
     },
-    "conflicts_with": ["conflict-blue-blocking-glasses"],
+    "conflicts_with": [
+      "conflict-blue-blocking-glasses"
+    ],
     "canon_link": "",
-    "confidence_notes": "Real randomized crossover but tiny (n=12), highly controlled (e-reader at close range in dim lab) — generalization to ordinary phone/TV use is plausible but not proven. Supports avoiding evening light; does NOT validate any specific blue-blocking product.",
+    "confidence_notes": "Real randomized crossover but tiny (n=12), highly controlled (e-reader at close range in dim lab) \u2014 generalization to ordinary phone/TV use is plausible but not proven. Supports avoiding evening light; does NOT validate any specific blue-blocking product.",
     "added_on": "2026-06-27"
   },
   {
@@ -199,7 +206,7 @@
     "effect_size": "Each hour of social jetlag associated with higher odds of overweight (BMI rises across social-jetlag tertiles).",
     "population": "~65,000 in the Munich ChronoType Questionnaire database (cross-sectional)",
     "provenance": {
-      "primary": "Roenneberg, Allebrandt, Merrow, Vetter — 'Social Jetlag and Obesity', Current Biology 2012",
+      "primary": "Roenneberg, Allebrandt, Merrow, Vetter \u2014 'Social Jetlag and Obesity', Current Biology 2012",
       "doi": "10.1016/j.cub.2012.03.038",
       "surfaced_via": "OpenAlex direct-DOI (Roenneberg, named in brief)"
     },
@@ -210,7 +217,7 @@
   },
   {
     "id": "tre-mice-metabolic-protection",
-    "statement": "Time-restricted feeding (food access limited to ~8-9h/day) WITHOUT reducing total calories protects mice on a high-fat diet from obesity, hyperinsulinemia, hepatic steatosis and inflammation — caloric content held constant, only timing changed.",
+    "statement": "Time-restricted feeding (food access limited to ~8-9h/day) WITHOUT reducing total calories protects mice on a high-fat diet from obesity, hyperinsulinemia, hepatic steatosis and inflammation \u2014 caloric content held constant, only timing changed.",
     "claim_type": "outcome",
     "domain": "I-sleep-circadian",
     "evidence_tier": "animal",
@@ -218,7 +225,7 @@
     "effect_size": "TRF mice gained far less weight and had improved metabolic profile vs ad-lib mice on identical caloric intake.",
     "population": "Mice (Panda lab)",
     "provenance": {
-      "primary": "Hatori, Vollmers, Zarrinpar et al. (Panda lab) — 'Time-Restricted Feeding without Reducing Caloric Intake Prevents Metabolic Diseases in Mice Fed a High-Fat Diet', Cell Metabolism 2012",
+      "primary": "Hatori, Vollmers, Zarrinpar et al. (Panda lab) \u2014 'Time-Restricted Feeding without Reducing Caloric Intake Prevents Metabolic Diseases in Mice Fed a High-Fat Diet', Cell Metabolism 2012",
       "doi": "10.1016/j.cmet.2012.04.019",
       "surfaced_via": "OpenAlex direct-DOI (Panda, named in brief)"
     },
@@ -237,7 +244,7 @@
     "effect_size": "~3% weight/waist reduction; modest BP and LDL/non-HDL improvements over 12 weeks.",
     "population": "19 adults with metabolic syndrome (most on statins/antihypertensives)",
     "provenance": {
-      "primary": "Wilkinson, Manoogian, Zadourian et al. (Panda/Taub) — 'Ten-Hour Time-Restricted Eating Reduces Weight, Blood Pressure, and Atherogenic Lipids in Patients with Metabolic Syndrome', Cell Metabolism 2019",
+      "primary": "Wilkinson, Manoogian, Zadourian et al. (Panda/Taub) \u2014 'Ten-Hour Time-Restricted Eating Reduces Weight, Blood Pressure, and Atherogenic Lipids in Patients with Metabolic Syndrome', Cell Metabolism 2019",
       "doi": "10.1016/j.cmet.2019.11.004",
       "surfaced_via": "OpenAlex direct-DOI (human TRE pilot)"
     },
@@ -256,7 +263,7 @@
     "effect_size": "Time/frequency-domain metrics (RMSSD, HF, SDNN); norms vary widely by age/sex/method.",
     "population": "Human autonomic physiology (metrics + norms review)",
     "provenance": {
-      "primary": "Shaffer & Ginsberg — 'An Overview of Heart Rate Variability Metrics and Norms', Frontiers in Public Health 2017",
+      "primary": "Shaffer & Ginsberg \u2014 'An Overview of Heart Rate Variability Metrics and Norms', Frontiers in Public Health 2017",
       "doi": "10.3389/fpubh.2017.00258",
       "surfaced_via": "OpenAlex (HRV metrics/norms reference)"
     },
@@ -267,7 +274,7 @@
   },
   {
     "id": "allostatic-load-stress-mediators",
-    "statement": "Stress mediators (cortisol, catecholamines, inflammatory cytokines) are protective when acutely mobilized but cause cumulative multi-system damage when chronically or dysregulatedly activated — the 'allostatic load' framework for how chronic stress 'weathers' the body.",
+    "statement": "Stress mediators (cortisol, catecholamines, inflammatory cytokines) are protective when acutely mobilized but cause cumulative multi-system damage when chronically or dysregulatedly activated \u2014 the 'allostatic load' framework for how chronic stress 'weathers' the body.",
     "claim_type": "mechanism",
     "domain": "I-sleep-circadian",
     "evidence_tier": "theoretical",
@@ -275,7 +282,7 @@
     "effect_size": "Composite allostatic-load indices (HPA, autonomic, metabolic, inflammatory markers) predict morbidity/mortality in cohorts.",
     "population": "Conceptual framework synthesizing human + animal stress physiology",
     "provenance": {
-      "primary": "McEwen — 'Protective and Damaging Effects of Stress Mediators', New England Journal of Medicine 1998",
+      "primary": "McEwen \u2014 'Protective and Damaging Effects of Stress Mediators', New England Journal of Medicine 1998",
       "doi": "10.1056/NEJM199801153380307",
       "surfaced_via": "OpenAlex direct-DOI (allostatic-load foundational review)"
     },
@@ -286,7 +293,7 @@
   },
   {
     "id": "blue-blocking-lenses-no-clear-benefit",
-    "statement": "Blue-light-filtering spectacle lenses show no clear evidence of benefit for sleep quality, visual performance, or protecting macular/retinal health in adults — a Cochrane systematic review found the evidence insufficient to support routine use.",
+    "statement": "Blue-light-filtering spectacle lenses show no clear evidence of benefit for sleep quality, visual performance, or protecting macular/retinal health in adults \u2014 a Cochrane systematic review found the evidence insufficient to support routine use.",
     "claim_type": "outcome",
     "domain": "I-sleep-circadian",
     "evidence_tier": "meta",
@@ -294,13 +301,295 @@
     "effect_size": "No clinically meaningful benefit demonstrated; very low- to low-certainty evidence across outcomes.",
     "population": "Systematic review, 17 RCTs, ~600 adults",
     "provenance": {
-      "primary": "Singh, Keller, Busija et al. — 'Blue-light filtering spectacle lenses for visual performance, sleep, and macular health in adults', Cochrane Database of Systematic Reviews 2023",
+      "primary": "Singh, Keller, Busija et al. \u2014 'Blue-light filtering spectacle lenses for visual performance, sleep, and macular health in adults', Cochrane Database of Systematic Reviews 2023",
       "doi": "10.1002/14651858.CD013244.pub2",
       "surfaced_via": "OpenAlex (counter-evidence to blue-blocker product hype)"
     },
-    "conflicts_with": ["conflict-blue-blocking-glasses"],
+    "conflicts_with": [
+      "conflict-blue-blocking-glasses"
+    ],
     "canon_link": "",
     "confidence_notes": "Crucial distinction: this refutes the blue-blocking LENS PRODUCT, NOT the underlying claim that evening short-wavelength light suppresses melatonin (which is well established, see light-melatonin-action-spectrum). Avoiding/dimming evening light != wearing amber glasses works. Both the wellness industry and some critics conflate these.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "yoga-hrv-vagal-increase",
+    "statement": "Yoga practice is associated with increased heart-rate variability and vagal (parasympathetic) dominance during practice, and regular practitioners show higher resting vagal tone than non-practitioners \u2014 but the underlying trial quality is mostly poor, so the effect is suggestive rather than established.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Across 59 studies (2358 participants, 15 RCTs, only 6 with Jadad>=3): yoga increases HRV and vagal dominance during practice; regular practitioners have higher resting vagal tone vs non-practitioners. Magnitudes not poolable (heterogeneous metrics).",
+    "population": "Systematic review: 59 studies, 2358 participants (mostly small, healthy, single-session, India)",
+    "provenance": {
+      "primary": "Tyagi & Cohen \u2014 'Yoga and heart rate variability: A comprehensive review of the literature', International Journal of Yoga 2016",
+      "doi": "10.4103/0973-6131.183712",
+      "surfaced_via": "OpenAlex (Wave 4 yoga->HRV cleanup; movement-library yoga rows pairing)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Grades the yoga movement-library category against Domain I autonomic evidence (MOVEMENT-EVIDENCE.md yoga rows). The authors EXPLICITLY caution it is premature to draw firm conclusions: most studies are poor-quality, small, single-session, in healthy male Indian practitioners, with insufficient reporting. Direction (yoga raises HRV/vagal tone) is consistent but the evidence tier is weak despite being a systematic review. HRV is itself a biomarker, not an outcome (see hrv-autonomic-recovery-biomarker).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "yoga-blood-pressure-meta",
+    "statement": "Yoga lowers systolic and diastolic blood pressure in prehypertensive/hypertensive adults versus usual care, with effects clearest in those who are already hypertensive \u2014 but the pooled evidence is GRADE very-low quality with high heterogeneity.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "vs usual care: systolic MD -9.65 mmHg (95% CI -17.23 to -2.06); diastolic MD -7.22 mmHg (95% CI -12.83 to -1.62). High heterogeneity (I^2 ~90-92%). Subgroup effect present in hypertensive but not mixed pre/hypertensive RCTs.",
+    "population": "Meta-analysis of 7 RCTs, 452 patients (yoga >=8 weeks vs usual care/active control)",
+    "provenance": {
+      "primary": "Cramer, Haller, Lauche, Steckhan, Michalsen \u2014 'A Systematic Review and Meta-Analysis of Yoga for Hypertension', American Journal of Hypertension 2014",
+      "doi": "10.1093/ajh/hpu078",
+      "surfaced_via": "OpenAlex (Wave 4 yoga->health cleanup)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A genuine meta of RCTs (stronger design than the HRV review) but the authors grade the evidence VERY LOW quality with severe heterogeneity (I^2 ~90%) and effects attenuating vs active controls. The BP reduction is real in direction and clinically plausible, but the wide CIs and bias mean it should not be cited as a precise effect. Cross-refs Domain D (blood pressure) and L (cardiovascular biomarkers).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "yoga-stress-mood-rct-review",
+    "statement": "Randomized trials of yoga interventions report reductions in physiological and self-reported stress measures (including evening cortisol and indices of sympathetic/parasympathetic balance) and improvements in mood, supporting yoga as a stress-regulation practice \u2014 though the trial set is heterogeneous and of mixed quality.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Across RCTs reviewed: yoga reduced markers of stress (e.g. cortisol) and improved mood/anxiety/depression scores vs controls; effect sizes vary by intervention, dose and outcome (not pooled into a single estimate).",
+    "population": "Systematic review of RCTs on yoga, stress measures and mood (healthy and clinical samples)",
+    "provenance": {
+      "primary": "Pascoe & Bauer \u2014 'A systematic review of randomised control trials on the effects of yoga on stress measures and mood', Journal of Psychiatric Research 2015",
+      "doi": "10.1016/j.jpsychires.2015.07.013",
+      "surfaced_via": "OpenAlex (Wave 4 yoga->stress cleanup)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Systematic review of RCTs \u2014 supports yoga as a stress-reduction intervention with both physiological (cortisol, autonomic) and psychological (mood) signals, but heterogeneous protocols/populations and variable rigor mean it is directionally supportive, not a precise quantitative claim. Complements the autonomic/HRV evidence (yoga-hrv-vagal-increase) and the allostatic-load framework (allostatic-load-stress-mediators).",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mindfulness-meditation-physiological-stress-meta",
+    "statement": "Mindfulness/meditation interventions reduce objective physiological markers of stress versus controls \u2014 including cortisol, C-reactive protein, blood pressure, heart rate and triglycerides \u2014 supporting a measurable autonomic/inflammatory stress-buffering effect (related but distinct from yoga's movement component).",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Meta-analysis: mindfulness reduced cortisol, CRP, systolic blood pressure, heart rate and triglycerides vs control conditions (statistically significant pooled reductions; modest magnitudes).",
+    "population": "Meta-analysis of 45 randomized/controlled studies of mindfulness interventions on physiological stress markers",
+    "provenance": {
+      "primary": "Pascoe, Thompson, Jenkins, Ski \u2014 'Mindfulness mediates the physiological markers of stress: Systematic review and meta-analysis', Journal of Psychiatric Research 2017",
+      "doi": "10.1016/j.jpsychires.2017.08.004",
+      "surfaced_via": "OpenAlex (Wave 4 meditation->stress cleanup; companion to yoga claims)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest of the contemplative-practice claims here (meta of 45 controlled studies with OBJECTIVE biomarkers, not just self-report). Caveat: meditation/mindfulness overlaps with but is not identical to yoga (which bundles movement + breath + attention); the seated-meditation evidence cannot be assumed to transfer fully to physical yoga or vice versa. Effects are modest and on surrogate markers, not hard outcomes. Cross-refs Domain G (breath) and the HRV biomarker claims.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mbsr-brain-immune-davidson",
+    "statement": "An 8-week Mindfulness-Based Stress Reduction (MBSR) course shifted resting prefrontal EEG asymmetry toward the left ('approach'/positive-affect) pattern AND increased antibody titers to an influenza vaccine versus a wait-list control - linking a meditation program to both a brain-activity and an immune readout.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Greater left-sided anterior activation post-course; larger rise in anti-influenza antibody titer in meditators vs controls (magnitude modest; n small).",
+    "population": "~41 healthy biotech employees randomized (meditation ~25 vs wait-list ~16)",
+    "provenance": {
+      "primary": "Davidson, Kabat-Zinn, Schumacher et al. - 'Alterations in Brain and Immune Function Produced by Mindfulness Meditation', Psychosomatic Medicine 2003",
+      "doi": "10.1097/01.psy.0000077505.67574.e3",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 12883106)"
+    },
+    "conflicts_with": [
+      "conflict-mindfulness-active-control"
+    ],
+    "canon_link": "",
+    "confidence_notes": "The single most-cited 'meditation changes immune function' study. Small (n~41), wait-list (not active) control - so expectancy/attention confounds are not excluded - and the antibody effect, while statistically present, is modest and on a surrogate (titer), not clinical illness. A real, carefully-run study that is routinely over-read as proof meditation 'boosts immunity'. Grade as a small RCT, not an outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "goyal-meditation-meta-moderate",
+    "statement": "Across 47 RCTs (~3515 participants), mindfulness meditation programs produce MODERATE-strength evidence of small improvements in anxiety, depression and pain; evidence is low or insufficient for stress, well-being, mood, attention, sleep, substance use and weight; and there is NO evidence that meditation programs are superior to active treatments (drugs, exercise, behavioral therapies).",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Anxiety effect size ~0.38, depression ~0.30, pain ~0.33 (small); no benefit over active comparators; null/insufficient for most other outcomes.",
+    "population": "Meta-analysis of 47 RCTs (only trials with active controls counted for the headline), ~3515 adults",
+    "provenance": {
+      "primary": "Goyal, Singh, Sibinga et al. - 'Meditation Programs for Psychological Stress and Well-being: A Systematic Review and Meta-analysis', JAMA Internal Medicine 2014",
+      "doi": "10.1001/jamainternmed.2013.13018",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 24395196)"
+    },
+    "conflicts_with": [
+      "conflict-mindfulness-active-control"
+    ],
+    "canon_link": "",
+    "confidence_notes": "THE honest anchor for the meditation literature: a high-tier (AHRQ-commissioned) meta that deliberately restricted to active-control trials and found effects shrink to small, with no superiority over established treatments. It excluded weak/TM-heavy studies by design. Use this to deflate 'meditation cures X' claims. TM-affiliated researchers (Orme-Johnson & Barnes 2017) published a rebuttal - itself a marker of the allegiance dispute.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "meditation-telomerase-retreat",
+    "statement": "A 3-month intensive meditation retreat was associated with higher immune-cell telomerase activity than a wait-list control, with the effect statistically mediated by increases in perceived control and decreases in neuroticism - proposed as a path by which meditation might slow cellular aging.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Post-retreat telomerase activity ~1/3 higher in retreat vs control (surrogate enzyme activity, not telomere length or lifespan).",
+    "population": "~60 participants (Shamatha Project), retreat vs wait-list",
+    "provenance": {
+      "primary": "Jacobs, Epel, Lin, Blackburn, Wolkowitz et al. - 'Intensive meditation training, immune cell telomerase activity, and psychological mediators', Psychoneuroendocrinology 2011",
+      "doi": "10.1016/j.psyneuen.2010.09.010",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 21035949)"
+    },
+    "conflicts_with": [
+      "conflict-meditation-telomere-overclaim"
+    ],
+    "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
+    "confidence_notes": "The canonical meditation-telomere study, and the canonical OVER-REACH. Telomerase activity is a surrogate-of-a-surrogate: it is NOT telomere length, biological age, or lifespan. Small, single retreat, wait-list control, mediation analysis is exploratory. Blackburn's Nobel-level telomere credibility does NOT transfer to this small study. Epel 2009 (Ann NY Acad Sci, 10.1111/j.1749-6632.2009.04414.x) frames it explicitly as a HYPOTHESIS ('Can meditation slow rate of cellular aging?'), not a demonstrated outcome.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "benson-relaxation-response-hypometabolic",
+    "statement": "Meditation (initially Transcendental Meditation) elicits an acute, reproducible 'relaxation response': reduced oxygen consumption, heart rate, respiratory rate and blood lactate with maintained wakefulness - a 'wakeful hypometabolic physiologic state' distinct from sleep, and the physiological counterpart to parasympathetic/relaxation shift.",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "~10-20% drop in oxygen consumption during practice; reduced HR and respiratory rate; lowered blood lactate (acute, within-session).",
+    "population": "Experienced meditators, within-subject metabolic measurement",
+    "provenance": {
+      "primary": "Wallace, Benson & Wilson - 'A wakeful hypometabolic physiologic state', American Journal of Physiology 1971",
+      "doi": "10.1152/ajplegacy.1971.221.3.795",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 5570336)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The mechanism layer beneath 'meditation relaxes you' - a genuine, replicable acute autonomic/metabolic down-shift. It is a MECHANISM (within-session physiology), NOT an outcome: a hypometabolic state during practice does not by itself establish any chronic disease, blood-pressure or longevity benefit. Benson later genericized it (the Relaxation Response) as tradition-independent. Early TM framing carries the TM-allegiance caveat; the relaxation physiology itself is robust and non-TM-specific.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "lazar-meditation-cortical-thickness",
+    "statement": "Experienced Insight (Vipassana-style) meditators showed greater cortical thickness than matched non-meditators in prefrontal cortex and right anterior insula - regions involved in attention and interoception - with the difference most pronounced in older participants (suggesting it might offset age-related cortical thinning).",
+    "claim_type": "mechanism",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Thicker cortex in PFC/anterior insula in meditators; group difference larger in older subjects.",
+    "population": "20 experienced meditators vs 15 matched controls (cross-sectional MRI)",
+    "provenance": {
+      "primary": "Lazar, Kerr, Wasserman et al. - 'Meditation experience is associated with increased cortical thickness', NeuroReport 2005",
+      "doi": "10.1097/01.wnr.0000186598.66243.19",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 16272874)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A foundational contemplative-neuroscience finding, but CROSS-SECTIONAL: it cannot separate an effect of meditation from self-selection (people with thicker insula may be drawn to/persist in meditation). Tiny (n=35). 'Associated with', not 'caused by'. The brain-structure correlate is real and reproducible-ish; the causal/clinical meaning is unestablished.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "tm-blood-pressure-meta",
+    "statement": "Transcendental Meditation is associated with reductions in systolic and diastolic blood pressure versus controls in a meta-analysis of randomized trials, on the order of a few mmHg - but the trial set is dominated by studies from TM-affiliated institutions.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Pooled SBP ~ -4.7 mmHg and DBP ~ -3.2 mmHg vs control (9 RCTs).",
+    "population": "Meta-analysis of 9 randomized trials of TM and blood pressure",
+    "provenance": {
+      "primary": "Anderson, Liu & Kryscio - 'Blood Pressure Response to Transcendental Meditation: A Meta-analysis', American Journal of Hypertension 2008",
+      "doi": "10.1038/ajh.2007.65",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 18311126)"
+    },
+    "conflicts_with": [
+      "conflict-tm-research-allegiance-bias"
+    ],
+    "canon_link": "",
+    "confidence_notes": "A meta showing a small, real-direction BP reduction - but a large share of TM research comes from Maharishi-affiliated groups (allegiance/funding bias), independent replication is thinner, and blinding is impossible. A ~3-5 mmHg drop is clinically modest and not TM-unique (any relaxation/breathing/exercise can do similar). Read alongside the AHA statement (next claim), which endorses TM only weakly.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "aha-meditation-bp-statement",
+    "statement": "The American Heart Association's scientific statement on alternative approaches to blood pressure concluded that Transcendental Meditation 'may be considered' as a BP-lowering adjunct (Class IIB, Level of Evidence B) while finding the evidence insufficient to recommend OTHER meditation techniques for blood pressure.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "TM: weak/qualified recommendation (Class IIB, LoE B). Other meditation techniques: not recommended for BP (insufficient evidence).",
+    "population": "AHA expert scientific-statement panel synthesizing the BP literature",
+    "provenance": {
+      "primary": "Brook, Appel, Rubenfire et al. - 'Beyond Medications and Diet: Alternative Approaches to Lowering Blood Pressure: A Scientific Statement From the American Heart Association', Hypertension 2013",
+      "doi": "10.1161/hyp.0b013e318293645f",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 23608661)"
+    },
+    "conflicts_with": [
+      "conflict-tm-research-allegiance-bias"
+    ],
+    "canon_link": "",
+    "confidence_notes": "The mainstream guideline read: even the body most likely to endorse a cardiovascular intervention gives TM only a weak/qualified nod and explicitly declines to recommend other meditation styles for BP. This is the honest ceiling on the 'meditation lowers blood pressure' claim - real but small, technique-specific in the evidence, and not a substitute for established therapy.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "tm-cvd-events-rct-schneider",
+    "statement": "In a randomized trial of 201 Black adults with coronary heart disease, Transcendental Meditation versus a health-education control was associated with a ~48% reduction in a composite of myocardial infarction, stroke and all-cause mortality over ~5 years - the strongest hard-endpoint result claimed for meditation.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Hazard ratio ~0.52 for composite MI/stroke/death (TM vs health education) over median ~5.4y follow-up.",
+    "population": "201 Black adults with established CHD (single-trial RCT)",
+    "provenance": {
+      "primary": "Schneider, Grim, Rainforth et al. - 'Stress Reduction in the Secondary Prevention of Cardiovascular Disease: Randomized, Controlled Trial of Transcendental Meditation and Health Education in Blacks', Circulation: Cardiovascular Quality and Outcomes 2012",
+      "doi": "10.1161/circoutcomes.112.967406",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 23149426)"
+    },
+    "conflicts_with": [
+      "conflict-tm-research-allegiance-bias"
+    ],
+    "canon_link": "",
+    "confidence_notes": "The one meditation trial with a HARD cardiovascular endpoint - genuinely notable. BUT: single trial, modest n (201), event-driven (wide CIs), conducted by TM-affiliated investigators (Maharishi University), unblindable, and a prior similar trial was stopped/unpublished. A 48% RRR on a small event count from an allegiance-linked group needs independent replication before it can be treated as established. Index as a striking but unreplicated rct.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "cochrane-meditation-cvd-uncertain",
+    "statement": "A Cochrane systematic review of meditation (including mindfulness and TM) for the primary and secondary prevention of cardiovascular disease found the evidence to be of low to very-low certainty, with too few events and high risk of bias to draw reliable conclusions about effects on cardiovascular outcomes.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "No reliable pooled effect on CVD clinical events; low/very-low GRADE certainty across outcomes.",
+    "population": "Cochrane review of RCTs of meditation for CVD prevention",
+    "provenance": {
+      "primary": "Rees, Takeda, Court, Kudrna, Hartley, Ernst - 'Meditation for the primary and secondary prevention of cardiovascular disease', Cochrane Database of Systematic Reviews 2024",
+      "doi": "10.1002/14651858.cd013358.pub2",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 38358047)"
+    },
+    "conflicts_with": [
+      "conflict-tm-research-allegiance-bias"
+    ],
+    "canon_link": "",
+    "confidence_notes": "The counterweight to the Schneider TM-events trial and the Anderson BP meta: the highest-tier independent synthesis says the CVD-outcome evidence for meditation is low/very-low certainty and cannot support firm conclusions. When a single allegiance-linked trial shows a big effect but the Cochrane review says 'we can't be sure', the honest grade is uncertainty, not benefit.",
+    "added_on": "2026-06-27"
+  },
+  {
+    "id": "mbsr-psoriasis-phototherapy",
+    "statement": "Patients undergoing UV phototherapy for psoriasis who simultaneously listened to a mindfulness-meditation audiotape cleared their skin lesions significantly faster than those receiving phototherapy alone - a controlled demonstration of a mind-state intervention measurably altering a physical disease process.",
+    "claim_type": "outcome",
+    "domain": "I-sleep-circadian",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Faster time to skin clearing in the meditation + phototherapy group vs phototherapy alone.",
+    "population": "~37 psoriasis patients randomized to phototherapy +/- mindfulness audiotape",
+    "provenance": {
+      "primary": "Kabat-Zinn, Wheeler, Light et al. - 'Influence of a mindfulness meditation-based stress reduction intervention on rates of skin clearing in patients with moderate to severe psoriasis undergoing phototherapy', Psychosomatic Medicine 1998",
+      "doi": "10.1097/00006842-199809000-00020",
+      "surfaced_via": "Wave 5 F2 meditation lineages -> Europe PMC verify (PMID 9773769)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "A clean, often-cited small RCT showing a mind intervention changing an objective physical endpoint (skin clearing). Small (n~37), single-site, and the audiotape bundles relaxation + attention + expectancy. Compelling proof-of-principle that stress-state can modulate a measurable disease, not evidence that meditation treats psoriasis generally.",
     "added_on": "2026-06-27"
   }
 ]

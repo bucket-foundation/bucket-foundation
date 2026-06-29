@@ -1,7 +1,10 @@
-# People Map — Expansion Pass 2 Summary
+# People Map — Expansion Pass 2 + Pass 3 Summary
 
-> Carded the figures queued in `00-map/discovered-people.md` (Waves 1+2) and built the
-> people × labs × trials relationship graph. Pass 2, 2026-06-27. INCLUSION ≠ ENDORSEMENT.
+> Pass 2 carded the figures queued in `00-map/discovered-people.md` (Waves 1+2) and built the
+> people × labs × trials relationship graph. **Pass 3 (2026-06-27) carded the FRESH batch that
+> the parallel biomarker / metabolic / sleep / genetics agents appended to `discovered-people.md`
+> AFTER Pass 2 ran — the Domain L (measurement & biomarkers) wave + 2 Wave-4-J additions.**
+> See the "Pass 3 addendum" section at the foot of this file. INCLUSION ≠ ENDORSEMENT.
 
 ## Cards added (68)
 
@@ -83,3 +86,68 @@ Galkin), clinical-translator (Guevara-Aguirre, Williams, Conti), mainstream-comm
 - Lab `key_people` with `card: null` (e.g. Gordon Lithgow, Ana Maria Cuervo, Michael Levin,
   David Botstein, Joe Betts-LaCroix) are candidate future cards but were out of scope (not in
   the discovered-people queue).
+
+---
+
+## Pass 3 addendum (2026-06-27) — the fresh Domain-L / Wave-4-J batch
+
+Pass 2 declared the queue "fully carded," but it ran *before* the parallel protocols /
+biomarkers / metabolic / sleep / genetics agents appended a new block to
+`00-map/discovered-people.md` (the "Wave: Domain L" measurement-and-biomarkers wave plus two
+Wave-4-J additions). Pass 3 cards exactly that fresh block. INCLUSION ≠ ENDORSEMENT.
+
+### Cards added (19) — all `added_in_pass: 3`
+
+**Lipid / cardiovascular biomarkers (Domain L):** sniderman (apoB particle number),
+ference (Mendelian-randomization LDL causality), kamstrup (Lp(a) genetic causality),
+nordestgaard (Copenhagen MR program), robert-clarke (PROCARDIS Lp(a) genetics),
+ridker (hsCRP / JUPITER / CANTOS), danesh (Emerging Risk Factors Collaboration IPD meta).
+
+**Glycemic / metabolic biomarkers (Domain L × D):** selvin (HbA1c / ARIC),
+kovatchev (CGM accuracy engineering), hanley (HOMA-IR / IRAS).
+
+**Functional / body-composition biomarkers (Domain L × E/F):** studenski (gait speed),
+cooper-kuh (physical-capability omnibus meta — paired-author card), anne-newman
+(Health ABC strength-not-mass), kuk-katzmarzyk (visceral-fat mortality — paired-author card),
+robert-ross (AHA CRF-as-vital-sign), brito-araujo (sitting-rising test mortality — paired-author card).
+
+**Autonomic / sleep measurement (Domain L × I):** hisako-tsuji (Framingham HRV-mortality),
+chinoy (consumer sleep-tracker vs PSG validation).
+
+**Aging-mechanism evidence check (Domain B):** kay-ahn (Pfizer SIRT1 group — resveratrol/STAC
+assay-artifact result; indexed as a documented dispute, `rival` edge to Sinclair).
+
+Three of the 19 are **paired-author cards** (cooper-kuh, kuk-katzmarzyk, brito-araujo) and
+two are **group/consortium cards** (danesh = ERFC, kay-ahn = Pfizer biochemistry team), each
+flagged in the card's Disputed/known-unknowns field.
+
+### Affiliation verification note
+OpenAlex authors-API verification was attempted but the daily API budget was exhausted
+(HTTP "Insufficient budget", resets midnight UTC). The 19 are all well-documented public
+figures (Mayo, McGill, Cambridge, Copenhagen, Oxford, Harvard/Brigham, Johns Hopkins,
+Pittsburgh, UVA, Toronto, Queen's, Pennington, CLINIMEX) and were carded from established
+public record; affiliations are stated in each card and are auditable. Re-run OpenAlex
+cross-check on next pass to attach author IDs + top-cited DOIs.
+
+### Updated totals (after Pass 3)
+- `figures.json`: **174 entries** (was 155) — valid JSON.
+- `cards/`: **170 markdown cards** (was 151).
+- `graph.json`: **203 nodes / 155 edges / 174 people** (was 184/136), valid JSON.
+  New edges include the lipid-causality cluster (sniderman↔ference, ference↔nordestgaard↔kamstrup,
+  nordestgaard→kamstrup mentor, robert-clarke↔kamstrup), functional-biomarker cluster
+  (studenski↔cooper-kuh↔anne-newman, cooper-kuh builds-on studenski), CRF/fitness
+  (robert-ross↔mike-joyner), visceral-fat (kuk-katzmarzyk↔robert-ross), HRV
+  (fred-shaffer builds-on hisako-tsuji), glycemic (selvin↔hanley, kovatchev↔michael-snyder),
+  and the **kay-ahn→sinclair `rival`** resveratrol assay-artifact edge (+ kay-ahn↔guarente).
+
+### Still uncarded after Pass 3
+- **None** from `discovered-people.md` — the queue (including the fresh Domain-L wave) is fully carded.
+- The 4 Pass-1 seed figures (**pollack, becker, ling, wallace**) remain WITHOUT a local markdown
+  card in `01-people/cards/` **by design**: their `figures.json` entries carry `is_cross_ref: true`
+  pointing to `canon-figures/05-biophysics.md`, where each already has a full canonical bio
+  (verified: Pollack §265, Becker §197, Ling §241, Wallace §335 in `05-biophysics.md`). Creating
+  local stubs would duplicate canon, so they are intentionally left as cross-refs (the SCHEMA
+  rule that a card lives in the branch where the contribution is largest).
+- Lab `key_people` with `card: null` (Gordon Lithgow, Ana Maria Cuervo, Michael Levin,
+  David Botstein, Joe Betts-LaCroix) remain candidate future cards, out of scope (not in the
+  discovered-people queue).

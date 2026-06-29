@@ -1,0 +1,192 @@
+[
+  {
+    "id": "telomere-cap-shelterin",
+    "statement": "Telomeres are tandem-repeat DNA caps (TTAGGG in vertebrates) bound by the shelterin complex that protect linear chromosome ends, distinguishing a natural end from a double-strand break and preventing end-to-end fusion.",
+    "claim_type": "mechanism",
+    "domain": "X-telomeres",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Structural/functional; repeat sequence first read in Tetrahymena, shown portable when transplanted onto a yeast linear plasmid.",
+    "population": "Tetrahymena rDNA ends; cross-kingdom transplant to yeast; conserved to humans",
+    "provenance": {
+      "primary": "Blackburn & Gall, J Mol Biol 1978; Szostak & Blackburn, Cell 1982",
+      "doi": "10.1016/0022-2836(78)90294-2",
+      "surfaced_via": "telomere biology canon seed"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/ OR 05-biophysics/ (DNA structure & replication)",
+    "confidence_notes": "Settled molecular biology. Szostak-Blackburn 1982 (10.1016/0092-8674(82)90109-x) proved the cap is a general, transplantable function, not a ciliate curiosity.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "end-replication-problem",
+    "statement": "Telomeres shorten with each somatic division because DNA polymerase cannot fully replicate the 3' end of a linear lagging-strand template (no upstream sequence to prime the terminal Okazaki fragment) — the 'end-replication problem', a direct consequence of the replication mechanism.",
+    "claim_type": "mechanism",
+    "domain": "X-telomeres",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Deduced from first principles; loss of a terminal DNA stretch per division.",
+    "population": "Theoretical derivation (Watson, Olovnikov), since confirmed empirically",
+    "provenance": {
+      "primary": "Watson, Nat New Biol 1972; Olovnikov, J Theor Biol 1973 ('A theory of marginotomy')",
+      "doi": "10.1016/0022-5193(73)90198-7",
+      "surfaced_via": "telomere biology canon seed"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/04-information/ (semi-conservative replication geometry)",
+    "confidence_notes": "Not in dispute. This is the fundamental reason telomeres shorten; everything contested in the domain is downstream of this solid base. Watson 1972 DOI 10.1038/newbio239197a0.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "telomerase-reverse-transcriptase",
+    "statement": "Telomerase is a reverse transcriptase (catalytic subunit TERT) that uses its own internal RNA template (TERC/TR) to synthesise telomeric repeats de novo, restoring telomere length; it is active in germline/stem cells and largely silenced in most human somatic tissues.",
+    "claim_type": "mechanism",
+    "domain": "X-telomeres",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Enzyme discovered as a 'terminal transferase' in Tetrahymena; RNA template component shown 1989.",
+    "population": "Tetrahymena extracts; conserved enzyme present in humans",
+    "provenance": {
+      "primary": "Greider & Blackburn, Cell 1985 (discovery); Greider & Blackburn, Nature 1989 (RNA template)",
+      "doi": "10.1016/0092-8674(85)90170-9",
+      "surfaced_via": "telomere biology canon seed"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Settled. RNA-template paper DOI 10.1038/337331a0. Somatic silencing is a deliberate tumour-suppressor setting (see cancer-paradox claim).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "hayflick-limit-replicative-senescence",
+    "statement": "Normal human diploid cells divide a finite number of times (~40-60 doublings) and then enter stable replicative senescence (the 'Hayflick limit'); telomere attrition is the mitotic clock that counts divisions and trips this arrest, and forcing TERT expression keeps telomeres long and bypasses senescence in culture.",
+    "claim_type": "mechanism",
+    "domain": "X-telomeres",
+    "evidence_tier": "invitro",
+    "direction": "supports",
+    "effect_size": "Telomere length predicts remaining replicative capacity (Allsopp 1992); TERT introduction immortalises normal human cells without (in that study) malignant transformation (Bodnar 1998).",
+    "population": "Human fibroblasts/diploid cell strains in culture",
+    "provenance": {
+      "primary": "Hayflick & Moorhead, Exp Cell Res 1961; Harley/Futcher/Greider, Nature 1990; Allsopp, PNAS 1992; Bodnar, Science 1998",
+      "doi": "10.1016/0014-4827(61)90192-6",
+      "surfaced_via": "telomere biology canon seed"
+    },
+    "conflicts_with": [],
+    "canon_link": "bucket-canon/05-biophysics/",
+    "confidence_notes": "Causal in cell culture (Bodnar 1998, 10.1126/science.279.5349.349). Harley 1990 10.1038/345458a0; Allsopp 1992 10.1073/pnas.89.21.10114; Hastie 1990 (in vivo) 10.1038/346866a0. Replicative-arrest mechanism solid; does NOT establish telomere length as a useful in-vivo personal biomarker.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "telomere-length-noisy-biomarker",
+    "statement": "Leukocyte telomere length is a noisy, poorly-reproducible, weakly-predictive personal biomarker: the common qPCR T/S assay disagrees between labs, individual/tissue variation overwhelms the average age decline, and population associations with mortality/disease are modest, heterogeneous, and frequently confounded.",
+    "claim_type": "outcome",
+    "domain": "X-telomeres",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Cawthon 2003 linked shorter blood telomeres to higher mortality in 60+, but later larger cohorts are inconsistent after adjustment; inter-lab CVs large enough to reorder individuals.",
+    "population": "Human cohorts (leukocyte telomere length); multi-lab reproducibility study",
+    "provenance": {
+      "primary": "Sanders & Newman, Epidemiol Rev 2013; Martin-Ruiz, Int J Epidemiol 2015; Cawthon, Lancet 2003; Demanelis, Science 2020",
+      "doi": "10.1093/epirev/mxs008",
+      "surfaced_via": "telomere biomarker critique"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PREDICTOR-NOT-LEVER core claim. Martin-Ruiz 2015 reproducibility 10.1093/ije/dyu191; Cawthon 2003 10.1016/s0140-6736(03)12384-7; Demanelis 2020 tissue-discordance 10.1126/science.aaz6876. Real-ish at population scale, near-useless at n-of-1.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "telomerase-cancer-paradox",
+    "statement": "Telomerase reactivation is a near-universal cancer mechanism for replicative immortality (activity in ~85-90% of human cancers), and Mendelian-randomization shows genetically LONGER telomeres are associated with INCREASED risk of several cancers (with lower risk of some non-neoplastic disease) — so lengthening telomeres / activating telomerase is NOT obviously beneficial.",
+    "claim_type": "outcome",
+    "domain": "X-telomeres",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Telomerase in immortal/cancer cells but not normal soma (Kim 1994); ~85-90% of cancers telomerase+ (Shay & Bacchetti 1997); MR: longer telomeres -> higher lung adenocarcinoma/melanoma/glioma risk (Haycock 2017).",
+    "population": "Human cancer surveys; Mendelian-randomization across many cancers and non-neoplastic diseases",
+    "provenance": {
+      "primary": "Haycock et al. (Telomeres MR Collaboration), JAMA Oncol 2017; Kim, Science 1994; Shay & Bacchetti, Eur J Cancer 1997",
+      "doi": "10.1001/jamaoncol.2016.5945",
+      "surfaced_via": "cancer paradox synthesis"
+    },
+    "conflicts_with": ["conflict-telomere-lengthening-benefit-vs-cancer-risk"],
+    "canon_link": "",
+    "confidence_notes": "Strongest CAUSAL claim in the file (MR approximates a lifelong randomized dose, dodging reverse-causation/confounding), tier marked rct-proxy. Kim 1994 10.1126/science.7605428; Shay & Bacchetti 1997 10.1016/s0959-8049(97)00062-2. Evolution silenced somatic telomerase as a tumour suppressor.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ta65-telomerase-activator",
+    "statement": "TA-65 (cycloastragenol, from Astragalus) is sold as a telomerase activator; its strongest evidence is a small industry-funded RCT (Salvador 2016) reporting an increase in median telomere length vs placebo, with NO disease, function, or mortality endpoint moved.",
+    "claim_type": "protocol",
+    "domain": "X-telomeres",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Salvador 2016: low-dose TA-65 increased median telomere length vs placebo (surrogate only); Harley 2011 open-label reported fewer short telomeres (uncontrolled, conflicted).",
+    "population": "Adults; Salvador 2016 n~moderate, 1 year, double-blind; Harley uncontrolled health-maintenance program",
+    "provenance": {
+      "primary": "Salvador et al., Rejuvenation Res 2016; Harley et al., Rejuvenation Res 2011",
+      "doi": "10.1089/rej.2015.1793",
+      "surfaced_via": "commercial telomere-activator evidence grade"
+    },
+    "conflicts_with": ["conflict-telomere-lengthening-benefit-vs-cancer-risk"],
+    "canon_link": "",
+    "confidence_notes": "SURROGATE-ONLY, small, industry-funded; NOT an outcome claim though sold as one. Even if real, lengthening direction's safety is unestablished (cancer paradox) and no trial is powered for cancer signal. Harley 2011 DOI 10.1089/rej.2010.1085.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lifestyle-meditation-telomerase-overread",
+    "statement": "Stress, meditation, and comprehensive lifestyle change associate with telomere/telomerase measures (Epel 2004 stress->shorter telomeres; Jacobs/Epel 2011 retreat->higher telomerase; Ornish 2008/2013 lifestyle->higher telomerase & longer telomeres), but all are small, surrogate-endpoint, and observational/pilot — consistent with telomere biology being a downstream readout of overall health, not a demonstrated lever.",
+    "claim_type": "outcome",
+    "domain": "X-telomeres",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "Epel 2004 high-stress women ~a decade 'older' on telomere length (cross-sectional); Ornish 2013 5-yr follow-up ~10 intervention subjects, longer telomeres vs controls (descriptive pilot).",
+    "population": "Small human samples: caregiving mothers; meditation-retreat participants; low-risk prostate-cancer men",
+    "provenance": {
+      "primary": "Epel et al., PNAS 2004; Jacobs et al., Psychoneuroendocrinology 2011; Ornish et al., Lancet Oncol 2008 & 2013",
+      "doi": "10.1073/pnas.0407162101",
+      "surfaced_via": "Epel/Blackburn lifestyle-telomere literature"
+    },
+    "conflicts_with": ["conflict-meditation-telomere-overclaim"],
+    "canon_link": "",
+    "confidence_notes": "Canonical surrogate-over-read. Direction unestablished; bundled interventions; no health outcome moved. Jacobs 2011 10.1016/j.psyneuen.2010.09.010; Ornish 2008 10.1016/s1470-2045(08)70234-1; Ornish 2013 10.1016/s1470-2045(13)70366-8. something-beats-nothing: do the behaviours on their own first-line evidence, telomere readout adds nothing actionable.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "senescence-broader-than-telomeres",
+    "statement": "Cellular senescence is a stable non-dividing, non-dying state with a pro-inflammatory secretory phenotype (SASP) that drives tissue dysfunction/inflammaging; most in-vivo senescence is telomere-INDEPENDENT (oncogene activation, DNA damage, oxidative/metabolic/proteotoxic stress trip p16/Rb and p53/p21), and senescence is context-dependent (also anti-cancer and pro-wound-healing).",
+    "claim_type": "mechanism",
+    "domain": "X-telomeres",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "SASP is the paracrine source of sterile inflammation; 'fix telomeres' != 'clear senescent cells'.",
+    "population": "Human/mouse cells and tissues",
+    "provenance": {
+      "primary": "Coppe et al., PLoS Biol 2008 (SASP); Hernandez-Segura, Trends Cell Biol 2018 (cross-ref B)",
+      "doi": "10.1371/journal.pbio.0060301",
+      "surfaced_via": "senescence breadth synthesis (cross-ref B-aging-mechanisms)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Telomeres are ONE entrance to the senescent state; the room is larger. Senolytic grading lives in B-aging-mechanisms.md §2 (mouse-strong/human-pilot: Baker 2016 10.1038/nature16932 genetic; Justice 2019 D+Q pilot 10.1016/j.ebiom.2018.12.052). Senolytics do NOT carry the telomerase/cancer paradox (they remove cells rather than extend divisions).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "consumer-telomere-test-useless",
+    "statement": "A consumer telomere-length test is near-useless as a personal scorecard: noisy assay (poor lab reproducibility), wrong tissue (leukocytes, tissue-discordant, infection-sensitive), weak population-level prediction, and no actionable output (the recommended response is generic healthy-living advice you already had, or a telomerase activator whose direction may be net-harmful) — often sold bundled with the activator it motivates.",
+    "claim_type": "outcome",
+    "domain": "X-telomeres",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "Cannot reliably track an individual over time or change a correct decision in either direction.",
+    "population": "Consumer/direct-to-consumer telomere testing",
+    "provenance": {
+      "primary": "Martin-Ruiz, Int J Epidemiol 2015; Sanders & Newman, Epidemiol Rev 2013; Demanelis, Science 2020",
+      "doi": "10.1093/ije/dyu191",
+      "surfaced_via": "commercial telomere-test industry critique"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cleanest single example in the manual of a predictor mis-sold as a lever. Conflict-of-interest: tests bundled with activator supplements. Spend on VO2max/DEXA/ApoB/BP instead (reliable AND tied to a decision).",
+    "added_on": "2026-06-28"
+  }
+]

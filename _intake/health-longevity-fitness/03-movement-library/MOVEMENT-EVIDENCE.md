@@ -31,7 +31,7 @@
 | Movement | Evidence claim (corpus id) | Tier | Primary | DOI |
 |----------|---------------------------|------|---------|-----|
 | sit-to-rise | `sit-to-rise-mortality` | cohort | Brito et al. — sitting-rising test & mortality, Eur J Prev Cardiol 2014 | 10.1177/2047487312471759 |
-| single-leg-balance | *(10-s one-leg stand)* **not yet in corpus** | cohort | Araujo et al. — 10-s one-legged stance predicts survival, Br J Sports Med 2022 | 10.1136/bjsports-2021-105360 *(add via OpenAlex)* |
+| single-leg-balance | `one-leg-stance-10s-mortality` *(L; added Wave 4)* | cohort | Araujo et al. — 10-s one-legged stance predicts survival, Br J Sports Med 2022 | 10.1136/bjsports-2021-105360 |
 | gait-walking | `gait-speed-survival-studenski` | cohort | Studenski et al. — gait speed & survival, JAMA 2011 | 10.1001/jama.2010.1923 |
 | sit-to-rise, single-leg-balance, gait-walking (composite) | `physical-capability-battery-mortality-meta` | meta | Cooper/Kuh/Hardy — physical capability & mortality, BMJ 2010 | 10.1136/bmj.c4467 |
 | turkish-get-up, baby-crawl, bear-crawl | *(ground-to-stand / fall prevention — demonstration tier; no direct primary; supported by capability-battery above)* | anecdotal | — | — |
@@ -76,7 +76,7 @@
 |----------|----------------|-------|
 | All mobility (CARs, 90/90, dislocates, deep-squat, ankle, t-spine, wrist) | `anecdotal` / demonstration | No primary in corpus shows CARs change passive ROM. FRC claims are teacher-attributed, not graded. Gap flagged in `_SUMMARY.md`. |
 | All flexibility (couch, pancake, PNF, splits, Jefferson curl, doorway) | `anecdotal` / `mechanistic` | PNF autogenic-inhibition mechanism is textbook; flexibility→performance/longevity links are weak-tier. Static-stretch-before-lifting is a recorded **conflict**. |
-| All yoga (sun-sal, down-dog, warrior, triangle, tree, child, cobra) | `anecdotal` (+ HRV bridge) | Yoga→HRV/parasympathetic RCTs belong to Domain I (sleep/circadian/autonomic) — pairing pending Domain I claim grading. |
+| All yoga (sun-sal, down-dog, warrior, triangle, tree, child, cobra) | demonstration + Domain I evidence *(graded Wave 4)* | Yoga→HRV/parasympathetic + BP + stress now graded in Domain I: `yoga-hrv-vagal-increase`, `yoga-blood-pressure-meta`, `yoga-stress-mood-rct-review`, `mindfulness-meditation-physiological-stress-meta`. All surrogate-tier, mostly low quality — supportive direction, not hard-outcome proof. |
 
 ---
 
@@ -88,13 +88,13 @@ These five movements double as **validated aging/mortality biomarkers** — the 
 2. **Grip strength (farmers-carry)** → Leong/PURE 2015 (`cohort`) — `10.1016/S0140-6736(14)62000-6`
 3. **Sit-to-rise** → Brito 2014 (`cohort`) — `10.1177/2047487312471759`
 4. **Gait speed (walking)** → Studenski 2011 (`cohort`) — `10.1001/jama.2010.1923`
-5. **10-s single-leg balance** → Araujo 2022 (`cohort`, add to corpus) — `10.1136/bjsports-2021-105360`
+5. **10-s single-leg balance** → Araujo 2022 (`cohort`; graded `one-leg-stance-10s-mortality` in L, Wave 4) — `10.1136/bjsports-2021-105360`
 
 > These are *measurements* that happen to also be *trainable movements* — the rare case where the
 > demonstration and the evidence collapse into the same object. Prioritize them in any Bucket canon
 > export of the movement library.
 
 ## TODO for next wave
-- Add Araujo 2022 (10-s balance) to `02-domains/L-claims.json` (currently referenced, not graded).
-- Grade yoga→HRV RCTs into Domain I and back-link the yoga rows above.
-- Resolve recorded conflicts as first-class objects: static-stretch-before-lifting; cold-after-resistance-training blunts hypertrophy; infrared vs traditional sauna; contrast-therapy recovery.
+- ~~Add Araujo 2022 (10-s balance) to `02-domains/L-claims.json`~~ **DONE Wave 4** (`one-leg-stance-10s-mortality`).
+- ~~Grade yoga→HRV RCTs into Domain I and back-link the yoga rows above.~~ **DONE Wave 4** (4 claims; see yoga row).
+- ~~Resolve recorded conflicts as first-class objects: static-stretch-before-lifting; cold-after-resistance; infrared vs traditional sauna; contrast-therapy recovery.~~ **DONE** — all four (static-stretch + cold-after-resistance were already in `06-evidence/CONFLICTS.md`; infrared-sauna + contrast-therapy + foam-rolling formalized Wave 4). See `_WAVE4-CLEANUP.md`.

@@ -1,0 +1,458 @@
+[
+  {
+    "id": "alcohol-jcurve-confounded",
+    "statement": "The historical J-curve (light-to-moderate drinking 'protective' for all-cause/CV mortality) is largely an artifact of abstainer/sick-quitter bias and healthy-user confounding; the protective signal does not survive bias correction.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "refutes",
+    "effect_size": "Bias-corrected meta of 107 cohorts (~4.8M people): no significant mortality reduction for low-volume drinkers",
+    "population": "107 prospective cohort studies, ~4,838,825 participants",
+    "provenance": {
+      "primary": "Zhao J, Stockwell T, Naimi T et al. - 'Association Between Daily Alcohol Intake and Risk of All-Cause Mortality', JAMA Network Open 2023",
+      "doi": "10.1001/jamanetworkopen.2023.6185",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["alcohol-moderate-cv-protective-jcurve"],
+    "canon_link": "",
+    "confidence_notes": "The refutation is of the PROTECTIVE claim, not of all structure. Reference-group bias is the core mechanism. Pair with Biddinger 2022 MR.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alcohol-mr-monotonic-cvd",
+    "statement": "Mendelian randomization using genetic instruments shows alcohol's relationship to cardiovascular disease is monotonic and steepening, not J-shaped; the apparent light-drinking benefit reflects confounding by favorable lifestyle traits.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Genetically-predicted higher intake -> substantially higher CVD risk; risk accelerates at higher intake; no protective dip",
+    "population": "~371,463 UK Biobank participants (Mendelian randomization)",
+    "provenance": {
+      "primary": "Biddinger KJ, Emdin CA, Haas ME et al. - 'Association of Habitual Alcohol Intake With Risk of Cardiovascular Disease', JAMA Network Open 2022",
+      "doi": "10.1001/jamanetworkopen.2022.3849",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["alcohol-moderate-cv-protective-jcurve"],
+    "canon_link": "",
+    "confidence_notes": "MR graded at rct-tier proxy: genotype is randomized at conception, breaking reverse causation. Strongest single design on this question. Not a literal RCT.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alcohol-no-safe-level-overall",
+    "statement": "Summed across all health outcomes, the level of alcohol consumption that minimizes total health loss is zero; the small cardiovascular offset is overwhelmed by cancer and injury.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "GBD 2016: minimum-risk consumption level = 0 standard drinks/week when all outcomes summed",
+    "population": "Systematic analysis, 195 countries/territories 1990-2016",
+    "provenance": {
+      "primary": "GBD 2016 Alcohol Collaborators (Griswold MG et al.) - 'Alcohol use and burden for 195 countries and territories, 1990-2016', The Lancet 2018",
+      "doi": "10.1016/S0140-6736(18)31310-2",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["alcohol-moderate-cv-protective-jcurve"],
+    "canon_link": "",
+    "confidence_notes": "GBD weights all-outcome burden. The headline 'no safe level' is strongest for CANCER (monotonic from first drink); the all-cause minimum being exactly zero is sensitive to how the small CV offset is modeled (see GBD 2022 age nuance).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alcohol-safe-level-age-dependent",
+    "statement": "The theoretical minimum-risk level of alcohol is age-dependent: effectively zero for younger adults (injury-dominated harm), and near one standard drink/day for older adults where the modest CV/diabetes offset is more relevant.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "TMREL ~0 drinks/day for adults <40; ~1 drink/day near risk minimum for older adults",
+    "population": "Systematic analysis, GBD 2020, by amount/geography/age/sex",
+    "provenance": {
+      "primary": "GBD 2020 Alcohol Collaborators (Bryazka D, Reitsma MB, Griswold M et al.) - 'Population-level risks of alcohol consumption by amount, geography, age, sex, and year', The Lancet 2022",
+      "doi": "10.1016/S0140-6736(22)00847-9",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The honest nuance: not a green light. Worst harm concentrated in the young. For older adults light drinking is near-NEUTRAL, not beneficial.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alcohol-allcause-threshold",
+    "statement": "All-cause mortality risk is lowest at roughly <=100 g pure alcohol/week (~5-6 standard drinks) and rises approximately monotonically above that; alcohol lowers non-fatal MI but raises stroke, fatal aneurysm, heart failure and fatal hypertensive disease.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Risk minimum ~100 g/week; condition-specific divergence (MI down, stroke/aneurysm/HF up)",
+    "population": "599,912 current drinkers, 83 prospective studies",
+    "provenance": {
+      "primary": "Wood AM et al. (Emerging Risk Factors Collaboration) - 'Risk thresholds for alcohol consumption', The Lancet 2018",
+      "doi": "10.1016/S0140-6736(18)30134-X",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Even the 'cardioprotective' piece is a trade between conditions, not a net free lunch. Observational threshold analysis.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "alcohol-moderate-cv-protective-jcurve",
+    "statement": "(SUPERSEDED VIEW) Moderate alcohol intake is associated with lower cardiovascular mortality vs abstainers and heavy drinkers (the J-curve).",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "~25% lower CVD mortality in moderate drinkers (uncorrected for abstainer bias)",
+    "population": "Meta-analysis of cohort studies (CVD outcomes)",
+    "provenance": {
+      "primary": "Ronksley PE, Brien SE et al. - 'Association of alcohol consumption with selected cardiovascular disease outcomes', BMJ 2011",
+      "doi": "10.1136/bmj.d671",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["alcohol-jcurve-confounded", "alcohol-mr-monotonic-cvd", "alcohol-no-safe-level-overall"],
+    "canon_link": "",
+    "confidence_notes": "Indexed for completeness as the historical/superseded side. The protective signal is now attributed largely to abstainer/sick-quitter bias and healthy-user confounding (see conflict-alcohol-jcurve).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tobacco-ten-years-lost",
+    "statement": "Lifelong cigarette smoking shortens life expectancy by approximately 10 years versus never-smoking; current smokers have roughly 3x all-cause mortality and up to two-thirds of their deaths are attributable to smoking.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~10 years of life lost; all-cause mortality RR ~2.5-3x; ~2/3 of smoker deaths attributable",
+    "population": "British male doctors (50 yr); US NHIS (Jha); 204,953 Australians (Banks)",
+    "provenance": {
+      "primary": "Jha P et al. - '21st-Century Hazards of Smoking and Benefits of Cessation in the United States', NEJM 2013; Doll R, Peto R et al. BMJ 2004 (10.1136/bmj.38142.554479.AE); Banks E et al. BMC Med 2015 (10.1186/s12916-015-0281-z)",
+      "doi": "10.1056/NEJMsa1211128",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Cohort-tier but satisfies Bradford Hill fully (huge effect, dose-response, plausibility, reversibility) - as close to causal as observational data gets. The largest single modifiable exposure in the manual.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "tobacco-quit-before-40",
+    "statement": "Smoking cessation before age 40 avoids about 90% of the excess mortality from continued smoking; cessation at 30/40/50/60 recovers roughly 10/9/6/3 years of life.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Quit <40 -> ~90% of excess mortality avoided; years regained decline with later cessation",
+    "population": "US NHIS (Jha); British doctors (Doll)",
+    "provenance": {
+      "primary": "Jha P et al. - NEJM 2013; Doll R, Peto R et al. - BMJ 2004",
+      "doi": "10.1056/NEJMsa1211128",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One of the few exposures where reversibility of damage is proven. The timing gradient is the actionable message.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "vaping-cessation-tool-not-safe",
+    "statement": "E-cigarettes help adult smokers quit (moderate-certainty, more effective than nicotine-replacement therapy) and eliminate combustion products, but are not safe in absolute terms and the population-level cost is nicotine initiation in never-smoking youth.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "mixed",
+    "effect_size": "Higher quit rates vs NRT (moderate-certainty); long-term harm data absent; youth-uptake harm is population-dependent",
+    "population": "Cochrane systematic review of e-cigarette cessation RCTs",
+    "provenance": {
+      "primary": "Hartmann-Boyce J, McRobbie H et al. - 'Electronic cigarettes for smoking cessation', Cochrane Database Syst Rev 2021",
+      "doi": "10.1002/14651858.CD010216.pub5",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Less bad != safe. Risk/benefit flips by population: net-positive for switching smokers, net-negative for never-smoking youth. Decadal outcome data do not yet exist.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "nicotine-vs-combustion",
+    "statement": "Combustion products (tar, CO, nitrosamines, particulates) drive most of tobacco's cancer and cardiopulmonary mortality; nicotine is the addictive agent and is not benign (vasoconstriction, harm in pregnancy/adolescence) but is not the primary carcinogen.",
+    "claim_type": "mechanism",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Harm ordering: combustible cigarettes >> heated/vaped > pouches/gum ~ NRT",
+    "population": "Toxicology / mechanistic (broadly established)",
+    "provenance": {
+      "primary": "Established tobacco-harm toxicology (combustion vs nicotine separation); consistent with Jha 2013 and harm-reduction literature",
+      "doi": "",
+      "surfaced_via": "Wave-9 exposures brief; mechanistic synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism claim, NOT a license to adopt nicotine casually. Nicotine is harmful in adolescence/pregnancy and sustains dependence.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pm25-top-global-risk-factor",
+    "statement": "Particulate-matter air pollution (ambient PM2.5 + household) ranks among the leading global risk factors for death and disability, on the order of millions of attributable deaths per year.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Top-tier global risk factor (millions of deaths/yr); fossil-fuel share alone very large",
+    "population": "GBD 2019 systematic analysis, 204 countries; Lelieveld 2023 modelling",
+    "provenance": {
+      "primary": "GBD 2019 Risk Factors Collaborators (Murray CJL et al.) - 'Global burden of 87 risk factors in 204 countries and territories, 1990-2019', The Lancet 2020; Lelieveld J, Haines A et al. BMJ 2023 (10.1136/bmj-2023-077784)",
+      "doi": "10.1016/S0140-6736(20)30752-2",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Population attributable burden (modeled), not individual RCT. The most underrated exposure in the manual relative to its mortality burden.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pm25-cardiovascular-causal",
+    "statement": "Long-term fine-particulate (PM2.5) exposure is a causal contributor to cardiovascular mortality; each 10 ug/m3 increase raises all-cause mortality ~4%, cardiopulmonary ~6%, and lung cancer ~8%, with no clear safety threshold.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "+10 ug/m3 PM2.5 -> ~4% all-cause, ~6% cardiopulmonary, ~8% lung-cancer mortality",
+    "population": "~500,000 adults (ACS CPS-II cohort, Pope); AHA causal review (Brook)",
+    "provenance": {
+      "primary": "Pope CA III et al. - 'Lung Cancer, Cardiopulmonary Mortality, and Long-term Exposure to Fine Particulate Air Pollution', JAMA 2002; Brook RD et al. - Circulation (AHA statement) 2010 (10.1161/CIR.0b013e3181dbece1)",
+      "doi": "10.1001/jama.287.9.1132",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "AHA graded the relationship CAUSAL. Cohort-tier but with mechanism (inflammation/atherosclerosis) and consistent dose-response. Dose-response extends below regulatory limits.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pm25-dementia-association",
+    "statement": "Long-term PM2.5 exposure is associated with higher dementia incidence and is now treated as a modifiable dementia risk factor.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Consistent positive association across cohorts; included as modifiable factor by Lancet Commission",
+    "population": "Systematic review of cohorts; Lancet Commission on Dementia",
+    "provenance": {
+      "primary": "Peters R, Ee N et al. - 'Air Pollution and Dementia: A Systematic Review', J Alzheimers Dis 2019 (10.3233/JAD-180631); Livingston G et al. - Lancet Commission 2020 (10.1016/S0140-6736(20)30367-6)",
+      "doi": "10.3233/JAD-180631",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Association/cohort-tier; growing consistency and biological plausibility but not RCT-grade. Direction of any individual benefit from reducing exposure is plausible, not proven.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pm25-hepa-mitigation",
+    "statement": "Personal PM2.5 dose is reducible: indoor HEPA filtration cuts indoor particulate concentrations, AQI-aware behavior limits peak exposure, and avoiding high-traffic exercise prevents exertion-multiplied inhaled dose.",
+    "claim_type": "protocol",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "Portable HEPA reliably lowers indoor PM2.5; small RCTs show improved surrogate cardiovascular markers",
+    "population": "Indoor air-purifier intervention studies (surrogate endpoints)",
+    "provenance": {
+      "primary": "Indoor air-purifier intervention literature (HEPA -> reduced indoor PM2.5 + surrogate CV markers); exposure-science basis from Pope 2002 / Brook 2010 dose-response",
+      "doi": "",
+      "surfaced_via": "Wave-9 exposures brief; intervention-study synthesis (specific RCT DOIs not pinned this session)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Hard-endpoint (mortality) RCTs of filtration do not exist; benefit is inferred from surrogate-marker RCTs + the cohort dose-response. Predictor->lever inference is reasonable here because the exposure itself is causal. High-leverage, low-cost.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "lead-low-level-cv-mortality",
+    "statement": "Low-level environmental lead exposure (within the historically 'normal' range) is associated with a large cardiovascular mortality burden - estimated ~256,000 US CVD deaths/year - because harm extends to low blood-lead levels with no safe threshold.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "~256,000 attributable US CVD deaths/yr; ~412,000 total/yr (order of magnitude above prior estimates)",
+    "population": "NHANES III prospective cohort, ~14,289 US adults",
+    "provenance": {
+      "primary": "Lanphear BP, Rauch S et al. - 'Low-level lead exposure and mortality in US adults: a population-based cohort study', Lancet Public Health 2018",
+      "doi": "10.1016/S2468-2667(18)30025-2",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Calibrates intuition about 'low-dose' exposures. Lead also has no safe level for child cognition. Legacy of leaded gasoline/paint/pipes; bone stores re-mobilize in pregnancy/aging.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "pfas-regulatory-epi-harm",
+    "statement": "PFAS ('forever chemicals') are persistent, bioaccumulative and near-universal in human serum; epidemiological evidence links them to elevated cholesterol, reduced vaccine antibody response, thyroid disruption, kidney/testicular cancer and pregnancy hypertension - established enough for near-zero regulatory water limits.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "Consistent associations across C8 community/occupational studies; EPA advisory levels near zero",
+    "population": "C8 Science Panel cohorts + review synthesis",
+    "provenance": {
+      "primary": "Fenton SE, Ducatman A et al. - 'Per- and Polyfluoroalkyl Substance Toxicity and Human Health Review', Environ Toxicol Chem 2020",
+      "doi": "10.1002/etc.4890",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mostly association (cannot randomize PFAS). Individual effect sizes modest vs the population/regulatory concern. NO validated detox - the only lever is reducing intake (filtered water, fewer coatings).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "bpa-phthalates-edc-plausible",
+    "statement": "BPA and phthalates are endocrine-disrupting chemicals with strong mechanistic/animal evidence and human associations to cardiovascular/metabolic outcomes and adverse birth outcomes; the precautionary case is reasonable, especially in pregnancy/early childhood.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cross-sectional",
+    "direction": "mixed",
+    "effect_size": "Substantial estimated EU attributable disease cost; cohort links to CV/metabolic and birth outcomes; individual effect size uncertain",
+    "population": "EU burden modelling (Trasande 2015); phthalate-CVD review; prenatal-exposure cohort (Trasande 2024)",
+    "provenance": {
+      "primary": "Trasande L, Zoeller RT et al. - 'Estimating Burden and Disease Costs of Exposure to Endocrine-Disrupting Chemicals in the European Union', J Clin Endocrinol Metab 2015 (10.1210/jc.2014-4324); Mariana M, Cairrao E - J Cardiovasc Dev Dis 2020 (10.3390/jcdd7030026)",
+      "doi": "10.1210/jc.2014-4324",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanistic + association; some cohort. Reduce-don't-panic. Lever: avoid heating food in plastic, prefer glass/stainless for hot/fatty food. No validated 'EDC detox'.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "microplastics-emerging-not-proven",
+    "statement": "Micro- and nanoplastics are detectable in human blood and tissues (ubiquity established), but human HARM is not established - the evidence is overwhelmingly mechanistic (cell/animal) and cross-sectional association; do not overclaim.",
+    "claim_type": "hypothesis",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "mechanistic",
+    "direction": "unfalsifiable",
+    "effect_size": "Presence quantified in human blood; no established human mortality/disease effect size",
+    "population": "Human blood detection study (n=22); mechanistic cell/animal models",
+    "provenance": {
+      "primary": "Leslie HA, van Velzen MJM et al. - 'Discovery and quantification of plastic particle pollution in human blood', Environment International 2022",
+      "doi": "10.1016/j.envint.2022.107199",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The strict ubiquity-vs-harm firewall. The 2024 carotid-plaque/CV-events study is hypothesis-generating and heavily confounded, NOT proof. Precautionary hygiene (filter water, less single-use plastic) is low-regret, not a proven mortality intervention.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "water-filtration-shared-lever",
+    "statement": "Filtering drinking water (certified activated-carbon, ideally with reverse osmosis) simultaneously reduces lead, many PFAS, and particulate microplastics - the single highest-leverage move across the 'toxins' category and the one backed by actual regulatory contaminant standards.",
+    "claim_type": "protocol",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Removes/reduces multiple regulated contaminants; magnitude depends on filter type and source water",
+    "population": "Water-treatment engineering + EPA contaminant standards",
+    "provenance": {
+      "primary": "EPA drinking-water contaminant standards + filtration efficacy literature; convergent with Lanphear 2018 (lead) and Fenton 2020 (PFAS)",
+      "doi": "",
+      "surfaced_via": "Wave-9 exposures brief; practical synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Lever-tier practical claim. No mortality RCT of home filtration, but it reduces causally-implicated contaminants (lead is cohort-grade harmful). Low-regret. Know local water report; test if old plumbing/private well.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "uv-skin-cancer-photoaging",
+    "statement": "UV radiation is a proven complete carcinogen for skin (basal/squamous cell carcinoma, melanoma) and the primary driver of photoaging; sunburns - especially in childhood - are a strong melanoma risk factor.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "UV causal for all major skin cancers; intermittent intense exposure / burns drive melanoma risk",
+    "population": "Dermato-epidemiology (broadly established)",
+    "provenance": {
+      "primary": "Established UV carcinogenesis literature (IARC Group 1 for solar UV); consistent across cohorts",
+      "doi": "",
+      "surfaced_via": "Wave-9 exposures brief; established consensus"
+    },
+    "conflicts_with": ["uv-sun-avoidance-mortality-risk"],
+    "canon_link": "",
+    "confidence_notes": "The cost side of the two-sided ledger. No controversy on skin cancer. Caveat: weighs more heavily with fair skin, high UV, and burns.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "uv-sun-avoidance-mortality-risk",
+    "statement": "In a 20-year Swedish cohort, avoidance of sun exposure was a risk factor for all-cause mortality (~2x vs highest-exposure group), driven mainly by lower cardiovascular and non-cancer death - an effect the authors compared in magnitude to smoking.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "mixed",
+    "effect_size": "Sun-avoiders ~2x all-cause mortality; nonsmoking avoiders ~ life expectancy of high-sun smokers",
+    "population": "~29,518 women, Melanoma in Southern Sweden (MISS) cohort, 20-yr follow-up",
+    "provenance": {
+      "primary": "Lindqvist PG, Epstein E et al. - 'Avoidance of sun exposure as a risk factor for major causes of death', J Intern Med 2016 (10.1111/joim.12496); Lindqvist 2014 (10.1111/joim.12251)",
+      "doi": "10.1111/joim.12496",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": ["uv-skin-cancer-photoaging"],
+    "canon_link": "",
+    "confidence_notes": "SEVERE confounding (sun = outdoorsy/affluent/active; reverse causation: sick people stay in). Fair-skinned low-UV Northern Europeans only; does NOT generalize to high-UV or darker skin. Vitamin-D SUPPLEMENT RCTs (VITAL) were null, arguing benefit is not simply vitamin D in a pill.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "uv-nitric-oxide-bp-mechanism",
+    "statement": "UVA exposure of skin releases nitric oxide, producing modest blood-pressure lowering - a plausible non-vitamin-D mechanism for part of the sun/cardiovascular-mortality association.",
+    "claim_type": "mechanism",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Modest acute BP reduction on UVA exposure (mechanistic/experimental)",
+    "population": "Human experimental dermato-vascular studies",
+    "provenance": {
+      "primary": "Cutaneous nitric-oxide / UVA blood-pressure mechanism literature (Liu/Feelisch lineage)",
+      "doi": "",
+      "surfaced_via": "Wave-9 exposures brief; mechanistic synthesis"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Mechanism, NOT an outcome. Offered to explain why the sun benefit may not be vitamin D (since D supplements failed). Distinct from circadian/mood benefit of daytime light (cross-ref Domain I).",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "ambient-cold-exceeds-heat-mortality",
+    "statement": "Non-optimal ambient temperature accounts for ~7.7% of deaths across 384 locations in 13 countries, with the overwhelming majority (~7.3%) due to cold (mostly moderate, not extreme cold) versus ~0.4% from heat.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "cohort",
+    "direction": "supports",
+    "effect_size": "7.71% of deaths attributable to non-optimal temperature; cold 7.29% vs heat 0.42%",
+    "population": "74,225,200 deaths, 384 locations, 13 countries (multi-country time-series)",
+    "provenance": {
+      "primary": "Gasparrini A, Guo Y et al. - 'Mortality risk attributable to high and low ambient temperature: a multicountry observational study', The Lancet 2015",
+      "doi": "10.1016/S0140-6736(14)62114-0",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "PASSIVE ambient temperature - distinct from DELIBERATE sauna/cold hormesis (Domain H). Climate-change caveat: heat-attributable mortality rising; both tails matter. Lever = adequate home heating (winter) + heatwave preparedness for the vulnerable.",
+    "added_on": "2026-06-28"
+  },
+  {
+    "id": "exposures-magnitude-vs-supplements",
+    "statement": "The largest modifiable mortality levers are behavioral/environmental exposures (not smoking, clean air, sane drinking, clean water, sensible sun), which dwarf most supplement/protocol optimizations - yet are underweighted precisely because none of them are commercially sold.",
+    "claim_type": "outcome",
+    "domain": "R-exposures-environment",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Smoking ~10 yr; SES/behavioral exposures > most optimized supplements (Stringhini: low SES ~2.1 yr life lost, comparable to major risk factors)",
+    "population": "Stringhini 2017 multicohort meta, ~1.7M men and women",
+    "provenance": {
+      "primary": "Stringhini S, Carmeli C et al. - 'Socioeconomic status and the 25x25 risk factors as determinants of premature mortality', The Lancet 2017",
+      "doi": "10.1016/S0140-6736(16)32380-7",
+      "surfaced_via": "Wave-9 exposures brief; OpenAlex direct-DOI verified"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Calibration claim for the whole manual. The point is proportion: exposures are the high-leverage, low-cost tier and get the least airtime.",
+    "added_on": "2026-06-28"
+  }
+]

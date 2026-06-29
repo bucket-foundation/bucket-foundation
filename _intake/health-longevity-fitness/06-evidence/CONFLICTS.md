@@ -488,3 +488,343 @@ camp has hard-endpoint proof.
 ```json
 {"id":"conflict-mtdna-mutation-causality","question":"Do somatic mtDNA mutations cause normal aging?","side_a":{"claim":"POLG mutator mice age prematurely (2 lines); somatic mtDNA mutations/heteroplasmy accumulate clonally with age in human tissues","champions":["Trifunovic","Larsson","Kujoth","Prolla"],"tier":"animal+cohort"},"side_b":{"claim":"Mutator-mouse loads far exceed normal human aging; phenotype via apoptosis not ROS; human loads usually below dysfunction threshold","champions":["Kujoth","mutation-accumulation-critics"],"tier":"animal+mechanistic"},"status":"open","resolution_notes":"Mutations cause aging features at high load; contribution to normal human aging unproven. Threshold + clonal expansion are the crux. Links to free-radical/mitohormesis conflict."}
 ```
+
+---
+
+> Appended 2026-06-27 (Wave 4 cleanup) — formalizing the movement-library recovery/modality conflicts
+> flagged in `03-movement-library/SAFETY-FLAGS.md` ("Recorded conflicts"). Two of the four flagged there
+> were already first-class objects above (`conflict-static-stretch-performance` = static stretch before
+> lifting; `conflict-cold-after-resistance` = cold immersion after resistance training) — NOT duplicated.
+> The remaining flagged conflicts (infrared vs traditional sauna; contrast therapy for recovery) plus the
+> closely-related foam-rolling/recovery-efficacy debate are formalized here. Append, don't overwrite.
+
+## conflict-infrared-vs-traditional-sauna — Does infrared sauna inherit the mortality/cardiovascular evidence of traditional Finnish sauna?
+- **side_a (benefits transfer):** infrared (IR) cabins deliver heat stress, raise core temperature, improve
+  endothelial function/blood pressure and are promoted as equivalent (or gentler-but-equivalent) to traditional
+  sauna; Waon-therapy (far-IR) trials show improved endothelial function and symptoms in chronic heart failure.
+  Champions: IR-sauna industry, Waon-therapy investigators (Tei/Miyata lineage). Tier: small `rct`/`mechanistic`
+  (surrogate endpoints: BP, flow-mediated dilation, symptom scores).
+- **side_b (evidence does not inherit):** the hard mortality/dementia data are from the **KIHD cohort on
+  *traditional* convective Finnish sauna** (Laukkanen 2015 `10.1001/jamainternmed.2014.8187`; reviewed in
+  Laukkanen & Kunutsor, Mayo Clin Proc 2018 `10.1016/j.mayocp.2018.04.008`). IR cabins run **cooler
+  (~45-60°C vs ~80-100°C)** with a different (radiant, lower-sweat) heat-load profile, so the dose that produced
+  the cohort signal is **not the IR dose**; IR outcome evidence is sparse, short, small and surrogate-only.
+  Champions: Laukkanen, Kunutsor (who explicitly scope their cohort to traditional sauna). Tier: `cohort`
+  (traditional) + absence of IR outcome data.
+- **status:** `open`. IR sauna is plausibly beneficial via shared heat-stress mechanisms, but it is **a separate
+  intervention whose long-term outcome evidence does not exist** — borrowing the Laukkanen mortality numbers for
+  an IR cabin is an unlicensed transfer.
+- **resolution_notes:** Needs head-to-head dose-matched physiology and (ideally) IR-specific outcome cohorts.
+  Until then: cite traditional-sauna evidence ONLY for traditional sauna; grade IR claims on their own (small
+  `rct`/surrogate) evidence. The KIHD healthy-user confound (see `conflict-sauna-healthy-user`) applies on top.
+
+```json
+{"id":"conflict-infrared-vs-traditional-sauna","question":"Does infrared sauna inherit the mortality/cardiovascular evidence of traditional Finnish sauna?","side_a":{"claim":"IR cabins deliver heat stress, improve BP/endothelial function; Waon far-IR helps CHF — benefits transfer","champions":["IR-sauna industry","Waon-therapy (Tei/Miyata)"],"tier":"rct-small+mechanistic-surrogate"},"side_b":{"claim":"Mortality/dementia data are from the KIHD cohort on TRADITIONAL convective sauna; IR runs cooler with a different heat load and has no outcome evidence — the dose that produced the signal is not the IR dose","champions":["Laukkanen","Kunutsor"],"tier":"cohort+absence-of-IR-outcome-data","papers":["10.1001/jamainternmed.2014.8187","10.1016/j.mayocp.2018.04.008"]},"status":"open","resolution_notes":"Separate interventions; don't transfer Laukkanen numbers to IR cabins. Cite traditional-sauna evidence only for traditional sauna; KIHD healthy-user confound applies on top."}
+```
+
+---
+
+## conflict-contrast-therapy-recovery — Does contrast (hot↔cold) water therapy actually aid recovery, or only beat doing nothing?
+- **side_a (it works):** contrast water therapy (CWT) **significantly reduces muscle soreness and strength
+  loss** after exercise-induced muscle damage versus passive recovery, across follow-up to 96 h — a real,
+  pooled effect. Champions: CWT/recovery-modality proponents, sports-physio practice. Tier: `meta` (Bieuzen,
+  Bleakley & Costello, PLoS ONE 2013 `10.1371/journal.pone.0062356`, 18 trials).
+- **side_b (no specific benefit / placebo-grade):** in that same meta **all 18 trials had high risk of bias**,
+  and despite comparing CWT against cold-water immersion, warm-water immersion, compression, active recovery and
+  stretching, there was **little evidence CWT is superior to any of them** — i.e. it beats rest but not other
+  active recovery, consistent with a generic/placebo-grade recovery effect rather than a contrast-specific
+  mechanism. Tier: `meta` (same source, bias + no-between-modality-difference reading).
+- **status:** `mostly-resolved (contested benefit)`. CWT > passive rest is supported but low-quality; CWT being
+  *specifically* better than simpler recovery is **not** supported. The popular "contrast showers flush
+  metabolites / boost recovery" framing overstates a small, bias-prone, non-specific effect.
+- **resolution_notes:** Same caution as cold-after-resistance: if hypertrophy/adaptation is the goal, post-
+  exercise cold (including the cold phase of contrast) can blunt it (`conflict-cold-after-resistance`). Recovery
+  benefit is real-but-modest and not unique to the hot↔cold protocol. Needs low-bias RCTs with objective endpoints.
+
+```json
+{"id":"conflict-contrast-therapy-recovery","question":"Does contrast (hot/cold) water therapy aid recovery, or only beat doing nothing?","side_a":{"claim":"CWT significantly reduces post-exercise soreness and strength loss vs passive recovery through 96h (pooled)","champions":["recovery-modality proponents","sports-physio practice"],"tier":"meta","papers":["10.1371/journal.pone.0062356"]},"side_b":{"claim":"All 18 pooled trials high risk of bias; CWT shows little/no superiority over cold-water/warm-water/compression/active recovery/stretching — beats rest, not other modalities (non-specific/placebo-grade)","champions":["evidence-quality critique"],"tier":"meta","papers":["10.1371/journal.pone.0062356"]},"status":"mostly-resolved-contested-benefit","resolution_notes":"CWT > passive rest supported but low-quality; CWT > other active recovery not supported. Cold phase can blunt hypertrophy (see conflict-cold-after-resistance). Modest, non-specific effect oversold."}
+```
+
+---
+
+## conflict-foam-rolling-efficacy — Does foam rolling improve performance and recovery, or is the effect trivial and short-lived?
+- **side_a (useful, especially for ROM):** a meta-analysis found **pre-rolling produces small improvements in
+  sprint performance (+0.7%, g≈0.28) and flexibility (+4.0%)**, and **post-rolling reduces muscle pain/soreness**
+  without the range-of-motion cost that long static stretching can impose — so foam rolling is a low-risk warm-up
+  and recovery aid. Champions: Wiewelhove, Behm, Wilke; mobility/recovery coaching. Tier: `meta` (Wiewelhove et
+  al., Front Physiol 2019 `10.3389/fphys.2019.00376`, 21 studies).
+- **side_b (effects trivial, mechanism not 'fascia release'):** the measured effects are **small and transient**
+  (acute ROM gains last minutes; performance changes are marginal), there is **no good evidence rolling
+  'breaks up fascia/adhesions' or improves long-term flexibility/hypertrophy/injury rates**, and the acute ROM
+  effect is most plausibly **neural (stretch tolerance / global mechanosensory)**, not structural. Tier: `meta`
+  (same effect-size data, mechanism critique).
+- **status:** `mostly-resolved (small, short-lived, non-structural)`. Foam rolling is a **safe, mildly useful**
+  warm-up/recovery tool with small acute benefits to ROM and soreness; it is **not** a tissue-remodeling or
+  performance-transforming intervention, and the "myofascial release" mechanism is unsupported.
+- **resolution_notes:** Good low-risk adjunct (esp. pre-activity, where it adds ROM without the power deficit of
+  long static holds — links to `conflict-static-stretch-performance`). Don't sell it as fascia release or a
+  durable mobility fix. Needs longer-term ROM/injury outcome trials.
+
+```json
+{"id":"conflict-foam-rolling-efficacy","question":"Does foam rolling improve performance and recovery, or is the effect trivial/short-lived?","side_a":{"claim":"Pre-rolling gives small gains in sprint (+0.7%, g~0.28) and flexibility (+4.0%); post-rolling reduces soreness without static-stretch's power cost","champions":["Wiewelhove","Behm","Wilke"],"tier":"meta","papers":["10.3389/fphys.2019.00376"]},"side_b":{"claim":"Effects small/transient (ROM gains last minutes); no evidence of fascia/adhesion release or long-term flexibility/injury benefit; acute ROM effect is neural (stretch tolerance), not structural","champions":["mechanism-critique"],"tier":"meta","papers":["10.3389/fphys.2019.00376"]},"status":"mostly-resolved-small-short-lived","resolution_notes":"Safe, mildly useful warm-up/recovery aid with small acute ROM/soreness benefits; not tissue remodeling or a durable mobility fix; 'myofascial release' mechanism unsupported. Good pre-activity (adds ROM without power deficit; cf. static-stretch conflict)."}
+```
+
+---
+
+> Appended 2026-06-27 from Domain C2 (microbiome deep-dive + Blue Zones / population longevity). Append, don't overwrite.
+> The first entry DEEPENS `conflict-microbiome-cause-or-consequence` (Domain C) with the animal-intervention +
+> human-RCT evidence; the second is new.
+
+## conflict-microbiome-causality — (DEEPENED) Does the gut microbiome CAUSE aging/inflammaging, or REFLECT it?
+Deepens `conflict-microbiome-cause-or-consequence` with the intervention layer that Domain C only sketched. The
+causal ladder now reads explicitly: human cross-sectional (Biagi/Wilmanski/Sato, C) → animal FMT (Smith
+killifish lifespan; Parker mouse multi-organ inflammaging, bidirectional) → mechanism (Furusawa butyrate→Treg;
+Desai fiber→mucus; Everard Akkermansia→barrier) → ONE small human surrogate RCT (Wastyk fermented foods).
+- **side_a (causal driver):** young→old FMT extends lifespan (killifish, Smith `10.7554/elife.27014`) and
+  reverses gut/eye/brain inflammaging (mouse, Parker `10.1186/s40168-022-01243-w`); SCFAs causally induce
+  colonic Tregs (Furusawa `10.1038/nature12721`) and fiber-starvation erodes the mucus barrier (Desai
+  `10.1016/j.cell.2016.10.043`); Akkermansia restores barrier + reverses metabolic disease (Everard
+  `10.1073/pnas.1219451110`). Champions: Cani, Honda, Valenzano, Sonnenburg, Cryan. Tier: `animal`+`mechanistic`
+  (+ one small human surrogate `rct`, Wastyk `10.1016/j.cell.2021.06.019`).
+- **side_b (downstream readout / weak in humans):** every causal result is in mice/fish or surrogate markers; the
+  Wilmanski uniqueness-survival signal exists ONLY in the already-healthy; the one human RCT showed the **fiber
+  arm did NOT raise diversity** (benefit is microbiome-context-dependent), and no human study moves a health/aging
+  endpoint; composition is heavily confounded by diet, polypharmacy, motility, host health. Champions:
+  Wilmanski/Gibbons, epi-critique. Tier: `cohort`+`cross-sectional`+absence-of-human-outcome-RCT.
+- **status:** `open` (likely bidirectional). Animal FMT is the strongest causal hint AND does not establish a
+  contribution to NORMAL HUMAN aging. The human evidence stops at a small surrogate RCT.
+- **resolution_notes:** Needs human FMT/fiber/fermented-food RCTs with aging endpoints (clocks, frailty, hard
+  outcomes). The Akkermansia human signal came from the PASTEURIZED bug — even the mechanism is unsettled. Don't
+  read microbiome aging-clocks, diversity, or composition correlations as causal for humans.
+
+```json
+{"id":"conflict-microbiome-causality","question":"Does the gut microbiome cause aging/inflammaging or reflect it? (deepened with intervention + human-RCT layer)","deepens":"conflict-microbiome-cause-or-consequence","side_a":{"claim":"Young→old FMT extends lifespan (killifish) & reverses multi-organ inflammaging (mouse); SCFAs causally drive Tregs; fiber-starvation erodes mucus; Akkermansia restores barrier/metabolism","champions":["Cani","Honda","Valenzano","Sonnenburg","Cryan"],"tier":"animal+mechanistic+rct-surrogate","papers":["10.7554/elife.27014","10.1186/s40168-022-01243-w","10.1038/nature12721","10.1016/j.cell.2016.10.043","10.1073/pnas.1219451110","10.1016/j.cell.2021.06.019"]},"side_b":{"claim":"All causal data is animal/surrogate; uniqueness-survival only in the already-healthy; human fiber arm did NOT raise diversity; no human aging-endpoint study; composition confounded by diet/drugs/motility/host health","champions":["Wilmanski","Gibbons","epi-critique"],"tier":"cohort+cross-sectional+absence-of-human-outcome-rct"},"status":"open","resolution_notes":"Likely bidirectional; animal FMT strongest causal hint but no contribution to normal human aging established; human evidence stops at one small surrogate RCT (Wastyk). Akkermansia human signal was from the pasteurized bug. Needs human FMT/fiber RCTs with aging endpoints."}
+```
+
+---
+
+## conflict-blue-zones-data-quality — Are Blue Zones real longevity hotspots, or artifacts of bad age records?
+The corpus's central unbiased-grading test: a popular, monetized lifestyle narrative whose foundational
+demographic data is contested. Grade the demography and the lifestyle claims separately.
+- **side_a (real hotspots, lifestyle lessons valid):** validated record-linkage demography found an exceptional
+  centenarian cluster in inland Sardinia (Poulain AKEA `10.1016/j.exger.2004.06.016`, near-1:1 male:female ratio);
+  five regions share plausible lifestyle traits ("Power 9": plant-forward diet, constant movement, social
+  connection, purpose) that individually echo stronger evidence (PREDIMED for diet; Adventist Health Study for
+  Loma Linda). Champions: Buettner, Poulain, Pes, Willcox. Tier: `cross-sectional` demography + `rct`(diet, via
+  PREDIMED, separately).
+- **side_b (age data unreliable):** extreme-age records are predicted by markers of error/fraud — apparent
+  supercentenarian rates collapse once birth registration begins, and surviving hotspots correlate with poverty,
+  missing death certificates, and pension incentives (age exaggeration), not survival. Champions: Saul Justin
+  Newman (`10.1101/704080`, Ig Nobel 2024). Tier: `theoretical`/preprint, contested.
+- **status:** `open / partially-resolved-against-the-strong-claim`. Newman does NOT show lifestyles are useless
+  or that validated Sardinian data is fake; he shows the AGE DATA (esp. for popularized, less-validated zones)
+  is unreliable enough that "people live to 100 BECAUSE of diet X" cannot be treated as a cohort finding.
+- **resolution_notes:** Grade the Power 9 levers on their OWN evidence (PREDIMED, social-connection cohorts),
+  NOT on centenarian counts — as a Blue-Zones causal inference they are `theoretical`/contested. Loma Linda
+  (Adventists) is the one zone with strong cohort backing and survives best. Needs the demographic rebuttal
+  (Robine/GRG validation) carded as side_a at proper tier.
+
+```json
+{"id":"conflict-blue-zones-data-quality","question":"Are Blue Zones genuine longevity hotspots or artifacts of poor age records?","side_a":{"claim":"Validated demography found a real Sardinian centenarian cluster (AKEA); 5 regions share plausible Power-9 lifestyle traits echoed by stronger evidence (PREDIMED diet, Adventist cohort)","champions":["Buettner","Poulain","Pes","Willcox"],"tier":"cross-sectional+rct-separate","papers":["10.1016/j.exger.2004.06.016","10.1177/1559827616637066"]},"side_b":{"claim":"Extreme-age records track clerical error/pension fraud: rates collapse once birth registration starts; hotspots correlate with poverty/missing death certs/pension incentives, not survival","champions":["Saul Justin Newman"],"tier":"theoretical-preprint-contested","papers":["10.1101/704080"]},"status":"open-partially-resolved-against-strong-claim","resolution_notes":"Newman undercuts the AGE DATA, not lifestyle per se. Grade Power-9 levers on own evidence (PREDIMED/social cohorts), not centenarian counts — as a Blue-Zones causal inference they are theoretical/contested. Loma Linda (Adventists) best-supported. Needs Robine/GRG validation rebuttal carded as side_a."}
+```
+
+
+---
+
+> Appended 2026-06-27 (Wave 5) from Domains F/G/I (yoga + meditation + mind-body lineages). Append, don't
+> overwrite. These three are the load-bearing honest-grading conflicts for the contemplative-practice
+> literature, which is small, unblindable, expectancy-prone, and (for TM) entangled with movement-funded
+> research groups. Companion file: `02-domains/F2-yoga-meditation-lineages.md`; claims in `I-claims.json`.
+
+## conflict-meditation-telomere-overclaim - Does meditation slow cellular aging (telomeres/telomerase), or is that an over-read surrogate?
+- **side_a (meditation slows cellular aging):** intensive meditation raises immune-cell telomerase activity
+  vs control, mediated by psychological change, and stress-reduction should preserve telomere length - so
+  meditation plausibly slows cellular aging. Champions: Epel, Blackburn, Jacobs, Lavretsky (meditation/
+  telomere group). Tier: small `rct` (surrogate) + `theoretical`. Papers: Jacobs/Epel 2011
+  `10.1016/j.psyneuen.2010.09.010`; Epel 2009 (hypothesis) `10.1111/j.1749-6632.2009.04414.x`.
+- **side_b (over-read surrogate):** telomerase activity is a surrogate-of-a-surrogate - NOT telomere length,
+  biological age, or lifespan; studies are small, short, wait-list-controlled, with exploratory mediation;
+  telomere length itself is a noisy, contested aging biomarker; no meditation study has moved a hard aging
+  endpoint. A Nobel-level telomere pedigree (Blackburn) does not validate the small clinical studies.
+  Champions: aging-biomarker skeptics; the broader telomere-as-aging-clock critique. Tier: absence of
+  hard-endpoint evidence + biomarker critique.
+- **status:** `open` (leaning side_b on the OUTCOME claim). The within-study telomerase *association* is real;
+  the *cellular-aging / longevity* interpretation is unestablished.
+- **resolution_notes:** Index the telomerase finding as a small surrogate result; never as 'meditation slows
+  aging'. Cross-links to `conflict-which-clock-is-valid` (biomarker reliability) and the longevity outcome canon.
+
+```json
+{"id":"conflict-meditation-telomere-overclaim","question":"Does meditation slow cellular aging (telomeres/telomerase), or is that an over-read surrogate?","side_a":{"claim":"Intensive meditation raises telomerase activity (mediated by psychological change) -> plausibly preserves telomeres/slows cellular aging","champions":["Epel","Blackburn","Jacobs","Lavretsky"],"tier":"rct-small-surrogate+theoretical","papers":["10.1016/j.psyneuen.2010.09.010","10.1111/j.1749-6632.2009.04414.x"]},"side_b":{"claim":"Telomerase activity is a surrogate-of-a-surrogate (not length/age/lifespan); studies small/short/wait-list; telomere length itself a noisy contested biomarker; no hard aging endpoint moved","champions":["aging-biomarker skeptics"],"tier":"absence-of-hard-endpoint+biomarker-critique"},"status":"open","resolution_notes":"Within-study telomerase association real; cellular-aging/longevity interpretation unestablished. Index as small surrogate result, not 'meditation slows aging'. Links to conflict-which-clock-is-valid."}
+```
+
+---
+
+## conflict-tm-research-allegiance-bias - Are Transcendental Meditation's cardiovascular benefits real, or an artifact of movement-affiliated research?
+- **side_a (real benefit):** a meta of RCTs shows TM lowers BP a few mmHg (Anderson 2008 `10.1038/ajh.2007.65`);
+  a hard-endpoint RCT in CHD patients showed ~48% fewer MI/stroke/death events (Schneider 2012
+  `10.1161/circoutcomes.112.967406`); the AHA gives TM a qualified 'may be considered' (Brook 2013
+  `10.1161/hyp.0b013e318293645f`). Champions: Schneider, Anderson, Maharishi-University investigators. Tier:
+  `meta`+`rct`.
+- **side_b (allegiance/funding bias):** a large share of TM cardiovascular research originates from
+  Maharishi-affiliated institutions with strong organizational/commercial interest; trials are unblindable,
+  independent replication is thin, and the highest-tier independent synthesis (Cochrane, Rees 2024
+  `10.1002/14651858.cd013358.pub2`) rates the CVD-outcome evidence low/very-low certainty. The AHA endorses
+  only TM (weakly) and declines other techniques - consistent with a research-base, not a technique, effect.
+  Champions: Cochrane reviewers, evidence-quality critique. Tier: `meta` (independent) + allegiance-bias critique.
+- **status:** `open / partially-resolved`. A small BP effect is plausible and not TM-unique; the big
+  hard-endpoint claim rests on a single allegiance-linked trial that independent synthesis cannot confirm.
+- **resolution_notes:** Needs independent (non-TM-affiliated), pre-registered replication of the events trial.
+  Cite the AHA's *qualified* IIB/B as the ceiling, and the Cochrane low-certainty as the honest floor. Note the
+  TM-affiliated rebuttal (Orme-Johnson & Barnes 2017) to the Goyal meta is itself part of the dispute record.
+
+```json
+{"id":"conflict-tm-research-allegiance-bias","question":"Are TM's cardiovascular benefits real or an artifact of movement-affiliated research?","side_a":{"claim":"TM lowers BP a few mmHg (meta); ~48% fewer CVD events in a CHD RCT; AHA gives a qualified nod","champions":["Schneider","Anderson","Maharishi-University investigators"],"tier":"meta+rct","papers":["10.1038/ajh.2007.65","10.1161/circoutcomes.112.967406","10.1161/hyp.0b013e318293645f"]},"side_b":{"claim":"Much TM CV research is from Maharishi-affiliated institutions; unblindable; thin independent replication; Cochrane rates CVD-outcome evidence low/very-low certainty; AHA endorses only TM weakly","champions":["Cochrane (Rees 2024)","evidence-quality critique"],"tier":"meta-independent+allegiance-critique","papers":["10.1002/14651858.cd013358.pub2"]},"status":"open-partially-resolved","resolution_notes":"Small BP effect plausible & not TM-unique; big hard-endpoint claim rests on a single allegiance-linked trial unconfirmed by independent synthesis. Needs non-affiliated pre-registered replication. AHA IIB/B = ceiling; Cochrane low-certainty = floor."}
+```
+
+---
+
+## conflict-mindfulness-active-control - Does mindfulness meditation outperform active controls, or mostly beat doing-nothing?
+- **side_a (specific benefit):** mindfulness/MBSR improves anxiety, depression, pain and immune/brain markers;
+  RCTs and the Davidson 2003 brain-immune study support a real, trainable effect. Champions: Kabat-Zinn,
+  Davidson, mindfulness-clinical field. Tier: `rct`+`meta`. Papers: Davidson 2003
+  `10.1097/01.psy.0000077505.67574.e3`.
+- **side_b (mostly non-specific / wait-list inflation):** the best meta restricting to ACTIVE controls (Goyal
+  2014 `10.1001/jamainternmed.2013.13018`) finds only small effects on anxiety/depression/pain and NO
+  superiority over drugs, exercise or other active treatments; meditation is unblindable so wait-list trials
+  inflate effects via expectancy and attention; much of the apparent benefit is non-specific stress-reduction.
+  Champions: Goyal, AHRQ evidence review, methodological critics. Tier: `meta` (active-control-restricted).
+- **status:** `mostly-resolved (specific-effect modest)`. Mindfulness genuinely helps anxiety/depression/pain
+  a little; it is NOT shown to beat established active treatments, and wait-list-controlled effect sizes are
+  overstated.
+- **resolution_notes:** Grade meditation trials by their COMPARATOR: wait-list vs active changes the verdict.
+  The honest claim is 'a modest, broadly-as-good-as-other-options stress/mood intervention', not a superior cure.
+
+```json
+{"id":"conflict-mindfulness-active-control","question":"Does mindfulness meditation outperform active controls, or mostly beat doing-nothing?","side_a":{"claim":"MBSR/mindfulness improves anxiety/depression/pain + brain/immune markers; real trainable effect","champions":["Kabat-Zinn","Davidson","mindfulness-clinical field"],"tier":"rct+meta","papers":["10.1097/01.psy.0000077505.67574.e3"]},"side_b":{"claim":"Active-control-restricted meta finds only small effects and NO superiority over drugs/exercise/other active treatments; unblindable wait-list trials inflate effects; benefit largely non-specific","champions":["Goyal","AHRQ review","methodological critics"],"tier":"meta-active-control","papers":["10.1001/jamainternmed.2013.13018"]},"status":"mostly-resolved-specific-effect-modest","resolution_notes":"Helps anxiety/depression/pain modestly; not shown to beat established active treatments; wait-list effect sizes overstated. Grade by comparator (wait-list vs active)."}
+```
+
+---
+
+## conflict-loneliness-vs-isolation — Is it subjective loneliness or objective social isolation that drives mortality?
+*(Wave 5, Domain M)*
+- **side_a (loneliness):** subjective loneliness is itself a mortality risk factor; the felt experience of
+  disconnection drives stress-axis and behavioral harm. Champions: Cacioppo; Holt-Lunstad (loneliness term
+  in the 2015 triad). Tier: `meta` (Holt-Lunstad 2015, `10.1177/1745691614568352`, loneliness OR ~1.26).
+- **side_b (objective isolation):** when modeled together, **objective isolation predicts mortality and the
+  loneliness association attenuates to non-significance** after adjustment — the practical/biological fact of
+  being alone matters more than the feeling. Champions: Steptoe. Tier: `cohort` (Steptoe 2013,
+  `10.1073/pnas.1219686110`, isolation HR ~1.26).
+- **status:** `open`. Both are real risk factors at meta scale; their relative weight is cohort-dependent and
+  they plausibly act via different pathways (isolation = access/practical/biological; loneliness =
+  psychological/behavioral). Not resolvable without designs that vary one while holding the other.
+- **resolution_notes:** No `meta`-tier head-to-head resolution. Likely "both, differently," not "one or the other."
+
+```json
+{"id":"conflict-loneliness-vs-isolation","question":"Does subjective loneliness or objective social isolation drive the mortality signal?","side_a":{"claim":"subjective loneliness is an independent mortality risk factor","champions":["Cacioppo","Holt-Lunstad"],"tier":"meta"},"side_b":{"claim":"objective isolation carries the signal; loneliness attenuates after adjustment","champions":["Steptoe"],"tier":"cohort"},"status":"open","resolution_notes":"Both real at meta scale; different pathways; relative weight cohort-dependent. Not 'one or the other'."}
+```
+
+---
+
+## conflict-hrt-timing — Is menopausal hormone therapy harmful (WHI) or beneficial when started early (timing hypothesis)?
+*(Wave 5, Domain N)*
+- **side_a (harm):** WHI showed combined estrogen+progestin **increased CHD, stroke, VTE and breast cancer**;
+  the arm was halted. Champions: Rossouw / WHI Writing Group. Tier: `rct` (Rossouw 2002,
+  `10.1001/jama.288.3.321`) — but in women **mean age ~63, a decade+ past menopause.**
+- **side_b (timing/benefit):** estrogen is vasculo-protective on **healthy** endothelium; started early
+  (<6–10y post-menopause) it slows atherosclerosis and the age-stratified risk/benefit is favorable in the
+  50–59 group. Champions: Hodis (ELITE), Manson (WHI reanalysis), Harman (KEEPS). Tier: `rct` but
+  **surrogate** (CIMT) — ELITE `10.1056/NEJMoa1505241`; Manson `10.1001/jama.2013.278040`; KEEPS `10.7326/M14-0353`.
+- **status:** `partially-resolved`. The harm is real for **late-initiation HRT as CVD prevention**; the timing
+  hypothesis rehabilitates **early-initiation HRT (esp. for symptoms)** as reasonable/likely-net-beneficial —
+  but **on surrogate endpoints only.** The hard-outcome (events/mortality) early-HRT RCT does not exist.
+- **resolution_notes:** Definitive event-driven timing RCT missing. "WHI was right about its old cohort and
+  wrongly universalized" is the consensus reframe; "early HRT extends healthspan" remains unproven.
+
+```json
+{"id":"conflict-hrt-timing","question":"Is menopausal HRT harmful (WHI) or beneficial when initiated early (timing hypothesis)?","side_a":{"claim":"estrogen+progestin increases CHD/stroke/VTE/breast cancer (WHI, mean age ~63)","champions":["Rossouw","WHI Writing Group"],"tier":"rct"},"side_b":{"claim":"early-initiation estrogen is vasculo-protective/neutral; age-stratified benefit in 50-59","champions":["Hodis","Manson","Harman"],"tier":"rct-surrogate"},"status":"partially-resolved","resolution_notes":"Harm real for late-initiation CVD-prevention; early HRT reasonable/likely-net-beneficial but only on surrogate (CIMT) endpoints. Hard-outcome early-HRT RCT missing."}
+```
+
+---
+
+## conflict-altitude-longevity-confounding — Does living at altitude extend life, or is the association confounded?
+*(Wave 5, Domain O)*
+- **side_a (altitude protective):** higher residential altitude associates with **lower CVD/some-cause
+  mortality** in large cohorts; proposed mechanism = mild chronic hypoxia as a hormetic stressor (HIF
+  conditioning). Champions: Faeh (Swiss National Cohort). Tier: `cohort` (Faeh 2009,
+  `10.1161/CIRCULATIONAHA.108.840579`).
+- **side_b (confounded):** altitude co-varies with **lower obesity, more terrain-driven activity, cooler
+  temperature, higher UV, diet, healthy-mover/migration selection, and air quality** — any of which could
+  carry the signal; hypoxia-as-cause is unproven and not isolable observationally. Tier: confounding critique.
+- **status:** `open`. The mortality direction is real; the **causal attribution to hypoxia is unsupported.**
+  Mendelian randomization on altitude is infeasible; sibling/migration designs are lacking.
+- **resolution_notes:** Distinct from the well-established HIF/EPAS1 *mechanism* (which is solid) — the
+  unresolved question is the *population outcome*, not the molecular biology.
+
+```json
+{"id":"conflict-altitude-longevity-confounding","question":"Does residential altitude itself lower mortality, or is the association confounded?","side_a":{"claim":"higher altitude -> lower CVD mortality via mild hypoxic hormesis","champions":["Faeh"],"tier":"cohort"},"side_b":{"claim":"altitude confounded by obesity/activity/UV/temperature/migration selection; hypoxia-as-cause unproven","champions":["confounding critique"],"tier":"confounding-critique"},"status":"open","resolution_notes":"Direction real, causal attribution to hypoxia unsupported and not isolable observationally. HIF/EPAS1 mechanism is solid; the OUTCOME claim is not."}
+```
+
+---
+
+## conflict-alcohol-jcurve — Is moderate alcohol protective (the J-curve), or is the benefit a confounding artifact?
+*(Wave 9, Domain R — exposures & environment)*
+- **side_a (J-curve / protective):** decades of observational cohorts and meta-analysis show light-to-moderate
+  drinkers have **lower CVD and all-cause mortality** than abstainers and heavy drinkers (a J/U shape). Proposed
+  mechanism: ethanol raises HDL and lowers fibrinogen. Champions: Ronksley, Brien; the older Di Castelnuovo lineage.
+  Tier: `meta` (uncorrected cohort). Paper: Ronksley 2011 BMJ `10.1136/bmj.d671`.
+- **side_b (confounded / no protective effect):** the protective dip is largely **abstainer/sick-quitter bias**
+  (the non-drinker reference is contaminated with the already-ill and ex-heavy-drinkers) plus **healthy-user
+  confounding** (moderate drinkers are richer, thinner, more active). Three strong designs converge against
+  protection: **Mendelian randomization** shows a monotonic alcohol-CVD curve (Biddinger 2022 JAMA Netw Open
+  `10.1001/jamanetworkopen.2022.3849`); a **bias-corrected meta** of 107 cohorts / 4.8M people finds the
+  low-volume benefit disappears (Zhao 2023 `10.1001/jamanetworkopen.2023.6185`); and **GBD** concludes the
+  all-outcome minimum-risk level is zero, with cancer risk monotonic from the first drink (Griswold/GBD 2018
+  `10.1016/S0140-6736(18)31310-2`). Champions: Biddinger, Stockwell, Naimi, Griswold, Murray. Tier: `rct`-proxy
+  (MR) + bias-corrected `meta`.
+- **status:** `partially-resolved`. The **protective claim is refuted** by the strongest designs (MR + bias
+  correction), and for **cancer there is no safe level**. What remains genuinely open: the **exact all-cause
+  threshold** (Wood 2018 `10.1016/S0140-6736(18)30134-X` puts the risk minimum near <=100 g/week, not zero) and a
+  **small, age-dependent CV/diabetes offset in older adults** (GBD 2022 `10.1016/S0140-6736(22)00847-9`: TMREL ~0
+  for the young, ~1 drink/day for older adults).
+- **resolution_notes:** No `meta`-tier source rehabilitates the protective claim; the J-curve as "alcohol is
+  cardioprotective" is dead. The residual debate is about the *exact* low-dose threshold and a *small* offset in
+  the old, not about whether moderate drinking is health-promoting (it isn't). Practical: don't start drinking for
+  health; less is better for cancer all the way to zero; the young have the most to lose.
+
+```json
+{"id":"conflict-alcohol-jcurve","question":"Is moderate alcohol protective (J-curve), or is the benefit a confounding artifact?","side_a":{"claim":"light-to-moderate drinking lowers CVD/all-cause mortality vs abstainers (J-curve)","champions":["Ronksley","Brien","Di Castelnuovo"],"tier":"meta-uncorrected-cohort"},"side_b":{"claim":"protective signal is abstainer/sick-quitter bias + healthy-user confounding; MR shows monotonic risk; no safe level for cancer; bias-corrected benefit vanishes","champions":["Biddinger","Stockwell","Naimi","Griswold","Murray"],"tier":"MR+bias-corrected-meta"},"status":"partially-resolved","resolution_notes":"Protective claim refuted by MR + bias correction; cancer has no safe level. Still open: exact all-cause threshold (~<=100 g/wk, Wood 2018) and a small age-dependent CV offset in older adults (GBD 2022 TMREL ~0 young, ~1 drink/day older). Don't drink for health."}
+```
+
+---
+
+## conflict-telomere-lengthening-benefit-vs-cancer-risk — Is lengthening telomeres / activating telomerase good for you, or is it a cancer-enabling step?
+*(Wave 9, Domain X — telomeres & cellular aging)*
+- **side_a (lengthening is rejuvenating):** telomere attrition is a hallmark of aging; short telomeres cause
+  replicative senescence and stem-cell exhaustion (Hayflick limit; Harley 1990; Bodnar 1998 immortalised
+  normal human cells by forcing TERT). Therefore re-lengthening telomeres / activating telomerase should
+  restore divisional capacity and slow tissue aging. This is the premise of the entire commercial telomere-
+  activator market (TA-65 / cycloastragenol; Salvador 2016 RCT showed a telomere-length increase vs placebo).
+  Champions: Harley, the telomerase-activator industry, lifestyle-telomere over-readers. Tier: `invitro`/`animal`
+  mechanism + `rct` surrogate (telomere length only).
+- **side_b (lengthening enables cancer):** somatic telomerase silencing is a deliberate tumour-suppressor
+  setting — the telomere clock kills over-dividing pre-cancerous lineages before they accumulate enough
+  mutations to become malignant. Telomerase is reactivated in ~85-90% of human cancers (Kim 1994; Shay &
+  Bacchetti 1997) and is the canonical 'replicative immortality' hallmark of cancer. Mendelian randomization
+  (the strongest causal design available) shows genetically LONGER telomeres are associated with INCREASED
+  risk of multiple cancers — lung adenocarcinoma, melanoma, glioma — while lowering risk of some non-
+  neoplastic conditions (Haycock 2017). So lengthening trades degenerative risk for cancer risk; it is not a
+  free lunch. Champions: Haycock & the Telomeres MR Collaboration, cancer biologists, Blackburn/Greider's own
+  caution. Tier: `rct`-proxy (MR) + large cancer surveys.
+- **status:** `partially-resolved` (against side_a as a self-evidently-good therapy). The causal evidence (MR)
+  says the trade-off is real and bidirectional; the commercial 'lengthen your telomeres' pitch is refuted as
+  obviously beneficial. What remains genuinely open: whether a *tightly-targeted, transient, tissue-specific*
+  telomerase boost (e.g. for a defined telomere-disease like dyskeratosis congenita / pulmonary fibrosis)
+  could be net-positive — that is a different, gated clinical question from a consumer supplement.
+- **resolution_notes:** No source rehabilitates broad telomerase activation as safe rejuvenation; the MR data
+  make the cancer trade-off the default assumption. Practical: do NOT take telomerase activators for
+  longevity. This is the central honest point of Domain X — the marketed lever and the cancer escape mechanism
+  are the same biochemistry.
+
+```json
+{"id":"conflict-telomere-lengthening-benefit-vs-cancer-risk","question":"Is lengthening telomeres / activating telomerase good for you, or is it a cancer-enabling step?","side_a":{"claim":"telomere attrition causes senescence/stem-cell exhaustion, so re-lengthening / telomerase activation restores divisional capacity and slows aging (premise of the telomere-activator market; TA-65)","champions":["Harley","telomerase-activator industry"],"tier":"invitro/animal-mechanism+rct-surrogate"},"side_b":{"claim":"somatic telomerase silencing is a tumour suppressor; telomerase is reactivated in ~85-90% of cancers and Mendelian randomization shows genetically longer telomeres -> higher cancer risk; lengthening trades degenerative risk for cancer risk","champions":["Haycock","Telomeres MR Collaboration","Blackburn","Greider"],"tier":"rct-proxy-MR+cancer-surveys"},"status":"partially-resolved","resolution_notes":"Causal MR evidence makes the cancer trade-off the default; the consumer 'lengthen your telomeres' pitch is refuted as obviously beneficial. Still open: tightly-targeted transient telomerase for defined telomere-diseases (a gated clinical question, not a supplement). Do NOT take telomerase activators for longevity."}
+```
