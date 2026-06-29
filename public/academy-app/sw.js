@@ -1,7 +1,7 @@
 /* Bucket Academy service worker — offline-first app shell + corpus.
  * After one online load, the app (and KaTeX) work offline. Progress lives in
  * localStorage, so a returning learner needs no network at all. */
-const CACHE = "bucket-academy-v5";
+const CACHE = "bucket-academy-v6";
 const SHELL = [
   "./",
   "./index.html",
@@ -41,25 +41,35 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
-  // Network-first for the corpus (so new atoms appear) and for auth-config.js
-  // (so the founder enabling/disabling sign-in propagates without a cache bump);
-  // cache-first for everything else.
-  if (req.url.includes("/corpus/") || req.url.includes("/js/auth-config.js")) {
+  const sameOrigin = req.url.startsWith(self.location.origin);
+  // NETWORK-FIRST for same-origin APP CODE + data so every deploy reaches users
+  // immediately (no manual cache bump needed): HTML, JS, CSS, JSON, and the app root.
+  // Falls back to cache when offline. This is why a returning PWA user used to get
+  // stale code — cache-first JS/CSS. Static media (icons/fonts/images) + the KaTeX
+  // CDN stay cache-first (they rarely change and are big).
+  const isAppCode = sameOrigin && (
+    req.mode === "navigate" ||
+    /\.(html|js|css|json|webmanifest)(\?|$)/.test(req.url) ||
+    req.url.endsWith("/")
+  );
+  if (isAppCode) {
     e.respondWith(
       fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put(req, copy));
+        if (res && res.ok) {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(req, copy));
+        }
         return res;
       }).catch(() => caches.match(req))
     );
     return;
   }
+  // CACHE-FIRST for static media + CDN (icons, fonts, images, KaTeX).
   e.respondWith(
     caches.match(req).then((hit) =>
       hit ||
       fetch(req).then((res) => {
-        // opportunistically cache CDN (KaTeX) + same-origin assets
-        if (res.ok && (req.url.startsWith(self.location.origin) || req.url.includes("katex"))) {
+        if (res.ok && (sameOrigin || req.url.includes("katex"))) {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put(req, copy));
         }
