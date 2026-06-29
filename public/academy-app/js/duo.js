@@ -109,6 +109,15 @@
   }
   function emojiFor(id) { return root.LangEmoji ? root.LangEmoji.emojiFor(id) : null; }
 
+  /* ---- bkt-q8e polyglott data accessors (cognates + phrases) ---- */
+  function cognateFor(id) { var b = B(); return (b && b.cognateFor) ? b.cognateFor(id) : null; }
+  function allPhrases() { var b = B(); return (b && b.allPhrases) ? b.allPhrases() : []; }
+  function loadPolyData() {
+    var b = B();
+    if (b && b.loadCognates) try { b.loadCognates(); } catch (e) {}
+    if (b && b.loadPhrases) try { b.loadPhrases(); } catch (e) {}
+  }
+
   /* ---- has the learner picked a language yet? (drives onboarding) ---- */
   function shouldOnboard() {
     var b = B();
@@ -123,6 +132,7 @@
    *  each). Node/unit state derives from FSRS cards. (Surface #2 model)
    * ===================================================================== */
   var WORDS_PER_NODE = 4;
+  var PHRASES_PER_NODE = 4; // bkt-q8e: phrase lessons group ~4 phrases per node
   // canonical category display order (matches deck tiers / the prompt)
   var CAT_ORDER = ["number", "color", "family", "animal", "body", "food",
                    "nature", "object", "time", "adjective", "verb", "abstract"];
@@ -171,18 +181,51 @@
         icon: CAT_ICON[cat] || "✦", n: ui + 1, nodes: nodes,
       });
     });
+    // bkt-q8e: append a PHRASES unit — verified beginner phrases (greetings,
+    // courtesy, intros, survival, dining, directions). Phrases are scheduled
+    // by FSRS just like words, under their own "phrase:<id>" card namespace so
+    // they don't collide with word atoms.
+    var phraseUnit = buildPhraseUnit(target, units.length + 1);
+    if (phraseUnit) units.push(phraseUnit);
+
     // annotate node state: done (all cards introduced & all mastery>=.6), or count
     units.forEach(function (u) {
       u.nodes.forEach(function (nd) {
-        var introduced = nd.ids.filter(function (id) { return e.cardFor(id); }).length;
-        var learned = nd.ids.filter(function (id) { return e.cardFor(id) && e.masteryFor(id) >= 0.55; }).length;
+        var ids = nd.cardIds || nd.ids;
+        var introduced = ids.filter(function (id) { return e.cardFor(id); }).length;
+        var learned = ids.filter(function (id) { return e.cardFor(id) && e.masteryFor(id) >= 0.55; }).length;
         nd.introduced = introduced;
         nd.learned = learned;
-        nd.total = nd.ids.length;
-        nd.done = learned >= nd.total; // a node is "done" when its words are learned
+        nd.total = ids.length;
+        nd.done = learned >= nd.total; // a node is "done" when its items are learned
       });
     });
     return units;
+  }
+
+  // Build the Phrases unit from the curated phrase deck, keeping only phrases that
+  // have a form in the current target language.
+  function phraseCardId(id) { return "phrase:" + id; }
+  function phrasesForTarget(target) {
+    return allPhrases().filter(function (p) { return p.forms && p.forms[target]; });
+  }
+  function buildPhraseUnit(target, n) {
+    var phrases = phrasesForTarget(target);
+    if (phrases.length < 3) return null; // data not loaded yet, or too few
+    var nodes = [];
+    for (var i = 0; i < phrases.length; i += PHRASES_PER_NODE) {
+      var chunk = phrases.slice(i, i + PHRASES_PER_NODE);
+      nodes.push({
+        n: nodes.length + 1,
+        phrase: true,
+        phrases: chunk,
+        ids: chunk.map(function (p) { return p.id; }),
+        cardIds: chunk.map(function (p) { return phraseCardId(p.id); }),
+      });
+    }
+    return {
+      cat: "phrases", label: "Phrases", icon: "💬", n: n, nodes: nodes, phrase: true,
+    };
   }
 
   // Flatten nodes into a linear list (unitIdx,nodeIdx) for prev/next lock logic.
@@ -329,7 +372,8 @@
     function renderPick() {
       body.appendChild(el("h1", "duo-ob-h1", "Set up your languages"));
       body.appendChild(el("p", "duo-ob-lede",
-        "Pick the languages you know and the ones you want to learn — you can learn several at once."));
+        "Pick the languages you know and the ones you want to learn — you can learn several at once. " +
+        "You'll build words AND everyday phrases, and every word lights up across the languages you already know."));
 
       // -- "I already know" (source / multi-select) --
       body.appendChild(el("h2", "duo-ob-h2", "I already know…"));
@@ -582,10 +626,16 @@
           };
         }
         holder.appendChild(btn);
-        // a small word-preview caption under each node
-        var first = e.byId[nd.ids[0]];
-        holder.appendChild(el("div", "duo-node-cap",
-          esc((first && (first.forms[ls.target] || {}).word) || "")));
+        // a small word/phrase-preview caption under each node
+        var cap;
+        if (nd.phrase) {
+          var fp = (nd.phrases && nd.phrases[0]) || null;
+          cap = (fp && fp.forms[ls.target]) || "";
+        } else {
+          var first = e.byId[nd.ids[0]];
+          cap = (first && (first.forms[ls.target] || {}).word) || "";
+        }
+        holder.appendChild(el("div", "duo-node-cap", esc(cap)));
         lane.appendChild(holder);
       });
       scroller.appendChild(lane);
@@ -728,10 +778,15 @@
     var ls = settings();
     var target = ls.target, known = ls.known, shown = ls.shown;
 
-    // Build the exercise sequence. Each WORD in the node gets 1-2 exercises of varying
-    // type; we also add a "match" round and a "listen" round spanning the node's words.
-    var words = node.ids.map(function (id) { return e.byId[id]; }).filter(Boolean);
-    var seq = buildExerciseSequence(words, target, known, shown);
+    // Build the exercise sequence. PHRASE nodes (bkt-q8e) build phrase exercises;
+    // word nodes give each word 1-2 exercises of varying type + a match/listen round.
+    var seq;
+    if (node.phrase) {
+      seq = buildPhraseSequence(node.phrases || [], target, known, shown);
+    } else {
+      var words = node.ids.map(function (id) { return e.byId[id]; }).filter(Boolean);
+      seq = buildExerciseSequence(words, target, known, shown);
+    }
     if (!seq.length) { onExit && onExit(); return; }
 
     var i = 0;
@@ -833,6 +888,19 @@
         if (ab) rev.appendChild(ab);
         txt.appendChild(rev);
       }
+      // bkt-q8e: the polyglott "this app sees me" moment — radiate the word across
+      // the learner's KNOWN languages, highlight cognates + shared root. Only for
+      // single-word atoms that actually have cognate data.
+      if (opts.atom && opts.atom.id && cognateFor(opts.atom.id)) {
+        var connBtn = el("button", "duo-conn-btn", "✦ See the connections");
+        var panelOpen = false;
+        connBtn.onclick = function () {
+          if (panelOpen) return; panelOpen = true; connBtn.remove();
+          var panel = radiatePanel(opts.atom, opts.target || target);
+          if (panel) txt.appendChild(panel);
+        };
+        txt.appendChild(connBtn);
+      }
       var cont = el("button", "duo-cont " + (correct ? "" : "soft"), "CONTINUE");
       cont.onclick = function () { fb.remove(); i++; nextEx(); };
       fb.appendChild(icon); fb.appendChild(txt); fb.appendChild(cont);
@@ -863,7 +931,7 @@
 
     function finishLesson() {
       // mark the node done by ensuring each word has a card (lightly), bump logs
-      node.ids.forEach(function (id) { if (!e.cardFor(id)) grade(id, 3, "recall"); });
+      (node.cardIds || node.ids).forEach(function (id) { if (!e.cardFor(id)) grade(id, 3, "recall"); });
       bumpLessonsToday();
       markCourseStarted(target); // bkt-h9k: this language now has progress → list it
       var xpEarned = Math.max(0, e.summary().xp - xpStart) + correctCount * 2; // ensure a visible reward
@@ -922,6 +990,25 @@
     return seq;
   }
 
+  /* ---- bkt-q8e: build the phrase exercise sequence for a phrase node ---- */
+  function buildPhraseSequence(phrases, target, known, shown) {
+    var e = E();
+    var seq = [];
+    var types = ["phraseMC", "phraseBank", "phraseListen"];
+    phrases.forEach(function (p, idx) {
+      if (!(p.forms && p.forms[target])) return;
+      var t = types[idx % types.length];
+      var brandNew = !e.cardFor(phraseCardId(p.id));
+      // first exposure of a NEW phrase = recognition (can't-fail); assembly comes later
+      if (brandNew && t !== "phraseMC") t = "phraseMC";
+      if (t === "phraseListen" && !(root.LangAudio && root.LangAudio.supported())) t = "phraseBank";
+      seq.push({ type: t, phrase: p });
+      // a second, harder pass for each phrase: assemble it from word tiles
+      seq.push({ type: "phraseBank", phrase: p });
+    });
+    return seq;
+  }
+
   /* ---- siblings for distractors (same category, real coverage) ---- */
   function siblings(a, target, n) {
     var e = E();
@@ -947,6 +1034,10 @@
     if (ex.type === "typed") return exTyped(ex.atom, ctx);
     if (ex.type === "match") return exMatch(ex.atoms, ctx);
     if (ex.type === "listen") return exListen(ex.atom, ctx);
+    // bkt-q8e phrase exercises
+    if (ex.type === "phraseMC") return exPhraseMC(ex.phrase, ctx);
+    if (ex.type === "phraseBank") return exPhraseBank(ex.phrase, ctx);
+    if (ex.type === "phraseListen") return exPhraseListen(ex.phrase, ctx);
     return null;
   }
 
@@ -964,6 +1055,96 @@
   function revealOf(a, ctx) {
     var tf = a.forms[ctx.target] || {};
     return { word: tf.word, ipa: tf.ipa, gloss: a.gloss || a.title || "" };
+  }
+
+  /* ===================================================================== *
+   *  bkt-q8e — THE COGNATE / ETYMOLOGY RADIATE PANEL
+   *  "This app sees me": after a word, radiate it across the learner's KNOWN
+   *  languages + the target. Highlight true cognates (shared etymological
+   *  root), print the shared-root line. Honest: concepts with no etymology
+   *  just show translations; false friends are omitted (not derivable here).
+   *  Shines brightest when the learner knows MULTIPLE languages.
+   * ===================================================================== */
+  // Pretty-print a proto-root token + name its proto-language when we can confidently
+  // tell. PIE roots carry laryngeals (h₁ h₂ h₃), the ʷ/ḱ/ǵ series, or end in a bare
+  // ablaut hyphen (*lewk-, *wed-); those are the classic Proto-Indo-European shapes.
+  function rootLabel(root) {
+    if (!root) return "";
+    var bare = root.replace(/^\*/, "");
+    var pie = /[h₁₂₃ʷǵḱ̥ʰ]|[₀-₉ʰ]/.test(bare) || /^[a-zµ].*-$/.test(bare);
+    return (pie ? "Proto-Indo-European " : "") + root;
+  }
+  function radiatePanel(atom, target) {
+    var data = cognateFor(atom.id);
+    if (!data) return null;
+    var ls = settings();
+    // languages to radiate across: the target + every KNOWN language (the polyglott
+    // thesis — the more you know, the more it sees you). Dedupe, target first.
+    var known = (ls.known || []).slice();
+    var langs = [target].concat(known.filter(function (l) { return l !== target; }));
+    // keep only langs we actually have a form for
+    langs = langs.filter(function (l) { return data.forms[l] && data.forms[l].word; });
+    if (langs.length < 2) return null; // nothing to radiate against
+
+    var panel = el("div", "duo-radiate");
+    var tForm = data.forms[target] || {};
+    var tCognate = !!(tForm && tForm.cognate);
+
+    // header line
+    var head = el("div", "duo-rad-head");
+    head.innerHTML = '<span class="dr-spark">✦</span> ' +
+      (known.length >= 2
+        ? "You know " + known.length + " languages — watch this word light up across them"
+        : "See this word across your languages");
+    panel.appendChild(head);
+
+    // the shared-root line (only when the target word is part of a cognate cluster)
+    if (data.root && tCognate) {
+      var rl = el("div", "duo-rad-root");
+      rl.innerHTML = 'Shared root: <b>' + esc(rootLabel(data.root)) + "</b>";
+      panel.appendChild(rl);
+    } else if (!data.root) {
+      var nr = el("div", "duo-rad-root soft");
+      nr.textContent = "No shared etymology on record — here are the translations.";
+      panel.appendChild(nr);
+    }
+
+    // the radiate rows: flag + lang + word, cognate rows highlighted
+    var rows = el("div", "duo-rad-rows");
+    langs.forEach(function (l) {
+      var f = data.forms[l];
+      var isTarget = l === target;
+      // a known language counts as a "match" with the target when both are cognate
+      // (i.e. share the dominant root cluster).
+      var cog = !!f.cognate && tCognate;
+      var row = el("div", "duo-rad-row" + (cog ? " cognate" : "") + (isTarget ? " target" : ""));
+      var left = el("div", "drr-lang");
+      left.innerHTML = '<span class="drr-flag">' + flag(l) + "</span>" +
+        '<span class="drr-name">' + esc(langName(l)) + "</span>";
+      var right = el("div", "drr-word");
+      right.innerHTML = '<b>' + esc(f.word) + "</b>" +
+        (f.ipa ? ' <i>/' + esc(f.ipa) + "/</i>" : "");
+      if (cog && !isTarget) right.appendChild(el("span", "drr-tag", "cognate"));
+      if (isTarget) right.appendChild(el("span", "drr-tag tgt", "learning"));
+      var ab = audioBtn(f.word, l, { label: "Hear " + f.word, cls: "inline" });
+      if (ab) right.appendChild(ab);
+      row.appendChild(left); row.appendChild(right);
+      rows.appendChild(row);
+    });
+    panel.appendChild(rows);
+
+    // gentle polyglott nudge when the learner only knows one language
+    if (known.length < 2) {
+      var nudge = el("button", "duo-rad-nudge", "+ Add a language you know → see more connections");
+      nudge.onclick = function () { var b = B(); if (b && b.mount) { /* handled by My Languages */ } toast("Add known languages in My Languages to unlock more cognates."); };
+      panel.appendChild(nudge);
+    }
+
+    // CC-BY-SA attribution (MUST stay)
+    panel.appendChild(el("div", "duo-rad-attrib",
+      "Etymology via Wiktionary (CC-BY-SA, Kaikki)"));
+    requestAnimationFrame(function () { panel.classList.add("in"); });
+    return panel;
   }
 
   /* (a) PICTURE multiple-choice — emoji prompt → word options (Duo "Which one is X?") */
@@ -1231,6 +1412,154 @@
     });
     box.appendChild(opts);
     // attempt an autoplay (most browsers allow speechSynthesis after prior gestures in-session)
+    setTimeout(function () { try { root.LangAudio.speak(correct, ctx.target); } catch (e) {} }, 250);
+    return box;
+  }
+
+  /* ===================================================================== *
+   *  bkt-q8e — PHRASE EXERCISES (words + PHRASES; reuse the proven mechanics)
+   *  A phrase grades a "phrase:<id>" FSRS card (independent scheduling).
+   * ===================================================================== */
+  // the known-language prompt for a phrase (primary known, falling back to English)
+  function phraseHint(p, ctx) {
+    var hl = (ctx.shown && ctx.shown[0]) || (ctx.known && ctx.known[0]) || "en";
+    var w = p.forms[hl];
+    if (w && hl !== ctx.target) return { lang: hl, text: w };
+    return { lang: "en", text: p.en };
+  }
+  function phraseReveal(p, ctx) {
+    return { word: p.forms[ctx.target], ipa: p.ipa || "", gloss: p.en };
+  }
+  function phraseAtom(p) { return { id: phraseCardId(p.id), phrase: true }; }
+
+  // sibling phrases (same category) for distractors
+  function phraseSiblings(p, target, n) {
+    var pool = phrasesForTarget(target).filter(function (q) {
+      return q.id !== p.id && q.forms[target] && q.forms[target] !== p.forms[target];
+    });
+    var same = pool.filter(function (q) { return q.category === p.category; });
+    if (same.length < n) same = same.concat(pool.filter(function (q) { return same.indexOf(q) < 0; }));
+    return shuffle(same).slice(0, n);
+  }
+
+  /* (f) PHRASE multiple-choice — known-language prompt → pick the target phrase */
+  function exPhraseMC(p, ctx) {
+    var correct = p.forms[ctx.target] || "";
+    if (!correct) return null;
+    var distractors = phraseSiblings(p, ctx.target, 2).map(function (q) { return q.forms[ctx.target]; });
+    if (distractors.length < 1) return exPhraseBank(p, ctx);
+    var options = shuffle([correct].concat(distractors));
+    var hint = phraseHint(p, ctx);
+    var box = el("div", "duo-ex duo-ex-mc duo-ex-phrase");
+    box.appendChild(exHeader("PHRASE", 'How do you say <b>"' + esc(hint.text) + '"</b> in ' + esc(langName(ctx.target)) + "?"));
+    var opts = el("div", "duo-mc-opts");
+    var answered = false;
+    options.forEach(function (w, k) {
+      var o = el("button", "duo-mc-card");
+      o.innerHTML = '<span class="dmc-num">' + (k + 1) + "</span><span class=\"dmc-word\">" + esc(w) + "</span>";
+      var ab = audioBtn(w, ctx.target, { label: "Hear it", cls: "inline" });
+      if (ab) o.appendChild(ab);
+      o.onclick = function () {
+        if (answered) return; answered = true;
+        var right = w === correct;
+        box.querySelectorAll(".duo-mc-card").forEach(function (c) { c.disabled = true; });
+        o.classList.add(right ? "right" : "wrong");
+        if (!right) { var rc = box.querySelector('[data-correct="1"]'); if (rc) rc.classList.add("right"); }
+        ctx.onAnswer({ correct: right, atom: phraseAtom(p), level: "recall", rating: 3,
+          reveal: phraseReveal(p, ctx), target: ctx.target, repeat: { type: "phraseMC", phrase: p } });
+      };
+      if (w === correct) o.dataset.correct = "1";
+      opts.appendChild(o);
+    });
+    box.appendChild(opts);
+    return box;
+  }
+
+  /* (g) PHRASE word-bank — assemble the target phrase from word tiles (the "translate this" mechanic) */
+  function exPhraseBank(p, ctx) {
+    var correct = p.forms[ctx.target] || "";
+    if (!correct) return null;
+    var hint = phraseHint(p, ctx);
+    var box = el("div", "duo-ex duo-ex-bank duo-ex-phrase");
+    box.appendChild(exHeader("BUILD THE PHRASE",
+      'Say <b>"' + esc(hint.text) + '"</b> in ' + esc(langName(ctx.target))));
+    // tokenize into WORDS (phrases assemble from word tiles, not letters)
+    var tokens = correct.split(/(\s+)/).filter(function (t) { return t.trim().length; });
+    // if the phrase is a single token, fall back to MC (no meaningful assembly)
+    if (tokens.length < 2) return exPhraseMC(p, ctx);
+    // decoy word tiles from a sibling phrase
+    var sib = phraseSiblings(p, ctx.target, 1)[0];
+    var decoys = sib ? sib.forms[ctx.target].split(/\s+/).filter(function (t) { return t.trim() && tokens.indexOf(t) < 0; }).slice(0, 2) : [];
+    var tiles = shuffle(tokens.concat(decoys));
+
+    var assembled = el("div", "duo-bank-line");
+    var tray = el("div", "duo-bank-tray");
+    var built = [];
+    var answered = false;
+    function refresh() {
+      assembled.innerHTML = "";
+      built.forEach(function (bd, idx) {
+        var chip = el("button", "duo-bank-chip", esc(bd.ch));
+        chip.onclick = function () { if (answered) return; bd.tile.disabled = false; bd.tile.classList.remove("used"); built.splice(idx, 1); refresh(); checkBtnState(); };
+        assembled.appendChild(chip);
+      });
+    }
+    tiles.forEach(function (tok) {
+      var t = el("button", "duo-bank-tile duo-bank-word", esc(tok));
+      t.onclick = function () { if (answered || t.disabled) return; t.disabled = true; t.classList.add("used"); built.push({ ch: tok, tile: t }); refresh(); checkBtnState(); };
+      tray.appendChild(t);
+    });
+    box.appendChild(assembled);
+    box.appendChild(tray);
+    var check = el("button", "duo-check disabled", "CHECK");
+    function checkBtnState() { check.classList.toggle("disabled", built.length === 0); }
+    check.onclick = function () {
+      if (answered || !built.length) return; answered = true;
+      var typed = built.map(function (b) { return b.ch; }).join(" ");
+      // tolerant compare via the existing accent/typo grader on the whole phrase
+      var res = check2(typed, correct, ctx.target);
+      var ok = res.verdict !== "wrong";
+      ctx.onAnswer({ correct: ok, close: res.verdict === "close", atom: phraseAtom(p), level: "recall",
+        rating: res.verdict === "close" ? 2 : 3, reveal: phraseReveal(p, ctx), target: ctx.target,
+        repeat: { type: "phraseBank", phrase: p } });
+    };
+    box.appendChild(check);
+    return box;
+  }
+
+  /* (h) PHRASE listen — hear the phrase, pick it (only when TTS is supported) */
+  function exPhraseListen(p, ctx) {
+    if (!(root.LangAudio && root.LangAudio.supported())) return exPhraseMC(p, ctx);
+    var correct = p.forms[ctx.target] || "";
+    if (!correct) return null;
+    var distractors = phraseSiblings(p, ctx.target, 2).map(function (q) { return q.forms[ctx.target]; });
+    if (distractors.length < 1) return exPhraseMC(p, ctx);
+    var options = shuffle([correct].concat(distractors));
+    var box = el("div", "duo-ex duo-ex-listen duo-ex-phrase");
+    box.appendChild(exHeader("LISTEN", "Tap the phrase you hear"));
+    var big = el("button", "duo-listen-big", "🔊");
+    big.setAttribute("aria-label", "Play the phrase");
+    big.onclick = function () { root.LangAudio.speak(correct, ctx.target); big.classList.remove("pulse"); void big.offsetWidth; big.classList.add("pulse"); };
+    box.appendChild(big);
+    var slow = el("button", "duo-listen-slow", "🐢 Slower");
+    slow.onclick = function () { root.LangAudio.speak(correct, ctx.target, { rate: 0.55 }); };
+    box.appendChild(slow);
+    var opts = el("div", "duo-mc-opts");
+    var answered = false;
+    options.forEach(function (w) {
+      var o = el("button", "duo-mc-card");
+      o.innerHTML = '<span class="dmc-word">' + esc(w) + "</span>";
+      o.onclick = function () {
+        if (answered) return; answered = true;
+        var right = w === correct;
+        box.querySelectorAll(".duo-mc-card").forEach(function (c) { c.disabled = true; });
+        o.classList.add(right ? "right" : "wrong");
+        ctx.onAnswer({ correct: right, atom: phraseAtom(p), level: "recall", rating: 3,
+          reveal: phraseReveal(p, ctx), target: ctx.target, repeat: { type: "phraseListen", phrase: p } });
+      };
+      opts.appendChild(o);
+    });
+    box.appendChild(opts);
     setTimeout(function () { try { root.LangAudio.speak(correct, ctx.target); } catch (e) {} }, 250);
     return box;
   }

@@ -3311,6 +3311,38 @@
     });
   }
 
+  /* ---------- Cognate + phrase data (bkt-q8e) ----------
+   * The polyglott layer: a cognate/etymology index (corpus/lang-cognates.json,
+   * built by build-cognates.mjs from the Polingual subset) and a curated phrase
+   * deck (corpus/lang-phrases.json, built by build-phrases.mjs). Both are lazy-
+   * loaded once, on first use inside the Languages branch, and cached. They are
+   * additive data resources — NOT a separate product (they live inside Academy). */
+  let _cognates = null, _cognatesPromise = null;
+  let _phrases = null, _phrasesPromise = null;
+  function loadCognates() {
+    if (_cognates) return Promise.resolve(_cognates);
+    if (_cognatesPromise) return _cognatesPromise;
+    _cognatesPromise = fetch("corpus/lang-cognates.json", { cache: "force-cache" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { _cognates = d; return d; })
+      .catch(() => { _cognates = null; return null; });
+    return _cognatesPromise;
+  }
+  function loadPhrases() {
+    if (_phrases) return Promise.resolve(_phrases);
+    if (_phrasesPromise) return _phrasesPromise;
+    _phrasesPromise = fetch("corpus/lang-phrases.json", { cache: "force-cache" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { _phrases = d; return d; })
+      .catch(() => { _phrases = null; return null; });
+    return _phrasesPromise;
+  }
+  // Synchronous accessors (return cached data or null if not yet loaded).
+  function cognateFor(atomId) {
+    return (_cognates && _cognates.concepts && _cognates.concepts[atomId]) || null;
+  }
+  function allPhrases() { return (_phrases && _phrases.phrases) || []; }
+
   /* ---------- DuoLang bridge (epic bkt-w0t) ----------
    * Expose exactly the closure-private helpers the dedicated Duolingo-style language
    * UI (js/duo.js) needs, without leaking app internals or forcing a refactor. The
@@ -3336,6 +3368,11 @@
     markCourseStarted,       // register a target as a started course
     courseStats,             // per-language { learned, total, xp, streak, active }
     flag: (l) => l,          // duo.js owns its own flag map; placeholder for parity
+    // bkt-q8e: polyglott cognate/etymology + phrase data (lazy-loaded, cached)
+    loadCognates,
+    loadPhrases,
+    cognateFor,
+    allPhrases,
   };
   // Does the dedicated Duo language experience own the current view?
   function duoActive() {
@@ -3362,6 +3399,7 @@
     // LANGUAGE branch → the dedicated Duolingo-style experience (path home + lesson player).
     if (where === "home" && duoActive()) {
       syncLangNamespace(); // bkt-h9k: load the ACTIVE language's own state before rendering
+      loadCognates(); loadPhrases(); // bkt-q8e: warm the polyglott data caches
       if (window.DuoLang.shouldOnboard()) return mount(window.DuoLang.onboarding(() => go("home")));
       return mount(window.DuoLang.path(go));
     }

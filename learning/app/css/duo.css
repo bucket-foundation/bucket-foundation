@@ -408,6 +408,53 @@
 .duo-add-lang:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--duo-green-d); }
 .dal-plus { font-size: 22px; line-height: 1; font-weight: 800; }
 
+/* ===================================================================== *
+ *  bkt-q8e — the cognate / etymology RADIATE panel (the polyglott moment)
+ *  Shown inside the feedback bar after a word. Parchment-tasteful, aegean +
+ *  gold accents, true cognates lit in laurel green. Real ≥44px controls.
+ * ===================================================================== */
+.duo-conn-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
+  min-height: 44px; padding: 8px 16px; border: 1.5px solid var(--duo-blue);
+  background: transparent; color: var(--duo-blue); border-radius: 999px;
+  font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+.duo-conn-btn:active { transform: translateY(1px); }
+
+.duo-radiate { margin-top: 12px; background: #fbf8ef; border: 1px solid var(--duo-line);
+  border-radius: 14px; padding: 12px 12px 10px; max-height: 0; overflow: hidden;
+  opacity: 0; transition: max-height .35s ease, opacity .3s ease; }
+.duo-radiate.in { max-height: 520px; opacity: 1; }
+.duo-rad-head { font-family: var(--display); font-size: 14px; color: var(--duo-blue);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.dr-spark { color: var(--duo-soft); }
+.duo-rad-root { font-size: 13.5px; color: var(--ink-dim); margin-bottom: 8px;
+  padding: 6px 10px; background: var(--duo-green-bg); border-radius: 8px; }
+.duo-rad-root b { color: var(--duo-green-d); }
+.duo-rad-root.soft { background: var(--duo-soft-bg); color: #6e4f14; }
+.duo-rad-rows { display: flex; flex-direction: column; gap: 4px; }
+.duo-rad-row { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 7px 10px; border-radius: 9px; background: #fff; border: 1px solid var(--duo-line); }
+.duo-rad-row.cognate { background: var(--duo-green-bg); border-color: var(--duo-green); }
+.duo-rad-row.target { box-shadow: inset 3px 0 0 var(--duo-blue); }
+.drr-lang { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.drr-flag { font-size: 16px; }
+.drr-name { font-size: 13px; color: var(--ink-dim); }
+.drr-word { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.drr-word b { color: var(--duo-ink); font-size: 15px; }
+.drr-word i { color: var(--ink-faint); font-size: 12px; font-style: italic; }
+.drr-tag { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700;
+  color: #f5f0e1; background: var(--duo-green); padding: 2px 7px; border-radius: 999px; }
+.drr-tag.tgt { background: var(--duo-blue); }
+.duo-rad-nudge { display: block; width: 100%; margin-top: 10px; min-height: 44px;
+  border: 1.5px dashed var(--duo-blue); background: transparent; color: var(--duo-blue);
+  border-radius: 12px; padding: 10px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.duo-rad-attrib { margin-top: 9px; font-size: 11px; color: var(--ink-faint); text-align: center; }
+
+/* phrase exercises reuse the word mechanics; word-tiles are wider than letter-tiles */
+.duo-ex-phrase .duo-ex-q b { color: var(--duo-blue); }
+.duo-bank-word { font-size: 16px; }
+.duo-unit-banner.cat-phrases { background: linear-gradient(135deg, #2e6b6b, #3e5a2a); }
+
 @media (prefers-reduced-motion: reduce) {
   .duo-course-row, .dcr-bar i, .duo-add-lang { transition: none !important; }
+  .duo-radiate { transition: none !important; }
 }
