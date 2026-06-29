@@ -73,6 +73,20 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("65-hpa-axis.png","The HPA Stress Axis","cortisol + feedback"),
  ("66-synapse.png","The Synapse","how neurons talk"),
  ("64-geroprotector-matrix.png","Geroprotector Drugs","by evidence stage"),
+ ("67-bp-sprint.png","Blood Pressure (SPRINT)","lower targets save lives"),
+ ("68-hba1c-risk.png","HbA1c & CVD Risk","continuous, before diabetes"),
+ ("69-lpa-risk.png","Lp(a)","measure once, genetic"),
+ ("70-cac-risk.png","Coronary Calcium Score","zero = a strong all-clear"),
+ ("71-zone2-hiit.png","Zone 2 vs HIIT","both raise VO₂max"),
+ ("72-bone-tscore.png","Bone Density & Fracture","DXA T-score"),
+ ("73-immunosenescence.png","Immunosenescence","the aging immune system"),
+ ("74-screening-by-age.png","Screening by Decade","what to check, when"),
+ ("75-blood-panel.png","The Blood Panel","high-signal markers"),
+ ("76-cancer-treatment.png","Cancer Treatment","the modalities"),
+ ("77-vaccine-schedule.png","Adult Vaccines","underrated longevity medicine"),
+ ("78-insulin-resistance.png","Insulin Resistance","the central dysfunction"),
+ ("79-inflammation-paths.png","Acute vs Chronic Inflammation","heals vs harms"),
+ ("80-prevention-by-decade.png","Prevention by Decade","build → defend → maintain"),
 ]
 
 def b64(p):
