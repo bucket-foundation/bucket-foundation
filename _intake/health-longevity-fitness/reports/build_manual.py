@@ -9,39 +9,58 @@ ROOT = os.path.abspath(os.path.join(HERE, ".."))   # the corpus root
 def corpus(p): return os.path.join(ROOT, p)
 
 # ---- document structure: (part title, subtitle, [ (chapter-id, source-md-path, override-title|None) ]) ----
+def S(n): return os.path.join(SEC,n)
 STRUCT = [
  ("Part I", "The Map", [
-    ("atlas", os.path.join(SEC,"00-atlas.md"), None)]),
+    ("atlas", S("00-atlas.md"), None)]),
  ("Part II", "First Principles — the biophysics, chemistry & biology", [
-    ("foundations", os.path.join(SEC,"01-foundations.md"), None),
-    ("mechanism", os.path.join(SEC,"12-mechanism-bridge.md"), None)]),
+    ("foundations", S("01-foundations.md"), None),
+    ("mechanism", S("12-mechanism-bridge.md"), None)]),
  ("Part III", "The Evidence Landscape", [
     ("stateoffield", corpus("00-map/01-STATE-OF-THE-FIELD.md"), None)]),
  ("Part IV", "The Body — system by system", [
-    ("anatomy", os.path.join(SEC,"18-genetics-anatomy.md"), None),
-    ("endocrine", os.path.join(SEC,"13-endocrine-hormones.md"), None),
-    ("nervous", os.path.join(SEC,"14-nervous-system.md"), None),
-    ("immune", os.path.join(SEC,"15-immune-system.md"), None),
-    ("telomeres", os.path.join(SEC,"16-telomeres-cellular-aging.md"), None),
-    ("bodysys", os.path.join(SEC,"11-body-systems.md"), None),
-    ("organatlas", os.path.join(SEC,"17-organ-systems-atlas.md"), None)]),
- ("Part V", "The Levers — what you actually do", [
-    ("training", os.path.join(SEC,"02-training.md"), None),
-    ("nutrition", os.path.join(SEC,"03-nutrition-supplements.md"), None),
-    ("recovery", os.path.join(SEC,"05-recovery-sleep-stress.md"), None)]),
- ("Part VI", "Clinical & Medical", [
-    ("clinical", os.path.join(SEC,"07-clinical-prevention.md"), None),
-    ("brain", os.path.join(SEC,"08-brain-cognitive.md"), None),
-    ("pharma", os.path.join(SEC,"10-medical-pharmacology.md"), None)]),
- ("Part VII", "Environment & Exposures", [
-    ("exposures", os.path.join(SEC,"09-exposures-environment.md"), None)]),
- ("Part VIII", "Personalization", [
-    ("variation", os.path.join(SEC,"04-individual-variation.md"), None),
+    ("anatomy", S("18-genetics-anatomy.md"), None),
+    ("endocrine", S("13-endocrine-hormones.md"), None),
+    ("nervous", S("14-nervous-system.md"), None),
+    ("immune", S("15-immune-system.md"), None),
+    ("telomeres", S("16-telomeres-cellular-aging.md"), None),
+    ("bodysys", S("11-body-systems.md"), None),
+    ("organatlas", S("17-organ-systems-atlas.md"), None)]),
+ ("Part V", "Clinical Medicine — the diseases & their treatment", [
+    ("clinical", S("07-clinical-prevention.md"), None),
+    ("dz_cardiometabolic", S("22-disease-cardiometabolic-renal.md"), None),
+    ("dz_respgi", S("23-disease-respiratory-gi.md"), None),
+    ("dz_neurorheum", S("24-disease-neuro-rheum.md"), None),
+    ("oncology", S("25-oncology.md"), None),
+    ("infectious", S("26-infectious-disease.md"), None),
+    ("brain", S("08-brain-cognitive.md"), None),
+    ("mental", S("20-mental-health-psychiatry.md"), None),
+    ("addiction", S("35-addiction-substance-use.md"), None),
+    ("pain", S("21-pain-injury-rehab.md"), None),
+    ("surface", S("27-derm-dental-ent-eye.md"), None),
+    ("emergency", S("34-emergency-acute.md"), None)]),
+ ("Part VI", "Medicine, Drugs & the Frontier", [
+    ("pharmafull", S("28-pharmacology-full.md"), None),
+    ("pharma_longevity", S("10-medical-pharmacology.md"), None),
+    ("regenerative", S("31-regenerative-frontier.md"), None),
+    ("complementary", S("30-complementary-medicine.md"), None),
+    ("biohacking", S("32-biohacking-fringe.md"), None)]),
+ ("Part VII", "The Levers — what you actually do", [
+    ("training", S("02-training.md"), None),
+    ("nutrition", S("03-nutrition-supplements.md"), None),
+    ("recovery", S("05-recovery-sleep-stress.md"), None),
+    ("behavior", S("29-behavior-change.md"), None)]),
+ ("Part VIII", "Life, Environment & Society", [
+    ("lifestages", S("19-life-stages.md"), None),
+    ("exposures", S("09-exposures-environment.md"), None),
+    ("publichealth", S("33-public-health-systems.md"), None)]),
+ ("Part IX", "Personalization", [
+    ("variation", S("04-individual-variation.md"), None),
     ("measure", corpus("04-protocols/WHAT-TO-TRACK-SYNTHESIS.md"), None)]),
- ("Part IX", "The Open Questions", [
+ ("Part X", "The Open Questions", [
     ("conflicts", corpus("06-evidence/CONFLICTS-REGISTER.md"), None)]),
- ("Part X", "Go Deeper", [
-    ("library", os.path.join(SEC,"06-go-deeper-library.md"), None)]),
+ ("Part XI", "Go Deeper", [
+    ("library", S("06-go-deeper-library.md"), None)]),
 ]
 
 DIAGRAMS = [
@@ -193,7 +212,7 @@ COVER = """<div class="cover">
     Sources: OpenAlex · PubMed · Europe PMC · ClinicalTrials.gov · the Bucket biophysics canon<br>
     Doctrine: index all · grade everything · mechanism &#8800; outcome &#8800; protocol
   </div>
-  <div class="stat">19 chapters · 474 graded claims · 176 figures · 37 conflicts · 12 body systems · ~90,000 words</div>
+  <div class="stat">36 chapters · 836 graded claims · 660 figures · 37 conflicts · 12 body systems · ~199,000 words</div>
 </div>"""
 
 HOWTO = """<section class="front">
@@ -235,8 +254,8 @@ DOC = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <body>{COVER}{HOWTO}{toc_html}{body_html}
 <section class="front"><h1>Colophon</h1>
 <p class="small">Assembled by Nucleus Brain from the <code>health-longevity-fitness</code> research corpus
-(Bucket Foundation, bead <code>bkt-bg6</code>): 19 chapters, 474 graded claims across 26 domain files, a
-176-figure people map, 24 labs, 15 trials, 37 conflict objects, and a 53-movement illustrated library.
+(Bucket Foundation, bead <code>bkt-bg6</code>): 36 chapters, 836 graded claims across 43 domain files, a
+660-figure people map, 24 labs, 15 trials, 37 conflict objects, and a 53-movement illustrated library.
 Research drew on OpenAlex, PubMed/Europe PMC, ClinicalTrials.gov and the Bucket biophysics canon; every
 chapter was written under the index-all / grade-everything doctrine and visually or numerically verified.
 Exercise diagrams are procedurally generated vector figures. The corpus is idempotent and version-controlled;

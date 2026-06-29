@@ -84,9 +84,9 @@
     "effect_size": "MPS plateaus ~1.6 g/kg/day (Morton meta); muscle preservation benefit in elderly",
     "population": "Resistance-training adults (Morton 2018 meta of RCTs); elderly cohorts",
     "provenance": {"primary": "Morton et al., Br J Sports Med 2018 (protein RCT meta); Stuart Phillips body of work", "doi": "10.1136/bjsports-2017-097608", "surfaced_via": "04-protocols/peter-attia-medicine3.md"},
-    "conflicts_with": ["conflict-protein-mtor"],
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
     "canon_link": "",
-    "confidence_notes": "DIRECTLY CONFLICTS with the Longo/IGF-1/mTOR protein-restriction-for-longevity position (animal+epi tier). Likely age- and context-dependent (Attia/Phillips champion elderly muscle; Longo champions mid-life mTOR restraint). See 06-evidence/CONFLICTS.md conflict-protein-mtor — status OPEN.",
+    "confidence_notes": "DIRECTLY CONFLICTS with the Longo/IGF-1/mTOR protein-restriction-for-longevity position (animal+epi tier). Likely age- and context-dependent (Attia/Phillips champion elderly muscle; Longo champions mid-life mTOR restraint). See 06-evidence/CONFLICTS.md conflict-protein-mtor-longevity — status OPEN.",
     "added_on": "2026-06-27"
   },
   {
@@ -339,9 +339,9 @@
     "effect_size": "Composite of CR/fasting/IGF-1 + Mediterranean evidence; component RCTs are surrogate-marker (FMD risk markers), plus animal + epi; no human-longevity-endpoint trial of the whole pattern",
     "population": "Synthesis: FMD RCT (n~100), IGF-1 epi (NHANES), mouse lifespan, PREDIMED",
     "provenance": {"primary": "Longo, The Longevity Diet; Wei et al. Sci Transl Med 2017 (FMD RCT); Levine/Longo 2014 Cell Metab (protein-IGF1)", "doi": "10.1126/scitranslmed.aai8700", "surfaced_via": "04-protocols/longo.md"},
-    "conflicts_with": ["conflict-protein-mtor"],
+    "conflicts_with": ["conflict-protein-mtor-longevity"],
     "canon_link": "",
-    "confidence_notes": "Most trial-anchored protocol in this set, but still mostly surrogate/animal, NOT human-longevity outcome. The mid-life protein-restriction stance is the direct counterweight to Attia/Galpin/Phillips (conflict-protein-mtor, OPEN). Cross-ref D fmd-human-risk-markers, protein-igf1-age-dependent-mortality. COI: ProLon/L-Nutra. Domain D.",
+    "confidence_notes": "Most trial-anchored protocol in this set, but still mostly surrogate/animal, NOT human-longevity outcome. The mid-life protein-restriction stance is the direct counterweight to Attia/Galpin/Phillips (conflict-protein-mtor-longevity, OPEN). Cross-ref D fmd-human-risk-markers, protein-igf1-age-dependent-mortality. COI: ProLon/L-Nutra. Domain D.",
     "added_on": "2026-06-27"
   }
 ]

@@ -9,9 +9,10 @@
 **Coverage key:** ✅ covered (dedicated chapter + graded claims) · 🟡 partial (covered inside another
 chapter, not yet standalone) · ⚪ deferred (named, not yet researched — the honest edge of the map).
 
-**Corpus at a glance:** 19 chapters · ~90,000 words · **474 graded claims** across 26 domain files ·
-176 carded figures (+424 discovered, queued) · 37 first-class conflicts · 24 labs · 15 trials. Every
-claim carries an evidence tier + source; every disagreement is a first-class object.
+**Corpus at a glance:** 36 chapters · ~199,000 words · **836 graded claims** across 43 domain files ·
+**660 carded figures** · 37 first-class conflicts · 24 labs · 15 trials · a 53-movement illustrated
+library. Every claim carries an evidence tier + source; every disagreement is a first-class object.
+*(This is the "map everything" build — the body, the diseases, the medicine, and the levers, end to end.)*
 
 ---
 
@@ -62,6 +63,35 @@ The 12 organ systems — the part of the territory that was thin and is now mapp
 | 11 | **Sensory** (vision, hearing) | ✅ | §11 |
 | 12 | **Hematologic** (blood, iron, anemia, clotting) | ✅ | §17 |
 
+## Layer 2.5 — Clinical medicine (the diseases & their treatment)
+
+The diseases themselves, mapped as clinical entities — what they are, the mechanism, and evidence-based management.
+
+| Node | Status | Where |
+|---|---|---|
+| Cardiometabolic, endocrine & renal disease (CAD, HF, AFib, T2D, thyroid, PCOS, CKD) | ✅ | §22 |
+| Respiratory, digestive & hepatic disease (asthma, COPD, OSA, IBS, IBD, celiac, MASLD, hepatitis) | ✅ | §23 |
+| Neurological & rheumatologic/autoimmune disease (stroke, MS, Parkinson's, migraine, RA, gout, lupus) | ✅ | §24 |
+| Oncology — cancer biology (Hallmarks of Cancer), the major cancers, treatment | ✅ | §25 |
+| Infectious disease & microbiology (pathogens, antibiotics/AMR, the major infections) | ✅ | §26 |
+| Brain & neurodegeneration (dementia, the Lancet 14 factors) | ✅ | §08 |
+| Mental health & psychiatry (depression, anxiety, bipolar, schizophrenia, ADHD, PTSD, eating disorders) | ✅ | §20 |
+| Addiction & substance use | ✅ | §35 |
+| Pain, injury & rehabilitation | ✅ | §21 |
+| Surface & sensory specialties (dermatology, dental/oral, ENT, ophthalmology) | ✅ | §27 |
+| Clinical prevention & screening (the 4 horsemen, cancer screening) | ✅ | §07 |
+| Emergency, acute care & first aid | ✅ | §34 |
+
+## Layer 2.7 — Medicine, drugs & the frontier
+
+| Node | Status | Where |
+|---|---|---|
+| Pharmacology (how drugs work, the major classes) & pharmacogenomics | ✅ | §28 |
+| Longevity pharmacology (GLP-1, statins, vaccines, geroprotectors) | ✅ | §10 |
+| Regenerative medicine & the longevity frontier (stem cells, gene therapy, reprogramming) | ✅ | §31 |
+| Complementary & alternative medicine (graded honestly) | ✅ | §30 |
+| Biohacking & fringe interventions (graded) | ✅ | §32 |
+
 ## Layer 3 — The levers (what you actually do)
 
 | Node | Status | Where |
@@ -100,21 +130,28 @@ The 12 organ systems — the part of the territory that was thin and is now mapp
 
 ---
 
-## The honest edge of the map (what is thin or deferred)
+## The honest edge of the map (what remains thin)
 
-A map that claims to cover everything is lying. Current known-thin / deferred nodes:
+A map that claims to cover *everything* is lying — so here, precisely, is what this one still does **not**
+cover to depth. Most of the original deferred list is now filled: life stages incl. DOHaD & pregnancy (§19),
+pain & rehab (§21), psychiatry (§20), addiction (§35), dental & sensory (§27), pharmacogenomics (§28),
+public health & policy (§33), complementary & fringe (§30/§32), and the full disease atlases (§22–26). What
+genuinely remains thin:
 
-- ⚪ **Pediatric / developmental origins of health (DOHaD)** — largely out of scope (adult focus).
-- ⚪ **Pregnancy & perinatal health** — touched only via women's-longevity; not a dedicated chapter.
-- ⚪ **Dental beyond periodontal–systemic** (caries, malocclusion) — light.
-- 🟡 **Pain & chronic-pain management** — covered in §14, could be deeper.
-- 🟡 **Mental health / psychiatry** — covered as longevity factor (§08, §05), not as clinical psychiatry.
-- ⚪ **Rehabilitation & physical therapy protocols** — injury *prevention* covered; rehab not.
-- ⚪ **Fringe modalities** (grounding, structured-water therapy, most peptides, red-light beyond basics) — named and mostly graded `speculative`/`hypothesis`; not expanded.
-- 🟡 **Pharmacogenomics depth** — introduced in §18; not a full drug-by-gene reference.
-- ⚪ **Global / public-health & policy layer** — individual focus; population interventions only where they inform personal choice.
+- ⚪ **Surgery & anaesthesia** — surgical management is named per-condition, but operative technique,
+  perioperative care, and anaesthesiology are not a dedicated chapter.
+- ⚪ **Procedural / aesthetic dermatology** (lasers, fillers, cosmetic procedures) — light.
+- ⚪ **Reproductive-medicine depth** (contraception methods, ART/IVF protocols, gynecologic surgery) — covered
+  at the fertility/life-stage level (§19), not as a full specialty.
+- ⚪ **Clinical-reference depth** — this maps the *major* conditions of every specialty; it is a literate map,
+  not a 10,000-disease textbook. Rare diseases and management algorithms are out of scope by design.
+- 🟡 **Health-economics methodology** — the systems layer (§33) covers the essentials; formal
+  cost-effectiveness/QALY modelling is not deep.
+- 🟡 **The living frontier** — longevity science moves. The open conflicts (Part IX) and the unverified-DOI
+  list (`06-evidence/VERIFICATION-NEEDED.md`) are the honest moving edge, by design.
 
-These are the next research fronts. The map is built to expand into them without restructuring.
+Coverage is now **broad across the entire territory** rather than deep only on the longevity greatest-hits —
+which was the point. The map expands into the remaining nodes without restructuring.
 
 ---
 *Atlas maintained by Nucleus. Every ✅ resolves to graded claims + a chapter; every ⚪ is an honest gap on
