@@ -101,6 +101,17 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("91-minimal-equipment.png","No-Gym Training","train anywhere"),
  ("92-autonomic-ns.png","Autonomic Nervous System","sympathetic vs parasympathetic"),
  ("93-fight-or-flight.png","Fight-or-Flight","the stress cascade"),
+ ("95-social-connection.png","Social Connection","rivals quitting smoking"),
+ ("96-smoking-quit.png","Smoking & Quitting","~10 years, mostly recoverable"),
+ ("97-leading-causes.png","What Kills People","the leading causes"),
+ ("100-air-pollution.png","Air Pollution","a top-10 global killer"),
+ ("98-epigenetic-clock.png","The Epigenetic Clock","biological vs calendar age"),
+ ("99-sarcopenia.png","Sarcopenia","fight for your muscle"),
+ ("101-central-dogma.png","The Central Dogma","DNA → RNA → protein"),
+ ("103-the-cell.png","Inside the Cell","the unit of life"),
+ ("102-cholesterol-particles.png","Cholesterol & apoB","the particle that matters"),
+ ("104-longevity-pipeline.png","The Longevity Pipeline","proven → predatory"),
+ ("105-red-flags.png","Red-Flag Symptoms","when not to wait"),
 ]
 
 def b64(p):
