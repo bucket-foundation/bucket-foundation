@@ -96,31 +96,35 @@ def fasting_timeline():
         "The Fasting Timeline","Hour by hour — with the honest flag on the autophagy claims.",
         "Synthesis · §Fasting, Cleanses & Metabolic Protocols","fasting-physiology-timeline")
     s=[head]
-    ax_x0,ax_x1=70,W-60; ty=y0+150; trackh=46
-    phases=[(0,4,"Fed / absorptive","#cdbf9a"),(4,12,"Post-absorptive\nglycogen falls","#bfa86f"),
-            (12,18,"Glycogen depleted\nfat-burning ramps","#b08d3a"),(18,48,"Ketosis\n(BHB rises)","#8a6d12"),
-            (48,72,"Deep ketosis\nprolonged fast","#6b5418")]
-    hmax=72
+    ax_x0,ax_x1=70,W-60; ty=y0+185; trackh=50; hmax=72
+    # 4 wide phases — labels fit without collision
+    phases=[(0,14,"Fed → glycogen depletion","glucose, then glycogen","#cdbf9a"),
+            (14,24,"Fat-burning · early ketosis","BHB starts to rise","#b08d3a"),
+            (24,48,"Ketosis","ketones fuel the brain","#8a6d12"),
+            (48,72,"Deep / prolonged fast","supervision territory","#5e4a16")]
     def hx(h): return ax_x0+(h/hmax)*(ax_x1-ax_x0)
-    for a,b,lab,c in phases:
+    for a,b,lab,sub2,c in phases:
+        mx=(hx(a)+hx(b))/2
         s.append(f'<rect x="{hx(a):.0f}" y="{ty}" width="{hx(b)-hx(a):.0f}" height="{trackh}" fill="{c}"/>')
-        s.append(ds.text((hx(a)+hx(b))/2, ty+trackh+16, lab.split(chr(10))[0], size=10.5, fill=ds.INK, font=ds.BODY, weight="600", anchor="middle"))
-        if chr(10) in lab:
-            s.append(ds.text((hx(a)+hx(b))/2, ty+trackh+30, lab.split(chr(10))[1], size=9.5, fill=ds.MUT, font=ds.BODY, anchor="middle"))
-    # hour ticks
+        tc = "white" if c in ("#8a6d12","#5e4a16","#b08d3a") else ds.INK
+        s.append(ds.text(mx, ty+trackh+22, lab, size=11.5, fill=ds.INK, font=ds.BODY, weight="700", anchor="middle"))
+        s.append(ds.text(mx, ty+trackh+39, sub2, size=10, fill=ds.MUT, font=ds.BODY, anchor="middle"))
+        s.append(ds.text(mx, ty+trackh/2+5, f"{a}–{b}h", size=11, fill=tc, font=ds.MONO, weight="bold", anchor="middle"))
+    # hour ticks BELOW the bar (clear of the flag)
     for h in [0,12,24,36,48,60,72]:
-        s.append(f'<line x1="{hx(h):.0f}" y1="{ty-6}" x2="{hx(h):.0f}" y2="{ty}" stroke="{ds.MUT}" stroke-width="1.2"/>')
-        s.append(ds.text(hx(h),ty-12,f"{h}h",size=10,fill=ds.MUT,font=ds.MONO,anchor="middle"))
-    # autophagy flag band over ~16-48h
-    fa0,fa1=hx(16),hx(48)
-    s.append(f'<rect x="{fa0:.0f}" y="{ty-46}" width="{fa1-fa0:.0f}" height="34" rx="6" fill="#fbf0ea" stroke="{ds.WARN}" stroke-width="1.2" stroke-dasharray="4 3"/>')
-    s.append(ds.text((fa0+fa1)/2, ty-24, "⚠ 'autophagy peaks here' — timing is extrapolated from mice; unproven in humans",
-                     size=10.5, fill=ds.WARN, font=ds.BODY, weight="600", anchor="middle"))
-    # refeeding caution
-    s.append(ds.text(hx(60), ty+trackh+52, "⚠ prolonged fasts: refeeding-syndrome risk — electrolytes / supervision",
-                     size=10, fill=ds.WARN, font=ds.BODY, weight="600", anchor="middle"))
-    s.append(ds.text(ax_x0, H-58, "Bottom line: most benefit is the calorie deficit, not a magic clock. Early eating window > late.",
-                     size=11.5, fill=ds.INK, font=ds.BODY, italic=True))
+        s.append(f'<line x1="{hx(h):.0f}" y1="{ty+trackh}" x2="{hx(h):.0f}" y2="{ty+trackh+6}" stroke="{ds.FAINT}" stroke-width="1"/>')
+    # autophagy flag band ABOVE the bar, over ~16-48h — its own clear lane
+    fa0,fa1=hx(16),hx(48); fy=ty-58
+    s.append(f'<rect x="{fa0:.0f}" y="{fy}" width="{fa1-fa0:.0f}" height="40" rx="7" fill="#fbf0ea" stroke="{ds.WARN}" stroke-width="1.3" stroke-dasharray="5 3"/>')
+    s.append(f'<line x1="{(fa0+fa1)/2:.0f}" y1="{fy+40}" x2="{(fa0+fa1)/2:.0f}" y2="{ty}" stroke="{ds.WARN}" stroke-width="1" stroke-dasharray="2 3"/>')
+    s.append(ds.text((fa0+fa1)/2, fy+17, "⚠ “autophagy peaks here”", size=11.5, fill=ds.WARN, font=ds.BODY, weight="700", anchor="middle"))
+    s.append(ds.text((fa0+fa1)/2, fy+33, "timing extrapolated from mice — unproven in humans", size=9.8, fill=ds.WARN, font=ds.BODY, anchor="middle"))
+    # refeeding caution under the deep-fast phase, its own line
+    s.append(ds.text(hx(60), ty+trackh+62, "⚠ refeeding-syndrome risk — electrolytes / medical supervision", size=9.8, fill=ds.WARN, font=ds.BODY, weight="600", anchor="middle"))
+    # bottom line
+    s.append(f'<rect x="28" y="{H-92}" width="{W-56}" height="34" rx="6" fill="{ds.CARD}" stroke="{ds.GOLD}" stroke-width="1.1"/>')
+    s.append(ds.text(44, H-70, "Bottom line: most benefit is the calorie deficit it causes — not a magic clock. Early eating window beats late.",
+                     size=11.5, fill=ds.INK, font=ds.BODY, weight="600"))
     s.append(foot)
     ds.render("".join(s), f"{FIG}/15-fasting-timeline.png")
 

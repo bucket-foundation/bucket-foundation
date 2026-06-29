@@ -50,31 +50,32 @@ def new_fig(w=8.4, h=5.0):
     use_chart_style(); fig, ax = plt.subplots(figsize=(w,h)); return fig, ax
 
 def title(ax, kicker, head, sub=None):
-    """Consistent figure title block: gold kicker · Archivo head · muted subhead."""
-    ax.set_title("")  # clear default
+    """Consistent figure title block: gold kicker · Archivo head · muted subhead · rule BELOW it all."""
+    ax.set_title("")
     fig=ax.figure
-    fig.text(0.022, 0.965, kicker.upper(), color=GOLD_D, fontfamily=DISPLAY, fontweight="bold",
-             fontsize=9.5, ha="left", va="top", **{"alpha":0.95})
-    fig.text(0.022, 0.928, head, color=INK2, fontfamily=DISPLAY, fontweight="black",
-             fontsize=17, ha="left", va="top")
+    fig.text(0.022, 0.975, kicker.upper(), color=GOLD_D, fontfamily=DISPLAY, fontweight="bold",
+             fontsize=9.5, ha="left", va="top")
+    fig.text(0.022, 0.940, head, color=INK2, fontfamily=DISPLAY, fontweight="black",
+             fontsize=16, ha="left", va="top")
+    ry=0.876
     if sub:
-        fig.text(0.022, 0.882, sub, color=MUT, fontfamily=BODY, fontsize=10.5, ha="left", va="top",
+        fig.text(0.022, 0.896, sub, color=MUT, fontfamily=BODY, fontsize=10.5, ha="left", va="top",
                  fontstyle="italic")
-    # gold rule under title
-    fig.add_artist(plt.Line2D([0.022,0.45],[0.905,0.905], color=GOLD, lw=2.4,
+        ry=0.860
+    fig.add_artist(plt.Line2D([0.022,0.42],[ry,ry], color=GOLD, lw=2.4,
                               transform=fig.transFigure, solid_capstyle="round"))
 
 def footer(ax, source, claim_id=None, tier=None):
-    """Provenance footer: source (left) + claim-id mono (left-mono) + optional tier badge (right)."""
+    """Provenance footer: source (left) + claim-id mono + optional tier badge (right). Lives below the axes."""
     fig=ax.figure
-    fig.add_artist(plt.Line2D([0.022,0.978],[0.052,0.052], color=RULE, lw=0.8, transform=fig.transFigure))
-    fig.text(0.022, 0.028, source, color=FAINT, fontsize=8.2, ha="left", va="center", fontfamily=BODY)
+    fig.add_artist(plt.Line2D([0.022,0.978],[0.060,0.060], color=RULE, lw=0.8, transform=fig.transFigure))
+    fig.text(0.022, 0.036, source, color=FAINT, fontsize=8.2, ha="left", va="center", fontfamily=BODY)
     if claim_id:
-        fig.text(0.022, 0.012, "claim: "+claim_id, color=GOLD_D, fontsize=7.6, ha="left", va="center",
+        fig.text(0.022, 0.016, "claim: "+claim_id, color=GOLD_D, fontsize=7.6, ha="left", va="center",
                  fontfamily=MONO)
     if tier:
         c=TIER.get(tier.lower(),FAINT)
-        fig.text(0.978, 0.028, tier.upper(), color="white", fontsize=7.8, ha="right", va="center",
+        fig.text(0.978, 0.030, tier.upper(), color="white", fontsize=7.8, ha="right", va="center",
                  fontfamily=DISPLAY, fontweight="bold",
                  bbox=dict(boxstyle="round,pad=0.35", fc=c, ec="none"))
 
@@ -85,7 +86,7 @@ def flag(ax, text, kind="caution"):
             fontsize=8.6, color=c, fontfamily=BODY, fontweight="bold",
             bbox=dict(boxstyle="round,pad=0.4", fc="#fbf0ea" if kind!="ok" else "#e9f3ea", ec=c, lw=0.8))
 
-def save(fig, path, left=0.085, right=0.965, top=0.83, bottom=0.13):
+def save(fig, path, left=0.085, right=0.965, top=0.815, bottom=0.165):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     fig.subplots_adjust(left=left, right=right, top=top, bottom=bottom)
     fig.savefig(path); plt.close(fig); return path

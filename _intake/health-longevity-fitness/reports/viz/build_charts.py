@@ -75,7 +75,7 @@ def vo2max():
                     fontsize=10.5,color=ds.INK,fontweight="bold")
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10.5)
     ax.set_ylim(0,1.12); ax.set_ylabel("relative all-cause mortality (Low = 1.0)",fontsize=10,color=ds.MUT)
-    ax.set_xlabel("cardiorespiratory fitness category",fontsize=10,color=ds.MUT)
+    ax.set_xlabel("cardiorespiratory fitness category",fontsize=10,color=ds.MUT,labelpad=22)
     ax.annotate("~5× lower\n(elite vs low)",(4,0.20),xytext=(2.7,0.62),fontsize=10,color=ds.GOLD_D,
                 fontweight="bold",ha="center",
                 arrowprops=dict(arrowstyle="->",color=ds.GOLD_D,lw=1.6,connectionstyle="arc3,rad=-0.2"))

@@ -2,7 +2,7 @@
 """Render the design-system component sheet (tokens, type, badges, chips, icons) to verify quality."""
 import os, sys; sys.path.insert(0, os.path.dirname(__file__))
 import ds
-W,H=1000,720
+W,H=1000,792
 s=[ds.svg_open(W,H), ds.goldbar(W),
    ds.text(36,52,"BUCKET LONGEVITY MANUAL",size=11,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold",spacing="0.5"),
    ds.text(36,86,"Design System",size=30,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
@@ -62,7 +62,7 @@ s.append(ds.text(18,fh-14,"Source · author year",size=8.2,fill=ds.FAINT,font=ds
 s.append(ds.text(fw-14,fh-14,"claim: example-id",size=7.6,fill=ds.GOLD_D,font=ds.MONO,anchor="end"))
 b,_=ds.tier_badge(fw-90,16,"meta"); s.append(b)
 s.append("</g>")
-s.append(ds.text(36,H-20,"All components render from reports/viz/ds.py · cairosvg + matplotlib · reproducible & version-controlled",
+s.append(ds.text(36,H-22,"All components render from reports/viz/ds.py · cairosvg + matplotlib · reproducible & version-controlled",
                  size=10,fill=ds.FAINT,font=ds.BODY,italic=True))
 s.append(ds.svg_close())
 out=os.path.join(os.path.dirname(__file__),"..","..","media","figures","_design-system-sheet.png")
