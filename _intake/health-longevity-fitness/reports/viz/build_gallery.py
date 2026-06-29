@@ -161,6 +161,14 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("BX6-sti-matrix.png","STIs at a Glance","curable / manageable / preventable"),
  ("BX7-gynecologic.png","Gynecologic Disorders","what they are, what to do"),
  ("BX8-innate-components.png","Innate Immunity","components and how they age"),
+ ("BS1-levels-of-organization.png","Levels of Organization","atoms → organism"),
+ ("BS2-vo2max-oxygen-chain.png","The VO₂max Oxygen Chain","the trainable links"),
+ ("BS3-food-to-atp-chain.png","How Food Becomes ATP","the fuel chain"),
+ ("BS4-endocrine-axis.png","The Three-Tier Axis","the shared control law"),
+ ("BS5-inflammation-acute-chronic.png","Acute vs Chronic Inflammation","the OFF switch failing"),
+ ("BS6-masld-progression.png","Fatty-Liver Progression","and the reversal point"),
+ ("BS7-iron-two-sided.png","Iron — Two-Sided","too little / too much"),
+ ("BS8-inflammaging-hub.png","The Inflammaging Hub","many sources, one fire"),
 ]
 
 def b64(p):
