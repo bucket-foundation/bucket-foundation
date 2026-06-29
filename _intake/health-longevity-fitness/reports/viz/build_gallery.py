@@ -123,6 +123,11 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("M09-calf-raise.png","Calf Raise","lower-leg + tendon health"),
  ("M10-wall-sit.png","Wall Sit","isometric quad endurance"),
  ("M11-bird-dog.png","Bird-Dog","anti-rotation, spine-sparing"),
+ ("M12-dip.png","Dip","vertical push, chest + triceps"),
+ ("M13-dead-hang.png","Dead Hang","grip + spine decompression"),
+ ("M14-jump-rope.png","Jump Rope","portable conditioning"),
+ ("M15-hip-flexor-stretch.png","Hip-Flexor Stretch","counters sitting"),
+ ("M16-deep-squat-hold.png","Deep Squat Hold","hip + ankle mobility"),
 ]
 
 def b64(p):
