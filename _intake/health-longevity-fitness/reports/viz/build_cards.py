@@ -149,3 +149,53 @@ if __name__=="__main__":
     cpr_card(); print("cpr ok")
     befast_card(); print("befast ok")
     mechanism_convergence(); print("convergence ok")
+
+def anaphylaxis_card():
+    W,H=740,660
+    head,y0,foot=emerg_panel(W,H,"Emergency · anaphylaxis","Severe Allergic Reaction",
+        "Trouble breathing · swelling · hives + faint/vomit → act now.",
+        "Allergy/immunology guidance · epinephrine is first-line and time-critical")
+    s=[head]; steps=[
+        ("1","EPINEPHRINE","Into the outer thigh — NOW. Don't wait to 'see if it passes'."),
+        ("2","CALL","Emergency services. Say the word: anaphylaxis."),
+        ("3","LIE FLAT","Legs raised. (Sit up only if breathing is hard.) Don't stand."),
+        ("4","REPEAT","Second dose after ~5 min if no improvement."),
+        ("5","GO TO ER","Even if they recover — reactions can rebound (biphasic).")]
+    y=y0+8
+    for n,t,d in steps:
+        s.append(f'<circle cx="50" cy="{y+14}" r="17" fill="{RED}"/>')
+        s.append(ds.text(50,y+20,n,size=17,fill="white",font=ds.DISPLAY,weight="900",anchor="middle"))
+        s.append(ds.text(82,y+12,t,size=15,fill=ds.INK2,font=ds.DISPLAY,weight="800"))
+        s.append(ds.text(82,y+33,d,size=12.5,fill=ds.INK,font=ds.BODY))
+        y+=74
+    s.append(f'<rect x="28" y="{y}" width="{W-56}" height="40" rx="6" fill="{REDBG}" stroke="{RED}" stroke-width="1.2"/>')
+    s.append(ds.text(44,y+25,"Antihistamines & inhalers are NOT a substitute for epinephrine.",size=12,fill=RED,font=ds.BODY,weight="700"))
+    s.append(foot); ds.render("".join(s), f"{FIG}/13-anaphylaxis-card.png")
+
+def emergency_wallet():
+    W,H=1020,640
+    head,y0,foot=emerg_panel(W,H,"Emergency · the one-card reference","Recognize → Act",
+        "The handful that kill fast. Call emergency services first; this is the first move.",
+        "Education only · CPR/AED & first aid — take a certified course")
+    s=[head]
+    items=[("Cardiac arrest","unresponsive, not breathing","Hands-only CPR + AED. Push hard/fast."),
+           ("Heart attack","chest pressure, arm/jaw, sweaty","Call 911. Aspirin if advised. Rest."),
+           ("Stroke","face/arm/speech sudden — BE-FAST","Call 911 NOW. Note the time."),
+           ("Anaphylaxis","breathing trouble + hives/swelling","Epinephrine to thigh, then 911."),
+           ("Choking","can't breathe/speak, clutching throat","5 back-blows + 5 abdominal thrusts."),
+           ("Severe bleeding","spurting / won't stop","Firm direct pressure; tourniquet if limb."),
+           ("Opioid overdose","slow/no breathing, blue lips, pinpoint","Naloxone + 911 + rescue breaths."),
+           ("Seizure","convulsing","Clear space, cushion head. Don't restrain/put anything in mouth.")]
+    cols=2; cw=(W-2*70-30)/cols; ch=104; gx,gy=70,y0+14
+    for i,(name,rec,act) in enumerate(items):
+        r,c=divmod(i,cols); x=gx+c*(cw+30); yy=gy+r*(ch+14)
+        s.append(f'<rect x="{x:.0f}" y="{yy}" width="{cw:.0f}" height="{ch}" rx="9" fill="{ds.CARD}" stroke="{ds.RULE}" stroke-width="1.2"/>')
+        s.append(f'<rect x="{x:.0f}" y="{yy}" width="6" height="{ch}" rx="3" fill="{RED}"/>')
+        s.append(ds.text(x+20,yy+28,name,size=14,fill=ds.INK2,font=ds.DISPLAY,weight="800"))
+        s.append(ds.text(x+20,yy+50,"see: "+rec,size=10.5,fill=ds.MUT,font=ds.BODY,italic=True))
+        s.append(ds.text(x+20,yy+78,act,size=11.5,fill=ds.INK,font=ds.BODY,weight="600"))
+    s.append(foot); ds.render("".join(s), f"{FIG}/19-emergency-wallet.png")
+
+if "wallet_run" not in dir():
+    anaphylaxis_card(); print("anaphylaxis ok")
+    emergency_wallet(); print("wallet ok")
