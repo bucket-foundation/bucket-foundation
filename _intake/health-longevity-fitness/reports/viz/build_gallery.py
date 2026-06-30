@@ -336,6 +336,19 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("G06-le-doubling.png","Lifespan Doubled in 200 Years","mostly public health"),
  ("G07-sport-radar.png","Five-Axis Sport Profile","no sport wins on all"),
  ("G08-healthspan-gap.png","Healthspan, Not Just Lifespan","shrink the ~13-year gap"),
+ ("Z01-sport-matcher.png","Match the Sport to the Person","goals, joints, adherence"),
+ ("Z02-incidentaloma.png","Incidental Findings","the cost of looking"),
+ ("Z03-metabolizer-prodrug.png","Metabolizer × Prodrug","why the same gene flips"),
+ ("Z04-lab-pair.png","Reading an Axis from the Lab Pair","primary vs central"),
+ ("Z05-tissue-types.png","The Four Basic Tissues","the body's building blocks"),
+ ("Z06-gland-map.png","Endocrine Gland Map","head to pelvis"),
+ ("Z07-homology.png","Reproductive Homology","one body plan"),
+ ("Z08-breathwork.png","Two Breathing Tools","sigh + coherent"),
+ ("Z09-vaccines-kids.png","Childhood Vaccine-Preventable","what they hold back"),
+ ("Z10-imaging-flow.png","Image a Question, Not a Body","the decision flow"),
+ ("Z11-pku.png","PKU Newborn Screening","a heel-prick prevents disability"),
+ ("Z12-stemcell-flags.png","Predatory Stem-Cell Red Flags","walk away"),
+ ("Z13-surgery-questions.png","Questions Before Surgery","ask before you consent"),
 ]
 
 def b64(p):
