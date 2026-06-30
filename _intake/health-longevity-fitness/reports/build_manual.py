@@ -3,10 +3,28 @@
 Converts each markdown section via pandoc, wraps with parts + linked TOC + cover + diagrams."""
 import os, subprocess, re, html
 
+import json
 HERE = os.path.dirname(os.path.abspath(__file__))
 SEC  = os.path.join(HERE, "sections")
 ROOT = os.path.abspath(os.path.join(HERE, ".."))   # the corpus root
 def corpus(p): return os.path.join(ROOT, p)
+
+# ---- figures: map (figure -> chapter) + titles/captions, for per-chapter figure plates ----
+_VIZ=os.path.join(HERE,"viz")
+FIGMAP=json.load(open(os.path.join(_VIZ,"figure_chapter_map.json")))
+_gtxt=open(os.path.join(_VIZ,"build_gallery.py")).read()
+FIG_ORDER=[]; FIG_META={}
+for _m in re.finditer(r'\("([^"]*\.png)","([^"]*)","([^"]*)"\)', _gtxt):
+    FIG_ORDER.append(_m.group(1)); FIG_META[_m.group(1)]=(_m.group(2),_m.group(3))
+def figure_plate(cid):
+    items=[fn for fn in FIG_ORDER if FIGMAP.get(fn[:-4])==cid]
+    if not items: return ""
+    cells=""
+    for fn in items:
+        ti,ca=FIG_META.get(fn,("",""))
+        cap="<b>"+html.escape(ti)+"</b>"+(" — "+html.escape(ca) if ca else "")
+        cells+=f'<figure class="figitem"><img src="../media/figures/{fn}"/><figcaption>{cap}</figcaption></figure>'
+    return f'<div class="figplate"><h2>Figures &amp; diagrams</h2><div class="figgrid">{cells}</div></div>'
 
 # ---- document structure: (part title, subtitle, [ (chapter-id, source-md-path, override-title|None) ]) ----
 def S(n): return os.path.join(SEC,n)
@@ -118,6 +136,7 @@ for part_label, part_sub, items in STRUCT:
         title = override or first_title(path)
         body = pandoc(path)
         if cid=="training": body = diagram_grid()+body
+        body = body + figure_plate(cid)
         chapters.append((cid,title,part_label,body,part_sub))
         toc.append(("chap", title, None, cid))
 
@@ -212,6 +231,15 @@ img{max-width:100%}
 .dia img{width:100%;border:1px solid #e3dcc9;border-radius:3px}
 .dia figcaption{font-family:"Helvetica Neue",sans-serif;font-size:7pt;color:#6b5418;margin-top:2pt}
 .small{font-size:8.3pt;color:#5e574a}
+
+/* per-chapter figure plate */
+.figplate{margin:14pt 0 4pt}
+.figplate>h2{break-before:auto}
+.figgrid{display:flex;flex-wrap:wrap;gap:9pt;align-items:flex-start}
+.figitem{width:48.4%;margin:0 0 3pt;text-align:center;break-inside:avoid}
+.figitem img{width:100%;border:1px solid #e3dcc9;border-radius:3px;background:#fff}
+.figitem figcaption{font-family:"Helvetica Neue",sans-serif;font-size:6.7pt;color:#5e574a;line-height:1.2;margin:1.5pt 2pt 0}
+.figitem figcaption b{color:#6b5418}
 """
 
 COVER = """<div class="cover">
