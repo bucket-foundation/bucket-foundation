@@ -357,14 +357,8 @@ balance, see Domain D supplements).
 ## 5. Putting it together — the prevention stack by age
 
 A pragmatic, guideline-anchored default. Individualize with a clinician; this is the map, not a
-prescription.
-
-| Age band | Cardiovascular | Cancer screening | Levers |
-|---|---|---|---|
-| **20s–30s** | Know your BP; measure **Lp(a) once**; baseline apoB; don't smoke | Cervical (HPV/Pap) from 21; **finish HPV vaccine** if not done | Establish fitness (Domain E), don't smoke, healthy weight, limit alcohol |
-| **40s** | Treat BP to target; apoB-guided lipid management; **consider CAC** if risk is intermediate | **Colorectal from 45**; breast (women) discussion from 40 | Same levers; metabolic vigilance (Domain D) |
-| **50s–60s** | BP < 130/80 if tolerated; statin per risk/CAC; **AF detection** | Colorectal; breast q1–2 y; **LDCT if ≥20 pack-years**; cervical to 65 | Cessation if still smoking pays off fast |
-| **70s+** | Individualize BP target (avoid over-treatment/falls); **anticoagulate AF**; **do NOT start primary-prevention aspirin** | Continue screens per life-expectancy and preference; de-intensify when harms exceed benefit | Maintain function, muscle, balance (Domain E) |
+prescription. (Specifics are load-bearing elsewhere: CAC §2.1, AF detection/anticoagulation §2.2,
+no primary-prevention aspirin §2.3, LDCT pack-year threshold §3.2.)
 
 @@FIG:74-screening-by-age@@
 

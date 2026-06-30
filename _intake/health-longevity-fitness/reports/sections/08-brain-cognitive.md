@@ -340,8 +340,7 @@ statistically significant, clinically marginal, real harms.
    proof of prevention.
 2. **The lever with the best causal evidence is hearing** (ACHIEVE), followed by **vascular control**
    (SPRINT-MIND) and **bundled lifestyle** (FINGER). All three are RCT-supported and all three point at
-   the same unglamorous bundle: **treat hearing/vision, control blood pressure/LDL/glucose, move, don't
-   smoke, stay connected, protect your head, protect your sleep.** What's good for the heart is good for
+   the same unglamorous bundle, laid out in the checklist below. What's good for the heart is good for
    the brain.
 
 @@FIG:88-dementia-checklist@@

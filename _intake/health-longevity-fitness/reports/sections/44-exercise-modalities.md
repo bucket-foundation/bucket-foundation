@@ -140,15 +140,6 @@ strength, and the difference is smaller than either camp claims.**
 
 @@FIG:N10-machines-free@@
 
-| | **Free weights** | **Machines** |
-|---|---|---|
-| **Trains** | STR, PWR, COO (stabilizers + balance) | STR (prime mover, isolated) |
-| **Stabilizer demand** | High — you stabilize the load | Low — the machine stabilizes for you |
-| **Skill / setup cost** | Higher | Lower (sit down, adjust pin, go) |
-| **Safety to fail alone** | Lower (need bailout awareness/spotter) | **Higher** — you can push to failure safely, no bar to drop |
-| **Loading the exact muscle** | Harder | **Easier** (machines isolate cleanly) |
-| **Carryover to real-world tasks** | Higher (you move real loads through space) | Somewhat lower (movement is constrained) |
-
 **The honest verdict:** for hypertrophy and for building the strength *number*, **machines and free weights
 produce broadly similar results** when load and effort are matched — the body responds to tension and
 proximity to failure (Section 02 §6.2), and both can deliver those. The differences are practical, not

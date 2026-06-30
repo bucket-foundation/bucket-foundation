@@ -466,16 +466,6 @@ people to play it with.**
 ### 7.3 Matching sport to person, age, and goal
 There is no universally "best" sport — there is the best sport *for you, now*. A rough matcher:
 
-| If you are / want… | Strong candidates | Why |
-|---|---|---|
-| **Sedentary, older, want the biggest easy win** | **Pickleball, table tennis, walking football, tai chi, dance** | Low barrier, low injury, high social, scalable |
-| **Time-poor, want max cardiometabolic ROI** | **Squash/racquetball, recreational soccer, swimming** | Intermittent-HIIT density |
-| **Joint pain / can't tolerate impact** | **Swimming, cycling, table tennis, tai chi, golf (walking)** | Low/no impact |
-| **Want strength + problem-solving + community** | **Climbing/bouldering, BJJ** | Full-body skill + tight community |
-| **Want the brain benefit specifically** | **Table tennis, dance, racquet sports** | Highest motor-learning + dual-task load |
-| **Want the social lever above all** | **Any doubles racquet sport, any team sport, dance, climbing** | The Tier-A lever, delivered automatically |
-| **Lifelong, into your 80s** | **Golf (walking), tai chi, table tennis, swimming, doubles tennis, dance** | Scalable intensity, low collision |
-
 @@FIG:Z01-sport-matcher@@
 
 The meta-rule: **start from adherence and social fit, not from a VO₂max spreadsheet.** The optimal sport is the

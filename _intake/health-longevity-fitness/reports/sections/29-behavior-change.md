@@ -30,8 +30,7 @@ This is the central finding of the entire field, and it is worth stating as blun
 canonical meta-analysis of *experimental* studies — ones that actually manipulated intention and then
 measured behavior, so this is causal, not correlational — Webb & Sheeran (2006) found that a **medium-to-large
 change in intention (d ≈ 0.66) produced only a small-to-medium change in behavior (d ≈ 0.36)**
-(`intention-behavior-gap-experimental`, doi `10.1037/0033-2909.132.2.249`). Roughly half of people who form
-a genuine intention to act fail to act on it. Sheeran & Webb later named and reviewed this directly as
+(`intention-behavior-gap-experimental`, doi `10.1037/0033-2909.132.2.249`). Sheeran & Webb later named and reviewed this directly as
 **"The Intention–Behavior Gap"** (2016, doi `10.1111/spc3.12265`): intentions are a necessary input and a
 poor predictor; the action is lost somewhere between deciding and doing.
 

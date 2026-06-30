@@ -175,15 +175,10 @@ The "Hollywood heart attack" (clutching the chest, dropping) is real but partial
 ### 3.2 Stroke — "time is brain" (owned by `24 §3`)
 
 A large-vessel stroke destroys on the order of **~1.9 million neurons per minute** (`24 §3`). Recognition is
-**BE-FAST**:
-
-- **B**alance — sudden loss of balance/coordination
-- **E**yes — sudden vision loss or double vision
-- **F**ace — ask them to smile; does one side droop?
-- **A**rm — ask them to raise both arms; does one drift down?
-- **S**peech — slurred, garbled, or unable to find words?
-- **T**ime — **note the exact time symptoms started and call 911 now.** That timestamp decides eligibility
-  for clot-busting drugs (thrombolysis, ~4.5 h window) and thrombectomy (up to ~24 h in selected patients).
+**BE-FAST** — **B**alance loss, **E**yes (sudden vision loss/double vision), **F**ace droop, **A**rm drift,
+**S**peech slurred. The decisive letter is **T**ime: **note the exact time symptoms started and call 911
+now** — that timestamp decides eligibility for clot-busting drugs (thrombolysis, ~4.5 h window) and
+thrombectomy (up to ~24 h in selected patients).
 
 @@FIG:12-befast-card@@
 
@@ -528,14 +523,6 @@ You cannot improvise competence in the moment; you assemble it in advance.
 ## Recognize → Act, one more time (the wallet card)
 
 @@FIG:19-emergency-wallet@@
-
-> **Collapsed + not breathing normally →** call 911, **hard fast chest compressions**, send for an AED, use it.
-> **Face/arm/speech wrong →** stroke, **note the time**, call 911. **Swelling + trouble breathing after a
-> trigger →** anaphylaxis, **EpiPen to the thigh now**, call 911. **Slow/no breathing + pinpoint pupils →**
-> opioid, **naloxone**, call 911. **Bleeding that won't stop →** **press hard / tourniquet high & tight.**
-> **Can't breathe + silent + clutching throat →** back blows + abdominal thrusts. **Infection + acting wrong /
-> mottled →** say **"sepsis,"** go now. **Burn →** **cool running water 20 min, nothing greasy or frozen.**
-> **When unsure if it's an emergency → treat it as one.**
 
 ---
 

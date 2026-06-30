@@ -19,6 +19,8 @@
 
 ---
 
+@@FIG:08-what-to-track@@
+
 ## PART 1 — WHAT TO DO (the levers, by confidence tier)
 
 ### TIER A — Well-established (large cohorts + converging RCT/mechanism; do these first)
@@ -81,6 +83,8 @@
 | **Resting/overnight HRV** | Within-person recovery/autonomic trend | Cross-person or cross-device comparison; absolute risk | `hrv-reduced-predicts-mortality` |
 | **Consumer sleep tracker** | Total sleep time + timing regularity | Sleep STAGING ("deep sleep %"), diagnosing disorders | `consumer-sleep-trackers-stage-poorly` |
 | **IGF-1** | Context dial (anabolism/cancer tradeoff) | A "minimize for longevity" target (U-shaped) | `igf1-u-shaped-mortality` |
+
+@@FIG:34-resting-hr@@
 
 ### TIER C — Don't over-invest (low validity or unproven personal value)
 

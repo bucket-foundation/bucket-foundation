@@ -82,14 +82,8 @@ Counts below are per the six raw files (some claims carry split verdicts; counte
 | 12 | **Gary Taubes** (metabolic) | 0 | some | many | The strong-form carbohydrate-insulin model — contradicted by isocaloric controlled-feeding data; the surviving kernel is about appetite, not thermodynamics. |
 | 13 | **David Sinclair** (longevity-sci) | 0 | most | 1 | The corpus's canonical "mechanism sold as outcome." Every headline claim is a real mechanism or animal result wearing a human outcome's clothes. |
 
-**Consolidated tallies across all six waves (~139 claims):**
-
-| Verdict | ~Count | Share |
-|---|---|---|
-| **AGREES** | ~52 | ~37% |
-| **OVERSTATED** | ~52 | ~37% |
-| **CONTRADICTS** | ~11 | ~8% |
-| **NOT-YET-IN-CORPUS** | ~21 | ~15% |
+**Consolidated tallies across all six waves (~139 claims):** AGREES ~52, OVERSTATED ~52,
+CONTRADICTS ~11, NOT-YET-IN-CORPUS ~21.
 
 @@FIG:26-verdict-donut@@
 

@@ -381,11 +381,10 @@ acts through every level below it.**
 
 @@FIG:BS1-levels-of-organization@@
 
-The **four basic tissue types** every organ is built from are worth holding: **epithelial** (sheets that
-line and cover — skin, gut lining, alveoli; the barrier/exchange surfaces), **connective** (bone,
-tendon, blood, fat — support and transport; the most diverse class), **muscle** (skeletal, cardiac,
-smooth — the only tissue that generates force), and **nervous** (neurons + glia — fast signaling). Most
-of what aging and training *do* to you is a change in one of these four tissues.
+The **four basic tissue types** every organ is built from: **epithelial** (the barrier/exchange
+surfaces), **connective** (support and transport; the most diverse class), **muscle** (the only tissue
+that generates force), and **nervous** (fast signaling). Most of what aging and training *do* to you is
+a change in one of these four tissues.
 
 @@FIG:Z05-tissue-types,RA11-tissue-epithelial,RA12-tissue-connective,RA13-tissue-muscle@@
 

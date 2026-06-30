@@ -220,13 +220,6 @@ infection** that make them genuinely interesting for healthspan. The honest line
 benefits are `rct`/strong; some of the **downstream** benefits (dementia, cardiovascular) are
 `cohort`/quasi-experimental and still firming up.
 
-| Vaccine | Target | Beyond-target signal | Tier on the bonus signal |
-|---|---|---|---|
-| **Shingrix (recombinant zoster)** | Shingles + post-herpetic neuralgia | **Lower dementia incidence** | `cohort` + quasi-experimental (strengthening) |
-| **Influenza (annual)** | Flu + its complications | **Reduced cardiovascular events** post-MI | `rct` (IAMI) |
-| **Pneumococcal (PCV20 / PPSV23)** | Pneumonia, invasive pneumococcal disease | Prevents a leading cause of older-adult death/hospitalization | `rct`/strong (target) |
-| **RSV (Arexvy, Abrysvo, mRESVIA)** | RSV lower-respiratory disease | New for ≥60/≥75; prevents serious respiratory illness | `rct` (target) |
-
 @@FIG:47-vaccines-longevity@@
 
 - **Shingles → dementia (the exciting one).** Reactivated varicella-zoster causes neuro-inflammation, and a
@@ -260,13 +253,6 @@ These are the drugs the longevity community actually argues about: repurposed/of
 *aging-biology* rationale and, in most cases, **no completed human trial proving they slow human aging.** Grade
 them as experimental for that purpose. (Mechanisms and the mouse data are detailed in
 `B-aging-mechanisms.md`; this is the prescribing-reality view.)
-
-| Drug | Approved use | Geroprotector status | Honest tier for *aging* |
-|---|---|---|---|
-| **Metformin** | Type 2 diabetes | TAME trial **designed but not run/funded**; cohort signal is **confounded** | `cohort` (confounded) + `protocol` (TAME) — **no RCT outcome** |
-| **Rapamycin / rapalogs** | Immunosuppression, some cancers | Best mouse-lifespan drug there is; human anti-aging **dose & schedule unknown** | `animal` (lifespan) + `rct` (surrogate: vaccine response) — **off-label, experimental** |
-| **SGLT2 inhibitors** (empagliflozin, dapagliflozin) | Diabetes, **heart failure, CKD** | Strong **hard-outcome** CV/renal benefit; emerging geroprotector candidate | `rct` (hard outcome, in disease) — **aging claim still `mechanistic`** |
-| **Acarbose** | Type 2 diabetes (post-meal glucose) | Extends mouse lifespan (ITP), **especially males** | `animal` (lifespan) — **no human aging trial** |
 
 @@FIG:64-geroprotector-matrix@@
 

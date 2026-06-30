@@ -446,15 +446,9 @@ treatments are unglamorous and under-used, and the dramatic interventions are mo
 
 ### 7.1 Medication-assisted treatment (MAT/MOUD) — the strongest evidence
 
-| Condition | Medication(s) | Evidence | Honest note |
-|---|---|---|---|
-| **Opioid use disorder** | **Methadone, buprenorphine** (agonist); naltrexone-XR (antagonist) | **Strongest in the field** — agonist therapy **halves mortality** (Sordo *BMJ* 2017) | Detox-alone can be *worse* than no treatment; MOUD chronically under-provided |
-| **Alcohol use disorder** | **Naltrexone, acamprosate**; disulfiram | `meta` (Jonas *JAMA* 2014) — real, modest (NNT ~12) | Cheap, generic, prescribed to a small minority |
-| **Tobacco/nicotine** | **Varenicline, combination NRT, bupropion, cytisine** | `meta` (Cahill *Cochrane* 2013) — 2–3× quit rates | Drug **+** behavioural support; iterate after failure |
-| **Stimulants (cocaine/meth)** | — | **No effective approved medication** (`meta`, honest null) | Behavioural (CM) is the lever instead |
-| **Cannabis** | — | No approved medication | CBT/MET/CM |
-
 @@FIG:DX2-mat-moud@@
+
+Anchors and caveats the figure doesn't carry: **opioids** — Sordo *BMJ* 2017 (`10.1136/bmj.j1550`, PMID 28446428); agonist therapy halves mortality, detox-alone can be *worse* than no treatment, MOUD chronically under-provided. **Alcohol** — Jonas *JAMA* 2014 (`10.1001/jama.2014.3628`, PMID 24825644); naltrexone/acamprosate real but modest (NNT ~12), cheap and generic, prescribed to a small minority. **Tobacco** — Cahill *Cochrane* 2013 (`10.1002/14651858.CD009329.pub2`, PMID 23728690); drug **+** behavioural support, iterate after failure. **Stimulants** — no effective approved medication (`meta`, honest null), contingency management is the lever instead. **Cannabis** — no approved medication; CBT/MET/CM.
 
 MAT is the part of addiction medicine that **most contradicts intuition and most saves lives** — and it is
 held back less by evidence than by stigma (the "replacing one drug with another" canard, which misreads

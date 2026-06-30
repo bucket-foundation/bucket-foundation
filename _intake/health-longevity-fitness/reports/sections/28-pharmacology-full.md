@@ -421,14 +421,7 @@ represents is the whole point: from "interesting genetic association" to "if gen
 
 ## C.2 The metabolizer-phenotype concept
 
-A CYP genotype is translated into a **metabolizer phenotype** — the practical output:
-
-| Phenotype | Enzyme activity | Effect on an *active* drug | Effect on a *prodrug* (e.g. codeine, clopidogrel) |
-|---|---|---|---|
-| **Poor metabolizer (PM)** | None / very low | Drug **accumulates** → toxicity at standard dose | **Too little active drug** → therapeutic failure |
-| **Intermediate (IM)** | Reduced | Higher levels → dose down | Reduced activation |
-| **Normal / extensive (NM)** | Typical | Standard dosing | Standard activation |
-| **Ultrarapid (UM)** | Increased (e.g. gene duplication) | Drug cleared fast → **underexposure**, failure | **Too much active drug, too fast** → toxicity (codeine→morphine deaths) |
+A CYP genotype is translated into a **metabolizer phenotype** — the practical output, a spectrum from poor (PM) through intermediate (IM) and normal (NM) to ultrarapid (UM) metabolizer (figure below).
 
 The **prodrug inversion** is the part clinicians must hold in their head: for a normal drug, PM = danger;
 for a prodrug, **UM = danger**. CYP2D6 is the most extreme case because its activity ranges from **zero

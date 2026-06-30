@@ -351,11 +351,9 @@ leading cause of post-neonatal infant death and a parent's worst fear. It is als
   avoid front-sleeping been adopted earlier, **tens of thousands of infant deaths might have been prevented** —
   a rare and damning case of *delayed* translation of evidence.
 - The **"Back to Sleep" campaign** (launched 1994; now "Safe to Sleep") translated this into a simple message:
-  put babies **on their backs to sleep**. Where adopted, **SIDS rates fell by roughly half or more.** The
-  broader safe-sleep bundle adds: firm flat surface, no soft bedding/bumpers/loose blankets, room-sharing
-  *without* bed-sharing, avoid overheating, no smoke exposure, and breastfeeding and pacifier use as protective.
-  (Swaddling is nuanced — it can help, but increases risk if the baby rolls prone; Pease et al., *Pediatrics*
-  2016, `10.1542/peds.2015-3275`.)
+  put babies **on their backs to sleep**. Where adopted, **SIDS rates fell by roughly half or more.** A broader
+  safe-sleep bundle stacks on top of the sleeping position. (Swaddling is nuanced — it can help, but increases
+  risk if the baby rolls prone; Pease et al., *Pediatrics* 2016, `10.1542/peds.2015-3275`.)
 - **The honest lever:** a free, behavioral, position change — no drug, no device — roughly halved a leading
   cause of infant death. It is the archetype of the "unglamorous public-health win" Rule 3 keeps pointing at.
   `cohort`/public-health — strong.

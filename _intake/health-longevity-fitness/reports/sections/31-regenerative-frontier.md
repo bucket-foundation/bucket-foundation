@@ -38,8 +38,7 @@ Read this before anything else, because it repeats in every section below.
 The neutrality of this corpus (`06-evidence/SCHEMA.md`) is the grade itself. A `meta`-tier
 human result and a `mouse`-tier result are both reported here — but never merged, and never
 laundered into each other. **Almost all regenerative-medicine harm lives in beat 4 borrowing
-the authority of beat 1.** The clinic shows you the Nobel Prize and sells you the unproven
-infusion.
+the authority of beat 1.**
 
 ---
 
@@ -158,11 +157,10 @@ Why patients fall for it: the marketing borrows the authority of beats 1–2 of 
 Real HSCT works; real iPSCs exist; a Nobel Prize was awarded. The clinic shows you that and sells
 you an unrelated infusion with **no controlled evidence of benefit and real evidence of harm.**
 
-**The honest rule for a reader or patient:** if a stem-cell treatment is (a) sold cash-only,
-(b) advertised for a long menu of unrelated conditions, (c) not part of a registered clinical
-trial (check ClinicalTrials.gov), and (d) promises "regeneration" of a tissue the cells don't
-natively build — it is the predatory tier, full stop. The burden of proof is on the seller, and
-they have not met it.
+**The honest rule for a reader or patient:** the red flags below are the signature of the
+predatory tier, and the one to check first is ClinicalTrials.gov — a real cell therapy is in a
+registered trial. If a treatment fits the pattern, it is the predatory tier, full stop. The
+burden of proof is on the seller, and they have not met it.
 
 @@FIG:Z12-stemcell-flags@@
 
@@ -219,9 +217,9 @@ a working copy of a gene (gene *replacement/addition*) or *editing* the existing
 
 The triumph has a brutal asterisk: **price and access.**
 
-- These are among the **most expensive medicines in history**: Zolgensma ~$2.1M, Casgevy ~$2.2M,
-  Hemgenix (hemophilia B, 2022) ~$3.5M, and Lenmeldy (metachromatic leukodystrophy, 2024) ~$4.25M —
-  routinely the single most expensive drug in the world at launch.
+- These are among the **most expensive medicines in history** — routinely the single most
+  expensive drug in the world at launch (Hemgenix treats hemophilia B, 2022; Lenmeldy,
+  metachromatic leukodystrophy, 2024).
 - The diseases they cure are mostly **rare**, so per-patient prices are astronomical, and the
   manufacturing (per-patient cell engineering) is genuinely hard to scale.
 - The cruel geography: **sickle-cell disease overwhelmingly affects people in sub-Saharan Africa and

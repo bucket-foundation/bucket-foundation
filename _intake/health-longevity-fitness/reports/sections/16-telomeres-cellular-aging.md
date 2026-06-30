@@ -295,14 +295,10 @@ double role is why "just kill all senescent cells" is naive.
 
 ### 16.5.2 — Telomere-*independent* senescence triggers
 
-Critically for this chapter: **most senescence in vivo is not telomere-driven.** Cells become senescent from:
-
-- **Oncogene activation** (oncogene-induced senescence — a tumour-suppressor response),
-- **DNA damage** generally (irradiation, genotoxic stress),
-- **Oxidative / metabolic / mitochondrial stress**,
-- **Proteotoxic and replication stress**,
-
-…all of which trip the p16^INK4a/Rb and p53/p21 arrest programs **without the telomere ever running out.**
+Critically for this chapter: **most senescence in vivo is not telomere-driven.** The major triggers —
+oncogene activation (itself a tumour-suppressor response), DNA damage, oxidative/metabolic/mitochondrial
+stress, and proteotoxic or replication stress — all trip the p16^INK4a/Rb and p53/p21 arrest programs
+**without the telomere ever running out.**
 This is why senolytic biology is studied largely through **p16^INK4a-positive** cells, not telomere length,
 and why "fix your telomeres" is **not** the same as "clear senescent cells." Telomeres are one entrance to
 the senescent state; the room is much larger.

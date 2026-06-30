@@ -99,8 +99,7 @@ provenance; this table is the *bridge*, not the evidence base.
 
 @@FIG:18-mechanism-convergence@@
 
-Read the table column-wise and a striking fact appears — **the levers are many, the fundamental layers
-are few.** Most of the manual collapses onto the **energy/redox** core:
+Read the table column-wise and most of the manual collapses onto the **energy/redox** core:
 
 - **Energy (chemiosmosis / proton-motive force):** Zone 2, HIIT, cold (UCP1 uncoupling), fasting (AMPK),
   creatine (PCr shuttle), metformin. This is the spine the mitochondria thread

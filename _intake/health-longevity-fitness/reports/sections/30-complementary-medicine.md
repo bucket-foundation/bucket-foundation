@@ -47,26 +47,7 @@ Grade key — mapped to the evidence ladder in `SCHEMA.md`:
 
 @@FIG:38-cam-matrix@@
 
-| Modality | Best-evidence indication | Honest verdict | Grade | Top tier of evidence |
-|---|---|---|---|---|
-| **Acupuncture** | Chronic pain (back/neck/knee/headache); chemo & post-op nausea (PC6) | Small real effect over no-treatment; **barely** beats sham; large placebo/ritual component | **works-for-some-things** | `meta` (Vickers IPD; Cochrane) |
-| **St John's Wort** | Mild–moderate depression | ≈ as effective as SSRIs for mild–moderate; serious drug-interaction risk | **works** *(narrow)* / **harmful** *(interactions)* | `meta` (Cochrane Linde) |
-| **Peppermint oil** | Irritable bowel syndrome (IBS) | Real symptom & pain relief (antispasmodic) | **works** | `meta` (RR ~2.4 global symptoms) |
-| **Ginger** | Nausea (pregnancy, chemo-adjunct, post-op) | Modest real antiemetic | **works-for-some-things** | `meta` / `rct` |
-| **Turmeric / curcumin** | Inflammation, OA pain | Promising signals; crippled by near-zero bioavailability; mostly surrogate endpoints | **no-evidence → emerging** | `rct` (small, surrogate) |
-| **Saw palmetto** | BPH urinary symptoms | Clean, definitive **null** vs placebo | **placebo-level** | `meta` / `rct` (NEJM STEP) |
-| **Echinacea** | Common cold prevention/treatment | At best a tiny, unreliable effect on duration | **no-evidence → marginal** | `meta` (heterogeneous) |
-| **Ginkgo biloba** | Dementia prevention, memory | Large RCTs: **no** prevention of dementia or decline | **placebo-level / no-evidence** | `rct` (GEM study) |
-| **TCM (system)** | — (as a *theory of the body*) | Qi/meridians/five-phases is not biology; *some compounds* have real pharmacology | **no-evidence** *(system)* / contamination risk | `theoretical` (system) |
-| **Ayurveda (system)** | — (as a *theory of the body*) | Doshas not physiology; some herbs active; **heavy-metal contamination** in ~1/5 products | **no-evidence** *(system)* / **harmful** *(metals)* | `theoretical` + `cross-sectional` (metals) |
-| **Spinal manipulation (chiro/osteo/PT)** | Acute non-specific low-back pain | Modest benefit, **≈ other active therapies** (exercise, NSAIDs) | **works-for-some-things** | `meta` (Cochrane/BMJ Rubinstein) |
-| **"Subluxation" chiropractic** | "Innate," whole-body disease via spine | No biological basis; not the same thing as evidence-based SMT | **no-evidence** | `theoretical` |
-| **Cervical (neck) manipulation** | Neck pain/headache | Modest benefit **+ rare catastrophic risk** (arterial dissection/stroke) | **works-for-some-things** *(with a serious caveat)* | `meta` + `case-control` (VAD) |
-| **Meditation / MBSR** | Anxiety, depression, pain, stress | Real, moderate effects (covered in `F2`) | **works** | `meta` |
-| **Yoga / Tai chi** | Back pain, balance/falls, fitness | Real benefits, partly "just exercise + breath + attention" | **works** | `meta` / `rct` |
-| **Reiki / Therapeutic Touch / energy healing** | Any | No detectable specific effect; the "energy field" was never demonstrated | **placebo-level** | `rct` (sham-controlled) |
-| **Homeopathy** | Any | Implausible by chemistry; **no effect beyond placebo** across the literature | **placebo-level** *(settled)* | `meta` + government reviews |
-| **Naturopathy / "functional medicine"** | Lifestyle counselling vs proprietary testing/treatment | Good diet/exercise/sleep advice bundled with unvalidated tests & unproven therapies | **mixed: works (lifestyle) / no-evidence (the rest)** | varies |
+Each modality's best-evidence indication, named trials, effect sizes, and grade are detailed by section in §2–§8 below.
 
 ---
 

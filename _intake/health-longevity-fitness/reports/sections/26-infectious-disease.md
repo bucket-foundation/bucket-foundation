@@ -42,15 +42,14 @@ our own inflammation — cross-ref `15 §1.3`). The five major classes differ en
 exactly why **a drug that kills one is useless against another** — the single most clinically important fact in
 this whole section.
 
-| Pathogen class | What it is (cell biology) | How it causes disease | Treated with | Examples |
-|---|---|---|---|---|
-| **Bacteria** | Single-celled prokaryotes (no nucleus); own metabolism; reproduce independently | Tissue invasion, toxins (e.g. tetanus, cholera, diphtheria toxins), triggering sepsis-grade inflammation | **Antibiotics** (target bacterial-specific machinery — cell wall, ribosome, DNA gyrase) | Strep, TB, *E. coli*, *Staph aureus*, *C. difficile*, cholera |
-| **Viruses** | Not cells — genetic packages (DNA/RNA in a protein coat); **obligate intracellular parasites** with no metabolism of their own | Hijack host-cell machinery to mass-produce copies, killing/transforming the cell; immune response drives much pathology | **Antivirals** (block viral entry/replication/assembly) + vaccines; **antibiotics do nothing** | Influenza, SARS-CoV-2, HIV, hepatitis B/C, HPV, measles, herpesviruses |
-| **Fungi** | Eukaryotes (nucleus, like us) — yeasts and molds | Surface infections (thrush, athlete's foot) or invasive, often in the immunocompromised | **Antifungals** (harder — fungi are biochemically close to us, so more host toxicity) | *Candida*, *Aspergillus*, *Cryptococcus*, dermatophytes |
-| **Parasites** | Eukaryotes — protozoa (single-celled) and helminths (worms) | Complex life cycles, often vector-borne; chronic immune evasion | **Antiparasitics / antimalarials / anthelmintics** | *Plasmodium* (malaria), *Toxoplasma*, *Giardia*, schistosomes, tapeworms |
-| **Prions** | Not alive at all — misfolded proteins (PrP) that template other proteins to misfold | Aggregates destroy neural tissue; uniformly fatal; **no nucleic acid, no immune response, no treatment** | None | Creutzfeldt–Jakob disease, kuru, "mad cow" (vCJD) |
-
 @@FIG:DX3-pathogen-classes@@
+
+*Representative pathogens by class (the figure maps class → therapy): **bacteria** — Strep, TB, *E. coli*, *Staph
+aureus*, *C. difficile*, cholera (toxins like tetanus/cholera/diphtheria drive much of the harm); **viruses** —
+influenza, SARS-CoV-2, HIV, hepatitis B/C, HPV, measles, herpesviruses (obligate intracellular parasites with no
+metabolism of their own); **fungi** — *Candida*, *Aspergillus*, *Cryptococcus*, dermatophytes; **parasites** —
+*Plasmodium* (malaria), *Toxoplasma*, *Giardia*, schistosomes, tapeworms; **prions** — Creutzfeldt–Jakob disease,
+kuru, "mad cow" (vCJD), which have no nucleic acid, provoke no immune response, and have no treatment.*
 
 ### 1.1 The cell-biology reason antibiotics are selective (and why that matters)
 

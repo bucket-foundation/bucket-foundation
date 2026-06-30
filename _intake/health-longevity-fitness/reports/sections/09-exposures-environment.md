@@ -270,11 +270,6 @@ microplastics simultaneously. Know your local water report; if you're on a priva
 test. This is the single highest-leverage move across the entire "toxins" category, and it's the one with
 **actual regulatory standards** behind it (EPA contaminant limits).
 
-> **Tiering summary:** Lead = established (cohort, large). PFAS = regulatory/epidemiological (strong association).
-> BPA/phthalates = plausible EDCs (mechanistic + some cohort). Microplastics = emerging (mostly mechanistic).
-> The shared lever — filtered water + less plastic contact with hot/fatty food — is low-regret regardless of where
-> the science lands.
-
 ---
 
 ## 5. UV / Sun — the two-sided ledger

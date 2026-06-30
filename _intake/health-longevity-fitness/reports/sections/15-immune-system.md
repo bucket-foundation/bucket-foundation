@@ -52,16 +52,8 @@ specific breakdown in one of these boxes.
 
 The **innate** arm is the body's standing army: always on, responds in minutes to hours, recognizes broad
 molecular patterns (PAMPs on pathogens, DAMPs released by damaged self-cells) rather than specific antigens, and
-has **no memory** in the classical sense. Its components:
-
-| Component | What it does | Ages how |
-|---|---|---|
-| **Barriers** (skin, gut/airway epithelium, mucus, stomach acid, antimicrobial peptides) | The first and most important defense — keep pathogens *out* | Skin/mucosal thinning, gut-barrier leak ("inflammaging" input — cross-ref C2) |
-| **Neutrophils** | First responders; phagocytose and kill bacteria; short-lived | Impaired chemotaxis/migration precision with age (collateral tissue damage) |
-| **Macrophages / monocytes** | Phagocytes + cytokine hubs; tissue clean-up; antigen presentation | Shift toward a pro-inflammatory, less-resolving phenotype |
-| **Dendritic cells** | The bridge to adaptive immunity — present antigen to T cells | Reduced antigen-presentation efficiency → weaker adaptive priming |
-| **Natural killer (NK) cells** | Kill virus-infected and tumor cells without prior sensitization | Number often up, per-cell cytotoxicity down |
-| **Complement** | A cascade of plasma proteins that opsonize, lyse, and flag pathogens | Dysregulated, contributes to sterile inflammation |
+has **no memory** in the classical sense. Its components — barriers, phagocytes, NK cells, and complement among
+them — and how each ages are mapped in the figure below.
 
 The innate system is also where **inflammaging is generated**: the inflammasome (notably **NLRP3**) and chronic
 macrophage activation are the molecular machinery that turns accumulated damage into low-grade systemic
@@ -115,7 +107,7 @@ healthy — a clean **end**.
 
 **Immunosenescence** is the age-related remodeling and decline of immune function. It is *not* simple
 weakening; it is a **reshaping** that simultaneously leaves older people **worse at fighting new infections and
-responding to vaccines** while **more inflamed at baseline** (the link to §3). The headline features:
+responding to vaccines** while **more inflamed at baseline** (the link to §3).
 
 @@FIG:73-immunosenescence@@
 

@@ -119,14 +119,8 @@ indictment of standard care.
 
 The single most liberating fact about back pain: **MRI findings that sound terrifying are normal.**
 Brinjikji et al.'s systematic review (*AJNR* 2015, `10.3174/ajnr.A4173`) imaged **pain-free** people and
-found, rising steeply with age:
-
-| Finding on MRI | Prevalence in **asymptomatic** 30-year-olds | …in asymptomatic 60-year-olds |
-|---|---|---|
-| Disc degeneration | ~52% | ~88% |
-| Disc bulge | ~40% | ~69% |
-| Disc protrusion | ~31% | ~38% |
-| Annular fissure | ~20% | ~29% |
+found these findings rising steeply with age — e.g. disc degeneration in ~52% of asymptomatic 30-year-olds
+and ~88% of 60-year-olds:
 
 @@FIG:P07-spine-mri@@
 
@@ -206,16 +200,9 @@ through (not around) a tolerable level of pain.
   retired**. Its own author (Mirkin) walked back the "rest and ice" emphasis: prolonged rest and
   aggressive icing may *delay* healing by blunting the inflammatory signalling that *drives* repair.
 
-The current evidence-based framework is **PEACE & LOVE** (Dubois & Esculier, *Br J Sports Med* 2020,
-`10.1136/bjsports-2019-101253`):
-
-| **PEACE** (first days) | **LOVE** (after the first days) |
-|---|---|
-| **P**rotect (offload briefly, restrict painful movement 1–3 days) | **L**oad (let symptoms guide a return to activity) |
-| **E**levate | **O**ptimism (beliefs/expectations shape recovery) |
-| **A**void anti-inflammatories (and ice) — they may impair healing | **V**ascularisation (pain-free cardio for blood flow) |
-| **C**ompress | **E**xercise (restore strength, mobility, proprioception) |
-| **E**ducate (avoid unnecessary passive treatments/scans) | |
+The current evidence-based framework is **PEACE & LOVE** — *protect, elevate, avoid anti-inflammatories
+(and ice), compress, educate*, then *load, optimism, vascularisation, exercise* (Dubois & Esculier,
+*Br J Sports Med* 2020, `10.1136/bjsports-2019-101253`):
 
 @@FIG:PS5-peace-love@@
 

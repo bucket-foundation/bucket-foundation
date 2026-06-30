@@ -44,12 +44,7 @@ ad, and half of your own doctor's visits will read differently afterward.
 ## A.1 The 2×2 table — where every test metric is born
 
 Every diagnostic test, no matter how fancy (a SNP chip, a CT scan, a PCR, a finger-prick glucose), reduces
-to a single 2×2 table once you compare its verdict against the truth:
-
-|                     | **Disease present** | **Disease absent** |
-|---------------------|---------------------|--------------------|
-| **Test positive**   | True Positive (TP)  | False Positive (FP)|
-| **Test negative**   | False Negative (FN) | True Negative (TN) |
+to a single 2×2 table once you compare its verdict against the truth — true positives and true negatives where it agrees, false positives and false negatives where it errs:
 
 @@FIG:PS2-confusion-2x2@@
 

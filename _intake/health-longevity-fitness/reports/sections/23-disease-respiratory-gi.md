@@ -312,8 +312,7 @@ neuro-immune axis — cross-ref `17 §4.3` and `C2-microbiome-deepdive.md`), and
   short-chain carbohydrates that are poorly absorbed, osmotically active, and rapidly fermented — producing gas,
   distension, and (in hypersensitive guts) pain. A **structured low-FODMAP diet** reduces IBS symptoms in
   randomized trials (Halmos *et al.*, *Gastroenterology* 2014, `10.1053/j.gastro.2013.09.046`, the landmark
-  controlled feeding study). Honest caveats: it is a **three-phase protocol** (strict restriction →
-  *systematic reintroduction* → personalization), **meant to be done with a dietitian and not stayed on long-
+  controlled feeding study). Honest caveats: it is a **three-phase protocol**, **meant to be done with a dietitian and not stayed on long-
   term** (chronic restriction harms the microbiome and risks nutritional gaps), and roughly half to two-thirds
   of patients respond. `rct` (short-term symptom relief).
 

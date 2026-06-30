@@ -25,21 +25,24 @@
 
 ## 0. The map at a glance
 
-| Condition | ~Lifetime prevalence (approx.) | First-line, best-evidenced treatment | The honest caveat |
-|---|---|---|---|
-| **Major depression** | ~15–20% | Psychotherapy (CBT/IPT) and/or antidepressant; **exercise** as real adjunct | Drug-vs-placebo gap is **modest on average, larger in severe** depression; the "chemical imbalance" story is false but the drugs still modestly work |
-| **Generalized anxiety / panic / phobias** | ~20–30% (anxiety disorders combined) | **CBT with exposure** (first-line); SSRIs/SNRIs | Avoidance is the engine; benzodiazepines relieve fast but are a trap for chronic use |
-| **OCD** | ~2–3% | **Exposure & response prevention (ERP)** + SSRI (often higher doses) | Generic "talk therapy" doesn't work; it must be ERP. Real but partial response is the norm |
-| **PTSD** | ~6–8% | **Trauma-focused psychotherapy** (TF-CBT, CPT, PE) first-line | EMDR works but the "eye movements" are likely inert; MDMA-therapy is promising-but-**not FDA-approved** (rejected 2024) |
-| **Bipolar disorder** | ~1–2% (BP-I + BP-II) | **Lithium** (mood-stabilizer; uniquely anti-suicide) | Under-prescribed; antidepressants alone can destabilize; it is a *spectrum*, often misdiagnosed as unipolar depression for years |
-| **Schizophrenia / psychosis** | ~0.7–1% | **Antipsychotics** + early intervention + psychosocial support | Antipsychotics genuinely work for positive symptoms but carry serious **metabolic** harms; clozapine is best-and-underused |
-| **ADHD** | ~5% children, ~2.5–4% adults | **Stimulants** (largest effect size in psychiatry) | A real, heritable condition — *and* genuinely over- and under-diagnosed depending on the setting; adult self-diagnosis needs care |
-| **Eating disorders** (anorexia, bulimia, BED) | ~1–4% combined | **Family-based therapy** (adolescent AN), **CBT-E** (bulimia/BED) | **Anorexia has among the highest mortality of any psychiatric illness**; early intervention matters most |
+The figure below maps each condition's lifetime prevalence and first-line, best-evidenced treatment;
+the table that follows carries the part the figure can't — **the honest caveat** on each.
+
+@@FIG:DX1-psychiatric@@
+
+| Condition | The honest caveat |
+|---|---|
+| **Major depression** | Drug-vs-placebo gap is **modest on average, larger in severe** depression; the "chemical imbalance" story is false but the drugs still modestly work; **exercise** is a real adjunct |
+| **Generalized anxiety / panic / phobias** | Avoidance is the engine; benzodiazepines relieve fast but are a trap for chronic use |
+| **OCD** | Generic "talk therapy" doesn't work; it must be ERP. Real but partial response is the norm |
+| **PTSD** | EMDR works but the "eye movements" are likely inert; MDMA-therapy is promising-but-**not FDA-approved** (rejected 2024) |
+| **Bipolar disorder** | Under-prescribed; antidepressants alone can destabilize; it is a *spectrum*, often misdiagnosed as unipolar depression for years |
+| **Schizophrenia / psychosis** | Antipsychotics genuinely work for positive symptoms but carry serious **metabolic** harms; clozapine is best-and-underused |
+| **ADHD** | A real, heritable condition — *and* genuinely over- and under-diagnosed depending on the setting; adult self-diagnosis needs care (adult prevalence ~2.5–4%) |
+| **Eating disorders** (anorexia, bulimia, BED) | **Anorexia has among the highest mortality of any psychiatric illness**; early intervention matters most |
 
 Prevalence figures are order-of-magnitude (they vary widely by country, diagnostic edition, and survey
 method). They are here to convey *scale*, not precision.
-
-@@FIG:DX1-psychiatric@@
 
 ---
 

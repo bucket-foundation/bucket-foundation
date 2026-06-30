@@ -194,16 +194,8 @@ quality or "can you conceive" guarantee); and **tubal/uterine patency** (HSG or 
 In **IVF**, ovaries are stimulated, eggs retrieved, fertilized in the lab, and an embryo transferred. **ICSI**
 (a single sperm injected directly into an egg) is the add-on for male-factor infertility. The dominant variable
 in success is **maternal egg age**, and the decline is steep and biological — no clinic protocol overrides it.
-Approximate **live birth per IVF cycle** (using a patient's own eggs; CDC/SART-type data, varies by clinic and
-definition):
-
-| Maternal age | ~Live birth per cycle (own eggs) |
-|---|---|
-| **< 35** | ~40–50% |
-| **35–37** | ~30–40% |
-| **38–40** | ~20–25% |
-| **41–42** | ~10–15% |
-| **> 42** | **< 5%** |
+Approximate **live birth per IVF cycle** using a patient's own eggs (CDC/SART-type data, varies by clinic and
+definition) falls steeply with maternal egg age:
 
 @@FIG:B07-ivf-by-age@@
 

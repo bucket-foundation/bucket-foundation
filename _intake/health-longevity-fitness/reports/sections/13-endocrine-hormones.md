@@ -145,7 +145,7 @@ arousal rhythm.**
 
 @@FIG:65-hpa-axis@@
 
-**The rhythm is the point.** Healthy cortisol is **not** flat. It surges in the last hours of sleep,
+**The rhythm is the point.** Cortisol surges in the last hours of sleep,
 peaks ~30–45 min after waking (the **cortisol awakening response**), then declines across the day to a
 night-time trough — a circadian curve braided with the sleep/light system (Domains I and the recovery
 section). Acute cortisol spikes are **adaptive** (the whole point of a stress response). The longevity-

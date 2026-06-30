@@ -301,15 +301,7 @@ The most consequential number in this section. Multiple independent estimation m
   years (~40% of the *later, smaller* slice)**. The big early gains were public-health; medicine's share
   rose only once the easy structural wins were banked.
 - The canonical **determinants-of-health allocation** (McGinnis/Williams-Russo/Schroeder, *Health Affairs*
-  2002 / NEJM 2007), used by County Health Rankings:
-
-| Determinant | Approx. share of health outcomes |
-|---|---|
-| **Behavioral patterns** | **~40%** |
-| **Genetic predisposition** | ~30% |
-| **Social circumstances** | ~15% |
-| **Medical care** | **~10%** |
-| **Environmental exposure** | ~5% |
+  2002 / NEJM 2007), used by County Health Rankings — the five shares are in the figure below.
 
 @@FIG:L14-determinants@@
 

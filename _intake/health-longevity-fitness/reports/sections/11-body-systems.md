@@ -95,14 +95,8 @@ real but cosmetic and transient effect).
 
 @@FIG:BX5-skincare-hierarchy@@
 
-| Tier | Intervention | Best evidence | Verdict |
-|---|---|---|---|
-| **1 (do this)** | Daily broad-spectrum sunscreen on face/hands | `rct` (photoaging + SCC + melanoma) | Strongest anti-aging evidence on the shelf |
-| **1 (do this)** | Topical retinoid (tretinoin Rx > retinol OTC) | `rct` (photoaged + naturally-aged skin) | Best-evidenced active; slow, irritating, must continue |
-| **2 (helps a bit)** | Moisturizer / barrier care | `rct` (hydration, transient) | Real but cosmetic; makes skin look better, doesn't remodel it |
-| **2 (emerging)** | Oral collagen peptides | `meta` (small RCTs, modest) | Modest elasticity/hydration signal; not magic |
-| **3 (mostly hype)** | Peptide/growth-factor/"stem cell" serums, most "firming" | weak/`mechanistic` | Marketing outruns evidence |
-| **Negative** | Tanning beds, deliberate face-tanning | `cohort` (melanoma↑) | Net-harm exposure, no upside |
+The full grading for each tier — sunscreen `rct`, retinoid `rct`, moisturizer `rct` (hydration/transient),
+oral collagen `meta`, serums weak/`mechanistic`, tanning beds `cohort` — is detailed with citations in §1.2–§1.4 above.
 
 ---
 

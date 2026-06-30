@@ -334,13 +334,7 @@ under-serves it. The organizing concepts are **frailty**, **sarcopenia**, **poly
 **Frailty** is not the same as "being old" or "having diseases" — it is a distinct, measurable state of
 **diminished physiological reserve** that leaves a person vulnerable to catastrophic decline from a minor
 stressor (an infection, a fall, a new drug). **Linda Fried** operationalized it as the **frailty phenotype**
-(*J Gerontol A* 2001, `10.1093/gerona/56.3.m146`): a person is frail with **≥3 of 5** criteria —
-
-1. **Unintentional weight loss** (shrinking),
-2. **Self-reported exhaustion**,
-3. **Weakness** (low grip strength),
-4. **Slow walking speed**,
-5. **Low physical activity**.
+(*J Gerontol A* 2001, `10.1093/gerona/56.3.m146`): a person is frail meeting **≥3 of 5** criteria —
 
 @@FIG:N06-frailty-pentagon@@
 

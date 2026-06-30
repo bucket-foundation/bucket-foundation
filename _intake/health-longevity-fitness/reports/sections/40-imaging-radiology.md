@@ -143,18 +143,6 @@ neither camp. Here is the honest version.
 
 ### 40.3.1 — The doses, in context
 
-| Exposure | Approx. effective dose | Anchor |
-|---|---|---|
-| Chest X-ray | ~0.02 mSv | ≈ a few days of background |
-| Dental / DEXA | ~0.001–0.01 mSv | trivial |
-| Mammogram | ~0.4 mSv | ≈ 7 weeks background |
-| Coronary calcium (CAC) CT | ~1 mSv | ≈ 4 months background |
-| Head CT | ~2 mSv | — |
-| Natural background, annual | **~3 mSv** | the reference scale |
-| Chest CT | ~5–7 mSv | ≈ 2 years background |
-| Abdomen/pelvis CT | ~8–10 mSv | ≈ 3 years background |
-| FDG-PET/CT | ~15–25 mSv | ≈ 5–8 years background |
-
 @@FIG:P06-radiation-dose@@
 
 A single CT is **not** dangerous to an individual in any way they will feel — the per-scan excess

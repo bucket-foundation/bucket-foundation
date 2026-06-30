@@ -166,10 +166,9 @@ Three cancers dominate, in ascending lethality:
 @@FIG:PX5-skin-cancer@@
 
 - **ABCDE rule (melanoma screening):** **Abbasi 2004, JAMA** (`10.1001/jama.292.22.2771`) — the consensus
-  early-detection criteria: **A**symmetry, **B**order irregularity, **C**olor variegation, **D**iameter >6 mm,
-  **E**volving (the most important — *change* over time). Plus the "**ugly duckling**" sign (a mole that looks
-  unlike its neighbors). `consensus`/diagnostic. Self-skin-checks and dermatologist exams (especially with a prior
-  melanoma, many atypical nevi, family history, or fair skin/red hair) catch it early, when excision cures.
+  early-detection criteria (figure), plus the "**ugly duckling**" sign. `consensus`/diagnostic. Self-skin-checks
+  and dermatologist exams (especially with a prior melanoma, many atypical nevi, family history, or fair skin/red
+  hair) catch it early, when excision cures.
 
 @@FIG:PS8-abcde@@
 

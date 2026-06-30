@@ -22,17 +22,7 @@ Grade key: **real** = consistent human RCT/meta evidence for a meaningful effect
 
 @@FIG:N01-supplements@@
 
-| Supplement | Practical dose | What it actually does (honest) | Best evidence tier | Grade |
-|---|---|---|---|---|
-| **Creatine monohydrate** | **3–5 g/day**, every day, timing irrelevant; optional 20 g/d × 5–7 d load to fill stores faster | ↑ strength & lean mass *with resistance training* (~+a couple kg work capacity, modest hypertrophy); small cognitive benefit under stress/sleep-deprivation/aging; safe long-term | `meta` (sport), `meta`/mixed (cognition) | **real** — strongest sports supplement |
-| **Omega-3 (EPA+DHA)** | **1–2 g/day** combined EPA+DHA for general status; **2–4 g/day** Rx-grade to lower triglycerides | Lowers triglycerides (dose-dependent, real); raises the omega-3 index; CVD *event* benefit is small/equivocal except high-dose Rx EPA in high-TG patients | `rct`/`meta` (TG), `rct` mixed (events) | **real** (TG) / **context-only** (events) |
-| **Vitamin D3** | **800–2000 IU/day** to correct/maintain; treat to a blood level, don't megadose | Corrects deficiency, supports bone/calcium with adequate calcium. Big RCTs show **no** cancer/CVD/fracture/diabetes benefit in *replete* people | `rct`/`meta` (mostly null in replete) | **context-only** (deficiency only) |
-| **Magnesium** | **200–400 mg/day** elemental (glycinate/citrate; oxide poorly absorbed) | Corrects common dietary inadequacy; small BP reduction; plausible sleep aid (weak). Most benefit if intake is low | `meta` (BP), weak `rct` (sleep) | **context-only** |
-| **Protein / whey** | See §2 — **1.2–1.6 g/kg/day** active; whey 20–40 g/dose, ~2–3 g leucine | Augments resistance-training muscle/strength gains; convenience tool to hit per-meal leucine threshold | `meta` | **real** (as a protein *source*, not magic) |
-| **Dietary fiber** | **25–35 g/day**, food-first; psyllium 5–10 g if supplementing | Lowers LDL & all-cause/CVD mortality (cohort); improves glycemia, regularity, satiety; feeds SCFA-producing microbes | `meta` (cohort + RCT surrogate) | **real** |
-| **Caffeine** | **3–6 mg/kg**, ~30–60 min pre-exercise (≈200–400 mg) | Reliable acute ergogenic (endurance + power + alertness); tolerance builds; not a longevity agent | `meta` | **real** (acute performance) |
-| **Collagen peptides** | **15 g + ~50 mg vitamin C**, ~30–60 min before loading the tissue | Possible small benefit to tendon/ligament collagen synthesis and skin elasticity; does NOT build muscle | `rct` small (tendon), `meta` modest (skin) | **context-only / emerging** |
-| **Probiotics** | strain- and condition-specific; no general "take a probiotic" dose | Real for specific indications (antibiotic-associated diarrhea, some IBS); **no** healthspan/longevity benefit shown in healthy people | `meta` (specific indications) | **context-only** |
+*(The traffic-light above is the at-a-glance grade for each supplement; the practical dose, honest mechanism, evidence tier, and the DOIs for every grade are spelled out per-supplement in §1.1–1.8 below.)*
 
 ### 1.1 Creatine monohydrate — the strongest supplement in the building
 

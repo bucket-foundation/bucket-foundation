@@ -232,10 +232,9 @@ is one of the clearest "the device genuinely changed the disease" stories in mod
 
 ### 2.1 What it is and the mechanism (→ insulin resistance)
 
-**Metabolic syndrome** is a *cluster*, not a disease: central (visceral) adiposity, high blood pressure,
-high fasting glucose, high triglycerides, and low HDL. Having ≥3 of the 5 marks a state of **insulin
-resistance** that roughly doubles cardiovascular risk and dramatically raises diabetes risk. It is the
-clinical face of the metabolic dysfunction built in `D-metabolic-nutrition.md`.
+**Metabolic syndrome** is a *cluster*, not a disease — meeting ≥3 of its five criteria marks a state of
+**insulin resistance** that roughly doubles cardiovascular risk and dramatically raises diabetes risk. It
+is the clinical face of the metabolic dysfunction built in `D-metabolic-nutrition.md`.
 
 @@FIG:42-metabolic-syndrome@@
 

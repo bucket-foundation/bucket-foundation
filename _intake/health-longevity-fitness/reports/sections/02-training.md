@@ -406,19 +406,13 @@ must *climb* over time. Ways to add load (in rough priority):
 4. **Improve range / control / tempo**, or **reduce rest**.
 5. **Climb the movement ladder** (§2) — the bodyweight-trainee's main progression lever.
 
-**Autoregulate with RPE / RIR** so you push hard on good days and back off on bad ones:
-
-| RPE | RIR (reps in reserve) | Feel | Use for |
-|---|---|---|---|
-| 10 | 0 | True failure, nothing left | Rarely; testing only |
-| 9 | 1 | Maybe 1 more | Top sets, advanced |
-| 7–8 | 2–3 | Challenging, clean reps left | **The productive default for most working sets** |
-| 5–6 | 4+ | Easy, lots left | Warm-ups, technique, deload |
+**Autoregulate with RPE / RIR** so you push hard on good days and back off on bad ones.
 
 @@FIG:F02-rpe-rir@@
 
-Beginners should mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique. Chasing RPE 10 every set buys
-fatigue, not gains.
+The productive default for most working sets is **RPE 7–8 / 2–3 RIR**; save RPE 9–10 (0–1 RIR) for top
+sets or testing, and sit at RPE 5–6 (4+ RIR) for warm-ups, technique, and deload work. Beginners should
+mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10 every set buys fatigue, not gains.
 
 ### 6.4 Three sample weeks by level
 

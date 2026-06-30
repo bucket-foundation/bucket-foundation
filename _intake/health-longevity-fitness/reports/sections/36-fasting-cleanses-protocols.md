@@ -417,27 +417,6 @@ overeating, and (speculatively) spermidine-rich foods.
 
 @@FIG:N02-fasting-protocols@@
 
-| Protocol | The core claim | Best evidence (tier) | Verdict | Safety |
-|---|---|---|---|---|
-| **TRE 16:8 (late)** | Fat loss, metabolic magic | RCT (TREAT) — small loss, **not** > control | **MODERATE**, mostly adherence/deficit | Safe in healthy adults; watch muscle |
-| **TRE early (eTRE)** | Insulin sensitivity, BP | Small isocaloric RCT (Sutton 2018) — real, weight-independent | **MODERATE+** (best version) | Safe; the defensible default |
-| **OMAD (23:1)** | Max fat loss + autophagy | Case reports; small studies (glucose/cortisol up) | **WEAK** | Nutrient/muscle risk; not for diabetics/elderly |
-| **5:2 / modified** | Easier weight loss | RCT/meta = continuous restriction | **MODERATE** (= CR) | Overcompensation/binge risk |
-| **Warrior Diet** | Undereat day / feast night | Essentially no dedicated trials | **WEAK** | Late-window undereating risks |
-| **ADF / eat-stop-eat** | Superior fat loss | RCT (Trepanowski 2017) = CR, **worse adherence** | **MODERATE** (= CR) | Hunger, lean-mass, dropout |
-| **Extended fast 24–72h+** | Deep benefits, "reset" | Uncontrolled case series (Buchinger, Goldhamer) | **WEAK–MODERATE**, uncontrolled | **Supervision; refeeding; electrolytes** |
-| **Water fasting (multi-day)** | BP/lipid/Lp(a), longevity | Single-arm supervised series | **WEAK**, supervised-only | Refeeding syndrome (can be fatal) |
-| **Dry fasting** | "1 day = 3 days water," autophagy | None for the claim; Ramadan = renal risk | **WEAK + POTENTIALLY-HARMFUL** | Dehydration, AKI, stones — **not endorsed** |
-| **FMD / ProLon (Longo)** | Fasting benefits while eating | **Human RCT (Wei 2017)** on biomarkers | **MODERATE** (best branded; surrogate, COI) | Safer than water fast; exclusions apply |
-| **Master Cleanse** | Detox, reset, cure | None | **PSEUDOSCIENCE** (detox) / crash diet | Electrolytes, muscle loss |
-| **Juice cleanse** | Detox, gut reset | None for detox | **PSEUDOSCIENCE** / weak crash | Sugar load; risky in diabetes/CKD |
-| **Colon cleanse / colonics** | Remove "impacted toxins" | None; "mucoid plaque" not real | **PSEUDOSCIENCE + HARMFUL** | Perforation, electrolyte death, infection |
-| **Liver/gallbladder flush** | Flush "stones" | Debunked — "stones" are saponified oil | **PSEUDOSCIENCE (debunked)** | Epsom purge; can obstruct a real stone |
-| **Parasite cleanse** | Clear "parasites" | False premise; "ropeworms" = mucus | **PSEUDOSCIENCE** | Herbal toxicity; missed real Dx |
-| **"Detox"/teatox teas** | Detox, flat belly | Mini-review: hidden senna/diuretics | **PSEUDOSCIENCE + HARMFUL** | Laxative dependence, hypokalemia |
-| **Snake Diet** | Fasting cures all + "snake juice" | Electrolyte kernel real; program not | **MIXED** (1 valid part, unsafe whole) | Anti-medical framing; ED risk |
-| **Autophagy "clock" claims** | 16h triggers / 24h maxes autophagy | Rodent/cell extrapolation; human flux unmeasured | **WEAK / mechanism over-extended** | (claim, not a protocol) |
-
 **The one-paragraph synthesis.** The legitimate core of this entire field is small and honest: **eating in a defined
 window, or doing periodic structured restriction, is a reasonable way to eat less — and eating less, plus eating
 earlier, plus keeping protein high and lifting, delivers most of what "fasting" is credited with.** Extended water

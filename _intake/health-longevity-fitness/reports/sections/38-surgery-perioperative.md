@@ -188,16 +188,18 @@ rather than on randomised evidence — the inverse of the standard the same heal
 ### The power of sham-surgery trials (and the operations that failed them)
 
 When investigators have had the nerve to run a sham-controlled trial, the results have repeatedly
-**overturned standard practice.** The canonical failures:
-
-| Operation | Sham-controlled finding | Source |
-|---|---|---|
-| **Arthroscopic surgery for knee OA** | No better than a **sham (skin-incision-only) operation** for pain or function | Moseley et al., *NEJM* 2002, `10.1056/NEJMoa013259` |
-| **Arthroscopic partial meniscectomy** (degenerative tear) | No better than **sham arthroscopy** (FIDELITY) | Sihvonen et al., *NEJM* 2013, `10.1056/NEJMoa1305189` |
-| **Vertebroplasty** for painful osteoporotic vertebral fracture | **Two simultaneous trials**, both negative — no better than a sham injection | Buchbinder et al. (`10.1056/NEJMoa0900563`) **and** Kallmes et al. (INVEST, `10.1056/NEJMoa0900429`), *NEJM* 2009 |
-| **PCI (stent) for stable angina** | **No better than a placebo procedure** for exercise time at 6 weeks (ORBITA) | Al-Lamee et al., *Lancet* 2018, `10.1016/S0140-6736(17)32714-9` |
+**overturned standard practice.** The canonical failures — arthroscopic surgery for knee OA,
+arthroscopic partial meniscectomy for a degenerative tear, vertebroplasty for a painful
+osteoporotic fracture, and PCI (stent) for stable angina — each proved **no better than a sham
+operation** for the patient-important outcome.
 
 @@FIG:Q02-sham-surgery@@
+
+Graded vs. sham (all blinded, placebo-procedure trials): knee arthroscopy — Moseley et al., *NEJM*
+2002 (`10.1056/NEJMoa013259`); partial meniscectomy — Sihvonen et al. FIDELITY, *NEJM* 2013
+(`10.1056/NEJMoa1305189`); vertebroplasty — two simultaneous negative trials, Buchbinder
+(`10.1056/NEJMoa0900563`) **and** Kallmes INVEST (`10.1056/NEJMoa0900429`), *NEJM* 2009; PCI for
+stable angina — ORBITA, Al-Lamee et al., *Lancet* 2018 (`10.1016/S0140-6736(17)32714-9`).
 
 (The two knee operations are covered in detail in **Section 21 §6**; this section names them as the
 **discipline-level lesson** rather than re-deriving the orthopaedic specifics.)
