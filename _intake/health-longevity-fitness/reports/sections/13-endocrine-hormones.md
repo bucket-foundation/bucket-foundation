@@ -58,6 +58,8 @@ molecule (say, testosterone or thyroid hormone) can do a dozen unrelated things 
 number" is a naive intervention model: you are shouting louder on a channel whose downstream meaning is
 set by receptors you aren't measuring.
 
+@@FIG:Z06-gland-map,RA05-endocrine-glands@@
+
 **Two signal classes, two speeds.** *Steroid/thyroid* hormones (cortisol, testosterone, estrogen,
 aldosterone, T3/T4, vitamin D) are lipid-soluble, ride carrier proteins, slip through the cell membrane,
 and bind **intracellular receptors that act as transcription factors** — they change which **genes** are
@@ -74,6 +76,8 @@ upstream drive falls; when output falls, drive rises. This is the same control p
 (`bucket-canon/04-information`: feedback, control theory) — and it has three hard consequences for
 longevity practice:
 
+@@FIG:BS4-endocrine-axis@@
+
 - **It explains the lab pairs.** You read an axis by reading **two** numbers — the stimulating signal and
   the effector — *together*. A **high TSH with a low thyroid hormone** means the gland is failing (the
   brain is shouting, nobody answers = primary hypothyroidism); a **low TSH with low thyroid hormone**
@@ -89,6 +93,8 @@ longevity practice:
   invites compensation, and the level you measured was often telling you about the *state of the system*
   (illness, stress, energy balance), not handing you a control knob.
 
+@@FIG:Z04-lab-pair@@
+
 **Set-points drift with age — but "low for your age" is not automatically "deficient."** Aging shifts
 many axes (testosterone, estrogen, DHEA, GH/IGF-1, melatonin all decline; insulin resistance and evening
 cortisol tend to rise). The central interpretive trap of the entire "hormone optimization" industry is
@@ -97,12 +103,16 @@ shifted set-point is a *defect to reverse* or an *adaptation to respect* is the 
 axis below answers differently — and for several of them (GH/IGF-1 most starkly) the youthful-high level
 is the one associated with **worse** longevity.
 
+@@FIG:B01-hormone-age@@
+
 ---
 
 ## 2. The axis-by-axis map
 
 The master table. Each axis: the effector hormone(s), the control loop, the direction of age-change, the
 **honest practical lever**, and the evidence tier for that lever. Detail and citations follow in §3–§11.
+
+@@FIG:61-endocrine-axes@@
 
 | Axis / hormone | What it does | Change with age | The honest lever | Lever evidence tier |
 |---|---|---|---|---|
@@ -133,6 +143,8 @@ stress and arousal glucocorticoid: it raises blood glucose (gluconeogenesis), mo
 restrains and reshapes immunity, sharpens short-term cognition, and — critically — **sets the daily
 arousal rhythm.**
 
+@@FIG:65-hpa-axis@@
+
 **The rhythm is the point.** Healthy cortisol is **not** flat. It surges in the last hours of sleep,
 peaks ~30–45 min after waking (the **cortisol awakening response**), then declines across the day to a
 night-time trough — a circadian curve braided with the sleep/light system (Domains I and the recovery
@@ -140,6 +152,8 @@ section). Acute cortisol spikes are **adaptive** (the whole point of a stress re
 relevant pathology is **chronic** elevation and **loss of rhythm**: a flattened curve, a high evening
 nadir, and blunted reactivity — patterns that correlate with poor sleep, depression, visceral adiposity,
 and mortality.
+
+@@FIG:45-cortisol-rhythm@@
 
 **Allostatic load — the honest frame for "stress damages you."** Bruce McEwen's framework (McEwen 1998,
 *NEJM*, `10.1056/NEJM199801153380307`) is the rigorous version of the folk idea: the same mediators that
@@ -192,6 +206,8 @@ pair**: high LH/FSH + low steroid = the gonad is failing (primary); low LH/FSH +
 brain/pituitary is (central/secondary). This pairing is exactly how genuine hypogonadism is distinguished
 from the noise.
 
+@@FIG:A09-hpg@@
+
 ### 4.1 Testosterone (men)
 
 **Age change — a slope, not a cliff.** The **Baltimore Longitudinal Study of Aging** (Harman et al. 2001,
@@ -200,6 +216,8 @@ testosterone decline **gradually, roughly ~1%/year** from around age 30–40, wi
 falling faster (sex-hormone-binding globulin rises with age). By the usual thresholds a substantial
 minority of older men fall into the biochemically "low" range — but **most are asymptomatic**, and this is
 the crux.
+
+@@FIG:83-testosterone-age@@
 
 **Symptomatic hypogonadism vs normal aging.** The clinically meaningful entity is **organic
 hypogonadism**: consistently low morning testosterone on repeat testing **plus** a syndrome of symptoms
@@ -369,6 +387,8 @@ The growth/anabolism the GH/IGF-1 axis drives is exactly what nutrient-sensing a
   (frailty, poor repair). IGF-1 is a **context-dependent dial, not a minimize-target** — but the dial's
   longevity-favorable region is **not "as high as a 25-year-old's,"** which is precisely where "boost your
   GH" pushes it.
+
+@@FIG:B02-igf1-u-curve@@
 
 **The practical conclusion: deliberately raising GH/IGF-1 in a healthy adult runs *against* the best
 longevity genetics we have.** This reframes two heavily marketed practices as red flags:

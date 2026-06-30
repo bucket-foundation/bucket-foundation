@@ -31,12 +31,16 @@ mostly cannot, because the CNS environment (myelin-associated inhibitors, the gl
 blocks regrowth. This single fact explains why a severed finger nerve can recover and a severed
 spinal cord generally does not — and why "neuroplasticity" (§4) is real but bounded.
 
+@@FIG:A05-cns-pns@@
+
 ### 1.2 The neuron and the action potential — the foundation
 
-The functional unit is the **neuron**: dendrites (input) → soma → axon (output) → synaptic
-terminals. Its defining trick is the **action potential**, and the mechanism is one of the most
+The functional unit is the **neuron** — dendrites in, soma, axon out to the synaptic terminals.
+Its defining trick is the **action potential**, and the mechanism is one of the most
 completely solved problems in all of biology — which is why it sits in canon as a *foundation*,
 not an outcome.
+
+@@FIG:A01-neuron,RA01-neuron@@
 
 - A neuron at rest holds its inside ~−70 mV relative to outside. That voltage is built and
   maintained by the **Na⁺/K⁺-ATPase ("the sodium–potassium pump")**, which burns ATP to push 3 Na⁺
@@ -53,6 +57,8 @@ not an outcome.
   `10.1113/jphysiol.1952.sp004764`; Nobel Prize 1963). `mechanistic` — and as solid as biology
   gets.
 
+@@FIG:46-action-potential,RA06-action-potential@@
+
 > **UP-link to canon.** The Na⁺/K⁺ gradient and the Hodgkin–Huxley formalism are
 > `bucket-canon/05-biophysics/` foundations (bioelectricity, ion gradients, membrane excitability),
 > adjacent to the cell-water/interstitial-fluid physics that Domain I's glymphatic story rests on.
@@ -65,6 +71,9 @@ not an outcome.
   triggers Ca²⁺ influx → vesicles release a neurotransmitter → it binds receptors on the next cell →
   excites or inhibits it. The adult human brain has on the order of ~10¹⁴ synapses. Synaptic
   *strength* is adjustable, and that adjustability is the physical substrate of learning (§4).
+
+@@FIG:66-synapse,RA02-synapse@@
+
 - **Glia — not "support cells."** Glia roughly match or outnumber neurons (the once-quoted "10:1"
   ratio is a myth; it's closer to ~1:1). Three families do real computational and immune work:
   - **Astrocytes** regulate the synaptic environment, recycle neurotransmitters (glutamate uptake),
@@ -105,11 +114,15 @@ sweat, airway, vasculature. It has two arms, classically opposed:
 | Anatomy | Thoracolumbar outflow, paravertebral chain | Craniosacral; the **vagus nerve** carries most of it |
 | Adrenal link | Drives adrenal medulla → epinephrine into blood | — |
 
+@@FIG:92-autonomic-ns@@
+
 The honest correction to the pop version: they are **not a simple seesaw**. Both arms are active at
 rest, they can co-activate, and "balance" is contextual, not a single dial you turn toward
 "parasympathetic = good." Chronic *over*-parasympathetic states exist; acute sympathetic activation
 is adaptive and necessary. The useful idea is **autonomic flexibility** — the capacity to shift
 appropriately — not "maximise vagal tone."
+
+@@FIG:93-fight-or-flight@@
 
 ### 2.2 The vagus nerve and HRV — the real readout, honestly graded
 
@@ -142,6 +155,8 @@ anxiety in humans" is mostly unmade — human RCTs of "psychobiotics" are small,
 inconsistent. The axis is one of the most exciting frontiers in neuroscience and one of the most
 oversold in the supplement aisle. `animal`/`mechanistic` strong; human `outcome` thin.
 
+@@FIG:54-gut-brain-axis@@
+
 ### 2.4 The "vagus hacks" honest take
 
 A whole wellness genre promises to "stimulate your vagus" with cold plunges, gargling, humming, ear
@@ -172,6 +187,8 @@ Neurotransmitters are the chemical currency at the synapse. The single most impo
 pop-neuroscience: **a transmitter is not a feeling.** Dopamine is not "pleasure," serotonin is not
 "happiness," GABA is not "calm." Each is a signalling molecule that does *different* things in
 *different* circuits, and the same molecule can be excitatory in one place and modulatory in another.
+
+@@FIG:BX2-neurotransmitters@@
 
 | Transmitter | What it actually does (mechanistically) | The pop error |
 |---|---|---|

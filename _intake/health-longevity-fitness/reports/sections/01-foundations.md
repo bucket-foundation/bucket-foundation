@@ -120,6 +120,8 @@ supplied the ancestral proton-motive force before cells existed — solving the 
 of where life's energy currency came from. The proton gradient is not just how *you* live; it may be
 why life started at all.
 
+@@FIG:04-energy-stack,RA03-mitochondrion@@
+
 ### 2.3 ATP synthase — the molecular turbine
 
 The proton gradient is potential energy, like water behind a dam. The cell spends it through one
@@ -214,6 +216,8 @@ Energy needs a container and a chassis. The proton gradient of §2 is only possi
 **membrane** to hold it; the chemistry only happens because there are **proteins** to catalyze it;
 and all of it sits in a medium of **water** whose properties are still partly contested. This layer
 is the matter the energy organizes.
+
+@@FIG:103-the-cell,RA15-the-cell@@
 
 ### 3.1 The lipid-bilayer membrane — the container of the gradient
 
@@ -315,6 +319,8 @@ with no route back from protein sequence to nucleic-acid sequence. Mendel's part
 (`mendel`) is the upstream axiom. Your genome is the *static* blueprint — essentially the same in
 every cell of your body and across your whole life.
 
+@@FIG:101-central-dogma,RA07-dna-replication@@
+
 But the genome alone cannot explain aging or differentiation: a neuron and a liver cell carry
 *identical* DNA yet behave completely differently, and an old cell carries the *same* DNA it had when
 young. Something *on top of* the sequence decides which genes are read, when, and how loudly. That
@@ -366,6 +372,8 @@ to do:
 | **Sirtuins (need NAD⁺)** | Redox/energy state (NAD⁺ level) | **Stress resistance, repair**, deacetylation of targets | Fasting, exercise (raise NAD⁺) — *NAD-precursor supplements raise NAD⁺ but show no proven outcome* |
 | **Insulin / IGF-1 → FOXO** | Fed state, growth-factor signaling | Low insulin/IGF-1 *releases* **FOXO** → stress-resistance/longevity genes | Caloric restriction; the *daf-2/daf-16* axis doubled worm lifespan (Kenyon 1993) |
 
+@@FIG:05-nutrient-switchboard@@
+
 Add a fifth, the cell's antioxidant master regulator: **NRF2**, which when activated turns on the
 cell's *endogenous* defense and detox genes. The key insight (from the redox thread) is that the
 robust way to raise antioxidant capacity is to *induce NRF2* (e.g. via sulforaphane, or via the
@@ -404,6 +412,8 @@ hangs on, but not by itself a proof of what *causes* aging. Mapped onto the foun
 | Genomic instability · telomere attrition | **Information** — the blueprint itself accrues damage | §4.1 |
 | Cellular senescence | Integrative — damaged cells arrest and secrete inflammatory signals | §5.3 |
 | Stem-cell exhaustion · altered intercellular communication · inflammaging · dysbiosis | Integrative — tissue- and system-level failure | §5.3 |
+
+@@FIG:30-hallmarks-aging@@
 
 The 2023 grouping is itself instructive: **primary** hallmarks (damage), **antagonistic** hallmarks
 (protective responses that turn harmful when chronic — note the hormetic shape), and **integrative**
@@ -461,7 +471,9 @@ reappearing across every chapter. If §2–§5 are the parts, this is the gramma
 The single most powerful organizing principle in applied longevity. **Hormesis** is the **biphasic
 dose-response**: a *sub-damaging* dose of a stressor triggers an adaptive overcompensation that
 leaves the system net-stronger, while an *excess* of the same stressor harms. The dose-response curve
-is an inverted-U (or J): a little is good, more is better up to a point, too much is damage.
+is an inverted-U (or J).
+
+@@FIG:87-hormesis-curve@@
 
 The astonishing thing is how many "good for you" practices share this exact shape, and — per the
 corpus's hormesis thread (`thread-hormesis.md`) — share a common biophysical engine: **transient ROS

@@ -58,12 +58,16 @@ the female pattern by default. This shared origin is why the structures map onto
 clitoris↔penis, labia↔scrotum) and why the **same hypothalamic-pituitary-gonadal (HPG) axis** runs both —
 detailed as a control system in §13.
 
+@@FIG:Z07-homology@@
+
 **The female system** is built around a **finite, non-renewing egg supply** and a **monthly cycle**. The
 ovaries hold the lifetime stock of oocytes (peaking at ~6–7 million in fetal life, ~1–2 million at birth,
 ~400,000 at puberty, and declining to near-zero at menopause); the uterus, cervix, and vagina form the
 gestational and outflow tract; the fallopian tubes are where fertilization normally occurs. The defining fact
 is **declining ovarian reserve with age** — both the *number* and the *chromosomal quality* of eggs fall,
 quality steeply after the mid-30s, which sets nearly the entire female-fertility timeline.
+
+@@FIG:B06-ovarian-reserve@@
 
 **The male system** is built around **continuous sperm production** (spermatogenesis, ~74 days per cycle,
 running from puberty into old age) in the testes, with the epididymis, vas deferens, seminal vesicles, and
@@ -97,6 +101,8 @@ not hitting "28."
   (menstruation). The luteal phase is the *fixed-length* (~14-day) half; cycle-length variation lives almost
   entirely in the follicular phase.
 
+@@FIG:B09-menstrual-cycle@@
+
 The cycle is increasingly framed as a **vital sign**: its presence, regularity, and character are a readout of
 HPG-axis and metabolic health (which is why energy deficiency, stress, thyroid disease, and PCOS all show up
 as cycle disturbance first).
@@ -112,6 +118,8 @@ as cycle disturbance first).
 | **Abnormal uterine bleeding (AUB)** | Bleeding abnormal in frequency, regularity, duration, or volume. Structured by the **FIGO PALM-COEIN** system (Polyp, Adenomyosis, Leiomyoma, Malignancy/hyperplasia / Coagulopathy, Ovulatory, Endometrial, Iatrogenic, Not-yet-classified). | The key **red flag**: **postmenopausal bleeding is endometrial cancer until proven otherwise** and warrants prompt evaluation. Heavy menstrual bleeding is a common, treatable cause of **iron-deficiency anemia** that is routinely under-recognized. The **levonorgestrel IUD** is a first-line treatment for heavy bleeding, not just contraception. |
 | **Adenomyosis** | Endometrial tissue within the uterine muscle wall → heavy, painful periods and a bulky uterus; underdiagnosed, increasingly seen on MRI/ultrasound. | Overlaps with fibroids/endometriosis clinically. Managed medically (LNG-IUD, hormonal) or definitively (hysterectomy). Flagged because it is frequently missed. |
 
+@@FIG:BX7-gynecologic@@
+
 ### 2.3 Menopause (brief — owned by §13/§19/Domain N)
 
 Menopause is the **permanent cessation of ovulation** (defined retrospectively after 12 months of amenorrhea;
@@ -122,6 +130,10 @@ hormone therapy (benefit/risk depends heavily on age and time-since-menopause; f
 onset in symptomatic women, unfavorable when started late) — is grounded in §13 and `N-womens-longevity.md`
 (WHI reanalysis, KEEPS, ELITE/Hodis 2016) and is **not** restated here. **Vaginal estrogen** for genitourinary
 symptoms is low-risk and under-used; systemic HRT is the timing-stratified decision.
+
+@@FIG:94-menopause-timeline@@
+
+@@FIG:48-hrt-timing@@
 
 ---
 
@@ -149,6 +161,8 @@ CHOICE-study real-world data, Winner 2012).
 | **Withdrawal** | ~20% | ~4% | Better than nothing; high typical-use failure. |
 | **Fertility-awareness methods** | ~2–23% (method-dependent) | ~1–5% | Wide range; modern symptothermal/app-based methods at the better end *with rigorous use*. |
 | **Spermicide alone** | ~21% | ~16% | Weak alone. |
+
+@@FIG:B08-contraception@@
 
 **The honest takeaways.** (1) **LARC (implants and IUDs) are 20–50× more effective than the pill in typical
 use** precisely because they remove the human from the loop — the CHOICE study (Winner 2012, NEJM) showed
@@ -190,6 +204,8 @@ definition):
 | **38–40** | ~20–25% |
 | **41–42** | ~10–15% |
 | **> 42** | **< 5%** |
+
+@@FIG:B07-ivf-by-age@@
 
 **The fertility-industry honesty.** (1) Clinics quote **per-transfer** or **cumulative** rates, or rates from
 favorable subgroups, which look far better than **per-cycle-started** — always ask which denominator. (2)
@@ -251,6 +267,8 @@ practice**: what to screen for, what's curable, and the one vaccine that prevent
 | **Herpes (HSV)** | HSV-1/2 | Very common, lifelong, **manageable not curable**; antivirals reduce outbreaks/transmission. Stigma exceeds medical severity. |
 | **Trichomoniasis** | Protozoan | Common, curable, frequently asymptomatic. |
 
+@@FIG:BX6-sti-matrix@@
+
 **HPV vaccination is one of the highest-value interventions in this entire manual.** It is the first vaccine
 **proven to prevent an invasive cancer in humans at the population level**: a Swedish national-registry study of
 ~1.7 million girls/women (Lei 2020, NEJM) found vaccination cut **invasive cervical cancer** incidence sharply,
@@ -274,6 +292,8 @@ ED in a younger man is a **cardiovascular work-up trigger**, not just a quality-
 first-line, and work by potentiating the same nitric-oxide/vascular pathway — but they treat the symptom; the
 **underlying vascular, metabolic, and lifestyle drivers** (diabetes, hypertension, smoking, inactivity, obesity)
 are the actual disease.
+
+@@FIG:A10-ed-cardiac@@
 
 **Female sexual dysfunction** (low desire, arousal/orgasm difficulty, pain disorders like dyspareunia/vaginismus)
 is **common, multifactorial (biological + psychological + relational + contextual), and genuinely

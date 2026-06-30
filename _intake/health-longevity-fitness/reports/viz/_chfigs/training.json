@@ -1,0 +1,259 @@
+{
+ "cid": "training",
+ "title": "02 \u2014 Training: How To Actually Train",
+ "file": "sections/02-training.md",
+ "headings": [
+  "## 1. The Four Trainable Capacities (and why each earns its place)",
+  "## 2. The Five Strength Patterns \u2014 the Variations",
+  "### 2.1 SQUAT \u2014 knee-dominant lower body (quads, glutes, whole-body brace)",
+  "### 2.2 HINGE \u2014 hip-dominant posterior chain (hamstrings, glutes, spinal erectors)",
+  "### 2.3 PUSH \u2014 horizontal and vertical pressing (chest, shoulders, triceps)",
+  "### 2.4 PULL \u2014 horizontal and vertical pulling (lats, upper back, biceps, grip)",
+  "### 2.5 CARRY \u2014 loaded locomotion (grip, trunk stability, total-body work capacity)",
+  "### 2.6 The connective patterns: single-leg & core",
+  "## 3. Cardio \u2014 Building the Engine",
+  "### 3.1 Zone 2 \u2014 the easy base",
+  "### 3.2 VO\u2082max intervals \u2014 raising the ceiling",
+  "### 3.3 The honest caveat \u2014 the \"Zone 2 is uniquely optimal\" overclaim",
+  "## 4. Mobility & Flexibility",
+  "### 4.1 A short daily mobility routine (~8\u201310 min)",
+  "### 4.2 The static-stretch timing note (resolved)",
+  "## 5. Balance \u2014 the Tests Are the Training",
+  "## 6. Programming \u2014 Putting It Together",
+  "### 6.1 Minimum effective dose (MED) \u2014 the honest floor",
+  "### 6.2 The volume / frequency / proximity-to-failure levers",
+  "### 6.3 Progressive overload + autoregulation (RPE / RIR)",
+  "### 6.4 Three sample weeks by level",
+  "### 6.5 Deload & recovery",
+  "### 6.6 Combining cardio + strength without interference",
+  "## 7. Go Deeper",
+  "## 8. Honest Caveats Recap (don't skip)"
+ ],
+ "figures": [
+  {
+   "slug": "03-vo2max-mortality",
+   "title": "VO\u2082max \u2192 Mortality",
+   "caption": "strongest predictor"
+  },
+  {
+   "slug": "20-strength-jcurve",
+   "title": "Strength J-curve",
+   "caption": "more is not better"
+  },
+  {
+   "slug": "21-steps-plateau",
+   "title": "Steps \u2192 Mortality",
+   "caption": "plateaus ~7\u20138k"
+  },
+  {
+   "slug": "40-weekly-program",
+   "title": "Minimum-Effective Week",
+   "caption": "one week, everything"
+  },
+  {
+   "slug": "43-grip-mortality",
+   "title": "Grip Strength \u2192 Mortality",
+   "caption": "a cheap whole-body proxy"
+  },
+  {
+   "slug": "60-four-capacities",
+   "title": "The Four Capacities",
+   "caption": "build + test each"
+  },
+  {
+   "slug": "71-zone2-hiit",
+   "title": "Zone 2 vs HIIT",
+   "caption": "both raise VO\u2082max"
+  },
+  {
+   "slug": "91-minimal-equipment",
+   "title": "No-Gym Training",
+   "caption": "train anywhere"
+  },
+  {
+   "slug": "M01-push-up",
+   "title": "Push-Up",
+   "caption": "the horizontal push"
+  },
+  {
+   "slug": "M02-overhead-press",
+   "title": "Overhead Press",
+   "caption": "the vertical push"
+  },
+  {
+   "slug": "M03-pull-up",
+   "title": "Pull-Up",
+   "caption": "the vertical pull"
+  },
+  {
+   "slug": "M04-glute-bridge",
+   "title": "Glute Bridge",
+   "caption": "hip extension, spares the back"
+  },
+  {
+   "slug": "M05-side-plank",
+   "title": "Side Plank",
+   "caption": "anti-lateral-flexion core"
+  },
+  {
+   "slug": "M06-kettlebell-swing",
+   "title": "Kettlebell Swing",
+   "caption": "the ballistic hip hinge"
+  },
+  {
+   "slug": "M07-bent-over-row",
+   "title": "Bent-Over Row",
+   "caption": "the horizontal pull"
+  },
+  {
+   "slug": "M08-suitcase-carry",
+   "title": "Suitcase Carry",
+   "caption": "loaded carry, anti-tilt"
+  },
+  {
+   "slug": "M09-calf-raise",
+   "title": "Calf Raise",
+   "caption": "lower-leg + tendon health"
+  },
+  {
+   "slug": "M10-wall-sit",
+   "title": "Wall Sit",
+   "caption": "isometric quad endurance"
+  },
+  {
+   "slug": "M11-bird-dog",
+   "title": "Bird-Dog",
+   "caption": "anti-rotation, spine-sparing"
+  },
+  {
+   "slug": "M12-dip",
+   "title": "Dip",
+   "caption": "vertical push, chest + triceps"
+  },
+  {
+   "slug": "M13-dead-hang",
+   "title": "Dead Hang",
+   "caption": "grip + spine decompression"
+  },
+  {
+   "slug": "M14-jump-rope",
+   "title": "Jump Rope",
+   "caption": "portable conditioning"
+  },
+  {
+   "slug": "M15-hip-flexor-stretch",
+   "title": "Hip-Flexor Stretch",
+   "caption": "counters sitting"
+  },
+  {
+   "slug": "M16-deep-squat-hold",
+   "title": "Deep Squat Hold",
+   "caption": "hip + ankle mobility"
+  },
+  {
+   "slug": "M17-deadlift",
+   "title": "Deadlift",
+   "caption": "the loaded hinge"
+  },
+  {
+   "slug": "M18-goblet-squat",
+   "title": "Goblet Squat",
+   "caption": "front-loaded squat"
+  },
+  {
+   "slug": "M19-bench-press",
+   "title": "Bench Press",
+   "caption": "loaded horizontal push"
+  },
+  {
+   "slug": "M20-farmer-carry",
+   "title": "Farmer Carry",
+   "caption": "bilateral loaded carry"
+  },
+  {
+   "slug": "M21-single-leg-rdl",
+   "title": "Single-Leg RDL",
+   "caption": "unilateral hinge + balance"
+  },
+  {
+   "slug": "M22-inverted-row",
+   "title": "Inverted Row",
+   "caption": "bodyweight horizontal pull"
+  },
+  {
+   "slug": "M23-face-pull",
+   "title": "Face Pull",
+   "caption": "rear delt + posture"
+  },
+  {
+   "slug": "M24-cat-cow",
+   "title": "Cat-Cow",
+   "caption": "segmental spine mobility"
+  },
+  {
+   "slug": "M25-thoracic-rotation",
+   "title": "T-Spine Rotation",
+   "caption": "open-book reach"
+  },
+  {
+   "slug": "M26-running-form",
+   "title": "Running Form",
+   "caption": "gait / locomotion"
+  },
+  {
+   "slug": "M27-box-jump",
+   "title": "Box Jump",
+   "caption": "plyometric power"
+  },
+  {
+   "slug": "F01-week-calendar",
+   "title": "The Minimum Effective Week",
+   "caption": "3 templates"
+  },
+  {
+   "slug": "F02-rpe-rir",
+   "title": "RPE & RIR",
+   "caption": "autoregulate effort"
+  },
+  {
+   "slug": "M28-bulgarian-split-squat",
+   "title": "Bulgarian Split Squat",
+   "caption": "single-leg strength"
+  },
+  {
+   "slug": "M29-pallof-press",
+   "title": "Pallof Press",
+   "caption": "anti-rotation core"
+  },
+  {
+   "slug": "M30-rowing-erg",
+   "title": "Rowing Machine",
+   "caption": "legs-led full-body cardio"
+  },
+  {
+   "slug": "M31-hollow-hold",
+   "title": "Hollow Hold",
+   "caption": "anterior core"
+  },
+  {
+   "slug": "M32-dead-bug",
+   "title": "Dead Bug",
+   "caption": "anti-extension core"
+  },
+  {
+   "slug": "M33-cable-row",
+   "title": "Cable Row",
+   "caption": "horizontal pull"
+  },
+  {
+   "slug": "G01-polarized",
+   "title": "Polarized Cardio",
+   "caption": "mostly easy, a little hard"
+  },
+  {
+   "slug": "Y07-strength-ladders",
+   "title": "Five Patterns, Three Rungs",
+   "caption": "regress \u2192 progress"
+  }
+ ]
+}

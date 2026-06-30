@@ -21,6 +21,8 @@ this topic abuses more than any other:
    continuously (cross-ref `17-organ-systems-atlas.md` §3.5 — flat debunk). A cleanse has to beat *that baseline*, and
    none does. Cross-ref the detox cluster in `32-biohacking-fringe.md` §6.
 
+@@FIG:85-calerie@@
+
 A practical note on terminology: in 2024 a large expert panel published an **international consensus on fasting
 terminology** (Koppold et al., *Cell Metab* 2024, `10.1016/j.cmet.2024.06.013`) precisely because the words are used so
 loosely. Where definitions matter below, that's the reference standard.
@@ -35,6 +37,8 @@ spontaneous calorie reduction** these patterns cause, plus a smaller, genuine **
 in the day. None of the IF variants has a hard-endpoint (mortality) RCT — you cannot randomize humans to decades of a
 schedule.
 
+@@FIG:89-fasting-protocols@@
+
 ### 1.1 Time-restricted eating (TRE) — 16:8, 14:10, 18:6
 
 - **What it is:** eat within a daily window (commonly 8 hours), fast the rest (commonly 16). No food rules inside the
@@ -47,6 +51,9 @@ schedule.
   metabolic benefit: **Sutton & Peterson 2018** (*Cell Metab*, `10.1016/j.cmet.2018.04.010`) ran 6-hour **isocaloric**
   early TRE — no weight loss — and still improved insulin sensitivity, blood pressure, and oxidative-stress markers.
   When calories are matched, TRE ≈ continuous restriction for weight (cross-ref `conflict-tre-efficacy-vs-cr`).
+
+@@FIG:L06-tre-cr@@
+
 - **Verdict:** **MODERATE — legitimate, mostly via adherence.** A defensible, low-risk eating *tool* for people who
   find a window easier than counting. **Early** windows have a small real circadian edge; **late** windows are the
   weakest version. Not magic, not required.
@@ -123,6 +130,8 @@ A rough sequence as a fast extends (individual variation is large; these are *no
 - **Throughout:** counter-regulatory hormones, fat-free-mass loss accrues, and **micronutrient/electrolyte reserves
   draw down** — the part that becomes dangerous.
 
+@@FIG:15-fasting-timeline@@
+
 The **endocrine adaptations to prolonged fasting** are real and increasingly characterized (review: *Nutrients* 2025,
 `10.3390/nu17243949`), but "characterized physiology" is not the same as "demonstrated long-term benefit."
 
@@ -164,6 +173,8 @@ electrolytes when nutrition (especially carbohydrate) is reintroduced after a pe
 fasting. Mechanism: refeeding spikes insulin → cells rapidly pull **phosphate, potassium, and magnesium** out of the
 blood → acute **hypophosphatemia**, hypokalemia, hypomagnesemia, plus thiamine depletion and fluid shifts. The result
 can be cardiac arrhythmia, respiratory failure, seizures, and death.
+
+@@FIG:F05-refeeding@@
 
 - It is well documented in critically ill and malnourished patients (e.g. refeeding hypophosphatemia incidence/mortality
   reviews, *Nutrients* 2026 `10.3390/nu18111655`; *Sci Rep* 2026 `10.1038/s41598-026-41063-8`), and there are case
@@ -256,6 +267,8 @@ is graded against that null.
   cholesterol/bile stones and were not in the liver or gallbladder. (The classic analysis: a *Lancet* 2005 letter,
   Sies & Brinkmann, showing the "stones" were saponified oil with no actual gallstone constituents.) The liver does not
   store passable "stones," and you cannot manually flush the biliary tree this way.
+
+@@FIG:Y09-liver-flush@@
 - **Verdict:** **PSEUDOSCIENCE (debunked).** The dramatic "stones" are a cooking reaction, not pathology leaving the body.
 - **Safety:** the Epsom-salt purge causes fluid/electrolyte shifts and dehydration; can dislodge a *real* gallstone into
   the bile duct (obstruction/pancreatitis). Risky theater.
@@ -373,6 +386,8 @@ overeating, and (speculatively) spermidine-rich foods.
 
 ## 7. Who should NOT fast — the safety box
 
+@@FIG:F04-fasting-exclusions@@
+
 > **Hard exclusions / "medical supervision required."** Fasting (extended fasting especially, but also aggressive IF) is
 > contraindicated or requires medical management for:
 >
@@ -399,6 +414,8 @@ overeating, and (speculatively) spermidine-rich foods.
 ---
 
 ## 8. The honest bottom line — tiered verdict table
+
+@@FIG:N02-fasting-protocols@@
 
 | Protocol | The core claim | Best evidence (tier) | Verdict | Safety |
 |---|---|---|---|---|

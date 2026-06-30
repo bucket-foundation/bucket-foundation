@@ -45,6 +45,8 @@ Grade key — mapped to the evidence ladder in `SCHEMA.md`:
 - **no-evidence** — claims outrun the data; effect is mechanistic, anecdotal, or untested in humans.
 - **harmful** — direct harm (contamination, interaction, injury) and/or the indirect harm of displacing proven care.
 
+@@FIG:38-cam-matrix@@
+
 | Modality | Best-evidence indication | Honest verdict | Grade | Top tier of evidence |
 |---|---|---|---|---|
 | **Acupuncture** | Chronic pain (back/neck/knee/headache); chemo & post-op nausea (PC6) | Small real effect over no-treatment; **barely** beats sham; large placebo/ritual component | **works-for-some-things** | `meta` (Vickers IPD; Cochrane) |
@@ -85,7 +87,11 @@ shoulder). Its findings are the honest centre of gravity for the whole field:
 
 Read those two numbers together and the structure is unmistakable: **most of acupuncture's benefit is the
 context — the ritual, the attention, the touch, the expectation — and only a sliver is attributable to
-where (or whether) the needle actually goes.** Cochrane reviews land in the same place by condition:
+where (or whether) the needle actually goes.**
+
+@@FIG:Q09-acupuncture@@
+
+Cochrane reviews land in the same place by condition:
 small benefits for **tension-type headache** and **migraine prophylaxis** and **chronic low-back/neck pain**;
 the most robust *specific* effect is **PC6-point antiemesis** — acupuncture/acupressure reduces
 **post-operative and chemotherapy-induced nausea and vomiting** (Cochrane Lee & colleagues), one of the few
@@ -186,6 +192,8 @@ clusters have been traced to these products. Some TCM products carry **aristoloc
 toxin + urothelial carcinogen) and undeclared pharmaceuticals. Net: traditional systems are a legitimate
 source of drug *leads*, an illegitimate theory of the *body*, and — for metal-bearing preparations — a genuine
 *toxicology* hazard.
+
+@@FIG:Q10-ayurveda-metals@@
 
 ---
 
@@ -319,6 +327,8 @@ heal fractures, or reopen arteries. **Placebo modulates the experience of illnes
 modality whose entire effect is placebo can be a humane comfort *alongside* real care and a lethal substitute
 *instead of* it.
 
+@@FIG:R08-placebo-bounded@@
+
 **9.2 "Natural" ≠ safe.** Naturalness predicts nothing about safety, purity, dose, or interactions. Herbs are
 unstandardised drugs; "supplements" can be adulterated (§3); traditional metal-bearing preparations can poison
 (§4); and the most dangerous interactions (St John's Wort, ginkgo, grapefruit-class effects) come precisely
@@ -335,6 +345,8 @@ proven treatment did not itself shorten survival; CAM *instead of* proven treatm
 death rate — by causing people to skip or delay the cure.** (Cross-ref oncology, `25-oncology.md`.) The harm of
 alternative medicine is overwhelmingly an **opportunity-cost harm**, and it is largest exactly where
 conventional medicine works best.
+
+@@FIG:Q08-alt-conventional@@
 
 **9.4 The regulation gap.** In the US, the **Dietary Supplement Health and Education Act (DSHEA, 1994)** lets
 supplements, herbs, and homeopathic products reach the market **without pre-market proof of efficacy, purity,

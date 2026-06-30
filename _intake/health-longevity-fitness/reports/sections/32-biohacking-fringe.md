@@ -68,6 +68,8 @@ honesty that the marketing omits.
 | **Methylene blue** | Nootropic, mitochondrial "energy," anti-aging | Real redox mechanism + one small human fMRI/memory study; outcome unproven; not benign | **PROMISING** (mechanism) / **NO-EVIDENCE** (anti-aging) |
 | **Grey-market "smart drugs"** (modafinil, racetams, etc.) | Cognitive enhancement | Modafinil real in sleep-dep; most racetams unproven; unregulated supply | mixed — see §9 |
 
+@@FIG:37-biohacking-matrix@@
+
 ---
 
 ## 1. PEPTIDES — the "almost no human data, unregulated" category
@@ -119,6 +121,8 @@ is pushing the lever in the direction the aging biology says shortens life. Ther
 body-composition signals (MK-677 raises lean mass and also fasting glucose and water retention) but **no
 healthspan or longevity human data**, and a coherent mechanistic reason to expect net harm if used for
 that purpose.
+
+@@FIG:Y10-gh-owngoal@@
 
 **Dose↔evidence honesty:** these are sold as "natural because your body makes the GH" — but the *amount*,
 *timing*, and *chronicity* are pharmacological, and the relevant comparison isn't "vs synthetic HGH," it's
@@ -451,6 +455,8 @@ people → "reverses aging." NAD+ goes up → "cellular recharge." The mechanism
 usually unproven; the price is charged for the outcome. `SCHEMA.md`'s hardest rule — *a mechanism claim may
 never be presented as an outcome claim* — is the single tool that dissolves most of the section.
 
+@@FIG:R05-laundering-gap@@
+
 **The survivorship + anecdote engine.** The testimonial base is structurally misleading. The people who
 post "this changed my life" are (a) **survivors** — those for whom it seemed to work, while the non-responders
 quietly stopped; (b) doing it **bundled** with better sleep, training, and diet that month (the cold-plunge /
@@ -460,6 +466,8 @@ with a needle, a chamber, or a glowing panel, where expectancy is strong (the My
 demonstration). An n=1 can validly detect a *large* personal effect (L2 epistemics), but it **cannot** see a
 small effect, cannot rule out the four biases above, and **cannot** show a longevity outcome — which is
 exactly the claim being made.
+
+@@FIG:R07-anecdote-engine@@
 
 **The honest synthesis, in one breath:** a handful of these have real, narrow, correct-dose effects — **red
 light for skin and some pain; topical GHK-Cu; methylene blue's mechanism; nicotine's acute attention bump;

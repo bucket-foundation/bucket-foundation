@@ -33,6 +33,8 @@ Read this before anything else, because it repeats in every section below.
    cells, "regenerative" injections, and exosome infusions to desperate patients *during* the
    years when the honest answer is still "we don't know yet."
 
+@@FIG:R06-four-beat@@
+
 The neutrality of this corpus (`06-evidence/SCHEMA.md`) is the grade itself. A `meta`-tier
 human result and a `mouse`-tier result are both reported here — but never merged, and never
 laundered into each other. **Almost all regenerative-medicine harm lives in beat 4 borrowing
@@ -70,6 +72,8 @@ The honest reader's heuristic: **the higher up the table, the more a regulator h
 on a hard endpoint; the lower down, the more you are paying for a story.** The gene-therapy
 block at the top is the field's genuine triumph. The clinic block at the bottom is where the
 field's authority gets stolen.
+
+@@FIG:R04-regen-ladder@@
 
 ---
 
@@ -160,6 +164,8 @@ trial (check ClinicalTrials.gov), and (d) promises "regeneration" of a tissue th
 natively build — it is the predatory tier, full stop. The burden of proof is on the seller, and
 they have not met it.
 
+@@FIG:Z12-stemcell-flags@@
+
 ---
 
 ## 3. Gene therapy: the field's genuine triumph (and its cost)
@@ -222,6 +228,8 @@ The triumph has a brutal asterisk: **price and access.**
   the African diaspora** — populations least able to access a $2.2M therapy requiring myeloablative
   conditioning and a specialized center. A cure that the people who need it most cannot reach is a
   real, unsolved equity problem, not a footnote.
+
+@@FIG:Q06-gene-prices@@
 
 So the honest grade on gene therapy: **the science and the human endpoints are real and, in the
 approved cases, sometimes curative — and the access reality means "cured in principle" is doing
@@ -357,6 +365,8 @@ epicondylitis** and some tendinopathies, but it is inconsistent and not the slam
 implies. PRP is also non-standardized — "PRP" means a dozen different preparations — which makes the
 literature hard to pool and easy to cherry-pick.
 
+@@FIG:Q07-prp@@
+
 **Grade:** `meta`/`rct` evidence that is **mostly modest-to-placebo**, sold as established
 regeneration. Low harm (it's your own blood), but the value proposition is largely unproven.
 
@@ -388,6 +398,8 @@ strongest evidence are load-management and progressive exercise (cross-ref §21)
 
 The "cure aging" industry is real, well-capitalized, and scientifically serious — and its honest
 clinical output so far is **thin**, precisely because the translation gap is real.
+
+@@FIG:104-longevity-pipeline@@
 
 - **The funded theses.** Reprogramming (Altos ~$3B, Retro, NewLimit), senolytics (Unity), basic
   aging biology (Calico, ~$2.5B from Alphabet/AbbVie), target discovery from human biobanks (BioAge),

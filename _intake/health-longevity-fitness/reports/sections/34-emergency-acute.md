@@ -122,6 +122,8 @@ the default** — and the evidence is unusually clean:
 > *Baby Shark* — both are ~100–110 bpm. Switch with another rescuer every ~2 minutes (it's exhausting; poor
 > compressions are the silent failure mode).
 
+@@FIG:11-cpr-card@@
+
 For **children, infants, drowning, opioid overdose, and any asphyxial cause**, oxygen has run down, so
 **rescue breaths add real value** — if trained, use 30 compressions : 2 breaths. If not trained, **hands-only
 is still vastly better than nothing.** This is a course-skill; book the course.
@@ -183,6 +185,8 @@ A large-vessel stroke destroys on the order of **~1.9 million neurons per minute
 - **T**ime — **note the exact time symptoms started and call 911 now.** That timestamp decides eligibility
   for clot-busting drugs (thrombolysis, ~4.5 h window) and thrombectomy (up to ~24 h in selected patients).
 
+@@FIG:12-befast-card@@
+
 **Do not give aspirin** for a suspected stroke — until a CT scan rules out a *bleed*, aspirin could be
 catastrophic. **Do not give food or drink** (the swallow may be unsafe). Get them to a stroke-capable hospital
 by ambulance — the crew pre-alerts the stroke team.
@@ -202,6 +206,8 @@ parameter (`10.1016/j.jaci.2020.01.017`) and the 2024 international consensus
 (`10.1016/j.jaci.2025.01.021`) are unambiguous: **epinephrine, intramuscular, into the outer mid-thigh, given
 immediately.** It is extraordinarily safe in this setting; there is **no absolute contraindication** when
 anaphylaxis is suspected.
+
+@@FIG:13-anaphylaxis-card@@
 
 > **The honest debunk:** **Antihistamines (Benadryl) and asthma inhalers are NOT treatments for anaphylaxis.**
 > Antihistamines treat itch and hives — skin symptoms — and act too slowly to touch airway swelling or shock.
@@ -228,6 +234,8 @@ public messaging):
 - "**I** feel I might die" — a striking sense of impending doom
 - **S**kin **mottled, blue, or very pale**
 
+@@FIG:E4-sepsis@@
+
 The **Surviving Sepsis Campaign 2021 guidelines (Evans et al., Crit Care Med 2021, `10.1097/
 CCM.0000000000005337`)** anchor management on **early recognition and time-to-antibiotics**; the lay job is
 to **escalate fast and say the word "sepsis"** to the dispatcher/triage nurse — it changes how quickly they're
@@ -250,6 +258,9 @@ life-threatening extremity bleeding.
   shock onset dramatically improved survival, with limb loss being rare and usually due to the injury, not the
   tourniquet. **A properly applied tourniquet saves lives; a loose one just hides the bleeding.** Do not
   remove it — that's the hospital's call.
+
+@@FIG:E2-stop-the-bleed@@
+
 - Get a real **Stop the Bleed** course; the kit (tourniquet + hemostatic gauze) is cheap and belongs anywhere
   trauma is plausible (cars, worksites, schools).
 
@@ -261,6 +272,9 @@ life-threatening extremity bleeding.
 - **Act (responsive adult/child):** **5 sharp back blows** between the shoulder blades (lean them forward),
   then **5 abdominal thrusts (Heimlich):** fist above the navel, sharp inward-and-upward thrusts. **Alternate
   5 and 5** until the object clears or they collapse.
+
+@@FIG:E1-choking@@
+
 - **If they go unconscious:** lower them, **start CPR**, and check the mouth for a *visible* object before
   breaths (remove only what you can see — **no blind finger sweeps**, which push it deeper).
 - **Special cases:** **infants** — 5 back blows + **5 chest thrusts** (never abdominal thrusts). **Pregnant or
@@ -285,6 +299,8 @@ and fingertips, gurgling/snoring.** Death comes from **respiratory depression** 
   they can re-overdose. **Good Samaritan overdose laws** in most US states protect callers from drug-
   possession charges — *call anyway.*
 
+@@FIG:E3-naloxone@@
+
 ---
 
 ## 4. First aid: evidence-based vs. myth
@@ -306,6 +322,9 @@ source says otherwise.
   - **No ice or ice water.** Too cold causes vasoconstriction and *deepens* the injury (a cold-burn on top of
     a heat-burn). **Cool, not freezing.**
   - **Don't burst blisters** (the roof is a sterile dressing). **Don't peel away clothing stuck to the burn.**
+
+@@FIG:E5-burns@@
+
 - **Go to the ER** for burns that are: large (> a palm-size area), deep/white/charred/painless (full-thickness
   kills the nerves), on the **face, hands, feet, genitals, or over a joint**, circumferential, **electrical or
   chemical**, or any **airway/inhalation** burn (singed nostril hair, soot, hoarse voice — the airway can swell
@@ -358,6 +377,8 @@ a second impact before recovery can be catastrophic.
   emergency), it's a **first-ever** seizure, there's injury, it happens in **water**, the person is **pregnant
   or diabetic**, or they don't come round.
 
+@@FIG:E6-seizure@@
+
 ### 4.7 The recovery position
 
 For anyone **unconscious but breathing normally** (not in cardiac arrest), roll them onto their **side** so
@@ -400,6 +421,8 @@ People die from under-triage (waiting out a stroke) and waste fortunes / clog th
 - **Signs of sepsis** (§3.4), **stiff neck + fever + rash** (meningitis), **suicidal intent** (cross-ref `20`)
 - A **fever in a baby <3 months**, or a child who is **floppy, blue, hard to wake, or has a non-blanching rash**
 
+@@FIG:105-red-flags@@
+
 **Urgent care / same-day primary care (real but not life-threatening):**
 - Sprains and simple suspected fractures (able to bear some weight), minor cuts that may need stitches, mild
   burns, ear/throat/urinary infections, moderate fevers in otherwise-well adults, mild allergic reactions
@@ -439,6 +462,8 @@ count.**
 > available, **dowse with water + fan, and pack ice at the neck, armpits, and groin.** Don't wait for the
 > ambulance to start. Fever-reducers (paracetamol/ibuprofen) **do not work** here — this isn't a fever, it's a
 > failure of heat dissipation.
+
+@@FIG:E7-heat-stroke@@
 
 ### 6.3 Hypothermia & cold (cross-ref `H-thermal.md`)
 
@@ -501,6 +526,8 @@ You cannot improvise competence in the moment; you assemble it in advance.
 ---
 
 ## Recognize → Act, one more time (the wallet card)
+
+@@FIG:19-emergency-wallet@@
 
 > **Collapsed + not breathing normally →** call 911, **hard fast chest compressions**, send for an AED, use it.
 > **Face/arm/speech wrong →** stroke, **note the time**, call 911. **Swelling + trouble breathing after a

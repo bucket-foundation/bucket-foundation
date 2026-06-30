@@ -35,6 +35,8 @@ a genuine intention to act fail to act on it. Sheeran & Webb later named and rev
 **"The Intention–Behavior Gap"** (2016, doi `10.1111/spc3.12265`): intentions are a necessary input and a
 poor predictor; the action is lost somewhere between deciding and doing.
 
+@@FIG:L08-intention-behavior@@
+
 The practical corollaries are devastating for the way most health advice is delivered:
 
 - **Education alone barely changes behavior.** Telling people the facts — that smoking kills, that exercise
@@ -96,6 +98,8 @@ best-evidenced *cognitive* technique** — and they are nearly free. The idea, f
 specific **if–then plan** that pre-decides the *when, where, and how* of an action and welds it to a concrete
 cue: *"**If** it is 7am and I've poured my coffee, **then** I will put on my running shoes."*
 
+@@FIG:F07-if-then@@
+
 - The foundational meta-analysis — **Gollwitzer & Sheeran (2006), "Implementation intentions and goal
   achievement: A meta-analysis of effects and processes"** (Adv Exp Soc Psychol, doi
   `10.1016/S0065-2601(06)38002-1`) — pooled **94 studies** and found a **medium-to-large effect (d ≈ 0.65)**
@@ -116,6 +120,8 @@ explicit if–then statements anchored to existing cues. `meta`-tier evidence, s
 
 Habits are the end-state we actually want: behavior that runs on context, not on decision or motivation.
 The science here is solid in outline and routinely *misquoted* in the popular telling.
+
+@@FIG:L09-habit-formation@@
 
 - **The mechanism (well-supported):** a habit is a learned association between a **context cue** and a
   **response**, strengthened by **repetition in a stable context**, until the cue alone triggers the behavior
@@ -271,6 +277,8 @@ knowledge), **Opportunity** (physical and social — environment, time, norms), 
 (reflective and automatic — beliefs, habits, impulses) (Michie, van Stralen & West 2011, Implement Sci,
 **PMID 21513547, doi `10.1186/1748-5908-6-42`**; `com-b-behaviour-change-wheel`).
 
+@@FIG:N08-com-b@@
+
 - Its power is **diagnostic.** Before choosing a technique, ask which component is actually missing. Most
   failed behavior change targets the wrong one — pouring *motivation* (pep talks) at a problem that is really
   *opportunity* (no time, no equipment, junk-food environment) or *capability* (doesn't know how to do the
@@ -329,6 +337,8 @@ rewards" thinking. Grade: solid `meta`-tier on the autonomy/maintenance link.
 
 Behavior change isn't only about gyms and salads; it's the central unsolved problem in clinical medicine, and
 the medication-adherence literature is the most rigorously studied corner of the whole field.
+
+@@FIG:Y06-adherence@@
 
 - **The headline number:** in chronic disease, roughly **50% of patients do not take their medications as
   prescribed** (WHO 2003 adherence report; `medication-nonadherence-50pct`). This is not an edge case — it is
@@ -424,6 +434,8 @@ of grading honestly.
 ## 8. Honest debunks — the pop-psych myths to drop
 
 This field is unusually polluted, so the debunks get their own section.
+
+@@FIG:F06-debunks@@
 
 ### 8.1 The 21-day habit myth
 

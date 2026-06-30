@@ -15,6 +15,8 @@ connection, sleep) are mostly unsexy and unmonetizable, while the marketed inter
 brain-training apps, and — at the clinical end — the new amyloid antibodies) carry far weaker
 benefit-to-risk than their visibility implies.
 
+@@FIG:RA09-brain-lobes@@
+
 ---
 
 ## 1. The spine: the Lancet Commission and the "45% modifiable" claim
@@ -27,6 +29,8 @@ modifiable risk factors.** The 2024 update (Livingston et al., *Lancet* 2024,
 loss** — and revised the headline to **~45% of dementia attributable to 14 modifiable risk factors,
 acting across the life course.** This is the spine of the section. Everything else is detail hanging off
 it.
+
+@@FIG:09-lancet14-dementia@@
 
 ### 1.1 The 14 factors and their population-attributable fractions (2024)
 
@@ -90,6 +94,8 @@ strong — **Lin et al., *Arch Neurol* 2011** (`10.1001/archneurol.2010.362`) fo
 rising with baseline hearing-loss severity (mild/moderate/severe → ~2×/3×/5× hazard) in the Baltimore
 Longitudinal Study of Aging — but observation can't separate cause from marker.
 
+@@FIG:58-hearing-dementia@@
+
 **ACHIEVE** (Lin et al., *Lancet* 2023, `10.1016/S0140-6736(23)01406-X`) is the randomized test. 977
 adults aged 70–84 with untreated mild-to-moderate hearing loss were randomized to a **hearing
 intervention** (hearing aids + audiologic support) or a **health-education control**, with 3-year change
@@ -109,6 +115,8 @@ headline-grabbing "48%" is a subgroup, not the primary result. It is reasonable,
 to treat hearing loss to protect the brain (and it helps connection and quality of life regardless); it
 is an overstatement to say "hearing aids prevent dementia" full-stop. `rct`, primary endpoint null,
 positive in the at-risk subgroup.
+
+@@FIG:D25-achieve-hearing@@
 
 ---
 
@@ -147,6 +155,8 @@ and the control group also got (lighter) advice. FINGER spawned the **World-Wide
 replicating across dozens of countries — the results of which (e.g. US-POINTER, reported 2025) will tell
 us whether the effect generalizes. This is the proof-of-concept that lifestyle, bundled, *can* move
 cognition in a randomized design. `rct`, surrogate (cognition) outcome, modest effect.
+
+@@FIG:D13-finger@@
 
 ---
 
@@ -251,6 +261,8 @@ much stronger than ordinary observation.
 - **Replication:** Pomirchy, Geldsetzer et al., *Lancet Neurology* 2026 (`10.1016/S1474-4422(25)00455-7`)
   reproduced the natural-experiment finding in Canada.
 
+@@FIG:D26-shingles-dementia@@
+
 **The honest tier:** this is **quasi-experimental, not a randomized prevention trial.** The natural-
 experiment design makes it far stronger than typical observational data, and the replication is
 reassuring, but residual confounding (the kind of person who gets vaccinated) cannot be fully excluded
@@ -267,6 +279,8 @@ The first anti-amyloid antibodies to win approval represent decades of the amylo
 early Alzheimer's, lecanemab vs placebo over 18 months. On the CDR-SB scale (0–18, higher = worse),
 decline was **1.21 with lecanemab vs 1.66 with placebo — a difference of −0.45 points (~27% slower
 decline).**
+
+@@FIG:D14-lecanemab@@
 
 Read it honestly:
 - **The "27%" is a relative slowing of decline, not improvement.** Everyone still got worse; the drug
@@ -329,6 +343,8 @@ statistically significant, clinically marginal, real harms.
    the same unglamorous bundle: **treat hearing/vision, control blood pressure/LDL/glucose, move, don't
    smoke, stay connected, protect your head, protect your sleep.** What's good for the heart is good for
    the brain.
+
+@@FIG:88-dementia-checklist@@
 3. **Mental health is longevity.** Depression raises mortality and dementia risk; exercise is a genuine
    RCT-supported treatment for depression; the serotonin-deficiency story is a marketing simplification
    that's false *and* doesn't negate the modest real efficacy of antidepressants.

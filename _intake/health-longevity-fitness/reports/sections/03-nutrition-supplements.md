@@ -20,6 +20,8 @@ Grade key: **real** = consistent human RCT/meta evidence for a meaningful effect
 = works *only* in a specific state (deficiency, inadequate intake, a clinical subgroup) and is inert otherwise.
 **hype** = the marketed claim outruns the evidence; effect is mechanistic, animal, surrogate, or null in humans.
 
+@@FIG:N01-supplements@@
+
 | Supplement | Practical dose | What it actually does (honest) | Best evidence tier | Grade |
 |---|---|---|---|---|
 | **Creatine monohydrate** | **3–5 g/day**, every day, timing irrelevant; optional 20 g/d × 5–7 d load to fill stores faster | ↑ strength & lean mass *with resistance training* (~+a couple kg work capacity, modest hypertrophy); small cognitive benefit under stress/sleep-deprivation/aging; safe long-term | `meta` (sport), `meta`/mixed (cognition) | **real** — strongest sports supplement |
@@ -74,6 +76,9 @@ with hundreds of RCTs and a decade-stable safety record.
   `10.1016/j.plefa.2023.102567`) link low omega-3 status to worse inflammatory and mortality markers. **Honesty rule #1
   applies hard:** the index is a *predictor*. That low levels track with risk is not proof that swallowing fish oil to
   raise the number changes your outcome.
+
+@@FIG:55-omega3-index@@
+
 - **Triglycerides (real, `rct`/`meta`):** high-dose EPA/DHA reliably lowers triglycerides ~20–30% in a dose-dependent
   way — the **AHA Science Advisory (Skulas-Ray 2019, Circulation, `10.1161/CIR.0000000000000709`)** endorses **4 g/day**
   of EPA±DHA as effective TG-lowering therapy. This is the cleanest real effect of fish oil.
@@ -106,6 +111,9 @@ This is the most over-supplemented "longevity" molecule, and the large RCTs are 
 - **The honest synthesis (Manson 2020, `10.1016/j.jsbmb.2019.105522`):** across the major trials, vitamin D
   supplementation in **replete** populations does little for hard endpoints. The low blood level was largely a
   *marker* of poor health (obesity, inactivity, illness, low sun) — a predictor, not the lever.
+
+@@FIG:L04-vital-nulls@@
+
 - **Where it IS real (context-only):** correcting genuine **deficiency** (e.g. <20 ng/mL / <50 nmol/L), supporting
   bone health *with adequate calcium*, and in housebound/dark-climate/malabsorption populations. **Dose: 800–2000
   IU/day** to correct and maintain; treat to a blood level, do not megadose (very high doses can *increase* fall/
@@ -133,6 +141,9 @@ Test, don't guess.
   fiber intake is associated with **15–30% lower all-cause and cardiovascular mortality**, lower coronary disease,
   stroke, type-2 diabetes, and colorectal cancer; RCT arms show lower LDL cholesterol, body weight, and blood
   pressure. The dose-response keeps improving up to and beyond **25–29 g/day**.
+
+@@FIG:B14-fiber-mortality@@
+
 - This blends a strong cohort mortality signal with RCT surrogate proof (LDL, glycemia) — a sturdier evidence base
   than almost any pill. It also feeds SCFA-producing gut microbes (Domain C2), though the human microbiome-outcome
   link is still mostly association (the fermented-foods RCT raised diversity; the *high-fiber* arm did **not** raise
@@ -197,11 +208,16 @@ prescription** that falls out of it.
 The functional-muscle optimum (~1.6 g/kg) sits **far above** the protein-restriction longevity prescription —
 which is exactly the tension Domain D logs. The resolution is age-stratified (below).
 
+@@FIG:33-protein-dose@@
+
 ### 2.2 Leucine threshold, per-meal dose, and distribution
 
 - **Leucine is the trigger.** Muscle protein synthesis (MPS) is switched on past a per-meal **leucine threshold of
   ~2–3 g**, which corresponds to roughly **20–40 g of high-quality protein per meal** (the higher end for older or
   larger people, who have **anabolic resistance** — they need *more* per dose to hit the same MPS).
+
+@@FIG:G02-leucine@@
+
 - **Anabolic resistance with age is real but conditional:** **Shad 2016** (`10.1152/ajpendo.00213.2016`) finds the
   blunted MPS response in aging shows up mainly at *lower* protein/leucine doses and is partly overcome by **higher
   per-meal protein + resistance exercise**. **Wilkinson 2023** (`10.14814/phy2.15775`) confirms post-exercise MPS
@@ -225,6 +241,8 @@ which is exactly the tension Domain D logs. The resolution is age-stratified (be
 
 The conflict mostly dissolves on the **age axis** — do not apply one prescription across a lifespan:
 
+@@FIG:L05-protein-age@@
+
 - **Mid-life (≈45–65):** the theoretical concern (protein → IGF-1/mTOR → growth/cancer signaling) is most relevant.
   *Adequate, not maximal* protein; favor plant sources; pair with resistance training (which re-partitions protein
   toward muscle and blunts the downside). This is where Longo/Solon-Biet's restriction argument has its best (still
@@ -247,6 +265,8 @@ Diet tribalism (keto vs vegan vs carnivore vs paleo) is mostly noise. What actua
 higher-tier evidence — PREDIMED (`10.1056/NEJMoa1800389`, Domain D §8), the fiber meta-analyses (Reynolds 2019), the
 Adventist/cohort data, and the CR/metabolic literature — is a *pattern*, not a brand:
 
+@@FIG:62-longevity-plate@@
+
 1. **Mostly whole, minimally-processed foods.** The most robust modern signal isn't macro ratios — it's the
    processing axis. Ultra-processed food tracks with worse outcomes across cohorts (and one tightly-controlled
    inpatient RCT showing spontaneous overeating on ultra-processed diets).
@@ -259,12 +279,16 @@ Adventist/cohort data, and the CR/metabolic literature — is a *pattern*, not a
    your diet around it.
 5. **Low in added sugar and refined starch**, calibrated to activity.
 
+@@FIG:F03-dietary-pattern@@
+
 **What the evidence actually says vs the tribes:** the *strongest dietary-pattern RCT we have* (PREDIMED) tested a
 Mediterranean pattern — and even it carries an asterisk (2013 retraction/republication over randomization
 irregularities; corrected analysis still positive). Beyond that, **no diet has a hard-endpoint (mortality) RCT** —
 you can't randomize humans to decades of eating. So the honest stance is: pick a whole-food, fiber-rich,
 protein-adequate pattern you can *adhere to*; adherence and energy balance beat the brand. The macro wars are
 fighting over a precision the evidence doesn't support.
+
+@@FIG:57-mediterranean@@
 
 ---
 
@@ -303,6 +327,8 @@ timing adds a small real circadian benefit. It is not required, and it is not ma
 | **Multivitamins** (in replete people) | "Nutritional insurance, longevity" | **PHS II** (Sesso 2012 `10.1001/jama.2012.14805`; Gaziano 2012 `10.1001/jama.2012.14641`): no CVD benefit, marginal small cancer signal. **COSMOS** (Vyas 2024 `10.1016/j.ajcnut.2023.12.011`; Sachs 2023 `10.1002/alz.13078`): small possible cognition signal, not robust. Largely null in well-nourished people. | `rct`/`meta` (mostly null) | **hype** (context-only if diet is poor) |
 | **"Anti-inflammatory" supplement stacks** (turmeric/curcumin megadoses, etc.) | "Lower inflammation, slow aging" | Mechanistic/surrogate at best; bioavailability problems; no healthspan outcome RCTs. CRP moving ≠ living longer. | `mechanistic` / small `rct` | **hype** |
 | **Greens powders** | "Replace vegetables, detox, energy" | No outcome evidence; expensive; a fiber-and-phytonutrient *gesture* that doesn't replicate whole food. Eat the vegetables. | `anecdotal` / none | **hype** |
+
+@@FIG:28-supplement-matrix@@
 
 **The pattern in the hype column:** every one of these is built on a **mechanism or a biomarker** (NAD+ goes up,
 sirtuins activate, "antioxidant," CRP drops) that has **not** translated into a human outcome — and in a few cases

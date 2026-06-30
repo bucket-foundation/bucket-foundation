@@ -40,6 +40,8 @@ real-ish — ethanol raises HDL and lowers fibrinogen — and so the protective 
 - **Occasional-drinker misclassification.** Lumping never-drinkers with very-occasional drinkers further
   distorts the reference.
 
+@@FIG:24-alcohol-jcurve@@
+
 ### 1.2 The new story (MR + bias-corrected meta + GBD)
 
 Three lines of evidence dismantle the protective claim:
@@ -118,6 +120,8 @@ in all of epidemiology. It is the benchmark against which every other exposure s
   **Tier: cohort, but as close to causal as observational data gets** (massive effect size, dose-response,
   biological plausibility, reversibility on cessation — Bradford Hill criteria fully satisfied).
 
+@@FIG:96-smoking-quit@@
+
 ### 2.2 Vaping / e-cigarettes — the honest take
 
 This is where nuance is mandatory and both camps oversimplify.
@@ -162,6 +166,8 @@ unmonetized, and one of the largest environmental risk factors on Earth.
 - **PM2.5 is the actor.** Fine particulate matter <2.5 µm penetrates deep into the lung and crosses into
   circulation, driving systemic inflammation, oxidative stress, endothelial dysfunction, and atherosclerosis.
 
+@@FIG:100-air-pollution@@
+
 ### 3.2 What it causes
 
 - **Cardiovascular (causal).** The American Heart Association scientific statement (**Brook 2010**, Circulation,
@@ -196,6 +202,8 @@ the supplement-and-protocol discourse precisely because no one sells it.
 
 "Toxins" is where wellness marketing and genuine regulatory science blur. The honest move is to **tier by
 evidence**, not to lump. Below, established → precautionary → emerging.
+
+@@FIG:N03-toxin-tiering@@
 
 ### 4.1 Heavy metals — established (and historically huge): lead
 
@@ -274,6 +282,8 @@ test. This is the single highest-leverage move across the entire "toxins" catego
 Sun exposure is the manual's clearest case of a genuine trade-off, and it's a place where dermatology and
 mortality epidemiology give honestly different advice. Resist dogma in either direction.
 
+@@FIG:N09-sun-ledger@@
+
 ### 5.1 The cost side (dermatology is right)
 
 UV radiation is a **proven, complete carcinogen** for skin: it causes basal cell carcinoma, squamous cell
@@ -335,6 +345,9 @@ sauna/cold-plunge protocols in Domain H (thermal). This is about the temperature
   were attributable to non-optimal ambient temperature**, and the overwhelming majority — **7.29% — was due to
   cold**, versus only **0.42% from heat.** Moderate (not extreme) cold did most of the damage, through
   cardiovascular and respiratory pathways. **Tier: cohort (multi-country, time-series).**
+
+@@FIG:L18-cold-heat@@
+
 - **The climate-change caveat.** This historical ledger is shifting: heat-attributable mortality is rising with
   warming and with aging populations, and extreme-heat events (which the time-series "moderate temperature"
   framing underweights) are an increasing acute risk. Both tails matter.
@@ -352,6 +365,8 @@ A closing calibration, because the manual's supplement and protocol sections can
 *magnitude*. The **Stringhini 2017** multicohort analysis (Lancet, `10.1016/S0140-6736(16)32380-7`, ~1.7M people)
 quantified how much different risk factors shorten life — and **smoking and the socioeconomic/behavioral
 exposures dwarf most of what gets optimized in longevity culture.**
+
+@@FIG:L13-exposures@@
 
 **Rough ordering of modifiable-exposure mortality impact (largest first):**
 

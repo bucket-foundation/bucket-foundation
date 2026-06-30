@@ -53,6 +53,8 @@ headline they carry is honesty rule #2: **for every drug here, most people who t
 dependent.** That is not an argument for complacency; it is the necessary correction to "one hit and you're
 hooked," which is true for almost no one and false as a general model.
 
+@@FIG:D09-addictiveness-lethality@@
+
 ---
 
 ## 1. What addiction actually is
@@ -192,6 +194,8 @@ overview and **network meta-analysis** of pharmacological smoking-cessation aids
   initial varenicline/NRT failure still yields meaningful further quits — the honest counsel is *iterate*,
   don't conclude you "can't quit." `rct`.
 
+@@FIG:D10-smoking-cessation@@
+
 ### 2.3 Nicotine vs combustion, and the vaping question — honestly
 
 Cross-referenced from **Section 09 §2.2–2.3** (the harm-reduction grading lives there): the lethal agents
@@ -269,6 +273,8 @@ willpower) is **dangerously wrong**. The strongest evidence in all of addiction 
 The honest synthesis for opioids: **MOUD is the standard of care, it halves death, it is chronically
 under-provided** (stigma, regulation, the moralized preference for abstinence), and **detox-alone can be
 worse than no treatment.** If this section changes one belief, it should be this one.
+
+@@FIG:D08-moud-mortality@@
 
 ---
 
@@ -447,6 +453,8 @@ treatments are unglamorous and under-used, and the dramatic interventions are mo
 | **Tobacco/nicotine** | **Varenicline, combination NRT, bupropion, cytisine** | `meta` (Cahill *Cochrane* 2013) — 2–3× quit rates | Drug **+** behavioural support; iterate after failure |
 | **Stimulants (cocaine/meth)** | — | **No effective approved medication** (`meta`, honest null) | Behavioural (CM) is the lever instead |
 | **Cannabis** | — | No approved medication | CBT/MET/CM |
+
+@@FIG:DX2-mat-moud@@
 
 MAT is the part of addiction medicine that **most contradicts intuition and most saves lives** — and it is
 held back less by evidence than by stigma (the "replacing one drug with another" canard, which misreads

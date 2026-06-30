@@ -18,6 +18,8 @@
 >
 > *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
 
+@@FIG:31-four-horsemen@@
+
 > **Cross-references (do not duplicate):** lipids, apoB, Lp(a), hsCRP, HbA1c, fasting insulin are
 > graded in `L-biomarkers.md` / `L-claims.json` — this section *uses* them for risk stratification and
 > points back rather than re-deriving them. Metabolic disease depth is in `D-metabolic-nutrition.md`.
@@ -49,6 +51,8 @@ high-cardiovascular-risk adults *without diabetes* were randomized to an intensi
 - **The honest harm side:** intensive treatment raised rates of hypotension, syncope, electrolyte
   abnormalities, and acute kidney injury (but *not* injurious falls). The 2021 Final Report
   (NEJM 2021) confirmed the durable mortality and CV benefit.
+
+@@FIG:67-bp-sprint@@
 
 **Caveats that matter for applying SPRINT to yourself:**
 - SPRINT used a **specific, standardized measurement** (often unattended automated office BP), which
@@ -97,6 +101,8 @@ The DASH-Sodium result is worth internalizing: **the lowest-sodium DASH arm ran 
 systolic than the high-sodium control diet in hypertensive participants** — a bigger swing than many
 single drugs. Diet is not a soft alternative to medicine here; it is medicine.
 
+@@FIG:D11-bp-lifestyle@@
+
 ### 1.4 When to add drugs
 
 Lifestyle is first-line for elevated BP and stage-1 hypertension at lower risk. **Add medication when**
@@ -133,6 +139,8 @@ risk when a person is in the murky middle of a risk calculator and unsure whethe
 - **Honest tier:** CAC is a **predictor, not a lever** — you do not "treat the calcium" (statins can
   even *raise* the calcium score as plaque stabilizes). Its value is purely in **reclassifying** who
   should be on therapy. It also delivers a radiation dose (~1 mSv) and can surface incidental findings.
+
+@@FIG:70-cac-risk@@
 
 **Use:** best for the **40–70-year-old at intermediate calculated risk** who is on the fence about a
 statin. Not needed if you are already clearly high-risk (just treat) or clearly low-risk and young.
@@ -199,6 +207,8 @@ I = insufficient evidence).
 | **Cervical** (HPV test ± Pap) | Women **21–65** | Large reductions in cervical-cancer incidence and death; among the most effective screens ever | RCT/cohort | **A** | (HPV-primary screening trials; USPSTF 2018) |
 | **Skin** (clinical exam) | — | No mortality-benefit evidence for whole-population screening; exam high-risk individuals | weak/observational | **I** (general pop.) | USPSTF 2023 |
 
+@@FIG:53-cancer-screening,DX4-cancer-screening@@
+
 ### 3.1 Colorectal — the screen with the broadest mandate
 
 Colorectal cancer (CRC) is common, slow-growing, and has a **detectable, removable precursor** (the
@@ -251,6 +261,8 @@ Mammography is genuinely beneficial *and* the textbook case for screening's doub
 - **Overdiagnosis** means detecting (and then treating, with surgery/radiation/endocrine therapy)
   cancers — often DCIS — that would never have become symptomatic in the woman's lifetime. The harm is
   real treatment of a "cancer" that was never going to hurt her.
+
+@@FIG:Y03-mammography@@
 
 **Honest framing:** the benefit is real but **modest in absolute terms**, and it comes bundled with
 overdiagnosis. This is why guidelines differ on starting age (40 vs 50) and interval (annual vs
@@ -353,6 +365,10 @@ prescription.
 | **40s** | Treat BP to target; apoB-guided lipid management; **consider CAC** if risk is intermediate | **Colorectal from 45**; breast (women) discussion from 40 | Same levers; metabolic vigilance (Domain D) |
 | **50s–60s** | BP < 130/80 if tolerated; statin per risk/CAC; **AF detection** | Colorectal; breast q1–2 y; **LDCT if ≥20 pack-years**; cervical to 65 | Cessation if still smoking pays off fast |
 | **70s+** | Individualize BP target (avoid over-treatment/falls); **anticoagulate AF**; **do NOT start primary-prevention aspirin** | Continue screens per life-expectancy and preference; de-intensify when harms exceed benefit | Maintain function, muscle, balance (Domain E) |
+
+@@FIG:74-screening-by-age@@
+
+@@FIG:80-prevention-by-decade@@
 
 The throughline: **the big wins are blood pressure, lipids/apoB, not smoking, and the four
 RCT-backed screens (colorectal, lung-in-smokers, breast, cervical).** Everything else is refinement.

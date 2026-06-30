@@ -50,6 +50,8 @@ this whole section.
 | **Parasites** | Eukaryotes — protozoa (single-celled) and helminths (worms) | Complex life cycles, often vector-borne; chronic immune evasion | **Antiparasitics / antimalarials / anthelmintics** | *Plasmodium* (malaria), *Toxoplasma*, *Giardia*, schistosomes, tapeworms |
 | **Prions** | Not alive at all — misfolded proteins (PrP) that template other proteins to misfold | Aggregates destroy neural tissue; uniformly fatal; **no nucleic acid, no immune response, no treatment** | None | Creutzfeldt–Jakob disease, kuru, "mad cow" (vCJD) |
 
+@@FIG:DX3-pathogen-classes@@
+
 ### 1.1 The cell-biology reason antibiotics are selective (and why that matters)
 
 Antibiotics work because **bacteria are prokaryotes and we are eukaryotes** — they have a peptidoglycan cell
@@ -156,6 +158,8 @@ society wants to *reserve* rather than sell). The named threats — **MRSA**, **
 Enterobacteriaceae (CRE)**, **drug-resistant TB (MDR/XDR-TB)**, **C. difficile** (an antibiotic-*caused*
 infection), drug-resistant gonorrhea — are not edge cases; they are in hospitals now.
 
+@@FIG:D05-amr-burden@@
+
 ### 3.4 Stewardship — and why you should not demand antibiotics for a virus
 
 **Antibiotic stewardship** is the disciplined effort to use these drugs only when they help, with the narrowest
@@ -201,9 +205,13 @@ which is exactly why falling measles vaccination rates produce outbreaks first. 
 vaccination from a purely personal choice into a **public good**: the healthy adult who gets a flu shot is partly
 protecting the frail elderly relative who would die of the same flu.
 
+@@FIG:D06-herd-immunity@@
+
 ### 4.3 The eradication and near-eradication triumphs
 
 These are among the greatest achievements in human history, and they are concrete:
+
+@@FIG:Z09-vaccines-kids@@
 
 | Disease | Status | Note |
 |---|---|---|
@@ -212,6 +220,8 @@ These are among the greatest achievements in human history, and they are concret
 | **Measles** | Eliminated in many regions, **resurging** where coverage falls | A pure demonstration of herd immunity in reverse — outbreaks track coverage gaps. |
 | **HPV-driven cervical cancer** | On track for elimination in early-adopter countries | A **vaccine that prevents a cancer** (§5, cross-ref clinical-prevention). |
 | **Hepatitis B** | Sharp declines in childhood infection and liver cancer | The **first anti-cancer vaccine** (prevents HBV→hepatocellular carcinoma). |
+
+@@FIG:DS11-vaccine-timeline@@
 
 ### 4.4 The honest safety record — and meeting hesitancy with evidence
 
@@ -258,6 +268,8 @@ The common thread: respiratory infection is **disproportionately lethal in immun
 "why" is in `15 §2`), which is exactly why age-appropriate flu/COVID/RSV/pneumococcal vaccination is one of the
 best-evidence longevity levers available (pharma §5).
 
+@@FIG:77-vaccine-schedule@@
+
 ### 5.2 The chronic viral infections — from death sentences to manageable
 
 This is one of medicine's great recent success stories, and an honest map distinguishes *manageable* from
@@ -270,6 +282,8 @@ This is one of medicine's great recent success stories, and an honest map distin
 | **Hepatitis B** | **Preventable, suppressible** | A **vaccine prevents it** (and the liver cancer it causes — the first anti-cancer vaccine). Chronic infection is suppressed, not yet cured. |
 | **HPV** | **Preventable** | Ubiquitous; most clears on its own, but oncogenic strains cause **cervical, anal, oropharyngeal cancers**. The **vaccine prevents the cancer** (cross-ref clinical-prevention; Swedish cohort data show real cervical-cancer reduction). |
 | **Herpesviruses (HSV, VZV, EBV, CMV)** | Lifelong latency | Most people carry several. Mostly benign but consequential: **VZV** reactivates as shingles (vaccine-preventable, with a dementia-incidence signal — pharma §5); **CMV** is implicated in immune aging (`15 §2.4`); **EBV** is now strongly tied to multiple sclerosis. |
+
+@@FIG:DX5-chronic-viral@@
 
 ### 5.3 Tuberculosis — still a top global killer
 

@@ -79,6 +79,10 @@ rich plaque with a fibrous cap grows over decades — silently. The danger is no
 MIs. This is why a "70% blockage" is not the only thing to fear, and why lowering apoB — which
 stabilizes and can regress plaque — is the central lever.
 
+@@FIG:102-cholesterol-particles@@
+
+@@FIG:41-atherosclerosis-cascade,RA10-atherosclerosis@@
+
 **How it presents.** Classic angina is exertional chest pressure/tightness radiating to arm or jaw,
 relieved by rest. But presentation is treacherous: women, diabetics, and the elderly often have
 **atypical or silent presentations** (fatigue, breathlessness, nausea, "indigestion"). An acute MI is
@@ -91,6 +95,11 @@ honest takeaway: do not rely on textbook symptoms to rule it out.
   smoke, measure **Lp(a) once**. Statins for secondary prevention (established disease) are among the
   best-evidenced drugs in medicine; the FOURIER trial showed adding evolocumab to a statin further cut
   events, confirming "**lower apoB is better**" down to very low levels.
+
+@@FIG:32-apob-cumulative@@
+
+@@FIG:69-lpa-risk@@
+
 - **Acute MI (STEMI):** the dominant intervention is **immediate reperfusion** — primary percutaneous
   coronary intervention (PCI, "stent") to reopen the artery, time-critical ("time is muscle"). This is
   a genuine, large, RCT-backed life-saver in acute occlusion.
@@ -116,6 +125,8 @@ behaved like different diseases:
   can't *relax and fill*. Driven by hypertension, obesity, diabetes, aging, and atrial fibrillation.
   HFpEF is now roughly half of all heart failure and rising with the obesity/aging epidemic.
 
+@@FIG:DS2-hf-ef-spectrum,RA14-heart@@
+
 **Mechanism (→ neurohormonal toxicity).** The deep insight of modern HF therapy is that **the body's
 compensatory response is itself the disease.** When the pump fails, the renin-angiotensin-aldosterone
 system (RAAS) and sympathetic nervous system (SNS) activate to maintain pressure — but chronic RAAS/SNS
@@ -137,6 +148,8 @@ started together and titrated up:
 | **Beta-blocker** (carvedilol, bisoprolol, metoprolol succinate) | blocks SNS | CIBIS-II, MERIT-HF, COPERNICUS | ~**34% mortality reduction** vs placebo |
 | **MRA** (spironolactone, eplerenone) | blocks aldosterone | RALES, EMPHASIS-HF | ~**30% mortality reduction** |
 | **SGLT2 inhibitor** (dapagliflozin, empagliflozin) | natriuresis + metabolic/cardiac effects | **DAPA-HF** (McMurray 2019, NEJM) | **26% lower** CV death/worsening HF (HR 0.74), *regardless of diabetes status* |
+
+@@FIG:D02-hf-four-pillars@@
 
 The SGLT2 story is remarkable: a drug developed to lower blood sugar turned out to be a **heart-failure
 drug that works in people without diabetes**. That is the single biggest cardiology development of the
@@ -224,6 +237,12 @@ high fasting glucose, high triglycerides, and low HDL. Having ≥3 of the 5 mark
 resistance** that roughly doubles cardiovascular risk and dramatically raises diabetes risk. It is the
 clinical face of the metabolic dysfunction built in `D-metabolic-nutrition.md`.
 
+@@FIG:42-metabolic-syndrome@@
+
+@@FIG:56-visceral-fat@@
+
+@@FIG:82-bmi-jcurve@@
+
 **Type 2 diabetes (T2D)** is the disease that cluster progresses to. The mechanism is two-hit:
 1. **Insulin resistance** — muscle, liver, and fat stop responding to insulin (driven by ectopic fat,
    especially in liver and pancreas; cross-ref `D`). The pancreas compensates by pumping out *more*
@@ -233,14 +252,22 @@ clinical face of the metabolic dysfunction built in `D-metabolic-nutrition.md`.
    just resistance; it requires beta-cell decompensation.** That is also why it's progressive — and why
    relieving the metabolic load *early* can preserve beta-cell function.
 
+@@FIG:78-insulin-resistance@@
+
+@@FIG:59-metabolic-flexibility@@
+
 **How it presents.** Often **silent** — found on a routine HbA1c or fasting glucose. Classic symptoms
 (thirst, frequent urination, fatigue, blurred vision, slow healing) appear with higher glucose.
 Diagnosis: HbA1c ≥6.5%, fasting glucose ≥126 mg/dL, or OGTT ≥200. Prediabetes: HbA1c 5.7–6.4%.
+
+@@FIG:68-hba1c-risk@@
 
 ### 2.2 The management hierarchy — honestly graded
 
 The modern approach has been transformed by two drug classes that protect organs *beyond* glucose
 control. The hierarchy:
+
+@@FIG:DS1-t2d-ladder@@
 
 **Tier 0 — lifestyle (foundational, never skipped).** Weight loss is the master lever. The **Diabetes
 Prevention Program (DPP, 2002)** showed intensive lifestyle (7% weight loss + activity) cut progression
@@ -287,6 +314,9 @@ substantial weight loss can drive **remission** (normal glucose off all diabetes
   in remission. At **2 years**, 36% remained in remission (Lancet Diabetes Endocrinol 2019). The
   mechanism fits the pathophysiology: losing visceral and **pancreatic** fat un-stresses the beta cells
   (the "twin cycle" hypothesis).
+
+@@FIG:D01-direct-remission@@
+
 - **Honest caveats:** remission is most achievable **early** (short diabetes duration, before beta-cell
   exhaustion), it requires **sustained** weight loss (relapse with regain), and it's "remission," not
   "cure" — the underlying susceptibility remains. But it reframes T2D as, for many, a **potentially
@@ -479,6 +509,8 @@ function over months to years. It's defined and staged by **two axes** (the KDIG
 A persistently reduced GFR (<60) **or** albuminuria for >3 months defines CKD. The combined grid (the
 KDIGO "heat map") stratifies risk far better than GFR alone.
 
+@@FIG:50-ckd-heatmap@@
+
 **Mechanism and the leading causes (→ the vascular fundamentals).** CKD is overwhelmingly a **disease of
 the vasculature feeding the nephrons.** The two dominant causes worldwide:
 1. **Diabetes (diabetic nephropathy)** — the single leading cause; hyperglycemia damages the glomerular
@@ -620,6 +652,8 @@ with age. Two main types:
 Step back and the unifying claim of this section is hard to miss: **cardiometabolic, endocrine, and
 renal disease are largely one interconnected process** — the failure of the vascular and metabolic
 machinery — wearing different organ masks.
+
+@@FIG:DS12-one-machine@@
 
 - **Insulin resistance** is the hub. It links metabolic syndrome → type 2 diabetes → fatty liver →
   PCOS → and accelerates atherosclerosis, heart failure, and kidney disease. Move it upstream (weight,

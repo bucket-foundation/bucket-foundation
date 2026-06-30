@@ -73,6 +73,8 @@ underlying problem is *inflammatory* (only anti-inflammatory treatment changes t
 asthma is non-type-2 (neutrophilic, obesity-associated, paucigranulocytic) and responds less well to steroids
 — an honest caveat against treating "asthma" as one thing. `mechanistic`/established.
 
+@@FIG:DS7-asthma@@
+
 **Management and the honest control story.** The single most important modern message, and the one most often
 gotten wrong:
 
@@ -149,6 +151,8 @@ collapses. Each event ends in a micro-arousal. The downstream physiology is the 
 hypoxia + sympathetic surges + sleep fragmentation** drive hypertension, insulin resistance, endothelial
 dysfunction, atrial fibrillation, and excessive daytime sleepiness (cross-ref `12-sleep.md` for the sleep
 fundamentals). `mechanistic`/`cohort`.
+
+@@FIG:DS8-osa@@
 
 **The cardiometabolic links — and the honest grading.** Observational **cohorts** strongly associate untreated
 OSA with hypertension (especially resistant/nocturnal), atrial fibrillation, heart failure, stroke, type-2
@@ -312,6 +316,8 @@ neuro-immune axis — cross-ref `17 §4.3` and `C2-microbiome-deepdive.md`), and
   *systematic reintroduction* → personalization), **meant to be done with a dietitian and not stayed on long-
   term** (chronic restriction harms the microbiome and risks nutritional gaps), and roughly half to two-thirds
   of patients respond. `rct` (short-term symptom relief).
+
+@@FIG:DS6-low-fodmap@@
 - **Fiber.** **Soluble** fiber (e.g., psyllium) helps, especially constipation-predominant IBS; **insoluble**
   bran can worsen symptoms. A clean example of "fiber" not being one thing. `meta`.
 - **Gut-brain therapies.** Because the axis is bidirectional, **brain-directed treatments work on the gut**:
@@ -436,6 +442,8 @@ is **fat accumulation in the liver driven by metabolic dysfunction**, on a spect
 (MASH, with inflammation and hepatocyte injury) → fibrosis → cirrhosis → hepatocellular carcinoma. It now affects
 **~30%+ of adults globally** and is the fastest-rising cause of liver disease and transplant.
 
+@@FIG:BS6-masld-progression@@
+
 **Mechanism (→ insulin resistance, the metabolic core).** MASLD is **the hepatic manifestation of insulin
 resistance**: caloric excess and insulin resistance drive hepatic fat storage; in susceptible people the fat
 becomes lipotoxic, triggering inflammation, hepatocyte injury, and progressive **fibrosis** — and *fibrosis
@@ -472,6 +480,8 @@ chronic viral disease essentially solved pharmacologically, and cure reduces liv
 The remaining problem is not the science but **diagnosis and access** (most infected people don't know it) —
 hence universal-screening recommendations. `rct`/`meta`. This belongs in any honest manual as proof that "chronic
 and incurable" is not permanent.
+
+@@FIG:D12-hepc-cure@@
 
 **Hepatitis B — suppressible and vaccine-preventable.** HBV is also blood-/body-fluid-borne and can cause
 chronic infection (especially when acquired in infancy), cirrhosis, and liver cancer. The two anchors: **(1)

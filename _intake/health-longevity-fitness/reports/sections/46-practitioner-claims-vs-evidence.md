@@ -62,6 +62,8 @@ headline of this chapter: **calibration, not direction, is what separates the fi
 sample says things the corpus flatly refutes on the *boring core* (fitness, strength, sleep, movement).
 They diverge on the *optimization margin* and the *commercial frontier* — and there, the spread is enormous.
 
+@@FIG:07-calibration-spectrum@@
+
 Counts below are per the six raw files (some claims carry split verdicts; counted by dominant verdict).
 
 | Rank | Voice (cluster) | Agree | Overstate | Contradict | One-line verdict |
@@ -88,6 +90,8 @@ Counts below are per the six raw files (some claims carry split verdicts; counte
 | **OVERSTATED** | ~52 | ~37% |
 | **CONTRADICTS** | ~11 | ~8% |
 | **NOT-YET-IN-CORPUS** | ~21 | ~15% |
+
+@@FIG:26-verdict-donut@@
 
 The shape is the story. **Flat contradictions are rare (~8%)** — and they concentrate almost entirely in
 two clusters (metabolic/N=1 and Sinclair). **Overstatement is as common as agreement (~37% each)** — the

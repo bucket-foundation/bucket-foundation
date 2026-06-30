@@ -1,0 +1,73 @@
+{
+ "cid": "pathology",
+ "title": "41 \u2014 Pathology & Laboratory Medicine",
+ "file": "sections/41-pathology-lab-medicine.md",
+ "headings": [
+  "## A.1 The 2\u00d72 table \u2014 where every test metric is born",
+  "## A.2 Sensitivity and specificity \u2014 properties of the *test* (read down the columns)",
+  "## A.3 Predictive values \u2014 what a result means for *you* (read across the rows)",
+  "## A.4 Pre-test probability and Bayes \u2014 why the same test means different things in different people",
+  "## A.5 Likelihood ratios \u2014 the cleanest way to actually do the update",
+  "## A.6 ROC curves and the threshold problem",
+  "## A.7 What \"normal\" means \u2014 reference ranges, honestly",
+  "## A.8 Assay variability \u2014 the number is not the truth",
+  "## A.9 The over-testing / cascade problem \u2014 the cost of more",
+  "## B.1 The lab-category table",
+  "## B.2 Reading a CBC (what each line means)",
+  "## B.3 Histopathology \u2014 the gold standard, and its honest limits",
+  "## B.4 Tumor markers \u2014 the honest overuse problem",
+  "## B.5 PSA \u2014 the cautionary case, in one paragraph",
+  "## C.1 Liquid biopsy and the -omics frontier",
+  "## C.2 The consumer-lab era \u2014 Theranos, the legitimate players, and the over-testing trap",
+  "## Honest debunks (state them plainly)",
+  "## Go deeper",
+  "## Cross-links"
+ ],
+ "figures": [
+  {
+   "slug": "14-bayes-ppv",
+   "title": "Bayes / PPV",
+   "caption": "9% vs 92%"
+  },
+  {
+   "slug": "75-blood-panel",
+   "title": "The Blood Panel",
+   "caption": "high-signal markers"
+  },
+  {
+   "slug": "P01-ppv-prevalence",
+   "title": "PPV vs Prevalence",
+   "caption": "same test, opposite meaning"
+  },
+  {
+   "slug": "P02-reference-range",
+   "title": "Reference-Range False Positives",
+   "caption": "1 \u2212 0.95\u207f"
+  },
+  {
+   "slug": "P03-roc-curve",
+   "title": "The ROC Curve",
+   "caption": "threshold is a policy choice"
+  },
+  {
+   "slug": "PX3-lab-categories",
+   "title": "Reading Your Bloodwork",
+   "caption": "by category"
+  },
+  {
+   "slug": "PS1-bayes-ppv",
+   "title": "Bayes: Why a Great Test Misleads",
+   "caption": "PPV \u2248 9%"
+  },
+  {
+   "slug": "PS2-confusion-2x2",
+   "title": "The 2\u00d72 Table",
+   "caption": "read it two ways"
+  },
+  {
+   "slug": "PS12-fagan",
+   "title": "The Likelihood-Ratio Shortcut",
+   "caption": "LR moves probability"
+  }
+ ]
+}

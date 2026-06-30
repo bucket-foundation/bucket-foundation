@@ -55,6 +55,8 @@ about health:
   **developmental origins** story below. The arc you spend your adult life defending was partly *drawn* before
   you drew your first breath.
 
+@@FIG:L10-capacity-arc@@
+
 This is why an adult-only manual is incomplete: the two ends of life (developmental and geriatric/terminal)
 operate by **different rules** than the defend-the-peak middle, and the single highest-leverage health
 decisions in a population — maternal nutrition, childhood activity, deprescribing in elders, honest
@@ -148,6 +150,8 @@ sharp, because — unlike DOHaD — many pregnancy questions *do* have RCTs.
 load-bearing pieces), plus correcting documented deficiencies, captures essentially all the evidence-based
 supplement benefit. The rest of the prenatal-supplement aisle is mostly marketing.
 
+@@FIG:Y04-prenatal@@
+
 ### 3.2 Exercise in pregnancy — the myth is "rest"
 
 The durable old-wives' advice was to *rest* and avoid exertion. The evidence inverts it: for
@@ -204,6 +208,8 @@ Fertility is a market drenched in hope, and therefore in overclaiming. The hones
   rises with age, *Fertil Steril* 2020, `10.1016/j.fertnstert.2020.03.028`), and advanced paternal age is
   associated with modestly higher rates of some offspring conditions. The "men can father children at any age"
   story is **half-true** — possible, but with rising sperm-quality and offspring risks. `cohort` — moderate.
+
+@@FIG:L11-fertility-decline@@
 
 ### 4.2 IVF and egg freezing — what the numbers actually are
 
@@ -309,6 +315,8 @@ places it on the time axis. The one-line trajectory:
   the peak and start tracking functional biomarkers while they are still easy to move. (§04 §4.2; §13 §4;
   Domain N.)
 
+@@FIG:86-vo2max-age@@
+
 **Do not duplicate — read:** training prescriptions in `reports/sections/04-individual-variation.md §4`;
 menopause/andropause endocrinology in `reports/sections/13-endocrine-hormones.md §4`; the sarcopenia definition
 in Domain E.
@@ -334,6 +342,8 @@ stressor (an infection, a fall, a new drug). **Linda Fried** operationalized it 
 4. **Slow walking speed**,
 5. **Low physical activity**.
 
+@@FIG:N06-frailty-pentagon@@
+
 1–2 criteria = "**pre-frail**" (an intervention window); 0 = robust. The phenotype **predicts** falls,
 hospitalization, disability, and death — and it is a **cohort**-validated readout (Rule 1: it is a powerful
 *predictor*; the *lever* is the multi-domain work below, not a "frailty drug"). A competing model, the
@@ -349,6 +359,8 @@ mass as the defining criterion) and function (EWGSOP2: Cruz-Jentoft et al., *Age
 g/kg)**, and balance — which work **even in frail nonagenarians** (Fiatarone). This section does not restate
 that prescription; it flags that **sarcopenia is the modifiable core of frailty**, the one part of the frailty
 syndrome with a strong, proven, non-pharmacologic lever.
+
+@@FIG:99-sarcopenia@@
 
 ### 7.3 Polypharmacy and deprescribing
 
@@ -400,12 +412,17 @@ The organizing aspiration of the whole geriatric stage, and arguably the whole m
 disability** can be pushed *later* faster than the age of death moves, then the **period of sickness at the end
 of life is compressed** into a shorter window — more years of healthy function, fewer years of decline.
 
+@@FIG:L12-compression-morbidity@@
+
 This is the precise, rigorous statement of the manual's recurring theme: **healthspan, not lifespan, is the
 target.** It reframes every geriatric lever above — strength to defend independence, balance to prevent the
 falls that start the terminal cascade, deprescribing to remove drug harm, cognitive reserve to delay
 disability — as instruments for **squaring the curve**: staying functional almost to the end, rather than
 adding low-quality years. (Cross-ref the female "health-survival paradox" — `health-survival-paradox`, Domain N
 — which is the same point with a sex lens: the population that already has the *years* needs the *function*.)
+
+@@FIG:G08-healthspan-gap@@
+
 `theoretical`/`cohort` as a hypothesis; the *components* (exercise, etc.) are individually evidence-graded
 across the manual.
 
@@ -458,6 +475,8 @@ the rest of the manual demands.
 ---
 
 ## 10. The one-screen summary
+
+@@FIG:N12-lifespan-timeline@@
 
 | Life stage | What matters most | The honest grade |
 |---|---|---|

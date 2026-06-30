@@ -51,6 +51,8 @@ to a single 2×2 table once you compare its verdict against the truth:
 | **Test positive**   | True Positive (TP)  | False Positive (FP)|
 | **Test negative**   | False Negative (FN) | True Negative (TN) |
 
+@@FIG:PS2-confusion-2x2@@
+
 Four numbers. Every metric below is a ratio of these four. The single most important habit this section
 can give you: **whenever you read a test statistic, ask which way the ratio runs — down a column (a
 property of the test) or across a row (what the result means for the patient).** Confusing those two is
@@ -112,6 +114,8 @@ properties").
   *probably do not have the disease* — there are **ten false alarms for every true case** — purely because
   the disease was rare to begin with.
 
+@@FIG:14-bayes-ppv,PS1-bayes-ppv@@
+
 Nothing about the test changed. Only the pre-test probability did. Now run the *same* test in a population
 where the disease is present in 1 in 10 (a symptomatic clinic): PPV jumps above 90%. **Same test, same
 numbers down the columns, opposite meaning across the rows.** This single fact explains:
@@ -124,6 +128,8 @@ numbers down the columns, opposite meaning across the rows.** This single fact e
 - Why "I felt fine but the panel found something" so often ends in a benign biopsy scar and months of
   anxiety: the find was a false positive that was *statistically inevitable* given a low pre-test
   probability and a wide net.
+
+@@FIG:P01-ppv-prevalence@@
 
 ## A.5 Likelihood ratios — the cleanest way to actually do the update
 
@@ -144,6 +150,8 @@ Rough field guide (Jaeschke/McMaster):
 | 2–5 | small ↑                     | 0.2–0.5 | small ↓                  |
 | 1–2 | negligible (the test barely moved anything) | 0.5–1 | negligible |
 
+@@FIG:PS12-fagan@@
+
 The practical punchline that the LR framing makes unavoidable: **a test with LR near 1 is useless no
 matter how "abnormal" the result looks**, and a great many ordered tests — especially screening add-ons
 sold as thoroughness — have LRs close to 1 in the population they're applied to. The LR also shows *why
@@ -163,6 +171,8 @@ visible:
   so it's the fair way to compare two tests — but note it says nothing about *which* threshold to use; that
   is a value judgment about the relative cost of a miss versus a false alarm.
 
+@@FIG:P03-roc-curve@@
+
 Where the threshold is set is a **policy decision smuggled inside a number.** "Pre-diabetes" at HbA1c
 5.7%, a "high" PSA at 4.0 ng/mL, a "low" TSH — each line was chosen by a committee weighing consequences,
 and each could be moved. Lowering a threshold to "catch more" *always* relabels more healthy people as
@@ -180,6 +190,8 @@ deviations. Three consequences fall straight out of that definition, and almost 
    "fail" a broad panel** for no reason but statistics. (Galen & Gambino's classic *Beyond Normality*
    formalized this decades ago; it is why "the panel found something" is the expected, not the surprising,
    outcome.)
+
+@@FIG:P02-reference-range@@
 2. **Statistical-normal ≠ optimal ≠ healthy.** The reference range describes *who got sampled*, not what's
    *best*. If the reference population is a developed nation with widespread insulin resistance, a
    "normal" fasting glucose or LDL may sit well above the level associated with lowest risk. Conversely,
@@ -242,6 +254,8 @@ A practical map. For each category: what it measures, the high-value tests, and 
 sizes and outcome evidence for specific biomarkers live in `WHAT-TO-TRACK-SYNTHESIS.md` and the linked
 domain claims — this is the *test-science* layer over them.
 
+@@FIG:75-blood-panel@@
+
 ## B.1 The lab-category table
 
 | Category | Core tests | What it actually tells you | Honest caveat / cross-ref |
@@ -259,6 +273,8 @@ domain claims — this is the *test-science* layer over them.
 | **Microbiology / cultures** | Blood/urine/wound culture + sensitivities, Gram stain, rapid antigen/PCR | Identifies the organism + which antibiotics work | Culture = slow gold standard (days); contamination (skin flora in blood cultures) is a classic false positive (Bates/Weinstein, *Ann Intern Med* 1987). PCR is fast/sensitive but can detect dead or colonizing organisms. |
 | **Urinalysis** | Dipstick (protein, glucose, blood, leukocyte esterase, nitrite), microscopy | Renal/urinary/metabolic screen | Cheap and useful *with* pre-test reasoning; asymptomatic dipstick "abnormalities" (microscopic hematuria, trace protein) are a leading cascade trigger. |
 | **Histopathology / cytology** | Biopsy, surgical specimen, Pap, FNA | **Tissue diagnosis — the gold standard** for cancer and many diseases | The reference standard, but *not infallible*: sampling error + inter-observer variability (B.3). |
+
+@@FIG:PX3-lab-categories@@
 
 ## B.2 Reading a CBC (what each line means)
 

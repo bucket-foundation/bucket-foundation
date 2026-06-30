@@ -84,6 +84,8 @@ distinct physical principles cover the entire field:
 That four-way split — *ionising EM / mechanical wave / magnetic resonance / nuclear decay* — is the
 skeleton of everything below.
 
+@@FIG:PS11-imaging-physics@@
+
 ---
 
 ## 40.2 — The modalities (the master table)
@@ -92,6 +94,8 @@ Effective doses are typical adult values in **millisieverts (mSv)**; the natural
 ~**3 mSv/year**, and a transatlantic flight is ~**0.04 mSv** — useful anchors for the numbers below.
 Costs are order-of-magnitude US list-price ranges (hugely variable); the point is the *ratio*, not the
 dollar.
+
+@@FIG:49-imaging-matrix@@
 
 | Modality | Physics | What it sees best | Radiation (typical effective dose) | Rel. cost | Best for | Key limit |
 |---|---|---|---|---|---|---|
@@ -151,6 +155,8 @@ neither camp. Here is the honest version.
 | Abdomen/pelvis CT | ~8–10 mSv | ≈ 3 years background |
 | FDG-PET/CT | ~15–25 mSv | ≈ 5–8 years background |
 
+@@FIG:P06-radiation-dose@@
+
 A single CT is **not** dangerous to an individual in any way they will feel — the per-scan excess
 lifetime cancer risk is small (order 1-in-1,000 to 1-in-10,000 depending on dose, age, and organ). The
 honest problem is not the single scan; it is **scale and repetition**.
@@ -190,6 +196,8 @@ the *low-dose* CT range where direct measurement is extraordinarily hard. **Its 
     measured dose distributions), not a body count — but it is the clearest statement of the central
     point: **the danger of CT is a public-health problem of volume, not a personal-injury problem of the
     single scan.**
+
+@@FIG:P13-ct-burden@@
 
 ### 40.3.3 — When imaging radiation is justified, and when it is not
 
@@ -239,6 +247,8 @@ real even when the finding is benign — it is the *cascade*, not the lesion, th
   *healthy* research volunteers (Eur J Radiol 2009) found **29% had an abnormal scan** and ~**13% had a
   finding of clinical significance** — in people with no symptoms — with the rate climbing with age and
   BMI. Scale that to a marketed consumer product and you have an **engine for manufacturing patients.**
+
+@@FIG:Z02-incidentaloma@@
 
 **Why this makes whole-body consumer MRI screening contested (cross-ref `07 §6`, `25 §6`):**
 products like **Prenuvo** (whole-body MRI) and **Galleri** (the MCED blood test — graded in §07/§25) are
@@ -394,6 +404,8 @@ real-world imaging mistakes:
 ---
 
 ## 40.9 — What to actually do (the honest residue)
+
+@@FIG:Z10-imaging-flow@@
 
 - **Image a question, not a body.** The value of any scan is conditional on a specific pre-test question
   whose answer changes a decision. No question → no scan.

@@ -79,12 +79,16 @@ system is switched off and where**, chosen to match the surgery, the patient, an
 | **Local anesthesia** | A small patch of tissue | Injected/applied at the site | Skin lesions, dental work, stitches, minor procedures | Fully awake |
 | **Sedation ("MAC"/"twilight")** | Anxiety and awareness dialed down on a spectrum | IV drugs (often propofol ± an opioid/benzodiazepine) | Colonoscopy, cataracts, minor procedures, ICU comfort | Drowsy to deeply sedated; a *continuum*, not an on/off |
 
+@@FIG:R02-anesthesia-types@@
+
 Two honest points the table hides. First, **these combine**: a major chest operation is commonly an
 epidural *plus* general anesthesia, deliberately, because the epidural does the post-operative pain control
 the GA can't. Second, **sedation is a continuum, not a category** — "a little sedation" and "general
 anesthesia" sit on the same dial, and the well-documented danger of procedural sedation is *unintentionally*
 sliding from "comfortable and breathing" into "too deep and not breathing." This is why even "just a bit of
 sedation" is given by people trained to rescue an airway.
+
+@@FIG:R10-sedation-continuum@@
 
 ### 2.2 How general anesthesia works — and the honest "we don't fully know"
 
@@ -151,6 +155,8 @@ seconds."
 
 Anesthesia is one of medicine's great safety success stories, and it is worth being precise about the
 numbers rather than repeating a slogan.
+
+@@FIG:Q04-anesthesia-mortality@@
 
 - **Anesthesia-attributable mortality has fallen by more than an order of magnitude** over the past
   half-century. Bainbridge and colleagues' systematic review and meta-analysis (**Bainbridge et al.,
@@ -289,6 +295,8 @@ problem is (hopefully) reversed.**
 | **Brain** (coma, raised pressure, seizures) | Sedation, ICP control, neuro-monitoring | Protecting the brain and controlling its environment |
 | **Whole-body / metabolic** | Nutrition, glucose control, transfusion, infection source control | Keeping the internal milieu survivable |
 
+@@FIG:R03-icu-support@@
+
 The defining feature of modern critical care is that **almost all of these supports can be over-used as
 easily as under-used** — and the field's hardest, most honest questions (§6, §8) are not "can we support
 this organ?" but "*should* we, for *this* patient, toward *what* goal?"
@@ -310,6 +318,8 @@ of critical care's cleanest wins and a profound lesson: **less aggressive suppor
 second major advance, **prone positioning** — literally turning the sickest ARDS patients face-down to
 recruit collapsed lung — reduced mortality in the **PROSEVA trial** (Guérin et al., *N Engl J Med* 2013,
 `10.1056/NEJMoa1214103`), and became one of the defining bedside images of the COVID pandemic.
+
+@@FIG:Q05-less-is-more@@
 
 **The honest lessons of COVID** are worth stating because they were learned in public: (1) the proven ARDS
 toolkit — **lung-protective low-tidal-volume ventilation and proning** — was the durable backbone, while
@@ -377,6 +387,8 @@ the microbe, becoming the organ-damaging threat. It is a leading cause of death 
 antibiotics and source control drive survival.** That much has held. What makes sepsis a *teaching case for
 this corpus* is that the **resuscitation protocol was built, celebrated, and then substantially deflated by
 better trials** — a model of how honest medicine corrects itself.
+
+@@FIG:R09-sepsis-turnover@@
 
 - **The rise (EGDT).** In 2001, Rivers et al.'s single-center trial of **Early Goal-Directed Therapy**
   (*N Engl J Med* 2001, `10.1056/NEJMoa010307`) reported a dramatic mortality reduction from an aggressive,

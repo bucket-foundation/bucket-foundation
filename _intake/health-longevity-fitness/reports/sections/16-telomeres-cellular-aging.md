@@ -45,6 +45,8 @@ and found they protected its ends from degradation and fusion (Szostak & Blackbu
 cross-kingdom transplant is the experiment that proved telomeres are a **general** solution, not a ciliate
 curiosity.
 
+@@FIG:A04-telomere-cap,RA08-telomere@@
+
 The job of the cap is to let the cell tell a **natural chromosome end** apart from a **double-strand break**.
 A naked end looks like damage; the DNA-repair machinery would either chew it back or fuse it to another
 chromosome. Shelterin hides the end, suppressing the DNA-damage response and end-to-end fusion. This is the
@@ -63,6 +65,8 @@ every division. This is the **end-replication problem**, deduced independently f
 **James Watson** (Watson, *Nature New Biology* 1972) and **Alexey Olovnikov** (Olovnikov, *J Theor Biol*
 1973, "A theory of marginotomy"). Olovnikov made the leap of explicitly connecting end-shortening to the
 finite division capacity of cells.
+
+@@FIG:A03-end-replication@@
 
 > **The honest framing:** telomere shortening is a **direct, unavoidable consequence of the geometry of
 > copying a linear molecule with a polymerase that can't initiate de novo.** It is real, it is fundamental,
@@ -96,6 +100,8 @@ progressively as human fibroblasts age in culture** (Harley et al., *Nature* 199
 senescence when it runs down (the "uncapped" end triggers a persistent DNA-damage response → p53/p21 → arrest).
 **Hastie et al. (1990)** confirmed the same shortening happens in human tissue *in vivo* with age (Hastie et
 al., *Nature* 1990).
+
+@@FIG:A12-telomere-clock@@
 
 The capstone was causal: **Bodnar et al. (1998)** forced **TERT** expression into normal human cells, kept
 their telomeres long, and the cells **bypassed senescence and kept dividing** — apparently immortalised
@@ -166,6 +172,8 @@ This is the single most important thing in the chapter, and the consumer industr
 **Telomerase activation — the thing "telomere lengthening" supplements sell — is exactly what cancers do to
 become immortal.**
 
+@@FIG:PS10-cancer-paradox@@
+
 A normal cell's silenced telomerase is a **brake on tumours.** When a pre-cancerous cell divides too many
 times, its telomeres run down, the ends uncap, and it either senesces or dies — the telomere clock *kills the
 lineage before it can accumulate enough mutations to become malignant.* To escape, a cancer must restore
@@ -204,6 +212,8 @@ bidirectional**, not a free lunch.
 ## 16.4 — What the evidence actually says on "lengthening"
 
 Grading the specific commercial and lifestyle claims against the ladder.
+
+@@FIG:BX4-telomere-grading@@
 
 ### 16.4.1 — TA-65 / astragalus (the flagship product)
 
@@ -296,6 +306,8 @@ Critically for this chapter: **most senescence in vivo is not telomere-driven.**
 This is why senolytic biology is studied largely through **p16^INK4a-positive** cells, not telomere length,
 and why "fix your telomeres" is **not** the same as "clear senescent cells." Telomeres are one entrance to
 the senescent state; the room is much larger.
+
+@@FIG:A11-senescence-triggers@@
 
 ### 16.5.3 — Senolytics, graded honestly (cross-ref B)
 

@@ -82,6 +82,8 @@ antagonists.
   open the GABA-A channel themselves; they make GABA's own opening *more effective* (which is why
   they're safer alone than barbiturates, which force the channel open directly).
 
+@@FIG:PS4-agonist-spectrum@@
+
 ### A.1.3 Affinity, efficacy, potency — three things people conflate
 
 - **Affinity** = how tightly the drug binds (how low a concentration half-occupies the target).
@@ -114,6 +116,8 @@ This is the same dose-response logic section 01 §3 uses for hormesis (a *sub*-d
 excess harms): pharmacology is dose-response biology with a deliberately chosen molecule. **"The dose
 makes the poison"** (Paracelsus) is not a slogan — it is the curve.
 
+@@FIG:P04-dose-therapeutic-index@@
+
 ### A.1.5 Tolerance, dependence, and receptor adaptation
 
 Receptors are not passive. Chronic stimulation often triggers **downregulation** (fewer receptors) or
@@ -129,6 +133,8 @@ system).
 PK is four processes, abbreviated **ADME**: **A**bsorption, **D**istribution, **M**etabolism,
 **E**xcretion. They jointly determine the concentration-time curve — how high the drug goes, how fast,
 and how long it stays.
+
+@@FIG:PS3-adme@@
 
 ### A.2.1 Absorption and the first-pass effect
 
@@ -189,6 +195,8 @@ explains most interactions and most PGx:
 | **CYP2C19** | clopidogrel, PPIs, some antidepressants, voriconazole | Activates clopidogrel; clears PPIs | Loss-of-function common in East-Asian ancestry (§C) |
 | **CYP2C9** | warfarin, phenytoin, many NSAIDs, sulfonylureas | Clears warfarin's active enantiomer | Pairs with VKORC1 for warfarin dosing (§C) |
 
+@@FIG:PX1-cyp450@@
+
 **Inducers vs inhibitors — the interaction engine:**
 - An **inhibitor** of a CYP slows metabolism of that CYP's substrates → substrate levels **rise** →
   toxicity risk. Strong CYP3A4 inhibitors: azole antifungals (ketoconazole), some macrolide antibiotics
@@ -212,6 +220,8 @@ direct oral anticoagulants all need renal dose adjustment.
   (~4–5 half-lives of regular dosing to plateau — and the same ~4–5 half-lives to wash out after
   stopping). It is why a drug started today may not show its full effect for days, and why a drug
   stopped today may linger.
+
+@@FIG:P05-half-life@@
 - **Loading dose vs maintenance dose:** when you can't wait 4–5 half-lives (a life-threatening
   arrhythmia, a serious infection), a large **loading dose** fills the distribution volume fast, then a
   smaller maintenance dose replaces what's cleared.
@@ -394,6 +404,8 @@ This part **extends** section 18 §A.2.4, which establishes the headline: *pharm
 most useful clinical genetics there is* — large-effect variants with a defined clinical action, unlike
 the polygenic "wellness" noise. Here is the mechanism and the actionable detail.
 
+@@FIG:PX2-pharmacogenomics@@
+
 ## C.1 The idea, and a one-paragraph history
 
 **Pharmacogenetics** — the study of how inherited variation changes drug response — was named by the
@@ -422,6 +434,8 @@ The **prodrug inversion** is the part clinicians must hold in their head: for a 
 for a prodrug, **UM = danger**. CYP2D6 is the most extreme case because its activity ranges from **zero
 (gene deletion) to ultra-rapid (gene duplication/multiplication)** across a continuous spectrum, and its
 allele frequencies vary sharply by ancestry.
+
+@@FIG:Z03-metabolizer-prodrug@@
 
 ## C.3 The actionable gene-drug pairs (the ones with a body count or a guideline)
 
@@ -525,6 +539,8 @@ This is where pharmacology becomes a geriatric-medicine problem (cross-ref secti
   longevity act as adding a good one.** In geriatrics this is frequently the single highest-value
   intervention available.
 
+@@FIG:F09-deprescribing@@
+
 ## D.4 The supplement-drug interaction reality (honest)
 
 Supplements are pharmacology that markets itself as not-pharmacology — and the interaction surface is
@@ -548,6 +564,8 @@ real and routinely ignored because people don't *tell their doctor* about supple
 
 The placebo response is not "nothing" — it is a **measurable neurobiological phenomenon** and belongs in
 a pharmacology chapter as a real, dose-able effect that every drug rides on top of.
+
+@@FIG:F10-placebo-nocebo@@
 
 - **Placebo is real physiology, not just reporting bias.** Placebo analgesia is partly **endogenous-
   opioid mediated** — it is **blocked by naloxone** (Levine et al., *Lancet* 1978), which is about as

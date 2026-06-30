@@ -41,6 +41,8 @@ it **doubled**. Global life expectancy is now ≈**73 years**; high-income count
 single largest change in the human condition in recorded history, and the popular story — "modern medicine
 saved us" — is **mostly wrong**.
 
+@@FIG:81-lifespan-over-time,G06-le-doubling@@
+
 ### 1.2 The McKeown thesis and what replaced it
 
 Thomas **McKeown** (1970s) made the provocative observation that the great **decline in mortality from
@@ -83,6 +85,8 @@ Note the ordering: the first three are **not medicine at all** — they are civi
 food policy. Vaccination is preventive public health. **Antibiotics are the first item on the list that a
 doctor administers to a sick individual** — and they arrive in the 1940s, after most of the decline.
 
+@@FIG:27-lifespan-ledger,L15-lifespan-doubled@@
+
 ### 1.4 The epidemiologic transition (Omran 1971)
 
 As infectious disease retreated, the *cause-of-death profile* inverted — Abdel **Omran's "epidemiologic
@@ -93,6 +97,8 @@ framing fact for the entire rest of this manual: **the diseases the longevity in
 diseases of the post-transition world** — they only became the dominant killers *because* public health
 already defeated the things that used to kill us first. Optimizing your VO₂max and ApoB is a luxury of a
 society that already solved cholera.
+
+@@FIG:L17-epi-transition,97-leading-causes@@
 
 A blunt corollary: **the highest-leverage health work is largely finished in rich countries and largely
 *undone* in poor ones** (§7). The marginal life-year is cheapest where the transition hasn't completed.
@@ -194,6 +200,8 @@ is chronically *unpopular and under-funded* despite being *more effective and ch
 the individual level, exactly the level the longevity market operates at. **Tier: `theoretical`/foundational
 framework, validated repeatedly in CVD epidemiology.**
 
+@@FIG:G05-rose@@
+
 ### 3.3 The Frieden Health Impact Pyramid — leverage, formalized
 
 Thomas **Frieden** (then CDC director) formalized the same insight as a **5-tier pyramid** (AJPH 2010), where
@@ -206,6 +214,8 @@ Thomas **Frieden** (then CDC director) formalized the same insight as a **5-tier
 | 3 | **Long-lasting protective interventions** | One-time | Moderate | Vaccination, colonoscopy, smoking-cessation Rx |
 | 2 | **Changing the context** (healthy default) | Low/none | Large | Trans-fat bans, fluoridation, clean air, iodized salt |
 | 1 (base) | **Socioeconomic factors** | None (structural) | **Largest** | Poverty reduction, education, housing |
+
+@@FIG:N05-health-pyramid@@
 
 The brutal punchline for this manual: **almost everything the longevity industry sells lives at the apex
 (tier 5) — the tier with the *least* population impact and the *most* required individual effort.** Supplements,
@@ -225,6 +235,8 @@ boring** — none of them are sold to you:
 | **Water fluoridation** | Community caries prevention | ~US$1 spent saves ~US$20–50 dental cost; CDC "10 great achievements" | `cohort`/community; large effect, low cost |
 | **Seatbelts / road safety** (laws + design) | Injury primary prevention | Massive; among the cheapest life-years in transport | `cohort`/natural-experiment; ~45% fatal-injury reduction |
 | **Trans-fat elimination** | Removes a uniquely atherogenic fat from supply | High; whole-population CVD reduction at ~$0 individual effort | `cohort`/policy (Denmark, NYC, then national bans) |
+
+@@FIG:G03-cost-per-ly@@
 
 Every one of these is a **tier-1 or tier-2** Frieden lever, a **population** Rose strategy, and **primary**
 prevention. Every one is invisible to the person it protects. None has a Goop SKU. That is the entire thesis
@@ -259,6 +271,8 @@ This is the cleanest natural experiment in health-system performance, and the re
 - The U.S. **spent >16% of GDP** on health (≈US$13,000+ per capita, ~**double** the OECD average and headed
   for >20% by 2035) — while peers spent **8–12%**.
 - Americans have **the shortest lives and the most avoidable deaths** of the ten.
+
+@@FIG:L16-us-vs-peers@@
 
 The U.S. is the definitive proof of this section's thesis: **it spends the most money on the most advanced
 clinical medicine on Earth and gets the worst outcomes among rich nations** — because clinical spending is
@@ -296,6 +310,8 @@ The most consequential number in this section. Multiple independent estimation m
 | **Social circumstances** | ~15% |
 | **Medical care** | **~10%** |
 | **Environmental exposure** | ~5% |
+
+@@FIG:L14-determinants@@
 
 So **medical care ≈ 10–20%** of what determines how long and well a population lives; **behavior +
 social + environment ≈ 60%+**, and genetics ~30%. *(Tier: `theoretical`/synthesis — these are

@@ -97,6 +97,8 @@ provenance; this table is the *bridge*, not the evidence base.
 
 ## 12.2 — The convergence map: many practices, six layers
 
+@@FIG:18-mechanism-convergence@@
+
 Read the table column-wise and a striking fact appears — **the levers are many, the fundamental layers
 are few.** Most of the manual collapses onto the **energy/redox** core:
 

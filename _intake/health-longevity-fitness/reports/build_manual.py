@@ -16,15 +16,33 @@ _gtxt=open(os.path.join(_VIZ,"build_gallery.py")).read()
 FIG_ORDER=[]; FIG_META={}
 for _m in re.finditer(r'\("([^"]*\.png)","([^"]*)","([^"]*)"\)', _gtxt):
     FIG_ORDER.append(_m.group(1)); FIG_META[_m.group(1)]=(_m.group(2),_m.group(3))
-def figure_plate(cid):
-    items=[fn for fn in FIG_ORDER if FIGMAP.get(fn[:-4])==cid]
-    if not items: return ""
-    cells=""
-    for fn in items:
-        ti,ca=FIG_META.get(fn,("",""))
-        cap="<b>"+html.escape(ti)+"</b>"+(" — "+html.escape(ca) if ca else "")
-        cells+=f'<figure class="figitem"><img src="../media/figures/{fn}"/><figcaption>{cap}</figcaption></figure>'
-    return f'<div class="figplate"><h2>Figures &amp; diagrams</h2><div class="figgrid">{cells}</div></div>'
+def _figcap(fn):
+    ti,ca=FIG_META.get(fn,("",""))
+    return "<b>"+html.escape(ti)+"</b>"+(" — "+html.escape(ca) if ca else "")
+def inline_fig(spec):
+    """Render one figure (or a side-by-side pair) inline. spec = 'slug' or 'slugA,slugB'."""
+    slugs=[s.strip() for s in re.split(r'[,\s]+', spec) if s.strip()]
+    cells="".join(
+        f'<figure class="figin-cell"><img src="../media/figures/{s}.png"/>'
+        f'<figcaption>{_figcap(s+".png")}</figcaption></figure>' for s in slugs)
+    cls="figin pair" if len(slugs)>1 else "figin"
+    return f'<div class="{cls}">{cells}</div>'
+# markers authored in the section markdown: a line  @@FIG:slug@@  (or @@FIG:slugA,slugB@@)
+FIG_MARK=re.compile(r'(?:<p>)?\s*@@FIG:([A-Za-z0-9,\s_-]+?)@@\s*(?:</p>)?')
+def place_figs(body, cid):
+    placed=set()
+    def repl(m):
+        for s in re.split(r'[,\s]+', m.group(1)):
+            if s: placed.add(s)
+        return inline_fig(m.group(1))
+    body=FIG_MARK.sub(repl, body)
+    # any chapter figures not explicitly anchored -> compact tail plate so nothing is lost
+    rest=[fn for fn in FIG_ORDER if FIGMAP.get(fn[:-4])==cid and fn[:-4] not in placed]
+    if rest:
+        cells="".join(f'<figure class="figitem"><img src="../media/figures/{fn}"/>'
+                      f'<figcaption>{_figcap(fn)}</figcaption></figure>' for fn in rest)
+        body+=f'<div class="figplate"><h2>More figures</h2><div class="figgrid">{cells}</div></div>'
+    return body
 
 # ---- document structure: (part title, subtitle, [ (chapter-id, source-md-path, override-title|None) ]) ----
 def S(n): return os.path.join(SEC,n)
@@ -110,7 +128,7 @@ def first_title(md_path):
     return os.path.basename(md_path)
 
 def pandoc(md_path):
-    out = subprocess.run(["pandoc","-f","markdown+pipe_tables+backtick_code_blocks","-t","html5",
+    out = subprocess.run(["pandoc","-f","markdown+pipe_tables+backtick_code_blocks-citations","-t","html5",
                           "--no-highlight", md_path], capture_output=True, text=True)
     if out.returncode!=0: raise RuntimeError(f"pandoc failed on {md_path}: {out.stderr[:300]}")
     h = out.stdout
@@ -136,7 +154,7 @@ for part_label, part_sub, items in STRUCT:
         title = override or first_title(path)
         body = pandoc(path)
         if cid=="training": body = diagram_grid()+body
-        body = body + figure_plate(cid)
+        body = place_figs(body, cid)
         chapters.append((cid,title,part_label,body,part_sub))
         toc.append(("chap", title, None, cid))
 
@@ -232,7 +250,15 @@ img{max-width:100%}
 .dia figcaption{font-family:"Helvetica Neue",sans-serif;font-size:7pt;color:#6b5418;margin-top:2pt}
 .small{font-size:8.3pt;color:#5e574a}
 
-/* per-chapter figure plate */
+/* inline figures — anchored next to the text that discusses them */
+.figin{margin:9pt auto 11pt;text-align:center;break-inside:avoid;max-width:80%}
+.figin.pair{max-width:100%;display:flex;gap:10pt;justify-content:center;align-items:flex-start}
+.figin-cell{margin:0;flex:1;text-align:center}
+.figin img,.figin-cell img{width:100%;border:1px solid #e3dcc9;border-radius:3px;background:#fff}
+.figin figcaption,.figin-cell figcaption{font-family:"Helvetica Neue",sans-serif;font-size:7pt;color:#5e574a;line-height:1.25;margin:2.5pt 4pt 0}
+.figin figcaption b,.figin-cell figcaption b{color:#6b5418}
+
+/* per-chapter figure plate (transitional tail for un-anchored figures) */
 .figplate{margin:14pt 0 4pt}
 .figplate>h2{break-before:auto}
 .figgrid{font-size:0}                 /* inline-block paginates across pages (flexbox does not in weasyprint) */

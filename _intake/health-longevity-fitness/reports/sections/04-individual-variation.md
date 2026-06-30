@@ -115,6 +115,8 @@ quoted and most under-appreciated findings in exercise science:
   al. 2012, *PLoS ONE*, `10.1371/journal.pone.0037887`) — though on hard outcomes the overall direction of
   exercise is still protective; this is heterogeneity, not "exercise is bad."
 
+@@FIG:25-responder-distribution@@
+
 **This is biology, not effort.** Two people can train identically and walk away with very different VO2max
 changes. If you have ever felt like the program "everyone swears by" did less for you than for your friend —
 that is a real, measured, heritable phenomenon, not a character flaw.

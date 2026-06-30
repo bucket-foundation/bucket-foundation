@@ -29,6 +29,8 @@ the quantitative importance of the glymphatic system *in humans* is still active
 prevents Alzheimer's" is a mechanism→outcome leap the evidence does not yet license. (Full treatment in
 the brain/cognitive section — cross-ref `08-brain-cognitive.md`.)
 
+@@FIG:44-sleep-hypnogram@@
+
 ### 1.2 The dose: the ~7-hour U-shape (and why "more" is not "better")
 
 All-cause mortality versus sleep duration is **U-shaped, not monotonic**:
@@ -39,6 +41,8 @@ All-cause mortality versus sleep duration is **U-shaped, not monotonic**:
 | Kripke 2002 (~1.1M adults) | Lowest mortality at **~6.5–7.5h**; both <6.5h and ≥8h elevated | `cohort` | `kripke-7h-optimal-mortality` |
 | AASM/SRS consensus 2015 | Consensus **floor of ≥7h/night** for adults | `meta`/guideline | `aasm-7h-consensus` |
 
+@@FIG:22-sleep-ushape@@
+
 **The honest reading:** the data support a **floor (~7h) with a U-shape**, not "sleep as much as
 possible." The long-sleep arm is most plausibly **reverse causation** — illness, depression, and
 frailty cause long sleep — which is also the central critique of the popular "the shorter your sleep,
@@ -48,6 +52,8 @@ the shorter your life" framing (see §1.6). Aim for the floor; do not chase the 
 
 The single biggest mistake in consumer sleep is optimizing the *measurement* (trackers, supplements,
 gadgets) before the *behavior*. Tiered by leverage:
+
+@@FIG:63-sleep-hygiene@@
 
 **Tier A — Regularity & timing (the highest-leverage, lowest-cost lever).**
 A *consistent* sleep/wake schedule outperforms chasing total hours. Irregular timing is its own
@@ -72,6 +78,8 @@ vasodilation) are well-tolerated, low-risk levers.
 pharmacologically active at bedtime — **cut it ~8–10h before sleep.** Alcohol is a sedative that
 *fragments* the second half of the night and suppresses REM; it makes you fall asleep faster and sleep
 worse. Time the last drink several hours out, or skip it on nights you need recovery.
+
+@@FIG:Y11-caffeine@@
 
 **Tier C — Everything else** (magnesium, fancy mattresses, supplements): real for some, individually
 small, and downstream of getting Tiers A–B right.
@@ -131,6 +139,8 @@ photosensitive retinal ganglion cells (ipRGCs)** (`light-melatonin-action-spectr
 sets the SCN, which entrains the **clock-gene transcription–translation feedback loop** (the molecular
 oscillator) and synchronizes peripheral clocks throughout the body. This is the fundamental that the
 entire pillar rests on — UP-link to canon `05-biophysics/` (non-visual photoreception).
+
+@@FIG:N07-circadian-dial@@
 
 ### 2.2 Light, meal timing, and the two-zeitgeber model
 
@@ -193,6 +203,8 @@ RCT; cold has rich mechanism but thin outcomes.
 | Laukkanen 2016 (same cohort) | Dementia HR ~0.34, Alzheimer's HR ~0.35 (4–7×/wk vs 1×) | `cohort` | `sauna-dementia-association` |
 | Laukkanen & Kunutsor 2018 | Sauna raises HR/cardiac output, lowers BP, improves arterial compliance ("mimics moderate exercise") | `mechanistic` | `sauna-cardiovascular-physiology` |
 
+@@FIG:23-sauna-mortality@@
+
 **The mechanism:** heat induces **heat-shock proteins (HSP70/90)** — molecular chaperones that support
 **proteostasis** — and drives cardiovascular load comparable to moderate exercise (`heat-shock-proteins-mechanism`).
 UP-link to canon `05-biophysics/` (proteostasis). The HSP→longevity leap is the canonical
@@ -222,6 +234,8 @@ plunge** (`cold-acclimation-insulin-sensitivity-t2d`). The cold-shower RCT (n=3,
 sickness-absence but no change in sick-days-per-illness, self-reported and unblinded
 (`cold-showering-sick-leave-rct`). **The protocol with metabolic data (long mild cold) is not the protocol
 being sold (short intense plunge).**
+
+@@FIG:N11-cold-dose@@
 
 **What cold plunges are actually good for:** the norepinephrine/dopamine surge is a real, reproducible
 *acute* effect — so the honest, evidence-consistent value of the cold plunge is **mood, alertness, and the
@@ -290,6 +304,8 @@ unproven; moving HRV up for a few minutes is not the same as buying health (see 
 - **Diaphragmatic breathing** reduced cortisol and negative affect and improved attention
   (`diaphragmatic-breathing-stress-cortisol`).
 
+@@FIG:Z08-breathwork@@
+
 ### 4.3 Buteyko — the symptom-vs-disease distinction
 
 The Buteyko technique **improved asthma symptoms and reduced reliever-medication use but did NOT change
@@ -340,6 +356,8 @@ associates with stress and higher CV/all-cause risk. **What's hype:**
 **Practical use:** treat HRV like a **personal trend line** — a multi-day *drop* relative to your own
 baseline is a reasonable nudge to back off training/stress and prioritize sleep. Nothing more.
 
+@@FIG:Y05-hrv@@
+
 ### 5.2 Allostatic load — the bridge framework (and its hazard)
 
 **Allostatic load** is the cumulative physiological cost of chronic stress-mediator activation — cortisol,
@@ -369,6 +387,8 @@ effect size, the largest, most-replicated all-cause-mortality associations in th
 | **Socioeconomic position** (Marmot gradient) | Stepwise inverse gradient — lowest grade ~3× the CHD mortality of the highest, even among the comfortable | `cohort` | `ses-gradient-whitehall-1` |
 | **Community / religious participation** | Weekly attendance → HR ≈ 0.67 all-cause mortality (mediated by social support, optimism, less smoking) | `cohort` | `religious-attendance-mortality` |
 
+@@FIG:95-social-connection,L07-psychosocial@@
+
 **Read it honestly in both directions** (`psychosocial-vs-biohack-effect-size`):
 - **Do not dismiss these as "confounded."** They survive heavy adjustment and replicate at meta scale —
   *more* than can be said for most biohacks. By the corpus's own rules they grade *up*, not down.
@@ -396,6 +416,8 @@ wellness-industrial overclaim:
 | **Yoga / meditation** | Improve HRV, cortisol, BP across studies — but surrogate endpoints, heterogeneous, bias-prone | `meta` tier, *weak content*; no hard-endpoint claim (`yoga-hrv-vagal-increase`, `mindfulness-meditation-physiological-stress-meta`) |
 | **Supplements / "adaptogens" / gadgets** | Marketed as stress cures | Mostly `mechanistic`/`surrogate` or null; the overclaim lives here |
 
+@@FIG:90-recovery-toolkit@@
+
 **The synthesis:** the genuinely high-leverage stress levers are **boring, free, and unmonetizable** —
 sleep, connection, purpose, breath, daylight, movement. The wellness-industrial complex inverts this,
 selling the low-evidence end (supplements, devices, "protocols") precisely *because* it's monetizable. An
@@ -414,6 +436,8 @@ treat the stack as optional garnish.
 | **Cold** | Norepinephrine, BAT/UCP1 | Acclimation for metabolism; plunge for **mood/discipline** | Dose-sold ≠ dose-studied |
 | **Breath** | Autonomic / vagal tone | ~6/min slow breathing; default nasal | Real acute effect; longevity unproven; **water-safety rule** |
 | **Stress / connection** | Allostatic load, HPA axis | **Social connection + purpose** | Biggest effect sizes, but observational |
+
+@@FIG:N04-recovery-levers@@
 
 **The one-sentence version:** sleep on a fixed schedule, get morning light and dim evenings, use heat
 and cold as honest hormetic stressors (not magic), breathe slowly through your nose and never hyperventilate

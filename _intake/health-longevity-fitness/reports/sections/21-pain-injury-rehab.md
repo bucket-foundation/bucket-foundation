@@ -30,6 +30,8 @@ mechanical, chemical — by peripheral nociceptors, travelling up the spinal cor
 *conscious experience the brain constructs* by weighing that input against context, expectation,
 attention, mood, past experience, and meaning. They usually track together. They do not have to.
 
+@@FIG:A06-nociception@@
+
 - You can have **nociception without pain**: soldiers and athletes routinely sustain major injuries with
   little or no pain in the moment — the brain, given a more urgent priority, simply doesn't generate it.
 - You can have **pain without nociception**: phantom-limb pain (the limb is gone) and many chronic-pain
@@ -82,6 +84,8 @@ satisfaction, and social support. This is not a soft add-on — the psychosocial
 *strongest predictors* of who transitions from acute to chronic pain. The model is the reason the rest of
 this section keeps returning to the same un-flashy levers.
 
+@@FIG:51-pain-biopsychosocial@@
+
 > **Honest debunk — "bad posture causes pain."** The idea that a specific "good posture" prevents pain
 > and "bad posture" causes it is largely unsupported. Population studies find **weak-to-no consistent
 > link** between things like sitting posture, "forward head," mild scoliosis, or leg-length difference and
@@ -123,6 +127,8 @@ found, rising steeply with age:
 | Disc bulge | ~40% | ~69% |
 | Disc protrusion | ~31% | ~38% |
 | Annular fissure | ~20% | ~29% |
+
+@@FIG:P07-spine-mri@@
 
 These are **incidental findings of normal aging — "wrinkles on the inside."** They are as common in people
 with *no* pain as in people who hurt, so on their own they **cannot explain symptoms or guide treatment.**
@@ -210,6 +216,8 @@ The current evidence-based framework is **PEACE & LOVE** (Dubois & Esculier, *Br
 | **A**void anti-inflammatories (and ice) — they may impair healing | **V**ascularisation (pain-free cardio for blood flow) |
 | **C**ompress | **E**xercise (restore strength, mobility, proprioception) |
 | **E**ducate (avoid unnecessary passive treatments/scans) | |
+
+@@FIG:PS5-peace-love@@
 
 The throughline is identical to tendons and backs: **brief protection, then early, graded, optimistic
 loading** — not extended rest. (Ice for short-term *pain relief* is fine; the claim it *speeds healing* is
@@ -369,6 +377,8 @@ medication + addressing the social/work context.** Sleep deserves a specific fla
 predicts and amplifies chronic pain (bidirectional), so sleep is a genuine pain lever (cross-ref Section
 05 / Domain I). The honest expectation-set: **meaningful improvement in function and quality of life**,
 not always zero pain.
+
+@@FIG:PX6-pain-multimodal@@
 
 ---
 

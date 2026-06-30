@@ -93,6 +93,8 @@ real but cosmetic and transient effect).
 
 ### 1.5 The honest skincare hierarchy
 
+@@FIG:BX5-skincare-hierarchy@@
+
 | Tier | Intervention | Best evidence | Verdict |
 |---|---|---|---|
 | **1 (do this)** | Daily broad-spectrum sunscreen on face/hands | `rct` (photoaging + SCC + melanoma) | Strongest anti-aging evidence on the shelf |
@@ -111,6 +113,8 @@ Periodontitis (chronic destructive gum infection/inflammation) is **associated**
 diabetes, and dementia — with mechanisms ranging from plausible to emerging-causal. The honest line is that the
 **associations are robust** and the **treatment-prevents-systemic-disease question is mostly unproven** — except
 for diabetes, where the RCT evidence is real.
+
+@@FIG:A07-oral-systemic@@
 
 ### 2.1 Periodontitis ↔ cardiovascular disease (strong association, causality open)
 
@@ -176,6 +180,8 @@ Domain L established that **DEXA's best job is bone** (`dexa-bmd-predicts-fractu
 BMD — which is why FRAX exists. This section covers what to *do* about it, and reframes bone as a system that
 fails together with muscle.
 
+@@FIG:72-bone-tscore@@
+
 ### 3.1 Fracture is a mortality event, not just a broken bone
 
 - **Hip-fracture mortality:** **Haentjens 2010, Ann Intern Med** (`10.7326/0003-4819-152-6-201003160-00008`) —
@@ -185,6 +191,8 @@ fails together with muscle.
   fall-and-fracture cascade is a leading path from "independent" to "dead," via immobilization, pneumonia, and
   loss of independence. Preventing the fracture (and the fall — cross-ref §3.5 sarcopenia and Domain E balance)
   is a mortality intervention.
+
+@@FIG:B12-hip-fracture-mortality@@
 
 ### 3.2 Loading is the lever: resistance + impact training (cross-ref Domain N)
 
@@ -199,6 +207,8 @@ high-magnitude, high-rate loading by remodeling stronger. Walking and swimming d
   **safely** in this "fragile" population. `rct` / outcome. This is the empirical refutation of "older women
   with low bone density shouldn't lift heavy." Cross-ref Domain N: loading is *disproportionately* load-bearing
   for women because of menopausal estrogen-withdrawal bone loss.
+
+@@FIG:B11-bone-load@@
 
 ### 3.3 Vitamin D & calcium — the honest "only in deficiency" story
 
@@ -227,6 +237,8 @@ high-magnitude, high-rate loading by remodeling stronger. Walking and swimming d
     is a high-risk-population lever, decided by FRAX/DEXA, not a population supplement.
 
 ### 3.5 Osteosarcopenia — bone and muscle fail together
+
+@@FIG:A08-osteosarcopenia@@
 
 - **The unifying concept:** **Hirschfeld 2017, Osteoporos Int** (`10.1007/s00198-017-4151-8`) — bone loss
   (osteopenia/osteoporosis) and muscle loss (sarcopenia) **co-occur, share drivers** (inactivity, low protein,
@@ -310,6 +322,9 @@ practical ear-health actions.
   ~85 dB is the action threshold, and every +3 dB halves the safe exposure time. Concerts, power tools, motorcycles,
   and earbuds-at-max all exceed it. **Earplugs/muffs for loud environments and the 60/60 rule for earbuds (≤60%
   volume, ≤60 min) are the high-leverage habits.** `mechanistic`/occupational `cohort`.
+
+@@FIG:B13-noise-dose@@
+
 - **When to get aids:** don't wait for "bad enough." Given the ACHIEVE signal and the years-long adaptation period,
   the modern guidance is to **test hearing in midlife and adopt aids early** once loss is documented — and
   OTC hearing aids (US, since 2022) have removed the cost/access barrier for mild-to-moderate loss.

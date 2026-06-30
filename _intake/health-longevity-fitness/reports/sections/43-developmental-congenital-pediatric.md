@@ -88,6 +88,8 @@ this fact, which frightened and guilty parents rarely believe on their own.
 | **Klinefelter syndrome (47,XXY)** | An extra X in males. ~1 in 600 boys — **markedly underdiagnosed** (many never identified). | Tall stature, small testes, low testosterone, infertility (most common genetic cause of male infertility), variable mild learning/language issues. | Often presents only as infertility in adulthood. Testosterone replacement helps secondary sex characteristics and bone/mood; **normal life expectancy**. |
 | **Edwards (trisomy 18) / Patau (trisomy 13)** | Three copies of chr 18 / chr 13. | Severe multi-organ malformations. | **Usually lethal in infancy** — most do not survive the first year. The honest counseling here is among the hardest in medicine, and is increasingly individualized rather than uniformly nihilistic. |
 
+@@FIG:PX4-trisomies@@
+
 **Maternal age and the honest framing.** The risk of trisomy (especially Down) **rises with maternal age**
 (driven by accumulated meiotic errors in long-arrested oocytes — tie to the §19 oocyte-aging biology). But two
 honest caveats: (1) because *more babies are born to younger mothers*, the **majority of children with Down
@@ -272,6 +274,8 @@ leukemias, brain tumors, embryonal tumors). The headline is one of medicine's **
   protocols). This was achieved not by one drug but by decades of **cooperative-group randomized trials** that
   incrementally optimized combination therapy and CNS prophylaxis — the chemotherapy success story in its
   purest form. `rct`/cooperative-trial era — strong.
+
+@@FIG:P09-all-cure@@
 - The honest caveats: survival is not uniform (some subtypes, some regions, and relapse remain hard), and
   **survivorship has a cost** — late effects of treatment (cardiac, endocrine, neurocognitive, second cancers)
   are a major and growing focus. Cure is the goal; cure *with the fewest late effects* is the frontier.
@@ -356,6 +360,8 @@ leading cause of post-neonatal infant death and a parent's worst fear. It is als
   cause of infant death. It is the archetype of the "unglamorous public-health win" Rule 3 keeps pointing at.
   `cohort`/public-health — strong.
 
+@@FIG:PS6-sids@@
+
 ---
 
 ## 4. Inborn errors of metabolism — the PKU screening success
@@ -374,6 +380,8 @@ drops of blood, a treatable inborn error, a lifelong disability averted. Modern 
 spectrometry) now catch dozens of IEMs the same way. `cohort`/public-health — among the highest-value programs
 in medicine. (Honest caveat: the diet is lifelong and demanding, and **maternal PKU** — a mother off-diet
 during pregnancy — can harm an otherwise-unaffected fetus, so the management never truly ends.)
+
+@@FIG:Z11-pku@@
 
 ---
 
@@ -487,6 +495,8 @@ fine. The signals that genuinely warrant a professional look are about **pattern
 - **Not sitting by ~9 months, not walking by ~18 months,** strong hand preference before ~12 months, or marked
   asymmetry of movement — motor red flags (consider CP, neuromuscular).
 - **Any parental gut sense that "something is different,"** combined with the above — parents are good detectors.
+
+@@FIG:PS7-milestones@@
 
 **The honest, high-value action:** developmental concerns benefit from **early** evaluation, because the
 strongest evidence in neurodevelopment is that **early intervention works better than late** — the brain's early

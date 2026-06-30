@@ -104,6 +104,8 @@ vessel stroke destroys on the order of **~1.9 million neurons per minute** — t
 spine of "time is brain." (This is a modeled estimate, `mechanistic`-tier, not a measured constant,
 but the direction is not in doubt.)
 
+@@FIG:DS9-stroke-windows@@
+
 **Management — one of medicine's genuine reperfusion revolutions:**
 
 - **IV thrombolysis.** The **1995 NINDS trial** (NEJM, `10.1056/NEJM199512143332401`) showed IV
@@ -123,6 +125,8 @@ but the direction is not in doubt.)
 - **Hemorrhagic stroke** has fewer magic bullets: **aggressive but not extreme blood-pressure
   lowering**, reversal of anticoagulation, and neurosurgery for selected bleeds or aneurysm
   securing. Prognosis is, on average, worse than ischemic.
+
+@@FIG:D04-stroke-nnt@@
 
 **Prevention is the larger lever — and it lives in other sections.** Most strokes are preventable,
 and the levers are not exotic: **treat blood pressure** (the single largest modifiable risk factor —
@@ -202,6 +206,8 @@ lesson: **early, effective treatment preserves long-term function** — the "hit
 "escalate slowly" debate has largely resolved toward earlier high-efficacy therapy for active
 disease. Ocrelizumab is also the first drug with a (modest) effect in **primary progressive** MS.
 
+@@FIG:D15-ms-dmt@@
+
 **Honest grade.** Relapsing MS is **one of the great modern treatment success stories** (`rct`/`meta`):
 many patients now have normal or near-normal life trajectories. The honest, persistent gaps:
 **progressive MS** remains under-served (the smoldering neurodegeneration is much harder to stop than
@@ -219,6 +225,8 @@ accrued damage. The wellness market sells MS "reversal" diets (e.g., the Wahls p
 the second-commonest neurodegenerative disease after Alzheimer's, and increasingly understood as a
 **whole-body, multi-decade disease** — the non-motor features (constipation, REM-sleep behavior
 disorder, anosmia, depression) often **precede the motor diagnosis by years to decades**.
+
+@@FIG:DS10-parkinsons-prodrome@@
 
 **Mechanism** (Bloem, *Lancet* 2021, `10.1016/S0140-6736(21)00218-X`). The motor signs come from
 loss of **dopaminergic neurons in the substantia nigra pars compacta**; by the time motor symptoms
@@ -283,6 +291,8 @@ release drives the pain pathway, and that mechanistic insight produced the break
   topiramate, amitriptyline, candesartan, and **Botox** for chronic migraine) still work and are
   far cheaper.
 
+@@FIG:D16-migraine-cgrp@@
+
 ### 7.2 Tension-type headache — the common one, the boring one
 
 The **most prevalent** headache disorder (most people get it), it is **bilateral, pressing/tightening,
@@ -324,6 +334,8 @@ amitriptyline) have a **number-needed-to-treat of roughly 4–8** for 50% pain r
 NeuPSIG, *Lancet Neurol* 2015, `10.1016/S1474-4422(14)70251-0`). That NNT is the honest headline:
 **most patients do not get major relief from any single drug**, and managing expectations is part of
 treatment. Foot care to prevent ulcers is unglamorous and high-value.
+
+@@FIG:D17-neuropathy-nnt@@
 
 **Honest grade.** A `meta`-graded *hard* problem. The supplement market (alpha-lipoic acid, benfotiamine,
 high-dose B vitamins) has **weak, mixed evidence** — alpha-lipoic acid has the most, and it is modest;
@@ -444,6 +456,8 @@ Smoking and the gum bacterium *P. gingivalis* are environmental triggers in gene
   and treat **early** — the "window of opportunity" in the first months matters enormously for
   long-term joint preservation.
 
+@@FIG:DS5-ra-target@@
+
 **Honest grade.** RA is **one of the clearest biologic-revolution success stories** (`meta`/`rct`).
 Honest caveats: biologics and JAKi carry **infection risk** (TB reactivation screening is mandatory),
 JAKi carry a cardiovascular/clot signal in older at-risk patients, and they are expensive. The
@@ -467,6 +481,8 @@ seafood, beer, fructose, alcohol) **does** raise urate and trigger attacks (Choi
 `10.1056/NEJMoa035700`), but its contribution to serum urate is **small (a few %) compared with
 genetics** — which is why "just change your diet" routinely fails and leaves patients blaming
 themselves.
+
+@@FIG:DS4-gout@@
 
 **Management** (ACR 2020 guideline, FitzGerald, `10.1002/art.41247`) — **gout is, in principle, curable:**
 - **Acute attack:** NSAIDs, colchicine, or steroids — quench the inflammation.

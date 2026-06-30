@@ -39,12 +39,16 @@ Proceedings* 2018, `10.1016/j.mayocp.2018.06.025`) was a surprise that has shape
 | **Calisthenics** | **+3.1 yr** | Strength-endurance, bodyweight | Low | Solid, solo. |
 | **Health-club / gym** | **+1.5 yr** | Whatever you program | **Lowest** (often headphones-in, solo) | The lowest gain of the lot — the data's quiet rebuke to "just go to the gym." |
 
+@@FIG:02-copenhagen-sports@@
+
 **The interpretation the authors themselves reached** — and the spine of this whole chapter — is in their own
 words: *"the leisure-time sports that inherently involve more social interaction were associated with the best
 longevity."* Running burns more calories per hour than doubles tennis, yet tennis is associated with **triple**
 the life-expectancy gain. Calories are clearly not the explanatory variable. The variables that *track* the
 ranking are (a) **social interaction**, (b) **skill / cognitive engagement**, and (c) an **intermittent**
 (burst-and-recover) intensity pattern rather than a steady grind.
+
+@@FIG:Y01-calories-le@@
 
 **The mandatory caveat, stated plainly:** CCHS is observational. Tennis and gym memberships are not randomly
 assigned — they sort on income, baseline health, joint integrity, and personality. The 9.7-year figure is almost
@@ -62,6 +66,8 @@ Two independent national cohorts, two different countries, and racquet sports to
 "why do racquet sports keep winning?" is the organizing question of §3 — and why the answer almost certainly is
 **not** "racquets are aerobically special" but "racquets bundle social + skill + intermittent-intensity into one
 activity."
+
+@@FIG:L02-sport-hr@@
 
 > A useful dissonance to keep: in the *British* cohort (Oja) running and football showed **no** significant
 > all-cause mortality benefit, while in the *Danish* cohort (Copenhagen) soccer bought +4.7 years. Cohorts
@@ -84,6 +90,8 @@ For each sport below we score five things. This is the lens; the table in §1 is
    (cross-ref `21-pain-injury-rehab.md` and `24-disease-neuro-rheum.md` §CTE).
 5. **Age-appropriateness & barrier-to-entry** — when you can start, how late you can play, and what it costs to
    begin (gear, partner, court, skill floor).
+
+@@FIG:G07-sport-radar@@
 
 ---
 
@@ -183,6 +191,8 @@ the **adherence** it produces (it's fun, it's social, you book the court with a 
 is the most parsimonious account of why they win. The honest version: racquet sports are the most efficient
 known **packaging** of the things that matter — and packaging, via adherence, may be the whole game.
 
+@@FIG:Y08-racquet-bundle@@
+
 ---
 
 ## 4. Team & field sports — the social-HIIT engine
@@ -254,6 +264,8 @@ without other people, which welds the psychosocial lever directly onto the exerc
 This family splits cleanly on one axis: **does it involve repetitive blows to the head?** Grappling (BJJ,
 wrestling, judo) largely does not; striking (boxing, kickboxing, MMA) does. That single fact dominates the
 risk grading, because of what we know about repetitive head impacts and CTE.
+
+@@FIG:F08-head-trauma@@
 
 ### 5.1 Brazilian jiu-jitsu (BJJ) — the grappler's case
 - **Fitness profile:** exceptional **full-body** stimulus — isometric and dynamic strength, grip, core,
@@ -463,6 +475,8 @@ There is no universally "best" sport — there is the best sport *for you, now*.
 | **Want the brain benefit specifically** | **Table tennis, dance, racquet sports** | Highest motor-learning + dual-task load |
 | **Want the social lever above all** | **Any doubles racquet sport, any team sport, dance, climbing** | The Tier-A lever, delivered automatically |
 | **Lifelong, into your 80s** | **Golf (walking), tai chi, table tennis, swimming, doubles tennis, dance** | Scalable intensity, low collision |
+
+@@FIG:Z01-sport-matcher@@
 
 The meta-rule: **start from adherence and social fit, not from a VO₂max spreadsheet.** The optimal sport is the
 intersection of "trains capacities I need" (`02-training.md`), "I'll actually keep doing it," and "it puts me

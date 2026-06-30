@@ -47,6 +47,8 @@ level; making it at the organelle level buys three things the foundations summar
    the evidence." This chapter grades each one against the actual trial data so the prestige can't do
    the selling.
 
+@@FIG:16-mitochondria-section@@
+
 > **The one sentence to carry through the chapter.** *The mitochondrion is the best-founded object in
 > applied longevity and the most oversold — and the same fact, the depth and certainty of the
 > underlying physics, is the cause of both.*

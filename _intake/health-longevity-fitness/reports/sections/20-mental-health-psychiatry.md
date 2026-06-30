@@ -39,6 +39,8 @@
 Prevalence figures are order-of-magnitude (they vary widely by country, diagnostic edition, and survey
 method). They are here to convey *scale*, not precision.
 
+@@FIG:DX1-psychiatric@@
+
 ---
 
 ## 1. Depression — the honest centre of gravity
@@ -96,6 +98,8 @@ adults. The honest reading of the *size*: the pooled standardized mean differenc
   in severe depression** — the pattern reported by Fournier et al. (*JAMA* 2010, `10.1001/jama.2009.1943`)
   and broadly consistent since. This is honesty rule #2 in action: the average effect is modest, but the
   average hides the people for whom it is decisive.
+
+@@FIG:D07-antidepressant-severity@@
 
 **The Kirsch placebo debate.** Irving Kirsch's "*The Emperor's New Drugs*" (Kirsch et al., *PLoS Medicine*
 2008, `10.1371/journal.pmed.0050045`) used FDA trial data — including unpublished negative trials — to
@@ -217,6 +221,8 @@ despite weaker evidence. Two facts make lithium exceptional:
   psychiatry: a treatment with a **direct anti-suicide signal**, an effect that appears partly
   *independent* of its mood-stabilizing action. `meta` of RCTs.
 
+@@FIG:D21-lithium-suicide@@
+
 The honest caveats keep lithium from being a free lunch: it has a **narrow therapeutic window** (needs
 blood-level monitoring), affects **thyroid and kidney** over years (also needs monitoring), and is
 dangerous in overdose. But these are *manageable* with standard monitoring — and they do not justify how
@@ -250,6 +256,8 @@ patients**:
   much of it cardiometabolic. Older "typical" agents cause more movement disorders (extrapyramidal
   effects, tardive dyskinesia). There is no free antipsychotic; the choice is a trade between symptom
   control and a specific harm profile, and the metabolic harms demand active monitoring. `meta`/`cohort`.
+
+@@FIG:D18-antipsychotics@@
 
 **Clozapine** is the most effective antipsychotic for treatment-resistant schizophrenia (Leucht's data
 support this) and is **under-used** because it requires regular blood monitoring (risk of agranulocytosis)
@@ -359,6 +367,9 @@ needs grading with particular care.
   and cardiovascular safety. So: **genuinely promising, plausibly transformative for a hard-to-treat
   condition — and not an approved, available treatment, with a regulator explicitly saying the evidence is
   not yet sufficient.** `rct` — promising, **unblinding-confounded, not approved**.
+
+@@FIG:D20-mdma-ptsd@@
+
 - **Psilocybin for depression** (adjacent, cross-ref §1): **Carhart-Harris et al., *NEJM* 2021**
   (`10.1056/NEJMoa2032994`, PMID 33852780) compared psilocybin-assisted therapy with escitalopram for
   depression; psilocybin was **not statistically superior** on the primary endpoint, though several
@@ -387,6 +398,9 @@ word is **"promising and unproven,"** not "psychedelics cure trauma."
   (cardiac, electrolyte) and a high suicide rate. This single fact should reframe eating disorders from
   "lifestyle/vanity" problems (the cultural misread) to the **serious, sometimes fatal medical illnesses**
   they are. `meta`/`cohort`.
+
+@@FIG:D19-anorexia-smr@@
+
 - **Bulimia nervosa:** binge eating followed by compensatory purging (vomiting, laxatives, excessive
   exercise); often normal weight, which is why it hides. Carries serious medical risks (electrolyte
   disturbance, cardiac).

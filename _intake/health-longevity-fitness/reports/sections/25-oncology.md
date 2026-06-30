@@ -77,6 +77,8 @@ malignant. It is the closest thing oncology has to a periodic table — and, lik
 Aging* (which was explicitly modelled on it, see `B-aging-mechanisms.md`), it is a **`[mechanism:
 established]`** scaffold, not an outcome claim.
 
+@@FIG:10-hallmarks-cancer@@
+
 | # | Hallmark capability | What it means | Canonical example / driver |
 |---|---|---|---|
 | 1 | **Sustaining proliferative signalling** | The cell tells itself to divide — autonomously generating or hijacking growth signals | activating *RAS*, *HER2/ERBB2* amplification, *EGFR* mutation |
@@ -150,6 +152,8 @@ Two gene classes drive the process, and the metaphor is exact:
 targeted therapy, §25.5) far more easily than you can **restore a lost brake**. Re-installing functional
 p53 in a tumour remains one of oncology's great unsolved problems.
 
+@@FIG:D23-oncogene-frequency@@
+
 ### 25.2.2 — The multi-hit model and clonal evolution
 
 No single mutation makes a cancer. The **multi-hit (multistage) model** — first inferred from the
@@ -160,6 +164,8 @@ genetic model of colorectal tumorigenesis** (*Cell*, 1990) — holds that a cell
 malignant. The colorectal paradigm is the textbook sequence: **normal epithelium → (APC loss) → adenoma
 → (KRAS activation) → (loss of 18q/SMAD4) → (TP53 loss) → carcinoma.** Each hit confers a selective
 growth advantage; the tissue evolves toward malignancy one Darwinian step at a time.
+
+@@FIG:DS3-crc-sequence@@
 
 That Darwinian framing is **clonal evolution** (Peter Nowell, 1976): a tumour is not a uniform clone but
 a **branching, heterogeneous population** of subclones under selection. This is why cancers **recur and
@@ -175,6 +181,8 @@ widely-misreported dimension: across tissues, the **lifetime cancer risk correla
 number of stem-cell divisions** that tissue undergoes — i.e., much inter-tissue variation in cancer risk
 is attributable to the **random ("bad luck") replication errors** that accumulate with cell division,
 on top of heredity and environment.
+
+@@FIG:84-cancer-incidence@@
 
 > **Honest framing of the "bad luck" paper.** It was widely misread as "two-thirds of cancers are pure
 > chance, so prevention is futile." That is **wrong**. The paper explains variation in risk *between
@@ -201,6 +209,8 @@ on top of heredity and environment.
   also matters for **therapy**: BRCA-deficient tumours can't repair double-strand breaks, making them
   exquisitely sensitive to **PARP inhibitors** (synthetic lethality — §25.5.3). Genetics depth: `18-genetics-anatomy.md`.
 
+@@FIG:D22-brca-risk@@
+
 ---
 
 ## 25.3 — The major cancers (brief each, with prognosis honesty)
@@ -209,6 +219,8 @@ Incidence/mortality figures below are US-centric (ACS *Cancer Statistics 2024*, 
 5-year relative survival, all stages combined unless noted). Survival is **stage-dominated** — the same
 cancer caught early vs late can differ 5–10× in 5-year survival — which is the entire rationale for the
 screening section (`§07`).
+
+@@FIG:D03-cancer-survival@@
 
 | Cancer | US burden (approx.) | Key risk factors | 5-yr survival (all-stage) | Honest note |
 |---|---|---|---|---|
@@ -232,6 +244,8 @@ And they are improving: most have risen over recent decades, driven by screening
 For most of the 20th century, oncology had **three weapons** — "cut, burn, poison." They remain the
 backbone for the majority of patients and are responsible for the **majority of cures**, a fact the
 immunotherapy excitement (§25.5) can obscure.
+
+@@FIG:76-cancer-treatment@@
 
 ### 25.4.1 — Surgery (`outcome`-tier, the oldest cure)
 
@@ -319,6 +333,8 @@ T-cells**. The two foundational discoveries — **James Allison** (CTLA-4 blocka
   in advanced melanoma produced **~52% overall survival at 5 years** — in a disease that was, a decade
   earlier, almost uniformly fatal within months. Some of those patients appear **functionally cured** —
   durable, off-treatment remissions, the holy grail (`rct`, hard endpoint).
+
+@@FIG:D24-checkmate-melanoma@@
 
 > **The honesty that immunotherapy demands — who it helps.** This is a true revolution **and** most
 > patients are not (yet) among the winners. The brutal facts: (1) across cancers, **only a *minority* of

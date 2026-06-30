@@ -46,6 +46,8 @@ The immune system is best understood as **two cooperating arms** that produce **
 (inflammation). Map the arms first, then the process, because almost every aging failure mode below is a
 specific breakdown in one of these boxes.
 
+@@FIG:52-innate-adaptive@@
+
 ### 1.1 Innate immunity — fast, fixed, non-specific
 
 The **innate** arm is the body's standing army: always on, responds in minutes to hours, recognizes broad
@@ -64,6 +66,8 @@ has **no memory** in the classical sense. Its components:
 The innate system is also where **inflammaging is generated**: the inflammasome (notably **NLRP3**) and chronic
 macrophage activation are the molecular machinery that turns accumulated damage into low-grade systemic
 inflammation (and is why the ketone body **BHB blocks NLRP3** is an interesting metabolic lever — cross-ref D).
+
+@@FIG:BX8-innate-components@@
 
 ### 1.2 Adaptive immunity — slow, specific, remembers
 
@@ -96,10 +100,14 @@ healthy — a clean **end**.
   proteins), not microbial. **Failed resolution**, as much as excess initiation, is the modern view of why
   inflammation becomes chronic.
 
+@@FIG:79-inflammation-paths@@
+
 > **The load-bearing reframe:** *acute resolving* inflammation is health; *chronic non-resolving* inflammation
 > is disease. "Anti-inflammatory" as a blanket goal is naïve — you do **not** want to blunt the acute response
 > that fights infection and drives exercise adaptation. You want the system to **resolve** properly. Most
 > "anti-inflammatory" products are sold as if all inflammation were bad; the biology says otherwise.
+
+@@FIG:BS5-inflammation-acute-chronic@@
 
 ---
 
@@ -108,6 +116,8 @@ healthy — a clean **end**.
 **Immunosenescence** is the age-related remodeling and decline of immune function. It is *not* simple
 weakening; it is a **reshaping** that simultaneously leaves older people **worse at fighting new infections and
 responding to vaccines** while **more inflamed at baseline** (the link to §3). The headline features:
+
+@@FIG:73-immunosenescence@@
 
 ### 2.1 Thymic involution — the clock that runs out of new T cells
 
@@ -175,6 +185,8 @@ pleiotropy), not a design flaw.
   **DAMPs** (including mitochondrial DNA — ties to the biophysics/mitochondria canon), and impaired
   **resolution** (§1.3).
 
+@@FIG:BS8-inflammaging-hub@@
+
 ### 3.2 The markers — hsCRP and IL-6 (predictor, not lever)
 
 **IL-6, hsCRP, and TNF-α predict frailty, disability, multimorbidity, and all-cause mortality** with some of the
@@ -221,6 +233,8 @@ a "boosted" immune system. The evidence sorts them cleanly.
 
 The pattern: every item that works does so by **maintaining regulation and resolution** — adequate inputs,
 movement, recovery, and *trained* (vaccinated) specificity. None of them "boost" a generic immune dial.
+
+@@FIG:BX3-immune-ladder@@
 
 ### 4.2 The exercise J-curve — and the honest correction to it
 
@@ -274,6 +288,8 @@ replete).
 > deficiency**, (b) **keeping the system well-regulated** (sleep/exercise/stress/no smoking), and (c)
 > **directing it with vaccines.** Everything beyond that, sold as "immune boosting," is trading on a model of
 > immunity that the biology does not support.
+
+@@FIG:PS9-boost-regulate@@
 
 ---
 

@@ -75,6 +75,8 @@ the kidney. The benefits appear to be **partly independent of the weight loss it
 separate earlier than weight fully explains), implicating direct anti-inflammatory/vascular effects — though
 that mechanism is still `mechanistic`, not settled.
 
+@@FIG:35-glp1-outcomes,Y02-glp1-outcomes@@
+
 ### 1.3 The longevity / healthspan implication (graded honestly)
 
 Obesity and its metabolic sequelae are among the largest modifiable drivers of cardiovascular disease, type 2
@@ -141,6 +143,8 @@ baseline risk** — and the same pill produces wildly different number-needed-to
   relative-risk reduction is real), but the **honest framing is shared decision-making against a modest absolute
   benefit**, not "everyone over 50 should be on one."
 
+@@FIG:36-statin-nnt,G04-statin-prevention@@
+
 ### 2.3 Real side effects vs the nocebo effect
 
 Statins have a reputation for muscle side effects that the **blinded** evidence does not support at anything like
@@ -189,6 +193,8 @@ For decades a daily baby aspirin was reflexive primary prevention. The **ASPREE*
 healthy older adults — and it is one of the most useful *negative* results in this whole manual, because
 **subtracting** a low-value intervention is as much a longevity move as adding a good one.
 
+@@FIG:Q01-aspree@@
+
 - **ASPREE** (McNeil et al., 2018, three *NEJM* papers): **19,114 community-dwelling adults ≥70** (≥65 for US
   minorities) with **no** established cardiovascular disease, randomized to **100 mg aspirin/day vs placebo**.
   - **Disability-free survival:** no benefit (`10.1056/NEJMoa1800722`).
@@ -220,6 +226,8 @@ benefits are `rct`/strong; some of the **downstream** benefits (dementia, cardio
 | **Influenza (annual)** | Flu + its complications | **Reduced cardiovascular events** post-MI | `rct` (IAMI) |
 | **Pneumococcal (PCV20 / PPSV23)** | Pneumonia, invasive pneumococcal disease | Prevents a leading cause of older-adult death/hospitalization | `rct`/strong (target) |
 | **RSV (Arexvy, Abrysvo, mRESVIA)** | RSV lower-respiratory disease | New for ≥60/≥75; prevents serious respiratory illness | `rct` (target) |
+
+@@FIG:47-vaccines-longevity@@
 
 - **Shingles → dementia (the exciting one).** Reactivated varicella-zoster causes neuro-inflammation, and a
   string of studies now links **zoster vaccination to lower dementia risk.** **Taquet 2024** (*Nat Med*,
@@ -259,6 +267,8 @@ them as experimental for that purpose. (Mechanisms and the mouse data are detail
 | **Rapamycin / rapalogs** | Immunosuppression, some cancers | Best mouse-lifespan drug there is; human anti-aging **dose & schedule unknown** | `animal` (lifespan) + `rct` (surrogate: vaccine response) — **off-label, experimental** |
 | **SGLT2 inhibitors** (empagliflozin, dapagliflozin) | Diabetes, **heart failure, CKD** | Strong **hard-outcome** CV/renal benefit; emerging geroprotector candidate | `rct` (hard outcome, in disease) — **aging claim still `mechanistic`** |
 | **Acarbose** | Type 2 diabetes (post-meal glucose) | Extends mouse lifespan (ITP), **especially males** | `animal` (lifespan) — **no human aging trial** |
+
+@@FIG:64-geroprotector-matrix@@
 
 - **Metformin.** The famous Bannister 2014 cohort (diabetics on metformin appearing to outlive non-diabetics) is
   **observational and confounded** (immortal-time/prevalent-user bias — see Domain B). **TAME** (Barzilai) is a

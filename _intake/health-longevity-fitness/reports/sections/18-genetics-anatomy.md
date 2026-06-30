@@ -52,6 +52,8 @@ about any test.
   tells you your "power potential" or "endurance type," it is reading a few common SNPs that explain a
   rounding error of the trait and dressing the noise as a verdict.
 
+@@FIG:B10-common-rare-variants@@
+
 > **The one-line filter for Part A.** A handful of *rare, large-effect* variants are worth knowing
 > because they are **actionable** (you can do something specific). The vast polygenic remainder — the
 > "wellness," "fitness," and "nutrition" reports — is mostly *small-effect common variants* whose
@@ -74,6 +76,8 @@ short list is, for personal action, far less important than the DTC industry imp
 | **BRCA1/2 & cancer genes** | High-penetrance hereditary cancer | **Genuinely actionable** — screening, risk-reducing surgery, cascade testing | Strong *for true carriers*; chip testing is the wrong tool (§A.2.3) |
 | **Pharmacogenes (CYP2C19, CYP2D6, DPYD, TPMT, SLCO1B1, HLA-B)** | Drug-metabolism / hypersensitivity variants | **The most useful clinical genetics there is** — dose & drug choice | Strong, guideline-backed (CPIC); see §A.2.4 |
 
+@@FIG:BX1-actionable-variants@@
+
 ### A.2.1 APOE — the honest headline (full counseling treatment in §A.3)
 
 *APOE* comes in three alleles (ε2, ε3, ε4). The **ε4** allele is the single strongest *common* genetic
@@ -86,6 +90,8 @@ caution against reading any single risk number as universal. ε4 also modestly r
 risk and LDL. But ε4 is *neither necessary nor sufficient*: most Alzheimer's patients are not ε4/ε4,
 and many ε4/ε4 carriers never develop dementia. It is a **risk allele, not a diagnosis** — which is
 exactly why disclosing it is delicate (§A.3).
+
+@@FIG:B03-apoe-gene-dose@@
 
 ### A.2.2 Hemochromatosis (HFE) — real gene, low penetrance
 
@@ -294,6 +300,8 @@ Domain C (§2) and section 01 (§4.2) cover the mechanism; the *practical* quest
 a methylation-age test, and what does the number mean?** The honest answer is **no, not yet, for
 personal decision-making** — for reasons that are about *measurement*, not mysticism:
 
+@@FIG:98-epigenetic-clock@@
+
 1. **Predictive ≠ validated surrogate.** Epigenetic age acceleration robustly predicts mortality at the
    *cohort* level (Chen 2016 meta, Domain C §2). But the field's own consensus (Moqri et al., *Cell*
    2023, Biomarkers of Aging Consortium, Domain C §3) is that **no aging biomarker is yet validated as
@@ -371,11 +379,15 @@ acts through every level below it.**
 | **Organ systems** | Organs cooperating for a function (~11–12; §B.3) | the whole manual — see the navigation table |
 | **Organism** | You — all systems integrated by homeostasis | §01 §6.2; this section |
 
+@@FIG:BS1-levels-of-organization@@
+
 The **four basic tissue types** every organ is built from are worth holding: **epithelial** (sheets that
 line and cover — skin, gut lining, alveoli; the barrier/exchange surfaces), **connective** (bone,
 tendon, blood, fat — support and transport; the most diverse class), **muscle** (skeletal, cardiac,
 smooth — the only tissue that generates force), and **nervous** (neurons + glia — fast signaling). Most
 of what aging and training *do* to you is a change in one of these four tissues.
+
+@@FIG:Z05-tissue-types,RA11-tissue-epithelial,RA12-tissue-connective,RA13-tissue-muscle@@
 
 ## B.2 Homeostasis — the organizing principle that makes a "system" a system
 
@@ -396,6 +408,8 @@ There are **eleven** classical organ systems (twelve if you count the immune sys
 lymphatic plumbing it travels in). They are not independent — they share organs (the pancreas is
 digestive *and* endocrine), and homeostasis couples them all — but the taxonomy is the standard map.
 Use this as the **index to the rest of the manual**:
+
+@@FIG:17-organ-systems-map@@
 
 | # | Organ system | Core job (the homeostatic variable) | Primary coverage in this manual |
 |---|---|---|---|
@@ -427,6 +441,8 @@ This is the single most important integrated-physiology story in the manual, bec
 strongest exercise-related mortality predictor (Domain E)** and it is *literally* the throughput of this
 chain:
 
+@@FIG:BS2-vo2max-oxygen-chain@@
+
 1. **Lungs** — you ventilate; O₂ crosses the thin alveolar–capillary membrane into blood (respiratory
    system; diffusion down a partial-pressure gradient).
 2. **Blood** — O₂ binds **hemoglobin** in red cells (the cooperative O₂-binding curve is why a little
@@ -444,6 +460,8 @@ chain:
 ### B.4.2 How food becomes ATP (the fuel chain)
 
 Detailed in section 01 §2; the system-level summary:
+
+@@FIG:BS3-food-to-atp-chain@@
 
 1. **Digestive** — food is broken to glucose, fatty acids, amino acids and absorbed across the gut
    epithelium (with the microbiome fermenting fiber to SCFAs, Domain C §4).

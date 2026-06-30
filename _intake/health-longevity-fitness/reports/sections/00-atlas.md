@@ -14,6 +14,8 @@ chapter, not yet standalone) · ⚪ deferred (named, not yet researched — the 
 library. Every claim carries an evidence tier + source; every disagreement is a first-class object.
 *(This is the "map everything" build — the body, the diseases, the medicine, and the levers, end to end.)*
 
+@@FIG:01-claims-by-tier@@
+
 ---
 
 ## Layer 0 — Foundations (the physics, chemistry & biology of being alive)
@@ -127,6 +129,8 @@ The diseases themselves, mapped as clinical entities — what they are, the mech
 | Mechanism bridge — every lever → its fundamental basis | ✅ | §12 |
 | Go-deeper curated library | ✅ | §06 |
 | State of the field — the honest bottom line | ✅ | §“Evidence Landscape” |
+
+@@FIG:39-evidence-ladder@@
 
 ---
 

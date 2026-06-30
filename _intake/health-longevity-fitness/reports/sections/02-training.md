@@ -16,6 +16,8 @@ Everything below trains one of four physical capacities. Each is on the list bec
 predicts how long and how well you live — and, unlike most longevity biomarkers, each is something you
 can directly *change*.
 
+@@FIG:60-four-capacities@@
+
 | Capacity | What it is | Why it's load-bearing | Corpus claim-ids |
 |---|---|---|---|
 | **Cardiorespiratory fitness (CRF / VO₂max)** | The engine: how much O₂ your body can deliver and use under load | **The single strongest longevity association in preventive medicine.** ~13% lower all-cause mortality per 1-MET; no observed upper limit. Being low-fit carried risk *comparable to or worse than* smoking. | `crf-vo2max-strongest-mortality-predictor`, `crf-per-met-mortality-meta` |
@@ -27,6 +29,8 @@ can directly *change*.
 Balance has two strong cohort biomarkers. Mobility is the weakest-evidenced of the four for *longevity
 outcomes* — we train it because it preserves *function and the ability to keep training the other three*,
 not because a trial proved CARs extend life. Don't let a mobility influencer borrow strength's evidence.
+
+@@FIG:03-vo2max-mortality@@
 
 ---
 
@@ -41,6 +45,8 @@ good technique and 1–3 reps in reserve*. When it's easy, take the next rung.
 > **How to read each ladder:** **Regression** (easier / rebuild-from-here / older-adult or beginner entry)
 > → **Standard** (the daily-driver version most people should live in) → **Progression** (load/leverage
 > added once standard is owned). Cues and the most common faults follow.
+
+@@FIG:Y07-strength-ladders@@
 
 ### 2.1 SQUAT — knee-dominant lower body (quads, glutes, whole-body brace)
 
@@ -57,6 +63,12 @@ good technique and 1–3 reps in reserve*. When it's easy, take the next rung.
 - **Common faults:** knees caving in (cue "spread the floor") · heels lifting (ankle mobility — see §4,
   or elevate heels) · butt-wink / lumbar rounding at the bottom (often a depth-beyond-current-mobility
   problem — regress depth) · chest collapsing forward.
+
+@@FIG:M18-goblet-squat@@
+
+@@FIG:M10-wall-sit@@
+
+@@FIG:M09-calf-raise@@
 
 ### 2.2 HINGE — hip-dominant posterior chain (hamstrings, glutes, spinal erectors)
 
@@ -80,6 +92,12 @@ the rest of your life. Learn it before you load it.
 - **Explosive variant:** the **kettlebell swing** is a hinge done ballistically (`strength/INVENTORY.md` #8) —
   hike-pass, *snap* the hips, the arms just float; it is not a front raise.
 
+@@FIG:M17-deadlift@@
+
+@@FIG:M06-kettlebell-swing@@
+
+@@FIG:M04-glute-bridge@@
+
 ### 2.3 PUSH — horizontal and vertical pressing (chest, shoulders, triceps)
 
 | Rung | Movement | Use it when |
@@ -95,6 +113,14 @@ the rest of your life. Learn it before you load it.
   pokes "through the window" at lockout.
 - **Common faults:** sagging or piking hips (lost the plank) · half-range reps · elbows flaring to 90°
   (shoulder strain) · overhead: ribs flaring and lower back arching to fake the range (brace the core).
+
+@@FIG:M01-push-up@@
+
+@@FIG:M02-overhead-press@@
+
+@@FIG:M19-bench-press@@
+
+@@FIG:M12-dip@@
 
 ### 2.4 PULL — horizontal and vertical pulling (lats, upper back, biceps, grip)
 
@@ -113,10 +139,28 @@ The most *neglected* pattern and the one that buys the most postural insurance a
 - **Common faults:** half-range / chin-craning instead of chest-to-bar · kipping/swinging to cheat reps
   · shrugging the shoulders up instead of pulling them down and back · neglecting the eccentric.
 
+@@FIG:M03-pull-up@@
+
+@@FIG:M22-inverted-row@@
+
+@@FIG:M07-bent-over-row@@
+
+@@FIG:M33-cable-row@@
+
+@@FIG:M23-face-pull@@
+
+@@FIG:M13-dead-hang@@
+
 ### 2.5 CARRY — loaded locomotion (grip, trunk stability, total-body work capacity)
 
 The most *functional* pattern and the most under-programmed. Carries train **grip** (the mortality
 biomarker), the trunk, and real-world "pick it up and move it" capacity — with almost no technical risk.
+
+@@FIG:43-grip-mortality@@
+
+@@FIG:M08-suitcase-carry@@
+
+@@FIG:M20-farmer-carry@@
 
 | Rung | Movement | Use it when |
 |---|---|---|
@@ -134,14 +178,31 @@ biomarker), the trunk, and real-world "pick it up and move it" capacity — with
 - **Single-leg** (split squat → reverse lunge → Bulgarian split squat → step-up): unilateral leg
   strength, balance, and hip stability. Regression = supported (hold a rail); standard = bodyweight
   split squat; progression = load it. Directly trains the balance capacity (§5).
+
+@@FIG:M28-bulgarian-split-squat@@
+
+@@FIG:M21-single-leg-rdl@@
+
 - **Core / anti-movement** (dead bug → plank → side plank → Pallof press): the trunk's job in real life
   is **anti-extension and anti-rotation** — resisting force, not making crunches. McGill's "big-3"
   (curl-up, side plank, bird-dog) is the back-sparing standard. Pallof press = anti-rotation: resist
   the twist.
 
+@@FIG:M05-side-plank@@
+
+@@FIG:M11-bird-dog@@
+
+@@FIG:M29-pallof-press@@
+
+@@FIG:M32-dead-bug@@
+
+@@FIG:M31-hollow-hold@@
+
 > **What "enough" looks like:** hit all five patterns across the week (squat + hinge + push + pull +
 > carry), add single-leg and anti-rotation core, and you have trained the entire body with maybe seven
 > movements. The *patterns* are the program; the *rung* is personalized.
+
+@@FIG:91-minimal-equipment@@
 
 ---
 
@@ -155,6 +216,8 @@ Two qualities matter and they are trained differently:
 You want both. The structure that delivers both is the **polarized model**: ~80% of cardio time easy,
 ~20% genuinely hard, and relatively little in the "grey zone" middle (moderately-hard tempo work that is
 too hard to recover from and too easy to maximally stimulate the ceiling).
+
+@@FIG:G01-polarized@@
 
 ### 3.1 Zone 2 — the easy base
 
@@ -179,6 +242,10 @@ nothing* — even 2 × 30 min meaningfully moves CRF off a low base.
 low interference — see §6), rower, easy jog, elliptical. Low-impact options let you accumulate volume
 without beating up the body.
 
+@@FIG:M30-rowing-erg@@
+
+@@FIG:M26-running-form@@
+
 ### 3.2 VO₂max intervals — raising the ceiling
 
 Hard intervals raise VO₂max **more, and more time-efficiently, than steady moderate work**
@@ -194,6 +261,10 @@ Hard intervals raise VO₂max **more, and more time-efficiently, than steady mod
 **Dose:** **1–2 hard sessions/week is plenty** for almost everyone. Intervals carry a high RPE and
 recovery cost; this is where over-eager trainees blow up. Most of your cardio should still be easy.
 
+@@FIG:M14-jump-rope@@
+
+@@FIG:M27-box-jump@@
+
 ### 3.3 The honest caveat — the "Zone 2 is uniquely optimal" overclaim
 
 The popular claim that **Zone 2 is *the* uniquely optimal intensity for mitochondria** is an
@@ -202,6 +273,8 @@ over-extrapolation from cross-sectional elite-athlete data — flagged **open** 
 
 - HIIT also drives strong mitochondrial biogenesis (PGC-1α), sometimes faster per session.
 - Total **volume / energy expenditure** may matter more than the specific zone.
+
+@@FIG:71-zone2-hiit@@
 - The honest answer is **polarized training** — *mostly easy plus some hard* — **not a single magic
   zone.** Zone 2 is *a* well-supported, sustainable, low-cost way to build aerobic base. It is not
   magic, and it is not the only thing that builds mitochondria.
@@ -238,6 +311,14 @@ The Ready State — `mobility/INVENTORY.md`.)
 | **90/90 hip switch** | Internal + external hip rotation | Both knees 90°; rotate *from the hips*, tall spine, don't just lean | 5–8 controlled switches |
 | **Thoracic rotation (open book)** | T-spine rotational mobility | Side-lying, top arm opens to floor; exhale into rotation; hips stacked | 5–8 reps/side |
 | **(optional) Ankle knee-to-wall** | Ankle ROM for squat/gait | Knee tracks over toes to the wall, heel down; find max distance | 8–10 reps/side |
+
+@@FIG:M16-deep-squat-hold@@
+
+@@FIG:M25-thoracic-rotation@@
+
+@@FIG:M24-cat-cow@@
+
+@@FIG:M15-hip-flexor-stretch@@
 
 For *flexibility* gains specifically (e.g. building a pancake or front split), the higher-yield tools are
 **PNF/contract-relax** and **loaded stretching (Jefferson curl, loaded end-range)** held over weeks —
@@ -285,6 +366,10 @@ You need far less than the industry implies. The evidence-backed minimums:
 |---|---|---|
 | **Strength (1RM)** | As little as **a few hard sets/week per movement** can build and maintain strength; in trained lifters even **~1–3 heavy sets per lift, a couple times a week** preserves and slowly builds maximal strength | Androulakis-Korakakis 2021 (MED for 1RM); Iversen/Schoenfeld 2021 "No Time to Lift?" |
 | **Strength → mortality** | The cohort sweet spot is **~30–60 min/week** of resistance activity — and benefit is **J-shaped** (more is *not* better for the mortality endpoint) | `resistance-training-mortality-meta` (Momma 2022) |
+
+@@FIG:20-strength-jcurve@@
+
+@@FIG:21-steps-plateau@@
 | **Hypertrophy** | **~10 sets/week per muscle** is a solid target; clear dose-response up the curve, but ~4 hard sets/week already produces most of the strength benefit | Schoenfeld/Krieger volume meta; Robinson 2024 |
 | **VO₂max** | **1–2 interval sessions/week** + some easy volume measurably raises VO₂max off a low base | `hiit-crf-cardiometabolic-meta`; Helgerud 2007 |
 | **General activity** | The steepest mortality drop is sedentary → *any* regular movement; break up sitting | `physical-activity-dose-response-mortality` |
@@ -292,6 +377,8 @@ You need far less than the industry implies. The evidence-backed minimums:
 **The MED bottom line:** two well-run full-body strength sessions + two cardio sessions (one easy, one
 hard) per week clears the bar for *most* of the available longevity benefit. Everything beyond is
 optimization, not survival.
+
+@@FIG:40-weekly-program@@
 
 ### 6.2 The volume / frequency / proximity-to-failure levers
 
@@ -328,6 +415,8 @@ must *climb* over time. Ways to add load (in rough priority):
 | 7–8 | 2–3 | Challenging, clean reps left | **The productive default for most working sets** |
 | 5–6 | 4+ | Easy, lots left | Warm-ups, technique, deload |
 
+@@FIG:F02-rpe-rir@@
+
 Beginners should mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique. Chasing RPE 10 every set buys
 fatigue, not gains.
 
@@ -335,6 +424,8 @@ fatigue, not gains.
 
 > All three obey the same skeleton: **all five patterns + cardio (mostly easy, some hard) + a little
 > mobility/balance.** They differ in volume, frequency, and load — not in philosophy.
+
+@@FIG:F01-week-calendar@@
 
 **BEGINNER — 3 days, full-body (the highest-leverage starting point)**
 

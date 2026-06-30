@@ -72,6 +72,8 @@ history of chronic airflow obstruction"** (`10.1136/bmj.1.6077.1645`) — the di
 carries in their head: everyone declines, but **smoking dramatically steepens the slope**, and **quitting
 does not reverse the loss but resets the rate of decline to roughly that of a never-smoker.** `cohort`.
 
+@@FIG:B04-fev1-fletcher-peto@@
+
 More recent cohorts (e.g., **Lange et al., NEJM 2015**, `10.1056/NEJMoa1411532`) refined this into the
 **lung-function-trajectory** model: COPD can arise either from accelerated *decline* from a normal peak, or
 from never reaching a normal peak in the first place (a developmental origin). This matters because it reframes
@@ -139,6 +141,8 @@ filtration rate). The defining feature for a longevity manual: **the kidney is s
 nephrons and feel perfectly fine; symptoms appear only at advanced disease. This is why kidney protection is a
 **prevention game played on proxy numbers (eGFR, albuminuria, BP, glucose)**, never on symptoms.
 
+@@FIG:A02-nephron,RA04-nephron@@
+
 ### 2.2 How it ages
 
 After ~40, **eGFR declines on the order of ~0.8–1.0 mL/min/1.73m² per year** in healthy adults — the
@@ -148,6 +152,8 @@ stage ≥3 by labs alone — which raises the real interpretive question of how 
 aging. eGFR decline also **predicts** frailty and mortality independent of cause (**Guerville et al., CJASN
 2019**, `10.2215/CJN.03750319`; **Corsonello et al., Eur J Intern Med 2018**, `10.1016/j.ejim.2018.05.030`).
 `cohort` — again, predictor, not necessarily a modifiable lever in the elderly.
+
+@@FIG:B05-egfr-decline@@
 
 ### 2.3 The real levers: blood pressure and glucose
 
@@ -318,6 +324,8 @@ is a mistake.
 
 Iron is the cleanest example of "the dose makes the poison" in this whole atlas, and a place the wellness
 world gets dangerously one-sided (everyone thinks "low iron = take iron").
+
+@@FIG:BS7-iron-two-sided@@
 
 - **Deficiency:** the most common cause of anemia worldwide; in older men and postmenopausal women, new iron
   deficiency should trigger a hunt for **occult GI blood loss** (including colorectal cancer) before

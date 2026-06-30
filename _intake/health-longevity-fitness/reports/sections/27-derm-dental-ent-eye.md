@@ -163,11 +163,16 @@ Three cancers dominate, in ascending lethality:
 | **Squamous cell carcinoma (SCC)** | 2nd most common | Can metastasize (low but real); precursor = actinic keratosis | Scaly/crusted/ulcerated; sun + immunosuppression; **sunscreen reduces it (RCT — Green 1999)** |
 | **Melanoma** | ~1% of skin cancers, **most skin-cancer deaths** | Aggressive, metastasizes early; survival is **stage-dependent** | Early = curable by excision; advanced = the disease that checkpoint inhibitors transformed (Section 25) |
 
+@@FIG:PX5-skin-cancer@@
+
 - **ABCDE rule (melanoma screening):** **Abbasi 2004, JAMA** (`10.1001/jama.292.22.2771`) — the consensus
   early-detection criteria: **A**symmetry, **B**order irregularity, **C**olor variegation, **D**iameter >6 mm,
   **E**volving (the most important — *change* over time). Plus the "**ugly duckling**" sign (a mole that looks
   unlike its neighbors). `consensus`/diagnostic. Self-skin-checks and dermatologist exams (especially with a prior
   melanoma, many atypical nevi, family history, or fair skin/red hair) catch it early, when excision cures.
+
+@@FIG:PS8-abcde@@
+
 - **Prevention = the Section 11 sunscreen + tanning-bed story:** Green 1999 (SCC↓, `rct`), Green 2011 (melanoma↓
   ~50% at 10 yr, `rct`-derived), Ghiasvand 2016 (tanning beds↑ melanoma, `cohort`). Sun protection is the only
   proven *primary-prevention* lever.
@@ -234,6 +239,9 @@ antibacterial).
 - **Concentration matters:** **Walsh 2019, Cochrane** (`10.1002/14651858.CD007868.pub3`) — higher fluoride
   concentrations (≥1000 ppm) prevent more caries; **the benefit is dose-dependent**, and 1000–1500 ppm is the
   standard adult range. `meta`.
+
+@@FIG:P12-fluoride@@
+
 - **Water fluoridation & topical fluoride** (varnish, mouthrinse) add further, smaller, independently-evidenced
   benefits. Community water fluoridation is one of the CDC's "10 great public-health achievements of the 20th
   century" — though the modern marginal benefit is smaller now that fluoride toothpaste is near-universal.
@@ -441,6 +449,9 @@ LASIK/PRK refractive surgery), not "cured." The important *public-health* story 
   new myopia** vs control schools. `rct` / outcome. Replicated by later objectively-monitored outdoor-time RCTs
   (`10.1016/j.ophtha.2022.06.024`) and meta-analysis (`10.1111/aos.13403`). **This is the one primary-prevention
   lever for childhood myopia with randomized support.**
+
+@@FIG:P10-myopia-outdoor@@
+
 - **Slowing progression in already-myopic kids:** low-dose **atropine** eye drops, **orthokeratology**, and
   **myopia-control contact/spectacle lenses** have RCT support for slowing axial elongation. (Treating progression
   matters because high myopia raises lifelong risk of retinal detachment, myopic maculopathy, and glaucoma.)
@@ -480,6 +491,8 @@ too. It is the **"silent thief of sight"** — and the second-leading cause of i
   mass *screening*" statement (Section 11 §4.3) does **not** mean "glaucoma can't be treated" — once detected,
   treatment works; the unproven link is the *population-screening-program → outcome* chain.
 
+@@FIG:P11-glaucoma@@
+
 | Type | Mechanism | Note |
 |---|---|---|
 | **Primary open-angle** (most common) | Gradual outflow resistance ↑; painless, chronic | Treated with IOP-lowering drops/SLT laser/surgery |
@@ -509,6 +522,8 @@ adults. Two forms:
   (ranibizumab, aflibercept, bevacizumab off-label, faricimab) are now the standard of care — **one of the biggest
   treatment advances in modern ophthalmology**, converting wet AMD from near-certain central-vision loss to a
   manageable chronic condition.
+
+@@FIG:P08-amd-antivegf@@
 
 **Honest take:** **wet AMD is now treatable (anti-VEGF) — urgently** (sudden central distortion/scotoma = same-week
 ophthalmology). Dry AMD is slowed (not reversed) by AREDS2 *only in the right stage*; the new GA drugs are modest.

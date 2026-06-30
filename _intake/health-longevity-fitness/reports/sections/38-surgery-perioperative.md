@@ -69,6 +69,8 @@ The table is the whole section in miniature: **the same discipline contains the 
 interventions in medicine and several of its most durable over-uses.** The rest of this section is about
 how to tell which is which.
 
+@@FIG:R01-surgery-verdict@@
+
 ---
 
 ## 1. What surgery *is* as a discipline
@@ -194,6 +196,8 @@ When investigators have had the nerve to run a sham-controlled trial, the result
 | **Arthroscopic partial meniscectomy** (degenerative tear) | No better than **sham arthroscopy** (FIDELITY) | Sihvonen et al., *NEJM* 2013, `10.1056/NEJMoa1305189` |
 | **Vertebroplasty** for painful osteoporotic vertebral fracture | **Two simultaneous trials**, both negative — no better than a sham injection | Buchbinder et al. (`10.1056/NEJMoa0900563`) **and** Kallmes et al. (INVEST, `10.1056/NEJMoa0900429`), *NEJM* 2009 |
 | **PCI (stent) for stable angina** | **No better than a placebo procedure** for exercise time at 6 weeks (ORBITA) | Al-Lamee et al., *Lancet* 2018, `10.1016/S0140-6736(17)32714-9` |
+
+@@FIG:Q02-sham-surgery@@
 
 (The two knee operations are covered in detail in **Section 21 §6**; this section names them as the
 **discipline-level lesson** rather than re-deriving the orthopaedic specifics.)
@@ -323,6 +327,8 @@ This deserves to be stated without hedging because the corpus elsewhere is caref
 **bariatric (metabolic) surgery is the single most effective intervention for severe obesity and for
 type-2 diabetes in people with obesity that exists.** The evidence is unusually strong for surgery:
 
+@@FIG:Q03-bariatric@@
+
 - **Durable weight loss** far exceeding any lifestyle or (pre-GLP-1-era) drug intervention, sustained over
   10+ years.
 - **Type-2 diabetes remission.** **STAMPEDE** (Schauer et al., *NEJM* 2017, `10.1056/NEJMoa1600869`)
@@ -448,6 +454,8 @@ finally tested against a placebo or against conservative care, **fails to appear
 ### Questions worth asking before any elective operation
 
 This is the practical core of the section — the lay translation of everything above:
+
+@@FIG:Z13-surgery-questions@@
 
 1. **"What happens if I *don't* have this — what's the natural history?"** Many conditions improve on
    their own (sciatica from a disc herniation; minimally symptomatic hernias). Know the no-surgery arm.

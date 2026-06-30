@@ -138,6 +138,8 @@ with a floor and a bar to hang from.
 This is one of the most over-tribalized debates in the gym, and the evidence is anticlimactic: **both build
 strength, and the difference is smaller than either camp claims.**
 
+@@FIG:N10-machines-free@@
+
 | | **Free weights** | **Machines** |
 |---|---|---|
 | **Trains** | STR, PWR, COO (stabilizers + balance) | STR (prime mover, isolated) |
@@ -197,6 +199,8 @@ the *vehicles*.
 > tear, you only get so many miles" model of cartilage is wrong. **Run within sane progression and your knees
 > are more likely better off, not worse.** (The exception: established OA or prior major knee injury — there,
 > individualize.) |
+
+@@FIG:L01-running-oa@@
 
 ### 5.2 Cycling
 
@@ -364,6 +368,8 @@ calm), not for inflated "detox/realignment" claims. Full lineage/evidence treatm
 | **Best for** | **Older adults and anyone at fall risk** — this is the clearest who-it's-for in the chapter. Also stress regulation and gentle movement for any age. |
 | **Honest evidence** | **The strongest evidence in this mobility/mind-body section by a clear margin.** Multiple systematic reviews and meta-analyses of RCTs show **tai chi reduces falls and improves balance in older adults** (`taichi-falls-meta`, e.g. Front Public Health 2023; and a landmark RCT, Li et al. 2018, *JAMA Intern Med*, found a therapeutic tai chi program *outperformed* conventional multimodal and stretching exercise for fall reduction in high-risk older adults). This is `meta`/`rct`-tier — well above the mechanism/anecdotal grade most "mobility" modalities carry. **If an older adult does one mind-body modality for fall prevention, the evidence points to tai chi.** |
 
+@@FIG:L03-taichi-falls@@
+
 ### 7.4 Animal flow / ground-based movement
 
 **What it is / trains:** quadrupedal, ground-based flowing movement (crawls, transitions) — MOB, COO, STR-endurance
@@ -467,6 +473,8 @@ hides.** Stand up, take the stairs, garden, pace on calls — it counts.
 The single-screen synthesis. **Capacity coverage:** ●●● strong / primary, ●● secondary / real, ● minor /
 incidental, — none. "Evidence" is the *modality-specific outcome* tier (most inherit the general
 capacity evidence; a few carry their own cohort/RCT signal, flagged).
+
+@@FIG:29-modality-matrix@@
 
 | Modality | CRF | STR | PWR | MOB | COO/Bal | Impact/Bone | Skill | Risk | Best for | Modality-specific evidence |
 |---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|---|
