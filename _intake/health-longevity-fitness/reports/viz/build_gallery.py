@@ -260,6 +260,16 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("Q08-alt-conventional.png","'Instead-Of' Kills","alternative-only cancer care"),
  ("Q09-acupuncture.png","Acupuncture","mostly ritual"),
  ("Q10-ayurveda-metals.png","'Natural' ≠ 'Safe'","heavy metals in supplements"),
+ ("R01-surgery-verdict.png","Operations, Graded","transformative → debunked"),
+ ("R02-anesthesia-types.png","Types of Anesthesia","local → general"),
+ ("R03-icu-support.png","The ICU Substitutes Organs","buying time"),
+ ("R04-regen-ladder.png","Regenerative Medicine","proven → paying for a story"),
+ ("R05-laundering-gap.png","The Laundering Gap","mechanism → false promise"),
+ ("R06-four-beat.png","The Four-Beat Frontier","biology → predatory clinic"),
+ ("R07-anecdote-engine.png","The Anecdote Engine","why testimonials mislead"),
+ ("R08-placebo-bounded.png","Placebo Is Real But Bounded","feel vs pathology"),
+ ("R09-sepsis-turnover.png","Sepsis Evidence Turned Over","signal vs ritual"),
+ ("R10-sedation-continuum.png","The Sedation Continuum","one dial"),
 ]
 
 def b64(p):
