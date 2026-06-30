@@ -2,14 +2,79 @@
   "$comment": "Bucket Academy branch manifest. Adding a built-in deck = drop a corpus/<file>.json AND add an entry here. app.js loads this at boot (falls back to a built-in copy of this list if the fetch fails). `id` is a stable slug; `file` is relative to corpus/; `pill` is the picker label (the leading 'N · ' part is stripped for headings); `sub` is the picker subtitle. `kind:\"language\"` decks also declare `languages`. User-generated/custom decks are NOT listed here — they live in localStorage + server sync at runtime.",
   "version": "1.0.0",
   "decks": [
-    { "id": "00-learning-to-learn", "file": "corpus/00-learning-to-learn.json", "pill": "✦ · Learning to learn", "sub": "The meta-skill that accelerates every branch" },
-    { "id": "01-mathematics", "file": "corpus/01-mathematics.json", "pill": "I · Mathematics", "sub": "The foundations of reasoning" },
-    { "id": "02-physics", "file": "corpus/02-physics.json", "pill": "II · Physics", "sub": "Matter, energy & spacetime" },
-    { "id": "03-chemistry", "file": "corpus/03-chemistry.json", "pill": "III · Chemistry", "sub": "Matter, bonds & transformation" },
-    { "id": "04-information", "file": "corpus/04-information.json", "pill": "IV · Information", "sub": "Entropy, computation & complexity" },
-    { "id": "05-biophysics", "file": "corpus/biophysics.json", "pill": "V · Biophysics", "sub": "Energy, matter & life" },
-    { "id": "06-cosmology", "file": "corpus/06-cosmology.json", "pill": "VI · Cosmology", "sub": "The universe at large" },
-    { "id": "07-mind", "file": "corpus/07-mind.json", "pill": "VII · Mind", "sub": "Brains, computation & cognition" },
-    { "id": "lang-core", "file": "corpus/lang-core.json", "pill": "✺ · Languages", "sub": "Learn a language through the ones you know", "kind": "language", "languages": ["en", "es", "fr", "it", "pt", "de", "nl", "sv", "ru", "ja", "zh", "el", "fi", "pl"] }
+    {
+      "id": "00-learning-to-learn",
+      "file": "corpus/00-learning-to-learn.json",
+      "pill": "✦ · Learning to learn",
+      "sub": "The meta-skill that accelerates every branch"
+    },
+    {
+      "id": "01-mathematics",
+      "file": "corpus/01-mathematics.json",
+      "pill": "I · Mathematics",
+      "sub": "The foundations of reasoning"
+    },
+    {
+      "id": "02-physics",
+      "file": "corpus/02-physics.json",
+      "pill": "II · Physics",
+      "sub": "Matter, energy & spacetime"
+    },
+    {
+      "id": "03-chemistry",
+      "file": "corpus/03-chemistry.json",
+      "pill": "III · Chemistry",
+      "sub": "Matter, bonds & transformation"
+    },
+    {
+      "id": "04-information",
+      "file": "corpus/04-information.json",
+      "pill": "IV · Information",
+      "sub": "Entropy, computation & complexity"
+    },
+    {
+      "id": "05-biophysics",
+      "file": "corpus/biophysics.json",
+      "pill": "V · Biophysics",
+      "sub": "Energy, matter & life"
+    },
+    {
+      "id": "06-cosmology",
+      "file": "corpus/06-cosmology.json",
+      "pill": "VI · Cosmology",
+      "sub": "The universe at large"
+    },
+    {
+      "id": "07-mind",
+      "file": "corpus/07-mind.json",
+      "pill": "VII · Mind",
+      "sub": "Brains, computation & cognition"
+    },
+    {
+      "id": "lang-core",
+      "file": "corpus/lang-core.json",
+      "pill": "✺ · Languages",
+      "sub": "Learn a language through the ones you know",
+      "kind": "language",
+      "languages": [
+        "en",
+        "es",
+        "fr",
+        "it",
+        "pt",
+        "de",
+        "nl",
+        "sv",
+        "ru",
+        "ja",
+        "ar",
+        "el",
+        "fi",
+        "hi",
+        "ko",
+        "pl",
+        "zh"
+      ]
+    }
   ]
 }

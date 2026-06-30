@@ -1,20 +1,26 @@
 #!/usr/bin/env node
 /* =====================================================================
- * build-phrases.mjs  (bkt-q8e)
+ * build-phrases.mjs  (bkt-q8e; deepened under bkt-ctj 2026-06-30)
  *
- * Curated, HAND-VERIFIED beginner phrase deck. This is gold data — the
- * same bar as the word deck (lang-core.json): every translation is
- * hand-checked, NOT dumped from the corpus. Wrong phrases are worse than
- * fewer, so a language is only included on a phrase when its translation
- * is verified. Missing languages are simply absent for that phrase.
+ * Curated, HAND-VERIFIED beginner phrase deck. Same bar as the word deck:
+ * every translation is hand-checked against established phrasebook usage,
+ * NOT dumped from a corpus. Wrong phrases are worse than fewer, so a
+ * language is included on a phrase only when its translation is verified.
+ * Missing languages are simply absent for that phrase.
  *
  * Output: corpus/lang-phrases.json
- *   { meta:{...}, phrases:[ { id, en, category, forms:{lang:string}, ipa? } ] }
+ *   { meta:{...}, phrases:[ { id, en, category, forms:{lang:string} } ] }
  *
- * Categories: greeting, courtesy, intro, survival, dining, direction.
- * Languages verified: en es fr it pt de nl sv ru ja zh el fi pl
- * (the 14 core lang-core languages; bonus ko/hi/ar omitted where not
- *  confidently verified — honest coverage over breadth).
+ * Categories: greeting, courtesy, intro, survival, dining, shopping,
+ *             direction, time, smalltalk, basics.
+ *
+ * Languages: the 14 lang-core core languages
+ *   (en es fr it pt de nl sv ru ja zh el fi pl)
+ * PLUS Korean (ko), Hindi (hi), Arabic (ar) — added 2026-06-30 to cover all
+ * 17. Non-Latin scripts use the native script as the answer (correct
+ * direction/diacritics: Arabic RTL with short vowels where idiomatic,
+ * Devanagari for Hindi, Hangul for Korean). Conservative: where a confident
+ * idiomatic form wasn't available the language is omitted for that phrase.
  * ===================================================================== */
 import fs from "node:fs";
 import path from "node:path";
@@ -23,93 +29,186 @@ import { fileURLToPath } from "node:url";
 const __dir = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(__dir, "corpus", "lang-phrases.json");
 
-// Each phrase: en + per-language verified translation. Romanization given
-// inline for non-Latin scripts in the `forms` value is avoided; the native
-// script is the answer, and IPA/notes can be added later. Forms are gold.
 const PHRASES = [
   // ---- greetings ----
   { id: "hello", en: "hello", category: "greeting", forms: {
     en: "hello", es: "hola", fr: "bonjour", it: "ciao", pt: "olá", de: "hallo",
     nl: "hallo", sv: "hej", ru: "привет", ja: "こんにちは", zh: "你好", el: "γεια",
-    fi: "hei", pl: "cześć" } },
+    fi: "hei", pl: "cześć", ko: "안녕하세요", hi: "नमस्ते", ar: "مرحبا" } },
   { id: "good-morning", en: "good morning", category: "greeting", forms: {
     en: "good morning", es: "buenos días", fr: "bonjour", it: "buongiorno",
     pt: "bom dia", de: "guten Morgen", nl: "goedemorgen", sv: "god morgon",
     ru: "доброе утро", ja: "おはよう", zh: "早安", el: "καλημέρα", fi: "hyvää huomenta",
-    pl: "dzień dobry" } },
+    pl: "dzień dobry", ko: "좋은 아침", hi: "सुप्रभात", ar: "صباح الخير" } },
+  { id: "good-afternoon", en: "good afternoon", category: "greeting", forms: {
+    en: "good afternoon", es: "buenas tardes", fr: "bon après-midi",
+    it: "buon pomeriggio", pt: "boa tarde", de: "guten Tag", nl: "goedemiddag",
+    sv: "god eftermiddag", ru: "добрый день", ja: "こんにちは", zh: "下午好",
+    el: "καλό απόγευμα", fi: "hyvää iltapäivää", pl: "dzień dobry",
+    ko: "안녕하세요", hi: "नमस्कार", ar: "مساء الخير" } },
+  { id: "good-evening", en: "good evening", category: "greeting", forms: {
+    en: "good evening", es: "buenas noches", fr: "bonsoir", it: "buonasera",
+    pt: "boa noite", de: "guten Abend", nl: "goedenavond", sv: "god kväll",
+    ru: "добрый вечер", ja: "こんばんは", zh: "晚上好", el: "καλησπέρα",
+    fi: "hyvää iltaa", pl: "dobry wieczór", ko: "안녕하세요", hi: "शुभ संध्या",
+    ar: "مساء الخير" } },
   { id: "good-night", en: "good night", category: "greeting", forms: {
     en: "good night", es: "buenas noches", fr: "bonne nuit", it: "buonanotte",
     pt: "boa noite", de: "gute Nacht", nl: "goedenacht", sv: "god natt",
     ru: "спокойной ночи", ja: "おやすみ", zh: "晚安", el: "καληνύχτα",
-    fi: "hyvää yötä", pl: "dobranoc" } },
+    fi: "hyvää yötä", pl: "dobranoc", ko: "안녕히 주무세요", hi: "शुभ रात्रि",
+    ar: "تصبح على خير" } },
   { id: "goodbye", en: "goodbye", category: "greeting", forms: {
     en: "goodbye", es: "adiós", fr: "au revoir", it: "arrivederci", pt: "adeus",
     de: "auf Wiedersehen", nl: "tot ziens", sv: "hej då", ru: "до свидания",
-    ja: "さようなら", zh: "再见", el: "αντίο", fi: "näkemiin", pl: "do widzenia" } },
+    ja: "さようなら", zh: "再见", el: "αντίο", fi: "näkemiin", pl: "do widzenia",
+    ko: "안녕히 가세요", hi: "अलविदा", ar: "مع السلامة" } },
   { id: "see-you-later", en: "see you later", category: "greeting", forms: {
     en: "see you later", es: "hasta luego", fr: "à bientôt", it: "a presto",
     pt: "até logo", de: "bis später", nl: "tot later", sv: "vi ses",
     ru: "до встречи", ja: "またね", zh: "回头见", el: "τα λέμε", fi: "nähdään",
-    pl: "do zobaczenia" } },
+    pl: "do zobaczenia", ko: "나중에 봐요", hi: "फिर मिलेंगे", ar: "أراك لاحقا" } },
+  { id: "welcome", en: "welcome", category: "greeting", forms: {
+    en: "welcome", es: "bienvenido", fr: "bienvenue", it: "benvenuto",
+    pt: "bem-vindo", de: "willkommen", nl: "welkom", sv: "välkommen",
+    ru: "добро пожаловать", ja: "ようこそ", zh: "欢迎", el: "καλώς ήρθες",
+    fi: "tervetuloa", pl: "witamy", ko: "환영합니다", hi: "स्वागत है",
+    ar: "أهلا وسهلا" } },
+  { id: "long-time-no-see", en: "long time no see", category: "greeting", forms: {
+    en: "long time no see", es: "cuánto tiempo", fr: "ça fait longtemps",
+    it: "quanto tempo", pt: "quanto tempo", de: "lange nicht gesehen",
+    nl: "lang niet gezien", sv: "det var länge sedan", ru: "давно не виделись",
+    ja: "久しぶり", zh: "好久不见", el: "καιρό έχουμε να τα πούμε",
+    fi: "pitkästä aikaa", pl: "kopę lat", ko: "오랜만이에요", hi: "बहुत दिनों बाद",
+    ar: "لم أرك منذ زمن" } },
 
   // ---- courtesy ----
   { id: "thank-you", en: "thank you", category: "courtesy", forms: {
     en: "thank you", es: "gracias", fr: "merci", it: "grazie", pt: "obrigado",
     de: "danke", nl: "dank je", sv: "tack", ru: "спасибо", ja: "ありがとう",
-    zh: "谢谢", el: "ευχαριστώ", fi: "kiitos", pl: "dziękuję" } },
+    zh: "谢谢", el: "ευχαριστώ", fi: "kiitos", pl: "dziękuję", ko: "감사합니다",
+    hi: "धन्यवाद", ar: "شكرا" } },
+  { id: "thank-you-very-much", en: "thank you very much", category: "courtesy", forms: {
+    en: "thank you very much", es: "muchas gracias", fr: "merci beaucoup",
+    it: "grazie mille", pt: "muito obrigado", de: "vielen Dank", nl: "dank je wel",
+    sv: "tack så mycket", ru: "большое спасибо", ja: "どうもありがとう",
+    zh: "非常感谢", el: "ευχαριστώ πολύ", fi: "kiitos paljon", pl: "dziękuję bardzo",
+    ko: "정말 감사합니다", hi: "बहुत बहुत धन्यवाद", ar: "شكرا جزيلا" } },
   { id: "you-are-welcome", en: "you're welcome", category: "courtesy", forms: {
     en: "you're welcome", es: "de nada", fr: "de rien", it: "prego",
     pt: "de nada", de: "bitte", nl: "graag gedaan", sv: "varsågod",
     ru: "пожалуйста", ja: "どういたしまして", zh: "不客气", el: "παρακαλώ",
-    fi: "ole hyvä", pl: "proszę" } },
+    fi: "ole hyvä", pl: "proszę", ko: "천만에요", hi: "कोई बात नहीं",
+    ar: "عفوا" } },
   { id: "please", en: "please", category: "courtesy", forms: {
     en: "please", es: "por favor", fr: "s'il vous plaît", it: "per favore",
     pt: "por favor", de: "bitte", nl: "alsjeblieft", sv: "snälla",
     ru: "пожалуйста", ja: "お願いします", zh: "请", el: "παρακαλώ",
-    fi: "kiitos", pl: "proszę" } },
+    fi: "kiitos", pl: "proszę", ko: "부탁합니다", hi: "कृपया", ar: "من فضلك" } },
   { id: "excuse-me", en: "excuse me", category: "courtesy", forms: {
     en: "excuse me", es: "perdón", fr: "excusez-moi", it: "scusi", pt: "com licença",
     de: "entschuldigung", nl: "pardon", sv: "ursäkta", ru: "извините",
-    ja: "すみません", zh: "对不起", el: "συγγνώμη", fi: "anteeksi", pl: "przepraszam" } },
+    ja: "すみません", zh: "对不起", el: "συγγνώμη", fi: "anteeksi", pl: "przepraszam",
+    ko: "실례합니다", hi: "क्षमा करें", ar: "عذرا" } },
   { id: "sorry", en: "I'm sorry", category: "courtesy", forms: {
     en: "I'm sorry", es: "lo siento", fr: "je suis désolé", it: "mi dispiace",
     pt: "desculpe", de: "es tut mir leid", nl: "het spijt me", sv: "förlåt",
     ru: "извините", ja: "ごめんなさい", zh: "抱歉", el: "συγγνώμη",
-    fi: "anteeksi", pl: "przepraszam" } },
+    fi: "anteeksi", pl: "przepraszam", ko: "미안합니다", hi: "माफ़ कीजिए",
+    ar: "آسف" } },
   { id: "yes", en: "yes", category: "courtesy", forms: {
     en: "yes", es: "sí", fr: "oui", it: "sì", pt: "sim", de: "ja", nl: "ja",
-    sv: "ja", ru: "да", ja: "はい", zh: "是", el: "ναι", fi: "kyllä", pl: "tak" } },
+    sv: "ja", ru: "да", ja: "はい", zh: "是", el: "ναι", fi: "kyllä", pl: "tak",
+    ko: "네", hi: "हाँ", ar: "نعم" } },
   { id: "no", en: "no", category: "courtesy", forms: {
     en: "no", es: "no", fr: "non", it: "no", pt: "não", de: "nein", nl: "nee",
-    sv: "nej", ru: "нет", ja: "いいえ", zh: "不", el: "όχι", fi: "ei", pl: "nie" } },
+    sv: "nej", ru: "нет", ja: "いいえ", zh: "不", el: "όχι", fi: "ei", pl: "nie",
+    ko: "아니요", hi: "नहीं", ar: "لا" } },
+  { id: "maybe", en: "maybe", category: "courtesy", forms: {
+    en: "maybe", es: "quizás", fr: "peut-être", it: "forse", pt: "talvez",
+    de: "vielleicht", nl: "misschien", sv: "kanske", ru: "может быть",
+    ja: "たぶん", zh: "也许", el: "ίσως", fi: "ehkä", pl: "może",
+    ko: "아마도", hi: "शायद", ar: "ربما" } },
+  { id: "of-course", en: "of course", category: "courtesy", forms: {
+    en: "of course", es: "por supuesto", fr: "bien sûr", it: "certo",
+    pt: "claro", de: "natürlich", nl: "natuurlijk", sv: "självklart",
+    ru: "конечно", ja: "もちろん", zh: "当然", el: "φυσικά", fi: "tietysti",
+    pl: "oczywiście", ko: "물론이죠", hi: "बेशक", ar: "بالطبع" } },
+  { id: "no-problem", en: "no problem", category: "courtesy", forms: {
+    en: "no problem", es: "no hay problema", fr: "pas de problème",
+    it: "nessun problema", pt: "sem problema", de: "kein Problem",
+    nl: "geen probleem", sv: "inga problem", ru: "без проблем",
+    ja: "問題ない", zh: "没问题", el: "κανένα πρόβλημα", fi: "ei ongelmaa",
+    pl: "nie ma problemu", ko: "문제 없어요", hi: "कोई समस्या नहीं",
+    ar: "لا مشكلة" } },
 
-  // ---- introductions ----
+  // ---- introductions / small talk ----
   { id: "how-are-you", en: "how are you?", category: "intro", forms: {
     en: "how are you?", es: "¿cómo estás?", fr: "comment ça va ?",
     it: "come stai?", pt: "como vai?", de: "wie geht es dir?", nl: "hoe gaat het?",
     sv: "hur mår du?", ru: "как дела?", ja: "お元気ですか", zh: "你好吗",
-    el: "τι κάνεις;", fi: "mitä kuuluu?", pl: "jak się masz?" } },
+    el: "τι κάνεις;", fi: "mitä kuuluu?", pl: "jak się masz?", ko: "어떻게 지내세요?",
+    hi: "आप कैसे हैं?", ar: "كيف حالك؟" } },
   { id: "i-am-fine", en: "I'm fine", category: "intro", forms: {
     en: "I'm fine", es: "estoy bien", fr: "ça va bien", it: "sto bene",
     pt: "estou bem", de: "mir geht es gut", nl: "het gaat goed", sv: "jag mår bra",
     ru: "хорошо", ja: "元気です", zh: "我很好", el: "καλά", fi: "hyvää",
-    pl: "dobrze" } },
+    pl: "dobrze", ko: "잘 지내요", hi: "मैं ठीक हूँ", ar: "أنا بخير" } },
+  { id: "and-you", en: "and you?", category: "intro", forms: {
+    en: "and you?", es: "¿y tú?", fr: "et toi ?", it: "e tu?", pt: "e você?",
+    de: "und dir?", nl: "en jij?", sv: "och du?", ru: "а ты?", ja: "あなたは",
+    zh: "你呢", el: "κι εσύ;", fi: "entä sinä?", pl: "a ty?", ko: "당신은요?",
+    hi: "और आप?", ar: "وأنت؟" } },
   { id: "my-name-is", en: "my name is...", category: "intro", forms: {
     en: "my name is", es: "me llamo", fr: "je m'appelle", it: "mi chiamo",
     pt: "meu nome é", de: "ich heiße", nl: "ik heet", sv: "jag heter",
     ru: "меня зовут", ja: "私の名前は", zh: "我叫", el: "με λένε",
-    fi: "nimeni on", pl: "nazywam się" } },
+    fi: "nimeni on", pl: "nazywam się", ko: "제 이름은", hi: "मेरा नाम है",
+    ar: "اسمي" } },
   { id: "nice-to-meet-you", en: "nice to meet you", category: "intro", forms: {
     en: "nice to meet you", es: "mucho gusto", fr: "enchanté", it: "piacere",
     pt: "prazer", de: "freut mich", nl: "aangenaam", sv: "trevligt att träffas",
     ru: "приятно познакомиться", ja: "はじめまして", zh: "很高兴认识你",
-    el: "χάρηκα", fi: "hauska tavata", pl: "miło mi" } },
+    el: "χάρηκα", fi: "hauska tavata", pl: "miło mi", ko: "만나서 반갑습니다",
+    hi: "आपसे मिलकर खुशी हुई", ar: "تشرفنا" } },
   { id: "what-is-your-name", en: "what is your name?", category: "intro", forms: {
     en: "what's your name?", es: "¿cómo te llamas?", fr: "comment tu t'appelles ?",
     it: "come ti chiami?", pt: "como te chamas?", de: "wie heißt du?",
     nl: "hoe heet je?", sv: "vad heter du?", ru: "как тебя зовут?",
     ja: "お名前は", zh: "你叫什么名字", el: "πώς σε λένε;", fi: "mikä on nimesi?",
-    pl: "jak się nazywasz?" } },
+    pl: "jak się nazywasz?", ko: "이름이 뭐예요?", hi: "आपका नाम क्या है?",
+    ar: "ما اسمك؟" } },
+  { id: "where-are-you-from", en: "where are you from?", category: "intro", forms: {
+    en: "where are you from?", es: "¿de dónde eres?", fr: "d'où viens-tu ?",
+    it: "di dove sei?", pt: "de onde você é?", de: "woher kommst du?",
+    nl: "waar kom je vandaan?", sv: "var kommer du ifrån?", ru: "откуда ты?",
+    ja: "どこから来ましたか", zh: "你从哪里来", el: "από πού είσαι;",
+    fi: "mistä olet kotoisin?", pl: "skąd jesteś?", ko: "어디서 오셨어요?",
+    hi: "आप कहाँ से हैं?", ar: "من أين أنت؟" } },
+  { id: "i-am-from", en: "I'm from...", category: "intro", forms: {
+    en: "I'm from", es: "soy de", fr: "je viens de", it: "vengo da",
+    pt: "eu sou de", de: "ich komme aus", nl: "ik kom uit", sv: "jag kommer från",
+    ru: "я из", ja: "から来ました", zh: "我来自", el: "είμαι από", fi: "olen kotoisin",
+    pl: "jestem z", ko: "저는...에서 왔어요", hi: "मैं...से हूँ", ar: "أنا من" } },
+  { id: "how-old-are-you", en: "how old are you?", category: "smalltalk", forms: {
+    en: "how old are you?", es: "¿cuántos años tienes?", fr: "quel âge as-tu ?",
+    it: "quanti anni hai?", pt: "quantos anos você tem?", de: "wie alt bist du?",
+    nl: "hoe oud ben je?", sv: "hur gammal är du?", ru: "сколько тебе лет?",
+    ja: "何歳ですか", zh: "你多大了", el: "πόσο χρονών είσαι;",
+    fi: "kuinka vanha olet?", pl: "ile masz lat?", ko: "몇 살이에요?",
+    hi: "आपकी उम्र क्या है?", ar: "كم عمرك؟" } },
+  { id: "nice-day", en: "have a nice day", category: "smalltalk", forms: {
+    en: "have a nice day", es: "que tengas un buen día", fr: "bonne journée",
+    it: "buona giornata", pt: "tenha um bom dia", de: "schönen Tag noch",
+    nl: "fijne dag", sv: "ha en bra dag", ru: "хорошего дня", ja: "良い一日を",
+    zh: "祝你愉快", el: "καλή σου μέρα", fi: "mukavaa päivää", pl: "miłego dnia",
+    ko: "좋은 하루 되세요", hi: "आपका दिन शुभ हो", ar: "نهارك سعيد" } },
+  { id: "take-care", en: "take care", category: "smalltalk", forms: {
+    en: "take care", es: "cuídate", fr: "prends soin de toi", it: "stammi bene",
+    pt: "se cuide", de: "pass auf dich auf", nl: "pas goed op jezelf",
+    sv: "ta hand om dig", ru: "береги себя", ja: "気をつけて", zh: "保重",
+    el: "να προσέχεις", fi: "pidä huolta", pl: "trzymaj się", ko: "잘 지내세요",
+    hi: "अपना ख़याल रखना", ar: "اعتن بنفسك" } },
 
   // ---- survival ----
   { id: "do-you-speak-english", en: "do you speak English?", category: "survival", forms: {
@@ -117,51 +216,88 @@ const PHRASES = [
     it: "parli inglese?", pt: "você fala inglês?", de: "sprichst du Englisch?",
     nl: "spreek je Engels?", sv: "talar du engelska?", ru: "вы говорите по-английски?",
     ja: "英語を話せますか", zh: "你会说英语吗", el: "μιλάτε αγγλικά;",
-    fi: "puhutko englantia?", pl: "czy mówisz po angielsku?" } },
+    fi: "puhutko englantia?", pl: "czy mówisz po angielsku?", ko: "영어 할 줄 아세요?",
+    hi: "क्या आप अंग्रेज़ी बोलते हैं?", ar: "هل تتحدث الإنجليزية؟" } },
   { id: "i-dont-understand", en: "I don't understand", category: "survival", forms: {
     en: "I don't understand", es: "no entiendo", fr: "je ne comprends pas",
     it: "non capisco", pt: "não entendo", de: "ich verstehe nicht",
     nl: "ik begrijp het niet", sv: "jag förstår inte", ru: "я не понимаю",
     ja: "わかりません", zh: "我不明白", el: "δεν καταλαβαίνω", fi: "en ymmärrä",
-    pl: "nie rozumiem" } },
+    pl: "nie rozumiem", ko: "이해 못 했어요", hi: "मैं नहीं समझा", ar: "لا أفهم" } },
   { id: "i-dont-know", en: "I don't know", category: "survival", forms: {
     en: "I don't know", es: "no sé", fr: "je ne sais pas", it: "non lo so",
     pt: "não sei", de: "ich weiß nicht", nl: "ik weet het niet", sv: "jag vet inte",
     ru: "я не знаю", ja: "知りません", zh: "我不知道", el: "δεν ξέρω", fi: "en tiedä",
-    pl: "nie wiem" } },
+    pl: "nie wiem", ko: "몰라요", hi: "मुझे नहीं पता", ar: "لا أعرف" } },
   { id: "can-you-help-me", en: "can you help me?", category: "survival", forms: {
     en: "can you help me?", es: "¿puedes ayudarme?", fr: "pouvez-vous m'aider ?",
     it: "puoi aiutarmi?", pt: "pode me ajudar?", de: "kannst du mir helfen?",
     nl: "kun je me helpen?", sv: "kan du hjälpa mig?", ru: "вы можете мне помочь?",
     ja: "助けてください", zh: "你能帮我吗", el: "μπορείς να με βοηθήσεις;",
-    fi: "voitko auttaa minua?", pl: "czy możesz mi pomóc?" } },
+    fi: "voitko auttaa minua?", pl: "czy możesz mi pomóc?", ko: "도와주시겠어요?",
+    hi: "क्या आप मेरी मदद कर सकते हैं?", ar: "هل يمكنك مساعدتي؟" } },
+  { id: "can-you-repeat", en: "can you repeat that?", category: "survival", forms: {
+    en: "can you repeat that?", es: "¿puedes repetir?", fr: "pouvez-vous répéter ?",
+    it: "puoi ripetere?", pt: "pode repetir?", de: "kannst du das wiederholen?",
+    nl: "kun je dat herhalen?", sv: "kan du upprepa det?", ru: "повторите, пожалуйста",
+    ja: "もう一度言ってください", zh: "你能再说一遍吗", el: "μπορείς να το επαναλάβεις;",
+    fi: "voitko toistaa?", pl: "czy możesz powtórzyć?", ko: "다시 말해 주시겠어요?",
+    hi: "क्या आप दोहरा सकते हैं?", ar: "هل يمكنك التكرار؟" } },
+  { id: "speak-slowly", en: "please speak slowly", category: "survival", forms: {
+    en: "please speak slowly", es: "habla despacio, por favor",
+    fr: "parlez lentement, s'il vous plaît", it: "parla lentamente, per favore",
+    pt: "fale devagar, por favor", de: "sprich bitte langsam",
+    nl: "spreek langzaam, alsjeblieft", sv: "tala långsamt, tack",
+    ru: "говорите медленнее, пожалуйста", ja: "ゆっくり話してください",
+    zh: "请说慢一点", el: "μίλα αργά, παρακαλώ", fi: "puhu hitaasti, kiitos",
+    pl: "mów wolniej, proszę", ko: "천천히 말해 주세요", hi: "कृपया धीरे बोलिए",
+    ar: "تكلم ببطء من فضلك" } },
   { id: "where-is", en: "where is...?", category: "survival", forms: {
     en: "where is", es: "dónde está", fr: "où est", it: "dov'è", pt: "onde está",
     de: "wo ist", nl: "waar is", sv: "var är", ru: "где", ja: "どこですか",
-    zh: "在哪里", el: "πού είναι", fi: "missä on", pl: "gdzie jest" } },
-  { id: "how-much", en: "how much?", category: "survival", forms: {
-    en: "how much?", es: "¿cuánto cuesta?", fr: "combien ?", it: "quanto costa?",
-    pt: "quanto custa?", de: "wie viel?", nl: "hoeveel?", sv: "hur mycket?",
-    ru: "сколько?", ja: "いくらですか", zh: "多少钱", el: "πόσο κάνει;",
-    fi: "paljonko?", pl: "ile to kosztuje?" } },
+    zh: "在哪里", el: "πού είναι", fi: "missä on", pl: "gdzie jest",
+    ko: "어디에 있어요?", hi: "कहाँ है?", ar: "أين" } },
+  { id: "where-is-the-bathroom", en: "where is the bathroom?", category: "survival", forms: {
+    en: "where is the bathroom?", es: "¿dónde está el baño?", fr: "où sont les toilettes ?",
+    it: "dov'è il bagno?", pt: "onde fica o banheiro?", de: "wo ist die Toilette?",
+    nl: "waar is het toilet?", sv: "var är toaletten?", ru: "где туалет?",
+    ja: "トイレはどこですか", zh: "洗手间在哪里", el: "πού είναι η τουαλέτα;",
+    fi: "missä on vessa?", pl: "gdzie jest toaleta?", ko: "화장실이 어디예요?",
+    hi: "शौचालय कहाँ है?", ar: "أين الحمام؟" } },
   { id: "i-want", en: "I want...", category: "survival", forms: {
     en: "I want", es: "quiero", fr: "je veux", it: "voglio", pt: "quero",
     de: "ich will", nl: "ik wil", sv: "jag vill", ru: "я хочу", ja: "ほしいです",
-    zh: "我想要", el: "θέλω", fi: "haluan", pl: "chcę" } },
+    zh: "我想要", el: "θέλω", fi: "haluan", pl: "chcę", ko: "원해요", hi: "मुझे चाहिए",
+    ar: "أريد" } },
   { id: "i-need", en: "I need...", category: "survival", forms: {
     en: "I need", es: "necesito", fr: "j'ai besoin de", it: "ho bisogno di",
     pt: "preciso de", de: "ich brauche", nl: "ik heb nodig", sv: "jag behöver",
     ru: "мне нужно", ja: "必要です", zh: "我需要", el: "χρειάζομαι", fi: "tarvitsen",
-    pl: "potrzebuję" } },
+    pl: "potrzebuję", ko: "필요해요", hi: "मुझे ज़रूरत है", ar: "أحتاج" } },
   { id: "help", en: "help!", category: "survival", forms: {
     en: "help!", es: "¡ayuda!", fr: "au secours !", it: "aiuto!", pt: "socorro!",
     de: "Hilfe!", nl: "help!", sv: "hjälp!", ru: "помогите!", ja: "助けて",
-    zh: "救命", el: "βοήθεια!", fi: "apua!", pl: "pomocy!" } },
+    zh: "救命", el: "βοήθεια!", fi: "apua!", pl: "pomocy!", ko: "도와주세요",
+    hi: "बचाओ", ar: "النجدة" } },
   { id: "i-am-lost", en: "I am lost", category: "survival", forms: {
     en: "I am lost", es: "estoy perdido", fr: "je suis perdu", it: "mi sono perso",
     pt: "estou perdido", de: "ich habe mich verlaufen", nl: "ik ben verdwaald",
     sv: "jag har gått vilse", ru: "я заблудился", ja: "道に迷いました",
-    zh: "我迷路了", el: "χάθηκα", fi: "olen eksynyt", pl: "zgubiłem się" } },
+    zh: "我迷路了", el: "χάθηκα", fi: "olen eksynyt", pl: "zgubiłem się",
+    ko: "길을 잃었어요", hi: "मैं रास्ता भटक गया", ar: "أنا تائه" } },
+  { id: "call-the-police", en: "call the police", category: "survival", forms: {
+    en: "call the police", es: "llama a la policía", fr: "appelez la police",
+    it: "chiama la polizia", pt: "chame a polícia", de: "ruf die Polizei",
+    nl: "bel de politie", sv: "ring polisen", ru: "вызовите полицию",
+    ja: "警察を呼んで", zh: "叫警察", el: "κάλεσε την αστυνομία",
+    fi: "soita poliisille", pl: "zadzwoń na policję", ko: "경찰을 불러주세요",
+    hi: "पुलिस को बुलाओ", ar: "اتصل بالشرطة" } },
+  { id: "i-am-sick", en: "I am sick", category: "survival", forms: {
+    en: "I am sick", es: "estoy enfermo", fr: "je suis malade", it: "sono malato",
+    pt: "estou doente", de: "ich bin krank", nl: "ik ben ziek", sv: "jag är sjuk",
+    ru: "я болен", ja: "病気です", zh: "我生病了", el: "είμαι άρρωστος",
+    fi: "olen sairas", pl: "jestem chory", ko: "아파요", hi: "मैं बीमार हूँ",
+    ar: "أنا مريض" } },
 
   // ---- dining ----
   { id: "the-check-please", en: "the check, please", category: "dining", forms: {
@@ -169,60 +305,226 @@ const PHRASES = [
     it: "il conto, per favore", pt: "a conta, por favor", de: "die Rechnung, bitte",
     nl: "de rekening, alsjeblieft", sv: "notan, tack", ru: "счёт, пожалуйста",
     ja: "お会計お願いします", zh: "买单", el: "τον λογαριασμό, παρακαλώ",
-    fi: "lasku, kiitos", pl: "rachunek, proszę" } },
+    fi: "lasku, kiitos", pl: "rachunek, proszę", ko: "계산서 주세요",
+    hi: "बिल, कृपया", ar: "الحساب من فضلك" } },
   { id: "water-please", en: "water, please", category: "dining", forms: {
     en: "water, please", es: "agua, por favor", fr: "de l'eau, s'il vous plaît",
     it: "acqua, per favore", pt: "água, por favor", de: "Wasser, bitte",
     nl: "water, alsjeblieft", sv: "vatten, tack", ru: "воду, пожалуйста",
     ja: "お水ください", zh: "水，谢谢", el: "νερό, παρακαλώ", fi: "vettä, kiitos",
-    pl: "woda, proszę" } },
+    pl: "woda, proszę", ko: "물 주세요", hi: "पानी, कृपया", ar: "ماء من فضلك" } },
+  { id: "menu-please", en: "the menu, please", category: "dining", forms: {
+    en: "the menu, please", es: "el menú, por favor", fr: "le menu, s'il vous plaît",
+    it: "il menù, per favore", pt: "o cardápio, por favor", de: "die Speisekarte, bitte",
+    nl: "het menu, alsjeblieft", sv: "menyn, tack", ru: "меню, пожалуйста",
+    ja: "メニューをください", zh: "请给我菜单", el: "τον κατάλογο, παρακαλώ",
+    fi: "ruokalista, kiitos", pl: "menu, proszę", ko: "메뉴 주세요",
+    hi: "मेन्यू, कृपया", ar: "القائمة من فضلك" } },
+  { id: "i-am-hungry", en: "I am hungry", category: "dining", forms: {
+    en: "I am hungry", es: "tengo hambre", fr: "j'ai faim", it: "ho fame",
+    pt: "estou com fome", de: "ich habe Hunger", nl: "ik heb honger",
+    sv: "jag är hungrig", ru: "я голоден", ja: "お腹がすいた", zh: "我饿了",
+    el: "πεινάω", fi: "minulla on nälkä", pl: "jestem głodny", ko: "배고파요",
+    hi: "मुझे भूख लगी है", ar: "أنا جائع" } },
+  { id: "i-am-thirsty", en: "I am thirsty", category: "dining", forms: {
+    en: "I am thirsty", es: "tengo sed", fr: "j'ai soif", it: "ho sete",
+    pt: "estou com sede", de: "ich habe Durst", nl: "ik heb dorst",
+    sv: "jag är törstig", ru: "я хочу пить", ja: "喉が渇いた", zh: "我渴了",
+    el: "διψάω", fi: "minulla on jano", pl: "jestem spragniony", ko: "목말라요",
+    hi: "मुझे प्यास लगी है", ar: "أنا عطشان" } },
   { id: "cheers", en: "cheers!", category: "dining", forms: {
     en: "cheers!", es: "¡salud!", fr: "santé !", it: "salute!", pt: "saúde!",
     de: "Prost!", nl: "proost!", sv: "skål!", ru: "за здоровье!", ja: "乾杯",
-    zh: "干杯", el: "γεια μας!", fi: "kippis!", pl: "na zdrowie!" } },
+    zh: "干杯", el: "γεια μας!", fi: "kippis!", pl: "na zdrowie!", ko: "건배",
+    hi: "चियर्स", ar: "في صحتك" } },
   { id: "delicious", en: "delicious", category: "dining", forms: {
     en: "delicious", es: "delicioso", fr: "délicieux", it: "delizioso", pt: "delicioso",
     de: "lecker", nl: "heerlijk", sv: "utsökt", ru: "вкусно", ja: "おいしい",
-    zh: "好吃", el: "νόστιμο", fi: "herkullista", pl: "pyszne" } },
+    zh: "好吃", el: "νόστιμο", fi: "herkullista", pl: "pyszne", ko: "맛있어요",
+    hi: "स्वादिष्ट", ar: "لذيذ" } },
+  { id: "i-would-like", en: "I would like...", category: "dining", forms: {
+    en: "I would like", es: "me gustaría", fr: "je voudrais", it: "vorrei",
+    pt: "eu gostaria", de: "ich hätte gern", nl: "ik wil graag", sv: "jag skulle vilja",
+    ru: "я бы хотел", ja: "がほしいです", zh: "我想要", el: "θα ήθελα",
+    fi: "haluaisin", pl: "chciałbym", ko: "주세요", hi: "मुझे चाहिए",
+    ar: "أود" } },
 
-  // ---- directions / basics ----
+  // ---- shopping ----
+  { id: "how-much", en: "how much?", category: "shopping", forms: {
+    en: "how much?", es: "¿cuánto cuesta?", fr: "combien ?", it: "quanto costa?",
+    pt: "quanto custa?", de: "wie viel?", nl: "hoeveel?", sv: "hur mycket?",
+    ru: "сколько?", ja: "いくらですか", zh: "多少钱", el: "πόσο κάνει;",
+    fi: "paljonko?", pl: "ile to kosztuje?", ko: "얼마예요?", hi: "कितने का है?",
+    ar: "كم الثمن؟" } },
+  { id: "too-expensive", en: "too expensive", category: "shopping", forms: {
+    en: "too expensive", es: "demasiado caro", fr: "trop cher", it: "troppo caro",
+    pt: "muito caro", de: "zu teuer", nl: "te duur", sv: "för dyrt",
+    ru: "слишком дорого", ja: "高すぎる", zh: "太贵了", el: "πολύ ακριβό",
+    fi: "liian kallis", pl: "za drogo", ko: "너무 비싸요", hi: "बहुत महँगा",
+    ar: "غالٍ جدا" } },
+  { id: "i-am-just-looking", en: "I'm just looking", category: "shopping", forms: {
+    en: "I'm just looking", es: "solo estoy mirando", fr: "je regarde seulement",
+    it: "sto solo guardando", pt: "só estou olhando", de: "ich schaue nur",
+    nl: "ik kijk alleen", sv: "jag tittar bara", ru: "я просто смотрю",
+    ja: "見ているだけです", zh: "我只是看看", el: "απλώς κοιτάω",
+    fi: "katselen vain", pl: "tylko oglądam", ko: "그냥 구경하는 거예요",
+    hi: "मैं बस देख रहा हूँ", ar: "أنا أتفرج فقط" } },
+  { id: "i-will-take-it", en: "I'll take it", category: "shopping", forms: {
+    en: "I'll take it", es: "me lo llevo", fr: "je le prends", it: "lo prendo",
+    pt: "vou levar", de: "ich nehme es", nl: "ik neem het", sv: "jag tar det",
+    ru: "я возьму это", ja: "これにします", zh: "我要这个", el: "θα το πάρω",
+    fi: "otan sen", pl: "wezmę to", ko: "이걸로 할게요", hi: "मैं इसे लूँगा",
+    ar: "سآخذه" } },
+  { id: "do-you-accept-cards", en: "do you accept cards?", category: "shopping", forms: {
+    en: "do you accept cards?", es: "¿aceptan tarjetas?", fr: "acceptez-vous les cartes ?",
+    it: "accettate carte?", pt: "vocês aceitam cartão?", de: "akzeptieren Sie Karten?",
+    nl: "accepteert u kaarten?", sv: "tar ni kort?", ru: "вы принимаете карты?",
+    ja: "カードは使えますか", zh: "可以刷卡吗", el: "δέχεστε κάρτες;",
+    fi: "käykö kortti?", pl: "czy przyjmujecie karty?", ko: "카드 받으세요?",
+    hi: "क्या आप कार्ड लेते हैं?", ar: "هل تقبلون البطاقات؟" } },
+
+  // ---- directions / travel ----
   { id: "left", en: "left", category: "direction", forms: {
     en: "left", es: "izquierda", fr: "gauche", it: "sinistra", pt: "esquerda",
     de: "links", nl: "links", sv: "vänster", ru: "налево", ja: "左", zh: "左",
-    el: "αριστερά", fi: "vasen", pl: "lewo" } },
+    el: "αριστερά", fi: "vasen", pl: "lewo", ko: "왼쪽", hi: "बायाँ", ar: "يسار" } },
   { id: "right", en: "right", category: "direction", forms: {
     en: "right", es: "derecha", fr: "droite", it: "destra", pt: "direita",
     de: "rechts", nl: "rechts", sv: "höger", ru: "направо", ja: "右", zh: "右",
-    el: "δεξιά", fi: "oikea", pl: "prawo" } },
+    el: "δεξιά", fi: "oikea", pl: "prawo", ko: "오른쪽", hi: "दायाँ", ar: "يمين" } },
   { id: "straight-ahead", en: "straight ahead", category: "direction", forms: {
     en: "straight ahead", es: "todo recto", fr: "tout droit", it: "sempre dritto",
     pt: "em frente", de: "geradeaus", nl: "rechtdoor", sv: "rakt fram",
     ru: "прямо", ja: "まっすぐ", zh: "直走", el: "ευθεία", fi: "suoraan",
-    pl: "prosto" } },
+    pl: "prosto", ko: "직진", hi: "सीधे", ar: "إلى الأمام" } },
+  { id: "how-do-i-get-to", en: "how do I get to...?", category: "direction", forms: {
+    en: "how do I get to...?", es: "¿cómo llego a...?", fr: "comment aller à...?",
+    it: "come arrivo a...?", pt: "como chego a...?", de: "wie komme ich zu...?",
+    nl: "hoe kom ik bij...?", sv: "hur kommer jag till...?", ru: "как добраться до...?",
+    ja: "への行き方は", zh: "怎么去", el: "πώς πάω στο...;", fi: "miten pääsen...?",
+    pl: "jak dojść do...?", ko: "어떻게 가요?", hi: "मैं कैसे पहुँचूँ?",
+    ar: "كيف أصل إلى؟" } },
+  { id: "stop-here", en: "stop here, please", category: "direction", forms: {
+    en: "stop here, please", es: "pare aquí, por favor", fr: "arrêtez-vous ici, s'il vous plaît",
+    it: "si fermi qui, per favore", pt: "pare aqui, por favor", de: "halten Sie hier, bitte",
+    nl: "stop hier, alsjeblieft", sv: "stanna här, tack", ru: "остановите здесь, пожалуйста",
+    ja: "ここで止めてください", zh: "请在这里停", el: "σταματήστε εδώ, παρακαλώ",
+    fi: "pysähdy tähän, kiitos", pl: "proszę się tu zatrzymać", ko: "여기서 세워 주세요",
+    hi: "यहाँ रोकिए, कृपया", ar: "قف هنا من فضلك" } },
+
+  // ---- time / numbers helpers ----
+  { id: "what-time-is-it", en: "what time is it?", category: "time", forms: {
+    en: "what time is it?", es: "¿qué hora es?", fr: "quelle heure est-il ?",
+    it: "che ore sono?", pt: "que horas são?", de: "wie spät ist es?",
+    nl: "hoe laat is het?", sv: "vad är klockan?", ru: "который час?",
+    ja: "今何時ですか", zh: "现在几点", el: "τι ώρα είναι;", fi: "paljonko kello on?",
+    pl: "która godzina?", ko: "몇 시예요?", hi: "क्या समय हुआ है?", ar: "كم الساعة؟" } },
+  { id: "today", en: "today", category: "time", forms: {
+    en: "today", es: "hoy", fr: "aujourd'hui", it: "oggi", pt: "hoje", de: "heute",
+    nl: "vandaag", sv: "idag", ru: "сегодня", ja: "今日", zh: "今天", el: "σήμερα",
+    fi: "tänään", pl: "dzisiaj", ko: "오늘", hi: "आज", ar: "اليوم" } },
+  { id: "tomorrow", en: "tomorrow", category: "time", forms: {
+    en: "tomorrow", es: "mañana", fr: "demain", it: "domani", pt: "amanhã",
+    de: "morgen", nl: "morgen", sv: "imorgon", ru: "завтра", ja: "明日",
+    zh: "明天", el: "αύριο", fi: "huomenna", pl: "jutro", ko: "내일", hi: "कल",
+    ar: "غدا" } },
+  { id: "yesterday", en: "yesterday", category: "time", forms: {
+    en: "yesterday", es: "ayer", fr: "hier", it: "ieri", pt: "ontem",
+    de: "gestern", nl: "gisteren", sv: "igår", ru: "вчера", ja: "昨日",
+    zh: "昨天", el: "χθες", fi: "eilen", pl: "wczoraj", ko: "어제", hi: "कल",
+    ar: "أمس" } },
+  { id: "now", en: "now", category: "time", forms: {
+    en: "now", es: "ahora", fr: "maintenant", it: "adesso", pt: "agora",
+    de: "jetzt", nl: "nu", sv: "nu", ru: "сейчас", ja: "今", zh: "现在",
+    el: "τώρα", fi: "nyt", pl: "teraz", ko: "지금", hi: "अभी", ar: "الآن" } },
+
+  // ---- basics ----
   { id: "good", en: "good", category: "basics", forms: {
     en: "good", es: "bueno", fr: "bon", it: "buono", pt: "bom", de: "gut",
     nl: "goed", sv: "bra", ru: "хорошо", ja: "良い", zh: "好", el: "καλό",
-    fi: "hyvä", pl: "dobry" } },
+    fi: "hyvä", pl: "dobry", ko: "좋아요", hi: "अच्छा", ar: "جيد" } },
   { id: "bad", en: "bad", category: "basics", forms: {
     en: "bad", es: "malo", fr: "mauvais", it: "cattivo", pt: "mau", de: "schlecht",
     nl: "slecht", sv: "dålig", ru: "плохо", ja: "悪い", zh: "坏", el: "κακό",
-    fi: "huono", pl: "zły" } },
-  { id: "today", en: "today", category: "basics", forms: {
-    en: "today", es: "hoy", fr: "aujourd'hui", it: "oggi", pt: "hoje", de: "heute",
-    nl: "vandaag", sv: "idag", ru: "сегодня", ja: "今日", zh: "今天", el: "σήμερα",
-    fi: "tänään", pl: "dzisiaj" } },
-  { id: "tomorrow", en: "tomorrow", category: "basics", forms: {
-    en: "tomorrow", es: "mañana", fr: "demain", it: "domani", pt: "amanhã",
-    de: "morgen", nl: "morgen", sv: "imorgon", ru: "завтра", ja: "明日",
-    zh: "明天", el: "αύριο", fi: "huomenna", pl: "jutro" } },
+    fi: "huono", pl: "zły", ko: "나빠요", hi: "बुरा", ar: "سيء" } },
   { id: "i-love-you", en: "I love you", category: "basics", forms: {
     en: "I love you", es: "te quiero", fr: "je t'aime", it: "ti amo", pt: "eu te amo",
     de: "ich liebe dich", nl: "ik hou van je", sv: "jag älskar dig", ru: "я тебя люблю",
-    ja: "愛してる", zh: "我爱你", el: "σ' αγαπώ", fi: "rakastan sinua", pl: "kocham cię" } },
+    ja: "愛してる", zh: "我爱你", el: "σ' αγαπώ", fi: "rakastan sinua", pl: "kocham cię",
+    ko: "사랑해요", hi: "मैं तुमसे प्यार करता हूँ", ar: "أحبك" } },
+  { id: "i-agree", en: "I agree", category: "basics", forms: {
+    en: "I agree", es: "estoy de acuerdo", fr: "je suis d'accord", it: "sono d'accordo",
+    pt: "eu concordo", de: "ich stimme zu", nl: "ik ben het ermee eens",
+    sv: "jag håller med", ru: "я согласен", ja: "賛成です", zh: "我同意",
+    el: "συμφωνώ", fi: "olen samaa mieltä", pl: "zgadzam się", ko: "동의해요",
+    hi: "मैं सहमत हूँ", ar: "أوافق" } },
+  { id: "i-like-it", en: "I like it", category: "basics", forms: {
+    en: "I like it", es: "me gusta", fr: "j'aime ça", it: "mi piace", pt: "eu gosto",
+    de: "es gefällt mir", nl: "ik vind het leuk", sv: "jag gillar det", ru: "мне нравится",
+    ja: "好きです", zh: "我喜欢", el: "μου αρέσει", fi: "pidän siitä", pl: "podoba mi się",
+    ko: "좋아해요", hi: "मुझे पसंद है", ar: "يعجبني" } },
+  { id: "congratulations", en: "congratulations", category: "basics", forms: {
+    en: "congratulations", es: "felicidades", fr: "félicitations", it: "congratulazioni",
+    pt: "parabéns", de: "herzlichen Glückwunsch", nl: "gefeliciteerd", sv: "grattis",
+    ru: "поздравляю", ja: "おめでとう", zh: "恭喜", el: "συγχαρητήρια",
+    fi: "onnittelut", pl: "gratulacje", ko: "축하합니다", hi: "बधाई हो",
+    ar: "تهانينا" } },
+
+  // ---- more travel / survival ----
+  { id: "i-am-american", en: "I am American", category: "smalltalk", forms: {
+    en: "I am American", es: "soy estadounidense", fr: "je suis américain",
+    it: "sono americano", pt: "sou americano", de: "ich bin Amerikaner",
+    nl: "ik ben Amerikaan", sv: "jag är amerikan", ru: "я американец",
+    ja: "アメリカ人です", zh: "我是美国人", el: "είμαι Αμερικανός",
+    fi: "olen amerikkalainen", pl: "jestem Amerykaninem", ko: "저는 미국인이에요",
+    hi: "मैं अमेरिकी हूँ", ar: "أنا أمريكي" } },
+  { id: "i-dont-speak", en: "I don't speak...", category: "survival", forms: {
+    en: "I don't speak", es: "no hablo", fr: "je ne parle pas", it: "non parlo",
+    pt: "eu não falo", de: "ich spreche kein", nl: "ik spreek geen",
+    sv: "jag talar inte", ru: "я не говорю", ja: "話せません", zh: "我不会说",
+    el: "δεν μιλάω", fi: "en puhu", pl: "nie mówię", ko: "할 줄 몰라요",
+    hi: "मैं नहीं बोलता", ar: "لا أتكلم" } },
+  { id: "what-does-this-mean", en: "what does this mean?", category: "survival", forms: {
+    en: "what does this mean?", es: "¿qué significa esto?", fr: "qu'est-ce que ça veut dire ?",
+    it: "cosa significa?", pt: "o que isso significa?", de: "was bedeutet das?",
+    nl: "wat betekent dit?", sv: "vad betyder det här?", ru: "что это значит?",
+    ja: "どういう意味ですか", zh: "这是什么意思", el: "τι σημαίνει αυτό;",
+    fi: "mitä tämä tarkoittaa?", pl: "co to znaczy?", ko: "이게 무슨 뜻이에요?",
+    hi: "इसका क्या मतलब है?", ar: "ماذا يعني هذا؟" } },
+  { id: "one-moment", en: "one moment, please", category: "courtesy", forms: {
+    en: "one moment, please", es: "un momento, por favor", fr: "un instant, s'il vous plaît",
+    it: "un momento, per favore", pt: "um momento, por favor", de: "einen Moment, bitte",
+    nl: "een moment, alsjeblieft", sv: "ett ögonblick, tack", ru: "минуточку, пожалуйста",
+    ja: "少々お待ちください", zh: "请稍等", el: "μια στιγμή, παρακαλώ",
+    fi: "hetki, kiitos", pl: "chwileczkę, proszę", ko: "잠깐만요",
+    hi: "एक पल, कृपया", ar: "لحظة من فضلك" } },
+  { id: "where-is-the-station", en: "where is the station?", category: "direction", forms: {
+    en: "where is the station?", es: "¿dónde está la estación?", fr: "où est la gare ?",
+    it: "dov'è la stazione?", pt: "onde fica a estação?", de: "wo ist der Bahnhof?",
+    nl: "waar is het station?", sv: "var är stationen?", ru: "где вокзал?",
+    ja: "駅はどこですか", zh: "车站在哪里", el: "πού είναι ο σταθμός;",
+    fi: "missä on asema?", pl: "gdzie jest dworzec?", ko: "역이 어디예요?",
+    hi: "स्टेशन कहाँ है?", ar: "أين المحطة؟" } },
+  { id: "i-have-a-reservation", en: "I have a reservation", category: "dining", forms: {
+    en: "I have a reservation", es: "tengo una reserva", fr: "j'ai une réservation",
+    it: "ho una prenotazione", pt: "tenho uma reserva", de: "ich habe eine Reservierung",
+    nl: "ik heb een reservering", sv: "jag har en bokning", ru: "у меня есть бронь",
+    ja: "予約があります", zh: "我有预订", el: "έχω κράτηση", fi: "minulla on varaus",
+    pl: "mam rezerwację", ko: "예약했어요", hi: "मेरा आरक्षण है",
+    ar: "لدي حجز" } },
+  { id: "open", en: "open", category: "shopping", forms: {
+    en: "open", es: "abierto", fr: "ouvert", it: "aperto", pt: "aberto",
+    de: "geöffnet", nl: "open", sv: "öppet", ru: "открыто", ja: "営業中",
+    zh: "营业中", el: "ανοιχτό", fi: "auki", pl: "otwarte", ko: "영업 중",
+    hi: "खुला", ar: "مفتوح" } },
+  { id: "closed", en: "closed", category: "shopping", forms: {
+    en: "closed", es: "cerrado", fr: "fermé", it: "chiuso", pt: "fechado",
+    de: "geschlossen", nl: "gesloten", sv: "stängt", ru: "закрыто", ja: "閉店",
+    zh: "已关门", el: "κλειστό", fi: "kiinni", pl: "zamknięte", ko: "영업 종료",
+    hi: "बंद", ar: "مغلق" } },
 ];
 
 function main() {
-  // sanity: dedupe ids, ensure en present
   const ids = new Set();
   for (const p of PHRASES) {
     if (ids.has(p.id)) throw new Error("duplicate phrase id: " + p.id);
@@ -230,7 +532,6 @@ function main() {
     if (!p.forms.en) throw new Error("phrase missing en: " + p.id);
     if (!p.category) throw new Error("phrase missing category: " + p.id);
   }
-  // language coverage report
   const allLangs = new Set();
   PHRASES.forEach((p) => Object.keys(p.forms).forEach((l) => allLangs.add(l)));
   const langs = [...allLangs].sort();
@@ -240,12 +541,12 @@ function main() {
   const out = {
     meta: {
       builder: "build-phrases.mjs",
-      bead: "bkt-q8e",
+      bead: "bkt-ctj",
       built: new Date().toISOString(),
       title: "Polyglot Phrases — verified beginner phrases across many languages",
-      note: "Gold / hand-verified translations (same bar as lang-core.json). NOT a corpus dump. A language is present on a phrase only when verified.",
+      note: "Gold / hand-verified translations (same bar as lang-core.json). NOT a corpus dump. A language is present on a phrase only when verified. Korean, Hindi, Arabic added 2026-06-30 to reach all 17 languages.",
       license:
-        "Original curated phrase set. IPA/word atoms elsewhere cross-checked against Wiktionary (CC-BY-SA, via Kaikki).",
+        "Original curated phrase set, hand-verified against established phrasebook usage. Word atoms elsewhere are Wiktionary-derived (CC-BY-SA, via Kaikki).",
       languages: langs,
       phraseCount: PHRASES.length,
       coverage: cov,

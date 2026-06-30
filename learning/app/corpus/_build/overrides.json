@@ -1,0 +1,8 @@
+{
+  "_comment": "Verified manual overrides for the rare (concept, lang) cells where the English Wiktionary translation table's richest sense for the intended meaning lists only regional slang, so the automatic pick is a non-standard word. Each value is the standard, hand-verified dictionary form for that language and sense. These correct demonstrably-wrong cells only — they never invent a translation for a concept Wiktionary doesn't cover. Re-running the extractor applies them deterministically.",
+  "overrides": {
+    "poor": { "es": "pobre" },
+    "evening": { "es": "tarde" },
+    "wine": { "hi": "शराब" }
+  }
+}
