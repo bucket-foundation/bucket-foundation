@@ -235,8 +235,9 @@ img{max-width:100%}
 /* per-chapter figure plate */
 .figplate{margin:14pt 0 4pt}
 .figplate>h2{break-before:auto}
-.figgrid{display:flex;flex-wrap:wrap;gap:9pt;align-items:flex-start}
-.figitem{width:48.4%;margin:0 0 3pt;text-align:center;break-inside:avoid}
+.figgrid{font-size:0}                 /* inline-block paginates across pages (flexbox does not in weasyprint) */
+.figitem{display:inline-block;width:48.6%;vertical-align:top;margin:0 0 7pt;text-align:center;break-inside:avoid}
+.figitem:nth-child(odd){margin-right:2.6%}
 .figitem img{width:100%;border:1px solid #e3dcc9;border-radius:3px;background:#fff}
 .figitem figcaption{font-family:"Helvetica Neue",sans-serif;font-size:6.7pt;color:#5e574a;line-height:1.2;margin:1.5pt 2pt 0}
 .figitem figcaption b{color:#6b5418}
