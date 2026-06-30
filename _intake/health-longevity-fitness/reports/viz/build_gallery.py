@@ -219,6 +219,19 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("D24-checkmate-melanoma.png","Melanoma Immunotherapy","~50% at 5 years"),
  ("D25-achieve-hearing.png","Hearing Aids & Cognition","a lever, not a marker"),
  ("D26-shingles-dementia.png","Shingles Vaccine → Dementia","a natural experiment"),
+ ("P01-ppv-prevalence.png","PPV vs Prevalence","same test, opposite meaning"),
+ ("P02-reference-range.png","Reference-Range False Positives","1 − 0.95ⁿ"),
+ ("P03-roc-curve.png","The ROC Curve","threshold is a policy choice"),
+ ("P04-dose-therapeutic-index.png","Therapeutic Window","the dose makes the poison"),
+ ("P05-half-life.png","Half-Life & Steady State","~5 half-lives to plateau"),
+ ("P06-radiation-dose.png","Radiation Dose in Context","X-ray vs PET"),
+ ("P07-spine-mri.png","Spine MRI in Pain-Free People","wrinkles on the inside"),
+ ("P08-amd-antivegf.png","Anti-VEGF for Wet AMD","blindness made controllable"),
+ ("P09-all-cure.png","Childhood Leukemia Cure","~0% → ~90%"),
+ ("P10-myopia-outdoor.png","Outdoor Time & Myopia","light protects eyes"),
+ ("P11-glaucoma.png","Glaucoma: Lower the Pressure","a proven lever"),
+ ("P12-fluoride.png","Fluoride Toothpaste","dose-dependent"),
+ ("P13-ct-burden.png","CT's Cancer Cost","real, modelled"),
 ]
 
 def b64(p):
