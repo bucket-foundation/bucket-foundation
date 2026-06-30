@@ -195,6 +195,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("DX3-pathogen-classes.png","Five Pathogen Classes","class dictates therapy"),
  ("DX4-cancer-screening.png","Cancer Screening","who, when, the benefit"),
  ("DX5-chronic-viral.png","Chronic Viral Infections","cure / manage / prevent"),
+ ("DS1-t2d-ladder.png","T2D Management Ladder","escalate only as needed"),
+ ("DS2-hf-ef-spectrum.png","Heart Failure by EF","HFrEF / HFmrEF / HFpEF"),
+ ("DS3-crc-sequence.png","Adenoma → Carcinoma","the multi-hit sequence"),
+ ("DS4-gout.png","Gout","urate → crystals → flare"),
+ ("DS5-ra-target.png","RA Treat-to-Target","hit hard, hit early"),
+ ("DS6-low-fodmap.png","Low-FODMAP","a 3-phase protocol"),
+ ("DS7-asthma.png","Asthma","an inflammatory disease"),
+ ("DS8-osa.png","Sleep Apnea","mechanism → consequences"),
+ ("DS9-stroke-windows.png","Stroke Reperfusion Clock","time is brain"),
+ ("DS10-parkinsons-prodrome.png","Parkinson's Prodrome","years before the tremor"),
+ ("DS11-vaccine-timeline.png","Vaccines in History","a fragile win"),
+ ("DS12-one-machine.png","Cardiometabolic = One Machine","treat the system"),
 ]
 
 def b64(p):
