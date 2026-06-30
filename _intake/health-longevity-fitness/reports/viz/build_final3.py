@@ -79,7 +79,7 @@ def prenatal():
 
 # 5. HRV trend
 def hrv():
-    W,H=1000,360
+    W,H=1000,404
     head,cy,foot=fr("Recovery · §05 §5.1","HRV — track your own trend","Heart-rate variability is useful tracked against your own baseline over time. Comparing your number to other people's is noise.","§05 §5.1","hrv-trend",W,H)
     s=[head]; midx=W/2
     s.append(f'<line x1="{midx}" y1="{cy+10}" x2="{midx}" y2="{H-50}" stroke="{RULE}" stroke-width="1.5"/>')
@@ -90,7 +90,7 @@ def hrv():
     s.append(ds.text(250,cy+178,"rising baseline = recovering well",size=11,fill=GRN,font=ds.BODY,anchor="middle"))
     s.append(box(W-440,cy+20,380,46,"IGNORE: vs other people",fill="#f6ece6",stroke=WARN,tcol=WARN))
     s.append(ds.text(W-250,cy+120,"“my HRV is 45, yours is 70”",size=12.5,fill=MUT,font=ds.BODY,italic=True,anchor="middle"))
-    s.append(f'<line x1="{W-380}" y1="{cy+108}" x2="{W-120}" y2="{cy+132}" stroke="{WARN}" stroke-width="3"/>')
+    s.append(f'<line x1="{W-388}" y1="{cy+115}" x2="{W-112}" y2="{cy+115}" stroke="{WARN}" stroke-width="2.5"/>')
     s.append(ds.text(W-250,cy+170,"genetics & age make cross-person comparison meaningless",size=10.5,fill=MUT,font=ds.BODY,anchor="middle"))
     s.append(foot); ds.render("".join(s),f"{FIG}/Y05-hrv.png")
 

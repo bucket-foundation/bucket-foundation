@@ -140,7 +140,7 @@ def osteosarcopenia():
          [("Shared drivers\n(inactivity, low protein)",AMB),("Bone loss +\nmuscle loss",WARN),("Falls → fracture",WARN),("Lever: load +\nprotein",GRN)],
          note="Resistance training + adequate protein is the one intervention that hits both at once.")
 def hpg():
-    W,H=1000,360
+    W,H=1000,409
     head,cy,foot=ds.panel(W,H,"Reproductive · §42 §1","Male steady set-point vs female monthly oscillator",
         "Same HPG hardware (GnRH → LH/FSH → gonad), two control modes: a stable male band vs an engineered ~28-day female cycle with a positive-feedback LH surge.","§42 §1","hpg-male-vs-female")
     s=[head]; midx=W/2

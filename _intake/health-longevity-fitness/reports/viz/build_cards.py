@@ -173,7 +173,7 @@ def anaphylaxis_card():
     s.append(foot); ds.render("".join(s), f"{FIG}/13-anaphylaxis-card.png")
 
 def emergency_wallet():
-    W,H=1020,640
+    W,H=1020,692
     head,y0,foot=emerg_panel(W,H,"Emergency · the one-card reference","Recognize → Act",
         "The handful that kill fast. Call emergency services first; this is the first move.",
         "Education only · CPR/AED & first aid — take a certified course")

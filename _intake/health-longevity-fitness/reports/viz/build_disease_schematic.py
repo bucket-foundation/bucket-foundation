@@ -33,7 +33,7 @@ def frame(name,kicker,title,sub,src,claim,W,H):
 
 # 1. T2D management ladder (vertical, escalate up)
 def t2d_ladder():
-    W,H=1000,520
+    W,H=1000,574
     head,cy,foot=frame("DS-t2d","Cardiometabolic · §22 §2.2","Type-2 diabetes — the management ladder","Start with lifestyle (it wins on prevention), escalate only as needed. Newer agents add heart/kidney benefit.","§22 §2.2","t2d-management-ladder",W,H)
     tiers=[("Lifestyle (diet, weight, activity)","DPP: −58% progression — beats metformin",GRN),
            ("Metformin","first-line drug (UKPDS)",GRN2),
@@ -51,7 +51,7 @@ def t2d_ladder():
 
 # 2. HFrEF vs HFpEF spectrum
 def hf_ef():
-    W,H=1000,340
+    W,H=1000,394
     head,cy,foot=frame("DS-hf","Heart Failure · §22 §1.2","Heart failure by ejection fraction","EF — the % of blood pumped per beat — splits HF into types that look similar but behave differently.","§22 §1.2","hfref-vs-hfpef",W,H)
     s=[head,ARROW]; segs=[("HFrEF","≤ 40%","weak squeeze",WARN),("HFmrEF","40–50%","mildly reduced",AMB),("HFpEF","≥ 50%","stiff, can't fill",BLUE)]
     x0=60; tot=W-120; ws=[0.34,0.18,0.48]
@@ -70,7 +70,7 @@ def hf_ef():
 
 # 3. CRC adenoma->carcinoma sequence
 def crc_seq():
-    W,H=1000,330
+    W,H=1000,376
     head,cy,foot=frame("DS-crc","Oncology · §25 §2.2","The adenoma → carcinoma sequence","Cancer is a multi-hit process: each driver mutation moves a normal cell one step toward malignancy — over ~10–15 years.","§25 §2.2","crc-multihit-sequence",W,H)
     steps=[("Normal\nepithelium",None,"#eef4ec",GRN),("Small\nadenoma",None,CARD,GOLDD),("Large\nadenoma",None,CARD,AMB),("Carcinoma",None,"#f6ece6",WARN),("Metastasis",None,"#f0dcd2",DKR)]
     s=[head,ARROW, flow_row(steps,40,W-40,cy+34,160,66,arrlab=["APC","KRAS","SMAD4 / 18q","TP53"])]
@@ -79,7 +79,7 @@ def crc_seq():
 
 # 4. Gout pathway
 def gout():
-    W,H=1000,320
+    W,H=1000,390
     head,cy,foot=frame("DS-gout","Rheumatology · §24 §13","Gout — urate, crystals, and treat-to-target","Mostly genetic (under-excretion), with diet a minor contributor. Lowering urate below 6 mg/dL dissolves the crystals.","§24 §13","gout-urate-target",W,H)
     steps=[("Hyperuricemia",">6.8 mg/dL (saturation)","#f6ece6",AMB),("MSU crystals","deposit in joints",CARD,WARN),("NLRP3 / IL-1β","inflammasome fires","#f6ece6",WARN),("Gout flare","acute joint attack","#f0dcd2",DKR)]
     s=[head,ARROW, flow_row(steps,40,W-40,cy+30,168,68)]
@@ -89,7 +89,7 @@ def gout():
 
 # 5. RA treat-to-target
 def ra():
-    W,H=1000,330
+    W,H=1000,376
     head,cy,foot=frame("DS-ra","Rheumatology · §24 §12","Rheumatoid arthritis — treat-to-target","Autoantibodies appear years before symptoms. Hit it hard and early — the 'window of opportunity' — and remission is realistic.","§24 §12","ra-treat-to-target",W,H)
     steps=[("Autoantibodies","RF / anti-CCP (pre-symptom)","#f6ece6",AMB),("Synovitis","pannus, TNF / IL-6",CARD,WARN),("Methotrexate","anchor DMARD","#eef4ec",GRN2),("Biologics / JAK","if not at target","#eef4ec",GRN),("Remission","treat-to-target","#dcebd6",GRN)]
     s=[head,ARROW, flow_row(steps,40,W-40,cy+34,162,66)]
@@ -107,7 +107,7 @@ def fodmap():
 
 # 7. Asthma type-2 cascade
 def asthma():
-    W,H=1000,330
+    W,H=1000,379
     head,cy,foot=frame("DS-asth","Respiratory · §23 §A1","Asthma is an inflammatory disease (not just bronchospasm)","Type-2 inflammation drives it — which is why an inhaled steroid is the controller.","§23 §A1","asthma-type2",W,H)
     steps=[("Trigger","allergen / virus","#f6ece6",AMB),("Th2 response","IL-4 / IL-5 / IL-13",CARD,WARN),("Eosinophils, IgE,\nmast cells","airway inflammation","#f6ece6",WARN),("Hyperreactive\nairway","reversible obstruction","#f0dcd2",DKR)]
     s=[head,ARROW, flow_row(steps,40,W-40,cy+30,176,72)]
@@ -116,7 +116,7 @@ def asthma():
 
 # 8. OSA mechanism
 def osa():
-    W,H=1000,330
+    W,H=1000,380
     head,cy,foot=frame("DS-osa","Respiratory · §23 §A3","Obstructive sleep apnea — mechanism to consequences","Repeated airway collapse drives hypoxia and sympathetic surges. CPAP helps symptoms; CV-event benefit is adherence-limited.","§23 §A3","osa-mechanism",W,H)
     steps=[("Airway collapse","during sleep","#f6ece6",AMB),("Intermittent hypoxia\n+ arousals",None,CARD,WARN),("Sympathetic surge","BP, heart rate","#f6ece6",WARN),("HTN · AF · insulin\nresistance",None,"#f0dcd2",DKR)]
     s=[head,ARROW, flow_row(steps,40,W-40,cy+30,176,72)]
@@ -125,7 +125,7 @@ def osa():
 
 # 9. Stroke reperfusion windows timeline
 def stroke_windows():
-    W,H=1000,330
+    W,H=1000,374
     head,cy,foot=frame("DS-strk","Stroke · §24 §3","Ischemic stroke — the reperfusion clock","Earlier is better, but imaging can extend the window. The penumbra is salvageable brain — until it isn't.","§24 §3","stroke-reperfusion-windows",W,H)
     s=[head,ARROW]; x0=70; x1=W-70; y=cy+70
     s.append(f'<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" stroke="{INK}" stroke-width="3"/>')
@@ -155,7 +155,7 @@ def parkinsons():
 
 # 11. Vaccine-preventable disease timeline
 def vaccine_timeline():
-    W,H=1000,330
+    W,H=1000,376
     head,cy,foot=frame("DS-vax","Infectious Disease · §26 §4.3","Vaccines, in historical perspective","One of public health's greatest wins — and a fragile one when coverage slips.","§26 §4.3","vaccine-preventable-timeline",W,H)
     s=[head,ARROW]; x0=70; x1=W-70; y=cy+74
     s.append(f'<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" stroke="{INK}" stroke-width="3"/>')

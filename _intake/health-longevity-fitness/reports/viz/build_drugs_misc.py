@@ -112,7 +112,7 @@ def four_beat():
     s.append(foot); ds.render("".join(s),f"{FIG}/R06-four-beat.png")
 
 def anecdote():
-    W,H=1000,380
+    W,H=1000,428
     head,cy,foot=ds.panel(W,H,"Biohacking · §32","The anecdote engine — why testimonials mislead",
         "Four biases manufacture convincing 'it changed my life' stories from interventions that do nothing.","§32 §10","anecdote-engine")
     s=[head]; items=[("Survivorship","you hear the wins,\nnot the silent failures"),("Lifestyle bundling","they also slept, ate,\ntrained — credit the bundle"),
@@ -127,7 +127,7 @@ def anecdote():
     s.append(foot); ds.render("".join(s),f"{FIG}/R07-anecdote-engine.png")
 
 def placebo_bounded():
-    W,H=1000,400
+    W,H=1000,472
     head,cy,foot=ds.panel(W,H,"Alternative Medicine · §30 §9.1","Placebo is real — but bounded",
         "Placebo moves how you FEEL (brain-mediated). It does not move the underlying pathology.","§30 §9.1","placebo-bounded")
     s=[head]; midx=W/2
@@ -138,7 +138,7 @@ def placebo_bounded():
     s.append(box(W-440,cy+20,380,50,"PLACEBO DOESN'T",fill="#f6ece6",stroke=WARN,tcol=WARN))
     for i,t in enumerate(["Tumor size","Infection / viral load","HbA1c, cholesterol","Fracture healing, survival"]):
         s.append(ds.text(W-428,cy+104+i*30,"• "+t,size=12.5,fill=INK,font=ds.BODY))
-    s.append(ds.text(W/2,H-56,"Hróbjartsson & Gøtzsche: little effect on objective outcomes",size=11,fill=MUT,font=ds.BODY,italic=True,anchor="middle"))
+    s.append(ds.text(W/2,cy+226,"Hróbjartsson & Gøtzsche: little effect on objective outcomes",size=11,fill=MUT,font=ds.BODY,italic=True,anchor="middle"))
     s.append(foot); ds.render("".join(s),f"{FIG}/R08-placebo-bounded.png")
 
 def sepsis_turnover():

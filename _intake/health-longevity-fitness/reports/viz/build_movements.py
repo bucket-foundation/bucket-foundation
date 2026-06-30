@@ -37,19 +37,19 @@ card("M01-push-up.png","Push-Up","TIER A · STRENGTH",GREEN,"horizontal push",bo
      "the upper-body push pattern · pairs with the row")
 
 # 2. OVERHEAD PRESS (front, arms up to a bar)
-cx=230; hd=(cx,G-330); neck=(cx,G-300); hip=(cx,G-178)
-lank=(cx-26,G); rank=(cx+26,G); lkn=(cx-24,G-90); rkn=(cx+24,G-90)
-lel=(cx-40,G-330); rel=(cx+40,G-330); lwr=(cx-44,G-392); rwr=(cx+44,G-392)
+cx=230; hd=(cx,G-266); neck=(cx,G-238); hip=(cx,G-150)
+lank=(cx-26,G); rank=(cx+26,G); lkn=(cx-24,G-78); rkn=(cx+24,G-78)
+lel=(cx-40,G-252); rel=(cx+40,G-252); lwr=(cx-44,G-300); rwr=(cx+44,G-300)
 body=GND()+L(neck,hip,12)+L(hip,lkn,11)+L(lkn,lank,11)+L(hip,rkn,11)+L(rkn,rank,11) \
-     +L(neck,lel,9)+L(lel,lwr,9)+L(neck,rel,9)+L(rel,rwr,9)+bar(cx-58,cx+58,G-398,GOLD_D)+HEAD(hd)+D(hip)
+     +L(neck,lel,9)+L(lel,lwr,9)+L(neck,rel,9)+L(rel,rwr,9)+bar(cx-58,cx+58,G-306,GOLD_D)+HEAD(hd)+D(hip)
 card("M02-overhead-press.png","Overhead Press","TIER A · STRENGTH",GREEN,"vertical push",body,
      ["Press straight overhead; ribs down, glutes tight","Bar finishes over the mid-foot","Don't lean back — brace the trunk","Builds shoulders + overhead strength"],
      "the vertical push pattern · full-body bracing")
 
 # 3. PULL-UP (front, hanging from a bar, arms up)
-cx=230; hd=(cx,G-300); neck=(cx,G-270); hip=(cx,G-150); lkn=(cx-14,G-78); rkn=(cx+14,G-78); lank=(cx-18,G-12); rank=(cx+18,G-12)
-lel=(cx-38,G-330); rel=(cx+38,G-330); lwr=(cx-30,G-378); rwr=(cx+30,G-378)
-body=bar(70,W-70,G-388,INK)+L(neck,hip,12)+L(hip,lkn,11)+L(lkn,lank,11)+L(hip,rkn,11)+L(rkn,rank,11) \
+cx=230; hd=(cx,G-268); neck=(cx,G-240); hip=(cx,G-140); lkn=(cx-14,G-74); rkn=(cx+14,G-74); lank=(cx-18,G-14); rank=(cx+18,G-14)
+lel=(cx-38,G-262); rel=(cx+38,G-262); lwr=(cx-30,G-308); rwr=(cx+30,G-308)
+body=bar(70,W-70,G-310,INK)+L(neck,hip,12)+L(hip,lkn,11)+L(lkn,lank,11)+L(hip,rkn,11)+L(rkn,rank,11) \
      +L(neck,lel,9)+L(lel,lwr,9)+L(neck,rel,9)+L(rel,rwr,9)+HEAD(hd)+D(hip)
 card("M03-pull-up.png","Pull-Up","TIER A · STRENGTH",GREEN,"vertical pull",body,
      ["Hang from the bar; pull chest toward it","Drive elbows down; full range top & bottom","Regress: band-assisted / inverted row","The single best upper-back builder"],

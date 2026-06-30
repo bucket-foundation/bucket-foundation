@@ -92,11 +92,11 @@ def sport_radar():
     cols={"Tennis":GRN,"Swimming":BLUE,"Running":GOLD}
     N=len(axes); ang=np.linspace(0,2*np.pi,N,endpoint=False).tolist(); ang+=ang[:1]
     fig=plt.figure(figsize=(8.6,6.3),dpi=200); fig.patch.set_facecolor(ds.PAPER)
-    ax=fig.add_axes([0.26,0.13,0.48,0.55],polar=True); ax.set_facecolor(ds.PAPER)
+    ax=fig.add_axes([0.28,0.14,0.44,0.52],polar=True); ax.set_facecolor(ds.PAPER)
     ax.set_theta_offset(np.pi/2); ax.set_theta_direction(-1)
     for name,vals in data.items():
         v=vals+vals[:1]; ax.plot(ang,v,lw=2.4,color=cols[name],label=name); ax.fill(ang,v,color=cols[name],alpha=0.09)
-    ax.set_xticks(ang[:-1]); ax.set_xticklabels(axes,fontsize=9,color=INK); ax.tick_params(pad=8)
+    ax.set_xticks(ang[:-1]); ax.set_xticklabels(axes,fontsize=9,color=INK); ax.tick_params(pad=16)
     ax.set_yticks([1,2,3,4,5]); ax.set_yticklabels([]); ax.set_ylim(0,5); ax.grid(color="#e0d8c2")
     ax.legend(loc="lower center",bbox_to_anchor=(0.5,-0.15),ncol=3,fontsize=10,frameon=False)
     fig.text(0.045,0.965,"SPORTS & PLAY · §45",ha="left",va="top",fontsize=9,color=GOLDD,fontfamily=ds.DISPLAY,fontweight="bold")
@@ -111,7 +111,7 @@ def healthspan_gap():
     fig,ax=ds.new_fig(8.2,5.2); x=range(len(cats))
     ax.bar(x,v,color=[MUT,GRN],width=0.5,edgecolor=ds.PAPER,linewidth=1.2); Lb(ax,x,v,"{:.0f} yr",dy=1)
     ax.annotate("",(1.2,66),(1.2,79),arrowprops=dict(arrowstyle="<->",color=WARN,lw=2))
-    ax.text(1.30,72,"~13-year gap\nof poor health",fontsize=10,color=WARN,fontweight="bold",ha="left")
+    ax.set_xlim(-0.6,2.05); ax.text(1.30,73,"~13-year gap\nof poor health",fontsize=10,color=WARN,fontweight="bold",ha="left",va="center")
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=11); ax.set_ylim(0,92)
     ax.set_ylabel("years",fontsize=10,color=MUT)
     ds.title(ax,"Life Stages · §19","Healthspan is the real goal",

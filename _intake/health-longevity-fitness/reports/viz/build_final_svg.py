@@ -49,7 +49,7 @@ def rpe():
 
 # 3. dietary-pattern rings
 def dietary():
-    W,H=1000,540
+    W,H=1000,597
     head,cy,foot=fr("Nutrition · §03 §3","The habits every good diet shares","Every evidence-based diet converges on the same five habits. The label matters far less than the overlap.","§03 §3","dietary-pattern",W,H)
     cx,cyh=W/2,cy+165; s=[head]
     rings=[("Whole, minimally\nprocessed foods",-150,-70,GRN),("Fiber-rich\n(plants)",150,-70,GRN2),("Adequate\nprotein",-200,70,AMB),("Mostly unsaturated\nfats",200,70,BLUE),("Low added\nsugar",0,150,GOLDD)]
@@ -63,7 +63,7 @@ def dietary():
 
 # 4. fasting exclusion panel
 def exclusion():
-    W,H=1000,480
+    W,H=1000,540
     head,cy,foot=fr("Fasting · §36 §7","Who should NOT fast","For these groups, fasting ranges from risky to dangerous. Medical supervision required — or don't.","§36 §7","fasting-exclusions",W,H)
     s=[head]; items=["Type 1 / type 2 diabetes on glucose-lowering meds","Pregnancy or breastfeeding","History of an eating disorder","Underweight or frail / elderly","Children & adolescents","Narrow-therapeutic-index meds (timing-critical)","Advanced kidney or liver disease","Gout (flare risk)"]
     for i,t in enumerate(items):
@@ -95,7 +95,7 @@ def refeeding():
 
 # 6. pop-psych debunks
 def debunks():
-    W,H=1000,450
+    W,H=1000,506
     head,cy,foot=fr("Behavior Change · §29 §8","Pop-psychology that doesn't hold up","Popular, sticky, and wrong. Don't build your system on these.","§29 §8","pop-psych-debunks",W,H)
     s=[head]; myths=["“21 days to form a habit”","“Willpower is a muscle that depletes” (ego depletion)","“Dopamine detox” resets your brain","“Learning styles” (visual/auditory) improve learning","“Manifestation” changes outcomes"]
     for i,m in enumerate(myths):
@@ -125,7 +125,7 @@ def if_then():
 
 # 8. head-trauma axis
 def head_trauma():
-    W,H=1000,310
+    W,H=1000,358
     head,cy,foot=fr("Sports & Play · §45 §5","Combat sports — it's about head-impact dose","The risk isn't the sport; it's repetitive head impacts. Grappling carries little; repeated striking drives CTE.","§45 §5","head-trauma-axis",W,H)
     s=[head]; x0=80; x1=W-80; y=cy+80
     s.append(f'<rect x="{x0}" y="{y-14}" width="{x1-x0}" height="28" rx="14" fill="url(#ht)"/>')
@@ -141,7 +141,7 @@ def head_trauma():
 
 # 9. deprescribing
 def deprescribe():
-    W,H=1000,360
+    W,H=1000,414
     head,cy,foot=fr("Life Stages · §19 §7.3","In old age, the lever is often SUBTRACTION","More drugs spawn more drugs (the prescribing cascade). Deprescribing is real medicine.","§19 §7.3","deprescribing",W,H)
     s=[head,ARROW]; midx=W/2
     s.append(f'<line x1="{midx}" y1="{cy+10}" x2="{midx}" y2="{H-50}" stroke="{RULE}" stroke-width="1.5"/>')
@@ -155,7 +155,7 @@ def deprescribe():
 
 # 10. placebo / nocebo
 def placebo_nocebo():
-    W,H=1000,340
+    W,H=1000,386
     head,cy,foot=fr("Pharmacology · §28 Part E","Placebo & nocebo — your expectations are pharmacology","Belief releases real endogenous chemistry. It cuts both ways: hope can heal symptoms; fear can cause them.","§28 Part E","placebo-nocebo",W,H)
     s=[head]; midx=W/2
     s.append(f'<line x1="{midx}" y1="{cy+10}" x2="{midx}" y2="{H-50}" stroke="{RULE}" stroke-width="1.5"/>')

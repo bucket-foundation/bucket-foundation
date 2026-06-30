@@ -54,11 +54,11 @@ card("M13-dead-hang.png","Dead Hang","TIER B · MOBILITY",GOLD,"grip + decompres
 # 14. JUMP ROPE (front, mid-hop, rope arcing overhead)
 cx=230; hd=(cx,G-298); neck=(cx,G-272); hip=(cx,G-172)
 lkn=(cx-16,G-104); rkn=(cx+16,G-104); lank=(cx-14,G-30); rank=(cx+14,G-30)
-lel=(cx-30,G-232); lhand=(cx-46,G-192); rel=(cx+30,G-232); rhand=(cx+46,G-192)
+lel=(cx-30,G-226); lhand=(cx-50,G-186); rel=(cx+30,G-226); rhand=(cx+50,G-186)
 body=GND()+L(neck,hip,12)+L(hip,lkn,11)+L(lkn,lank,11)+L(hip,rkn,11)+L(rkn,rank,11) \
      +L(neck,lel,9)+L(lel,lhand,9)+L(neck,rel,9)+L(rel,rhand,9)+HEAD(hd)+D(hip) \
-     +f'<path d="M{cx-46} {G-192} Q {cx} {G-372} {cx+46} {G-192}" fill="none" stroke="{GOLD_D}" stroke-width="3"/>' \
-     +f'<path d="M{cx-46} {G-192} Q {cx} {G-70} {cx+46} {G-192}" fill="none" stroke="{GOLD_D}" stroke-width="3" opacity="0.35"/>' \
+     +f'<path d="M{cx-50} {G-186} C {cx-100} {G-302} {cx+100} {G-302} {cx+50} {G-186}" fill="none" stroke="{GOLD_D}" stroke-width="4"/>' \
+     +f'<path d="M{cx-50} {G-186} C {cx-106} {G-24} {cx+106} {G-24} {cx+50} {G-186}" fill="none" stroke="{GOLD_D}" stroke-width="4" opacity="0.55"/>' \
      +f'<line x1="{cx-30}" y1="{G-8}" x2="{cx-30}" y2="{G+4}" stroke="{MUT}" stroke-width="2"/><line x1="{cx+30}" y1="{G-8}" x2="{cx+30}" y2="{G+4}" stroke="{MUT}" stroke-width="2"/>'
 card("M14-jump-rope.png","Jump Rope","TIER B · CONDITIONING",GOLD,"plyometric / cardio",body,
      ["Small, soft hops off the balls of the feet","Turn the rope from the wrists","Stay tall; light and springy; relaxed shoulders","Cheap, portable cardio + coordination + calves"],

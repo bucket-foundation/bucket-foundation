@@ -12,7 +12,8 @@ def aspree():
     cats=["CVD events","Major\nbleeding","All-cause\nmortality"]; v=[0.95,1.38,1.14]
     fig,ax=ds.new_fig(8.4,5.2); x=range(len(cats))
     ax.bar(x,v,color=[MUT,WARN,WARN],width=0.58,edgecolor=ds.PAPER,linewidth=1.2)
-    ax.axhline(1.0,color=INK,lw=1.2); lab(ax,x,v,"{:.2f}",dy=0.02)
+    ax.axhline(1.0,color=INK,lw=1.2)
+    for xi,vi in zip(x,v): ax.text(xi,vi-0.12,f"{vi:.2f}",ha="center",fontsize=11,color="#ffffff",fontweight="bold")
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10.5); ax.set_ylim(0,1.6)
     ax.set_ylabel("hazard ratio (aspirin vs placebo)",fontsize=10,color=MUT)
     ds.title(ax,"Prevention · §10","ASPREE: a clean 'stop' for aspirin in healthy elders",

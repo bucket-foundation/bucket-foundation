@@ -54,7 +54,7 @@ matrix("Z02-incidentaloma.png","Imaging · §40 §4","Scan a healthy person and 
 
 # 3. metabolizer x prodrug 2x2
 def metab():
-    W,H=1000,510
+    W,H=1000,556
     head,cy,foot=fr("Pharmacology · §28 §C.2","Why the SAME gene flips toxicity and failure","Whether a variant is dangerous depends on the drug: an ACTIVE drug behaves opposite to a PRODRUG (which must be activated).","§28 §C.2","metabolizer-prodrug",W,H)
     s=[head]; gx,gy,cw,ch=320,cy+40,300,150
     s.append(ds.text(gx+cw/2,gy-14,"ACTIVE DRUG",size=12,fill=INK,font=ds.DISPLAY,weight="bold",anchor="middle"))
@@ -70,7 +70,7 @@ def metab():
 
 # 4. lab-pair 2x2 (endocrine)
 def labpair():
-    W,H=1000,510
+    W,H=1000,556
     head,cy,foot=fr("Endocrine · §13 §1","Reading an axis from the lab PAIR","The stimulating hormone + the effector hormone together locate the problem: in the gland (primary) or above it (central).","§13 §1","lab-pair-2x2",W,H)
     s=[head]; gx,gy,cw,ch=330,cy+40,290,150
     s.append(ds.text(gx+cw/2,gy-14,"EFFECTOR low",size=12,fill=INK,font=ds.DISPLAY,weight="bold",anchor="middle"))
@@ -86,7 +86,7 @@ def labpair():
 
 # 5. four tissue types
 def tissues():
-    W,H=1000,360
+    W,H=1000,404
     head,cy,foot=fr("Anatomy · §18 §B.1","The four basic tissues","Every organ is built from just four tissue types. Know these and the body's architecture makes sense.","§18 §B.1","four-tissue-types",W,H)
     s=[head]; items=[("Epithelial","covers & lines surfaces; glands",GRN),("Connective","supports & binds (bone, blood, fat)",AMB),("Muscle","generates force & movement",WARN),("Nervous","senses & signals",BLUE)]
     bw=212; gap=((W-80)-4*bw)/3
@@ -106,7 +106,7 @@ def _wrap(t,n):
 
 # 6. gland body map
 def glands():
-    W,H=1000,540
+    W,H=1000,588
     head,cy,foot=fr("Endocrine · §13 §1","The endocrine glands — a body map","Hormone factories scattered head to pelvis — plus fat, gut, and heart, which also secrete. One signalling network.","§13 §1","endocrine-gland-map",W,H)
     s=[head]; cx=300; topy=cy+20
     # simple body outline
@@ -130,8 +130,8 @@ def homology():
     s.append(box(W/2-130,cy+10,260,52,"Bipotential gonad\n(undifferentiated)",stroke=GOLDD))
     s.append(f'<line x1="{W/2-60}" y1="{cy+62}" x2="280" y2="{cy+96}" stroke="{INK}" stroke-width="2.5" marker-end="url(#bk)"/>')
     s.append(f'<line x1="{W/2+60}" y1="{cy+62}" x2="720" y2="{cy+96}" stroke="{INK}" stroke-width="2.5" marker-end="url(#bk)"/>')
-    s.append(ds.text(W/2-150,cy+84,"no SRY",size=11,fill=WARN,font=ds.MONO,weight="bold"))
-    s.append(ds.text(W/2+95,cy+84,"SRY → testis",size=11,fill=BLUE,font=ds.MONO,weight="bold"))
+    s.append(ds.text(214,cy+88,"no SRY",size=11,fill=WARN,font=ds.MONO,weight="bold",anchor="middle"))
+    s.append(ds.text(798,cy+88,"SRY → testis",size=11,fill=BLUE,font=ds.MONO,weight="bold",anchor="middle"))
     s.append(box(120,cy+98,320,40,"FEMALE",fill="#f6ece6",stroke=WARN,tcol=WARN,sz=14))
     s.append(box(560,cy+98,320,40,"MALE",fill="#eef4ec",stroke=BLUE,tcol=BLUE,sz=14))
     pairs=[("Ovary","↔","Testis"),("Clitoris","↔","Penis (glans)"),("Labia majora","↔","Scrotum"),("Labia minora","↔","Penile shaft skin")]
@@ -144,7 +144,7 @@ def homology():
 
 # 8. breathwork
 def breathwork():
-    W,H=1000,450
+    W,H=1000,509
     head,cy,foot=fr("Recovery · §05 §4.2","Two breathing tools, two patterns","The physiological sigh down-shifts stress fast; coherent breathing (~6/min) steadies the nervous system over minutes.","§05 §4.2","breathwork-patterns",W,H)
     s=[head]
     # physiological sigh
@@ -190,7 +190,7 @@ def imaging_flow():
 
 # 11. PKU screening
 def pku():
-    W,H=1000,320
+    W,H=1000,376
     head,cy,foot=fr("Pediatric · §43 §4","PKU — a heel-prick that prevents disability","A simple newborn blood spot catches a metabolic defect; a managed diet prevents irreversible harm entirely.","§43 §4","pku-newborn-screening",W,H)
     s=[head,ARROW]; steps=[("PAH enzyme defect","phenylalanine builds up",WARN),("Heel-prick blood spot","(Guthrie test, day 2–3)",GRN),("Low-Phe diet","start early",GRN),("Normal development","disability prevented",GRN2)]
     n=4; bw=192; gap=((W-80)-n*bw)/(n-1)
@@ -215,7 +215,7 @@ def stemcell_flags():
 
 # 13. questions before elective surgery
 def surgery_q():
-    W,H=1000,480
+    W,H=1000,558
     head,cy,foot=fr("Surgery · §38 §5","Questions before any elective operation","Surgery can be transformative or theater. These questions separate the two — ask them before you consent.","§38 §5","surgery-questions",W,H)
     s=[head]; qs=["What's the natural history if I do nothing?","Is the goal symptoms, survival, or just a better scan?","What's the best BLINDED evidence for MY indication?","Have I truly tried non-surgical treatment?","What's the surgeon's / center's volume for this?","Is there a prehab window to get stronger first?"]
     for i,t in enumerate(qs):

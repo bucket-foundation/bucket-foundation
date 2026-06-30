@@ -56,7 +56,7 @@ hd=(150,G-128); sho=(184,G-126); hip=(282,G-126); knee=(302,G-66); foot=(302,G);
 bench=f'<rect x="128" y="{bt}" width="206" height="16" rx="3" fill="{INK}"/>' \
       +f'<line x1="148" y1="{bt+16}" x2="148" y2="{G}" stroke="{INK}" stroke-width="6"/>' \
       +f'<line x1="312" y1="{bt+16}" x2="312" y2="{G}" stroke="{INK}" stroke-width="6"/>'
-bar=f'<line x1="150" y1="{G-232}" x2="242" y2="{G-232}" stroke="{INK}" stroke-width="7"/>'+plate((150,G-232),20)+plate((242,G-232),20)
+bar=f'<line x1="178" y1="{G-232}" x2="214" y2="{G-232}" stroke="{INK}" stroke-width="6"/>'+plate((196,G-232),26)
 body=GND()+bench+L(sho,hip,12)+L(hip,knee,11)+L(knee,foot,11)+L(sho,hand,9)+bar+HEAD(hd)+D(hip)+D(sho) \
      +f'<line x1="280" y1="{G-210}" x2="280" y2="{G-250}" stroke="{RED}" stroke-width="3" marker-end="url(#ar)"/>'
 card("M19-bench-press.png","Bench Press","TIER A · STRENGTH",GREEN,"loaded horizontal push",body,

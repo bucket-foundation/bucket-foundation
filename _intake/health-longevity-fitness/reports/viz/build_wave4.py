@@ -33,7 +33,7 @@ def sleep_hypnogram():
     ax.fill_between(t,stage,step="post",color=ds.GOLD,alpha=0.18)
     ax.set_yticks([0,1,2,3,4]); ax.set_yticklabels(["N3 (deep)","N2","N1","REM","Awake"],fontsize=10.5)
     ax.set_ylim(-0.4,4.4); ax.set_xlim(0,8); ax.set_xlabel("hours after falling asleep",fontsize=10,color=ds.MUT); ax.grid(axis="x",visible=False)
-    ax.annotate("deep sleep loads early",(1.1,0),xytext=(1.6,2.6),fontsize=9.5,color="#1d6b2e",fontweight="bold",arrowprops=dict(arrowstyle="->",color="#1d6b2e",lw=1.4))
+    ax.annotate("deep sleep loads early",(1.1,0),xytext=(2.0,3.62),fontsize=9.5,color="#1d6b2e",fontweight="bold",arrowprops=dict(arrowstyle="->",color="#1d6b2e",lw=1.4))
     ax.annotate("REM loads late",(7.2,3),xytext=(5.4,3.7),fontsize=9.5,color="#3a6ea5",fontweight="bold",arrowprops=dict(arrowstyle="->",color="#3a6ea5",lw=1.4))
     ds.title(ax,"Recovery · sleep","A night of sleep, stage by stage",
              "~90-min cycles. Deep sleep front-loads (cut short by late nights); REM back-loads (cut by early alarms).")

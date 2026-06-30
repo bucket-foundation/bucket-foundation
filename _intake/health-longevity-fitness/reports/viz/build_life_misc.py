@@ -85,7 +85,7 @@ def frame(k,t,sub,src,claim,W,H): return ds.panel(W,H,k,t,sub,src,claim)
 
 # 5. Frieden health-impact pyramid
 def pyramid():
-    W,H=1000,500
+    W,H=1000,546
     head,cy,foot=frame("Public Health · §33 §3.3","The Health Impact Pyramid","Base tiers reach everyone and need no individual effort; the apex (what the wellness industry sells) helps the fewest.","§33 §3.3","health-impact-pyramid",W,H)
     s=[head]; tiers=[("Socioeconomic factors (poverty, education)","largest impact",GRN,0),
         ("Changing the context (clean water, safe food, smoke-free)","",GRN2,1),
@@ -123,7 +123,7 @@ def frailty():
 
 # 7. circadian dial
 def circadian():
-    W,H=1000,500
+    W,H=1000,548
     head,cy,foot=frame("Sleep · §05 §2","The circadian light dial","Bright light in the morning anchors your clock; dim, warm light at night protects sleep. Light is the master timekeeper.","§05 §2","circadian-light-timing",W,H)
     cx,cyh=W/2,cy+175; r=130; s=[head]
     s.append(f'<circle cx="{cx}" cy="{cyh}" r="{r}" fill="none" stroke="{RULE}" stroke-width="2"/>')
@@ -157,14 +157,20 @@ def comb():
     s.append(foot); ds.render("".join(s),f"{FIG}/N08-com-b.png")
 
 # helper two-column
-def two_col(name,k,t,sub,src,claim,left_h,left,right_h,right,lc=GRN,rc=WARN,note=None,W=1000,H=360):
+def two_col(name,k,t,sub,src,claim,left_h,left,right_h,right,lc=GRN,rc=WARN,note=None,W=1000,H=None):
+    import textwrap as _tw
+    subln=len(_tw.wrap(sub,max(24,int((W-56)/(12.5*0.512))))) if sub else 0
+    cyv=119+19*max(0,subln); maxn=max(len(left),len(right))
+    last=cyv+104+(maxn-1)*30
+    note_y=last+32
+    H=(note_y+18 if note else last+18)+48
     head,cy,foot=frame(k,t,sub,src,claim,W,H); s=[head]; midx=W/2
-    s.append(f'<line x1="{midx}" y1="{cy+10}" x2="{midx}" y2="{H-50}" stroke="{RULE}" stroke-width="1.5"/>')
+    s.append(f'<line x1="{midx}" y1="{cy+10}" x2="{midx}" y2="{H-46}" stroke="{RULE}" stroke-width="1.5"/>')
     s.append(box(60,cy+20,380,50,left_h,fill="#eef4ec" if lc==GRN else "#f6ece6",stroke=lc,tcol=lc))
     for i,x in enumerate(left): s.append(ds.text(74,cy+104+i*30,"• "+x,size=12.5,fill=INK,font=ds.BODY))
     s.append(box(W-440,cy+20,380,50,right_h,fill="#f6ece6",stroke=rc,tcol=rc))
     for i,x in enumerate(right): s.append(ds.text(W-426,cy+104+i*30,"• "+x,size=12.5,fill=INK,font=ds.BODY))
-    if note: s.append(ds.text(W/2,H-56,note,size=11,fill=MUT,font=ds.BODY,italic=True,anchor="middle"))
+    if note: s.append(ds.text(W/2,note_y,note,size=11,fill=MUT,font=ds.BODY,italic=True,anchor="middle"))
     s.append(foot); ds.render("".join(s),f"{FIG}/{name}")
 
 def sun_ledger():

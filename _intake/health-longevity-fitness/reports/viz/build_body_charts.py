@@ -106,9 +106,9 @@ def ivf_age():
     bands=["<35","35–37","38–40","41–42",">42"]; own=[46,38,25,12,4]
     fig,ax=ds.new_fig(8.6,5.2); x=range(len(bands))
     ax.bar(x,own,color=GOLD,width=0.6,edgecolor=ds.PAPER,linewidth=1.2,label="Own eggs")
-    ax.axhline(48,ls="--",color=GRN,lw=2,label="Donor eggs (~flat at donor's age)")
+    ax.axhline(52,ls="--",color=GRN,lw=2,label="Donor eggs (~flat at donor's age)")
     for xi,v in zip(x,own): ax.text(xi,v+1,f"{v}%",ha="center",fontsize=10.5,color=INK,fontweight="bold")
-    ax.set_xticks(list(x)); ax.set_xticklabels(bands,fontsize=10.5); ax.set_ylim(0,56)
+    ax.set_xticks(list(x)); ax.set_xticklabels(bands,fontsize=10.5); ax.set_ylim(0,64)
     ax.set_xlabel("maternal age",fontsize=10,color=MUT); ax.set_ylabel("live birth per cycle (%)",fontsize=10,color=MUT)
     ax.legend(fontsize=9,loc="upper right",frameon=False)
     ds.title(ax,"Reproductive System","IVF success tracks the egg's age",

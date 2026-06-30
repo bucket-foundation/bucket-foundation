@@ -40,7 +40,7 @@ def bayes():
 
 # 2. 2x2 confusion table
 def confusion():
-    W,H=900,520
+    W,H=900,572
     head,cy,foot=ds.panel(W,H,"Test Performance · §41","The 2×2 table — read it two ways",
         "Down the columns = properties of the test (sensitivity, specificity). Across the rows = what a result means for YOU (PPV, NPV).","§41 §A.1","confusion-2x2")
     s=[head]; gx,gy,cw,ch=300,cy+40,260,110
@@ -59,7 +59,7 @@ def confusion():
 
 # 3. ADME journey
 def adme():
-    W,H=1000,330
+    W,H=1000,376
     head,cy,foot=ds.panel(W,H,"Pharmacology · §28 §A.2","ADME — a drug's journey through the body",
         "Absorption, distribution, metabolism, excretion — the four stages that set dose, timing, and interactions.","§28 §A.2","adme-journey")
     steps=[("Absorption","route + first-pass (gut→liver)"),("Distribution","protein binding, fat, BBB"),("Metabolism","liver CYP enzymes (Phase I/II)"),("Excretion","mostly kidney")]
@@ -72,7 +72,7 @@ def adme():
 
 # 4. Agonist spectrum
 def agonist():
-    W,H=1000,360
+    W,H=1000,424
     head,cy,foot=ds.panel(W,H,"Pharmacology · §28 §A.1.2","The agonist spectrum",
         "Drugs don't just 'turn receptors on or off' — they sit on a continuum from inverse agonist to full agonist.","§28 §A.1.2","agonist-spectrum")
     s=[head]; x0=80; x1=W-80; y=cy+90
@@ -117,7 +117,7 @@ def _wrap(t,n):
 
 # 6. SIDS safe sleep bundle
 def sids():
-    W,H=1000,480
+    W,H=1000,558
     head,cy,foot=ds.panel(W,H,"Pediatric · §43 §3.7","Safe sleep — the bundle that halved SIDS",
         "'Back to Sleep' (1994) cut SIDS dramatically. Prone sleeping is ~4× the risk. The rest stacks on top.","§43 §3.7","sids-safe-sleep")
     cx,cyh=W/2,cy+180; s=[head,ARROW]
@@ -148,7 +148,7 @@ def milestones():
 
 # 8. ABCDE melanoma
 def abcde():
-    W,H=1000,360
+    W,H=1000,405
     head,cy,foot=ds.panel(W,H,"Dermatology · §27 §A.5","ABCDE — spotting melanoma early",
         "Check your moles; E (evolving) is the most important. Also watch the 'ugly duckling' — the one that looks different from the rest.","§27 §A.5","abcde-melanoma")
     s=[head]; items=[("A","Asymmetry","one half ≠ other"),("B","Border","ragged / blurred"),("C","Color","varied shades"),("D","Diameter",">6 mm (pencil eraser)"),("E","Evolving","changing = key sign")]
@@ -178,7 +178,7 @@ def boost_regulate():
 
 # 10. Cancer paradox (telomere)
 def cancer_paradox():
-    W,H=1000,390
+    W,H=1000,432
     head,cy,foot=ds.panel(W,H,"Telomeres · §16.3","The telomere cancer paradox",
         "Short telomeres age you; long telomeres / active telomerase feed cancer. 'Lengthening' is not a free lunch.","§16 §16.3","telomere-cancer-paradox")
     s=[head]; midx=W/2
@@ -189,12 +189,12 @@ def cancer_paradox():
     s.append(box(W-440,cy+20,380,52,"TOO LONG / telomerase ON",fill="#f6ece6",stroke=WARN,tcol=WARN))
     for i,t in enumerate(["Cells divide without limit","≈ what 85–90% of cancers do","Mendelian randomization: ↑ several cancers"]):
         s.append(ds.text(W-430,cy+106+i*32,"• "+t,size=12.5,fill=INK,font=ds.BODY))
-    s.append(ds.text(W/2,H-58,"the arrow the supplement market sells you points toward cancer risk",size=11.5,fill=WARN,font=ds.BODY,italic=True,anchor="middle"))
+    s.append(ds.text(W/2,cy+202,"the arrow the supplement market sells you points toward cancer risk",size=11.5,fill=WARN,font=ds.BODY,italic=True,anchor="middle"))
     s.append(foot); ds.render("".join(s),f"{FIG}/PS10-cancer-paradox.png")
 
 # 11. Four imaging physics
 def four_physics():
-    W,H=1000,360
+    W,H=1000,404
     head,cy,foot=ds.panel(W,H,"Imaging · §40 §40.1","Four ways to make an image — four kinds of physics",
         "Each modality probes tissue with a different physical signal. For ionizing types, 'the image and the hazard are the same photon.'","§40 §40.1","imaging-four-physics")
     s=[head]; items=[("X-ray / CT","ionizing EM","absorbed photons","⚠ radiation",WARN),("Ultrasound","mechanical wave","echoes","no radiation",GRN),("MRI","magnetic resonance","spin signal","no radiation",GRN),("Nuclear / PET","radioactive decay","emitted photons","⚠ radiation",WARN)]

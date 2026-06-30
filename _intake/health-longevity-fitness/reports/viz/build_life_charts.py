@@ -52,8 +52,8 @@ def vital_nulls():
     ax.bar(x+w/2,rct,w,color="#b9ad8e",label="Randomized trial (VITAL)",edgecolor=ds.PAPER,linewidth=1.1)
     ax.axhline(1.0,ls="--",color=MUT,lw=1.2)
     for xi,vv in zip(x-w/2,assoc): ax.text(xi,vv-0.07,f"{vv:.2f}",ha="center",fontsize=10,color="#fff",fontweight="bold")
-    for xi,vv in zip(x+w/2,rct): ax.text(xi,vv+0.01,f"{vv:.2f}",ha="center",fontsize=10,color=INK,fontweight="bold")
-    ax.set_xticks(x); ax.set_xticklabels(groups,fontsize=12); ax.set_ylim(0,1.15); ax.legend(fontsize=9.5,loc="lower center",frameon=False)
+    for xi,vv in zip(x+w/2,rct): ax.text(xi,vv-0.07,f"{vv:.2f}",ha="center",fontsize=10,color="#fff",fontweight="bold")
+    ax.set_xticks(x); ax.set_xticklabels(groups,fontsize=12); ax.set_ylim(0,1.18); ax.legend(fontsize=9.5,loc="center",bbox_to_anchor=(0.5,0.40),frameon=False)
     ax.set_ylabel("relative risk (outcome)",fontsize=10,color=MUT)
     ds.title(ax,"Nutrition · §03","Predictor ≠ lever: the supplement that tests null",
              "Low vitamin D and omega-3 PREDICT worse outcomes — but giving them in trials (VITAL) didn't cut cancer, CVD, or fractures. The marker isn't the lever.")
