@@ -250,6 +250,16 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("PS10-cancer-paradox.png","The Telomere Cancer Paradox","not a free lunch"),
  ("PS11-imaging-physics.png","Four Imaging Physics","image = hazard"),
  ("PS12-fagan.png","The Likelihood-Ratio Shortcut","LR moves probability"),
+ ("Q01-aspree.png","ASPREE","a clean 'stop' for aspirin"),
+ ("Q02-sham-surgery.png","Sham-Surgery Trials","the gap vanishes"),
+ ("Q03-bariatric.png","Bariatric Surgery","most effective metabolic Rx"),
+ ("Q04-anesthesia-mortality.png","Anesthesia Got ~300× Safer","a safety triumph"),
+ ("Q05-less-is-more.png","Less-Is-More in the ICU","gentler wins"),
+ ("Q06-gene-prices.png","Gene-Therapy Prices","cures at record cost"),
+ ("Q07-prp.png","PRP Matches Placebo","sold as regeneration"),
+ ("Q08-alt-conventional.png","'Instead-Of' Kills","alternative-only cancer care"),
+ ("Q09-acupuncture.png","Acupuncture","mostly ritual"),
+ ("Q10-ayurveda-metals.png","'Natural' ≠ 'Safe'","heavy metals in supplements"),
 ]
 
 def b64(p):
