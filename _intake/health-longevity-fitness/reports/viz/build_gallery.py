@@ -183,6 +183,13 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("D12-hepc-cure.png","Hepatitis C Cure","grim → curable in a decade"),
  ("D13-finger.png","FINGER Multidomain","cognition improved"),
  ("D14-lecanemab.png","Lecanemab","marginal benefit, real risk"),
+ ("E1-choking.png","Choking","5 back blows + 5 thrusts"),
+ ("E2-stop-the-bleed.png","Severe Bleeding","pressure → tourniquet"),
+ ("E3-naloxone.png","Opioid Overdose","naloxone first"),
+ ("E4-sepsis.png","Sepsis","say the word"),
+ ("E5-burns.png","Burns","20 minutes of cool water"),
+ ("E6-seizure.png","Seizure","protect, time, recover"),
+ ("E7-heat-stroke.png","Heat Stroke","cool first, transport second"),
 ]
 
 def b64(p):
