@@ -312,6 +312,16 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("N10-machines-free.png","Machines vs Free Weights","both, for most"),
  ("N11-cold-dose.png","Cold: Sold ≠ Studied","the plunge vs the data"),
  ("N12-lifespan-timeline.png","One Life, Stage by Stage","build → defend → preserve"),
+ ("F01-week-calendar.png","The Minimum Effective Week","3 templates"),
+ ("F02-rpe-rir.png","RPE & RIR","autoregulate effort"),
+ ("F03-dietary-pattern.png","The Pattern, Not a Diet","five converging habits"),
+ ("F04-fasting-exclusions.png","Who Should NOT Fast","the exclusion list"),
+ ("F05-refeeding.png","Refeeding Syndrome","the danger after a long fast"),
+ ("F06-debunks.png","Pop-Psych That Fails","21 days, willpower, detox…"),
+ ("F07-if-then.png","Implementation Intentions","weld habit to a cue"),
+ ("F08-head-trauma.png","Combat Sports & Head Dose","manage the impacts"),
+ ("F09-deprescribing.png","Deprescribing","subtraction is medicine"),
+ ("F10-placebo-nocebo.png","Placebo & Nocebo","expectation as pharmacology"),
 ]
 
 def b64(p):
