@@ -20,6 +20,7 @@ def dims(p):
 # (output, slug, filename, kicker, head, subtitle, claim)
 PICKS=[
  ("RA01-neuron","neuron","1-Complete_neuron_cell_diagram_en.svg.png","Nervous System · §14","The neuron","Dendrites receive the signal, the axon carries it, and the terminals pass it on.","neuron-anatomy"),
+ ("RA02-synapse","synapse","4-SynapseSchematic_en.svg.png","Nervous System · §14","The synapse","One neuron passes its signal to the next across the cleft, carried by neurotransmitters.","synapse-anatomy"),
  ("RA03-mitochondrion","mitochondrion","3-Animal_mitochondrion_diagram_en.svg.png","Foundations · §01","The mitochondrion","The cell's power plant, where oxygen and fuel become ATP.","mitochondrion-anatomy"),
  ("RA04-nephron","nephron","1-Kidney_nephron_molar_transport_diagram.svg.png","Renal System · §17","The nephron","The kidney's filter unit: blood is filtered, then the tubule reclaims what the body needs.","nephron-anatomy"),
  ("RA05-endocrine-glands","endocrine-glands","2-Illu_endocrine_system_New.png.png","Endocrine · §13","The endocrine glands","Hormone factories from head to pelvis, working as one signaling network.","endocrine-anatomy"),

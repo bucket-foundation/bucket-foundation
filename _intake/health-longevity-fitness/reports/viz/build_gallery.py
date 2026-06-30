@@ -361,6 +361,7 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("Y10-gh-owngoal.png","The GH/IGF-1 Own-Goal","boosters push the wrong way"),
  ("Y11-caffeine.png","Caffeine Has a Long Tail","time it for sleep"),
  ("RA01-neuron.png","The Neuron (real)","open-license illustration"),
+ ("RA02-synapse.png","The Synapse (real)","open-license illustration"),
  ("RA03-mitochondrion.png","The Mitochondrion (real)","open-license illustration"),
  ("RA04-nephron.png","The Nephron (real)","open-license illustration"),
  ("RA05-endocrine-glands.png","Endocrine Glands (real)","open-license illustration"),
