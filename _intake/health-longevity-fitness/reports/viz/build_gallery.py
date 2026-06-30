@@ -190,6 +190,11 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("E5-burns.png","Burns","20 minutes of cool water"),
  ("E6-seizure.png","Seizure","protect, time, recover"),
  ("E7-heat-stroke.png","Heat Stroke","cool first, transport second"),
+ ("DX1-psychiatric.png","Psychiatric Conditions","prevalence & first-line"),
+ ("DX2-mat-moud.png","Medication for Addiction","by substance & evidence"),
+ ("DX3-pathogen-classes.png","Five Pathogen Classes","class dictates therapy"),
+ ("DX4-cancer-screening.png","Cancer Screening","who, when, the benefit"),
+ ("DX5-chronic-viral.png","Chronic Viral Infections","cure / manage / prevent"),
 ]
 
 def b64(p):
