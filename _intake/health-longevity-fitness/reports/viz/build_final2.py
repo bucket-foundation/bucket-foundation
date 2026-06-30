@@ -130,8 +130,8 @@ def homology():
     s.append(box(W/2-130,cy+10,260,52,"Bipotential gonad\n(undifferentiated)",stroke=GOLDD))
     s.append(f'<line x1="{W/2-60}" y1="{cy+62}" x2="280" y2="{cy+96}" stroke="{INK}" stroke-width="2.5" marker-end="url(#bk)"/>')
     s.append(f'<line x1="{W/2+60}" y1="{cy+62}" x2="720" y2="{cy+96}" stroke="{INK}" stroke-width="2.5" marker-end="url(#bk)"/>')
-    s.append(ds.text(214,cy+88,"no SRY",size=11,fill=WARN,font=ds.MONO,weight="bold",anchor="middle"))
-    s.append(ds.text(798,cy+88,"SRY → testis",size=11,fill=BLUE,font=ds.MONO,weight="bold",anchor="middle"))
+    s.append(ds.text(168,cy+60,"no SRY",size=11,fill=WARN,font=ds.MONO,weight="bold",anchor="middle"))
+    s.append(ds.text(836,cy+60,"SRY → testis",size=11,fill=BLUE,font=ds.MONO,weight="bold",anchor="middle"))
     s.append(box(120,cy+98,320,40,"FEMALE",fill="#f6ece6",stroke=WARN,tcol=WARN,sz=14))
     s.append(box(560,cy+98,320,40,"MALE",fill="#eef4ec",stroke=BLUE,tcol=BLUE,sz=14))
     pairs=[("Ovary","↔","Testis"),("Clitoris","↔","Penis (glans)"),("Labia majora","↔","Scrotum"),("Labia minora","↔","Penile shaft skin")]
