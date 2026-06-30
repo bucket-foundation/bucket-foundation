@@ -300,6 +300,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("L16-us-vs-peers.png","Spend More, Get Less","the US outlier"),
  ("L17-epi-transition.png","The Epidemiologic Transition","infectious → chronic"),
  ("L18-cold-heat.png","Cold Kills More Than Heat","by ~17×"),
+ ("N01-supplements.png","Supplement Traffic Light","real / context / hype"),
+ ("N02-fasting-protocols.png","Fasting & Cleanse Protocols","graded honestly"),
+ ("N03-toxin-tiering.png","Environmental Toxins","by evidence weight"),
+ ("N04-recovery-levers.png","Recovery Levers","sleep is the master"),
+ ("N05-health-pyramid.png","The Health Impact Pyramid","base reaches everyone"),
+ ("N06-frailty-pentagon.png","The Frailty Phenotype","five criteria"),
+ ("N07-circadian-dial.png","The Circadian Light Dial","light is the timekeeper"),
+ ("N08-com-b.png","COM-B","diagnose the missing one"),
+ ("N09-sun-ledger.png","The Sun: Two-Sided Ledger","avoid burns, not daylight"),
+ ("N10-machines-free.png","Machines vs Free Weights","both, for most"),
+ ("N11-cold-dose.png","Cold: Sold ≠ Studied","the plunge vs the data"),
+ ("N12-lifespan-timeline.png","One Life, Stage by Stage","build → defend → preserve"),
 ]
 
 def b64(p):
