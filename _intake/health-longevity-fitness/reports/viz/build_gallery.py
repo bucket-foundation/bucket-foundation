@@ -238,6 +238,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("PX4-trisomies.png","Chromosomal Disorders","at a glance"),
  ("PX5-skin-cancer.png","The Three Skin Cancers","common vs deadly"),
  ("PX6-pain-multimodal.png","Chronic Pain","what helps vs what doesn't"),
+ ("PS1-bayes-ppv.png","Bayes: Why a Great Test Misleads","PPV ≈ 9%"),
+ ("PS2-confusion-2x2.png","The 2×2 Table","read it two ways"),
+ ("PS3-adme.png","ADME","a drug's journey"),
+ ("PS4-agonist-spectrum.png","The Agonist Spectrum","inverse → full"),
+ ("PS5-peace-love.png","PEACE & LOVE","RICE is retired"),
+ ("PS6-sids.png","Safe Sleep","the bundle that halved SIDS"),
+ ("PS7-milestones.png","Developmental Red Flags","trajectory beats date"),
+ ("PS8-abcde.png","ABCDE Melanoma","E is most important"),
+ ("PS9-boost-regulate.png","Boost vs Regulate","the right immune goal"),
+ ("PS10-cancer-paradox.png","The Telomere Cancer Paradox","not a free lunch"),
+ ("PS11-imaging-physics.png","Four Imaging Physics","image = hazard"),
+ ("PS12-fagan.png","The Likelihood-Ratio Shortcut","LR moves probability"),
 ]
 
 def b64(p):
