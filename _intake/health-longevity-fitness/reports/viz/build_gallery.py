@@ -328,6 +328,14 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("M31-hollow-hold.png","Hollow Hold","anterior core"),
  ("M32-dead-bug.png","Dead Bug","anti-extension core"),
  ("M33-cable-row.png","Cable Row","horizontal pull"),
+ ("G01-polarized.png","Polarized Cardio","mostly easy, a little hard"),
+ ("G02-leucine.png","The Leucine Threshold","why you spread protein"),
+ ("G03-cost-per-ly.png","Cost Per Life-Year","cheapest far from the clinic"),
+ ("G04-statin-prevention.png","Statins: Primary vs Secondary","baseline risk is the story"),
+ ("G05-rose.png","Rose's Paradox","small shifts, whole population"),
+ ("G06-le-doubling.png","Lifespan Doubled in 200 Years","mostly public health"),
+ ("G07-sport-radar.png","Five-Axis Sport Profile","no sport wins on all"),
+ ("G08-healthspan-gap.png","Healthspan, Not Just Lifespan","shrink the ~13-year gap"),
 ]
 
 def b64(p):
