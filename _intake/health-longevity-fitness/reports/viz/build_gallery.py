@@ -360,6 +360,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("Y09-liver-flush.png","'Liver Flush Stones' Are Soap","not gallstones"),
  ("Y10-gh-owngoal.png","The GH/IGF-1 Own-Goal","boosters push the wrong way"),
  ("Y11-caffeine.png","Caffeine Has a Long Tail","time it for sleep"),
+ ("RA01-neuron.png","The Neuron (real)","open-license illustration"),
+ ("RA03-mitochondrion.png","The Mitochondrion (real)","open-license illustration"),
+ ("RA04-nephron.png","The Nephron (real)","open-license illustration"),
+ ("RA05-endocrine-glands.png","Endocrine Glands (real)","open-license illustration"),
+ ("RA06-action-potential.png","Action Potential (real)","open-license illustration"),
+ ("RA07-dna-replication.png","DNA Replication (real)","open-license illustration"),
+ ("RA08-telomere.png","Chromosome & Telomeres (real)","open-license illustration"),
+ ("RA09-brain-lobes.png","The Lobes of the Brain (real)","open-license illustration"),
+ ("RA10-atherosclerosis.png","Atherosclerosis (real)","open-license illustration"),
+ ("RA11-tissue-epithelial.png","Epithelial Tissue (histology)","open-license micrograph"),
+ ("RA12-tissue-connective.png","Connective Tissue (histology)","open-license micrograph"),
+ ("RA13-tissue-muscle.png","Skeletal Muscle (histology)","open-license micrograph"),
 ]
 
 def b64(p):
