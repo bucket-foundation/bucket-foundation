@@ -232,6 +232,12 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("P11-glaucoma.png","Glaucoma: Lower the Pressure","a proven lever"),
  ("P12-fluoride.png","Fluoride Toothpaste","dose-dependent"),
  ("P13-ct-burden.png","CT's Cancer Cost","real, modelled"),
+ ("PX1-cyp450.png","CYP450 Enzymes","where interactions happen"),
+ ("PX2-pharmacogenomics.png","Pharmacogenomics","genes that change the Rx"),
+ ("PX3-lab-categories.png","Reading Your Bloodwork","by category"),
+ ("PX4-trisomies.png","Chromosomal Disorders","at a glance"),
+ ("PX5-skin-cancer.png","The Three Skin Cancers","common vs deadly"),
+ ("PX6-pain-multimodal.png","Chronic Pain","what helps vs what doesn't"),
 ]
 
 def b64(p):
