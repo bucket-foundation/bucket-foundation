@@ -270,6 +270,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("R08-placebo-bounded.png","Placebo Is Real But Bounded","feel vs pathology"),
  ("R09-sepsis-turnover.png","Sepsis Evidence Turned Over","signal vs ritual"),
  ("R10-sedation-continuum.png","The Sedation Continuum","one dial"),
+ ("A01-neuron.png","The Neuron","and how it fires"),
+ ("A02-nephron.png","The Nephron","the kidney's filter"),
+ ("A03-end-replication.png","The End-Replication Problem","why telomeres shorten"),
+ ("A04-telomere-cap.png","The Telomere Cap","and telomerase"),
+ ("A05-cns-pns.png","CNS vs PNS","the regrowth asymmetry"),
+ ("A06-nociception.png","Nociception ≠ Pain","the brain constructs it"),
+ ("A07-oral-systemic.png","Mouth–Body Links","diabetes is the proven lever"),
+ ("A08-osteosarcopenia.png","Osteosarcopenia","bone & muscle fail together"),
+ ("A09-hpg.png","Male vs Female HPG Axis","set-point vs oscillator"),
+ ("A10-ed-cardiac.png","ED = Cardiac Warning Light","work up the heart"),
+ ("A11-senescence-triggers.png","Senescence Triggers","many entrances"),
+ ("A12-telomere-clock.png","Telomere Clock → Hayflick","the division brake"),
 ]
 
 def b64(p):
