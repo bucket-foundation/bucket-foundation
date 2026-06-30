@@ -322,6 +322,12 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("F08-head-trauma.png","Combat Sports & Head Dose","manage the impacts"),
  ("F09-deprescribing.png","Deprescribing","subtraction is medicine"),
  ("F10-placebo-nocebo.png","Placebo & Nocebo","expectation as pharmacology"),
+ ("M28-bulgarian-split-squat.png","Bulgarian Split Squat","single-leg strength"),
+ ("M29-pallof-press.png","Pallof Press","anti-rotation core"),
+ ("M30-rowing-erg.png","Rowing Machine","legs-led full-body cardio"),
+ ("M31-hollow-hold.png","Hollow Hold","anterior core"),
+ ("M32-dead-bug.png","Dead Bug","anti-extension core"),
+ ("M33-cable-row.png","Cable Row","horizontal pull"),
 ]
 
 def b64(p):
