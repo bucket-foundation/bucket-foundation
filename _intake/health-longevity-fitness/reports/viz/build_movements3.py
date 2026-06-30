@@ -10,15 +10,15 @@ def L(a,b,w=11,c=INK): return f'<line x1="{a[0]:.0f}" y1="{a[1]:.0f}" x2="{b[0]:
 def D(p,r=5,c=INK): return f'<circle cx="{p[0]:.0f}" cy="{p[1]:.0f}" r="{r}" fill="{c}"/>'
 def HEAD(p,c=INK): return f'<circle cx="{p[0]:.0f}" cy="{p[1]:.0f}" r="{HEADR}" fill="{PAPER}" stroke="{c}" stroke-width="7"/>'
 def GND(x0=70,x1=W-40,y=G): return f'<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" stroke="{INK}" stroke-width="4"/>'
-ARROW='<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+ARROW='<defs><marker id="ar" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 
 def card(name,title,badge,bcol,subtitle,body,cues,cite):
     s=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
        f'<rect width="{W}" height="{H}" fill="{PAPER}"/><rect width="{W}" height="8" fill="{GOLD}"/>',ARROW,
-       ds.text(30,48,title,size=23,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
+       ds.text(30,48,title,size=21,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
        f'<rect x="30" y="62" width="{16+len(badge)*7.4:.0f}" height="20" rx="10" fill="{bcol}"/>',
        ds.text(38,77,badge,size=11.5,fill="#fff",font=ds.DISPLAY,weight="bold"),
-       ds.text(48+len(badge)*7.4,77,subtitle,size=13,fill=MUT,font=ds.BODY,italic=True),
+       ds.text(48+len(badge)*7.4,77,subtitle,size=12.5,fill=MUT,font=ds.BODY,italic=True),
        body]
     cy=G+40
     for c in cues:
@@ -61,7 +61,7 @@ body=GND()+L(neck,hip,12)+L(hip,lkn,11)+L(lkn,lank,11)+L(hip,rkn,11)+L(rkn,rank,
      +f'<path d="M{cx-46} {G-192} Q {cx} {G-70} {cx+46} {G-192}" fill="none" stroke="{GOLD_D}" stroke-width="3" opacity="0.35"/>' \
      +f'<line x1="{cx-30}" y1="{G-8}" x2="{cx-30}" y2="{G+4}" stroke="{MUT}" stroke-width="2"/><line x1="{cx+30}" y1="{G-8}" x2="{cx+30}" y2="{G+4}" stroke="{MUT}" stroke-width="2"/>'
 card("M14-jump-rope.png","Jump Rope","TIER B · CONDITIONING",GOLD,"plyometric / cardio",body,
-     ["Small, soft hops off the balls of the feet","Turn the rope from the wrists, not the arms","Stay tall; light and springy; relaxed shoulders","Cheap, portable cardio + coordination + calves"],
+     ["Small, soft hops off the balls of the feet","Turn the rope from the wrists","Stay tall; light and springy; relaxed shoulders","Cheap, portable cardio + coordination + calves"],
      "low-cost conditioning + foot/ankle elasticity")
 
 # 15. HIP-FLEXOR STRETCH (side, half-kneeling lunge, tall torso, hips forward)

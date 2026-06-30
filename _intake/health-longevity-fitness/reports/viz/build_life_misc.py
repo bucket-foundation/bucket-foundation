@@ -6,7 +6,7 @@ FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","fi
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; GRN2="#2f8a4b"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"; DKR="#6b1f12"
 C={"real":GRN,"context":AMB,"hype":WARN,"harm":DKR,"mod":GRN2,"early":AMB,"risky":WARN,"pseudo":DKR,"mixed":AMB}
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker></defs>'
 def matrix(name,k,t,sub,src,claim,headers,rows,xs,badge=True):
     W=1000; H=92+len(rows)*42+64
     head,y0,foot=ds.panel(W,H,k,t,sub,src,claim); s=[head]
@@ -85,7 +85,7 @@ def frame(k,t,sub,src,claim,W,H): return ds.panel(W,H,k,t,sub,src,claim)
 
 # 5. Frieden health-impact pyramid
 def pyramid():
-    W,H=1000,470
+    W,H=1000,500
     head,cy,foot=frame("Public Health · §33 §3.3","The Health Impact Pyramid","Base tiers reach everyone and need no individual effort; the apex (what the wellness industry sells) helps the fewest.","§33 §3.3","health-impact-pyramid",W,H)
     s=[head]; tiers=[("Socioeconomic factors (poverty, education)","largest impact",GRN,0),
         ("Changing the context (clean water, safe food, smoke-free)","",GRN2,1),
@@ -102,7 +102,7 @@ def pyramid():
 
 # 6. Fried frailty pentagon
 def frailty():
-    W,H=1000,460
+    W,H=1000,500
     head,cy,foot=frame("Life Stages · §19 §4","The Fried frailty phenotype","Five measurable criteria. Meeting ≥3 = frail; 1–2 = pre-frail; 0 = robust. It predicts falls, hospitalization, and death.","§19 §4","frailty-pentagon",W,H)
     cx,cyh=W/2,cy+165; r=120; s=[head]
     crit=["Unintentional\nweight loss","Exhaustion","Weakness\n(low grip)","Slow gait\nspeed","Low physical\nactivity"]
@@ -123,7 +123,7 @@ def frailty():
 
 # 7. circadian dial
 def circadian():
-    W,H=1000,460
+    W,H=1000,500
     head,cy,foot=frame("Sleep · §05 §2","The circadian light dial","Bright light in the morning anchors your clock; dim, warm light at night protects sleep. Light is the master timekeeper.","§05 §2","circadian-light-timing",W,H)
     cx,cyh=W/2,cy+175; r=130; s=[head]
     s.append(f'<circle cx="{cx}" cy="{cyh}" r="{r}" fill="none" stroke="{RULE}" stroke-width="2"/>')
@@ -169,10 +169,10 @@ def two_col(name,k,t,sub,src,claim,left_h,left,right_h,right,lc=GRN,rc=WARN,note
 
 def sun_ledger():
     two_col("N09-sun-ledger.png","Exposures · §09 §5","The sun — a two-sided ledger",
-        "UV ages skin and causes cancer; yet sun AVOIDANCE tracks with smoking-level mortality. The verdict: avoid burns, not daylight.","§09 §5","sun-ledger",
+        "UV ages skin and causes cancer; yet sun AVOIDANCE tracks with smoking-level mortality. The verdict: avoid burns while still getting daylight.","§09 §5","sun-ledger",
         "THE COST (UV)",["Skin cancer (incl. melanoma)","Photoaging, wrinkles","→ sunscreen + shade at midday"],
         "THE OTHER SIDE",["Sun avoidance ≈ smoking-level mortality (MISS)","Vitamin D, mood, circadian anchoring","→ regular, non-burning daylight"],
-        lc=WARN,rc=GRN2,note="Avoid burns and tanning beds — not the outdoors.")
+        lc=WARN,rc=GRN2,note="Avoid burns and tanning beds while still enjoying the outdoors.")
 
 def machines_free():
     two_col("N10-machines-free.png","Modalities · §44 §4","Machines vs free weights — both, for most",
@@ -183,7 +183,7 @@ def machines_free():
 
 def cold_dose():
     two_col("N11-cold-dose.png","Recovery · §05 §3","Cold: the dose sold ≠ the dose studied",
-        "The metabolic data come from long, mild cold acclimation — not the 3-minute plunge being marketed.","§05 §3","cold-dose-sold",
+        "The metabolic data come from long, mild cold acclimation — a different protocol from the marketed 3-minute plunge.","§05 §3","cold-dose-sold",
         "WHAT WAS STUDIED",["Hours of MILD cold acclimation","Improved insulin sensitivity, brown fat","Gradual, repeated exposure"],
         "WHAT'S SOLD",["3-minute ice plunge","Mood / discipline / 'inflammation'","Acute, brief, intense"],
         lc=GRN,rc=AMB,note="The plunge may help mood & discipline — just not via the metabolism studies it borrows.")

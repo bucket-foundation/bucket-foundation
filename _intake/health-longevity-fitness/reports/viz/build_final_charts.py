@@ -70,7 +70,7 @@ def rose():
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10.5); ax.set_ylim(0,68)
     ax.set_ylabel("cases prevented (relative)",fontsize=10,color=MUT)
     ds.title(ax,"Public Health · §33","Rose's paradox: small shifts for everyone beat big shifts for a few",
-             "Most cases arise from the large number of people at modest risk — not the few at high risk. A tiny population-wide improvement prevents more disease than targeting extremes.")
+             "Most cases arise from the large number of people at modest risk. A tiny population-wide improvement prevents more disease than targeting only the extremes.")
     ds.footer(ax,"Geoffrey Rose, population strategy","rose-population-strategy",tier="theoretical")
     ds.save(fig,f"{FIG}/G05-rose.png")
 
@@ -80,39 +80,41 @@ def le_doubling():
     ax.plot(yr,le,"-o",lw=3,color=GRN,markersize=6,markerfacecolor=GRN2,markeredgecolor=ds.PAPER)
     ax.set_xlim(1795,2025); ax.set_ylim(20,85); ax.set_xlabel("year",fontsize=10,color=MUT)
     ax.set_ylabel("global life expectancy (years)",fontsize=10,color=MUT)
-    ax.annotate("sanitation,\nvaccines, antibiotics",(1955,55),fontsize=9.5,color=MUT)
+    ax.annotate("sanitation, vaccines,\nantibiotics, nutrition",(1952,50),xytext=(1812,70),fontsize=9.5,color=MUT,arrowprops=dict(arrowstyle="->",color=MUT,lw=1.2))
     ds.title(ax,"Public Health · §33","Human life expectancy more than doubled in 200 years",
-             "Global life expectancy went from ~30 to ~73. Most of the gain came after 1900 — and most of THAT from public health, not clinical medicine.")
+             "Global life expectancy went from ~30 to ~73. Most of the gain came after 1900 — and most of that from public-health advances.")
     ds.footer(ax,"Our World in Data / historical demography","life-expectancy-doubling",tier="cohort")
     ds.save(fig,f"{FIG}/G06-le-doubling.png")
 
 def sport_radar():
-    axes=["Fitness","Longevity\nevidence","Cognitive /\nsocial","Low injury","Low barrier"]
+    axes=["Fitness","Longevity\nevidence","Cognitive /\nsocial","Low\ninjury","Low\nbarrier"]
     data={"Tennis":[4,5,5,3,2],"Swimming":[4,4,2,5,3],"Running":[4,4,2,3,5]}
     cols={"Tennis":GRN,"Swimming":BLUE,"Running":GOLD}
     N=len(axes); ang=np.linspace(0,2*np.pi,N,endpoint=False).tolist(); ang+=ang[:1]
-    fig=plt.figure(figsize=(8.4,5.8),dpi=200); fig.patch.set_facecolor(ds.PAPER)
-    ax=fig.add_subplot(111,polar=True); ax.set_facecolor(ds.PAPER)
+    fig=plt.figure(figsize=(8.6,6.3),dpi=200); fig.patch.set_facecolor(ds.PAPER)
+    ax=fig.add_axes([0.26,0.13,0.48,0.55],polar=True); ax.set_facecolor(ds.PAPER)
+    ax.set_theta_offset(np.pi/2); ax.set_theta_direction(-1)
     for name,vals in data.items():
-        v=vals+vals[:1]; ax.plot(ang,v,lw=2.4,color=cols[name],label=name); ax.fill(ang,v,color=cols[name],alpha=0.08)
-    ax.set_xticks(ang[:-1]); ax.set_xticklabels(axes,fontsize=9.5,color=INK)
-    ax.set_yticks([1,2,3,4,5]); ax.set_yticklabels([],); ax.set_ylim(0,5)
-    ax.legend(loc="upper right",bbox_to_anchor=(1.18,1.12),fontsize=9,frameon=False)
-    fig.text(0.5,0.965,"Sports & Play · §45".upper(),ha="center",fontsize=10,color=GOLDD,fontweight="bold")
-    fig.text(0.07,0.92,"A five-axis sport profile",ha="left",fontsize=17,color=ds.INK2,fontweight="bold")
-    fig.text(0.07,0.885,"No sport wins on every axis — pick for your goals, joints, and what you'll keep doing.",ha="left",fontsize=10.5,color=MUT,style="italic")
-    fig.text(0.07,0.02,"§45 five-axis lens",ha="left",fontsize=8.4,color=ds.FAINT)
-    ds.render_mpl(fig,f"{FIG}/G07-sport-radar.png") if hasattr(ds,"render_mpl") else (fig.savefig(f"{FIG}/G07-sport-radar.png"),plt.close(fig))
+        v=vals+vals[:1]; ax.plot(ang,v,lw=2.4,color=cols[name],label=name); ax.fill(ang,v,color=cols[name],alpha=0.09)
+    ax.set_xticks(ang[:-1]); ax.set_xticklabels(axes,fontsize=9,color=INK); ax.tick_params(pad=8)
+    ax.set_yticks([1,2,3,4,5]); ax.set_yticklabels([]); ax.set_ylim(0,5); ax.grid(color="#e0d8c2")
+    ax.legend(loc="lower center",bbox_to_anchor=(0.5,-0.15),ncol=3,fontsize=10,frameon=False)
+    fig.text(0.045,0.965,"SPORTS & PLAY · §45",ha="left",va="top",fontsize=9,color=GOLDD,fontfamily=ds.DISPLAY,fontweight="bold")
+    fig.text(0.045,0.930,"A five-axis sport profile",ha="left",va="top",fontsize=15,color=ds.INK2,fontfamily=ds.DISPLAY,fontweight="black")
+    fig.text(0.045,0.893,"No sport wins on every axis — choose for your goals, joints, and what you'll keep doing.",ha="left",va="top",fontsize=10,color=MUT,fontstyle="italic")
+    fig.add_artist(plt.Line2D([0.045,0.40],[0.870,0.870],color=GOLD,lw=2.4,transform=fig.transFigure,solid_capstyle="round"))
+    fig.text(0.045,0.022,"§45 five-axis lens",ha="left",fontsize=8.4,color=ds.FAINT)
+    fig.savefig(f"{FIG}/G07-sport-radar.png"); plt.close(fig)
 
 def healthspan_gap():
     cats=["Lifespan\n(years alive)","Healthspan\n(years healthy)"]; v=[79,66]
     fig,ax=ds.new_fig(8.2,5.2); x=range(len(cats))
     ax.bar(x,v,color=[MUT,GRN],width=0.5,edgecolor=ds.PAPER,linewidth=1.2); Lb(ax,x,v,"{:.0f} yr",dy=1)
-    ax.annotate("",(1,66),(1,79),arrowprops=dict(arrowstyle="<->",color=WARN,lw=2))
-    ax.text(1.12,72,"~13-year gap\nof poor health",fontsize=10,color=WARN,fontweight="bold")
+    ax.annotate("",(1.2,66),(1.2,79),arrowprops=dict(arrowstyle="<->",color=WARN,lw=2))
+    ax.text(1.30,72,"~13-year gap\nof poor health",fontsize=10,color=WARN,fontweight="bold",ha="left")
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=11); ax.set_ylim(0,92)
     ax.set_ylabel("years",fontsize=10,color=MUT)
-    ds.title(ax,"Life Stages · §19","The goal is healthspan, not just lifespan",
+    ds.title(ax,"Life Stages · §19","Healthspan is the real goal",
              "We added years but not always healthy ones — a ~13-year gap of disability at the end. The aim of this whole manual: shrink that gap.")
     ds.footer(ax,"GBD healthspan-lifespan gap (indicative)","healthspan-gap",tier="cohort")
     ds.save(fig,f"{FIG}/G08-healthspan-gap.png")

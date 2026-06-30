@@ -33,7 +33,7 @@ def refrange():
     ax.set_xlim(1,30); ax.set_ylim(0,80); ax.set_xlabel("number of independent lab analytes",fontsize=10,color=MUT)
     ax.set_ylabel("chance of ≥1 'abnormal' flag (%)",fontsize=10,color=MUT)
     ds.title(ax,"Test Performance · §41","Why healthy people 'fail' a big lab panel",
-             "Reference ranges flag the outer 5% by definition. Order enough tests and ≥1 false flag becomes near-certain: 1 − 0.95ⁿ. The flag is statistics, not disease.")
+             "Reference ranges flag the outer 5% by definition. Order enough tests and ≥1 false flag becomes near-certain: 1 − 0.95ⁿ. The flag is a statistical artifact.")
     ds.footer(ax,"§41 §A.7 reference-range math","reference-range-false-positive",tier="mechanistic")
     ds.save(fig,f"{FIG}/P02-reference-range.png")
 
@@ -91,7 +91,7 @@ def radiation():
     ax.set_yticks(yp); ax.set_yticklabels(L,fontsize=10); ax.set_xlim(0.003,40)
     ax.set_xlabel("effective dose (mSv, log scale)",fontsize=10,color=MUT)
     ds.title(ax,"Imaging · §40","Radiation dose, in context",
-             "A chest X-ray ≈ a few days of background radiation; a PET/CT ≈ several years. Worth it when it answers a question — not for a 'just-checking' scan.")
+             "A chest X-ray ≈ a few days of background radiation; a PET/CT ≈ several years. Worth it when it answers a real clinical question.")
     ds.footer(ax,"§40 §40.3.1 dose table","radiation-dose-context",tier="mechanistic")
     ds.save(fig,f"{FIG}/P06-radiation-dose.png",left=0.195)
 
@@ -101,7 +101,7 @@ def spine_mri():
     fig,ax=ds.new_fig(8.6,5.2)
     ax.plot(age,deg,lw=2.8,color=WARN,label="Disc degeneration"); ax.plot(age,bulge,lw=2.8,color=GOLD,label="Disc bulge"); ax.plot(age,prot,lw=2.8,color=GRN,label="Disc protrusion")
     ax.set_xlim(20,80); ax.set_ylim(0,100); ax.set_xlabel("age (years)",fontsize=10,color=MUT)
-    ax.set_ylabel("prevalence in PAIN-FREE people (%)",fontsize=9.6,color=MUT); ax.legend(fontsize=9,loc="center right",frameon=False)
+    ax.set_ylabel("prevalence in PAIN-FREE people (%)",fontsize=9.6,color=MUT); ax.legend(fontsize=9,loc="lower right",frameon=False)
     ds.title(ax,"Pain & Injury · §21","Spine 'abnormalities' are normal — in people with no pain",
              "Most disc findings on MRI are age-related and present in people without any back pain — 'wrinkles on the inside'. Imaging early often finds incidental noise.")
     ds.footer(ax,"Brinjikji et al., AJNR 2015","spine-mri-asymptomatic",tier="cohort")
@@ -162,7 +162,7 @@ def fluoride():
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=11); ax.set_ylim(0,36)
     ax.set_ylabel("caries reduction vs no fluoride",fontsize=10,color=MUT)
     ds.title(ax,"Dental · §27","Fluoride toothpaste works — and it's dose-dependent",
-             "≥1000 ppm cuts cavities ~24%; higher helps a little more. Spit, don't rinse (keep the fluoride on the teeth); cut sugar FREQUENCY, not just amount.")
+             "≥1000 ppm cuts cavities ~24%; higher helps a little more. Spit out the excess and skip the water rinse to keep the fluoride on the teeth; cut down on sugar frequency.")
     ds.footer(ax,"Marinho Cochrane 2003; Walsh 2019","fluoride-caries",tier="meta")
     ds.save(fig,f"{FIG}/P12-fluoride.png")
 
@@ -174,7 +174,7 @@ def ct_burden():
     ax.text(1,5.6,"~5% of US cancers\n(~103k/yr, modelled)",ha="center",fontsize=9.5,color=INK,fontweight="bold")
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10); ax.set_ylim(0,30); ax.set_yticks([])
     ds.title(ax,"Imaging · §40","CT saves lives — and carries a real, modelled cancer cost",
-             "Childhood CT raises later cancer risk; population models attribute ~5% of US cancers to CT. Modelled, not a body count — but a reason to scan only when it changes care.")
+             "Childhood CT raises later cancer risk; population models attribute ~5% of US cancers to CT. These are modelled estimates, and a reason to scan only when it changes care.")
     ds.footer(ax,"Mathews 2013; Smith-Bindman 2025 (modelled)","ct-cancer-burden",tier="cohort")
     ds.save(fig,f"{FIG}/P13-ct-burden.png")
 

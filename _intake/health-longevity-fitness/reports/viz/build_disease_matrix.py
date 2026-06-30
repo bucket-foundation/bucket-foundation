@@ -23,7 +23,7 @@ def matrix(name,kicker,title,sub,src,claim,headers,rows,xs,badge=True):
     s.append(foot); ds.render("".join(s),f"{FIG}/{name}")
 
 matrix("DX1-psychiatric.png","Psychiatry · §20 map","Psychiatric conditions — prevalence & first-line care",
-  "Common, treatable, and specific: each disorder has an evidence-based first-line, not a one-size pill.","§20 §0","psychiatric-conditions",
+  "Common, treatable, and specific: each disorder has its own evidence-based first-line treatment.","§20 §0","psychiatric-conditions",
   ["CONDITION","LIFETIME PREVALENCE","FIRST-LINE TREATMENT"],
   [("Depression","15–20%","CBT + an SSRI; combine if severe"),
    ("Anxiety disorders","20–30%","CBT (exposure) + an SSRI/SNRI"),

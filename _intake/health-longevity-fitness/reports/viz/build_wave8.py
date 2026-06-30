@@ -5,7 +5,7 @@ import ds
 import matplotlib.pyplot as plt
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 def arrowdefs():
-    out="".join(f'<marker id="{n}" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="{c}"/></marker>' for n,c in [("ah",ds.GOLD_D),("ar","#b5471f")])
+    out="".join(f'<marker id="{n}" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="{c}"/></marker>' for n,c in [("ah",ds.GOLD_D),("ar","#b5471f")])
     return f'<defs>{out}</defs>'
 def arrow(x1,y1,x2,y2,c=ds.GOLD_D,w=2.2,m="ah"):
     return f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="{c}" stroke-width="{w}" marker-end="url(#{m})"/>'
@@ -115,7 +115,7 @@ def cholesterol_particles():
         s.append(ds.text(gx+45,cy-32,name,size=13,fill=c,font=ds.DISPLAY,weight="800",anchor="middle"))
         s.append(ds.text(gx+45,cy+70,desc,size=9.5,fill=ds.MUT,font=ds.BODY,anchor="middle"))
     s.append(f'<rect x="32" y="{H-94}" width="{W-64}" height="40" rx="6" fill="{ds.CARD}" stroke="{ds.GOLD}" stroke-width="1.2"/>')
-    s.append(ds.text(46,H-70,"Measure apoB (the particle count), not just LDL-C (the cargo). Lower apoB, lower & earlier in life = the lever.",size=11.5,fill=ds.INK,font=ds.BODY,weight="600"))
+    s.append(ds.text(46,H-70,"Measure apoB, the particle count, for a truer read than LDL-C (the cargo). Lower apoB, lower & earlier in life = the lever.",size=11.5,fill=ds.INK,font=ds.BODY,weight="600"))
     s.append(foot); ds.render("".join(s), f"{FIG}/102-cholesterol-particles.png")
 
 def the_cell():

@@ -23,8 +23,8 @@ def card(name,title,sub,recognize,act,note,claim):
        f'<rect width="{W}" height="{H}" fill="{PAPER}"/><rect width="{W}" height="10" fill="{RED}"/>',
        f'<rect x="0" y="10" width="{W}" height="2" fill="{DKR}"/>',
        f'<path d="M30 36 l13 -22 l13 22 z" fill="{RED}"/><rect x="41.5" y="22" width="3" height="9" fill="#fff"/><rect x="41.5" y="33" width="3" height="3" fill="#fff"/>',
-       ds.text(66,52,title,size=24,fill=DKR,font=ds.DISPLAY,weight="800"),
-       ds.text(30,78,sub,size=13,fill=MUT,font=ds.BODY,italic=True)]
+       ds.text(66,52,title,size=21,fill=DKR,font=ds.DISPLAY,weight="800"),
+       ds.text(30,78,sub,size=12.5,fill=MUT,font=ds.BODY,italic=True)]
     y=112
     s.append(ds.text(30,y,"RECOGNIZE",size=12,fill=RED,font=ds.DISPLAY,weight="bold",spacing="0.5")); y+=26
     for r in recognize:
@@ -55,7 +55,7 @@ card("E1-choking.png","Choking","Adult / child who can't cough, speak, or breath
 
 card("E2-stop-the-bleed.png","Severe Bleeding","Life-threatening blood loss — act in seconds",
  ["Blood spurting or pooling fast; soaked-through clothing","Pale, cold, confused, faint = going into shock"],
- ["Press HARD directly on the wound with a cloth — your whole weight, don't let up",
+ ["Press HARD directly on the wound with a cloth — your whole weight and keep it on",
   "Pack a deep wound tightly with gauze/cloth and keep pressing",
   "Life-threatening limb bleed that won't stop → TOURNIQUET 2–3 in above the wound, high & tight, NOT over a joint",
   "Tighten until the bleeding STOPS; write down the TIME applied",

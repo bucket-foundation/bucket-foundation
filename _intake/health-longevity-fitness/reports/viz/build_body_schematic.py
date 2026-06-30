@@ -5,7 +5,7 @@ import ds
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker><marker id="gn" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1d6b2e"/></marker><marker id="wn" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker><marker id="gn" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1d6b2e"/></marker><marker id="wn" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 def box(x,y,w,h,label,fill=CARD,stroke=GOLDD,tcol=INK,sub=None,sz=13):
     s=f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="9" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
     if sub:
@@ -34,7 +34,7 @@ def flow_row(steps,x0,x1,y,bw,bh,flagcol=GRN):
 
 # 1. Levels of organization — nested stacked bands
 def levels():
-    W,H=1000,470; y0=frame.__self__ if False else None
+    W,H=1000,560; y0=frame.__self__ if False else None
     items=[("Atoms","C · H · O · N · P · S"),("Molecules","DNA, proteins, ATP, lipids"),
            ("Organelles","mitochondria, nucleus, ribosomes"),("Cells","the unit of life"),
            ("Tissues","epithelial · connective · muscle · nervous"),("Organs","heart, liver, brain…"),
@@ -79,7 +79,7 @@ def atpchain():
 
 # 4. Generic endocrine axis loop
 def endo_axis():
-    W,H=1000,440
+    W,H=1000,520
     head,cy,foot=ds.panel(W,H,"Endocrine · §13 §1","The three-tier axis — the shared control law",
         "Hypothalamus → pituitary → gland → hormone, with negative feedback. HPA, HPT, HPG all run this primitive.","§13 §1","generic-endocrine-axis")
     cx=330; bw=210; bh=58
@@ -169,7 +169,7 @@ def iron():
 def inflammaging():
     W,H=1000,548
     head,cy,foot=ds.panel(W,H,"Immune · §15 §3.1","The inflammaging hub",
-        "Many low-grade sources feed one chronic fire; that fire feeds the diseases of aging. IL-6/hsCRP mark it (predictor, not lever).","§15 §3.1","inflammaging-hub")
+        "Many low-grade sources feed one chronic fire; that fire feeds the diseases of aging. IL-6/hsCRP mark it (a predictor of risk).","§15 §3.1","inflammaging-hub")
     cxh,cyh=W/2,cy+178; r=64
     s=[head,ARROW]
     sources=[("Senescent cells\n(SASP)",-160,-122),("Gut barrier\nleak",160,-122),("Visceral fat\n(adipokines)",-224,8),

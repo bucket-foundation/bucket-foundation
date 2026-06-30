@@ -6,7 +6,7 @@ FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","fi
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; GRN2="#2f8a4b"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"; DKR="#6b1f12"
 C={"high":WARN,"low":GRN,"mod":AMB}
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker></defs>'
 def matrix(name,k,t,sub,src,claim,headers,rows,xs,badge=True):
     W=1000; H=92+len(rows)*44+64
     head,y0,foot=ds.panel(W,H,k,t,sub,src,claim); s=[head]
@@ -54,7 +54,7 @@ matrix("Z02-incidentaloma.png","Imaging · §40 §4","Scan a healthy person and 
 
 # 3. metabolizer x prodrug 2x2
 def metab():
-    W,H=1000,470
+    W,H=1000,510
     head,cy,foot=fr("Pharmacology · §28 §C.2","Why the SAME gene flips toxicity and failure","Whether a variant is dangerous depends on the drug: an ACTIVE drug behaves opposite to a PRODRUG (which must be activated).","§28 §C.2","metabolizer-prodrug",W,H)
     s=[head]; gx,gy,cw,ch=320,cy+40,300,150
     s.append(ds.text(gx+cw/2,gy-14,"ACTIVE DRUG",size=12,fill=INK,font=ds.DISPLAY,weight="bold",anchor="middle"))
@@ -70,7 +70,7 @@ def metab():
 
 # 4. lab-pair 2x2 (endocrine)
 def labpair():
-    W,H=1000,470
+    W,H=1000,510
     head,cy,foot=fr("Endocrine · §13 §1","Reading an axis from the lab PAIR","The stimulating hormone + the effector hormone together locate the problem: in the gland (primary) or above it (central).","§13 §1","lab-pair-2x2",W,H)
     s=[head]; gx,gy,cw,ch=330,cy+40,290,150
     s.append(ds.text(gx+cw/2,gy-14,"EFFECTOR low",size=12,fill=INK,font=ds.DISPLAY,weight="bold",anchor="middle"))
@@ -124,7 +124,7 @@ def glands():
 
 # 7. embryonic homology
 def homology():
-    W,H=1000,400
+    W,H=1000,480
     head,cy,foot=fr("Reproductive · §42 §1","One body plan — male & female are homologous","Both sexes start from the same bipotential template; the SRY gene flips the switch. The parts have matching origins.","§42 §1","embryonic-homology",W,H)
     s=[head,ARROW]
     s.append(box(W/2-130,cy+10,260,52,"Bipotential gonad\n(undifferentiated)",stroke=GOLDD))
@@ -144,7 +144,7 @@ def homology():
 
 # 8. breathwork
 def breathwork():
-    W,H=1000,400
+    W,H=1000,450
     head,cy,foot=fr("Recovery · §05 §4.2","Two breathing tools, two patterns","The physiological sigh down-shifts stress fast; coherent breathing (~6/min) steadies the nervous system over minutes.","§05 §4.2","breathwork-patterns",W,H)
     s=[head]
     # physiological sigh
@@ -162,7 +162,7 @@ def breathwork():
 
 # 9. childhood vaccines
 def vaccines_kids():
-    W,H=1000,400
+    W,H=1000,490
     head,cy,foot=fr("Pediatric · §43 §3.1","Diseases the childhood vaccines hold back","Each once killed or maimed children at scale. They return where coverage drops — measles first.","§43 §3.1","vaccine-preventable-childhood",W,H)
     s=[head]; items=["Measles ('immune amnesia')","Pertussis (whooping cough)","Diphtheria","Tetanus","Polio","Hib meningitis","Pneumococcus","Rotavirus","Rubella (+ CRS)","Mumps","Varicella","Hepatitis B"]
     for i,t in enumerate(items):
@@ -174,8 +174,8 @@ def vaccines_kids():
 
 # 10. imaging decision flow
 def imaging_flow():
-    W,H=1000,360
-    head,cy,foot=fr("Imaging · §40 §9","Image a QUESTION, not a body","The right scan answers a specific clinical question. 'Just checking' scans on the well mostly find incidental noise.","§40 §9","image-a-question",W,H)
+    W,H=1000,390
+    head,cy,foot=fr("Imaging · §40 §9","Image a specific QUESTION","The right scan answers a specific clinical question. 'Just checking' scans on the well mostly find incidental noise.","§40 §9","image-a-question",W,H)
     s=[head,ARROW]
     s.append(box(60,cy+50,200,60,"Clinical question?",stroke=GOLDD))
     s.append(harrow(260,330,cy+80))
@@ -203,8 +203,8 @@ def pku():
 
 # 12. predatory stem-cell red flags
 def stemcell_flags():
-    W,H=1000,360
-    head,cy,foot=fr("Regenerative · §31 §2.3","Spotting a predatory stem-cell clinic","If you see these, walk away. Real cell therapies are in trials and approvals — not cash-only infusion bars.","§31 §2.3","stemcell-redflags",W,H)
+    W,H=1000,450
+    head,cy,foot=fr("Regenerative · §31 §2.3","Spotting a predatory stem-cell clinic","If you see these, walk away. Real cell therapies live in clinical trials and regulatory approvals.","§31 §2.3","stemcell-redflags",W,H)
     s=[head]; flags=["Cash-only; not covered by insurance","Treats a long, unrelated menu of conditions","Not registered on ClinicalTrials.gov","Promises to 'regenerate' tissues cells can't build","Testimonials instead of trial data","Pressure to decide / pay today"]
     for i,t in enumerate(flags):
         col=i%2; row=i//2; x=60+col*450; yy=cy+24+row*82
@@ -215,7 +215,7 @@ def stemcell_flags():
 
 # 13. questions before elective surgery
 def surgery_q():
-    W,H=1000,400
+    W,H=1000,480
     head,cy,foot=fr("Surgery · §38 §5","Questions before any elective operation","Surgery can be transformative or theater. These questions separate the two — ask them before you consent.","§38 §5","surgery-questions",W,H)
     s=[head]; qs=["What's the natural history if I do nothing?","Is the goal symptoms, survival, or just a better scan?","What's the best BLINDED evidence for MY indication?","Have I truly tried non-surgical treatment?","What's the surgeon's / center's volume for this?","Is there a prehab window to get stronger first?"]
     for i,t in enumerate(qs):

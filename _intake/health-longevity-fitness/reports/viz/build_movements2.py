@@ -11,16 +11,16 @@ def D(p,r=5,c=INK): return f'<circle cx="{p[0]:.0f}" cy="{p[1]:.0f}" r="{r}" fil
 def HEAD(p,c=INK): return f'<circle cx="{p[0]:.0f}" cy="{p[1]:.0f}" r="{HEADR}" fill="{PAPER}" stroke="{c}" stroke-width="7"/>'
 def GND(x0=70,x1=W-40,y=G): return f'<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" stroke="{INK}" stroke-width="4"/>'
 def wt(p,rw=22,rh=15,c=INK): return f'<rect x="{p[0]-rw/2:.0f}" y="{p[1]-rh/2:.0f}" width="{rw}" height="{rh}" rx="3" fill="{c}"/>'
-ARROW='<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+ARROW='<defs><marker id="ar" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 def uparrow(x,y0,y1): return f'<line x1="{x}" y1="{y0}" x2="{x}" y2="{y1}" stroke="{RED}" stroke-width="3" marker-end="url(#ar)"/>'
 
 def card(name,title,badge,bcol,subtitle,body,cues,cite):
     s=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
        f'<rect width="{W}" height="{H}" fill="{PAPER}"/><rect width="{W}" height="8" fill="{GOLD}"/>',ARROW,
-       ds.text(30,48,title,size=23,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
+       ds.text(30,48,title,size=21,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
        f'<rect x="30" y="62" width="{16+len(badge)*7.4:.0f}" height="20" rx="10" fill="{bcol}"/>',
        ds.text(38,77,badge,size=11.5,fill="#fff",font=ds.DISPLAY,weight="bold"),
-       ds.text(48+len(badge)*7.4,77,subtitle,size=13,fill=MUT,font=ds.BODY,italic=True),
+       ds.text(48+len(badge)*7.4,77,subtitle,size=12.5,fill=MUT,font=ds.BODY,italic=True),
        body]
     cy=G+40
     for c in cues:

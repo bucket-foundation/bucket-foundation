@@ -56,7 +56,7 @@ matrix("BX2-neurotransmitters.png","Nervous system · §3","Neurotransmitters �
   [40,330,690],badge=False)
 
 # 3. immune-modulator ladder
-matrix("BX3-immune-ladder.png","Immune system · regulate ≠ boost","Immune modulators — what survives the evidence",
+matrix("BX3-immune-ladder.png","Immune system · the regulated immune system","Immune modulators — what survives the evidence",
   "“Boosting” is the category error. The proven moves regulate; the marketed ones do nothing.","§15 §4/§7","immune-modulator-ladder",
   ["INTERVENTION","WHAT THE EVIDENCE SHOWS","VERDICT"],
   [("Vaccines","RCT + population — the strongest tool",("PROVEN",C["proven"])),

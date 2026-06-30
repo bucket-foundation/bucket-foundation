@@ -5,7 +5,7 @@ import ds
 import matplotlib.pyplot as plt
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 def arrowdefs():
-    out="".join(f'<marker id="{n}" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="{c}"/></marker>' for n,c in [("ah",ds.GOLD_D),("ar","#b5471f"),("am",ds.MUT)])
+    out="".join(f'<marker id="{n}" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="{c}"/></marker>' for n,c in [("ah",ds.GOLD_D),("ar","#b5471f"),("am",ds.MUT)])
     return f'<defs>{out}</defs>'
 def arrow(x1,y1,x2,y2,c=ds.GOLD_D,w=2.2,m="ah"):
     return f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="{c}" stroke-width="{w}" marker-end="url(#{m})"/>'
@@ -118,9 +118,10 @@ def endocrine_axes():
             s.append(ds.text(x+cw/2,ny+24,node,size=12.5,fill=ds.INK2,font=ds.DISPLAY,weight="700",anchor="middle"))
             s.append(ds.text(x+cw/2,ny+42,"↓ "+hor,size=10.5,fill=c,font=ds.BODY,weight="600",anchor="middle"))
             if k<2: s.append(arrow(x+cw/2,ny+bh,x+cw/2,ny+88,c,2,"ah"))
-        # feedback arrow (curved, down the side)
-        s.append(f'<path d="M{x+cw-6} {yy+2*88+30} q 40 -90 0 -2*88" fill="none" stroke="{ds.MUT}" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#am)"/>')
-        s.append(ds.text(x+cw+14,yy+88+10,"(−)",size=12,fill=ds.MUT,font=ds.DISPLAY,weight="bold"))
+        # negative-feedback loop: clean curved arrow from the effector box up to the hypothalamus
+        fx=x+cw
+        s.append(f'<path d="M{fx} {yy+205} C {fx+26} {yy+168} {fx+26} {yy+62} {fx} {yy+30}" fill="none" stroke="{ds.MUT}" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#am)"/>')
+        s.append(ds.text(fx+23,yy+120,"(-)",size=12,fill=ds.MUT,font=ds.DISPLAY,weight="bold",anchor="middle"))
     s.append(foot); ds.render("".join(s), f"{FIG}/61-endocrine-axes.png")
 
 def longevity_plate():
@@ -147,14 +148,14 @@ def longevity_plate():
 def sleep_hygiene():
     W,H=920,600
     head,y0,foot=ds.panel(W,H,"Recovery · the sleep levers","Sleep hygiene — what actually works",
-        "Regularity and light beat any gadget. Tier-A behaviours, not supplements.","§Recovery","sleep-hygiene")
+        "Regularity and light beat any gadget. Tier-A behaviours do the work.","§Recovery","sleep-hygiene")
     s=[head]
     items=[("Keep a regular wake time — even weekends","the single strongest lever"),
            ("Bright light in the morning; dim it at night","anchors the circadian clock"),
            ("Cool, dark, quiet room (~18 °C)","temperature drop triggers sleep"),
            ("Cut caffeine ~8–10 h before bed","half-life is ~5–6 hours"),
            ("No alcohol as a 'nightcap'","it fragments the second half"),
-           ("Wind-down + screens down before bed","lower arousal, not blue-light gadgets"),
+           ("Wind-down + screens down before bed","lower evening arousal"),
            ("Track total time & timing — NOT 'deep sleep %'","consumer staging is inaccurate")]
     ry=y0+18; rh=(H-58-ry)/len(items)
     for i,(t,note) in enumerate(items):
@@ -192,7 +193,7 @@ def geroprotector_matrix():
 def hpa_axis():
     W,H=720,640
     head,y0,foot=ds.panel(W,H,"Endocrine · the stress response","The HPA axis — your stress thermostat",
-        "Stress → cortisol, with a feedback brake. Chronic activation is the problem, not cortisol itself.","§Endocrine System","hpa-axis")
+        "Stress → cortisol, with a feedback brake. Chronic activation is the problem.","§Endocrine System","hpa-axis")
     s=[head, arrowdefs()]
     cx=W/2; nodes=[("Stressor","→ the brain perceives a threat","#8a8170",y0+24),
                    ("Hypothalamus","releases CRH","#b08d3a",y0+118),
@@ -207,35 +208,37 @@ def hpa_axis():
     s.append(f'<path d="M{cx-150} {y0+306+31} C {cx-260} {y0+240}, {cx-260} {y0+140}, {cx-150} {y0+118+31}" fill="none" stroke="#1d6b2e" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#am)"/>')
     s.append(ds.text(cx-250,y0+225,"negative",size=11,fill="#1d6b2e",font=ds.BODY,weight="700",anchor="middle"))
     s.append(ds.text(cx-250,y0+241,"feedback",size=11,fill="#1d6b2e",font=ds.BODY,weight="700",anchor="middle"))
-    s.append(ds.text(cx,H-58,"Healthy: a sharp spike then shut-off. The harm is from CHRONIC activation, not the hormone.",size=11,fill=ds.INK,font=ds.BODY,weight="600",anchor="middle"))
+    s.append(ds.text(cx,H-58,"Healthy: a sharp spike then shut-off. The harm comes from CHRONIC activation.",size=11,fill=ds.INK,font=ds.BODY,weight="600",anchor="middle"))
     s.append(foot); ds.render("".join(s), f"{FIG}/65-hpa-axis.png")
 
 def synapse():
-    W,H=1020,500
+    W,H=1020,560
     head,y0,foot=ds.panel(W,H,"Nervous system · the connection","The synapse — how neurons talk",
-        "An electrical signal becomes a chemical one and back. This is where drugs & learning act.","§Nervous System","synapse-neurotransmission")
+        "An electrical signal becomes a chemical one and back. This is where drugs and learning act.","§Nervous System","synapse-neurotransmission")
     s=[head, arrowdefs()]
-    # presynaptic terminal (left bulb), cleft, postsynaptic (right)
-    pre_x=200; post_x=W-260; cy=y0+150
-    s.append(f'<path d="M80 {cy-90} q 140 0 160 90 q -20 90 -160 90 Z" fill="#3a6ea5" fill-opacity="0.18" stroke="#3a6ea5" stroke-width="2.5"/>')
-    s.append(ds.text(150,cy-104,"pre-synaptic terminal",size=11,fill="#3a6ea5",font=ds.DISPLAY,weight="bold"))
-    # vesicles
-    for vx,vy in [(170,cy-20),(200,cy+20),(225,cy-10),(195,cy-40)]:
-        s.append(f'<circle cx="{vx}" cy="{vy}" r="11" fill="none" stroke="{ds.GOLD_D}" stroke-width="2"/>')
-        s.append(f'<circle cx="{vx}" cy="{vy}" r="3" fill="{ds.GOLD_D}"/>')
-    s.append(ds.text(195,cy+58,"vesicles of neurotransmitter",size=9.5,fill=ds.MUT,font=ds.BODY,anchor="middle"))
-    # cleft + released NT
-    for nx in range(290,post_x-20,26):
-        s.append(f'<circle cx="{nx}" cy="{cy+(8 if nx%52==0 else -6)}" r="4" fill="{ds.GOLD}"/>')
-    s.append(arrow(260,cy,290,cy,ds.GOLD_D,2,"ah"))
-    s.append(ds.text((290+post_x)/2,cy-40,"synaptic cleft",size=11,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold",anchor="middle"))
-    # postsynaptic with receptors
-    s.append(f'<path d="M{post_x} {cy-90} q -110 0 -120 90 q 10 90 120 90 Z" fill="#b08d3a" fill-opacity="0.16" stroke="#b08d3a" stroke-width="2.5"/>')
-    for ry in [cy-44,cy-12,cy+20,cy+52]:
-        s.append(f'<rect x="{post_x-26}" y="{ry-8}" width="20" height="16" rx="3" fill="{ds.GOLD_D}"/>')
-    s.append(ds.text(post_x+10,cy-104,"post-synaptic neuron",size=11,fill="#b08d3a",font=ds.DISPLAY,weight="bold"))
-    s.append(ds.text(post_x-16,cy+78,"receptors",size=9.5,fill=ds.MUT,font=ds.BODY,anchor="middle"))
-    s.append(ds.text(W/2,H-58,"Most psychiatric & neurological drugs act right here — on the neurotransmitters or their receptors.",size=11,fill=ds.INK,font=ds.BODY,weight="600",anchor="middle"))
+    GOLD=ds.GOLD; GOLDD=ds.GOLD_D; BLUE="#3a6ea5"; MUT=ds.MUT; INK=ds.INK; GRN="#1d6b2e"
+    cy=y0+185; post_x=W-250
+    s.append(f'<line x1="40" y1="{cy}" x2="122" y2="{cy}" stroke="{INK}" stroke-width="9" stroke-linecap="round"/>')
+    s.append(arrow(72,cy,110,cy,BLUE,3,"ah")); s.append(ds.text(46,cy-24,"1 · impulse arrives",size=11,fill=BLUE,font=ds.DISPLAY,weight="bold"))
+    s.append(f'<path d="M122 {cy-95} q 150 0 168 95 q -18 95 -168 95 Z" fill="{BLUE}" fill-opacity="0.15" stroke="{BLUE}" stroke-width="2.5"/>')
+    s.append(ds.text(150,cy-110,"PRE-SYNAPTIC TERMINAL",size=10,fill=BLUE,font=ds.DISPLAY,weight="bold",spacing="0.4"))
+    for vx,vy in [(185,cy-30),(162,cy+20),(216,cy-4),(198,cy+46)]:
+        s.append(f'<circle cx="{vx}" cy="{vy}" r="12" fill="none" stroke="{GOLDD}" stroke-width="2"/><circle cx="{vx}" cy="{vy}" r="3" fill="{GOLDD}"/>')
+    s.append(arrow(312,cy-66,278,cy-34,GRN,2.4,"ah")); s.append(ds.text(320,cy-70,"2 · Ca2+ enters",size=11,fill=GRN,font=ds.DISPLAY,weight="bold"))
+    s.append(f'<circle cx="266" cy="{cy+10}" r="13" fill="none" stroke="{GOLDD}" stroke-width="2" stroke-dasharray="3 3"/>')
+    s.append(ds.text(220,cy+104,"3 · vesicles release NT",size=11,fill=GOLDD,font=ds.DISPLAY,weight="bold"))
+    nts=[(300,cy-18),(330,cy+14),(356,cy-30),(386,cy+22),(412,cy-8),(442,cy+30),(470,cy-22),(500,cy+8),(536,cy-14),(566,cy+24),(602,cy-4),(636,cy+16),(672,cy-22),(702,cy+6)]
+    for nx,ny in nts: s.append(f'<circle cx="{nx}" cy="{ny}" r="5" fill="{GOLD}"/>')
+    s.append(ds.text((300+post_x)/2,cy-78,"4 · neurotransmitter crosses the cleft",size=11,fill=GOLDD,font=ds.DISPLAY,weight="bold",anchor="middle"))
+    s.append(ds.text((300+post_x)/2,cy-62,"(the synaptic cleft)",size=9.5,fill=MUT,font=ds.BODY,italic=True,anchor="middle"))
+    s.append(f'<path d="M{post_x} {cy-95} q -120 0 -130 95 q 10 95 130 95 Z" fill="{GOLD}" fill-opacity="0.13" stroke="{GOLD}" stroke-width="2.5"/>')
+    s.append(ds.text(post_x+6,cy-110,"POST-SYNAPTIC NEURON",size=10,fill=GOLDD,font=ds.DISPLAY,weight="bold",spacing="0.4"))
+    for ry in [cy-48,cy-14,cy+22,cy+56]:
+        s.append(f'<rect x="{post_x-24}" y="{ry-9}" width="20" height="18" rx="3" fill="{GOLDD}"/>')
+    s.append(ds.text(post_x+40,cy+104,"5 · binds receptors, fires a new signal",size=11,fill=GOLDD,font=ds.DISPLAY,weight="bold",anchor="middle"))
+    s.append(f'<path d="M620 {cy+50} q -150 86 -330 8" fill="none" stroke="{MUT}" stroke-width="2.2" stroke-dasharray="4 4" marker-end="url(#ah)"/>')
+    s.append(ds.text(430,cy+150,"6 · reuptake or breakdown ends the signal",size=11,fill=MUT,font=ds.BODY,italic=True,anchor="middle"))
+    s.append(ds.text(W/2,H-46,"Most psychiatric and neurological drugs act right here, on the neurotransmitters or their receptors.",size=11.5,fill=INK,font=ds.BODY,weight="600",anchor="middle"))
     s.append(foot); ds.render("".join(s), f"{FIG}/66-synapse.png")
 
 CHARTS=[omega3_index,visceral_fat,mediterranean,hearing_dementia,metabolic_flexibility]

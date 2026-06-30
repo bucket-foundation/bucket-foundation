@@ -140,7 +140,7 @@ def mechanism_convergence():
     for (lxp,lyp),(name,c) in zip(pos_l,layers):
         s.append(f'<rect x="{lxp}" y="{lyp-20}" width="250" height="40" rx="8" fill="{c}"/>')
         s.append(ds.text(lxp+125,lyp+5,name,size=13,fill="white",font=ds.DISPLAY,weight="700",anchor="middle"))
-    s.append(ds.text(lx,H-58,"⚠ mechanism real ≠ human outcome proven — a chain to a fundamental layer is necessary, not sufficient.",
+    s.append(ds.text(lx,H-58,"⚠ mechanism real ≠ human outcome proven — a chain to a fundamental layer still has to be shown in humans.",
                      size=11,fill=ds.WARN,font=ds.BODY,weight="600"))
     s.append(foot); ds.render("".join(s), f"{FIG}/18-mechanism-convergence.png")
 
@@ -178,7 +178,7 @@ def emergency_wallet():
         "The handful that kill fast. Call emergency services first; this is the first move.",
         "Education only · CPR/AED & first aid — take a certified course")
     s=[head]
-    items=[("Cardiac arrest","unresponsive, not breathing","Hands-only CPR + AED. Push hard/fast."),
+    items=[("Cardiac arrest","unresponsive and barely breathing","Hands-only CPR + AED. Push hard/fast."),
            ("Heart attack","chest pressure, arm/jaw, sweaty","Call 911. Aspirin if advised. Rest."),
            ("Stroke","face/arm/speech sudden — BE-FAST","Call 911 NOW. Note the time."),
            ("Anaphylaxis","breathing trouble + hives/swelling","Epinephrine to thigh, then 911."),

@@ -16,7 +16,7 @@ def ms_dmt():
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10); ax.set_ylim(0,100)
     ax.set_ylabel("relapse reduction vs placebo",fontsize=10,color=MUT)
     ds.title(ax,"Neurology · §24","MS: high-efficacy drugs cut relapses 70–90%",
-             "More than 20 disease-modifying therapies exist. The modern strategy is 'hit hard early' with high-efficacy agents, not escalate slowly.")
+             "More than 20 disease-modifying therapies exist. The modern strategy is 'hit hard early' with high-efficacy agents from the start.")
     ds.footer(ax,"Reich et al., NEJM 2018 (illustrative)","ms-dmt-efficacy",tier="rct")
     ds.save(fig,f"{FIG}/D15-ms-dmt.png")
 
@@ -26,7 +26,7 @@ def migraine():
     ax.bar(x,v,color=GOLD,width=0.6,edgecolor=ds.PAPER,linewidth=1.2); lab(ax,x,v,"{:.1f} d",dy=0.04)
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10.5); ax.set_ylim(0,3.2)
     ax.set_ylabel("extra migraine days/month cut vs placebo",fontsize=9.6,color=MUT)
-    ds.title(ax,"Neurology · §24 §7","CGRP blockers: a real migraine advance, not a cure",
+    ds.title(ax,"Neurology · §24 §7","CGRP blockers: a real migraine advance",
              "The first preventives designed for migraine. ~2–3 fewer migraine days/month over placebo — meaningful for many, modest in absolute terms.")
     ds.footer(ax,"CGRP mAb/gepant trials (illustrative)","migraine-cgrp",tier="rct")
     ds.save(fig,f"{FIG}/D16-migraine-cgrp.png")
@@ -79,7 +79,7 @@ def mdma():
     ds.title(ax,"Psychiatry · §20 §6.4","MDMA-assisted therapy for PTSD: promise, then a pause",
              "Large reductions in PTSD severity in trials — but the FDA rejected approval in Aug 2024 over unblinding, data-integrity, and abuse/CV concerns.")
     ds.footer(ax,"Mitchell et al., Nat Med 2021; FDA 2024","mdma-ptsd",tier="rct")
-    ds.flag(ax,"FDA rejected 2024 — not approved","caution")
+    ds.flag(ax,"FDA rejected 2024","caution")
     ds.save(fig,f"{FIG}/D20-mdma-ptsd.png")
 
 def lithium():
@@ -104,7 +104,7 @@ def brca():
     ax.set_xticks(x); ax.set_xticklabels(groups,fontsize=12); ax.set_ylim(0,80); ax.legend(fontsize=10,frameon=False)
     ax.set_ylabel("lifetime cancer risk (%)",fontsize=10,color=MUT)
     ds.title(ax,"Oncology · §25 §2.4","BRCA1 vs BRCA2: high, actionable, but not certain",
-             "These are among the few genetic findings that change management — enhanced screening and risk-reducing surgery. Penetrance is high, not 100%.")
+             "These are among the few genetic findings that change management — enhanced screening and risk-reducing surgery. Penetrance is high but incomplete.")
     ds.footer(ax,"Kuchenbaecker et al., JAMA 2017","brca-lifetime-risk",tier="cohort")
     ds.save(fig,f"{FIG}/D22-brca-risk.png")
 
@@ -139,7 +139,7 @@ def achieve():
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=11); ax.set_ylim(0,60)
     ax.set_ylabel("slowing of cognitive decline (3 yr)",fontsize=10,color=MUT)
     ds.title(ax,"Brain & Dementia · §08 §2","Hearing aids slowed cognitive decline — in those at risk",
-             "ACHIEVE was null overall but cut decline ~48% in the higher-risk subgroup. Hearing loss is a lever, not just a marker — treat it.")
+             "ACHIEVE was null overall but cut decline ~48% in the higher-risk subgroup. Hearing loss is a treatable lever on dementia risk.")
     ds.footer(ax,"Lin et al., Lancet 2023 (ACHIEVE)","achieve-hearing-cognition",tier="rct")
     ds.save(fig,f"{FIG}/D25-achieve-hearing.png")
 

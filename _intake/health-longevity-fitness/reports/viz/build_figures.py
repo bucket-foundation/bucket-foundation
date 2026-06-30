@@ -28,7 +28,7 @@ def calibration_spectrum():
           ("David Sinclair","the canonical 'mechanism sold as outcome' case")]
     n=len(rows); W,H=980,720
     head,y0,foot=ds.panel(W,H,"The Discourse — claims vs the evidence",
-        "The Calibration Spectrum","Where each voice lands is about calibration, not direction.",
+        "The Calibration Spectrum","Where each voice lands reflects calibration more than the direction of the claim.",
         "98 YouTube transcripts · ~139 claims cross-checked vs the 997-claim corpus","practitioner-calibration")
     s=[head]
     # axis legend
@@ -123,7 +123,7 @@ def fasting_timeline():
     s.append(ds.text(hx(60), ty+trackh+62, "⚠ refeeding-syndrome risk — electrolytes / medical supervision", size=9.8, fill=ds.WARN, font=ds.BODY, weight="600", anchor="middle"))
     # bottom line
     s.append(f'<rect x="28" y="{H-92}" width="{W-56}" height="34" rx="6" fill="{ds.CARD}" stroke="{ds.GOLD}" stroke-width="1.1"/>')
-    s.append(ds.text(44, H-70, "Bottom line: most benefit is the calorie deficit it causes — not a magic clock. Early eating window beats late.",
+    s.append(ds.text(44, H-70, "Bottom line: most benefit is the calorie deficit it causes. An early eating window beats a late one.",
                      size=11.5, fill=ds.INK, font=ds.BODY, weight="600"))
     s.append(foot)
     ds.render("".join(s), f"{FIG}/15-fasting-timeline.png")

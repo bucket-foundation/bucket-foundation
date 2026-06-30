@@ -6,7 +6,7 @@ import ds
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; GRN2="#2f8a4b"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"; DKR="#6b1f12"
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker><marker id="wn" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker><marker id="wn" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 def box(x,y,w,h,label,fill=CARD,stroke=GOLDD,tcol=INK,sz=12.5):
     s=f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="9" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
     for j,ln in enumerate(label.split("\n")): s+=ds.text(x+w/2,y+h/2+5+(j-(len(label.split(chr(10)))-1)/2)*15,ln,size=sz,fill=tcol,font=ds.DISPLAY,weight="700",anchor="middle")
@@ -26,7 +26,7 @@ def flow(name,k,t,sub,src,claim,steps,note=None,W=1000,H=330,arr=None):
 
 # 1. Neuron + AP schematic
 def neuron():
-    W,H=1000,460
+    W,H=1000,480
     head,cy,foot=ds.panel(W,H,"Nervous System · §14 §1.2","The neuron — and how it fires",
         "Signals run dendrites → soma → axon → terminals. The action potential is an all-or-nothing ion wave down the axon.","§14 §1.2","neuron-schematic")
     s=[head]; my=cy+95; sx=230
@@ -52,7 +52,7 @@ def neuron():
 
 # 2. Nephron schematic
 def nephron():
-    W,H=1000,420
+    W,H=1000,470
     head,cy,foot=ds.panel(W,H,"Renal System · §17 §2.1","The nephron — the kidney's filter unit",
         "~1 million per kidney. Blood is filtered at the glomerulus, then the tubule reclaims what the body needs. The 'silent organ' — lose half before symptoms.","§17 §2.1","nephron-schematic")
     s=[head]; gy=cy+90
@@ -72,7 +72,7 @@ def nephron():
 
 # 3. End-replication problem
 def end_replication():
-    W,H=1000,380
+    W,H=1000,420
     head,cy,foot=ds.panel(W,H,"Telomeres · §16.1.2","The end-replication problem",
         "DNA's copying machinery can't finish the very end of the lagging strand — so a sliver is lost every division. That's why telomeres shorten.","§16 §16.1.2","end-replication-problem")
     s=[head]; y1=cy+50; y2=cy+92
@@ -90,7 +90,7 @@ def end_replication():
 
 # 4. Telomere cap + telomerase
 def telomere_cap():
-    W,H=1000,360
+    W,H=1000,420
     head,cy,foot=ds.panel(W,H,"Telomeres · §16.1","The telomere cap — and telomerase",
         "Chromosome ends are capped with TTAGGG repeats + shelterin, tucked into a protective loop. Telomerase can re-extend them — mostly OFF in adult cells (ON in ~90% of cancers).","§16 §16.1","telomere-cap")
     s=[head]; my=cy+90
@@ -154,9 +154,9 @@ def hpg():
     s.append(foot); ds.render("".join(s),f"{FIG}/A09-hpg.png")
 def ed_cardiac():
     flow("A10-ed-cardiac.png","Reproductive · §42 §6.2","Erectile dysfunction is a cardiovascular warning light",
-         "Penile arteries are small and clog first — so ED often precedes a heart attack by years. It's a work-up trigger, not just a pill.","§42 §6.2","ed-cardiovascular",
+         "Penile arteries are small and clog first — so ED often precedes a heart attack by years. It's a trigger for a cardiac work-up.","§42 §6.2","ed-cardiovascular",
          [("Endothelial\ndysfunction",AMB),("Small penile\narteries clog first",WARN),("ED appears\n(years early)",WARN),("Work up the\nHEART",GRN)],
-         note="New ED in a man over 40 warrants cardiovascular risk assessment — not just a prescription.")
+         note="New ED in a man over 40 warrants a cardiovascular work-up alongside any prescription.")
 def senescence():
     flow("A11-senescence-triggers.png","Telomeres · §16.5","Senescence has many entrances — telomeres are just one",
          "Cells stop dividing for several reasons; all converge on the same arrest program and inflammatory secretome.","§16 §16.5","senescence-triggers",

@@ -16,7 +16,7 @@ def strength_jcurve():
     ax.set_ylim(0.78,1.03); ax.set_xlabel("resistance training, minutes per week",fontsize=10,color=ds.MUT)
     ax.set_ylabel("relative all-cause mortality",fontsize=10,color=ds.MUT)
     ds.title(ax,"Training","Strength: more is not better — a J-curve",
-             "Benefit peaks ~30–60 min/week, then attenuates. (Strength, not muscle size, predicts survival.)")
+             "Benefit peaks ~30–60 min/week, then attenuates. (Strength predicts survival more than muscle size.)")
     ds.footer(ax,"Momma et al., Br J Sports Med 2022 — meta-analysis","resistance-training-mortality-meta",tier="meta")
     ds.save(fig,f"{FIG}/20-strength-jcurve.png")
 
@@ -83,7 +83,7 @@ def responder_distribution():
     ax.text(42,ymax*0.55,"high responders",rotation=90,ha="center",va="center",fontsize=10.5,color="#1d6b2e",fontweight="bold")
     ax.set_xlabel("VO₂max change after the SAME 20-week program (%)",fontsize=10,color=ds.MUT); ax.set_ylabel("number of people",fontsize=10,color=ds.MUT); ax.grid(axis="x",visible=False)
     ds.title(ax,"Personalization","Same program, wildly different results",
-             "Trainability is ~47% heritable. If a stimulus isn't working, change the stimulus — not the goal.")
+             "Trainability is ~47% heritable. If a stimulus isn't working, change the stimulus.")
     ds.footer(ax,"Illustrative distribution — HERITAGE Family Study (Bouchard/Skinner)","heritage-trainability-variance",tier="cohort")
     ds.save(fig,f"{FIG}/25-responder-distribution.png")
 
@@ -101,7 +101,7 @@ def verdict_donut():
         ax.text(1.62,0.5-i*0.26,l,fontsize=12,color=ds.INK,va="center",transform=ax.transData)
     ax.set_xlim(-1.3,2.4); ax.set_ylim(-1.3,1.3)
     ds.title(ax,"The Discourse","How popular health claims hold up",
-             "Calibration, not direction: the modal failure is rounding a real finding up one tier.")
+             "Calibration is the axis: the modal failure is rounding a real finding up one tier.")
     ds.footer(ax,"6 practitioner clusters · ~98 transcripts cross-checked vs the corpus","practitioner-calibration")
     ds.save(fig,f"{FIG}/26-verdict-donut.png",left=0.04,bottom=0.1)
 
@@ -130,7 +130,7 @@ def supplement_matrix():
     s=[head]
     rows=[("Creatine monohydrate","3–5 g/day","strength, muscle, some cognition","REAL","#1d6b2e"),
           ("Omega-3 (EPA/DHA)","~1–2 g/day","triglycerides; index is a marker","REAL / context","#5e8a3a"),
-          ("Vitamin D","only if deficient","corrects deficiency — not a lever in the replete","CONTEXT ONLY","#c08a1e"),
+          ("Vitamin D","only if deficient","corrects a deficiency (no benefit if you are replete)","CONTEXT ONLY","#c08a1e"),
           ("Protein / whey","to hit ~1.6 g/kg","muscle, satiety (food first)","REAL","#1d6b2e"),
           ("Dietary fiber","25–38 g/day (food)","metabolic, gut, mortality","REAL","#1d6b2e"),
           ("Caffeine","pre-task","real ergogenic & alertness","REAL","#1d6b2e"),

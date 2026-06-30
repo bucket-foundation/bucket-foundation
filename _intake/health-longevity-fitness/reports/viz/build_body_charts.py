@@ -55,7 +55,7 @@ def apoe():
     ds.title(ax,"Genetics","APOE risk is gene-dose — but risk ≠ destiny",
              "One ε4 allele ~2–3×, two ~8–12× the odds. Most ε4 carriers never develop Alzheimer's; lifestyle still moves it.")
     ds.footer(ax,"Illustrative ORs — §18 §A.2.1 APOE gene-dose","apoe-gene-dose-risk",tier="cohort")
-    ds.flag(ax,"odds ratio — not personal probability","caution")
+    ds.flag(ax,"odds ratio (a population figure)","caution")
     ds.save(fig,f"{FIG}/B03-apoe-gene-dose.png")
 
 def fev1():
@@ -92,10 +92,11 @@ def ovarian_reserve():
     ageT=[0,13,25,37,45,51]; cnt=[1.5e6,4e5,1.6e5,3.5e4,1.0e4,1.0e3]
     fig,ax=ds.new_fig(8.6,5.2)
     ax.plot(ageT,cnt,"-o",color=GOLD,lw=2.6,markersize=7,markerfacecolor=GOLD_D,markeredgecolor=ds.PAPER)
-    ax.set_yscale("log"); ax.set_xlim(0,53); ax.set_ylim(3e2,3e6)
+    ax.set_yscale("log"); ax.set_xlim(0,60); ax.set_ylim(3e2,3e6)
     ax.set_xlabel("age (years)",fontsize=10,color=MUT); ax.set_ylabel("primordial follicles (log)",fontsize=10,color=MUT)
     for a,c,t in [(0,1.5e6,"~1–2M at birth"),(13,4e5,"~400k puberty"),(37,3.5e4,"steep fall after mid-30s"),(51,1e3,"~0 at menopause")]:
-        ax.annotate(t,(a,c),textcoords="offset points",xytext=(6,10),fontsize=8.6,color=INK)
+        off=(-150,-2) if a==51 else (6,10)
+        ax.annotate(t,(a,c),textcoords="offset points",xytext=off,fontsize=8.6,color=INK)
     ds.title(ax,"Reproductive System","Ovarian reserve only ever falls — quality fastest after 35",
              "The follicle pool is fixed at birth and declines lifelong; both count and egg quality drop sharply in the mid-30s.")
     ds.footer(ax,"Illustrative — §42 §1 ovarian reserve","ovarian-reserve-lifespan",tier="cohort")
@@ -110,7 +111,7 @@ def ivf_age():
     ax.set_xticks(list(x)); ax.set_xticklabels(bands,fontsize=10.5); ax.set_ylim(0,56)
     ax.set_xlabel("maternal age",fontsize=10,color=MUT); ax.set_ylabel("live birth per cycle (%)",fontsize=10,color=MUT)
     ax.legend(fontsize=9,loc="upper right",frameon=False)
-    ds.title(ax,"Reproductive System","IVF success tracks egg age, not the calendar",
+    ds.title(ax,"Reproductive System","IVF success tracks the egg's age",
              "Live-birth rate per own-egg cycle collapses after ~40; donor-egg success stays flat — it follows the donor's age, proving the egg is the limit.")
     ds.footer(ax,"Illustrative — §42 §4.2 IVF success by age","ivf-livebirth-by-age",tier="cohort")
     ds.save(fig,f"{FIG}/B07-ivf-by-age.png")
@@ -122,13 +123,13 @@ def contraception():
     labels=[d[0] for d in data]; typ=[d[1] for d in data]; per=[d[2] for d in data]
     fig,ax=ds.new_fig(8.8,5.8); yp=list(range(len(labels)))[::-1]
     ax.barh(yp,typ,color=[GRN if t<1 else GOLD if t<10 else WARN for t in typ],height=0.66,edgecolor=ds.PAPER,linewidth=1.1)
-    ax.scatter(per,yp,s=42,color=INK,zorder=4,label="perfect use")
+    ax.scatter(per,yp,s=58,facecolors="white",edgecolors=INK,linewidths=1.7,zorder=5,label="perfect use")
     for y,t in zip(yp,typ): ax.text(t+0.4,y,f"{t:g}%",va="center",fontsize=9.4,color=INK,fontweight="bold")
     ax.set_yticks(yp); ax.set_yticklabels(labels,fontsize=10); ax.set_xlim(0,31)
     ax.set_xlabel("1st-year pregnancy rate — typical use (bar) vs perfect (dot)",fontsize=9.5,color=MUT)
     ax.legend(fontsize=9,loc="lower right",frameon=False)
     ds.title(ax,"Reproductive System","LARC methods are 20–50× more effective than the pill",
-             "Implants/IUDs remove the user-error gap; the pill's typical-use failure (~7%) is mostly missed doses, not the chemistry.")
+             "Implants/IUDs remove the user-error gap; the pill's typical-use failure (~7%) is mostly missed doses.")
     ds.footer(ax,"After Trussell 2011; Winner 2012 (CHOICE)","contraception-effectiveness",tier="cohort")
     ds.save(fig,f"{FIG}/B08-contraception.png",left=0.205)
 
@@ -180,7 +181,7 @@ def bone_load():
     for xi,v in zip(x,vals): ax.text(xi,v+(0.12 if v>=0 else -0.22),f"{v:+.1f}%",ha="center",fontsize=10,color=INK,fontweight="bold")
     ax.set_xticks(list(x)); ax.set_xticklabels(labels,fontsize=8.8); ax.set_ylim(-1.8,3.6)
     ax.set_ylabel("annual change in bone mineral density",fontsize=10,color=MUT)
-    ds.title(ax,"Bone","Bone answers to LOAD — not cardio",
+    ds.title(ax,"Bone","Bone answers to mechanical LOAD",
              "Only heavy resistance and impact build bone; swimming and walking barely hold the line. Osteoporosis is a loading problem.")
     ds.footer(ax,"After Watson 2018 (LIFTMOR RCT)","bone-load-not-cardio",tier="rct")
     ds.save(fig,f"{FIG}/B11-bone-load.png")

@@ -57,7 +57,7 @@ def copenhagen():
     ax.set_xlim(0,11); ax.grid(axis="y",visible=False)
     ax.set_xlabel("years of life-expectancy gain vs sedentary", fontsize=10, color=ds.MUT)
     ds.title(ax,"Sports & Play", "Racquet and social sports add the most years",
-             "Copenhagen City Heart Study — the social + skill + intermittent dimensions, not just calories.")
+             "Copenhagen City Heart Study — the social, skill, and intermittent dimensions appear to carry the benefit.")
     ds.footer(ax,"Schnohr et al., Mayo Clin Proc 2018 (n≈8,577, 25-yr follow-up)","sports-life-expectancy-copenhagen",tier="cohort")
     ds.flag(ax,"observational — leisure-time self-selection","caution")
     ds.save(fig, f"{FIG}/02-copenhagen-sports.png", left=0.175)

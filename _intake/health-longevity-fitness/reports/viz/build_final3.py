@@ -13,7 +13,7 @@ def box(x,y,w,h,label,fill=CARD,stroke=GOLDD,tcol=INK,sz=12.5):
     for j,ln in enumerate(label.split("\n")): s+=ds.text(x+w/2,y+h/2+5+(j-(len(label.split(chr(10)))-1)/2)*15,ln,size=sz,fill=tcol,font=ds.DISPLAY,weight="700",anchor="middle")
     return s
 def fr(k,t,sub,src,claim,W,H): return ds.panel(W,H,k,t,sub,src,claim)
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker></defs>'
 
 # 1. calories vs LE puzzle
 def calories_le():
@@ -39,7 +39,7 @@ def glp1():
     ax.set_ylabel("reduction (%)",fontsize=10,color=MUT)
     import matplotlib.patches as mp
     ax.legend(handles=[mp.Patch(color=GOLD,label="surrogate (weight)"),mp.Patch(color=GRN,label="hard outcome (events)")],fontsize=9,frameon=False,loc="upper left")
-    ds.title(ax,"Pharmacology · §10","GLP-1 drugs: not just weight, but real outcomes",
+    ds.title(ax,"Pharmacology · §10","GLP-1 drugs: weight loss and real outcomes",
              "Unusually, the weight-loss surrogate is now backed by hard endpoints — fewer cardiovascular events (SELECT) and kidney events (FLOW). Mechanism AND outcome.")
     ds.footer(ax,"STEP-1; SURMOUNT-1; SELECT; FLOW","glp1-surrogate-and-hard",tier="rct")
     ds.save(fig,f"{FIG}/Y02-glp1-outcomes.png")
@@ -80,7 +80,7 @@ def prenatal():
 # 5. HRV trend
 def hrv():
     W,H=1000,360
-    head,cy,foot=fr("Recovery · §05 §5.1","HRV — your trend, not a leaderboard","Heart-rate variability is useful tracked against YOUR baseline over time. Comparing your number to other people's is noise.","§05 §5.1","hrv-trend",W,H)
+    head,cy,foot=fr("Recovery · §05 §5.1","HRV — track your own trend","Heart-rate variability is useful tracked against your own baseline over time. Comparing your number to other people's is noise.","§05 §5.1","hrv-trend",W,H)
     s=[head]; midx=W/2
     s.append(f'<line x1="{midx}" y1="{cy+10}" x2="{midx}" y2="{H-50}" stroke="{RULE}" stroke-width="1.5"/>')
     s.append(box(60,cy+20,380,46,"USE: your own trend",fill="#eef4ec",stroke=GRN,tcol=GRN))
@@ -131,7 +131,7 @@ def ladders():
 
 # 8. racquet 4-dimension bundle
 def racquet():
-    W,H=1000,420
+    W,H=1000,500
     head,cy,foot=fr("Sports & Play · §45 §3","Why racquet sports keep topping the charts","Four ingredients overlap in tennis/badminton/pickleball — and together they drive the thing that matters: you keep doing it.","§45 §3","racquet-bundle",W,H)
     cx,cyh=W/2,cy+150; s=[head,ARROW]
     quad=[("Intermittent\nHIIT bursts",-150,-70,WARN),("Motor learning\n(skill)",150,-70,AMB),("Social partner",-150,70,BLUE),("Lifelong\nplayability",150,70,GRN)]
@@ -146,7 +146,7 @@ def racquet():
 # 9. liver flush debunk
 def liver_flush():
     W,H=1000,340
-    head,cy,foot=fr("Fasting · §36 §4.4","The 'liver flush stones' are soap, not gallstones","Drinking olive oil + citrus juice produces greenish pellets in the stool — these are saponified soap, not gallstones.","§36 §4.4","liver-flush-debunk",W,H)
+    head,cy,foot=fr("Fasting · §36 §4.4","The 'liver flush stones' are just soap","Drinking olive oil + citrus juice produces greenish pellets in the stool — these are saponified soap pellets with no gallstones in them.","§36 §4.4","liver-flush-debunk",W,H)
     s=[head,ARROW]
     s.append(box(70,cy+40,250,70,"Olive oil + citrus juice\n(the 'flush')",stroke=GOLDD))
     s.append(f'<line x1="320" y1="{cy+75}" x2="400" y2="{cy+75}" stroke="{INK}" stroke-width="3" marker-end="url(#bk)"/>')

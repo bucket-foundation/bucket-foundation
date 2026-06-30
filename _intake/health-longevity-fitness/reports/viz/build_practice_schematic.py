@@ -5,7 +5,7 @@ import ds
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; GRN2="#2f8a4b"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"; DKR="#6b1f12"
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker><marker id="gn" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1d6b2e"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker><marker id="gn" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1d6b2e"/></marker></defs>'
 def box(x,y,w,h,label,fill=CARD,stroke=GOLDD,tcol=INK,sub=None,sz=13):
     s=f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="9" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
     lines=label.split("\n")
@@ -19,22 +19,23 @@ def fr(name,k,t,sub,src,claim,W,H): return ds.panel(W,H,k,t,sub,src,claim)+(f"/{
 
 # 1. Bayes PPV block diagram (flagship)
 def bayes():
-    W,H=1000,520
+    W,H=1000,540
     head,cy,foot=ds.panel(W,H,"Test Performance · §41","Why a 'great' test can still be mostly wrong",
         "A 99%-sensitive, 99%-specific test, on a disease 1 in 1,000 people have. Screen 100,000.","§41 §A.4","bayes-ppv-icon-array")
     s=[head,ARROW]
+    def arr(x0,y0,x1,y1): return f'<line x1="{x0}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="{INK}" stroke-width="2.6" marker-end="url(#bk)"/>'
     def blk(x,y,w,h,c,t1,t2):
-        return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="7" fill="{c}" opacity="0.85"/>'+ds.text(x+w/2,y+h/2-2,t1,size=13,fill="#fff",font=ds.DISPLAY,weight="bold",anchor="middle")+ds.text(x+w/2,y+h/2+15,t2,size=10,fill="#fff",font=ds.BODY,anchor="middle")
-    s.append(box(W/2-110,cy+6,220,46,"100,000 screened",fill=CARD,stroke=GOLDD))
-    s.append(harrow(W/2,cy+52,cy+78))
-    s.append(blk(120,cy+84,300,52,GRN,"100 truly have it","→ 99 test positive (TP)"))
-    s.append(blk(W-420,cy+84,300,52,MUT,"99,900 are well","→ 999 test positive (FP)"))
-    s.append(harrow(270,cy+136,cy+170)); s.append(harrow(W-270,cy+136,cy+170))
-    s.append(box(W/2-230,cy+176,460,56,"1,098 positive results — only 99 are real",fill="#f6ece6",stroke=WARN,tcol=WARN,sz=15))
-    s.append(ds.text(W/2,cy+262,"PPV ≈ 99 / 1,098 ≈ 9%",size=26,fill=WARN,font=ds.DISPLAY,weight="800",anchor="middle"))
-    s.append(ds.text(W/2,cy+292,"Most positives are FALSE — because the disease is rare.",size=12.5,fill=INK,font=ds.BODY,italic=True,anchor="middle"))
-    s.append(f'<line x1="60" y1="{cy+312}" x2="{W-60}" y2="{cy+312}" stroke="{RULE}" stroke-width="1"/>')
-    s.append(ds.text(W/2,cy+336,"Same test in a clinic where 1 in 10 is sick → PPV > 90%.  Prevalence changes everything.",size=12.5,fill=GRN,font=ds.BODY,weight="600",anchor="middle"))
+        return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="7" fill="{c}" opacity="0.9"/>'+ds.text(x+w/2,y+h/2-2,t1,size=13,fill="#fff",font=ds.DISPLAY,weight="bold",anchor="middle")+ds.text(x+w/2,y+h/2+15,t2,size=10,fill="#fff",font=ds.BODY,anchor="middle")
+    s.append(box(W/2-110,cy+4,220,46,"100,000 screened",fill=CARD,stroke=GOLDD))
+    s.append(arr(W/2-40,cy+50,300,cy+80)); s.append(arr(W/2+40,cy+50,700,cy+80))
+    s.append(blk(150,cy+82,300,54,GRN,"100 truly have it","99 test positive (true positives)"))
+    s.append(blk(550,cy+82,300,54,MUT,"99,900 are well","999 test positive (false positives)"))
+    s.append(arr(300,cy+136,440,cy+180)); s.append(arr(700,cy+136,560,cy+180))
+    s.append(box(W/2-235,cy+182,470,54,"1,098 positive results, only 99 of them real",fill="#f6ece6",stroke=WARN,tcol=WARN,sz=15))
+    s.append(ds.text(W/2,cy+278,"PPV \u2248 99 / 1,098 \u2248 9%",size=27,fill=WARN,font=ds.DISPLAY,weight="800",anchor="middle"))
+    s.append(ds.text(W/2,cy+308,"Most positives are FALSE because the disease is rare.",size=12.5,fill=INK,font=ds.BODY,italic=True,anchor="middle"))
+    s.append(f'<line x1="60" y1="{cy+332}" x2="{W-60}" y2="{cy+332}" stroke="{RULE}" stroke-width="1"/>')
+    s.append(ds.text(W/2,cy+356,"In a clinic where 1 in 10 is sick, the same test gives a PPV above 90%. Prevalence changes everything.",size=12.5,fill=GRN,font=ds.BODY,weight="600",anchor="middle"))
     s.append(foot); ds.render("".join(s),f"{FIG}/PS1-bayes-ppv.png")
 
 # 2. 2x2 confusion table
@@ -71,7 +72,7 @@ def adme():
 
 # 4. Agonist spectrum
 def agonist():
-    W,H=1000,320
+    W,H=1000,360
     head,cy,foot=ds.panel(W,H,"Pharmacology · §28 §A.1.2","The agonist spectrum",
         "Drugs don't just 'turn receptors on or off' — they sit on a continuum from inverse agonist to full agonist.","§28 §A.1.2","agonist-spectrum")
     s=[head]; x0=80; x1=W-80; y=cy+90
@@ -116,7 +117,7 @@ def _wrap(t,n):
 
 # 6. SIDS safe sleep bundle
 def sids():
-    W,H=1000,460
+    W,H=1000,480
     head,cy,foot=ds.panel(W,H,"Pediatric · §43 §3.7","Safe sleep — the bundle that halved SIDS",
         "'Back to Sleep' (1994) cut SIDS dramatically. Prone sleeping is ~4× the risk. The rest stacks on top.","§43 §3.7","sids-safe-sleep")
     cx,cyh=W/2,cy+180; s=[head,ARROW]
@@ -177,7 +178,7 @@ def boost_regulate():
 
 # 10. Cancer paradox (telomere)
 def cancer_paradox():
-    W,H=1000,360
+    W,H=1000,390
     head,cy,foot=ds.panel(W,H,"Telomeres · §16.3","The telomere cancer paradox",
         "Short telomeres age you; long telomeres / active telomerase feed cancer. 'Lengthening' is not a free lunch.","§16 §16.3","telomere-cancer-paradox")
     s=[head]; midx=W/2

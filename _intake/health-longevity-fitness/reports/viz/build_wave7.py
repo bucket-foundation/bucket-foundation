@@ -5,7 +5,7 @@ import ds
 import matplotlib.pyplot as plt
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 def arrowdefs():
-    out="".join(f'<marker id="{n}" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="{c}"/></marker>' for n,c in [("ah",ds.GOLD_D),("ar","#b5471f")])
+    out="".join(f'<marker id="{n}" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="{c}"/></marker>' for n,c in [("ah",ds.GOLD_D),("ar","#b5471f")])
     return f'<defs>{out}</defs>'
 def arrow(x1,y1,x2,y2,c=ds.GOLD_D,w=2.2,m="ah"):
     return f'<line x1="{x1:.0f}" y1="{y1:.0f}" x2="{x2:.0f}" y2="{y2:.0f}" stroke="{c}" stroke-width="{w}" marker-end="url(#{m})"/>'
@@ -18,7 +18,7 @@ def lifespan_over_time():
     ax.set_ylim(30,85); ax.set_xlabel("year",fontsize=10,color=ds.MUT); ax.set_ylabel("life expectancy at birth (years)",fontsize=10,color=ds.MUT)
     ax.annotate("≈ doubled",(2020,79),xytext=(1905,74),fontsize=12,color=ds.GOLD_D,fontweight="bold")
     ds.title(ax,"Public Health","Human lifespan roughly doubled in 150 years",
-             "Driven mostly by sanitation, vaccines, antibiotics & nutrition — not high-tech medicine.")
+             "Driven mostly by sanitation, vaccines, antibiotics, and nutrition.")
     ds.footer(ax,"Our World in Data / historical demography","lifespan-doubling",tier="cohort")
     ds.save(fig,f"{FIG}/81-lifespan-over-time.png")
 def bmi_jcurve():
@@ -37,7 +37,7 @@ def testosterone_age():
     ax.axhspan(300,1000,color="#e9f3ea",zorder=0); ax.text(27,330,"normal range floor",fontsize=9,color="#1d6b2e")
     ax.set_ylim(250,720); ax.set_xlabel("age (years)",fontsize=10,color=ds.MUT); ax.set_ylabel("total testosterone (ng/dL)",fontsize=10,color=ds.MUT)
     ds.title(ax,"Endocrine","Testosterone declines slowly with age",
-             "~1%/yr after 30. Treat symptomatic hypogonadism — not 'low-normal for your age' (lifestyle first).")
+             "~1%/yr after 30. Treat genuine, symptomatic hypogonadism; try lifestyle first.")
     ds.footer(ax,"BLSA & population data (illustrative)","testosterone-age-decline",tier="cohort")
     ds.save(fig,f"{FIG}/83-testosterone-age.png")
 def cancer_incidence():
@@ -58,7 +58,7 @@ def calerie():
     ds.title(ax,"Nutrition · the only human CR trial","Caloric restriction in humans — modest & real",
              "CALERIE: ~12% calorie cut for 2 yr improved risk markers and slightly slowed one aging-pace clock.")
     ds.footer(ax,"CALERIE trial (illustrative surrogate endpoints)","calerie-human-cr-rct",tier="rct")
-    ds.flag(ax,"surrogate markers, not hard outcomes","caution")
+    ds.flag(ax,"surrogate markers only","caution")
     ds.save(fig,f"{FIG}/85-calerie.png",bottom=0.2)
 def vo2max_age():
     age=[20,30,40,50,60,70,80]; sed=[45,42,38,34,30,26,22]; tr=[55,53,50,46,42,38,33]
@@ -188,7 +188,7 @@ def autonomic_ns():
 def fight_or_flight():
     W,H=1020,400
     head,y0,foot=ds.panel(W,H,"Nervous system · the acute stress response","Fight-or-flight, step by step",
-        "A fast, life-saving cascade — designed for short bursts, not chronic activation.","§Nervous System","fight-or-flight")
+        "A fast, life-saving cascade — designed for short bursts.","§Nervous System","fight-or-flight")
     s=[head, arrowdefs()]
     steps=[("Threat","brain detects danger"),("Amygdala alarm","→ hypothalamus"),("Adrenaline surge","seconds: heart races"),
            ("Cortisol","minutes: fuel & focus"),("Body primed","fight, flee — or freeze"),("Shut-off","when safe (the key step)")]

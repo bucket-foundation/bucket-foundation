@@ -13,7 +13,7 @@ def direct():
     fig,ax=ds.new_fig(8.6,5.2); x=range(len(cats))
     ax.bar(x,vals,color=[WARN,GOLD,GRN2,GRN],width=0.62,edgecolor=ds.PAPER,linewidth=1.2)
     barlabel(ax,x,vals,"{:.0f}%")
-    ax.axhline(4,ls="--",color=MUT,lw=1.5); ax.text(0.1,6,"control (no programme) ≈ 4%",fontsize=9,color=MUT)
+    ax.axhline(4,ls="--",color=MUT,lw=1.5); ax.text(1.4,12,"control (no programme) ≈ 4%",fontsize=9,color=MUT)
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10.5); ax.set_ylim(0,96)
     ax.set_xlabel("weight lost at 1 year",fontsize=10,color=MUT); ax.set_ylabel("type-2 diabetes remission (%)",fontsize=10,color=MUT)
     ds.title(ax,"Cardiometabolic · §22","Type-2 diabetes remission tracks weight lost",
@@ -78,7 +78,7 @@ def herd():
     fig,ax=ds.new_fig(8.6,5.2)
     ax.plot(R0,thr,lw=3,color=GOLD,solid_capstyle="round")
     for n,r in [("Influenza",1.3),("COVID (ancestral)",2.5),("Polio",6),("Measles",15)]:
-        t=(1-1/r)*100; ax.scatter(r,t,s=60,color=GOLDD,zorder=4); ax.annotate(f"{n}\n(~{t:.0f}%)",(r,t),textcoords="offset points",xytext=(6,-4),fontsize=8.6,color=INK)
+        t=(1-1/r)*100; ax.scatter(r,t,s=60,color=GOLDD,zorder=4); ax.annotate(f"{n}\n(~{t:.0f}%)",(r,t),textcoords="offset points",xytext=(9,-17),fontsize=8.6,color=INK)
     ax.set_xlim(1,18); ax.set_ylim(0,100); ax.set_xlabel("basic reproduction number  R₀",fontsize=10,color=MUT)
     ax.set_ylabel("vaccination coverage needed (%)",fontsize=10,color=MUT)
     ds.title(ax,"Infectious Disease · §26","The more contagious, the higher the bar for herd immunity",
@@ -158,7 +158,7 @@ def hepc():
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=11); ax.set_ylim(0,108)
     ax.set_ylabel("sustained virologic response (cure %)",fontsize=10,color=MUT)
     ds.title(ax,"Hepatology · §23","Hepatitis C went from grim to curable in a decade",
-             "Direct-acting antivirals cure >95% with 8–12 weeks of well-tolerated pills. The remaining barrier is diagnosis and access, not the medicine.")
+             "Direct-acting antivirals cure >95% with 8–12 weeks of well-tolerated pills. The remaining barrier is diagnosis and access.")
     ds.footer(ax,"Afdhal et al., NEJM 2014 (DAA trials)","hepc-interferon-to-daa",tier="rct")
     ds.save(fig,f"{FIG}/D12-hepc-cure.png")
 
@@ -170,7 +170,7 @@ def finger():
     ax.set_xticks(list(x)); ax.set_xticklabels(dom,fontsize=10); ax.set_ylim(0,170)
     ax.set_ylabel("benefit vs control (%)",fontsize=10,color=MUT)
     ds.title(ax,"Brain & Dementia · §08","A multidomain lifestyle program improved cognition",
-             "FINGER (diet + exercise + cognitive training + vascular care) beat control across domains over 2 years — the multidomain approach, not any single lever.")
+             "FINGER (diet + exercise + cognitive training + vascular care) beat control across domains over 2 years — the multidomain approach delivered it.")
     ds.footer(ax,"Ngandu et al., FINGER, Lancet 2015","finger-multidomain",tier="rct")
     ds.save(fig,f"{FIG}/D13-finger.png")
 
@@ -183,7 +183,7 @@ def lecanemab():
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=10); ax.set_ylim(0,32)
     ax.set_ylabel("percent",fontsize=10,color=MUT)
     ds.title(ax,"Brain & Dementia · §08","Lecanemab: a real but marginal benefit, with real risks",
-             "~27% slowing (CDR-SB −0.45, near the clinical-importance threshold) bought against 12–17% brain-edema/bleed rates. A first step, not a cure.")
+             "~27% slowing (CDR-SB −0.45, near the clinical-importance threshold) bought against 12–17% brain-edema/bleed rates. A first step toward treatment.")
     ds.footer(ax,"van Dyck et al., NEJM 2023 (CLARITY-AD)","lecanemab-benefit-vs-aria",tier="rct")
     ds.save(fig,f"{FIG}/D14-lecanemab.png")
 

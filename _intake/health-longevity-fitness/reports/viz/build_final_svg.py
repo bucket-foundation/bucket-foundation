@@ -5,7 +5,7 @@ import ds
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; GRN2="#2f8a4b"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"; DKR="#6b1f12"
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker></defs>'
 def box(x,y,w,h,label,fill=CARD,stroke=GOLDD,tcol=INK,sz=12.5):
     s=f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="9" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
     for j,ln in enumerate(label.split("\n")): s+=ds.text(x+w/2,y+h/2+5+(j-(len(label.split(chr(10)))-1)/2)*15,ln,size=sz,fill=tcol,font=ds.DISPLAY,weight="700",anchor="middle")
@@ -14,7 +14,7 @@ def fr(k,t,sub,src,claim,W,H): return ds.panel(W,H,k,t,sub,src,claim)
 
 # 1. min-effective-week calendar
 def week_calendar():
-    W,H=1000,400
+    W,H=1000,480
     head,cy,foot=fr("Training · §02 §6","The minimum effective week","Three templates. Strength 2–4×, some Zone-2, daily walking, a little mobility. Consistency beats optimality.","§02 §6.4","min-effective-week",W,H)
     s=[head]; days=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
     rows=[("Beginner",["Full-body","Walk","Rest","Full-body","Walk","Zone-2","Rest"]),
@@ -34,7 +34,7 @@ def week_calendar():
 
 # 2. RPE/RIR scale
 def rpe():
-    W,H=1000,460
+    W,H=1000,560
     head,cy,foot=fr("Training · §02 §6.3","RPE & RIR — autoregulate your effort","Rate of perceived exertion (RPE) maps to reps-in-reserve (RIR). Most productive training lives at RPE 7–8 (2–3 RIR).","§02 §6.3","rpe-rir-scale",W,H)
     s=[head]; rows=[(10,"0 RIR","maximal — nothing left",WARN),(9,"1 RIR","very hard",WARN),(8,"2 RIR","hard — productive",GRN),(7,"3 RIR","challenging — productive",GRN),(6,"4 RIR","moderate",AMB),(5,"5+ RIR","easy / warm-up",MUT)]
     x0=120; bw=720
@@ -49,8 +49,8 @@ def rpe():
 
 # 3. dietary-pattern rings
 def dietary():
-    W,H=1000,440
-    head,cy,foot=fr("Nutrition · §03 §3","The pattern, not a brand diet","Every evidence-based diet converges on the same five habits. The label matters far less than the overlap.","§03 §3","dietary-pattern",W,H)
+    W,H=1000,540
+    head,cy,foot=fr("Nutrition · §03 §3","The habits every good diet shares","Every evidence-based diet converges on the same five habits. The label matters far less than the overlap.","§03 §3","dietary-pattern",W,H)
     cx,cyh=W/2,cy+165; s=[head]
     rings=[("Whole, minimally\nprocessed foods",-150,-70,GRN),("Fiber-rich\n(plants)",150,-70,GRN2),("Adequate\nprotein",-200,70,AMB),("Mostly unsaturated\nfats",200,70,BLUE),("Low added\nsugar",0,150,GOLDD)]
     for lab,dx,dy,c in rings:
@@ -63,7 +63,7 @@ def dietary():
 
 # 4. fasting exclusion panel
 def exclusion():
-    W,H=1000,400
+    W,H=1000,480
     head,cy,foot=fr("Fasting · §36 §7","Who should NOT fast","For these groups, fasting ranges from risky to dangerous. Medical supervision required — or don't.","§36 §7","fasting-exclusions",W,H)
     s=[head]; items=["Type 1 / type 2 diabetes on glucose-lowering meds","Pregnancy or breastfeeding","History of an eating disorder","Underweight or frail / elderly","Children & adolescents","Narrow-therapeutic-index meds (timing-critical)","Advanced kidney or liver disease","Gout (flare risk)"]
     for i,t in enumerate(items):
@@ -82,7 +82,7 @@ def _wrap(t,n):
 
 # 5. refeeding flow
 def refeeding():
-    W,H=1000,330
+    W,H=1000,380
     head,cy,foot=fr("Fasting · §36 §2.4","Refeeding syndrome — the danger after a long fast","Breaking a prolonged fast with a carb load can be lethal. Go slow, supplement, and monitor.","§36 §2.4","refeeding-syndrome",W,H)
     s=[head,ARROW]; steps=[("Prolonged\nfast",AMB),("Refeed carbs\n→ insulin spike",WARN),("Cells pull in\nPO₄ / K / Mg",WARN),("Low phosphate\n→ arrhythmia, seizure",DKR)]
     n=4; bw=180; gap=((W-80)-n*bw)/(n-1)
@@ -95,7 +95,7 @@ def refeeding():
 
 # 6. pop-psych debunks
 def debunks():
-    W,H=1000,360
+    W,H=1000,450
     head,cy,foot=fr("Behavior Change · §29 §8","Pop-psychology that doesn't hold up","Popular, sticky, and wrong. Don't build your system on these.","§29 §8","pop-psych-debunks",W,H)
     s=[head]; myths=["“21 days to form a habit”","“Willpower is a muscle that depletes” (ego depletion)","“Dopamine detox” resets your brain","“Learning styles” (visual/auditory) improve learning","“Manifestation” changes outcomes"]
     for i,m in enumerate(myths):
@@ -108,7 +108,7 @@ def debunks():
 
 # 7. implementation intention
 def if_then():
-    W,H=1000,300
+    W,H=1000,360
     head,cy,foot=fr("Behavior Change · §29 §2.2","Implementation intentions — weld the habit to a cue","Don't rely on remembering. Tie the new behavior to something that already happens every day.","§29 §2.2","implementation-intention",W,H)
     s=[head,ARROW]
     s.append(box(70,cy+30,400,80,"",stroke=BLUE))

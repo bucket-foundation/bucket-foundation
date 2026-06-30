@@ -11,14 +11,14 @@ def D(p,r=5,c=INK): return f'<circle cx="{p[0]:.0f}" cy="{p[1]:.0f}" r="{r}" fil
 def HEAD(p,c=INK): return f'<circle cx="{p[0]:.0f}" cy="{p[1]:.0f}" r="{HEADR}" fill="{PAPER}" stroke="{c}" stroke-width="7"/>'
 def GND(x0=70,x1=W-40,y=G): return f'<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" stroke="{INK}" stroke-width="4"/>'
 def wt(p,rw=22,rh=15,c=INK): return f'<rect x="{p[0]-rw/2:.0f}" y="{p[1]-rh/2:.0f}" width="{rw}" height="{rh}" rx="3" fill="{c}"/>'
-ARROW='<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+ARROW='<defs><marker id="ar" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 def card(name,title,badge,bcol,subtitle,body,cues,cite):
     s=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
        f'<rect width="{W}" height="{H}" fill="{PAPER}"/><rect width="{W}" height="8" fill="{GOLD}"/>',ARROW,
-       ds.text(30,48,title,size=23,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
+       ds.text(30,48,title,size=21,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
        f'<rect x="30" y="62" width="{16+len(badge)*7.4:.0f}" height="20" rx="10" fill="{bcol}"/>',
        ds.text(38,77,badge,size=11.5,fill="#fff",font=ds.DISPLAY,weight="bold"),
-       ds.text(48+len(badge)*7.4,77,subtitle,size=13,fill=MUT,font=ds.BODY,italic=True),body]
+       ds.text(48+len(badge)*7.4,77,subtitle,size=12.5,fill=MUT,font=ds.BODY,italic=True),body]
     cy=G+40
     for c in cues:
         s.append(f'<circle cx="44" cy="{cy-4}" r="3.5" fill="{GOLD}"/>'+ds.text(58,cy,c,size=14.5,fill=INK,font=ds.BODY)); cy+=25
@@ -51,7 +51,7 @@ body=GND()+f'<rect x="356" y="{G-44}" width="36" height="44" rx="4" fill="{INK}"
      +L(hip,knee,11)+L(knee,foot,11)+L(hip,sho,12)+L(sho,(218,G-178),11)+HEAD(hd)+L(sho,el,9)+L(el,hands,9)+D(hip)+D(knee) \
      +f'<line x1="{hands[0]}" y1="{hands[1]}" x2="362" y2="{G-30}" stroke="{GOLD_D}" stroke-width="3" stroke-dasharray="4 4"/>'
 card("M30-rowing-erg.png","Rowing Machine","TIER A · CONDITIONING",GREEN,"full-body cardio",body,
-     ["Drive order: LEGS → hips/back → arms (pull to chest)","Return order reverses: arms → hips → legs","~60% of the power is the legs, not the arms","Low-impact, full-body conditioning + posterior chain"],
+     ["Drive order: LEGS → hips/back → arms (pull to chest)","Return order reverses: arms → hips → legs","~60% of the power comes from the legs","Low-impact, full-body conditioning + posterior chain"],
      "full-body ergometer · legs-led power sequence")
 
 # 4. Hollow hold (supine banana)

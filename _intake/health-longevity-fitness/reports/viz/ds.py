@@ -49,20 +49,35 @@ def use_chart_style():
 def new_fig(w=8.4, h=5.0):
     use_chart_style(); fig, ax = plt.subplots(figsize=(w,h)); return fig, ax
 
+import textwrap as _tw
+# ---- ONE standardized type scale (shared intent across matplotlib + SVG) ----
+# matplotlib points (figures ~8.6in wide); SVG px equivalents in panel() below.
+T_KICK_PT=9.0; T_HEAD_PT=15.0; T_SUB_PT=10.0
+def _wrap_for_fig(fig, sub, pt):
+    """Wrap a subtitle to the usable figure width so it never runs off the page."""
+    w_in=fig.get_size_inches()[0]
+    usable_pt=(0.965-0.024)*w_in*72.0
+    maxchars=max(24, int(usable_pt/(pt*0.505)))
+    return _tw.wrap(str(sub), width=maxchars) or [str(sub)]
+
 def title(ax, kicker, head, sub=None):
-    """Consistent figure title block: gold kicker · Archivo head · muted subhead · rule BELOW it all."""
+    """Standard figure title block: gold kicker · Archivo head · wrapped muted subhead · rule BELOW.
+    Subtitle is wrapped to the figure width so it can never overflow the page."""
     ax.set_title("")
     fig=ax.figure
-    fig.text(0.022, 0.975, kicker.upper(), color=GOLD_D, fontfamily=DISPLAY, fontweight="bold",
-             fontsize=9.5, ha="left", va="top")
-    fig.text(0.022, 0.940, head, color=INK2, fontfamily=DISPLAY, fontweight="black",
-             fontsize=16, ha="left", va="top")
-    ry=0.876
+    fig.text(0.024, 0.978, kicker.upper(), color=GOLD_D, fontfamily=DISPLAY, fontweight="bold",
+             fontsize=T_KICK_PT, ha="left", va="top")
+    fig.text(0.024, 0.945, head, color=INK2, fontfamily=DISPLAY, fontweight="black",
+             fontsize=T_HEAD_PT, ha="left", va="top")
+    ry=0.890
     if sub:
-        fig.text(0.022, 0.896, sub, color=MUT, fontfamily=BODY, fontsize=10.5, ha="left", va="top",
-                 fontstyle="italic")
-        ry=0.860
-    fig.add_artist(plt.Line2D([0.022,0.42],[ry,ry], color=GOLD, lw=2.4,
+        yy=0.904
+        for ln in _wrap_for_fig(fig, sub, T_SUB_PT):
+            fig.text(0.024, yy, ln, color=MUT, fontfamily=BODY, fontsize=T_SUB_PT, ha="left", va="top",
+                     fontstyle="italic")
+            yy-=0.0315
+        ry=yy+0.0035
+    fig.add_artist(plt.Line2D([0.024,0.40],[ry,ry], color=GOLD, lw=2.4,
                               transform=fig.transFigure, solid_capstyle="round"))
 
 def footer(ax, source, claim_id=None, tier=None):
@@ -120,15 +135,23 @@ def tier_badge(x,y,tier,**kw):
 def verdict_chip(x,y,verdict,**kw):
     return badge(x,y,verdict.upper(),VERDICT.get(verdict.upper(),FAINT),**kw)
 
+# SVG type scale (px in 1000-wide design space) — kept visually in step with the matplotlib scale.
+P_KICK=10; P_HEAD=21; P_SUB=12.5
 def panel(w,h,title_k,title_h,sub=None,footer_src=None,claim=None):
-    """Standard figure frame: gold bar, kicker, Archivo head, subhead, footer rule+provenance.
+    """Standard figure frame: gold bar, kicker, Archivo head, WRAPPED subhead, footer rule+provenance.
+    Subtitle wraps to the panel width so it never runs off the page.
     Returns (open_svg, content_y0, close_svg) — caller draws body between."""
     s=[svg_open(w,h), goldbar(w),
-       text(28,46,title_k.upper(),size=10,fill=GOLD_D,font=DISPLAY,weight="bold",spacing="0.4"),
-       text(28,74,title_h,size=21,fill=INK2,font=DISPLAY,weight="800")]
+       text(28,46,title_k.upper(),size=P_KICK,fill=GOLD_D,font=DISPLAY,weight="bold",spacing="0.4"),
+       text(28,74,title_h,size=P_HEAD,fill=INK2,font=DISPLAY,weight="800")]
     y0=92
     if sub:
-        s.append(text(28,96,sub,size=12.5,fill=MUT,font=BODY,italic=True)); y0=112
+        maxc=max(24,int((w-56)/(P_SUB*0.512)))
+        lines=_tw.wrap(str(sub),width=maxc) or [str(sub)]
+        yy=96
+        for ln in lines:
+            s.append(text(28,yy,ln,size=P_SUB,fill=MUT,font=BODY,italic=True)); yy+=19
+        y0=yy+1
     s.append(f'<line x1="28" y1="{y0}" x2="{min(460,w-28):.0f}" y2="{y0}" stroke="{GOLD}" stroke-width="2.2" stroke-linecap="round"/>')
     foot=[f'<line x1="28" y1="{h-34}" x2="{w-28}" y2="{h-34}" stroke="{RULE}" stroke-width="1"/>']
     if footer_src: foot.append(text(28,h-18,footer_src,size=8.4,fill=FAINT,font=BODY))

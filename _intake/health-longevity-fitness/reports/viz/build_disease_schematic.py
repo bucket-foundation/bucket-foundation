@@ -5,7 +5,7 @@ import ds
 FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","figures"))
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; GRN2="#2f8a4b"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"; DKR="#6b1f12"
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker><marker id="gn" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1d6b2e"/></marker><marker id="wn" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker><marker id="gn" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1d6b2e"/></marker><marker id="wn" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 def _ac(c): return "#1c1a17" if c=="bk" else "#1d6b2e" if c=="gn" else "#b5471f"
 def box(x,y,w,h,label,fill=CARD,stroke=GOLDD,tcol=INK,sub=None,sz=13):
     s=f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="9" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
@@ -33,7 +33,7 @@ def frame(name,kicker,title,sub,src,claim,W,H):
 
 # 1. T2D management ladder (vertical, escalate up)
 def t2d_ladder():
-    W,H=1000,460
+    W,H=1000,520
     head,cy,foot=frame("DS-t2d","Cardiometabolic · §22 §2.2","Type-2 diabetes — the management ladder","Start with lifestyle (it wins on prevention), escalate only as needed. Newer agents add heart/kidney benefit.","§22 §2.2","t2d-management-ladder",W,H)
     tiers=[("Lifestyle (diet, weight, activity)","DPP: −58% progression — beats metformin",GRN),
            ("Metformin","first-line drug (UKPDS)",GRN2),
@@ -80,7 +80,7 @@ def crc_seq():
 # 4. Gout pathway
 def gout():
     W,H=1000,320
-    head,cy,foot=frame("DS-gout","Rheumatology · §24 §13","Gout — urate, crystals, and treat-to-target","Mostly genetic (under-excretion), not just diet. Lowering urate below 6 mg/dL dissolves the crystals.","§24 §13","gout-urate-target",W,H)
+    head,cy,foot=frame("DS-gout","Rheumatology · §24 §13","Gout — urate, crystals, and treat-to-target","Mostly genetic (under-excretion), with diet a minor contributor. Lowering urate below 6 mg/dL dissolves the crystals.","§24 §13","gout-urate-target",W,H)
     steps=[("Hyperuricemia",">6.8 mg/dL (saturation)","#f6ece6",AMB),("MSU crystals","deposit in joints",CARD,WARN),("NLRP3 / IL-1β","inflammasome fires","#f6ece6",WARN),("Gout flare","acute joint attack","#f0dcd2",DKR)]
     s=[head,ARROW, flow_row(steps,40,W-40,cy+30,168,68)]
     s.append(f'<rect x="40" y="{cy+126}" width="{W-80}" height="40" rx="9" fill="#eef4ec" stroke="{GRN}" stroke-width="2"/>')
@@ -98,7 +98,7 @@ def ra():
 
 # 6. Low-FODMAP 3-phase
 def fodmap():
-    W,H=1000,320
+    W,H=1000,370
     head,cy,foot=frame("DS-fod","GI · §23 §B3","Low-FODMAP — a 3-phase protocol, NOT a forever diet","Dietitian-guided: restrict, then systematically reintroduce, then personalize. ~50–67% of IBS responds.","§23 §B3","low-fodmap-protocol",W,H)
     steps=[("1 · Restriction","2–6 weeks, strict","#f6ece6",WARN),("2 · Reintroduction","test groups one at a time",CARD,AMB),("3 · Personalization","your tolerable long-term diet","#eef4ec",GRN)]
     s=[head,ARROW, flow_row(steps,80,W-80,cy+34,250,72)]
@@ -108,7 +108,7 @@ def fodmap():
 # 7. Asthma type-2 cascade
 def asthma():
     W,H=1000,330
-    head,cy,foot=frame("DS-asth","Respiratory · §23 §A1","Asthma is an inflammatory disease (not just bronchospasm)","Type-2 inflammation drives it — which is why inhaled steroids, not just relievers, are the controller.","§23 §A1","asthma-type2",W,H)
+    head,cy,foot=frame("DS-asth","Respiratory · §23 §A1","Asthma is an inflammatory disease (not just bronchospasm)","Type-2 inflammation drives it — which is why an inhaled steroid is the controller.","§23 §A1","asthma-type2",W,H)
     steps=[("Trigger","allergen / virus","#f6ece6",AMB),("Th2 response","IL-4 / IL-5 / IL-13",CARD,WARN),("Eosinophils, IgE,\nmast cells","airway inflammation","#f6ece6",WARN),("Hyperreactive\nairway","reversible obstruction","#f0dcd2",DKR)]
     s=[head,ARROW, flow_row(steps,40,W-40,cy+30,176,72)]
     s.append(ds.text(W/2,cy+154,"Controller = inhaled corticosteroid (treats inflammation). Reliever alone undertreats.",size=11.5,fill=GRN,font=ds.BODY,weight="600",anchor="middle"))
@@ -171,7 +171,7 @@ def vaccine_timeline():
 def one_machine():
     import math
     W,H=1000,560
-    head,cy,foot=frame("DS-cm","Cardiometabolic · §22 map","Cardiometabolic-renal disease is one machine","CAD, heart failure, AF, type-2 diabetes and CKD share one failing vascular-metabolic system — treat the system, not five silos.","§22 §0","cardiometabolic-one-machine",W,H)
+    head,cy,foot=frame("DS-cm","Cardiometabolic · §22 map","Cardiometabolic-renal disease is one machine","CAD, heart failure, AF, type-2 diabetes and CKD share one failing vascular-metabolic system — treat the whole system.","§22 §0","cardiometabolic-one-machine",W,H)
     cx,cyh=W/2,cy+185; r=66; s=[head,ARROW]
     nodes=[("Coronary\nartery disease",-185,-120),("Heart\nfailure",185,-120),("Atrial\nfibrillation",-240,35),("Type-2\ndiabetes",240,35),("Chronic kidney\ndisease",0,152)]
     for lab,dx,dy in nodes:

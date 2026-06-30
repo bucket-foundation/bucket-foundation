@@ -92,7 +92,7 @@ def psychosocial():
     for y,vi in zip(yp,v): ax.text(vi+0.01,y,f"{vi:.2f}×",va="center",fontsize=10,color=INK,fontweight="bold")
     ax.set_yticks(yp); ax.set_yticklabels(labels,fontsize=10.5); ax.set_xlim(0.9,1.65)
     ax.set_xlabel("survival odds (relative)",fontsize=10,color=MUT)
-    ds.title(ax,"Recovery & Stress · §05","The biggest longevity levers are social, not supplemental",
+    ds.title(ax,"Recovery & Stress · §05","The biggest longevity levers are social",
              "Strong relationships rival quitting smoking for mortality. Purpose, connection and status dwarf the mechanistic-tier supplement claims sold as longevity.")
     ds.footer(ax,"Holt-Lunstad 2010; purpose/SES cohorts","psychosocial-levers",tier="meta")
     ds.save(fig,f"{FIG}/L07-psychosocial.png",left=0.205)
@@ -104,7 +104,7 @@ def intention_behavior():
     ax.set_xticks(list(x)); ax.set_xticklabels(cats,fontsize=11); ax.set_ylim(0,0.8)
     ax.set_ylabel("effect size (Cohen's d)",fontsize=10,color=MUT)
     ds.title(ax,"Behavior Change · §29","The intention–behavior gap",
-             "Changing what people intend is the easy half; ~half who form an intention still don't act. Design for the gap — cues and environment, not more motivation.")
+             "Changing what people intend is the easy half; ~half who form an intention still don't act. Design for the gap with cues and environment.")
     ds.footer(ax,"Webb & Sheeran, Psych Bull 2006","intention-behavior-gap",tier="meta")
     ds.save(fig,f"{FIG}/L08-intention-behavior.png")
 
@@ -203,7 +203,7 @@ def lifespan_doubled():
     ax.set_yticks(yp); ax.set_yticklabels(labels,fontsize=10); ax.set_xlim(0,56)
     ax.set_xlabel("approx. contribution to the lifespan doubling",fontsize=9.6,color=MUT)
     ds.title(ax,"Public Health · §33","What actually doubled human lifespan",
-             "Clean water did more than any drug. Public-health plumbing, food, and vaccines — not clinical medicine — drove most of the gain. Medicine is the smaller share.")
+             "Clean water did more than any drug. Public-health plumbing, food, and vaccines drove most of the gain. Clinical medicine is the smaller share.")
     ds.footer(ax,"Cutler & Miller 2005 (indicative shares)","what-doubled-lifespan",tier="cohort")
     ds.save(fig,f"{FIG}/L15-lifespan-doubled.png",left=0.165)
 
@@ -216,7 +216,7 @@ def us_peers():
     ax.set_xlim(8,19); ax.set_ylim(0,12); ax.invert_yaxis()
     ax.set_xlabel("health spending (% of GDP)",fontsize=10,color=MUT); ax.set_ylabel("outcome rank  (1 = best)",fontsize=10,color=MUT)
     ds.title(ax,"Public Health · §33","The US spends the most and ranks the worst",
-             "Among wealthy nations, more spending doesn't buy better outcomes. The US is the outlier — highest cost, lowest performance. The system, not the science, is the gap.")
+             "Among wealthy nations, more spending doesn't buy better outcomes. The US is the outlier — highest cost, lowest performance. The problem is how care is organized.")
     ds.footer(ax,"Commonwealth Fund, Mirror Mirror 2024","us-vs-peers",tier="cohort")
     ds.save(fig,f"{FIG}/L16-us-vs-peers.png")
 

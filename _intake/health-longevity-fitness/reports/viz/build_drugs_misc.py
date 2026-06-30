@@ -6,7 +6,7 @@ FIG=os.path.abspath(os.path.join(os.path.dirname(__file__),"..","..","media","fi
 INK=ds.INK; PAPER=ds.PAPER; CARD="#fbf8ef"; GOLD=ds.GOLD; GOLDD=ds.GOLD_D; MUT=ds.MUT; RULE=ds.RULE
 GRN="#1d6b2e"; GRN2="#2f8a4b"; WARN="#b5471f"; BLUE="#3a6ea5"; AMB="#8a6d12"; DKR="#6b1f12"
 C={"trans":GRN,"eff":GRN2,"oversold":AMB,"debunk":WARN,"proven":GRN,"emerg":AMB,"exp":AMB,"story":WARN,"none":DKR}
-ARROW='<defs><marker id="bk" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#1c1a17"/></marker><marker id="wn" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+ARROW='<defs><marker id="bk" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#1c1a17"/></marker><marker id="wn" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 def matrix(name,k,t,sub,src,claim,headers,rows,xs,badge=True):
     W=1000; H=92+len(rows)*46+64
     head,y0,foot=ds.panel(W,H,k,t,sub,src,claim); s=[head]
@@ -127,7 +127,7 @@ def anecdote():
     s.append(foot); ds.render("".join(s),f"{FIG}/R07-anecdote-engine.png")
 
 def placebo_bounded():
-    W,H=1000,360
+    W,H=1000,400
     head,cy,foot=ds.panel(W,H,"Alternative Medicine · §30 §9.1","Placebo is real — but bounded",
         "Placebo moves how you FEEL (brain-mediated). It does not move the underlying pathology.","§30 §9.1","placebo-bounded")
     s=[head]; midx=W/2

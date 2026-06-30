@@ -52,7 +52,7 @@ matrix("PX3-lab-categories.png","Lab Medicine · §41 §B.1","Reading your blood
    ("Blood count (CBC)","hemoglobin, WBC, platelets","wide normal range; context-dependent"),
    ("Liver (LFTs)","ALT, AST, ALP, bilirubin","'liver tests' aren't liver-specific"),
    ("Kidney","creatinine, eGFR, cystatin C","muscle mass skews creatinine"),
-   ("Inflammatory","hsCRP, ESR","predictors, not levers"),
+   ("Inflammatory","hsCRP, ESR","predictors of risk"),
    ("Tumor markers","PSA, CA-125, CEA","poor screens; for monitoring known disease")],
   [40,330,640],badge=False)
 

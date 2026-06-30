@@ -65,7 +65,7 @@ def less_is_more():
     ax.set_xticks(list(x)); ax.set_xticklabels(L,fontsize=10); ax.set_ylim(0,22)
     ax.set_ylabel("absolute mortality reduction (pp)",fontsize=10,color=MUT)
     ds.title(ax,"Critical Care · §39","In the ICU, gentler often beats aggressive",
-             "The big wins came from doing LESS to the patient: smaller breaths, proning, a cheap steroid. Restraint, not escalation, saved lives.")
+             "The big wins came from doing LESS to the patient: smaller breaths, proning, a cheap steroid. Restraint saved lives.")
     ds.footer(ax,"ARDSNet 2000; PROSEVA 2013; RECOVERY 2020","less-is-more-icu",tier="rct")
     ds.save(fig,f"{FIG}/Q05-less-is-more.png")
 

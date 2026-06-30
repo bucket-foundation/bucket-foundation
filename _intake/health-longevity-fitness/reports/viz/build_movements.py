@@ -15,10 +15,10 @@ def bar(x0,x1,y,c=INK): return f'<line x1="{x0}" y1="{y}" x2="{x1}" y2="{y}" str
 def card(name,title,badge,bcol,subtitle,body,cues,cite):
     s=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
        f'<rect width="{W}" height="{H}" fill="{PAPER}"/><rect width="{W}" height="8" fill="{GOLD}"/>',
-       ds.text(30,48,title,size=23,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
+       ds.text(30,48,title,size=21,fill=ds.INK2,font=ds.DISPLAY,weight="800"),
        f'<rect x="30" y="62" width="{16+len(badge)*7.4:.0f}" height="20" rx="10" fill="{bcol}"/>',
        ds.text(38,77,badge,size=11.5,fill="#fff",font=ds.DISPLAY,weight="bold"),
-       ds.text(48+len(badge)*7.4,77,subtitle,size=13,fill=MUT,font=ds.BODY,italic=True),
+       ds.text(48+len(badge)*7.4,77,subtitle,size=12.5,fill=MUT,font=ds.BODY,italic=True),
        body]
     cy=G+40
     for c in cues:
@@ -77,9 +77,9 @@ el=(300,G-188); wr=(348,G-176); kb=(372,G-170); toe=(280,G)
 body=GND()+L(hip,knee,11)+L(knee,ankle,11)+L(ankle,toe,9)+L(hip,sho,12)+L(sho,el,9)+L(el,wr,9)+HEAD(hd)+D(hip)+D(knee) \
      +f'<line x1="{wr[0]}" y1="{wr[1]}" x2="{kb[0]}" y2="{kb[1]}" stroke="{GOLD_D}" stroke-width="6"/>'+D(kb,12,GOLD_D) \
      +f'<path d="M196 {G-150} q -50 4 -56 -46" stroke="{RED}" stroke-width="3" fill="none" marker-end="url(#mkb)"/>' \
-     +'<defs><marker id="mkb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#b5471f"/></marker></defs>'
+     +'<defs><marker id="mkb" markerWidth="12" markerHeight="12" refX="8.5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,4 L0,8 Z" fill="#b5471f"/></marker></defs>'
 card("M06-kettlebell-swing.png","Kettlebell Swing","TIER B · POWER",GOLD,"ballistic hinge",body,
-     ["It's a HINGE, not a squat — hips snap back & through","Power from the glutes; arms just guide","Flat back; the bell floats to ~chest height","Builds explosive hip power + conditioning"],
+     ["It's a HINGE — hips snap back and through","Power from the glutes; arms just guide","Flat back; the bell floats to ~chest height","Builds explosive hip power + conditioning"],
      "ballistic hip hinge · power + conditioning")
 
 print("rendered 6 movement figures")
