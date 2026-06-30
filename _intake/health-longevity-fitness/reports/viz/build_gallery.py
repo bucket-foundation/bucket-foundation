@@ -373,6 +373,8 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("RA11-tissue-epithelial.png","Epithelial Tissue (histology)","open-license micrograph"),
  ("RA12-tissue-connective.png","Connective Tissue (histology)","open-license micrograph"),
  ("RA13-tissue-muscle.png","Skeletal Muscle (histology)","open-license micrograph"),
+ ("RA14-heart.png","The Heart (real)","open-license illustration"),
+ ("RA15-the-cell.png","The Animal Cell (real)","open-license illustration"),
 ]
 
 def b64(p):

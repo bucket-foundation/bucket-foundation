@@ -32,6 +32,8 @@ PICKS=[
  ("RA11-tissue-epithelial","tissue-epithelial","1-Histological_section_of_small_intestine_epithelial_tissue__zoom.jpg.jpg","Anatomy · §18","Epithelial tissue, under the microscope","Small-intestine epithelium: the sheet that lines surfaces and forms glands.","epithelial-histology"),
  ("RA12-tissue-connective","tissue-connective","1-Connective_Tissue_Reticular__40885193805_.jpg.jpg","Anatomy · §18","Connective tissue, under the microscope","Reticular connective tissue: the framework that supports and binds.","connective-histology"),
  ("RA13-tissue-muscle","tissue-muscle","1-Skeletal_muscle_histology.jpg.jpg","Anatomy · §18","Skeletal muscle, under the microscope","Striated skeletal muscle fibers: the tissue that generates force.","muscle-histology"),
+ ("RA14-heart","heart-anatomy","4-Heart_diagram-en.svg.png","Cardiovascular · §22","The heart","Four chambers, the great vessels, and the valves that keep blood moving one way.","heart-anatomy"),
+ ("RA15-the-cell","the-cell","5-Animal_cell_structure_en.svg.png","Foundations · §01","The animal cell","The organelles inside a typical cell, from the nucleus to the mitochondria.","animal-cell-anatomy"),
 ]
 W=1000
 made=[]
