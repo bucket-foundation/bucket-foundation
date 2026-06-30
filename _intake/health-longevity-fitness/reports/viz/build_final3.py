@@ -178,8 +178,8 @@ def caffeine():
     fig,ax=ds.new_fig(8.6,5.2)
     ax.plot(t,dose,lw=3,color=GOLD,solid_capstyle="round")
     ax.axvspan(22,24,color=BLUE,alpha=0.08); ax.axvline(14,ls="--",color=WARN,lw=1.3)
-    ax.text(14.2,150,"last cup ~8–10 h\nbefore bed",fontsize=9.5,color=WARN)
-    ax.text(22.1,120,"sleep",fontsize=9.5,color=BLUE)
+    ax.text(8.0,196,"last cup ~8–10 h before bed",fontsize=9.5,color=WARN)
+    ax.text(22.2,150,"sleep",fontsize=9.5,color=BLUE)
     ax.set_xlim(6,24); ax.set_ylim(0,210); ax.set_xlabel("time of day (h)",fontsize=10,color=MUT)
     ax.set_ylabel("caffeine in the body (mg)",fontsize=10,color=MUT)
     ds.title(ax,"Recovery · §05","Caffeine has a long tail — time it for sleep",

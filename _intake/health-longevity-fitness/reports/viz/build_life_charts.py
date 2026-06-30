@@ -127,8 +127,8 @@ def capacity_arc():
     cap=np.where(age<28,40+60*(age/28),100-1.05*(age-28))
     fig,ax=ds.new_fig(8.6,5.2)
     ax.plot(age,cap,lw=3,color=GOLD,solid_capstyle="round")
-    ax.axhline(30,ls=":",color=WARN,lw=1.3); ax.text(2,33,"frailty / fracture threshold",fontsize=9,color=WARN)
-    ax.axvline(28,ls="--",color=GRN,lw=1); ax.text(30,95,"peak (20s–30s)",fontsize=9.5,color=GRN)
+    ax.axhline(30,ls=":",color=WARN,lw=1.3); ax.text(2,22,"frailty / fracture threshold",fontsize=9,color=WARN)
+    ax.axvline(28,ls="--",color=GRN,lw=1); ax.annotate("peak (20s–30s)",(28,100),xytext=(40,92),fontsize=9.5,color=GRN,arrowprops=dict(arrowstyle="->",color=GRN,lw=1.1))
     ax.set_xlim(0,90); ax.set_ylim(0,110); ax.set_xlabel("age (years)",fontsize=10,color=MUT)
     ax.set_ylabel("physiological capacity (VO₂max, bone, muscle)",fontsize=9.0,color=MUT)
     ds.title(ax,"Life Stages · §19","The peak you build is the asset you spend",
