@@ -349,6 +349,17 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("Z11-pku.png","PKU Newborn Screening","a heel-prick prevents disability"),
  ("Z12-stemcell-flags.png","Predatory Stem-Cell Red Flags","walk away"),
  ("Z13-surgery-questions.png","Questions Before Surgery","ask before you consent"),
+ ("Y01-calories-le.png","Calories Don't Explain It","the longevity puzzle"),
+ ("Y02-glp1-outcomes.png","GLP-1: Weight AND Outcomes","surrogate + hard endpoints"),
+ ("Y03-mammography.png","Mammography","benefit and overdiagnosis"),
+ ("Y04-prenatal.png","Prenatal Supplements","load-bearing vs marketing"),
+ ("Y05-hrv.png","HRV: Your Trend","not a leaderboard"),
+ ("Y06-adherence.png","Adherence Beats Optimality","do what you'll keep doing"),
+ ("Y07-strength-ladders.png","Five Patterns, Three Rungs","regress → progress"),
+ ("Y08-racquet-bundle.png","Why Racquet Sports Win","four ingredients → adherence"),
+ ("Y09-liver-flush.png","'Liver Flush Stones' Are Soap","not gallstones"),
+ ("Y10-gh-owngoal.png","The GH/IGF-1 Own-Goal","boosters push the wrong way"),
+ ("Y11-caffeine.png","Caffeine Has a Long Tail","time it for sleep"),
 ]
 
 def b64(p):
