@@ -207,6 +207,18 @@ MANIFEST=[  # (file, title, caption) — in reading order
  ("DS10-parkinsons-prodrome.png","Parkinson's Prodrome","years before the tremor"),
  ("DS11-vaccine-timeline.png","Vaccines in History","a fragile win"),
  ("DS12-one-machine.png","Cardiometabolic = One Machine","treat the system"),
+ ("D15-ms-dmt.png","MS Disease-Modifying Drugs","hit hard early"),
+ ("D16-migraine-cgrp.png","Migraine CGRP Blockers","advance, not cure"),
+ ("D17-neuropathy-nnt.png","Neuropathic Pain NNT","modest, honest"),
+ ("D18-antipsychotics.png","Antipsychotics","efficacy vs metabolic harm"),
+ ("D19-anorexia-smr.png","Anorexia Mortality","among the deadliest"),
+ ("D20-mdma-ptsd.png","MDMA for PTSD","promise, then a pause"),
+ ("D21-lithium-suicide.png","Lithium's Anti-Suicide Signal","beyond mood"),
+ ("D22-brca-risk.png","BRCA1 vs BRCA2 Risk","high, actionable"),
+ ("D23-oncogene-frequency.png","Driver Mutation Frequency","TP53, RAS recur"),
+ ("D24-checkmate-melanoma.png","Melanoma Immunotherapy","~50% at 5 years"),
+ ("D25-achieve-hearing.png","Hearing Aids & Cognition","a lever, not a marker"),
+ ("D26-shingles-dementia.png","Shingles Vaccine → Dementia","a natural experiment"),
 ]
 
 def b64(p):
