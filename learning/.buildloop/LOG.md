@@ -888,3 +888,40 @@ redox-potential — redox tower / midpoint-potential ETC ordering — to raise i
 VERIFY it doesn't push asked past 18). Cheap zero-risk wins still open across all branches: ~30
 biophysics atoms lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION
 =11.0.0 reachable.
+
+## 2026-07-01 — run 24 (+6 mind atoms; branch expansion continues; biophysics untouched)
+Continued branch expansion per run-23's handoff (mind was thinnest at 42). Added **6 mind atoms
+(42→48)**, all filling the noted gaps + two foundational principles, each `requires` into EXISTING
+mind ids only (verified no missing/dupe): **glia** (astrocytes/oligodendrocytes/microglia — K⁺ &
+glutamate buffering, myelin, synapse pruning, tripartite synapse; ← neuron-doctrine, chemical-synapse),
+**reward-prediction-error** (dopamine RPE = TD error δ=r+γV(s')−V(s); burst-shift-to-cue signature,
+Schultz/Montague–Dayan, distributional RL; ← neuromodulation, reinforcement-learning-brain),
+**cognitive-map** (place & grid cells, hexagonal lattice, path integration, 2014 Nobel, abstract
+cognitive spaces; ← hippocampus-memory, population-coding), **drift-diffusion** (evidence
+accumulation, dx=A·dt+c·dW to ±a bounds = SPRT, speed–accuracy trade-off, parameter dissociation;
+← population-coding, attention), **efficient-coding** (Attneave/Barlow redundancy reduction, sparse
+coding → oriented V1 filters, infomax, SNR-dependent whitening vs averaging; ← neural-coding,
+receptive-fields), **neurovascular-coupling** (BOLD/fMRI substrate — activity→flow→oxy/deoxy Hb
+paramagnetism, ~5–6s hemodynamic lag, indirect proxy; ← action-potential, ionic-gradients). Each =
+full 7-section lesson (Intuition/Precisely/Worked example/Why it's true/Where it connects/Watch out/
+Worth knowing) + summary + 3 depths + note + art_prompt + 2 quiz (recall + apply/derive, some with
+eq) + OPEN sources (Wikipedia + NCBI Bookshelf Purves + PMC OA + MIT OCW 9.x + arXiv q-bio.NC). ALL
+prose ORIGINAL; equations are facts. meta 0.3.0→0.4.0. Mirrored to public/academy-app (48 atoms,
+ver 0.4.0 verified).
+
+**validate.sh PASSES end-to-end** (all corpus JSON integrity incl. mind 48/no-dupes/no-missing-
+requires, manifest consistency, JS syntax, 60-day engine sim — biophysics diagnostic UNCHANGED at
+placed 42/asked 18 margin +24 shell 5/6 since the engine sim loads ONLY biophysics.json, so mind
+edits are zero-risk to placement — assess/lang/explorer smokes). NOTE: `sync-academy.mjs` lives at
+the REPO ROOT (`scripts/`), not `learning/scripts/` — run `node scripts/sync-academy.mjs` from the
+bucket-foundation root.
+
+**NEXT run:** keep expanding the thinnest branches — after this, **cosmology (47)** and **mind (48)**
+are tied thinnest; then chemistry/information/mathematics (~48–49). Mind gaps still open:
+interoception/homeostatic drives, emotion/amygdala circuits, sleep & memory replay, glia-as-computation
+(deeper), free-energy-principle as its own atom (currently folded into predictive-coding). Cosmology
+gaps still open (from run 23): cosmic-neutrino-background (N_eff≈3.046), redshift-space-distortions,
+reionization/21cm, Sunyaev–Zel'dovich effect, weak-lensing shear. OR the durable biophysics
+prereq-shell fix (add a depth-3 dependent of redox-potential to raise its betweenness to 6/6; VERIFY
+asked stays ≤18). Cheap zero-risk wins still open across branches: atoms lacking a derive-level quiz
+item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.

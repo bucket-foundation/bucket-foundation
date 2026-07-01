@@ -2,7 +2,7 @@
   "meta": {
     "branch": "07-mind",
     "title": "Mind — brains, computation & cognition",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. Each atom carries a 'resources' array of open, verified learn-more links (Wikipedia for the concept and its jargon, plus deeper open sources: NCBI Bookshelf Neuroscience/Purves, PMC open-access, MIT OCW 9.x).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -2733,6 +2733,382 @@
         }
       ],
       "lesson": "### Intuition\n\nSome scientists are drawing complete wiring diagrams of brains — every single neuron and every connection between them — the way an electrician's diagram shows every wire in a device. The hope: once you can *see* the full wiring, you can understand how structure produces function. This map is called a **connectome**.\n\n### Precisely\n\n**Connectomics** reconstructs neural wiring diagrams at different scales. At the **micro** scale: the complete $\\sim 302$-neuron connectome of the worm *C. elegans*, the full adult fruit-fly brain ($\\sim 140{,}000$ neurons), and dense **electron-microscopy** reconstructions of cubic-millimeter chunks of mammalian cortex. At the **macro** scale: **diffusion MRI** (a brain scan that traces fiber bundles) and **functional connectivity** (which regions activate together) reveal large networks and their hubs. The goal across scales is to relate this **graph** (nodes and links) to dynamics, computation, and behavior.\n\n### Worked example\n\nTake the *C. elegans* connectome — every neuron and synapse mapped since the 1980s. You might expect that with the *complete* wiring diagram, predicting the worm's behavior would be straightforward. It is not: the same fixed wiring supports *different* behaviors depending on neuromodulatory state and synaptic strengths, so the diagram constrains but does not *determine* what the animal does. Even a fully known graph leaves the *dynamics* underspecified — a humbling, much-cited lesson for the whole field.\n\n### Why it's true / how it works\n\nBrain networks show recurring organizational features — **small-world** topology (tight local clustering plus a few long shortcuts, giving short paths between any two nodes), a **rich club** of densely interconnected hubs, and **modular** communities — a layout that balances global integration against the metabolic *cost* of wiring. But structure **underdetermines** function: the same connectome supports many dynamical states depending on **neuromodulation** and **plasticity**.\n\n### Where it connects\n\nConnectomics provides the structural scaffold on which the dynamics from this whole branch hang: the motifs of **neural-circuits**, the rhythms of **neural-oscillations**, and the state-setting of **neuromodulation**. It supplies the wiring that **artificial-neural-networks** abstract and that **brain-computer-interfaces** tap into.\n\n### Watch out\n\nA complete connectome is **necessary but not sufficient**. \"Map the wiring and you'll understand the brain\" overpromises: weights, neuromodulation, and plasticity set the actual computation, and they are *not* visible in a static structural map. The connectome is the circuit board, not the running program.\n\n### Worth knowing\n\nThe technical bottleneck is staggering: a cubic millimeter of cortex contains on the order of a *billion* synapses, so dense electron-microscopy reconstruction generates petabytes of images that only machine-learning segmentation can trace at scale — connectomics is as much a *data* and *AI* problem as a biological one. There is also a scale mismatch worth flagging: macro-scale diffusion-MRI \"connectomes\" infer fiber bundles statistically and can produce false tracts, so they are far coarser and less certain than the synapse-by-synapse micro connectomes. The long-term payoff, if the dynamics problem can be cracked, is using the wiring as a *constraint* on circuit models — you simulate only networks consistent with the measured graph — which already guides fly and worm whole-brain modeling."
+    },
+    {
+      "id": "glia",
+      "title": "Glia: astrocytes, oligodendrocytes & microglia",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neuron-doctrine",
+        "chemical-synapse"
+      ],
+      "summary": "The non-neuronal brain cells build myelin, buffer ions and transmitter, feed neurons, and prune synapses — active partners in computation, not passive glue.",
+      "depths": {
+        "eli5": "Neurons get all the attention, but roughly half the cells in your brain are a different kind called glia (the word means 'glue'). They are anything but glue: some wrap neurons in insulation, some clean up chemical spills after each signal, some deliver food to hungry neurons, and some act as the brain's immune cells, eating up damage and trimming away unused connections.",
+        "core": "Glia are the brain's non-neuronal cells. Three main types in the central nervous system: astrocytes (star-shaped cells that buffer extracellular K⁺ and recycle neurotransmitter after synaptic release, supply neurons with metabolic fuel, and help control blood flow), oligodendrocytes (which make the myelin sheaths that speed axonal conduction), and microglia (resident immune cells that survey tissue, respond to injury, and prune synapses). In the peripheral nervous system Schwann cells make myelin. Glia do not fire action potentials, but they shape signaling by setting the chemical environment around synapses.",
+        "deep": "The old picture of glia as inert packing has collapsed. A single astrocyte tiles a domain enveloping tens of thousands of synapses; it takes up glutamate through transporters (preventing excitotoxic spillover), releases gliotransmitters that can modulate synaptic strength (the debated 'tripartite synapse'), and its endfeet on capillaries couple neural activity to local blood flow (the basis of the fMRI BOLD signal). Microglia continuously extend and retract processes to survey the parenchyma and, during development and learning, physically engulf and remove synapses in an activity-dependent way. Because glia set ionic balance, transmitter clearance, myelination, and metabolic supply, dysfunction in any of these appears across demyelinating disease, epilepsy, and neurodegeneration."
+      },
+      "note": "Glia don't spike, but by buffering K⁺ and glutamate, myelinating axons, feeding neurons, and pruning synapses they set the conditions under which neurons compute — a fifty-percent partner the neuron doctrine originally left out.",
+      "sources": [
+        "NCBI Bookshelf — Neuroscience (Purves), Neuroglial Cells",
+        "PMC open-access (astrocyte & microglia reviews)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Neuroglia — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Glia"
+        },
+        {
+          "label": "Astrocyte — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Astrocyte"
+        },
+        {
+          "label": "Oligodendrocyte — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Oligodendrocyte"
+        },
+        {
+          "label": "Microglia — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Microglia"
+        },
+        {
+          "label": "Tripartite synapse — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tripartite_synapse"
+        },
+        {
+          "label": "NCBI Bookshelf — Neuroscience (Purves): Neuroglial Cells",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10869/"
+        },
+        {
+          "label": "PMC open-access — astrocyte & microglia reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=astrocyte+microglia+synapse+review"
+        }
+      ],
+      "art_prompt": "a star-shaped astrocyte wrapping many synapses with its processes, an oligodendrocyte spinning myelin around several axons, and a microglial cell extending fine surveying branches",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name the three main glial cell types of the central nervous system and one job each.",
+          "answer": "Astrocytes (buffer K⁺ / recycle transmitter / supply fuel / control blood flow), oligodendrocytes (make myelin), and microglia (immune surveillance and synapse pruning)."
+        },
+        {
+          "level": "apply",
+          "prompt": "If astrocytes near a synapse failed to take up released glutamate, what would happen to nearby neurons and why?",
+          "answer": "Glutamate would accumulate and overstimulate glutamate receptors, causing excessive Ca²⁺ influx and excitotoxic damage to nearby neurons; astrocytic uptake normally clears transmitter fast enough to prevent this spillover."
+        }
+      ],
+      "lesson": "### Intuition\n\nNeurons get all the attention, but roughly *half* the cells in your brain are a different kind called **glia** (Greek for 'glue'). They are anything but glue: some wrap neurons in insulation, some mop up chemical spills after every signal, some deliver fuel to hungry neurons, and some are the brain's immune cells — eating damage and trimming unused connections.\n\n### Precisely\n\n**Glia** are the brain's non-neuronal cells. Three main types in the central nervous system:\n\n- **Astrocytes** — star-shaped cells that buffer extracellular **K⁺**, take up and recycle neurotransmitter after release, supply neurons with metabolic fuel, and help regulate local blood flow.\n- **Oligodendrocytes** — make the **myelin** sheaths that speed axonal conduction (each wraps many axons).\n- **Microglia** — resident immune cells that survey the tissue, respond to injury, and **prune** synapses.\n\nIn the *peripheral* nervous system, **Schwann cells** make myelin. Glia do **not** fire action potentials, yet they shape signaling by controlling the chemical environment around every synapse.\n\n### Worked example\n\nAfter an excitatory synapse fires, glutamate is dumped into the cleft. If it lingered, it would re-trigger receptors and, worse, over-drive the postsynaptic cell. Astrocytes wrapping the synapse carry **glutamate transporters** that pull the transmitter out of the cleft within milliseconds, convert it to glutamine, and ship it back to the neuron to be remade — the *glutamate–glutamine cycle*. Block that uptake and the same synapse becomes a source of **excitotoxicity**.\n\n### Why it's true / how it works\n\nA single astrocyte tiles a **domain** enveloping tens of thousands of synapses. It clears transmitter, buffers the K⁺ that neurons spill during spiking, and its **endfeet** on capillaries couple neural activity to blood flow. Microglia continuously extend and retract processes to patrol the tissue and, during development and learning, physically **engulf** synapses in an activity-dependent way. Because glia set ionic balance, transmitter clearance, myelination, and energy supply, they are woven into the *conditions* under which neurons compute.\n\n### Where it connects\n\nGlia complete the picture the **neuron-doctrine** started — the neuron is the signaling unit, but it operates inside a glial matrix. Oligodendrocytes build the myelin behind **saltatory-conduction**; astrocytic K⁺ buffering protects the **resting-potential** and **ionic-gradients**; astrocyte–capillary coupling is the substrate of **neurovascular-coupling** and the fMRI signal; microglial pruning sculpts the circuits studied in **connectomics**.\n\n### Watch out\n\nDon't call glia 'support cells' as if they were passive. The **tripartite synapse** idea — that astrocytes actively modulate transmission — is real but still debated in its details, so treat strong claims ('astrocytes compute') as open science, not settled fact. And glia are not one thing: astrocytes, oligodendrocytes, and microglia have almost nothing in common beyond 'not a neuron.'\n\n### Worth knowing\n\nGlia scale with brain complexity: the glia-to-neuron ratio is higher in larger-brained species, and human cortex has notably large, bushy astrocytes. Every major neurological disease has a glial arm — demyelination in multiple sclerosis (oligodendrocytes), reactive gliosis and inflammation in neurodegeneration (astrocytes and microglia), and aberrant synapse pruning implicated in developmental disorders — which is why glia have moved from footnote to front line in neuroscience."
+    },
+    {
+      "id": "reward-prediction-error",
+      "title": "Reward prediction error & dopamine",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neuromodulation",
+        "reinforcement-learning-brain"
+      ],
+      "summary": "Midbrain dopamine neurons signal the difference between received and expected reward — a teaching signal that matches the temporal-difference error of reinforcement learning.",
+      "depths": {
+        "eli5": "Your brain doesn't get excited about good things it already expected — it gets excited about good things that are better than expected. A chemical called dopamine spikes when a reward is a pleasant surprise, stays flat when the reward was exactly predicted, and dips when an expected reward fails to arrive. That surprise signal is how the brain learns which actions and cues are worth chasing.",
+        "core": "Reward prediction error (RPE) is the gap between the reward you actually get and the reward you predicted. Dopamine neurons in the midbrain (VTA and substantia nigra) fire in a way that tracks this gap: a burst for a better-than-expected outcome (positive RPE), no change for a fully predicted reward (zero RPE), and a pause below baseline for an omitted expected reward (negative RPE). Crucially, once a cue reliably predicts a reward, the dopamine burst shifts from the reward to the earliest predictive cue — exactly the behavior of the temporal-difference (TD) error in reinforcement learning. Dopamine thus acts as a broadcast teaching signal that adjusts the values and synaptic weights used to choose future actions.",
+        "deep": "The Schultz–Montague–Dayan mapping identifies phasic dopamine with the TD error δ_t = r_t + γ V(s_{t+1}) − V(s_t), where V is a learned value function and γ a discount. Positive δ says 'this state was better than my current estimate — raise V and strengthen the actions that led here'; negative δ does the reverse. Because dopamine is a neuromodulator released diffusely and gates plasticity (e.g., dopamine-dependent LTP in striatum), it can serve as the global reinforcement signal that a spatially distributed critic needs. The theory has limits and refinements: dopamine also carries information about novelty, salience, and uncertainty; different dopamine subpopulations report different variables; and distributional RL suggests a *population* of dopamine cells encodes a whole distribution of predicted rewards, not just its mean."
+      },
+      "note": "The signature test isn't 'dopamine = pleasure' — it's the *shift*: with learning, the dopamine burst moves from the reward itself to the earliest cue that predicts it, and an omitted expected reward causes a dip. That temporal signature is what pins dopamine to the TD error, not to reward per se.",
+      "sources": [
+        "PMC open-access (Schultz, dopamine reward prediction error reviews)",
+        "MIT OCW 9.x (computational neuroscience / reinforcement learning)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Reward prediction error — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Reward_prediction_error"
+        },
+        {
+          "label": "Dopamine — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dopamine"
+        },
+        {
+          "label": "Temporal difference learning — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Temporal_difference_learning"
+        },
+        {
+          "label": "Reward system — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Reward_system"
+        },
+        {
+          "label": "PMC open-access — dopamine reward prediction error",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=dopamine+reward+prediction+error+review"
+        },
+        {
+          "label": "MIT OCW 9.40 / 9.641 — computational neuroscience",
+          "url": "https://ocw.mit.edu/search/?d=Brain%20and%20Cognitive%20Sciences"
+        }
+      ],
+      "art_prompt": "three aligned raster/trace panels of a dopamine neuron: burst at unexpected reward, flat at predicted reward with a burst that has moved to the earlier cue, and a dip where an expected reward was omitted",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does a phasic dopamine burst signal, and what happens to it once a cue reliably predicts the reward?",
+          "answer": "It signals a positive reward prediction error (reward better than expected); once a cue reliably predicts reward, the burst shifts from the reward to the earliest predictive cue, and a fully predicted reward produces no burst."
+        },
+        {
+          "level": "derive",
+          "prompt": "Given the TD error δ_t = r_t + γV(s_{t+1}) − V(s_t), explain the dopamine response when a well-predicted reward is unexpectedly omitted.",
+          "answer": "With the reward omitted, r_t = 0 while V(s_t) is still high from prior learning, so δ_t is negative; dopamine firing dips below baseline, signaling the negative RPE that will lower V and weaken the associated actions."
+        }
+      ],
+      "lesson": "### Intuition\n\nYour brain doesn't get excited about good things it *already expected* — it gets excited about good things that are *better than expected*. **Dopamine** spikes when a reward is a pleasant surprise, stays flat when the reward was exactly predicted, and *dips* when an expected reward fails to show. That surprise is the brain's teaching signal for which cues and actions are worth chasing.\n\n### Precisely\n\n**Reward prediction error (RPE)** is the gap between the reward you *get* and the reward you *predicted*. Dopamine neurons in the midbrain (**VTA** and **substantia nigra**) track this gap:\n\n- **Positive RPE** (better than expected) → a firing **burst**.\n- **Zero RPE** (exactly as predicted) → **no change**.\n- **Negative RPE** (expected reward omitted) → a **pause** below baseline.\n\nAnd the key dynamic: once a cue reliably predicts a reward, the burst **shifts** from the reward to the earliest predictive cue.\n\n### Worked example\n\nA monkey learns that a light predicts juice. *Early in training*, dopamine bursts at the **juice**. *After learning*, the burst has moved to the **light**, and the fully predicted juice produces no burst at all. Now withhold the juice after the light: at the exact time juice was expected, dopamine **dips below baseline**. Reward, no-surprise, and disappointment map onto up, flat, and down — the fingerprint of an error signal, not a reward signal.\n\n### Why it's true / how it works\n\nThat three-way pattern is exactly the **temporal-difference (TD) error** of reinforcement learning:\n\n$$\\delta_t = r_t + \\gamma\\, V(s_{t+1}) - V(s_t)$$\n\nwhere $V$ is a learned value estimate and $\\gamma$ a discount factor. Positive $\\delta$ means 'this turned out better than my estimate — raise $V$ and reinforce what led here'; negative $\\delta$ does the reverse. Because dopamine is a **neuromodulator** released diffusely and gates synaptic plasticity (dopamine-dependent LTP in the striatum), it can serve as the single global teaching signal that a distributed learner needs.\n\n### Where it connects\n\nThis is the mechanistic heart of **reinforcement-learning-brain**: dopamine is the critic's error term. It is a specific job of the **neuromodulation** systems, it drives the plasticity of **ltp-ltd** and **hebbian-learning** in reward circuits, and it links to **decision-making** by setting the values that choices compare.\n\n### Watch out\n\n'Dopamine = pleasure' is the popular misreading. Dopamine tracks *prediction error and wanting*, not the hedonic *liking* of a reward (which involves other systems). And the clean single-error story is an idealization — dopamine neurons are heterogeneous, some also report novelty, salience, or movement, so treat 'one dopamine signal' as a first approximation.\n\n### Worth knowing\n\nA modern refinement is **distributional RL**: rather than every dopamine cell reporting the same mean-reward error, different cells have different optimism/pessimism thresholds, so the *population* encodes an entire probability distribution of predicted rewards. The idea came from machine learning and was then found to fit dopamine data — one of the cleaner cases of AI theory predicting a biological measurement."
+    },
+    {
+      "id": "cognitive-map",
+      "title": "Cognitive maps: place & grid cells",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "hippocampus-memory",
+        "population-coding"
+      ],
+      "summary": "The hippocampal–entorhinal system builds an internal map of space from place cells that fire at specific locations and grid cells that tile the environment in a hexagonal lattice.",
+      "depths": {
+        "eli5": "Deep in your brain there are cells that act like a GPS. Some cells switch on only when you are standing in one particular spot in a room — a different cell for each spot. Others fire in a repeating triangular pattern across the whole floor, like invisible graph paper laid over the world. Together they let you know where you are and how to get somewhere else, even in the dark.",
+        "core": "Place cells (in the hippocampus) each fire when the animal is in a specific location — the cell's 'place field.' Different cells cover different locations, so the active set tells you where you are. Grid cells (in the medial entorhinal cortex, one synapse upstream) fire at multiple locations arranged in a regular hexagonal lattice that tiles the whole environment; different grid cells have different lattice spacings and offsets. Alongside them are head-direction cells (a neural compass) and border cells. This system is a leading example of an internal model: a metric map of space maintained by neural activity, updated both by sensory landmarks and by self-motion ('path integration').",
+        "deep": "Grid cells form modules with discrete, geometrically scaled spacings; combining several modules yields a code that can represent very large spaces with high resolution, much like a set of number lines at different scales. Place fields remap when the environment changes (global remapping) or rescale their firing rates (rate remapping), letting the same hippocampal population store many distinct maps. The map is anchored to landmarks but persists in darkness via path integration, so it is genuinely internal. Beyond literal space, the same machinery appears to encode abstract 'cognitive spaces' — relationships among sounds, concepts, or task variables — supporting the broader view of the hippocampal–entorhinal system as a general relational-memory and map-making engine. The 2014 Nobel Prize recognized the discovery of place cells and grid cells."
+      },
+      "note": "Grid cells are striking because their firing pattern is imposed by the brain, not the world: a featureless open box has no hexagons in it, yet the cell fires on a hexagonal lattice — direct evidence of an internally generated metric for space.",
+      "sources": [
+        "PMC open-access (place cell, grid cell, entorhinal cortex reviews)",
+        "NCBI Bookshelf — Neuroscience (hippocampal formation)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Place cell — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Place_cell"
+        },
+        {
+          "label": "Grid cell — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Grid_cell"
+        },
+        {
+          "label": "Cognitive map — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Cognitive_map"
+        },
+        {
+          "label": "Path integration — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Path_integration"
+        },
+        {
+          "label": "Entorhinal cortex — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Entorhinal_cortex"
+        },
+        {
+          "label": "PMC open-access — place & grid cell reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=place+cell+grid+cell+cognitive+map+review"
+        }
+      ],
+      "art_prompt": "an overhead map of a square arena with several colored place-field blobs at different spots, overlaid with a light hexagonal lattice of grid-cell firing dots and a small compass arrow for head direction",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "How does the firing pattern of a place cell differ from that of a grid cell?",
+          "answer": "A place cell fires in one specific location (a single place field); a grid cell fires at many locations arranged in a repeating hexagonal lattice tiling the whole environment."
+        },
+        {
+          "level": "apply",
+          "prompt": "An animal navigates an arena in total darkness and still maintains an accurate sense of position. What does this tell you about how the cognitive map is updated?",
+          "answer": "It shows the map is updated by self-motion (path integration) using vestibular and proprioceptive/motor signals, not only by visual landmarks — evidence the spatial code is internally generated, not merely read off sensory input."
+        }
+      ],
+      "lesson": "### Intuition\n\nDeep in your brain sits something like a GPS. Some cells switch on only when you stand in one particular spot in a room — a different cell for each spot. Others fire in a repeating triangular pattern across the whole floor, like invisible graph paper laid over the world. Together they tell you where you are and how to get elsewhere, even in the dark.\n\n### Precisely\n\n**Place cells** (in the **hippocampus**) each fire when the animal occupies a specific location — the cell's **place field**. Because different cells cover different spots, the *active set* encodes position. **Grid cells** (in the **medial entorhinal cortex**, one synapse upstream) fire at *many* locations arranged in a regular **hexagonal lattice** that tiles the whole space; different grid cells differ in lattice spacing and offset. Add **head-direction cells** (a neural compass) and **border cells**, and you have the ingredients of a metric map.\n\n### Worked example\n\nDrop a rat into an open box and record one entorhinal neuron while the rat forages. Plot a dot everywhere the cell fired: the dots don't cluster at a landmark — they form a **hexagonal grid** covering the entire floor. The box has no hexagons in it. The pattern is *imposed by the brain*. Record several grid cells and you find **modules** with different grid spacings; combine them and you get a high-resolution code for a large space, like number lines at different scales.\n\n### Why it's true / how it works\n\nThis is an internal **model** of space maintained by neural activity and updated two ways: by **sensory landmarks** (anchoring the map to the world) and by **self-motion** — *path integration* — which keeps it accurate in darkness. Place fields **remap** when the environment changes, so one hippocampal population can store many distinct maps. It's a concrete instance of **population-coding**: no single cell knows where you are; the pattern across the population does.\n\n### Where it connects\n\nThe map lives in the **hippocampus-memory** system, and the same relational machinery underlies episodic memory — *where* and *when* events happened. It's a worked example of **population-coding** and **perception-inference** (combining sensory evidence with internal prediction), and the abstract-space extension links it to how the brain represents *relationships* generally.\n\n### Watch out\n\nThe hexagonal grid is easy to over-read. It emerges cleanly in open 2-D foraging; in constrained mazes, 1-D tracks, or 3-D flight the geometry changes, so 'grid = hexagons everywhere' is too strong. And 'cognitive map' does not mean a literal picture in the head — it's a pattern of firing that *behaves like* a metric map.\n\n### Worth knowing\n\nThe payoff runs beyond navigation. The same entorhinal–hippocampal code appears to map **abstract** spaces — relationships among tones, concepts, or task variables — which is why the system is now seen as a general engine for **relational memory** and inference, not just a spatial GPS. The discovery of place cells (O'Keefe) and grid cells (the Mosers) earned the 2014 Nobel Prize in Physiology or Medicine."
+    },
+    {
+      "id": "drift-diffusion",
+      "title": "Decision-making: evidence accumulation & the drift-diffusion model",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "population-coding",
+        "attention"
+      ],
+      "summary": "A choice between options is modeled as noisy evidence accumulating over time until it hits a threshold — explaining the trade-off between speed and accuracy with a single mechanism.",
+      "depths": {
+        "eli5": "When you decide between two things, your brain doesn't flip a coin — it gathers evidence bit by bit, like water dripping into two buckets. Whichever bucket fills to the line first wins, and that's your choice. If you set the line low you decide fast but make more mistakes; set it high and you're slower but more accurate. That single knob explains why speed and accuracy trade off.",
+        "core": "The drift-diffusion model (DDM) treats a two-choice decision as a decision variable that starts between two bounds and accumulates noisy evidence over time. It has a systematic 'drift' toward the correct bound (set by how strong the evidence is) plus random noise. The decision is made when the accumulated evidence first reaches a bound; which bound sets the choice, and the time taken sets the reaction time. Raising the bounds (the threshold) makes decisions slower but more accurate — a principled account of the speed–accuracy trade-off. Neurally, firing rates in areas like parietal cortex ramp up during deliberation and reach a fixed level just before the choice, matching an accumulate-to-bound process.",
+        "deep": "Formally the decision variable x follows dx = A·dt + c·dW, where A is the drift rate (signal), c scales the Wiener-process noise, and absorbing boundaries sit at ±a. For a perfect (unbiased, single-stage) accumulator this implements the sequential probability ratio test, the statistically optimal procedure for deciding between two hypotheses with the fewest samples at a given error rate. The model jointly fits full reaction-time distributions and choice accuracy, and its parameters dissociate cognitive components: drift rate = evidence quality/processing efficiency, boundary separation = caution, starting point = prior bias, non-decision time = sensory+motor latency. Accumulation also connects to attention (which evidence is weighted) and to value-based choice, where the 'evidence' is the difference in subjective value of the options."
+      },
+      "note": "One mechanism, two behaviors: because a single threshold sets *both* how fast you respond and how often you're right, the drift-diffusion model turns the speed–accuracy trade-off from a vague description into a quantitative prediction that fits full reaction-time distributions.",
+      "sources": [
+        "PMC open-access (drift-diffusion model & perceptual decision reviews)",
+        "MIT OCW 9.x (computational cognitive science)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Two-alternative forced choice / drift-diffusion — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Two-alternative_forced_choice"
+        },
+        {
+          "label": "Diffusion model (decision) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Diffusion_model_(decision)"
+        },
+        {
+          "label": "Sequential probability ratio test — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sequential_probability_ratio_test"
+        },
+        {
+          "label": "Wiener process — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Wiener_process"
+        },
+        {
+          "label": "PMC open-access — perceptual decision-making reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=drift+diffusion+model+decision+making+review"
+        },
+        {
+          "label": "MIT OCW — Brain and Cognitive Sciences",
+          "url": "https://ocw.mit.edu/search/?d=Brain%20and%20Cognitive%20Sciences"
+        }
+      ],
+      "art_prompt": "a noisy jagged trace starting between two horizontal decision boundaries, drifting upward and finally touching the top bound, with a reaction-time distribution sketched below the crossing point",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the drift-diffusion model, what determines the choice made and what determines the reaction time?",
+          "answer": "The choice is set by which decision boundary the accumulated evidence reaches first; the reaction time is set by how long the noisy accumulation takes to reach that boundary."
+        },
+        {
+          "level": "derive",
+          "prompt": "Using the model, explain why raising the decision threshold increases accuracy but slows responses.",
+          "answer": "Higher boundaries require more accumulated evidence, so more noise averages out before a decision — improving accuracy — but reaching the larger threshold takes longer, increasing reaction time; the threshold is the single knob for the speed–accuracy trade-off."
+        }
+      ],
+      "lesson": "### Intuition\n\nWhen you decide between two things, your brain doesn't flip a coin — it gathers evidence bit by bit, like water dripping into two buckets. Whichever bucket fills to the line first wins, and that's your choice. Set the line low and you decide fast but err more; set it high and you're slower but more accurate. One knob explains the whole trade-off.\n\n### Precisely\n\nThe **drift-diffusion model (DDM)** treats a two-choice decision as a **decision variable** that starts between two **bounds** and **accumulates noisy evidence** over time. It has a steady **drift** toward the correct bound (set by evidence strength) plus **random noise**. The decision is made when the running total first **hits a bound**: *which* bound sets the choice, *when* it's hit sets the reaction time. Raise the bounds and decisions get slower but more accurate.\n\n### Worked example\n\nA subject watches a cloud of dots, some drifting right, the rest random, and reports the net direction. Make the coherence high (strong signal) and the decision variable climbs steeply to the correct bound — fast and accurate. Make it low and the trace wanders, taking longer and sometimes hitting the *wrong* bound. Now, without changing the stimulus, raise the bounds: the same evidence must accumulate further, so responses slow *and* error rate drops. The model reproduces the full shape of the reaction-time distribution, not just the average.\n\n### Why it's true / how it works\n\nFormally the decision variable follows\n\n$$dx = A\\,dt + c\\,dW,\\qquad \\text{bounds at } \\pm a,$$\n\nwhere $A$ is the **drift rate** (signal), $c$ scales Wiener-process **noise**, and $\\pm a$ are absorbing **boundaries**. For an unbiased single-stage accumulator this is exactly the **sequential probability ratio test** — the statistically *optimal* way to decide between two hypotheses using the fewest samples for a target error rate. Neurally, firing rates in parietal and frontal areas **ramp** during deliberation and reach a fixed level just before the choice, matching accumulate-to-bound.\n\n### Where it connects\n\nThe accumulating signal is read from **population-coding** of the sensory evidence, and **attention** sets *which* evidence gets weighted. The model's parameters cleanly dissociate cognition: drift rate = evidence quality, boundary = caution, starting point = prior bias, non-decision time = sensory + motor delay — linking it to **perception-inference** and to value-based choice, where 'evidence' becomes the difference in subjective value.\n\n### Watch out\n\nThe DDM is a *normative abstraction*, not a claim that one neuron does subtraction and integration. Fits are only meaningful with enough trials to constrain the reaction-time distribution, and the elegant optimality holds for the idealized two-choice, stationary-evidence case — real decisions add urgency signals, collapsing bounds, and multiple alternatives.\n\n### Worth knowing\n\nBecause its parameters map onto distinct mental components, the DDM is widely used to *decompose* behavior: an aging or medicated subject who responds slower might have a lower drift rate (worse evidence processing) *or* higher boundaries (more caution) — same slowdown, different cause — and the model tells them apart from the pattern of errors and reaction times. The same accumulate-to-bound idea generalizes to value-based and multi-alternative choice, making it one of the most portable models in cognitive science."
+    },
+    {
+      "id": "efficient-coding",
+      "title": "Efficient coding & redundancy reduction",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "neural-coding",
+        "receptive-fields"
+      ],
+      "summary": "Sensory systems are shaped to represent natural signals efficiently — removing redundancy and matching neural resources to the statistics of the environment.",
+      "depths": {
+        "eli5": "Your senses face a firehose of information but have limited wiring and energy. So the brain learns to be economical: it stops wasting signals on the parts of the world that are predictable and spends them on what's surprising or informative. Neurons end up 'tuned' to the patterns that actually occur in nature, like a compression program that keeps what matters and drops what doesn't.",
+        "core": "The efficient-coding hypothesis (Attneave, Barlow) says sensory neurons are organized to encode information about natural stimuli using as few spikes, cells, and as little energy as possible — by removing redundancy. Natural images and sounds are highly redundant (neighboring pixels are correlated, tones co-occur), so an efficient code decorrelates them. This predicts real receptive-field properties: center-surround retinal cells act like edge detectors that subtract predictable background; cortical simple cells resemble oriented, localized, band-pass filters that match the independent components of natural images. The environment's statistics, plus limits on wiring and metabolism, shape what neurons compute.",
+        "deep": "Formally, efficient coding maximizes the mutual information between stimulus and neural response subject to constraints (number of neurons, firing rate/energy, noise). Under low-noise, high-signal conditions the optimum decorrelates and whitens the input (redundancy reduction); under high noise it does the opposite, averaging correlated inputs to fight noise — so the 'best' code depends on the signal-to-noise regime. Related principles: sparse coding (represent each stimulus with few active units) recovers oriented cortical filters from natural-image statistics; predictive coding recasts efficiency as transmitting only the unpredicted residual; and infomax learning rules derive receptive fields from the goal of maximizing transmitted information. Efficient coding also predicts adaptation — neurons rescale their sensitivity to match the current distribution of inputs, keeping the code matched to a changing world."
+      },
+      "note": "Efficient coding is a *design principle you can test*: assume neurons minimize redundant spikes given natural-image statistics, and out fall the oriented, localized, band-pass receptive fields actually measured in cortex — function predicted from environmental statistics plus a cost constraint.",
+      "sources": [
+        "PMC open-access (efficient coding, sparse coding, natural image statistics reviews)",
+        "arXiv q-bio.NC / cs.IT (information theory of neural coding)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Efficient coding hypothesis — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Efficient_coding_hypothesis"
+        },
+        {
+          "label": "Sparse coding — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Neural_coding#Sparse_coding"
+        },
+        {
+          "label": "Redundancy (information theory) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Redundancy_(information_theory)"
+        },
+        {
+          "label": "Mutual information — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mutual_information"
+        },
+        {
+          "label": "Neural coding — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Neural_coding"
+        },
+        {
+          "label": "PMC open-access — efficient / sparse coding reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=efficient+coding+sparse+coding+natural+image+statistics"
+        }
+      ],
+      "art_prompt": "a natural photograph on the left with strong correlations between neighboring pixels, transformed on the right into a sparse set of oriented edge-filter activations, with a center-surround receptive field icon between them",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the core claim of the efficient-coding hypothesis, and what property of natural signals makes it useful?",
+          "answer": "That sensory neurons encode information using as few resources (spikes, cells, energy) as possible by reducing redundancy; natural signals are highly redundant (correlated in space/time), so decorrelating them yields an efficient code."
+        },
+        {
+          "level": "apply",
+          "prompt": "Efficient coding predicts decorrelation in low noise but the opposite in high noise. Why should a very noisy sensory channel average correlated inputs instead of decorrelating them?",
+          "answer": "When noise dominates, decorrelating amplifies noise; averaging correlated inputs cancels independent noise and preserves the shared signal, so the information-maximizing code smooths rather than whitens — the optimal strategy flips with the signal-to-noise regime."
+        }
+      ],
+      "lesson": "### Intuition\n\nYour senses face a firehose of information but have limited wiring and energy. So the brain gets economical: it stops spending signals on the predictable parts of the world and saves them for what's surprising and informative. Neurons end up tuned to the patterns that actually occur in nature — like a compression program that keeps what matters and drops what doesn't.\n\n### Precisely\n\nThe **efficient-coding hypothesis** (Attneave, Barlow) says sensory neurons are arranged to encode information about *natural* stimuli using as few spikes, cells, and as little energy as possible — by **removing redundancy**. Natural images and sounds are highly redundant (neighboring pixels correlate; tones co-occur), so an efficient code **decorrelates** them. That prediction matches measured biology: retinal **center-surround** cells subtract predictable background (edge detection), and cortical **simple cells** resemble oriented, localized, band-pass filters — close to the independent components of natural images.\n\n### Worked example\n\nTake a database of natural photographs and ask: what set of filters represents them with the *fewest active units per image* (**sparse coding**)? You don't hand the algorithm any biology. What comes out are **oriented, localized, band-pass** filters — the same shapes as V1 simple-cell **receptive-fields**. The statistics of the world, plus a 'be economical' constraint, *predict* the brain's feature detectors.\n\n### Why it's true / how it works\n\nFormally, efficient coding **maximizes the mutual information** between stimulus and response subject to constraints (neuron count, firing/energy budget, noise). In the **low-noise** regime the optimum **whitens/decorrelates** the input (redundancy reduction); in the **high-noise** regime it does the opposite — *averaging* correlated inputs to beat down noise. So the 'best' code depends on the **signal-to-noise regime**, which is exactly what retinal coding does as light levels change. This is information theory (**neural-coding**) used as a design principle.\n\n### Where it connects\n\nEfficient coding *explains* the **receptive-fields** and **sensory-transduction** stages rather than just describing them, and it's the information-theoretic cousin of **predictive-coding** (transmit only the unpredicted residual). It also predicts **adaptation**: neurons rescale sensitivity to match the current input distribution — the same matched-code logic applied to a changing world, tying back to **neuromodulation** and gain control.\n\n### Watch out\n\nEfficiency is a *constraint*, not the brain's only goal — robustness, speed, and behavioral relevance also shape codes, and some redundancy is *kept* on purpose to fight noise. And 'the code matches natural statistics' is a strong claim only where those statistics are actually measured; don't assume every tuning curve is an optimal filter.\n\n### Worth knowing\n\nThe idea is a two-way bridge. Running it forward, natural-scene statistics *predict* biological receptive fields; running it backward, the same objective (maximize information, stay sparse) is a workhorse in machine learning — sparse coding, independent component analysis, and the early layers of vision networks all recover edge-like filters. It's one of the clearest cases where an information-theoretic *principle*, not a wiring detail, explains what neurons compute."
+    },
+    {
+      "id": "neurovascular-coupling",
+      "title": "Neurovascular coupling & the fMRI signal",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "action-potential",
+        "ionic-gradients"
+      ],
+      "summary": "Local neural activity triggers a local increase in blood flow; this coupling, read out through blood oxygenation, is what functional MRI actually measures.",
+      "depths": {
+        "eli5": "Thinking is expensive. When a patch of brain works harder, it needs more oxygen and fuel, so the body rushes extra blood to that spot — more than it strictly uses. Brain scanners can't see thoughts, but they can see that surge of fresh blood, and use it as a stand-in for 'this area was busy just now.'",
+        "core": "Neurovascular coupling is the mechanism that matches local blood supply to local neural demand. Active neurons and surrounding glia (especially astrocytes) release signals that dilate nearby blood vessels, increasing cerebral blood flow to the active region within seconds. The flow increase over-supplies oxygen relative to consumption, so the local ratio of oxygenated to deoxygenated hemoglobin rises. Because deoxygenated hemoglobin is magnetic (paramagnetic) and oxygenated is not, this shift changes the local magnetic environment — the blood-oxygen-level-dependent (BOLD) contrast that functional MRI detects. fMRI therefore measures a slow, indirect hemodynamic proxy for neural activity, not spikes directly.",
+        "deep": "The BOLD signal is driven most strongly by synaptic/local-field activity (input and processing) rather than spiking output, and its hemodynamic response is sluggish — rising over ~1–2 s, peaking around 5–6 s, with a post-stimulus undershoot — which sets fMRI's poor temporal resolution despite good spatial resolution. Neurovascular coupling involves multiple pathways (astrocytic messengers, neuronal nitric oxide, direct effects on pericytes and smooth muscle) and depends on healthy vasculature, so the coupling itself can break down in aging and disease, confounding interpretation. Key inferential cautions follow: BOLD is relative (needs a baseline/contrast), reflects a mixture of excitation and inhibition, and 'activation' means a metabolic/hemodynamic change, not a proof of computation. The energy budget is dominated by restoring ion gradients after synaptic and spiking activity via the Na⁺/K⁺ pump."
+      },
+      "note": "fMRI does not image neurons firing — it images blood. The chain is activity → higher blood flow → more oxygenated hemoglobin → changed magnetic signal, each step slow and indirect, which is why fMRI has fine spatial but coarse (seconds) temporal resolution.",
+      "sources": [
+        "PMC open-access (neurovascular coupling & BOLD fMRI reviews)",
+        "NCBI Bookshelf — Neuroscience (brain metabolism & blood flow)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Neurovascular coupling / haemodynamic response — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Haemodynamic_response"
+        },
+        {
+          "label": "Blood-oxygen-level-dependent imaging (BOLD) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Blood-oxygen-level-dependent_imaging"
+        },
+        {
+          "label": "Functional magnetic resonance imaging — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Functional_magnetic_resonance_imaging"
+        },
+        {
+          "label": "Hemoglobin (oxy/deoxy magnetism) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hemoglobin"
+        },
+        {
+          "label": "PMC open-access — neurovascular coupling & BOLD reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=neurovascular+coupling+BOLD+fMRI+review"
+        },
+        {
+          "label": "NCBI Bookshelf — Neuroscience (Purves)",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10799/"
+        }
+      ],
+      "art_prompt": "a small patch of active cortex with astrocyte endfeet on a capillary that dilates, a rush of red oxygenated blood cells arriving, and a schematic BOLD hemodynamic response curve rising, peaking near 5 seconds, then dipping below baseline",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What physical property of hemoglobin lets fMRI detect neural activity, and what is that contrast called?",
+          "answer": "Deoxygenated hemoglobin is paramagnetic while oxygenated hemoglobin is not; activity-driven blood flow raises the oxygenated/deoxygenated ratio, changing the local magnetic signal — the blood-oxygen-level-dependent (BOLD) contrast."
+        },
+        {
+          "level": "apply",
+          "prompt": "Why does fMRI have good spatial but poor temporal resolution, and why can it mislead about the timing of neural events?",
+          "answer": "It measures a slow hemodynamic response (rising over ~1–2 s, peaking ~5–6 s) that is localized to active tissue but lags the underlying neural activity by seconds; the vascular delay blurs timing, so BOLD is an indirect, sluggish proxy that can't resolve fast neural sequences."
+        }
+      ],
+      "lesson": "### Intuition\n\nThinking is expensive. When a patch of brain works harder, it needs more oxygen and fuel, so the body rushes *extra* blood to that spot — more than it strictly consumes. A scanner can't see thoughts, but it can see that surge of fresh blood and use it as a stand-in for 'this area was busy just now.'\n\n### Precisely\n\n**Neurovascular coupling** matches local **blood supply** to local **neural demand**. Active neurons and neighboring **astrocytes** release signals that **dilate** nearby vessels, raising **cerebral blood flow** to the active region within seconds. The flow increase **over-supplies** oxygen relative to use, so the local ratio of **oxygenated to deoxygenated hemoglobin** rises. Because deoxygenated hemoglobin is **paramagnetic** and oxygenated is not, that shift changes the local magnetic field — the **BOLD** (blood-oxygen-level-dependent) contrast that **functional MRI** reads out.\n\n### Worked example\n\nA subject taps their fingers. In the hand region of motor cortex, neurons fire and their synapses work; within ~1–2 seconds local vessels dilate, blood flow jumps, and the oxygenated fraction climbs. The BOLD signal there rises, **peaks around 5–6 s** after the tapping, then dips into a post-stimulus **undershoot**. The scanner reports 'hand motor cortex active' — but note it saw the *blood*, seconds late, not the spikes.\n\n### Why it's true / how it works\n\nMost of the brain's energy goes to running the **Na⁺/K⁺ pump** that restores **ionic-gradients** after every **action-potential** and synaptic event. Heavy signaling burns ATP and oxygen, and the vascular response replenishes it — via astrocytic messengers, neuronal nitric oxide, and direct action on the smooth muscle and pericytes wrapping vessels. The BOLD signal tracks *synaptic/local-field* activity (input and processing) even more than spiking output, and the whole hemodynamic response is **slow**, which fixes fMRI's temporal resolution.\n\n### Where it connects\n\nThis atom is the bridge from single-cell physiology to whole-brain imaging: the **action-potential** and the **ionic-gradients** it spends are what create the metabolic demand, **glia** (astrocyte endfeet on capillaries) are the coupling machinery, and the resulting maps feed **connectomics** and network neuroscience. It is the measurement layer beneath most human 'brain activation' studies.\n\n### Watch out\n\nBOLD is **indirect and relative**. 'This region lit up' means a *hemodynamic* change against a baseline — not proof of computation, and not a clean readout of spikes. It mixes excitation *and* inhibition, lags by seconds, and depends on healthy blood vessels, so **coupling can break down** in aging and disease, confounding comparisons between groups.\n\n### Worth knowing\n\nThe indirectness cuts both ways. fMRI's spatial resolution (millimeters, whole brain, non-invasive) revolutionized human neuroscience, but the seconds-long vascular lag means it can *reverse* apparent timing of fast events, and the required baseline means BOLD only ever reports *contrasts*. Researchers combine it with methods that have complementary strengths — EEG/MEG for millisecond timing — precisely because neurovascular coupling trades temporal precision for spatial coverage."
     }
   ]
 }
