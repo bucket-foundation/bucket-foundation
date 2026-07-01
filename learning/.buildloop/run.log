@@ -2044,3 +2044,22 @@ API Error: 400 You have reached your specified API usage limits. You will regain
 
 ========== build run 2026-07-01T00:19:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. One focused, verified improvement, committed locally.
+
+**Run 12 summary:**
+
+Added 3 foundational math atoms to the biophysics corpus (95 → 98), continuing the proven leaf-leverage pattern:
+
+- **legendre-transform** — `f*(p)=max_x[px−f(x)]`; the operation turning U(S,V,N) into F/H/G by swapping each held quantity for its conjugate slope. Parent of free-energy, Gibbs, chemical-potential.
+- **saddle-point-method** — Laplace's `∫e^{Nf}dx≈e^{Nf(x0)}√(2π/N|f″|)`; why the thermodynamic-limit partition function is one dominant state, and the derivation *behind* Stirling's formula.
+- **correlation-function** — `C(t)=⟨δA(0)δA(t)⟩`, Wiener–Khinchin, Green–Kubo; the memory-in-time object under fluctuation-dissipation, Langevin noise, and NMR relaxation.
+
+Each is `requires=[]` and was wired as a real prereq of an existing deep dependent chosen so its depth doesn't rise (legendre→free-energy+chemical-potential, saddle-point→partition-function, correlation-function→fluctuation-dissipation+langevin). Verified zero depth cascade.
+
+Every equation checked numerically (Legendre of ½ax² = p²/2a with f″f*″=1; saddle-point Stirling within 0.0002% for N=100; exponential C(t)→Lorentzian S(ω) with half-max at ω=1/τc). Original prose, OPEN sources only, full lesson + 3 depths + 2 quiz (1 derive) + note + art_prompt each.
+
+`validate.sh` passes end-to-end — diagnostic margin **improved to +14** (expert placed 32 / asked 18, up from +13). Mirrored to `public/academy-app`, version 0.5.9 → 0.6.0. Committed as `435e741f6`. NEXT run is logged (onsager-reciprocity, fourier-transform, cumulant-generating-function as margin-safe candidates).
+---------- run done 2026-07-01T00:25:39Z ----------
+
+========== build run 2026-07-01T00:45:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors

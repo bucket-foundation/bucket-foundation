@@ -425,3 +425,45 @@ function / large-deviations** (pairs with saddle-point + legendre-transform, fee
 always verify no depth change on the edited atom + re-run test-diagnostic.mjs each time. Cheaper zero-
 graph-risk wins still open: ~39 atoms lack a derive quiz item; more `note` fields; GPU art generation
 if reachable. A non-biophysics branch expansion (math/physics corpus) is also fair game for variety.
+
+## 2026-06-30 — run 13 (+3 foundational math atoms; biophysics 98→101; margin IMPROVED to +16)
+Continued the PRIMARY mission via run 12's NEXT (margin-safe foundational math under the
+spectroscopy / stochastic-thermodynamics / transport subtrees), applying the leaf-leverage
+rule from the start (no depth-cascade pitfall). Added three genuinely-missing math/physics
+foundations, all requires=[] (diagnostic-depth 0, in the expert frontier): **fourier-transform**
+(f̂(ω)=∫f(t)e^{−iωt}dt; the translation-eigenbasis change that turns convolution into a product,
+sends a Gaussian to a Gaussian with σ_t·σ_ω=½ (the bandwidth/Heisenberg uncertainty), and is the
+engine under Bragg diffraction = FT of density, SAXS = FT of the pair-correlation, NMR spectrum =
+FT of the FID, and Wiener–Khinchin power-spectrum = FT of autocorrelation), **onsager-reciprocity**
+(J_i=ΣL_ij X_j with L_ij=L_ji; near-equilibrium coupled transport where cross-effects come in equal
+pairs — the symmetry from microscopic reversibility, entropy-production σ̇=ΣJ_iX_i≥0 forcing L
+positive-semidefinite with L_ij²≤L_ii L_jj, giving the Kelvin relation Π=TS and framing coupled
+membrane co-transport), and **linear-response-theory** (Kubo: δ⟨A(t)⟩=∫χ(t−t′)f(t′)dt′, χ(t)=−β dC/dt;
+the response to a weak push is fixed by equilibrium fluctuations, with the static identity
+χ(0)=β⟨δA²⟩ unifying susceptibility/compressibility/heat-capacity as variance readouts — the
+framework FDT, Green–Kubo, and Marcus's parabolic surfaces all live in). Per the leaf-leverage rule
+each was wired as a REAL prereq of existing dependents chosen so their depth does NOT rise:
+fourier-transform→bragg(1)/saxs(2)/nmr-relaxation(2), onsager-reciprocity→membrane-transport(2),
+linear-response-theory→fluctuation-dissipation(1)/marcus-theory(3). Verified zero depth cascade (all
+six edited dependents unchanged). Because the new atoms sit beneath heavily-depended-on spectroscopy
++ transport + stochastic nodes, they gained strong downstream encompassing leverage — the diagnostic
+margin IMPROVED to **expert placed 34 / asked 18 (+16)**, up from +14 in run 12. All original prose;
+every numeric verified (FT of e^{−at²}=√(π/a)e^{−ω²/4a} via completing the square + gaussian-integral;
+σ_t σ_ω=½ for a Gaussian; onsager σ̇=L11X1²+2L12X1X2+L22X2²≥0 ⇒ L11,L22≥0 & L12²≤L11L22 via
+discriminant; Kubo static χ=∫₀^∞(−βĊ)dt=−β[C(∞)−C(0)]=β⟨δA²⟩ since C(∞)=0). OPEN sources only
+(LibreTexts Math/Chemistry + MIT OCW + 6 Wikipedia resources each); full 7-section lesson + 3 depths
++ 2 quiz (1 derive each) + note + art_prompt per atom. meta 0.6.0→0.6.1. validate.sh PASSES
+end-to-end (corpus integrity, 101-atom 60-day engine sim, diagnostic GREEN at +16, assess/lang/
+explorer smokes). Mirrored to public/academy-app (101 atoms, ver 0.6.1 verified in sync).
+NEXT: leaf-leverage remains the highest-value/lowest-risk move — pick a foundational math/stat-mech
+atom, find an EXISTING dependent already deep enough that the new edge won't raise its depth, wire it,
+re-run test-diagnostic. Remaining margin-safe candidates (verify no depth rise on the edited atom
+first): **kramers-kronig** (real↔imaginary parts of χ(ω) from causality; natural child of
+linear-response-theory but that would deepen it — instead wire under an existing depth≥1 spectroscopy
+atom like circular-dichroism/nmr-relaxation), **cumulant-generating-function / large-deviations**
+(pairs with saddle-point + legendre-transform, feeds partition-function depth 1), **green-function /
+propagator** (feeds reaction-diffusion/cable-equation/smoluchowski-rate), **perturbation-theory**
+(feeds marcus/eyring). Keep batches ~3, always verify no depth change + re-run test-diagnostic.mjs.
+Cheaper zero-graph-risk wins still open: ~39 atoms lack a derive quiz item; more `note` fields; GPU
+art generation if reachable. A non-biophysics branch expansion (math/physics corpus seed) is also
+fair game for variety.

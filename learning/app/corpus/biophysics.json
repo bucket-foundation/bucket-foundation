@@ -2,8 +2,8 @@
  "meta": {
   "branch": "05-biophysics",
   "title": "Biophysics — general-exam nucleus",
-  "version": "0.6.0",
-  "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade.",
+  "version": "0.6.1",
+  "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved.",
   "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
  },
  "atoms": [
@@ -2296,7 +2296,8 @@
    "shell": "nucleus",
    "type": "concept",
    "requires": [
-    "structure-hierarchy"
+    "structure-hierarchy",
+    "fourier-transform"
    ],
    "summary": "Crystals diffract X-rays into sharp spots where path differences between lattice planes are whole wavelengths — the original route to atomic-resolution structure.",
    "depths": {
@@ -3439,7 +3440,8 @@
    "type": "concept",
    "requires": [
     "nernst",
-    "gibbs"
+    "gibbs",
+    "onsager-reciprocity"
    ],
    "summary": "Cells move solutes across membranes either downhill (passive, through channels) or uphill (active, powered by ATP or a coupled ion gradient) — the bookkeeping of cellular energetics.",
    "depths": {
@@ -3936,7 +3938,8 @@
    "type": "method",
    "requires": [
     "bragg",
-    "ideal-chain"
+    "ideal-chain",
+    "fourier-transform"
    ],
    "summary": "Scattering at small angles from molecules in solution reports overall size, shape, and flexibility — low resolution but native, and uniquely powerful for disordered and multidomain proteins.",
    "depths": {
@@ -4059,7 +4062,8 @@
    "type": "concept",
    "requires": [
     "nmr-noe",
-    "random-walk"
+    "random-walk",
+    "fourier-transform"
    ],
    "summary": "The rates at which excited nuclear spins return to equilibrium encode molecular motion across many timescales — making NMR a uniquely broadband probe of biomolecular dynamics.",
    "depths": {
@@ -4552,7 +4556,8 @@
    "type": "equation",
    "requires": [
     "eyring",
-    "redox-potential"
+    "redox-potential",
+    "linear-response-theory"
    ],
    "equation": "k_{ET} \\propto \\exp\\!\\left[-\\dfrac{(\\Delta G^{\\circ}+\\lambda)^2}{4\\lambda k_BT}\\right]",
    "summary": "Electron-transfer rate depends parabolically on driving force through a reorganization energy λ — predicting the counterintuitive 'inverted region' where more driving force slows the reaction.",
@@ -5404,7 +5409,8 @@
    "type": "equation",
    "requires": [
     "boltzmann",
-    "correlation-function"
+    "correlation-function",
+    "linear-response-theory"
    ],
    "equation": "D = \\frac{k_BT}{\\gamma}",
    "summary": "The same molecular collisions that randomly jiggle a particle also produce the drag that resists its motion, so a system's spontaneous fluctuations and its response to a small push are two faces of one quantity — fixed in size by k_BT.",
@@ -6053,6 +6059,186 @@
     }
    ],
    "lesson": "### Intuition\n\nEvery fluctuating quantity has a memory: knowing its value now tells you something about its value a little later, and less and less as time passes. The correlation function measures exactly that - the average product of the deviation now and the deviation a time $t$ later. It begins at the full size of the fluctuations and decays as the system forgets itself. The rate of forgetting, the correlation time, quietly controls how the system responds, relaxes, and radiates.\n\n### Precisely\n\n$$C(t)=\\langle \\delta A(0)\\,\\delta A(t)\\rangle,\\qquad C(0)=\\langle\\delta A^2\\rangle,\\qquad \\tau_c=\\frac{1}{C(0)}\\int_0^{\\infty}\\!C(t)\\,dt,$$\n\nwith $\\delta A=A-\\langle A\\rangle$ and the average taken over a stationary ensemble.\n\n### Why it's true / how it works\n\nIn a stationary system the statistics depend only on the time gap, not the absolute time, so $C(t)$ is well defined and even in $t$. Its initial value is the variance because $\\delta A(0)\\delta A(0)=\\delta A^2$. Independent contributions at long lag average to zero, so $C(t)\\to0$; the area under the normalized curve defines the single number $\\tau_c$ that summarizes the whole decay.\n\n### Worked example\n\nTake $C(t)=C(0)e^{-|t|/\\tau_c}$. Its Fourier transform (the **Wiener-Khinchin theorem**) is the power spectrum $S(\\omega)=2C(0)\\tau_c/(1+\\omega^2\\tau_c^2)$, a Lorentzian whose half-width is $1/\\tau_c$: slow memory means sharp low-frequency power. In NMR this is concrete - a small protein tumbling with $\\tau_c\\sim10$ ns sampled at a $500$ MHz Larmor frequency has $\\omega_0\\tau_c\\sim30$, so the spectral density there is small and relaxation is slow; a fast-tumbling small molecule with $\\tau_c\\sim10$ ps has $\\omega_0\\tau_c\\sim0.03$ (extreme narrowing) and relaxes differently.\n\n### Where it connects\n\nThe correlation function is the quantity behind the **fluctuation-dissipation** theorem (spontaneous fluctuations and forced response share it), behind the **Langevin** equation's random force (whose correlation defines the noise), and behind **NMR relaxation** (rates are its spectral density at the Larmor frequency). Green-Kubo relations turn its time integral into diffusion, viscosity, and conductivity.\n\n### Watch out\n\nThe tidy definition assumes stationarity; an aging or driven system needs two-time correlations $C(t_1,t_2)$ that depend on both times. A single $\\tau_c$ only captures the decay when it is roughly exponential - glasses and proteins often show stretched or multi-exponential memory, and then higher-order (four-point) correlations are needed to see the dynamic heterogeneity a single $C(t)$ hides.\n\n### Numbers & nuance\n\nThe exchange 'memory in time = width in frequency' is exact: a correlation time $\\tau_c$ maps to a spectral width $\\sim1/\\tau_c$. This is why a molecule's motional timescale is read directly off a lineshape, and why measuring a decay in the time domain and a peak width in the frequency domain are the same experiment done two ways."
+  },
+  {
+   "id": "fourier-transform",
+   "title": "The Fourier transform",
+   "shell": "nucleus",
+   "type": "concept",
+   "requires": [],
+   "equation": "\\hat f(\\omega)=\\int_{-\\infty}^{\\infty}\\!f(t)\\,e^{-i\\omega t}\\,dt,\\qquad f(t)=\\frac{1}{2\\pi}\\int_{-\\infty}^{\\infty}\\!\\hat f(\\omega)\\,e^{i\\omega t}\\,d\\omega",
+   "summary": "The change of basis that rewrites any signal as a sum of pure oscillations, giving each frequency an amplitude and phase. It turns convolution into multiplication, sends a narrow feature in one domain to a broad one in the other (the time-frequency uncertainty relation), and is the mathematical engine behind diffraction (amplitude = transform of density), NMR (spectrum = transform of the free-induction decay), and the Wiener-Khinchin link between a correlation function and its power spectrum.",
+   "depths": {
+    "eli5": "A wiggly signal in time can be rebuilt by adding up plain sine waves of different speeds. The Fourier transform tells you the recipe: how much of each frequency is in the signal, and where each wave starts. A pure tone is one spike in frequency; a sharp click is spread across all frequencies. This swap between 'how it changes in time' and 'what frequencies it contains' is the same information written two ways, and switching between them makes hard problems easy - blurring becomes a simple multiply, and a diffraction pattern becomes a direct readout of the object that made it.",
+    "core": "The Fourier transform maps a function of time (or space) to a function of frequency (or spatial frequency): f-hat(omega) = integral f(t) e^(-i omega t) dt, invertible by f(t) = (1/2pi) integral f-hat(omega) e^(i omega t) domega. It is linear, and it diagonalizes translation and differentiation: a shift t -> t - a multiplies the transform by e^(-i omega a), and d/dt becomes multiplication by i omega. The convolution theorem is its most-used property: the transform of (f * g) is the product f-hat . g-hat, so filtering, smearing, and Green's-function solutions become algebra. Parseval's theorem conserves energy, integral |f|^2 dt = (1/2pi) integral |f-hat|^2 domega. A Gaussian transforms to a Gaussian, and the widths multiply to a constant - narrow in time forces broad in frequency (the uncertainty relation).",
+    "deep": "The transform is a unitary change of basis onto the eigenfunctions e^(i omega t) of translation, which is why every translation-invariant (convolution) operator is diagonal in it. This single fact organizes much of biophysics measurement. In crystallography the diffracted wave amplitude is the Fourier transform of the electron density, so the structure factor F(hkl) = integral rho(r) e^(2pi i k.r) dr is a transform sampled on the reciprocal lattice; the phase problem is precisely that detectors record |F|^2 and lose the phase needed to invert back to rho. In small-angle scattering the intensity is the transform of the pair-correlation function. In NMR and FTIR the measured time-domain decay is transformed to the spectrum, and the Wiener-Khinchin theorem states that the power spectral density is the Fourier transform of the autocorrelation function - the reason a correlation time tau_c shows up as a spectral width ~1/tau_c. The discrete FFT computes all this in O(N log N), which is what makes real-time spectroscopy and image reconstruction practical."
+   },
+   "note": "Two properties do most of the work: the convolution theorem (transform of a convolution = product of transforms) and the transform pair between a Gaussian in one domain and a Gaussian in the other. The second forces the time-frequency (bandwidth) uncertainty relation sigma_t sigma_omega >= 1/2, the same inequality that appears as Heisenberg's when momentum is h-bar times spatial frequency.",
+   "sources": [
+    "LibreTexts Mathematics",
+    "MIT OpenCourseWare"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia - Fourier transform",
+     "url": "https://en.wikipedia.org/wiki/Fourier_transform"
+    },
+    {
+     "label": "Wikipedia - Convolution theorem",
+     "url": "https://en.wikipedia.org/wiki/Convolution_theorem"
+    },
+    {
+     "label": "Wikipedia - Parseval's theorem",
+     "url": "https://en.wikipedia.org/wiki/Parseval%27s_theorem"
+    },
+    {
+     "label": "Wikipedia - Structure factor",
+     "url": "https://en.wikipedia.org/wiki/Structure_factor"
+    },
+    {
+     "label": "Wikipedia - Fast Fourier transform",
+     "url": "https://en.wikipedia.org/wiki/Fast_Fourier_transform"
+    },
+    {
+     "label": "MIT OCW - Computational Science and Engineering I (18.085)",
+     "url": "https://ocw.mit.edu/courses/18-085-computational-science-and-engineering-i-fall-2008/"
+    }
+   ],
+   "art_prompt": "left panel: a single Gaussian pulse narrow in time; an arrow labelled Fourier transform pointing right to a Gaussian in frequency that is correspondingly broad, with the caption 'narrow here = wide there (sigma_t . sigma_omega >= 1/2)'; below, a small inset showing a crystal lattice and its reciprocal-lattice diffraction spots joined by the same arrow",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "Why does the Fourier transform turn a convolution (smearing, filtering, diffraction blur) into a simple product, and name one biophysical measurement that relies on this.",
+     "answer": "Because the complex exponentials e^(i omega t) are the eigenfunctions of translation, and convolution is built entirely from shifted copies. Formally, the transform of (f * g)(t) = integral f(tau) g(t - tau) dtau factorizes: substituting and separating the integrals gives f-hat(omega) . g-hat(omega). So any operation that smears a signal by a fixed kernel becomes multiplication by that kernel's transform, and deconvolution becomes division. Crystallography relies on this directly: the diffracted amplitude is the Fourier transform of the electron density, so once you have amplitudes AND phases you invert the transform to recover the structure. NMR relies on it too - the spectrum is the transform of the recorded free-induction decay - as does any instrument whose point-spread function must be removed by deconvolution."
+    },
+    {
+     "level": "derive",
+     "prompt": "Show that a Gaussian f(t) = e^(-a t^2) transforms to another Gaussian, and use the result to state the time-frequency uncertainty relation.",
+     "answer": "Compute f-hat(omega) = integral_-inf^inf e^(-a t^2) e^(-i omega t) dt. Complete the square in the exponent: -a t^2 - i omega t = -a (t + i omega/2a)^2 - omega^2/4a. Pull the t-independent factor out: f-hat(omega) = e^(-omega^2/4a) integral e^(-a (t + i omega/2a)^2) dt. The remaining integral is the Gaussian integral (a contour shift leaves it equal to the real one) = sqrt(pi/a). Hence f-hat(omega) = sqrt(pi/a) e^(-omega^2/4a): a Gaussian again. Reading off widths, the time-domain standard deviation is sigma_t = 1/sqrt(2a) and the frequency-domain one is sigma_omega = sqrt(2a)/... i.e. sigma_omega = sqrt(a . 2)/1 giving sigma_t sigma_omega = 1/2. So the product of widths is fixed at its minimum 1/2 for a Gaussian - squeezing the pulse in time (large a) forces it wide in frequency. This is the bandwidth theorem, identical in form to Heisenberg's uncertainty principle.",
+     "eq": "\\int_{-\\infty}^{\\infty}\\!e^{-a t^2}e^{-i\\omega t}\\,dt=\\sqrt{\\tfrac{\\pi}{a}}\\,e^{-\\omega^2/4a}\\;\\Rightarrow\\;\\sigma_t\\,\\sigma_\\omega=\\tfrac12"
+    }
+   ],
+   "lesson": "### Intuition\n\nAny signal that varies in time can be rebuilt by stacking pure oscillations - sine and cosine waves of every frequency, each with its own amplitude and starting phase. The Fourier transform is the recipe book: it reads a signal and returns exactly how much of each frequency it contains. A held musical note is a single spike; a sharp click is smeared across all frequencies. The same information is written two ways, and the freedom to switch between 'time' and 'frequency' is what makes diffraction, spectroscopy, and filtering tractable.\n\n### Precisely\n\n$$\\hat f(\\omega)=\\int_{-\\infty}^{\\infty}\\!f(t)\\,e^{-i\\omega t}\\,dt,\\qquad f(t)=\\frac{1}{2\\pi}\\int_{-\\infty}^{\\infty}\\!\\hat f(\\omega)\\,e^{i\\omega t}\\,d\\omega,$$\n\nwith the same transform in space $x\\leftrightarrow$ spatial frequency (wavevector) $k$.\n\n### Why it's true / how it works\n\nThe exponentials $e^{i\\omega t}$ are the eigenfunctions of translation, so any operator that only shifts and adds - a convolution - is diagonalized. That gives the **convolution theorem**: $\\widehat{f*g}=\\hat f\\,\\hat g$. Differentiation becomes multiplication by $i\\omega$, turning linear differential equations into algebra. Energy is conserved between domains by **Parseval's theorem**, $\\int|f|^2dt=\\tfrac1{2\\pi}\\int|\\hat f|^2d\\omega$.\n\n### Worked example\n\nTransform a Gaussian $f(t)=e^{-at^2}$. Completing the square, $-at^2-i\\omega t=-a\\big(t+\\tfrac{i\\omega}{2a}\\big)^2-\\tfrac{\\omega^2}{4a}$, and the leftover integral is the Gaussian integral $\\sqrt{\\pi/a}$, so $\\hat f(\\omega)=\\sqrt{\\pi/a}\\,e^{-\\omega^2/4a}$. A Gaussian maps to a Gaussian, and the widths obey $\\sigma_t\\sigma_\\omega=\\tfrac12$: a short pulse must be spectrally broad.\n\n### Where it connects\n\nIn **Bragg** diffraction the scattered amplitude is the transform of the electron density, so a crystal's reciprocal-lattice spots are a sampled Fourier picture of its contents (the lost phases are the phase problem). In **SAXS** the intensity is the transform of the pair-correlation function. In **NMR relaxation** the spectrum is the transform of the decaying signal, and the Wiener-Khinchin theorem makes the power spectrum the transform of the autocorrelation - the reason a correlation time appears as a linewidth.\n\n### Watch out\n\nReal instruments measure $|\\hat f|^2$ and discard phase; you cannot invert without recovering it (the crystallographic phase problem). Sampling a signal at rate $f_s$ aliases anything above the Nyquist frequency $f_s/2$ down into the spectrum, so a too-slow detector reports fake low frequencies. And a finite measurement window multiplies by a boxcar, convolving the true spectrum with a $\\mathrm{sinc}$ - the source of spectral leakage that windowing tames.\n\n### Numbers & nuance\n\nThe discrete fast Fourier transform (FFT) computes an $N$-point transform in $O(N\\log N)$ instead of $O(N^2)$; for a $10^6$-point spectrum that is a factor $\\sim5\\times10^4$ speedup, which is precisely why Fourier-transform NMR, FTIR, and MRI image reconstruction are done in real time rather than by scanning one frequency at a time."
+  },
+  {
+   "id": "onsager-reciprocity",
+   "title": "Onsager reciprocal relations",
+   "shell": "nucleus",
+   "type": "law",
+   "requires": [],
+   "equation": "J_i=\\sum_j L_{ij}\\,X_j,\\qquad L_{ij}=L_{ji},\\qquad \\dot\\sigma=\\sum_i J_i X_i\\ge 0",
+   "summary": "Near equilibrium each flux is a linear combination of every thermodynamic force through a matrix of coupling coefficients, and that matrix is symmetric: the coefficient with which force j drives flux i equals the one with which force i drives flux j. The symmetry follows from the time-reversal symmetry of microscopic fluctuations, positive entropy production makes the matrix positive semidefinite, and together they constrain all coupled transport - thermoelectricity, electro-osmosis, coupled solute flows, and active membrane co-transport.",
+   "depths": {
+    "eli5": "When several things flow at once - heat, charge, water, solute - a push on one can drive another. A temperature difference can pump charge (that is a thermocouple); a voltage can pump heat back. Onsager's discovery is that these cross-effects come in equal-and-opposite pairs: the strength with which a temperature gradient drives an electric current is exactly the strength with which a voltage drives a heat flow. This is not obvious and it is not a coincidence - it comes from the fact that the tiny random jiggles of a system in equilibrium look the same run forwards or backwards in time. That single symmetry cuts the number of numbers you have to measure in half and pins down how coupled transport must behave.",
+    "core": "In linear irreversible thermodynamics, close to equilibrium, the fluxes J_i (of heat, charge, particles, ...) are linear in the thermodynamic forces X_j (gradients of 1/T, of -mu/T, of electric potential/T, ...): J_i = sum_j L_ij X_j. The forces are chosen so that the entropy production rate is the sum of flux times force, sigma-dot = sum_i J_i X_i >= 0, which forces the matrix L to be positive semidefinite (diagonal L_ii >= 0 and L_ii L_jj >= L_ij^2 for each pair). Onsager's reciprocal relations add the deeper statement L_ij = L_ji: the off-diagonal (cross) coefficients are symmetric. In a magnetic field or with Coriolis forces the statement generalizes to L_ij(B) = L_ji(-B). Practically, one measured cross-coefficient gives you its partner for free, and thermodynamic identities like the Kelvin relation between the Peltier and Seebeck coefficients (Pi = T S) follow directly.",
+    "deep": "The reciprocity is a theorem about equilibrium fluctuations, not about any particular material. Onsager's regression hypothesis states that the average decay of a spontaneous fluctuation obeys the same linear laws as a macroscopic relaxation. Microscopic reversibility - the time-reversal symmetry of the underlying dynamics - makes the equilibrium correlation matrix symmetric under exchange of variables and time reversal: <a_i(0) a_j(t)> = <a_j(0) a_i(t)>. Feeding this into the regression of fluctuations yields L_ij = L_ji. The relations are thus a member of the fluctuation-dissipation family: the same symmetric correlations that govern spontaneous fluctuations govern the coupled linear response. Magnetic fields and rotation break time-reversal, so the antisymmetric part survives as L_ij(B) = L_ji(-B), which is why the Hall and Righi-Leduc effects are allowed. In membrane bioenergetics the framework (Kedem-Katchalsky equations) describes coupled water and solute flow through a membrane, and the reciprocity relates the osmotic response to the pressure-driven solute drag; it also frames how a downhill ion gradient can drive uphill transport of a second solute in a symporter, the near-equilibrium skeleton beneath active membrane transport."
+   },
+   "note": "The relations hold in the linear (near-equilibrium) regime where fluxes are proportional to forces. Onsager received the 1968 Nobel Prize in Chemistry for them. The correct pairing of fluxes and forces is the one that makes the entropy production a sum of products J_i X_i; use any other pairing and the neat symmetry L_ij = L_ji can be spoiled.",
+   "sources": [
+    "LibreTexts Chemistry",
+    "MIT OpenCourseWare"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia - Onsager reciprocal relations",
+     "url": "https://en.wikipedia.org/wiki/Onsager_reciprocal_relations"
+    },
+    {
+     "label": "Wikipedia - Non-equilibrium thermodynamics",
+     "url": "https://en.wikipedia.org/wiki/Non-equilibrium_thermodynamics"
+    },
+    {
+     "label": "Wikipedia - Thermoelectric effect (Seebeck/Peltier)",
+     "url": "https://en.wikipedia.org/wiki/Thermoelectric_effect"
+    },
+    {
+     "label": "Wikipedia - Entropy production",
+     "url": "https://en.wikipedia.org/wiki/Entropy_production"
+    },
+    {
+     "label": "Wikipedia - Microscopic reversibility",
+     "url": "https://en.wikipedia.org/wiki/Microscopic_reversibility"
+    },
+    {
+     "label": "MIT OCW - Statistical Mechanics (8.333)",
+     "url": "https://ocw.mit.edu/courses/8-333-statistical-mechanics-i-statistical-mechanics-of-particles-fall-2013/"
+    }
+   ],
+   "art_prompt": "a 2x2 coupling matrix L with the two off-diagonal boxes L12 and L21 highlighted and joined by an equals sign (L12 = L21); on the left two forces X1 (a temperature gradient) and X2 (a voltage) feeding in, on the right two fluxes J1 (heat) and J2 (charge) coming out, showing each force reaching both fluxes; caption 'cross-effects come in equal pairs'",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "State the Onsager reciprocal relations and explain, in one sentence each, where the symmetry L_ij = L_ji comes from and why the coupling matrix must also be positive semidefinite.",
+     "answer": "Near equilibrium the fluxes are linear in the forces, J_i = sum_j L_ij X_j, and the reciprocal relations say the coupling matrix is symmetric, L_ij = L_ji (or L_ij(B) = L_ji(-B) in a magnetic field). The symmetry comes from microscopic reversibility - the time-reversal symmetry of the underlying dynamics makes the equilibrium correlations symmetric, <a_i(0) a_j(t)> = <a_j(0) a_i(t)>, which by Onsager's regression-of-fluctuations argument transfers to the macroscopic coefficients. The matrix must be positive semidefinite because the entropy production rate is sigma-dot = sum_i J_i X_i = sum_ij L_ij X_i X_j >= 0 for every choice of forces, and a quadratic form is non-negative for all inputs exactly when its matrix is positive semidefinite (so L_ii >= 0 and L_ii L_jj >= L_ij^2)."
+    },
+    {
+     "level": "derive",
+     "prompt": "For two coupled flows J1 = L11 X1 + L12 X2 and J2 = L21 X1 + L22 X2 with L12 = L21, write the entropy production and derive the constraints the second law places on the four coefficients.",
+     "answer": "The entropy production rate is sigma-dot = J1 X1 + J2 X2 = (L11 X1 + L12 X2) X1 + (L21 X1 + L22 X2) X2 = L11 X1^2 + (L12 + L21) X1 X2 + L22 X2^2. Using reciprocity L12 = L21 this is sigma-dot = L11 X1^2 + 2 L12 X1 X2 + L22 X2^2, a quadratic form in (X1, X2). The second law demands sigma-dot >= 0 for ALL forces. Setting X2 = 0 gives L11 X1^2 >= 0, so L11 >= 0; likewise L22 >= 0. For the cross term, treat sigma-dot as a quadratic in X1: L11 X1^2 + 2 L12 X2 X1 + L22 X2^2 >= 0 for all X1 requires non-positive discriminant, (2 L12 X2)^2 - 4 L11 (L22 X2^2) <= 0, i.e. L12^2 <= L11 L22. So the diagonal coefficients are non-negative and the cross-coefficient is bounded by the geometric mean of the diagonals, |L12| <= sqrt(L11 L22) - the coupling can never exceed what the direct responses allow.",
+     "eq": "\\dot\\sigma=L_{11}X_1^2+2L_{12}X_1X_2+L_{22}X_2^2\\ge0\\;\\Rightarrow\\;L_{11},L_{22}\\ge0,\\;\\;L_{12}^2\\le L_{11}L_{22}"
+    }
+   ],
+   "lesson": "### Intuition\n\nWhen several currents run through the same system at once - heat, electric charge, water, dissolved solute - a driving force for one can spill over and drive another. A temperature difference pushes a current (a thermocouple); a voltage pushes a heat flow (a Peltier cooler). Onsager found that these cross-effects are not independent: the coefficient linking a temperature gradient to charge flow equals the coefficient linking a voltage to heat flow. Half the coupling numbers come free, and the reason is a deep symmetry of equilibrium fluctuations.\n\n### Precisely\n\n$$J_i=\\sum_j L_{ij}X_j,\\qquad L_{ij}=L_{ji},\\qquad \\dot\\sigma=\\sum_i J_i X_i=\\sum_{ij}L_{ij}X_iX_j\\ge0,$$\n\nwith forces $X_j$ chosen (gradients of $1/T$, of $-\\mu/T$, ...) so entropy production is a sum of flux$\\times$force.\n\n### Why it's true / how it works\n\nOnsager's **regression hypothesis** says a spontaneous fluctuation decays, on average, by the same linear laws as a macroscopic disturbance. **Microscopic reversibility** (time-reversal symmetry) makes the equilibrium correlations symmetric, $\\langle a_i(0)a_j(t)\\rangle=\\langle a_j(0)a_i(t)\\rangle$; feeding that into the regression of fluctuations gives $L_{ij}=L_{ji}$. Positive entropy production then forces the matrix to be positive semidefinite.\n\n### Worked example\n\nFor two coupled flows, $\\dot\\sigma=L_{11}X_1^2+2L_{12}X_1X_2+L_{22}X_2^2\\ge0$ for all forces requires $L_{11},L_{22}\\ge0$ and $L_{12}^2\\le L_{11}L_{22}$. In thermoelectrics reciprocity gives the **Kelvin relation** $\\Pi=T\\,S$ tying the Peltier coefficient $\\Pi$ to the Seebeck coefficient $S$ - one measurement fixes both.\n\n### Where it connects\n\nThis is a member of the **fluctuation-dissipation** family: the same symmetric correlations that govern spontaneous fluctuations govern coupled linear response. In membranes the Kedem-Katchalsky equations use it to relate osmotic and pressure-driven flows, and it is the near-equilibrium skeleton under **membrane transport** - how a downhill ion gradient can drag a second solute uphill in a co-transporter.\n\n### Watch out\n\nThe symmetry holds only for the *conjugate* flux-force pairs that build the entropy production; a sloppy pairing destroys it. It is a *near-equilibrium* statement - far from equilibrium the coefficients themselves depend on the forces and reciprocity can fail. And a magnetic field or rotation breaks time reversal, so the clean $L_{ij}=L_{ji}$ becomes $L_{ij}(B)=L_{ji}(-B)$, which is exactly what permits Hall-type effects.\n\n### Numbers & nuance\n\nOnsager published the relations in 1931 and received the 1968 Nobel Prize in Chemistry for them. Their reach is enormous for two lines of algebra: thermoelectric device efficiency, electrokinetic effects (streaming potential vs electro-osmosis obey a reciprocity often called Saxen's relation), thermodiffusion (Soret and Dufour coefficients), and coupled biological transport all inherit the same symmetric-matrix structure."
+  },
+  {
+   "id": "linear-response-theory",
+   "title": "Linear response theory (Kubo)",
+   "shell": "nucleus",
+   "type": "concept",
+   "requires": [],
+   "equation": "\\delta\\langle A(t)\\rangle=\\int_{-\\infty}^{t}\\!\\chi(t-t')\\,f(t')\\,dt',\\qquad \\chi(t)=-\\beta\\,\\frac{d}{dt}\\langle\\delta A(0)\\,\\delta A(t)\\rangle\\;(t>0)",
+   "summary": "How a system in equilibrium reacts to a weak perturbation: the change in any observable is a convolution of the drive with a response (susceptibility) function that depends only on the unperturbed equilibrium. The central classical result (Kubo) is that this response function is minus beta times the time derivative of the equilibrium correlation function, so the way a system responds to a small push is fixed entirely by how it fluctuates on its own - the framework from which the fluctuation-dissipation theorem, Green-Kubo transport, and the parabolic energy surfaces of Marcus theory all follow.",
+   "depths": {
+    "eli5": "Poke a system gently and it moves; the useful surprise is that you can predict how it moves without ever poking it. Just watch it jiggle on its own at equilibrium. A system that fluctuates a lot in some quantity will also respond a lot when you push on that quantity, and a system that fluctuates slowly will respond slowly. Linear response theory makes this exact: the reaction to a small force is set by the system's own spontaneous fluctuations, measured while it sits undisturbed. That is why watching noise tells you the response, and why gentle probes never really leave equilibrium behind.",
+    "core": "Add a weak perturbation H' = -f(t) A to a system at equilibrium. To first order in f, the change in the average of A (or any observable) is linear and causal: delta<A(t)> = integral_-inf^t chi(t - t') f(t') dt', where chi is the response (after-effect) function, nonzero only for positive argument. The classical Kubo relation gives it from equilibrium fluctuations: chi(t) = -beta d/dt <delta A(0) delta A(t)> for t > 0, with beta = 1/kT. Fourier transforming defines the generalized susceptibility chi(omega) = integral_0^inf chi(t) e^(i omega t) dt, whose imaginary part chi''(omega) measures dissipation. The static (zero-frequency) response is especially simple: chi(0) = beta <delta A^2>, the response equals beta times the variance of the fluctuating quantity. Everything is expressed in unperturbed averages, so the response is computed without ever applying the force.",
+    "deep": "Linear response is the organizing principle behind a family of results. The fluctuation-dissipation theorem is its frequency-domain face: the dissipative part chi''(omega) is tied to the equilibrium power spectrum S(omega) by S(omega) = (2kT/omega) chi''(omega) in the classical limit (with the h-bar omega/2kT quantum correction otherwise). Green-Kubo relations are the transport specialization: integrating the appropriate correlation function over time gives diffusion, viscosity, and conductivity, because a steady thermodynamic force is the zero-frequency limit of the drive. The static identity chi(0) = beta <delta A^2> unifies many 'response = fluctuation' statements: magnetic susceptibility = beta <delta M^2>, isothermal compressibility from density fluctuations, heat capacity from energy fluctuations C = <delta E^2>/kT^2. It also underpins Marcus theory: assuming the polar environment responds linearly to a moving charge makes its free energy a quadratic (parabolic) function of the reaction coordinate, which is exactly the Gaussian-fluctuation/linear-response assumption. The quantum version replaces the correlation derivative with the Kubo canonical correlation and the commutator, chi(t) = (i/h-bar) <[A(t), A(0)]> theta(t), reducing to the classical form as h-bar -> 0."
+   },
+   "note": "The single most useful consequence is the static result chi(0) = beta <delta A^2>: the equilibrium susceptibility of any quantity equals 1/kT times the variance of its fluctuations. This is why measuring how much something spontaneously fluctuates tells you how strongly it will respond to a conjugate field, with no perturbation applied.",
+   "sources": [
+    "LibreTexts Chemistry",
+    "MIT OpenCourseWare"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia - Linear response function",
+     "url": "https://en.wikipedia.org/wiki/Linear_response_function"
+    },
+    {
+     "label": "Wikipedia - Green-Kubo relations",
+     "url": "https://en.wikipedia.org/wiki/Green%E2%80%93Kubo_relations"
+    },
+    {
+     "label": "Wikipedia - Fluctuation-dissipation theorem",
+     "url": "https://en.wikipedia.org/wiki/Fluctuation-dissipation_theorem"
+    },
+    {
+     "label": "Wikipedia - Kubo formula",
+     "url": "https://en.wikipedia.org/wiki/Kubo_formula"
+    },
+    {
+     "label": "Wikipedia - Susceptibility",
+     "url": "https://en.wikipedia.org/wiki/Susceptibility"
+    },
+    {
+     "label": "MIT OCW - Statistical Mechanics (8.333)",
+     "url": "https://ocw.mit.edu/courses/8-333-statistical-mechanics-i-statistical-mechanics-of-particles-fall-2013/"
+    }
+   ],
+   "art_prompt": "top: a system nudged by a small time-varying force f(t); its response delta<A(t)> shown as a delayed, smeared echo produced by convolving with a response curve chi(t); bottom: the same chi(t) drawn as minus beta times the slope of the equilibrium correlation function C(t), with the caption 'response = -beta dC/dt: fluctuations predict the push'",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "In one or two sentences, state what linear response theory computes and why it lets you predict a system's reaction to a weak force without ever applying that force.",
+     "answer": "Linear response theory gives the first-order change in an observable when a weak, slowly applied perturbation H' = -f(t) A is switched on: delta<A(t)> = integral chi(t - t') f(t') dt', a causal convolution of the drive with a response function chi. The point is that chi is an equilibrium quantity - by the Kubo relation chi(t) = -beta d/dt <delta A(0) delta A(t)>, it is fixed entirely by the system's spontaneous fluctuations in the unperturbed state. So you measure (or simulate) how the quantity fluctuates on its own at equilibrium and that determines how strongly and how quickly it will respond to a conjugate force, without applying any force."
+    },
+    {
+     "level": "derive",
+     "prompt": "Starting from the Kubo relation chi(t) = -beta dC(t)/dt for t > 0, with C(t) = <delta A(0) delta A(t)>, derive the static susceptibility chi(0-static) = integral_0^inf chi(t) dt and interpret it.",
+     "answer": "The static susceptibility is the total (zero-frequency) response, the response function integrated over all time: chi_static = integral_0^inf chi(t) dt = integral_0^inf [-beta dC/dt] dt = -beta [C(t)]_0^inf = -beta (C(inf) - C(0)). A fluctuation decorrelates at long times, so C(inf) = <delta A(0)><delta A(inf)> = 0, while C(0) = <delta A^2> is the variance. Hence chi_static = -beta(0 - <delta A^2>) = beta <delta A^2> = <delta A^2>/kT. Interpretation: the equilibrium susceptibility of any quantity equals 1/kT times the variance of its spontaneous fluctuations. Concretely this reproduces the magnetic susceptibility = beta<delta M^2>, the isothermal compressibility from density fluctuations, and the heat capacity C_V = <delta E^2>/kT^2 - all the same 'a big response means big fluctuations' statement, which is the static fluctuation-dissipation theorem.",
+     "eq": "\\chi_{\\text{static}}=\\int_0^{\\infty}\\!\\chi(t)\\,dt=-\\beta\\big[C(\\infty)-C(0)\\big]=\\beta\\,\\langle\\delta A^2\\rangle=\\frac{\\langle\\delta A^2\\rangle}{k_BT}"
+    }
+   ],
+   "lesson": "### Intuition\n\nPush a system gently and watch it react. The surprise at the heart of linear response theory is that you can predict the reaction without ever pushing - by watching the system jiggle on its own at equilibrium. A quantity that fluctuates a lot responds a lot; a quantity that fluctuates slowly responds slowly. The spontaneous noise contains the whole recipe for the forced response, as long as the push is weak enough to stay in the linear regime.\n\n### Precisely\n\n$$\\delta\\langle A(t)\\rangle=\\int_{-\\infty}^{t}\\!\\chi(t-t')\\,f(t')\\,dt',\\qquad \\chi(t)=-\\beta\\,\\frac{d}{dt}\\langle\\delta A(0)\\,\\delta A(t)\\rangle\\ \\ (t>0),$$\n\nfor a perturbation $H'=-f(t)A$, with $\\beta=1/k_BT$ and $\\chi$ causal (zero for $t<0$).\n\n### Why it's true / how it works\n\nExpand the perturbed average to first order in $f$. The change is linear and causal, so it must be a convolution with some after-effect function $\\chi$. Evaluating that first-order term with equilibrium statistics gives Kubo's result: $\\chi$ is $-\\beta$ times the time derivative of the equilibrium autocorrelation. The whole response is written in *unperturbed* averages - which is why it can be measured from noise alone.\n\n### Worked example\n\nThe static response is the cleanest case. Integrate: $\\chi_{\\text{static}}=\\int_0^\\infty\\chi\\,dt=-\\beta[C(\\infty)-C(0)]=\\beta\\langle\\delta A^2\\rangle$, since correlations decay to zero and $C(0)$ is the variance. So the susceptibility equals $1/k_BT$ times the variance of the fluctuations - magnetic susceptibility from $\\langle\\delta M^2\\rangle$, compressibility from density fluctuations, heat capacity $C_V=\\langle\\delta E^2\\rangle/k_BT^2$.\n\n### Where it connects\n\nThis is the framework the **fluctuation-dissipation** theorem lives in - its frequency-domain statement ties the dissipative part $\\chi''(\\omega)$ to the power spectrum. The **correlation function** is its raw material; **Green-Kubo** transport coefficients are its zero-frequency limit; and **Marcus theory**'s parabolic free-energy surfaces are exactly the assumption that the polar environment responds *linearly* (Gaussian fluctuations) to a moving charge.\n\n### Watch out\n\n'Linear' is a real restriction - double the force and the response only doubles if the drive stays small; strong fields probe nonlinear susceptibilities the theory ignores. Causality is not optional: $\\chi(t)=0$ for $t<0$, and this forces the Kramers-Kronig relations linking the real and imaginary parts of $\\chi(\\omega)$. And the tidy classical form $\\chi=-\\beta\\dot C$ picks up quantum corrections when $\\hbar\\omega\\gtrsim k_BT$, where the commutator version is needed.\n\n### Numbers & nuance\n\nThe static identity $\\chi(0)=\\langle\\delta A^2\\rangle/k_BT$ is a workhorse in simulation: rather than applying dozens of field strengths, run one equilibrium trajectory, measure the variance of the conjugate quantity, and read off the susceptibility. It is how dielectric constants, elastic moduli, and binding responses are routinely extracted from a single unbiased molecular-dynamics run."
   }
  ]
 }
