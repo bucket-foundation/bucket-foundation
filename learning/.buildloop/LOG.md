@@ -1003,3 +1003,42 @@ cosmic-variance, integrated-Sachs-Wolfe, 21cm-cosmology as its own atom. OR the 
 prereq-shell fix (add a depth-3 dependent of redox-potential to raise its betweenness to 6/6; VERIFY
 asked stays ≤18). Cheap zero-risk wins still open across branches: atoms lacking a derive-level quiz
 item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
+
+## 2026-07-01 — run 27 (+6 information atoms; branch expansion continues; biophysics untouched)
+Per run-26's handoff (chemistry/information/mathematics were the thinnest three; exact counts were
+mathematics 49, chemistry 49, **information 48** = thinnest). Expanded **04-information 48→54**, each
+`requires` into EXISTING information ids only (validated no missing/dupe): **perfect-secrecy** (Shannon
+perfect secrecy + one-time pad; P(M|C)=P(M) ⟺ I(M;C)=0; H(K)≥H(M) key-length bound; unconditional vs
+computational security; Venona pad-reuse pitfall; ← shannon-entropy, conditional-probability-bayes),
+**huffman-coding** (optimal prefix-free code via greedy least-two merge; H≤L<H+1; exchange-argument
+optimality; per-symbol overhead → block/arithmetic coding; DEFLATE backend; ← kraft-source-coding),
+**lambda-calculus** (Church's functional model; beta reduction (λx.M)N→M[x:=N]; Turing-complete;
+Church numerals + Y combinator; Church–Rosser confluence; Curry–Howard programs-as-proofs; typed vs
+untyped termination trade; ← church-turing), **fast-fourier-transform** (Cooley–Tukey DFT in O(N log N)
+via even/odd split + butterfly/twiddle; T(N)=2T(N/2)+O(N); fast polynomial/integer multiply; mixed-
+radix/Bluestein for arbitrary N; leakage/aliasing watch-outs; ← divide-and-conquer), **master-theorem**
+(T(n)=aT(n/b)+f(n) three cases via n^{log_b a} vs f(n); recursion-tree geometric-series proof;
+merge-sort/binary-search/Karatsuba/FFT worked; Akra–Bazzi for gaps + unequal splits; Case-3 regularity
++ subtractive-recurrence traps; ← divide-and-conquer, big-o), **rices-theorem** (every non-trivial
+SEMANTIC program property undecidable; halting-problem reduction; extension-vs-intension line; why
+perfect static analysis is impossible → conservative approximation; syntactic/bounded exceptions;
+← halting-problem, decidability). Each = full 7-section lesson (Intuition/Precisely/Worked example/
+Why it works/Where it connects/A second angle/Watch out) + summary + 3 depths + note + art_prompt + 2
+quiz (recall + derive/teach) + OPEN sources (MIT OCW 6.006/6.046J/18.404J + primary papers Shannon
+1949/Huffman 1952/Church 1936/Cooley–Tukey 1965/Rice 1953 + Cover&Thomas/CLRS/Sipser + Wikipedia).
+ALL prose ORIGINAL; equations/theorems/definitions are facts. meta 0.3.0→0.4.0. Mirrored to
+public/academy-app via `node scripts/sync-academy.mjs` from the repo ROOT (information 54, ver 0.4.0).
+
+**validate.sh PASSES end-to-end (exit 0)** (all corpus JSON integrity incl. information 54/no-dupes/
+no-missing-requires, manifest consistency, JS syntax, 60-day engine sim — biophysics diagnostic
+UNCHANGED at placed 42/asked 18 margin +24 shell 5/6 since the engine sim loads ONLY biophysics.json,
+so information edits are zero-risk to placement — assess/lang/explorer smokes all green).
+
+**NEXT run:** branch counts now — biophysics ~133, mind 54, information 54, cosmology 53, physics 55,
+mathematics 49, chemistry 49; **chemistry and mathematics (both 49) are now the thinnest** — pick one
+and add 6. Information minor gaps still open if wanted: data-processing-inequality (← mutual-info),
+differential/continuous entropy, Lempel–Ziv universal compression, Rice–Shapiro, BPP/probabilistic
+classes as their own atom, Diffie–Hellman key exchange, cryptographic hash functions, Boolean-circuit
+complexity. OR the durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential to
+raise its betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins still open: atoms lacking a
+derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.

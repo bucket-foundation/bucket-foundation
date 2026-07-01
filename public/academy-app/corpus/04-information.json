@@ -2,7 +2,7 @@
   "meta": {
     "branch": "04-information",
     "title": "Information & Computation — entropy, computability, complexity",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations, theorems, and standard definitions are facts). Open sources only. Foundations-first DAG spanning information theory (entropy, mutual information, channel capacity, coding, Kolmogorov complexity), computability (Turing machines, Church–Turing, halting, decidability), automata & formal languages (DFA/NFA, the Chomsky hierarchy), complexity (P, NP, NP-completeness, reductions, space), algorithms & data structures (asymptotics, divide & conquer, dynamic programming, graphs), logic (propositional, predicate, proof systems), cryptography basics (one-way functions, public key), and a learning-theory frontier (PAC learning, VC dimension, the link to statistical mechanics, a modern-ML glimpse).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -2965,6 +2965,332 @@
         }
       ],
       "lesson": "### Intuition\n\nFlip a biased coin a million times and the exact sequence you get is almost certainly one of a fairly predictable family — the **typical** outcomes, those with roughly the *expected* mix of heads and tails. There are about $2^{(\\text{length}\\times\\text{entropy})}$ of these typical sequences, and nearly *all* the probability lives among them. This concentration is the secret reason compression works at all.\n\n### Precisely\n\nThe **asymptotic equipartition property (AEP)** is the information-theoretic law of large numbers. For **i.i.d.** symbols $X_1,\\dots,X_n$ (independent, identically distributed), the per-symbol log-probability converges to the entropy:\n\n$$-\\tfrac1n\\log_2 p(X_1,\\dots,X_n)\\to H(X).$$\n\nConsequently, almost all probability concentrates on a **typical set** $A_\\epsilon^{(n)}$ of about $2^{nH}$ sequences, each with probability near $2^{-nH}$.\n\n### Worked example\n\nA biased coin, $P(H)=0.9$, entropy $H\\approx 0.469$ bits. Over $n=100$ flips there are $2^{100}\\approx 10^{30}$ possible sequences, but the *typical* ones — those with about 90 heads and 10 tails — number only about $2^{nH}=2^{46.9}\\approx 10^{14}$. That is *vastly* fewer than $10^{30}$, yet they carry essentially all the probability. To compress, you assign short index numbers only to those $\\approx 10^{14}$ typical sequences (about $nH\\approx 47$ bits each), ignoring the rest. The exponential gap $10^{14}$ vs $10^{30}$ is why compression to $H$ bits/symbol succeeds.\n\n### Why it works\n\nBy the law of large numbers, the empirical symbol frequencies converge to the true probabilities, so a long sequence almost surely has the \"expected mix\" — making its probability close to $2^{-nH}$ and placing it in the typical set. The typical set has size $\\approx 2^{nH}$ because each typical sequence has roughly equal probability $2^{-nH}$ and together they sum to $\\approx 1$. This near-uniformity over an exponentially small set is the \"equipartition.\"\n\n### Where it connects\n\nThe AEP is what makes Shannon's **source coding theorem** and **noisy-channel coding theorem** *provable*: compression indexes only the typical set; channel coding picks codewords whose typical noisy outputs barely overlap. Built on **Shannon entropy** and **probability**, it also underpins **rate–distortion** and **channel capacity**.\n\n### A second angle\n\nThe AEP is the rigorous engine behind a slogan worth remembering: **\"compress the typical, ignore the rest.\"** Two complementary facts make it work. First, the typical set has probability approaching 1, so a code that *only* handles typical sequences (and gives up on the rest) succeeds with probability $\\to 1$. Second, the typical set has only $\\approx 2^{nH}$ members, so indexing it costs $\\approx nH$ bits — matching the entropy floor. Conversely, *no* set smaller than $\\approx 2^{nH}$ can capture most of the probability, which is the converse half: you cannot beat $H$ bits per symbol. Both the achievability and the impossibility halves of **source coding** flow from this one property.\n\n### Watch out\n\nThe AEP is an *asymptotic, high-probability* statement — it holds as $n\\to\\infty$ and for *most* sequences, not every one. Atypical sequences still exist (an all-heads run is possible), they just become vanishingly improbable. Also, the basic AEP assumes **i.i.d.** symbols; correlated sources have an analogous result (via the entropy *rate*), but the simple $2^{nH}$ count uses independence.\n"
+    },
+    {
+      "id": "perfect-secrecy",
+      "title": "Perfect secrecy and the one-time pad",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "shannon-entropy",
+        "conditional-probability-bayes"
+      ],
+      "equation": "P(M=m \\mid C=c)=P(M=m)\\quad\\Longleftrightarrow\\quad I(M;C)=0",
+      "summary": "A cipher is perfectly secret when the ciphertext carries zero information about the message; Shannon proved this forces a key at least as long as the message, and the one-time pad hits the bound exactly.",
+      "depths": {
+        "eli5": "Imagine a code so good that seeing the scrambled message tells an eavesdropper absolutely nothing new — every possible original message stays exactly as likely as before. Shannon proved you can do this, but only if your secret key is at least as long as the message and never reused. That perfect code is called the one-time pad.",
+        "core": "A cipher has perfect secrecy if the ciphertext C is statistically independent of the message M: seeing C leaves the probability of every message unchanged, P(M=m|C=c)=P(M=m), equivalently the mutual information I(M;C)=0. Shannon's theorem says perfect secrecy requires the key entropy to be at least the message entropy, H(K)≥H(M) — so the key must be at least as long as the message. The one-time pad (XOR the message with a uniformly random key used exactly once) achieves the bound: for each ciphertext, every message is equally consistent with some key, so the ciphertext reveals nothing.",
+        "deep": "Perfect secrecy is an information-theoretic guarantee — it holds against an adversary with unlimited computing power, unlike modern ciphers whose security rests on computational hardness (see one-way functions). The price is a key as long as the total message traffic, which is impractical at scale, so real systems trade Shannon secrecy for computational security. The name 'one-time' is load-bearing: reuse a pad across two messages and their XOR equals the XOR of the two plaintexts, leaking structure that breaks the scheme (the historical Venona decrypts exploited exactly this). Perfect secrecy is the information-theoretic ceiling that computational cryptography approximates cheaply."
+      },
+      "note": "Perfect secrecy is unconditional — it survives an adversary with infinite computing power — which is why the one-time pad is still used for the very highest-stakes channels despite the impractical key length.",
+      "sources": [
+        "Shannon (1949), Communication Theory of Secrecy Systems (facts)",
+        "Katz & Lindell, Introduction to Modern Cryptography (facts)",
+        "Wikipedia (facts): One-time pad; Information-theoretic security"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: One-time pad",
+          "url": "https://en.wikipedia.org/wiki/One-time_pad"
+        },
+        {
+          "label": "Wikipedia: Information-theoretic security",
+          "url": "https://en.wikipedia.org/wiki/Information-theoretic_security"
+        },
+        {
+          "label": "Wikipedia: Shannon's theorem (perfect secrecy)",
+          "url": "https://en.wikipedia.org/wiki/Perfect_secrecy"
+        },
+        {
+          "label": "MIT OCW 6.045 / 6.046 course materials (cryptography lectures)",
+          "url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/"
+        }
+      ],
+      "art_prompt": "a message bar XORed with an equally long random key bar producing a ciphertext bar; a cloud of all possible plaintexts each still equally likely behind the ciphertext",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the mutual-information condition for perfect secrecy.",
+          "answer": "I(M;C)=0 — the ciphertext is statistically independent of the message, so seeing C does not change the probability of any message."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why must a perfectly secret key be at least as long as the message?",
+          "answer": "Shannon's theorem gives H(K)≥H(M): the key must carry at least as much entropy as the message, so for uniformly random messages the key must be at least as many bits long."
+        }
+      ],
+      "lesson": "### Intuition\n\nImagine a code so good that seeing the scrambled message tells an eavesdropper *nothing* new — every possible original message stays exactly as likely as it was before they intercepted anything. That is **perfect secrecy**, and Shannon proved it is achievable. The catch: your secret key must be at least as long as the message and must never be reused. The scheme that reaches this ideal is the **one-time pad**.\n\n### Precisely\n\nA cipher has **perfect secrecy** when the ciphertext $C$ is statistically independent of the message $M$:\n\n$$P(M=m \\mid C=c)=P(M=m)\\quad\\text{for all }m,c,\\qquad\\text{equivalently}\\qquad I(M;C)=0.$$\n\nShannon's theorem: perfect secrecy requires $H(K)\\ge H(M)$ — the key's entropy must be at least the message's, so the key is at least as long as the message. The **one-time pad** encrypts by XOR with a uniformly random key used once, $C = M \\oplus K$, and meets the bound exactly.\n\n### Worked example\n\nTake a one-bit message, $M\\in\\{0,1\\}$, and a uniformly random one-bit key $K$. Ciphertext $C=M\\oplus K$. If $C=1$, that is consistent with $(M=0,K=1)$ *or* $(M=1,K=0)$, each with probability $\\tfrac12$. So $P(M=1\\mid C=1)=\\tfrac12=P(M=1)$: the ciphertext changed nothing. Stretch this to $n$ bits and every $n$-bit plaintext remains equally consistent with exactly one key — zero leakage.\n\n### Why it works\n\nFor each ciphertext $c$, a fresh uniform key makes *every* plaintext reachable via some key, and all keys are equally likely, so the conditional distribution over messages is identical to the prior. Independence follows, hence $I(M;C)=0$. The key-length bound is forced because the map from key to ciphertext (for a fixed message) must be injective enough to cover all messages a given ciphertext could hide — that demands at least $H(M)$ bits of key.\n\n### Where it connects\n\nThis is a direct application of **Shannon entropy** and **conditional probability** to secrecy. It is the *information-theoretic* ceiling that **one-way functions** and **public-key cryptography** approximate cheaply: those schemes give up unconditional secrecy for security that holds only against *computationally bounded* adversaries, buying short reusable keys in exchange.\n\n### A second angle\n\nPerfect secrecy holds against an adversary with unlimited computing power — no future computer, quantum or otherwise, breaks a correctly used one-time pad. That is a strictly stronger promise than any deployed cipher makes. The reason we do not use it everywhere is logistical: the key must be as long as *all* traffic ever sent and delivered securely in advance, which is exactly the problem encryption was meant to solve. So perfect secrecy is reserved for the highest-stakes, low-volume channels (diplomatic and intelligence links historically), while everyday cryptography settles for computational security with tiny keys.\n\n### Watch out\n\nThe word \"one-time\" is not decoration. Reuse a pad on two messages $M_1,M_2$ and the attacker computes $C_1\\oplus C_2 = M_1\\oplus M_2$, which leaks the XOR of the plaintexts and, with language structure, often both. This is precisely how the Venona project broke reused Soviet pads. Also, \"random\" must mean *truly uniform and independent* — a pad from a weak pseudorandom generator is no longer perfectly secret; it is only as strong as the generator.\n"
+    },
+    {
+      "id": "huffman-coding",
+      "title": "Huffman coding",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "kraft-source-coding"
+      ],
+      "equation": "H(X)\\le L_{\\text{Huffman}} < H(X)+1",
+      "summary": "Huffman's greedy algorithm builds the optimal prefix-free code for a known symbol distribution by repeatedly merging the two least-likely symbols, coming within one bit of the entropy bound.",
+      "depths": {
+        "eli5": "You want short codes for common letters and longer codes for rare ones, and no code allowed to be the start of another (so a decoder never gets confused). Huffman's trick: keep gluing the two rarest symbols together into one, over and over. The tree you build gives the shortest possible average code.",
+        "core": "Huffman coding produces an optimal prefix-free (instantaneous) binary code for a source with known symbol probabilities. The algorithm is greedy: treat each symbol as a leaf with weight equal to its probability, repeatedly take the two lowest-weight nodes, merge them under a new parent whose weight is their sum, and repeat until one tree remains; edges labelled 0/1 give each symbol's codeword. The resulting expected length L satisfies H(X) ≤ L < H(X)+1, so it is within one bit per symbol of the entropy limit, and no other prefix code does better on the same distribution.",
+        "deep": "Optimality follows from an exchange argument: in any optimal prefix code the two least-likely symbols can be made siblings at maximum depth, so merging them and recursing preserves optimality. Huffman is optimal among *symbol* codes but the sub-one-bit overhead matters for skewed distributions (a symbol of probability 0.9 still needs a whole bit); blocking symbols together, or switching to arithmetic coding, drives the rate to H(X) in the limit. Adaptive Huffman variants update the tree online when the distribution is unknown, and Huffman remains the coding stage inside DEFLATE (gzip, PNG) after a dictionary pass."
+      },
+      "note": "Huffman is optimal among per-symbol prefix codes, but its up-to-one-bit overhead per symbol is why heavily skewed sources use arithmetic or range coding, which approach the entropy rate without the integer-length penalty.",
+      "sources": [
+        "Huffman (1952), A Method for the Construction of Minimum-Redundancy Codes (facts)",
+        "Cover & Thomas, Elements of Information Theory (facts)",
+        "Wikipedia (facts): Huffman coding; Prefix code"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Huffman coding",
+          "url": "https://en.wikipedia.org/wiki/Huffman_coding"
+        },
+        {
+          "label": "Wikipedia: Prefix code",
+          "url": "https://en.wikipedia.org/wiki/Prefix_code"
+        },
+        {
+          "label": "MIT OCW 6.02 Introduction to EECS II (source coding)",
+          "url": "https://ocw.mit.edu/courses/6-02-introduction-to-eecs-ii-digital-communication-systems-fall-2012/"
+        },
+        {
+          "label": "Wikipedia: Arithmetic coding (the sub-bit successor)",
+          "url": "https://en.wikipedia.org/wiki/Arithmetic_coding"
+        }
+      ],
+      "art_prompt": "a binary tree built bottom-up by merging the two lightest leaves, edges labelled 0/1, common symbols near the root with short codes and rare symbols deep with long codes",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What greedy step defines the Huffman algorithm?",
+          "answer": "Repeatedly merge the two lowest-probability nodes into a new node whose weight is their sum, until a single tree remains."
+        },
+        {
+          "level": "derive",
+          "prompt": "A source has symbols with probabilities 0.5, 0.25, 0.25. Give a Huffman code and its expected length; compare to the entropy.",
+          "answer": "Merge the two 0.25 symbols (giving a 0.5 node), then merge with the 0.5 symbol. Codes: 0, 10, 11. Expected length = 0.5(1)+0.25(2)+0.25(2)=1.5 bits, which equals the entropy H = 1.5 bits exactly (this distribution is dyadic)."
+        }
+      ],
+      "lesson": "### Intuition\n\nYou want short codes for common symbols and longer codes for rare ones, with one rule: no codeword may be the *prefix* of another, so a decoder reading a stream never has to guess where one code ends. Huffman's insight is a simple greedy move — keep gluing the two rarest symbols together into a combined symbol, over and over. The binary tree you grow this way gives the shortest possible average codeword length.\n\n### Precisely\n\nGiven symbols with known probabilities, **Huffman coding** builds an optimal prefix-free binary code:\n\n1. Make each symbol a leaf weighted by its probability.\n2. Repeatedly remove the two lowest-weight nodes, join them under a new parent whose weight is their sum, and reinsert it.\n3. Stop at a single tree; labelling the two edges at each node 0 and 1 gives each symbol's codeword.\n\nThe expected length obeys $H(X)\\le L_{\\text{Huffman}} < H(X)+1$, and no other prefix code achieves smaller $L$ on the same distribution.\n\n### Worked example\n\nProbabilities $\\{0.4, 0.3, 0.2, 0.1\\}$. Merge $0.2$ and $0.1$ → a $0.3$ node. Now $\\{0.4, 0.3, 0.3\\}$; merge the two $0.3$ nodes → $0.6$. Now $\\{0.6, 0.4\\}$; merge → root. Reading edges gives codes like $0,\\,10,\\,110,\\,111$. Expected length $=0.4(1)+0.3(2)+0.2(3)+0.1(3)=1.9$ bits, versus entropy $H\\approx 1.846$ bits — inside the one-bit guarantee.\n\n### Why it works\n\nOptimality is an **exchange argument**: in *any* optimal prefix code the two least-likely symbols can be assumed to be siblings at the deepest level (if not, swapping them there never increases expected length). Merging those two into one symbol yields a smaller instance whose optimal code extends to an optimal code for the original. Induction gives Huffman's optimality. The **Kraft inequality** guarantees such a prefix code exists with these lengths.\n\n### Where it connects\n\nHuffman is the constructive companion to the **source coding theorem**: entropy says how few bits are *possible*, Huffman *builds* a concrete code that gets within a bit. It sits downstream of the **Kraft inequality** (which characterizes achievable prefix-code lengths) and is the entropy-coding backend of real formats — DEFLATE inside gzip, zip, and PNG runs Huffman after a dictionary/matching stage.\n\n### A second angle\n\nThe \"within one bit\" gap is not free — for a symbol of probability $0.9$, entropy wants about $0.15$ bits but any integer-length code spends at least a whole bit, a $6\\times$ overhead on that symbol. Two fixes: **block coding** (Huffman-code groups of $n$ symbols, amortizing the rounding so the per-symbol rate $\\to H(X)$) and **arithmetic/range coding**, which represents the whole message as one fractional number and sidesteps integer codeword lengths entirely. When the distribution is unknown or drifting, **adaptive Huffman** rebuilds the tree as counts come in.\n\n### Watch out\n\nHuffman needs the symbol probabilities *up front* — a static Huffman coder that guesses the distribution wrong loses efficiency, and a two-pass coder must transmit the tree (overhead that hurts short messages). It is optimal only among codes that assign a *whole codeword per symbol*; if you are chasing the entropy rate on a skewed source, that per-symbol restriction, not any flaw in the algorithm, is the binding constraint.\n"
+    },
+    {
+      "id": "lambda-calculus",
+      "title": "The lambda calculus",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "church-turing"
+      ],
+      "equation": "(\\lambda x.\\,M)\\,N \\;\\longrightarrow_\\beta\\; M[x:=N]",
+      "summary": "Church's lambda calculus builds all of computation from functions alone — abstraction, application, and one rewrite rule (beta reduction) — and is Turing-complete, giving a functional twin to the Turing machine.",
+      "depths": {
+        "eli5": "You can build a whole universe of computing out of just one idea: functions. You can make a function, hand it an input, and substitute that input in wherever the function's variable appears. Do that repeatedly and you can compute anything a computer can. That tiny language of pure functions is the lambda calculus.",
+        "core": "The lambda calculus is a formal system with three constructs: variables, abstraction (λx.M defines an anonymous function of x with body M), and application (M N applies function M to argument N). Computation is the single rewrite rule beta reduction: (λx.M)N reduces to M with N substituted for x. Despite this minimal syntax it is Turing-complete — it can express every computable function — which is a pillar of the Church–Turing thesis. Numbers, booleans, pairs, and recursion are all encodable (Church numerals; the Y combinator gives fixed points / recursion).",
+        "deep": "The lambda calculus is the mathematical core of functional programming (Lisp, ML, Haskell) and of programming-language semantics. Untyped, it is Turing-complete and admits non-terminating reductions (e.g. Ω = (λx.xx)(λx.xx) reduces to itself forever) — the analogue of the halting problem. The Church–Rosser theorem guarantees confluence: if a term reduces to a normal form, that form is unique regardless of reduction order. Adding types (simply-typed lambda calculus) buys strong normalization but loses Turing-completeness, and the Curry–Howard correspondence reveals typed lambda terms *are* constructive proofs — programs and proofs are the same objects."
+      },
+      "note": "The Curry–Howard correspondence says a typed lambda term is literally a proof and its type is the proposition it proves — 'programs are proofs' — which underlies proof assistants like Coq and Lean.",
+      "sources": [
+        "Church (1936), An Unsolvable Problem of Elementary Number Theory (facts)",
+        "Barendregt, The Lambda Calculus: Its Syntax and Semantics (facts)",
+        "Wikipedia (facts): Lambda calculus; Church–Rosser theorem; Curry–Howard correspondence"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Lambda calculus",
+          "url": "https://en.wikipedia.org/wiki/Lambda_calculus"
+        },
+        {
+          "label": "Wikipedia: Church–Rosser theorem",
+          "url": "https://en.wikipedia.org/wiki/Church%E2%80%93Rosser_theorem"
+        },
+        {
+          "label": "Wikipedia: Curry–Howard correspondence",
+          "url": "https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence"
+        },
+        {
+          "label": "MIT OCW 6.001 / SICP (functional foundations)",
+          "url": "https://ocw.mit.edu/courses/6-001-structure-and-interpretation-of-computer-programs-spring-2005/"
+        }
+      ],
+      "art_prompt": "a lambda term (λx.M) meeting an argument N, an arrow labelled beta showing N substituted into M's body; a small confluent diamond showing two reduction paths meeting at one normal form",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the single computation rule of the lambda calculus?",
+          "answer": "Beta reduction: (λx.M)N rewrites to M with every free occurrence of x replaced by N, i.e. M[x:=N]."
+        },
+        {
+          "level": "teach",
+          "prompt": "The lambda calculus and the Turing machine define the same computable functions. Why is that significant?",
+          "answer": "They are wildly different models — pure function rewriting versus a tape-and-head machine — yet compute exactly the same class, which is strong evidence for the Church–Turing thesis that this class is 'computability' itself."
+        }
+      ],
+      "lesson": "### Intuition\n\nYou can build a whole universe of computation out of one idea: **functions**. You may create an anonymous function, hand it an input, and substitute that input wherever the function's variable appears in its body. That's it. Repeat the substitution and you can compute anything a computer can. This minimalist language of pure functions is the **lambda calculus**, invented by Alonzo Church in the 1930s.\n\n### Precisely\n\nTerms are built from three things: **variables** ($x$), **abstraction** ($\\lambda x.\\,M$, an anonymous function taking $x$ and returning body $M$), and **application** ($M\\,N$, applying $M$ to $N$). The one computational rule is **beta reduction**:\n\n$$(\\lambda x.\\,M)\\,N \\;\\longrightarrow_\\beta\\; M[x:=N],$$\n\n\"substitute $N$ for $x$ in $M$.\" That single rewrite rule is Turing-complete — it expresses *every* computable function — a cornerstone of the **Church–Turing thesis**.\n\n### Worked example\n\nEncode numbers as **Church numerals**: $n$ is the function that applies $f$ to $x$ exactly $n$ times, so $2 = \\lambda f.\\lambda x.\\,f(f\\,x)$. The successor and addition functions are lambda terms; recursion (which needs a function to refer to itself) comes from the **Y combinator** $Y=\\lambda f.(\\lambda x.f(x\\,x))(\\lambda x.f(x\\,x))$, which satisfies $Y\\,g = g\\,(Y\\,g)$ — a fixed point that lets a function call itself without a name.\n\n### Why it works\n\nThat so spare a system computes everything is the surprise. Booleans, pairs, lists, arithmetic, and recursion are all *encodable* as pure functions, and one can simulate a Turing machine's tape and transitions inside it. Because the lambda calculus and the Turing machine compute exactly the same class of functions — proved independently, from utterly different starting points — we gain strong evidence that this class *is* \"the computable.\"\n\n### Where it connects\n\nIt is the functional twin of the **Turing machine** and the historical partner in the **Church–Turing thesis**. It is the mathematical core of functional programming — Lisp, ML, Haskell descend directly from it — and of programming-language semantics. Untyped, it inherits the **halting problem**: $\\Omega=(\\lambda x.xx)(\\lambda x.xx)$ beta-reduces to itself forever, an uncomputable loop with no normal form.\n\n### A second angle\n\nTwo deep theorems shape it. **Church–Rosser (confluence):** if a term can be reduced to a normal form, that form is *unique* no matter which reduction order you pick — so the answer is well-defined even though the path is not. And the **Curry–Howard correspondence**: add a type system and a typed lambda term *is* a constructive proof, its type *is* the proposition it proves. \"Programs are proofs\" is not a slogan but an isomorphism, and it is the engine inside proof assistants like Coq and Lean.\n\n### Watch out\n\nUntyped lambda calculus is Turing-complete and therefore has non-terminating terms — power buys undecidability, exactly as with Turing machines. Adding simple types makes every program halt (**strong normalization**) but *loses* Turing-completeness: you can no longer write general recursion. That trade — expressiveness versus guaranteed termination — is a recurring theme, and choosing where to sit on it is a real language-design decision.\n"
+    },
+    {
+      "id": "fast-fourier-transform",
+      "title": "The Fast Fourier Transform",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "divide-and-conquer"
+      ],
+      "equation": "X_k=\\sum_{n=0}^{N-1}x_n\\,e^{-2\\pi i kn/N},\\qquad O(N\\log N)",
+      "summary": "The FFT computes the discrete Fourier transform in O(N log N) instead of O(N^2) by recursively splitting the sum into even- and odd-indexed halves, a divide-and-conquer masterstroke that made digital signal processing practical.",
+      "depths": {
+        "eli5": "To find which frequencies make up a signal you normally compare it against every frequency, which is slow for big signals. The FFT is a clever shortcut: split the data into its even and odd positions, solve those halves, and cleverly combine them. That splitting turns a job that grows like N-squared into one that grows like N times log N — the difference between hours and seconds.",
+        "core": "The discrete Fourier transform (DFT) maps N samples to N frequency coefficients, X_k = Σ x_n exp(−2πikn/N); computed directly it costs O(N^2) multiply-adds. The Cooley–Tukey FFT computes the same result in O(N log N) by divide and conquer: split the sum into even-indexed and odd-indexed samples, each an N/2-point DFT, and recombine with 'twiddle factors' (the butterfly step). Recursing halves the size each level (log N levels), each level costing O(N), giving O(N log N). For N a power of two the speedup at N=10^6 is roughly 50,000-fold.",
+        "deep": "The FFT is arguably the most important algorithm of 20th-century applied computing — it made real-time digital signal processing, JPEG/MP3 compression, OFDM wireless, and fast large-integer and polynomial multiplication feasible. Multiplying two degree-N polynomials becomes O(N log N): FFT both to point-value form, multiply pointwise, inverse-FFT back. Beyond radix-2 Cooley–Tukey there are mixed-radix, prime-factor, and Bluestein's algorithm (arbitrary N via chirp-z), all O(N log N). It is a canonical worked example of divide and conquer, and the DFT matrix's structure (a Vandermonde matrix of roots of unity) is exactly what the recursion exploits."
+      },
+      "note": "Fast polynomial and big-integer multiplication run the same trick: FFT to point-value form, multiply pointwise in O(N), inverse-FFT back — turning O(N^2) multiplication into O(N log N).",
+      "sources": [
+        "Cooley & Tukey (1965), An Algorithm for the Machine Calculation of Complex Fourier Series (facts)",
+        "Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms (facts)",
+        "Wikipedia (facts): Fast Fourier transform; Cooley–Tukey FFT algorithm"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Fast Fourier transform",
+          "url": "https://en.wikipedia.org/wiki/Fast_Fourier_transform"
+        },
+        {
+          "label": "Wikipedia: Cooley–Tukey FFT algorithm",
+          "url": "https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm"
+        },
+        {
+          "label": "MIT OCW 6.046J Design and Analysis of Algorithms (FFT lecture)",
+          "url": "https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2015/"
+        },
+        {
+          "label": "Wikipedia: Discrete Fourier transform",
+          "url": "https://en.wikipedia.org/wiki/Discrete_Fourier_transform"
+        }
+      ],
+      "art_prompt": "a length-N sample array split into even and odd sub-arrays feeding two half-size DFTs, recombined by a column of butterfly operations with twiddle-factor arrows; a cost annotation O(N log N) beside O(N^2) crossed out",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the FFT's running time, and what does the naive DFT cost?",
+          "answer": "The FFT runs in O(N log N); computing the DFT directly from its definition costs O(N^2)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Explain how splitting the DFT into even and odd indices leads to the O(N log N) recurrence.",
+          "answer": "The N-point DFT splits into two N/2-point DFTs (over even- and odd-indexed samples) combined in O(N) work via twiddle factors, giving T(N)=2T(N/2)+O(N), which solves to O(N log N)."
+        }
+      ],
+      "lesson": "### Intuition\n\nTo find which frequencies make up a signal, you normally compare it against every frequency — for $N$ samples that is about $N^2$ operations, brutal when $N$ is a million. The **FFT** is a shortcut: split the data into its even-position and odd-position samples, transform those two halves, and cleverly stitch the results together. That split turns an $N^2$ job into an $N\\log N$ one — the difference between an hour and a fraction of a second.\n\n### Precisely\n\nThe **discrete Fourier transform** maps $N$ samples $x_n$ to $N$ coefficients\n\n$$X_k=\\sum_{n=0}^{N-1}x_n\\,e^{-2\\pi i kn/N},$$\n\nwhich costs $O(N^2)$ done directly. The **Cooley–Tukey FFT** computes the *same* $X_k$ in $O(N\\log N)$ by divide and conquer: separate even- and odd-indexed samples into two $N/2$-point DFTs and recombine them with **twiddle factors** $e^{-2\\pi i k/N}$ in the \"butterfly\" step.\n\n### Worked example\n\nSplit $X_k=\\underbrace{\\sum_m x_{2m}e^{-2\\pi i k(2m)/N}}_{E_k}+e^{-2\\pi i k/N}\\underbrace{\\sum_m x_{2m+1}e^{-2\\pi i k(2m)/N}}_{O_k}$, where $E_k,O_k$ are $N/2$-point DFTs. Because $E_k,O_k$ are periodic with period $N/2$, one pair computes *two* outputs: $X_k=E_k+w^k O_k$ and $X_{k+N/2}=E_k-w^k O_k$ with $w=e^{-2\\pi i/N}$. That is the butterfly. Recurse on each half.\n\n### Why it works\n\nEach split halves the problem size, so there are $\\log_2 N$ levels; each level does $O(N)$ butterfly work, giving the recurrence $T(N)=2T(N/2)+O(N)$, which solves to $O(N\\log N)$ (a textbook case for the **master theorem**). The algebra behind it is the special structure of the DFT matrix — a Vandermonde matrix of $N$-th roots of unity — whose symmetries the recursion exploits.\n\n### Where it connects\n\nThe FFT is a flagship **divide-and-conquer** algorithm. It underlies real-time **digital signal processing**, JPEG and MP3 **compression**, OFDM wireless, and — via the convolution theorem — **fast multiplication**: multiply two degree-$N$ polynomials or huge integers in $O(N\\log N)$ by transforming both, multiplying pointwise, and inverse-transforming.\n\n### A second angle\n\nRadix-2 Cooley–Tukey wants $N$ a power of two, but the family is broader: **mixed-radix** handles composite $N$, the **prime-factor algorithm** splits coprime factors, and **Bluestein's algorithm** (a chirp-$z$ transform) handles *arbitrary* $N$ in $O(N\\log N)$ by re-expressing the DFT as a convolution. So \"$N$ isn't a power of two\" is never a real obstacle. Numerically the FFT is also *more accurate* than the naive DFT: fewer operations means less accumulated floating-point error.\n\n### Watch out\n\nThe FFT computes the *discrete* transform of a *finite, periodic* view of your data. Feeding it a signal that isn't periodic over the window causes **spectral leakage** (energy smears across bins) — the fix is windowing, not a bigger FFT. And bin $k$ corresponds to a real frequency only through the sample rate; forgetting that mapping, or violating the Nyquist rate, produces **aliasing** that no amount of FFT cleverness undoes.\n"
+    },
+    {
+      "id": "master-theorem",
+      "title": "The master theorem for recurrences",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "divide-and-conquer",
+        "big-o"
+      ],
+      "equation": "T(n)=a\\,T(n/b)+f(n)",
+      "summary": "The master theorem reads off the asymptotic running time of a divide-and-conquer recurrence T(n)=aT(n/b)+f(n) by comparing the work per level f(n) against n^{log_b a}.",
+      "depths": {
+        "eli5": "Divide-and-conquer algorithms split a problem into smaller copies, so their running time is described by a recurrence — the time on size n equals some copies of the time on smaller sizes plus the work to split and combine. The master theorem is a lookup table: compare how fast the copies multiply against how much combining costs, and it tells you the answer instantly.",
+        "core": "For a recurrence T(n)=aT(n/b)+f(n) with a≥1, b>1 (a subproblems of size n/b plus f(n) combine work), compare f(n) to n^{log_b a} (the total leaf work). Case 1: if f(n)=O(n^{log_b a − ε}) the leaves dominate and T(n)=Θ(n^{log_b a}). Case 2: if f(n)=Θ(n^{log_b a}) each level costs the same and T(n)=Θ(n^{log_b a} log n). Case 3: if f(n)=Ω(n^{log_b a + ε}) and a regularity condition holds, the top level dominates and T(n)=Θ(f(n)). This instantly gives merge sort Θ(n log n), binary search Θ(log n), Karatsuba Θ(n^{1.585}), and Strassen Θ(n^{2.807}).",
+        "deep": "The three cases are a race between two exponentials down the recursion tree: the number of subproblems grows by a per level while their size shrinks by b, so the per-level cost either grows, stays flat, or shrinks geometrically. The theorem sums that geometric series. It has gaps — it says nothing when f(n) sits between cases separated by less than a polynomial factor (e.g. f(n)=n log n against n) — filled by the Akra–Bazzi method, which handles unequal splits and general f via an integral. The regularity condition in Case 3 (a f(n/b) ≤ c f(n) for c<1) rules out pathological f that oscillate."
+      },
+      "note": "The master theorem is silent when f(n) falls in a gap between cases (e.g. differs from n^{log_b a} by only a logarithmic factor); the Akra–Bazzi method generalizes it to those cases and to unequal-size splits.",
+      "sources": [
+        "Cormen, Leiserson, Rivest, Stein, Introduction to Algorithms (facts)",
+        "Bentley, Haken & Saxe (1980), master-theorem form (facts)",
+        "Wikipedia (facts): Master theorem (analysis of algorithms); Akra–Bazzi method"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Master theorem (analysis of algorithms)",
+          "url": "https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)"
+        },
+        {
+          "label": "Wikipedia: Akra–Bazzi method",
+          "url": "https://en.wikipedia.org/wiki/Akra%E2%80%93Bazzi_method"
+        },
+        {
+          "label": "MIT OCW 6.006 Introduction to Algorithms (recurrences)",
+          "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"
+        },
+        {
+          "label": "Wikipedia: Recurrence relation",
+          "url": "https://en.wikipedia.org/wiki/Recurrence_relation"
+        }
+      ],
+      "art_prompt": "a recursion tree with branching factor a and shrinking node sizes n/b, per-level cost written beside each row, a race arrow comparing n^{log_b a} leaf work against f(n) top work",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In T(n)=aT(n/b)+f(n), what quantity does the master theorem compare f(n) against?",
+          "answer": "It compares f(n) to n^{log_b a}, the total work done at the leaves of the recursion tree."
+        },
+        {
+          "level": "derive",
+          "prompt": "Merge sort satisfies T(n)=2T(n/2)+Θ(n). Which case applies and what is the running time?",
+          "answer": "Here a=b=2 so n^{log_b a}=n^1=n, and f(n)=Θ(n) matches it — Case 2 — giving T(n)=Θ(n log n)."
+        }
+      ],
+      "lesson": "### Intuition\n\nDivide-and-conquer algorithms split a problem into smaller copies, so their cost is a **recurrence**: the time on size $n$ equals a few copies of the time on smaller sizes, plus the work to divide and recombine. The **master theorem** is essentially a lookup table — compare how fast the copies multiply against how much the combining costs, and it hands you the asymptotic running time without unrolling the recursion by hand.\n\n### Precisely\n\nFor $T(n)=a\\,T(n/b)+f(n)$ with $a\\ge 1,\\ b>1$ ($a$ subproblems of size $n/b$, plus $f(n)$ divide/combine work), compare $f(n)$ to $n^{\\log_b a}$:\n\n- **Case 1** (leaves win): $f(n)=O(n^{\\log_b a-\\varepsilon})\\Rightarrow T(n)=\\Theta(n^{\\log_b a})$.\n- **Case 2** (balanced): $f(n)=\\Theta(n^{\\log_b a})\\Rightarrow T(n)=\\Theta(n^{\\log_b a}\\log n)$.\n- **Case 3** (root wins): $f(n)=\\Omega(n^{\\log_b a+\\varepsilon})$ with regularity $\\Rightarrow T(n)=\\Theta(f(n))$.\n\n### Worked example\n\n**Merge sort:** $T(n)=2T(n/2)+\\Theta(n)$. Here $n^{\\log_b a}=n^{\\log_2 2}=n$, and $f(n)=\\Theta(n)$ matches — Case 2 — so $T(n)=\\Theta(n\\log n)$. **Binary search:** $T(n)=T(n/2)+\\Theta(1)$ gives $n^{\\log_2 1}=n^0=1$, balanced, $\\Theta(\\log n)$. **Karatsuba multiplication:** $T(n)=3T(n/2)+\\Theta(n)$ gives $n^{\\log_2 3}\\approx n^{1.585}$, and $f(n)=n$ is smaller — Case 1 — so $\\Theta(n^{1.585})$.\n\n### Why it works\n\nPicture the **recursion tree**. Level $i$ has $a^i$ nodes each of size $n/b^i$, so level-$i$ cost is $a^i f(n/b^i)$. Summing down the tree is a geometric series whose ratio is set by comparing $a$ (branching) to $b$ (shrinkage). If the ratio $>1$ the leaves dominate (Case 1); if $=1$ every level costs the same and there are $\\log_b n$ of them (Case 2, the extra $\\log n$); if $<1$ the root term dominates (Case 3). The theorem just names the sum.\n\n### Where it connects\n\nIt is the analysis tool for **divide and conquer** and speaks the language of **big-O**. It instantly rates merge sort, binary search, Karatsuba, Strassen's matrix multiply ($\\Theta(n^{2.807})$), and the **FFT** ($T(n)=2T(n/2)+\\Theta(n)\\Rightarrow \\Theta(n\\log n)$) — a one-line verdict where a manual expansion would take a page.\n\n### A second angle\n\nThe three cases are a race between two exponentials going *down* the tree — the number of subproblems grows by $a$ each level while their size shrinks by $b$ — and the theorem simply sums the resulting geometric series. When the race is too close (the two exponents differ by less than a polynomial factor, e.g. $f(n)=n\\log n$ against $n$) the master theorem falls into a **gap** and stays silent. The **Akra–Bazzi method** fills those gaps and also handles *unequal* splits (subproblems of different sizes) via an integral, at the cost of more machinery.\n\n### Watch out\n\nTwo traps. Case 3 needs the **regularity condition** $a\\,f(n/b)\\le c\\,f(n)$ for some $c<1$ — without it a pathologically oscillating $f$ can slip through, and the theorem does not apply. And the recurrence must have the exact $aT(n/b)+f(n)$ shape: subtractive recurrences like $T(n)=T(n-1)+n$ (which is $\\Theta(n^2)$, e.g. naive quicksort's worst case) are *not* master-theorem recurrences at all.\n"
+    },
+    {
+      "id": "rices-theorem",
+      "title": "Rice's theorem",
+      "shell": "frontier",
+      "type": "result",
+      "requires": [
+        "halting-problem",
+        "decidability"
+      ],
+      "summary": "Rice's theorem says every non-trivial question about what a program computes — its input/output behavior — is undecidable, generalizing the halting problem to essentially all semantic properties.",
+      "depths": {
+        "eli5": "The halting problem says you can't build a checker that decides whether any program eventually stops. Rice's theorem is the sweeping generalization: you can't build a checker for *any* interesting question about what a program actually computes. Does it ever output 7? Does it compute a constant function? Is it a virus by behavior? All undecidable, in general.",
+        "core": "Rice's theorem: any non-trivial property of the function a program computes (a 'semantic' property — one about input/output behavior, not about the syntax or step count) is undecidable. 'Non-trivial' means at least one computable function has the property and at least one lacks it. So there is no algorithm that, given an arbitrary program, decides whether it computes the zero function, whether its output is ever a given value, whether two programs compute the same function, etc. The halting problem is the special case 'does it halt on all inputs / a given input'. The proof reduces the halting problem to any such property.",
+        "deep": "Rice's theorem draws a hard line: properties of a program's *extension* (the function it computes) are undecidable, while properties of its *intension* (the syntax — 'does the source contain a while-loop', 'does it have 100 states') can be decidable. This is why static analyzers and compilers must be *conservative approximations* — perfect answers to 'is this code dead?', 'can this pointer be null?', or 'does this optimization preserve behavior?' are ruled out by Rice, so tools soundly over- or under-approximate and accept false positives/negatives. Rice–Shapiro sharpens it for the recursively-enumerable case, and the theorem is the theoretical ceiling that abstract interpretation and type systems work beneath."
+      },
+      "note": "Rice's theorem is why perfect static analysis is impossible: 'does this program have property X (about its behavior)?' is undecidable, so real analyzers and type checkers are conservative approximations that accept some false alarms.",
+      "sources": [
+        "Rice (1953), Classes of recursively enumerable sets and their decision problems (facts)",
+        "Sipser, Introduction to the Theory of Computation (facts)",
+        "Wikipedia (facts): Rice's theorem; Rice–Shapiro theorem"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Rice's theorem",
+          "url": "https://en.wikipedia.org/wiki/Rice%27s_theorem"
+        },
+        {
+          "label": "Wikipedia: Rice–Shapiro theorem",
+          "url": "https://en.wikipedia.org/wiki/Rice%E2%80%93Shapiro_theorem"
+        },
+        {
+          "label": "MIT OCW 18.404J Theory of Computation (undecidability)",
+          "url": "https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/"
+        },
+        {
+          "label": "Wikipedia: Undecidable problem",
+          "url": "https://en.wikipedia.org/wiki/Undecidable_problem"
+        }
+      ],
+      "art_prompt": "a decider box asking 'does this program compute a function with property P?' with a red NO stamp; two example programs, one satisfying P and one not, feeding a reduction arrow back from the halting problem",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does Rice's theorem say is undecidable, and what does 'non-trivial' mean here?",
+          "answer": "Every non-trivial semantic property (a property of the function a program computes) is undecidable; 'non-trivial' means some computable function has the property and some computable function does not."
+        },
+        {
+          "level": "teach",
+          "prompt": "Why can a compiler decide 'does this source contain a loop?' but not 'does this program ever return 0?'",
+          "answer": "The first is a syntactic property of the program text, which is decidable; the second is a semantic property of the function computed, which Rice's theorem makes undecidable."
+        }
+      ],
+      "lesson": "### Intuition\n\nThe **halting problem** says you cannot build a checker that decides whether an arbitrary program eventually stops. **Rice's theorem** is the sweeping generalization: you cannot build a checker for *any* interesting question about what a program actually *computes*. Does it ever output 7? Does it compute a constant? Do these two programs behave identically? Is this file, by its behavior, a virus? In full generality, all undecidable.\n\n### Precisely\n\nRice's theorem: **every non-trivial semantic property of programs is undecidable.** A *semantic* property is one about the function the program computes — its input/output behavior — not about its source text or running time. *Non-trivial* means at least one computable function has the property and at least one does not (properties true of all programs, or of none, are trivially decidable). So no algorithm decides, for arbitrary programs, \"computes the zero function,\" \"ever outputs $v$,\" or \"computes the same function as this reference program.\"\n\n### Worked example\n\nIs there a decider $D$ that says whether a program computes the constant-zero function? Suppose so. Take any instance of the halting problem — program $P$, input $w$ — and build $Q$: \"on input $x$, first run $P$ on $w$; if that halts, output $0$.\" Then $Q$ computes the zero function *iff* $P$ halts on $w$. Feeding $Q$ to $D$ would decide halting — impossible. So $D$ cannot exist. The same reduction skeleton works for *any* non-trivial semantic property.\n\n### Why it works\n\nThe trick is that you can wrap an unknown program's halting behavior inside a wrapper whose *computed function* flips exactly on that behavior. Because a decider for the property would then decide halting, the property inherits halting's undecidability. Non-triviality is what makes the wrapper possible: you need one function with the property and one without, to build two distinguishable outcomes.\n\n### Where it connects\n\nRice's theorem is the grand generalization of the **halting problem** and lives at the heart of **decidability**. It cleanly separates two worlds: properties of a program's *extension* (the function it computes) are undecidable, while properties of its *intension* (the syntax — \"contains a while-loop,\" \"has 100 states\") can be perfectly decidable. That line is why a compiler can answer syntactic questions but never all behavioral ones.\n\n### A second angle\n\nThis is the theoretical reason **perfect static analysis is impossible**. \"Is this code dead?\", \"can this pointer be null here?\", \"does this optimization preserve behavior?\", \"will this program leak memory?\" are all semantic properties, hence undecidable in general. So every real analyzer, type checker, and verifier is a **conservative approximation**: it soundly over- or under-approximates and accepts false positives or false negatives, because Rice forbids the exact answer. Type systems, abstract interpretation, and model checkers are all engineering *underneath* the Rice ceiling.\n\n### Watch out\n\nRice's theorem is often over-stated. It applies only to **non-trivial** and **semantic** properties. Syntactic properties (\"does the source have more than 50 lines?\", \"does it use recursion in the text?\") are decidable — Rice says nothing about them. And *bounded* questions are decidable too: \"does this program halt within $10^6$ steps?\" is answered by simply running it that long. Undecidability is about the *unbounded, behavioral* question, not every question that mentions a program.\n"
     }
   ]
 }
