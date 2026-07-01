@@ -158,13 +158,16 @@ for part_label, part_sub, items in STRUCT:
         chapters.append((cid,title,part_label,body,part_sub))
         toc.append(("chap", title, None, cid))
 
-# ---- TOC html ----
+# ---- TOC html ---- (front matter listed first, like a real book, then Parts, then back matter)
 toc_html='<nav class="toc"><h1>Contents</h1>'
+toc_html+='<div class="toc-front"><a href="#howto">How to Read This Manual</a></div>'
+toc_html+='<div class="toc-front"><a href="#starthere">Start Here — If You Read Nothing Else</a></div>'
 for kind,a,b,cid in toc:
     if kind=="part":
         toc_html+=f'<div class="toc-part"><span class="tp-n">{html.escape(a)}</span> {html.escape(b)}</div>'
     else:
         toc_html+=f'<div class="toc-chap"><a href="#{cid}">{html.escape(a)}</a></div>'
+toc_html+='<div class="toc-front toc-back"><a href="#colophon">Colophon</a></div>'
 toc_html+='</nav>'
 
 # ---- body html ----
@@ -216,6 +219,14 @@ img{max-width:100%}
 .cover .meta{font-family:"Helvetica Neue",sans-serif;font-size:9pt;color:#a89c80;line-height:1.8}
 .cover .stat{font-family:"Helvetica Neue",sans-serif;font-size:8.5pt;color:#cda23f;margin-top:20pt;letter-spacing:.02em}
 
+/* edition / copyright page (clean, no running header or page number) */
+.edition{page:cover;min-height:297mm;box-sizing:border-box;padding:52mm 26mm 30mm;break-after:page;color:#1c1a17}
+.ed-title{font-family:"Helvetica Neue",sans-serif;font-size:19pt;color:#14110c;margin:0 0 5pt;line-height:1.12}
+.ed-sub{font-size:11pt;color:#5e574a;font-style:italic;margin:0 0 34pt}
+.ed-meta p{font-size:9pt;color:#3a342b;margin:0 0 10pt;line-height:1.55}
+.ed-disclaim{border-left:3px solid #b5471f;background:#fbf0ea;padding:7pt 11pt}
+.ed-scale{font-family:"Helvetica Neue",sans-serif;font-size:8pt;color:#8a8170;letter-spacing:.02em;margin-top:24pt !important}
+
 /* front matter */
 .front{break-before:page}
 .front h1{font-family:"Helvetica Neue",sans-serif;font-size:20pt;border-bottom:2px solid #b08d3a;padding-bottom:5pt;margin:0 0 10pt}
@@ -231,6 +242,10 @@ img{max-width:100%}
 .toc-chap{font-size:9.5pt;margin:2.5pt 0 2.5pt 14pt;display:flex}
 .toc-chap a{flex:1;color:#2c2820}
 .toc-chap a::after{content:leader('.  ') target-counter(attr(href url),page);color:#8a8170;font-size:8.5pt}
+.toc-front{font-family:"Helvetica Neue",sans-serif;font-size:9.5pt;font-weight:700;color:#14110c;margin:3pt 0;display:flex}
+.toc-front a{flex:1;color:#2c2820}
+.toc-front a::after{content:leader('.  ') target-counter(attr(href url),page);color:#8a8170;font-size:8.5pt;font-weight:400}
+.toc-back{margin-top:9pt}
 
 /* part dividers */
 .partdiv{break-before:page;height:200mm;display:flex;flex-direction:column;justify-content:center;border-top:3px solid #b08d3a;border-bottom:3px solid #b08d3a}
@@ -293,7 +308,7 @@ COVER = """<div class="cover">
   <div class="stat">50 chapters · 1007 graded claims · 367 figures · 38 conflicts · 12 body systems · ~265,000 words</div>
 </div>"""
 
-HOWTO = """<section class="front">
+HOWTO = """<section class="front" id="howto">
 <h1>How to read this manual</h1>
 <p>This is a reference manual, not a protocol to obey. It maps the entire territory of human health,
 longevity and fitness — from the proton gradient across a mitochondrial membrane up to whole-body
@@ -327,12 +342,27 @@ account for your individual history. Talk to a qualified clinician before changi
 training or fasting regimen, or acting on anything here — especially the pharmacology and clinical chapters.</div>
 </section>"""
 
-STARTHERE = ('<section class="front starthere">'
+EDITION = """<section class="edition">
+  <h1 class="ed-title">The Longevity &amp; Fitness Operating Manual</h1>
+  <p class="ed-sub">A complete, evidence-graded map of the human body, its aging, and what to do about it.</p>
+  <div class="ed-meta">
+    <p><strong>First edition · 2026</strong><br>Bucket Foundation · AG Farms Venture Studio</p>
+    <p>Compiled by Nucleus Brain (AI orchestrator) from the Bucket <code>health-longevity-fitness</code>
+    research corpus. Every claim is graded by evidence tier; disagreements are kept as first-class
+    conflict objects, never resolved away.</p>
+    <p>Sources: OpenAlex · PubMed / Europe PMC · ClinicalTrials.gov · the Bucket biophysics canon.</p>
+    <p class="ed-disclaim"><strong>Not medical advice.</strong> This is an educational synthesis — not
+    diagnosis, treatment, or a substitute for a clinician who knows your history. Talk to a qualified
+    professional before changing medication or starting a new training, fasting, or supplement regimen.</p>
+    <p class="ed-scale">50 chapters · 1007 graded claims · 367 figures · 38 conflict objects · 12 body systems</p>
+  </div>
+</section>"""
+STARTHERE = ('<section class="front starthere" id="starthere">'
   '<h1>Start Here — If You Read Nothing Else</h1>' + pandoc(S("00-start-here.md")) + '</section>')
 DOC = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <title>The Longevity &amp; Fitness Operating Manual</title><style>{CSS}</style></head>
-<body>{COVER}{STARTHERE}{HOWTO}{toc_html}{body_html}
-<section class="front"><h1>Colophon</h1>
+<body>{COVER}{EDITION}{toc_html}{HOWTO}{STARTHERE}{body_html}
+<section class="front" id="colophon"><h1>Colophon</h1>
 <p class="small">Assembled by Nucleus Brain from the <code>health-longevity-fitness</code> research corpus
 (Bucket Foundation, bead <code>bkt-bg6</code>): 50 chapters, 1007 graded claims across 54 claim sets, a
 367-figure visual layer, 24 labs, 15 trials, 38 conflict objects, and a 53-movement illustrated library.

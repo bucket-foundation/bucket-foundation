@@ -128,3 +128,12 @@ and internal self-repeats (theses stated twice, cross-refs repeated 3×).
 ## Cycle 0 — setup (baseline)
 - Charter + log created. Rotation set. No content changes yet.
 - Next up: **Cycle 1 — Smart motivated layperson**, full-book pass.
+
+## Book-structure pass — front matter reordered to real-book convention
+Restructured the front matter in `build_manual.py` to read like an actual book:
+- Order was Cover → Start Here → How-to → Contents → body.
+- Now: Cover → **Edition/copyright page** → **Contents** → How to Read → **Start Here** → body → Colophon.
+- Start Here now sits after the Contents as the book's introduction (per request).
+- Added a clean edition/copyright page (title, first-edition 2026, sources, not-medical-advice, scale).
+- Contents now lists the front matter (How to Read, Start Here) and back matter (Colophon) with page
+  numbers, alongside the 13 Parts. 560 pages.
