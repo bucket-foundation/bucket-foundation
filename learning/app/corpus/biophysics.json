@@ -2,8 +2,8 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.7.0",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved. v0.6.2: +4 real biophysics experimental-method atoms (itc, spr, fcs, epr) filling the syllabus 1.8 methods gap (calorimetry, kinetics biosensing, fluctuation spectroscopy, magnetic-resonance/spin-labeling). All depth=2 (in the expert frontier): itc requires binding-kd/mass-action/gibbs, spr requires binding-kd/mass-action, fcs requires correlation-function/einstein-stokes, epr requires boltzmann/fret. No existing atom modified, so no depth cascade; placement margin preserved/improved.",
+    "version": "0.8.0",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved. v0.6.2: +4 real biophysics experimental-method atoms (itc, spr, fcs, epr) filling the syllabus 1.8 methods gap (calorimetry, kinetics biosensing, fluctuation spectroscopy, magnetic-resonance/spin-labeling). All depth=2 (in the expert frontier): itc requires binding-kd/mass-action/gibbs, spr requires binding-kd/mass-action, fcs requires correlation-function/einstein-stokes, epr requires boltzmann/fret. No existing atom modified, so no depth cascade; placement margin preserved/improved. v0.8.0: +4 atoms — tunneling-wkb (WKB barrier T≈e^(−2κd), κ=√(2m(V−E))/ħ; requires schrodinger-equation, wired UNDER marcus-theory & electron-transport-chain as the exponential distance factor in electron transfer), steady-state-approximation (QSSA d[I]/dt≈0; requires master-equation, wired UNDER michaelis & smoluchowski-rate — the move that yields Michaelis–Menten and diffusion-limited rates), maxwell-dipole-radiation (Larmor + Einstein A/B, A∝ν³|μ|²; requires schrodinger-equation, wired UNDER fcs as the radiative rate FRET/fluorescence compete against), and dls (dynamic light scattering, Γ=Dq² → R_h via Stokes–Einstein; requires correlation-function/einstein-stokes, §1.8 method leaf). All leaf-leverage wirings verified zero depth cascade; the three foundation atoms (depth 1) sit inside the expert frontier under deep dependents to lift the diagnostic margin.",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
   "atoms": [
@@ -1119,7 +1119,8 @@
       "shell": "nucleus",
       "type": "equation",
       "requires": [
-        "binding-kd"
+        "binding-kd",
+        "steady-state-approximation"
       ],
       "equation": "v = \\dfrac{V_{max}[S]}{K_M + [S]}",
       "summary": "Enzyme rate rises with substrate then saturates; K_M and V_max characterize the enzyme.",
@@ -2168,7 +2169,8 @@
       "type": "concept",
       "requires": [
         "fick",
-        "einstein-stokes"
+        "einstein-stokes",
+        "steady-state-approximation"
       ],
       "summary": "The fastest a bimolecular reaction can go when every diffusive encounter reacts — set purely by how quickly partners find each other.",
       "depths": {
@@ -3063,7 +3065,8 @@
       "type": "concept",
       "requires": [
         "redox-potential",
-        "bilayer"
+        "bilayer",
+        "tunneling-wkb"
       ],
       "summary": "A membrane-bound staircase of redox carriers passes electrons downhill in potential, using each spontaneous step to pump protons and build an electrochemical gradient.",
       "depths": {
@@ -4561,7 +4564,8 @@
         "redox-potential",
         "linear-response-theory",
         "schrodinger-equation",
-        "perturbation-theory"
+        "perturbation-theory",
+        "tunneling-wkb"
       ],
       "equation": "k_{ET} \\propto \\exp\\!\\left[-\\dfrac{(\\Delta G^{\\circ}+\\lambda)^2}{4\\lambda k_BT}\\right]",
       "summary": "Electron-transfer rate depends parabolically on driving force through a reorganization energy λ — predicting the counterintuitive 'inverted region' where more driving force slows the reaction.",
@@ -6376,7 +6380,8 @@
       "type": "method",
       "requires": [
         "correlation-function",
-        "einstein-stokes"
+        "einstein-stokes",
+        "maxwell-dipole-radiation"
       ],
       "summary": "Watch the flickering fluorescence of a femtoliter-sized spot as labeled molecules diffuse through it; the temporal autocorrelation of those fluctuations gives concentration (from its amplitude) and diffusion time (from its decay).",
       "depths": {
@@ -6690,6 +6695,251 @@
         }
       ],
       "lesson": "### Intuition\n\nLight can kick a molecule from one level to another only if the two levels are connected the right way. The connection is the *transition dipole* - how much the molecule's charge sloshes from one side to the other as it changes state. No charge shift, nothing for the light to grab: the jump is forbidden and the line is dark. Symmetry decides this - a symmetric rearrangement leaves no net shift and stays dark, a lopsided one lights up. These allowed-versus-forbidden rules turn a spectrum into a readable fingerprint.\n\n### Precisely\n\n$$\\boldsymbol\\mu_{fi}=\\langle f|\\hat{\\boldsymbol\\mu}|i\\rangle,\\qquad \\text{intensity}\\ \\propto|\\boldsymbol\\mu_{fi}|^2,\\qquad \\langle n|\\hat x|m\\rangle\\neq0\\ \\text{only for}\\ m=n\\pm1.$$\n\n### Why it's true / how it works\n\nLight couples through $V=-\\hat{\\boldsymbol\\mu}\\cdot\\mathbf E$, so the golden-rule rate carries $|\\boldsymbol\\mu_{fi}|^2$. The integral $\\langle f|\\hat{\\boldsymbol\\mu}|i\\rangle$ over all space vanishes unless the combined symmetry of the two states and the dipole operator is totally symmetric. That single condition reproduces the parity (Laporte $\\Delta\\ell=\\pm1$), rotational ($\\Delta J=\\pm1$), vibrational ($\\Delta v=\\pm1$), and spin ($\\Delta S=0$) selection rules.\n\n### Worked example\n\nFor a vibrating bond (harmonic oscillator), the dipole is linear in displacement, so intensity comes from $\\langle m|\\hat x|n\\rangle$. Writing $\\hat x=\\sqrt{\\hbar/2m\\omega}\\,(a+a^\\dagger)$ with $a|n\\rangle=\\sqrt n|n{-}1\\rangle$ and $a^\\dagger|n\\rangle=\\sqrt{n{+}1}|n{+}1\\rangle$, the matrix element is nonzero only for $m=n\\pm1$. Hence $\\Delta v=\\pm1$: a harmonic bond absorbs one quantum at a time. And if $d\\mu/dx=0$ (a symmetric nonpolar stretch), the mode is IR-silent.\n\n### Where it connects\n\nThe transition dipole is the coupling factor in **perturbation** theory's golden rule, so it sets absorption intensity and, through the Einstein $A$ coefficient, fluorescence rate. **FRET** efficiency depends on the donor and acceptor transition dipoles - via spectral overlap and the orientation factor $\\kappa^2$. **CD** exists because a chiral environment makes the electric and magnetic transition dipoles non-orthogonal, giving differential absorption of left/right circular light that reports secondary structure. In **NMR/EPR** the operator is the magnetic dipole and the rule is $\\Delta m=\\pm1$.\n\n### Watch out\n\n'Forbidden' means weak, not impossible: vibronic coupling, spin-orbit mixing, and magnetic-dipole terms leak small intensity into nominally forbidden bands - phosphorescence, $d$-$d$ transitions, and much of CD live there. And IR activity has its own extra condition beyond $\\Delta v=\\pm1$: the dipole must actually change along the mode ($d\\mu/dQ\\neq0$), so symmetric stretches are IR-dark but Raman-bright (mutual exclusion).\n\n### Numbers & nuance\n\nThe oscillator strength $f=\\tfrac{2m_e\\omega}{3\\hbar e^2}|\\boldsymbol\\mu_{fi}|^2$ packs the intensity into a dimensionless number near 1 for a fully allowed transition; a bright fluorophore has $f\\sim1$ and nanosecond fluorescence, while a spin-forbidden phosphorescence has $f\\sim10^{-6}$ and millisecond-to-second lifetimes. The FRET orientation factor $\\kappa^2$ ranges 0 to 4 (isotropic average $2/3$); perpendicular transition dipoles give $\\kappa^2=0$ and kill transfer even at close range - a reminder that geometry, not just distance, gates the signal."
+    },
+    {
+      "id": "tunneling-wkb",
+      "title": "Quantum tunneling & the WKB barrier",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "schrodinger-equation"
+      ],
+      "summary": "A quantum particle can pass through an energy barrier it classically cannot surmount; in the WKB approximation the transmission probability decays exponentially with barrier width and height, T ≈ exp(−2∫κ dx) with κ = √(2m(V−E))/ħ — the origin of the exponential distance-dependence of biological electron and proton transfer.",
+      "depths": {
+        "eli5": "Imagine rolling a ball at a hill too tall to climb — it should roll back. But a quantum particle is also a wave, and a wave doesn't stop dead at a wall: a little of it leaks through to the other side. So there's a small but real chance the particle simply appears past the barrier without ever having enough energy to go over it. The wider or taller the wall, the more sharply that chance drops — which is why moving an electron a little farther inside a protein makes transfer dramatically slower.",
+        "core": "Because a particle's wavefunction does not vanish inside a classically forbidden region (where the potential V exceeds the energy E), it decays there as ψ ~ e^(−κx) with κ = √(2m(V−E))/ħ rather than oscillating. A finite barrier therefore transmits a nonzero amplitude. The WKB (Wentzel–Kramers–Brillouin) approximation, valid when the potential varies slowly compared with the local wavelength, gives the transmission probability T ≈ exp(−2∫√(2m(V(x)−E))/ħ dx) across the forbidden region. For a rectangular barrier of height V−E and width d this is T ≈ e^(−2κd): exponential in both the width and the square root of the barrier height, and heavier for larger mass m.",
+        "deep": "Tunneling makes reaction rates depend exponentially on distance, which is why biological long-range electron transfer follows k_ET ∝ e^(−βR) with a decay constant β ≈ 1.1–1.4 Å⁻¹ through folded protein (larger, ~2.8 Å⁻¹, through vacuum) — the tunneling term multiplies the Marcus activated factor. Proton and hydride transfer can also tunnel: because κ scales as √m, the proton (1836× the electron mass) tunnels over far shorter distances, producing large, temperature-dependent kinetic isotope effects (H vs D vs T) that are a signature of tunneling in enzymes. WKB breaks down near turning points where E ≈ V (the wavelength diverges), where connection formulae or exact solutions are needed; it nonetheless captures the dominant exponential and underlies scanning tunneling microscopy, radioactive α-decay (Gamow), and the current in tunnel junctions."
+      },
+      "note": "Tunneling is the wave nature of matter showing up as leakage through a wall. The key scaling is T ≈ e^(−2κd) with κ = √(2m(V−E))/ħ: exponential in width d, in √(barrier height), and in √mass — so electrons tunnel over nanometers but protons only over tenths of a nanometer. ('Classically forbidden region' = where a particle's energy is below the potential, so a Newtonian particle could never be found there; 'WKB' = a slowly-varying-potential approximation to the wavefunction; 'β' = the exponential distance-decay constant of an electron-transfer rate.)",
+      "sources": [
+        "LibreTexts Physical Chemistry (quantum tunneling, WKB approximation)",
+        "MIT OCW 8.04/8.06 Quantum Physics (barrier penetration, WKB)",
+        "PMC open-access reviews on tunneling in biological electron and proton transfer"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Quantum tunnelling",
+          "url": "https://en.wikipedia.org/wiki/Quantum_tunnelling"
+        },
+        {
+          "label": "Wikipedia — WKB approximation",
+          "url": "https://en.wikipedia.org/wiki/WKB_approximation"
+        },
+        {
+          "label": "Wikipedia — Rectangular potential barrier",
+          "url": "https://en.wikipedia.org/wiki/Rectangular_potential_barrier"
+        },
+        {
+          "label": "Wikipedia — Kinetic isotope effect (proton tunneling signature)",
+          "url": "https://en.wikipedia.org/wiki/Kinetic_isotope_effect"
+        },
+        {
+          "label": "Wikipedia — Electron transfer (distance decay β)",
+          "url": "https://en.wikipedia.org/wiki/Electron_transfer"
+        },
+        {
+          "label": "MIT OpenCourseWare — 8.04 Quantum Physics I",
+          "url": "https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/"
+        }
+      ],
+      "art_prompt": "a quantum wavefunction approaching a rectangular potential barrier, oscillating on the left, decaying exponentially as e^(-kappa x) inside the barrier, and emerging with small amplitude on the right; beside it a semi-log plot of electron-transfer rate versus donor-acceptor distance falling on a straight line k ~ e^(-beta R)",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why does biological electron transfer rate fall off exponentially with donor–acceptor distance, and why do protons tunnel over much shorter distances than electrons?",
+          "answer": "The electron tunnels through the classically forbidden protein medium; its wavefunction decays as e^(−κx) inside the barrier, so the transmission probability — and thus the rate — falls as e^(−2κd) ∝ e^(−βR) with distance R. Protons tunnel over far shorter distances because κ = √(2m(V−E))/ħ grows with the square root of mass, and a proton is ~1836× heavier than an electron, so its wavefunction decays much faster inside the barrier."
+        },
+        {
+          "level": "derive",
+          "prompt": "For a rectangular barrier, the decay constant is κ = √(2m(V−E))/ħ. Compute κ (in nm⁻¹) for an electron facing a barrier of height V−E = 1.0 eV. (m_e = 9.11×10⁻³¹ kg, 1 eV = 1.602×10⁻¹⁹ J, ħ = 1.055×10⁻³⁴ J·s.) Then estimate the transmission through a d = 1.0 nm barrier.",
+          "answer": "2m(V−E) = 2(9.11×10⁻³¹)(1.602×10⁻¹⁹) = 2.92×10⁻⁴⁹; √ = 5.40×10⁻²⁵; κ = 5.40×10⁻²⁵ / 1.055×10⁻³⁴ = 5.1×10⁹ m⁻¹ ≈ 5.1 nm⁻¹. For d = 1.0 nm, T ≈ e^(−2κd) = e^(−2·5.1·1.0) = e^(−10.2) ≈ 3.7×10⁻⁵ — a small but nonzero probability that grows or shrinks sharply as the barrier width changes."
+        }
+      ],
+      "lesson": "### Intuition\n\nRoll a ball toward a hill it doesn't have the energy to climb and it rolls back — always. A quantum particle is also a wave, and a wave doesn't come to a hard stop at a wall; a little of it seeps in and a little emerges on the far side. So a particle facing a barrier it *couldn't* surmount classically still has a small, real probability of turning up on the other side. Make the wall wider or taller and that probability collapses fast. This is why nudging an electron a fraction of a nanometer farther inside a protein can slow its transfer by orders of magnitude.\n\n### Precisely\n\nInside a **classically forbidden region**, where the potential $V$ exceeds the energy $E$, the Schrödinger equation gives a wavefunction that *decays* rather than oscillates: $\\psi \\sim e^{-\\kappa x}$ with $\\kappa = \\sqrt{2m(V-E)}/\\hbar$. A barrier of finite width therefore leaks a nonzero amplitude. The **WKB approximation** (valid when $V$ varies slowly on the scale of the local wavelength) gives the transmission probability $T \\approx \\exp\\!\\left(-2\\int \\sqrt{2m(V(x)-E)}/\\hbar\\; dx\\right)$. For a rectangular barrier this is $T \\approx e^{-2\\kappa d}$ — exponential in width $d$, in $\\sqrt{V-E}$, and in $\\sqrt{m}$.\n\n### Worked example\n\nTake an electron facing a $1.0$ eV barrier. Then $2m(V-E) = 2(9.11\\times10^{-31})(1.602\\times10^{-19}) = 2.92\\times10^{-49}$, whose square root is $5.40\\times10^{-25}$, so $\\kappa = 5.40\\times10^{-25}/1.055\\times10^{-34} \\approx 5.1\\times10^{9}\\,\\text{m}^{-1} = 5.1\\,\\text{nm}^{-1}$. Across a $d = 1.0$ nm barrier, $T \\approx e^{-2\\kappa d} = e^{-10.2} \\approx 3.7\\times10^{-5}$. Halve the width and the exponent halves — tunneling is exquisitely sensitive to distance.\n\n### Why it's true / how it works\n\nThe forbidden-region solution of the Schrödinger equation is a real exponential, not an oscillation, because the local kinetic energy $E-V$ is negative there. Matching the decaying wave to the oscillating waves on either side leaves a small transmitted amplitude, and squaring it gives $T$. The WKB form simply sums the local decay $\\kappa(x)$ across the barrier, which is why the transmitted probability is the exponential of an integral.\n\n### Where it connects\n\nTunneling supplies the exponential *distance* factor in biological **electron transfer**: $k_{ET} \\propto e^{-\\beta R}$ with $\\beta \\approx 1.1\\text{–}1.4\\ \\text{Å}^{-1}$ through folded protein — this term multiplies the **Marcus** activated factor and sets how far apart redox cofactors in the **electron-transport chain** can sit. Because $\\kappa \\propto \\sqrt{m}$, protons tunnel only over tenths of an ångström, producing the large kinetic isotope effects that flag hydrogen tunneling in enzymes.\n\n### Watch out\n\nWKB fails near the turning points where $E \\approx V$: the local wavelength diverges and the slowly-varying assumption breaks, so connection formulae are needed there. The exponential means tiny errors in barrier height or width give large errors in rate. And tunneling is a *probability*, not a guarantee — most attempts still reflect.\n\n### Numbers & nuance\n\nThrough vacuum the electronic decay constant is steep ($\\beta \\approx 2.8\\ \\text{Å}^{-1}$); a folded protein, being polarizable matter rather than empty space, lowers it to $\\approx 1.1\\text{–}1.4\\ \\text{Å}^{-1}$, extending useful electron transfer to $\\sim 14$ Å. The same physics governs $\\alpha$-decay (Gamow's tunneling theory), the tunnel current in a scanning tunneling microscope (which is why STM resolves single atoms — the current changes ~10× per ångström), and Josephson junctions."
+    },
+    {
+      "id": "steady-state-approximation",
+      "title": "The (quasi-)steady-state approximation",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "master-equation"
+      ],
+      "summary": "When a reaction intermediate is formed and consumed fast compared with the overall reaction, its concentration quickly reaches a near-constant value, so setting d[I]/dt ≈ 0 turns coupled rate equations into algebra — the move that yields the Michaelis–Menten law and diffusion-limited rate constants.",
+      "depths": {
+        "eli5": "Picture water flowing into a small bucket that also has a hole in the bottom. At first the level rises, but very soon water leaves as fast as it comes in and the level just sits there — nearly constant. A short-lived chemical intermediate behaves the same way: it's made and destroyed so quickly that its amount stops changing almost immediately. Once you assume 'the amount isn't changing,' the hard tangle of rate equations collapses into simple algebra you can solve by hand.",
+        "core": "For a mechanism A → I → P where the intermediate I is far more reactive than A, [I] rises briefly then stays nearly constant while [A] and [P] change slowly. The quasi-steady-state approximation (QSSA) sets d[I]/dt ≈ 0, converting a coupled system of differential equations into algebraic ones. Example: for E + S ⇌ ES → E + P, applying d[ES]/dt = k₁[E][S] − (k₋₁ + k₂)[ES] ≈ 0 gives [ES] = [E][S]/K_M with K_M = (k₋₁ + k₂)/k₁, and hence the Michaelis–Menten rate v = V_max[S]/(K_M + [S]). The approximation is valid when the intermediate's pool is small and its turnover is fast — formally, when substrate greatly exceeds enzyme.",
+        "deep": "QSSA is a singular-perturbation statement: the intermediate lives on a fast timescale τ_fast that is separated from the slow timescale of the overall reaction, so after an initial transient of order τ_fast the system relaxes onto a lower-dimensional 'slow manifold' where the fast variable is slaved to the slow ones. It differs from the pre-equilibrium approximation, which assumes the first step stays at equilibrium (valid when k₋₁ ≫ k₂); QSSA is more general and reduces to pre-equilibrium in that limit. The same reasoning gives Smoluchowski's diffusion-limited rate (a steady-state diffusive flux into an absorbing sphere), the steady-state flux through a membrane channel, and the Bodenstein approximation for radical-chain kinetics. Its limits: it fails during the initial burst, when the intermediate accumulates, or when timescales are not well separated — where one must integrate the full equations or use the total-QSSA correction."
+      },
+      "note": "The steady-state trick: if an intermediate is made and consumed fast, its concentration is nearly flat, so d[intermediate]/dt ≈ 0 turns differential equations into algebra. It is what makes the Michaelis–Menten law derivable by hand, and it also gives diffusion-limited (Smoluchowski) rates and steady membrane fluxes. Distinct from the pre-equilibrium assumption (which needs the first step near equilibrium); QSSA only needs a fast, small intermediate pool. ('Intermediate' = a species formed then consumed en route to product; 'slow manifold' = the reduced set of variables the system settles onto after the fast transient dies.)",
+      "sources": [
+        "LibreTexts Chemistry (kinetics: steady-state and pre-equilibrium approximations)",
+        "MIT OCW 5.60 Thermodynamics & Kinetics",
+        "NCBI Bookshelf (enzyme kinetics, Michaelis–Menten derivation)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Steady state (chemistry)",
+          "url": "https://en.wikipedia.org/wiki/Steady_state_(chemistry)"
+        },
+        {
+          "label": "Wikipedia — Michaelis–Menten kinetics",
+          "url": "https://en.wikipedia.org/wiki/Michaelis%E2%80%93Menten_kinetics"
+        },
+        {
+          "label": "Wikipedia — Rate-determining step / pre-equilibrium",
+          "url": "https://en.wikipedia.org/wiki/Rate-determining_step"
+        },
+        {
+          "label": "Wikipedia — Reaction intermediate",
+          "url": "https://en.wikipedia.org/wiki/Reaction_intermediate"
+        },
+        {
+          "label": "LibreTexts Chemistry — Physical & Theoretical Chemistry (kinetics)",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        },
+        {
+          "label": "MIT OpenCourseWare — 5.60 Thermodynamics & Kinetics",
+          "url": "https://ocw.mit.edu/courses/5-60-thermodynamics-kinetics-spring-2008/"
+        }
+      ],
+      "art_prompt": "a reaction cascade A to I to P drawn as a water tank: inflow fills a small intermediate tank that has a matching drain, its level pinned flat while the source tank empties and the product tank fills; beside it the algebraic collapse d[I]/dt = 0 turning three coupled curves into one steady horizontal line",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What condition makes the quasi-steady-state approximation valid, and what does applying it accomplish mathematically?",
+          "answer": "It is valid when the intermediate is formed and consumed fast relative to the overall reaction, so its concentration stays small and nearly constant after a brief initial transient (in enzyme kinetics, when substrate greatly exceeds enzyme). Applying it — setting d[intermediate]/dt ≈ 0 — converts the coupled differential rate equations into algebraic equations, which is how the Michaelis–Menten law and diffusion-limited rate constants are derived analytically."
+        },
+        {
+          "level": "derive",
+          "prompt": "For E + S ⇌(k₁, k₋₁) ES →(k₂) E + P, apply the steady-state approximation to [ES] and derive the Michaelis constant K_M in terms of the rate constants.",
+          "answer": "d[ES]/dt = k₁[E][S] − k₋₁[ES] − k₂[ES] = k₁[E][S] − (k₋₁ + k₂)[ES]. Setting this to zero: k₁[E][S] = (k₋₁ + k₂)[ES], so [ES] = [E][S]·k₁/(k₋₁ + k₂) = [E][S]/K_M with K_M ≡ (k₋₁ + k₂)/k₁. Substituting into v = k₂[ES] and using enzyme conservation gives v = V_max[S]/(K_M + [S]), the Michaelis–Menten rate law."
+        }
+      ],
+      "lesson": "### Intuition\n\nWater pours into a small bucket that also has a hole in the bottom. The level jumps up for a moment, then holds steady because water drains as fast as it arrives. A short-lived chemical intermediate does the same: it's produced and destroyed so quickly that its amount stops changing almost at once. The instant you accept \"its amount is essentially constant,\" a snarl of coupled rate equations turns into algebra you can solve on paper.\n\n### Precisely\n\nFor a mechanism $A \\to I \\to P$ in which $I$ reacts much faster than it's made, $[I]$ rises briefly then holds nearly flat while $[A]$ and $[P]$ evolve slowly. The **quasi-steady-state approximation** sets $d[I]/dt \\approx 0$, replacing differential equations with algebraic ones. For an enzyme, $E + S \\rightleftharpoons ES \\to E + P$, writing $d[ES]/dt = k_1[E][S] - (k_{-1}+k_2)[ES] \\approx 0$ gives $[ES] = [E][S]/K_M$ with $K_M = (k_{-1}+k_2)/k_1$, and the **Michaelis–Menten** law $v = V_{max}[S]/(K_M + [S])$.\n\n### Worked example\n\nConsider $A \\to I \\to P$ with $I$ formed at effective rate $k_1[A]$ and consumed at $k_2[I]$, where $k_2 = 1000\\ \\text{s}^{-1} \\gg k_1$. Steady state on $I$: $k_1[A] = k_2[I]_{ss}$, so $[I]_{ss} = (k_1/k_2)[A]$ — a tiny pool. The rate of product formation is $k_2[I]_{ss} = k_1[A]$: the overall rate is set entirely by the slow first step, exactly as intuition says a bottleneck should behave.\n\n### Why it's true / how it works\n\nThe intermediate lives on a *fast* timescale that is well separated from the *slow* timescale of the whole reaction. After a transient of order the fast time, the fast variable is \"slaved\" to the slow ones — it tracks them so closely that its own rate of change is negligible. Setting that rate to zero is a controlled approximation, formally a singular-perturbation reduction onto a lower-dimensional slow manifold.\n\n### Where it connects\n\nThis is the engine behind **Michaelis–Menten** enzyme kinetics and behind **Smoluchowski**'s diffusion-limited rate, which comes from a *steady-state diffusive flux* into an absorbing target. It reappears as the steady flux through a membrane channel and as the Bodenstein approximation for radical chains. It is a cousin of the pre-equilibrium approximation, which it contains as the special case $k_{-1} \\gg k_2$.\n\n### Watch out\n\nThe approximation fails during the initial burst before the intermediate reaches steady state, and whenever the intermediate actually *accumulates* (timescales not separated). In enzyme kinetics it assumes substrate far exceeds enzyme; when they are comparable, the total-QSSA correction is needed. Treating $d[I]/dt = 0$ as exact rather than approximate can hide these regimes.\n\n### Numbers & nuance\n\nThe validity window is set by the ratio of timescales: the transient lasts $\\sim 1/(k_{-1}+k_2)$, so as long as substrate is depleted much more slowly than that, the flat-$[ES]$ picture holds across essentially the whole reaction. This separation is what lets a handful of measured rate constants collapse into two experimentally meaningful numbers, $K_M$ and $V_{max}$, and it is why the same algebra recurs across enzymology, diffusion-controlled reactions, and transport."
+    },
+    {
+      "id": "maxwell-dipole-radiation",
+      "title": "Dipole radiation & Einstein A/B coefficients",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "schrodinger-equation"
+      ],
+      "summary": "An accelerating charge radiates; an oscillating dipole radiates power ∝ ω⁴|p|² (Larmor/Rayleigh), and quantum-mechanically a molecule in an excited state emits spontaneously at a rate A ∝ ν³|μ|² set by Einstein's coefficients — fixing fluorescence lifetimes and the radiative rate that FRET and fluorescence spectroscopy compete against.",
+      "depths": {
+        "eli5": "Wiggle an electric charge back and forth and it sends out ripples in the electromagnetic field — light. The faster you wiggle it (higher frequency), the far more strongly it radiates: doubling the frequency makes it shine about sixteen times brighter. Even with no light shining on it, an excited atom will drop down and spit out a photon all by itself after a while; how long that 'while' is — a few billionths of a second for typical dyes — is the radiative lifetime, and it's why a fluorescent molecule glows briefly after you stop exciting it.",
+        "core": "A charge with acceleration a radiates power P = q²a²/(6πε₀c³) (Larmor). An oscillating dipole of amplitude p₀ at frequency ω radiates a time-averaged power P = μ₀ω⁴p₀²/(12πc), the ω⁴ law behind Rayleigh scattering (blue sky). Quantum-mechanically, Einstein described light–matter exchange with three coefficients: stimulated absorption (B₁₂), stimulated emission (B₂₁), and spontaneous emission (A₂₁), related by A/B = 8πhν³/c³. The spontaneous rate scales as A ∝ ν³|μ_fi|² with μ_fi the transition dipole, so the radiative lifetime is τ_rad = 1/A. Higher-frequency transitions and larger transition dipoles emit faster.",
+        "deep": "The ν³ factor in A/B (from the photon mode density ∝ ν²) is why spontaneous emission dominates in the optical and is negligible in the radio/microwave — nuclear spins in NMR essentially never emit spontaneously and must be detected by induction, whereas an electronically excited dye almost always does. Observed fluorescence lifetimes τ_obs = 1/(k_r + k_nr) are shorter than the pure radiative τ_rad = 1/k_r whenever nonradiative channels (internal conversion, quenching, and Förster transfer to an acceptor) compete; the fluorescence quantum yield is Φ = k_r/(k_r + k_nr). FRET is exactly one such competing channel — its rate adds to the denominator, shortening the donor lifetime, which is how lifetime-based FRET works. The transition dipole's magnitude and orientation (the κ² factor in FRET) both come from this same μ_fi. The classical Larmor formula and the quantum A coefficient agree in the correspondence limit."
+      },
+      "note": "Accelerating charge → light. An oscillating dipole radiates with a steep ω⁴ (equivalently ν⁴) dependence, and a quantum emitter drops spontaneously at rate A ∝ ν³|μ|², giving a radiative lifetime τ_rad = 1/A (nanoseconds for optical dyes). Because A grows as ν³, optical transitions emit readily while radio/microwave (NMR) transitions essentially never do. Any nonradiative path — quenching, internal conversion, or FRET — competes with k_r and shortens the observed lifetime. ('Transition dipole μ_fi' = the quantum matrix element that sets how strongly a transition couples to light; 'radiative lifetime' = 1/A, the mean time to emit if no other decay existed.)",
+      "sources": [
+        "LibreTexts Physical Chemistry (Einstein coefficients, spontaneous/stimulated emission)",
+        "MIT OCW 8.02 Electromagnetism & 5.61 Physical Chemistry (dipole radiation, light–matter interaction)",
+        "PMC open-access reviews on fluorescence lifetimes and quantum yield"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Einstein coefficients",
+          "url": "https://en.wikipedia.org/wiki/Einstein_coefficients"
+        },
+        {
+          "label": "Wikipedia — Larmor formula",
+          "url": "https://en.wikipedia.org/wiki/Larmor_formula"
+        },
+        {
+          "label": "Wikipedia — Spontaneous emission",
+          "url": "https://en.wikipedia.org/wiki/Spontaneous_emission"
+        },
+        {
+          "label": "Wikipedia — Transition dipole moment",
+          "url": "https://en.wikipedia.org/wiki/Transition_dipole_moment"
+        },
+        {
+          "label": "Wikipedia — Fluorescence (lifetime & quantum yield)",
+          "url": "https://en.wikipedia.org/wiki/Fluorescence"
+        },
+        {
+          "label": "MIT OpenCourseWare — 8.02 Physics II: Electricity & Magnetism",
+          "url": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/"
+        }
+      ],
+      "art_prompt": "an oscillating electric dipole at the center emitting a toroidal radiation pattern of electromagnetic waves, with a v^4 intensity arrow; beside it a three-level Einstein-coefficient diagram showing B12 absorption, B21 stimulated emission, and A21 spontaneous emission, and a decaying exponential labeled radiative lifetime tau = 1/A",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why do electronically excited dye molecules emit light spontaneously within nanoseconds while nuclear spins in NMR essentially never emit spontaneously?",
+          "answer": "The spontaneous-emission rate scales as A ∝ ν³ (the ratio A/B = 8πhν³/c³ carries the photon mode density ∝ ν²). Optical electronic transitions have very high frequency, so A is large and the radiative lifetime τ = 1/A is only nanoseconds. Nuclear-spin (NMR) transitions are at radio frequencies ~10⁸ times lower, so A is smaller by ~10²⁴ and spontaneous emission is utterly negligible — the spins must be detected by induction instead."
+        },
+        {
+          "level": "derive",
+          "prompt": "Given A/B = 8πhν³/c³, explain how the observed fluorescence lifetime relates to the pure radiative lifetime when a competing FRET pathway is present, and how the quantum yield is defined.",
+          "answer": "The pure radiative lifetime is τ_rad = 1/k_r with k_r = A. When nonradiative channels exist, the excited state decays at the total rate k_r + k_nr, so the observed lifetime is τ_obs = 1/(k_r + k_nr) < τ_rad. FRET adds a transfer rate k_FRET to the denominator: τ_obs = 1/(k_r + k_nr + k_FRET), so energy transfer shortens the donor lifetime — the basis of lifetime FRET. The fluorescence quantum yield is Φ = k_r/(k_r + k_nr), the fraction of excitations that leave as emitted photons."
+        }
+      ],
+      "lesson": "### Intuition\n\nJiggle an electric charge and it launches ripples through the electromagnetic field — that's light. Jiggle it faster and it radiates far more fiercely: the power climbs as the *fourth power* of frequency, so a small increase in wiggle rate is a big increase in brightness. And an atom sitting in an excited state doesn't need any push to emit — after a short wait it drops down and releases a photon on its own. That wait, a few billionths of a second for a typical dye, is the radiative lifetime, and it's why a fluorescent tag keeps glowing for an instant after the exciting light is switched off.\n\n### Precisely\n\nAn accelerating charge radiates power $P = q^2a^2/(6\\pi\\varepsilon_0 c^3)$ (**Larmor**). An oscillating dipole $p_0$ at frequency $\\omega$ radiates $P = \\mu_0\\omega^4 p_0^2/(12\\pi c)$ — the $\\omega^4$ law behind **Rayleigh scattering**. Quantum-mechanically, **Einstein's coefficients** describe absorption ($B_{12}$), stimulated emission ($B_{21}$), and spontaneous emission ($A_{21}$), tied together by $A/B = 8\\pi h\\nu^3/c^3$. The spontaneous rate goes as $A \\propto \\nu^3|\\mu_{fi}|^2$ with $\\mu_{fi}$ the transition dipole, and the radiative lifetime is $\\tau_{rad} = 1/A$.\n\n### Worked example\n\nCompare an optical transition ($\\nu \\approx 5\\times10^{14}$ Hz) with an NMR transition ($\\nu \\approx 5\\times10^{8}$ Hz). Since $A \\propto \\nu^3$, the ratio of spontaneous rates is $(5\\times10^{14}/5\\times10^{8})^3 = (10^{6})^3 = 10^{18}$. So where an optical dye emits in nanoseconds, the nuclear spin's spontaneous emission is slower by ~$10^{18}$ — utterly negligible, which is why NMR detects spins by induction, not by their emitted photons.\n\n### Why it's true / how it works\n\nThe $\\nu^3$ in $A/B$ comes from the density of electromagnetic modes the photon can be emitted into, which grows as $\\nu^2$, times an extra factor of $h\\nu$ per photon. The transition dipole $\\mu_{fi}$ — the same matrix element that **selection rules** decide is zero or nonzero — sets how strongly the state couples to the field, so $A \\propto |\\mu_{fi}|^2$. Classical Larmor radiation and the quantum $A$ coefficient agree in the correspondence limit.\n\n### Where it connects\n\nThe radiative rate $k_r = A$ is the clock that **FRET** and fluorescence methods race against: FRET is a *competing* de-excitation channel whose rate adds to $k_r$, shortening the donor's lifetime — the basis of lifetime-FRET and of the signals read in **FCS**. The transition dipole's size and orientation feed FRET's $\\kappa^2$ factor and the intensities governed by selection rules. Rayleigh's $\\omega^4$ scattering from the same physics is why the sky is blue.\n\n### Watch out\n\nThe measured fluorescence lifetime $\\tau_{obs} = 1/(k_r + k_{nr})$ is always shorter than the pure radiative $\\tau_{rad} = 1/k_r$ because nonradiative decay competes; don't equate them. The quantum yield $\\Phi = k_r/(k_r + k_{nr})$ can be well below 1. And a \"forbidden\" transition (tiny $\\mu_{fi}$) has a long radiative lifetime — phosphorescence — not zero emission.\n\n### Numbers & nuance\n\nStrongly allowed optical transitions have oscillator strength near 1 and radiative lifetimes of order nanoseconds; spin- or symmetry-forbidden transitions can live milliseconds to seconds (phosphorescence). Stimulated emission ($B_{21}$) equals the absorption coefficient $B_{12}$ per state and is the physics that makes lasers possible. Because spontaneous emission dominates only where $\\nu$ is high, optical spectroscopy reads photons directly while magnetic resonance must amplify a coherent induction signal."
+    },
+    {
+      "id": "dls",
+      "title": "Dynamic light scattering (DLS)",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "correlation-function",
+        "einstein-stokes"
+      ],
+      "summary": "Brownian motion makes scattered-light intensity fluctuate; the intensity autocorrelation decays at rate Γ = Dq², so fitting g₂(τ) gives the diffusion coefficient D and, through Stokes–Einstein, the hydrodynamic radius — a fast, label-free sizing of proteins, aggregates, and nanoparticles in solution.",
+      "depths": {
+        "eli5": "Shine a laser into a solution of particles and watch the speckle of scattered light. The particles are constantly jostled by the solvent, so the speckle flickers. Small particles dart around quickly and the flicker is fast; big particles lumber and the flicker is slow. By timing how fast the flicker pattern scrambles itself, you read off how fast the particles diffuse — and from that, how big they are — without attaching any dye or label.",
+        "core": "In dynamic light scattering, particles undergoing Brownian motion cause the scattered intensity to fluctuate on the microsecond scale. The normalized intensity autocorrelation g₂(τ) = 1 + β|g₁(τ)|² is measured; for monodisperse particles the field correlation decays exponentially, g₁(τ) = e^(−Γτ) with decay rate Γ = Dq². The scattering vector is q = (4πn/λ₀)sin(θ/2) with n the solvent refractive index, λ₀ the vacuum wavelength, and θ the detection angle. Fitting Γ yields the translational diffusion coefficient D, and the Stokes–Einstein relation R_h = k_BT/(6πηD) converts D into the hydrodynamic radius. Polydisperse samples give a distribution of decay rates (cumulant or CONTIN analysis).",
+        "deep": "DLS is intensity-weighted, and Rayleigh scattering scales as the sixth power of radius, so a tiny fraction of large aggregates can dominate the signal and mask the monomer — which makes DLS exquisitely sensitive for detecting aggregation but poor at resolving closely-sized populations (rule of thumb: radii must differ by ~3–5× to separate). It reports a hydrodynamic radius — the radius of an equivalent hard sphere with the same diffusion — which exceeds the dry radius because it includes the hydration shell and captures shape (elongated molecules diffuse slower, appearing larger). It is the fluctuation-spectroscopy sibling of FCS: both extract dynamics from an autocorrelation of a fluctuating optical signal, but DLS uses elastic scattering (label-free, intensity ∝ r⁶) whereas FCS uses fluorescence (single-molecule sensitive, concentration-limited). Multi-angle or depolarized DLS adds shape and rotational information; combining with static light scattering gives molar mass."
+      },
+      "note": "DLS times the flicker of laser light scattered by diffusing particles. The intensity autocorrelation decays at Γ = Dq², giving D, and Stokes–Einstein (R_h = k_BT/6πηD) turns D into a size. It's fast and label-free, but intensity ∝ radius⁶, so a trace of large aggregate can drown the monomer — great for spotting aggregation, weak at resolving similar sizes. R_h is the hydrated, shape-sensitive radius, larger than the dry radius. ('Autocorrelation' = how similar a signal is to itself after a delay τ; 'hydrodynamic radius' = the equivalent-sphere radius inferred from the diffusion rate; 'scattering vector q' = 4πn·sin(θ/2)/λ₀, set by geometry.)",
+      "sources": [
+        "PMC open-access reviews on dynamic light scattering for biomolecules",
+        "LibreTexts Physical Chemistry (light scattering, diffusion)",
+        "NCBI Bookshelf (biophysical characterization methods)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Dynamic light scattering",
+          "url": "https://en.wikipedia.org/wiki/Dynamic_light_scattering"
+        },
+        {
+          "label": "Wikipedia — Stokes–Einstein equation (R_h from D)",
+          "url": "https://en.wikipedia.org/wiki/Einstein_relation_(kinetic_theory)"
+        },
+        {
+          "label": "Wikipedia — Autocorrelation",
+          "url": "https://en.wikipedia.org/wiki/Autocorrelation"
+        },
+        {
+          "label": "Wikipedia — Hydrodynamic radius",
+          "url": "https://en.wikipedia.org/wiki/Hydrodynamic_radius"
+        },
+        {
+          "label": "Wikipedia — Rayleigh scattering (intensity ∝ r⁶)",
+          "url": "https://en.wikipedia.org/wiki/Rayleigh_scattering"
+        },
+        {
+          "label": "LibreTexts Chemistry — Physical & Theoretical Chemistry",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        }
+      ],
+      "art_prompt": "a laser beam crossing a cuvette of diffusing nanoparticles, a detector at angle theta collecting a flickering speckle pattern, and beside it two intensity-autocorrelation curves g2(tau) decaying versus lag time — a fast-decaying one labeled small particle and a slow-decaying one labeled large particle — with Gamma = D q^2 annotated",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is DLS extremely sensitive to a small amount of large aggregate but poor at resolving two similarly-sized populations?",
+          "answer": "DLS measures scattered intensity, and Rayleigh scattering intensity scales as the sixth power of particle radius, so a large particle scatters vastly more than a small one — a tiny mass fraction of aggregate can dominate the correlation signal (making DLS excellent at flagging aggregation). But because the autocorrelation is a smooth sum of exponentials, closely-spaced decay rates blur together; the two populations' radii must typically differ by roughly 3–5× before they can be resolved."
+        },
+        {
+          "level": "derive",
+          "prompt": "The autocorrelation decay rate is Γ = Dq² with q = (4πn/λ₀)sin(θ/2). For n = 1.33, λ₀ = 633 nm, θ = 90°, and D = 2.0×10⁻¹¹ m²/s, compute q, Γ, the decay time 1/Γ, and the hydrodynamic radius (η = 1.0×10⁻³ Pa·s, T = 298 K, k_B = 1.38×10⁻²³ J/K).",
+          "answer": "q = (4π·1.33/633×10⁻⁹)·sin45° = (1.67×10¹/633×10⁻⁹)·0.707 = (2.64×10⁷)·0.707 ≈ 1.87×10⁷ m⁻¹. Γ = Dq² = 2.0×10⁻¹¹·(1.87×10⁷)² = 2.0×10⁻¹¹·3.49×10¹⁴ ≈ 7.0×10³ s⁻¹, so the decay time 1/Γ ≈ 143 µs. R_h = k_BT/(6πηD) = (1.38×10⁻²³·298)/(6π·1.0×10⁻³·2.0×10⁻¹¹) = 4.11×10⁻²¹/3.77×10⁻¹³ ≈ 1.09×10⁻⁸ m ≈ 10.9 nm."
+        }
+      ],
+      "lesson": "### Intuition\n\nShine a laser into a solution and look at the grainy speckle of light it scatters. The particles are ceaselessly kicked around by the solvent, so that speckle shimmers and flickers. Small particles zip about and the flicker is quick; big particles wallow and the flicker is slow. Measure how fast the pattern scrambles itself, and you've measured how fast the particles diffuse — and from diffusion speed you get their size, all without attaching a single label.\n\n### Precisely\n\nBrownian motion makes the scattered **intensity** fluctuate on microsecond timescales. DLS records the normalized intensity **autocorrelation** $g_2(\\tau) = 1 + \\beta|g_1(\\tau)|^2$; for uniform particles the field correlation decays as $g_1(\\tau) = e^{-\\Gamma\\tau}$ with $\\Gamma = Dq^2$. The scattering vector is $q = (4\\pi n/\\lambda_0)\\sin(\\theta/2)$. Fitting $\\Gamma$ gives the diffusion coefficient $D$, and **Stokes–Einstein** $R_h = k_BT/(6\\pi\\eta D)$ turns it into the hydrodynamic radius. Mixed sizes give a spread of decay rates, unpacked by cumulant or CONTIN analysis.\n\n### Worked example\n\nAt $n = 1.33$, $\\lambda_0 = 633$ nm, $\\theta = 90°$: $q = (4\\pi\\cdot1.33/633\\,\\text{nm})\\sin45° \\approx 1.87\\times10^{7}\\ \\text{m}^{-1}$. For a protein with $D = 2.0\\times10^{-11}\\ \\text{m}^2/\\text{s}$, $\\Gamma = Dq^2 \\approx 7.0\\times10^{3}\\ \\text{s}^{-1}$, so the correlation decays in $\\sim 143\\ \\mu$s. Stokes–Einstein then gives $R_h = k_BT/(6\\pi\\eta D) \\approx 10.9$ nm — read off from nothing but the timing of a flicker.\n\n### Why it's true / how it works\n\nThe autocorrelation asks how similar the scattered field is to itself a time $\\tau$ later. Diffusion randomizes particle positions with mean-square displacement $\\propto Dt$, and the phase of the scattered light depends on position through $q$, so the correlation loses memory at rate $Dq^2$. Bigger particles diffuse slower (smaller $D$), so their correlation persists longer — a direct, model-light readout of size.\n\n### Where it connects\n\nDLS is the elastic-scattering sibling of **FCS**: both pull dynamics from the **autocorrelation** of a fluctuating optical signal and both invert diffusion through **Stokes–Einstein**, but DLS is label-free (intensity $\\propto r^6$) while FCS uses fluorescence for single-molecule sensitivity. It complements **SAXS** (shape/size from the scattering *profile*) and **analytical ultracentrifugation** and pairs with static light scattering to add molar mass.\n\n### Watch out\n\nBecause intensity scales as $r^6$, a whiff of dust or aggregate can swamp the monomer signal — filter scrupulously and read the intensity- vs number-weighted distributions carefully. DLS cannot resolve populations closer than ~3–5× in size. And $R_h$ is the *hydrated, shape-sensitive* radius, so an elongated molecule reports larger than its compact mass would suggest.\n\n### Numbers & nuance\n\nTypical decay times run from microseconds (nanometer proteins) to milliseconds (micron particles). The sixth-power intensity law is a double-edged sword: it makes DLS a superb early-warning sensor for aggregation and a poor quantifier of minor small-species fractions. Depolarized and multi-angle variants recover rotational diffusion and shape, and combining DLS (size) with static light scattering (mass) distinguishes a compact monomer from an extended or oligomeric species of the same mass."
     }
   ]
 }

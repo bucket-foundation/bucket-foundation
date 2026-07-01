@@ -543,3 +543,39 @@ targets. Leaf-leverage rule holds: new requires=[] or depth-1 atom wired UNDER a
 dependent both fills content AND lifts the margin — verify no depth cascade + re-run test-diagnostic.mjs
 each batch. Cheaper zero-risk wins still open: ~39 atoms lack a derive quiz item; more `note` fields;
 GPU art if reachable; a non-biophysics branch expansion for variety.
+
+## 2026-06-30 — run 16 (+4 atoms: tunneling-wkb, steady-state-approximation, maxwell-dipole-radiation, dls; biophysics 108→112; margin LIFTED +19→+21)
+Continued run 15's NEXT list. Added four atoms, three as depth-1 FOUNDATIONS wired UNDER
+existing deep dependents (leaf-leverage → lifts margin, zero cascade) plus one §1.8 method leaf.
+**tunneling-wkb** (WKB barrier: ψ~e^(−κx) in the classically forbidden region, T≈e^(−2κd),
+κ=√(2m(V−E))/ħ; requires schrodinger-equation) wired UNDER marcus-theory(3) & electron-transport-
+chain(3) as the exponential distance factor of biological electron transfer k_ET∝e^(−βR), β≈1.1–1.4 Å⁻¹;
+κ∝√m explains why protons tunnel only tenths of an Å (KIE signature). **steady-state-approximation**
+(QSSA d[I]/dt≈0 → algebra; requires master-equation) wired UNDER michaelis(2) & smoluchowski-rate(2) —
+the exact move that yields the Michaelis–Menten law (K_M=(k₋₁+k₂)/k₁) and diffusion-limited rates.
+**maxwell-dipole-radiation** (Larmor P∝ω⁴|p|²; Einstein A/B=8πhν³/c³, A∝ν³|μ_fi|², τ_rad=1/A;
+requires schrodinger-equation) wired UNDER fcs(2) as the radiative rate k_r that FRET/fluorescence
+compete against (τ_obs=1/(k_r+k_nr+k_FRET); Φ=k_r/(k_r+k_nr)); the ν³ law is why optical dyes emit in
+ns but NMR spins never emit spontaneously (~10¹⁸× slower). **dls** (dynamic light scattering, method
+leaf; requires correlation-function/einstein-stokes) Γ=Dq², q=(4πn/λ₀)sin(θ/2), R_h=k_BT/6πηD;
+intensity∝r⁶ → superb aggregation sensor, poor size-resolver (needs ~3–5× separation). Depth check
+verified ZERO cascade on all 5 wired parents (marcus/etc stay 3, michaelis/smoluchowski/fcs stay 2);
+the three new foundations sit at depth 1, dls at depth 2. Diagnostic margin ROSE to **expert placed 39
+/ asked 18 (+21)** from +19 (the three foundations added encompassing leverage under deep nodes; dls
+is a leaf so it doesn't place). Every number verified this run: κ=5.1 nm⁻¹ & T=e^(−10.2)=3.7×10⁻⁵ for
+a 1 eV / 1 nm electron barrier; QSSA K_M derivation; A∝ν³ giving 10¹⁸ optical-vs-NMR ratio; DLS q=1.87×10⁷ m⁻¹,
+Γ=7.0×10³ s⁻¹ (1/Γ=143 µs), R_h=10.9 nm. All prose original; OPEN sources only (LibreTexts + MIT OCW
+8.02/8.04/8.06/5.60/5.61 + PMC OA + 6 Wikipedia resources each); full 7-section lesson + 3 depths + note
++ art_prompt + 2 quiz (1 derive) per atom. meta 0.7.0→0.8.0. validate.sh PASSES end-to-end (corpus
+integrity, 112-atom 60-day engine sim, diagnostic GREEN at +21, assess/lang/explorer smokes). Mirrored
+to public/academy-app (112 atoms, ver 0.8.0 verified in sync).
+NEXT: run 15's remaining §0.3/§0.4/§1.8 targets that stay margin-safe: **dsc** (differential scanning
+calorimetry — ΔH/T_m/ΔC_p melting; DON'T require two-state-folding (depth 3 → dsc depth 4 OVERRUNS the
+placement budget and FAILS test-diagnostic per run 5's zimm/tica lesson) — instead require gibbs+mass-action
+(depth 2) as an itc sibling), **analytical-ultracentrifugation** (sed/diffusion → mass & shape;
+requires einstein-stokes/svedberg-style, depth ≤2), and a **wien2/steady-state-flux** membrane atom.
+To LIFT (not just hold) the margin, keep applying the leaf-leverage rule: a new requires=[] or depth-1
+atom wired UNDER an already-deep dependent both fills content AND raises placed-count — always verify
+zero depth cascade + re-run test-diagnostic.mjs each batch. Remaining cheap zero-risk wins: ~35 atoms
+still lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 is
+reachable; a non-biophysics branch (math/physics corpus) for variety.
