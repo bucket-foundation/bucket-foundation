@@ -145,6 +145,28 @@ def diagram_grid():
             'The full 53-movement library + 212 real demonstration frames live in <code>media/</code>.</p>'
             f'<div class="diagrid">{cells}</div></div>')
 
+# ---- clickable cross-references: map a chapter number (from its filename) -> its anchor id ----
+secnum2cid={}
+for _pl,_ps,_items in STRUCT:
+    for _cid,_path,_ov in _items:
+        # only the numbered chapter files under sections/ own the §NN numbering
+        # (corpus files like 00-map/01-STATE-OF-THE-FIELD collide on numbers otherwise)
+        if os.path.basename(os.path.dirname(_path))!="sections": continue
+        m=re.match(r'0*(\d{1,2})', os.path.basename(_path))
+        if m and int(m.group(1)) not in secnum2cid: secnum2cid[int(m.group(1))]=_cid
+_XREF=re.compile(r'§\s*0*(\d{1,2})((?:\.\d+)*)')
+def linkify(h):
+    """Turn '§NN' / '§NN.M' references into internal links to the chapter anchor (not inside tags)."""
+    def repl(m):
+        n=int(m.group(1))
+        if n not in secnum2cid: return m.group(0)
+        return f'<a class="xref" href="#{secnum2cid[n]}">§{m.group(1)}{m.group(2)}</a>'
+    # only operate on text outside HTML tags
+    out=[];
+    for i,seg in enumerate(re.split(r'(<[^>]+>)', h)):
+        out.append(seg if seg.startswith("<") else _XREF.sub(repl, seg))
+    return "".join(out)
+
 # ---- build body ----
 chapters=[]   # (id, title, part_label, html)
 toc=[]
@@ -154,7 +176,7 @@ for part_label, part_sub, items in STRUCT:
         title = override or first_title(path)
         body = pandoc(path)
         if cid=="training": body = diagram_grid()+body
-        body = place_figs(body, cid)
+        body = linkify(place_figs(body, cid))
         chapters.append((cid,title,part_label,body,part_sub))
         toc.append(("chap", title, None, cid))
 
@@ -167,7 +189,9 @@ for kind,a,b,cid in toc:
         toc_html+=f'<div class="toc-part"><span class="tp-n">{html.escape(a)}</span> {html.escape(b)}</div>'
     else:
         toc_html+=f'<div class="toc-chap"><a href="#{cid}">{html.escape(a)}</a></div>'
-toc_html+='<div class="toc-front toc-back"><a href="#colophon">Colophon</a></div>'
+toc_html+='<div class="toc-front toc-back"><a href="#glossary">Glossary</a></div>'
+toc_html+='<div class="toc-front"><a href="#index">Index</a></div>'
+toc_html+='<div class="toc-front"><a href="#colophon">Colophon</a></div>'
 toc_html+='</nav>'
 
 # ---- body html ----
@@ -182,12 +206,15 @@ for cid,title,part_label,bodyhtml,part_sub in chapters:
                 f'<h1 class="ch-title">{html.escape(title)}</h1>{bodyhtml}</section>')
 
 CSS = r"""
-@page { size:A4; margin:14mm 14mm 12mm;
+@page { size:A4; margin:15mm 14mm 12mm;
   @top-left{content:"The Longevity & Fitness Operating Manual";font-size:7pt;color:#a99;letter-spacing:.03em;}
-  @top-right{content:"Bucket Foundation · Nucleus";font-size:7pt;color:#a99;}
+  @top-right{content:string(runhead);font-size:7pt;color:#8a8170;letter-spacing:.02em;}
   @bottom-center{content:counter(page);font-size:8.5pt;color:#8a8170;} }
 @page cover { margin:0; @top-left{content:""} @top-right{content:""} @bottom-center{content:""} }
 @page :blank { @top-left{content:""} @top-right{content:""} }
+/* running header: the current section title flows into the top-right of its pages
+   (string-set via CSS rule carries across a chapter's pages; inline does not in weasyprint) */
+.ch-title,.front>h1,.toc>h1,.partdiv .pd-t{string-set:runhead content()}
 html{font-size:9.35pt}
 body{font-family:"Charter","Georgia",serif;color:#1c1a17;line-height:1.3;text-align:justify;hyphens:auto}
 h1,h2,h3,h4{font-family:"Helvetica Neue","Arial",sans-serif;color:#14110c;line-height:1.15;text-align:left}
@@ -292,6 +319,20 @@ img{max-width:100%}
 .figitem img{width:100%;border:1px solid #e3dcc9;border-radius:3px;background:#fff}
 .figitem figcaption{font-family:"Helvetica Neue",sans-serif;font-size:6.7pt;color:#5e574a;line-height:1.2;margin:1.5pt 2pt 0}
 .figitem figcaption b{color:#6b5418}
+
+/* cross-reference links (clickable §NN) — subtle, same family as other links */
+.xref{color:#6b5418;text-decoration:none}
+
+/* back matter: glossary + index */
+.backmatter{break-before:page}
+.gloss-body{column-count:2;column-gap:16pt;font-size:8.4pt;line-height:1.35}
+.gloss-body p{margin:0 0 3pt;break-inside:avoid;text-align:left}
+.gloss-body strong{color:#14110c}
+.idxcols{column-count:2;column-gap:16pt;font-size:8.3pt}
+.idx-letter{font-family:"Helvetica Neue",sans-serif;font-weight:700;font-size:10.5pt;color:#b08d3a;margin:7pt 0 2pt;break-after:avoid;break-inside:avoid}
+.idx-entry{margin:0 0 1.3pt;break-inside:avoid;line-height:1.3;text-align:left}
+.idx-t{color:#1c1a17}
+.idx-r,.idx-r .xref{color:#8a7a3a}
 """
 
 COVER = """<div class="cover">
@@ -342,6 +383,50 @@ account for your individual history. Talk to a qualified clinician before changi
 training or fasting regimen, or acting on anything here — especially the pharmacology and clinical chapters.</div>
 </section>"""
 
+def build_glossary():
+    p=os.path.join(HERE,"_review","_glossary.md")
+    if not os.path.exists(p): return ""
+    return ('<section class="front backmatter" id="glossary"><h1>Glossary</h1>'
+            '<div class="gloss-body">'+pandoc(p)+'</div></section>')
+
+def build_index():
+    p=os.path.join(HERE,"_review","_index-terms.txt")
+    if not os.path.exists(p): return ""
+    terms=[t.strip() for t in open(p) if t.strip() and not t.startswith("#")]
+    # section-number -> lowercased chapter text (numbered chapter files only)
+    numtext={}
+    for _pl,_ps,_items in STRUCT:
+        for _cid,_path,_ov in _items:
+            if os.path.basename(os.path.dirname(_path))!="sections": continue
+            m=re.match(r'0*(\d{1,2})', os.path.basename(_path))
+            if m: numtext[int(m.group(1))]=open(_path).read().lower()
+    def keys_for(term):
+        base=re.sub(r'\s*\([^)]*\)','',term).strip()          # drop clarifying parentheticals
+        return [a.strip().lower() for a in re.split(r'\s*/\s*', base) if a.strip()]  # split A / B alternates
+    seen=set(); entries=[]
+    for term in terms:
+        dkey=term.lower()
+        if dkey in seen: continue
+        seen.add(dkey)
+        pats=[re.compile(r'(?<![a-z0-9])'+re.escape(k)+r'(?![a-z0-9])') for k in keys_for(term)]
+        nums=sorted(n for n,txt in numtext.items() if any(p.search(txt) for p in pats))
+        if not nums: continue
+        refs=", ".join(f'§{n:02d}' for n in nums)
+        entries.append((term, refs))
+    entries.sort(key=lambda e: e[0].lower())
+    out=['<section class="front backmatter" id="index"><h1>Index</h1>',
+         '<p class="small">Numbers are chapter sections (§). Terms link to the chapter.</p>',
+         '<div class="idxcols">']
+    cur=None
+    for term,refs in entries:
+        first=term[0].upper() if term[0].isalpha() else "#"
+        if first!=cur:
+            cur=first; out.append(f'<div class="idx-letter">{first}</div>')
+        out.append(f'<div class="idx-entry"><span class="idx-t">{html.escape(term)}</span> '
+                   f'<span class="idx-r">{refs}</span></div>')
+    out.append('</div></section>')
+    return linkify("".join(out))
+
 EDITION = """<section class="edition">
   <h1 class="ed-title">The Longevity &amp; Fitness Operating Manual</h1>
   <p class="ed-sub">A complete, evidence-graded map of the human body, its aging, and what to do about it.</p>
@@ -361,7 +446,7 @@ STARTHERE = ('<section class="front starthere" id="starthere">'
   '<h1>Start Here — If You Read Nothing Else</h1>' + pandoc(S("00-start-here.md")) + '</section>')
 DOC = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <title>The Longevity &amp; Fitness Operating Manual</title><style>{CSS}</style></head>
-<body>{COVER}{EDITION}{toc_html}{HOWTO}{STARTHERE}{body_html}
+<body>{COVER}{EDITION}{toc_html}{linkify(HOWTO)}{linkify(STARTHERE)}{body_html}{build_glossary()}{build_index()}
 <section class="front" id="colophon"><h1>Colophon</h1>
 <p class="small">Assembled by Nucleus Brain from the <code>health-longevity-fitness</code> research corpus
 (Bucket Foundation, bead <code>bkt-bg6</code>): 50 chapters, 1007 graded claims across 54 claim sets, a

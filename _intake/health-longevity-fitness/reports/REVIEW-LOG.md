@@ -137,3 +137,14 @@ Restructured the front matter in `build_manual.py` to read like an actual book:
 - Added a clean edition/copyright page (title, first-edition 2026, sources, not-medical-advice, scale).
 - Contents now lists the front matter (How to Read, Start Here) and back matter (Colophon) with page
   numbers, alongside the 13 Parts. 560 pages.
+
+## Reference-book navigation (Track 1 of 3 requested improvements)
+Turned the manual into a real reference book (build_manual.py + generated back matter):
+- **Running headers** — the current chapter title flows into the top-right of every page
+  (CSS string-set on .ch-title, carries across a chapter's pages).
+- **Clickable cross-references** — every `§NN` / `§NN.M` in the text (2,720 of them) is now an
+  internal link to that chapter's anchor (linkify(); chapter-number→cid map, sections/ only).
+- **Glossary** — a 139-entry A–Z back-matter glossary (evidence-tier codes + biomarkers/acronyms +
+  the manual's framing concepts), generated from a corpus frequency census, 2-column.
+- **Index** — a 230-entry 2-column subject index; each term links to the chapters (§) it appears in.
+- Front matter + back matter both listed in the Contents. 571 pages.
