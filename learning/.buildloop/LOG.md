@@ -1042,3 +1042,35 @@ classes as their own atom, Diffie–Hellman key exchange, cryptographic hash fun
 complexity. OR the durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential to
 raise its betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins still open: atoms lacking a
 derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
+
+## 2026-07-01 — run 28 (+6 chemistry atoms; branch expansion continues; biophysics untouched)
+Per run-27's handoff (chemistry and mathematics both 49 = thinnest). Picked chemistry, expanded
+**03-chemistry 49→55**, each `requires` into EXISTING chemistry ids only (validated no missing/dupe):
+**hess-law** (enthalpy state function → ΔH additive over any path; ΔH_rxn = Σ ΔHf°(prod) − Σ ΔHf°(react);
+C→CO worked via two combustions; element-in-standard-state ΔHf°≡0 pitfall; ← enthalpy),
+**rate-laws-order** (rate = k[A]^m[B]^n; order is EMPIRICAL not stoichiometric; integrated 1st/2nd
+forms + half-life fingerprint; rate-determining-step link; ← reaction-rate), **transition-state-theory**
+(collision theory Boltzmann×steric + Eyring k=(k_BT/h)e^(−ΔG‡/RT); saddle-point on PES; TS vs
+intermediate; catalyst lowers ΔG‡; ← arrhenius-activation, kinetic-molecular-theory), **solubility-product**
+(Ksp=[A⁺]^a[B⁻]^b; Q vs Ksp precipitation test; AgCl s=√Ksp worked + common-ion effect; Ksp compares
+solubility only for same ion ratio pitfall; ← chemical-equilibrium), **beer-lambert-law** (A=εℓc=
+−log₁₀(I/I₀); linear→concentration from one reading; exp-decay derivation; λ_max reports structure;
+linearity fails A>1; ← solutions-concentration), **crystal-field-theory** (Δo = E(eg)−E(t2g); octahedral
+t2g/eg split; high vs low spin via Δo vs pairing energy w/ d⁶ Fe²⁺; spectrochemical series; color = t2g→eg
+photon; tetrahedral inverts w/ Δt≈4/9Δo pitfall; ← coordination-complexes, mo-theory). Each = full
+7-section lesson + summary + 3 depths + note + art_prompt + 2 quiz (recall + derive) + OPEN sources
+(OpenStax Chemistry 2e / LibreTexts / MIT OCW 5.60). ALL prose ORIGINAL; equations/definitions are facts.
+meta 0.3.0→0.4.0. Mirrored to public/academy-app via `node scripts/sync-academy.mjs` from repo ROOT.
+
+**validate.sh PASSES end-to-end** (chemistry 55/no-dupes/no-missing-requires, manifest, JS syntax,
+60-day engine sim — biophysics diagnostic UNCHANGED at placed 42/asked 18 since the sim loads ONLY
+biophysics.json, so chemistry edits are zero-risk to placement; assess/lang/explorer smokes all green).
+
+**NEXT run:** branch counts now — biophysics ~133, physics 55, chemistry 55, mind 54, information 54,
+cosmology 53, **mathematics 49 = clearly the thinnest** — pick mathematics and add 6. Chemistry minor
+gaps still open if wanted: reaction quotient Q as its own atom, collision-theory MB-tail as its own atom,
+Faraday's laws of electrolysis, Hund/Aufbau as own atom, Raoult's law, Born–Haber cycle, chirality/
+stereochemistry (← isomerism), NMR/IR spectroscopy (← beer-lambert now available as sibling), Nernst
+already present. OR the durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential
+to raise betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins still open across branches:
+atoms lacking a derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0.
