@@ -2,7 +2,7 @@
   "meta": {
     "branch": "07-mind",
     "title": "Mind — brains, computation & cognition",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. Each atom carries a 'resources' array of open, verified learn-more links (Wikipedia for the concept and its jargon, plus deeper open sources: NCBI Bookshelf Neuroscience/Purves, PMC open-access, MIT OCW 9.x).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -3485,6 +3485,360 @@
         }
       ],
       "lesson": "### Intuition\n\nHebbian learning has a dangerous flaw. Strengthening the connections that fire together is a spiral: the more they fire, the stronger they get, the more they fire. Left alone a network would either fall silent or blow up into runaway activity. The brain runs a slower safety system that watches each neuron's average activity and gently turns *all* of its inputs up or down to keep it in a healthy range. That is what lets fast learning happen without breaking the network.\n\n### Precisely\n\n**Hebbian plasticity** (LTP/LTD) is positive feedback and destabilizing. **Homeostatic plasticity** is the negative-feedback counterpart that stabilizes neurons around an activity **set-point**. Its best-known form is **synaptic scaling**: when a neuron's average activity is chronically too high or too low (over hours to days), it scales *all* its excitatory synapses down or up. The move is **multiplicative** — every synapse is multiplied by about the same factor — so relative weights are preserved while overall gain is renormalized. Neurons also adjust intrinsic excitability (ion-channel densities) and inhibitory tone.\n\n### Worked example\n\nBlock all activity in a cultured network with a drug for two days. The neurons, sensing they are far below their target firing rate, scale their excitatory synapses *up*. Now plot the scaled synaptic amplitudes against the original control amplitudes: the points fall on a straight line through the origin. That straight line is the fingerprint of a *uniform multiplicative* change — every synapse grew by the same factor — rather than selective editing of particular synapses.\n\n### Why it's true / how it works\n\nA purely Hebbian network is mathematically unstable unless something bounds total synaptic drive; homeostatic plasticity supplies that bound. The timescale separation is essential: homeostasis acts over **hours–days**, far slower than Hebbian induction (seconds–minutes). If it were as fast, it would cancel the learning it is meant to protect. The set-point is sensed through activity-dependent signals — intracellular **calcium** is a leading candidate — with mediators like TNF-α and the immediate-early gene Arc implicated in scaling.\n\n### Where it connects\n\nHomeostatic plasticity is the stabilizing partner of **hebbian-learning** and **ltp-ltd**: fast associative learning writes the pattern, slow homeostasis keeps the network from saturating or going silent. Its role in renormalizing synapses over the day links directly to **sleep-memory-replay** and the synaptic-homeostasis view of sleep, and its failure is implicated in epilepsy (too little stabilization) and developmental miswiring.\n\n### Watch out\n\nDon't assume homeostatic scaling alone is enough to tame Hebbian learning — some theory argues biological scaling is *too slow* to stabilize fast learning by itself, implying additional rapid compensatory mechanisms. And distinguish it sharply from Hebbian LTP/LTD: scaling is non-associative, cell-wide, and slow, not synapse-specific and fast.\n\n### Worth knowing\n\nThe multiplicative signature is more than a lab curiosity — it is the reason a neuron can rescale its excitability every night without waking up with its memories scrambled. Stability and plasticity, usually framed as opposites, are engineered to coexist by putting them on different clocks."
+    },
+    {
+      "id": "oja-rule",
+      "title": "Oja's rule: normalized Hebbian learning & principal components",
+      "shell": "frontier",
+      "type": "equation",
+      "requires": [
+        "hebbian-learning"
+      ],
+      "summary": "Adding a decay term to the Hebbian rule keeps a synapse's weights bounded, and the fixed point it converges to is the leading principal component of the input — so a single neuron learns to extract the direction of maximum variance.",
+      "depths": {
+        "eli5": "Plain Hebbian learning has a runaway problem: 'fire together, wire together' only ever makes weights grow, so they blow up. Oja's rule adds a gentle brake that shrinks the weights in proportion to how strongly the neuron is firing. The two forces balance, the weights settle to a fixed length, and — this is the beautiful part — the direction they settle into is exactly the one that captures the most variation in the input. The neuron teaches itself to find the biggest pattern in what it sees.",
+        "core": "The basic Hebbian update Δw = η·y·x (output y = wᵀx times input x) is unstable: ‖w‖ grows without bound. Oja's rule fixes this by subtracting a term proportional to y²w:  Δw = η·y·(x − y·w). The −y²w term is a self-normalization that pulls the weight vector back, and at the stable fixed point ⟨Δw⟩ = 0 forces ‖w‖ → 1. More than just bounding the norm, the converged w aligns with the eigenvector of the input covariance matrix C = ⟨xxᵀ⟩ that has the largest eigenvalue — the first principal component. So one linear neuron with a local, biologically plausible learning rule performs online PCA, maximizing the variance of its output for unit-norm weights. Extensions (Sanger's / generalized Hebbian rule, Földiák's anti-Hebbian lateral weights) recover further principal components.",
+        "deep": "Write the average update under a stationary input: ⟨Δw⟩ = η(Cw − (wᵀCw)w). Setting this to zero gives Cw = λw with λ = wᵀCw and ‖w‖ = 1 — an eigenvector equation. Linear-stability analysis shows only the eigenvector of the largest eigenvalue is stable; all others are saddles, so from generic initial conditions the neuron converges to the top principal component and its output variance equals λ_max. This is the canonical demonstration that a *local* rule (each synapse uses only its own pre- and post-synaptic activity, no global error signal) can implement a *global* optimization (variance maximization / reconstruction-error minimization). It grounds unsupervised feature learning: the receptive fields that emerge look like the dominant statistical structure of the input. The main limitation is that pure PCA gives *distributed, holistic* components (each captures global variance), which is why the field moved toward sparse and independent-component objectives to recover localized, parts-based features — but Oja's rule remains the mathematical seed from which normalized, competitive Hebbian learning grew."
+      },
+      "note": "Oja's rule is the bridge between neuroscience and statistics: a synapse using only local pre- and post-synaptic signals ends up computing the top eigenvector of the input covariance. Local plasticity, global principal component — no supervisor required.",
+      "sources": [
+        "PMC open-access (Hebbian learning & PCA; unsupervised learning reviews)",
+        "MIT OCW 9.40 (introduction to neural computation)",
+        "Oja 1982 (a simplified neuron model as a principal component analyzer — facts/equations)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Oja's rule — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Oja%27s_rule"
+        },
+        {
+          "label": "Generalized Hebbian algorithm — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Generalized_Hebbian_algorithm"
+        },
+        {
+          "label": "Principal component analysis — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Principal_component_analysis"
+        },
+        {
+          "label": "PMC open-access — Hebbian learning and principal component analysis",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=Hebbian+learning+principal+component"
+        },
+        {
+          "label": "MIT OCW 9.40 — introduction to neural computation",
+          "url": "https://ocw.mit.edu/search/?q=neural+computation"
+        }
+      ],
+      "art_prompt": "a 2-D scatter of input dots forming an elongated cloud; a weight-vector arrow starts random and rotates to lie along the cloud's long axis (its principal direction), its length settling to 1 as a decay brake balances Hebbian growth",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What problem with the plain Hebbian rule does Oja's rule fix, and what does the converged weight vector represent?",
+          "answer": "Plain Hebbian learning (Δw = η·y·x) makes weights grow without bound. Oja's rule adds a decay term, Δw = η·y·(x − y·w), whose −y²w component normalizes the weight vector so ‖w‖ → 1. The converged weight vector is the first principal component of the input — the direction of maximum variance."
+        },
+        {
+          "level": "derive",
+          "prompt": "Starting from Δw = η·y·(x − y·w) with y = wᵀx, take the average over stationary inputs and show the fixed point is an eigenvector of the input covariance C = ⟨xxᵀ⟩.",
+          "answer": "Substitute y = wᵀx: ⟨Δw⟩ = η⟨(wᵀx)x − (wᵀx)²w⟩ = η(⟨xxᵀ⟩w − (wᵀ⟨xxᵀ⟩w)w) = η(Cw − (wᵀCw)w). Setting ⟨Δw⟩ = 0 gives Cw = (wᵀCw)w, i.e. Cw = λw with λ = wᵀCw. That is the eigenvector equation, and ‖w‖ = 1; stability analysis selects the eigenvector with the largest eigenvalue, the first principal component."
+        }
+      ],
+      "lesson": "### Intuition\n\nPlain Hebbian learning has a runaway problem. 'Fire together, wire together' only ever *adds* to a weight, so the weights grow without limit. Oja's rule adds a gentle brake that shrinks the weights in proportion to how hard the neuron is firing. Growth and brake balance, the weight vector settles to a fixed length, and — the beautiful part — the *direction* it settles into is the one that captures the most variation in the input. The neuron teaches itself to find the single biggest pattern in what it sees.\n\n### Precisely\n\nLet a linear neuron have output **y = wᵀx**. The naive Hebbian update **Δw = η·y·x** is unstable — ‖w‖ diverges. **Oja's rule** subtracts a normalizing term:\n\n$$\\Delta w = \\eta\\, y\\,(x - y\\,w).$$\n\nThe **−y²w** piece is a self-normalization that pulls the weight vector back. At the stable fixed point the average update is zero, which forces **‖w‖ → 1**, and the converged **w** aligns with the eigenvector of the input covariance **C = ⟨xxᵀ⟩** that has the **largest eigenvalue** — the **first principal component**. One linear neuron with a local rule performs online PCA.\n\n### Worked example\n\nFeed a neuron 2-D inputs drawn from an elongated Gaussian cloud whose long axis points at 30°. Start **w** at a random direction. Each step nudges **w** toward the current input (Hebbian) and shrinks it (decay). Over many samples the arrow rotates until it lies along the 30° long axis and its length locks at 1. The output variance ⟨y²⟩ then equals the largest eigenvalue of **C** — the neuron has found and is reporting the direction of maximum spread.\n\n### Why it's true / how it works\n\nAverage the update over stationary inputs: **⟨Δw⟩ = η(Cw − (wᵀCw)w)**. Setting this to zero gives **Cw = λw** with **λ = wᵀCw** and **‖w‖ = 1** — an eigenvector equation. A linear-stability check shows only the top eigenvector is a stable fixed point; the rest are saddles. So from generic starts the neuron converges to the leading principal component. This is the clean proof that a *local* rule — each synapse uses only its own pre- and post-synaptic activity, no global teacher — can carry out a *global* optimization (maximize output variance / minimize reconstruction error).\n\n### Where it connects\n\nOja's rule is the mathematically tamed version of **hebbian-learning**, and it solves the same runaway instability that **homeostatic-plasticity** addresses biologically — here by a built-in decay rather than a slow scaling process. Stacking anti-Hebbian lateral weights (or Sanger's rule) recovers further components, the seed of unsupervised feature learning that later blooms into **sparse-coding** and **efficient-coding**.\n\n### Watch out\n\nOja's rule extracts *variance*, not *meaning*: the top principal component is a global, holistic direction, so the 'features' it learns are distributed rather than the localized, parts-based receptive fields the brain actually shows. That gap is exactly why the field moved on to sparse and independent-component objectives — but they all inherit Oja's core trick of a normalized Hebbian update.\n\n### Worth knowing\n\nOja published this in 1982 as 'a simplified neuron model as a principal component analyzer.' It is one of the cleanest results in theoretical neuroscience: a single, biologically plausible synaptic rule turns out to compute a textbook statistical quantity, with no one telling the neuron what the answer should be."
+    },
+    {
+      "id": "bcm-rule",
+      "title": "The BCM rule: a sliding plasticity threshold",
+      "shell": "frontier",
+      "type": "equation",
+      "requires": [
+        "hebbian-learning",
+        "ltp-ltd"
+      ],
+      "summary": "The Bienenstock–Cooper–Munro rule makes a synapse strengthen or weaken depending on whether postsynaptic activity is above or below a threshold — and that threshold slides with the neuron's recent average activity, giving Hebbian learning built-in stability and selectivity.",
+      "depths": {
+        "eli5": "A synapse needs to know when to grow and when to shrink. The BCM rule uses a moving 'break-even' line for the neuron's activity: fire above the line and the active inputs get stronger; fire below it and they get weaker. The clever bit is that the line itself moves — if the neuron has been very active lately, the line rises, making it harder to strengthen and easier to weaken. That sliding line stops runaway learning and pushes each neuron to become selective for just a few inputs.",
+        "core": "BCM makes synaptic change a *nonlinear* function of postsynaptic activity y with a sliding modification threshold θ_M:  Δw ∝ x·φ(y, θ_M),  where φ(y,θ_M) = y(y − θ_M). When y > θ_M the active input x drives potentiation (LTP); when 0 < y < θ_M it drives depression (LTD); at y = 0 or y = θ_M there is no change. The essential ingredient is that θ_M is not fixed — it tracks the recent average of y, typically as a super-linear function such as θ_M = ⟨y²⟩ (an average over a longer timescale). If the neuron is chronically over-active, θ_M rises, shrinking the potentiation window and expanding depression; if under-active, θ_M falls, making potentiation easier. This negative feedback stabilizes the neuron and, applied to a population of inputs, drives the neuron to become *selective* — responding strongly to a small subset of patterns and weakly to the rest.",
+        "deep": "BCM was proposed to explain experience-dependent development of orientation selectivity and ocular dominance in visual cortex, and it reproduces those phenomena: with the sliding threshold, neurons develop selective, decorrelated receptive fields rather than the diffuse ones a fixed-threshold Hebbian rule gives. The super-linear dependence of θ_M on ⟨y⟩ is what guarantees stability — a purely linear threshold cannot bound the weights, whereas θ_M ∝ ⟨y²⟩ makes any excursion self-correcting. Remarkably, BCM is not just a phenomenological curve: it can be *derived* as gradient ascent on an objective that rewards selectivity (a projection-pursuit / higher-moment maximization), linking it to independent component analysis and sparse coding. Experimentally, the sliding threshold corresponds to **metaplasticity** — prior activity shifts the LTP/LTD crossover point, observed as an activity-dependent shift in the frequency or the level of NMDA-receptor-mediated calcium needed to induce potentiation vs depression. So BCM sits at the intersection of three ideas: it is a stable Hebbian rule, a developmental model of cortical selectivity, and a mechanistic account of metaplasticity."
+      },
+      "note": "The one idea that makes BCM work is the *sliding* threshold: θ_M chases the neuron's own recent activity super-linearly (θ_M ∝ ⟨y²⟩). That single feedback loop converts an unstable Hebbian rule into one that is stable, selective, and matches how real cortex tunes itself to experience — the phenomenon experimentalists call metaplasticity.",
+      "sources": [
+        "PMC open-access (BCM theory; metaplasticity; visual cortex plasticity reviews)",
+        "NCBI Bookshelf (Neuroscience, Purves — cortical plasticity)",
+        "Bienenstock, Cooper & Munro 1982 (theory of the development of neuron selectivity — facts/equations)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "BCM theory — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/BCM_theory"
+        },
+        {
+          "label": "Metaplasticity — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Metaplasticity"
+        },
+        {
+          "label": "Ocular dominance — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Ocular_dominance"
+        },
+        {
+          "label": "PMC open-access — BCM theory & metaplasticity reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=BCM+theory+metaplasticity"
+        },
+        {
+          "label": "MIT OCW 9.40 — introduction to neural computation",
+          "url": "https://ocw.mit.edu/search/?q=neural+computation"
+        }
+      ],
+      "art_prompt": "a plasticity curve φ(y) crossing zero at a threshold θ_M: below θ_M the curve dips negative (LTD), above it rises positive (LTP); a second faded copy of the curve is shifted rightward, an arrow labeled ⟨y²⟩ showing the threshold sliding as average activity grows",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the BCM rule, what determines whether an active synapse potentiates or depresses, and what makes the rule stable?",
+          "answer": "Potentiation vs depression is set by the postsynaptic activity y relative to a modification threshold θ_M: y above θ_M gives LTP, y between 0 and θ_M gives LTD. Stability comes from the threshold *sliding* super-linearly with the neuron's recent average activity (e.g. θ_M ∝ ⟨y²⟩), so chronic over-activity raises θ_M and favors depression — a negative feedback that bounds the weights."
+        },
+        {
+          "level": "derive",
+          "prompt": "Explain why a BCM threshold that depends super-linearly on ⟨y⟩ (like θ_M = ⟨y²⟩) stabilizes the neuron, whereas a fixed θ_M would not.",
+          "answer": "With fixed θ_M, if activity rises above θ_M the active synapses keep potentiating, which raises activity further — positive feedback with no bound. If θ_M grows super-linearly with average activity, a rise in ⟨y⟩ pushes θ_M up faster than y itself, so the potentiation window (y > θ_M) shrinks and more of the range falls into depression (y < θ_M). The neuron is driven back toward the threshold, a self-correcting negative feedback that keeps the weights and firing rate bounded."
+        }
+      ],
+      "lesson": "### Intuition\n\nA synapse has to decide when to grow and when to shrink. The BCM rule uses a moving break-even line for the neuron's activity: fire *above* the line and the currently active inputs get stronger; fire *below* it and they get weaker. The clever part is that the line itself moves — if the neuron has been very active lately, the line rises, making potentiation harder and depression easier. That sliding line stops runaway learning and pushes each neuron to become selective for just a few of its inputs.\n\n### Precisely\n\nBCM makes the weight change a **nonlinear** function of postsynaptic activity **y**, gated by a **modification threshold θ_M**:\n\n$$\\Delta w \\propto x\\,\\phi(y,\\theta_M),\\qquad \\phi(y,\\theta_M)=y\\,(y-\\theta_M).$$\n\nWhen **y > θ_M** the active input **x** drives **LTP**; when **0 < y < θ_M** it drives **LTD**; at **y = 0** or **y = θ_M** nothing changes. The key ingredient: **θ_M slides** with the neuron's recent average activity, super-linearly, e.g. **θ_M = ⟨y²⟩** averaged over a slow timescale. Over-active neuron → θ_M rises → potentiation window shrinks. Under-active → θ_M falls → potentiation gets easier.\n\n### Worked example\n\nGive a neuron a set of input patterns. Early on θ_M is low, so almost any response exceeds it and many inputs potentiate — the neuron responds broadly. As its average activity climbs, θ_M rises, and now only the input that drives the *strongest* response stays above threshold; every weaker pattern falls below θ_M and is depressed. The neuron ends up strongly tuned to one pattern and suppressed for the rest — it has become **selective**, exactly the outcome a fixed Hebbian threshold fails to produce.\n\n### Why it's true / how it works\n\nWith a *fixed* threshold, activity above θ_M potentiates the active synapses, which raises activity further — positive feedback with no bound. Making θ_M grow *super-linearly* with ⟨y⟩ inverts that: a rise in average activity pushes the threshold up faster than the activity itself, shrinking the potentiation window until the neuron is pulled back down. That is a negative feedback that bounds both the weights and the firing rate. BCM can even be derived as gradient ascent on an objective rewarding selectivity, tying it to projection pursuit and independent-component analysis.\n\n### Where it connects\n\nBCM is a *stable, selective* version of **hebbian-learning**, and its LTP/LTD switch is the rule-level statement of **ltp-ltd**. Its sliding threshold is the theory behind **metaplasticity** — prior activity shifting the LTP/LTD crossover — and it was built to explain how visual-cortex neurons develop **receptive-fields** (orientation and ocular-dominance tuning) from experience.\n\n### Watch out\n\nDon't confuse BCM's threshold with a simple firing threshold — θ_M is a *plasticity* threshold that decides the *sign of learning*, and it is dynamic. And note the timescale trick: θ_M must average activity over a *slower* window than the fast synaptic changes it governs, or the feedback would cancel the learning instead of stabilizing it — the same slow-negative-feedback logic seen in homeostatic plasticity.\n\n### Worth knowing\n\nBienenstock, Cooper and Munro proposed BCM in 1982 to explain how cortical neurons become selective during development. Decades later, experiments on activity-dependent shifts in the LTP/LTD induction threshold — metaplasticity — gave the sliding θ_M a concrete biological home in NMDA-receptor calcium signaling. A rule written to make the math stable turned out to describe how real cortex tunes itself."
+    },
+    {
+      "id": "hopfield-network",
+      "title": "Hopfield networks & attractor memory",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "artificial-neural-networks",
+        "hebbian-learning",
+        "working-memory"
+      ],
+      "summary": "A fully recurrent network of binary units with symmetric Hebbian weights has an energy function that always decreases as it updates, so it flows downhill into stored patterns — implementing content-addressable memory as descent into the basins of attractor states.",
+      "depths": {
+        "eli5": "Imagine memories as valleys in a hilly landscape. If you start the network anywhere on the terrain — even a noisy or partial version of a memory — it just rolls downhill until it lands in the nearest valley, which is a complete, clean memory. You don't look memories up by address; you drop in a fragment and the dynamics complete it. That is how a Hopfield network stores and recalls patterns, and why it never gets stuck bouncing forever: every step lowers a quantity called the energy, so it always settles.",
+        "core": "A Hopfield network has N binary units s_i ∈ {−1,+1} connected all-to-all with **symmetric** weights (w_ij = w_ji, w_ii = 0). Units update asynchronously by the sign rule s_i ← sign(Σ_j w_ij s_j). The crucial object is the **energy** (a Lyapunov function):  E = −½ Σ_{ij} w_ij s_i s_j. Because the weights are symmetric, every single-unit update either lowers E or leaves it unchanged, so the dynamics are guaranteed to converge to a local minimum — a fixed-point **attractor**. Patterns are stored with the Hebbian prescription w_ij = (1/N) Σ_μ ξ_i^μ ξ_j^μ over the P memories {ξ^μ}, which sculpts each memory into an energy minimum. Recall is then **content-addressable**: initialize the network with a corrupted or partial cue and it flows downhill into the nearest stored pattern, completing it. Capacity is limited — about P ≈ 0.138 N random patterns can be stored before spurious minima and crosstalk destroy recall.",
+        "deep": "The energy argument is the heart of it. For an asynchronous flip of unit i, the change is ΔE = −Δs_i Σ_j w_ij s_j; since the update sets s_i to the sign of its input, Δs_i and the input have the same sign, so ΔE ≤ 0 — E is non-increasing and bounded below, hence the network reaches a fixed point. Symmetry is what makes E a valid Lyapunov function; drop it and you can get limit cycles or chaos instead of clean attractors. The stored patterns are minima, but the Hebbian sum also creates **spurious attractors** (mixtures of stored patterns and the negated patterns), and beyond the capacity α_c ≈ 0.138 N a phase transition wipes out reliable recall — analyzable with spin-glass statistical mechanics (the network is an Ising model). Hopfield networks are the canonical model of **attractor dynamics** in the brain: they make persistent working-memory states and pattern completion in hippocampal area CA3 concrete, and generalize to continuous 'ring' and 'bump' attractors for head-direction and spatial coding. Modern 'dense associative memories' / modern Hopfield networks replace the quadratic energy with sharper interaction functions to push capacity up to exponential in N, and their update rule turns out to be mathematically equivalent to the attention operation in transformers — reconnecting 1982 associative memory to today's deep networks."
+      },
+      "note": "The whole thing hangs on symmetry. Symmetric weights make E = −½Σ w_ij s_i s_j a Lyapunov function that only ever decreases, which is *why* the network is guaranteed to settle into a memory instead of oscillating forever. Break the symmetry and the guarantee — and the clean attractor memory — go with it.",
+      "sources": [
+        "PMC open-access (attractor networks; associative memory; CA3 pattern completion reviews)",
+        "MIT OCW 9.40 (introduction to neural computation)",
+        "Hopfield 1982 (neural networks and physical systems with emergent collective computational abilities — facts/equations)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Hopfield network — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hopfield_network"
+        },
+        {
+          "label": "Content-addressable memory — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Content-addressable_memory"
+        },
+        {
+          "label": "Attractor network — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Attractor_network"
+        },
+        {
+          "label": "PMC open-access — attractor dynamics & associative memory",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=attractor+network+associative+memory"
+        },
+        {
+          "label": "MIT OCW 9.40 — introduction to neural computation",
+          "url": "https://ocw.mit.edu/search/?q=neural+computation"
+        }
+      ],
+      "art_prompt": "an energy landscape of rolling hills and valleys; several labeled valleys are stored memory patterns; a marble dropped at a noisy point rolls downhill into the nearest valley, arriving as a clean pattern — arrows tracing the downhill trajectory",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What guarantees that a Hopfield network settles into a stored memory rather than oscillating forever, and how are memories stored?",
+          "answer": "Symmetric weights make the energy E = −½ Σ w_ij s_i s_j a Lyapunov function: each asynchronous update lowers E or leaves it unchanged, and since E is bounded below the network must reach a fixed point (an attractor). Memories are stored by the Hebbian rule w_ij = (1/N) Σ_μ ξ_i^μ ξ_j^μ, which turns each pattern into an energy minimum; recall is content-addressable — a partial or noisy cue flows downhill into the nearest stored pattern."
+        },
+        {
+          "level": "derive",
+          "prompt": "Show that flipping a unit under the rule s_i ← sign(Σ_j w_ij s_j) never increases E = −½ Σ_{ij} w_ij s_i s_j (with symmetric w, w_ii = 0).",
+          "answer": "Only unit i changes. The field on i is h_i = Σ_j w_ij s_j. Using symmetry, the energy terms involving s_i are −s_i h_i, so ΔE = −Δs_i · h_i. The update sets s_i to sign(h_i), so the new s_i has the same sign as h_i; therefore Δs_i (new minus old) and h_i share a sign (or Δs_i = 0), giving Δs_i · h_i ≥ 0 and ΔE = −Δs_i·h_i ≤ 0. E is non-increasing and bounded below, so the dynamics converge to a fixed point."
+        }
+      ],
+      "lesson": "### Intuition\n\nPicture memories as valleys in a hilly landscape. Start the network anywhere on the terrain — even a noisy or partial version of a memory — and it rolls downhill until it lands in the nearest valley, which is a complete, clean memory. You don't look memories up by address; you drop in a fragment and the dynamics *complete* it. And it never bounces forever, because every step lowers a quantity called the energy, so it always settles.\n\n### Precisely\n\nTake **N** binary units **s_i ∈ {−1,+1}** connected all-to-all with **symmetric** weights (**w_ij = w_ji**, **w_ii = 0**). Units update asynchronously by\n\n$$s_i \\leftarrow \\operatorname{sign}\\Big(\\textstyle\\sum_j w_{ij}s_j\\Big).$$\n\nThe central object is the **energy**\n\n$$E = -\\tfrac12\\sum_{ij} w_{ij}\\,s_i s_j.$$\n\nBecause the weights are symmetric, each update lowers **E** or leaves it unchanged, so the network is guaranteed to converge to a local minimum — a fixed-point **attractor**. Store patterns with the Hebbian rule **w_ij = (1/N) Σ_μ ξ_i^μ ξ_j^μ**, and each memory becomes an energy minimum. Recall is **content-addressable**: a corrupted cue flows downhill into the nearest stored pattern.\n\n### Worked example\n\nStore three 100-unit patterns with the Hebbian rule. Now present a version of pattern #2 with 20% of its bits flipped. Update units one at a time by the sign rule. Each flip that disagrees with the local field gets corrected, E drops, and after a sweep or two the network locks onto the clean pattern #2 — it has *completed* the corrupted cue. Push past ~14 stored patterns (0.138 × 100), though, and spurious valleys appear and recall breaks down.\n\n### Why it's true / how it works\n\nFor an asynchronous flip of unit i with field h_i = Σ_j w_ij s_j, the energy change is **ΔE = −Δs_i · h_i**. The update sets s_i to sign(h_i), so Δs_i and h_i share a sign and ΔE ≤ 0. E is non-increasing and bounded below, so the network must reach a fixed point. **Symmetry** is what makes E a valid Lyapunov function; without it you can get limit cycles or chaos instead of clean attractors. Analyzed as an Ising spin system, capacity has a sharp limit near **α_c ≈ 0.138 N** beyond which crosstalk destroys recall.\n\n### Where it connects\n\nA Hopfield network is a recurrent **artificial-neural-network** whose weights are set by **hebbian-learning** and whose stable states are the substrate of **working-memory** (persistent attractor states) and hippocampal pattern completion. The same attractor idea, made continuous, gives the ring and bump attractors behind **cognitive-map** head-direction and place coding. Modern Hopfield networks with sharper energies reach exponential capacity, and their update rule is mathematically the *attention* operation in transformers.\n\n### Watch out\n\nThe Hebbian storage rule also manufactures **spurious attractors** — mixtures and negatives of the stored patterns — so not every valley is a real memory. And capacity is unforgiving: about 0.138 N random patterns is the ceiling for the classic rule; overload it and a phase transition wipes out reliable recall entirely.\n\n### Worth knowing\n\nHopfield's 1982 paper showed that a physics energy function could *do computation* — collective, emergent, content-addressable memory from simple symmetric units. It fused statistical mechanics with neuroscience and, four decades later, its dense-memory descendants turned out to be the same math as the attention mechanism powering large language models."
+    },
+    {
+      "id": "backpropagation",
+      "title": "Backpropagation & the credit-assignment problem",
+      "shell": "frontier",
+      "type": "method",
+      "requires": [
+        "artificial-neural-networks",
+        "perceptron"
+      ],
+      "summary": "Backpropagation solves how to train a multi-layer network by applying the chain rule backward through the layers, computing each weight's contribution to the output error in one efficient pass so gradient descent can adjust every weight — including hidden ones.",
+      "depths": {
+        "eli5": "A deep network has layers of hidden units with no 'correct answer' of their own, so how do you know which knob to turn when the final output is wrong? Backpropagation answers this: it measures the error at the output, then passes the blame backward layer by layer, figuring out how much each hidden weight contributed to the mistake. Once every weight knows its share of the blame, you nudge each one a little in the direction that reduces the error. Repeat, and the network learns.",
+        "core": "The **credit-assignment problem** is the obstacle: a hidden unit has no target, so its error is undefined a priori. Backpropagation defines it via the **chain rule**. For a loss L and a layer's pre-activation z = Wa_prev + b with activation a = f(z), define the local error δ = ∂L/∂z. At the output layer δ comes directly from the loss and the output nonlinearity. For earlier layers it is computed *backward*:  δ_layer = (Wᵀ_next δ_next) ⊙ f′(z_layer). The weight gradient is then ∂L/∂W = δ · a_prevᵀ. So one **forward pass** computes activations, one **backward pass** propagates δ from output to input, and every gradient is obtained in time linear in the number of weights — far cheaper than perturbing each weight separately. Gradient descent then updates W ← W − η·∂L/∂W. Backprop is just reverse-mode automatic differentiation applied to a layered function.",
+        "deep": "Backprop broke the barrier the single-layer **perceptron** hit: a perceptron cannot learn non-linearly-separable functions like XOR, but a network with a hidden layer can — and backprop makes training that hidden layer tractable. Its efficiency is the point: naive numerical gradients cost one forward pass per weight (O(W²) work), whereas reverse-mode differentiation gets all W partial derivatives from a single backward pass (O(W)). This is what made deep learning practical. Caveats: gradient descent finds *local* minima (in practice fine for large overparameterized nets), and deep stacks suffer **vanishing/exploding gradients** because the backward product Πf′ shrinks or grows across many layers — mitigated by ReLU activations, normalization, and residual connections. Biologically, backprop is often called implausible: it needs the *same* weights for the forward and backward passes (the 'weight-transport problem') and a separate error-carrying pathway. This has driven a research program on biologically plausible approximations — feedback alignment, target propagation, predictive-coding formulations, and dendritic-error models — several of which connect directly to the brain's own error-driven learning."
+      },
+      "note": "The single idea is the chain rule run *backwards*. Computing the gradient forward would cost one pass per weight; propagating the error signal δ from the output back to the input gets every weight's gradient in one pass, linear in the number of weights. That efficiency — reverse-mode automatic differentiation — is what made training deep networks possible at all.",
+      "sources": [
+        "PMC open-access (biologically plausible backpropagation; deep learning & the brain reviews)",
+        "MIT OCW 6.036 / 9.40 (machine learning; neural computation)",
+        "Rumelhart, Hinton & Williams 1986 (learning representations by back-propagating errors — facts/equations)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Backpropagation — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Backpropagation"
+        },
+        {
+          "label": "Automatic differentiation — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Automatic_differentiation"
+        },
+        {
+          "label": "Vanishing gradient problem — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Vanishing_gradient_problem"
+        },
+        {
+          "label": "PMC open-access — backpropagation and the brain",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=backpropagation+and+the+brain"
+        },
+        {
+          "label": "MIT OCW — machine learning / neural computation",
+          "url": "https://ocw.mit.edu/search/?q=machine+learning"
+        }
+      ],
+      "art_prompt": "a layered network with a forward arrow (inputs → output) computing activations, and a bold red backward arrow carrying an error signal δ from the output back through each layer, each weight tagged with its share of the blame",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the credit-assignment problem, and how does backpropagation solve it?",
+          "answer": "Hidden units have no target of their own, so it is unclear how much each contributes to the output error — that is the credit-assignment problem. Backpropagation solves it with the chain rule: it computes the error at the output, then propagates a local error signal δ backward through the layers (δ_layer = (Wᵀ_next δ_next) ⊙ f′(z)), giving every weight its gradient ∂L/∂W = δ·a_prevᵀ in a single backward pass so gradient descent can update all weights."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why is one backward pass (reverse-mode differentiation) dramatically cheaper than estimating the gradient by perturbing each weight, and what does that cost buy for deep networks?",
+          "answer": "Perturbing each of the W weights and re-running the forward pass costs about one forward pass per weight — O(W) forward passes, i.e. O(W²) total work. Backpropagation reuses the chain rule: a single forward pass computes all activations and a single backward pass propagates δ, and from those every one of the W partial derivatives is read off — total work O(W), one forward + one backward pass regardless of W. That linear cost is what makes training networks with millions of weights feasible; without it, deep learning would be computationally hopeless."
+        }
+      ],
+      "lesson": "### Intuition\n\nA deep network has layers of hidden units, and none of them has a 'correct answer' of its own — so when the final output is wrong, which knob do you turn? Backpropagation answers this. It measures the error at the output, then passes the blame *backward* layer by layer, working out how much each hidden weight contributed to the mistake. Once every weight knows its share of the blame, you nudge each one a little in the direction that reduces the error. Repeat, and the network learns.\n\n### Precisely\n\nThe **credit-assignment problem**: a hidden unit has no target, so its error is undefined up front. Backprop defines it with the **chain rule**. For loss **L**, a layer computes **z = W·a_prev + b** and **a = f(z)**. Define the local error **δ = ∂L/∂z**. At the output, δ comes straight from the loss and output nonlinearity. For earlier layers it propagates backward:\n\n$$\\delta_{\\text{layer}} = \\big(W_{\\text{next}}^{\\mathsf T}\\,\\delta_{\\text{next}}\\big)\\odot f'(z_{\\text{layer}}),\\qquad \\frac{\\partial L}{\\partial W}=\\delta\\,a_{\\text{prev}}^{\\mathsf T}.$$\n\nOne **forward pass** computes activations, one **backward pass** propagates δ, and every gradient falls out in time linear in the number of weights. Then gradient descent: **W ← W − η·∂L/∂W**.\n\n### Worked example\n\nTake a two-layer net that should output 1 but outputs 0.2. The output error is δ_out = (0.2 − 1)·f′. Multiply by the output weights transposed and by f′ of the hidden pre-activations to get the hidden error δ_hidden — that is each hidden unit's share of the blame. Multiply each δ by the activity that fed into it to get the weight gradients, and step every weight downhill. The next forward pass outputs, say, 0.35 — closer. Iterate over the data and the hidden layer learns useful intermediate features.\n\n### Why it's true / how it works\n\nBackprop is just **reverse-mode automatic differentiation** on a layered function. The chain rule says ∂L/∂w for a deep weight is a product of local derivatives along the path to the output; computing those products *backward* lets every weight reuse the same δ's. Naively perturbing each weight costs one forward pass per weight — O(W²) work — while the backward pass gets all W gradients at once, O(W). That efficiency is exactly what made training large networks feasible.\n\n### Where it connects\n\nBackprop is the training algorithm for the multi-layer **artificial-neural-networks** whose single-layer ancestor is the **perceptron** — and it breaks the perceptron's fatal limit, since a hidden layer trained by backprop *can* learn non-linearly-separable functions like XOR. Its error-driven, gradient-following logic is the engineering cousin of the brain's error signals in **reward-prediction-error** and **predictive-coding**.\n\n### Watch out\n\nBackprop is widely judged **biologically implausible**: it needs the *same* weights for the forward and backward passes (the 'weight-transport problem') and a dedicated error-carrying channel — which is why feedback alignment, target propagation, and predictive-coding approximations exist. Practically, watch for **vanishing/exploding gradients**: the backward product of f′ terms shrinks or blows up across many layers, tamed by ReLUs, normalization, and residual connections.\n\n### Worth knowing\n\nBackpropagation was popularized by Rumelhart, Hinton and Williams in 1986 and is, underneath, a 1970s idea from automatic differentiation. Every large model trained today — vision nets, language models — learns by this one backward sweep of the chain rule. The deepest question it raises is whether the brain does something like it, which remains an open and active research front."
+    },
+    {
+      "id": "sparse-coding",
+      "title": "Sparse coding & the Olshausen–Field model",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "efficient-coding",
+        "receptive-fields"
+      ],
+      "summary": "Sparse coding represents each input as a combination of only a few active units drawn from an overcomplete dictionary — and learning such a code from natural images produces localized, oriented, bandpass filters that match primary visual cortex receptive fields.",
+      "depths": {
+        "eli5": "There are two ways to describe a scene. One uses a little bit of every feature at once — dense and hard to read. The other picks just a handful of the right building blocks and says 'this scene is mostly these few.' The brain seems to prefer the second: at any moment only a small fraction of neurons fire hard, and each stands for a specific, meaningful feature. When you force a learning system to describe natural images this way, the building blocks it discovers look exactly like the edge-detectors found in the visual cortex.",
+        "core": "Sparse coding models an input x as a linear combination x ≈ Σ_i a_i φ_i of dictionary elements φ_i (the 'basis' or receptive fields) with coefficients a_i that are mostly zero. Learning minimizes a two-term objective:  E = ‖x − Σ_i a_i φ_i‖² + λ Σ_i S(a_i), where the first term demands faithful reconstruction and the second is a sparseness penalty (e.g. S(a) = |a|, an L1 penalty) that forces most coefficients to zero. The dictionary is typically **overcomplete** (more elements than input dimensions), so there are many ways to reconstruct x and sparseness picks the one using the fewest active units. Olshausen & Field (1996) trained exactly this on patches of natural images with no labels; the learned φ_i emerged as **localized, oriented, bandpass** filters — a close match to the receptive fields of simple cells in **V1**. The message: V1's tuning is not arbitrary but the sparse, efficient code for the statistics of natural scenes.",
+        "deep": "Sparse coding is a specific instantiation of the **efficient-coding hypothesis**: given the heavy-tailed, structured statistics of natural images, the metabolically and informationally efficient representation is one where few units are active and their responses are as independent as possible. The L1 (or log-prior) penalty is what makes the code sparse; it corresponds to assuming the coefficients have a heavy-tailed (super-Gaussian) prior, and minimizing E is MAP inference under that prior plus dictionary learning. Sparse coding is closely related to **independent component analysis** — both seek statistically independent, non-Gaussian components — and to compressed sensing, where sparse recovery from few measurements is provably possible. Beyond V1, sparsity offers concrete brain benefits: it reduces metabolic cost (few spikes), increases the storage capacity and separability of downstream associative memories, and yields representations robust to noise. The overcompleteness matters — a critically-sampled basis (like standard ICA) cannot be much sparser than the data dimension, whereas an overcomplete dictionary lets a very small active set describe each input, which is what real cortex, with far more V1 neurons than retinal inputs, appears to do."
+      },
+      "note": "The headline result: minimize reconstruction error plus a sparseness penalty on natural-image patches, with no labels and no knowledge of the brain, and the basis functions that emerge are localized, oriented, bandpass edge filters — the receptive fields of V1 simple cells. Cortical tuning falls out of the statistics of the world plus a demand for a sparse code.",
+      "sources": [
+        "PMC open-access (sparse coding; efficient coding of natural images; V1 receptive fields reviews)",
+        "MIT OCW 9.40 (introduction to neural computation)",
+        "Olshausen & Field 1996 (emergence of simple-cell receptive field properties by learning a sparse code for natural images — facts)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Neural coding — sparse coding (Wikipedia)",
+          "url": "https://en.wikipedia.org/wiki/Neural_coding#Sparse_coding"
+        },
+        {
+          "label": "Sparse dictionary learning — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sparse_dictionary_learning"
+        },
+        {
+          "label": "Independent component analysis — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Independent_component_analysis"
+        },
+        {
+          "label": "PMC open-access — sparse coding of natural images & V1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=sparse+coding+natural+images+V1"
+        },
+        {
+          "label": "MIT OCW 9.40 — introduction to neural computation",
+          "url": "https://ocw.mit.edu/search/?q=neural+computation"
+        }
+      ],
+      "art_prompt": "a natural-image patch on the left reconstructed on the right as a sum of just three highlighted basis functions pulled from a big grid dictionary of oriented, localized edge filters; most dictionary cells greyed out (inactive), the few active ones glowing",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does sparse coding optimize, and what famously emerges when it is trained on natural images?",
+          "answer": "It minimizes reconstruction error plus a sparseness penalty: E = ‖x − Σ a_i φ_i‖² + λ Σ S(a_i), so each input is represented by only a few active units drawn from an (often overcomplete) dictionary. Trained on natural-image patches with no labels (Olshausen & Field 1996), the learned dictionary elements emerge as localized, oriented, bandpass filters — closely matching the receptive fields of V1 simple cells."
+        },
+        {
+          "level": "derive",
+          "prompt": "Explain why the two terms in E = ‖x − Σ a_i φ_i‖² + λ Σ S(a_i) pull against each other, and what an overcomplete dictionary contributes.",
+          "answer": "The first term rewards accurate reconstruction, which is easiest with many active coefficients; the second penalizes non-zero coefficients (e.g. L1), pushing most to zero. Their balance (set by λ) yields a faithful but sparse representation — the fewest units that still reconstruct x. An overcomplete dictionary (more elements than input dimensions) makes the reconstruction under-determined, so many solutions exist; the sparseness penalty selects the one using the smallest active set, allowing far sparser codes than a critically-sampled basis could."
+        }
+      ],
+      "lesson": "### Intuition\n\nThere are two ways to describe a scene. One uses a little of every feature at once — dense and hard to read. The other picks a handful of the right building blocks and says 'this is mostly these few.' The brain seems to prefer the second: at any instant only a small fraction of neurons fire hard, each standing for a specific feature. Force a learning system to describe natural images this way and the building blocks it discovers look exactly like the edge-detectors of the visual cortex.\n\n### Precisely\n\nSparse coding writes an input as a linear combination **x ≈ Σ_i a_i φ_i** of dictionary elements **φ_i** with coefficients **a_i** that are mostly zero. Learning minimizes\n\n$$E = \\big\\| x - \\textstyle\\sum_i a_i\\varphi_i \\big\\|^2 + \\lambda \\sum_i S(a_i),$$\n\nwhere the first term demands faithful reconstruction and **S** is a sparseness penalty (e.g. **S(a)=|a|**, an L1 penalty) that drives most coefficients to zero. The dictionary is usually **overcomplete** — more elements than input dimensions — so many reconstructions exist and sparseness picks the one with the fewest active units.\n\n### Worked example\n\nCut thousands of small patches from photographs of natural scenes. Initialize a dictionary of, say, 200 random 12×12 filters. Alternate: (1) for each patch, find the sparse coefficients that reconstruct it under the L1 penalty; (2) nudge the dictionary to reduce reconstruction error. With no labels and no biology built in, the filters converge to **localized, oriented, bandpass** shapes — little edge and bar detectors at various positions, orientations, and scales. Those are, to a striking degree, the receptive fields recorded from V1 simple cells.\n\n### Why it's true / how it works\n\nSparse coding is the **efficient-coding hypothesis** made concrete. Natural images have heavy-tailed, structured statistics, and the informationally and metabolically efficient representation uses few, near-independent active units. The L1 penalty corresponds to a heavy-tailed prior on the coefficients, so minimizing E is MAP inference under that prior together with dictionary learning. Overcompleteness is essential: a critically-sampled basis can't be much sparser than the data dimension, but an overcomplete dictionary lets a tiny active set describe each input — matching a cortex that has far more V1 neurons than retinal inputs.\n\n### Where it connects\n\nSparse coding is a direct application of **efficient-coding**, and its punchline is an explanation of **receptive-fields**: V1 tuning is the sparse code for natural-scene statistics rather than an arbitrary design. It is a close relative of independent component analysis (both seek independent, non-Gaussian components) and of compressed sensing. Sparse representations also make downstream **hopfield-network**-style associative memories more separable and higher-capacity.\n\n### Watch out\n\nSparse coding explains V1's *static* linear receptive fields well, but real neurons add nonlinearities, temporal dynamics, and contextual (surround) modulation that a plain linear-generative sparse model omits. And 'sparse' is not the same as 'local one-neuron-per-concept' — it means a *small active fraction*, still a distributed code, just a lean one.\n\n### Worth knowing\n\nOlshausen and Field's 1996 result is one of the landmark 'the brain is efficient' demonstrations: an unsupervised objective, fed only the statistics of the natural world, reinvents the receptive fields neuroscientists had spent decades recording. It reframed cortical tuning as an inevitable consequence of coding the world sparsely."
+    },
+    {
+      "id": "signal-detection-theory",
+      "title": "Signal detection theory: d′, criterion & the ROC",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "perception-inference",
+        "drift-diffusion"
+      ],
+      "summary": "Signal detection theory separates how well a system can tell signal from noise (sensitivity, d′) from where it sets its yes/no line (criterion), letting you measure true perceptual sensitivity independent of response bias — summarized geometrically by the ROC curve.",
+      "depths": {
+        "eli5": "Say you're a radiologist deciding if a faint spot is a tumor. Two different things shape your calls: how sharp your eyes and the image are (can you actually see the difference?), and how cautious you are (do you flag anything suspicious, or only obvious cases?). If you just count how often you say 'tumor,' you can't tell a sharp-eyed cautious person from a fuzzy-eyed trigger-happy one. Signal detection theory pulls these two apart — a number for real sensitivity and a separate number for how you're leaning — so you measure perception without confusing it with attitude.",
+        "core": "Model each trial's internal evidence as a sample from one of two overlapping Gaussian distributions: **noise** (signal absent) and **signal + noise** (signal present), with equal variance and means separated by d′. The observer says 'yes' when the evidence exceeds a **criterion** c. This yields four outcomes: **hit** (say yes, signal present), **miss**, **false alarm** (say yes, signal absent), **correct rejection**. Two independent quantities summarize behavior: **sensitivity d′ = z(hit rate) − z(false-alarm rate)** (the separation of the two distributions in standard-deviation units — pure discriminability), and the **criterion / bias** (where the cutoff sits — a strategy, not a limit on perception). The **ROC curve** plots hit rate against false-alarm rate as the criterion is swept; a curve bowing toward the top-left means high sensitivity, while the diagonal means chance. The area under the ROC (AUC) is a criterion-free sensitivity measure equal to the probability the observer ranks a random signal trial above a random noise trial.",
+        "deep": "SDT's core insight is that *accuracy alone is ambiguous*: the same hit rate can reflect a keen but liberal observer or a dull but conservative one, and only by using hits *and* false alarms together can you factor performance into sensitivity and bias. The optimal criterion is set by decision theory — the likelihood-ratio cutoff that maximizes expected value given the prior probability of signal and the payoffs/costs of each outcome — which is why manipulating base rates or rewards shifts c without changing d′. SDT is the *static* counterpart of the **drift-diffusion model**: DDM adds time by accumulating noisy evidence to a bound, and in the limit its accuracy maps onto a d′-like sensitivity while its starting point and bounds play the role of bias — so SDT is what you get when you don't care how long the decision took. It is also the measurement layer of **perception as inference**: the Gaussian evidence is the likelihood, the criterion encodes the prior and costs, and the yes/no decision is Bayesian choice under uncertainty. Practically, SDT is indispensable across psychophysics, memory (recognition = old/new discrimination), medical diagnostics, and machine-learning evaluation, where the ROC/AUC is the standard bias-free performance metric."
+      },
+      "note": "The one move that makes SDT powerful: use *both* the hit rate and the false-alarm rate. Response rate alone can't separate a sharp, cautious observer from a fuzzy, trigger-happy one — but d′ = z(H) − z(FA) isolates true sensitivity, and the criterion captures the bias separately. Perception and attitude, finally untangled.",
+      "sources": [
+        "PMC open-access (signal detection theory; psychophysics; recognition memory ROC reviews)",
+        "MIT OCW 9.x (perception; computational cognitive science)",
+        "Green & Swets 1966 (signal detection theory and psychophysics — facts/equations)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Detection theory — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Detection_theory"
+        },
+        {
+          "label": "Sensitivity index d′ — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sensitivity_index"
+        },
+        {
+          "label": "Receiver operating characteristic (ROC) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Receiver_operating_characteristic"
+        },
+        {
+          "label": "PMC open-access — signal detection theory in perception & memory",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=signal+detection+theory+d-prime+ROC"
+        },
+        {
+          "label": "MIT OCW 9.x — perception / computational cognitive science",
+          "url": "https://ocw.mit.edu/search/?q=perception"
+        }
+      ],
+      "art_prompt": "two overlapping bell curves (noise and signal+noise) separated by a labeled distance d′, a vertical criterion line c cutting both; shaded tails labeled hit and false alarm; inset ROC curve of hit-rate vs false-alarm-rate bowing toward the top-left corner",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In signal detection theory, what do d′ and the criterion each measure, and why do you need both hit and false-alarm rates?",
+          "answer": "d′ measures sensitivity — how far apart the noise and signal+noise evidence distributions are (in standard-deviation units), i.e. true discriminability. The criterion measures bias — where the observer sets the yes/no cutoff, a strategy independent of sensitivity. You need both rates because a given hit rate is ambiguous: it could come from high sensitivity or from a liberal criterion. Combining hits and false alarms (d′ = z(H) − z(FA)) separates the two."
+        },
+        {
+          "level": "derive",
+          "prompt": "An observer has hit rate 0.84 and false-alarm rate 0.16. Using z(0.84) ≈ +1 and z(0.16) ≈ −1, compute d′, and explain what shifting only the criterion would do to these rates and to d′.",
+          "answer": "d′ = z(hit) − z(false alarm) = (+1) − (−1) = 2. Shifting the criterion to be more liberal (lower cutoff) raises *both* the hit rate and the false-alarm rate; a more conservative cutoff lowers both. Because the criterion moves the observer *along* a fixed ROC curve, d′ — the separation of the two distributions — stays 2 regardless of where the criterion sits; only sensitivity, not bias, changes d′."
+        }
+      ],
+      "lesson": "### Intuition\n\nA radiologist decides whether a faint spot is a tumor. Two different things shape the call: how sharp the eyes and image are (can you actually see the difference?), and how cautious the reader is (flag anything suspicious, or only obvious cases?). If you only count how often they say 'tumor,' you can't tell a sharp-eyed cautious reader from a fuzzy-eyed trigger-happy one. Signal detection theory pulls these apart — one number for real sensitivity, a separate one for how the reader is leaning.\n\n### Precisely\n\nModel the internal evidence on each trial as a draw from one of two overlapping Gaussians: **noise** (signal absent) and **signal + noise** (signal present), equal variance, means separated by **d′**. The observer says 'yes' when evidence exceeds a **criterion c**. Four outcomes result: **hit**, **miss**, **false alarm**, **correct rejection**. Two independent summaries:\n\n$$d' = z(\\text{hit rate}) - z(\\text{false-alarm rate})$$\n\nis the **sensitivity** (distribution separation in SD units — pure discriminability), and the **criterion** is the **bias** (where the cutoff sits — a strategy). Sweeping c traces the **ROC curve** of hit rate vs false-alarm rate; the area under it (AUC) is a criterion-free sensitivity score.\n\n### Worked example\n\nAn observer scores a hit rate of 0.84 and a false-alarm rate of 0.16. Convert to z-scores: z(0.84) ≈ +1, z(0.16) ≈ −1. Then **d′ = (+1) − (−1) = 2** — a solidly sensitive observer. Now tell them 'don't miss any signals': they become liberal, and *both* rates rise, say to 0.93 and 0.31. Recompute d′ and it is still ≈ 2 — the criterion moved them *along* the same ROC curve without changing their underlying sensitivity.\n\n### Why it's true / how it works\n\nAccuracy alone is ambiguous — the same hit rate can come from a keen liberal observer or a dull conservative one. Using hits *and* false alarms together factors performance into sensitivity and bias. The *optimal* criterion is the likelihood-ratio cutoff that maximizes expected value given the prior probability of a signal and the costs/payoffs of each outcome, which is why changing base rates or rewards slides c while leaving d′ fixed. That is decision theory setting the threshold on top of a fixed sensory representation.\n\n### Where it connects\n\nSDT is the static face of the **drift-diffusion** model: DDM adds time by accumulating noisy evidence to a bound, and if you ignore how long the decision took, its accuracy collapses onto a d′-like sensitivity with the starting point/bounds acting as bias. It is also the measurement layer of **perception-inference**: the Gaussian evidence is the likelihood, the criterion carries the prior and costs, and the yes/no call is Bayesian choice under uncertainty.\n\n### Watch out\n\nThe clean d′ formula assumes the two distributions are Gaussian with *equal variance*; when they aren't (common in recognition memory), the ROC becomes asymmetric and you need z-ROC slopes or the AUC rather than a single d′. And never read a raw response rate as 'sensitivity' — without the false-alarm rate you cannot separate seeing from guessing.\n\n### Worth knowing\n\nSignal detection theory came out of 1950s–60s radar and psychophysics (Green & Swets, 1966) and is now everywhere: psychophysics, recognition memory, medical diagnostics, and machine-learning evaluation, where ROC/AUC is *the* bias-free metric. Its lasting gift is a discipline of thought — always ask whether a change in behavior is a change in what the system can perceive or merely a change in where it draws the line."
     }
   ]
 }

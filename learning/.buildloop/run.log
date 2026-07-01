@@ -2451,3 +2451,43 @@ Each has the full 7-section lesson, 3 depths, summary, note, art_prompt, 2 quiz 
 
 ========== build run 2026-07-01T08:01:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. One focused, validated improvement this run:
+
+**Expanded the cosmology branch 53→59** (the handoff-flagged thinnest branch). Added 6 interconnected, original-prose atoms filling real gaps in background dynamics and structure theory:
+
+- **fluid-equation** — ρ̇+3H(ρ+p)=0; energy conservation → the a⁻³/a⁻⁴/const dilution laws
+- **deceleration-parameter** — q≡−äa/ȧ²; q₀≈−0.55 as the kinematic signature of dark energy
+- **growth-of-structure** — δ̈+2Hδ̇−4πGρ̄δ=0; scale-independent growth factor D(a), Hubble friction
+- **primordial-power-spectrum** — 𝒫(k)∝k^{n_s−1}; inflation's near-scale-invariant prediction, n_s≈0.965
+- **transfer-function** — P(k)∝k^{n_s}T²(k)D²(a); the k_eq turnover at matter–radiation equality
+- **cmb-polarization** — Thomson-scattered quadrupole → E/B modes, 90° out of phase with T peaks
+
+Each has the full 7-section lesson, summary, 3 depths, note, art_prompt, and 2 quiz items (recall + derive-with-equation), OPEN sources only (MIT OCW 8.286, arXiv astro-ph, Wikipedia, Einstein Online). All prose original; equations/definitions are facts. `requires` edges resolve into existing cosmology ids (plus one new internal edge transfer-function←primordial-power-spectrum). Meta bumped 0.5.0→0.6.0, mirrored to `public/academy-app`.
+
+`validate.sh` **passes end-to-end** (cosmology 59, no dupes/missing/empty; manifest, JS syntax, 60-day engine sim, all diagnostic/assess/lang/explorer smokes green). Biophysics untouched, so placement is unchanged. Committed locally (`1c93bbe6c`); no push. LOG.md updated — **next run** should pick mind or information (both tied at 54, now thinnest).
+---------- run done 2026-07-01T08:11:17Z ----------
+
+========== build run 2026-07-01T08:26:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. One focused, validated improvement committed locally.
+
+**What I did this run (run 31):**
+
+Read state first (`.buildloop/LOG.md`) — run-30's handoff flagged **mind (54)** and **information (54)** tied as thinnest, with a concrete gap list for information. I picked **information** and added 6 new atoms, expanding **04-information 54 → 60**:
+
+1. **data-processing-inequality** — `I(X;Z) ≤ I(X;Y)` for Markov chains; chain-rule proof; sufficient-statistic equality; the converse workhorse behind Fano/rate–distortion.
+2. **differential-entropy** — `h(X) = −∫ f ln f`; can be negative, scale-dependent; uniform[0,a]→ln a worked; Gaussian max-entropy.
+3. **lempel-ziv** — universal compression to the entropy rate without knowing statistics; LZ77/LZ78; ties to Kolmogorov complexity + DEFLATE.
+4. **diffie-hellman** — `(g^a)^b = g^{ab}` key exchange; worked toy example (p=23, key=2); discrete-log hardness, forward secrecy, MITM caveat.
+5. **cryptographic-hash** — preimage/2nd-preimage/collision resistance; birthday bound → n/2-bit security; signatures/commitments/HMAC/PoW.
+6. **boolean-circuits** (frontier) — `P ⊆ P/poly`; circuit lower bounds as an attack on P vs NP; AC⁰/PARITY, natural-proofs barrier.
+
+Each atom: full 6-section lesson, summary, 3 depths, note, art_prompt, 2 quiz items (recall + derive), OPEN sources only (Cover & Thomas, Katz & Lindell, Arora & Barak, MIT OCW 6.441, NIST FIPS 202, Wikipedia). All prose original; every `requires` edge points into existing information ids. Mirrored to `public/academy-app` (byte-identical).
+
+**Validation:** `cd app && ./validate.sh` → **exit 0, ALL VALIDATIONS PASSED** (information 60, no dupes/missing requires, all 8 corpora OK, engine sim unchanged). I confirmed the `HEADLESS SMOKE FAILED` block is **pre-existing** (present on a clean baseline; it's a non-gating browser smoke the loop box's env can't run) and not caused by my change.
+
+**Committed locally** as `67044e463` (no push). Logged the run and handed off: **mind (54) is now the thinnest** — next run should add 6 mind atoms.
+---------- run done 2026-07-01T08:36:59Z ----------
+
+========== build run 2026-07-01T08:52:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors

@@ -1195,3 +1195,43 @@ prereq), Merkle trees (← cryptographic-hash), zero-knowledge proofs (← one-w
 Cheap zero-risk wins across branches: atoms lacking a derive-level quiz item; more `note`/`art` fields;
 GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable. OR the durable biophysics prereq-shell fix (add a
 depth-3 dependent of redox-potential to raise betweenness to 6/6; VERIFY asked stays ≤18).
+
+## 2026-07-01 — run 32 (+6 mind atoms; branch expansion continues; biophysics untouched)
+Per run-31's handoff (mind 54 the clearly-thinnest branch). Expanded **07-mind 54→60** with a coherent
+computational-neuroscience cluster (learning rules + coding + decision), each `requires` into EXISTING mind
+ids only (validated no missing/dupe): **oja-rule** (normalized Hebbian Δw=η·y·(x−y·w) → ‖w‖→1 and w → top
+principal component; ⟨Δw⟩=η(Cw−(wᵀCw)w)=0 ⇒ eigenvector; local rule computes global PCA; ← hebbian-learning),
+**bcm-rule** (φ(y,θ_M)=y(y−θ_M) sliding threshold θ_M∝⟨y²⟩ ⇒ stable+selective Hebbian; super-linear θ_M is
+the stability trick; = metaplasticity; ← hebbian-learning, ltp-ltd), **hopfield-network** (E=−½Σw_ij s_i s_j
+Lyapunov; symmetric weights ⇒ ΔE=−Δs_i·h_i≤0 ⇒ converges; Hebbian storage → content-addressable attractor
+memory; α_c≈0.138N capacity; spurious minima; ties to attention/transformers; ← artificial-neural-networks,
+hebbian-learning, working-memory), **backpropagation** (chain rule backward δ_layer=(Wᵀ_next δ_next)⊙f′(z),
+∂L/∂W=δ·a_prevᵀ; reverse-mode autodiff O(W) vs O(W²) naive; breaks perceptron/XOR barrier; vanishing-grad +
+weight-transport/bio-implausibility caveats; ← artificial-neural-networks, perceptron), **sparse-coding**
+(E=‖x−Σa_iφ_i‖²+λΣS(a_i), overcomplete dict + L1 ⇒ Olshausen–Field 1996 learns localized/oriented/bandpass
+V1 receptive fields from natural images with no labels; = efficient-coding instance; ← efficient-coding,
+receptive-fields), **signal-detection-theory** (d′=z(H)−z(FA) sensitivity vs criterion/bias; ROC/AUC bias-free;
+worked ex H=.84 FA=.16 ⇒ d′=2; static counterpart of DDM; measurement layer of perception-as-inference; ←
+perception-inference, drift-diffusion). Each = full 6–7-section lesson (Intuition/Precisely/Worked example/
+Why it works/Where it connects/Watch out/Worth knowing) + summary + 3 depths + note + art_prompt + 2 quiz
+(recall + derive) + OPEN sources (Oja 1982, BCM 1982, Hopfield 1982, Rumelhart–Hinton–Williams 1986,
+Olshausen–Field 1996, Green & Swets 1966, PMC OA, NCBI Bookshelf Purves, MIT OCW 9.40/6.036, Wikipedia). ALL
+prose ORIGINAL; equations/theorems/definitions are facts. meta 0.5.0→0.6.0. Mirrored to public/academy-app via
+`node scripts/sync-academy.mjs` from repo ROOT (mind 60, ver 0.6.0; mirror byte-identical).
+
+**validate.sh PASSES end-to-end** (exit 0; mind 60/no-dupes/no-missing-requires, all 8 corpora OK, manifest,
+JS syntax, 60-day engine sim biophysics diagnostic UNCHANGED at introduced 133 / xp 1975 / streak 48 since the
+sim loads ONLY biophysics.json → mind edits are zero-risk to placement; assess/lang/explorer smokes all green).
+The `HEADLESS SMOKE FAILED` block remains PRE-EXISTING/non-gating (needs a headless-browser env the loop box
+lacks) — validate.sh still exits 0 / ALL VALIDATIONS PASSED. Not caused by this change.
+
+**NEXT run:** branch counts now — biophysics ~133, information 60, cosmology 59, mind 60, mathematics 55,
+physics 55, chemistry 55; **mathematics/physics/chemistry (55) are now tied thinnest** — pick one and add 6
+toward full syllabus coverage. Mind gaps remaining if wanted: winner-take-all / lateral inhibition (←
+neural-circuits), divisive normalization (canonical computation; ← neural-circuits, efficient-coding),
+Wilson–Cowan neural-mass dynamics (← neural-circuits, neuronal-dynamics), central pattern generators (←
+neural-circuits, motor-control), ring/bump continuous attractors (← hopfield-network now exists, cognitive-map),
+dendritic computation / active dendrites (← passive-cable, synaptic-integration). Cheap zero-risk wins across
+branches: atoms lacking a derive-level quiz item; more `note`/`art` fields; GPU art if
+HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable. OR the durable biophysics prereq-shell fix (add a depth-3 dependent
+of redox-potential to raise betweenness to 6/6; VERIFY asked stays ≤18).
