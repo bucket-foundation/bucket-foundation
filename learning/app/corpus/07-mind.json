@@ -2,7 +2,7 @@
   "meta": {
     "branch": "07-mind",
     "title": "Mind — brains, computation & cognition",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. Each atom carries a 'resources' array of open, verified learn-more links (Wikipedia for the concept and its jargon, plus deeper open sources: NCBI Bookshelf Neuroscience/Purves, PMC open-access, MIT OCW 9.x).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -3109,6 +3109,382 @@
         }
       ],
       "lesson": "### Intuition\n\nThinking is expensive. When a patch of brain works harder, it needs more oxygen and fuel, so the body rushes *extra* blood to that spot — more than it strictly consumes. A scanner can't see thoughts, but it can see that surge of fresh blood and use it as a stand-in for 'this area was busy just now.'\n\n### Precisely\n\n**Neurovascular coupling** matches local **blood supply** to local **neural demand**. Active neurons and neighboring **astrocytes** release signals that **dilate** nearby vessels, raising **cerebral blood flow** to the active region within seconds. The flow increase **over-supplies** oxygen relative to use, so the local ratio of **oxygenated to deoxygenated hemoglobin** rises. Because deoxygenated hemoglobin is **paramagnetic** and oxygenated is not, that shift changes the local magnetic field — the **BOLD** (blood-oxygen-level-dependent) contrast that **functional MRI** reads out.\n\n### Worked example\n\nA subject taps their fingers. In the hand region of motor cortex, neurons fire and their synapses work; within ~1–2 seconds local vessels dilate, blood flow jumps, and the oxygenated fraction climbs. The BOLD signal there rises, **peaks around 5–6 s** after the tapping, then dips into a post-stimulus **undershoot**. The scanner reports 'hand motor cortex active' — but note it saw the *blood*, seconds late, not the spikes.\n\n### Why it's true / how it works\n\nMost of the brain's energy goes to running the **Na⁺/K⁺ pump** that restores **ionic-gradients** after every **action-potential** and synaptic event. Heavy signaling burns ATP and oxygen, and the vascular response replenishes it — via astrocytic messengers, neuronal nitric oxide, and direct action on the smooth muscle and pericytes wrapping vessels. The BOLD signal tracks *synaptic/local-field* activity (input and processing) even more than spiking output, and the whole hemodynamic response is **slow**, which fixes fMRI's temporal resolution.\n\n### Where it connects\n\nThis atom is the bridge from single-cell physiology to whole-brain imaging: the **action-potential** and the **ionic-gradients** it spends are what create the metabolic demand, **glia** (astrocyte endfeet on capillaries) are the coupling machinery, and the resulting maps feed **connectomics** and network neuroscience. It is the measurement layer beneath most human 'brain activation' studies.\n\n### Watch out\n\nBOLD is **indirect and relative**. 'This region lit up' means a *hemodynamic* change against a baseline — not proof of computation, and not a clean readout of spikes. It mixes excitation *and* inhibition, lags by seconds, and depends on healthy blood vessels, so **coupling can break down** in aging and disease, confounding comparisons between groups.\n\n### Worth knowing\n\nThe indirectness cuts both ways. fMRI's spatial resolution (millimeters, whole brain, non-invasive) revolutionized human neuroscience, but the seconds-long vascular lag means it can *reverse* apparent timing of fast events, and the required baseline means BOLD only ever reports *contrasts*. Researchers combine it with methods that have complementary strengths — EEG/MEG for millisecond timing — precisely because neurovascular coupling trades temporal precision for spatial coverage."
+    },
+    {
+      "id": "interoception",
+      "title": "Interoception & homeostatic drives",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "sensory-transduction",
+        "neuromodulation"
+      ],
+      "summary": "The brain senses the body's internal state — heartbeat, gut, temperature, blood chemistry — and uses those signals to defend homeostasis and shape emotion and motivation.",
+      "depths": {
+        "eli5": "You have senses pointed outward (eyes, ears) and senses pointed inward. The inward ones tell your brain how full your stomach is, how fast your heart is beating, whether you're too hot, whether you need water. When something drifts out of the healthy range, the brain notices and pushes you to fix it — you feel thirsty, hungry, or cold, and you act. Those inner feelings are the raw material of a lot of your emotions too.",
+        "core": "Interoception is the sensing of the body's internal physiological state. Specialized receptors report blood osmolality, glucose, CO2/pH, temperature, stomach stretch, blood pressure (baroreceptors), and more. These signals travel by two main routes: the vagus and glossopharyngeal nerves to the nucleus of the solitary tract in the brainstem, and small-diameter spinal afferents (lamina I) up to the thalamus and the insular cortex. The brain compares the sensed state against homeostatic set-points and, when there is a mismatch, generates a corrective response: automatic reflexes (sweating, shivering, changes in heart rate) plus motivated behavior driven by drive states like thirst and hunger. The posterior-to-anterior insula is a key cortical map of body state, and its activity is tied to the felt intensity of emotions.",
+        "deep": "Homeostatic control is naturally cast as a regulator that minimizes the error between a sensed variable and a set-point, but modern accounts favor allostasis and predictive regulation: the brain anticipates future demands and adjusts set-points before an error appears, rather than only reacting to it. Interoceptive predictive-coding models treat the insula as computing prediction errors between expected and actual body signals, so that a bodily 'surprise' is what drives both autonomic correction and the affective feeling. This connects interoception to emotion (the James–Lange lineage: bodily change is part of the emotion, not just its consequence), to decision-making (bodily states bias value), and to disorders — anxiety, depression, and eating disorders show altered interoceptive accuracy. Drive states arise when a regulated variable leaves its acceptable band: osmoreceptors in the lamina terminalis trigger thirst, hypothalamic glucose- and hormone-sensing neurons (responding to leptin, ghrelin, insulin) set hunger, and the resulting signal raises the incentive value of the relevant reward."
+      },
+      "note": "Interoception is not just 'gut feelings' as a metaphor — it is a literal sensory stream with its own receptors, nerves (vagus, lamina I spinothalamic), and cortical map (insula). The felt strength of an emotion tracks anterior-insula activity, which is why the same physiological arousal can be read as fear or excitement depending on context.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves — autonomic/visceral systems, hypothalamus)",
+        "PMC open-access (interoception and the insula; allostasis reviews)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Interoception — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Interoception"
+        },
+        {
+          "label": "Homeostasis — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Homeostasis"
+        },
+        {
+          "label": "Insular cortex — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Insular_cortex"
+        },
+        {
+          "label": "Allostasis — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Allostasis"
+        },
+        {
+          "label": "NCBI Bookshelf — Neuroscience (Purves): the hypothalamus & visceral control",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK11060/"
+        },
+        {
+          "label": "PMC open-access — interoception reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=interoception+insula+review"
+        }
+      ],
+      "art_prompt": "a body outline with inward-pointing sensory arrows (heart, stomach, blood vessel, thermometer) converging on a brainstem node and rising to a highlighted insula, with a set-point comparator symbol showing sensed-vs-target",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What are the two main afferent routes that carry interoceptive signals to the brain, and which cortical region is the principal map of internal body state?",
+          "answer": "The vagus/glossopharyngeal nerves to the nucleus of the solitary tract in the brainstem, and small-diameter (lamina I) spinal afferents via the thalamus; the insular cortex is the principal cortical map of internal body state."
+        },
+        {
+          "level": "derive",
+          "prompt": "Using the idea of a set-point and a sensed variable, explain why blood becoming too concentrated (high osmolality) produces the subjective drive of thirst and drinking behavior.",
+          "answer": "Osmoreceptors in the lamina terminalis sense that osmolality has risen above its set-point, creating an error signal; the brain both triggers autonomic correction (vasopressin release to retain water) and raises the incentive value of drinking, which is felt as thirst and motivates the behavior that returns osmolality toward the set-point."
+        }
+      ],
+      "lesson": "### Intuition\n\nSome of your senses point outward — eyes, ears, skin. Others point *inward*: they report how full your stomach is, how fast your heart is beating, whether you're too hot, whether your blood is running low on water. When one of these drifts out of the healthy range, your brain notices and pushes you to fix it. You feel thirsty, hungry, or cold, and you act. Those inner feelings are also the raw material of much of your emotional life.\n\n### Precisely\n\n**Interoception** is the sensing of the body's internal physiological state. Dedicated receptors report blood osmolality, glucose, CO₂/pH, core temperature, stomach stretch, and blood pressure (**baroreceptors**). The signals travel two main ways:\n\n- the **vagus** and glossopharyngeal nerves → the **nucleus of the solitary tract** in the brainstem;\n- small-diameter spinal (**lamina I**) afferents → thalamus → the **insular cortex**, the brain's cortical map of body state.\n\nThe brain compares the sensed state against **homeostatic set-points** and, on a mismatch, mounts a corrective response.\n\n### Worked example\n\nYour blood becomes too concentrated after a salty meal. **Osmoreceptors** in the lamina terminalis detect that osmolality is above set-point. The brain responds on two fronts at once: an *automatic* one (release vasopressin so the kidneys retain water) and a *motivational* one (raise the value of drinking). The second is what you feel as **thirst**, and it drives you to the tap. Drinking returns osmolality toward set-point, the error shrinks, and the drive fades.\n\n### Why it's true / how it works\n\nCast homeostasis as a regulator minimizing the error between a sensed variable and its set-point. But the brain does better than react: under **allostasis**, it *predicts* upcoming demands and shifts set-points in advance — raising heart rate before you stand, releasing glucose before exertion. In predictive-coding terms the insula computes the mismatch between the *expected* and *actual* body signal, and that interoceptive prediction error drives both autonomic correction and the felt emotion.\n\n### Where it connects\n\nInteroception is a specialized branch of **sensory-transduction** aimed at the body's interior, and it leans on the **neuromodulation** and hypothalamic systems that set drive states. It feeds emotion (the felt intensity of fear or excitement tracks anterior-insula activity), motivation (bodily state sets the value a choice compares), and it is the bridge from **predictive-coding** into the body.\n\n### Watch out\n\nDon't treat 'gut feeling' as only a metaphor — it is a literal sensory stream with receptors, nerves, and a cortical map. And don't assume everyone reads their body equally well: interoceptive *accuracy* varies across people and is altered in anxiety, depression, and eating disorders.\n\n### Worth knowing\n\nThe same physiological arousal can be experienced as very different emotions depending on context — a pounding heart reads as fear on a ledge and as thrill on a first date. That the *appraisal* colors the *feeling* is why bodily state is part of emotion rather than merely its aftermath, the modern echo of the James–Lange idea."
+    },
+    {
+      "id": "amygdala-emotion",
+      "title": "The amygdala & emotional learning",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "neural-circuits",
+        "hippocampus-memory"
+      ],
+      "summary": "The amygdala assigns emotional and threat value to stimuli and rapidly learns predictive associations, wiring fear and reward into fast, body-mobilizing responses.",
+      "depths": {
+        "eli5": "Deep in your brain is a small almond-shaped hub that acts like a smoke detector for anything important — especially danger. When something scary happens, it learns fast: after one bad encounter, a sound or a place that predicted the danger can trigger the whole fear response on its own — freezing, a racing heart, a jolt of alertness. It works so quickly because it can respond before you've even consciously figured out what you saw.",
+        "core": "The amygdala is a cluster of nuclei in the medial temporal lobe that evaluates the emotional significance of stimuli and drives learned emotional responses. In threat (fear) learning, a neutral cue (a tone) paired with an aversive event (a shock) comes to elicit a defensive response on its own. The circuit is well mapped: sensory information reaches the lateral amygdala, converges with the aversive signal, and — through synaptic plasticity there — the tone-driven synapses strengthen. The central amygdala is the output hub, projecting to brainstem and hypothalamic centers that produce freezing, autonomic arousal (heart rate, blood pressure), and stress-hormone release. There are two input routes: a fast subcortical 'low road' via the thalamus for quick, coarse responses, and a slower cortical 'high road' that adds detail and context.",
+        "deep": "Amygdalar fear learning is a canonical case of Hebbian/associative plasticity: NMDA-receptor-dependent LTP at thalamic and cortical inputs to the lateral amygdala underlies the acquisition of conditioned fear, and blocking that plasticity blocks learning. The response is context-gated by the hippocampus (which supplies where/when information) and regulated top-down by the prefrontal cortex, especially during extinction — learning that a cue is now safe. Extinction is not erasure; it is new inhibitory learning (largely infralimbic-PFC → amygdala) layered over the original memory, which is why fear can spontaneously recover or renew in a different context. The amygdala also tags emotionally salient events for stronger consolidation elsewhere (via noradrenergic modulation of the hippocampus), explaining flashbulb memories. It is not a pure 'fear center': it processes reward and salience broadly, and lesions impair recognition of fearful faces and normal risk assessment."
+      },
+      "note": "Extinction (therapeutic fear reduction) does not delete the original fear memory — it builds a new, competing 'safe' memory that the prefrontal cortex uses to suppress the amygdala. Because the old trace survives, fear can return with time (spontaneous recovery) or in a new setting (renewal), which is exactly why exposure therapy must be practiced across contexts.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves — emotions, the amygdala)",
+        "PMC open-access (fear conditioning, extinction, LeDoux amygdala reviews)",
+        "MIT OCW 9.x (systems / cognitive neuroscience)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Amygdala — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Amygdala"
+        },
+        {
+          "label": "Fear conditioning — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Fear_conditioning"
+        },
+        {
+          "label": "Extinction (psychology) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Extinction_(psychology)"
+        },
+        {
+          "label": "Emotion — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Emotion"
+        },
+        {
+          "label": "NCBI Bookshelf — Neuroscience (Purves): emotions",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10905/"
+        },
+        {
+          "label": "PMC open-access — amygdala & fear learning",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=amygdala+fear+conditioning+review"
+        }
+      ],
+      "art_prompt": "a schematic of the amygdala with a fast subcortical 'low road' from thalamus and a slower cortical 'high road', converging on the lateral nucleus, with the central nucleus fanning out to freezing/heart-rate/hormone outputs",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In amygdalar fear learning, where does the neutral cue and the aversive signal converge, and which nucleus is the main output that drives the defensive response?",
+          "answer": "They converge in the lateral amygdala, where plasticity strengthens the cue's synapses; the central amygdala is the output hub that projects to brainstem and hypothalamic centers producing freezing, autonomic arousal, and hormone release."
+        },
+        {
+          "level": "derive",
+          "prompt": "Extinction training makes a conditioned fear response disappear, yet the fear can later return spontaneously or in a new context. What does this tell you about what extinction actually changes in the circuit?",
+          "answer": "Extinction does not erase the original amygdala fear memory; it creates new inhibitory learning (infralimbic prefrontal cortex suppressing the amygdala) that competes with the intact original trace. Because the original memory survives, removing or weakening the new inhibition — with time or a context change — lets the fear response reappear."
+        }
+      ],
+      "lesson": "### Intuition\n\nDeep in your brain sits a small almond-shaped hub that works like a smoke detector for anything important, above all danger. When something frightening happens, it learns fast: after a single bad encounter, a sound or a place that *predicted* the danger can set off the whole fear response by itself — freezing, a racing heart, a jolt of alertness. It reacts so quickly because it can fire before you've consciously worked out what you saw.\n\n### Precisely\n\nThe **amygdala** is a cluster of nuclei in the medial temporal lobe that scores the emotional significance of stimuli and drives learned emotional responses. In **threat (fear) conditioning**, a neutral cue (a tone) paired with an aversive event (a shock) comes to trigger a defensive response on its own. The circuit is mapped:\n\n- sensory input reaches the **lateral amygdala** and converges with the aversive signal there;\n- plasticity strengthens the tone-driven synapses;\n- the **central amygdala** is the output, projecting to brainstem and hypothalamus to produce freezing, autonomic arousal, and stress hormones.\n\n### Worked example\n\nA rat hears a tone, then gets a mild footshock. After a few pairings, the tone *alone* makes it freeze, its heart rate spikes, and stress hormones rise — the animal has learned the tone predicts danger. Now play the tone many times with no shock: freezing fades. But wait days, or move the rat to a new cage, and the freezing can come back. The learning that made it safe did not overwrite the learning that made it dangerous.\n\n### Why it's true / how it works\n\nFear acquisition is textbook **associative plasticity**: NMDA-receptor-dependent LTP at thalamic and cortical inputs to the lateral amygdala. Block that plasticity and the animal cannot learn the association. Two input routes feed it: a fast subcortical **'low road'** (thalamus → amygdala) for quick coarse reactions, and a slower cortical **'high road'** that adds detail and context. **Extinction** — learning a cue is now safe — is *new inhibitory learning* (infralimbic PFC → amygdala) layered over the original, which is why it is fragile.\n\n### Where it connects\n\nThe amygdala is a specialized **neural-circuit** for valuation, and its learning is a form of the **hebbian-learning** / **ltp-ltd** plasticity seen elsewhere. It is context-gated by the **hippocampus** (which supplies where and when), and it tags emotional events for stronger **memory-consolidation** through noradrenergic modulation — the reason vivid, emotional events are remembered so well.\n\n### Watch out\n\nCalling the amygdala 'the fear center' oversells it: it processes reward and salience broadly, and its damage impairs risk assessment and the recognition of fearful faces, not just fear itself. And remember extinction is *addition, not deletion* — the old fear trace persists.\n\n### Worth knowing\n\nBecause extinction is context-dependent new learning, exposure therapy works best when practiced across many settings, so the 'safe' memory generalizes and the prefrontal brake holds outside the therapist's office. This is a direct clinical payoff of understanding that the circuit stores competing memories rather than editing one."
+    },
+    {
+      "id": "sleep-memory-replay",
+      "title": "Sleep, replay & offline consolidation",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "memory-consolidation",
+        "neural-oscillations"
+      ],
+      "summary": "During sleep the brain reactivates recent experience in compressed 'replay' and, coordinated by slow oscillations, spindles, and ripples, transfers memories from hippocampus to cortex for long-term storage.",
+      "depths": {
+        "eli5": "When you sleep, your brain doesn't just rest — it rehearses. The patterns of activity from what you did during the day play back, sped up, while you sleep. That replay is how a fresh memory gets copied from a fast temporary store into slower, more permanent storage. It's why a night of good sleep after learning something makes it stick, and why pulling an all-nighter wrecks the memory you were trying to build.",
+        "core": "Newly formed memories are initially dependent on the hippocampus. Sleep drives their gradual transfer to the neocortex for long-term storage — systems consolidation. The engine is neuronal replay: during slow-wave sleep, hippocampal place cells that fired in a particular sequence during waking experience re-fire in the same order, but time-compressed (roughly 10–20x). This replay is packaged inside sharp-wave ripples (~150–250 Hz bursts in the hippocampus) and temporally coordinated with cortical slow oscillations (~1 Hz) and thalamocortical sleep spindles (~12–15 Hz). The prevailing model is that slow oscillations set the timing, spindles open cortical windows for plasticity, and ripple-borne replay delivers the specific content — so cortical synapses are updated in register with the reactivated memory.",
+        "deep": "Two complementary ideas structure the field. (1) Active systems consolidation: the slow-oscillation → spindle → ripple nesting is a communication channel that repeatedly reinstates hippocampal traces in cortex, gradually building a hippocampus-independent cortical representation while integrating it with existing schemas. (2) Synaptic homeostasis (SHY): waking experience causes a net increase in synaptic strength that saturates plasticity and costs energy; slow-wave sleep renormalizes (downscales) synapses overall, improving signal-to-noise and restoring capacity — with the most-potentiated, task-relevant synapses relatively protected. These are not mutually exclusive: selective strengthening of important traces against a background of global downscaling would sharpen memories. Causal tests support the framework: disrupting ripples impairs later memory; targeted memory reactivation (replaying a learning-associated sound or odor during slow-wave sleep) biases which memories are strengthened. REM sleep contributes too, especially for emotional and procedural memory and for schema integration, though its mechanistic role is less settled than slow-wave consolidation."
+      },
+      "note": "The strongest causal evidence is targeted memory reactivation: if you learn item-location pairs each paired with a sound and then play some of those sounds (below waking threshold) during slow-wave sleep, the *cued* items are remembered better afterward. That shows sleep consolidation acts on specific, reactivated traces rather than boosting all memories uniformly.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves — sleep, memory systems)",
+        "PMC open-access (replay, sharp-wave ripples, systems consolidation, SHY hypothesis)",
+        "MIT OCW 9.x (systems neuroscience)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Memory consolidation — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Memory_consolidation"
+        },
+        {
+          "label": "Hippocampal replay — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hippocampal_replay"
+        },
+        {
+          "label": "Sharp waves and ripples — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sharp_waves_and_ripples"
+        },
+        {
+          "label": "Sleep spindle — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sleep_spindle"
+        },
+        {
+          "label": "Slow-wave sleep — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Slow-wave_sleep"
+        },
+        {
+          "label": "PMC open-access — sleep and memory consolidation reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=sleep+memory+consolidation+replay+review"
+        }
+      ],
+      "art_prompt": "a hippocampus–cortex diagram at night: a place-cell firing sequence during waking, then the same sequence time-compressed inside a sharp-wave ripple, nested under a cortical slow oscillation with spindle bursts marking plasticity windows",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name the three coordinated sleep oscillations that orchestrate hippocampus-to-cortex memory transfer during slow-wave sleep, and what replay is.",
+          "answer": "Cortical slow oscillations (~1 Hz), thalamocortical sleep spindles (~12–15 Hz), and hippocampal sharp-wave ripples (~150–250 Hz). Replay is the time-compressed re-firing, during sleep, of the neuronal (e.g. place-cell) sequences that were active during waking experience."
+        },
+        {
+          "level": "derive",
+          "prompt": "You teach two lists, each item paired with a distinct sound. During the subject's slow-wave sleep you quietly replay the sounds of only list A. List A is later recalled better than list B. What does this experiment establish about sleep consolidation?",
+          "answer": "It shows consolidation is content-specific and driven by reactivation: cueing reactivates the associated traces (targeted memory reactivation), and only the reactivated memories are preferentially strengthened. So sleep does not uniformly boost all memories — it consolidates the traces that get replayed."
+        }
+      ],
+      "lesson": "### Intuition\n\nWhen you sleep, your brain rehearses rather than merely resting. The activity patterns from your day play back — sped up — while you sleep, and that replay copies a fresh memory out of a fast temporary store into slower, more permanent storage. It's why a good night after learning makes things stick, and why an all-nighter sabotages the very memory you were trying to build.\n\n### Precisely\n\nA new memory starts out dependent on the **hippocampus**. Sleep gradually transfers it to the **neocortex** for long-term storage — **systems consolidation**. The engine is **replay**: during slow-wave sleep, hippocampal place cells that fired in a sequence during the day re-fire in the *same order*, time-compressed by roughly 10–20×. Replay rides inside three nested rhythms:\n\n- cortical **slow oscillations** (~1 Hz) set the timing;\n- thalamocortical **sleep spindles** (~12–15 Hz) open cortical plasticity windows;\n- hippocampal **sharp-wave ripples** (~150–250 Hz) carry the specific content.\n\n### Worked example\n\nTeach someone item–location pairs, each paired with a distinct sound. Then, while they are in slow-wave sleep, quietly replay *some* of those sounds — below the threshold that would wake them. Afterward, the cued items are remembered better than the un-cued ones. The sound reactivated its associated memory during sleep, and only the reactivated traces got the consolidation boost.\n\n### Why it's true / how it works\n\nTwo ideas fit together. **Active systems consolidation**: the slow-oscillation → spindle → ripple nesting is a communication channel that repeatedly reinstates hippocampal traces in cortex until a hippocampus-independent cortical representation is built. **Synaptic homeostasis (SHY)**: waking potentiates synapses broadly and saturates plasticity; slow-wave sleep downscales them, restoring capacity and signal-to-noise while sparing the most task-relevant synapses. Selective strengthening against a background of global downscaling would sharpen exactly the memories that matter.\n\n### Where it connects\n\nThis is the *mechanism* behind **memory-consolidation**: what turns a labile hippocampal trace into durable cortical memory. It is orchestrated entirely by **neural-oscillations** — the specific coupling of slow waves, spindles, and ripples — and the content it moves was first laid down by **hippocampus-memory** and **ltp-ltd** plasticity.\n\n### Watch out\n\nReplay is not literal playback of an experience like a video; it is compressed reactivation of the *neural sequence*, and it also runs during quiet waking and can play in reverse. And don't reduce all of sleep's memory role to slow-wave sleep — REM contributes to emotional and procedural memory and to integrating new facts with old schemas, though its mechanism is less settled.\n\n### Worth knowing\n\nDisrupting ripples during sleep selectively impairs later memory, a clean causal test that ties this specific rhythm to consolidation. That such a fast, brief burst can gate what you keep is a reminder that *when* neurons fire relative to the ongoing rhythm can matter as much as *how much* they fire."
+    },
+    {
+      "id": "free-energy-principle",
+      "title": "The free-energy principle & active inference",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "predictive-coding"
+      ],
+      "summary": "A unifying proposal that agents minimize variational free energy — an upper bound on sensory surprise — by updating beliefs (perception) and acting to make sensations match predictions (active inference).",
+      "depths": {
+        "eli5": "Imagine a creature that wants to stay alive. To survive, it has to keep itself in a small set of good states (right temperature, fed, safe) and avoid surprises that mean things are going wrong. The free-energy principle says the brain has one job: keep surprise low. It does that two ways — change its mind to better predict the world (perceive), or change the world so it matches its predictions (act). Same rule for both.",
+        "core": "The free-energy principle (FEP) says any self-organizing system that persists must minimize the long-run 'surprise' of its sensory states — the improbability, under its own model, of the inputs it encounters. Surprise itself can't be evaluated directly (it requires summing over all hidden causes), so the brain minimizes a tractable upper bound called variational free energy, F. Minimizing F does two things at once. Perception: adjust internal beliefs about hidden causes so predictions better fit the data — this is exactly Bayesian inference, and its neural implementation is predictive coding (minimize prediction error). Active inference: because F also depends on which sensory data arrive, the agent can act to change its inputs so they match predictions — reaching, moving, sampling. Perception and action become two routes to the same objective.",
+        "deep": "Formally, F = E_q[ln q(z) − ln p(z, o)] = D_KL[q(z) || p(z|o)] − ln p(o), where o are observations, z hidden states, q an approximate posterior. Since KL ≥ 0, F ≥ −ln p(o): free energy upper-bounds surprise, so lowering F lowers a bound on surprise and, by the gap, improves the posterior approximation. In predictive coding this is implemented by prediction-error units and precision-weighting (attention as gain on error). Active inference extends the same math to policies: agents select actions expected to minimize *expected* free energy, which decomposes into a pragmatic term (reach preferred/goal states — akin to reward/utility) and an epistemic term (reduce uncertainty — an intrinsic drive to explore and gather information). This recovers exploration/exploitation from one principle and casts goals as prior preferences. The FEP is ambitious and contested: critics note it can be near-unfalsifiable at its most general and that 'minimizing surprise' must be reconciled with curiosity (resolved via the epistemic term and deep temporal models). Its value is as a normative, unifying frame linking perception, action, learning, and homeostasis."
+      },
+      "note": "A common objection — 'if the brain just minimizes surprise, why not sit in a dark, silent room forever?' — is answered by active inference: agents minimize *expected* free energy, whose epistemic term rewards reducing uncertainty. A dark room quickly becomes uninformative and violates learned prior preferences for varied, life-sustaining states, so it is not free-energy-minimizing over any realistic horizon.",
+      "sources": [
+        "PMC open-access (Friston, free-energy principle and active inference reviews)",
+        "arXiv (q-bio.NC / stat.ML — variational free energy, active inference)",
+        "MIT OCW 9.x (computational cognitive science)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Free energy principle — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Free_energy_principle"
+        },
+        {
+          "label": "Active inference — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Active_inference"
+        },
+        {
+          "label": "Variational Bayesian methods — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Variational_Bayesian_methods"
+        },
+        {
+          "label": "Bayesian approaches to brain function — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Bayesian_approaches_to_brain_function"
+        },
+        {
+          "label": "PMC open-access — free-energy principle / active inference reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=free+energy+principle+active+inference+review"
+        },
+        {
+          "label": "arXiv — active inference",
+          "url": "https://arxiv.org/list/q-bio.NC/recent"
+        }
+      ],
+      "art_prompt": "a loop diagram: a generative model emitting predictions, sensory input feeding prediction-error units, two arrows off the error node labeled 'update beliefs (perception)' and 'act on world (active inference)', both pointing back to shrink the error",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Free energy F is minimized in two ways under the free-energy principle. Name them and say what each corresponds to.",
+          "answer": "Perception — updating internal beliefs about hidden causes so predictions fit the sensory data (implemented as predictive coding / Bayesian inference); and active inference — acting on the world to change which sensory data arrive so they match predictions. Both reduce the same free-energy bound on surprise."
+        },
+        {
+          "level": "derive",
+          "prompt": "Given F = D_KL[q(z)||p(z|o)] − ln p(o), explain why minimizing F both improves the brain's model of the world and lowers a bound on sensory surprise.",
+          "answer": "Because the KL divergence is ≥ 0, F ≥ −ln p(o), so F is an upper bound on the surprise −ln p(o); lowering F lowers that bound. The remaining gap between F and −ln p(o) is exactly the KL term, so as F is minimized the approximate posterior q(z) is driven toward the true posterior p(z|o), i.e. the internal model becomes a better inference about the world."
+        }
+      ],
+      "lesson": "### Intuition\n\nImagine a creature that wants to stay alive. Survival means keeping itself in a small set of good states — right temperature, fed, safe — and avoiding the surprises that signal something has gone wrong. The **free-energy principle** says the brain has one job: keep surprise low. It has two ways to do it — change its mind so it predicts the world better (**perceive**), or change the world so it matches its predictions (**act**). One rule, two levers.\n\n### Precisely\n\nAny system that persists must minimize the long-run **surprise** of its sensory states — how improbable, under its own model, the inputs are. Surprise can't be computed directly, so the brain minimizes a tractable upper bound, **variational free energy** $F$. Minimizing $F$ does two things:\n\n- **Perception** — update beliefs about hidden causes so predictions fit the data. This *is* Bayesian inference, implemented neurally as **predictive-coding** (minimize prediction error).\n- **Active inference** — act to change which inputs arrive, so sensations match predictions. Reach, move, sample.\n\n### Worked example\n\nYou expect your hand to be on a warm mug. The prediction is 'warmth at the fingertips.' Two ways to kill the resulting prediction error: revise the belief ('the mug is cold now' — perception), or *move your hand onto the warm mug* so the sensation matches the prediction (action). Active inference treats reaching for the mug as literally fulfilling a prediction — the motor system minimizes the same error the sensory system does.\n\n### Why it's true / how it works\n\nWrite $F = D_{KL}[q(z)\\,\\|\\,p(z|o)] - \\ln p(o)$, with $o$ observations, $z$ hidden causes, $q$ an approximate posterior. Since the KL term is $\\ge 0$, $F \\ge -\\ln p(o)$: free energy **upper-bounds surprise**. Lower $F$ and you lower a bound on surprise; the shrinking gap is the KL term, so $q$ is pushed toward the true posterior $p(z|o)$ — the model gets *better* as surprise gets *lower*. Extended to action, agents pick policies that minimize *expected* free energy, which splits into a **pragmatic** term (reach goal states, like reward) and an **epistemic** term (reduce uncertainty, i.e. explore).\n\n### Where it connects\n\nThe FEP is the normative frame that **predictive-coding** implements: predictive coding is *how* the cortex minimizes free energy moment to moment. Its action side unifies with **reinforcement-learning-brain** (the pragmatic term looks like reward-seeking) and with homeostasis and **interoception** (staying in preferred physiological states is minimizing free energy about the body).\n\n### Watch out\n\n'Just minimize surprise' invites the dark-room objection: why not hide in silence forever? The answer is the **epistemic** term — agents minimize *expected* free energy, which rewards reducing uncertainty, and a dark room quickly becomes uninformative and violates learned preferences. Also treat the FEP with calibrated skepticism: at its most general it is a mathematical framework whose empirical content lives in the specific models built from it, and critics fault its near-unfalsifiability.\n\n### Worth knowing\n\nThe same expected-free-energy split — pragmatic plus epistemic — recovers the exploration–exploitation trade-off from a single principle, and casts an agent's *goals* as prior preferences over states. That one objective can generate perception, action, learning, and curiosity is what makes the principle attractive, even as its scope keeps it contested."
+    },
+    {
+      "id": "tripartite-synapse",
+      "title": "Astrocytes & the tripartite synapse",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "glia",
+        "chemical-synapse"
+      ],
+      "summary": "Astrocytes are active partners at the synapse — sensing neurotransmitter, responding with calcium waves, releasing gliotransmitters, and regulating the ionic and metabolic environment — making the synapse a three-part unit.",
+      "depths": {
+        "eli5": "For a long time people thought the brain's 'glue' cells just held neurons in place. They do much more. Star-shaped cells called astrocytes wrap around the tiny gaps where neurons talk to each other. They listen in on the chemical messages, respond with their own slow chemical signals, clean up leftover messenger and stray ions, and feed the neurons energy. So a synapse isn't just two neurons — it's two neurons plus an astrocyte, a three-way conversation.",
+        "core": "The tripartite synapse concept adds the astrocyte as a functional third element alongside the pre- and postsynaptic neurons. Astrocytes extend fine processes that ensheathe many synapses. They express neurotransmitter receptors and transporters, so they detect synaptic activity and clear released glutamate (via EAAT transporters) — preventing spillover and excitotoxicity. Activity triggers intracellular calcium elevations in astrocytes, which can propagate as waves and, in turn, drive release of gliotransmitters (glutamate, ATP/adenosine, D-serine). D-serine is a required co-agonist at NMDA receptors, so astrocytes gate a key plasticity mechanism. Astrocytes also buffer extracellular K+ (spatial buffering through gap-junction-coupled networks), supply metabolic substrate to neurons, and, with endothelium, control local blood flow. Through these roles they modulate synaptic transmission, plasticity thresholds, and network excitability on slower timescales than neuronal signaling.",
+        "deep": "Astrocytic signaling is chemical and comparatively slow (seconds), operating over spatial domains that each tile a large synaptic territory — a single cortical astrocyte can contact hundreds of thousands of synapses. This makes astrocytes candidates for integrating and modulating activity across many synapses rather than transmitting fast point-to-point signals. Mechanistically, Gq-coupled receptor activation raises astrocytic IP3-mediated Ca2+, which is linked to gliotransmitter release; the physiological importance, sources, and even the reality of some gliotransmission remain actively debated, and results depend heavily on preparation and on which Ca2+ pathways are manipulated. Established, less-controversial roles include glutamate uptake shaping the time course and spatial extent of excitatory transmission, D-serine control of NMDA-receptor-dependent LTP, K+ spatial buffering setting excitability, and metabolic/neurovascular coupling. Astrocytes also participate in sleep homeostasis and in scaling synapses over the day. The broader lesson: computation in the brain is not carried by neurons alone — glial dynamics set the parameters (gain, thresholds, energy, ion balance) within which neuronal circuits operate."
+      },
+      "note": "Astrocytes work on a different timescale and geometry than neurons: their signaling is chemical and slow (seconds) and each cell tiles a huge territory of synapses. So they are better thought of as setting the parameters of a circuit — plasticity thresholds, gain, ion balance, energy supply — than as carrying fast, point-to-point messages. Whether Ca2+-driven gliotransmission is a routine physiological signal is still debated and preparation-dependent.",
+      "sources": [
+        "NCBI Bookshelf (Neuroscience, Purves — neuroglia)",
+        "PMC open-access (tripartite synapse, astrocyte gliotransmission reviews and critiques)",
+        "MIT OCW 9.x (cellular/systems neuroscience)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Tripartite synapse — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Tripartite_synapse"
+        },
+        {
+          "label": "Astrocyte — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Astrocyte"
+        },
+        {
+          "label": "Gliotransmitter — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Gliotransmitter"
+        },
+        {
+          "label": "Excitatory amino acid transporter — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Glutamate_transporter"
+        },
+        {
+          "label": "NCBI Bookshelf — Neuroscience (Purves): neuroglial cells",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK10869/"
+        },
+        {
+          "label": "PMC open-access — tripartite synapse / astrocyte signaling",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=tripartite+synapse+astrocyte+review"
+        }
+      ],
+      "art_prompt": "a synapse with presynaptic terminal, postsynaptic spine, and an astrocyte process wrapping both; arrows show glutamate uptake into the astrocyte, an internal calcium wave, and gliotransmitter (D-serine) release back toward an NMDA receptor",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the 'third' element of the tripartite synapse, and name two distinct ways it influences synaptic transmission.",
+          "answer": "The astrocyte. It influences transmission by clearing released glutamate via transporters (limiting spillover), releasing gliotransmitters such as D-serine (a required NMDA-receptor co-agonist that gates plasticity), and buffering extracellular K+ and supplying metabolic substrate — any two of these."
+        },
+        {
+          "level": "derive",
+          "prompt": "D-serine is a required co-agonist at the NMDA receptor and is supplied in part by astrocytes. Explain why suppressing astrocytic D-serine release would impair long-term potentiation.",
+          "answer": "NMDA-receptor opening requires both glutamate and a co-agonist (glycine or D-serine); NMDA-receptor Ca2+ influx is the trigger for LTP induction. If astrocytes stop supplying D-serine, NMDA receptors open less effectively even when glutamate is present, reducing the Ca2+ signal that induces LTP — so potentiation is weakened. This makes the astrocyte a gatekeeper of the plasticity mechanism."
+        }
+      ],
+      "lesson": "### Intuition\n\nThe brain's 'glue' cells were long dismissed as passive scaffolding. They do far more. Star-shaped **astrocytes** wrap around the tiny gaps where neurons talk. They listen in on the chemical messages, answer with their own slow chemical signals, clear away leftover transmitter and stray ions, and feed the neurons energy. So a synapse is not just two neurons — it's two neurons plus an astrocyte, a three-way conversation.\n\n### Precisely\n\nThe **tripartite synapse** adds the astrocyte as a functional third partner beside the pre- and postsynaptic neurons. Astrocytes:\n\n- express neurotransmitter receptors and **transporters**, detecting activity and clearing released glutamate (via EAATs) to prevent spillover and excitotoxicity;\n- raise internal **calcium** in response to activity, which can drive release of **gliotransmitters** (glutamate, ATP/adenosine, **D-serine**);\n- buffer extracellular **K⁺** across gap-junction-coupled networks and supply metabolic substrate.\n\nD-serine is a required co-agonist at NMDA receptors, so astrocytes sit astride a key plasticity switch.\n\n### Worked example\n\nAt a busy excitatory synapse, glutamate floods the cleft. Astrocytic transporters pull most of it back, sharpening the *timing* and confining the *spread* of the signal to nearby synapses. Meanwhile the postsynaptic NMDA receptor needs a co-agonist to open — and the astrocyte supplies D-serine. Cut off that D-serine, and the same presynaptic glutamate produces weaker NMDA-receptor activation, less Ca²⁺ influx, and impaired LTP. The astrocyte has silently set the plasticity threshold.\n\n### Why it's true / how it works\n\nAstrocyte signaling is chemical and **slow** (seconds), and each cell tiles a huge territory — a single cortical astrocyte can contact hundreds of thousands of synapses. That geometry makes them integrators and *modulators* across many synapses rather than fast point-to-point wires. Gq-coupled receptors raise IP₃-mediated Ca²⁺, which is linked to gliotransmitter release; the physiological weight of that pathway is still argued and depends on preparation. The uncontroversial roles — glutamate uptake, D-serine control of LTP, K⁺ buffering, metabolic and neurovascular coupling — already make astrocytes indispensable to how circuits behave.\n\n### Where it connects\n\nThis deepens **glia** from 'support cells' into circuit participants, and it reframes the **chemical-synapse** as a three-part unit whose plasticity (**ltp-ltd**) and excitability are gated by the astrocyte. Their metabolic and blood-flow roles tie directly to **neurovascular-coupling** and the fMRI signal.\n\n### Watch out\n\nDon't overstate it: whether Ca²⁺-driven gliotransmission is a routine physiological signal is actively debated, and many flashy results are preparation-dependent. Treat 'astrocytes compute like neurons' as a hypothesis, while treating uptake, D-serine, and K⁺ buffering as well established.\n\n### Worth knowing\n\nThe broad lesson is that computation in the brain is not carried by neurons alone: glial dynamics set the *parameters* — gain, thresholds, energy, ion balance — inside which neuronal circuits run. Any complete model of learning or excitability that ignores astrocytes is leaving out a slow but pervasive control layer."
+    },
+    {
+      "id": "homeostatic-plasticity",
+      "title": "Homeostatic plasticity & synaptic scaling",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "ltp-ltd",
+        "hebbian-learning"
+      ],
+      "summary": "Slow, stabilizing plasticity keeps neurons near a target firing rate — scaling synapses up or down and adjusting excitability — so that fast Hebbian learning doesn't run away into silence or seizure.",
+      "depths": {
+        "eli5": "Hebbian learning has a dangerous flaw: strengthening the connections that fire together can spiral out of control — the more they fire, the stronger they get, the more they fire. Left alone, a network would either go completely silent or blow up into runaway activity. The brain has a slower safety system that watches each neuron's average activity and gently turns all its inputs up or down to keep it in a healthy range. That's what lets fast learning happen without breaking the network.",
+        "core": "Hebbian plasticity (LTP/LTD) is inherently positive-feedback and destabilizing: potentiation increases firing, which promotes more potentiation. Homeostatic plasticity is the negative-feedback counterpart that stabilizes neurons and circuits around a set-point of activity. Its best-known form is synaptic scaling: when a neuron's average activity is chronically too high or too low (e.g. after blocking or boosting activity for hours to days), it multiplicatively scales all of its excitatory synaptic strengths down or up. Critically, scaling is multiplicative — every synapse is multiplied by roughly the same factor — so the *relative* weights set by Hebbian learning (the stored information) are preserved while the *overall* gain is renormalized. Other homeostatic mechanisms include adjusting intrinsic excitability (ion-channel densities) and inhibitory tone. The set-point is thought to be sensed via activity-dependent signals such as intracellular calcium, with mediators like TNF-α and the immediate-early gene Arc implicated in scaling.",
+        "deep": "The stability problem is fundamental: a purely Hebbian network is unstable unless something bounds total synaptic drive. Homeostatic plasticity provides that bound, but on a much slower timescale (hours–days) than Hebbian induction (seconds–minutes), a separation that is itself theoretically important — if homeostasis were as fast as Hebbian learning it would cancel it, so many models require a slow negative feedback to coexist with fast associative learning (and some theories argue biological synaptic scaling is actually too slow to stabilize Hebbian learning alone, implying additional rapid compensatory mechanisms). Multiplicative scaling is the key experimental signature: plotting scaled vs. control synaptic amplitudes gives a straight line through a fitted slope, showing a uniform gain change rather than selective editing — which is what protects learned patterns. Homeostatic set-points also underlie the sleep–wake regulation of synapses (linking to the synaptic-homeostasis view of sleep), developmental refinement, and the response to injury or deprivation (e.g. cortical remapping). Dysregulated homeostatic plasticity is implicated in epilepsy and in maladaptive stability in neuropsychiatric and neurodegenerative conditions."
+      },
+      "note": "The signature of synaptic scaling is that it is *multiplicative*: a neuron multiplies all its synaptic weights by roughly the same factor. That is what lets it renormalize overall activity while preserving the relative pattern of strengths that Hebbian learning stored — the network stays stable without erasing what it learned.",
+      "sources": [
+        "PMC open-access (Turrigiano synaptic scaling; homeostatic plasticity reviews)",
+        "NCBI Bookshelf (Neuroscience, Purves — synaptic plasticity)",
+        "MIT OCW 9.x (computational / cellular neuroscience)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Homeostatic plasticity — Wikipedia (the concept)",
+          "url": "https://en.wikipedia.org/wiki/Homeostatic_plasticity"
+        },
+        {
+          "label": "Synaptic scaling — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Synaptic_scaling"
+        },
+        {
+          "label": "Hebbian theory — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hebbian_theory"
+        },
+        {
+          "label": "Neural facilitation / intrinsic plasticity — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Neuroplasticity"
+        },
+        {
+          "label": "PMC open-access — synaptic scaling & homeostatic plasticity reviews",
+          "url": "https://pmc.ncbi.nlm.nih.gov/?term=synaptic+scaling+homeostatic+plasticity+review"
+        },
+        {
+          "label": "MIT OCW 9.40 — introduction to neural computation",
+          "url": "https://ocw.mit.edu/search/?q=neural+computation"
+        }
+      ],
+      "art_prompt": "a neuron with an activity gauge showing a target set-point band; when activity strays high, all incoming synapses shrink by the same multiplicative factor, when low they all grow — the relative pattern of strengths preserved",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is purely Hebbian plasticity unstable, and what does homeostatic plasticity do to fix it?",
+          "answer": "Hebbian plasticity is positive feedback — potentiation raises firing, which drives more potentiation (and the reverse for depression) — so activity can run away to saturation or silence. Homeostatic plasticity is a slow negative-feedback process that senses a neuron's average activity and adjusts synaptic strengths, excitability, or inhibition to hold firing near a set-point."
+        },
+        {
+          "level": "derive",
+          "prompt": "Synaptic scaling multiplies all of a neuron's excitatory synapses by the same factor. Explain why this stabilizes overall activity without erasing a memory stored by Hebbian learning.",
+          "answer": "The information Hebbian learning stores is in the *relative* strengths of synapses. Multiplying every synapse by the same factor changes the neuron's total drive (restoring its firing rate toward the set-point) but leaves all ratios between synapses unchanged, so the learned pattern is preserved. A non-uniform (subtractive or selective) adjustment would distort those ratios and corrupt the memory."
+        }
+      ],
+      "lesson": "### Intuition\n\nHebbian learning has a dangerous flaw. Strengthening the connections that fire together is a spiral: the more they fire, the stronger they get, the more they fire. Left alone a network would either fall silent or blow up into runaway activity. The brain runs a slower safety system that watches each neuron's average activity and gently turns *all* of its inputs up or down to keep it in a healthy range. That is what lets fast learning happen without breaking the network.\n\n### Precisely\n\n**Hebbian plasticity** (LTP/LTD) is positive feedback and destabilizing. **Homeostatic plasticity** is the negative-feedback counterpart that stabilizes neurons around an activity **set-point**. Its best-known form is **synaptic scaling**: when a neuron's average activity is chronically too high or too low (over hours to days), it scales *all* its excitatory synapses down or up. The move is **multiplicative** — every synapse is multiplied by about the same factor — so relative weights are preserved while overall gain is renormalized. Neurons also adjust intrinsic excitability (ion-channel densities) and inhibitory tone.\n\n### Worked example\n\nBlock all activity in a cultured network with a drug for two days. The neurons, sensing they are far below their target firing rate, scale their excitatory synapses *up*. Now plot the scaled synaptic amplitudes against the original control amplitudes: the points fall on a straight line through the origin. That straight line is the fingerprint of a *uniform multiplicative* change — every synapse grew by the same factor — rather than selective editing of particular synapses.\n\n### Why it's true / how it works\n\nA purely Hebbian network is mathematically unstable unless something bounds total synaptic drive; homeostatic plasticity supplies that bound. The timescale separation is essential: homeostasis acts over **hours–days**, far slower than Hebbian induction (seconds–minutes). If it were as fast, it would cancel the learning it is meant to protect. The set-point is sensed through activity-dependent signals — intracellular **calcium** is a leading candidate — with mediators like TNF-α and the immediate-early gene Arc implicated in scaling.\n\n### Where it connects\n\nHomeostatic plasticity is the stabilizing partner of **hebbian-learning** and **ltp-ltd**: fast associative learning writes the pattern, slow homeostasis keeps the network from saturating or going silent. Its role in renormalizing synapses over the day links directly to **sleep-memory-replay** and the synaptic-homeostasis view of sleep, and its failure is implicated in epilepsy (too little stabilization) and developmental miswiring.\n\n### Watch out\n\nDon't assume homeostatic scaling alone is enough to tame Hebbian learning — some theory argues biological scaling is *too slow* to stabilize fast learning by itself, implying additional rapid compensatory mechanisms. And distinguish it sharply from Hebbian LTP/LTD: scaling is non-associative, cell-wide, and slow, not synapse-specific and fast.\n\n### Worth knowing\n\nThe multiplicative signature is more than a lab curiosity — it is the reason a neuron can rescale its excitability every night without waking up with its memories scrambled. Stability and plasticity, usually framed as opposites, are engineered to coexist by putting them on different clocks."
     }
   ]
 }
