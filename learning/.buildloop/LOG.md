@@ -808,3 +808,50 @@ but LOWERS placed-count. Always verify ZERO depth cascade + re-run test-diagnost
 and AVOID over-wiring sensitive nodes (binding-kd). Cheap zero-risk wins still open: ~30 atoms lack
 a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable;
 non-biophysics branch expansion (math 49 / physics 55 / chem 49 / info 48 / cosmo 41 / mind 42).
+
+## 2026-07-01 — run 22 (+5 colloid/interface + noncovalent atoms; biophysics 128→133; margin held)
+Completed the **colloid/interface + aromatic-interaction family** on top of the electrostatics
+foundations prior runs added. Five new atoms, all `requires` into EXISTING atoms only (no edits to
+existing atoms → ZERO depth cascade, verified): **stern-layer** (requires gouy-chapman; finite-ion-size
+fix — compact Stern layer up to the outer-Helmholtz/Stern plane, potential drops linearly like a
+capacitor, then diffuse GC layer; series capacitors 1/C=1/C_Stern+1/C_diff cures GC's divergent
+capacitance at high ψ₀/salt; specific adsorption at inner Helmholtz plane → charge reversal; zeta ≈
+ψ at slip/Stern plane ≠ true ψ₀), **dlvo** (requires gouy-chapman + van-der-waals; V(D)=V_EDL+V_vdW,
+screened repulsion e^{-κD} vs vdW attraction -A/12πD²; secondary min + primary barrier + primary min;
+add salt→κ↑→barrier drops→coagulation; CCC ∝ z^{-6} Schulze–Hardy; non-DLVO forces + steric
+stabilization noted), **hofmeister** (requires preferential-interaction + debye-huckel-activity;
+kosmotropes SO4/F excluded→stabilize+salt-out vs chaotropes SCN/I accumulated→destabilize+salt-in;
+anion order dominates; Setschenow log(S0/S)=Ks·c; modern direct-partitioning view replaces "water
+structure making/breaking"; ties to hydrophobic effect + urea/TMAO osmolytes), **anion-pi** (requires
+electrostatics; mirror of cation–π — needs reversed positive quadrupole Q_zz, C6F6≈+9.5 D·Å/triazine/
+NDI; charge–quadrupole qQ_zz/r³ + anion-induced polarization which is sign-independent; rare in
+proteins, big in supramolecular anion receptors/transporters + anion–π catalysis), **ch-pi** (requires
+van-der-waals; dispersion-dominated weak H-bond-like C–H···π, ~1–2.5 kcal/mol, C–H→ring centroid H
+2.5–3.5 Å above plane; additive; STAR role = carbohydrate–aromatic recognition, sugar pyranose C–H
+face on Trp/Tyr in lectins/glycoside hydrolases, mutate Trp→binding collapses; OH–π>NH–π>CH–π
+continuum; low desolvation → survives in water). Full 7-section lesson (Intuition/Precisely/Worked
+example/Why it's true/Where it connects) + 3 depths + note + art_prompt + 2 quiz (1 recall + 1
+conceptual/derive) per atom; ALL prose ORIGINAL; equations are facts; OPEN sources only (LibreTexts +
+MIT OCW 10.626/5.60/5.13/5.112/7.05 + NCBI Bookshelf + PMC OA + 4–5 Wikipedia resources each).
+meta 0.13.0→0.14.0.
+
+**validate.sh PASSES end-to-end** (133 atoms, JSON integrity, 60-day engine sim all introduced,
+diagnostic GREEN placed 42/asked 18 margin +24, prereq shell HELD 5/6, assess/lang/explorer smokes).
+NOTE: the piped `test-headless-flow.mjs` line prints "HEADLESS SMOKE FAILED" but is **pre-existing**
+(present identically in the pre-change baseline; piped through `tail` so it does NOT gate `set -e`) —
+not introduced by this run; a separate cleanup bead should fix or de-mask it. Mirrored to
+public/academy-app (133 atoms, ver 0.14.0 verified).
+
+**Diagnostic state:** placed 42, asked 18, margin +24; prereq shell 5/6 (redox-potential STILL the
+lone missing one, threshold ≥5 — razor-thin). New atoms are depth-1 leaves (anion-pi, ch-pi) and
+depth-3 (stern-layer, dlvo, hofmeister); none perturbed placed/shell (added as pure leaves under
+existing atoms, not wired INTO existing atoms). LEAF-LEVERAGE RULE still applies for any future
+placed-count lift: a depth-1 leaf only floods placed if wired under a depth≤2 (expert-known)
+dependent — anion-pi/ch-pi could later be added as `requires` of an existing depth≤2 aromatic atom
+(pi-stacking is depth-1, cation-pi depth?, binding-kd is SENSITIVE — avoid) to lift placed, but that
+edits an existing atom so re-verify ZERO cascade + shell each time. NEXT-run content targets still
+open: spectroscopy gaps if any remain, **redox tower / midpoint-potential ETC ordering** (depth-3
+dependent of redox-potential to raise its betweenness so it's asked directly — the durable prereq-shell
+fix, but VERIFY it doesn't push asked past 18), and non-biophysics branch expansion (math 49 / physics
+55 / chem 49 / info 48 / cosmo 41 / mind 42). Cheap zero-risk wins still open: ~30 atoms lack a
+derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
