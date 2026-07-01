@@ -1,16 +1,16 @@
 # 04 — Individual Variation & Special Populations
 
-> **Status:** v0.1 — 2026-06-28. The "you are not the average subject" section of the manual.
-> **Companion data:** Domain N (`02-domains/N-womens-longevity.md`, `N-claims.json`) and Domain E
-> (`02-domains/E-exercise.md`, `E-claims.json`).
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+You are not the average subject. The rest of this manual gives population-level recommendations; this
+section is the correction term. It answers a single question honestly: **how should the advice change for
+*you*** — given your build, your biological sex and life stage, your training history, and whatever your
+knees, back, and shoulders will actually let you do? The goal is to be useful without lying: to separate the
+real structural differences between human bodies (which are large and worth adapting to) from the marketed
+pseudoscience that sells "customization" as a product (somatotype diets, "female-specific" metabolism
+claims, "detox").
 
-The rest of this manual gives population-level recommendations. This section is the correction term. It
-answers a single question honestly: **how should the advice change for *you*** — given your build, your
-biological sex and life stage, your training history, and whatever your knees, back, and shoulders will
-actually let you do? The goal is to be useful without lying: to separate the real structural differences
-between human bodies (which are large and worth adapting to) from the marketed pseudoscience that sells
-"customization" as a product (somatotype diets, "female-specific" metabolism claims, "detox").
+_Not medical advice. Three honesty rules run through this section — predictor ≠ lever (something that
+forecasts risk isn't automatically something that, changed, lowers it), cohort ≠ RCT, and something beats
+nothing. Drugs and screening live in their own sections._
 
 ---
 
@@ -24,11 +24,11 @@ The ectomorph / mesomorph / endomorph vocabulary comes from **William H. Sheldon
 psychology" (1940s)**, which claimed that a person's physique (somatotype) predicted their *temperament*
 and even criminal disposition. That claim — the load-bearing one — is **discredited**. It was built on
 posed nude photographs of college students, circular reasoning (rating body and temperament against each
-other), and an explicit eugenic frame. The temperament-from-physique correlations (e.g. Cortés & Gatti
-1965, `10.1037/h0022504`) are self-report artifacts, not biology.
+other), and an explicit eugenic frame. The temperament-from-physique correlations (Cortés & Gatti
+1965)[^cortes-gatti] are self-report artifacts, not biology.
 
 What survives is narrower and much less exciting: **somatotype as a purely *descriptive* anthropometric
-measurement** (the Heath–Carter method, refined by Carter & Ross 1983, `10.1002/ajpa.1330260509`). It is a
+measurement** (the Heath–Carter method, refined by Carter & Ross 1983[^heath-carter]). It is a
 3-number snapshot of how lean/muscular/round a body *currently looks*. It is descriptive, not destined:
 
 | Claim about somatotype | Honest grade |
@@ -53,20 +53,23 @@ about *leverage and biology*, not body-shape labels:
 **a) Limb and torso proportions (skeletal leverage).** Your femur, tibia, arm, and torso lengths are mostly
 fixed in adulthood and they change the *geometry* of every barbell lift. This is mechanics, not preference:
 
-- **Long femurs relative to torso/tibia** → the squat requires either a more forward torso lean, a wider
-  stance, more ankle dorsiflexion (often helped by heeled shoes), or a low-bar position to keep the bar
-  over the midfoot. A long-femured lifter forced into a "chest-up, narrow-stance, high-bar" textbook squat
-  will look like they're "doing it wrong" when they are simply built differently. The fix is **stance and
-  bar-position adjustment**, not more mobility drills.
-- **Long arms / long torso** → a **deadlift advantage** (shorter relative bar travel, more upright pull),
-  and usually a **bench-press disadvantage** (longer bar path). Many people who are "naturally good
-  deadlifters and bad benchers" are simply long-armed.
-- **Short limbs / long torso** → tends to favor the bench and the squat, disadvantage the deadlift.
+- **Long femurs? Expect a forward-leaning squat and adjust the setup, don't fight it.** A long femur
+  relative to torso/tibia makes the squat require either a more forward torso lean, a wider stance, more
+  ankle dorsiflexion (often helped by heeled shoes), or a low-bar position to keep the bar over the
+  midfoot. A long-femured lifter forced into a "chest-up, narrow-stance, high-bar" textbook squat will look
+  like they're "doing it wrong" when they are simply built differently. The fix is **stance and bar-position
+  adjustment**, not more mobility drills.
+- **Long arms / long torso? Expect to deadlift well and bench poorly — adjust expectations, not your form.**
+  A **deadlift advantage** (shorter relative bar travel, more upright pull) usually comes with a
+  **bench-press disadvantage** (longer bar path). Many people who are "naturally good deadlifters and bad
+  benchers" are simply long-armed.
+- **Short limbs / long torso? Expect the reverse** — this build tends to favor the bench and the squat and
+  disadvantage the deadlift.
 
 This is documented, not folklore: in classic powerlifters, **anthropometric/segment-length variables
-correlate with maximal strength in the three lifts** (Ferland & Laurier 2020, `10.70252/wktf5547`). The
-practical reading is not "measure your femurs and despair" — it's *expect your three lifts to be uneven by
-build, and set technique to your skeleton rather than to a photo of someone else's.*
+correlate with maximal strength in the three lifts** (Ferland & Laurier 2020).[^ferland] The practical
+reading is not "measure your femurs and despair" — it's *expect your three lifts to be uneven by build, and
+set technique to your skeleton rather than to a photo of someone else's.*
 
 **b) Tendon insertion points (muscle leverage).** Where a muscle's tendon attaches relative to the joint
 sets its mechanical advantage. A biceps or gastrocnemius that inserts even a centimeter farther from the
@@ -76,7 +79,7 @@ honest answer to a lot of "genetics" hand-waving: some of it is literally lever 
 
 **c) Muscle fiber-type distribution.** Humans vary substantially in the ratio of slow-twitch (Type I,
 fatigue-resistant, endurance) to fast-twitch (Type II, high-force/power) fibers in a given muscle (Zierath
-& Hawley 2004, `10.1371/journal.pbio.0020348`). Distribution is partly genetic and only modestly shiftable
+& Hawley 2004).[^zierath] Distribution is partly genetic and only modestly shiftable
 by training. Someone fiber-typed toward Type I will tend to thrive on higher-rep / endurance work and
 recover faster; someone Type II–dominant tends toward power and may fatigue and need more rest between hard
 sets. **Caveat (predictor ≠ destiny):** you cannot and should not fiber-type yourself to pick a sport — the
@@ -102,18 +105,17 @@ doesn't work for me" when the truth is "that *dose* didn't work for you yet."
 ### 2.1 The HERITAGE Family Study: response to the same program varies enormously
 
 The **HERITAGE Family Study** (Bouchard and colleagues) put ~480 sedentary people through the *identical*
-20-week supervised endurance program and measured the change in VO2max. The result is one of the most
-quoted and most under-appreciated findings in exercise science:
+20-week supervised endurance program and measured the change in VO2max (a fitness/aerobic-capacity score).
+The result is one of the most quoted and most under-appreciated findings in exercise science:
 
 - **Mean VO2max gain was ~+19%, but the individual range ran from essentially zero to over +40–50%** — the
-  same program, the same supervision (Skinner et al. 2001, *J Appl Physiol*, `10.1152/jappl.2001.90.5.1770`).
+  same program, the same supervision (Skinner et al. 2001).[^skinner]
 - This trainability was **highly familial** — gains clustered in families — and the heritability of the
-  *training response itself* was estimated at roughly **~47%** (Bouchard et al., HERITAGE,
-  `10.1152/jappl.1999.87.3.1003`). In other words, *how much you adapt* is itself partly inherited, separate
-  from your starting fitness.
+  *training response itself* was estimated at roughly **~47%** (Bouchard et al. 1999).[^bouchard-herit] In
+  other words, *how much you adapt* is itself partly inherited, separate from your starting fitness.
 - A minority even showed **adverse metabolic responses** to regular exercise on some markers (Bouchard et
-  al. 2012, *PLoS ONE*, `10.1371/journal.pone.0037887`) — though on hard outcomes the overall direction of
-  exercise is still protective; this is heterogeneity, not "exercise is bad."
+  al. 2012).[^bouchard-adverse] Though on hard outcomes the overall direction of exercise is still
+  protective; this is heterogeneity, not "exercise is bad."
 
 @@FIG:25-responder-distribution@@
 
@@ -126,20 +128,20 @@ that is a real, measured, heritable phenomenon, not a character flaw.
 Here is the part that makes the finding *motivating* instead of fatalistic. "Non-responder" is largely an
 artifact of **a single, fixed dose**:
 
-- **Montero & Lundby 2017** (*J Physiol*, `10.1113/JP273480`), titled bluntly *"Refuting the myth of
-  non-response to exercise training: 'non-responders' do respond to higher doses of training"*: people who
-  failed to improve on a low dose **did improve when the dose (volume/intensity) was increased.** The
-  apparent non-response was a **dose** problem, not an individual ceiling.
+- **Montero & Lundby 2017,** titled bluntly *"Refuting the myth of non-response to exercise training:
+  'non-responders' do respond to higher doses of training"*: people who failed to improve on a low dose
+  **did improve when the dose (volume/intensity) was increased.**[^montero] The apparent non-response was a
+  **dose** problem, not an individual ceiling.
 - In **resistance training**, the title says it all: *"There Are No Nonresponders to Resistance-Type Exercise
-  Training in Older Men and Women"* (Churchward-Venne / Tieland et al. 2015, *JAMDA*,
-  `10.1016/j.jamda.2015.01.071`). Different people gain different amounts, but **essentially everyone gains.**
-- The field's framing has matured into **"precision exercise medicine"** (Ross et al. 2019, *BJSM*,
-  `10.1136/bjsports-2018-100328`): expect variability, then *adjust the prescription* (more volume, more
-  intensity, different modality) rather than declaring the person a non-responder.
+  Training in Older Men and Women"* (Churchward-Venne / Tieland et al. 2015).[^tieland] Different people gain
+  different amounts, but **essentially everyone gains.**
+- The field's framing has matured into **"precision exercise medicine"** (Ross et al. 2019).[^ross] Expect
+  variability, then *adjust the prescription* (more volume, more intensity, different modality) rather than
+  declaring the person a non-responder.
 
 **The operating rule:** if a program isn't working after a fair trial (8–12 weeks, honestly executed),
-**change the stimulus** — add volume, add intensity, switch modality (e.g. add HIIT to steady-state, see
-`hiit-crf-cardiometabolic-meta`), or change the rep range — **before** concluding it doesn't work. The
+**change the stimulus** — add volume, add intensity, switch modality (e.g. add HIIT to steady-state), or
+change the rep range — **before** concluding it doesn't work. The
 near-universal truth: *somebody's* dose works for you; you may just not have found it yet. (Rule 3:
 something beats nothing — and the right something beats the wrong something.)
 
@@ -147,36 +149,36 @@ something beats nothing — and the right something beats the wrong something.)
 
 ## 3. Sex differences — practical, and graded honestly
 
-This section *extends* Domain N (`N-womens-longevity.md`) from epidemiology into training practice. The
-governing caveat from that domain is structural and must be stated up front: **most of the exercise and
-longevity dose–response literature was built on young male subjects and extrapolated to women**
-(`male-default-cohort-problem`, `exercise-doseresponse-male-derived`). So the honest version of "female
+This section extends the women's-longevity material from epidemiology into training practice. The governing
+caveat is structural and must be stated up front: **most of the exercise and longevity dose–response
+literature was built on young male subjects and extrapolated to women.** So the honest version of "female
 training advice" is *thinner and more uncertain than the supplement industry implies* — and where it is
 strong, it is strong for unglamorous reasons (menopause, bone, protein), not for "female metabolism" magic.
 
 ### 3.1 The female "spend the years disabled" problem reframes the goal
 
-From Domain N (`health-survival-paradox`): **women live ~5 years longer than men in developed nations but
-report more disability and morbidity across most of adult life.** The lifespan-centric framing of most
-longevity content *mis-targets the sex that already has the years and needs the function.* Practically:
-**for women, the strength / muscle / balance levers (Domain E) are not optional add-ons — they are the main
-event,** because healthspan and independence, not lifespan, are the binding constraint.
+The health–survival paradox: **women live ~5 years longer than men in developed nations but report more
+disability and morbidity across most of adult life.** The lifespan-centric framing of most longevity content
+*mis-targets the sex that already has the years and needs the function.* Practically: **for women, the
+strength / muscle / balance levers are not optional add-ons — they are the main event,** because healthspan
+and independence, not lifespan, are the binding constraint.
 
 ### 3.2 The menstrual cycle and training: the evidence is **thinner and more mixed than claimed**
 
+**The verdict first: cycle-syncing is overclaimed — autoregulate by feel, don't periodize to a calendar.**
 The popular "sync your training to your cycle" / "cycle-phase periodization" advice is marketed with far
-more confidence than the data support. The honest grade:
+more confidence than the data support. Three meta-analyses carry the point:
 
-- **McNulty et al. 2020** (*Sports Medicine* meta-analysis, `10.1007/s40279-020-01319-3`): across eumenorrheic
-  women, menstrual-cycle phase had only a **"trivial" average effect on exercise performance, and the quality
-  of evidence was low** with high between-study variation. Translation: there may be small individual effects,
-  but there is **no robust, generalizable phase-performance rule** to periodize around.
-- **Colenso-Semple et al. 2023** (*Front Sports Act Living*, `10.3389/fspor.2023.1054542`): current evidence
-  shows **no influence of menstrual-cycle phase on acute strength performance or on resistance-training
-  adaptations.** Lifting gains do not appear to track the cycle.
-- **Oral contraceptives** (Elliott-Sale et al. 2020 meta, `10.1007/s40279-020-01317-5`): on average a
-  **possibly trivial-to-small negative** effect on performance — again low certainty, not a reason to start or
-  stop OCs for performance.
+- **McNulty et al. 2020:** across eumenorrheic women, menstrual-cycle phase had only a **"trivial" average
+  effect on exercise performance, and the quality of evidence was low** with high between-study
+  variation.[^mcnulty] There may be small individual effects, but there is **no robust, generalizable
+  phase-performance rule** to periodize around.
+- **Colenso-Semple et al. 2023:** current evidence shows **no influence of menstrual-cycle phase on acute
+  strength performance or on resistance-training adaptations.**[^colenso] Lifting gains do not appear to
+  track the cycle.
+- **Oral contraceptives** (Elliott-Sale et al. 2020): on average a **possibly trivial-to-small negative**
+  effect on performance[^elliott-sale] — again low certainty, not a reason to start or stop OCs for
+  performance.
 
 **The honest reading:** cycle symptoms are real and individual, and a woman who *feels* stronger or weaker in a
 given phase should absolutely autoregulate (train hard when she feels good, back off when she doesn't). But
@@ -187,30 +189,27 @@ don't rigidly periodize to a calendar the data don't endorse.
 ### 3.3 Perimenopause and menopause: this is where the **strongest practical female-specific levers** live
 
 Unlike the cycle story, the menopause story has real, load-bearing interventions — because menopause is a
-**sex-specific aging inflection with no male equivalent** (`menopause-bone-loss-acceleration`): estrogen
-withdrawal drives accelerated bone loss and adverse cardiometabolic shifts (lipids, visceral fat, insulin).
-That makes three levers disproportionately important for women through the transition:
+**sex-specific aging inflection with no male equivalent**: estrogen withdrawal drives accelerated bone loss
+and adverse cardiometabolic shifts (lipids, visceral fat, insulin). That makes three levers
+disproportionately important for women through the transition:
 
 1. **Resistance training — heavier than most women are told to lift.** The bone-loading signal needs real
-   load. The **LIFTMOR trial** (Watson et al. 2018, *J Bone Miner Res*, `10.1002/jbmr.3284`) showed that
-   **high-intensity resistance + impact training in postmenopausal women with low bone mass improved bone
-   mineral density and function and was safe** — contradicting the cautious "light weights, high reps for
-   ladies" default. Meta-analytic evidence agrees that **higher-intensity / impact-loading modalities are the
-   ones that move BMD** in postmenopausal women (Kemmler et al. 2020, `10.1007/s00223-020-00744-w`; ACTLIFE-RCT
-   Hettchen 2021, `10.2147/cia.s283177`). Cross-link Domain E `resistance-training-mortality-meta`,
-   `sarcopenia-strength-defining-ewgsop2`.
+   load. The **LIFTMOR trial** (Watson et al. 2018) showed that **high-intensity resistance + impact training
+   in postmenopausal women with low bone mass improved bone mineral density (BMD) and function and was
+   safe**[^liftmor] — contradicting the cautious "light weights, high reps for ladies" default. Meta-analytic
+   evidence agrees that **higher-intensity / impact-loading modalities are the ones that move BMD** in
+   postmenopausal women (Kemmler et al. 2020;[^kemmler] ACTLIFE-RCT, Hettchen 2021[^hettchen]).
 2. **Protein — adequate and distributed.** Muscle and bone maintenance through the transition needs sufficient
-   protein (see §4.3 and Domain D); the older-adult thresholds below apply with extra force to peri/post-
-   menopausal women defending against accelerated loss.
-3. **Bone-density tracking.** DXA/BMD monitoring (Domain L) is *more* informative for women because the
-   menopausal bone-loss slope is real and individual; track it and let it drive the loading dose.
+   protein (see §4.3); the older-adult thresholds below apply with extra force to peri/post-menopausal women
+   defending against accelerated loss.
+3. **Bone-density tracking.** DXA (a low-dose bone-density scan) monitoring is *more* informative for women
+   because the menopausal bone-loss slope is real and individual; track it and let it drive the loading dose.
 
-**On HRT — graded, not cheerled.** Domain N treats this in full; the one-paragraph honest version:
-HRT *started at menopause for symptoms* is, on current evidence, **reasonable and probably net-beneficial for
-many women** (`whi-age-dependent-riskbenefit`, `estrogen-timing-elite`, `keeps-hrt-recent-menopause`); HRT
-*started late as a longevity/cardiovascular intervention* is **not supported and may harm**
-(`whi-estrogen-progestin-harm`). The cardiovascular endpoints that exist are mostly **surrogates (carotid
-thickness), not events** — the definitive hard-outcome timing trial does not exist (`conflict-hrt-timing`).
+**On HRT (hormone replacement therapy) — graded, not cheerled.** The women's-longevity material treats this
+in full; the one-paragraph honest version: HRT *started at menopause for symptoms* is, on current evidence,
+**reasonable and probably net-beneficial for many women**; HRT *started late as a longevity/cardiovascular
+intervention* is **not supported and may harm.** The cardiovascular endpoints that exist are mostly
+**surrogates (carotid thickness), not events** — the definitive hard-outcome timing trial does not exist.
 This is an **open conflict**, a per-person decision with a doctor — not a blanket recommendation either way.
 
 ### 3.4 "Female-specific" overclaims — what to be skeptical of
@@ -231,9 +230,10 @@ The flip side of taking women's physiology seriously is refusing to launder mark
 The male side is comparatively under-discussed in longevity content (ironic, given the cohorts are male) but
 has two graded specifics:
 
-- **Testosterone declines gradually with age** (~1%/yr from midlife). Genuinely low, symptomatic
-  hypogonadism is a real medical condition worth treating. But **TRT marketed as a longevity / anti-aging
-  optimizer for men with normal-range testosterone is not established to extend healthspan**, carries
+- **Testosterone declines gradually with age** (~1%/yr from midlife). Truly low, symptomatic hypogonadism is
+  a real medical condition worth treating. But **TRT (testosterone replacement therapy) marketed as a
+  longevity / anti-aging optimizer for men with normal-range testosterone is not established to extend
+  healthspan**, carries
   cardiovascular and fertility trade-offs, and is `mixed`/`nequals1`-territory hype when sold that way. The
   strongest natural levers on testosterone are unglamorous: adequate sleep (Domain I), resistance training,
   not being over-fat, and not under-eating.
@@ -254,17 +254,17 @@ power, protein, and balance training become** — not less.
 The body's trainability, hormonal environment, and (critically) **peak bone mass accrual** are most favorable
 here. Bone mineral density banks in the 20s–30s and is drawn down for the rest of life — so impact and
 resistance loading in youth is *literally building the asset* that menopause and aging will spend. Build the
-strength and aerobic base now; it is the highest-leverage window you will ever have. (Cross-link `crf-vo2max-
-strongest-mortality-predictor`: a high fitness ceiling built young is easier to defend than to rebuild.)
+strength and aerobic base now; it is the highest-leverage window you will ever have. A high fitness ceiling
+built young is easier to defend than to rebuild.
 
 ### 4.2 Midlife — **defend it**
 
-Sarcopenia (better defined by **strength loss / dynapenia** than mass loss — Mitchell et al. 2012,
-`10.3389/fphys.2012.00260`; EWGSOP2 `sarcopenia-strength-defining-ewgsop2`) and **power loss begin in midlife
-and power declines *faster* than strength.** Midlife is the cheapest time to defend the peak — maintain
-resistance training, protect VO2max, and start tracking the functional biomarkers (grip, VO2max, BMD) from
-Domain L while they're still easy to move. For women, this overlaps the menopausal transition (§3.3) — the
-single highest-leverage decade for the bone/strength levers.
+Sarcopenia (age-related muscle loss, better defined by **strength loss / dynapenia** than mass loss —
+Mitchell et al. 2012[^mitchell]) and **power loss begin in midlife and power declines *faster* than
+strength.** Midlife is the cheapest time to defend the peak — maintain resistance training, protect VO2max,
+and start tracking the functional biomarkers (grip, VO2max, BMD) while they're still easy to move. For women,
+this overlaps the menopausal transition (§3.3) — the single highest-leverage decade for the bone/strength
+levers.
 
 ### 4.3 Older adults (65+) — strength, power, protein, and balance matter **MORE, not less**
 
@@ -274,32 +274,30 @@ highest-leverage interventions available**, and it works even in the oldest, fra
 
 - **It works even in frail nonagenarians.** The landmark Fiatarone work showed **high-intensity resistance
   training improves strength, gait speed, and function in frail people in their 80s and 90s** (Fiatarone et
-  al. 1994, *NEJM*, `10.1056/NEJM199406233302501`). More recent work confirms **multicomponent + power
-  training builds muscle mass, power, and function even in institutionalized frail nonagenarians** (Cadore et
-  al. 2013, `10.1007/s11357-013-9586-z`). *There is no age at which it stops working.*
+  al. 1994).[^fiatarone] More recent work confirms **multicomponent + power training builds muscle mass,
+  power, and function even in institutionalized frail nonagenarians** (Cadore et al. 2013).[^cadore] *There is
+  no age at which it stops working.*
 - **Progressive resistance training reliably improves physical function in older adults** — Cochrane review of
-  121 trials (Liu & Latham 2009, `10.1002/14651858.CD002759.pub2`). And per §2.1: **"there are no
-  nonresponders" among older adults** (Churchward-Venne / Tieland 2015).
+  121 trials (Liu & Latham 2009).[^liu-latham] And per §2.1: **"there are no nonresponders" among older
+  adults** (Churchward-Venne / Tieland 2015).
 - **Power training (force × speed), not just slow strength, is the specific lever for function and falls.**
   Muscle *power* predicts the ability to rise from a chair, climb stairs, and recover from a stumble better
-  than slow maximal strength, and it declines faster with age (Miszko et al. 2003,
-  `10.1093/gerona/58.2.m171`). Practically: include **intentionally fast concentric lifts** (sit-to-stand done
-  explosively, step-ups, light fast presses), not only grindingly slow reps.
+  than slow maximal strength, and it declines faster with age (Miszko et al. 2003).[^miszko] Practically:
+  include **intentionally fast concentric lifts** (sit-to-stand done explosively, step-ups, light fast
+  presses), not only grindingly slow reps.
 - **Balance / fall-prevention training is a top-tier intervention, not a warm-up.** Falls are a leading cause
   of disability and death in older adults; structured **balance and strength programs reduce fall rate**
-  (World Falls Guidelines, Montero-Odasso et al. 2022, *Age & Ageing*, `10.1093/ageing/afac205`). Balance is
-  trainable at any age.
+  (World Falls Guidelines, Montero-Odasso et al. 2022).[^falls-guidelines] Balance is trainable at any age.
 - **Protein needs are HIGHER in older adults, not lower.** Aging muscle is **anabolically resistant** — it
   needs a larger protein dose per meal to trigger the same muscle-protein-synthesis response (Moore et al.
-  2014, `10.1093/gerona/glu103`). Expert-group recommendations: **~1.0–1.2 g/kg/day for healthy older adults
-  (up to ~1.2–1.5 with illness or to counter sarcopenia)**, distributed across meals with adequate
-  leucine — PROT-AGE (Bauer et al. 2013, `10.1016/j.jamda.2013.05.021`) and ESPEN (Deutz et al. 2014,
-  `10.1016/j.clnu.2014.04.007`). This sits inside the open `conflict-protein-mtor` debate, but for *older
-  adults specifically* the muscle/mortality side wins on current evidence. Cross-link Domain D.
-- **Start where you are.** The dose–response data (`physical-activity-dose-response-mortality`) show the
-  **steepest mortality benefit at the least-active end** — for a deconditioned 70-year-old, going from nothing
-  to *something* is the biggest single jump available to anyone in this manual. Begin with bodyweight
-  sit-to-stands, a daily walk, and a couple of resistance movements; progress from there.
+  2014).[^moore] Expert-group recommendations: **~1.0–1.2 g/kg/day for healthy older adults (up to ~1.2–1.5
+  with illness or to counter sarcopenia)**, distributed across meals with adequate leucine — PROT-AGE (Bauer
+  et al. 2013)[^prot-age] and ESPEN (Deutz et al. 2014).[^espen] This sits inside the open protein–mTOR
+  debate, but for *older adults specifically* the muscle/mortality side wins on current evidence.
+- **Start where you are.** The dose–response data show the **steepest mortality benefit at the least-active
+  end** — for a deconditioned 70-year-old, going from nothing to *something* is the biggest single jump
+  available to anyone in this manual. Begin with bodyweight sit-to-stands, a daily walk, and a couple of
+  resistance movements; progress from there.
 
 **The inversion, stated plainly:** resistance training, power work, protein, and balance are *more* important
 at 75 than at 25 — because at 75 they are defending independence and life itself, not aesthetics.
@@ -336,17 +334,16 @@ You do not need a gym to satisfy the load-bearing levers:
   rows under a sturdy table or with bands), a single set of **adjustable dumbbells** or **resistance bands**,
   and a backpack loaded with books cover most patterns. Progressive overload still applies — add reps, slow
   the tempo, harder leverage, then more load.
-- **Cardio / VO2max:** walking, hill walking, stairs, jump rope, and bodyweight intervals drive CRF; HIIT
-  needs no equipment (`hiit-crf-cardiometabolic-meta`).
+- **Cardio / VO2max:** walking, hill walking, stairs, jump rope, and bodyweight intervals drive
+  cardiorespiratory fitness (CRF); HIIT needs no equipment.
 - **Bone loading:** impact (brisk walking with brief faster bursts, low hops if joints allow, stair climbing)
   plus the loaded resistance above — the same signal LIFTMOR used, scaled to home.
 
 ### 5.3 Time-poor: the minimum effective dose
 
-The dose–response curve is steepest at the low end (`physical-activity-dose-response-mortality`), and the
-resistance-mortality benefit **plateaus early** — the muscle-strengthening mortality association peaks around
-**~30–60 minutes per week**, with little added mortality benefit beyond (`resistance-training-mortality-meta`,
-Momma et al. 2022). So the honest minimum is genuinely small:
+The dose–response curve is steepest at the low end, and the resistance-mortality benefit **plateaus early** —
+the muscle-strengthening mortality association peaks around **~30–60 minutes per week**, with little added
+mortality benefit beyond (Momma et al. 2022).[^momma] So the honest minimum is small:
 
 - **~30–60 min/week of resistance training total** captures most of the strength-mortality benefit — two
   short full-body sessions, or even **"exercise snacks"** (a few sets scattered through the day).
@@ -434,3 +431,34 @@ markets itself.
 > you didn't try"). The real individual variation — leverage, fiber type, training response, sex/life-stage,
 > age, and physical limitation — is large and worth adapting to. The marketed variation is mostly a way to
 > sell you something. Grade accordingly.
+
+---
+
+## Sources & notes
+
+[^cortes-gatti]: Cortés & Gatti 1965. doi:10.1037/h0022504
+[^heath-carter]: Carter & Ross 1983 (Heath–Carter somatotype method). doi:10.1002/ajpa.1330260509
+[^ferland]: Ferland & Laurier 2020 — anthropometry and maximal strength in powerlifters. doi:10.70252/wktf5547
+[^zierath]: Zierath & Hawley 2004 — skeletal muscle fiber type. doi:10.1371/journal.pbio.0020348
+[^skinner]: Skinner et al. 2001, *J Appl Physiol* — HERITAGE VO2max response range. doi:10.1152/jappl.2001.90.5.1770
+[^bouchard-herit]: Bouchard et al. 1999, *J Appl Physiol* — HERITAGE heritability of VO2max trainability (~47%). doi:10.1152/jappl.1999.87.3.1003
+[^bouchard-adverse]: Bouchard et al. 2012, *PLoS ONE* — adverse metabolic responses to exercise. doi:10.1371/journal.pone.0037887
+[^montero]: Montero & Lundby 2017, *J Physiol* — "Refuting the myth of non-response to exercise training." doi:10.1113/JP273480
+[^tieland]: Churchward-Venne / Tieland et al. 2015, *JAMDA* — "There Are No Nonresponders to Resistance-Type Exercise Training in Older Men and Women." doi:10.1016/j.jamda.2015.01.071
+[^ross]: Ross et al. 2019, *BJSM* — precision exercise medicine. doi:10.1136/bjsports-2018-100328
+[^mcnulty]: McNulty et al. 2020, *Sports Medicine* — menstrual-cycle phase and performance (meta-analysis). doi:10.1007/s40279-020-01319-3
+[^colenso]: Colenso-Semple et al. 2023, *Front Sports Act Living* — cycle phase and strength/adaptation. doi:10.3389/fspor.2023.1054542
+[^elliott-sale]: Elliott-Sale et al. 2020 — oral contraceptives and performance (meta-analysis). doi:10.1007/s40279-020-01317-5
+[^liftmor]: Watson et al. 2018, *J Bone Miner Res* — LIFTMOR trial. doi:10.1002/jbmr.3284
+[^kemmler]: Kemmler et al. 2020 — loading intensity and BMD in postmenopausal women. doi:10.1007/s00223-020-00744-w
+[^hettchen]: Hettchen 2021 — ACTLIFE-RCT. doi:10.2147/cia.s283177
+[^mitchell]: Mitchell et al. 2012 — sarcopenia defined by strength (dynapenia). doi:10.3389/fphys.2012.00260. claim: sarcopenia-strength-defining-ewgsop2
+[^fiatarone]: Fiatarone et al. 1994, *NEJM* — high-intensity resistance training in frail nonagenarians. doi:10.1056/NEJM199406233302501
+[^cadore]: Cadore et al. 2013 — multicomponent + power training in institutionalized frail nonagenarians. doi:10.1007/s11357-013-9586-z
+[^liu-latham]: Liu & Latham 2009 — Cochrane review of progressive resistance training in older adults (121 trials). doi:10.1002/14651858.CD002759.pub2
+[^miszko]: Miszko et al. 2003 — muscle power vs strength for function. doi:10.1093/gerona/58.2.m171
+[^falls-guidelines]: Montero-Odasso et al. 2022, *Age & Ageing* — World Falls Guidelines. doi:10.1093/ageing/afac205
+[^moore]: Moore et al. 2014 — anabolic resistance and per-meal protein dose. doi:10.1093/gerona/glu103
+[^prot-age]: Bauer et al. 2013, *JAMDA* — PROT-AGE protein recommendations for older adults. doi:10.1016/j.jamda.2013.05.021
+[^espen]: Deutz et al. 2014, *Clin Nutr* — ESPEN expert-group protein recommendations. doi:10.1016/j.clnu.2014.04.007
+[^momma]: Momma et al. 2022 — muscle-strengthening activity and mortality (meta-analysis). claim: resistance-training-mortality-meta

@@ -1,35 +1,33 @@
 # 26 — Infectious Disease & Microbiology
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/infectious-disease-claims.json`.
-> A complete map of human health cannot skip infection. For nearly all of human history it was **the** killer —
-> the thing that determined whether a child reached five and whether an adult survived a cut, a birth, or a
-> winter. The single largest improvement in human lifespan ever recorded was not a drug or a diet; it was the
-> conquest of infectious disease through sanitation, clean water, vaccines, and antibiotics. This section maps
-> the agents (what infects us), the revolution that tamed them (germ theory → the epidemiologic transition), the
-> tools (antibiotics, vaccines) and their fragility (resistance, hesitancy), the diseases that still matter, and
-> the honest framing that separates hygiene-that-works from hygiene-theater.
+For nearly all of human history, infection was **the** killer — the thing that determined whether a child
+reached five and whether an adult survived a cut, a birth, or a winter. The single largest improvement in human
+lifespan ever recorded was not a drug or a diet; it was the conquest of infectious disease through sanitation,
+clean water, vaccines, and antibiotics. This section maps the agents (what infects us), the revolution that tamed
+them (germ theory → the epidemiologic transition), the tools (antibiotics, vaccines) and their fragility
+(resistance, hesitancy), the diseases that still matter, and the honest framing that separates hygiene-that-works
+from hygiene-theater.
 
-> ## ⚠️ Read the framing before the content
->
-> Three ideas govern everything below. **First: most microbes are not your enemy.** You are an ecosystem of
-> ~30–40 trillion human cells living with a comparable number of bacteria, almost all of which are commensal or
-> beneficial (cross-ref `C2-microbiome-deepdive.md`). "Antibacterial everything" and the war-on-germs mindset
-> get the biology backwards — the goal is **targeted defense against pathogens**, not sterility. **Second: the
-> immune system is the actual defense, and it cannot be "boosted" into doing this job better** (cross-ref
-> `15-immune-system.md` — the entire "boost your immunity" category is debunked there). What works is **specific,
-> trained defense (vaccines)** plus a well-regulated system. **Third: the two pillars of modern infection control
-> — antibiotics and vaccines — are both under threat,** one from resistance (a slow-motion catastrophe) and one
-> from hesitancy (a self-inflicted one). Understanding why each works is the best defense against squandering
-> them.
+_Not medical advice. Vaccine immunology, herd immunity, and the "boost vs. regulate" debunks live in §15;
+vaccines as longevity medicine in §10 §5; the commensal microbiome in the microbiome deep-dive (C2) and §15 §5;
+HPV→cervical-cancer prevention in §07; cell-biology fundamentals in §01 and §12._
 
-**Cross-references (read alongside):** the immunology of how vaccines train memory, herd immunity, and the
-"boost vs regulate" debunks are owned by `reports/sections/15-immune-system.md`; **vaccines as longevity
-medicine** (shingles→dementia, flu→CV events, the beyond-target signals) live in
-`reports/sections/10-medical-pharmacology.md §5`; the **commensal microbiome** (not all microbes are enemies; the
-hygiene/"old friends" hypothesis) is in `02-domains/C2-microbiome-deepdive.md` and `15 §5`; **HPV→cervical
-cancer** and the oncogenic-virus story cross-link to the cancer-prevention material in
-`07-clinical-prevention.md`; **cell-biology fundamentals** (how pathogens hijack the machinery) rest on
-`01-foundations.md` and `12-mechanism-bridge.md`.
+## Read this framing first
+
+Three ideas govern everything below.
+
+**First: most microbes are not your enemy.** You are an ecosystem of ~30–40 trillion human cells living with a
+comparable number of bacteria, almost all of which are commensal or beneficial (cross-ref C2). "Antibacterial
+everything" and the war-on-germs mindset get the biology backwards — the goal is **targeted defense against
+pathogens** rather than sterility.
+
+**Second: the immune system is the actual defense, and it cannot be "boosted" into doing this job better** (§15
+debunks the entire "boost your immunity" category). What works is **specific, trained defense (vaccines)** plus a
+well-regulated system.
+
+**Third: the two pillars of modern infection control — antibiotics and vaccines — are both under threat,** one
+from resistance (a slow-motion catastrophe) and one from hesitancy (a self-inflicted one). Understanding why each
+works is the best defense against squandering them.
 
 ---
 
@@ -147,14 +145,14 @@ livestock — a vast resistance incubator feeding back to humans.
 
 ### 3.3 The resistance crisis — one of the top global health threats
 
-This is not hypothetical. The landmark **GRAM study** (Murray et al., *Lancet* 2022) estimated that in 2019,
-bacterial AMR was **directly responsible for ~1.27 million deaths and associated with ~4.95 million deaths**
-worldwide — already comparable to or exceeding HIV and malaria. The WHO ranks AMR among the **top global public
+This is not hypothetical. The landmark **GRAM study** (Murray et al., *Lancet* 2022)[^gram] estimated that in
+2019, bacterial AMR was **directly responsible for ~1.27 million deaths and associated with ~4.95 million
+deaths** worldwide — already comparable to or exceeding HIV and malaria. The WHO ranks AMR among the **top global public
 health threats**, and the trajectory points toward a **"post-antibiotic era"** in which routine infections and
 minor surgeries again become dangerous. The pipeline is nearly dry: few genuinely novel antibiotic classes have
 reached the clinic in decades, because antibiotics are a poor commercial bet (a cheap drug taken for days, that
-society wants to *reserve* rather than sell). The named threats — **MRSA**, **carbapenem-resistant
-Enterobacteriaceae (CRE)**, **drug-resistant TB (MDR/XDR-TB)**, **C. difficile** (an antibiotic-*caused*
+society wants to *reserve* rather than sell). The named threats — **MRSA** (methicillin-resistant *Staph aureus*),
+**carbapenem-resistant Enterobacteriaceae (CRE)**, **drug-resistant TB (MDR/XDR-TB)**, **C. difficile** (an antibiotic-*caused*
 infection), drug-resistant gonorrhea — are not edge cases; they are in hospitals now.
 
 @@FIG:D05-amr-burden@@
@@ -199,8 +197,9 @@ vague "immune boosting" the supplement industry sells (cross-ref `15 §4.3`).
 When a high enough fraction of a population is immune, a pathogen **can't find enough susceptible hosts to
 sustain transmission**, and chains of infection fizzle — protecting the unvaccinated minority who genuinely
 *can't* be vaccinated (infants, the immunocompromised, the elderly with weak responses). The threshold scales
-with contagiousness: measles, one of the most transmissible diseases known (R₀ ≈ 12–18), needs **~95% coverage**,
-which is exactly why falling measles vaccination rates produce outbreaks first. Herd immunity reframes
+with contagiousness: measles, one of the most transmissible diseases known, has an **R₀ ≈ 12–18** (R₀ = how many
+people one case infects in a fully susceptible population) and needs **~95% coverage**, which is exactly why
+falling measles vaccination rates produce outbreaks first. Herd immunity reframes
 vaccination from a purely personal choice into a **public good**: the healthy adult who gets a flu shot is partly
 protecting the frail elderly relative who would die of the same flu.
 
@@ -225,7 +224,8 @@ These are among the greatest achievements in human history, and they are concret
 ### 4.4 The honest safety record — and meeting hesitancy with evidence
 
 Vaccines are among the **most studied and most safe** interventions in all of medicine, monitored continuously
-through systems like VAERS/VSD and post-marketing surveillance across hundreds of millions of doses. Honesty
+through systems like VAERS/VSD (national vaccine safety-monitoring databases) and post-marketing surveillance
+across hundreds of millions of doses. Honesty
 requires stating both halves:
 
 - **Real but rare adverse events exist and are not hidden.** Examples with genuine evidence: anaphylaxis (~1 per
@@ -235,7 +235,7 @@ requires stating both halves:
   Europe. These are acknowledged, quantified, and weighed — that is what an honest safety system looks like.
 - **The central myth is decisively refuted.** The claim that **MMR vaccine causes autism** originated in a 1998
   Wakefield paper that was **retracted as fraudulent**; its author lost his license. It has since been refuted by
-  studies covering **millions of children** (e.g. the Danish cohort of >650,000). There is **no link**. This is
+  studies covering **millions of children** (e.g. the Danish cohort of >650,000).[^mmr-autism] There is **no link**. This is
   one of the most thoroughly disproven claims in medicine, and the resulting hesitancy has measurably **cost
   lives** through measles resurgence.
 - **The honest framing for hesitancy.** The right response to vaccine hesitancy is not contempt; it is the
@@ -276,8 +276,8 @@ This is one of medicine's great recent success stories, and an honest map distin
 
 | Infection | Status now | The honest detail |
 |---|---|---|
-| **HIV** | **Manageable, not curable** | Modern antiretroviral therapy (ART) turns HIV into a chronic condition with **near-normal life expectancy**. **U=U: undetectable = untransmittable** — effective treatment makes someone non-infectious (HPTN 052 proved treatment-as-prevention). **PrEP** (pre-exposure prophylaxis) prevents acquisition. Still no cure, still a lifelong daily commitment, still ~40M people living with it. |
-| **Hepatitis C** | **Curable** | Direct-acting antivirals (since ~2014) cure **>95%** in 8–12 weeks of pills — a genuine medical miracle that arrived quietly. The bottleneck is now diagnosis and access, not cure. |
+| **HIV** | **Manageable, not curable** | Modern antiretroviral therapy (ART) turns HIV into a chronic condition with **near-normal life expectancy**. **U=U: undetectable = untransmittable** — effective treatment makes someone non-infectious (treatment-as-prevention).[^hptn052] **PrEP** (pre-exposure prophylaxis) prevents acquisition. Still no cure, still a lifelong daily commitment, still ~40M people living with it. |
+| **Hepatitis C** | **Curable** | Direct-acting antivirals (DAAs, since ~2014) cure **>95%** in 8–12 weeks of pills — a genuine medical miracle that arrived quietly. The bottleneck is now diagnosis and access, not cure. |
 | **Hepatitis B** | **Preventable, suppressible** | A **vaccine prevents it** (and the liver cancer it causes — the first anti-cancer vaccine). Chronic infection is suppressed, not yet cured. |
 | **HPV** | **Preventable** | Ubiquitous; most clears on its own, but oncogenic strains cause **cervical, anal, oropharyngeal cancers**. The **vaccine prevents the cancer** (cross-ref clinical-prevention; Swedish cohort data show real cervical-cancer reduction). |
 | **Herpesviruses (HSV, VZV, EBV, CMV)** | Lifelong latency | Most people carry several. Mostly benign but consequential: **VZV** reactivates as shingles (vaccine-preventable, with a dementia-incidence signal — pharma §5); **CMV** is implicated in immune aging (`15 §2.4`); **EBV** is now strongly tied to multiple sclerosis. |
@@ -297,8 +297,8 @@ HIV co-infection. TB is the clearest reminder that the infectious-disease era is
 
 **Sepsis** is the body's **dysregulated, life-threatening response to infection** — not the infection itself but
 the immune system's overwhelming reaction, causing organ failure and shock. It is staggeringly common and
-under-recognized: a Global Burden of Disease analysis (Rudd et al., *Lancet* 2020) estimated **~48.9 million
-cases and 11 million deaths in 2017 — roughly 1 in 5 deaths worldwide.** It can follow *any* infection
+under-recognized: a Global Burden of Disease analysis (Rudd et al., *Lancet* 2020)[^sepsis-gbd] estimated
+**~48.9 million cases and 11 million deaths in 2017 — roughly 1 in 5 deaths worldwide.** It can follow *any* infection
 (pneumonia, UTI, skin, abdominal), it is a medical emergency where **every hour to antibiotics matters**, and the
 public barely knows the word. Recognizing the warning signs (confusion, extreme illness/"I feel like I might
 die," fast breathing, mottled skin, not passing urine) and seeking emergency care is genuinely lifesaving.
@@ -332,7 +332,8 @@ section to the exposures/environment material (`09-exposures-environment.md`).
 COVID-19 is the defining infectious event of the era, and an honest manual neither minimizes nor mythologizes it.
 
 - **What clearly worked:** the **mRNA vaccines** were a genuine scientific triumph — designed in days, proven
-  ~95% effective against severe disease in a rigorous RCT (Polack et al., *NEJM* 2020), and credited with
+  ~95% effective against severe disease in a rigorous RCT (randomized controlled trial — the strongest evidence
+  tier) (Polack et al., *NEJM* 2020),[^bnt-rct] and credited with
   preventing millions of deaths. Rapid genomic sequencing and global data-sharing were unprecedented.
 - **What was genuinely hard and contested:** the relative value of **lockdowns, school closures, and mask
   mandates** involved real trade-offs (education loss, mental health, economic harm) that were not always
@@ -347,11 +348,12 @@ COVID-19 is the defining infectious event of the era, and an honest manual neith
 
 ### 6.3 Pandemic preparedness
 
-The recurring playbook: **surveillance** (catch spillover early — genomic and wastewater monitoring),
-**platform readiness** (mRNA and other rapid-design platforms that compress vaccine timelines), **stockpiles and
-surge capacity**, **global equity** (a pandemic anywhere is a pandemic everywhere — vaccine nationalism prolongs
-everyone's exposure), and **honest, trusted communication**. The next pandemic is not a question of *if* but
-*when*; AMR (§3) and a novel respiratory virus are the two most-cited candidates.
+Preparedness is the same playbook every time: catch spillover early through genomic and wastewater
+**surveillance**; keep **rapid-design platforms** (mRNA and its cousins) warm so a vaccine can be built in weeks;
+hold **stockpiles and surge capacity**; treat **global equity** as self-interest, since a pandemic anywhere is a
+pandemic everywhere and vaccine nationalism just prolongs everyone's exposure; and communicate honestly enough to
+keep public trust. The next pandemic is a matter of *when* rather than *if* — AMR (§3) and a novel respiratory
+virus are the two most-cited candidates.
 
 ---
 
@@ -449,3 +451,9 @@ you can buy for yourself in a bottle.
 - **Bjornson-Hooper / Blaser M.** *Missing Microbes* (2014) and the colonization-resistance / "old friends"
   literature (Rook 2011, `10.1007/s12016-011-8285-8`) — the commensal reframe (cross-ref C2 and `15 §5`): why
   "antibacterial everything" is the wrong model.
+
+[^gram]: GRAM study — Murray CJL et al., *Lancet* 2022. doi:10.1016/S0140-6736(21)02724-0. ~1.27M direct / ~4.95M associated bacterial-AMR deaths, 2019. claim: amr-death-burden
+[^sepsis-gbd]: Rudd KE et al., *Lancet* 2020. doi:10.1016/S0140-6736(19)32989-7. ~48.9M sepsis cases / 11M deaths / ~1-in-5 of all global deaths, 2017. claim: sepsis-global-burden
+[^hptn052]: HPTN 052 — Cohen MS et al., *NEJM* 2011. doi:10.1056/NEJMoa1105243. Early ART cut HIV transmission ~96% (treatment-as-prevention / U=U evidence base); pair with START (doi:10.1056/NEJMoa1506816) and Partners PrEP (doi:10.1056/NEJMoa1108524). claim: hiv-tasp-uu (rct)
+[^bnt-rct]: Polack FP et al., *NEJM* 2020. doi:10.1056/NEJMoa2034577. BNT162b2 mRNA vaccine ~95% efficacy, pivotal RCT. claim: covid-mrna-efficacy (rct)
+[^mmr-autism]: Hviid A et al., *Ann Intern Med* 2019. doi:10.7326/M18-2101. Danish cohort >650,000 children, no MMR–autism link; decisive refutation of the retracted/fraudulent Wakefield claim. claim: mmr-autism-null

@@ -1,32 +1,27 @@
 # 32 — Biohacking & Fringe Interventions: The Graded Verdict
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/biohacking-claims.json`.
-> Consolidates and extends the hype-tier already catalogued in `00-map/01-STATE-OF-THE-FIELD.md §3`, and
-> cross-references the thermal levers in `05-recovery-sleep-stress.md` (sauna/cold), the supplement
-> verdicts in `03-nutrition-supplements.md` (NAD/antioxidants), and the wearables analysis in
-> `L2-wearables-quantified-self.md` (CGM/HRV). This is the corpus's one place where the *popular biohacks*
-> get a fair, evidence-graded verdict — neither hyped nor reflexively dismissed.
+A thing is not wrong because it is sold by someone with a ring light, and it is not right because a mouse
+study and a mechanism exist. The biohacking world gets a reflexive sneer from mainstream medicine and a
+reflexive sell from its own influencers, and **neither is honest.** This chapter grades each popular biohack
+on the evidence: some have real, narrow support (red light for skin, methylene blue's mechanism), most sit
+in a predictable gap between a real mechanism and the human outcome being sold, and a few are actively
+harmful. We say which is which, with the dose-versus-evidence honesty the marketing omits.
 
-This section exists because the biohacking world is treated by mainstream medicine with a reflexive sneer
-and by its own influencers with a reflexive sell, and **neither is honest.** The corpus indexes-all and
-grades-all: a thing is not wrong because it is sold by someone with a ring light, and it is not right
-because a mouse study and a mechanism exist. The grade *is* the neutrality (`06-evidence/SCHEMA.md`). Some
-of these interventions have real, narrow evidence (red light for skin, methylene blue's mechanism). Most
-sit in a predictable gap. A few are actively harmful. We say which is which, with the dose↔evidence
-honesty that the marketing omits.
+_Not medical advice. Thermal levers (sauna/cold) live in §05; supplement verdicts (NAD, antioxidants) in
+§03; wearables (CGM/HRV) in the wearables chapter._
 
 **Five honesty rules govern every verdict here:**
 
 1. **Mechanism ≠ outcome.** "BPC-157 accelerates tendon healing *in rats*" and "raises NAD+" and "increases
    mitochondrial ATP *in a cell*" are mechanisms. None is the human outcome being sold. Most of this section
-   lives in that gap (`SCHEMA.md` hard rule #1).
+   lives in that gap.
 2. **The laundering gap.** The recurring biohacking move is: a real *mechanism* or a *mouse/cell* result
    gets marketed as a hard human *outcome* it has not earned. Name the launder every time.
 3. **Dose-sold ≠ dose-studied.** Where any human signal exists, the protocol that produced it is usually
    not the protocol being sold (this is the cold-plunge pattern from §05, repeated across the section).
 4. **Survivorship + anecdote.** The testimonial base is built on people for whom it seemed to work, who
-   were also sleeping, training, and dieting better that month. n=1 cannot see a small effect or any
-   longevity outcome (`L2 §`, Blueprint anchor).
+   were also sleeping, training, and dieting better that month. n=1 (a single-person self-experiment)
+   cannot see a small effect or any longevity outcome.
 5. **Unregulated ≠ characterized.** "Research chemical," "peptide," "compounded," and "wellness IV" all
    mean *the thing in the vial is not what a regulator has checked* — purity, dose, and contaminants are
    unknown. That is a harm input independent of efficacy.
@@ -35,7 +30,7 @@ honesty that the marketing omits.
 
 | Verdict | Meaning |
 |---|---|
-| **REAL** | Consistent human RCT/meta evidence for a meaningful effect (usually narrow) |
+| **REAL** | Consistent human RCT/meta evidence (randomized trials and pooled analyses, the strongest tiers) for a meaningful effect (usually narrow) |
 | **PROMISING** | Real signal but smaller/surrogate/dose-uncertain, or strong mechanism + thin human data |
 | **PLACEBO-LEVEL** | Effects indistinguishable from placebo in controlled tests; benefit is expectation + ritual |
 | **NO-EVIDENCE** | No credible human outcome data; sold on mechanism, anecdote, or invented physiology |
@@ -86,8 +81,8 @@ not outcome; unregulated is not characterized.
 muscle, gut, and brain; sold for injury recovery and "gut health."
 
 **The evidence:** BPC-157's literature is almost entirely **rat and cell** — angiogenesis, tendon-fibroblast
-outgrowth, gut-mucosa protection (the modern syntheses, e.g. *Pharmaceuticals* 2025, `10.3390/ph18020185`,
-are explicit that the work is preclinical/patent-stage). There are **no published randomized controlled
+outgrowth, gut-mucosa protection (the modern syntheses, e.g. *Pharmaceuticals* 2025, are explicit that the
+work is preclinical/patent-stage).[^bpc157-review] There are **no published randomized controlled
 human efficacy trials** for any indication. It is not an approved drug anywhere; in 2023 the U.S. FDA placed
 BPC-157 in the category of substances barred from compounding for lack of safety characterization.
 
@@ -103,7 +98,8 @@ is laundering.
 
 **The evidence:** thymosin β4 is a real actin-regulating peptide with genuine wound-healing and
 angiogenesis mechanisms in animal models; "TB-500" is a synthetic fragment sold without the parent
-molecule's (limited) clinical study. **No human efficacy RCTs.** It is on the WADA Prohibited List. Same
+molecule's (limited) clinical study. **No human efficacy RCTs.** It is on the WADA (World Anti-Doping
+Agency) Prohibited List. Same
 grey-market, same unverified-vial problem. **Verdict: NO-EVIDENCE.**
 
 ### 1.3 Ipamorelin & the GH-secretagogue family — the longevity-genetics own-goal
@@ -111,12 +107,12 @@ grey-market, same unverified-vial problem. **Verdict: NO-EVIDENCE.**
 **The claim:** ipamorelin, CJC-1295, sermorelin, MK-677/ibutamoren and similar "GH secretagogues" raise
 growth hormone "naturally" for anti-aging, muscle, and recovery.
 
-**The evidence:** ipamorelin is a real, selective GH secretagogue (`10.1530/eje.0.1390552`, 1998) — it does
-what it says, raising pulsatile GH and downstream IGF-1. That is exactly the problem. **The single most
-robust longevity-genetics finding in the corpus runs the *other* direction:** reduced GH/IGF-1 signaling
-*extends* lifespan across worms, flies, mice (the long-lived dwarf and GHR-knockout models), and tracks with
-human longevity (lower IGF-1 in the long-lived; see `igf1-u-shaped-mortality`, L; and the protein/mTOR
-conflict, `conflict-protein-mtor-longevity`). Deliberately *raising* GH/IGF-1 chronically for "anti-aging"
+**The evidence:** ipamorelin is a real, selective GH secretagogue (1998) — it does what it says, raising
+pulsatile GH and downstream IGF-1 (insulin-like growth factor 1, the main hormone growth hormone acts
+through).[^ipamorelin] That is exactly the problem. **The single most robust longevity-genetics finding in
+the corpus runs the *other* direction:** reduced GH/IGF-1 signaling *extends* lifespan across worms, flies,
+mice (the long-lived dwarf and GHR-knockout models), and tracks with human longevity (lower IGF-1 in the
+long-lived).[^igf1-mortality] Deliberately *raising* GH/IGF-1 chronically for "anti-aging"
 is pushing the lever in the direction the aging biology says shortens life. There are short-term
 body-composition signals (MK-677 raises lean mass and also fasting glucose and water retention) but **no
 healthspan or longevity human data**, and a coherent mechanistic reason to expect net harm if used for
@@ -156,14 +152,15 @@ systemically — for fat loss, longevity, testosterone, whole-body "recovery," a
 
 **The evidence — the part that is REAL and narrow:**
 - **Skin / cosmetic:** controlled trials show red/NIR light improves skin complexion, intradermal collagen,
-  and reduces fine lines/wrinkles (e.g. Wunsch & Matuschka, *Photomed Laser Surg* 2014,
-  `10.1089/pho.2013.3616`). This is a genuine, replicated, narrow effect — and it is why dermatology uses it.
+  and reduces fine lines/wrinkles (e.g. Wunsch & Matuschka, 2014).[^wunsch] This is a genuine, replicated,
+  narrow effect — and it is why dermatology uses it.
 - **Pain / musculoskeletal:** systematic reviews find low-level laser/PBM produces small short-term pain
   reductions in some conditions (e.g. fibromyalgia, *Pain Physician* 2019; some tendinopathy, neck pain) —
   modest, heterogeneous, but not nothing.
 - **A real mechanism:** the leading hypothesis is photon absorption by mitochondrial cytochrome-c-oxidase
   modulating ATP/ROS/nitric-oxide signaling. There is also a narrow mainstream result (Jeffery's 670 nm
-  retinal-mitochondria work) cross-referenced in §05 — graded `mechanistic`.
+  retinal-mitochondria work) cross-referenced in §05 — graded `mechanistic` (a plausible biological pathway
+  shown, no human outcome yet).
 
 **The part that is OVERCLAIMED (NO-EVIDENCE):** the leap from "red light helps skin and some local pain" to
 "whole-body panels extend lifespan / burn fat / raise testosterone / 'charge your mitochondria'" is the
@@ -185,15 +182,16 @@ decompression sickness, carbon-monoxide poisoning, gas gangrene, non-healing dia
 crush injury, certain refractory infections. **These are REAL** and HBOT is real medicine for them.
 
 **The claim (longevity):** HBOT "reverses aging" and "lengthens telomeres." This traces to one study —
-**Hachmo et al. 2020** (*Aging*, `10.18632/aging.202188`): 35 healthy older adults, 60 sessions of HBOT,
-reported **increased telomere length (~20%) and decreased senescent cells** in isolated blood cells; a
-companion paper reported skin-aging changes (`10.18632/aging.203701`, 2021).
+**Hachmo et al. 2020**: 35 healthy older adults, 60 sessions of HBOT, reported **increased telomere length
+(~20%) and decreased senescent cells** in isolated blood cells; a companion paper (2021) reported skin-aging
+changes.[^hachmo][^hachmo-skin]
 
 **The honest reading (the Hachmo honesty):**
 - **No control group.** It is a single-arm prospective trial — there is no placebo/sham arm, so
   regression, batch effects, and expectancy are uncontrolled.
 - **Surrogate endpoint.** Telomere length in *isolated blood cells* is a biomarker, not a demonstrated
-  health outcome (and `SCHEMA.md` + the State-of-the-Field's "predictor ≠ lever" rule apply hard). Longer
+  health outcome (a measured signal that forecasts risk isn't automatically a lever that, once changed,
+  lowers it — "predictor ≠ lever"). Longer
   measured telomeres in a sample is not "younger," and the relationship between telomere length and
   organismal aging is itself contested.
 - **Small, single-center, unreplicated**, with a commercial interest in the modality.
@@ -237,8 +235,8 @@ honest; the chamber is the upsell.
 "hydration," "recovery," "beauty," and standalone high-dose vitamin C — deliver energy, immunity, hangover
 cure, and "detox" by bypassing the gut.
 
-**The evidence:** the cleanest test is the **Myers' cocktail RCT** (Ali et al., *J Altern Complement Med*
-2009, `10.1089/acm.2008.0410`): a placebo-controlled pilot in fibromyalgia found **no statistically
+**The evidence:** the cleanest test is the **Myers' cocktail RCT** (Ali et al., 2009):[^ali-myers] a
+placebo-controlled pilot in fibromyalgia found **no statistically
 significant benefit over placebo** — both arms improved (the infusion ritual is a powerful placebo). Across
 wellness IVs there are **no outcome RCTs** showing benefit in healthy people. The premise is also
 physiologically weak: for water-soluble vitamins in a replete person, "bypassing the gut" mostly produces
@@ -246,7 +244,8 @@ physiologically weak: for water-soluble vitamins in a replete person, "bypassing
 
 **The harm + cost side:** IV access carries real (small) risks — infection, phlebitis, infiltration,
 fluid/electrolyte disturbance, and rare anaphylaxis; high-dose vitamin C is contraindicated in **G6PD
-deficiency** (hemolysis) and in oxalate-stone formers. Cost is $100–400 per drip for an effect a glass of
+deficiency** (an inherited red-blood-cell enzyme deficiency; risk of hemolysis) and in oxalate-stone
+formers. Cost is $100–400 per drip for an effect a glass of
 water and a meal would match.
 
 **Dose↔evidence honesty:** the entire pitch is "IV is better than oral," but for the marketed wellness
@@ -260,8 +259,8 @@ NAD IV is its own line below.
 
 **The evidence:** this inherits the entire NAD-precursor verdict from `03-nutrition-supplements.md §5` and
 State-of-the-Field §3: **NAD+ declines with age (mechanism real), and you can raise it — but human RCTs move
-only surrogates, with no demonstrated longevity or hard-endpoint benefit** (`nad-precursor-nr-human-surrogate`,
-`conflict-nad-precursor-efficacy`). IV NAD+ adds nothing to that evidence except a slow, often
+only surrogates, with no demonstrated longevity or hard-endpoint benefit**.[^nad-claims] IV NAD+ adds
+nothing to that evidence except a slow, often
 **uncomfortable infusion** (flushing, nausea, chest tightness if run fast), a much higher price, and IV
 risk. There is no human trial showing IV NAD+ produces an anti-aging *outcome*. **Verdict: NO-EVIDENCE for
 longevity; mechanism real, outcome unproven — and the IV route buys you nothing the oral question hasn't
@@ -279,9 +278,9 @@ person with working liver and kidneys, and they share a real harm tail. Graded i
 **The claim:** insufflated/injected/auto-hemotherapy ozone "oxygenates," kills pathogens, and treats
 everything from Lyme to cancer to autoimmune disease.
 
-**The evidence:** no credible human outcome RCTs support the systemic claims; reviews (e.g. dermatology,
-`10.xxxx` *J Clin Aesthet Dermatol* 2022 systematic review) find weak, low-quality data even for the
-narrowest topical uses. The U.S. FDA position is blunt: **ozone is "a toxic gas with no known useful medical
+**The evidence:** no credible human outcome RCTs support the systemic claims; reviews (e.g. a *J Clin
+Aesthet Dermatol* 2022 systematic review) find weak, low-quality data even for the narrowest topical
+uses.[^ozone-review] The U.S. FDA position is blunt: **ozone is "a toxic gas with no known useful medical
 application"** in general medicine. Documented harms include **gas embolism (fatal), pulmonary irritation,
 and hemolysis.** **Verdict: POTENTIALLY-HARMFUL** — no proven benefit, real and occasionally fatal risk.
 
@@ -291,8 +290,8 @@ and hemolysis.** **Verdict: POTENTIALLY-HARMFUL** — no proven benefit, real an
 the worst version, autism).
 
 **The evidence:** chelation is **REAL and standard for genuine heavy-metal poisoning** (lead, etc.). For
-*cardiovascular disease* the entire case rests on **TACT** (Lamas et al., *JAMA* 2013,
-`10.1001/jama.2013.2107`): a marginal reduction in a composite endpoint that was **statistically fragile,
+*cardiovascular disease* the entire case rests on **TACT** (Lamas et al., 2013):[^tact] a marginal
+reduction in a composite endpoint that was **statistically fragile,
 unblinded-concerns, subgroup-driven (diabetics), and never independently replicated** — guidelines do **not**
 endorse chelation for heart disease. For "detox," autism, or "heavy-metal" wellness in people without
 poisoning there is **no evidence**, and EDTA chelation has **killed children and adults via iatrogenic
@@ -314,13 +313,13 @@ generally.
 ## 7. FRINGE BIOPHYSICS — grounding, structured/hydrogen water, EMF-protection
 
 This cluster claims to act on the body through *physics* that is either invented or grossly overstated. It is
-also where the corpus's contested **Kruse / EZ-water canon note** lives — handled honestly below.
+also where the contested claims associated with **Jack Kruse** (a neurosurgeon and longevity writer) around
+structured/EZ-water live — graded honestly below.
 
 ### 7.1 Grounding / earthing — invented biophysics, tiny surrogate studies
 
 **The claim:** direct skin contact with the Earth lets "free electrons" neutralize inflammation, improving
-sleep, pain, and cardiovascular markers (the foundational review: Chevalier et al., *J Environ Public
-Health* 2012, `10.1155/2012/291541`).
+sleep, pain, and cardiovascular markers (the foundational review: Chevalier et al., 2012).[^chevalier]
 
 **The evidence:** the human studies are **small, unblinded, surrogate-endpoint, and largely from
 advocates** — reported changes in blood viscosity, cortisol, or subjective sleep, with no rigorous
@@ -336,17 +335,17 @@ Two different claims get conflated:
   reporting modest changes in oxidative-stress and metabolic markers. It is **PROMISING at the surrogate
   tier** — a genuine (if weak and over-hyped) signal, not invented.
 - **"Structured water," "EZ water" (exclusion-zone / fourth-phase water), hexagonal water"** as a *health
-  product* is **NO-EVIDENCE.** The exclusion-zone phenomenon at hydrophilic surfaces (Pollack) is a real
-  laboratory observation under study, but the leap to "drink structured water for cellular hydration/energy/
-  longevity" is unsupported, and consumer "structuring" devices have no validated effect.
+  product* is **NO-EVIDENCE.** The exclusion-zone phenomenon (a lab observation, associated with bioengineer
+  Gerald Pollack, that water forms an ordered layer next to some surfaces) is a real laboratory finding under
+  study, but the leap to "drink structured water for cellular hydration/energy/longevity" is unsupported, and
+  consumer "structuring" devices have no validated effect.
 
-> **The contested Kruse / EZ-water canon note (speculative).** The Bucket biophysics branch carries a Kruse-
-> adjacent layer where structured/EZ-water and deuterium are treated as foundation candidates. The corpus's
-> standing grade (carried from §05 and `01-STATE-OF-THE-FIELD §4`): the **circadian-light spine is validated**
-> by mainstream chronobiology, but the **EZ-water / deuterium / "non-native EMF" extensions are graded
-> `speculative`** — foundation-candidates under review, **not** established outcomes, and explicitly **not** a
-> basis for a consumer "structured water" health claim. Keeping the foundation question separate from the
-> outcome claim is the discipline; a lab phenomenon under study does not license a wellness SKU.
+> **On the contested Kruse claims (`speculative` — a candidate idea under review, not an established
+> outcome).** A cluster of ideas associated with Kruse treats structured/EZ-water and deuterium (a heavy
+> isotope of hydrogen) as deep biological levers. The honest grade: the circadian-light half of this thinking
+> is **validated** by mainstream chronobiology, but the EZ-water, deuterium, and "non-native EMF" extensions
+> have **no established outcome evidence** and are graded `speculative`. A lab phenomenon under study does not
+> license a consumer "structured water" health claim.
 
 ### 7.3 EMF-protection — no demonstrated non-thermal harm, so nothing to protect against
 
@@ -369,8 +368,8 @@ for the harm being protected against at consumer levels and for the products.
 Fully treated in `L2-wearables-quantified-self.md` and State-of-the-Field §3. The verdict, restated:
 continuous glucose monitors are accurate enough for diabetes management but **have no outcome RCT in healthy
 non-diabetics**; **glucose "spikes" and variability have no proven outcome meaning** in people with normal
-HbA1c; sensors disagree with each other and with fingersticks; and the "flatten your curve" advice can drive
-needless food anxiety (`cgm-accurate-diabetes-unvalidated-healthy`, L; `conflict-cgm-healthy-utility`). The
+HbA1c (long-term average blood sugar); sensors disagree with each other and with fingersticks; and the
+"flatten your curve" advice can drive needless food anxiety.[^cgm-claims] The
 "measurement-validity ≠ outcome-utility" razor (L2) is the whole story. **Verdict: NO-EVIDENCE for
 healthy-person optimization;** a personalization *tool* at best, not a longevity lever.
 
@@ -381,13 +380,12 @@ sleep — to maximally slow aging ("don't die").
 
 **The honest grading (carried from L2's n=1 epistemics):**
 - **As discipline / personalization:** a rigorous n=1 can validly detect **large within-person effects** and
-  personalize, and the *foundation* of any such program (sleep, training, diet, apoB control) is exactly the
-  corpus's Tier-A levers (`01-STATE-OF-THE-FIELD §1`). To that extent it is **PROMISING as a disciplined
-  practice.**
+  personalize, and the *foundation* of any such program (sleep, training, diet, apoB control — apoB is a
+  direct count of the cholesterol particles that lodge in artery walls) is exactly the corpus's Tier-A
+  levers. To that extent it is **PROMISING as a disciplined practice.**
 - **As proof of longevity:** an n=1 with no control, regression-to-mean, multiple comparisons, and
-  surrogate endpoints (biological-age clocks — themselves **not validated surrogates**,
-  `biological-age-tests-not-validated-surrogate`, `conflict-which-clock-is-valid`) **cannot demonstrate a
-  slowed-aging outcome.** Moving a clock number is not living longer.
+  surrogate endpoints (biological-age clocks — themselves **not validated surrogates**) **cannot demonstrate
+  a slowed-aging outcome.**[^bioage-claims] Moving a clock number is not living longer.
 - **The opportunity-cost honesty:** ~100 supplements and a six-figure budget buy mostly the same Tier-A
   benefit available from the boring levers, plus a long tail of surrogate-moving interventions of unproven
   outcome value — and the under-priced lever (social connection, §05) is conspicuously not on the dashboard
@@ -452,8 +450,9 @@ Step back from the individual verdicts and the whole section has **one shape**, 
 and is then **sold as a human outcome it has never earned.** BPC-157 heals rat tendons → "heals you." Red
 light helps skin → "whole-body longevity." HBOT lengthens a blood-cell telomere number in 35 uncontrolled
 people → "reverses aging." NAD+ goes up → "cellular recharge." The mechanism is usually real; the outcome is
-usually unproven; the price is charged for the outcome. `SCHEMA.md`'s hardest rule — *a mechanism claim may
-never be presented as an outcome claim* — is the single tool that dissolves most of the section.
+usually unproven; the price is charged for the outcome. The hardest rule in the grading discipline — *a
+mechanism claim may never be presented as an outcome claim* — is the single tool that dissolves most of the
+section.
 
 @@FIG:R05-laundering-gap@@
 
@@ -516,5 +515,19 @@ attention there; treat this section as experiments, graded, not as protocols.
   "not characterized for human safety," independent of the (rat-only) efficacy question.
 
 ---
-*Section maintained by Nucleus. Graded claims, effect sizes, populations, and caveats live in
-`02-domains/biohacking-claims.json`. The grade is the neutrality.*
+
+## Sources & notes
+
+[^bpc157-review]: BPC-157 preclinical synthesis — *Pharmaceuticals* 2025. doi:10.3390/ph18020185.
+[^ipamorelin]: Ipamorelin, selective GH secretagogue — *Eur J Endocrinol* 1998. doi:10.1530/eje.0.1390552.
+[^igf1-mortality]: claims: igf1-u-shaped-mortality (L); conflict-protein-mtor-longevity.
+[^wunsch]: Wunsch & Matuschka — *Photomed Laser Surg* 2014. doi:10.1089/pho.2013.3616.
+[^hachmo]: Hachmo Y, et al. — *Aging (Albany NY)* 2020. doi:10.18632/aging.202188.
+[^hachmo-skin]: Companion skin-aging paper — *Aging (Albany NY)* 2021. doi:10.18632/aging.203701.
+[^ali-myers]: Ali A, et al. — *J Altern Complement Med* 2009. doi:10.1089/acm.2008.0410.
+[^nad-claims]: claims: nad-precursor-nr-human-surrogate; conflict-nad-precursor-efficacy.
+[^ozone-review]: *J Clin Aesthet Dermatol* 2022, systematic review. doi:10.xxxx (placeholder in source).
+[^tact]: TACT — Lamas GA, et al., *JAMA* 2013. doi:10.1001/jama.2013.2107.
+[^chevalier]: Chevalier G, et al. — *J Environ Public Health* 2012. doi:10.1155/2012/291541.
+[^cgm-claims]: claims: cgm-accurate-diabetes-unvalidated-healthy (L); conflict-cgm-healthy-utility.
+[^bioage-claims]: claims: biological-age-tests-not-validated-surrogate; conflict-which-clock-is-valid.

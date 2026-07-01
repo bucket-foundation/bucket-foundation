@@ -1,23 +1,23 @@
 # 35 — Addiction & Substance Use
 
-> **Status:** v0.1 — 2026-06-28. The addiction-and-substance-use section of the manual. A major health
-> domain in its own right — touching **mortality** (tobacco, alcohol, and the opioid epidemic are among
-> the largest modifiable killers in the corpus), **mental health** (addiction and psychiatric illness are
-> deeply comorbid — Section 20), and **behaviour** (this is the one domain where the disease, the choice,
-> and the moral framings collide most directly). Mapped honestly and compassionately.
-> **Companion data:** `02-domains/addiction-claims.json` (this section's graded claims).
-> **Cross-references** — and deliberately does **not duplicate**:
-> - **Section 20** (`20-mental-health-psychiatry.md`) — psychiatric comorbidity (depression, anxiety,
->   bipolar, PTSD, ADHD), the lithium/clozapine anti-suicide story, and the psychedelic-therapy frontier.
->   Addiction is read here as **comorbid with** those conditions, not re-derived from them.
-> - **Section 09** (`09-exposures-environment.md` §1–2) — the **exposure epidemiology** of alcohol (the
->   dead J-curve, Biddinger/Bryazka) and tobacco (Jha, Doll — ~10 years of life, cessation benefit by age).
->   This section covers the **disorder, dependence, and treatment**; 09 covers the dose-response harm.
-> - **Section 14** (`14-nervous-system.md` §3) — the **mechanism layer**: dopamine, the mesolimbic reward
->   pathway, and the "dopamine detox" debunk. Read 14 for how reward signalling actually works; this
->   section is the **disease-and-treatment** layer built on top of it.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." Two domain-specific corollaries run through this section: physical **dependence** (tolerance + withdrawal) is **not** **addiction** (compulsive use despite harm), and most people who use most drugs do not become addicted while most who do eventually remit.*
+For opioids, the intuition everyone shares — get them clean, get them off everything — is the one
+that kills. Abstinence-only detox without maintenance is associated with *worse* outcomes, because
+detox lowers your tolerance while leaving the craving intact, so a relapse at the old dose is now
+lethal. The unglamorous daily medication saves lives; the dramatic "rock bottom" abstinence
+intuition has a measurable body count. That inversion — where the moralized answer is the dangerous
+one — runs through this whole domain.
+
+This section covers the disorder, dependence, and treatment of addiction. The dose-response harm of
+alcohol and tobacco lives in §09; the reward-mechanism neuroscience lives in §14; psychiatric
+comorbidity lives in §20. Two rules do a lot of work here. First, three honesty rules the manual
+leans on throughout: a **predictor isn't automatically a lever** (something that forecasts risk isn't
+automatically something that, changed, lowers it), a **cohort study isn't an RCT** (watching what
+happens is weaker evidence than a randomized trial), and **something beats nothing**. Second, two
+rules specific to this domain: physical **dependence** (tolerance + withdrawal) is **not addiction**
+(compulsive use despite harm), and most people who use most drugs never become addicted, while most
+who do eventually remit.
+
+_Not medical advice._
 
 > **A word on tone.** This is the section where the framing has a body count and a prison population
 > attached. Call it pure moral weakness and you justify punishing sick people and you ignore that
@@ -45,13 +45,20 @@
 | **Psychedelics** (psilocybin, LSD) | **Very low** addiction potential | Low physiological lethality; psychological-risk in vulnerable | N/A for addiction; the *therapy* frontier is Section 20 §6.4 |
 | **Gambling** | The established behavioural addiction | No direct toxicity; high suicide risk | CBT; naltrexone has a signal; Gamblers Anonymous (thin evidence) |
 
-Transition-to-dependence percentages are from **Lopez-Quintero et al., *Drug Alcohol Depend* 2011**
-(`10.1016/j.drugalcdep.2010.11.004`, PMID 21145178), a NESARC analysis of ~43,000 US adults, broadly
-consistent with the earlier **Anthony, Warner & Kessler (1994)** comparative-dependence estimates. They
-are **order-of-magnitude** figures meant to convey *relative* addiction potential, not precision — and the
-headline they carry is honesty rule #2: **for every drug here, most people who try it never become
-dependent.** That is not an argument for complacency; it is the necessary correction to "one hit and you're
-hooked," which is true for almost no one and false as a general model.
+_Abbreviations in the table: **MOUD** = medications for opioid use disorder (methadone, buprenorphine);
+**NRT** = nicotine replacement therapy (patch, gum, lozenge); **CM** = contingency management (concrete
+rewards for verified abstinence); **MET** = motivational enhancement therapy; **CBT** = cognitive
+behavioural therapy; **CHS** = cannabinoid hyperemesis syndrome. "Transition to dependence among
+ever-users" = of everyone who ever tried the drug, the share who went on to become dependent._
+
+Transition-to-dependence percentages are from **Lopez-Quintero et al., *Drug Alcohol Depend* 2011**,[^lopez]
+a NESARC analysis of ~43,000 US adults, broadly consistent with the earlier **Anthony, Warner & Kessler
+(1994)** comparative-dependence estimates. They are **order-of-magnitude** figures meant to convey
+*relative* addiction potential, not precision — and the headline they carry is honesty rule #2: **for every
+drug here, most people who try it never become dependent.** That is not an argument for complacency; it is
+the necessary correction to "one hit and you're hooked," which is true for almost no one and false as a
+general model.
+
 
 @@FIG:D09-addictiveness-lethality@@
 
@@ -84,10 +91,11 @@ The dominant framework, championed by **Nora Volkow** (director of NIDA) and Ala
 the **brain disease model of addiction (BDMA)**: addiction is a chronic, relapsing brain disease in which
 repeated drug exposure produces lasting changes in reward, motivation, learning, memory, and inhibitory
 (prefrontal) circuits — so the addicted brain is in a measurably different state, and "just stop" badly
-underestimates the problem. The canonical statement is **Volkow, Koob & McLellan, *NEJM* 2016**
-(`10.1056/NEJMra1511480`, PMID 26816013), which lays out three stages — **binge/intoxication**,
-**withdrawal/negative affect**, and **preoccupation/anticipation (craving)** — each mapped to circuit
-changes. `mechanistic`/`cohort`.
+underestimates the problem. The canonical statement is **Volkow, Koob & McLellan, *NEJM* 2016**,[^volkow2016]
+which lays out three stages — **binge/intoxication**, **withdrawal/negative affect**, and
+**preoccupation/anticipation (craving)** — each mapped to circuit changes. `mechanistic`/`cohort` (biology
+plus observational data, short of a randomized trial).
+
 
 **What the BDMA gets right** (and why it deserves to be the default frame, not the strawman):
 - The neuroadaptations are **real and measurable** — this is not a metaphor.
@@ -146,7 +154,8 @@ These three are routinely conflated, and the conflation hurts people:
 - **Addiction (substance use disorder):** **compulsive use despite harm** — loss of control, craving,
   continued use despite consequences, life narrowing around the substance. This is the disorder.
 
-DSM-5 (2013) made a crucial honest move here: it **abolished the old "abuse vs dependence" split** —
+DSM-5 (2013) — the American Psychiatric Association's diagnostic manual — made a crucial honest move here:
+it **abolished the old "abuse vs dependence" split** —
 which had wrongly implied that physical dependence *was* the disease — and replaced it with a single
 **substance use disorder** rated on a **dimensional severity scale** (mild / moderate / severe, by number
 of 11 criteria met). This better matches reality: substance problems are a **continuum**, not a binary,
@@ -173,8 +182,10 @@ section does not re-derive.
 
 ### 2.2 Cessation that actually works — graded
 
-The anchor is **Cahill et al., *Cochrane* 2013** (`10.1002/14651858.CD009329.pub2`, PMID 23728690), an
-overview and **network meta-analysis** of pharmacological smoking-cessation aids:
+The anchor is **Cahill et al., *Cochrane* 2013**,[^cahill] an overview and **network meta-analysis** (a
+study that pools many trials and ranks the options against each other) of pharmacological smoking-cessation
+aids:
+
 - **Varenicline** (a partial nicotinic-receptor agonist) is the **most effective single agent** — roughly
   **2–3× placebo** quit rates — and an important secondary finding from later work (the EAGLES trial)
   **cleared its earlier neuropsychiatric "black box" fears**: it does not meaningfully raise serious
@@ -185,14 +196,16 @@ overview and **network meta-analysis** of pharmacological smoking-cessation aids
   `meta`.
 - **Bupropion** is modestly effective and a reasonable alternative.
 - **Cytisine** — a cheap plant-derived partial agonist used for decades in Eastern Europe — is effective
-  and **non-inferior or superior to varenicline in head-to-head trials** (Courtney et al., *JAMA* 2021,
-  `10.1001/jama.2021.7621`, PMID 34228066), and is a globally important low-cost option. `rct`.
+  and **non-inferior or superior to varenicline in head-to-head trials** (Courtney et al., *JAMA* 2021),[^courtney]
+  and is a globally important low-cost option. `rct` (the strongest evidence tier — a randomized trial).
+
 - **Behavioural support multiplies all of the above.** Medication + counselling/quitline beats medication
   alone; the honest message is **"drug *and* support,"** not either alone.
 - **What to do after a failed attempt:** most quit attempts fail, and that is normal, not defeat. A 2024
-  RCT (*JAMA*, `10.1001/jama.2024.4183`, PMID 38696203) showed that **switching or augmenting** after an
-  initial varenicline/NRT failure still yields meaningful further quits — the honest counsel is *iterate*,
-  don't conclude you "can't quit." `rct`.
+  RCT (*JAMA*, 2024)[^switch2024] showed that **switching or augmenting** after an initial varenicline/NRT
+  failure still yields meaningful further quits — the honest counsel is *iterate*, don't conclude you
+  "can't quit." `rct`.
+
 
 @@FIG:D10-smoking-cessation@@
 
@@ -201,12 +214,13 @@ overview and **network meta-analysis** of pharmacological smoking-cessation aids
 Cross-referenced from **Section 09 §2.2–2.3** (the harm-reduction grading lives there): the lethal agents
 are the **~7,000 combustion products** (tar, CO, nitrosamines), not nicotine itself. So for an **adult who
 already smokes**, switching completely to a non-combustible nicotine source is a **large harm reduction** —
-the Cochrane review (`10.1002/14651858.CD010216`) finds e-cigarettes help cessation with moderate-certainty
-evidence, more effective than traditional NRT. The honest two-sidedness: **less bad ≠ safe**, the real
+the Cochrane review[^ecig] finds e-cigarettes help cessation with moderate-certainty evidence, more
+effective than traditional NRT. The honest two-sidedness: **less bad ≠ safe**, the real
 population cost is **nicotine initiation in never-smoking adolescents** (recruiting a new dependent
 generation), and nicotine itself — while not the carcinogen — is not benign (cardiovascular, adolescent
 brain development). Net: a genuine **cessation tool for existing smokers**, a genuine **harm for
 non-smoking youth who start.** Don't let either truth cancel the other.
+
 
 ---
 
@@ -249,11 +263,12 @@ willpower) is **dangerously wrong**. The strongest evidence in all of addiction 
 - **Methadone** (full µ-agonist) and **buprenorphine** (partial agonist, usually with naloxone as
   Suboxone) are **agonist maintenance** treatments — they occupy the receptor, prevent withdrawal and
   craving, blunt the high from illicit use, and let people stabilize their lives. The anchor is **Sordo et
-  al., *BMJ* 2017** (`10.1136/bmj.j1550`, PMID 28446428), a systematic review and meta-analysis of cohort
-  studies: methadone and buprenorphine **roughly halve all-cause and overdose mortality** versus being out
-  of treatment. Retention is the mechanism — and the **highest-risk window is right after leaving
-  treatment** (or leaving prison), when tolerance has dropped. `cohort` (large, consistent) — one of the
-  most robust mortality findings in the corpus.
+  al., *BMJ* 2017**,[^sordo] a systematic review and meta-analysis of cohort studies: methadone and
+  buprenorphine **roughly halve all-cause and overdose mortality** versus being out of treatment. Retention
+  is the mechanism — and the **highest-risk window is right after leaving treatment** (or leaving prison),
+  when tolerance has dropped. `cohort` (observational, large and consistent) — one of the most robust
+  mortality findings in the corpus.
+
 - **The counterintuitive, load-bearing fact:** **abstinence-only detox without maintenance is associated
   with *worse* outcomes**, including higher overdose death, because detox lowers tolerance while leaving
   the addiction (craving, cues, context) intact — so relapse at the old dose is now lethal. "Get them off
@@ -266,9 +281,10 @@ willpower) is **dangerously wrong**. The strongest evidence in all of addiction 
 - **Naloxone (Narcan)** — the overdose **reversal** agent — is the harm-reduction keystone: a nasal-spray
   µ-antagonist that **reverses respiratory depression in minutes**. Community **overdose education and
   naloxone distribution (OEND)** puts it in the hands of people who use drugs and their families; the
-  evidence (e.g., MMWR `10.15585/mmwr.mm6933a2`, PMID 32817603, and multiple program evaluations) supports
-  **reduced overdose mortality** where distribution is real and wide. It does not treat addiction; it keeps
-  people **alive long enough to access treatment**, which is the entire point. `cohort`/`program`.
+  evidence (MMWR, and multiple program evaluations)[^oend] supports **reduced overdose mortality** where
+  distribution is real and wide. It does not treat addiction; it keeps people **alive long enough to access
+  treatment**, which is the entire point. `cohort`/`program`.
+
 
 The honest synthesis for opioids: **MOUD is the standard of care, it halves death, it is chronically
 under-provided** (stigma, regulation, the moralized preference for abstinence), and **detox-alone can be
@@ -297,16 +313,18 @@ than they are.
 Here the evidence ledger is lopsided in an instructive way:
 - **No medication works well.** Despite decades of trials, **no pharmacotherapy is robustly effective or
   FDA-approved** for cocaine or methamphetamine use disorder. The systematic review for cocaine (Chan et
-  al., *J Gen Intern Med* 2019, `10.1007/s11606-019-05074-8`, PMID 31183685) found **no medication with
-  consistent benefit.** (A 2021 trial of **bupropion + injectable naltrexone** for meth showed a real but
-  *modest* effect — a signal, not a solution.) `meta` — honest null.
+  al., *J Gen Intern Med* 2019)[^chan] found **no medication with consistent benefit.** (A 2021 trial of
+  **bupropion + injectable naltrexone** for meth showed a real but *modest* effect — a signal, not a
+  solution.) `meta` — honest null.
+
 - **The behavioural treatment that *does* work is under-used: contingency management (CM)** — paying
   people, in vouchers or prizes, for **drug-negative urine tests**. CM has **the strongest evidence of any
   treatment for stimulant use disorder**, and a 2025 cohort even linked CM participation to **lower
-  mortality** (*Am J Psychiatry*, `10.1176/appi.ajp.20250053`, PMID 40926572). It is **scandalously
+  mortality** (*Am J Psychiatry* 2025).[^cm2025] It is **scandalously
   under-deployed** — partly because "paying addicts to not use drugs" offends a moral intuition, which is
   precisely the §7.2 story. For stimulants, where pharmacology has failed, **the behavioural lever is the
   main lever**, and we mostly don't pull it. `meta`/`cohort`.
+
 
 ---
 
@@ -325,21 +343,22 @@ Biddinger/Bryazka). Here, the **disorder** layer:
   requiring **benzodiazepine-supported, supervised detox.** "Just quit cold turkey" is sound advice for
   nicotine and dangerous advice for severe alcohol or benzodiazepine dependence. `clinical` — high-
   confidence, consequential.
-- **Medications that work (and are under-prescribed):** the anchor is **Jonas et al., *JAMA* 2014**
-  (`10.1001/jama.2014.3628`, PMID 24825644), a systematic review/meta-analysis: **naltrexone** (reduces
-  heavy drinking; blocks the reinforcement) and **acamprosate** (supports abstinence) both have **real,
-  modest RCT-backed benefit** (number-needed-to-treat in the ~12 range — unglamorous but real, and
+- **Medications that work (and are under-prescribed):** the anchor is **Jonas et al., *JAMA* 2014**,[^jonas]
+  a systematic review/meta-analysis: **naltrexone** (reduces heavy drinking; blocks the reinforcement) and
+  **acamprosate** (supports abstinence) both have **real, modest RCT-backed benefit** (number-needed-to-treat
+  in the ~12 range — how many people you treat to prevent one bad outcome — unglamorous but real, and
   comparable to many accepted medical treatments). **Disulfiram** (makes drinking aversive) works only
   with supervision/adherence. These are cheap, generic, and **prescribed to a small minority** of people
   with AUD — a treatment gap as much cultural as clinical. `meta`. **The Sinclair Method** (targeted
   naltrexone taken before drinking, aiming at pharmacological extinction rather than abstinence) is a
   legitimate naltrexone strategy with a real evidence base, often invisible in abstinence-only settings.
 
+
 ### 5.2 Cannabis — not harmless, not the devil
 
-The honest middle is genuinely hard to hold here because both poles shout. Anchor: **Volkow et al., *NEJM*
-2014** (`10.1056/NEJMra1402309`, PMID 24897085, "Adverse Health Effects of Marijuana Use") and **Hall**
-(*Addiction* 2016, `10.1111/add.13428`, PMID 27082374).
+The honest middle is hard to hold here because both poles shout. Anchor: **Volkow et al., *NEJM*
+2014** ("Adverse Health Effects of Marijuana Use")[^volkow2014] and **Hall** (*Addiction* 2016).[^hall]
+
 - **Cannabis use disorder is real.** ~9% of ever-users become dependent (Lopez-Quintero) — lower than
   alcohol/opioids but **not zero**, rising to ~**17%** for those who start in adolescence and higher in
   daily users. "Marijuana isn't addictive" is false; withdrawal (irritability, sleep disruption, appetite
@@ -403,34 +422,33 @@ withdrawal. `clinical`.
 — DSM-5 moved it *out* of "impulse-control disorders" and *into* "substance-related and addictive
 disorders" in 2013, precisely because it shares the phenomenology (craving, tolerance-like chasing,
 withdrawal-like irritability, loss of control, continued play despite ruin) **and the reward-circuit
-biology** of drug addiction. Anchor: **Potenza et al., *Nat Rev Dis Primers* 2019**
-(`10.1038/s41572-019-0099-7`, PMID 31346179). It carries a **high suicide risk** and is being amplified by
+biology** of drug addiction. Anchor: **Potenza et al., *Nat Rev Dis Primers* 2019**.[^potenza] It carries a
+**high suicide risk** and is being amplified by
 the explosion of **online/in-app sports betting** engineered for compulsive engagement. Treatment: **CBT**
 has the best evidence; **naltrexone** (the same opioid antagonist as for alcohol) shows a real signal,
 especially with a family history of addiction; **Gamblers Anonymous** is widely used but **thinly
 evidenced**. `cohort`/`rct`.
 
+
 ### 6.2 "Food / sex / internet / phone / porn addiction" — contested constructs, graded as such
 
 This is where honesty rule #1 earns its keep, because the **"addiction" label is doing rhetorical work the
-evidence has not licensed.** The honest grading:
-- **"Internet gaming disorder"** is in DSM-5 as a *condition for further study* (not a confirmed disorder),
-  and **"gaming disorder"** *is* in **ICD-11** — so the **WHO and APA disagree**, which is itself the
-  honest status: a **real-seeming problem for a small minority**, surrounded by **measurement chaos** and
-  the risk of **pathologizing normal heavy engagement.** `contested`.
-- **"Food addiction"** has a real research literature (the Yale Food Addiction Scale; highly palatable
-  ultra-processed foods do engage reward circuits), but whether it is a **substance** addiction (to
-  sugar/fat) or a **behavioural** one (like a binge-eating pattern) — or a category error — is **unresolved.**
-  Cross-ref the eating-disorders treatment in **Section 20 §7.** `contested`.
-- **"Sex addiction" / "porn addiction"** is **not** a recognized diagnosis in DSM-5; ICD-11 includes
-  **"compulsive sexual behaviour disorder"** but deliberately classifies it as an **impulse-control
-  disorder, *not* an addiction** — an explicit rejection of the addiction framing. The construct is
-  entangled with moral and religious judgment, and self-labelled "porn addiction" correlates more with
-  **moral disapproval of one's own use** than with the amount of use. `contested` — frame with care.
-- **"Phone / social-media addiction"** is **popular language, not a clinical diagnosis.** There is real
-  evidence of compulsive, reward-engineered use and real harms (sleep, attention, mood — cross-ref
-  Sections 14 and 20), but the **"addiction" framing outruns the evidence**, and the honest term is
-  **"problematic use"** or **"compulsive use."**
+evidence has not licensed.** The honest grading, verdict first:
+- **Gaming** — *split verdict.* "Internet gaming disorder" is in DSM-5 only as a *condition for further
+  study*, while "gaming disorder" *is* in **ICD-11** — the **WHO and APA disagree**. Real-seeming problem
+  for a small minority, wrapped in measurement chaos and the risk of pathologizing normal heavy play.
+  `contested`.
+- **Food** — *unresolved category.* Real research literature (Yale Food Addiction Scale; ultra-processed
+  foods do engage reward circuits), but whether it's a **substance** addiction (to sugar/fat), a
+  **behavioural** one (binge-eating pattern), or a category error is open. See eating disorders in **§20 §7.**
+  `contested`.
+- **Sex / porn** — *rejected as addiction.* Not a DSM-5 diagnosis; ICD-11's "compulsive sexual behaviour
+  disorder" is deliberately filed as an **impulse-control disorder, not an addiction.** Self-labelled "porn
+  addiction" tracks **moral disapproval of one's own use** more than the amount of use. `contested` — frame
+  with care.
+- **Phone / social media** — *popular language, not a diagnosis.* Real compulsive, reward-engineered use
+  and real harms (sleep, attention, mood — §14, §20), but the "addiction" framing outruns the evidence; the
+  honest term is **"problematic use."**
 
 The unifying honest point: **behaviours can become compulsive and harmful, and that is worth taking
 seriously — but stretching the word "addiction" onto every compelling activity both cheapens the term and
@@ -448,7 +466,7 @@ treatments are unglamorous and under-used, and the dramatic interventions are mo
 
 @@FIG:DX2-mat-moud@@
 
-Anchors and caveats the figure doesn't carry: **opioids** — Sordo *BMJ* 2017 (`10.1136/bmj.j1550`, PMID 28446428); agonist therapy halves mortality, detox-alone can be *worse* than no treatment, MOUD chronically under-provided. **Alcohol** — Jonas *JAMA* 2014 (`10.1001/jama.2014.3628`, PMID 24825644); naltrexone/acamprosate real but modest (NNT ~12), cheap and generic, prescribed to a small minority. **Tobacco** — Cahill *Cochrane* 2013 (`10.1002/14651858.CD009329.pub2`, PMID 23728690); drug **+** behavioural support, iterate after failure. **Stimulants** — no effective approved medication (`meta`, honest null), contingency management is the lever instead. **Cannabis** — no approved medication; CBT/MET/CM.
+Anchors and caveats the figure doesn't carry: **opioids** — Sordo *BMJ* 2017;[^sordo] agonist therapy halves mortality, detox-alone can be *worse* than no treatment, MOUD chronically under-provided. **Alcohol** — Jonas *JAMA* 2014;[^jonas] naltrexone/acamprosate real but modest (NNT ~12), cheap and generic, prescribed to a small minority. **Tobacco** — Cahill *Cochrane* 2013;[^cahill] drug **+** behavioural support, iterate after failure. **Stimulants** — no effective approved medication (`meta`, honest null), contingency management is the lever instead. **Cannabis** — no approved medication; CBT/MET/CM.
 
 MAT is the part of addiction medicine that **most contradicts intuition and most saves lives** — and it is
 held back less by evidence than by stigma (the "replacing one drug with another" canard, which misreads
@@ -468,8 +486,8 @@ stabilizing maintenance as continued addiction).
   **direct refutation of the old "break them down / confront the denial" model**, which is not only
   unevidenced but often counterproductive. `meta`/`rct`.
 - **12-step / AA / NA** — the honest grade matters because the claims are huge in both directions. **Kelly
-  et al., *Cochrane* 2020** (`10.1002/14651858.CD012880.pub2`, PMID 32159228) found that **manualized
-  Twelve-Step Facilitation (TSF)** — a clinician systematically linking people into AA — produces
+  et al., *Cochrane* 2020**[^kelly] found that **manualized Twelve-Step Facilitation (TSF)** — a clinician
+  systematically linking people into AA — produces
   **abstinence outcomes at least as good as, and often better than, other active treatments (including
   CBT), and is more cost-effective.** That is a real, important, evidence-based finding. **The honest
   caveats that keep it from being the whole story:** (1) the strong evidence is for **structured TSF**, not
@@ -480,6 +498,7 @@ stabilizing maintenance as continued addiction).
   genuinely effective, free, widely-available option that works well *for those it fits* — and it is one
   tool, not the only tool, and not a substitute for MAT in opioid or alcohol use disorder.** `meta` (for
   TSF) — real, but not universal.
+
 
 ### 7.3 Harm reduction — the evidence and the controversy, both honest
 
@@ -535,37 +554,35 @@ insistence has a **measurable death toll** (the detox-relapse-overdose pathway, 
 
 ## 9. The honest summary of this section
 
-1. **Addiction is neither pure moral weakness nor purely a chronic brain disease.** The neuroadaptation is
-   real (Volkow); the remission data are also real (Heyman, the Vietnam veterans) and refute the
-   strong-disease version. The most defensible model is a **disorder of motivated choice under altered
-   neural conditions** — real brain change *and* responsiveness to incentives, context, and meaning.
-2. **Dependence ≠ addiction ≠ tolerance.** Conflating physical dependence (normal physiology; a cancer
-   patient, a coffee drinker) with addiction (compulsive harmful use) is the field's most common and most
-   harmful error; DSM-5 fixed it by making substance use disorder **dimensional**.
-3. **Tobacco is the most addictive common drug and the most lethal** — and the two facts are separate axes.
-   Cessation that works: **varenicline or combination NRT + behavioural support** (Cahill 2013); iterate
-   after failure; nicotine ≠ combustion (the harm-reduction logic of vaping for *existing smokers*).
-4. **Opioids: MOUD (methadone/buprenorphine) halves death** (Sordo 2017), **detox-alone can be worse than
-   nothing**, and **naloxone keeps people alive to reach treatment.** This is the belief most worth
-   changing: the moralized abstinence intuition kills; the unglamorous daily medication saves.
-5. **Stimulants have no effective medication — and the behavioural treatment that *does* work (contingency
-   management) is scandalously under-used** because paying people to abstain offends a moral reflex.
-6. **Alcohol withdrawal can kill** (never abrupt unsupervised detox in heavy users); **naltrexone and
-   acamprosate** are real, modest, generic, and under-prescribed (Jonas 2014).
-7. **Cannabis is not harmless and not the devil:** a real disorder (~9%, higher with adolescent onset),
-   real psychosis risk in the vulnerable, CHS — *and* not the reefer-madness menace. Today's high-THC
-   product is not the plant the old epidemiology studied.
-8. **Behavioural addictions: gambling is the established one** (DSM-5, reward biology, high suicide risk);
-   **"food/sex/internet/phone addiction" are contested constructs** where the word "addiction" outruns the
-   evidence (WHO and APA openly disagree). Grade the construct, not the vibe.
-9. **What treats addiction, ranked by evidence:** MAT/MOUD (strongest, for opioids especially) →
-   contingency management (best behavioural, under-used) → CBT/MI → structured 12-step facilitation (real,
-   not universal) → harm reduction (keeps people alive to recover). The effective tools are unglamorous and
-   under-deployed; the dramatic ones (rapid detox, "rock bottom") are the weak or harmful ones.
-10. **The compassionate move and the honest move are the same move:** hold the person's **dignity** (it's a
-    real condition, not a character verdict) and the person's **agency** (recovery is real and runs on it)
-    at the same time, treat with **medication + behaviour + harm reduction**, and stop letting moralism
-    override evidence.
+**The three belief-changers, if you remember nothing else:**
+
+1. **Opioids: MOUD (methadone/buprenorphine) roughly halves death** (Sordo 2017), and **detox-alone can be
+   worse than nothing** — the moralized abstinence intuition kills; the unglamorous daily medication saves.
+   Naloxone keeps people alive long enough to reach treatment.
+2. **Stimulants have no effective medication — and contingency management, the behavioural treatment that
+   *does* work, is scandalously under-used** because paying people to abstain offends a moral reflex.
+3. **Dependence ≠ addiction.** Conflating physical dependence (a cancer patient, a coffee drinker) with
+   addiction (compulsive harmful use) is the field's most common and most harmful error; DSM-5 fixed it by
+   making substance use disorder **dimensional**.
+
+**The rest, in one line each:**
+
+- **The model:** neither pure moral weakness nor purely a chronic brain disease — a **disorder of motivated
+  choice under altered neural conditions** (real brain change *and* responsiveness to context).
+- **Tobacco** is the most addictive common drug *and* the most lethal (separate axes); cessation that works
+  is **varenicline or combination NRT + behavioural support** — iterate after failure; nicotine ≠ combustion.
+- **Alcohol withdrawal can kill** (never abrupt unsupervised detox in heavy users); **naltrexone and
+  acamprosate** are real, modest, generic, and under-prescribed.
+- **Cannabis** is a real disorder (~9%, higher with adolescent onset) with real psychosis risk in the
+  vulnerable and CHS — *and* not the reefer-madness menace; today's high-THC product isn't the old plant.
+- **Behavioural addictions:** gambling is the established one; "food/sex/internet/phone addiction" are
+  contested constructs where the word outruns the evidence. Grade the construct, not the vibe.
+- **Treatment ranked by evidence:** MAT/MOUD → contingency management → CBT/MI → structured 12-step
+  facilitation → harm reduction. The effective tools are unglamorous and under-deployed; the dramatic ones
+  (rapid detox, "rock bottom") are the weak or harmful ones.
+- **The compassionate move and the honest move are the same move:** hold the person's **dignity** and their
+  **agency** at once, treat with **medication + behaviour + harm reduction**, and stop letting moralism
+  override evidence.
 
 ---
 
@@ -636,3 +653,33 @@ Section 20's unblindable-trial problem); the real long-term outcomes of **contin
 co-involvement and how to treat polysubstance overdose; the durability and real-world reach of **harm-
 reduction** programs against the political headwinds; and a defensible, severity-stratified answer to
 **abstinence vs moderation** as a treatment goal (the field's oldest open argument).
+
+[^lopez]: Lopez-Quintero et al. — *Probability and predictors of transition from first use to dependence.* Drug Alcohol Depend 2011. doi:10.1016/j.drugalcdep.2010.11.004. PMID 21145178. Large cohort (NESARC).
+
+[^volkow2016]: Volkow, Koob & McLellan — *Neurobiologic Advances from the Brain Disease Model of Addiction.* NEJM 2016. doi:10.1056/NEJMra1511480. PMID 26816013.
+
+[^cahill]: Cahill et al. — *Pharmacological interventions for smoking cessation: network meta-analysis.* Cochrane 2013. doi:10.1002/14651858.CD009329.pub2. PMID 23728690.
+
+[^courtney]: Courtney et al. — cytisine vs varenicline head-to-head. JAMA 2021. doi:10.1001/jama.2021.7621. PMID 34228066.
+
+[^switch2024]: Switch/augment-after-failure smoking-cessation RCT. JAMA 2024. doi:10.1001/jama.2024.4183. PMID 38696203.
+
+[^ecig]: Cochrane review of e-cigarettes for smoking cessation. doi:10.1002/14651858.CD010216.
+
+[^sordo]: Sordo et al. — *Mortality risk during and after opioid substitution treatment.* BMJ 2017. doi:10.1136/bmj.j1550. PMID 28446428. Meta-analysis of cohort studies.
+
+[^oend]: CDC MMWR on overdose education and naloxone distribution. doi:10.15585/mmwr.mm6933a2. PMID 32817603.
+
+[^chan]: Chan et al. — systematic review of pharmacotherapy for cocaine use disorder. J Gen Intern Med 2019. doi:10.1007/s11606-019-05074-8. PMID 31183685.
+
+[^cm2025]: Contingency management and mortality — cohort study. Am J Psychiatry 2025. doi:10.1176/appi.ajp.20250053. PMID 40926572.
+
+[^jonas]: Jonas et al. — *Pharmacotherapy for Adults With Alcohol Use Disorders in Outpatient Settings.* JAMA 2014. doi:10.1001/jama.2014.3628. PMID 24825644. Meta-analysis of RCTs.
+
+[^volkow2014]: Volkow et al. — *Adverse Health Effects of Marijuana Use.* NEJM 2014. doi:10.1056/NEJMra1402309. PMID 24897085.
+
+[^hall]: Hall — cannabis health effects review. Addiction 2016. doi:10.1111/add.13428. PMID 27082374.
+
+[^potenza]: Potenza et al. — *Gambling disorder.* Nat Rev Dis Primers 2019. doi:10.1038/s41572-019-0099-7. PMID 31346179.
+
+[^kelly]: Kelly et al. — *Alcoholics Anonymous and other 12-step programs for AUD.* Cochrane 2020. doi:10.1002/14651858.CD012880.pub2. PMID 32159228. Meta-analysis of RCTs.

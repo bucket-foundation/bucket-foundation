@@ -1,14 +1,29 @@
 # 33 — Public Health, Systems & Access
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/public-health-claims.json`.
-> This is the section the rest of the manual is quietly standing on. Every protocol, supplement, wearable,
-> and longevity hack indexed elsewhere is a *clinical* or *individual* lever — and clinical/individual levers
-> account for a **minority** of how long humans actually live. The majority was bought, once, at the
-> population level: clean water, sewers, vaccines, safe food, refrigeration, smoke-free air, seatbelts. You
-> are not optimizing in a vacuum. You are optimizing on top of a public-health substrate that someone else
-> built and that you mostly cannot buy à la carte.
+This is the section the rest of the manual is quietly standing on. Every protocol, supplement, wearable, and
+longevity hack indexed elsewhere is a *clinical* or *individual* lever — and clinical/individual levers
+account for a **minority** of how long humans actually live. The majority was bought, once, at the population
+level: clean water, sewers, vaccines, safe food, refrigeration, smoke-free air, seatbelts. You are not
+optimizing in a vacuum. You are optimizing on top of a public-health substrate that someone else built and
+that you mostly cannot buy à la carte.
 
-This section runs on the corpus's standard honesty rules (`06-evidence/SCHEMA.md`), with three of its own:
+**The one-line verdict up front:** human lifespan roughly **doubled** in two centuries (≈30–40 years in 1800
+to ≈73 globally / ≈79 in rich countries today), and the honest accounting credits **sanitation, clean water,
+food security, vaccines, and antibiotics** for most of it — **not** high-tech clinical medicine, which earns
+maybe **10–20%** of the modern gain. Where you sit in the **social hierarchy** (Marmot) and which **country
+and zip code** you were born in outweigh almost every personal choice in this manual. Individual optimization
+is real, but it is the *last* and *smallest* tier of the health-impact pyramid — a privilege built on
+infrastructure.
+
+**Why read this if you can't pass a clean-water law?** Because it re-sorts your own priorities. The honest
+personal hierarchy that falls out of this section: *(a)* be grateful you live atop functioning public health
+and *use* it — vaccinate, drink the safe water, wear the seatbelt, the highest-return moves you'll ever make;
+*(b)* work the ~40% behavioral bucket seriously (the rest of this manual); *(c)* hold individual optimization
+in proportion — valuable, but the smallest tier; *(d)* if you care about life-years per dollar, the most
+powerful health philanthropy on Earth is global primary public health, not your supplement stack. §8 is the
+full version.
+
+This section holds itself to three honesty rules of its own:
 
 1. **System ≠ self.** The largest health gains in human history were *structural*, not behavioral or
    clinical. A map that indexes 350 individual atoms and zero population infrastructure is not "complete" —
@@ -20,13 +35,7 @@ This section runs on the corpus's standard honesty rules (`06-evidence/SCHEMA.md
    more life in one place than another, "where you spend" is an ethical question the manual is obligated to
    state plainly. The longevity industry spends at the flattest part of the curve.
 
-**The one-line verdict up front:** human lifespan roughly **doubled** in two centuries (≈30–40 years in 1800
-to ≈73 globally / ≈79 in rich countries today), and the honest accounting credits **sanitation, clean water,
-food security, vaccines, and antibiotics** for most of it — **not** high-tech clinical medicine, which earns
-maybe **10–20%** of the modern gain. Where you sit in the **social hierarchy** (Marmot, Domain M) and which
-**country and zip code** you were born in outweigh almost every personal choice in this manual. Individual
-optimization is real, but it is the *last* and *smallest* tier of the health-impact pyramid — a privilege
-built on infrastructure.
+_Not medical advice. Per-test screening grades live in §07._
 
 ---
 
@@ -69,7 +78,8 @@ direction, only the exact share.)*
 
 ### 1.3 The honest ledger of the doubling
 
-The drivers, in rough order of contribution (all `cohort`/`ecological`/historical-demographic tier):
+The drivers, in rough order of contribution (all `cohort`/`ecological`/historical-demographic tier —
+observational population data, not controlled trials):
 
 | Driver | What it did | Era |
 |---|---|---|
@@ -95,8 +105,9 @@ infectious deaths, short lives) → **"age of receding pandemics"** → **"age o
 diseases"** (the chronic-disease world: heart disease, cancer, stroke, diabetes, dementia). This is *the*
 framing fact for the entire rest of this manual: **the diseases the longevity industry targets are the
 diseases of the post-transition world** — they only became the dominant killers *because* public health
-already defeated the things that used to kill us first. Optimizing your VO₂max and ApoB is a luxury of a
-society that already solved cholera.
+already defeated the things that used to kill us first. Optimizing your VO₂max (your aerobic-fitness ceiling) and apoB (the
+blood particle that ferries cholesterol into artery walls) is a luxury of a society that already solved
+cholera.
 
 @@FIG:L17-epi-transition,97-leading-causes@@
 
@@ -142,7 +153,7 @@ individual willpower.
 
 | Upstream determinant | Health pathway | Why it often beats "personal choice" |
 |---|---|---|
-| **Income / wealth** | Buys time, food quality, safe housing, low stress, care access | The strongest single SES correlate of mortality; gradient is continuous |
+| **Income / wealth** | Buys time, food quality, safe housing, low stress, care access | The strongest single SES (socioeconomic status) correlate of mortality; gradient is continuous |
 | **Education** | Health literacy, employment, agency, delayed childbearing | Each additional year of schooling associates with measurable mortality reduction |
 | **Housing** | Cold/damp → respiratory/CVD; crowding → infection; stability → chronic-disease control | Cold-home mortality is real (cross-ref §09.6, ambient temperature) |
 | **Food environment** | "Food deserts/swamps" make the healthy choice the expensive, distant one | Individual diet advice fails against a structurally bad default |
@@ -217,6 +228,18 @@ Thomas **Frieden** (then CDC director) formalized the same insight as a **5-tier
 
 @@FIG:N05-health-pyramid@@
 
+**One legend the rest of this section leans on.** Three different vocabularies all point the same way — cheap,
+broad, and invisible at the bottom; expensive, narrow, and effortful at the top:
+
+- **Frieden tiers** — *tier 1–2* = the structural, context-changing base (poverty, housing, clean air,
+  trans-fat bans); *tier 4–5* = clinical treatment and "eat better" advice at the weak apex.
+- **Rose strategy** — *population* = shift everyone a little; *high-risk* = find and treat the worst cases.
+- **Prevention level** — *primary* = stop disease before it starts; *secondary* = catch it early; *tertiary*
+  = limit damage after.
+
+When later sections say "tier-1–2, population, primary," they mean the same corner of every one of these
+maps: the boring base that does the heavy lifting.
+
 The brutal punchline for this manual: **almost everything the longevity industry sells lives at the apex
 (tier 5) — the tier with the *least* population impact and the *most* required individual effort.** Supplements,
 protocols, coaching, and "education" are tier-5 levers. The things that actually doubled lifespan are tiers
@@ -225,7 +248,9 @@ protocols, coaching, and "education" are tier-5 levers. The things that actually
 ### 3.4 The cheapest life-years ever bought
 
 The most cost-effective health interventions in history are almost all **primary, population-level, and
-boring** — none of them are sold to you:
+boring** — none of them are sold to you. (Cost is shown per **DALY** — disability-adjusted life year, one
+year of healthy life lost; **LMICs** = low- and middle-income countries. Evidence codes: `rct` = randomized
+trial, the strongest tier; `meta` = pooled analysis of many trials.)
 
 | Intervention | Mechanism | Cost-effectiveness | Evidence |
 |---|---|---|---|
@@ -250,12 +275,12 @@ of this section in one table.
 
 Every national system is a mix of four pure types (Reid's taxonomy):
 
-| Model | Financing | Provision | Examples |
-|---|---|---|---|
-| **Beveridge** | Govt (taxes) | Mostly public | UK NHS, Spain, Nordics, Cuba |
-| **Bismarck** | Mandatory social insurance (employer+employee), non-profit funds | Mostly private | Germany, France, Japan, Netherlands, Switzerland |
-| **National Health Insurance** (single-payer) | Govt single insurer | Private providers | Canada, Taiwan, South Korea |
-| **Out-of-pocket** | Patient pays | Whatever you can afford | Much of the low-income world; the uninsured *inside* rich ones |
+| Model | In plain terms | Financing | Provision | Examples |
+|---|---|---|---|---|
+| **Beveridge** | Tax-funded, government-run care | Govt (taxes) | Mostly public | UK NHS, Spain, Nordics, Cuba |
+| **Bismarck** | Insurance funds employers and workers pay into | Mandatory social insurance (employer+employee), non-profit funds | Mostly private | Germany, France, Japan, Netherlands, Switzerland |
+| **National Health Insurance** (single-payer) | One govt insurer, private doctors | Govt single insurer | Private providers | Canada, Taiwan, South Korea |
+| **Out-of-pocket** | You pay directly, or go without | Patient pays | Whatever you can afford | Much of the low-income world; the uninsured *inside* rich ones |
 
 The **United States is uniquely a mix of all four at once**, sorted by demographic: Beveridge (VA), Bismarck
 (employer insurance), NHI (Medicare), and out-of-pocket (the uninsured). This fragmentation is the source of
@@ -320,8 +345,9 @@ Screening is *secondary* prevention, and it is the place where individual intuit
 testing is better") collides hardest with population evidence. The full graded screening tables live in
 **§07 (Clinical & Preventive Medicine)**; the *population-policy* honesty belongs here:
 
-- **A screen only earns its place if it lowers *disease-specific mortality* in an RCT** — not if it "finds
-  more cancers." Finding more disease can *harm* a population.
+- **A screen only earns its place if it lowers *disease-specific mortality* in an RCT** (randomized
+  controlled trial — the strongest evidence tier) — not if it "finds more cancers." Finding more disease can
+  *harm* a population.
 - **Lead-time bias:** earlier detection moves the diagnosis date earlier without changing the death date,
   manufacturing *apparent* survival gains (5-year survival rises) with **zero** real benefit. Survival
   statistics are systematically misleading for screening; **mortality** is the only honest endpoint.
@@ -335,8 +361,8 @@ testing is better") collides hardest with population evidence. The full graded s
   the high-risk/population confusion.
 
 The policy stance the manual endorses: **a small number of screens with RCT mortality benefit (cervical,
-colorectal, high-risk lung LDCT, targeted breast) — graded by USPSTF letter — and skepticism toward the
-rest.** Defer to §07's tables for the per-test grades. **Tier: `meta`/RCT for the benefiting screens;
+colorectal, high-risk lung LDCT [low-dose CT], targeted breast) — graded by USPSTF letter (the US Preventive
+Services Task Force's A–D grades) — and skepticism toward the rest.** Defer to §07's tables for the per-test grades. **Tier: `meta`/RCT for the benefiting screens;
 `cohort`/modeling for the bias quantification.**
 
 ---
@@ -356,6 +382,8 @@ outcome data. Graded honestly:
   and non-English-speaking are least able to use it — the very groups with worst access), and the
   hard-outcome (mortality) evidence is thin. **Tier: `cohort`/health-services; strong for access &
   satisfaction, weak for hard endpoints.**
+- **For you:** use telehealth for follow-ups, refills, mental-health, and rural access; push for an in-person
+  visit the moment something needs to be examined or felt.
 
 ### 6.2 AI diagnostics — the actual evidence
 
@@ -376,6 +404,8 @@ The honest state, neither dismissive nor breathless:
   `retrospective`/benchmark — grade the deployment evidence, not the press release.** (Same rule as the rest
   of the manual: *accuracy on a benchmark is a `mechanistic`-equivalent claim; improved outcomes is the
   `outcome` claim, and most hype lives in that gap.*)
+- **For you:** an AI-flagged scan is a second reader, not a verdict — it should prompt a clinician to look
+  again, not replace one.
 
 ### 6.3 Wearables at population scale
 
@@ -384,11 +414,13 @@ The honest state, neither dismissive nor breathless:
   AF. Wearables are a powerful **behavioral nudge** (step counts, sleep awareness) and a research data
   firehose. (Deep treatment in **Domain L2**, wearables/quantified-self.)
 - **What's not established:** that mass wearable screening **lowers stroke or mortality** at the population
-  level (open USPSTF question — cross-ref §07 §2); that consumer-grade metrics (HRV, "readiness," sleep
-  stages) are accurate enough to act on; that they help the people who need help most (wearables skew
-  wealthy, healthy, and worried-well — a **Rose paradox in reverse**: they reach exactly the low-risk
-  population least likely to benefit). **Tier: `cohort` for AF detection; `mechanistic`/surrogate for most
-  consumer metrics.**
+  level (open USPSTF question — cross-ref §07 §2); that consumer-grade metrics (HRV — heart-rate variability —
+  "readiness," sleep stages) are accurate enough to act on; that they help the people who need help most
+  (wearables skew wealthy, healthy, and worried-well — a **Rose paradox in reverse**: they reach exactly the
+  low-risk population least likely to benefit). **Tier: `cohort` for AF detection; `mechanistic`/surrogate
+  for most consumer metrics.**
+- **For you:** treat your watch's AFib alert as a reason to see a doctor, not a diagnosis; don't over-trust
+  the HRV/"readiness" scores.
 
 ### 6.4 The data-privacy reality
 
@@ -399,6 +431,9 @@ or leaking data; de-identified health data is routinely **re-identifiable**; and
 trained on data whose consent provenance is often murky. The honest framing: **the digital-health convenience
 you adopt as an individual is also a population-scale surveillance surface**, and the regulatory floor is far
 below what users assume. This is a *systems* risk, not a personal-optimization feature.
+
+**For you:** assume anything you type into a period-, mood-, or fitness-app can be sold, leaked, or
+re-identified — HIPAA does not cover it.
 
 ---
 
@@ -446,7 +481,7 @@ analyses) are overwhelmingly in **global primary public health**:
 | **Vitamin A supplementation, ORS, deworming** | LMICs | Pennies–dollars per child-year protected | `rct`/`meta` |
 | **Oral rehydration therapy** | Diarrheal disease | ~cents per treatment; saved millions of children | `meta` |
 | — vs. — | | | |
-| **Marginal high-tech clinical care** | Rich world | US$100,000s+ per QALY for end-of-line interventions | `rct` |
+| **Marginal high-tech clinical care** | Rich world | US$100,000s+ per QALY (quality-adjusted life year — one year in full health) for end-of-line interventions | `rct` |
 
 A dollar spent on bednets or measles vaccine buys **orders of magnitude more life** than a dollar spent on the
 last increment of rich-world clinical medicine — or on any supplement in this manual. **This is a graded,
@@ -461,9 +496,9 @@ This is the section the whole manual needs to read against itself.
 
 1. **Your optimization sits on a substrate you didn't build and can't buy.** Clean water, sewers, safe food,
    childhood vaccines, smoke-free air, road safety, antibiotics on the shelf — these are the reason you live
-   long enough for ApoB, VO₂max, and rapamycin to be *relevant problems.* They are tier-1–2 (Frieden),
-   population (Rose), primary (prevention), and *already paid for* in your society. Remove them and every
-   protocol in this corpus is noise.
+   long enough for apoB, VO₂max, and rapamycin to be *relevant problems.* They sit at the structural base of
+   every framework in §3 — tier-1–2, population strategy, primary prevention — and they are *already paid
+   for* in your society. Remove them and every protocol in this corpus is noise.
 
 2. **"Personal responsibility" is a true but small lever, oversold because it's sellable.** Behavior is the
    ~40% bucket — real and worth working — but it is *itself heavily shaped by upstream conditions* (food

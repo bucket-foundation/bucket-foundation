@@ -1,38 +1,29 @@
 # 22 — Disease Atlas I: Cardiometabolic, Endocrine & Renal Disease
 
-> **Not medical advice.** This is a literate *map* of the major cardiometabolic, endocrine, and
-> renal diseases — what they are, the mechanism (tied back to the fundamentals this corpus already
-> builds), how they present, and the honestly-graded evidence behind their management. It is **not a
-> treatment manual**, not a substitute for a clinician, and nothing here is a prescription. Diagnosis
-> and therapy of any of these conditions belong to a physician who knows your numbers, your history,
-> and your goals. Read this to understand the terrain — then act with someone qualified.
+Cardiovascular disease is the leading cause of death on Earth — and the heart attack, the failing
+kidney, the diabetes diagnosis, and the stroke turn out to be largely one disease wearing different
+organ masks: the slow failure of the same vascular and metabolic machinery. This section maps that
+cluster — what each disease is, the mechanism (tied back to the fundamentals this corpus builds), how
+it shows up in a clinic, and the honestly-graded evidence behind managing it.
 
-> **The gap this section fills.** The rest of this corpus is built around *prevention* and *biomarkers*
-> — how to not get the disease, and what to measure. But the diseases themselves are the destination
-> the whole prevention apparatus is trying to avoid, and most people will eventually meet one. This
-> section maps the conditions as clinical entities: the pathophysiology (so the prevention levers make
-> mechanistic sense), the presentation (so the words in a clinic visit aren't opaque), and the
-> evidence-graded management (so you can tell a guideline-backed standard from a marketing claim). It
-> deliberately covers the **cardiometabolic–endocrine–renal cluster**, because these diseases are not
-> separate — they are one interlinked failure of the same vascular and metabolic machinery. Cancer,
-> neurodegeneration, respiratory, and musculoskeletal disease are other sections.
+Three honesty rules run through every entry. **Predictor ≠ lever:** a number that forecasts risk isn't
+automatically something that, once changed, lowers it. **Cohort ≠ RCT:** an observational association
+is weaker evidence than a randomized trial. **Something beats nothing** is not proof a treatment works.
 
-> **Cross-references (do not duplicate).** Blood-pressure targets and lipid/apoB-guided prevention are
-> graded in [`07-clinical-prevention.md`](07-clinical-prevention.md) and `L-biomarkers.md` — this
-> section *uses* them and points back. The hormone axes (HPA, HPG, HPT, insulin/glucagon, GH/IGF-1)
-> are built in [`13-endocrine-hormones.md`](13-endocrine-hormones.md) — this section maps the *diseases*
-> of those axes without re-deriving the physiology. Renal and cardiovascular *aging* (the slow
-> background slope) is in [`17-organ-systems-atlas.md`](17-organ-systems-atlas.md) §2; here we cover
-> renal and cardiac *disease* as named entities. Atrial-fibrillation **stroke prevention** (the
-> anticoagulation decision) is owned by `07` §2.2 — here we add the rhythm/rate question. Insulin
-> resistance as a *mechanism* is in `D-metabolic-nutrition.md`; here it becomes type 2 diabetes as a
-> *disease*.
-
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+_Not medical advice. This is a literate map of the diseases; diagnosis and therapy belong to a
+clinician who knows your numbers. Blood-pressure and lipid/apoB prevention are graded in §07 and
+`L-biomarkers.md`; hormone-axis physiology in §13; renal and cardiac aging in §17._
 
 ---
 
 ## The map — major conditions at a glance
+
+A bird's-eye index of everything below — skim it now, then read the sections; it lands more easily as
+a recap once you've met each disease. Abbreviations used in the table: **HFrEF / HFpEF** = heart
+failure with reduced / preserved pumping strength; **GDMT** = the guideline-standard drug regimen;
+**RAAS / SNS** = the two stress-hormone systems that overdrive when the heart fails; **ARNI / MRA /
+SGLT2i / GLP-1** = the modern organ-protective drug classes; **apoB** = the particle count that carries
+cholesterol into artery walls; **GFR** = kidney filtering capacity.
 
 | Condition | Mechanism (→ fundamentals) | Key management | Evidence anchor |
 |---|---|---|---|
@@ -58,7 +49,8 @@
 
 Cardiovascular disease is the leading cause of death on Earth, and it is really several distinct
 diseases that share a substrate: the same vasculature, injured by the same handful of forces (apoB
-lipoproteins, blood pressure, glucose, tobacco, time). It is worth holding them apart, because the
+lipoproteins — the cholesterol-carrying particles that lodge in the artery wall — plus blood pressure,
+glucose, tobacco, time). It is worth holding them apart, because the
 *mechanisms* and *managements* differ sharply.
 
 ### 1.1 Coronary artery disease and heart attack — atherosclerosis as the root
@@ -72,7 +64,7 @@ heart muscle of oxygen until it dies.
 in a drain" — it is an active biological process. **Apolipoprotein-B-containing lipoproteins (LDL,
 VLDL remnants, Lp(a)) cross the arterial endothelium and are retained in the wall.** Each of those
 particles carries exactly one apoB, which is why **apoB particle count predicts events better than LDL
-cholesterol concentration** (graded in `L-biomarkers.md`, claim `apob-superior-to-ldlc`). Retained
+cholesterol concentration**.[^apob-ldlc] Retained
 particles are oxidized, trigger an immune response, macrophages engorge into foam cells, and a lipid-
 rich plaque with a fibrous cap grows over decades — silently. The danger is not the slow narrowing
 (which can be compensated) but the **sudden rupture of a non-obstructive plaque**, which causes most
@@ -257,7 +249,8 @@ is the clinical face of the metabolic dysfunction built in `D-metabolic-nutritio
 
 **How it presents.** Often **silent** — found on a routine HbA1c or fasting glucose. Classic symptoms
 (thirst, frequent urination, fatigue, blurred vision, slow healing) appear with higher glucose.
-Diagnosis: HbA1c ≥6.5%, fasting glucose ≥126 mg/dL, or OGTT ≥200. Prediabetes: HbA1c 5.7–6.4%.
+Diagnosis: HbA1c ≥6.5%, fasting glucose ≥126 mg/dL, or OGTT (oral glucose tolerance test) ≥200.
+Prediabetes: HbA1c 5.7–6.4%.
 
 @@FIG:68-hba1c-risk@@
 
@@ -705,8 +698,4 @@ machinery — wearing different organ masks.
 
 ---
 
-*Section maintained by Nucleus. Graded claims live in `02-domains/disease-cardiometabolic-claims.json`.
-Prevention/biomarker cross-refs: `07-clinical-prevention.md`, `L-biomarkers.md`. Hormone-axis physiology:
-`13-endocrine-hormones.md`. Renal/cardiac aging: `17-organ-systems-atlas.md`. This is a literate map of
-disease, not medical advice — every named trial links to its DOI; follow it to the evidence tier before
-acting, and act with a clinician.*
+[^apob-ldlc]: apoB particle count superior to LDL-C for predicting events — graded in `L-biomarkers.md`. claim: apob-superior-to-ldlc

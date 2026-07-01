@@ -1,51 +1,14 @@
 # 13 — Endocrine System & Hormones
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/U-endocrine-claims.json`.
-> Hormones show up scattered across this manual — IGF-1 in the aging-mechanisms file, insulin in the
-> metabolic and biomarker files, cortisol in the stress/sleep file, TRT/HRT/thyroid in the pharmacology
-> file — but they were never mapped as **one system**. This section does that: it treats the endocrine
-> system as the body's **slow, chemical control network**, lays out the major hormone axes side by side,
-> and grades each one by the same three rules that govern the rest of the corpus. The prescribing-reality
-> view of the *drugs* (TRT, HRT, levothyroxine, GLP-1s, peptides) is owned by §10 and Domain N — this
-> section is the **systems map** that those drug entries hang off of, deliberately cross-referenced, not
-> duplicated.
+Your hormones are a control system, and most hormone levels are readouts of that system's state rather than knobs you can turn to reverse aging. A cash-clinic and telehealth industry sells the opposite story: that "optimizing" your testosterone, DHEA, thyroid, or growth hormone back toward a 25-year-old's numbers will make you young again. This section maps the major hormone axes side by side and grades each one by the same honest test — where replacing a hormone is real medicine, and where pushing a healthy person's hormone higher is experimentation dressed up as medicine.
 
-> ## ⚠️ This is not medical advice
->
-> Hormone testing and replacement are clinical decisions that depend on **your** symptoms, labs, age, and
-> history — and the field is unusually full of cash clinics selling "optimization" on numbers that don't
-> predict outcomes. Everything below is an **index of the evidence and the control architecture**, written
-> so you can ask sharper questions, not self-prescribe. Several items here (DHEA, "adrenal fatigue"
-> protocols, anti-aging HGH, growth-hormone secretagogues, thyroid hormone for the euthyroid) are sold hard
-> on weak or absent evidence — those are flagged explicitly.
-
-## How the three honesty rules cut for hormones
-
-**Predictor ≠ lever:** a hormone *level* that tracks aging (falling testosterone, IGF-1, a flattening cortisol
-rhythm) is usually a readout, not a dial to turn. The sharpest case is **IGF-1**, whose level predicts mortality
-in a **U-shape** while the most robust longevity genetics point to *lower* signaling — so "boost your growth
-hormone" pushes the lever the wrong way (Domain L `igf1-u-shaped-mortality`; Domains B/C). **Cohort ≠ RCT:**
-"men with low testosterone have higher mortality" (heavily confounded — low T is often a *marker* of being sick)
-is weaker than a randomized outcome change; the few hormone therapies that have *graduated* to hard endpoints
-(TRAVERSE for TRT safety, timing-stratified HRT, GLP-1 trials) are flagged, while most "hormone optimization"
-rests on cohort/surrogate evidence. **Net benefit in the right person:** replacing a hormone for a *diagnosed
-deficiency* is medicine with a favorable ledger; pushing one *above normal in a healthy person to chase youth*
-is experimentation sold as the former — that dividing line is the section.
-
-**Cross-references (read alongside):** the **drugs** (TRT, levothyroxine, GLP-1s, the peptide world) are
-prescribed-reality-graded in `reports/sections/10-medical-pharmacology.md`; **menopausal HRT and the
-timing hypothesis** are owned by `02-domains/N-womens-longevity.md`; the **IGF-1 U-shape, HOMA-IR/insulin,
-HbA1c** biomarker grading is in `02-domains/L-biomarkers.md`; **mTOR/IGF-1/insulin nutrient-sensing as an
-aging hallmark** is in `02-domains/B-aging-mechanisms.md`; **insulin resistance as a metabolic hub** and
-**melatonin/circadian** connect to Domain D and the recovery/sleep section (`05`); **vitamin D** detail is
-in the nutrition/supplements section (`03`).
+_Not medical advice. Hormone testing and replacement are clinical decisions that turn on your own symptoms, labs, age, and history — and several items here (DHEA, "adrenal fatigue" protocols, anti-aging HGH, growth-hormone secretagogues) are sold hard on weak or absent evidence, flagged as they come up. The drugs themselves (TRT, HRT, levothyroxine, GLP-1s, peptides) are dosed in the pharmacology section (§10); menopausal HRT and the timing hypothesis are owned by Domain N._
 
 ---
 
 ## 1. The endocrine system as a control architecture
 
-Before the axes, the **fundamental** they all share — because the honest grading falls out of the
-architecture itself.
+The endocrine system is the body's slow chemical control network. Here is the architecture every hormone axis shares — the honest grading falls straight out of it.
 
 The body runs **two** communication networks. The **nervous system** is fast, wired, and point-to-point
 (milliseconds). The **endocrine system** is slow, wireless, and broadcast: ductless **glands**
@@ -78,12 +41,14 @@ longevity practice:
 
 @@FIG:BS4-endocrine-axis@@
 
-- **It explains the lab pairs.** You read an axis by reading **two** numbers — the stimulating signal and
-  the effector — *together*. A **high TSH with a low thyroid hormone** means the gland is failing (the
-  brain is shouting, nobody answers = primary hypothyroidism); a **low TSH with low thyroid hormone**
-  means the pituitary/hypothalamus is the problem (central). The same logic reads the HPG axis (LH/FSH vs
-  testosterone/estrogen) and the HPA axis (ACTH vs cortisol). One number is uninterpretable; the pair
-  locates the lesion.
+- **It explains the lab pairs.** Take the thyroid. A **high TSH** (thyroid-stimulating hormone — the
+  pituitary's "make more" shout) sitting next to a **low thyroid hormone** means the gland itself is
+  failing: the brain is shouting and nobody answers (primary hypothyroidism). A **low TSH with a low
+  thyroid hormone** means the pituitary/hypothalamus is the problem (central). That is the general move —
+  you read an axis by reading **two** numbers *together*, the stimulating signal and the effector. The same
+  logic reads the HPG axis (LH/FSH — the pituitary's signals to the gonads — versus testosterone/estrogen)
+  and the HPA axis (ACTH — its signal to the adrenals — versus cortisol). One number is uninterpretable;
+  the pair locates the lesion.
 - **It explains why exogenous hormones suppress your own.** Put a steroid in from outside and the loop
   reads "output is high" and **shuts down endogenous production** — which is exactly why testosterone
   therapy suppresses the testes (and fertility), why chronic glucocorticoids suppress the adrenals, and
@@ -105,12 +70,36 @@ is the one associated with **worse** longevity.
 
 @@FIG:B01-hormone-age@@
 
+### The three honesty rules, applied to hormones
+
+Three rules govern the grading in the rest of this manual, and they cut hard for hormones:
+
+**Predictor ≠ lever** (a level that forecasts risk isn't automatically something that, changed, lowers
+that risk). A hormone *level* that tracks aging (falling testosterone, IGF-1, a flattening cortisol
+rhythm) is usually a readout, not a dial to turn. The sharpest case is **IGF-1** (insulin-like growth
+factor 1 — the durable daily readout of growth-hormone signaling), whose level predicts mortality in a
+**U-shape** (both too-low and too-high carry higher risk) while the most robust longevity genetics point
+to *lower* signaling — so "boost your growth hormone" pushes the lever the wrong way (Domain L; Domains
+B/C).
+
+**Cohort ≠ RCT.** "Men with low testosterone have higher mortality" (heavily confounded — low T is often a
+*marker* of being sick) is weaker than a randomized outcome change. The few hormone therapies that have
+*graduated* to hard endpoints (TRAVERSE for TRT safety, timing-stratified HRT, GLP-1 trials) are flagged,
+while most "hormone optimization" rests on cohort/surrogate evidence.
+
+**Net benefit in the right person.** Replacing a hormone for a *diagnosed deficiency* is medicine with a
+favorable ledger; pushing one *above normal in a healthy person to chase youth* is experimentation sold as
+the former. That dividing line is the whole section.
+
 ---
 
 ## 2. The axis-by-axis map
 
 The master table. Each axis: the effector hormone(s), the control loop, the direction of age-change, the
-**honest practical lever**, and the evidence tier for that lever. Detail and citations follow in §3–§11.
+**honest practical lever**, and the evidence tier for that lever. Detail and citations follow in §3–§10.
+
+Evidence tiers, strongest to weakest: `rct` (randomized trial) > `meta` (pooled trials/reviews) >
+`cohort` (observational follow-up) > `mechanistic` (plausible biology) > `anecdotal`.
 
 @@FIG:61-endocrine-axes@@
 
@@ -137,11 +126,11 @@ graded carefully in §10/Domain N.
 
 ## 3. The HPA axis & cortisol — and the "adrenal fatigue" myth
 
-**The axis.** Hypothalamus releases **CRH** → anterior pituitary releases **ACTH** → adrenal cortex
-releases **cortisol** → cortisol feeds back to suppress CRH and ACTH. Cortisol is the body's master
-stress and arousal glucocorticoid: it raises blood glucose (gluconeogenesis), mobilizes fat and protein,
-restrains and reshapes immunity, sharpens short-term cognition, and — critically — **sets the daily
-arousal rhythm.**
+**The axis.** Hypothalamus releases **CRH** (corticotropin-releasing hormone) → anterior pituitary
+releases **ACTH** → adrenal cortex releases **cortisol** → cortisol feeds back to suppress CRH and ACTH.
+Cortisol is the body's master stress and arousal glucocorticoid: it raises blood glucose
+(gluconeogenesis), mobilizes fat and protein, restrains and reshapes immunity, sharpens short-term
+cognition, and — critically — **sets the daily arousal rhythm.**
 
 @@FIG:65-hpa-axis@@
 
@@ -155,8 +144,8 @@ and mortality.
 
 @@FIG:45-cortisol-rhythm@@
 
-**Allostatic load — the honest frame for "stress damages you."** Bruce McEwen's framework (McEwen 1998,
-*NEJM*, `10.1056/NEJM199801153380307`) is the rigorous version of the folk idea: the same mediators that
+**Allostatic load — the honest frame for "stress damages you."** Bruce McEwen's framework (McEwen
+1998)[^mcewen-allostatic] is the rigorous version of the folk idea: the same mediators that
 **protect** acutely (cortisol, catecholamines, inflammatory cytokines) cause **cumulative wear** when
 chronically over- or under-activated, or when they fail to shut off. "Allostasis" = stability through
 change; "allostatic load" = the cost of that adaptation accumulating across cardiometabolic, immune, and
@@ -171,9 +160,9 @@ A large cash-clinic and supplement industry sells "**adrenal fatigue**": the cla
 salt cravings, and poor stress tolerance — treated with saliva "adrenal panels," adrenal-glandular
 extracts, high-dose supplements, and sometimes unprescribed hydrocortisone.
 
-**It is not a real medical entity.** A **systematic review of 58 studies** (Cadegiani & Kater 2016, *BMC
-Endocrine Disorders*, `10.1186/s12902-016-0128-4`) — title verbatim, "**Adrenal fatigue does not exist**"
-— found **no scientific basis** for the concept and **no validated way** the proposed tests diagnose it;
+**It is not a real medical entity.** A **systematic review of 58 studies** (Cadegiani & Kater
+2016)[^cadegiani-adrenal] — title verbatim, "**Adrenal fatigue does not exist**" —
+found **no scientific basis** for the concept and **no validated way** the proposed tests diagnose it;
 the assessment methods themselves were heterogeneous and unvalidated. No endocrine society recognizes the
 diagnosis.
 
@@ -210,26 +199,26 @@ from the noise.
 
 ### 4.1 Testosterone (men)
 
-**Age change — a slope, not a cliff.** The **Baltimore Longitudinal Study of Aging** (Harman et al. 2001,
-*JCEM*, `10.1210/jcem.86.2.7219`) established the durable number: serum total and especially **free**
+**Age change — a slope, not a cliff.** The **Baltimore Longitudinal Study of Aging** (Harman et al.
+2001)[^harman-blsa] established the durable number: serum total and especially **free**
 testosterone decline **gradually, roughly ~1%/year** from around age 30–40, with the free fraction
-falling faster (sex-hormone-binding globulin rises with age). By the usual thresholds a substantial
-minority of older men fall into the biochemically "low" range — but **most are asymptomatic**, and this is
-the crux.
+falling faster (sex-hormone-binding globulin, SHBG, the protein that mops up free testosterone, rises with
+age). By the usual thresholds a substantial minority of older men fall into the biochemically "low" range
+— but **most are asymptomatic**, and this is the crux.
 
 @@FIG:83-testosterone-age@@
 
 **Symptomatic hypogonadism vs normal aging.** The clinically meaningful entity is **organic
 hypogonadism**: consistently low morning testosterone on repeat testing **plus** a syndrome of symptoms
 (low libido, erectile dysfunction, loss of morning erections, fatigue, lost muscle/bone) — ideally with
-the LH/FSH pattern locating the cause (Bhasin et al. 2018 Endocrine Society guideline, *JCEM*,
-`10.1210/jc.2018-00229`). A **low number alone, in a man who feels fine, is not a disease** — and "low-T"
+the LH/FSH pattern locating the cause (Bhasin et al. 2018 Endocrine Society guideline)[^bhasin-guideline].
+A **low number alone, in a man who feels fine, is not a disease** — and "low-T"
 marketing systematically medicalizes the **normal age-related slope**, which is often better addressed by
 **sleep, weight (visceral) loss, treating illness, and resistance training**, all of which raise
 endogenous testosterone and carry their own independent benefits.
 
-**What TRT actually does (honest, cross-ref §10).** The **Testosterone Trials** (Snyder et al. 2016,
-*NEJM*, `10.1056/NEJMoa1506119`) — coordinated RCTs in men **≥65 with unequivocally low T and symptoms** —
+**What TRT actually does (honest, cross-ref §10).** The **Testosterone Trials** (Snyder et al.
+2016)[^snyder-ttrials] — coordinated RCTs in men **≥65 with unequivocally low T and symptoms** —
 showed **modest** benefits: a real improvement in **sexual function/libido**, smaller effects on mood and
 walking, and **no meaningful cognitive benefit** (the memory sub-trial was null). The cardiovascular
 safety worry was largely settled by **TRAVERSE** (Lincoff 2023 — owned by §10): TRT at replacement doses
@@ -255,10 +244,10 @@ mean age was ~63, a decade-plus past menopause. The **timing ("window of opportu
 (ELITE, Hodis 2016; KEEPS; Manson 2013 reanalysis) supports that HRT **started at menopause for symptoms**
 is **reasonable and probably net-beneficial** for many women, while HRT **started late purely as a
 longevity/CVD-prevention play is not supported and may harm.** Crucially, the supporting endpoints are
-mostly **surrogates (carotid IMT)** — the **hard-outcome RCT** (does early HRT lower CVD events and
-mortality?) **still does not exist.** This is an **open conflict** (`conflict-hrt-timing`), not a settled
-answer. **Read `02-domains/N-womens-longevity.md` before acting** — this section deliberately does not
-restate the trial detail.
+mostly **surrogates (carotid IMT — artery-wall thickness, a stand-in for events)** — the **hard-outcome
+RCT** (does early HRT lower CVD events and mortality?) **still does not exist.** This is an **open
+conflict**[^conflict-hrt], not a settled answer. **Read `02-domains/N-womens-longevity.md` before acting**
+— this section deliberately does not restate the trial detail.
 
 ### 4.3 DHEA — the honest, weak one
 
@@ -268,8 +257,8 @@ by old age), which fueled decades of "**youth hormone**" / "anti-aging" marketin
 counter in the US as a supplement.
 
 **The evidence does not support the hype.** The cleanest test — a **2-year placebo-controlled RCT** of
-DHEA replacement in elderly women and DHEA-or-testosterone in elderly men (Nair et al. 2006, *NEJM*,
-`10.1056/NEJMoa054629`) — found **no beneficial effect on body composition, physical performance, insulin
+DHEA replacement in elderly women and DHEA-or-testosterone in elderly men (Nair et al.
+2006)[^nair-dhea] — found **no beneficial effect on body composition, physical performance, insulin
 sensitivity, or quality of life**, despite restoring DHEA levels to young-adult ranges. Restoring the
 *number* did not deliver the *outcomes*: a textbook **predictor ≠ lever** result. DHEA has narrow
 legitimate use (e.g., documented adrenal insufficiency, some fertility contexts) but is **not** a validated
@@ -283,8 +272,8 @@ as **`rct`-null**.
 **The axis and the conversion step.** Hypothalamus → **TRH** → pituitary → **TSH** → thyroid releases
 mostly **T4** (a prohormone) and some **T3** (the active hormone) → feedback suppresses TRH/TSH. The
 longevity-relevant subtlety is **peripheral conversion**: most active T3 is made *outside* the thyroid by
-**deiodinase** enzymes that convert T4→T3 tissue-by-tissue (Gereben et al. 2008, *Endocrine Reviews*,
-`10.1210/er.2008-0019`) — local control of thyroid action that explains why whole-body labs don't capture
+**deiodinase** enzymes that convert T4→T3 tissue-by-tissue (Gereben et al. 2008)[^gereben-deiodinase] —
+local control of thyroid action that explains why whole-body labs don't capture
 everything and why "free T3 optimization" claims overreach what the science supports. Thyroid hormone sets
 **basal metabolic rate** and the operating tempo of nearly every tissue (heart rate, gut motility,
 thermogenesis, cognition).
@@ -298,7 +287,7 @@ thermogenesis, cognition).
 **The contested zone — subclinical hypothyroidism (TRUST null).** **Subclinical hypothyroidism** (mildly
 **high TSH**, **normal** free T4, often no clear symptoms) is extremely common with age and is where the
 overtreatment lives. Two anchors:
-- **Rodondi et al. 2010** (*JAMA*, `10.1001/jama.2010.1361`), a large individual-participant-data
+- **Rodondi et al. 2010**[^rodondi-subclinical], a large individual-participant-data
   meta-analysis, found subclinical hypothyroidism associated with higher CHD events/mortality **mainly at
   higher TSH levels (≥10 mIU/L)** — i.e., the risk signal lives in the more severe end, not in the mild
   elevations most people have. (Predictor, `cohort`/`meta`.)
@@ -308,8 +297,8 @@ overtreatment lives. Two anchors:
 
 **The honest practice:** treat **overt** disease; **resist reflexively medicating a borderline TSH** or
 chasing "optimal thyroid" in someone who feels well. Thyroid hormone is **not** a weight-loss or energy
-drug for the euthyroid — using it that way risks iatrogenic hyperthyroidism (AF, bone loss) for no proven
-benefit.
+drug for the euthyroid (someone with a normal thyroid) — using it that way risks iatrogenic
+hyperthyroidism (AF, bone loss) for no proven benefit.
 
 **Micronutrients (deficiency-only, like everything else here).** The thyroid needs **iodine** (the literal
 atoms in T4/T3) and **selenium** (cofactor for the deiodinases and for antioxidant protection of the
@@ -336,14 +325,15 @@ cascade) is the **same nutrient-sensing pathway** that sits at the center of agi
 responding poorly to insulin, forcing the pancreas to secrete ever more to keep glucose normal — is the
 **central node** from which type 2 diabetes, much cardiovascular disease, fatty liver, and a large share
 of metabolic aging radiate. The mechanistic core is **ectopic fat**: when fat spills out of adipose tissue
-into **liver and muscle**, it directly impairs insulin signaling there (Shulman 2014, *NEJM*,
-`10.1056/NEJMra1011035`) — which is why **visceral/ectopic fat**, not just body weight, is the driver, and
+into **liver and muscle**, it directly impairs insulin signaling there (Shulman 2014)[^shulman-ectopic] —
+which is why **visceral/ectopic fat**, not just body weight, is the driver, and
 why insulin resistance is reversible by **emptying those depots**.
 
 **The early-warning ordering (cross-ref Domain L).** Because the β-cells compensate for years before
-glucose budges, **fasting insulin / HOMA-IR rises first**, then **HbA1c**, then **fasting glucose** — so
-the insulin axis breaks **years before** a standard glucose test flags it (`homair-fasting-insulin-predicts-cvd`,
-Hanley 2002; `hba1c-predicts-cvd-nondiabetic`, Selvin 2010 — both Domain L). This is also where the
+glucose budges, **fasting insulin / HOMA-IR** (a fasting-blood estimate of insulin resistance) **rises
+first**, then **HbA1c** (your ~3-month average blood sugar), then **fasting glucose** — so
+the insulin axis breaks **years before** a standard glucose test flags it (Hanley 2002[^homair-cvd];
+Selvin 2010[^hba1c-cvd] — both Domain L). This is also where the
 honest measurement caveats live (insulin assays poorly standardized → track trend; CGM oversold in the
 healthy — Domain L).
 
@@ -377,13 +367,13 @@ The growth/anabolism the GH/IGF-1 axis drives is exactly what nutrient-sensing a
   **longest-lived mice known** (Bartke — Domain C). Less growth signaling, more lifespan.
 - **The human natural experiment.** People with **Laron syndrome** (GH-receptor deficiency → very low
   IGF-1) followed for decades show a **major reduction in pro-aging signaling, cancer, and diabetes**
-  (Guevara-Aguirre et al. 2011, *Sci Transl Med*, `10.1126/scitranslmed.3001845`) — the human echo of the
+  (Guevara-Aguirre et al. 2011)[^guevara-laron] — the human echo of the
   long-lived dwarf mouse.
 - **The human longevity-cohort signal.** Among people who *already* reached exceptional age, **lower
-  IGF-1 predicts longer subsequent survival** (Milman et al. 2014, *Aging Cell*, `10.1111/acel.12213`),
-  strikingly in women and in those with a cancer history.
+  IGF-1 predicts longer subsequent survival** (Milman et al. 2014)[^milman-igf1], strikingly in women and
+  in those with a cancer history.
 - **But not "minimize it."** The biomarker reality is a **U-shape**: both **low and high** IGF-1 carry
-  excess mortality (Burgers 2011 meta — Domain L `igf1-u-shaped-mortality`). Very low IGF-1 is also bad
+  excess mortality (Burgers 2011 meta — Domain L)[^igf1-ushape]. Very low IGF-1 is also bad
   (frailty, poor repair). IGF-1 is a **context-dependent dial, not a minimize-target** — but the dial's
   longevity-favorable region is **not "as high as a 25-year-old's,"** which is precisely where "boost your
   GH" pushes it.
@@ -394,11 +384,11 @@ The growth/anabolism the GH/IGF-1 axis drives is exactly what nutrient-sensing a
 longevity genetics we have.** This reframes two heavily marketed practices as red flags:
 
 - **Anti-aging HGH — the debunk.** Injectable recombinant human growth hormone is sold by anti-aging
-  clinics on the back of one 1990 study (Rudman et al., *NEJM*, `10.1056/NEJM199007053230101`) showing GH
+  clinics on the back of one 1990 study (Rudman et al. 1990)[^rudman-gh] showing GH
   in men over 60 increased lean mass and decreased fat over 6 months — a **body-composition surrogate**,
   in 12 treated men, with **no functional or hard outcome**, that the field has spent 30 years
   contextualizing. The honest synthesis came later: a **systematic review of GH in the healthy elderly**
-  (Liu et al. 2007, *Annals of Internal Medicine*, `10.7326/0003-4819-146-2-200701160-00005`) found GH
+  (Liu et al. 2007)[^liu-gh] found GH
   produced **small body-composition changes but NO proven functional benefit, and a high rate of adverse
   effects** — edema, joint pain, carpal tunnel, gynecomastia, and **worsened glucose tolerance/insulin
   resistance.** GH for anti-aging is **not approved for that use** (prescribing it as such is illegal in
@@ -425,17 +415,17 @@ energy expenditure and reproduction. **Ghrelin** is secreted by the **stomach** 
 homeostatic appetite loop (alongside gut incretins like GLP-1 and PYY).
 
 **The discovery and the twist.** Leptin was found by positional cloning of the mouse *ob* gene (Zhang et
-al. 1994, *Nature*, `10.1038/372425a0`); mice lacking it are massively obese, and giving them leptin
+al. 1994)[^zhang-ob]; mice lacking it are massively obese, and giving them leptin
 reverses it. This launched the hope that **leptin is the obesity cure.** It isn't — and *why* it isn't is
 the lesson:
 
 - **In rare true leptin deficiency, leptin is a miracle.** Children with congenital leptin deficiency given
-  recombinant leptin lose dramatic amounts of fat and normalize (Farooqi et al. 1999, *NEJM*,
-  `10.1056/NEJM199909163411204`) — `rct`/strong in that genotype.
+  recombinant leptin lose dramatic amounts of fat and normalize (Farooqi et al. 1999)[^farooqi-leptin] —
+  `rct`/strong in that genotype.
 - **In common obesity, leptin therapy barely works.** People with ordinary obesity have **high** leptin
   already and are **leptin-resistant** — the brain stops "hearing" the full-stores signal. Giving more
   leptin to a leptin-resistant person produces only **modest, inconsistent** weight loss (Heymsfield et al.
-  1999, *JAMA*, `10.1001/jama.282.16.1568`). The defect isn't *too little* leptin; it's the brain not
+  1999)[^heymsfield-leptin]. The defect isn't *too little* leptin; it's the brain not
   responding to plenty. (A close cousin of insulin resistance — both are **resistance to a "you have
   enough" signal**, and both track adiposity.)
 
@@ -462,12 +452,11 @@ zeitgeber**, *not* primarily a sedative. Endogenous secretion tends to **decline
 age. (The circadian system itself — light, sleep, clock genes — is owned by the recovery/sleep section
 `05` and Domain I; this is the endocrine slice.)
 
-**The honest supplement take.** Two meta-analyses (Ferracioli-Oda et al. 2013, *PLoS ONE*,
-`10.1371/journal.pone.0063773`; Brzezinski et al. 2004, *Sleep Medicine Reviews*,
-`10.1016/j.smrv.2004.06.004`) converge: exogenous melatonin produces a **modest, real, but small** effect
-on sleep — it **shortens time to fall asleep by roughly a few (~7) minutes** and slightly increases total
-sleep time and efficiency. That is a **genuine but small** effect — and far better explained by melatonin
-acting as a **timing signal** than as a hypnotic.
+**The honest supplement take.** Two meta-analyses (Ferracioli-Oda et al. 2013[^ferracioli-melatonin];
+Brzezinski et al. 2004[^brzezinski-melatonin]) converge: exogenous melatonin produces a **modest, real, but
+small** effect on sleep — it **shortens time to fall asleep by roughly a few (~7) minutes** and slightly
+increases total sleep time and efficiency. That is a **genuine but small** effect — and far better
+explained by melatonin acting as a **timing signal** than as a hypnotic.
 
 This reframes correct use:
 
@@ -498,7 +487,7 @@ hype lives.
 indoor living, and **true deficiency is real and worth correcting** (it causes rickets/osteomalacia,
 contributes to falls and fractures in the deficient elderly). **But the large trials killed the
 supplement-as-longevity-drug story in the already-replete.** The definitive one is **VITAL** (Manson et al.
-2019, *NEJM*, `10.1056/NEJMoa1809944`): **~25,000 adults** randomized to **2000 IU/day vitamin D vs
+2019)[^manson-vital] **~25,000 adults** randomized to **2000 IU/day vitamin D vs
 placebo**, which found **no reduction in cancer or cardiovascular events** over ~5 years; subsequent VITAL
 analyses likewise found **no benefit for fracture prevention in the general (non-deficient) population.**
 The pattern is, by now, the signature of this entire section: a level that **predicts** poor outcomes
@@ -514,12 +503,13 @@ nutrition/supplements section (`03`); the endocrine framing is simply: **it's a 
 
 ---
 
-## 11. The "hormone optimization" industry — the meta-debunk
+## 11. The "hormone optimization" industry — and the honest synthesis
 
 Pull the threads together and a single failure mode runs through the whole section. A cash-clinic /
 telehealth / supplement industry sells "**hormone optimization**": panels of testosterone, DHEA, thyroid,
 GH/IGF-1, cortisol, and more, with the promise of restoring every hormone to "**youthful optimal**" ranges
-to reverse aging. Every honesty rule in this manual converges to say **be maximally skeptical**:
+to reverse aging. Every honesty rule in this manual converges to say **be maximally skeptical**, for four
+reasons:
 
 1. **It treats age-typical levels as disease.** The entire model rests on calling a 55-year-old's normal
    testosterone, DHEA, or IGF-1 "low" against a 25-year-old reference and "correcting" it — ignoring that
@@ -543,12 +533,8 @@ supraphysiologic testosterone as anti-aging** — pushing healthy hormones **up*
 vial; and the real hormone medicine is the boring, deficiency-replacement kind that a clinician documents
 on your chart.
 
----
-
-## 12. The honest synthesis
-
-Rank the endocrine "levers" by strength of evidence and direction of effect, and the order again inverts
-the marketing:
+Now rank what to actually do. The endocrine "levers," ordered by strength of evidence and direction of
+effect, again invert the marketing:
 
 1. **The one big lifestyle lever — fix the insulin axis.** Insulin resistance is the most upstream,
    most-reversible, most-disease-connected endocrine dial, and it responds to **visceral-fat loss,
@@ -607,4 +593,27 @@ HGH, DHEA, "adrenal fatigue" protocols) are precisely the ones the evidence does
 - **Rodondi N, et al.** "Subclinical Hypothyroidism and the Risk of Coronary Heart Disease and Mortality."
   *JAMA* 2010. `10.1001/jama.2010.1361` — the IPD meta showing the risk lives at TSH ≥10; pair with TRUST
   (Stott 2017, §10) for the `rct`-null on treating mild subclinical disease.
-```
+
+[^mcewen-allostatic]: McEwen BS — *NEJM* 1998. doi:10.1056/NEJM199801153380307.
+[^cadegiani-adrenal]: Cadegiani FA, Kater CE, "Adrenal fatigue does not exist: a systematic review" — *BMC Endocrine Disorders* 2016. doi:10.1186/s12902-016-0128-4.
+[^harman-blsa]: Harman SM et al. (Baltimore Longitudinal Study of Aging) — *JCEM* 2001. doi:10.1210/jcem.86.2.7219.
+[^bhasin-guideline]: Bhasin S et al., Endocrine Society testosterone guideline — *JCEM* 2018. doi:10.1210/jc.2018-00229.
+[^snyder-ttrials]: Snyder PJ et al. (The Testosterone Trials) — *NEJM* 2016. doi:10.1056/NEJMoa1506119.
+[^conflict-hrt]: Open conflict — claim: conflict-hrt-timing. Timing/"window of opportunity" hypothesis (ELITE/Hodis 2016; KEEPS; Manson 2013 reanalysis) vs WHI (Rossouw 2002); the hard-outcome RCT still does not exist. See `02-domains/N-womens-longevity.md`.
+[^nair-dhea]: Nair KS et al. — *NEJM* 2006. doi:10.1056/NEJMoa054629.
+[^gereben-deiodinase]: Gereben B et al. — *Endocrine Reviews* 2008. doi:10.1210/er.2008-0019.
+[^rodondi-subclinical]: Rodondi N et al. — *JAMA* 2010. doi:10.1001/jama.2010.1361.
+[^shulman-ectopic]: Shulman GI — *NEJM* 2014. doi:10.1056/NEJMra1011035.
+[^homair-cvd]: Hanley AJ et al. 2002 — claim: homair-fasting-insulin-predicts-cvd (Domain L, cohort).
+[^hba1c-cvd]: Selvin E et al. 2010 — claim: hba1c-predicts-cvd-nondiabetic (Domain L, cohort).
+[^guevara-laron]: Guevara-Aguirre J et al. — *Sci Transl Med* 2011. doi:10.1126/scitranslmed.3001845.
+[^milman-igf1]: Milman S et al. — *Aging Cell* 2014. doi:10.1111/acel.12213.
+[^igf1-ushape]: Burgers AM et al. 2011 meta-analysis. claim: igf1-u-shaped-mortality (Domain L, meta).
+[^rudman-gh]: Rudman D et al. — *NEJM* 1990. doi:10.1056/NEJM199007053230101.
+[^liu-gh]: Liu H et al. — *Annals of Internal Medicine* 2007. doi:10.7326/0003-4819-146-2-200701160-00005.
+[^zhang-ob]: Zhang Y et al. (mouse *ob* gene) — *Nature* 1994. doi:10.1038/372425a0.
+[^farooqi-leptin]: Farooqi IS et al. — *NEJM* 1999. doi:10.1056/NEJM199909163411204.
+[^heymsfield-leptin]: Heymsfield SB et al. — *JAMA* 1999. doi:10.1001/jama.282.16.1568.
+[^ferracioli-melatonin]: Ferracioli-Oda E et al. — *PLoS ONE* 2013. doi:10.1371/journal.pone.0063773.
+[^brzezinski-melatonin]: Brzezinski A et al. — *Sleep Medicine Reviews* 2004. doi:10.1016/j.smrv.2004.06.004.
+[^manson-vital]: Manson JE et al. (VITAL) — *NEJM* 2019. doi:10.1056/NEJMoa1809944.

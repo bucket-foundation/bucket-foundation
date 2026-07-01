@@ -1,25 +1,20 @@
 # 37 — Mitochondrial Health: The Deep Dive
 
-> **Status:** v0.1 (Wave 3 deep-dive) — 2026-06-29. This is the **most Bucket-native chapter in the
-> manual.** Where `01-foundations.md` §2 states the bioenergetics law once and moves on to the rest of
-> the body, this chapter stays inside the organelle and follows the law all the way down — structure,
-> genome, dynamics, quality control, decline — and then back *up* to the single practical question the
-> whole corpus keeps converging on: *what actually makes the mitochondrion work better, and how sure
-> are we?*
->
-> **It builds on three files and does not repeat them.** Read in order: the canon law
-> (`bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md`), the foundations chapter
-> (`01-foundations.md` §2 — energy, §2.6 ROS-as-signal, §2.7 the master-variable argument), and the
-> mechanism bridge (`12-mechanism-bridge.md`, rows 1–2, 6, 9, 17, 24 + deep-dives §12.3.1, §12.3.5,
-> §12.3.11). The cross-cutting thread `02-domains/threads/thread-mitochondria.md` is the one-page
-> index of everything below; this chapter is its full expansion. Graded claims live in
-> `02-domains/mitochondria-claims.json`.
->
-> **The discipline is unchanged from the rest of the manual:** a *mechanism* is never laundered into an
-> *outcome*. The mitochondrion is where this rule earns its keep, because the gap between "real
-> organelle biology" and "what the supplement bottle claims" is wider here than almost anywhere else in
-> longevity — and the prestige of the underlying science is exactly what gets borrowed to sell across
-> the gap.
+The mitochondrion is the best-founded object in applied longevity and the most oversold — and the same
+fact, the depth and certainty of the underlying physics, is the cause of both.
+
+Where the Foundations chapter states the bioenergetics law once and moves on through the rest of the
+body, this chapter stays inside the organelle and follows the law all the way down — structure, genome,
+dynamics, quality control, decline — then back up to the single practical question the whole manual
+keeps converging on: what actually makes the mitochondrion work better, and how sure are we?
+
+The discipline is the same as everywhere else in the manual: a mechanism is never laundered into an
+outcome. The mitochondrion is where that rule earns its keep, because the gap between real organelle
+biology and what the supplement bottle claims is wider here than almost anywhere else in longevity —
+and the prestige of the underlying science is exactly what gets borrowed to sell across the gap.
+
+_Not medical advice. If you want the law itself first, read the Foundations chapter §2 (energy,
+ROS-as-signal, the master-variable argument); the mechanism chains are in §12._
 
 ---
 
@@ -61,6 +56,9 @@ The foundations chapter named the parts (§2.1–2.3): inner membrane, electron 
 Complexes I–IV, ATP synthase, the proton gradient. Here is what it left out — the structural and
 mechanistic detail that makes the difference between knowing the law and understanding the machine.
 
+_In a hurry? This is the deep anatomy. If you only want the levers, skim to §37.7 — the biology here
+explains *why* they work, but the practical list stands on its own._
+
 ### 37.2.1 — Architecture: a cell within a cell
 
 A mitochondrion is **two membranes and two spaces**, and the geometry is functional, not incidental:
@@ -94,7 +92,8 @@ A mitochondrion is **two membranes and two spaces**, and the geometry is functio
 ### 37.2.2 — The electron transport chain, complex by complex
 
 The foundations chapter treated Complexes I–IV as a single "chain." At depth they differ in ways that
-matter for both ROS biology and pharmacology:
+matter for both ROS (reactive oxygen species — reactive by-products of respiration that double as
+signals) biology and pharmacology:
 
 | Complex | Name | Pumps H⁺? | Notes that matter downstream |
 |---|---|---|---|
@@ -176,15 +175,15 @@ them is Douglas C. Wallace (canon `wallace-doug`, "the bioenergetic genome"):
 - **The threshold effect.** A mutant mtDNA load usually causes *no* phenotype until it crosses a
   tissue-specific **threshold** (often ~60–80% mutant), beyond which oxidative capacity fails and
   symptoms appear in the most energy-hungry tissues first — brain, heart, skeletal muscle, retina
-  (`wallace-2013-heteroplasmy-threshold`). The threshold is why the same mutation can be silent in one
+  (Wallace).[^wallace-threshold] The threshold is why the same mutation can be silent in one
   generation and devastating in the next as the mutant fraction drifts upward through the female
   germline.
 
 > **Cross-reference — the genetics readout of bioenergetic aging.** Somatic mtDNA mutations *accumulate*
-> in post-mitotic tissue with age and can clonally expand within single cells
-> (`somatic-mtdna-heteroplasmy-accumulates-with-age`). Whether this *drives* normal aging or merely
-> *marks* it is one of the field's genuine open questions — and it is the subject of an explicit
-> conflict object (§37.6.2, `conflict-mtdna-mutation-causality`). Grade the difference carefully: that
+> in post-mitotic tissue with age and can clonally expand within single cells.[^somatic-mtdna] Whether
+> this *drives* normal aging or merely *marks* it is one of the field's genuine open questions — and it
+> is the subject of an explicit conflict object (§37.6.2).[^conflict-mtdna] Grade the difference
+> carefully: that
 > mtDNA mutations accumulate is **solid**; that they *cause* normal human aging is **contested.**
 
 ---
@@ -216,7 +215,8 @@ toward chronic fragmentation** (excess fission, failed fusion), which correlates
 function. Exercise and caloric restriction shift the balance back toward regulated cycling. Mutations
 in *MFN2* (Charcot–Marie–Tooth 2A) and *OPA1* (dominant optic atrophy) are human proof the machinery
 is non-negotiable — break fusion and you get neurodegeneration. (Evidence tier: the molecular biology
-is `mechanistic`/established; "improve your fission-fusion balance" as a *consumer protocol* is not a
+is `mechanistic` — shown in cells and animals — and established; "improve your fission-fusion balance"
+as a *consumer protocol* is not a
 thing you can buy — it is downstream of the same exercise/fasting levers below.)
 
 ### 37.4.2 — Mitophagy: the mitochondria-specific recycling program
@@ -294,7 +294,7 @@ electrons to O₂, forming **reactive oxygen species** (superoxide → H₂O₂ 
 damage lipids, proteins, and mtDNA; damage accumulates; you age. The naive therapeutic corollary —
 *swallow antioxidants to mop up ROS and slow aging* — dominated supplement marketing for fifty years.
 
-**That corollary is mostly resolved against itself** (`conflict-free-radical-theory`), and the weight
+**That corollary is mostly resolved against itself**,[^free-radical-conflict] and the weight
 of evidence is specific:
 
 - **Large antioxidant RCTs are null or harmful.** Meta-analyses of vitamin E, β-carotene, and vitamin
@@ -332,23 +332,22 @@ hormesis as "three facets of one redox-bioenergetics core" (`thread-mitochondria
 
 ### 37.6.1 — The hallmark
 
-"**Mitochondrial dysfunction**" is one of the named **Hallmarks of Aging** (López-Otín 2013/2023,
-`mito-dysfunction-hallmark`) — categorized as *antagonistic* (a stress response that turns harmful when
+"**Mitochondrial dysfunction**" is one of the named **Hallmarks of Aging** (López-Otín
+2013/2023)[^mito-hallmark] — categorized as *antagonistic* (a stress response that turns harmful when
 chronic, the hormetic shape again). What declines with age, as a robust *phenomenon*: oxidative
 capacity per mitochondrion, membrane potential, biogenesis (PGC-1α signaling falls), mitophagy
-(clearance slows so damaged units accumulate), supercomplex organization, and NAD⁺ availability
-(`sirtuins-nad-decline`). The network skews fragmented; cristae coarsen. **That mitochondrial function
+(clearance slows so damaged units accumulate), supercomplex organization, and NAD⁺
+availability.[^nad-decline] The network skews fragmented; cristae coarsen. **That mitochondrial function
 declines with age is solid and cross-tissue.** What that decline *causes*, and what causes *it*, is
 where the honesty tags come in.
 
 ### 37.6.2 — The causality question (an open conflict, graded)
 
 Is mitochondrial damage a **driver** of aging or a **downstream readout** of it? The corpus keeps this
-as an explicit open conflict (`conflict-mtdna-mutation-causality`), and the evidence cuts against the
+as an explicit open conflict,[^conflict-mtdna] and the evidence cuts against the
 naive damage story even as it leaves the question open:
 
-- **The mtDNA "mutator mouse"** (Trifunovic 2004; Kujoth 2005, `trifunovic-2004-mutator-mouse`,
-  `kujoth-2005-mutator-apoptosis`): mice engineered with a proofreading-deficient mtDNA polymerase
+- **The mtDNA "mutator mouse"** (Trifunovic 2004; Kujoth 2005)[^mutator-mouse] mice engineered with a proofreading-deficient mtDNA polymerase
   (POLG) accumulate mtDNA mutations and **age prematurely** — superficially a win for the damage
   theory. **But** two caveats gut the naive version: (1) the mutation loads are *far above* anything
   humans accumulate in normal aging, and (2) the premature-aging phenotype runs through **apoptosis
@@ -390,15 +389,18 @@ several disease processes (these are application-tier claims that consume the fo
 
 ## 37.7 — The practical levers: what actually improves mitochondrial function
 
-This is the section the chapter exists for. Each lever is graded by the *outcome* tier (not the
-mechanism), and the mechanism is cross-referenced rather than re-derived. **The headline is not in
-dispute: exercise is the lever. Everything else is adjunct or unproven.**
+This is the section the chapter exists for. Each lever is graded on its *outcome* evidence — how good
+the human proof is that the lever changes something you feel. The tiers run `rct` (randomized trials,
+the strongest tier), `meta` (pooled trials), `cohort` (observational follow-up), and `mechanistic`
+(shown in cells or animals, no outcome trial yet). The mechanism is cross-referenced rather than
+re-derived. **The headline is not in dispute: exercise is the lever. Everything else is adjunct or
+unproven.**
 
 ### Levers table — graded
 
 | Lever | Dial it moves | Mechanism (cross-ref) | Outcome tier | Honest verdict |
 |---|---|---|---|---|
-| **Aerobic / Zone-2 endurance** | **Biogenesis** (++) | PGC-1α → NRF1/2, TFAM (§37.4.3; `12-mechanism-bridge` §12.3.1) | **`meta`/`cohort`** (biogenesis certain; VO₂max↔mortality cohort) | **The single strongest, best-evidenced mitochondrial lever.** Holloszy 1967: ~doubles mitochondrial enzyme content. VO₂max *is* integrated mitochondrial capacity and the strongest mortality predictor in preventive medicine. |
+| **Aerobic / Zone-2 endurance** | **Biogenesis** (++) | PGC-1α → NRF1/2, TFAM (§37.4.3; `12-mechanism-bridge` §12.3.1) | **`meta`/`cohort`** (biogenesis certain; VO₂max↔mortality cohort) | **The single strongest, best-evidenced mitochondrial lever.** Holloszy 1967: ~doubles mitochondrial enzyme content. VO₂max (aerobic capacity — the most oxygen your body can use at full effort) *is* integrated mitochondrial capacity and the strongest mortality predictor in preventive medicine. |
 | **HIIT / intervals** | **Biogenesis** (++) | Same PGC-1α axis, stronger per-minute + β-adrenergic | **`meta`** (surrogate: VO₂max) | Drives strong biogenesis too — *Zone-2-is-uniquely-optimal is an over-extrapolation* (`conflict-zone2-optimal-mito`). Time-efficient; complements, doesn't replace, Zone 2. |
 | **Resistance training** | Biogenesis (+), mostly hypertrophy | mTORC1/MPS (`12-mechanism-bridge` §12.3.2) | **`meta`** (mortality) | Less mitochondrial than aerobic, but protects against sarcopenia (the tissue where mito decline shows). Pair with aerobic. |
 | **Fasting / CR / TRE** | **Mitophagy + fusion + biogenesis** | AMPK↑/mTOR↓ → autophagy; fusion under scarcity (§37.4) | **`rct`** surrogate; human longevity unproven | Real mechanism, mostly-calorie-mediated outcomes (`conflict-tre-efficacy-vs-cr`). Triggers the *clearance* dial that exercise triggers less. |
@@ -432,7 +434,7 @@ graded on the *outcome* axis.
 
 | Supplement | Claimed mechanism | Best human evidence | Outcome tier | Verdict |
 |---|---|---|---|---|
-| **CoQ10 / ubiquinol** | ETC electron carrier (Cx I/II→III); antioxidant | **Q-SYMBIO** (Mortensen, *JACC HF* 2014): 300 mg/d ↓MACE & all-cause mortality in moderate-severe HF (HR ~0.5) | **`rct`** (in HF) | **Real — but only in a deficiency/disease context.** Genuine in **heart failure** and primary CoQ10 deficiency. In healthy people: **no demonstrated benefit.** Statin-myalgia trials mostly **null**. |
+| **CoQ10 / ubiquinol** | ETC electron carrier (Cx I/II→III); antioxidant | **Q-SYMBIO** (Mortensen, *JACC HF* 2014): 300 mg/d ↓MACE (major adverse cardiovascular events) & all-cause mortality in moderate-severe HF (HR ~0.5, i.e. roughly halved) | **`rct`** (in HF) | **Real — but only in a deficiency/disease context.** Genuine in **heart failure** and primary CoQ10 deficiency. In healthy people: **no demonstrated benefit.** Statin-myalgia trials mostly **null**. |
 | **PQQ (pyrroloquinoline quinone)** | Claimed PGC-1α/biogenesis activation; redox cofactor | Small trials: cognition (Itoh 2016; 2023), mito biomarkers, modest aerobic markers in untrained men (2020) | **`mechanistic`/small `rct`** | **Weak.** Tiny, often industry-funded, surrogate endpoints, inconsistent. "Biogenesis activator" is mostly preclinical. Not established. |
 | **Urolithin A / Mitopure** | **Mitophagy induction** (§37.4.2) | Andreux 2019 (safe, molecular signature); Singh 2022 *JAMA Netw Open* (older adults, muscle endurance/mito gene-expression); Liu 2022 *Cell Rep Med* (middle-aged, ~+12% strength); Nat Aging 2025 (immune markers) | **`rct`** (surrogate-heavy, modest) | **The best-evidenced "mitophagy supplement" — and still modest.** Mechanism genuinely real & replicated. Human RCTs show **small, mostly-surrogate** effects (muscle endurance, mito gene expression, some strength); **no hard endpoints**, all Amazentis-funded, primary endpoints sometimes missed. Promising; not a proven outcome. |
 | **MitoQ (mitoquinol)** | Mito-targeted antioxidant (CoQ + TPP⁺ cation, concentrates in matrix) | Rossman 2018 (*Hypertension*): ↑brachial FMD ~42% in older adults; exercise trials **mixed** (peak power yes, mito content no) | **small `rct`** (mixed, surrogate) | **Mixed.** Clever delivery, real endothelial-function signal in one setting; exercise/redox outcomes inconsistent. As an *antioxidant* it carries the §37.5 blunting risk. Unproven for general use. |
@@ -446,7 +448,7 @@ graded on the *outcome* axis.
 
 **CoQ10 / ubiquinol — real, but context-specific.** This is the supplement with the strongest *outcome*
 evidence on this list, and it is important to grade it precisely so the verdict isn't over-generalized.
-The **Q-SYMBIO** trial (Mortensen et al., *JACC: Heart Failure* 2014, PMID 25282031; n≈420, NYHA III–IV
+The **Q-SYMBIO** trial (Mortensen et al., *JACC: Heart Failure* 2014;[^qsymbio-pmid] n≈420, NYHA III–IV
 heart failure, CoQ10 300 mg/d for 2 years) found a **roughly halved rate of major adverse cardiovascular
 events and all-cause mortality** — a genuine, randomized, hard-endpoint benefit. CoQ10 is also genuinely
 therapeutic in **primary CoQ10 (ubiquinone) deficiency** and statin-induced CoQ10 depletion is real
@@ -462,10 +464,10 @@ Its mechanism — **induction of mitophagy** — is genuinely real and replicate
 cells (the Amazentis/Auwerx-lab program). The human RCTs are the honest part:
 - **Andreux 2019** (*Nature Metabolism*, first-in-human): safe, and induced a *molecular signature* of
   improved mitochondrial gene expression — but a biomarker signature, not a functional outcome.
-- **Singh 2022** (*JAMA Network Open*, PMID 35050355): older adults, 4 months — improved some measures of
+- **Singh 2022** (*JAMA Network Open*)[^singh-pmid] older adults, 4 months — improved some measures of
   **muscle endurance** and mitochondrial gene expression, but **did not hit the 6-minute-walk primary
   endpoint**.
-- **Liu 2022** (*Cell Reports Medicine*, PMID 35584623): middle-aged adults — modest **strength/exercise**
+- **Liu 2022** (*Cell Reports Medicine*)[^liu-pmid] middle-aged adults — modest **strength/exercise**
   improvements and mitochondrial biomarkers.
 - **2025** (*Nature Aging*): effects on age-related immune-decline markers.
 
@@ -579,8 +581,7 @@ honest thing this manual can tell you about your mitochondria.
 - **Threads:** `thread-mitochondria.md` (this chapter's index), `thread-hormesis.md`,
   `thread-nad-redox.md`.
 - **Domains / claims:** `B-aging-mechanisms.md` (mito-dysfunction hallmark), `C-genetics-omics.md`
-  (mtDNA/heteroplasmy), `E-exercise.md` (biogenesis), `H-thermal.md` (UCP1), `D2-supplements-claims.json`;
-  graded claims for this chapter in `mitochondria-claims.json`.
+  (mtDNA/heteroplasmy), `E-exercise.md` (biogenesis), `H-thermal.md` (UCP1).
 - **Sibling sections:** `02-training.md`, `03-nutrition-supplements.md`, `16-telomeres-cellular-aging.md`,
   `31-regenerative-frontier.md`, `32-biohacking-fringe.md`.
 
@@ -628,3 +629,14 @@ honest thing this manual can tell you about your mitochondria.
 - **Nelson & Cox, *Lehninger Principles of Biochemistry*** (8th ed., 2021) — oxidative phosphorylation,
   the citric-acid cycle. **Alberts et al., *Molecular Biology of the Cell*** (7th ed., 2022) —
   mitochondrial structure, dynamics, and the chemiosmotic machinery.
+
+[^wallace-threshold]: Wallace, D. C. — heteroplasmy threshold effect. claim: wallace-2013-heteroplasmy-threshold
+[^somatic-mtdna]: claim: somatic-mtdna-heteroplasmy-accumulates-with-age
+[^conflict-mtdna]: Open conflict object — is somatic mtDNA mutation a driver of normal human aging or a downstream readout? claim: conflict-mtdna-mutation-causality
+[^free-radical-conflict]: Open conflict object — the free-radical/antioxidant theory of aging, mostly resolved against the naive version. claim: conflict-free-radical-theory
+[^mito-hallmark]: López-Otín et al., *Hallmarks of Aging*, Cell 2013 / 2023. claim: mito-dysfunction-hallmark
+[^nad-decline]: claim: sirtuins-nad-decline
+[^mutator-mouse]: Trifunovic, A. et al. (2004) *Nature* 429:417, doi:10.1038/nature02517; Kujoth, G. C. et al. (2005) *Science* 309:481, doi:10.1126/science.1112125 (premature aging runs through apoptosis, not ROS). claims: trifunovic-2004-mutator-mouse, kujoth-2005-mutator-apoptosis
+[^qsymbio-pmid]: Q-SYMBIO — Mortensen, S. A. et al. (2014) *JACC: Heart Failure* 2:641. PMID 25282031. doi:10.1016/j.jchf.2014.06.008
+[^singh-pmid]: Singh, A. et al. (2022) *JAMA Network Open* 5:e2144279. PMID 35050355
+[^liu-pmid]: Liu, S. et al. (2022) *Cell Reports Medicine* 3:100633. PMID 35584623

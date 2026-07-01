@@ -1,20 +1,20 @@
 # 30 — Complementary & Alternative Medicine (graded)
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/cam-claims.json`.
-> Cross-refs: supplements/herbs evidence rules in `reports/sections/03-nutrition-supplements.md`;
-> pain, placebo, and surgical-sham data in `reports/sections/14-nervous-system.md` (§6) and
-> `reports/sections/21-pain-injury-rehab.md`; oncology mortality in `reports/sections/25-oncology.md`.
-> Evidence tiers per `06-evidence/SCHEMA.md` — **the grade is the neutrality.** Fringe and mainstream
-> sit on the same ladder; nothing is dismissed for being unfashionable, nothing is laundered for being popular.
+Complementary and alternative medicine (CAM) is a patchwork: a handful of real, narrow tools, a large
+middle of expensive placebo, a toxicology hazard at the edges, and one failure mode that kills — using
+any of it *instead of* a treatment that works. The fair way to sort the patchwork is to put every
+modality on the same evidence ladder as mainstream medicine and read the grade honestly: nothing
+dismissed for being unfashionable, nothing laundered for being popular.
 
-This chapter exists because the corpus doctrine is *index-all / grade-everything*. Complementary and
-alternative medicine (CAM) is not exempt from the ladder, and it is not exempt from honesty in either
-direction. A modality that helps is graded `works`; one that is inert is graded `placebo-level`; one
-that is dangerous is graded `harmful`; and — crucially — **the same modality can be all three depending
-on the question and the use.** Acupuncture for chemotherapy nausea is not acupuncture for infertility.
+A modality that helps is graded `works`; one that is inert is graded `placebo-level`; one that is
+dangerous is graded `harmful`; and — crucially — **the same modality can be all three depending on the
+question and the use.** Acupuncture for chemotherapy nausea is not acupuncture for infertility.
 St John's Wort for mild depression is not St John's Wort taken alongside an organ-transplant drug.
 "Integrative oncology" massage for anxiety is not "alternative" coffee enemas instead of chemotherapy.
 The unit of grading is **modality × indication × instead-of-or-alongside**, never the brand.
+
+_Not medical advice. Placebo and surgical-sham data: §14 §6 and §21; oncology mortality: §25;
+supplement/herb evidence rules: §03._
 
 Five honesty rules run through every line below. They are the whole chapter in miniature:
 
@@ -27,7 +27,7 @@ Five honesty rules run through every line below. They are the whole chapter in m
 3. **Placebo is real but bounded.** Expectation genuinely changes pain, nausea, and other *subjective,
    self-reported, brain-modulated* outcomes (Section 14 §6). It does **not** shrink tumours, clear
    infections, lower blood sugar, or reopen arteries. The harm of CAM is rarely the sugar pill; it is the
-   *opportunity cost* of using a sugar pill where a real cure exists.
+   *opportunity cost* of using a sugar pill where a real cure exists — the cost §9.3 puts a number on.
 4. **"Natural" is a marketing word, not a safety claim.** Hemlock, arsenic, aristolochic acid, and
    amanita are natural. Herbs are unstandardised drugs with real pharmacology, real interactions, and —
    for some traditional preparations — real heavy-metal contamination.
@@ -38,12 +38,17 @@ Five honesty rules run through every line below. They are the whole chapter in m
 
 ## 1. The verdict table (modality × indication)
 
-Grade key — mapped to the evidence ladder in `SCHEMA.md`:
-- **works** — consistent human RCT/meta evidence for a real, specific effect (often narrow).
+Grade key — best evidence for the specific use, worst evidence for the specific harm:
+- **works** — consistent human RCT (randomized controlled trial — the strongest evidence tier) / meta-analysis evidence for a real, specific effect (often narrow).
 - **works-for-some-things** — real for a short list of indications, inert/unproven for everything else it's sold for.
 - **placebo-level** — performs no better than a convincing sham; the ritual may comfort, the mechanism is absent.
 - **no-evidence** — claims outrun the data; effect is mechanistic, anecdotal, or untested in humans.
 - **harmful** — direct harm (contamination, interaction, injury) and/or the indirect harm of displacing proven care.
+
+The headline verdicts, before the details: a few things work narrowly (PC6 acupressure for nausea,
+peppermint oil for IBS, spinal manipulation for acute back pain, mind–body movement); homeopathy and
+energy healing are pure placebo; heavy-metal-bearing traditional preparations are toxic; and using any
+of it *instead of* proven care is the one lethal move.
 
 @@FIG:38-cam-matrix@@
 
@@ -62,8 +67,8 @@ meta-analysis** (Arch Intern Med 2012; updated J Pain 2018), pooling raw data fr
 RCTs / ~20,827 patients** across four chronic-pain conditions (back/neck, osteoarthritis, chronic headache,
 shoulder). Its findings are the honest centre of gravity for the whole field:
 
-- Acupuncture beats **no-acupuncture** control by roughly **0.5 SD** — a clear, moderate effect.
-- Acupuncture beats **sham** (fake/placebo needling) by only **~0.2 SD** — a *small* effect.
+- Acupuncture beats **no-acupuncture** control by roughly **0.5 SD** (half a standard deviation — a clear, moderate effect).
+- Acupuncture beats **sham** (fake/placebo needling) by only **~0.2 SD** (a fifth of one — a *small* effect).
 - Effects **persist** at 12 months with only ~15% decay (i.e. it isn't a one-day wonder).
 
 Read those two numbers together and the structure is unmistakable: **most of acupuncture's benefit is the
@@ -95,15 +100,17 @@ rare but real (pneumothorax, infection from non-sterile needling).
 
 Herbs are **drugs**: unpurified, variably dosed, often unstandardised, sometimes contaminated, and capable of
 real interactions. Grade the herb, the indication, *and* the product. (Cross-ref `03-nutrition-supplements.md`
-for the supplement-versus-food honesty rules; the same predictor-≠-lever and dose-matters logic applies.)
+for the supplement-versus-food honesty rules; the same predictor-≠-lever logic applies — a marker that
+forecasts risk isn't automatically a knob that, turned, lowers it — as does dose-matters.)
 
 **The ones with real human evidence:**
 
 - **St John's Wort (*Hypericum perforatum*) — depression. `works` (narrow) + `harmful` (interactions).**
-  The **Cochrane review (Linde 2008, CD000448, 29 trials)** found hypericum extracts are **superior to placebo
+  The **Cochrane review (Linde 2008, 29 trials)**[^linde-sjw] found hypericum extracts are **superior to placebo
   and about as effective as standard antidepressants for mild-to-moderate major depression, with fewer
   dropouts for side-effects than SSRIs.** This is one of the best-supported herbal claims in medicine — *and*
-  one of the most dangerous, because St John's Wort is a potent **CYP3A4 inducer and P-glycoprotein inducer**.
+  one of the most dangerous, because St John's Wort is a potent **CYP3A4 inducer and P-glycoprotein inducer**
+  (it revs up the liver's main drug-clearing enzyme and the pump that keeps drugs out of cells).
   It can **gut the efficacy of** oral contraceptives, warfarin, ciclosporin (transplant rejection), HIV
   antiretrovirals, and many chemo/cardiac drugs, and it can cause **serotonin syndrome** with SSRIs/SNRIs.
   Honest framing: real medicine, *prescribe-grade* caution. German-language trials skewed more positive
@@ -318,7 +325,8 @@ from "natural" products taken alongside prescriptions.
 **9.3 The real killer is *instead-of*, not *alongside*.** This is the single most important number in the
 chapter. **Johnson et al. (JNCI 2018)** matched patients who chose **alternative medicine as the *sole*
 treatment** for curable breast, prostate, lung, or colorectal cancer: **5-year survival 55% vs 78%**, with a
-risk of death **HR 2.50** overall and **HR 5.68 for breast cancer.** The companion paper
+risk of death **HR 2.50** (hazard ratio — two and a half times the rate of dying) overall and **HR 5.68**
+(nearly six times) for breast cancer. The companion paper
 **(Johnson et al., JAMA Oncology 2018)** clarifies the mechanism: patients who used **"complementary" medicine
 were far more likely to *refuse* conventional treatment (chemo, surgery, radiation, hormone therapy)** — and
 **once that refusal was accounted for, the excess mortality disappeared.** Read together: **CAM *alongside*
@@ -380,3 +388,5 @@ and one genuinely dangerous failure mode — **using any of it *instead of* a tr
 *Do You Believe in Magic?* (2013); Ben Goldacre, *Bad Science* (2008); the **NIH NCCIH** fact sheets (mainstream,
 cautious) and **Cochrane Complementary Medicine** field for ongoing condition-by-condition updates;
 **Examine.com** for citation-graded supplement/herb monographs.
+
+[^linde-sjw]: Linde K, et al. "St John's wort for major depression." *Cochrane Database Syst Rev* 2008, review CD000448. doi:10.1002/14651858.CD000448.pub3.

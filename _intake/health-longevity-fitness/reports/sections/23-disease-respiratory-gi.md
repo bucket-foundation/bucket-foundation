@@ -1,20 +1,13 @@
 # 23 — Disease Atlas II: Respiratory, Digestive & Hepatic Disease
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in
-> `02-domains/disease-respiratory-gi-claims.json`.
-> **Not medical advice.** This is an evidence-graded map of the major diseases of the airways, the gut,
-> and the liver/pancreas — what they are, the mechanism (tied to fundamentals), how they are managed, and
-> how strong the evidence actually is. It is written to help you reason and ask better questions, not to
-> diagnose or treat.
+Two of the diseases in this chapter went from a life sentence to a *cure* inside one generation — peptic
+ulcers turned out to be an infection you can wipe out with antibiotics, and hepatitis C now clears in 8–12
+weeks of pills. That is the throughline: find the real cause, and honest management follows. This is a map of
+the major diseases of the airways, the gut, and the liver/pancreas — what they are, how they work, how they're
+managed, and how strong the evidence for that management actually is.
 
-This is the **disease companion** to the physiology in `17-organ-systems-atlas.md`. Section 17 maps how the
-respiratory, hepatic, and digestive systems *age* and what the everyday levers are (don't smoke, stay lean,
-eat fiber, keep blood pressure and glucose in range). This section maps what *goes wrong* — the named diseases
-a person actually gets diagnosed with — and grades the management honestly. Where 17 already owns a topic
-(lung-function decline, MASLD physiology, the gut-brain axis, the "liver detox" debunk, fiber), this section
-**points there rather than re-deriving it**, and adds the clinical disease layer on top.
-
-*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+_Not medical advice — a map to reason with, not to diagnose or treat. Physiology and aging of these organs
+live in §17; this chapter adds the named diseases on top._
 
 **One-line verdict up front.** The highest-yield facts in this section are: **(1)** for the lungs, *nothing
 matches not smoking* — every drug here is downstream of that; **(2)** obstructive sleep apnea is *massively
@@ -28,6 +21,12 @@ not support.
 ---
 
 ## Disease-at-a-glance map (read this first)
+
+Seventeen diseases, grouped Respiratory → Digestive → Hepatic. Use it as a lookup, not a read-through — each
+row is unpacked in its own section below. The last column grades how strong the evidence for the management is,
+using these tiers: `rct` = randomized controlled trial (the strongest tier) · `meta` = meta-analysis pooling
+many trials · `cohort` = observational follow-up (shows association, not proof) · `guideline` = expert-consensus
+recommendation · `mechanistic` = reasoned from how the biology works.
 
 | Disease | What it is | Core mechanism (→ fundamental) | Best-evidenced management | Honest grade of the management |
 |---|---|---|---|---|
@@ -80,8 +79,8 @@ gotten wrong:
 
 - **Reliever-only treatment is the wrong default.** For decades, mild asthma was treated with a short-acting
   β₂-agonist (SABA, e.g. albuterol/salbutamol) "as needed." This relieves the symptom but treats *none* of the
-  inflammation, and SABA-only use is associated with worse outcomes and asthma deaths. The **GINA** strategy now
-  recommends that essentially **all** asthma — even mild — be managed with an **inhaled-corticosteroid (ICS)-
+  inflammation, and SABA-only use is associated with worse outcomes and asthma deaths. The **GINA** strategy
+  (GINA — the global asthma-guidelines body) now recommends that essentially **all** asthma — even mild — be managed with an **inhaled-corticosteroid (ICS)-
   containing inhaler**, because the ICS treats the actual disease. `meta`/guideline.
 - **ICS-formoterol as anti-inflammatory reliever ("AIR"/MART).** A combined low-dose inhaled
   corticosteroid + fast-onset long-acting bronchodilator (budesonide-formoterol) used *as the reliever*
@@ -96,15 +95,16 @@ gotten wrong:
   rare exacerbations, near-normal life — a realistic and common outcome with correct inhaler use. The two biggest
   real-world failures are *under-use of ICS* (relying on the reliever) and *poor inhaler technique* (a large
   fraction of patients use devices wrong). Trigger avoidance, smoking cessation, and treating allergic rhinitis
-  help. **Note the predictor-≠-lever discipline:** a good day on a bronchodilator does not mean the inflammation
-  is controlled.
+  help. **Note the predictor-≠-lever discipline** (a number that tells you how you're doing isn't automatically
+  the thing that fixes the disease): a good day on a bronchodilator does not mean the inflammation is controlled.
 
 ### A2. COPD — smoking, irreversibility, and what genuinely helps
 
 **What it is.** Chronic obstructive pulmonary disease is **progressive, largely irreversible airflow
 limitation** from chronic bronchitis (inflamed, mucus-producing airways) and/or emphysema (destruction of
 alveolar walls, loss of elastic recoil). Defined spirometrically by a post-bronchodilator FEV₁/FVC < 0.70 (or
-lower-limit-of-normal). It is among the top global causes of death.
+lower-limit-of-normal) — FEV₁ is how much air you can blast out in the first second of a hard breath, and a low
+ratio means the airways are obstructed. It is among the top global causes of death.
 
 **Mechanism (→ lung physiology, exposures).** In the developed world the overwhelming driver is **tobacco
 smoke**; globally, **biomass-fuel smoke and air pollution** are major contributors. Chronic exposure drives
@@ -124,7 +124,7 @@ most effective respiratory-longevity act in existence (cross-ref `09-exposures-e
 - **Smoking cessation** — the only slope-changer. Everything else is symptom/exacerbation management. `rct`.
 - **Pulmonary rehabilitation** (supervised exercise + education) — improves exercise capacity and quality of
   life; Cochrane-grade. It does not regrow lung but it meaningfully changes how patients function. `meta`
-  (McCarthy *et al.*, Cochrane 2015, `10.1002/14651858.CD003793.pub3`).
+  (McCarthy et al., Cochrane 2015).[^copd-rehab]
 - **Inhaled bronchodilators** (LAMA and/or LABA) — first-line pharmacotherapy; reduce symptoms and
   exacerbations. **Inhaled corticosteroids** are added selectively (higher blood eosinophils, frequent
   exacerbations, asthma overlap) — *not* for everyone, and they carry pneumonia risk in COPD. `rct`/guideline
@@ -141,7 +141,8 @@ most effective respiratory-longevity act in existence (cross-ref `09-exposures-e
 **What it is.** OSA is **repetitive collapse of the upper airway during sleep**, causing apneas/hypopneas with
 oxygen desaturation, surges of sympathetic activity, and sleep fragmentation. Hallmarks: loud snoring, witnessed
 pauses, gasping, un-refreshing sleep, daytime sleepiness, morning headache — but **many people have none of the
-"classic" symptoms.** Severity is graded by the apnea-hypopnea index (AHI). It is **one of the most
+"classic" symptoms.** Severity is graded by the apnea-hypopnea index (AHI — how many breathing pauses you have
+per hour of sleep). It is **one of the most
 underdiagnosed conditions in medicine** — a large majority of moderate-to-severe cases are undiagnosed,
 because the events happen during sleep and the daytime signal is nonspecific.
 
@@ -156,10 +157,11 @@ fundamentals). `mechanistic`/`cohort`.
 
 **The cardiometabolic links — and the honest grading.** Observational **cohorts** strongly associate untreated
 OSA with hypertension (especially resistant/nocturnal), atrial fibrillation, heart failure, stroke, type-2
-diabetes, and mortality. **But here predictor-≠-lever bites hard.** Randomized trials of CPAP for *preventing
-cardiovascular events* have been **largely null**: the **SAVE** trial (McEvoy *et al.*, *NEJM* 2016,
-`10.1056/NEJMoa1606599`, n≈2,700, OSA + established CV disease) found CPAP did **not** reduce the composite of
-CV death/MI/stroke versus usual care — though it did improve sleepiness, mood, and quality of life. The
+diabetes, and mortality. **But here predictor-≠-lever bites hard.** Randomized trials of CPAP (continuous
+positive airway pressure — a bedside machine that pumps gentle air pressure to splint the airway open) for
+*preventing cardiovascular events* have been **largely null**: the **SAVE** trial (McEvoy et al., NEJM 2016;
+n≈2,700, OSA + established CV disease) found CPAP did **not** reduce the composite of
+CV death/MI/stroke versus usual care — though it did improve sleepiness, mood, and quality of life.[^save] The
 **ISAACC** trial reached a similar null in acute-coronary-syndrome patients. The leading explanations: trial
 participants used CPAP only ~3–4 h/night (under-adherence), trials enrolled *non-sleepy* patients (who may
 benefit less), and the patients who plausibly benefit most (severe hypoxic burden, very sleepy) are
@@ -278,7 +280,8 @@ disease is an infection, and infections can be cured.** `rct`/`meta` (eradicatio
 **Mechanism.** *H. pylori* survives gastric acid (it makes urease, buffering its microenvironment), incites
 chronic inflammation, and — depending on strain and host — causes gastritis, duodenal/gastric ulcers, and over
 decades raises the risk of **gastric cancer and MALT lymphoma** (H. pylori is a WHO class-I carcinogen). The
-*other* major ulcer cause is **NSAIDs**, which strip prostaglandin-mediated mucosal defense (cross-ref the
+*other* major ulcer cause is **NSAIDs** (ibuprofen-type anti-inflammatory painkillers), which strip
+prostaglandin-mediated mucosal defense (cross-ref the
 NSAID-kidney caution in `17 §2.6` — same drugs, different organ).
 
 **Management.** **Test for and eradicate H. pylori** (combination antibiotics + acid suppression — regimens
@@ -292,7 +295,8 @@ careful regimen choice and confirmation of cure, and most people carrying H. pyl
 
 **What it is.** Irritable bowel syndrome is **recurrent abdominal pain associated with altered bowel habit**
 (diarrhea-predominant, constipation-predominant, or mixed), in the **absence of structural or biochemical
-abnormality** that explains it (diagnosed by the symptom-based Rome IV criteria after excluding alarm features).
+abnormality** that explains it (diagnosed by the Rome IV criteria — the standardized symptom checklist doctors use — after
+excluding alarm features).
 It is extremely common (~5–10% of adults) and a leading reason for gastroenterology visits.
 
 **The honest "it's real" framing.** Because there's no lesion to point to, IBS has historically been dismissed
@@ -311,8 +315,8 @@ neuro-immune axis — cross-ref `17 §4.3` and `C2-microbiome-deepdive.md`), and
 - **Diet — the low-FODMAP diet.** FODMAPs (Fermentable Oligo-, Di-, Mono-saccharides And Polyols) are
   short-chain carbohydrates that are poorly absorbed, osmotically active, and rapidly fermented — producing gas,
   distension, and (in hypersensitive guts) pain. A **structured low-FODMAP diet** reduces IBS symptoms in
-  randomized trials (Halmos *et al.*, *Gastroenterology* 2014, `10.1053/j.gastro.2013.09.046`, the landmark
-  controlled feeding study). Honest caveats: it is a **three-phase protocol**, **meant to be done with a dietitian and not stayed on long-
+  randomized trials (Halmos et al., Gastroenterology 2014, the landmark controlled feeding study).[^fodmap]
+  Honest caveats: it is a **three-phase protocol**, **meant to be done with a dietitian and not stayed on long-
   term** (chronic restriction harms the microbiome and risks nutritional gaps), and roughly half to two-thirds
   of patients respond. `rct` (short-term symptom relief).
 
@@ -418,10 +422,10 @@ complications or recurrent severe disease.
 
 Colorectal cancer is among the most common and lethal cancers — and one of the most **preventable**, because it
 usually arises through a slow **adenoma→carcinoma sequence** over ~10–15 years, giving a long window to find and
-remove precursors. **Screening works:** the randomized **NordICC** trial (Bretthauer *et al.*, *NEJM* 2022,
-`10.1056/NEJMoa2208375`) confirmed colonoscopy screening reduces colorectal-cancer incidence (and, in
-per-protocol analysis, mortality), and stool-based tests (FIT) plus sigmoidoscopy have RCT mortality evidence
-too. Fiber, physical activity, and not smoking lower risk; processed/red meat, obesity, and alcohol raise it
+remove precursors. **Screening works:** the randomized **NordICC** trial (Bretthauer et al., NEJM 2022)
+confirmed colonoscopy screening reduces colorectal-cancer incidence (and, in
+per-protocol analysis, mortality),[^nordicc] and stool-based tests (FIT) plus sigmoidoscopy have RCT mortality
+evidence too. Fiber, physical activity, and not smoking lower risk; processed/red meat, obesity, and alcohol raise it
 (cross-ref `17 §4.4` fiber and the oncology section for biology and staged treatment). The takeaway for this
 section: **a normal-risk adult should be screened from age 45** — this is a place where the boring lever
 (screening) is `rct`-grade and genuinely saves lives.
@@ -452,14 +456,14 @@ cardiovascular, not liver.** `mechanistic`/`cohort`.
 
 **Management — weight loss is the foundation, and now there are drugs.**
 - **Weight loss reverses histology** — the empirical core. ≥7% weight loss resolves MASH in most; ≥10%
-  regresses fibrosis in a majority (Vilar-Gomez *et al.*, *Gastroenterology* 2015; meta-confirmed by Monami
-  *et al.*, *Diabetes Obes Metab* 2026, `10.1111/dom.70617`). Diet, exercise, GLP-1 therapy, and bariatric
+  regresses fibrosis in a majority (Vilar-Gomez et al., Gastroenterology 2015; meta-confirmed by Monami et al.,
+  Diabetes Obes Metab 2026).[^masld-wl] Diet, exercise, GLP-1 therapy, and bariatric
   surgery all work *through* weight/metabolic improvement. `cohort`/`meta`.
 - **The first approved MASH drugs (new).** **Resmetirom** (a liver-directed thyroid-hormone-receptor-β
   agonist) became the **first FDA-approved drug for MASH with fibrosis** on the strength of the **MAESTRO-NASH**
-  phase-3 trial (Harrison *et al.*, *NEJM* 2024, `10.1056/NEJMoa2309000`), which showed significant MASH
+  phase-3 trial (Harrison et al., NEJM 2024),[^maestro] which showed significant MASH
   resolution and fibrosis improvement versus placebo. And **semaglutide** (GLP-1) showed MASH resolution and
-  fibrosis benefit in the phase-3 **ESSENCE** trial (Sanyal *et al.*, *NEJM* 2025, `10.1056/NEJMoa2413258`).
+  fibrosis benefit in the phase-3 **ESSENCE** trial (Sanyal et al., NEJM 2025).[^essence]
   `rct`. This is a real shift — for the first time there is pharmacotherapy beyond "lose weight" — though these
   drugs *augment*, not replace, the metabolic lever.
 - **Honest grade.** MASLD is **largely a reversible, lifestyle-and-metabolism disease caught early**, and the
@@ -472,9 +476,9 @@ cardiovascular, not liver.** `mechanistic`/`cohort`.
 **Hepatitis C — one of the great wins of modern medicine.** HCV is a blood-borne virus that, untreated,
 causes chronic infection in most, leading over decades to cirrhosis and liver cancer. Until ~2014, treatment
 was a brutal year of interferon + ribavirin with ~50% cure and severe side effects. Then came **direct-acting
-antivirals (DAAs)** — oral drugs targeting HCV replication proteins. The pivotal trials (e.g., Afdhal *et al.*,
-ledipasvir-sofosbuvir, *NEJM* 2014, `10.1056/NEJMoa1402454`) showed **>95% cure ("sustained virologic
-response") in 8–12 weeks of well-tolerated pills.** **Hepatitis C is now curable for nearly everyone** — a
+antivirals (DAAs)** — oral drugs targeting HCV replication proteins. The pivotal trials (e.g., Afdhal et al.,
+ledipasvir-sofosbuvir, NEJM 2014) showed **>95% cure ("sustained virologic
+response") in 8–12 weeks of well-tolerated pills.**[^daa] **Hepatitis C is now curable for nearly everyone** — a
 chronic viral disease essentially solved pharmacologically, and cure reduces liver-cancer and mortality risk.
 The remaining problem is not the science but **diagnosis and access** (most infected people don't know it) —
 hence universal-screening recommendations. `rct`/`meta`. This belongs in any honest manual as proof that "chronic
@@ -653,3 +657,12 @@ itself.
 - **AAAAI / EAACI / CSACI position statements on IgG food testing** — the multi-society consensus that IgG/IgG4
   food panels are **not** valid for diagnosing food sensitivity (IgG reflects exposure/tolerance, not
   pathology). The basis for the §D2 debunk.
+
+[^copd-rehab]: McCarthy B, et al. — Pulmonary rehabilitation for COPD, Cochrane 2015. doi:10.1002/14651858.CD003793.pub3. claim: copd-pulm-rehab (meta)
+[^save]: SAVE — McEvoy RD, et al., NEJM 2016. doi:10.1056/NEJMoa1606599. claim: osa-cpap-cv-null (rct)
+[^fodmap]: Halmos EP, et al. — low-FODMAP in IBS, Gastroenterology 2014. doi:10.1053/j.gastro.2013.09.046. claim: ibs-fodmap-symptom (rct)
+[^nordicc]: NordICC — Bretthauer M, et al., NEJM 2022. doi:10.1056/NEJMoa2208375. claim: crc-colonoscopy-screening (rct)
+[^masld-wl]: Vilar-Gomez E, et al. — Gastroenterology 2015; meta-confirmed Monami M, et al., Diabetes Obes Metab 2026. doi:10.1111/dom.70617. claim: masld-weightloss-histology (cohort/meta)
+[^maestro]: MAESTRO-NASH — Harrison SA, et al., NEJM 2024. doi:10.1056/NEJMoa2309000. claim: mash-resmetirom (rct)
+[^essence]: ESSENCE — Sanyal AJ, et al., NEJM 2025. doi:10.1056/NEJMoa2413258. claim: mash-semaglutide (rct)
+[^daa]: Afdhal N, et al. — ledipasvir-sofosbuvir for HCV, NEJM 2014. doi:10.1056/NEJMoa1402454. claim: hcv-daa-cure (rct)

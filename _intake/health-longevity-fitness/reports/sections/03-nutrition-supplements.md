@@ -1,16 +1,14 @@
 # 03 — Nutrition & Supplements
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/D2-supplements-claims.json`.
-> Extends Domain D (`D-metabolic-nutrition.md`, diet patterns / fasting / protein–mTOR conflict) and Domain C2
-> (`_C2-SUMMARY.md`, microbiome / fiber). Read those for the diet-pattern and microbiome detail; this file owns
-> **supplements** + the practical **protein / pattern / fasting** numbers.
-
-*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
-
 **The one-line verdict up front:** of everything sold as a longevity/fitness supplement, only a short list has
 real human evidence — **creatine, omega-3 (EPA/DHA), vitamin D *in deficiency*, magnesium *in inadequacy*,
 protein, and fiber**. Almost everything else (NMN, resveratrol, most antioxidants, greens powders, multivitamins
 in already-replete people) is mechanism-or-hype, not outcome.
+
+_Not medical advice. This file owns supplements plus the practical protein / pattern / fasting numbers; diet-pattern
+and microbiome detail live in Domain D and C2. Three honesty rules run underneath everything here: a predictor
+(something that forecasts risk) isn't automatically a lever (something that, when changed, lowers it); a cohort
+study isn't an RCT; and something beats nothing._
 
 ---
 
@@ -22,59 +20,64 @@ Grade key: **real** = consistent human RCT/meta evidence for a meaningful effect
 
 @@FIG:N01-supplements@@
 
-*(The traffic-light above is the at-a-glance grade for each supplement; the practical dose, honest mechanism, evidence tier, and the DOIs for every grade are spelled out per-supplement in §1.1–1.8 below.)*
+*(The traffic-light above is the at-a-glance grade for each supplement; the practical dose, honest mechanism, evidence tier, and the sources for every grade are spelled out per-supplement in §1.1–1.8 below.)*
 
 ### 1.1 Creatine monohydrate — the strongest supplement in the building
 
 If you take one supplement for fitness, this is it. Creatine is the most-studied ergogenic aid in sports science,
 with hundreds of RCTs and a decade-stable safety record.
 
-- **Mechanism:** creatine + phosphate buffers ATP regeneration in the phosphocreatine system, the dominant fuel
-  for short, high-intensity efforts. Supplementing raises intramuscular phosphocreatine ~10–40%, increasing work
-  capacity across repeated hard sets. It also draws water into muscle (the early "weight gain" is intracellular
-  water, not fat).
-- **Strength & muscle (real, `meta`):** combined with resistance training, creatine produces consistent additional
-  gains in strength and lean mass vs training alone — **Burke 2023** (regional hypertrophy SR/meta,
-  `10.3390/nu15092116`) and **Wang 2024** (strength meta in adults <50, `10.3390/nu16213665`) both confirm a small
-  but real additive effect. It does **not** build muscle without the training stimulus — it amplifies the work you
-  can do.
+- **Mechanism:** creatine + phosphate buffers ATP (the cell's energy currency) regeneration in the phosphocreatine
+  system, the dominant fuel for short, high-intensity efforts. Supplementing raises intramuscular phosphocreatine
+  ~10–40%, increasing work capacity across repeated hard sets. It also draws water into muscle (the early "weight
+  gain" is intracellular water, not fat).
+- **Strength & muscle (real, `meta` — evidence pooled across many trials):** combined with resistance training,
+  creatine produces consistent additional gains in strength and lean mass vs training alone — **Burke 2023**
+  (regional hypertrophy SR/meta)[^creatine-burke] and **Wang 2024** (strength meta in adults <50)[^creatine-wang]
+  both confirm a small but real additive effect. It does **not** build muscle without the training stimulus — it
+  amplifies the work you can do.
 - **Dose (this is the whole protocol):** **3–5 g/day of creatine monohydrate, every day.** Loading (20 g/d split
   into 4 doses for 5–7 days) only fills stores ~2 weeks faster — optional, not required. Timing (pre/post/anytime)
   doesn't matter; *consistency* does. Monohydrate is the only form with the evidence; "HCl," "buffered," "liquid"
   forms are marketing, not better.
 - **Cognition (real but smaller/`mixed`):** creatine modestly improves memory and cognition, with the largest
   effects under metabolic stress — **sleep deprivation, aging, or in vegetarians** (lower baseline stores).
-  **Avgerinos 2018** (SR, `10.1016/j.exger.2018.04.013`) and **Prokopidis 2023** (memory meta,
-  `10.1093/nutrit/nuac064`) find a real signal, strongest in older adults and stressed states; the effect in
-  young, rested, omnivorous people is small. Honest framing: helpful, not a nootropic miracle.
+  **Avgerinos 2018** (SR)[^creatine-avgerinos] and **Prokopidis 2023** (memory meta)[^creatine-prokopidis] find a
+  real signal, strongest in older adults and stressed states; the effect in young, rested, omnivorous people is
+  small. Honest framing: helpful, not a nootropic miracle.
 - **Aging (real, underrated):** creatine + resistance training in older adults improves muscle and functional
   outcomes — directly relevant to the sarcopenia/frailty problem (Domain E). One honest null: it does **not**
-  meaningfully increase bone mineral density on its own (**Forbes 2018**, `10.3389/fnut.2018.00027`) despite
-  hopeful early claims.
-- **Safety (real):** the **Kreider 2017 ISSN position stand** (`10.1186/s12970-017-0173-z`) — the canonical
-  reference — concludes creatine monohydrate is safe and effective long-term, including no evidence of kidney harm
-  in healthy people (the "it wrecks your kidneys" claim is a myth derived from a confounded creatinine reading).
-  People with existing kidney disease should ask a doctor.
+  meaningfully increase bone mineral density on its own (**Forbes 2018**)[^creatine-forbes] despite hopeful early
+  claims.
+- **Safety (real):** the **Kreider 2017 ISSN position stand**[^creatine-kreider] — the canonical reference —
+  concludes creatine monohydrate is safe and effective long-term, including no evidence of kidney harm in healthy
+  people (the "it wrecks your kidneys" claim is a myth derived from a confounded creatinine reading). People with
+  existing kidney disease should ask a doctor.
 
 **Verdict: REAL.** Best-evidence sports supplement; do it justice — 5 g/day, monohydrate, daily, with training.
 
 ### 1.2 Omega-3 (EPA + DHA) — real for triglycerides, the omega-3 index is a predictor, CVD events are equivocal
 
-- **The omega-3 index (predictor, not yet proven lever):** **Harris & von Schacky 2004** (`10.1016/j.ypmed.2004.02.030`)
-  defined the omega-3 index — EPA+DHA as % of red-cell fatty acids — as a risk marker; low index (<4%) tracks with
-  higher cardiac death, high (>8%) with lower. Large modern cohort data (e.g. **McBurney 2023**, UK Biobank,
-  `10.1016/j.plefa.2023.102567`) link low omega-3 status to worse inflammatory and mortality markers. **Honesty rule #1
-  applies hard:** the index is a *predictor*. That low levels track with risk is not proof that swallowing fish oil to
-  raise the number changes your outcome.
+**Bottom line first:** real for lowering triglycerides and as a status marker; the omega-3 index predicts risk but
+isn't a proven lever; cardiovascular-event trials are equivocal — mostly null at low over-the-counter doses,
+positive only for high-dose prescription EPA in already-high-risk patients.
+
+- **The omega-3 index (predictor, not yet proven lever):** **Harris & von Schacky 2004**[^o3-harris] defined the
+  omega-3 index — EPA+DHA as % of red-cell fatty acids — as a risk marker; low index (<4%) tracks with higher
+  cardiac death, high (>8%) with lower. Large modern cohort data (e.g. **McBurney 2023**, UK Biobank)[^o3-mcburney]
+  link low omega-3 status to worse inflammatory and mortality markers. **Honesty rule #1 applies hard:** the index
+  is a *predictor*. That low levels track with risk is not proof that swallowing fish oil to raise the number
+  changes your outcome.
 
 @@FIG:55-omega3-index@@
 
-- **Triglycerides (real, `rct`/`meta`):** high-dose EPA/DHA reliably lowers triglycerides ~20–30% in a dose-dependent
-  way — the **AHA Science Advisory (Skulas-Ray 2019, Circulation, `10.1161/CIR.0000000000000709`)** endorses **4 g/day**
-  of EPA±DHA as effective TG-lowering therapy. This is the cleanest real effect of fish oil.
-- **CVD events — equivocal, the big null + the one positive:** **VITAL (Manson 2019, NEJM, `10.1056/NEJMoa1811403`)** —
+- **Triglycerides (real, `rct`/`meta`; `rct` — a randomized controlled trial — is the strongest evidence tier):**
+  high-dose EPA/DHA reliably lowers triglycerides (TG) ~20–30% in a dose-dependent way — the **AHA Science Advisory
+  (Skulas-Ray 2019, Circulation)**[^o3-skulasray] endorses **4 g/day** of EPA±DHA as effective TG-lowering therapy.
+  This is the cleanest real effect of fish oil.
+- **CVD events — equivocal, the big null + the one positive:** **VITAL (Manson 2019, NEJM)**[^o3-vital] —
   ~26,000 people, **1 g/day** fish oil — found **no** significant reduction in the primary cardiovascular or cancer
-  endpoints in a general population. The exception is **REDUCE-IT (Bhatt 2019, NEJM, `10.1056/NEJMoa1812792`)**:
+  endpoints in a general population. The exception is **REDUCE-IT (Bhatt 2019, NEJM)**[^o3-reduceit]
   high-dose (**4 g/day**) prescription **icosapent ethyl (EPA only)** cut major cardiovascular events ~25% in patients
   with high triglycerides already on statins — though some of that effect is debated (mineral-oil placebo concern).
   Net: low-dose OTC fish oil for primary prevention in healthy people = mostly null; high-dose Rx EPA in high-TG,
@@ -92,13 +95,13 @@ This is the most over-supplemented "longevity" molecule, and the large RCTs are 
 
 - **The setup:** low vitamin D *blood levels* robustly associate with nearly every bad outcome (cohort). That made it
   the great hope. Then the trials read out.
-- **VITAL (Manson 2019, NEJM, `10.1056/NEJMoa1809944`):** ~25,900 adults, **2000 IU/day D3**, ~5 years → **no**
+- **VITAL (Manson 2019, NEJM)**[^vitd-vital] ~25,900 adults, **2000 IU/day D3**, ~5 years → **no**
   reduction in cancer incidence or major cardiovascular events vs placebo.
-- **Fractures (LeBoff 2022, NEJM, `10.1056/NEJMoa2202106`):** in the VITAL cohort, supplemental D **did not** reduce
+- **Fractures (LeBoff 2022, NEJM)**[^vitd-leboff] in the VITAL cohort, supplemental D **did not** reduce
   fractures in generally-replete midlife/older adults.
-- **Type 2 diabetes (D2d, Pittas 2019, NEJM, `10.1056/NEJMoa1900906`):** **4000 IU/day** in people with prediabetes
+- **Type 2 diabetes (D2d, Pittas 2019, NEJM)**[^vitd-d2d] **4000 IU/day** in people with prediabetes
   did **not** significantly prevent diabetes (a small non-significant trend only).
-- **The honest synthesis (Manson 2020, `10.1016/j.jsbmb.2019.105522`):** across the major trials, vitamin D
+- **The honest synthesis (Manson 2020)**[^vitd-manson2020] across the major trials, vitamin D
   supplementation in **replete** populations does little for hard endpoints. The low blood level was largely a
   *marker* of poor health (obesity, inactivity, illness, low sun) — a predictor, not the lever.
 
@@ -115,9 +118,9 @@ Test, don't guess.
 ### 1.4 Magnesium — fix an inadequacy, get a small real effect
 
 - A large fraction of people eat below the magnesium RDA, so supplementing often corrects a real inadequacy.
-- **Blood pressure (real-ish, `meta`):** **Zhang 2016** (Hypertension, `10.1161/HYPERTENSIONAHA.116.07664`) — meta of
+- **Blood pressure (real-ish, `meta`):** **Zhang 2016** (Hypertension)[^mag-zhang] — meta of
   double-blind RCTs — found **~300 mg/day for ~1 month** produced a small but real BP reduction (~2 mmHg systolic),
-  larger in those with low status. **Asbaghi 2021** (`10.1007/s12011-020-02157-0`) shows similar small effects in
+  larger in those with low status. **Asbaghi 2021**[^mag-asbaghi] shows similar small effects in
   type-2 diabetes.
 - **Sleep (weak):** popular as a sleep aid; the RCT evidence is thin and low-quality. Plausible, not established.
 - **Dose:** **200–400 mg/day elemental.** Use **glycinate or citrate** (well absorbed, gentle); **oxide** is cheap
@@ -127,7 +130,7 @@ Test, don't guess.
 
 ### 1.5 Fiber — quietly one of the best-supported nutrition levers
 
-- **Reynolds & Mann 2019 (Lancet, `10.1016/S0140-6736(18)31809-9`)** — the landmark series of meta-analyses: higher
+- **Reynolds & Mann 2019 (Lancet)**[^fiber-reynolds] — the landmark series of meta-analyses: higher
   fiber intake is associated with **15–30% lower all-cause and cardiovascular mortality**, lower coronary disease,
   stroke, type-2 diabetes, and colorectal cancer; RCT arms show lower LDL cholesterol, body weight, and blood
   pressure. The dose-response keeps improving up to and beyond **25–29 g/day**.
@@ -135,9 +138,9 @@ Test, don't guess.
 @@FIG:B14-fiber-mortality@@
 
 - This blends a strong cohort mortality signal with RCT surrogate proof (LDL, glycemia) — a sturdier evidence base
-  than almost any pill. It also feeds SCFA-producing gut microbes (Domain C2), though the human microbiome-outcome
-  link is still mostly association (the fermented-foods RCT raised diversity; the *high-fiber* arm did **not** raise
-  diversity and was person-dependent — see `_C2-SUMMARY.md`).
+  than almost any pill. It also feeds SCFA (short-chain fatty acid)-producing gut microbes (Domain C2), though the
+  human microbiome-outcome link is still mostly association (the fermented-foods RCT raised diversity; the
+  *high-fiber* arm did **not** raise diversity and was person-dependent — see `_C2-SUMMARY.md`).
 - **Dose:** **25–35 g/day, food-first** (legumes, whole grains, vegetables, fruit, nuts). If supplementing, **psyllium
   5–10 g** has its own LDL-lowering RCT support. Ramp slowly to avoid GI distress.
 
@@ -145,7 +148,7 @@ Test, don't guess.
 
 ### 1.6 Caffeine — real acute ergogenic, not a longevity agent
 
-- **Guest 2021 ISSN position stand** (`10.1186/s12970-020-00383-4`): **3–6 mg/kg** ~30–60 min pre-exercise reliably
+- **Guest 2021 ISSN position stand**[^caf-guest] **3–6 mg/kg** ~30–60 min pre-exercise reliably
   improves endurance, power, sprint, and alertness across a large RCT base. Higher doses (>9 mg/kg) add side effects,
   not performance.
 - Tolerance develops with daily use (cycling restores sensitivity). Genetic *CYP1A2* variation modulates response.
@@ -156,7 +159,7 @@ Test, don't guess.
 
 ### 1.7 Collagen — the honest tendon/skin take
 
-- **Tendon/ligament (emerging, small `rct`):** **Shaw & Baar 2017** (AJCN, `10.3945/ajcn.116.138594`) showed
+- **Tendon/ligament (emerging, small `rct`):** **Shaw & Baar 2017** (AJCN)[^collagen-shaw] showed
   **15 g gelatin/collagen + ~50 mg vitamin C** taken ~30–60 min before loading the tissue doubled collagen-synthesis
   markers. Mechanistically interesting; the studies are small and on synthesis markers, not long-term injury outcomes.
 - **Skin (modest `meta`):** several RCTs/meta-analyses report small improvements in skin elasticity and hydration with
@@ -191,7 +194,7 @@ prescription** that falls out of it.
 |---|---|---|
 | Sedentary minimum (RDA) | 0.8 | Prevents deficiency; **not** an optimum |
 | General health / active adult | 1.2–1.6 | The practical "more than RDA, not extreme" band |
-| Building muscle / resistance training | **1.6** (up to ~2.2) | Plateau ~1.6 g/kg/d (**Morton/Phillips 2018**, `10.1136/bjsports-2017-097608`) |
+| Building muscle / resistance training | **1.6** (up to ~2.2) | Plateau ~1.6 g/kg/d (**Morton/Phillips 2018**)[^protein-morton] |
 | Fat loss (preserve lean mass) | 1.6–2.4 | Higher protein protects muscle in a deficit |
 | Older adults (65+) | **1.0–1.2** (up to 1.5 in illness) | **PROT-AGE (Bauer 2013)** — overcome anabolic resistance |
 
@@ -208,12 +211,12 @@ which is exactly the tension Domain D logs. The resolution is age-stratified (be
 
 @@FIG:G02-leucine@@
 
-- **Anabolic resistance with age is real but conditional:** **Shad 2016** (`10.1152/ajpendo.00213.2016`) finds the
+- **Anabolic resistance with age is real but conditional:** **Shad 2016**[^protein-shad] finds the
   blunted MPS response in aging shows up mainly at *lower* protein/leucine doses and is partly overcome by **higher
-  per-meal protein + resistance exercise**. **Wilkinson 2023** (`10.14814/phy2.15775`) confirms post-exercise MPS
+  per-meal protein + resistance exercise**. **Wilkinson 2023**[^protein-wilkinson] confirms post-exercise MPS
   tracks with the **dietary leucine** delivered.
 - **Distribution:** spreading protein across **3–4 meals of ~25–40 g each** plausibly maximizes daily MPS better than
-  skewing it all to dinner (**Layman 2015**, `10.3945/ajcn.114.084053`, defines per-meal requirements; Mamerow's
+  skewing it all to dinner (**Layman 2015**[^protein-layman], defines per-meal requirements; Mamerow's
   even-distribution trial is the popular reference). The total daily amount matters most; even distribution is a
   reasonable optimization, not a hard rule.
 
@@ -227,13 +230,14 @@ which is exactly the tension Domain D logs. The resolution is age-stratified (be
   *lower* mortality in cohorts. This is observational and confounded (plant-protein eaters differ in many ways), but
   it's the directional nuance.
 
-### 2.4 The mTOR / longevity nuance BY AGE (cross-ref `conflict-protein-mtor-longevity`)
+### 2.4 The mTOR / longevity nuance BY AGE
 
 The conflict mostly dissolves on the **age axis** — do not apply one prescription across a lifespan:
 
 @@FIG:L05-protein-age@@
 
-- **Mid-life (≈45–65):** the theoretical concern (protein → IGF-1/mTOR → growth/cancer signaling) is most relevant.
+- **Mid-life (≈45–65):** the theoretical concern (protein → IGF-1/mTOR → growth/cancer signaling — mTOR and IGF-1
+  are growth signals, helpful for building muscle and theoretically a double-edged sword for aging) is most relevant.
   *Adequate, not maximal* protein; favor plant sources; pair with resistance training (which re-partitions protein
   toward muscle and blunts the downside). This is where Longo/Solon-Biet's restriction argument has its best (still
   mostly animal/cohort) footing.
@@ -252,8 +256,8 @@ intake changes lifespan. Eat enough to keep muscle; don't chase extreme intakes 
 ## 3. The dietary pattern (not a brand diet)
 
 Diet tribalism (keto vs vegan vs carnivore vs paleo) is mostly noise. What actually **converges** across the
-higher-tier evidence — PREDIMED (`10.1056/NEJMoa1800389`, Domain D §8), the fiber meta-analyses (Reynolds 2019), the
-Adventist/cohort data, and the CR/metabolic literature — is a *pattern*, not a brand:
+higher-tier evidence — PREDIMED (Domain D §8)[^pattern-predimed], the fiber meta-analyses (Reynolds 2019), the
+Adventist/cohort data, and the calorie-restriction (CR) / metabolic literature — is a *pattern*, not a brand:
 
 @@FIG:62-longevity-plate@@
 
@@ -287,13 +291,13 @@ fighting over a precision the evidence doesn't support.
 Full detail is in Domain D §3–4. The applied version:
 
 - **Most of the benefit is the calorie restriction it causes.** The cleanest trials that *match calories*
-  (Liu 2022 NEJM `10.1056/NEJMoa2114833`; Trepanowski 2017) find **TRE ≈ calorie restriction alone** — the eating
-  window's edge largely disappears once calories are equalized. Fasting is, for most people, a convenient *adherence
-  tool* for eating less, not a separate metabolic magic.
+  (Liu 2022, NEJM[^fast-liu]; Trepanowski 2017) find **TRE (time-restricted eating — eating only within a set daily
+  window) ≈ calorie restriction alone** — the eating window's edge largely disappears once calories are equalized.
+  Fasting is, for most people, a convenient *adherence tool* for eating less, not a separate metabolic magic.
 - **The real, weight-independent exception is meal timing / circadian alignment.** **Early** TRE (Sutton/Peterson
-  2018, `10.1016/j.cmet.2018.04.010`) — eating earlier, finishing by mid-afternoon, isocaloric, no weight loss —
-  still improved insulin sensitivity and BP. That's a genuine *mechanism* (circadian, Domain I), but the studies are
-  tiny and short. The popular **late 16:8** has been mostly null (TREAT, Lowe 2020).
+  2018)[^fast-sutton] — eating earlier, finishing by mid-afternoon, isocaloric (same total calories), no weight
+  loss — still improved insulin sensitivity and BP. That's a genuine *mechanism* (circadian, Domain I), but the
+  studies are tiny and short. The popular **late 16:8** has been mostly null (TREAT, Lowe 2020).
 - **Practical protocol if you want to try it:** a **early-ish ~8–10 h window** (e.g. finish dinner earlier rather
   than skipping breakfast and eating late) is the most defensible version; it aligns timing AND tends to cut intake.
 - **Who should NOT fast:** people with a **history of disordered eating**; people who are **underweight or frail
@@ -310,11 +314,11 @@ timing adds a small real circadian benefit. It is not required, and it is not ma
 
 | Product | The claim | What the evidence shows | Tier | Grade |
 |---|---|---|---|---|
-| **NMN** (nicotinamide mononucleotide) | "Reverses aging via NAD+" | One small RCT (Yoshino 2021, Science `10.1126/science.abe9985`) showed improved muscle insulin sensitivity in prediabetic women; otherwise human data are sparse, short, surrogate. No aging/healthspan outcome. | `rct` small / `animal` | **hype** |
-| **NR** (nicotinamide riboside) | "Restores youthful NAD+, anti-aging" | **Martens 2018** (`10.1038/s41467-018-03421-7`) — NR reliably **raises NAD+** but produced **no** functional/clinical benefit (BP, stiffness, metabolism). Raising the biomarker ≠ outcome. | `rct` (null on outcomes) | **hype** |
+| **NMN** (nicotinamide mononucleotide) | "Reverses aging via NAD+" | One small RCT (Yoshino 2021, Science)[^hype-nmn] showed improved muscle insulin sensitivity in prediabetic women; otherwise human data are sparse, short, surrogate. No aging/healthspan outcome. | `rct` small / `animal` | **hype** |
+| **NR** (nicotinamide riboside) | "Restores youthful NAD+, anti-aging" | **Martens 2018**[^hype-nr] — NR reliably **raises NAD+** but produced **no** functional/clinical benefit (BP, stiffness, metabolism). Raising the biomarker ≠ outcome. | `rct` (null on outcomes) | **hype** |
 | **Resveratrol** | "Activates sirtuins, the red-wine longevity molecule" | Robust in yeast/mice; human RCTs are inconsistent and largely null on meaningful endpoints; poor bioavailability. | `animal` + `rct` mixed/null | **hype** |
-| **Most antioxidant supplements** (high-dose A, E, beta-carotene) | "Fight oxidative aging" | **Bjelakovic 2012 Cochrane** (`10.1002/14651858.CD007176.pub2`): no mortality benefit; beta-carotene and vitamin E/A may **increase** mortality. Blunting exercise-induced ROS can even impair adaptation. | `meta` (null/harm) | **hype** (can harm) |
-| **Multivitamins** (in replete people) | "Nutritional insurance, longevity" | **PHS II** (Sesso 2012 `10.1001/jama.2012.14805`; Gaziano 2012 `10.1001/jama.2012.14641`): no CVD benefit, marginal small cancer signal. **COSMOS** (Vyas 2024 `10.1016/j.ajcnut.2023.12.011`; Sachs 2023 `10.1002/alz.13078`): small possible cognition signal, not robust. Largely null in well-nourished people. | `rct`/`meta` (mostly null) | **hype** (context-only if diet is poor) |
+| **Most antioxidant supplements** (high-dose A, E, beta-carotene) | "Fight oxidative aging" | **Bjelakovic 2012 Cochrane**[^hype-antiox] no mortality benefit; beta-carotene and vitamin E/A may **increase** mortality. Blunting exercise-induced ROS (reactive oxygen species) can even impair adaptation. | `meta` (null/harm) | **hype** (can harm) |
+| **Multivitamins** (in replete people) | "Nutritional insurance, longevity" | **PHS II** (Sesso 2012[^hype-phs2-sesso]; Gaziano 2012[^hype-phs2-gaziano]): no CVD benefit, marginal small cancer signal. **COSMOS** (Vyas 2024[^hype-cosmos-vyas]; Sachs 2023[^hype-cosmos-sachs]): small possible cognition signal, not robust. Largely null in well-nourished people. | `rct`/`meta` (mostly null) | **hype** (context-only if diet is poor) |
 | **"Anti-inflammatory" supplement stacks** (turmeric/curcumin megadoses, etc.) | "Lower inflammation, slow aging" | Mechanistic/surrogate at best; bioavailability problems; no healthspan outcome RCTs. CRP moving ≠ living longer. | `mechanistic` / small `rct` | **hype** |
 | **Greens powders** | "Replace vegetables, detox, energy" | No outcome evidence; expensive; a fiber-and-phytonutrient *gesture* that doesn't replicate whole food. Eat the vegetables. | `anecdotal` / none | **hype** |
 
@@ -369,3 +373,42 @@ the short list above has earned its place there.
 **Books (popular but evidence-anchored, read critically):** Peter Attia, *Outlive* (2023) — strong on protein/muscle
 and VO2max framing, lighter on supplement skepticism; Stuart Phillips' and Brad Schoenfeld's published work for the
 muscle/protein primary literature; Examine.com's supplement monographs for ongoing, citation-graded updates.
+
+---
+
+## Sources & notes
+
+[^creatine-burke]: Burke R, et al. — regional hypertrophy SR/meta, *Nutrients* 2023. doi:10.3390/nu15092116
+[^creatine-wang]: Wang, et al. — strength meta in adults <50, *Nutrients* 2024. doi:10.3390/nu16213665
+[^creatine-avgerinos]: Avgerinos KI, et al. — systematic review, *Exp Gerontol* 2018. doi:10.1016/j.exger.2018.04.013
+[^creatine-prokopidis]: Prokopidis K, et al. — memory meta-analysis, *Nutr Rev* 2023. doi:10.1093/nutrit/nuac064
+[^creatine-forbes]: Forbes SC, et al. — bone mineral density, *Front Nutr* 2018. doi:10.3389/fnut.2018.00027
+[^creatine-kreider]: Kreider RB, et al. — ISSN position stand, *J Int Soc Sports Nutr* 2017. doi:10.1186/s12970-017-0173-z
+[^o3-harris]: Harris WS, von Schacky C — omega-3 index, *Prev Med* 2004. doi:10.1016/j.ypmed.2004.02.030
+[^o3-mcburney]: McBurney MI, et al. — UK Biobank, *Prostaglandins Leukot Essent Fatty Acids* 2023. doi:10.1016/j.plefa.2023.102567
+[^o3-skulasray]: Skulas-Ray AC, et al. — AHA Science Advisory, *Circulation* 2019. doi:10.1161/CIR.0000000000000709
+[^o3-vital]: VITAL (Manson JE, et al.), marine n-3 — *NEJM* 2019. doi:10.1056/NEJMoa1811403
+[^o3-reduceit]: REDUCE-IT (Bhatt DL, et al.) — *NEJM* 2019. doi:10.1056/NEJMoa1812792
+[^vitd-vital]: VITAL (Manson JE, et al.), vitamin D — *NEJM* 2019. doi:10.1056/NEJMoa1809944
+[^vitd-leboff]: LeBoff MS, et al. — VITAL fractures, *NEJM* 2022. doi:10.1056/NEJMoa2202106
+[^vitd-d2d]: D2d (Pittas AG, et al.) — *NEJM* 2019. doi:10.1056/NEJMoa1900906
+[^vitd-manson2020]: Manson JE, et al. — principal-results synthesis, *J Steroid Biochem Mol Biol* 2020. doi:10.1016/j.jsbmb.2019.105522
+[^mag-zhang]: Zhang X, et al. — meta of double-blind RCTs, *Hypertension* 2016. doi:10.1161/HYPERTENSIONAHA.116.07664
+[^mag-asbaghi]: Asbaghi O, et al. — type-2 diabetes, *Biol Trace Elem Res* 2021. doi:10.1007/s12011-020-02157-0
+[^fiber-reynolds]: Reynolds A, Mann J, et al. — *Lancet* 2019. doi:10.1016/S0140-6736(18)31809-9
+[^caf-guest]: Guest NS, et al. — ISSN position stand, *J Int Soc Sports Nutr* 2021. doi:10.1186/s12970-020-00383-4
+[^collagen-shaw]: Shaw G, Baar K — *Am J Clin Nutr* 2017. doi:10.3945/ajcn.116.138594
+[^protein-morton]: Morton RW, Phillips SM, et al. — *Br J Sports Med* 2018. doi:10.1136/bjsports-2017-097608
+[^protein-shad]: Shad BJ, et al. — *Am J Physiol Endocrinol Metab* 2016. doi:10.1152/ajpendo.00213.2016
+[^protein-wilkinson]: Wilkinson DJ, et al. — *Physiol Rep* 2023. doi:10.14814/phy2.15775
+[^protein-layman]: Layman DK, et al. — per-meal requirements, *Am J Clin Nutr* 2015. doi:10.3945/ajcn.114.084053
+[^pattern-predimed]: PREDIMED — *NEJM* 2018 (republication). doi:10.1056/NEJMoa1800389
+[^fast-liu]: Liu D, et al. — *NEJM* 2022. doi:10.1056/NEJMoa2114833
+[^fast-sutton]: Sutton EF, Peterson CM, et al. — early TRE, *Cell Metab* 2018. doi:10.1016/j.cmet.2018.04.010
+[^hype-nmn]: Yoshino M, et al. — *Science* 2021. doi:10.1126/science.abe9985
+[^hype-nr]: Martens CR, et al. — *Nat Commun* 2018. doi:10.1038/s41467-018-03421-7
+[^hype-antiox]: Bjelakovic G, et al. — Cochrane, *Cochrane Database Syst Rev* 2012. doi:10.1002/14651858.CD007176.pub2
+[^hype-phs2-sesso]: PHS II (Sesso HD, et al.) — *JAMA* 2012. doi:10.1001/jama.2012.14805
+[^hype-phs2-gaziano]: PHS II (Gaziano JM, et al.) — *JAMA* 2012. doi:10.1001/jama.2012.14641
+[^hype-cosmos-vyas]: COSMOS (Vyas CM, et al.) — *Am J Clin Nutr* 2024. doi:10.1016/j.ajcnut.2023.12.011
+[^hype-cosmos-sachs]: COSMOS (Sachs BC, et al.) — *Alzheimers Dement* 2023. doi:10.1002/alz.13078

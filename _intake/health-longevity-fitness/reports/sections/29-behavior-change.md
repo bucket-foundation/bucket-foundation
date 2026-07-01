@@ -1,24 +1,27 @@
 # 29 — Behavior Change & Adherence: The Science of Actually Doing It
 
-> **Status:** v0.1 — 2026-06-28. The keystone section. Every other chapter in this manual tells you
-> *what* to do. This one is about the only thing that determines whether any of it matters: **whether you
-> actually do it, and keep doing it.** Knowing the protocol is necessary and nearly worthless on its own.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+Stop trying to want it more; change the conditions under which you act. That one line is the whole chapter.
+Every other chapter in this manual tells you *what* to do; this one is about the only thing that decides
+whether any of it matters — whether you actually do it, and keep doing it. Knowing the protocol is necessary
+and nearly worthless on its own.
 
 This section is the corpus's correction term for a quiet failure mode that runs through every health book
-ever written: the implicit assumption that **information changes behavior.** It doesn't, or barely. The
-chapter on training (`02-training.md`) already said it plainly — *adherence is the real limiter* — and the
-individual-variation chapter (`04-individual-variation.md`) showed that even the "right" dose is personal.
-Here we close the loop: the evidence-based science of getting a human to start, and keep going, after the
-novelty and the motivation are gone.
+ever written: the implicit assumption that **information changes behavior.** It doesn't, or barely. Training
+(`02-training.md`) already said it plainly — *adherence is the real limiter* — and individual variation
+(`04-individual-variation.md`) showed that even the "right" dose is personal. Here we close the loop: the
+evidence-based science of getting a human to start, and keep going, after the novelty and the motivation are
+gone.
 
 The field has an unusually bad signal-to-noise ratio. It is the home turf of TED-talk neuroscience,
 "rewire your brain in 21 days," productivity-bro discipline porn, and manifestation. So this chapter is
-graded harder than most. The good news: underneath the noise there is a small set of genuinely
-well-evidenced techniques — implementation intentions, choice architecture, self-monitoring — and a
-genuinely useful organizing framework (COM-B). The bad news is that most of what's *marketed* about
+graded harder than most. Underneath the noise there is a small set of well-evidenced techniques —
+implementation intentions, choice architecture, self-monitoring — and a useful organizing framework, **COM-B**
+(Capability, Opportunity, Motivation — the three things any behavior needs). Most of what's *marketed* about
 motivation and willpower is either unsupported or has actively failed to replicate.
+
+_Not medical advice. Graded per the manual's evidence tiers; the honesty rules (predictor ≠ lever — something
+that forecasts risk isn't automatically a thing that, once changed, lowers it; cohort ≠ RCT; something beats
+nothing) are defined in "Start Here."_
 
 ---
 
@@ -28,11 +31,11 @@ This is the central finding of the entire field, and it is worth stating as blun
 
 **Intentions predict behavior weakly, and changing intentions changes behavior even more weakly.** In the
 canonical meta-analysis of *experimental* studies — ones that actually manipulated intention and then
-measured behavior, so this is causal, not correlational — Webb & Sheeran (2006) found that a **medium-to-large
-change in intention (d ≈ 0.66) produced only a small-to-medium change in behavior (d ≈ 0.36)**
-(`intention-behavior-gap-experimental`, doi `10.1037/0033-2909.132.2.249`). Sheeran & Webb later named and reviewed this directly as
-**"The Intention–Behavior Gap"** (2016, doi `10.1111/spc3.12265`): intentions are a necessary input and a
-poor predictor; the action is lost somewhere between deciding and doing.
+measured behavior, so this is causal rather than correlational — Webb & Sheeran (2006) found that a
+**medium-to-large change in intention (d ≈ 0.66) produced only a small-to-medium change in behavior (d ≈
+0.36)** (d is an effect size; ~0.5 is a moderate, clearly-noticeable difference, ~0.8 a large one).[^webb-sheeran]
+Sheeran & Webb later named and reviewed this directly as **"The Intention–Behavior Gap"** (2016): intentions
+are a necessary input and a poor predictor; the action is lost somewhere between deciding and doing.[^sheeran-webb]
 
 @@FIG:L08-intention-behavior@@
 
@@ -73,12 +76,11 @@ removes the moment of decision entirely.
   scale. Putting the fruit at eye level and the cookies on a high shelf in an opaque container is not a
   gimmick — it is the most reliable individual-level intervention there is.
 - The honest grade on the *research literature*, though, requires a caveat. The large meta-analysis by
-  **Mertens et al. (2022, PNAS, doi `10.1073/pnas.2107346118`)** reported a moderate average effect of nudges
-  (Cohen's d ≈ 0.43). But a high-profile reanalysis — **Maier et al. (2022, PNAS, doi
-  `10.1073/pnas.2200300119`)** — showed that once you correct for **publication bias**, the average effect
+  **Mertens et al. (2022)** reported a moderate average effect of nudges (Cohen's d ≈ 0.43).[^mertens] But a
+  high-profile reanalysis — **Maier et al. (2022)** — showed that once you correct for **publication bias**
+  (the tendency for positive results to get published while null results sit in a drawer), the average effect
   shrinks toward zero, and the field is currently in open dispute about how big population-level nudging
-  really is (`nudge-effect-publication-bias`). This is a genuine `mixed`/contested finding at the *policy*
-  scale.
+  really is.[^maier][^nudge-pubbias] This is a `mixed`/contested finding at the *policy* scale.
 - **The reconciliation that survives the dispute:** even the skeptics agree that *some* nudge categories —
   especially **defaults** and **physical-environment / friction changes** — are robust, and that the weak
   ones are mostly informational "nudges" (which are just education in a trench coat, and run into §1). For an
@@ -100,10 +102,9 @@ cue: *"**If** it is 7am and I've poured my coffee, **then** I will put on my run
 @@FIG:F07-if-then@@
 
 - The foundational meta-analysis — **Gollwitzer & Sheeran (2006), "Implementation intentions and goal
-  achievement: A meta-analysis of effects and processes"** (Adv Exp Soc Psychol, doi
-  `10.1016/S0065-2601(06)38002-1`) — pooled **94 studies** and found a **medium-to-large effect (d ≈ 0.65)**
-  on goal attainment, *over and above* merely holding the goal intention (`implementation-intentions-meta`).
-  This is one of the largest, most replicated effect sizes in applied behavioral science.
+  achievement: A meta-analysis of effects and processes"** — pooled **94 studies** and found a
+  **medium-to-large effect (d ≈ 0.65)** on goal attainment, *over and above* merely holding the goal
+  intention.[^gollwitzer] This is one of the largest, most replicated effect sizes in applied behavioral science.
 - **Why it works** maps exactly onto §1: it closes the intention–behavior gap by delegating the action to an
   environmental cue, so you don't have to *re-decide* (and re-summon motivation) in the moment. The "then"
   fires more or less automatically when the "if" is encountered.
@@ -125,16 +126,15 @@ The science here is solid in outline and routinely *misquoted* in the popular te
 - **The mechanism (well-supported):** a habit is a learned association between a **context cue** and a
   **response**, strengthened by **repetition in a stable context**, until the cue alone triggers the behavior
   with little deliberation. Wendy Wood's program of research is the canonical academic source (Wood & Rünger,
-  "Psychology of Habit," Annu Rev Psychol 2016, doi `10.1146/annurev-psych-122414-033417`;
-  `habit-context-cue-mechanism`). The crucial, under-appreciated implication: **habits are
+  "Psychology of Habit," 2016).[^wood-runger] The crucial, under-appreciated implication: **habits are
   context-dependent.** Disrupt the context (move house, change jobs, travel) and the habit weakens — which is
   why people both *lose* good habits and *break* bad ones around major life transitions.
 - **The honest timeline — the 66-day finding.** The single most-cited real number comes from **Lally et al.
-  (2010), "How are habits formed: Modelling habit formation in the real world"** (Eur J Soc Psychol, doi
-  `10.1002/ejsp.674`; `habit-formation-66-days`). Participants adopted a new daily behavior and rated its
-  automaticity; the **median time to reach automaticity was 66 days**, with an enormous individual range of
-  **18 to 254 days** — and some never fully automated within the study. The popular **"21 days"** number is a
-  **myth** (see §6.1); it is *months*, not weeks, and it depends heavily on the behavior and the person.
+  (2010), "How are habits formed: Modelling habit formation in the real world"**.[^lally] Participants adopted
+  a new daily behavior and rated its automaticity; the **median time to reach automaticity was 66 days**, with
+  an enormous individual range of **18 to 254 days** — and some never fully automated within the study. The
+  popular **"21 days"** number is a **myth** (see §8.1); the real figure is *months*, and it depends heavily on
+  the behavior and the person.
 - **The design rules that follow:** (a) **anchor the new behavior to an existing stable cue** ("after I brush
   my teeth, I floss" — this is "habit stacking," and it's just an implementation intention aimed at a
   recurring daily cue); (b) **keep the context constant** while the habit consolidates; (c) **make it small
@@ -155,8 +155,7 @@ between your goal and your current state.
 - In **Control Theory** terms (Carver & Scheier), self-monitoring is the feedback loop that the rest of the
   system needs to function — without measurement, goal-setting and feedback have nothing to act on. Reviews
   of behavior-change technique "active ingredients" repeatedly find **self-monitoring (especially combined
-  with at least one other self-regulation technique) among the most effective components**
-  (`self-monitoring-active-ingredient`).
+  with at least one other self-regulation technique) among the most effective components**.[^self-monitoring]
 - **Honest caveat:** the effect is real but the *mechanism of tracking apps* is fragile — it works while you
   actually track, and the hard problem is sustaining the tracking itself (see §5 on digital tools). Manual
   food logging works well *and* has high dropout; passive tracking (a step counter that runs itself) lowers
@@ -174,18 +173,17 @@ operationalizes "specific and measurable."
 
 - **The honest grade:** goal-setting theory was built mostly on *short-term cognitive and motor tasks in work
   settings*, and it **transfers imperfectly to long-term health-behavior change**. A critical conceptual
-  review in health-behavior promotion (Swann et al., Health Psychol Rev 2021, doi
-  `10.1080/17437199.2019.1706616`; `goal-setting-health-honest`) found the evidence for specific, difficult
+  review in health-behavior promotion (Swann et al., 2021) found the evidence for specific, difficult
   goals in physical activity is **weaker and more mixed** than the lab literature implies; for novices,
   *learning goals* ("master the movement") sometimes beat *performance goals* ("hit this number"), and
-  overly difficult goals can backfire and demotivate.
+  overly difficult goals can backfire and demotivate.[^swann]
 - **SMART is a packaging convention, not an evidence-based intervention** in its own right — there is no body
   of trials showing "SMART goals" beat "non-SMART goals" for health outcomes. Use it as a clarity tool, not
   as a proven lever.
 
 **Verdict:** mildly useful, frequently overstated. A specific, measurable, slightly-challenging-but-doable
-goal beats a vague one; the acronym is decoration. The *behavior* (process) goal beats the *outcome* goal for
-adherence — "walk after dinner daily," not "lose 20 lbs."
+goal beats a vague one; the acronym is decoration. A *process* goal ("walk after dinner daily") beats an
+*outcome* goal ("lose 20 lbs") for adherence. **So: set a specific process goal and ignore the SMART label.**
 
 ### 2.6 Social support & accountability
 
@@ -195,7 +193,7 @@ identity and norms (you do what people around you do).
 
 - Group-based interventions and "social support (practical/emotional)" are recognized behavior-change
   techniques with consistent positive associations in reviews; commercial programs (Weight Watchers-style
-  group models) outperform self-help largely on the social-accountability axis (`social-support-adherence`).
+  group models) outperform self-help largely on the social-accountability axis.[^social-support]
 - **Honest caveat:** the *quality* and *type* of support matters — controlling, nagging "support" can
   undermine autonomy and backfire (see SDT, §4.3). Autonomy-supportive accountability (a partner who shares
   the goal) beats surveillance.
@@ -240,11 +238,10 @@ The most influential idea in pop-psychology willpower — **ego depletion**, the
 on a single limited resource that gets "used up" (Baumeister's glucose-and-willpower model) — **has largely
 failed to replicate.**
 
-- A **multi-lab pre-registered replication** across 23 labs (**Hagger et al. 2016, Perspect Psychol Sci,
-  PMID 27474142, doi `10.1177/1745691616652873`**) found an effect **indistinguishable from zero**
-  (`ego-depletion-failed-replication`). Independent meta-analytic work correcting for publication bias
-  (Carter & McCullough 2014, Front Psychol, doi `10.3389/fpsyg.2014.00823`) had already suggested the original
-  effect was inflated by small-study/publication bias.
+- A **multi-lab pre-registered replication** across 23 labs (**Hagger et al. 2016**) found an effect
+  **indistinguishable from zero**.[^hagger] Independent meta-analytic work correcting for publication bias
+  (Carter & McCullough 2014) had already suggested the original effect was inflated by
+  small-study/publication bias.[^carter-mccullough]
 - The **glucose-restores-willpower** corollary (drink sugar to replenish self-control) is likewise **not
   supported** — the brain's glucose draw for a cognitive task is trivial, and the effect doesn't survive
   rigorous testing.
@@ -268,13 +265,13 @@ genre is, graded honestly, **`anecdotal`/`speculative` self-branding** — it co
 
 ## 4. Behavior-change models — which frameworks earn their keep
 
-### 4.1 COM-B and the Behaviour Change Wheel (Michie) — the evidence-based framework
+### 4.1 COM-B (Capability, Opportunity, Motivation) and the Behaviour Change Wheel — the evidence-based framework
 
-The best-validated organizing framework is **COM-B**, from **Susan Michie and colleagues**: behavior (B)
-occurs when, and only when, a person has sufficient **Capability** (physical and psychological — skills,
-knowledge), **Opportunity** (physical and social — environment, time, norms), and **Motivation**
-(reflective and automatic — beliefs, habits, impulses) (Michie, van Stralen & West 2011, Implement Sci,
-**PMID 21513547, doi `10.1186/1748-5908-6-42`**; `com-b-behaviour-change-wheel`).
+The best-validated organizing framework is **COM-B** — the three things a behavior needs — from **Susan
+Michie and colleagues**: behavior (B) occurs when, and only when, a person has sufficient **Capability**
+(physical and psychological — skills, knowledge), **Opportunity** (physical and social — environment, time,
+norms), and **Motivation** (reflective and automatic — beliefs, habits, impulses) (Michie, van Stralen &
+West 2011).[^michie]
 
 @@FIG:N08-com-b@@
 
@@ -283,9 +280,9 @@ knowledge), **Opportunity** (physical and social — environment, time, norms), 
   *opportunity* (no time, no equipment, junk-food environment) or *capability* (doesn't know how to do the
   movement). This single reframing prevents the most common waste of effort.
 - The Wheel maps each deficit to intervention types and to the **Behaviour Change Technique (BCT) Taxonomy
-  v1** — Michie et al.'s standardized list of **93 discrete techniques** (Ann Behav Med 2013, doi
-  `10.1007/s12160-013-9486-6`; `bct-taxonomy-v1`), which is the field's shared vocabulary for *what is
-  actually in* an intervention (so that "we gave them support" can be specified and replicated).
+  v1** — Michie et al.'s standardized list of **93 discrete techniques** (2013),[^bct] which is the field's
+  shared vocabulary for *what is actually in* an intervention (so that "we gave them support" can be specified
+  and replicated).
 - **Honest grade:** COM-B is a **framework**, not an intervention — it organizes and diagnoses; it doesn't
   itself "work" or "fail." Its value is that it is comprehensive, theory-linked, and has become the
   consensus scaffolding in implementation science. Use it as the map.
@@ -299,8 +296,8 @@ outcomes is weak.**
 
 - Systematic reviews of stage-based interventions have repeatedly found **little or no benefit over
   non-staged interventions.** A Cochrane review of TTM-based interventions for weight management concluded
-  the evidence was **limited and inconclusive** (Tuah et al. 2011, doi `10.1002/14651858.CD008066.pub2`;
-  `ttm-stages-weak-evidence`); similar verdicts recur in smoking and physical-activity literatures.
+  the evidence was **limited and inconclusive** (Tuah et al. 2011);[^tuah] similar verdicts recur in smoking
+  and physical-activity literatures.
 - The deeper critique (West, 2005) is that the **"stages" are arbitrary cut-points on continuous variables**,
   not real categories, and people don't move through them in the orderly way the model implies.
 
@@ -317,10 +314,9 @@ distinction is between **autonomous** motivation (doing it because it matters to
 motivation (doing it for external reward/pressure) — and **autonomous motivation predicts maintenance far
 better.**
 
-- The supporting evidence is reasonably strong: a meta-analysis of SDT in health contexts (**Ng et al. 2012,
-  Perspect Psychol Sci, doi `10.1177/1745691612447309`**; `sdt-health-meta`) found autonomy-supportive
-  contexts and need satisfaction reliably associated with better mental and physical health behaviors and
-  outcomes.
+- The supporting evidence is reasonably strong: a meta-analysis of SDT in health contexts (**Ng et al.
+  2012**) found autonomy-supportive contexts and need satisfaction reliably associated with better mental and
+  physical health behaviors and outcomes.[^ng]
 - **The practical payload, and why it matters for §2.6:** externally-imposed pressure, surveillance, and
   contingent rewards can *undermine* long-term adherence by crowding out autonomous motivation (the
   "overjustification" effect). This is the honest caveat on gamification and rewards (§5): they can boost
@@ -340,7 +336,7 @@ the medication-adherence literature is the most rigorously studied corner of the
 @@FIG:Y06-adherence@@
 
 - **The headline number:** in chronic disease, roughly **50% of patients do not take their medications as
-  prescribed** (WHO 2003 adherence report; `medication-nonadherence-50pct`). This is not an edge case — it is
+  prescribed** (WHO 2003 adherence report).[^who-adherence] This is not an edge case — it is
   the norm, and it causes enormous avoidable morbidity, hospitalization, and cost. The famous line from the
   US Surgeon General C. Everett Koop applies: *"Drugs don't work in patients who don't take them."*
 - **Why people don't adhere** splits into two honestly different buckets, which need different fixes:
@@ -350,7 +346,7 @@ the medication-adherence literature is the most rigorously studied corner of the
     feeling fine, distrust). This is a *beliefs and autonomy* problem — a §4.3 problem — and education plus
     shared decision-making, not reminders, is the lever.
 - **What actually helps (and the humbling honest grade):** the landmark **Cochrane review (Nieuwlaat et al.
-  2014, doi `10.1002/14651858.CD000011.pub4`; `adherence-interventions-cochrane`)** examined 182 RCTs and
+  2014)**[^nieuwlaat] examined 182 RCTs (randomized controlled trials — the strongest evidence tier) and
   reached a deflating conclusion: even the interventions that helped were **complex, labor-intensive, and only
   modestly effective**, and the evidence was generally low-quality. There is **no simple, reliable fix.** The
   things with the best (still modest) support are the unglamorous structural ones:
@@ -375,17 +371,16 @@ Short, honest answer: **modestly, and only while you're engaged — which is the
 
 - **The effect is real but small, and engagement-dependent.** Meta-analyses of mobile-app and mHealth
   interventions for physical activity, diet, and weight find **small-to-moderate short-term effects** that
-  **attenuate over time** and are **heavily moderated by sustained engagement** (`fitness-apps-modest-effect`;
-  e.g., contemporary systematic reviews of mHealth for physical activity, IJBNPA / JMIR 2025). The apps that
+  **attenuate over time** and are **heavily moderated by sustained engagement**.[^fitness-apps] The apps that
   work best are the ones that embed the §2 levers — self-monitoring, goal-setting, reminders, social
   support — rather than just delivering information.
 - **The engagement cliff is the real story.** Most health apps lose the large majority of users within weeks;
   the median app is abandoned fast. An app's *theoretical* efficacy is irrelevant if it's deleted by week
   three. This is the §1 gap reappearing one level up: downloading the app is an intention; using it is the
   behavior.
-- **Gamification — honest grade.** Points, streaks, badges, and challenges **do** boost short-term engagement
+- **Gamification — honest grade.** Points, streaks, badges, and challenges **do** improve short-term engagement
   and activity; a meta-analysis of gamified physical-activity interventions found a **small but significant
-  effect** (Mazeas et al. 2022, JMIR, doi `10.2196/26779`; `gamification-small-effect`). **But** the SDT
+  effect** (Mazeas et al. 2022).[^mazeas] **But** the SDT
   caveat (§4.3) is load-bearing: extrinsic rewards can **undermine intrinsic motivation**, so gamification
   that boosts behavior *while the game runs* may leave you *less* likely to continue once the points stop. The
   best-designed systems use game elements to build competence and autonomy (visible mastery, self-chosen
@@ -404,7 +399,10 @@ delivery vehicle that most people stop opening.
 
 Graded on the corpus ladder. "Leverage" = practical impact when applied by an individual; "Evidence" =
 strength/quality of the supporting literature. The two often diverge — and that divergence is the whole point
-of grading honestly.
+of grading honestly. The table splits in two: **the techniques that earn their place, then the ones to
+drop.** If you skim one column, skim the verdict.
+
+### Do these — techniques with real support
 
 | Technique / claim | Leverage (practical) | Evidence grade | Honest one-line verdict |
 |---|---|---|---|
@@ -417,10 +415,15 @@ of grading honestly.
 | **Identity-based change** ("I am a runner") | Moderate (motivating) | `mechanistic`/`mixed`, **under-evidenced vs. popularity** | Useful framing on top of structure; not a standalone cause of durable change. |
 | **SDT autonomy support** (autonomy/competence/relatedness) | Moderate (for *maintenance*) | `meta`, solid | Best-supported motivational theory; controlling rewards can backfire. |
 | **COM-B / Behaviour Change Wheel** | Diagnostic (high value) | Framework — consensus scaffolding | Diagnose the *missing* component first; don't pour motivation at an opportunity problem. |
-| **Gamification** (points/streaks/badges) | Low–Moderate, short-term | `meta`, **small effect** | Boosts engagement *while it runs*; may erode intrinsic motivation (SDT caveat). |
+| **Gamification** (points/streaks/badges) | Low–Moderate, short-term | `meta`, **small effect** | Improves engagement *while it runs*; may erode intrinsic motivation (SDT caveat). |
 | **Habit/fitness apps** | Low–Moderate | `meta`, **small + engagement-dependent** | Scaffolding for the real levers; brutal dropout; not the intervention. |
 | **Reminders (clinical adherence)** | Low–Moderate | `meta`, modest | Help unintentional non-adherence; useless for intentional; pair with routine. |
 | **Regimen simplification** (medication) | Moderate–High (clinical) | `meta`, most consistent adherence winner | Once-daily / combo pills beat complex regimens. The clearest adherence lever. |
+
+### Drop these — myths and weak bets
+
+| Technique / claim | Leverage (practical) | Evidence grade | Honest one-line verdict |
+|---|---|---|---|
 | **Transtheoretical / Stages of Change** | — | **Weak / not supported** | Popular and taught everywhere; staged tailoring hasn't beaten non-staged. Prefer COM-B. |
 | **"Willpower as a muscle" / ego depletion** | — | **Failed replication** | Multi-lab effect ≈ 0. Don't ration willpower; build systems. |
 | **"21-day habit"** | — | **Myth** | It's a median of ~66 days (18–254). |
@@ -463,9 +466,8 @@ baseline dopamine" — it's not how the system works). What's left after you rem
 
 The belief that people learn better when taught in their preferred "style" is **one of the most thoroughly
 debunked ideas in education.** The definitive review (**Pashler, McDaniel, Rohrer & Bjork 2008, "Learning
-Styles: Concepts and Evidence,"** Psychol Sci Public Interest, doi `10.1111/j.1539-6053.2009.01038.x`;
-`learning-styles-debunked`) found **no credible evidence** for the "meshing hypothesis" — that matching
-instruction to style improves learning. People have *preferences*; matching them doesn't help. Relevant here
+Styles: Concepts and Evidence"**)[^pashler] found **no credible evidence** for the "meshing hypothesis" — that
+matching instruction to style improves learning. People have *preferences*; matching them doesn't help. Relevant here
 because "find your learning style" is the education cousin of "find your body type" (`04-individual-variation`
 §1) and "sync to your cycle" — all sell destiny-typing that the data refuse.
 
@@ -476,8 +478,8 @@ mechanism and no evidence**, and there is a specific empirical reason it can **b
 **positive fantasizing** (Oettingen and colleagues) shows that vividly imagining the *achieved outcome* (as
 opposed to the *process*) is associated with **less** effort and **worse** attainment — the fantasy
 discharges the motivation prematurely. The evidence-based cousin is **mental contrasting + implementation
-intentions (WOOP)**: contrast the wished-for outcome *with the obstacle*, then make an if–then plan. That's
-§2.2 in a wrapper — and it works for the opposite reason manifestation fails.
+intentions (WOOP — Wish, Outcome, Obstacle, Plan)**: contrast the wished-for outcome *with the obstacle*, then
+make an if–then plan. That's §2.2 in a wrapper — and it works for the opposite reason manifestation fails.
 
 ---
 
@@ -515,8 +517,8 @@ An honestly-annotated reading list. Grades flag where a source is advocacy-forwa
 markets itself.
 
 1. **James Clear — *Atomic Habits* (2018).** The most useful popular synthesis, and worth reading **with
-   caveats.** Its four-law structure (make it obvious / attractive / easy / satisfying) is a clean, genuinely
-   actionable repackaging of the real science — cue-based habit formation (Wood, Lally), implementation
+   caveats.** Its four-law structure (make it obvious / attractive / easy / satisfying) is a clean, practical
+   repackaging of the real science — cue-based habit formation (Wood, Lally), implementation
    intentions (Gollwitzer), and choice architecture. **But** Clear *understates the timeline* (the book's
    vibe is faster than Lally's 66-day median; he does cite it, but readers absorb optimism), leans on the
    **under-evidenced identity-based-change** claim (§2.7) as if it were settled, and is built on cherry-picked
@@ -580,3 +582,26 @@ markets itself.
 > manifestation can actively backfire). The truth is structural and slightly unglamorous: you change behavior
 > by changing the conditions under which you act, one small repeated action at a time, and by being kinder to
 > the inputs (sleep, stress, environment) than to your sense of discipline. Grade accordingly.
+
+[^webb-sheeran]: Webb & Sheeran — meta-analysis of experimental intention–behavior studies, 2006. doi:10.1037/0033-2909.132.2.249. claim: intention-behavior-gap-experimental
+[^sheeran-webb]: Sheeran & Webb — "The Intention–Behavior Gap," Soc Personal Psychol Compass 2016. doi:10.1111/spc3.12265
+[^mertens]: Mertens et al. — nudge meta-analysis, PNAS 2022. doi:10.1073/pnas.2107346118
+[^maier]: Maier et al. — publication-bias reanalysis of nudges, PNAS 2022. doi:10.1073/pnas.2200300119
+[^nudge-pubbias]: claim: nudge-effect-publication-bias (mixed/contested at policy scale)
+[^gollwitzer]: Gollwitzer & Sheeran — "Implementation intentions and goal achievement: a meta-analysis of effects and processes," Adv Exp Soc Psychol 2006. doi:10.1016/S0065-2601(06)38002-1. claim: implementation-intentions-meta
+[^wood-runger]: Wood & Rünger — "Psychology of Habit," Annu Rev Psychol 2016. doi:10.1146/annurev-psych-122414-033417. claim: habit-context-cue-mechanism
+[^lally]: Lally et al. — "How are habits formed: Modelling habit formation in the real world," Eur J Soc Psychol 2010. doi:10.1002/ejsp.674. claim: habit-formation-66-days
+[^self-monitoring]: claim: self-monitoring-active-ingredient (meta — strong as a component)
+[^swann]: Swann et al. — conceptual review of goal-setting in health-behavior promotion, Health Psychol Rev 2021. doi:10.1080/17437199.2019.1706616. claim: goal-setting-health-honest
+[^social-support]: claim: social-support-adherence
+[^hagger]: Hagger et al. — 23-lab pre-registered ego-depletion replication, Perspect Psychol Sci 2016. PMID 27474142. doi:10.1177/1745691616652873. claim: ego-depletion-failed-replication
+[^carter-mccullough]: Carter & McCullough — publication-bias meta-analysis of ego depletion, Front Psychol 2014. doi:10.3389/fpsyg.2014.00823
+[^michie]: Michie, van Stralen & West — COM-B and the Behaviour Change Wheel, Implement Sci 2011. PMID 21513547. doi:10.1186/1748-5908-6-42. claim: com-b-behaviour-change-wheel
+[^bct]: Michie et al. — Behaviour Change Technique Taxonomy v1 (93 techniques), Ann Behav Med 2013. doi:10.1007/s12160-013-9486-6. claim: bct-taxonomy-v1
+[^tuah]: Tuah et al. — Cochrane review of TTM-based weight-management interventions, 2011. doi:10.1002/14651858.CD008066.pub2. claim: ttm-stages-weak-evidence
+[^ng]: Ng et al. — meta-analysis of Self-Determination Theory in health contexts, Perspect Psychol Sci 2012. doi:10.1177/1745691612447309. claim: sdt-health-meta
+[^who-adherence]: WHO — Adherence to Long-Term Therapies: Evidence for Action, 2003. claim: medication-nonadherence-50pct
+[^nieuwlaat]: Nieuwlaat et al. — Cochrane review, "Interventions for enhancing medication adherence," 2014. doi:10.1002/14651858.CD000011.pub4. claim: adherence-interventions-cochrane
+[^fitness-apps]: claim: fitness-apps-modest-effect (e.g. contemporary mHealth systematic reviews, IJBNPA/JMIR 2025)
+[^mazeas]: Mazeas et al. — meta-analysis of gamified physical-activity interventions, JMIR 2022. doi:10.2196/26779. claim: gamification-small-effect
+[^pashler]: Pashler, McDaniel, Rohrer & Bjork — "Learning Styles: Concepts and Evidence," Psychol Sci Public Interest 2008. doi:10.1111/j.1539-6053.2009.01038.x. claim: learning-styles-debunked

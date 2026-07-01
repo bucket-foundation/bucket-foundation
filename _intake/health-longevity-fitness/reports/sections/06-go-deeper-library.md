@@ -1,24 +1,30 @@
 # GO DEEPER — A Curated, Honest Reference Library
 
-> **What this is.** A reading roadmap for the health · longevity · fitness field, built from the
-> Bucket corpus (180-figure people map, ~197 graded claims, 29 conflict objects, 24 labs/15 trials).
-> Every entry carries an **honest one-line note: what it's good for AND its bias.** The same evidence
-> discipline the rest of this manual uses on claims is applied here to *sources* — because a brilliant
-> communicator can still overclaim, a landmark paper can be one cohort, and a famous lab's result can
-> still be a mouse. **Inclusion is not endorsement; it's a pointer with a tier attached.**
->
-> **How to read the tags.** People are tagged with their `evidence_posture` from `01-people/figures.json`:
+The health-and-longevity field will sell you a hundred products and a dozen gurus. This is the
+reading list that teaches you to tell the signal from the sales pitch — every book, paper, podcast,
+lab, and person below comes with an honest one-line note: what it's good for, and where it's biased.
+
+> The same evidence discipline the rest of this manual uses on claims is applied here to *sources* —
+> because a brilliant communicator can still overclaim, a landmark paper can be one cohort, and a
+> famous lab's result can still be a mouse. **Inclusion is not endorsement; it's a pointer with a
+> tier attached.**
+
+_Not medical advice — this is a reading map. Grade the specific dosages and screening decisions
+against the primary sources it points you to._
+
+> **How to read the tags.** Each person carries a posture tag; here's what each means and how to
+> weight them:
 > | Tag | Means | How to weight them |
 > |---|---|---|
-> | **rigorous-scientist** | `mainstream-rigorous` — primary researcher, peer-reviewed body of work | Highest trust on their own data; still grade the claim, not the CV |
-> | **translator** | `clinical-translator` — applies/clinically frames real science | Trust the synthesis, check where the practice runs ahead of the trials |
-> | **communicator (grade the primary)** | `mainstream-communicator` — popularizes; effect sizes often inflated in translation | Great on-ramp; **always read the cited paper, not the summary** |
-> | **contested** | `frontier-contested` / `fringe-to-canon` — real ideas, unproven or disputed claims | Interesting frontier; treat as hypothesis, not protocol |
-> | **practitioner (N=1)** | `practitioner-n1` — method-builders, self-experimenters | Useful *what people try*; anecdotal tier, no causal inference |
+> | **rigorous-scientist** | Primary researcher with a peer-reviewed body of work | Highest trust on their own data; still grade the claim, not the CV |
+> | **translator** | Applies and clinically frames real science | Trust the synthesis; check where the practice runs ahead of the trials |
+> | **communicator** | Popularizes; effect sizes often inflated in translation | Great on-ramp — **always read the cited paper, not the summary** |
+> | **contested** | Real ideas, unproven or disputed claims | Interesting frontier; treat as hypothesis, not protocol |
+> | **practitioner (N=1)** | Method-builders and self-experimenters | Useful for *what people try*; anecdotal tier, no causal inference |
 >
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."* Cross-references: people → `01-people/figures.json`; conflicts →
-> `06-evidence/CONFLICTS-REGISTER.md`; orgs/trials → `05-labs/LABS.md`; verified DOIs →
-> `02-domains/*-claims.json`.
+> *The three honesty rules — predictor ≠ lever (something that forecasts risk isn't automatically
+> something that, changed, lowers it), cohort ≠ RCT (an observational pattern isn't a controlled
+> trial), something beats nothing — are defined up front in "Start Here."*
 
 ---
 
@@ -26,11 +32,13 @@
 
 The evidence is lopsided toward a short list of **boring, powerful, mostly-functional levers**: don't
 smoke; build and keep **cardiorespiratory fitness (VO₂max)** and **strength**; **move more / sit less**;
-**sleep ~7h regularly**; keep **apoB/LDL** low across life; keep a **healthy metabolic profile**; protect
-**social connection**. These individually outrank every exotic biohack in the corpus. Almost everything
-that gets *sold* — biological-age clocks, CGM for the healthy, consumer HRV/sleep-stage numbers,
-senolytics/NAD⁺/rapamycin for healthy people, cold plunges, seed-oil panic — is a **correlate dressed up
-as a scorecard**, a **mouse result not yet in humans**, or a **dose that doesn't match the studied dose**.
+**sleep ~7h regularly**; keep **apoB/LDL** (the cholesterol-carrying particles that lodge in artery
+walls) low across life; keep a **healthy metabolic profile**; protect **social connection**. These
+individually outrank every exotic biohack in the corpus. Almost everything that gets *sold* —
+biological-age clocks, **CGM (continuous glucose monitors) for the healthy**, consumer **HRV
+(heart-rate-variability)** / sleep-stage numbers, senolytics / **NAD⁺ (a cellular fuel molecule)** /
+rapamycin for healthy people, cold plunges, seed-oil panic — is a **correlate dressed up as a
+scorecard**, a **mouse result not yet in humans**, or a **dose that doesn't match the studied dose**.
 A good reading roadmap should make you *better at telling those apart*, not just hungrier for products.
 
 ---
@@ -41,20 +49,20 @@ A good reading roadmap should make you *better at telling those apart*, not just
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **Peter Attia — *Outlive* (2023)** | Practitioner-clinician synthesis | The best single popular framing of the high-value levers: "Medicine 3.0," the centenarian decathlon, apoB & Lp(a)-once, VO₂max and strength as the dominant longevity levers, training/sleep/emotional health. | Synthesis, **not new evidence**; leans toward **aggressive early screening** and a **high-protein** stance that sits *ahead* of consensus (see `conflict-protein-mtor-longevity`); commercial COI (his concierge practice, supplements). Read it for the framework, grade the specific dosages elsewhere. |
-| **David Sinclair — *Lifespan* (2019)** | Researcher-advocate | A vivid tour of the "information theory of aging," sirtuins, NAD⁺, partial reprogramming. | `frontier-contested`. The **resveratrol/SIRT1** story was substantially a fluorophore-assay artifact (`conflict-resveratrol-sirtuin`; Kay Ahn / Pfizer) and **NMN human longevity benefit is unproven** (`conflict-nad-precursor-efficacy`). Heavy commercial COI (Sirtris→GSK, supplement ties). Read as a *thesis*, not a protocol. |
-| **Aubrey de Grey — *Ending Aging* (2007)** | Engineering paradigm | The clearest statement of the **damage-repair (SENS)** view — aging as seven categories of accumulated damage to be fixed. | `frontier-contested`. Timeline claims ("1000-year-olds") are widely regarded as over-optimistic; SENS is a *framework that organizes targets*, not demonstrated human results. Useful as the counter-paradigm to mainstream geroscience (see the funding fault line, `05-labs/LABS.md §3`). |
-| **Bryan Johnson — *Don't Die* / Blueprint (open data)** | Practitioner N=1 | The most extensively measured, fully **open** single-subject experiment in existence; a model of *how to log* a protocol. | `practitioner-n1`. **No causal inference possible from N=1**; many interventions lack RCT support; messaging is movement-building. Mine the *measurement discipline*, not the conclusions. |
-| **Nick Lane — *Power, Sex, Suicide* (2005); *The Vital Question* (2015); *Transformer* (2022)** | Foundational bioenergetics | The canon-tier *why* under everything downstream: **chemiosmosis, the proton-motive force, mitochondria** as the energetic core of life and aging. Maps directly to Bucket's `05-biophysics` branch (Domain A). | `mainstream-rigorous` but **synthesizes and advances hypotheses** (origin-of-life, eukaryogenesis) that are themselves frontier. The bioenergetics foundation is solid; the speculative reach is flagged in the text. The single best "go deeper into the foundation" author here. |
+| **Peter Attia — *Outlive* (2023)** | Practitioner-clinician synthesis | The best single popular framing of the high-value levers: "Medicine 3.0," the centenarian decathlon, apoB & Lp(a)-once, VO₂max and strength as the dominant longevity levers, training/sleep/emotional health. | Synthesis, **not new evidence**; leans toward **aggressive early screening** and a **high-protein** stance that sits *ahead* of consensus;[^c-protein] commercial COI (his concierge practice, supplements). Read it for the framework, grade the specific dosages elsewhere. |
+| **David Sinclair — *Lifespan* (2019)** | Researcher-advocate | A vivid tour of the "information theory of aging," sirtuins, NAD⁺, partial reprogramming. | *(contested.)* The **resveratrol/SIRT1** (a longevity-linked enzyme) story was substantially a fluorophore-assay artifact (Kay Ahn / Pfizer),[^c-resveratrol] and **NMN (an NAD⁺-precursor supplement) human longevity benefit is unproven.**[^c-nad] Heavy commercial COI (Sirtris→GSK, supplement ties). Read as a *thesis*, not a protocol. |
+| **Aubrey de Grey — *Ending Aging* (2007)** | Engineering paradigm | The clearest statement of the **damage-repair (SENS — "strategies for engineered negligible senescence")** view — aging as seven categories of accumulated damage to be fixed. | *(contested.)* Timeline claims ("1000-year-olds") are widely regarded as over-optimistic; SENS is a *framework that organizes targets*, not demonstrated human results. Useful as the counter-paradigm to mainstream geroscience (see the funding fault line in §6.3). |
+| **Bryan Johnson — *Don't Die* / Blueprint (open data)** | Practitioner N=1 | The most extensively measured, fully **open** single-subject experiment in existence; a model of *how to log* a protocol. | *(practitioner, N=1.)* **No causal inference possible from N=1**; many interventions lack RCT support; messaging is movement-building. Mine the *measurement discipline*, not the conclusions. |
+| **Nick Lane — *Power, Sex, Suicide* (2005); *The Vital Question* (2015); *Transformer* (2022)** | Foundational bioenergetics | The canon-tier *why* under everything downstream: **chemiosmosis, the proton-motive force, mitochondria** as the energetic core of life and aging. Maps directly to Bucket's `05-biophysics` branch (Domain A). | Rigorous, but it **synthesizes and advances hypotheses** (origin-of-life, eukaryogenesis) that are themselves frontier. The bioenergetics foundation is solid; the speculative reach is flagged in the text. The single best "go deeper into the foundation" author here. |
 | **Atul Gawande — *Being Mortal* (2014)** | Humanism / end-of-life | The part of "longevity" the biohacking literature omits: function, autonomy, and a good end. | Not a protocol; a values correction. No caveat beyond "this is wisdom, not data." |
 
 ### 1.2 Aging biology (the mechanism layer)
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **"The Hallmarks of Aging" (López-Otín et al., *Cell* 2013/2023)** *(paper, not book — start here)* | Landmark review | The field's organizing map: 9→12 hallmarks. The single most-cited scaffold for *how* aging is studied. DOI [10.1016/j.cell.2013.05.039](https://doi.org/10.1016/j.cell.2013.05.039) / [10.1016/j.cell.2022.11.001](https://doi.org/10.1016/j.cell.2022.11.001). | `mechanistic`-tier. It's a **classification, not a causal hierarchy** — being a "hallmark" doesn't make it a proven lever. |
+| **"The Hallmarks of Aging" (López-Otín et al., *Cell* 2013/2023)** *(paper, not book — start here)* | Landmark review | The field's organizing map: 9→12 hallmarks. The single most-cited scaffold for *how* aging is studied. DOI [10.1016/j.cell.2013.05.039](https://doi.org/10.1016/j.cell.2013.05.039) / [10.1016/j.cell.2022.11.001](https://doi.org/10.1016/j.cell.2022.11.001). | Mechanistic-tier. It's a **classification, not a causal hierarchy** — being a "hallmark" doesn't make it a proven lever. |
 | **Venki Ramakrishnan — *Why We Die* (2024)** | Nobel-laureate survey | A sober, rigorous, hype-resistant tour of aging biology from someone with nothing to sell. | Descriptive; deliberately deflationary about near-term "cures." That's a feature. |
-| **Andrew Steele — *Ageless* (2020)** | Science journalism | Accessible, well-cited walk through senescence, telomeres, clocks, senolytics. | Optimistic framing; senolytic/clearance results are still mostly **mouse** (`senolytics-extend-function-mouse`, animal-tier). |
+| **Andrew Steele — *Ageless* (2020)** | Science journalism | Accessible, well-cited walk through senescence, telomeres, clocks, senolytics. | Optimistic framing; senolytic/clearance results are still mostly **mouse** (animal-tier).[^cl-senolytics] |
 
 ### 1.3 Exercise, strength & movement
 
@@ -62,51 +70,51 @@ A good reading roadmap should make you *better at telling those apart*, not just
 |---|---|---|---|
 | **Daniel Lieberman — *Exercised* (2020)** | Evolutionary biology | *Why* humans aren't built to love exercise, and why we still must; demolishes "10,000 steps/sleep-8h-or-die"-style myths with an anthropological lens. Rigorous (Harvard human evolutionary biology). | Descriptive/evolutionary, **not a training program**. Tells you the shape of the truth, not the sets and reps. |
 | **Herman Pontzer — *Burn* (2021)** | Metabolic science | The **constrained total energy expenditure** model — why "exercise to burn calories" mostly fails, and what exercise actually does. Rigorous fieldwork (Hadza). | A genuine corrective; some implications (compensation) are still actively debated. |
-| **Andy Galpin — *Unplugged* (2017, w/ Brian Mackenzie)** | Performance translation | Honest, "it depends" strength/conditioning from a single-fiber muscle physiologist (`clinical-translator`); strong on individualization and tech skepticism. | Performance-athlete framing; lighter on the longevity endpoint than on performance. Galpin himself is one of the **best-calibrated** voices in the field. |
+| **Andy Galpin — *Unplugged* (2017, w/ Brian Mackenzie)** | Performance translation | Honest, "it depends" strength/conditioning from a single-fiber muscle physiologist (translator); strong on individualization and tech skepticism. | Performance-athlete framing; lighter on the longevity endpoint than on performance. Galpin himself is one of the **best-calibrated** voices in the field. |
 | **Brad Schoenfeld — *Science and Development of Muscle Hypertrophy* (textbook)** | Hypertrophy reference | The rigorous, evidence-graded reference on muscle growth (mechanical tension > "the pump"). | Textbook depth; for lifters and coaches, not casual readers. |
-| **Stuart McGill — *Back Mechanic* (2015); *Ultimate Back Fitness and Performance*** | Spine self-assessment | Practical, lab-grounded self-triage for back pain; the "McGill Big 3," spine-sparing mechanics, find-your-pain-trigger method. McGill = `mainstream-rigorous` (quantified lumbar loading). | One **school**: the flexion-intolerance/biomechanical model is powerful but is *not* the whole story — back pain is also biopsychosocial, and not all pain is flexion-driven. Use it as one rigorous lens, not gospel. |
-| **Kelly Starrett — *Becoming a Supple Leopard* (2013); *Built to Move* (2023)** | Mobility practice | A usable system of mobility drills and movement "vital signs" (sit-to-rise, balance) — *Built to Move* is the more evidence-aligned of the two. | `practitioner-n1`. Specific claims (fascia "smashing," precise positional cues) **outrun the evidence** (per his figure note). Do the drills; discount the mechanism stories. |
-| **Pavel Tsatsouline — *Simple & Sinister*; *Kettlebell Simple & Sinister*** | Strength methodology | "Strength as a skill," minimalist high-quality programming; very effective for adherence. | `practitioner-n1`; methodology + tradition, not trial data. Works; just isn't an RCT. |
-| **Ido Portal / movement-culture writing** | Movement practice | Breadth of human movement, locomotion, hand-balancing as a practice. | `practitioner-n1`; philosophy-forward, evidence-light. Inspiration, not protocol. |
+| **Stuart McGill — *Back Mechanic* (2015); *Ultimate Back Fitness and Performance*** | Spine self-assessment | Practical, lab-grounded self-triage for back pain; the "McGill Big 3," spine-sparing mechanics, find-your-pain-trigger method. McGill is rigorous (quantified lumbar loading). | One **school**: the flexion-intolerance/biomechanical model is powerful but is *not* the whole story — back pain is also biopsychosocial, and not all pain is flexion-driven. Use it as one rigorous lens, not gospel. |
+| **Kelly Starrett — *Becoming a Supple Leopard* (2013); *Built to Move* (2023)** | Mobility practice | A usable system of mobility drills and movement "vital signs" (sit-to-rise, balance) — *Built to Move* is the more evidence-aligned of the two. | *(practitioner.)* Specific claims (fascia "smashing," precise positional cues) **outrun the evidence** (per his figure note). Do the drills; discount the mechanism stories. |
+| **Pavel Tsatsouline — *Simple & Sinister*; *Kettlebell Simple & Sinister*** | Strength methodology | "Strength as a skill," minimalist high-quality programming; very effective for adherence. | *(practitioner)*; methodology + tradition, not trial data. Works; just isn't an RCT. |
+| **Ido Portal / movement-culture writing** | Movement practice | Breadth of human movement, locomotion, hand-balancing as a practice. | *(practitioner)*; philosophy-forward, evidence-light. Inspiration, not protocol. |
 
 ### 1.4 Sleep & circadian
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **Matthew Walker — *Why We Sleep* (2017)** | Popular sleep science | The book that put sleep on the cultural agenda; vivid on NREM/REM, memory, metabolism, the *importance* of sleep. | ⚠️ **Read with the errata in hand.** Contains documented factual **overstatements and mis-sourced claims** (Alexei Guzey's catalogued critique; `conflict-walker-sleep-claims`, partially-resolved). The famous "short sleep = short life" is actually **U-shaped** — long sleep is as risky as short (`sleep-duration-mortality-ushape`). Core thesis sound; **specifics overstated.** Pair with the primary papers below. |
-| **Satchin Panda — *The Circadian Code* (2018)** | Circadian / TRE | The best popular treatment of circadian alignment and time-restricted eating from the researcher who did the foundational mouse work. | `mainstream-rigorous`, but the human TRE outcome data is thinner than the mouse data, and **most TRE benefit is the calorie restriction it causes** (`conflict-tre-efficacy-vs-cr`). The *timing/alignment* signal is the durable part. |
+| **Matthew Walker — *Why We Sleep* (2017)** | Popular sleep science | The book that put sleep on the cultural agenda; vivid on NREM/REM, memory, metabolism, the *importance* of sleep. | ⚠️ **Read with the errata in hand.** Contains documented factual **overstatements and mis-sourced claims** (Alexei Guzey's catalogued critique; partially resolved).[^c-walker] The famous "short sleep = short life" is actually **U-shaped** — long sleep is as risky as short.[^cl-sleepushape] Core thesis sound; **specifics overstated.** Pair with the primary papers below. |
+| **Satchin Panda — *The Circadian Code* (2018)** | Circadian / TRE | The best popular treatment of circadian alignment and time-restricted eating (TRE) from the researcher who did the foundational mouse work. | Rigorous, but the human TRE outcome data is thinner than the mouse data, and **most TRE benefit is the calorie restriction it causes.**[^c-tre] The *timing/alignment* signal is the durable part. |
 | **Till Roenneberg — *Internal Time* (2012)** | Chronotype science | "Social jetlag," chronotypes, why school/work clocks fight biology. Rigorous. | Academic-leaning; lighter on actionable protocol. |
 
 ### 1.5 Breath
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **James Nestor — *Breath* (2020)** | Popular synthesis | A genuinely engaging on-ramp to nasal breathing, CO₂ tolerance, and breathing's neglected role; sent millions to mouth-taping and Buteyko. | `mainstream-communicator` — **journalist, not scientist.** Several claims (the "lost art" history, some mouth-taping benefits) **outrun the evidence**. The physiology nuggets are real; grade the strong claims against the breath papers below. |
-| **Patrick McKeown — *The Oxygen Advantage* (2015)** | Buteyko / functional breathing | The most systematic modern Buteyko-derived program (nasal, reduced-volume, CO₂ tolerance, BOLT score). | `practitioner-n1`. Buteyko has **some asthma RCT support** (`buteyko-asthma-symptoms-rct`), but the broad "chronic hyperventilation causes disease" frame is contested (Buteyko himself = `frontier-contested`). |
+| **James Nestor — *Breath* (2020)** | Popular synthesis | A genuinely engaging on-ramp to nasal breathing, CO₂ tolerance, and breathing's neglected role; sent millions to mouth-taping and Buteyko. | Communicator — a **journalist writing about science.** Several claims (the "lost art" history, some mouth-taping benefits) **outrun the evidence**. The physiology nuggets are real; grade the strong claims against the breath papers below. |
+| **Patrick McKeown — *The Oxygen Advantage* (2015)** | Buteyko / functional breathing | The most systematic modern Buteyko-derived program (nasal, reduced-volume, CO₂ tolerance, BOLT score). | *(practitioner.)* Buteyko has **some asthma-symptom RCT support**,[^cl-buteyko] but the broad "chronic hyperventilation causes disease" frame is contested (Buteyko himself is a contested figure). |
 
 ### 1.6 Nutrition
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
 | **Michael Pollan — *In Defense of Food* (2008); *Food Rules*** | Heuristics | "Eat food, not too much, mostly plants." The best *de-confusing* food philosophy ever written — anti-reductionist, sane, durable. | Journalist; "mostly plants" is a reasonable **heuristic and value**, not a hard RCT result. The strength is in *not* over-optimizing. |
-| **Valter Longo — *The Longevity Diet* (2018)** | Researcher protocol | The fasting-mimicking-diet (FMD) thesis, IGF-1, periodic fasting, from the lab that did the work. | `clinical-translator`. The **high-protein-is-harmful** position is one side of an open conflict (`conflict-protein-mtor-longevity`) — Attia/Galpin/Phillips push back hard, especially for the elderly. Commercial COI (ProLon). |
-| **Tim Spector — *Spoon-Fed* / *Food for Life*** | Personalized nutrition | Individual glycemic/microbiome response, the case against one-size-fits-all nutrition (PREDICT studies). | `mainstream-rigorous` but **ZOE commercial COI**; the individualized-response claims are real for *surrogates*, with longevity outcomes unproven. |
-| **(Avoid as primary truth) seed-oil / "carnivore-cures-all" trade books** | Contested popular | Useful only to understand *what's being argued*. | The seed-oil toxicity case (DiNicolantonio/O'Keefe, `frontier-contested`) presents a **mechanistic hypothesis as settled**; the higher-tier evidence runs the *other* way (PUFA replacing saturated fat lowers CHD — `pufa-replacement-reduces-chd-meta`; Cochrane null — `omega6-cochrane-little-or-no-effect`). See `conflict-seed-oils-linoleic-acid`. |
+| **Valter Longo — *The Longevity Diet* (2018)** | Researcher protocol | The fasting-mimicking-diet (FMD) thesis, IGF-1 (a growth signal), periodic fasting, from the lab that did the work. | Translator. The **high-protein-is-harmful** position is one side of an open conflict[^c-protein] — Attia/Galpin/Phillips push back hard, especially for the elderly. Commercial COI (ProLon). |
+| **Tim Spector — *Spoon-Fed* / *Food for Life*** | Personalized nutrition | Individual glycemic/microbiome response, the case against one-size-fits-all nutrition (PREDICT studies). | Rigorous, but **ZOE commercial COI**; the individualized-response claims are real for *surrogates*, with longevity outcomes unproven. |
+| **(Avoid as primary truth) seed-oil / "carnivore-cures-all" trade books** | Contested popular | Useful only to understand *what's being argued*. | The seed-oil toxicity case (DiNicolantonio/O'Keefe; contested) presents a **mechanistic hypothesis as settled**; the higher-tier evidence runs the *other* way — PUFA (polyunsaturated fat) replacing saturated fat lowers CHD (coronary heart disease),[^cl-pufa] and the Cochrane review finds little or no effect.[^cl-omega6] See the seed-oils conflict.[^c-seedoil] |
 
 ### 1.7 Women's physiology (the male-default corrective)
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **Stacy Sims — *ROAR* (2016); *Next Level* (2022)** | Female-specific physiology | The flagship corrective to a male-default research base: training, fueling, and recovery across the menstrual cycle, pregnancy, and **menopause** (*Next Level*). High-value precisely because the field under-studies women (Domain N). | `practitioner-n1`/translator. Several **cycle-phase-specific training/fueling prescriptions exceed current RCT evidence** — the underlying sex-difference physiology is real, the precise periodized protocols are extrapolation. Pair with the menopause-HRT trials below (WHI/KEEPS/ELITE). |
-| **Mary Claire Haver — *The New Menopause* (2024)** | Clinical menopause | Practical, current framing of menopause symptoms and HRT decision-making. | Clinician-advocate; the HRT risk/benefit picture is **age- and timing-dependent** (`whi-age-dependent-riskbenefit`, `estrogen-timing-elite`) — read alongside the primary trials, not instead of them. |
+| **Stacy Sims — *ROAR* (2016); *Next Level* (2022)** | Female-specific physiology | The flagship corrective to a male-default research base: training, fueling, and recovery across the menstrual cycle, pregnancy, and **menopause** (*Next Level*). High-value precisely because the field under-studies women (Domain N). | Practitioner/translator. Several **cycle-phase-specific training/fueling prescriptions exceed current RCT evidence** — the underlying sex-difference physiology is real, the precise periodized protocols are extrapolation. Pair with the menopause-HRT trials below (WHI/KEEPS/ELITE). |
+| **Mary Claire Haver — *The New Menopause* (2024)** | Clinical menopause | Practical, current framing of menopause symptoms and HRT decision-making. | Clinician-advocate; the HRT (hormone-replacement-therapy) risk/benefit picture is **age- and timing-dependent**[^cl-whi][^cl-elite] — read alongside the primary trials, not instead of them. |
 
 ### 1.8 Psychosocial & "the levers nobody sells"
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **Susan Pinker — *The Village Effect* (2014)** | Social connection | Makes the case that **face-to-face social connection** is a mortality-grade variable — routinely omitted from biohacking stacks because nothing is sold for it. | Popular synthesis; the underlying meta-analyses (Holt-Lunstad) are strong (`social-relationships-mortality-meta`). |
+| **Susan Pinker — *The Village Effect* (2014)** | Social connection | Makes the case that **face-to-face social connection** is a mortality-grade variable — routinely omitted from biohacking stacks because nothing is sold for it. | Popular synthesis; the underlying meta-analyses (Holt-Lunstad) are strong.[^cl-social] |
 | **Marta Zaraska — *Growing Young* (2020)** | Non-pill longevity | Synthesizes friendship, purpose, kindness as longevity factors with real effect sizes. | Observational base (purpose/connection); the direction-of-causality caveat applies, but the effect sizes rival the famous biological levers. |
-| **Dan Buettner — *The Blue Zones*** | Population observation | A readable entry to lifestyle-and-longevity pattern thinking. | ⚠️ **The strong claim is contested.** Validated demography found a *real* Sardinian cluster (AKEA), but extreme-age records partly track **clerical error and pension fraud** (Saul Newman; `conflict-blue-zones-data-quality`, `blue-zones-data-quality-critique`). Read for hypotheses, not proof of a lifestyle. |
+| **Dan Buettner — *The Blue Zones*** | Population observation | A readable entry to lifestyle-and-longevity pattern thinking. | ⚠️ **The strong claim is contested.** Validated demography found a *real* Sardinian cluster (AKEA), but extreme-age records partly track **clerical error and pension fraud** (Saul Newman).[^c-bluezones][^cl-bzcritique] Read for hypotheses, not proof of a lifestyle. |
 
 ---
 
@@ -114,6 +122,16 @@ A good reading roadmap should make you *better at telling those apart*, not just
 
 > These are the anchor papers behind this manual's strongest claims. Tier shown is the corpus grade.
 > A DOI link means *you can verify it yourself* — which is the entire point of a "go deeper" section.
+> Skim by domain; each row is one anchor paper.
+
+> **Acronym key for this section:** VO₂max / CRF = aerobic capacity / cardiorespiratory fitness ·
+> apoB / LDL-C / Lp(a) = cholesterol-carrying blood particles · CR = calorie restriction ·
+> TRE/TRF = time-restricted eating/feeding · FMD = fasting-mimicking diet · IGF-1 = a growth signal ·
+> mTOR = a cellular growth switch · SASP = the inflammatory secretions of worn-out cells ·
+> BAT = brown (heat-burning) fat · HSP = heat-shock proteins · DNAm = DNA-methylation ("epigenetic
+> clock") · GWAS = gene-wide association scan · MET = a unit of exercise intensity · HIIT =
+> high-intensity interval training · HbA1c = 3-month average blood sugar · PSG = clinical sleep study ·
+> CPET = lab VO₂max test.
 
 ### 2.1 Aging biology & geroscience (Domain B)
 | Paper | Tier | Why it matters | DOI |
@@ -221,9 +239,9 @@ A good reading roadmap should make you *better at telling those apart*, not just
 
 ## 3. PEOPLE TO FOLLOW — by domain, honestly tagged
 
-> Tag key: **[rigorous]** = mainstream-rigorous scientist · **[translator]** = clinical-translator ·
-> **[communicator]** = popularizer, grade the primary · **[contested]** = frontier/fringe, treat as
-> hypothesis · **[practitioner]** = N=1 method-builder. Full records: `01-people/figures.json`.
+> Tag key: **[rigorous]** = rigorous scientist · **[translator]** = clinical translator ·
+> **[communicator]** = popularizer (grade the primary) · **[contested]** = frontier/fringe (treat as
+> hypothesis) · **[practitioner]** = N=1 method-builder.
 
 ### 3.1 Aging biology / geroscience
 | Person | Tag | Follow for | Honest caveat |
@@ -232,8 +250,8 @@ A good reading roadmap should make you *better at telling those apart*, not just
 | Carlos López-Otín | [rigorous] | The Hallmarks framework | A *map*, not a causal hierarchy |
 | Judith Campisi | [rigorous] | Senescence/SASP — the careful version | Senolytic translation is still mostly mouse |
 | Matt Kaeberlein | [rigorous] | Rapamycin/mTOR, Dog Aging Project; **the field's best anti-hype voice** | Openly flags what's unproven — that's why to follow him |
-| Nir Barzilai | [rigorous] | Centenarian genetics; the **TAME** metformin trial | Metformin geroprotection in healthy people is unproven (`conflict-metformin-geroprotection`) |
-| Steve Horvath / Morgan Levine | [rigorous] | Epigenetic clocks (DNAm age, PhenoAge) | Clocks **predict** but aren't validated surrogates (`conflict-which-clock-is-valid`) |
+| Nir Barzilai | [rigorous] | Centenarian genetics; the **TAME** metformin trial | Metformin geroprotection in healthy people is unproven[^c-metformin] |
+| Steve Horvath / Morgan Levine | [rigorous] | Epigenetic clocks (DNAm age, PhenoAge) | Clocks **predict** but aren't validated surrogates[^c-clock] |
 | Venki Ramakrishnan | [rigorous] | The honest, deflationary survey of "why we die" | Deliberately resists near-term hype |
 | **David Sinclair** | [contested] | NAD⁺/sirtuin/reprogramming ideas | Resveratrol artifact + NMN unproven + heavy commercial COI — **calibrate down** |
 | **Aubrey de Grey** | [contested] | The SENS/damage-repair counter-paradigm | Timelines widely seen as over-optimistic |
@@ -251,9 +269,9 @@ A good reading roadmap should make you *better at telling those apart*, not just
 | Person | Tag | Follow for | Honest caveat |
 |---|---|---|---|
 | **Andy Galpin** | [translator] | Single-fiber muscle physiology; the most calibrated "it depends" voice in fitness | Performance-athlete framing; light on hard longevity endpoints |
-| Stuart Phillips | [rigorous] | Protein & resistance training science (leucine, dose, timing) | Opposes Longo on protein/IGF-1 (`conflict-protein-mtor-longevity`) — a genuine open question |
+| Stuart Phillips | [rigorous] | Protein & resistance training science (leucine, dose, timing) | Opposes Longo on protein/IGF-1[^c-protein] — a genuine open question |
 | Brad Schoenfeld | [rigorous] | Hypertrophy science (mechanical tension) | Lab/training-focused; longevity is downstream |
-| Iñigo San Millán | [translator] | The Zone-2 / lactate-threshold framing | "Zone 2 is *uniquely* optimal for mito" is **overstated** (`conflict-zone2-optimal-mito`) |
+| Iñigo San Millán | [translator] | The Zone-2 / lactate-threshold framing | "Zone 2 is *uniquely* optimal for mito" is **overstated**[^c-zone2] |
 | Stuart McGill | [rigorous] | Spine biomechanics, back-pain self-triage | One (biomechanical) school; back pain is also biopsychosocial |
 | Kelly Starrett | [practitioner] | Mobility drills, movement "vital signs" | Fascia/positional mechanism claims **outrun evidence** |
 | Pavel Tsatsouline / Ido Portal | [practitioner] | Strength-as-skill / movement culture | Methodology + tradition, not trial data |
@@ -263,14 +281,14 @@ A good reading roadmap should make you *better at telling those apart*, not just
 |---|---|---|---|
 | Satchin Panda | [rigorous] | Circadian biology, time-restricted eating | Human TRE outcome data thinner than mouse; most benefit = the CR it causes |
 | Charles Czeisler / George Brainard | [rigorous] | Human circadian photoreception, light hygiene | Mechanism strong; some downstream "blue light" products oversell |
-| **Matthew Walker** | [communicator] | Sleep's importance, NREM/REM, memory | **Documented overstatements** (`conflict-walker-sleep-claims`); pair with Guzey's critique |
+| **Matthew Walker** | [communicator] | Sleep's importance, NREM/REM, memory | **Documented overstatements**;[^c-walker] pair with Guzey's critique |
 | Alexei Guzey | [communicator] | The catalogued critique of *Why We Sleep* — a model of honest fact-checking | Non-peer-reviewed essay; some points themselves contested |
 | Maiken Nedergaard / Jeffrey Iliff | [rigorous] | The glymphatic system | Flow magnitude & some mechanics debated |
 
 ### 3.5 Breath & thermal
 | Person | Tag | Follow for | Honest caveat |
 |---|---|---|---|
-| Jari Laukkanen | [rigorous] | The entire sauna-mortality evidence base | One male cohort; healthy-user bias unexcluded (`conflict-sauna-healthy-user`) |
+| Jari Laukkanen | [rigorous] | The entire sauna-mortality evidence base | One male cohort; healthy-user bias unexcluded[^c-sauna] |
 | Susanna Søberg | [translator] | Cold + heat (contrast) thermogenesis | Small studies; the metabolic outcome data used *prolonged mild cold*, not plunges |
 | Patrick McKeown | [practitioner] | Functional/Buteyko nasal breathing | Asthma support real; broad "hyperventilation disease" frame contested |
 | **Wim Hof** | [practitioner] | The method that drove cold+breath into the mainstream | Outcome claims **far exceed** the one small study; ⚠️ **dangerous in/near water** |
@@ -279,10 +297,10 @@ A good reading roadmap should make you *better at telling those apart*, not just
 | Person | Tag | Follow for | Honest caveat |
 |---|---|---|---|
 | Valter Longo | [translator] | Fasting-mimicking diet, IGF-1 | High-protein-harmful stance is one side of an open conflict; ProLon COI |
-| Stuart Phillips / Don Layman | [rigorous] | Protein adequacy, leucine threshold (esp. elderly) | The pro-protein side of `conflict-protein-mtor-longevity` |
+| Stuart Phillips / Don Layman | [rigorous] | Protein adequacy, leucine threshold (esp. elderly) | The pro-protein side of the protein/mTOR conflict[^c-protein] |
 | Tim Spector / Eran Segal | [rigorous] | Personalized glycemic & microbiome response | ZOE/commercial COI; surrogate endpoints, longevity unproven |
 | Dariush Mozaffarian / Christopher Ramsden | [rigorous] | The high-rigor reading of fats & diet-heart | The evidence that tempers seed-oil panic |
-| **DiNicolantonio / O'Keefe** | [contested] | Understanding the seed-oil *argument* | Presents a **mechanism as settled outcome**; weight against (`conflict-seed-oils-linoleic-acid`) |
+| **DiNicolantonio / O'Keefe** | [contested] | Understanding the seed-oil *argument* | Presents a **mechanism as settled outcome**; weight against it[^c-seedoil] |
 | **Saul Justin Newman** | [contested] | The Blue-Zones/supercentenarian data-quality critique | Working-paper status; defenders dispute the fraud framing — but the critique is important |
 
 ### 3.7 Biomarkers & lipidology
@@ -298,14 +316,15 @@ A good reading roadmap should make you *better at telling those apart*, not just
 |---|---|---|---|
 | Nick Lane | [rigorous] | Chemiosmosis/bioenergetics as the foundation of life & aging | Advances frontier origin-of-life hypotheses alongside settled bioenergetics |
 | Peter Mitchell & Jennifer Moyle | [rigorous] | Chemiosmotic theory (the canon law under metabolism) | Moyle is historically under-credited |
-| Douglas Wallace | [rigorous] | Mitochondrial genetics, heteroplasmy | mtDNA-mutation **causality** of aging is open (`conflict-mtdna-mutation-causality`) |
+| Douglas Wallace | [rigorous] | Mitochondrial genetics, heteroplasmy | mtDNA-mutation **causality** of aging is open[^c-mtdna] |
 | Martin Picard | [rigorous] | Mitochondrial psychobiology | Frontier but disciplined |
 | **Jack Kruse** | [contested] | Circadian/light/cold biophysics provocations — **one partial source**, not the centre | Many causal claims (EMF→disease, cold→longevity) **speculative/unfalsifiable**; the *circadian spine* is the validated part |
 | **Gerald Pollack** | [contested] | EZ/"fourth phase" water | A canon *concept*, not an established outcome |
 | **Boros / Somlyai / T. Que Collins** | [contested] | Deuterium-depletion thesis | Human clinical efficacy unproven; commercial COI throughout |
 
-> ⚠️ **Avoid as primary sources of truth:** Dave Asprey, Ben Greenfield (`practitioner-n1`, commercial-COI biohacking
-> synthesizers who present contested protocols as advice). Useful only to see *what's being marketed*.
+> ⚠️ **Avoid as primary sources of truth:** Dave Asprey, Ben Greenfield (practitioner-tier,
+> commercial-COI biohacking synthesizers who present contested protocols as advice). Useful only to
+> see *what's being marketed*.
 
 ---
 
@@ -323,49 +342,48 @@ A good reading roadmap should make you *better at telling those apart*, not just
 | **ZOE Science & Nutrition (Spector)** | Nutrition science | Microbiome & personalized-nutrition science | **ZOE commercial COI** baked into the show |
 
 > **Meta-rule for all podcasts:** they are *discovery tools*, not evidence. The honest workflow is
-> **podcast → find the named study → read the abstract/§Methods → check it against
-> `06-evidence/CONFLICTS-REGISTER.md`.** If a host won't name the study, downgrade the claim.
+> **podcast → find the named study → read the abstract/§Methods → check it against the Conflicts
+> register.** If a host won't name the study, downgrade the claim.
 
 **Reference sites (not podcasts) worth bookmarking:** **Examine.com** (graded supplement/intervention
 summaries), **PubMed** + **OpenAlex** (free primary-literature search), **ClinicalTrials.gov** (what's
-actually being tested). These are the Tier-1 sources in `07-sources/SOURCE-REGISTRY.md`.
+actually being tested). These are the Tier-1 sources in the manual's source registry.
 
 ---
 
 ## 5. THE OPEN QUESTIONS TO WATCH — *where the field will actually change*
 
-The corpus holds **29 conflict objects (15 still fully `open`)** — full register in
-`06-evidence/CONFLICTS-REGISTER.md`. If you only track a handful, track these, because resolving them
-*moves the protocol*:
+The corpus holds **29 conflict objects (15 still fully `open`)** — full detail in the Conflicts
+register. If you only track a handful, track these, because resolving them *moves the protocol*:
 
-1. **Protein ↔ mTOR ↔ longevity** (`conflict-protein-mtor-longevity`, **open**) — anabolic protection vs
-   IGF-1/mTOR-driven aging. Likely age-dependent. Watch: Phillips/Layman vs Longo.
-2. **Does raising NAD⁺ move any hard endpoint?** (`conflict-nad-precursor-efficacy`, **open**) — the
-   missing adequately-powered RCT behind a huge supplement market. Watch: Brenner vs Sinclair/Imai.
+1. **Protein ↔ mTOR ↔ longevity** (**open**)[^c-protein] — anabolic protection vs IGF-1/mTOR-driven
+   aging. Likely age-dependent. Watch: Phillips/Layman vs Longo.
+2. **Does raising NAD⁺ move any hard endpoint?** (**open**)[^c-nad] — the missing adequately-powered
+   RCT behind a huge supplement market. Watch: Brenner vs Sinclair/Imai.
 3. **Which biological-age clock is valid — and do "age-reversal" results mean anything?**
-   (`conflict-which-clock-is-valid`, **open**) — gates the entire commercial age-test category. Watch:
-   Moqri / Biomarkers of Aging Consortium.
-4. **Sleep duration: causal or reverse-causation?** (`conflict-sleep-duration-causality`, **open**) +
-   the accuracy of popularized sleep claims (`conflict-walker-sleep-claims`).
-5. **Sauna healthy-user bias** + **infrared ≠ traditional** (`conflict-sauna-healthy-user`,
-   `conflict-infrared-vs-traditional-sauna`, both **open**) — gate the most-hyped thermal claims.
-6. **CR/longevity-drug translation to humans** — CR primate survival is context-dependent
-   (`conflict-cr-primate-survival`); metformin & rapamycin human dosing both **open**.
-7. **Microbiome: cause or consequence of aging?** (`conflict-microbiome-cause-or-consequence`, **open**)
-   — gates whether microbiome interventions matter.
-8. **Zone 2 uniquely optimal for mitochondria?** (`conflict-zone2-optimal-mito`, **open**) — the most
-   over-extrapolated training claim.
-9. **The free-radical theory** (`conflict-free-radical-theory`) — *mostly resolved AGAINST* its naive
-   version (antioxidants don't extend lifespan; mitohormesis). The cleanest example of a once-dominant
-   idea the evidence overturned — a template for healthy skepticism.
+   (**open**)[^c-clock] — gates the entire commercial age-test category. Watch: Moqri / Biomarkers of
+   Aging Consortium.
+4. **Sleep duration: causal or reverse-causation?** (**open**)[^c-sleepcause] + the accuracy of
+   popularized sleep claims.[^c-walker]
+5. **Sauna healthy-user bias** + **infrared ≠ traditional** (both **open**)[^c-sauna][^c-infrared] —
+   gate the most-hyped thermal claims.
+6. **CR/longevity-drug translation to humans** — CR primate survival is context-dependent;[^c-crprimate]
+   metformin & rapamycin human dosing both **open**.
+7. **Microbiome: cause or consequence of aging?** (**open**)[^c-microbiome] — gates whether microbiome
+   interventions matter.
+8. **Zone 2 uniquely optimal for mitochondria?** (**open**)[^c-zone2] — the most over-extrapolated
+   training claim.
+9. **The free-radical theory**[^c-freeradical] — *mostly resolved AGAINST* its naive version
+   (antioxidants don't extend lifespan; mitohormesis). The cleanest example of a once-dominant idea the
+   evidence overturned — a template for healthy skepticism.
 
 ---
 
 ## 6. ORGANIZATIONS, LABS & TRIALS TO WATCH — *the "letterhead ≠ evidence" rule applies*
 
-> From `05-labs/LABS.md`. **An institution's prestige is provenance, not evidence.** A famous lab's
-> mouse result is still mouse-tier; a well-funded company's thesis is still unproven until a hard-endpoint
-> human trial says otherwise. Grade the output, not the letterhead.
+> From the Labs section. **An institution's prestige is provenance, not evidence.** A famous lab's
+> mouse result is still mouse-tier; a well-funded company's thesis is still unproven until a
+> hard-endpoint human trial says otherwise. Grade the output, not the letterhead.
 
 ### 6.1 Academic / nonprofit benches
 | Org | Watch for | Honest note |
@@ -395,7 +413,7 @@ funding-tier signals ≠ outcome-tier proof.** One positive wedge: **Loyal's** c
 |---|---|---|
 | **NIA (NIH)** | ITP, BLSA, CALERIE, Dog Aging | ~$4.5B/yr, much Alzheimer's-earmarked; runs the gold-standard filters |
 | **Hevolution Foundation** | Up to ~$1B/yr healthspan pledge | Reshaping global funding |
-| **SENS RF / LEV Foundation** | Damage-repair / Robust Mouse Rejuvenation | The `frontier-contested` engineering paradigm (de Grey) |
+| **SENS RF / LEV Foundation** | Damage-repair / Robust Mouse Rejuvenation | The frontier/contested engineering paradigm (de Grey) |
 | **Impetus / Astera / Methuselah** | Fast grants, FROs, prizes | Lower the activation energy for frontier work |
 
 **The funding fault line** (worth understanding as a reader): mainstream **geroscience** (slow the rate
@@ -421,32 +439,55 @@ believes silently shapes everything they tell you.
 B: Attia *Outlive* → I: Ramakrishnan *Why We Die* (de-hype) → A: Hallmarks 2023 ([10.1016/j.cell.2022.11.001](https://doi.org/10.1016/j.cell.2022.11.001)) + every Section-3 "Hype" conflict.
 
 **Exercise & fitness (highest ROI — start here)**
-B: Lieberman *Exercised* → I: Galpin *Unplugged* / Galpin podcast → A: Mandsager CRF ([10.1001/jamanetworkopen.2018.3605](https://doi.org/10.1001/jamanetworkopen.2018.3605)) + Momma strength ([10.1136/bjsports-2021-105061](https://doi.org/10.1136/bjsports-2021-105061)); open Q: `conflict-zone2-optimal-mito`.
+B: Lieberman *Exercised* → I: Galpin *Unplugged* / Galpin podcast → A: Mandsager CRF ([10.1001/jamanetworkopen.2018.3605](https://doi.org/10.1001/jamanetworkopen.2018.3605)) + Momma strength ([10.1136/bjsports-2021-105061](https://doi.org/10.1136/bjsports-2021-105061)); open question: is Zone 2 uniquely optimal for mitochondria?[^c-zone2]
 
 **Strength / movement / back**
-B: McGill *Back Mechanic* + Starrett *Built to Move* → I: Schoenfeld hypertrophy text → A: Leong grip-strength ([10.1016/S0140-6736(14)62000-6](https://doi.org/10.1016/S0140-6736(14)62000-6)); open Q: cold-after-lifting (`conflict-cold-after-resistance`).
+B: McGill *Back Mechanic* + Starrett *Built to Move* → I: Schoenfeld hypertrophy text → A: Leong grip-strength ([10.1016/S0140-6736(14)62000-6](https://doi.org/10.1016/S0140-6736(14)62000-6)); open question: cold-after-lifting.[^c-coldlift]
 
 **Nutrition**
-B: Pollan *In Defense of Food* → I: Spector *Spoon-Fed* (with COI noted) → A: PREDIMED ([10.1056/NEJMoa1800389](https://doi.org/10.1056/NEJMoa1800389)) + Mozaffarian PUFA ([10.1371/journal.pmed.1000252](https://doi.org/10.1371/journal.pmed.1000252)); open Q: `conflict-protein-mtor-longevity`, `conflict-seed-oils-linoleic-acid`.
+B: Pollan *In Defense of Food* → I: Spector *Spoon-Fed* (with COI noted) → A: PREDIMED ([10.1056/NEJMoa1800389](https://doi.org/10.1056/NEJMoa1800389)) + Mozaffarian PUFA ([10.1371/journal.pmed.1000252](https://doi.org/10.1371/journal.pmed.1000252)); open questions: protein/mTOR and seed oils.[^c-protein][^c-seedoil]
 
 **Sleep**
-B: Walker *Why We Sleep* (**with Guzey's critique open in another tab**) → I: Panda *Circadian Code* → A: Cappuccio U-shape ([10.1093/sleep/33.5.585](https://doi.org/10.1093/sleep/33.5.585)); open Q: `conflict-sleep-duration-causality`.
+B: Walker *Why We Sleep* (**with Guzey's critique open in another tab**) → I: Panda *Circadian Code* → A: Cappuccio U-shape ([10.1093/sleep/33.5.585](https://doi.org/10.1093/sleep/33.5.585)); open question: sleep-duration causality.[^c-sleepcause]
 
 **Breath**
-B: Nestor *Breath* → I: McKeown *Oxygen Advantage* → A: Balban cyclic-sighing RCT ([10.1016/j.xcrm.2022.100895](https://doi.org/10.1016/j.xcrm.2022.100895)); open Q: `conflict-wim-hof-mechanism`.
+B: Nestor *Breath* → I: McKeown *Oxygen Advantage* → A: Balban cyclic-sighing RCT ([10.1016/j.xcrm.2022.100895](https://doi.org/10.1016/j.xcrm.2022.100895)); open question: the Wim Hof mechanism.[^c-wimhof]
 
 **Thermal (sauna/cold)**
-B: Rhonda Patrick's sauna content → I: Laukkanen & Kunutsor review ([10.1016/j.mayocp.2018.04.008](https://doi.org/10.1016/j.mayocp.2018.04.008)) → A: KIHD cohort ([10.1001/jamainternmed.2014.8187](https://doi.org/10.1001/jamainternmed.2014.8187)); open Q: `conflict-sauna-healthy-user`, `conflict-infrared-vs-traditional-sauna`.
+B: Rhonda Patrick's sauna content → I: Laukkanen & Kunutsor review ([10.1016/j.mayocp.2018.04.008](https://doi.org/10.1016/j.mayocp.2018.04.008)) → A: KIHD cohort ([10.1001/jamainternmed.2014.8187](https://doi.org/10.1001/jamainternmed.2014.8187)); open questions: sauna healthy-user bias and infrared vs traditional.[^c-sauna][^c-infrared]
 
 **Biomarkers (measure the right things)**
-B: Attia's lipid chapters → I: Sniderman apoB review ([10.1001/jamacardio.2019.3780](https://doi.org/10.1001/jamacardio.2019.3780)) → A: Ference EAS causal statement ([10.1093/eurheartj/ehx144](https://doi.org/10.1093/eurheartj/ehx144)); open Q: `conflict-which-clock-is-valid`, `conflict-cgm-healthy-utility`.
+B: Attia's lipid chapters → I: Sniderman apoB review ([10.1001/jamacardio.2019.3780](https://doi.org/10.1001/jamacardio.2019.3780)) → A: Ference EAS causal statement ([10.1093/eurheartj/ehx144](https://doi.org/10.1093/eurheartj/ehx144)); open questions: which clock is valid, and CGM utility in the healthy.[^c-clock][^c-cgm]
 
 **The foundation (for the genius-work reader)**
-B: Nick Lane *The Vital Question* → I: Lane *Transformer* → A: Mitchell's chemiosmotic theory + `00-map/CANON-BRIDGE-PROPOSAL.md`; open Q: `conflict-mtdna-mutation-causality` (a live biophysics-canon question).
+B: Nick Lane *The Vital Question* → I: Lane *Transformer* → A: Mitchell's chemiosmotic theory + the canon-bridge proposal; open question: mtDNA-mutation causality[^c-mtdna] (a live biophysics-canon question).
 
----
-
-*Compiled by Nucleus for Bucket Foundation. Every DOI resolves to a graded claim in
-`02-domains/*-claims.json`; every "contested" tag resolves to a conflict object in
-`06-evidence/CONFLICTS-REGISTER.md`; every person resolves to a card in `01-people/figures.json`. This
-library converges on re-runs — new sources enter with a tier and a caveat, never an endorsement.*
+[^c-protein]: Conflicts register — conflict: protein-mtor-longevity (open).
+[^c-resveratrol]: Conflicts register — conflict: resveratrol-sirtuin.
+[^c-nad]: Conflicts register — conflict: nad-precursor-efficacy (open).
+[^c-tre]: Conflicts register — conflict: tre-efficacy-vs-cr.
+[^c-seedoil]: Conflicts register — conflict: seed-oils-linoleic-acid.
+[^c-walker]: Conflicts register — conflict: walker-sleep-claims (partially resolved).
+[^c-bluezones]: Conflicts register — conflict: blue-zones-data-quality.
+[^c-metformin]: Conflicts register — conflict: metformin-geroprotection.
+[^c-clock]: Conflicts register — conflict: which-clock-is-valid (open).
+[^c-zone2]: Conflicts register — conflict: zone2-optimal-mito (open).
+[^c-sauna]: Conflicts register — conflict: sauna-healthy-user (open).
+[^c-mtdna]: Conflicts register — conflict: mtdna-mutation-causality (open).
+[^c-sleepcause]: Conflicts register — conflict: sleep-duration-causality (open).
+[^c-infrared]: Conflicts register — conflict: infrared-vs-traditional-sauna (open).
+[^c-crprimate]: Conflicts register — conflict: cr-primate-survival.
+[^c-microbiome]: Conflicts register — conflict: microbiome-cause-or-consequence (open).
+[^c-freeradical]: Conflicts register — conflict: free-radical-theory (mostly resolved against the naive version).
+[^c-coldlift]: Conflicts register — conflict: cold-after-resistance.
+[^c-wimhof]: Conflicts register — conflict: wim-hof-mechanism.
+[^c-cgm]: Conflicts register — conflict: cgm-healthy-utility.
+[^cl-senolytics]: Graded claim: senolytics-extend-function-mouse (animal tier).
+[^cl-sleepushape]: Graded claim: sleep-duration-mortality-ushape.
+[^cl-buteyko]: Graded claim: buteyko-asthma-symptoms-rct.
+[^cl-pufa]: Graded claim: pufa-replacement-reduces-chd-meta (meta tier).
+[^cl-omega6]: Graded claim: omega6-cochrane-little-or-no-effect (Cochrane null).
+[^cl-social]: Graded claim: social-relationships-mortality-meta.
+[^cl-bzcritique]: Graded claim: blue-zones-data-quality-critique.
+[^cl-whi]: Graded claim: whi-age-dependent-riskbenefit.
+[^cl-elite]: Graded claim: estrogen-timing-elite.

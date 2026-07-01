@@ -1,18 +1,30 @@
 # 44 — Exercise Modalities & Training Styles
 
-> **Status:** v0.1 — 2026-06-29. The **menu**, not the principles. Section 02 (`02-training.md`) is the
-> *grammar* of training — the four trainable **capacities** (CRF, strength, mobility, balance), the **five
-> strength patterns** (squat, hinge, push, pull, carry), Zone 2 / VO₂max, programming, and the
-> regression→standard→progression ladder. This section is the *vocabulary*: the actual **tools and styles** a
-> human can pick up — barbells, kettlebells, calisthenics, running, swimming, CrossFit, Pilates, tai chi,
-> rucking — mapped honestly onto those capacities and graded by evidence tier.
-> **Companion data:** `02-domains/exercise-modalities-claims.json` (this section's graded claims).
-> Cross-references **Section 02** (`02-training.md` — the capacities/patterns/programming this section maps
-> onto; never re-derived here), **Section 04** (`04-individual-variation.md` — scaling each modality to your
-> build, sex, age, and limitations), **Section 21** (`21-pain-injury-rehab.md` — the injury/rehab counterpart),
-> and **Section 29** (`29-behavior-change.md` — why adherence, not optimality, picks the winning modality).
+The best modality is the one you'll keep doing. The measured differences between sensible training styles are
+small next to the gap between doing one consistently and quitting the "optimal" one — the steepest drop in
+every mortality curve is the single step from sedentary to *something*.[^dose-response] So this chapter grades
+the tools honestly, then hands you back the only variable that decides whether any of it works over a lifetime:
+adherence.
+
+This chapter is the **menu** — the actual tools and styles a human can pick up (barbells, kettlebells,
+calisthenics, running, swimming, CrossFit, Pilates, tai chi, rucking), mapped onto the four trainable
+capacities and graded by evidence. The **grammar** of training — the capacities themselves, the five strength
+patterns, Zone 2 / VO₂max, programming — lives in Section 02.
+
+_Not medical advice. Injury and rehab: §21; scaling to your body: §04._
+
+> **If you only read one box — pick 3.**
+> Don't collect modalities. Cover the capacities with three tools you'll actually use:
+> 1. **One strength tool** you'll do twice a week — barbell, dumbbells, machines, kettlebells, or bodyweight.
+>    (They're near-equivalent for the strength capacity; pick by access and joint comfort.)
+> 2. **One cardio tool** you'll do most days — walking is the floor; running, cycling, swimming, or rowing if
+>    you want more. (The low-impact ones spare the joints and interfere least with lifting.)
+> 3. **One thing that's fun** — a sport, dancing, a class, rucking, tai chi. This is the adherence multiplier,
+>    and it usually carries a bonus (balance, bone loading, or a social/cognitive hit).
 >
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." The load-bearing meta-point here: the differences between sensible modalities are small next to the difference between doing one and doing none (`physical-activity-dose-response-mortality`) — the best modality is the one you'll keep doing.*
+> Walk daily, lift twice a week, add one joyful thing. That clears most of the available benefit — and because
+> it's sustainable, you'll still be doing it in a decade, which is the only timescale that matters. The full
+> reasoning is §11; the tool-by-tool detail is everything in between.
 
 ---
 
@@ -29,8 +41,8 @@ the specific tools are chosen by fit, access, enjoyment, and joints — not by i
 
 | Tag | Capacity | One-line meaning |
 |---|---|---|
-| **CRF** | Cardiorespiratory fitness (VO₂max, aerobic base) | The engine — the single strongest longevity association (`crf-vo2max-strongest-mortality-predictor`) |
-| **STR** | Maximal strength | Force production across the five patterns; defines sarcopenia (`sarcopenia-strength-defining-ewgsop2`) |
+| **CRF** | Cardiorespiratory fitness (VO₂max — a fitness/aerobic-capacity score) | The engine — the single strongest longevity association[^crf-vo2max] |
+| **STR** | Maximal strength | Force production across the five patterns; defines sarcopenia (age-related muscle loss)[^sarcopenia-def] |
 | **PWR** | Power / explosiveness | Force × *speed*; declines fastest with age; the lever for falls/function (Section 04 §4.3) |
 | **MOB** | Mobility / flexibility | Active, controlled range of motion at each joint (weakest longevity evidence — train for function) |
 | **COO** | Coordination / balance / skill | Postural control, motor learning, reactive stability; balance tests are validated mortality biomarkers |
@@ -57,16 +69,16 @@ the highest-ceiling tools for the **strength** and **power** capacities.
 | Field | Verdict |
 |---|---|
 | **Trains** | **STR** (primary), **PWR** (secondary, esp. with speed/triples), some **COO** (bracing, bar path) |
-| **Benefits** | The highest **load ceiling** of any tool — a barbell loads in 1.25 kg increments to hundreds of kg, so **progressive overload** (Section 02 §6.3) is clean, measurable, and effectively unlimited. Directly builds the strength capacity that defines sarcopenia and the **bone-loading** signal that defends BMD (LIFTMOR, Section 04 §3.3). The three lifts cover squat, hinge, and horizontal push; rows/overhead press finish the patterns. |
+| **Benefits** | The highest **load ceiling** of any tool — a barbell loads in 1.25 kg increments to hundreds of kg, so **progressive overload** (Section 02 §6.3) is clean, measurable, and effectively unlimited. Directly builds the strength capacity that defines sarcopenia and the **bone-loading** signal (osteogenic — the mechanical stimulus that builds bone) that defends BMD (bone mineral density) (LIFTMOR, Section 04 §3.3). The three lifts cover squat, hinge, and horizontal push; rows/overhead press finish the patterns. |
 | **Risk / injury** | Moderate, and **technique-dependent**. The deadlift and squat punish a rounded lumbar spine under load (Section 02 §2.2, Section 21 §4); most barbell injuries are load-management failures (too much, too soon) or form breakdown under fatigue, not the barbell itself. Competitive powerlifting injury rates are actually **low** (~1–4 injuries per 1000 hours) — comparable to or below most sports — *because* the movements are slow and grooved. |
 | **Learning curve** | **High.** The squat/bench/deadlift are genuine motor skills; expect weeks of coaching to groove. This is the main cost. |
 | **Equipment** | Barbell, plates, rack, bench, a floor that tolerates loading. Gym or a home setup. |
 | **Best for** | Anyone whose goal is maximal strength, measurable progression, and bone density; intermediate-to-advanced trainees; people who like numbers going up. Beginners *can* start here **with coaching** — or start with the goblet/RDL standards (Section 02 §2) and graduate to the bar. |
-| **Honest evidence** | Strength → mortality is `cohort`/`meta` and **J-shaped** (`resistance-training-mortality-meta`, ~30–60 min/wk sweet spot — more is not better for the mortality endpoint). The barbell is the best *tool* for the strength capacity; it is not a magic longevity object — the capacity is what matters, the barbell is one efficient way to load it. |
+| **Honest evidence** | Strength → mortality is cohort/meta-tier and **J-shaped** (a little is protective; a lot stops adding benefit),[^resistance-meta] with a ~30–60 min/wk sweet spot — more is not better for the mortality endpoint. The barbell is the best *tool* for the strength capacity; it is not a magic longevity object — the capacity is what matters, the barbell is one efficient way to load it. |
 
-> **Powerlifting vs. general strength:** *competitive* powerlifting (maximizing a 1RM total) is a sport with
+> **Powerlifting vs. general strength:** *competitive* powerlifting (maximizing a 1RM total — your one-rep max) is a sport with
 > its own demands; you do **not** need to compete, peak, or grind singles to get the health benefit. Sets of
-> 5–10 at 1–3 reps in reserve (Section 02 §6.2) deliver nearly all of the strength-and-bone benefit at a
+> 5–10 at 1–3 reps in reserve (how many more reps you could have done — Section 02 §6.2) deliver nearly all of the strength-and-bone benefit at a
 > fraction of the technical and recovery cost.
 
 ### 2.2 Dumbbells
@@ -79,7 +91,7 @@ the highest-ceiling tools for the **strength** and **power** capacities.
 | **Learning curve** | **Low–moderate.** More intuitive than the barbell; less coaching needed. |
 | **Equipment** | A pair (or adjustable pair) of dumbbells. Minimal footprint. |
 | **Best for** | Beginners, home gyms, hypertrophy work, anyone correcting asymmetry or training around a cranky shoulder/back; an excellent *primary* tool, not just an accessory. |
-| **Honest evidence** | Same `resistance-training-mortality-meta` umbrella — it's a strength-capacity tool. Dumbbell vs barbell hypertrophy/strength outcomes are **near-equivalent** when load and effort are equated; pick by access and joint comfort, not by a claimed superiority of either. |
+| **Honest evidence** | Same strength-capacity evidence umbrella as the barbell (§2.1). Dumbbell vs barbell hypertrophy/strength outcomes are **near-equivalent** when load and effort are equated; pick by access and joint comfort, not by a claimed superiority of either. |
 
 ### 2.3 Kettlebells (swings · Turkish get-ups · cleans · snatches)
 
@@ -94,7 +106,7 @@ implement, which is exactly why it is over-claimed.
 | **Learning curve** | **Moderate.** The swing's *concept* (hip drive, not arm raise) takes deliberate coaching; the get-up is genuinely complex and worth breaking into segments. |
 | **Equipment** | One or two kettlebells. Very low footprint, home-friendly. |
 | **Best for** | People who want power + conditioning + grip in minimal time and space; intermediate trainees; older adults (under supervision — see the honest evidence); anyone bored by slow grinding lifts who needs the dose to be *fun* (adherence, §11). |
-| **Honest evidence** | Better than the internet's skepticism implies, but modest-tier. The **BELL pragmatic controlled trial** (Meigh et al. 2022, `kettlebell-bell-trial-older`) put insufficiently-active 59–79-year-olds through 3 months of supervised hardstyle kettlebell training and saw **meaningful gains in grip strength (~+7 kg), 6-minute walk distance, sit-to-stand, 1RM deadlift, and lean mass, with only minor adverse events** — a clean signal that it's safe and effective for older adults *when coached*. Earlier work showed kettlebell training **transfers to strength, power, and aerobic capacity** (Lake & Lauder; Manocchia 2013, `kettlebell-transfer`) — though, predictably, dedicated heavy lifting builds maximal strength faster and dedicated running builds VO₂max faster. **The honest read:** the kettlebell is an excellent *generalist* and *power/conditioning* tool, not a *specialist* — it does several things well and nothing best, which is precisely its value for time-poor general trainees. |
+| **Honest evidence** | Better than the internet's skepticism implies, but modest-tier. The **BELL pragmatic controlled trial** (Meigh et al. 2022) put insufficiently-active 59–79-year-olds through 3 months of supervised hardstyle kettlebell training and saw **meaningful gains in grip strength (~+7 kg), 6-minute walk distance, sit-to-stand, 1RM deadlift, and lean mass, with only minor adverse events** — a clean signal that it's safe and effective for older adults *when coached*.[^bell-trial] Earlier work showed kettlebell training **transfers to strength, power, and aerobic capacity** (Lake & Lauder; Manocchia 2013) — though, predictably, dedicated heavy lifting builds maximal strength faster and dedicated running builds VO₂max faster.[^kb-transfer] **The honest read:** the kettlebell is an excellent *generalist* and *power/conditioning* tool, not a *specialist* — it does several things well and nothing best, which is precisely its value for time-poor general trainees. |
 
 ### 2.4 Olympic weightlifting (snatch · clean & jerk)
 
@@ -124,7 +136,7 @@ with a floor and a bar to hang from.
 | **Learning curve** | **Low to very high** — depending on the rung. A wall push-up is trivial; a one-arm pull-up or planche is a multi-year skill. This *range* is the appeal: a true lifelong progression. |
 | **Equipment** | A pull-up bar (the one near-essential, for the pull pattern), optionally rings/parallettes/a sturdy table. The cheapest serious strength tool there is. |
 | **Best for** | Beginners, travelers, home trainees, anyone without gym access, people who enjoy skill acquisition, and anyone who wants strength that travels. The honest **"you don't need a gym to get strong"** answer. |
-| **Honest evidence** | It's a strength-capacity modality — same `resistance-training-mortality-meta` umbrella. The one genuine *limitation*: progressing **lower-body** strength past bodyweight is awkward (pistols and shrimp squats get hard to load further), and the pure **hinge** is under-served without external load — so a serious bodyweight trainee eventually wants a backpack, bands, or a kettlebell for the hinge/squat. For upper-body relative strength and overall function, bodyweight alone is sufficient for most people indefinitely. |
+| **Honest evidence** | It's a strength-capacity modality — same evidence umbrella as the barbell (§2.1). The one genuine *limitation*: progressing **lower-body** strength past bodyweight is awkward (pistols and shrimp squats get hard to load further), and the pure **hinge** is under-served without external load — so a serious bodyweight trainee eventually wants a backpack, bands, or a kettlebell for the hinge/squat. For upper-body relative strength and overall function, bodyweight alone is sufficient for most people indefinitely. |
 
 > **The honest "no gym" claim, stated precisely:** you can build and maintain genuinely high strength and
 > function with bodyweight + a pull-up bar + a way to load the hinge (a heavy backpack works). What you can't
@@ -173,17 +185,17 @@ the *vehicles*.
 | Field | Verdict |
 |---|---|
 | **Trains** | **CRF** (primary), some **STR**/bone (impact loads the legs and skeleton), minimal **COO** |
-| **Benefits** | The most accessible high-dose CRF tool on Earth — needs only shoes and a door. **Weight-bearing impact** loads the skeleton (a bone benefit cycling and swimming lack). Strong, well-replicated longevity association: **even 5–10 minutes/day of slow running is associated with ~30% lower all-cause and ~45% lower cardiovascular mortality**, with a ~3-year life-expectancy benefit and **no extra benefit required from running more** (Lee et al. 2014, `running-mortality-lee`). |
+| **Benefits** | The most accessible high-dose CRF tool on Earth — needs only shoes and a door. **Weight-bearing impact** loads the skeleton (a bone benefit cycling and swimming lack). Strong, well-replicated longevity association: **even 5–10 minutes/day of slow running is associated with ~30% lower all-cause and ~45% lower cardiovascular mortality**, with a ~3-year life-expectancy benefit and **no extra benefit required from running more** (Lee et al. 2014).[^running-lee] |
 | **Risk / injury** | **Moderate, and almost always a load-management failure** (too much mileage too soon — Section 21 §7.2), not an inherent flaw of running. Common: runner's knee, shin splints, Achilles/plantar issues — overuse, responsive to gradual progression and strength work. |
 | **Learning curve** | **Low** (everyone can jog) — though running *well* and building mileage safely takes patience. |
 | **Equipment** | Shoes. That's it. |
 | **Best for** | People who want cheap, portable, high-dose CRF and bone loading; those who enjoy being outdoors; anyone time-pressed (the dose-efficiency is excellent). |
-| **Honest evidence** | The Lee 2014 cohort is robust and dose-flat (slow and brief is enough). Note the honest nuance: in the 80,306-adult British cohort (Oja et al. 2017, `swimming-mortality-oja`), **running's mortality association was *not* statistically significant** while swimming/racquet sports/aerobics were — a reminder that self-selected sport cohorts disagree and that *who runs* confounds the estimate. Across the literature the direction for running is positive (Lavie et al., "Running as a key lifestyle medicine for longevity," 2017, `running-longevity-review`); the magnitude is uncertain. |
+| **Honest evidence** | The Lee 2014 cohort is robust and dose-flat (slow and brief is enough). Note the honest nuance: in the 80,306-adult British cohort (Oja et al. 2017), **running's mortality association was *not* statistically significant** while swimming/racquet sports/aerobics were — a reminder that self-selected sport cohorts disagree and that *who runs* confounds the estimate.[^oja] Across the literature the direction for running is positive (Lavie et al., "Running as a key lifestyle medicine for longevity," 2017); the magnitude is uncertain.[^running-review] |
 
 > **Honest debunk — "running destroys your knees."** This is **backwards for recreational runners.** The
-> JOSPT meta-analysis (Alentorn-Geli et al. 2017, `running-knee-oa-recreational`, 125,810 people) found hip/knee
+> JOSPT meta-analysis (Alentorn-Geli et al. 2017, 125,810 people) found hip/knee
 > osteoarthritis prevalence of **3.5% in recreational runners vs. 10.2% in sedentary controls vs. 13.3% in
-> elite/competitive runners.** Recreational running is associated with *lower* OA than not running; the risk
+> elite/competitive runners.**[^running-knee] Recreational running is associated with *lower* OA than not running; the risk
 > rises only at **elite/high-volume/high-intensity** exposure (and even there, confounded by injury history).
 > Cartilage imaging studies show running does **not** cause lasting cartilage degradation in healthy knees —
 > if anything, moderate loading keeps cartilage healthy (joints need load — Section 21 §6.1). The "wear and
@@ -198,7 +210,7 @@ the *vehicles*.
 | Field | Verdict |
 |---|---|
 | **Trains** | **CRF** (primary), **STR**-endurance of the quads, minimal **COO** (outdoor) / none (stationary) |
-| **Benefits** | **Low-impact** — spares the joints, so you can accumulate huge **Zone 2 volume** comfortably (Section 02 §3.1) and it **interferes least with strength training** (Section 02 §6.6 — far less eccentric muscle damage than running). Scales from gentle to brutal (intervals). Outdoor cycling adds transport utility and time outdoors; stationary/indoor removes traffic risk and weather. Cycling showed a significant all-cause mortality association (HR ~0.85) in Oja 2017 (`swimming-mortality-oja`). |
+| **Benefits** | **Low-impact** — spares the joints, so you can accumulate huge **Zone 2 volume** comfortably (Section 02 §3.1) and it **interferes least with strength training** (Section 02 §6.6 — far less eccentric muscle damage than running). Scales from gentle to brutal (intervals). Outdoor cycling adds transport utility and time outdoors; stationary/indoor removes traffic risk and weather. Cycling showed a significant all-cause mortality association (a hazard ratio ~0.85 — roughly a 15% lower death rate) in Oja 2017. |
 | **Risk / injury** | **Low** for the exercise itself (low-impact, low overuse); the real risk outdoors is **traffic/crash trauma**, not the pedaling. Minimal bone-loading benefit (not weight-bearing). |
 | **Learning curve** | **Low.** |
 | **Equipment** | A bike (road/indoor trainer/stationary/spin). Higher cost than shoes; broad range. |
@@ -210,7 +222,7 @@ the *vehicles*.
 | Field | Verdict |
 |---|---|
 | **Trains** | **CRF** (primary), **STR**-endurance (full-body, upper-body-biased), **MOB** (shoulders/hips), **COO** (stroke is a real skill) |
-| **Benefits** | **Full-body and the lowest-impact serious cardio there is** — the water unloads the joints and spine almost entirely, making it the premier option for the overweight, arthritic, pregnant, or injured. Trains the upper body aerobically (rare among cardio). One of the **strongest sport-specific mortality associations** in the cohort data: swimmers had **~28% lower all-cause and ~41% lower cardiovascular mortality** (Oja et al. 2017, `swimming-mortality-oja`). |
+| **Benefits** | **Full-body and the lowest-impact serious cardio there is** — the water unloads the joints and spine almost entirely, making it the premier option for the overweight, arthritic, pregnant, or injured. Trains the upper body aerobically (rare among cardio). One of the **strongest sport-specific mortality associations** in the cohort data: swimmers had **~28% lower all-cause and ~41% lower cardiovascular mortality** (Oja et al. 2017). |
 | **Risk / injury** | **Very low** musculoskeletal risk (no impact); shoulder overuse ("swimmer's shoulder") at high volume is the main one. The non-trivial risk is **drowning** if skills are poor — a competence, not an exercise-physiology, issue. No bone-loading benefit (water unloads the skeleton). |
 | **Learning curve** | **Moderate–high.** Efficient stroke is a genuine skill; poor technique makes it exhausting fast and caps the dose. This is the real barrier. |
 | **Equipment** | Pool access (the limiting factor) + goggles. |
@@ -275,7 +287,7 @@ time-efficiency*. A reasonable trade for general health, a poor one for maximizi
 **What it is:** High-Intensity Interval Training — short bursts of near-max effort with brief recovery (Section
 02 §3.2 covers the VO₂max-building rationale and the 4×4 / 30-15 templates). **Tabata** specifically = 20 s
 all-out / 10 s rest × 8 (4 minutes) — a brutal, *very* specific protocol that is widely misused as a generic
-label for "any hard intervals." **Trains:** CRF (raises VO₂max efficiently — `hiit-crf-cardiometabolic-meta`),
+label for "any hard intervals." **Trains:** CRF (raises VO₂max efficiently[^hiit-meta]),
 some PWR/STR-endurance depending on the exercise. **Risk:** moderate — the high intensity carries a real
 **recovery cost** and is where over-eager trainees blow up (Section 02 §3.2: 1–2 hard sessions/week is plenty).
 **Learning curve:** low (effort, not skill) — though pacing the effort is a skill. **Best for:** the
@@ -292,8 +304,8 @@ The most polarizing modality in fitness, and one that deserves an honest both-si
 |---|---|
 | **Trains** | **Everything, broadly** — CRF, STR, PWR, COO, some MOB — by design ("constantly varied functional movements at high intensity"). Breadth is the explicit goal. |
 | **Honest pros** | **(1) Community/accountability** — the box/class model and social structure drive **adherence** better than almost any solo modality (and adherence is the whole game, §11). **(2) Intensity** — it reliably gets people genuinely hard-working, which many self-directed trainees never reach. **(3) Variety + measurement** — covers all capacities and scores workouts, which motivates. It produces broadly fit generalists and has gotten a huge number of sedentary people training hard. |
-| **Honest cons** | **(1) Form under fatigue** — the signature risk: high-skill movements (Olympic lifts, kipping pull-ups, high-rep barbell) performed **for time, to exhaustion**, is the exact recipe for technique breakdown and injury (Section 21 §7.2). **(2) The "Rx vs scale" culture** can push people to load/speed beyond their current rung (Section 02 §2 — climb ladders, don't skip them). **(3) Coaching quality varies wildly** box-to-box — the single biggest determinant of whether it's safe. |
-| **Injury evidence** | Honestly **middle-of-the-pack, not the bloodbath critics claim.** Systematic reviews put CrossFit injury rates at roughly **~0.2–3.3 injuries per 1000 training hours** (`crossfit-injury-rate`, Klimek et al. 2018 / 2022 reviews) — **comparable to other recreational/strength sports** like running, gymnastics, or weightlifting, *not* dramatically higher. **Shoulders, spine, and knees** are the most-injured sites (the high-skill, overhead, and fatigued-barbell movements). Risk is **modifiable** by coaching quality, scaling appropriately, and not chasing the clock past your skill. |
+| **Honest cons** | **(1) Form under fatigue** — the signature risk: high-skill movements (Olympic lifts, kipping pull-ups, high-rep barbell) performed **for time, to exhaustion**, is the exact recipe for technique breakdown and injury (Section 21 §7.2). **(2) The "Rx vs scale" culture** — "Rx" is the prescribed weight and reps as written, "scaling" is a lighter version — can push people to load/speed beyond their current rung (Section 02 §2 — climb ladders, don't skip them). **(3) Coaching quality varies wildly** box-to-box — the single biggest determinant of whether it's safe. |
+| **Injury evidence** | Honestly **middle-of-the-pack, not the bloodbath critics claim.** Systematic reviews put CrossFit injury rates at roughly **~0.2–3.3 injuries per 1000 training hours** (Klimek et al. 2018 / 2022 reviews) — **comparable to other recreational/strength sports** like running, gymnastics, or weightlifting, *not* dramatically higher.[^crossfit-injury] **Shoulders, spine, and knees** are the most-injured sites (the high-skill, overhead, and fatigued-barbell movements). Risk is **modifiable** by coaching quality, scaling appropriately, and not chasing the clock past your skill. |
 | **Best for** | People who thrive on community and competition, want broad fitness, and will scale honestly; those who *won't* train hard alone. **Not** for people who can't resist ego-loading, or who need careful individualization (a serious back/shoulder issue) without an attentive coach. |
 | **Honest evidence** | Effective broad-fitness builder with a real adherence advantage and a real fatigue-form risk; injury rate is comparable to peer sports, not exceptional. The verdict is **"it depends on the coaching and your discipline,"** which is unsatisfying but true. The *capacities* it trains are all legitimate; the *delivery* is high-variance. |
 
@@ -333,7 +345,7 @@ by contrast, *does* have validated mortality biomarkers (Section 02 §5).
 | **Learning curve** | **Low–moderate.** |
 | **Equipment** | None (mat) to a reformer (studio). |
 | **Best for** | Core/control focus, low-impact trainees, rehab-adjacent populations, people who like precise movement; a good *complement* to strength/cardio, not a replacement. |
-| **Honest evidence** | For **chronic low back pain**, Pilates **works — about as well as other exercise types, not better** (network meta-analyses, e.g. JOSPT 2022 and Disabil Rehabil 2023, `pilates-lbp-equivalent`): the honest finding across the LBP literature is that **no single exercise modality is clearly superior; adherence beats modality** (Section 21 §2.3). Pilates does not "lengthen muscles," "realign the spine," or burn major calories — those are marketing. It builds real core endurance and control, which is genuinely useful. Grade: useful, evidence-backed for core/LBP, **not** uniquely superior. |
+| **Honest evidence** | For **chronic low back pain**, Pilates **works — about as well as other exercise types, not better** (network meta-analyses, e.g. JOSPT 2022 and Disabil Rehabil 2023): the honest finding across the LBP literature is that **no single exercise modality is clearly superior; adherence beats modality** (Section 21 §2.3).[^pilates-lbp] Pilates does not "lengthen muscles," "realign the spine," or burn major calories — those are marketing. It builds real core endurance and control, which is useful. Grade: useful, evidence-backed for core/LBP, **not** uniquely superior. |
 
 ### 7.2 Yoga
 
@@ -357,7 +369,7 @@ calm), not for inflated "detox/realignment" claims. Full lineage/evidence treatm
 | **Learning curve** | **Moderate** (learning the forms) but each piece is gentle. |
 | **Equipment** | None. |
 | **Best for** | **Older adults and anyone at fall risk** — this is the clearest who-it's-for in the chapter. Also stress regulation and gentle movement for any age. |
-| **Honest evidence** | **The strongest evidence in this mobility/mind-body section by a clear margin.** Multiple systematic reviews and meta-analyses of RCTs show **tai chi reduces falls and improves balance in older adults** (`taichi-falls-meta`, e.g. Front Public Health 2023; and a landmark RCT, Li et al. 2018, *JAMA Intern Med*, found a therapeutic tai chi program *outperformed* conventional multimodal and stretching exercise for fall reduction in high-risk older adults). This is `meta`/`rct`-tier — well above the mechanism/anecdotal grade most "mobility" modalities carry. **If an older adult does one mind-body modality for fall prevention, the evidence points to tai chi.** |
+| **Honest evidence** | **The strongest evidence in this mobility/mind-body section by a clear margin.** Multiple systematic reviews and meta-analyses of RCTs show **tai chi reduces falls and improves balance in older adults** (e.g. Front Public Health 2023; and a landmark RCT, Li et al. 2018, *JAMA Intern Med*, found a therapeutic tai chi program *outperformed* conventional multimodal and stretching exercise for fall reduction in high-risk older adults).[^taichi-falls] This is meta/RCT-tier — well above the mechanism/anecdotal grade most "mobility" modalities carry. **If an older adult does one mind-body modality for fall prevention, the evidence points to tai chi.** |
 
 @@FIG:L03-taichi-falls@@
 
@@ -386,7 +398,7 @@ are well-constructed; the *outcome* claims should stay modest.
 Covered in depth in Section 02 §4 and Section 21 §7.3 — **cross-ref, not duplicated.** The honest one-screen:
 **static stretching** builds passive flexibility but **does not prevent injury** (Section 21 §7.3) and should go
 *after* training or in a separate session (the pre-lifting performance-deficit panic was an overcorrection —
-short holds + dynamic warm-up are fine, `conflict-static-stretch-performance`, mostly resolved). **Dynamic
+short holds + dynamic warm-up are fine[^static-stretch-conflict]). **Dynamic
 stretching/warm-up** belongs *before* training. **PNF and loaded stretching** (e.g. Jefferson curl,
 loaded end-range) are the higher-yield tools for actually *changing* range over weeks. Stretch for range as a
 goal in itself, not as an injury-prevention talisman.
@@ -396,7 +408,7 @@ goal in itself, not as an injury-prevention talisman.
 ## 8. Low-intensity / lifestyle movement
 
 The most underrated category in the whole chapter, because it carries the **something-beats-nothing** rule
-(the steepest mortality gains are sedentary → *some* — `physical-activity-dose-response-mortality`) at the
+(the steepest mortality gains are the step from sedentary → *some*) at the
 lowest cost and highest adherence.
 
 ### 8.1 Walking — the universal baseline
@@ -437,7 +449,7 @@ positive though mechanism-heavy. Excellent adherence vehicle.
 | Field | Verdict |
 |---|---|
 | **Trains** | **CRF** (varies by style), **COO/balance** (high — learning steps is real motor learning), plus a strong **cognitive + social** component |
-| **Benefits** | The rare modality that bundles **aerobic work + balance + motor-skill learning + social connection + music/joy** in one — which is exactly the combination implicated in **brain aging**. The famous finding: in the Bronx Aging Study (Verghese et al. 2003, *NEJM*, `dancing-dementia-verghese`), among leisure activities, **frequent dancing was associated with a markedly lower risk of incident dementia** — and was the *only physical* activity in that cohort with a significant association, plausibly because it couples physical exertion with continuous cognitive demand (remembering steps, partnering, rhythm). |
+| **Benefits** | The rare modality that bundles **aerobic work + balance + motor-skill learning + social connection + music/joy** in one — which is exactly the combination implicated in **brain aging**. The famous finding: in the Bronx Aging Study (Verghese et al. 2003, *NEJM*), among leisure activities, **frequent dancing was associated with a markedly lower risk of incident dementia**[^dancing-dementia] — and was the *only physical* activity in that cohort with a significant association, plausibly because it couples physical exertion with continuous cognitive demand (remembering steps, partnering, rhythm). |
 | **Risk / injury** | **Low** (style-dependent; falls/ankle in vigorous forms). |
 | **Learning curve** | **Low–high** by style — and the *learning* is part of the benefit (the cognitive load is the point). |
 | **Equipment** | None (to shoes/a partner/a class). |
@@ -448,7 +460,7 @@ positive though mechanism-heavy. Excellent adherence vehicle.
 
 **NEAT** (Non-Exercise Activity Thermogenesis) — all the movement that isn't "exercise": gardening, chores,
 fidgeting, taking stairs, standing, walking to do errands. **Trains:** low-end CRF, light STR-endurance, and
-crucially **breaks up sedentary time** (the highest-yield change — `physical-activity-dose-response-mortality`).
+crucially **breaks up sedentary time** (the highest-yield change of all).
 **Risk:** nil. **Best for:** everyone, especially those who won't do structured exercise — incidental movement
 is real movement. **Honest note:** NEAT is a large and under-appreciated share of daily energy expenditure and
 of the sedentary-vs-active mortality gap. **Gardening** specifically appears in healthy-aging and "Blue Zone"
@@ -465,59 +477,63 @@ The single-screen synthesis. **Capacity coverage:** ●●● strong / primary, 
 incidental, — none. "Evidence" is the *modality-specific outcome* tier (most inherit the general
 capacity evidence; a few carry their own cohort/RCT signal, flagged).
 
+**How to read this table:** find the capacity you're under-covering (most people under-train **strength,
+power, and balance** and over-rely on one cardio mode), then run your eye across that column and pick a tool
+you'll actually use (the "Best for" column + your access, joints, and enjoyment). You're choosing among
+equivalents — you don't need many tools.
+
 @@FIG:29-modality-matrix@@
 
 | Modality | CRF | STR | PWR | MOB | COO/Bal | Impact/Bone | Skill | Risk | Best for | Modality-specific evidence |
 |---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|---|
-| **Barbell / powerlifting** | ● | ●●● | ●● | ● | ●● | ●●● | High | Mod | Max strength, bone, measurable progression | inherits `resistance-training-mortality-meta` (J-shaped) |
+| **Barbell / powerlifting** | ● | ●●● | ●● | ● | ●● | ●●● | High | Mod | Max strength, bone, measurable progression | inherits resistance evidence (J-shaped) |
 | **Dumbbells** | ● | ●●● | ●● | ●● | ●● | ●● | Low-Mod | Low-Mod | Beginners, home, asymmetry, hypertrophy | inherits resistance evidence |
-| **Kettlebells** | ●● | ●● | ●●● | ●● | ●● | ●● | Mod | Mod | Power+conditioning+grip in min. space/time | `kettlebell-bell-trial-older` (controlled, older adults) |
+| **Kettlebells** | ●● | ●● | ●●● | ●● | ●● | ●● | Mod | Mod | Power+conditioning+grip in min. space/time | BELL trial (controlled, older adults) |
 | **Olympic lifting** | ● | ●●● | ●●● | ●● | ●●● | ●●● | V.High | Mod | Athletes, explosiveness, skill-lovers | power-capacity evidence; no own mortality data |
 | **Calisthenics** | ● | ●●● | ●● | ●● | ●●● | ●● | Low-V.High | Low-Mod | No gym, relative strength, skill, travel | inherits resistance evidence |
 | **Machines** | ● | ●●● | ● | ● | ● | ●● | V.Low | Low | Beginners, rehab, safe isolation, train-to-failure | inherits resistance evidence |
-| **Running** | ●●● | ● | ● | — | ● | ●●● | Low | Mod | Cheap high-dose CRF + bone | `running-mortality-lee`; knees: `running-knee-oa-recreational` |
-| **Cycling** | ●●● | ●● | ● | — | ● | — | Low | Low | Joint-sparing high-volume CRF, low interference | `swimming-mortality-oja` (cycling HR~0.85) |
-| **Swimming** | ●●● | ●● | ● | ●● | ●● | — | Mod-High | V.Low | Low-impact full-body (heavy/arthritic/injured) | `swimming-mortality-oja` (HR~0.72 all-cause) |
+| **Running** | ●●● | ● | ● | — | ● | ●●● | Low | Mod | Cheap high-dose CRF + bone | Lee 2014 cohort; knees: recreational ≠ OA |
+| **Cycling** | ●●● | ●● | ● | — | ● | — | Low | Low | Joint-sparing high-volume CRF, low interference | Oja 2017 (cycling HR ~0.85) |
+| **Swimming** | ●●● | ●● | ● | ●● | ●● | — | Mod-High | V.Low | Low-impact full-body (heavy/arthritic/injured) | Oja 2017 (HR ~0.72 all-cause) |
 | **Rowing** | ●●● | ●● | ●● | ● | ● | — | Mod | Low-Mod | Full-body low-impact conditioning + pull | inherits CRF/strength evidence |
 | **Jump rope** | ●●● | ● | ●● | — | ●●● | ●● | Low-Mod | Low-Mod | Cheap conditioning + coordination + bone | inherits CRF evidence |
 | **Elliptical / stair** | ●●● | ●/●● | — | — | ● | —/● | V.Low | V.Low | Deconditioned, joint-sensitive, indoor CRF | inherits CRF evidence |
 | **Circuit / metcon** | ●● | ●● | ● | ● | ● | ● | Low | Low-Mod | Time-efficient combined fitness, groups | breadth, not peak; general evidence |
-| **HIIT / Tabata** | ●●● | ● | ●● | — | ● | varies | Low | Mod | Time-pressed VO₂max gains | `hiit-crf-cardiometabolic-meta` |
-| **CrossFit** | ●●● | ●●● | ●●● | ●● | ●●● | ●● | High | Mod | Community-driven broad fitness (with coaching) | `crossfit-injury-rate` (peer-comparable) |
-| **Pilates** | — | ●● | ● | ●● | ●● | — | Low-Mod | Low | Core control, low-impact, rehab-adjacent | `pilates-lbp-equivalent` (= other exercise) |
-| **Yoga** | ● | ●● | — | ●●● | ●●● | ● | Low-Mod | Low | Flexibility, balance, stress | see `F2-yoga-meditation-lineages.md` |
-| **Tai chi** | ● | ● | — | ●● | ●●● | — | Mod | V.Low | **Older adults / fall prevention** | `taichi-falls-meta` (meta/RCT — strongest here) |
+| **HIIT / Tabata** | ●●● | ● | ●● | — | ● | varies | Low | Mod | Time-pressed VO₂max gains | HIIT→CRF meta |
+| **CrossFit** | ●●● | ●●● | ●●● | ●● | ●●● | ●● | High | Mod | Community-driven broad fitness (with coaching) | injury rate peer-comparable |
+| **Pilates** | — | ●● | ● | ●● | ●● | — | Low-Mod | Low | Core control, low-impact, rehab-adjacent | LBP: = other exercise |
+| **Yoga** | ● | ●● | — | ●●● | ●●● | ● | Low-Mod | Low | Flexibility, balance, stress | see F2 (yoga/meditation lineages) |
+| **Tai chi** | ● | ● | — | ●● | ●●● | — | Mod | V.Low | **Older adults / fall prevention** | meta/RCT — strongest here |
 | **Animal flow / ground** | ●● | ●● | ● | ●●● | ●●● | ● | Mod | Low | Mobility+coordination+floor competence | mechanism-tier |
 | **FRC / mobility systems** | — | ● | — | ●●● | ●● | — | Low-Mod | Low | Owning joint range, joint health | mechanism/anecdotal |
-| **Walking** | ●● | ● | — | — | ●● | ●● | V.Low | Nil | **Everyone** — the universal floor | `physical-activity-dose-response-mortality` |
+| **Walking** | ●● | ● | — | — | ●● | ●● | V.Low | Nil | **Everyone** — the universal floor | dose-response: sedentary→some |
 | **Rucking** | ●● | ●● | — | — | ● | ●● | V.Low | Low | More stimulus than walking, no skill/impact | inherits walking+load+resistance |
 | **Hiking** | ●● | ●● | — | ● | ●● | ●● | Low | Low | CRF + balance + nature + social | inherits + green-exercise |
-| **Dancing** | ●● | ● | ● | ●● | ●●● | ● | Low-High | Low | Older adults — cognitive+social+aerobic | `dancing-dementia-verghese` (cohort, confounded) |
-| **Gardening / NEAT** | ● | ● | — | ● | ● | ● | V.Low | Nil | Non-exercisers; breaking up sitting | `physical-activity-dose-response-mortality` |
+| **Dancing** | ●● | ● | ● | ●● | ●●● | ● | Low-High | Low | Older adults — cognitive+social+aerobic | Verghese 2003 (cohort, confounded) |
+| **Gardening / NEAT** | ● | ● | — | ● | ● | ● | V.Low | Nil | Non-exercisers; breaking up sitting | dose-response; breaks up sitting |
 
-**How to use the matrix:** find the capacities you're under-covering (most people under-train **strength,
-power, and balance** and over-rely on one cardio mode), then pick a tool you'll actually *use* (column "Best
-for" + your access/joints/enjoyment). You do **not** need many tools — Section 02's "seven movements + cardio +
-a little balance" covers the body. The matrix is for *choosing among equivalents*, not for collecting modalities.
+You do **not** need many tools — Section 02's "seven movements + cardio + a little balance" covers the body.
+Use the matrix to choose among equivalents once you've picked things you'll adhere to. Collecting modalities is
+not the goal; covering the capacities with a few you'll keep doing is.
 
 ---
 
 ## 10. Combining modalities without interference
 
-Covered fully in Section 02 §6.6 (`concurrent-training-interference`) — **cross-ref, not duplicated.** The
+Covered fully in Section 02 §6.6 (concurrent-training interference[^concurrent]) — **cross-ref, not duplicated.** The
 one-screen for modality selection:
 
 - **For general-health trainees, interference is essentially irrelevant** — do strength *and* cardio, in any
-  order; the combination gives the **lowest mortality risk of any pattern** in the cohort data
-  (`resistance-training-mortality-meta`). Stop worrying about it.
+  order; the combination gives the **lowest mortality risk of any pattern** in the cohort data (§2.1). Stop
+  worrying about it.
 - If you *are* maximizing one quality: **separate sessions**, **lift first** when strength is the priority, and
   **bias easy cardio toward low-impact modalities** (cycling/rowing/swimming/elliptical interfere far less than
   high-volume running because of less eccentric muscle damage — this is where the modality *choice* matters).
 - **Don't stack the two highest-recovery-cost things on the same day** (hard intervals + heavy lower-body lifting).
-- **Modality variety itself may help:** a 2022 JAMA Network Open cohort (`leisure-activity-types-mortality`)
-  and recent two-cohort analyses (`physical-activity-variety-mortality`) suggest that engaging in **multiple
-  activity types** associates with lower mortality than a single type — partly mechanism (broader capacity
-  coverage), partly adherence (variety sustains engagement). Mild evidence, sensible direction.
+- **Modality variety itself may help:** a 2022 JAMA Network Open cohort[^leisure-variety] and recent
+  two-cohort analyses[^pa-variety] suggest that engaging in **multiple activity types** associates with lower
+  mortality than a single type — partly mechanism (broader capacity coverage), partly adherence (variety
+  sustains engagement). Mild evidence, sensible direction.
 
 ---
 
@@ -529,8 +545,8 @@ This is the load-bearing conclusion of the whole chapter, and it overrides every
 **small** compared to the difference between *doing one consistently* and *quitting the "optimal" one*. The
 fitness industry sells modality-tribalism (the one true method) precisely because "pick whatever you'll
 adhere to" doesn't sell programs. But the evidence is unambiguous: the steepest part of every dose-response
-curve is **sedentary → something** (`physical-activity-dose-response-mortality`), and *something* requires
-*adherence*, which requires *enjoyment, access, and fit* — not theoretical optimality.
+curve is **sedentary → something**, and *something* requires *adherence*, which requires *enjoyment, access,
+and fit* — not theoretical optimality.
 
 Practical decision order (cross-ref Section 29 behavior change, and the Helms/Israetel hierarchy in Section 02
 §7 that puts **adherence at the top**, above volume, intensity, and exercise selection):
@@ -557,7 +573,7 @@ Practical decision order (cross-ref Section 29 behavior change, and the Helms/Is
 ## 12. Honest debunks (don't skip)
 
 - **"Running destroys your knees."** **Backwards for recreational runners** — they have *lower* OA (3.5%) than
-  sedentary people (10.2%); risk rises only at elite/high-volume exposure (`running-knee-oa-recreational`).
+  sedentary people (10.2%); risk rises only at elite/high-volume exposure (§5.1).
   Cartilage needs load to stay healthy; the "finite miles" model is wrong. Run within sane progression.
 - **"Lifting stunts children's growth."** **Myth.** The old fear (growth-plate damage from weights) is not
   supported; supervised, age-appropriate resistance training is **safe and beneficial** for youth and does
@@ -594,7 +610,7 @@ A short, honestly-annotated list — sources that map modalities onto capacities
 |---|---|---|
 | **Andy Galpin** — *Perform* podcast; "9 adaptations" framework | The clearest practitioner system for which modality trains which **adaptation**; integrates strength/power/CRF/skill honestly | Already a corpus figure; the single best "modality → capacity" translator |
 | **ACSM Guidelines for Exercise Testing and Prescription** (+ position stands) | The conservative consensus FITT prescriptions across modalities for cardio, resistance, flexibility, and special populations | The defensible "official floor" when choosing/dosing any modality |
-| **Pavel Tsatsouline** — *Simple & Sinister*, *Enter the Kettlebell* | The kettlebell case (swing + get-up minimalism) | Advocacy-forward; read the *method* (it's sound and minimal) but discount the "kettlebells beat everything" framing — the BELL trial (`kettlebell-bell-trial-older`) is the honest evidence |
+| **Pavel Tsatsouline** — *Simple & Sinister*, *Enter the Kettlebell* | The kettlebell case (swing + get-up minimalism) | Advocacy-forward; read the *method* (it's sound and minimal) but discount the "kettlebells beat everything" framing — the BELL trial is the honest evidence |
 | **Steven Low** — *Overcoming Gravity* | The definitive calisthenics/gymnastics-strength progression manual | Rigorous, ladder-based (matches Section 02's regression→progression logic); the bodyweight-strength reference |
 | **Lee et al. 2014, *JACC* (`10.1016/j.jacc.2014.04.058`)** + **Oja et al. 2017, *BJSM* (`10.1136/bjsports-2016-096822`)** | The sport-specific mortality cohorts (running; swimming/cycling/racquet) | `cohort` — direction useful, magnitudes inflated by self-selection; the two disagree on running, which is itself the honest lesson |
 | **Alentorn-Geli et al. 2017, *JOSPT* (`10.2519/jospt.2017.7137`)** | The running-and-knees meta — the data behind the myth-bust | `meta` of observational data; recreational running ≠ knee destruction |
@@ -616,7 +632,7 @@ A short, honestly-annotated list — sources that map modalities onto capacities
   (`09-exposures-environment.md`); **recovery/stress dimension of mind-body work** ↔ **Section 05**.
 - **UP to canon:** every modality is a way of delivering a **mechanical/metabolic stimulus** the body adapts to —
   **muscle contractile biophysics** (cross-bridge force, fiber types), **mitochondrial biogenesis** (the CRF
-  adaptation — `exercise-mitochondrial-biogenesis-holloszy`), and **bone mechano-adaptation** (Wolff's law) are
+  adaptation[^mito-biogenesis]), and **bone mechano-adaptation** (Wolff's law) are
   applications of biophysical material-and-energetics foundations adjacent to `bucket-canon/05-biophysics/`.
 
 > **Honesty footer.** This section refuses two opposite errors: **modality-tribalism** (the one true method —
@@ -629,7 +645,25 @@ A short, honestly-annotated list — sources that map modalities onto capacities
 
 ---
 
-*Section maintained by Nucleus. Graded claims in `02-domains/exercise-modalities-claims.json`; the capacities,
-patterns, and programming this section maps onto live in `reports/sections/02-training.md`; conflicts in
-`06-evidence/CONFLICTS.md`. Cross-links by claim-id are load-bearing — follow them for the underlying evidence
-tier before acting.*
+## Sources & notes
+
+[^dose-response]: Physical-activity dose-response for mortality — the steepest gains are the step from sedentary to some activity. claim: physical-activity-dose-response-mortality (cohort/dose-response)
+[^crf-vo2max]: CRF/VO₂max is the single strongest longevity association among the capacities. claim: crf-vo2max-strongest-mortality-predictor (cohort)
+[^sarcopenia-def]: Strength defines sarcopenia per the EWGSOP2 consensus. claim: sarcopenia-strength-defining-ewgsop2 (consensus/definition)
+[^resistance-meta]: Resistance training → mortality, J-shaped, ~30–60 min/wk sweet spot. claim: resistance-training-mortality-meta (meta)
+[^bell-trial]: BELL pragmatic controlled trial — Meigh et al. 2022; supervised hardstyle kettlebell training in insufficiently-active 59–79-year-olds. claim: kettlebell-bell-trial-older (controlled trial)
+[^kb-transfer]: Kettlebell training transfers to strength, power, and aerobic capacity — Lake & Lauder; Manocchia 2013. claim: kettlebell-transfer (trials)
+[^running-lee]: Lee et al. 2014, *JACC*. doi:10.1016/j.jacc.2014.04.058. claim: running-mortality-lee (cohort)
+[^oja]: Oja et al. 2017, *BJSM* (80,306-adult British cohort; swimming/cycling/racquet sports). doi:10.1136/bjsports-2016-096822. claim: swimming-mortality-oja (cohort)
+[^running-review]: Lavie et al. 2017, "Running as a key lifestyle medicine for longevity." claim: running-longevity-review (review)
+[^running-knee]: Alentorn-Geli et al. 2017, *JOSPT* (125,810 people; recreational running and hip/knee OA). doi:10.2519/jospt.2017.7137. claim: running-knee-oa-recreational (meta of observational data)
+[^hiit-meta]: HIIT raises VO₂max/cardiometabolic fitness efficiently. claim: hiit-crf-cardiometabolic-meta (meta)
+[^crossfit-injury]: CrossFit injury rate ~0.2–3.3 per 1000 training hours — Klimek et al. 2018/2022 reviews; comparable to peer strength/recreational sports. claim: crossfit-injury-rate (systematic reviews)
+[^pilates-lbp]: Pilates for chronic low back pain — about as effective as other exercise types (network meta-analyses, JOSPT 2022, Disabil Rehabil 2023). claim: pilates-lbp-equivalent (network meta-analysis)
+[^taichi-falls]: Tai chi reduces falls and improves balance in older adults — Front Public Health 2023 meta (doi:10.3389/fpubh.2023.1236050) + Li et al. 2018, *JAMA Intern Med* RCT. claim: taichi-falls-meta (meta/RCT)
+[^dancing-dementia]: Verghese et al. 2003, *NEJM* (Bronx Aging Study) — frequent dancing associated with lower incident dementia; confounded. claim: dancing-dementia-verghese (cohort, confounded)
+[^concurrent]: Concurrent (strength + endurance) training interference — see Section 02 §6.6. claim: concurrent-training-interference (cross-ref)
+[^leisure-variety]: 2022 JAMA Network Open cohort — multiple leisure-activity types vs. mortality. claim: leisure-activity-types-mortality (cohort)
+[^pa-variety]: Two-cohort analyses — variety of physical activity types vs. mortality. claim: physical-activity-variety-mortality (cohort)
+[^static-stretch-conflict]: Static-stretch pre-lifting performance deficit — overcorrected; short holds + dynamic warm-up are fine. claim: conflict-static-stretch-performance (conflict, mostly resolved)
+[^mito-biogenesis]: Exercise-induced mitochondrial biogenesis (the CRF adaptation) — Holloszy. claim: exercise-mitochondrial-biogenesis-holloszy (mechanism)

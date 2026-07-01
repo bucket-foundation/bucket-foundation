@@ -1,42 +1,34 @@
 # 10 — Medical & Pharmacology
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/S-pharma-claims.json`.
-> This is the section about **real drugs and medical interventions** — the things a physician can actually
-> prescribe, with regulatory approval and hard-outcome trials behind most of them. It is deliberately separate
-> from the supplement section (`03-nutrition-supplements.md`) because the evidence base is a different universe:
-> supplements mostly trade in mechanism and surrogate markers; the drugs below mostly have **randomized,
-> placebo-controlled, hard-endpoint** trials in tens of thousands of people. That does not make them safe *for
-> you*, and it does not make them longevity drugs — but it does mean the honesty rules cut differently here.
-
-> ## ⚠️ This is not medical advice — and it can't be
->
-> Everything below is an **index of the evidence**, not a recommendation. Every drug here has real risks,
-> real contraindications, and real interactions that depend on **your** kidneys, liver, heart, other
-> medications, and history. A statin that is clearly net-beneficial for a 62-year-old who already had a heart
-> attack may be the wrong call for a healthy 45-year-old, and aspirin — covered below — is a clean example of a
-> drug that *helps* one group and *harms* another that looks superficially similar. **Prescription decisions
-> belong to you and a licensed clinician who knows your chart.** Several items in this section (rapamycin,
-> off-label metformin, gray-market peptides, "anti-aging" TRT) are being sold online and through cash clinics
-> on evidence that ranges from thin to absent — those are flagged explicitly so you can ask the right
-> skeptical questions, not so you can self-prescribe.
+The drugs in this section are the rare health interventions that come with proof — randomized, placebo-controlled
+trials in tens of thousands of people, measuring whether you actually avoid a heart attack or live longer, not
+whether a lab number moved. That is the line between this section and supplements (`03-nutrition-supplements.md`):
+supplements mostly trade in mechanism and surrogate markers; most drugs below have hard-endpoint trials behind
+them. It doesn't make any of them safe *for you*, and it doesn't make them longevity drugs — but it does mean the
+honesty rules cut differently here.
 
 ## How the three honesty rules cut for drugs
 
-The rules (defined in "Start Here") bite in a specific way here. **Predictor ≠ lever:** moving a number — LDL,
-HbA1c, testosterone, NAD⁺ — is not moving an outcome; for several drugs below that lever question has a
-hard-endpoint RCT answer, and for rapamycin, off-label metformin-for-aging, and peptides it explicitly does
-**not**, no matter how good the number looks. **Cohort ≠ RCT:** "metformin users seem to outlive non-diabetics"
-(Bannister 2014, confounded — Domain B) is far weaker than a randomized event reduction; the drugs that have
-*graduated* from cohort to RCT — GLP-1s, statins, SGLT2 inhibitors, the SPRINT BP target — are the strongest
-material in this manual. **Net benefit is the only unit:** every drug carries a harm column, so
-**number-needed-to-treat (NNT)** and **-to-harm (NNH)** run throughout, and aspirin gets its own section as the
-cautionary tale.
+The rules (defined in "Start Here") bite in a specific way here. **Predictor ≠ lever** (moving a number isn't the
+same as moving an outcome): shifting LDL, HbA1c, testosterone, or NAD⁺ is not the same as changing what happens
+to you — for several drugs below that lever question has a hard-endpoint randomized-trial answer, and for
+rapamycin, off-label metformin-for-aging, and peptides it explicitly does **not**, no matter how good the number
+looks. **Cohort ≠ RCT** (watching who does well isn't the same as a controlled experiment): "metformin users seem
+to outlive non-diabetics" (Bannister 2014, confounded — Domain B) is far weaker than a randomized event
+reduction; the drugs that have *graduated* from cohort to RCT — GLP-1s, statins, SGLT2 inhibitors, the SPRINT BP
+target — are the strongest material in this manual. **Net benefit is the only unit:** every drug carries a harm
+column, so **number-needed-to-treat (NNT — how many people take the drug for one to benefit)** and
+**number-needed-to-harm (NNH — how many before one is harmed)** run throughout, and aspirin gets its own section
+as the cautionary tale.
 
-**Cross-references (read alongside):** geroprotector mechanisms (metformin/rapamycin/senolytics) are graded in
-`02-domains/B-aging-mechanisms.md`; the **apoB/LDL causal story** that justifies lipid-lowering is in
-`02-domains/L-biomarkers.md`; **menopausal HRT** is owned by `02-domains/N-womens-longevity.md`; the
-**blood-pressure target (SPRINT)** is shared with the clinical-prevention material; the **shingles→dementia**
-signal cross-links to the brain/cognition material.
+Drugs are covered here; the aging-biology mechanisms behind metformin, rapamycin, and senolytics live in
+`B-aging-mechanisms.md`, the apoB/LDL causal story behind lipid-lowering in `L-biomarkers.md`, and menopausal HRT
+in `N-womens-longevity.md`.
+
+_Not medical advice — and it can't be. Everything below indexes the evidence; none of it is a recommendation.
+Every drug here has real risks and interactions that depend on your kidneys, liver, heart, other medications, and
+history, and several items (rapamycin, off-label metformin, gray-market peptides, "anti-aging" TRT) are sold on
+evidence ranging from thin to absent. Prescription decisions belong to you and a clinician who knows your chart._
 
 ---
 
@@ -59,13 +51,16 @@ is mostly an **appetite/satiety** effect: people simply eat less and feel full f
 
 ### 1.2 The trials, by what they actually proved
 
+Evidence tiers in the last column: `rct` = proven in a randomized human trial; `meta` = pooled across many
+trials; `mechanistic` = a plausible biological story only; `cohort` = observational, weaker than a trial.
+
 | Drug / trial | Population | What it proved | Magnitude | Tier |
 |---|---|---|---|---|
-| **Semaglutide 2.4 mg — STEP 1** (Wilding 2021, `10.1056/NEJMoa2032183`) | 1,961 adults, obesity, **no diabetes** | Weight loss | **−14.9%** body weight vs −2.4% placebo @ 68 wk | `rct` (surrogate: weight) |
-| **Semaglutide 2.4 mg — SELECT** (Lincoff 2023, `10.1056/NEJMoa2307563`) | 17,604 adults, overweight/obese, **established CVD, no diabetes** | **Cardiovascular events** | **−20% MACE** (HR 0.80) — CV death/MI/stroke | `rct` (hard outcome) |
-| **Semaglutide 1.0 mg — FLOW** (Perkovic 2024, `10.1056/NEJMoa2403347`) | 3,533, type 2 diabetes + **chronic kidney disease** | **Kidney + CV + mortality** | **−24%** major kidney events (HR 0.76); stopped early for benefit | `rct` (hard outcome) |
-| **Tirzepatide — SURMOUNT-1** (Jastreboff 2022, `10.1056/NEJMoa2206038`) | 2,539 adults, obesity, **no diabetes** | Weight loss | **−20.9%** at 15 mg vs −3.1% placebo @ 72 wk | `rct` (surrogate: weight) |
-| **Tirzepatide — SURMOUNT-OSA** (2024, `10.1056/NEJMoa2404881`) | obesity + obstructive sleep apnea | Reduced apnea-hypopnea index | large AHI reduction | `rct` (surrogate/condition) |
+| **Semaglutide 2.4 mg — STEP 1** (Wilding 2021)[^step1] | 1,961 adults, obesity, **no diabetes** | Weight loss | **−14.9%** body weight vs −2.4% placebo @ 68 wk | `rct` (surrogate: weight) |
+| **Semaglutide 2.4 mg — SELECT** (Lincoff 2023)[^select] | 17,604 adults, overweight/obese, **established CVD, no diabetes** | **Cardiovascular events** | **−20% MACE** (major adverse cardiovascular events; HR 0.80 — a 20% lower rate) — CV death/MI/stroke | `rct` (hard outcome) |
+| **Semaglutide 1.0 mg — FLOW** (Perkovic 2024)[^flow] | 3,533, type 2 diabetes + **chronic kidney disease** | **Kidney + CV + mortality** | **−24%** major kidney events (HR 0.76); stopped early for benefit | `rct` (hard outcome) |
+| **Tirzepatide — SURMOUNT-1** (Jastreboff 2022)[^surmount1] | 2,539 adults, obesity, **no diabetes** | Weight loss | **−20.9%** at 15 mg vs −3.1% placebo @ 72 wk | `rct` (surrogate: weight) |
+| **Tirzepatide — SURMOUNT-OSA** (2024)[^surmount-osa] | obesity + obstructive sleep apnea | Reduced apnea-hypopnea index | large AHI reduction | `rct` (surrogate/condition) |
 
 **This is the key move:** STEP and SURMOUNT proved the *surrogate* (weight), and that alone would have been a
 mechanism-tier story. But **SELECT crossed into hard-outcome territory** — a 20% reduction in heart attacks,
@@ -98,7 +93,7 @@ trials enrolled sick people and showed they got less sick. That is the claim —
 - **The muscle-loss caveat (the real longevity catch):** roughly **25–40% of the weight lost on GLP-1s is lean
   mass**, not fat — typical of any large rapid weight loss, but it matters enormously for longevity because
   **muscle mass and strength are themselves protective against mortality and frailty** (see Domain E and the
-  grip-strength/VO₂max data). Losing 20% of your body weight while losing a chunk of muscle can be a *net*
+  grip-strength/VO₂max (aerobic-capacity) data). Losing 20% of your body weight while losing a chunk of muscle can be a *net*
   metabolic win and still erode the reserve that protects you at 80. **Mitigation that should be standard, not
   optional: resistance training + adequate protein (≥1.2–1.6 g/kg) throughout treatment**, and attention to
   refeeding/regain after stopping (weight returns when the drug stops unless behavior changes). This is where the
@@ -111,19 +106,19 @@ trials enrolled sick people and showed they got less sick. That is the claim —
 
 ## 2. Lipid-lowering — the most rigorously proven prevention there is
 
-The drugs that lower **apoB-containing lipoproteins** (LDL and friends) sit on the single strongest causal chain
-in preventive cardiology: genetics + epidemiology + RCTs all triangulate that **LDL/apoB is causal for
-atherosclerosis, and the effect is cumulative over a lifetime** (Ference 2017; see `L-biomarkers.md` →
-`ldl-apob-causal-ascvd`, `apob-superior-to-ldlc`). Lower, earlier, and longer is better — *for people whose risk
+The drugs that lower **apoB** (a direct count of the cholesterol particles that lodge in artery walls) and the
+lipoproteins that carry it (LDL and friends) sit on the single strongest causal chain in preventive cardiology:
+genetics + epidemiology + RCTs all triangulate that **LDL/apoB is causal for atherosclerosis, and the effect is
+cumulative over a lifetime** (Ference 2017).[^ference] Lower, earlier, and longer is better — *for people whose risk
 justifies it.* The honest tension is entirely about **who**, not whether.
 
 ### 2.1 The drugs
 
 | Drug class | Mechanism | LDL lowering | Hard-outcome evidence | Tier |
 |---|---|---|---|---|
-| **Statins** | HMG-CoA reductase inhibition → ↑LDL-receptor clearance | ~30–50% | **CTT meta:** ~**22% RRR** in major vascular events **per 1 mmol/L (~39 mg/dL)** LDL drop, per year of treatment | `meta` (hard outcome) |
-| **Ezetimibe** | Blocks intestinal cholesterol absorption (NPC1L1) | ~15–20% (additive) | **IMPROVE-IT** (Cannon 2015, `10.1056/NEJMoa1410489`): added to statin post-ACS, small further event reduction — proved **non-statin LDL-lowering also works** | `rct` (hard outcome) |
-| **PCSK9 inhibitors** (evolocumab, alirocumab) | mAb ↑ LDL-receptor recycling | ~50–60% (on top of statin) | **FOURIER** (Sabatine 2017, `10.1056/NEJMoa1615664`): LDL ~30 mg/dL, **15% RRR MACE** | `rct` (hard outcome) |
+| **Statins** | HMG-CoA reductase inhibition → ↑LDL-receptor clearance | ~30–50% | **CTT meta:** ~**22% RRR** (relative risk reduction) in major vascular events **per 1 mmol/L (~39 mg/dL)** LDL drop, per year of treatment | `meta` (hard outcome) |
+| **Ezetimibe** | Blocks intestinal cholesterol absorption (NPC1L1) | ~15–20% (additive) | **IMPROVE-IT** (Cannon 2015)[^improveit] added to statin post-ACS, small further event reduction — proved **non-statin LDL-lowering also works** | `rct` (hard outcome) |
+| **PCSK9 inhibitors** (evolocumab, alirocumab) | mAb ↑ LDL-receptor recycling | ~50–60% (on top of statin) | **FOURIER** (Sabatine 2017)[^fourier] LDL ~30 mg/dL, **15% RRR MACE** | `rct` (hard outcome) |
 
 The clean message across all three: **the benefit tracks the absolute LDL/apoB reduction, by whatever
 mechanism.** That is about as close to a proven causal lever as preventive medicine offers.
@@ -150,7 +145,7 @@ baseline risk** — and the same pill produces wildly different number-needed-to
 Statins have a reputation for muscle side effects that the **blinded** evidence does not support at anything like
 the claimed rate:
 
-- **The nocebo finding (`rct`):** the **SAMSON** n-of-1 trial (Wood 2020, *NEJM*, `10.1056/NEJMc2031173`) had
+- **The nocebo finding (`rct`):** the **SAMSON** n-of-1 trial (Wood 2020, *NEJM*)[^samson] had
   patients who'd quit statins for side effects cycle through statin, placebo, and empty months. **~90% of the
   symptom burden occurred on placebo months too** — i.e. most "statin intolerance" is nocebo, not the drug.
   Large blinded RCTs find muscle-symptom rates barely above placebo.
@@ -166,7 +161,7 @@ the claimed rate:
 ## 3. Antihypertensives — brief, because the target is the story
 
 Blood-pressure lowering is one of the most outcome-proven interventions in medicine; the open question for years
-was **how low.** **SPRINT** (2015, `10.1056/NEJMoa1511939`) randomized higher-risk non-diabetic adults to an
+was **how low.** **SPRINT** (2015)[^sprint] randomized higher-risk non-diabetic adults to an
 intensive target (**SBP <120**) vs standard (**<140**) and found the intensive arm cut major cardiovascular
 events by ~25% and **all-cause mortality by ~27%** — at the cost of more hypotension, syncope, electrolyte
 disturbance, and acute kidney injury. (Target nuance, measurement technique, and the frailty caveats are owned
@@ -197,11 +192,10 @@ healthy older adults — and it is one of the most useful *negative* results in 
 
 - **ASPREE** (McNeil et al., 2018, three *NEJM* papers): **19,114 community-dwelling adults ≥70** (≥65 for US
   minorities) with **no** established cardiovascular disease, randomized to **100 mg aspirin/day vs placebo**.
-  - **Disability-free survival:** no benefit (`10.1056/NEJMoa1800722`).
-  - **Cardiovascular events:** no significant reduction; **major hemorrhage significantly increased**
-    (`10.1056/NEJMoa1805819`).
-  - **All-cause mortality:** **slightly higher** on aspirin (`10.1056/NEJMoa1803955`), an unexpected signal
-    driven largely by cancer deaths.
+  - **Disability-free survival:** no benefit.[^aspree-dfs]
+  - **Cardiovascular events:** no significant reduction; **major hemorrhage significantly increased**.[^aspree-cv]
+  - **All-cause mortality:** **slightly higher** on aspirin,[^aspree-mort] an unexpected signal driven largely by
+    cancer deaths.
 - **The verdict:** in healthy older adults without established cardiovascular disease, **routine aspirin does
   more harm (bleeding) than good** — guidelines (USPSTF, ACC/AHA) were revised accordingly. **This does NOT
   apply to secondary prevention:** people who have *already* had a heart attack or stroke generally *should*
@@ -223,17 +217,17 @@ benefits are `rct`/strong; some of the **downstream** benefits (dementia, cardio
 @@FIG:47-vaccines-longevity@@
 
 - **Shingles → dementia (the exciting one).** Reactivated varicella-zoster causes neuro-inflammation, and a
-  string of studies now links **zoster vaccination to lower dementia risk.** **Taquet 2024** (*Nat Med*,
-  `10.1038/s41591-024-03201-5`) found the **recombinant** Shingrix associated with lower dementia incidence than
+  string of studies now links **zoster vaccination to lower dementia risk.** **Taquet 2024** (*Nat Med*)[^taquet]
+  found the **recombinant** Shingrix associated with lower dementia incidence than
   the old live vaccine. The strongest design is the **Welsh natural experiment** (Eyting/Geldsetzer et al.,
-  *Nature* 2025, `10.1038/s41586-025-08800-x`): a sharp **eligibility-date cutoff** for the older Zostavax
+  *Nature* 2025)[^welsh] a sharp **eligibility-date cutoff** for the older Zostavax
   created two near-identical populations differing only by vaccine access, and the vaccinated group had a
   **~20% relative reduction in new dementia diagnoses** over 7 years — a quasi-experimental design much closer to
   causal than ordinary cohort data. Still not a randomized trial, and confounding can't be fully excluded, but
   this is one of the more credible "vaccine as brain-longevity medicine" signals. (Cross-ref the brain/cognition
   material.)
 - **Influenza → cardiovascular events.** Flu is a known trigger of heart attacks. **IAMI** (Fröbert 2021,
-  *Circulation*, `10.1161/CIRCULATIONAHA.121.057042`) randomized post-MI patients to flu vaccine vs placebo and
+  *Circulation*)[^iami] randomized post-MI patients to flu vaccine vs placebo and
   found **fewer cardiovascular deaths and events** — a genuine RCT showing the annual flu shot is partly a
   cardiovascular drug in at-risk people.
 - **Pneumococcal & RSV:** less glamorous, no "bonus" mystique, but they prevent two of the infections most
@@ -267,7 +261,7 @@ them as experimental for that purpose. (Mechanisms and the mouse data are detail
   community uses **intermittent low-dose** off-label, but the **optimal dose, schedule, and long-term safety for
   healthspan are genuinely unknown**, and immunosuppression/metabolic side effects are real. Notably, the most
   documented N-of-1 longevity experimenter (Bryan Johnson) **discontinued** rapamycin in ~2024 reporting no net
-  benefit and side effects (see `J-claims.json` → `bj-rapamycin-discontinued`). Mark it **experimental.**
+  benefit and side effects.[^bj-rapa] Mark it **experimental.**
 - **SGLT2 inhibitors** are the most interesting "real" entry here: unlike metformin-for-aging, they have
   **genuine hard-outcome RCTs** — but for **heart failure and kidney disease** (EMPA-REG, DAPA-HF, DAPA-CKD,
   EMPA-KIDNEY), not for aging per se. They reduce CV death and renal decline even in many non-diabetics. The
@@ -295,7 +289,7 @@ above normal in a healthy person to chase youth is experimentation** — often s
   normal range improves symptoms, sexual function, body composition, and bone density. That is a legitimate,
   evidence-based treatment.
 - **The CV safety question — answered (mostly).** Years of worry about TRT and heart attacks were settled by
-  **TRAVERSE** (Lincoff 2023, *NEJM*, `10.1056/NEJMoa2215025`): ~5,200 middle-aged/older hypogonadal men **with
+  **TRAVERSE** (Lincoff 2023, *NEJM*)[^traverse] ~5,200 middle-aged/older hypogonadal men **with
   high CV risk**, randomized to testosterone gel vs placebo. TRT was **non-inferior** for major adverse
   cardiovascular events — i.e. **it did not raise CV risk** at replacement doses. (It did show small increases in
   atrial fibrillation, pulmonary embolism, and acute kidney injury — not nothing, but it cleared the central
@@ -310,7 +304,7 @@ above normal in a healthy person to chase youth is experimentation** — often s
 
 ### 7.2 Menopausal hormone therapy (HRT) — see Domain N
 
-Owned by `N-womens-longevity.md` (`conflict-hrt-timing`). The one-paragraph honest summary: the WHI scare
+Owned by `N-womens-longevity.md`.[^hrt-timing] The one-paragraph honest summary: the WHI scare
 (Rossouw 2002) was **over-generalized** from a population a decade past menopause; the **timing/"window"
 hypothesis** (ELITE, Hodis 2016; KEEPS) supports that HRT **started at menopause for symptoms** is reasonable and
 probably net-beneficial for many women, while HRT **started late purely as a longevity/CVD prevention play** is
@@ -320,7 +314,7 @@ not supported. Read the N section before acting.
 
 - **Overt hypothyroidism** (high TSH, low free T4, symptoms): levothyroxine replacement is clear, beneficial,
   standard. **Subclinical hypothyroidism** (mildly high TSH, normal T4) is the contested zone — and the **TRUST**
-  trial (Stott 2017, *NEJM*, `10.1056/NEJMoa1603825`) found **no symptom or quality-of-life benefit** from
+  trial (Stott 2017, *NEJM*)[^trust] found **no symptom or quality-of-life benefit** from
   levothyroxine in older adults with subclinical hypothyroidism. The honest practice: treat overt disease; resist
   reflexively medicating a borderline TSH or chasing "optimal thyroid" in someone who feels well. Thyroid hormone
   is **not** a weight-loss or energy drug for the euthyroid.
@@ -388,3 +382,28 @@ not a purchase decision.
   pair with **Taquet 2024** (*Nat Med*, `10.1038/s41591-024-03201-5`).
 - **The SPRINT Research Group.** *N Engl J Med* 2015. `10.1056/NEJMoa1511939` — the intensive-blood-pressure-target
   trial (cross-ref clinical-prevention material).
+
+---
+
+### Sources & notes
+
+[^step1]: STEP 1 — Wilding JPH, et al. *N Engl J Med* 2021. doi:10.1056/NEJMoa2032183. claim: semaglutide-step1-weight (rct, surrogate)
+[^select]: SELECT — Lincoff AM, et al. *N Engl J Med* 2023. doi:10.1056/NEJMoa2307563. claim: semaglutide-select-mace (rct, hard outcome)
+[^flow]: FLOW — Perkovic V, et al. *N Engl J Med* 2024. doi:10.1056/NEJMoa2403347. claim: semaglutide-flow-kidney (rct, hard outcome)
+[^surmount1]: SURMOUNT-1 — Jastreboff AM, et al. *N Engl J Med* 2022. doi:10.1056/NEJMoa2206038. claim: tirzepatide-surmount1-weight (rct, surrogate)
+[^surmount-osa]: SURMOUNT-OSA — *N Engl J Med* 2024. doi:10.1056/NEJMoa2404881. claim: tirzepatide-osa-ahi (rct, surrogate/condition)
+[^ference]: Ference BA, et al. EAS consensus on LDL/apoB causality, 2017. See `L-biomarkers.md`. claims: ldl-apob-causal-ascvd, apob-superior-to-ldlc
+[^improveit]: IMPROVE-IT — Cannon CP, et al. *N Engl J Med* 2015. doi:10.1056/NEJMoa1410489. claim: ezetimibe-improveit-events (rct, hard outcome)
+[^fourier]: FOURIER — Sabatine MS, et al. *N Engl J Med* 2017. doi:10.1056/NEJMoa1615664. claim: pcsk9-fourier-mace (rct, hard outcome)
+[^samson]: SAMSON — Wood FA, et al. *N Engl J Med* 2020. doi:10.1056/NEJMc2031173. claim: statin-nocebo-samson (rct)
+[^sprint]: SPRINT — SPRINT Research Group. *N Engl J Med* 2015. doi:10.1056/NEJMoa1511939. claim: sprint-bp-mortality (rct, hard outcome)
+[^aspree-dfs]: ASPREE — McNeil JJ, et al. Disability-free survival. *N Engl J Med* 2018. doi:10.1056/NEJMoa1800722. claim: aspree-aspirin-no-benefit (rct)
+[^aspree-cv]: ASPREE — McNeil JJ, et al. CV events & bleeding. *N Engl J Med* 2018. doi:10.1056/NEJMoa1805819. claim: aspree-aspirin-bleeding (rct)
+[^aspree-mort]: ASPREE — McNeil JJ, et al. All-cause mortality. *N Engl J Med* 2018. doi:10.1056/NEJMoa1803955. claim: aspree-aspirin-mortality (rct)
+[^taquet]: Taquet M, et al. *Nat Med* 2024. doi:10.1038/s41591-024-03201-5. claim: shingrix-dementia-cohort (cohort)
+[^welsh]: Eyting M, Geldsetzer P, et al. "A natural experiment on the effect of herpes zoster vaccination on dementia." *Nature* 2025. doi:10.1038/s41586-025-08800-x. claim: zoster-dementia-welsh-quasi (quasi-experimental)
+[^iami]: IAMI — Fröbert O, et al. *Circulation* 2021. doi:10.1161/CIRCULATIONAHA.121.057042. claim: flu-vaccine-cv-iami (rct)
+[^bj-rapa]: Bryan Johnson N-of-1 self-report, discontinued rapamycin ~2024. claim: bj-rapamycin-discontinued (`J-claims.json`, anecdotal)
+[^traverse]: TRAVERSE — Lincoff AM, et al. *N Engl J Med* 2023. doi:10.1056/NEJMoa2215025. claim: trt-traverse-cv-safety (rct)
+[^hrt-timing]: HRT timing/window conflict — WHI (Rossouw 2002) over-generalized vs the window hypothesis (ELITE, Hodis 2016; KEEPS). claim: conflict-hrt-timing. Full treatment in `N-womens-longevity.md`.
+[^trust]: TRUST — Stott DJ, et al. *N Engl J Med* 2017. doi:10.1056/NEJMoa1603825. claim: subclinical-hypothyroid-no-benefit (rct)

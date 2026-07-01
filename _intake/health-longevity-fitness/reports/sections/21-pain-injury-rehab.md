@@ -1,27 +1,25 @@
 # 21 — Pain, Injury & Rehabilitation
 
-> **Status:** v0.1 — 2026-06-28. The practical, clinical counterpart to the *physiology* of pain in
-> **Section 14** (`14-nervous-system.md` §6 — nociception ≠ pain, central sensitisation, the
-> biopsychosocial model). Where 14 asks "how does pain actually work," this section asks "what do you
-> *do* — about a bad back, a cranky tendon, a sprained ankle, an arthritic knee, and pain that won't
-> leave." It fills the corpus's deferred gaps: chronic-pain depth, rehabilitation / physical-therapy
-> protocols, and sports / musculoskeletal (MSK) injury.
-> **Companion data:** `02-domains/pain-rehab-claims.json` (this section's graded claims).
-> Cross-references **Section 14** (the pain neuroscience — not re-derived here), **Section 02**
-> (`02-training.md` — the movement patterns and the regression→standard→progression ladder that *is*
-> the rehab ladder), **Section 11** (`11-body-systems.md` §3 — bone/osteoporosis, §6 — feet & mobility),
-> and **Section 05** (`05-recovery-sleep-stress.md` — recovery, sleep as a pain modulator).
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." (In this section, predictor ≠ lever bites hardest as **pain ≠ tissue damage, imaging ≠ diagnosis** — see §1.)*
+The public model of pain is a plumbing model: damage in the tissue sends a "pain signal" up a wire, and
+the size of the signal equals the size of the damage. **This model is wrong, and the cost of believing
+it is enormous** — it drives over-imaging, over-medicalising, fear-avoidance, unnecessary surgery, and
+the opioid epidemic.
+
+This section is the clinical counterpart to the pain physiology in Section 14 (`14-nervous-system.md`
+§6): where 14 asks "how does pain work," this asks what you actually *do* about a bad back, a cranky
+tendon, a sprained ankle, an arthritic knee, and pain that won't leave. The movement and rehab ladder
+lives in Section 02 (`02-training.md`).
+
+_Not medical advice. Three honesty rules run underneath everything here: a risk-predictor isn't
+automatically a fix you can pull (predictor ≠ lever), a correlation study isn't a controlled trial
+(cohort ≠ RCT), and "something beats nothing" isn't "this is the best option." The one that bites
+hardest in this section: **pain ≠ tissue damage, imaging ≠ diagnosis** (§1)._
 
 ---
 
 ## 1. The modern pain model — the single most important correction in this whole corpus
 
-The public model of pain is a plumbing model: damage in the tissue sends a "pain signal" up a wire, and
-the size of the signal equals the size of the damage. **This model is wrong, and the cost of believing
-it is enormous** — it drives over-imaging, over-medicalising, fear-avoidance, unnecessary surgery, and
-the opioid epidemic. Section 14 §6 derives the neuroscience; here is the clinical distillation.
+Section 14 §6 derives the neuroscience; here is the clinical distillation.
 
 ### 1.1 Nociception ≠ pain (the load-bearing distinction)
 
@@ -57,7 +55,7 @@ distraction.
 
 **Chronic pain is now a diagnosis in its own right** (ICD-11; Treede et al., *Pain* 2015), not merely
 "acute pain that lasted longer." In many chronic states the spinal cord and brain have become
-**amplifiers** — **central sensitisation** (Woolf, *Pain* 2011, `10.1016/j.pain.2010.09.030`): increased
+**amplifiers** — **central sensitisation** (Woolf, *Pain* 2011)[^woolf-cs] increased
 responsiveness of central nociceptive neurons to normal or subthreshold input, so pain persists, spreads,
 and is triggered by light touch or movement that should not hurt. This is a *physiological* explanation
 for "the scan is clean but it still hurts" — and it is not "in your head" in the dismissive sense; it is a
@@ -67,8 +65,11 @@ real, measurable change in nervous-system gain.
 
 Central sensitisation reframes a whole class of conditions (fibromyalgia, much chronic low back pain,
 chronic whiplash, some persistent tendinopathy and osteoarthritis pain) as **nociplastic** — pain arising
-from altered nociceptive *processing* rather than from clear tissue damage (the third mechanistic
-category alongside *nociceptive* and *neuropathic* pain). Practically, it explains the hallmark features
+from altered nociceptive *processing* rather than from clear tissue damage. The three mechanistic
+categories side by side: **nociceptive** = tissue-damage pain (a sprain, a burn); **neuropathic** =
+nerve-damage pain (sciatica, shingles); **nociplastic** = processing-gain pain, where the nervous
+system amplifies with no clear tissue or nerve lesion (fibromyalgia is the type case). Practically,
+the nociplastic category explains the hallmark features
 clinicians see: pain out of proportion to findings, spread beyond the original site, **hyperalgesia**
 (more pain than expected from a stimulus) and **allodynia** (pain from non-painful touch), and poor
 response to tissue-directed treatments. The lever that works is the one that targets the *system*, not the
@@ -76,8 +77,7 @@ tissue: graded movement, sleep, stress, education, and time (§5).
 
 ### 1.4 The biopsychosocial model
 
-The framework that captures all of this is the **biopsychosocial model** (Gatchel et al., *Psychol Bull*
-2007, `10.1037/0033-2909.133.4.581`): chronic pain and disability emerge from **biological** *and*
+The framework that captures all of this is the **biopsychosocial model** (Gatchel et al., *Psychol Bull* 2007)[^gatchel-bps] chronic pain and disability emerge from **biological** *and*
 **psychological** *and* **social** factors together — not from a structural lesion alone. Tissue state is
 one input; so are beliefs ("my spine is crumbling"), fear of movement, mood, sleep, stress, job
 satisfaction, and social support. This is not a soft add-on — the psychosocial factors are often the
@@ -106,19 +106,18 @@ indictment of standard care.
 ### 2.1 What the Lancet series actually concluded
 
 - **Most LBP is "non-specific."** In ~90–95% of cases **no specific structural cause can be identified**,
-  and crucially *none is needed* to manage it well (Hartvigsen et al., *Lancet* 2018,
-  `10.1016/S0140-6736(18)30480-X`).
-- **Care is, globally, the wrong care.** Foster et al. (*Lancet* 2018,
-  `10.1016/S0140-6736(18)30489-6`) document widespread **overuse of imaging, opioids, injections, and
-  surgery**, and **underuse of the things that work** (education, exercise, staying active). High-income
-  systems pour money into low-value, sometimes harmful interventions.
-- **A call for action.** Buchbinder et al. (*Lancet* 2018, `10.1016/S0140-6736(18)30488-4`) frame the
-  global mismanagement of LBP as a public-health failure on the scale of the problem itself.
+  and crucially *none is needed* to manage it well (Hartvigsen et al., *Lancet* 2018).[^hartvigsen-lbp]
+- **Care is, globally, the wrong care.** Foster et al. (*Lancet* 2018) document widespread **overuse of
+  imaging, opioids, injections, and surgery**, and **underuse of the things that work** (education,
+  exercise, staying active).[^foster-lbp] High-income systems pour money into low-value, sometimes
+  harmful interventions.
+- **A call for action.** Buchbinder et al. (*Lancet* 2018) frame the global mismanagement of LBP as a
+  public-health failure on the scale of the problem itself.[^buchbinder-lbp]
 
 ### 2.2 The MRI-overuse problem (the imaging-doesn't-correlate fact)
 
 The single most liberating fact about back pain: **MRI findings that sound terrifying are normal.**
-Brinjikji et al.'s systematic review (*AJNR* 2015, `10.3174/ajnr.A4173`) imaged **pain-free** people and
+Brinjikji et al.'s systematic review (*AJNR* 2015)[^brinjikji-mri] imaged **pain-free** people and
 found these findings rising steeply with age — e.g. disc degeneration in ~52% of asymptomatic 30-year-olds
 and ~88% of 60-year-olds:
 
@@ -128,8 +127,8 @@ These are **incidental findings of normal aging — "wrinkles on the inside."** 
 with *no* pain as in people who hurt, so on their own they **cannot explain symptoms or guide treatment.**
 Routine imaging for non-specific LBP (no red flags) does not improve outcomes and **worsens them**: it
 raises fear, drives a "damaged spine" self-image, and leads to more injections and surgery without better
-results. Every major guideline (e.g. ACP — Qaseem et al., *Ann Intern Med* 2017, `10.7326/M16-2367`)
-recommends **against routine imaging** for non-specific LBP. Get the scan only when a red flag (§4.5) or a
+results. Every major guideline (e.g. ACP — Qaseem et al., *Ann Intern Med* 2017)
+recommends **against routine imaging** for non-specific LBP.[^qaseem-acp] Get the scan only when a red flag (§4.5) or a
 clear surgical indication is present.
 
 ### 2.3 What actually helps (and what doesn't)
@@ -139,10 +138,13 @@ non-pharmacological** (heat, stay active, massage, spinal manipulation), because
 its own. For **chronic** LBP, first-line is **exercise plus psychologically-informed care**, with drugs a
 distant second.
 
+_Evidence tiers in the table: `rct` = randomized controlled trial (the strongest tier); `meta` =
+meta-analysis or systematic review pooling many trials._
+
 | Intervention | Honest verdict | Tier |
 |---|---|---|
 | **Stay active / avoid bed rest** | First-line. Bed rest is actively *harmful* — it delays recovery. | `meta` |
-| **Exercise (any type you'll do)** | First-line for chronic LBP. **No single type is clearly best** — motor-control, Pilates, strength, walking, yoga all work about equally; adherence beats modality (Saragiotto et al., Cochrane 2016, `10.1002/14651858.CD012004`). | `meta` |
+| **Exercise (any type you'll do)** | First-line for chronic LBP. **No single type is clearly best** — motor-control, Pilates, strength, walking, yoga all work about equally; adherence beats modality (Saragiotto et al., Cochrane 2016).[^saragiotto-exercise] | `meta` |
 | **Education / reassurance / pain-neuroscience education** | Real, modest benefit; best *combined with* movement (§5; Section 14 §6.3). | `meta` |
 | **Spinal manipulation / massage** | Modest, short-term benefit for some; reasonable adjunct, not a cure. | `meta` |
 | **NSAIDs** | Small benefit, real GI/renal harms; short courses only. | `meta` |
@@ -153,7 +155,7 @@ distant second.
 
 > **Honest debunk — spinal fusion for non-specific low back pain.** For *non-specific* (no clear
 > structural target) chronic LBP, **fusion surgery is not better than a good structured rehabilitation +
-> cognitive program.** Brox et al.'s RCT (*Spine* 2003, `10.1097/01.BRS.0000083234.62751.7A`) randomised
+> cognitive program.** Brox et al.'s RCT (*Spine* 2003)[^brox-fusion] randomised
 > chronic-LBP patients to instrumented lumbar fusion vs. cognitive intervention + exercises and found
 > **no meaningful advantage for surgery** — at far higher cost and risk. Surgery has clear roles
 > (progressive neurological deficit, cauda equina, fracture, infection, tumour, and *some* leg-dominant
@@ -168,26 +170,26 @@ distant second.
 ### 3.1 Tendinopathy — and why "rest it" is the old, wrong advice
 
 Tendon problems (Achilles, patellar/"jumper's knee," lateral elbow/"tennis elbow," rotator cuff, gluteal)
-are among the most common and most mismanaged MSK complaints. Two updates matter:
+are among the most common and most mismanaged musculoskeletal (MSK) complaints. Two updates matter:
 
 **(a) It's "tendinopathy," not "tendinitis."** The old name implied *inflammation* ("-itis"). On
 histology, chronic tendon pain shows **failed healing and disordered collagen, with little classic
 inflammation** — hence the umbrella term **tendinopathy** (ICON 2019 consensus terminology — Scott et al.,
-*Br J Sports Med* 2020, `10.1136/bjsports-2019-100885`). This isn't pedantry: it's *why anti-inflammatory*
+*Br J Sports Med* 2020).[^scott-icon] This isn't pedantry: it's *why anti-inflammatory*
 rest-and-NSAID strategies disappoint, and why **loading** is the treatment.
 
 **(b) The continuum model: rest weakens, load remodels.** Cook & Purdam's continuum (*Br J Sports Med*
-2009, `10.1136/bjsm.2008.051193`) describes tendinopathy moving between **reactive → disrepair →
+2009)[^cook-purdam] describes tendinopathy moving between **reactive → disrepair →
 degenerative** states depending on load. The key clinical inversion of the last 25 years: **the treatment
 is progressive mechanical loading, not rest.** Rest reduces pain transiently but de-conditions the tendon,
 which fails again on return. Structured loading — beginning with **isometrics** for pain relief, then
 **heavy-slow resistance** or **eccentric** programs — is first-line:
 
-- **Achilles tendinopathy:** Alfredson's heavy-load **eccentric** calf program (*Am J Sports Med* 1998,
-  `10.1177/03635465980260030301`) was the breakthrough — painful, slow, and effective where rest failed.
+- **Achilles tendinopathy:** Alfredson's heavy-load **eccentric** calf program (*Am J Sports Med* 1998)[^alfredson]
+  was the breakthrough — painful, slow, and effective where rest failed.
 - **Loading programs broadly** (Achilles, patellar): eccentric and heavy-slow-resistance protocols produce
   good outcomes; no single protocol is clearly superior, and **adherence and progression** matter most
-  (Malliaras et al., *Sports Med* 2013, `10.1007/s40279-013-0019-z`).
+  (Malliaras et al., *Sports Med* 2013).[^malliaras]
 
 The mental model: **a tendon is trained, not rested, back to health** — slowly, often over 3–6+ months,
 through (not around) a tolerable level of pain.
@@ -202,7 +204,7 @@ through (not around) a tolerable level of pain.
 
 The current evidence-based framework is **PEACE & LOVE** — *protect, elevate, avoid anti-inflammatories
 (and ice), compress, educate*, then *load, optimism, vascularisation, exercise* (Dubois & Esculier,
-*Br J Sports Med* 2020, `10.1136/bjsports-2019-101253`):
+*Br J Sports Med* 2020):[^dubois-peace]
 
 @@FIG:PS5-peace-love@@
 
@@ -290,7 +292,7 @@ specialty corrective drills, gadgets, or pre-emptive "release" work has far thin
 
 Routine imaging is out (§2.2), but **clinical red-flag screening is in** — to catch the rare serious
 causes (<1–2% of LBP). The evidence on individual red flags is imperfect — most have high false-positive
-rates in isolation (Downie et al., *BMJ* 2013, `10.1136/bmj.f7095`) — but the high-stakes clusters warrant
+rates in isolation (Downie et al., *BMJ* 2013)[^downie-redflags] — but the high-stakes clusters warrant
 urgent work-up:
 
 - **Cauda equina syndrome** (EMERGENCY): saddle anaesthesia, new bladder/bowel dysfunction, bilateral leg
@@ -309,7 +311,7 @@ Absent these, the message is reassurance and active management — not a scan.
 Chronic pain (§1.2) is not a tissue problem to be fixed but a **system to be retrained and a life to be
 restored.** The evidence-based core is **active, multidisciplinary, and self-management-oriented** — the
 opposite of "find the broken part and cut it out." The 11 consistent best-practice recommendations
-distilled from MSK guidelines (Lin et al., *Br J Sports Med* 2020, `10.1136/bjsports-2018-099878`) are a
+distilled from MSK guidelines (Lin et al., *Br J Sports Med* 2020)[^lin-bestpractice] are a
 clean summary: patient-centred care, screen for serious pathology, assess psychosocial factors, **limit
 imaging**, use physical examination, evaluate progress, **education + self-management**, **physical
 activity/exercise first**, manual therapy only as an adjunct, offer evidence-based non-surgical care before
@@ -326,7 +328,7 @@ disability. Type matters less than consistency.
 
 Teaching people **how pain works** — that hurt ≠ harm, that a sensitised system can produce pain without
 damage — measurably reduces pain and disability **when combined with exercise** (Section 14 §6.3; Wood &
-Hendrick meta-analysis, *Eur J Pain* 2018, `10.1002/ejp.1314`). The work of **Lorimer Moseley & David
+Hendrick meta-analysis, *Eur J Pain* 2018).[^wood-hendrick] The work of **Lorimer Moseley & David
 Butler** (*Explain Pain*) popularised this. Grade it honestly: the **concept is well-supported**, the
 **effect size is small-to-moderate**, and it works as part of an active program, **not as a lecture
 alone.**
@@ -347,11 +349,11 @@ biopsychosocial problem.
 ### 5.4 The opioid honest story — the SPACE trial
 
 For **chronic non-cancer pain**, opioids are **not superior to non-opioid medication** and carry serious
-harms. The landmark **SPACE randomized trial** (Krebs et al., *JAMA* 2018, `10.1001/jama.2018.0899`)
+harms. The landmark **SPACE randomized trial** (Krebs et al., *JAMA* 2018)[^krebs-space]
 compared opioid vs. non-opioid medication over 12 months for chronic back pain and hip/knee
 osteoarthritis and found **no benefit of opioids on pain-related function — and if anything slightly
 *worse* pain in the opioid group**, with more side effects. Combined with the addiction/overdose toll
-(CDC guideline — Dowell et al., *MMWR* 2016, `10.15585/mmwr.rr6501e1`), the verdict is clear: **opioids
+(CDC guideline — Dowell et al., *MMWR* 2016),[^dowell-cdc] the verdict is clear: **opioids
 are not first-line for chronic non-cancer pain.** They retain a legitimate role in **acute,
 post-surgical, cancer, and palliative** pain. `rct` — a decisive negative for the over-prescribed
 indication.
@@ -361,8 +363,8 @@ indication.
 No single thing "cures" chronic pain; the gains come from **stacking** modest levers:
 **exercise + education + psychological skills + sleep + stress management + sensible (mostly non-opioid)
 medication + addressing the social/work context.** Sleep deserves a specific flag: poor sleep both
-predicts and amplifies chronic pain (bidirectional), so sleep is a genuine pain lever (cross-ref Section
-05 / Domain I). The honest expectation-set: **meaningful improvement in function and quality of life**,
+predicts and amplifies chronic pain (bidirectional), so sleep is a real pain lever (cross-ref Section
+05). The honest expectation-set: **meaningful improvement in function and quality of life**,
 not always zero pain.
 
 @@FIG:PX6-pain-multimodal@@
@@ -379,20 +381,19 @@ counter-intuitive to most patients:
 - **Exercise and weight management are first-line — full stop.** Every major guideline (OARSI, ACR, NICE)
   puts **education + exercise (strength + aerobic) + weight loss** as the core treatment, ahead of any
   drug or procedure. The structured **GLA:D program** (Good Life with osteoArthritis in Denmark — Skou &
-  Roos, *BMC Musculoskelet Disord* 2017, `10.1186/s12891-017-1439-y`) operationalises this and shows
+  Roos, *BMC Musculoskelet Disord* 2017)[^skou-glad] operationalises this and shows
   reduced pain, less medication use, and fewer people proceeding to surgery in large registries. **Strong
   knees and hips beat scared, weak ones** — the "wear and tear / don't load it" instinct is exactly
   backwards (joints need load to stay healthy).
 - **The surgery-vs-exercise data is humbling.** Two sham-controlled RCTs reshaped orthopaedics:
   **arthroscopic surgery for knee OA is no better than a *sham (placebo) operation*** (Moseley et al.,
-  *NEJM* 2002, `10.1056/NEJMoa013259`), and **arthroscopic partial meniscectomy for a degenerative
-  meniscal tear is no better than sham surgery** (Sihvonen et al., FIDELITY, *NEJM* 2013,
-  `10.1056/NEJMoa1305189`). These common operations largely treat the *incidental MRI finding*, not the
+  *NEJM* 2002),[^moseley-knee] and **arthroscopic partial meniscectomy for a degenerative
+  meniscal tear is no better than sham surgery** (Sihvonen et al., FIDELITY, *NEJM* 2013).[^sihvonen-fidelity]
+  These common operations largely treat the *incidental MRI finding*, not the
   pain. **Total joint replacement, by contrast, is genuinely effective** for end-stage OA that has failed
   conservative care — the issue is *timing and indication*, not that surgery never works.
 - **The supplement verdict.** **Glucosamine and chondroitin are, in the best trials, essentially no better
-  than placebo** for knee OA. The large, independent **GAIT trial** (Clegg et al., *NEJM* 2006,
-  `10.1056/NEJMoa052771`) found no significant benefit over placebo for the overall group (a possible
+  than placebo** for knee OA. The large, independent **GAIT trial** (Clegg et al., *NEJM* 2006)[^clegg-gait] found no significant benefit over placebo for the overall group (a possible
   signal in a moderate-severe subgroup was not robust). They are very safe and cheap, so a time-limited
   personal trial is low-risk — but **the strong marketing claims are not supported.** (Industry-funded
   trials are systematically more positive than independent ones — a provenance red flag.)
@@ -402,34 +403,42 @@ counter-intuitive to most patients:
 
 ### 6.2 Plantar fasciitis (plantar heel pain)
 
+**Verdict: mostly self-limiting but slow; load the calf and plantar fascia, manage aggravating volume, be patient.**
+
 The classic "first-steps-in-the-morning" heel pain. **Mostly self-limiting** (the majority resolve within
 ~12 months) but slow and frustrating. Best-evidenced active treatment: **calf + plantar-fascia loading**
 — e.g. high-load slow resistance (heel raises with the toes dorsiflexed on a towel) improved outcomes vs.
-stretching alone (Rathleff et al., *Scand J Med Sci Sports* 2015, `10.1111/sms.12313`). Plantar-fascia and
+stretching alone (Rathleff et al., *Scand J Med Sci Sports* 2015).[^rathleff-pf] Plantar-fascia and
 calf **stretching**, supportive footwear/orthoses (modest), and **load management** (reduce the aggravating
 volume, then rebuild) round it out. Corticosteroid injection gives short-term relief but risks fat-pad
 atrophy and (rarely) fascia rupture — not first-line.
 
 ### 6.3 Lateral epicondylalgia ("tennis elbow")
 
+**Verdict: a tendinopathy; load-and-time beats injection, which trades a good month for a worse year.**
+
 A common **tendinopathy** of the wrist-extensor origin (so §3.1 applies). The instructive trial:
 **corticosteroid injection produces good *short-term* relief but *worse* long-term outcomes and higher
-recurrence** than physiotherapy or wait-and-see (Coombes et al., *JAMA* 2013, `10.1001/jama.2013.129`).
+recurrence** than physiotherapy or wait-and-see (Coombes et al., *JAMA* 2013).[^coombes-elbow]
 The honest pathway: **activity/load modification + progressive loading exercise + time**; most resolve over
 6–12 months. Injection trades a good month for a worse year.
 
 ### 6.4 Frozen shoulder (adhesive capsulitis)
+
+**Verdict: largely self-limiting but *slow* (1–3 years); control pain, keep the range you can, avoid forced stretching in the painful phase.**
 
 Painful, progressive loss of shoulder range, classically in three phases (**freezing → frozen →
 thawing**), more common with diabetes. The defining honest fact: **it is largely self-limiting but
 *slow*** — often **1–3 years** to substantially resolve. Evidence-based care manages symptoms and
 preserves what range you can: **early intra-articular corticosteroid injection + supervised
 exercise/physiotherapy** helps pain and function in the early painful phase; aggressive forced stretching
-in the painful phase can worsen it (Maund et al., *Health Technol Assess* 2012, `10.3310/hta16110`).
+in the painful phase can worsen it (Maund et al., *Health Technol Assess* 2012).[^maund-fs]
 Surgery (manipulation/capsular release) is reserved for the stubborn minority. The most important
 intervention is often **calibrated patience plus pain control**, not heroics.
 
 ### 6.5 Sciatica (lumbar radicular pain)
+
+**Verdict: most improves without surgery; discectomy speeds *early* relief in selected cases but long-term outcomes converge — red flags override everything.**
 
 Leg-dominant pain (± numbness/weakness) following a nerve root, usually from disc
 herniation/compression. Key honest points:
@@ -468,13 +477,15 @@ progressive overload + deloads.)
   replicated negative. It improves **flexibility/range** (which can be a goal in itself) but is not an
   injury-prevention tool.
 - The old panic that **static stretching before lifting/sport "kills performance"** was an
-  *over*correction (Section 02 §4.2, `conflict-static-stretch-performance`, mostly resolved): the deficit
+  *over*correction (Section 02 §4.2, mostly resolved): the deficit
   from acute static stretching is **small, short-lived, and largely abolished by short holds (<60 s)
   followed by a dynamic warm-up.**
 - Practical rule (unchanged from Section 02): **dynamic warm-up before**; **long static / PNF / loaded
   stretching after or in a separate session** if you want range.
 
 ### 7.4 Foam-rolling / self-myofascial release
+
+**Bottom line: use it because it feels good and adds a little range, not because it "fixes" tissue.**
 
 **Honest verdict:** foam-rolling produces a **small, short-lived acute increase in range of motion and a
 modest reduction in perceived soreness**, without the performance penalty of static stretching — so it's a
@@ -558,7 +569,7 @@ A short, honestly-annotated reading list — the field's reframing texts and the
   regression→standard→progression ladder** ↔ **Section 02** (`02-training.md` §2, §4, §6) — *the rehab
   ladder is the training ladder*; **bone loading / osteoporosis / fracture-as-mortality** and **feet &
   mobility** ↔ **Section 11** (`11-body-systems.md` §3, §6); **sleep and stress as pain modulators** ↔
-  **Section 05** (`05-recovery-sleep-stress.md`) and **Domain I**; **diabetic peripheral neuropathy** ↔
+  **Section 05** (`05-recovery-sleep-stress.md`); **diabetic peripheral neuropathy** ↔
   Section 14 §6.4 and Section 07 (clinical prevention).
 - **UP to canon:** the **mechano-adaptation of tissue** (Wolff's law for bone; the load→remodel principle
   for tendon and muscle) is an application of biophysical material-response foundations adjacent to
@@ -576,3 +587,32 @@ acute-feel one; optimal **loading dose/progression** parameters for the major te
 is clearly superior yet); biomarkers or clinical signs that reliably identify **who** with sciatica/disc
 herniation actually benefits from early surgery; and the still-unsettled best management of **nociplastic**
 (centrally-driven) pain states beyond the multimodal stack.
+
+## Sources & notes
+
+[^woolf-cs]: Woolf — *Pain* 2011. doi:10.1016/j.pain.2010.09.030
+[^gatchel-bps]: Gatchel et al. — *Psychol Bull* 2007. doi:10.1037/0033-2909.133.4.581
+[^hartvigsen-lbp]: Hartvigsen et al., *Lancet* Low Back Pain Series — *Lancet* 2018. doi:10.1016/S0140-6736(18)30480-X
+[^foster-lbp]: Foster et al., *Lancet* Low Back Pain Series — *Lancet* 2018. doi:10.1016/S0140-6736(18)30489-6
+[^buchbinder-lbp]: Buchbinder et al., *Lancet* Low Back Pain Series — *Lancet* 2018. doi:10.1016/S0140-6736(18)30488-4
+[^brinjikji-mri]: Brinjikji et al. — *AJNR* 2015. doi:10.3174/ajnr.A4173
+[^qaseem-acp]: Qaseem et al., ACP guideline — *Ann Intern Med* 2017. doi:10.7326/M16-2367
+[^saragiotto-exercise]: Saragiotto et al. — Cochrane 2016. doi:10.1002/14651858.CD012004
+[^brox-fusion]: Brox et al. — *Spine* 2003. doi:10.1097/01.BRS.0000083234.62751.7A
+[^scott-icon]: Scott et al., ICON 2019 terminology — *Br J Sports Med* 2020. doi:10.1136/bjsports-2019-100885
+[^cook-purdam]: Cook & Purdam — *Br J Sports Med* 2009. doi:10.1136/bjsm.2008.051193
+[^alfredson]: Alfredson et al. — *Am J Sports Med* 1998. doi:10.1177/03635465980260030301
+[^malliaras]: Malliaras et al. — *Sports Med* 2013. doi:10.1007/s40279-013-0019-z
+[^dubois-peace]: Dubois & Esculier — *Br J Sports Med* 2020. doi:10.1136/bjsports-2019-101253
+[^downie-redflags]: Downie et al. — *BMJ* 2013. doi:10.1136/bmj.f7095
+[^lin-bestpractice]: Lin et al., 11 best-practice recommendations — *Br J Sports Med* 2020. doi:10.1136/bjsports-2018-099878
+[^wood-hendrick]: Wood & Hendrick — *Eur J Pain* 2018. doi:10.1002/ejp.1314
+[^krebs-space]: Krebs et al., SPACE trial — *JAMA* 2018. doi:10.1001/jama.2018.0899
+[^dowell-cdc]: Dowell et al., CDC guideline — *MMWR* 2016. doi:10.15585/mmwr.rr6501e1
+[^skou-glad]: Skou & Roos, GLA:D — *BMC Musculoskelet Disord* 2017. doi:10.1186/s12891-017-1439-y
+[^moseley-knee]: Moseley et al. — *NEJM* 2002. doi:10.1056/NEJMoa013259
+[^sihvonen-fidelity]: Sihvonen et al., FIDELITY — *NEJM* 2013. doi:10.1056/NEJMoa1305189
+[^clegg-gait]: Clegg et al., GAIT — *NEJM* 2006. doi:10.1056/NEJMoa052771
+[^rathleff-pf]: Rathleff et al. — *Scand J Med Sci Sports* 2015. doi:10.1111/sms.12313
+[^coombes-elbow]: Coombes et al. — *JAMA* 2013. doi:10.1001/jama.2013.129
+[^maund-fs]: Maund et al. — *Health Technol Assess* 2012. doi:10.3310/hta16110

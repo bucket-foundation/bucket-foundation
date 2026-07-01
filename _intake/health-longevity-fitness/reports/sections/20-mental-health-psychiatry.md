@@ -1,25 +1,23 @@
 # 20 — Mental Health & Psychiatry
 
-> **Status:** v0.1 — 2026-06-28. The clinical-psychiatry section of the manual. Fills a standing gap:
-> mental health appears across the corpus as a *longevity factor* (Section 08 §5: depression↔mortality,
-> exercise-as-treatment, the serotonin debunk; Section 14 §7: the obsolete "chemical imbalance" model),
-> but the **psychiatric conditions themselves** — what they are, how common they are, what actually
-> treats them, and how honest the evidence is — were never mapped. This section is that map.
-> **Companion data:** `02-domains/mentalhealth-claims.json` (this section's graded claims).
-> **Cross-references** — and deliberately does **not duplicate** — **Section 08** (`08-brain-cognitive.md`
-> §5: depression & mortality, exercise meta-analysis, the serotonin-deficiency umbrella review,
-> Cipriani's antidepressant network meta) and **Section 14** (`14-nervous-system.md` §3, §7:
-> neurotransmitters-aren't-feelings, the dopamine-detox debunk, the circuit-not-chemical model of mood).
-> Read those first for the mechanism layer; this section is the **conditions-and-treatments** layer.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+This is the one section of the manual where getting the evidence-grading right has a body count.
+Underselling treatment talks people out of care that would help them; overselling it sets up
+disillusionment that talks them out of care *next* time. Psychiatric conditions are **real medical
+conditions** — not character flaws or marketing inventions — and the field's evidence is messier than
+either its boosters or its critics admit. Both things are true. The compassionate move and the honest
+move are the same move: grade it straight, and say so plainly.
 
-> **A word on tone.** This is the one section where getting the evidence-grading right has a body count.
-> Underselling treatment talks people out of care that would help them; overselling it sets up
-> disillusionment that talks them out of care *next* time. Psychiatric conditions are **real medical
-> conditions**, not character flaws or marketing inventions — *and* the field's evidence is genuinely
-> messier than either its boosters or its critics admit. Both things are true. The compassionate move and
-> the honest move are the same move: grade it straight, and say so plainly.
+This is the **conditions-and-treatments** layer: what each condition is, how common it is, what actually
+treats it, and how honest the evidence is. The mechanism layer lives elsewhere and is worth reading
+first — depression↔mortality and the serotonin debunk in §08, the "chemical imbalance" and the
+circuit-not-chemical model of mood in §14.
+
+Three honesty rules run through everything below. **Predictor ≠ lever:** something that forecasts risk
+isn't automatically something that, changed, lowers it. **Cohort ≠ RCT:** a correlation in a population
+study is weaker evidence than a randomized trial. **Something beats nothing:** a treatment can be real
+and still be modest. They get invoked by name throughout; that's what they mean.
+
+_Not medical advice. Crisis resources are in §9.3._
 
 ---
 
@@ -49,8 +47,8 @@ method). They are here to convey *scale*, not precision.
 ## 1. Depression — the honest centre of gravity
 
 Section 08 §5 already covers depression's link to mortality and dementia, the **exercise** meta-analysis
-(Noetel et al., *BMJ* 2024, `10.1136/bmj-2023-075847`), and the **serotonin-deficiency umbrella review**
-(Moncrieff et al., *Mol Psychiatry* 2022, `10.1038/s41380-022-01661-0`). This section adds the part 08
+(Noetel et al., *BMJ* 2024)[^noetel], and the **serotonin-deficiency umbrella review**
+(Moncrieff et al., *Mol Psychiatry* 2022)[^moncrieff]. This section adds the part 08
 left out: **what major depression *is*, and the full honest picture of what treats it.**
 
 ### 1.1 What it is
@@ -86,26 +84,29 @@ moderate illness, and better durability after stopping (the skills persist; a pi
 stop the pill). Cuijpers and colleagues' large body of meta-analytic work is the anchor here — with the
 honest footnote that psychotherapy trials are also inflated by publication bias and unblindable
 conditions, so the *true* effect is somewhat smaller than the raw literature suggests, but still real.
-`meta` of RCTs.
+`meta` of RCTs (pooled randomized trials — a strong evidence tier).
 
 **Medication — the Cipriani result, honestly.** The single most important modern source is **Cipriani et
-al., *Lancet* 2018** (`10.1016/S0140-6736(17)32802-7`, PMID 29477251): a network meta-analysis of **522
+al., *Lancet* 2018**[^cipriani-2018] a network meta-analysis of **522
 trials, ~116,000 patients, all 21 antidepressants.** Headline: **all 21 beat placebo** for acute MDD in
-adults. The honest reading of the *size*: the pooled standardized mean difference was about **0.30** — a
-**small-to-moderate** effect. That number is the crux of the entire antidepressant debate:
+adults. The honest reading of the *size*: the pooled standardized mean difference (SMD — an effect
+expressed in standard-deviation units) was about **0.30** — a **small-to-moderate** effect. In plain
+terms, an SMD of 0.30 means the average treated person does better than about **62%** of placebo patients:
+real, but most people won't feel it dramatically. That number is the crux of the entire antidepressant
+debate:
 - To boosters, "all 21 beat placebo" is vindication.
 - To critics, "SMD ~0.30" is barely above the ~0.2 threshold often cited as a minimal clinically
   perceptible difference, and a chunk of even that may be unblinding (patients guess they're on the drug
   from side effects and report accordingly).
 - **The reconciling fact is severity.** The drug-placebo gap is **smallest in mild depression and largest
-  in severe depression** — the pattern reported by Fournier et al. (*JAMA* 2010, `10.1001/jama.2009.1943`)
+  in severe depression** — the pattern reported by Fournier et al. (*JAMA* 2010)[^fournier]
   and broadly consistent since. This is honesty rule #2 in action: the average effect is modest, but the
   average hides the people for whom it is decisive.
 
 @@FIG:D07-antidepressant-severity@@
 
 **The Kirsch placebo debate.** Irving Kirsch's "*The Emperor's New Drugs*" (Kirsch et al., *PLoS Medicine*
-2008, `10.1371/journal.pmed.0050045`) used FDA trial data — including unpublished negative trials — to
+2008)[^kirsch] used FDA trial data — including unpublished negative trials — to
 argue that the antidepressant-placebo difference falls below clinical significance for all but the most
 severe depression, and that much of the apparent benefit is a **large placebo response** plus publication
 bias. The lasting contribution is **not** "antidepressants are fake" (Cipriani's later, larger, all-trials
@@ -114,7 +115,7 @@ depression is genuinely large, and **(2)** publication bias systematically infla
 until regulators forced trial registration. Both critiques were right and improved the field; the strong
 version ("they don't work") overshoots the data. `meta` — contested, severity-dependent.
 
-**Exercise** (cross-ref 08 §5.2): a genuine, RCT-supported treatment for depression (Noetel *BMJ* 2024),
+**Exercise** (cross-ref 08 §5.2): a real, RCT-supported treatment for depression (Noetel *BMJ* 2024)[^noetel],
 with effect sizes that rival therapy and medication in head-to-head arms — caveated by high risk of bias
 in the included trials. The most under-prescribed effective treatment in the field. `meta`.
 
@@ -160,15 +161,15 @@ very behaviour that feels protective. This is why the treatment is what it is.
 ### 2.2 What works — CBT and exposure, first-line
 
 **Cognitive behavioral therapy with exposure** is the first-line, best-evidenced treatment for anxiety
-disorders — the meta-analytic anchor is **Carpenter, Hofmann et al., *Depression & Anxiety* 2018**
-(`10.1002/da.22728`, PMID 29451967), confirming CBT's efficacy across GAD, panic, social anxiety, and
+disorders — the meta-analytic anchor is **Carpenter, Hofmann et al., *Depression & Anxiety* 2018**[^carpenter],
+confirming CBT's efficacy across GAD, panic, social anxiety, and
 related disorders versus placebo. Exposure therapy works by the inverse of the maintaining mechanism:
 **deliberately, gradually approaching the feared thing without the safety behaviour**, until the
 prediction ("this will be catastrophic") is disconfirmed and the fear extinguishes. It is one of the more
 mechanistically coherent treatments in psychiatry — the therapy directly reverses the thing that
 maintains the disorder. `meta` of RCTs.
 
-**Medication.** SSRIs and SNRIs are effective and first-line pharmacotherapy for most anxiety disorders,
+**Medication.** SSRIs and SNRIs (the standard first-line antidepressant drug classes) are effective and first-line pharmacotherapy for most anxiety disorders,
 roughly comparable to CBT in the short term, with CBT showing better durability after discontinuation.
 Combination is common. `meta`/`rct`.
 
@@ -217,8 +218,8 @@ mania or rapid cycling. Getting the diagnosis right *is* part of the treatment.
 despite weaker evidence. Two facts make lithium exceptional:
 - **It is the most effective long-term mood stabilizer** for relapse prevention in bipolar disorder
   (maintenance trials and meta-analyses; the BALANCE trial, Geddes et al., *Lancet* 2010,
-  `10.1016/S0140-6736(09)61828-6`, supports lithium-containing maintenance).
-- **It uniquely reduces suicide.** **Cipriani et al., *BMJ* 2013** (`10.1136/bmj.f3646`, PMID 23814104) —
+  supports lithium-containing maintenance)[^balance].
+- **It uniquely reduces suicide.** **Cipriani et al., *BMJ* 2013**[^cipriani-2013] —
   a systematic review and meta-analysis — found lithium **reduces the risk of suicide and of all-cause
   mortality** in people with mood disorders versus placebo. This is a rare and precious thing in
   psychiatry: a treatment with a **direct anti-suicide signal**, an effect that appears partly
@@ -247,9 +248,8 @@ drive most of the long-term disability.
 
 ### 4.2 Antipsychotics — they work, and they cost
 
-The honest two-sided ledger, anchored by **Leucht et al., *Lancet* 2013** (`10.1016/S0140-6736(13)60733-3`,
-PMID 23810019), a multiple-treatments meta-analysis of **15 antipsychotics across 212 trials, ~43,000
-patients**:
+The honest two-sided ledger, anchored by **Leucht et al., *Lancet* 2013**[^leucht], a multiple-treatments
+meta-analysis of **15 antipsychotics across 212 trials, ~43,000 patients**:
 - **They genuinely work** for positive symptoms and for relapse prevention — all 15 beat placebo, with
   meaningful effect sizes. For acute psychosis, antipsychotics are not optional folk medicine; they are
   effective and, often, life-stabilizing. `meta` of RCTs.
@@ -272,7 +272,7 @@ than it should.
 The strongest *systems-level* finding is that **early intervention matters.** **Duration of untreated
 psychosis (DUP)** — the lag between symptom onset and treatment — predicts worse outcomes, and
 specialized early-intervention services improve them. The **RAISE-ETP trial** (Kane et al., *Am J
-Psychiatry* 2016, `10.1176/appi.ajp.2015.15050632`) showed that a coordinated specialty-care package
+Psychiatry* 2016)[^raise] showed that a coordinated specialty-care package
 (medication + family education + supported employment/education + therapy) for **first-episode psychosis**
 improved quality of life and symptoms versus usual care, with **greater benefit the shorter the DUP.**
 The lever is not just the drug — it is **catching it early and wrapping psychosocial support around it.**
@@ -295,7 +295,7 @@ failure, accidents, substance use, unemployment, and elevated mortality. It is a
 
 **Stimulant medications** (methylphenidate, amphetamines) are the first-line treatment and have **one of
 the largest effect sizes of any psychiatric drug class.** The anchor is **Cortese et al., *Lancet
-Psychiatry* 2018** (`10.1016/S2215-0366(18)30269-4`, PMID 30097390), a network meta-analysis of ADHD
+Psychiatry* 2018**[^cortese], a network meta-analysis of ADHD
 medications in children and adults: **methylphenidate** was the preferred first choice in children/
 adolescents and **amphetamines** in adults, both clearly beating placebo, with non-stimulants
 (atomoxetine, guanfacine) as effective second-line options. Treatment improves core symptoms and, in
@@ -358,23 +358,23 @@ attached.** This is honesty rule #1 again — the treatment is real, the proprie
 This is the live frontier, and it is where the gap between *headline* and *evidence* is widest, so it
 needs grading with particular care.
 
-- **MDMA-assisted therapy for PTSD.** The MAPS/Lykos phase-3 program produced striking results: **Mitchell
-  et al., *Nature Medicine* 2021** (MAPP1, `10.1038/s41591-021-01336-3`, PMID 33972795) and the
-  confirmatory **Mitchell et al., *Nature Medicine* 2023** (MAPP2) reported large reductions in PTSD
-  severity, with substantial fractions of participants **no longer meeting PTSD criteria** after a few
-  MDMA-assisted sessions — effects larger than typical drug trials. **But the honest, load-bearing fact:
-  the FDA *rejected* the application in August 2024**, declining to approve MDMA-assisted therapy and
-  requesting an **additional phase-3 trial.** The concerns were real and methodological: **functional
-  unblinding** (almost everyone knows whether they got MDMA, which inflates expectancy effects in a
-  therapy-heavy trial), questions about trial conduct and data integrity, and unresolved abuse-liability
-  and cardiovascular safety. So: **genuinely promising, plausibly transformative for a hard-to-treat
+- **MDMA-assisted therapy for PTSD — promising, and FDA-*rejected* (2024).** Lead with the load-bearing
+  fact: in August 2024 the **FDA declined to approve** MDMA-assisted therapy for PTSD and requested an
+  **additional phase-3 trial.** That verdict matters precisely because the results underneath it looked so
+  strong: the MAPS/Lykos phase-3 program — **Mitchell et al., *Nature Medicine* 2021** (MAPP1)[^mitchell]
+  and the confirmatory MAPP2 (*Nature Medicine* 2023) — reported large reductions in PTSD severity, with
+  substantial fractions of participants **no longer meeting PTSD criteria** after a few MDMA-assisted
+  sessions, effects larger than typical drug trials. The FDA's concerns were real and methodological:
+  **functional unblinding** (almost everyone knows whether they got MDMA, which inflates expectancy effects
+  in a therapy-heavy trial), questions about trial conduct and data integrity, and unresolved
+  abuse-liability and cardiovascular safety. So: **promising, plausibly transformative for a hard-to-treat
   condition — and not an approved, available treatment, with a regulator explicitly saying the evidence is
   not yet sufficient.** `rct` — promising, **unblinding-confounded, not approved**.
 
 @@FIG:D20-mdma-ptsd@@
 
-- **Psilocybin for depression** (adjacent, cross-ref §1): **Carhart-Harris et al., *NEJM* 2021**
-  (`10.1056/NEJMoa2032994`, PMID 33852780) compared psilocybin-assisted therapy with escitalopram for
+- **Psilocybin for depression** (adjacent, cross-ref §1): **Carhart-Harris et al., *NEJM* 2021**[^carhart]
+  compared psilocybin-assisted therapy with escitalopram for
   depression; psilocybin was **not statistically superior** on the primary endpoint, though several
   secondary measures favored it. Promising signal, **not** a demonstrated knockout, **early.** FDA has
   granted "breakthrough therapy" designations (a status about review speed, **not** evidence of efficacy)
@@ -395,9 +395,9 @@ word is **"promising and unproven,"** not "psychedelics cure trauma."
 
 - **Anorexia nervosa:** restriction of intake → significantly low body weight, intense fear of weight gain,
   and a distorted body image. It is, by mortality, **among the most lethal of all psychiatric disorders.**
-  **Arcelus et al., *Archives of General Psychiatry* 2011** (`10.1001/archgenpsychiatry.2011.74`, PMID
-  21727255), a meta-analysis of 36 studies, found a **standardized mortality ratio of ~5–6 for anorexia
-  nervosa** — roughly **five to six times** the expected death rate — from both medical complications
+  **Arcelus et al., *Archives of General Psychiatry* 2011**[^arcelus], a meta-analysis of 36 studies,
+  found a **standardized mortality ratio (SMR) of ~5–6 for anorexia nervosa** — roughly **five to six
+  times** the expected death rate — from both medical complications
   (cardiac, electrolyte) and a high suicide rate. This single fact should reframe eating disorders from
   "lifestyle/vanity" problems (the cultural misread) to the **serious, sometimes fatal medical illnesses**
   they are. `meta`/`cohort`.
@@ -503,7 +503,7 @@ Suicide is the highest-stakes outcome in this entire section, so it gets its own
   lethal means at the moment of crisis — barriers on bridges, safer medication packaging, firearm access
   reduction, restricting access to pesticides (a leading method in much of the world) — **measurably saves
   lives**, precisely because crises are transient and method-substitution is incomplete. (Mann et al.,
-  *JAMA* 2005, `10.1001/jama.294.16.2064`, the suicide-prevention strategies review, is the anchor.)
+  *JAMA* 2005, the suicide-prevention strategies review, is the anchor.)[^mann]
   `cohort`/`review` — strong and consequential.
 
 ### 9.2 What reduces suicide risk
@@ -530,39 +530,20 @@ the crisis in front of you.**
 
 ## 10. The honest summary of this section
 
-1. **Psychiatric conditions are real medical conditions** — heritable, biologically grounded, and
-   disabling — *and* the field's evidence is messier than either its boosters or its critics admit. Both
-   are true; grading them straight is the compassionate move.
-2. **Depression:** the serotonin-imbalance story is false (08 §5.3); therapy and medication both
-   **modestly** beat placebo, with benefit **concentrated in severe illness** (Cipriani 2018; Fournier
-   2010); Kirsch's placebo critique was partly right and improved the field without proving the drugs
-   useless; **exercise** is a genuine under-used lever; ECT and ketamine are powerful tools for the severe
-   end that the public misjudges.
-3. **Anxiety/OCD/PTSD:** **psychotherapy with exposure leads** — CBT/exposure for anxiety, ERP for OCD,
-   trauma-focused therapy (PE/CPT) for PTSD — because it directly reverses the avoidance that maintains the
-   disorder. SSRIs are real second-line/adjunct. **Benzodiazepines** relieve fast and trap slow.
-4. **Bipolar:** **lithium is under-used, is the best mood stabilizer, and uniquely reduces suicide**
-   (Cipriani *BMJ* 2013). It is a spectrum, and bipolar-II is chronically misdiagnosed as unipolar
-   depression — a real harm, since antidepressants alone can destabilize.
-5. **Schizophrenia:** **antipsychotics genuinely work** for positive symptoms (Leucht 2013) but carry
-   **serious metabolic harms** that shorten life; clozapine is best-and-underused; **early intervention**
-   (short DUP + coordinated specialty care, RAISE) improves outcomes.
-6. **ADHD:** a **real, highly heritable** condition; **stimulants have one of the largest effect sizes in
-   psychiatry** (Cortese 2018); *and* it is genuinely over-diagnosed in some settings and under-diagnosed
-   in others, with adult self-diagnosis needing careful, mimic-aware assessment.
-7. **PTSD's frontier:** EMDR works but the eye movements are likely inert (it's exposure in costume);
-   **MDMA-assisted therapy is promising but FDA-rejected (2024)** pending another trial, and the whole
-   psychedelic field is **unblindable**, so the evidence tier sits below the excitement.
-8. **Eating disorders** are **dangerous medical illnesses** — **anorexia has among the highest mortality
-   in psychiatry** (Arcelus 2011, SMR ~5–6); FBT (adolescent AN) and CBT-E (bulimia/BED) are the levers;
-   early weight-focused treatment matters most.
-9. **The lifestyle foundation is real and the floor, not the ceiling** — exercise, sleep, connection,
-   sunlight, not self-medicating with alcohol — while **most mood supplements, "dopamine detox," and the
-   wellness-industrial "nervous-system reset" genre are mechanism-or-marketing.** The effective levers are
-   free and unmonetizable; the oversold ones are not. That asymmetry is the business model, not a coincidence.
-10. **Suicide:** crises are usually **transient and treatable**, asking about it doesn't plant it, **means
-    restriction works**, lithium/clozapine/ketamine have direct anti-suicide signals, individual prediction
-    is genuinely poor — so lean on the interventions that work regardless of prediction.
+One line per topic — the belief-changing version of each section above.
+
+| Topic | The honest bottom line |
+|---|---|
+| **Framing** | Psychiatric conditions are real, heritable, biologically grounded, disabling medical conditions — *and* the field's evidence is messier than either its boosters or its critics admit. Grading them straight is the compassionate move. |
+| **Depression** | The serotonin-imbalance story is false (08 §5.3); therapy and medication both **modestly** beat placebo, benefit **concentrated in severe illness** (Cipriani 2018; Fournier 2010); Kirsch's placebo critique was partly right and improved the field without proving the drugs useless; **exercise** is an under-used lever; ECT and ketamine are powerful tools for the severe end that the public misjudges. |
+| **Anxiety / OCD / PTSD** | **Psychotherapy with exposure leads** — CBT/exposure for anxiety, ERP for OCD, trauma-focused therapy (PE/CPT) for PTSD — because it directly reverses the avoidance that maintains the disorder. SSRIs are real second-line/adjunct. **Benzodiazepines relieve fast and trap slow.** |
+| **Bipolar** | **Lithium is under-used, is the best mood stabilizer, and uniquely reduces suicide** (Cipriani *BMJ* 2013). It is a spectrum; bipolar-II is chronically misdiagnosed as unipolar depression — a real harm, since antidepressants alone can destabilize. |
+| **Schizophrenia** | **Antipsychotics do work** for positive symptoms (Leucht 2013) but carry **serious metabolic harms** that shorten life; clozapine is best-and-underused; **early intervention** (short DUP + coordinated specialty care, RAISE) improves outcomes. |
+| **ADHD** | A **real, highly heritable** condition; **stimulants have one of the largest effect sizes in psychiatry** (Cortese 2018); *and* it is over-diagnosed in some settings and under-diagnosed in others, with adult self-diagnosis needing careful, mimic-aware assessment. |
+| **PTSD frontier** | EMDR works but the eye movements are likely inert (exposure in costume); **MDMA-assisted therapy is promising but FDA-rejected (2024)** pending another trial; the whole psychedelic field is **unblindable**, so the evidence tier sits below the excitement. |
+| **Eating disorders** | **Dangerous medical illnesses** — **anorexia has among the highest mortality in psychiatry** (Arcelus 2011, SMR ~5–6); FBT (adolescent AN) and CBT-E (bulimia/BED) are the levers; early weight-focused treatment matters most. |
+| **Lifestyle floor** | Exercise, sleep, connection, sunlight, not self-medicating with alcohol — real, and the floor **not the ceiling**; most mood supplements, "dopamine detox," and the wellness-industrial "nervous-system reset" genre are mechanism-or-marketing. The effective levers are free and unmonetizable; the oversold ones are not. That asymmetry is the business model. |
+| **Suicide** | Crises are usually **transient and treatable**; asking about it doesn't plant it; **means restriction works**; lithium/clozapine/ketamine have direct anti-suicide signals; individual prediction is poor — so lean on the interventions that work regardless of prediction. |
 
 ---
 
@@ -635,3 +616,19 @@ exercise for depression in *low-bias* trials (08's open gap, repeated here); the
 response (pharmacogenomics in psychiatry is still mostly noise — cf. Section 18); long-term real-world
 outcomes of early-intervention psychosis services at scale; and a validated, deployable individual-level
 suicide-risk model (the field's most consequential open problem).
+
+[^noetel]: Noetel et al. — *BMJ* 2024. doi:10.1136/bmj-2023-075847
+[^moncrieff]: Moncrieff et al. — *Mol Psychiatry* 2022. doi:10.1038/s41380-022-01661-0
+[^cipriani-2018]: Cipriani et al. — *Lancet* 2018. doi:10.1016/S0140-6736(17)32802-7. PMID 29477251
+[^fournier]: Fournier et al. — *JAMA* 2010. doi:10.1001/jama.2009.1943
+[^kirsch]: Kirsch et al. — *PLoS Medicine* 2008. doi:10.1371/journal.pmed.0050045
+[^carpenter]: Carpenter, Hofmann et al. — *Depression & Anxiety* 2018. doi:10.1002/da.22728. PMID 29451967
+[^balance]: BALANCE — Geddes et al., *Lancet* 2010. doi:10.1016/S0140-6736(09)61828-6
+[^cipriani-2013]: Cipriani et al. — *BMJ* 2013. doi:10.1136/bmj.f3646. PMID 23814104
+[^leucht]: Leucht et al. — *Lancet* 2013. doi:10.1016/S0140-6736(13)60733-3. PMID 23810019
+[^raise]: RAISE-ETP — Kane et al., *Am J Psychiatry* 2016. doi:10.1176/appi.ajp.2015.15050632
+[^cortese]: Cortese et al. — *Lancet Psychiatry* 2018. doi:10.1016/S2215-0366(18)30269-4. PMID 30097390
+[^mitchell]: Mitchell et al. — *Nature Medicine* 2021 (MAPP1). doi:10.1038/s41591-021-01336-3. PMID 33972795. Confirmatory MAPP2: *Nature Medicine* 2023
+[^carhart]: Carhart-Harris et al. — *NEJM* 2021. doi:10.1056/NEJMoa2032994. PMID 33852780
+[^arcelus]: Arcelus et al. — *Arch Gen Psychiatry* 2011. doi:10.1001/archgenpsychiatry.2011.74. PMID 21727255
+[^mann]: Mann et al. — *JAMA* 2005. doi:10.1001/jama.294.16.2064

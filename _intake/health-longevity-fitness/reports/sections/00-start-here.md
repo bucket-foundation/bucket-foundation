@@ -6,8 +6,8 @@
 
 ## The three rules that govern every claim in this book
 
-**(1) Predictor ≠ lever.** A number that predicts death (grip strength, HRV, a biological-age clock) is not
-automatically something that, changed, prevents death. **(2) Cohort ≠ proof.** You can't randomize fitness or
+**(1) Predictor ≠ lever.** A number that predicts death (grip strength, HRV [heart-rate variability], a
+biological-age clock) is not automatically something that, changed, prevents death. **(2) Cohort ≠ proof.** You can't randomize fitness or
 sleep over decades, so the strongest-looking numbers carry bias. **(3) Something beats nothing.** The steepest
 gains are at the *start* of every dose-response curve; optimization past that is real but smaller than it's sold.
 *(These are stated once, here — the chapters assume them rather than repeating them.)*
@@ -19,14 +19,17 @@ gains are at the *start* of every dose-response curve; optimization past that is
 These are the whole game. Each individually outranks every supplement and gadget in the book, and they compound.
 
 1. **Don't smoke or vape; keep alcohol low.** The single largest modifiable mortality factor. *(→ §Exposures)*
-2. **Build and keep cardiorespiratory fitness (VO₂max).** The strongest mortality predictor in preventive
-   medicine — ~5× lower all-cause mortality (top vs bottom), no observed ceiling. Treat it like a vital sign. *(→ §Training)*
+2. **Build and keep cardiorespiratory fitness (VO₂max — how much oxygen your body can use at full effort,
+   i.e. how fit your heart and lungs are).** The strongest mortality predictor in preventive medicine —
+   ~5× lower all-cause mortality (top vs bottom), no observed ceiling. Treat it like a vital sign. *(→ §Training)*
 3. **Resistance-train for strength, 2–3×/week.** *Strength*, not muscle size, predicts survival; benefit peaks
    around 30–60 min/week (more isn't better). *(→ §Training)*
 4. **Move all day; break up sitting.** The least-confounded signal in the field; steps help but plateau ~7–8k. *(→ §Training)*
-5. **Keep apoB / LDL low across your whole life.** One of the only *causal* blood levers — earlier is better
-   because exposure is cumulative. Diet first, medication if needed. *(→ §Clinical Prevention, §Pathology)*
-6. **Sleep ~7 hours, regularly.** U-shaped risk; regularity and timing matter as much as duration. *(→ §Recovery)*
+5. **Keep apoB / LDL low across your whole life.** apoB (a count of the cholesterol particles that actually
+   clog arteries) is one of the only *causal* blood levers — earlier is better because exposure is cumulative.
+   Diet first, medication if needed. *(→ §Clinical Prevention, §Pathology)*
+6. **Sleep ~7 hours, regularly.** U-shaped risk (both too little *and* too much are worse); regularity and
+   timing matter as much as duration. *(→ §Recovery)*
 7. **Eat a protein-adequate, mostly-whole-food pattern.** ~1.6 g/kg protein covers the muscle-building plateau;
    the specific "diet brand" matters far less than the pattern. *(→ §Nutrition)*
 8. **Protect social connection and a sense of purpose.** Effect size rivals smoking cessation — and it's the one
@@ -51,8 +54,9 @@ These are the whole game. Each individually outranks every supplement and gadget
 
 - **Functional (free, high-signal):** VO₂max (or a hard field test), grip strength, gait speed, sit-to-rise,
   the 10-second one-leg stand. These rival expensive panels.
-- **Blood (the ones that change decisions):** **apoB** (best lipid metric), **Lp(a)** once in your life,
-  HbA1c + fasting insulin, blood pressure (measure at home).
+- **Blood (the ones that change decisions):** **apoB** (best lipid metric), **Lp(a)** once in your life
+  (a mostly-genetic particle that adds heart risk on top of your cholesterol), HbA1c (a 3-month blood-sugar
+  average) + fasting insulin, blood pressure (measure at home).
 - **Track trends, don't over-read:** wearable sleep duration/timing and overnight HRV are *trends*, not diagnoses.
 
 ## MOSTLY SKIP — sold harder than the evidence supports

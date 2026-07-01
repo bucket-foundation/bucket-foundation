@@ -1,22 +1,24 @@
 # 36 — Fasting, Cleanses & Metabolic Protocols
 
-> **Manual section, v1.0 — 2026-06-29.** Companion graded claims in `02-domains/fasting-protocols-claims.json`.
-> This section maps the **named popular protocols** — the brands, the regimens, the influencer programs — and grades each
-> one honestly. It deliberately does **not** re-derive the *science* of fasting: that lives in
-> `03-nutrition-supplements.md` §4 (the applied TRE/CR take), `02-domains/D-metabolic-nutrition.md` Domain D §3–4
-> (the underlying caloric-restriction / time-restricted-eating literature and the protein↔mTOR conflict), and
-> `01-foundations.md` §3.2 / §4.3 (autophagy, mTOR/AMPK reciprocity, proteostasis). Read those for *mechanism*; read
-> **this** for *which protocol, which claim, which verdict, and what can hurt you*.
+Almost the entire fasting-influencer economy runs on one quiet swap: take something fasting *does* to your cells and
+sell it as something fasting *does for your life*. "Fasting activates autophagy" is true. "This 36-hour protocol clears
+toxins and reverses aging" is a sales pitch wearing the first claim's lab coat. This chapter maps the named popular
+protocols — the brands, the regimens, the influencer programs — and grades each one honestly: which claim, which
+verdict, and what can actually hurt you.
 
-This chapter runs on the same honesty rules as the rest of the corpus, with one added load-bearing distinction that
-this topic abuses more than any other:
+_Not medical advice. The mechanisms of fasting (autophagy, mTOR/AMPK, caloric restriction) live in §01 and §03; this
+chapter is about the protocols and their verdicts._
 
-1. **Mechanism ≠ outcome.** "Fasting raises ketones / activates AMPK / induces autophagy" is a *mechanism* claim.
-   "This 36-hour protocol makes you live longer / clears toxins / melts visceral fat preferentially" is an *outcome*
-   claim. Almost the entire fasting-influencer economy is built on quietly upgrading the first into the second.
+This chapter runs on the same honesty rules as the rest of the corpus, with one added distinction that this topic
+abuses more than any other:
+
+1. **Mechanism ≠ outcome.** "Fasting raises ketones / activates AMPK (a cellular low-energy sensor) / induces autophagy
+   (the cell's self-cleaning and recycling process)" is a *mechanism* claim. "This 36-hour protocol makes you live
+   longer / clears toxins / melts visceral fat preferentially" is an *outcome* claim. Almost the entire fasting-influencer
+   economy is built on quietly upgrading the first into the second.
 2. **The benefit is usually the calorie restriction, not the schedule.** When trials *match calories* between a
-   fasting arm and a continuous-restriction arm, the fasting-specific advantage largely disappears (cross-ref
-   `conflict-tre-efficacy-vs-cr`). The clock is mostly an **adherence tool** for eating less, not a separate magic.
+   fasting arm and a continuous-restriction arm, the fasting-specific advantage largely disappears.[^tre-cr] The clock
+   works mostly as an **adherence tool** for eating less; the separate magic is thin.
 3. **"The body detoxes itself" is the null hypothesis for every cleanse.** The liver and kidneys clear xenobiotics
    continuously (cross-ref `17-organ-systems-atlas.md` §3.5 — flat debunk). A cleanse has to beat *that baseline*, and
    none does. Cross-ref the detox cluster in `32-biohacking-fringe.md` §6.
@@ -24,8 +26,8 @@ this topic abuses more than any other:
 @@FIG:85-calerie@@
 
 A practical note on terminology: in 2024 a large expert panel published an **international consensus on fasting
-terminology** (Koppold et al., *Cell Metab* 2024, `10.1016/j.cmet.2024.06.013`) precisely because the words are used so
-loosely. Where definitions matter below, that's the reference standard.
+terminology** (Koppold et al., 2024)[^koppold] precisely because the words are used so loosely. Where definitions
+matter below, that's the reference standard.
 
 ---
 
@@ -34,7 +36,7 @@ loosely. Where definitions matter below, that's the reference standard.
 "Intermittent fasting" (IF) is an umbrella for **when** you eat, not **what** or strictly **how much**. The honest
 through-line for the whole family: the metabolic benefits seen in trials are real but **mostly explained by the
 spontaneous calorie reduction** these patterns cause, plus a smaller, genuine **circadian** effect from eating earlier
-in the day. None of the IF variants has a hard-endpoint (mortality) RCT — you cannot randomize humans to decades of a
+in the day. None of the IF variants has a hard-endpoint (mortality) RCT (randomized controlled trial — the strongest evidence tier) — you cannot randomize humans to decades of a
 schedule.
 
 @@FIG:89-fasting-protocols@@
@@ -45,12 +47,12 @@ schedule.
   window in the strict definition. "16:8" is the famous one.
 - **The claim:** fat loss, insulin sensitivity, "metabolic switching," autophagy, longevity.
 - **The evidence:** TRE reliably produces **modest weight loss** in trials — but the **TREAT RCT** (Lowe et al.,
-  *JAMA Intern Med* 2020, `10.1001/jamainternmed.2020.4153`) found late 16:8 produced only small weight loss **no
-  greater than a control eating schedule**, and a worrying share of the lost weight was **lean mass**. By contrast,
-  **early** TRE (eating window shifted earlier, finishing by mid-afternoon) shows a genuine *weight-independent*
-  metabolic benefit: **Sutton & Peterson 2018** (*Cell Metab*, `10.1016/j.cmet.2018.04.010`) ran 6-hour **isocaloric**
-  early TRE — no weight loss — and still improved insulin sensitivity, blood pressure, and oxidative-stress markers.
-  When calories are matched, TRE ≈ continuous restriction for weight (cross-ref `conflict-tre-efficacy-vs-cr`).
+  2020)[^treat] found late 16:8 produced only small weight loss **no greater than a control eating schedule**, and a
+  worrying share of the lost weight was **lean mass**. By contrast, **early** TRE (eating window shifted earlier,
+  finishing by mid-afternoon) shows a genuine *weight-independent* metabolic benefit: **Sutton & Peterson**
+  (2018)[^sutton] ran 6-hour **isocaloric** (same total calories) early TRE — no weight loss — and still improved
+  insulin sensitivity, blood pressure, and oxidative-stress markers. When calories are matched, TRE ≈ continuous
+  restriction for weight.[^tre-cr]
 
 @@FIG:L06-tre-cr@@
 
@@ -65,7 +67,7 @@ schedule.
 - **What it is:** all daily calories in a single ~1-hour eating window.
 - **The claim:** maximal fat loss, deep autophagy, simplicity.
 - **The evidence:** thin — mostly case reports and small studies (e.g. a managed prediabetes/obesity case using OMAD,
-  *J Family Med Prim Care* 2025, `10.4103/jfmpc.jfmpc_247_25`). A crossover study in healthy adults found OMAD raised
+  2025)[^omad]. A crossover study in healthy adults found OMAD raised
   fasting glucose and morning cortisol and modestly raised blood pressure versus three meals at the same calories.
   It's an extreme TRE; the same "benefit = the calorie deficit" logic applies, with a harder adherence and
   nutrient-adequacy problem (hitting protein and micronutrient targets in one meal is genuinely difficult).
@@ -94,8 +96,8 @@ schedule.
 - **What it is:** **ADF** alternates a fast/very-low day (~0–500 kcal) with an ad-lib day. **Eat-Stop-Eat** (Brad
   Pilon) = one or two full **24-hour** fasts per week.
 - **The claim:** superior fat loss and metabolic flexibility.
-- **The evidence:** the cleanest test is **Trepanowski et al. 2017** (*JAMA Intern Med*, `10.1001/jamainternmed.2017.0936`)
-  — a year-long RCT of ADF vs daily calorie restriction vs control. ADF produced weight loss **no better than** daily
+- **The evidence:** the cleanest test is **Trepanowski et al.** (2017)[^trepanowski] — a year-long RCT of ADF vs daily
+  calorie restriction vs control. ADF produced weight loss **no better than** daily
   restriction, had **higher dropout**, and — importantly — did **not** preferentially spare lean mass. Meta-analyses
   agree ADF ≈ continuous restriction for weight and cardiometabolic markers.
 - **Verdict:** **MODERATE for weight (= continuous restriction), with worse adherence.** No evidence of a unique
@@ -120,11 +122,13 @@ qualitatively. This is where supervision, electrolytes, and **refeeding** stop b
 
 ### 2.1 The physiology / timeline (mechanism — directional, not a stopwatch)
 
-A rough sequence as a fast extends (individual variation is large; these are *not* precise clocks):
+Here is what actually happens inside you as a fast stretches — and where it stops being a diet and turns into a medical
+state. A rough sequence as a fast extends (individual variation is large; these are *not* precise clocks):
 
 - **0–12 h:** post-absorptive; liver glycogen covers glucose needs.
 - **~12–36 h:** glycogen depletes; gluconeogenesis ramps; **lipolysis** and **ketogenesis** rise — the "metabolic
-  switch" to fat/ketone fuel. AMPK up, mTOR down (cross-ref `01-foundations.md` §4.3).
+  switch" to fat/ketone fuel. AMPK up, mTOR down (mTOR is the cell's growth-and-build signal; cross-ref
+  `01-foundations.md` §4.3).
 - **~2–3 days+:** deeper ketosis; the brain shifts substantially to ketones; protein-sparing adaptations engage to
   limit muscle breakdown; growth hormone rises; insulin falls to a floor.
 - **Throughout:** counter-regulatory hormones, fat-free-mass loss accrues, and **micronutrient/electrolyte reserves
@@ -132,25 +136,24 @@ A rough sequence as a fast extends (individual variation is large; these are *no
 
 @@FIG:15-fasting-timeline@@
 
-The **endocrine adaptations to prolonged fasting** are real and increasingly characterized (review: *Nutrients* 2025,
-`10.3390/nu17243949`), but "characterized physiology" is not the same as "demonstrated long-term benefit."
+The **endocrine adaptations to prolonged fasting** are real and increasingly characterized (review, 2025)[^endocrine-review],
+but "characterized physiology" is not the same as "demonstrated long-term benefit."
 
 ### 2.2 The observational human data (honest: uncontrolled)
 
 Two bodies of real-world data dominate, and both are **uncontrolled observational case series** — valuable for safety
 signal and hypothesis, **not** for proving efficacy:
 
-- **Buchinger Wilhelmi (Germany) — periodic fasting.** Wilhelmi de Toledo et al. 2019 (*PLoS One*,
-  `10.1371/journal.pone.0209353`) reported on **1,422 subjects** doing 4–21 day Buchinger fasts (a low-calorie
-  ~200–250 kcal/day juice-and-broth protocol, not strict water-only). They documented weight, blood pressure, lipid,
-  and glycemic improvements and good tolerability, with few serious adverse events. A companion analysis of **1,610
-  subjects** tracked blood-pressure changes on/off antihypertensives (*JAHA* 2020, `10.1161/jaha.120.018649`). **No
-  control group** — improvements cannot be cleanly attributed to fasting vs the supervised, structured setting and the
-  weight lost.
+- **Buchinger Wilhelmi (Germany) — periodic fasting.** Wilhelmi de Toledo et al. (2019)[^buchinger] reported on
+  **1,422 subjects** doing 4–21 day Buchinger fasts (a low-calorie ~200–250 kcal/day juice-and-broth protocol, not
+  strict water-only). They documented weight, blood pressure, lipid, and glycemic improvements and good tolerability,
+  with few serious adverse events. A companion analysis of **1,610 subjects** tracked blood-pressure changes on/off
+  antihypertensives (2020).[^buchinger-bp] **No control group** — improvements cannot be cleanly attributed to fasting
+  vs the supervised, structured setting and the weight lost.
 - **Goldhamer / TrueNorth Health Center (USA) — water-only fasting.** A series of papers on **medically supervised
-  water-only fasting** report reductions in blood pressure, and (in 2024) reductions in **Lp(a)** and favorable
-  metabolic shifts when followed by a whole-plant-food diet (e.g. *Front Nutr* 2024, `10.3389/fnut.2024.1418705`;
-  *Nutrients* 2024, `10.3390/nu16223959`). Again: case-series / single-arm, supervised, self-selected — directional,
+  water-only fasting** report reductions in blood pressure, and (in 2024) reductions in **Lp(a)** (an inherited,
+  hard-to-shift cardiovascular-risk particle) and favorable metabolic shifts when followed by a whole-plant-food diet
+  (Goldhamer group, 2024).[^goldhamer] Again: case-series / single-arm, supervised, self-selected — directional,
   not causal proof. Notably these are run **under medical supervision with refeeding protocols**, which is exactly the
   point.
 
@@ -176,10 +179,10 @@ can be cardiac arrhythmia, respiratory failure, seizures, and death.
 
 @@FIG:F05-refeeding@@
 
-- It is well documented in critically ill and malnourished patients (e.g. refeeding hypophosphatemia incidence/mortality
-  reviews, *Nutrients* 2026 `10.3390/nu18111655`; *Sci Rep* 2026 `10.1038/s41598-026-41063-8`), and there are case
-  reports of severe outcomes after prolonged self-directed fasts — including **Wernicke's encephalopathy after 40 days
-  of water-only fasting** (*Clin Case Rep* 2026, `10.1002/ccr3.71049`), a thiamine-deficiency catastrophe.
+- It is well documented in critically ill and malnourished patients (refeeding hypophosphatemia incidence and mortality
+  reviews, 2026)[^refeeding-reviews], and there are case reports of severe outcomes after prolonged self-directed
+  fasts — including **Wernicke's encephalopathy after 40 days of water-only fasting** (2026),[^wernicke] a
+  thiamine-deficiency catastrophe.
 - **Practical safety:** the longer and stricter the fast, the higher the risk. Refeed **slowly**, start low-carbohydrate
   and low-volume, supplement **thiamine before and during** refeeding, and **monitor phosphate/potassium/magnesium** in
   anyone who fasted multiple days or started underweight. This is a medical procedure, not a wellness flourish.
@@ -203,8 +206,8 @@ validates **not becoming hyponatremic or hypokalemic while doing one.**
   equivalence, and the metabolic-water argument does not survive arithmetic (fat oxidation yields some metabolic water,
   nowhere near daily obligatory losses). The only large human dry-fasting "dataset" is **Ramadan** (daytime food-and-water
   abstention), and that literature is dominated by **dehydration and renal-risk** signals: increased risk in **chronic
-  kidney disease** patients (*Cureus* 2024, `10.7759/cureus.57522`), and worse outcomes with **heat and long fasting
-  hours** (*Int J Nephrol* 2023, `10.1155/2023/2636507`). Dehydration raises risk of **acute kidney injury**, kidney
+  kidney disease** patients (2024)[^ramadan-ckd], and worse outcomes with **heat and long fasting hours**
+  (2023).[^ramadan-heat] Dehydration raises risk of **acute kidney injury**, kidney
   stones, hypernatremia, and thrombosis.
 - **Verdict:** **WEAK-EVIDENCE + POTENTIALLY-HARMFUL. Not endorsed.** The marketed benefit is unproven; the dehydration
   harm is real and mechanistically obvious. There is no defensible reason to withhold water to chase a benefit that
@@ -221,6 +224,9 @@ The unifying premise — that a special regimen "removes toxins" the body can't 
 incoherent in a person with a working liver and kidneys** (cross-ref `17-organ-systems-atlas.md` §3.5 and
 `32-biohacking-fringe.md` §6). Reviews of detox diets find **no quality clinical evidence** for the concept. Below, each
 is graded against that null.
+
+The seven that follow are **the same verdict in different theater** — each fails the same null, so you can graze rather
+than read every one. The one detail worth stopping for is the mechanism of the "stones" in the liver flush (§4.4).
 
 ### 4.1 The Master Cleanse (Lemonade Diet)
 
@@ -290,8 +296,8 @@ is graded against that null.
 
 - **What it is:** branded teas marketed for weight loss and detox.
 - **The claim:** detox, flat belly, weight loss.
-- **The evidence:** a 2026 mini-review of diet/detox teas (*Front Nutr*, `10.3389/fnut.2026.1777795`) finds the
-  "weight loss" is largely **water loss from undisclosed laxatives (often senna) and diuretics**, not fat loss, with
+- **The evidence:** a 2026 mini-review of diet/detox teas[^detox-tea] finds the "weight loss" is largely **water loss
+  from undisclosed laxatives (often senna) and diuretics**, not fat loss, with
   **no detox evidence**. Senna abuse causes dependence, cramping, and electrolyte loss.
 - **Verdict:** **PSEUDOSCIENCE + POTENTIALLY-HARMFUL (hidden actives).** The "results" are dehydration and bowel
   stimulation.
@@ -322,19 +328,19 @@ is graded against that null.
   plant-based** regimen (roughly ~700–1100 kcal/day, designed to keep the body in a fasting-like physiological state
   *while still eating*), repeated periodically (e.g. monthly for a few months, then quarterly). Commercialized as the
   boxed **ProLon** kit.
-- **The claim:** triggers fasting benefits (autophagy, stem-cell regeneration, lower IGF-1, "rejuvenation") **without a
-  full water fast**, improving metabolic and aging-related markers.
+- **The claim:** triggers fasting benefits (autophagy, stem-cell regeneration, lower IGF-1 — a growth signal tied to
+  aging — "rejuvenation") **without a full water fast**, improving metabolic and aging-related markers.
 - **The evidence — the strongest in this chapter, and still honest about limits:**
   - **Mechanism/animal:** strong preclinical work — periodic FMD cycles drive regeneration and protect tissues in mice
-    (Brandhorst et al. 2015, *Cell Metab*, `10.1016/j.cmet.2015.05.012`).
-  - **Human RCT:** Wei et al. 2017 (*Sci Transl Med*, `10.1126/scitranslmed.aai8700`) — **3 monthly FMD cycles** in
-    ~100 generally healthy adults improved **body weight, blood pressure, fasting glucose, IGF-1, and CRP**, with the
-    largest improvements in those who started with elevated risk markers. Later analyses report reductions in a
+    (Brandhorst et al., 2015).[^brandhorst]
+  - **Human RCT:** Wei et al. (2017)[^wei] — **3 monthly FMD cycles** in ~100 generally healthy adults improved
+    **body weight, blood pressure, fasting glucose, IGF-1, and CRP** (a marker of inflammation), with the largest
+    improvements in those who started with elevated risk markers. Later analyses report reductions in a
     **biological-age** estimate and immune/metabolic markers.
   - **Honest limits:** effects are **surrogate markers**, trials are **short (cycles), modest-sized, and partly tied to
     the commercial product / Longo's foundation** (a real conflict-of-interest to weigh). No hard-endpoint (mortality)
-    data. Disease applications (oncology adjunct, Crohn's — e.g. *Nat Med* 2026, `10.1038/s41591-025-04173-w`) are
-    promising and **investigational**, not established care.
+    data. Disease applications (oncology adjunct, Crohn's, 2026)[^fmd-disease] are promising and **investigational**,
+    not established care.
 - **Verdict:** **MODERATE — the best-evidenced branded protocol here,** with a real human RCT on biomarkers; still
   surrogate-level, short-term, and commercially entangled. The DIY version (a structured 5-day low-cal, low-protein,
   plant-based block) captures most of the rationale at a fraction of the cost; the kit's value is convenience and
@@ -392,8 +398,8 @@ overeating, and (speculatively) spermidine-rich foods.
 > contraindicated or requires medical management for:
 >
 > - **Type 1 diabetes**, and **type 2 diabetes or anyone on insulin or sulfonylureas/glinides** — **hypoglycemia and
->   DKA risk**; medication must be adjusted by a clinician. **SGLT2 inhibitors** + fasting raise **euglycemic DKA**
->   risk.
+>   DKA (diabetic ketoacidosis, a life-threatening emergency) risk**; medication must be adjusted by a clinician.
+>   **SGLT2 inhibitors** + fasting raise **euglycemic DKA** risk.
 > - **Pregnancy and breastfeeding** — fetal/infant nutrition needs; do not fast for "health/longevity."
 > - **History of an eating disorder** (anorexia, bulimia, binge-eating) or active disordered eating — fasting and
 >   "cleanses" can reactivate restrictive/purging patterns. This is one of the most important and most ignored
@@ -459,3 +465,26 @@ seed); `02-domains/D-metabolic-nutrition.md` Domain D §3–4 (the CR/TRE scienc
 `01-foundations.md` §3.2 & §4.3 (autophagy/Ohsumi, mTOR/AMPK reciprocity, proteostasis); `17-organ-systems-atlas.md`
 §3.5 (the flat liver-detox debunk); `32-biohacking-fringe.md` §6 (the detox cluster — coffee enemas, chelation, IV
 drips). Conflicts referenced: `conflict-tre-efficacy-vs-cr`, `conflict-protein-mtor-longevity`.
+
+---
+
+### Sources & notes
+
+[^koppold]: Koppold DA, et al. "International consensus on fasting terminology." *Cell Metab* 2024. doi:10.1016/j.cmet.2024.06.013.
+[^treat]: TREAT RCT — Lowe DA, et al. *JAMA Intern Med* 2020. doi:10.1001/jamainternmed.2020.4153.
+[^sutton]: Sutton EF, Peterson CM, et al. Early time-restricted feeding. *Cell Metab* 2018. doi:10.1016/j.cmet.2018.04.010.
+[^tre-cr]: When calories are matched, TRE ≈ continuous restriction for weight. Catalogued as conflict `conflict-tre-efficacy-vs-cr`.
+[^omad]: Managed prediabetes/obesity OMAD case. *J Family Med Prim Care* 2025. doi:10.4103/jfmpc.jfmpc_247_25.
+[^trepanowski]: Trepanowski JF, et al. Alternate-day fasting RCT. *JAMA Intern Med* 2017. doi:10.1001/jamainternmed.2017.0936.
+[^endocrine-review]: Endocrine adaptations to prolonged fasting (review). *Nutrients* 2025. doi:10.3390/nu17243949.
+[^buchinger]: Wilhelmi de Toledo F, et al. Safety and health improvement during a 4–21 day fast, 1,422 subjects. *PLoS One* 2019. doi:10.1371/journal.pone.0209353.
+[^buchinger-bp]: Buchinger blood-pressure companion analysis, 1,610 subjects. *JAHA* 2020. doi:10.1161/jaha.120.018649.
+[^goldhamer]: Water-only fasting series (TrueNorth Health Center). *Front Nutr* 2024, doi:10.3389/fnut.2024.1418705; *Nutrients* 2024, doi:10.3390/nu16223959.
+[^refeeding-reviews]: Refeeding hypophosphatemia incidence and mortality reviews. *Nutrients* 2026, doi:10.3390/nu18111655; *Sci Rep* 2026, doi:10.1038/s41598-026-41063-8.
+[^wernicke]: Wernicke's encephalopathy after 40 days of water-only fasting. *Clin Case Rep* 2026. doi:10.1002/ccr3.71049.
+[^ramadan-ckd]: Ramadan fasting risk in chronic kidney disease. *Cureus* 2024. doi:10.7759/cureus.57522.
+[^ramadan-heat]: Ramadan outcomes with heat and long fasting hours. *Int J Nephrol* 2023. doi:10.1155/2023/2636507.
+[^detox-tea]: Diet/detox teas mini-review. *Front Nutr* 2026. doi:10.3389/fnut.2026.1777795.
+[^brandhorst]: Brandhorst S, et al. Periodic fasting-mimicking diet in mice. *Cell Metab* 2015. doi:10.1016/j.cmet.2015.05.012.
+[^wei]: Wei M, et al. (Longo group). Fasting-mimicking diet human RCT. *Sci Transl Med* 2017. doi:10.1126/scitranslmed.aai8700.
+[^fmd-disease]: FMD disease applications (oncology adjunct, Crohn's). *Nat Med* 2026. doi:10.1038/s41591-025-04173-w.

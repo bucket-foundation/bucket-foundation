@@ -1,39 +1,10 @@
 # 39 — Anesthesiology & Critical Care
 
-> **Status:** v1.0 — 2026-06-29. The literate map of the two specialties that hold the line at the
-> extreme edge of physiology: **anesthesiology** (deliberately, reversibly switching off consciousness,
-> pain, movement, and memory so the body can be operated on) and **critical care / intensive-care
-> medicine** (taking over failing organs — lungs, circulation, kidneys — long enough for the patient,
-> or the disease, to turn). They are joined here because they share a single intellectual core:
-> **temporarily substituting for a vital function you do not fully understand, with a safety margin
-> measured in minutes, and getting the patient back.** Companion graded claims live in
-> `02-domains/anesthesia-criticalcare-claims.json`.
->
-> ## ⚠️ READ THIS FIRST — what this section is and is not
->
-> **This is health education, not medical advice and not a clinical manual.** Nothing here tells you how
-> to dose a drug, run a ventilator, or manage a patient — those are skills that take years of supervised
-> training and carry life-and-death consequences when done by the unqualified. The purpose of this
-> chapter is the *opposite* of a how-to: it is to make an ordinary person **literate** about what happens
-> when they (or someone they love) are wheeled through the operating-room doors or admitted to an ICU —
-> what these specialties can do, what they honestly cannot, where the evidence is strong and where it is
-> thin, and which decisions are *yours* to make (consent, advance directives, goals of care) rather than
-> the team's. **If you are facing surgery or critical illness, the people to ask are your
-> anesthesiologist and intensivist.** This chapter exists to help you ask better questions.
+We give general anesthesia to tens of millions of people a year with an extraordinary safety record — and we still cannot fully explain how it switches consciousness off, then switches it back on, intact, hours later. That gap is the honest heart of these two specialties. Both hold the line at the extreme edge of physiology: **anesthesiology** deliberately, reversibly switches off consciousness, pain, movement, and memory so the body can be operated on; **critical care / intensive-care medicine** takes over failing organs — lungs, circulation, kidneys — long enough for the patient, or the disease, to turn. They share one intellectual core: temporarily substituting for a vital function you do not fully understand, with a safety margin measured in minutes, and getting the patient back.
 
-**Cross-references (read alongside):** the **acute, pre-hospital** end — cardiac arrest, the Chain of
-Survival, sepsis recognition, naloxone, the layperson's ten minutes — is owned by
-`reports/sections/34-emergency-acute.md` and is **deliberately not duplicated here**; this section
-picks up *after* the hospital doors. The **physiology of consciousness, pain, neurotransmission, and the
-autonomic nervous system** that anesthesia acts on lives in `reports/sections/14-nervous-system.md`
-(§§1–3, 6) and is the foundation this chapter rests on. **Perioperative and chronic pain pharmacology and
-rehab** connect to `reports/sections/21-pain-injury-rehab.md` and `reports/sections/28-pharmacology-full.md`;
-**sepsis as an immune/disease process** to `reports/sections/26-infectious-disease.md` and `15-immune-system.md`;
-**end-of-life, advance directives, and the over-treatment problem** to `reports/sections/19-life-stages.md`.
-**UP to canon:** the membrane excitability and ion-channel physics that general anesthetics ultimately
-perturb are `bucket-canon/05-biophysics/` foundations (the Hodgkin–Huxley action potential, the Na⁺/K⁺
-pump — see `14 §1.2`), and *which* of those mechanisms produces *unconsciousness* is, honestly, still
-unsolved.
+This chapter picks up *after* the hospital doors. The pre-hospital ten minutes — cardiac arrest, the Chain of Survival, CPR, naloxone, sepsis recognition — live in §34 and are not repeated here.
+
+_Not medical advice, and not a clinical manual. Nothing here tells you how to dose a drug, run a ventilator, or manage a patient — those are skills that take years of supervised training. If you are facing surgery or critical illness, the people to ask are your anesthesiologist and intensivist; this chapter exists to help you ask better questions._
 
 ---
 
@@ -59,7 +30,7 @@ Both specialties run on the same three ideas. Internalize these and the rest is 
   safety record — and **we still cannot fully explain how it abolishes consciousness** (§2.2). We resuscitate
   sepsis by a protocol that has been *revised, deflated, and rebuilt* as the evidence turned over (§6). The
   competence is real and the humility is earned: in these fields, *what works* and *why it works* are
-  genuinely separate claims, exactly as the corpus schema (`06-evidence/SCHEMA.md`) insists they be kept.
+  separate claims, exactly as this corpus insists they be kept.
 
 ---
 
@@ -77,7 +48,7 @@ system is switched off and where**, chosen to match the surgery, the patient, an
 | **Regional — epidural** | A band of sensation, titratable over time | Catheter into the epidural space, topped up continuously | Labor analgesia, major abdominal/thoracic surgery (often *with* GA, for pain) | Awake (labor) or asleep (as an add-on to GA) |
 | **Regional — peripheral nerve block** | One limb or region | Local anesthetic around a specific nerve/plexus (ultrasound-guided) | Shoulder, arm, hand, foot, fractured hip; opioid-sparing analgesia | Awake or sedated; one region numb |
 | **Local anesthesia** | A small patch of tissue | Injected/applied at the site | Skin lesions, dental work, stitches, minor procedures | Fully awake |
-| **Sedation ("MAC"/"twilight")** | Anxiety and awareness dialed down on a spectrum | IV drugs (often propofol ± an opioid/benzodiazepine) | Colonoscopy, cataracts, minor procedures, ICU comfort | Drowsy to deeply sedated; a *continuum*, not an on/off |
+| **Sedation ("MAC" — monitored anesthesia care — or "twilight")** | Anxiety and awareness dialed down on a spectrum | IV drugs (often propofol ± an opioid/benzodiazepine) | Colonoscopy, cataracts, minor procedures, ICU comfort | Drowsy to deeply sedated; a *continuum*, not an on/off |
 
 @@FIG:R02-anesthesia-types@@
 
@@ -86,7 +57,9 @@ epidural *plus* general anesthesia, deliberately, because the epidural does the 
 the GA can't. Second, **sedation is a continuum, not a category** — "a little sedation" and "general
 anesthesia" sit on the same dial, and the well-documented danger of procedural sedation is *unintentionally*
 sliding from "comfortable and breathing" into "too deep and not breathing." This is why even "just a bit of
-sedation" is given by people trained to rescue an airway.
+sedation" is given by people trained to rescue an airway. (Note: "MAC" here means *monitored anesthesia
+care*; the same three letters are also used for *minimum alveolar concentration*, a measure of inhaled-agent
+potency — a genuine source of confusion even among clinicians.)
 
 @@FIG:R10-sedation-continuum@@
 
@@ -107,17 +80,17 @@ on two-pore potassium channels and other targets. So the *receptor pharmacology*
 potentiating inhibition *here* and blocking excitation *there* cause the unified subjective experience of
 the world to switch off — and switch back on, intact, hours later? The leading modern account, articulated
 in Emery Brown, Ralph Lydic, and Nicholas Schiff's landmark review **"General Anesthesia, Sleep, and Coma"**
-(*N Engl J Med* 2010, `10.1056/NEJMra0808281`), is that anesthesia is **not** sleep (the EEG and brainstem
+(*N Engl J Med* 2010)[^anes-consciousness], is that anesthesia is **not** sleep (the EEG and brainstem
 signatures differ) but a **drug-induced, reversible coma**, and that unconsciousness arises from the drugs
 **disrupting the integration and long-range communication between brain regions** — fragmenting the
 thalamocortical and cortico-cortical networks whose synchronized chatter appears to *be* consciousness.
 This connects anesthesiology to one of the deepest open problems in science — *what consciousness physically
 is* — which is exactly why `bucket-canon`'s **`07-mind`** branch treats consciousness as an unsolved
-foundation, not a settled outcome. **Grade it honestly:** the molecular targets are `mechanistic`-solid;
-the molecules-to-mind bridge is `theoretical` and genuinely open. We have a tool that switches consciousness
-off and on reliably and safely, and we use it tens of millions of times a year, while still arguing about
-what consciousness *is*. That is not a scandal — it is an honest description of applied physiology working
-ahead of theory.
+foundation, not a settled outcome. **Grade it honestly:** the molecular targets are `mechanistic`-solid (the
+biological mechanism is established); the molecules-to-mind bridge is `theoretical` (a proposed but unproven
+account) and still open. We have a tool that switches consciousness off and on reliably and safely, and we
+use it tens of millions of times a year, while still arguing about what consciousness *is*. That is not a
+scandal — it is an honest description of applied physiology working ahead of theory.
 
 ### 2.3 The drugs — the modern toolkit
 
@@ -127,7 +100,7 @@ field's central design move.
 
 | Class | Examples | The job it does | Honest notes |
 |---|---|---|---|
-| **IV induction agents** | **Propofol** (the white "milk of amnesia"), etomidate, ketamine | Put you under in seconds; maintain unconsciousness by infusion (TIVA) | Propofol is fast, clean, anti-emetic; it also **drops blood pressure and suppresses breathing** — its therapeutic margin is why it's restricted to trained hands (the drug implicated in Michael Jackson's death, used outside any safe setting). Ketamine uniquely *preserves* breathing and BP. |
+| **IV induction agents** | **Propofol** (the white "milk of amnesia"), etomidate, ketamine | Put you under in seconds; maintain unconsciousness by infusion (TIVA — total intravenous anesthesia) | Propofol is fast, clean, anti-emetic; it also **drops blood pressure and suppresses breathing** — its therapeutic margin is why it's restricted to trained hands (the drug implicated in Michael Jackson's death, used outside any safe setting). Ketamine uniquely *preserves* breathing and BP. |
 | **Inhaled volatile agents** | **Sevoflurane, desflurane, isoflurane**; **nitrous oxide**; xenon | Keep you unconscious via the lungs; depth is titrated breath-by-breath | Potent greenhouse gases — desflurane especially; a real and growing environmental-stewardship issue in anesthesia. Rare trigger of **malignant hyperthermia** in genetically susceptible people (a true anesthetic emergency, treated with dantrolene). |
 | **Opioids** | Fentanyl, remifentanil, morphine | Blunt the pain/stress response *during* surgery and after | Powerful but with the well-documented downsides — respiratory depression, nausea, the perioperative slice of the opioid problem (§4). Remifentanil is ultra-short-acting (gone in minutes). |
 | **Neuromuscular blockers (paralytics)** | Rocuronium, vecuronium, succinylcholine | **Paralyze skeletal muscle** so the surgeon can work and the breathing tube can pass | They paralyze *without touching consciousness* — which is the precise mechanism behind **accidental awareness** (§2.6). Reversed at the end (neostigmine, or the modern agent **sugammadex**). |
@@ -160,11 +133,11 @@ numbers rather than repeating a slogan.
 
 - **Anesthesia-attributable mortality has fallen by more than an order of magnitude** over the past
   half-century. Bainbridge and colleagues' systematic review and meta-analysis (**Bainbridge et al.,
-  *Lancet* 2012, `10.1016/S0140-6736(12)60990-8`**) found anesthesia-*solely*-attributable mortality
+  *Lancet* 2012**)[^anes-mortality] found anesthesia-*solely*-attributable mortality
   declined from roughly **357 per million before the 1970s to about 34 per million (~1 in 29,000)** in the
   1990s–2000s in developed countries — and in **healthy patients undergoing routine surgery the
   anesthesia-attributable risk is lower still, on the order of 1 in 100,000 or better.** Lagasse's careful
-  analysis (**Lagasse, *Anesthesiology* 2002, `10.1097/00000542-200212000-00038`**) made the same point
+  analysis (**Lagasse, *Anesthesiology* 2002**)[^anes-lagasse] made the same point
   while puncturing over-claims: the *exact* number depends on how you define "anesthesia-caused."
 - **Why it improved:** pulse oximetry and capnography (continuous, real-time detection of the two things
   that kill — low oxygen and lost airway), standardized monitoring, the difficult-airway algorithm,
@@ -184,13 +157,13 @@ numbers rather than repeating a slogan.
 **Accidental awareness under general anesthesia (AAGA).** The nightmare scenario — being conscious during
 surgery while paralyzed and unable to signal — is **real but rare**. The largest US study put the incidence
 of explicit awareness with recall at roughly **0.13% (about 1–2 per 1,000)** in a general surgical
-population (**Sebel et al., *Anesth Analg* 2004, `10.1213/01.ANE.0000130261.90896.6C`**). The UK's vast
-**5th National Audit Project (NAP5)** (**Pandit et al., *Br J Anaesth* 2014, `10.1093/bja/aeu313`**), which
+population (**Sebel et al., *Anesth Analg* 2004**)[^aaga-sebel]. The UK's vast
+**5th National Audit Project (NAP5)** (**Pandit et al., *Br J Anaesth* 2014**)[^aaga-nap5], which
 used *patient self-report* of awareness episodes, found a much lower reported rate (~1 in 19,000) but
-characterized the *experience* — most episodes were brief, around induction or emergence, and dis
-proportionately associated with **neuromuscular blockade** (paralysis), cesarean and cardiac surgery, and
+characterized the *experience* — most episodes were brief, around induction or emergence, and
+disproportionately associated with **neuromuscular blockade** (paralysis), cesarean and cardiac surgery, and
 certain drug techniques. Depth-of-anesthesia (processed-EEG, "BIS") monitoring was promoted as the fix; the
-evidence is genuinely **mixed** — the **B-Aware RCT** (Myles et al., *Lancet* 2004, `10.1016/S0140-6736(04)16300-9`)
+evidence is **mixed** — the **B-Aware RCT** (Myles et al., *Lancet* 2004)[^bis-baware]
 showed reduced awareness in high-risk patients, but later trials found BIS no better than simply ensuring an
 adequate dose of volatile agent. Honest verdict: awareness is uncommon, **paralysis is what makes it
 terrifying when it happens**, and vigilance plus adequate dosing — not any single monitor — is the
@@ -198,10 +171,10 @@ protection.
 
 **Postoperative nausea and vomiting (PONV).** Common, miserable, and a leading reason patients say they'd
 rather not have an anesthetic again. Risk is predictable from a simple score (**Apfel et al.,
-*Anesthesiology* 1999, `10.1097/00000542-199909000-00022`**: female sex, non-smoker, history of
+*Anesthesiology* 1999**[^ponv-apfel] female sex, non-smoker, history of
 PONV/motion sickness, post-op opioids), and prevention is **multimodal** — combining anti-emetics from
 different classes beats any single drug, and using propofol/regional techniques and sparing opioids reduces
-it (the **IMPACT factorial trial**, Apfel et al., *N Engl J Med* 2004, `10.1056/NEJMoa032196`). This is a
+it (the **IMPACT factorial trial**, Apfel et al., *N Engl J Med* 2004)[^ponv-impact]. This is a
 quality-of-recovery problem, taken seriously precisely because the big risks are now so rare.
 
 **The honest elephant: postoperative delirium and cognitive change in the elderly.** This is where the
@@ -213,12 +186,13 @@ field is least reassuring and most honest. Two distinct entities:
   independence, and higher mortality. It is **often preventable** — same bundle as ICU delirium (§7).
 - **Postoperative cognitive dysfunction (POCD)** — a *more durable* measurable decline in memory and
   executive function after surgery, documented in the landmark **ISPOCD1 study** (Moller et al., *Lancet*
-  1998, `10.1016/S0140-6736(97)07382-0`), which found cognitive dysfunction in ~26% of older patients at
-  one week and ~10% at three months after major non-cardiac surgery; Monk et al. (*Anesthesiology* 2008,
-  `10.1097/01.anes.0000296071.19434.1e`) linked it to age and to worse longer-term survival.
+  1998)[^pocd-ispocd1], which found cognitive dysfunction in ~26% of older patients at
+  one week and ~10% at three months after major non-cardiac surgery; Monk et al. (*Anesthesiology* 2008)[^pocd-monk]
+  linked it to age and to worse longer-term survival.
 
-The crucial **honest interpretation** (and a textbook predictor-vs-lever problem, `14`'s recurring
-discipline): for years this was blamed on "the anesthetic poisoning the aging brain," and patients still
+The crucial **honest interpretation** (and a textbook predictor-vs-lever problem — something that forecasts
+risk isn't automatically something that, when changed, lowers it): for years this was blamed on "the
+anesthetic poisoning the aging brain," and patients still
 fear that surgery "took their memory." The current, more careful reading is that **the relationship is real
 but the cause is not simply the anesthetic drug** — it reflects the *whole insult* (the surgery,
 inflammation, pain, disrupted sleep, immobility, unfamiliar environment, baseline frailty and pre-existing
@@ -233,8 +207,9 @@ aged brain's response to a major physiological stress.** That reframing is what 
 
 ## 3. The pre-operative bargain — consent, risk, and "optimization"
 
-Before any of the above, there is a conversation that is genuinely the patient's. The **pre-operative
-assessment** stratifies risk (the **ASA physical-status classification**, I–VI, is the shorthand: ASA I =
+Before any of the above, there is a conversation that is the patient's. The **pre-operative
+assessment** stratifies risk (the **ASA physical-status classification** — American Society of
+Anesthesiologists, I–VI, is the shorthand: ASA I =
 healthy, ASA III = severe systemic disease, and so on), checks the airway, reconciles medications, and —
 most importantly for the reader — is where **informed consent** actually happens: what the anesthetic
 involves, the realistic risks for *this* patient, and the alternatives. Two honest, practical points worth
@@ -258,7 +233,7 @@ techniques that act on *different points of the pain pathway* — so each can be
 analgesia is better, and the opioid load (and its nausea, sedation, ileus, dependence risk) falls.
 
 - **The non-opioid backbone:** scheduled **paracetamol/acetaminophen + an NSAID** (where not contraindicated)
-  is genuinely effective and is now the foundation, not the afterthought. Adjuncts include gabapentinoids
+  is effective and is now the foundation, not the afterthought. Adjuncts include gabapentinoids
   (used more cautiously now, given sedation), ketamine, dexamethasone, IV lidocaine, and local-anesthetic
   wound infiltration.
 - **Regional anesthesia as the opioid-sparer:** epidurals and peripheral nerve blocks (§2.1) provide
@@ -270,8 +245,8 @@ analgesia is better, and the opioid load (and its nausea, sedation, ileus, depen
   surgery — turned perioperative prescribing into a stewardship problem. The shift: opioids are now a
   *rescue* layer on top of a non-opioid foundation, prescribed in smaller quantities, with explicit
   tapering and disposal guidance. This is the same evidence current that, for *chronic* non-cancer pain,
-  found opioids **not superior** to non-opioids (the **SPACE trial**, Krebs et al., *JAMA* 2018,
-  `10.1001/jama.2018.0899`; see `14 §6.3`) — opioids retain a real, legitimate role in **acute,
+  found opioids **not superior** to non-opioids (the **SPACE trial**, Krebs et al., *JAMA* 2018[^pain-space];
+  see `14 §6.3`) — opioids retain a real, legitimate role in **acute,
   post-surgical, cancer, and palliative** pain, which is precisely the window this section covers, but the
   dose and duration are now disciplined. **Enhanced Recovery After Surgery (ERAS)** protocols bundle
   multimodal, opioid-sparing analgesia with early feeding and early mobilization, and consistently shorten
@@ -291,8 +266,8 @@ problem is (hopefully) reversed.**
 |---|---|---|
 | **Lungs** (respiratory failure) | Mechanical ventilation (invasive via tube, or non-invasive); in extremis **ECMO** (an external artificial lung) | Moving oxygen in and CO₂ out for you — buying time for the lung to heal (§5.1) |
 | **Circulation** (shock) | IV fluids, **vasopressors/inotropes**, monitoring | Holding blood pressure and organ perfusion up while the cause is treated (§5.2) |
-| **Kidneys** (acute kidney injury) | **Dialysis / CRRT** | Clearing toxins, acid, and excess fluid the kidney can't (§5.3) |
-| **Brain** (coma, raised pressure, seizures) | Sedation, ICP control, neuro-monitoring | Protecting the brain and controlling its environment |
+| **Kidneys** (acute kidney injury) | **Dialysis / CRRT** (continuous renal replacement therapy) | Clearing toxins, acid, and excess fluid the kidney can't (§5.3) |
+| **Brain** (coma, raised pressure, seizures) | Sedation, intracranial-pressure (ICP) control, neuro-monitoring | Protecting the brain and controlling its environment |
 | **Whole-body / metabolic** | Nutrition, glucose control, transfusion, infection source control | Keeping the internal milieu survivable |
 
 @@FIG:R03-icu-support@@
@@ -311,13 +286,13 @@ support can also injure, and how the evidence forced humility.**
 flood and stiffen, oxygen can't cross, and the patient needs a ventilator to survive. The pivotal,
 counter-intuitive discovery was that **the ventilator itself can worsen the injury** — pushing in big
 breaths to "normalize" the blood gas over-stretches the fragile lung (**ventilator-induced lung injury**).
-The landmark **ARDSNet trial** (*N Engl J Med* 2000, `10.1056/NEJM200005043421801`) showed that ventilating
+The landmark **ARDSNet trial** (*N Engl J Med* 2000)[^ards-net] showed that ventilating
 with **low tidal volumes (~6 mL/kg of predicted body weight)** — *gentler, smaller breaths, accepting a
 worse-looking blood gas* — **reduced mortality by about 9 percentage points (~22% relative).** This is one
 of critical care's cleanest wins and a profound lesson: **less aggressive support saved more lives.** A
 second major advance, **prone positioning** — literally turning the sickest ARDS patients face-down to
-recruit collapsed lung — reduced mortality in the **PROSEVA trial** (Guérin et al., *N Engl J Med* 2013,
-`10.1056/NEJMoa1214103`), and became one of the defining bedside images of the COVID pandemic.
+recruit collapsed lung — reduced mortality in the **PROSEVA trial** (Guérin et al., *N Engl J Med* 2013)[^ards-proseva],
+and became one of the defining bedside images of the COVID pandemic.
 
 @@FIG:Q05-less-is-more@@
 
@@ -325,9 +300,9 @@ recruit collapsed lung — reduced mortality in the **PROSEVA trial** (Guérin e
 toolkit — **lung-protective low-tidal-volume ventilation and proning** — was the durable backbone, while
 many heavily-promoted COVID-specific therapies failed in trials; (2) the one cheap drug that clearly saved
 lives in severe COVID was an old steroid — **dexamethasone**, in the **RECOVERY trial** (*N Engl J Med*
-2021, `10.1056/NEJMoa2021436`), which cut mortality in ventilated patients by about a third — a triumph of
+2021)[^covid-recovery], which cut mortality in ventilated patients by about a third — a triumph of
 **large, fast, randomized trials over enthusiasm**; and (3) the pandemic exposed how scarce ICU capacity,
-ventilators, and trained staff really are, and how quickly "we have the machine" collides with "we don't
+ventilators, and trained staff actually are, and how quickly "we have the machine" collides with "we don't
 have the people to run enough of them."
 
 ### 5.2 Shock and vasopressors
@@ -337,15 +312,15 @@ vasodilation and leak), but also **cardiogenic** (a failing pump), **hypovolemic
 **obstructive**. The supports are **fluids** to fill the tank and **vasopressors** (chiefly
 **norepinephrine**) to tighten the vessels and raise pressure, plus **inotropes** to strengthen a failing
 heart. The honest evidence point worth knowing: in the **SOAP II trial** (De Backer et al., *N Engl J Med*
-2010, `10.1056/NEJMoa0907118`), **norepinephrine** caused fewer arrhythmias than dopamine and is now the
+2010)[^shock-soap2], **norepinephrine** caused fewer arrhythmias than dopamine and is now the
 default first-line vasopressor — a quiet, evidence-driven standardization. As with the ventilator, the
 modern caution is against **over-resuscitation**: too much fluid is its own harm (§6).
 
 ### 5.3 Renal replacement — dialysis and CRRT
 
 When the kidneys fail acutely, **dialysis** does their filtering job — clearing waste, acid, potassium, and
-excess fluid. In the unstable ICU patient, this is often delivered **continuously** (**CRRT** — continuous
-renal replacement therapy) rather than in the intermittent sessions chronic dialysis patients receive,
+excess fluid. In the unstable ICU patient, this is often delivered **continuously** (CRRT) rather than in
+the intermittent sessions chronic dialysis patients receive,
 because slow continuous filtration is gentler on a precarious circulation. The honest nuances the trials
 settled: **timing matters less than once thought** (starting dialysis *earlier* in AKI does not clearly
 help — the STARRT-AKI and related trials deflated the "earlier is better" instinct), and **acute** kidney
@@ -362,9 +337,9 @@ the ICU as a place you either die in or walk out of, restored. The reality:
   muscle wasting/"ICU-acquired weakness"), **cognitive impairment**, and **psychological harm**
   (depression, anxiety, PTSD) — that can persist for **months to years**, and that affects families too
   ("PICS-Family"). The framework was consolidated at a stakeholders' conference reported by **Needham et
-  al. (*Crit Care Med* 2012, `10.1097/CCM.0b013e318232da75`)**.
+  al. (*Crit Care Med* 2012)**[^pics-needham].
 - **The cognitive toll is striking and was under-appreciated.** The **BRAIN-ICU study** (Pandharipande et
-  al., *N Engl J Med* 2013, `10.1056/NEJMoa1301372`) found that a **large proportion of ICU survivors —
+  al., *N Engl J Med* 2013)[^brain-icu] found that a **large proportion of ICU survivors —
   including young, previously healthy ones — had global cognition months later resembling mild traumatic
   brain injury or even early Alzheimer's**, and that **longer ICU delirium predicted worse long-term
   cognition.** This finding reframed delirium from "a temporary nuisance" into "a marker of, and possibly
@@ -391,18 +366,18 @@ better trials** — a model of how honest medicine corrects itself.
 @@FIG:R09-sepsis-turnover@@
 
 - **The rise (EGDT).** In 2001, Rivers et al.'s single-center trial of **Early Goal-Directed Therapy**
-  (*N Engl J Med* 2001, `10.1056/NEJMoa010307`) reported a dramatic mortality reduction from an aggressive,
+  (*N Engl J Med* 2001)[^sepsis-egdt] reported a dramatic mortality reduction from an aggressive,
   protocolized bundle (central venous monitoring, targeted fluids, vasopressors, transfusion, inotropes in
   the first six hours). It transformed practice and anchored a decade of the Surviving Sepsis Campaign.
 - **The deflation.** A decade later, **three large, multicenter RCTs on three continents — ProCESS** (*N
-  Engl J Med* 2014, `10.1056/NEJMoa1401602`), **ARISE** (`10.1056/NEJMoa1404380`), and **ProMISe**
-  (`10.1056/NEJMoa1500896`) — tested the full EGDT bundle against usual care and found **no mortality
+  Engl J Med* 2014)[^sepsis-process], **ARISE** (2014)[^sepsis-arise], and **ProMISe**
+  (2015)[^sepsis-promise] — tested the full EGDT bundle against usual care and found **no mortality
   benefit from the elaborate protocol.** The honest interpretation is not "Rivers was wrong about
   everything"; it is that the *generalizable* gains — **recognize sepsis early, give fluids and antibiotics
   promptly** — had by then become routine care, so the *extra* invasive monitoring and rigid targets added
   no benefit (and some harm). The signal survived; the ritual didn't.
 - **The current synthesis.** The **Surviving Sepsis Campaign 2021 guidelines** (Evans et al., *Crit Care
-  Med* 2021, `10.1097/CCM.0000000000005337`) keep the durable core — early recognition, prompt antibiotics,
+  Med* 2021)[^sepsis-ssc] keep the durable core — early recognition, prompt antibiotics,
   fluids, norepinephrine for persistent hypotension, source control — while **retreating from
   one-size-fits-all aggressive fluid loading**, because **over-resuscitation with fluid is itself harmful**
   (it worsens edema, oxygenation, and outcomes). The arc — *aggressive protocol → trials deflate the
@@ -423,18 +398,18 @@ member.
   confused, disoriented, can't hold attention, and waxes and wanes over hours. It comes in a
   **hyperactive** form (agitated, pulling at lines — the one everyone notices) and, more dangerously, a
   **hypoactive** form (quiet, withdrawn, "pleasantly confused" — routinely *missed*, and associated with
-  worse outcomes). It is screened with validated tools (the **CAM-ICU**), not by impression.
+  worse outcomes). It is screened with validated tools (the **CAM-ICU** bedside test), not by impression.
 - **Why it matters:** delirium is independently associated with **higher mortality, longer stays, and —
   per BRAIN-ICU (§5.4) — worse long-term cognition.** It is not a benign side-show of being sick; it is a
   marker of brain organ-dysfunction and plausibly a contributor to lasting harm.
 - **The prevention bundle works — and it is mostly low-tech.** This is the hopeful part. Inouye's landmark
-  **Hospital Elder Life Program (HELP)** multicomponent intervention (**Inouye et al., *N Engl J Med* 1999,
-  `10.1056/NEJM199903043400901`**) — reorientation, sleep protection, early mobilization, vision/hearing
+  **Hospital Elder Life Program (HELP)** multicomponent intervention (**Inouye et al., *N Engl J Med* 1999**)[^delirium-help]
+  — reorientation, sleep protection, early mobilization, vision/hearing
   aids, hydration, pain control — **reduced incident delirium in older inpatients**, using almost no
   technology. In the ICU, the same philosophy is bundled as **ABCDEF** (Assess/treat pain; Both spontaneous
   Awakening and Breathing trials; Choice of lighter sedation; **D**elirium monitoring; **E**arly mobility;
-  **F**amily engagement), and large-scale implementation (**Pun, Ely et al., *Crit Care Med* 2019,
-  `10.1097/CCM.0000000000003482`**) was associated with **less delirium, less coma, less mechanical
+  **F**amily engagement), and large-scale implementation (**Pun, Ely et al., *Crit Care Med* 2019**)[^delirium-abcdef]
+  was associated with **less delirium, less coma, less mechanical
   ventilation, and lower mortality.** The unglamorous, recurring corpus lesson holds even at the extreme
   edge of medicine: **light sedation, daily wake-ups, getting people moving, restoring day-night rhythm,
   giving back glasses and hearing aids, and bringing family in** beat any drug. (Notably, antipsychotics —
@@ -459,7 +434,7 @@ while, yes) but "**should we, and toward what end?**" The honest, evidence-groun
   often-uncomfortable dying** in an environment of tubes and alarms, away from family. The machine cannot
   tell the difference; only a goals-of-care judgment can.
 - **Over-treatment at the end of life is well-documented and often unwanted.** The landmark **SUPPORT
-  study** (*JAMA* 1995, `10.1001/jama.1995.03530200027032`) — a huge study of seriously ill hospitalized
+  study** (*JAMA* 1995)[^eol-support] — a huge study of seriously ill hospitalized
   patients — found that many died in pain, that physicians frequently did not know or follow patients'
   resuscitation wishes, and, soberingly, that an intervention to improve communication **failed to change
   this** — revealing how deep the structural bias toward aggressive treatment runs. A large fraction of
@@ -507,35 +482,15 @@ lever, the corpus's recurring discipline):
 
 ## 10. The honest summary of this section
 
-1. **Both specialties substitute, reversibly, for vital functions — buying time, not curing.** Anesthesia
-   suspends consciousness/pain/movement; critical care stands in for failing lungs, circulation, and
-   kidneys. The machines and drugs are **bridges**, and reading them as cures is the deepest public
-   misconception about both fields.
-2. **We use general anesthesia safely on tens of millions a year and still cannot fully explain how it
-   abolishes consciousness.** The molecular targets (GABA_A up, NMDA down) are solid; the molecules-to-mind
-   bridge is open, and it ties anesthesiology to `bucket-canon`'s unsolved **`07-mind`** problem of what
-   consciousness *is*.
-3. **The safety record is genuinely remarkable — and must be stated honestly.** Anesthesia-attributable
-   death has fallen by more than 10× (to ~1 in 100,000 in healthy patients in well-resourced settings),
-   driven by oximetry, capnography, the difficult-airway algorithm, and a real safety culture — *and* total
-   peri-operative risk is higher, driven by how sick the patient is, not the anesthetic.
-4. **The honest anesthetic risks are awareness (rare, made terrifying by paralysis), PONV (common,
-   multimodally preventable), and postoperative delirium/cognitive change in the elderly** — real, common
-   in the frail, partly preventable, and mostly *not* "the anesthetic rotting the brain" but the aged
-   brain's response to a major stress.
-5. **Perioperative pain control has inverted from opioid-centered to multimodal and opioid-sparing**,
-   with regional blocks as the biggest opioid-sparer — the same evidence current (SPACE) that dethroned
-   opioids for chronic pain, applied to the one window where they still legitimately belong.
-6. **ICU medicine's hardest-won lessons are about *less*, not more:** lung-protective ventilation
-   (ARDSNet), deflated sepsis protocols (ProCESS/ARISE/ProMISe), avoiding fluid over-resuscitation, and
-   light sedation — gentler support repeatedly beat aggressive support in randomized trials.
-7. **Surviving the ICU is not recovering:** post-intensive-care syndrome and the BRAIN-ICU cognitive
-   findings mean the honest question is "live in what state?", not just "live?".
-8. **Delirium is the highest-yield literacy topic** — common, under-recognized (especially hypoactive),
-   consequential, and **preventable by a low-tech bundle** (HELP/ABCDEF) that no drug matches.
-9. **The defining modern dilemma is end-of-life over-treatment:** intensive care can prolong dying, the
-   bias toward maximal intervention is structural (SUPPORT), and the patient's real lever is a *specific,
-   shared* advance directive plus a named proxy — first aid for autonomy.
+1. **Both specialties substitute, reversibly, for vital functions — buying time.** The machines and drugs are **bridges**, and reading them as cures is the deepest public misconception about both fields.
+2. **General anesthesia is used safely on tens of millions a year, yet how it abolishes consciousness stays unexplained.** The molecular targets (GABA_A up, NMDA down) are solid; the molecules-to-mind bridge is open, tying anesthesiology to `bucket-canon`'s unsolved **`07-mind`** problem.
+3. **The safety record is remarkable and must be stated honestly:** anesthesia-attributable death has fallen more than 10× (to ~1 in 100,000 in healthy patients in well-resourced settings) via oximetry, capnography, the difficult-airway algorithm, and a real safety culture — while total peri-operative risk is higher, driven by how sick the patient is.
+4. **The honest anesthetic risks are awareness (rare, made terrifying by paralysis), PONV (common, multimodally preventable), and postoperative delirium/cognitive change in the frail elderly** — real, partly preventable, mostly the aged brain's response to major stress rather than "the anesthetic rotting the brain."
+5. **Perioperative pain control has inverted from opioid-centered to multimodal and opioid-sparing,** regional blocks the biggest sparer — the same evidence current (SPACE) that dethroned opioids for chronic pain, applied to the one window where they still legitimately belong.
+6. **ICU medicine's hardest-won lessons are about *less*:** lung-protective ventilation (ARDSNet), deflated sepsis protocols (ProCESS/ARISE/ProMISe), avoiding fluid over-resuscitation, and light sedation — gentler support repeatedly beat aggressive support in randomized trials.
+7. **Surviving the ICU is not recovering:** post-intensive-care syndrome and the BRAIN-ICU cognitive findings mean the honest question is "live in what state?", not just "live?".
+8. **Delirium is the highest-yield literacy topic** — common, under-recognized (especially hypoactive), consequential, and preventable by a low-tech bundle (HELP/ABCDEF) that no drug matches.
+9. **The defining modern dilemma is end-of-life over-treatment:** intensive care can prolong dying, the bias toward maximal intervention is structural (SUPPORT), and the patient's real lever is a *specific, shared* advance directive plus a named proxy — first aid for autonomy.
 
 ---
 
@@ -597,9 +552,35 @@ best "the evidence turned over" cases.
 
 The molecules-to-consciousness bridge (the `07-mind` problem) as it bears on monitoring depth of
 anesthesia and preventing awareness; whether any depth-of-anesthesia monitor beats adequate dosing on hard
-endpoints; whether anesthetic *choice* (regional vs. general, specific agents) genuinely affects long-term
+endpoints; whether anesthetic *choice* (regional vs. general, specific agents) actually affects long-term
 cognition in the elderly or whether the insult is the surgery/inflammation/frailty (the POCD causal
 question); the long-term trajectory and modifiability of post-intensive-care syndrome; ECMO's honest
 benefit-vs-burden boundary; and the persistent structural over-treatment at end of life that SUPPORT
 documented and could not fix — what, if anything, actually shifts default-to-maximal care toward
 goal-concordant care at scale.
+
+[^anes-consciousness]: Brown, Lydic & Schiff — "General Anesthesia, Sleep, and Coma." *N Engl J Med* 2010. doi:10.1056/NEJMra0808281. (review / mechanistic)
+[^anes-mortality]: Bainbridge et al. — perioperative and anaesthetic mortality. *Lancet* 2012. doi:10.1016/S0140-6736(12)60990-8. (meta-analysis)
+[^anes-lagasse]: Lagasse — "Anesthesia Safety: Model or Myth?" *Anesthesiology* 2002. doi:10.1097/00000542-200212000-00038. (review)
+[^aaga-sebel]: Sebel et al. — incidence of awareness with recall. *Anesth Analg* 2004. doi:10.1213/01.ANE.0000130261.90896.6C. (cohort)
+[^aaga-nap5]: Pandit et al. — 5th National Audit Project (NAP5). *Br J Anaesth* 2014. doi:10.1093/bja/aeu313. (national audit / cohort)
+[^bis-baware]: Myles et al. — B-Aware trial (BIS to reduce awareness). *Lancet* 2004. doi:10.1016/S0140-6736(04)16300-9. (rct)
+[^ponv-apfel]: Apfel et al. — simplified PONV risk score. *Anesthesiology* 1999. doi:10.1097/00000542-199909000-00022. (cohort / prediction model)
+[^ponv-impact]: Apfel et al. — IMPACT factorial trial. *N Engl J Med* 2004. doi:10.1056/NEJMoa032196. (rct)
+[^pocd-ispocd1]: Moller et al. — ISPOCD1. *Lancet* 1998. doi:10.1016/S0140-6736(97)07382-0. (cohort)
+[^pocd-monk]: Monk et al. — POCD and mortality. *Anesthesiology* 2008. doi:10.1097/01.anes.0000296071.19434.1e. (cohort)
+[^pain-space]: Krebs et al. — SPACE trial (opioid vs non-opioid for chronic pain). *JAMA* 2018. doi:10.1001/jama.2018.0899. (rct)
+[^ards-net]: ARDS Network — low tidal volume ventilation. *N Engl J Med* 2000. doi:10.1056/NEJM200005043421801. (rct)
+[^ards-proseva]: Guérin et al. — PROSEVA (prone positioning). *N Engl J Med* 2013. doi:10.1056/NEJMoa1214103. (rct)
+[^covid-recovery]: RECOVERY Collaborative Group — dexamethasone in COVID-19. *N Engl J Med* 2021. doi:10.1056/NEJMoa2021436. (rct)
+[^shock-soap2]: De Backer et al. — SOAP II (dopamine vs norepinephrine). *N Engl J Med* 2010. doi:10.1056/NEJMoa0907118. (rct)
+[^pics-needham]: Needham et al. — post-intensive-care syndrome consensus. *Crit Care Med* 2012. doi:10.1097/CCM.0b013e318232da75. (consensus)
+[^brain-icu]: Pandharipande et al. — BRAIN-ICU. *N Engl J Med* 2013. doi:10.1056/NEJMoa1301372. (cohort)
+[^sepsis-egdt]: Rivers et al. — Early Goal-Directed Therapy. *N Engl J Med* 2001. doi:10.1056/NEJMoa010307. (rct, single-center)
+[^sepsis-process]: ProCESS Investigators. *N Engl J Med* 2014. doi:10.1056/NEJMoa1401602. (rct)
+[^sepsis-arise]: ARISE Investigators. *N Engl J Med* 2014. doi:10.1056/NEJMoa1404380. (rct)
+[^sepsis-promise]: Mouncey et al. — ProMISe. *N Engl J Med* 2015. doi:10.1056/NEJMoa1500896. (rct)
+[^sepsis-ssc]: Evans et al. — Surviving Sepsis Campaign 2021. *Crit Care Med* 2021. doi:10.1097/CCM.0000000000005337. (guideline)
+[^delirium-help]: Inouye et al. — Hospital Elder Life Program (HELP). *N Engl J Med* 1999. doi:10.1056/NEJM199903043400901. (rct)
+[^delirium-abcdef]: Pun, Ely et al. — ICU Liberation / ABCDEF bundle implementation. *Crit Care Med* 2019. doi:10.1097/CCM.0000000000003482. (large implementation cohort)
+[^eol-support]: SUPPORT Principal Investigators. *JAMA* 1995. doi:10.1001/jama.1995.03530200027032. (rct of a communication intervention)

@@ -1,30 +1,25 @@
 # 07 — Clinical Prevention: The Medicine That Buys Decades
 
-> **The gap this section fills.** The rest of this corpus is strong on the *biology* of aging
-> (Domain B), on *exercise* (the single highest-leverage personal input, Domain E), and on what to
-> *measure* (Domain L). It is thin on **clinical preventive medicine** — the unglamorous, RCT-backed,
-> guideline-graded interventions that a physician delivers and that, in absolute terms, prevent more
-> early deaths than anything in the supplement aisle. This is the section on **not dying of the
-> things that actually kill people in the developed world.**
->
-> **The frame (Attia / *Medicine 3.0*): the "Four Horsemen."** Roughly 80% of deaths after age 50 in
-> non-smokers come from four disease processes: **atherosclerotic cardiovascular disease (ASCVD),
-> cancer, neurodegeneration, and metabolic disease (type 2 diabetes / fatty liver / the
-> insulin-resistance cluster).** Medicine 3.0's bet is that you fight these *decades early*, with
-> prevention, rather than waiting for the diagnosis. **This section owns cardiovascular and cancer.**
-> Neurodegeneration is its own section (another agent); metabolic disease is cross-referenced to
-> Domain D. The Horsemen are interlinked — metabolic disease accelerates all three of the others — so
-> read this beside `D-metabolic-nutrition.md`.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+Blood pressure is the highest-yield target in all of preventive medicine — one silent, cheap-to-measure
+number that drives stroke, heart failure, coronary disease, kidney failure, and vascular dementia at
+once. This chapter is about the unglamorous, RCT-backed (proven in randomized trials), guideline-graded
+interventions a physician delivers — the ones that, in absolute terms, prevent more early deaths than
+anything in the supplement aisle. It is the medicine of not dying of the things that actually kill people
+in the developed world.
+
+The organizing frame comes from Peter Attia's *Medicine 3.0*: the **"Four Horsemen."** Roughly 80% of
+deaths after age 50 in non-smokers come from four disease processes — **atherosclerotic cardiovascular
+disease (ASCVD — plaque-driven heart attacks and strokes), cancer, neurodegeneration, and metabolic
+disease** (type 2 diabetes, fatty liver, the insulin-resistance cluster). The bet of Medicine 3.0 is
+that you fight these decades early with prevention rather than waiting for the diagnosis. This chapter
+owns the cardiovascular and cancer horsemen; neurodegeneration and metabolic disease have their own
+sections. The four are interlinked — metabolic disease accelerates the other three.
 
 @@FIG:31-four-horsemen@@
 
-> **Cross-references (do not duplicate):** lipids, apoB, Lp(a), hsCRP, HbA1c, fasting insulin are
-> graded in `L-biomarkers.md` / `L-claims.json` — this section *uses* them for risk stratification and
-> points back rather than re-deriving them. Metabolic disease depth is in `D-metabolic-nutrition.md`.
-> Alcohol depth and smoking-cessation tactics belong to other agents; covered here only as cancer/CV
-> levers.
+_Not medical advice. This chapter covers blood pressure, cardiovascular risk, and cancer screening and
+prevention; lipids and apoB are graded in the biomarkers section, metabolic depth in
+`D-metabolic-nutrition.md`, and smoking-cessation and alcohol tactics live with other sections._
 
 ---
 
@@ -40,12 +35,17 @@ of preventive medicine.
 
 ### 1.1 The targets, and what SPRINT actually showed
 
-The landmark trial is **SPRINT** (Systolic Blood Pressure Intervention Trial, NEJM 2015). 9,361
+**Bottom line first:** for most middle-aged adults at elevated cardiovascular risk, aim for a blood
+pressure under **130/80, measured properly at home**, and go toward 120 systolic if you tolerate it
+without dizziness or kidney trouble. The trial that set that target is SPRINT; the hazard ratios follow.
+
+The landmark trial is **SPRINT** (Systolic Blood Pressure Intervention Trial, NEJM 2015).[^sprint] 9,361
 high-cardiovascular-risk adults *without diabetes* were randomized to an intensive systolic target of
 **< 120 mm Hg** versus a standard **< 140 mm Hg**.
 
 - Achieved SBP: **121.4** (intensive) vs **136.2** (standard) mm Hg.
-- Primary composite (MI, ACS, stroke, heart failure, CV death): **HR 0.75** (95% CI 0.64–0.89).
+- Primary composite (MI, ACS, stroke, heart failure, CV death): **HR 0.75** (hazard ratio — a 25% lower
+  rate; 95% CI 0.64–0.89, the range the true effect most likely sits in).
 - **All-cause mortality: HR 0.73** (0.60–0.90, P=0.003).
 - The trial was **stopped early** (median 3.26 y) because the benefit was so clear.
 - **The honest harm side:** intensive treatment raised rates of hypotension, syncope, electrolyte
@@ -117,10 +117,11 @@ fewest side effects.
 
 ## 2. Cardiovascular disease beyond lipids
 
-Lipids (apoB / LDL, Lp(a)) are the causal core of atherosclerosis and are graded in `L-biomarkers.md`
-— **measure apoB, measure Lp(a) once** (`apob-superior-to-ldlc`, `lpa-causal-genetic-cvd`). This
-section covers the rest of the cardiovascular prevention picture: **risk stratification by imaging,
-atrial fibrillation and stroke, and the honest verdict on aspirin.**
+Lipids — apoB (the count of the actual artery-clogging particles, a better heart-attack predictor than
+standard cholesterol) and Lp(a) — are the causal core of atherosclerosis and are graded in the
+biomarkers section: **measure apoB, measure Lp(a) once.**[^apob-lpa] This section covers the rest of the
+cardiovascular prevention picture: **risk stratification by imaging, atrial fibrillation and stroke, and
+the honest verdict on aspirin.**
 
 ### 2.1 Coronary artery calcium (CAC) — the best tiebreaker in primary prevention
 
@@ -136,7 +137,8 @@ risk when a person is in the murky middle of a risk calculator and unsure whethe
   asymptomatic person confers a very low near-to-medium-term event risk and can justify *deferring*
   a statin in a borderline case. A high score (>100, or >75th percentile for age/sex) pushes
   decisively *toward* treatment.
-- **Honest tier:** CAC is a **predictor, not a lever** — you do not "treat the calcium" (statins can
+- **Honest tier:** CAC is a **predictor, not a lever** (it forecasts risk but isn't itself a thing you
+  fix) — you do not "treat the calcium" (statins can
   even *raise* the calcium score as plaque stabilizes). Its value is purely in **reclassifying** who
   should be on therapy. It also delivers a radiation dose (~1 mSv) and can surface incidental findings.
 
@@ -172,7 +174,7 @@ for AF — weak protection, comparable bleeding. This is a clean win when AF is 
 For decades, low-dose aspirin was reflexively recommended for "heart health." The modern evidence has
 **reversed that for primary prevention.**
 
-- **ASPREE** (three NEJM 2018 papers, ~19,114 healthy adults ≥70, median 4.7 y): aspirin produced
+- **ASPREE** (three NEJM 2018 papers,[^aspree] ~19,114 healthy adults ≥70, median 4.7 y): aspirin produced
   **no benefit** on disability-free survival (HR 1.01), a **non-significant** CVD effect (HR 0.95,
   CI 0.83–1.08), a **significant ~38% increase in major hemorrhage** (HR 1.38), and — strikingly — a
   **higher all-cause mortality** (HR 1.14), driven mostly by cancer deaths.
@@ -216,7 +218,7 @@ adenomatous polyp) — the ideal screening target. Two strong evidence streams:
 
 - **Sigmoidoscopy RCTs** (multiple, 2010s) showed reduced CRC **incidence and mortality** — randomized
   proof that removing precursor lesions works.
-- **NordICC** (Bretthauer 2022, NEJM, ~84,500 adults 55–64, 10-y follow-up): in the **intention-to-
+- **NordICC** (Bretthauer 2022, NEJM,[^nordicc] ~84,500 adults 55–64, 10-y follow-up): in the **intention-to-
   screen** analysis, invitation to a single colonoscopy cut 10-year CRC **incidence** from 1.20% to
   0.98% (**RR 0.82, an 18% reduction**); the CRC-**death** reduction was not statistically significant
   in ITT — *but only 42% of those invited actually got scoped*, and the **per-protocol** estimate
@@ -237,7 +239,7 @@ secondary options.
 For people with a heavy smoking history, **annual low-dose CT (LDCT)** is one of the most
 mortality-effective screens that exists:
 
-- **NLST** (Aberle 2011, NEJM, 53,454 high-risk smokers): LDCT vs chest X-ray cut **lung-cancer
+- **NLST** (Aberle 2011, NEJM,[^nlst] 53,454 high-risk smokers): LDCT vs chest X-ray cut **lung-cancer
   mortality by 20%** (247 vs 309 deaths/100,000 person-years).
 - **NELSON** (de Koning 2020, NEJM, volume-CT, European): **24% lower lung-cancer mortality in men**
   (rate ratio 0.76 at 10 y), confirming NLST with a different design.
@@ -334,7 +336,7 @@ Two infections cause cancer and have vaccines:
 
 ### 4.4 Diet — fiber up, processed meat down
 
-The **IARC working group** (Bouvard 2015, Lancet Oncology) classified **processed meat as a Group 1
+The **IARC working group** (Bouvard 2015, Lancet Oncology)[^iarc] classified **processed meat as a Group 1
 carcinogen** (sufficient evidence for colorectal cancer) and **red meat as Group 2A** (probable),
 estimating that each **50 g/day of processed meat raises colorectal-cancer risk ~18%**. On the other
 side, **dietary fiber** lowers colorectal cancer and all-cause mortality (Reynolds 2019, Lancet —
@@ -387,12 +389,12 @@ RCT-backed screens (colorectal, lung-in-smokers, breast, cervical).** Everything
 | Source | Best for | Note |
 |---|---|---|
 | **USPSTF Recommendations** (uspreventiveservicestaskforce.org) | The authoritative, regularly-updated **grades (A/B/C/D/I)** for every screen and preventive service in US practice | The single best free reference for "is this screen worth it?"; methodology is explicitly evidence-graded |
-| **SPRINT Research Group** — NEJM 2015 (`10.1056/NEJMoa1511939`) + Final Report NEJM 2021 (`10.1056/NEJMoa1901281`) | The definitive intensive-vs-standard blood-pressure RCT; the basis for modern BP targets | Read with the measurement caveat (§1.1) — SPRINT BP ≠ clinic BP |
+| **SPRINT Research Group** — NEJM 2015 + Final Report NEJM 2021 | The definitive intensive-vs-standard blood-pressure RCT; the basis for modern BP targets | Read with the measurement caveat (§1.1) — SPRINT BP ≠ clinic BP |
 | **2017 ACC/AHA Hypertension Guideline** (Whelton et al., *Hypertension*/*JACC*) | The downstream guideline that set ≥130/80 as hypertension and <130/80 as the general goal | Translates SPRINT into practice; note international guidelines differ on the exact threshold |
 | **Peter Attia — *Outlive*** (2023), esp. the cardiovascular, cancer, and "Medicine 3.0" chapters | The clearest popular synthesis of the Four-Horsemen prevention frame and apoB-forward CV prevention | Big-picture *why*; aggressive on early screening/CAC — cross-check specifics against USPSTF |
-| **NordICC** — Bretthauer 2022 (`10.1056/NEJMoa2208375`) + **NLST** Aberle 2011 (`10.1056/NEJMoa1102873`) | The two cleanest modern screening RCTs (colonoscopy; lung LDCT), incl. the ITT-vs-per-protocol lesson | The honest case studies for how to read a screening trial |
-| **IARC Monographs** (Bouvard 2015, `10.1016/S1470-2045(15)00444-1`) + **WCRF/AICR** *Diet, Nutrition, Physical Activity and Cancer* | The graded evidence on diet/lifestyle and cancer (processed meat Group 1, fiber, adiposity) | "Strong evidence" ≠ "large effect" — read magnitudes, not just hazard labels |
-| **ASPREE** trio — McNeil 2018 (`10.1056/NEJMoa1800722`, `…1805819`, `…1803955`) | Why primary-prevention aspirin fell out of favor | The model of a large, clean "null/harm" RCT overturning entrenched practice |
+| **NordICC** — Bretthauer 2022 + **NLST** Aberle 2011 | The two cleanest modern screening RCTs (colonoscopy; lung LDCT), incl. the ITT-vs-per-protocol lesson | The honest case studies for how to read a screening trial |
+| **IARC Monographs** (Bouvard 2015) + **WCRF/AICR** *Diet, Nutrition, Physical Activity and Cancer* | The graded evidence on diet/lifestyle and cancer (processed meat Group 1, fiber, adiposity) | "Strong evidence" ≠ "large effect" — read magnitudes, not just hazard labels |
+| **ASPREE** trio — McNeil 2018 | Why primary-prevention aspirin fell out of favor | The model of a large, clean "null/harm" RCT overturning entrenched practice |
 
 ---
 
@@ -414,7 +416,11 @@ RCT-backed screens (colorectal, lung-in-smokers, breast, cervical).** Everything
 
 ---
 
-*Section maintained by Nucleus. Graded claims live in `02-domains/P-clinical-claims.json`; lipid/apoB/
-Lp(a) biomarkers in `L-biomarkers.md` / `L-claims.json`; metabolic depth in `D-metabolic-nutrition.md`.
-Neurodegeneration (the 3rd Horseman) is a separate section. Cross-links by claim-id and DOI are
-load-bearing — follow them to the underlying evidence tier before acting.*
+## Sources & notes
+
+[^apob-lpa]: Biomarker grading in `L-biomarkers.md` / `L-claims.json`. claims: apob-superior-to-ldlc, lpa-causal-genetic-cvd.
+[^sprint]: SPRINT Research Group — NEJM 2015. doi:10.1056/NEJMoa1511939. Final Report — NEJM 2021. doi:10.1056/NEJMoa1901281.
+[^aspree]: ASPREE (McNeil et al.) — NEJM 2018 (three papers). doi:10.1056/NEJMoa1800722; doi:10.1056/NEJMoa1805819; doi:10.1056/NEJMoa1803955.
+[^nordicc]: NordICC (Bretthauer et al.) — NEJM 2022. doi:10.1056/NEJMoa2208375.
+[^nlst]: NLST (Aberle et al.) — NEJM 2011. doi:10.1056/NEJMoa1102873.
+[^iarc]: IARC Monograph working group (Bouvard et al.) — Lancet Oncology 2015. doi:10.1016/S1470-2045(15)00444-1.

@@ -1,32 +1,18 @@
 # 25 — Oncology & Cancer: A Disease of the Genome
 
-> **Status:** v0.1 (Wave 9) — 2026-06-28. Companion data in `02-domains/oncology-claims.json`.
-> **Discipline:** this chapter exists because cancer is **Horseman #2** of the Four-Horsemen frame
-> (`07-clinical-prevention.md`) and the single most-feared diagnosis in the developed world — yet the
-> *biology* of what cancer actually **is**, and the honest state of how we **treat** it, lives nowhere
-> else in this corpus. Section 07 owns **screening and prevention** (do not duplicate it — colorectal,
-> lung-LDCT, breast, cervical screening and the prevention levers are graded there). This section owns
-> the **machinery**: what cancer is at the level of the genome and the cell cycle, how it develops, the
-> major cancers, the treatment revolution, the early-detection frontier, and the honest debunks.
->
-> **The one rule that governs this chapter: cancer is not a thing, it is a *process* — the corruption of
-> the cell's own software.** Mukherjee called it *The Emperor of All Maladies*; the deeper truth is that
-> it is the **emperor of all malfunctions** — a disease in which the normal programs of growth, repair,
-> and death are not invaded from outside but **subverted from within**, by mutation of the very genes
-> that govern them. This ties it straight down to the canon fundamentals (`→ 01-foundations.md`,
-> `bucket-canon/04-information` + `05-biophysics`: DNA, the cell cycle, the geometry of replication).
-> Every claim below is graded by the ladder in `06-evidence/SCHEMA.md`.
->
-> **Cross-references (do not duplicate):**
-> - **Screening & prevention** (colorectal/lung/breast/cervical/skin, smoking, HPV/HBV vaccines, diet,
->   alcohol, MCED-as-screen): `07-clinical-prevention.md §3–4, §6`. This section *points back* rather than
->   re-deriving them.
-> - **DNA, the cell cycle, replication, the genome as information**: `01-foundations.md`.
-> - **The telomerase/cancer paradox, replicative immortality, the Hayflick limit**: `16-telomeres-cellular-aging.md §16.3`
->   (the cleanest causal evidence that "longer telomeres" buys cancer risk — Haycock 2017 MR).
-> - **Aging mechanisms** (genomic instability, senescence as a tumour-suppressor, inflammaging):
->   `B-aging-mechanisms.md`. **Carcinogen exposures** (radiation, pollutants, hormesis): `09-exposures-environment.md`.
-> - **Heritable cancer / BRCA / genetics**: `18-genetics-anatomy.md`, `C-genetics-omics.md`.
+**Cancer is not a thing, it is a *process* — the corruption of the cell's own software.** It is the
+single most-feared diagnosis in the developed world, and the honest biology of what it *is* — and of how
+well we can actually treat it — is rarely told straight. Mukherjee called it *The Emperor of All
+Maladies*; the deeper truth is that it is the **emperor of all malfunctions** — a disease in which the
+normal programs of growth, repair, and death are subverted from within, by mutation of the very genes
+that govern them.
+
+This chapter owns the **machinery**: what cancer is at the level of the genome and the cell cycle, how it
+develops, the major cancers, the treatment revolution, the early-detection frontier, and the honest
+debunks. Screening and prevention live in `07-clinical-prevention.md`.
+
+_Not medical advice. Screening and prevention (colorectal, lung-LDCT, breast, cervical, the prevention
+levers) are owned by `07-clinical-prevention.md`._
 
 ---
 
@@ -34,8 +20,8 @@
 
 | Rule | How it bites here |
 |---|---|
-| **predictor ≠ lever** | A tumour marker (PSA, CA-125, CEA), a mutation, a liquid-biopsy signal *predicts* — it is not automatically a thing you "treat." The MCED frontier (§25.6) is full of predictors mis-sold as interventions. Finding a cancer is not the same as **changing a death**. |
-| **cohort ≠ RCT** | Most of what you read about diet/lifestyle "causing" or "curing" cancer is observational and confounded. The treatment claims that earned their place (immunotherapy, targeted therapy, the curative chemo regimens) are **RCT-backed, hard-endpoint** (overall survival), and graded as such here. |
+| **predictor ≠ lever** *(spotting a risk isn't the same as having a fix for it)* | A tumour marker (PSA, CA-125, CEA — blood proteins that can rise with cancer), a mutation, a liquid-biopsy signal *predicts* — it is not automatically a thing you "treat." The MCED frontier (§25.6) is full of predictors mis-sold as interventions. Finding a cancer is not the same as **changing a death**. |
+| **cohort ≠ RCT** *(watching what happens to a group can't prove cause the way a randomized trial can)* | Most of what you read about diet/lifestyle "causing" or "curing" cancer is observational and confounded. The treatment claims that earned their place (immunotherapy, targeted therapy, the curative chemo regimens) are backed by **RCTs** (randomized controlled trials, the strongest evidence tier) with **hard endpoints** (overall survival), and graded as such here. |
 | **something-beats-nothing — but more is not always better** | Early detection saves lives in the *right* setting (§07); past that, it adds **overdiagnosis** (detecting cancers that would never have killed you, then treating them). The treatment chapter is equally honest: immunotherapy is a real revolution **for the minority it helps**, and "miracle" framing hides the majority for whom it does nothing. |
 
 ---
@@ -79,6 +65,10 @@ established]`** scaffold, not an outcome claim.
 
 @@FIG:10-hallmarks-cancer@@
 
+Read the table down the middle two columns — the *capability* and *what it means* are the point. The
+right-hand column names the genes and molecules that most often cause each capability; they are examples
+you can skim past unless you want the specifics.
+
 | # | Hallmark capability | What it means | Canonical example / driver |
 |---|---|---|---|
 | 1 | **Sustaining proliferative signalling** | The cell tells itself to divide — autonomously generating or hijacking growth signals | activating *RAS*, *HER2/ERBB2* amplification, *EGFR* mutation |
@@ -91,7 +81,7 @@ established]`** scaffold, not an outcome claim.
 | 7 | **Deregulating cellular energetics** | Reprogrammed metabolism (the "Warburg effect" — aerobic glycolysis) to fuel biosynthesis | *MYC*, *HIF1α* (the *real*, nuanced version of "sugar feeds cancer" — see §25.7) |
 | 8 | **Avoiding immune destruction** | Hiding from / disabling the immune system that should kill nascent tumours | **PD-L1 expression, immune checkpoint exploitation** — the target of the immunotherapy revolution (§25.5) |
 | — | *2011 — two **enabling characteristics**:* | | |
-| E1 | **Genome instability & mutation** | An elevated mutation rate that *generates* all the other hallmarks faster | DNA-repair loss (*BRCA1/2*, mismatch-repair/MSI, *TP53*) |
+| E1 | **Genome instability & mutation** | An elevated mutation rate that *generates* all the other hallmarks faster | DNA-repair loss (*BRCA1/2*; MSI — microsatellite instability, the signature of broken mismatch repair; *TP53*) |
 | E2 | **Tumour-promoting inflammation** | Chronic inflammation supplying growth factors, survival signals, mutagens | H. pylori → gastric, hepatitis → liver, IBD → colorectal |
 | — | *2022 — "New Dimensions" additions (proposed, less settled):* | | |
 | 9 | **Unlocking phenotypic plasticity** | Cells dedifferentiate / trans-differentiate to escape terminal fates | lineage plasticity in treatment resistance |
@@ -102,25 +92,26 @@ established]`** scaffold, not an outcome claim.
 **How to read the table honestly.** The **2000 six** are bedrock — universally accepted, taught
 everywhere, mechanistically secure. The **2011 four** (two hallmarks + two enabling characteristics) are
 also well-established. The **2022 "New Dimensions"** are Hanahan's own framing as *candidate* additions —
-genuinely important biology, but more provisional and still debated as to whether they are distinct
+important biology, but more provisional and still debated as to whether they are distinct
 "hallmarks" or downstream of the original set. Grade them accordingly: the framework's *value* is that
 it makes therapy rational — **a drug usually works by knocking out one hallmark** (anti-angiogenics hit
 #5, checkpoint inhibitors hit #8, etc.).
 
 ### 25.1.3 — Why this ties to the aging fundamentals
 
-Cancer is overwhelmingly a **disease of aging**, and the link is mechanistic, not coincidental. The
-enabling characteristic **genome instability** (E1) is the same **genomic-instability hallmark of
-aging** (`B-aging-mechanisms.md`): a lifetime of replication errors, oxidative damage, and declining
-repair fidelity accumulates mutations. **Replicative immortality** (#4) is the inverse face of the
-**telomere attrition** hallmark of aging — a normal cell's telomere clock *is* a tumour suppressor that
-forces senescence before a lineage can accrue enough mutations to turn malignant; a cancer must
-reactivate telomerase to escape it (`16-telomeres §16.3`; the Haycock 2017 Mendelian-randomization
-result that genetically *longer* telomeres raise cancer risk is the causal proof). And **senescent
-cells** (2022 hallmark #12) are the bridge: senescence protects against cancer in youth but, via the
-SASP, **promotes** it in age. Cancer and aging are not two problems; they are **two readouts of the same
-accumulating genomic and cellular damage**, which is why cancer incidence rises roughly with the
-**fourth-to-sixth power of age** (Armitage–Doll multistage model — see §25.2.2).
+**Cancer and aging are two readouts of the same accumulating genomic and cellular damage** — which is
+why cancer incidence rises roughly with the **fourth-to-sixth power of age** (Armitage–Doll multistage
+model — see §25.2.2). The links are mechanistic, not coincidental. The enabling characteristic **genome
+instability** (E1) is the same **genomic-instability hallmark of aging** (`B-aging-mechanisms.md`): a
+lifetime of replication errors, oxidative damage, and declining repair fidelity accumulates mutations.
+**Replicative immortality** (#4) is the inverse face of the **telomere-attrition** hallmark of aging — a
+normal cell's telomere clock *is* a tumour suppressor that forces senescence before a lineage can accrue
+enough mutations to turn malignant, so a cancer must reactivate telomerase to escape it
+(`16-telomeres §16.3`; the Haycock 2017 result — using inherited gene variants as a natural experiment,
+a method called Mendelian randomization — that genetically *longer* telomeres raise cancer risk is the
+causal proof). And **senescent cells** (2022 hallmark #12) are the bridge: senescence protects against
+cancer in youth but, via the SASP (senescence-associated secretory phenotype — the inflammatory
+signals aging cells emit), **promotes** it in age.
 
 ---
 
@@ -190,7 +181,9 @@ on top of heredity and environment.
 > obesity, infection, UV, alcohol (all graded in `07-clinical-prevention.md §4`) — remain **preventable**.
 > Stochastic replication error is one of **three** contributors (heredity, environment, chance); it is
 > real, it explains why even perfect living does not abolish cancer, and it is **not** a licence to stop
-> preventing. (Logged as `conflict-bad-luck-cancer-interpretation`.)
+> preventing.[^bad-luck]
+
+[^bad-luck]: claim: conflict-bad-luck-cancer-interpretation
 
 ### 25.2.4 — Carcinogens and heritable cancer
 
@@ -296,8 +289,8 @@ transformative — and the honest version names **who it helps and who it doesn'
 If a cancer is *driven* by one hyperactive oncogene, a drug that blocks that exact molecule can produce
 dramatic, low-toxicity responses. The founding triumph is **imatinib (Gleevec)** for **chronic myeloid
 leukemia** — it inhibits the **BCR-ABL** fusion kinase that *defines* CML and converted a fatal leukemia
-into a **chronically-managed condition with near-normal life expectancy** for most patients (`rct`-tier,
-landmark). Others that genuinely changed practice:
+into a **chronically-managed condition with near-normal life expectancy** for most patients (`rct`-tier —
+the strongest evidence grade — landmark). Others that changed practice:
 
 - **EGFR inhibitors** (gefitinib, osimertinib) for *EGFR*-mutant **lung adenocarcinoma**;
 - **ALK inhibitors** for *ALK*-rearranged lung cancer;
@@ -347,8 +340,9 @@ T-cells**. The two foundational discoveries — **James Allison** (CTLA-4 blocka
 > attack on healthy organs (colitis, hepatitis, pneumonitis, endocrine failure), occasionally fatal.
 > **The marketing says "cancer cured by the immune system"; the data say "a real, sometimes durable cure
 > for a substantial minority, nothing for the majority, and a new class of harms."** Both halves are true,
-> and stating only the first is the most common dishonesty in cancer-therapy hype. (Logged as
-> `conflict-immunotherapy-cure-framing`.)
+> and stating only the first is the most common dishonesty in cancer-therapy hype.[^immuno-cure]
+
+[^immuno-cure]: claim: conflict-immunotherapy-cure-framing
 
 ### 25.5.3 — CAR-T cell therapy (`rct`/`outcome`-tier, narrow but stunning)
 
@@ -391,6 +385,10 @@ is the logical endpoint of "cancer is a disease of the genome" — **treat the m
 
 ## 25.6 — The early-detection frontier: liquid biopsy & MCED
 
+**The bottom line first: the multi-cancer blood tests being marketed today (Galleri) are promising and
+unproven — do not pay out-of-pocket for one expecting it to save your life until the mortality trials
+read out.** Here is why.
+
 The newest hope is **catching cancer earlier, from blood.** A growing tumour sheds **circulating tumour
 DNA (ctDNA)** and other markers into the bloodstream; a **liquid biopsy** detects them. Two distinct
 uses, with very different evidence levels:
@@ -416,8 +414,9 @@ uses, with very different evidence levels:
 > - The definitive trials are **ongoing** (e.g., the NHS-Galleri RCT, ~140k people, mortality endpoint).
 >   Until one shows a mortality benefit, MCED is **investigational, not a recommended screen** — exactly
 >   the verdict `07-clinical-prevention.md §6` gives it. Promising. Plausible. **Unproven.** Do not pay
->   out-of-pocket for it expecting it to save your life until the trials read out. (Logged as
->   `conflict-mced-galleri-unproven`; cross-ref `§07`.)
+>   out-of-pocket for it expecting it to save your life until the trials read out.[^mced]
+
+[^mced]: claim: conflict-mced-galleri-unproven. cross-ref: `07-clinical-prevention.md §6`.
 
 ---
 
@@ -430,7 +429,7 @@ an effective therapy is, for curable cancers, fatal.
 
 | Claim | The honest status |
 |---|---|
-| **"Sugar feeds cancer" / cut all carbs to starve it** | **Oversimplified to the point of false.** The kernel of truth is the **Warburg effect** (hallmark #7): cancer cells preferentially use **aerobic glycolysis**, consuming lots of glucose — which is why PET scans use radiolabelled glucose to *find* tumours. But (1) **all** your cells use glucose; you cannot selectively starve a tumour by avoiding sugar — your body tightly maintains blood glucose, and the tumour will take what it needs. (2) The Warburg effect is about **biosynthesis** (building blocks for division), not simple energetics, and is far subtler than "sugar = fuel." (3) No human trial shows a low-sugar or ketogenic diet **treats** cancer; it is studied as an *adjunct* in specific settings, not a cure. Real version: avoid **obesity and insulin resistance**, which *do* raise risk of ≥13 cancers (`07 §4.2`) — that is a population-prevention lever, not a "starve my tumour" mechanism. (`conflict-sugar-feeds-cancer`) |
+| **"Sugar feeds cancer" / cut all carbs to starve it** | **Oversimplified to the point of false.** The kernel of truth is the **Warburg effect** (hallmark #7): cancer cells preferentially use **aerobic glycolysis**, consuming lots of glucose — which is why PET scans use radiolabelled glucose to *find* tumours. But (1) **all** your cells use glucose; you cannot selectively starve a tumour by avoiding sugar — your body tightly maintains blood glucose, and the tumour will take what it needs. (2) The Warburg effect is about **biosynthesis** (building blocks for division), not simple energetics, and is far subtler than "sugar = fuel." (3) No human trial shows a low-sugar or ketogenic diet **treats** cancer; it is studied as an *adjunct* in specific settings, not a cure. Real version: avoid **obesity and insulin resistance**, which *do* raise risk of ≥13 cancers (`07 §4.2`) — that is a population-prevention lever, not a "starve my tumour" mechanism.^[claim: conflict-sugar-feeds-cancer] |
 | **Alkaline diet / "cancer can't live in an alkaline body"** | **Biochemically false.** You cannot meaningfully change blood pH with diet — it is held at ~7.4 by powerful buffers; food changes *urine* pH, not blood. Tumours create their *own* acidic microenvironment regardless of what you eat. No evidence an "alkaline diet" prevents or treats cancer. Harmless as "eat more vegetables"; dangerous as a substitute for treatment. |
 | **Laetrile / amygdalin / "vitamin B17" / apricot seeds** | **Disproven and dangerous.** Promoted for decades as a natural cure; the definitive **NCI-sponsored clinical trial (Moertel et al., *NEJM* 1982)** found **no benefit** and documented **cyanide toxicity** (amygdalin metabolises to cyanide). It is not a vitamin. People have died of cyanide poisoning from apricot-seed regimens. Unambiguous: ineffective *and* toxic. |
 | **"Most natural cancer cures are suppressed by Big Pharma"** | **The conspiracy frame is false and lethal.** Cancer researchers get cancer; oncologists' families get cancer; a genuinely effective, cheap, natural cure would make its discoverer immortal in the literature and a Nobel laureate. The reason vitamin C megadose, coffee enemas (Gerson), Rife machines, black salve, baking soda, etc. aren't used is that **when tested, they don't work** — not suppression. Meanwhile the *real* breakthroughs of the last 20 years (immunotherapy, CAR-T) came from exactly the research enterprise the conspiracy says hides cures. |
@@ -495,10 +494,5 @@ to `anecdotal` (testimonials) — never an `outcome`. Conflicts logged: `conflic
 
 ---
 
-*Section maintained by Nucleus. Graded claims live in `02-domains/oncology-claims.json`. Screening and
-prevention are owned by `07-clinical-prevention.md` (do not duplicate); the telomerase/cancer paradox by
-`16-telomeres-cellular-aging.md §16.3`; DNA/cell-cycle fundamentals by `01-foundations.md`; carcinogen
-exposures by `09-exposures-environment.md`; heritable-cancer genetics by `18-genetics-anatomy.md`.
-Cross-links by claim-id and DOI are load-bearing — follow them to the underlying evidence tier before
-acting. Cancer is a disease of the genome; honesty about cure vs control is a duty, not a stylistic
-choice.*
+*Cancer is a disease of the genome. Honesty about cure versus control is a duty every line of this
+chapter tries to keep.*

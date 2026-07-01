@@ -1,37 +1,32 @@
 # 27 — Surface & Sensory Specialties (Skin · Teeth & Mouth · Ear/Nose/Throat · Eye)
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/surface-sensory-claims.json`.
-> This is the **clinical-conditions** companion to Section 11 (`11-body-systems.md`), which covered the
-> *longevity-lever* view of skin (photoaging), mouth (periodontal–systemic), eye (AMD/cataract/glaucoma as
-> dementia tails), and ear (ACHIEVE). **Section 11 owns the anti-aging/prevention framing; this section owns
-> the named diseases** — acne, eczema, psoriasis, rosacea, skin cancer; caries, tooth loss, oral cancer; tinnitus,
-> vertigo, sinusitis; refractive error, diabetic retinopathy, dry eye. Where the two overlap (sunscreen, retinoids,
-> periodontitis, AMD, AREDS2, hearing→dementia, cataract→dementia) this file **cross-references rather than
-> repeats**. The brain/cognition agent (Section 08) still owns the dementia endpoints; sleep apnea's full
-> cardiometabolic story lives in Section 22; allergy/immunology in Section 15.
+The interventions that work on skin, teeth, ears, and eyes are unglamorous and cheap — fluoride, sunscreen, a
+retinoid, an Epley maneuver, outdoor time for kids, a hearing aid. The ones that sell are mostly theater — charcoal
+toothpaste, oil pulling, $300 serums, "eye exercises" for myopia, amalgam-removal "detox." These are the surfaces
+you see in the mirror and the four senses (sight, hearing, balance, smell/taste) that mediate every waking moment,
+and most of the money spent on them lands on the wrong side of that line.
 
-These are the **surfaces and sensors** — the organs you see in the mirror and the four senses (sight, hearing,
-balance, smell/taste) that mediate every waking moment. They share a structure that makes them ideal for an
-honesty-graded manual:
+Several of these conditions carry a hard mortality or function tail that earns them a place in a longevity manual:
+melanoma kills, oral cancer kills, untreated glaucoma blinds silently, sleep apnea drives cardiovascular disease,
+and vision/hearing loss now sit on the Lancet modifiable-dementia list.
 
-- **The interventions that work are unglamorous and cheap** (fluoride, sunscreen, a retinoid, an Epley maneuver,
-  outdoor time for kids, a hearing aid) and the ones that sell are mostly **theater** (charcoal toothpaste, oil
-  pulling, $300 serums, "eye exercises" for myopia, amalgam-removal "detox").
-- **Several have a hard mortality or function tail** that earns them a place in a longevity manual: melanoma kills,
-  oral cancer kills, untreated glaucoma blinds silently, sleep apnea drives cardiovascular disease, and
-  vision/hearing loss now sit on the Lancet modifiable-dementia list (Section 11 §4.4, §5).
-- **They are the cleanest test of the three honesty rules** (`06-evidence/SCHEMA.md`): predictor ≠ lever
-  (intraocular pressure predicts glaucoma; lowering it is a *separately proven* lever — and here it actually is);
-  cohort ≠ RCT (charcoal "whitens" by abrasion in lab assays, not in outcome trials); something beats nothing
-  (a $2 fluoride tube outperforms the entire "holistic dentistry" aisle).
+They are also the cleanest test of three honesty rules used throughout this manual. **Predictor ≠ lever** —
+something that forecasts risk isn't automatically something that, changed, lowers it: intraocular pressure predicts
+glaucoma, and lowering it is a *separately proven* lever (here it actually is one). **Cohort ≠ RCT** — an
+observational association is weaker than a randomized trial: charcoal "whitens" by abrasion in lab assays, not in
+outcome trials. **Something beats nothing** — a $2 fluoride tube outperforms the entire "holistic dentistry" aisle.
 
 **One-line verdict up front:** the best-evidenced moves in this entire section are **fluoride** (the single most
-cost-effective preventive intervention in dentistry), **topical retinoids + sunscreen** (Section 11 — the two
+cost-effective preventive intervention in dentistry), **topical retinoids + sunscreen** (§11 — the two
 best-evidenced skin actives), **the Epley maneuver** (a 60-second physical maneuver that *cures* the most common
 vertigo), **outdoor time for children** (the one myopia lever with RCT support), **anti-VEGF injections** (turned
 wet AMD from a blinding disease into a treatable one), and **getting hearing and vision corrected** (function +
 plausible dementia tail). Almost everything marketed *around* these — and most of the "wellness" reframes of
 dentistry and eye care — is theater.
+
+_Not medical advice. This section covers the named diseases of skin, mouth, ear, and eye; the anti-aging and
+prevention framing for the same organs lives in §11, dementia endpoints in §08, sleep apnea's full cardiometabolic
+story in §22, allergy/immunology in §15._
 
 ---
 
@@ -44,10 +39,15 @@ diseases** people actually see a dermatologist for.
 
 ### A.1 Acne vulgaris — what actually works, and the honest diet link
 
-Acne is a disease of the **pilosebaceous unit**, driven by four interacting factors: (1) follicular
-hyperkeratinization (a plugged pore/comedo), (2) androgen-driven sebum overproduction, (3) *Cutibacterium acnes*
-(formerly *Propionibacterium acnes*) proliferation, and (4) inflammation. Treatment works by hitting these nodes —
-and the evidence ladder is unusually clear.
+Acne has four causes — a plugged pore, too much oil, a skin bacterium, and inflammation — and each treatment hits
+one of them. In clinical terms it is a disease of the **pilosebaceous unit** (the hair follicle plus its oil gland),
+driven by (1) follicular hyperkeratinization (the plugged pore/comedo), (2) androgen-driven sebum overproduction,
+(3) *Cutibacterium acnes* (formerly *Propionibacterium acnes*) proliferation, and (4) inflammation. Treatment works
+by hitting these nodes, and the evidence ladder is unusually clear.
+
+_Evidence-tier key (used in every table in this section): `rct` = randomized trial, the strongest tier; `meta` =
+meta-analysis pooling many trials; `cohort` = observational, weaker; `mechanistic` = plausible biology, not yet
+outcome-proven. NMA = network meta-analysis (ranks treatments that were never tested head-to-head)._
 
 | Treatment | Mechanism | Best evidence | Verdict |
 |---|---|---|---|
@@ -60,14 +60,14 @@ and the evidence ladder is unusually clear.
 | **Oral isotretinoin** | Shrinks sebaceous glands (only drug that hits all 4 factors) | `meta` / `rct` | The closest thing to a cure for severe/nodulocystic/scarring acne; teratogenic — pregnancy-prevention program mandatory |
 
 - **Network meta-analysis:** the 2022 *Br J Dermatol* NMA of topical, oral, physical, and combined acne treatments
-  (`10.1111/bjd.21739`) confirms **combination topicals (retinoid + BPO ± antibiotic) lead on efficacy**, and that
-  oral isotretinoin is the most effective single agent for severe disease. `meta`.
-- **Benzoyl peroxide:** systematic review (`10.3109/09546634.2012.699179`) — effective, cheap, OTC, and critically
-  **does not induce bacterial resistance**, which is why guidelines insist BPO accompany any antibiotic. `meta`.
-- **Isotretinoin:** systematic review (`10.1111/bjd.15668`) — high efficacy with durable remission; the famous
+  confirms **combination topicals (retinoid + BPO ± antibiotic) lead on efficacy**, and that
+  oral isotretinoin is the most effective single agent for severe disease. `meta`.[^acne-nma]
+- **Benzoyl peroxide:** systematic review — effective, cheap, OTC, and critically
+  **does not induce bacterial resistance**, which is why guidelines insist BPO accompany any antibiotic. `meta`.[^acne-bpo]
+- **Isotretinoin:** systematic review — high efficacy with durable remission; the famous
   harms (teratogenicity, mucocutaneous dryness, lab monitoring; the depression/IBD signals are **not robustly
-  causal** in controlled analyses). `meta` / `rct`.
-- **Guideline anchor:** AAD 2024 acne guidelines (`10.1016/j.jaad.2023.12.017`).
+  causal** in controlled analyses). `meta` / `rct`.[^acne-isotret]
+- **Guideline anchor:** AAD 2024 acne guidelines.[^acne-aad]
 
 **The honest diet link.** For decades dermatology said "diet doesn't cause acne." The honest 2020s position is
 **narrower and more interesting**: (1) **high-glycemic-load diets** modestly worsen acne (`rct`/`cohort` — plausible
@@ -92,9 +92,10 @@ response inflames; scratching breaks the barrier further — the "itch–scratch
 | **Moderate–severe systemic** | **Dupilumab** (anti-IL-4Rα) | `rct` (SOLO 1/2) | Transformed severe AD; targets the Th2 axis directly |
 | **Moderate–severe systemic** | Oral JAK inhibitors (upadacitinib, abrocitinib) | `rct` | Fast, potent; class-warning monitoring |
 
-- **Dupilumab — the landmark:** **Simpson 2016, NEJM (SOLO 1 & 2)** (`10.1056/NEJMoa1610020`) — two phase-3 RCTs
-  showed dupilumab dramatically improved moderate-to-severe AD vs placebo (EASI-75, itch, quality of life), with a
-  clean safety profile (notable: conjunctivitis). `rct` / outcome. This was the proof that **targeting type-2
+- **Dupilumab — the landmark:** **Simpson 2016, NEJM (SOLO 1 & 2)** — two phase-3 RCTs
+  showed dupilumab dramatically improved moderate-to-severe AD vs placebo (EASI-75 — 75% clearance of the
+  eczema-severity score — itch, quality of life), with a
+  clean safety profile (notable: conjunctivitis). `rct` / outcome.[^dupilumab-solo] This was the proof that **targeting type-2
   cytokines** controls severe eczema, and it opened the biologic era in dermatology beyond psoriasis.
 
 **Honest take:** the foundation is boring and works — **moisturize relentlessly, treat flares early with adequate
@@ -114,12 +115,12 @@ disease, and metabolic syndrome (Section 24 owns the joint disease).
 | **Mild / limited** | Topical corticosteroids + vitamin-D analogue (calcipotriol) | `meta` | First-line for limited plaque psoriasis |
 | **Moderate–severe** | Phototherapy (narrowband UVB) | `rct` | Effective, no systemic immunosuppression |
 | **Moderate–severe systemic** | Methotrexate, ciclosporin, apremilast, acitretin | `meta` | Conventional systemics; cheaper, less effective than biologics |
-| **Moderate–severe biologic** | **Anti-IL-17** (secukinumab, ixekizumab, bimekizumab), **anti-IL-23** (risankizumab, guselkumab), anti-TNF | `meta` (NMA) | The IL-17/IL-23 biologics top the efficacy rankings — many patients reach clear/almost-clear skin (PASI 90–100) |
+| **Moderate–severe biologic** | **Anti-IL-17** (secukinumab, ixekizumab, bimekizumab), **anti-IL-23** (risankizumab, guselkumab), anti-TNF | `meta` (NMA) | The IL-17/IL-23 biologics top the efficacy rankings — many patients reach clear/almost-clear skin (PASI 90–100, i.e. a 90–100% drop in the standard psoriasis-severity score) |
 
-- **The definitive comparison:** **Sbidian 2023, Cochrane NMA** (`10.1002/14651858.CD011535.pub6`, latest of a
+- **The definitive comparison:** **Sbidian 2023, Cochrane NMA** (latest of a
   serially-updated review) — a network meta-analysis of systemic psoriasis treatments finds the **anti-IL-17 and
   anti-IL-23 biologics (with bimekizumab, ixekizumab, risankizumab, secukinumab, guselkumab among the top)
-  achieve the highest rates of PASI 90** vs placebo and outperform older systemics. `meta` / outcome. This is one
+  achieve the highest rates of PASI 90** vs placebo and outperform older systemics. `meta` / outcome.[^psoriasis-sbidian] This is one
   of the cleanest bench-to-clinic stories in medicine: the cytokine mechanism was mapped, drugs were built against
   the exact node, and they work.
 
@@ -142,11 +143,11 @@ microbiome. It is **not** acne (no comedones) and not curable, but it is control
 | Refractory/phymatous | Low-dose oral isotretinoin; surgical/laser for rhinophyma | `meta` |
 | Trigger control | Avoid sun, heat, alcohol, spicy food, stress (individualized) | `cohort` |
 
-- **Cochrane:** **van Zuuren 2015, Br J Dermatol** (abridged Cochrane with GRADE, `10.1111/bjd.13956`) — best
+- **Cochrane:** **van Zuuren 2015, Br J Dermatol** (abridged Cochrane with GRADE) — best
   evidence supports **topical ivermectin, azelaic acid, brimonidine, and doxycycline**; many older treatments are
-  weakly supported. `meta`.
-- **Low-dose isotretinoin:** 2025 JEADV systematic review/meta (`10.1111/jdv.20315`) — effective for refractory
-  rosacea. `meta`.
+  weakly supported. `meta`.[^rosacea-vanzuuren]
+- **Low-dose isotretinoin:** 2025 JEADV systematic review/meta — effective for refractory
+  rosacea. `meta`.[^rosacea-isotret]
 
 **Honest take:** rosacea is **managed, not cured** — daily sun protection plus a proven topical (ivermectin/azelaic
 acid) is the backbone, and **sub-antimicrobial-dose doxycycline** (anti-inflammatory, not antibiotic dosing) is the
@@ -165,8 +166,8 @@ Three cancers dominate, in ascending lethality:
 
 @@FIG:PX5-skin-cancer@@
 
-- **ABCDE rule (melanoma screening):** **Abbasi 2004, JAMA** (`10.1001/jama.292.22.2771`) — the consensus
-  early-detection criteria (figure), plus the "**ugly duckling**" sign. `consensus`/diagnostic. Self-skin-checks
+- **ABCDE rule (melanoma screening):** **Abbasi 2004, JAMA** — the consensus
+  early-detection criteria (figure), plus the "**ugly duckling**" sign. `consensus`/diagnostic.[^melanoma-abcde] Self-skin-checks
   and dermatologist exams (especially with a prior melanoma, many atypical nevi, family history, or fair skin/red
   hair) catch it early, when excision cures.
 
@@ -232,12 +233,13 @@ snacking) that drives decay more than total quantity; saliva is protective (dry 
 **fluoride works by shifting the remineralization balance** (forms fluorapatite, more acid-resistant; also
 antibacterial).
 
-- **Fluoride toothpaste — the foundational evidence:** **Marinho 2003, Cochrane** (`10.1002/14651858.CD002278`) —
+- **Fluoride toothpaste — the foundational evidence:** **Marinho 2003, Cochrane** —
   fluoride toothpaste vs placebo gives a clear caries reduction in children (prevented-fraction ~24% on the
-  DMFS index). `meta` / outcome. This is one of the best-evidenced preventive interventions in all of medicine.
-- **Concentration matters:** **Walsh 2019, Cochrane** (`10.1002/14651858.CD007868.pub3`) — higher fluoride
+  DMFS index — decayed, missing, and filled tooth surfaces, the standard decay tally). `meta` / outcome. This is
+  one of the best-evidenced preventive interventions in all of medicine.[^fluoride-marinho]
+- **Concentration matters:** **Walsh 2019, Cochrane** — higher fluoride
   concentrations (≥1000 ppm) prevent more caries; **the benefit is dose-dependent**, and 1000–1500 ppm is the
-  standard adult range. `meta`.
+  standard adult range. `meta`.[^fluoride-walsh]
 
 @@FIG:P12-fluoride@@
 
@@ -260,9 +262,9 @@ tooth loss). The full story — including the systemic associations and the one 
 fluoride, clean between teeth daily, and see a hygienist** — professional scaling/root planing is the intervention
 with the actual RCT support.
 
-- **Interdental cleaning:** **Worthington 2019, Cochrane** (`10.1002/14651858.CD012018.pub2`) — interdental brushes/
+- **Interdental cleaning:** **Worthington 2019, Cochrane** — interdental brushes/
   floss/water flossers added to brushing **reduce gingivitis** (low-to-moderate certainty); interdental brushes have
-  somewhat better evidence than string floss where gaps allow. `meta`. Same honest framing as Section 11: the
+  somewhat better evidence than string floss where gaps allow. `meta`.[^interdental-worthington] Same honest framing as Section 11: the
   *trials* are weak, the *practice* is biologically sensible and low-risk.
 
 ### B.3 Tooth loss & dentures — function, nutrition, and a dignity issue
@@ -305,10 +307,10 @@ modern prevention win (cross-ref Section 25/26).
 | Claim | Reality | Grade |
 |---|---|---|
 | **Charcoal toothpaste "detoxifies / whitens"** | Whitens only by **abrasion** (it's a mild scrub); no detox mechanism; **high abrasivity can wear enamel**; usually **no fluoride** (so it forgoes the one proven benefit). No RCT of caries/whitening outcomes. | `mechanistic`/marketing — **net-negative** if it replaces fluoride toothpaste |
-| **Oil pulling** (swishing coconut/sesame oil) | Systematic reviews find **at best weak, low-quality** evidence vs chlorhexidine/standard care; any plaque effect is small and unreplicated; harmless but **not a substitute** for brushing/fluoride; lipoid pneumonia if aspirated (rare). | `meta` (low quality) — `10.1016/j.heliyon.2020.e04789` — overhyped |
+| **Oil pulling** (swishing coconut/sesame oil) | Systematic reviews find **at best weak, low-quality** evidence vs chlorhexidine/standard care; any plaque effect is small and unreplicated; harmless but **not a substitute** for brushing/fluoride; lipoid pneumonia if aspirated (rare). | `meta` (low quality) — overhyped[^oil-pulling] |
 | **Whitening** (peroxide strips/gels, in-office) | **Actually works** — peroxide genuinely bleaches via oxidation; this is the one cosmetic that does what it says. Sensitivity is the main side effect; doesn't damage enamel at proper concentrations. | `rct` — **legit** |
 | **"Holistic / biological dentistry"** | A spectrum: the *good* parts (minimally-invasive dentistry, prevention focus) are mainstream; the *bad* parts (routine amalgam removal for "detox," "cavitation surgery," fluoride-rejection, "meridian tooth charts") range from unproven to harmful. | mixed — **fluoride-rejection is the red flag** |
-| **"Silver (amalgam) fillings poison you with mercury"** | Dental amalgam releases **trace mercury vapor**, but at levels **far below any toxicity threshold** for the general population; large reviews and the FDA/WHO/ADA find **no evidence of systemic harm** in people with amalgams. **Removing sound amalgams "to detox" actually spikes mercury exposure** during drilling — net-harmful. (Composite resins are now often preferred for *aesthetic/conservative* reasons, not safety — and Cochrane finds composites have a **higher failure/recurrent-caries rate** than amalgam in load-bearing posterior teeth.) | `meta` — `10.1002/14651858.CD005620.pub3` — **the fear is unfounded; removal-for-detox is the actual harm** |
+| **"Silver (amalgam) fillings poison you with mercury"** | Dental amalgam releases **trace mercury vapor**, but at levels **far below any toxicity threshold** for the general population; large reviews and the FDA/WHO/ADA find **no evidence of systemic harm** in people with amalgams. **Removing sound amalgams "to detox" actually spikes mercury exposure** during drilling — net-harmful. (Composite resins are now often preferred for *aesthetic/conservative* reasons, not safety — and Cochrane finds composites have a **higher failure/recurrent-caries rate** than amalgam in load-bearing posterior teeth.) | `meta` — **the fear is unfounded; removal-for-detox is the actual harm**[^amalgam-cochrane] |
 
 **Honest take:** dentistry has **excellent cheap evidence-based tools** (fluoride, sealants, scaling, professional
 whitening) and a large **wellness-marketing shadow** that mostly sells people *away* from the one intervention
@@ -333,8 +335,7 @@ Two mechanistic categories with very different treatments:
 | **Conductive** (often fixable) | Sound blocked before the cochlea — cerumen (wax) impaction, otitis media/effusion, otosclerosis, perforation | Treat the cause (wax removal, tubes, stapedectomy) |
 | **Mixed** | Both | Both |
 
-The **cognition handoff** (ACHIEVE: hearing aids slowed decline ~48% in the higher-risk subgroup — `10.1016/
-S0140-6736(23)01406-X`) and the **noise-protection levers** (85 dB action threshold, +3 dB halves safe time,
+The **cognition handoff** (ACHIEVE: hearing aids slowed decline ~48% in the higher-risk subgroup[^achieve]) and the **noise-protection levers** (85 dB action threshold, +3 dB halves safe time,
 60/60 earbud rule) are in Section 11 §5. The clinical addition here: **don't dismiss treatable conductive causes**
 (a wax plug or middle-ear effusion is reversible), **test hearing in midlife**, and adopt aids **early** — the years-long
 neural-adaptation period plus the ACHIEVE signal both argue against "waiting until it's bad."
@@ -357,8 +358,8 @@ phantom-sensation analogous to phantom-limb pain (cross-ref Section 21 central s
 | **Treat reversible contributors** | Wax, ototoxic meds, hearing loss, sometimes anxiety/insomnia | clinical |
 | **Supplements (ginkgo, zinc, melatonin), "tinnitus cures" online** | No reliable benefit; melatonin may help associated insomnia | `meta` (null/weak) — **avoid the scams** |
 
-- **CBT evidence:** **Fuller 2020, Cochrane** (`10.1002/14651858.CD012614.pub2`) — CBT **improves tinnitus-related
-  quality of life and reduces depression/anxiety**, with little/no effect on subjective loudness. `meta` / outcome.
+- **CBT evidence:** **Fuller 2020, Cochrane** — CBT **improves tinnitus-related
+  quality of life and reduces depression/anxiety**, with little/no effect on subjective loudness. `meta` / outcome.[^tinnitus-fuller]
   The honest framing in one finding: **you treat the suffering, not the sound.**
 
 **Honest take:** anyone selling a tinnitus "cure" (a pill, a supplement, a frequency app that erases it) is selling
@@ -379,9 +380,9 @@ usually an inner-ear/vestibular problem) vs presyncope/disequilibrium. The singl
   the otoconia out of the posterior canal.** It is a ~60-second bedside procedure that **resolves BPPV in a single
   session in the majority of cases.**
 
-- **Evidence:** **Hilton & Pinder, Cochrane** (`10.1002/14651858.CD003162`) — the Epley maneuver is **effective**
+- **Evidence:** **Hilton & Pinder, Cochrane** — the Epley maneuver is **effective**
   for posterior-canal BPPV (higher resolution of vertigo and negative Dix-Hallpike vs sham/control). `meta` /
-  outcome. Confirmed by the AAO-HNS systematic reviews (`10.1177/0194599814527732`). **This is one of the cleanest
+  outcome. Confirmed by the AAO-HNS systematic reviews.[^epley-hilton] **This is one of the cleanest
   "the treatment works and it's free" facts in clinical medicine.**
 
 **Honest take:** BPPV is **diagnosable with one bedside test (Dix-Hallpike) and curable with one maneuver (Epley)** —
@@ -412,12 +413,13 @@ Obstructive sleep apnea (OSA) — repetitive upper-airway collapse during sleep 
 fragmentation — sits at the ENT/sleep/cardiometabolic intersection. Its **full cardiometabolic and cognitive story
 is in Section 22**; the honest summary relevant here:
 
-- **CPAP unambiguously fixes the symptoms** (daytime sleepiness, quality of life, blood pressure modestly, bed-partner
+- **CPAP** (continuous positive airway pressure — a bedside pump that splints the airway open with a mask through the
+  night) **unambiguously fixes the symptoms** (daytime sleepiness, quality of life, blood pressure modestly, bed-partner
   sleep) — these are robust `rct` benefits.
-- **CPAP's hard cardiovascular-event benefit is NOT proven in RCTs:** **McEvoy 2016, NEJM (SAVE)**
-  (`10.1056/NEJMoa1606599`) — CPAP did **not** reduce cardiovascular events vs usual care in people with OSA + known
-  CVD. `rct` / outcome (a null). The honest catch: **adherence was low (~3.3 h/night)**, and observational/meta
-  analyses (`10.1001/jama.2023.17465`) suggest **good adherence (≥4 h) may reduce events** — so the null is
+- **CPAP's hard cardiovascular-event benefit is NOT proven in RCTs:** **McEvoy 2016, NEJM (SAVE)** — CPAP did
+  **not** reduce cardiovascular events vs usual care in people with OSA + known
+  CVD. `rct` / outcome (a null).[^cpap-save] The honest catch: **adherence was low (~3.3 h/night)**, and observational/meta
+  analyses suggest **good adherence (≥4 h) may reduce events**[^cpap-adherence] — so the null is
   confounded by under-use, not necessarily a true absence of benefit. Predictor-vs-lever and dose-matters honesty
   rules both bite here.
 
@@ -443,10 +445,10 @@ LASIK/PRK refractive surgery), not "cured." The important *public-health* story 
   populations), driven by a **gene–environment** mismatch. The mechanism: insufficient **time outdoors** during
   childhood → less bright-light exposure → less retinal **dopamine** → unchecked **axial elongation** of the eyeball.
   (Near-work contributes, but "screens" specifically are a weaker/confounded signal than *lack of outdoor light*.)
-- **The RCT-proven lever — outdoor time:** **He 2015, JAMA** (`10.1001/jama.2015.10803`) — a cluster-RCT in
+- **The RCT-proven lever — outdoor time:** **He 2015, JAMA** — a cluster-RCT in
   Guangzhou added **40 minutes of outdoor class time per school day**; over 3 years it **reduced the incidence of
   new myopia** vs control schools. `rct` / outcome. Replicated by later objectively-monitored outdoor-time RCTs
-  (`10.1016/j.ophtha.2022.06.024`) and meta-analysis (`10.1111/aos.13403`). **This is the one primary-prevention
+  and meta-analysis.[^myopia-he] **This is the one primary-prevention
   lever for childhood myopia with randomized support.**
 
 @@FIG:P10-myopia-outdoor@@
@@ -467,8 +469,8 @@ leading cause of reversible blindness worldwide. The fix is **phacoemulsificatio
 clouded lens is emulsified and replaced with a clear artificial one. It is **one of the most common, safest, and
 most effective elective operations performed** (millions/year, ~15-minute outpatient procedure, high success).
 
-- The **cataract→dementia** finding (Lee 2022, `10.1001/jamainternmed.2021.6990` — extraction associated with ~30%
-  lower dementia risk, with glaucoma surgery as a negative control) is in Section 11 §4.2. The clinical point here:
+- The **cataract→dementia** finding (Lee 2022 — extraction associated with ~30%
+  lower dementia risk, with glaucoma surgery as a negative control)[^cataract-lee] is in Section 11 §4.2. The clinical point here:
   cataract surgery is **definitively curative for the vision loss** and remarkably low-risk; the only honest caveat
   is timing (operate when the cataract impairs function/quality of life, not on a number).
 
@@ -483,9 +485,9 @@ biggest modifiable risk factor is **elevated intraocular pressure (IOP)**, thoug
 too. It is the **"silent thief of sight"** — and the second-leading cause of irreversible blindness worldwide.
 
 - **The lever IS proven — lowering IOP works:** **Heijl 2002, Arch Ophthalmol — Early Manifest Glaucoma Trial
-  (EMGT)** (`10.1001/archopht.120.10.1268`) — randomly **lowering IOP** (laser + topical drug) in newly-detected
+  (EMGT)** — randomly **lowering IOP** (laser + topical drug) in newly-detected
   open-angle glaucoma **slowed progression** vs no initial treatment (progression 45% treated vs 62% control). `rct`
-  / outcome. Unusually for this section, **IOP is both a predictor AND a proven lever** — lowering it (drops,
+  / outcome.[^glaucoma-emgt] Unusually for this section, **IOP is both a predictor AND a proven lever** — lowering it (drops,
   laser/SLT, surgery) preserves vision in detected cases. This is exactly why the USPSTF "insufficient evidence for
   mass *screening*" statement (Section 11 §4.3) does **not** mean "glaucoma can't be treated" — once detected,
   treatment works; the unproven link is the *population-screening-program → outcome* chain.
@@ -513,11 +515,11 @@ adults. Two forms:
 | **Dry (atrophic)** — ~85–90% | Drusen accumulation → gradual RPE/photoreceptor atrophy (geographic atrophy late) | **AREDS2 supplements slow progression in intermediate AMD** (Section 11 §4.1); new complement inhibitors (pegcetacoplan) modestly slow geographic atrophy |
 | **Wet (neovascular)** — ~10–15%, most rapid vision loss | Abnormal choroidal neovascularization leaking under the retina | **Anti-VEGF intravitreal injections** — transformed it from a blinding disease to a treatable one |
 
-- **AREDS2 (the supplement win):** **AREDS2 2013, JAMA** (`10.1001/jama.2013.4997`) — full detail in Section 11
-  §4.1; works **only for intermediate or unilateral-advanced AMD**, not prevention. `rct`.
-- **Anti-VEGF — the modern revolution:** **Rosenfeld 2006, NEJM (MARINA)** (`10.1056/NEJMoa054481`) — monthly
+- **AREDS2 (the supplement win):** **AREDS2 2013, JAMA** — full detail in Section 11
+  §4.1; works **only for intermediate or unilateral-advanced AMD**, not prevention. `rct`.[^amd-areds2]
+- **Anti-VEGF — the modern revolution:** **Rosenfeld 2006, NEJM (MARINA)** — monthly
   intravitreal **ranibizumab** for neovascular AMD **not only prevented vision loss but improved vision** in a
-  substantial fraction (~95% lost <15 letters; ~34% gained ≥15 letters) vs sham. `rct` / outcome. Anti-VEGF agents
+  substantial fraction (~95% lost <15 letters; ~34% gained ≥15 letters) vs sham. `rct` / outcome.[^amd-marina] Anti-VEGF agents
   (ranibizumab, aflibercept, bevacizumab off-label, faricimab) are now the standard of care — **one of the biggest
   treatment advances in modern ophthalmology**, converting wet AMD from near-certain central-vision loss to a
   manageable chronic condition.
@@ -533,9 +535,9 @@ Prevention overlaps with cardiovascular health (don't smoke — smoking is the s
 Diabetic retinopathy is microvascular damage to the retina from chronic hyperglycemia — a **leading cause of
 blindness in working-age adults**, and **largely preventable** by glycemic/blood-pressure control plus screening.
 
-- **Glucose control prevents it:** the **DCCT (Diabetes Control and Complications Trial), NEJM 1993**
-  (`10.1056/NEJM199309303291401`) — intensive glucose control in type 1 diabetes **reduced the development and
-  progression of retinopathy by ~76%/~54%** vs conventional control. `rct` / outcome. (UKPDS showed the parallel in
+- **Glucose control prevents it:** the **DCCT (Diabetes Control and Complications Trial), NEJM 1993** — intensive
+  glucose control in type 1 diabetes **reduced the development and
+  progression of retinopathy by ~76%/~54%** vs conventional control. `rct` / outcome.[^retinopathy-dcct] (UKPDS showed the parallel in
   type 2.) Blood-pressure control adds further benefit.
 - **Screening + treatment work:** regular dilated retinal exams (or AI/photographic screening) catch it **before
   symptoms**; treatments — **laser photocoagulation**, **anti-VEGF injections**, and vitrectomy — preserve vision in
@@ -559,9 +561,9 @@ systemic diseases (Sjögren's).
 | Anti-inflammatory | Topical ciclosporin, lifitegrast, short steroid pulses | For inflammatory/moderate disease |
 | Procedural | Punctal plugs, intense pulsed light/thermal MGD treatments, autologous serum tears (severe) | Refractory |
 
-- **Framework:** **TFOS DEWS II 2017** (`10.1016/j.jtos.2017.05.006` management; `10.1016/j.jtos.2017.05.008`
-  definition) — the consensus reframing dry eye as a **chronic inflammatory ocular-surface disease**, mostly
-  evaporative/MGD-driven, treated in a stepped fashion. `consensus`/`meta`.
+- **Framework:** **TFOS DEWS II 2017** — the consensus reframing dry eye as a **chronic inflammatory
+  ocular-surface disease**, mostly
+  evaporative/MGD-driven, treated in a stepped fashion. `consensus`/`meta`.[^dryeye-dews]
 
 **Honest take:** dry eye is **real, common, and a treatable inflammatory disease** — not just "use drops." The
 highest-yield self-care is **treating meibomian-gland dysfunction (warm compresses/lid hygiene)**, **blinking fully
@@ -645,3 +647,30 @@ or a screening visit**, which is exactly why these surface-and-sensory specialti
   chronic inflammatory ocular-surface disease, treated in steps.
 - **van Zuuren EJ, et al. Interventions for rosacea (abridged Cochrane, GRADE).** *Br J Dermatol* 2015.
   `10.1111/bjd.13956` — ivermectin/azelaic acid/brimonidine/doxycycline lead.
+
+[^acne-nma]: *Br J Dermatol* 2022 network meta-analysis of topical, oral, physical, and combined acne treatments. doi:10.1111/bjd.21739. (meta)
+[^acne-bpo]: Benzoyl peroxide systematic review. doi:10.3109/09546634.2012.699179. (meta)
+[^acne-isotret]: Oral isotretinoin systematic review. doi:10.1111/bjd.15668. (meta / rct)
+[^acne-aad]: AAD 2024 acne management guidelines. doi:10.1016/j.jaad.2023.12.017.
+[^dupilumab-solo]: Simpson EL, et al. Dupilumab vs placebo in atopic dermatitis (SOLO 1 & 2). NEJM 2016. doi:10.1056/NEJMoa1610020. (rct / outcome)
+[^psoriasis-sbidian]: Sbidian E, et al. Systemic treatments for chronic plaque psoriasis: network meta-analysis. Cochrane 2023. doi:10.1002/14651858.CD011535.pub6. (meta / outcome)
+[^rosacea-vanzuuren]: van Zuuren EJ, et al. Interventions for rosacea (abridged Cochrane, GRADE). Br J Dermatol 2015. doi:10.1111/bjd.13956. (meta)
+[^rosacea-isotret]: Low-dose isotretinoin for rosacea, JEADV systematic review/meta 2025. doi:10.1111/jdv.20315. (meta)
+[^melanoma-abcde]: Abbasi NR, et al. Early diagnosis of cutaneous melanoma: revisiting the ABCD criteria. JAMA 2004. doi:10.1001/jama.292.22.2771. (consensus / diagnostic)
+[^fluoride-marinho]: Marinho VCC, et al. Fluoride toothpastes for preventing dental caries in children and adolescents. Cochrane 2003. doi:10.1002/14651858.CD002278. (meta / outcome)
+[^fluoride-walsh]: Walsh T, et al. Fluoride toothpastes of different concentrations for preventing dental caries. Cochrane 2019. doi:10.1002/14651858.CD007868.pub3. (meta)
+[^interdental-worthington]: Worthington HV, et al. Home use of interdental cleaning devices, in addition to toothbrushing, for preventing and controlling periodontal diseases and dental caries. Cochrane 2019. doi:10.1002/14651858.CD012018.pub2. (meta)
+[^oil-pulling]: Oil pulling systematic review (low-quality evidence). doi:10.1016/j.heliyon.2020.e04789. (meta, low quality)
+[^amalgam-cochrane]: Composite resin vs amalgam fillings for posterior teeth (Innes/Schwendicke). Cochrane 2021. doi:10.1002/14651858.CD005620.pub3. (meta)
+[^achieve]: Lin FR, et al. Hearing intervention versus health education control to reduce cognitive decline (ACHIEVE). Lancet 2023. doi:10.1016/S0140-6736(23)01406-X. (rct)
+[^tinnitus-fuller]: Fuller T, et al. Cognitive behavioural therapy for tinnitus. Cochrane 2020. doi:10.1002/14651858.CD012614.pub2. (meta / outcome)
+[^epley-hilton]: Hilton MP, Pinder DK. The Epley (canalith repositioning) manoeuvre for BPPV. Cochrane. doi:10.1002/14651858.CD003162. Confirmed by AAO-HNS systematic reviews, doi:10.1177/0194599814527732. (meta / outcome)
+[^cpap-save]: McEvoy RD, et al. CPAP for prevention of cardiovascular events in obstructive sleep apnea (SAVE). NEJM 2016. doi:10.1056/NEJMoa1606599. (rct / outcome — null)
+[^cpap-adherence]: Observational/meta analyses of CPAP adherence and cardiovascular events. JAMA 2023. doi:10.1001/jama.2023.17465.
+[^myopia-he]: He M, et al. Effect of time spent outdoors at school on the development of myopia among children in China. JAMA 2015. doi:10.1001/jama.2015.10803. Replicated by objectively-monitored outdoor-time RCTs, doi:10.1016/j.ophtha.2022.06.024, and meta-analysis, doi:10.1111/aos.13403. (rct / outcome)
+[^cataract-lee]: Lee CS, et al. Association between cataract extraction and development of dementia. JAMA Intern Med 2022. doi:10.1001/jamainternmed.2021.6990. (cohort)
+[^glaucoma-emgt]: Heijl A, et al. Reduction of intraocular pressure and glaucoma progression (Early Manifest Glaucoma Trial, EMGT). Arch Ophthalmol 2002. doi:10.1001/archopht.120.10.1268. (rct / outcome)
+[^amd-areds2]: AREDS2 Research Group. Lutein/zeaxanthin and omega-3 fatty acids for age-related macular degeneration. JAMA 2013. doi:10.1001/jama.2013.4997. (rct)
+[^amd-marina]: Rosenfeld PJ, et al. Ranibizumab for neovascular age-related macular degeneration (MARINA). NEJM 2006. doi:10.1056/NEJMoa054481. (rct / outcome)
+[^retinopathy-dcct]: DCCT Research Group. Effect of intensive treatment of diabetes on the development and progression of long-term complications in IDDM. NEJM 1993. doi:10.1056/NEJM199309303291401. (rct / outcome)
+[^dryeye-dews]: TFOS DEWS II Management and Therapy Report, Ocul Surf 2017, doi:10.1016/j.jtos.2017.05.006; Definition and Classification Report, doi:10.1016/j.jtos.2017.05.008. (consensus / meta)

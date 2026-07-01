@@ -1,50 +1,36 @@
 # 42 — Sexual & Reproductive Health
 
-> **Manual section, v1.0 — 2026-06-29.** Companion graded claims in `02-domains/reproductive-claims.json`.
-> An external cross-check against ICD-11 found this corpus **thin on Chapter 17 (conditions related to sexual
-> health) and on OB/GYN** — the reproductive system had only ever been touched obliquely, through
-> women's-longevity and fertility cross-links. This section closes that gap. It maps the reproductive and
-> sexual systems of **both sexes** as a system in their own right: the anatomy and the cycles, the
-> gynecologic and andrologic disorders, contraception, fertility and assisted reproduction, pregnancy in
-> brief, sexual health (STIs and dysfunction), the prostate and the pelvic floor — each graded by the same
-> three honesty rules as the rest of the manual, and with the large wellness-industry of fertility,
-> hormone, and "feminine detox" claims debunked explicitly.
+STI and cancer screening are the two highest-value, most under-used actions in all of reproductive health —
+a cheap swab, a Pap test, and one vaccine prevent infertility and an invasive cancer, yet most people skip
+them. This section maps the reproductive and sexual systems of **both sexes** as a system in their own right:
+the anatomy and cycles, the gynecologic and andrologic disorders, contraception, fertility and assisted
+reproduction, pregnancy in brief, STIs and sexual dysfunction, the prostate and the pelvic floor — with the
+large wellness industry of fertility, hormone, and "feminine detox" claims debunked explicitly. It also flags
+the traps: "fertility-boosting" supplements, "vaginal detox"/jade eggs, testosterone-clinic optimization, and
+"hormone-balancing" claims, all sold hard on weak or absent evidence.
 
-> ## ⚠️ This is not medical advice
->
-> Contraception, fertility, pregnancy, and cancer-screening decisions are clinical, personal, and
-> time-sensitive. Everything below is an **index of the evidence**, written so you can ask sharper
-> questions of a clinician — not a protocol to self-apply. Several items here ("fertility-boosting"
-> supplements, "vaginal detox"/jade eggs, testosterone-clinic optimization, "hormone-balancing" wellness
-> claims) are sold hard on weak or absent evidence; those are flagged. STI screening and cancer screening
-> are the two highest-value actions in this whole section, and both are under-used.
+_Not medical advice — contraception, fertility, pregnancy, and cancer-screening decisions are clinical,
+personal, and time-sensitive; this is an index of the evidence to sharpen the questions you ask a clinician.
+Sex-hormone axes and HRT timing: §13 and Domain N. Fertility, pregnancy, and the early-life window: §19.
+STIs as microbiology: §26. Prostate cancer as oncology: §25/§07. Pelvic-floor training evidence: §11 §6.3._
 
 ## How the three honesty rules cut for reproductive & sexual health
 
-**Predictor ≠ lever:** a sex-hormone level or symptom can be a readout of something upstream rather than a dial.
-The sharpest example is **erectile dysfunction** — in men under ~60 it is one of the best early predictors of
-future cardiovascular disease (the penis is a vascular bed whose small arteries clog first), so ED is a reason
-to check the heart, not just to prescribe a pill (cross-ref `11-body-systems.md`); likewise a sperm count or AMH
-predicts fertility *potential* without being a thing you reliably "boost." **Cohort ≠ RCT:** "women on combined
-oral contraceptives have a slightly higher breast-cancer detection rate" (cohort, small, reversing after
-stopping) is weaker than a randomized outcome; the few places reproductive medicine has hard RCT evidence — LARC
-effectiveness, HPV-vaccine cancer prevention, low-dose aspirin for preeclampsia, the TRAVERSE testosterone-safety
-trial — are weighted accordingly, while most "fertility optimization" rests far down the ladder. **Net benefit
+**Predictor ≠ lever** (the number warns you, it isn't the thing you fix): a sex-hormone level or symptom can be
+a readout of something upstream rather than a dial. The sharpest example is **erectile dysfunction** — in men
+under ~60 it is one of the best early predictors of future cardiovascular disease (the penis is a vascular bed
+whose small arteries clog first), so ED is a reason to check the heart, not just to prescribe a pill (cross-ref
+`11-body-systems.md`); likewise a sperm count or AMH (anti-Müllerian hormone, a marker of egg supply) predicts
+fertility *potential* without being a thing you reliably "boost." **Cohort ≠ RCT** (an observed pattern is
+weaker evidence than a randomized trial): "women on combined oral contraceptives have a slightly higher
+breast-cancer detection rate" (cohort, small, reversing after stopping) is weaker than a randomized outcome; the
+few places reproductive medicine has hard RCT evidence — LARC (long-acting reversible contraception, e.g.
+implants and IUDs) effectiveness, HPV-vaccine cancer prevention, low-dose aspirin for preeclampsia, the TRAVERSE
+testosterone-safety trial — are weighted accordingly, while most "fertility optimization" rests far down the ladder. **Net benefit
 in the right person:** replacing a *diagnosed deficiency* (estrogen for symptomatic menopause within the window,
 testosterone for true hypogonadism) is favorable-ledger medicine; pushing a hormone *above normal in a healthy
 person to chase performance or youth* is experimentation sold as the former — the same dividing line that
 governs §13.
-
-**Cross-references (read alongside, NOT duplicated here):** **fertility, pregnancy, and the prenatal/early-life
-window** are owned by `reports/sections/19-life-stages.md` (this section extends the *clinical workup and ART
-reality*, it does not restate DOHaD or paediatrics); **sex-hormone axes** (HPG axis, estrogen/testosterone
-control architecture, menopause/andropause as endocrine inflections, the IGF-1 U-shape, "adrenal fatigue"
-debunk) are owned by `reports/sections/13-endocrine-hormones.md` and `02-domains/N-womens-longevity.md`; the
-**pelvic floor** muscular training evidence is owned by `reports/sections/11-body-systems.md §6.3`; **STIs as
-infections** (the microbiology, antimicrobial resistance, the immune side) connect to
-`reports/sections/26-infectious-disease.md`; **prostate cancer as oncology** connects to
-`reports/sections/25-oncology.md` and `07-clinical-prevention.md`; **menopausal HRT prescribing** detail is in
-`reports/sections/10-medical-pharmacology.md` and Domain N.
 
 ---
 
@@ -55,8 +41,10 @@ Reproduction is the one major organ system that comes in **two anatomically diff
 duct systems (Wolffian and Müllerian). The presence of the **SRY** gene on the Y chromosome flips the gonad
 toward testis; testosterone and anti-Müllerian hormone then drive the male pattern, and their absence yields
 the female pattern by default. This shared origin is why the structures map onto each other (ovary↔testis,
-clitoris↔penis, labia↔scrotum) and why the **same hypothalamic-pituitary-gonadal (HPG) axis** runs both —
-detailed as a control system in §13.
+clitoris↔penis, labia↔scrotum) and why the **same hypothalamic-pituitary-gonadal (HPG) axis** runs both. The
+HPG axis is the hormone loop from brain to gonad — the hypothalamus signals the pituitary, which signals the
+ovary or testis to make sex hormones and gametes, with feedback closing the loop — and it is what starts
+puberty and runs the menstrual cycle (detailed as a control system in §13).
 
 @@FIG:Z07-homology@@
 
@@ -109,6 +97,10 @@ as cycle disturbance first).
 
 ### 2.2 Common gynecologic disorders
 
+This table is reference-grade — six conditions, each with its definition and honest treatment framing. Skim for
+the one you need; the two that matter most for missed diagnoses are **endometriosis** (a ~7-year delay while
+pain gets normalized) and **PCOS** (a metabolic disorder as much as a reproductive one).
+
 | Condition | What it is | Honest framing & evidence |
 |---|---|---|
 | **PCOS** (polycystic ovary syndrome) | The most common endocrine disorder of reproductive-age women: a triad (any 2 of 3 by Rotterdam criteria) of irregular/absent ovulation, clinical/biochemical **androgen excess**, and polycystic ovary morphology — usually with **insulin resistance** underneath. | **Prevalence ~6–10% (NIH criteria) up to ~10–13% (Rotterdam)** — meta-analysis (Bozdag 2016). It is a **metabolic** disorder as much as a reproductive one (raised diabetes, NAFLD, and cardiometabolic risk). First-line levers are **weight/insulin management and lifestyle**; metformin, combined pill (cycle/androgen control), and **letrozole** (first-line for ovulation induction, beats clomiphene — Legro 2014). Cross-ref `13` (androgen axis) and Domain D (insulin resistance). |
@@ -148,13 +140,13 @@ CHOICE-study real-world data, Winner 2012).
 | Method | Typical-use failure (1st yr) | Perfect-use failure | Honest notes |
 |---|---|---|---|
 | **No method** | ~85% | ~85% | Baseline. |
-| **Implant** (etonogestrel, e.g. Nexplanon) | **~0.05%** | ~0.05% | **Most effective reversible method.** LARC: no user action after insertion → typical ≈ perfect. Lasts ~3–5 yr. |
+| **Implant** (etonogestrel, e.g. Nexplanon) | **~0.05%** | ~0.05% | **Most effective reversible method.** LARC (long-acting reversible contraception): no user action after insertion → typical ≈ perfect. Lasts ~3–5 yr. |
 | **Hormonal IUD** (levonorgestrel) | **~0.2%** | ~0.2% | LARC. Also treats heavy bleeding. Lasts ~3–8 yr by device. |
 | **Copper IUD** | **~0.8%** | ~0.6% | LARC, hormone-free, lasts ~10–12 yr; also the most effective **emergency** contraception. Can increase menstrual bleeding. |
 | **Sterilization (vasectomy)** | ~0.15% | ~0.1% | Permanent; simpler/safer than female sterilization. |
 | **Sterilization (tubal)** | ~0.5% | ~0.5% | Permanent. |
 | **Injectable** (DMPA, "Depo") | ~4% | ~0.2% | Reversible delay in return-to-fertility; reversible bone-density effect (boxed warning). |
-| **Combined pill / patch / ring** | **~7%** | ~0.3% | The gap *is* the point — typical use is dragged down by missed pills. Small VTE risk (estrogen); non-contraceptive benefits (↓ovarian & endometrial cancer). |
+| **Combined pill / patch / ring** | **~7%** | ~0.3% | The gap *is* the point — typical use is dragged down by missed pills. Small VTE (venous thromboembolism — blood clot) risk from estrogen; non-contraceptive benefits (↓ovarian & endometrial cancer). |
 | **Progestin-only pill** | ~7% | ~0.3% | For those who can't take estrogen. |
 | **Male condom** | **~13%** | ~2% | **The only method that also prevents STIs** — its real value is dual protection, not contraceptive efficacy. |
 | **Diaphragm / cap** | ~17% | ~16% | Barrier; declining use. |
@@ -204,8 +196,8 @@ favorable subgroups, which look far better than **per-cycle-started** — always
 Success above age 42 with own eggs is **low**; the honest path at that age is usually **donor eggs** (where
 success tracks the *donor's* young age, ~50%+), a fact often soft-pedaled. (3) The "**add-ons**" market —
 endometrial scratch, immune therapies, assisted hatching, time-lapse imaging, many supplements — is largely
-**not supported by good RCT evidence** for live-birth improvement (the HFEA in the UK explicitly rates most of
-them amber/red), yet they are routinely sold at extra cost to desperate patients. This is the section's clearest
+**not supported by good RCT evidence** for live-birth improvement (the HFEA, the UK's fertility regulator,
+explicitly rates most of them amber/red), yet they are routinely sold at extra cost to desperate patients. This is the section's clearest
 example of a **predator-on-hope** market. (4) IVF is physically and emotionally heavy and frequently takes
 multiple cycles — "one round and done" is the exception.
 
@@ -254,7 +246,7 @@ practice**: what to screen for, what's curable, and the one vaccine that prevent
 | **Chlamydia** | *C. trachomatis* (bacterial) | Most common reportable STI; **often asymptomatic**; untreated → **pelvic inflammatory disease (PID)**, tubal infertility, ectopic risk. **Curable** (antibiotics). Annual screening recommended for sexually active women <25. |
 | **Gonorrhea** | *N. gonorrhoeae* (bacterial) | Often asymptomatic; same PID/infertility sequelae. **Curable but increasingly antibiotic-resistant** (a WHO priority pathogen — cross-ref `26` AMR). |
 | **Syphilis** | *T. pallidum* (bacterial) | **Resurging**, including congenital syphilis (preventable, devastating). Staged disease; **curable with penicillin**; screened in pregnancy. |
-| **HIV** | Retrovirus | No longer a death sentence with treatment; **U=U** (undetectable = untransmittable). **PrEP** prevents acquisition (highly effective). Routine one-time screening recommended for all adults. |
+| **HIV** | Retrovirus | No longer a death sentence with treatment; **U=U** (undetectable = untransmittable). **PrEP** (pre-exposure prophylaxis — medication taken before exposure) prevents acquisition (highly effective). Routine one-time screening recommended for all adults. |
 | **HPV** | Human papillomavirus | **The most common STI; most clear it.** Oncogenic strains cause **cervical, anal, oropharyngeal, penile, and vulvar/vaginal cancers.** The vaccine is the headline (below). |
 | **Herpes (HSV)** | HSV-1/2 | Very common, lifelong, **manageable not curable**; antivirals reduce outbreaks/transmission. Stigma exceeds medical severity. |
 | **Trichomoniasis** | Protozoan | Common, curable, frequently asymptomatic. |
@@ -300,8 +292,8 @@ real, treatable, and frequently dismissed.
 
 Desire is **not** a simple function of one hormone level. **Testosterone** matters for libido in **both** sexes,
 but within the normal range the correlation between a man's testosterone number and his desire is weak — which is
-why "low libido" in a man with normal labs is usually **not** a testosterone-deficiency problem (and why TRT for
-it often disappoints; §6.4 below and §13). In women, **estrogen** (tissue health, comfort) and **testosterone**
+why "low libido" in a man with normal labs is usually **not** a testosterone-deficiency problem (and why TRT —
+testosterone-replacement therapy — for it often disappoints; §13). In women, **estrogen** (tissue health, comfort) and **testosterone**
 (desire) both contribute, and the perimenopausal drop is real — but desire is heavily modulated by sleep,
 stress, mood, medication (SSRIs notably blunt libido), relationship context, and health. The honest model is
 **biopsychosocial**, and the wellness industry's reduction of it to "balance your hormones" is the error §8
@@ -323,7 +315,7 @@ two main diseases present as **urinary** problems.
   invasive or surgical procedures (TURP) for refractory cases.
 - **Prostate cancer:** very common, and the central honesty problem is **over-diagnosis and over-treatment.**
   Many prostate cancers are **indolent** and would never cause harm, yet detection led to treatment (surgery,
-  radiation) with real harms — **incontinence and erectile dysfunction.** **PSA screening** reduces
+  radiation) with real harms — **incontinence and erectile dysfunction.** **PSA screening** (a blood test for prostate-specific antigen) reduces
   prostate-cancer mortality modestly (ERSPC, Schröder 2012, NEJM: ~21% relative reduction; **~1 death prevented
   per ~1,000 men screened over ~11 years**, at the cost of many over-diagnoses), which is why screening is now
   a **shared, individualized decision** (~ages 55–69), not a blanket recommendation. The modern answer to

@@ -1,37 +1,21 @@
 # 40 — Diagnostic Imaging & Radiology: Seeing Inside, Honestly
 
-> **Status:** v0.1 (Wave 10) — 2026-06-29. Companion data in `02-domains/imaging-claims.json`.
-> **Why this chapter exists.** An external cross-check flagged imaging as **thin-to-absent** in this
-> corpus — a real gap, because medical imaging is one of the highest-leverage diagnostic technologies
-> ever built **and** one of the largest sources of low-value, harm-generating overuse in modern
-> medicine. Both are true at once, and a health manual that names only the first is doing marketing,
-> not medicine. This section owns the **modalities themselves** — the physics each one runs on, what it
-> can and cannot see, what it costs in radiation and dollars — and the **honest grading** of when an
-> image changes an outcome versus when it manufactures a problem.
->
-> **The throughline, stated up front: an image is a *measurement*, not a verdict — and not a checkup.**
-> Imaging answers a *question*. Pointed at a specific clinical question in the right patient, it is
-> transformative (a stroke thrombectomy, a staged cancer, a drained abscess). Pointed at a healthy body
-> with no question — the consumer "whole-body scan" — it predictably finds *something*, and that
-> something is far more often an **incidentaloma** (a benign finding that triggers a cascade of cost,
-> anxiety, biopsy, and occasional iatrogenic harm) than a life it saves. The entire honest difficulty
-> of this field lives in that gap.
->
-> **Cross-references (do not duplicate):**
-> - **Screening that works** (mammography, lung LDCT, CAC scoring, the whole-body-MRI / Galleri /
->   Prenuvo debunk): `07-clinical-prevention.md §2.1, §3, §6`. This section explains the *modalities and
->   their physics*; §07 grades them *as screens with mortality endpoints*. Read together.
-> - **Cancer imaging in known disease** (PET for staging, liquid biopsy/MCED, the "sugar feeds cancer"
->   Warburg nuance behind FDG-PET): `25-oncology.md §25.5–25.7`.
-> - **DEXA / bone densitometry**: `11-body-systems.md` (and the body-composition use cross-ref to
->   Domain E/L). Covered here only at the modality level.
-> - **AI diagnostics, the broader picture** (IDx-DR, the benchmark-vs-deployment gap, data governance):
->   `33-public-health-systems.md §6`. This section covers AI *in imaging* specifically.
-> - **Ionising radiation as a carcinogen / hormesis debate**: `09-exposures-environment.md`.
-> - **The physics fundamentals** (the electromagnetic spectrum, nuclear decay, magnetic resonance):
->   `bucket-canon/02-physics` via `01-foundations.md`.
->
-> Every claim below is graded by the ladder in `06-evidence/SCHEMA.md`.
+**An image is a *measurement*, not a verdict — and not a checkup.** Imaging answers a *question*.
+Pointed at a specific clinical question in the right patient, it is transformative (a stroke
+thrombectomy, a staged cancer, a drained abscess). Pointed at a healthy body with no question — the
+consumer "whole-body scan" — it predictably finds *something*, and that something is far more often an
+**incidentaloma** (a benign finding that triggers a cascade of cost, anxiety, biopsy, and occasional
+harm from the workup itself) than a life it saves. The entire honest difficulty of this field lives in
+that gap.
+
+Medical imaging is one of the highest-leverage diagnostic technologies ever built, and one of the
+largest sources of low-value, harm-generating overuse in modern medicine. Both are true at once. This
+chapter covers the **modalities themselves** — the physics each one runs on, what it can and cannot see,
+what it costs in radiation and dollars — and the **honest grading** of when an image changes an outcome
+versus when it manufactures a problem.
+
+_Not medical advice. Screening with mortality endpoints (mammography, lung LDCT, the whole-body-MRI /
+Galleri debunk) lives in §07; cancer staging and PET depth in §25._
 
 ---
 
@@ -47,6 +31,17 @@ direction — whereas a few imaging-*guided* therapies (mechanical thrombectomy 
 same scanner that saves a symptomatic patient manufactures a problem in an asymptomatic one — imaging's value is
 entirely conditional on the pre-test question, and "more imaging = better care" is the most expensive false
 belief in the field.
+
+A word on the grading shorthand used below: `cohort` = observational study (people followed over time),
+`rct` = randomized controlled trial (the strongest evidence tier), `meta` = pooled analysis across trials,
+and `mechanistic`/`theoretical` = based on how the biology *should* work rather than a measured outcome.
+
+> **What this chapter leans on elsewhere.** Screening graded against mortality endpoints (mammography,
+> lung LDCT, CAC scoring, the whole-body-MRI / Galleri / Prenuvo debunk) lives in `07-clinical-prevention.md`.
+> Cancer staging, PET, and liquid biopsy/MCED depth: `25-oncology.md §25.5–25.7`. DEXA/bone density:
+> `11-body-systems.md`. The broader AI-in-medicine and data-governance picture: `33-public-health-systems.md §6`.
+> The ionising-radiation-as-carcinogen / hormesis debate: `09-exposures-environment.md`. The underlying physics
+> (electromagnetic spectrum, nuclear decay, magnetic resonance): `bucket-canon/02-physics`.
 
 ---
 
@@ -151,6 +146,10 @@ honest problem is not the single scan; it is **scale and repetition**.
 
 ### 40.3.2 — The LNT model and the cancer-risk debate (graded honestly)
 
+**The bottom line first:** one CT scan will almost certainly not hurt you. But the ~93 million CT scans
+Americans get each year *will* cause cancers at the population level — and the evidence for that is now
+solid. The detail below is dense because the numbers are the substance; here is what they add up to.
+
 Radiation protection runs on the **linear no-threshold (LNT) model**: the assumption that cancer risk
 rises *linearly* with dose with *no safe threshold*, so even tiny doses carry a tiny proportional risk.
 LNT is extrapolated downward from solid data at *high* doses (atomic-bomb survivors, the LSS cohort) into
@@ -160,9 +159,9 @@ the *low-dose* CT range where direct measurement is extraordinarily hard. **Its 
   No serious dispute.
 - **At CT-scale low doses, LNT is a regulatory *assumption*, not a measured fact** (`theoretical` /
   `mechanistic`). Whether risk is truly linear, has a threshold, or is even mildly *protective*
-  (radiation **hormesis**) at the very bottom is **genuinely contested** among radiobiologists, and the
-  honest grade is **conflict-open** (logged `conflict-lnt-low-dose-imaging`; cross-ref
-  `09-exposures-environment.md`). The data simply cannot resolve a risk that small at the individual level.
+  (radiation **hormesis**) at the very bottom is contested among radiobiologists, and the
+  honest grade is **conflict-open** (cross-ref `09-exposures-environment.md`).[^conflict-lnt] The data
+  simply cannot resolve a risk that small at the individual level.
 - **But the population signal is now real and recent.** Two strands push the honest reading toward "LNT
   is the prudent operating assumption":
   - **Pediatric cohorts.** Children are more radiosensitive and have more years to express a cancer.
@@ -239,7 +238,8 @@ real even when the finding is benign — it is the *cascade*, not the lesion, th
 @@FIG:Z02-incidentaloma@@
 
 **Why this makes whole-body consumer MRI screening contested (cross-ref `07 §6`, `25 §6`):**
-products like **Prenuvo** (whole-body MRI) and **Galleri** (the MCED blood test — graded in §07/§25) are
+products like **Prenuvo** (whole-body MRI) and **Galleri** (the MCED — multi-cancer early detection —
+blood test, graded in §07/§25) are
 sold to the asymptomatic worried-well on the intuition that *finding things early must be good.* But the
 intuition fails because of the base-rate math above: in a low-prevalence (healthy) population, the
 **positive predictive value of an incidental finding is low**, so the test produces mostly false alarms
@@ -247,10 +247,10 @@ and cascades. **No randomised trial shows whole-body MRI screening reduces morta
 people; what it reliably produces is incidentalomas, downstream procedures, cost, and anxiety. The honest
 verdict (matching §07): reasonable only in **specific high-risk genetic syndromes** (e.g., Li-Fraumeni
 *TP53* carriers, where guideline whole-body MRI surveillance *is* indicated), and **not** a checkup for
-the general worried-well. (Logged `conflict-whole-body-mri-screening`.)
+the general worried-well.[^conflict-wbmri]
 
 > **The asymmetry that the marketing hides:** the *benefit* of a consumer scan (the rare early cancer it
-> genuinely catches) is vivid, namable, and used in the ad. The *harm* (thousands of cascades, biopsies,
+> does catch) is vivid, namable, and used in the ad. The *harm* (thousands of cascades, biopsies,
 > and anxieties spread across everyone who scanned and found benign noise) is diffuse, statistical, and
 > invisible — but in expectation, for an average-risk person, **the diffuse harm is larger.** Imaging is
 > the textbook case where "I found something and caught it early" is a survivorship-biased story, not
@@ -322,7 +322,7 @@ Medical imaging is where artificial intelligence in medicine is **furthest along
 **benchmark-vs-outcome gap** is most instructive. (For the broader AI-in-medicine picture and data
 governance, see `33-public-health-systems.md §6` — do not duplicate.)
 
-**What is genuinely true:**
+**What is true:**
 
 - Imaging is the ideal substrate for deep learning: large labelled pixel datasets, narrow well-defined
   detection tasks, a clear ground truth. On those narrow tasks — detecting diabetic retinopathy on
@@ -343,19 +343,19 @@ governance, see `33-public-health-systems.md §6` — do not duplicate.)
   they were trained and tested on frequently **degrade on external data** from a different scanner,
   hospital, or population (distribution shift) — the well-documented external-validation gap.
 - **Even MASAI's win carries the chapter's own warning.** Detecting **29% more cancer** sounds
-  unambiguously good — but part of the extra yield was **small and in-situ (DCIS) disease**, which raises
+  unambiguously good — but part of the extra yield was **small and in-situ (DCIS — ductal carcinoma in situ, the earliest, non-invasive stage) disease**, which raises
   the same **overdiagnosis** question as mammography itself (`07 §3.3`). The trial's *primary* endpoint —
   whether catching more *reduces interval cancers and ultimately deaths* — is still in follow-up. More
   detection is not yet proven to be more benefit. The rule holds even for the best AI study in imaging.
 - **Automation bias and deskilling** are live risks: clinicians who trust an algorithm may stop looking
-  as hard, and an AED that is wrong in a systematic way fails *correlated* across many patients in a way
-  a fatigued human does not.
+  as hard, and an AI model that is wrong in a systematic way fails *correlated* across many patients in a
+  way a fatigued human does not.
 - The famous **Geoffrey Hinton 2016 prediction** — "we should stop training radiologists now... it's just
   completely obvious that within five years deep learning is going to do better than radiologists" — is
   the field's honest cautionary tale: a decade later, radiologist demand has *risen*, and AI is shaping
   up as a **tool that augments** the radiologist (triage, workload, second-read), not one that replaces
   the clinical judgement around the image. The detection task was the easy part; the *decision* the image
-  feeds is the hard part. (Logged `conflict-ai-imaging-replacement`.)
+  feeds is the hard part.[^conflict-ai]
 
 ---
 
@@ -364,7 +364,8 @@ governance, see `33-public-health-systems.md §6` — do not duplicate.)
 The single most useful sentence in this chapter: **a scan is not a checkup.**
 
 A **checkup** is a structured assessment of risk and a search for the *specific*, *common*, *treatable*
-things that actually kill people — blood pressure, lipids/apoB, glucose, the RCT-backed cancer screens at
+things that actually kill people — blood pressure, lipids/apoB (the protein riding the particles that
+carry cholesterol into artery walls), glucose, the RCT-backed cancer screens at
 the right ages (`07-clinical-prevention.md`). A **whole-body scan** is an indiscriminate sweep of an
 asymptomatic body that, by the base-rate math of §40.4, predictably returns incidentalomas rather than
 saved lives. They feel similar to a frightened consumer; they are opposites in expected value.
@@ -447,12 +448,11 @@ pending primary endpoint; **whole-body consumer MRI screening** and **AI-replace
 
 ---
 
-*Section maintained by Nucleus. Graded claims live in `02-domains/imaging-claims.json`. Screening with
-mortality endpoints (mammography, LDCT, CAC, whole-body-MRI/MCED debunk) is owned by
-`07-clinical-prevention.md` (do not duplicate); cancer staging/PET/MCED depth by `25-oncology.md`;
-DEXA/bone density by `11-body-systems.md`; AI-in-medicine breadth and data governance by
-`33-public-health-systems.md §6`; the radiation-as-carcinogen/hormesis debate by
-`09-exposures-environment.md`; the underlying EM/nuclear/magnetic-resonance physics by
-`bucket-canon/02-physics` via `01-foundations.md`. Cross-links by claim-id and DOI are load-bearing —
-follow them to the underlying evidence tier before acting. An image is a measurement, not a verdict; the
-honesty is in the grade, and in resisting the intuition that more seeing is always more knowing.*
+*An image is a measurement, not a verdict; the honesty is in the grade, and in resisting the intuition
+that more seeing is always more knowing.*
+
+[^conflict-lnt]: Conflict logged: `conflict-lnt-low-dose-imaging` — whether low-dose (CT-scale) radiation risk is truly linear, has a threshold, or is mildly protective is open. Cross-ref `09-exposures-environment.md`.
+
+[^conflict-wbmri]: Conflict logged: `conflict-whole-body-mri-screening` — no mortality-endpoint RCT supports whole-body MRI screening in average-risk people.
+
+[^conflict-ai]: Conflict logged: `conflict-ai-imaging-replacement` — the claim that AI replaces radiologists is refuted by a decade of deployment; augmentation is the supported reading.

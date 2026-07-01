@@ -1,12 +1,10 @@
 # 02 — Training: How To Actually Train
 
-> **The practical system.** Section 01 argued *why* exercise is the highest-leverage longevity input
-> in the whole corpus. This section is the *how*: the four capacities worth training, the movement
-> variations (regression → standard → progression) so anyone can find an entry point, how to structure
-> cardio and mobility and balance, and how to put it together into a week you can actually run and
-> progress. Research-backed, honestly hedged.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+You do not start at the barbell. You start where you can own the movement with clean form, and you climb. Every strength pattern in this chapter has a ladder — a beginner rung, a daily-driver standard, and a progression — so there is a door for the nervous first-timer and a next step for the seasoned lifter, on the same page.
+
+This is the *how* that follows Section 01's *why*: the four capacities worth training, the movement ladders, how to build cardio and mobility and balance, and how to assemble a week you can actually run and keep progressing. Research-backed, honestly hedged — the three honesty rules (predictor ≠ lever, cohort ≠ RCT, something beats nothing) are defined up front in "Start Here."
+
+_Not medical advice._
 
 ---
 
@@ -18,17 +16,18 @@ can directly *change*.
 
 @@FIG:60-four-capacities@@
 
-| Capacity | What it is | Why it's load-bearing | Corpus claim-ids |
-|---|---|---|---|
-| **Cardiorespiratory fitness (CRF / VO₂max)** | The engine: how much O₂ your body can deliver and use under load | **The single strongest longevity association in preventive medicine.** ~13% lower all-cause mortality per 1-MET; no observed upper limit. Being low-fit carried risk *comparable to or worse than* smoking. | `crf-vo2max-strongest-mortality-predictor`, `crf-per-met-mortality-meta` |
-| **Strength** | Force production across the major movement patterns | Strength (**not** muscle mass) independently predicts mortality, falls, and disability; sarcopenia is now *defined* by low strength. Resistance activity → ~10–17% lower mortality, independent of cardio. | `resistance-training-mortality-meta`, `sarcopenia-strength-defining-ewgsop2`, `grip-strength-mortality-pure` |
-| **Mobility** | Active, controlled range of motion at each joint | Range you can *own under control* is what keeps you doing the basic human positions (deep squat, overhead reach, floor get-up) into old age. Evidence here is mechanism/anecdotal, not mortality-grade — held to a lower claim. | (movement library: `mobility/INVENTORY.md`) |
-| **Balance** | Postural control and reactive stability | The **single-leg stand** and **sit-to-rise** are validated mortality biomarkers; balance is the literal difference between a stumble and a hip fracture in the second half of life. | balance biomarkers: Araujo 2022 (10-s stand), Brito 2012 (sit-rise) — `balance-locomotion/INVENTORY.md` |
+| Capacity | What it is | Why it's load-bearing |
+|---|---|---|
+| **Cardiorespiratory fitness (CRF / VO₂max)** | The engine: how much O₂ your body can deliver and use under load | **The single strongest longevity association in preventive medicine.** ~13% lower all-cause mortality per 1-MET (one MET = the energy you burn at rest; +1 MET is a meaningful jump in fitness); no observed upper limit. Being low-fit carried risk *comparable to or worse than* smoking.[^crf-met] |
+| **Strength** | Force production across the major movement patterns | Strength (**not** muscle mass) independently predicts mortality, falls, and disability; sarcopenia is now *defined* by low strength. Resistance activity → ~10–17% lower mortality, independent of cardio.[^strength-mort] |
+| **Mobility** | Active, controlled range of motion at each joint | Range you can *own under control* is what keeps you doing the basic human positions (deep squat, overhead reach, floor get-up) into old age. Evidence here is mechanism/anecdotal, not mortality-grade — held to a lower claim.[^mobility-inv] |
+| **Balance** | Postural control and reactive stability | The **single-leg stand** and **sit-to-rise** are validated mortality biomarkers; balance is the literal difference between a stumble and a hip fracture in the second half of life.[^balance-bio] |
 
 **Read the gap honestly.** CRF and strength are backed by huge mortality cohorts (still observational).
 Balance has two strong cohort biomarkers. Mobility is the weakest-evidenced of the four for *longevity
 outcomes* — we train it because it preserves *function and the ability to keep training the other three*,
-not because a trial proved CARs extend life. Don't let a mobility influencer borrow strength's evidence.
+not because a trial proved CARs (controlled articular rotations — slow, active circles at a joint's end
+range) extend life. Don't let a mobility influencer borrow strength's evidence.
 
 @@FIG:03-vo2max-mortality@@
 
@@ -40,7 +39,8 @@ Human strength reduces to five fundamental patterns: **squat, hinge, push, pull,
 and core as connective tissue between them). Train all five and you have covered the body. The reason this
 section exists: **every pattern has a ladder.** You do not start at the barbell — you start where you can
 own the movement with clean form, and you climb. Pick the rung you can do for the prescribed reps *with
-good technique and 1–3 reps in reserve*. When it's easy, take the next rung.
+good technique and 1–3 reps in reserve* (how many more reps you could do before failing). When it's
+easy, take the next rung.
 
 > **How to read each ladder:** **Regression** (easier / rebuild-from-here / older-adult or beginner entry)
 > → **Standard** (the daily-driver version most people should live in) → **Progression** (load/leverage
@@ -89,7 +89,7 @@ the rest of your life. Learn it before you load it.
 - **Common faults:** rounding the lower back (the big one — reduce load or range immediately) · turning
   it into a squat (hips too low) · bar drifting away from the body · jerking off the floor · overextending
   at the top.
-- **Explosive variant:** the **kettlebell swing** is a hinge done ballistically (`strength/INVENTORY.md` #8) —
+- **Explosive variant:** the **kettlebell swing** is a hinge done ballistically[^kb-swing] —
   hike-pass, *snap* the hips, the arms just float; it is not a front raise.
 
 @@FIG:M17-deadlift@@
@@ -208,7 +208,8 @@ biomarker), the trunk, and real-world "pick it up and move it" capacity — with
 
 ## 3. Cardio — Building the Engine
 
-Two qualities matter and they are trained differently:
+This is the engine the strongest longevity number in the book rests on — cardiorespiratory fitness (§1).
+Here is how to build it. Two qualities matter and they are trained differently:
 
 - **Aerobic base / mitochondrial capacity** → built by **a lot of easy work** (Zone 2).
 - **VO₂max / the ceiling** → raised most efficiently by **a little hard work** (intervals).
@@ -223,7 +224,7 @@ too hard to recover from and too easy to maximally stimulate the ceiling).
 
 **What it is:** the intensity around your **first lactate turn-point** (~2 mmol/L), where you're burning
 a high fraction of fat and clearing lactate as fast as you make it. Mechanistically it's where you build
-mitochondrial density and metabolic flexibility (`lactate-threshold-metabolic-flexibility-zone2`).
+mitochondrial density and metabolic flexibility.[^zone2-mech]
 
 **How to find it without a lab:**
 
@@ -248,8 +249,8 @@ without beating up the body.
 
 ### 3.2 VO₂max intervals — raising the ceiling
 
-Hard intervals raise VO₂max **more, and more time-efficiently, than steady moderate work**
-(`hiit-crf-cardiometabolic-meta`). Two proven templates:
+Hard intervals raise VO₂max **more, and more time-efficiently, than steady moderate work**.[^hiit-crf]
+Two proven templates:
 
 - **Norwegian 4×4** (the best-studied VO₂max protocol): **4 minutes** at ~90–95% max HR (hard — you
   want to *finish* the 4th interval, not the 1st), **3 minutes** easy recovery, **× 4**. ~10-min warm-up,
@@ -268,8 +269,8 @@ recovery cost; this is where over-eager trainees blow up. Most of your cardio sh
 ### 3.3 The honest caveat — the "Zone 2 is uniquely optimal" overclaim
 
 The popular claim that **Zone 2 is *the* uniquely optimal intensity for mitochondria** is an
-over-extrapolation from cross-sectional elite-athlete data — flagged **open** in the corpus
-(`conflict-zone2-optimal-mito`). The reality:
+over-extrapolation from cross-sectional elite-athlete data — flagged **open** in the corpus.[^conflict-zone2]
+The reality:
 
 - HIIT also drives strong mitochondrial biogenesis (PGC-1α), sometimes faster per session.
 - Total **volume / energy expenditure** may matter more than the specific zone.
@@ -301,7 +302,7 @@ trial proved they extend life.
 ### 4.1 A short daily mobility routine (~8–10 min)
 
 Do these most days; they double as a movement warm-up. (Sources: FRC / Andreo Spina; Kelly Starrett /
-The Ready State — `mobility/INVENTORY.md`.)
+The Ready State.)[^mobility-src]
 
 | Drill | Trains | Key cue | Dose |
 |---|---|---|---|
@@ -321,13 +322,12 @@ The Ready State — `mobility/INVENTORY.md`.)
 @@FIG:M15-hip-flexor-stretch@@
 
 For *flexibility* gains specifically (e.g. building a pancake or front split), the higher-yield tools are
-**PNF/contract-relax** and **loaded stretching (Jefferson curl, loaded end-range)** held over weeks —
-see `flexibility/INVENTORY.md`.
+**PNF/contract-relax** and **loaded stretching (Jefferson curl, loaded end-range)** held over weeks.[^flex-inv]
 
 ### 4.2 The static-stretch timing note (resolved)
 
-The old "**never static-stretch before lifting/sport**" panic was an overcorrection
-(`conflict-static-stretch-performance`, *mostly resolved*): the strength/power deficit from acute static
+The old "**never static-stretch before lifting/sport**" panic was an overcorrection[^static-stretch]
+(*mostly resolved*): the strength/power deficit from acute static
 stretching is **small, short-lived, and largely abolished by short holds (<60 s) followed by a dynamic
 warm-up.** Practical rule:
 
@@ -340,7 +340,7 @@ warm-up.** Practical rule:
 ## 5. Balance — the Tests Are the Training
 
 Balance is unusual: its best **assessments are also its best exercises**. Two are validated mortality
-biomarkers (`balance-locomotion/INVENTORY.md`) — train them by *doing the test*, progressively.
+biomarkers[^balance-inv] — train them by *doing the test*, progressively.
 
 | Test = drill | What it reveals | How to train it | Benchmark |
 |---|---|---|---|
@@ -365,14 +365,14 @@ You need far less than the industry implies. The evidence-backed minimums:
 | Quality | Minimum that *works* | Source / note |
 |---|---|---|
 | **Strength (1RM)** | As little as **a few hard sets/week per movement** can build and maintain strength; in trained lifters even **~1–3 heavy sets per lift, a couple times a week** preserves and slowly builds maximal strength | Androulakis-Korakakis 2021 (MED for 1RM); Iversen/Schoenfeld 2021 "No Time to Lift?" |
-| **Strength → mortality** | The cohort sweet spot is **~30–60 min/week** of resistance activity — and benefit is **J-shaped** (more is *not* better for the mortality endpoint) | `resistance-training-mortality-meta` (Momma 2022) |
+| **Strength → mortality** | The cohort sweet spot is **~30–60 min/week** of resistance activity — and benefit is **J-shaped** (more is *not* better for the mortality endpoint) | Momma 2022[^momma] |
 
 @@FIG:20-strength-jcurve@@
 
 @@FIG:21-steps-plateau@@
 | **Hypertrophy** | **~10 sets/week per muscle** is a solid target; clear dose-response up the curve, but ~4 hard sets/week already produces most of the strength benefit | Schoenfeld/Krieger volume meta; Robinson 2024 |
-| **VO₂max** | **1–2 interval sessions/week** + some easy volume measurably raises VO₂max off a low base | `hiit-crf-cardiometabolic-meta`; Helgerud 2007 |
-| **General activity** | The steepest mortality drop is sedentary → *any* regular movement; break up sitting | `physical-activity-dose-response-mortality` |
+| **VO₂max** | **1–2 interval sessions/week** + some easy volume measurably raises VO₂max off a low base | Helgerud 2007[^hiit-med] |
+| **General activity** | The steepest mortality drop is sedentary → *any* regular movement; break up sitting | Cohort dose-response[^pa-dose] |
 
 **The MED bottom line:** two well-run full-body strength sessions + two cardio sessions (one easy, one
 hard) per week clears the bar for *most* of the available longevity benefit. Everything beyond is
@@ -386,7 +386,9 @@ Three dials control strength and hypertrophy adaptation:
 
 - **Volume** is the primary driver of hypertrophy: roughly **10–20 hard sets per muscle per week** is the
   productive range, with diminishing (and eventually negative) returns at the top (Israetel's
-  MEV→MAV→MRV "volume landmark" framing). For *strength*, less volume at higher intensity suffices.
+  MEV→MAV→MRV "volume landmark" framing — **minimum effective volume** to grow at all, **maximum
+  adaptive volume** where returns peak, **maximum recoverable volume** past which fatigue outpaces
+  gains). For *strength*, less volume at higher intensity suffices.
 - **Frequency:** once weekly *volume* is equated, frequency per se adds little — but spreading volume
   across **2× / week per movement** beats 1× mainly by letting you accumulate quality sets (Schoenfeld
   frequency meta 2018). Practical default: **hit each pattern ~2×/week.**
@@ -423,6 +425,8 @@ mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10
 
 **BEGINNER — 3 days, full-body (the highest-leverage starting point)**
 
+*Three full-body strength days plus an easy cardio day — every move is one you met above, at its easiest rung.*
+
 | Day | Session |
 |---|---|
 | **Mon** | Goblet squat 3×8 · RDL (light) 3×8 · Incline push-up 3×8–12 · Band/inverted row 3×8–12 · Suitcase carry 3×30 m · 10-min mobility |
@@ -433,6 +437,8 @@ mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10
 *Everything at RPE 7. Add reps weekly; when you hit the top of the range, add load or climb a rung.*
 
 **INTERMEDIATE — 4 days, upper/lower split + dedicated cardio**
+
+*Four days splitting lower- and upper-body work, with two dedicated cardio sessions — one hard interval, one long easy.*
 
 | Day | Session |
 |---|---|
@@ -445,6 +451,8 @@ mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10
 *~10–15 sets/muscle/week, each pattern ~2×. Strength compounds at 1–2 RIR; accessories at 0–2 RIR.*
 
 **ADVANCED — 5–6 days, polarized + higher volume (manage fatigue deliberately)**
+
+*Five to six days of higher volume; cardio polarized between long-easy and short-hard, fatigue kept in check with routine deloads.*
 
 | Day | Session |
 |---|---|
@@ -467,18 +475,18 @@ damage.
 - **Deload** roughly **every 4–8 weeks** (sooner if beat up): cut volume ~40–60% and/or intensity for a
   week. Joints feel achy, sleep/mood dip, lifts stall, motivation craters → time to deload. Beginners
   need them rarely; advanced trainees near MRV need them routinely.
-- **Sleep is the master recovery lever** (~7 h, regular — `sleep-duration-mortality-ushape`). Protein
+- **Sleep is the master recovery lever** (~7 h, regular).[^sleep-dur] Protein
   adequacy supports muscle repair (leucine-threshold dosing). 1–2 genuine rest days/week.
 - **Cold-water immersion timing:** **do not ice immediately after a strength session if growth/strength
   is the goal** — cold blunts the very anabolic (mTOR/satellite-cell) signalling that drives the
-  adaptation (`conflict-cold-after-resistance`, *mostly resolved — clean human mechanism→outcome*). Cold
+  adaptation[^cold-resist] (*mostly resolved — clean human mechanism→outcome*). Cold
   for recovery on non-lifting or endurance days is fine.
 
 ### 6.6 Combining cardio + strength without interference
 
 The **interference effect** (endurance work blunting strength/power/hypertrophy) is **real but
-programmable** (`concurrent-training-interference`; `conflict-concurrent-interference`, *mostly resolved —
-dose/modality-dependent*). For **general-health trainees it's essentially irrelevant** — do both, in any
+programmable**[^interference] (*mostly resolved — dose/modality-dependent*). For **general-health
+trainees it's essentially irrelevant** — do both, in any
 order, and reap both benefits. It only bites athletes maximizing one quality at high endurance volumes.
 If you want to minimize it:
 
@@ -491,7 +499,7 @@ If you want to minimize it:
 
 > **The general-health verdict:** for everyone who isn't a competitive strength or endurance athlete,
 > *stop worrying about interference and just train both.* The combination of resistance + aerobic work
-> gives the **lowest mortality risk** of any pattern in the cohort data (`resistance-training-mortality-meta`).
+> gives the **lowest mortality risk** of any pattern in the cohort data.[^combo-mort]
 
 ---
 
@@ -520,7 +528,7 @@ The best places to take each topic further:
   sweet spot); training volume has an **MRV** ceiling past which you accumulate fatigue, not gains.
 - **Mobility/flexibility have the weakest longevity evidence** of the four capacities — train them for
   function and joint health, not borrowed mortality claims.
-- **Zone 2 is sustainable and useful, not uniquely magic** (`conflict-zone2-optimal-mito`, open). The
+- **Zone 2 is sustainable and useful, not uniquely magic** (open conflict).[^recap-zone2] The
   honest model is **polarized**: mostly easy + some hard.
 - **Static stretching before power = avoid long holds; otherwise fine** (resolved).
 - **Don't ice right after lifting if growth is the goal** (resolved, clean human mechanism).
@@ -532,6 +540,25 @@ The best places to take each topic further:
 
 ---
 
-*Section maintained by Nucleus. Effect sizes/caveats live in `02-domains/E-claims.json`; conflicts in
-`06-evidence/CONFLICTS.md`; movement demos & cues in `03-movement-library/*/INVENTORY.md`. Cross-links by
-claim-id are load-bearing — follow them for the underlying evidence tier before acting.*
+## Sources & notes
+
+[^crf-met]: claim: crf-vo2max-strongest-mortality-predictor; crf-per-met-mortality-meta (cohort)
+[^strength-mort]: claim: resistance-training-mortality-meta; sarcopenia-strength-defining-ewgsop2; grip-strength-mortality-pure (cohort)
+[^mobility-inv]: Movement library — mobility/INVENTORY.md
+[^balance-bio]: Araujo 2022 (10-s single-leg stand); Brito 2012 (sit-to-rise). balance-locomotion/INVENTORY.md (cohort)
+[^kb-swing]: strength/INVENTORY.md #8
+[^zone2-mech]: claim: lactate-threshold-metabolic-flexibility-zone2
+[^hiit-crf]: claim: hiit-crf-cardiometabolic-meta
+[^conflict-zone2]: conflict: conflict-zone2-optimal-mito (open)
+[^mobility-src]: Sources — FRC / Andreo Spina; Kelly Starrett / The Ready State. mobility/INVENTORY.md
+[^flex-inv]: flexibility/INVENTORY.md
+[^static-stretch]: conflict: conflict-static-stretch-performance (mostly resolved)
+[^balance-inv]: balance-locomotion/INVENTORY.md
+[^momma]: Momma 2022. claim: resistance-training-mortality-meta (cohort)
+[^hiit-med]: Helgerud 2007. claim: hiit-crf-cardiometabolic-meta
+[^pa-dose]: claim: physical-activity-dose-response-mortality
+[^sleep-dur]: claim: sleep-duration-mortality-ushape
+[^cold-resist]: conflict: conflict-cold-after-resistance (mostly resolved)
+[^interference]: claim: concurrent-training-interference; conflict: conflict-concurrent-interference (mostly resolved)
+[^combo-mort]: claim: resistance-training-mortality-meta (cohort)
+[^recap-zone2]: conflict: conflict-zone2-optimal-mito (open)

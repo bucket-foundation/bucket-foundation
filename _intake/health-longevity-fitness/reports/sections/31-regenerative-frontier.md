@@ -1,17 +1,16 @@
 # Regenerative Medicine & the Longevity Frontier
 
-> **Section 31 — the cutting edge, graded honestly.** This chapter maps the frontier of
-> "fixing the body by rebuilding it" rather than managing decline: stem cells, gene therapy,
-> cellular reprogramming, organ replacement, and the longevity-biotech industry built on top
-> of all of them. The organizing question is never "is the biology exciting?" (it almost always
-> is) but **"what stage of evidence is this actually at, and who is selling ahead of it?"**
->
-> **Cross-refs:** cell biology / reprogramming fundamentals → `reports/sections/01-foundations.md`;
-> partial reprogramming, senolytics, epigenetic clocks → `02-domains/B-aging-mechanisms.md`;
-> the companies (Altos, Calico, Retro, NewLimit, Unity) → `05-labs/LABS.md`; CAR-T in cancer →
-> `reports/sections/25-oncology.md`; CAR-T in autoimmunity → `reports/sections/24-disease-neuro-rheum.md`;
-> PRP/prolotherapy in the clinic → `reports/sections/21-pain-injury-rehab.md`.
-> Graded claims → `02-domains/regenerative-claims.json`. Evidence ladder → `06-evidence/SCHEMA.md`.
+Regenerative medicine runs on one repeating rhythm: a real, often Nobel-grade discovery,
+then a spectacular result in mice, then a long and brutal gap where most of those results die
+on the way to humans — and predatory clinics selling into that gap before the evidence exists.
+Learn to hear that four-beat rhythm and you can grade almost any "we can rebuild the body"
+claim yourself: stem cells, gene therapy, cellular reprogramming, organ replacement, and the
+longevity-biotech industry built on all of them. The organizing question is never "is the
+biology exciting?" (it almost always is) but **"what stage of evidence is this actually at,
+and who is selling ahead of it?"**
+
+_Not medical advice. This chapter grades frontier therapies by evidence stage; approved
+everyday drugs live in §10, and the practical patient filter is at the very end._
 
 ---
 
@@ -26,27 +25,36 @@ Read this before anything else, because it repeats in every section below.
 2. **Spectacular model-organism results** — usually in mice, sometimes in a dish. Lifespan
    extended, vision restored, organs regrown. Also real, also reproducible.
 3. **A long, brutal, expensive translation gap** — where the great majority of these results
-   die. Mouse ≠ human; a tool that works by genetic ablation ≠ a drug; a surrogate marker ≠ a
-   hard endpoint. This is where Calico spent a decade and where Unity's lead senolytic failed
-   its first human joint trial.
+   die. Mouse ≠ human; a tool that works by genetic ablation (deleting a gene in a lab animal)
+   is not a drug you can prescribe; and a *surrogate marker* — a lab number that is *supposed*
+   to track health — is not a *hard endpoint* like living longer or avoiding a heart attack.
+   This is where Calico spent a decade and where Unity's lead senolytic failed its first human
+   joint trial.
 4. **Predatory clinics filling the gap before the evidence exists** — selling unproven IV stem
    cells, "regenerative" injections, and exosome infusions to desperate patients *during* the
    years when the honest answer is still "we don't know yet."
 
 @@FIG:R06-four-beat@@
 
-The neutrality of this corpus (`06-evidence/SCHEMA.md`) is the grade itself. A `meta`-tier
-human result and a `mouse`-tier result are both reported here — but never merged, and never
-laundered into each other. **Almost all regenerative-medicine harm lives in beat 4 borrowing
-the authority of beat 1.**
+The neutrality of this book is the grade itself. A human result confirmed across many trials
+and a result seen only in mice are both reported here — but never merged, and never laundered
+into each other. **Almost all regenerative-medicine harm lives in beat 4 borrowing the
+authority of beat 1.**
 
 ---
 
 ## 1. The map, by evidence stage
 
-This table is the spine of the chapter. The rule (`SCHEMA.md`): a *mechanism* is never an
-*outcome*; "associated with" is never "causes"; a famous lab's mouse result is still
-`animal`-tier. Marketing collapses these columns. We keep them apart.
+This table is the spine of the chapter. The rule: a *mechanism* is never an *outcome*;
+"associated with" is never "causes"; a famous lab's mouse result is still animal-tier.
+Marketing collapses these columns. We keep them apart.
+
+**Reading the grades** (the backtick codes in the "best evidence stage" column): `rct` =
+proven in a randomized human trial; `meta` = confirmed across many pooled human trials;
+`cohort` = tracked in large groups of people over time; `animal` = shown only in animals
+(usually mice); `invitro` = shown only in a dish; `anecdotal` = individual stories, no
+controlled evidence; `speculative` = a hypothesis with no human data. The grade is the whole
+point of the table — the higher the grade, the more real the claim.
 
 | Intervention | What it claims to do | Best evidence stage | Honest status |
 |---|---|---|---|
@@ -105,12 +113,13 @@ measurable endpoint.** That is the entire difference between medicine and the cl
 
 ### 2.2 The emerging (iPSCs — the honest take)
 
-**Induced pluripotent stem cells (iPSCs)** are the field's most important modern discovery.
-**Shinya Yamanaka** showed in 2006 that just four transcription factors (OCT4, SOX2, KLF4, MYC
-— "OSKM," the *Yamanaka factors*) could revert an ordinary adult cell into an embryonic-like
-pluripotent state (Takahashi & Yamanaka, *Cell* 2006, `10.1016/j.cell.2006.07.024`; Nobel Prize
-2012, shared with John Gurdon). This dissolved the dogma that cell identity was a one-way
-street and removed the ethical bottleneck of embryonic stem cells.
+**Induced pluripotent stem cells (iPSCs — ordinary adult cells reset back to an embryo-like,
+can-become-anything state)** are the field's most important modern discovery. **Shinya
+Yamanaka** showed in 2006 that just four transcription factors (OCT4, SOX2, KLF4, MYC — "OSKM,"
+the *Yamanaka factors*) could revert an ordinary adult cell into an embryonic-like pluripotent
+state (Takahashi & Yamanaka, *Cell* 2006; Nobel Prize 2012, shared with John Gurdon).[^yamanaka-2006]
+This dissolved the dogma that cell identity was a one-way street and removed the ethical
+bottleneck of embryonic stem cells.
 
 The honest status of iPSCs **as therapy** (distinct from their massive value as a *research and
 drug-screening tool*, which is unambiguous):
@@ -182,7 +191,7 @@ a working copy of a gene (gene *replacement/addition*) or *editing* the existing
   This is how Luxturna and Zolgensma work — they don't edit; they add.
 - **CRISPR-Cas9** is the editing tool. Discovered as a bacterial immune system, it was turned into
   a programmable "search-and-cut" enzyme by **Jennifer Doudna and Emmanuelle Charpentier** (*Science*
-  2012, `10.1126/science.1225829`; Nobel Prize in Chemistry, 2020). A short guide RNA directs the
+  2012; Nobel Prize in Chemistry, 2020).[^doudna-2012] A short guide RNA directs the
   Cas9 protein to a matching DNA sequence, where it cuts; the cell's own repair machinery then
   disrupts or rewrites the gene. This rests directly on the **DNA / molecular-biology fundamentals
   in `01-foundations.md`** — base pairing is *why* a 20-letter guide RNA can find one address in a
@@ -192,18 +201,18 @@ a working copy of a gene (gene *replacement/addition*) or *editing* the existing
 
 - **Luxturna (voretigene neparvovec) — inherited blindness.** An AAV2 vector delivering a working
   *RPE65* gene, injected under the retina, restored functional vision (navigating a mobility course
-  in dim light) in patients with RPE65-mediated retinal dystrophy. Phase-3 RCT in *Lancet* 2017
-  (`10.1016/S0140-6736(17)31868-8`); **first directly-administered gene therapy approved in the US**
-  (2017). `rct`/approved.
+  in dim light) in patients with RPE65-mediated retinal dystrophy. Phase-3 RCT in *Lancet*
+  2017;[^luxturna-2017] **first directly-administered gene therapy approved in the US** (2017).
+  `rct`/approved.
 - **Zolgensma (onasemnogene abeparvovec) — spinal muscular atrophy.** A single IV dose of an AAV9
   vector carrying the *SMN1* gene, for type-1 SMA — an otherwise lethal infant disease. Treated
-  infants sat, and in many cases walked, who would have died. *NEJM* 2017 (`10.1056/NEJMoa1706198`);
+  infants sat, and in many cases walked, who would have died. *NEJM* 2017;[^zolgensma-2017]
   approved 2019. `rct`/approved. List price ~$2.1M — the headline "most expensive drug" of its era.
 - **Casgevy (exagamglogene autotemcel / exa-cel) — the sickle-cell CRISPR cure (2023).** This is the
   landmark. Casgevy edits the patient's own blood stem cells *ex vivo* with CRISPR to disrupt the
   **BCL11A** enhancer, switching fetal hemoglobin back on so it compensates for the defective adult
-  hemoglobin. The pivotal trials (Frangoul et al., *NEJM* 2021, `10.1056/NEJMoa2031054`, and the
-  CLIMB program) showed the great majority of severe sickle-cell patients became **free of the
+  hemoglobin. The pivotal trials (Frangoul et al., *NEJM* 2021, and the CLIMB
+  program)[^casgevy-2021] showed the great majority of severe sickle-cell patients became **free of the
   vaso-occlusive crises that define the disease.** In **December 2023 the FDA approved Casgevy — the
   first CRISPR-based medicine ever approved** — for sickle-cell disease (and shortly after for
   transfusion-dependent β-thalassemia), alongside a conventional gene-addition therapy, Lyfgenia.
@@ -265,10 +274,10 @@ becoming a stem cell (or a tumor).
 
 **The evidence — all `animal`:**
 
-- **Ocampo et al., *Cell* 2016** (`10.1016/j.cell.2016.11.052`, Izpisua Belmonte / Salk): cyclic
-  partial reprogramming ameliorated aging hallmarks and **extended lifespan in progeroid mice.**
-- **Lu, Sinclair et al., *Nature* 2020** (`10.1038/s41586-020-2975-4`): OSK (dropping the
-  oncogene *MYC*) **restored vision in aged and glaucomatous mice** — the empirical seed of the
+- **Ocampo et al., *Cell* 2016** (Izpisua Belmonte / Salk): cyclic partial reprogramming
+  ameliorated aging hallmarks and **extended lifespan in progeroid mice.**[^ocampo-2016]
+- **Lu, Sinclair et al., *Nature* 2020**: OSK (dropping the oncogene *MYC*) **restored vision
+  in aged and glaucomatous mice**[^lu-2020] — the empirical seed of the
   "information theory of aging" (aging includes *recoverable* epigenetic information).
 
 **The companies (cross-ref `05-labs/LABS.md`):** **Altos Labs** launched in 2022 with ~$3B — the
@@ -281,15 +290,14 @@ other major bets.
 
 1. **It is mouse-only for rejuvenation.** No human has been age-reversed by reprogramming. There is
    no approved product, and no human efficacy data on aging endpoints. The Altos/Retro thesis is a
-   *bet*, however well-funded — funding is provenance, not evidence (`LABS.md` rule).
+   *bet*, however well-funded — money buys provenance, and provenance is not evidence.
 2. **The cancer risk is real and central, not theoretical.** The factors are reprogramming factors;
    *MYC* is a classic oncogene; incomplete or excessive reprogramming can drive teratomas and loss
    of cell identity. The entire research problem is dosing rejuvenation without tipping into cancer —
    and that safety margin is exactly what is unproven in humans.
-3. **Epigenetic-clock "rejuvenation" is a surrogate, not an outcome.** Resetting a Horvath/PhenoAge
+3. **Epigenetic-clock "rejuvenation" is a surrogate marker.** Resetting a Horvath/PhenoAge
    clock reading is not the same as extending healthy human life; the clocks are correlational
-   biomarkers (`B-aging-mechanisms.md` §4). Showing a clock move ≠ showing a person lived longer or
-   better.
+   biomarkers. Showing a clock move ≠ showing a person lived longer or better.
 
 So: **striking biology, real money, genuine mouse results — and a frontier that has not yet shown a
 single human a single day of extra healthy life.** That is not a criticism of the science; it is the
@@ -317,8 +325,8 @@ remove the sugars that trigger hyperacute human rejection and to add human regul
   then living recipients (NYU / Montgomery; later UAB, MGH).
 - **January 2022: the first gene-edited pig-to-human heart transplant** — David Bennett Sr., at the
   University of Maryland (Bartley Griffith and Muhammad Mohiuddin). He survived **~2 months** before
-  the graft failed (porcine cytomegalovirus and rejection were implicated). Reported in *NEJM* 2022
-  (`10.1056/NEJMoa2201422`).
+  the graft failed (porcine cytomegalovirus and rejection were implicated). Reported in *NEJM*
+  2022.[^pigheart-2022]
 - Subsequent living-recipient pig-kidney and second pig-heart cases followed in 2023–2024.
 
 **The honest status:** these are **real, historic firsts** — and **all the earliest recipients died
@@ -354,7 +362,7 @@ inject into an arthritic joint or injured tendon, and "stimulate healing/regener
 heavily, often $500–$2,000+ per injection, cash.
 
 **The honest evidence:** **modest at best, and the best-designed trials are null.** The cleanest,
-most-cited test is the **RESTORE RCT** (Bennell et al., *JAMA* 2021, `10.1001/jama.2021.19415`): in
+most-cited test is the **RESTORE RCT** (Bennell et al., *JAMA* 2021):[^restore-2021] in
 knee osteoarthritis, intra-articular PRP was **no better than saline placebo** for either pain or
 cartilage volume over 12 months. Meta-analyses are heterogeneous and dominated by small,
 high-risk-of-bias, industry/operator-favorable trials; when blinding and placebo controls are
@@ -461,18 +469,29 @@ for a product in another.**
 - **CAR-T in cancer → `reports/sections/25-oncology.md`; CAR-T in autoimmunity → `reports/sections/24-disease-neuro-rheum.md`** (gene-engineered cells as a working therapy).
 - **PRP / prolotherapy in the pain clinic → `reports/sections/21-pain-injury-rehab.md`** (why
   load-and-exercise beats the injectables on the evidence).
-- **Primary landmarks:** Takahashi & Yamanaka *Cell* 2006 (`10.1016/j.cell.2006.07.024`) ·
-  Doudna & Charpentier *Science* 2012 (`10.1126/science.1225829`) · Russell (Luxturna) *Lancet* 2017
-  (`10.1016/S0140-6736(17)31868-8`) · Mendell (Zolgensma) *NEJM* 2017 (`10.1056/NEJMoa1706198`) ·
-  Frangoul (exa-cel/Casgevy) *NEJM* 2021 (`10.1056/NEJMoa2031054`) · Griffith (pig heart) *NEJM* 2022
-  (`10.1056/NEJMoa2201422`) · Ocampo *Cell* 2016 (`10.1016/j.cell.2016.11.052`) · Lu/Sinclair
-  *Nature* 2020 (`10.1038/s41586-020-2975-4`) · Bennell (RESTORE PRP) *JAMA* 2021
-  (`10.1001/jama.2021.19415`).
+- **Primary landmarks** (full DOIs in Sources & notes above): Takahashi & Yamanaka *Cell* 2006 ·
+  Doudna & Charpentier *Science* 2012 · Russell (Luxturna) *Lancet* 2017 · Mendell (Zolgensma)
+  *NEJM* 2017 · Frangoul (exa-cel/Casgevy) *NEJM* 2021 · Griffith (pig heart) *NEJM* 2022 ·
+  Ocampo *Cell* 2016 · Lu/Sinclair *Nature* 2020 · Bennell (RESTORE PRP) *JAMA* 2021.
 - **For patients (the practical filter):** before any "regenerative" or "stem-cell" treatment, check
   it against ClinicalTrials.gov, ask whether a regulator has approved it for *your* condition, and
   treat cash-only + long-condition-menu + "regeneration" language as the predatory-tier signature.
 
 ---
-*Section 31 of the AGFarms / Bucket Foundation health-longevity-fitness manual. Companion machine
-file: `02-domains/regenerative-claims.json`. Grading per `06-evidence/SCHEMA.md`: nothing excluded
-for being frontier; nothing laundered into fact for being exciting. The grade is the neutrality.*
+
+### Sources & notes
+
+[^yamanaka-2006]: Takahashi & Yamanaka — *Cell* 2006. doi:10.1016/j.cell.2006.07.024. claim: ipsc-yamanaka-factors (rct/foundational)
+[^doudna-2012]: Jinek/Doudna & Charpentier — *Science* 2012. doi:10.1126/science.1225829. claim: crispr-cas9-programmable (foundational)
+[^luxturna-2017]: Russell et al. (Luxturna, RPE65) — *Lancet* 2017. doi:10.1016/S0140-6736(17)31868-8. claim: luxturna-vision-restored (rct)
+[^zolgensma-2017]: Mendell et al. (Zolgensma, SMA type-1) — *NEJM* 2017. doi:10.1056/NEJMoa1706198. claim: zolgensma-sma-survival (rct)
+[^casgevy-2021]: Frangoul et al. (exa-cel / Casgevy) — *NEJM* 2021. doi:10.1056/NEJMoa2031054. claim: casgevy-sickle-cell-crisis-free (rct)
+[^ocampo-2016]: Ocampo et al. (cyclic partial reprogramming) — *Cell* 2016. doi:10.1016/j.cell.2016.11.052. claim: partial-reprogramming-progeroid-lifespan (animal)
+[^lu-2020]: Lu, Sinclair et al. (OSK vision restoration) — *Nature* 2020. doi:10.1038/s41586-020-2975-4. claim: osk-vision-restored-mice (animal)
+[^pigheart-2022]: Griffith et al. (first gene-edited pig-to-human heart) — *NEJM* 2022. doi:10.1056/NEJMoa2201422. claim: xeno-pig-heart-first-in-human (first-in-human)
+[^restore-2021]: Bennell et al. (RESTORE PRP RCT) — *JAMA* 2021. doi:10.1001/jama.2021.19415. claim: prp-knee-oa-null-vs-placebo (rct)
+
+---
+*Section 31 of the AGFarms / Bucket Foundation health-longevity-fitness manual. Grading: nothing
+excluded for being frontier; nothing laundered into fact for being exciting. The grade is the
+neutrality.*

@@ -1,35 +1,23 @@
 # 24 — Disease Atlas III: Neurological & Rheumatologic / Autoimmune Disease
 
-> **Status:** v0.1 — 2026-06-28. The third disease atlas. This one maps the **major neurological
-> diseases** (stroke, epilepsy, multiple sclerosis, Parkinson's, migraine and headache, peripheral
-> neuropathy, traumatic brain injury) and the **major rheumatologic / autoimmune diseases**
-> (osteoarthritis, rheumatoid arthritis, gout, lupus, spondyloarthritis, fibromyalgia, polymyalgia
-> rheumatica / giant cell arteritis). For each: **what it is, the mechanism, how it is actually
-> managed, and an honest grade** of where the evidence is strong, where it is thin, and where the
-> wellness market is selling something the data does not support.
->
-> **This is not medical advice.** It is a map of a literature. Stroke is a 911 emergency; new
-> weakness, vision loss, a first seizure, a "worst headache of my life," or a swollen hot joint are
-> all things to bring to a clinician, not a document. Nothing here substitutes for diagnosis,
-> and none of the drug or dosing detail is a prescription.
->
-> **Companion data:** `02-domains/disease-neuro-rheum-claims.json` (this section's graded claims).
-> **Cross-references — read these, this section does not re-derive them:**
-> - **Section 08** (`08-brain-cognitive.md`) — dementia, Alzheimer's, neurodegeneration as
->   *outcomes*, the amyloid-drug saga, the modifiable-risk-factor story. Dementia is **placed** on
->   the neuro map here but **not duplicated**.
-> - **Section 14** (`14-nervous-system.md`) — the nervous system as a *system*: the action
->   potential, glia and myelin, the autonomic nervous system, neuroplasticity, and the **pain /
->   chronic-pain / peripheral-neuropathy physiology** that fibromyalgia and neuropathy sit on top of.
-> - **Section 15** (`15-immune-system.md`) — autoimmunity as a *process*: self-tolerance, the
->   innate/adaptive split, inflammaging, the hygiene hypothesis, and the **"immune-boosting"
->   debunks**. Every autoimmune disease below is a specific failure of the tolerance machinery
->   described there.
-> - Stroke **prevention** rests almost entirely on **Section 07** (clinical prevention — blood
->   pressure, lipids) and the **atrial-fibrillation / anticoagulation** story; gout and OA pain
->   management cross-ref **Section 14 §6** (pain) and **Section 10** (pharmacology).
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+Some of medicine's biggest real wins are hiding in this chapter, and so are some of its most honest
+failures. Stroke care can now pull a clot out of a brain artery and roughly double the odds you walk
+out of the hospital independent; multiple sclerosis went from "no treatment exists" to two dozen
+drugs that cut relapses by up to ninety percent. In the same chapter, Parkinson's has superb symptom
+control and still zero drugs that slow the disease — a distinction patients are routinely never told
+clearly. This atlas maps the major neurological diseases (stroke, epilepsy, multiple sclerosis,
+Parkinson's, migraine, peripheral neuropathy, traumatic brain injury) and the major rheumatologic /
+autoimmune diseases (osteoarthritis, rheumatoid arthritis, gout, lupus, spondyloarthritis,
+fibromyalgia, polymyalgia rheumatica / giant cell arteritis). For each one it grades honestly where
+the evidence is strong, where it is thin, and where the wellness market is selling certainty the data
+doesn't have.
+
+_Not medical advice — this is a map of a literature. Stroke is a 911 emergency; new weakness, vision
+loss, a first seizure, a "worst headache of my life," or a swollen hot joint belong with a clinician,
+not a document. Dementia is placed on the neuro map here but developed fully in §08; the nervous
+system as a system (action potentials, myelin, pain physiology) is §14; autoimmunity as a process is
+§15; stroke prevention (blood pressure, lipids, atrial fibrillation) rests on §07, and drug detail
+lives in §10._
 
 ---
 
@@ -43,7 +31,8 @@ grade each disease on four honest axes:
 1. **Do we understand the mechanism?** Stroke: yes, almost completely. ALS, fibromyalgia, much of
    lupus: partially at best.
 2. **Can we modify the course?** This is the axis that matters and the one hype blurs. MS went from
-   "no disease-modifying therapy exists" (pre-1993) to **two-dozen-plus DMTs that cut relapses by
+   "no disease-modifying therapy exists" (pre-1993) to **two-dozen-plus disease-modifying therapies
+   (DMTs — drugs that change the disease's course, not just its symptoms) that cut relapses by
    half to ninety percent** — a genuine revolution. Parkinson's, by contrast, has **excellent
    symptom control and still no proven disease-modifying drug** — a distinction patients are
    routinely not told clearly.
@@ -58,6 +47,14 @@ The diseases below are sorted into **neurology** (§3–§9) and **rheumatology 
 ---
 
 ## 2. The disease map at a glance
+
+Skim this now and come back to it — every disease gets its own section below. Two keys for reading
+the cells. **Evidence-tier codes:** `rct` (randomized trials, the strongest tier), `meta` (many
+trials pooled), `cohort` (observational follow-up, weaker), `guideline` (expert consensus). **Cell
+abbreviations:** DMT = disease-modifying therapy; CGRP = a pain-signalling molecule behind migraine;
+MSU = monosodium urate (the gout crystal); NNT = number-needed-to-treat (how many people you treat
+for one to benefit — smaller is better); HCQ = hydroxychloroquine; MTX = methotrexate; JAKi = JAK
+inhibitors (a class of oral immune-damping drugs).
 
 | Disease | What it is | Core mechanism | Best-graded treatment | Honest grade |
 |---|---|---|---|---|
@@ -108,20 +105,19 @@ but the direction is not in doubt.)
 
 **Management — one of medicine's genuine reperfusion revolutions:**
 
-- **IV thrombolysis.** The **1995 NINDS trial** (NEJM, `10.1056/NEJM199512143332401`) showed IV
+- **IV thrombolysis.** The **1995 NINDS trial** showed IV
   tissue plasminogen activator (alteplase) given within **3 hours** improved 3-month outcomes —
-  the foundation of acute stroke care. The window later extended to **4.5 hours** (ECASS-3), and
-  imaging-selected patients can now benefit much later: the **2025 HOPE trial** (JAMA,
-  `10.1001/jama.2025.12063`) showed alteplase helped selected patients out to **24 hours** when
-  imaging showed salvageable tissue. **Tenecteplase**, a single-bolus agent, is now widely
-  replacing alteplase. (`rct`/`meta`.)
+  the foundation of acute stroke care.[^ninds] The window later extended to **4.5 hours** (ECASS-3), and
+  imaging-selected patients can now benefit much later: the **2025 HOPE trial** showed alteplase
+  helped selected patients out to **24 hours** when imaging showed salvageable tissue.[^hope]
+  **Tenecteplase**, a single-bolus agent, is now widely replacing alteplase. (`rct`/`meta`.)
 - **Endovascular thrombectomy.** For **large-vessel occlusions**, mechanically pulling the clot out
   with a catheter is the single biggest advance. The **HERMES** individual-patient-data
-  meta-analysis (Goyal, *Lancet* 2016, `10.1016/S0140-6736(16)00163-X`) pooled five 2015 trials:
-  thrombectomy roughly **doubled the odds of functional independence** (NNT ≈ 2.6 — one of the
-  best numbers-needed-to-treat in medicine). Later trials (DAWN, DEFUSE-3) extended the window to
-  **24 hours** in imaging-selected patients. A 2025 BMJ review summarizes the current standard
-  (`10.1136/bmj-2023-076161`).
+  meta-analysis (Goyal, 2016) pooled five 2015 trials: thrombectomy roughly **doubled the odds of
+  functional independence** — NNT ≈ 2.6, meaning you treat about three people for one to walk away
+  independent who otherwise wouldn't, one of the best numbers-needed-to-treat in medicine.[^hermes]
+  Later trials (DAWN, DEFUSE-3) extended the window to **24 hours** in imaging-selected patients.
+  A 2025 BMJ review summarizes the current standard.[^stroke-bmj]
 - **Hemorrhagic stroke** has fewer magic bullets: **aggressive but not extreme blood-pressure
   lowering**, reversal of anticoagulation, and neurosurgery for selected bleeds or aneurysm
   securing. Prognosis is, on average, worse than ischemic.
@@ -155,7 +151,7 @@ genetic channelopathies, structural lesions (stroke, tumor, malformation, hippoc
 infection, and autoimmune encephalitis (a fast-growing recognized category). In a large fraction,
 no cause is found.
 
-**Management** (Thijs, *Lancet* 2019, `10.1016/S0140-6736(18)32596-0`):
+**Management** (Thijs, 2019):[^thijs]
 
 - **Anti-seizure medications (ASMs)** are first-line. With the right drug, **roughly two-thirds of
   people become seizure-free.** Choice is tailored to seizure type, sex (valproate is avoided in
@@ -182,11 +178,11 @@ lasts >5 minutes (status epilepticus).
 **What it is.** MS is a chronic **autoimmune demyelinating disease of the CNS**: the immune system
 attacks myelin (and the underlying axons) in the brain, spinal cord, and optic nerves, producing
 "lesions" scattered in **space and time** — the diagnostic signature (the McDonald criteria;
-Thompson *Lancet Neurol* 2018, `10.1016/S1474-4422(17)30470-2`; revised again 2024). Classic onset
+Thompson, 2018; revised again 2024).[^mcdonald] Classic onset
 is a young adult (peak 20–40), more often female, with optic neuritis, sensory disturbance, or
 weakness that partially recovers.
 
-**Mechanism** (Reich, Lucchinetti & Calabresi, *NEJM* 2018, `10.1056/NEJMra1401483`). Autoreactive
+**Mechanism** (Reich, Lucchinetti & Calabresi, 2018).[^reich] Autoreactive
 **T cells** cross the blood–brain barrier and, with **B cells** and macrophages, mount an
 inflammatory attack on myelin; the **relapsing-remitting** phase is driven by these focal
 inflammatory bouts. Over time many patients transition to **secondary progressive** MS, where
@@ -228,7 +224,7 @@ disorder, anosmia, depression) often **precede the motor diagnosis by years to d
 
 @@FIG:DS10-parkinsons-prodrome@@
 
-**Mechanism** (Bloem, *Lancet* 2021, `10.1016/S0140-6736(21)00218-X`). The motor signs come from
+**Mechanism** (Bloem, 2021).[^bloem] The motor signs come from
 loss of **dopaminergic neurons in the substantia nigra pars compacta**; by the time motor symptoms
 appear, ~50–70% of these neurons are already gone. The pathological hallmark is **α-synuclein**
 aggregating into **Lewy bodies**, and a leading hypothesis (Braak staging) is that the pathology may
@@ -268,7 +264,7 @@ Headache is not one thing, and conflating its types is the commonest patient and
 
 **What it is.** A **disabling primary headache disorder** — recurrent attacks of moderate-severe,
 often unilateral, throbbing pain, with nausea, light/sound sensitivity, and (in ~⅓) a preceding
-**aura** (Ferrari, *Nat Rev Dis Primers* 2022, `10.1038/s41572-021-00328-4`). It is the **leading
+**aura** (Ferrari, 2022).[^ferrari] It is the **leading
 cause of disability in young women** worldwide, and it is dramatically under-treated and stigmatized
 as "just a headache."
 
@@ -283,11 +279,10 @@ release drives the pain pathway, and that mechanistic insight produced the break
   vascular contraindications.
 - **Preventive — the breakthrough.** The **anti-CGRP monoclonal antibodies** (erenumab,
   fremanezumab, galcanezumab, eptinezumab), approved from 2018, are the **first drug class designed
-  specifically to prevent migraine** (Edvinsson, *Nat Rev Neurol* 2018, `10.1038/s41582-018-0003-1`;
-  Caronna 2024, `10.1016/B978-0-12-823357-3.00024-0`). Honest magnitude: they reduce monthly migraine
-  days by roughly **2–3 days more than placebo** on average — **not a cure**, and the placebo
-  response in migraine is large — but a meaningful, well-tolerated advance for people who failed
-  older preventives (Ailani, AHS consensus, `10.1111/head.14153`). Older preventives (propranolol,
+  specifically to prevent migraine** (Edvinsson, 2018; Caronna, 2024).[^edvinsson] Honest magnitude:
+  they reduce monthly migraine days by roughly **2–3 days more than placebo** on average — **not a
+  cure**, and the placebo response in migraine is large — but a meaningful, well-tolerated advance
+  for people who failed older preventives (Ailani, AHS consensus).[^ailani] Older preventives (propranolol,
   topiramate, amitriptyline, candesartan, and **Botox** for chronic migraine) still work and are
   far cheaper.
 
@@ -331,7 +326,7 @@ diabetic mechanism is metabolic (hyperglycemia → microvascular and direct axon
 **glycemic control is the only disease-modifying lever**, far more so in type 1 than type 2; (2)
 **treat the pain symptomatically** — first-line agents (duloxetine, pregabalin/gabapentin,
 amitriptyline) have a **number-needed-to-treat of roughly 4–8** for 50% pain relief (Finnerup,
-NeuPSIG, *Lancet Neurol* 2015, `10.1016/S1474-4422(14)70251-0`). That NNT is the honest headline:
+NeuPSIG, 2015).[^finnerup] That NNT is the honest headline:
 **most patients do not get major relief from any single drug**, and managing expectations is part of
 treatment. Foot care to prevent ulcers is unglamorous and high-value.
 
@@ -363,9 +358,9 @@ concussions **resolve within ~2–4 weeks**; a minority have prolonged post-conc
 
 **CTE — the honest part.** **Chronic traumatic encephalopathy** is a tau neurodegenerative disease
 found at autopsy in people with histories of **repetitive head impacts** (boxers, American-football
-players, military). The landmark series (McKee, *Brain* 2013; Mez, *JAMA* 2017, `10.1001/jama.2017.8334`,
+players, military). The landmark series (McKee, 2013; Mez, 2017,
 which found CTE in 110/111 examined NFL-player brains) established it is real and dose-related to
-repetitive impacts. **But the honest caveats are large:** those series are **autopsy case series with
+repetitive impacts.[^cte] **But the honest caveats are large:** those series are **autopsy case series with
 severe selection bias** (brains were donated *because* families suspected disease), so they cannot
 tell you the **risk** for any given player or the **dose** required. CTE currently **cannot be
 diagnosed in the living** (no validated biomarker; "traumatic encephalopathy syndrome" is a research
@@ -377,16 +372,17 @@ the evidence.
 
 ---
 
-## 10. Dementia — placed here, covered in Section 08
+## 10. Dementia — the most modifiable of the big neurodegenerations
 
-Dementia (Alzheimer's, vascular, Lewy-body, frontotemporal) is the largest neurodegenerative-outcome
-category and belongs on any neuro map, **but it is fully developed in Section 08** (`08-brain-cognitive.md`):
-the Lancet Commission's modifiable-risk-factor story (~45% of dementia risk attributable to modifiable
-factors), SPRINT-MIND (BP), ACHIEVE (hearing), the **amyloid-drug saga** (lecanemab/donanemab —
+The single most useful dementia fact is a hopeful one: the Lancet Commission estimates **~45% of
+dementia risk is attributable to modifiable factors** (blood pressure, hearing, education, smoking,
+and more) — so a large share of cases are, in principle, preventable. Dementia (Alzheimer's,
+vascular, Lewy-body, frontotemporal) is the largest neurodegenerative-outcome category and belongs
+on any neuro map, and it is **fully developed in Section 08**: that modifiable-risk story,
+SPRINT-MIND (BP), ACHIEVE (hearing), the **amyloid-drug saga** (lecanemab/donanemab —
 marginal benefit, real risk), and the brain-training / nootropic debunks. The 2025 Alzheimer's
-outlook (Frisoni, *Lancet* 2025, `10.1016/S0140-6736(25)01389-3`) and ALS as the motor-neuron
-neurodegeneration (Ravits, *JAMA* 2026, `10.1001/jama.2026.6385`; Goutman, *Lancet Neurol* 2022)
-round out the degenerative map.
+outlook (Frisoni, 2025) and ALS as the motor-neuron neurodegeneration (Ravits, 2026; Goutman, 2022)
+round out the degenerative map.[^dementia]
 
 ---
 
@@ -402,8 +398,7 @@ round out the degenerative map.
 
 **What it is.** The commonest joint disease and a leading cause of disability worldwide — pain,
 stiffness, and loss of function, classically in knees, hips, hands, and spine. The old name "wear-
-and-tear arthritis" is **only half right** (Hunter & Bierma-Zeinstra, *Lancet* 2019,
-`10.1016/S0140-6736(19)30417-9`).
+and-tear arthritis" is **only half right** (Hunter & Bierma-Zeinstra, 2019).[^hunter]
 
 **Mechanism — the honest correction.** OA is **not** simply mechanical erosion of inert cartilage. It
 is a **whole-joint disease**: an active, low-grade process involving cartilage breakdown,
@@ -435,10 +430,9 @@ debated effect (largely null in unbiased trials); they are low-risk but oversold
 **What it is.** A **systemic autoimmune disease** causing **symmetric inflammatory polyarthritis** —
 classically the small joints of hands and feet, with morning stiffness >30–60 min, that, if
 uncontrolled, **erodes and destroys joints** and shortens life (cardiovascular risk is elevated). It
-is **not** "wear and tear"; it is the immune system attacking the synovium (Smolen, *Lancet* 2016,
-`10.1016/S0140-6736(16)30173-8`).
+is **not** "wear and tear"; it is the immune system attacking the synovium (Smolen, 2016).[^smolen]
 
-**Mechanism** (McInnes & Schett, *Lancet* 2017, `10.1016/S0140-6736(17)31472-1`). Loss of tolerance
+**Mechanism** (McInnes & Schett, 2017).[^mcinnes] Loss of tolerance
 produces autoantibodies — **rheumatoid factor** and the more specific **anti-CCP (ACPA)** — often
 **years before symptoms**. The synovium becomes an invasive inflammatory tissue (pannus) driven by
 **T cells, B cells, and the cytokines TNF-α, IL-6, and others**, which erodes cartilage and bone.
@@ -477,19 +471,19 @@ IL-1β** — the molecular basis of the brutal acute attack (and why IL-1 blocka
 cases). The honesty point most patients are never told: **hyperuricemia is mostly genetic, not
 dietary.** Urate is the end-product of purine metabolism, and serum levels are dominated by **renal
 under-excretion** (largely genetically determined — variants in *SLC2A9*, *ABCG2*). Diet (red meat,
-seafood, beer, fructose, alcohol) **does** raise urate and trigger attacks (Choi, *NEJM* 2004,
-`10.1056/NEJMoa035700`), but its contribution to serum urate is **small (a few %) compared with
+seafood, beer, fructose, alcohol) **does** raise urate and trigger attacks (Choi, 2004),[^choi]
+but its contribution to serum urate is **small (a few %) compared with
 genetics** — which is why "just change your diet" routinely fails and leaves patients blaming
 themselves.
 
 @@FIG:DS4-gout@@
 
-**Management** (ACR 2020 guideline, FitzGerald, `10.1002/art.41247`) — **gout is, in principle, curable:**
+**Management** (ACR 2020 guideline, FitzGerald) — **gout is, in principle, curable:**[^acr-gout]
 - **Acute attack:** NSAIDs, colchicine, or steroids — quench the inflammation.
 - **The actual cure is urate-lowering therapy (ULT):** **allopurinol** (a xanthine oxidase
   inhibitor) is first-line, titrated to a **target serum urate <6 mg/dL** (the "treat-to-target"
   number). Below the saturation point, crystals **dissolve** and gout stops. Febuxostat is the
-  alternative (with a debated CV-safety signal — White, CARES, *NEJM* 2018, `10.1056/NEJMoa1710895`).
+  alternative (with a debated CV-safety signal — White, CARES, 2018).[^cares]
 - **The honest failure of the field is under-treatment:** ULT is indicated for recurrent attacks,
   tophi, or urate kidney stones, yet it is massively under-prescribed, under-titrated, and stopped
   early — and started without colchicine "prophylaxis," so the first months of ULT *trigger* attacks
@@ -505,8 +499,8 @@ gluttony" disease** — and you cannot reliably diet your way out of it.
 
 **What it is.** **Systemic lupus erythematosus** is the prototype multisystem autoimmune disease — it
 can affect skin, joints, kidneys (lupus nephritis), blood, serosa, brain, and more, in a **relapsing-
-remitting** course, overwhelmingly in **women of reproductive age** (Kaul, *Nat Rev Dis Primers* 2016,
-`10.1038/nrdp.2016.39`). Its heterogeneity ("the disease of a thousand faces") makes it hard to
+remitting** course, overwhelmingly in **women of reproductive age** (Kaul, 2016).[^kaul] Its heterogeneity ("the disease
+of a thousand faces") makes it hard to
 diagnose and hard to study.
 
 **Mechanism.** A systemic loss of tolerance to **nuclear self-antigens**: autoantibodies (ANA,
@@ -523,7 +517,7 @@ predominance), and triggers (UV light, EBV, some drugs) all contribute.
   cyclophosphamide for severe nephritis), and biologics (belimumab, anifrolumab targeting the IFN
   pathway). **Lupus nephritis** is the prognosis-defining complication and the reason for urine
   monitoring.
-- **CAR-T cell therapy** (Schett, *Lancet* 2023, `10.1016/S0140-6736(23)01126-1`) is producing
+- **CAR-T cell therapy** (Schett, 2023) is producing[^schett-cart]
   striking early **drug-free remissions** in severe refractory lupus and other autoimmune diseases —
   an `rct`-in-progress frontier that may be the next revolution, but is not yet standard.
 
@@ -536,7 +530,7 @@ relapsing, and without a cure. The one thing to say with confidence: **HCQ for n
 (inflammation where tendon/ligament meets bone), and axial (spine/sacroiliac) involvement —
 including **axial spondyloarthritis / ankylosing spondylitis** (inflammatory back pain in young
 adults, improving with exercise and worse with rest — the reverse of mechanical back pain) and
-**psoriatic arthritis** (Sieper, *Nat Rev Dis Primers* 2015, `10.1038/nrdp.2015.13`).
+**psoriatic arthritis** (Sieper, 2015).[^sieper]
 
 **Mechanism.** A strong genetic basis (**HLA-B27**), with the **IL-23/IL-17 axis** and **TNF** as the
 central inflammatory drivers; the disease can fuse the spine over decades ("bamboo spine") if
@@ -544,7 +538,7 @@ uncontrolled. The honest clinical-failure point: **inflammatory back pain is mis
 back pain for years** — the average diagnostic delay is historically ~7–10 years, mostly in young men
 told they have "ordinary" back pain.
 
-**Management** (Danve & Deodhar, *Nat Rev Rheumatol* 2022, `10.1038/s41584-022-00761-z`): **exercise
+**Management** (Danve & Deodhar, 2022):[^danve] **exercise
 and physiotherapy are foundational and disease-modifying for function**, NSAIDs are first-line drugs,
 and for inadequate response, **TNF inhibitors and IL-17 inhibitors** (secukinumab) are highly
 effective; IL-23 inhibitors work for psoriatic arthritis (and the skin) but, informatively, **not for
@@ -564,10 +558,11 @@ and with **normal inflammatory markers and imaging**. That normality is exactly 
 dismissed as "not real" — a serious historical injustice.
 
 **Mechanism — the central-sensitization framing.** Fibromyalgia is now best understood as a disorder
-of **central pain processing** — the prototype of **nociplastic pain** (the IASP's third pain
-category, alongside nociceptive and neuropathic). The nervous system **amplifies** pain signaling:
-lowered pain thresholds, augmented central responses, impaired descending inhibition (Woolf, *Pain*
-2011, `10.1016/j.pain.2010.09.030`; cross-ref Section 14 §6 on central sensitization). The pain is
+of **central pain processing** — the prototype of **nociplastic pain** (pain generated by a
+turned-up nervous system with no tissue damage — pain medicine's third category, alongside
+nociceptive and neuropathic). The nervous system **amplifies** pain signaling:
+lowered pain thresholds, augmented central responses, impaired descending inhibition (Woolf,
+2011; cross-ref Section 14 §6 on central sensitization).[^woolf] The pain is
 **genuinely generated by the nervous system** — "it's central" is not "it's imaginary."
 
 **Management** (`meta`-graded, all effects modest): the strongest evidence is for **graded aerobic
@@ -585,8 +580,8 @@ support") — and the evidence for those is uniformly **weak to absent** (§17).
 
 ### 16.2 Polymyalgia rheumatica & giant cell arteritis — the steroid-defined pair (and one emergency)
 
-**What they are.** Two linked inflammatory diseases of **people over ~50** (Buttgereit, *JAMA* 2016,
-`10.1001/jama.2016.5444`). **PMR** = new bilateral **shoulder and hip-girdle pain and stiffness**,
+**What they are.** Two linked inflammatory diseases of **people over ~50** (Buttgereit, 2016).[^buttgereit]
+**PMR** = new bilateral **shoulder and hip-girdle pain and stiffness**,
 dramatic morning stiffness, very high ESR/CRP. **GCA (giant cell / temporal arteritis)** = inflammation
 of medium/large arteries causing headache, scalp tenderness, jaw claudication, and — the emergency —
 **sudden, often irreversible vision loss** from optic-nerve ischemia. The two overlap (~15–20% of PMR
@@ -599,7 +594,7 @@ has GCA, and vice versa).
 dramatic** (PMR can resolve in days on low-dose prednisone) that it is near-diagnostic. **GCA is a
 medical emergency**: high-dose steroids must start **immediately on clinical suspicion — before biopsy
 confirmation — to save vision**; do not wait. **Tocilizumab** (IL-6 inhibitor) is now a proven steroid-
-sparing agent (Dejaco treat-to-target recommendations 2024, `10.1136/ard-2022-223429`).
+sparing agent (Dejaco treat-to-target recommendations, 2024).[^dejaco]
 
 **Honest grade.** PMR/GCA are the rheumatology pair where treatment is **most dramatically effective**
 (`rct`-grade), and the one critical message is the **GCA-as-emergency** rule: new headache + visual
@@ -615,10 +610,10 @@ symptoms + high inflammatory markers in someone over 50 is "treat now, biopsy la
 The **AIP diet** (an aggressive paleo-style elimination of grains, legumes, dairy, nightshades, eggs,
 nuts, seeds, and additives) is heavily marketed as a treatment for "all autoimmune disease." The
 honest evidence: a **handful of small, mostly uncontrolled or single-arm pilot studies**, almost all
-in **inflammatory bowel disease** (Konijeti 2017, `10.1097/MIB.0000000000001221`; Chandrasekaran 2019,
-`10.1093/crocol/otz019`), showing some symptom/quality-of-life improvement — but **no RCTs, no
-blinding, tiny samples, and no evidence it modifies disease in RA, lupus, MS, or thyroid disease**
-(Pardali 2025 review, `10.1016/j.metop.2024.100342`). The mechanism claim (remove "trigger" foods →
+in **inflammatory bowel disease** (Konijeti 2017; Chandrasekaran 2019), showing some
+symptom/quality-of-life improvement — but **no RCTs, no blinding, tiny samples, and no evidence it
+modifies disease in RA, lupus, MS, or thyroid disease** (Pardali 2025 review).[^aip] The mechanism
+claim (remove "trigger" foods →
 calm the immune system) is `mechanistic`/`hypothesis`-tier at best. The honest grade: **an elimination
 diet that *might* help some IBD symptoms, marketed far beyond its evidence, with real downsides**
 (it is very restrictive, can drive disordered eating and nutrient gaps, and — the real harm — is used
@@ -637,14 +632,14 @@ fibromyalgia / autoimmune-fatigue market.
 This needs care, because there are two different things wearing one name. **Lyme disease** (Borrelia
 infection) is **real**, and **post-treatment Lyme disease syndrome (PTLDS)** — persistent fatigue,
 pain, and cognitive symptoms in a minority *after* properly treated, documented Lyme — is also **real
-and under-researched** (Arias 2025 guidelines, `10.1016/j.idnow.2025.105205`). What is **not** supported
+and under-researched** (Arias 2025 guidelines).[^arias] What is **not** supported
 is the separate construct of "**chronic Lyme**" used to explain medically unexplained chronic symptoms
 in people **without evidence of ever having had Lyme**, "diagnosed" by non-validated labs and treated
 with **months of antibiotics** — multiple RCTs of prolonged antibiotics for persistent symptoms
 **showed no durable benefit and real harm** (line infections, *C. difficile*; Dersch systematic review
-2024, `10.1111/ene.16293`). The honest grade: **PTLDS deserves serious research and compassion;
+2024).[^dersch] The honest grade: **PTLDS deserves serious research and compassion;
 prolonged-antibiotic "chronic Lyme" treatment is refuted (`rct`-grade) and dangerous.** Holding both
-truths at once is the whole point (Beaman, *Intern Med J* 2016, `10.1111/imj.13278`).
+truths at once is the whole point (Beaman, 2016).[^beaman]
 
 ### 17.4 Fibromyalgia & "anti-inflammatory" supplements — mostly mechanism-or-marketing
 Magnesium, D-ribose, CoQ10, SAMe, vitamin D (unless deficient), turmeric/curcumin, "mitochondrial
@@ -674,7 +669,9 @@ and don't let the supplement aisle crowd out the biologic, the DMT, or the urate
   modification**; progressive MS is under-served; OA and most neuropathy have **no disease-modifying
   drug**; fibromyalgia and PTLDS are **real but only modestly treatable**; CTE is **real but
   unquantified**.
-- **Predictor ≠ lever, mechanism ≠ outcome, cohort ≠ RCT** — the three rules sort the field. Serum
+- **Predictor ≠ lever** (a number that warns you isn't automatically the thing you fix), **mechanism
+  ≠ outcome** (a drug moving a lab marker isn't the same as it helping you), **cohort ≠ RCT** (a
+  pattern in observed data isn't proof a treatment works) — the three rules sort the field. Serum
   urate is a lever; hsCRP in fibromyalgia is a non-finding; an AIP diet lowering a marker is not an
   AIP diet modifying lupus.
 - **The unglamorous levers are large:** treat BP and AF (stroke), move the joint (OA, spondylitis),
@@ -682,6 +679,38 @@ and don't let the supplement aisle crowd out the biologic, the DMT, or the urate
 - **Where the market lies is consistent:** "autoimmune diets," "adrenal fatigue," "chronic Lyme" long
   antibiotics, and fibromyalgia supplement stacks all sell certainty into the gap left by genuinely
   hard diseases — and all risk displacing the treatments that work.
+
+[^ninds]: NINDS rt-PA Stroke Study Group. *NEJM* 1995. doi:10.1056/NEJM199512143332401. claim: stroke-ninds-tpa (rct)
+[^hope]: Zhou Y, et al. (HOPE) — *JAMA* 2025. doi:10.1001/jama.2025.12063. claim: stroke-hope-late-window (rct)
+[^hermes]: Goyal M, et al. (HERMES) — *Lancet* 2016. doi:10.1016/S0140-6736(16)00163-X. claim: stroke-thrombectomy-nnt (meta)
+[^stroke-bmj]: Sharma R, et al. — *BMJ* 2025. doi:10.1136/bmj-2023-076161. claim: stroke-acute-standard (meta)
+[^thijs]: Thijs RD, et al. "Epilepsy in adults." *Lancet* 2019. doi:10.1016/S0140-6736(18)32596-0. claim: epilepsy-management (cohort)
+[^mcdonald]: Thompson AJ, et al. "2017 revisions of the McDonald criteria." *Lancet Neurol* 2018. doi:10.1016/S1474-4422(17)30470-2 (2024 revisions: Montalban, doi:10.1016/S1474-4422(25)00270-4). claim: ms-mcdonald-criteria (guideline)
+[^reich]: Reich DS, Lucchinetti CF, Calabresi PA. "Multiple Sclerosis." *NEJM* 2018. doi:10.1056/NEJMra1401483. claim: ms-mechanism (mechanistic)
+[^bloem]: Bloem BR, Okun MS, Klein C. "Parkinson's disease." *Lancet* 2021. doi:10.1016/S0140-6736(21)00218-X. claim: parkinsons-mechanism (mechanistic)
+[^ferrari]: Ferrari MD, et al. "Migraine." *Nat Rev Dis Primers* 2022. doi:10.1038/s41572-021-00328-4. claim: migraine-overview (meta)
+[^edvinsson]: Edvinsson L, et al. "CGRP as the target of new migraine therapies." *Nat Rev Neurol* 2018. doi:10.1038/s41582-018-0003-1; Caronna E, et al. 2024. doi:10.1016/B978-0-12-823357-3.00024-0. claim: migraine-cgrp-mabs (rct)
+[^ailani]: Ailani J, et al. "AHS Consensus Statement." *Headache* 2021. doi:10.1111/head.14153. claim: migraine-ahs-consensus (guideline)
+[^finnerup]: Finnerup NB, et al. (NeuPSIG). "Pharmacotherapy for neuropathic pain." *Lancet Neurol* 2015. doi:10.1016/S1474-4422(14)70251-0. claim: neuropathy-nnt (meta)
+[^cte]: Mez J, et al. *JAMA* 2017. doi:10.1001/jama.2017.8334 (110/111 NFL brains — note selection bias); McKee AC, et al. *Brain* 2013. doi:10.1093/brain/aws307. claim: cte-autopsy-series (cohort)
+[^dementia]: Frisoni GB, et al. *Lancet* 2025. doi:10.1016/S0140-6736(25)01389-3; Ravits J, et al. (ALS) *JAMA* 2026. doi:10.1001/jama.2026.6385; Goutman SA, et al. *Lancet Neurol* 2022. doi:10.1016/S1474-4422(21)00414-2. claim: dementia-als-outlook (meta) — fully developed in §08.
+[^hunter]: Hunter DJ, Bierma-Zeinstra S. "Osteoarthritis." *Lancet* 2019. doi:10.1016/S0140-6736(19)30417-9. claim: oa-whole-joint (meta)
+[^smolen]: Smolen JS, et al. "Rheumatoid arthritis." *Lancet* 2016. doi:10.1016/S0140-6736(16)30173-8. claim: ra-overview (meta)
+[^mcinnes]: McInnes IB, Schett G. "Pathogenetic insights from the treatment of RA." *Lancet* 2017. doi:10.1016/S0140-6736(17)31472-1. claim: ra-mechanism (mechanistic)
+[^choi]: Choi HK, et al. "Purine-rich foods, dairy and protein intake, and the risk of gout in men." *NEJM* 2004. doi:10.1056/NEJMoa035700. claim: gout-diet-urate (cohort)
+[^acr-gout]: FitzGerald JD, et al. "2020 ACR Guideline for the Management of Gout." *Arthritis Rheumatol* 2020. doi:10.1002/art.41247. claim: gout-treat-to-target (guideline)
+[^cares]: White WB, et al. (CARES). "Cardiovascular Safety of Febuxostat or Allopurinol." *NEJM* 2018. doi:10.1056/NEJMoa1710895. claim: gout-febuxostat-cv (rct)
+[^kaul]: Kaul A, et al. "Systemic lupus erythematosus." *Nat Rev Dis Primers* 2016. doi:10.1038/nrdp.2016.39. claim: lupus-overview (meta)
+[^schett-cart]: Schett G, et al. "CAR T-cell therapy in autoimmune diseases." *Lancet* 2023. doi:10.1016/S0140-6736(23)01126-1. claim: autoimmune-cart-frontier (rct-in-progress)
+[^sieper]: Sieper J, Poddubnyy D. "Axial spondyloarthritis." *Nat Rev Dis Primers* 2015. doi:10.1038/nrdp.2015.13. claim: spa-overview (meta)
+[^danve]: Danve A, Deodhar A. *Nat Rev Rheumatol* 2022. doi:10.1038/s41584-022-00761-z. claim: spa-management (rct)
+[^woolf]: Woolf CJ. "Central sensitization." *Pain* 2011. doi:10.1016/j.pain.2010.09.030. claim: fibromyalgia-central-sensitization (mechanistic)
+[^buttgereit]: Buttgereit F, et al. "Polymyalgia Rheumatica and Giant Cell Arteritis: A Systematic Review." *JAMA* 2016. doi:10.1001/jama.2016.5444. claim: pmr-gca-overview (meta)
+[^dejaco]: Dejaco C, et al. "Treat-to-target recommendations in GCA and PMR." *Ann Rheum Dis* 2024. doi:10.1136/ard-2022-223429. claim: gca-tocilizumab (rct)
+[^aip]: Konijeti GG, et al. "AIP Diet for IBD." *Inflamm Bowel Dis* 2017. doi:10.1097/MIB.0000000000001221; Chandrasekaran A, et al. 2019. doi:10.1093/crocol/otz019; Pardali EC, et al. *Metabol Open* 2025. doi:10.1016/j.metop.2024.100342. claim: aip-diet-evidence (mechanistic)
+[^arias]: Arias, et al. "PTLDS guidelines." 2025. doi:10.1016/j.idnow.2025.105205. claim: ptlds-real-under-researched (cohort)
+[^dersch]: Dersch R, et al. "Treatment of post-treatment Lyme disease symptoms — a systematic review." *Eur J Neurol* 2024. doi:10.1111/ene.16293. claim: chronic-lyme-antibiotics-refuted (rct)
+[^beaman]: Beaman MH. "Lyme disease: why the controversy?" *Intern Med J* 2016. doi:10.1111/imj.13278. claim: lyme-controversy (meta)
 
 ---
 
@@ -752,11 +781,10 @@ and don't let the supplement aisle crowd out the biologic, the DMT, or the urate
 
 ## Cross-links
 
-- **Section 08** (`08-brain-cognitive.md`) — dementia / Alzheimer's / neurodegeneration as outcomes; amyloid-drug saga; brain-training & nootropic debunks. **(Dementia lives there, not here.)**
+- **Section 08** (`08-brain-cognitive.md`) — dementia / Alzheimer's / neurodegeneration as outcomes; amyloid-drug saga; brain-training & nootropic debunks. **(Dementia is developed there.)**
 - **Section 14** (`14-nervous-system.md`) — action potential, glia/myelin, autonomic NS, neuroplasticity, **pain & peripheral-neuropathy physiology** (§6) under fibromyalgia and neuropathy here.
 - **Section 15** (`15-immune-system.md`) — self-tolerance, innate/adaptive immunity, inflammaging, hygiene hypothesis, "immune-boosting" debunks — the substrate under every autoimmune disease here.
 - **Section 07** (clinical prevention) — BP & lipid control = the upstream stroke lever; **Section 13** (endocrine) — "adrenal fatigue" debunk; **Section 10** (pharmacology) — NSAID/steroid cautions.
-- **Companion data:** `02-domains/disease-neuro-rheum-claims.json`.
 
 ## Gaps flagged for next wave
 - A dedicated **headache-disorders** deep dive (medication-overuse headache; new-daily-persistent; the secondary "red flag" headaches — SAH, GCA, raised ICP, dissection).

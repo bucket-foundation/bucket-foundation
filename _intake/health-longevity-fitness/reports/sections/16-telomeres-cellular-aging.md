@@ -1,21 +1,10 @@
 # 16 — Telomeres & Cellular Aging
 
-> **Status:** v0.1 (Wave 9) — 2026-06-28. Companion data in `02-domains/X-telomere-claims.json`.
-> **Discipline:** this chapter exists because telomeres are simultaneously (a) one of the most genuinely
-> beautiful pieces of molecular biology in the whole canon — a Nobel-winning solution to a problem the
-> structure of DNA *forces* into existence — and (b) one of the most **over-marketed** levers in the entire
-> consumer-longevity industry. The gap between (a) and (b) is the subject of the chapter.
->
-> **The one rule that governs this file: a predictor is not a lever.** Telomere length *predicts* (weakly,
-> noisily) some things about a population. That tells you almost nothing about whether *changing* a person's
-> telomere length would change their health — and, for the one intervention the market actually sells
-> (telomerase activation), the best available causal evidence points the *wrong way*: lengthening is what
-> cancers do to become immortal. Read every claim below through that lens.
->
-> **Cross-refs:** the telomere-attrition hallmark and senescence/senolytics live in `02-domains/B-aging-mechanisms.md`
-> (§2, §6); the telomere-genetics/biomarker grading lives in `02-domains/C-genetics-omics.md` (§1 gap-list,
-> §2 reliability problem). This chapter is the dedicated, honest treatment those files flagged but did not
-> have room to give.
+Telomeres are two things at once: one of the most beautiful pieces of molecular biology ever worked out — a Nobel-winning solution to a problem the structure of DNA *forces* into existence — and one of the most over-marketed levers in the whole consumer-longevity industry. The gap between the beautiful science and the marketing is the subject of this chapter.
+
+The one rule that governs everything below: **a predictor is not a lever** (something that forecasts risk isn't automatically something that, changed, lowers it). Telomere length *predicts* — weakly, noisily — some things about a population. That tells you almost nothing about whether *changing* a person's telomere length would change their health. For the one intervention the market actually sells — telomerase activation — the best causal evidence points the *wrong way*: lengthening is what cancers do to become immortal. Read every claim below through that lens.
+
+_Not medical advice. Cellular senescence and senolytics get their full grading in the aging-mechanisms section; this chapter is the dedicated telomere treatment._
 
 ---
 
@@ -26,7 +15,7 @@ This is a topic where the rules do almost all the work, so state them before the
 | Rule | How it bites here |
 |---|---|
 | **predictor ≠ lever** (the central one) | Telomere length correlates with age and forecasts *some* disease at the population level. That does **not** make "lengthen your telomeres" a health intervention. The arrow from length → outcome at the *individual* level is weak, and the arrow from *intervening on* length → outcome is, for the marketed direction, plausibly **negative** (cancer). |
-| **cohort ≠ RCT** | Essentially the entire "telomeres associate with stress / exercise / diet / meditation" literature is **observational** or tiny single-arm pilot. Confounding (socio-economic status, smoking, BMI, baseline health) is enormous and mostly unaddressed. |
+| **cohort ≠ RCT** (an association in a population isn't a proven cause; an RCT — randomized controlled trial — is the strongest evidence tier) | Essentially the entire "telomeres associate with stress / exercise / diet / meditation" literature is **observational** or tiny single-arm pilot. Confounding (socio-economic status, smoking, BMI, baseline health) is enormous and mostly unaddressed. |
 | **something-beats-nothing** | The lifestyle behaviours weakly linked to "better" telomeres (don't smoke, exercise, sleep, manage stress, eat real food) are worth doing **on their own first-line evidence** — *not* because of any telomere readout. The telomere number adds nothing actionable on top of advice you already had. |
 
 ---
@@ -57,11 +46,13 @@ the DNA-damage response).
 ### 16.1.2 — The end-replication problem (the fundamental *reason* they shorten)
 
 Telomeres are not an arbitrary add-on. They exist to solve a problem that the **mechanism of DNA replication
-itself creates**. DNA polymerase can only extend a strand 5′→3′ and needs an RNA primer to start. On the
-**lagging strand**, replication proceeds in short Okazaki fragments, each primed by a short RNA that is later
-removed. At the very end of a linear chromosome there is no upstream sequence to prime the final fragment —
-so the terminal stretch of the lagging-strand template **cannot be copied**, and a sliver of DNA is lost
-every division. This is the **end-replication problem**, deduced independently from first principles by
+itself creates**. In plain terms: the machine that copies DNA can't quite reach the very tip of each
+chromosome end, so a sliver is lost every time a cell divides. The molecular reason: DNA polymerase can only
+extend a strand 5′→3′ and needs an RNA primer to start. On the **lagging strand**, replication proceeds in
+short Okazaki fragments, each primed by a short RNA that is later removed. At the very end of a linear
+chromosome there is no upstream sequence to prime the final fragment — so the terminal stretch of the
+lagging-strand template **cannot be copied**, and a sliver of DNA is lost every division. This is the
+**end-replication problem**, deduced independently from first principles by
 **James Watson** (Watson, *Nature New Biology* 1972) and **Alexey Olovnikov** (Olovnikov, *J Theor Biol*
 1973, "A theory of marginotomy"). Olovnikov made the leap of explicitly connecting end-shortening to the
 finite division capacity of cells.
@@ -78,9 +69,9 @@ finite division capacity of cells.
 The enzyme that re-extends telomeres was found by **Carol Greider and Elizabeth Blackburn in 1985** — a
 "terminal transferase" in *Tetrahymena* extracts that added telomeric repeats onto a substrate (Greider &
 Blackburn, *Cell* 1985). Four years later they showed the enzyme carries its **own RNA template** inside it
-(Greider & Blackburn, *Nature* 1989): **telomerase is a reverse transcriptase** (catalytic subunit **TERT**)
-that uses an internal RNA (**TERC/TR**) as the template to synthesise `TTAGGG` repeats *de novo*, restoring
-what replication lost.
+(Greider & Blackburn, *Nature* 1989): **telomerase is a reverse transcriptase** (catalytic subunit **TERT**,
+the enzyme's protein engine) that uses an internal RNA (**TERC/TR**, the built-in template strand) to
+synthesise `TTAGGG` repeats *de novo*, restoring what replication lost.
 
 In humans, telomerase is **highly active in the germline and stem/progenitor cells** (which must divide
 indefinitely) and **largely switched off in most somatic tissues**. That silencing is the reason ordinary
@@ -125,7 +116,8 @@ predictive, and confounded.** Three problems, in order of how badly they undercu
 
 ### 16.2.1 — It is a noisy measurement
 
-The dominant cheap method (qPCR T/S ratio, what most consumer tests use) has **poor reproducibility**. The
+The dominant cheap method (qPCR T/S ratio — a DNA-copying assay that estimates average telomere length, what
+most consumer tests use) has **poor reproducibility**. The
 international collaborative study by **Martin-Ruiz et al. (2015)** ran identical samples through multiple
 experienced labs and found measurements that **did not agree** — inter-laboratory coefficients of variation
 large enough that the same person could be ranked "young" or "old" depending on the lab (Martin-Ruiz et al.,
@@ -193,7 +185,9 @@ So the marketed intervention sits on the horns of a genuine biological tension:
 | **Risk** | replicative senescence, stem-cell exhaustion, tissue failure; degenerative phenotypes (e.g. dyskeratosis congenita, idiopathic pulmonary fibrosis from *TERT/TERC* loss-of-function) | **cancer** — more divisions before the brake engages; the dominant escape route for malignancy |
 | **Direction the market sells** | — | **this one** ("lengthen your telomeres") |
 
-The cleanest *causal* evidence that this is not a hypothetical: **Mendelian-randomization.** The Telomeres
+The cleanest *causal* evidence that this is not a hypothetical: **Mendelian randomization** (using inherited
+gene variants as a natural randomized experiment, since you're dealt them at conception regardless of
+lifestyle). The Telomeres
 Mendelian Randomization Collaboration (**Haycock et al., 2017**) used germline genetic variants that set
 telomere length as instruments and found that **genetically *longer* telomeres are associated with
 *increased* risk of several cancers** (lung adenocarcinoma, melanoma, glioma, others), while being associated
@@ -205,7 +199,7 @@ bidirectional**, not a free lunch.
 > **The honest statement:** "longer telomeres" is **not obviously good.** It buys you fewer degenerative,
 > stem-cell-exhaustion problems at the cost of more cancer risk. Evolution set somatic telomerase to **off**
 > for a reason. Anyone selling you telomerase activation is selling you a partial cancer-enabling step and
-> calling it youth. (Logged as `conflict-telomere-lengthening-benefit-vs-cancer-risk`.)
+> calling it youth.[^conflict-lengthening]
 
 ---
 
@@ -225,32 +219,32 @@ telomerase activator. The evidence:
 | Harley et al. 2011 (publ. 2010) | open-label, within a "health maintenance program," company-affiliated | reported a decline in the **percentage of short telomeres** and some immune-marker changes | `nequals1`-ish / `anecdotal` (uncontrolled, conflicted) |
 | Salvador et al. 2016 | randomized, double-blind, placebo-controlled, 1 year | low-dose TA-65 group's **median telomere length increased** vs placebo (which decreased); **no hard clinical endpoint** | `rct` (surrogate outcome, small, industry-funded) |
 
-So the **strongest** TA-65 study is a real RCT — but its endpoint is a **surrogate** (telomere length on a
-noisy assay), the study is **small and industry-funded**, and **no disease, function, or mortality outcome
-was moved.** Crucially, even if TA-65 *does* nudge telomere length, §16.3 means that is **not self-evidently
+So the **strongest** TA-65 study is a real RCT — but its endpoint is a **surrogate** (a stand-in marker —
+here, telomere length on a noisy assay — rather than a health outcome you can feel), the study is **small and
+industry-funded**, and **no disease, function, or mortality outcome was moved.** Crucially, even if TA-65 *does* nudge telomere length, §16.3 means that is **not self-evidently
 beneficial** — the same mechanism is the cancer escape route, and no trial is remotely powered to detect a
 cancer-risk signal. Grade: **surrogate-only, conflicted, and pointed at a direction whose safety is
 unestablished.** This is `mechanism`-to-`surrogate`; it is *not* an `outcome` claim, and it is sold as one.
 
 ### 16.4.2 — The Epel/Blackburn lifestyle & meditation → telomerase studies (graded cautiously)
 
-A genuinely interesting line of work links **psychological stress** to telomere biology:
+A genuinely interesting line of work links **psychological stress** to telomere biology. The founding study:
+**Epel et al. (2004)** found mothers under chronic caregiving stress had **shorter telomeres and lower
+telomerase** than lower-stress controls; the highest-stress women looked ~a decade "older" on telomere length
+(Epel et al., *PNAS* 2004). It is **`cross-sectional`** (a one-time snapshot that cannot establish direction),
+and the n is modest.
 
-- **Epel et al. (2004)** — mothers under chronic caregiving stress had **shorter telomeres and lower
-  telomerase** than lower-stress controls; the highest-stress women looked ~a decade "older" on telomere
-  length (Epel et al., *PNAS* 2004). This is the **founding** stress-telomere paper and it is **`cross-sectional`** —
-  it shows a *correlation*, cannot establish direction, and the n is modest.
+Same story, same caveats, in the two follow-ups the market leans on:
+
 - **Jacobs/Epel et al. (2011)** — the **Shamatha meditation retreat**: 3 months of intensive meditation was
-  associated with **higher telomerase activity** in immune cells vs waitlist, mediated by psychological
-  change (Jacobs et al., *Psychoneuroendocrinology* 2011). Small, surrogate (telomerase activity, not
-  telomere length, not any health outcome), and the design cannot exclude the many things a residential
-  retreat changes besides meditation.
+  associated with **higher telomerase activity** in immune cells vs waitlist (Jacobs et al.,
+  *Psychoneuroendocrinology* 2011). Small; surrogate (telomerase activity, not telomere length, not any health
+  outcome); can't exclude everything else a residential retreat changes.
 - **Ornish et al. (2008, 2013)** — comprehensive lifestyle change (diet + exercise + stress management +
-  social support) in small groups of low-risk prostate-cancer men was associated with **increased telomerase
-  activity** (2008 pilot) and, at 5 years, **longer telomeres vs controls** (2013) (Ornish et al., *Lancet
-  Oncol* 2008, 2013). **Explicitly described by the authors as descriptive pilot studies**, tiny (the 2013
-  follow-up has ~10 intervention subjects), unblinded, and bundling five interventions so no single lever is
-  isolated.
+  social support) in low-risk prostate-cancer men was associated with **increased telomerase activity** (2008
+  pilot) and, at 5 years, **longer telomeres vs controls** (2013) (Ornish et al., *Lancet Oncol* 2008, 2013).
+  Authors' own words: descriptive pilot studies — tiny (~10 intervention subjects in the 2013 follow-up),
+  unblinded, and bundling five interventions so no single lever is isolated.
 
 **How to read this honestly:** these studies are **real, careful, and over-read.** They are uniformly
 **small, surrogate-endpoint, and observational-or-pilot.** They show that telomere/telomerase measures
@@ -258,7 +252,7 @@ A genuinely interesting line of work links **psychological stress** to telomere 
 overall health**, exactly as `C-genetics-omics.md` argues for the microbiome and the clocks. They do **not**
 show that the telomerase bump *caused* any benefit, nor that you should chase the telomere number. The
 popular framing — "meditation reverses cellular aging" — is the **canonical surrogate-over-read** in this
-domain (logged as `conflict-meditation-telomere-overclaim` in the I-domain). Note the structural irony:
+domain.[^conflict-meditation] Note the structural irony:
 the lifestyle advice (don't smoke, move, sleep, de-stress, eat real food) is **worth doing on its own
 first-line evidence** — the telomere readout adds nothing actionable, it just dresses old advice in
 molecular costume.
@@ -278,9 +272,11 @@ mortality benefits; the telomere correlation is a bystander, not a reason.
 
 ## 16.5 — Cellular senescence, the broader story
 
-Telomere attrition is **one** trigger of cellular senescence — but senescence is bigger than telomeres, and
-the more clinically interesting longevity work has moved to the senescent cell itself. (Primary grading lives
-in `B-aging-mechanisms.md §2`; summarised here for completeness.)
+Telomeres are only one doorway into cell senescence, and the more promising anti-aging lever sits at the
+*other* doorways — carrying none of the telomerase/cancer risk. Telomere attrition is **one** trigger of
+cellular senescence; senescence is bigger than telomeres, and the more clinically interesting longevity work
+has moved to the senescent cell itself. (Primary grading lives in `B-aging-mechanisms.md §2`; summarised here
+for completeness.)
 
 ### 16.5.1 — Senescent cells and the SASP
 
@@ -299,7 +295,8 @@ Critically for this chapter: **most senescence in vivo is not telomere-driven.**
 oncogene activation (itself a tumour-suppressor response), DNA damage, oxidative/metabolic/mitochondrial
 stress, and proteotoxic or replication stress — all trip the p16^INK4a/Rb and p53/p21 arrest programs
 **without the telomere ever running out.**
-This is why senolytic biology is studied largely through **p16^INK4a-positive** cells, not telomere length,
+This is why senolytic biology is studied largely through **p16^INK4a-positive** cells (p16 is a protein that
+marks the senescent state), rather than telomere length,
 and why "fix your telomeres" is **not** the same as "clear senescent cells." Telomeres are one entrance to
 the senescent state; the room is much larger.
 
@@ -346,7 +343,8 @@ A consumer telomere-length test (blood draw or cheek swab → "your telomeres ar
 
 > **Verdict:** a consumer telomere test is a **noisy readout of the wrong tissue with no action attached, often
 > bundled with a product whose mechanism is a cancer-enabling step.** It is the cleanest single example in this
-> manual of **a predictor mis-sold as a lever.** Spend the money on a VO₂max test, a DEXA, an ApoB, and a
+> manual of **a predictor mis-sold as a lever.** Spend the money on a VO₂max test (aerobic-fitness score), a
+> DEXA (bone-density and body-composition scan), an ApoB (the particle count that drives artery disease), and a
 > blood-pressure cuff — biomarkers that are reliable *and* tied to a decision.
 
 ---
@@ -402,3 +400,7 @@ never an `outcome`.
   as therapy" a thing you have to argue *against*, not assume.
 - **Martin-Ruiz, C.M. et al. (2015), *Int J Epidemiol* `10.1093/ije/dyu191`** — the multi-lab reproducibility
   study. The single best reason not to trust a consumer telomere number.
+
+[^conflict-lengthening]: claim: conflict-telomere-lengthening-benefit-vs-cancer-risk
+
+[^conflict-meditation]: claim: conflict-meditation-telomere-overclaim (I-domain)

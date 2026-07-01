@@ -1,15 +1,8 @@
 # 18 — Genetics (Practical) & an Anatomy / Physiology Primer
 
-> **Status:** v0.1 — 2026-06-28. Two jobs in one section. **Part A** is the *practical* genetics
-> layer — "what do my genes actually mean for me, and what should I (not) test?" — built **on top of**
-> the mechanism/biomarker treatment in Domain C (`02-domains/C-genetics-omics.md`, `C-claims.json`)
-> and the DNA/epigenetics fundamentals in section 01 (`01-foundations.md` §4). It does not repeat the
-> aging-GWAS or epigenetic-clock mechanism; it asks what a person should *do*. **Part B** is a short
-> anatomy/physiology **primer** — the orientation map that ties the whole manual's body-systems
-> sections together.
-> **Companion data:** `02-domains/Z-genetics-claims.json` (graded claim set added with this section).
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+Your DNA report claims to reveal your ideal diet, your "power vs endurance" type, and your optimal supplements. It says far less about you than that. A short list of variants can change a real decision — which drugs are safe at what dose, a few high-penetrance disease genes, your lifelong Lp(a) level. The vast rest of what gets sold as "personal genomics" is small-effect common-variant noise dressed up as a verdict. Part A sorts the short list from the noise. Part B is a quick anatomy/physiology primer — the orientation map that ties the manual's body-systems sections together.
+
+_Not medical advice. This chapter covers what your genes mean for you and what to test; drug dosing lives in §10, screening in §07._
 
 ---
 
@@ -39,18 +32,20 @@ about any test.
     These are the genuinely "actionable" findings, and a SNP chip is the *wrong instrument* to find
     most of them (it tests a few pre-chosen spots, not the whole gene).
 - **Polygenicity — why "fitness genes" are mostly hype.** Almost every trait you care about
-  (height, VO₂max, strength, longevity, intelligence, blood pressure, body weight) is **polygenic** —
+  (height, VO₂max (a fitness/aerobic-capacity score), strength, longevity, intelligence, blood
+  pressure, body weight) is **polygenic** —
   the sum of *thousands* of common variants each shifting the trait by a hair, plus a large
-  environmental contribution. The 2017 **"omnigenic" model** (Boyle, Li & Pritchard, `28622505`,
-  `10.1016/j.cell.2017.05.038`) pushed this further: for a typical complex trait, so many genes
+  environmental contribution. The 2017 **"omnigenic" model** (Boyle, Li & Pritchard, 2017)[^omnigenic]
+  pushed this further: for a typical complex trait, so many genes
   contribute that essentially *any* gene expressed in the relevant tissue nudges it a little, and a
   handful of "core" genes carry only a slice of the heritability. **The practical consequence is
   decisive: there is no "sprinter gene," no "endurance gene," no "longevity gene" you can read off a
   chip and act on.** The famous *ACTN3* "speed gene" (the R577X variant) is the textbook example — it
-  is *real* (the XX genotype lacks α-actinin-3 in fast fibers) yet explains only ~1–3% of the variance
-  in any performance measure and predicts essentially nothing for an individual. When a DTC report
-  tells you your "power potential" or "endurance type," it is reading a few common SNPs that explain a
-  rounding error of the trait and dressing the noise as a verdict.
+  is *real* (the XX genotype lacks α-actinin-3 in fast fibers) yet explains only ~1–3% of the
+  differences between people in any performance measure and predicts essentially nothing for an
+  individual. When a direct-to-consumer (DTC) report tells you your "power potential" or "endurance
+  type," it is reading a few common SNPs that explain a rounding error of the trait and dressing the
+  noise as a verdict.
 
 @@FIG:B10-common-rare-variants@@
 
@@ -64,11 +59,13 @@ about any test.
 ## A.2 The few variants that actually matter for an individual
 
 These are the variants where knowing your status can change a real decision. Everything not on this
-short list is, for personal action, far less important than the DTC industry implies.
+short list is, for personal action, far less important than the DTC industry implies. The table is the
+whole list at a glance; the subsections after it (§§A.2.1–A.2.5) walk through the rows that need more
+than one line — skip to whichever matters to you.
 
 | Variant / gene | What it is | Why it can matter for *you* | Honest grade |
 |---|---|---|---|
-| **APOE (ε4)** | Lipid-transport apolipoprotein; ε2/ε3/ε4 alleles | Strongest common risk allele for **late-onset Alzheimer's** + a CVD/lipid modifier | Real, large RR — but a *risk* allele, not destiny; **counseling-fraught** (§A.3) |
+| **APOE (ε4)** | Lipid-transport apolipoprotein; ε2/ε3/ε4 alleles | Strongest common risk allele for **late-onset Alzheimer's** + a CVD/lipid modifier | Real, large relative risk (RR) — but a *risk* allele, not destiny; **counseling-fraught** (§A.3) |
 | **Lp(a) — *LPA*** | Genetically-set lipoprotein(a) level (mostly *LPA* kringle-repeat) | **Causal**, lifelong CVD/aortic-stenosis risk; ~20% of people are high; **one-time test** | Strong (Mendelian-randomization causal); see Domain L |
 | **FOXO3** | Forkhead transcription factor, stress resistance | Replicated **longevity** association across populations | Real at *population* scale; **near-useless personally** (§A.4) |
 | **MTHFR (C677T / A1298C)** | Folate-cycle enzyme variant | Marketed endlessly; **mostly meaningless** for healthy people | **Overhyped — debunk (§A.5)** |
@@ -83,9 +80,9 @@ short list is, for personal action, far less important than the DTC industry imp
 *APOE* comes in three alleles (ε2, ε3, ε4). The **ε4** allele is the single strongest *common* genetic
 risk factor for late-onset Alzheimer's disease, and it shows a clean **gene-dose** relationship: one
 ε4 copy raises lifetime risk roughly **2–3×**, two copies (ε4/ε4, ~2% of people) roughly **8–12×**,
-relative to the common ε3/ε3 (Corder et al., *Science* 1993, `10.1126/science.8346443`; meta-analysis
-Farrer et al., *JAMA* 1997, PMID `9343467`). The effect is **modified by age, sex, and ancestry** —
-larger in women, and substantially smaller in several African-ancestry populations (Farrer 1997) — a
+relative to the common ε3/ε3 (Corder et al., 1993; meta-analysis Farrer et al., 1997).[^apoe-risk] The
+effect is **modified by age, sex, and ancestry** — larger in women, and substantially smaller in
+several African-ancestry populations (Farrer 1997) — a
 caution against reading any single risk number as universal. ε4 also modestly raises cardiovascular
 risk and LDL. But ε4 is *neither necessary nor sufficient*: most Alzheimer's patients are not ε4/ε4,
 and many ε4/ε4 carriers never develop dementia. It is a **risk allele, not a diagnosis** — which is
@@ -98,12 +95,13 @@ exactly why disclosing it is delicate (§A.3).
 Hereditary hemochromatosis is the textbook case of **"a Mendelian disease that mostly doesn't happen."**
 *HFE* C282Y homozygosity is the commonest genotype, yet **clinical iron-overload disease is the
 exception, not the rule**: in the HealthIron cohort, only a minority of C282Y homozygotes (≈**28% of
-men, <2% of women**) developed iron-overload-related disease over time (Allen et al., *NEJM* 2008,
-`10.1056/NEJMoa073286`, PMID `18199861`). The point cuts two ways: (1) it *is* worth knowing, because
+men, <2% of women**) developed iron-overload-related disease over time (Allen et al., 2008).[^hfe-penetrance]
+The point cuts two ways: (1) it *is* worth knowing, because
 the treatment — periodic phlebotomy if ferritin/transferrin saturation climb — is trivial and fully
 preventive; but (2) **a positive genotype is not a diagnosis**; you act on the *iron studies*
-(ferritin, transferrin saturation), not on the SNP alone. Predictor ≠ lever; the lever is the blood
-test that follows.
+(ferritin, transferrin saturation), not on the SNP alone. Predictor ≠ lever (something that forecasts
+risk isn't automatically something that, changed, lowers it); here the lever is the blood test that
+follows.
 
 ### A.2.3 BRCA and the actionable cancer genes — the *right* findings, the *wrong* instrument
 
@@ -129,12 +127,12 @@ If you take only one practical genetics lesson from this section, take this: **t
 information for most people is pharmacogenomic** — how your variants change drug metabolism and
 hypersensitivity. Unlike polygenic "risk," these are often **single, large-effect variants with a
 clear clinical action**, codified by the **Clinical Pharmacogenetics Implementation Consortium (CPIC)**
-(framework: Relling & Klein, *Clin Pharmacol Ther* 2011, `10.1038/clpt.2011.34`):
+(framework: Relling & Klein, 2011)[^cpic-framework]
 
 - **CYP2C19 → clopidogrel (Plavix).** Loss-of-function carriers (poor metabolizers — common in East-
   Asian ancestry) under-activate the prodrug and get **less antiplatelet protection** after stenting;
-  guidelines recommend an alternative agent (CPIC clopidogrel guideline, Lee et al. 2022,
-  `10.1002/cpt.2526`). Also affects some antidepressants/PPIs.
+  guidelines recommend an alternative agent (CPIC clopidogrel guideline, Lee et al. 2022).[^cpic-clopidogrel]
+  Also affects some antidepressants/PPIs.
 - **CYP2D6 → codeine/tramadol & many psychiatric drugs.** Ultra-rapid metabolizers convert codeine to
   morphine dangerously fast (FDA boxed warning); poor metabolizers get no analgesia. Dose/drug choice
   changes.
@@ -155,8 +153,8 @@ the part of your genome most worth knowing — far more than any "wellness" pane
 
 When a lab does whole-exome/genome sequencing, the **American College of Medical Genetics & Genomics**
 publishes a curated list of genes to report *opportunistically* because they are highly penetrant **and
-medically actionable** — the **ACMG SF v3.2** list of **81 genes** (Miller et al., *Genet Med* 2023,
-`10.1016/j.gim.2023.100866`, PMID `37347242`). It is the field's consensus answer to "which genetic
+medically actionable** — the **ACMG SF v3.2** list of **81 genes** (Miller et al., 2023).[^acmg-sf]
+It is the field's consensus answer to "which genetic
 findings are worth acting on even if you weren't looking for them": hereditary cancers, familial
 hypercholesterolemia, cardiomyopathies and arrhythmias (long-QT, *MYH7*, etc.), malignant
 hyperthermia, aortopathies. **This list — not a wellness report — is the definition of "actionable
@@ -205,7 +203,7 @@ counseling issues:
 
 *FOXO3* is the cleanest illustration of **"a real longevity gene that tells you almost nothing about
 yourself."** It is one of only two loci (with *APOE/TOMM40*) that replicate across most human longevity
-studies (Domain C §1; the FOXO3 card in `B-claims.json`). It is mechanistically deep — the human
+studies (Domain C §1). It is mechanistically deep — the human
 ortholog of the worm *daf-16* in the insulin/IGF-1→FOXO stress-resistance axis that *doubled*
 *C. elegans* lifespan (section 01 §4.3). All of that is *true* and *important for science*.
 
@@ -228,8 +226,7 @@ cardiovascular disease, and "toxicity," all "fixed" by buying expensive **methyl
 
 **The evidence does not support testing or treating *MTHFR* in the general, healthy population.** The
 authoritative statement is an **ACMG practice guideline whose title is the verdict**: *"Lack of evidence
-for MTHFR polymorphism testing"* (Hickey et al., *Genet Med* 2013, `10.1038/gim.2012.165`, PMID
-`23288205`). Its findings:
+for MTHFR polymorphism testing"* (Hickey et al., 2013).[^mthfr-acmg] Its findings:
 
 - The common *MTHFR* variants are **extremely common** (the C677T "TT" genotype is present in ~10–15%
   of many populations — a "risk" allele a tenth of everyone carries is not a personal red flag).
@@ -284,9 +281,9 @@ A consumer kit genotypes a few hundred thousand to a million common SNPs. Sorted
   thousands of SNPs and *do* stratify risk at the *population* level for some diseases. But individual
   predictive value is limited, and crucially PRS are **trained mostly on European-ancestry data and
   transfer poorly to other ancestries** — deploying them naively could *widen* health disparities
-  (Martin et al., *Nat Genet* 2019, `10.1038/s41588-019-0379-x`; Mostafavi et al., *eLife* 2020,
-  `10.7554/eLife.48376`, showing prediction accuracy varies *even within* an ancestry group). A DTC
-  "polygenic score" is a population instrument wearing a personal label.
+  (Martin et al., 2019; Mostafavi et al., 2020, showing prediction accuracy varies *even within* an
+  ancestry group).[^prs-ancestry] A DTC "polygenic score" is a population instrument wearing a personal
+  label.
 
 > **Bottom line on DTC.** Buy it for ancestry and curiosity; use the carrier/PGx/actionable-variant
 > outputs only as **clinically-confirmable leads**; ignore the wellness/fitness/nutrition reports for
@@ -338,12 +335,12 @@ The unifying frame for all of Part A, and the bridge to `04-individual-variation
   even where genetics demonstrably shapes the *response*, the lever (change the stimulus) still works.
   Genes set the *dose-response curve you're on*; they don't lock the door.
 - **Gene × environment interaction is where the action is — and where "DNA-based diets" die.** The
-  strongest test of personalized-by-genotype eating is **DIETFITS** (Gardner et al., *JAMA* 2018,
-  `10.1001/jama.2018.0245`, PMID `29466592`): >600 people randomized to healthy low-fat vs healthy
+  strongest test of personalized-by-genotype eating is **DIETFITS** (Gardner et al., 2018):[^dietfits]
+  >600 people randomized to healthy low-fat vs healthy
   low-carb diets, pre-genotyped for a "low-fat/low-carb responsive" SNP pattern — and **genotype did
   not predict which diet worked better.** The "obesity gene" *FTO* tells the same story: across 9,500+
   people, *FTO* genotype **did not affect weight-loss response** to diet/exercise/drugs (Livingstone et
-  al., *BMJ* 2016, `10.1136/bmj.i4707`, PMID `27650503`). **"Eat for your genotype" is, on the best
+  al., 2016).[^fto-weightloss] **"Eat for your genotype" is, on the best
   current evidence, a product, not a finding.**
 
 > **The whole of Part A in one sentence.** Your genome contains a *short* list of variants worth acting
@@ -356,11 +353,9 @@ The unifying frame for all of Part A, and the bridge to `04-individual-variation
 
 # PART B — AN ANATOMY & PHYSIOLOGY PRIMER
 
-> This is a **primer**, not a textbook chapter — its job is to give you the orientation map so the rest
-> of the manual's body-systems sections have a frame to hang on. It answers three questions: *how is a
-> body organized?*, *what are the organ systems and where does this manual cover each?*, and *what
-> minimum physiology should every reader carry?* It leans entirely on the foundation laid in section 01
-> (energy → structure → information → homeostasis).
+This is the orientation map, so the manual's body-systems sections have a frame to hang on. It answers
+three questions: how is a body organized, what are the organ systems and where does this manual cover
+each, and what minimum physiology should every reader carry?
 
 ## B.1 Levels of organization — the body is a nested hierarchy
 
@@ -406,7 +401,9 @@ constant, and what is the cost when it's chronically pushed?* That question is t
 There are **eleven** classical organ systems (twelve if you count the immune system separately from the
 lymphatic plumbing it travels in). They are not independent — they share organs (the pancreas is
 digestive *and* endocrine), and homeostasis couples them all — but the taxonomy is the standard map.
-Use this as the **index to the rest of the manual**:
+Use this as the **index to the rest of the manual** — the section numbers in the last column (§02,
+§07, §11…) point to other chapters, and the words in parentheses tell you what's there (§07 =
+cardiovascular and metabolic, §11 = skin/bone/organ detail, §02 = training, and so on):
 
 @@FIG:17-organ-systems-map@@
 
@@ -561,3 +558,18 @@ The body coordinates itself two ways, fast and slow:
 > exists so that every lever in the manual can be placed on a real chain, in a real system, holding a
 > real variable — because a recommendation you can't trace to a mechanism is a recommendation you
 > can't trust.
+
+---
+
+## Sources & notes
+
+[^omnigenic]: Boyle, Li & Pritchard — "An Expanded View of Complex Traits: From Polygenic to Omnigenic." Cell 2017. doi:10.1016/j.cell.2017.05.038. PMID 28622505.
+[^apoe-risk]: Corder et al. — Science 1993. doi:10.1126/science.8346443. Meta-analysis: Farrer et al. — JAMA 1997. PMID 9343467.
+[^hfe-penetrance]: Allen et al. (HealthIron cohort) — NEJM 2008. doi:10.1056/NEJMoa073286. PMID 18199861.
+[^cpic-framework]: Relling & Klein (CPIC framework) — Clin Pharmacol Ther 2011. doi:10.1038/clpt.2011.34.
+[^cpic-clopidogrel]: CPIC clopidogrel guideline, Lee et al. — 2022. doi:10.1002/cpt.2526.
+[^acmg-sf]: ACMG SF v3.2, Miller et al. — Genet Med 2023. doi:10.1016/j.gim.2023.100866. PMID 37347242.
+[^mthfr-acmg]: ACMG practice guideline "Lack of evidence for MTHFR polymorphism testing," Hickey et al. — Genet Med 2013. doi:10.1038/gim.2012.165. PMID 23288205.
+[^prs-ancestry]: Martin et al. — Nat Genet 2019. doi:10.1038/s41588-019-0379-x. Mostafavi et al. — eLife 2020. doi:10.7554/eLife.48376.
+[^dietfits]: DIETFITS, Gardner et al. — JAMA 2018. doi:10.1001/jama.2018.0245. PMID 29466592.
+[^fto-weightloss]: Livingstone et al. — BMJ 2016. doi:10.1136/bmj.i4707. PMID 27650503.

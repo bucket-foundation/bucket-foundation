@@ -1,21 +1,44 @@
 # 45 — Sports, Play & Recreational Activity
 
-> **Manual section, v1.0 — 2026-06-29.** Companion graded claims in `02-domains/sports-play-claims.json`.
-> This section maps the **applied, playful layer** of movement — the actual *games* humans play — and grades
-> what each one does for lifespan, healthspan, the brain, and the social self. It is the sibling of
-> `02-training.md` (which derives the underlying **capacities**: aerobic base, strength, power, mobility) and of
-> the exercise-modalities material: read *those* for "how to train a capacity," read **this** for "which sport,
-> who is it for, what does the cohort data actually show, and what will it cost your joints."
+Running burns more calories per hour than doubles tennis. Yet across a large Danish cohort followed for 25 years,
+the tennis players outlived the sedentary by nearly a decade — roughly **triple** the gain of the runners.
+Calories are clearly not the explanatory variable. The sports that pile on the most years are the ones that are
+**social, skillful, and intermittently intense** — which means *what you play, and with whom*, is itself a dose.
+This chapter grades each game — the actual games humans play — for what it does to lifespan, healthspan, the
+brain, and the social self.
 
-The reason this chapter exists is that the longevity/fitness world has a blind spot. It optimizes **inputs** —
-zone 2 minutes, VO₂max, sets to failure, grip strength — and treats sport as a quaint delivery vehicle for those
-inputs. But the hardest, most replicated finding in the leisure-activity literature is that the delivery vehicle
-**matters more than the calories**: the sports that pile on the most years are not the ones that burn the most
-energy. They are the ones that are **social, skillful, and intermittently intense**. A map that lists "exercise:
-150 min/week" and stops there has thrown away the single most actionable insight in the data — that *what you
-play, and with whom*, is itself a dose.
+The longevity/fitness world has a blind spot: it optimizes **inputs** — zone 2 minutes, VO₂max (an
+aerobic-capacity score), sets to failure, grip strength — and treats sport as a quaint delivery vehicle for those
+inputs. But the delivery vehicle matters more than the calories. A plan that lists "exercise: 150 min/week" and
+stops there has thrown away the single most actionable insight in the data.
 
-*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." One caveat is specific to this section: the benefit and the harm live in the same place — the collision, the cutting, the takedown that make a sport engaging are frequently the things that injure you, so the upside and the injury profile are graded in the same breath.*
+*Read `02-training.md` for how to train a capacity (aerobic base, strength, power, mobility); read this for which
+sport, for whom, what the cohort data shows, and what it costs your joints. Not medical advice. Graded per the
+manual's evidence tiers (`cohort` = observational, `rct` = the strongest tier); the honesty rules — predictor ≠
+lever, cohort ≠ RCT, something beats nothing — are set out in "Start Here." One caveat is specific here: the
+benefit and the harm often live in the same place — the collision, the cut, the takedown that make a sport
+engaging are frequently the things that injure you, so upside and injury are graded in the same breath.*
+
+---
+
+## Start here: the three that matter most
+
+If you skim the catalog below, bank these first:
+
+1. **A racquet sport — tennis, badminton, table tennis, or pickleball.** Tops both major cohorts. It bundles the
+   four things that track longevity — social contact, skill/anticipation, burst-and-recover intensity, and
+   lifelong playability — into one activity. Table tennis and pickleball are the lowest-barrier on-ramps; tennis
+   has the strongest raw signal.
+2. **A team or partner game you'll actually show up for — soccer, basketball, volleyball, a climbing gym, a dance
+   class.** The team is waiting, so you go. Recreational soccer is the one with real RCT-grade health data behind
+   it.
+3. **One thing you can still do at 75 — swimming, tai chi, golf (walked), dance.** Scalable, low-collision,
+   social: the profile that stays with you for decades.
+
+The meta-rule under all three: **start from what you'll keep doing and who you'll do it with**, not from a VO₂max
+spreadsheet. A mediocre sport you keep beats an optimal program you quit.
+
+@@FIG:Z01-sport-matcher@@
 
 ---
 
@@ -24,7 +47,9 @@ play, and with whom*, is itself a dose.
 Everything in this chapter orbits one dataset. The **Copenhagen City Heart Study (CCHS)** followed **8,577 adults
 for up to 25 years** and asked, with full multivariable adjustment, a question almost nobody else has asked at
 this scale: *do different sports buy different amounts of life?* The answer (Schnohr et al., *Mayo Clinic
-Proceedings* 2018, `10.1016/j.mayocp.2018.06.025`) was a surprise that has shaped the entire conversation since.
+Proceedings* 2018)[^cchs-schnohr] was a surprise that has shaped the entire conversation since.
+
+[^cchs-schnohr]: Schnohr P, O'Keefe JH, Holtermann A, Lavie CJ, et al. — *Mayo Clin Proc* 2018. doi:10.1016/j.mayocp.2018.06.025. The Copenhagen City Heart Study spine. claim: sports-le-gain (cohort).
 
 **Multivariable-adjusted life-expectancy gain vs. the sedentary group:**
 
@@ -58,14 +83,16 @@ the largest survival differences, in a pattern that calories alone cannot explai
 finding the authors flag as needing confirmation."* That is still one of the most interesting findings in the
 movement literature, and it points training in a direction the calorie model misses entirely.
 
-**The corroborating cohort (so it isn't one study):** Oja et al. (*Br J Sports Med* 2017,
-`10.1136/bjsports-2016-096822`), pooling **80,306 British adults**, found **racquet sports** associated with the
+**The corroborating cohort (so it isn't one study):** Oja et al. (*Br J Sports Med* 2017),[^oja] pooling
+**80,306 British adults**, found **racquet sports** associated with the
 largest all-cause mortality reduction of any discipline tested (**HR 0.53**, ~47% lower) and the largest CVD
 mortality reduction (**HR 0.44**), with **swimming** second (HR 0.72 all-cause, 0.59 CVD) and aerobics third.
 Two independent national cohorts, two different countries, and racquet sports top both. That convergence is why
 "why do racquet sports keep winning?" is the organizing question of §3 — and why the answer almost certainly is
 **not** "racquets are aerobically special" but "racquets bundle social + skill + intermittent-intensity into one
 activity."
+
+[^oja]: Oja P, Kelly P, Pedisic Z, et al. — *Br J Sports Med* 2017. doi:10.1136/bjsports-2016-096822. 80,306 British adults; racquet sports HR 0.53 all-cause, swimming HR 0.72. claim: racquet-mortality-oja (cohort).
 
 @@FIG:L02-sport-hr@@
 
@@ -84,8 +111,9 @@ For each sport below we score five things. This is the lens; the table in §1 is
    definitions: aerobic base, anaerobic/HIIT, strength, power, agility, mobility, balance, bone loading).
 2. **Longevity / health evidence** — the cohort signal, graded by tier. Mostly `cohort`; a few sports (soccer,
    bouldering) now have small `rct`-tier intervention data.
-3. **Cognitive / skill / social benefits** — motor learning, dual-task load, and the **Tier-A psychosocial
-   lever** (social connection ≈ smoking-cessation effect size; cross-ref `02-domains/M-psychosocial-determinants.md`).
+3. **Cognitive / skill / social benefits** — motor learning, dual-task load, and **the strongest-evidence lever
+   in the book — social connection** (its effect on survival is benchmarked to quitting smoking; cross-ref
+   `02-domains/M-psychosocial-determinants.md`).
 4. **Injury profile** — acute vs overuse, and the honest CTE/head-trauma flag for contact sports
    (cross-ref `21-pain-injury-rehab.md` and `24-disease-neuro-rheum.md` §CTE).
 5. **Age-appropriateness & barrier-to-entry** — when you can start, how late you can play, and what it costs to
@@ -124,16 +152,18 @@ to.** That bundle is the leading explanation for the racquet edge.
   longevity claim `mechanistic`/extrapolated, not `cohort`.
 - **Cognitive/skill/social:** this is pickleball's real superpower — it is **explicitly, structurally social**
   (doubles by default, low skill floor, easy to start mid-life, strong community/club culture). For the
-  previously-sedentary older adult it may be the single best on-ramp to the Tier-A psychosocial lever there is.
+  previously-sedentary older adult it may be the single best on-ramp to the social-connection lever there is.
 - **Injury profile — the honest uptick:** pickleball's explosion (especially among 50–75-year-olds) has produced
   a **measurable surge in injuries** presenting to clinics and EDs: lower-extremity strains and tears (calf,
   Achilles, hamstring), falls with wrist/hip fractures in older players, and a striking signal of **eye injuries**
-  — the ball and paddle at close range cause real ocular trauma (Lacher et al., *JAMA Ophthalmol* 2025,
-  `10.1001/jamaophthalmol.2025.3577`; multiple 2025–2026 lower-extremity and ocular injury series). The honest
+  — the ball and paddle at close range cause real ocular trauma (Lacher et al., *JAMA Ophthalmol* 2025;[^lacher]
+  multiple 2025–2026 lower-extremity and ocular injury series). The honest
   framing: the injury *count* is rising largely because **participation is exploding**, often in deconditioned
   older bodies new to lateral cutting — not because pickleball is uniquely dangerous. Mitigation: eyewear, a
   proper warm-up, build a base before playing hard, and respect that a 65-year-old's first lateral lunge in 30
   years is a calf-tear waiting to happen (cross-ref `21-pain-injury-rehab.md`).
+
+[^lacher]: Lacher CR, Koc I, Tsui JC — *JAMA Ophthalmol* 2025. doi:10.1001/jamaophthalmol.2025.3577. Pickleball-related ocular injuries. claim: pickleball-injury-uptick (cohort/series).
 - **Age & barrier:** **lowest barrier of any sport in this chapter** — cheap paddle, ubiquitous courts, gentle
   skill floor, immediately social. This is its case for being the most *practically valuable* sport for the
   general aging population, almost independent of its (unproven) longevity point estimate.
@@ -168,7 +198,7 @@ to.** That bundle is the leading explanation for the racquet edge.
   coordination** demand; very low impact and low injury. The "brain sport" of the racquet family.
 - **Longevity/health evidence:** the standout signal is **neurological, not mortality**: table tennis is being
   studied as therapy for **Parkinson's disease**, where a single-center pilot (Inoue et al., *Clin Park Relat
-  Disord* 2021, `10.1016/j.prdoa.2020.100086`) reported improvements in motor symptoms (speech, handwriting,
+  Disord* 2021)[^inoue] reported improvements in motor symptoms (speech, handwriting,
   gait, balance) after a 6-month program, with subsequent reviews and small trials echoing the signal (Khalid &
   Khalid, 2025). Tier: small `rct`/pilot — **promising, not established**; plausible mechanism is the combined
   aerobic + motor-learning + dual-task + social stimulus on a neurodegenerating brain (cross-ref
@@ -177,15 +207,17 @@ to.** That bundle is the leading explanation for the racquet edge.
   decoding, and motor adaptation, all social. Excellent for cognitive engagement at any fitness level.
 - **Injury profile:** **the lowest of any sport in this chapter** — minimal impact, minimal collision; the
   occasional shoulder/wrist overuse or a slip. This is why it is *uniquely* age-friendly.
+
+[^inoue]: Inoue K, et al. — *Clin Park Relat Disord* 2021. doi:10.1016/j.prdoa.2020.100086. Table tennis for Parkinson's disease. claim: table-tennis-parkinsons (rct/pilot).
 - **Age & barrier:** **lowest physical barrier alongside pickleball** — playable seated, into very old age, by
   the frail and the post-injury. A near-ideal sport for cognitive + social maintenance when the body can't run.
 
 ### Why racquet sports keep topping the longevity cohorts
 Not because they are aerobically magical — running and cycling deliver more raw aerobic work. The leading
 explanation, consistent across CCHS and Oja, is that racquet sports **bundle four longevity-relevant dimensions
-into one activity**: (1) **intermittent high intensity** (rally/recover ≈ natural HIIT, a pattern increasingly
-linked to cardiometabolic benefit); (2) **continuous motor learning and anticipation** (a cognitive load running
-lacks); (3) **a partner or opponent** — the Tier-A psychosocial lever, delivered automatically; and (4)
+into one activity**: (1) **intermittent high intensity** (rally/recover ≈ natural HIIT — high-intensity interval
+training, a pattern increasingly linked to cardiometabolic benefit); (2) **continuous motor learning and anticipation** (a cognitive load running
+lacks); (3) **a partner or opponent** — the social-connection lever, delivered automatically; and (4)
 **lifelong playability** at scalable intensity. No single dimension is unique to racquets; the *combination*, and
 the **adherence** it produces (it's fun, it's social, you book the court with a friend so you actually show up),
 is the most parsimonious account of why they win. The honest version: racquet sports are the most efficient
@@ -198,7 +230,7 @@ known **packaging** of the things that matter — and packaging, via adherence, 
 ## 4. Team & field sports — the social-HIIT engine
 
 Shared signature: **intermittent high-intensity** (sprint–jog–sprint), **multi-directional bone-loading**
-(cuts, jumps, landings — osteogenic in a way steady cardio isn't), and an **obligate team** — you can't play
+(cuts, jumps, landings — osteogenic, i.e. bone-building, in a way steady cardio isn't), and an **obligate team** — you can't play
 without other people, which welds the psychosocial lever directly onto the exercise.
 
 ### 4.1 Soccer (football) — the strongest team-sport longevity data
@@ -263,7 +295,8 @@ without other people, which welds the psychosocial lever directly onto the exerc
 
 This family splits cleanly on one axis: **does it involve repetitive blows to the head?** Grappling (BJJ,
 wrestling, judo) largely does not; striking (boxing, kickboxing, MMA) does. That single fact dominates the
-risk grading, because of what we know about repetitive head impacts and CTE.
+risk grading, because of what we know about repetitive head impacts and CTE (chronic traumatic encephalopathy —
+the progressive brain degeneration that follows accumulated blows to the head).
 
 @@FIG:F08-head-trauma@@
 
@@ -278,8 +311,8 @@ risk grading, because of what we know about repetitive head impacts and CTE.
   for mood and stress. Tier: `cross-sectional`/`cohort`-lite and `mechanistic` — **promising on mental health,
   unproven on lifespan**. Don't oversell it.
 - **Cognitive/skill/social:** very high — BJJ is explicitly a **physical chess** (continuous real-time
-  problem-solving against a resisting opponent), with a strong, almost familial **gym community** (the Tier-A
-  psychosocial lever delivered through a tight subculture). The cognitive engagement + social belonging + mastery
+  problem-solving against a resisting opponent), with a strong, almost familial **gym community** (the
+  social-connection lever delivered through a tight subculture). The cognitive engagement + social belonging + mastery
   arc is the most-cited reason practitioners describe it as life-changing.
 - **Injury profile — honest:** real but mostly **non-catastrophic and non-cranial** — joint locks and the
   associated finger/elbow/shoulder/knee injuries, skin infections (ringworm, staph) from mat contact, neck and
@@ -339,7 +372,7 @@ sessions.
   and self-selection (golf is wealthy and healthy-skewed), but the **walking + outdoor + social + lifelong**
   package is mechanistically coherent. Grade `cohort`, heavy healthy-user caveat.
 - **Cognitive/skill/social:** moderate skill/focus load; **strong social and outdoor/nature dimension** (4+
-  hours with companions — a meaningful Tier-A dose), and notably **age-friendly stress profile**.
+  hours with companions — a meaningful dose of the social lever), and notably **age-friendly stress profile**.
 - **Injury profile:** low-impact but real overuse — golfer's elbow, low-back pain (the rotational load),
   wrist/shoulder. No acute collision or head risk.
 - **Age & barrier:** **one of the most lifelong-playable sports** (into the 80s–90s), but a **high financial/time
@@ -351,7 +384,7 @@ sessions.
   aerobic/endurance element.
 - **Longevity/health evidence:** the standout is **mental health**: **bouldering psychotherapy** for depression
   has a growing trial base — controlled studies and a 2025 systematic review (Larsson et al., *BMC Psychiatry*
-  2025, `10.1186/s12888-025-07292-3`; the German "bouldering psychotherapy" RCT program) report **clinically
+  2025;[^larsson] the German "bouldering psychotherapy" RCT program) report **clinically
   meaningful reductions in depressive symptoms**, plausibly via the fusion of exercise, **present-moment focus
   (forced mindfulness — you can't ruminate mid-crux)**, mastery, and the climbing-gym **community**. Tier: small
   `rct` + systematic review — among the better-evidenced mental-health sports here. No mortality cohort.
@@ -364,6 +397,8 @@ sessions.
 - **Age & barrier:** moderate and **falling fast** — indoor gyms have made it one of the most accessible new
   sports; scalable intensity makes it viable across a wide age range (kids to 60s+), though finger tendons need
   patient progression.
+
+[^larsson]: Larsson R, et al. — *BMC Psychiatry* 2025. doi:10.1186/s12888-025-07292-3. Systematic review of climbing/bouldering as treatment for depression. claim: bouldering-depression (rct + systematic review).
 
 ### 6.3 Skiing & snowboarding
 - **Fitness profile:** lower-body strength-endurance, balance, core, and (touring/cross-country) a large aerobic
@@ -437,8 +472,8 @@ on four axes the gym usually neglects:
    *social-obligatory* ("the team is waiting"), and *goal-structured* (the match, the race, the belt) — three of
    the strongest known adherence levers (cross-ref `29-behavior-change.md`). A mediocre sport you keep beats an
    optimal program you quit. This alone may explain most of the cohort gaps.
-2. **Social connection — the Tier-A lever.** This is the corpus's single largest, most-replicated mortality
-   finding: strong social relationships raise survival odds ~50% (Holt-Lunstad meta, n≈308k), an effect
+2. **Social connection — the strongest-evidence lever.** This is the corpus's single largest, most-replicated
+   mortality finding: strong social relationships raise survival odds ~50% (Holt-Lunstad meta, n≈308k), an effect
    benchmarked as **comparable to quitting smoking** (cross-ref `02-domains/M-psychosocial-determinants.md`).
    Sport **delivers this lever as a byproduct of the activity** — you don't have to schedule "friendship"
    separately; the doubles match, the team, the climbing gym, the dance class *are* the social dose. This is the

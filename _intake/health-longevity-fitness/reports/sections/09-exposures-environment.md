@@ -1,22 +1,23 @@
 # 09 — Modifiable Exposures & Environment
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/R-exposures-claims.json`.
-> Fills a real gap in the manual: the behavioral and environmental **exposures** that move mortality but
-> aren't sold as "biohacks." No supplement, no protocol, no gadget — just the things you breathe, drink,
-> smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get
-> the least airtime because nobody monetizes "don't smoke" or "filter your air."
-
-*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+The highest-leverage longevity moves are not in a supplement bottle. They're not smoking, clean air, sane drinking, clean water, and sensible sun — the things you breathe, drink, smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get the least airtime because nobody monetizes "don't smoke" or "filter your air."
 
 **The one-line verdict up front:** the exposures with the biggest, best-established mortality effects are, in
 order, **tobacco** (catastrophic, causal, ~10 years of life), **air pollution** (a top-10 *global* killer, causal
-for CVD), and **alcohol** (smaller, genuinely contested, and *not* the health tonic the old J-curve implied).
+for CVD), and **alcohol** (smaller, contested, and *not* the health tonic the old J-curve implied).
 Everything after that — microplastics, PFAS, BPA, sun, heat/cold — ranges from "regulatory-grade real" to
 "emerging and over-hyped," and the honest move is to *tier* them rather than lump them as "toxins."
+
+_Not medical advice. This chapter covers behavioral and environmental exposures; drugs and supplements live in §03 and §10. Three honesty rules run underneath it — predictor ≠ lever (something that forecasts risk isn't automatically something that, changed, lowers it), cohort ≠ RCT, and something beats nothing — all defined up front in "Start Here."_
 
 ---
 
 ## 1. Alcohol — the J-curve is (mostly) dead
+
+**Bottom line for a drinker:** there's no health *benefit* here to chase — the old "a glass of wine is good for
+you" story is mostly a statistical artifact. For cancer, less is better all the way to zero. For everything else,
+up to about one drink a day in older adults is close to neutral, and more is steadily worse; the young have the
+most to lose. (The evidence walk-through is below; the practical table is §1.5.)
 
 This is the central modern debate in lifestyle epidemiology, and it is worth getting exactly right because the
 popular understanding is a decade behind the evidence.
@@ -25,8 +26,8 @@ popular understanding is a decade behind the evidence.
 
 For ~30 years the dominant finding was a **J-shaped** (or U-shaped) curve: light-to-moderate drinkers had
 *lower* all-cause and cardiovascular mortality than both abstainers and heavy drinkers. The canonical synthesis
-is **Ronksley 2011** (BMJ meta-analysis, `10.1136/bmj.d671`): moderate drinking associated with ~25% lower CVD
-mortality. This is where "a glass of red wine is good for your heart" comes from. The proposed mechanism was
+is **Ronksley 2011** (BMJ meta-analysis): moderate drinking associated with ~25% lower CVD
+mortality.[^ronksley-cvd] This is where "a glass of red wine is good for your heart" comes from. The proposed mechanism was
 real-ish — ethanol raises HDL and lowers fibrinogen — and so the protective signal was taken at face value.
 
 **Why it's now believed to be largely an artifact:**
@@ -46,21 +47,24 @@ real-ish — ethanol raises HDL and lowers fibrinogen — and so the protective 
 
 Three lines of evidence dismantle the protective claim:
 
-- **Mendelian randomization (Biddinger 2022, JAMA Netw Open, `10.1001/jamanetworkopen.2022.3849`).** Using
-  genetic variants that proxy alcohol intake in the UK Biobank (~370k people), the relationship between alcohol
-  and cardiovascular disease is **monotonic and steep**, not J-shaped. The light-drinking "benefit" seen in
-  observational data largely reflects confounding: light drinkers share favorable lifestyle traits. Genetically
-  predicted higher intake raised CVD risk substantially, with risk accelerating at higher intakes. MR is the
-  closest thing to a randomized design here because genotype is assigned at conception, breaking reverse
-  causation. **Tier: MR (genetic-instrument; treated as quasi-experimental, above cohort, below RCT).**
-- **Bias-corrected meta-analysis (Zhao 2023, JAMA Netw Open, `10.1001/jamanetworkopen.2023.6185`).** A
+- **Mendelian randomization (Biddinger 2022).** Because you inherit your genes at random at conception, comparing
+  people by their alcohol-related gene variants mimics a randomized trial — that's *Mendelian randomization* (MR),
+  and it sidesteps the lifestyle confounding that wrecks ordinary drinking studies. Using genetic variants that
+  proxy alcohol intake in the UK Biobank (~370k people), the alcohol–cardiovascular-disease relationship is
+  **monotonic and steep** (a straight-line dose-response — more drinking, more risk, with no protective dip),
+  not J-shaped.[^biddinger-mr] The light-drinking "benefit" seen in observational data largely reflects confounding:
+  light drinkers share favorable lifestyle traits. Genetically predicted higher intake raised CVD risk
+  substantially, with risk accelerating at higher intakes. MR is the closest thing to a randomized design here
+  because genotype is assigned at conception, breaking reverse causation. **Tier: MR (genetic-instrument; treated
+  as quasi-experimental, above cohort, below RCT).**
+- **Bias-corrected meta-analysis (Zhao 2023).** A
   systematic review of **107 cohort studies / ~4.8M participants**: once studies correctly handle the
   abstainer-reference and occasional-drinker biases, the apparent mortality benefit of low-volume drinking
-  **disappears** (no significant risk reduction). Risk rises clearly at higher intakes, and the rise is steeper
+  **disappears** (no significant risk reduction).[^zhao-metabias] Risk rises clearly at higher intakes, and the rise is steeper
   in women.
-- **Threshold analysis (Wood 2018, Lancet, `10.1016/S0140-6736(18)30134-X`).** 599,912 current drinkers across
+- **Threshold analysis (Wood 2018).** 599,912 current drinkers across
   83 studies: lowest all-cause mortality risk sits at **~100 g of pure alcohol per week (≈5–6 standard
-  drinks)**, and above that mortality rises roughly **monotonically**. Note the *direction-specific* nuance:
+  drinks)**, and above that mortality rises roughly **monotonically**.[^wood-threshold] Note the *direction-specific* nuance:
   alcohol lowered non-fatal myocardial infarction risk but **raised** stroke, fatal aortic aneurysm, heart
   failure, and fatal hypertensive disease — so even the "cardioprotective" piece is a trade between conditions,
   not a free lunch.
@@ -68,16 +72,16 @@ Three lines of evidence dismantle the protective claim:
 ### 1.3 Cancer: there is no safe level
 
 For **cancer**, the curve has no protective dip at all. Ethanol and its metabolite **acetaldehyde** (a Group 1
-IARC carcinogen) are directly genotoxic; risk for breast, colorectal, liver, esophageal, and head-and-neck
-cancers rises essentially **from the first drink**, with no threshold. The **GBD 2016 Alcohol Collaborators
-(Griswold 2018, Lancet, `10.1016/S0140-6736(18)31310-2`)** concluded, across 195 countries, that the level of
-consumption that **minimizes total health loss is zero** — the small CV offset is overwhelmed by cancer and
+IARC carcinogen — the top-confidence "known human carcinogen" tier) are directly genotoxic; risk for breast,
+colorectal, liver, esophageal, and head-and-neck cancers rises essentially **from the first drink**, with no
+threshold. The **GBD 2016 Alcohol Collaborators (Griswold 2018)** concluded, across 195 countries, that the level of
+consumption that **minimizes total health loss is zero**[^griswold-gbd2016] — the small CV offset is overwhelmed by cancer and
 injury once you sum all outcomes.
 
 ### 1.4 The honest nuance (GBD 2022) — age matters
 
-The follow-up **GBD 2020 Alcohol Collaborators (Bryazka 2022, Lancet, `10.1016/S0140-6736(22)00847-9`)** added a
-genuine wrinkle: the **theoretical minimum-risk exposure level is age-dependent.** For younger adults
+The follow-up **GBD 2020 Alcohol Collaborators (Bryazka 2022)** added a
+real wrinkle: the **theoretical minimum-risk exposure level is age-dependent.**[^bryazka-gbd2020] For younger adults
 (roughly <40), where injury/violence dominate alcohol harm, the safe level is effectively **zero**. For older
 adults, a *small* amount (around one standard drink/day) sits near the risk minimum because the modest CV/
 diabetes offset is more relevant at ages where those diseases dominate. This is not a green light — it's a
@@ -93,10 +97,10 @@ closer to neutral than to beneficial.
 | **All-cause mortality** | Risk minimum ≈ ≤100 g/week; protective dip largely confounding | Up to ~1 drink/day in older adults ≈ near-neutral; more is monotonic harm. |
 | **Younger adults** | Safe level ≈ 0 (injury-dominated) | The young have the most to lose and the least to gain. |
 
-The conflict between the J-curve and the MR/GBD view is registered as a first-class object in
-`06-evidence/CONFLICTS.md` (`conflict-alcohol-jcurve`). Status: **partially-resolved** — the *protective claim*
+The conflict between the J-curve and the MR/GBD view is registered as a first-class object in the manual's
+conflict registry.[^conflict-alcohol] Status: **partially-resolved** — the *protective claim*
 is refuted by the strongest designs; the *exact safe threshold* and the *small CV offset in older adults* remain
-genuinely open.
+open.
 
 ---
 
@@ -107,13 +111,13 @@ in all of epidemiology. It is the benchmark against which every other exposure s
 
 ### 2.1 Combustible tobacco — the magnitude
 
-- **~10 years of life.** Both the 50-year British Doctors Study (**Doll 2004**, BMJ, `10.1136/bmj.38142.554479.AE`)
-  and the U.S. analysis (**Jha 2013**, NEJM, `10.1056/NEJMsa1211128`) converge: lifelong smokers lose **about a
+- **~10 years of life.** Both the 50-year British Doctors Study (**Doll 2004**)[^doll-british-doctors]
+  and the U.S. analysis (**Jha 2013**)[^jha-cessation] converge: lifelong smokers lose **about a
   decade** of life expectancy versus never-smokers.
-- **Risk magnitude.** In a mature low-prevalence epidemic (**Banks 2015**, BMC Medicine,
-  `10.1186/s12916-015-0281-z`), current smokers had roughly **3× the all-cause mortality** of never-smokers, and
-  **up to two-thirds of deaths in current smokers** were attributable to smoking. There is no other consumer
-  exposure with a hazard ratio remotely like this.
+- **Risk magnitude.** In a mature low-prevalence epidemic (**Banks 2015**),
+  current smokers had roughly **3× the all-cause mortality** of never-smokers, and
+  **up to two-thirds of deaths in current smokers** were attributable to smoking.[^banks-mortality] There is no other consumer
+  exposure with a hazard ratio (the rate-ratio between two groups) remotely like this.
 - **Quitting works, and timing is everything.** Jha 2013: quitting **before age 40 avoids ~90%** of the excess
   mortality from continued smoking. Doll 2004: cessation at ages 30/40/50/60 recovers roughly 10/9/6/3 years.
   This is one of the few places in the manual where the intervention is *proven* to reverse most of the damage.
@@ -128,9 +132,9 @@ This is where nuance is mandatory and both camps oversimplify.
 
 - **Less bad ≠ safe.** E-cigarettes deliver nicotine without combustion, eliminating the tar and most of the
   ~7,000 combustion products that drive smoking's cancer and CVD risk. For an *adult who already smokes*,
-  switching completely is very likely a large harm reduction. The Cochrane review (**Hartmann-Boyce 2021**,
-  `10.1002/14651858.CD010216.pub5`) finds e-cigarettes help smoking cessation with **moderate-certainty**
-  evidence — more effective than nicotine-replacement therapy. So as a *cessation tool for smokers*, the
+  switching completely is very likely a large harm reduction. The Cochrane review (**Hartmann-Boyce 2021**)
+  finds e-cigarettes help smoking cessation with **moderate-certainty**
+  evidence — more effective than nicotine-replacement therapy (NRT).[^hartmann-boyce-cochrane] So as a *cessation tool for smokers*, the
   evidence is real.
 - **But "harm reduction vs. cigarettes" is not "safe."** Vaping is not benign: aerosol contains carbonyls,
   fine particulates, and flavorant breakdown products; the long-term (decadal) outcome data simply don't exist
@@ -158,11 +162,12 @@ unmonetized, and one of the largest environmental risk factors on Earth.
 
 ### 3.1 The burden
 
-- **Top-tier global risk factor.** In the **GBD 2019 risk-factor analysis (Murray 2020, Lancet,
-  `10.1016/S0140-6736(20)30752-2`)**, particulate-matter air pollution (ambient PM2.5 + household) ranks among
-  the **leading global risk factors for death and DALYs**, on the order of millions of attributable deaths per
-  year — comparable in magnitude to high blood pressure and tobacco at the population level. The fossil-fuel
-  share alone is enormous (**Lelieveld 2023**, BMJ, `10.1136/bmj-2023-077784`).
+- **Top-tier global risk factor.** In the **GBD 2019 risk-factor analysis (Murray 2020)**,
+  particulate-matter air pollution (ambient PM2.5 — soot and dust fine enough to breathe deep into the lungs —
+  plus household smoke) ranks among the **leading global risk factors for death and DALYs** (disability-adjusted
+  life years — years of healthy life lost), on the order of millions of attributable deaths per
+  year — comparable in magnitude to high blood pressure and tobacco at the population level.[^murray-gbd2019] The fossil-fuel
+  share alone is enormous (**Lelieveld 2023**).[^lelieveld-fossil]
 - **PM2.5 is the actor.** Fine particulate matter <2.5 µm penetrates deep into the lung and crosses into
   circulation, driving systemic inflammation, oxidative stress, endothelial dysfunction, and atherosclerosis.
 
@@ -170,14 +175,14 @@ unmonetized, and one of the largest environmental risk factors on Earth.
 
 ### 3.2 What it causes
 
-- **Cardiovascular (causal).** The American Heart Association scientific statement (**Brook 2010**, Circulation,
-  `10.1161/CIR.0b013e3181dbece1`) concluded that PM2.5 exposure is a **causal** contributor to cardiovascular
-  morbidity and mortality. The landmark cohort (**Pope 2002**, JAMA, `10.1001/jama.287.9.1132`) found each
+- **Cardiovascular (causal).** The American Heart Association scientific statement (**Brook 2010**)
+  concluded that PM2.5 exposure is a **causal** contributor to cardiovascular
+  morbidity and mortality.[^brook-aha] The landmark cohort (**Pope 2002**) found each
   **10 µg/m³ increase in long-term PM2.5 raised all-cause mortality ~4%, cardiopulmonary ~6%, and lung cancer
-  ~8%.** The dose-response extends below current regulatory limits — there is **no clear threshold of safety.**
+  ~8%.**[^pope-pm25] The dose-response extends below current regulatory limits — there is **no clear threshold of safety.**
 - **Dementia / cognition (emerging-to-strong).** PM2.5 is now a recognized modifiable risk factor for dementia
-  (**Peters 2019** systematic review, `10.3233/jad-180631`; included as a modifiable factor in the **Lancet
-  Commission on Dementia, Livingston 2020, `10.1016/S0140-6736(20)30367-6`**). Tier is cohort/association, but
+  (**Peters 2019** systematic review;[^peters-dementia] included as a modifiable factor in the **Lancet
+  Commission on Dementia, Livingston 2020**[^livingston-dementia]). Tier is cohort/association, but
   the consistency and biological plausibility are growing.
 - **All-cause mortality.** Follows from the above; PM2.5 shortens life mainly through cardiovascular and
   respiratory pathways.
@@ -189,7 +194,7 @@ Unlike most exposures, you can measurably lower your personal PM2.5 dose:
 | Lever | What to do | Evidence |
 |---|---|---|
 | **Indoor HEPA filtration** | Run a correctly-sized HEPA purifier in the room you sleep/work in. Portable purifiers reliably cut indoor PM2.5. | Intervention studies show real indoor-PM2.5 reduction; surrogate cardiovascular markers improve in small RCTs |
-| **AQI-aware behavior** | Check AQI; close windows and run filtration on bad-air / wildfire-smoke days; mask (N95) outdoors during smoke events | Behavioral; grounded in the dose-response — less exposure, less risk |
+| **AQI-aware behavior** | Check the AQI (air quality index); close windows and run filtration on bad-air / wildfire-smoke days; mask (N95) outdoors during smoke events | Behavioral; grounded in the dose-response — less exposure, less risk |
 | **Avoid high-traffic exercise** | Do not run/cycle along busy roads at rush hour — exertion multiplies inhaled dose. Move workouts to parks, off-peak, or indoors with filtration | Mechanistic + exposure-science; exertion raises minute ventilation 5–15× |
 | **Cooking/combustion at home** | Vent gas stoves; avoid indoor burning; range hood to outside | Household PM is a major indoor source |
 
@@ -199,6 +204,10 @@ the supplement-and-protocol discourse precisely because no one sells it.
 ---
 
 ## 4. Environmental Toxins — honest tiering (the part everyone overclaims)
+
+**The payoff first:** lead, PFAS, BPA, and microplastics differ wildly in how well-established their harms are,
+but they share one cheap lever — **filter your drinking water** (§4.5). Read the five tiers below to know which
+fears are regulatory-grade and which are hype; then act on the one filter that covers most of them.
 
 "Toxins" is where wellness marketing and genuine regulatory science blur. The honest move is to **tier by
 evidence**, not to lump. Below, established → precautionary → emerging.
@@ -211,10 +220,10 @@ Lead is the cautionary tale that should calibrate everyone's intuitions about "l
 
 - **There is no safe blood-lead level** for cognition in children — the dose-response is steepest at the *lowest*
   exposures.
-- **Cardiovascular mortality in adults.** **Lanphear 2018** (Lancet Public Health, `10.1016/S2468-2667(18)30025-2`)
+- **Cardiovascular mortality in adults.** **Lanphear 2018** (Lancet Public Health)
   estimated that **low-level lead exposure was associated with ~256,000 cardiovascular deaths/year in the U.S.** —
   a burden comparable to tobacco-attributable CVD, and *an order of magnitude larger than prior estimates*
-  because the harm extends to "normal" exposure levels. **Tier: cohort.**
+  because the harm extends to "normal" exposure levels.[^lanphear-lead] **Tier: cohort.**
 - **The legacy.** A century of leaded gasoline, paint, and pipes left a body burden in everyone born before the
   1980s phase-out; lead stored in bone re-mobilizes during pregnancy and aging. The leaded-gasoline phase-out is
   arguably one of the largest public-health wins in history — and the historical IQ/violence cost is a live area
@@ -225,10 +234,11 @@ Lead is the cautionary tale that should calibrate everyone's intuitions about "l
 "Forever chemicals" — per- and polyfluoroalkyl substances — are persistent, bioaccumulative, and near-universal
 in human serum.
 
-- **Evidence.** The authoritative review (**Fenton 2020**, Environ Toxicol Chem, `10.1002/etc.4890`) and the
-  large C8 occupational/community studies link PFAS (esp. PFOA/PFOS) to **elevated cholesterol, altered immune
+- **Evidence.** The authoritative review (**Fenton 2020**) and the
+  large C8 studies (C8 — the landmark investigation of Ohio-valley communities whose drinking water was
+  contaminated with PFOA) link PFAS (esp. PFOA/PFOS) to **elevated cholesterol, altered immune
   response (reduced vaccine antibody response), thyroid disruption, kidney and testicular cancer, and
-  pregnancy-induced hypertension.** This is *regulatory-grade* evidence — strong enough that the U.S. EPA set
+  pregnancy-induced hypertension.**[^fenton-pfas] This is *regulatory-grade* evidence — strong enough that the U.S. EPA set
   near-zero drinking-water advisory levels.
 - **Honest framing.** Most of the human evidence is **association/epidemiological**, not RCT (you can't randomize
   PFAS), and effect sizes for individuals are modest relative to the population-regulatory concern. There is **no
@@ -240,10 +250,9 @@ in human serum.
 - **What.** Bisphenol-A (plastics, can linings, receipts) and phthalates (flexible plastics, fragrances, PVC)
   are **endocrine-disrupting chemicals (EDCs)** — they interact with hormone receptors.
 - **Evidence.** Mechanistic and animal data are strong for endocrine disruption; human data link phthalate
-  exposure to cardiovascular and metabolic outcomes (**Mariana 2020**, `10.3390/jcdd7030026`) and the EU burden
-  analysis (**Trasande 2015**, JCEM, `10.1210/jc.2014-4324`) estimated substantial attributable disease cost. A
-  newer prospective analysis ties prenatal phthalate exposure to adverse birth outcomes (**Trasande 2024**,
-  Lancet Planet Health). **Tier: mechanistic + association; some cohort.** The individual effect size is uncertain;
+  exposure to cardiovascular and metabolic outcomes (**Mariana 2020**)[^mariana-phthalate] and the EU burden
+  analysis (**Trasande 2015**) estimated substantial attributable disease cost.[^trasande-eu] A
+  newer prospective analysis ties prenatal phthalate exposure to adverse birth outcomes (**Trasande 2024**).[^trasande-2024] **Tier: mechanistic + association; some cohort.** The individual effect size is uncertain;
   the precautionary case (especially in pregnancy and early childhood) is reasonable.
 - **Lever.** Reduce, don't panic: avoid microwaving food in plastic, prefer glass/stainless for hot/fatty foods,
   ventilate, choose fragrance-free where easy. Don't pay for "EDC detox."
@@ -252,8 +261,8 @@ in human serum.
 
 This is the one to be most disciplined about.
 
-- **What's real.** Microplastics and nanoplastics are now detectable in human **blood** (**Leslie 2022**,
-  Environ Int, `10.1016/j.envint.2022.107199`), placenta, lung, and other tissues. Ubiquity is established.
+- **What's real.** Microplastics and nanoplastics are now detectable in human **blood** (**Leslie 2022**),[^leslie-microplastics]
+  placenta, lung, and other tissues. Ubiquity is established.
 - **What's NOT established.** That this measurable *presence* causes measurable *harm* in humans. The evidence is
   overwhelmingly **mechanistic (cell/animal: inflammation, oxidative stress) and cross-sectional association.**
   A widely-cited 2024 study associated carotid-plaque microplastics with cardiovascular events — *hypothesis-
@@ -291,12 +300,12 @@ cancer there is no controversy — cumulative and intense intermittent UV both r
 Here's the uncomfortable cohort finding. The **Melanoma in Southern Sweden (MISS) cohort** followed ~29,000 women
 for 20 years:
 
-- **Lindqvist 2014** (J Intern Med, `10.1111/joim.12251`): **avoidance of sun exposure was a risk factor for
-  all-cause mortality** — sun-avoiders had roughly **2× the mortality** of the highest sun-exposure group.
-- **Lindqvist 2016** (J Intern Med, `10.1111/joim.12496`, competing-risk analysis): the mortality benefit of sun
+- **Lindqvist 2014**: **avoidance of sun exposure was a risk factor for
+  all-cause mortality** — sun-avoiders had roughly **2× the mortality** of the highest sun-exposure group.[^lindqvist-2014]
+- **Lindqvist 2016** (competing-risk analysis): the mortality benefit of sun
   exposure came mainly from **lower cardiovascular and non-cancer/non-CVD death**, and was striking enough that
   the authors framed it provocatively — **nonsmokers who avoided sun had a life expectancy similar to smokers in
-  the highest sun-exposure group**, i.e., sun avoidance carried a risk on the order of smoking.
+  the highest sun-exposure group**, i.e., sun avoidance carried a risk on the order of smoking.[^lindqvist-2016]
 
 **The honest caveats (this is cohort, not RCT, and confounding is severe):**
 
@@ -335,10 +344,10 @@ daylight.
 Ambient temperature is a large, under-appreciated environmental mortality factor — distinct from the *deliberate*
 sauna/cold-plunge protocols in Domain H (thermal). This is about the temperature you passively live in.
 
-- **Cold kills more than heat (at the population level).** The landmark multi-country study (**Gasparrini 2015**,
-  Lancet, `10.1016/S0140-6736(14)62114-0`) analyzed **384 locations across 13 countries**: **7.71% of all deaths
+- **Cold kills more than heat (at the population level).** The landmark multi-country study (**Gasparrini 2015**)
+  analyzed **384 locations across 13 countries**: **7.71% of all deaths
   were attributable to non-optimal ambient temperature**, and the overwhelming majority — **7.29% — was due to
-  cold**, versus only **0.42% from heat.** Moderate (not extreme) cold did most of the damage, through
+  cold**, versus only **0.42% from heat.**[^gasparrini-temp] Moderate (not extreme) cold did most of the damage, through
   cardiovascular and respiratory pathways. **Tier: cohort (multi-country, time-series).**
 
 @@FIG:L18-cold-heat@@
@@ -357,9 +366,9 @@ sauna/cold-plunge protocols in Domain H (thermal). This is about the temperature
 ## 7. Putting exposures in proportion
 
 A closing calibration, because the manual's supplement and protocol sections can make readers lose the plot on
-*magnitude*. The **Stringhini 2017** multicohort analysis (Lancet, `10.1016/S0140-6736(16)32380-7`, ~1.7M people)
+*magnitude*. The **Stringhini 2017** multicohort analysis (~1.7M people)
 quantified how much different risk factors shorten life — and **smoking and the socioeconomic/behavioral
-exposures dwarf most of what gets optimized in longevity culture.**
+exposures dwarf most of what gets optimized in longevity culture.**[^stringhini-socioeconomic]
 
 @@FIG:L13-exposures@@
 
@@ -400,22 +409,50 @@ they're underweighted.
 ## Go deeper — primary sources
 
 1. **Biddinger KJ et al. (2022).** "Association of Habitual Alcohol Intake With Risk of Cardiovascular Disease."
-   *JAMA Network Open.* `10.1001/jamanetworkopen.2022.3849`. — The Mendelian-randomization paper that breaks the
+   *JAMA Network Open.* — The Mendelian-randomization paper that breaks the
    alcohol J-curve; read this first on alcohol.
 2. **Bryazka D / GBD 2020 Alcohol Collaborators (2022).** "Population-level risks of alcohol consumption by amount,
-   geography, age, sex, and year." *The Lancet.* `10.1016/S0140-6736(22)00847-9`. — The "safe level depends on age"
+   geography, age, sex, and year." *The Lancet.* — The "safe level depends on age"
    nuance, from the Global Burden of Disease group.
 3. **Jha P et al. (2013).** "21st-Century Hazards of Smoking and Benefits of Cessation in the United States." *NEJM.*
-   `10.1056/NEJMsa1211128`. — The ~10-years-lost and "quit before 40 → avoid 90%" reference.
+   — The ~10-years-lost and "quit before 40 → avoid 90%" reference.
 4. **Pope CA III et al. (2002).** "Lung Cancer, Cardiopulmonary Mortality, and Long-term Exposure to Fine
-   Particulate Air Pollution." *JAMA.* `10.1001/jama.287.9.1132`. — The landmark PM2.5 mortality dose-response;
-   pair with **Brook 2010** (AHA causal statement, `10.1161/CIR.0b013e3181dbece1`).
+   Particulate Air Pollution." *JAMA.* — The landmark PM2.5 mortality dose-response;
+   pair with **Brook 2010** (AHA causal statement).
 5. **Lindqvist PG, Epstein E et al. (2016).** "Avoidance of sun exposure as a risk factor for major causes of
-   death." *J Intern Med.* `10.1111/joim.12496`. — The provocative MISS-cohort sun/mortality finding (read with its
-   confounding caveats; see also Lindqvist 2014, `10.1111/joim.12251`).
+   death." *J Intern Med.* — The provocative MISS-cohort sun/mortality finding (read with its
+   confounding caveats; see also Lindqvist 2014).
 6. **Gasparrini A et al. (2015).** "Mortality risk attributable to high and low ambient temperature: a multicountry
-   observational study." *The Lancet.* `10.1016/S0140-6736(14)62114-0`. — Cold >> heat at the population level
+   observational study." *The Lancet.* — Cold >> heat at the population level
    (7.71% of deaths attributable to non-optimal temperature).
 7. **Lanphear BP et al. (2018).** "Low-level lead exposure and mortality in US adults." *Lancet Public Health.*
-   `10.1016/S2468-2667(18)30025-2`. — Lead's still-large cardiovascular mortality burden; calibrates "low-dose"
-   intuitions. (For PFAS, **Fenton 2020**, `10.1002/etc.4890`.)
+   — Lead's still-large cardiovascular mortality burden; calibrates "low-dose"
+   intuitions. (For PFAS, **Fenton 2020**.)
+
+[^ronksley-cvd]: Ronksley et al., BMJ 2011. doi:10.1136/bmj.d671
+[^biddinger-mr]: Biddinger et al., JAMA Network Open 2022. doi:10.1001/jamanetworkopen.2022.3849 — tier: MR (genetic-instrument)
+[^zhao-metabias]: Zhao et al., JAMA Network Open 2023. doi:10.1001/jamanetworkopen.2023.6185 — 107 cohorts / ~4.8M participants
+[^wood-threshold]: Wood et al., The Lancet 2018. doi:10.1016/S0140-6736(18)30134-X — 599,912 current drinkers across 83 studies
+[^griswold-gbd2016]: Griswold et al. / GBD 2016 Alcohol Collaborators, The Lancet 2018. doi:10.1016/S0140-6736(18)31310-2
+[^bryazka-gbd2020]: Bryazka et al. / GBD 2020 Alcohol Collaborators, The Lancet 2022. doi:10.1016/S0140-6736(22)00847-9
+[^conflict-alcohol]: Manual conflict registry: 06-evidence/CONFLICTS.md, conflict-alcohol-jcurve. Companion graded claims in 02-domains/R-exposures-claims.json.
+[^doll-british-doctors]: Doll et al., BMJ 2004 (50-year British Doctors Study). doi:10.1136/bmj.38142.554479.AE
+[^jha-cessation]: Jha et al., NEJM 2013. doi:10.1056/NEJMsa1211128
+[^banks-mortality]: Banks et al., BMC Medicine 2015. doi:10.1186/s12916-015-0281-z
+[^hartmann-boyce-cochrane]: Hartmann-Boyce et al., Cochrane Review 2021. doi:10.1002/14651858.CD010216.pub5 — moderate-certainty
+[^murray-gbd2019]: Murray et al. / GBD 2019 risk-factor analysis, The Lancet 2020. doi:10.1016/S0140-6736(20)30752-2
+[^lelieveld-fossil]: Lelieveld et al., BMJ 2023. doi:10.1136/bmj-2023-077784
+[^brook-aha]: Brook et al., Circulation (AHA scientific statement) 2010. doi:10.1161/CIR.0b013e3181dbece1 — causal
+[^pope-pm25]: Pope CA III et al., JAMA 2002. doi:10.1001/jama.287.9.1132
+[^peters-dementia]: Peters et al., systematic review 2019. doi:10.3233/jad-180631
+[^livingston-dementia]: Livingston et al. / Lancet Commission on Dementia, The Lancet 2020. doi:10.1016/S0140-6736(20)30367-6
+[^lanphear-lead]: Lanphear et al., Lancet Public Health 2018. doi:10.1016/S2468-2667(18)30025-2 — tier: cohort
+[^fenton-pfas]: Fenton et al., Environ Toxicol Chem 2020. doi:10.1002/etc.4890
+[^mariana-phthalate]: Mariana et al., J Cardiovasc Dev Dis 2020. doi:10.3390/jcdd7030026
+[^trasande-eu]: Trasande et al., JCEM 2015. doi:10.1210/jc.2014-4324 — EU attributable-burden analysis
+[^trasande-2024]: Trasande et al., Lancet Planetary Health 2024. Prenatal phthalate exposure → adverse birth outcomes.
+[^leslie-microplastics]: Leslie et al., Environ Int 2022. doi:10.1016/j.envint.2022.107199
+[^lindqvist-2014]: Lindqvist PG et al., J Intern Med 2014 (MISS cohort). doi:10.1111/joim.12251
+[^lindqvist-2016]: Lindqvist PG, Epstein E et al., J Intern Med 2016 (competing-risk). doi:10.1111/joim.12496
+[^gasparrini-temp]: Gasparrini et al., The Lancet 2015. doi:10.1016/S0140-6736(14)62114-0 — tier: cohort (multi-country time-series)
+[^stringhini-socioeconomic]: Stringhini et al., The Lancet 2017. doi:10.1016/S0140-6736(16)32380-7 — ~1.7M people

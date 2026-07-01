@@ -1,13 +1,12 @@
 # 34 — Emergency, Acute Care & First Aid
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/emergency-claims.json`.
-> Every other section of this manual is about the long game — how to live well across decades. This one is
-> about the next ten minutes. A complete map of human health has to include **what kills acutely and what an
-> ordinary person can actually do about it.** Most premature deaths in the developed world are slow
-> (cardiometabolic disease, cancer — Sections 22, 25). But a meaningful fraction are **fast and reversible**:
-> a clot that stops a heart, a peanut that closes an airway, a bleed that empties a body, an opioid that
-> stops a breath. In those minutes the most decisive medical intervention on Earth is **not** a hospital — it
-> is whoever happens to be standing next to the person. This section is about being that person competently.
+Every other section of this manual is about the long game — how to live well across decades. This one is
+about the next ten minutes. A complete map of human health has to include **what kills acutely and what an
+ordinary person can actually do about it.** Most premature deaths in the developed world are slow
+(cardiometabolic disease, cancer — Sections 22, 25). But a meaningful fraction are **fast and reversible**:
+a clot that stops a heart, a peanut that closes an airway, a bleed that empties a body, an opioid that
+stops a breath. In those minutes the most decisive medical intervention on Earth is **not** a hospital — it
+is whoever happens to be standing next to the person. This section is about being that person competently.
 
 > ## ⚠️ READ THIS BEFORE ANYTHING ELSE — what this section is and is not
 >
@@ -32,13 +31,12 @@
 >    broadly protected. Fear of lawsuits is a poor reason to let someone die.
 
 **Cross-references (read alongside):** **heart attack** mechanism, atherosclerosis, and the long-game
-prevention live in `reports/sections/22-disease-cardiometabolic-renal.md §1.1`; **stroke** (the "time is
-brain" reperfusion revolution, thrombolysis/thrombectomy, FAST/BE-FAST) is owned by
-`reports/sections/24-disease-neuro-rheum.md §3`; **seizures/epilepsy** by `24 §4`; **sepsis** as a disease
-process and **anaphylaxis immunology** connect to `15-immune-system.md`; **heat stroke / hypothermia /
-cold-water** thermal physiology cross-links to `02-domains/H-thermal.md` and `H-claims.json`; **drowning &
-the breath-hold/shallow-water-blackout rule** to `02-domains/G-breath.md`; **opioid pharmacology** to
-`10-medical-pharmacology.md`; **advance directives / end-of-life** to `19-life-stages.md`.
+prevention live in §22 §1.1; **stroke** (the "time is brain" reperfusion revolution,
+thrombolysis/thrombectomy, FAST/BE-FAST) is owned by §24 §3; **seizures/epilepsy** by §24 §4; **sepsis** as
+a disease process and **anaphylaxis immunology** connect to §15; **heat stroke / hypothermia / cold-water**
+thermal physiology and **drowning & the breath-hold/shallow-water-blackout rule** cross-link to the
+thermal- and breath-physiology material; **opioid pharmacology** to §10; **advance directives /
+end-of-life** to §19.
 
 ---
 
@@ -86,7 +84,7 @@ replaces calling emergency services — every row assumes you have called or are
 
 ## 2. Cardiac arrest & the Chain of Survival — the single biggest lever a bystander holds
 
-**Cardiac arrest is not a heart attack.** A *heart attack* (myocardial infarction, `22 §1.1`) is a plumbing
+**Cardiac arrest is not a heart attack.** A *heart attack* (myocardial infarction, §22 §1.1) is a plumbing
 problem — a blocked coronary artery starving heart muscle; the person is usually awake and talking. A *cardiac
 arrest* is an electrical problem — the heart's pumping stops, the person **collapses, is unresponsive, and
 isn't breathing normally.** A heart attack can *cause* an arrest. The acute action is completely different:
@@ -109,9 +107,9 @@ the default** — and the evidence is unusually clean:
 
 - **The SOS-KANTO observational study (Lancet 2007)** and subsequent trials found compression-only bystander
   CPR was **at least as good as** conventional CPR-with-breaths for adult witnessed arrest — and far more
-  people are willing to do it (no mouth-to-mouth barrier). `cohort`/`rct`-supported.
+  people are willing to do it (no mouth-to-mouth barrier).[^sos-kanto]
 - **Bystander CPR roughly doubles to triples survival.** A nationwide Swedish study (**Hasselqvist-Ax et al.,
-  NEJM 2015**, `10.1056/NEJMoa1405796`) of ~30,000 arrests found
+  NEJM 2015**)[^hasselqvist] of ~30,000 arrests found
   30-day survival of **10.5% with bystander CPR vs 4.0% without** — and that early CPR was associated with
   survival *independent* of all later links. The intervention with the largest population effect is the one
   any untrained person can deliver.
@@ -136,7 +134,7 @@ survival by roughly 7–10%.** An **Automated External Defibrillator (AED)** is 
 turn it on, it *talks you through it*, sticks pads where the picture shows, and **it will not shock unless it
 detects a shockable rhythm** — you cannot accidentally hurt someone with it.
 
-- **The PAD Trial (Hallstrom et al., NEJM 2004, `10.1056/NEJMoa040566`)** showed that training community
+- **The PAD Trial (Hallstrom et al., NEJM 2004)**[^pad] showed that training community
   volunteers to use **public-access AEDs roughly doubled survivors** of OHCA versus CPR alone.
 - Practical rules: **send someone to get the AED while you start compressions** (don't stop CPR to go look);
   map the AEDs near where you live/work (many countries have apps/registries); pads go upper-right chest and
@@ -158,7 +156,7 @@ for, and **(b)** it sets honest expectations: bystanders who do excellent CPR on
 ### 3.1 Heart attack — including the atypical and female presentations
 
 The "Hollywood heart attack" (clutching the chest, dropping) is real but partial. The honest picture
-(cross-ref `22 §1.1`):
+(cross-ref §22 §1.1):
 
 - **Classic:** central chest **pressure / tightness / squeezing / heaviness** (often described as *not* sharp),
   lasting more than a few minutes or coming and going, often radiating to the **left arm, both arms, jaw,
@@ -172,7 +170,7 @@ The "Hollywood heart attack" (clutching the chest, dropping) is real but partial
   and **chew (don't swallow whole) 162–325 mg of aspirin** if available, conscious, not allergic, and not
   actively bleeding — chewing speeds antiplatelet action. Don't take a stranger's nitroglycerin.
 
-### 3.2 Stroke — "time is brain" (owned by `24 §3`)
+### 3.2 Stroke — "time is brain" (owned by §24 §3)
 
 A large-vessel stroke destroys on the order of **~1.9 million neurons per minute** (`24 §3`). Recognition is
 **BE-FAST** — **B**alance loss, **E**yes (sudden vision loss/double vision), **F**ace droop, **A**rm drift,
@@ -197,8 +195,7 @@ doom.** Airway swelling and circulatory collapse are what kill.
 **The one thing to know: epinephrine is the first-line, life-saving treatment, and the commonest fatal error
 is *delay*.** (Pumphrey's classic case series of fatal anaphylaxis found a median time to respiratory/cardiac
 arrest of minutes, with **delayed epinephrine** a recurring theme.) The 2020 Joint Task Force practice
-parameter (`10.1016/j.jaci.2020.01.017`) and the 2024 international consensus
-(`10.1016/j.jaci.2025.01.021`) are unambiguous: **epinephrine, intramuscular, into the outer mid-thigh, given
+parameter and the 2024 international consensus[^jtf-anaphylaxis] are unambiguous: **epinephrine, intramuscular, into the outer mid-thigh, given
 immediately.** It is extraordinarily safe in this setting; there is **no absolute contraindication** when
 anaphylaxis is suspected.
 
@@ -217,7 +214,7 @@ reaction can recur hours later. If they carry two auto-injectors, that's why.
 ### 3.4 Sepsis — the subtle one
 
 Sepsis is the body's **dysregulated, life-threatening response to an infection** — the immune reaction, not
-the microbe, becomes the threat (cross-ref `15`, `26`). It's a leading cause of death worldwide and it kills
+the microbe, becomes the threat (cross-ref §15, §26). It's a leading cause of death worldwide and it kills
 partly because it is **easy to miss**: it can masquerade as "a bad flu" until organs start failing. The signal
 is **an infection PLUS systemic derangement.** Lay-recognizable red flags (the UK "Sepsis Six" / "SEPSIS"
 public messaging):
@@ -231,8 +228,7 @@ public messaging):
 
 @@FIG:E4-sepsis@@
 
-The **Surviving Sepsis Campaign 2021 guidelines (Evans et al., Crit Care Med 2021, `10.1097/
-CCM.0000000000005337`)** anchor management on **early recognition and time-to-antibiotics**; the lay job is
+The **Surviving Sepsis Campaign 2021 guidelines (Evans et al., Crit Care Med 2021)**[^ssc] anchor management on **early recognition and time-to-antibiotics**; the lay job is
 to **escalate fast and say the word "sepsis"** to the dispatcher/triage nurse — it changes how quickly they're
 seen. Children: add **not feeding, repeated vomiting, a non-blanching rash** (a rash that doesn't fade under
 pressure — the "glass test" — is a meningococcal-sepsis emergency).
@@ -249,7 +245,7 @@ life-threatening extremity bleeding.
 - **If a limb is bleeding so fast it's life-threatening (spurting, pooling, won't stop):** apply a
   **tourniquet** high on the limb ("high and tight," 2–3 inches above the wound, not over a joint), **tighten
   until the bleeding stops** (it will hurt — that's expected), and **note the time.** **Kragh et al. (Ann
-  Surg 2009, `10.1097/SLA.0b013e31818842ba`)** showed in combat casualties that tourniquets applied **before**
+  Surg 2009)**[^kragh] showed in combat casualties that tourniquets applied **before**
   shock onset dramatically improved survival, with limb loss being rare and usually due to the injury, not the
   tourniquet. **A properly applied tourniquet saves lives; a loose one just hides the bleeding.** Do not
   remove it — that's the hospital's call.
@@ -285,7 +281,7 @@ and fingertips, gurgling/snoring.** Death comes from **respiratory depression** 
 - **Naloxone** is an opioid antagonist that reverses it within minutes. It's now widely available **over the
   counter as a nasal spray**, is **safe to give even if you're wrong** (it does nothing to a non-opioid
   cause), and is the textbook case for "carry it, the way you'd carry an EpiPen if you knew someone at risk."
-- **Walley et al. (BMJ 2013, `10.1136/bmj.f174`)** showed that **community Overdose Education & Naloxone
+- **Walley et al. (BMJ 2013)**[^walley] showed that **community Overdose Education & Naloxone
   Distribution (OEND)** — putting naloxone in the hands of laypeople — was associated with **significantly
   lower opioid-overdose death rates** at the population level. Supply-side reversal works.
 - **Act:** spray naloxone into one nostril → **call 911** → support breathing (rescue breaths / CPR as needed)
@@ -301,8 +297,8 @@ and fingertips, gurgling/snoring.** Death comes from **respiratory depression** 
 ## 4. First aid: evidence-based vs. myth
 
 A surprising amount of "common knowledge" first aid is **wrong, useless, or harmful.** The grading principle
-of this manual (`06-evidence/SCHEMA.md`) applies: a confident folk remedy is `anecdotal`-tier until a real
-source says otherwise.
+of this manual applies: a confident folk remedy is `anecdotal`-tier (a single story — the weakest evidence)
+until a real source says otherwise.
 
 ### 4.1 Burns
 
@@ -335,8 +331,8 @@ source says otherwise.
 ### 4.3 Sprains, strains & soft-tissue injury — RICE is retired
 
 The old **RICE** (Rest, Ice, Compression, Elevation) mnemonic has been **superseded** (cross-ref the rehab
-section `21-pain-injury-rehab.md`). The current sports-medicine framework is **PEACE & LOVE** (Dubois &
-Esculier, *Br J Sports Med* 2020, `10.1136/bjsports-2019-101253`): brief **P**rotection, **E**levation, avoid
+section §21). The current sports-medicine framework is **PEACE & LOVE** (Dubois &
+Esculier, *Br J Sports Med* 2020)[^peace-love] brief **P**rotection, **E**levation, avoid
 anti-inflammatory over-use, **C**ompression, **E**ducation — then, crucially, **L**oad, **O**ptimism,
 **V**ascularisation (movement), **E**xercise. The headline shift: **prolonged rest and aggressive icing are
 not the goal** — early, graded, optimistic loading is. (Acute first aid for the first day still uses
@@ -395,7 +391,7 @@ maintaining the airway wins over a theoretical spine concern if they're vomiting
 | **A swallowed tongue in seizures** | Anatomically impossible. **Nothing in the mouth** (§4.6). |
 | **You should drain water from a drowning victim's lungs** | No — start **rescue breaths and CPR**; "draining" wastes time and risks aspiration of stomach contents (§6.3). |
 | **Tourniquets always cost the limb** | Modern evidence: properly applied, they **save lives** and limb loss is rare (§3.5). |
-| **Hyperventilate / breath-hold to swim further underwater** | Dangerous — causes **shallow-water blackout** and silent drowning (cross-ref `G-breath.md`, §6.3). |
+| **Hyperventilate / breath-hold to swim further underwater** | Dangerous — causes **shallow-water blackout** and silent drowning (cross-ref §6.3). |
 
 ---
 
@@ -413,7 +409,7 @@ People die from under-triage (waiting out a stroke) and waste fortunes / clog th
 - **Severe uncontrolled bleeding**, or **major trauma** (high-speed, fall from height)
 - **Sudden severe abdominal pain**, **coughing/vomiting blood**, **black tarry stools**
 - **Unresponsiveness, a first or prolonged seizure, sudden confusion**
-- **Signs of sepsis** (§3.4), **stiff neck + fever + rash** (meningitis), **suicidal intent** (cross-ref `20`)
+- **Signs of sepsis** (§3.4), **stiff neck + fever + rash** (meningitis), **suicidal intent** (cross-ref §20)
 - A **fever in a baby <3 months**, or a child who is **floppy, blue, hard to wake, or has a non-blanching rash**
 
 @@FIG:105-red-flags@@
@@ -444,7 +440,7 @@ People die from under-triage (waiting out a stroke) and waste fortunes / clog th
   heater) — **get everyone outside into fresh air and call 911**; CO is invisible and odorless (own a CO
   alarm).
 
-### 6.2 Heat stroke & hyperthermia (cross-ref `H-thermal.md`)
+### 6.2 Heat stroke & hyperthermia
 
 Heat illness is a spectrum. **Heat exhaustion** (heavy sweating, weakness, nausea, headache, *normal mental
 status*) → move to cool/shade, lie down, cool, hydrate with water/electrolytes. **Heat stroke** is the
@@ -455,12 +451,13 @@ count.**
 > **The single most important fact: COOL FIRST, transport second — and cool aggressively.** **Cold-water
 > immersion** (an ice bath/tub) is the gold standard and lowers mortality in exertional heat stroke; if not
 > available, **dowse with water + fan, and pack ice at the neck, armpits, and groin.** Don't wait for the
-> ambulance to start. Fever-reducers (paracetamol/ibuprofen) **do not work** here — this isn't a fever, it's a
+> ambulance to start. Fever-reducers (paracetamol [US: acetaminophen/Tylenol] or ibuprofen) **do not work**
+> here — this isn't a fever, it's a
 > failure of heat dissipation.
 
 @@FIG:E7-heat-stroke@@
 
-### 6.3 Hypothermia & cold (cross-ref `H-thermal.md`)
+### 6.3 Hypothermia & cold
 
 Hypothermia (core <35 °C) progresses: **shivering and clumsiness → confusion, slurring, apathy ("umbles":
 stumbles, mumbles, fumbles, grumbles) → shivering STOPS** (an ominous sign of severe hypothermia) →
@@ -476,18 +473,18 @@ unconsciousness. Two rules dominate:
    rewarm if there's any chance of re-freezing (worse than staying frozen); rewarm in ~37–39 °C water once
    safe, and never rub.
 
-### 6.4 Drowning & the cold-/breath-hold-water rules (cross-ref `G-breath.md`)
+### 6.4 Drowning & the cold-/breath-hold-water rules
 
 - **Real drowning is silent and fast** — not the thrashing, shouting Hollywood version. A drowning person is
   usually **upright, quiet, unable to call out**, head low. Watch children near water *constantly*; drowning
   is a leading cause of child death and takes seconds.
 - **Drowning is a *hypoxic* (asphyxial) arrest** — oxygen is the deficit. So unlike adult sudden cardiac
   arrest, **rescue breaths matter:** if the person isn't breathing, give **rescue breaths first, then full CPR
-  (30:2)**. **Don't waste time trying to "empty water from the lungs"** (Szpilman, *NEJM* 2012,
-  `10.1056/NEJMra1013317`) — start ventilation.
+  (30:2)**. **Don't waste time trying to "empty water from the lungs"** (Szpilman, *NEJM* 2012)[^szpilman] —
+  start ventilation.
 - **Rescue without becoming the second victim:** *reach, throw, row — don't go* unless trained. Most
   would-be-rescuer drownings are untrained people swimming out.
-- **The breath-hold rule (cross-ref `G-breath.md`):** **never hyperventilate before underwater swimming/
+- **The breath-hold rule:** **never hyperventilate before underwater swimming/
   breath-holds, and never breath-hold-swim alone.** Hyperventilation suppresses the CO₂ "breathe!" urge
   without adding much oxygen, so the swimmer blacks out underwater (**shallow-water blackout**) before feeling
   the need to surface — and drowns silently. This kills fit, strong swimmers.
@@ -512,7 +509,7 @@ You cannot improvise competence in the moment; you assemble it in advance.
   emergency contacts** — on paper in a wallet and in your phone's **medical-ID / emergency-info screen**
   (accessible from a locked phone). For high-risk conditions, a **medical-alert bracelet** speaks for you when
   you can't.
-- **Advance directives (cross-ref `19-life-stages.md`).** Decide, document, and *share* your wishes — a
+- **Advance directives (cross-ref §19).** Decide, document, and *share* your wishes — a
   healthcare proxy / durable power of attorney and a living will (and, where appropriate, a POLST/DNR) — so
   that in the worst case the people treating you know what *you* want. This is first aid for your autonomy.
 - **Learn it with your hands.** Take a course (below). Re-take it. Teach your household. The competence that
@@ -550,3 +547,13 @@ You cannot improvise competence in the moment; you assemble it in advance.
 > **Final framing, repeated because it matters:** this section is a *map*, not a *credential*. It exists to
 > make the certified course make sense and to fight the bystander paralysis that is the real cause of
 > preventable acute death. **Call emergency services. Take a course. Then, when the ten minutes come, act.**
+
+[^sos-kanto]: SOS-KANTO — Lancet 2007. Evidence: observational `cohort` (an observational study), corroborated by later `rct` (randomized trials, the strongest tier).
+[^hasselqvist]: Hasselqvist-Ax et al. — NEJM 2015. doi:10.1056/NEJMoa1405796. claim: bystander-cpr-survival (cohort)
+[^pad]: PAD Trial (Hallstrom et al.) — NEJM 2004. doi:10.1056/NEJMoa040566.
+[^jtf-anaphylaxis]: Joint Task Force practice parameter — J Allergy Clin Immunol 2020, doi:10.1016/j.jaci.2020.01.017; 2024 international consensus, doi:10.1016/j.jaci.2025.01.021.
+[^ssc]: Surviving Sepsis Campaign (Evans et al.) — Crit Care Med 2021. doi:10.1097/CCM.0000000000005337.
+[^kragh]: Kragh et al. — Ann Surg 2009. doi:10.1097/SLA.0b013e31818842ba.
+[^walley]: Walley et al. — BMJ 2013. doi:10.1136/bmj.f174.
+[^peace-love]: Dubois & Esculier — Br J Sports Med 2020. doi:10.1136/bjsports-2019-101253.
+[^szpilman]: Szpilman — NEJM 2012. doi:10.1056/NEJMra1013317.

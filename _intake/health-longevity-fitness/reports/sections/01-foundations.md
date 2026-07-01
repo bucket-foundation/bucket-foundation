@@ -1,19 +1,10 @@
 # 01 — First-Principles Foundations: How a Living Body Works and Ages
 
-> **The intellectual spine of the manual.** Every later section — training, nutrition, sleep,
-> clinical prevention, supplements — is a *lever*. This section is the *machine* the levers act on.
-> The promise of the whole manual is that no recommendation is offered as a free-floating tip:
-> each one is graded by evidence **and** traced down to a mechanism, and each mechanism is traced
-> down to a foundation — a law of how energy, matter, and information behave in a cell. When the
-> two ways of knowing agree (good evidence *and* a real mechanism) you can trust a practice deeply.
-> When they disagree — strong story, weak trial, or strong trial, no story — this section is what
-> lets you see the gap instead of being sold across it.
->
-> **This is the most Bucket-native chapter.** It is where the outcome layer of this corpus
-> (`_intake/health-longevity-fitness/02-domains/`) reaches *up* to the canon
-> (`bucket-canon/05-biophysics/`) and where the foundations reach *down* to govern what you should
-> actually do. Read it once for the architecture, then return to it whenever a later claim feels
-> too good to be true.
+Being alive is a verb, not a noun. A living body is a process that must spend energy every second just to stay itself, and everything you care about — how hard you can train, how well you sleep, how fast you heal, how slowly you age — rides on how well that process runs. This chapter is the machine. Every later section — training, nutrition, sleep, clinical prevention, supplements — is a *lever* that acts on it.
+
+The promise of the whole manual is that no recommendation is offered as a free-floating tip: each one is graded by evidence **and** traced down to a mechanism, and each mechanism is traced down to a foundation — a law of how energy, matter, and information behave in a cell. When the two ways of knowing agree (good evidence *and* a real mechanism) you can trust a practice deeply. When they disagree — strong story, weak trial, or strong trial, no story — this chapter is what lets you see the gap instead of being sold across it. Read it once for the architecture, then return to it whenever a later claim feels too good to be true.
+
+_Not medical advice._
 
 ---
 
@@ -30,9 +21,9 @@ heuristic you will ever adopt:
 | | **Foundation** | **Outcome** |
 |---|---|---|
 | **What it is** | An axiom, law, primary derivation, or structural identification | An application, association, biomarker, protocol, or clinical claim |
-| **Example** | Chemiosmosis: cells store energy as a proton gradient across a membrane | "VO₂max predicts mortality"; "NR raises blood NAD⁺ 60%" |
+| **Example** | Chemiosmosis: cells store energy as a proton gradient across a membrane | "VO₂max (a fitness / aerobic-capacity score) predicts mortality"; "NR raises blood NAD⁺ 60%" |
 | **How it fails** | It (almost) doesn't — it's a law | It fails *constantly*: confounded cohorts, surrogate endpoints, mouse-only data |
-| **Where it lives** | `bucket-canon/05-biophysics/` | `_intake/health-longevity-fitness/02-domains/` |
+| **Where it lives** | In the biophysics canon (laws) | In the applied health domains (levers) |
 | **Direction of dependence** | The outcome *rests on* it | It *consumes* a foundation; it never replaces one |
 
 > **The one rule that governs this manual.** A *mechanism* claim is never laundered into an
@@ -49,7 +40,7 @@ tell you *why*, cannot tell you whether the relationship is causal or reverse-ca
 tell you what to do when the cohort and the trial disagree. The foundation tells you that
 cardiorespiratory fitness *is* integrated mitochondrial capacity — and the moment you know that,
 the cohort stops being a curiosity and becomes a prediction: train the mitochondrion and the engine
-gets bigger, whatever the noisy 5× hazard ratio claims. Mechanism is what lets you reason past the
+gets bigger, whatever the noisy 5× hazard ratio (a comparison of event rates between groups) claims. Mechanism is what lets you reason past the
 edge of the data instead of stopping at it.
 
 The rest of this section builds the foundation stack from the bottom up: **energy → structure →
@@ -60,10 +51,7 @@ names the figures who derived it, and names the downstream outcomes it governs.
 
 ## 2. ENERGY — the core of being alive
 
-> **Foundation law (canon):** chemiosmosis / proton-motive force / redox bioenergetics.
-> See `bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md` and the figure
-> cards for Mitchell, Moyle, Krebs, Szent-Györgyi, Margulis, Lane, Martin, Wallace in
-> `canon-figures/05-biophysics.md`.
+> **Foundation law:** chemiosmosis / proton-motive force / redox bioenergetics.
 
 If you internalize one thing from this manual, make it this: **being alive is a verb, not a noun.**
 A living cell is not a stable structure that occasionally does work; it is a process that must spend
@@ -76,7 +64,7 @@ can make it.**
 ### 2.1 The mitochondrion and the electron transport chain
 
 Almost all of that energy is made in the **mitochondria** — organelles that, per Lynn Margulis's
-**endosymbiotic theory** (1967, `margulis`), are the domesticated descendants of free-living
+**endosymbiotic theory** (Margulis, 1967), are the domesticated descendants of free-living
 bacteria engulfed by an ancestral host cell and never expelled. This is not a metaphor: mitochondria
 keep their *own* small genome (mtDNA), their own membranes, and their own bacterial-style machinery.
 You are a colony.
@@ -90,13 +78,13 @@ intermembrane space.
 
 ### 2.2 Chemiosmosis and the proton-motive force — the law
 
-Here is the foundation. In 1961, **Peter Mitchell** (`mitchell`) proposed — against a hostile
+Here is the foundation. In 1961, **Peter Mitchell** proposed — against a hostile
 mainstream that searched for over a decade for a "high-energy chemical intermediate" that does not
 exist — that the energy released by the ETC is stored as an **electrochemical proton gradient across
 a membrane**, and that this gradient is what drives ATP synthesis. This is the **chemiosmotic
 hypothesis**, and it earned the (rare, unshared) 1978 Nobel in Chemistry. The experimental proof —
 measuring the proton-translocation stoichiometries (H⁺/O, H⁺/ATP) and the gradient itself — was done
-with **Jennifer Moyle** (`moyle`) at the Glynn Research Institute; the canon cards both, correcting
+with **Jennifer Moyle** at the Glynn Research Institute; the canon cards both, correcting
 the Nobel's single-name attribution exactly as it does for Franklin.
 
 The stored energy is called the **proton-motive force (Δp)**, and it has two components — an
@@ -106,15 +94,18 @@ electrical one and a chemical (pH) one:
 Δp  =  Δψ  −  (2.303 RT / F) · ΔpH
 ```
 
-where `Δψ` is the voltage across the membrane and `ΔpH` is the proton-concentration difference. The
-deep idea, stated as plainly as it can be: **bioenergetics is redox + topology.** Electron flow
-(redox chemistry) is made to do useful work *only because it is spatially organized* — protons moved
+You can skip the equation — the idea is just *voltage plus a pH difference across a membrane*.
+(`Δψ` is the voltage across the membrane, `ΔpH` the proton-concentration difference; `R` is the gas
+constant, `T` the temperature, `F` Faraday's constant.) The deep idea, stated as plainly as it can
+be: **bioenergetics is redox + topology.** *Redox* means moving electrons from one molecule to
+another — it's how cells shuffle energy. That electron flow is made to do useful work *only because
+it is spatially organized* — protons moved
 from one side of a thin, ion-impermeable membrane to the other. Energy passes from food to ATP not
 through a soluble intermediate but *through a vectorial gradient across a membrane*. This is why the
 principle is the same in your muscle mitochondria, in a soil bacterium, and in a leaf doing
 photosynthesis: it is universal across all three domains of life.
 
-Nick Lane (`lane`) and William Martin (`martin-william`) take the same law *backward* in time to the
+Nick Lane and William Martin take the same law *backward* in time to the
 origin of life: natural pH gradients across thin mineral membranes at **alkaline hydrothermal vents**
 supplied the ancestral proton-motive force before cells existed — solving the long-standing paradox
 of where life's energy currency came from. The proton gradient is not just how *you* live; it may be
@@ -135,6 +126,9 @@ machine never stops.
 
 ### 2.4 The redox couples and the Krebs cycle — the supply line
 
+*You don't need to memorize the names and molecules below. The one idea: every fuel you burn —
+carbohydrate, fat, protein — funnels to a single hub that keeps the electron transport chain fed.*
+
 What *feeds* the electron transport chain? **Reducing equivalents** — molecules carrying the
 high-energy electrons — delivered by two redox carriers you will meet again and again:
 
@@ -144,10 +138,10 @@ high-energy electrons — delivered by two redox carriers you will meet again an
 - **FAD / FADH₂** — a second carrier feeding electrons in at Complex II.
 
 These carriers are loaded by the **citric-acid cycle** (the Krebs cycle / TCA cycle), identified by
-**Hans Krebs** (`krebs`, Nobel 1953) — a closed catalytic loop in which acetyl-CoA is burned to CO₂
+**Hans Krebs** (Nobel 1953) — a closed catalytic loop in which acetyl-CoA is burned to CO₂
 while oxaloacetate is regenerated each turn, spinning off NADH and FADH₂ to feed the chain. The
 four-carbon dicarboxylic acid intermediates Krebs assembled into the cycle were characterized by
-**Albert Szent-Györgyi** (`szent-gyorgyi`, also the isolator of vitamin C). The Krebs cycle is the
+**Albert Szent-Györgyi** (also the isolator of vitamin C). The Krebs cycle is the
 **central hub of metabolism**: the single convergence point where the breakdown of carbohydrate, fat,
 and protein all meet before oxidative phosphorylation. Whatever fuel you eat, it is funneled here.
 
@@ -164,9 +158,9 @@ The cell can load that hub from different fuels, and the ability to switch betwe
 
 A metabolically flexible person burns fat at rest and switches to glucose under load without trouble;
 metabolic *inflexibility* — being stuck on glucose, unable to access fat — is an early signature of
-the dysfunction that becomes insulin resistance and type-2 diabetes. **Governs outcomes:** Domain D
-(metabolic/nutrition) — ketogenic and fasting protocols, insulin sensitivity, the βHB-signaling
-story all consume this layer.
+the dysfunction that becomes insulin resistance and type-2 diabetes. **Governs:** metabolism and
+nutrition — ketogenic and fasting protocols, insulin sensitivity, the βHB-signaling story all
+consume this layer.
 
 ### 2.6 Reactive oxygen species — signals, not just damage
 
@@ -176,8 +170,7 @@ fifty years the dominant story was the **free-radical theory of aging** (Harman,
 damage, damage accumulates, you age; therefore mop up ROS with antioxidants and you slow aging.
 
 **This story is mostly resolved *against* its naive form, and the correction is one of the most
-important ideas in this manual.** Large antioxidant supplement trials are null or *harmful*
-(`conflict-free-radical-theory`). Why? Because **ROS are signals, not only shrapnel.** A transient
+important ideas in this manual.** Large antioxidant supplement trials are null or *harmful*.[^conflict-free-radical] Why? Because **ROS are signals, not only shrapnel.** A transient
 burst of mitochondrial ROS during exercise is the *trigger* that tells the cell to build more
 mitochondria and upregulate its own antioxidant defenses. Blunt that signal with high-dose
 antioxidants and you blunt the adaptation itself — supplemental vitamin C/E demonstrably *reduce* the
@@ -189,23 +182,22 @@ stress makes the system net-stronger. We return to it as a unifying law in §6. 
 
 Pull the threads together and a single object sits underneath nearly every health domain — the
 proton-motive force across the mitochondrial inner membrane. The convergence is not poetic; it is
-literal, and it is documented in the corpus's deepest cross-cutting thread
-(`02-domains/threads/thread-mitochondria.md`):
+literal, and it is documented in the corpus's deepest cross-cutting thread, the one on mitochondria:
 
 | Domain | The lever | What it reaches up to |
 |---|---|---|
-| **Exercise (E)** | Endurance training ~doubles mitochondrial enzyme content (Holloszy 1967); VO₂max | Integrated mitochondrial capacity |
-| **Metabolism (D)** | Ketones, AMPK, metabolic flexibility | Substrate load on the same chain |
-| **Aging (B)** | "Mitochondrial dysfunction" is a named Hallmark of Aging | Bioenergetic decline + ROS leak |
-| **Genetics (C)** | mtDNA heteroplasmy, the mutator mouse (Wallace, `wallace-doug`) | The genome *of* the chemiosmotic organelle |
-| **Thermal (H)** | Cold → UCP1 uncoupling in brown fat | Deliberately dissipating Δp as heat — the textbook proof the gradient is real |
+| **Exercise** | Endurance training ~doubles mitochondrial enzyme content (Holloszy 1967); VO₂max | Integrated mitochondrial capacity |
+| **Metabolism** | Ketones, AMPK, metabolic flexibility | Substrate load on the same chain |
+| **Aging** | "Mitochondrial dysfunction" is a named Hallmark of Aging | Bioenergetic decline + ROS leak |
+| **Genetics** | mtDNA heteroplasmy, the mutator mouse (Wallace) | The genome *of* the chemiosmotic organelle |
+| **Thermal** | Cold → UCP1 uncoupling in brown fat | Deliberately dissipating Δp as heat — the textbook proof the gradient is real |
 
 That last row is worth pausing on. **Brown adipose tissue** contains a protein, **UCP1**, that
 deliberately puts a hole in the inner membrane, letting protons leak back *without* spinning ATP
 synthase — so the gradient's energy comes out as **heat** instead of ATP. Cold exposure recruits it.
 The fact that you can uncouple the gradient from ATP synthesis and get warmth instead is the cleanest
 everyday demonstration that Mitchell was right: respiration and phosphorylation are separable, joined
-only by the gradient. **Governs outcomes:** essentially all of them. This is why bioenergetic
+only by the gradient. **Governs:** essentially all of them. This is why bioenergetic
 capacity — not any single biomarker — is the master variable of the manual.
 
 ---
@@ -230,10 +222,10 @@ maximum surface area for the ETC.
 
 Membrane composition is not cosmetic. The fatty acids you eat are literally **built into** your
 membranes, changing their fluidity and how prone they are to oxidation. This is the rigorous, real
-core under the noisy "seed oils" debate (`conflict-seed-oils-linoleic-acid`): membrane lipid
+core under the noisy "seed oils" debate:[^conflict-seed-oils] membrane lipid
 composition *does* matter; the specific claim that linoleic acid is a uniquely inflammatory driver of
 disease is *not* supported by higher-tier evidence. The foundation is solid; the popular outcome
-claim outruns it. **Governs outcomes:** Domain D (dietary fat), the entire structure of how nutrition
+claim outruns it. **Governs:** dietary fat, the entire structure of how nutrition
 becomes biology.
 
 ### 3.2 Proteins — the machines, and keeping them folded
@@ -242,8 +234,8 @@ If membranes are the architecture, **proteins** are the machinery. Enzymes (cata
 proteins, transporters, receptors, the ETC complexes, ATP synthase itself — all are proteins. A
 protein's function is dictated by its three-dimensional **fold**, and the fold is dictated by its
 amino-acid sequence (which is dictated, in turn, by DNA — see §4). The structural identifications
-that opened this science — Pauling's α-helix, the Watson–Crick–Franklin double helix
-(`watson-crick`, `franklin`) — are canon-tier precisely because *structure explains function*.
+that opened this science — Pauling's α-helix, the Watson–Crick–Franklin double helix — are
+canon-tier precisely because *structure explains function*.
 
 Proteins are constantly being damaged, misfolded, and replaced. The machinery that keeps the protein
 population correctly folded and clears the damaged ones is called **proteostasis** — and it is one of
@@ -260,8 +252,8 @@ its load-bearing pillars:
 
 **Loss of proteostasis** is itself a Hallmark of Aging: as the folding-and-clearing machinery slows,
 misfolded and aggregated proteins accumulate — the proximate biophysics under Alzheimer's (amyloid,
-tau), Parkinson's (α-synuclein), and the general stiffening of old tissue. **Governs outcomes:**
-Domain B (proteostasis hallmark), neurodegeneration (Domain on brain/cognition), and the *mechanism*
+tau), Parkinson's (α-synuclein), and the general stiffening of old tissue. **Governs:** the
+proteostasis hallmark of aging, neurodegeneration (brain and cognition), and the *mechanism*
 by which heat and fasting earn their place in the manual.
 
 ### 3.3 Cell water and hydration — a contested frontier, graded honestly
@@ -272,10 +264,10 @@ and potassium balance, plasma volume) is uncontroversial textbook physiology and
 everything from blood pressure to exercise performance.
 
 Beyond bulk water lies a genuine **contested frontier**, and this manual grades it as such rather
-than picking a side. **Gilbert Ling** (`ling`) proposed that intracellular potassium is held not
+than picking a side. **Gilbert Ling** proposed that intracellular potassium is held not
 only by membrane pumps but by adsorption onto structured cell-water layered around proteins; the
 NMR-detectable differences he predicted between bulk and cell water are the basis on which Damadian
-invented MRI. **Gerald Pollack** (`pollack`) characterized an **"exclusion zone" (EZ) of water** at
+invented MRI. **Gerald Pollack** characterized an **"exclusion zone" (EZ) of water** at
 hydrophilic surfaces — a charged, solute-excluding layer with distinct properties, replicated across
 labs.
 
@@ -290,8 +282,7 @@ Here is the honest grade, exactly as the canon cards state it:
 The manual's position: the *phenomenon* is real and worth indexing; the sweeping *physiological*
 claims (structured water as a master energy system, deuterium-depletion therapeutics, "EZ water cures
 X") **outrun the evidence** and are graded `speculative`. Treat anyone selling "structured water
-devices" as selling an outcome the foundation does not yet support. See `canon-figures/05-biophysics.md`
-(`ling`, `pollack`) and `CANON-BRIDGE-PROPOSAL.md` §3d.
+devices" as selling an outcome the foundation does not yet support.
 
 ### 3.4 The cytoskeleton — shape, transport, and force
 
@@ -300,8 +291,8 @@ microtubules, intermediate filaments — which gives cells their shape, hauls ca
 included) around the cell, drives division, and transmits mechanical force. **Mechanotransduction** —
 the conversion of physical force into biochemical signal — is the foundation under why *mechanical
 load* (lifting, impact, tension) is itself a biological signal, not just a way to fatigue muscle. It
-is part of why resistance training builds bone and tendon, not only muscle. **Governs outcomes:**
-Domain E (the load-driven half of training adaptation), bone and connective-tissue health.
+is part of why resistance training builds bone and tendon, not only muscle. **Governs:** the
+load-driven half of training adaptation, bone and connective-tissue health.
 
 ---
 
@@ -313,10 +304,10 @@ master switches.
 
 ### 4.1 DNA and the genome — the static blueprint
 
-The **double helix** (`watson-crick`, on Franklin's diffraction data `franklin`) stores the
+The **double helix** (Watson & Crick, on Franklin's diffraction data) stores the
 sequence; the **central dogma** (Crick) describes the flow of that information: DNA → RNA → protein,
 with no route back from protein sequence to nucleic-acid sequence. Mendel's particulate inheritance
-(`mendel`) is the upstream axiom. Your genome is the *static* blueprint — essentially the same in
+is the upstream axiom. Your genome is the *static* blueprint — essentially the same in
 every cell of your body and across your whole life.
 
 @@FIG:101-central-dogma,RA07-dna-replication@@
@@ -348,13 +339,14 @@ methylation patterns become progressively dysregulated, a process called **epige
 
 Read the gap honestly: first-generation clocks are trained on chronological age, so they *correlate*
 with aging by construction — they don't prove methylation *causes* it. Second-generation clocks
-predict real outcomes but remain associations, increasingly used as **surrogate endpoints** in trials
-before mortality data can exist — a methodological bet, not a validated equivalence. The provocative
+predict real outcomes but remain associations, increasingly used as **surrogate endpoints** (stand-in
+measures used in place of the real outcome, like death) in trials before mortality data can exist — a
+methodological bet, not a validated equivalence. The provocative
 frontier — the **information theory of aging** — holds that aging is partly *loss of epigenetic
 information* that can be *restored*: partial reprogramming with Yamanaka factors (OSK) resets
 epigenetic age and has restored vision in aged mice (Lu/Sinclair 2020). All `animal`, with a real
-teratoma/identity-loss hazard. Genuinely exciting; not yet a human therapy. **Governs outcomes:**
-Domain B (epigenetic hallmark), Domain C/L (clocks as biomarkers), the entire reprogramming field.
+teratoma/identity-loss hazard. Exciting; not yet a human therapy. **Governs:** the epigenetic
+hallmark of aging, clocks as biomarkers, the entire reprogramming field.
 
 ### 4.3 The master nutrient-sensing network — the switches every lever pulls
 
@@ -385,9 +377,9 @@ stress" interventions (fasting, exercise, CR) work by transiently shifting the w
 the AMPK/sirtuin/FOXO/NRF2 "maintenance" pole. This is *why* fasting, exercise, and caloric
 restriction share so many downstream effects: **they pull the same switches.** And it is the
 foundation under the manual's single most important hype-check — the gap between "rapamycin inhibits
-mTOR" (true switch) and "rapamycin extends human life" (unproven outcome). **Governs outcomes:**
-Domain B (nutrient-sensing — "the most actionable hallmark"), Domain D (fasting/CR), Domain E
-(exercise's molecular signaling), and most of the pharmacology section.
+mTOR" (true switch) and "rapamycin extends human life" (unproven outcome). **Governs:** the
+nutrient-sensing hallmark ("the most actionable hallmark"), fasting and caloric restriction,
+exercise's molecular signaling, and most of the pharmacology section.
 
 ---
 
@@ -440,9 +432,9 @@ Is aging an **accumulation of damage** (stochastic wear the body fails to fully 
 that were never switched off)? The honest answer is *both, partly, and the balance is unresolved*:
 
 - **Damage view:** genomic instability, mtDNA mutation accumulation, protein aggregation, crosslinks.
-  Robust as *phenomena* — but causality in *normal* aging is often unproven. The mtDNA "mutator
+  Solid as *phenomena* — but causality in *normal* aging is often unproven. The mtDNA "mutator
   mouse" ages prematurely, but at mutation loads far above what humans accumulate, and via apoptosis
-  rather than ROS (`conflict-mtdna-mutation-causality`) — which undercuts the naive damage story.
+  rather than ROS[^conflict-mtdna] — which undercuts the naive damage story.
 - **Programmatic / quasi-programmed view:** the very nutrient-sensing pathways that drive growth in
   youth (mTOR, IGF-1) drive pathology when they keep running in age — "hyperfunction." This is why
   *dialing them down* (CR, rapamycin) reliably extends life in models: you're not repairing damage,
@@ -476,7 +468,7 @@ is an inverted-U (or J).
 @@FIG:87-hormesis-curve@@
 
 The astonishing thing is how many "good for you" practices share this exact shape, and — per the
-corpus's hormesis thread (`thread-hormesis.md`) — share a common biophysical engine: **transient ROS
+corpus's hormesis thread — share a common biophysical engine: **transient ROS
 / redox signaling at the mitochondrion (mitohormesis)**, the same redox foundation from §2.6:
 
 | Stressor | The sub-damaging dose | The adaptive program it triggers |
@@ -498,7 +490,8 @@ retro-explain any result ("it was hormetic"). The beneficial-dose windows for co
 are largely *unknown*. Stressors can *interfere*, not just stack (cold right after lifting blunts
 hypertrophy; concurrent endurance can blunt strength via AMPK-vs-mTOR). "Any stress is good" is false;
 the same biphasic curve that licenses the benefit *guarantees* a harm zone. Use hormesis as a lens,
-not a license. **Governs outcomes:** Domains D, E, G, H — the entire "deliberate stressor" toolkit.
+not a license. **Governs:** nutrition, exercise, sleep/recovery, and thermal work — the entire
+"deliberate stressor" toolkit.
 
 ### 6.2 Homeostasis and allostasis — stability through change
 
@@ -509,7 +502,7 @@ body predictively adjusts its set-points to meet demand. The cost is **allostati
 cumulative wear from chronically activated stress responses that never fully reset. This is the
 foundation under why *chronic* stress, poor sleep, and circadian disruption are corrosive — not
 because any single stress response is bad, but because a system held permanently in "respond" mode
-never pays down its load. **Governs outcomes:** sleep, stress, HRV (§6.4), inflammaging.
+never pays down its load. **Governs:** sleep, stress, HRV (§6.4), inflammaging.
 
 ### 6.3 Redox signaling — information carried by electrons
 
@@ -517,8 +510,8 @@ never pays down its load. **Governs outcomes:** sleep, stress, HRV (§6.4), infl
 NAD⁺/NADH ratio, the ROS flux — is not merely a metabolic dipstick; it is a **signaling language**.
 Cells read their own redox state to decide whether to grow, repair, or defend (via NRF2, via
 sirtuins, via redox-sensitive transcription factors). This is the unifying root the corpus's threads
-keep converging on: mitochondria (`thread-mitochondria`), hormesis (`thread-hormesis`), and NAD⁺
-(`thread-nad-redox`) are **three facets of one redox-bioenergetics core** — which is exactly why the
+keep converging on: mitochondria, hormesis, and NAD⁺ are **three facets of one redox-bioenergetics
+core** — which is exactly why the
 canon promotes "chemiosmosis / proton-motive force / **redox bioenergetics**" as a single foundation
 principle. The practical upshot is the recurring hype-check: redox biology is *real foundation*;
 "take antioxidants / NAD precursors to slow aging" is *unproven outcome*. The foundation is being
@@ -530,7 +523,7 @@ One layer up from redox sits the **autonomic nervous system** — the sympatheti
 and parasympathetic ("rest-and-digest") branches that regulate heart rate, digestion, and stress
 response in real time. Its most-watched readout is **heart-rate variability (HRV)**, an index of
 vagal/parasympathetic tone and the common downstream dial that slow breathing, cold, sleep, and
-stress all move (`thread-autonomic-hrv.md`). The mechanism — vagal/baroreflex control of the
+stress all move. The mechanism — vagal/baroreflex control of the
 sinoatrial node, with a ~0.1 Hz resonance under slow breathing — is solid. But keep the manual's
 discipline sharp: **HRV is a biomarker, not an intervention.** "Raise your HRV" is not itself a
 validated health outcome; the number is noisy, posture- and age-dependent, and interpretable only
@@ -549,14 +542,14 @@ the SCN sets its phase → clock genes across the body align → metabolism, hor
 melatonin), and repair all run on schedule.
 
 This is, per the corpus, **the most important agreement between mainstream chronobiology and the
-inherited Kruse-tier biophysics layer** (`thread-circadian-light.md`): both rest on the same
+inherited Kruse-tier biophysics layer**: both rest on the same
 melanopsin → SCN → melatonin spine, and that spine is *settled human science*. Where they diverge —
 Kruse's claims of sunlight's causal primacy over food, UV/IR as broad systemic therapy, "non-native
 EMF," deuterium/water coupling — the evidence does *not* yet support the extensions, and the manual
 grades them `speculative`. The validated lever is **behavioral**: morning daylight, dim/dark
 evenings, consistent timing. The *un*validated product is **blue-blocking glasses**, which Cochrane
 2023 found no clear benefit for — a textbook case of a real mechanism (evening blue light is
-disruptive) laundered into a product claim the trial doesn't support. **Governs outcomes:** sleep,
+disruptive) laundered into a product claim the trial doesn't support. **Governs:** sleep,
 metabolism (meal-timing as a peripheral zeitgeber), hormones, mood — the timing input under all of
 them.
 
@@ -579,17 +572,6 @@ whether it's a genuine new lever or last year's supplement wearing a new label.
 ---
 
 ### Go deeper
-
-**The foundation law (canon, in-repo):**
-- `bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md` — the proton-motive-force
-  concept node, the single most important file behind §2.
-- `canon-figures/05-biophysics.md` — the figure cards: Mitchell, Moyle, Krebs, Szent-Györgyi,
-  Margulis, Lane, Martin, Wallace (energy lineage); Watson–Crick, Franklin, Mendel (information);
-  Hodgkin–Huxley (excitability); Ling, Pollack (the contested water frontier).
-- `_intake/health-longevity-fitness/00-map/CANON-BRIDGE-PROPOSAL.md` — the argument for *why* the
-  bioenergetics lineage is the bridge between foundations and outcomes.
-- `_intake/health-longevity-fitness/02-domains/threads/` — the six mechanism threads
-  (mitochondria, hormesis, circadian-light, inflammation, nad-redox, autonomic-hrv).
 
 **Bioenergetics — the popular-but-rigorous canon:**
 - **Nick Lane, *Power, Sex, Suicide: Mitochondria and the Meaning of Life*** (OUP, 2005). The single
@@ -632,3 +614,19 @@ whether it's a genuine new lever or last year's supplement wearing a new label.
   physicist who posed the question biology is still answering.
 - **Albert Szent-Györgyi, *Bioenergetics*** (Academic Press, 1957). The man who handed Krebs the
   acids, on the electronic nature of biological energy.
+
+---
+
+### Sources & notes
+
+[^conflict-free-radical]: The free-radical / antioxidant-supplement conflict — large trials of
+  antioxidant supplements are null or harmful, and high-dose vitamin C/E blunt the mitochondrial
+  adaptation to exercise. conflict: conflict-free-radical-theory
+
+[^conflict-seed-oils]: The "seed oils" / linoleic-acid conflict — membrane lipid composition matters,
+  but linoleic acid as a uniquely inflammatory driver of disease is not supported by higher-tier
+  evidence. conflict: conflict-seed-oils-linoleic-acid
+
+[^conflict-mtdna]: The mtDNA-mutation-causality conflict — the "mutator mouse" ages prematurely at
+  mutation loads far above human levels and via apoptosis rather than ROS, undercutting the naive
+  damage story. conflict: conflict-mtdna-mutation-causality

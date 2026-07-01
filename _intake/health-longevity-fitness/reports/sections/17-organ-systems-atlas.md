@@ -1,26 +1,20 @@
 # 17 — Organ Systems Atlas (Respiratory · Renal · Hepatic · Digestive · Hematologic · Reproductive · Lymphatic)
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/Y-organsystems-claims.json`.
-> This section **completes the body-systems map**. It covers the organ systems not handled elsewhere and
-> deliberately does *not* re-derive the ones that already have homes:
-> **cardiovascular →** `07-clinical-prevention.md`; **nervous/brain →** `08-brain-cognitive.md` (the cognition
-> agent owns dementia endpoints); **endocrine →** Domain 13 / `N-womens-longevity.md`; **immune →** Domain 15;
-> **musculoskeletal & bone →** `02-training.md` + `11-body-systems.md`; **skin / eyes / ears / pelvic floor →**
-> `11-body-systems.md`; **digestive *microbiome* →** `C2-microbiome-deepdive.md`. Where a lever lives in another
-> section, this file points there rather than duplicating it.
-
 Most longevity writing optimizes a short list of organs — heart, brain, muscle — and treats the rest of the
 body as plumbing. This section is the plumbing, written honestly. Several of these systems are **silent**: the
 kidney and liver in particular lose most of their function before they generate a single symptom, which is
 exactly why they get skipped and exactly why a few cheap, boring habits (don't smoke, keep blood pressure and
-glucose in range, stay lean, don't reach for NSAIDs by reflex) outperform anything sold as an organ
-"detox" or "cleanse."
+glucose in range, stay lean, don't reach for NSAIDs — common painkillers like ibuprofen — by reflex)
+outperform anything sold as an organ "detox" or "cleanse."
 
-*Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something
-beats nothing — are defined up front in "Start Here," and bite hard in this atlas: a declining eGFR or low VO₂max
-predicts death, but the lever is upstream (blood pressure, glucose, training), not the number; erectile
-dysfunction predicts heart attacks, yet a PDE5 inhibitor treats the symptom, not the artery; and dose/context
-rules everything — high protein is fine for a healthy kidney but must be moderated in established CKD.*
+Three honesty rules run through the whole atlas. **Predictor ≠ lever** (the number warns you, it isn't the
+thing you fix): a declining **eGFR** (a kidney-filtration score) or a low **VO₂max** (the most oxygen your body
+can use — the single best fitness-mortality number) predicts death, but the lever is upstream (blood pressure,
+glucose, training), not the number; erectile dysfunction predicts heart attacks, yet a PDE5 inhibitor (the
+Viagra class) treats the symptom, not the artery. **Cohort ≠ RCT** (an association seen across a population is
+weaker than a randomized trial). **Something beats nothing** (a partial fix still counts). And dose/context
+rules everything: high protein is fine for a healthy kidney but must be moderated in established chronic kidney
+disease (CKD).
 
 **One-line verdict up front:** the highest-yield, most-skipped levers in this section are **(1) protect the
 kidney and liver indirectly** — they have almost no direct levers, so the play is blood pressure, glucose,
@@ -31,19 +25,29 @@ disease where a blood-donation needle is the treatment); and **(4) ignore the "d
 "lymphatic drainage" industries** — the organs that detoxify you are the liver and kidney, and they do it
 without a juice.
 
+_Not medical advice. What lives elsewhere: cardiovascular → `07-clinical-prevention.md`; nervous/brain →
+`08-brain-cognitive.md` (dementia endpoints); endocrine → Domain 13 / `N-womens-longevity.md`; immune →
+Domain 15; musculoskeletal, bone, skin, eyes, ears, pelvic floor → `11-body-systems.md` + `02-training.md`;
+gut microbiome → `C2-microbiome-deepdive.md`. This file covers the organs without a home elsewhere and points
+there rather than duplicating them._
+
 ---
 
 ## System-by-system map (read this first)
 
+**Evidence-tier key:** `rct` = randomized trial (strongest); `meta` = meta-analysis of many studies;
+`cohort` = a population association (weaker — it predicts, it may not prove cause); `debunk`/refutes = the
+claim fails the evidence. These tier codes recur throughout the chapter.
+
 | System | Ages how | Best practical lever | Tier of the lever |
 |---|---|---|---|
 | **Respiratory** | FEV₁/FVC decline ~25–30 mL/yr after ~30–35; elastic recoil ↓, chest-wall stiffens, gas exchange ↓ | **Never smoke / quit smoking** (the only thing that changes the slope); preserve VO₂max via aerobic training | `cohort`→`rct` (cessation) |
-| **Renal / urinary** | eGFR ↓ ~0.8–1 mL/min/1.73m²/yr after ~40; nephron dropout, silent until late | **Control BP + glucose**; avoid habitual NSAIDs; don't fear protein if kidneys are healthy | `rct` (BP/glucose), `cohort` (NSAID) |
+| **Renal / urinary** | eGFR (kidney-filtration rate) ↓ ~0.8–1 mL/min/1.73m²/yr after ~40; nephron dropout, silent until late | **Control BP + glucose**; avoid habitual NSAIDs; don't fear protein if kidneys are healthy | `rct` (BP/glucose), `cohort` (NSAID) |
 | **Hepatic / liver** | Steatosis (MASLD) now in ~30%+ of adults; fibrosis is the prognostic axis | **Lose ≥7–10% body weight** (the one intervention that reverses histology) | `cohort`/prospective histology |
 | **Digestive / GI** | Slower motility, ↓ esophageal clearance, ↑ GERD & constipation; gut-brain signaling shifts | **Fiber + fluid + movement**; manage GERD with weight loss + positioning before reflexively escalating drugs | `meta` (fiber), `cohort`/guideline (GERD) |
 | **Hematologic / blood** | Anemia prevalence climbs steeply after 65 (often a flag for another disease, not "old blood") | **Find and fix the cause** (iron, B12, CKD, occult bleed); for HFE overload, **therapeutic phlebotomy** | `cohort` (anemia prognosis), `rct`/guideline (phlebotomy) |
-| **Reproductive / urogenital** | Menopause (abrupt) vs andropause (gradual); BPH near-universal in aging men | Cross-ref 13/`N`; treat ED as a **vascular warning**, train the pelvic floor (cross-ref 11) | `cohort` (ED→CVD), `meta` (PFMT) |
-| **Lymphatic** | Reduced lymphatic contractility; clinical disease is lymphedema (usually post-surgical/filarial) | **Complete decongestive therapy** for actual lymphedema; ignore "drainage detox" claims in healthy people | `meta` (CDT), debunk (wellness MLD) |
+| **Reproductive / urogenital** | Menopause (abrupt) vs andropause (gradual); BPH near-universal in aging men | Cross-ref 13/`N`; treat ED as a **vascular warning**, train the pelvic floor (cross-ref 11) | `cohort` (ED→CVD), `meta` (pelvic-floor training) |
+| **Lymphatic** | Reduced lymphatic contractility; clinical disease is lymphedema (usually post-surgical/filarial) | **Complete decongestive therapy** for actual lymphedema; ignore "drainage detox" claims in healthy people | `meta` (CDT), `debunk` (wellness MLD) |
 
 Everything below is the long version of this table, with the debunks made explicit.
 
@@ -68,13 +72,13 @@ recoil** (the lung gets "floppier," small airways collapse earlier in exhalation
 wall** (costal cartilage calcifies, the thorax loses compliance), and **reduced respiratory muscle strength**.
 Net effect: residual volume rises, vital capacity falls, gas exchange efficiency drops, and the ventilatory
 reserve that buffers illness shrinks. The landmark framework here is **Fletcher & Peto's 1977 BMJ "natural
-history of chronic airflow obstruction"** (`10.1136/bmj.1.6077.1645`) — the diagram every pulmonologist
+history of chronic airflow obstruction"**[^fletcher-peto] — the diagram every pulmonologist
 carries in their head: everyone declines, but **smoking dramatically steepens the slope**, and **quitting
 does not reverse the loss but resets the rate of decline to roughly that of a never-smoker.** `cohort`.
 
 @@FIG:B04-fev1-fletcher-peto@@
 
-More recent cohorts (e.g., **Lange et al., NEJM 2015**, `10.1056/NEJMoa1411532`) refined this into the
+More recent cohorts (**Lange et al., NEJM 2015**)[^lange-2015] refined this into the
 **lung-function-trajectory** model: COPD can arise either from accelerated *decline* from a normal peak, or
 from never reaching a normal peak in the first place (a developmental origin). This matters because it reframes
 "lung aging" as partly set in childhood — and partly modifiable across life.
@@ -90,9 +94,8 @@ existence is smoking cessation**, and it works at any age — the earlier the st
 *something beats nothing* even in older quitters. `cohort`/`rct` (cessation trials).
 
 For established COPD, **pulmonary rehabilitation** (supervised exercise + education) has solid Cochrane-grade
-evidence for improving exercise capacity and quality of life (**McCarthy et al., Cochrane 2015**,
-`10.1002/14651858.CD003793.pub3`). `meta`. Note the honesty rule: rehab improves *function and symptoms*; it
-does not "regrow" lung tissue.
+evidence for improving exercise capacity and quality of life (**McCarthy et al., Cochrane 2015**).[^mccarthy-2015]
+`meta`. Note the honesty rule: rehab improves *function and symptoms*; it does not "regrow" lung tissue.
 
 ### 1.4 The honest take on "lung training," breathing devices, and IMT
 
@@ -101,11 +104,11 @@ capacity" or "detox the lungs" are mostly marketing. The honest, evidence-graded
 
 - **Inspiratory muscle training (IMT)** — breathing against a resistance device — has *real but specific*
   effects. It strengthens the **inspiratory muscles** (a muscle-training effect, not a lung-tissue effect).
-  Surprisingly, **high-resistance IMT lowers blood pressure**: **Craighead et al., JAHA 2021**
-  (`10.1161/JAHA.121.020980`) showed 5 minutes/day of high-resistance IMT lowered systolic BP by ~9 mmHg and
-  improved endothelial function in midlife adults — a genuine, replicated `rct` finding. This is the strongest
+  Surprisingly, **high-resistance IMT lowers blood pressure**: **Craighead et al., JAHA 2021**[^craighead-2021]
+  showed 5 minutes/day of high-resistance IMT lowered systolic BP by ~9 mmHg and
+  improved endothelial function in midlife adults — a real, replicated `rct` finding. This is the strongest
   evidence for any "breathing device," and notably the benefit is **cardiovascular, not respiratory capacity.**
-- **IMT in COPD:** a Cochrane review (**Ammous et al., 2023**, `10.1002/14651858.CD013778.pub2`) found IMT can
+- **IMT in COPD:** a Cochrane review (**Ammous et al., 2023**)[^ammous-2023] found IMT can
   improve inspiratory muscle strength but **adds little over pulmonary rehab alone** for the outcomes patients
   care about. `meta`.
 - **"Lung capacity" cannot be meaningfully expanded in healthy adults.** Your vital capacity is set by anatomy
@@ -113,18 +116,18 @@ capacity" or "detox the lungs" are mostly marketing. The honest, evidence-graded
   mitochondria) far more than the lung itself, which in healthy people is rarely the limiting step. **Train
   cardio for VO₂max; use IMT for blood pressure or for clinical respiratory weakness — not to "grow your
   lungs."**
-- **Altitude / hypoxic training:** cross-ref `O-hypoxia-altitude.md`. Genuine physiology, narrow practical
+- **Altitude / hypoxic training:** cross-ref `O-hypoxia-altitude.md`. Real physiology, narrow practical
   payoff for general longevity, real risks at extremes.
 
 ### 1.5 VO₂max — the respiratory-cardiovascular number worth knowing (cross-ref Domain E)
 
 Cardiorespiratory fitness is the **single strongest exercise-derived predictor of mortality** in the entire
-atlas. **Mandsager et al., JAMA Network Open 2018** (`10.1001/jamanetworkopen.2018.3605`) — 122,000 treadmill
+atlas. **Mandsager et al., JAMA Network Open 2018**[^mandsager-2018] — 122,000 treadmill
 tests — found mortality risk fell monotonically with fitness with **no observed upper limit of benefit**, and
 that being in the lowest fitness quintile carried risk comparable to or exceeding smoking, diabetes, or
-end-stage renal disease. The pooled cohort evidence (**Kodama et al., JAMA 2009**, `10.1001/jama.2009.681`)
-puts each 1-MET increase in fitness at ~13% lower all-cause and ~15% lower CVD mortality. `cohort`. **Honesty
-rule #1 applies hard:** VO₂max is a spectacular *predictor*, and the *lever* is the aerobic training that
+end-stage renal disease. The pooled cohort evidence (**Kodama et al., JAMA 2009**)[^kodama-2009]
+puts each 1-MET increase in fitness at ~13% lower all-cause and ~15% lower CVD mortality. `cohort`. **Predictor,
+not lever, applies hard here:** VO₂max is a spectacular *predictor*, and the *lever* is the aerobic training that
 raises it — see `02-training.md` and `E-exercise.md` for the actual prescription (Zone 2 base + a weekly
 high-intensity stimulus).
 
@@ -150,7 +153,7 @@ oft-quoted "~1%/year." The mechanism is **nephron dropout** (glomerulosclerosis,
 renal blood flow). Because this is gradual and silent, a large fraction of older adults meet criteria for CKD
 stage ≥3 by labs alone — which raises the real interpretive question of how much is "disease" vs. expected
 aging. eGFR decline also **predicts** frailty and mortality independent of cause (**Guerville et al., CJASN
-2019**, `10.2215/CJN.03750319`; **Corsonello et al., Eur J Intern Med 2018**, `10.1016/j.ejim.2018.05.030`).
+2019**; **Corsonello et al., Eur J Intern Med 2018**).[^egfr-frailty]
 `cohort` — again, predictor, not necessarily a modifiable lever in the elderly.
 
 @@FIG:B05-egfr-decline@@
@@ -158,9 +161,10 @@ aging. eGFR decline also **predicts** frailty and mortality independent of cause
 ### 2.3 The real levers: blood pressure and glucose
 
 The CKD risk-factor literature is unambiguous: **hypertension and diabetes are the two dominant, modifiable
-drivers** of kidney function loss (**Romagnani et al., Nat Rev Dis Primers 2017**, `10.1038/nrdp.2017.88`;
-**Kalantar-Zadeh et al., Lancet 2021**, `10.1016/S0140-6736(21)00519-5`). Tight BP control and glucose control
-(and, in CKD, RAAS blockade and SGLT2 inhibitors) are `rct`-grade levers that slow progression. **The kidney
+drivers** of kidney function loss (**Romagnani et al., Nat Rev Dis Primers 2017**;
+**Kalantar-Zadeh et al., Lancet 2021**).[^ckd-drivers] Tight BP control and glucose control
+(and, in CKD, RAAS blockade — RAAS is a blood-pressure hormone system — and SGLT2 inhibitors, a diabetes drug
+class that also protects the kidney) are `rct`-grade levers that slow progression. **The kidney
 has almost no *direct* lever — you protect it by protecting the vasculature.** This is the same logic as the
 liver: the organ inherits the health of your metabolism.
 
@@ -169,21 +173,21 @@ liver: the organ inherits the health of your metabolism.
 Hydration is over-claimed by the wellness industry ("flush toxins," "a gallon a day") and under-appreciated
 where it actually matters. The honest signal: **chronic under-hydration, reflected in higher-normal serum
 sodium, associates with accelerated biological aging, more chronic disease, and earlier mortality** —
-**Dmitrieva et al., EBioMedicine 2023** (`10.1016/j.ebiom.2022.104404`), an NHLBI cohort analysis. `cohort`.
+**Dmitrieva et al., EBioMedicine 2023**,[^dmitrieva-2023] an NHLBI cohort analysis. `cohort`.
 But this is an *association*, and the practical reading is **"don't run chronically dry,"** not "force liters."
 Thirst is a reasonable guide for most healthy people; pale-yellow urine is a fine proxy. Over-hydration is real
-and occasionally dangerous (exercise-associated hyponatremia). Honesty rule #1: the cohort shows a predictor;
-no RCT has shown that pushing extra fluid in already-adequately-hydrated people extends life.
+and occasionally dangerous (exercise-associated hyponatremia). Predictor, not lever: the cohort shows a
+predictor; no RCT has shown that pushing extra fluid in already-adequately-hydrated people extends life.
 
 ### 2.5 The protein-and-kidney myth
 
 **A persistent myth holds that high dietary protein "damages" the kidneys.** In people with **healthy
 kidneys**, the evidence does not support this. Higher protein intakes raise GFR transiently (a normal adaptive
 hyperfiltration) without causing kidney disease, and protein "requirements" for older adults are arguably
-*higher* than the RDA for muscle preservation (**Phillips et al., Appl Physiol Nutr Metab 2016**,
-`10.1139/apnm-2015-0550`). `cohort`/`mechanistic`. The nuance worth keeping: in adults with **established
+*higher* than the RDA for muscle preservation (**Phillips et al., Appl Physiol Nutr Metab 2016**).[^phillips-2016]
+`cohort`/`mechanistic`. The nuance worth keeping: in adults with **established
 CKD**, protein restriction is a different, legitimate clinical conversation, and **source may matter** — a
-large cohort (**Bernier-Jean et al., NDT 2021**, `10.1093/ndt/gfaa081`) linked higher *animal* protein intake
+large cohort (**Bernier-Jean et al., NDT 2021**)[^bernier-jean-2021] linked higher *animal* protein intake
 to faster eGFR decline, while plant protein looked neutral-to-protective. So: **healthy kidney → eat your
 protein (cross-ref training/sarcopenia); diagnosed CKD → individualize with a nephrologist.** Do not let the
 myth talk an aging adult out of the protein they need to keep muscle.
@@ -193,8 +197,8 @@ myth talk an aging adult out of the protein they need to keep muscle.
 Habitual **NSAID** use (ibuprofen, naproxen, diclofenac) is a genuinely modifiable renal risk. NSAIDs reduce
 prostaglandin-mediated renal blood flow and can cause **acute kidney injury** — especially with dehydration,
 older age, or concurrent ACE-inhibitor/diuretic ("triple whammy") — and chronic heavy use is associated with
-CKD progression (**Baker & Perazella, Am J Kidney Dis 2020**, `10.1053/j.ajkd.2020.03.023`; **Klomjit &
-Ungprasert, Eur J Intern Med 2022**, `10.1016/j.ejim.2022.05.003`). `cohort`/`mechanistic`. **The practical
+CKD progression (**Baker & Perazella, Am J Kidney Dis 2020**; **Klomjit &
+Ungprasert, Eur J Intern Med 2022**).[^nsaid-ckd] `cohort`/`mechanistic`. **The practical
 rule: don't treat NSAIDs as a daily default**, hydrate when you do use them, and be especially careful if
 you're older, on BP meds, or have any kidney concern. This is a free lever most people never think about.
 
@@ -214,13 +218,13 @@ remarkably regenerative.
 Intrinsic liver aging is relatively gentle (modest decline in volume, blood flow, and drug-metabolizing
 capacity — which is why drug dosing changes in the elderly). The dominant age-related liver story is **not
 intrinsic aging but a metabolic epidemic**: **MASLD** (metabolic dysfunction-associated steatotic liver
-disease — the 2023 renaming of NAFLD; **Rinella et al., J Hepatol 2023**, `10.1016/j.jhep.2023.06.003`).
-Global prevalence is now **~30%+ of adults and rising** (**Younossi et al., Clin Gastroenterol Hepatol 2024**,
-`10.1016/j.cgh.2024.03.006`; **Miao et al., Trends Endocrinol Metab 2024**, `10.1016/j.tem.2024.02.007`).
+disease — the 2023 renaming of NAFLD; **Rinella et al., J Hepatol 2023**).[^rinella-2023]
+Global prevalence is now **~30%+ of adults and rising** (**Younossi et al., Clin Gastroenterol Hepatol 2024**;
+**Miao et al., Trends Endocrinol Metab 2024**).[^masld-prev]
 `cohort`/epidemiology. The disease spectrum runs steatosis → steatohepatitis (MASH) → fibrosis → cirrhosis →
-HCC; **fibrosis stage is the prognostic axis** (it, not the fat itself, predicts liver and overall mortality).
-MASLD is the hepatic face of insulin resistance — tightly linked to obesity, type 2 diabetes, and
-cardiovascular disease (cross-ref Domain D metabolic and `07-clinical-prevention.md`).
+HCC (liver cancer); **fibrosis stage is the prognostic axis** (it, not the fat itself, predicts liver and
+overall mortality). MASLD is the hepatic face of insulin resistance — tightly linked to obesity, type 2
+diabetes, and cardiovascular disease (cross-ref Domain D metabolic and `07-clinical-prevention.md`).
 
 ### 3.3 Alcohol
 
@@ -232,15 +236,15 @@ dose to chase.
 
 ### 3.4 What actually helps: weight and metabolic control
 
-Here the evidence is genuinely encouraging and refreshingly concrete. **Weight loss is the one intervention
-that reverses liver histology.** **Vilar-Gomez et al., Gastroenterology 2015** (`10.1053/j.gastro.2015.04.005`)
+Here the evidence is encouraging and refreshingly concrete. **Weight loss is the one intervention
+that reverses liver histology.** **Vilar-Gomez et al., Gastroenterology 2015**[^vilar-gomez-2015]
 — paired biopsies across a lifestyle program — found a clear **dose-response**: ≥7% weight loss resolved MASH
 in most patients, and **≥10% produced fibrosis regression** in a majority. `cohort`/prospective-histology
-(strong for the field). A 2026 meta-analysis (**Monami et al., Diabetes Obes Metab**, `10.1111/dom.70617`)
+(strong for the field). A 2026 meta-analysis (**Monami et al., Diabetes Obes Metab**)[^monami-2026]
 confirms weight loss as the determinant of histological improvement across modalities. The levers are therefore
 the *same* metabolic levers as everywhere else: **caloric balance, exercise, and (where indicated) GLP-1 /
-incretin therapy or bariatric surgery.** The liver, like the kidney, has no special "liver lever" — it heals
-when the metabolism does.
+incretin therapy (the Ozempic class) or bariatric surgery.** The liver, like the kidney, has no special "liver
+lever" — it heals when the metabolism does.
 
 ### 3.5 The honest take on "liver detoxes" and cleanses — a flat debunk
 
@@ -257,24 +261,24 @@ fewer unnecessary supplements, and more weight loss if you carry visceral fat. S
 
 ## 4. Digestive / GI System (beyond the microbiome)
 
-> The **microbiome** has its own deep-dive — `C2-microbiome-deepdive.md`. This section covers the mechanical
-> and neural GI tract: motility, reflux, and the gut-brain axis.
+The **microbiome** has its own deep-dive — `C2-microbiome-deepdive.md`. This section covers the mechanical
+and neural GI tract: motility, reflux, and the gut-brain axis.
 
 ### 4.1 How it ages
 
 The aging gut shows **slowed motility** (reduced enteric neuron density, weaker peristalsis), **reduced
 esophageal clearance and lower esophageal sphincter competence** (→ more GERD), **reduced gastric acid in some**
 (atrophic gastritis → B12 malabsorption — link to §5), and **constipation** as one of the most common
-geriatric GI complaints (**Gidwaney et al., J Clin Gastroenterol 2016**, `10.1097/MCG.0000000000000650`;
-**McCrea et al., World J Gastroenterol 2008**, `10.3748/wjg.14.2631`). `cohort`/`mechanistic`. Much
+geriatric GI complaints (**Gidwaney et al., J Clin Gastroenterol 2016**;
+**McCrea et al., World J Gastroenterol 2008**).[^gi-aging] `cohort`/`mechanistic`. Much
 age-attributed constipation is actually **secondary** — to medications, immobility, low fiber, low fluid, and
 comorbidity — which makes it more modifiable than "old gut" fatalism implies.
 
 ### 4.2 GERD — manage the mechanics before escalating drugs
 
 Gastroesophageal reflux disease is common and rising with the obesity epidemic. Guideline care
-(**Katz et al., ACG Clinical Guideline, Am J Gastroenterol 2022**, `10.14309/ajg.0000000000001538`;
-**Maret-Ouda et al., JAMA 2020**, `10.1001/jama.2020.21360`) front-loads **lifestyle levers**: weight loss
+(**Katz et al., ACG Clinical Guideline, Am J Gastroenterol 2022**;
+**Maret-Ouda et al., JAMA 2020**)[^gerd] front-loads **lifestyle levers**: weight loss
 (the best-evidenced), elevating the head of the bed, avoiding late meals, and identifying trigger foods —
 *before* or *alongside* acid suppression. PPIs are effective and appropriate when indicated, but the longevity-
 literate framing is that **chronic reflux is often a weight-and-mechanics problem** and the long-term goal is
@@ -283,21 +287,21 @@ to need the lowest effective drug dose, not to default to indefinite suppression
 ### 4.3 The gut-brain axis (cross-ref 14 and C2)
 
 The **gut-brain axis** — bidirectional signaling via the vagus nerve, enteric nervous system, gut hormones, and
-microbial metabolites — is a genuine and active area, but it is also where hype runs far ahead of evidence. The
+microbial metabolites — is a real and active area, but it is also where hype runs far ahead of evidence. The
 **mechanistic** biology is real (the enteric nervous system is a "second brain" of ~500 million neurons; the
 microbiome produces neuroactive metabolites — cross-ref `C2-microbiome-deepdive.md`). The **outcome** claims
 ("fix your gut to fix your mood/Parkinson's/dementia") remain mostly `mechanistic`/`animal`/early in humans.
-Honesty rule #1: do not sell the mechanism as an outcome. The defensible practical stance is the boring one:
+The honesty rule: do not sell the mechanism as an outcome. The defensible practical stance is the boring one:
 **fiber, whole foods, movement, and sleep** support both gut and brain; specific "psychobiotic" claims are
 not yet RCT-grade. The cognition agent (`08`/Domain 14) owns the downstream neurological endpoints.
 
 ### 4.4 Fiber — the best-evidenced GI lever (cross-ref C2/D)
 
-Fiber is the rare dietary lever with **hard-endpoint meta-analytic support**. **Reynolds et al., Lancet 2019**
-(`10.1016/S0140-6736(18)31809-9`) — the WHO-commissioned series — found higher fiber intake associated with
+Fiber is the rare dietary lever with **hard-endpoint meta-analytic support**. **Reynolds et al., Lancet 2019**[^reynolds-2019]
+— the WHO-commissioned series — found higher fiber intake associated with
 **15–30% lower all-cause and cardiovascular mortality** with a clear dose-response, plus lower incidence of
 CHD, stroke, type 2 diabetes, and colorectal cancer. `meta` (of cohorts + some RCTs for intermediate
-endpoints). Updated umbrella reviews (**Veronese et al., Clin Nutr 2025**, `10.1016/j.clnu.2025.06.021`)
+endpoints). Updated umbrella reviews (**Veronese et al., Clin Nutr 2025**)[^veronese-2025]
 concur. This is one of the few nutrition messages where the evidence and the advice actually line up: **most
 people should eat more fiber** (whole grains, legumes, fruit, vegetables). Note the tier honesty — much of this
 is `cohort`, so it's "strongly associated," not "proven causal" at the all-cause-mortality level, but the
@@ -315,7 +319,7 @@ Aging hematopoiesis shows reduced marrow reserve, a drift toward myeloid lineage
 aging mechanisms / Domain C omics). The clinically dominant age story, though, is **anemia**, whose prevalence
 climbs steeply after 65. Crucially, **anemia in older adults is usually a signal of another disease, not "old
 blood"** — it independently predicts hospitalization, disability, and mortality (**Culleton et al., Blood
-2006**, `10.1182/blood-2005-10-4308`). `cohort`. Honesty rule #1: anemia is a **predictor and a flag**; the
+2006**).[^culleton-2006] `cohort`. Predictor, not lever: anemia is a **predictor and a flag**; the
 lever is **finding and treating the cause** (iron deficiency from occult GI bleeding, B12/folate deficiency,
 CKD-related low erythropoietin, chronic inflammation, myelodysplasia). "Treating the number" without the cause
 is a mistake.
@@ -333,23 +337,23 @@ world gets dangerously one-sided (everyone thinks "low iron = take iron").
 - **Overload / hereditary hemochromatosis (HFE):** one of the most common genetic disorders in people of
   Northern-European descent, in which excess iron absorption deposits in liver, heart, pancreas, and joints —
   causing cirrhosis, cardiomyopathy, diabetes ("bronze diabetes"), and arthropathy if untreated
-  (**Brissot et al., Nat Rev Dis Primers 2018**, `10.1038/nrdp.2018.16`; **Kowdley et al., ACG Guideline 2019**,
-  `10.14309/ajg.0000000000000315`). The remarkable therapeutic fact: **the treatment is therapeutic phlebotomy
+  (**Brissot et al., Nat Rev Dis Primers 2018**; **Kowdley et al., ACG Guideline 2019**).[^hemochromatosis]
+  The remarkable therapeutic fact: **the treatment is therapeutic phlebotomy
   — literally regular bloodletting** to deplete iron stores, and it normalizes life expectancy if started
   before organ damage. `rct`/guideline-grade. **The donation angle:** for diagnosed hemochromatosis, routine
   blood donation *is* the therapy (and many blood services accept it). **The honest caveat for everyone else:**
   the popular "donating blood lowers heart-disease risk by reducing iron" idea (the **Sullivan iron
-  hypothesis**, Vox Sang 1991, `10.1111/j.1423-0410.1991.tb00940.x`) is a **plausible mechanism with
+  hypothesis**, Vox Sang 1991)[^sullivan-1991] is a **plausible mechanism with
   confounded, inconsistent human evidence** — donor cohorts are healthier to begin with (healthy-donor effect).
   Donate blood because it helps other people and is reasonable for *you* if you have iron overload — not as a
   proven longevity hack. `cohort`/`mechanistic`, mixed.
 
 ### 5.3 B12 and folate
 
-**Vitamin B12 deficiency** is common and under-diagnosed in older adults (**Green et al., Vitam Horm 2022**,
-`10.1016/bs.vh.2022.02.003`; **Papazachariou et al., Curr Opin Clin Nutr Metab Care 2026**,
-`10.1097/MCO.0000000000001171`), driven by atrophic gastritis (↓ intrinsic factor), reduced acid, and notably
-**metformin** (which lowers B12 — **Bell, Diabetes Obes Metab 2022**, `10.1111/dom.14734`). It causes anemia
+**Vitamin B12 deficiency** is common and under-diagnosed in older adults (**Green et al., Vitam Horm 2022**;
+**Papazachariou et al., Curr Opin Clin Nutr Metab Care 2026**),[^b12-deficiency]
+driven by atrophic gastritis (↓ intrinsic factor), reduced acid, and notably
+**metformin** (which lowers B12 — **Bell, Diabetes Obes Metab 2022**).[^bell-2022] It causes anemia
 *and* an insidious, potentially irreversible neuropathy/cognitive picture, which is why it's worth checking. A
 cheap, high-value test in older or symptomatic adults; repletion is easy and effective. `cohort`/guideline.
 
@@ -357,7 +361,7 @@ cheap, high-value test in older or symptomatic adults; repletion is easy and eff
 
 **Venous thromboembolism (VTE)** incidence rises sharply with age (roughly exponential after midlife), a
 combination of slower venous flow, more procoagulant factors, immobility, and accumulating provoking events —
-surgery, cancer, hospitalization (**Lind et al., Thromb Res 2022**, `10.1016/j.thromres.2022.04.014`).
+surgery, cancer, hospitalization (**Lind et al., Thromb Res 2022**).[^lind-2022]
 `cohort`. The practical, non-pharmacologic levers are **mobility** (move during long travel/illness, calf
 exercises), **hydration**, and **awareness of provoking situations** so prophylaxis is used when indicated.
 Anticoagulation is a clinical decision, not a self-managed one — flagged here so it's on the body-systems map,
@@ -367,9 +371,9 @@ with the cardiovascular/clinical section (`07`) owning the management.
 
 ## 6. Reproductive / Urogenital System (brief)
 
-> Endocrine detail lives in Domain 13 and `N-womens-longevity.md`; prostate cancer and the cardiovascular
-> framing live in `07-clinical-prevention.md`; pelvic-floor training lives in `11-body-systems.md`. This is the
-> integrating summary.
+Endocrine detail lives in Domain 13 and `N-womens-longevity.md`; prostate cancer and the cardiovascular
+framing live in `07-clinical-prevention.md`; pelvic-floor training lives in `11-body-systems.md`. This is the
+integrating summary.
 
 ### 6.1 The two trajectories: menopause vs andropause
 
@@ -377,28 +381,28 @@ The defining sex difference in reproductive aging is **abrupt vs gradual**. **Me
 sharp endocrine cliff (estrogen withdrawal over a few years) with downstream consequences for **bone**
 (accelerated loss — cross-ref `11`), cardiovascular risk, vasomotor symptoms, and urogenital tissue. The
 **timing hypothesis** for menopausal hormone therapy (benefit/risk depends on *when* it's started relative to
-menopause; **KEEPS**, **Miller et al., Menopause 2019**, `10.1097/GME.0000000000001326`) is the nuanced,
+menopause; **KEEPS**, **Miller et al., Menopause 2019**)[^keeps-2019] is the nuanced,
 still-evolving state of the art — see `N-womens-longevity.md` for the full treatment. **Andropause** ("low T")
 is by contrast a **gradual** ~1%/year testosterone decline; it is real but over-medicalized, and TRT carries its
-own risk/benefit calculus (Domain 13). Honesty rule #1 throughout: hormones are powerful levers with genuine
+own risk/benefit calculus (Domain 13). The honesty rule throughout: hormones are powerful levers with genuine
 trade-offs, not free anti-aging.
 
 ### 6.2 Prostate (BPH and cancer) — cross-ref 07
 
 **Benign prostatic hyperplasia (BPH)** is near-universal in aging men — a quality-of-life and urinary issue,
-mechanically distinct from cancer. **Prostate cancer** screening (PSA) is the classic predictor-vs-lever and
-overdiagnosis cautionary tale — handled in `07-clinical-prevention.md`. Listed here only to place the organ on
-the map.
+mechanically distinct from cancer. **Prostate cancer** screening (PSA — a prostate blood test) is the classic
+predictor-vs-lever and overdiagnosis cautionary tale — handled in `07-clinical-prevention.md`. Listed here only
+to place the organ on the map.
 
 ### 6.3 Sexual function as a vascular/health marker
 
 The single most useful longevity insight in this system: **erectile dysfunction is an early-warning marker of
 systemic vascular disease.** Because the penile arteries are small, endothelial dysfunction often shows up there
-*years before* a coronary event — **Kloner, Int J Impot Res 2008** (`10.1038/ijir.2008.20`) and an umbrella
-review (**Mostafaei et al., BJU Int 2021**, `10.1111/bju.15313`) establish ED as an independent predictor of
-cardiovascular disease. `cohort`/`meta`. **Honesty rule #1 in its purest form:** ED *predicts* heart disease,
-and the lever is to treat it as a **prompt for cardiovascular work-up and risk-factor control** (the same
-levers as `07` — BP, glucose, lipids, exercise, not smoking), *not* to silence the symptom with a PDE5
+*years before* a coronary event — **Kloner, Int J Impot Res 2008** and an umbrella
+review (**Mostafaei et al., BJU Int 2021**)[^ed-cvd] establish ED as an independent predictor of
+cardiovascular disease. `cohort`/`meta`. **Predictor, not lever, in its purest form:** ED *predicts* heart
+disease, and the lever is to treat it as a **prompt for cardiovascular work-up and risk-factor control** (the
+same levers as `07` — BP, glucose, lipids, exercise, not smoking), *not* to silence the symptom with a PDE5
 inhibitor and move on. Sexual function more broadly tracks vascular, hormonal, and psychological health, making
 it a useful, honest, free signal.
 
@@ -434,9 +438,9 @@ This is the lymphatic version of the detox myth, and it requires the same two-ti
 - **For diagnosed lymphedema:** **Complete Decongestive Therapy (CDT)** — a clinical protocol combining
   *manual lymphatic drainage (MLD)*, compression bandaging, exercise, and skin care — is the evidence-based
   standard of care, with meta-analytic support for reducing limb volume (**Thompson et al., J Cancer Surviv
-  2021**, `10.1007/s11764-020-00928-1`; **Gilchrist et al., Med Oncol 2024**, `10.1007/s12032-024-02421-6`).
+  2021**; **Gilchrist et al., Med Oncol 2024**).[^cdt-lymphedema]
   Notably, even here the evidence shows **compression and exercise do the heavy lifting**, and the *MLD
-  massage component adds modest, sometimes non-significant value on top** of compression. `meta`.
+  massage component adds modest, sometimes non-significant value on top* of compression. `meta`.
 - **For healthy people:** the wellness-spa claims that "lymphatic drainage massage detoxifies you," "boosts
   immunity," "reduces cellulite," or "removes toxins" are **not supported by evidence.** A healthy lymphatic
   system does not need manual help to drain; there are no "lymphatic toxins" being backed up in a well person.
@@ -458,8 +462,8 @@ this manual:
    and it predicts mortality better than almost any lab — but the lever is *training*, not the number (Domain E,
    `02-training.md`).
 3. **Several systems are best read as warning lights, not problems to silence:** ED → vascular disease, anemia →
-   underlying illness, declining eGFR → systemic risk, rising serum sodium → chronic under-hydration. Honesty
-   rule #1 (predictor ≠ lever) is the single most useful idea in this section.
+   underlying illness, declining eGFR → systemic risk, rising serum sodium → chronic under-hydration. The
+   predictor ≠ lever rule is the single most useful idea in this section.
 4. **The "detox/cleanse/drainage" industries are the clearest debunks in the manual.** The liver and kidney
    detoxify you continuously; the lymphatic system drains itself; juice cleanses and wellness-spa MLD do nothing
    a healthy body wasn't already doing — and some "cleanses" cause real liver injury.
@@ -500,3 +504,34 @@ your body's warning lights as prompts to fix causes — not symptoms to mask or 
 - **Thompson B, et al. "Manual lymphatic drainage treatment for lymphedema: a systematic review." J Cancer
   Surviv 2021.** `10.1007/s11764-020-00928-1` — CDT works for real lymphedema; the MLD-massage component adds
   little over compression; basis for the wellness-MLD debunk.
+
+[^fletcher-peto]: Fletcher C, Peto R. "The natural history of chronic airflow obstruction." BMJ 1977. doi:10.1136/bmj.1.6077.1645 (cohort)
+[^lange-2015]: Lange P, et al. NEJM 2015. doi:10.1056/NEJMoa1411532
+[^mccarthy-2015]: McCarthy B, et al. Cochrane Database Syst Rev 2015. doi:10.1002/14651858.CD003793.pub3 (meta)
+[^craighead-2021]: Craighead DH, et al. JAHA 2021. doi:10.1161/JAHA.121.020980 (rct)
+[^ammous-2023]: Ammous O, et al. Cochrane Database Syst Rev 2023. doi:10.1002/14651858.CD013778.pub2 (meta)
+[^mandsager-2018]: Mandsager K, et al. "Association of Cardiorespiratory Fitness With Long-term Mortality." JAMA Netw Open 2018. doi:10.1001/jamanetworkopen.2018.3605 (cohort)
+[^kodama-2009]: Kodama S, et al. JAMA 2009. doi:10.1001/jama.2009.681 (cohort)
+[^egfr-frailty]: Guerville F, et al. CJASN 2019. doi:10.2215/CJN.03750319; Corsonello A, et al. Eur J Intern Med 2018. doi:10.1016/j.ejim.2018.05.030 (cohort)
+[^ckd-drivers]: Romagnani P, et al. Nat Rev Dis Primers 2017. doi:10.1038/nrdp.2017.88; Kalantar-Zadeh K, et al. Lancet 2021. doi:10.1016/S0140-6736(21)00519-5 (rct/review)
+[^dmitrieva-2023]: Dmitrieva NI, et al. EBioMedicine 2023. doi:10.1016/j.ebiom.2022.104404 (cohort)
+[^phillips-2016]: Phillips SM, et al. Appl Physiol Nutr Metab 2016. doi:10.1139/apnm-2015-0550 (cohort/mechanistic)
+[^bernier-jean-2021]: Bernier-Jean A, et al. Nephrol Dial Transplant 2021. doi:10.1093/ndt/gfaa081 (cohort)
+[^nsaid-ckd]: Baker M, Perazella MA. Am J Kidney Dis 2020. doi:10.1053/j.ajkd.2020.03.023; Klomjit N, Ungprasert P. Eur J Intern Med 2022. doi:10.1016/j.ejim.2022.05.003 (cohort/mechanistic)
+[^rinella-2023]: Rinella ME, et al. "Multisociety Delphi consensus statement on new fatty liver disease nomenclature." J Hepatol 2023. doi:10.1016/j.jhep.2023.06.003
+[^masld-prev]: Younossi ZM, et al. Clin Gastroenterol Hepatol 2024. doi:10.1016/j.cgh.2024.03.006; Miao L, et al. Trends Endocrinol Metab 2024. doi:10.1016/j.tem.2024.02.007 (cohort/epidemiology)
+[^vilar-gomez-2015]: Vilar-Gomez E, et al. "Weight Loss Through Lifestyle Modification Significantly Reduces Features of NASH." Gastroenterology 2015. doi:10.1053/j.gastro.2015.04.005 (cohort/prospective-histology)
+[^monami-2026]: Monami M, et al. Diabetes Obes Metab 2026. doi:10.1111/dom.70617 (meta)
+[^gi-aging]: Gidwaney NG, et al. J Clin Gastroenterol 2016. doi:10.1097/MCG.0000000000000650; McCrea GL, et al. World J Gastroenterol 2008. doi:10.3748/wjg.14.2631 (cohort/mechanistic)
+[^gerd]: Katz PO, et al. ACG Clinical Guideline. Am J Gastroenterol 2022. doi:10.14309/ajg.0000000000001538; Maret-Ouda J, et al. JAMA 2020. doi:10.1001/jama.2020.21360 (guideline)
+[^reynolds-2019]: Reynolds A, et al. "Carbohydrate quality and human health: a series of systematic reviews and meta-analyses." Lancet 2019. doi:10.1016/S0140-6736(18)31809-9 (meta)
+[^veronese-2025]: Veronese N, et al. Clin Nutr 2025. doi:10.1016/j.clnu.2025.06.021 (meta)
+[^culleton-2006]: Culleton BF, et al. Blood 2006. doi:10.1182/blood-2005-10-4308 (cohort)
+[^hemochromatosis]: Brissot P, et al. "Haemochromatosis." Nat Rev Dis Primers 2018. doi:10.1038/nrdp.2018.16; Kowdley KV, et al. ACG Guideline 2019. doi:10.14309/ajg.0000000000000315 (rct/guideline)
+[^sullivan-1991]: Sullivan JL. "The iron hypothesis." Vox Sang 1991. doi:10.1111/j.1423-0410.1991.tb00940.x (cohort/mechanistic, mixed)
+[^b12-deficiency]: Green R, et al. Vitam Horm 2022. doi:10.1016/bs.vh.2022.02.003; Papazachariou A, et al. Curr Opin Clin Nutr Metab Care 2026. doi:10.1097/MCO.0000000000001171 (cohort/guideline)
+[^bell-2022]: Bell DSH. Diabetes Obes Metab 2022. doi:10.1111/dom.14734
+[^lind-2022]: Lind C, et al. Thromb Res 2022. doi:10.1016/j.thromres.2022.04.014 (cohort)
+[^keeps-2019]: KEEPS — Miller VM, et al. Menopause 2019. doi:10.1097/GME.0000000000001326
+[^ed-cvd]: Kloner RA. Int J Impot Res 2008. doi:10.1038/ijir.2008.20; Mostafaei H, et al. BJU Int 2021. doi:10.1111/bju.15313 (cohort/meta)
+[^cdt-lymphedema]: Thompson B, et al. "Manual lymphatic drainage treatment for lymphedema: a systematic review." J Cancer Surviv 2021. doi:10.1007/s11764-020-00928-1; Gilchrist L, et al. Med Oncol 2024. doi:10.1007/s12032-024-02421-6 (meta)

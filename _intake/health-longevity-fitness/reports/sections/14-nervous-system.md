@@ -1,20 +1,13 @@
 # 14 — The Nervous System (as a system)
 
-> **Status:** v0.1 — 2026-06-28. The systems map of the nervous system: structure, signalling,
-> autonomic control, neurotransmitters, plasticity, normal brain aging, and pain. This is the
-> *physiology* counterpart to Section 08 (`08-brain-cognitive.md`), which covers the **disease**
-> end — dementia, neurodegeneration, mental-health outcomes. Where 08 asks "what protects the
-> aging brain and what is being sold to you," this section asks "how does the thing actually
-> work, and which of the popular stories about it are true."
-> **Companion data:** `02-domains/V-nervous-claims.json` (this section's graded claims).
-> Cross-references **Section 08** (dementia/depression — not re-derived here), **Domain I**
-> (`02-domains/I-sleep-circadian.md` — sleep, glymphatic clearance, HRV), the **autonomic/HRV
-> thread** (`02-domains/threads/thread-autonomic-hrv.md`), **Domain E** (exercise → BDNF), and
-> **Domain M** (social connection). **UP to canon:** the action potential and Na⁺/K⁺ pump are
-> *foundations* (`bucket-canon/05-biophysics/` — bioelectricity, ion gradients, Hodgkin–Huxley
-> excitability), not outcomes.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+Learn how the nervous system actually works and you get a built-in bullshit detector. You can tell a
+normal "senior moment" from disease, and see the "rewire your brain in 21 days," "dopamine detox," and
+"vagus hack" pitches for what they are. This chapter is the physiology — how the machine is built and
+how it runs. The disease end — dementia, neurodegeneration, mental-health outcomes — lives in §08.
+
+_Not medical advice. Dementia and depression as outcomes: §08. Evidence tiers (strongest to weakest:
+`rct` > `meta` > `cohort` > `mechanistic`/`animal` > `anecdotal`) are defined in the manual's "Start
+Here."_
 
 ---
 
@@ -53,9 +46,8 @@ not an outcome.
   rushes in (the upstroke), then inactivate while voltage-gated K⁺ channels open and repolarise it
   (the downstroke). This all-or-nothing spike propagates down the axon. **Hodgkin & Huxley (1952)**
   wrote the quantitative equations for exactly this in the squid giant axon — a model so precise it
-  still predicts membrane behaviour today (Hodgkin & Huxley, *J Physiol* 1952,
-  `10.1113/jphysiol.1952.sp004764`; Nobel Prize 1963). `mechanistic` — and as solid as biology
-  gets.
+  still predicts membrane behaviour today (Hodgkin & Huxley, 1952; Nobel Prize 1963).[^hh]
+  `mechanistic` (the mechanism is understood end to end) — and as solid as biology gets.
 
 @@FIG:46-action-potential,RA06-action-potential@@
 
@@ -79,13 +71,13 @@ not an outcome.
   - **Astrocytes** regulate the synaptic environment, recycle neurotransmitters (glutamate uptake),
     buffer K⁺, control blood flow, form the blood–brain barrier with endothelium, and supply
     neurons with metabolic substrate. The "tripartite synapse" (pre + post + astrocyte) is now
-    standard (Sofroniew & Vinters, *Acta Neuropathol* 2009, `10.1007/s00401-009-0619-8`). They are
+    standard (Sofroniew & Vinters, 2009).[^tripartite] They are
     also the aquaporin-4 cells that drive **glymphatic clearance during sleep** — the direct bridge
     to Domain I.
   - **Microglia** are the brain's resident immune cells, and — strikingly — they **prune synapses**
     during development and continue surveilling them in adulthood, using complement tagging
-    ("eat-me" signals) to decide which connections to remove (Schafer et al., *Neuron* 2012,
-    `10.1016/j.neuron.2012.03.026`). Mis-tuned microglial pruning is now implicated in
+    ("eat-me" signals) to decide which connections to remove (Schafer et al., 2012).[^microglia]
+    Mis-tuned microglial pruning is now implicated in
     neurodevelopmental and neurodegenerative disease — a live research front, not a settled lever.
   - **Oligodendrocytes** (CNS) and **Schwann cells** (PNS) make **myelin** — the lipid wrapping that
     insulates axons so the signal jumps node-to-node (saltatory conduction), raising conduction
@@ -127,7 +119,7 @@ appropriately — not "maximise vagal tone."
 ### 2.2 The vagus nerve and HRV — the real readout, honestly graded
 
 The **vagus** (cranial nerve X) is the main parasympathetic highway: ~80% of its fibres are
-*afferent* (gut/heart/lung → brain), only ~20% efferent. Its tonic braking of the heart's sinoatrial
+*afferent* (carrying signals gut/heart/lung → brain), only ~20% efferent (brain → organs). Its tonic braking of the heart's sinoatrial
 node is what makes **heart-rate variability (HRV)** a window onto parasympathetic activity. This is
 covered in depth in the autonomic/HRV thread (`02-domains/threads/thread-autonomic-hrv.md`) and
 Domain I §4 — the short version, kept consistent here:
@@ -135,9 +127,10 @@ Domain I §4 — the short version, kept consistent here:
 - **Solid:** HRV genuinely indexes vagal/autonomic regulation; slow breathing (~6 breaths/min,
   ~0.1 Hz resonance) and extended exhalation reliably raise it via respiratory sinus arrhythmia and
   the baroreflex; chronically low resting HRV *associates* with stress and higher CV/all-cause
-  mortality risk (`mechanistic`/`cohort`).
+  mortality risk (`mechanistic`/`cohort` — observational, follow-a-group evidence).
 - **Hype:** HRV is a **biomarker, not an intervention**. "Raise your HRV" is not itself a validated
-  health outcome (predictor ≠ lever). It is noisy, posture-, age- and method-dependent, and only
+  health outcome (predictor ≠ lever — something that forecasts risk isn't automatically something
+  that, changed, lowers it). It is noisy, posture-, age- and method-dependent, and only
   interpretable *within one person over time* — cross-person "my HRV beats yours" is close to
   meaningless. Whether HRV-guided training produces real outcomes (vs. a wearable vanity metric)
   is an open Wave-2 question.
@@ -147,8 +140,7 @@ Domain I §4 — the short version, kept consistent here:
 The vagus is also the spine of the **gut–brain axis** — bidirectional signalling between the enteric
 nervous system (~the "second brain," ~500 million neurons), the gut microbiome, the immune system,
 and the CNS, via vagal afferents, microbial metabolites (short-chain fatty acids), enteroendocrine
-hormones, and immune cytokines (Cryan et al., "The Microbiota-Gut-Brain Axis," *Physiol Rev* 2019,
-`10.1152/physrev.00018.2018`). **Grade it carefully:** the mechanistic and *animal* evidence is rich
+hormones, and immune cytokines (Cryan et al., 2019).[^gutbrain] **Grade it carefully:** the mechanistic and *animal* evidence is rich
 and real (germ-free mice have altered stress responses and behaviour; vagotomy blocks some effects).
 But the leap from "mouse microbiome shapes mouse behaviour" to "this probiotic fixes your mood/
 anxiety in humans" is mostly unmade — human RCTs of "psychobiotics" are small, heterogeneous, and
@@ -163,8 +155,8 @@ A whole wellness genre promises to "stimulate your vagus" with cold plunges, gar
 massage, and breathing apps. Untangle three claims:
 
 - **Implanted/clinical VNS is real medicine.** Surgically implanted vagus nerve stimulation is
-  FDA-approved for refractory epilepsy and treatment-resistant depression (Rush et al., *Biol
-  Psychiatry* 2000, `10.1016/s0006-3223(99)00304-2`) — though even there the depression evidence is
+  FDA-approved for refractory epilepsy and treatment-resistant depression (Rush et al., 2000)[^vns]
+  — though even there the depression evidence is
   modest, slow, and was contentious at approval. This is a device + surgery, not a breathing trick.
 - **Slow breathing/exhalation genuinely raises vagal output** acutely — that part of the "vagal
   tone" story is mechanistically sound (it's the same physiology as §2.2 and the breath domain).
@@ -173,7 +165,7 @@ massage, and breathing apps. Untangle three claims:
   endpoints (HRV, mood scales), or no good human outcome data at all. The mechanism (you *can* nudge
   autonomic tone) is real; the marketed *outcomes* (cure anxiety, "reset your nervous system")
   outrun the evidence. **Polyvagal theory** — Stephen Porges's influential framework that popularised
-  much of this language (Porges, *Compr Psychoneuroendocrinol* 2023, `10.1016/j.cpnec.2023.100200`)
+  much of this language (Porges, 2023)[^porges]
   — is best treated as an *interpretive lens that generated useful clinical intuitions*, but several
   of its specific evolutionary/anatomical claims are **disputed by comparative physiologists**; grade
   the theory `theoretical`/contested and the specific hacks by their (mostly thin) trials, not by the
@@ -194,7 +186,7 @@ pop-neuroscience: **a transmitter is not a feeling.** Dopamine is not "pleasure,
 |---|---|---|
 | **Glutamate** | The brain's **main excitatory** transmitter (~most synapses). Drives the depolarisation that underlies nearly all fast signalling and, via NMDA/AMPA receptors, **learning (LTP)**. Excess = excitotoxicity (stroke, seizure). | Ignored entirely by pop-neuro, yet it does most of the work. |
 | **GABA** | The main **inhibitory** transmitter; gates excitation, sets cortical rhythm. Target of benzodiazepines, alcohol, anaesthetics. | "GABA supplements calm you" — oral GABA barely crosses the blood–brain barrier; the calm is mostly placebo/peripheral. |
-| **Dopamine** | **Motivation, reward *prediction*, and movement** — not pleasure per se. Schultz's work showed dopamine neurons fire to *reward-prediction error* (better-than-expected), the teaching signal of reinforcement learning (Schultz, Dayan & Montague, *Science* 1997, `10.1126/science.275.5306.1593`). Also runs motor control (its loss = Parkinson's). | "Dopamine = pleasure/the addiction molecule"; the "dopamine detox." See §3.1. |
+| **Dopamine** | **Motivation, reward *prediction*, and movement** — not pleasure per se. Schultz's work showed dopamine neurons fire to *reward-prediction error* (better-than-expected), the teaching signal of reinforcement learning (Schultz, Dayan & Montague, 1997).[^schultz] Also runs motor control (its loss = Parkinson's). | "Dopamine = pleasure/the addiction molecule"; the "dopamine detox." See §3.1. |
 | **Serotonin (5-HT)** | Modulates mood, gut motility (~90% of body serotonin is in the gut), sleep, appetite, aggression — a broad neuromodulator, **not a happiness meter**. | "Low serotonin causes depression." See §3.2. |
 | **Acetylcholine** | Neuromuscular junction (every voluntary muscle), parasympathetic transmitter, and **attention/learning/memory** in cortex (the basal-forebrain cholinergic system degenerates in Alzheimer's — basis of cholinesterase-inhibitor drugs). | Mostly absent from pop-neuro despite being central to memory. |
 | **Norepinephrine** | Arousal, vigilance, the sympathetic "go" signal, and (from the locus coeruleus) attention and stress response. | Conflated with adrenaline/"energy." |
@@ -214,11 +206,10 @@ mechanism.
 ### 3.2 The "serotonin imbalance" debunk (cross-ref 08)
 
 The "chemical imbalance / low-serotonin theory of depression" is **not supported** by the evidence —
-the umbrella review by Moncrieff et al. (*Mol Psychiatry* 2022/2023, `10.1038/s41380-022-01661-0`)
+the umbrella review by Moncrieff et al. (2022)[^moncrieff]
 found no consistent evidence depression is caused by low serotonin. Section 08 §5.3 handles this in
 full and makes the crucial second point: **this does not mean antidepressants don't work.** SSRIs
-have modest-but-real RCT efficacy (Cipriani et al., *Lancet* 2018,
-`10.1016/S0140-6736(17)32802-7`); a drug can help without the folk-mechanism behind it being true.
+have modest-but-real RCT efficacy (Cipriani et al., 2018)[^cipriani]; a drug can help without the folk-mechanism behind it being true.
 Hold the mechanism story and the outcome apart — exactly the schema's rule.
 
 ---
@@ -236,15 +227,16 @@ in the wellness/self-help economy. Both things are true; the job is to draw the 
 - **Stroke and injury recovery.** After a stroke, surviving tissue can take over lost functions, and
   this can be *driven by rehabilitation*. The strongest evidence is **constraint-induced movement
   therapy (CIMT)**: restraining the good arm to force use of the impaired one improves limb function —
-  shown in the **EXCITE randomized trial** (Wolf et al., *JAMA* 2006, `10.1001/jama.296.17.2095`).
-  This is plasticity harnessed clinically. `rct`.
+  shown in the **EXCITE randomized trial** (Wolf et al., 2006).[^excite]
+  This is plasticity harnessed clinically. `rct` (a randomized trial — the strongest evidence tier).
 - **Use-dependent cortical remapping.** Sensory and motor maps reorganise with use, training, and
   injury (musicians' enlarged finger maps; map shifts after amputation). The flip side is maladaptive:
-  cortical reorganisation after amputation correlates with **phantom-limb pain** (Karl et al., *J
-  Neurosci* 2001, `10.1523/jneurosci.21-10-03609.2001`; Flor's body of work) — plasticity isn't always
+  cortical reorganisation after amputation correlates with **phantom-limb pain** (Karl et al., 2001;
+  Flor's body of work)[^phantom] — plasticity isn't always
   benign.
-- **Exercise drives it.** Aerobic exercise raises **BDNF** and increased hippocampal volume in a
-  randomized trial (Erickson et al., *PNAS* 2011, `10.1073/pnas.1015950108`) — see Section 08 §3 and
+- **Exercise drives it.** Aerobic exercise raises **BDNF** (brain-derived neurotrophic factor — a
+  growth factor that helps neurons grow and survive) and increased hippocampal volume in a
+  randomized trial (Erickson et al., 2011)[^bdnf] — see Section 08 §3 and
   Domain E. The mechanism (BDNF, neurogenesis, angiogenesis) is real; the cognitive *outcomes* are
   more modest than the mechanism implies (08 §3.2).
 
@@ -272,7 +264,7 @@ as a promise that any course rewrites you.
 "left-brained" or creative "right-brained" types is false. Hemispheres *are* specialised for some
 functions (language usually left-lateralised, spatial attention often right), but large connectivity
 studies find **no evidence that individuals have a dominant hemisphere** driving personality (Nielsen
-et al., *PLoS ONE* 2013, `10.1371/journal.pone.0071275`). It's a real anatomical asymmetry inflated
+et al., 2013).[^nielsen] It's a real anatomical asymmetry inflated
 into a fake personality taxonomy.
 
 ---
@@ -297,9 +289,8 @@ dangerous complacency.
 
 **Cognitive reserve** is why two people with identical brain pathology can have very different
 symptoms: richer education, occupational complexity, mentally and socially active lives are associated
-with *tolerating more pathology before showing deficits* (Stern, "Cognitive reserve in ageing and
-Alzheimer's disease," *Lancet Neurol* 2012, `10.1016/S1474-4422(12)70191-6`; Scarmeas & Stern, *J Clin
-Exp Neuropsychol* 2003, `10.1076/jcen.25.5.625.14576`). **Grade it with the rules in hand:** the
+with *tolerating more pathology before showing deficits* (Stern, 2012; Scarmeas & Stern, 2003).[^reserve]
+**Grade it with the rules in hand:** the
 evidence is largely **observational** (cohort) and shot through with reverse causation (early disease
 shrinks engagement years before diagnosis; healthier, wealthier people get more education). Reserve is
 a real, useful *construct* and a strong *predictor*; it is a much weaker *lever* — "do puzzles to build
@@ -344,29 +335,25 @@ injury hurts differently on different days.
 
 The cleanest experimental proof is **placebo analgesia**: expectation of relief activates the brain's
 own opioid system and measurably reduces pain, and **naloxone (an opioid blocker) reverses it** —
-placebo pain relief is a real neurochemical event, not "just imagination" (Amanzio & Benedetti, *J
-Neurosci* 1999, `10.1523/jneurosci.19-01-00484.1999`; Petrovic et al., *Science* 2002,
-`10.1126/science.1067176`; Zubieta et al., *J Neurosci* 2005, `10.1523/jneurosci.0439-05.2005`). The
+placebo pain relief is a real neurochemical event, not "just imagination" (Amanzio & Benedetti, 1999;
+Petrovic et al., 2002; Zubieta et al., 2005).[^placebo] The
 brain has a built-in pharmacy that context can dispense.
 
 ### 6.2 Acute vs. chronic pain — and the biopsychosocial model
 
 - **Acute pain** is the useful alarm: it tracks tissue damage and resolves as tissue heals (days to
   weeks). Treat the cause, control the pain, expect recovery.
-- **Chronic pain** (>3 months, now a diagnosis in its own right — Treede et al., *Pain* 2015,
-  `10.1097/j.pain.0000000000000160`) is **not just "acute pain that lasted longer."** In many chronic
+- **Chronic pain** (>3 months, now a diagnosis in its own right — Treede et al., 2015)[^treede] is **not just "acute pain that lasted longer."** In many chronic
   pain states the nervous system itself has changed — **central sensitisation**: the spinal cord and
   brain become amplifiers, so pain persists and spreads beyond, or entirely without, ongoing tissue
   damage. **Pain ≠ tissue damage** is the load-bearing modern fact.
 
-The framework that captures this is the **biopsychosocial model** (Gatchel et al., *Psychol Bull* 2007,
-`10.1037/0033-2909.133.4.581`): chronic pain emerges from biological, psychological *and* social
+The framework that captures this is the **biopsychosocial model** (Gatchel et al., 2007):[^gatchel] chronic pain emerges from biological, psychological *and* social
 factors together, not from a structural lesion alone. The exemplar is **low back pain** — the world's
 leading cause of disability — where imaging findings (disc bulges, "degeneration") are **common in
 pain-free people and correlate poorly with symptoms**, and the *Lancet* Low Back Pain Series concluded
 that the dominant management model is wrong: most low back pain has no identifiable structural cause and
-is worsened by over-imaging, over-medicalising, and over-treating (Hartvigsen et al., *Lancet* 2018,
-`10.1016/s0140-6736(18)30480-x`). `cohort`/`review` — strong and consequential.
+is worsened by over-imaging, over-medicalising, and over-treating (Hartvigsen et al., 2018).[^hartvigsen] `cohort`/`review` — strong and consequential.
 
 ### 6.3 How chronic pain is actually (best) treated — graded honestly
 
@@ -376,19 +363,19 @@ self-management-oriented**, not a pill or a procedure:
 - **Stay active / graded exposure + exercise** — first-line for chronic low back pain and most chronic
   musculoskeletal pain. Rest and avoidance worsen it.
 - **Pain neuroscience education (PNE)** — teaching people *how pain works* (that hurt ≠ harm) measurably
-  reduces pain and disability when combined with exercise (Wood & Hendrick meta-analysis, *Eur J Pain*
-  2018, `10.1002/ejp.1314`; Watson et al., *J Pain* 2019, `10.1016/j.jpain.2019.02.011`). Effects are
+  reduces pain and disability when combined with exercise (Wood & Hendrick meta-analysis, 2018;
+  Watson et al., 2019).[^pne] Effects are
   **small-to-moderate and strongest combined with movement**, not as a lecture alone. The work of
   **Lorimer Moseley & David Butler** (*Explain Pain*) popularised this; grade the *concept* as
   well-supported and the *effect size* as modest. `meta` of RCTs, small-moderate.
 - **CBT and psychological therapies** — modest but real benefit for pain-related disability and mood.
 - **Opioids — the honest verdict.** For chronic non-cancer pain, opioids are **not superior to
   non-opioid medication** and carry serious harms. The landmark **SPACE randomized trial** (Krebs et al.,
-  *JAMA* 2018, `10.1001/jama.2018.0899`) compared opioid vs. non-opioid medication for chronic back and
+  2018)[^space] compared opioid vs. non-opioid medication for chronic back and
   osteoarthritis pain over 12 months and found **no benefit of opioids on pain-related function — and
   slightly *worse* pain in the opioid group**, plus more side effects. Combined with the addiction and
-  overdose toll documented through the opioid epidemic (CDC guideline, Dowell et al., *MMWR* 2016,
-  `10.15585/mmwr.rr6501e1`), the evidence is clear: **opioids are not first-line for chronic non-cancer
+  overdose toll documented through the opioid epidemic (CDC guideline, Dowell et al., 2016),[^cdc]
+  the evidence is clear: **opioids are not first-line for chronic non-cancer
   pain.** They retain a real role in acute, post-surgical, cancer, and palliative pain. `rct` — a
   decisive negative for the over-prescribed indication.
 
@@ -397,18 +384,17 @@ self-management-oriented**, not a pill or a procedure:
 **Peripheral neuropathy** — damage to peripheral nerves — most commonly from **diabetes**, where
 chronic hyperglycaemia injures the longest axons first (the classic "stocking-glove" numbness,
 burning, and pain starting in the feet). It affects roughly half of people with long-standing diabetes
-and is a leading cause of foot ulcers and amputations (Feldman et al., "Diabetic neuropathy," *Nat Rev
-Dis Primers* 2019, `10.1038/s41572-019-0092-1`). Honest treatment picture:
+and is a leading cause of foot ulcers and amputations (Feldman et al., 2019).[^feldman] Honest treatment picture:
 
 - **The only disease-modifying lever is upstream**: tight **glycaemic control** prevents/slows it in
   type 1 diabetes (clearly) and modestly in type 2 — once nerves are damaged, regrowth is limited.
 - **For the *pain***, the evidence-based first-line drugs are **not opioids and not ordinary
   painkillers** but agents that act on neuropathic signalling: **gabapentinoids (pregabalin,
   gabapentin), SNRIs (duloxetine), and tricyclics (amitriptyline)** (Finnerup et al., NeuPSIG
-  systematic review, *Lancet Neurol* 2015, `10.1016/s1474-4422(14)70251-0`; duloxetine Cochrane, Lunn
-  et al. 2014, `10.1002/14651858.cd007115.pub3`). **Grade honestly:** even first-line, the **numbers
-  needed to treat are ~4–8** for 50% pain relief — i.e. *most* patients don't get major relief from any
-  single drug, and side effects are common. Neuropathic pain is genuinely hard to treat; managing
+  systematic review, 2015; duloxetine Cochrane, Lunn et al., 2014).[^neuropathic-drugs] **Grade honestly:** even first-line, the **numbers
+  needed to treat are ~4–8** for 50% pain relief — you'd have to treat 4–8 people for one to get 50%
+  relief, so *most* patients don't get major relief from any
+  single drug, and side effects are common. Neuropathic pain is hard to treat; managing
   expectations is part of treating it. `meta` — first-line agents real but modestly effective.
 
 ---
@@ -429,8 +415,7 @@ synthesis the field now holds:
   marketing story and it shaped how a generation understood their own minds.
 - The **treatments can still work** despite the wrong mechanism: antidepressants (modest, real —
   Cipriani 2018), psychotherapy, and — one of the cleaner interventional findings — **exercise as a
-  genuine RCT-supported treatment for depression** (Noetel et al., *BMJ* 2024,
-  `10.1136/bmj-2023-075847`; 08 §5.2).
+  genuine RCT-supported treatment for depression** (Noetel et al., 2024; 08 §5.2).[^noetel]
 - **Mechanism and outcome are separate claims** — the schema's central discipline, and the whole reason
   this corpus grades them apart.
 
@@ -529,3 +514,55 @@ mechanism and reach of microglial pruning in adult disease; real-world effective
 neuroscience education at scale and over years; disease-modifying (not just symptomatic) treatment for
 established peripheral neuropathy; and the circuit-level (vs. transmitter-level) model of mood
 disorders as it matures toward actionable, gradeable interventions.
+
+---
+
+## Sources & notes
+
+[^hh]: Hodgkin & Huxley — *J Physiol* 1952. doi:10.1113/jphysiol.1952.sp004764. Nobel Prize 1963. claim: action-potential-hh (mechanistic)
+
+[^tripartite]: Sofroniew & Vinters — *Acta Neuropathol* 2009. doi:10.1007/s00401-009-0619-8. claim: astrocyte-tripartite-synapse (mechanistic)
+
+[^microglia]: Schafer et al. — *Neuron* 2012. doi:10.1016/j.neuron.2012.03.026. claim: microglia-synaptic-pruning (mechanistic)
+
+[^gutbrain]: Cryan et al., "The Microbiota-Gut-Brain Axis" — *Physiol Rev* 2019. doi:10.1152/physrev.00018.2018. claim: gut-brain-axis (animal/mechanistic)
+
+[^vns]: Rush et al. — *Biol Psychiatry* 2000. doi:10.1016/s0006-3223(99)00304-2. claim: vns-depression-approval (rct)
+
+[^porges]: Porges — *Compr Psychoneuroendocrinol* 2023. doi:10.1016/j.cpnec.2023.100200. claim: polyvagal-theory-contested (theoretical)
+
+[^schultz]: Schultz, Dayan & Montague — *Science* 1997. doi:10.1126/science.275.5306.1593. claim: dopamine-reward-prediction-error (mechanistic)
+
+[^moncrieff]: Moncrieff et al. — *Mol Psychiatry* 2022. doi:10.1038/s41380-022-01661-0. claim: serotonin-imbalance-debunk (meta)
+
+[^cipriani]: Cipriani et al. — *Lancet* 2018. doi:10.1016/S0140-6736(17)32802-7. claim: ssri-efficacy (meta/rct)
+
+[^excite]: Wolf et al. (EXCITE trial) — *JAMA* 2006. doi:10.1001/jama.296.17.2095. claim: cimt-stroke-recovery (rct)
+
+[^phantom]: Karl et al. — *J Neurosci* 2001. doi:10.1523/jneurosci.21-10-03609.2001; and Flor's body of work. claim: cortical-remap-phantom-pain (mechanistic)
+
+[^bdnf]: Erickson et al. — *PNAS* 2011. doi:10.1073/pnas.1015950108. claim: exercise-bdnf-hippocampus (rct)
+
+[^nielsen]: Nielsen et al. — *PLoS ONE* 2013. doi:10.1371/journal.pone.0071275. claim: left-right-brain-debunk (cohort)
+
+[^reserve]: Stern — *Lancet Neurol* 2012. doi:10.1016/S1474-4422(12)70191-6. Scarmeas & Stern — *J Clin Exp Neuropsychol* 2003. doi:10.1076/jcen.25.5.625.14576. claim: cognitive-reserve (cohort)
+
+[^placebo]: Amanzio & Benedetti — *J Neurosci* 1999. doi:10.1523/jneurosci.19-01-00484.1999. Petrovic et al. — *Science* 2002. doi:10.1126/science.1067176. Zubieta et al. — *J Neurosci* 2005. doi:10.1523/jneurosci.0439-05.2005. claim: placebo-analgesia-naloxone (mechanistic)
+
+[^treede]: Treede et al. — *Pain* 2015. doi:10.1097/j.pain.0000000000000160. claim: chronic-pain-diagnosis (review)
+
+[^gatchel]: Gatchel et al. — *Psychol Bull* 2007. doi:10.1037/0033-2909.133.4.581. claim: biopsychosocial-pain-model (review)
+
+[^hartvigsen]: Hartvigsen et al. (*Lancet* Low Back Pain Series) — *Lancet* 2018. doi:10.1016/s0140-6736(18)30480-x. claim: low-back-pain-overmedicalised (cohort/review)
+
+[^pne]: Wood & Hendrick meta-analysis — *Eur J Pain* 2018. doi:10.1002/ejp.1314. Watson et al. — *J Pain* 2019. doi:10.1016/j.jpain.2019.02.011. claim: pain-neuroscience-education (meta)
+
+[^space]: Krebs et al. (SPACE trial) — *JAMA* 2018. doi:10.1001/jama.2018.0899. claim: opioids-not-first-line (rct)
+
+[^cdc]: Dowell et al. (CDC guideline) — *MMWR* 2016. doi:10.15585/mmwr.rr6501e1. claim: cdc-opioid-guideline (guideline)
+
+[^feldman]: Feldman et al., "Diabetic neuropathy" — *Nat Rev Dis Primers* 2019. doi:10.1038/s41572-019-0092-1. claim: diabetic-neuropathy (review)
+
+[^neuropathic-drugs]: Finnerup et al. (NeuPSIG systematic review) — *Lancet Neurol* 2015. doi:10.1016/s1474-4422(14)70251-0. Lunn et al. (duloxetine Cochrane) 2014. doi:10.1002/14651858.cd007115.pub3. claim: neuropathic-first-line-nnt (meta)
+
+[^noetel]: Noetel et al. — *BMJ* 2024. doi:10.1136/bmj-2023-075847. claim: exercise-depression-rct (meta/rct)

@@ -250,6 +250,16 @@ img{max-width:100%}
 .dia figcaption{font-family:"Helvetica Neue",sans-serif;font-size:7pt;color:#6b5418;margin-top:2pt}
 .small{font-size:8.3pt;color:#5e574a}
 
+/* per-chapter Sources endnotes (pandoc footnotes) */
+.footnotes{font-size:7.6pt;color:#5e574a;margin-top:13pt;break-before:auto}
+.footnotes hr{display:none}
+.footnotes::before{content:"Sources & notes";display:block;font-family:"Helvetica Neue",sans-serif;font-weight:700;font-size:8.5pt;color:#6b5418;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #b08d3a;padding-bottom:3pt;margin-bottom:5pt}
+.footnotes ol{padding-left:14pt;margin:0}
+.footnotes li{margin-bottom:1.5pt}
+.footnotes p{margin:0}
+.footnote-ref{font-size:.72em;color:#8a7a3a;text-decoration:none;vertical-align:super;line-height:0}
+.footnote-back{text-decoration:none}
+
 /* inline figures — anchored next to the text that discusses them */
 .figin{margin:9pt auto 11pt;text-align:center;break-inside:avoid;max-width:80%}
 .figin.pair{max-width:100%;display:flex;gap:10pt;justify-content:center;align-items:flex-start}
@@ -280,7 +290,7 @@ COVER = """<div class="cover">
     Sources: OpenAlex · PubMed · Europe PMC · ClinicalTrials.gov · the Bucket biophysics canon<br>
     Doctrine: index all · grade everything · mechanism &#8800; outcome &#8800; protocol
   </div>
-  <div class="stat">49 chapters · 1007 graded claims · 660 figures · 37 conflicts · 12 body systems · ~265,000 words</div>
+  <div class="stat">50 chapters · 1007 graded claims · 367 figures · 37 conflicts · 12 body systems · ~265,000 words</div>
 </div>"""
 
 HOWTO = """<section class="front">
@@ -324,8 +334,8 @@ DOC = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <body>{COVER}{STARTHERE}{HOWTO}{toc_html}{body_html}
 <section class="front"><h1>Colophon</h1>
 <p class="small">Assembled by Nucleus Brain from the <code>health-longevity-fitness</code> research corpus
-(Bucket Foundation, bead <code>bkt-bg6</code>): 49 chapters, 1007 graded claims across 53 domain files, a
-660-figure people map, 24 labs, 15 trials, 37 conflict objects, and a 53-movement illustrated library.
+(Bucket Foundation, bead <code>bkt-bg6</code>): 50 chapters, 1007 graded claims across 53 domain files, a
+367-figure visual layer, 24 labs, 15 trials, 37 conflict objects, and a 53-movement illustrated library.
 Research drew on OpenAlex, PubMed/Europe PMC, ClinicalTrials.gov and the Bucket biophysics canon; every
 chapter was written under the index-all / grade-everything doctrine and visually or numerically verified.
 Exercise diagrams are procedurally generated vector figures. The corpus is idempotent and version-controlled;

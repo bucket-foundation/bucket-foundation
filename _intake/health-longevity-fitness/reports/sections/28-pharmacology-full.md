@@ -1,33 +1,28 @@
 # 28 — Pharmacology (Full) & Pharmacogenomics
 
-> **Status:** v0.1 — 2026-06-28. This section answers the question section 10 deliberately skipped:
-> not *"which drugs extend healthspan?"* but **"how do drugs work *at all*, what are the major classes,
-> how do they interact, and how does your genome change the answer?"** Section 10
-> (`10-medical-pharmacology.md`) is the **longevity-and-disease drug index** — GLP-1s, statins,
-> antihypertensives, aspirin, vaccines, geroprotectors, hormones — graded by hard-outcome evidence.
-> This section is the **pharmacology engine underneath it**: pharmacodynamics, pharmacokinetics, the
-> CYP450 system, a literate map of the everyday drug classes, interactions/polypharmacy, and a deep
-> pass on **pharmacogenomics** that *extends* the practical PGx primer in section 18
-> (`18-genetics-anatomy.md` §A.2.4). It rests on the receptor/signaling and dose-response foundations
-> of section 01 (`01-foundations.md` §3 hormesis dose-response, §4.3 nutrient-sensing receptors, §6.3
-> redox signaling). **Companion data:** `02-domains/pharmacology-full-claims.json`.
+A useful drug produces a meaningful effect at a concentration your body can deliver and hold — without
+reaching a concentration that harms. That window is the whole game. And the reason the same dose helps
+one person and harms another is almost always what the body does to the drug: age, kidney, liver,
+genotype, other medications. It is rarely a mystery in the molecule.
 
-> ## ⚠️ Not medical advice — and structurally cannot be
->
-> This is an **index of how the machinery works**, not guidance on what to take. Every drug class below
-> has the right patient and the wrong patient, and which one you are depends on your kidneys, liver,
-> age, other medications, and history — exactly the variables that turn a helpful drug into a harmful
-> one. Dose, choice, and combination belong to you and a clinician who can see your whole chart. The
-> value of understanding the *mechanism* is that it lets you ask better questions, not that it lets you
-> self-prescribe.
+This chapter is the engine underneath the drug names: how drugs work at all, the major classes, how they
+interact, and how your genome changes the answer. It covers pharmacodynamics, pharmacokinetics, the CYP450
+system, the everyday drug classes, interactions and polypharmacy, and a deep pass on pharmacogenomics. The
+longevity-and-disease drug index — GLP-1s, statins, antihypertensives, aspirin, geroprotectors, hormones,
+graded by hard-outcome evidence — lives in §10.
 
-> *The three honesty rules (defined in "Start Here"), in pharmacology dialect: **mechanism ≠ outcome** —
-> "binds the receptor / moves the number" is pharmacodynamics, not a trial result, and a drug that "should
-> work" on paper has an unbroken history of failing in trials (the homocysteine story, §18 A.5); **average ≠
-> you** — a dose-response curve and half-life are population statistics that your CYP genotype, age, and
-> organ function move you off of (the whole subject of the pharmacogenomics part); and **benefit and harm are
-> one ledger** — every drug is a net calculation (efficacy minus toxicity minus interaction risk), kept honest
-> by NNT and NNH (§10).*
+Three honesty rules run through it. **Mechanism ≠ outcome** — "binds the receptor, moves the number" is
+pharmacodynamics, not a trial result, and a drug that "should work" on paper has an unbroken history of
+failing in trials (the homocysteine story, §18 A.5). **Average ≠ you** — a dose-response curve and a
+half-life are population statistics that your genotype, age, and organ function move you off of (the whole
+subject of the pharmacogenomics part). **Benefit and harm are one ledger** — every drug is a net
+calculation of efficacy minus toxicity minus interaction risk, kept honest by NNT (how many people you
+treat to prevent one event) and NNH (how many before one is harmed) (§10).
+
+_Not medical advice — and structurally cannot be. This is an index of how the machinery works, not guidance
+on what to take: every class below has a right patient and a wrong patient, and which one you are depends on
+your kidneys, liver, age, other medications, and history. Dose, choice, and combination belong to you and a
+clinician who can see your whole chart._
 
 ---
 
@@ -41,8 +36,9 @@ separate questions, and almost every prescribing decision is the interaction of 
 - **Pharmacokinetics (PK): what the body does to the drug** — how it gets in, spreads, is broken down,
   and leaves. *("Where does the drug go, and for how long?")*
 
-A useful drug is one where PD gives a meaningful effect at a concentration that PK can deliver and hold
-**without** reaching a concentration that harms. That window is the whole game.
+Put those together: a useful drug is one where PD gives a meaningful effect at a concentration that PK can
+deliver and hold **without** reaching a concentration that harms. That therapeutic window between effect
+and harm is what every prescribing decision is trying to stay inside.
 
 ## A.1 Pharmacodynamics — targets, agonists, antagonists, and the dose-response curve
 
@@ -192,8 +188,8 @@ explains most interactions and most PGx:
 |---|---|---|---|
 | **CYP3A4/5** | ~Half of all metabolized drugs | statins (simvastatin, atorvastatin), many calcium-channel blockers, benzodiazepines, immunosuppressants, many opioids | The biggest target for interactions; **inhibited by grapefruit** (§B.2) |
 | **CYP2D6** | ~20–25% of drugs | codeine/tramadol activation, many antidepressants & antipsychotics, tamoxifen, metoprolol | **Most genetically variable**; copy-number ranges from 0 to >2 → poor to ultra-rapid metabolizers (§C) |
-| **CYP2C19** | clopidogrel, PPIs, some antidepressants, voriconazole | Activates clopidogrel; clears PPIs | Loss-of-function common in East-Asian ancestry (§C) |
-| **CYP2C9** | warfarin, phenytoin, many NSAIDs, sulfonylureas | Clears warfarin's active enantiomer | Pairs with VKORC1 for warfarin dosing (§C) |
+| **CYP2C19** | ~10% of drugs | clopidogrel, PPIs, some antidepressants, voriconazole | Activates clopidogrel; clears PPIs; **loss-of-function common in East-Asian ancestry** (§C) |
+| **CYP2C9** | ~10–15% of drugs | warfarin, phenytoin, many NSAIDs, sulfonylureas | Clears warfarin's active enantiomer; pairs with VKORC1 for warfarin dosing (§C) |
 
 @@FIG:PX1-cyp450@@
 
@@ -204,15 +200,16 @@ explains most interactions and most PGx:
 - An **inducer** *increases* the amount of CYP enzyme → metabolism speeds up → substrate levels **fall**
   → loss of effect. Classic inducers: **rifampin, carbamazepine, phenytoin, St. John's Wort**. The
   St. John's Wort case is the honest supplement lesson: a "natural" product is a potent CYP3A4/P-gp
-  inducer that has caused **transplant rejection and contraceptive failure** by accelerating drug
+  (P-glycoprotein, a drug-efflux pump) inducer that has caused **transplant rejection and contraceptive
+  failure** by accelerating drug
   clearance (§B.3).
 
 ### A.2.4 Excretion, half-life, and steady state
 
 **Excretion** removes the drug, mostly via the **kidney** (water-soluble drugs and metabolites in urine)
 and partly via bile/feces. **This is why renal function is dosing-critical:** a drug cleared by the
-kidney accumulates to toxic levels in someone with chronic kidney disease or in the elderly (whose GFR
-declines with age) unless the dose is reduced. Metformin, many antibiotics, digoxin, gabapentin, and
+kidney accumulates to toxic levels in someone with chronic kidney disease or in the elderly (whose GFR — the
+kidney's filtration rate — declines with age) unless the dose is reduced. Metformin, many antibiotics, digoxin, gabapentin, and
 direct oral anticoagulants all need renal dose adjustment.
 
 - **Half-life (t½)** = the time for the plasma concentration to fall by half. It sets **dosing
@@ -277,11 +274,11 @@ system).
   depression, constipation, sedation, tolerance, and dependence.
 - **The honest evidence:** opioids are genuinely valuable for **acute severe pain, post-surgical pain,
   and cancer/palliative pain.** For **chronic non-cancer pain they are not superior to non-opioid
-  regimens** — the **SPACE** trial (Krebs et al., *JAMA* 2018, `10.1001/jama.2018.0899`) found opioids
+  regimens** — the **SPACE** trial (Krebs et al., 2018)[^space] found opioids
   *no better* (slightly worse) than non-opioid therapy for chronic back/osteoarthritis pain over 12
   months, at the cost of dependence and overdose risk (cross-ref section 21, section 14 §6.3). The
   overdose mechanism is **respiratory depression**, reversible by the antagonist **naloxone**.
-- **The PGx landmine:** codeine and tramadol are **prodrugs activated by CYP2D6** — *ultra-rapid*
+- **The PGx (pharmacogenomics) landmine:** codeine and tramadol are **prodrugs activated by CYP2D6** — *ultra-rapid*
   metabolizers convert codeine to morphine dangerously fast (deaths in children, FDA boxed warning),
   *poor* metabolizers get no relief (§C). This is one of the few places PGx is unequivocally
   life-saving.
@@ -369,7 +366,8 @@ mechanistic map:
 - **Antiplatelets** (aspirin — irreversible COX-1 → less thromboxane; clopidogrel/ticagrelor — P2Y12
   receptor blockers) prevent **arterial** clots (heart attack/stroke).
 - **Anticoagulants** prevent **venous/cardioembolic** clots: **warfarin** (vitamin-K-epoxide-reductase
-  inhibitor — the classic narrow-TI drug, needs INR monitoring, huge diet/drug-interaction surface, and
+  inhibitor — the classic narrow-TI drug (safe and toxic doses nearly touch), needs INR monitoring (a
+  blood test of how long clotting takes), huge diet/drug-interaction surface, and
   is the textbook PGx case, §C) vs the **direct oral anticoagulants (DOACs:** apixaban, rivaroxaban,
   dabigatran**)** that directly inhibit factor Xa or thrombin with **far less monitoring and fewer
   interactions** — the major prescribing shift of the last decade. **All anticoagulants trade clot
@@ -400,9 +398,13 @@ These are owned by their dedicated sections; the one-line mechanistic placeholde
 
 # PART C — PHARMACOGENOMICS (THE DEPTH)
 
-This part **extends** section 18 §A.2.4, which establishes the headline: *pharmacogenomics is the single
-most useful clinical genetics there is* — large-effect variants with a defined clinical action, unlike
-the polygenic "wellness" noise. Here is the mechanism and the actionable detail.
+**Pharmacogenomics is the single most useful clinical genetics there is.** Not a probability nudge — a
+specific instruction. Give a child codeine when she carries the ultra-fast-metabolizer version of one
+gene and her body can convert it to a lethal dose of morphine; give it to a slow metabolizer and she
+gets no pain relief at all. Same drug, same dose, opposite outcomes, decided by a single inherited
+variant. These are large-effect variants with a defined clinical action — the opposite of polygenic
+"wellness" noise. This part extends the practical-PGx primer in section 18 §A.2.4 with the mechanism and
+the actionable detail.
 
 @@FIG:PX2-pharmacogenomics@@
 
@@ -416,7 +418,7 @@ from the muscle relaxant succinylcholine — one of the first clean gene-drug st
 modern, *actionable* form is the **Clinical Pharmacogenetics Implementation Consortium (CPIC)**, founded
 2009 and led for years by **Mary V. Relling** and **Teri Klein**, which writes the freely-available,
 peer-reviewed guidelines that translate a genotype into a **specific dosing action** (cpicpgx.org;
-framework Relling & Klein, *Clin Pharmacol Ther* 2011, `10.1038/clpt.2011.34`). **The shift CPIC
+framework Relling & Klein, 2011)[^cpic-framework]. **The shift CPIC
 represents is the whole point: from "interesting genetic association" to "if genotype = X, do Y."**
 
 ## C.2 The metabolizer-phenotype concept
@@ -437,13 +439,13 @@ the practical-genetics framing; this is the prescribing detail.)
 
 | Gene | Drug(s) | What the variant does | Clinical action | Tier / guideline |
 |---|---|---|---|---|
-| **CYP2C19** | **Clopidogrel (Plavix)** | Loss-of-function → can't activate the prodrug → **less antiplatelet protection** after stent/ACS (stent thrombosis, stroke) | Use an alternative (prasugrel/ticagrelor) in LoF carriers; LoF common in East-Asian ancestry | **CPIC** (Lee et al. 2022, `10.1002/cpt.2526`) — `rct`-supported (TAILOR-PCI direction) |
-| **CYP2D6** | **Codeine, tramadol** (prodrug opioids) | UM → fast morphine conversion (**overdose, infant deaths via breast milk**); PM → no analgesia | Avoid codeine/tramadol in UM and PM; use a non-CYP2D6 opioid | **CPIC** (Crews et al. 2021, `10.1002/cpt.2149`); **FDA boxed warning** |
-| **CYP2C9 + VKORC1** | **Warfarin** | CYP2C9 clears warfarin; VKORC1 sets target sensitivity → genotype explains a large share of **dose variance** | Genotype-guided starting dose (also CYP4F2); narrow-TI drug | **CPIC** (Johnson et al. 2017, `10.1002/cpt.668`) — dosing strong; *outcome* benefit vs INR-monitoring mixed |
-| **TPMT / NUDT15** | **Thiopurines** (azathioprine, 6-MP) | Deficiency → can't inactivate → **drug accumulates → life-threatening myelosuppression** at standard dose | Test **before** treating; reduce dose drastically or avoid in deficient patients | **CPIC** (Relling et al. 2019, `10.1002/cpt.1304`) — strong, standard of care |
+| **CYP2C19** | **Clopidogrel (Plavix)** | Loss-of-function → can't activate the prodrug → **less antiplatelet protection** after stent/ACS (stent thrombosis, stroke) | Use an alternative (prasugrel/ticagrelor) in LoF carriers; LoF common in East-Asian ancestry | **CPIC** (Lee et al. 2022)[^cpic-clopidogrel] — `rct`-supported (the strongest evidence tier; TAILOR-PCI direction) |
+| **CYP2D6** | **Codeine, tramadol** (prodrug opioids) | UM → fast morphine conversion (**overdose, infant deaths via breast milk**); PM → no analgesia | Avoid codeine/tramadol in UM and PM; use a non-CYP2D6 opioid | **CPIC** (Crews et al. 2021)[^cpic-codeine]; **FDA boxed warning** |
+| **CYP2C9 + VKORC1** | **Warfarin** | CYP2C9 clears warfarin; VKORC1 sets target sensitivity → genotype explains a large share of **dose variance** | Genotype-guided starting dose (also CYP4F2); narrow-TI drug | **CPIC** (Johnson et al. 2017)[^cpic-warfarin] — dosing strong; *outcome* benefit vs INR-monitoring mixed |
+| **TPMT / NUDT15** | **Thiopurines** (azathioprine, 6-MP) | Deficiency → can't inactivate → **drug accumulates → life-threatening myelosuppression** at standard dose | Test **before** treating; reduce dose drastically or avoid in deficient patients | **CPIC** (Relling et al. 2019)[^cpic-thiopurine] — strong, standard of care |
 | **DPYD** | **Fluoropyrimidines** (5-FU, capecitabine) | Deficiency → can't clear → **fatal toxicity** | Pre-treatment testing now standard in much of Europe; reduce dose/avoid | **CPIC**/EMA — strong; lives saved |
 | **SLCO1B1** | **Simvastatin** (statins) | Transporter variant → ↑muscle exposure → **myopathy** | Lower dose / choose a different statin | **CPIC** — moderate |
-| **HLA-B\*57:01** | **Abacavir** (HIV) | Predicts severe hypersensitivity reaction | **Mandatory test before prescribing** | **PREDICT-1 RCT** — near-100% NPV; standard of care |
+| **HLA-B\*57:01** | **Abacavir** (HIV) | Predicts severe hypersensitivity reaction | **Mandatory test before prescribing** | **PREDICT-1 RCT** — near-100% NPV (a negative test all but rules the reaction out); standard of care |
 | **HLA-B\*15:02 / HLA-A\*31:01** | **Carbamazepine, allopurinol** | Predicts Stevens-Johnson syndrome / TEN (potentially fatal skin reactions) | Test before prescribing in at-risk ancestries | **CPIC**/FDA — strong |
 | **G6PD** | Several oxidant drugs (primaquine, rasburicase, some sulfonamides, dapsone) | Deficiency → **acute hemolysis** | Test before oxidant drugs | Strong; X-linked, common in some ancestries |
 | **CYP2D6 / CYP2C19** | **Antidepressants** (SSRIs, TCAs), some antipsychotics, **tamoxifen** | Alters levels/activation; tamoxifen needs CYP2D6 to form active endoxifen | Dose adjustment; drug choice | **CPIC** — moderate (psychotropics); tamoxifen contested |
@@ -504,10 +506,10 @@ commercial product where the marketing outruns the evidence.
 
 **Grapefruit juice irreversibly inhibits intestinal CYP3A4** (via furanocoumarins), so a normal dose of
 a CYP3A4 substrate is absorbed *as if it were a larger dose* — the body's first-pass metabolism is
-disabled and drug levels can rise sharply. It matters most for **narrow-TI CYP3A4 substrates:** some
-statins (simvastatin, lovastatin → myopathy risk), certain calcium-channel blockers, some
-immunosuppressants and antiarrhythmics, and others — the documented list runs to dozens of drugs (Bailey
-et al., *CMAJ* 2013, `10.1503/cmaj.120951`). The effect can last **24+ hours**, so "take it at a
+disabled and drug levels can rise sharply. It matters most for **narrow-TI CYP3A4 substrates** (where
+safe and toxic doses nearly touch): some statins (simvastatin, lovastatin → myopathy risk), certain
+calcium-channel blockers, some immunosuppressants and antiarrhythmics, and others — the documented list
+runs to dozens of drugs (Bailey et al., 2013)[^bailey-grapefruit]. The effect can last **24+ hours**, so "take it at a
 different time" doesn't fix it. It is the cleanest everyday demonstration that **a food is a drug
 interaction**, and that "natural" confers nothing.
 
@@ -572,8 +574,8 @@ a pharmacology chapter as a real, dose-able effect that every drug rides on top 
   natural history — which is exactly why the evidence ladder (`SCHEMA.md`) ranks the RCT above the
   anecdote. **The placebo effect is the reason "it worked for me" is the weakest tier of evidence.**
 - **Open-label placebo — the strange frontier.** Placebos can produce benefit **even when the patient is
-  told it's a placebo** (open-label placebo, e.g. Kaptchuk's IBS work, *PLoS ONE* 2010,
-  `10.1371/journal.pone.0015591`) — suggesting the ritual and conditioning, not just deception, carry
+  told it's a placebo** (open-label placebo, e.g. Kaptchuk's IBS work, 2010)[^kaptchuk-olp] —
+  suggesting the ritual and conditioning, not just deception, carry
   part of the effect. Real, but modest, and mostly studied in symptom-based conditions (pain, IBS,
   fatigue), **not** in disease that needs a pharmacological cure.
 - **Nocebo — the evil twin, and it's clinically expensive.** **Negative** expectation produces **real
@@ -733,8 +735,8 @@ counts.**
 ## Cross-links
 
 - **Section 10 (medical & pharmacology):** the longevity/disease drug index this section is the engine
-  under — GLP-1s, statins (`statin-ldl-event-dose-response`, `statin-side-effects-nocebo`),
-  antihypertensives, aspirin/ASPREE, vaccines, geroprotectors, hormones. **Do not duplicate — extend.**
+  under — GLP-1s, statins, antihypertensives, aspirin/ASPREE, vaccines, geroprotectors, hormones.
+  **Do not duplicate — extend.**
 - **Section 18 (genetics/anatomy) §A.2.4:** the practical-PGx primer this Part C extends; and §A.5
   (MTHFR / homocysteine) as the mechanism-≠-outcome twin of §A.1.
 - **Section 01 (foundations):** §3 (hormesis dose-response = the dose-response curve, §A.1.4), §4.3
@@ -755,3 +757,16 @@ counts.**
 > in your body, that interactions compound silently with age, and that a large part of "it worked" is
 > your own endogenous placebo pharmacology. Mechanism is a hypothesis; the controlled outcome is the
 > evidence; the net ledger, for *this* person on *these* drugs, is the only thing that counts.
+
+---
+
+## Sources & notes
+
+[^space]: SPACE — Krebs EE et al., *JAMA* 2018. doi:10.1001/jama.2018.0899. claim: opioids-chronic-noncancer-pain-not-superior (rct)
+[^cpic-framework]: CPIC framework — Relling MV & Klein TE, *Clin Pharmacol Ther* 2011. doi:10.1038/clpt.2011.34. claim: cpic-genotype-to-action
+[^cpic-clopidogrel]: CPIC — Lee CR et al., *Clin Pharmacol Ther* 2022. doi:10.1002/cpt.2526. claim: cyp2c19-clopidogrel (rct-supported, TAILOR-PCI direction)
+[^cpic-codeine]: CPIC — Crews KR et al., *Clin Pharmacol Ther* 2021. doi:10.1002/cpt.2149. FDA boxed warning. claim: cyp2d6-codeine-tramadol
+[^cpic-warfarin]: CPIC — Johnson JA et al., *Clin Pharmacol Ther* 2017. doi:10.1002/cpt.668. claim: cyp2c9-vkorc1-warfarin-dosing
+[^cpic-thiopurine]: CPIC — Relling MV et al., *Clin Pharmacol Ther* 2019. doi:10.1002/cpt.1304. claim: tpmt-nudt15-thiopurine
+[^bailey-grapefruit]: Bailey DG et al., "Grapefruit–medication interactions." *CMAJ* 2013. doi:10.1503/cmaj.120951. claim: grapefruit-cyp3a4-inhibition
+[^kaptchuk-olp]: Kaptchuk TJ et al., open-label placebo in IBS. *PLoS ONE* 2010. doi:10.1371/journal.pone.0015591. claim: open-label-placebo-ibs

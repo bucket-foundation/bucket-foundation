@@ -1,42 +1,34 @@
 # 15 — Immune System & Inflammation
 
-> **Manual section, v1.0 — 2026-06-28.** Companion graded claims in `02-domains/W-immune-claims.json`.
-> Inflammaging is referenced all over this corpus — it is a Hallmark of Aging (`B-aging-mechanisms.md`),
-> the spine of the cross-cutting inflammation thread (`threads/thread-inflammation.md`), and a recurring
-> read-out in the metabolism, sleep, and microbiome sections. But until now the **immune system itself** has
-> never been mapped as a *system*: the architecture that produces inflammation, the way that architecture
-> ages, and what — honestly — moves it. This section does that, and it is deliberately wired to the
-> fundamentals (cellular senescence, redox, the gut barrier) rather than treated as a standalone "boost your
-> immunity" topic.
+**"Boosting" the immune system is the wrong mental model** — and it is the model nearly the entire supplement and
+wellness industry is built on. A maximally "boosted" immune system is not a healthy one; it is **autoimmunity,
+allergy, cytokine storm, and inflammaging.** What a healthy immune system does is **regulate** — mount a fast,
+proportionate response to a real threat and then **resolve it cleanly.** The diseases of immune aging are
+overwhelmingly failures of *regulation and resolution*, not failures of raw firepower. Hold that distinction and
+most "immune support" marketing collapses on contact.
 
-> ## ⚠️ Read the framing before the content
->
-> The single most important idea in this section is that **"boosting" the immune system is the wrong mental
-> model** — and it is the model nearly the entire supplement and wellness industry is built on. A maximally
-> "boosted" immune system is not a healthy one; it is **autoimmunity, allergy, cytokine storm, and
-> inflammaging.** What a healthy immune system does is **regulate** — mount a fast, proportionate response to a
-> real threat and then **resolve it cleanly.** The diseases of immune aging are overwhelmingly failures of
-> *regulation and resolution*, not failures of raw firepower. Hold that distinction and most "immune support"
-> marketing collapses on contact.
+This section maps the immune system as a *system* — the architecture that produces inflammation, how that
+architecture ages, and what honestly moves it. Vaccines get their full grading in the pharmacology section (§10).
+
+_Not medical advice._
+
+Three honesty rules run through everything below. **Evidence tiers, strongest to weakest:** `rct` (randomized
+controlled trial — the strongest tier) > `meta` (pooled trials) > `cohort` (observational — tracks people over
+time) > `mechanistic` (works in a dish or in theory) > `anecdotal`.
 
 ## How the three honesty rules cut for immunity
 
-**Predictor ≠ lever:** inflammatory markers — **hsCRP, IL-6, TNF-α** — are among the strongest predictors of
-frailty and mortality in geroscience, but driving the number down hasn't been shown to extend healthspan absent
-a hard-endpoint intervention; the whole inflammaging field lives on this distinction (`L-biomarkers.md`,
-Ridker/JUPITER). **Cohort ≠ RCT, and mechanism ≠ outcome:** "CMV-seropositive elders die sooner" (observational)
-and "vitamin C raises neutrophil function in a dish" (mechanistic) get laundered into "clear your CMV to live
-longer" and "take vitamin C to not get sick" — nearly every immune over-claim is exactly this laundering. **For
-immunity, *regulation* beats *more*:** what helps (sleep, exercise, nutritional adequacy, not smoking, vaccines)
-keeps the system well-regulated; what doesn't (megadose vitamin C, "immune-boosting" blends, cleanses) is sold
-on the crank-it-up fantasy.
-
-**Cross-references (read alongside):** inflammaging / cellular senescence / SASP mechanisms are graded in
-`02-domains/B-aging-mechanisms.md`; the integrative inflammation map is `02-domains/threads/thread-inflammation.md`;
-**hsCRP/IL-6 as predictors** are owned by `02-domains/L-biomarkers.md`; **vaccines as longevity medicine** are
-detailed in `reports/sections/10-medical-pharmacology.md §5`; the **gut–immune axis** is in
-`02-domains/C2-microbiome-deepdive.md`; **exercise myokines** (the anti-inflammatory lever) are in
-`02-domains/E-exercise.md`; **sleep/stress → inflammatory tone** is in `02-domains/I-sleep-circadian.md`.
+**Predictor ≠ lever** (a number that forecasts risk isn't automatically something that, changed, lowers it):
+inflammatory markers — **hsCRP** (high-sensitivity C-reactive protein, an inflammation blood test), **IL-6**
+(interleukin-6, an inflammatory signal), **TNF-α** (tumor necrosis factor, another one) — are among the strongest
+predictors of frailty and mortality in geroscience, but driving the number down hasn't been shown to extend
+healthspan absent a hard-endpoint intervention; the whole inflammaging field lives on this distinction. **Cohort ≠
+RCT, and mechanism ≠ outcome:** "CMV-seropositive elders die sooner" (observational) and "vitamin C raises
+neutrophil function in a dish" (mechanistic) get laundered into "clear your CMV to live longer" and "take vitamin C
+to not get sick" — nearly every immune over-claim is exactly this laundering. **For immunity, *regulation* beats
+*more*:** what helps (sleep, exercise, nutritional adequacy, not smoking, vaccines) keeps the system
+well-regulated; what doesn't (megadose vitamin C, "immune-boosting" blends, cleanses) is sold on the crank-it-up
+fantasy.
 
 ---
 
@@ -51,13 +43,14 @@ specific breakdown in one of these boxes.
 ### 1.1 Innate immunity — fast, fixed, non-specific
 
 The **innate** arm is the body's standing army: always on, responds in minutes to hours, recognizes broad
-molecular patterns (PAMPs on pathogens, DAMPs released by damaged self-cells) rather than specific antigens, and
-has **no memory** in the classical sense. Its components — barriers, phagocytes, NK cells, and complement among
+molecular patterns (**PAMPs** — molecular signatures of microbes; **DAMPs** — danger signals released by your own
+damaged cells) rather than specific antigens, and has **no memory** in the classical sense. Its components — barriers, phagocytes, NK cells, and complement among
 them — and how each ages are mapped in the figure below.
 
-The innate system is also where **inflammaging is generated**: the inflammasome (notably **NLRP3**) and chronic
-macrophage activation are the molecular machinery that turns accumulated damage into low-grade systemic
-inflammation (and is why the ketone body **BHB blocks NLRP3** is an interesting metabolic lever — cross-ref D).
+The innate system is also where **inflammaging is generated**: the inflammasome (an alarm complex, notably
+**NLRP3**) and chronic macrophage activation are the molecular machinery that turns accumulated damage into
+low-grade systemic inflammation — which is why the ketone body **BHB** (beta-hydroxybutyrate, made during fasting)
+blocking NLRP3 is an interesting metabolic lever.
 
 @@FIG:BX8-innate-components@@
 
@@ -83,9 +76,10 @@ healthy — a clean **end**.
 - **Acute, resolving inflammation (good):** injury or infection → vasodilation, immune-cell recruitment, the
   classic *rubor/calor/tumor/dolor* → pathogen cleared, debris removed → **active resolution** and return to
   baseline. Critically, **resolution is an active program**, not just inflammation fading. It is driven by
-  **specialized pro-resolving mediators (SPMs)** — resolvins, protectins, maresins, lipoxins, largely derived
-  from omega-3 and omega-6 fatty acids (Serhan; Basil & Levy 2015). This reframes the whole "anti-inflammatory"
-  conversation: the goal is not to *block* inflammation but to *resolve* it.
+  **specialized pro-resolving mediators (SPMs)** — specialized molecules made from omega-3 and omega-6 fats
+  (resolvins, protectins, maresins, lipoxins) that actively switch inflammation *off* (Serhan; Basil & Levy
+  2015). This reframes the whole "anti-inflammatory" conversation: the goal is to *resolve* inflammation, and to
+  do that well, rather than to blanket-*block* it.
 - **Chronic, non-resolving, sterile inflammation (bad):** the program starts but never cleanly ends. No
   pathogen to clear, low-grade, smoldering, systemic. This is **inflammaging** (§3) — and it is "sterile"
   because the triggers are largely internal (senescent cells, DAMPs, gut leak, visceral fat, misfolded
@@ -114,9 +108,10 @@ responding to vaccines** while **more inflamed at baseline** (the link to §3).
 ### 2.1 Thymic involution — the clock that runs out of new T cells
 
 The **thymus** — the organ that educates new T cells — begins **involuting (shrinking, replaced by fat) from
-around puberty**, and thymic output falls steadily through adult life. This is measurable: **T-cell receptor
-excision circles (TRECs)**, a molecular marker of newly-produced naïve T cells, decline sharply with age (Douek
-1998 used exactly this to show the thymus keeps contributing into adulthood — then dwindles). The consequence:
+around puberty**, and thymic output falls steadily through adult life. This is measurable: **TRECs** (T-cell
+receptor excision circles — molecular offcuts stamped only in brand-new naïve T cells), a marker of fresh thymic
+output, decline sharply with age (Douek 1998 used exactly this to show the thymus keeps contributing into
+adulthood — then dwindles). The consequence:
 the supply of **naïve T cells** (the ones that can recognize *novel* threats) dries up, while the repertoire
 narrows. This is arguably the **single most fundamental driver** of immune aging — and it is largely
 **irreversible** with anything currently proven (thymic regeneration is an active but unproven frontier).
@@ -139,6 +134,9 @@ pneumonia kill disproportionately at older ages — and the reason **higher-dose
 developed specifically for elders (a real, partial workaround — cross-ref §6 and pharma §5).
 
 ### 2.4 CMV — the uninvited tenant that ages your T cells
+
+*Why this is here:* CMV is the cleanest case that a hidden, symptomless infection can age your immune system — and
+a warning against the clinics that will offer to "clear" it.
 
 **Cytomegalovirus (CMV)**, a near-ubiquitous herpesvirus that establishes lifelong latency, is one of the more
 striking findings in the field. Controlling a chronic CMV infection appears to **consume an enormous fraction of
@@ -196,8 +194,8 @@ free lunch. (hsCRP/IL-6 as biomarkers are owned by `L-biomarkers.md`.)
 This is **the** unresolved tension, flagged by Franceschi himself and running through the entire inflammation
 thread: **is inflammaging a *driver* of aging, or a *read-out* of accumulated damage?** Probably both, in a
 vicious cycle — but the direction matters enormously for whether anti-inflammatory intervention is
-disease-modifying or merely cosmetic-on-a-biomarker. The microbiome version is an explicit open conflict
-(`conflict-microbiome-cause-or-consequence`). **Until an intervention that lowers an inflammatory clock is shown
+disease-modifying or merely cosmetic-on-a-biomarker. The microbiome version of this same cause-or-consequence
+question is an explicit open conflict in the corpus. **Until an intervention that lowers an inflammatory clock is shown
 to move a hard endpoint, inflammaging is a superb prognostic *signal* of unknown *leverage*.** Note also the
 "two sides of the same coin" framing (Fülöp/Larbi 2018): immunosenescence (§2) and inflammaging (§3) are not
 separate problems — the failing adaptive system and the smoldering innate system are the **same remodeling**
@@ -331,8 +329,8 @@ support."
 
 ### 6.2 The gut–microbiome–immune axis
 
-Roughly **70% of immune tissue is associated with the gut** (GALT), and the microbiome is in constant
-cross-talk with it. The best-grounded mechanistic link in this corpus: **microbiota-derived short-chain fatty
+Roughly **70% of immune tissue is associated with the gut** (GALT — gut-associated lymphoid tissue, the immune
+lining of your intestine), and the microbiome is in constant cross-talk with it. The best-grounded mechanistic link in this corpus: **microbiota-derived short-chain fatty
 acids (especially butyrate, from fiber fermentation) induce regulatory T cells and support gut-barrier
 integrity** (cross-ref C2: Furusawa/Ohno; Sonnenburg's MAC/fiber thesis), which **dampens inflammaging at its
 source.** Conversely, **dysbiosis and fiber-starvation degrade the mucus barrier → "leak" → systemic
@@ -366,6 +364,19 @@ the boring fundamentals and the vaccines** — things that keep a complex system
 aimed* — not the things with the best stories. A healthy immune system is not a *boosted* one. It is a
 **well-regulated, well-resolving, well-trained** one — and the things that produce that are, almost entirely,
 already in the other sections of this manual.
+
+---
+
+### Cross-links
+
+- **Inflammaging / cellular senescence / SASP** — graded as an aging mechanism in the aging-mechanisms domain;
+  the integrative map is the inflammation thread.
+- **hsCRP / IL-6 as predictors** — owned by the biomarkers domain (how to read and track them).
+- **Vaccines as longevity medicine** — dosed and graded in the pharmacology section (§10).
+- **Gut–immune axis (SCFA → Treg induction)** — the full microbiome grading, including the honest limits of
+  probiotics, is in the microbiome deep-dive.
+- **Exercise myokines** (the anti-inflammatory lever) — exercise domain. **Sleep/stress → inflammatory tone** —
+  sleep/circadian domain.
 
 ---
 

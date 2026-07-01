@@ -1,49 +1,22 @@
 # 38 — Surgery & Perioperative Medicine
 
-> **Status:** v0.1 — 2026-06-29. The surgery-as-a-discipline section of the manual. An external
-> ICD-11 / specialty cross-check found surgery to be the **single biggest systematic gap** in the
-> corpus: individual operations were named per-condition across the disease chapters, but surgery was
-> never treated as a *discipline* with its own evidence problem, its own honesty traps, and its own
-> high-value list. This section fills that gap as a **literate map, not an operative textbook.** It will
-> not teach you to operate; it will teach you to read a surgical recommendation the way the rest of the
-> corpus teaches you to read a supplement claim or a cohort study.
->
-> **Companion data:** `02-domains/surgery-claims.json` (this section's graded claims).
->
-> **Not medical advice.** Nothing here is a recommendation for or against an operation for any
-> individual. Surgery is the most consequential, least-reversible decision in medicine; it belongs to
-> you and a surgeon you trust, made on your actual anatomy and your actual goals. The purpose of this
-> section is to make you a **better-informed party** to that conversation — to give you the questions, the
-> base rates, and the named debunks — not to substitute for it.
->
-> **Cross-references** — and deliberately does **not duplicate** the per-condition surgical detail in:
-> - **Section 21** (`21-pain-injury-rehab.md`) — the **spinal-fusion-for-non-specific-LBP** debunk
->   (§2.4), the **knee-arthroscopy / meniscectomy sham trials** (Moseley 2002, Sihvonen FIDELITY 2013),
->   discectomy-vs-natural-history for sciatica, and joint-replacement-as-end-stage-care. This section
->   *generalises* the lesson those trials taught; it does not re-derive them.
-> - **Section 22** (`22-disease-cardiometabolic-renal.md`) — coronary anatomy, stable-vs-acute CAD,
->   heart-failure, valve disease. This section covers **when revascularisation helps vs. when it is a
->   reflex** (COURAGE/ISCHEMIA/ORBITA); 22 covers the disease.
-> - **Section 23–24** (respiratory/GI; neuro/rheum) — appendectomy, cholecystectomy, hernia, bowel
->   resection are named there per-disease. This section covers **what those operations have in common**.
-> - **Section 25** (`25-oncology.md`) — cancer staging, resection-with-margins, the role of surgery in
->   curative-intent oncology. This section covers the **principle** (resection is the backbone of solid-
->   tumour cure); 25 covers tumour-by-tumour practice.
-> - **Section 34** (`34-emergency-acute.md`) — trauma, hemorrhage control, the acute abdomen, the
->   damage-control surgical principle. Trauma surgery is named there as **emergency medicine**; here it is
->   named as a **subspecialty**.
-> - **Section 11 / 17** (body systems / organ atlas) — the **anatomy** the surgeon operates on.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here."*
+Surgery is where medicine is at its most heroic *and* at its most over-confident, in the same
+hospital, often in the same week. A transplant team gives someone a second life down the hall from a
+spine being fused for a back pain the fusion will not fix. Both truths deserve an honest hearing. The
+default cultural script — "the surgeon recommended it, so it must be needed" — is the thing this
+section is built to interrupt. Surgery has saved more lives than almost any other discipline. It has
+also, repeatedly, kept doing common operations that blinded trials later showed were no better than a
+convincing pretend. Both things are true. Read it straight.
 
-> **A word on tone.** Surgery is where medicine is at its most heroic *and* at its most over-confident, in
-> the same hospital, often in the same week. A transplant team will give someone a second life down the
-> hall from a spine that is being fused for a back pain the fusion will not fix. The corpus owes both
-> truths an honest hearing. The default cultural script — "the surgeon recommended it, so it must be
-> needed" — is the thing this section is built to interrupt, *without* tipping into the equal-and-opposite
-> error that surgery is a racket. It is neither. It is a discipline that has saved more lives than almost
-> any other, and that has also, repeatedly, kept doing common operations that blinded trials later showed
-> were no better than a convincing pretend. Both things are true. Read it straight.
+This section is a literate map of surgery as a *discipline* — how to read a surgical recommendation
+the way the rest of the corpus teaches you to read a supplement claim. It is not an operative
+textbook. Per-condition surgical detail lives elsewhere: the spine and knee sham-trial debunks in
+§21, coronary disease in §22, oncologic resection in §25, trauma in §34.
+
+**If you read one part, read §5** — the questions worth asking before any elective operation.
+
+_Not medical advice. Nothing here recommends for or against an operation for any individual; that
+belongs to you and a surgeon you trust, decided on your actual anatomy and goals._
 
 ---
 
@@ -51,19 +24,19 @@
 
 | Operation (representative) | What it's for | Honest verdict | Best evidence anchor |
 |---|---|---|---|
-| **Cataract extraction + IOL** | Lens opacity → blindness | **Transformative, low-risk, high-volume** — restores sight in minutes; among the best cost-per-QALY in medicine | Decades of cohort + RCT; mortality/fall/depression cohort signals |
-| **Total hip replacement (THR)** | End-stage hip OA | **One of the most reliably life-improving operations that exists** ("the operation of the century") | Large registries; consistent pain/function gains |
-| **Total knee replacement (TKR)** | End-stage knee OA | **Genuinely effective** for severe disease — but more residual pain than hip, and over-offered earlier than indicated | Skou *NEJM* 2015 (`10.1056/NEJMoa1505467`) |
+| **Cataract extraction + IOL** | Lens opacity → blindness | **Transformative, low-risk, high-volume** — restores sight in minutes; among the best cost-per-QALY (quality-adjusted life year — a year of healthy life) in medicine | Decades of cohort + RCT; mortality/fall/depression cohort signals |
+| **Total hip replacement (THR)** | End-stage hip OA (osteoarthritis) | **One of the most reliably life-improving operations that exists** ("the operation of the century") | Large registries; consistent pain/function gains |
+| **Total knee replacement (TKR)** | End-stage knee OA | **Genuinely effective** for severe disease — but more residual pain than hip, and over-offered earlier than indicated | Skou *NEJM* 2015 |
 | **Appendectomy** | Appendicitis | **Standard of care**; antibiotics-first now a real option for *uncomplicated* cases | CODA & APPAC RCTs |
 | **Cholecystectomy** (lap.) | Symptomatic gallstones | **High-value** for biliary colic/cholecystitis; over-done for vague dyspepsia | Cohort + guideline |
 | **Hernia repair** | Inguinal/ventral hernia | **High-value when symptomatic**; *watchful waiting* is safe for minimally symptomatic inguinal hernia | Fitzgibbons RCT |
-| **CABG / PCI (stent)** | Coronary disease | **Life-saving in acute MI & high-risk anatomy; for *stable* angina, no mortality benefit vs. meds, and ORBITA questioned even the symptom benefit** | COURAGE, ISCHEMIA, ORBITA |
-| **Bariatric / metabolic surgery** | Severe obesity ± T2D | **The single most effective obesity & type-2-diabetes intervention we have** — durable weight loss, diabetes remission, lower mortality | SOS, STAMPEDE |
+| **CABG** (bypass) **/ PCI** (stent) | Coronary disease | **Life-saving in acute MI (heart attack) & high-risk anatomy; for *stable* angina, no mortality benefit vs. meds, and ORBITA questioned even the symptom benefit** | COURAGE, ISCHEMIA, ORBITA |
+| **Bariatric / metabolic surgery** | Severe obesity ± T2D (type-2 diabetes) | **The single most effective obesity & type-2-diabetes intervention we have** — durable weight loss, diabetes remission, lower mortality | SOS, STAMPEDE |
 | **Cancer resection** | Solid tumours | **The backbone of curative-intent oncology** — for most solid tumours, cure runs through the operating room | Section 25; tumour-specific |
 | **Solid-organ transplant** | End-stage organ failure | **Second life from a scarce gift** — kidney/liver/heart/lung; limited by donor supply, not efficacy | Registry survival data |
 | **Knee arthroscopy for OA** | Degenerative knee | **Debunked vs. sham** — no better than placebo surgery (Section 21) | Moseley 2002; FIDELITY 2013 |
 | **Vertebroplasty (osteoporotic fx)** | Painful vertebral fracture | **Failed two simultaneous sham trials** — no better than a pretend injection | Buchbinder & Kallmes *NEJM* 2009 |
-| **Spinal fusion for non-specific LBP** | Chronic low back pain | **Over-sold** — not better than structured rehab for non-specific LBP (Section 21 §2.4) | Fairbank/Brox RCTs |
+| **Spinal fusion for non-specific LBP (low back pain)** | Chronic low back pain | **Over-sold** — not better than structured rehab for non-specific LBP (Section 21 §2.4) | Fairbank/Brox RCTs |
 
 The table is the whole section in miniature: **the same discipline contains the highest-value
 interventions in medicine and several of its most durable over-uses.** The rest of this section is about
@@ -92,7 +65,8 @@ Its defining features, and the ones that make its evidence problem unique (§2),
 
 ### The surgical subspecialties
 
-Modern surgery is not one trade but a federation of them. The headline subspecialties:
+Modern surgery is not one trade but a federation of them. The headline subspecialties — you don't
+need to memorize this table; skim it for the shape of the field and read on:
 
 | Subspecialty | Operates on / for | Representative high-volume operations |
 |---|---|---|
@@ -135,8 +109,8 @@ A second axis cuts across every subspecialty: **how you get in.**
 **The honest robotic verdict — a named debunk.** The marketing claim is "robotic = better outcomes."
 The trial evidence is more sober: across most settled indications, **robotic surgery produces outcomes
 that are equivalent — not superior — to laparoscopic surgery, at substantially higher cost and often
-longer operating times.** The clearest single data point is **ROLARR** (Jayne et al., *JAMA* 2017,
-`10.1001/jama.2017.7219`), a randomised trial of robotic vs. conventional laparoscopic resection for
+longer operating times.** The clearest single data point is **ROLARR** (Jayne et al., *JAMA*
+2017),[^rolarr] a randomised trial of robotic vs. conventional laparoscopic resection for
 rectal cancer: it found **no significant reduction in conversion to open surgery** — its primary endpoint
 — and no clear advantage on the patient-important outcomes, despite higher cost. Prostatectomy tells a
 similar story: robotic became the *de facto* standard largely on marketing and surgeon preference, yet
@@ -188,18 +162,14 @@ rather than on randomised evidence — the inverse of the standard the same heal
 ### The power of sham-surgery trials (and the operations that failed them)
 
 When investigators have had the nerve to run a sham-controlled trial, the results have repeatedly
-**overturned standard practice.** The canonical failures — arthroscopic surgery for knee OA,
-arthroscopic partial meniscectomy for a degenerative tear, vertebroplasty for a painful
-osteoporotic fracture, and PCI (stent) for stable angina — each proved **no better than a sham
-operation** for the patient-important outcome.
+**overturned standard practice.** The canonical failures — arthroscopic surgery for knee
+OA (Moseley, 2002),[^moseley] arthroscopic partial meniscectomy for a degenerative tear
+(Sihvonen FIDELITY, 2013),[^fidelity] vertebroplasty for a painful osteoporotic fracture
+(Buchbinder & Kallmes, 2009),[^vertebroplasty] and PCI (stent) for stable angina (ORBITA,
+2018)[^orbita] — each proved **no better than a sham operation** (a blinded, placebo-procedure
+trial) for the patient-important outcome.
 
 @@FIG:Q02-sham-surgery@@
-
-Graded vs. sham (all blinded, placebo-procedure trials): knee arthroscopy — Moseley et al., *NEJM*
-2002 (`10.1056/NEJMoa013259`); partial meniscectomy — Sihvonen et al. FIDELITY, *NEJM* 2013
-(`10.1056/NEJMoa1305189`); vertebroplasty — two simultaneous negative trials, Buchbinder
-(`10.1056/NEJMoa0900563`) **and** Kallmes INVEST (`10.1056/NEJMoa0900429`), *NEJM* 2009; PCI for
-stable angina — ORBITA, Al-Lamee et al., *Lancet* 2018 (`10.1016/S0140-6736(17)32714-9`).
 
 (The two knee operations are covered in detail in **Section 21 §6**; this section names them as the
 **discipline-level lesson** rather than re-deriving the orthopaedic specifics.)
@@ -261,8 +231,8 @@ operation that exemplifies "surgery at its best," this is it.
 **Total hip replacement** has been called "the operation of the century" with little exaggeration: for
 end-stage hip osteoarthritis it produces large, durable improvements in pain and function in the great
 majority of patients, with modern implants lasting decades. **Total knee replacement** is also genuinely
-effective for **severe, end-stage** knee OA — the randomised evidence (Skou et al., *NEJM* 2015,
-`10.1056/NEJMoa1505467`) shows TKR plus rehab beats rehab alone on pain and function, *but* at higher risk
+effective for **severe, end-stage** knee OA — the randomised evidence (Skou et al., *NEJM*
+2015)[^skou] shows TKR plus rehab beats rehab alone on pain and function, *but* at higher risk
 of serious adverse events, and with a meaningful minority left with residual pain. The honest nuances:
 knee replacement satisfies *less* uniformly than hip; it is sometimes offered **too early** (before
 non-surgical care has had a fair run); and the indication is *end-stage* disease, not an incidental
@@ -280,9 +250,9 @@ This is the domain where the mechanism/outcome distinction is sharpest, so be pr
   diabetes or reduced LV function). **CABG** improves survival in defined high-risk groups — a real,
   durable, outcome-level benefit.
 - **Stable angina / stable CAD generally.** Here the reflex — "a narrowing, so stent it" — is **not
-  supported by outcomes.** **COURAGE** (Boden et al., *NEJM* 2007, `10.1056/NEJMoa070829`) showed adding
+  supported by outcomes.** **COURAGE** (Boden et al., *NEJM* 2007)[^courage] showed adding
   PCI to optimal medical therapy did **not** reduce death or MI in stable CAD. **ISCHEMIA** (Maron,
-  Hochman et al., *NEJM* 2020, `10.1056/NEJMoa1915922`) — the largest trial of its kind, in patients with
+  Hochman et al., *NEJM* 2020)[^ischemia] — the largest trial of its kind, in patients with
   *moderate-to-severe ischaemia* — confirmed that an **initial invasive strategy did not reduce
   cardiovascular events or death** vs. initial medical therapy, though it did relieve angina more in
   symptomatic patients. **ORBITA** (§2.2) then showed even the *symptom* benefit shrinks against a
@@ -333,12 +303,12 @@ type-2 diabetes in people with obesity that exists.** The evidence is unusually 
 
 - **Durable weight loss** far exceeding any lifestyle or (pre-GLP-1-era) drug intervention, sustained over
   10+ years.
-- **Type-2 diabetes remission.** **STAMPEDE** (Schauer et al., *NEJM* 2017, `10.1056/NEJMoa1600869`)
+- **Type-2 diabetes remission.** **STAMPEDE** (Schauer et al., *NEJM* 2017)[^stampede]
   randomised patients with T2D to intensive medical therapy vs. surgery and found surgery produced far
   higher rates of glycaemic control and diabetes remission at 5 years. The metabolic effect is partly
   *independent* of weight loss (gut-hormone changes begin within days).
-- **Lower mortality.** The **Swedish Obese Subjects (SOS)** study (Sjöström et al., *NEJM* 2007,
-  `10.1056/NEJMoa066254`) — a prospective controlled cohort with long follow-up — found bariatric surgery
+- **Lower mortality.** The **Swedish Obese Subjects (SOS)** study (Sjöström et al., *NEJM*
+  2007)[^sos] — a prospective controlled cohort with long follow-up — found bariatric surgery
   associated with **reduced overall mortality** and lower incidence of diabetes, MI, and some cancers.
 
 It is real surgery with real risks and requires lifelong nutritional follow-up, and the rise of GLP-1
@@ -375,7 +345,7 @@ determined. The operation is the visible event; the perioperative care is the ic
 ### Pre-operative risk assessment
 
 Before elective surgery, the goal is to estimate and reduce risk: cardiac risk (functional capacity,
-indices such as RCRI), pulmonary risk, frailty, anaemia, glycaemic control, medication review
+indices such as the RCRI, a cardiac-risk score), pulmonary risk, frailty, anaemia, glycaemic control, medication review
 (anticoagulants, etc.), and a realistic read of whether the patient can survive *and recover from* the
 planned procedure. The single most informative bedside question is often deceptively simple — **"how much
 can you physically do?"** — because functional capacity predicts post-operative outcome better than most
@@ -384,12 +354,16 @@ lab tests.
 ### Prehabilitation — fitness *before* surgery (predictor vs. lever, stated carefully)
 
 This is where the corpus's training science (Section 02) meets the operating room, and it must be stated
-with the predictor/lever discipline of the schema:
+with the predictor-versus-lever discipline of the schema (a *predictor* forecasts who does badly; a
+*lever* is something that, when you change it, actually changes the outcome — the two are not the same):
 
 - **The predictor signal is strong and repeated.** **Cardiorespiratory fitness predicts surgical
   survival.** Objectively measured fitness — most rigorously via **cardiopulmonary exercise testing
   (CPET)**, where the **anaerobic threshold** and **peak VO₂** are derived — is one of the best available
-  predictors of post-operative morbidity and mortality across major surgery. Fitter patients, by this
+  predictors of post-operative morbidity and mortality across major surgery. CPET is a monitored
+  treadmill or bike test of how much your heart and lungs can deliver under load — the **anaerobic
+  threshold** is the effort level at which the body starts running short of oxygen, and **peak VO₂**
+  is your aerobic-capacity ceiling. Fitter patients, by this
   measure, **reliably do better.** This is a robust observational/physiologic relationship and dovetails
   with the corpus's broader VO₂max-as-longevity-predictor thesis (Section 02; Section 07).
 - **The lever question is real but less settled.** *Prehabilitation* — deliberately raising fitness (and
@@ -427,8 +401,8 @@ thromboembolism (DVT/PE), pneumonia and other pulmonary complications, ileus** (
 **delirium** (especially in older patients), **acute kidney injury, anastomotic leak** (a join coming
 apart), and **cardiac events.** Much of perioperative medicine is the systematic *prevention* of this
 list — VTE prophylaxis, antibiotic timing, early mobilisation, glucose control, delirium-aware care — and
-it is precisely where the **WHO Surgical Safety Checklist** (Haynes et al., *NEJM* 2009,
-`10.1056/NEJMsa0810119`) made its mark: a 19-item checklist that, in a global study, was associated with
+it is precisely where the **WHO Surgical Safety Checklist** (Haynes et al., *NEJM* 2009)[^who-checklist]
+made its mark: a 19-item checklist that, in a global study, was associated with
 **lower death and complication rates.** It is the most Gawande-ish fact in the section (see *The Checklist
 Manifesto*, §"Go deeper"): a clipboard, used reliably, saving lives that all the technology could not.
 
@@ -497,7 +471,7 @@ visible target and an invisible outcome benefit — which is exactly where surge
   - *Better: A Surgeon's Notes on Performance* (2007) — diligence, measurement, the bell curve of surgeons.
   - *The Checklist Manifesto* (2009) — the human story behind the WHO Surgical Safety Checklist (§4.4).
   - *Being Mortal* (2014) — when *not* to operate; surgery, ageing, and the limits of intervention.
-- **ORBITA** — Al-Lamee et al., *Lancet* 2018 (`10.1016/S0140-6736(17)32714-9`) — the placebo-controlled
+- **ORBITA** — Al-Lamee et al., *Lancet* 2018 (full citation in the notes) — the placebo-controlled
   stent trial; read alongside **COURAGE** (2007) and **ISCHEMIA** (2020) for the full stable-CAD story.
 - **The sham-surgery canon** — Moseley *NEJM* 2002 (knee arthroscopy); Sihvonen FIDELITY *NEJM* 2013
   (meniscectomy); Buchbinder & Kallmes *NEJM* 2009 (vertebroplasty). On the *method* itself, see
@@ -521,3 +495,19 @@ visible target and an invisible outcome benefit — which is exactly where surge
 > osteoporotic fracture, and a non-specific aching back. The discipline contains both. So should your
 > understanding of it. *Not medical advice — a map for a better conversation with the person holding the
 > knife.*
+
+---
+
+## Sources & notes
+
+[^rolarr]: ROLARR — Jayne et al., *JAMA* 2017. doi:10.1001/jama.2017.7219 (rct)
+[^moseley]: Knee arthroscopy for OA — Moseley et al., *NEJM* 2002. doi:10.1056/NEJMoa013259 (rct, sham-controlled)
+[^fidelity]: Arthroscopic partial meniscectomy — Sihvonen et al. (FIDELITY), *NEJM* 2013. doi:10.1056/NEJMoa1305189 (rct, sham-controlled)
+[^vertebroplasty]: Vertebroplasty for osteoporotic fracture — two simultaneous negative sham trials: Buchbinder et al., *NEJM* 2009 (doi:10.1056/NEJMoa0900563) and Kallmes et al. (INVEST), *NEJM* 2009 (doi:10.1056/NEJMoa0900429). (rct, sham-controlled)
+[^orbita]: PCI (stent) for stable angina — ORBITA, Al-Lamee et al., *Lancet* 2018. doi:10.1016/S0140-6736(17)32714-9 (rct, sham-controlled)
+[^skou]: Total knee replacement — Skou et al., *NEJM* 2015. doi:10.1056/NEJMoa1505467 (rct)
+[^courage]: COURAGE — Boden et al., *NEJM* 2007. doi:10.1056/NEJMoa070829 (rct)
+[^ischemia]: ISCHEMIA — Maron, Hochman et al., *NEJM* 2020. doi:10.1056/NEJMoa1915922 (rct)
+[^stampede]: STAMPEDE — Schauer et al., *NEJM* 2017. doi:10.1056/NEJMoa1600869 (rct)
+[^sos]: Swedish Obese Subjects (SOS) — Sjöström et al., *NEJM* 2007. doi:10.1056/NEJMoa066254 (cohort)
+[^who-checklist]: WHO Surgical Safety Checklist — Haynes et al., *NEJM* 2009. doi:10.1056/NEJMsa0810119 (cohort/before-after)

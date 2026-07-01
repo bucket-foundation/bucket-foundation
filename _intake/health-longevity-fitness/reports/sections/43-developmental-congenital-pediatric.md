@@ -1,41 +1,29 @@
 # 43 — Developmental, Congenital & Pediatric Disease
 
-> **Status:** v0.1 — 2026-06-29. The **disease** side of childhood. An external cross-check flagged this
-> as a standing gap: the manual covers **healthy** development thoroughly — §19 (`19-life-stages.md`)
-> walks the lifespan, DOHaD, the "first 1000 days," and the build-the-peak childhood window — but it never
-> mapped **what goes wrong**: the chromosomal and single-gene disorders, the neurodevelopmental conditions,
-> the cancers and infections and metabolic diseases of childhood. ICD-11 **Chapter 20** (developmental
-> anomalies) and the pediatric-disease literature were thin-to-absent. This section is that map.
-> **Companion data:** `02-domains/pediatric-congenital-claims.json` (this section's graded claims).
->
-> **This section deliberately does NOT duplicate:**
-> - **§19 (`19-life-stages.md`)** — DOHaD/Barker, the first 1000 days, peak bone mass, healthy puberty,
->   folate-as-perinatal-supplement *evidence* (§19 §3.1). This section covers the **disease** the folate
->   *prevents* (neural tube defects) and the screening that catches it, not the supplement trial again.
-> - **§18 (`18-genetics-anatomy.md`)** — what a genome *is*, common-vs-rare variants, why most "wellness
->   SNPs" are noise. This section uses that scaffolding to talk about the **rare, large-effect** variants
->   that actually cause childhood disease (the genuinely "actionable" end §18 A.1 points at).
-> - **§20 (`20-mental-health-psychiatry.md`)** — ADHD as a psychiatric condition, its stimulant treatment,
->   the over/under-diagnosis honesty. This section covers ADHD only as a **neurodevelopmental** entity and
->   its overlap with autism, and points back to §20 for treatment.
-> - **§26 (vaccines/infectious disease)** and **§31 (hematology / sickle cell)** and **§22 (diabetes)** and
->   **§25 (oncology)** — cross-referenced at each point, not restated.
->
-> *Graded per the manual's evidence tiers; the three honesty rules — predictor ≠ lever, cohort ≠ RCT, something beats nothing — are defined up front in "Start Here." One corollary carries the highest body count in this section: "unchangeable cause" (a trisomy, a CFTR mutation) does **not** mean "unchangeable outcome" — screening, modulators, and early intervention move the trajectory enormously.*
+Few decisions are more consequential or more personal than those about a child's health, a prenatal
+diagnosis, or a developmental concern. This chapter is the **disease** side of childhood — the chromosomal
+and single-gene disorders, the neurodevelopmental conditions, the cancers and infections and metabolic
+diseases — and it refuses two failures at once. The first is the **cold-catalog** failure: reducing a child
+and a family to a diagnosis code and a prognosis curve. The second is the **false-hope** failure: selling
+parents desperate for a "cure" an intervention that doesn't work and may harm. The compassionate move and
+the honest move turn out to be the same move. Every child here is a whole person, most of these conditions
+are nobody's fault, real medicine helps more than the marketing admits — and the "cures" sold to frightened
+parents are graded straight, because getting that grading wrong gets children hurt.
 
-> ## ⚠️ This is not medical advice
->
-> Few decisions are more consequential or more personal than those about a child's health, a prenatal
-> diagnosis, or a developmental concern. Everything below is an **index of the evidence**, written so a
-> parent can ask sharper questions of a pediatrician or genetic counselor — never a protocol to self-apply,
-> and never a substitute for a clinician who knows the specific child.
+One corollary carries the highest body count in this chapter: an **unchangeable cause** (a trisomy, a
+*CFTR* mutation) does not mean an **unchangeable outcome** — screening, modulators, and early intervention
+move the trajectory enormously.[^rules]
 
-> **A word on tone.** This section refuses two failures at once. The first is the **cold-catalog** failure —
-> reducing a child and a family to a diagnosis code and a prognosis curve. The second is the **false-hope**
-> failure — selling parents desperate for a "cure" an intervention that doesn't work and may harm. The
-> compassionate move and the honest move are, again, the same move: every child here is a whole person, most
-> of these conditions are nobody's fault, real medicine helps more than the marketing admits — and the
-> "cures" sold to frightened parents are graded straight, because getting that grading wrong gets children hurt.
+_Not medical advice — an index of the evidence, written so a parent can ask sharper questions of a
+pediatrician or genetic counselor. Healthy development lives in §19; ADHD treatment in §20; vaccines in §26;
+sickle cell in §31; diabetes in §22; childhood-cancer biology in §25._
+
+[^rules]: This chapter grades every claim by three rules from the manual's "Start Here": **predictor ≠ lever**
+    (something that forecasts risk isn't automatically something that, changed, lowers it), **cohort ≠ RCT**
+    (an observational association is weaker evidence than a randomized trial), and **something beats nothing**
+    (a small real effect still counts). Evidence tiers used below: `rct` (randomized trial, the strongest
+    tier), `cohort` (observational), `meta` (pooled across many studies), `mechanistic` (a plausible
+    biological cause, not yet demonstrated as an outcome), `null` (no effect shown).
 
 ---
 
@@ -83,29 +71,42 @@ this fact, which frightened and guilty parents rarely believe on their own.
 
 | Condition | Genetics | Key features | Honest prognosis note |
 |---|---|---|---|
-| **Down syndrome (trisomy 21)** | Three copies of chromosome 21 (~95% nondisjunction, ~4% translocation, ~1% mosaic). ~1 in 700 births. | Intellectual disability (mild–moderate), characteristic facies, hypotonia; ↑ risk of congenital heart defects (~50%), hearing/vision issues, hypothyroidism, leukemia, and early Alzheimer's (chr-21 carries *APP*). | **Life expectancy has risen from ~25 years (1980s) to ~60** with modern cardiac surgery and medical care — a transformation driven by *care*, not by changing the genetics. Most people with Down syndrome and their families report good quality of life. |
+| **Down syndrome (trisomy 21)** | Three copies of chromosome 21 (~95% nondisjunction, ~4% translocation, ~1% mosaic). ~1 in 700 births. | Intellectual disability (mild–moderate), characteristic facies, hypotonia; ↑ risk of congenital heart defects (~50%), hearing/vision issues, hypothyroidism, leukemia, and early Alzheimer's (chromosome 21 carries the *APP* gene tied to Alzheimer's). | **Life expectancy has risen from ~25 years (1980s) to ~60** with modern cardiac surgery and medical care — a transformation driven by *care*, not by changing the genetics. Most people with Down syndrome and their families report good quality of life. |
 | **Turner syndrome (45,X)** | A single X chromosome in females (the other missing/partial). ~1 in 2,500 girls. | Short stature, ovarian insufficiency (infertility), congenital heart/aortic anomalies, normal intelligence (specific spatial/math difficulties). | Growth hormone and estrogen replacement are standard; **cognition is typically normal** — a key contrast with the autosomal trisomies. Cardiac surveillance is the safety-critical piece. |
 | **Klinefelter syndrome (47,XXY)** | An extra X in males. ~1 in 600 boys — **markedly underdiagnosed** (many never identified). | Tall stature, small testes, low testosterone, infertility (most common genetic cause of male infertility), variable mild learning/language issues. | Often presents only as infertility in adulthood. Testosterone replacement helps secondary sex characteristics and bone/mood; **normal life expectancy**. |
 | **Edwards (trisomy 18) / Patau (trisomy 13)** | Three copies of chr 18 / chr 13. | Severe multi-organ malformations. | **Usually lethal in infancy** — most do not survive the first year. The honest counseling here is among the hardest in medicine, and is increasingly individualized rather than uniformly nihilistic. |
 
 @@FIG:PX4-trisomies@@
 
+**Plain takeaway:** these are whole-chromosome dosage errors, nobody's fault, and the prognosis is driven far
+more by the *care* a child gets than by the chromosome count — Down syndrome life expectancy more than doubled
+without changing a single gene.
+
 **Maternal age and the honest framing.** The risk of trisomy (especially Down) **rises with maternal age**
 (driven by accumulated meiotic errors in long-arrested oocytes — tie to the §19 oocyte-aging biology). But two
 honest caveats: (1) because *more babies are born to younger mothers*, the **majority of children with Down
 syndrome are born to mothers under 35**; (2) maternal age is a **predictor, not blame** — it is a statistical
-gradient, not a choice that "causes" the condition. The Down-syndrome primer (Antonarakis et al., *Nat Rev Dis
-Primers* 2020, `10.1038/s41572-019-0143-7`) is the definitive modern review. `cohort`/review — strong.
+gradient, not a choice that "causes" the condition. The Down-syndrome primer (Antonarakis et al., 2020) is the
+definitive modern review.[^downsyn] `cohort`/review — strong.
+
+[^downsyn]: Antonarakis SE et al., "Down syndrome." *Nat Rev Dis Primers* 2020. doi:10.1038/s41572-019-0143-7.
+    Tier: cohort/review.
 
 ### 1.3 Single-gene disorders
 
 | Condition | Gene / inheritance | What it does | Treatment honesty |
 |---|---|---|---|
-| **Cystic fibrosis** | *CFTR*, autosomal recessive; ~1 in 2,500–3,500 (European ancestry). | A defective chloride channel → thick mucus → chronic lung infection, pancreatic insufficiency, infertility. | **The single most dramatic recent story in this section.** Median survival rose from childhood (1950s) to the 40s–50s with airway/nutrition care — and then **CFTR modulators** changed the disease itself. Elexacaftor–tezacaftor–ivacaftor (**Trikafta**) in patients with ≥1 Phe508del allele produced large, sustained gains in lung function (Middleton et al., *NEJM* 2019, `10.1056/NEJMoa1908639`). A disease that was a death sentence is becoming, for many, a managed condition. `rct` — strong. (Honest caveat: modulators don't fit every mutation, and global access is deeply unequal.) |
+| **Cystic fibrosis** | *CFTR*, autosomal recessive; ~1 in 2,500–3,500 (European ancestry). | A defective chloride channel → thick mucus → chronic lung infection, pancreatic insufficiency, infertility. | **The single most dramatic recent story in this section.** Median survival rose from childhood (1950s) to the 40s–50s with airway/nutrition care — and then **CFTR modulators** changed the disease itself. Elexacaftor–tezacaftor–ivacaftor (**Trikafta**) in patients with ≥1 Phe508del allele produced large, sustained gains in lung function (Middleton et al., 2019).[^trikafta] A disease that was a death sentence is becoming, for many, a managed condition. `rct` — strong. (Honest caveat: modulators don't fit every mutation, and global access is deeply unequal.) |
 | **Sickle cell disease** | *HBB* (β-globin), autosomal recessive. | Sickled red cells → vaso-occlusion, pain crises, organ damage, stroke. | **Owned by §31 (hematology).** Newborn screening + penicillin prophylaxis + hydroxyurea transformed childhood survival; **gene therapies** (e.g. exagamglogene/lovotibeglogene, 2023–24 approvals) are now curative for some. Cross-ref §31; not restated here. |
 | **Huntington disease** | *HTT* CAG-repeat expansion, autosomal **dominant**, fully penetrant. | Adult-onset (usually 30s–50s) progressive movement, cognitive, and psychiatric decline. | The hardest case in predictive genetics: a definitive test exists, but **there is still no disease-modifying treatment**, so testing is a profound personal choice with major psychological and family implications. The model case for **non-directive genetic counseling** (§18). `mechanistic` (cause certain) / treatment `null` so far. |
 | **Duchenne muscular dystrophy** | *DMD* (dystrophin), X-linked recessive; affects boys. | Progressive muscle degeneration from early childhood; loss of ambulation in the teens, cardiorespiratory decline. | Corticosteroids slow decline; cardiac/respiratory care extends survival into adulthood; exon-skipping and gene therapies are **emerging but still modest/contested** in benefit. Honest: real progress, not yet a cure. |
 | **Fragile X syndrome** | *FMR1* CGG-repeat expansion, X-linked. | **The most common inherited cause of intellectual disability** and a leading single-gene cause of autism; learning/behavioral features, characteristic physical signs. | No cure; **early intervention, educational support, and managing co-occurring ADHD/anxiety** are the levers. The autism overlap (§2, §20) is biologically real here. |
+
+**Plain takeaway:** one broken gene, one large effect — and for several of these (cystic fibrosis, sickle
+cell) the last decade turned a childhood death sentence into a managed or even curable condition.
+
+[^trikafta]: Middleton PG et al., "Elexacaftor–Tezacaftor–Ivacaftor for Cystic Fibrosis with a Single
+    Phe508del Allele." *NEJM* 2019. doi:10.1056/NEJMoa1908639. Tier: rct.
 
 **The cross-cutting honest point.** These are exactly the **rare, large-effect** variants §18 flagged as the
 *genuinely* actionable end of genetics — the opposite of the polygenic "wellness SNP" hype. For several
@@ -127,13 +128,16 @@ ultrasound. `cohort`/registry — strong for the survival transformation.
 **Anencephaly and spina bifida** result from failure of the neural tube to close by ~week 4 of gestation —
 *before most women know they are pregnant*. This is the highest-leverage **preventable** structural birth
 defect, and §19 §3.1 grades the *intervention*: periconceptional **folic acid** cut NTD recurrence by ~72% in
-the MRC Vitamin Study (RCT, *Lancet* 1991, PMID 1677062), which is why **mandatory folic-acid fortification of
+the MRC Vitamin Study (1991),[^mrc-folate] which is why **mandatory folic-acid fortification of
 flour** is one of the great public-health wins of the era — population NTD rates fell sharply wherever it was
 implemented. **This section's job is the disease**: spina bifida is a spectrum from occult and asymptomatic to
 severe (paralysis below the lesion, hydrocephalus, bowel/bladder dysfunction); fetal surgery (the MOMS trial era)
 can improve some outcomes. The takeaway that bridges both sections: **a vitamin in the food supply prevents a
 devastating, lifelong disability — and it has to be on board before the pregnancy is even known.** `rct`
 (prevention) + `cohort` (fortification impact) — strong.
+
+[^mrc-folate]: MRC Vitamin Study Research Group, "Prevention of neural tube defects." *Lancet* 1991.
+    PMID 1677062. Tier: rct (prevention). Graded in full in §19 §3.1.
 
 ### 1.6 Newborn screening & prenatal testing — the honest counseling and ethics
 
@@ -147,12 +151,14 @@ the strongest cost-effectiveness evidence in medicine.
 
 **Prenatal testing** is more ethically layered, and honesty requires distinguishing the tools:
 
-- **Screening tests** (cell-free fetal DNA / NIPT, combined first-trimester screening) estimate *probability*.
+- **Screening tests** (cell-free fetal DNA / NIPT — noninvasive prenatal testing, a blood draw from the
+  mother — combined first-trimester screening) estimate *probability*.
   NIPT is highly sensitive for the common trisomies but, for rare conditions, its **positive predictive value
   can be low** — a "positive" screen is a reason for a *diagnostic* test, **not a diagnosis**. Marketing that
   blurs this line causes real harm (terminations on false positives have occurred). The honest counseling rule:
   **screen ≠ diagnosis.**
-- **Diagnostic tests** (amniocentesis, CVS) are definitive but carry a small procedure-related miscarriage risk.
+- **Diagnostic tests** (amniocentesis, CVS — chorionic villus sampling) are definitive but carry a small
+  procedure-related miscarriage risk.
 - **The ethics.** Prenatal diagnosis hands parents information whose *use* is intensely personal and value-laden.
   The professional standard is **non-directive counseling** — present accurate information and options without
   steering — precisely because the "right" decision depends on values the clinician does not own. Disability-
@@ -184,7 +190,7 @@ converging on synaptic development. Single-gene conditions like **fragile X (§1
 high autism rates. This is settled developmental neuroscience. `cohort`/`mechanistic` — strong.
 
 **The rising prevalence — diagnosis, not epidemic.** CDC's ADDM network reported autism prevalence among
-8-year-olds at **1 in 36 (2020 data)** (Maenner et al., *MMWR Surveill Summ* 2023, `10.15585/mmwr.ss7202a1`),
+8-year-olds at **1 in 36 (2020 data)** (Maenner et al., 2023),[^addm]
 up steeply from ~1 in 150 in the early 2000s. The honest reading of that curve: the **overwhelming majority of
 the rise reflects broadened diagnostic criteria (DSM-III→5 folded in milder presentations), greater awareness,
 better ascertainment, diagnostic substitution (cases once labeled "intellectual disability"), and expanded
@@ -192,6 +198,9 @@ services tied to a diagnosis** — *not* a true explosion in underlying biology.
 long-existing condition is the parsimonious explanation, and it is the one the data support. (This does not
 foreclose small environmental contributions like advanced parental age or prematurity, but those are modest and
 do not explain the trend.) `cohort`/epidemiology.
+
+[^addm]: Maenner MJ et al., CDC ADDM autism prevalence (1 in 36). *MMWR Surveill Summ* 2023.
+    doi:10.15585/mmwr.ss7202a1. Tier: cohort/epidemiology.
 
 **There is no "cure," and the search for one is where the danger lives.** The evidence-based supports are
 **early developmental and behavioral intervention, speech and occupational therapy, educational support, and
@@ -229,8 +238,8 @@ Read §20 for treatment.
 
 ### 2.4 Cerebral palsy (CP)
 
-**The most common motor disability of childhood** (~2–3 per 1,000 live births; Oskoui et al., *Dev Med Child
-Neurol* 2013, `10.1111/dmcn.12080`). CP is a group of **permanent movement and posture disorders caused by a
+**The most common motor disability of childhood** (~2–3 per 1,000 live births; Oskoui et al., 2013).[^cp-prev]
+CP is a group of **permanent movement and posture disorders caused by a
 non-progressive injury or malformation of the developing brain** — prenatal, perinatal, or early-infant. Key
 honesty:
 
@@ -244,6 +253,9 @@ honesty:
 - **The levers are real but supportive:** physical/occupational therapy, spasticity management (botulinum
   toxin, baclofen, selective surgery), orthotics, and communication support. No cure for the lesion; large
   gains in function and participation. `cohort`/review — strong for epidemiology.
+
+[^cp-prev]: Oskoui M et al., "An update on the prevalence of cerebral palsy: a systematic review and
+    meta-analysis." *Dev Med Child Neurol* 2013. doi:10.1111/dmcn.12080. Tier: cohort/meta.
 
 ---
 
@@ -270,9 +282,10 @@ leukemias, brain tumors, embryonal tumors). The headline is one of medicine's **
 
 - **Acute lymphoblastic leukemia (ALL)** — the most common childhood cancer — had a survival rate **near zero
   in 1960**. Today, with **risk-stratified, multi-agent chemotherapy** (and, for high-risk cases, transplant
-  and CAR-T), **~90% of children with ALL are cured** (Inaba, Greaves & Mullighan, *Lancet* 2013 review; modern
+  and CAR-T — a therapy that re-engineers the patient's own immune cells to attack the cancer), **~90% of
+  children with ALL are cured** (Inaba, Greaves & Mullighan, *Lancet* 2013 review; modern
   protocols). This was achieved not by one drug but by decades of **cooperative-group randomized trials** that
-  incrementally optimized combination therapy and CNS prophylaxis — the chemotherapy success story in its
+  incrementally optimized combination therapy and CNS (central-nervous-system) prophylaxis — the chemotherapy success story in its
   purest form. `rct`/cooperative-trial era — strong.
 
 @@FIG:P09-all-cure@@
@@ -287,13 +300,13 @@ leukemias, brain tumors, embryonal tumors). The headline is one of medicine's **
 bronchoconstriction causing wheeze, cough, and breathlessness. It is strongly linked to **atopy** (the allergic
 march: eczema → food allergy → allergic rhinitis → asthma). Honest, evidence-graded points:
 
-- **Inhaled corticosteroids are the cornerstone** controller; the disease is highly manageable, and most
+- **Inhaled corticosteroids (ICS) are the cornerstone** controller; the disease is highly manageable, and most
   children with asthma live full active lives. Under-treatment (and over-reliance on rescue inhalers) is the
   common failure.
 - **The hygiene / "old friends" hypothesis** — that reduced early-life microbial exposure contributes to rising
   allergic disease — is a **plausible, partly-supported mechanism**, not a settled prescription (e.g. farm/raw-
   milk environments associate with less asthma in cohorts). `mechanistic`/`cohort` — suggestive, not proven.
-- **The one place the evidence flipped hard:** early peanut **introduction**. The **LEAP trial** showed that
+- **The one place the evidence flipped hard:** early peanut **introduction**. The **LEAP trial** (Learning Early About Peanut) showed that
   introducing peanut *early* (4–11 months) in high-risk infants **dramatically reduced** peanut allergy versus
   avoidance — overturning a generation of "delay allergenic foods" advice. (Graded in the allergy/immunology
   domain; flagged here as the model case of folklore-reversed-by-RCT in pediatrics.) `rct` — strong.
@@ -328,14 +341,16 @@ decades and is now a leading pediatric public-health problem. The honesty:
 
 - **It is not simply "willpower" or "bad parenting."** It is the developmental face of the same obesogenic
   environment, genetics, and metabolic biology covered in Domain D / metabolic sections — engineered food, built
-  environment, socioeconomic gradients, sleep, and (via §19 DOHaD) even *prenatal* programming. Stigmatizing
+  environment, socioeconomic gradients, sleep, and (via §19 DOHaD — the developmental-origins-of-health
+  idea that early-life conditions set adult risk) even *prenatal* programming. Stigmatizing
   children and families is both cruel and counterproductive.
 - **The stakes compound forward.** Childhood obesity tracks into adult obesity and brings forward conditions
   once considered adult-only — **type 2 diabetes in adolescents** (historically near-unheard-of), fatty liver,
   hypertension, and the psychosocial burden of weight stigma.
 - **The honest treatment landscape is shifting.** Family-based behavioral/lifestyle intervention is the
   foundation; for severe obesity, guidelines now (controversially) include consideration of **pharmacotherapy
-  (GLP-1 agonists) and bariatric surgery in adolescents** — a genuine evidence-vs-values debate that is live and
+  (GLP-1 agonists — the appetite- and blood-sugar-regulating drugs, e.g. semaglutide/Ozempic) and bariatric
+  surgery in adolescents** — a genuine evidence-vs-values debate that is live and
   unsettled. This section flags the crisis and its honest contours; dose-level detail lives in the metabolic
   domains. `cohort` (trend) — strong; treatment `rct`/`evolving`.
 
@@ -346,17 +361,23 @@ leading cause of post-neonatal infant death and a parent's worst fear. It is als
 **public-health success stories** in this whole manual:
 
 - Epidemiology converged on infant **sleep position** as a powerful, modifiable risk factor. A systematic review
-  of the observational evidence (Gilbert et al., *Int J Epidemiol* 2005, `10.1093/ije/dyi088`) found that
+  of the observational evidence (Gilbert et al., 2005)[^sids-gilbert] found that
   **prone (front) sleeping carried a roughly 4-fold higher SIDS risk**, and concluded that had the advice to
   avoid front-sleeping been adopted earlier, **tens of thousands of infant deaths might have been prevented** —
   a rare and damning case of *delayed* translation of evidence.
 - The **"Back to Sleep" campaign** (launched 1994; now "Safe to Sleep") translated this into a simple message:
   put babies **on their backs to sleep**. Where adopted, **SIDS rates fell by roughly half or more.** A broader
   safe-sleep bundle stacks on top of the sleeping position. (Swaddling is nuanced — it can help, but increases
-  risk if the baby rolls prone; Pease et al., *Pediatrics* 2016, `10.1542/peds.2015-3275`.)
+  risk if the baby rolls prone; Pease et al., 2016.[^swaddle])
 - **The honest lever:** a free, behavioral, position change — no drug, no device — roughly halved a leading
   cause of infant death. It is the archetype of the "unglamorous public-health win" Rule 3 keeps pointing at.
   `cohort`/public-health — strong.
+
+[^sids-gilbert]: Gilbert R et al., "Infant sleeping position and the sudden infant death syndrome: systematic
+    review." *Int J Epidemiol* 2005. doi:10.1093/ije/dyi088. Tier: cohort/public-health.
+
+[^swaddle]: Pease AS et al., "Swaddling and the risk of sudden infant death syndrome: a meta-analysis."
+    *Pediatrics* 2016. doi:10.1542/peds.2015-3275. Tier: cohort/meta.
 
 @@FIG:PS6-sids@@
 
@@ -396,26 +417,22 @@ This is the most thoroughly refuted claim in modern pediatrics. The honest histo
 - **The origin was fraud, not science.** The 1998 *Lancet* paper by **Andrew Wakefield** that launched the
   MMR-autism scare was based on **12 children**, had undisclosed financial conflicts (Wakefield was paid by
   litigants and had filed a competing-vaccine patent), and involved **data manipulation**. It was **fully
-  retracted by the *Lancet* in 2010** (`10.1016/S0140-6736(10)60175-4`, PMID 20137807), and Wakefield was
+  retracted by the *Lancet* in 2010**,[^wakefield] and Wakefield was
   **struck off the UK medical register** for dishonesty. The foundational "evidence" never existed.
 - **The replication evidence is overwhelming and one-directional.** Study after study, across countries and
   millions of children, found **no association** between vaccines and autism:
   - **Madsen et al.** (Denmark, all 537,303 children) — MMR-vaccinated vs unvaccinated, **no increased autism
-    risk** (*NEJM* 2002, `10.1056/NEJMoa021134`, PMID 12421889).
+    risk** (2002).[^madsen-mmr]
   - **Hviid et al.** (Denmark, 657,461 children) — a second, larger nationwide cohort a generation later,
-    **again no association**, including in subgroups claimed to be susceptible (*Ann Intern Med* 2019,
-    `10.7326/M18-2101`, PMID 30831578).
+    **again no association**, including in subgroups claimed to be susceptible (2019).[^hviid]
   - **Jain et al.** — even among children with an **older autistic sibling** (higher baseline risk, the
-    "susceptible" group antivaccine advocates invoke), MMR was **not associated** with autism (*JAMA* 2015,
-    `10.1001/jama.2015.3077`, PMID 25898051).
+    "susceptible" group antivaccine advocates invoke), MMR was **not associated** with autism (2015).[^jain]
   - **Taylor et al.** — a meta-analysis of **>1.2 million children** found **no relationship** between
-    vaccination (or MMR, thimerosal, or mercury) and autism (*Vaccine* 2014, `10.1016/j.vaccine.2014.04.085`,
-    PMID 24814559).
+    vaccination (or MMR, thimerosal, or mercury) and autism (2014).[^taylor]
   - The **thimerosal** sub-myth collapsed identically: autism rates **kept rising after thimerosal was removed**
-    from childhood vaccines (Madsen, Denmark, *Pediatrics* 2003, `10.1542/peds.112.3.604`, PMID 12949291), and
+    from childhood vaccines (Madsen, 2003),[^thimerosal] and
     the **"too many antigens overwhelm the immune system"** variant also failed — cumulative vaccine-antigen
-    exposure was **not associated** with autism (DeStefano et al., *J Pediatr* 2013,
-    `10.1016/j.jpeds.2013.02.001`, PMID 23545349).
+    exposure was **not associated** with autism (DeStefano et al., 2013).[^destefano]
 - **The harm of the myth is measurable.** Falling MMR coverage has produced **measles outbreaks and child
   deaths** that would not otherwise have occurred. The myth didn't just waste worry — it killed children via the
   disease it talked parents out of preventing. (Cross-ref §26.)
@@ -423,6 +440,22 @@ This is the most thoroughly refuted claim in modern pediatrics. The honest histo
 **The honest verdict:** the vaccine–autism link is **refuted at the highest evidence tier** (`meta` across
 millions of children, plus retraction-for-fraud of the origin). It is as settled as anything in epidemiology.
 `meta` — **decisively refutes.** This is not "balance both sides"; it is reporting a closed question.
+
+[^wakefield]: Wakefield et al. (1998), Retraction. *Lancet* 2010. doi:10.1016/S0140-6736(10)60175-4.
+    PMID 20137807. Tier: retraction-for-fraud.
+[^madsen-mmr]: Madsen KM et al., "A population-based study of MMR vaccination and autism." *NEJM* 2002.
+    doi:10.1056/NEJMoa021134. PMID 12421889. Tier: cohort.
+[^hviid]: Hviid A et al., "MMR vaccination and autism: a nationwide cohort study." *Ann Intern Med* 2019.
+    doi:10.7326/M18-2101. PMID 30831578. Tier: cohort.
+[^jain]: Jain A et al., "Autism occurrence by MMR vaccine status among US children with older siblings with
+    and without autism." *JAMA* 2015. doi:10.1001/jama.2015.3077. PMID 25898051. Tier: cohort.
+[^taylor]: Taylor LE et al., "Vaccines are not associated with autism: an evidence-based meta-analysis."
+    *Vaccine* 2014. doi:10.1016/j.vaccine.2014.04.085. PMID 24814559. Tier: meta (>1.2M children).
+[^thimerosal]: Madsen KM et al., "Thimerosal and the occurrence of autism." *Pediatrics* 2003.
+    doi:10.1542/peds.112.3.604. PMID 12949291. Tier: cohort.
+[^destefano]: DeStefano F et al., "Increasing exposure to antibody-stimulating proteins and polysaccharides
+    in vaccines is not associated with risk of autism." *J Pediatr* 2013. doi:10.1016/j.jpeds.2013.02.001.
+    PMID 23545349. Tier: cohort.
 
 ### 5.2 MMS / "Miracle Mineral Solution" — bleach is not a cure, it is poison
 
@@ -451,7 +484,7 @@ a dangerous outcome-claim:
 
 - **Chelation** (drugs that bind and excrete metals — DMSA, EDTA) has **no evidence of benefit for autism**: a
   Cochrane review found **no clinical-trial evidence supporting its use and identified the potential for serious
-  harm** (Cochrane 2015, `10.1002/14651858.CD010766`, PMID 26106752). A planned NIH chelation trial in autism
+  harm** (Cochrane, 2015).[^chelation] A planned NIH chelation trial in autism
   was **cancelled on safety/ethics grounds.**
 - It is **not harmless.** Chelation can cause **hypocalcemia, kidney and liver injury, and death** — at least one
   child with autism (and others given chelation for unproven indications) has **died** from chelation-induced
@@ -463,6 +496,9 @@ a dangerous outcome-claim:
 
 **The honest verdict:** chelation and "detox" for autism are **refuted and, in chelation's case, lethal.**
 `meta`/Cochrane — **refutes; documented harm including death.**
+
+[^chelation]: James S et al., "Chelation for autism spectrum disorder (ASD)." *Cochrane Database Syst Rev*
+    2015. doi:10.1002/14651858.CD010766. PMID 26106752. Tier: meta/Cochrane — refutes.
 
 ### 5.4 The pattern, named
 
@@ -561,7 +597,7 @@ treatment RCTs) versus describes a syndrome.
 ## Cross-links
 
 - **§19 (life stages):** healthy development, DOHaD/Barker, first-1000-days, peak bone mass, the folate
-  *intervention* evidence (`barker-low-birthweight-adult-cvd`, the §3.1 prenatal-micronutrient table). This
+  *intervention* evidence (the §3.1 prenatal-micronutrient table). This
   section is the **disease** complement, not a restatement.
 - **§18 (genetics, practical):** common-vs-rare variants, why "wellness SNPs" are noise — the scaffolding for
   §1's rare large-effect disorders; non-directive counseling (§1.6) extends §18's testing-ethics frame.

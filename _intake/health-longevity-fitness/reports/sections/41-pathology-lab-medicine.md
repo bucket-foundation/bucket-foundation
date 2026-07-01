@@ -1,45 +1,32 @@
 # 41 — Pathology & Laboratory Medicine
 
-> **Status:** v0.1 — 2026-06-29. The chapter the rest of the manual quietly depends on. Every section that
-> says "measure X," "screen for Y," or "this biomarker predicts Z" is making a claim that only means
-> something once you understand **how a test actually performs** — and most readers (and a depressing
-> number of clinicians) never learn the arithmetic. An external cross-check flagged the earlier draft as
-> *thin*: strong on mechanism, missing the **test-performance discipline** — the part that turns a number
-> on a lab slip into a decision. This section supplies it.
->
-> **What this section is.** Two intertwined literacies:
-> 1. **The test-performance foundations** — sensitivity, specificity, predictive values, pre-test
->    probability (Bayes), likelihood ratios, ROC. This is, by a wide margin, **the single most useful
->    piece of medical literacy a layperson or a generalist can own.** It is also where the corpus's two
->    governing honesty rules — *predictor ≠ lever* and *test-interpretation rigor* — actually live.
-> 2. **The lab and pathology landscape** — what the major categories of test physically measure, what
->    "normal" means, where the gold standards are, and where the frontier is overselling itself.
->
-> **Companion data:** `02-domains/pathology-lab-claims.json` (graded claim set added with this section).
->
-> **Cross-references this section extends, does not repeat:**
-> - `04-protocols/WHAT-TO-TRACK-SYNTHESIS.md` — the *what to measure* synthesis (which biomarkers earn
->   their place). This section is the *how a measurement behaves* layer underneath it.
-> - `reports/sections/18-genetics-anatomy.md` §A.6 — DTC genetic-testing honesty. The same Bayesian
->   trap (relative risk on a low baseline; "negative" rules out almost nothing) recurs here for blood
->   panels.
-> - §13 endocrine (assay variability), §15 immune (CRP/ESR predictor-not-lever), §17 organ systems
->   (anemia workup), §22 cardiometabolic (lipids, glucose/HbA1c), §25 oncology (staging/grading,
->   liquid biopsy), §07 clinical/prevention (screening).
->
-> *The three honesty rules (defined in "Start Here") bite hard here: a test that **flags** risk (hsCRP, a tumor
-> marker, a calcium score) is not a thing to drive to zero — treating the readout instead of the disease is the
-> commonest lab error; "this marker is associated with the disease" (the basis of almost every assay) is not
-> "screening with it saves lives," which needs a randomized screening trial most markers fail; and past a
-> person's actual pre-test probability, more testing **generates** false positives, cascades, and harm — the
-> discipline is knowing when **not** to test.*
+Read Part A once, carefully, and most medical news, every "full-body blood panel" ad, and half of your
+own doctor's visits will read differently afterward. Every claim elsewhere in this manual that says
+"measure X," "screen for Y," or "this biomarker predicts Z" only means something once you understand **how
+a test actually performs** — the arithmetic that turns a number on a lab slip into a decision, which most
+readers and a surprising number of clinicians never learn.
+
+This chapter covers two literacies: the **test-performance foundations** (sensitivity, specificity,
+predictive values, Bayes, likelihood ratios, ROC — the single most useful piece of medical literacy a
+generalist can own) and the **lab landscape** (what each category of test physically measures, what
+"normal" means, where the gold standards are, and where the frontier oversells itself).
+
+Three rules run through all of it. A test that **flags** risk (hsCRP, a tumor marker, a coronary calcium
+score) is a *predictor, not a lever* — something that forecasts risk isn't automatically something that,
+driven to zero, lowers it; treating the readout instead of the disease is the commonest lab error.
+"This marker is associated with the disease" (the basis of almost every assay) is not "screening with it
+saves lives" — that needs a randomized screening trial most markers never pass. And past a person's actual
+pre-test probability, more testing **generates** false positives, cascades, and harm; the discipline is
+knowing when **not** to test.
+
+_Not medical advice. Screening principles: §07. Drugs: §10. Which biomarkers earn their place:
+`WHAT-TO-TRACK-SYNTHESIS.md`._
 
 ---
 
 # PART A — THE TEST-PERFORMANCE FOUNDATIONS
 
-This is the rigorous core. Read it once, carefully, and most medical news, every "full-body blood panel"
-ad, and half of your own doctor's visits will read differently afterward.
+This is the rigorous core — the arithmetic everything else rests on.
 
 ## A.1 The 2×2 table — where every test metric is born
 
@@ -192,8 +179,9 @@ deviations. Three consequences fall straight out of that definition, and almost 
    "normal" fasting glucose or LDL may sit well above the level associated with lowest risk. Conversely,
    "optimal" ranges marketed by longevity clinics are frequently *narrower than the evidence supports* and
    convert ordinary variation into billable abnormality. The corpus's stance (carried from
-   `WHAT-TO-TRACK-SYNTHESIS.md`): treat the *validated, outcome-linked* thresholds (apoB, HbA1c, blood
-   pressure) as real; treat "optimal" boutique ranges as marketing until an outcome study backs them.
+   `WHAT-TO-TRACK-SYNTHESIS.md`): treat the *validated, outcome-linked* thresholds (apoB — a direct count
+   of the cholesterol particles that lodge in artery walls; HbA1c; blood pressure) as real; treat "optimal"
+   boutique ranges as marketing until an outcome study backs them.
 3. **A single out-of-range value is usually not disease.** Biological variation (day-to-day, diurnal,
    post-meal, post-exercise), assay imprecision, and the 1-in-20 statistics mean an isolated flag, in a
    person with no symptoms and low pre-test probability, most often regresses to normal on a repeat draw.
@@ -207,7 +195,8 @@ age, sex, pregnancy, and ancestry. A value is only interpretable against *the re
 
 Underneath every clean digit on a lab report is an **analytical reality** the report hides:
 
-- **Imprecision (CV).** Repeat the same sample and you get a spread. Well-controlled chemistry assays run
+- **Imprecision (the CV, or coefficient of variation — how much the same sample wobbles when re-run).**
+  Repeat the same sample and you get a spread. Well-controlled chemistry assays run
   a few percent; some immunoassays (many hormones) run 10–20%+. A "change" smaller than the assay's
   reference-change value is noise.
 - **Between-method disagreement.** Different platforms calibrated differently give different absolute
@@ -245,13 +234,19 @@ in the absence of pre-test reasoning is not rigor — it is a false-positive gen
 
 # PART B — THE LAB CATEGORIES (what is actually being measured)
 
-A practical map. For each category: what it measures, the high-value tests, and the honest caveat. Effect
-sizes and outcome evidence for specific biomarkers live in `WHAT-TO-TRACK-SYNTHESIS.md` and the linked
-domain claims — this is the *test-science* layer over them.
+A practical map, so that when you scan your own lab slip you can tell which *kind* of test each line is —
+which changes how much a flag on it should worry you. For each category: what it measures, the high-value
+tests, and the honest caveat. Effect sizes and outcome evidence for specific biomarkers live in
+`WHAT-TO-TRACK-SYNTHESIS.md` and the linked domain claims — this is the *test-science* layer over them.
 
 @@FIG:75-blood-panel@@
 
 ## B.1 The lab-category table
+
+The load-bearing abbreviations, spelled once: **BMP/CMP** = basic / comprehensive metabolic panel;
+**eGFR** = estimated kidney-filtration rate; **ACR** = urine albumin-to-creatinine ratio (an early
+kidney-damage marker); **ALT/AST/ALP** = liver enzymes; **HbA1c** = a 3-month average blood-sugar level;
+**INR** = a clotting-time ratio; **HOMA-IR** = an insulin-resistance index; **CBC** = complete blood count.
 
 | Category | Core tests | What it actually tells you | Honest caveat / cross-ref |
 |---|---|---|---|
@@ -261,7 +256,7 @@ domain claims — this is the *test-science* layer over them.
 | **Kidney function** | Creatinine→eGFR, BUN, cystatin C, urine albumin:creatinine (ACR) | Filtration rate, proteinuria | ACR (an *early* glomerular-damage marker) often more actionable than a borderline eGFR. Cross-ref §22. |
 | **Lipids** | Total/LDL-C, HDL-C, triglycerides, **apoB**, Lp(a) | Atherogenic particle burden; **apoB** = particle number (causal), Lp(a) = genetic (once-in-life) | LDL-C can mislead when discordant with particle number; **apoB is the better metric**. Cross-ref §22, `WHAT-TO-TRACK-SYNTHESIS.md` Tier A (apoB causal; Lp(a) once). |
 | **Hematology (CBC)** | Hb/Hct, RBC indices (MCV, RDW), WBC + differential, platelets | Anemia, infection/inflammation pattern, clotting capacity, marrow output | A pattern test, not a single number — see B.2. Anemia workup cross-ref §17. |
-| **Inflammatory markers** | **hsCRP**, ESR, ferritin (also iron store), fibrinogen | Non-specific *acute-phase* signal of inflammation | **Predictor, not lever** (Ridker/JUPITER): hsCRP risk-stratifies but is not itself a treatment target. ESR is slow/non-specific. Cross-ref §15, `hscrp-predicts-not-causal`. |
+| **Inflammatory markers** | **hsCRP**, ESR, ferritin (also iron store), fibrinogen | Non-specific *acute-phase* signal of inflammation | **Predictor, not lever** (Ridker/JUPITER): hsCRP risk-stratifies but is not itself a treatment target. ESR is slow/non-specific. Cross-ref §15. |
 | **Endocrine assays** | TSH/free T4/T3, cortisol, testosterone, estradiol, insulin, PTH, vitamin D | Hormonal axis status | Highest assay-variability category (A.8); pulsatile/diurnal secretion means timing matters; "normal range" wide. Cross-ref §13. |
 | **Tumor markers** | PSA, CA-125, CEA, CA 19-9, AFP, CA 15-3 | Trends in *known* cancer (monitoring); poor screening tools | Mostly **not** for screening — low specificity → low PPV in general population (A.11). PSA = the cautionary case (A.12, §25). |
 | **Coagulation** | PT/INR, aPTT, D-dimer, fibrinogen, platelets | Clotting pathway integrity, anticoagulant monitoring | **D-dimer** is the textbook high-sensitivity/low-specificity rule-*out* test (SnNout): great negative, near-useless positive (A.2). |
@@ -360,8 +355,8 @@ into blood, and you can read it. Two honest tiers:
   but with a **positive predictive value around 38–43%** (i.e. the majority of "cancer signal detected"
   results in a screening population are false alarms or lead nowhere), and *no demonstrated mortality
   benefit yet* — the randomized trials that would prove screening saves lives (not just detects earlier)
-  are ongoing. **MCED is mechanism-plausible and outcome-unproven** — precisely the gap the schema forbids
-  collapsing. It is `claim_type: outcome`-aspirational riding on `mechanism`-grade evidence.
+  are ongoing. **MCED is mechanism-plausible and outcome-unproven** — precisely the gap you must not
+  collapse. The test is sold as if it saves lives, on evidence that so far only shows it can detect a signal.
 
 The broader **-omics frontier** (proteomic/metabolomic/methylation panels, organ-specific aging clocks;
 cross-ref §C-genetics-omics, §16) carries the same shape: dense, real, biologically rich data — and almost
