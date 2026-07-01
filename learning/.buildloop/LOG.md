@@ -963,3 +963,43 @@ durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential 
 betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins still open across branches: atoms
 lacking a derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0
 reachable.
+
+## 2026-07-01 — run 26 (+6 mind atoms; branch expansion continues; biophysics untouched)
+Continued branch expansion per run-25's handoff (mind was clearly thinnest at 48). Added **6 mind
+atoms (48→54)**, all filling run-24/25 noted gaps, each `requires` into EXISTING mind ids only
+(validated no missing/dupe): **interoception** (inward-pointing senses → homeostatic set-points;
+vagus/NTS + lamina-I → insula; osmoreceptor thirst worked example; allostasis + interoceptive
+predictive-coding; ← sensory-transduction, neuromodulation), **amygdala-emotion** (threat/fear
+conditioning; lateral-amygdala convergence + NMDA-LTP, central-amygdala output; fast 'low road' vs
+cortical 'high road'; extinction = new inhibitory PFC learning, NOT erasure → spontaneous
+recovery/renewal; ← neural-circuits, hippocampus-memory), **sleep-memory-replay** (hippocampus→cortex
+systems consolidation; time-compressed place-cell replay in sharp-wave ripples nested under slow
+oscillations + spindles; targeted-memory-reactivation worked example; active-systems-consolidation +
+SHY; ← memory-consolidation, neural-oscillations), **free-energy-principle** (minimize variational
+free energy F = D_KL[q||p] − ln p(o) ≥ surprise bound; perception = belief update, active inference =
+act to match predictions; expected-free-energy pragmatic+epistemic → exploration/exploitation +
+dark-room answer; ← predictive-coding), **tripartite-synapse** (astrocyte as functional 3rd partner;
+glutamate uptake via EAATs, Ca²⁺ waves → gliotransmitters, D-serine as NMDA co-agonist gating LTP,
+K⁺ spatial buffering; slow/large-territory = parameter-setter not fast wire; gliotransmission debate
+flagged honestly; ← glia, chemical-synapse), **homeostatic-plasticity** (negative-feedback partner to
+runaway Hebbian; multiplicative synaptic scaling preserves relative weights while renormalizing gain;
+hours–days timescale separation from Hebbian induction; Turrigiano straight-line scaling signature;
+← ltp-ltd, hebbian-learning). Each = full 7-section lesson (Intuition/Precisely/Worked example/Why
+it's true/Where it connects/Watch out/Worth knowing) + summary + 3 depths + note + art_prompt + 2 quiz
+(recall + derive/apply) + OPEN sources (NCBI Bookshelf Purves + PMC OA + MIT OCW 9.x + arXiv q-bio.NC
++ Wikipedia). ALL prose ORIGINAL; equations are facts. meta 0.4.0→0.5.0. Mirrored to
+public/academy-app via `node scripts/sync-academy.mjs` from the repo ROOT (mind 54, ver 0.5.0 verified).
+
+**validate.sh PASSES end-to-end** (all corpus JSON integrity incl. mind 54/no-dupes/no-missing-
+requires, manifest consistency, JS syntax, 60-day engine sim — biophysics diagnostic UNCHANGED at
+placed 42/asked 18 margin +24 shell 5/6 since the engine sim loads ONLY biophysics.json, so mind edits
+are zero-risk to placement — assess/lang/explorer smokes all green).
+
+**NEXT run:** branch counts now — biophysics ~133, cosmology 53, mind 54; **chemistry/information/
+mathematics (~48–49) are now the thinnest** (verify exact counts) — pick the thinnest of those three.
+Mind remaining minor gaps: central-pattern-generators, neuroeconomics/value-comparison as its own
+atom, mirror-neurons/social cognition, developmental critical-periods. Cosmology minor gaps:
+cosmic-variance, integrated-Sachs-Wolfe, 21cm-cosmology as its own atom. OR the durable biophysics
+prereq-shell fix (add a depth-3 dependent of redox-potential to raise its betweenness to 6/6; VERIFY
+asked stays ≤18). Cheap zero-risk wins still open across branches: atoms lacking a derive-level quiz
+item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
