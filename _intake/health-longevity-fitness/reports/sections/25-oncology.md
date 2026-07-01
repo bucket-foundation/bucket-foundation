@@ -7,6 +7,11 @@ Maladies*; the deeper truth is that it is the **emperor of all malfunctions** �
 normal programs of growth, repair, and death are subverted from within, by mutation of the very genes
 that govern them.
 
+> **Bottom line:** cancer is a disease of the genome. The treatment claims that earned their tier are
+> RCT-backed — immunotherapy, targeted therapy, and the curative chemo regimens; the early-detection blood
+> tests (§25.6) and alternative "cures" (§25.7) are the traps. The distinction to hold throughout is **cure
+> vs control vs palliation** (§25.5.5); what to actually do is §25.8.
+
 This chapter owns the **machinery**: what cancer is at the level of the genome and the cell cycle, how it
 develops, the major cancers, the treatment revolution, the early-detection frontier, and the honest
 debunks. Screening and prevention live in `07-clinical-prevention.md`.
@@ -39,12 +44,12 @@ in the lethal endgame — leaves its tissue of origin to colonise others (**meta
 ~90% of cancer deaths).
 
 The cause of that collapse is **damage to the genome** — mutations (and epigenetic changes) in the
-specific genes that run the cell cycle, the DNA-repair machinery, and the death programs. This is the
-load-bearing first principle, and it ties straight to `01-foundations.md`: cancer is **a corruption of
-the information layer** (`bucket-canon/04-information`) physically instantiated in DNA chemistry
-(`05-biophysics`). It is **your own cells running a corrupted copy of their own code** — not a foreign
-invader, not an energy imbalance, not a fungus. Every honest claim in oncology, and every
-dishonest one debunked in §25.7, is judged against that fact.
+specific genes that run the cell cycle, the DNA-repair machinery, and the death programs: the load-bearing
+first principle, tying to `01-foundations.md` as a corruption of the information layer
+(`bucket-canon/04-information`) instantiated in DNA chemistry (`05-biophysics`). It is **your own cells
+running a corrupted copy of their own code** — not a foreign invader, not an energy imbalance, not a
+fungus. Every honest claim in oncology, and every dishonest one debunked in §25.7, is judged against that
+fact.
 
 The cell cycle itself — G1 → S (DNA synthesis) → G2 → M (mitosis), policed by **checkpoints** that halt
 the cycle if DNA is damaged or incompletely copied — is the machine cancer breaks. The checkpoints are
@@ -65,9 +70,9 @@ established]`** scaffold, not an outcome claim.
 
 @@FIG:10-hallmarks-cancer@@
 
-Read the table down the middle two columns — the *capability* and *what it means* are the point. The
-right-hand column names the genes and molecules that most often cause each capability; they are examples
-you can skim past unless you want the specifics.
+**Skim guide: read the middle two columns** — the *capability* and *what it means* are the point. The
+right-hand column names the genes and molecules that most often cause each capability; skip them unless you
+want the specifics.
 
 | # | Hallmark capability | What it means | Canonical example / driver |
 |---|---|---|---|
@@ -176,12 +181,11 @@ on top of heredity and environment.
 @@FIG:84-cancer-incidence@@
 
 > **Honest framing of the "bad luck" paper.** It was widely misread as "two-thirds of cancers are pure
-> chance, so prevention is futile." That is **wrong**. The paper explains variation in risk *between
-> tissues*, not the fraction of cancers that are *preventable*. A large share of cancers — via smoking,
-> obesity, infection, UV, alcohol (all graded in `07-clinical-prevention.md §4`) — remain **preventable**.
-> Stochastic replication error is one of **three** contributors (heredity, environment, chance); it is
-> real, it explains why even perfect living does not abolish cancer, and it is **not** a licence to stop
-> preventing.[^bad-luck]
+> chance, so prevention is futile" — **wrong**: it explains variation *between tissues*, not the
+> *preventable* fraction, much of which (smoking, obesity, infection, UV, alcohol — `07-clinical-prevention.md §4`)
+> remains preventable. Stochastic replication error is one of **three** contributors (heredity,
+> environment, chance) — real, explaining why even perfect living can't abolish cancer, **not** a licence
+> to stop preventing.[^bad-luck]
 
 [^bad-luck]: claim: conflict-bad-luck-cancer-interpretation
 
@@ -224,11 +228,10 @@ screening section (`§07`).
 | **Melanoma (skin)** | ~100k cases, ~8k deaths | **UV/sunburn**, fair skin, nevi, family history | **~94%** | Highly curable if caught thin/early; deadly once thick/metastatic — *but* metastatic melanoma is the **flagship immunotherapy success** (§25.5), turning a near-uniformly-fatal disease into one with durable long-term survival for a real fraction. |
 | **Pancreatic** | ~66k cases, ~52k deaths | Smoking, obesity, diabetes, chronic pancreatitis, family/**BRCA** | **~13%** | **The honest worst case.** Usually silent until advanced; *KRAS*-driven (long "undruggable"); minimal screening; survival has improved only modestly. The cancer where humility is mandatory. |
 
-**Prognosis honesty as a principle.** The survival numbers above are **averages across stages and
-people** — they describe populations, not your specific tumour, which depends on stage, grade, molecular
-subtype, age, and biology. They are offered to **calibrate expectation**, not to predict an individual.
-And they are improving: most have risen over recent decades, driven by screening, smoking decline, and
-(for melanoma, lung, some others) the therapies in §25.5.
+**Prognosis honesty as a principle.** These averages describe **populations, not your tumour** (which
+depends on stage, grade, molecular subtype, age, and biology) — offered to **calibrate expectation**, not
+predict an individual. And they are improving: most have risen over recent decades, driven by screening,
+smoking decline, and (for melanoma, lung, some others) the therapies in §25.5.
 
 ---
 
@@ -376,10 +379,9 @@ is the logical endpoint of "cancer is a disease of the genome" — **treat the m
 | **Most advanced solid tumours** | Treatment **extends life and controls disease**; honest framing is *control and time*, not *cure*. |
 | **Pancreatic, glioblastoma, advanced lung historically** | Where humility is mandatory — gains are real but modest; overselling here is cruel. |
 
-> **The throughline:** the word "cure" is earned in specific, namable settings and **withheld** in
-> others. The disservice runs both ways — the alternative-medicine world denies the real cures (§25.7),
-> while parts of the industry and media imply cures where there is only (valuable, real) *time*. Hold both
-> lines.
+> **The throughline:** "cure" is earned in specific, namable settings and **withheld** in others — denied
+> by the alternative-medicine world (§25.7), overclaimed by industry and media where there is only real
+> *time*. Hold both lines.
 
 ---
 

@@ -109,7 +109,6 @@ precisely because we mostly stopped dying of dysentery, smallpox, and childbed f
 > **The load-bearing reframe:** the highest-leverage health interventions in human history were **boring,
 > collective, and preventive** — a sewer, a clean well, a hand-washing protocol, a vaccine schedule — not heroic
 > individual cures. The same lesson recurs across this manual: the unglamorous fundamentals carry the outcomes.
-> Most of what extended human life was infrastructure, not medicine.
 
 ---
 
@@ -236,12 +235,10 @@ across hundreds of millions of doses.
   studies covering **millions of children** (e.g. the Danish cohort of >650,000).[^mmr-autism] There is **no link**. This is
   one of the most thoroughly disproven claims in medicine, and the resulting hesitancy has measurably **cost
   lives** through measles resurgence.
-- **The honest framing for hesitancy.** The right response to vaccine hesitancy is not contempt; it is the
-  evidence, plus an acknowledgment that *demanding* perfect safety from a medical intervention is a category
-  error — the relevant comparison is always **vaccine risk vs. disease risk**, and for every routine vaccine that
-  comparison is lopsided. The diseases are far more dangerous than the vaccines, by orders of magnitude. (See
-  `15 §4.3` for why "boosting immunity" naturally instead is not an alternative — it doesn't exist as a
-  mechanism.)
+- **The honest framing for hesitancy.** The right response is not contempt but evidence — plus the point that
+  *demanding* perfect safety is a category error: the relevant comparison is always **vaccine risk vs. disease
+  risk**, and for every routine vaccine the disease is more dangerous by orders of magnitude. (See `15 §4.3`
+  for why "boosting immunity" naturally is not an alternative — it doesn't exist as a mechanism.)
 
 ---
 
@@ -249,6 +246,8 @@ across hundreds of millions of doses.
 
 Even in the post-transition world, infections remain a leading cause of death globally and a major one even in
 rich countries — especially at the extremes of age and in the immunocompromised. A working map:
+
+_Skim the tables; the prose caveats are the part the table can't carry._
 
 ### 5.1 Respiratory infections — still the deadliest category
 
@@ -381,10 +380,10 @@ the commensals, target the pathogens."**
 | **Staying home when sick; ventilation; masks in high-risk settings** | **Demanding antibiotics for viral illness** (§3.4) |
 
 > **The "boost vs. defend" bottom line:** you cannot supplement, cleanse, or sterilize your way to infection
-> resistance. The interventions that actually work against infection are **specific and either collective or
-> targeted** — clean water, hand-washing, food safety, vaccines, judicious antibiotics — not the generic
-> "strengthen your defenses" products. And the most modern, biologically-literate move is to **stop treating all
-> microbes as enemies** and start protecting the commensal ecosystem that does most of the defending for you.
+> resistance. The interventions that actually work are **specific and either collective or targeted** (ranked
+> in §8), not the generic "strengthen your defenses" products. And the most modern, biologically-literate move
+> is to **stop treating all microbes as enemies** and start protecting the commensal ecosystem that does most
+> of the defending for you.
 
 ---
 

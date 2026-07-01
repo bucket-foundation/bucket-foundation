@@ -385,9 +385,9 @@ real-world imaging mistakes:
 > **The honest framing to give a worried person.** The instinct behind paying for a whole-body scan —
 > "I want to *do something*, I want certainty" — is human and decent. But the scan does not deliver
 > certainty; it delivers a *distribution of findings*, most of them benign, each of which now demands a
-> decision. The high-value version of that same instinct is unglamorous and proven: know your blood
-> pressure and apoB, do the four screens that have mortality RCTs at the right ages, don't smoke, and
-> bring **symptoms** (not a healthy body) to imaging. Image the **question**, not the **anxiety.**
+> decision. The high-value version of that same instinct is the unglamorous, proven checkup above (blood
+> pressure, apoB, the RCT-backed screens at the right ages) plus not smoking — and bringing **symptoms**,
+> not a healthy body, to imaging. Image the **question**, not the **anxiety.**
 
 ---
 
@@ -419,17 +419,13 @@ real-world imaging mistakes:
 
 ## 40.10 — Claims indexed in this section
 
-Graded set in `02-domains/imaging-claims.json`. Headline gradient: the **physics/modality** claims are
-`mechanistic`-but-settled (what each machine images and its radiation profile); the **high-dose
-radiation = carcinogen** claim is `outcome`-tier and uncontested, while **low-dose LNT at CT scale** is
-`theoretical`/`conflict-open`; the **childhood-CT cohorts** (Pearce, Mathews, EPI-CT) and the
-**Smith-Bindman population projection** are `cohort`/modelled and direction-`supports` with the
-indication-bias confound flagged; the **incidentaloma** prevalence data (O'Sullivan/Ioannidis,
-whole-body-MRI volunteers) are `meta`/`cohort`; **mechanical thrombectomy** (HERMES) earns `meta`/`rct`
-(hard disability endpoint); **MASAI AI mammography** is `rct` but with its overdiagnosis caveat and
-pending primary endpoint; **whole-body consumer MRI screening** and **AI-replaces-radiologists** are
-`refutes`/`conflict-open`. Conflicts logged: `conflict-lnt-low-dose-imaging`,
-`conflict-whole-body-mri-screening`, `conflict-ai-imaging-replacement`.
+Graded set in `02-domains/imaging-claims.json`; every per-claim evidence tier is stated inline in the
+sections above (physics/modality = `mechanistic`-settled; high-dose radiation = `outcome`; low-dose LNT at
+CT scale = `theoretical`/`conflict-open`; childhood-CT cohorts + Smith-Bindman projection = `cohort`/modelled-
+`supports` with indication-bias flagged; incidentaloma data = `meta`/`cohort`; HERMES thrombectomy =
+`meta`/`rct`; MASAI = `rct` with overdiagnosis caveat and pending primary endpoint; whole-body consumer MRI
+screening + AI-replaces-radiologists = `refutes`/`conflict-open`). Conflicts logged:
+`conflict-lnt-low-dose-imaging`, `conflict-whole-body-mri-screening`, `conflict-ai-imaging-replacement`.
 
 ---
 

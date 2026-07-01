@@ -4,6 +4,8 @@ The arc you spend your adult life defending was partly drawn before you drew you
 
 The two ends of that arc — the womb and childhood on the way up, old age and dying on the way down — run by different rules than the defend-the-peak middle that almost all "longevity" advice addresses, and the single highest-leverage health decisions in a whole life live at those ends: maternal nutrition, childhood activity, deprescribing in elders, honest end-of-life planning. This section is the time axis the rest of the manual is missing. It walks the lifespan from conception to death and asks, at each stage, what actually matters, what the evidence says, and what is folklore.
 
+**Bottom line:** the highest-leverage decisions sit at the *ends* of life — maternal nutrition + folate/iodine pre-conception, childhood peak-building, deprescribing and fall-prevention in elders, and palliative honesty at the end. Full stage-by-stage grades in §10.
+
 _Not medical advice. Pregnancy, fertility, paediatric, and end-of-life decisions are unusually consequential and personal; treat this as an index of the evidence to help you ask a clinician sharper questions, and note where a stage (fertility supplements, "detox for two," anti-aging hormones in elders) is sold hard on weak evidence — those are flagged in the text. Age-specific training lives in §04; menopause/andropause endocrinology in §13._
 
 ## How the three honesty rules cut across the lifespan
@@ -28,15 +30,14 @@ function, immune competence — across a lifespan. For almost every system it is
 to a peak in the 20s–30s, a plateau, then a long decline.** Two facts about that arc reorganize how to think
 about health:
 
-- **The peak you build is the asset you spend.** Peak bone mass is banked by the late 20s and drawn down for
+- **The peak is the asset you spend.** Peak bone mass is banked by the late 20s and drawn down for
   the rest of life; a higher peak means more margin before the fracture threshold. The same logic applies to
   VO₂max, muscle, and cognitive reserve. **The interventions with the longest leverage happen on the way up**,
   in childhood and early adulthood — a stage most "longevity" content ignores because its audience is already
   middle-aged.
 - **The *start* of the arc is set before birth.** Organ number (nephrons, pancreatic β-cells, cardiomyocytes),
   metabolic set-points, and stress-axis calibration are substantially fixed in fetal and early life — the
-  **developmental origins** story below. The arc you spend your adult life defending was partly *drawn* before
-  you drew your first breath.
+  **developmental origins** story below.
 
 @@FIG:L10-capacity-arc@@
 
@@ -53,10 +54,7 @@ This is the deepest and least-known idea in the section, so it goes first: **the
 in early infancy programs adult disease risk, decades before the disease appears.**
 
 Read the reassurance up front, so you are not sitting in fatalism for two sections: birthweight is a
-**predictor, not a sentence.** Adult lifestyle still moves the same risks, and most low-birthweight people are
-perfectly healthy. The power of DOHaD is **population-level and upstream** — it tells us where the cheapest
-cardiometabolic lever in a whole society sits (maternal and early-infant nutrition), not what any one adult's
-fate is.
+**predictor, not a sentence** — the graded version is in §2.2.
 
 ### 2.1 The hypothesis and its evidence
 
@@ -356,8 +354,7 @@ Structured tools — **STOPP/START** criteria and the **Beers list** of potentia
 older adults — flag the usual suspects (long-acting benzodiazepines, anticholinergics, certain NSAIDs and
 sedatives). **The honest lever, and it is a strong one:** in geriatrics, the highest-yield "intervention" is
 often **subtraction, not addition** — a periodic medication review asking *"is this still doing more good than
-harm for this person now?"* This is the geriatric face of "predictor ≠ lever" inverted: sometimes the lever is
-**removing** a thing. `cohort`/expert-consensus; deprescribing RCTs are growing and broadly favorable for
+harm for this person now?"* `cohort`/expert-consensus; deprescribing RCTs are growing and broadly favorable for
 specific drug classes.
 
 ### 7.4 Falls
@@ -454,7 +451,7 @@ the rest of the manual demands.
 
 ---
 
-## 10. The one-screen summary
+## 10. The one-screen summary (skim this)
 
 @@FIG:N12-lifespan-timeline@@
 

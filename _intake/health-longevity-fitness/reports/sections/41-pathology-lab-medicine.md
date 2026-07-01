@@ -1,7 +1,11 @@
 # 41 — Pathology & Laboratory Medicine
 
-Read Part A once, carefully, and most medical news, every "full-body blood panel" ad, and half of your
-own doctor's visits will read differently afterward. Every claim elsewhere in this manual that says
+**Bottom line up front:** test when the answer will change a decision, in a person in whom the answer is
+interpretable. By construction, 1 in 20 healthy values flags "abnormal" — so read every result as an update
+to what you already knew, never as a verdict on its own.
+
+Read Part A once, carefully, and most medical news and every "full-body blood panel" ad will read
+differently afterward. Every claim elsewhere in this manual that says
 "measure X," "screen for Y," or "this biomarker predicts Z" only means something once you understand **how
 a test actually performs** — the arithmetic that turns a number on a lab slip into a decision, which most
 readers and a surprising number of clinicians never learn.
@@ -52,10 +56,10 @@ the root of nearly all test-interpretation error.
   *P*ositive, rules *in*.
 
 These two numbers are (approximately) **fixed properties of the test itself** — they are measured once, in
-a validation study, and travel with the assay. They do **not** depend on how common the disease is. That
-independence is exactly why they are *insufficient on their own* to tell you what your result means —
-because the thing you actually care about (does a positive result mean I'm sick?) **does** depend on how
-common the disease is. That is the next section, and it is the whole game.
+a validation study, and travel with the assay. They do **not** depend on how common the disease is — which
+is exactly why they are *insufficient on their own* to tell you what your result means. What you actually
+care about (does a positive result mean I'm sick?) depends on how common the disease is: the next section,
+and the whole game.
 
 There is also an unavoidable **trade-off**: you can almost always raise sensitivity by lowering the
 positivity threshold, but only at the cost of specificity (and vice-versa). Move the cutoff for a "high"
@@ -248,6 +252,9 @@ The load-bearing abbreviations, spelled once: **BMP/CMP** = basic / comprehensiv
 kidney-damage marker); **ALT/AST/ALP** = liver enzymes; **HbA1c** = a 3-month average blood-sugar level;
 **INR** = a clotting-time ratio; **HOMA-IR** = an insulin-resistance index; **CBC** = complete blood count.
 
+*Skim the left column to find your test's category; the caveat column tells you how much a flag should
+worry you. Effect sizes live in `WHAT-TO-TRACK-SYNTHESIS.md`.*
+
 | Category | Core tests | What it actually tells you | Honest caveat / cross-ref |
 |---|---|---|---|
 | **Clinical chemistry — metabolic panel (BMP/CMP)** | Na, K, Cl, CO₂, BUN, creatinine, glucose, Ca; CMP adds albumin, total protein, bilirubin, ALP, ALT, AST | Electrolyte/acid-base status, kidney function (eGFR from creatinine), glucose, liver enzymes | eGFR is *estimated* (creatinine depends on muscle mass — overstates function in the very muscular, understates in the frail). 14 analytes → ~51% chance of one false flag (A.7). |
@@ -378,12 +385,10 @@ empowerment. Sorted by honesty:
   (the *analytics* are sound). Their problem is **not the assay — it's the absence of pre-test reasoning.**
   A real test, ordered without an indication, in a low-pre-test-probability person, *still* produces the
   A.7 false-positive flood and the A.9 cascade. The harm is structural, not fraudulent.
-- **Why "more testing" without reasoning causes harm.** Everything in Part A converges here: broad panels
-  on well people generate statistically-inevitable false flags (A.7), each with a low PPV (A.4), each
-  capable of launching a cascade (A.9), at real financial, physical, and psychological cost — with no
-  evidence that untargeted broad screening improves outcomes in healthy adults. The same Bayesian trap
-  documented for DTC *genetics* in §18 §A.6 (relative risk on a tiny baseline; a "negative" that rules out
-  almost nothing) is the DTC *blood-panel* trap, one-for-one.
+- **Why "more testing" without reasoning causes harm.** Everything in Part A converges here (A.4/A.7/A.9),
+  with no evidence that untargeted broad screening improves outcomes in healthy adults. The same Bayesian
+  trap documented for DTC *genetics* in §18 §A.6 (relative risk on a tiny baseline; a "negative" that rules
+  out almost nothing) is the DTC *blood-panel* trap, one-for-one.
 
 ---
 

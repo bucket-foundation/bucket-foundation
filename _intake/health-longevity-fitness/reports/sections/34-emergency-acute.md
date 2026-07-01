@@ -61,8 +61,9 @@ Acute medicine has a small number of organizing ideas. Internalize these and mos
 
 ### 1.1 The master "Recognize → Act" table
 
-This is the spine of the section. Each row is expanded later. Print it; put it on a fridge. **None of this
-replaces calling emergency services — every row assumes you have called or are calling.**
+This is the spine of the section. Each row is expanded in §3 (time-critical recognitions) and §4 (first-aid
+myths) — skip there for the detail. Print it; put it on a fridge. **None of this replaces calling emergency
+services — every row assumes you have called or are calling.**
 
 | Emergency | Recognize it by (the fast pattern) | ACT — the first, highest-leverage move | Do NOT |
 |---|---|---|---|
@@ -384,13 +385,13 @@ maintaining the airway wins over a theoretical spine concern if they're vomiting
 |---|---|
 | **Suck the venom out of a snakebite / cut and suck** | Useless and harmful. Keep the limb still and below heart level, remove tight items, **get to antivenom.** No tourniquet, no ice, no incision, no suction. |
 | **Pee on a jellyfish sting** | Not supported and can worsen some stings. Rinse with **vinegar** (for many species) or **hot water (~45 °C) immersion**; remove tentacles without bare hands; seek care for box-jelly/systemic symptoms. |
-| **Tilt head back for a nosebleed** | Lean **forward**, pinch the soft nose 10–15 min (see §4.2). |
-| **Butter / ice on a burn** | Cool **running water** 20 min; nothing greasy, nothing frozen (§4.1). |
+| **Tilt head back for a nosebleed** | Lean **forward**, not back — see §4.2. |
+| **Butter / ice on a burn** | Cool **running water**, never grease or ice — see §4.1. |
 | **Rub a frostbitten or hypothermic limb to warm it** | Don't — friction damages tissue and can trigger arrhythmia. Rewarm gently and steadily; no snow-rubbing. |
 | **Slap a choking person's back while they're still coughing** | If they can cough/speak, **let them cough.** Intervene only when the cough fails (§3.6). |
-| **A swallowed tongue in seizures** | Anatomically impossible. **Nothing in the mouth** (§4.6). |
-| **You should drain water from a drowning victim's lungs** | No — start **rescue breaths and CPR**; "draining" wastes time and risks aspiration of stomach contents (§6.3). |
-| **Tourniquets always cost the limb** | Modern evidence: properly applied, they **save lives** and limb loss is rare (§3.5). |
+| **A swallowed tongue in seizures** | Anatomically impossible — **nothing in the mouth**, see §4.6. |
+| **You should drain water from a drowning victim's lungs** | No — **rescue breaths and CPR** instead, see §6.3. |
+| **Tourniquets always cost the limb** | Properly applied, they **save lives** — see §3.5. |
 | **Hyperventilate / breath-hold to swim further underwater** | Dangerous — causes **shallow-water blackout** and silent drowning (cross-ref §6.3). |
 
 ---
@@ -512,8 +513,8 @@ You cannot improvise competence in the moment; you assemble it in advance.
 - **Advance directives (cross-ref §19).** Decide, document, and *share* your wishes — a
   healthcare proxy / durable power of attorney and a living will (and, where appropriate, a POLST/DNR) — so
   that in the worst case the people treating you know what *you* want. This is first aid for your autonomy.
-- **Learn it with your hands.** Take a course (below). Re-take it. Teach your household. The competence that
-  saves a life is almost never read into existence — it's rehearsed.
+- **Learn it with your hands.** Take and re-take a hands-on course (Go deeper); teach your household. The
+  competence that saves a life is rehearsed, not read.
 
 ---
 

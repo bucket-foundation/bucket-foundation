@@ -5,8 +5,11 @@ Every other chapter in this manual tells you *what* to do; this one is about the
 whether any of it matters — whether you actually do it, and keep doing it. Knowing the protocol is necessary
 and nearly worthless on its own.
 
-This section is the corpus's correction term for a quiet failure mode that runs through every health book
-ever written: the implicit assumption that **information changes behavior.** It doesn't, or barely. Training
+**Bottom line:** the levers that work are structural — environment design, if–then plans, habits, and
+self-monitoring (ranked in §7), assembled into a system you can run in §9. Willpower, the "21-day habit,"
+and ego depletion are myths (§8).
+
+Most health advice quietly assumes that **information changes behavior.** It doesn't, or barely. Training
 (`02-training.md`) already said it plainly — *adherence is the real limiter* — and individual variation
 (`04-individual-variation.md`) showed that even the "right" dose is personal. Here we close the loop: the
 evidence-based science of getting a human to start, and keep going, after the novelty and the motivation are
@@ -133,7 +136,7 @@ The science here is solid in outline and routinely *misquoted* in the popular te
   (2010), "How are habits formed: Modelling habit formation in the real world"**.[^lally] Participants adopted
   a new daily behavior and rated its automaticity; the **median time to reach automaticity was 66 days**, with
   an enormous individual range of **18 to 254 days** — and some never fully automated within the study. The
-  popular **"21 days"** number is a **myth** (see §8.1); the real figure is *months*, and it depends heavily on
+  popular **"21 days"** number is a **myth** (see §8); the real figure is *months*, and it depends heavily on
   the behavior and the person.
 - **The design rules that follow:** (a) **anchor the new behavior to an existing stable cue** ("after I brush
   my teeth, I floss" — this is "habit stacking," and it's just an implementation intention aimed at a
@@ -181,9 +184,8 @@ operationalizes "specific and measurable."
   of trials showing "SMART goals" beat "non-SMART goals" for health outcomes. Use it as a clarity tool, not
   as a proven lever.
 
-**Verdict:** mildly useful, frequently overstated. A specific, measurable, slightly-challenging-but-doable
-goal beats a vague one; the acronym is decoration. A *process* goal ("walk after dinner daily") beats an
-*outcome* goal ("lose 20 lbs") for adherence. **So: set a specific process goal and ignore the SMART label.**
+**Verdict:** mildly useful, frequently overstated. A specific *process* goal ("walk after dinner daily")
+beats a vague *outcome* goal ("lose 20 lbs") for adherence; the SMART acronym is decoration.
 
 ### 2.6 Social support & accountability
 
@@ -376,8 +378,7 @@ Short, honest answer: **modestly, and only while you're engaged — which is the
   support — rather than just delivering information.
 - **The engagement cliff is the real story.** Most health apps lose the large majority of users within weeks;
   the median app is abandoned fast. An app's *theoretical* efficacy is irrelevant if it's deleted by week
-  three. This is the §1 gap reappearing one level up: downloading the app is an intention; using it is the
-  behavior.
+  three — downloading the app is an intention; using it is the behavior.
 - **Gamification — honest grade.** Points, streaks, badges, and challenges **do** improve short-term engagement
   and activity; a meta-analysis of gamified physical-activity interventions found a **small but significant
   effect** (Mazeas et al. 2022).[^mazeas] **But** the SDT
@@ -435,32 +436,19 @@ drop.** If you skim one column, skim the verdict.
 
 ## 8. Honest debunks — the pop-psych myths to drop
 
-This field is unusually polluted, so the debunks get their own section.
+This field is unusually polluted, so the debunks get their own section. Three are covered in full above and
+need only a pointer here; two (§8.4–8.5) are new material.
 
 @@FIG:F06-debunks@@
 
-### 8.1 The 21-day habit myth
-
-The "it takes 21 days to form a habit" claim traces to **Maxwell Maltz's 1960 *Psycho-Cybernetics*** — a
-plastic surgeon's *observation* that patients took "a minimum of about 21 days" to adjust to a new face or an
-amputation. It was never a habit-formation study; the number got laundered through decades of self-help into
-a fake law. The actual data (Lally 2010, §2.3): **median ~66 days, range 18–254, behavior-dependent.** Drop
-the 21.
-
-### 8.2 "Willpower is a muscle" / ego depletion
-
-Covered in §3.2. The hydraulic "limited self-control resource that depletes and refuels on glucose" model
-**failed a 23-lab pre-registered replication** (Hagger 2016) and was already suspected to be a
-publication-bias artifact (Carter & McCullough 2014). Train systems, not "willpower stamina."
-
-### 8.3 "Biohacking your discipline"
-
-The genre that promises to install discipline via cold plunges, 5am routines, "dopamine detoxes," and
-hustle-mindset content is, graded honestly, **`anecdotal`/`speculative` lifestyle branding.** It mistakes the
-*visible result* of good system design for a trainable inner virtue, and sells the virtue. The dopamine-detox
-framing in particular is **neuroscientifically incoherent** (you cannot and would not want to "lower
-baseline dopamine" — it's not how the system works). What's left after you remove the mysticism is exactly
-§2: environment, cues, plans, small repeatable actions, protected sleep.
+- **The 21-day habit** — a myth. The real figure is Lally (2010, §2.3): **median ~66 days, range 18–254,
+  behavior-dependent.** Drop the 21.
+- **"Willpower is a muscle" / ego depletion** — §3.2: the glucose-and-willpower model failed a 23-lab
+  pre-registered replication. Train systems, not "willpower stamina."
+- **"Biohacking your discipline"** — `anecdotal`/`speculative` lifestyle branding (§3.3) that mistakes the
+  *visible result* of good system design for a trainable inner virtue. The dopamine-detox framing in
+  particular is **neuroscientifically incoherent** — you cannot and would not want to "lower baseline
+  dopamine."
 
 ### 8.4 Learning styles (VAK: visual / auditory / kinesthetic)
 
@@ -527,7 +515,7 @@ markets itself.
 2. **Charles Duhigg — *The Power of Habit* (2012).** The book that put the **cue → routine → reward** loop
    into the culture. Good journalism, accurate on the basic neuroscience of habit, **but** the "Keystone
    Habits" and "willpower is a muscle" chapters lean on **ego-depletion** work that has since **failed to
-   replicate** (§3.2/§8.2) — read those chapters as historical, not current. **Tier: popular — solid on the
+   replicate** (§3.2/§8) — read those chapters as historical, not current. **Tier: popular — solid on the
    habit loop, dated on willpower.**
 3. **Susan Michie et al. — COM-B & the Behaviour Change Wheel** (Implement Sci 2011, doi
    `10.1186/1748-5908-6-42`) **+ the BCT Taxonomy v1** (Ann Behav Med 2013, doi

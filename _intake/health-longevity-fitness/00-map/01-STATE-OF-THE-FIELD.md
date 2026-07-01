@@ -12,6 +12,8 @@ The corpus is 197 graded claims, and its tier distribution *is* the headline: on
 
 _Synthesis, not medical advice, and not new evidence — the actionable form lives in the protocols companion; effect sizes, populations, and caveats live with each graded claim._
 
+> **Bottom line up front** (full version at *"The capstone in one paragraph"* below): the evidence is lopsided toward a short list of boring, powerful levers — don't smoke; build and keep cardiorespiratory fitness and strength; move more; sleep ~7h regularly; keep apoB/LDL low; keep a healthy metabolic profile; protect social connection. Almost everything that gets *sold* — biological-age clocks, CGM for the healthy, senolytics/NAD+/rapamycin for healthy people — is a correlate dressed up as a scorecard, a mouse result not yet in humans, or a dose that doesn't match the studied dose.
+
 ---
 
 ## 1. What the evidence ACTUALLY supports strongly (the few high-confidence levers)

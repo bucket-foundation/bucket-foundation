@@ -3,14 +3,11 @@
 This is the entire territory on one page — from the physics inside a single cell up through the body's
 systems, the diseases, the drugs, and the short list of things you can actually do about any of it.
 
-It's a map. You don't read it front to back; you skim to the part you need and follow the pointer to its
-chapter. Two things travel with every entry: which chapter covers it, and how good the evidence behind it
-is. A map that hides its weak spots is worse than no map, so the thin and skipped topics are named out
-loud at the end (see "The honest edge of the map").
-
-Roughly fifty chapters and a quarter-million words sit behind this page, holding hundreds of claims —
-each one graded by how strong the evidence is, and every disagreement between experts kept as its own
-object instead of smoothed over.
+It's a map, not a front-to-back read. Two things travel with every entry: which chapter covers it, and
+how good the evidence behind it is. Roughly fifty chapters and a quarter-million words sit behind this
+page, holding hundreds of claims — each one graded by how strong the evidence is, and every disagreement
+between experts kept as its own object instead of smoothed over. A map that hides its weak spots is worse
+than no map, so the thin and skipped topics are named out loud at the end (see "The honest edge of the map").
 
 _Not medical advice._
 

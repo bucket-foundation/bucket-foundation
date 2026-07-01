@@ -16,17 +16,13 @@ STIs as microbiology: §26. Prostate cancer as oncology: §25/§07. Pelvic-floor
 
 ## How the three honesty rules cut for reproductive & sexual health
 
-**Predictor ≠ lever** (the number warns you, it isn't the thing you fix): a sex-hormone level or symptom can be
-a readout of something upstream rather than a dial. The sharpest example is **erectile dysfunction** — in men
-under ~60 it is one of the best early predictors of future cardiovascular disease (the penis is a vascular bed
-whose small arteries clog first), so ED is a reason to check the heart, not just to prescribe a pill (cross-ref
-`11-body-systems.md`); likewise a sperm count or AMH (anti-Müllerian hormone, a marker of egg supply) predicts
-fertility *potential* without being a thing you reliably "boost." **Cohort ≠ RCT** (an observed pattern is
-weaker evidence than a randomized trial): "women on combined oral contraceptives have a slightly higher
-breast-cancer detection rate" (cohort, small, reversing after stopping) is weaker than a randomized outcome; the
-few places reproductive medicine has hard RCT evidence — LARC (long-acting reversible contraception, e.g.
-implants and IUDs) effectiveness, HPV-vaccine cancer prevention, low-dose aspirin for preeclampsia, the TRAVERSE
-testosterone-safety trial — are weighted accordingly, while most "fertility optimization" rests far down the ladder. **Net benefit
+**Predictor ≠ lever** (the number warns you, it isn't the thing you fix): a sex-hormone level or symptom is
+often a readout of something upstream, not a dial. The sharpest example is **erectile dysfunction**, an early
+cardiovascular warning that is a reason to check the heart rather than just prescribe a pill (§6.2). **Cohort ≠
+RCT:** the few places reproductive medicine has hard randomized evidence — LARC (long-acting reversible
+contraception, e.g. implants and IUDs) effectiveness, HPV-vaccine cancer prevention, low-dose aspirin for
+preeclampsia, the TRAVERSE testosterone-safety trial — are weighted above the "fertility optimization" claims
+far down the ladder. **Net benefit
 in the right person:** replacing a *diagnosed deficiency* (estrogen for symptomatic menopause within the window,
 testosterone for true hypogonadism) is favorable-ledger medicine; pushing a hormone *above normal in a healthy
 person to chase performance or youth* is experimentation sold as the former — the same dividing line that
@@ -138,6 +134,9 @@ time) and **typical-use** failure (real people, real life). The honest compariso
 gap between the two is the whole story of why the pill and condoms underperform their reputation while IUDs and
 implants do not. The numbers below are first-year failure rates (Trussell 2011, the canonical U.S. dataset;
 CHOICE-study real-world data, Winner 2012).
+
+*You can skim the table; the one fact that matters is at the bottom — LARC (implants and IUDs) are 20–50× more
+effective than the pill in typical use.*
 
 | Method | Typical-use failure (1st yr) | Perfect-use failure | Honest notes |
 |---|---|---|---|
@@ -365,9 +364,9 @@ the conditions:
 
 ## 9. Honest debunks
 
-The reproductive and sexual-health space is one of the most heavily monetized in all of wellness, because it
-trades on hope, shame, and aging. The recurring pattern: a real biological fact (declining fertility, changing
-hormones, a self-cleaning organ) is wrapped around a product that does **nothing** for it.
+The reproductive and sexual-health space is heavily monetized: the recurring pattern is a real biological fact
+(declining fertility, changing hormones, a self-cleaning organ) wrapped around a product that does **nothing**
+for it.
 
 - **Most "fertility-boosting" supplements.** Beyond correcting an actual **deficiency** and the
   **preconception folate** that prevents neural-tube defects, the large supplement market sold to

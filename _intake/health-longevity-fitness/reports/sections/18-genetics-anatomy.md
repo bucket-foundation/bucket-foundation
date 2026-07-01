@@ -14,10 +14,10 @@ Section 01 (§4) treats this as a foundation; here is the working summary you ne
 about any test.
 
 - **Genes → proteins.** Your genome is ~3.1 billion base pairs of DNA, ~20,000 protein-coding genes,
-  copied identically into nearly every cell. A gene is a recipe; the cell reads it (DNA → RNA →
-  protein, the central dogma) to build the protein machines that *are* your physiology — enzymes,
-  receptors, structural fibers, channels. **Most of the genome is not genes**: it is regulatory and
-  non-coding sequence that decides *which* genes are read, *when*, and *how loudly*. This is why two
+  copied identically into nearly every cell. The cell reads a gene (DNA → RNA → protein, the central
+  dogma) to build the protein machines that *are* your physiology — enzymes, receptors, channels.
+  **Most of the genome is not genes**: it is regulatory and non-coding sequence that decides *which*
+  genes are read, *when*, and *how loudly*. This is why two
   cells with identical DNA (a neuron and a liver cell) are completely different — the difference is
   *regulation*, the layer the epigenetic clocks of Domain C read.
 - **Variants / SNPs.** Any two unrelated humans differ at ~4–5 million sites. The commonest kind is a
@@ -167,16 +167,15 @@ tell you what to do.
 APOE deserves its own subsection because it is the place where the **predictor ≠ lever** rule bites
 hardest, and where the DTC industry does the most quiet harm.
 
-The facts: *APOE*-ε4 is a strong, replicated risk allele for Alzheimer's (§A.2.1). The problem: **there
-is, as of now, no proven intervention that specifically neutralizes ε4 risk.** So a person who learns
-they are ε4/ε4 receives a frightening, lifelong, *partly* predictive number — and **no genotype-
-specific lever to pull**. This is the textbook predictor-without-a-lever, and it raises four real
-counseling issues:
+The problem: ε4 is a strong predictor (§A.2.1) but **there is, as of now, no proven intervention that
+specifically neutralizes ε4 risk.** So a person who learns they are ε4/ε4 receives a frightening,
+lifelong, *partly* predictive number — and **no genotype-specific lever to pull**. This is the textbook
+predictor-without-a-lever, and it raises four real counseling issues:
 
-1. **Risk ≠ certainty, and relative ≠ absolute.** "8–12× higher risk" sounds like a sentence; the
-   *absolute* lifetime risk for an ε4/ε4 carrier, while substantially elevated, is still well short of
-   100%, and varies by sex and ancestry. A naked relative risk on a DTC dashboard, with no absolute
-   framing and no counselor, is a recipe for disproportionate fear (or false reassurance for ε3/ε3).
+1. **Risk ≠ certainty.** Even ε4/ε4 lifetime risk, while substantially elevated, is well short of 100%
+   and varies by sex and ancestry — so a naked "8–12×" on a DTC dashboard, with no absolute framing and
+   no counselor, invites disproportionate fear (or false reassurance for ε3/ε3). (Relative vs absolute
+   risk: §A.6.)
 2. **The "right not to know."** Predictive testing for an untreatable condition is the classic case
    where many people, fully informed, *choose not to test* — and that choice is legitimate. The
    research-genetics convention (e.g., the REVEAL studies of APOE disclosure) is **explicit informed
@@ -548,15 +547,9 @@ The body coordinates itself two ways, fast and slow:
 - **UP to canon:** Hodgkin–Huxley excitability (the action potential, §B.4.3), chemiosmosis (§B.4.2),
   mitochondrial genetics (§A & Domain C) → `bucket-canon/05-biophysics/`.
 
-> **Honesty footer.** Part A refuses two opposite errors: *genetic nihilism* ("genes don't matter") —
-> they do, for a short, specific, actionable list — and *genetic determinism / consumer-genomics
-> theater* ("your DNA report reveals your optimal diet/workout/destiny"), which sells small-effect
-> common-variant noise as personal insight. Know the few variants that change a decision
-> (pharmacogenes, high-penetrance disease genes, Lp(a), APOE-with-counseling); ignore the wellness
-> panels; and pull the environmental levers hardest exactly where your genetic risk is highest. Part B
-> exists so that every lever in the manual can be placed on a real chain, in a real system, holding a
-> real variable — because a recommendation you can't trace to a mechanism is a recommendation you
-> can't trust.
+> **Honesty footer.** Part B exists so that every lever in the manual can be placed on a real chain, in
+> a real system, holding a real variable — because a recommendation you can't trace to a mechanism is a
+> recommendation you can't trust.
 
 ---
 

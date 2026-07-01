@@ -10,6 +10,12 @@ is rejected. Simplification that condescends is rejected. We make it a great rea
 making it clearer, better-signposted, better-paced, and better-voiced — never by
 dumbing it down.
 
+**Added mandate (Cycles 3–4): reduce length.** The book is long; cut it. Remove
+redundancy, over-explanation, repeated points, and verbose preambles — WITHOUT
+removing a single graded claim, number, effect-size, citation, caveat, cross-ref,
+or figure. Length reduction = redundancy removal, never depth removal. If a cut
+would drop protected content, tighten instead of cutting.
+
 ## How a cycle works
 
 One persona per cycle does a **full-book pass**, then we apply the fixes and rebuild.

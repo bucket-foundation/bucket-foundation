@@ -1,13 +1,10 @@
 # Regenerative Medicine & the Longevity Frontier
 
-Regenerative medicine runs on one repeating rhythm: a real, often Nobel-grade discovery,
-then a spectacular result in mice, then a long and brutal gap where most of those results die
-on the way to humans — and predatory clinics selling into that gap before the evidence exists.
-Learn to hear that four-beat rhythm and you can grade almost any "we can rebuild the body"
-claim yourself: stem cells, gene therapy, cellular reprogramming, organ replacement, and the
-longevity-biotech industry built on all of them. The organizing question is never "is the
-biology exciting?" (it almost always is) but **"what stage of evidence is this actually at,
-and who is selling ahead of it?"**
+Regenerative medicine runs on one repeating four-beat rhythm (spelled out in §0), and learning
+to hear it lets you grade almost any "we can rebuild the body" claim yourself: stem cells, gene
+therapy, cellular reprogramming, organ replacement, and the longevity-biotech industry built on
+all of them. The organizing question is never "is the biology exciting?" (it almost always is)
+but **"what stage of evidence is this actually at, and who is selling ahead of it?"**
 
 _Not medical advice. This chapter grades frontier therapies by evidence stage; approved
 everyday drugs live in §10, and the practical patient filter is at the very end._
@@ -56,6 +53,9 @@ proven in a randomized human trial; `meta` = confirmed across many pooled human 
 controlled evidence; `speculative` = a hypothesis with no human data. The grade is the whole
 point of the table — the higher the grade, the more real the claim.
 
+*Read this table first; the higher up, the more a regulator signed off on a hard endpoint — the
+lower, the more you're paying for a story.*
+
 | Intervention | What it claims to do | Best evidence stage | Honest status |
 |---|---|---|---|
 | **Bone-marrow / hematopoietic stem-cell transplant** | Replace blood/immune system | `meta` / standard of care since 1970s | **Real, established, curative for many blood cancers & disorders.** ~1M+ done worldwide. |
@@ -75,10 +75,8 @@ point of the table — the higher the grade, the more real the claim.
 | **"Stem-cell clinic" IV / joint injections, exosomes** | "Regenerate" anything | `anecdotal` / unproven | **Predatory.** No proven benefit; documented harm (blindness, infection, death). FDA-actioned. |
 | **Cellular reprogramming as "cure aging" (consumer)** | Reverse human aging | `speculative` | **Sold ahead of all evidence.** No human has been de-aged by any reprogramming product. |
 
-The honest reader's heuristic: **the higher up the table, the more a regulator has signed off
-on a hard endpoint; the lower down, the more you are paying for a story.** The gene-therapy
-block at the top is the field's genuine triumph. The clinic block at the bottom is where the
-field's authority gets stolen.
+The gene-therapy block at the top is the field's genuine triumph. The clinic block at the
+bottom is where the field's authority gets stolen.
 
 @@FIG:R04-regen-ladder@@
 
@@ -97,8 +95,8 @@ you mean the *specific, tissue-matched* therapies that actually work.
   by chemo/radiation. **E. Donnall Thomas won the 1990 Nobel Prize** for it; the first durable
   successes date to the late 1960s–70s. It is **curative** for many leukemias, lymphomas, and
   inherited blood disorders, and well over a million have been performed. It is also dangerous
-  (graft-versus-host disease, infection) — which is exactly why it is reserved for serious
-  disease and not sold as wellness. **This is the gold standard of what "stem-cell therapy"
+  (graft-versus-host disease, infection) — which is why it is reserved for serious disease.
+  **This is the gold standard of what "stem-cell therapy"
   should mean: a defined cell type, a defined target tissue, a hard endpoint, decades of RCT and
   registry data.** `meta`/standard-of-care.
 - **Corneal limbal stem-cell grafts.** Limbal epithelial stem cells expanded and grafted to
@@ -295,7 +293,7 @@ other major bets.
    and that safety margin is exactly what is unproven in humans.
 3. **Epigenetic-clock "rejuvenation" is a surrogate marker.** Resetting a Horvath/PhenoAge
    clock reading is not the same as extending healthy human life; the clocks are correlational
-   biomarkers. Showing a clock move ≠ showing a person lived longer or better.
+   biomarkers, not demonstrated outcomes.
 
 So: **striking biology, real money, genuine mouse results — and a frontier that has not yet shown a
 single human a single day of extra healthy life.** That is not a criticism of the science; it is the
@@ -446,13 +444,10 @@ The same pattern from §0, now visible across all six domains:
 | Orthopedics | growth factors / autologous cells | small positive pilots | best RCTs null (RESTORE) | PRP/"regenerative"/exosome injections sold cash |
 | Longevity biotech | hallmarks of aging; senolytics | mouse lifespan extension | Calico/Unity translation failures | supplement & clinic "longevity" markets |
 
-Gene therapy is the proof the gap **can** be crossed — with hard endpoints, regulators, and decades
-of work — which is exactly why it stands apart from the rest of the table. Everywhere else, the
-honest verdict in 2026 is: **the biology is often revolutionary, the human evidence is
-much earlier than the marketing, and the space between the two is filled by people selling hope to
-the desperate.** The reader's only durable defense is the discipline this whole corpus is built on:
-**ask what stage of evidence a claim is actually at, and never let a Nobel Prize in one column vouch
-for a product in another.**
+Gene therapy is the proof the gap **can** be crossed. Everywhere else the honest verdict in 2026 is
+the same: the biology is often revolutionary, the human evidence is much earlier than the marketing,
+and the reader's only durable defense is the discipline this corpus runs on — **never let a Nobel
+Prize in one column vouch for a product in another.**
 
 ---
 

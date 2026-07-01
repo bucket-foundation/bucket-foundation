@@ -126,12 +126,12 @@ see CMV below), leaving **less room to respond to anything new.**
 
 ### 2.3 Why the old respond worse to infection *and* vaccines
 
-Put the pieces together and the clinical reality follows directly: fewer naïve T cells + narrowed repertoire +
-exhausted effectors + weaker dendritic-cell priming + impaired B-cell/antibody responses (which need T-cell
-help) = **older adults get more, and more severe, infections, and mount weaker, shorter-lived responses to
-vaccines** (Goronzy & Weyand 2013; Crooke & Poland 2019). This is *the* reason COVID-19, influenza, and
-pneumonia kill disproportionately at older ages — and the reason **higher-dose / adjuvanted vaccines** were
-developed specifically for elders (a real, partial workaround — cross-ref §6 and pharma §5).
+Put the pieces together and the clinical reality follows: the §2.1–2.2 failures summed — plus weaker
+dendritic-cell priming and impaired (T-cell-dependent) antibody responses — mean **older adults get more,
+and more severe, infections, and mount weaker, shorter-lived responses to vaccines** (Goronzy & Weyand
+2013; Crooke & Poland 2019). This is *the* reason COVID-19, influenza, and pneumonia kill
+disproportionately at older ages — and the reason **higher-dose / adjuvanted vaccines** were developed
+specifically for elders (a real, partial workaround — cross-ref §6 and pharma §5).
 
 ### 2.4 CMV — the uninvited tenant that ages your T cells
 
@@ -193,13 +193,11 @@ free lunch. (hsCRP/IL-6 as biomarkers are owned by `L-biomarkers.md`.)
 
 This is **the** unresolved tension, flagged by Franceschi himself and running through the entire inflammation
 thread: **is inflammaging a *driver* of aging, or a *read-out* of accumulated damage?** Probably both, in a
-vicious cycle — but the direction matters enormously for whether anti-inflammatory intervention is
-disease-modifying or merely cosmetic-on-a-biomarker. The microbiome version of this same cause-or-consequence
-question is an explicit open conflict in the corpus. **Until an intervention that lowers an inflammatory clock is shown
-to move a hard endpoint, inflammaging is a superb prognostic *signal* of unknown *leverage*.** Note also the
-"two sides of the same coin" framing (Fülöp/Larbi 2018): immunosenescence (§2) and inflammaging (§3) are not
-separate problems — the failing adaptive system and the smoldering innate system are the **same remodeling**
-viewed from two angles.
+vicious cycle. **Until an intervention that lowers an inflammatory clock is shown to move a hard endpoint,
+inflammaging stays a superb prognostic *signal* of unknown *leverage*.** (The microbiome version of this
+cause-or-consequence question is an explicit open conflict in the corpus.) Note also the "two sides of the
+same coin" framing (Fülöp/Larbi 2018): immunosenescence (§2) and inflammaging (§3) are the **same
+remodeling** viewed from two angles.
 
 ---
 
@@ -214,15 +212,15 @@ a "boosted" immune system. The evidence sorts them cleanly.
 
 | Lever | What the evidence shows | Tier | Honest scope |
 |---|---|---|---|
-| **Sleep** | Sleep loss raises inflammatory tone and **impairs immune defense**; short/poor sleep predicts higher rates of the common cold (Prather 2015: <6h ≈ 4× the cold risk of ≥7h) and worse vaccine responses | `rct`/`cohort`/`mechanistic` (Besedovsky 2019) | Among the most reliable immune levers; cross-ref I |
+| **Sleep** | Sleep loss raises inflammatory tone and **impairs immune defense**; short/poor sleep predicts higher rates of the common cold (Prather 2015: <6h ≈ 4× the cold risk of ≥7h) and worse vaccine responses | `rct`/`cohort`/`mechanistic` (Besedovsky 2019) | cross-ref I |
 | **Exercise** | Regular moderate-to-vigorous activity lowers chronic inflammation (myokine signaling — cross-ref E), improves immunosurveillance, and counters immunosenescence ("exercise as immune maintenance"); but see the J-shape (§4.2) | `cohort`/`mechanistic` (Campbell & Turner 2018) | The cleanest *interventional* handle on inflammaging |
 | **Nutritional adequacy** | Deficiencies in protein, zinc, vitamin D, vitamin C, etc. Impair immunity; **correcting a deficiency restores function** | `mechanistic`/`rct` (in deficiency) | The win is **adequacy**, not megadosing (§4.3) |
 | **Not smoking** | Smoking is broadly immunosuppressive and pro-inflammatory; cessation improves immune function | `cohort`/strong | A pure subtraction win |
 | **Stress management** | Chronic psychological stress (cortisol/allostatic load) dysregulates immunity and raises inflammation | `mechanistic`/`cohort` (cross-ref I, M) | Real, harder to dose; the lever is chronicity |
-| **Vaccines** | The single most powerful tool to *direct* immunity toward real threats; see §6 and pharma §5 | `rct` (hard outcome) | Longevity medicine, not "boosting" |
+| **Vaccines** | The single most powerful tool to *direct* immunity toward real threats; see §6 and pharma §5 | `rct` (hard outcome) | Longevity medicine (§6.1) |
 
-The pattern: every item that works does so by **maintaining regulation and resolution** — adequate inputs,
-movement, recovery, and *trained* (vaccinated) specificity. None of them "boost" a generic immune dial.
+The pattern (§1.3): every item that works maintains **regulation and resolution** — adequate inputs,
+movement, recovery, and *trained* (vaccinated) specificity. None "boost" a generic immune dial.
 
 @@FIG:BX3-immune-ladder@@
 
@@ -273,11 +271,10 @@ replete).
   hard-outcome evidence.** "Detox/cleanse" is not a physiological process the immune system has; the liver and
   kidneys do that. These are **mechanism-and-marketing**, `anecdotal`/`theoretical` tier.
 
-> **The "boost vs regulate" bottom line:** there is no product that safely makes a healthy immune system
-> *stronger* in a way that maps to better outcomes. The achievable wins are (a) **correcting a real
-> deficiency**, (b) **keeping the system well-regulated** (sleep/exercise/stress/no smoking), and (c)
-> **directing it with vaccines.** Everything beyond that, sold as "immune boosting," is trading on a model of
-> immunity that the biology does not support.
+> **The "boost vs regulate" bottom line:** the achievable wins are (a) **correcting a real deficiency**,
+> (b) **keeping the system well-regulated** (sleep/exercise/stress/no smoking), and (c) **directing it
+> with vaccines.** Everything beyond that, sold as "immune boosting," trades on a model of immunity the
+> biology does not support.
 
 @@FIG:PS9-boost-regulate@@
 
@@ -324,8 +321,7 @@ healthspan — most notably the **shingles vaccine ↔ lower dementia incidence*
 natural experiment, *Nature* 2025) and the **flu vaccine ↔ fewer cardiovascular events** post-MI RCT (IAMI). The
 immunosenescence material here explains *why* this matters more with age (weaker responses) and *why*
 higher-dose/adjuvanted formulations exist for elders. **Preventing the pneumonia or influenza that ends an
-82-year-old's independence is longevity medicine** — closer to a free lunch than anything sold as "immune
-support."
+82-year-old's independence is longevity medicine.**
 
 ### 6.2 The gut–microbiome–immune axis
 

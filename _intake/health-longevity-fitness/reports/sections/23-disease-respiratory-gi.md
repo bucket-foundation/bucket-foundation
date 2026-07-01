@@ -241,21 +241,18 @@ potassium-competitive acid blockers, PCABs) is effective and appropriate for sym
 Anti-reflux surgery (fundoplication) or magnetic-sphincter augmentation is an option for selected refractory or
 mechanically-driven (large hernia) cases. guideline/`rct`.
 
-**The honest long-term-PPI story.** PPIs are among the most-prescribed drugs in the world, and the internet is
-full of frightening claims (dementia, kidney disease, fractures, infections, early death). The evidence:
-- These harms come almost entirely from **observational studies with real confounding** (people on chronic PPIs
-  are sicker). The large **COMPASS** randomized trial (pantoprazole vs placebo, ~17,000 patients, ~3 years)
-  found **no significant excess** of most feared outcomes except a small signal for enteric infections. So the
-  scary associations are mostly *not* established as causal. `rct` (the strongest single piece of evidence here).
-- **But that does not mean "PPIs forever, no thought."** Real considerations: modestly increased risk of
-  enteric infections (e.g., *C. difficile*), possible small effects on magnesium/B12 absorption with long use,
-  rebound acid hypersecretion on stopping, and the simple principle that you should be on the *lowest effective
-  dose for the shortest necessary duration* — and many people on chronic PPIs were never re-evaluated and could
-  step down. Erosive esophagitis and Barrett's are legitimate reasons for long-term therapy; "I never tried
-  losing weight or changing meal timing" is not.
-- **Honest grade:** PPIs are effective and **far safer than the viral fear suggests** (`rct`-anchored), and the
-  longevity-literate framing is *use them when indicated, aim for the lowest effective dose, and fix the
-  mechanics (weight, meal timing) so you need less drug* — not "PPIs are poison."
+**The honest long-term-PPI story.** The frightening claims about PPIs (dementia, kidney disease, fractures,
+infections, early death) come almost entirely from **observational studies with real confounding** (people on
+chronic PPIs are sicker). The large **COMPASS** randomized trial (pantoprazole vs placebo, ~17,000 patients,
+~3 years) found **no significant excess** of most feared outcomes except a small signal for enteric infections
+— so the scary associations are mostly *not* established as causal. `rct` (the strongest single piece of
+evidence here). The real considerations: modestly increased **enteric infections** (e.g., *C. difficile*),
+possible small effects on **magnesium/B12** absorption with long use, **rebound** acid hypersecretion on
+stopping, and the principle of *lowest effective dose for the shortest necessary duration* — many chronic users
+were never re-evaluated and could step down. Erosive esophagitis and Barrett's justify long-term therapy; "I
+never tried losing weight or changing meal timing" does not. **Honest grade:** PPIs are effective and **far
+safer than the viral fear suggests** (`rct`-anchored) — use them when indicated, aim for the lowest effective
+dose, and fix the mechanics so you need less drug.
 
 **Dysphagia (brief).** Difficulty swallowing is always a **red-flag symptom** warranting evaluation, never a
 thing to wait out — it can signal esophageal stricture (often from chronic reflux), motility disorders (e.g.,
@@ -540,9 +537,9 @@ preventable causes (alcohol, smoking) the real lever.
 
 ## Part D — The Honest Debunks
 
-The gut and liver are the wellness industry's favorite organs to monetize, precisely because their real biology
-(microbiome, "detox," inflammation) is interesting and incomplete — the perfect substrate
-for selling certainty where the science offers nuance. Held to the same evidence ladder as everything else:
+The gut and liver are the wellness industry's favorite organs to monetize — their real biology (microbiome,
+"detox," inflammation) is interesting and incomplete, the perfect substrate for selling certainty. Held to the
+same evidence ladder as everything else:
 
 ### D1. "Leaky gut syndrome" — a real phenomenon, an overstated diagnosis
 
@@ -585,41 +582,30 @@ claims are `anecdotal`.
 ### D4. "Detox" cleanses — cross-ref the flat debunk
 
 **Juice cleanses, "colon cleanses"/coffee enemas, "liver detoxes," and "candida cleanse" protocols do not remove
-"toxins" and are not health interventions** (full treatment in `17 §3.5` and `09-exposures-environment.md`). The
-liver and kidneys detoxify continuously; the colon does not need "cleansing"; there is **no quality evidence** any
-commercial cleanse improves health, and some cause harm — **colon "cleansing" can cause dehydration, electrolyte
-disturbance, and bowel injury**, and some "detox"/herbal-liver products are themselves a documented cause of
-drug-/supplement-induced liver injury (the irony of a "cleanse" damaging the organ it claims to clean). `anecdotal`
-/refutes. The only evidence-based way to help the gut and liver is to give them less to deal with — less alcohol,
-less excess calories, fewer unnecessary supplements — and let the organs you were born with do the job they do.
+"toxins" and are not health interventions** — the full debunk is in `17 §3.5` and `09-exposures-environment.md`.
+The GI-specific harm to add here: **colon "cleansing" can cause dehydration, electrolyte disturbance, and bowel
+injury.** `anecdotal`/refutes.
 
 ---
 
 ## Synthesis — how this atlas ties to the fundamentals
 
-Step back, and the respiratory/GI/hepatic diseases collapse into a few fundamentals already established in this
-manual:
+The respiratory/GI/hepatic diseases collapse into a few fundamentals (the numbered verdict up top is the short
+version):
 
-1. **The lungs and liver inherit your exposures and metabolism.** The lung's master lever is *not smoking*
-   (COPD, lung cancer, pneumonia risk all fall); the liver's master lever is *metabolic health and not poisoning
-   it* (MASLD reverses with weight loss; cirrhosis is preventable by removing the cause). No supplement matches
-   either.
-2. **Some of these diseases went from sentence to cure in one lifetime — by finding the real cause.** Peptic
-   ulcer (it was an infection → eradicate it) and hepatitis C (DAAs → >95% cured) are the proof that "chronic
-   and incurable" is a statement about current knowledge, not destiny. The lesson generalizes: *find the
-   mechanism, and management follows.*
-3. **Predictor ≠ lever, sharply, in two places.** OSA *predicts* cardiovascular disease, but CPAP *added* to
-   standard care didn't move hard CV endpoints in RCTs — treat OSA to feel and function better and help BP/
-   metabolism, and pursue weight loss as the durable lever. PPIs are *associated* with scary outcomes in
-   confounded cohorts that an RCT mostly *didn't confirm* — use them when indicated without the fear.
-4. **The gut-brain axis is a real therapeutic target, not a dismissal.** IBS is a genuine disorder of gut-brain
-   interaction; the most effective treatments combine the gut (FODMAP, fiber, targeted drugs) *and* the brain
-   (CBT, hypnotherapy, neuromodulators) — which is the opposite of "it's all in your head."
-5. **The clearest debunks in the body live here.** IgG food-sensitivity tests (invalid), "leaky gut syndrome"
-   as a curable diagnosis (overstated), generic "gut health" probiotics (mostly unproven), and detox cleanses
-   (useless-to-harmful). The honest gut/liver protocol is unglamorous: *fiber, whole and fermented foods,
-   movement, sleep, weight control, vaccines for the infections, screening for the cancers, get tested before
-   you go gluten-free, and take the actual cure when one exists.*
+1. **The lungs and liver inherit your exposures and metabolism** — lung lever = *not smoking*; liver lever =
+   *metabolic health, and not poisoning it* (MASLD reverses with weight loss; cirrhosis is preventable by
+   removing the cause). No supplement matches either.
+2. **Some went from sentence to cure by finding the real cause** — peptic ulcer (an infection) and hepatitis C
+   (DAAs, >95% cured). *Find the mechanism, and management follows.*
+3. **Predictor ≠ lever in two places:** OSA predicts CVD but CPAP didn't move hard CV endpoints in RCTs; PPIs'
+   scary cohort associations an RCT mostly *didn't* confirm.
+4. **The gut-brain axis is a real therapeutic target, not a dismissal** — IBS is a genuine gut-brain disorder,
+   treated best by combining gut (FODMAP, fiber, drugs) and brain (CBT, hypnotherapy, neuromodulators).
+5. **The clearest debunks in the body live here:** IgG food tests, "leaky gut," generic "gut health" probiotics,
+   detox cleanses. The honest gut/liver protocol is unglamorous — *fiber, whole and fermented foods, movement,
+   sleep, weight control, vaccines for the infections, screening for the cancers, get tested before going
+   gluten-free, and take the actual cure when one exists.*
 
 **Not medical advice.** These are diseases that need real diagnosis and individualized care. Use this map to ask
 sharper questions and to recognize the difference between a treatment that *modifies a disease* and one that

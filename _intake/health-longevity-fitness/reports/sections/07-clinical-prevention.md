@@ -7,6 +7,10 @@ interventions a physician delivers — the ones that, in absolute terms, prevent
 anything in the supplement aisle. It is the medicine of not dying of the things that actually kill people
 in the developed world.
 
+**Bottom line:** the biggest absolute wins in prevention are unglamorous and RCT-backed — **control blood
+pressure** (the #1 modifiable killer), **lower apoB**, **don't smoke**, and do **the four screens that work**
+(colorectal, lung-in-smokers, breast, cervical). Skip primary-prevention aspirin. Everything else is refinement.
+
 The organizing frame comes from Peter Attia's *Medicine 3.0*: the **"Four Horsemen."** Roughly 80% of
 deaths after age 50 in non-smokers come from four disease processes — **atherosclerotic cardiovascular
 disease (ASCVD — plaque-driven heart attacks and strokes), cancer, neurodegeneration, and metabolic
@@ -25,13 +29,10 @@ prevention; lipids and apoB are graded in the biomarkers section, metabolic dept
 
 ## 1. Hypertension — the single largest modifiable killer on Earth
 
-If you could change exactly one number in the population, it would be systolic blood pressure. High
-blood pressure is the **leading attributable risk factor for death worldwide** (Global Burden of
-Disease) — ahead of smoking, obesity, and high glucose — because it silently drives stroke, heart
-failure, coronary disease, kidney failure, and vascular dementia at once. It is also nearly
-**asymptomatic until it has already done damage**, cheap to measure, and highly treatable. That
-combination — huge attributable risk, invisible, fixable — makes it the highest-yield target in all
-of preventive medicine.
+High blood pressure is the **leading attributable risk factor for death worldwide** (Global Burden of
+Disease) — ahead of smoking, obesity, and high glucose — yet it is nearly **asymptomatic until it has
+already done damage**, cheap to measure, and highly treatable. That combination — huge attributable
+risk, invisible, fixable — makes it the highest-yield target in all of preventive medicine.
 
 ### 1.1 The targets, and what SPRINT actually showed
 
@@ -309,11 +310,10 @@ few behaviors.
 
 ### 4.1 Smoking — still the overwhelming #1
 
-Nothing else in cancer prevention is close. Tobacco causes roughly a third of cancer deaths and the
-large majority of lung-cancer deaths, and it drives cardiovascular disease (Horseman #1) at the same
-time. **Cessation works at any age** and the risk curve bends down within years. This single lever
-outweighs essentially every supplement, screen, and diet tweak in the corpus combined. (Cessation
-tactics — varenicline, NRT, behavioral support — are owned by another agent.)
+Nothing else in cancer prevention is close, and it drives cardiovascular disease (Horseman #1) at the
+same time. **Cessation works at any age.** This single lever outweighs essentially every supplement,
+screen, and diet tweak in the corpus combined. (Cessation tactics — varenicline, NRT, behavioral
+support — are owned by another agent.)
 
 ### 4.2 Metabolic disease and obesity as cancer drivers
 
@@ -377,7 +377,7 @@ RCT-backed screens (colorectal, lung-in-smokers, breast, cervical).** Everything
 |---|---|
 | **PSA screening (prostate)** | **Contested, USPSTF Grade C (55–69, shared decision), D (70+).** ERSPC (Schröder 2009, European) showed a ~20% relative reduction in prostate-cancer mortality **but** with a high number-needed-to-screen and substantial **overdiagnosis/overtreatment** (incontinence, impotence from treating indolent cancers); the US **PLCO** trial (Andriole 2009) was **null** (heavily contaminated by control-arm testing). Net: an **individual, informed decision**, not a default. Active surveillance of low-grade disease has reduced the overtreatment harm. |
 | **Whole-body MRI ("executive" scans)** | **Oversold.** No RCT shows a mortality benefit; high rate of **incidentalomas** (benign findings that trigger cascades of follow-up tests, biopsies, cost, and anxiety); marketed on fear, not outcomes. Reasonable only in specific high-risk genetic syndromes (e.g., Li-Fraumeni). For the average worried-well person, the expected harm/cost exceeds the expected benefit. |
-| **Aspirin for primary prevention** | **Reversed** (see §2.3). Bleeding ≥ benefit in healthy people; ASPREE even showed higher mortality. Not a default. |
+| **Aspirin for primary prevention** | **Reversed — see §2.3.** Not a default. |
 | **Coronary calcium for everyone** | Excellent **tiebreaker** at intermediate risk; **not** needed in the clearly high- or clearly low-risk, and not a repeat-often test (it's a predictor, not a lever). |
 | **"Total-body" early-detection blood tests (MCED)** | **Promising but unproven** for mortality; randomized outcome trials are ongoing. Not yet a recommended screen. |
 | **Mass skin / AFib-wearable screening** | Real conditions, but **population-level screening benefit unproven** (USPSTF I / open). Use targeted, not universal. |
@@ -402,17 +402,17 @@ RCT-backed screens (colorectal, lung-in-smokers, breast, cervical).** Everything
 
 - **The biggest absolute wins are unglamorous and RCT-backed:** control blood pressure, lower apoB,
   don't smoke, do the four screens that work. This beats every supplement and gadget in the corpus.
-- **Risk-stratification tools (CAC, apoB, Lp(a)) are predictors, not levers** — they tell you *who*
-  to treat, not *what* to treat. Don't chase the number; act on what it reclassifies.
+- **Risk-stratification tools (CAC, apoB, Lp(a)) are predictors, not levers** — act on what they
+  reclassify, don't chase the number.
 - **More screening is not better.** Mammography carries overdiagnosis; PSA and whole-body MRI carry
   net harm in average-risk people; the value is in the *right* screen for the *right* person.
 - **Cohort screening-mortality estimates are softer than the RCTs.** The hard endpoints (SPRINT,
   NLST, NordICC, ASPREE, the AF anticoagulation trials) are randomized — trust those most.
-- **Aspirin for primary prevention is out;** for secondary prevention it stays in. Don't conflate them.
+- **Aspirin: out for primary prevention, in for secondary** — don't conflate them.
 - **Adherence beats theoretical accuracy.** A FIT done every year beats a colonoscopy declined; a BP
   drug taken beats a perfect target unmet. The best intervention is the one actually done.
-- **Metabolic health is the hinge.** It connects three of the Four Horsemen — the same weight/fitness/
-  glycemic levers lower cardiovascular, cancer, *and* metabolic risk at once (cross-ref Domain D).
+- **Metabolic health is the hinge** — the same weight/fitness/glycemic levers lower cardiovascular,
+  cancer, *and* metabolic risk at once (Domain D).
 
 ---
 

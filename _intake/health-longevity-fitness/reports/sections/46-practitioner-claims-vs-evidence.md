@@ -9,6 +9,11 @@ so a reader can do this triage themselves.
 _Not medical advice. This chapter scores public claims against the book's graded claim-sets; the raw
 cluster-by-cluster cross-checks are linked at the end._
 
+> **Bottom line:** The field's dividing line is calibration, not correctness. Almost nobody contradicts
+> the corpus on the boring core (fitness, sleep, strength); flat contradictions are ~8% of claims, while
+> overstatement ≈ agreement (~37% each). Jump to the **Calibration Spectrum** (the ranking) and the
+> **five-question filter** at the end.
+
 This chapter runs on the corpus's three standing honesty rules:
 
 1. **Predictor ≠ lever.** A biomarker that predicts death is not automatically something that, when changed,
@@ -48,9 +53,8 @@ Six parallel YouTube cross-check waves ran on 2026-06-29, one per practitioner c
 **Limits, stated up front.** This is a *sample*, not a census. Transcripts were chosen for signal and
 constrained by YouTube rate-limiting (a meaningful fraction of target videos failed to pull and were
 covered by sibling episodes, not independently verified). Headline claims were **hand-extracted** by
-reading transcripts.[^method-miner] Verdicts are one analyst's mapping of a paraphrased claim to a graded
-claim; a different reader would split a few borderline calls differently (especially the
-AGREES-with-an-omitted-caveat cases). **This page adds no new evidence** — every verdict resolves to an
+reading transcripts.[^method-miner] Verdicts are one analyst's mapping; a different reader would split
+some borderline calls differently. **This page adds no new evidence** — every verdict resolves to an
 already-graded claim or conflict. It is triage, not adjudication.
 
 ## The Calibration Spectrum (the headline finding)
@@ -69,7 +73,7 @@ Counts below are per the six raw files (some claims carry split verdicts; counte
 |---|---|---|---|---|---|
 | 1 | **Andy Galpin** (Rhonda+Galpin) | ~9 | ~2 | 0 | The most corpus-aligned voice in any wave — every strength/creatine/protein/hydration claim maps to a `REAL`-graded entry; already cited by name.[^cal-galpin] |
 | 2 | **Matt Kaeberlein** (longevity-sci) | 5 | 0 | 0 | The in-field validator: a geroscientist who runs the gold-standard testbeds and *refuses to overclaim*. The anti-Sinclair. |
-| 3 | **Clock-builders** — Levine / Horvath / Gladyshev | ~7 | ~2 | 0 | The people who *build* the epigenetic clocks are more cautious about them than the people who *sell* them. When the toolmakers hedge, grade with the toolmakers. |
+| 3 | **Clock-builders** — Levine / Horvath / Gladyshev | ~7 | ~2 | 0 | The people who *build* the epigenetic clocks are more cautious about them than the people who *sell* them. |
 | 4 | **Peter Attia** (Attia) | 12 | 6 | 0 | Core stack *is* the Tier-A levers; errors cluster in the biohacking margin (CGM — continuous glucose monitor, rapamycin, protein dose); demonstrably updates toward evidence (dropped metformin & heavy fasting). |
 | 5 | **Rhonda Patrick** (Rhonda+Galpin) | 13 | 8 | 0 | Right answers, oversold confidence. The honest end of the influencer spectrum; her misses are pure predictor→lever (omega-3 index, vitamin D). |
 | 6 | **Andrew Huberman** (Huberman) | 6 | 11 | 0 | Mechanism-right, effect-overstated — the laundering archetype. Contradicts the corpus almost nowhere (0/22), miscalibrates it constantly (~11/22). |
@@ -202,12 +206,11 @@ clearest single illustration of this chapter's thesis.
 | Commercial COI (conflict of interest) | runs academic testbeds + Dog Aging Project | Sirtris/GSK, InsideTracker, Athletic Greens, affiliate links |
 | Corpus verdict | **5 claims, all AGREES** — the in-field embodiment of the three honesty rules | **6 claims: 0 agree, mostly OVERSTATED, 1 CONTRADICTS** — the canonical mechanism-sold-as-outcome case |
 
-Kaeberlein is the corpus's natural **external validator** for the geroscience-pharma section: when a
-practicing geroscientist who runs the gold-standard testbeds refuses to overclaim and lands *exactly where
-our honest grades already are*, it raises confidence that those grades are calibrated, not merely
-contrarian. Sinclair is the opposite pole — none of his claims are fraud; they are real science *narrated
-past its evidence tier*, with a dense commercial COI as the mechanism by which the laundering gap is
-monetized. **When the toolmaker is more cautious than the marketer, grade with the toolmaker.**
+Kaeberlein is the corpus's natural **external validator**: an in-field geroscientist landing exactly where
+the honest grades already are raises confidence they're calibrated, not merely contrarian. Sinclair is the
+opposite pole — real science *narrated past its evidence tier*, with a dense commercial COI as the
+mechanism by which the laundering gap is monetized. **When the toolmaker is more cautious than the
+marketer, grade with the toolmaker.**
 
 ## Practical takeaway — how to listen to a health podcast
 

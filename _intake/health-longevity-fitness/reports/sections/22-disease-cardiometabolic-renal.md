@@ -6,9 +6,13 @@ organ masks: the slow failure of the same vascular and metabolic machinery. This
 cluster — what each disease is, the mechanism (tied back to the fundamentals this corpus builds), how
 it shows up in a clinic, and the honestly-graded evidence behind managing it.
 
-Three honesty rules run through every entry. **Predictor ≠ lever:** a number that forecasts risk isn't
-automatically something that, once changed, lowers it. **Cohort ≠ RCT:** an observational association
-is weaker evidence than a randomized trial. **Something beats nothing** is not proof a treatment works.
+**Bottom line:** cardiometabolic, endocrine, and renal disease are largely **one interconnected process** —
+insulin resistance is the hub, the vasculature is the shared victim, and two drug classes (**GLP-1 agonists
+and SGLT2 inhibitors**) reorganized the whole field by protecting heart and kidney beyond glucose.
+
+Three honesty rules run through every entry (defined in Start-Here): **predictor ≠ lever** (a number that
+forecasts risk isn't automatically something that, once changed, lowers it), **cohort ≠ RCT**, and
+**something beats nothing** is not proof a treatment works.
 
 _Not medical advice. This is a literate map of the diseases; diagnosis and therapy belong to a
 clinician who knows your numbers. Blood-pressure and lipid/apoB prevention are graded in §07 and
@@ -291,10 +295,9 @@ added (basal first, then mealtime). Older agents (sulfonylureas — cheap but ca
 weight gain; TZDs; DPP-4 inhibitors — glucose-only, no organ benefit) fill specific niches but have
 been displaced from the front line by GLP-1/SGLT2 where affordable.
 
-**The honest meta-point:** glucose control alone (the old "lower the A1c" paradigm) was always
-necessary but proved *insufficient* — intensive glucose-lowering in ACCORD even *increased* mortality.
-The shift is to drugs chosen for **cardiorenal outcomes**, with glucose as one of several targets. The
-constraint is **cost and access** — GLP-1/SGLT2 are expensive, and the equity gap is real.
+**The honest meta-point:** glucose control alone proved *insufficient* — intensive glucose-lowering in
+ACCORD even *increased* mortality — so the shift is to drugs chosen for **cardiorenal outcomes**. The
+constraint is **cost and access**: GLP-1/SGLT2 are expensive, and the equity gap is real.
 
 ### 2.3 Remission — the DiRECT evidence
 
@@ -531,10 +534,10 @@ hypertensives) — don't wait for symptoms.**
   reduced major kidney-disease events by 24% in diabetic CKD — fresh, strong evidence.
 - **Finerenone** (a non-steroidal MRA, FIDELIO/FIGARO trials) adds cardiorenal protection in diabetic
   CKD.
-- **The honest diet levers** (cross-ref `17` §2.5): the "high protein destroys kidneys" claim is a
-  **myth in people with *healthy* kidneys** — but in *established* CKD, moderate protein restriction is
-  a genuine (if modest) lever, alongside sodium restriction and managing potassium/phosphate as function
-  declines. Avoid nephrotoxins (NSAIDs — the "triple whammy" with ACEi+diuretic; contrast dye caution).
+- **The honest diet levers** (the "protein destroys kidneys" myth is handled in `17` §2.5): in
+  *established* CKD, moderate protein restriction is a genuine (if modest) lever, alongside sodium
+  restriction and managing potassium/phosphate as function declines. Avoid nephrotoxins (NSAIDs — the
+  "triple whammy" with ACEi+diuretic; contrast dye caution).
 
 ### 6.2 End-stage kidney disease — the dialysis/transplant reality
 
@@ -653,10 +656,9 @@ machinery — wearing different organ masks.
   same arteries — whether you measure the damage in the coronaries (MI), the glomeruli (CKD), the
   retina (retinopathy), or the brain (vascular dementia). This is why `07`'s prevention levers (BP,
   apoB, don't smoke) and this atlas's diseases are the same story told from opposite ends.
-- **The two drug classes that reorganized this entire field** — **GLP-1 agonists and SGLT2 inhibitors**
-  — did so precisely *because* the diseases are one disease: a glucose drug that protects the heart and
-  kidney makes sense only if heart, kidney, and pancreas are failing from a shared metabolic root. That
-  is the deep mechanistic vindication.
+- **GLP-1 agonists and SGLT2 inhibitors reorganized this entire field** *because* the diseases are one
+  disease: a glucose drug that also protects heart and kidney only makes sense if all three fail from a
+  shared metabolic root (§1.2, §2.2, §6.1) — the deep mechanistic vindication.
 - **What's strong (RCT-backed):** the HFrEF four pillars, SGLT2/GLP-1 cardiorenal protection,
   DCCT-grade tight glucose control for microvascular complications, DiRECT-grade remission, RAAS
   blockade in proteinuric CKD, high-fluid stone prevention, levothyroxine for overt hypothyroidism,

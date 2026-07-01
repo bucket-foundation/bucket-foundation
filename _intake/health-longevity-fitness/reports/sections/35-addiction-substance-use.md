@@ -23,14 +23,15 @@ _Not medical advice._
 > attached. Call it pure moral weakness and you justify punishing sick people and you ignore that
 > treatment works. Call it purely a chronic brain disease and you erase the people who walk away on their
 > own, you contradict the data on remission, and you can rob someone of the agency that recovery actually
-> runs on. The honest position is **neither** — a more accurate
-> third model (a disorder of **learning, motivation, and choice under altered conditions**) that the
-> evidence supports better than either pole. Grade it straight, hold the person's dignity and the person's
-> agency at the same time, and say so plainly.
+> runs on. The honest position is **neither** — §1.2 grades the more accurate third model. Grade it
+> straight, hold the person's dignity and the person's agency at the same time, and say so plainly.
 
 ---
 
 ## 0. The map at a glance
+
+_Skim the three columns — how addictive / how lethal / first-line treatment; these are order-of-magnitude,
+see the note below the table._
 
 | Substance / behaviour | Roughly how addictive (transition to dependence among ever-users) | Lethality of the addiction itself | First-line, best-evidenced treatment |
 |---|---|---|---|
@@ -390,13 +391,12 @@ taper**, not cold turkey and not indefinite continuation. `clinical`.
 Classic psychedelics (psilocybin, LSD, mescaline, DMT) have **very low addiction potential** — they are
 not reliably reinforcing, produce rapid tolerance that discourages bingeing, and lack the compulsive-use
 signature. The risks are **psychological** (frightening experiences, precipitating psychosis in the
-vulnerable) and **behavioural** (acting unsafely while intoxicated), not dependence. Their place in this
-manual's *addiction* section is therefore mostly to say **they don't belong in the addiction conversation
-the way prohibition lumped them.** The live and important story — **psychedelic-assisted therapy** for
-depression, PTSD, and addiction itself — is graded in **Section 20 §6.4** (promising, unblindable,
-early, and **not** FDA-approved; MDMA-therapy was *rejected* in 2024). Note the irony worth
-flagging: psilocybin and ibogaine are themselves being trialled **as treatments for** other addictions —
-early-stage, not established. `rct` (early) — see Section 20.
+vulnerable) and **behavioural** (acting unsafely while intoxicated), not dependence. They mostly
+**don't belong in the addiction conversation the way prohibition lumped them.** The live and important
+story — **psychedelic-assisted therapy** for depression, PTSD, and addiction itself — is graded in
+**Section 20 §6.4** (promising, unblindable, early, and **not** FDA-approved; MDMA-therapy was *rejected*
+in 2024). Note the irony worth flagging: psilocybin and ibogaine are themselves being trialled **as
+treatments for** other addictions — early-stage, not established. `rct` (early).
 
 ### 5.5 Caffeine — the socially-accepted dependence
 
@@ -465,11 +465,11 @@ treatments are unglamorous and under-used, and the dramatic interventions are mo
 
 @@FIG:DX2-mat-moud@@
 
-Anchors and caveats the figure doesn't carry: **opioids** — Sordo *BMJ* 2017;[^sordo] agonist therapy halves mortality, detox-alone can be *worse* than no treatment, MOUD chronically under-provided. **Alcohol** — Jonas *JAMA* 2014;[^jonas] naltrexone/acamprosate real but modest (NNT ~12), cheap and generic, prescribed to a small minority. **Tobacco** — Cahill *Cochrane* 2013;[^cahill] drug **+** behavioural support, iterate after failure. **Stimulants** — no effective approved medication (`meta`, honest null), contingency management is the lever instead. **Cannabis** — no approved medication; CBT/MET/CM.
-
-MAT is the part of addiction medicine that **most contradicts intuition and most saves lives** — and it is
-held back less by evidence than by stigma (the "replacing one drug with another" canard, which misreads
-stabilizing maintenance as continued addiction).
+Anchors, by substance (verdicts graded in the body): **opioids** — Sordo *BMJ* 2017[^sordo] (§3.4);
+**alcohol** — Jonas *JAMA* 2014[^jonas] (§5.1); **tobacco** — Cahill *Cochrane* 2013[^cahill] (§2.2);
+**stimulants** — no effective medication, contingency management instead (§4.2); **cannabis** — no
+medication, CBT/MET/CM (§5.2). MAT is held back less by evidence than by stigma — the "replacing one drug
+with another" canard (§8).
 
 ### 7.2 Behavioural treatments — including the under-used winner
 
@@ -540,10 +540,9 @@ insistence has a **measurable death toll** (the detox-relapse-overdose pathway, 
   (MAT, CBT, CM, MI, and — for many — moderation rather than abstinence): the field's historic insistence
   that **everyone** must do AA and **everyone** must be abstinent forever **failed the large minority it
   didn't fit.** TSF works (§7.2) **and** is not universal. Both halves are true.
-- **"Replacing one drug with another" (the anti-MAT canard).** Stabilizing maintenance on
-  methadone/buprenorphine is **treatment that halves death**, not continued addiction; conflating
-  **dependence** (the medication produces it) with **addiction** (compulsive harmful use, which the
-  medication *resolves*) is honesty rule #2's most lethal failure. `cohort` — debunked.
+- **"Replacing one drug with another" (the anti-MAT canard).** This conflates **dependence** (the
+  medication produces it) with **addiction** (compulsive harmful use, which the medication *resolves*) —
+  honesty rule #2's most lethal failure. `cohort` — debunked.
 - **"Moderation is always relapse / abstinence is the only goal."** For many with **less severe** alcohol
   or cannabis problems, **moderation/controlled use is an achievable, evidence-supported goal** (harm
   reduction, the Sinclair Method); for **severe** dependence, abstinence is often the realistic target. The

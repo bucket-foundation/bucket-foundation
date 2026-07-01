@@ -7,14 +7,13 @@ exactly why they get skipped and exactly why a few cheap, boring habits (don't s
 glucose in range, stay lean, don't reach for NSAIDs — common painkillers like ibuprofen — by reflex)
 outperform anything sold as an organ "detox" or "cleanse."
 
-Three honesty rules run through the whole atlas. **Predictor ≠ lever** (the number warns you, it isn't the
-thing you fix): a declining **eGFR** (a kidney-filtration score) or a low **VO₂max** (the most oxygen your body
-can use — the single best fitness-mortality number) predicts death, but the lever is upstream (blood pressure,
-glucose, training), not the number; erectile dysfunction predicts heart attacks, yet a PDE5 inhibitor (the
-Viagra class) treats the symptom, not the artery. **Cohort ≠ RCT** (an association seen across a population is
-weaker than a randomized trial). **Something beats nothing** (a partial fix still counts). And dose/context
-rules everything: high protein is fine for a healthy kidney but must be moderated in established chronic kidney
-disease (CKD).
+Three honesty rules run through the whole atlas (defined once in Start-Here). **Predictor ≠ lever** — the
+number warns you, it isn't the thing you fix: a declining **eGFR** (a kidney-filtration score) or a low
+**VO₂max** (the most oxygen your body can use — the single best fitness-mortality number) predicts death, but
+the lever is upstream (blood pressure, glucose, training), not the number; erectile dysfunction predicts heart
+attacks, yet a PDE5 inhibitor (the Viagra class) treats the symptom, not the artery. **Cohort ≠ RCT** and
+**something beats nothing** apply throughout. And dose/context rules everything: high protein is fine for a
+healthy kidney but must be moderated in established chronic kidney disease (CKD).
 
 **One-line verdict up front:** the highest-yield, most-skipped levers in this section are **(1) protect the
 kidney and liver indirectly** — they have almost no direct levers, so the play is blood pressure, glucose,
@@ -170,8 +169,7 @@ liver: the organ inherits the health of your metabolism.
 
 ### 2.4 Hydration — the honest version
 
-Hydration is over-claimed by the wellness industry ("flush toxins," "a gallon a day") and under-appreciated
-where it actually matters. The honest signal: **chronic under-hydration, reflected in higher-normal serum
+The honest hydration signal: **chronic under-hydration, reflected in higher-normal serum
 sodium, associates with accelerated biological aging, more chronic disease, and earlier mortality** —
 **Dmitrieva et al., EBioMedicine 2023**,[^dmitrieva-2023] an NHLBI cohort analysis. `cohort`.
 But this is an *association*, and the practical reading is **"don't run chronically dry,"** not "force liters."
@@ -441,12 +439,11 @@ This is the lymphatic version of the detox myth, and it requires the same two-ti
   2021**; **Gilchrist et al., Med Oncol 2024**).[^cdt-lymphedema]
   Notably, even here the evidence shows **compression and exercise do the heavy lifting**, and the *MLD
   massage component adds modest, sometimes non-significant value on top* of compression. `meta`.
-- **For healthy people:** the wellness-spa claims that "lymphatic drainage massage detoxifies you," "boosts
-  immunity," "reduces cellulite," or "removes toxins" are **not supported by evidence.** A healthy lymphatic
-  system does not need manual help to drain; there are no "lymphatic toxins" being backed up in a well person.
-  Graded `anecdotal`/refutes. A lymphatic massage may feel pleasant and relaxing — a legitimate reason to enjoy
-  one — but it is not a health intervention. If you want to support lymphatic flow, the honest lever is the
-  same as for everything else in this atlas: **move your body.** Muscle contraction *is* the lymphatic pump.
+- **For healthy people:** the wellness-spa claims that lymphatic-drainage massage "detoxifies you," "boosts
+  immunity," "reduces cellulite," or "removes toxins" are **not supported by evidence** — a healthy lymphatic
+  system drains itself, with no "lymphatic toxins" backing up in a well person. Graded `anecdotal`/refutes. The
+  massage may feel pleasant (a fine reason to enjoy one) but it is not a health intervention; the honest lever
+  is the same as everywhere in this atlas: **move your body — muscle contraction *is* the lymphatic pump.**
 
 ---
 
@@ -455,18 +452,16 @@ This is the lymphatic version of the detox myth, and it requires the same two-ti
 Step back and the seven systems collapse into a small number of fundamentals already established elsewhere in
 this manual:
 
-1. **The "silent" organs (kidney, liver) have no direct levers — they inherit your metabolic health.** Blood
-   pressure, glucose, body weight, and not poisoning them (alcohol, casual NSAIDs, "detox" supplements) is the
-   entire game. This is the same metabolic core as Domains D and `07`.
-2. **VO₂max is the master number of this atlas.** The respiratory and cardiovascular systems exist to feed it,
-   and it predicts mortality better than almost any lab — but the lever is *training*, not the number (Domain E,
-   `02-training.md`).
+1. **The "silent" organs (kidney, liver) have no direct levers — they inherit your metabolic health** (BP,
+   glucose, weight, and not poisoning them with alcohol, casual NSAIDs, or "detox" supplements) — the same
+   metabolic core as Domains D and `07`.
+2. **VO₂max is the master number of this atlas** — it predicts mortality better than almost any lab, but the
+   lever is *training*, not the number (Domain E, `02-training.md`).
 3. **Several systems are best read as warning lights, not problems to silence:** ED → vascular disease, anemia →
    underlying illness, declining eGFR → systemic risk, rising serum sodium → chronic under-hydration. The
    predictor ≠ lever rule is the single most useful idea in this section.
-4. **The "detox/cleanse/drainage" industries are the clearest debunks in the manual.** The liver and kidney
-   detoxify you continuously; the lymphatic system drains itself; juice cleanses and wellness-spa MLD do nothing
-   a healthy body wasn't already doing — and some "cleanses" cause real liver injury.
+4. **The "detox/cleanse/drainage" industries are the clearest debunks in the manual** — the liver and kidney
+   detoxify you continuously and the lymphatic system drains itself; some "cleanses" cause real liver injury.
 5. **Movement is the universal lever.** It raises VO₂max, pumps lymph, speeds GI motility, lowers VTE risk,
    improves insulin sensitivity (protecting liver and kidney), and via IMT even lowers blood pressure. If a
    single behavior threads all seven systems, it is physical activity.

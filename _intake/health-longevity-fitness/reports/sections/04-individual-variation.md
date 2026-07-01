@@ -8,6 +8,10 @@ real structural differences between human bodies (which are large and worth adap
 pseudoscience that sells "customization" as a product (somatotype diets, "female-specific" metabolism
 claims, "detox").
 
+**Bottom line:** real variation — leverage, fiber type, training response, sex/life-stage, age, injury — is
+worth adapting to; marketed variation — somatotype diets, cycle-syncing, "female metabolism," TRT-for-longevity,
+detox — is not. Per-situation changes in §6.
+
 _Not medical advice. Three honesty rules run through this section — predictor ≠ lever (something that
 forecasts risk isn't automatically something that, changed, lowers it), cohort ≠ RCT, and something beats
 nothing. Drugs and screening live in their own sections._
@@ -99,8 +103,8 @@ motion), **expect uneven lifts**, and **stop comparing your bar path to someone 
 
 ## 2. Responders vs non-responders — the most motivating honest finding in the field
 
-This is the single most important idea in this section, because it rescues people who conclude "exercise
-doesn't work for me" when the truth is "that *dose* didn't work for you yet."
+People who conclude "exercise doesn't work for me" are usually describing a *dose* that didn't work yet,
+not a body that can't respond.
 
 ### 2.1 The HERITAGE Family Study: response to the same program varies enormously
 
@@ -263,8 +267,7 @@ Sarcopenia (age-related muscle loss, better defined by **strength loss / dynapen
 Mitchell et al. 2012[^mitchell]) and **power loss begin in midlife and power declines *faster* than
 strength.** Midlife is the cheapest time to defend the peak — maintain resistance training, protect VO2max,
 and start tracking the functional biomarkers (grip, VO2max, BMD) while they're still easy to move. For women,
-this overlaps the menopausal transition (§3.3) — the single highest-leverage decade for the bone/strength
-levers.
+this overlaps the menopausal transition (§3.3).
 
 ### 4.3 Older adults (65+) — strength, power, protein, and balance matter **MORE, not less**
 
@@ -356,7 +359,7 @@ consistently" beats "the optimal program, never."
 
 ---
 
-## 6. The one-screen summary
+## 6. The one-screen summary (skim this)
 
 | If you are… | The honest change to the default advice |
 |---|---|

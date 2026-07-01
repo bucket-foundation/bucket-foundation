@@ -1,5 +1,9 @@
 # 08 — Brain, Cognition & Mental Health
 
+**Bottom line:** the bundle that protects the aging brain is the **cardiovascular cluster + hearing +
+connection + head protection** (§1.2). The best *causal* levers are hearing (ACHIEVE, §2), midlife blood
+pressure (SPRINT-MIND, §1.3), and bundled lifestyle (FINGER, §3); the numbered summary is §7.
+
 **What actually protects the brain as it ages, and what is being sold to you that does not?** The longevity-and-biohacking world is strangely quiet about this question. The asymmetry is stark: the large, well-evidenced levers — hearing, vascular risk, education, connection, sleep — are mostly unsexy and unmonetizable. Meanwhile the marketed interventions — nootropics, brain-training apps, the new amyloid antibodies — carry far weaker benefit-to-risk than their visibility implies.
 
 _Not medical advice. This chapter is about protecting cognition and mental health as you age; sleep is covered in Domain I and social connection in Domain M._
@@ -29,6 +33,9 @@ share causes), so the PAFs already account for double-counting and sum to ~45%.
 One rule to keep in mind while reading the table: **predicting a risk is not the same as having a fix for
 it.** A factor can forecast dementia (a predictor) without it being proven that changing it lowers your
 risk (a lever). The last column flags, for each factor, how strong that lever evidence actually is.
+
+_Skim the PAF column for size and the last column for whether it's a proven lever; §1.2 tells you how to
+read it without lying to yourself._
 
 | Life stage | Risk factor | PAF (2024) | What it means / the honest tier |
 |---|---|---|---|
@@ -173,8 +180,8 @@ RCT for cognition.** Don't sell it as proven brain protection. `cohort` supports
 > system clears interstitial amyloid-β during slow-wave sleep (Xie et al., *Science* 2013; Shokri-Kojori
 > et al., *PNAS* 2018 showed one sleepless night raises amyloid PET signal in humans) — but, per Domain I,
 > "sleep increases amyloid clearance" is a **mechanism** (largely mouse + small human surrogate studies),
-> **not** the outcome "sleep prevents Alzheimer's." Protect sleep because the mechanism is real and the
-> downside is nil; don't oversell it as a proven dementia preventive. See `02-domains/I-sleep-circadian.md` §1.
+> **not** the outcome "sleep prevents Alzheimer's." Protect sleep — real mechanism, nil downside — but
+> don't oversell it as proven prevention. See `02-domains/I-sleep-circadian.md` §1.
 
 ---
 
@@ -325,10 +332,8 @@ statistically significant, clinically marginal, real harms.
 
 ## 7. The honest summary of this section
 
-1. **The spine is the Lancet 14 factors (~45% PAF).** It is the most authoritative map of dementia
-   prevention. But it is mostly an **observational/population** construct — a counterfactual about
-   populations, not a personal guarantee, and for most factors we have association rather than randomized
-   proof of prevention.
+1. **The spine is the Lancet 14 factors (~45% PAF)** — the most authoritative map of dementia prevention,
+   but mostly an **observational/population** counterfactual (§1.2), not a personal guarantee.
 2. **The lever with the best causal evidence is hearing** (ACHIEVE), followed by **vascular control**
    (SPRINT-MIND) and **bundled lifestyle** (FINGER). All three are RCT-supported and all three point at
    the same unglamorous bundle, laid out in the checklist below. What's good for the heart is good for

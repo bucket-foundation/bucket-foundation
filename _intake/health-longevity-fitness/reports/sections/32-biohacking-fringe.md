@@ -10,21 +10,20 @@ harmful. We say which is which, with the dose-versus-evidence honesty the market
 _Not medical advice. Thermal levers (sauna/cold) live in §05; supplement verdicts (NAD, antioxidants) in
 §03; wearables (CGM/HRV) in the wearables chapter._
 
-**Five honesty rules govern every verdict here:**
+**Five honesty rules govern every verdict here** (the first two unpacked in §10):
 
-1. **Mechanism ≠ outcome.** "BPC-157 accelerates tendon healing *in rats*" and "raises NAD+" and "increases
-   mitochondrial ATP *in a cell*" are mechanisms. None is the human outcome being sold. Most of this section
-   lives in that gap.
-2. **The laundering gap.** The recurring biohacking move is: a real *mechanism* or a *mouse/cell* result
-   gets marketed as a hard human *outcome* it has not earned. Name the launder every time.
-3. **Dose-sold ≠ dose-studied.** Where any human signal exists, the protocol that produced it is usually
-   not the protocol being sold (this is the cold-plunge pattern from §05, repeated across the section).
-4. **Survivorship + anecdote.** The testimonial base is built on people for whom it seemed to work, who
-   were also sleeping, training, and dieting better that month. n=1 (a single-person self-experiment)
-   cannot see a small effect or any longevity outcome.
-5. **Unregulated ≠ characterized.** "Research chemical," "peptide," "compounded," and "wellness IV" all
-   mean *the thing in the vial is not what a regulator has checked* — purity, dose, and contaminants are
-   unknown. That is a harm input independent of efficacy.
+1. **Mechanism ≠ outcome** — a rat result, a raised NAD+, more ATP in a cell are mechanisms, not the human
+   outcome being sold. Most of this section lives in that gap.
+2. **The laundering gap** — a real mechanism or mouse/cell result gets marketed as a hard human outcome it
+   never earned; name the launder every time (§10).
+3. **Dose-sold ≠ dose-studied** — where a human signal exists, the protocol that produced it usually isn't
+   the one being sold (the cold-plunge pattern, §05).
+4. **Survivorship + anecdote** — testimonials come from responders who were also sleeping, training, and
+   dieting better that month; n=1 (a single-person self-experiment) can't see a small effect or a longevity
+   outcome (§10).
+5. **Unregulated ≠ characterized** — "research chemical," "peptide," "compounded," "wellness IV" all mean
+   the vial isn't what a regulator checked; purity, dose, and contaminants are unknown, a harm input
+   independent of efficacy.
 
 **The verdict scale used throughout** (added to the standard evidence ladder as a plain-language summary):
 
@@ -354,9 +353,9 @@ pendants, and "blockers" protect you.
 
 **The evidence:** at consumer (non-ionizing, below-thermal-threshold) exposures, **decades of review have not
 established a non-thermal harm mechanism or a reproducible health effect**; the regulatory limits are set on
-the established (thermal) effect. The "non-native EMF" harm thesis (a Kruse-adjacent extension) has **no
-mainstream support** (graded `speculative`/unsupported in §05). The protection products are **unvalidated**,
-and some "blocker" stickers have been found to contain radioactive material. **Verdict: NO-EVIDENCE** — both
+the established (thermal) effect. The "non-native EMF" harm thesis is graded `speculative` (§7.2, §05). The
+protection products are **unvalidated**, and some "blocker" stickers have been found to contain radioactive
+material. **Verdict: NO-EVIDENCE** — both
 for the harm being protected against at consumer levels and for the products.
 
 ---
@@ -387,9 +386,8 @@ sleep — to maximally slow aging ("don't die").
   surrogate endpoints (biological-age clocks — themselves **not validated surrogates**) **cannot demonstrate
   a slowed-aging outcome.**[^bioage-claims] Moving a clock number is not living longer.
 - **The opportunity-cost honesty:** ~100 supplements and a six-figure budget buy mostly the same Tier-A
-  benefit available from the boring levers, plus a long tail of surrogate-moving interventions of unproven
-  outcome value — and the under-priced lever (social connection, §05) is conspicuously not on the dashboard
-  because nothing is sold for it.
+  benefit as the boring levers, plus a long tail of surrogate-moving interventions of unproven outcome
+  value — while the under-priced lever, social connection, isn't on the dashboard (§10).
 
 **Verdict: PROMISING as a self-experiment and a discipline; NO-EVIDENCE as proof that total optimization
 extends human life.** Admire the rigor; do not mistake the scorecard for the outcome.

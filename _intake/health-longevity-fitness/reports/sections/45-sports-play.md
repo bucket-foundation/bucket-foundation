@@ -80,8 +80,7 @@ assigned — they sort on income, baseline health, joint integrity, and personal
 certainly inflated by who *gets* to play tennis into their 70s. The honest claim is **not** "tennis adds 9.7
 years." It is: *"across a large, well-adjusted cohort, the more social and skillful sports were associated with
 the largest survival differences, in a pattern that calories alone cannot explain — a hypothesis-generating
-finding the authors flag as needing confirmation."* That is still one of the most interesting findings in the
-movement literature, and it points training in a direction the calorie model misses entirely.
+finding the authors flag as needing confirmation."*
 
 **The corroborating cohort (so it isn't one study):** Oja et al. (*Br J Sports Med* 2017),[^oja] pooling
 **80,306 British adults**, found **racquet sports** associated with the
@@ -468,24 +467,19 @@ behavior-change tool (cross-ref `29-behavior-change.md`).
 The gym is the lowest line in the Copenhagen table (+1.5 yr) for reasons the calorie model can't see. Sport wins
 on four axes the gym usually neglects:
 
-1. **Adherence — the master variable.** The best program is the one you actually do for decades. Sport is *fun*,
-   *social-obligatory* ("the team is waiting"), and *goal-structured* (the match, the race, the belt) — three of
-   the strongest known adherence levers (cross-ref `29-behavior-change.md`). A mediocre sport you keep beats an
-   optimal program you quit. This alone may explain most of the cohort gaps.
-2. **Social connection — the strongest-evidence lever.** This is the corpus's single largest, most-replicated
-   mortality finding: strong social relationships raise survival odds ~50% (Holt-Lunstad meta, n≈308k), an effect
+1. **Adherence — the master variable.** Sport is *fun*, *social-obligatory* ("the team is waiting"), and
+   *goal-structured* (the match, the race, the belt) — three of the strongest adherence levers (cross-ref
+   `29-behavior-change.md`). A mediocre sport you keep beats an optimal program you quit.
+2. **Social connection — the strongest-evidence lever.** The corpus's single largest, most-replicated mortality
+   finding: strong social relationships raise survival odds ~50% (Holt-Lunstad meta, n≈308k), an effect
    benchmarked as **comparable to quitting smoking** (cross-ref `02-domains/M-psychosocial-determinants.md`).
-   Sport **delivers this lever as a byproduct of the activity** — you don't have to schedule "friendship"
-   separately; the doubles match, the team, the climbing gym, the dance class *are* the social dose. This is the
-   most likely reason the social sports top the longevity table, and it is the strongest argument in this whole
-   chapter for choosing sport over solitary cardio.
-3. **Skill & cognitive engagement.** Sport demands **motor learning, anticipation, and dual-tasking** (move *and*
-   decide *and* read an opponent) — a brain stimulus the treadmill lacks. This is the through-line of the table
-   tennis–Parkinson's, dance–dementia, and bouldering–depression signals: the *cognitive* load of sport
-   plausibly adds a neuroprotective stimulus that steady cardio lacks (cross-ref `08-brain-cognitive.md`).
-4. **Intermittent-HIIT physiology.** Most sports are naturally **burst-and-recover** (rally/recover, shift/bench,
-   sprint/jog), which delivers high-intensity intervals without a stopwatch — a pattern increasingly linked to
-   cardiometabolic and VO₂max benefit. The game *is* the interval timer.
+   Sport delivers it as a byproduct — the doubles match, the team, the dance class *are* the social dose. Most
+   likely why the social sports top the table.
+3. **Skill & cognitive engagement.** Motor learning, anticipation, and dual-tasking — the brain stimulus behind
+   the table-tennis–Parkinson's, dance–dementia, and bouldering–depression signals (cross-ref
+   `08-brain-cognitive.md`).
+4. **Intermittent-HIIT physiology.** Burst-and-recover play (rally/recover, shift/bench, sprint/jog) delivers
+   intervals without a stopwatch. The game *is* the interval timer.
 
 ### 7.2 The "play" reframe — humans are built to move playfully
 The deepest framing in this chapter is evolutionary: humans did not evolve to do isolated sets of biceps curls or
@@ -499,13 +493,9 @@ most effective health intervention for many people is not a better workout — i
 people to play it with.**
 
 ### 7.3 Matching sport to person, age, and goal
-There is no universally "best" sport — there is the best sport *for you, now*. A rough matcher:
-
-@@FIG:Z01-sport-matcher@@
-
-The meta-rule: **start from adherence and social fit, not from a VO₂max spreadsheet.** The optimal sport is the
-intersection of "trains capacities I need" (`02-training.md`), "I'll actually keep doing it," and "it puts me
-around people."
+There is no universally "best" sport — only the best sport *for you, now*: **start from adherence and social
+fit, not from a VO₂max spreadsheet**, the intersection of "trains capacities I need" (`02-training.md`), "I'll
+actually keep doing it," and "it puts me around people" (matcher figure in "Start here").
 
 ### 7.4 The honest injury & overuse trade-offs (and how to mitigate)
 Every sport's engaging quality is paired with a characteristic harm. The mitigation toolkit is largely shared

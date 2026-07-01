@@ -14,7 +14,7 @@ This is a topic where the rules do almost all the work, so state them before the
 
 | Rule | How it bites here |
 |---|---|
-| **predictor ≠ lever** (the central one) | Telomere length correlates with age and forecasts *some* disease at the population level. That does **not** make "lengthen your telomeres" a health intervention. The arrow from length → outcome at the *individual* level is weak, and the arrow from *intervening on* length → outcome is, for the marketed direction, plausibly **negative** (cancer). |
+| **predictor ≠ lever** (the central one) | Telomere length correlates with age and forecasts *some* disease at the population level. That does **not** make "lengthen your telomeres" a health intervention: the arrow from length → outcome at the *individual* level is weak, and *intervening* on length is, for the marketed direction, plausibly **net-harmful** (the cancer paradox, §16.3). |
 | **cohort ≠ RCT** (an association in a population isn't a proven cause; an RCT — randomized controlled trial — is the strongest evidence tier) | Essentially the entire "telomeres associate with stress / exercise / diet / meditation" literature is **observational** or tiny single-arm pilot. Confounding (socio-economic status, smoking, BMI, baseline health) is enormous and mostly unaddressed. |
 | **something-beats-nothing** | The lifestyle behaviours weakly linked to "better" telomeres (don't smoke, exercise, sleep, manage stress, eat real food) are worth doing **on their own first-line evidence** — *not* because of any telomere readout. The telomere number adds nothing actionable on top of advice you already had. |
 
@@ -146,9 +146,8 @@ in people over 60 (Cawthon et al., *Lancet* 2003). But:
   cohorts have been inconsistent** — some find no independent association with mortality after adjustment.
 - The definitive critique is **Sanders & Newman (2013)**, an *Epidemiologic Reviews* synthesis whose title is
   the whole point: *"Telomere Length in Epidemiology: A Biomarker of Aging, Age-Related Disease, Both, or
-  Neither?"* — concluding the evidence for leukocyte telomere length as a **useful biomarker of aging is far
-  weaker than the enthusiasm suggests**, with associations that are small, heterogeneous, and frequently
-  confounded (Sanders & Newman, *Epidemiol Rev* 2013).
+  Neither?"* Their answer: the evidence is **far weaker than the enthusiasm suggests** — small,
+  heterogeneous, and frequently confounded associations.
 
 > **Bottom line on §16.2:** telomere attrition is a sound *hallmark mechanism* and a genuine *driver* of
 > replicative senescence in culture. As a **personal scorecard**, leukocyte telomere length is a **noisy,
@@ -246,15 +245,13 @@ Same story, same caveats, in the two follow-ups the market leans on:
   Authors' own words: descriptive pilot studies — tiny (~10 intervention subjects in the 2013 follow-up),
   unblinded, and bundling five interventions so no single lever is isolated.
 
-**How to read this honestly:** these studies are **real, careful, and over-read.** They are uniformly
-**small, surrogate-endpoint, and observational-or-pilot.** They show that telomere/telomerase measures
-*move with* healthy living and stress — consistent with telomere biology being a **downstream readout of
-overall health**, exactly as `C-genetics-omics.md` argues for the microbiome and the clocks. They do **not**
-show that the telomerase bump *caused* any benefit, nor that you should chase the telomere number. The
-popular framing — "meditation reverses cellular aging" — is the **canonical surrogate-over-read** in this
-domain.[^conflict-meditation] The lifestyle advice (don't smoke, move, sleep, de-stress, eat real food)
-is **worth doing on its own first-line evidence** — the telomere readout adds nothing actionable, it
-just dresses old advice in molecular costume.
+**How to read this honestly:** these studies are **real, careful, and over-read** — uniformly small,
+surrogate-endpoint, and observational-or-pilot. They show telomere/telomerase measures *move with*
+healthy living and stress, consistent with telomere biology being a **downstream readout of overall
+health** (as `C-genetics-omics.md` argues for the microbiome and the clocks). They do **not** show the
+telomerase bump *caused* any benefit. The popular "meditation reverses cellular aging" framing is the
+canonical over-read.[^conflict-meditation] The lifestyle advice is **worth doing on its own first-line
+evidence** — the telomere readout just dresses old advice in molecular costume.
 
 ### 16.4.3 — Exercise / diet / stress associations generally
 
@@ -325,11 +322,10 @@ A consumer telomere-length test (blood draw or cheek swab → "your telomeres ar
 **near-useless as a personal scorecard.** Every failure mode in §16.2 and §16.3 converges on it:
 
 1. **Measurement noise** (§16.2.1): the cheap qPCR assay most consumer tests use has poor reproducibility
-   (Martin-Ruiz 2015) — the same blood sample can score years apart between labs or even runs. A single
-   number with that error bar cannot track an individual over time.
-2. **Wrong tissue** (§16.2.2): it measures **leukocytes** — a proxy for blood-cell turnover and recent immune
-   history (an infection can transiently shift it), not "your body's age." Telomere length is tissue-discordant
-   (Demanelis 2020).
+   (Martin-Ruiz 2015) — the same sample scores years apart between labs, so a single number can't track
+   an individual over time.
+2. **Wrong tissue** (§16.2.2): it measures **leukocytes**, a proxy for blood-cell turnover, not "your
+   body's age"; telomere length is tissue-discordant (Demanelis 2020).
 3. **Weak prediction** (§16.2.3): even measured perfectly, leukocyte telomere length is a **weak, confounded**
    population-level predictor (Sanders & Newman 2013), not an individual prognosis.
 4. **No actionable output** (the killer): suppose the test says "short." The recommended response is… don't
@@ -355,9 +351,8 @@ A consumer telomere-length test (blood draw or cheek swab → "your telomeres ar
   `04-information`).
 - **Don't buy a telomere test** as a personal health metric. It is noisy, wrong-tissue, weakly predictive,
   and action-free.
-- **Don't take telomerase activators** ("telomere lengthening" supplements). Best causal evidence (MR) says
-  longer telomeres trade degenerative risk for **cancer risk**; the human efficacy data is surrogate-only and
-  conflicted; evolution silenced somatic telomerase on purpose.
+- **Don't take telomerase activators** ("telomere lengthening" supplements): best causal evidence (MR)
+  trades degenerative risk for **cancer risk**, and the human efficacy data is surrogate-only (§16.3, §16.4.1).
 - **Do** the boring, proven levers — don't smoke, train aerobically and with resistance, sleep, manage
   chronic stress, eat real food — for their **first-line cardiometabolic/mortality evidence.** They happen to
   correlate with "better" telomeres; that correlation is a bystander, not the reason.

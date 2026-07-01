@@ -6,6 +6,8 @@ This chapter picks up *after* the hospital doors. The pre-hospital ten minutes �
 
 _Not medical advice, and not a clinical manual. Nothing here tells you how to dose a drug, run a ventilator, or manage a patient — those are skills that take years of supervised training. If you are facing surgery or critical illness, the people to ask are your anesthesiologist and intensivist; this chapter exists to help you ask better questions._
 
+> **Bottom line (the full graded recap is §10):** both fields **substitute, reversibly, for a vital function** — the machines and drugs buy time, they do not cure (§1). General anesthesia is used safely on tens of millions a year, yet **how it switches consciousness off, then back on intact, stays unexplained** (§2.2). And critical care's hardest-won lessons are all variations on **"less is more"** — gentler ventilation, deflated sepsis protocols, lighter sedation beat aggressive support in the trials (§6).
+
 ---
 
 ## 1. The shared mental model — substituting for a vital function you don't fully understand
@@ -143,13 +145,12 @@ numbers rather than repeating a slogan.
   simulation training, checklists, and a genuine **safety culture** (anesthesiology pioneered systems
   thinking and root-cause analysis in medicine, via the Anesthesia Patient Safety Foundation, before most
   of the rest of healthcare).
-- **State it honestly, both ways.** The honest framing has two halves. (1) The *anesthetic itself*, in a
-  healthy person in a well-resourced setting, is now **extraordinarily safe** — safer than the drive to the
-  hospital. (2) But **total perioperative mortality is much higher than the anesthesia-attributable
-  fraction**, because most peri-operative death is driven by **how sick the patient already is and how big
-  the surgery is**, not by the anesthetic. And the global picture is unequal: peri-operative mortality in
-  low-resource settings remains far higher (Bainbridge's developed-vs-developing split). "Anesthesia is
-  very safe" is true *and* compatible with "surgery on a sick patient carries real risk."
+- **State it honestly, both ways.** (1) The *anesthetic itself*, in a healthy person in a well-resourced
+  setting, is now **extraordinarily safe** — safer than the drive to the hospital. (2) But **total
+  perioperative mortality is much higher than the anesthesia-attributable fraction** — most peri-operative
+  death reflects **how sick the patient already is and how big the surgery is**, not the anesthetic — and
+  the global picture is unequal: peri-operative mortality in low-resource settings remains far higher
+  (Bainbridge's developed-vs-developing split).
 
 ### 2.6 The honest risks — awareness, PONV, and the elephant: postoperative cognitive change
 
@@ -257,9 +258,8 @@ analgesia is better, and the opioid load (and its nausea, sedation, ileus, depen
 
 An **Intensive Care Unit** is not "a worse hospital ward." It is a place defined by two things: a **very
 high ratio of staff and monitoring to patients** (often one nurse per one or two patients, continuous
-physiologic monitoring), and the ability to **mechanically support failing organ systems**. The mental
-model from §1 is the whole story: the ICU **substitutes for organs that have failed, while the underlying
-problem is (hopefully) reversed.**
+physiologic monitoring), and the ability to **mechanically support failing organ systems** — the §1
+substitute-for-a-failing-organ model, applied while the underlying problem is (hopefully) reversed.
 
 | Organ system failing | The support the ICU provides | What it is honestly doing |
 |---|---|---|
@@ -268,6 +268,8 @@ problem is (hopefully) reversed.**
 | **Kidneys** (acute kidney injury) | **Dialysis / CRRT** (continuous renal replacement therapy) | Clearing toxins, acid, and excess fluid the kidney can't (§5.3) |
 | **Brain** (coma, raised pressure, seizures) | Sedation, intracranial-pressure (ICP) control, neuro-monitoring | Protecting the brain and controlling its environment |
 | **Whole-body / metabolic** | Nutrition, glucose control, transfusion, infection source control | Keeping the internal milieu survivable |
+
+_Each of the organ-support rows is expanded in a subsection below (§5.1 lungs, §5.2 circulation, §5.3 kidneys), with ICU outcomes in §5.4._
 
 @@FIG:R03-icu-support@@
 
@@ -546,17 +548,6 @@ best "the evidence turned over" cases.
   see `14 §1.2`); and the question of **what consciousness physically is** — the thing general anesthesia
   reversibly switches off — is an open foundation in `bucket-canon/07-mind`. Anesthesiology is the clinical
   specialty that operates *on* an unsolved canon problem every single day.
-
-## Gaps flagged for next wave
-
-The molecules-to-consciousness bridge (the `07-mind` problem) as it bears on monitoring depth of
-anesthesia and preventing awareness; whether any depth-of-anesthesia monitor beats adequate dosing on hard
-endpoints; whether anesthetic *choice* (regional vs. general, specific agents) actually affects long-term
-cognition in the elderly or whether the insult is the surgery/inflammation/frailty (the POCD causal
-question); the long-term trajectory and modifiability of post-intensive-care syndrome; ECMO's honest
-benefit-vs-burden boundary; and the persistent structural over-treatment at end of life that SUPPORT
-documented and could not fix — what, if anything, actually shifts default-to-maximal care toward
-goal-concordant care at scale.
 
 [^anes-consciousness]: Brown, Lydic & Schiff — "General Anesthesia, Sleep, and Coma." *N Engl J Med* 2010. doi:10.1056/NEJMra0808281. (review / mechanistic)
 [^anes-mortality]: Bainbridge et al. — perioperative and anaesthetic mortality. *Lancet* 2012. doi:10.1016/S0140-6736(12)60990-8. (meta-analysis)

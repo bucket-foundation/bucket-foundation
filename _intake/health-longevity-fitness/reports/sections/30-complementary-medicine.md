@@ -16,23 +16,18 @@ The unit of grading is **modality × indication × instead-of-or-alongside**, ne
 _Not medical advice. Placebo and surgical-sham data: §14 §6 and §21; oncology mortality: §25;
 supplement/herb evidence rules: §03._
 
-Five honesty rules run through every line below. They are the whole chapter in miniature:
+Five honesty rules run through every line below — the whole chapter in miniature (each detailed later):
 
-1. **The grade is per-indication, not per-modality.** "Does acupuncture work?" is an unanswerable
-   question; "does acupuncture reduce chronic low-back pain more than sham?" has an answer (barely).
-2. **Sham control is the truth serum.** The interesting comparison is almost never *treatment vs nothing*
-   (that bundles placebo, attention, regression to the mean, and natural history). It is *treatment vs a
-   convincing fake*. When the fake works as well as the real thing, the specific theory is dead even if
-   the ritual still helps.
-3. **Placebo is real but bounded.** Expectation changes pain, nausea, and other *subjective,
-   self-reported, brain-modulated* outcomes (Section 14 §6). It does **not** shrink tumours, clear
-   infections, lower blood sugar, or reopen arteries. The harm of CAM is rarely the sugar pill; it is the
-   *opportunity cost* of using a sugar pill where a real cure exists — the cost §9.3 puts a number on.
-4. **"Natural" is a marketing word, not a safety claim.** Hemlock, arsenic, aristolochic acid, and
-   amanita are natural. Herbs are unstandardised drugs with real pharmacology, real interactions, and —
-   for some traditional preparations — real heavy-metal contamination.
-5. **Integrative ≠ evidence.** Putting an unproven therapy inside a hospital, next to a proven one,
-   does not upgrade it. The label "integrative medicine" is an organisational fact, not an evidentiary one.
+1. **The grade is per-indication, not per-modality** — "does acupuncture work?" is unanswerable; "does it
+   beat sham for chronic low-back pain?" has an answer (barely).
+2. **Sham control is the truth serum** — when a convincing fake works as well as the real thing, the
+   specific theory is dead even if the ritual still helps (§2).
+3. **Placebo is real but bounded** — it moves subjective, brain-modulated outcomes, never tumours,
+   infections, blood sugar, or arteries (§9.1).
+4. **"Natural" is a marketing word, not a safety claim** — hemlock, arsenic, and aristolochic acid are
+   natural (§9.2).
+5. **Integrative ≠ evidence** — co-location in a hospital is an organisational fact, not an evidentiary
+   one (§9.5).
 
 ---
 
@@ -71,9 +66,8 @@ shoulder). Its findings are the honest centre of gravity for the whole field:
 - Acupuncture beats **sham** (fake/placebo needling) by only **~0.2 SD** (a fifth of one — a *small* effect).
 - Effects **persist** at 12 months with only ~15% decay (i.e. it isn't a one-day wonder).
 
-Read those two numbers together and the structure is unmistakable: **most of acupuncture's benefit is the
-context — the ritual, the attention, the touch, the expectation — and only a sliver is attributable to
-where (or whether) the needle actually goes.**
+Together, those two numbers say it: **most of acupuncture's benefit is context — ritual, attention, touch,
+expectation — and only a sliver is the needle's placement.**
 
 @@FIG:Q09-acupuncture@@
 
@@ -347,11 +341,9 @@ testing.
 proven one — "integrative oncology," a hospital acupuncture clinic — is an institutional choice, not an
 evidentiary upgrade. The fair, non-dismissive way to treat CAM is **exactly the corpus doctrine**: put it on
 the same ladder as everything else and read the grade honestly. Done that way, CAM is neither the conspiracy
-its detractors fear nor the suppressed miracle its boosters claim. It is a **patchwork**: a handful of real,
-narrow tools (a few herbs, manipulation for acute back pain, mind–body practice, PC6 antiemesis, acupuncture's
-modest pain effect); a large middle of **expensive placebo** (homeopathy, energy healing, most of the
-supplement aisle); a real toxicology hazard at the edges (heavy metals, hepatotoxic herbs, drug interactions);
-and one dangerous failure mode — **using any of it *instead of* a treatment that works.**
+its detractors fear nor the suppressed miracle its boosters claim — it is the patchwork this chapter opened
+with: real narrow tools, a large middle of expensive placebo, a toxicology hazard at the edges, and the one
+lethal move of using any of it *instead of* proven care.
 
 ---
 

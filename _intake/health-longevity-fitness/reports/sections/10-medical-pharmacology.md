@@ -1,5 +1,11 @@
 # 10 — Medical & Pharmacology
 
+**Bottom line up front (ranked by hard-outcome evidence, roughly the inverse of marketing volume):**
+statins, blood-pressure control, GLP-1s, SGLT2 inhibitors, and age-appropriate vaccination are proven in
+hard-outcome trials; primary-prevention aspirin in healthy elders is a proven *stop*; TRT, menopausal HRT,
+and levothyroxine are legitimate for a defined deficiency, not longevity drugs; rapamycin and
+metformin-for-aging are experimental; gray-market peptides have no human evidence. Detail in §8.
+
 The drugs in this section are the rare health interventions that come with proof — randomized, placebo-controlled
 trials in tens of thousands of people, measuring whether you actually avoid a heart attack or live longer, not
 whether a lab number moved. That is the line between this section and supplements (`03-nutrition-supplements.md`):
@@ -34,7 +40,7 @@ evidence ranging from thin to absent. Prescription decisions belong to you and a
 
 ## 1. GLP-1 receptor agonists — the biggest medical story of the decade
 
-If you read only one part of this section, read this one. The GLP-1 (and GLP-1/GIP) receptor agonists —
+The GLP-1 (and GLP-1/GIP) receptor agonists —
 **semaglutide** (Ozempic/Wegovy) and **tirzepatide** (Mounjaro/Zepbound) — are the first drugs in history to
 produce **surgical-magnitude weight loss from an injection** *and* then go on to prove **hard cardiovascular,
 kidney, and other end-organ benefits in randomized trials.** They are reorganizing preventive medicine in real
@@ -53,6 +59,8 @@ is mostly an **appetite/satiety** effect: people simply eat less and feel full f
 
 Evidence tiers in the last column: `rct` = proven in a randomized human trial; `meta` = pooled across many
 trials; `mechanistic` = a plausible biological story only; `cohort` = observational, weaker than a trial.
+*The column that matters is the last one — `rct (hard outcome)` is the real thing; `surrogate` is
+weight/number-moving only.*
 
 | Drug / trial | Population | What it proved | Magnitude | Tier |
 |---|---|---|---|---|
@@ -100,7 +108,7 @@ trials enrolled sick people and showed they got less sick. That is the claim —
   drug section and the training/nutrition sections must be read together.
 - **Who they're for (honest):** people with obesity (BMI ≥30, or ≥27 with a weight-related condition), type 2
   diabetes, established cardiovascular disease + excess weight, or CKD + diabetes — i.e. the trial populations.
-  Cosmetic/vanity use in lean people is off-label, under-studied for that group, and inverts the risk/benefit.
+  Cosmetic use in lean people is off-label and inverts the risk/benefit.
 
 ---
 
@@ -125,8 +133,8 @@ mechanism.** That is about as close to a proven causal lever as preventive medic
 
 ### 2.2 The NNT honesty — and why primary ≠ secondary prevention
 
-This is where the section earns its keep. Statins work, but **how much they help depends entirely on your
-baseline risk** — and the same pill produces wildly different number-needed-to-treat.
+Statins work, but **how much they help depends entirely on your baseline risk** — and the same pill
+produces wildly different number-needed-to-treat.
 
 - **Secondary prevention** (you already have CVD — prior MI, stroke, stent): high baseline risk → large absolute
   benefit. NNT to prevent one major event over ~5 years is roughly in the **single-to-low-double digits**.
@@ -352,8 +360,8 @@ almost the inverse of how loudly each is marketed in longevity circles:
    menopause for symptoms (timing matters), levothyroxine for overt hypothyroidism.
 4. **Experimental / off-label for aging — honest "we don't know":** rapamycin, metformin-for-longevity,
    acarbose.
-5. **No human evidence — be skeptical:** BPC-157, TB-500, ipamorelin and the gray-market peptide world; and the
-   GH/IGF-1-raising approach that contradicts the best longevity genetics.
+5. **No human evidence — be skeptical:** BPC-157, TB-500, ipamorelin and the gray-market peptide world,
+   including the GH/IGF-1-raising approach — a longevity own-goal (§7.4).
 
 The meta-lesson is the one that runs through the whole manual: the interventions with the **best evidence are
 prescription drugs for disease states**, evaluated by net benefit in real trials — not the things with the best

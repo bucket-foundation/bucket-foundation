@@ -89,11 +89,9 @@ conditions, so the *true* effect is somewhat smaller than the raw literature sug
 **Medication — the Cipriani result, honestly.** The single most important modern source is **Cipriani et
 al., *Lancet* 2018**[^cipriani-2018] a network meta-analysis of **522
 trials, ~116,000 patients, all 21 antidepressants.** Headline: **all 21 beat placebo** for acute MDD in
-adults. The honest reading of the *size*: the pooled standardized mean difference (SMD — an effect
-expressed in standard-deviation units) was about **0.30** — a **small-to-moderate** effect. In plain
-terms, an SMD of 0.30 means the average treated person does better than about **62%** of placebo patients:
-real, but most people won't feel it dramatically. That number is the crux of the entire antidepressant
-debate:
+adults. The honest reading of the *size*: the pooled standardized mean difference was about **0.30** — a
+**small-to-moderate** effect (SMD ~0.30; see 08 §5.3 for what that means in plain terms). That number is
+the crux of the entire antidepressant debate:
 - To boosters, "all 21 beat placebo" is vindication.
 - To critics, "SMD ~0.30" is barely above the ~0.2 threshold often cited as a minimal clinically
   perceptible difference, and a chunk of even that may be unblinding (patients guess they're on the drug
@@ -133,12 +131,10 @@ trials of medication + therapy, the picture changes and the heavy tools earn the
 
 ### 1.4 The honest synthesis for depression
 
-Depression is real and serious; the serotonin story sold to explain it is false; therapy and medication
-both **modestly** beat placebo on average, with the benefit **concentrated in more severe illness**;
-exercise is an under-used lever; and for the severe end, ECT and ketamine are powerful tools
-the public badly misjudges. The defensible message is neither "just take the pill" nor "the pills are a
-scam" — it is **"treatment helps, more so the sicker you are, and the best plan is usually combined and
-includes the free levers."**
+Depression is real and serious; treatment (therapy, medication, exercise, and — for the severe end — ECT
+and ketamine) helps, with the benefit **concentrated in more severe illness**. The defensible message is
+neither "just take the pill" nor "the pills are a scam" — it is **"treatment helps, more so the sicker you
+are, and the best plan is usually combined and includes the free levers."**
 
 ---
 
@@ -454,9 +450,9 @@ the wellness industry sells a **distorted** version of them.
   anxiety on the rebound, and is a major suicide risk multiplier. "Taking the edge off" nightly is one of
   the most common and most counterproductive lay treatments for anxiety and low mood.
 
-These are **the floor, not the ceiling.** They are not a substitute for treating serious mental illness —
-telling someone with melancholic depression or first-episode psychosis to "just exercise and get sunlight"
-is its own kind of harm. But they are real, free, side-effect-light, and systematically under-used.
+These are **the floor, not the ceiling** — real, free, side-effect-light, and systematically under-used,
+but not a substitute for treating serious mental illness (telling someone with melancholic depression or
+first-episode psychosis to "just exercise and get sunlight" is its own kind of harm).
 
 ### 8.2 The honest debunks
 

@@ -5,12 +5,9 @@ failures. Stroke care can now pull a clot out of a brain artery and roughly doub
 out of the hospital independent; multiple sclerosis went from "no treatment exists" to two dozen
 drugs that cut relapses by up to ninety percent. In the same chapter, Parkinson's has superb symptom
 control and still zero drugs that slow the disease — a distinction patients are routinely never told
-clearly. This atlas maps the major neurological diseases (stroke, epilepsy, multiple sclerosis,
-Parkinson's, migraine, peripheral neuropathy, traumatic brain injury) and the major rheumatologic /
-autoimmune diseases (osteoarthritis, rheumatoid arthritis, gout, lupus, spondyloarthritis,
-fibromyalgia, polymyalgia rheumatica / giant cell arteritis). For each one it grades honestly where
-the evidence is strong, where it is thin, and where the wellness market is selling certainty the data
-doesn't have.
+clearly. This atlas maps the major neurological and rheumatologic/autoimmune diseases (the full list
+is in the §2 map), grading honestly where the evidence is strong, where it is thin, and where the
+wellness market sells certainty the data doesn't have.
 
 _Not medical advice — this is a map of a literature. Stroke is a 911 emergency; new weakness, vision
 loss, a first seizure, a "worst headache of my life," or a swollen hot joint belong with a clinician,
@@ -620,13 +617,10 @@ diet that *might* help some IBD symptoms, marketed far beyond its evidence, with
 to *replace* DMTs and biologics that actually work). Cohort-of-anecdotes ≠ RCT.
 
 ### 17.2 "Adrenal fatigue" — not a real diagnosis (cross-ref)
-The claim that chronic stress "exhausts" the adrenal glands and causes fatigue, brain fog, and salt
-cravings — treatable with supplements — is **not a recognized medical condition**; a systematic review
-found **no evidence it exists**, and the cortisol measurements sold to "diagnose" it don't support it.
-True adrenal insufficiency (Addison's) is a real, dangerous, *diagnosable* endocrine disease — and the
-"adrenal fatigue" label risks both selling supplements for nothing **and** missing the real disease.
-Developed in the **endocrine section (13)**; flagged here because it is sold heavily into the
-fibromyalgia / autoimmune-fatigue market.
+"Adrenal fatigue" is **not a recognized medical condition** (a systematic review found **no evidence it
+exists**); the full debunk is in the **endocrine section (13)**. Flagged here because it is sold heavily
+into the fibromyalgia / autoimmune-fatigue market — where it risks both selling supplements for nothing
+**and** masking the real disease (true adrenal insufficiency, Addison's, is diagnosable and dangerous).
 
 ### 17.3 "Chronic Lyme disease" — the honest version of a genuine controversy
 This needs care, because there are two different things wearing one name. **Lyme disease** (Borrelia
@@ -663,21 +657,20 @@ and don't let the supplement aisle crowd out the biologic, the DMT, or the urate
 ## 18. The honest summary of this section
 
 - **The neuro/rheum diseases contain some of medicine's biggest real wins** — stroke reperfusion, the
-  MS DMT revolution, RA biologics, urate-lowering for gout, CGRP for migraine, steroids for GCA. When
-  someone tells you "modern medicine has nothing for chronic disease," these are the counterexamples.
+  MS DMT revolution, RA biologics, urate-lowering for gout, CGRP for migraine, steroids for GCA — the
+  counterexamples to "modern medicine has nothing for chronic disease."
 - **The honesty gaps are specific and namable:** Parkinson's has symptom control but **no disease
   modification**; progressive MS is under-served; OA and most neuropathy have **no disease-modifying
   drug**; fibromyalgia and PTLDS are **real but only modestly treatable**; CTE is **real but
   unquantified**.
-- **Predictor ≠ lever** (a number that warns you isn't automatically the thing you fix), **mechanism
-  ≠ outcome** (a drug moving a lab marker isn't the same as it helping you), **cohort ≠ RCT** (a
-  pattern in observed data isn't proof a treatment works) — the three rules sort the field. Serum
+- **The three rules sort the field** (predictor ≠ lever, mechanism ≠ outcome, cohort ≠ RCT): serum
   urate is a lever; hsCRP in fibromyalgia is a non-finding; an AIP diet lowering a marker is not an
   AIP diet modifying lupus.
 - **The unglamorous levers are large:** treat BP and AF (stroke), move the joint (OA, spondylitis),
   exercise + CBT (fibromyalgia), control glucose (neuropathy), treat early and to target (RA, gout, MS).
-- **Where the market lies is consistent:** "autoimmune diets," "adrenal fatigue," "chronic Lyme" long
-  antibiotics, and fibromyalgia supplement stacks all sell certainty into the gap left by hard diseases — and all risk displacing the treatments that work.
+- **Where the market lies is consistent** — "autoimmune diets," "adrenal fatigue," "chronic Lyme"
+  antibiotics, fibromyalgia supplement stacks, all selling certainty into the gap left by hard
+  diseases (the meta-debunk is §17.5).
 
 [^ninds]: NINDS rt-PA Stroke Study Group. *NEJM* 1995. doi:10.1056/NEJM199512143332401. claim: stroke-ninds-tpa (rct)
 [^hope]: Zhou Y, et al. (HOPE) — *JAMA* 2025. doi:10.1001/jama.2025.12063. claim: stroke-hope-late-window (rct)

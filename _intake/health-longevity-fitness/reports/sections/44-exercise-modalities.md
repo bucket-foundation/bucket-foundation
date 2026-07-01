@@ -31,11 +31,10 @@ _Not medical advice. Injury and rehab: §21; scaling to your body: §04._
 ## 1. How to read this chapter — modalities are delivery vehicles for capacities
 
 A "modality" is not a goal. It is a **delivery vehicle** for one or more of the trainable capacities from
-Section 02. A barbell back squat and a goblet squat and a leg press all deliver the *squat pattern* and the
-*strength capacity*; they differ in load ceiling, skill cost, and risk, not in what biological adaptation they
-target. The mistake the fitness industry sells is treating modalities as tribes ("are you a lifter or a
-runner or a CrossFitter?") when they are **tools in a kit**. You assemble a kit that covers the capacities;
-the specific tools are chosen by fit, access, enjoyment, and joints — not by ideology.
+Section 02 — a barbell back squat, a goblet squat, and a leg press all deliver the *squat pattern* and the
+*strength capacity*, differing in load ceiling, skill cost, and risk, not in what adaptation they target.
+Modalities are **tools in a kit**, not tribes ("lifter vs. runner vs. CrossFitter"); you assemble a kit that
+covers the capacities, choosing tools by fit, access, enjoyment, and joints.
 
 **The capacity legend used in every modality card below** (definitions live in Section 02 §1):
 
@@ -477,7 +476,7 @@ The single-screen synthesis. **Capacity coverage:** ●●● strong / primary, 
 incidental, — none. "Evidence" is the *modality-specific outcome* tier (most inherit the general
 capacity evidence; a few carry their own cohort/RCT signal, flagged).
 
-**How to read this table:** find the capacity you're under-covering (most people under-train **strength,
+**Skim, don't read every row.** Find the capacity you're under-covering (most people under-train **strength,
 power, and balance** and over-rely on one cardio mode), then run your eye across that column and pick a tool
 you'll actually use (the "Best for" column + your access, joints, and enjoyment). You're choosing among
 equivalents — you don't need many tools.
@@ -539,14 +538,7 @@ one-screen for modality selection:
 
 ## 11. The honest synthesis — adherence beats optimality
 
-This is the load-bearing conclusion of the whole chapter, and it overrides every modality ranking above.
-
-**The best modality is the one you will keep doing.** The measured differences between sensible modalities are
-**small** compared to the difference between *doing one consistently* and *quitting the "optimal" one*. The
-fitness industry sells modality-tribalism (the one true method) precisely because "pick whatever you'll
-adhere to" doesn't sell programs. But the evidence is unambiguous: the steepest part of every dose-response
-curve is **sedentary → something**, and *something* requires *adherence*, which requires *enjoyment, access,
-and fit* — not theoretical optimality.
+This conclusion overrides every modality ranking above. **The best modality is the one you will keep doing.**
 
 Practical decision order (cross-ref Section 29 behavior change, and the Helms/Israetel hierarchy in Section 02
 §7 that puts **adherence at the top**, above volume, intensity, and exercise selection):
@@ -564,17 +556,13 @@ Practical decision order (cross-ref Section 29 behavior change, and the Helms/Is
    the available benefit (Section 02 §6.1 MED) and — because it's sustainable — you'll still be doing it in a
    decade, which is the only timescale that matters.
 
-> **The meta-point, stated once more:** modalities are interchangeable tools for delivering capacities;
-> capacities are what move health and longevity; and **adherence is what delivers capacities over a lifetime.**
-> Optimize adherence first, capacity coverage second, modality choice a distant third.
-
 ---
 
 ## 12. Honest debunks (don't skip)
 
-- **"Running destroys your knees."** **Backwards for recreational runners** — they have *lower* OA (3.5%) than
-  sedentary people (10.2%); risk rises only at elite/high-volume exposure (§5.1).
-  Cartilage needs load to stay healthy; the "finite miles" model is wrong. Run within sane progression.
+- **"Running destroys your knees."** **Backwards for recreational runners** — *lower* OA (3.5%) than sedentary
+  (10.2%); risk rises only at elite/high-volume exposure. Cartilage needs load; the "finite miles" model is
+  wrong. Full data at §5.1.
 - **"Lifting stunts children's growth."** **Myth.** The old fear (growth-plate damage from weights) is not
   supported; supervised, age-appropriate resistance training is **safe and beneficial** for youth and does
   **not** stunt growth (the rare injuries came from unsupervised maximal/ego lifting, not from training per se).
@@ -635,13 +623,9 @@ A short, honestly-annotated list — sources that map modalities onto capacities
   adaptation[^mito-biogenesis]), and **bone mechano-adaptation** (Wolff's law) are
   applications of biophysical material-and-energetics foundations adjacent to `bucket-canon/05-biophysics/`.
 
-> **Honesty footer.** This section refuses two opposite errors: **modality-tribalism** (the one true method —
-> CrossFit vs. powerlifting vs. Pilates vs. "functional" purism) **and** **false equivalence** (pretending all
-> tools train all capacities equally — they don't; the matrix in §9 is honest about coverage). The real picture:
-> modalities are interchangeable *vehicles* for a small set of *capacities*, some carry their own outcome
-> evidence (tai chi for falls, the sport-mortality cohorts) and most inherit the general capacity evidence, and
-> the variable that actually determines whether any of it works over a lifetime is **adherence**. Grade
-> accordingly — and then go do the one you'll keep doing.
+> **Honesty footer.** Modalities are interchangeable *vehicles* for a small set of *capacities*; a few carry
+> their own outcome evidence (tai chi for falls, the sport-mortality cohorts), most inherit the general capacity
+> evidence — and **adherence** is what decides whether any of it works. Go do the one you'll keep doing.
 
 ---
 

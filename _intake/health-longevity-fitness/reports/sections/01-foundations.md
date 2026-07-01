@@ -1,8 +1,10 @@
 # 01 — First-Principles Foundations: How a Living Body Works and Ages
 
-Being alive is a verb. A living body is a process that must spend energy every second just to stay itself, and everything you care about — how hard you can train, how well you sleep, how fast you heal, how slowly you age — rides on how well that process runs. This chapter is the machine. Every later section — training, nutrition, sleep, clinical prevention, supplements — is a *lever* that acts on it.
+Being alive is a verb. A living body is a process that must spend energy every second just to stay itself, and how well that process runs governs everything downstream. This chapter is the machine. Every later section — training, nutrition, sleep, clinical prevention, supplements — is a *lever* that acts on it.
 
 The promise of the whole manual is that no recommendation is offered as a free-floating tip: each one is graded by evidence **and** traced down to a mechanism, and each mechanism is traced down to a foundation — a law of how energy, matter, and information behave in a cell. When the two ways of knowing agree (good evidence *and* a real mechanism) you can trust a practice deeply. When they disagree — strong story, weak trial, or strong trial, no story — this chapter is what lets you see the gap instead of being sold across it. Read it once for the architecture, then return to it whenever a later claim feels too good to be true.
+
+> **Bottom line.** Health outcomes are downstream of machinery you *can* act on. Carry three questions into every claim in this manual: (1) What foundation does it rest on? (2) Is it a mechanism or an outcome? (3) Where on the dose-response curve am I? Section 7 expands each.
 
 _Not medical advice._
 
@@ -35,13 +37,12 @@ heuristic you will ever adopt:
 > floats in between without touching either.
 
 **Why ground in foundations at all, when we have epidemiology?** Because associations exhaust
-themselves and mechanisms compound. A cohort tells you *that* fit people live longer; it cannot
-tell you *why*, cannot tell you whether the relationship is causal or reverse-caused, and cannot
-tell you what to do when the cohort and the trial disagree. The foundation tells you that
+themselves and mechanisms compound. A cohort tells you *that* fit people live longer; it can't tell
+you *why*, or what to do when the cohort and the trial disagree. The foundation tells you that
 cardiorespiratory fitness *is* integrated mitochondrial capacity — and the moment you know that,
-the cohort stops being a curiosity and becomes a prediction: train the mitochondrion and the engine
-gets bigger, whatever the noisy 5× hazard ratio claims. (A hazard ratio is a comparison of event rates
-between groups.) Mechanism is what lets you reason past the edge of the data instead of stopping at it.
+the cohort becomes a prediction: train the mitochondrion and the engine gets bigger, whatever the
+noisy 5× hazard ratio claims. (A hazard ratio is a comparison of event rates between groups.)
+Mechanism is what lets you reason past the edge of the data instead of stopping at it.
 
 The rest of this section builds the foundation stack from the bottom up: **energy → structure →
 information → why we age → the unifying principles.** Each layer names the canon law it rests on,

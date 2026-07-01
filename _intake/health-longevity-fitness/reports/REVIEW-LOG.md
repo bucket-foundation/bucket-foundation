@@ -12,6 +12,27 @@ Baseline before cycle 1: 689 pages, 50 chapters, ~265k words, 1007 graded claims
 
 <!-- next cycle goes here -->
 
+## Cycle 3 — Busy practitioner + LENGTH REDUCTION (full-book pass)
+**New founder mandate:** reduce length (added to the charter for Cycles 3–4). **Read:** 9 practitioner
+readers over the whole book → findability gaps + ~12–15k words flagged cuttable.
+
+**Patterns:** the honesty-rules preamble was re-taught in every chapter; "honest synthesis" sections
+re-derived the body; cross-chapter debunks (natural≠safe, St John's Wort, grapefruit) were written out
+in full in 3 chapters each; theses over-repeated (adherence-beats-optimality 5–6×, MOUD 6×).
+
+**Applied (9 slice-apply agents):**
+- **~5,000+ words cut** — collapsed repeated honesty-rules preambles to one first-use reminder + pointer;
+  deduped over-stated theses/verdicts/debunks (kept the strongest single instance); trimmed synthesis
+  sections that re-derive; consolidated cross-chapter debunks to single-home-plus-pointer.
+- **~18 BLUF "Bottom line" boxes + ~25 skim signposts** added to long chapters (14 nervous 5,475w had
+  its verdict buried at §8; also 07, 22, 24, 28, 39, 41, 02, 36, 19, 04, 29, 46), each lifting existing
+  payoff — no new claims.
+- **Safety verified:** all 367 figures still placed (0 lost), 1513 footnote markers unchanged (0 broken),
+  0 citations dropped — cuts removed redundant prose only.
+- **Fixed an over-cut:** the dedup pass pushed 4 marquee opening hooks down a section (foundations
+  "Being alive is a verb", training "You do not start at the barbell", mitochondrial thesis, oncology);
+  restored all four to lead their chapters, bottom-line box after.
+
 ## Cycle 2 — Prose / narrative editor (full-book pass)
 **Read:** 9 parallel prose-editors line-read the post-Cycle-1 book → ~430 located findings.
 

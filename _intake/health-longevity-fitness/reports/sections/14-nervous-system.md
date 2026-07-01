@@ -9,6 +9,12 @@ _Not medical advice. Dementia and depression as outcomes: §08. Evidence tiers (
 `rct` > `meta` > `cohort` > `mechanistic`/`animal` > `anecdotal`) are defined in the manual's "Start
 Here."_
 
+> **Bottom line.** The foundations (action potential, Na⁺/K⁺ pump) are canon-solid. The debunks are
+> the payoff — the 10% myth, dopamine detox, serotonin imbalance, "rewire in 21 days," and vagus hacks
+> are all mechanistically wrong even where an adjacent behaviour helps. **Pain ≠ tissue damage** is the
+> highest-stakes correction. For the aging brain, the levers are the usual unglamorous bundle (move,
+> sleep, connect, treat vascular/hearing/vision). Full 7-point list: **§8**.
+
 ---
 
 ## 1. Architecture: how the nervous system is built
@@ -256,9 +262,8 @@ your mind on demand. The honest position: **the mechanism is real but the market
 fantasy.** Meaningful structural change requires large amounts of *specific, effortful, repeated*
 practice (rehab, instrument, language). It is *domain-specific* (you get better at the trained thing,
 not "smarter" in general — same far-transfer failure as the brain-training games in 08 §6.3), and the
-gains are bounded by age and critical periods. "Neuroplasticity" in an ad is almost always a
-mechanism-word doing outcome-work it hasn't earned. Use it as licence to *practice deliberately*, not
-as a promise that any course rewrites you.
+gains are bounded by age and critical periods. Treat "neuroplasticity" in an ad as licence to *practice
+deliberately*, not as a promise that any course rewrites you.
 
 **Honest debunk — "left brain vs. right brain personalities."** The idea that people are logical
 "left-brained" or creative "right-brained" types is false. Hemispheres *are* specialised for some
@@ -401,23 +406,15 @@ and is a leading cause of foot ulcers and amputations (Feldman et al., 2019).[^f
 
 ## 7. Mental health's neural basis — brief, honest, cross-referenced
 
-Section 08 §5 covers mental-health *outcomes* (depression↔mortality, exercise as treatment, the
-serotonin debunk, antidepressant efficacy). The systems-level point to add here is about the **model
-of causation**, because it shapes everything downstream:
-
-The **"chemical imbalance" model** — that depression, anxiety, etc. are simply deficits/excesses of
-single neurotransmitters to be topped up — is **scientifically obsolete**. Mood disorders involve
-distributed *circuit* dysfunction (prefrontal–limbic networks), neuroplasticity and stress-system
-(HPA-axis) changes, inflammation, genetics, and environment — not a single low chemical. The honest
-synthesis the field now holds:
-
-- The **folk-mechanism is wrong** (no "serotonin deficiency disease"), which matters because it was the
-  marketing story and it shaped how a generation understood their own minds.
-- The **treatments can still work** despite the wrong mechanism: antidepressants (modest, real —
-  Cipriani 2018), psychotherapy, and — one of the cleaner interventional findings — **exercise as a
-  genuine RCT-supported treatment for depression** (Noetel et al., 2024; 08 §5.2).[^noetel]
-- **Mechanism and outcome are separate claims** — the schema's central discipline, and the whole reason
-  this corpus grades them apart.
+Section 08 §5 owns mental-health *outcomes* (depression↔mortality, exercise as treatment, the serotonin
+debunk, antidepressant efficacy). The one systems-level point to add: the **"chemical imbalance" model**
+— depression/anxiety as simple deficits/excesses of single neurotransmitters to top up — is
+**scientifically obsolete**. Mood disorders are distributed *circuit* dysfunction (prefrontal–limbic
+networks) plus neuroplasticity, stress-system (HPA-axis), inflammation, genetics, and environment. The
+mechanism being wrong (no "serotonin deficiency disease," §3.2) does not stop the treatments working:
+antidepressants (Cipriani 2018), psychotherapy, and — a cleaner interventional finding — **exercise as
+an RCT-supported treatment for depression** (Noetel et al., 2024; 08 §5.2).[^noetel] Holding mechanism
+and outcome apart is the schema's central discipline.
 
 ---
 
@@ -477,11 +474,10 @@ primary trials, and the best debunks.
    pain ≠ structural lesion, and that over-imaging/over-medicalising low back pain is iatrogenic.
    **Tier: review/cohort — strong and consequential.**
 6. **Huberman-grade-the-primary (autonomic/dopamine content).** Popular neuroscience communicators
-   (Andrew Huberman and peers) accurately convey much real physiology — slow-breathing→vagal output,
-   dopamine-as-motivation — *and* drift into protocol claims (specific "dopamine" and "vagus" hacks)
-   that outrun the trials. Treat the communicator as **provenance, not evidence** (schema rule): take
-   the mechanism, then grade each specific protocol against its actual (often small/surrogate) primary
-   source. **Tier: communication — verify every actionable claim downstream.**
+   (Andrew Huberman and peers) convey much real physiology — slow-breathing→vagal output,
+   dopamine-as-motivation — *and* drift into protocol claims that outrun the trials. Treat the
+   communicator as **provenance, not evidence** (schema rule): take the mechanism, grade each protocol
+   against its primary source. **Tier: communication — verify every actionable claim downstream.**
 
 For the mechanism-words that get abused, anchor on the debunk primaries: **Schultz et al.** (*Science*
 1997, `10.1126/science.275.5306.1593`) for what dopamine really signals; **Moncrieff et al.** (*Mol

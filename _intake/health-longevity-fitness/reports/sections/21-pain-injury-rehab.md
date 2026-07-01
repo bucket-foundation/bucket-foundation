@@ -1,5 +1,9 @@
 # 21 — Pain, Injury & Rehabilitation
 
+**Bottom line:** pain ≠ tissue damage (§1) — imaging ≠ diagnosis, and chronic pain often reflects a
+sensitised nervous system rather than ongoing injury. Stay active, **load don't rest** (tendons and
+sprains included), and opioids are not first-line for chronic pain. The full summary is §8.
+
 The public model of pain is a plumbing model: damage in the tissue sends a "pain signal" up a wire, and
 the size of the signal equals the size of the damage. **This model is wrong, and the cost of believing
 it is enormous** — it drives over-imaging, over-medicalising, fear-avoidance, unnecessary surgery, and
@@ -138,8 +142,9 @@ non-pharmacological** (heat, stay active, massage, spinal manipulation), because
 its own. For **chronic** LBP, first-line is **exercise plus psychologically-informed care**, with drugs a
 distant second.
 
-_Evidence tiers in the table: `rct` = randomized controlled trial (the strongest tier); `meta` =
-meta-analysis or systematic review pooling many trials._
+_Skim the verdict column for the paracetamol/opioid/fusion surprises; evidence tiers are column 3
+(`rct` = randomized controlled trial, the strongest tier; `meta` = meta-analysis / systematic review
+pooling many trials)._
 
 | Intervention | Honest verdict | Tier |
 |---|---|---|
@@ -208,9 +213,8 @@ The current evidence-based framework is **PEACE & LOVE** — *protect, elevate, 
 
 @@FIG:PS5-peace-love@@
 
-The throughline is identical to tendons and backs: **brief protection, then early, graded, optimistic
-loading** — not extended rest. (Ice for short-term *pain relief* is fine; the claim it *speeds healing* is
-what fell.)
+The throughline is the tendon/back one (§3.1, §8): protect briefly, then load early and gradually. (Ice
+for short-term *pain relief* is fine; the claim it *speeds healing* is what fell.)
 
 ### 3.3 When to see someone — red flags
 
@@ -285,8 +289,8 @@ is unglamorous and overlaps entirely with good training (Section 02): **progress
 **balance/proprioception work** (strongly reduces ankle-sprain recurrence and is part of ACL-injury
 prevention programs), and **graded exposure to the sport's demands**. Sport-specific neuromuscular
 warm-up programs (e.g. FIFA 11+) **do** reduce injury rates in their populations. "Prehab" sold as
-specialty corrective drills, gadgets, or pre-emptive "release" work has far thinner support than plain
-**get strong, balanced, and conditioned for what you'll do.**
+specialty corrective drills, gadgets, or pre-emptive "release" work has far thinner support than the plain
+strength/balance/conditioning above.
 
 ### 4.5 Red flags in the spine (the screening you actually need)
 
@@ -475,10 +479,8 @@ progressive overload + deloads.)
 - **Static stretching does NOT meaningfully prevent injury** in most activities — a robust, repeatedly
   replicated negative. It improves **flexibility/range** (which can be a goal in itself) but is not an
   injury-prevention tool.
-- The old panic that **static stretching before lifting/sport "kills performance"** was an
-  *over*correction (Section 02 §4.2, mostly resolved): the deficit
-  from acute static stretching is **small, short-lived, and largely abolished by short holds (<60 s)
-  followed by a dynamic warm-up.**
+- The old panic that **static stretching "kills performance"** was an overcorrection (Section 02 §4.2):
+  the deficit is small, short-lived, and abolished by short holds (<60 s) plus a dynamic warm-up.
 - Practical rule (unchanged from Section 02): **dynamic warm-up before**; **long static / PNF / loaded
   stretching after or in a separate session** if you want range.
 

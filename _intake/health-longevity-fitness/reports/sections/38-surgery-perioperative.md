@@ -2,11 +2,10 @@
 
 Surgery is where medicine is at its most heroic *and* at its most over-confident, in the same
 hospital, often in the same week. A transplant team gives someone a second life down the hall from a
-spine being fused for a back pain the fusion will not fix. Both truths deserve an honest hearing. The
-default cultural script — "the surgeon recommended it, so it must be needed" — is the thing this
-section is built to interrupt. Surgery has saved more lives than almost any other discipline. It has
-also, repeatedly, kept doing common operations that blinded trials later showed were no better than a
-convincing pretend. Both things are true. Read it straight.
+spine being fused for a back pain the fusion will not fix. The default cultural script — "the surgeon
+recommended it, so it must be needed" — is the thing this section is built to interrupt. Surgery has saved
+more lives than almost any other discipline, and it has also kept doing common operations that blinded
+trials later showed were no better than a convincing pretend. Both things are true. Read it straight.
 
 This section is a literate map of surgery as a *discipline* — how to read a surgical recommendation
 the way the rest of the corpus teaches you to read a supplement claim. It is not an operative
@@ -376,9 +375,7 @@ with the predictor-versus-lever discipline of the schema (a *predictor* forecast
 
 The honest, actionable synthesis — and an empowering one — is that the period before a planned
 operation is **not dead time.** Improving fitness, nutrition (correcting anaemia and protein status), and
-glycaemic control, and stopping smoking, are low-risk and at minimum optimise your starting line. "Fitter
-patients do better" is one of the most reproducible facts in surgery; acting on it is reasonable even
-while the trial literature on *how much* prehab moves hard endpoints continues to firm up. (Cross-ref
+glycaemic control, and stopping smoking, are low-risk and at minimum optimise your starting line. (Cross-ref
 Section 02 for how to build that fitness; Section 03 for the nutrition.)
 
 ### ERAS — Enhanced Recovery After Surgery
@@ -420,10 +417,10 @@ finally tested against a placebo or against conservative care, **fails to appear
 | Over-use | The reflex | The honest evidence | Where in the corpus |
 |---|---|---|---|
 | **Knee arthroscopy for OA / degenerative meniscal tear** | "There's a tear, scope it" | No better than **sham surgery** | Section 21 §6; Moseley 2002, FIDELITY 2013 |
-| **Spinal fusion for non-specific low back pain** | "Fuse the painful segment" | Not better than **structured rehab** for non-specific LBP | Section 21 §2.4 |
+| **Spinal fusion for non-specific low back pain** | "Fuse the painful segment" | Not better than **structured rehab** | Section 21 §2.4 |
 | **Vertebroplasty for osteoporotic fracture** | "Cement the fracture" | Failed **two simultaneous sham trials** | §2.2; Buchbinder & Kallmes 2009 |
-| **PCI / stent for stable CAD** | "There's a blockage, stent it" | No mortality benefit (COURAGE/ISCHEMIA); symptom benefit shrank vs. placebo (ORBITA) | §3.3; Section 22 |
-| **Robotic surgery "because it's better"** | "Robotic = superior" | Equivalent outcomes, higher cost (ROLARR) | §1 |
+| **PCI / stent for stable CAD** | "There's a blockage, stent it" | No mortality benefit; symptom benefit shrank vs. placebo | §3.3; Section 22 |
+| **Robotic surgery "because it's better"** | "Robotic = superior" | Equivalent outcomes, higher cost | §1 |
 | **C-section past the threshold rate** | "Safer to just section" | No mortality gain above ~10–15% population rate | §3.5 |
 
 ### Questions worth asking before any elective operation

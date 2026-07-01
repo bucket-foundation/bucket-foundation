@@ -306,11 +306,8 @@ supplements where the mechanism and a real outcome both hold up.
 
 ## 12.4 — Where the mechanism is OVERSOLD (the corpus's core failure mode)
 
-Every chain above carries an honesty tag for a reason: **a real mechanism is not a proven outcome, and
-the gap between them is where almost all longevity hype lives.** The manual's single most repeated
-discipline — stated in the exercise, nutrition, thermal, and aging-mechanisms chapters and every thread —
-is *never launder a mechanism into an outcome.* This chapter, by making mechanisms **pervasive and
-explicit**, also makes the laundering easier to catch. The worst offenders, named:
+Every chain above carries an honesty tag because making mechanisms pervasive and explicit also makes
+the laundering easier to catch. The worst offenders, named:
 
 1. **NAD⁺ precursors (row 24).** The chain "NAD⁺ runs the ETC and declines with age" is `[established]`
    bedrock biochemistry. "NAD⁺ pills extend healthspan" is `[partial]` at best — they reliably raise the

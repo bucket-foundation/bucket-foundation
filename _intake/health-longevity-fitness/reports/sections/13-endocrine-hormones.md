@@ -18,8 +18,7 @@ every cell but act only on cells carrying the matching **receptor**. A hormone i
 with an address**: the message is broadcast everywhere, but only the keyed locks open. This is why one
 molecule (say, testosterone or thyroid hormone) can do a dozen unrelated things in different tissues — the
 *tissue's* receptors and machinery, not the hormone, decide the local effect. It is also why "raise the
-number" is a naive intervention model: you are shouting louder on a channel whose downstream meaning is
-set by receptors you aren't measuring.
+number" is a naive intervention model: the downstream meaning is set by receptors you aren't measuring.
 
 @@FIG:Z06-gland-map,RA05-endocrine-glands@@
 
@@ -77,10 +76,8 @@ Three rules govern the grading in the rest of this manual, and they cut hard for
 **Predictor ≠ lever** (a level that forecasts risk isn't automatically something that, changed, lowers
 that risk). A hormone *level* that tracks aging (falling testosterone, IGF-1, a flattening cortisol
 rhythm) is usually a readout, not a dial to turn. The sharpest case is **IGF-1** (insulin-like growth
-factor 1 — the durable daily readout of growth-hormone signaling), whose level predicts mortality in a
-**U-shape** (both too-low and too-high carry higher risk) while the best-replicated longevity genetics point
-to *lower* signaling — so "boost your growth hormone" pushes the lever the wrong way (Domain L; Domains
-B/C).
+factor 1, the durable readout of growth-hormone signaling), whose level predicts mortality in a U-shape
+while the longevity genetics point to *lower* signaling — the full treatment is §7.
 
 **Cohort ≠ RCT.** "Men with low testosterone have higher mortality" (heavily confounded — low T is often a
 *marker* of being sick) is weaker than a randomized outcome change. The few hormone therapies that have
@@ -96,7 +93,8 @@ the former. That dividing line is the whole section.
 ## 2. The axis-by-axis map
 
 The master table. Each axis: the effector hormone(s), the control loop, the direction of age-change, the
-**honest practical lever**, and the evidence tier for that lever. Detail and citations follow in §3–§10.
+**honest practical lever**, and the evidence tier for that lever. **You can stop at this table for the
+verdict; detail and citations follow in §3–§10.**
 
 Evidence tiers, strongest to weakest: `rct` (randomized trial) > `meta` (pooled trials/reviews) >
 `cohort` (observational follow-up) > `mechanistic` (plausible biology) > `anecdotal`.
@@ -204,7 +202,7 @@ from the noise.
 testosterone decline **gradually, roughly ~1%/year** from around age 30–40, with the free fraction
 falling faster (sex-hormone-binding globulin, SHBG, the protein that mops up free testosterone, rises with
 age). By the usual thresholds a substantial minority of older men fall into the biochemically "low" range
-— but **most are asymptomatic**, and this is the crux.
+— but **most are asymptomatic**.
 
 @@FIG:83-testosterone-age@@
 
@@ -510,20 +508,18 @@ GH/IGF-1, cortisol, and more, with the promise of restoring every hormone to "**
 to reverse aging. Every honesty rule in this manual converges to say **be maximally skeptical**, for four
 reasons:
 
-1. **It treats age-typical levels as disease.** The entire model rests on calling a 55-year-old's normal
-   testosterone, DHEA, or IGF-1 "low" against a 25-year-old reference and "correcting" it — ignoring that
-   the shifted set-point is often an **adaptation**, and that for **GH/IGF-1 the youthful-high level is the
-   one associated with *worse* longevity** (§7). It pushes several dials the wrong way.
-2. **It sells predictors as levers.** DHEA (`rct`-null, Nair 2006), GH (surrogate-only with a harm column,
-   Liu 2007), subclinical-thyroid treatment (`rct`-null, TRUST), and TRT-for-the-normal-range all fail the
-   predictor-vs-lever test: moving the number did not move the outcome.
+1. **It treats age-typical levels as disease** — calling a 55-year-old's normal testosterone, DHEA, or
+   IGF-1 "low" against a 25-year-old reference, ignoring that the shifted set-point is often an
+   adaptation and that for **GH/IGF-1 the youthful-high level is the one tied to *worse* longevity** (§7).
+2. **It sells predictors as levers.** DHEA (`rct`-null, Nair 2006), GH (surrogate-only + harms, Liu
+   2007), subclinical-thyroid treatment (`rct`-null, TRUST), and TRT-for-the-normal-range all fail the
+   test: moving the number did not move the outcome.
 3. **It ignores feedback consequences.** Exogenous hormones **suppress the body's own axis** (§1) —
-   chasing "optimal" T or cortisol can shut down endogenous production and fertility, and create dependence.
-4. **It inverts the risk/benefit by population.** Legitimate replacement treats a **confirmed,
-   symptomatic deficiency** (TRT for real hypogonadism; HRT at menopause for symptoms; levothyroxine for
-   overt hypothyroidism; vitamin D / iodine for true deficiency). The optimization industry applies the
-   same hormones to **healthy people with normal-range levels**, where the trials were never done or came
-   back null, and the harm column is real.
+   shutting down endogenous production and fertility, creating dependence.
+4. **It inverts risk/benefit by population.** Legitimate replacement treats a **confirmed, symptomatic
+   deficiency** (TRT, HRT at menopause, levothyroxine, vitamin D/iodine); the optimization industry gives
+   the same hormones to **healthy people with normal-range levels**, where the trials were never done or
+   came back null.
 
 **The single tell:** if a clinic is selling **injectable GH or GH secretagogues, DHEA, or
 supraphysiologic testosterone as anti-aging** — pushing healthy hormones **up** rather than replacing a
@@ -555,10 +551,8 @@ effect, again invert the marketing:
    hypothyroidism, vitamin D past repletion, "hormone optimization" panels writ large.
 
 The meta-lesson is the manual's: the endocrine system is a **homeostatic control network defending
-set-points**, and most hormone levels are **outputs that report on your system's state — not knobs to be
-forced.** The highest-yield endocrine intervention is **behavioral** (the insulin axis); the legitimate
-pharmacologic interventions are **deficiency replacement**; and the loudest-marketed ones (optimization,
-HGH, DHEA, "adrenal fatigue" protocols) are precisely the ones the evidence does **not** support.
+set-points**, so most hormone levels are **outputs that report on your system's state, not knobs to be
+forced.**
 
 ---
 

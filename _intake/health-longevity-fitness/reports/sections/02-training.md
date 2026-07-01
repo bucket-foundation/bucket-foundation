@@ -1,8 +1,14 @@
 # 02 — Training: How To Actually Train
 
-You do not start at the barbell. You start where you can own the movement with clean form, and you climb. Every strength pattern in this chapter has a ladder — a beginner rung, a daily-driver standard, and a progression — so there is a door for the nervous first-timer and a next step for the seasoned lifter, on the same page.
+You do not start at the barbell. You start where you can own the movement with clean form, and you climb.
 
-This is the *how* that follows Section 01's *why*: the four capacities worth training, the movement ladders, how to build cardio and mobility and balance, and how to assemble a week you can actually run and keep progressing. Research-backed, honestly hedged — the three honesty rules (predictor ≠ lever, cohort ≠ RCT, something beats nothing) are defined up front in "Start Here."
+> **Bottom line:** two well-run full-body strength sessions + two cardio sessions (one easy, one hard) per
+> week clears the bar for *most* of the available longevity benefit — everything past that is optimization,
+> not survival. The full MED verdict and ready-to-run sample weeks are in §6.
+
+Every strength pattern in this chapter has a ladder — a beginner rung, a daily-driver standard, and a progression — so there is a door for the nervous first-timer and a next step for the seasoned lifter, on the same page.
+
+This is the *how* that follows Section 01's *why*. Research-backed, honestly hedged — the three honesty rules (predictor ≠ lever, cohort ≠ RCT, something beats nothing) are defined up front in "Start Here."
 
 _Not medical advice._
 
@@ -425,8 +431,6 @@ mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10
 
 **BEGINNER — 3 days, full-body (the highest-leverage starting point)**
 
-*Three full-body strength days plus an easy cardio day — every move is one you met above, at its easiest rung.*
-
 | Day | Session |
 |---|---|
 | **Mon** | Goblet squat 3×8 · RDL (light) 3×8 · Incline push-up 3×8–12 · Band/inverted row 3×8–12 · Suitcase carry 3×30 m · 10-min mobility |
@@ -437,8 +441,6 @@ mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10
 *Everything at RPE 7. Add reps weekly; when you hit the top of the range, add load or climb a rung.*
 
 **INTERMEDIATE — 4 days, upper/lower split + dedicated cardio**
-
-*Four days splitting lower- and upper-body work, with two dedicated cardio sessions — one hard interval, one long easy.*
 
 | Day | Session |
 |---|---|
@@ -451,8 +453,6 @@ mostly live at **RPE 7–8 / 2–3 RIR** with crisp technique — chasing RPE 10
 *~10–15 sets/muscle/week, each pattern ~2×. Strength compounds at 1–2 RIR; accessories at 0–2 RIR.*
 
 **ADVANCED — 5–6 days, polarized + higher volume (manage fatigue deliberately)**
-
-*Five to six days of higher volume; cardio polarized between long-easy and short-hard, fatigue kept in check with routine deloads.*
 
 | Day | Session |
 |---|---|

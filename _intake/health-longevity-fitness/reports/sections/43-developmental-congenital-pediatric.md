@@ -3,12 +3,10 @@
 Few decisions are more consequential or more personal than those about a child's health, a prenatal
 diagnosis, or a developmental concern. This chapter is the **disease** side of childhood — the chromosomal
 and single-gene disorders, the neurodevelopmental conditions, the cancers and infections and metabolic
-diseases — and it refuses two failures at once. The first is the **cold-catalog** failure: reducing a child
-and a family to a diagnosis code and a prognosis curve. The second is the **false-hope** failure: selling
-parents desperate for a "cure" an intervention that doesn't work and may harm. The compassionate move and
-the honest move turn out to be the same move. Every child here is a whole person, most of these conditions
-are nobody's fault, real medicine helps more than the marketing admits — and the "cures" sold to frightened
-parents are graded straight, because getting that grading wrong gets children hurt.
+diseases — and it refuses two failures at once: the **cold-catalog** failure (a child reduced to a diagnosis
+code and a prognosis curve) and the **false-hope** failure (desperate parents sold a "cure" that doesn't work
+and may harm). The compassionate move and the honest move are the same move; the honesty footer states the full
+case.
 
 One corollary carries the highest body count in this chapter: an **unchangeable cause** (a trisomy, a
 *CFTR* mutation) does not mean an **unchangeable outcome** — screening, modulators, and early intervention
@@ -28,6 +26,9 @@ sickle cell in §31; diabetes in §22; childhood-cancer biology in §25._
 ---
 
 ## 0. The map at a glance
+
+**Bottom line: an unchangeable cause is not an unchangeable outcome.** A trisomy, a *CFTR* mutation, or an early
+injury sets the starting point; screening, modulators, and early intervention move the trajectory enormously.
 
 | Category | Representative conditions | The honest one-liner |
 |---|---|---|
@@ -176,12 +177,11 @@ Autism (ASD) is a **neurodevelopmental** condition characterized by differences 
 restricted/repetitive interests and behaviors, with sensory differences extremely common. The defining honest
 facts:
 
-**It is a spectrum, and increasingly a "neurodiversity," not a single disease.** Presentation ranges from a
-nonspeaking child with intellectual disability and high support needs to an independent adult with above-average
-intelligence. Lumping these under one prognosis is meaningless. Much of the community frames autism as a
-**difference in neurodevelopment** to be supported, not a defect to be erased — a framing this section takes
-seriously while still mapping the genuine co-occurring conditions (epilepsy, GI problems, anxiety, intellectual
-disability in a subset) that benefit from medical attention.
+**It is a spectrum, increasingly framed as "neurodiversity."** Presentation ranges from a nonspeaking child with
+intellectual disability and high support needs to an independent adult with above-average intelligence, so one
+prognosis is meaningless. Much of the community frames autism as a **difference in neurodevelopment** to be
+supported — a framing this section takes seriously while still mapping the genuine co-occurring conditions
+(epilepsy, GI problems, anxiety, intellectual disability in a subset) that benefit from medical attention.
 
 **The genetics are strong and real.** Autism is among the **most heritable** of neurodevelopmental conditions
 (twin and family studies put heritability high — commonly cited ranges ~50–90%). It is highly **polygenic** plus
@@ -266,14 +266,11 @@ honesty:
 Childhood was, for most of history, **the deadliest stage of life**, and the single biggest reason it no longer
 is for the developed world is **vaccination and clean water/sanitation**. The vaccine-preventable diseases —
 measles, mumps, rubella, pertussis (whooping cough), diphtheria, tetanus, polio, *Haemophilus influenzae* type
-b (Hib), pneumococcus, rotavirus, varicella — were major killers and disablers within living memory. **Measles
-alone** killed millions of children per year globally before the vaccine and still kills where coverage drops;
-it is also immunosuppressive ("immune amnesia") beyond the acute illness. The honest framing: these are not
-"mild childhood rites of passage" — they are dangerous diseases held at bay by a public-health intervention so
-effective that people forget what it prevents. **Vaccine schedule, efficacy, herd immunity, and the honest
-grading of real-vs-imagined risks are owned by §26**; this section flags only that *the vaccine-preventable
-childhood infections are the diseases the §26 program exists to stop*, and that the **autism myth (§5) is the
-reason some of them are returning.** Cross-ref §26.
+b (Hib), pneumococcus, rotavirus, varicella — were major killers within living memory; **measles alone** killed
+millions of children a year before the vaccine, is immunosuppressive ("immune amnesia") beyond the acute illness,
+and still kills where coverage drops. **Vaccine schedule, efficacy, herd immunity, and the honest grading of
+real-vs-imagined risks are owned by §26**; the **autism myth (§5) is the reason some of these diseases are
+returning.** Cross-ref §26.
 
 ### 3.2 Childhood cancers — the chemotherapy success story (cross-reference §25)
 
@@ -408,7 +405,8 @@ during pregnancy — can harm an otherwise-unaffected fetus, so the management n
 
 This is the section's highest-stakes deliverable. Each item below is a **mechanism-claim that became an
 outcome-claim** (Rule 2) — a false story about *cause* that sold a dangerous "treatment" — and each is graded
-straight, because the cost of getting it wrong is paid by children.
+straight, because the cost of getting it wrong is paid by children. **§5.4 names the five-step pattern all three
+share, so you can spot the next one.**
 
 ### 5.1 The vaccine–autism myth — settled, and built on fraud
 
@@ -534,10 +532,9 @@ fine. The signals that warrant a professional look are about **pattern**, not a 
 
 **The honest, high-value action:** developmental concerns benefit from **early** evaluation, because the
 strongest evidence in neurodevelopment is that **early intervention works better than late** — the brain's early
-plasticity (§19 §5.2) is the lever. "Wait and see" is the default that costs the most when something is wrong;
-"check it early, and be reassured most of the time" is the better-graded stance. Standardized tools (developmental
-surveillance + screening at well-child visits, e.g. M-CHAT for autism) exist precisely to catch the cases that
-benefit. `cohort`/guideline — early-intervention efficacy is well supported.
+plasticity (§19 §5.2) is the lever. Standardized tools (developmental surveillance + screening at well-child
+visits, e.g. M-CHAT for autism) exist precisely to catch the cases that benefit. `cohort`/guideline —
+early-intervention efficacy is well supported.
 
 ---
 

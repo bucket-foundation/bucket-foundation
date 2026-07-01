@@ -1,7 +1,6 @@
 # 37 — Mitochondrial Health: The Deep Dive
 
-The mitochondrion is the best-founded object in applied longevity and the most oversold — and the same
-fact, the depth and certainty of the underlying physics, is the cause of both.
+The mitochondrion is the best-founded object in applied longevity and the most oversold, and the same fact — the depth and certainty of the underlying physics — is the cause of both.
 
 Where the Foundations chapter states the bioenergetics law once and moves on through the rest of the
 body, this chapter stays inside the organelle and follows the law all the way down — structure, genome,
@@ -434,10 +433,10 @@ graded on the *outcome* axis.
 
 | Supplement | Claimed mechanism | Best human evidence | Outcome tier | Verdict |
 |---|---|---|---|---|
-| **CoQ10 / ubiquinol** | ETC electron carrier (Cx I/II→III); antioxidant | **Q-SYMBIO** (Mortensen, *JACC HF* 2014): 300 mg/d ↓MACE (major adverse cardiovascular events) & all-cause mortality in moderate-severe HF (HR ~0.5, i.e. roughly halved) | **`rct`** (in HF) | **Real — but only in a deficiency/disease context.** Genuine in **heart failure** and primary CoQ10 deficiency. In healthy people: **no demonstrated benefit.** Statin-myalgia trials mostly **null**. |
-| **PQQ (pyrroloquinoline quinone)** | Claimed PGC-1α/biogenesis activation; redox cofactor | Small trials: cognition (Itoh 2016; 2023), mito biomarkers, modest aerobic markers in untrained men (2020) | **`mechanistic`/small `rct`** | **Weak.** Tiny, often industry-funded, surrogate endpoints, inconsistent. "Biogenesis activator" is mostly preclinical. Not established. |
-| **Urolithin A / Mitopure** | **Mitophagy induction** (§37.4.2) | Andreux 2019 (safe, molecular signature); Singh 2022 *JAMA Netw Open* (older adults, muscle endurance/mito gene-expression); Liu 2022 *Cell Rep Med* (middle-aged, ~+12% strength); Nat Aging 2025 (immune markers) | **`rct`** (surrogate-heavy, modest) | **The best-evidenced "mitophagy supplement" — and still modest.** Mechanism real & replicated. Human RCTs show **small, mostly-surrogate** effects (muscle endurance, mito gene expression, some strength); **no hard endpoints**, all Amazentis-funded, primary endpoints sometimes missed. Promising; not a proven outcome. |
-| **MitoQ (mitoquinol)** | Mito-targeted antioxidant (CoQ + TPP⁺ cation, concentrates in matrix) | Rossman 2018 (*Hypertension*): ↑brachial FMD ~42% in older adults; exercise trials **mixed** (peak power yes, mito content no) | **small `rct`** (mixed, surrogate) | **Mixed.** Clever delivery, real endothelial-function signal in one setting; exercise/redox outcomes inconsistent. As an *antioxidant* it carries the §37.5 blunting risk. Unproven for general use. |
+| **CoQ10 / ubiquinol** | ETC electron carrier (Cx I/II→III); antioxidant | **Q-SYMBIO** (Mortensen, *JACC HF* 2014): 300 mg/d ↓MACE (major adverse cardiovascular events) & all-cause mortality in moderate-severe HF (HR ~0.5, i.e. roughly halved) | **`rct`** (in HF) | **Real — HF / deficiency only.** (detail below) |
+| **PQQ (pyrroloquinoline quinone)** | Claimed PGC-1α/biogenesis activation; redox cofactor | Small trials: cognition (Itoh 2016; 2023), mito biomarkers, modest aerobic markers in untrained men (2020) | **`mechanistic`/small `rct`** | **Weak; not established.** (detail below) |
+| **Urolithin A / Mitopure** | **Mitophagy induction** (§37.4.2) | Andreux 2019 (safe, molecular signature); Singh 2022 *JAMA Netw Open* (older adults, muscle endurance/mito gene-expression); Liu 2022 *Cell Rep Med* (middle-aged, ~+12% strength); Nat Aging 2025 (immune markers) | **`rct`** (surrogate-heavy, modest) | **Best-evidenced mitophagy supplement — still modest.** (detail below) |
+| **MitoQ (mitoquinol)** | Mito-targeted antioxidant (CoQ + TPP⁺ cation, concentrates in matrix) | Rossman 2018 (*Hypertension*): ↑brachial FMD ~42% in older adults; exercise trials **mixed** (peak power yes, mito content no) | **small `rct`** (mixed, surrogate) | **Mixed; unproven for general use.** (detail below) |
 | **NAD⁺ precursors (NR / NMN)** | Sirtuin substrate + ETC redox cofactor | Raise blood NAD⁺ ~60%; **no powered human hard endpoint** | **`partial`** (surrogate only) | **Mechanism real, outcome absent.** Cross-ref `thread-nad-redox.md`, `12-mechanism-bridge` row 24 — "the foundation most aggressively laundered into an unproven outcome." |
 | **Creatine** | **Phosphocreatine ATP buffer** (creatine kinase) | Meta-analyses: ↑strength/power w/ training; cognition under stress `partial` | **`meta`** | **Real.** One of the few where mechanism *and* outcome both hold. Not "mitochondrial biogenesis" — it's instantaneous ATP rebuffering (§energy layer, `12-mechanism-bridge` §12.3.11). |
 | **Acetyl-L-carnitine (ALCAR)** | Fatty-acid transport into matrix (carnitine shuttle); acetyl donor | Modest signals in diabetic neuropathy & geriatric depression; thin for healthy | **small `rct`** (indication-specific) | **Narrow.** Real biochemistry (carnitine shuttle), real in specific deficiency/clinical contexts; not a validated general booster. |
@@ -501,8 +500,7 @@ healthy people.
 > everyday supplement (creatine, which isn't even a biogenesis agent). Everything explicitly sold as a
 > "mitochondrial booster" — PQQ, urolithin A, MitoQ, NAD⁺ precursors — sits between *modest surrogate*
 > and *unproven*. The thread called it (`thread-mitochondria.md`): these supplements "ride this
-> foundation's prestige far past the evidence." **Exercise is the mitochondrial drug.** The bottle is
-> an adjunct at best.
+> foundation's prestige far past the evidence."
 
 ---
 
@@ -540,17 +538,16 @@ as **Δp** and spending it through ATP synthase. This chapter has shown that **�
 cell makes ATP — it is the variable the cell uses to organize its own quality, and the variable disease
 and aging degrade:**
 
-- **Membrane potential (Δψ) is the honesty signal of quality control** (§37.4.2): PINK1/Parkin destroy
-  exactly the mitochondria whose Δp has collapsed. The cell curates itself *by the canon law.*
-- **Cristae structure exists to maximize Δp-generating surface** (§37.2.1), and biogenesis (PGC-1α)
-  literally builds more of it (§37.4.3) — the one place (exercise) where the foundation has a clean,
-  human, *interventional* handle (Holloszy).
-- **ROS leak from the Δp-building chain is the signal** (§37.5) that triggers the very biogenesis that
-  expands Δp capacity — a self-reinforcing loop that antioxidants break.
-- **UCP1 deliberately dissipates Δp as heat** (§37.7, cold) — the textbook demonstration that
-  respiration and phosphorylation are *separable*, joined only by the gradient. Mitchell, made visible.
-- **Primary mitochondrial disease degrades Δp genetically** (§37.9) and the highest-current tissues
-  fail first — the master-variable thesis as a clinical phenotype.
+- **Δψ is the quality-control signal** (§37.4.2): PINK1/Parkin destroy exactly the mitochondria whose
+  Δp has collapsed — the cell curates itself *by the canon law.*
+- **Cristae maximize Δp-generating surface** (§37.2.1); biogenesis (PGC-1α) builds more of it (§37.4.3)
+  — exercise is the one clean, human, *interventional* handle (Holloszy).
+- **ROS leak is the adaptive signal** (§37.5) that triggers the biogenesis expanding Δp capacity — a
+  loop antioxidants break.
+- **UCP1 dissipates Δp as heat** (§37.7, cold) — respiration and phosphorylation are *separable*,
+  joined only by the gradient. Mitchell, made visible.
+- **Primary mitochondrial disease degrades Δp genetically** (§37.9); highest-current tissues fail first
+  — the master-variable thesis as a clinical phenotype.
 
 So when the foundations chapter claimed bioenergetic capacity is *the* master variable, this chapter is
 the proof at organelle resolution: **the proton-motive force is simultaneously the cell's energy

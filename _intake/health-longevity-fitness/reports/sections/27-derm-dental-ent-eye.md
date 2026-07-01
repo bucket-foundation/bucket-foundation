@@ -2,9 +2,8 @@
 
 The interventions that work on skin, teeth, ears, and eyes are unglamorous and cheap — fluoride, sunscreen, a
 retinoid, an Epley maneuver, outdoor time for kids, a hearing aid. The ones that sell are mostly theater — charcoal
-toothpaste, oil pulling, $300 serums, "eye exercises" for myopia, amalgam-removal "detox." These are the surfaces
-you see in the mirror and the four senses (sight, hearing, balance, smell/taste) that mediate every waking moment,
-and most of the money spent on them lands on the wrong side of that line.
+toothpaste, oil pulling, $300 serums, "eye exercises" for myopia, amalgam-removal "detox." Most of the money spent
+on these organs lands on the wrong side of that line.
 
 Several of these conditions carry a hard mortality or function tail that earns them a place in a longevity manual:
 melanoma kills, oral cancer kills, untreated glaucoma blinds silently, sleep apnea drives cardiovascular disease,
@@ -37,13 +36,14 @@ best-evidenced products on the shelf are **sunscreen** (RCT: photoaging + SCC + 
 1999/2011) and **topical retinoids** (RCT: Weiss 1988). This part covers the **inflammatory and neoplastic skin
 diseases** people actually see a dermatologist for.
 
+_The order runs inflammatory (A.1–A.4) → neoplastic (A.5) → the industry take (A.6); skim to the one you need._
+
 ### A.1 Acne vulgaris — what actually works, and the honest diet link
 
-Acne has four causes — a plugged pore, too much oil, a skin bacterium, and inflammation — and each treatment hits
-one of them. In clinical terms it is a disease of the **pilosebaceous unit** (the hair follicle plus its oil gland),
-driven by (1) follicular hyperkeratinization (the plugged pore/comedo), (2) androgen-driven sebum overproduction,
-(3) *Cutibacterium acnes* (formerly *Propionibacterium acnes*) proliferation, and (4) inflammation. The evidence
-ladder is unusually clear.
+Acne is a disease of the **pilosebaceous unit** (the hair follicle plus its oil gland) with four drivers, and each
+treatment hits one: (1) follicular hyperkeratinization (the plugged pore/comedo), (2) androgen-driven sebum
+overproduction, (3) *Cutibacterium acnes* (formerly *Propionibacterium acnes*) proliferation, and (4) inflammation.
+The evidence ladder is unusually clear.
 
 _Evidence-tier key (used in every table in this section): `rct` = randomized trial, the strongest tier; `meta` =
 meta-analysis pooling many trials; `cohort` = observational, weaker; `mechanistic` = plausible biology, not yet
@@ -98,8 +98,7 @@ response inflames; scratching breaks the barrier further — the "itch–scratch
   clean safety profile (notable: conjunctivitis). `rct` / outcome.[^dupilumab-solo] This was the proof that **targeting type-2
   cytokines** controls severe eczema, and it opened the biologic era in dermatology beyond psoriasis.
 
-**Honest take:** the foundation is boring and works — **moisturize relentlessly, treat flares early with adequate
-(not homeopathic) topical steroid, avoid your triggers**. "Steroid phobia" and chasing elimination diets cause more
+**Honest take:** the foundation is boring and works. "Steroid phobia" and chasing elimination diets cause more
 suffering than the steroids do. The biologics/JAKs are genuine breakthroughs but are for **moderate–severe disease**,
 not first-line for mild eczema. Bleach baths and "leaky gut" cures are mostly overhyped.
 
@@ -201,10 +200,9 @@ most serums are marketing.** Adding the actives with *some* real evidence beyond
 | **Peptides, growth factors, "stem cell," exosomes, most "firming"** | weak / `mechanistic` | Marketing outruns evidence |
 | **Price as a quality signal** | — | **No correlation** between price and efficacy; a $12 drugstore retinoid/sunscreen beats a $300 serum with neither |
 
-**The one-line industry truth:** the active ingredients that work are **cheap, generic, and decades old**. The
-premium you pay above a competent drugstore sunscreen + retinoid + moisturizer buys **packaging, scent, and
-texture**, not better skin. (Honesty rule #1 throughout: most serum claims are `mechanistic`/`invitro`, sold as if
-they were `outcome`.)
+**The one-line industry truth:** the active ingredients that work are **cheap, generic, and decades old** — the
+premium above a competent drugstore sunscreen + retinoid + moisturizer buys packaging, scent, and texture, not
+better skin.
 
 ---
 
@@ -423,9 +421,9 @@ is in Section 22**; the honest summary relevant here:
   confounded by under-use, not necessarily a true absence of benefit. Predictor-vs-lever and dose-matters honesty
   rules both bite here.
 
-**Honest take:** **treat OSA for the symptoms and quality of life — that benefit is real and large.** Treating it
-*specifically to prevent heart attacks* rests on weaker (adherence-confounded) evidence. CPAP is first-line; oral
-appliances, weight loss (often curative in mild OSA), positional therapy, and selected surgery are alternatives.
+**Honest take:** **treat OSA for symptoms and quality of life — that benefit is real and large; the CV-event benefit
+is adherence-confounded (above).** CPAP is first-line; oral appliances, weight loss (often curative in mild OSA),
+positional therapy, and selected surgery are alternatives.
 
 ---
 
@@ -587,20 +585,16 @@ myopia and let you ditch your glasses.** They cannot.
   That is a real, evidence-based use of "eye exercises" — but it treats an **eye-teaming** problem, **not refractive
   error**. The marketing exploits this kernel of truth to oversell.
 
-**Honest take:** **eye exercises do not fix near/far-sightedness — that's settled.** The only proven myopia levers
-are **outdoor time (prevention, kids)** and **atropine/ortho-K/control lenses (slowing progression)** — none of them
-an "exercise." Vision therapy is real **only** for binocular-vision disorders like convergence insufficiency. Anyone
-selling "throw away your glasses" through eye workouts is selling a century-old debunked claim.
+**Honest take:** **eye exercises do not fix near/far-sightedness — that's settled.** Vision therapy is real **only**
+for binocular-vision disorders like convergence insufficiency. Anyone selling "throw away your glasses" through eye
+workouts is selling a century-old debunked claim.
 
 ---
 
 ## The honest one-paragraph summary of this section
 
 Across skin, mouth, ear, and eye, the pattern is the same and clean: **the proven interventions are cheap,
-unglamorous, and mostly preventive** — fluoride for caries (the best-evidenced tool in dentistry), sunscreen + a
-retinoid for skin, the Epley maneuver for the most common vertigo (a free 60-second cure), outdoor time to prevent
-childhood myopia, IOP-lowering for detected glaucoma, anti-VEGF for wet AMD, glucose control for diabetic
-retinopathy, and getting hearing/vision actually corrected (function plus a plausible dementia tail). **The biologic
+unglamorous, and mostly preventive** (the one-line verdict up top names them). **The biologic
 era transformed three diseases** — dupilumab for severe eczema, IL-17/IL-23 blockers for psoriasis, and
 anti-VEGF for wet AMD are real, RCT-proven wins. And the **honesty rules bite hardest here against a thick layer of
 wellness theater**: charcoal toothpaste and oil-pulling are net-negative-to-useless, amalgam-removal "detox" is the

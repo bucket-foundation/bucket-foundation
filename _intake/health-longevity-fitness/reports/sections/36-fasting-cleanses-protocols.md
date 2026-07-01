@@ -6,6 +6,11 @@ toxins and reverses aging" is a sales pitch wearing the first claim's lab coat. 
 protocols — the brands, the regimens, the influencer programs — and grades each one honestly: which claim, which
 verdict, and what can actually hurt you.
 
+> **Bottom line:** TRE and periodic restriction are a legitimate way to eat less; extended water fasting works
+> but carries a refeeding-syndrome tail that needs supervision; the fasting-mimicking diet (FMD) is the one
+> branded protocol with a human RCT; every cleanse fails the "the body detoxes itself" null. Full tiered
+> verdict in §8.
+
 _Not medical advice. The mechanisms of fasting (autophagy, mTOR/AMPK, caloric restriction) live in §01 and §03; this
 chapter is about the protocols and their verdicts._
 
@@ -33,10 +38,10 @@ matter below, that's the reference standard.
 
 ## 1. Intermittent fasting — the time-pattern protocols
 
-"Intermittent fasting" (IF) is an umbrella for **when** you eat, not **what** or strictly **how much**. The honest
-through-line for the whole family: the metabolic benefits seen in trials are real but **mostly explained by the
-spontaneous calorie reduction** these patterns cause, plus a smaller, genuine **circadian** effect from eating earlier
-in the day. None of the IF variants has a hard-endpoint (mortality) RCT (randomized controlled trial — the strongest evidence tier) — you cannot randomize humans to decades of a
+"Intermittent fasting" (IF) is an umbrella for **when** you eat, not **what** or strictly **how much**. Per honesty
+rule #2, the family's benefits are mostly the spontaneous calorie reduction these patterns cause — plus a smaller,
+genuine **circadian** effect from eating earlier in the day. None of the IF variants has a hard-endpoint (mortality)
+RCT (randomized controlled trial — the strongest evidence tier); you cannot randomize humans to decades of a
 schedule.
 
 @@FIG:89-fasting-protocols@@
@@ -310,8 +315,8 @@ than read every one. The one detail worth stopping for is the mechanism of the "
   ("snake juice": water + sodium, potassium, and magnesium salts) and a confrontational "fasting cures everything"
   messaging.
 - **The claim:** rapid fat loss; fasting as a near-universal fix.
-- **The evidence:** the **electrolyte logic is the one real kernel** — sodium/potassium/magnesium matter
-  during extended fasting (§2.5), and a salt drink does mitigate the headaches/cramps. But the program's **extreme,
+- **The evidence:** the **electrolyte logic is the one real kernel** (§2.5) — a salt drink does mitigate the
+  headaches/cramps. But the program's **extreme,
   prolonged, recurrent fasting + anti-medical, "ignore your hunger / fasting heals all" framing** is well outside the
   evidence and overlaps with disordered-eating territory. There is no trial base for the *program*; the weight loss is
   the (large, sometimes excessive) deficit.

@@ -4,10 +4,9 @@ Up to ~80% of how "old" your face looks is sun damage you could have prevented. 
 section exists. The popular longevity literature optimizes for VO2max (a fitness/aerobic-capacity score),
 glucose, sleep, and a short list of molecules, and quietly skips the systems you actually *live in* every
 day — **skin, teeth, bones, eyes, ears, feet, pelvic floor** — the ones that, when they fail, end independence.
-Several of these carry **better evidence than the supplement aisle**: sunscreen and topical retinoids are among
-the most rigorously RCT-tested (randomized controlled trials, the strongest evidence tier) interventions in all
-of "anti-aging," and AREDS2 is one of the few supplement *wins* with hard endpoints. They get skipped because
-they are unglamorous — the evidence is on their side.
+Several of these carry **better evidence than the supplement aisle** — some of the most rigorously RCT-tested
+(randomized controlled trials, the strongest evidence tier) interventions in all of "anti-aging." They get
+skipped because they are unglamorous — the evidence is on their side.
 
 **One-line verdict up front:** the four best-evidenced, most-skipped levers in this section are **(1) daily
 broad-spectrum sunscreen** (photoaging + skin-cancer RCT evidence), **(2) topical retinoids** (the single
@@ -171,6 +170,8 @@ fracture risk (Marshall 1996).[^marshall-dexa] But most fragility fractures occu
 osteoporotic BMD — which is why FRAX exists (a calculator that turns your risk factors into a 10-year fracture
 probability; §3.4). This section covers what to *do* about it, and reframes bone as a system that fails
 together with muscle.
+
+**Skim:** loading is the lever (§3.2); drugs only for high-FRAX (§3.4); vitamin D only in deficiency (§3.3).
 
 @@FIG:72-bone-tscore@@
 
@@ -340,11 +341,10 @@ loss-of-independence path).
 
 ### 6.2 Skeletal muscle as an organ (recap)
 
-A one-line reminder that muscle is not just for moving — it is the body's largest **glucose-disposal sink** and an
-**endocrine organ** (myokines), and **strength (more than mass) is the prognostic variable** (grip-strength
-mortality, EWGSOP2 reframe).[^dexa-strength] Osteosarcopenia
-(§3.5) ties it to bone. The intervention — **progressive resistance training + adequate protein** — is the single
-highest-leverage habit shared across this whole "lived-in body" section: it builds bone (§3.2), preserves
+A one-line reminder: muscle is the body's largest **glucose-disposal sink** and an **endocrine organ**
+(myokines), and **strength more than mass is the prognostic variable** (grip-strength mortality; EWGSOP2
+reframe).[^dexa-strength] The intervention — **progressive resistance training + adequate protein** — is
+the single highest-leverage habit in this whole "lived-in body" section: it builds bone (§3.2), preserves
 function (§6.1), and is the muscle lever itself.
 
 ### 6.3 Pelvic floor (brief, both sexes)
@@ -364,16 +364,16 @@ men) — a major, fixable hit to quality of life and independence.
 ## The honest one-paragraph summary of this section
 
 The systems you live in every day are **under-mapped by the biohacker canon and over-deliver on evidence.**
-The strongest, most-skipped levers are **daily sunscreen** and **topical retinoids** (the two best-evidenced
-"anti-aging" products, both RCT-backed), **heavy resistance + impact loading for bone** (LIFTMOR-grade RCT, and
+The strongest, most-skipped levers: **daily sunscreen** and **topical retinoids** (the two best-evidenced
+"anti-aging" products, both RCT-backed), **heavy resistance + impact loading for bone** (LIFTMOR-grade RCT,
 the *same* lever that fixes muscle via osteosarcopenia), and **AREDS2 for intermediate AMD** (a genuine
-supplement win with hard endpoints). The oral-systemic story is **strong association, mostly-unproven lever** —
-except periodontal treatment lowering HbA1c in diabetics, which is RCT-real. Bone, vision, and hearing all carry
+supplement win). The oral-systemic story is **strong association, mostly-unproven lever** — except
+periodontal treatment lowering HbA1c in diabetics, which is RCT-real. Bone, vision, and hearing each carry
 **a mortality or dementia tail** (hip fracture = a death event; vision and hearing loss now sit on the Lancet
-dementia-risk list), which is exactly why these "unglamorous" systems belong in a longevity manual at all. And
-the honesty rules bite throughout: vitamin D only-in-deficiency, glaucoma screening unproven-but-don't-skip-exams,
-collagen modest-not-magic. And the last two cut the same way: flossing's trials are bad, which is not the same as
-flossing being useless; and the vision/hearing→dementia link is a predictor not yet a proven lever.
+dementia-risk list) — which is why these "unglamorous" systems belong in a longevity manual. The honesty
+rules bite throughout: vitamin D only-in-deficiency, glaucoma screening unproven-but-don't-skip-exams,
+collagen modest-not-magic, flossing's-trials-are-bad (not the same as flossing being useless), and the
+vision/hearing→dementia link a predictor not yet a proven lever.
 
 ---
 

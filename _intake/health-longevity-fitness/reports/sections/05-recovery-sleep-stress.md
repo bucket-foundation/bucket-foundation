@@ -9,7 +9,8 @@ the brain's master body-clock — and its peripheral copies), **glymphatic clear
 brain's overnight wash cycle), **HSP/proteostasis** (the heat-stress chaperone response that
 keeps proteins folded and repaired), and **autonomic balance** (vagal/sympathetic tone, read
 out as HRV — heart-rate variability). Get those four moving in the right direction and most of
-the "recovery stack" is already covered.
+the "recovery stack" is already covered. The single highest-effect-size lever in this pillar is **social
+connection** — it out-measures every device and supplement here (§5.3).
 
 _Not medical advice. Claims are graded on the manual's evidence tiers, and three honesty rules
 run throughout: predictor ≠ lever (a marker that forecasts risk isn't automatically something
@@ -213,8 +214,7 @@ RCT; cold has rich mechanism but thin outcomes.
 
 **The mechanism:** heat induces **heat-shock proteins (HSP70/90)** — molecular chaperones that support
 **proteostasis** — and drives cardiovascular load comparable to moderate exercise.[^hsp] UP-link to canon
-`05-biophysics/` (proteostasis). The HSP→longevity leap is the canonical mechanism-laundering move; HSP
-induction is real, that it extends human healthspan is unproven.
+`05-biophysics/` (proteostasis). HSP induction is real; that it extends human healthspan is unproven.
 
 **The honesty caveat:** all the mortality data is **observational, one Finnish male cohort, no
 RCT.**[^sauna-conflict] Healthy-user bias and reverse causation are not excluded — sick men sauna less.
@@ -397,10 +397,9 @@ effect size, the largest, most-replicated all-cause-mortality associations in th
   purpose). The defensible claim is "large, replicated, observational association with a plausible
   stress-axis mechanism," not "calling your mother adds 7 years." (Full domain: `M-psychosocial-determinants.md`.)
 
-The active ingredient across connection, purpose, and community participation is most plausibly the same
-**psychosocial substrate** — regular social ritual, shared meaning, and a reason to keep showing up — acting
-partly through behavior (the connected/purposeful adhere, exercise, seek care) and partly through the
-stress axis.
+The active ingredient across connection, purpose, and community is most plausibly one **psychosocial
+substrate** — social ritual, shared meaning, a reason to keep showing up — acting partly through behavior and
+partly through the stress axis.
 
 ### 5.4 The stress-tool stack, graded honestly
 

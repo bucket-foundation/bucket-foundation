@@ -1,5 +1,13 @@
 # 28 — Pharmacology (Full) & Pharmacogenomics
 
+**Bottom line up front.** A drug's effect is the interaction of what it does (PD) and where it goes (PK) —
+and the reason the same dose helps one person and harms another is almost always PK (age, kidney, liver,
+genotype, interactions). Pharmacogenomics is the most useful personal genetics there is: a handful of
+large-effect gene-drug pairs that prevent catastrophe or guide choice. Interactions and polypharmacy are
+the under-appreciated danger of aging, and deprescribing is often the highest-value act. Placebo and nocebo
+are real endogenous pharmacology. And "generic = brand," "natural ≠ safe," and "price ≠ cost" are the three
+honest corrections that save money and prevent harm.
+
 A useful drug produces a meaningful effect at a concentration your body can deliver and hold — without
 reaching a concentration that harms. That window is the whole game. And the reason the same dose helps
 one person and harms another is almost always what the body does to the drug: age, kidney, liver,
@@ -10,6 +18,9 @@ interact, and how your genome changes the answer. It covers pharmacodynamics, ph
 system, the everyday drug classes, interactions and polypharmacy, and a deep pass on pharmacogenomics. The
 longevity-and-disease drug index — GLP-1s, statins, antihypertensives, aspirin, geroprotectors, hormones,
 graded by hard-outcome evidence — lives in §10.
+
+*How to read this: Part A is the mechanism core; Parts B/C/D are a reference map — skim to your drug class;
+Parts E–F are the myth corrections.*
 
 Three honesty rules run through it. **Mechanism ≠ outcome** — "binds the receptor, moves the number" is
 pharmacodynamics, not a trial result, and a drug that "should work" on paper has an unbroken history of
@@ -36,9 +47,8 @@ separate questions, and almost every prescribing decision is the interaction of 
 - **Pharmacokinetics (PK): what the body does to the drug** — how it gets in, spreads, is broken down,
   and leaves. *("Where does the drug go, and for how long?")*
 
-Put those together: a useful drug is one where PD gives a meaningful effect at a concentration that PK can
-deliver and hold **without** reaching a concentration that harms. That therapeutic window between effect
-and harm is what every prescribing decision is trying to stay inside.
+Put those together and you have the **therapeutic window** — the distance between effect and harm that
+every prescribing decision is trying to stay inside.
 
 ## A.1 Pharmacodynamics — targets, agonists, antagonists, and the dose-response curve
 
@@ -198,11 +208,9 @@ explains most interactions and most PGx:
   toxicity risk. Strong CYP3A4 inhibitors: azole antifungals (ketoconazole), some macrolide antibiotics
   (clarithromycin), ritonavir, **grapefruit juice**.
 - An **inducer** *increases* the amount of CYP enzyme → metabolism speeds up → substrate levels **fall**
-  → loss of effect. Classic inducers: **rifampin, carbamazepine, phenytoin, St. John's Wort**. The
-  St. John's Wort case is the honest supplement lesson: a "natural" product is a potent CYP3A4/P-gp
-  (P-glycoprotein, a drug-efflux pump) inducer that has caused **transplant rejection and contraceptive
-  failure** by accelerating drug
-  clearance (§B.3).
+  → loss of effect. Classic inducers: **rifampin, carbamazepine, phenytoin, St. John's Wort** — the last
+  being the honest supplement lesson (a "natural" CYP3A4/P-gp inducer that has caused **transplant
+  rejection and contraceptive failure**; full treatment §D.4).
 
 ### A.2.4 Excretion, half-life, and steady state
 
@@ -541,15 +549,15 @@ This is where pharmacology becomes a geriatric-medicine problem (cross-ref secti
 Supplements are pharmacology that markets itself as not-pharmacology — and the interaction surface is
 real and routinely ignored because people don't *tell their doctor* about supplements ("it's natural"):
 
-- **St. John's Wort** — potent CYP3A4 and **P-glycoprotein inducer**; has caused **transplant rejection,
-  contraceptive failure, and loss of HIV/anticoagulant drug efficacy** by accelerating clearance. The
-  flagship "natural-is-not-inert" case.
+- **St. John's Wort** — potent CYP3A4 and **P-glycoprotein** (a drug-efflux pump) **inducer**; has caused
+  **transplant rejection, contraceptive failure, and loss of HIV/anticoagulant drug efficacy** by
+  accelerating clearance. The flagship "natural-is-not-inert" case.
 - **Vitamin K** (and K-rich greens) ↔ **warfarin** (antagonizes it — consistency matters more than
   avoidance); **fish oil, vitamin E, ginkgo, garlic** ↔ additive **bleeding** with anticoagulants/
   antiplatelets; **calcium / iron / magnesium / antacids** chelate and **block absorption** of many
   antibiotics and thyroid hormone (separate dosing); **grapefruit** (§D.2).
-- **The quality problem compounds it:** because supplements are loosely regulated (§E), the *actual*
-  contents and dose are uncertain, so the interaction is unpredictable in both direction and magnitude.
+- **The quality problem compounds it:** because supplement contents and dose are uncertain (the DSHEA
+  quality gap, §F.3), the interaction is unpredictable in both direction and magnitude.
 - **The honest rule:** "natural" predicts nothing about interaction risk. **Tell every prescriber every
   supplement** — it is the cheapest safety intervention there is, and the one most often skipped.
 
@@ -642,8 +650,6 @@ drugs** — meaning they **do not need to prove efficacy or safety before sale**
 
 ## F.4 Drug-development & cost reality (brief, honest)
 
-So the optimism and the cynicism are both calibrated:
-
 - **It's hard.** Most candidate drugs fail; the journey from target to approval spans
   preclinical → Phase I (safety) → Phase II (does it work?) → Phase III (large RCT) → regulatory review,
   takes many years, and the **vast majority of compounds that enter human trials never reach market** —
@@ -651,10 +657,9 @@ So the optimism and the cynicism are both calibrated:
   drugs that "should have worked."
 - **It's expensive — and the headline figures are contested.** The often-cited "~$1–2.6
   billion per approved drug" estimates (DiMasi et al.) include the **capitalized cost of all the
-  failures and the cost of capital**; critics put the out-of-pocket figure far lower. Both are partly
-  true and serve different arguments — the honest reading is that *aggregate* R&D is expensive largely
-  *because most drugs fail*, while *individual* successful-drug accounting is a contested, advocacy-laden
-  number.
+  failures and the cost of capital**; critics put the out-of-pocket figure far lower. The honest reading:
+  *aggregate* R&D is expensive largely *because most drugs fail*, while *individual* successful-drug
+  accounting is a contested, advocacy-laden number.
 - **Price ≠ cost.** The **price** of a drug (especially an US list price) is set by market exclusivity,
   patents, and what payers will bear — **not by its manufacturing cost**, which for most small molecules
   is pennies, and not in any simple way by its R&D. The collapse to near-free **once a drug goes generic**
