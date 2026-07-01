@@ -713,3 +713,45 @@ requires=[] or depth-1 atom wired UNDER an already-deep dependent fills content 
 open: ~33 atoms lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=
 11.0.0 is reachable; a non-biophysics branch expansion (math/physics/chemistry corpora already seeded)
 for variety.
+
+## 2026-06-30 — run 20 (+2 force atoms: van-der-waals, hydrogen-bond; biophysics 123→125; margin IMPROVED +22→+26)
+Completed the **four-forces quartet** the syllabus §1.8 names ("van der Waals, H-bonds,
+electrostatics, hydrophobic") — electrostatics + hydrophobic already existed, so this run
+added the two missing ones, both `requires=[]` (diagnostic-depth 0). **van-der-waals**
+(Lennard-Jones U=4ε[(σ/r)¹²−(σ/r)⁶], zero at σ, min −ε at r_min=2^{1/6}σ≈1.122σ; Keesom/
+Debye/London dispersion all ∝−1/r⁶; London coeff from α & I; Hamaker surface sums −A/12πD²
+plates / −AR/6D sphere-plate; argon σ=0.34nm, ε/k_B=120K) wired UNDER md (LJ = nonbonded
+force-field term) + bilayer (tail–tail attraction) + ml-force-fields (learned potentials
+replace the 12–6 form) by leaf-leverage — all three keep their depth (md d1, bilayer d2,
+ml-force-fields d2), ZERO cascade. **hydrogen-bond** (D–H···A, 2–8 kcal/mol, d≈2.7–3.0 Å,
+angle→180°, mostly electrostatic + charge-transfer; water ≈3.6 bonds/molecule, ice 4; A·T 2
+/ G·C 3; net folding gain small because it competes with water — the marginal-stability
+reason; cooperativity along α-helix; low-barrier 15–20 kcal/mol; NQE/isotope effects) wired
+UNDER bilayer + two-state-folding (d3) + ramachandran (d1) — all keep their depth. Numbers
+verified: LJ minimum derivation (x⁶=1/2 ⇒ r_min=2^{1/6}σ, U=−ε); argon condenses ~87K when
+k_BT drops below ε; water H-bond ~5 kcal/mol × cooperative network ⇒ 100°C boiling anomaly.
+All prose ORIGINAL; equations are facts; OPEN sources only (LibreTexts + MIT OCW 5.61/5.07/
+3.320 + NCBI Bookshelf + 6 Wikipedia resources each); full 7-section lesson + 3 depths + note
++ art_prompt + 2 quiz (1 derive/conceptual) per atom. meta 0.11.0→0.12.0. **Diagnostic:
+margin IMPROVED to +26** (44 placed vs 18 asked, up from 40) — the two depth-0 leaf-leverage
+foundations flooded via requires-closure of the deep dependents the expert answers correctly,
+lifting placed-count by 4; prereq-only learner 8→9; prereq shell HELD 5/6 (redox-potential
+still the lone missing one, threshold ≥5 so no slack lost). validate.sh PASSES end-to-end
+(corpus integrity 125 atoms, 60-day engine sim all 125 introduced, diagnostic GREEN, assess/
+lang/explorer smokes). Mirrored to public/academy-app (125 atoms, ver 0.12.0 verified).
+NEXT: prereq-placement is STILL razor-thin on redox-potential (lone missing prereq, threshold
+≥5 of 6 — one perturbing atom could drop it to <5 and FAIL). The durable fix (run 19's option 1)
+is still open: give redox-potential more downstream dependents to raise its betweenness so it's
+asked directly — e.g. a depth-3 atom "redox tower / midpoint-potential ordering of the ETC
+carriers" that requires redox-potential (VERIFY it doesn't overrun the 18-question placement
+budget per run 5's depth-3 lesson before keeping it). Margin-safe content targets still open:
+**DLVO** (colloid stability = double-layer repulsion + vdW attraction; now that BOTH gouy-chapman
+AND van-der-waals exist it wires honestly, but requires them → depth 3, verify budget), **stern-
+layer** (compact inner double layer in series with gouy-chapman, d3, verify), **hofmeister/salting-
+out** (ties preferential-interaction↔zeta↔debye-huckel-activity, needs a d≤2 wiring to stay safe),
+**pi-stacking / aromatic interactions** (requires van-der-waals, good leaf), **CH–π / cation–π**
+(requires van-der-waals + electrostatics). Leaf-leverage rule holds: a new requires=[] or depth-1
+atom wired UNDER an already-deep dependent fills content AND lifts placed-count — always verify
+ZERO depth cascade + re-run test-diagnostic.mjs each batch. Cheap zero-risk wins still open:
+~30 atoms lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=
+11.0.0 is reachable; a non-biophysics branch expansion (math/physics/chemistry corpora seeded).
