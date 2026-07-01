@@ -179,30 +179,30 @@ for cid,title,part_label,bodyhtml,part_sub in chapters:
                 f'<h1 class="ch-title">{html.escape(title)}</h1>{bodyhtml}</section>')
 
 CSS = r"""
-@page { size:A4; margin:20mm 17mm 16mm;
+@page { size:A4; margin:14mm 14mm 12mm;
   @top-left{content:"The Longevity & Fitness Operating Manual";font-size:7pt;color:#a99;letter-spacing:.03em;}
   @top-right{content:"Bucket Foundation · Nucleus";font-size:7pt;color:#a99;}
   @bottom-center{content:counter(page);font-size:8.5pt;color:#8a8170;} }
 @page cover { margin:0; @top-left{content:""} @top-right{content:""} @bottom-center{content:""} }
 @page :blank { @top-left{content:""} @top-right{content:""} }
-html{font-size:9.7pt}
-body{font-family:"Charter","Georgia",serif;color:#1c1a17;line-height:1.4;text-align:justify;hyphens:auto}
+html{font-size:9.35pt}
+body{font-family:"Charter","Georgia",serif;color:#1c1a17;line-height:1.3;text-align:justify;hyphens:auto}
 h1,h2,h3,h4{font-family:"Helvetica Neue","Arial",sans-serif;color:#14110c;line-height:1.15;text-align:left}
-h2{font-size:13.5pt;margin:15pt 0 5pt;padding-bottom:3pt;border-bottom:1.5px solid #b08d3a;break-after:avoid}
-h3{font-size:11pt;margin:11pt 0 3pt;color:#6b5418;break-after:avoid}
+h2{font-size:12.8pt;margin:10pt 0 3pt;padding-bottom:3pt;border-bottom:1.5px solid #b08d3a;break-after:avoid}
+h3{font-size:10.6pt;margin:7pt 0 2pt;color:#6b5418;break-after:avoid}
 h4{font-size:9.7pt;margin:8pt 0 2pt;break-after:avoid}
-p{margin:0 0 6pt}
+p{margin:0 0 4pt}
 a{color:#6b5418;text-decoration:none}
 code{font-family:"SF Mono","Consolas",monospace;font-size:7.6pt;color:#7a5b14;background:#f6f1e3;padding:0 2px;border-radius:2px}
 strong{color:#0d0b08}
-blockquote{margin:8pt 0;padding:6pt 11pt;border-left:3px solid #b08d3a;background:#faf6ec;font-size:9pt;color:#3a342b}
+blockquote{margin:6pt 0;padding:4.5pt 9pt;border-left:3px solid #b08d3a;background:#faf6ec;font-size:9pt;color:#3a342b}
 blockquote p:last-child{margin-bottom:0}
-table{width:100%;border-collapse:collapse;margin:8pt 0;font-size:8pt;break-inside:auto}
-th{background:#2c2820;color:#f4eedd;font-family:"Helvetica Neue",sans-serif;text-align:left;padding:3.5pt 5pt;font-size:7.2pt;text-transform:uppercase;letter-spacing:.02em}
-td{padding:3.5pt 5pt;border-bottom:.5px solid #e3dcc9;vertical-align:top}
+table{width:100%;border-collapse:collapse;margin:6pt 0;font-size:7.5pt;break-inside:auto}
+th{background:#2c2820;color:#f4eedd;font-family:"Helvetica Neue",sans-serif;text-align:left;padding:2.3pt 4pt;font-size:7.2pt;text-transform:uppercase;letter-spacing:.02em}
+td{padding:2.3pt 4pt;border-bottom:.5px solid #e3dcc9;vertical-align:top}
 tr:nth-child(even) td{background:#faf7ef}
-ul,ol{margin:4pt 0 8pt;padding-left:16pt}
-li{margin-bottom:2.5pt}
+ul,ol{margin:3pt 0 5pt;padding-left:15pt}
+li{margin-bottom:1.5pt}
 hr{border:none;border-top:1px solid #ddd3bb;margin:10pt 0}
 img{max-width:100%}
 
@@ -240,7 +240,7 @@ img{max-width:100%}
 /* chapters */
 .chapter{break-before:page}
 .ch-kicker{font-family:"Helvetica Neue",sans-serif;font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:#b08d3a;margin-bottom:2pt}
-.ch-title{font-family:"Helvetica Neue",sans-serif;font-size:21pt;letter-spacing:-.01em;margin:0 0 10pt;padding-bottom:6pt;border-bottom:2px solid #14110c}
+.ch-title{font-family:"Helvetica Neue",sans-serif;font-size:20pt;letter-spacing:-.01em;margin:0 0 7pt;padding-bottom:6pt;border-bottom:2px solid #14110c}
 
 /* diagram plate */
 .plate{margin:6pt 0 12pt}
@@ -261,7 +261,7 @@ img{max-width:100%}
 .footnote-back{text-decoration:none}
 
 /* inline figures — anchored next to the text that discusses them */
-.figin{margin:9pt auto 11pt;text-align:center;break-inside:avoid;max-width:80%}
+.figin{margin:6pt auto 7pt;text-align:center;break-inside:avoid;max-width:62%}
 .figin.pair{max-width:100%;display:flex;gap:10pt;justify-content:center;align-items:flex-start}
 .figin-cell{margin:0;flex:1;text-align:center}
 .figin img,.figin-cell img{width:100%;border:1px solid #e3dcc9;border-radius:3px;background:#fff}

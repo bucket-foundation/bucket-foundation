@@ -12,6 +12,16 @@ Baseline before cycle 1: 689 pages, 50 chapters, ~265k words, 1007 graded claims
 
 <!-- LOOP COMPLETE — all 4 reader perspectives have passed over the book. -->
 
+## Page-drop cycle — layout density (no content change)
+The 4 reader cycles couldn't move the page count much because it's set by the 367 figures +
+graded tables, not prose. This cycle attacked the layout/CSS directly in `build_manual.py`:
+- Page margins 20/17/16mm → 14/14/12mm (bigger content area).
+- Body font 9.7→9.35pt, line-height 1.4→1.3, paragraph spacing 6→4pt.
+- Inline single figures max-width 80%→62%; figure margins tightened.
+- Table font 8→7.5pt, cell padding 3.5→2.3pt; heading margins + list spacing tightened.
+- **Result: 700 → 559 pages (−141, ~20%).** Zero content touched — every figure, claim,
+  number, and citation identical; verified still readable (dense-textbook density).
+
 ## Cycle 4 — Skeptical expert guard + structural length (full-book pass) — FINAL
 **Read:** 9 expert-guard readers audited every chapter for accuracy damage from 3 edit rounds, plus
 a dedicated agent traced the true claim/conflict counts.
