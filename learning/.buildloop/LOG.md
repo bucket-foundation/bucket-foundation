@@ -383,3 +383,45 @@ laplace method** (∫e^{Nf}≈ via the max; feeds partition-function/stirling ne
 elimination-free: covariance/correlation-function** under fluctuation-dissipation. Keep batches ~3, always
 verify no depth change on the edited atom + re-run test-diagnostic.mjs each time. Cheaper zero-graph-risk
 wins still open: ~39 atoms lack a derive quiz item; `note` fields; GPU art generation if reachable.
+
+## 2026-06-30 — run 12 (+3 foundational math atoms; biophysics 95→98; margin IMPROVED to +14)
+Continued the PRIMARY mission via run 11's NEXT (more margin-safe foundational math under the
+stat-mech / stochastic-dynamics subtrees), applying the leaf-leverage rule correctly from the
+start (no pitfall). Added three genuinely-missing math foundations, all requires=[] (diagnostic-
+depth 0, in the expert frontier): **legendre-transform** (f*(p)=max_x[px−f(x)], p=f′; the one
+operation that turns U(S,V,N) into F/H/G by swapping each held-quantity for its conjugate slope —
+the parent of free-energy, Gibbs, and chemical-potential, with the reciprocal-curvature identity
+f″·f*″=1 grounding response-function relations and the Maxwell construction as its non-convex kink),
+**saddle-point-method** (Laplace: ∫e^{Nf}dx≈e^{Nf(x0)}√(2π/N|f″(x0)|); the reason the thermodynamic-
+limit partition function is set by a single dominant state and the derivation *behind* Stirling —
+applying it to N!=∫e^{N ln x−x}dx at x0=N gives √(2πN)(N/e)^N exactly), and **correlation-function**
+(C(t)=⟨δA(0)δA(t)⟩, τc=∫C/C(0), Wiener–Khinchin S(ω)=FT[C], Green–Kubo transport = ∫C dt; the
+memory-in-time = width-in-frequency object under fluctuation-dissipation, Langevin noise, and NMR
+relaxation). Per the leaf-leverage rule each was wired as a REAL prereq of an existing dependent
+chosen so its depth does NOT rise: legendre-transform→free-energy(2)+chemical-potential(1),
+saddle-point-method→partition-function(1), correlation-function→fluctuation-dissipation(1)+langevin(2).
+Verified zero depth cascade (all five edited atoms unchanged: free-energy 2, chemical-potential 1,
+partition-function 1, fluctuation-dissipation 1, langevin 2). Because the new atoms now sit beneath
+heavily-depended-on nodes (free-energy→fep-wham subtree; partition-function→free-energy subtree;
+fluctuation-dissipation←langevin←kramers/molecular-motors), they gained strong downstream
+encompassing leverage — the diagnostic margin IMPROVED to **expert placed 32 / asked 18 (+14)**, up
+from +13 in run 11. All original prose; every numeric verified this run (Legendre of ½ax² = p²/2a
+with f″f*″=a·(1/a)=1; saddle-point Stirling for N=100 within 0.0002% of exact ln N!; exponential
+C(t)=C0 e^{−t/τc} → τc=∫₀^∞e^{−t/τc}=τc and S(ω)=2C0τc/(1+ω²τc²) Lorentzian, half-max at ω=1/τc;
+NMR extreme-narrowing check ω0τc≈0.03 for τc=10ps at 500MHz). OPEN sources only (LibreTexts Math/
+Physics/Chemistry + MIT OCW + 6 Wikipedia resources each); full 7-section lesson + 3 depths + 2 quiz
+(1 derive each) + note + art_prompt per atom. meta 0.5.9→0.6.0. validate.sh PASSES end-to-end
+(corpus integrity, 98-atom 60-day engine sim, diagnostic GREEN at +14, assess/lang/explorer smokes).
+Mirrored to public/academy-app (98 atoms, ver 0.6.0 verified in sync).
+NEXT: the leaf-leverage insertion pattern remains the highest-value, lowest-risk move — pick a new
+foundational math/stat-mech atom, find an EXISTING dependent already deep enough that adding the edge
+won't raise its depth, wire it, re-run test-diagnostic. Remaining margin-safe candidates with natural
+existing dependents (verify no depth rise first): **onsager-reciprocity** (L_ij=L_ji coupled linear
+fluxes; pairs with fluctuation-dissipation/correlation-function, could feed membrane-transport depth 2
+— check), **fourier-transform** (the transform correlation-function/nmr/bragg/saxs all implicitly use;
+could feed correlation-function itself or bragg — verify bragg depth first), **cumulant-generating-
+function / large-deviations** (pairs with saddle-point + legendre-transform, feeds partition-function),
+**perturbation-theory / linear-response** (feeds fluctuation-dissipation, marcus). Keep batches ~3,
+always verify no depth change on the edited atom + re-run test-diagnostic.mjs each time. Cheaper zero-
+graph-risk wins still open: ~39 atoms lack a derive quiz item; more `note` fields; GPU art generation
+if reachable. A non-biophysics branch expansion (math/physics corpus) is also fair game for variety.
