@@ -2,8 +2,8 @@
  "meta": {
   "branch": "05-biophysics",
   "title": "Biophysics — general-exam nucleus",
-  "version": "0.6.1",
-  "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved.",
+  "version": "0.6.2",
+  "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved. v0.6.2: +4 real biophysics experimental-method atoms (itc, spr, fcs, epr) filling the syllabus 1.8 methods gap (calorimetry, kinetics biosensing, fluctuation spectroscopy, magnetic-resonance/spin-labeling). All depth=2 (in the expert frontier): itc requires binding-kd/mass-action/gibbs, spr requires binding-kd/mass-action, fcs requires correlation-function/einstein-stokes, epr requires boltzmann/fret. No existing atom modified, so no depth cascade; placement margin preserved/improved.",
   "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
  },
  "atoms": [
@@ -6239,6 +6239,255 @@
     }
    ],
    "lesson": "### Intuition\n\nPush a system gently and watch it react. The surprise at the heart of linear response theory is that you can predict the reaction without ever pushing - by watching the system jiggle on its own at equilibrium. A quantity that fluctuates a lot responds a lot; a quantity that fluctuates slowly responds slowly. The spontaneous noise contains the whole recipe for the forced response, as long as the push is weak enough to stay in the linear regime.\n\n### Precisely\n\n$$\\delta\\langle A(t)\\rangle=\\int_{-\\infty}^{t}\\!\\chi(t-t')\\,f(t')\\,dt',\\qquad \\chi(t)=-\\beta\\,\\frac{d}{dt}\\langle\\delta A(0)\\,\\delta A(t)\\rangle\\ \\ (t>0),$$\n\nfor a perturbation $H'=-f(t)A$, with $\\beta=1/k_BT$ and $\\chi$ causal (zero for $t<0$).\n\n### Why it's true / how it works\n\nExpand the perturbed average to first order in $f$. The change is linear and causal, so it must be a convolution with some after-effect function $\\chi$. Evaluating that first-order term with equilibrium statistics gives Kubo's result: $\\chi$ is $-\\beta$ times the time derivative of the equilibrium autocorrelation. The whole response is written in *unperturbed* averages - which is why it can be measured from noise alone.\n\n### Worked example\n\nThe static response is the cleanest case. Integrate: $\\chi_{\\text{static}}=\\int_0^\\infty\\chi\\,dt=-\\beta[C(\\infty)-C(0)]=\\beta\\langle\\delta A^2\\rangle$, since correlations decay to zero and $C(0)$ is the variance. So the susceptibility equals $1/k_BT$ times the variance of the fluctuations - magnetic susceptibility from $\\langle\\delta M^2\\rangle$, compressibility from density fluctuations, heat capacity $C_V=\\langle\\delta E^2\\rangle/k_BT^2$.\n\n### Where it connects\n\nThis is the framework the **fluctuation-dissipation** theorem lives in - its frequency-domain statement ties the dissipative part $\\chi''(\\omega)$ to the power spectrum. The **correlation function** is its raw material; **Green-Kubo** transport coefficients are its zero-frequency limit; and **Marcus theory**'s parabolic free-energy surfaces are exactly the assumption that the polar environment responds *linearly* (Gaussian fluctuations) to a moving charge.\n\n### Watch out\n\n'Linear' is a real restriction - double the force and the response only doubles if the drive stays small; strong fields probe nonlinear susceptibilities the theory ignores. Causality is not optional: $\\chi(t)=0$ for $t<0$, and this forces the Kramers-Kronig relations linking the real and imaginary parts of $\\chi(\\omega)$. And the tidy classical form $\\chi=-\\beta\\dot C$ picks up quantum corrections when $\\hbar\\omega\\gtrsim k_BT$, where the commutator version is needed.\n\n### Numbers & nuance\n\nThe static identity $\\chi(0)=\\langle\\delta A^2\\rangle/k_BT$ is a workhorse in simulation: rather than applying dozens of field strengths, run one equilibrium trajectory, measure the variance of the conjugate quantity, and read off the susceptibility. It is how dielectric constants, elastic moduli, and binding responses are routinely extracted from a single unbiased molecular-dynamics run."
+  },
+  {
+   "id": "itc",
+   "title": "Isothermal titration calorimetry",
+   "shell": "nucleus",
+   "type": "method",
+   "requires": [
+    "binding-kd",
+    "mass-action",
+    "gibbs"
+   ],
+   "summary": "Titrate a ligand into a macromolecule and measure the heat of each injection; one experiment yields the binding constant, stoichiometry, enthalpy, and (through ΔG = ΔH − TΔS) the entropy.",
+   "depths": {
+    "eli5": "When two molecules stick together they usually give off (or soak up) a little heat. ITC injects a binding partner in tiny drops and measures exactly how much heat each drop makes. Early drops bind and release the most heat; once the target is saturated, extra drops do almost nothing. The shape of that fading heat curve tells you how tightly they bind, how many stick, and the full energy bookkeeping — all without any dye or label.",
+    "core": "Isothermal titration calorimetry (ITC) holds a sample cell at constant temperature and measures the heat the instrument must add or remove to keep it there while ligand is injected stepwise into a macromolecule solution. Each injection's integrated heat is proportional to the moles that bind on that step. Fitting the resulting binding isotherm (heat per injection versus molar ratio) to a binding model returns three quantities at once: the association constant K_a (hence K_d = 1/K_a), the stoichiometry n (the midpoint of the sigmoid), and the binding enthalpy ΔH (the total heat per mole bound). The free energy follows from ΔG = −RT ln K_a, and the entropy from ΔG = ΔH − TΔS — so a single run gives the complete thermodynamic signature of an interaction.",
+    "deep": "ITC is the only method that measures ΔH directly rather than inferring it from the temperature dependence of K (a van 't Hoff analysis), so it separates enthalpy- from entropy-driven binding — a distinction that matters for medicinal chemistry (an enthalpically optimized ligand often has better specificity). The information content depends on the Wiseman parameter c = n·[M]/K_d: c between ~1 and ~1000 (ideally 10–100) gives a well-shaped sigmoid; too high and the transition is a vertical step that fixes only n and ΔH, too low and it is a featureless slope that fixes only ΔH·K_a. Weak interactions are reachable by low-c or displacement titrations. Running ITC at several temperatures gives the heat-capacity change ΔC_p = dΔH/dT, a reporter of buried surface area on binding. It needs relatively large amounts of pure, precisely-concentration-matched, degassed sample in identical buffers, and heats of dilution must be subtracted."
+   },
+   "note": "ITC's superpower is measuring ΔH directly, so it splits ΔG into its enthalpy and entropy parts in one experiment — you learn not just how tightly two molecules bind but *why*. Watch the c-value c = n·[M]/K_d: aim for ~10–100 so the isotherm is a readable sigmoid. ('Isothermal' = at constant temperature; 'titration' = adding a reagent in measured steps; 'calorimetry' = measuring heat.)",
+   "sources": [
+    "PMC open-access ITC methodology reviews",
+    "LibreTexts Thermodynamics",
+    "NCBI Bookshelf (biophysical methods)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Isothermal titration calorimetry",
+     "url": "https://en.wikipedia.org/wiki/Isothermal_titration_calorimetry"
+    },
+    {
+     "label": "Wikipedia — Dissociation constant (what it measures)",
+     "url": "https://en.wikipedia.org/wiki/Dissociation_constant"
+    },
+    {
+     "label": "Wikipedia — Gibbs free energy (ΔG = ΔH − TΔS)",
+     "url": "https://en.wikipedia.org/wiki/Gibbs_free_energy"
+    },
+    {
+     "label": "Wikipedia — Enthalpy (the heat it reads out)",
+     "url": "https://en.wikipedia.org/wiki/Enthalpy"
+    },
+    {
+     "label": "Wikipedia — Calorimetry (the underlying technique)",
+     "url": "https://en.wikipedia.org/wiki/Calorimetry"
+    },
+    {
+     "label": "LibreTexts Chemistry — Physical & Theoretical Chemistry texts",
+     "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+    }
+   ],
+   "art_prompt": "an isothermal titration calorimeter with a reference and sample cell, a syringe injecting ligand into a protein solution, above it a raw heat-spike trace that shrinks injection by injection, and beside it the integrated sigmoidal binding isotherm of heat versus molar ratio",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "Name the three thermodynamic quantities a single ITC experiment measures or yields directly, and how the entropy of binding is then obtained.",
+     "answer": "It yields the association constant K_a (hence K_d = 1/K_a) from the isotherm shape, the stoichiometry n from the midpoint, and the binding enthalpy ΔH from the integrated heat per mole bound. The entropy follows from ΔG = −RT ln K_a and ΔG = ΔH − TΔS, so TΔS = ΔH − ΔG."
+    },
+    {
+     "level": "derive",
+     "prompt": "An ITC run on a 1:1 interaction gives K_d = 1 μM and ΔH = −40 kJ/mol at 298 K. Compute ΔG and TΔS, and state whether binding is enthalpy- or entropy-driven.",
+     "answer": "ΔG = −RT ln K_a = −RT ln(1/K_d) = −(8.314 J/mol·K)(298 K) ln(10^6) = −(2477.6)(13.8155) ≈ −34.2 kJ/mol. Then TΔS = ΔH − ΔG = (−40) − (−34.2) = −5.8 kJ/mol, so ΔS < 0. Binding is enthalpy-driven (favorable ΔH of −40 kJ/mol) against an unfavorable entropy term (−TΔS = +5.8 kJ/mol opposes binding)."
+    }
+   ],
+   "lesson": "### Intuition\n\nWhen two molecules bind, they almost always exchange a little **heat** with their surroundings — new contacts form, water is released, bonds rearrange. **ITC** listens to that heat directly. It injects a binding partner one small drop at a time and measures the heat of each drop. The first drops find plenty of empty target and release the most heat; as the target fills up, each drop does less; once everything is saturated, the drops are silent. The shape of that fading heat curve encodes how tightly the two bind, how many bind, and the complete energy ledger of the interaction.\n\n### Precisely\n\n**Isothermal titration calorimetry** keeps a sample cell at constant temperature and records the compensating power needed to hold it there while ligand is titrated stepwise into a macromolecule. Integrating each injection's heat and plotting it against the **molar ratio** gives a binding isotherm. Fitting it returns, simultaneously: the **association constant** $K_a$ (so $K_d = 1/K_a$), the **stoichiometry** $n$ (the sigmoid's midpoint), and the **binding enthalpy** $\\Delta H$ (total heat per mole bound). The free energy is $\\Delta G = -RT\\ln K_a$, and the entropy comes from $\\Delta G = \\Delta H - T\\Delta S$.\n\n### Worked example\n\nA 1:1 interaction gives $K_d = 1\\ \\mu\\text{M}$ and $\\Delta H = -40$ kJ/mol at 298 K. Then $\\Delta G = -RT\\ln(1/K_d) = -(2477.6\\ \\text{J/mol})\\ln(10^6) \\approx -34.2$ kJ/mol, and $T\\Delta S = \\Delta H - \\Delta G = -40 - (-34.2) = -5.8$ kJ/mol. The binding is **enthalpy-driven** — the favorable $\\Delta H$ pays for the interaction while the entropy term actually opposes it. No other single experiment gives you this breakdown.\n\n### Why it's true / how it works\n\nHeat measured at constant pressure is enthalpy, so the integrated heat of an injection *is* the enthalpy of the moles that bound on that step. The number bound per step is governed by mass-action equilibrium set by $K_a$, which is why the injection-by-injection heats trace out the binding isotherm: steep and saturating for tight binding, gradual for weak. Fitting couples the thermodynamics ($\\Delta H$, from heat size) to the equilibrium ($K_a$, from curve shape).\n\n### Where it connects\n\nITC measures the same **dissociation constant** as any binding assay, but rooted in **mass-action** equilibrium and the **Gibbs** relation $\\Delta G = \\Delta H - T\\Delta S$ — so it uniquely splits affinity into its enthalpic and entropic parts, complementing kinetics methods (SPR) and structure (X-ray, NMR, cryo-EM).\n\n### Watch out\n\nThe isotherm is only readable when the **Wiseman c-value** $c = n[M]/K_d$ sits in roughly $1$–$1000$ (ideally 10–100): too high gives a vertical step that fixes only $n$ and $\\Delta H$; too low gives a featureless slope. ITC also needs a lot of pure, degassed, concentration-matched sample in identical buffers, and the heat of dilution must be measured and subtracted.\n\n### Numbers & nuance\n\nITC measures $\\Delta H$ **directly**, unlike a van 't Hoff analysis that infers it from how $K$ changes with temperature — so it reliably distinguishes enthalpy- from entropy-driven binding, which matters when optimizing a drug for specificity. Running the titration at several temperatures yields the heat-capacity change $\\Delta C_p = d\\Delta H/dT$, a reporter of how much surface is buried on binding. Weak interactions are still reachable through low-$c$ or competitive displacement titrations."
+  },
+  {
+   "id": "spr",
+   "title": "Surface plasmon resonance",
+   "shell": "nucleus",
+   "type": "method",
+   "requires": [
+    "binding-kd",
+    "mass-action"
+   ],
+   "summary": "Immobilize one partner on a gold sensor, flow the other over it, and watch binding change the local refractive index in real time — giving the association and dissociation rate constants, and hence K_d, label-free.",
+   "depths": {
+    "eli5": "Shine light onto a thin gold film at just the right angle and it drives a ripple of electrons on the surface that steals energy from the beam, leaving a dark dip in the reflection. Anything that sticks to the gold shifts where that dip sits. So you glue one molecule to the gold, flow its partner over it, and simply watch the dip move as they bind and then let go — you literally see the on-rate and off-rate happen in real time, no dye needed.",
+    "core": "Surface plasmon resonance (SPR) immobilizes one binding partner (the 'ligand') on a thin gold sensor chip and flows the other (the 'analyte') across it in a microfluidic channel. Binding increases the mass near the surface, raising the local refractive index and shifting the angle (or wavelength) at which surface plasmons resonantly absorb the probe light; this shift, reported in response units (RU), is proportional to bound mass. The time course is a sensorgram: during sample flow the signal rises as association outpaces dissociation, dR/dt = k_on·C·(R_max − R) − k_off·R; when the flow switches to buffer, only dissociation remains, R(t) = R_0 e^(−k_off·t). Fitting gives the rate constants k_on and k_off, and the affinity K_d = k_off/k_on.",
+    "deep": "SPR's advantage over equilibrium-only methods is kinetics: two ligands with the same K_d can have very different residence times (1/k_off), and slow off-rates often predict in-vivo efficacy better than affinity alone. Because it is label-free and real-time, it needs little material and reports non-binders directly. Care is required: immobilization can alter the ligand, high analyte density causes mass-transport limitation (binding faster than diffusion can resupply the surface, flattening the apparent k_on), and avidity from multivalent analytes inflates apparent affinity. Related label-free platforms (bio-layer interferometry, grating-coupled interferometry) read the same surface-mass change by different optics. Steady-state SPR (plateau RU versus concentration) recovers K_d directly when kinetics are too fast to resolve."
+   },
+   "note": "SPR's edge is that it measures binding *kinetics*, not just affinity: two drugs with identical K_d can have very different off-rates, and a slow k_off (long residence time 1/k_off) often matters more than K_d for efficacy. Remember K_d = k_off/k_on. ('Plasmon' = a collective ripple of electrons on a metal surface; 'analyte' = the molecule flowed over the chip; RU = response units, proportional to bound mass.)",
+   "sources": [
+    "PMC open-access SPR biosensor reviews",
+    "LibreTexts Analytical Chemistry",
+    "NCBI Bookshelf (biophysical methods)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Surface plasmon resonance",
+     "url": "https://en.wikipedia.org/wiki/Surface_plasmon_resonance"
+    },
+    {
+     "label": "Wikipedia — Surface plasmon (the electron ripple)",
+     "url": "https://en.wikipedia.org/wiki/Surface_plasmon"
+    },
+    {
+     "label": "Wikipedia — Dissociation constant (K_d = k_off/k_on)",
+     "url": "https://en.wikipedia.org/wiki/Dissociation_constant"
+    },
+    {
+     "label": "Wikipedia — Chemical kinetics (rate constants)",
+     "url": "https://en.wikipedia.org/wiki/Chemical_kinetics"
+    },
+    {
+     "label": "Wikipedia — Biosensor (the platform)",
+     "url": "https://en.wikipedia.org/wiki/Biosensor"
+    },
+    {
+     "label": "LibreTexts Chemistry — Analytical Chemistry texts",
+     "url": "https://chem.libretexts.org/Bookshelves/Analytical_Chemistry"
+    }
+   ],
+   "art_prompt": "a gold SPR sensor chip in a microfluidic flow cell with immobilized receptors capturing analyte molecules, a prism directing polarized light to a reflection-intensity dip that shifts on binding, and beside it a sensorgram showing a rising association phase and an exponential dissociation phase",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "What physical change does SPR detect on binding, and what two rate constants does a sensorgram yield?",
+     "answer": "Binding increases the mass (and thus the refractive index) near the gold surface, shifting the plasmon-resonance angle; the response (in RU) is proportional to bound mass. Fitting the sensorgram's association and dissociation phases yields the on-rate k_on and off-rate k_off, whose ratio is the affinity K_d = k_off/k_on."
+    },
+    {
+     "level": "derive",
+     "prompt": "In the dissociation phase (buffer only) the response obeys dR/dt = −k_off·R. Solve for R(t), give the half-life, and evaluate K_d for k_off = 0.01 s⁻¹ and k_on = 1×10⁶ M⁻¹s⁻¹.",
+     "answer": "Separating variables, dR/R = −k_off dt ⇒ R(t) = R_0 e^(−k_off·t): dissociation is a single exponential. The half-life is t_½ = ln2/k_off = 0.693/0.01 ≈ 69 s. The affinity is K_d = k_off/k_on = 0.01/(1×10⁶) = 1×10⁻⁸ M = 10 nM."
+    }
+   ],
+   "lesson": "### Intuition\n\nSend polarized light into a thin **gold film** at the right angle and it excites a **surface plasmon** — a collective sloshing of the metal's electrons — that drains energy from the beam and leaves a sharp dark dip in the reflected light. The exact angle of that dip depends on what is sitting on the gold. So immobilize one molecule on the surface, flow its partner across, and watch the dip move as they bind and then release. You are watching binding kinetics happen live, with no fluorescent tag or radioactive label.\n\n### Precisely\n\n**Surface plasmon resonance** attaches a **ligand** to a gold sensor chip and flows an **analyte** over it. Bound analyte raises the mass — and hence the refractive index — near the surface, shifting the resonance condition; the shift, in **response units (RU)**, tracks bound mass over time as a **sensorgram**. While sample flows, $dR/dt = k_{on}C(R_{max}-R) - k_{off}R$; when the flow switches to plain buffer, association stops and only dissociation remains, $R(t) = R_0 e^{-k_{off}t}$. Fitting both phases gives $k_{on}$, $k_{off}$, and the affinity $K_d = k_{off}/k_{on}$.\n\n### Worked example\n\nSuppose the dissociation phase decays with $k_{off} = 0.01\\ \\text{s}^{-1}$. The complex's half-life is $t_{1/2} = \\ln 2 / k_{off} \\approx 69$ s — the average molecule stays bound about a minute and a half. If the on-rate is $k_{on} = 10^6\\ \\text{M}^{-1}\\text{s}^{-1}$, then $K_d = k_{off}/k_{on} = 10^{-8}$ M $= 10$ nM. Two different ligands could share this 10 nM affinity yet have wildly different residence times — SPR sees that difference; an equilibrium assay cannot.\n\n### Why it's true / how it works\n\nThe plasmon resonance is exquisitely sensitive to the refractive index within ~100 nm of the gold. Bound macromolecules displace buffer and add mass there, changing the index in proportion to surface concentration — so RU reads bound mass directly. The **rate** at which RU changes is set by the elementary binding kinetics (mass-action), letting the sensorgram's rise and fall be read as $k_{on}$ and $k_{off}$.\n\n### Where it connects\n\nSPR reports the same **dissociation constant** as any affinity method but resolves it into the **mass-action** rate constants $k_{on}$ and $k_{off}$ — the kinetic view that ITC (thermodynamics) and structure methods complement. Residence time $1/k_{off}$ is often the more predictive quantity for drug action.\n\n### Watch out\n\nImmobilizing the ligand can perturb it or block its binding site. Too much captured ligand causes **mass-transport limitation** — analyte binds faster than diffusion resupplies the surface — which flattens the apparent $k_{on}$. Multivalent analytes bind with **avidity**, inflating apparent affinity. Bulk refractive-index jumps from buffer mismatch must be referenced out.\n\n### Numbers & nuance\n\nBecause SPR is label-free and real-time, it directly flags non-binders and needs little material. Steady-state SPR (plateau RU versus concentration) still recovers $K_d$ when kinetics are too fast to fit. Related label-free platforms — bio-layer interferometry and grating-coupled interferometry — measure the same surface-mass change through different optics. The kinetic resolution is the point: a slow off-rate (long residence time) frequently tracks in-vivo efficacy better than affinity alone."
+  },
+  {
+   "id": "fcs",
+   "title": "Fluorescence correlation spectroscopy",
+   "shell": "nucleus",
+   "type": "method",
+   "requires": [
+    "correlation-function",
+    "einstein-stokes"
+   ],
+   "summary": "Watch the flickering fluorescence of a femtoliter-sized spot as labeled molecules diffuse through it; the temporal autocorrelation of those fluctuations gives concentration (from its amplitude) and diffusion time (from its decay).",
+   "depths": {
+    "eli5": "Focus a laser to a spot smaller than a bacterium and count the light from any glowing molecule that wanders through it. When only a handful are in the spot at once, the brightness flickers as they come and go. Time how long each flicker lasts and you learn how fast the molecules move (so how big they are); count how wildly the brightness jumps around and you learn how many are there. Fewer molecules means bigger, noisier flickers — so, unusually, this method loves dilute samples.",
+    "core": "Fluorescence correlation spectroscopy (FCS) records the fluorescence from a diffraction-limited confocal volume (~0.1–1 femtoliter) as labeled molecules diffuse in and out, causing the signal to fluctuate around its mean. The temporal autocorrelation G(τ) = ⟨δF(t)δF(t+τ)⟩/⟨F⟩² of those fluctuations is fit to a diffusion model; for a 3D Gaussian volume, G(τ) = (1/N)(1+τ/τ_D)^(−1)(1+τ/(s²τ_D))^(−1/2). The amplitude G(0) ≈ 1/N gives the average number of molecules N in the volume (hence concentration), and the characteristic decay time τ_D = w²/(4D) gives the translational diffusion coefficient D — from which the Einstein–Stokes relation returns the hydrodynamic radius.",
+    "deep": "FCS turns thermodynamic fluctuations into a measurement: the same equilibrium noise that fluctuation–dissipation formalizes is the signal. Because a molecule's diffusion time scales as D^(−1) ∝ r ∝ mass^(1/3), FCS is a sensitive reporter of binding and oligomerization (a small labeled ligand's τ_D jumps when it binds a large partner), and cross-correlation of two colors (FCCS) detects co-diffusion — direct evidence of complex formation. Faster correlation components report photophysics: triplet-state blinking (microseconds) and, for FRET or quenching pairs, conformational dynamics. It requires low, well-defined concentrations (nanomolar — about one molecule per femtoliter), bright photostable dyes, and careful calibration of the observation volume with a dye of known D. Related fluctuation methods (image correlation spectroscopy, number-and-brightness) extend the idea in space."
+   },
+   "note": "FCS is one of the rare assays that works best when dilute: the fewer molecules in the spot, the bigger the relative flicker, and G(0) ≈ 1/N. It reads size through diffusion time (τ_D = w²/4D), so it sees binding as a slowdown. ('Autocorrelation' = how similar a signal is to itself a time τ later; 'confocal volume' = the tiny focus a pinhole selects; 'hydrodynamic radius' = the effective radius a diffusing molecule presents to the solvent.)",
+   "sources": [
+    "PMC open-access FCS methodology reviews",
+    "LibreTexts Physical Chemistry (spectroscopy)",
+    "arXiv physics.bio-ph"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Fluorescence correlation spectroscopy",
+     "url": "https://en.wikipedia.org/wiki/Fluorescence_correlation_spectroscopy"
+    },
+    {
+     "label": "Wikipedia — Autocorrelation (the core operation)",
+     "url": "https://en.wikipedia.org/wiki/Autocorrelation"
+    },
+    {
+     "label": "Wikipedia — Mass diffusivity / diffusion coefficient",
+     "url": "https://en.wikipedia.org/wiki/Mass_diffusivity"
+    },
+    {
+     "label": "Wikipedia — Einstein relation (kinetic theory) (D → radius)",
+     "url": "https://en.wikipedia.org/wiki/Einstein_relation_(kinetic_theory)"
+    },
+    {
+     "label": "Wikipedia — Confocal microscopy (the observation volume)",
+     "url": "https://en.wikipedia.org/wiki/Confocal_microscopy"
+    },
+    {
+     "label": "LibreTexts Chemistry — Physical & Theoretical Chemistry texts",
+     "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+    }
+   ],
+   "art_prompt": "a laser focused to a tiny confocal observation volume with a few fluorescent molecules diffusing through it, the resulting flickering intensity-versus-time trace, and beside it the autocorrelation curve G(tau) whose amplitude marks 1/N and whose decay marks the diffusion time tau_D",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "In FCS, what does the amplitude G(0) of the autocorrelation tell you, and what does its decay time τ_D tell you?",
+     "answer": "The amplitude G(0) ≈ 1/N gives the average number of fluorescent molecules N in the observation volume, hence the concentration. The decay time τ_D is the average time a molecule dwells in the volume, giving the diffusion coefficient D (via τ_D = w²/4D), and thence the hydrodynamic radius through Einstein–Stokes."
+    },
+    {
+     "level": "derive",
+     "prompt": "The diffusion time relates to the beam waist by τ_D = w²/(4D). For a confocal waist w = 0.25 μm and a small dye with D = 100 μm²/s, compute τ_D. Explain qualitatively how τ_D changes if the dye binds a large protein.",
+     "answer": "τ_D = w²/(4D) = (0.25×10⁻⁶ m)² / (4 × 100×10⁻¹² m²/s) = 6.25×10⁻¹⁴ / 4×10⁻¹⁰ s ≈ 1.56×10⁻⁴ s ≈ 156 μs. Binding a large protein lowers D (D ∝ 1/r, and r grows with the complex), so τ_D increases — the flicker gets slower. Since r ∝ mass^(1/3), τ_D changes only modestly for a small mass gain, so FCS resolves binding best when the size change is large."
+    }
+   ],
+   "lesson": "### Intuition\n\nFocus a laser to a spot so small it holds only a **femtoliter** of solution — smaller than a bacterium — and watch the light coming from it. When just a few glowing molecules are inside at any moment, the brightness **flickers** as they diffuse in and out. Two things are hidden in that flicker: how *long* each fluctuation lasts tells you how fast the molecules move (and therefore how big they are), and how *large* the fluctuations are tells you how *few* molecules there are. Counterintuitively, dilute samples give the clearest signal.\n\n### Precisely\n\n**Fluorescence correlation spectroscopy** measures the fluctuations $\\delta F(t)$ of fluorescence from a confocal observation volume and computes their temporal **autocorrelation** $G(\\tau) = \\langle \\delta F(t)\\,\\delta F(t+\\tau)\\rangle / \\langle F\\rangle^2$. For a 3D-Gaussian spot, $G(\\tau) = \\frac{1}{N}\\left(1+\\frac{\\tau}{\\tau_D}\\right)^{-1}\\left(1+\\frac{\\tau}{s^2\\tau_D}\\right)^{-1/2}$. Its amplitude $G(0) \\approx 1/N$ gives the mean number of molecules $N$ in the volume (the concentration), and its decay time $\\tau_D = w^2/(4D)$ gives the diffusion coefficient $D$ — from which **Einstein–Stokes** returns the hydrodynamic radius.\n\n### Worked example\n\nWith a confocal waist $w = 0.25\\ \\mu\\text{m}$ and a small dye of $D = 100\\ \\mu\\text{m}^2/\\text{s}$, the diffusion time is $\\tau_D = w^2/(4D) = (0.25\\times10^{-6})^2 / (4\\times10^{-10}) \\approx 156\\ \\mu\\text{s}$. Let that dye bind a large protein: $D$ drops (the complex is bigger), so $\\tau_D$ rises — the flicker slows. That slowdown *is* the binding read-out.\n\n### Why it's true / how it works\n\nEach molecule spends, on average, a time $\\tau_D$ crossing the spot, so the fluorescence stays correlated with itself over that interval and decorrelates beyond it — fixing the decay time of $G(\\tau)$. The **amplitude** comes from Poisson counting statistics: for $N$ independent molecules the relative variance is $1/N$, so a smaller $N$ (more dilute) yields a *larger* $G(0)$. The signal is literally equilibrium **fluctuation** turned into a measurement.\n\n### Where it connects\n\nFCS is built on the **correlation function** (the autocorrelation of intensity) and **Einstein–Stokes** ($D \\to$ radius). Because $\\tau_D$ tracks size, it detects binding and oligomerization; two-color cross-correlation (FCCS) proves co-diffusion of two species, complementing SPR kinetics and ITC thermodynamics.\n\n### Watch out\n\nFCS needs **low, well-defined concentrations** — roughly one molecule per femtoliter (nanomolar) — and bright, photostable dyes; photobleaching and saturation distort $G(\\tau)$. Because $\\tau_D \\propto D^{-1} \\propto r \\propto \\text{mass}^{1/3}$, a small mass change barely moves $\\tau_D$, so binding is resolved best when the partner is much larger. The observation volume must be calibrated with a dye of known $D$.\n\n### Numbers & nuance\n\nFast components of $G(\\tau)$ (microseconds) report **photophysics** — triplet-state blinking — and, with a FRET or quenching pair, conformational dynamics. A 1 fL volume at 1 nM holds on average only $\\sim0.6$ molecules, which is exactly why the fluctuations are large and measurable. Related fluctuation methods — image correlation spectroscopy and number-and-brightness analysis — extend the same statistics into space to map mobility and aggregation across a cell."
+  },
+  {
+   "id": "epr",
+   "title": "Electron paramagnetic resonance (EPR/ESR)",
+   "shell": "nucleus",
+   "type": "method",
+   "requires": [
+    "boltzmann",
+    "fret"
+   ],
+   "summary": "Unpaired electron spins in a magnetic field split into two energy levels and resonantly absorb microwaves at hν = gμ_B B; site-directed spin labels turn this into a probe of local mobility, polarity, and — via dipolar coupling (DEER) — nanometer distances.",
+   "depths": {
+    "eli5": "An electron acts like a tiny compass needle. Put it in a magnet and it can point 'with' or 'against' the field, at two slightly different energies. Hit it with microwaves of just the right pitch and it flips between them — that's the resonance you detect. Most biomolecules have no lonely electrons, so you attach a stable molecule that does (a 'spin label') to a chosen spot; the way its signal is shaped tells you how crowded and mobile that spot is, and using two labels you can even measure the distance between them.",
+    "core": "Electron paramagnetic resonance (EPR, also ESR) detects unpaired electron spins. In a magnetic field B a spin-½ splits into two Zeeman levels separated by ΔE = gμ_B B (g ≈ 2 for organic radicals, μ_B the Bohr magneton); the sample resonantly absorbs microwave photons when hν = gμ_B B — at X-band (B ≈ 0.35 T) that is ν ≈ 9.8 GHz. Because most biomolecules are diamagnetic, one usually introduces a stable nitroxide radical by site-directed spin labeling (SDSL) at an engineered cysteine. The lineshape reports the label's rotational mobility (hence local backbone flexibility and burial) and the polarity of its environment. For distances, pulsed dipolar EPR (DEER/PELDOR) measures the through-space dipolar coupling between two labels, which scales as 1/r³, yielding distance distributions over ~1.5–8 nm.",
+    "deep": "EPR complements FRET as a molecular ruler but works in the shorter 1.5–8 nm range with a rigid, well-defined dipolar coupling rather than an orientation- and R_0-dependent transfer efficiency, and it returns a full distance *distribution* — a direct read on conformational heterogeneity. Continuous-wave EPR lineshapes distinguish fast, intermediate, and slow motional regimes, mapping which residues are ordered, mobile, or lipid-buried (power saturation with paramagnetic quenchers reports membrane immersion depth). Sensitivity per spin exceeds NMR because the electron magnetic moment is ~658× a proton's, though the small equilibrium population difference set by the Boltzmann factor still limits absolute sensitivity, favoring low temperatures for pulsed work. EPR uniquely sees paramagnetic centers native to biology — transition-metal ions in metalloenzymes and radical intermediates in catalysis — making it a mechanistic probe of active sites."
+   },
+   "note": "EPR needs an *unpaired* electron; since most biomolecules have none, you clip on a stable nitroxide 'spin label' (SDSL). Its resonance condition hν = gμ_B B is the electron-spin analogue of NMR's for nuclei, but ~658× more sensitive per spin. DEER turns two labels into a 1.5–8 nm ruler, complementing FRET's longer range. ('Paramagnetic' = having unpaired electron spins; 'Zeeman splitting' = the energy gap a field opens between spin orientations; 'dipolar coupling' = the through-space magnetic interaction between two spins, ∝ 1/r³.)",
+   "sources": [
+    "PMC open-access EPR/SDSL methodology reviews",
+    "LibreTexts Physical Chemistry (magnetic resonance)",
+    "arXiv physics.bio-ph"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Electron paramagnetic resonance",
+     "url": "https://en.wikipedia.org/wiki/Electron_paramagnetic_resonance"
+    },
+    {
+     "label": "Wikipedia — Site-directed spin labeling",
+     "url": "https://en.wikipedia.org/wiki/Site-directed_spin_labeling"
+    },
+    {
+     "label": "Wikipedia — Double electron–electron resonance (DEER)",
+     "url": "https://en.wikipedia.org/wiki/Double_electron%E2%80%93electron_resonance"
+    },
+    {
+     "label": "Wikipedia — Zeeman effect (the level splitting)",
+     "url": "https://en.wikipedia.org/wiki/Zeeman_effect"
+    },
+    {
+     "label": "Wikipedia — Bohr magneton (μ_B in hν = gμ_B B)",
+     "url": "https://en.wikipedia.org/wiki/Bohr_magneton"
+    },
+    {
+     "label": "LibreTexts Chemistry — Physical & Theoretical Chemistry texts",
+     "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+    }
+   ],
+   "art_prompt": "an unpaired electron spin splitting into two Zeeman energy levels as magnetic field increases, resonant microwave absorption at hv = g mu_B B, a nitroxide spin label attached to a protein cysteine, and beside it a DEER dipolar-oscillation trace converting to a nanometer distance distribution",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "Why does EPR of proteins usually require site-directed spin labeling, and what does DEER measure?",
+     "answer": "EPR detects unpaired electron spins, but most biomolecules are diamagnetic (all electrons paired), so a stable nitroxide radical is attached at an engineered cysteine (site-directed spin labeling) to create a detectable spin. DEER (pulsed dipolar EPR) measures the through-space dipolar coupling between two spin labels, which scales as 1/r³, yielding a distance distribution over roughly 1.5–8 nm."
+    },
+    {
+     "level": "derive",
+     "prompt": "The EPR resonance condition is hν = gμ_B B. For an organic radical (g = 2.0023) at X-band field B = 0.35 T, compute the microwave frequency. (μ_B = 9.274×10⁻²⁴ J/T, h = 6.626×10⁻³⁴ J·s.)",
+     "answer": "ν = gμ_B B / h = (2.0023)(9.274×10⁻²⁴ J/T)(0.35 T) / (6.626×10⁻³⁴ J·s). Numerator = 2.0023 × 9.274×10⁻²⁴ × 0.35 ≈ 6.50×10⁻²⁴ J; dividing by h gives ν ≈ 9.8×10⁹ Hz ≈ 9.8 GHz — the X-band microwave frequency, consistent with standard EPR spectrometers."
+    }
+   ],
+   "lesson": "### Intuition\n\nAn electron behaves like a minuscule bar magnet. Place it in a strong field and it can align roughly **with** or **against** the field — two states at slightly different energies. Shine microwaves of exactly the right frequency and the electron flips between them, absorbing energy: that absorption is the signal. The catch is that most biological molecules have all their electrons paired up and magnetically silent, so you deliberately attach a small, stable molecule that carries one **unpaired** electron (a spin label) to a chosen site, then read out how that site moves, how polar it is, and — with two labels — how far apart they sit.\n\n### Precisely\n\n**Electron paramagnetic resonance** detects unpaired electron spins. A magnetic field $B$ splits a spin-½ into two **Zeeman** levels separated by $\\Delta E = g\\mu_B B$ (with $g \\approx 2$ for organic radicals and $\\mu_B$ the Bohr magneton); resonance occurs when the microwave photon matches, $h\\nu = g\\mu_B B$. Since biomolecules are usually diamagnetic, **site-directed spin labeling** attaches a nitroxide radical at an engineered cysteine. Its **lineshape** reports rotational mobility (local flexibility, burial) and environmental polarity; pulsed dipolar EPR (**DEER/PELDOR**) measures the $1/r^3$ dipolar coupling between two labels to give distance distributions over ~1.5–8 nm.\n\n### Worked example\n\nAt **X-band**, spectrometers run near $B = 0.35$ T. The resonance frequency is $\\nu = g\\mu_B B/h = (2.0023)(9.274\\times10^{-24})(0.35)/(6.626\\times10^{-34}) \\approx 9.8$ GHz — microwaves, the same band as radar and Wi-Fi. Now put spin labels at two sites and run DEER: the labels' magnetic fields nudge each other with a coupling $\\propto 1/r^3$, so the measured oscillation frequency converts directly into the distance between them — a molecular ruler read out in nanometers.\n\n### Why it's true / how it works\n\nThe two Zeeman levels differ by $g\\mu_B B$, and a photon is absorbed only when its energy matches that gap — hence the sharp resonance. The *strength* of absorption depends on the **population difference** between the levels, which the **Boltzmann** factor sets: at room temperature the excess in the lower level is tiny, so signal is precious (and pulsed work is often done cold to enlarge it). Two nearby spins feel each other's dipole field, and because that field falls as $1/r^3$, the coupling encodes distance.\n\n### Where it connects\n\nEPR is a distance ruler alongside **FRET**: DEER covers the shorter 1.5–8 nm window with a rigid dipolar coupling and returns a full distance *distribution*, exposing conformational heterogeneity that a single FRET efficiency averages over. Its sensitivity and the cold-temperature preference both trace to the **Boltzmann** population difference. It also reads native paramagnets — metal centers and radical intermediates in enzymes.\n\n### Watch out\n\nThe attached spin label has its own flexible tether, so a DEER distance is between *labels*, not backbone atoms — modeling the linker matters. Room-temperature sensitivity is limited by the small Boltzmann population difference, so pulsed measurements are usually frozen (which can trap a distribution of conformers). Labeling requires removing or tolerating native reactive cysteines.\n\n### Numbers & nuance\n\nThe electron's magnetic moment is about **658×** a proton's, so EPR is far more sensitive per spin than NMR — but the equilibrium population difference is still only parts in a thousand at room temperature. Continuous-wave lineshapes cleanly separate fast, intermediate, and slow motional regimes, mapping which residues are ordered, mobile, or lipid-buried; power-saturation with paramagnetic quenchers reports how deep a labeled site sits in a membrane. Uniquely among the structural methods, EPR sees the paramagnetic species biology uses directly — transition-metal ions in metalloenzymes and transient radical intermediates in catalysis."
   }
  ]
 }

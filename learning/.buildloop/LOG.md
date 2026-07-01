@@ -467,3 +467,42 @@ propagator** (feeds reaction-diffusion/cable-equation/smoluchowski-rate), **pert
 Cheaper zero-graph-risk wins still open: ~39 atoms lack a derive quiz item; more `note` fields; GPU
 art generation if reachable. A non-biophysics branch expansion (math/physics corpus seed) is also
 fair game for variety.
+
+## 2026-06-30 — run 14 (+4 real biophysics METHOD atoms; biophysics 101→105; margin held +16)
+Deliberate pivot away from the run 11–13 streak of pure-math leaf atoms (diminishing returns: the
+margin was already a comfortable +16 and every syllabus §0 math prereq now exists). Audited the 101
+atoms against syllabus §1.8 "Molecular interactions & spectroscopy methods" and found four REAL,
+genuinely-missing experimental methods that a biophysics general exam would ask about — richer,
+correct *content* rather than another foundation. Added (all shell=nucleus, type=method,
+requires-depth EXACTLY 2 so each lands inside the expert frontier ⇒ margin-safe, never deepening any
+existing atom): **itc** (isothermal titration calorimetry; measures binding heat per injection →
+K_a, n, ΔH in one run, then TΔS = ΔH − ΔG; the Wiseman c = n[M]/K_d ≈ 10–100 shape rule; requires
+binding-kd/mass-action/gibbs), **spr** (surface plasmon resonance; label-free real-time kinetics,
+sensorgram assoc dR/dt = k_on C(R_max−R) − k_off R and dissoc R = R_0 e^{−k_off t}, K_d = k_off/k_on,
+residence time 1/k_off; requires binding-kd/mass-action), **fcs** (fluorescence correlation
+spectroscopy; autocorrelation of femtoliter-volume flicker, G(0) ≈ 1/N → concentration and
+τ_D = w²/4D → D → hydrodynamic radius via Einstein–Stokes, binding seen as a slowdown; requires
+correlation-function/einstein-stokes), and **epr** (electron paramagnetic resonance/ESR; Zeeman
+resonance hν = gμ_B B, site-directed spin labeling, DEER dipolar ruler ∝1/r³ over 1.5–8 nm
+complementing FRET; requires boltzmann/fret). Every worked number verified this run: ITC ΔG =
+−RT ln(10^6) = −34.2 kJ/mol ⇒ TΔS = −5.8 kJ/mol (enthalpy-driven); SPR t_½ = ln2/0.01 = 69 s,
+K_d = 0.01/1e6 = 10 nM; FCS τ_D = (0.25 µm)²/(4·100 µm²/s) = 156 µs, ~0.6 molecules per fL at 1 nM;
+EPR X-band ν = gμ_B(0.35 T)/h = 9.8 GHz. All original prose; each atom has the full 7-section lesson
++ 3 depths + note + art_prompt + 2 quiz (1 derive) + 6 OPEN resources (Wikipedia per concept/jargon
+term + LibreTexts). New atoms are graph LEAVES (nothing requires them yet), so placedCount stayed 34
+and the diagnostic margin HELD at **expert placed 34 / asked 18 (+16)** — no regression (leaves don't
+add encompassing leverage but also can't cascade depth). meta 0.6.1→0.6.2. validate.sh PASSES
+end-to-end (corpus integrity, 105-atom 60-day engine sim, diagnostic GREEN at +16, assess/lang/
+explorer smokes). Mirrored to public/academy-app (105 atoms, ver 0.6.2 verified in sync).
+NEXT: §1.8 methods are now well-covered; remaining genuinely-missing method/technique atoms worth
+adding (all should sit at depth ≤2 via binding-kd/mass-action/structure-hierarchy/correlation-
+function so they stay margin-safe): **dsc** (differential scanning calorimetry — the ΔH/T_m/ΔC_p
+melting counterpart to ITC; requires two-state-folding/gibbs — check two-state-folding depth first),
+**dls** (dynamic light scattering — intensity-autocorrelation sizing, natural sibling of fcs;
+requires correlation-function/einstein-stokes, depth 2), **analytical-ultracentrifugation** (sed/
+diffusion → mass & shape). If instead reverting to graph foundations to LIFT (not just hold) the
+margin, the leaf-leverage rule still applies — wire a new requires=[] atom UNDER an existing deep
+dependent (e.g. **green-function/propagator** → smoluchowski-rate/reaction-diffusion, **perturbation-
+theory** → marcus/eyring) verifying no depth rise + re-running test-diagnostic.mjs. Cheaper zero-risk
+wins still open: ~39 atoms lack a derive quiz item; more `note` fields; GPU art if reachable. A
+non-biophysics branch expansion (math/physics corpus) also remains fair game for variety.
