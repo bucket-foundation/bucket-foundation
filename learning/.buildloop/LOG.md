@@ -855,3 +855,36 @@ dependent of redox-potential to raise its betweenness so it's asked directly —
 fix, but VERIFY it doesn't push asked past 18), and non-biophysics branch expansion (math 49 / physics
 55 / chem 49 / info 48 / cosmo 41 / mind 42). Cheap zero-risk wins still open: ~30 atoms lack a
 derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
+
+## 2026-07-01 — run 23 (+6 cosmology atoms; branch expansion; biophysics untouched)
+PIVOT to branch expansion — biophysics is saturated at 133 atoms and covers nearly ALL the "still
+open" topics the prompt lists (bragg, fret, ghk, kramers, helfrich, cable-equation, monte-carlo,
+fep-wham, markov-state-model, contact-order, rmsf all already present); further biophysics adds hit
+diminishing returns + verify-budget risk on the diagnostic. Instead expanded the THINNEST branch,
+**cosmology (41→47)**, which is clean/zero-risk (does NOT touch the biophysics diagnostic). Six new
+atoms, all `requires` into EXISTING cosmology ids only (verified no missing/dupe): **matter-radiation-
+equality** (z_eq≈3400 where ρ_r=ρ_m; a^-4 vs a^-3 scaling; Mészáros suppression pivot; sets k_eq),
+**jeans-instability** (λ_J∼c_s/√(Gρ); dispersion ω²=c_s²k²−4πGρ; sound-crossing vs free-fall race;
+static-limit cousin of gravitational-instability), **matter-power-spectrum** (P(k)=P_prim·T²; primordial
+k^{n_s} n_s≈0.96, turnover at k_eq, BAO wiggles; master statistic), **type-ia-supernovae** (Chandrasekhar
+1.4M☉ standardizable candle + Phillips relation; 1998 acceleration discovery; d_L(z) integral →
+Ω_Λ≈0.7), **silk-damping** (photon random-walk diffusion erases small-scale CMB; exp[−(k/k_D)²]
+high-ℓ damping tail), **sachs-wolfe-effect** (ΔT/T=Φ/3 large-angle plateau; integrated SW as
+dark-energy probe). Each = full 6-section lesson (Intuition/Precisely/Worked example/Why it's true/
+Where it connects/Watch out) + 3 depths + note-in-deep + art_prompt + 2 quiz (recall + derive/apply,
+some with eq) + OPEN sources (MIT OCW 8.286 + Wikipedia + NASA). ALL prose ORIGINAL; equations are
+facts. meta 0.3.0→0.4.0. Mirrored to public/academy-app (47 atoms, ver 0.4.0 verified).
+
+**validate.sh PASSES end-to-end** (all corpus JSON integrity incl. cosmology 47/no-dupes/no-missing-
+requires, JS syntax, 60-day engine sim, biophysics diagnostic UNCHANGED at placed 42/asked 18 margin
++24 shell 5/6, assess/lang/explorer smokes). Biophysics diagnostic state is untouched by design.
+
+**NEXT run:** continue branch expansion — mind (42) and cosmology (47) are still the thinnest after
+this. Cosmology gaps still open: cosmic-neutrino-background (relic ν, N_eff≈3.046), redshift-space-
+distortions (Kaiser + fingers-of-god), reionization/21cm, Sunyaev–Zel'dovich effect, weak-lensing
+shear. Mind gaps: reward-prediction-error/dopamine, place/grid cells, decision-making/drift-diffusion,
+free-energy-principle, glia. OR the durable biophysics prereq-shell fix (add a depth-3 dependent of
+redox-potential — redox tower / midpoint-potential ETC ordering — to raise its betweenness to 6/6;
+VERIFY it doesn't push asked past 18). Cheap zero-risk wins still open across all branches: ~30
+biophysics atoms lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION
+=11.0.0 reachable.

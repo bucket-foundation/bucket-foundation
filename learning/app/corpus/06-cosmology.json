@@ -2,8 +2,8 @@
   "meta": {
     "branch": "06-cosmology",
     "title": "Cosmology — the universe at large",
-    "version": "0.3.0",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.2.0: every atom enriched for zero-prior-knowledge learners — eli5/core rewritten to define jargon inline, and a verified 'resources' array (Wikipedia + NASA + MIT OCW 8.286 + Einstein Online) added to each atom.",
+    "version": "0.4.0",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.2.0: every atom enriched for zero-prior-knowledge learners — eli5/core rewritten to define jargon inline, and a verified 'resources' array (Wikipedia + NASA + MIT OCW 8.286 + Einstein Online) added to each atom. v0.4.0: +6 structure-formation & CMB-physics atoms (matter-radiation-equality, jeans-instability, matter-power-spectrum, type-ia-supernovae, silk-damping, sachs-wolfe-effect).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
   "atoms": [
@@ -2513,6 +2513,361 @@
         }
       ],
       "lesson": "### Intuition\nThis atom puts every chapter into one timeline. In order: a flash of **inflation** in the first instant; a few minutes of nuclear cooking forging the light elements; the clearing of the cosmic fog 380,000 years in (releasing the CMB); the slow gravitational building of galaxies and the cosmic web over billions of years; and finally, in recent cosmic times, **dark-energy** taking the wheel and accelerating expansion. One coherent $\\sim13.8$-billion-year story.\n\n### Precisely\nThe standard chronology, with characteristic times, redshifts, and temperatures (via **thermal-history**, $T \\propto 1+z$):\n- **Inflation** ($t \\sim 10^{-34}\\,\\text{s}$): quantum seeds stretched; flatness and uniformity set.\n- **Baryogenesis**: tiny matter surplus $\\eta \\approx 6\\times10^{-10}$.\n- **BBN** ($t \\sim 1$–$200\\,\\text{s}$, $T \\sim 10^{9}\\,\\text{K}$): $^4$He, D, $^7$Li forged.\n- **Recombination** ($t \\approx 380{,}000\\,\\text{yr}$, $z\\approx1100$, $T\\approx3000\\,\\text{K}$): CMB released.\n- **Structure formation** (millions–billions of yr): the **large-scale-structure** cosmic web grows.\n- **Dark-energy domination** ($z \\lesssim 0.7$): accelerated expansion begins.\n\n### Worked example\nCross-check two epochs with one tool. At **recombination**, $T = 2.725 \\times 1101 \\approx 3000\\,\\text{K}$. At **bbn**, the same $T \\propto 1+z$ relation with $T \\sim 10^9\\,\\text{K}$ gives $z \\sim 4\\times10^8$. The *single* scaling law placing both epochs consistently is a small example of the framework's internal coherence.\n\n### Why it's true / how it works\nThe deep point is not merely that each stage is independently evidenced — it is that the *same six* **lambda-cdm** parameters that fit the **cmb-anisotropies** also predict the **bbn** abundances, the **baryon-acoustic-oscillations** scale, and the supernova **standard-candles** distance–redshift relation. Cross-validation across vastly different epochs and physics is what elevates this from a story to a tested model.\n\n### Where it connects\nThis atom ties together the entire branch: **inflation**, **bbn**, **recombination**, **cmb-origin**, **gravitational-instability**, **large-scale-structure**, and **dark-energy** — the unified narrative behind **lambda-cdm**, with open edges at the **hubble-tension** and **dark-energy-equation-of-state**.\n\n### Watch out\nThe coherence is real but the model is *incomplete*: dark matter and dark energy — about 95% of the budget — remain unidentified, and the earliest pre-BBN instants rely on unverified physics. A tested framework is not a finished one."
+    },
+    {
+      "id": "matter-radiation-equality",
+      "title": "Matter–radiation equality",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "friedmann-equations",
+        "thermal-history",
+        "critical-density"
+      ],
+      "summary": "The moment the energy in matter first equaled the energy in radiation — the pivot after which gravity can grow structure and the point that sets the peak of the matter power spectrum.",
+      "depths": {
+        "eli5": "Early on, the universe's energy budget was dominated by light and other fast-moving radiation, whose pressure fought against clumping. As space expanded, radiation thinned out faster than matter did, so eventually ordinary and dark matter took over as the heaviest ingredient. That handover moment — called 'equality' — is when gravity was finally free to start building galaxies, because matter's pull could now win over radiation's outward push.",
+        "core": "Energy density in radiation dilutes as the universe expands like $a^{-4}$ (one power from volume, one from each photon stretching and losing energy), while matter dilutes only as $a^{-3}$ (just volume). Because radiation falls off faster, there is a crossover scale factor $a_{eq}$ where the two are equal; before it the universe is 'radiation-dominated,' after it 'matter-dominated.' This happens at redshift $z_{eq}\\approx 3400$, roughly 50,000 years after the Big Bang. It matters because density perturbations grow only very slowly while radiation dominates, then grow steadily ($\\delta\\propto a$) once matter takes over — so $a_{eq}$ sets a preferred scale imprinted on the distribution of galaxies.",
+        "deep": "Perturbations that entered the horizon during radiation domination are suppressed (the Mészáros effect) relative to those that entered later, so the matter transfer function turns over at the wavenumber $k_{eq}$ corresponding to the horizon size at equality. This turnover is a direct, measurable fingerprint of $\\Omega_m h^2$."
+      },
+      "sources": [
+        "MIT OCW 8.286 The Early Universe",
+        "arXiv astro-ph (structure formation, transfer functions)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Matter-dominated era / radiation era",
+          "url": "https://en.wikipedia.org/wiki/Chronology_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Friedmann equations (density scalings)",
+          "url": "https://en.wikipedia.org/wiki/Friedmann_equations"
+        },
+        {
+          "label": "Wikipedia — Structure formation (Mészáros effect)",
+          "url": "https://en.wikipedia.org/wiki/Structure_formation"
+        },
+        {
+          "label": "NASA Science — The Big Bang",
+          "url": "https://science.nasa.gov/universe/the-big-bang/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
+      ],
+      "art_prompt": "two log-log curves crossing: radiation energy density falling as a^-4 and matter density falling as a^-3, their intersection marked z_eq about 3400",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why does radiation dominate the early universe but matter dominate later?",
+          "answer": "Radiation energy density falls as a^-4 (volume plus per-photon redshift) while matter falls as a^-3 (volume only), so radiation dilutes faster and matter eventually overtakes it at z_eq ≈ 3400."
+        },
+        {
+          "level": "derive",
+          "prompt": "Set the matter and radiation densities equal to find the equality scale factor in terms of today's density parameters.",
+          "answer": "Ω_r a^-4 = Ω_m a^-3 gives a_eq = Ω_r/Ω_m, so 1+z_eq = Ω_m/Ω_r; with Ω_m/Ω_r ≈ 3400 this reproduces the observed epoch.",
+          "eq": "a_{eq}=\\Omega_r/\\Omega_m,\\quad 1+z_{eq}=\\Omega_m/\\Omega_r"
+        }
+      ],
+      "lesson": "### Intuition\nEarly on, the universe's energy budget was ruled by radiation — light and other fast particles whose pressure resists clumping. Space expanded, radiation thinned faster than matter, and eventually matter became the heaviest ingredient. That handover, **equality**, is when gravity was finally free to build structure.\n\n### Precisely\nRadiation energy density scales as $\\rho_r \\propto a^{-4}$: one factor $a^{-3}$ from the expanding volume, one more $a^{-1}$ because every photon's wavelength stretches and it loses energy. Matter scales as $\\rho_m \\propto a^{-3}$ (volume only). Setting them equal,\n$$\\rho_r = \\rho_m \\;\\Rightarrow\\; a_{eq} = \\frac{\\Omega_r}{\\Omega_m},\\qquad 1+z_{eq} = \\frac{\\Omega_m}{\\Omega_r}\\approx 3400.$$\nThis is roughly 50,000 years after the Big Bang.\n\n### Worked example\nUsing $\\Omega_m \\approx 0.31$ and a radiation density (photons plus neutrinos) $\\Omega_r \\approx 9\\times10^{-5}$, the ratio $\\Omega_m/\\Omega_r \\approx 3400$, so $z_{eq}\\approx 3400$ — matching CMB measurements. Note this is *before* recombination ($z\\approx1100$), so equality happens while the universe is still an opaque plasma.\n\n### Why it's true / how it works\nWhile radiation dominates, its pressure and rapid expansion nearly freeze the growth of matter perturbations inside the horizon (the **Mészáros effect**). Once matter dominates, perturbations resume steady growth $\\delta\\propto a$. So the horizon size *at equality* separates modes that were suppressed from modes that grew — a preferred length stamped onto the cosmos.\n\n### Where it connects\nEquality sets the turnover of the **matter-power-spectrum** at $k_{eq}$, feeds **gravitational-instability** by releasing matter to grow, and is fixed by the same $\\Omega_m h^2$ that the **acoustic-peaks** measure. The density scalings come straight from the **friedmann-equations** and the **thermal-history**.\n\n### Watch out\n$z_{eq}$ depends on the *total* radiation, which includes the three neutrino species, not just photons — ignore neutrinos and you get equality wrong by tens of percent."
+    },
+    {
+      "id": "jeans-instability",
+      "title": "The Jeans criterion",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "gravitational-instability",
+        "friedmann-equations"
+      ],
+      "summary": "Gravity collapses a cloud only if it is bigger than the Jeans length, where self-gravity overwhelms the outward push of pressure.",
+      "depths": {
+        "eli5": "A gas cloud has two competing tendencies: gravity trying to crush it inward, and pressure trying to puff it back out. Which wins depends on size. Small clumps re-inflate because a pressure wave can cross them and even things out before gravity does much. Big clumps collapse, because gravity acts everywhere at once and pressure signals are too slow to rescue the far side. The dividing size is the Jeans length.",
+        "core": "Pressure resists collapse by sending sound waves that smooth out density bumps; gravity resists dispersal by pulling matter together. Compare two timescales: the time for sound to cross a region of size $\\lambda$ (about $\\lambda/c_s$) versus the time for gravity to collapse it (about $1/\\sqrt{G\\rho}$). When the region is large enough that gravity acts faster than sound can respond, collapse wins. That threshold size is the **Jeans length** $\\lambda_J \\sim c_s/\\sqrt{G\\rho}$, and the mass inside it is the **Jeans mass**. Regions bigger than $\\lambda_J$ (or heavier than the Jeans mass) are unstable and collapse; smaller ones oscillate as sound waves.",
+        "deep": "Linearizing the fluid equations with self-gravity gives the dispersion relation $\\omega^2 = c_s^2 k^2 - 4\\pi G\\rho$; modes with $k < k_J = \\sqrt{4\\pi G\\rho}/c_s$ have imaginary $\\omega$ and grow exponentially in a static medium. In an expanding universe Hubble friction converts that exponential growth into the power-law growth of gravitational instability."
+      },
+      "sources": [
+        "MIT OCW 8.286 The Early Universe",
+        "arXiv astro-ph (star and structure formation)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Jeans instability",
+          "url": "https://en.wikipedia.org/wiki/Jeans_instability"
+        },
+        {
+          "label": "Wikipedia — Jeans mass / length",
+          "url": "https://en.wikipedia.org/wiki/Jeans_instability#Jeans_mass"
+        },
+        {
+          "label": "Wikipedia — Gravitational collapse",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_collapse"
+        },
+        {
+          "label": "Wikipedia — Speed of sound (gas)",
+          "url": "https://en.wikipedia.org/wiki/Speed_of_sound"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
+      ],
+      "art_prompt": "a gas cloud split into a small clump re-inflating with outward pressure arrows and a large clump collapsing inward, a dividing scale labeled lambda_J",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What determines whether a gas cloud collapses under gravity or bounces back?",
+          "answer": "Its size relative to the Jeans length: regions larger than λ_J (heavier than the Jeans mass) collapse because gravity beats pressure; smaller ones oscillate as sound waves."
+        },
+        {
+          "level": "derive",
+          "prompt": "From the dispersion relation ω² = c_s²k² − 4πGρ, find the Jeans wavenumber and state which modes grow.",
+          "answer": "ω² = 0 gives k_J = √(4πGρ)/c_s; modes with k < k_J (wavelength > λ_J) make ω² < 0, so ω is imaginary and the perturbation grows exponentially.",
+          "eq": "k_J=\\sqrt{4\\pi G\\rho}/c_s"
+        }
+      ],
+      "lesson": "### Intuition\nA gas cloud has two urges: gravity crushing inward and pressure puffing outward. Which wins depends on size. Small clumps re-inflate — a pressure wave crosses them and smooths the bump before gravity does much. Big clumps collapse — gravity acts everywhere at once while pressure signals crawl in too slowly to save the far side. The dividing size is the **Jeans length**.\n\n### Precisely\nCompare the sound-crossing time $t_s \\sim \\lambda/c_s$ to the free-fall (collapse) time $t_{ff}\\sim 1/\\sqrt{G\\rho}$. Collapse wins when $t_{ff} < t_s$, i.e. when\n$$\\lambda > \\lambda_J \\sim \\frac{c_s}{\\sqrt{G\\rho}}.$$\nA proper linearization of the self-gravitating fluid gives the dispersion relation $\\omega^2 = c_s^2 k^2 - 4\\pi G\\rho$, so instability ($\\omega^2<0$) sets in below the **Jeans wavenumber** $k_J = \\sqrt{4\\pi G\\rho}/c_s$.\n\n### Worked example\nThe mass inside a Jeans-length sphere is the **Jeans mass** $M_J \\sim \\rho\\,\\lambda_J^3 \\propto c_s^3/(G^{3/2}\\rho^{1/2})$. Cooling a cloud lowers $c_s$ and shrinks $M_J$, so a collapsing region can fragment into ever-smaller Jeans-unstable pieces — the qualitative reason a giant cloud becomes many stars, not one.\n\n### Why it's true / how it works\nPressure fights collapse only by communication: it must send a sound wave across the region to redistribute matter. If gravity finishes the job faster than sound can cross, pressure is simply too late. That race of timescales is the whole content of the criterion.\n\n### Where it connects\nIn a *static* medium the unstable modes grow exponentially. Add cosmic expansion and the **friedmann-equations**' Hubble-friction term tames that runaway into the power-law growth of **gravitational-instability** — the Jeans criterion is its local, static-limit cousin.\n\n### Watch out\nThe naive analysis assumes a uniform static background (the 'Jeans swindle'); it is a good guide, but the rigorous treatment in an expanding universe replaces exponential growth with $\\delta\\propto a$."
+    },
+    {
+      "id": "matter-power-spectrum",
+      "title": "The matter power spectrum",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "large-scale-structure",
+        "gravitational-instability",
+        "matter-radiation-equality"
+      ],
+      "summary": "A single curve P(k) that says how much clumping the universe has at each length scale — the master statistic of cosmic structure.",
+      "depths": {
+        "eli5": "Instead of describing every galaxy, cosmologists summarize the lumpiness of the universe with one graph. It answers: at each size scale, how strong are the density variations? Big smooth scales have little variation, mid scales have the most, and very small scales are damped. That single curve encodes almost everything about the ingredients and history of the cosmos.",
+        "core": "Take the density contrast field $\\delta(\\mathbf{x})$, Fourier-transform it into waves of different wavelengths, and ask how much power sits at each wavenumber $k$ (large $k$ = small scale). The **power spectrum** $P(k)$ is the variance of those modes. Inflation predicts a nearly scale-invariant primordial spectrum $P(k)\\propto k^{n_s}$ with $n_s\\approx0.96$. Then the growth history bends it: modes that entered the horizon before matter–radiation equality were suppressed, so $P(k)$ rises to a peak at $k_{eq}$ and falls off ($\\propto k^{n_s-4}$) at small scales. Riding on top are gentle wiggles — the baryon acoustic oscillations. Measuring $P(k)$ from galaxy surveys pins down $\\Omega_m$, the baryon fraction, and $n_s$.",
+        "deep": "$P(k)$ is the primordial spectrum times the square of the transfer function $T(k)$, which encodes the Mészáros suppression at $k>k_{eq}$ and the BAO wiggles. On small scales gravity drives $\\delta$ nonlinear, so the observed $P(k)$ deviates from linear theory and must be modeled with N-body simulations or perturbation theory beyond leading order."
+      },
+      "sources": [
+        "MIT OCW 8.286 The Early Universe",
+        "arXiv astro-ph (galaxy clustering, power spectrum)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Matter power spectrum",
+          "url": "https://en.wikipedia.org/wiki/Matter_power_spectrum"
+        },
+        {
+          "label": "Wikipedia — Power spectrum / two-point correlation",
+          "url": "https://en.wikipedia.org/wiki/Correlation_function_(astronomy)"
+        },
+        {
+          "label": "Wikipedia — Transfer function (cosmology)",
+          "url": "https://en.wikipedia.org/wiki/Structure_formation"
+        },
+        {
+          "label": "Wikipedia — Scale invariance / n_s",
+          "url": "https://en.wikipedia.org/wiki/Scalar_spectral_index"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
+      ],
+      "art_prompt": "a log-log P(k) curve rising as k to the n_s, turning over at k_eq, falling at small scales, with faint BAO wiggles superposed",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the matter power spectrum P(k) measure, and why does it have a turnover?",
+          "answer": "It measures the variance of density fluctuations at each scale (wavenumber k); it turns over at k_eq because modes entering the horizon before matter–radiation equality had their growth suppressed."
+        },
+        {
+          "level": "apply",
+          "prompt": "Inflation predicts a primordial spectrum P(k) ∝ k^{n_s} with n_s ≈ 0.96. Why is the observed spectrum not a simple power law?",
+          "answer": "Growth physics multiplies it by the transfer function squared: suppression of sub-horizon modes before equality bends it into a peak at k_eq with a k^{n_s−4} tail, and baryon acoustic oscillations add wiggles.",
+          "eq": "P(k)=P_{prim}(k)\\,T^2(k)\\propto k^{n_s}T^2(k)"
+        }
+      ],
+      "lesson": "### Intuition\nRather than catalog every galaxy, cosmologists compress the universe's lumpiness into one graph. It answers a single question at each size: how strong are the density variations? Smooth on the largest scales, strongest at intermediate scales, damped on the smallest — that one curve holds most of what we know about the cosmic recipe.\n\n### Precisely\nTake the density contrast $\\delta(\\mathbf{x})=(\\rho-\\bar\\rho)/\\bar\\rho$, expand it in Fourier modes $\\delta_{\\mathbf k}$, and define the **power spectrum** by\n$$\\langle \\delta_{\\mathbf k}\\,\\delta^*_{\\mathbf k'}\\rangle = (2\\pi)^3 P(k)\\,\\delta_D(\\mathbf k-\\mathbf k'),$$\nso $P(k)$ is the variance per mode at wavenumber $k$. It is the Fourier transform of the two-point correlation function.\n\n### Worked example\nInflation sets a near-scale-invariant primordial input $P_{prim}(k)\\propto k^{n_s}$, $n_s\\approx0.96$. Growth then multiplies by the **transfer function** squared: modes with $k>k_{eq}$ (which crossed the horizon before equality) were held back, so $P(k)$ climbs to a peak near $k_{eq}\\sim 0.01\\,h/\\text{Mpc}$ and falls as $k^{n_s-4}$ beyond it. Fitting a galaxy survey's $P(k)$ to this shape returns $\\Omega_m h^2$ from the peak location.\n\n### Why it's true / how it works\nGaussian random initial conditions are fully described by their two-point statistics, and $P(k)$ *is* that description. Every later observable — cluster counts, lensing, BAO — is a weighting of this one function, which is why it is the master statistic.\n\n### Where it connects\nThe turnover sits at the horizon scale of **matter-radiation-equality**; the amplitude grows via **gravitational-instability**; the wiggles are **baryon-acoustic-oscillations**; and the whole curve is measured from **large-scale-structure** and **redshift-surveys**.\n\n### Watch out\nLinear $P(k)$ only describes large, still-linear scales. On small scales $\\delta\\gtrsim1$ and gravity is nonlinear, so the real spectrum departs from the linear prediction and needs simulations."
+    },
+    {
+      "id": "type-ia-supernovae",
+      "title": "Type Ia supernovae and cosmic acceleration",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "standard-candles",
+        "cosmic-distance-ladder",
+        "dark-energy"
+      ],
+      "summary": "Exploding white dwarfs of nearly fixed brightness let us map distance versus redshift far into the past — and in 1998 revealed the expansion is speeding up.",
+      "depths": {
+        "eli5": "A certain kind of stellar explosion always goes off at almost the same true brightness, like identical flashbulbs scattered across the universe. Measure how faint one looks and you know how far away it is; measure its redshift and you know how much the universe has expanded since. Line up many of them and you can trace the expansion history. When astronomers did this, distant explosions looked fainter — farther away — than a coasting universe predicted, which means the expansion has been accelerating.",
+        "core": "A white dwarf that accretes matter until it nears the **Chandrasekhar mass** (about 1.4 solar masses) detonates as a **Type Ia supernova**. Because the trigger mass is nearly universal, the peak luminosity is nearly standard, and a well-known correction — brighter explosions fade more slowly (the Phillips relation) — tightens it into a **standardizable candle** visible across billions of light-years. Plotting their brightness-inferred distance against redshift (a **Hubble diagram**) traces how the scale factor grew. In 1998 two teams found high-redshift Type Ia's systematically fainter than a decelerating (matter-only) universe would give, implying the expansion is accelerating — the discovery of **dark energy**.",
+        "deep": "The luminosity distance $d_L(z)=(1+z)\\int_0^z c\\,dz'/H(z')$ depends on the expansion history $H(z)$; fitting the supernova Hubble diagram to $H(z)^2=H_0^2[\\Omega_m(1+z)^3+\\Omega_\\Lambda]$ favors $\\Omega_\\Lambda\\approx0.7$, $\\Omega_m\\approx0.3$, and a present-day accelerating $\\ddot a>0$."
+      },
+      "sources": [
+        "MIT OCW 8.286 The Early Universe",
+        "arXiv astro-ph (SN Ia cosmology, Riess 1998 / Perlmutter 1999)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Type Ia supernova",
+          "url": "https://en.wikipedia.org/wiki/Type_Ia_supernova"
+        },
+        {
+          "label": "Wikipedia — Accelerating expansion of the universe",
+          "url": "https://en.wikipedia.org/wiki/Accelerating_expansion_of_the_universe"
+        },
+        {
+          "label": "Wikipedia — Phillips relationship (light-curve width)",
+          "url": "https://en.wikipedia.org/wiki/Phillips_relationship"
+        },
+        {
+          "label": "Wikipedia — Chandrasekhar limit",
+          "url": "https://en.wikipedia.org/wiki/Chandrasekhar_limit"
+        },
+        {
+          "label": "NASA Science — Dark energy",
+          "url": "https://science.nasa.gov/dark-energy/"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
+      ],
+      "art_prompt": "a Hubble diagram of distance modulus versus redshift with supernova points bending above the matter-only decelerating curve, an accelerating-universe fit through them",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is a Type Ia supernova a good standardizable candle?",
+          "answer": "It detonates when a white dwarf nears the near-universal Chandrasekhar mass (~1.4 M☉), so peak brightness is nearly fixed, and the Phillips relation (brighter fade slower) corrects the residual scatter — leaving an extremely bright, calibratable candle visible to high redshift."
+        },
+        {
+          "level": "apply",
+          "prompt": "Distant Type Ia's appeared fainter than a matter-only universe predicts. What did this imply about the expansion?",
+          "answer": "Fainter means farther for a given redshift, so the universe expanded more between then and now than deceleration allows — the expansion is accelerating, driven by dark energy (Ω_Λ ≈ 0.7).",
+          "eq": "d_L(z)=(1+z)\\int_0^z \\frac{c\\,dz'}{H(z')}"
+        }
+      ],
+      "lesson": "### Intuition\nOne kind of stellar explosion always fires at nearly the same true brightness — identical flashbulbs strewn across the cosmos. How faint one looks gives its distance; its redshift gives how much space stretched since the flash. String many together and you read the expansion history. When astronomers did, distant blasts looked *too faint* — farther than a coasting universe allows — so the expansion is speeding up.\n\n### Precisely\nA white dwarf accreting toward the **Chandrasekhar mass** ($\\approx1.4\\,M_\\odot$) detonates as a **Type Ia supernova**. The near-universal trigger mass makes the peak luminosity nearly standard; the **Phillips relation** (intrinsically brighter events decline more slowly) standardizes the rest. This yields a candle bright enough to measure the **luminosity distance**\n$$d_L(z) = (1+z)\\int_0^z \\frac{c\\,dz'}{H(z')}.$$\n\n### Worked example\nFit the supernova Hubble diagram to $H(z)^2 = H_0^2[\\Omega_m(1+z)^3 + \\Omega_\\Lambda]$. A matter-only model ($\\Omega_\\Lambda=0$) decelerates and predicts brighter high-$z$ events than observed. The data instead prefer $\\Omega_m\\approx0.3$, $\\Omega_\\Lambda\\approx0.7$, giving $\\ddot a>0$ today — the 1998 result that won the 2011 Nobel Prize.\n\n### Why it's true / how it works\nBecause $d_L$ integrates $1/H(z)$, a universe that expanded faster recently piles up more distance for a given redshift, dimming the candle. The systematic faintness of the sample is therefore a direct readout of accelerated expansion.\n\n### Where it connects\nType Ia's are the top rung of the **cosmic-distance-ladder**, the archetypal **standard-candle**, and the observation that established **dark-energy** and the $\\Lambda$CDM cosmology.\n\n### Watch out\nStandardization is empirical: dust reddening, progenitor metallicity, and possible evolution of the candle with redshift are the dominant systematics, which is why supernova cosmology is always cross-checked against BAO and the CMB."
+    },
+    {
+      "id": "silk-damping",
+      "title": "Silk damping",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "acoustic-peaks",
+        "recombination"
+      ],
+      "summary": "Photons random-walking out of dense regions just before recombination erase the smallest CMB fluctuations, damping the high-ℓ tail of the power spectrum.",
+      "depths": {
+        "eli5": "Just before the universe became transparent, light was still bouncing around inside the plasma, but not perfectly trapped — photons slowly leaked from hot dense spots to cool thin ones, dragging some matter along and blurring the tiniest temperature differences. So the CMB's smallest-scale patterns are washed out, like a photo that loses its finest detail.",
+        "core": "Before recombination photons scatter off electrons over and over, taking a **random walk** rather than flying straight. Over cosmic time they diffuse a characteristic distance — the **Silk scale**. Any density variation smaller than this diffusion length gets smeared out, because photons (and the baryons coupled to them) leak from overdense to underdense regions and even out the contrast. In the CMB angular power spectrum this appears as an exponential **damping tail**: the acoustic peaks beyond the third or so are progressively suppressed. The damping scale depends on the baryon density and the thickness of the recombination surface, so measuring the tail adds another handle on cosmological parameters.",
+        "deep": "Diffusion damping suppresses power as $\\exp[-(k/k_D)^2]$ with $k_D^{-2}\\propto\\int dt\\,(c/(a n_e\\sigma_T))$, the mean-square photon diffusion length; because recombination is not instantaneous, the finite thickness of the last-scattering surface adds a comparable Landau-like smearing on top of pure diffusion."
+      },
+      "sources": [
+        "MIT OCW 8.286 The Early Universe",
+        "arXiv astro-ph (CMB diffusion damping)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Silk damping",
+          "url": "https://en.wikipedia.org/wiki/Silk_damping"
+        },
+        {
+          "label": "Wikipedia — Cosmic microwave background (damping tail)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "Wikipedia — Diffusion / random walk",
+          "url": "https://en.wikipedia.org/wiki/Random_walk"
+        },
+        {
+          "label": "Wikipedia — Recombination (cosmology)",
+          "url": "https://en.wikipedia.org/wiki/Recombination_(cosmology)"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
+      ],
+      "art_prompt": "a CMB power spectrum whose high-ell acoustic peaks fade under an exponential damping envelope, with a photon random-walk leaking out of a dense spot inset",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What causes Silk damping of the CMB, and where does it show up in the power spectrum?",
+          "answer": "Photons random-walking (diffusing) out of small overdense regions just before recombination smear out sub-diffusion-scale fluctuations; it appears as the exponentially suppressed high-ℓ damping tail of the acoustic peaks."
+        },
+        {
+          "level": "apply",
+          "prompt": "Silk damping suppresses power as exp[−(k/k_D)²]. Why does a longer photon mean free path (fewer electrons) increase the damping?",
+          "answer": "A longer mean free path lets each photon step farther per scatter, so the total diffusion length grows and k_D shrinks — meaning larger scales get damped, wiping out more of the spectrum.",
+          "eq": "P(k)\\to P(k)\\,e^{-(k/k_D)^2}"
+        }
+      ],
+      "lesson": "### Intuition\nJust before the universe went transparent, light was still bouncing inside the plasma but not perfectly caged — photons slowly leaked from hot dense spots to cool thin ones, dragging some matter along and blurring the tiniest temperature differences. The CMB's smallest-scale patterns get washed out, like a photo losing its finest grain.\n\n### Precisely\nWhile the plasma is ionized, photons scatter off free electrons (Thomson scattering) and execute a **random walk** with mean free path $\\ell = 1/(n_e\\sigma_T)$. Over the age at that epoch they diffuse a root-mean-square distance $k_D^{-1}$, the **Silk scale**. Perturbations with $k>k_D$ are erased, damping the power spectrum by\n$$P(k)\\;\\to\\; P(k)\\,\\exp\\!\\big[-(k/k_D)^2\\big].$$\n\n### Worked example\nThe damping bites at multipoles $\\ell\\gtrsim1000$, so the fourth, fifth, and higher **acoustic-peaks** are progressively suppressed and the spectrum falls into a smooth **damping tail**. Because $k_D$ depends on the electron density history, the observed tail helps fix the baryon density and, via the tail-versus-peak comparison, $H_0$.\n\n### Why it's true / how it works\nDiffusion moves photons — and through tight coupling, the baryons — from crests to troughs of a wave. On scales the photons can cross before recombination, this transport equalizes the density and temperature, so the contrast on those scales disappears. Larger scales survive because photons cannot cross them in time.\n\n### Where it connects\nSilk damping shapes the small-scale end of the **acoustic-peaks** pattern and is set by the physics of **recombination**; the finite thickness of the last-scattering surface adds extra smearing on the same scales.\n\n### Watch out\nIt is diffusion, not free-streaming: the photons are still scattering frequently, which is exactly why they perform a slow random walk instead of flying straight out."
+    },
+    {
+      "id": "sachs-wolfe-effect",
+      "title": "The Sachs–Wolfe effect",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "cmb-anisotropies",
+        "frw-metric"
+      ],
+      "summary": "On the largest angular scales, CMB hot and cold spots trace the gravitational potential at last scattering — photons redshift climbing out of wells.",
+      "depths": {
+        "eli5": "Light leaving a deep gravity well loses a little energy climbing out, so it arrives slightly cooler; light from a shallow region arrives slightly warmer. On the biggest patches of sky, the CMB's temperature map is essentially a picture of where the deep and shallow gravitational regions were at the moment the universe became transparent.",
+        "core": "A photon leaving an overdense region (a gravitational potential well) is **gravitationally redshifted** as it climbs out, arriving colder. There is also a partly cancelling effect: clocks run slower in the well, so we see that region at a slightly earlier, hotter time. The net **Sachs–Wolfe** result on large scales is a temperature shift $\\Delta T/T = \\tfrac{1}{3}\\Phi$, where $\\Phi$ is the potential at last scattering. This dominates the low-multipole ($\\ell\\lesssim30$) plateau of the CMB power spectrum and directly links the largest CMB anisotropies to the primordial density field from inflation. A separate **integrated** Sachs–Wolfe effect arises when potentials decay along the photon's later path, a signature of dark energy.",
+        "deep": "The full first-order result $\\Delta T/T = \\tfrac13\\Phi + \\mathbf{v}\\!\\cdot\\!\\hat n + \\int \\dot\\Phi\\,dt$ splits into the ordinary Sachs–Wolfe (potential at emission), a Doppler term, and the integrated Sachs–Wolfe (time-varying potentials); in matter domination $\\Phi$ is constant so the ISW vanishes, making a nonzero ISW at low $z$ a clean probe of $\\Omega_\\Lambda$."
+      },
+      "sources": [
+        "MIT OCW 8.286 The Early Universe",
+        "arXiv astro-ph (Sachs–Wolfe, ISW)",
+        "Wikipedia (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Sachs–Wolfe effect",
+          "url": "https://en.wikipedia.org/wiki/Sachs%E2%80%93Wolfe_effect"
+        },
+        {
+          "label": "Wikipedia — Integrated Sachs–Wolfe effect",
+          "url": "https://en.wikipedia.org/wiki/Sachs%E2%80%93Wolfe_effect#Integrated_Sachs%E2%80%93Wolfe_effect"
+        },
+        {
+          "label": "Wikipedia — Gravitational redshift",
+          "url": "https://en.wikipedia.org/wiki/Gravitational_redshift"
+        },
+        {
+          "label": "Wikipedia — CMB (large-scale anisotropy)",
+          "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background"
+        },
+        {
+          "label": "MIT OpenCourseWare 8.286 — The Early Universe",
+          "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+        }
+      ],
+      "art_prompt": "a photon climbing out of a gravitational potential well and reddening, mapped onto a large cold spot on a CMB sky, with the low-ell Sachs-Wolfe plateau shown",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Sachs–Wolfe effect relate the largest-scale CMB temperature fluctuations to?",
+          "answer": "The gravitational potential Φ at the surface of last scattering: ΔT/T ≈ Φ/3, so the big cold and hot spots trace where the deep and shallow potential regions were."
+        },
+        {
+          "level": "apply",
+          "prompt": "In pure matter domination the integrated Sachs–Wolfe effect vanishes. Why does its reappearance at low redshift signal dark energy?",
+          "answer": "The ISW comes from potentials changing along the photon path (∫Φ̇ dt); Φ is constant while matter dominates, so a nonzero ISW means potentials are decaying — which happens when dark energy takes over and accelerates expansion.",
+          "eq": "\\Delta T/T = \\tfrac13\\Phi + \\int \\dot\\Phi\\,dt"
+        }
+      ],
+      "lesson": "### Intuition\nLight leaving a deep gravity well loses energy climbing out, so it arrives cooler; light from a shallow region arrives warmer. On the biggest patches of sky, the CMB temperature map is basically a picture of where the deep and shallow gravitational regions sat when the universe turned transparent.\n\n### Precisely\nA photon emitted in a potential $\\Phi$ is **gravitationally redshifted** on the way out (colder) but comes from a region whose slower clocks show an earlier, hotter epoch (warmer). These partially cancel, leaving the **Sachs–Wolfe** relation on large scales,\n$$\\frac{\\Delta T}{T} = \\tfrac{1}{3}\\,\\Phi,$$\nwith $\\Phi$ the potential at last scattering.\n\n### Worked example\nThis effect controls the **low-multipole plateau** ($\\ell\\lesssim30$) of the CMB angular power spectrum — the nearly flat left end before the first acoustic peak. Because $\\Phi$ traces the primordial density field, that plateau is a direct image of the initial fluctuations laid down by inflation, on scales too big to have oscillated.\n\n### Why it's true / how it works\nThe full linear result is $\\Delta T/T = \\tfrac13\\Phi + \\mathbf v\\cdot\\hat n + \\int\\dot\\Phi\\,dt$: an emission-potential term, a Doppler term, and an **integrated** term from potentials that change as the photon travels. In matter domination $\\Phi$ is constant so the integrated part is zero.\n\n### Where it connects\nIt sets the largest-angle **cmb-anisotropies**, uses gravitational redshift in the **frw-metric**, and its integrated cousin — nonzero only when potentials decay — is an independent fingerprint of **dark-energy**.\n\n### Watch out\nThe factor $\\tfrac13$ is specific to the ordinary (large-scale, matter-era) Sachs–Wolfe effect; on smaller scales the Doppler and acoustic terms dominate and the simple relation no longer holds."
     }
   ]
 }
