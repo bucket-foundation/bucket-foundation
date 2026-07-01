@@ -78,7 +78,7 @@ Three rules govern the grading in the rest of this manual, and they cut hard for
 that risk). A hormone *level* that tracks aging (falling testosterone, IGF-1, a flattening cortisol
 rhythm) is usually a readout, not a dial to turn. The sharpest case is **IGF-1** (insulin-like growth
 factor 1 — the durable daily readout of growth-hormone signaling), whose level predicts mortality in a
-**U-shape** (both too-low and too-high carry higher risk) while the most robust longevity genetics point
+**U-shape** (both too-low and too-high carry higher risk) while the best-replicated longevity genetics point
 to *lower* signaling — so "boost your growth hormone" pushes the lever the wrong way (Domain L; Domains
 B/C).
 
@@ -380,8 +380,8 @@ The growth/anabolism the GH/IGF-1 axis drives is exactly what nutrient-sensing a
 
 @@FIG:B02-igf1-u-curve@@
 
-**The practical conclusion: deliberately raising GH/IGF-1 in a healthy adult runs *against* the best
-longevity genetics we have.** This reframes two heavily marketed practices as red flags:
+**Deliberately raising GH/IGF-1 in a healthy adult runs *against* the best longevity genetics we
+have.** This reframes two heavily marketed practices as red flags:
 
 - **Anti-aging HGH — the debunk.** Injectable recombinant human growth hormone is sold by anti-aging
   clinics on the back of one 1990 study (Rudman et al. 1990)[^rudman-gh] showing GH
@@ -425,8 +425,7 @@ the lesson:
 - **In common obesity, leptin therapy barely works.** People with ordinary obesity have **high** leptin
   already and are **leptin-resistant** — the brain stops "hearing" the full-stores signal. Giving more
   leptin to a leptin-resistant person produces only **modest, inconsistent** weight loss (Heymsfield et al.
-  1999)[^heymsfield-leptin]. The defect isn't *too little* leptin; it's the brain not
-  responding to plenty. (A close cousin of insulin resistance — both are **resistance to a "you have
+  1999)[^heymsfield-leptin]. The defect is in the brain, which stops responding to plenty of leptin. (A close cousin of insulin resistance — both are **resistance to a "you have
   enough" signal**, and both track adiposity.)
 
 **Why GLP-1 drugs *do* work (cross-ref §10).** The appetite drugs that reorganized medicine (semaglutide,
@@ -496,7 +495,7 @@ enough — because low vitamin D in observational data is substantially a **mark
 obesity, and inactivity (reverse causation), not their cause.
 
 **The practical take:** **correct documented deficiency** (a clear win, especially for bone in the elderly
-and the genuinely deficient); **don't mega-dose past repletion** chasing non-skeletal outcomes the RCTs
+and the deficient); **don't mega-dose past repletion** chasing non-skeletal outcomes the RCTs
 didn't deliver — and note that very high doses can *raise* fall/fracture risk. Detail and dosing are in the
 nutrition/supplements section (`03`); the endocrine framing is simply: **it's a hormone, treat it like one
 — replace a deficiency, don't optimize a sufficiency.**
@@ -615,5 +614,5 @@ HGH, DHEA, "adrenal fatigue" protocols) are precisely the ones the evidence does
 [^farooqi-leptin]: Farooqi IS et al. — *NEJM* 1999. doi:10.1056/NEJM199909163411204.
 [^heymsfield-leptin]: Heymsfield SB et al. — *JAMA* 1999. doi:10.1001/jama.282.16.1568.
 [^ferracioli-melatonin]: Ferracioli-Oda E et al. — *PLoS ONE* 2013. doi:10.1371/journal.pone.0063773.
-[^brzezinski-melatonin]: Brzezinski A et al. — *Sleep Medicine Reviews* 2004. doi:10.1016/j.smrv.2004.06.004.
+[^brzezinski-melatonin]: Brzezinski An et al. — *Sleep Medicine Reviews* 2004. doi:10.1016/j.smrv.2004.06.004.
 [^manson-vital]: Manson JE et al. (VITAL) — *NEJM* 2019. doi:10.1056/NEJMoa1809944.

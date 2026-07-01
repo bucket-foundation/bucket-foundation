@@ -25,8 +25,8 @@ Read this before anything else, because it repeats in every section below.
 2. **Spectacular model-organism results** — usually in mice, sometimes in a dish. Lifespan
    extended, vision restored, organs regrown. Also real, also reproducible.
 3. **A long, brutal, expensive translation gap** — where the great majority of these results
-   die. Mouse ≠ human; a tool that works by genetic ablation (deleting a gene in a lab animal)
-   is not a drug you can prescribe; and a *surrogate marker* — a lab number that is *supposed*
+   die. Mouse ≠ human, and a tool that works by genetic ablation (deleting a gene in a lab animal)
+   is not a drug you can prescribe. And a *surrogate marker* — a lab number that is *supposed*
    to track health — is not a *hard endpoint* like living longer or avoiding a heart attack.
    This is where Calico spent a decade and where Unity's lead senolytic failed its first human
    joint trial.
@@ -127,7 +127,7 @@ drug-screening tool*, which is unambiguous):
 - iPSC-derived cells are in **early human trials** for macular degeneration (the 2014 Takahashi
   retinal-sheet work in Japan), Parkinson's (dopaminergic neuron transplants), heart-muscle
   patches, and type-1 diabetes (e.g., Vertex's stem-cell-derived islet program, which has
-  restored insulin production in early patients — genuinely promising, still early).
+  restored insulin production in early patients — promising, still early).
 - The two real hazards are **(1) tumorigenicity** — any residual undifferentiated pluripotent
   cell can form a teratoma — and **(2) immune rejection / manufacturing consistency.** These are
   the reasons iPSC therapies have moved slowly and cautiously, which is the *correct* speed.
@@ -137,8 +137,6 @@ trials — and they are exactly the science the predatory clinics name-drop whil
 that has nothing to do with iPSCs at all.**
 
 ### 2.3 The predatory ("stem-cell clinics")
-
-This is the chapter's sharpest honesty point, and it deserves to be blunt.
 
 There is a large, profitable, and **largely unproven** industry of "stem-cell clinics" selling
 IV infusions and joint injections — usually of *autologous adipose ("fat") stromal cells*,
@@ -230,7 +228,7 @@ The triumph has a brutal asterisk: **price and access.**
   expensive drug in the world at launch (Hemgenix treats hemophilia B, 2022; Lenmeldy,
   metachromatic leukodystrophy, 2024).
 - The diseases they cure are mostly **rare**, so per-patient prices are astronomical, and the
-  manufacturing (per-patient cell engineering) is genuinely hard to scale.
+  manufacturing (per-patient cell engineering) is hard to scale.
 - The cruel geography: **sickle-cell disease overwhelmingly affects people in sub-Saharan Africa and
   the African diaspora** — populations least able to access a $2.2M therapy requiring myeloablative
   conditioning and a specialized center. A cure that the people who need it most cannot reach is a
@@ -414,7 +412,7 @@ clinical output so far is **thin**, precisely because the translation gap is rea
 - **The loud negative datapoints** (keep these visible against the hype):
   - **Calico** spent ~$2.5B and 10+ years with minimal public clinical translation — a caution about
     how hard "basic biology of aging → medicine" actually is.
-  - **Unity Biotechnology's UBX0101**, built on genuinely strong mouse p16-clearance senescence
+  - **Unity Biotechnology's UBX0101**, built on strong mouse p16-clearance senescence
     biology, **failed its first human knee-osteoarthritis trial** (2020). Clean mouse biology did not
     translate.
 - **What's actually in human trials** is mostly **repurposed drugs against surrogate endpoints**, not
@@ -450,7 +448,7 @@ The same pattern from §0, now visible across all six domains:
 
 Gene therapy is the proof the gap **can** be crossed — with hard endpoints, regulators, and decades
 of work — which is exactly why it stands apart from the rest of the table. Everywhere else, the
-honest verdict in 2026 is: **the biology is often genuinely revolutionary, the human evidence is
+honest verdict in 2026 is: **the biology is often revolutionary, the human evidence is
 much earlier than the marketing, and the space between the two is filled by people selling hope to
 the desperate.** The reader's only durable defense is the discipline this whole corpus is built on:
 **ask what stage of evidence a claim is actually at, and never let a Nobel Prize in one column vouch

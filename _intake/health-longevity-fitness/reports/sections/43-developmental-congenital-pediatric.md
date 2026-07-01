@@ -32,7 +32,7 @@ sickle cell in §31; diabetes in §22; childhood-cancer biology in §25._
 | Category | Representative conditions | The honest one-liner |
 |---|---|---|
 | **Chromosomal** | Down (trisomy 21), Turner (45,X), Klinefelter (47,XXY), Edwards (18), Patau (13) | Whole-chromosome dose errors; risk rises with maternal age (Down) but most occur in young mothers by sheer numbers; **not caused by anything the parents did** |
-| **Single-gene** | Cystic fibrosis, sickle cell (§31), Huntington, Duchenne muscular dystrophy, fragile X | One broken recipe, large effect — the genuinely "actionable" rare variants §18 points at; several now have transformative or emerging treatments |
+| **Single-gene** | Cystic fibrosis, sickle cell (§31), Huntington, Duchenne muscular dystrophy, fragile X | One broken recipe, large effect — the "actionable" rare variants §18 points at; several now have transformative or emerging treatments |
 | **Structural congenital** | Congenital heart defects, neural tube defects (spina bifida) | The commonest birth defects; CHD is now mostly survivable surgery; NTDs are substantially **folate-preventable** (§19) |
 | **Neurodevelopmental** | Autism spectrum, ADHD (§20), intellectual disability, learning disorders, cerebral palsy | Brain-wiring differences/injuries with strong (autism/ADHD) or perinatal (CP) origins; **no "cure," and the cure industry is dangerous** |
 | **Pediatric disease** | Childhood leukemia, asthma/allergy, type 1 diabetes (§22), failure to thrive, childhood obesity | Acquired or autoimmune; childhood ALL is one of medicine's great success stories; obesity is the growing crisis |
@@ -54,7 +54,7 @@ Three buckets, by *scale* of the genetic error (§18 A.1 has the full scaffoldin
   genes at once, so the phenotype is usually a recognizable *syndrome* (a cluster of features). Down syndrome
   is the canonical example.
 - **Single-gene (Mendelian)** — one gene broken. These are the **rare, large-effect variants** §18 calls the
-  genuinely actionable end of genetics. Inheritance follows patterns: **recessive** (both copies broken —
+  actionable end of genetics. Inheritance follows patterns: **recessive** (both copies broken —
   cystic fibrosis, sickle cell), **dominant** (one broken copy is enough — Huntington), **X-linked** (on the
   X chromosome, hitting boys harder — Duchenne, fragile X, hemophilia).
 - **Multifactorial / structural** — many small genetic contributions plus environment produce a structural
@@ -109,7 +109,7 @@ cell) the last decade turned a childhood death sentence into a managed or even c
     Phe508del Allele." *NEJM* 2019. doi:10.1056/NEJMoa1908639. Tier: rct.
 
 **The cross-cutting honest point.** These are exactly the **rare, large-effect** variants §18 flagged as the
-*genuinely* actionable end of genetics — the opposite of the polygenic "wellness SNP" hype. For several
+part of genetics actually worth acting on — the opposite of the polygenic "wellness SNP" hype. For several
 (CF, sickle cell), the last decade delivered treatments that change the *natural history of the disease*, which
 is why carrier and newborn screening matter: they convert an unchangeable cause into an actionable plan.
 
@@ -445,9 +445,9 @@ millions of children, plus retraction-for-fraud of the origin). It is as settled
     PMID 20137807. Tier: retraction-for-fraud.
 [^madsen-mmr]: Madsen KM et al., "A population-based study of MMR vaccination and autism." *NEJM* 2002.
     doi:10.1056/NEJMoa021134. PMID 12421889. Tier: cohort.
-[^hviid]: Hviid A et al., "MMR vaccination and autism: a nationwide cohort study." *Ann Intern Med* 2019.
+[^hviid]: Hviid An et al., "MMR vaccination and autism: a nationwide cohort study." *Ann Intern Med* 2019.
     doi:10.7326/M18-2101. PMID 30831578. Tier: cohort.
-[^jain]: Jain A et al., "Autism occurrence by MMR vaccine status among US children with older siblings with
+[^jain]: Jain An et al., "Autism occurrence by MMR vaccine status among US children with older siblings with
     and without autism." *JAMA* 2015. doi:10.1001/jama.2015.3077. PMID 25898051. Tier: cohort.
 [^taylor]: Taylor LE et al., "Vaccines are not associated with autism: an evidence-based meta-analysis."
     *Vaccine* 2014. doi:10.1016/j.vaccine.2014.04.085. PMID 24814559. Tier: meta (>1.2M children).
@@ -519,7 +519,7 @@ meta-principle stated first.
 
 **The meta-principle: ranges are wide, and trajectory matters more than any single date.** Healthy development
 spans a broad normal window (§19 §5 covers the *healthy* arc). Most children who are "late" on one milestone are
-fine. The signals that genuinely warrant a professional look are about **pattern**, not a missed birthday:
+fine. The signals that warrant a professional look are about **pattern**, not a missed birthday:
 
 - **Loss of skills** a child previously had (regression) — *always* worth prompt evaluation (language, social,
   motor).
@@ -546,7 +546,7 @@ benefit. `cohort`/guideline — early-intervention efficacy is well supported.
 | Category | What matters most | The honest grade |
 |---|---|---|
 | **Chromosomal (Down, Turner, Klinefelter)** | Not the parents' fault; *care* (not genetics) drives the transformed prognosis | `cohort`/review — strong; Down life expectancy ~25→~60 via care |
-| **Single-gene (CF, sickle, Huntington, DMD, fragile X)** | The genuinely "actionable" rare variants (§18); CF/sickle now have transformative Rx | `rct` for CFTR modulators/sickle gene therapy — strong; Huntington Rx still `null` |
+| **Single-gene (CF, sickle, Huntington, DMD, fragile X)** | The "actionable" rare variants (§18); CF/sickle now have transformative Rx | `rct` for CFTR modulators/sickle gene therapy — strong; Huntington Rx still `null` |
 | **Congenital structural (CHD, NTD)** | CHD mostly survivable surgery; NTD substantially **folate-preventable** | CHD `cohort`-strong survival; NTD prevention `rct` (folate) — strong |
 | **Newborn & prenatal screening** | Catch asymptomatic treatable disease early; **screen ≠ diagnosis**; non-directive counseling | `cohort`/public-health — among the strongest cost-effectiveness in medicine |
 | **Autism** | Strong genetics; rise is mostly **diagnosis not epidemic**; support, **no cure** | `cohort`/`mechanistic` — strong; the "cure" industry is refuted/dangerous (§5) |

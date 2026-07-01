@@ -4,8 +4,8 @@ The drugs in this section are the rare health interventions that come with proof
 trials in tens of thousands of people, measuring whether you actually avoid a heart attack or live longer, not
 whether a lab number moved. That is the line between this section and supplements (`03-nutrition-supplements.md`):
 supplements mostly trade in mechanism and surrogate markers; most drugs below have hard-endpoint trials behind
-them. It doesn't make any of them safe *for you*, and it doesn't make them longevity drugs — but it does mean the
-honesty rules cut differently here.
+them. None of that makes them safe *for you*, or makes them longevity drugs — but it does change how the
+honesty rules cut here.
 
 ## How the three honesty rules cut for drugs
 
@@ -91,7 +91,7 @@ trials enrolled sick people and showed they got less sick. That is the claim —
   and **gastroparesis/severe delayed gastric emptying** (relevant for anesthesia — tell your surgeon). Rodent
   C-cell tumors → **contraindicated in personal/family history of medullary thyroid carcinoma or MEN2.**
 - **The muscle-loss caveat (the real longevity catch):** roughly **25–40% of the weight lost on GLP-1s is lean
-  mass**, not fat — typical of any large rapid weight loss, but it matters enormously for longevity because
+  mass**, not fat — typical of any large rapid weight loss, but it matters for longevity because
   **muscle mass and strength are themselves protective against mortality and frailty** (see Domain E and the
   grip-strength/VO₂max (aerobic-capacity) data). Losing 20% of your body weight while losing a chunk of muscle can be a *net*
   metabolic win and still erode the reserve that protects you at 80. **Mitigation that should be standard, not
@@ -210,7 +210,7 @@ healthy older adults — and it is one of the most useful *negative* results in 
 
 Vaccination is rarely filed under "longevity," but for older adults it is one of the highest-leverage,
 best-evidence, lowest-cost interventions available — and a few vaccines now carry **signals beyond their target
-infection** that make them genuinely interesting for healthspan. The honest line: the **infection-prevention**
+infection** that make them interesting for healthspan. The honest line: the **infection-prevention**
 benefits are `rct`/strong; some of the **downstream** benefits (dementia, cardiovascular) are
 `cohort`/quasi-experimental and still firming up.
 
@@ -259,7 +259,7 @@ them as experimental for that purpose. (Mechanisms and the mouse data are detail
 - **Rapamycin.** The strongest single *mouse* lifespan drug (mTOR inhibition, Harrison 2009). In humans, the
   best data are **surrogate**: a rapalog improved elderly flu-vaccine response (Mannick 2014, `rct`). The
   community uses **intermittent low-dose** off-label, but the **optimal dose, schedule, and long-term safety for
-  healthspan are genuinely unknown**, and immunosuppression/metabolic side effects are real. Notably, the most
+  healthspan are unknown**, and immunosuppression/metabolic side effects are real. Notably, the most
   documented N-of-1 longevity experimenter (Bryan Johnson) **discontinued** rapamycin in ~2024 reporting no net
   benefit and side effects.[^bj-rapa] Mark it **experimental.**
 - **SGLT2 inhibitors** are the most interesting "real" entry here: unlike metformin-for-aging, they have

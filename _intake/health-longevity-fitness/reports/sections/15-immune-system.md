@@ -143,9 +143,9 @@ striking findings in the field. Controlling a chronic CMV infection appears to *
 the T-cell repertoire** — in some old CMV⁺ individuals, very large shares of CD8⁺ T cells are devoted to CMV —
 driving the accumulation of terminally-differentiated, exhausted cells (a phenomenon dubbed "memory inflation").
 CMV seropositivity is a core component of the proposed **"immune risk phenotype"** (an inverted CD4/CD8 ratio +
-CMV⁺ + poor T-cell proliferation) associated with mortality in longitudinal studies of the very old, and CMV
-seropositivity has been linked to inflammation and all-cause/CVD mortality at the population level (Simanek/Dowd/
-Pawelec 2011). **The honest grade:** this is a strong, biologically-coherent **association** — "is human
+CMV⁺ + poor T-cell proliferation) associated with mortality in longitudinal studies of the very old. At the
+population level, CMV seropositivity has also been linked to inflammation and all-cause/CVD mortality (Simanek/
+Dowd/Pawelec 2011). **The honest grade:** this is a strong, biologically-coherent **association** — "is human
 immunosenescence partly *infectious*?" (Pawelec 2005) is a serious hypothesis — but it is **not** a proven lever:
 there is no trial showing that suppressing CMV in healthy elders extends healthspan, and anti-CMV therapy has
 real toxicity. Index it as an important `cohort`/`mechanistic` driver, **not** an actionable intervention.
@@ -180,7 +180,7 @@ pleiotropy), not a design flaw.
 ### 3.2 The markers — hsCRP and IL-6 (predictor, not lever)
 
 **IL-6, hsCRP, and TNF-α predict frailty, disability, multimorbidity, and all-cause mortality** with some of the
-most robust, replicated `cohort` evidence in geroscience (Furman/Campisi/Verdin 2019, the canonical synthesis;
+strongest, most replicated `cohort` evidence in geroscience (Furman/Campisi/Verdin 2019, the canonical synthesis;
 the inflammation thread). IL-6 in particular is among the strongest single biomarkers of unhealthy aging.
 **But** — honesty rule #1, and this is the crux of the whole field — **these are predictors, not validated
 levers.** Lowering hsCRP with a supplement, a diet, or even a drug does **not** automatically extend healthspan.
@@ -205,8 +205,8 @@ viewed from two angles.
 
 ## 4. What actually modulates immunity — graded honestly
 
-Here is the part the reader actually wants, and here is where the honesty rules cut hardest. There are
-interventions that genuinely keep the immune system well-regulated — and they are, predictably, the **boring
+This is the part readers want, and where the honesty rules cut hardest. There are
+interventions that keep the immune system well-regulated — and they are, predictably, the **boring
 fundamentals.** Then there is a multi-billion-dollar industry selling the *fantasy* that you can pill your way to
 a "boosted" immune system. The evidence sorts them cleanly.
 
@@ -216,7 +216,7 @@ a "boosted" immune system. The evidence sorts them cleanly.
 |---|---|---|---|
 | **Sleep** | Sleep loss raises inflammatory tone and **impairs immune defense**; short/poor sleep predicts higher rates of the common cold (Prather 2015: <6h ≈ 4× the cold risk of ≥7h) and worse vaccine responses | `rct`/`cohort`/`mechanistic` (Besedovsky 2019) | Among the most reliable immune levers; cross-ref I |
 | **Exercise** | Regular moderate-to-vigorous activity lowers chronic inflammation (myokine signaling — cross-ref E), improves immunosurveillance, and counters immunosenescence ("exercise as immune maintenance"); but see the J-shape (§4.2) | `cohort`/`mechanistic` (Campbell & Turner 2018) | The cleanest *interventional* handle on inflammaging |
-| **Nutritional adequacy** | Deficiencies in protein, zinc, vitamin D, vitamin C, etc. genuinely impair immunity; **correcting a deficiency restores function** | `mechanistic`/`rct` (in deficiency) | The win is **adequacy**, not megadosing (§4.3) |
+| **Nutritional adequacy** | Deficiencies in protein, zinc, vitamin D, vitamin C, etc. Impair immunity; **correcting a deficiency restores function** | `mechanistic`/`rct` (in deficiency) | The win is **adequacy**, not megadosing (§4.3) |
 | **Not smoking** | Smoking is broadly immunosuppressive and pro-inflammatory; cessation improves immune function | `cohort`/strong | A pure subtraction win |
 | **Stress management** | Chronic psychological stress (cortisol/allostatic load) dysregulates immunity and raises inflammation | `mechanistic`/`cohort` (cross-ref I, M) | Real, harder to dose; the lever is chronicity |
 | **Vaccines** | The single most powerful tool to *direct* immunity toward real threats; see §6 and pharma §5 | `rct` (hard outcome) | Longevity medicine, not "boosting" |
@@ -231,7 +231,7 @@ movement, recovery, and *trained* (vaccinated) specificity. None of them "boost"
 The classic teaching (Nieman) was a **"J-shaped" curve**: moderate exercise *lowers* infection risk below
 sedentary, but **prolonged, very intense exertion** (think marathon, ultra-endurance) opens an **"open window"**
 of transient immunosuppression and raised upper-respiratory infection risk. The first half — moderate exercise
-is immune-protective — is solid. The second half is **genuinely contested**: Campbell & Turner (2018) argued the
+is immune-protective — is solid. The second half is **contested**: Campbell & Turner (2018) argued the
 post-exercise "immune suppression" is substantially a **misinterpretation** — immune cells *redistribute* to
 tissues (immunosurveillance) rather than being destroyed, and much of the reported infection signal in athletes
 may be non-infectious airway inflammation or symptom over-reporting. **Honest synthesis:** moderate regular
@@ -257,7 +257,7 @@ replete).
   simply excreted — "expensive urine"). Grade: **modest-to-null** for the general population.
 - **Zinc.** The best of a weak field. **Zinc lozenges started within ~24h of symptom onset may modestly shorten
   cold duration** (Hemilä 2011) — but the trials are heterogeneous, doses/formulations vary wildly, and lozenges
-  cause nausea/bad taste. Zinc is genuinely required for immunity and **correcting zinc deficiency** (common in
+  cause nausea/bad taste. Zinc is required for immunity and **correcting zinc deficiency** (common in
   elders, vegetarians) restores function (Read 2019) — but that is *treating deficiency*, not boosting. **Chronic
   high-dose zinc is harmful** (causes copper deficiency). Grade: **small, real, narrow** (deficiency correction +
   marginal lozenge effect), heavily oversold.
@@ -311,7 +311,7 @@ Two failure modes of *regulation* (not weakness) deserve a brief, honest map, be
 
 ## 6. Infection & longevity — the levers that actually exist
 
-Strip away the supplement noise and two genuinely high-leverage immune levers remain.
+Strip away the supplement noise and two high-leverage immune levers remain.
 
 ### 6.1 Vaccines as longevity medicine
 

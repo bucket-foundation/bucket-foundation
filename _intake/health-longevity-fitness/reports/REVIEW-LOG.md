@@ -12,6 +12,29 @@ Baseline before cycle 1: 689 pages, 50 chapters, ~265k words, 1007 graded claims
 
 <!-- next cycle goes here -->
 
+## Cycle 2 — Prose / narrative editor (full-book pass)
+**Read:** 9 parallel prose-editors line-read the post-Cycle-1 book → ~430 located findings.
+
+**Unanimous #1 finding:** the word **"genuinely" was the author's verbal tic — 148 uses** (Cycle 1's
+voice rule only caught touched sentences). Other patterns: "robust/robustly" as an AI evidence-word,
+filler "really/truly/actually", a handful of run-ons / mega-bullets / triple-nested parentheticals,
+and internal self-repeats (theses stated twice, cross-refs repeated 3×).
+
+**Applied:**
+- **Global sweep: all 148 "genuinely" removed** (script; then fixed the ~10 "a"→"an" and capitalization
+  artifacts the deletion left, book-wide).
+- **9 slice-apply agents** applied the located line-edits: ~120 edits total — "robust"→replicated/
+  consistent, killed filler intensifiers, split run-ons, deduped repeats, recast **incidental**
+  antithesis comma-splices as positive statements, fixed the ch.09 garbled "not smoking…" list and
+  the ch.23 malformed-bold bug.
+- **Protected the load-bearing motifs** (predictor ≠ lever survives 69×, mechanism ≠ outcome, regulate-
+  not-boost, healthspan-not-lifespan) and every flagged GOOD line.
+- **Judgment call:** a few marquee hooks used "not X, it is Y" antithesis (banned by house style), so
+  they were trimmed to clean positives — "Cancer is a process — the corruption of the cell's own
+  software"; "Being alive is a verb." Both still strong; the "not Y" tail can be restored if preferred.
+
+**Result:** verified — 0 literal footnote markers, 346 figures intact, 0 "genuinely". PDF re-rendered.
+
 ## Cycle 1 — Smart motivated layperson (full-book pass)
 **Read:** 9 parallel layperson readers across all 51 chapters → ~335 located findings.
 

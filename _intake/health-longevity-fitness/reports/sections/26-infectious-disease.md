@@ -2,7 +2,7 @@
 
 For nearly all of human history, infection was **the** killer — the thing that determined whether a child
 reached five and whether an adult survived a cut, a birth, or a winter. The single largest improvement in human
-lifespan ever recorded was not a drug or a diet; it was the conquest of infectious disease through sanitation,
+lifespan ever recorded came from the conquest of infectious disease through sanitation,
 clean water, vaccines, and antibiotics. This section maps the agents (what infects us), the revolution that tamed
 them (germ theory → the epidemiologic transition), the tools (antibiotics, vaccines) and their fragility
 (resistance, hesitancy), the diseases that still matter, and the honest framing that separates hygiene-that-works
@@ -58,8 +58,8 @@ cells *have no cell wall to attack*. This is the principle of **selective toxici
 bullet"), and it is also why **antibiotics are useless against viruses** (which have no wall, no ribosome, no
 metabolism — they use *yours*) and why **antifungals are harder and more toxic** (fungi are eukaryotes,
 biochemically much closer to us, so there are fewer targets that hit them without hitting us). Internalize this
-and two clinical truths follow automatically: (1) demanding antibiotics for a cold or flu is not just useless,
-it is actively harmful (§3.4); (2) prions, having no metabolism and no foreign target at all, remain untreatable.
+and two clinical truths follow automatically: (1) demanding antibiotics for a cold or flu is worse than useless —
+it's actively harmful (§3.4); (2) prions, having no metabolism and no foreign target at all, remain untreatable.
 
 ### 1.2 Prions — the exception that proves the rules
 
@@ -149,7 +149,7 @@ This is not hypothetical. The landmark **GRAM study** (Murray et al., *Lancet* 2
 2019, bacterial AMR was **directly responsible for ~1.27 million deaths and associated with ~4.95 million
 deaths** worldwide — already comparable to or exceeding HIV and malaria. The WHO ranks AMR among the **top global public
 health threats**, and the trajectory points toward a **"post-antibiotic era"** in which routine infections and
-minor surgeries again become dangerous. The pipeline is nearly dry: few genuinely novel antibiotic classes have
+minor surgeries again become dangerous. The pipeline is nearly dry: few novel antibiotic classes have
 reached the clinic in decades, because antibiotics are a poor commercial bet (a cheap drug taken for days, that
 society wants to *reserve* rather than sell). The named threats — **MRSA** (methicillin-resistant *Staph aureus*),
 **carbapenem-resistant Enterobacteriaceae (CRE)**, **drug-resistant TB (MDR/XDR-TB)**, **C. difficile** (an antibiotic-*caused*
@@ -195,8 +195,7 @@ vague "immune boosting" the supplement industry sells (cross-ref `15 §4.3`).
 ### 4.2 Herd immunity — why your vaccination protects other people
 
 When a high enough fraction of a population is immune, a pathogen **can't find enough susceptible hosts to
-sustain transmission**, and chains of infection fizzle — protecting the unvaccinated minority who genuinely
-*can't* be vaccinated (infants, the immunocompromised, the elderly with weak responses). The threshold scales
+sustain transmission**, and chains of infection fizzle — protecting the unvaccinated minority who *can't* be vaccinated (infants, the immunocompromised, the elderly with weak responses). The threshold scales
 with contagiousness: measles, one of the most transmissible diseases known, has an **R₀ ≈ 12–18** (R₀ = how many
 people one case infects in a fully susceptible population) and needs **~95% coverage**, which is exactly why
 falling measles vaccination rates produce outbreaks first. Herd immunity reframes
@@ -225,10 +224,9 @@ These are among the greatest achievements in human history, and they are concret
 
 Vaccines are among the **most studied and most safe** interventions in all of medicine, monitored continuously
 through systems like VAERS/VSD (national vaccine safety-monitoring databases) and post-marketing surveillance
-across hundreds of millions of doses. Honesty
-requires stating both halves:
+across hundreds of millions of doses.
 
-- **Real but rare adverse events exist and are not hidden.** Examples with genuine evidence: anaphylaxis (~1 per
+- **Real but rare adverse events exist and are not hidden.** Examples with solid evidence: anaphylaxis (~1 per
   million doses, which is why you wait 15 minutes); rare myocarditis after mRNA COVID vaccines in young males
   (real, usually mild and self-limited, and — crucially — **the same vaccine reduces the risk of myocarditis from
   COVID infection itself, which is higher**); narcolepsy linked to one specific 2009 H1N1 vaccine (Pandemrix) in
@@ -259,8 +257,8 @@ Lower-respiratory infections are collectively **among the top global causes of d
 | Infection | Agent | Honest notes |
 |---|---|---|
 | **Influenza ("flu")** | Influenza A/B virus | Kills hundreds of thousands yearly worldwide; dangerous mainly to the elderly, very young, pregnant, chronically ill. Annual vaccine because the virus **antigenically drifts**. Not "just a bad cold." |
-| **COVID-19** | SARS-CoV-2 | Caused the defining pandemic of the era (§6). Now endemic; severity much reduced by immunity (vaccine + infection) and antivirals (Paxlovid), but still a real risk to the old and immunocompromised. **Long COVID** is a genuine post-viral syndrome (cross-ref the post-viral discussion). |
-| **RSV** | Respiratory syncytial virus | A top cause of infant hospitalization and a serious threat to older adults; **new vaccines and monoclonal antibodies (2023+)** are a genuine advance. |
+| **COVID-19** | SARS-CoV-2 | Caused the defining pandemic of the era (§6). Now endemic; severity much reduced by immunity (vaccine + infection) and antivirals (Paxlovid), but still a real risk to the old and immunocompromised. **Long COVID** is a real post-viral syndrome (cross-ref the post-viral discussion). |
+| **RSV** | Respiratory syncytial virus | A top cause of infant hospitalization and a serious threat to older adults; **new vaccines and monoclonal antibodies (2023+)** are a real advance. |
 | **Pneumonia** | Bacterial (*Strep pneumoniae*) or viral | The classic cause of death in the frail elderly — "the old man's friend." **Pneumococcal vaccines** are high-leverage in older adults (cross-ref pharma §5). |
 
 The common thread: respiratory infection is **disproportionately lethal in immunosenescent older adults** (the
@@ -277,7 +275,7 @@ This is one of medicine's great recent success stories, and an honest map distin
 | Infection | Status now | The honest detail |
 |---|---|---|
 | **HIV** | **Manageable, not curable** | Modern antiretroviral therapy (ART) turns HIV into a chronic condition with **near-normal life expectancy**. **U=U: undetectable = untransmittable** — effective treatment makes someone non-infectious (treatment-as-prevention).[^hptn052] **PrEP** (pre-exposure prophylaxis) prevents acquisition. Still no cure, still a lifelong daily commitment, still ~40M people living with it. |
-| **Hepatitis C** | **Curable** | Direct-acting antivirals (DAAs, since ~2014) cure **>95%** in 8–12 weeks of pills — a genuine medical miracle that arrived quietly. The bottleneck is now diagnosis and access, not cure. |
+| **Hepatitis C** | **Curable** | Direct-acting antivirals (DAAs, since ~2014) cure **>95%** in 8–12 weeks of pills — a medical miracle that arrived quietly. The bottleneck is now diagnosis and access, not cure. |
 | **Hepatitis B** | **Preventable, suppressible** | A **vaccine prevents it** (and the liver cancer it causes — the first anti-cancer vaccine). Chronic infection is suppressed, not yet cured. |
 | **HPV** | **Preventable** | Ubiquitous; most clears on its own, but oncogenic strains cause **cervical, anal, oropharyngeal cancers**. The **vaccine prevents the cancer** (cross-ref clinical-prevention; Swedish cohort data show real cervical-cancer reduction). |
 | **Herpesviruses (HSV, VZV, EBV, CMV)** | Lifelong latency | Most people carry several. Mostly benign but consequential: **VZV** reactivates as shingles (vaccine-preventable, with a dementia-incidence signal — pharma §5); **CMV** is implicated in immune aging (`15 §2.4`); **EBV** is now strongly tied to multiple sclerosis. |
@@ -299,9 +297,9 @@ HIV co-infection. TB is the clearest reminder that the infectious-disease era is
 the immune system's overwhelming reaction, causing organ failure and shock. It is staggeringly common and
 under-recognized: a Global Burden of Disease analysis (Rudd et al., *Lancet* 2020)[^sepsis-gbd] estimated
 **~48.9 million cases and 11 million deaths in 2017 — roughly 1 in 5 deaths worldwide.** It can follow *any* infection
-(pneumonia, UTI, skin, abdominal), it is a medical emergency where **every hour to antibiotics matters**, and the
+(pneumonia, UTI, skin, abdominal). It's a medical emergency — **every hour to antibiotics matters** — and the
 public barely knows the word. Recognizing the warning signs (confusion, extreme illness/"I feel like I might
-die," fast breathing, mottled skin, not passing urine) and seeking emergency care is genuinely lifesaving.
+die," fast breathing, mottled skin, not passing urine) and seeking emergency care is lifesaving.
 Survivors face a **post-sepsis syndrome** of lasting physical and cognitive impairment.
 
 ### 5.5 The everyday and the vector-borne
@@ -331,15 +329,15 @@ section to the exposures/environment material (`09-exposures-environment.md`).
 
 COVID-19 is the defining infectious event of the era, and an honest manual neither minimizes nor mythologizes it.
 
-- **What clearly worked:** the **mRNA vaccines** were a genuine scientific triumph — designed in days, proven
+- **What clearly worked:** the **mRNA vaccines** were a scientific triumph — designed in days, proven
   ~95% effective against severe disease in a rigorous RCT (randomized controlled trial — the strongest evidence
   tier) (Polack et al., *NEJM* 2020),[^bnt-rct] and credited with
   preventing millions of deaths. Rapid genomic sequencing and global data-sharing were unprecedented.
-- **What was genuinely hard and contested:** the relative value of **lockdowns, school closures, and mask
+- **What was hard and contested:** the relative value of **lockdowns, school closures, and mask
   mandates** involved real trade-offs (education loss, mental health, economic harm) that were not always
   honestly weighed in real time; guidance sometimes **overstated certainty** and then reversed (on masks, on
   surface transmission, on transmission-blocking), which **eroded trust**. The lab-leak-vs-natural-origin
-  question remains genuinely unresolved. Pretending these were simple, settled calls is its own form of
+  question remains unresolved. Pretending these were simple, settled calls is its own form of
   dishonesty.
 - **The meta-lesson:** trust is a public-health resource, and it is spent by **overclaiming certainty**.
   Communicating honestly about uncertainty — "here is what we know, here is what we don't, here is why guidance
@@ -374,13 +372,13 @@ the commensals, target the pathogens."**
 
 ### 7.2 Hygiene that matters vs. hygiene theater
 
-| Genuinely high-value hygiene | Theater / overreach |
+| high-value hygiene | Theater / overreach |
 |---|---|
 | **Hand-washing with plain soap and water** at key moments (after toilet, before food, around the sick) — one of the highest-leverage health behaviors ever identified | **"Antibacterial" everything** — triclosan soaps, antibacterial-coated consumer goods: no proven benefit over plain soap, and they contribute to resistance (the FDA banned triclosan from consumer hand soap for exactly this reason) |
 | **Safe food handling** (cook temperatures, avoid cross-contamination, refrigeration) | **Compulsive surface sterilization** of low-risk household surfaces — most respiratory transmission is airborne, not fomite |
 | **Clean water and sanitation** (the megalever — §2.2) | **Hyper-sanitizing a child's entire environment** — plausibly *harms* immune education (`15 §5`, "old friends") |
 | **Vaccination on schedule** (the real "immune preparation") | **"Immune-boosting" supplements, cleanses, IV drips** to prevent infection — no credible evidence (`15 §4.3`) |
-| **Staying home when sick; ventilation; masks in genuinely high-risk settings** | **Demanding antibiotics for viral illness** (§3.4) |
+| **Staying home when sick; ventilation; masks in high-risk settings** | **Demanding antibiotics for viral illness** (§3.4) |
 
 > **The "boost vs. defend" bottom line:** you cannot supplement, cleanse, or sterilize your way to infection
 > resistance. The interventions that actually work against infection are **specific and either collective or
@@ -456,4 +454,4 @@ you can buy for yourself in a bottle.
 [^sepsis-gbd]: Rudd KE et al., *Lancet* 2020. doi:10.1016/S0140-6736(19)32989-7. ~48.9M sepsis cases / 11M deaths / ~1-in-5 of all global deaths, 2017. claim: sepsis-global-burden
 [^hptn052]: HPTN 052 — Cohen MS et al., *NEJM* 2011. doi:10.1056/NEJMoa1105243. Early ART cut HIV transmission ~96% (treatment-as-prevention / U=U evidence base); pair with START (doi:10.1056/NEJMoa1506816) and Partners PrEP (doi:10.1056/NEJMoa1108524). claim: hiv-tasp-uu (rct)
 [^bnt-rct]: Polack FP et al., *NEJM* 2020. doi:10.1056/NEJMoa2034577. BNT162b2 mRNA vaccine ~95% efficacy, pivotal RCT. claim: covid-mrna-efficacy (rct)
-[^mmr-autism]: Hviid A et al., *Ann Intern Med* 2019. doi:10.7326/M18-2101. Danish cohort >650,000 children, no MMR–autism link; decisive refutation of the retracted/fraudulent Wakefield claim. claim: mmr-autism-null
+[^mmr-autism]: Hviid An et al., *Ann Intern Med* 2019. doi:10.7326/M18-2101. Danish cohort >650,000 children, no MMR–autism link; decisive refutation of the retracted/fraudulent Wakefield claim. claim: mmr-autism-null

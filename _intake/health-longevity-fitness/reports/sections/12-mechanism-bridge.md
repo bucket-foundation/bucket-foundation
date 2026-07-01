@@ -147,7 +147,7 @@ HIIT drives strong biogenesis too.[^zone2-optimal])
 
 ### 12.3.2 — Resistance training → mechanotransduction → mTORC1 → protein synthesis `[mechanism: established]`
 
-Lifting is information, not just damage. Mechanical tension on a muscle fiber is sensed by
+Lifting carries information: the mechanical load is itself a signal the muscle reads. Mechanical tension on a muscle fiber is sensed by
 **mechanotransduction** machinery — integrins and focal-adhesion kinase at the cell membrane, titin
 strain within the sarcomere — and converted into a biochemical signal that, together with a rise in
 intracellular **leucine**, activates **mTORC1** at the lysosomal surface. Active mTORC1 phosphorylates
@@ -255,7 +255,7 @@ old free-radical theory. Hormetic plant compounds (sulforaphane is the cleanest 
 act not as direct radical scavengers but as mild electrophilic stressors — **xenohormesis.** They oxidize
 cysteine residues on Keap1, releasing **NRF2** to translocate to the nucleus and bind the
 **antioxidant-response element (ARE)**, inducing the cell's *own* phase-II and glutathione machinery. The
-defense is endogenous and adaptive — a hormetic up-regulation, not a chemical mop. That is robust
+defense is endogenous and adaptive — a hormetic up-regulation, not a chemical mop. That is well-established
 **mechanism**; the clinical longevity outcome is unproven, and the flagship "direct SIRT1 activator"
 resveratrol story collapsed (the in-vitro finding was a fluorophore artifact; human-null).[^resveratrol]
 
@@ -326,7 +326,7 @@ explicit**, also makes the laundering easier to catch. The worst offenders, name
    the redox signal adaptation requires, so they **blunt** exercise/cold benefit and RCTs run
    null/harmful.[^antiox] Here the popular practice contradicts its own mechanism.
 
-4. **Cold plunges.** Strong `[established]` mechanism (UCP1, norepinephrine), genuinely thin human
+4. **Cold plunges.** Strong `[established]` mechanism (UCP1, norepinephrine), thin human
    outcomes, and a **protocol mismatch** — the data are on prolonged mild cold, the marketing is on brief
    intense plunges.[^cold-plunge]
 
@@ -345,14 +345,14 @@ explicit**, also makes the laundering easier to catch. The worst offenders, name
 
 9. **The hormesis frame itself.** Useful and often `[established]` at the molecular level, but it becomes
    **unfalsifiable** when used to retro-explain *any* result ("it was hormetic"), and the beneficial-dose
-   *window* for cold and heat in humans is genuinely unknown.[^hormesis-frame] A frame that absorbs every
+   *window* for cold and heat in humans is unknown.[^hormesis-frame] A frame that absorbs every
    outcome predicts none.
 
 **The asymmetry to remember.** The chains where *both* mechanism and human hard outcome are established
 are a short list: **statins/apoB-lowering** (row 18), **GLP-1 agonists** (row 19), and — at the
 population level, observationally — **cardiorespiratory fitness** (row 1). Notice these are also the
 least hyped relative to their evidence. The inverse correlation between marketing volume and
-outcome-tier is not a coincidence; it is the signal. When a mechanism chain is beautiful and the product
+outcome-tier **is** the signal. When a mechanism chain is beautiful and the product
 is loud, **check the last rung** — the practice→signal→pathway→layer ladder can be flawless and the
 arrow into "outcome" still be dotted.
 

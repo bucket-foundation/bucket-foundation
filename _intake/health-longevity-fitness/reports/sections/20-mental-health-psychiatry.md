@@ -35,8 +35,8 @@ the table that follows carries the part the figure can't — **the honest caveat
 | **OCD** | Generic "talk therapy" doesn't work; it must be ERP. Real but partial response is the norm |
 | **PTSD** | EMDR works but the "eye movements" are likely inert; MDMA-therapy is promising-but-**not FDA-approved** (rejected 2024) |
 | **Bipolar disorder** | Under-prescribed; antidepressants alone can destabilize; it is a *spectrum*, often misdiagnosed as unipolar depression for years |
-| **Schizophrenia / psychosis** | Antipsychotics genuinely work for positive symptoms but carry serious **metabolic** harms; clozapine is best-and-underused |
-| **ADHD** | A real, heritable condition — *and* genuinely over- and under-diagnosed depending on the setting; adult self-diagnosis needs care (adult prevalence ~2.5–4%) |
+| **Schizophrenia / psychosis** | Antipsychotics work for positive symptoms but carry serious **metabolic** harms; clozapine is best-and-underused |
+| **ADHD** | A real, heritable condition — *and* over- and under-diagnosed depending on the setting; adult self-diagnosis needs care (adult prevalence ~2.5–4%) |
 | **Eating disorders** (anorexia, bulimia, BED) | **Anorexia has among the highest mortality of any psychiatric illness**; early intervention matters most |
 
 Prevalence figures are order-of-magnitude (they vary widely by country, diagnostic edition, and survey
@@ -67,7 +67,7 @@ and antidepressants top it back up* — **is not supported by the evidence.** Mo
 review (08 §5.3, 14 §3.2) found no consistent evidence that depression is caused by low serotonin. The
 honest reframing the field now holds (Section 14 §7): mood disorders are **distributed circuit
 dysfunction** — prefrontal-limbic networks, stress/HPA-axis and neuroplasticity changes, inflammation,
-genetics, and environment — **not a single low chemical.**
+genetics, and environment.
 
 Two things must be held at once, and the temptation is always to drop one of them:
 - The **marketing mechanism is false.** This matters morally, because a generation was told a story about
@@ -111,7 +111,7 @@ argue that the antidepressant-placebo difference falls below clinical significan
 severe depression, and that much of the apparent benefit is a **large placebo response** plus publication
 bias. The lasting contribution is **not** "antidepressants are fake" (Cipriani's later, larger, all-trials
 analysis still finds a real drug effect) — it is two permanent corrections: **(1)** the placebo response in
-depression is genuinely large, and **(2)** publication bias systematically inflated the published record
+depression is large, and **(2)** publication bias systematically inflated the published record
 until regulators forced trial registration. Both critiques were right and improved the field; the strong
 version ("they don't work") overshoots the data. `meta` — contested, severity-dependent.
 
@@ -126,7 +126,7 @@ trials of medication + therapy, the picture changes and the heavy tools earn the
   drugs), unfairly stigmatized by its history and its cinematic depiction; modern ECT is done under
   anaesthesia with muscle relaxant. Memory side effects are real and usually transient. `meta`/`rct`.
 - **Ketamine / esketamine** produces rapid (hours) antidepressant and anti-suicidal effects in treatment-
-  resistant depression — a genuine mechanistic departure (glutamatergic, not monoaminergic). Honest
+  resistant depression — a mechanistic departure (glutamatergic, not monoaminergic). Honest
   caveats: effects can be **transient**, the long-term safety and abuse-liability profile is still being
   worked out, and the field is awash in poorly-regulated for-profit ketamine clinics overselling it.
   `rct` — real, rapid, durability uncertain.
@@ -135,7 +135,7 @@ trials of medication + therapy, the picture changes and the heavy tools earn the
 
 Depression is real and serious; the serotonin story sold to explain it is false; therapy and medication
 both **modestly** beat placebo on average, with the benefit **concentrated in more severe illness**;
-exercise is a genuine and under-used lever; and for the severe end, ECT and ketamine are powerful tools
+exercise is an under-used lever; and for the severe end, ECT and ketamine are powerful tools
 the public badly misjudges. The defensible message is neither "just take the pill" nor "the pills are a
 scam" — it is **"treatment helps, more so the sicker you are, and the best plan is usually combined and
 includes the free levers."**
@@ -191,7 +191,7 @@ repetitive acts or mental rituals (compulsions) performed to neutralize them. Th
 Response Prevention (ERP)**, in which the person is exposed to the trigger and *prevented from performing
 the compulsion*, breaking the obsession→ritual→relief cycle. SSRIs help too, often at **higher doses and
 longer trials** than for depression. Even with best treatment, response is frequently **partial** — OCD is
-genuinely hard, and managing that expectation is part of treating it honestly. `meta`/`rct`.
+Hard, and managing that expectation is part of treating it honestly. `meta`/`rct`.
 
 ---
 
@@ -221,7 +221,7 @@ despite weaker evidence. Two facts make lithium exceptional:
   supports lithium-containing maintenance)[^balance].
 - **It uniquely reduces suicide.** **Cipriani et al., *BMJ* 2013**[^cipriani-2013] —
   a systematic review and meta-analysis — found lithium **reduces the risk of suicide and of all-cause
-  mortality** in people with mood disorders versus placebo. This is a rare and precious thing in
+  mortality** in people with mood disorders versus placebo. This is a rare and important thing in
   psychiatry: a treatment with a **direct anti-suicide signal**, an effect that appears partly
   *independent* of its mood-stabilizing action. `meta` of RCTs.
 
@@ -250,7 +250,7 @@ drive most of the long-term disability.
 
 The honest two-sided ledger, anchored by **Leucht et al., *Lancet* 2013**[^leucht], a multiple-treatments
 meta-analysis of **15 antipsychotics across 212 trials, ~43,000 patients**:
-- **They genuinely work** for positive symptoms and for relapse prevention — all 15 beat placebo, with
+- **They work** for positive symptoms and for relapse prevention — all 15 beat placebo, with
   meaningful effect sizes. For acute psychosis, antipsychotics are not optional folk medicine; they are
   effective and, often, life-stabilizing. `meta` of RCTs.
 - **The cost is real and metabolic.** The second-generation ("atypical") antipsychotics, especially
@@ -303,7 +303,7 @@ observational data, is associated with **reduced accidents, injuries, and other 
 
 ### 5.3 The honest nuance — over- and under-diagnosis, and adult ADHD
 
-ADHD is a real condition that is **also genuinely over-diagnosed in some settings and under-diagnosed in
+ADHD is a real condition that is **also over-diagnosed in some settings and under-diagnosed in
 others** — both at once, which is what makes the discourse so confused:
 - **Over-diagnosis** drivers: the youngest children in a school year are diagnosed more often than their
   older classmates (the "relative age effect" — normal immaturity read as pathology); diagnostic
@@ -315,7 +315,7 @@ others** — both at once, which is what makes the discourse so confused:
   under-treated — *but* the symptoms (distractibility, restlessness, difficulty focusing) are **non-
   specific** and overlap heavily with anxiety, depression, poor sleep, and simply living inside an
   attention-fragmenting media environment. A social-media-driven wave of self-diagnosis is real; some of
-  it is genuine recognition of a missed condition, and some of it is normal modern distraction relabeled.
+  it is real recognition of a missed condition, and some of it is normal modern distraction relabeled.
   The honest position: **take adult ADHD seriously, assess it properly (history of childhood onset,
   cross-setting impairment, rule out mimics), and resist both the dismissive and the credulous reflex.**
   `clinical`/`cohort`.
@@ -364,7 +364,7 @@ needs grading with particular care.
   strong: the MAPS/Lykos phase-3 program — **Mitchell et al., *Nature Medicine* 2021** (MAPP1)[^mitchell]
   and the confirmatory MAPP2 (*Nature Medicine* 2023) — reported large reductions in PTSD severity, with
   substantial fractions of participants **no longer meeting PTSD criteria** after a few MDMA-assisted
-  sessions, effects larger than typical drug trials. The FDA's concerns were real and methodological:
+  sessions. The effects were larger than typical drug trials. The FDA's concerns were real and methodological:
   **functional unblinding** (almost everyone knows whether they got MDMA, which inflates expectancy effects
   in a therapy-heavy trial), questions about trial conduct and data integrity, and unresolved
   abuse-liability and cardiovascular safety. So: **promising, plausibly transformative for a hard-to-treat
@@ -420,7 +420,7 @@ word is **"promising and unproven,"** not "psychedelics cure trauma."
 - **Bulimia and BED → CBT-E (enhanced cognitive behavioral therapy)**, developed by **Christopher
   Fairburn**, is first-line and effective. For **BED specifically**, the stimulant **lisdexamfetamine** is
   FDA-approved and reduces binge frequency. SSRIs (especially fluoxetine) help bulimia. `rct`/`meta`.
-- **Anorexia in adults** remains genuinely hard — no single treatment dominates, and relapse is common —
+- **Anorexia in adults** remains hard — no single treatment dominates, and relapse is common —
   which makes the one robust finding all the more important: **early intervention and weight restoration
   improve outcomes**, and delay worsens them. `clinical`.
 
@@ -436,7 +436,7 @@ This is the floor under everything above — cross-referenced rather than re-der
 already grades each lever in depth. The point here is that they **converge** on mental health, and that
 the wellness industry sells a **distorted** version of them.
 
-### 8.1 What genuinely helps (all cross-referenced)
+### 8.1 What helps (all cross-referenced)
 
 - **Exercise** — a real RCT-supported treatment for depression (Noetel *BMJ* 2024; 08 §5.2), and broadly
   protective against anxiety. The single most under-prescribed effective intervention. (Domain E, 08 §3.)
@@ -467,7 +467,7 @@ is its own kind of harm. But they are real, free, side-effect-light, and systema
   trials) but has **dangerous drug interactions** (it induces liver enzymes — it can wreck the levels of
   contraceptives, anticoagulants, antiretrovirals, transplant drugs) and is unregulated/variable in
   potency, so "natural = safe" is exactly wrong here; **vitamin D, magnesium, "GABA," 5-HTP** and most
-  others are mechanism-or-marketing for mood, with thin or null outcome evidence. Correcting a genuine
+  others are mechanism-or-marketing for mood, with thin or null outcome evidence. Correcting an actual
   *deficiency* (e.g. B12, vitamin D) is real medicine; supplementing the already-replete for mood is mostly
   not. (Cross-ref 14 §3: oral GABA barely crosses the blood-brain barrier.)
 - **"Dopamine detox" is mechanistically confused** (full debunk in 14 §3.1). You cannot "reset your
@@ -475,12 +475,12 @@ is its own kind of harm. But they are real, free, side-effect-light, and systema
   cessation** of compulsive inputs — real and useful, but it is behaviour change, not neurochemistry, and
   the "dopamine" framing is wrong.
 - **The wellness-industrial overclaim.** Breathwork, cold plunges, "vagus hacks," nervous-system "resets,"
-  manifestation, and the rest convey *some* real physiology (slow breathing genuinely raises vagal output —
+  manifestation, and the rest convey *some* real physiology (slow breathing raises vagal output —
   14 §2.4) wrapped in *outcome* claims ("cure your anxiety," "heal your nervous system") that **outrun the
   trials.** Grade the mechanism as possibly real and the marketed outcome as unproven. The tell is always
   the same: a `mechanistic` claim doing `outcome` work it hasn't earned (schema hard rule #1).
 
-The structural point across all of §8: **the genuinely effective mental-health levers are mostly free and
+The structural point across all of §8: **the effective mental-health levers are mostly free and
 unmonetizable** (exercise, sleep hygiene, connection, sunlight, treating real illness with real treatment),
 **while the marketed ones are mostly monetizable and mostly oversold.** That asymmetry — the same one that
 runs through 08 and 14 — is not a coincidence; it is the business model.
@@ -495,7 +495,7 @@ Suicide is the highest-stakes outcome in this entire section, so it gets its own
 
 - **Most people who think about suicide do not die by it, and suicidal states are usually transient and
   treatable.** Acute suicidal crises often pass within hours; surviving the crisis window is frequently
-  the whole game. This is the empirical basis for hope and for intervention.
+  the whole game.
 - **Asking about suicide does not plant the idea.** This is a persistent and dangerous myth. Direct,
   calm questions about suicidal thoughts **do not increase** suicidal ideation or behaviour — and they open
   the door to help. The Columbia Protocol (C-SSRS) and similar tools are built on this.
@@ -519,7 +519,7 @@ Suicide is the highest-stakes outcome in this entire section, so it gets its own
 
 ### 9.3 The honest limits
 
-Suicide is **genuinely hard to predict at the individual level** — risk-prediction tools perform poorly at
+Suicide is **hard to predict at the individual level** — risk-prediction tools perform poorly at
 identifying *which specific person* will act and *when*, even though they identify *populations* at higher
 risk. This is honesty rule #2 at its starkest: a real population-level signal that does not translate into
 reliable individual prediction. The implication is **not** fatalism — it is to lean on the interventions

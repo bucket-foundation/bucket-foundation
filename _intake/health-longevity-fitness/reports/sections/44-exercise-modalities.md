@@ -1,7 +1,7 @@
 # 44 — Exercise Modalities & Training Styles
 
 The best modality is the one you'll keep doing. The measured differences between sensible training styles are
-small next to the gap between doing one consistently and quitting the "optimal" one — the steepest drop in
+small next to the gap between doing one consistently and quitting the "optimal" one. The steepest drop in
 every mortality curve is the single step from sedentary to *something*.[^dose-response] So this chapter grades
 the tools honestly, then hands you back the only variable that decides whether any of it works over a lifetime:
 adherence.
@@ -48,8 +48,8 @@ the specific tools are chosen by fit, access, enjoyment, and joints — not by i
 | **COO** | Coordination / balance / skill | Postural control, motor learning, reactive stability; balance tests are validated mortality biomarkers |
 
 Each modality below is graded on **what it trains** (these tags), **real benefits**, **injury/risk profile**,
-**learning curve**, **equipment**, **who it's best for**, and an **honest evidence note**. The grades are the
-neutrality — nothing is dismissed for being unfashionable, nothing is inflated for being popular.
+**learning curve**, **equipment**, **who it's best for**, and an **honest evidence note**. The grading is where the
+neutrality lives — nothing is dismissed for being unfashionable, nothing is inflated for being popular.
 
 > **One honest framing to carry through:** almost every modality "works" for general health, because almost
 > any structured loading of the capacities beats sedentary living. The interesting question is never "does
@@ -103,7 +103,7 @@ implement, which is exactly why it is over-claimed.
 | **Trains** | **PWR** (the swing/clean/snatch are ballistic hip extension — explosive hinge), **CRF/conditioning** (high-rep ballistics drive heart rate hard), **STR** (get-ups, presses, front squats), **COO** (the get-up is a full-body coordination drill), grip. The rare tool that hits power *and* conditioning *and* grip in one movement. |
 | **Benefits** | The **swing** trains the explosive hip-hinge — the same pattern as a power clean but far lower-skill — making it one of the most accessible **power** developers for general trainees (power declines fastest with age — Section 04 §4.3, so this matters). High-rep work elevates cardio while loading the posterior chain. The **Turkish get-up** is a uniquely complete ground-to-stand stability and shoulder-integrity drill (cross-ref the balance/get-up theme in Section 02 §5). Compact, one or two bells cover a whole session. |
 | **Risk / injury** | **Moderate — and the caveat is real.** The swing is a *hinge done ballistically*; performed as a squat or, worse, as a back-rounded jerk-and-yank, it loads the lumbar spine repeatedly under speed. **Learn the hinge before you load it ballistically** (Section 02 §2.2). The get-up's overhead-loaded phases demand shoulder stability. Done with a coached hip-snap (the arms *float*, they don't lift), risk is low; done badly at high reps under fatigue, the lower back pays. |
-| **Learning curve** | **Moderate.** The swing's *concept* (hip drive, not arm raise) takes deliberate coaching; the get-up is genuinely complex and worth breaking into segments. |
+| **Learning curve** | **Moderate.** The swing's *concept* (hip drive, not arm raise) takes deliberate coaching; the get-up is complex and worth breaking into segments. |
 | **Equipment** | One or two kettlebells. Very low footprint, home-friendly. |
 | **Best for** | People who want power + conditioning + grip in minimal time and space; intermediate trainees; older adults (under supervision — see the honest evidence); anyone bored by slow grinding lifts who needs the dose to be *fun* (adherence, §11). |
 | **Honest evidence** | Better than the internet's skepticism implies, but modest-tier. The **BELL pragmatic controlled trial** (Meigh et al. 2022) put insufficiently-active 59–79-year-olds through 3 months of supervised hardstyle kettlebell training and saw **meaningful gains in grip strength (~+7 kg), 6-minute walk distance, sit-to-stand, 1RM deadlift, and lean mass, with only minor adverse events** — a clean signal that it's safe and effective for older adults *when coached*.[^bell-trial] Earlier work showed kettlebell training **transfers to strength, power, and aerobic capacity** (Lake & Lauder; Manocchia 2013) — though, predictably, dedicated heavy lifting builds maximal strength faster and dedicated running builds VO₂max faster.[^kb-transfer] **The honest read:** the kettlebell is an excellent *generalist* and *power/conditioning* tool, not a *specialist* — it does several things well and nothing best, which is precisely its value for time-poor general trainees. |
@@ -138,7 +138,7 @@ with a floor and a bar to hang from.
 | **Best for** | Beginners, travelers, home trainees, anyone without gym access, people who enjoy skill acquisition, and anyone who wants strength that travels. The honest **"you don't need a gym to get strong"** answer. |
 | **Honest evidence** | It's a strength-capacity modality — same evidence umbrella as the barbell (§2.1). The one genuine *limitation*: progressing **lower-body** strength past bodyweight is awkward (pistols and shrimp squats get hard to load further), and the pure **hinge** is under-served without external load — so a serious bodyweight trainee eventually wants a backpack, bands, or a kettlebell for the hinge/squat. For upper-body relative strength and overall function, bodyweight alone is sufficient for most people indefinitely. |
 
-> **The honest "no gym" claim, stated precisely:** you can build and maintain genuinely high strength and
+> **The honest "no gym" claim, stated precisely:** you can build and maintain high strength and
 > function with bodyweight + a pull-up bar + a way to load the hinge (a heavy backpack works). What you can't
 > easily do with pure bodyweight is keep adding *maximal lower-body load* the way a barbell allows — but for
 > the **longevity** strength dose (which plateaus early — Section 04 §5.3), that ceiling rarely matters.
@@ -161,8 +161,8 @@ magical:
   demand, no bailout skill, easy to isolate a healing muscle in a tolerated range, and you can train close to
   failure without a spotter. This is a genuine advantage, not a compromise — the leg press lets a deconditioned
   70-year-old load the quads hard with zero technical risk.
-- **Free weights win on stabilizer training, real-world carryover, and load ceiling** — they train *coordination
-  of force*, not just force.
+- **Free weights win on stabilizer training, real-world carryover, and load ceiling** — they train the
+  *coordination* of force, not force alone.
 - **The best answer for most people is "both"** — machines to safely accumulate volume and isolate, free weights
   for the patterns and the carryover.
 
@@ -279,7 +279,7 @@ demand. They overlap heavily and can be built from any of the modalities above.
 (form degrades under fatigue and time pressure — the recurring theme of all conditioning formats). **Learning
 curve:** low. **Best for:** time-poor general trainees who want a combined strength+cardio hit; group settings.
 **Honest note:** a fine, efficient general-fitness structure; you sacrifice some *maximal* strength/CRF
-development (you can't go truly heavy or truly maximal on intervals when alternating fatigued) for *breadth and
+development (you can't go heavy or maximal on intervals when alternating fatigued) for *breadth and
 time-efficiency*. A reasonable trade for general health, a poor one for maximizing one quality.
 
 ### 6.2 HIIT formats (Tabata, 30/15, etc.)
@@ -303,7 +303,7 @@ The most polarizing modality in fitness, and one that deserves an honest both-si
 | Field | Verdict |
 |---|---|
 | **Trains** | **Everything, broadly** — CRF, STR, PWR, COO, some MOB — by design ("constantly varied functional movements at high intensity"). Breadth is the explicit goal. |
-| **Honest pros** | **(1) Community/accountability** — the box/class model and social structure drive **adherence** better than almost any solo modality (and adherence is the whole game, §11). **(2) Intensity** — it reliably gets people genuinely hard-working, which many self-directed trainees never reach. **(3) Variety + measurement** — covers all capacities and scores workouts, which motivates. It produces broadly fit generalists and has gotten a huge number of sedentary people training hard. |
+| **Honest pros** | **(1) Community/accountability** — the box/class model and social structure drive **adherence** better than almost any solo modality (and adherence is the whole game, §11). **(2) Intensity** — it reliably gets people working hard, which many self-directed trainees never reach. **(3) Variety + measurement** — covers all capacities and scores workouts, which motivates. It produces broadly fit generalists and has gotten a huge number of sedentary people training hard. |
 | **Honest cons** | **(1) Form under fatigue** — the signature risk: high-skill movements (Olympic lifts, kipping pull-ups, high-rep barbell) performed **for time, to exhaustion**, is the exact recipe for technique breakdown and injury (Section 21 §7.2). **(2) The "Rx vs scale" culture** — "Rx" is the prescribed weight and reps as written, "scaling" is a lighter version — can push people to load/speed beyond their current rung (Section 02 §2 — climb ladders, don't skip them). **(3) Coaching quality varies wildly** box-to-box — the single biggest determinant of whether it's safe. |
 | **Injury evidence** | Honestly **middle-of-the-pack, not the bloodbath critics claim.** Systematic reviews put CrossFit injury rates at roughly **~0.2–3.3 injuries per 1000 training hours** (Klimek et al. 2018 / 2022 reviews) — **comparable to other recreational/strength sports** like running, gymnastics, or weightlifting, *not* dramatically higher.[^crossfit-injury] **Shoulders, spine, and knees** are the most-injured sites (the high-skill, overhead, and fatigued-barbell movements). Risk is **modifiable** by coaching quality, scaling appropriately, and not chasing the clock past your skill. |
 | **Best for** | People who thrive on community and competition, want broad fitness, and will scale honestly; those who *won't* train hard alone. **Not** for people who can't resist ego-loading, or who need careful individualization (a serious back/shoulder issue) without an attentive coach. |
@@ -428,7 +428,7 @@ across a very wide range; the exact number is not sacred.*
 | Field | Verdict |
 |---|---|
 | **Trains** | **CRF** + **STR-endurance** (load on the back recruits legs/trunk/postural muscles) + **bone** (weight-bearing under added load) — a strength-cardio hybrid at walking intensity |
-| **Benefits** | Adds a meaningful **load stimulus to the most adherable modality there is.** Carrying 10–20 kg in a pack turns an easy walk into a posterior-chain, trunk, and bone-loading session while keeping the low skill and low impact of walking. Scales trivially (add weight) and stacks onto existing walks/commutes/hikes. A genuinely efficient way to get strength-ish *and* cardio *and* bone loading from one low-skill activity. |
+| **Benefits** | Adds a meaningful **load stimulus to the most adherable modality there is.** Carrying 10–20 kg in a pack turns an easy walk into a posterior-chain, trunk, and bone-loading session while keeping the low skill and low impact of walking. Scales trivially (add weight) and stacks onto existing walks/commutes/hikes. An efficient way to get strength-ish *and* cardio *and* bone loading from one low-skill activity. |
 | **Risk / injury** | **Low — if loaded sensibly.** Too much weight too soon stresses the shoulders, lower back, knees, and feet (load management again — Section 21 §7.2). Start light, progress gradually, keep posture tall. |
 | **Learning curve** | **Very low** (it's walking with a pack). |
 | **Equipment** | A backpack + weight (books, plates, sandbags, or a purpose-built ruck plate). Near-free. |

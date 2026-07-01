@@ -1,6 +1,8 @@
 # 19 — Life Stages: Health Across the Whole Lifespan
 
-The arc you spend your adult life defending was partly drawn before you drew your first breath. Physiological capacity — VO₂max (your aerobic fitness ceiling), bone mass, muscle, kidney function — climbs to a peak in your 20s and 30s, plateaus, then declines for the rest of life. The peak you build is the asset you spend. The two ends of that arc — the womb and childhood on the way up, old age and dying on the way down — run by different rules than the defend-the-peak middle that almost all "longevity" advice addresses, and the single highest-leverage health decisions in a whole life live at those ends: maternal nutrition, childhood activity, deprescribing in elders, honest end-of-life planning. This section is the time axis the rest of the manual is missing. It walks the lifespan from conception to death and asks, at each stage, what actually matters, what the evidence says, and what is folklore.
+The arc you spend your adult life defending was partly drawn before you drew your first breath. Physiological capacity — VO₂max (your aerobic fitness ceiling), bone mass, muscle, kidney function — climbs to a peak in your 20s and 30s, plateaus, then declines for the rest of life. The peak you build is the asset you spend.
+
+The two ends of that arc — the womb and childhood on the way up, old age and dying on the way down — run by different rules than the defend-the-peak middle that almost all "longevity" advice addresses, and the single highest-leverage health decisions in a whole life live at those ends: maternal nutrition, childhood activity, deprescribing in elders, honest end-of-life planning. This section is the time axis the rest of the manual is missing. It walks the lifespan from conception to death and asks, at each stage, what actually matters, what the evidence says, and what is folklore.
 
 _Not medical advice. Pregnancy, fertility, paediatric, and end-of-life decisions are unusually consequential and personal; treat this as an index of the evidence to help you ask a clinician sharper questions, and note where a stage (fertility supplements, "detox for two," anti-aging hormones in elders) is sold hard on weak evidence — those are flagged in the text. Age-specific training lives in §04; menopause/andropause endocrinology in §13._
 
@@ -125,7 +127,7 @@ Pregnancy is the one stage where the manual's usual "lifestyle levers" act on **
 is unusually polluted with folklore. Here the honest line between **graded intervention** and **myth** is
 sharp, because — unlike DOHaD — many pregnancy questions *do* have RCTs.
 
-### 3.1 The micronutrients that are genuinely load-bearing
+### 3.1 The micronutrients that are load-bearing
 
 | Nutrient | What the evidence says | Grade |
 |---|---|---|
@@ -191,7 +193,7 @@ Fertility is a market drenched in hope, and therefore in overclaiming. The hones
   which quantified the age decline in both the *level* and the *duration* of the fertile window). The egg pool
   is **fixed at birth and non-renewing** — there is no training it back. This is one of the section's hardest
   "predictor that is also nearly destiny" facts. `cohort` — strong.
-- **Male fertility also declines with age — later and more gradually, but really.** Sperm count, motility, and
+- **Male fertility also declines with age — later and more gradually, but it does.** Sperm count, motility, and
   especially **DNA integrity** worsen with paternal age (large clinic series: DNA fragmentation rises with age,
   2020),[^paternal-dna] and advanced paternal age is associated with modestly higher rates of some offspring
   conditions. The "men can father children at any age" story is **half-true** — possible, but with rising
@@ -273,7 +275,7 @@ movement competence and an aerobic base built young are easier to *defend* than 
 ### 5.3 Sleep and screens — the modern adolescent problem
 
 Two facts collide in adolescence. First, **puberty shifts the circadian clock *later*** (a biological phase
-delay in melatonin onset — cross-ref §13 §9 and Domain I): teenagers are genuinely not sleepy at 10pm and not
+delay in melatonin onset — cross-ref §13 §9 and Domain I): teenagers are not sleepy at 10pm and not
 naturally awake at 6am — which is the strongest physiological argument for **later school start times.** Second,
 **screens make it worse.** A systematic review (Hale & Guan, 2015)[^hale-screen-sleep] found that **screen time
 is consistently associated with worse sleep** (later bedtimes, shorter duration) across children and

@@ -152,7 +152,7 @@ systemically — for fat loss, longevity, testosterone, whole-body "recovery," a
 
 **The evidence — the part that is REAL and narrow:**
 - **Skin / cosmetic:** controlled trials show red/NIR light improves skin complexion, intradermal collagen,
-  and reduces fine lines/wrinkles (e.g. Wunsch & Matuschka, 2014).[^wunsch] This is a genuine, replicated,
+  and reduces fine lines/wrinkles (e.g. Wunsch & Matuschka, 2014).[^wunsch] This is a replicated,
   narrow effect — and it is why dermatology uses it.
 - **Pain / musculoskeletal:** systematic reviews find low-level laser/PBM produces small short-term pain
   reductions in some conditions (e.g. fibromyalgia, *Pain Physician* 2019; some tendinopathy, neck pain) —
@@ -418,7 +418,7 @@ deliberately for focus is trading a real small effect for a real dependence.
 **The claim:** methylene blue is a mitochondrial "energy" enhancer, nootropic, and anti-aging agent (the
 blue-tongue biohacker staple).
 
-**The evidence:** methylene blue has a **genuine redox mechanism** — at low doses it acts as an alternative
+**The evidence:** methylene blue has a **redox mechanism** — at low doses it acts as an alternative
 electron carrier in the mitochondrial chain and has real pharmacology (it is an approved drug for
 methemoglobinemia and a surgical dye). There is **one** much-cited small human study (Rodriguez et al.) using
 fMRI that reported modest memory/attention and brain-metabolism effects at low dose. That makes the

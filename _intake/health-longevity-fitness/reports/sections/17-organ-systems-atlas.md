@@ -100,7 +100,7 @@ evidence for improving exercise capacity and quality of life (**McCarthy et al.,
 ### 1.4 The honest take on "lung training," breathing devices, and IMT
 
 This is where the supplement-aisle logic invades respiration. Claims that breathing gadgets "increase lung
-capacity" or "detox the lungs" are mostly marketing. The honest, evidence-graded picture:
+capacity" or "detox the lungs" are mostly marketing. The evidence-graded picture:
 
 - **Inspiratory muscle training (IMT)** — breathing against a resistance device — has *real but specific*
   effects. It strengthens the **inspiratory muscles** (a muscle-training effect, not a lung-tissue effect).
@@ -138,8 +138,8 @@ high-intensity stimulus).
 ### 2.1 Structure, function, and the "silent" problem
 
 The kidneys filter ~180 L of plasma per day across ~1 million nephrons each, regulating fluid, electrolytes,
-acid-base balance, blood pressure (via renin), red-cell production (via erythropoietin — note the link to the
-hematologic section), and vitamin D activation. The clinical summary number is **eGFR** (estimated glomerular
+acid-base balance, blood pressure (via renin), and red-cell production (via erythropoietin — note the link to the
+hematologic section). It also activates vitamin D. The clinical summary number is **eGFR** (estimated glomerular
 filtration rate). The defining feature for a longevity manual: **the kidney is silent.** You can lose half your
 nephrons and feel perfectly fine; symptoms appear only at advanced disease. This is why kidney protection is a
 **prevention game played on proxy numbers (eGFR, albuminuria, BP, glucose)**, never on symptoms.
@@ -194,7 +194,7 @@ myth talk an aging adult out of the protein they need to keep muscle.
 
 ### 2.6 NSAID caution
 
-Habitual **NSAID** use (ibuprofen, naproxen, diclofenac) is a genuinely modifiable renal risk. NSAIDs reduce
+Habitual **NSAID** use (ibuprofen, naproxen, diclofenac) is a modifiable renal risk. NSAIDs reduce
 prostaglandin-mediated renal blood flow and can cause **acute kidney injury** — especially with dehydration,
 older age, or concurrent ACE-inhibitor/diuretic ("triple whammy") — and chronic heavy use is associated with
 CKD progression (**Baker & Perazella, Am J Kidney Dis 2020**; **Klomjit &

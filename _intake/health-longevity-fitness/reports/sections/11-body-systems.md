@@ -31,7 +31,7 @@ a retinoid. Most of the rest of the shelf is moisturizer with a marketing budget
 ### 1.1 The core fact: photoaging is mostly sun damage, and it is largely preventable
 
 Up to ~80% of visible facial aging in fair-skinned populations is attributable to UV exposure (extrinsic
-"photoaging"), not the passage of time (intrinsic aging). This is the mechanistic basis for the entire section:
+"photoaging") rather than intrinsic aging. This is the mechanistic basis for the entire section:
 the dominant driver of how "old" skin looks is a **modifiable exposure**, which is why a *preventive* product
 (sunscreen) and a *remodeling* product (retinoid) carry the evidence, while passive moisturizers do not.
 
@@ -126,7 +126,7 @@ for diabetes, where the RCT evidence is real.
   is the **one place** in the oral-systemic story where the intervention has randomized, hard-ish-endpoint
   support. Underrated.[^simpson-cochrane]
 
-### 2.3 Periodontitis ↔ dementia (emerging causal, genuinely interesting)
+### 2.3 Periodontitis ↔ dementia (emerging causal, interesting)
 
 - **The bug-in-the-brain finding:** **Dominy 2019** — *Porphyromonas gingivalis* (a keystone periodontal
   pathogen) and its gingipain toxins were found in Alzheimer's brains, and gingipain inhibitors reduced
@@ -134,7 +134,7 @@ for diabetes, where the RCT evidence is real.
   human gingipain-inhibitor trial (COR388/atuzaginstat) **did not** meet its primary endpoint — so this remains
   an open, exciting, *unproven* causal lead, not a settled fact.[^dominy-pgingivalis]
 - **Cohort signal:** **Beydoun 2020** — clinical and bacterial markers of periodontitis (incl. *P. gingivalis*
-  antibodies) associated with incident dementia and Alzheimer mortality in a US national cohort. `cohort`.
+  antibodies) associated with incident dementia and Alzheimer mortality in an US national cohort. `cohort`.
   Consistent with the hypothesis; cannot establish causation.[^beydoun-dementia]
 - **Handoff:** the dementia endpoint is owned by the brain/cognition agent — this file flags the oral→brain link
   and keeps the *dental* action (treat your gums) here.
@@ -223,10 +223,10 @@ high-magnitude, high-rate loading by remodeling stronger. Walking and swimming d
     `meta` / outcome.[^wells-alendronate]
   - **Zoledronic acid (RCT):** **Black 2007** — the HORIZON trial: a once-yearly infusion cut vertebral
     fractures ~70% and hip fractures ~40% over 3 years. `rct` / outcome.[^black-horizon]
-  - **Honest framing:** bisphosphonates have **real, large fracture-prevention effects in genuinely high-risk
+  - **Honest framing:** bisphosphonates have **real, large fracture-prevention effects in high-risk
     people** (osteoporotic BMD, prior fragility fracture, high FRAX) and a worse risk/benefit in low-risk people
     (where rare harms like atypical femoral fractures and osteonecrosis of the jaw aren't outweighed). The drug
-    is a high-risk-population lever, decided by FRAX/DEXA, not a population supplement.
+    is a high-risk-population lever, decided by FRAX/DEXA.
 
 ### 3.5 Osteosarcopenia — bone and muscle fail together
 
@@ -329,7 +329,7 @@ the world independently.
 
 ### 6.1 Feet & mobility — the literal base of support
 
-Feet are the most-ignored part of the fall-prevention story. Foot pain, weak intrinsic foot muscles, reduced
+Feet are routinely left out of the fall-prevention story. Foot pain, weak intrinsic foot muscles, reduced
 ankle range, and poor proprioception all degrade balance and gait — and **gait speed and balance are
 top-tier mortality predictors** (grip, gait, chair-rise, and balance each independently predict mortality).
 `cohort`/`meta`.[^capability-mortality] The practical
@@ -349,7 +349,7 @@ function (§6.1), and is the muscle lever itself.
 
 ### 6.3 Pelvic floor (brief, both sexes)
 
-The pelvic floor is the most under-discussed muscle group in longevity writing, and dysfunction is common in
+The pelvic floor rarely gets a mention in longevity writing, and dysfunction is common in
 **both sexes** with age (incontinence, prolapse in women; post-prostatectomy and aging-related incontinence in
 men) — a major, fixable hit to quality of life and independence.
 
@@ -372,8 +372,8 @@ except periodontal treatment lowering HbA1c in diabetics, which is RCT-real. Bon
 **a mortality or dementia tail** (hip fracture = a death event; vision and hearing loss now sit on the Lancet
 dementia-risk list), which is exactly why these "unglamorous" systems belong in a longevity manual at all. And
 the honesty rules bite throughout: vitamin D only-in-deficiency, glaucoma screening unproven-but-don't-skip-exams,
-collagen modest-not-magic, flossing trials-are-bad-not-flossing-is-useless, and vision/hearing→dementia
-predictor-not-yet-proven-lever.
+collagen modest-not-magic. And the last two cut the same way: flossing's trials are bad, which is not the same as
+flossing being useless; and the vision/hearing→dementia link is a predictor not yet a proven lever.
 
 ---
 

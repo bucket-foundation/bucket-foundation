@@ -40,7 +40,9 @@ Reproduction is the one major organ system that comes in **two anatomically diff
 **common embryonic plan**. Until about week 7 of gestation every embryo has the same bipotential gonad and two
 duct systems (Wolffian and Müllerian). The presence of the **SRY** gene on the Y chromosome flips the gonad
 toward testis; testosterone and anti-Müllerian hormone then drive the male pattern, and their absence yields
-the female pattern by default. This shared origin is why the structures map onto each other (ovary↔testis,
+the female pattern by default.
+
+This shared origin is why the structures map onto each other (ovary↔testis,
 clitoris↔penis, labia↔scrotum) and why the **same hypothalamic-pituitary-gonadal (HPG) axis** runs both. The
 HPG axis is the hormone loop from brain to gonad — the hypothalamus signals the pituitary, which signals the
 ovary or testis to make sex hormones and gametes, with feedback closing the loop — and it is what starts
@@ -97,7 +99,7 @@ as cycle disturbance first).
 
 ### 2.2 Common gynecologic disorders
 
-This table is reference-grade — six conditions, each with its definition and honest treatment framing. Skim for
+Six conditions, each with a definition and an honest treatment framing. Skim for
 the one you need; the two that matter most for missed diagnoses are **endometriosis** (a ~7-year delay while
 pain gets normalized) and **PCOS** (a metabolic disorder as much as a reproductive one).
 
@@ -163,8 +165,7 @@ counter-intuitive, highest-yield fact in contraception. (2) **Condoms are medioc
 STI protection** — the case for them is dual-method use, not efficacy. (3) **Risk/benefit honesty on the pill:**
 the venous-thromboembolism risk is real but **small in absolute terms** (and lower than the VTE risk of
 pregnancy itself); combined pills meaningfully **reduce ovarian and endometrial cancer risk** (a benefit that
-persists for years) while modestly, transiently raising breast and cervical cancer detection — a genuinely
-mixed ledger that is usually reported one-sidedly. (4) IUDs do **not** cause infertility and are appropriate
+persists for years) while modestly, transiently raising breast and cervical cancer detection — a mixed ledger that is usually reported one-sidedly. (4) IUDs do **not** cause infertility and are appropriate
 first-line options for people who have never been pregnant — an outdated myth that still suppresses uptake.
 
 ---
@@ -203,7 +204,7 @@ multiple cycles — "one round and done" is the exception.
 
 ### 4.3 Egg and sperm freezing — honest
 
-**Oocyte (egg) freezing** via vitrification is genuinely better technology than the slow-freeze era, but the
+**Oocyte (egg) freezing** via vitrification is better technology than the slow-freeze era, but the
 honest framing is statistical: **age at freezing is everything**, and **more eggs = better odds**. Per-oocyte
 live-birth probability is only ~**6–7%** even from younger eggs, so meaningful insurance requires banking
 **many** eggs (often multiple retrieval cycles), and **freezing before ~35** materially beats freezing later
@@ -280,8 +281,7 @@ are the actual disease.
 @@FIG:A10-ed-cardiac@@
 
 **Female sexual dysfunction** (low desire, arousal/orgasm difficulty, pain disorders like dyspareunia/vaginismus)
-is **common, multifactorial (biological + psychological + relational + contextual), and genuinely
-under-researched and under-treated.** The honest treatment landscape: **psychological/relational and contextual
+is **common, multifactorial (biological + psychological + relational + contextual), and under-researched and under-treated.** The honest treatment landscape: **psychological/relational and contextual
 factors dominate** for most desire/arousal complaints; genitourinary syndrome of menopause responds well to
 **vaginal estrogen**; the **drugs marketed for "female low desire"** (flibanserin, bremelanotide) have **small
 average effects, meaningful side-effects, and a checkered approval history** — they are not a female Viagra, and
@@ -326,7 +326,7 @@ two main diseases present as **urinary** problems.
 
 **Testicular cancer** is the most common solid cancer in **young men (ages ~15–35)** and is **highly curable**,
 especially when caught early — which makes awareness of a **new, painless testicular lump** (the cardinal sign,
-warranting prompt evaluation) genuinely high-value. **Varicocele** (dilated scrotal veins) is a common,
+warranting prompt evaluation) high-value. **Varicocele** (dilated scrotal veins) is a common,
 sometimes correctable cause of male-factor infertility. **Cryptorchidism** (undescended testis) history raises
 both infertility and cancer risk. Routine population screening of asymptomatic men is **not** recommended;
 prompt evaluation of symptoms is.
@@ -354,8 +354,7 @@ the conditions:
   **urge** incontinence (overactive bladder) vs **mixed**. **Pelvic-floor muscle training (PFMT / "Kegels")** has
   **RCT/meta (Cochrane-grade)** evidence for stress and mixed incontinence in women **and** for speeding
   continence recovery **after prostatectomy** in men — but technique matters (many people contract the wrong
-  muscles; a pelvic-floor physiotherapist improves results materially). It is genuinely effective and genuinely
-  under-prescribed.
+  muscles; a pelvic-floor physiotherapist improves results materially). It is effective and under-prescribed.
 - **Pelvic organ prolapse** (women): descent of pelvic organs through a weakened floor (after childbirth, with
   aging/estrogen loss). Managed by PFMT (mild), **pessaries** (mechanical support, under-used), or surgery.
 - **Chronic pelvic pain / pelvic-floor dysfunction** (both sexes): includes **hypertonic** (too-tight) floors —
@@ -371,7 +370,7 @@ trades on hope, shame, and aging. The recurring pattern: a real biological fact 
 hormones, a self-cleaning organ) is wrapped around a product that does **nothing** for it.
 
 - **Most "fertility-boosting" supplements.** Beyond correcting an actual **deficiency** and the
-  **preconception folate** that genuinely prevents neural-tube defects, the large supplement market sold to
+  **preconception folate** that prevents neural-tube defects, the large supplement market sold to
   people trying to conceive (most "fertility blends," high-dose antioxidant stacks, "male fertility" packs) has
   **weak-to-absent live-birth evidence** — a Cochrane review of antioxidants for male subfertility found the
   evidence **low-quality and inconclusive** for live births. CoQ10, myo-inositol (in PCOS), and vitamin D
@@ -386,10 +385,10 @@ hormones, a self-cleaning organ) is wrapped around a product that does **nothing
   not need a product.**
 - **Testosterone-clinic overselling (cross-ref §13).** "Low-T" cash clinics sell TRT to men with normal or
   low-normal levels for fatigue/libido/aging — symptoms that **don't reliably track testosterone within the
-  normal range.** TRT genuinely helps **diagnosed hypogonadism**; for the worried-well it is over-prescribed,
+  normal range.** TRT helps **diagnosed hypogonadism**; for the worried-well it is over-prescribed,
   **suppresses the man's own production and fertility**, and the long-touted "anti-aging/vitality" outcome
   benefits are not established (the TRAVERSE trial, Lincoff 2023, NEJM, reassured on cardiovascular *safety* in
-  genuinely hypogonadal men with risk factors — it did **not** validate optimizing healthy men). **Verdict:
+  hypogonadal men with risk factors — it did **not** validate optimizing healthy men). **Verdict:
   medicine for deficiency; a marketing funnel for everyone else.**
 - **Most "hormone balancing" wellness claims.** "Balance your hormones" is a marketing phrase, not a
   physiological target — hormones are not a thing you "balance" with a tea, a seed-cycling protocol, or an adrenal
@@ -400,7 +399,7 @@ hormones, a self-cleaning organ) is wrapped around a product that does **nothing
   exactly why the vague-wellness version is both unnecessary and a distraction from getting the real thing
   diagnosed. **Verdict: a slogan covering a gap where real endocrinology belongs.**
 
-The throughline of the whole section: the genuinely high-value moves in reproductive and sexual health are
+The throughline of the whole section: the high-value moves in reproductive and sexual health are
 **unglamorous and mostly free or cheap** — STI and cervical screening, the HPV vaccine, LARC for those who want
 it, treating real conditions (endometriosis, PCOS, hypogonadism, incontinence) as the real conditions they are,
 and reading ED as a heart warning. The expensive, heavily marketed layer on top is where the evidence thins out.

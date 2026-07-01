@@ -1,6 +1,6 @@
 # 09 — Modifiable Exposures & Environment
 
-The highest-leverage longevity moves are not in a supplement bottle. They're not smoking, clean air, sane drinking, clean water, and sensible sun — the things you breathe, drink, smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get the least airtime because nobody monetizes "don't smoke" or "filter your air."
+The highest-leverage longevity moves are not in a supplement bottle. They're the unglamorous basics: not smoking, clean air, sane drinking, clean water, sensible sun — the things you breathe, drink, smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get the least airtime because nobody monetizes "don't smoke" or "filter your air."
 
 **The one-line verdict up front:** the exposures with the biggest, best-established mortality effects are, in
 order, **tobacco** (catastrophic, causal, ~10 years of life), **air pollution** (a top-10 *global* killer, causal
@@ -323,7 +323,7 @@ for 20 years:
 - **Vitamin D status** (a *predictor*, not a proven *lever* — supplementation didn't replicate the cohort benefit).
 - **Nitric oxide release** from skin on UVA exposure → modest blood-pressure lowering (mechanistic).
 - **Circadian / mood:** daytime bright-light exposure entrains the circadian clock and supports mood/sleep
-  (cross-link Domain I, sleep-circadian) — this is arguably the most robust non-skin benefit.
+  (cross-link Domain I, sleep-circadian) — this is arguably the most consistent non-skin benefit.
 
 ### 5.4 Practical synthesis (not dogmatic)
 
@@ -388,9 +388,9 @@ exposures dwarf most of what gets optimized in longevity culture.**[^stringhini-
    individual effect.
 8. **Microplastics** — emerging; do not overclaim; low-regret hygiene only.
 
-The unifying point: the highest-leverage longevity moves are not in a supplement bottle. They're **not smoking,
-clean air, sane drinking, clean water, and sensible sun.** None of them are sold to you, which is exactly why
-they're underweighted.
+The unifying point: the highest-leverage longevity moves are not in a supplement bottle. They're the
+unglamorous basics: **not smoking, clean air, sane drinking, clean water, and sensible sun.** None of them are
+sold to you, which is exactly why they're underweighted.
 
 ---
 
@@ -400,7 +400,7 @@ they're underweighted.
   mortality. Opposite framings; don't conflate.
 - **Domain D (metabolic-nutrition)** — vitamin D supplement RCTs (VITAL) were null, which bears directly on the
   sun-exposure mechanism debate (§5.2).
-- **Domain I (sleep-circadian)** — daytime bright-light exposure is the most robust non-skin benefit of sun.
+- **Domain I (sleep-circadian)** — daytime bright-light exposure is the best-established non-skin benefit of sun.
 - **Section 03 (nutrition-supplements)** — water filtration and "detox" claims; no validated detox for any of
   the persistent toxins here.
 
@@ -422,7 +422,7 @@ they're underweighted.
 5. **Lindqvist PG, Epstein E et al. (2016).** "Avoidance of sun exposure as a risk factor for major causes of
    death." *J Intern Med.* — The provocative MISS-cohort sun/mortality finding (read with its
    confounding caveats; see also Lindqvist 2014).
-6. **Gasparrini A et al. (2015).** "Mortality risk attributable to high and low ambient temperature: a multicountry
+6. **Gasparrini An et al. (2015).** "Mortality risk attributable to high and low ambient temperature: a multicountry
    observational study." *The Lancet.* — Cold >> heat at the population level
    (7.71% of deaths attributable to non-optimal temperature).
 7. **Lanphear BP et al. (2018).** "Low-level lead exposure and mortality in US adults." *Lancet Public Health.*

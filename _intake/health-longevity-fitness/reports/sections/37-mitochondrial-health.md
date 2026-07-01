@@ -30,12 +30,12 @@ level; making it at the organelle level buys three things the foundations summar
    countable, buildable piece of machinery: cristae membrane, electron-transport complexes, mtDNA copy
    number. You can stain it, count it, and watch it roughly double after twelve weeks of training
    (Holloszy 1967). The master variable has a histology.
-2. **A map of where the leverage actually is.** Mitochondrial *quantity* (biogenesis), *quality*
+2. **A map of where the practical power actually is.** Mitochondrial *quantity* (biogenesis), *quality*
    (mitophagy, dynamics), and *efficiency* (coupling, substrate flexibility) are three different dials
    with three different triggers. Most "mitochondrial" products conflate them; the practical section
    below separates them, because the lever that builds new mitochondria is not the lever that clears
    broken ones.
-3. **The sharpest hype-check in the corpus.** Because the chemiosmotic law is genuinely Nobel-tier
+3. **The sharpest hype-check in the corpus.** Because the chemiosmotic law is Nobel-tier
    bedrock (canon `05-biophysics`), it lends enormous credibility to anything with the word
    "mitochondrial" on the label. The thread (`thread-mitochondria.md`, "Where it's HYPE") flags this
    explicitly: CoQ10, PQQ, urolithin-A, NAD⁺ precursors all "ride this foundation's prestige far past
@@ -61,7 +61,7 @@ explains *why* they work, but the practical list stands on its own._
 
 ### 37.2.1 — Architecture: a cell within a cell
 
-A mitochondrion is **two membranes and two spaces**, and the geometry is functional, not incidental:
+A mitochondrion is **two membranes and two spaces**, and the geometry is functional:
 
 - **Outer membrane (OMM)** — smooth, porous (studded with VDAC porins), permeable to small molecules.
   It is the organelle's border with the cytosol and the platform on which the fission/fusion machinery
@@ -84,7 +84,7 @@ A mitochondrion is **two membranes and two spaces**, and the geometry is functio
   (§2.4), the mtDNA, mitochondrial ribosomes, and the machinery that makes the organelle's own
   handful of proteins.
 
-> **Why the structure matters for the levers.** "More mitochondria" is really *more cristae membrane
+> **Why the structure matters for the levers.** "More mitochondria" means *more cristae membrane
 > with more correctly assembled ETC complexes on it.* Biogenesis (§37.4) builds this; dynamics
 > (fusion/fission) remodels it; mitophagy removes the units whose membrane potential has collapsed.
 > Three different practical dials, one shared structure.
@@ -247,7 +247,7 @@ a disease of failed mitochondrial quality control. (There are PINK1/Parkin-indep
 routes too — BNIP3, NIX, FUNDC1 — so the picture is broader than one pathway.)
 
 > **Why this matters for the supplement section.** Mitophagy is the specific mechanism that **urolithin
-> A / Mitopure** is sold on (§37.8). Urolithin A is a genuine, replicated mitophagy *inducer* in cells
+> A / Mitopure** is sold on (§37.8). Urolithin An is a genuine, replicated mitophagy *inducer* in cells
 > and animals — the mechanism is real. The honest question is whether inducing it produces *outcomes*
 > in humans, and there the data are modest and surrogate-heavy. Hold the mechanism and the outcome
 > apart.
@@ -303,7 +303,7 @@ of evidence is specific:
 - **Antioxidants blunt the adaptation to exercise.** Supplemental vitamin C + E during training
   *reduces* the mitochondrial-biogenesis response — measurably lowering the PGC-1α/training benefit
   (Ristow 2009; Paulsen 2014). The ROS the training produces is *required* signaling, not just damage.
-- **Genetically boosting antioxidant defenses rarely extends lifespan** in mice in the way the theory
+- **Genetically strengthening antioxidant defenses rarely extends lifespan** in mice in the way the theory
   predicts (overexpressing most antioxidant enzymes does little; the few positives, like
   mitochondrially-targeted catalase, are modest and specific).
 
@@ -322,7 +322,7 @@ hormesis as "three facets of one redox-bioenergetics core" (`thread-mitochondria
 > **The practical inversion, stated bluntly.** The goal is **not** to minimize ROS. It is to keep the
 > *signaling crisp* (let exercise, cold, and fasting produce their transient bursts) and the *damage
 > repaired* (sleep, protein turnover, endogenous NRF2 defenses). High-dose direct antioxidant
-> supplements get this exactly backwards — they suppress the signal the adaptation needs. The robust
+> supplements get this exactly backwards — they suppress the signal the adaptation needs. The reliable
 > way to raise antioxidant capacity is to *induce* your own (NRF2 via exercise or sulforaphane), not to
 > *swallow* someone else's. This single idea reorganizes the entire supplement section below.
 
@@ -334,7 +334,7 @@ hormesis as "three facets of one redox-bioenergetics core" (`thread-mitochondria
 
 "**Mitochondrial dysfunction**" is one of the named **Hallmarks of Aging** (López-Otín
 2013/2023)[^mito-hallmark] — categorized as *antagonistic* (a stress response that turns harmful when
-chronic, the hormetic shape again). What declines with age, as a robust *phenomenon*: oxidative
+chronic, the hormetic shape again). What declines with age, as a consistent *phenomenon*: oxidative
 capacity per mitochondrion, membrane potential, biogenesis (PGC-1α signaling falls), mitophagy
 (clearance slows so damaged units accumulate), supercomplex organization, and NAD⁺
 availability.[^nad-decline] The network skews fragmented; cristae coarsen. **That mitochondrial function
@@ -357,8 +357,8 @@ naive damage story even as it leaves the question open:
   experimental mutation loads *cause* premature aging in mice (**solid, but not human-relevant doses**);
   somatic mtDNA mutation is a *cause* of normal human aging (**contested/open**).
 
-This is the cleanest example in the manual of a robust *phenomenon* (mitochondrial decline) whose
-*causal role* is genuinely unresolved — and the reason "fix your mitochondria to reverse aging" is a
+This is the cleanest example in the manual of a well-established *phenomenon* (mitochondrial decline) whose
+*causal role* is unresolved — and the reason "fix your mitochondria to reverse aging" is a
 mechanism dressed as a proven outcome. The thread's open questions (`thread-mitochondria.md`) name it:
 *is mitochondrial dysfunction a driver hallmark or a downstream readout of other damage?* Unresolved.
 
@@ -436,7 +436,7 @@ graded on the *outcome* axis.
 |---|---|---|---|---|
 | **CoQ10 / ubiquinol** | ETC electron carrier (Cx I/II→III); antioxidant | **Q-SYMBIO** (Mortensen, *JACC HF* 2014): 300 mg/d ↓MACE (major adverse cardiovascular events) & all-cause mortality in moderate-severe HF (HR ~0.5, i.e. roughly halved) | **`rct`** (in HF) | **Real — but only in a deficiency/disease context.** Genuine in **heart failure** and primary CoQ10 deficiency. In healthy people: **no demonstrated benefit.** Statin-myalgia trials mostly **null**. |
 | **PQQ (pyrroloquinoline quinone)** | Claimed PGC-1α/biogenesis activation; redox cofactor | Small trials: cognition (Itoh 2016; 2023), mito biomarkers, modest aerobic markers in untrained men (2020) | **`mechanistic`/small `rct`** | **Weak.** Tiny, often industry-funded, surrogate endpoints, inconsistent. "Biogenesis activator" is mostly preclinical. Not established. |
-| **Urolithin A / Mitopure** | **Mitophagy induction** (§37.4.2) | Andreux 2019 (safe, molecular signature); Singh 2022 *JAMA Netw Open* (older adults, muscle endurance/mito gene-expression); Liu 2022 *Cell Rep Med* (middle-aged, ~+12% strength); Nat Aging 2025 (immune markers) | **`rct`** (surrogate-heavy, modest) | **The best-evidenced "mitophagy supplement" — and still modest.** Mechanism genuinely real & replicated. Human RCTs show **small, mostly-surrogate** effects (muscle endurance, mito gene expression, some strength); **no hard endpoints**, all Amazentis-funded, primary endpoints sometimes missed. Promising; not a proven outcome. |
+| **Urolithin A / Mitopure** | **Mitophagy induction** (§37.4.2) | Andreux 2019 (safe, molecular signature); Singh 2022 *JAMA Netw Open* (older adults, muscle endurance/mito gene-expression); Liu 2022 *Cell Rep Med* (middle-aged, ~+12% strength); Nat Aging 2025 (immune markers) | **`rct`** (surrogate-heavy, modest) | **The best-evidenced "mitophagy supplement" — and still modest.** Mechanism real & replicated. Human RCTs show **small, mostly-surrogate** effects (muscle endurance, mito gene expression, some strength); **no hard endpoints**, all Amazentis-funded, primary endpoints sometimes missed. Promising; not a proven outcome. |
 | **MitoQ (mitoquinol)** | Mito-targeted antioxidant (CoQ + TPP⁺ cation, concentrates in matrix) | Rossman 2018 (*Hypertension*): ↑brachial FMD ~42% in older adults; exercise trials **mixed** (peak power yes, mito content no) | **small `rct`** (mixed, surrogate) | **Mixed.** Clever delivery, real endothelial-function signal in one setting; exercise/redox outcomes inconsistent. As an *antioxidant* it carries the §37.5 blunting risk. Unproven for general use. |
 | **NAD⁺ precursors (NR / NMN)** | Sirtuin substrate + ETC redox cofactor | Raise blood NAD⁺ ~60%; **no powered human hard endpoint** | **`partial`** (surrogate only) | **Mechanism real, outcome absent.** Cross-ref `thread-nad-redox.md`, `12-mechanism-bridge` row 24 — "the foundation most aggressively laundered into an unproven outcome." |
 | **Creatine** | **Phosphocreatine ATP buffer** (creatine kinase) | Meta-analyses: ↑strength/power w/ training; cognition under stress `partial` | **`meta`** | **Real.** One of the few where mechanism *and* outcome both hold. Not "mitochondrial biogenesis" — it's instantaneous ATP rebuffering (§energy layer, `12-mechanism-bridge` §12.3.11). |
@@ -447,20 +447,19 @@ graded on the *outcome* axis.
 ### The honest detail
 
 **CoQ10 / ubiquinol — real, but context-specific.** This is the supplement with the strongest *outcome*
-evidence on this list, and it is important to grade it precisely so the verdict isn't over-generalized.
+evidence on this list, and grade it precisely so the verdict isn't over-generalized.
 The **Q-SYMBIO** trial (Mortensen et al., *JACC: Heart Failure* 2014;[^qsymbio-pmid] n≈420, NYHA III–IV
 heart failure, CoQ10 300 mg/d for 2 years) found a **roughly halved rate of major adverse cardiovascular
-events and all-cause mortality** — a genuine, randomized, hard-endpoint benefit. CoQ10 is also genuinely
-therapeutic in **primary CoQ10 (ubiquinone) deficiency** and statin-induced CoQ10 depletion is real
+events and all-cause mortality** — a genuine, randomized, hard-endpoint benefit. CoQ10 is also therapeutic in **primary CoQ10 (ubiquinone) deficiency** and statin-induced CoQ10 depletion is real
 biochemistry. **But** the leap from "works in advanced heart failure" to "everyone should take it for
 their mitochondria" is unsupported: in healthy people there is no demonstrated benefit, and the
 statin-**myalgia** RCTs (the most common reason people buy it) are **mostly null**. Verdict: real drug
 for a real indication; not a general longevity supplement.
 
-**Urolithin A / Mitopure — the most interesting honest case.** Urolithin A is a gut-microbiome
+**Urolithin A / Mitopure — the most interesting honest case.** Urolithin An is a gut-microbiome
 metabolite of ellagitannins (pomegranate, walnuts, berries) — and crucially, only ~40% of people carry
 the microbiome to make it, which is the commercial rationale for supplementing the metabolite directly.
-Its mechanism — **induction of mitophagy** — is genuinely real and replicated in worms, mice, and human
+Its mechanism — **induction of mitophagy** — is real and replicated in worms, mice, and human
 cells (the Amazentis/Auwerx-lab program). The human RCTs are the honest part:
 - **Andreux 2019** (*Nature Metabolism*, first-in-human): safe, and induced a *molecular signature* of
   improved mitochondrial gene expression — but a biomarker signature, not a functional outcome.
@@ -478,7 +477,7 @@ outcome; the marketing ("the mitophagy supplement") outruns the trials.
 
 **MitoQ — clever, mixed.** Developed by **Michael P. Murphy** (MRC Mitochondrial Biology Unit) and Robin
 Smith: CoQ conjugated to a lipophilic **triphenylphosphonium (TPP⁺)** cation so it accumulates
-hundreds-fold inside the negatively-charged matrix — a genuinely elegant targeting trick. Rossman 2018
+hundreds-fold inside the negatively-charged matrix — an elegant targeting trick. Rossman 2018
 (*Hypertension*) showed a real improvement in endothelial function (FMD) in older adults; exercise and
 redox trials are **inconsistent** (some peak-power benefit, no change in mitochondrial content or muscle
 redox). And as a *targeted antioxidant* it sits squarely in the §37.5 dilemma: suppressing matrix ROS
@@ -498,7 +497,7 @@ supplements where outcome matches mechanism); **NAD⁺ precursors move the surro
 healthy people.
 
 > **The category verdict.** Across the whole list, **exactly one** has a positive hard-endpoint RCT
-> (CoQ10, and only in heart failure), and **exactly one** is a genuinely-real-for-its-mechanism
+> (CoQ10, and only in heart failure), and **exactly one** is a real-for-its-mechanism
 > everyday supplement (creatine, which isn't even a biogenesis agent). Everything explicitly sold as a
 > "mitochondrial booster" — PQQ, urolithin A, MitoQ, NAD⁺ precursors — sits between *modest surrogate*
 > and *unproven*. The thread called it (`thread-mitochondria.md`): these supplements "ride this

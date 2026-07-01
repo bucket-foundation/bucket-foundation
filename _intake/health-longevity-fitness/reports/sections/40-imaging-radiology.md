@@ -14,8 +14,7 @@ chapter covers the **modalities themselves** — the physics each one runs on, w
 what it costs in radiation and dollars — and the **honest grading** of when an image changes an outcome
 versus when it manufactures a problem.
 
-_Not medical advice. Screening with mortality endpoints (mammography, lung LDCT, the whole-body-MRI /
-Galleri debunk) lives in §07; cancer staging and PET depth in §25._
+_Not medical advice._
 
 ---
 
@@ -148,7 +147,7 @@ honest problem is not the single scan; it is **scale and repetition**.
 
 **The bottom line first:** one CT scan will almost certainly not hurt you. But the ~93 million CT scans
 Americans get each year *will* cause cancers at the population level — and the evidence for that is now
-solid. The detail below is dense because the numbers are the substance; here is what they add up to.
+solid. The numbers below are the substance; here's the sum.
 
 Radiation protection runs on the **linear no-threshold (LNT) model**: the assumption that cancer risk
 rises *linearly* with dose with *no safe threshold*, so even tiny doses carry a tiny proportional risk.
@@ -272,10 +271,10 @@ like* but what it is *doing*. PET (§40.2) is the established example; the growi
   restricts water diffusion) and is central to the thrombectomy decision (§40.6).
 - **PET tracers beyond FDG** — amyloid- and tau-PET for Alzheimer's pathology (a *biomarker*, graded
   carefully against clinical dementia — predictor, not destiny; cross-ref `24-disease-neuro-rheum.md`),
-  PSMA-PET for prostate cancer (a genuine staging advance).
+  PSMA-PET for prostate cancer (a staging advance).
 - **Theranostics** — the same molecule that *images* a tumour (a labelled ligand) delivers *therapy*
   when swapped to a therapeutic isotope (e.g., Lu-177 PSMA for prostate cancer). Imaging and treatment
-  become one act — a real, RCT-supported advance (`rct`-tier in specific settings).
+  become one act — an RCT-supported advance (`rct`-tier in specific settings).
 
 The honesty rule for functional imaging is the same as for everything else: a **biomarker image is a
 predictor**, and the gap between "the scan lit up" and "the patient is better off knowing" must be

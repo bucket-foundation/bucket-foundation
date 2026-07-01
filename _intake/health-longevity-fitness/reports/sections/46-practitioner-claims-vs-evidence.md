@@ -56,8 +56,8 @@ already-graded claim or conflict. It is triage, not adjudication.
 ## The Calibration Spectrum (the headline finding)
 
 The single most useful output of the six waves is a **ranking** — from the voices whose public claims
-track the corpus most tightly to the ones whose slogans most outrun it. The pattern is clean and it is the
-headline of this chapter: **calibration, not direction, is what separates the field.** Almost nobody in the
+track the corpus most tightly to the ones whose slogans most outrun it. The pattern is clean, and it's this
+chapter's headline: **what separates the field is calibration.** Almost nobody in the
 sample says things the corpus flatly refutes on the *boring core* (fitness, strength, sleep, movement).
 They diverge on the *optimization margin* and the *commercial frontier* — and there, the spread is enormous.
 
@@ -75,7 +75,7 @@ Counts below are per the six raw files (some claims carry split verdicts; counte
 | 6 | **Andrew Huberman** (Huberman) | 6 | 11 | 0 | Mechanism-right, effect-overstated — the laundering archetype. Contradicts the corpus almost nowhere (0/22), miscalibrates it constantly (~11/22). |
 | 7 | **Movement/breath cluster** — Starrett, McGill, Pavel, Ido, McKeown | 9 | 9 | 3 | Boring core (move more, train strength, breathe nasally) is gold; the *branded* layer (slogans, proprietary scores, "fascia release," posture-causes-pain) skis out over the evidence. |
 | 8 | **Lustig / Bikman** (metabolic) | low | high | several | Real mechanism (fructose→NAFLD; insulin resistance is a genuine marker) inflated into monocausal "it's all insulin / sugar is a toxin" laws. |
-| 9 | **Wim Hof** (movement/breath) | — | high | 1 (safety) | One striking endotoxemia RCT, bundled and small; the metabolic/longevity sell rides on the wrong cold dose; ⚠️ genuinely dangerous in/near water. |
+| 9 | **Wim Hof** (movement/breath) | — | high | 1 (safety) | One striking endotoxemia RCT, bundled and small; the metabolic/longevity sell rides on the wrong cold dose; ⚠️ dangerous in/near water. |
 | 10 | **Casey Means** (metabolic) | 2 | high | yes | A real personalization signal (glycemic response is individual) and a useful tool for dysglycemia, oversold as universal optimization for the healthy. |
 | 11 | **Bryan Johnson** (metabolic/N=1) | 1 | high | 1 | One honest data point (he discontinued rapamycin) wrapped in unfalsifiable N=1 (single-person) marketing graded against unvalidated clocks. |
 | 12 | **Gary Taubes** (metabolic) | 0 | some | many | The strong-form carbohydrate-insulin model — contradicted by isocaloric controlled-feeding data; the surviving kernel is about appetite, not thermodynamics. |
@@ -88,8 +88,8 @@ CONTRADICTS ~11, NOT-YET-IN-CORPUS ~21.
 
 The shape is the story. **Flat contradictions are rare (~8%)** — and they concentrate almost entirely in
 two clusters (metabolic/N=1 and Sinclair). **Overstatement is as common as agreement (~37% each)** — the
-modal failure across the entire sample is not lying, it is *rounding up*: taking something real and
-narrating it one tier more confident than it has earned. And **~15% of claims point at genuine gaps** the
+modal failure across the entire sample is *rounding up* — taking something real and
+narrating it one tier more confident than it has earned. Almost nobody is lying. And **~15% of claims point at genuine gaps** the
 corpus should fill — the practitioners are net-additive even where they're miscalibrated.
 
 ## The two universal failure modes
@@ -155,7 +155,7 @@ Sinclair line, and the branded movement layer.
 | 5 | Low-carb/keto is *uniquely* superior for weight loss | Taubes | matched-protein/calorie diet trials (DIETFITS-class) show parity[^hc-keto] |
 | 6 | N=1 Blueprint results generalize; others should adopt the protocol | Johnson | a protocol is not evidence; one person's results don't generalize[^hc-n1] |
 | 7 | Posture causes pain / "neutral spine at all times" prevents it | movement cluster | population posture variants largely *not* associated with pain[^hc-posture] |
-| 8 | Mobility / stretching / soft-tissue work **prevents injury** | Starrett (mobility side) | robust replicated negative; foam-rolling is acute range-of-motion, not "fascia release"[^hc-stretch] |
+| 8 | Mobility / stretching / soft-tissue work **prevents injury** | Starrett (mobility side) | a replicated negative; foam-rolling is acute range-of-motion, not "fascia release"[^hc-stretch] |
 | 9 | Static stretching before lifting is a necessary warm-up | movement cluster | long-hold static stretch *transiently reduces* strength/power[^hc-static] |
 | 10 | Wim Hof breathing is safe to practice anywhere | Wim Hof | ⚠️ hyperventilation is dangerous in/near water (hypoxic blackout)[^hc-whm] |
 | 11 | Seed oils / linoleic acid drive chronic disease | Lustig-adjacent | RCTs show no CHD-mortality harm; replacing saturated fat with linoleic acid lowers CHD[^hc-seedoil] |
@@ -166,8 +166,8 @@ clock readouts that are not validated surrogates.[^hc-twelfth]
 
 ## Where the practitioners are RIGHT and corpus-additive
 
-The NOT-YET-IN-CORPUS column is not a failure column — it is where the practitioners are *ahead* of the
-corpus, surfacing real claims the index hasn't graded yet. These are the promote-worthy leads (the
+The NOT-YET-IN-CORPUS column is where the practitioners are *ahead* of the
+corpus — real claims the index hasn't graded yet. It's a credit column, not a demerit one. These are the promote-worthy leads (the
 highest-value ten are captured as graded stubs in the practitioner claim-set):
 
 | Lead | Who surfaced it | Why it's promote-worthy |

@@ -124,7 +124,7 @@ node is what makes **heart-rate variability (HRV)** a window onto parasympatheti
 covered in depth in the autonomic/HRV thread (`02-domains/threads/thread-autonomic-hrv.md`) and
 Domain I §4 — the short version, kept consistent here:
 
-- **Solid:** HRV genuinely indexes vagal/autonomic regulation; slow breathing (~6 breaths/min,
+- **Solid:** HRV indexes vagal/autonomic regulation; slow breathing (~6 breaths/min,
   ~0.1 Hz resonance) and extended exhalation reliably raise it via respiratory sinus arrhythmia and
   the baroreflex; chronically low resting HRV *associates* with stress and higher CV/all-cause
   mortality risk (`mechanistic`/`cohort` — observational, follow-a-group evidence).
@@ -158,7 +158,7 @@ massage, and breathing apps. Untangle three claims:
   FDA-approved for refractory epilepsy and treatment-resistant depression (Rush et al., 2000)[^vns]
   — though even there the depression evidence is
   modest, slow, and was contentious at approval. This is a device + surgery, not a breathing trick.
-- **Slow breathing/exhalation genuinely raises vagal output** acutely — that part of the "vagal
+- **Slow breathing/exhalation raises vagal output** acutely — that part of the "vagal
   tone" story is mechanistically sound (it's the same physiology as §2.2 and the breath domain).
 - **Most consumer "vagus hacks"** (gargling, cold face immersion via the diving reflex, *transcutaneous*
   auricular stimulation gadgets) have either acute-only effects, tiny/short trials with surrogate
@@ -217,7 +217,7 @@ Hold the mechanism story and the outcome apart — exactly the schema's rule.
 ## 4. Neuroplasticity — real, bounded, and badly oversold
 
 "Neuroplasticity" is the brain's capacity to change its structure and function with experience. It is
-genuinely one of the most important discoveries in neuroscience — and it is also the most abused word
+one of the most important discoveries in neuroscience — and it is also the most abused word
 in the wellness/self-help economy. Both things are true; the job is to draw the line.
 
 ### 4.1 Where plasticity is real and load-bearing
@@ -254,7 +254,7 @@ and why the recovery ceiling after adult brain injury is bounded.
 The self-help industry sells "rewire your brain in 21 days," apps and courses promising to remodel
 your mind on demand. The honest position: **the mechanism is real but the marketed dose-response is
 fantasy.** Meaningful structural change requires large amounts of *specific, effortful, repeated*
-practice (rehab, instrument, language), it is *domain-specific* (you get better at the trained thing,
+practice (rehab, instrument, language). It is *domain-specific* (you get better at the trained thing,
 not "smarter" in general — same far-transfer failure as the brain-training games in 08 §6.3), and the
 gains are bounded by age and critical periods. "Neuroplasticity" in an ad is almost always a
 mechanism-word doing outcome-work it hasn't earned. Use it as licence to *practice deliberately*, not
@@ -392,8 +392,8 @@ and is a leading cause of foot ulcers and amputations (Feldman et al., 2019).[^f
   painkillers** but agents that act on neuropathic signalling: **gabapentinoids (pregabalin,
   gabapentin), SNRIs (duloxetine), and tricyclics (amitriptyline)** (Finnerup et al., NeuPSIG
   systematic review, 2015; duloxetine Cochrane, Lunn et al., 2014).[^neuropathic-drugs] **Grade honestly:** even first-line, the **numbers
-  needed to treat are ~4–8** for 50% pain relief — you'd have to treat 4–8 people for one to get 50%
-  relief, so *most* patients don't get major relief from any
+  needed to treat are ~4–8** for 50% pain relief — you'd have to treat 4–8 people for one to benefit,
+  so *most* patients don't get major relief from any
   single drug, and side effects are common. Neuropathic pain is hard to treat; managing
   expectations is part of treating it. `meta` — first-line agents real but modestly effective.
 
@@ -430,7 +430,7 @@ synthesis the field now holds:
    (synaptic pruning, immunity) do real computational and clearance work; the field's frontier
    (microglia in disease, gut–brain axis) is exciting and mostly still `animal`/`mechanistic`.
 3. **Autonomic "balance" is flexibility, not max-vagus.** HRV is a real readout and a poor target;
-   slow breathing genuinely raises vagal output; most consumer "vagus hacks" oversell acute or
+   slow breathing raises vagal output; most consumer "vagus hacks" oversell acute or
    surrogate effects (predictor ≠ lever, again).
 4. **Neurotransmitters aren't feelings.** Dopamine = reward-prediction/motivation, not pleasure;
    serotonin isn't a happiness meter. The "dopamine detox" and "serotonin imbalance" are both
@@ -442,7 +442,7 @@ synthesis the field now holds:
 6. **Pain is the highest-stakes correction.** Pain ≠ tissue damage; chronic pain is often central
    sensitisation; the best treatment is active/biopsychosocial (movement + pain education + CBT),
    **opioids are not first-line for chronic non-cancer pain** (SPACE), and neuropathic pain is
-   genuinely hard to treat even with the right (non-opioid) first-line drugs.
+   hard to treat even with the right (non-opioid) first-line drugs.
 7. **For the aging brain, the levers are the same unglamorous bundle** as everywhere in this corpus —
    move, sleep, connect, learn, control the vascular risks, treat hearing/vision — and no supplement,
    game, or current drug competes with it.

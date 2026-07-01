@@ -137,7 +137,7 @@ The load-bearing evidence is the **Whitehall** studies of British civil servants
 - The proposed mechanism is not just access or behavior but **control, status, and chronic psychosocial
   stress** (autonomy, the allostatic-load bridge — Domain M §4).
 
-The Marmot gradient is one of the most robust findings in all of epidemiology, and it **dwarfs the effect of
+The Marmot gradient is one of the most replicated findings in all of epidemiology, and it **dwarfs the effect of
 nearly every consumer longevity intervention in this corpus.** The biohacking frame ("optimize *your*
 inputs") systematically ignores that **position in the hierarchy is itself a dominant input** — one you
 mostly cannot purchase.
@@ -323,7 +323,7 @@ The most consequential number in this section. Multiple independent estimation m
 
 - **Bunker** (the foundational estimate): of the **~30 years** of life expectancy gained in the 20th century,
   clinical medical care explains roughly **5 years (~⅙, ~15–18%)**; of gains *after 1950*, about **3 of 7.5
-  years (~40% of the *later, smaller* slice)**. The big early gains were public-health; medicine's share
+  years** — roughly **40%** of that later, smaller slice. The big early gains were public-health; medicine's share
   rose only once the easy structural wins were banked.
 - The canonical **determinants-of-health allocation** (McGinnis/Williams-Russo/Schroeder, *Health Affairs*
   2002 / NEJM 2007), used by County Health Rankings — the five shares are in the figure below.
@@ -332,8 +332,8 @@ The most consequential number in this section. Multiple independent estimation m
 
 So **medical care ≈ 10–20%** of what determines how long and well a population lives; **behavior +
 social + environment ≈ 60%+**, and genetics ~30%. *(Tier: `theoretical`/synthesis — these are
-order-of-magnitude allocations, contested at the margins, not precise causal partitions; the **direction** is
-robust across every method.)* The practical reading for an individual: *seeing a good doctor matters, but it
+order-of-magnitude allocations, contested at the margins, not precise causal partitions; the **direction**
+holds across every method.)* The practical reading for an individual: *seeing a good doctor matters, but it
 is the smallest of the modifiable buckets* — and for a *society*, pouring money into clinical care while
 ignoring tiers 1–2 is buying the smallest slice at the highest price. This is the U.S. story in one sentence.
 

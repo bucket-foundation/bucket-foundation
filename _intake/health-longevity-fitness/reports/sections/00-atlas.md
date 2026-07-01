@@ -16,9 +16,8 @@ _Not medical advice._
 
 @@FIG:01-claims-by-tier@@
 
-**How to use this map.** Skim to the layer you care about — foundations at the bottom, the things you
-actually do near the top — and follow the `§` pointer to the full chapter. You can move fast here; this
-page is a directory, and the explanations all live one click down.
+**How to use this map.** The layers run bottom-up — foundations at the bottom, the things you actually
+do near the top. Follow the `§` pointer to the full chapter; the explanations all live one click down.
 
 ---
 
@@ -148,7 +147,7 @@ cover to depth. *(⚪ = named but not yet a dedicated chapter; 🟡 = partly cov
 deferred list is now filled: life stages incl. DOHaD & pregnancy (§19),
 pain & rehab (§21), psychiatry (§20), addiction (§35), dental & sensory (§27), pharmacogenomics (§28),
 public health & policy (§33), complementary & fringe (§30/§32), and the full disease atlases (§22–26). What
-genuinely remains thin:
+remains thin:
 
 - ⚪ **Surgery & anaesthesia** — surgical management is named per-condition, but operative technique,
   perioperative care, and anaesthesiology are not a dedicated chapter.

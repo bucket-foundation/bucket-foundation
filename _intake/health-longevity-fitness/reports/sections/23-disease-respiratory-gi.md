@@ -89,7 +89,7 @@ gotten wrong:
 - **Inhaler types, briefly.** *Relievers* (bronchodilators: SABA like albuterol; or ICS-formoterol as
   AIR). *Controllers* (daily ICS ± long-acting β-agonist [LABA] ± long-acting muscarinic antagonist [LAMA]).
   *Add-ons* for severe disease: **biologics** targeting the type-2 pathway (anti-IgE omalizumab; anti-IL-5
-  mepolizumab/benralizumab; anti-IL-4Rα dupilumab; anti-TSLP tezepelumab) — genuinely transformative for severe
+  mepolizumab/benralizumab; anti-IL-4Rα dupilumab; anti-TSLP tezepelumab) — transformative for severe
   eosinophilic/allergic asthma, `rct`-grade, but expensive and phenotype-specific.
 - **Honest grade.** Asthma treatment **controls; it does not cure.** Well-controlled asthma means few symptoms,
   rare exacerbations, near-normal life — a realistic and common outcome with correct inhaler use. The two biggest
@@ -98,7 +98,7 @@ gotten wrong:
   help. **Note the predictor-≠-lever discipline** (a number that tells you how you're doing isn't automatically
   the thing that fixes the disease): a good day on a bronchodilator does not mean the inflammation is controlled.
 
-### A2. COPD — smoking, irreversibility, and what genuinely helps
+### A2. COPD — smoking, irreversibility, and what helps
 
 **What it is.** Chronic obstructive pulmonary disease is **progressive, largely irreversible airflow
 limitation** from chronic bronchitis (inflamed, mucus-producing airways) and/or emphysema (destruction of
@@ -119,7 +119,7 @@ cessation**, at any age — the earlier the steeper the benefit, but quitting he
 most effective respiratory-longevity act in existence (cross-ref `09-exposures-environment.md`). `cohort`/`rct`
 (cessation).
 
-**What genuinely helps (graded):**
+**What helps (graded):**
 
 - **Smoking cessation** — the only slope-changer. Everything else is symptom/exacerbation management. `rct`.
 - **Pulmonary rehabilitation** (supervised exercise + education) — improves exercise capacity and quality of
@@ -171,7 +171,7 @@ and in adherent users — `cohort`/secondary, not yet definitive.
 **What this means, honestly.**
 - **CPAP is strongly evidence-based for what it was designed to do:** abolish apneas, fix daytime sleepiness,
   improve quality of life, lower blood pressure modestly, and improve glucose/insulin measures. `rct`. If OSA
-  is making you exhausted, CPAP is genuinely life-changing.
+  is making you exhausted, CPAP is life-changing.
 - **CPAP is *not* proven to prevent heart attacks/strokes in unselected, often non-sleepy, under-adherent
   trial populations.** `rct` (null). This does not mean OSA is harmless — the disease still predicts CV
   events — it means *adding CPAP on top of standard CV care didn't move the hard endpoint in those RCTs.*
@@ -242,7 +242,7 @@ Anti-reflux surgery (fundoplication) or magnetic-sphincter augmentation is an op
 mechanically-driven (large hernia) cases. guideline/`rct`.
 
 **The honest long-term-PPI story.** PPIs are among the most-prescribed drugs in the world, and the internet is
-full of frightening claims (dementia, kidney disease, fractures, infections, early death). The honest read:
+full of frightening claims (dementia, kidney disease, fractures, infections, early death). The evidence:
 - These harms come almost entirely from **observational studies with real confounding** (people on chronic PPIs
   are sicker). The large **COMPASS** randomized trial (pantoprazole vs placebo, ~17,000 patients, ~3 years)
   found **no significant excess** of most feared outcomes except a small signal for enteric infections. So the
@@ -362,7 +362,7 @@ molecules** that target specific immune pathways:
 - **"Treat-to-target"** (aim for objective mucosal healing, not just symptom relief) and **early effective
   therapy** improve long-term outcomes. Surgery is sometimes necessary (curative colectomy for UC; resection
   for Crohn's complications, though Crohn's recurs). `rct`/`meta`/guideline.
-- **Honest grade.** Biologics are **genuinely disease-modifying** — they have transformed IBD from a
+- **Honest grade.** Biologics are **disease-modifying** — they have transformed IBD from a
   progressively disabling disease to one where durable remission is realistic for many. But they are **not a
   cure** (except colectomy for UC), they don't work for everyone, response can be lost over time, and they carry
   **real risks** (infection, and for some agents specific malignancy/thrombosis signals) requiring monitoring.
@@ -393,9 +393,9 @@ guideline/established.
   diet is medically essential. No debate.
 - **Wheat allergy:** a distinct, real IgE-mediated allergy (separate again).
 - **Non-celiac gluten/wheat sensitivity (NCGS):** a contested, real-symptoms-but-uncertain-mechanism entity.
-  Many people report GI and systemic symptoms on gluten without celiac or wheat allergy, and **double-blind
+  Many people report GI and systemic symptoms on gluten without celiac or wheat allergy, and double-blind
   rechallenge studies suggest that for a substantial fraction, the trigger may not be gluten at all but
-  **fructans** (a FODMAP in wheat) — i.e., it overlaps with IBS — or a nocebo effect.** NCGS is a real
+  **fructans** (a FODMAP in wheat) — i.e., it overlaps with IBS — or a nocebo effect. NCGS is a real
   symptom experience deserving respect, but it is *not* celiac disease, the "gluten" attribution is often
   wrong, and there is **no validated diagnostic test** for it. `rct`/contested.
 - **Honest grade.** The cultural "gluten-free for everyone" wellness trend is **not evidence-based for people
@@ -428,7 +428,7 @@ per-protocol analysis, mortality),[^nordicc] and stool-based tests (FIT) plus si
 evidence too. Fiber, physical activity, and not smoking lower risk; processed/red meat, obesity, and alcohol raise it
 (cross-ref `17 §4.4` fiber and the oncology section for biology and staged treatment). The takeaway for this
 section: **a normal-risk adult should be screened from age 45** — this is a place where the boring lever
-(screening) is `rct`-grade and genuinely saves lives.
+(screening) is `rct`-grade and saves lives.
 
 ---
 
@@ -541,13 +541,13 @@ preventable causes (alcohol, smoking) the real lever.
 ## Part D — The Honest Debunks
 
 The gut and liver are the wellness industry's favorite organs to monetize, precisely because their real biology
-(microbiome, "detox," inflammation) is genuinely interesting and genuinely incomplete — the perfect substrate
+(microbiome, "detox," inflammation) is interesting and incomplete — the perfect substrate
 for selling certainty where the science offers nuance. Held to the same evidence ladder as everything else:
 
 ### D1. "Leaky gut syndrome" — a real phenomenon, an overstated diagnosis
 
 **Intestinal permeability is real biology.** The gut barrier's tight junctions can loosen, and increased
-permeability is genuinely *observed in association with* established diseases (celiac, IBD, some infections,
+permeability is *observed in association with* established diseases (celiac, IBD, some infections,
 critical illness). What is **not** established is the wellness construct of **"leaky gut syndrome"** as a
 **standalone diagnosis that causes** fatigue, brain fog, autoimmune disease, and a long symptom list — and is
 **fixable by supplements** (glutamine, "gut-healing" powders, specific probiotics, restrictive diets). The honest

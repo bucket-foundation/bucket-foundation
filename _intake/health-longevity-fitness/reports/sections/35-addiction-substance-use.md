@@ -23,7 +23,7 @@ _Not medical advice._
 > attached. Call it pure moral weakness and you justify punishing sick people and you ignore that
 > treatment works. Call it purely a chronic brain disease and you erase the people who walk away on their
 > own, you contradict the data on remission, and you can rob someone of the agency that recovery actually
-> runs on. The honest position is **neither**, and it is not a mushy compromise — it is a more accurate
+> runs on. The honest position is **neither** — a more accurate
 > third model (a disorder of **learning, motivation, and choice under altered conditions**) that the
 > evidence supports better than either pole. Grade it straight, hold the person's dignity and the person's
 > agency at the same time, and say so plainly.
@@ -41,7 +41,7 @@ _Not medical advice._
 | **Methamphetamine / amphetamine** | Moderate–high | High (cardiac, stroke, neurotoxic; overdose rising) | **Contingency management** (best evidence); no robust approved medication |
 | **Cannabis** | Lower but **real** (~9%; higher with adolescent onset) | Low acute lethality; real disorder, CHS, psychosis risk in vulnerable | CBT / MET / contingency management; no approved medication |
 | **Benzodiazepines** | Moderate (dependence develops readily) | Dangerous in **withdrawal** (seizures) and in **combination** (with opioids/alcohol) | **Slow taper**; never abrupt stop; treat underlying anxiety properly (Section 20) |
-| **Caffeine** | Genuine dependence; "use disorder" contested | Negligible at normal doses | Usually none needed; taper if desired |
+| **Caffeine** | Real dependence; "use disorder" contested | Negligible at normal doses | Usually none needed; taper if desired |
 | **Psychedelics** (psilocybin, LSD) | **Very low** addiction potential | Low physiological lethality; psychological-risk in vulnerable | N/A for addiction; the *therapy* frontier is Section 20 §6.4 |
 | **Gambling** | The established behavioural addiction | No direct toxicity; high suicide risk | CBT; naltrexone has a signal; Gamblers Anonymous (thin evidence) |
 
@@ -72,7 +72,7 @@ Every addictive drug, by very different routes, converges on one place: it raise
 the **mesolimbic reward pathway** (ventral tegmental area → nucleus accumbens, with prefrontal and
 amygdala loops). Stimulants do it directly (blocking dopamine reuptake or forcing its release); opioids,
 nicotine, alcohol, and cannabis do it indirectly (disinhibiting dopamine neurons or acting on their own
-receptor systems). This is genuine, well-replicated neuroscience — and it is covered as **mechanism** in
+receptor systems). This is well-replicated neuroscience — and it is covered as **mechanism** in
 Section 14 §3, which is where it belongs. (Read 14 also for why "dopamine = pleasure" is itself a
 simplification: dopamine encodes **prediction error and wanting** more than **liking** — Berridge's
 incentive-salience distinction — which is exactly why deep addiction can feature intense craving *without*
@@ -136,8 +136,7 @@ plus observational data, short of a randomized trial).
 and its critics are **less opposed than the rhetoric suggests**, and the honest position takes the true
 part of each. Addiction involves **real neuroadaptation** (the disease model's truth) in circuits of
 **learning, motivation, and choice that remain responsive to incentives and context** (the critics'
-truth). It is **not pure brain disease** (the remission data refute the strong version) and it is **not
-mere moral weakness** (the neuroadaptation and the involuntariness people report are real). The most
+truth). The most
 defensible label is something like a **disorder of motivated choice under altered neural conditions** — a
 condition that is simultaneously a real change in the brain *and* responsive to consequences, environment,
 and meaning. Both can be true; the schema's job is to refuse to collapse them. `mechanistic`+`cohort` —
@@ -218,7 +217,7 @@ the Cochrane review[^ecig] finds e-cigarettes help cessation with moderate-certa
 effective than traditional NRT. The honest two-sidedness: **less bad ≠ safe**, the real
 population cost is **nicotine initiation in never-smoking adolescents** (recruiting a new dependent
 generation), and nicotine itself — while not the carcinogen — is not benign (cardiovascular, adolescent
-brain development). Net: a genuine **cessation tool for existing smokers**, a genuine **harm for
+brain development). Net: a **cessation tool for existing smokers**, a **harm for
 non-smoking youth who start.** Don't let either truth cancel the other.
 
 
@@ -252,7 +251,7 @@ numbers of US soldiers used heroin heavily in Vietnam; on return, the great majo
 without treatment, and most did not relapse** — when the **environment** changed. This is the empirical
 spine of Heyman's and Hart's critiques (§1.2): the same drug, in a different context, produced a different
 outcome. It does **not** mean opioid addiction is easy to escape at home (the Vietnam context change was
-total); it means **context is causal**, and recovery is genuinely possible — both of which the
+total); it means **context is causal**, and recovery is possible — both of which the
 fatalistic "chronic brain disease, once an addict always an addict" framing handles badly. `cohort`.
 
 ### 3.4 What actually treats it — and it is not what intuition says
@@ -321,8 +320,8 @@ Here the evidence ledger is lopsided in an instructive way:
   people, in vouchers or prizes, for **drug-negative urine tests**. CM has **the strongest evidence of any
   treatment for stimulant use disorder**, and a 2025 cohort even linked CM participation to **lower
   mortality** (*Am J Psychiatry* 2025).[^cm2025] It is **scandalously
-  under-deployed** — partly because "paying addicts to not use drugs" offends a moral intuition, which is
-  precisely the §7.2 story. For stimulants, where pharmacology has failed, **the behavioural lever is the
+  under-deployed** — partly because "paying addicts to not use drugs" collides with a punitive instinct,
+  which is precisely the §7.2 story. For stimulants, where pharmacology has failed, **the behavioural lever is the
   main lever**, and we mostly don't pull it. `meta`/`cohort`.
 
 
@@ -339,7 +338,7 @@ Biddinger/Bryazka). Here, the **disorder** layer:
   exposed population is so large.
 - **The acute danger that distinguishes alcohol: withdrawal can kill.** In a physically dependent heavy
   drinker, **abrupt cessation** can produce seizures and **delirium tremens (DTs)** — autonomic storm,
-  confusion, hyperthermia — with meaningful mortality if unmanaged. This is a genuine medical emergency
+  confusion, hyperthermia — with meaningful mortality if unmanaged. This is a medical emergency
   requiring **benzodiazepine-supported, supervised detox.** "Just quit cold turkey" is sound advice for
   nicotine and dangerous advice for severe alcohol or benzodiazepine dependence. `clinical` — high-
   confidence, consequential.
@@ -395,19 +394,19 @@ vulnerable) and **behavioural** (acting unsafely while intoxicated), not depende
 manual's *addiction* section is therefore mostly to say **they don't belong in the addiction conversation
 the way prohibition lumped them.** The live and important story — **psychedelic-assisted therapy** for
 depression, PTSD, and addiction itself — is graded in **Section 20 §6.4** (promising, unblindable,
-early, and **not** FDA-approved; MDMA-therapy was *rejected* in 2024). Note the genuine irony worth
+early, and **not** FDA-approved; MDMA-therapy was *rejected* in 2024). Note the irony worth
 flagging: psilocybin and ibogaine are themselves being trialled **as treatments for** other addictions —
 early-stage, not established. `rct` (early) — see Section 20.
 
 ### 5.5 Caffeine — the socially-accepted dependence
 
-The world's most widely used psychoactive drug produces **genuine physical dependence**: regular users
+The world's most widely used psychoactive drug produces **real physical dependence**: regular users
 develop tolerance and a real **withdrawal syndrome** (headache, fatigue, low mood, poor concentration,
 peaking ~1–2 days after stopping). DSM-5 recognizes **caffeine withdrawal** and **intoxication** as real,
 and lists **caffeine use disorder** as a *condition for further study* — i.e., the field's honest verdict
 is "**dependence yes, clinically significant addiction for most people no.**" For the large majority,
 caffeine is a well-tolerated dependence with a favourable or neutral health profile at normal doses; a
-minority have genuine problematic use (anxiety, insomnia, escalating doses). The reason it's in this
+minority have real problematic use (anxiety, insomnia, escalating doses). The reason it's in this
 section is **honesty, not alarm**: it demonstrates that **dependence is common and usually benign**, which
 is exactly the §1.3 distinction that the moralized drug conversation forgets. Taper to quit without
 withdrawal. `clinical`.
@@ -486,16 +485,16 @@ stabilizing maintenance as continued addiction).
   **direct refutation of the old "break them down / confront the denial" model**, which is not only
   unevidenced but often counterproductive. `meta`/`rct`.
 - **12-step / AA / NA** — the honest grade matters because the claims are huge in both directions. **Kelly
-  et al., *Cochrane* 2020**[^kelly] found that **manualized Twelve-Step Facilitation (TSF)** — a clinician
-  systematically linking people into AA — produces
-  **abstinence outcomes at least as good as, and often better than, other active treatments (including
+  et al., *Cochrane* 2020**[^kelly] found that **manualized Twelve-Step Facilitation (TSF)**, a clinician
+  systematically linking people into AA, produces
+  **abstinence outcomes at least as good as — often better than — other active treatments (including
   CBT), and is more cost-effective.** That is a real, important, evidence-based finding. **The honest
   caveats that keep it from being the whole story:** (1) the strong evidence is for **structured TSF**, not
   for the bare advice "go to meetings"; (2) AA's culture (powerlessness, lifelong abstinence, spiritual
   surrender) **fits some people and actively repels others**, and the field's historic **one-size-fits-all
   insistence on AA** failed the latter; (3) selection/self-selection make the naturalistic numbers
   (famously fuzzy "success rates") unreliable in both directions. The defensible position: **AA/TSF is a
-  genuinely effective, free, widely-available option that works well *for those it fits* — and it is one
+  effective, free, widely-available option that works well *for those it fits* — and it is one
   tool, not the only tool, and not a substitute for MAT in opioid or alcohol use disorder.** `meta` (for
   TSF) — real, but not universal.
 
@@ -560,7 +559,8 @@ insistence has a **measurable death toll** (the detox-relapse-overdose pathway, 
    worse than nothing** — the moralized abstinence intuition kills; the unglamorous daily medication saves.
    Naloxone keeps people alive long enough to reach treatment.
 2. **Stimulants have no effective medication — and contingency management, the behavioural treatment that
-   *does* work, is scandalously under-used** because paying people to abstain offends a moral reflex.
+   *does* work, is scandalously under-used** because rewarding abstinence with cash sits badly with our
+   moral instincts.
 3. **Dependence ≠ addiction.** Conflating physical dependence (a cancer patient, a coffee drinker) with
    addiction (compulsive harmful use) is the field's most common and most harmful error; DSM-5 fixed it by
    making substance use disorder **dimensional**.

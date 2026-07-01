@@ -59,7 +59,7 @@ with hundreds of RCTs and a decade-stable safety record.
 ### 1.2 Omega-3 (EPA + DHA) — real for triglycerides, the omega-3 index is a predictor, CVD events are equivocal
 
 **Bottom line first:** real for lowering triglycerides and as a status marker; the omega-3 index predicts risk but
-isn't a proven lever; cardiovascular-event trials are equivocal — mostly null at low over-the-counter doses,
+isn't a proven lever. Cardiovascular-event trials are equivocal — mostly null at low over-the-counter doses,
 positive only for high-dose prescription EPA in already-high-risk patients.
 
 - **The omega-3 index (predictor, not yet proven lever):** **Harris & von Schacky 2004**[^o3-harris] defined the
@@ -93,7 +93,7 @@ omega-3 index is a predictor, not a proven lever.**
 
 This is the most over-supplemented "longevity" molecule, and the large RCTs are a case study in predictor≠lever.
 
-- **The setup:** low vitamin D *blood levels* robustly associate with nearly every bad outcome (cohort). That made it
+- **The setup:** low vitamin D *blood levels* consistently associate with nearly every bad outcome (cohort). That made it
   the great hope. Then the trials read out.
 - **VITAL (Manson 2019, NEJM)**[^vitd-vital] ~25,900 adults, **2000 IU/day D3**, ~5 years → **no**
   reduction in cancer incidence or major cardiovascular events vs placebo.
@@ -236,9 +236,9 @@ The conflict mostly dissolves on the **age axis** — do not apply one prescript
 
 @@FIG:L05-protein-age@@
 
-- **Mid-life (≈45–65):** the theoretical concern (protein → IGF-1/mTOR → growth/cancer signaling — mTOR and IGF-1
-  are growth signals, helpful for building muscle and theoretically a double-edged sword for aging) is most relevant.
-  *Adequate, not maximal* protein; favor plant sources; pair with resistance training (which re-partitions protein
+- **Mid-life (≈45–65):** mTOR and IGF-1 are growth signals — helpful for building muscle, theoretically a
+  double-edged sword for aging. Here the theoretical concern (protein → IGF-1/mTOR → growth/cancer signaling) is
+  most relevant. *Adequate, not maximal* protein; favor plant sources; pair with resistance training (which re-partitions protein
   toward muscle and blunts the downside). This is where Longo/Solon-Biet's restriction argument has its best (still
   mostly animal/cohort) footing.
 - **Older (65+):** the data **reverse** — Levine & Longo's own NHANES analysis flips at 65, and PROT-AGE governs:
@@ -339,7 +339,7 @@ sirtuins activate, "antioxidant," CRP drops) that has **not** translated into a 
 - **Magnesium 200–400 mg/day** (glycinate/citrate) — corrects a common inadequacy.
 - **Protein 1.2–1.6 g/kg/day** (more if older or training), 20–40 g/meal, whey is a convenient tool.
 - **Fiber 25–35 g/day**, food-first.
-- **Caffeine 3–6 mg/kg** pre-training if you want the ergogenic boost.
+- **Caffeine 3–6 mg/kg** pre-training if you want the ergogenic effect.
 
 **Skip (no outcome evidence / hype):** NMN, NR, resveratrol, high-dose antioxidant pills, greens powders, and a
 multivitamin if you already eat well. **Conditional:** collagen (tendon/skin timing protocol), probiotics (specific

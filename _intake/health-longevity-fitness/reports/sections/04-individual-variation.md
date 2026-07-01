@@ -45,7 +45,7 @@ you have; it will change.**
 ### 1.2 But real structural variation **does** matter — just not the kind somatotype names
 
 Here is the honest other half: individual *structural* differences between bodies are real, sometimes large,
-and genuinely change how you should lift, run, and regress exercises. The mistake of somatotype is not
+and change how you should lift, run, and regress exercises. The mistake of somatotype is not
 "bodies differ" — bodies obviously differ — it is pretending the differences sort people into three
 destiny-categories. The differences that actually matter are **anatomical and physiological**, and they are
 about *leverage and biology*, not body-shape labels:
@@ -230,14 +230,14 @@ The flip side of taking women's physiology seriously is refusing to launder mark
 The male side is comparatively under-discussed in longevity content (ironic, given the cohorts are male) but
 has two graded specifics:
 
-- **Testosterone declines gradually with age** (~1%/yr from midlife). Truly low, symptomatic hypogonadism is
+- **Testosterone declines gradually with age** (~1%/yr from midlife). Low, symptomatic hypogonadism is
   a real medical condition worth treating. But **TRT (testosterone replacement therapy) marketed as a
   longevity / anti-aging optimizer for men with normal-range testosterone is not established to extend
   healthspan**, carries
   cardiovascular and fertility trade-offs, and is `mixed`/`nequals1`-territory hype when sold that way. The
   strongest natural levers on testosterone are unglamorous: adequate sleep (Domain I), resistance training,
   not being over-fat, and not under-eating.
-- **Prostate.** Aging-male specific. Screening (PSA) is genuinely contested (over-diagnosis vs missed
+- **Prostate.** Aging-male specific. Screening (PSA) is contested (over-diagnosis vs missed
   aggressive disease) — a shared-decision conversation with a clinician, not a supplement aisle. No supplement
   has strong evidence to "protect the prostate."
 

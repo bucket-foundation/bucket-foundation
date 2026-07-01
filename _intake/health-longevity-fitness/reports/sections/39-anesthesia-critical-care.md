@@ -26,8 +26,7 @@ Both specialties run on the same three ideas. Internalize these and the rest is 
   intensivists are, fundamentally, **applied physiologists**: they are running the feedback loops the body
   can no longer run for itself.
 - **We act effectively on mechanisms we cannot fully explain.** This is the honest thread running through
-  the whole chapter. We give general anesthesia to tens of millions of people a year with an extraordinary
-  safety record — and **we still cannot fully explain how it abolishes consciousness** (§2.2). We resuscitate
+  the whole chapter (§2.2). We resuscitate
   sepsis by a protocol that has been *revised, deflated, and rebuilt* as the evidence turned over (§6). The
   competence is real and the humility is earned: in these fields, *what works* and *why it works* are
   separate claims, exactly as this corpus insists they be kept.
@@ -512,7 +511,7 @@ best "the evidence turned over" cases.
    **PROSEVA proning** (Guérin et al., 2013, `10.1056/NEJMoa1214103`) and **RECOVERY dexamethasone**
    (2021, `10.1056/NEJMoa2021436`). The three trials that define modern lung-failure care — and the lesson
    that gentler support and old cheap drugs, proven by big RCTs, beat aggressive enthusiasm. **Tier: rct —
-   among the cleanest wins in critical care.**
+   among the clearest wins in critical care.**
 4. **The sepsis arc: Rivers EGDT** (*N Engl J Med* 2001, `10.1056/NEJMoa010307`) → **ProCESS / ARISE /
    ProMISe** (2014–2015, `10.1056/NEJMoa1401602`, `10.1056/NEJMoa1404380`, `10.1056/NEJMoa1500896`) →
    **Surviving Sepsis Campaign 2021** (Evans et al., `10.1097/CCM.0000000000005337`). The best single case

@@ -24,7 +24,7 @@ Five honesty rules run through every line below. They are the whole chapter in m
    (that bundles placebo, attention, regression to the mean, and natural history). It is *treatment vs a
    convincing fake*. When the fake works as well as the real thing, the specific theory is dead even if
    the ritual still helps.
-3. **Placebo is real but bounded.** Expectation genuinely changes pain, nausea, and other *subjective,
+3. **Placebo is real but bounded.** Expectation changes pain, nausea, and other *subjective,
    self-reported, brain-modulated* outcomes (Section 14 §6). It does **not** shrink tumours, clear
    infections, lower blood sugar, or reopen arteries. The harm of CAM is rarely the sugar pill; it is the
    *opportunity cost* of using a sugar pill where a real cure exists — the cost §9.3 puts a number on.
@@ -213,7 +213,7 @@ or death** in previously healthy young adults. The absolute risk per manipulatio
 around the order of ~1 in tens-of-thousands to 1 in millions, and the *causal* fraction is debated — some
 dissections may already be in progress and *cause* the neck pain that sends the person to the chiropractor,
 the "reverse-causation/Cassidy" argument). But the **consequence is catastrophic and the benefit for neck pain
-is modest and replaceable**, so the honest risk-benefit verdict is: **for neck pain, the marginal benefit of
+is modest and replaceable.** So the honest risk-benefit verdict: **for neck pain, the marginal benefit of
 cervical manipulation rarely justifies even a small risk of arterial dissection** when exercise and
 mobilisation carry no such risk. Graded **works-for-some-things, with a load-bearing safety caveat**; for the
 neck specifically, prefer lower-risk options.
@@ -275,7 +275,7 @@ consumer-protection one.
 
 ## 8. Naturopathy & "functional medicine"
 
-The honest grade here is **a genuinely mixed bag**, and conflating the two halves is how both the boosters and
+The honest grade here is **a mixed bag**, and conflating the two halves is how both the boosters and
 the debunkers get it wrong.
 
 **The good half (`works`).** Naturopathic and functional-medicine practitioners often spend **real time on
@@ -351,7 +351,7 @@ its detractors fear nor the suppressed miracle its boosters claim. It is a **pat
 narrow tools (a few herbs, manipulation for acute back pain, mind–body practice, PC6 antiemesis, acupuncture's
 modest pain effect); a large middle of **expensive placebo** (homeopathy, energy healing, most of the
 supplement aisle); a real toxicology hazard at the edges (heavy metals, hepatotoxic herbs, drug interactions);
-and one genuinely dangerous failure mode — **using any of it *instead of* a treatment that works.**
+and one dangerous failure mode — **using any of it *instead of* a treatment that works.**
 
 ---
 

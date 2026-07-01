@@ -1,8 +1,8 @@
 # 25 — Oncology & Cancer: A Disease of the Genome
 
-**Cancer is not a thing, it is a *process* — the corruption of the cell's own software.** It is the
+**Cancer is a *process* — the corruption of the cell's own software.** It is the
 single most-feared diagnosis in the developed world, and the honest biology of what it *is* — and of how
-well we can actually treat it — is rarely told straight. Mukherjee called it *The Emperor of All
+well we can treat it — is rarely told straight. Mukherjee called it *The Emperor of All
 Maladies*; the deeper truth is that it is the **emperor of all malfunctions** — a disease in which the
 normal programs of growth, repair, and death are subverted from within, by mutation of the very genes
 that govern them.
@@ -42,8 +42,8 @@ The cause of that collapse is **damage to the genome** — mutations (and epigen
 specific genes that run the cell cycle, the DNA-repair machinery, and the death programs. This is the
 load-bearing first principle, and it ties straight to `01-foundations.md`: cancer is **a corruption of
 the information layer** (`bucket-canon/04-information`) physically instantiated in DNA chemistry
-(`05-biophysics`). It is not a foreign invader, not an imbalance of "energy," not a fungus — it is
-**your own cells running a corrupted copy of their own code.** Every honest claim in oncology, and every
+(`05-biophysics`). It is **your own cells running a corrupted copy of their own code** — not a foreign
+invader, not an energy imbalance, not a fungus. Every honest claim in oncology, and every
 dishonest one debunked in §25.7, is judged against that fact.
 
 The cell cycle itself — G1 → S (DNA synthesis) → G2 → M (mitosis), policed by **checkpoints** that halt
@@ -220,7 +220,7 @@ screening section (`§07`).
 | **Lung** | ~235k cases, **~125k deaths/yr — #1 cancer killer** | **Smoking** (dominant), radon, asbestos, air pollution | **~25%** (but ~65% if localized; ~9% if distant) | Most lethal cancer by death count; LDCT screening + immuno/targeted therapy have begun to bend the curve. Rising in never-smokers (esp. *EGFR*-mutant adenocarcinoma in Asian women). |
 | **Breast** | ~310k cases (women), ~42k deaths | Age, family history/**BRCA**, estrogen exposure, density, obesity | **~91%** | Generally good prognosis when caught early; highly subtype-driven (ER/PR/HER2 status dictates therapy). Triple-negative is the aggressive minority. |
 | **Prostate** | ~300k cases, ~35k deaths | Age, family history, African ancestry | **~97%** (often indolent) | The overdiagnosis poster child (`§07 PSA`). Many are slow and never lethal → **active surveillance**; the danger is overtreating indolent disease *and* under-detecting the aggressive minority. |
-| **Colorectal** | ~153k cases, ~53k deaths | Age, IBD, **Lynch/FAP**, processed meat, obesity, alcohol | **~65%** (~91% localized) | Has a **removable precursor** (the adenomatous polyp) → screening works exceptionally (`§07`). Rising alarmingly in **under-50s** (cause unknown — a genuine open question). |
+| **Colorectal** | ~153k cases, ~53k deaths | Age, IBD, **Lynch/FAP**, processed meat, obesity, alcohol | **~65%** (~91% localized) | Has a **removable precursor** (the adenomatous polyp) → screening works exceptionally (`§07`). Rising alarmingly in **under-50s** (cause unknown — an open question). |
 | **Melanoma (skin)** | ~100k cases, ~8k deaths | **UV/sunburn**, fair skin, nevi, family history | **~94%** | Highly curable if caught thin/early; deadly once thick/metastatic — *but* metastatic melanoma is the **flagship immunotherapy success** (§25.5), turning a near-uniformly-fatal disease into one with durable long-term survival for a real fraction. |
 | **Pancreatic** | ~66k cases, ~52k deaths | Smoking, obesity, diabetes, chronic pancreatitis, family/**BRCA** | **~13%** | **The honest worst case.** Usually silent until advanced; *KRAS*-driven (long "undruggable"); minimal screening; survival has improved only modestly. The cancer where humility is mandatory. |
 
@@ -271,7 +271,7 @@ follicles → alopecia), the source of the classic toxicity.
 > **The honest, under-told fact:** chemotherapy **cures** several cancers outright — **testicular cancer,
 > many childhood leukemias (ALL), Hodgkin lymphoma, some other lymphomas, choriocarcinoma.** Childhood
 > ALL went from ~uniformly fatal in the 1960s to **~90% cured** today, largely on combination
-> chemotherapy. This is one of medicine's genuine triumphs and the counterweight to the alternative-
+> chemotherapy. This is one of medicine's real triumphs and the counterweight to the alternative-
 > oncology trope that "chemo doesn't work" (§25.7). For **advanced solid tumours**, chemo more often
 > *extends life and controls disease* than cures — and that distinction (cure vs control vs palliation)
 > must be stated plainly, never blurred.
@@ -281,7 +281,7 @@ follicles → alopecia), the source of the classic toxicity.
 ## 25.5 — The targeted-therapy & immunotherapy revolution
 
 The story since ~2000 is the move from indiscriminate "poison" toward therapies aimed at a cancer's
-**specific molecular vulnerability** or its **relationship with the immune system**. This is real and
+**specific molecular vulnerability** or its **relationship with the immune system**. This is
 transformative — and the honest version names **who it helps and who it doesn't**.
 
 ### 25.5.1 — Targeted therapy: drugging the oncogene
@@ -356,7 +356,7 @@ relapsed ALL, ELIANA trial, ~80% remission). It is a *living drug*.
 > tumours (which lack clean single antigens and hide behind a hostile microenvironment); it is
 > **extraordinarily expensive** (~$400k+ per treatment) and available only at specialist centres; and it
 > carries **life-threatening acute toxicity** — **cytokine release syndrome** and **neurotoxicity (ICANS)**
-> that require ICU-level management. A genuine breakthrough with a **very narrow current footprint.**
+> that require ICU-level management. A breakthrough with a **very narrow current footprint.**
 
 ### 25.5.4 — Tissue-agnostic / precision oncology
 
@@ -432,7 +432,7 @@ an effective therapy is, for curable cancers, fatal.
 | **"Sugar feeds cancer" / cut all carbs to starve it** | **Oversimplified to the point of false.** The kernel of truth is the **Warburg effect** (hallmark #7): cancer cells preferentially use **aerobic glycolysis**, consuming lots of glucose — which is why PET scans use radiolabelled glucose to *find* tumours. But (1) **all** your cells use glucose; you cannot selectively starve a tumour by avoiding sugar — your body tightly maintains blood glucose, and the tumour will take what it needs. (2) The Warburg effect is about **biosynthesis** (building blocks for division), not simple energetics, and is far subtler than "sugar = fuel." (3) No human trial shows a low-sugar or ketogenic diet **treats** cancer; it is studied as an *adjunct* in specific settings, not a cure. Real version: avoid **obesity and insulin resistance**, which *do* raise risk of ≥13 cancers (`07 §4.2`) — that is a population-prevention lever, not a "starve my tumour" mechanism.^[claim: conflict-sugar-feeds-cancer] |
 | **Alkaline diet / "cancer can't live in an alkaline body"** | **Biochemically false.** You cannot meaningfully change blood pH with diet — it is held at ~7.4 by powerful buffers; food changes *urine* pH, not blood. Tumours create their *own* acidic microenvironment regardless of what you eat. No evidence an "alkaline diet" prevents or treats cancer. Harmless as "eat more vegetables"; dangerous as a substitute for treatment. |
 | **Laetrile / amygdalin / "vitamin B17" / apricot seeds** | **Disproven and dangerous.** Promoted for decades as a natural cure; the definitive **NCI-sponsored clinical trial (Moertel et al., *NEJM* 1982)** found **no benefit** and documented **cyanide toxicity** (amygdalin metabolises to cyanide). It is not a vitamin. People have died of cyanide poisoning from apricot-seed regimens. Unambiguous: ineffective *and* toxic. |
-| **"Most natural cancer cures are suppressed by Big Pharma"** | **The conspiracy frame is false and lethal.** Cancer researchers get cancer; oncologists' families get cancer; a genuinely effective, cheap, natural cure would make its discoverer immortal in the literature and a Nobel laureate. The reason vitamin C megadose, coffee enemas (Gerson), Rife machines, black salve, baking soda, etc. aren't used is that **when tested, they don't work** — not suppression. Meanwhile the *real* breakthroughs of the last 20 years (immunotherapy, CAR-T) came from exactly the research enterprise the conspiracy says hides cures. |
+| **"Most natural cancer cures are suppressed by Big Pharma"** | **The conspiracy frame is false and lethal.** Cancer researchers get cancer; oncologists' families get cancer; an effective, cheap, natural cure would make its discoverer immortal in the literature and a Nobel laureate. The reason vitamin C megadose, coffee enemas (Gerson), Rife machines, black salve, baking soda, etc. aren't used is that **when tested, they don't work** — not suppression. Meanwhile the *real* breakthroughs of the last 20 years (immunotherapy, CAR-T) came from exactly the research enterprise the conspiracy says hides cures. |
 | **High-dose IV vitamin C, Gerson therapy, etc. as primary treatment** | **No RCT support as a cancer treatment.** Some are harmless-to-the-wallet, some (coffee enemas, extreme detox) are directly harmful, and **all share one fatal cost: time.** Using them *instead of* effective therapy for a curable cancer converts a curable disease into a fatal one. Several cohort analyses link **use of alternative medicine in lieu of standard treatment to substantially higher mortality.** As a *complement* for wellbeing (acupuncture for nausea, mindfulness for distress) some are reasonable; **as a replacement, they kill.** |
 | **"Chemo never works / kills more than it cures"** | **False, and a specific cruelty.** Chemo *cures* testicular cancer, childhood ALL (~90%), Hodgkin lymphoma, and others outright, and extends life in many more (§25.4.3). It is toxic and overused in some end-stage settings (a real critique worth honest debate), but "it never works" is contradicted by millions of survivors. The honest critique is about **appropriate use**, not abolition. |
 | **The cherry-picked "stage-4 patient cured by [juice/diet/herb]" testimonial** | **Survivorship bias + spontaneous-remission noise.** Rare spontaneous regressions occur (especially melanoma, kidney cancer, some lymphomas); a few people also get standard treatment *and* a supplement and credit the supplement. A testimonial is `anecdotal`-tier (the bottom of the ladder) — **provenance, not evidence** (`06-evidence/SCHEMA.md`). One vivid story cannot outweigh a randomized trial, however moving it is. |

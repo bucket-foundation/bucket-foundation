@@ -29,7 +29,7 @@ about any test.
     diseases. This is what a SNP chip and a polygenic score capture.
   - **Rare variants** (familial, often <0.1%) can have *large*, sometimes near-deterministic effects —
     a single broken copy of *BRCA1*, *LDLR* (familial hypercholesterolemia), or an *HFE*/*MLH1* gene.
-    These are the genuinely "actionable" findings, and a SNP chip is the *wrong instrument* to find
+    These are the "actionable" findings, and a SNP chip is the *wrong instrument* to find
     most of them (it tests a few pre-chosen spots, not the whole gene).
 - **Polygenicity — why "fitness genes" are mostly hype.** Almost every trait you care about
   (height, VO₂max (a fitness/aerobic-capacity score), strength, longevity, intelligence, blood
@@ -40,12 +40,12 @@ about any test.
   contribute that essentially *any* gene expressed in the relevant tissue nudges it a little, and a
   handful of "core" genes carry only a slice of the heritability. **The practical consequence is
   decisive: there is no "sprinter gene," no "endurance gene," no "longevity gene" you can read off a
-  chip and act on.** The famous *ACTN3* "speed gene" (the R577X variant) is the textbook example — it
-  is *real* (the XX genotype lacks α-actinin-3 in fast fibers) yet explains only ~1–3% of the
-  differences between people in any performance measure and predicts essentially nothing for an
-  individual. When a direct-to-consumer (DTC) report tells you your "power potential" or "endurance
-  type," it is reading a few common SNPs that explain a rounding error of the trait and dressing the
-  noise as a verdict.
+  chip and act on.**
+- **The *ACTN3* "speed gene" is the textbook example.** The R577X variant is *real* (the XX genotype
+  lacks α-actinin-3 in fast fibers) yet explains only ~1–3% of the differences between people in any
+  performance measure and predicts essentially nothing for an individual. When a direct-to-consumer
+  (DTC) report tells you your "power potential" or "endurance type," it is reading a few common SNPs
+  that explain a rounding error of the trait and dressing the noise as a verdict.
 
 @@FIG:B10-common-rare-variants@@
 
@@ -70,7 +70,7 @@ than one line — skip to whichever matters to you.
 | **FOXO3** | Forkhead transcription factor, stress resistance | Replicated **longevity** association across populations | Real at *population* scale; **near-useless personally** (§A.4) |
 | **MTHFR (C677T / A1298C)** | Folate-cycle enzyme variant | Marketed endlessly; **mostly meaningless** for healthy people | **Overhyped — debunk (§A.5)** |
 | **HFE (C282Y / H63D)** | Hereditary hemochromatosis (iron overload) | Treatable if it ever manifests (phlebotomy); but **low penetrance** | Real gene, **modest personal risk** (§A.2.2) |
-| **BRCA1/2 & cancer genes** | High-penetrance hereditary cancer | **Genuinely actionable** — screening, risk-reducing surgery, cascade testing | Strong *for true carriers*; chip testing is the wrong tool (§A.2.3) |
+| **BRCA1/2 & cancer genes** | High-penetrance hereditary cancer | **actionable** — screening, risk-reducing surgery, cascade testing | Strong *for true carriers*; chip testing is the wrong tool (§A.2.3) |
 | **Pharmacogenes (CYP2C19, CYP2D6, DPYD, TPMT, SLCO1B1, HLA-B)** | Drug-metabolism / hypersensitivity variants | **The most useful clinical genetics there is** — dose & drug choice | Strong, guideline-backed (CPIC); see §A.2.4 |
 
 @@FIG:BX1-actionable-variants@@
@@ -121,11 +121,10 @@ result and skips real clinical testing has been actively misled by the format. P
 testing belongs in a **clinical lab with genetic counseling**, prompted by family history — not on a
 saliva-kit wellness report.
 
-### A.2.4 Pharmacogenomics — the genuinely useful clinical genetics
+### A.2.4 Pharmacogenomics — the useful clinical genetics
 
-If you take only one practical genetics lesson from this section, take this: **the highest-value DNA
-information for most people is pharmacogenomic** — how your variants change drug metabolism and
-hypersensitivity. Unlike polygenic "risk," these are often **single, large-effect variants with a
+**The highest-value DNA information for most people is pharmacogenomic** — how your variants change
+drug metabolism and hypersensitivity. Unlike polygenic "risk," these are often **single, large-effect variants with a
 clear clinical action**, codified by the **Clinical Pharmacogenetics Implementation Consortium (CPIC)**
 (framework: Relling & Klein, 2011)[^cpic-framework]
 
@@ -158,7 +157,8 @@ It is the field's consensus answer to "which genetic
 findings are worth acting on even if you weren't looking for them": hereditary cancers, familial
 hypercholesterolemia, cardiomyopathies and arrhythmias (long-QT, *MYH7*, etc.), malignant
 hyperthermia, aortopathies. **This list — not a wellness report — is the definition of "actionable
-genetics."** If a finding isn't ~this caliber of penetrance-plus-action, it is information, not a lever.
+genetics."** If a finding isn't ~this caliber of penetrance-plus-action, it is information — it doesn't
+tell you what to do.
 
 ---
 
@@ -251,14 +251,14 @@ science.**
 
 A consumer kit genotypes a few hundred thousand to a million common SNPs. Sorted by honesty:
 
-**What it is genuinely good for**
+**What it is good for**
 
 | Use | Why it works |
 |---|---|
 | **Ancestry / relative-finding** | Common-SNP patterns are exactly what ancestry inference needs. This is the strongest, real product. |
 | **Carrier status (recessive)** | For specific, well-defined variants (e.g., common CF, Tay-Sachs, sickle-cell alleles), the chip tests the right spots. Useful for reproductive planning. |
 | **A few actionable variants** | The FDA-authorized reports — *BRCA* (3 founder variants), *MUTYH*, *APOE*, *HFE*, *G6PD* — **as starting points that must be clinically confirmed**, never endpoints. |
-| **Pharmacogenomics (partial)** | Some PGx-relevant variants (CYP2C19 alleles, etc.) are genuinely informative — the most useful "health" content on the chip (§A.2.4). |
+| **Pharmacogenomics (partial)** | Some PGx-relevant variants (CYP2C19 alleles, etc.) are informative — the most useful "health" content on the chip (§A.2.4). |
 
 **The honest limits — where the chip is noise, or worse, misleading**
 
@@ -299,7 +299,7 @@ personal decision-making** — for reasons that are about *measurement*, not mys
 
 @@FIG:98-epigenetic-clock@@
 
-1. **Predictive ≠ validated surrogate.** Epigenetic age acceleration robustly predicts mortality at the
+1. **Predictive ≠ validated surrogate.** Epigenetic age acceleration reliably predicts mortality at the
    *cohort* level (Chen 2016 meta, Domain C §2). But the field's own consensus (Moqri et al., *Cell*
    2023, Biomarkers of Aging Consortium, Domain C §3) is that **no aging biomarker is yet validated as
    a surrogate** that reliably *moves with an intervention and predicts its clinical benefit*. A clock
@@ -343,7 +343,7 @@ The unifying frame for all of Part A, and the bridge to `04-individual-variation
   al., 2016).[^fto-weightloss] **"Eat for your genotype" is, on the best
   current evidence, a product, not a finding.**
 
-> **The whole of Part A in one sentence.** Your genome contains a *short* list of variants worth acting
+> **The whole of Part An in one sentence.** Your genome contains a *short* list of variants worth acting
 > on (pharmacogenes, a few high-penetrance disease genes, Lp(a), maybe APOE *with counseling*) and a
 > *vast* polygenic remainder that the wellness industry sells as personal insight but that, for *you*,
 > is mostly noise — and the levers that move your actual outcomes are environmental, work regardless of
@@ -505,8 +505,7 @@ The body coordinates itself two ways, fast and slow:
   the right yardstick against which to measure any "important" genetic finding. **Tier: consensus —
   strong.**
 - **CPIC guidelines** (cpicpgx.org; framework Relling & Klein, *Clin Pharmacol Ther* 2011,
-  `10.1038/clpt.2011.34`; clopidogrel Lee et al. 2022, `10.1002/cpt.2526`). The home of the genuinely
-  useful clinical genetics — drug-gene dosing. **Tier: implementation guideline — strong.**
+  `10.1038/clpt.2011.34`; clopidogrel Lee et al. 2022, `10.1002/cpt.2526`). The home of the useful clinical genetics — drug-gene dosing. **Tier: implementation guideline — strong.**
 - **Boyle, Li & Pritchard, *"An Expanded View of Complex Traits: From Polygenic to Omnigenic"***
   (*Cell* 2017, `10.1016/j.cell.2017.05.038`). Why single-gene "trait genes" are a category error.
   **Tier: theory/landmark — high.**

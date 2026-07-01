@@ -160,7 +160,7 @@ solubility, and **protein binding**. Two practical consequences:
 - **Barriers and compartments.** The **blood-brain barrier** keeps many drugs out of the CNS (why
   loratadine is non-sedating but diphenhydramine, which crosses, makes you drowsy); **fat-soluble drugs
   accumulate in adipose tissue** and release slowly (a reason dosing in obesity and in the elderly —
-  who have more fat, less water, less muscle — is genuinely different; cross-ref geriatric
+  who have more fat, less water, less muscle — is different; cross-ref geriatric
   polypharmacy, §B and section 19).
 
 ### A.2.3 Metabolism — the liver and the CYP450 system
@@ -272,7 +272,7 @@ system).
 
 - **Mechanism:** agonists at the **µ-opioid receptor** — potent analgesia plus euphoria, respiratory
   depression, constipation, sedation, tolerance, and dependence.
-- **The honest evidence:** opioids are genuinely valuable for **acute severe pain, post-surgical pain,
+- **The honest evidence:** opioids are valuable for **acute severe pain, post-surgical pain,
   and cancer/palliative pain.** For **chronic non-cancer pain they are not superior to non-opioid
   regimens** — the **SPACE** trial (Krebs et al., 2018)[^space] found opioids
   *no better* (slightly worse) than non-opioid therapy for chronic back/osteoarthritis pain over 12
@@ -331,7 +331,7 @@ mechanistic map:
 
 - **Mechanism:** **irreversibly inhibit the gastric H⁺/K⁺-ATPase** (the "proton pump") → near-complete
   acid suppression. Highly effective for GERD, peptic ulcers, and *H. pylori* regimens.
-- **The honest nuance:** genuinely valuable for clear indications, but **massively over-used long-term**
+- **The honest nuance:** valuable for clear indications, but **massively over-used long-term**
   for symptoms that don't need indefinite acid blockade. Long-term observational associations (B12/
   magnesium/iron malabsorption, increased enteric infection including *C. diff*, possible bone-fracture
   and kidney signals) are mostly **confounded cohort data** — not proven causal, but enough to make
@@ -365,11 +365,11 @@ mechanistic map:
 
 - **Antiplatelets** (aspirin — irreversible COX-1 → less thromboxane; clopidogrel/ticagrelor — P2Y12
   receptor blockers) prevent **arterial** clots (heart attack/stroke).
-- **Anticoagulants** prevent **venous/cardioembolic** clots: **warfarin** (vitamin-K-epoxide-reductase
-  inhibitor — the classic narrow-TI drug (safe and toxic doses nearly touch), needs INR monitoring (a
-  blood test of how long clotting takes), huge diet/drug-interaction surface, and
-  is the textbook PGx case, §C) vs the **direct oral anticoagulants (DOACs:** apixaban, rivaroxaban,
-  dabigatran**)** that directly inhibit factor Xa or thrombin with **far less monitoring and fewer
+- **Anticoagulants** prevent **venous/cardioembolic** clots. **Warfarin** (a vitamin-K-epoxide-reductase
+  inhibitor) is the classic narrow-TI drug, where safe and toxic doses nearly touch. It needs INR
+  monitoring (a blood test of how long clotting takes), carries a huge diet/drug-interaction surface, and
+  is the textbook PGx case (§C). The **direct oral anticoagulants (DOACs:** apixaban, rivaroxaban,
+  dabigatran**)** directly inhibit factor Xa or thrombin with **far less monitoring and fewer
   interactions** — the major prescribing shift of the last decade. **All anticoagulants trade clot
   prevention for bleeding risk** — the single cleanest example of the benefit-and-harm-are-one-ledger
   rule (cross-ref aspirin/ASPREE, §10.4).
@@ -412,10 +412,10 @@ the actionable detail.
 
 **Pharmacogenetics** — the study of how inherited variation changes drug response — was named by the
 German geneticist **Friedrich Vogel in 1959**, building on **Arno Motulsky's** 1957 synthesis that
-"inheritance might explain many individual differences in drug response" and **Werner Kalow's** 1962
-foundational monograph (Kalow showed inherited pseudocholinesterase variants caused prolonged paralysis
-from the muscle relaxant succinylcholine — one of the first clean gene-drug stories). The discipline's
-modern, *actionable* form is the **Clinical Pharmacogenetics Implementation Consortium (CPIC)**, founded
+"inheritance might explain many individual differences in drug response." **Werner Kalow's** 1962
+foundational monograph put it on firm ground: Kalow showed inherited pseudocholinesterase variants caused
+prolonged paralysis from the muscle relaxant succinylcholine — one of the first clean gene-drug stories.
+The discipline's modern, *actionable* form is the **Clinical Pharmacogenetics Implementation Consortium (CPIC)**, founded
 2009 and led for years by **Mary V. Relling** and **Teri Klein**, which writes the freely-available,
 peer-reviewed guidelines that translate a genotype into a **specific dosing action** (cpicpgx.org;
 framework Relling & Klein, 2011)[^cpic-framework]. **The shift CPIC
@@ -454,12 +454,12 @@ the practical-genetics framing; this is the prescribing detail.)
 with a **defined action** — change the drug or the dose. That is the opposite of a polygenic risk score,
 and it is why this is the most defensible application of personal genomics that exists.
 
-## C.4 When PGx testing is genuinely useful vs oversold
+## C.4 When PGx testing is useful vs oversold
 
 Honesty cuts both ways here — PGx is *both* the most useful clinical genetics *and* a fast-growing
 commercial product where the marketing outruns the evidence.
 
-**Genuinely useful (test before, or test to guide):**
+**useful (test before, or test to guide):**
 - **HLA-B\*57:01 before abacavir, DPYD before fluoropyrimidines, TPMT/NUDT15 before thiopurines,
   HLA-B\*15:02 before carbamazepine in at-risk ancestries, G6PD before oxidant drugs** — these are
   *pre-emptive, single-gene, prevent-a-catastrophe* tests with clear guidelines. This is PGx at its
@@ -522,7 +522,7 @@ This is where pharmacology becomes a geriatric-medicine problem (cross-ref secti
   rises steeply with each added drug, and the aging body **changes the PK** (lower renal clearance, more
   fat / less water, lower albumin, more drug accumulation) *and* the PD (more sensitivity to CNS
   depressants, anticholinergics, and hypotensives).
-- **The prescribing cascade** — a side effect of drug A is misread as a new disease and treated with
+- **The prescribing cascade** — a side effect of drug An is misread as a new disease and treated with
   drug B, whose side effect prompts drug C — is a central driver, and a leading *reversible* cause of
   falls, confusion, and hospitalization in older adults.
 - **The tools:** the **Beers Criteria** (potentially inappropriate medications in older adults — anti-
@@ -644,18 +644,18 @@ drugs** — meaning they **do not need to prove efficacy or safety before sale**
 
 So the optimism and the cynicism are both calibrated:
 
-- **It's genuinely hard.** Most candidate drugs fail; the journey from target to approval spans
+- **It's hard.** Most candidate drugs fail; the journey from target to approval spans
   preclinical → Phase I (safety) → Phase II (does it work?) → Phase III (large RCT) → regulatory review,
   takes many years, and the **vast majority of compounds that enter human trials never reach market** —
   most failures are in **Phase II/III for lack of efficacy**, the mechanism-≠-outcome rule killing
   drugs that "should have worked."
-- **It's genuinely expensive — and the headline figures are contested.** The often-cited "~$1–2.6
+- **It's expensive — and the headline figures are contested.** The often-cited "~$1–2.6
   billion per approved drug" estimates (DiMasi et al.) include the **capitalized cost of all the
   failures and the cost of capital**; critics put the out-of-pocket figure far lower. Both are partly
   true and serve different arguments — the honest reading is that *aggregate* R&D is expensive largely
   *because most drugs fail*, while *individual* successful-drug accounting is a contested, advocacy-laden
   number.
-- **Price ≠ cost.** The **price** of a drug (especially a US list price) is set by market exclusivity,
+- **Price ≠ cost.** The **price** of a drug (especially an US list price) is set by market exclusivity,
   patents, and what payers will bear — **not by its manufacturing cost**, which for most small molecules
   is pennies, and not in any simple way by its R&D. The collapse to near-free **once a drug goes generic**
   (§F.1) is the proof: the molecule didn't change, the monopoly ended. This is why "it's expensive

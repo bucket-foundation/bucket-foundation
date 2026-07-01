@@ -70,7 +70,7 @@ schedule.
   2025)[^omad]. A crossover study in healthy adults found OMAD raised
   fasting glucose and morning cortisol and modestly raised blood pressure versus three meals at the same calories.
   It's an extreme TRE; the same "benefit = the calorie deficit" logic applies, with a harder adherence and
-  nutrient-adequacy problem (hitting protein and micronutrient targets in one meal is genuinely difficult).
+  nutrient-adequacy problem (hitting protein and micronutrient targets in one meal is difficult).
 - **Verdict:** **WEAK / context-dependent.** Works for some as an aggressive deficit tool; no evidence it beats a
   gentler window on anything except convenience-of-rules. The single-meal protein bolus likely underfeeds muscle.
 - **Safety:** higher risk of nutrient inadequacy, lean-mass loss, and — for some — a slide toward disordered patterns.
@@ -169,9 +169,9 @@ refeed — especially for anyone on medication, with any chronic condition, or w
 with. The Buchinger and Goldhamer data look benign **because** they are run in supervised facilities with screening and
 refeeding. Replicating the duration without the supervision is not replicating the study.
 
-### 2.4 Refeeding syndrome — the genuinely dangerous part
+### 2.4 Refeeding syndrome — the dangerous part
 
-This is the section to take seriously. **Refeeding syndrome** is a potentially **fatal** shift in fluids and
+Take this section seriously. **Refeeding syndrome** is a potentially **fatal** shift in fluids and
 electrolytes when nutrition (especially carbohydrate) is reintroduced after a period of starvation or prolonged
 fasting. Mechanism: refeeding spikes insulin → cells rapidly pull **phosphate, potassium, and magnesium** out of the
 blood → acute **hypophosphatemia**, hypokalemia, hypomagnesemia, plus thiamine depletion and fluid shifts. The result
@@ -192,7 +192,7 @@ can be cardiac arrhythmia, respiratory failure, seizures, and death.
 During an extended fast, sodium, potassium, and magnesium are lost (natriuresis is pronounced early). Inadequate
 electrolytes drive the headaches, cramps, palpitations, fatigue, and lightheadedness people attribute to "detox." This
 is the legitimate kernel under "fasting electrolyte" products (and under the Snake Diet's "snake juice," §4.7): on a
-multi-day fast, **sodium and potassium and magnesium genuinely matter**. It does not validate the *protocol*; it
+multi-day fast, **sodium and potassium and magnesium matter**. It does not validate the *protocol*; it
 validates **not becoming hyponatremic or hypokalemic while doing one.**
 
 ---
@@ -310,7 +310,7 @@ than read every one. The one detail worth stopping for is the mechanism of the "
   ("snake juice": water + sodium, potassium, and magnesium salts) and a confrontational "fasting cures everything"
   messaging.
 - **The claim:** rapid fat loss; fasting as a near-universal fix.
-- **The evidence:** the **electrolyte logic is the one real kernel** — sodium/potassium/magnesium genuinely matter
+- **The evidence:** the **electrolyte logic is the one real kernel** — sodium/potassium/magnesium matter
   during extended fasting (§2.5), and a salt drink does mitigate the headaches/cramps. But the program's **extreme,
   prolonged, recurrent fasting + anti-medical, "ignore your hunger / fasting heals all" framing** is well outside the
   evidence and overlaps with disordered-eating territory. There is no trial base for the *program*; the weight loss is
@@ -367,7 +367,7 @@ dose-response that **does not exist in the data**). The problems, stacked:
 
 1. **The famous timing numbers come from rodents and cell culture, not human kinetics.** The "autophagy kicks in at
    ~16–18h, peaks by ~24–48h" figures are **extrapolated** from animal/in-vitro studies. Human autophagy *flux* is
-   genuinely hard to measure (see below), and there is no clean human study establishing a clock you can set a protocol
+   hard to measure (see below), and there is no clean human study establishing a clock you can set a protocol
    by. Treat any specific hour-threshold as **indicative, not established.**
 2. **Measuring autophagy in living humans is an unsolved problem.** Static markers (LC3-II, p62 in blood cells) are
    snapshots, not **flux** (the rate of the full degrade-and-recycle cycle), and the gold-standard flux assays require
@@ -426,7 +426,7 @@ overeating, and (speculatively) spermidine-rich foods.
 **The one-paragraph synthesis.** The legitimate core of this entire field is small and honest: **eating in a defined
 window, or doing periodic structured restriction, is a reasonable way to eat less — and eating less, plus eating
 earlier, plus keeping protein high and lifting, delivers most of what "fasting" is credited with.** Extended water
-fasting *does things* but is uncontrolled and carries a genuinely dangerous tail (refeeding syndrome) that demands
+fasting *does things* but is uncontrolled and carries a dangerous tail (refeeding syndrome) that demands
 supervision. The **fasting-mimicking diet** is the one branded protocol with a real human RCT, and even it is
 surrogate-level and commercially entangled. **Dry fasting** trades an unproven benefit for a real dehydration harm.
 And the **cleanse industry** — master cleanse, juice, colon, liver flush, parasite, detox tea — is the clearest cluster

@@ -42,8 +42,8 @@ diseases** people actually see a dermatologist for.
 Acne has four causes — a plugged pore, too much oil, a skin bacterium, and inflammation — and each treatment hits
 one of them. In clinical terms it is a disease of the **pilosebaceous unit** (the hair follicle plus its oil gland),
 driven by (1) follicular hyperkeratinization (the plugged pore/comedo), (2) androgen-driven sebum overproduction,
-(3) *Cutibacterium acnes* (formerly *Propionibacterium acnes*) proliferation, and (4) inflammation. Treatment works
-by hitting these nodes, and the evidence ladder is unusually clear.
+(3) *Cutibacterium acnes* (formerly *Propionibacterium acnes*) proliferation, and (4) inflammation. The evidence
+ladder is unusually clear.
 
 _Evidence-tier key (used in every table in this section): `rct` = randomized trial, the strongest tier; `meta` =
 meta-analysis pooling many trials; `cohort` = observational, weaker; `mechanistic` = plausible biology, not yet
@@ -308,7 +308,7 @@ modern prevention win (cross-ref Section 25/26).
 |---|---|---|
 | **Charcoal toothpaste "detoxifies / whitens"** | Whitens only by **abrasion** (it's a mild scrub); no detox mechanism; **high abrasivity can wear enamel**; usually **no fluoride** (so it forgoes the one proven benefit). No RCT of caries/whitening outcomes. | `mechanistic`/marketing — **net-negative** if it replaces fluoride toothpaste |
 | **Oil pulling** (swishing coconut/sesame oil) | Systematic reviews find **at best weak, low-quality** evidence vs chlorhexidine/standard care; any plaque effect is small and unreplicated; harmless but **not a substitute** for brushing/fluoride; lipoid pneumonia if aspirated (rare). | `meta` (low quality) — overhyped[^oil-pulling] |
-| **Whitening** (peroxide strips/gels, in-office) | **Actually works** — peroxide genuinely bleaches via oxidation; this is the one cosmetic that does what it says. Sensitivity is the main side effect; doesn't damage enamel at proper concentrations. | `rct` — **legit** |
+| **Whitening** (peroxide strips/gels, in-office) | **Actually works** — peroxide bleaches via oxidation; this is the one cosmetic that does what it says. Sensitivity is the main side effect; doesn't damage enamel at proper concentrations. | `rct` — **legit** |
 | **"Holistic / biological dentistry"** | A spectrum: the *good* parts (minimally-invasive dentistry, prevention focus) are mainstream; the *bad* parts (routine amalgam removal for "detox," "cavitation surgery," fluoride-rejection, "meridian tooth charts") range from unproven to harmful. | mixed — **fluoride-rejection is the red flag** |
 | **"Silver (amalgam) fillings poison you with mercury"** | Dental amalgam releases **trace mercury vapor**, but at levels **far below any toxicity threshold** for the general population; large reviews and the FDA/WHO/ADA find **no evidence of systemic harm** in people with amalgams. **Removing sound amalgams "to detox" actually spikes mercury exposure** during drilling — net-harmful. (Composite resins are now often preferred for *aesthetic/conservative* reasons, not safety — and Cochrane finds composites have a **higher failure/recurrent-caries rate** than amalgam in load-bearing posterior teeth.) | `meta` — **the fear is unfounded; removal-for-detox is the actual harm**[^amalgam-cochrane] |
 
@@ -502,7 +502,7 @@ too. It is the **"silent thief of sight"** — and the second-leading cause of i
 
 **Honest take:** glaucoma is the **strongest case for risk-based eye exams** (age, family history, African/Hispanic
 ancestry, high IOP, high myopia) — because it's symptomless until vision is permanently gone, **and** because once
-caught, **IOP-lowering genuinely preserves sight** (EMGT). Lost vision can't be recovered, so detection is everything.
+caught, **IOP-lowering preserves sight** (EMGT). Lost vision can't be recovered, so detection is everything.
 No supplement, diet, or "eye exercise" treats glaucoma.
 
 ### D.4 Age-related macular degeneration (AMD) — AREDS2 + the anti-VEGF revolution
@@ -521,8 +521,7 @@ adults. Two forms:
   intravitreal **ranibizumab** for neovascular AMD **not only prevented vision loss but improved vision** in a
   substantial fraction (~95% lost <15 letters; ~34% gained ≥15 letters) vs sham. `rct` / outcome.[^amd-marina] Anti-VEGF agents
   (ranibizumab, aflibercept, bevacizumab off-label, faricimab) are now the standard of care — **one of the biggest
-  treatment advances in modern ophthalmology**, converting wet AMD from near-certain central-vision loss to a
-  manageable chronic condition.
+  treatment advances in modern ophthalmology**.
 
 @@FIG:P08-amd-antivegf@@
 
@@ -583,7 +582,7 @@ myopia and let you ditch your glasses.** They cannot.
   evidence** that eye exercises, vision training, or the Bates method improve or reverse refractive errors (myopia,
   hyperopia, astigmatism, presbyopia). Reviews of "behavioural vision therapy" for refractive error find no
   efficacy. `meta`/`consensus` (refutes).
-- **The narrow legitimate exception:** orthoptic **vision therapy is genuinely effective for a specific binocular
+- **The narrow legitimate exception:** orthoptic **vision therapy is effective for a specific binocular
   disorder — convergence insufficiency** (the CITT RCT showed office-based vergence/accommodative therapy works).
   That is a real, evidence-based use of "eye exercises" — but it treats an **eye-teaming** problem, **not refractive
   error**. The marketing exploits this kernel of truth to oversell.
@@ -602,7 +601,7 @@ unglamorous, and mostly preventive** — fluoride for caries (the best-evidenced
 retinoid for skin, the Epley maneuver for the most common vertigo (a free 60-second cure), outdoor time to prevent
 childhood myopia, IOP-lowering for detected glaucoma, anti-VEGF for wet AMD, glucose control for diabetic
 retinopathy, and getting hearing/vision actually corrected (function plus a plausible dementia tail). **The biologic
-era genuinely transformed three diseases** — dupilumab for severe eczema, IL-17/IL-23 blockers for psoriasis, and
+era transformed three diseases** — dupilumab for severe eczema, IL-17/IL-23 blockers for psoriasis, and
 anti-VEGF for wet AMD are real, RCT-proven wins. And the **honesty rules bite hardest here against a thick layer of
 wellness theater**: charcoal toothpaste and oil-pulling are net-negative-to-useless, amalgam-removal "detox" is the
 actual harm (the mercury fear is unfounded), $300 serums don't beat a $12 retinoid, eye exercises do not fix

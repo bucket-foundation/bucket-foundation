@@ -27,7 +27,7 @@ nothing) are defined in "Start Here."_
 
 ## 1. Why knowing ≠ doing: the intention–behavior gap
 
-This is the central finding of the entire field, and it is worth stating as bluntly as the evidence allows.
+This is the central finding, and it is worth stating as bluntly as the evidence allows.
 
 **Intentions predict behavior weakly, and changing intentions changes behavior even more weakly.** In the
 canonical meta-analysis of *experimental* studies — ones that actually manipulated intention and then
@@ -66,7 +66,7 @@ this section.
 
 ### 2.1 Environment & choice architecture — the strongest lever, and the most under-used
 
-If you change only one thing after reading this chapter, change your environment, not your mindset. **Make
+If you change only one thing after reading this chapter, change your environment first — mindset is the weaker lever. **Make
 the good choice the easy, default, visible one and the bad choice the effortful, hidden one.** This is the
 highest-leverage move in behavior change because it works *with* the gap in §1 instead of fighting it: it
 removes the moment of decision entirely.
@@ -75,12 +75,12 @@ removes the moment of decision entirely.
   the "choice architecture" (defaults, placement, friction, portion size, visibility) shift behavior at
   scale. Putting the fruit at eye level and the cookies on a high shelf in an opaque container is not a
   gimmick — it is the most reliable individual-level intervention there is.
-- The honest grade on the *research literature*, though, requires a caveat. The large meta-analysis by
+- The research-literature grade needs a caveat. The large meta-analysis by
   **Mertens et al. (2022)** reported a moderate average effect of nudges (Cohen's d ≈ 0.43).[^mertens] But a
   high-profile reanalysis — **Maier et al. (2022)** — showed that once you correct for **publication bias**
   (the tendency for positive results to get published while null results sit in a drawer), the average effect
   shrinks toward zero, and the field is currently in open dispute about how big population-level nudging
-  really is.[^maier][^nudge-pubbias] This is a `mixed`/contested finding at the *policy* scale.
+  is.[^maier][^nudge-pubbias] This is a `mixed`/contested finding at the *policy* scale.
 - **The reconciliation that survives the dispute:** even the skeptics agree that *some* nudge categories —
   especially **defaults** and **physical-environment / friction changes** — are robust, and that the weak
   ones are mostly informational "nudges" (which are just education in a trench coat, and run into §1). For an
@@ -319,8 +319,8 @@ better.**
   physical health behaviors and outcomes.[^ng]
 - **The practical payload, and why it matters for §2.6:** externally-imposed pressure, surveillance, and
   contingent rewards can *undermine* long-term adherence by crowding out autonomous motivation (the
-  "overjustification" effect). This is the honest caveat on gamification and rewards (§5): they can boost
-  *short-term* engagement while *eroding* the internalized motivation that sustains behavior after the points
+  "overjustification" effect). This is the honest caveat on gamification and rewards (§5): they can raise
+  short-term engagement while eroding the internalized motivation that sustains behavior after the points
   stop. Design support to feel chosen, build genuine competence (visible progress), and connect it socially.
 
 **Verdict:** the best-supported *motivational* theory in the chapter, and the corrective to naïve "just add

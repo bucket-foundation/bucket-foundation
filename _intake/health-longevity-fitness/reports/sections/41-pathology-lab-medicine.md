@@ -86,7 +86,7 @@ half of it is the commonest reasoning error in all of medicine
 (Lijmer & Bossuyt, *Intensive Care Med* 2003 — "A readers' guide to the interpretation of diagnostic test
 properties").
 
-**A worked example, because the numbers are genuinely counter-intuitive.** Take an excellent test:
+**A worked example, because the numbers are counter-intuitive.** Take an excellent test:
 **99% sensitive, 99% specific** (better than almost anything real). Apply it to a disease present in **1 in
 1,000** people, screening 100,000 healthy adults:
 
@@ -134,7 +134,7 @@ Rough field guide (Jaeschke/McMaster):
 
 @@FIG:PS12-fagan@@
 
-The practical punchline that the LR framing makes unavoidable: **a test with LR near 1 is useless no
+The LR framing makes the punchline unavoidable: **a test with LR near 1 is useless no
 matter how "abnormal" the result looks**, and a great many ordered tests — especially screening add-ons
 sold as thoroughness — have LRs close to 1 in the population they're applied to. The LR also shows *why
 pre-test probability is inescapable*: you apply the LR to the **pre-test odds**, so the same LR lands you
@@ -474,7 +474,7 @@ empowerment. Sorted by honesty:
   inference); the analytical-chemistry basis of assays → `bucket-canon/03-chemistry/`.
 
 > **Honesty footer.** This section refuses two opposite errors. One is *test nihilism* — "labs are
-> meaningless, trust how you feel" — which throws away the genuinely decision-changing tests (apoB, HbA1c,
+> meaningless, trust how you feel" — which throws away the decision-changing tests (apoB, HbA1c,
 > a needle biopsy, a culture-guided antibiotic). The other, far more commercially powerful, is *test
 > maximalism* — "measure everything, more data is more health" — which ignores that the meaning of any
 > result is set by pre-test probability, that 1 in 20 healthy values flags abnormal by construction, and

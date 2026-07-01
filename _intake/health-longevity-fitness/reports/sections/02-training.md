@@ -215,7 +215,7 @@ Here is how to build it. Two qualities matter and they are trained differently:
 - **VO₂max / the ceiling** → raised most efficiently by **a little hard work** (intervals).
 
 You want both. The structure that delivers both is the **polarized model**: ~80% of cardio time easy,
-~20% genuinely hard, and relatively little in the "grey zone" middle (moderately-hard tempo work that is
+~20% hard, and relatively little in the "grey zone" middle (moderately-hard tempo work that is
 too hard to recover from and too easy to maximally stimulate the ceiling).
 
 @@FIG:G01-polarized@@

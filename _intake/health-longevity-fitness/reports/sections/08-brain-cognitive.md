@@ -1,6 +1,6 @@
 # 08 — Brain, Cognition & Mental Health
 
-**What actually protects the brain as it ages, and what is being sold to you that does not?** The longevity-and-biohacking world is strangely quiet about this question. The asymmetry is stark: the large, well-evidenced levers — hearing, vascular risk, education, connection, sleep — are mostly unsexy and unmonetizable, while the marketed interventions (nootropics, brain-training apps, and, at the clinical end, the new amyloid antibodies) carry far weaker benefit-to-risk than their visibility implies.
+**What actually protects the brain as it ages, and what is being sold to you that does not?** The longevity-and-biohacking world is strangely quiet about this question. The asymmetry is stark: the large, well-evidenced levers — hearing, vascular risk, education, connection, sleep — are mostly unsexy and unmonetizable. Meanwhile the marketed interventions — nootropics, brain-training apps, the new amyloid antibodies — carry far weaker benefit-to-risk than their visibility implies.
 
 _Not medical advice. This chapter is about protecting cognition and mental health as you age; sleep is covered in Domain I and social connection in Domain M._
 
@@ -52,8 +52,7 @@ risk (a lever). The last column flags, for each factor, how strong that lever ev
 
 - **45% is a population counterfactual, not your personal odds.** It says "if every one of these factors
   were eliminated everywhere, dementia would be ~45% rarer." It does **not** say any individual who does
-  everything right cuts their personal risk by 45%. (Honesty rule #1: predictor ≠ lever — forecasting a
-  risk isn't the same as having a proven fix for it.)
+  everything right cuts their personal risk by 45%. (Honesty rule #1: predictor ≠ lever.)
 - **Most of the 14 are predictors with only *indirect* or *observational* evidence of being levers.**
   The PAFs come from combining relative risks (mostly cohort/observational) with prevalence. The
   Commission is explicit that for most factors we have **association, not randomized proof of
@@ -190,7 +189,7 @@ early symptom of incipient neurodegeneration — so some of the association is r
 grade: real and important, but causally tangled (cf. Domain M's treatment of psychosocial factors).
 `cohort`/`meta`, observational.
 
-### 5.2 Exercise for depression — a genuine lever
+### 5.2 Exercise for depression — a real lever
 
 This is one of the cleaner *interventional* stories in mental health. **Noetel et al., *BMJ* 2024**[^noetel],
 a network meta-analysis of 218 RCTs (~14,000 participants), found **exercise is an effective treatment for
@@ -198,7 +197,7 @@ depression** — walking/jogging, yoga, strength training, and mixed aerobic all
 effects at higher intensity**, and effect sizes that rival or approach those of psychotherapy and
 medication in head-to-head arms. **The honest caveat the authors themselves flag:** most included trials
 carry **high risk of bias**, and effects shrink (though stay positive) in the lowest-bias studies. Still:
-exercise for depression is a real, RCT-supported lever with a benefit profile most drugs would envy.
+exercise for depression is an RCT-supported lever with a benefit profile most drugs would envy.
 `meta` (of RCTs), moderate-to-large effect, bias-caveated.
 
 ### 5.3 The limits of the serotonin story
@@ -207,7 +206,7 @@ The popular "depression is a chemical imbalance / serotonin deficiency" narrativ
 the evidence.** Moncrieff et al., *Mol Psychiatry* 2022/2023[^moncrieff], an umbrella review, found **no
 consistent evidence that depression is caused by low serotonin.** Two things must be held at once, honestly:
 - This **undermines the marketing story** ("correct your serotonin"), which was always a simplification.
-- It does **not** mean antidepressants don't work. SSRIs have **modest but real** RCT-proven efficacy
+- It does **not** mean antidepressants don't work. SSRIs have **modest but measurable** RCT-proven efficacy
   (Cipriani et al., *Lancet* 2018[^cipriani] all 21 antidepressants beat placebo, with a standardized
   mean difference (SMD) of ~0.30 — small-to-moderate, and larger in severe depression). An SMD of 0.3
   means the average treated person does better than about 62% of placebo patients — real, but most people
@@ -264,8 +263,8 @@ grading carefully. `quasi-experimental` (natural experiment), striking, replicat
 
 ### 6.2 The amyloid-drug saga: lecanemab and donanemab — marginal benefit, real risk
 
-The first anti-amyloid antibodies to win approval represent decades of the amyloid hypothesis finally
-"working" — and a sobering lesson in **statistical vs clinical significance.**
+The first anti-amyloid antibodies to win approval represent the amyloid hypothesis finally
+paying off — and a sobering lesson in **statistical vs clinical significance.**
 
 **Lecanemab — CLARITY-AD** (van Dyck et al., *NEJM* 2023)[^lecanemab] 1,795 people with early
 Alzheimer's, lecanemab vs placebo over 18 months. On the **CDR-SB** — a dementia-severity score (Clinical
@@ -336,12 +335,12 @@ statistically significant, clinically marginal, real harms.
    the brain.
 
 @@FIG:88-dementia-checklist@@
-3. **Mental health is longevity.** Depression raises mortality and dementia risk; exercise is a genuine
+3. **Mental health is longevity.** Depression raises mortality and dementia risk; exercise is an
    RCT-supported treatment for depression; the serotonin-deficiency story is a marketing simplification
    that's false *and* doesn't negate the modest real efficacy of antidepressants.
 4. **The hype is concentrated and gradeable.** Nootropics and brain-training games are mostly `mechanistic`
    or marketing with null large RCTs; the amyloid antibodies are a real but **clinically marginal,
-   risk-laden** milestone; and the most genuinely exciting *new* lead — the shingles-vaccine signal — is
+   risk-laden** milestone; and the most exciting *new* lead — the shingles-vaccine signal — is
    striking precisely because it's **quasi-experimental and replicated**, which is rare in this field. Flag
    it loudly, grade it as the natural experiment it is.
 

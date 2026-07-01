@@ -22,8 +22,8 @@ These are the whole game. Each individually outranks every supplement and gadget
 2. **Build and keep cardiorespiratory fitness (VO₂max — how much oxygen your body can use at full effort,
    i.e. how fit your heart and lungs are).** The strongest mortality predictor in preventive medicine —
    ~5× lower all-cause mortality (top vs bottom), no observed ceiling. Treat it like a vital sign. *(→ §Training)*
-3. **Resistance-train for strength, 2–3×/week.** *Strength*, not muscle size, predicts survival; benefit peaks
-   around 30–60 min/week (more isn't better). *(→ §Training)*
+3. **Resistance-train for strength, 2–3×/week.** *Strength* predicts survival — more than muscle size does —
+   and benefit peaks around 30–60 min/week (more isn't better). *(→ §Training)*
 4. **Move all day; break up sitting.** The least-confounded signal in the field; steps help but plateau ~7–8k. *(→ §Training)*
 5. **Keep apoB / LDL low across your whole life.** apoB (a count of the cholesterol particles that actually
    clog arteries) is one of the only *causal* blood levers — earlier is better because exposure is cumulative.

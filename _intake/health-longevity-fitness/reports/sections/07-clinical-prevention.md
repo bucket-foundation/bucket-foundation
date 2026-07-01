@@ -194,7 +194,7 @@ For decades, low-dose aspirin was reflexively recommended for "heart health." Th
 
 ## 3. Cancer screening that actually saves lives — graded
 
-The discipline of cancer screening is brutal: a test only earns its place if it **reduces deaths from
+Cancer screening is brutal: a test earns its place only if it **reduces deaths from
 that cancer (ideally with an RCT)**, not merely if it "finds more cancers." Finding more cancers can
 *harm* a population through overdiagnosis (detecting cancers that would never have caused symptoms) and
 overtreatment. The screens below are ranked by **how solid the mortality benefit is** and tagged with
@@ -248,11 +248,11 @@ mortality-effective screens that exists:
   **high-pack-year** population; screening low-risk never-smokers is not supported.
 
 **Practical:** if you are 50–80 with ≥20 pack-years and still smoke or quit within 15 years, annual
-LDCT is a USPSTF Grade-B, life-saving screen. (And the dominant lever remains **not smoking** — §4.)
+LDCT is an USPSTF Grade-B, life-saving screen. (And the dominant lever remains **not smoking** — §4.)
 
 ### 3.3 Breast — real benefit, told honestly with overdiagnosis
 
-Mammography is genuinely beneficial *and* the textbook case for screening's double edge.
+Mammography is beneficial *and* the textbook case for screening's double edge.
 
 - The **UK Independent Review** (Marmot 2012, Lancet) — commissioned precisely because the field was
   arguing — concluded mammography produces about a **20% relative reduction in breast-cancer

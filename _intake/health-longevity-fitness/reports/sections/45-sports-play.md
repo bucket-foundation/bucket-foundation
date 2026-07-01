@@ -178,7 +178,7 @@ to.** That bundle is the leading explanation for the racquet edge.
   with a partner.
 - **Injury profile:** the wall sports carry a real **eye-injury risk** (enclosed court, fast ball — protective
   eyewear is non-negotiable), plus knee/ankle and the cardiac caveat magnified by how *hard* squash makes you
-  work. Not for an unscreened, deconditioned beginner to go all-out in.
+  work. An unscreened, deconditioned beginner should not go all-out in it.
 - **Age & barrier:** moderate-high — needs a court, a partner, and fitness; less forgiving for late beginners
   than pickleball.
 
@@ -247,7 +247,7 @@ without other people, which welds the psychosocial lever directly onto the exerc
   hypertension). This makes soccer the **best-evidenced team sport** for actual health endpoints — the cohort
   signal is backed by intervention trials, a rung the racquet sports don't yet have. (Note the cohort dissonance:
   Oja's British cohort found *no* significant football mortality benefit — so hold the +4.7 loosely, but the RCT
-  cardiometabolic data is robust.)
+  cardiometabolic data is strong.)
 - **Cognitive/skill/social:** high tactical/spatial cognition; the team bond is the point. Strong adherence via
   social obligation ("the lads are waiting").
 - **Injury profile:** the **highest acute-injury rate** in this section — ACL and other knee ligament tears,
@@ -338,7 +338,7 @@ the progressive brain degeneration that follows accumulated blows to the head).
   conditioning, *no sparring* — is an excellent intermittent-HIIT + coordination + stress-relief stimulus with
   **none of the head-trauma risk**. "Rock Steady"-style **non-contact boxing for Parkinson's** is an established,
   popular community program with encouraging functional data (same exerkine + dual-task + social logic as table
-  tennis). This is a genuinely recommendable, broadly safe sport.
+  tennis). This is a recommendable, broadly safe sport.
 - **The contact case (the honest CTE caveat):** **competitive sparring and bouts** mean **repetitive head
   impacts**, which are the established driver of **chronic traumatic encephalopathy (CTE)** and dementia risk.
   This is not a "concussion only" risk — *sub-concussive* repeated impacts accumulate. Boxing has the longest
@@ -423,7 +423,7 @@ sessions.
   potential.
 - **Injury profile:** shoulder overuse (paddling), board-strike lacerations, drowning/hold-down risk, sun
   exposure, and reef/bottom injuries. Acute risk is environment-dependent.
-- **Age & barrier:** high skill floor and geographic barrier (you need waves), but genuinely lifelong for those
+- **Age & barrier:** high skill floor and geographic barrier (you need waves), but lifelong for those
   near the coast.
 
 ### 6.5 Traditional martial arts (karate, taekwondo, tai chi, kung fu)
@@ -481,8 +481,8 @@ on four axes the gym usually neglects:
    chapter for choosing sport over solitary cardio.
 3. **Skill & cognitive engagement.** Sport demands **motor learning, anticipation, and dual-tasking** (move *and*
    decide *and* read an opponent) — a brain stimulus the treadmill lacks. This is the through-line of the table
-   tennis–Parkinson's, dance–dementia, and bouldering–depression signals: the *cognitive* load of sport is
-   plausibly neuroprotective in a way steady cardio isn't (cross-ref `08-brain-cognitive.md`).
+   tennis–Parkinson's, dance–dementia, and bouldering–depression signals: the *cognitive* load of sport
+   plausibly adds a neuroprotective stimulus that steady cardio lacks (cross-ref `08-brain-cognitive.md`).
 4. **Intermittent-HIIT physiology.** Most sports are naturally **burst-and-recover** (rally/recover, shift/bench,
    sprint/jog), which delivers high-intensity intervals without a stopwatch — a pattern increasingly linked to
    cardiometabolic and VO₂max benefit. The game *is* the interval timer.

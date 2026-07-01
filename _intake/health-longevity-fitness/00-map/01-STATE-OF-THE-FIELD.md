@@ -105,7 +105,7 @@ gap**: a real *mechanism* or a *mouse* result gets marketed as a hard human *out
   the only human metabolic *outcome* used **prolonged mild cold (hours)**, not the brief plunge that's
   sold — a dose↔evidence mismatch.[^cold]
 - **Wim Hof method.** One RCT shows trainable immune suppression, but it's an acute-adrenaline,
-  bundled, small/healthy/short-study effect.[^wimhof] ⚠️ And genuinely dangerous in/near water.
+  bundled, small/healthy/short-study effect.[^wimhof] ⚠️ And dangerous in/near water.
 - **CGM (continuous glucose monitor) / "glucose spikes" for healthy people.** No outcome RCT in
   non-diabetics; glucose variability has no proven outcome meaning; sensors disagree.[^cgm]
 - **Seed-oil panic.** Polarized and low-rigor; higher-tier evidence runs the *other* way (PUFA

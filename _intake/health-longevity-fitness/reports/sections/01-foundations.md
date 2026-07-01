@@ -1,6 +1,6 @@
 # 01 — First-Principles Foundations: How a Living Body Works and Ages
 
-Being alive is a verb, not a noun. A living body is a process that must spend energy every second just to stay itself, and everything you care about — how hard you can train, how well you sleep, how fast you heal, how slowly you age — rides on how well that process runs. This chapter is the machine. Every later section — training, nutrition, sleep, clinical prevention, supplements — is a *lever* that acts on it.
+Being alive is a verb. A living body is a process that must spend energy every second just to stay itself, and everything you care about — how hard you can train, how well you sleep, how fast you heal, how slowly you age — rides on how well that process runs. This chapter is the machine. Every later section — training, nutrition, sleep, clinical prevention, supplements — is a *lever* that acts on it.
 
 The promise of the whole manual is that no recommendation is offered as a free-floating tip: each one is graded by evidence **and** traced down to a mechanism, and each mechanism is traced down to a foundation — a law of how energy, matter, and information behave in a cell. When the two ways of knowing agree (good evidence *and* a real mechanism) you can trust a practice deeply. When they disagree — strong story, weak trial, or strong trial, no story — this chapter is what lets you see the gap instead of being sold across it. Read it once for the architecture, then return to it whenever a later claim feels too good to be true.
 
@@ -40,8 +40,8 @@ tell you *why*, cannot tell you whether the relationship is causal or reverse-ca
 tell you what to do when the cohort and the trial disagree. The foundation tells you that
 cardiorespiratory fitness *is* integrated mitochondrial capacity — and the moment you know that,
 the cohort stops being a curiosity and becomes a prediction: train the mitochondrion and the engine
-gets bigger, whatever the noisy 5× hazard ratio (a comparison of event rates between groups) claims. Mechanism is what lets you reason past the
-edge of the data instead of stopping at it.
+gets bigger, whatever the noisy 5× hazard ratio claims. (A hazard ratio is a comparison of event rates
+between groups.) Mechanism is what lets you reason past the edge of the data instead of stopping at it.
 
 The rest of this section builds the foundation stack from the bottom up: **energy → structure →
 information → why we age → the unifying principles.** Each layer names the canon law it rests on,
@@ -53,7 +53,7 @@ names the figures who derived it, and names the downstream outcomes it governs.
 
 > **Foundation law:** chemiosmosis / proton-motive force / redox bioenergetics.
 
-If you internalize one thing from this manual, make it this: **being alive is a verb, not a noun.**
+If you internalize one thing from this manual, make it this: **being alive is a verb.**
 A living cell is not a stable structure that occasionally does work; it is a process that must spend
 energy *continuously* just to remain itself — to hold its gradients, repair its molecules, and keep
 entropy at bay. Stop the energy flux for minutes and the structure dissolves. Everything
@@ -154,7 +154,7 @@ The cell can load that hub from different fuels, and the ability to switch betwe
 |---|---|---|
 | **Glucose** | Glycolysis → pyruvate → acetyl-CoA | Fast, oxygen-sparing; the dominant fuel at high intensity and the one insulin manages. |
 | **Fat (fatty acids)** | β-oxidation → acetyl-CoA | Slow, oxygen-hungry, energy-dense; the dominant fuel at rest and low intensity (the Zone-2 domain). |
-| **Ketones (β-hydroxybutyrate)** | Made from fat in the liver during fasting/low-carb → acetyl-CoA | Not just a backup fuel — **βHB is also a signaling molecule** (it inhibits the NLRP3 inflammasome and acts as an HDAC inhibitor). A clean example of metabolism *talking* to gene expression. |
+| **Ketones (β-hydroxybutyrate)** | Made from fat in the liver during fasting/low-carb → acetyl-CoA | **βHB is also a signaling molecule**, beyond its role as a backup fuel — it inhibits the NLRP3 inflammasome and acts as an HDAC inhibitor. A clean example of metabolism *talking* to gene expression. |
 
 A metabolically flexible person burns fat at rest and switches to glucose under load without trouble;
 metabolic *inflexibility* — being stuck on glucose, unable to access fat — is an early signature of
@@ -176,7 +176,7 @@ mitochondria and upregulate its own antioxidant defenses. Blunt that signal with
 antioxidants and you blunt the adaptation itself — supplemental vitamin C/E demonstrably *reduce* the
 mitochondrial benefit of training. This is **mitohormesis** (Ristow): a small dose of oxidative
 stress makes the system net-stronger. We return to it as a unifying law in §6. The lesson here:
-**the goal is not to minimize ROS; it is to keep the signaling crisp and the damage repaired.**
+**the goal is to keep the signaling crisp and the damage repaired — minimizing ROS is the wrong target.**
 
 ### 2.7 Why bioenergetic capacity is the master variable
 
@@ -290,8 +290,8 @@ The cell is not a bag of soup; it is scaffolded by the **cytoskeleton** — acti
 microtubules, intermediate filaments — which gives cells their shape, hauls cargo (mitochondria
 included) around the cell, drives division, and transmits mechanical force. **Mechanotransduction** —
 the conversion of physical force into biochemical signal — is the foundation under why *mechanical
-load* (lifting, impact, tension) is itself a biological signal, not just a way to fatigue muscle. It
-is part of why resistance training builds bone and tendon, not only muscle. **Governs:** the
+load* (lifting, impact, tension) is a biological signal in its own right. It
+is part of why resistance training builds bone and tendon along with muscle. **Governs:** the
 load-driven half of training adaptation, bone and connective-tissue health.
 
 ---
@@ -341,7 +341,7 @@ Read the gap honestly: first-generation clocks are trained on chronological age,
 with aging by construction — they don't prove methylation *causes* it. Second-generation clocks
 predict real outcomes but remain associations, increasingly used as **surrogate endpoints** (stand-in
 measures used in place of the real outcome, like death) in trials before mortality data can exist — a
-methodological bet, not a validated equivalence. The provocative
+methodological bet that hasn't been validated as an equivalence. The provocative
 frontier — the **information theory of aging** — holds that aging is partly *loss of epigenetic
 information* that can be *restored*: partial reprogramming with Yamanaka factors (OSK) resets
 epigenetic age and has restored vision in aged mice (Lu/Sinclair 2020). All `animal`, with a real
@@ -368,7 +368,7 @@ to do:
 
 Add a fifth, the cell's antioxidant master regulator: **NRF2**, which when activated turns on the
 cell's *endogenous* defense and detox genes. The key insight (from the redox thread) is that the
-robust way to raise antioxidant capacity is to *induce NRF2* (e.g. via sulforaphane, or via the
+reliable way to raise antioxidant capacity is to *induce NRF2* (e.g. via sulforaphane, or via the
 transient ROS of exercise) — **not** to swallow direct antioxidants, which backfire by blunting the
 signal.
 

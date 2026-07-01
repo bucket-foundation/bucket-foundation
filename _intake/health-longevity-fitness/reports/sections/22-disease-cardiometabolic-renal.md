@@ -47,10 +47,10 @@ cholesterol into artery walls; **GFR** = kidney filtering capacity.
 
 ## 1. Cardiovascular disease — the failure of the pipes and the pump
 
-Cardiovascular disease is the leading cause of death on Earth, and it is really several distinct
+Cardiovascular disease is the leading cause of death on Earth, and it is several distinct
 diseases that share a substrate: the same vasculature, injured by the same handful of forces (apoB
 lipoproteins — the cholesterol-carrying particles that lodge in the artery wall — plus blood pressure,
-glucose, tobacco, time). It is worth holding them apart, because the
+glucose, tobacco, time). Hold them apart: the
 *mechanisms* and *managements* differ sharply.
 
 ### 1.1 Coronary artery disease and heart attack — atherosclerosis as the root
@@ -216,7 +216,7 @@ NEJM) walked TAVR down the risk ladder: first proven superior to medical therapy
 then non-inferior/superior to surgery in high-, intermediate-, and finally **low-risk** patients
 (PARTNER 3, 2019). TAVR is now the default for most older patients with symptomatic severe AS; surgical
 replacement (SAVR) remains preferred in younger patients, bicuspid valves, and certain anatomies. This
-is one of the clearest "the device genuinely changed the disease" stories in modern medicine.
+is one of the clearest "the device changed the disease" stories in modern medicine.
 
 ---
 
@@ -312,7 +312,7 @@ substantial weight loss can drive **remission** (normal glucose off all diabetes
 - **Honest caveats:** remission is most achievable **early** (short diabetes duration, before beta-cell
   exhaustion), it requires **sustained** weight loss (relapse with regain), and it's "remission," not
   "cure" — the underlying susceptibility remains. But it reframes T2D as, for many, a **potentially
-  reversible** state — a genuinely important and underused message. GLP-1 agonists now offer a
+  reversible** state — an important and underused message. GLP-1 agonists now offer a
   pharmacological route to the same weight loss, blurring the line between treatment and remission.
 
 ### 2.4 Complications — why glucose control matters
@@ -378,8 +378,7 @@ shouting at a failing gland) with **low free T4** = overt hypothyroidism.
 **Management — clear for overt, contested for subclinical.**
 - **Overt hypothyroidism:** **levothyroxine** (synthetic T4), titrated to normalize TSH. Cheap,
   effective, lifelong, well-evidenced. One of the cleaner replacement therapies in medicine.
-- **Subclinical hypothyroidism** (high TSH, *normal* free T4 — common in the elderly): genuinely
-  contested. The **TRUST trial (Stott 2017, NEJM)** found that levothyroxine in older adults with mild
+- **Subclinical hypothyroidism** (high TSH, *normal* free T4 — common in the elderly): Contested. The **TRUST trial (Stott 2017, NEJM)** found that levothyroxine in older adults with mild
   subclinical hypothyroidism produced **no symptomatic benefit** — a strong argument against reflexively
   treating a mildly high TSH, especially in the elderly where the normal range drifts up. Treat based on
   TSH level, age, antibodies, and symptoms — not autopilot.
@@ -546,7 +545,7 @@ The honest reality:
   rate worse than many cancers** (5-year survival on dialysis is poor, comparable to some advanced
   malignancies). It treats the symptoms, not the disease.
 - **Kidney transplant** is the **superior treatment** when feasible — better survival and quality of
-  life than dialysis — but is limited by **organ scarcity** (long waitlists), surgical risk, and
+  life than dialysis. It is limited by **organ scarcity** (long waitlists), surgical risk, and
   lifelong immunosuppression (with its infection/cancer trade-offs). A living-donor transplant is best.
 - The framing that matters: **the dominant goal of CKD care is to slow progression so dialysis is
   delayed or avoided** — which is exactly why the SGLT2/RAAS/BP levers above are so consequential.
@@ -568,7 +567,7 @@ with nausea and blood in the urine. Memorably described as among the worst pains
 **Management — the honest, high-yield prevention.**
 - **Fluid — the single best-evidenced lever.** An RCT (Borghi) showed **high fluid intake (targeting
   ~2–2.5 L of urine per day) roughly halved recurrence.** This is the rare lifestyle measure with clean
-  RCT backing. "Drink more water" is genuinely the headline.
+  RCT backing. "Drink more water" is the headline.
 - **Diet:** reduce **sodium** and **animal protein**; **don't restrict dietary calcium** (counter-
   intuitively, *low* calcium intake *raises* oxalate-stone risk — the Curhan/Borghi data — so normal
   dietary calcium is protective); **citrate** (lemon, potassium citrate) inhibits stones.
@@ -628,7 +627,7 @@ with age. Two main types:
 - **Urge incontinence / overactive bladder** (sudden urge → leak) — detrusor overactivity.
 
 **Management, graded.**
-- **Pelvic-floor muscle training (Kegels)** is **first-line and genuinely evidence-based** for stress
+- **Pelvic-floor muscle training (Kegels)** is **first-line and evidence-based** for stress
   incontinence (and helps urge) — cross-ref `11`. It works; it's underused.
 - **Behavioral** measures (bladder training, fluid/caffeine timing, weight loss).
 - **Medications** for overactive bladder (antimuscarinics — with anticholinergic-burden caution in the
@@ -641,7 +640,7 @@ with age. Two main types:
 
 ## 8. The honest synthesis — one disease wearing many masks
 
-Step back and the unifying claim of this section is hard to miss: **cardiometabolic, endocrine, and
+Step back, and the unifying claim is hard to miss: **cardiometabolic, endocrine, and
 renal disease are largely one interconnected process** — the failure of the vascular and metabolic
 machinery — wearing different organ masks.
 
@@ -658,7 +657,7 @@ machinery — wearing different organ masks.
   — did so precisely *because* the diseases are one disease: a glucose drug that protects the heart and
   kidney makes sense only if heart, kidney, and pancreas are failing from a shared metabolic root. That
   is the deep mechanistic vindication.
-- **What's genuinely strong (RCT-backed):** the HFrEF four pillars, SGLT2/GLP-1 cardiorenal protection,
+- **What's strong (RCT-backed):** the HFrEF four pillars, SGLT2/GLP-1 cardiorenal protection,
   DCCT-grade tight glucose control for microvascular complications, DiRECT-grade remission, RAAS
   blockade in proteinuric CKD, high-fluid stone prevention, levothyroxine for overt hypothyroidism,
   letrozole for PCOS fertility, TAVR for severe AS, anticoagulation for AF.

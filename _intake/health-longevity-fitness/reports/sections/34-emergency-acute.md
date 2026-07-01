@@ -303,13 +303,13 @@ until a real source says otherwise.
 ### 4.1 Burns
 
 - **Do:** **cool with cool (not ice-cold) running water for ~20 minutes**, ideally within the first 3 hours.
-  This is genuinely evidence-based — adequate cool-water first aid reduces burn depth, the need for grafting,
+  This is evidence-based — adequate cool-water first aid reduces burn depth, the need for grafting,
   and scarring (supported by clinical/cohort burn-registry data; e.g. cooling-duration analyses). Remove
   rings/watches/tight items before swelling starts. Cover loosely with **cling film or a clean non-fluffy
   cloth.** Treat pain with normal painkillers.
 - **DON'T — the classic harmful myths:**
   - **No butter, oil, toothpaste, egg, or "natural" pastes.** They trap heat, seed infection, and have to be
-    painfully scrubbed off later. **Butter on a burn is a genuinely bad idea**, full stop.
+    painfully scrubbed off later. **Butter on a burn is a bad idea**, full stop.
   - **No ice or ice water.** Too cold causes vasoconstriction and *deepens* the injury (a cold-burn on top of
     a heat-burn). **Cool, not freezing.**
   - **Don't burst blisters** (the roof is a sterile dressing). **Don't peel away clothing stuck to the burn.**
@@ -421,7 +421,7 @@ People die from under-triage (waiting out a stroke) and waste fortunes / clog th
 
 **Self-care / routine appointment:** colds, minor scrapes, mild headaches, most muscle aches.
 
-> **The override rule:** when the question is *"is this an emergency?"* and you genuinely can't tell, **treat
+> **The override rule:** when the question is *"is this an emergency?"* and you can't tell, **treat
 > it as one.** Dispatchers and triage nurses would far rather reassure you than be reached too late.
 > Free phone triage exists in many countries (US: poison control + nurse lines; UK: NHS 111). Use it.
 

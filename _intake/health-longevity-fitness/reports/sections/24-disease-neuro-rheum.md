@@ -64,7 +64,7 @@ inhibitors (a class of oral immune-damping drugs).
 | **Multiple sclerosis** | Autoimmune CNS demyelination | T/B-cell attack on myelin; relapsing→progressive | **DMTs** (cut relapses 30–90%) (`rct`/`meta`) | **The DMT revolution** — real, large, early-treatment matters; progressive MS still under-served |
 | **Parkinson's disease** | Progressive movement disorder | Dopaminergic neuron loss, α-synuclein | **Levodopa** + others (symptom control) (`rct`) | **Excellent symptom control, NO disease-modifying drug** — say this clearly |
 | **Migraine** | Recurrent disabling headache disorder | Trigeminovascular activation, CGRP | Triptans (acute), **CGRP mAbs/gepants** (prevention) (`rct`/`meta`) | **CGRP = a real breakthrough**; not a cure; tension/cluster are different diseases |
-| **Peripheral neuropathy** | Damage to peripheral nerves | Diabetes (commonest), many causes | Treat cause; symptom meds NNT ~4–8 (`meta`) | Genuinely hard; glycemic control is the only disease-modifier (cross-ref 14 §6) |
+| **Peripheral neuropathy** | Damage to peripheral nerves | Diabetes (commonest), many causes | Treat cause; symptom meds NNT ~4–8 (`meta`) | hard; glycemic control is the only disease-modifier (cross-ref 14 §6) |
 | **TBI / concussion** | Mechanical brain injury | Diffuse axonal injury, metabolic crisis | Rest→graded return; no neuroprotective drug (`cohort`) | Most concussions recover; **CTE is real but its risk is not yet quantifiable** |
 | **Dementia** *(see §08)* | Progressive cognitive decline | Multiple (AD amyloid/tau, vascular, Lewy) | Risk-factor control; marginal drugs | **Placed here; fully covered in Section 08** |
 | **Osteoarthritis** | "Wear" joint disease (whole-joint) | Cartilage loss + bone/synovium remodeling | Exercise, weight loss, then surgery (`meta`) | Mechanical story is half-true; **no disease-modifying drug**; movement is the lever |
@@ -157,7 +157,7 @@ no cause is found.
   people become seizure-free.** Choice is tailored to seizure type, sex (valproate is avoided in
   people who can become pregnant — high teratogenicity), and comorbidities.
 - **Drug-resistant epilepsy** — failure of two appropriate, tolerated ASMs — affects about **one-
-  third** and is the genuinely hard problem. Options: **epilepsy surgery** (resecting a seizure
+  third** and is the hard problem. Options: **epilepsy surgery** (resecting a seizure
   focus can be curative and is *underused*), neurostimulation (VNS, RNS, DBS), and **dietary
   therapy** — the **ketogenic diet** has real, `rct`-grade evidence specifically in **drug-resistant
   childhood epilepsy** (this is the one place the keto diet has a hard medical indication; it is not
@@ -241,7 +241,7 @@ contribute; most cases are sporadic.
   fluctuations** ("wearing off") and **dyskinesias** (involuntary movements), and the **non-
   dopaminergic** features — falls, cognitive decline, dysautonomia — progress regardless and are
   the main drivers of late disability. **Deep brain stimulation** (subthalamic nucleus / globus
-  pallidus) is a genuinely effective device therapy for motor fluctuations in selected patients.
+  pallidus) is an effective device therapy for motor fluctuations in selected patients.
 - **Exercise** has the best-supported non-drug role: regular, vigorous exercise improves function
   and may modestly slow motor progression (`rct`-supported for symptom/function benefit; disease-
   modification claims remain `mechanistic`/`cohort`).
@@ -291,7 +291,7 @@ release drives the pain pathway, and that mechanistic insight produced the break
 ### 7.2 Tension-type headache — the common one, the boring one
 
 The **most prevalent** headache disorder (most people get it), it is **bilateral, pressing/tightening,
-mild-moderate, without the migraine features**. It is genuinely a different disease, not "mild
+mild-moderate, without the migraine features**. It is a different disease, not "mild
 migraine." Management is simple analgesia, addressing posture/stress/sleep, and — critically —
 **avoiding medication-overuse headache** (using acute painkillers >10–15 days/month *causes* a
 chronic daily headache, one of the most common reversible causes of "intractable" headache).
@@ -304,14 +304,14 @@ person at the same hour). It is a **trigeminal autonomic cephalalgia**, mechanis
 again. Acute treatment is **high-flow oxygen** and subcutaneous sumatriptan; prevention is verapamil.
 Confusing it with migraine wastes years.
 
-**Honest grade.** Migraine treatment is **genuinely better than a decade ago** (CGRP era, `rct`/
+**Honest grade.** Migraine treatment is **better than a decade ago** (CGRP era, `rct`/
 `meta`). The honest caveats: CGRP drugs are an *improvement*, not a *cure*; the biggest avoidable
 harm in headache medicine is **medication-overuse headache**; and "it's just a headache" remains a
 massive under-treatment problem.
 
 ---
 
-## 8. Peripheral neuropathy — common, under-recognized, genuinely hard to treat
+## 8. Peripheral neuropathy — common, under-recognized, hard to treat
 
 **What it is.** Damage to the peripheral nerves, classically a **length-dependent, symmetric "stocking-
 glove"** sensory loss, tingling, burning, and (later) weakness, starting in the feet. It is covered
@@ -366,7 +366,7 @@ tell you the **risk** for any given player or the **dose** required. CTE current
 diagnosed in the living** (no validated biomarker; "traumatic encephalopathy syndrome" is a research
 construct), and the relationship between repetitive subconcussive impacts, symptoms, and the
 pathology is still being worked out. So the honest grade is: **CTE is a real disease and repetitive
-head impact is its cause; the population risk, threshold, and in-life diagnosis are genuinely not yet
+head impact is its cause; the population risk, threshold, and in-life diagnosis are not yet
 known.** Both denial ("CTE is a myth") and catastrophe ("every concussion causes dementia") overstate
 the evidence.
 
@@ -563,7 +563,7 @@ turned-up nervous system with no tissue damage — pain medicine's third categor
 nociceptive and neuropathic). The nervous system **amplifies** pain signaling:
 lowered pain thresholds, augmented central responses, impaired descending inhibition (Woolf,
 2011; cross-ref Section 14 §6 on central sensitization).[^woolf] The pain is
-**genuinely generated by the nervous system** — "it's central" is not "it's imaginary."
+**generated by the nervous system** — "it's central" is not "it's imaginary."
 
 **Management** (`meta`-graded, all effects modest): the strongest evidence is for **graded aerobic
 exercise** (the single best-supported intervention), **CBT / pain-focused psychotherapy**, sleep
@@ -677,8 +677,7 @@ and don't let the supplement aisle crowd out the biologic, the DMT, or the urate
 - **The unglamorous levers are large:** treat BP and AF (stroke), move the joint (OA, spondylitis),
   exercise + CBT (fibromyalgia), control glucose (neuropathy), treat early and to target (RA, gout, MS).
 - **Where the market lies is consistent:** "autoimmune diets," "adrenal fatigue," "chronic Lyme" long
-  antibiotics, and fibromyalgia supplement stacks all sell certainty into the gap left by genuinely
-  hard diseases — and all risk displacing the treatments that work.
+  antibiotics, and fibromyalgia supplement stacks all sell certainty into the gap left by hard diseases — and all risk displacing the treatments that work.
 
 [^ninds]: NINDS rt-PA Stroke Study Group. *NEJM* 1995. doi:10.1056/NEJM199512143332401. claim: stroke-ninds-tpa (rct)
 [^hope]: Zhou Y, et al. (HOPE) — *JAMA* 2025. doi:10.1001/jama.2025.12063. claim: stroke-hope-late-window (rct)

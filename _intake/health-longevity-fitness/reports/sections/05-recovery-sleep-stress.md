@@ -159,9 +159,9 @@ is the supported move; the popular late 16:8 window is largely null on its own.
 ### 2.3 Shift work — the clearest circadian harm
 
 The strongest circadian *outcome* evidence is harm from misalignment: **IARC classifies shift work
-involving circadian disruption as a *probable* (Group 2A) carcinogen.** This is the honest anchor for the
-whole domain — not "blue light gives you disease," but "chronic circadian misalignment is a real, classified
-exposure." If you must do shift work, the mitigations are the same levers inverted: anchor a consistent
+involving circadian disruption as a *probable* (Group 2A) carcinogen.** The honest anchor for the
+whole domain is a plain one: chronic circadian misalignment is a real, classified exposure. The disease
+signal is about misalignment, not about blue light per se. If you must do shift work, the mitigations are the same levers inverted: anchor a consistent
 (even if shifted) schedule, control light exposure aggressively, and protect sleep opportunity.
 
 ### 2.4 The mainstream-validates-Kruse spine (extensions speculative)
@@ -251,7 +251,7 @@ Heat and cold are both **hormetic stressors**: a sub-damaging dose triggers adap
 programs (HSPs, antioxidant/redox defenses, thermogenic remodeling) with net benefit; excess
 harms[^hormesis] (UP-link to canon: mitohormesis/redox signaling). **The hazard:** hormesis becomes
 *unfalsifiable* if used to retro-explain any result, and the human beneficial-dose window for both cold
-and heat is genuinely *unknown*. Tagged `theoretical`, not `outcome`. Contrast therapy inherits both states
+and heat is *unknown*. Tagged `theoretical`, not `outcome`. Contrast therapy inherits both states
 and has little independent outcome data.
 
 ### 3.4 Thermal safety (non-negotiable)
@@ -419,7 +419,7 @@ wellness-industrial overclaim:
 
 @@FIG:90-recovery-toolkit@@
 
-**The synthesis:** the genuinely high-leverage stress levers are **boring, free, and unmonetizable** —
+**The synthesis:** the high-leverage stress levers are **boring, free, and unmonetizable** —
 sleep, connection, purpose, breath, daylight, movement. The wellness-industrial complex inverts this,
 selling the low-evidence end (supplements, devices, "protocols") precisely *because* it's monetizable. An
 unbiased map says the opposite: spend your attention on the floor-clearing basics and the relationships, and

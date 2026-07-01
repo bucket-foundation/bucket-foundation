@@ -343,8 +343,7 @@ alone.**
   growing and comparable to CBT for function/quality of life. For pain that won't fully resolve, the ACT
   reframe ("reduce suffering and reclaim life," not "get to zero pain") is often the more honest target.
 
-These are **not** "it's all in your head." They are leverage on the psychological arm of a genuinely
-biopsychosocial problem.
+These are **not** "it's all in your head." They act on the psychological arm of a biopsychosocial problem.
 
 ### 5.4 The opioid honest story — the SPACE trial
 
@@ -390,7 +389,7 @@ counter-intuitive to most patients:
   *NEJM* 2002),[^moseley-knee] and **arthroscopic partial meniscectomy for a degenerative
   meniscal tear is no better than sham surgery** (Sihvonen et al., FIDELITY, *NEJM* 2013).[^sihvonen-fidelity]
   These common operations largely treat the *incidental MRI finding*, not the
-  pain. **Total joint replacement, by contrast, is genuinely effective** for end-stage OA that has failed
+  pain. **Total joint replacement, by contrast, is effective** for end-stage OA that has failed
   conservative care — the issue is *timing and indication*, not that surgery never works.
 - **The supplement verdict.** **Glucosamine and chondroitin are, in the best trials, essentially no better
   than placebo** for knee OA. The large, independent **GAIT trial** (Clegg et al., *NEJM* 2006)[^clegg-gait] found no significant benefit over placebo for the overall group (a possible
@@ -491,8 +490,7 @@ progressive overload + deloads.)
 modest reduction in perceived soreness**, without the performance penalty of static stretching — so it's a
 fine, low-risk warm-up adjunct or recovery-feel tool. But the **mechanism marketing is wrong**: it does
 **not "break up adhesions," "release fascia," or "release toxins"** — the acute ROM effect is
-neural/sensory (altered stretch tolerance), not structural remodeling of fascia under a roller. Use it
-because it feels good and adds a little ROM, not because it "fixes" tissue.
+neural/sensory (altered stretch tolerance), not structural remodeling of fascia under a roller.
 
 ---
 

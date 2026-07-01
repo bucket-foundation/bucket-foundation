@@ -228,7 +228,7 @@ unestablished.** This is `mechanism`-to-`surrogate`; it is *not* an `outcome` cl
 
 ### 16.4.2 — The Epel/Blackburn lifestyle & meditation → telomerase studies (graded cautiously)
 
-A genuinely interesting line of work links **psychological stress** to telomere biology. The founding study:
+An interesting line of work links **psychological stress** to telomere biology. The founding study:
 **Epel et al. (2004)** found mothers under chronic caregiving stress had **shorter telomeres and lower
 telomerase** than lower-stress controls; the highest-stress women looked ~a decade "older" on telomere length
 (Epel et al., *PNAS* 2004). It is **`cross-sectional`** (a one-time snapshot that cannot establish direction),
@@ -252,10 +252,9 @@ Same story, same caveats, in the two follow-ups the market leans on:
 overall health**, exactly as `C-genetics-omics.md` argues for the microbiome and the clocks. They do **not**
 show that the telomerase bump *caused* any benefit, nor that you should chase the telomere number. The
 popular framing — "meditation reverses cellular aging" — is the **canonical surrogate-over-read** in this
-domain.[^conflict-meditation] Note the structural irony:
-the lifestyle advice (don't smoke, move, sleep, de-stress, eat real food) is **worth doing on its own
-first-line evidence** — the telomere readout adds nothing actionable, it just dresses old advice in
-molecular costume.
+domain.[^conflict-meditation] The lifestyle advice (don't smoke, move, sleep, de-stress, eat real food)
+is **worth doing on its own first-line evidence** — the telomere readout adds nothing actionable, it
+just dresses old advice in molecular costume.
 
 ### 16.4.3 — Exercise / diet / stress associations generally
 
@@ -266,7 +265,7 @@ richer, leaner, less likely to smoke, and healthier at baseline for a hundred re
 usually unestablished** (does exercise lengthen telomeres, or do healthier people both exercise and have
 longer telomeres?). Treat the entire bucket as **`cohort`-tier, confounded, hypothesis-generating** — and
 note again the **something-beats-nothing** point: do the behaviours for their proven cardiometabolic and
-mortality benefits; the telomere correlation is a bystander, not a reason.
+mortality benefits; the telomere correlation is a bystander.
 
 ---
 

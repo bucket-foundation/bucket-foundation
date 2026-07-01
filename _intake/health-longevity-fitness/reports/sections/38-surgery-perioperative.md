@@ -26,7 +26,7 @@ belongs to you and a surgeon you trust, decided on your actual anatomy and goals
 |---|---|---|---|
 | **Cataract extraction + IOL** | Lens opacity → blindness | **Transformative, low-risk, high-volume** — restores sight in minutes; among the best cost-per-QALY (quality-adjusted life year — a year of healthy life) in medicine | Decades of cohort + RCT; mortality/fall/depression cohort signals |
 | **Total hip replacement (THR)** | End-stage hip OA (osteoarthritis) | **One of the most reliably life-improving operations that exists** ("the operation of the century") | Large registries; consistent pain/function gains |
-| **Total knee replacement (TKR)** | End-stage knee OA | **Genuinely effective** for severe disease — but more residual pain than hip, and over-offered earlier than indicated | Skou *NEJM* 2015 |
+| **Total knee replacement (TKR)** | End-stage knee OA | **effective** for severe disease — but more residual pain than hip, and over-offered earlier than indicated | Skou *NEJM* 2015 |
 | **Appendectomy** | Appendicitis | **Standard of care**; antibiotics-first now a real option for *uncomplicated* cases | CODA & APPAC RCTs |
 | **Cholecystectomy** (lap.) | Symptomatic gallstones | **High-value** for biliary colic/cholecystitis; over-done for vague dyspepsia | Cohort + guideline |
 | **Hernia repair** | Inguinal/ventral hernia | **High-value when symptomatic**; *watchful waiting* is safe for minimally symptomatic inguinal hernia | Fitzgibbons RCT |
@@ -99,11 +99,11 @@ A second axis cuts across every subspecialty: **how you get in.**
   tumours).
 - **Minimally-invasive / laparoscopic (or thoracoscopic, arthroscopic, endoscopic)** — small "keyhole"
   incisions, a camera, and long instruments. Where it is established (gallbladder, appendix, many bowel,
-  bariatric, and gynaecologic operations), it delivers **genuinely less pain, smaller scars, shorter
+  bariatric, and gynaecologic operations), it delivers **less pain, smaller scars, shorter
   stays, and faster recovery** than open, at equivalent disease control. This is one of the real
   revolutions of late-20th-century surgery.
 - **Robotic-assisted surgery** — the surgeon operates from a console driving robotic arms (the da Vinci
-  system dominates). It adds 3-D vision, wristed instruments, and tremor filtering, which genuinely help
+  system dominates). It adds 3-D vision, wristed instruments, and tremor filtering, which help
   in deep, confined fields (e.g. the pelvis for prostate or rectal work).
 
 **The honest robotic verdict — a named debunk.** The marketing claim is "robotic = better outcomes."
@@ -226,12 +226,11 @@ hip fracture, reduced depression, and — in several large cohorts — lower all
 predictor relationship, with healthy-operée confounding, but a consistent one). If there is a single
 operation that exemplifies "surgery at its best," this is it.
 
-### Joint replacement — hip and knee (genuinely transformative)
+### Joint replacement — hip and knee (transformative)
 
 **Total hip replacement** has been called "the operation of the century" with little exaggeration: for
 end-stage hip osteoarthritis it produces large, durable improvements in pain and function in the great
-majority of patients, with modern implants lasting decades. **Total knee replacement** is also genuinely
-effective for **severe, end-stage** knee OA — the randomised evidence (Skou et al., *NEJM*
+majority of patients, with modern implants lasting decades. **Total knee replacement** is also effective for **severe, end-stage** knee OA — the randomised evidence (Skou et al., *NEJM*
 2015)[^skou] shows TKR plus rehab beats rehab alone on pain and function, *but* at higher risk
 of serious adverse events, and with a meaningful minority left with residual pain. The honest nuances:
 knee replacement satisfies *less* uniformly than hip; it is sometimes offered **too early** (before
@@ -295,7 +294,7 @@ everything.
 
 ### Bariatric / metabolic surgery — the most effective obesity & diabetes intervention we have (honest)
 
-This deserves to be stated without hedging because the corpus elsewhere is careful about over-claiming:
+Stated without hedging, because the corpus elsewhere is careful about over-claiming:
 **bariatric (metabolic) surgery is the single most effective intervention for severe obesity and for
 type-2 diabetes in people with obesity that exists.** The evidence is unusually strong for surgery:
 
@@ -359,7 +358,7 @@ with the predictor-versus-lever discipline of the schema (a *predictor* forecast
 
 - **The predictor signal is strong and repeated.** **Cardiorespiratory fitness predicts surgical
   survival.** Objectively measured fitness — most rigorously via **cardiopulmonary exercise testing
-  (CPET)**, where the **anaerobic threshold** and **peak VO₂** are derived — is one of the best available
+  (CPET)** — is one of the best available
   predictors of post-operative morbidity and mortality across major surgery. CPET is a monitored
   treadmill or bike test of how much your heart and lungs can deliver under load — the **anaerobic
   threshold** is the effort level at which the body starts running short of oxygen, and **peak VO₂**
@@ -375,7 +374,7 @@ with the predictor-versus-lever discipline of the schema (a *predictor* forecast
   outcome" must not be silently upgraded into "training before surgery is proven to change your outcome."
   Hold them apart: **predictor strong, lever promising-but-maturing.**
 
-The honest, actionable synthesis — and a genuinely empowering one — is that the period before a planned
+The honest, actionable synthesis — and an empowering one — is that the period before a planned
 operation is **not dead time.** Improving fitness, nutrition (correcting anaemia and protein status), and
 glycaemic control, and stopping smoking, are low-risk and at minimum optimise your starting line. "Fitter
 patients do better" is one of the most reproducible facts in surgery; acting on it is reasonable even
