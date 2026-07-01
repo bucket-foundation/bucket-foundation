@@ -506,3 +506,40 @@ dependent (e.g. **green-function/propagator** → smoluchowski-rate/reaction-dif
 theory** → marcus/eyring) verifying no depth rise + re-running test-diagnostic.mjs. Cheaper zero-risk
 wins still open: ~39 atoms lack a derive quiz item; more `note` fields; GPU art if reachable. A
 non-biophysics branch expansion (math/physics corpus) also remains fair game for variety.
+
+## 2026-06-30 — run 15 (+3 quantum-mechanics FOUNDATION atoms, syllabus §0.3; biophysics 105→108; margin LIFTED +16→+19)
+Filled the single biggest untouched syllabus gap: **§0.3 Quantum mechanics & electrodynamics**
+had ZERO atoms despite being a listed prerequisite shell that every spectroscopy atom silently
+depends on. Added three real QM foundations, applying the leaf-leverage rule so each also lifts
+(not just holds) the diagnostic margin: **schrodinger-equation** (iħ∂ψ/∂t=Ĥψ, Ĥψ_n=E_nψ_n; wave-
+function + Born rule, superposition/unitarity, quantization as a boundary-value phenomenon; worked
+particle-in-a-box E_n=n²π²ħ²/2mL² derived from ψ(0)=ψ(L)=0, plus QHO E_n=ħω(n+½)), **perturbation-
+theory** (E_n^(1)=⟨n|V|n⟩, E_n^(2)=Σ|V_mn|²/(E_n⁰−E_m⁰), Fermi golden rule Γ=(2π/ħ)|V_fi|²ρ(E_f);
+derives first-order shift + proves ground-state E_0^(2)≤0; frames every rate as coupling²×density-of-
+states — the shared engine of absorption intensity, Marcus ET, and NMR/EPR relaxation), and
+**selection-rules** (transition dipole μ_fi=⟨f|μ̂|i⟩, intensity∝|μ_fi|²; symmetry→Laporte Δℓ=±1 /
+Δv=±1 / ΔJ=±1 / ΔS=0; derives Δv=±1 via ladder operators ⟨m|x̂|n⟩∝√n δ_{m,n−1}+√(n+1)δ_{m,n+1};
+IR d(μ)/dQ≠0 mutual-exclusion; FRET κ² + CD electric/magnetic-dipole leakage). Graph wiring
+(leaf-leverage, all margin-safe — verified ZERO depth cascade): schrodinger-equation(0)→marcus-
+theory(3)/epr(2); perturbation-theory(1, requires schrodinger)→marcus(3)/nmr-relaxation(2);
+selection-rules(1, requires schrodinger)→epr(2)/nmr-relaxation(2). All three new atoms sit at
+depth ≤2 (0/1/1) inside the expert frontier AND encompass heavily-depended-on spectroscopy nodes,
+so the diagnostic margin ROSE to **expert placed 37 / asked 18 (+19)**, up from +16 in run 14.
+All prose original; every number verified this run (particle-in-box k=nπ/L⇒E_n=n²π²ħ²/2mL²; QHO
+ħω(n+½); E_0^(2)≤0 since all denominators E_0⁰−E_m⁰<0; ⟨m|x̂|n⟩ nonzero only m=n±1 via a,a†; vibrational
+ħω≈0.12 eV≫kT≈0.025 eV at 300 K; oscillator strength f~1 allowed vs ~1e−6 spin-forbidden; κ² range 0–4,
+iso 2/3). OPEN sources only (LibreTexts Chemistry + MIT OCW 8.04/8.05/5.61 + 5–7 Wikipedia resources
+each); full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. meta 0.6.2→0.7.0.
+validate.sh PASSES end-to-end (corpus integrity, 108-atom 60-day engine sim, diagnostic GREEN at +19,
+assess/lang/explorer smokes). Mirrored to public/academy-app (108 atoms, ver 0.7.0 verified in sync).
+NEXT: §0.3 now has its three load-bearing QM atoms; the remaining §0.3 gaps worth one more atom are
+**maxwell-dipole-radiation** (Larmor/dipole emission + Einstein A/B coefficients — natural child of
+selection-rules but wire it UNDER an existing depth≥2 emission-dependent, e.g. fret/fcs, to stay
+margin-safe) and **tunneling-wkb** (barrier penetration ψ~e^{−κd}; feeds proton/electron transfer —
+wire under marcus-theory(3) or electron-transport-chain(3), verify no depth rise). After QM, the
+untouched §0.4 kinetics detail (steady-state approximation as its own atom) and remaining §1.8 methods
+(dsc, dls, analytical-ultracentrifugation, depth≤2 via itc/fcs siblings) are the next real-content
+targets. Leaf-leverage rule holds: new requires=[] or depth-1 atom wired UNDER an already-deep
+dependent both fills content AND lifts the margin — verify no depth cascade + re-run test-diagnostic.mjs
+each batch. Cheaper zero-risk wins still open: ~39 atoms lack a derive quiz item; more `note` fields;
+GPU art if reachable; a non-biophysics branch expansion for variety.
