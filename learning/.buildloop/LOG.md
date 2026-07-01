@@ -1113,3 +1113,44 @@ matrices (← eigenvalue, inner-product), rank–nullity theorem, continued frac
 OR the durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential to raise
 betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins across branches: atoms lacking a
 derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
+
+## 2026-07-01 — run 30 (+6 cosmology atoms; branch expansion continues; biophysics untouched)
+Per run-29's handoff (cosmology 53 = clearly the thinnest). Picked cosmology, expanded
+**06-cosmology 53→59**, each `requires` into EXISTING cosmology ids only (validated no missing/dupe;
+one new internal edge transfer-function←primordial-power-spectrum resolves within-file):
+**fluid-equation** (ρ̇+3H(ρ+p)=0 from first law dE=−p dV on V∝a³; ρ∝a^{−3(1+w)}; matter a^{−3} /
+radiation a^{−4} / Λ const; local ∇_μT^{μν}=0, not independent of Friedmann; phantom w<−1 → Big Rip;
+← friedmann-equations, scale-factor), **deceleration-parameter** (q≡−äa/ȧ²; q=½ΣΩ_i(1+3w_i);
+q₀≈½Ω_m−Ω_Λ≈−0.55; sign-convention fossil; d_L(z) Taylor term measured by SNe; jerk j=1 null test;
+← scale-factor, friedmann-equations, dark-energy), **growth-of-structure** (δ̈+2Hδ̇−4πGρ̄δ=0 scale-
+independent → δ=D(a)δ_init; Hubble-friction 2Hδ̇; D∝a matter era, frozen under Λ; Mészáros in rad era;
+f≈Ω_m^0.55 for RSD; ← gravitational-instability, friedmann-equations, matter-radiation-equality),
+**primordial-power-spectrum** (inflation stretches quantum jitter → 𝒫(k)∝k^{n_s−1}; n_s=1 Harrison–
+Zel'dovich; measured n_s≈0.965 red tilt = ~7σ inflation win; n_s−1=−6ε+2η; r=16ε tensor cousin; ←
+inflation, matter-power-spectrum), **transfer-function** (P(k)∝k^{n_s}T²(k)D²(a); T→1 large scales,
+T∝k^{−2} small scales → turnover at k_eq = horizon at equality → measures Ω_m h²; BAO wiggles + ν
+suppression ride on it; Boltzmann codes; ← primordial-power-spectrum, matter-radiation-equality,
+matter-power-spectrum), **cmb-polarization** (Thomson scattering of local temp quadrupole at last
+scattering → linear polarization ~10% of ΔT; E/B curl-free/curl split; scalars → E only, 90° out of
+phase with T peaks (velocity vs density); reionization bump measures τ; lensing E→B foreground; ←
+recombination, cmb-anisotropies). Each = full 7-section lesson (Intuition/Precisely/Worked example/
+Why it's true/Where it connects/Watch out) + summary + 3 depths + note + art_prompt + 2 quiz (recall +
+derive w/ eq) + OPEN sources (MIT OCW 8.286 + arXiv astro-ph + Wikipedia + Einstein Online). ALL prose
+ORIGINAL; equations/definitions are facts. meta 0.5.0→0.6.0. Mirrored to public/academy-app via
+`node scripts/sync-academy.mjs` from repo ROOT (cosmology 59, ver 0.6.0).
+
+**validate.sh PASSES end-to-end** (cosmology 59/no-dupes/no-missing-requires, manifest, JS syntax,
+60-day engine sim — biophysics diagnostic UNCHANGED at placed 42/asked 18 since the sim loads ONLY
+biophysics.json, so cosmology edits are zero-risk to placement; assess/lang/explorer smokes all green).
+
+**NEXT run:** branch counts now — biophysics ~133, cosmology 59, mathematics 55, physics 55, chemistry 55,
+mind 54, information 54; **mind (54) and information (54) are now tied thinnest** — pick one and add 6
+toward full coverage. Information gaps still open (from run-27 handoff): data-processing-inequality
+(← mutual-info), differential/continuous entropy, Lempel–Ziv, Rice–Shapiro, Diffie–Hellman, cryptographic
+hash functions, Boolean-circuit complexity. Cosmology minor gaps still open if wanted: integrated
+Sachs–Wolfe effect (← sachs-wolfe-effect, dark-energy), spherical collapse & virialization (← jeans-
+instability), reheating (← inflation, thermal-history), distance-duality d_L=(1+z)²d_A, age-of-universe
+integral, cosmic variance. OR the durable biophysics prereq-shell fix (add a depth-3 dependent of
+redox-potential to raise betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins across
+branches: atoms lacking a derive-level quiz item; more `note`/`art` fields; GPU art if
+HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.

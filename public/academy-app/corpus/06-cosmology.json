@@ -2,8 +2,8 @@
  "meta": {
   "branch": "06-cosmology",
   "title": "Cosmology — the universe at large",
-  "version": "0.5.0",
-  "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.2.0: every atom enriched for zero-prior-knowledge learners — eli5/core rewritten to define jargon inline, and a verified 'resources' array (Wikipedia + NASA + MIT OCW 8.286 + Einstein Online) added to each atom. v0.4.0: +6 structure-formation & CMB-physics atoms (matter-radiation-equality, jeans-instability, matter-power-spectrum, type-ia-supernovae, silk-damping, sachs-wolfe-effect). v0.5.0: +6 secondary-anisotropy & structure-probe atoms (cosmic-neutrino-background, reionization, redshift-space-distortions, sunyaev-zeldovich-effect, weak-lensing-shear, halo-mass-function).",
+  "version": "0.6.0",
+  "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.2.0: every atom enriched for zero-prior-knowledge learners — eli5/core rewritten to define jargon inline, and a verified 'resources' array (Wikipedia + NASA + MIT OCW 8.286 + Einstein Online) added to each atom. v0.4.0: +6 structure-formation & CMB-physics atoms (matter-radiation-equality, jeans-instability, matter-power-spectrum, type-ia-supernovae, silk-damping, sachs-wolfe-effect). v0.5.0: +6 secondary-anisotropy & structure-probe atoms (cosmic-neutrino-background, reionization, redshift-space-distortions, sunyaev-zeldovich-effect, weak-lensing-shear, halo-mass-function). v0.6.0: +6 background-dynamics & structure-theory atoms (fluid-equation, deceleration-parameter, growth-of-structure, primordial-power-spectrum, transfer-function, cmb-polarization).",
   "license": "CC-BY-4.0 (prose); equations are facts"
  },
  "atoms": [
@@ -3173,6 +3173,315 @@
     }
    ],
    "lesson": "### Intuition\nThe early universe was nearly smooth with tiny random density ripples. Wherever a patch was dense enough, gravity eventually pulled it into a collapsed lump — a dark-matter halo. Knowing the size of the starting ripples lets you predict how many halos of each mass exist: big ones rare, small ones everywhere.\n\n### Precisely\nA region collapses once its smoothed overdensity crosses $\\delta_c\\approx1.686$ (spherical collapse). Treating the field as Gaussian, **Press–Schechter** counts the mass above threshold on each scale, giving\n$$\\frac{dn}{dM} = \\sqrt{\\tfrac{2}{\\pi}}\\,\\frac{\\bar\\rho}{M}\\,\\frac{\\delta_c}{\\sigma^2}\\left|\\frac{d\\sigma}{dM}\\right|e^{-\\delta_c^2/2\\sigma^2}.$$\n\n### Worked example\nThe variance $\\sigma(M)$ falls as $M$ rises, so above the characteristic mass $M_*$ (where $\\sigma\\approx\\delta_c$) the exponential crushes the count: galaxy-mass halos are abundant, but the most massive clusters are exponentially rare — and their number swings sharply with $\\sigma_8$.\n\n### Why it's true / how it works\nThe amplitude of ripples on each scale comes from the **matter-power-spectrum** through $\\sigma(M)$; collapse under **gravitational-instability** converts 'fraction of space above $\\delta_c$' into 'number of halos'. The extra factor of 2 in the classic formula is fixed by the excursion-set derivation.\n\n### Where it connects\nIt turns the **matter-power-spectrum** plus **gravitational-instability** into a countable prediction — the abundance of halos, and hence of clusters, a leading probe of $\\sigma_8$ and $\\Omega_m$.\n\n### Watch out\nPlain Press–Schechter is only approximate; ellipsoidal collapse (Sheth–Tormen) and $N$-body-calibrated fits (Tinker) are needed for the percent-level accuracy that cluster cosmology demands."
+  },
+  {
+   "id": "fluid-equation",
+   "title": "The fluid equation (energy conservation)",
+   "shell": "nucleus",
+   "type": "equation",
+   "requires": [
+    "friedmann-equations",
+    "scale-factor"
+   ],
+   "summary": "In an expanding universe energy conservation for each smooth component reads ρ̇ + 3H(ρ+p) = 0, which fixes how the density of matter, radiation, and the cosmological constant dilute as space grows.",
+   "depths": {
+    "eli5": "Imagine gas in a box that is stretching in every direction. As the box gets bigger the gas thins out. But if the gas also pushes on the walls (has pressure), expanding it costs energy, so it thins out even faster. This one rule — density drops as space grows, faster if there is pressure — is the fluid equation. It tells you that ordinary matter thins as (1/volume), light thins even faster because it also stretches to longer wavelengths, and the strange energy of empty space does not thin at all.",
+    "core": "Applying the first law of thermodynamics (dE = −p dV) to a comoving patch of volume $V\\propto a^3$ gives the **fluid equation** $$\\dot\\rho + 3H(\\rho+p)=0,$$ where $H=\\dot a/a$ from the **scale-factor**. For a component with equation of state $p=w\\rho$, this integrates to $\\rho\\propto a^{-3(1+w)}$: matter ($w=0$) dilutes as $a^{-3}$, radiation ($w=1/3$) as $a^{-4}$ (an extra factor from redshifting energy), and a cosmological constant ($w=-1$) stays constant. The fluid equation is not independent of the **friedmann-equations** — it follows from combining the two Friedmann relations (it is the local statement of $\\nabla_\\mu T^{\\mu\\nu}=0$).",
+    "deep": "The fluid equation is the $\\nu=0$ component of the conservation law $\\nabla_\\mu T^{\\mu\\nu}=0$ for a perfect fluid $T^{\\mu\\nu}=(\\rho+p)u^\\mu u^\\nu+pg^{\\mu\\nu}$ in the FRW metric; equivalently it is what you get by differentiating the first Friedmann equation and substituting the acceleration equation. For a mix of non-interacting fluids each species obeys its own copy. The negative-pressure case $w<-1/3$ gives accelerated expansion, and $w<-1$ ('phantom' energy) makes $\\rho$ grow with $a$, driving a Big Rip."
+   },
+   "sources": [
+    "MIT OCW 8.286 The Early Universe",
+    "arXiv astro-ph (FRW cosmology)",
+    "Wikipedia (facts)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Friedmann equations (continuity)",
+     "url": "https://en.wikipedia.org/wiki/Friedmann_equations"
+    },
+    {
+     "label": "Wikipedia — Equation of state (cosmology)",
+     "url": "https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"
+    },
+    {
+     "label": "MIT OCW 8.286 The Early Universe",
+     "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+    }
+   ],
+   "art_prompt": "a stretching comoving cube with three species inside — matter dots thinning as 1/volume, radiation waves both thinning and reddening, and a uniform vacuum-energy glow that stays constant as the cube grows",
+   "note": "The whole difference between matter and radiation dilution — a^{-3} versus a^{-4} — comes from the single pressure term 3Hp in this equation: radiation carries pressure p=ρ/3, matter carries essentially none.",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "Write the fluid equation and state how ρ scales with a for radiation (w=1/3).",
+     "answer": "ρ̇ + 3H(ρ+p) = 0. With p = wρ this gives ρ ∝ a^{−3(1+w)}, so radiation (w=1/3) dilutes as ρ ∝ a^{−4}."
+    },
+    {
+     "level": "derive",
+     "prompt": "Starting from energy conservation dE = −p dV for a comoving volume V ∝ a³, derive ρ̇ + 3H(ρ+p) = 0.",
+     "answer": "Write E = ρV with V ∝ a³, so dV/dt = 3(ȧ/a)V = 3HV. Energy conservation dE/dt = −p dV/dt gives d(ρV)/dt = −p(3HV), i.e. ρ̇V + ρ(3HV) = −3HpV. Divide by V: ρ̇ + 3Hρ = −3Hp, hence ρ̇ + 3H(ρ+p) = 0.",
+     "eq": "\\dot\\rho + 3\\frac{\\dot a}{a}(\\rho+p)=0 \\;\\Rightarrow\\; \\rho\\propto a^{-3(1+w)}"
+    }
+   ],
+   "lesson": "### Intuition\nStretch a box of gas in all directions and the gas thins out. If the gas also has pressure — it pushes on the walls — then expanding the box does work against that pressure, draining energy and thinning it even faster. That single idea is the fluid equation: density falls as space grows, and pressure makes it fall faster.\n\n### Precisely\nApply the first law $dE=-p\\,dV$ to a comoving patch with $V\\propto a^3$ (so $\\dot V/V=3H$). The result is\n$$\\dot\\rho+3H(\\rho+p)=0.$$\nWith an equation of state $p=w\\rho$ this integrates to $\\rho\\propto a^{-3(1+w)}$.\n\n### Worked example\nMatter ($w=0$): $\\rho\\propto a^{-3}$ — pure volume dilution. Radiation ($w=1/3$): $\\rho\\propto a^{-4}$ — an extra factor of $a$ because each photon also redshifts. Cosmological constant ($w=-1$): $\\rho=$ const — vacuum energy does not dilute at all.\n\n### Why it's true / how it works\nThe fluid equation is the local energy-conservation law $\\nabla_\\mu T^{\\mu 0}=0$ in the FRW universe. It is not extra information beyond the **friedmann-equations**: differentiate the first Friedmann equation and use the acceleration equation and this drops out.\n\n### Where it connects\nThese scalings ($a^{-3}$, $a^{-4}$, const) are exactly what the **friedmann-equations** need as input to predict $H(a)$ — and they explain why the universe was radiation-dominated early, matter-dominated later, and dark-energy-dominated now.\n\n### Watch out\nPressure here is the microscopic pressure of the smooth fluid, not the pull of gravity. Negative pressure ($w<-1/3$) is what drives acceleration; it is allowed for vacuum energy even though it feels counterintuitive."
+  },
+  {
+   "id": "deceleration-parameter",
+   "title": "The deceleration parameter q₀",
+   "shell": "nucleus",
+   "type": "equation",
+   "requires": [
+    "scale-factor",
+    "friedmann-equations",
+    "dark-energy"
+   ],
+   "summary": "The dimensionless deceleration parameter q ≡ −ä a/ȧ² measures whether cosmic expansion is slowing or speeding up; a measured q₀ < 0 today is the signature of dark energy.",
+   "depths": {
+    "eli5": "Throw a ball up and gravity slows it — its speed 'decelerates'. Cosmologists asked the same question about the whole universe: is its expansion slowing down as gravity pulls everything together? They invented a single number, q, to answer it. Positive q means slowing down; negative q means speeding up. The surprise of the late 1990s was that q is negative today — the expansion is accelerating, pushed by dark energy.",
+    "core": "The **deceleration parameter** is defined dimensionlessly from the **scale-factor** as $$q\\equiv-\\frac{\\ddot a\\,a}{\\dot a^2}.$$ The sign convention makes $q>0$ mean deceleration (the historical expectation from gravity). The acceleration Friedmann equation $\\ddot a/a=-\\tfrac{4\\pi G}{3}(\\rho+3p)$ turns this into $q=\\tfrac12\\sum_i\\Omega_i(1+3w_i)$. For matter alone $q=\\Omega_m/2>0$; a cosmological constant ($w=-1$) contributes $-\\Omega_\\Lambda$, so today $q_0\\approx\\tfrac12\\Omega_m-\\Omega_\\Lambda\\approx-0.55$. A **dark-energy**-driven $q_0<0$ is the direct kinematic statement of accelerating expansion.",
+    "deep": "$q(z)$ appears in the Taylor expansion of the scale factor about today, $a(t)\\approx a_0[1+H_0(t-t_0)-\\tfrac12 q_0H_0^2(t-t_0)^2+\\dots]$, which feeds the luminosity-distance–redshift relation $d_L(z)=\\tfrac{c}{H_0}[z+\\tfrac12(1-q_0)z^2+\\dots]$ that supernova surveys fit. Because $q$ evolves, the model-independent kinematic program also introduces the 'jerk' $j=\\dddot a/(aH^3)$; $\\Lambda$CDM predicts $j=1$ exactly, a null test of the standard model."
+   },
+   "sources": [
+    "arXiv astro-ph (SNe Ia acceleration)",
+    "MIT OCW 8.286 The Early Universe",
+    "Wikipedia (facts)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Deceleration parameter",
+     "url": "https://en.wikipedia.org/wiki/Deceleration_parameter"
+    },
+    {
+     "label": "Wikipedia — Accelerating expansion of the universe",
+     "url": "https://en.wikipedia.org/wiki/Accelerating_expansion_of_the_universe"
+    },
+    {
+     "label": "Einstein Online — Cosmic acceleration",
+     "url": "https://www.einstein-online.info/en/spotlight/expansion/"
+    }
+   ],
+   "art_prompt": "a scale-factor curve a(t) that first bends downward (decelerating, q>0) in the matter era then inflects and bends upward (accelerating, q<0) in the dark-energy era, with the inflection point labelled",
+   "note": "The sign convention is a historical fossil: q was defined as *deceleration* because everyone in 1958 assumed gravity would slow the expansion. When measurements came back negative, we kept the name and just started reporting a negative number.",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "Define q and state what its sign tells you about the expansion.",
+     "answer": "q ≡ −ä a/ȧ². q > 0 means the expansion is decelerating; q < 0 means it is accelerating. Today q₀ ≈ −0.55, indicating acceleration."
+    },
+    {
+     "level": "derive",
+     "prompt": "Using the acceleration equation ä/a = −(4πG/3)(ρ+3p), show q = ½ Σ Ω_i(1+3w_i), and evaluate it for a universe with Ω_m and Ω_Λ.",
+     "answer": "q = −ä a/ȧ² = −(ä/a)/H². Substitute ä/a = −(4πG/3)(ρ+3p) and divide by H² = 8πGρ_c/3, using Ω_i = ρ_i/ρ_c and p_i = w_iρ_i: q = (1/2)Σ Ω_i(1+3w_i). Matter (w=0) contributes Ω_m/2; a cosmological constant (w=−1) contributes Ω_Λ(1−3)/2 = −Ω_Λ. So q₀ = ½Ω_m − Ω_Λ; with Ω_m≈0.3, Ω_Λ≈0.7 this is ≈ −0.55.",
+     "eq": "q\\equiv-\\frac{\\ddot a\\,a}{\\dot a^2}=\\tfrac12\\sum_i\\Omega_i(1+3w_i)\\approx\\tfrac12\\Omega_m-\\Omega_\\Lambda"
+    }
+   ],
+   "lesson": "### Intuition\nThrow a ball up: gravity slows it. People assumed the universe's expansion must slow the same way, as gravity pulls all its matter together. The deceleration parameter $q$ is the one number that captures 'how fast is the expansion slowing?' — and its measured sign flipped that assumption on its head.\n\n### Precisely\nFrom the **scale-factor** $a(t)$ define\n$$q\\equiv-\\frac{\\ddot a\\,a}{\\dot a^2}.$$\nUsing the acceleration Friedmann equation $\\ddot a/a=-\\tfrac{4\\pi G}{3}(\\rho+3p)$ this becomes $q=\\tfrac12\\sum_i\\Omega_i(1+3w_i)$.\n\n### Worked example\nMatter only: $q=\\Omega_m/2>0$, deceleration. Add a cosmological constant ($w=-1$): it contributes $-\\Omega_\\Lambda$, so $q_0\\approx\\tfrac12(0.3)-0.7\\approx-0.55$. Negative — the expansion is speeding up.\n\n### Why it's true / how it works\n$q$ enters the second-order term in the Taylor expansion of $a(t)$, which sets the curvature of the distance–redshift relation. Fitting that curvature to **standard-candles** (Type Ia supernovae) is how $q_0<0$ was measured, revealing **dark-energy**.\n\n### Where it connects\n$q_0$ is the kinematic face of **dark-energy**: any component with $w<-1/3$ pushes $q$ negative. It links the abstract Friedmann dynamics to the concrete supernova Hubble diagram.\n\n### Watch out\nThe minus sign in the definition is a convention: positive $q$ means slowing. Don't read $q<0$ as 'decelerating faster' — it means accelerating. Also, $q$ is time-dependent; $q_0$ is just its value today."
+  },
+  {
+   "id": "growth-of-structure",
+   "title": "Linear growth of structure",
+   "shell": "nucleus",
+   "type": "result",
+   "requires": [
+    "gravitational-instability",
+    "friedmann-equations",
+    "matter-radiation-equality"
+   ],
+   "summary": "While overdensities are small, each Fourier mode grows by the same time-dependent growth factor D(a): δ ∝ a during matter domination, nearly frozen once dark energy dominates.",
+   "depths": {
+    "eli5": "The early universe was almost perfectly smooth, with density differences of about one part in a hundred thousand. Gravity slowly amplified those tiny lumps into galaxies. While the lumps are still small, they all grow in lockstep by the same factor over time — you can pull that growth out as a single 'growth factor'. When the universe was full of matter, lumps grew steadily. Once dark energy took over and stretched space faster, growth nearly stalled: structure got frozen in.",
+    "core": "For sub-horizon matter perturbations the linearized fluid + Poisson equations reduce, in Fourier space, to $$\\ddot\\delta+2H\\dot\\delta-4\\pi G\\bar\\rho_m\\,\\delta=0,$$ which is **scale-independent** — every mode $\\delta_k$ shares the same time dependence, so $\\delta(k,a)=D(a)\\,\\delta_k^{\\rm init}$ with a single **growth factor** $D(a)$. The $2H\\dot\\delta$ term is Hubble friction: expansion fights collapse. In a matter-dominated universe the growing solution is $D\\propto a$; during radiation domination growth is suppressed (Mészáros), and once **dark energy** dominates $D$ approaches a constant. This builds on **gravitational-instability** and depends on the expansion rate from the **friedmann-equations** relative to **matter-radiation-equality**.",
+    "deep": "The growing mode can be written $D(a)\\propto H(a)\\int_0^a \\frac{da'}{[a'H(a')]^3}$, valid for any $H(a)$; the logarithmic growth rate $f\\equiv d\\ln D/d\\ln a\\approx\\Omega_m(a)^{0.55}$ is the quantity probed by **redshift-space-distortions**. Only the growing mode survives; the decaying mode $\\propto H(a)$ dies away. On scales near and above the horizon this Newtonian treatment must be replaced by relativistic perturbation theory, and pressure/free-streaming (baryons, neutrinos) breaks the strict scale-independence."
+   },
+   "sources": [
+    "MIT OCW 8.286 The Early Universe",
+    "arXiv astro-ph (linear perturbation theory)",
+    "Wikipedia (facts)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Structure formation",
+     "url": "https://en.wikipedia.org/wiki/Structure_formation"
+    },
+    {
+     "label": "Wikipedia — Linear and non-linear structure",
+     "url": "https://en.wikipedia.org/wiki/Structure_formation#Linear_and_non-linear_structure"
+    },
+    {
+     "label": "MIT OCW 8.286 The Early Universe",
+     "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+    }
+   ],
+   "art_prompt": "a faint density ripple in a matter-filled universe growing steadily taller as a straight line D∝a, then flattening to a plateau once a dark-energy region is entered, with a 'Hubble friction' arrow opposing collapse",
+   "note": "Because linear growth is the same for every wavelength, the *shape* of the matter power spectrum is preserved as it grows — only its overall amplitude changes with D(a). That is why the power-spectrum shape encodes primordial and early-universe physics, while its amplitude tracks how much time gravity has had to work.",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "How does the growth factor D(a) behave during matter domination versus dark-energy domination?",
+     "answer": "During matter domination the growing mode is D ∝ a (structure grows steadily). Once dark energy dominates, the accelerated expansion suppresses growth and D approaches a constant — structure growth nearly freezes."
+    },
+    {
+     "level": "derive",
+     "prompt": "Why is linear growth scale-independent, and what physical role does the 2Hδ̇ term play in δ̈ + 2Hδ̇ − 4πGρ̄δ = 0?",
+     "answer": "On sub-horizon scales the equation contains no k (spatial) dependence for pressureless matter — the gravitational source 4πGρ̄δ and the Hubble term act identically on every Fourier mode, so δ(k,a) = D(a)δ_k^init factorizes with one common D(a). The 2Hδ̇ term is Hubble friction: cosmic expansion drains the collapse, slowing growth from the runaway exponential of a static universe to a power law (δ∝a in the matter era) and eventually to a frozen plateau under dark energy.",
+     "eq": "\\ddot\\delta+2H\\dot\\delta-4\\pi G\\bar\\rho_m\\,\\delta=0\\;\\Rightarrow\\;\\delta(k,a)=D(a)\\,\\delta_k^{\\rm init}"
+    }
+   ],
+   "lesson": "### Intuition\nThe infant universe was smooth to one part in $10^5$. Gravity amplified those faint lumps into galaxies. While a lump is still small it grows in lockstep with every other lump, so you can factor the growth into one number — the growth factor. Matter era: steady growth. Dark-energy era: expansion outruns gravity and growth nearly stops.\n\n### Precisely\nLinearizing the fluid and Poisson equations for pressureless matter gives, for each Fourier mode,\n$$\\ddot\\delta+2H\\dot\\delta-4\\pi G\\bar\\rho_m\\,\\delta=0.$$\nThere is no $k$ in it, so $\\delta(k,a)=D(a)\\,\\delta_k^{\\rm init}$ — one universal growth factor $D(a)$.\n\n### Worked example\nMatter domination ($H^2\\propto a^{-3}$): the growing solution is $D\\propto a$. Radiation era: growth is logarithmically slow (Mészáros suppression) because radiation, not the lumpy matter, drives $H$. Dark-energy era: $D\\to$ const.\n\n### Why it's true / how it works\nThe equation is **gravitational-instability** with the extra $2H\\dot\\delta$ Hubble-friction term from the expanding background. Whether gravity wins depends on $H(a)$ from the **friedmann-equations**, which changes character at **matter-radiation-equality** and again when dark energy takes over.\n\n### Where it connects\nBecause growth is scale-independent in linear theory, the *shape* of the **matter-power-spectrum** is frozen and only its amplitude rises with $D(a)$. The growth *rate* $f\\approx\\Omega_m^{0.55}$ is what **redshift-space-distortions** measure.\n\n### Watch out\nScale-independence is a linear, sub-horizon, pressureless approximation. Baryon pressure, neutrino free-streaming, and horizon-scale relativistic effects all break it, and once $\\delta\\sim1$ the linear equation fails and full nonlinear (N-body) treatment is needed."
+  },
+  {
+   "id": "primordial-power-spectrum",
+   "title": "The primordial power spectrum",
+   "shell": "nucleus",
+   "type": "result",
+   "requires": [
+    "inflation",
+    "matter-power-spectrum"
+   ],
+   "summary": "Inflation predicts the initial spectrum of density fluctuations to be nearly scale-invariant, P(k) ∝ k^{n_s} with n_s slightly below 1 — a prediction confirmed by the CMB.",
+   "depths": {
+    "eli5": "Before galaxies, before atoms, the universe had a pattern of tiny density ripples baked in. Where did that pattern come from? Inflation says: quantum jitter. During a fraction of a second of hyper-fast expansion, microscopic quantum wobbles got stretched to cosmic size and froze in. The remarkable prediction is that the ripples were almost the same strength on every size scale — 'scale-invariant' — but very slightly stronger on large scales. Decades later, precision maps of the sky measured exactly that tilt.",
+    "core": "**Inflation** stretches quantum vacuum fluctuations of the inflaton field to super-horizon scales, freezing them into a nearly **scale-invariant** spectrum of curvature perturbations. It is characterized by the primordial power spectrum $$\\mathcal{P}(k)\\propto k^{\\,n_s-1},$$ where a scale-invariant (Harrison–Zel'dovich) spectrum has spectral index $n_s=1$. Slow-roll inflation predicts a slight red tilt $n_s\\lesssim1$; measurements give $n_s\\approx0.965$, a $\\sim7\\sigma$ departure from 1 that is a headline confirmation of inflation. This primordial spectrum is the *initial condition* that, processed by later physics, becomes the observed **matter-power-spectrum**.",
+    "deep": "In slow-roll the amplitude is $\\mathcal{P}_\\mathcal{R}=H^2/(8\\pi^2\\epsilon M_{\\rm Pl}^2)$ evaluated at horizon crossing, and the tilt is $n_s-1=-6\\epsilon+2\\eta$ in terms of the slow-roll parameters; inflation also predicts a tensor spectrum with ratio $r=16\\epsilon$ (see **primordial-gravitational-waves**). The convention $\\mathcal{P}(k)\\propto k^{n_s-1}$ (dimensionless curvature power) corresponds to $P(k)\\propto k^{n_s}$ for the density field. A small running $dn_s/d\\ln k$ is a further slow-roll prediction, so far consistent with zero."
+   },
+   "sources": [
+    "arXiv astro-ph (Planck inflation results)",
+    "MIT OCW 8.286 The Early Universe",
+    "Wikipedia (facts)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Primordial fluctuations",
+     "url": "https://en.wikipedia.org/wiki/Primordial_fluctuations"
+    },
+    {
+     "label": "Wikipedia — Scalar spectral index",
+     "url": "https://en.wikipedia.org/wiki/Scalar_spectral_index"
+    },
+    {
+     "label": "Wikipedia — Harrison–Zel'dovich spectrum",
+     "url": "https://en.wikipedia.org/wiki/Harrison%E2%80%93Zel%27dovich_spectrum"
+    }
+   ],
+   "art_prompt": "quantum wobbles inside a tiny patch being stretched by inflation into frozen cosmic-scale ripples, with a nearly flat log-log primordial spectrum P(k)∝k^{n_s} tilted very slightly downward toward small scales",
+   "note": "The measured n_s ≈ 0.965 is not just 'close to 1' — the fact that it is measurably *below* 1 is itself a prediction of inflation: the inflaton rolls (Hubble rate falls slowly), which tilts the spectrum red. A perfectly scale-invariant n_s = 1 would actually have been awkward for the simplest models.",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "What does 'scale-invariant' mean for the primordial spectrum, and what is the measured spectral index n_s?",
+     "answer": "Scale-invariant means the primordial curvature fluctuations have (nearly) the same amplitude on every length scale, i.e. spectral index n_s = 1 (Harrison–Zel'dovich). The measured value is n_s ≈ 0.965 — slightly less than 1, a small red tilt predicted by slow-roll inflation."
+    },
+    {
+     "level": "derive",
+     "prompt": "Why does inflation produce a nearly (but not exactly) scale-invariant spectrum, and why is n_s slightly below 1 rather than exactly 1?",
+     "answer": "During inflation quantum fluctuations of the inflaton are stretched past the horizon and frozen; each comoving scale freezes when it crosses the horizon. If H were exactly constant, every scale would freeze with the same amplitude → exact scale invariance (n_s=1). But the inflaton slowly rolls down its potential, so H decreases slightly during inflation; larger scales (which exit earlier, at higher H) freeze with slightly larger amplitude, giving a small red tilt n_s<1. Slow-roll gives n_s−1 = −6ε+2η, generically negative for simple potentials.",
+     "eq": "\\mathcal{P}(k)\\propto k^{\\,n_s-1},\\quad n_s-1=-6\\epsilon+2\\eta\\approx-0.035"
+    }
+   ],
+   "lesson": "### Intuition\nBefore atoms, the universe already carried a faint pattern of density ripples. **Inflation** says that pattern is stretched quantum jitter: during a burst of hyper-fast expansion, microscopic vacuum fluctuations were blown up to cosmic size and frozen. The clean prediction is that the ripples had nearly the same strength on every scale.\n\n### Precisely\nThe frozen curvature fluctuations form the primordial power spectrum\n$$\\mathcal{P}(k)\\propto k^{\\,n_s-1},$$\nwith $n_s=1$ the perfectly scale-invariant (Harrison–Zel'dovich) case. Measurements give $n_s\\approx0.965$.\n\n### Worked example\nSlow-roll inflation ties the tilt to how the inflaton rolls: $n_s-1=-6\\epsilon+2\\eta$. For $\\epsilon,\\eta\\sim10^{-2}$ this predicts $n_s$ a couple of percent below 1 — matching the observed $0.965$ and its $\\sim7\\sigma$ distance from exact scale invariance.\n\n### Why it's true / how it works\nEach comoving scale freezes as it crosses the horizon during inflation. Constant $H$ would freeze every scale identically ($n_s=1$); because $H$ falls slowly as the inflaton rolls, earlier (larger) scales freeze slightly stronger, tilting the spectrum red.\n\n### Where it connects\nThis primordial spectrum is the *initial condition* for all structure. Processed by the transfer function it becomes the observed **matter-power-spectrum**, and its tensor cousin appears as **primordial-gravitational-waves** (B-modes).\n\n### Watch out\nDon't conflate $\\mathcal{P}(k)\\propto k^{n_s-1}$ (dimensionless curvature power) with $P(k)\\propto k^{n_s}$ (density power) — the indices differ by 1 by convention. And $n_s$ describes only the *initial* spectrum; the bending seen today comes from later physics."
+  },
+  {
+   "id": "transfer-function",
+   "title": "The transfer function",
+   "shell": "nucleus",
+   "type": "concept",
+   "requires": [
+    "primordial-power-spectrum",
+    "matter-radiation-equality",
+    "matter-power-spectrum"
+   ],
+   "summary": "The transfer function T(k) records how each scale is amplified or suppressed between the primordial spectrum and today, imprinting a turnover at the horizon size at matter–radiation equality.",
+   "depths": {
+    "eli5": "Inflation handed the universe a near-featureless set of ripples. But between then and now, physics processed them: some sizes of ripple grew, others got held back. The 'transfer function' is the bookkeeping of who won and who lost. The key event is that small ripples entered the horizon while the universe was still full of radiation, and radiation pressure kept them from growing for a while. Large ripples entered later, during the matter era, and grew unhindered. So there is a special scale — set by when matter took over from radiation — where the pattern bends.",
+    "core": "The observed **matter-power-spectrum** is the **primordial-power-spectrum** times the square of the **transfer function**: $$P(k)\\propto k^{n_s}\\,T^2(k)\\,D^2(a).$$ $T(k)$ encodes evolution through horizon crossing and the radiation era. Large scales ($k<k_{\\rm eq}$) enter the horizon after **matter-radiation-equality** and are unprocessed, so $T\\to1$ and $P(k)\\propto k^{n_s}$. Small scales ($k>k_{\\rm eq}$) enter during radiation domination and suffer the Mészáros effect — their growth is stalled while radiation drives the expansion — so they are suppressed, $T(k)\\propto k^{-2}$, and $P(k)\\propto k^{n_s-4}$. The turnover between the two regimes sits at $k_{\\rm eq}$, the horizon scale at equality, making the peak of $P(k)$ a direct measure of $\\Omega_m h^2$.",
+    "deep": "Baryon–photon acoustic oscillations before recombination imprint the **baryon-acoustic-oscillations** wiggles on top of the smooth $T(k)$, and the baryon fraction sets their amplitude; free-streaming massive neutrinos add a further step-like suppression on small scales $\\propto f_\\nu$. Accurate $T(k)$ comes from Boltzmann codes (CMBFAST/CAMB/CLASS) that evolve the coupled photon–baryon–CDM–neutrino perturbations; fitting formulae (Bardeen–Bond–Kaiser–Szalay; Eisenstein–Hu) capture the shape and the BAO features analytically."
+   },
+   "sources": [
+    "arXiv astro-ph (Eisenstein & Hu transfer function)",
+    "MIT OCW 8.286 The Early Universe",
+    "Wikipedia (facts)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Matter power spectrum",
+     "url": "https://en.wikipedia.org/wiki/Matter_power_spectrum"
+    },
+    {
+     "label": "Wikipedia — Structure formation (Mészáros effect)",
+     "url": "https://en.wikipedia.org/wiki/Structure_formation"
+    },
+    {
+     "label": "MIT OCW 8.286 The Early Universe",
+     "url": "https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/"
+    }
+   ],
+   "art_prompt": "a log-log matter power spectrum rising as k^{n_s} on large scales, bending over at a turnover k_eq, then falling as k^{n_s-4} on small scales, with the turnover labelled 'horizon at matter–radiation equality'",
+   "note": "The turnover scale k_eq is a standard ruler of a different kind than the BAO: it marks the horizon size when matter and radiation had equal density, and its position on the sky/in surveys directly measures Ω_m h² — independent of the sound-horizon ruler that BAO provides.",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "What sets the turnover scale in the matter power spectrum, and what happens to P(k) on scales smaller than it?",
+     "answer": "The turnover sits at k_eq, the comoving horizon size at matter–radiation equality. On smaller scales (k > k_eq), which entered the horizon during radiation domination, growth was suppressed (Mészáros effect), so the transfer function falls as T ∝ k^{−2} and P(k) ∝ k^{n_s−4}."
+    },
+    {
+     "level": "derive",
+     "prompt": "Explain why modes that enter the horizon during radiation domination are suppressed relative to those entering during matter domination, producing the k_eq turnover.",
+     "answer": "A perturbation only grows once it is inside the horizon and its dominant clustering component drives the expansion. Small-scale modes enter the horizon early, during radiation domination; but radiation (not the CDM) dominates the energy density and its pressure prevents it from clustering, so the expansion is fast while CDM self-gravity is weak — CDM growth stalls (Mészáros effect) until equality. Large-scale modes enter after matter–radiation-equality and grow immediately as δ∝a. The dividing scale is the horizon size at equality, k_eq, so P(k) turns over there: unprocessed (T→1) for k<k_eq, suppressed (T∝k^{−2}) for k>k_eq.",
+     "eq": "P(k)\\propto k^{n_s}\\,T^2(k)\\,D^2(a),\\quad T(k)\\to\\begin{cases}1 & k\\ll k_{\\rm eq}\\\\ k^{-2} & k\\gg k_{\\rm eq}\\end{cases}"
+    }
+   ],
+   "lesson": "### Intuition\nInflation delivered near-featureless ripples. Between then and now, physics processed them — some scales grew, others were held back. The transfer function is the ledger of that processing. Its defining feature comes from one fact: small ripples entered the horizon while radiation still ruled and radiation pressure stalled their growth, while large ripples waited until the matter era and grew freely.\n\n### Precisely\nToday's spectrum is the primordial spectrum reshaped:\n$$P(k)\\propto k^{n_s}\\,T^2(k)\\,D^2(a),$$\nwhere the **transfer function** $T(k)$ carries all the horizon-crossing and radiation-era physics and $D(a)$ is the linear growth factor.\n\n### Worked example\nLarge scales ($k<k_{\\rm eq}$): unprocessed, $T\\to1$, so $P\\propto k^{n_s}$ — the primordial slope survives. Small scales ($k>k_{\\rm eq}$): Mészáros-suppressed, $T\\propto k^{-2}$, so $P\\propto k^{n_s-4}$. The two regimes meet at the turnover $k_{\\rm eq}$.\n\n### Why it's true / how it works\n$k_{\\rm eq}$ is the horizon size at **matter-radiation-equality**. Modes crossing the horizon before equality sit frozen while radiation drives $H$; modes crossing after grow immediately. That single boundary bends the **primordial-power-spectrum** into the shape we observe.\n\n### Where it connects\n$T(k)$ is the bridge from the **primordial-power-spectrum** to the observed **matter-power-spectrum**. Its turnover measures $\\Omega_m h^2$, and the small **baryon-acoustic-oscillations** wiggles riding on it give an independent standard ruler.\n\n### Watch out\n$T(k)$ is squared in $P(k)$ (it acts on the amplitude, and power is amplitude²). And it is not universal: baryon fraction sets the BAO wiggle amplitude, and massive neutrinos add extra small-scale suppression — accurate $T(k)$ needs a Boltzmann code."
+  },
+  {
+   "id": "cmb-polarization",
+   "title": "CMB polarization (E-modes)",
+   "shell": "nucleus",
+   "type": "result",
+   "requires": [
+    "recombination",
+    "cmb-anisotropies"
+   ],
+   "summary": "The CMB is slightly polarized because Thomson scattering of a local temperature quadrupole at last scattering produces linear polarization; its E-mode pattern is a clean, independent check of the density perturbations.",
+   "depths": {
+    "eli5": "Light can be polarized — its waves wiggling more in one direction than another (that is what polarized sunglasses filter). The cosmic microwave background is faintly polarized too. The reason: just before the universe went transparent, electrons scattered photons, and if an electron saw a slightly hotter sky in one direction and cooler at right angles, the light it scattered came out polarized. That happened everywhere at once, leaving a swirl-free pattern (called E-modes) painted across the whole sky, telling us the same story as the temperature map but by an independent route.",
+    "core": "Thomson scattering of photons off free electrons at **recombination** converts a **local temperature quadrupole** in the radiation into linear **polarization**. Because polarization is generated only during the brief window of last scattering (and needs the quadrupole that the tight photon–baryon coupling suppresses before then), the CMB is polarized at the $\\sim10\\%$ level of the temperature anisotropies. The pattern is decomposed into a curl-free **E-mode** part and a curl-like **B-mode** part; scalar (density) perturbations produce only E-modes, whose acoustic peaks are $90^\\circ$ out of phase with the temperature **cmb-anisotropies** peaks — a stringent, largely independent confirmation of the standard model. A late-time reionization bump at low multipoles measures the optical depth $\\tau$.",
+    "deep": "The E/B split is the spin-2 analogue of the gradient/curl (Helmholtz) decomposition of a vector field, and it is coordinate-independent, which is why it is physically meaningful. To linear order density perturbations generate pure E; primordial tensor modes (gravitational waves) generate both E and B, so a primordial B-mode signal is the target of inflationary searches (see **primordial-gravitational-waves**). Gravitational lensing of E-modes by intervening structure also converts some E into B, a guaranteed lensing B-mode foreground that must be subtracted; the TE cross-correlation additionally pins the acoustic phase and even shows super-horizon correlations that test causality."
+   },
+   "sources": [
+    "arXiv astro-ph (Planck/CMB polarization)",
+    "MIT OCW 8.286 The Early Universe",
+    "Wikipedia (facts)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Cosmic microwave background (polarization)",
+     "url": "https://en.wikipedia.org/wiki/Cosmic_microwave_background#Polarization"
+    },
+    {
+     "label": "Wikipedia — CMB polarization (E/B modes)",
+     "url": "https://en.wikipedia.org/wiki/CMB_polarization"
+    },
+    {
+     "label": "Einstein Online — The cosmic microwave background",
+     "url": "https://www.einstein-online.info/en/spotlight/cosmic_microwave_background/"
+    }
+   ],
+   "art_prompt": "an electron at last scattering seeing a hot–cold quadrupole pattern around it and re-emitting polarized light, beside a whole-sky map of curl-free E-mode polarization tick marks arranged in radial/tangential patterns around hot and cold spots",
+   "note": "E-modes and B-modes are named by analogy with electric and magnetic fields: E-mode patterns are curl-free (like the E field of a static charge, pointing radially), B-mode patterns have handedness/curl (like a magnetic field). Density perturbations can only make E-modes; a detection of primordial B-modes would be a smoking gun for inflationary gravitational waves.",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "What physical process polarizes the CMB, and what distinguishes E-modes from B-modes?",
+     "answer": "Thomson scattering of CMB photons off free electrons at last scattering, when the electron sees a local temperature quadrupole, produces linear polarization. E-modes are the curl-free component of the polarization pattern; B-modes are the curl-like component. Scalar density perturbations generate only E-modes; primordial tensor modes (gravitational waves) and lensing generate B-modes."
+    },
+    {
+     "level": "derive",
+     "prompt": "Why is the CMB only weakly polarized, and why are the E-mode acoustic peaks out of phase with the temperature peaks?",
+     "answer": "Polarization requires a temperature quadrupole seen by the scattering electron, but before last scattering the tight photon–baryon coupling isotropizes the radiation and suppresses the quadrupole; only in the short recombination window, as coupling loosens, does a quadrupole survive to be scattered — hence polarization is only ~10% of the temperature signal. The polarization is sourced by the velocity (gradient) of the photon–baryon fluid, whereas temperature anisotropy is sourced mainly by density; velocity and density oscillate 90° out of phase in the acoustic oscillations, so the E-mode peaks fall in the troughs of the temperature peaks.",
+     "eq": "C_\\ell^{EE}\\sim (\\Delta T)^2\\times\\mathcal{O}(10\\%)^2,\\quad \\text{E peaks out of phase with T peaks (velocity vs density)}"
+    }
+   ],
+   "lesson": "### Intuition\nLight can be polarized — waving more one way than another (what polarized sunglasses block). The CMB is faintly polarized too. Just before the universe turned transparent, an electron that saw a slightly hotter sky in one direction and cooler at right angles scattered the light out polarized. This happened everywhere, painting a swirl-free pattern across the sky that retells the temperature story by an independent route.\n\n### Precisely\nThomson scattering off free electrons at **recombination** converts a local temperature *quadrupole* into linear polarization. The sky pattern splits into a curl-free **E-mode** part and a curl-like **B-mode** part; scalar density perturbations make only E-modes.\n\n### Worked example\nThe polarization is $\\sim10\\%$ of the temperature signal because the sourcing quadrupole is suppressed until the brief last-scattering window. The E-mode acoustic peaks land $90^\\circ$ out of phase with the temperature peaks, since polarization tracks the fluid *velocity* while temperature tracks *density* — a sharp, near-independent test.\n\n### Why it's true / how it works\nBefore recombination, tight photon–baryon coupling isotropizes the radiation and kills the quadrupole. As coupling loosens during **recombination**, a quadrupole survives just long enough to be scattered into polarization, so the signal is small and localized to last scattering.\n\n### Where it connects\nE-modes confirm the density **cmb-anisotropies** by an independent channel; the low-$\\ell$ reionization bump measures the optical depth $\\tau$; and primordial B-modes are the target signature of **primordial-gravitational-waves**.\n\n### Watch out\nDensity perturbations cannot make B-modes at last scattering — but gravitational lensing converts some E into B, a guaranteed foreground that inflationary B-mode searches must carefully subtract. E/B naming is by analogy to electric/magnetic field geometry, not an actual electromagnetic distinction."
   }
  ]
 }

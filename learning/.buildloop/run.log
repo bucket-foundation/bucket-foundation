@@ -2407,3 +2407,47 @@ Each has a full 7-section original lesson, summary, 3 depths, note, art_prompt, 
 
 ========== build run 2026-07-01T07:10:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. Run 28 complete.
+
+**What I did this run:** Expanded the chemistry branch from 49 → 55 atoms, the thinnest branch per run-27's handoff. Added six correct, foundations-first atoms, each with `requires` edges only into existing chemistry ids:
+
+- **hess-law** — enthalpy state function → ΔH additive over any path
+- **rate-laws-order** — rate = k[A]ᵐ[B]ⁿ, order is empirical, integrated forms + half-life fingerprint
+- **transition-state-theory** — collision theory + Eyring equation, saddle-point picture
+- **solubility-product** — Ksp, Q-vs-Ksp precipitation test, common-ion effect
+- **beer-lambert-law** — A = εℓc absorption spectroscopy
+- **crystal-field-theory** — Δo splitting, high/low spin, transition-metal color & magnetism
+
+Each has a full 7-section lesson, summary, 3 depths, note, art_prompt, and 2 quiz items (recall + derive), with open sources only (OpenStax, LibreTexts, MIT OCW). All prose original.
+
+**Validation:** synced to `public/academy-app`, then `./validate.sh` **passed end-to-end** — chemistry 55 with no dupes/missing-requires, manifest consistent, JS syntax clean, engine sim green, biophysics diagnostic unchanged (chemistry edits are zero-risk to placement since the sim only loads biophysics.json).
+
+**Committed locally** (two commits: content + log). No push, per constraints.
+
+**Next run should pick:** mathematics is now clearly the thinnest at 49 (all other branches ≥53) — add 6 there.
+---------- run done 2026-07-01T07:15:15Z ----------
+
+========== build run 2026-07-01T07:36:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Run 29 complete. Summary of what I did this bounded run:
+
+**Advanced:** Expanded the thinnest branch (mathematics 49→55) with 6 high-value, correctly-derived atoms, each with `requires` edges into existing math ids only:
+
+- **bayes-theorem** — conditional probability, prior/likelihood/posterior, base-rate fallacy worked (← probability, random-variables)
+- **prime-numbers** — Fundamental Theorem of Arithmetic + Euclid's infinitude proof (← number-systems, modular-arithmetic)
+- **markov-chains** — memoryless property, stationary distribution as eigenvector, 2-state worked example (← probability, linear-map, eigenvalue)
+- **lagrange-multipliers** — ∇f=λ∇g geometry, shadow-price interpretation, KKT (← optimization, multivariable-calculus)
+- **banach-fixed-point** — contraction ⇒ unique fixed point, x=cos x → Dottie number, Picard–Lindelöf link (← metric-space, real-analysis)
+- **galois-theory** — root-symmetry group, subfield↔subgroup bijection, S₅/A₅ unsolvable quintic (← ring-field, group, polynomials-roots, homomorphism)
+
+Each has the full 7-section lesson, 3 depths, summary, note, art_prompt, 2 quiz items (recall + derive), and OPEN sources only (MIT OCW, LibreTexts, OpenStax, Khan, SEP). All prose original; equations/theorems are facts. meta bumped 0.4.0→0.5.0.
+
+**Validated:** `./validate.sh` passes end-to-end (mathematics 55 no dupes/missing-requires, manifest, JS syntax, 60-day engine sim, all placement/assess/lang/explorer smokes green). Biophysics diagnostic unchanged since the sim loads only biophysics.json.
+
+**Committed** locally (no push); mirrored to `public/academy-app` via sync-academy.mjs; LOG.md updated.
+
+**Next run should pick up:** cosmology (53) is now the thinnest branch — add 6 toward full syllabus coverage.
+---------- run done 2026-07-01T07:42:36Z ----------
+
+========== build run 2026-07-01T08:01:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
