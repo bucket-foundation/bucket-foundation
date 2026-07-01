@@ -2,7 +2,7 @@
   "meta": {
     "branch": "04-information",
     "title": "Information & Computation — entropy, computability, complexity",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations, theorems, and standard definitions are facts). Open sources only. Foundations-first DAG spanning information theory (entropy, mutual information, channel capacity, coding, Kolmogorov complexity), computability (Turing machines, Church–Turing, halting, decidability), automata & formal languages (DFA/NFA, the Chomsky hierarchy), complexity (P, NP, NP-completeness, reductions, space), algorithms & data structures (asymptotics, divide & conquer, dynamic programming, graphs), logic (propositional, predicate, proof systems), cryptography basics (one-way functions, public key), and a learning-theory frontier (PAC learning, VC dimension, the link to statistical mechanics, a modern-ML glimpse).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -3291,6 +3291,309 @@
         }
       ],
       "lesson": "### Intuition\n\nThe **halting problem** says you cannot build a checker that decides whether an arbitrary program eventually stops. **Rice's theorem** is the sweeping generalization: you cannot build a checker for *any* interesting question about what a program actually *computes*. Does it ever output 7? Does it compute a constant? Do these two programs behave identically? Is this file, by its behavior, a virus? In full generality, all undecidable.\n\n### Precisely\n\nRice's theorem: **every non-trivial semantic property of programs is undecidable.** A *semantic* property is one about the function the program computes — its input/output behavior — not about its source text or running time. *Non-trivial* means at least one computable function has the property and at least one does not (properties true of all programs, or of none, are trivially decidable). So no algorithm decides, for arbitrary programs, \"computes the zero function,\" \"ever outputs $v$,\" or \"computes the same function as this reference program.\"\n\n### Worked example\n\nIs there a decider $D$ that says whether a program computes the constant-zero function? Suppose so. Take any instance of the halting problem — program $P$, input $w$ — and build $Q$: \"on input $x$, first run $P$ on $w$; if that halts, output $0$.\" Then $Q$ computes the zero function *iff* $P$ halts on $w$. Feeding $Q$ to $D$ would decide halting — impossible. So $D$ cannot exist. The same reduction skeleton works for *any* non-trivial semantic property.\n\n### Why it works\n\nThe trick is that you can wrap an unknown program's halting behavior inside a wrapper whose *computed function* flips exactly on that behavior. Because a decider for the property would then decide halting, the property inherits halting's undecidability. Non-triviality is what makes the wrapper possible: you need one function with the property and one without, to build two distinguishable outcomes.\n\n### Where it connects\n\nRice's theorem is the grand generalization of the **halting problem** and lives at the heart of **decidability**. It cleanly separates two worlds: properties of a program's *extension* (the function it computes) are undecidable, while properties of its *intension* (the syntax — \"contains a while-loop,\" \"has 100 states\") can be perfectly decidable. That line is why a compiler can answer syntactic questions but never all behavioral ones.\n\n### A second angle\n\nThis is the theoretical reason **perfect static analysis is impossible**. \"Is this code dead?\", \"can this pointer be null here?\", \"does this optimization preserve behavior?\", \"will this program leak memory?\" are all semantic properties, hence undecidable in general. So every real analyzer, type checker, and verifier is a **conservative approximation**: it soundly over- or under-approximates and accepts false positives or false negatives, because Rice forbids the exact answer. Type systems, abstract interpretation, and model checkers are all engineering *underneath* the Rice ceiling.\n\n### Watch out\n\nRice's theorem is often over-stated. It applies only to **non-trivial** and **semantic** properties. Syntactic properties (\"does the source have more than 50 lines?\", \"does it use recursion in the text?\") are decidable — Rice says nothing about them. And *bounded* questions are decidable too: \"does this program halt within $10^6$ steps?\" is answered by simply running it that long. Undecidability is about the *unbounded, behavioral* question, not every question that mentions a program.\n"
+    },
+    {
+      "id": "data-processing-inequality",
+      "title": "The data processing inequality",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "mutual-information"
+      ],
+      "equation": "X\\to Y\\to Z \\ \\Rightarrow\\ I(X;Z)\\le I(X;Y)",
+      "summary": "No manipulation of a signal can increase the information it carries about its source: for any Markov chain X→Y→Z, the mutual information I(X;Z) can never exceed I(X;Y).",
+      "depths": {
+        "eli5": "If you take a photo of a photo of a photo, each copy can only lose detail about the original, never add it back. Once you've turned data into Y, anything you compute from Y can only know as much about the source X as Y itself did — usually less.",
+        "core": "The data processing inequality says that if random variables form a Markov chain X→Y→Z (meaning Z depends on X only through Y), then I(X;Z) ≤ I(X;Y). Processing Y — filtering, compressing, adding noise, running any deterministic or random function — cannot create information about X that wasn't already in Y. Equality holds exactly when Y→Z→X is also Markov, i.e. when Z is a *sufficient statistic* for X. A corollary is I(X;Y) ≥ I(X;g(Y)) for any function g: throwing Y through a function never helps you learn X.",
+        "deep": "The proof expands the mutual information I(X;Y,Z) two ways using the chain rule: I(X;Y,Z)=I(X;Z)+I(X;Y|Z)=I(X;Y)+I(X;Z|Y). The Markov condition forces I(X;Z|Y)=0 (given Y, Z tells nothing new about X), so I(X;Y)=I(X;Z)+I(X;Y|Z), and since conditional mutual information is non-negative, I(X;Y)≥I(X;Z). The inequality underlies why sufficient statistics lose nothing, why estimator performance is bounded (it feeds Fano's inequality and rate–distortion converses), and why no clever post-processing of a noisy channel's output can beat the channel capacity — the bottleneck is set upstream."
+      },
+      "note": "The DPI is a converse tool: it proves negative results ('you cannot do better than the noisiest link'), which is exactly why it is central to proving fundamental limits in coding, estimation, and privacy.",
+      "sources": [
+        "Cover & Thomas, Elements of Information Theory, ch. 2 (facts)",
+        "Wikipedia (facts): Data processing inequality; Sufficient statistic",
+        "MIT OCW 6.441 Information Theory (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Data processing inequality",
+          "url": "https://en.wikipedia.org/wiki/Data_processing_inequality"
+        },
+        {
+          "label": "Wikipedia: Sufficient statistic",
+          "url": "https://en.wikipedia.org/wiki/Sufficient_statistic"
+        },
+        {
+          "label": "MIT OCW 6.441 Information Theory",
+          "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"
+        }
+      ],
+      "art_prompt": "a signal passing through a chain of boxes X to Y to Z, a shrinking bar of 'information about X' above each stage that can only get shorter or stay level, never grow",
+      "lesson": "### Intuition\n\nImagine information about a source $X$ as a quantity of water. You can pour it from bucket to bucket ($X\\to Y\\to Z$), and along the way some always spills, but you can never pour *more* water into a downstream bucket than was in the one before it. No amount of clever re-arranging of $Y$ recovers detail about $X$ that $Y$ already threw away.\n\n### Precisely\n\nLet $X\\to Y\\to Z$ be a **Markov chain**: $Z$ depends on $X$ only through $Y$, so $p(z\\mid x,y)=p(z\\mid y)$. Then\n$$I(X;Z)\\le I(X;Y),$$\nwith equality iff $Z$ is a **sufficient statistic** for $X$ (equivalently $X\\to Z\\to Y$ is also Markov). A special case: for any function $g$, $I(X;g(Y))\\le I(X;Y)$.\n\n### Worked example\n\nSend a fair bit $X$ through a noisy channel to get $Y$ with $I(X;Y)=0.3$ bits. Now run *any* decoder $Z=g(Y)$ — a threshold, a neural net, majority vote over copies of $Y$. The inequality guarantees $I(X;Z)\\le 0.3$ bits: your best guess of $X$ inherits at most the information the channel already delivered. To do better you must change the channel, not the decoder.\n\n### Why it works\n\nExpand $I(X;Y,Z)$ two ways with the chain rule:\n$$I(X;Z)+I(X;Y\\mid Z)=I(X;Y)+I(X;Z\\mid Y).$$\nThe Markov property makes $I(X;Z\\mid Y)=0$. Since $I(X;Y\\mid Z)\\ge 0$, dropping it gives $I(X;Y)\\ge I(X;Z)$.\n\n### Where it connects\n\nThe DPI is the workhorse of **converse** proofs. It shows a sufficient statistic loses nothing, powers **Fano's inequality** and the rate–distortion converse, and formalizes privacy amplification (post-processing a released statistic cannot leak more than the release itself).\n\n### A second angle\n\nRead it as a *no-free-lunch for post-processing*: the information bottleneck sits at the noisiest link in the chain. This is why systems engineers protect the front-end sensor or channel — everything downstream can only degrade the signal.",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the data processing inequality and the condition on the variables.",
+          "answer": "If X→Y→Z form a Markov chain (Z depends on X only through Y), then I(X;Z) ≤ I(X;Y)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Using the chain rule for mutual information, show I(X;Y) ≥ I(X;Z) for a Markov chain X→Y→Z.",
+          "answer": "Expand I(X;Y,Z) two ways: I(X;Z)+I(X;Y|Z) = I(X;Y)+I(X;Z|Y). The Markov condition gives I(X;Z|Y)=0, so I(X;Y)=I(X;Z)+I(X;Y|Z); since I(X;Y|Z)≥0, we get I(X;Y)≥I(X;Z)."
+        }
+      ]
+    },
+    {
+      "id": "differential-entropy",
+      "title": "Differential entropy",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "shannon-entropy",
+        "probability-basics"
+      ],
+      "equation": "h(X)=-\\int f(x)\\ln f(x)\\,dx",
+      "summary": "Differential entropy extends Shannon entropy to continuous random variables as h(X) = −∫ f ln f, capturing uncertainty in nats but losing the absolute, coordinate-free meaning of the discrete version.",
+      "depths": {
+        "eli5": "Shannon entropy counts uncertainty for things with separate outcomes, like dice. For quantities that vary smoothly — a temperature, a voltage — we use a matching formula with an integral instead of a sum. It still says 'more spread out means more uncertain', but the number now depends on your units, so you have to be careful.",
+        "core": "For a continuous random variable X with probability density f(x), the differential entropy is h(X) = −∫ f(x) log f(x) dx (in nats if log = ln). It plays the role of Shannon entropy for densities, but unlike the discrete quantity it can be negative, is not invariant under change of variables (rescaling X by a shifts h by log|a|), and is not the limit of the discrete entropy of a fine quantization (that limit diverges). Two landmark results: among all densities with a fixed variance σ², the Gaussian maximizes h at ½ log(2πeσ²); and h appears in the capacity of the Gaussian channel and in rate–distortion for continuous sources.",
+        "deep": "The coordinate-dependence is fixed by using *relative* entropy: the KL divergence D(f‖g) = ∫ f log(f/g) is invariant and non-negative, and differences of differential entropies (like mutual information I(X;Y)=h(Y)−h(Y|X)) are well-defined and unit-free. Quantizing X to bins of width Δ gives discrete entropy ≈ h(X) − log Δ, so h(X) is the finite part after subtracting the divergent log(1/Δ) 'infinite precision' term. The maximum-entropy property generalizes: fixing different constraints (mean → exponential, support [a,b] → uniform, variance → Gaussian) yields the exponential-family density that maximizes h, the information-theoretic root of statistical mechanics' Boltzmann distribution."
+      },
+      "note": "Differential entropy can be negative (e.g. a uniform density on an interval shorter than 1 has h<0); only differences of differential entropies, and KL divergence, carry absolute, unit-independent meaning.",
+      "sources": [
+        "Cover & Thomas, Elements of Information Theory, ch. 8 (facts)",
+        "Wikipedia (facts): Differential entropy; Maximum entropy probability distribution",
+        "MIT OCW 6.441 Information Theory (facts)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Differential entropy",
+          "url": "https://en.wikipedia.org/wiki/Differential_entropy"
+        },
+        {
+          "label": "Wikipedia: Maximum entropy probability distribution",
+          "url": "https://en.wikipedia.org/wiki/Maximum_entropy_probability_distribution"
+        },
+        {
+          "label": "MIT OCW 6.441 Information Theory",
+          "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"
+        }
+      ],
+      "art_prompt": "a smooth bell-shaped probability density over a continuous axis with the area under a shaded '−f ln f' curve, annotated that the widest curve holds the most uncertainty for a fixed spread",
+      "lesson": "### Intuition\n\nShannon entropy sums surprise over a discrete list of outcomes. When the outcome is a continuous quantity, there are infinitely many values, so we integrate a density instead of summing probabilities. The result still says 'a wider, flatter distribution is more uncertain' — but because a density has units (per volt, per metre), the number now shifts when you change units.\n\n### Precisely\n\nFor a continuous $X$ with density $f$,\n$$h(X)=-\\int f(x)\\ln f(x)\\,dx \\quad(\\text{nats}).$$\nUnlike discrete $H$, this $h$ **can be negative**, is **not invariant** under $X\\mapsto aX$ (it changes by $\\ln|a|$), and is **not** $\\lim$ of the discrete entropy of a fine quantization. Fixed variance $\\sigma^2$: the **Gaussian** maximizes $h=\\tfrac12\\ln(2\\pi e\\sigma^2)$.\n\n### Worked example\n\nUniform on $[0,a]$ has $f=1/a$, so $h=-\\int_0^a \\tfrac1a\\ln\\tfrac1a\\,dx=\\ln a$. For $a=2$, $h=\\ln 2>0$; for $a=\\tfrac12$, $h=-\\ln 2<0$. A negative entropy is fine here — it just means the density is concentrated in a region smaller than one unit, which discrete entropy could never express.\n\n### Why it works\n\nQuantize $X$ into bins of width $\\Delta$; the discrete entropy is $\\approx h(X)-\\ln\\Delta$. The $-\\ln\\Delta$ term diverges as $\\Delta\\to0$ (infinite precision costs infinite bits), and $h(X)$ is the finite remainder. That is why $h$ is only meaningful *relative* to a scale — but **differences** of differential entropies cancel the $\\ln\\Delta$, so $I(X;Y)=h(Y)-h(Y\\mid X)$ is honest and unit-free.\n\n### Where it connects\n\n$h$ powers the **Gaussian channel** capacity $\\tfrac12\\log(1+\\mathrm{SNR})$ and continuous **rate–distortion**. Its max-entropy sibling links straight to **KL divergence** (which *is* invariant) and to statistical mechanics: maximizing $h$ under a mean-energy constraint yields the Boltzmann distribution.\n\n### A second angle\n\nThink of $h(X)$ as 'entropy up to a choice of ruler'. Pin the ruler with a reference density $g$ and you get $-D(f\\Vert g)+\\text{const}$, the invariant object. Absolute uncertainty of a continuum is a category error; *relative* uncertainty is well posed.",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Write the definition of differential entropy and name one way it differs from discrete Shannon entropy.",
+          "answer": "h(X) = −∫ f(x) log f(x) dx. Unlike discrete entropy it can be negative, and it is not invariant under a change of scale of X (it shifts by log|a| under X↦aX)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Compute the differential entropy of a uniform distribution on [0,a] (in nats) and state when it is negative.",
+          "answer": "f(x)=1/a on [0,a], so h = −∫₀ᵃ (1/a) ln(1/a) dx = ln a. It is negative whenever a<1, showing differential entropy is not a non-negative absolute quantity."
+        }
+      ]
+    },
+    {
+      "id": "lempel-ziv",
+      "title": "Lempel–Ziv universal compression",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "kraft-source-coding",
+        "kolmogorov-complexity"
+      ],
+      "equation": "\\tfrac1n\\,\\ell_{\\text{LZ}}(X_1^n)\\ \\xrightarrow{n\\to\\infty}\\ H(\\mathcal{X})",
+      "summary": "Lempel–Ziv compresses by replacing repeated substrings with pointers to earlier occurrences, and provably achieves the source's entropy rate without knowing its statistics in advance — the practical face of universal coding.",
+      "depths": {
+        "eli5": "Instead of learning how often each letter appears, Lempel–Ziv just watches the text go by and says 'I've seen that chunk before — here's where'. The more a file repeats itself, the shorter those back-references make it. It's the trick inside zip and gzip, and it needs no table of probabilities handed to it beforehand.",
+        "core": "Lempel–Ziv (LZ77/LZ78 and their descendants) are dictionary-based, *universal* compressors: they build a dictionary of previously seen substrings on the fly and encode new text as references (offset, length) into that dictionary. No prior model of the source is needed. The central theorem: for any stationary ergodic source, the per-symbol LZ code length converges to the source's entropy rate H as the sequence grows, matching the best any coder could do even with full knowledge of the statistics. LZ77 uses a sliding window of recent text; LZ78/LZW grow an explicit dictionary of phrases.",
+        "deep": "LZ78's parsing splits the string into distinct phrases, each the shortest not-yet-seen extension of a previous phrase; the count of distinct phrases c(n) satisfies c(n) ≈ n/log n, and encoding each phrase in ~log c(n) bits gives a rate approaching H. The proof connects to Kolmogorov complexity: LZ length upper-bounds a computable approximation to K, so a highly compressible (low-complexity) string compresses well, while an incompressible one cannot be shrunk. Because it is asymptotically optimal *without* a model, LZ is the reference for 'universal' source coding, and its variants (DEFLATE = LZ77 + Huffman, LZW in GIF, LZMA, Zstandard) dominate general-purpose compression."
+      },
+      "note": "Universality is asymptotic: LZ approaches the entropy rate as the input grows, so on very short inputs it can lose to a model-based coder, and its guarantee assumes a stationary ergodic source.",
+      "sources": [
+        "Ziv & Lempel (1977, 1978), IEEE Trans. Information Theory (facts)",
+        "Cover & Thomas, Elements of Information Theory, ch. 13 (facts)",
+        "Wikipedia (facts): LZ77 and LZ78; Lempel–Ziv–Welch"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: LZ77 and LZ78",
+          "url": "https://en.wikipedia.org/wiki/LZ77_and_LZ78"
+        },
+        {
+          "label": "Wikipedia: Lempel–Ziv–Welch",
+          "url": "https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch"
+        },
+        {
+          "label": "MIT OCW 6.441 Information Theory",
+          "url": "https://ocw.mit.edu/courses/6-441-information-theory-spring-2016/"
+        }
+      ],
+      "art_prompt": "a stream of text with arrows pointing backward from a repeated chunk to its earlier occurrence, each arrow labelled with an (offset, length) pair, a shrinking output ribbon below",
+      "lesson": "### Intuition\n\nMost real data repeats itself — words recur, pixels cluster, code has boilerplate. Lempel–Ziv exploits this without being told the odds of anything: as it reads, it remembers chunks it has already seen and, when a chunk reappears, writes a short pointer 'copy 4 characters from 12 back' instead of the chunk itself. The more repetition, the shorter the file.\n\n### Precisely\n\nLZ algorithms build a **dictionary** of seen substrings on the fly and encode new text as (offset, length) references. They are **universal**: for any stationary ergodic source,\n$$\\tfrac1n\\,\\ell_{\\text{LZ}}(X_1^n)\\to H(\\mathcal X)\\quad(n\\to\\infty),$$\nthe entropy rate — matching the best coder that *knows* the statistics. LZ77 uses a sliding window; LZ78/LZW grow an explicit phrase dictionary.\n\n### Worked example\n\nParse `ababab...` (LZ77): after emitting `a`,`b`, the decoder can copy from behind. The next reference is 'offset 2, length 4' — copy `abab` from two symbols back — so a long periodic string collapses to a couple of literals plus one short back-reference, near-zero bits per symbol, exactly what its low entropy rate predicts.\n\n### Why it works\n\nLZ78 cuts the string into **distinct phrases**, each the shortest new extension of an earlier one. The number of phrases $c(n)\\approx n/\\log n$; spending $\\sim\\log c(n)$ bits per phrase gives a per-symbol rate tending to $H$. The engine is the **Kraft inequality** (the pointers form a valid prefix code) plus the phrase-counting bound.\n\n### Where it connects\n\nLZ is the practical shadow of **Kolmogorov complexity**: its output length upper-bounds a computable estimate of $K$, so incompressible strings stay incompressible. It is the reference point for **universal source coding**, and its descendants are everywhere: DEFLATE (LZ77 + Huffman) in gzip/zip/PNG, LZW in GIF, LZMA, Zstandard.\n\n### A second angle\n\nSee LZ as *online model-learning*: the dictionary is an implicit statistical model that improves as more data streams in. That is why it beats a fixed model on unknown sources yet loses on tiny inputs — it has not yet learned enough to pay for itself.",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In what sense is Lempel–Ziv 'universal', and what does it encode instead of raw symbols?",
+          "answer": "Its per-symbol code length converges to the source's entropy rate for any stationary ergodic source without knowing the source statistics in advance. It encodes references (offset, length) to previously seen substrings from a dictionary built on the fly."
+        },
+        {
+          "level": "derive",
+          "prompt": "LZ78 parses an n-symbol string into distinct phrases. Roughly how many phrases c(n) arise, and why does encoding each in ~log c(n) bits approach the entropy rate?",
+          "answer": "The number of distinct phrases grows like c(n) ≈ n/log n. Encoding each phrase in about log c(n) ≈ log n bits gives total length ≈ (n/log n)·log n = n bits in the worst case, and for a source of entropy rate H the phrase structure makes it ≈ nH, so the per-symbol rate ℓ/n tends to H as n→∞."
+        }
+      ]
+    },
+    {
+      "id": "diffie-hellman",
+      "title": "Diffie–Hellman key exchange",
+      "shell": "nucleus",
+      "type": "method",
+      "requires": [
+        "public-key-crypto",
+        "one-way-functions"
+      ],
+      "equation": "(g^{a})^{b}=g^{ab}=(g^{b})^{a}\\pmod p",
+      "summary": "Diffie–Hellman lets two parties who have never met agree on a shared secret over a public channel, using the one-way hardness of the discrete logarithm so an eavesdropper who sees everything still cannot compute the key.",
+      "depths": {
+        "eli5": "Alice and Bob each pick a private number and mix it with a public colour, then swap the mixtures out in the open. Because mixing is easy but un-mixing is hard, each can add their own private number again to reach the same final colour — but an eavesdropper who saw only the swapped mixtures can't reach it. Now they share a secret nobody else has.",
+        "core": "Diffie–Hellman (1976) is the first public key exchange. Publicly fix a large prime p and a generator g of the multiplicative group mod p. Alice picks secret a and sends g^a mod p; Bob picks secret b and sends g^b mod p. Each raises the other's value to their own secret: Alice computes (g^b)^a and Bob computes (g^a)^b, both equal to g^{ab} mod p — the shared key. An eavesdropper sees g, p, g^a, g^b but must solve the *discrete logarithm* (or the computational Diffie–Hellman problem) to find g^{ab}, believed hard. Modern deployments use elliptic-curve groups (ECDH) for the same structure with shorter keys.",
+        "deep": "Security rests on the Computational Diffie–Hellman assumption: given g^a and g^b it is infeasible to compute g^{ab}, a stronger cousin of the discrete-log assumption. Plain DH is unauthenticated, so it is vulnerable to a man-in-the-middle who substitutes their own g^x with each side; real protocols (TLS) authenticate the exchange with signatures or certificates. Ephemeral DH (DHE/ECDHE), where a, b are fresh per session, provides *forward secrecy*: compromising a long-term key later cannot decrypt past sessions because the session keys were never stored. Shor's algorithm breaks DH on a quantum computer, driving the shift to post-quantum key exchange."
+      },
+      "note": "Diffie–Hellman as described is unauthenticated: it defeats a passive eavesdropper but not an active man-in-the-middle, so it must be combined with authentication (signatures/certificates) to be secure in practice.",
+      "sources": [
+        "Diffie & Hellman (1976), New Directions in Cryptography, IEEE Trans. IT (facts)",
+        "Katz & Lindell, Introduction to Modern Cryptography (facts)",
+        "Wikipedia (facts): Diffie–Hellman key exchange; Discrete logarithm"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Diffie–Hellman key exchange",
+          "url": "https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
+        },
+        {
+          "label": "Wikipedia: Discrete logarithm",
+          "url": "https://en.wikipedia.org/wiki/Discrete_logarithm"
+        },
+        {
+          "label": "Diffie & Hellman (1976), New Directions in Cryptography (IEEE)",
+          "url": "https://ee.stanford.edu/~hellman/publications/24.pdf"
+        }
+      ],
+      "art_prompt": "two people across a public channel each mixing a private colour into a shared public base, swapping the mixed results, and independently arriving at the same final blended colour that a listening third party cannot reproduce",
+      "lesson": "### Intuition\n\nHow do two strangers agree on a secret while a spy records every word they exchange? The paint analogy: both start from a public colour, each stirs in a private colour, and they swap the results in the open. Each then stirs in their private colour again — arriving at the *same* triple-mix. The spy saw only the two intermediate mixes and cannot un-stir them to reach the final blend.\n\n### Precisely\n\nPublicly fix a large prime $p$ and generator $g$. Alice picks secret $a$, sends $A=g^a\\bmod p$; Bob picks secret $b$, sends $B=g^b\\bmod p$. Both compute the key\n$$K=B^a=A^b=g^{ab}\\bmod p.$$\nAn eavesdropper knows $g,p,g^a,g^b$ but recovering $g^{ab}$ requires solving the **discrete logarithm** / computational Diffie–Hellman problem, believed infeasible.\n\n### Worked example\n\nToy values $p=23$, $g=5$. Alice $a=6$: $A=5^6\\bmod 23=8$. Bob $b=15$: $B=5^{15}\\bmod 23=19$. Alice: $19^6\\bmod 23=2$. Bob: $8^{15}\\bmod 23=2$. Shared key $=2$, computed by both, never transmitted. (Real $p$ is hundreds of digits.)\n\n### Why it works\n\nCorrectness is just commuting exponents: $(g^a)^b=g^{ab}=(g^b)^a$. Security is the **one-way** gap between modular exponentiation (fast) and discrete log (hard): computing $g^a$ from $a$ costs polynomial time, but inverting it to get $a$, or getting $g^{ab}$ from $g^a,g^b$, has no known efficient classical algorithm.\n\n### Where it connects\n\nDH launched **public-key cryptography** and underlies TLS's session-key setup. **Ephemeral** DH (DHE/ECDHE) gives *forward secrecy* — fresh $a,b$ per session mean a later key theft cannot decrypt recorded past traffic. Elliptic-curve DH swaps the group for shorter keys.\n\n### A second angle\n\nDH by itself only stops a *passive* spy. An *active* attacker in the middle can run separate exchanges with each side, so deployments bolt on authentication (certificates, signatures). And **Shor's algorithm** solves discrete log on a quantum computer, which is why post-quantum key exchange is being standardized.",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What hard problem must an eavesdropper solve to break Diffie–Hellman, and what does the protocol let the two parties establish?",
+          "answer": "The discrete logarithm / computational Diffie–Hellman problem (recovering g^{ab} from g^a and g^b). The protocol lets two parties establish a shared secret key over a public channel without any prior shared secret."
+        },
+        {
+          "level": "derive",
+          "prompt": "With public p=23, g=5, Alice's secret a=6 and Bob's secret b=15, show that both parties compute the same key.",
+          "answer": "A = 5^6 mod 23 = 8, B = 5^15 mod 23 = 19. Alice computes B^a = 19^6 mod 23 = 2; Bob computes A^b = 8^15 mod 23 = 2. Both equal g^{ab} mod 23 = 2, the shared key."
+        }
+      ]
+    },
+    {
+      "id": "cryptographic-hash",
+      "title": "Cryptographic hash functions",
+      "shell": "nucleus",
+      "type": "concept",
+      "requires": [
+        "one-way-functions"
+      ],
+      "equation": "H:\\{0,1\\}^{*}\\to\\{0,1\\}^{n}",
+      "summary": "A cryptographic hash maps any-length input to a fixed short digest while being one-way, second-preimage resistant, and collision resistant — the fingerprinting primitive under signatures, commitments, passwords, and blockchains.",
+      "depths": {
+        "eli5": "A cryptographic hash is a fingerprint machine for data: feed it anything — a word, a file, a whole library — and it spits out a fixed-size scramble. Same input always gives the same fingerprint, but you can't run it backward to recover the input, and you can't find two different inputs with the same fingerprint. That makes it a tamper-detector.",
+        "core": "A cryptographic hash function H maps arbitrary-length input to a fixed n-bit digest and must satisfy three properties: (1) preimage resistance — given a digest y it is infeasible to find any x with H(x)=y (one-way); (2) second-preimage resistance — given x it is infeasible to find x'≠x with H(x')=H(x); (3) collision resistance — it is infeasible to find *any* pair x≠x' with H(x)=H(x'). Collisions must exist by pigeonhole (infinite inputs, finite outputs); resistance means finding them is computationally hard. Standard functions include SHA-256 and SHA-3; MD5 and SHA-1 are broken for collision resistance and deprecated.",
+        "deep": "Because of the birthday paradox, a generic collision search needs only about 2^{n/2} evaluations, so an n-bit hash gives ~n/2 bits of collision security — a key reason 256-bit digests are standard. Hashes are the glue of applied crypto: digital signatures sign H(message) not the message; commitment schemes publish H(value‖nonce) to bind without revealing; passwords are stored as salted, slow hashes (bcrypt, Argon2) to resist precomputation; HMAC turns a hash into a keyed message-authentication code; and proof-of-work blockchains require finding inputs whose hash has many leading zeros. The random-oracle model idealizes H as a truly random function to prove protocols secure, a heuristic that real hashes only approximate."
+      },
+      "note": "A hash is keyless and public, so unlike encryption it provides integrity, not secrecy; and because collisions exist by counting, security is always computational (hard to find), never information-theoretic (impossible to find).",
+      "sources": [
+        "Katz & Lindell, Introduction to Modern Cryptography, ch. 5 (facts)",
+        "NIST FIPS 180-4 (SHA-2) and FIPS 202 (SHA-3) (facts)",
+        "Wikipedia (facts): Cryptographic hash function; Birthday attack"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Cryptographic hash function",
+          "url": "https://en.wikipedia.org/wiki/Cryptographic_hash_function"
+        },
+        {
+          "label": "Wikipedia: Birthday attack",
+          "url": "https://en.wikipedia.org/wiki/Birthday_attack"
+        },
+        {
+          "label": "NIST FIPS 202 (SHA-3 standard)",
+          "url": "https://csrc.nist.gov/pubs/fips/202/final"
+        }
+      ],
+      "art_prompt": "a funnel taking documents of wildly different sizes on top and emitting a single fixed-width block of scrambled bits below, with a one-way arrow and a crossed-out reverse arrow",
+      "lesson": "### Intuition\n\nA cryptographic hash is a fingerprint for data. Any input — one character or a terabyte — comes out as the same short, fixed-size scramble. The same input always yields the same fingerprint, so you can check whether two files match by comparing digests. And it is built so you can't run it backward, and can't engineer two inputs that share a fingerprint — which is what makes it a tamper detector.\n\n### Precisely\n\n$H:\\{0,1\\}^*\\to\\{0,1\\}^n$ must be:\n1. **Preimage resistant** — given $y$, hard to find any $x$ with $H(x)=y$.\n2. **Second-preimage resistant** — given $x$, hard to find $x'\\ne x$ with $H(x')=H(x)$.\n3. **Collision resistant** — hard to find *any* $x\\ne x'$ with $H(x)=H(x')$.\nCollisions must exist (infinite inputs, finite $n$-bit outputs); the requirement is that finding one is infeasible. Current: SHA-256, SHA-3. Broken: MD5, SHA-1.\n\n### Worked example\n\nSign a contract by signing $H(\\text{contract})$ instead of the whole file. If an attacker could find a different contract with the *same* digest (a collision), your signature would validate their document — so signatures are exactly as trustworthy as the hash's collision resistance. This is why SHA-1 signatures were retired once collisions were demonstrated.\n\n### Why it works\n\nThe security floor is the **birthday paradox**: sampling random digests, a collision appears after about $2^{n/2}$ tries, not $2^n$. So an $n$-bit hash gives only $\\sim n/2$ bits of collision security — the reason a 256-bit output (128-bit security) is the modern default. Preimage resistance is the **one-way function** property applied to a compressing map.\n\n### Where it connects\n\nHashes are the connective tissue of crypto: **digital signatures** sign $H(m)$; **commitments** publish $H(v\\Vert r)$ to bind without revealing; **passwords** are stored as salted slow hashes (Argon2, bcrypt); **HMAC** makes a keyed authenticator; **proof-of-work** blockchains hunt inputs whose hash has many leading zeros.\n\n### A second angle\n\nUnlike encryption, a hash is keyless and public — it protects **integrity**, not secrecy. And its guarantee is always *computational*: because collisions provably exist, the whole game is making them too expensive to find, never impossible.",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Name the three security properties of a cryptographic hash function.",
+          "answer": "Preimage resistance (can't invert a digest to an input), second-preimage resistance (given x, can't find a different x' with the same hash), and collision resistance (can't find any two distinct inputs with the same hash)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Using the birthday paradox, explain how many hash evaluations a generic collision search needs for an n-bit digest, and what collision security level that implies.",
+          "answer": "By the birthday bound, a random collision appears after about 2^{n/2} evaluations (not 2^n), because the number of colliding pairs grows quadratically in the number of samples. So an n-bit hash provides only about n/2 bits of collision security, which is why 256-bit digests are used to get ~128-bit security."
+        }
+      ]
+    },
+    {
+      "id": "boolean-circuits",
+      "title": "Boolean circuit complexity",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "complexity-p"
+      ],
+      "equation": "\\mathrm{P}\\subseteq\\mathrm{P/poly}",
+      "summary": "Boolean circuits measure computation by the number of AND/OR/NOT gates needed as input size grows; the non-uniform class P/poly and the search for super-polynomial lower bounds are a leading (and stubborn) route toward proving P≠NP.",
+      "depths": {
+        "eli5": "You can build any yes/no computation out of little logic gates — AND, OR, NOT — wired together. The 'cost' of a problem is how many gates you need as the inputs get bigger. If someone could prove that a famous problem *must* use an astronomically large circuit, that would settle one of the biggest open questions in computer science. Nobody has managed it for the hard cases.",
+        "core": "A Boolean circuit is a directed acyclic graph of AND, OR, and NOT gates computing a function of n input bits; its *size* is the gate count and its *depth* is the longest input-to-output path. Unlike a Turing machine, circuits are *non-uniform*: a separate circuit is allowed for each input length n. The class P/poly is the set of languages decided by a family of polynomial-size circuits, and P ⊆ P/poly (any polynomial-time algorithm unrolls into polynomial-size circuits). Proving a specific NP problem requires super-polynomial circuit size would prove NP ⊈ P/poly, hence P ≠ NP — making circuit lower bounds a central attack on the P vs NP question.",
+        "deep": "Restricted circuit classes have yielded landmark lower bounds: constant-depth circuits (AC⁰) cannot compute PARITY (Furst–Saxe–Sipser, Håstad's switching lemma), and monotone circuits for the CLIQUE function need exponential size (Razborov). But general lower bounds hit the *natural proofs* barrier (Razborov–Rudich): any proof technique that is 'constructive and large' would, if it worked against strong circuits, also break pseudorandom generators — so the very tools that succeed on restricted models are blocked on the general case, assuming strong one-way functions exist. Depth relates to parallel time, and classes like NC (polylog depth, polynomial size) formalize efficient parallelism, placing circuit complexity at the crossroads of parallelism, cryptography, and the P vs NP frontier."
+      },
+      "note": "P/poly is strictly larger than P — it even contains some undecidable languages, since a non-uniform family may hardwire different answers per length — so 'small circuits' does not imply 'efficient uniform algorithm'.",
+      "sources": [
+        "Arora & Barak, Computational Complexity: A Modern Approach, ch. 6 & 14 (facts)",
+        "Razborov & Rudich (1997), Natural Proofs, JCSS (facts)",
+        "Wikipedia (facts): Circuit complexity; P/poly; Natural proof"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia: Circuit complexity",
+          "url": "https://en.wikipedia.org/wiki/Circuit_complexity"
+        },
+        {
+          "label": "Wikipedia: P/poly",
+          "url": "https://en.wikipedia.org/wiki/P/poly"
+        },
+        {
+          "label": "Wikipedia: Natural proof",
+          "url": "https://en.wikipedia.org/wiki/Natural_proof"
+        }
+      ],
+      "art_prompt": "a layered directed graph of AND, OR, and NOT gates fanning from n input wires at the bottom to one output wire at the top, with the total gate count labelled as a function of n",
+      "lesson": "### Intuition\n\nEvery yes/no computation can be built from tiny logic gates — AND, OR, NOT — wired into a circuit. Ask 'how many gates does a problem need as its inputs grow?' and you have a hardware-flavoured measure of difficulty. The dream: show that some NP problem *forces* an astronomically large circuit for every input size. That would separate P from NP. For general circuits, nobody can.\n\n### Precisely\n\nA **Boolean circuit** is a DAG of AND/OR/NOT gates over $n$ input bits; **size** = gate count, **depth** = longest input-to-output path. Circuits are **non-uniform** — a different circuit per length $n$. **P/poly** = languages decided by polynomial-size circuit families, and\n$$\\mathrm{P}\\subseteq\\mathrm{P/poly}.$$\nProving some NP language needs super-polynomial circuits would give NP $\\not\\subseteq$ P/poly, hence $\\mathrm P\\ne\\mathrm{NP}$.\n\n### Worked example\n\nPARITY (is the number of 1s odd?) is easy with a chain of XORs, but with **constant depth** and unbounded fan-in AND/OR/NOT gates (the class AC⁰) it provably needs *exponential* size — Håstad's switching lemma. So a natural, simple function already escapes a whole circuit model: a concrete, proven lower bound, just not against unrestricted circuits.\n\n### Why it works\n\nP ⊆ P/poly because a $T(n)$-time Turing machine 'unrolls' into a circuit of size $\\sim T(n)^2$ — one layer per step. The converse fails hard: P/poly contains **undecidable** languages, since a non-uniform family may hardwire a different (even uncomputable) answer for each length. Small circuits ≠ efficient uniform algorithm.\n\n### Where it connects\n\nCircuit lower bounds are a front-line attack on **P vs NP**. Restricted wins exist (AC⁰ can't do PARITY; monotone CLIQUE needs exponential size, Razborov). Depth ties to **parallel time** (the class NC). And the general case runs into the **natural proofs** barrier: the very proof style that cracks restricted models would, against strong circuits, break the pseudorandom generators built from one-way functions.\n\n### A second angle\n\nNon-uniformity is a double-edged gift: it makes circuits *more* powerful than uniform P (you may hardwire per-length advice), so a lower bound in this stronger model is a *stronger* statement — which is exactly why it is so hard to prove, and why P ⊆ P/poly is used the other way, as a hypothesis to be *refuted* for NP.",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the class P/poly capture, and why would a super-polynomial circuit lower bound for an NP problem be significant?",
+          "answer": "P/poly is the class of languages decidable by families of polynomial-size Boolean circuits (one circuit per input length, non-uniform). Since P ⊆ P/poly, proving an NP problem needs super-polynomial-size circuits would show NP ⊈ P/poly and therefore P ≠ NP."
+        },
+        {
+          "level": "derive",
+          "prompt": "Explain why P ⊆ P/poly, and give one reason P/poly is strictly larger than P.",
+          "answer": "A polynomial-time Turing machine running in T(n) steps can be unrolled into a Boolean circuit of size about T(n)² (one layer of gates per computation step), so every language in P has polynomial-size circuits, giving P ⊆ P/poly. P/poly is strictly larger because non-uniform circuit families can hardwire a different answer for each input length, so P/poly even contains undecidable (unary) languages that no single algorithm could compute."
+        }
+      ]
     }
   ]
 }

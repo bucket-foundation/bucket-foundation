@@ -1154,3 +1154,44 @@ integral, cosmic variance. OR the durable biophysics prereq-shell fix (add a dep
 redox-potential to raise betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins across
 branches: atoms lacking a derive-level quiz item; more `note`/`art` fields; GPU art if
 HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
+
+## 2026-07-01 — run 31 (+6 information atoms; branch expansion continues; biophysics untouched)
+Per run-30's handoff (mind 54 and information 54 tied thinnest). Picked **information**, which had a
+concrete gap list. Expanded **04-information 54→60**, each `requires` into EXISTING information ids only
+(validated no missing/dupe): **data-processing-inequality** (X→Y→Z Markov ⇒ I(X;Z)≤I(X;Y); chain-rule
+proof via I(X;Z|Y)=0; equality ⇔ sufficient statistic; corollary I(X;g(Y))≤I(X;Y); noisy-channel decoder
+worked (0.3-bit cap); feeds Fano + rate–distortion converse + privacy amplification; ← mutual-information),
+**differential-entropy** (h=−∫f ln f; can be negative, scale-dependent (+ln|a|), NOT the fine-quantization
+limit; uniform[0,a]→ln a worked (neg for a<1); Gaussian maximizes ½ln(2πeσ²) at fixed variance; only
+differences/KL are unit-free; ← shannon-entropy, probability-basics), **lempel-ziv** ((1/n)ℓ_LZ→H entropy
+rate, universal w/o statistics; LZ77 sliding-window vs LZ78/LZW dictionary; c(n)≈n/log n phrase count;
+ababab worked; DEFLATE/LZW/LZMA/Zstd; upper-bounds computable K; ← kraft-source-coding, kolmogorov-
+complexity), **diffie-hellman** ((g^a)^b=g^{ab}=(g^b)^a mod p; p=23,g=5,a=6,b=15→key 2 worked; discrete-log
+/ CDH hardness; unauthenticated ⇒ MITM needs certs; DHE/ECDHE forward secrecy; Shor breaks it; ←
+public-key-crypto, one-way-functions), **cryptographic-hash** (preimage/2nd-preimage/collision resistance;
+collisions exist by pigeonhole ⇒ security is computational; birthday 2^{n/2} ⇒ 256-bit=128-bit security;
+sign H(m), commitments, salted-slow passwords, HMAC, PoW; SHA-256/3 vs broken MD5/SHA-1; ←
+one-way-functions), **boolean-circuits** (frontier; P⊆P/poly, super-poly LB for NP ⇒ P≠NP; AC⁰ can't do
+PARITY (Håstad), monotone CLIQUE exponential (Razborov); natural-proofs barrier; P/poly ⊋ P holds
+undecidable unary langs; T(n)²-unroll; NC/parallel depth; ← complexity-p). Each = full 6-section lesson
+(Intuition/Precisely/Worked example/Why it works/Where it connects/A second angle) + summary + 3 depths +
+note + art_prompt + 2 quiz (recall + derive) + OPEN sources (Cover & Thomas, Katz & Lindell, Arora & Barak,
+MIT OCW 6.441, NIST FIPS 202, Diffie–Hellman 1976, Razborov–Rudich, Wikipedia). ALL prose ORIGINAL;
+equations/theorems/definitions are facts. meta 0.4.0→0.5.0. Mirrored to public/academy-app via
+`node scripts/sync-academy.mjs` from repo ROOT (information 60, ver 0.5.0; mirror byte-identical).
+
+**validate.sh PASSES end-to-end** (exit 0; information 60/no-dupes/no-missing-requires, all 8 corpora OK,
+manifest, JS syntax, 60-day engine sim biophysics diagnostic UNCHANGED at placed 42/asked 18 since the sim
+loads ONLY biophysics.json → information edits are zero-risk to placement; assess/lang/explorer smokes all
+green). Note: the `HEADLESS SMOKE FAILED` block is PRE-EXISTING (confirmed on a clean baseline; needs a
+headless-browser env the loop box lacks) and is non-gating — validate.sh still exits 0 / ALL VALIDATIONS
+PASSED. Not caused by this change.
+
+**NEXT run:** branch counts now — biophysics ~133, information 60, cosmology 59, mathematics 55, physics 55,
+chemistry 55, mind 54; **mind (54) is now clearly the thinnest** — pick mind and add 6 toward full syllabus
+coverage. Information gaps remaining if wanted: Rice–Shapiro theorem, continuous/joint AEP details,
+Slepian–Wolf coding, Fano's inequality as its own atom (← data-processing-inequality now exists as a natural
+prereq), Merkle trees (← cryptographic-hash), zero-knowledge proofs (← one-way-functions, diffie-hellman).
+Cheap zero-risk wins across branches: atoms lacking a derive-level quiz item; more `note`/`art` fields;
+GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable. OR the durable biophysics prereq-shell fix (add a
+depth-3 dependent of redox-potential to raise betweenness to 6/6; VERIFY asked stays ≤18).
