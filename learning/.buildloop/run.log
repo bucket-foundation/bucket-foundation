@@ -2362,3 +2362,48 @@ Done. Run 25 complete.
 
 ========== build run 2026-07-01T06:18:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. Run 26 complete.
+
+**What I did this run:** expanded the thinnest branch (mind, per run-25's handoff) from **48 → 54 atoms** with 6 new, correct atoms filling the noted gaps:
+
+- **interoception** — inward sensing, homeostatic set-points, insula, allostasis (← sensory-transduction, neuromodulation)
+- **amygdala-emotion** — threat conditioning, lateral/central amygdala, extinction as new inhibitory learning (← neural-circuits, hippocampus-memory)
+- **sleep-memory-replay** — hippocampus→cortex replay in ripples/spindles/slow oscillations, targeted memory reactivation (← memory-consolidation, neural-oscillations)
+- **free-energy-principle** — variational free energy, active inference, the dark-room answer (← predictive-coding)
+- **tripartite-synapse** — astrocytes as circuit participants, D-serine gating LTP, with the gliotransmission debate flagged honestly (← glia, chemical-synapse)
+- **homeostatic-plasticity** — multiplicative synaptic scaling stabilizing runaway Hebbian learning (← ltp-ltd, hebbian-learning)
+
+Each carries the full 7-section lesson + 3 depths + note + 2 quiz (recall + derive) + open sources (NCBI Bookshelf/PMC OA/MIT OCW/arXiv/Wikipedia). All prose original.
+
+**Validation:** `validate.sh` passes end-to-end. Mirrored to `public/academy-app` (mind 54, v0.5.0). Biophysics diagnostic unchanged (placed 42, shell 5/6, ≤18 questions) — mind edits are zero-risk to placement since the engine sim loads only biophysics.
+
+**Committed locally** (2 commits: atoms + log). No push, per constraints.
+
+**Next run:** chemistry/information/mathematics (~48–49) are now the thinnest three — pick the thinnest of those.
+---------- run done 2026-07-01T06:25:05Z ----------
+
+========== build run 2026-07-01T06:44:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. Run 27 complete.
+
+**What I did this run:**
+- Read state: information & computation (`04-information.json`) was the thinnest branch at 48 atoms, matching run-26's handoff.
+- Added **6 foundational atoms (48→54)**, each with `requires` edges into existing information ids only:
+  - **perfect-secrecy** — Shannon perfect secrecy + one-time pad (I(M;C)=0, H(K)≥H(M))
+  - **huffman-coding** — optimal greedy prefix code (H≤L<H+1)
+  - **lambda-calculus** — Church's functional model, beta reduction, Church–Rosser, Curry–Howard
+  - **fast-fourier-transform** — Cooley–Tukey O(N log N) via even/odd butterfly split
+  - **master-theorem** — T(n)=aT(n/b)+f(n) three cases, recursion-tree proof, Akra–Bazzi
+  - **rices-theorem** — all non-trivial semantic program properties undecidable
+
+Each has a full 7-section original lesson, summary, 3 depths, note, art_prompt, 2 varied-level quiz items, and OPEN sources only (MIT OCW, primary papers, Wikipedia). Equations/theorems/definitions are facts; all prose is original.
+
+- Synced to `public/academy-app/`, bumped meta 0.3.0→0.4.0.
+- **`validate.sh` passes end-to-end (exit 0)** — information 54 no-dupes/no-missing-requires, engine sim green, biophysics diagnostic unchanged.
+- Committed locally; logged run-27 in `.buildloop/LOG.md`.
+
+**Next run should pick up:** chemistry and mathematics (both 49) are now tied thinnest — expand one by 6.
+---------- run done 2026-07-01T06:51:39Z ----------
+
+========== build run 2026-07-01T07:10:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
