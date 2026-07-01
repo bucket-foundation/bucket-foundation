@@ -2153,3 +2153,25 @@ Each atom got the full schema: 7-section lesson, 3 depths, note, art_prompt, 2 q
 
 ========== build run 2026-07-01T02:29:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. Run 17 complete.
+
+## What I did
+
+Continued the build loop from run 16, adding **3 correct biophysics atoms** (112 → **115**), closing the last of the §1.8 methods gap plus one foundation:
+
+1. **`dsc`** — differential scanning calorimetry (depth 2, requires `gibbs`+`mass-action`). Excess-C_p peak at T_m where K=1; area = model-free ΔH_cal; peak height gives ΔH_vH = 4RT_m²·C_p,max/ΔH_cal; the ratio tests two-state cooperativity; positive ΔC_p curves ΔG(T) into a parabola (cold denaturation).
+2. **`analytical-ultracentrifugation`** — Svedberg M = sRT/[D(1−v̄ρ)] from a velocity run, plus the Boltzmann-in-a-centrifugal-field equilibrium gradient c(r)∝exp[M(1−v̄ρ)ω²r²/2RT] (depth 2, requires `einstein-stokes`+`chemical-potential`).
+3. **`radius-of-gyration`** — R_g²=(1/N)Σ|r_i−r_cm|², Guinier's law, R_g∝N^ν (depth 0). Wired **under** `saxs` and `flory-scaling` via the leaf-leverage rule — verified **zero depth cascade** (both parents held at depth 2).
+
+Every number verified numerically before writing (DSC ΔH_vH=398 kJ/mol, ratio 1.00; AUC M=60 kDa; Rg=1.55 nm with √6 end-to-end ratio). All prose original, OPEN sources only, full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) each.
+
+## Verification
+- `validate.sh` **passes end-to-end** — 115-atom corpus integrity, 60-day engine sim, diagnostic GREEN, assess/lang/explorer smokes.
+- Diagnostic margin **held at +21** (expert placed 39 / asked 18). The depth-0 Rg wiring kept the count rather than lifting it; no regression.
+- Mirrored to `public/academy-app` (115 atoms, v0.9.0).
+- Fixed an accidental whole-file reindent (restored 2-space) so the diff is a clean +193 lines.
+- Committed locally (`6b234040c`), no push. LOG.md updated with a NEXT pointer (preferential-interaction/m-value and zeta-potential as the next margin-safe targets, with the depth-3-overrun caveat flagged).
+---------- run done 2026-07-01T02:37:48Z ----------
+
+========== build run 2026-07-01T02:54:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors

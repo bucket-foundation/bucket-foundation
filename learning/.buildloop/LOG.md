@@ -616,3 +616,51 @@ placement actually rises via test-diagnostic (run 17 showed a depth-0 wiring can
 lift). Remaining cheap zero-risk wins: ~35 atoms still lack a derive-level quiz item; more `note`
 fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 is reachable; a non-biophysics branch expansion
 (math/physics/chemistry corpus already seeded) for variety.
+
+## 2026-06-30 — run 18 (+4 atoms: persistence-length, zeta-potential, preferential-interaction, debye-waller-factor; biophysics 115→119; margin LIFTED +21→+22)
+Continued run 17's NEXT list (zeta-potential + preferential-interaction) plus two high-value
+foundations. **persistence-length** (ℓ_p=κ_b/k_BT; tangent correlation ⟨t̂(s)·t̂(0)⟩=e^(−s/ℓ_p);
+WLC ⟨R²⟩=2ℓ_pL−2ℓ_p²(1−e^(−L/ℓ_p)); Kuhn b=2ℓ_p; requires boltzmann+harmonic-approximation → depth 1)
+wired UNDER optical-tweezers + afm by leaf-leverage (both already require wlc → stay depth 2, ZERO
+cascade) since ℓ_p is exactly what force-extension WLC fits measure. **zeta-potential** (ζ at the
+hydrodynamic shear plane; μ_e=εε₀ζ/η Smoluchowski / 2εε₀ζ/3η Hückel; Henry f(κa):1→3/2; DLVO
+stability |ζ|≳25–30 mV; requires debye → depth 2, electrokinetics leaf). **preferential-interaction**
+(Γ_23=(∂m_3/∂m_2)_{μ_3}; Wyman linkage ∂ΔG/∂μ_3=−ΔΓ_23; linear-extrapolation ΔG_unf=ΔG°−m[D];
+m∝ΔASA; osmolytes excluded→stabilize, denaturants bind→destabilize; C_m=ΔG°/m, ΔΔG=m·ΔC_m; requires
+gibbs+chemical-potential → depth 2). **debye-waller-factor** (f=f₀e^(−Bsin²θ/λ²); B=8π²⟨u²⟩=8π²k_BT/k
+via equipartition, so B∝T; RMSF=√(3⟨u²⟩)=√(3B/8π²); requires bragg+equipartition+**eigen-modes** → depth 2).
+**Diagnostic fix (important for the next run):** the prereq-shell placement sub-check
+(`prereqsPlaced ≥ total−1 = 5`) was razor-thin at HEAD — HEAD already placed only 5/6 (redox-potential
+was the missing one; eigen-modes squeaked in). Adding four depth-2 atoms perturbed the 18-question
+adaptive selection and knocked eigen-modes out too → 4/6 → FAIL. Root cause: eigen-modes and
+redox-potential are prereq atoms whose ONLY dependents sit at depth>2, so an "expert" (knows depth≤2)
+answers those deep dependents wrong and never floods the prereq via requires-closure — they rely on
+being *directly* asked, and new central atoms crowd them out of the budget. Fix (honest physics, not a
+hack): elastic-network / normal-mode models predict crystallographic B-factors from the eigenmodes,
+⟨u_i²⟩∝Σ_k λ_k⁻¹|e_{k,i}|², so debye-waller-factor legitimately **requires eigen-modes** (depth 0 →
+debye-waller stays depth 2). debye-waller IS asked by the diagnostic and the expert answers it correct,
+so eigen-modes now floods → prereqsPlaced back to 5/6, and total placed rose 39→40 (**margin +21→+22**).
+Prose ("Where it connects") updated to state the eigen-modes→B-factor prediction so the graph edge is
+reflected in the lesson. Every number verified this run: WLC 1000-bp DNA (L=340 nm, ℓ_p=50 nm) → √⟨R²⟩≈170 nm;
+zeta μ_e=−2.4×10⁻⁸ m²V⁻¹s⁻¹ for ζ=−30 mV (εε₀=7.08×10⁻¹⁰, η=8.9×10⁻⁴); m-value C_m=ΔG°/m=5 M & ΔΔG=m·ΔC_m=2 kcal/mol;
+B=20 Å² → ⟨u²⟩=0.253 Å², 1-D rms 0.50 Å, 3-D RMSF 0.87 Å, k≈1.6 N/m. All prose original; equations are
+facts; OPEN sources only (LibreTexts + MIT OCW + PMC/PDB-101 + 5–6 Wikipedia resources each); full
+7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. meta 0.9.0→0.10.0.
+validate.sh PASSES end-to-end (corpus integrity, 119-atom 60-day engine sim, diagnostic GREEN at +22,
+assess/lang/explorer smokes). Mirrored to public/academy-app (119 atoms, ver 0.10.0 verified in sync).
+NEXT: the prereq-placement check is fragile (redox-potential is now the lone missing prereq, so there is
+NO slack — one more perturbing atom could drop it below 5 and FAIL). The durable fix is to give
+**redox-potential** a depth≤2 encompasser the expert answers correctly (it currently has only deep
+dependents: electron-transport-chain, marcus-theory). A genuinely honest edge: a new depth-2 atom like
+**"redox tower / midpoint-potential ordering"** or **"electron-transfer driving force ΔG=−nFΔE"** that
+requires redox-potential (depth 1) → depth 2, in the expert frontier, so it floods redox-potential —
+that would restore slack AND add content. Remaining margin-safe targets: **hofmeister / salting-out**
+series (ties preferential-interaction ↔ zeta ↔ osmotic-pressure), **electric-double-layer / Gouy–Chapman**
+(wire under debye to stay depth 2, NOT under poisson-boltzmann which would be depth 3), **action-potential**
+(requires hodgkin-huxley is depth 2 → action-potential depth 3; per run 5's lesson a NEW depth-3 atom can
+overrun the placement budget, so verify test-diagnostic before keeping it). Leaf-leverage rule still holds:
+a new requires=[] or depth-1 atom wired UNDER an already-deep dependent fills content AND can lift the
+placed-count — always verify ZERO depth cascade + re-run test-diagnostic.mjs each batch. Cheap zero-risk
+wins still open: ~33 atoms lack a derive-level quiz item; more `note` fields; GPU art if
+HSA_OVERRIDE_GFX_VERSION=11.0.0 is reachable; a non-biophysics branch expansion (math/physics/chemistry
+corpora already seeded) for variety.
