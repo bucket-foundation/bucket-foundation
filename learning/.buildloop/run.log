@@ -2063,3 +2063,93 @@ Every equation checked numerically (Legendre of ½ax² = p²/2a with f″f*″=1
 
 ========== build run 2026-07-01T00:45:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. Run 13 complete.
+
+## What I did
+
+Continued the primary mission (biophysics corpus expansion via the leaf-leverage rule) picking up from run 12's NEXT. Added **3 foundational math/physics atoms** to `app/corpus/biophysics.json` (98 → 101 atoms):
+
+- **fourier-transform** — the translation-eigenbasis change; convolution→product, Gaussian→Gaussian with σ_t·σ_ω=½, the engine under Bragg diffraction, SAXS, NMR spectra, and Wiener–Khinchin.
+- **onsager-reciprocity** — near-equilibrium coupled transport `L_ij=L_ji`; cross-effects in equal pairs, entropy-production positivity → `L_ij²≤L_ii L_jj`, Kelvin relation Π=TS, membrane co-transport.
+- **linear-response-theory (Kubo)** — `χ(t)=−β dC/dt`; response fixed by equilibrium fluctuations, static identity `χ(0)=β⟨δA²⟩`, the framework FDT / Green–Kubo / Marcus parabolas live in.
+
+Each is `requires=[]` (depth 0, expert frontier) and wired as a **real prereq of existing dependents chosen so their depth doesn't rise**: fourier→bragg/saxs/nmr-relaxation, onsager→membrane-transport, linear-response→fluctuation-dissipation/marcus-theory. Verified **zero depth cascade**.
+
+Every atom got the full schema: TeX equation, summary, eli5/core/deep depths, note, 2 quiz items (1 derive each with worked algebra), art_prompt, and 6 open-source resources (LibreTexts/MIT OCW/Wikipedia). All prose original; every numeric verified.
+
+## Results
+- **Diagnostic margin improved +14 → +16** (expert placed 34 / asked 18).
+- `validate.sh` **passes end-to-end** (corpus integrity, 101-atom 60-day engine sim, diagnostic GREEN, assess/lang/explorer smokes).
+- Mirrored to `public/academy-app` (ver 0.6.1, 101 atoms verified).
+- Committed locally (`10da72df7`) + LOG.md entry appended with the NEXT handoff (kramers-kronig, cumulant-generating-function, green-function/propagator as next margin-safe candidates). No push.
+---------- run done 2026-07-01T00:52:39Z ----------
+
+========== build run 2026-07-01T01:11:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Committed. Run 14 complete.
+
+## Summary
+
+Broke the run 11–13 streak of pure-math leaf atoms (the diagnostic margin was already a comfortable +16 and every syllabus §0 math prereq exists) and instead filled a real **content** gap: syllabus §1.8 "Molecular interactions & spectroscopy methods."
+
+Added **4 genuinely-missing experimental-method atoms** (biophysics 101 → 105):
+
+| Atom | Method | Key facts (all numbers verified) |
+|---|---|---|
+| **itc** | Isothermal titration calorimetry | K_a/n/ΔH in one run; ΔG = −RT ln(10⁶) = −34.2 kJ/mol ⇒ TΔS = −5.8 kJ/mol |
+| **spr** | Surface plasmon resonance | label-free kinetics; K_d = k_off/k_on = 10 nM; t½ = ln2/0.01 = 69 s |
+| **fcs** | Fluorescence correlation spectroscopy | G(0)≈1/N; τ_D = (0.25 µm)²/4·100 µm²/s = 156 µs; ~0.6 molecules/fL at 1 nM |
+| **epr** | Electron paramagnetic resonance / ESR | hν = gμ_B B → 9.8 GHz at X-band; SDSL; DEER dipolar ruler 1.5–8 nm |
+
+Each is `shell=nucleus`, `type=method`, with **requires-depth exactly 2** (inside the expert frontier), so no existing atom's depth changed. Every atom has the full 7-section lesson + 3 depths + note + art_prompt + 2 quiz items (1 derive) + 6 OPEN resources. Original prose only; open/legal sources (Wikipedia, LibreTexts).
+
+**Validation:** `./validate.sh` passes end-to-end — corpus integrity, 105-atom 60-day engine sim, diagnostic GREEN at **expert placed 34 / asked 18 (+16)** (held, no regression), plus assess/lang/explorer smokes. Mirrored to `public/academy-app` (105 atoms, v0.6.2 verified). Committed locally (`ff7a80f35`); LOG.md updated with a NEXT pointer (dsc/dls/AUC method atoms, or leaf-leverage foundations to *lift* the margin).
+---------- run done 2026-07-01T01:20:49Z ----------
+
+========== build run 2026-07-01T01:37:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Run 15 complete. Summary of what I did this bounded run:
+
+**Filled the biggest untouched syllabus gap — §0.3 Quantum Mechanics & Electrodynamics**, which had zero atoms despite being a prerequisite shell that every spectroscopy atom silently leans on.
+
+Added 3 real, correct QM foundation atoms (biophysics **105 → 108**):
+- **schrodinger-equation** — iħ∂ψ/∂t=Ĥψ; Born rule, superposition/unitarity, quantization as a boundary-value phenomenon; derives particle-in-a-box `E_n=n²π²ħ²/2mL²` and QHO `ħω(n+½)`.
+- **perturbation-theory** — first/second-order corrections + Fermi's golden rule `Γ=(2π/ħ)|V_fi|²ρ(E_f)`; proves ground-state `E₀⁽²⁾≤0`; frames every rate as coupling²×density-of-states (the shared engine of absorption, Marcus ET, NMR/EPR relaxation).
+- **selection-rules** — transition dipole `μ_fi=⟨f|μ̂|i⟩`, intensity ∝|μ_fi|²; derives Δv=±1 via ladder operators; IR mutual-exclusion, FRET κ², CD.
+
+**Wired margin-safely** (leaf-leverage): schrodinger→marcus/epr, perturbation→marcus/nmr-relaxation, selection-rules→epr/nmr-relaxation. Verified **zero depth cascade** (all new atoms depth ≤2, no existing atom's depth moved).
+
+Because these foundations now encompass heavily-depended-on spectroscopy nodes, the diagnostic margin **rose from +16 to +19** (expert placed 34→37, asked 18).
+
+- `validate.sh` **passes end-to-end** (corpus integrity, 108-atom 60-day engine sim, diagnostic GREEN, assess/lang/explorer smokes).
+- Mirrored to `public/academy-app` (108 atoms, v0.7.0 verified).
+- Committed locally (`a9e5ecec5`), builder script removed, no push.
+- LOG.md updated with a NEXT pointer: `maxwell-dipole-radiation` + `tunneling-wkb` to finish §0.3, then §0.4 steady-state and §1.8 methods (dsc/dls/AUC).
+---------- run done 2026-07-01T01:45:02Z ----------
+
+========== build run 2026-07-01T02:03:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Committed. Run 16 is complete.
+
+## Summary
+
+Continued the build loop from run 15's NEXT list. Added **4 new biophysics atoms** (108 → 112):
+
+| Atom | Depth | Wired under (leaf-leverage) | What it teaches |
+|---|---|---|---|
+| **tunneling-wkb** | 1 | marcus-theory, electron-transport-chain | WKB barrier T≈e^(−2κd); the exponential distance-decay of biological electron/proton transfer |
+| **steady-state-approximation** | 1 | michaelis, smoluchowski-rate | QSSA d[I]/dt≈0 — the move that yields Michaelis–Menten and diffusion-limited rates |
+| **maxwell-dipole-radiation** | 1 | fcs | Larmor + Einstein A/B (A∝ν³\|μ\|²); the radiative rate FRET/fluorescence compete against |
+| **dls** | 2 | (§1.8 method leaf) | Dynamic light scattering: Γ=Dq² → hydrodynamic radius via Stokes–Einstein |
+
+**Leaf-leverage held:** the three depth-1 foundations sit under already-deep dependents, so the diagnostic margin **rose +19 → +21** (expert placed 39 / asked 18) with **zero depth cascade** on all 5 wired parents (verified in-script).
+
+Each atom got the full schema: 7-section lesson, 3 depths, note, art_prompt, 2 quiz items (1 derive), and 6 OPEN sources each (LibreTexts, MIT OCW, PMC OA, Wikipedia). All prose original; every worked number verified (κ=5.1 nm⁻¹, T=3.7×10⁻⁵; K_M derivation; ν³→10¹⁸ optical/NMR ratio; DLS R_h=10.9 nm).
+
+`validate.sh` **passes end-to-end**; mirror synced to `public/academy-app` (0.8.0). Committed locally as `8e172bb64` — no push.
+
+**Next run** should pick up dsc (require gibbs+mass-action, NOT two-state-folding — that overruns the budget), analytical-ultracentrifugation, and keep applying the leaf-leverage rule; ~35 atoms still lack a derive-level quiz item.
+---------- run done 2026-07-01T02:12:09Z ----------
+
+========== build run 2026-07-01T02:29:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors

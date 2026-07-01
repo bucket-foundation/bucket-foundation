@@ -579,3 +579,40 @@ atom wired UNDER an already-deep dependent both fills content AND raises placed-
 zero depth cascade + re-run test-diagnostic.mjs each batch. Remaining cheap zero-risk wins: ~35 atoms
 still lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 is
 reachable; a non-biophysics branch (math/physics corpus) for variety.
+
+## 2026-06-30 — run 17 (+3 atoms: dsc, analytical-ultracentrifugation, radius-of-gyration; biophysics 112→115; margin HELD +21)
+Continued run 16's NEXT list, closing the remaining §1.8 methods gap plus one depth-0 foundation.
+**dsc** (differential scanning calorimetry; requires gibbs+mass-action → depth 2, §1.8 method leaf):
+excess heat-capacity peak at T_m where K=1/ΔG=0, area = model-free ΔH_cal, peak height gives
+ΔH_vH = 4RT_m²·C_p,max/ΔH_cal; the ratio ΔH_cal/ΔH_vH tests cooperativity (=1 two-state, >1
+domains/intermediates, <1 coupled oligomer); positive ΔC_p (buried nonpolar surface) curves ΔG(T)
+into a parabola → cold denaturation. **analytical-ultracentrifugation** (requires einstein-stokes+
+chemical-potential → depth 2, §1.8 method leaf): sedimentation coefficient s=u/ω²r; Svedberg
+M=sRT/[D(1−v̄ρ)] combines velocity + diffusion to remove friction; sedimentation equilibrium
+c(r)∝exp[M(1−v̄ρ)ω²r²/2RT] is Boltzmann in the centrifugal field → shape-free mass + association
+constants; buoyancy factor (1−v̄ρ) and friction ratio f/f₀ explained. **radius-of-gyration**
+(requires=[] → depth 0 foundation): R_g²=(1/N)Σ|r_i−r_cm|², sphere 3R²/5, ideal chain Nb²/6 so
+⟨R²⟩=6R_g²; Guinier I(q)≈I(0)e^(−q²R_g²/3) reads it model-free; R_g∝N^ν (1/3 compact, 1/2 ideal,
+0.588 swollen); R_g/R_h shape ratio. Wired UNDER saxs & flory-scaling by leaf-leverage — verified
+ZERO depth cascade (both stay depth 2). Every number verified this run: DSC ΔH_vH=398 kJ/mol &
+ratio 1.00 for T_m=330 K/ΔH_cal=400/C_p,max=44; AUC buoyancy 0.27 & M=60 kDa for s=4.0 S/D=6.0e−11/
+v̄=0.73; Rg=1.55 nm & end-to-end 3.80 nm (ratio √6) for N=100/b=0.38 nm. All prose original; OPEN
+sources only (LibreTexts + MIT OCW + PMC OA + 6 Wikipedia resources each); full 7-section lesson +
+3 depths + note + art_prompt + 2 quiz (1 derive) per atom. meta 0.8.0→0.9.0. Diagnostic margin
+HELD at expert placed 39 / asked 18 (+21) — the Rg wiring kept the count rather than lifting it
+(the placement algorithm placed the same 39 nucleus atoms; not every leaf-leverage edit raises the
+count, but none regressed). validate.sh PASSES end-to-end (corpus integrity, 115-atom 60-day engine
+sim, diagnostic GREEN at +21, assess/lang/explorer smokes). Mirrored to public/academy-app (115
+atoms, ver 0.9.0 verified in sync).
+NEXT: §1.8 methods are now well-covered (itc/spr/fcs/epr/dls/dsc/auc). Remaining margin-safe content
+targets: a **preferential-interaction / m-value** atom (osmolyte/denaturant effect on stability,
+Δm from linear-extrapolation; keep depth ≤2 — require gibbs + osmotic-pressure would hit depth 3, so
+wire under a shallower parent or make it a leaf) and **zeta-potential / electrophoretic mobility**
+(electrokinetics; requires poisson-boltzmann is depth 2 → zeta depth 3 OVERRUNS the placement budget
+per run 5/16's depth-3 lesson, so make it a leaf that requires debye (depth 1) instead → depth 2).
+To LIFT (not just hold) the margin, keep applying leaf-leverage: a NEW requires=[] or depth-1 atom
+wired UNDER an already-deep dependent both fills content AND raises placed-count — but verify the
+placement actually rises via test-diagnostic (run 17 showed a depth-0 wiring can hold rather than
+lift). Remaining cheap zero-risk wins: ~35 atoms still lack a derive-level quiz item; more `note`
+fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 is reachable; a non-biophysics branch expansion
+(math/physics/chemistry corpus already seeded) for variety.
