@@ -2193,3 +2193,47 @@ Run 18 complete. Summary of what I did this bounded run:
 
 ========== build run 2026-07-01T03:20:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. Run 19 complete.
+
+**What I did this run** (continuing from run 18's NEXT list, which flagged the electrostatics/electrolyte gap):
+
+Added **4 new biophysics atoms**, biophysics corpus **119 → 123**:
+
+1. **electrostatics** (depth 0) — Coulomb / Gauss / Poisson + Bjerrum length. Wired *under* debye, poisson-boltzmann, zeta-potential by leaf-leverage (all kept their depth — zero cascade).
+2. **continuity-equation** (depth 0) — ∂ρ/∂t + ∇·J = s. Wired under reaction-diffusion + membrane-transport (not fick, which would cascade); continuity + Fick's 1st ⇒ Fick's 2nd is the honest edge.
+3. **gouy-chapman** (depth 2) — diffuse double layer, Grahame equation, diffuse capacitance εε₀κ.
+4. **debye-huckel-activity** (depth 2) — the limiting law log₁₀γ± = −A|z₊z₋|√I from the ion-atmosphere free energy.
+
+Each has the full schema: 7-section `lesson`, 3 depths, summary, note, art_prompt, 2 quiz items (≥1 derive), open-only sources (LibreTexts / MIT OCW / OpenStax / PMC / Wikipedia). All numbers verified (56 k_BT→0.70 k_BT across the Bjerrum length; 91 µF/cm² diffuse capacitance; γ± 0.89 NaCl / 0.67 CaCl₂). Prose original; equations are facts.
+
+**Validation:** `./validate.sh` passes end-to-end — 123 atoms integrity-clean, 60-day engine sim introduces all 123, diagnostic **GREEN at margin +22** (40 placed / 18 asked), prereq shell held 5/6 with no depth cascade. Mirrored to `public/academy-app` (123 atoms, v0.11.0). Committed locally (`45528a457`), no push.
+
+**For the next run** (in LOG): the prereq-placement check is still razor-thin — redox-potential is the lone missing prereq with no slack. I diagnosed *why* it can't be flooded (it's depth 2, so any atom requiring it is depth ≥3, outside the expert frontier). The durable fix is to raise redox-potential's betweenness with a new honest dependent (e.g. a "redox tower / ETC midpoint-potential ordering" atom) so it gets asked directly — verifying it doesn't overrun the depth-3 placement budget.
+---------- run done 2026-07-01T03:31:11Z ----------
+
+========== build run 2026-07-01T03:46:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Done. One bounded, high-value improvement shipped and committed locally.
+
+## Run 20 summary
+
+**Added the two missing forces** from syllabus §1.8's four-forces quartet (electrostatics + hydrophobic already existed):
+
+- **`van-der-waals`** — Lennard-Jones potential `U=4ε[(σ/r)¹²−(σ/r)⁶]`, minimum `−ε` at `r_min=2^{1/6}σ`; Keesom/Debye/London dispersion (all ∝−1/r⁶), London coefficient from polarisability & ionisation energy, Hamaker surface sums, the nonbonded core of every MD force field.
+- **`hydrogen-bond`** — D–H···A, 2–8 kcal/mol, ~2.7–3.0 Å, near-linear geometry; water's tetrahedral network, DNA base pairing, α-helix/β-sheet, and the water-competition nuance that explains why proteins are only marginally stable.
+
+Both are `requires=[]` depth-0 foundations, each with full 7-section lesson + 3 depths + note + art_prompt + 2 quiz items (one derive/conceptual), original prose, open sources only.
+
+**Leaf-leverage wiring** (zero depth cascade, verified): van-der-waals under `md`/`bilayer`/`ml-force-fields`; hydrogen-bond under `bilayer`/`two-state-folding`/`ramachandran`. All dependents kept their existing depth.
+
+**Results:**
+- biophysics corpus **123 → 125 atoms** (v0.12.0)
+- diagnostic margin **improved +22 → +26** (expert placed 44 vs 18 asked; prereq shell held 5/6)
+- `validate.sh` passes end-to-end; mirrored to `public/academy-app`
+- committed locally (`44d8dbe6b`), no push
+
+**Next run** should tackle the durable fix for the razor-thin redox-potential prereq placement (add a depth-3 "redox tower" dependent to raise its betweenness — verify budget first), and the now-unblocked **DLVO** atom (both `gouy-chapman` and `van-der-waals` now exist so it wires honestly).
+---------- run done 2026-07-01T03:53:35Z ----------
+
+========== build run 2026-07-01T04:11:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors

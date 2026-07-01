@@ -755,3 +755,56 @@ atom wired UNDER an already-deep dependent fills content AND lifts placed-count 
 ZERO depth cascade + re-run test-diagnostic.mjs each batch. Cheap zero-risk wins still open:
 ~30 atoms lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=
 11.0.0 is reachable; a non-biophysics branch expansion (math/physics/chemistry corpora seeded).
+
+## 2026-07-01 — run 21 (+3 noncovalent-interaction atoms: pi-stacking, cation-pi, salt-bridge; biophysics 125→128; margin +19)
+Completed the **noncovalent-interactions family** that sits on top of the depth-0 force
+foundations (van-der-waals, electrostatics, hydrogen-bond) the last two runs added. Three new
+depth-1 leaves, all `requires` into those depth-0 atoms (ZERO cascade, verified): **pi-stacking**
+(π–π aromatic; Hunter–Sanders quadrupole model, Q_zz≈−8.5 D·Å face-negative/edge-positive →
+sandwich repels, parallel-displaced/T-shaped attract; SAPT: dispersion dominates *magnitude*,
+electrostatics selects *geometry*, all 3 minima within ~1 kcal/mol; base-stacking + intercalation;
+electron-poor rings/perfluoroarenes stack face-to-face), **cation-pi** (charge–quadrupole ∝ qQ_zz/r³
++ induction; gas-phase benzene Li⁺~38/Na⁺~27/K⁺~19 kcal/mol → size-order = electrostatic
+fingerprint; strongly attenuated in water but favourable when buried; acetylcholine aromatic box
+proven by linear fluorinated-Trp mutagenesis; Trp>Tyr>Phe; K⁺-channel selectivity, methyl-lysine
+readers), **salt-bridge** (Coulomb q₁q₂/4πε₀ε_r·r + H-bond; net only ~1–5 kcal/mol in water because
+ε_r~80 screens + both ions pay desolvation; buried = strong Coulomb/big desolvation, stabilising
+only if geometry good else DEstabilising; Arg-centred networks amortise desolvation → thermophile
+hallmark; pH-dependent; double-mutant cycles show net ≪ vacuum estimate). Full 7-section lesson +
+3 depths + note + art_prompt + 2 quiz (1 derive/conceptual) per atom; ALL prose ORIGINAL; equations
+are facts; OPEN sources only (LibreTexts + MIT OCW 5.13/5.112/7.05/5.07 + NCBI Bookshelf + 5 Wikipedia
+resources each). meta 0.12.0→0.13.0.
+
+**Leaf-leverage wiring lesson (important for next runs):** a low-depth leaf only lifts placed-count
+if it is wired UNDER a dependent that is IN the expert's known set (depth≤2 OR shell=prereq) — the
+expert must ANSWER that dependent correctly for the leaf to flood via requires-closure. First pass
+wired pi-stacking/salt-bridge only under amyloid(d5)+two-state-folding(d3) — both depth>2, so the
+expert answers "I don't know" and they NEVER flooded: placed-count DROPPED 44→37 (they perturbed
+leverage without contributing). cation-pi (wired under ion-channel-gating d2 + binding-kd d2) DID
+flood. Fix: gave pi-stacking + salt-bridge a depth-2 flooding host via **idp-llps** (honest — π–π,
+cation–π, and electrostatic salt bridges are the recognised LLPS "sticker" interactions among
+Trp/Tyr/Arg) → placed recovered 37→**42**, prereq shell HELD 5/6, idp-llps stayed depth 2 (no
+cascade). NOTE: binding-kd is a SENSITIVE high-leverage node — adding pi-stacking+salt-bridge there
+diluted it and dropped prereq shell to 4/6 (FAIL); reverted. Final wiring kept: pi-stacking→
+amyloid+two-state-folding+idp-llps; salt-bridge→two-state-folding+idp-llps; cation-pi→
+ion-channel-gating+binding-kd. validate.sh PASSES end-to-end (128 atoms, 60-day engine sim all
+introduced, diagnostic GREEN placed 42/asked 18, assess/lang/explorer smokes). Mirrored to
+public/academy-app (128 atoms, ver 0.13.0 verified).
+
+**Diagnostic state:** placed 42, asked 18, margin +24; prereq shell 5/6 (redox-potential STILL the
+lone missing one, threshold ≥5 — razor-thin, one perturbing atom could drop it <5 and FAIL). The
+durable fix (runs 19/20 option 1) is STILL open and STILL risky at the 18-question cap: give
+redox-potential a downstream dependent (e.g. depth-3 "redox tower / midpoint-potential ordering of
+the ETC carriers" requiring redox-potential) to raise its betweenness so it's asked directly —
+VERIFY it does not push questionsAsked past 18 before keeping. NEXT-run margin-safe content targets
+still open: **DLVO** (double-layer repulsion + vdW; now that gouy-chapman AND van-der-waals both
+exist it wires honestly but → depth 3, verify budget), **stern-layer** (d3, verify), **hofmeister/
+salting-out** (ties preferential-interaction↔zeta↔debye-huckel-activity, needs a d≤2 wiring to stay
+safe), **anion-π** (electron-poor ring, requires electrostatics — good depth-1 leaf, wire under a
+d≤2 host to lift placed), **CH–π** (weak vdW/electrostatic, requires van-der-waals — depth-1 leaf).
+LEAF-LEVERAGE RULE (now confirmed twice): a new requires=[]/depth-1 atom must be wired under a
+depth≤2 (expert-known) dependent to lift placed-count; wiring only under depth>2 atoms fills content
+but LOWERS placed-count. Always verify ZERO depth cascade + re-run test-diagnostic.mjs each batch,
+and AVOID over-wiring sensitive nodes (binding-kd). Cheap zero-risk wins still open: ~30 atoms lack
+a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable;
+non-biophysics branch expansion (math 49 / physics 55 / chem 49 / info 48 / cosmo 41 / mind 42).

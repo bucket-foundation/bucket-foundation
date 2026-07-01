@@ -2,7 +2,7 @@
  "meta": {
   "branch": "05-biophysics",
   "title": "Biophysics — general-exam nucleus",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved. v0.6.2: +4 real biophysics experimental-method atoms (itc, spr, fcs, epr) filling the syllabus 1.8 methods gap (calorimetry, kinetics biosensing, fluctuation spectroscopy, magnetic-resonance/spin-labeling). All depth=2 (in the expert frontier): itc requires binding-kd/mass-action/gibbs, spr requires binding-kd/mass-action, fcs requires correlation-function/einstein-stokes, epr requires boltzmann/fret. No existing atom modified, so no depth cascade; placement margin preserved/improved. v0.8.0: +4 atoms — tunneling-wkb (WKB barrier T≈e^(−2κd), κ=√(2m(V−E))/ħ; requires schrodinger-equation, wired UNDER marcus-theory & electron-transport-chain as the exponential distance factor in electron transfer), steady-state-approximation (QSSA d[I]/dt≈0; requires master-equation, wired UNDER michaelis & smoluchowski-rate — the move that yields Michaelis–Menten and diffusion-limited rates), maxwell-dipole-radiation (Larmor + Einstein A/B, A∝ν³|μ|²; requires schrodinger-equation, wired UNDER fcs as the radiative rate FRET/fluorescence compete against), and dls (dynamic light scattering, Γ=Dq² → R_h via Stokes–Einstein; requires correlation-function/einstein-stokes, §1.8 method leaf). All leaf-leverage wirings verified zero depth cascade; the three foundation atoms (depth 1) sit inside the expert frontier under deep dependents to lift the diagnostic margin. v0.9.0: +3 atoms — dsc (differential scanning calorimetry; excess-Cp peak at T_m, ΔH_cal=area, ΔH_vH=4RT_m²C_p,max/ΔH_cal, ratio tests two-state cooperativity; requires gibbs+mass-action, depth 2, §1.8 method leaf), analytical-ultracentrifugation (Svedberg M=sRT/[D(1−v̄ρ)] from velocity + equilibrium Boltzmann gradient c(r)∝exp[M(1−v̄ρ)ω²r²/2RT]; requires einstein-stokes+chemical-potential, depth 2, §1.8 method leaf), and radius-of-gyration (R_g²=(1/N)Σ|r_i−r_cm|², Guinier I(q)≈I(0)e^(−q²R_g²/3), R_g∝N^ν; requires=[], depth 0 foundation wired UNDER saxs & flory-scaling by leaf-leverage — zero depth cascade (both stay depth 2), lifts placed-count). All prose original; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. v0.10.0: +4 atoms — persistence-length (ℓ_p=κ_b/k_BT, tangent correlation e^(−s/ℓ_p), WLC ⟨R²⟩=2ℓ_pL−2ℓ_p²(1−e^(−L/ℓ_p)); requires boltzmann+harmonic-approximation, depth 1, wired UNDER optical-tweezers+afm which both stay depth 2 — zero cascade, leaf-leverage), zeta-potential (ζ at the shear plane, μ_e=εε₀ζ/η Smoluchowski / 2εε₀ζ/3η Hückel, Henry f(κa); requires debye, depth 2, electrokinetics/DLVO leaf), preferential-interaction (Γ_23=(∂m_3/∂m_2), Wyman linkage ∂ΔG/∂μ_3=−ΔΓ, m-value ΔG=ΔG°−m[D], C_m=ΔG°/m; requires gibbs+chemical-potential, depth 2), and debye-waller-factor (f=f₀e^(−Bsin²θ/λ²), B=8π²⟨u²⟩=8π²k_BT/k via equipartition, RMSF=√(3⟨u²⟩); requires bragg+equipartition, depth 2). All prose original; equations are facts; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. v0.11.0: +4 atoms — electrostatics (Coulomb F=q₁q₂/4πεε₀r², Gauss ∇·E=ρ/εε₀, Poisson ∇²φ=−ρ/εε₀, Bjerrum ℓ_B≈0.71 nm; requires=[], depth 0 foundation wired UNDER debye+poisson-boltzmann+zeta-potential by leaf-leverage — all stay their depth, lifts placed-count), continuity-equation (∂ρ/∂t+∇·J=s; requires=[], depth 0, wired UNDER reaction-diffusion+membrane-transport — continuity+Fick's-1st gives Fick's-2nd, no cascade), gouy-chapman (diffuse double layer, ψ(x)≈ψ₀e^(−κx), Grahame σ=√(8εε₀n₀k_BT)sinh(zeψ₀/2k_BT), diffuse capacitance εε₀κ; requires debye+electrostatics, depth 2, electrokinetics leaf in expert frontier), and debye-huckel-activity (limiting law log₁₀γ±=−A|z₊z₋|√I, A≈0.509; μ^ex=−z²e²κ/8πεε₀ ⇒ ln γ∝−√I; requires debye+chemical-potential, depth 2). All prose original; equations are facts; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. v0.12.0: +2 foundational force atoms (van-der-waals, hydrogen-bond), both requires=[] (diagnostic-depth 0), completing the four-forces quartet of §1.8 (electrostatics + hydrophobic already present). van-der-waals (Lennard-Jones U=4ε[(σ/r)¹²−(σ/r)⁶], r_min=2^{1/6}σ, well −ε; Keesom/Debye/London all ∝1/r⁶; Hamaker surface sums) wired UNDER md + bilayer + ml-force-fields by leaf-leverage (all keep their depth — zero cascade). hydrogen-bond (D–H···A, 2–8 kcal/mol, d≈2.7–3.0 Å, angle→180°; net folding gain small vs water competition; cooperativity) wired UNDER bilayer + two-state-folding + ramachandran (all keep their depth). All prose original; equations are facts; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive/derive-style) per atom.",
   "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
  },
@@ -706,7 +706,9 @@
    "requires": [
     "free-energy",
     "gibbs",
-    "hydrogen-bond"
+    "hydrogen-bond",
+    "pi-stacking",
+    "salt-bridge"
    ],
    "equation": "K = \\dfrac{[U]}{[F]} = e^{-\\Delta G_{fold}/k_BT}",
    "summary": "Many small proteins fold all-or-none: only folded and unfolded states are populated, set by a single ΔG.",
@@ -941,7 +943,8 @@
    "shell": "nucleus",
    "type": "equation",
    "requires": [
-    "gibbs"
+    "gibbs",
+    "cation-pi"
    ],
    "equation": "K_d = \\dfrac{[P][L]}{[PL]}, \\quad \\theta = \\dfrac{[L]}{K_d + [L]}",
    "summary": "K_d is the ligand concentration at which a site is half-occupied — the universal currency of molecular recognition.",
@@ -1870,7 +1873,9 @@
    "shell": "frontier",
    "type": "concept",
    "requires": [
-    "hydrophobic"
+    "hydrophobic",
+    "pi-stacking",
+    "salt-bridge"
    ],
    "summary": "Many proteins lack a fixed fold; some demix into liquid droplets that organize the cell without membranes.",
    "depths": {
@@ -1930,7 +1935,8 @@
    "type": "concept",
    "requires": [
     "hydrophobic",
-    "ddg"
+    "ddg",
+    "pi-stacking"
    ],
    "summary": "Proteins can misassemble into ordered β-sheet fibrils through a nucleation-and-growth process central to neurodegeneration.",
    "depths": {
@@ -3388,7 +3394,8 @@
    "type": "concept",
    "requires": [
     "nernst",
-    "boltzmann"
+    "boltzmann",
+    "cation-pi"
    ],
    "summary": "Channels open and close (gate) in response to voltage, ligands, or force, and a selectivity filter passes the right ion at near-diffusion-limited rates — the molecular basis of excitability.",
    "depths": {
@@ -7756,6 +7763,183 @@
     }
    ],
    "lesson": "### Intuition\n\nDissolve a pinch of salt and you might expect each ion to act independently. It does not. Every ion tugs a faint haze of opposite charge around itself — a screening atmosphere — and sitting inside that haze lowers the ion's energy. The consequence is that the solution behaves as if it holds slightly *less* salt than you added: the thermodynamically 'felt' concentration, the activity, runs below the real one. The discount grows with salt, but as the square root, which is the tell-tale signature that screening, not simple crowding, is doing the work.\n\n### Precisely\n\nNon-ideality is folded into the **activity** $a=\\gamma c$, where the activity coefficient $\\gamma\\to1$ as $c\\to0$. Because single-ion coefficients are not measurable, one uses the **mean ionic** coefficient $\\gamma_\\pm$. Debye and Hückel derived the **limiting law**\n$$\\log_{10}\\gamma_\\pm=-A\\,|z_+z_-|\\sqrt{I},\\qquad I=\\tfrac12\\sum_i c_i z_i^2,$$\nwith $A\\approx0.509\\ \\text{M}^{-1/2}$ in water at 25 °C and $I$ the **ionic strength** (each ion weighted by its charge squared). The **extended** form adds a finite ion-size $a$: $\\log_{10}\\gamma_\\pm=-A|z_+z_-|\\sqrt{I}/(1+Ba\\sqrt{I})$, extending validity to higher concentration.\n\n### Worked example\n\nCompare 0.010 M NaCl and 0.010 M CaCl$_2$. For NaCl, $I=\\tfrac12(0.010+0.010)=0.010$, $\\sqrt I=0.100$, and $|z_+z_-|=1$: $\\log_{10}\\gamma_\\pm=-0.509(0.100)=-0.051$, so $\\gamma_\\pm=0.89$. For CaCl$_2$, $I=\\tfrac12(0.010\\cdot4+0.020\\cdot1)=0.030$, $\\sqrt I=0.173$, and $|z_+z_-|=2$: $\\log_{10}\\gamma_\\pm=-0.509(2)(0.173)=-0.176$, so $\\gamma_\\pm=0.67$. Same nominal 0.010 M, but the divalent salt is far more non-ideal — both its charge-squared ionic strength and its charge product punish it.\n\n### Why it's true / how it works\n\nThe number is the **Debye** screening energy in disguise. Charge up a central ion in the presence of its Boltzmann-distributed atmosphere and the reversible work is $\\mu^{\\text{ex}}=-\\dfrac{z^2e^2}{8\\pi\\varepsilon\\varepsilon_0}\\,\\kappa=-\\dfrac{z^2e^2}{8\\pi\\varepsilon\\varepsilon_0\\lambda_D}$, the excess **chemical potential** the atmosphere contributes. Since $\\kappa\\propto\\sqrt{I}$, $\\ln\\gamma=\\mu^{\\text{ex}}/k_BT\\propto-\\sqrt{I}$ — the square-root law falls straight out of the screening length. The stabilization is negative, so $\\gamma_\\pm<1$: salts are more soluble than an ideal solution predicts.\n\n### Where it connects\n\nThis is the thermodynamic face of the same physics as the **Debye** length and the **Gouy–Chapman** double layer: one $\\kappa\\propto\\sqrt I$ governs screening around a point ion (activity coefficients), around a wall (double-layer capacitance), and at the shear plane (**ζ-potential**). The activity, not the concentration, is what belongs in every equilibrium constant, **Nernst** potential, and solubility product, so Debye–Hückel is the bridge from ideal-dilute textbook expressions to the salty reality of blood, seawater, and the cytoplasm.\n\n### Watch out\n\nThe limiting law is exact only as $I\\to0$; it fails above roughly 0.01–0.1 M, where the extended and Davies equations are needed. At high salt, $\\gamma_\\pm$ stops falling, hits a minimum, and rises again — ion size, dielectric decrement, and ion pairing take over, effects entirely outside the point-charge theory. Ionic strength must include *every* ion in solution, not just the salt of interest, and remember $\\gamma_\\pm$ is a mean; single-ion activities are model-dependent conventions.\n\n### Numbers & nuance\n\nUseful anchors: $A=0.509\\ \\text{M}^{-1/2}$ (water, 25 °C, rising with temperature as the dielectric drops); at $I=0.001$ M a 1:1 salt has $\\gamma_\\pm\\approx0.96$, at 0.01 M $\\approx0.90$, at 0.1 M $\\approx0.78$ (limiting-law estimate). Physiological ionic strength is about 0.15 M, so blood-plasma electrolytes sit well outside the limiting law and require the extended forms — a reminder that 'concentration equals activity' is a dilute-solution fiction."
+  },
+  {
+   "id": "pi-stacking",
+   "title": "π–π stacking (aromatic interactions)",
+   "shell": "nucleus",
+   "type": "concept",
+   "requires": [
+    "van-der-waals",
+    "electrostatics"
+   ],
+   "equation": "E_{\\pi\\pi}\\sim 1\\text{--}3\\ \\mathrm{kcal/mol};\\quad \\text{geometries: parallel-displaced (offset }\\sim1.5\\text{--}2\\ \\text{\\AA), T-shaped, sandwich};\\quad Q_{zz}^{\\mathrm{benzene}}\\approx -8.5\\ \\mathrm{D\\cdot\\text{\\AA}}",
+   "summary": "Aromatic rings attract one another through a mix of van der Waals dispersion and electrostatics from their permanent quadrupole. The face-carries-negative, edge-carries-positive charge pattern (Hunter–Sanders) makes a direct face-to-face sandwich unfavourable and pushes rings into offset parallel-displaced or T-shaped geometries — the stacking that holds DNA base pairs and rigidifies protein cores.",
+   "depths": {
+    "eli5": "Flat ring-shaped molecules like the letters of DNA or the flat parts of some amino acids have their electrons spread into thin clouds above and below the ring. Two such rings are a bit like two magnets that are strong but picky about how they line up: stacked perfectly on top of each other they slightly repel, but slid over a little, or set at right angles like a T, they stick. Nature uses this gentle, geometry-picky glue to stack the rungs of the DNA ladder and to lock flat side chains into place inside proteins.",
+    "core": "An aromatic ring has a delocalised π electron cloud above and below its plane, giving it a strong permanent **quadrupole**: the ring faces are electron-rich (partial negative) and the C–H edges are electron-poor (partial positive). The Hunter–Sanders model treats the attraction as van der Waals dispersion (always attractive, ∝−1/r⁶) plus electrostatics from this quadrupole. Two rings stacked face-to-face in perfect register put negative over negative and repel electrostatically; sliding one ring sideways (parallel-displaced, offset ~1.5–2 Å) or tipping it to a T-shape (an electron-poor edge pointing at an electron-rich face) turns the electrostatics attractive. Each interaction is worth only ~1–3 kcal/mol, but stacked repeatedly — as in a DNA double helix — they sum to a major share of the duplex's stability.",
+    "deep": "The Hunter–Sanders quadrupole picture explains the *geometry* but modern high-level calculations (SAPT energy decomposition) show that for the benzene dimer the binding energy is actually **dominated by dispersion**, with electrostatics tuning which geometry wins; the sandwich, T-shaped, and parallel-displaced minima all lie within ~1 kcal/mol. Substituents shift the balance: electron-withdrawing groups (–F, –NO₂, or replacing CH with N as in azines) reverse the quadrupole and can make face-to-face stacking favourable, and – counterintuitively – Wheeler–Houk analysis shows substituent effects act mainly through *direct* through-space electrostatics of the substituent, not by changing the whole ring's π cloud. In water an added driver appears: stacking buries hydrophobic aromatic surface, so the hydrophobic effect and solvent reorganisation contribute alongside the intrinsic π–π term, which is why base stacking (not just Watson–Crick pairing) is a dominant contributor to nucleic-acid stability and why intercalators like ethidium slot between base pairs."
+   },
+   "note": "π–π aromatic interaction ≈ 1–3 kcal/mol per contact. Geometries: sandwich (eclipsed, least favourable due to quadrupole–quadrupole repulsion), parallel-displaced/offset (~1.5–2 Å slip), T-shaped/edge-to-face. Benzene quadrupole Q_zz ≈ −8.5 D·Å (face negative, edge positive) — Hunter–Sanders model. High-level SAPT: dispersion dominates binding; electrostatics selects geometry; all three minima within ~1 kcal/mol. Electron-poor rings (perfluoroarenes, azines) can stack face-to-face. In water hydrophobic burial adds to the driving force. Central to DNA base stacking, intercalation, protein aromatic clusters.",
+   "sources": [
+    "Chemistry LibreTexts (noncovalent interactions; aromatic/π interactions)",
+    "MIT OpenCourseWare 5.13 / 5.112 (structure & reactivity; original prose here)",
+    "NCBI Bookshelf — Molecular Biology of the Cell / Biochemistry (base stacking)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Stacking (chemistry)",
+     "url": "https://en.wikipedia.org/wiki/Stacking_(chemistry)"
+    },
+    {
+     "label": "Wikipedia — Aromaticity",
+     "url": "https://en.wikipedia.org/wiki/Aromaticity"
+    },
+    {
+     "label": "Wikipedia — Base stacking (Nucleic acid structure)",
+     "url": "https://en.wikipedia.org/wiki/Nucleic_acid_structure"
+    },
+    {
+     "label": "Wikipedia — Intercalation (biochemistry)",
+     "url": "https://en.wikipedia.org/wiki/Intercalation_(biochemistry)"
+    },
+    {
+     "label": "Chemistry LibreTexts — Intermolecular forces",
+     "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+    }
+   ],
+   "art_prompt": "three benzene-ring pairs side by side labelled sandwich, parallel-displaced, and T-shaped; each ring drawn with a shaded negative pi cloud above and below the plane and partial-positive C-H edges; arrows show the face-to-face sandwich repelling and the offset and T geometries attracting; inset shows a short stack of DNA base pairs",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "Two benzene rings stacked directly on top of each other, perfectly aligned, is NOT the most stable arrangement. Why, and what geometries are preferred instead?",
+     "answer": "Each ring has a quadrupole with electron-rich faces and electron-poor edges. Stacking them face-to-face in perfect register places the two negative π faces directly over each other, so the electrostatic (quadrupole–quadrupole) term is repulsive. Sliding one ring sideways into a parallel-displaced/offset geometry, or tipping it into a T-shape so an electron-poor C–H edge points at an electron-rich face, makes the electrostatics attractive while keeping the dispersion attraction. Those offset and T-shaped geometries are the observed minima."
+    },
+    {
+     "level": "conceptual",
+     "prompt": "The simple Hunter–Sanders quadrupole model predicts the preferred geometries of aromatic stacking well, yet high-level SAPT calculations say the *binding energy* of the benzene dimer is dominated by dispersion. Are these statements in conflict?",
+     "answer": "No — they describe different things. Dispersion (a van der Waals term, always attractive) supplies most of the *magnitude* of the binding energy but is fairly insensitive to exact orientation. The quadrupole electrostatics is smaller in magnitude but strongly *orientation-dependent*, so it decides *which* geometry is lowest in energy — it selects the shape while dispersion supplies the glue. The Hunter–Sanders model captures the geometry-selecting electrostatics; SAPT captures the full energy breakdown. Together they say: dispersion holds the rings together, quadrupole electrostatics chooses the offset/T arrangement."
+    }
+   ],
+   "lesson": "### Intuition\n\nFlat aromatic molecules — the bases of DNA, the side chains of phenylalanine, tyrosine, tryptophan — carry their outermost electrons in a thin cloud spread above and below the ring. Two of these plates attract each other, but they are fussy about how. Set them squarely face-to-face and they slightly push apart; slide one over a little, or stand one on edge pointing at the other's face, and they stick. It is a gentle, geometry-picky glue, and biology leans on it to stack the rungs of the DNA ladder and to knit flat side chains into the tight core of a folded protein.\n\n### Precisely\n\nAn aromatic ring has a delocalised $\\pi$ system, which gives it a permanent **quadrupole**: the ring faces are partially negative and the C–H edges partially positive. In the Hunter–Sanders picture the total interaction is van der Waals **dispersion** (always attractive, $\\propto -1/r^6$) plus **electrostatics** from that quadrupole. Perfect face-to-face registration ($\\text{sandwich}$) puts negative over negative — electrostatically repulsive. Offsetting one ring by $\\sim1.5$–$2$ Å (**parallel-displaced**) or tipping to a **T-shape** (electron-poor edge onto electron-rich face) makes the electrostatics attractive. Each contact is only $\\sim1$–$3$ kcal/mol.\n\n### Worked example\n\nStack the base pairs of B-form DNA. Watson–Crick hydrogen bonds hold the two strands of a rung together, but what stacks one rung on the next is $\\pi$–$\\pi$ interaction between adjacent base pairs, helped by burying their hydrophobic faces from water. This is why base-stacking energies, not just the number of hydrogen bonds, control DNA melting temperature, and why a flat aromatic drug like ethidium or doxorubicin can **intercalate** — slot itself between two base pairs — lengthening and unwinding the helix. Pull the stack apart and you pay both the $\\pi$–$\\pi$ and the hydrophobic cost.\n\n### Why it's true / how it works\n\nThe dispersion term comes from correlated fluctuations of the two $\\pi$ clouds (the London mechanism), and because the clouds are large and polarisable it is substantial. The electrostatic term comes from the fixed quadrupole: its sign flips with geometry, which is why the *shape* of the contact matters so much. High-level SAPT energy decompositions show that for the benzene dimer dispersion actually supplies most of the binding *magnitude* while electrostatics selects *which* geometry wins — the sandwich, T, and parallel-displaced minima all sit within about a kcal/mol. Substituents act mostly through their own local electrostatics: electron-withdrawing groups (or ring nitrogens, as in azines, or full fluorination) reverse the quadrupole and can make direct face-to-face stacking favourable.\n\n### Where it connects\n\n$\\pi$–$\\pi$ stacking is a cousin of the other weak forces: it is largely **van der Waals** dispersion with an **electrostatic** steering term, and in water it is reinforced by the **hydrophobic effect** as aromatic surface is buried. It is central to nucleic-acid structure (base stacking, intercalation), to protein stability (aromatic clusters in cores), to the self-assembly of dyes and materials, and — with a charged partner — it grades into the **cation–π** interaction.\n\n### Watch out\n\nDo not picture the strongest stack as a perfectly eclipsed sandwich — that geometry is disfavoured by quadrupole repulsion; real stacks are offset or T-shaped. And do not treat the interaction as purely electrostatic “aromatic magnetism”: dispersion carries most of the energy. Finally, an electron-*rich* ring and an electron-*poor* ring attract more strongly and can stack face-to-face — the geometry rules above assume two similar, electron-rich rings.\n\n### Numbers & nuance\n\nPer-contact energy $\\sim1$–$3$ kcal/mol; benzene quadrupole $Q_{zz}\\approx-8.5$ D·Å. Benzene-dimer minima (sandwich, T-shaped, parallel-displaced) all within $\\sim1$ kcal/mol; parallel-displaced and T-shaped are lowest. Perfluorobenzene–benzene stacks face-to-face because the quadrupoles are opposite in sign. In nucleic acids, base *stacking* rivals or exceeds base *pairing* as a contributor to duplex stability, which is why stacking-disrupting mismatches and abasic sites are so destabilising."
+  },
+  {
+   "id": "cation-pi",
+   "title": "The cation–π interaction",
+   "shell": "nucleus",
+   "type": "concept",
+   "requires": [
+    "electrostatics",
+    "van-der-waals"
+   ],
+   "equation": "E_{\\mathrm{cat}\\text{-}\\pi}\\sim 2\\text{--}20\\ \\mathrm{kcal/mol}\\ (\\text{gas phase});\\quad \\text{dominated by charge}\\text{--}\\text{quadrupole} \\;\\propto\\; q\\,Q_{zz}/r^{3}",
+   "summary": "A positive ion sitting on the face of an aromatic ring is strongly stabilised by the ring's electron-rich π cloud — a charge–quadrupole attraction that in the gas phase can rival or beat a salt bridge. It is why K⁺ and Na⁺ bind benzene, why acetylcholine is recognised by aromatic boxes, and why Arg/Lys sit against Trp/Tyr/Phe at protein interfaces.",
+   "depths": {
+    "eli5": "The flat face of a ring molecule is a little bit negative, because its electrons pool there. A positive ion — like a sodium or potassium, or the charged tip of a lysine side chain — is drawn to that negative face and parks on top of it. It sounds odd that a bare-looking ring can grab an ion, but the pull is real and can be surprisingly strong, sometimes stronger than the ion sticking to water. Cells use this to grab the right ion and to recognise specific molecules.",
+    "core": "The same aromatic quadrupole that governs π–π stacking — electron-rich faces, electron-poor edges — means a **cation** placed over the face feels an attractive **charge–quadrupole** interaction (leading term $\\propto qQ_{zz}/r^3$), reinforced by the cation polarising the π cloud (an induction/van der Waals term). Gas-phase binding energies are large: benzene binds Li⁺, Na⁺, K⁺ by roughly 38, 27, 19 kcal/mol, and even the flat, delocalised ammonium/guanidinium head groups of Lys and Arg bind benzene by several kcal/mol. In water the interaction is much attenuated but still favourable, and because burying it removes the ring from solvent while only partly desolvating the ion, cation–π contacts are common in protein cores and binding sites.",
+    "deep": "Cation–π is a workhorse of molecular recognition. The nicotinic and muscarinic acetylcholine receptors, and acetylcholinesterase, grip the quaternary ammonium of acetylcholine in a **box of aromatic side chains** — a cation–π cage rather than a carboxylate salt bridge, which nature apparently prefers because a delocalised charge pairs better with a polarisable π face than with a point charge. Unnatural-amino-acid mutagenesis that fluorinates a binding-site tryptophan (progressively withdrawing π density) linearly weakens agonist binding — a direct experimental fingerprint of a cation–π bond. The same interaction helps set K⁺-channel selectivity, stabilises Arg/Lys–aromatic pairs at protein surfaces and protein–protein interfaces, and underlies the recognition of methylated lysines by aromatic reader domains in chromatin. Ranking by cation: smaller, denser charges bind harder (Li⁺ > Na⁺ > K⁺ in the gas phase), and electron-rich rings (indole of Trp) bind harder than electron-poor ones."
+   },
+   "note": "Cation–π: a cation over an aromatic face; leading term charge–quadrupole ∝ qQ_zz/r^3, plus induction (cation polarises π cloud). Gas-phase benzene: Li⁺ ~38, Na⁺ ~27, K⁺ ~19 kcal/mol; NH4⁺/guanidinium a few kcal/mol. Strongly attenuated in water but still favourable when buried. Aromatic order Trp>Tyr>Phe (indole most electron-rich). Key examples: acetylcholine binding (aromatic box in nAChR/AChE), K⁺-channel selectivity, Arg/Lys–aromatic pairs, methyl-lysine reader domains. Fluorinated-Trp mutagenesis gives a linear binding readout — the classic experimental proof.",
+   "sources": [
+    "Chemistry LibreTexts (noncovalent / cation-π interactions)",
+    "NCBI Bookshelf — Molecular Biology of the Cell / Biochemistry (molecular recognition; receptors)",
+    "MIT OpenCourseWare 5.13 / 7.05 (structure & reactivity; original prose here)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Cation–π interaction",
+     "url": "https://en.wikipedia.org/wiki/Cation%E2%80%93pi_interaction"
+    },
+    {
+     "label": "Wikipedia — Quadrupole",
+     "url": "https://en.wikipedia.org/wiki/Quadrupole"
+    },
+    {
+     "label": "Wikipedia — Acetylcholine receptor",
+     "url": "https://en.wikipedia.org/wiki/Acetylcholine_receptor"
+    },
+    {
+     "label": "Wikipedia — Molecular recognition",
+     "url": "https://en.wikipedia.org/wiki/Molecular_recognition"
+    },
+    {
+     "label": "Chemistry LibreTexts — Noncovalent interactions",
+     "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+    }
+   ],
+   "art_prompt": "a single benzene ring seen edge-on with its shaded negative pi cloud above and below the plane, and a positive ion (labelled K+) sitting centred on the electron-rich face with attraction arrows; beside it, a small cluster of three aromatic side chains forming a box around a quaternary-ammonium acetylcholine head group",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "Gas-phase binding of an alkali cation to benzene follows Li⁺ > Na⁺ > K⁺. What does this ordering tell you about the physical origin of the cation–π interaction?",
+     "answer": "The leading term is electrostatic — a charge–quadrupole (and induced-dipole) attraction. A smaller ion of the same charge concentrates that charge in a tighter volume, so it can approach the ring face more closely and produces a stronger field at the π cloud. Li⁺ (smallest) therefore binds hardest and K⁺ (largest) weakest. If the interaction were, say, purely dispersion it would not track ionic radius this way; the size-ordering is a signature of its electrostatic/charge–quadrupole nature."
+    },
+    {
+     "level": "conceptual",
+     "prompt": "Acetylcholine carries a quaternary ammonium (a full +1 charge). Its receptors recognise it with a box of aromatic residues rather than with a negatively charged carboxylate. Why might a cation–π cage be a better recognition strategy here, and how was this proven experimentally?",
+     "answer": "A carboxylate salt bridge would compete directly with water, which solvates a small point charge very well, so a buried carboxylate must pay a large desolvation cost and can be mimicked by stray ions. An aromatic cation–π box pairs the diffuse, polarisable π face with the (partly delocalised) ammonium charge; it desolvates less awkwardly and gives selective, directional recognition. It was proven by incorporating fluorinated tryptophans into the binding site: each added fluorine withdraws π electron density, and agonist binding weakened linearly with the number of fluorines — a direct, quantitative fingerprint that the charge is being held by the ring's π system."
+    }
+   ],
+   "lesson": "### Intuition\n\nThe flat face of an aromatic ring is slightly negative, because the ring's electrons pool above and below the plane. Bring up a positive ion — a potassium, a sodium, or the charged tip of a lysine or arginine — and it is pulled onto that face and parks there. It feels strange that a plain-looking hydrocarbon ring can clamp an ion, but the attraction is real and, in the absence of water, can beat the ion's attraction to almost anything else. Cells exploit it to grab the right ion and to recognise specific charged molecules.\n\n### Precisely\n\nThe same quadrupole that shapes $\\pi$–$\\pi$ stacking — negative faces, positive edges — means a cation on the ring face feels an attractive **charge–quadrupole** interaction whose leading term goes as $qQ_{zz}/r^3$, plus an **induction** term as the cation polarises the soft $\\pi$ cloud (a van der Waals-family contribution). Gas-phase numbers are large: benzene binds $\\mathrm{Li^+}\\approx38$, $\\mathrm{Na^+}\\approx27$, $\\mathrm{K^+}\\approx19$ kcal/mol; even the flat ammonium and guanidinium heads of Lys and Arg bind by several kcal/mol.\n\n### Worked example\n\nAcetylcholine ends in a **quaternary ammonium** — a permanent $+1$ charge. Its receptors and the enzyme acetylcholinesterase grip it not with a carboxylate but with a **box of aromatic residues** (Trp, Tyr, Phe): a cation–$\\pi$ cage. The proof is elegant: swap the key active-site tryptophan for tryptophans carrying $1$, $2$, $3$… fluorines. Each fluorine drains a little $\\pi$ density, and agonist binding weakens *linearly* with fluorine count — a direct dose–response readout that the ligand's charge is held by the ring's $\\pi$ electrons.\n\n### Why it's true / how it works\n\nDecompose the energy and the charge–quadrupole term dominates at contact distance, which is why the strength tracks the cation's charge density: same charge in a smaller ion (Li$^+$) gets closer to the face and feels a stronger field, so $\\mathrm{Li^+>Na^+>K^+}$. The ring side matters too — an electron-richer ring has a larger negative face, so indole (Trp) $>$ phenol (Tyr) $>$ benzene (Phe), and electron-withdrawing substituents weaken the bond. In water the interaction is much reduced because both partners are solvated, but burying a cation–$\\pi$ pair removes the ring from solvent while only partly stripping the ion, so the net effect stays favourable inside proteins.\n\n### Where it connects\n\nCation–$\\pi$ is the charged sibling of $\\pi$–$\\pi$ **stacking** and shares the same aromatic quadrupole; it is an **electrostatic** interaction with a **van der Waals**/induction component. It sets part of K$^+$-channel selectivity, builds Arg/Lys–aromatic pairs at protein and protein–protein interfaces, lets “reader” domains recognise methylated lysines in chromatin, and — with acetylcholine — sits at the heart of synaptic signalling.\n\n### Watch out\n\nThe headline gas-phase energies ($\\sim20$–$40$ kcal/mol for alkali cations) are *not* what you get in water — solvation slashes them to a few kcal/mol, so cation–$\\pi$ is a strong *buried* interaction, weak on an exposed surface. Also, do not confuse it with a salt bridge: a salt bridge pairs a cation with a point *anion*; cation–$\\pi$ pairs a cation with a neutral aromatic *face*. And an *anion* over an aromatic face is repelled unless the ring is electron-poor (the distinct anion–$\\pi$ interaction).\n\n### Numbers & nuance\n\nGas-phase benzene binding: $\\mathrm{Li^+}\\!\\sim\\!38$, $\\mathrm{Na^+}\\!\\sim\\!27$, $\\mathrm{K^+}\\!\\sim\\!19$, $\\mathrm{NH_4^+}$ and guanidinium a few kcal/mol. Aromatic strength order Trp $>$ Tyr $>$ Phe. Fluorination of a binding-site Trp weakens agonist binding linearly (the classic experimental signature). In proteins, cation–$\\pi$ pairs occur at roughly one per $\\sim70$ residues — a common, quantitatively important, and often overlooked stabilising contact."
+  },
+  {
+   "id": "salt-bridge",
+   "title": "Salt bridges (ion pairs in proteins)",
+   "shell": "nucleus",
+   "type": "concept",
+   "requires": [
+    "electrostatics",
+    "hydrogen-bond"
+   ],
+   "equation": "\\Delta G_{\\mathrm{Coul}}=\\dfrac{q_1 q_2}{4\\pi\\varepsilon_0\\varepsilon_r r};\\qquad \\text{net stability in water}\\sim -1\\ \\text{to}\\ -5\\ \\mathrm{kcal/mol}\\ (\\text{after desolvation cost})",
+   "summary": "A salt bridge is a close pair of oppositely charged side chains — typically a carboxylate (Asp/Glu) with an ammonium or guanidinium (Lys/Arg) — held by combined Coulomb attraction and hydrogen bonding. In water its net stabilisation is modest because both ions must give up their hydration shells, but buried or networked salt bridges can be strong and are a favourite of thermophilic proteins.",
+   "depths": {
+    "eli5": "Some amino-acid side chains carry a full electric charge: a few are minus (like aspartate and glutamate) and a few are plus (like lysine and arginine). When a plus one and a minus one sit right next to each other in a folded protein, they attract like the ends of two magnets and often also make a hydrogen bond — a little clasp called a salt bridge. It helps hold the fold together, but not as much as you'd guess, because in water each charge was already being hugged by water molecules it has to let go of.",
+    "core": "A salt bridge combines a **Coulomb** attraction ($\\Delta G=q_1q_2/4\\pi\\varepsilon_0\\varepsilon_r r$) between oppositely charged groups — usually Asp/Glu carboxylate with Lys ammonium or Arg guanidinium — with one or more **hydrogen bonds**, at donor–acceptor distances around 2.8–4 Å. The naive Coulomb energy in vacuum ($\\varepsilon_r\\!=\\!1$) is enormous, but two corrections shrink it: on a solvent-exposed surface the effective dielectric $\\varepsilon_r$ is high (~80 for bulk water) and screens the attraction, and both ions must shed part of their tightly bound hydration shells to approach — a large **desolvation penalty**. The *net* stabilisation is therefore usually only ~1–5 kcal/mol, and surface salt bridges are sometimes nearly neutral or even slightly destabilising once the entropy of the flexible side chains is counted.",
+    "deep": "Context is everything. **Buried** salt bridges sit in a low-dielectric protein interior where screening is weak, so the Coulomb term is large — but the desolvation cost is also large, so they are stabilising only when the geometry is near-optimal; a poorly formed buried ion pair can be strongly *destabilising*. **Networked** salt bridges (one charge shared among several, common with the doubly-branched guanidinium of Arg) share the desolvation cost over more favourable contacts and are a hallmark of **thermophilic and hyperthermophilic** proteins, which use extensive surface salt-bridge networks to keep folded at 80–100 °C. Because the ionisation of Asp/Glu/Lys/His depends on local environment, salt bridges are **pH-sensitive** and shift residue $pK_a$ values — the same coupling that lets proteins act as pH sensors and that must be modelled in $\\Delta\\Delta G$ predictions. Double-mutant cycles (mutating each partner alone and together) are the standard way to measure a salt bridge's true coupling energy, and they routinely show the *net* contribution is far below the vacuum Coulomb estimate."
+   },
+   "note": "Salt bridge = oppositely charged side chains (Asp/Glu carboxylate ··· Lys ammonium / Arg guanidinium) with Coulomb attraction + H-bond, d ≈ 2.8–4 Å. Net stability in water only ~1–5 kcal/mol: bulk ε_r~80 screens surface pairs and both ions pay a desolvation penalty. Buried pairs: strong Coulomb (low ε) but big desolvation — stabilising only if geometry is good, else destabilising. Networked/Arg-centred bridges spread the cost — hallmark of thermophiles. pH-dependent (shifts pKa). Measured by double-mutant cycles; net ≪ vacuum Coulomb estimate. Distinct from cation–π (cation on aromatic face) and from a plain H-bond (no net charges).",
+   "sources": [
+    "Chemistry / Biology LibreTexts (electrostatics in proteins; salt bridges)",
+    "NCBI Bookshelf — Molecular Biology of the Cell / Biochemistry (protein stability)",
+    "MIT OpenCourseWare 7.05 / 5.07 (Biochemistry; original prose here)"
+   ],
+   "resources": [
+    {
+     "label": "Wikipedia — Salt bridge (protein)",
+     "url": "https://en.wikipedia.org/wiki/Salt_bridge_(protein_and_supramolecular)"
+    },
+    {
+     "label": "Wikipedia — Coulomb's law",
+     "url": "https://en.wikipedia.org/wiki/Coulomb%27s_law"
+    },
+    {
+     "label": "Wikipedia — Protein folding (thermostability)",
+     "url": "https://en.wikipedia.org/wiki/Protein_folding"
+    },
+    {
+     "label": "Wikipedia — Double mutant cycle",
+     "url": "https://en.wikipedia.org/wiki/Double_mutant_cycle"
+    },
+    {
+     "label": "Biology LibreTexts — Protein structure & stability",
+     "url": "https://bio.libretexts.org/Bookshelves/Biochemistry"
+    }
+   ],
+   "art_prompt": "an aspartate carboxylate (two red oxygens, minus charge) facing a lysine ammonium (blue nitrogen, plus charge) about 3 angstrom apart, joined by a dashed hydrogen bond and a Coulomb attraction arrow; faded water molecules being pushed aside to show the desolvation cost; inset shows an arginine guanidinium bridging two carboxylates in a small network",
+   "quiz": [
+    {
+     "level": "recall",
+     "prompt": "The vacuum Coulomb energy between a carboxylate and an ammonium 3 Å apart is enormous, yet a typical surface salt bridge stabilises a protein by only ~1–5 kcal/mol (sometimes near zero). What two effects account for the huge reduction?",
+     "answer": "(1) Dielectric screening: on the solvent-exposed surface the effective dielectric constant is high (~80 for water), and the Coulomb energy scales as 1/ε_r, so the bulk-water environment slashes the attraction relative to the vacuum (ε_r=1) value. (2) Desolvation penalty: before pairing, each charged group is tightly hydrated; bringing the two ions together forces both to give up much of their hydration shell, which costs free energy that largely offsets the Coulomb gain. The net of a favourable (screened) Coulomb term minus a large desolvation cost leaves only a few kcal/mol."
+    },
+    {
+     "level": "conceptual",
+     "prompt": "Thermophilic proteins that stay folded near 100 °C tend to have MORE surface salt bridges, often arginine-centred networks, than their mesophilic homologues. Why are networks and arginine especially useful for thermostability?",
+     "answer": "A single isolated salt bridge gives only a small net stabilisation because its Coulomb gain is nearly cancelled by the desolvation cost. In a *network*, one charge participates in several favourable contacts at once, so the (roughly fixed) desolvation cost is amortised over more attractive interactions, raising the net benefit per buried charge. Arginine's guanidinium is planar and carries its charge over three nitrogens, so it can donate multiple hydrogen bonds and bridge two or more carboxylates simultaneously — ideal for building such networks. Extensive surface networks add enthalpic stabilisation that resists thermal unfolding, which is why hyperthermophiles rely on them."
+    }
+   ],
+   "lesson": "### Intuition\n\nA handful of amino-acid side chains carry a full electric charge: aspartate and glutamate are negative, lysine and arginine positive (histidine can go either way). When a positive and a negative one come to rest side by side in a folded protein, they attract like two magnet ends and usually clasp with a hydrogen bond too — a **salt bridge**. It helps pin the fold, though less than the raw electric attraction suggests, because in water each charge was already wrapped in water molecules it must release to make the pairing.\n\n### Precisely\n\nModel the electrostatic part with Coulomb's law, $\\Delta G_{\\mathrm{Coul}} = q_1 q_2 / 4\\pi\\varepsilon_0\\varepsilon_r r$, and add one or more **hydrogen bonds** between the groups (donor–acceptor $\\approx 2.8$–$4$ Å). Two corrections dominate the accounting. First, the **effective dielectric** $\\varepsilon_r$: on a wet surface it is high (~80), screening the attraction; buried in the protein it is low (~2–4), so the Coulomb term there is much larger. Second, the **desolvation penalty**: both ions were tightly hydrated and must strip that shell to approach. The *net* is usually only $\\sim1$–$5$ kcal/mol.\n\n### Worked example\n\nCompare a mesophilic enzyme with its cousin from a hyperthermophile that lives near a deep-sea vent at $\\sim100\\,^\\circ$C. Sequence and fold look almost identical, but the thermophile's surface is studded with extra salt bridges, often **arginine-centred networks** where one guanidinium bridges two or three carboxylates at once. Each contact alone is worth little, but a network shares the fixed desolvation cost over several favourable interactions, and the sum is enough enthalpy to hold the protein folded where the mesophilic version would melt. Double-mutant-cycle experiments — mutate each partner separately, then together — let you read off the true coupling energy of any one bridge.\n\n### Why it's true / how it works\n\nThe naive vacuum Coulomb energy for a $\\pm$ pair at $3$ Å is tens of kcal/mol, which would predict rigid, hyper-stable proteins. Reality is softer because $1/\\varepsilon_r$ screening and desolvation nearly cancel the gain. Whether a given bridge helps depends on geometry and location: a **buried** bridge sees weak screening (big Coulomb) but pays a big desolvation cost, so it stabilises only when nearly ideally arranged — a badly formed buried ion pair can *destabilise* the fold. **Surface** bridges are heavily screened and can be nearly neutral once you subtract the entropy lost by freezing two flexible side chains. Because the charges depend on protonation, salt bridges shift residue $pK_a$ values and are inherently **pH-sensitive**.\n\n### Where it connects\n\nA salt bridge is just **electrostatics** plus a **hydrogen bond** acting between two charged residues, so it sits alongside the other weak forces that stabilise folds. It feeds directly into **protein folding** and marginal stability, into $\\Delta\\Delta G$ prediction (where getting the desolvation and $pK_a$ coupling right is the hard part), into thermostability engineering, and — through its pH dependence — into proteins that act as pH sensors or switches.\n\n### Watch out\n\nNever quote the vacuum Coulomb energy as the stabilisation — it overshoots by an order of magnitude once screening and desolvation are included. Do not assume every ion pair helps: surface bridges are often near-neutral and buried ones can be destabilising if geometry is poor. Keep it distinct from its neighbours: a **cation–π** interaction pairs a cation with an aromatic *face* (no anion), and a plain **hydrogen bond** links neutral groups (no net charges).\n\n### Numbers & nuance\n\nGeometry: donor–acceptor $\\approx2.8$–$4$ Å, often defined as oppositely charged groups within $\\sim4$ Å. Net stability typically $\\sim1$–$5$ kcal/mol; surface pairs sometimes $\\approx0$. Effective dielectric $\\varepsilon_r\\sim80$ (exposed) down to $\\sim2$–$4$ (buried). Thermophiles show markedly more, and more networked, salt bridges than mesophiles. Arginine's guanidinium (planar, charge over three N) is the preferred network hub. Measured coupling energies from double-mutant cycles run well below vacuum Coulomb estimates — the standard cautionary result."
   }
  ]
 }
