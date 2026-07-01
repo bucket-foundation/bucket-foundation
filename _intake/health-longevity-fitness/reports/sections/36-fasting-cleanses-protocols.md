@@ -276,7 +276,7 @@ than read every one. The one detail worth stopping for is the mechanism of the "
 - **The evidence:** the passed "stones" have been **chemically analyzed** and are **soap** — **saponified fatty-acid
   complexes** formed in the gut when the ingested oil reacts with the citrus/digestive juices. They contain no
   cholesterol/bile stones and were not in the liver or gallbladder. (The classic analysis: a *Lancet* 2005 letter,
-  Sies & Brinkmann, showing the "stones" were saponified oil with no actual gallstone constituents.) The liver does not
+  Sies & Brooker, showing the "stones" were saponified oil with no actual gallstone constituents.) The liver does not
   store passable "stones," and you cannot manually flush the biliary tree this way.
 
 @@FIG:Y09-liver-flush@@

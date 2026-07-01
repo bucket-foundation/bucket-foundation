@@ -359,7 +359,7 @@ leading cause of post-neonatal infant death and a parent's worst fear. It is als
 
 - Epidemiology converged on infant **sleep position** as a powerful, modifiable risk factor. A systematic review
   of the observational evidence (Gilbert et al., 2005)[^sids-gilbert] found that
-  **prone (front) sleeping carried a roughly 4-fold higher SIDS risk**, and concluded that had the advice to
+  **prone (front) sleeping carried a roughly 3-fold higher SIDS risk**, and concluded that had the advice to
   avoid front-sleeping been adopted earlier, **tens of thousands of infant deaths might have been prevented** —
   a rare and damning case of *delayed* translation of evidence.
 - The **"Back to Sleep" campaign** (launched 1994; now "Safe to Sleep") translated this into a simple message:

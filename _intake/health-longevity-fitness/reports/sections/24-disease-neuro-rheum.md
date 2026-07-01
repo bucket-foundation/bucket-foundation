@@ -111,8 +111,9 @@ but the direction is not in doubt.)
 - **Endovascular thrombectomy.** For **large-vessel occlusions**, mechanically pulling the clot out
   with a catheter is the single biggest advance. The **HERMES** individual-patient-data
   meta-analysis (Goyal, 2016) pooled five 2015 trials: thrombectomy roughly **doubled the odds of
-  functional independence** — NNT ≈ 2.6, meaning you treat about three people for one to walk away
-  independent who otherwise wouldn't, one of the best numbers-needed-to-treat in medicine.[^hermes]
+  functional independence** — with an NNT of about 2.6 for one person to end up at least one level less
+  disabled on the modified Rankin Scale (≈5 to make one extra person fully independent), one of the best
+  numbers-needed-to-treat in medicine.[^hermes]
   Later trials (DAWN, DEFUSE-3) extended the window to **24 hours** in imaging-selected patients.
   A 2025 BMJ review summarizes the current standard.[^stroke-bmj]
 - **Hemorrhagic stroke** has fewer magic bullets: **aggressive but not extreme blood-pressure

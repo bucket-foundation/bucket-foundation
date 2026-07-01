@@ -63,7 +63,7 @@ Three lines of evidence dismantle the protective claim:
   **disappears** (no significant risk reduction).[^zhao-metabias] Risk rises clearly at higher intakes, and the rise is steeper
   in women.
 - **Threshold analysis (Wood 2018).** 599,912 current drinkers across
-  83 studies: lowest all-cause mortality risk sits at **~100 g of pure alcohol per week (≈5–6 standard
+  83 studies: lowest all-cause mortality risk sits at **~100 g of pure alcohol per week (≈7 standard
   drinks)**, and above that mortality rises roughly **monotonically**.[^wood-threshold] Note the *direction-specific* nuance:
   alcohol lowered non-fatal myocardial infarction risk but **raised** stroke, fatal aortic aneurysm, heart
   failure, and fatal hypertensive disease — so even the "cardioprotective" piece is a trade between conditions,

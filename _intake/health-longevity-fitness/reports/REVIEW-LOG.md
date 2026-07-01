@@ -155,3 +155,16 @@ Turned the manual into a real reference book (build_manual.py + generated back m
   nav/TOC. Readable on any phone/e-reader with adjustable text. Mirrored to Drive.
 - **Web**: `manual.html` is a single-page searchable web version (any browser); also mirrored.
   A deployed multi-page site with search remains a follow-up option.
+
+## Deep citation verification (Track 3 of 3)
+9 web-enabled fact-checkers verified the manual's highest-stakes quantitative claims against the
+PRIMARY literature (DOI/PMID/trial lookup) — not just internal consistency.
+- **~173 claims checked · ~167 CONFIRMED · 6 MINOR · 0 WRONG · 0 UNVERIFIED.**
+- The citation quality held up exceptionally: SPRINT, the GLP-1 trials (STEP/SELECT/FLOW/SURMOUNT),
+  CheckMate-067, DiRECT, EMPA-REG, Cochrane meta-analyses, the Copenhagen sports table, Cipriani,
+  Sordo MOUD, lecanemab CDR-SB — all matched their sources on number, direction, population, endpoint.
+- **6 minor corrections applied:** MASAI AI-mammography ~29%/6.4-5.0 → ~20%/6.1-5.1; SIDS prone-sleep
+  ~4-fold → ~3-fold (Gilbert OR ~3.0); HERMES NNT 2.6 re-pinned to a 1-level mRS shift (≈5 for full
+  independence); alcohol 100 g/wk ≈ 5-6 → ≈7 US standard drinks; liver-flush cite Sies & Brinkmann →
+  Sies & Brooker. (APOE ε4 8-12× left as-is — defensible lifetime-risk framing vs case-control ORs.)
+- No load-bearing claim was wrong. Corrections rebuilt into PDF + EPUB.

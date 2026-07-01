@@ -331,8 +331,8 @@ governance, see `33-public-health-systems.md §6` — do not duplicate.)
   first FDA-authorised *autonomous* AI diagnostic (2018) — cross-ref `33 §6`.
 - **MASAI (Lång et al., *Lancet Oncology* 2023, with full analysis 2025)** is the strongest evidence to
   date and the right kind: a **prospective randomised trial** of AI-supported vs standard double-reading
-  in population breast screening (>100,000 women). AI support **increased cancer detection ~29%**
-  (6.4 vs 5.0 per 1,000) **without a significant rise in false positives**, and **cut radiologist
+  in population breast screening (>100,000 women). AI support **increased cancer detection ~20%**
+  (6.1 vs 5.1 per 1,000) **without a significant rise in false positives**, and **cut radiologist
   reading workload ~44%.** This is real, `rct`-tier evidence that AI can *augment* a screening programme.
 
 **What honesty demands alongside it:**
