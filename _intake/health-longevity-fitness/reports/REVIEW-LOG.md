@@ -148,3 +148,10 @@ Turned the manual into a real reference book (build_manual.py + generated back m
   the manual's framing concepts), generated from a corpus frequency census, 2-column.
 - **Index** — a 230-entry 2-column subject index; each term links to the chapters (§) it appears in.
 - Front matter + back matter both listed in the Contents. 571 pages.
+
+## EPUB / web reading version (Track 2 of 3)
+- **EPUB** (`build_epub.py` → `manual.epub`, ~48 MB): reflowable EPUB3 built from the chapter
+  markdown — 367 figures embedded, native footnotes (49 chapters), tables (51 chapters), proper
+  nav/TOC. Readable on any phone/e-reader with adjustable text. Mirrored to Drive.
+- **Web**: `manual.html` is a single-page searchable web version (any browser); also mirrored.
+  A deployed multi-page site with search remains a follow-up option.
