@@ -925,3 +925,41 @@ reionization/21cm, Sunyaev–Zel'dovich effect, weak-lensing shear. OR the durab
 prereq-shell fix (add a depth-3 dependent of redox-potential to raise its betweenness to 6/6; VERIFY
 asked stays ≤18). Cheap zero-risk wins still open across branches: atoms lacking a derive-level quiz
 item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.
+
+## 2026-07-01 — run 25 (+6 cosmology atoms; branch expansion continues; biophysics untouched)
+Continued branch expansion per run-24's handoff (cosmology & mind tied thinnest at 47/48; picked
+cosmology). Added **6 cosmology atoms (47→53)**, all filling the run-23/24 noted gaps + one halo
+foundation, each `requires` into EXISTING cosmology ids only (verified no missing/dupe):
+**cosmic-neutrino-background** (CνB decouples at ~1 MeV/1 s; T_ν=(4/11)^(1/3)T_γ≈1.95K from e±
+annihilation entropy; N_eff≈3.046 sets ρ_r → BBN + equality; undetected directly; ← thermal-history,
+bbn), **reionization** (first stars/quasars re-ionize the IGM at z~6–10; Gunn–Peterson trough marks
+the *end*; CMB Thomson τ≈0.05; 21cm as the direct probe; ← recombination, large-scale-structure),
+**redshift-space-distortions** (Kaiser squashing β=f/b + fingers-of-god; P_s(k,μ)=(1+βμ²)²P_r;
+measures fσ_8 = growth-rate test of DE/modified gravity; ← redshift-surveys, gravitational-instability),
+**sunyaev-zeldovich-effect** (inverse-Compton off hot ICM electrons; Compton-y = ∫(k_BT_e/m_ec²)n_eσ_T dℓ;
+217GHz null; redshift-INDEPENDENT surface brightness → cluster finder; ← cmb-anisotropies,
+large-scale-structure), **weak-lensing-shear** (cosmic shear ~1% coherent; convergence κ projects
+matter density → probes P(k); amplitude sets S_8=σ_8√(Ω_m/0.3); intrinsic-alignment systematic;
+← gravitational-lensing, matter-power-spectrum), **halo-mass-function** (Press–Schechter: δ_c≈1.686
+spherical-collapse threshold + Gaussian field → dn/dM with exp(−δ_c²/2σ²) high-mass cutoff; cluster
+counts = sharp σ_8 lever; Sheth–Tormen/Tinker corrections; ← gravitational-instability,
+matter-power-spectrum). Each = full 6-section lesson (Intuition/Precisely/Worked example/Why it's true/
+Where it connects/Watch out) + summary + 3 depths + note + art_prompt + 2 quiz (recall + derive/apply,
+most with eq) + OPEN sources (MIT OCW 8.286 + arXiv astro-ph + Wikipedia). ALL prose ORIGINAL;
+equations are facts. meta 0.4.0→0.5.0. Mirrored to public/academy-app via `node scripts/sync-academy.mjs`
+from the repo ROOT (53 atoms, ver 0.5.0 verified).
+
+**validate.sh PASSES end-to-end** (all corpus JSON integrity incl. cosmology 53/no-dupes/no-missing-
+requires, manifest consistency, JS syntax, 60-day engine sim — biophysics diagnostic UNCHANGED at
+placed 42/asked 18 margin +24 shell 5/6 since the engine sim loads ONLY biophysics.json, so cosmology
+edits are zero-risk to placement — assess/lang/explorer smokes all green).
+
+**NEXT run:** keep expanding the thinnest branch — after this, **mind (48)** is clearly thinnest, then
+chemistry/information/mathematics (~48–49); cosmology is now 53. Mind gaps still open (from run 24):
+interoception/homeostatic drives, emotion/amygdala circuits, sleep & memory replay, free-energy-
+principle as its own atom, glia-as-computation (deeper). Cosmology now well-covered; remaining minor
+gaps: cosmic-variance, integrated-Sachs-Wolfe as its own atom, 21cm-cosmology as its own atom. OR the
+durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential to raise its
+betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins still open across branches: atoms
+lacking a derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0
+reachable.
