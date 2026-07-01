@@ -2,8 +2,8 @@
   "meta": {
     "branch": "05-biophysics",
     "title": "Biophysics — general-exam nucleus",
-    "version": "0.10.0",
-    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved. v0.6.2: +4 real biophysics experimental-method atoms (itc, spr, fcs, epr) filling the syllabus 1.8 methods gap (calorimetry, kinetics biosensing, fluctuation spectroscopy, magnetic-resonance/spin-labeling). All depth=2 (in the expert frontier): itc requires binding-kd/mass-action/gibbs, spr requires binding-kd/mass-action, fcs requires correlation-function/einstein-stokes, epr requires boltzmann/fret. No existing atom modified, so no depth cascade; placement margin preserved/improved. v0.8.0: +4 atoms — tunneling-wkb (WKB barrier T≈e^(−2κd), κ=√(2m(V−E))/ħ; requires schrodinger-equation, wired UNDER marcus-theory & electron-transport-chain as the exponential distance factor in electron transfer), steady-state-approximation (QSSA d[I]/dt≈0; requires master-equation, wired UNDER michaelis & smoluchowski-rate — the move that yields Michaelis–Menten and diffusion-limited rates), maxwell-dipole-radiation (Larmor + Einstein A/B, A∝ν³|μ|²; requires schrodinger-equation, wired UNDER fcs as the radiative rate FRET/fluorescence compete against), and dls (dynamic light scattering, Γ=Dq² → R_h via Stokes–Einstein; requires correlation-function/einstein-stokes, §1.8 method leaf). All leaf-leverage wirings verified zero depth cascade; the three foundation atoms (depth 1) sit inside the expert frontier under deep dependents to lift the diagnostic margin. v0.9.0: +3 atoms — dsc (differential scanning calorimetry; excess-Cp peak at T_m, ΔH_cal=area, ΔH_vH=4RT_m²C_p,max/ΔH_cal, ratio tests two-state cooperativity; requires gibbs+mass-action, depth 2, §1.8 method leaf), analytical-ultracentrifugation (Svedberg M=sRT/[D(1−v̄ρ)] from velocity + equilibrium Boltzmann gradient c(r)∝exp[M(1−v̄ρ)ω²r²/2RT]; requires einstein-stokes+chemical-potential, depth 2, §1.8 method leaf), and radius-of-gyration (R_g²=(1/N)Σ|r_i−r_cm|², Guinier I(q)≈I(0)e^(−q²R_g²/3), R_g∝N^ν; requires=[], depth 0 foundation wired UNDER saxs & flory-scaling by leaf-leverage — zero depth cascade (both stay depth 2), lifts placed-count). All prose original; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. v0.10.0: +4 atoms — persistence-length (ℓ_p=κ_b/k_BT, tangent correlation e^(−s/ℓ_p), WLC ⟨R²⟩=2ℓ_pL−2ℓ_p²(1−e^(−L/ℓ_p)); requires boltzmann+harmonic-approximation, depth 1, wired UNDER optical-tweezers+afm which both stay depth 2 — zero cascade, leaf-leverage), zeta-potential (ζ at the shear plane, μ_e=εε₀ζ/η Smoluchowski / 2εε₀ζ/3η Hückel, Henry f(κa); requires debye, depth 2, electrokinetics/DLVO leaf), preferential-interaction (Γ_23=(∂m_3/∂m_2), Wyman linkage ∂ΔG/∂μ_3=−ΔΓ, m-value ΔG=ΔG°−m[D], C_m=ΔG°/m; requires gibbs+chemical-potential, depth 2), and debye-waller-factor (f=f₀e^(−Bsin²θ/λ²), B=8π²⟨u²⟩=8π²k_BT/k via equipartition, RMSF=√(3⟨u²⟩); requires bragg+equipartition, depth 2). All prose original; equations are facts; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom.",
+    "version": "0.11.0",
+    "note": "Explanations authored for Bucket Academy (original prose; equations are facts). Open sources only. v0.4.0: every atom rewritten for zero-prior-knowledge learners and given a verified `resources` array (5–8 open/legal learn-more links: Wikipedia for the concept and each jargon term, plus deeper open sources — Biology/Chemistry LibreTexts, NCBI Bookshelf, PMC, PDB-101, Khan Academy, MIT OCW, arXiv, Nobel Prize). `resources` is separate from `sources` (attribution). v0.5.1: added rigorous derive-level quiz items to 8 equation-type nucleus atoms (debye, ddg, hill, eyring, fick, random-walk, nernst, chemiosmosis). v0.5.3: +2 polymer-physics atoms (flory-scaling, rouse-model) - the diagnostic places these depth<=3 atoms within budget; zimm-model/tica authored but deferred (depth-4 frontier atoms overrun the placement budget, FAIL test-diagnostic until its prereq-closure early-stop is extended). v0.5.4: added rigorous derive-level quiz items to 8 more atoms (boltzmann, gibbs, fret, cable-equation, smoluchowski-rate, redox-potential, bragg, ghk) — no new atoms, so diagnostic placement margin is untouched. v0.5.5: +3 foundational depth≤2 atoms (equipartition, chemical-potential, electrochemical-potential) filling stat-mech/transport prerequisite gaps (syllabus 0.2/0.4/1.1); margin-safe (in expert frontier), no existing atom modified. v0.5.6: +3 foundational depth≤2 atoms (mass-action, arrhenius, osmotic-pressure) filling reaction-equilibrium / kinetics / colligative-transport prerequisite gaps; all in the expert frontier (requires gibbs/boltzmann/chemical-potential), so placement margin is unchanged; no existing atom modified. v0.5.7: +3 foundational depth<=2 atoms (detailed-balance, fluctuation-dissipation, le-chatelier) filling equilibrium-kinetics / stochastic-thermodynamics / equilibrium-response prerequisite gaps; all shell=nucleus. Wired detailed-balance as a prereq of monte-carlo/markov-state-model/replica-exchange (Metropolis/REMD/MSM all enforce it) and fluctuation-dissipation as a prereq of langevin (its noise and friction must satisfy FDT) so these new atoms gain downstream encompassing leverage; this IMPROVED the diagnostic margin (expert placed 22 vs asked 18, up from 20). Depths of the edited atoms stay <=2. v0.5.8: +3 foundational math-prerequisite atoms (stirling-approximation, central-limit-theorem, master-equation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing atom WITHOUT raising that atom's depth (stirling->partition-function, central-limit-theorem->random-walk, master-equation->detailed-balance), so the new atoms gain downstream encompassing leverage (leaf-leverage lesson from run 9) with zero depth cascade. No existing atom's depth changes; placement margin preserved/improved. v0.5.9: +3 foundational math-prerequisite atoms (gaussian-integral, lagrange-multipliers, harmonic-approximation), all requires=[] (diagnostic-depth 0, in expert frontier). Each wired as a REAL prereq of an existing dependent WITHOUT raising that atom's depth (gaussian-integral->partition-function/equipartition/wlc, lagrange-multipliers->partition-function, harmonic-approximation->equipartition), gaining downstream encompassing leverage (leaf-leverage rule) with zero depth cascade. v0.6.1: +3 foundational math atoms (fourier-transform, onsager-reciprocity, linear-response-theory), all requires=[] (diagnostic-depth 0, expert frontier). Each wired as a REAL prereq of existing dependents WITHOUT raising their depth (leaf-leverage rule): fourier-transform->bragg/saxs/nmr-relaxation, onsager-reciprocity->membrane-transport, linear-response-theory->fluctuation-dissipation/marcus-theory. Zero depth cascade; placement margin preserved/improved. v0.6.2: +4 real biophysics experimental-method atoms (itc, spr, fcs, epr) filling the syllabus 1.8 methods gap (calorimetry, kinetics biosensing, fluctuation spectroscopy, magnetic-resonance/spin-labeling). All depth=2 (in the expert frontier): itc requires binding-kd/mass-action/gibbs, spr requires binding-kd/mass-action, fcs requires correlation-function/einstein-stokes, epr requires boltzmann/fret. No existing atom modified, so no depth cascade; placement margin preserved/improved. v0.8.0: +4 atoms — tunneling-wkb (WKB barrier T≈e^(−2κd), κ=√(2m(V−E))/ħ; requires schrodinger-equation, wired UNDER marcus-theory & electron-transport-chain as the exponential distance factor in electron transfer), steady-state-approximation (QSSA d[I]/dt≈0; requires master-equation, wired UNDER michaelis & smoluchowski-rate — the move that yields Michaelis–Menten and diffusion-limited rates), maxwell-dipole-radiation (Larmor + Einstein A/B, A∝ν³|μ|²; requires schrodinger-equation, wired UNDER fcs as the radiative rate FRET/fluorescence compete against), and dls (dynamic light scattering, Γ=Dq² → R_h via Stokes–Einstein; requires correlation-function/einstein-stokes, §1.8 method leaf). All leaf-leverage wirings verified zero depth cascade; the three foundation atoms (depth 1) sit inside the expert frontier under deep dependents to lift the diagnostic margin. v0.9.0: +3 atoms — dsc (differential scanning calorimetry; excess-Cp peak at T_m, ΔH_cal=area, ΔH_vH=4RT_m²C_p,max/ΔH_cal, ratio tests two-state cooperativity; requires gibbs+mass-action, depth 2, §1.8 method leaf), analytical-ultracentrifugation (Svedberg M=sRT/[D(1−v̄ρ)] from velocity + equilibrium Boltzmann gradient c(r)∝exp[M(1−v̄ρ)ω²r²/2RT]; requires einstein-stokes+chemical-potential, depth 2, §1.8 method leaf), and radius-of-gyration (R_g²=(1/N)Σ|r_i−r_cm|², Guinier I(q)≈I(0)e^(−q²R_g²/3), R_g∝N^ν; requires=[], depth 0 foundation wired UNDER saxs & flory-scaling by leaf-leverage — zero depth cascade (both stay depth 2), lifts placed-count). All prose original; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. v0.10.0: +4 atoms — persistence-length (ℓ_p=κ_b/k_BT, tangent correlation e^(−s/ℓ_p), WLC ⟨R²⟩=2ℓ_pL−2ℓ_p²(1−e^(−L/ℓ_p)); requires boltzmann+harmonic-approximation, depth 1, wired UNDER optical-tweezers+afm which both stay depth 2 — zero cascade, leaf-leverage), zeta-potential (ζ at the shear plane, μ_e=εε₀ζ/η Smoluchowski / 2εε₀ζ/3η Hückel, Henry f(κa); requires debye, depth 2, electrokinetics/DLVO leaf), preferential-interaction (Γ_23=(∂m_3/∂m_2), Wyman linkage ∂ΔG/∂μ_3=−ΔΓ, m-value ΔG=ΔG°−m[D], C_m=ΔG°/m; requires gibbs+chemical-potential, depth 2), and debye-waller-factor (f=f₀e^(−Bsin²θ/λ²), B=8π²⟨u²⟩=8π²k_BT/k via equipartition, RMSF=√(3⟨u²⟩); requires bragg+equipartition, depth 2). All prose original; equations are facts; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom. v0.11.0: +4 atoms — electrostatics (Coulomb F=q₁q₂/4πεε₀r², Gauss ∇·E=ρ/εε₀, Poisson ∇²φ=−ρ/εε₀, Bjerrum ℓ_B≈0.71 nm; requires=[], depth 0 foundation wired UNDER debye+poisson-boltzmann+zeta-potential by leaf-leverage — all stay their depth, lifts placed-count), continuity-equation (∂ρ/∂t+∇·J=s; requires=[], depth 0, wired UNDER reaction-diffusion+membrane-transport — continuity+Fick's-1st gives Fick's-2nd, no cascade), gouy-chapman (diffuse double layer, ψ(x)≈ψ₀e^(−κx), Grahame σ=√(8εε₀n₀k_BT)sinh(zeψ₀/2k_BT), diffuse capacitance εε₀κ; requires debye+electrostatics, depth 2, electrokinetics leaf in expert frontier), and debye-huckel-activity (limiting law log₁₀γ±=−A|z₊z₋|√I, A≈0.509; μ^ex=−z²e²κ/8πεε₀ ⇒ ln γ∝−√I; requires debye+chemical-potential, depth 2). All prose original; equations are facts; OPEN sources only; full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive) per atom.",
     "license": "CC-BY-4.0 (prose) / facts not copyrightable (equations)"
   },
   "atoms": [
@@ -389,7 +389,8 @@
       "shell": "nucleus",
       "type": "equation",
       "requires": [
-        "boltzmann"
+        "boltzmann",
+        "electrostatics"
       ],
       "equation": "\\lambda_D = \\sqrt{\\dfrac{\\varepsilon\\varepsilon_0 k_BT}{\\sum_i n_i q_i^2}}",
       "summary": "Salt ions cloud around charges and cut off electrostatic interactions beyond the Debye length.",
@@ -2043,7 +2044,8 @@
       "shell": "nucleus",
       "type": "concept",
       "requires": [
-        "debye"
+        "debye",
+        "electrostatics"
       ],
       "summary": "The mean-field equation for the electrostatic potential around a charged molecule in salt water — Boltzmann-weighted mobile ions plugged into Poisson's equation.",
       "depths": {
@@ -3444,7 +3446,8 @@
       "requires": [
         "nernst",
         "gibbs",
-        "onsager-reciprocity"
+        "onsager-reciprocity",
+        "continuity-equation"
       ],
       "summary": "Cells move solutes across membranes either downhill (passive, through channels) or uphill (active, powered by ATP or a coupled ion gradient) — the bookkeeping of cellular energetics.",
       "depths": {
@@ -3756,7 +3759,8 @@
       "type": "concept",
       "requires": [
         "fick",
-        "eigen-modes"
+        "eigen-modes",
+        "continuity-equation"
       ],
       "summary": "Coupling chemical reactions to diffusion can spontaneously break spatial uniformity, generating stationary patterns — Turing's mechanism for how a uniform embryo can self-organize structure.",
       "depths": {
@@ -7192,7 +7196,8 @@
       "shell": "nucleus",
       "type": "concept",
       "requires": [
-        "debye"
+        "debye",
+        "electrostatics"
       ],
       "summary": "The zeta potential ζ is the electric potential at the shear (slipping) plane of a charged particle's diffuse double layer; it sets the electrophoretic mobility μ_e = v/E, related to ζ by the Helmholtz–Smoluchowski limit μ_e = εε₀ζ/η, and it is the practical measure of colloidal (electrostatic) stability.",
       "depths": {
@@ -7371,6 +7376,256 @@
         }
       ],
       "lesson": "### Intuition\n\nAtoms in a crystal are never frozen — they rattle around their average positions. A rattling atom is a blurred target, and a blur is hardest to see when you are looking for the finest detail. In diffraction the finest detail lives at high scattering angle, so thermal motion fades the far-out reflections most. Turn that fading around and every atom's diffraction 'blur' becomes a measurement of how much it moves — tiny for a locked-down core atom, large for a waving surface side chain.\n\n### Precisely\n\nAn atom vibrating with one-dimensional mean-square displacement $\\langle u^2\\rangle$ smears its scattering, multiplying its form factor by the **Debye–Waller factor**\n$$f = f_0\\,\\exp\\!\\left(-B\\,\\frac{\\sin^2\\theta}{\\lambda^2}\\right),\\qquad B = 8\\pi^2\\langle u^2\\rangle.$$\nSince the scattering vector is $q = 4\\pi\\sin\\theta/\\lambda$, the exponent is just $-\\langle u^2\\rangle q^2/2$: the damping grows with $q^2$, so it hits high-resolution data hardest. Measured intensities go as the square, $\\exp(-2B\\sin^2\\theta/\\lambda^2)$. The number $B$, in Å$^2$, is the crystallographic **B-factor** attached to every atom in a deposited structure.\n\n### Worked example\n\nAn atom refines to $B = 20$ Å$^2$. Then $\\langle u^2\\rangle = B/8\\pi^2 = 20/78.96 = 0.253$ Å$^2$, so its RMS wobble in one direction is $\\sqrt{0.253} = 0.50$ Å and its total 3-D RMSF is $\\sqrt{3\\times0.253} = 0.87$ Å — nearly an Ångström of motion, comparable to a bond length's fraction. Treating it as a harmonic spring at 300 K, equipartition gives $k = k_BT/\\langle u^2\\rangle = 4.14\\times10^{-21}/(0.253\\times10^{-20}) \\approx 1.6$ N/m, a genuinely soft restraint.\n\n### Why it's true / how it works\n\nModel the atom as a harmonic oscillator. **Equipartition** assigns $\\tfrac12 k_BT$ to its potential energy, $\\tfrac12 k\\langle u^2\\rangle = \\tfrac12 k_BT$, so $\\langle u^2\\rangle = k_BT/k$ and $B = 8\\pi^2 k_BT/k$ — the B-factor rises *linearly* with temperature (the Debye model's high-$T$ limit). Averaging the scattered wave over the Gaussian spread of atomic positions produces the exponential attenuation, the same mathematics as averaging $e^{iq\\cdot u}$ over a Gaussian, which gives $e^{-\\langle (q\\cdot u)^2\\rangle/2}$.\n\n### Where it connects\n\nThe Debye–Waller factor sits on top of **Bragg** diffraction — it is the correction that turns idealized sharp reflections into the intensities a warm crystal actually gives — and it draws its temperature dependence from **equipartition** and the **harmonic approximation**. It is the experimental twin of the molecular-dynamics **RMSF**: $\\mathrm{RMSF} = \\sqrt{3\\langle u^2\\rangle} = \\sqrt{3B/8\\pi^2}$ lets refined B-factors be compared directly with simulated flexibility. Elastic-network and normal-mode models close the loop by *predicting* B-factors from the **eigen-modes** of the structure: summing each atom's mean-square displacement over the low-frequency modes, $\\langle u_i^2\\rangle \\propto \\sum_k \\lambda_k^{-1}|\\mathbf e_{k,i}|^2$, reproduces the observed temperature factors, so the softest collective motions are exactly the ones that blur the diffraction. The same physics governs the temperature factor in cryo-EM and neutron scattering.\n\n### Watch out\n\nA B-factor is not pure vibration: it also absorbs static disorder (different molecules in the crystal frozen in slightly different conformations) and plain model error, so it is an *upper bound* on true dynamic motion. High B on a ligand can mean partial occupancy rather than floppiness. And the single isotropic $B$ assumes the motion is spherical; when data are good enough, anisotropic refinement replaces it with a six-parameter tensor drawn as a thermal ellipsoid.\n\n### Numbers & nuance\n\nWell-ordered protein cores refine to $B \\approx 5$–15 Å$^2$, flexible surface loops to 40–80 Å$^2$ or higher, and disordered regions simply vanish from the density. Because $B \\propto T$, cryocooling to 100 K is standard practice: it shrinks $\\langle u^2\\rangle$, sharpens high-angle spots for better resolution, and slows radiation damage. The mean B of a structure roughly tracks its resolution — a useful sanity check that the refined motions are physical rather than fitted noise."
+    },
+    {
+      "id": "electrostatics",
+      "title": "Electrostatics — Coulomb's law, Gauss's law, and the Poisson equation",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [],
+      "equation": "F=\\dfrac{q_1q_2}{4\\pi\\varepsilon\\varepsilon_0 r^2},\\qquad \\nabla\\!\\cdot\\!\\mathbf{E}=\\dfrac{\\rho}{\\varepsilon\\varepsilon_0},\\qquad \\nabla^2\\phi=-\\dfrac{\\rho}{\\varepsilon\\varepsilon_0}",
+      "summary": "Two charges attract or repel with a force that falls as 1/r² (Coulomb); the same law written for a whole charge distribution is Gauss's law ∇·E = ρ/εε₀, and in terms of potential it is the Poisson equation ∇²φ = −ρ/εε₀ — the electrostatic bedrock under every ionic and macromolecular interaction in water.",
+      "depths": {
+        "eli5": "Like charges push apart, opposite charges pull together, and the force weakens fast as they move apart — quarter the force at double the distance. Add up that push-and-pull from every charge around and you get the electric field; the field tells any new charge which way to go and how hard it is shoved. Water is special: it dulls these forces by about eighty times, which is why salt dissolves and why the charges on a protein can sit near each other without tearing it apart.",
+        "core": "Coulomb's law gives the force between two point charges, F = q₁q₂/(4πεε₀r²), directed along the line joining them (repulsive for like signs). The electric field E = F/q is the force per unit test charge, and its potential energy per unit charge is the electrostatic potential φ, with E = −∇φ. Summing contributions from a continuous charge density ρ, the flux of E out of any closed surface equals the enclosed charge over εε₀ — **Gauss's law**, ∇·E = ρ/εε₀ in differential form. Substituting E = −∇φ gives the **Poisson equation** ∇²φ = −ρ/εε₀; where there is no free charge it reduces to Laplace's equation ∇²φ = 0. The relative permittivity ε (≈ 80 for water) screens all of these by the same factor.",
+        "deep": "The permittivity factor ε is the linear-response of the medium's bound charge: water's rotating dipoles polarize to oppose an applied field, cutting the effective interaction ~80-fold and setting the **Bjerrum length** ℓ_B = e²/(4πεε₀k_BT) ≈ 0.71 nm in water — the separation at which two elementary charges interact with exactly k_BT, the natural yardstick for when electrostatics beats thermal noise. Mobile ions add their own charge density ρ_ion to the Poisson equation; closing it with a Boltzmann distribution of those ions turns the linear Poisson equation into the nonlinear Poisson–Boltzmann equation, and its linearized form yields Debye screening. So Coulomb → Gauss → Poisson is the trunk from which Debye–Hückel, the diffuse double layer, ζ-potential, and continuum solvent models all branch."
+      },
+      "note": "Coulomb F = q₁q₂/(4πεε₀r²); field E = −∇φ; Gauss ∇·E = ρ/εε₀ (integral ∮E·dA = Q_enc/εε₀); Poisson ∇²φ = −ρ/εε₀ → Laplace ∇²φ = 0 in charge-free regions. In a dielectric use D = εε₀E, ∇·D = ρ_free. Water ε ≈ 80 screens ~80×. Bjerrum length ℓ_B = e²/(4πεε₀k_BT) ≈ 0.71 nm (charge separation where U = k_BT). ('Permittivity' ε₀ = 8.854×10⁻¹² F/m; 'relative permittivity' ε is the dimensionless dielectric constant.)",
+      "sources": [
+        "LibreTexts Physics (electricity & magnetism: Coulomb, Gauss, Poisson)",
+        "MIT OpenCourseWare 8.02 (Electricity and Magnetism)",
+        "OpenStax University Physics Vol. 2"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Coulomb's law",
+          "url": "https://en.wikipedia.org/wiki/Coulomb%27s_law"
+        },
+        {
+          "label": "Wikipedia — Gauss's law",
+          "url": "https://en.wikipedia.org/wiki/Gauss%27s_law"
+        },
+        {
+          "label": "Wikipedia — Poisson's equation",
+          "url": "https://en.wikipedia.org/wiki/Poisson%27s_equation"
+        },
+        {
+          "label": "Wikipedia — Electric potential",
+          "url": "https://en.wikipedia.org/wiki/Electric_potential"
+        },
+        {
+          "label": "Wikipedia — Bjerrum length",
+          "url": "https://en.wikipedia.org/wiki/Bjerrum_length"
+        },
+        {
+          "label": "Wikipedia — Relative permittivity (dielectric constant)",
+          "url": "https://en.wikipedia.org/wiki/Relative_permittivity"
+        },
+        {
+          "label": "MIT OCW 8.02 — Electricity and Magnetism",
+          "url": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2007/"
+        }
+      ],
+      "art_prompt": "two point charges with radial field lines (repulsive for like signs), a dashed Gaussian surface enclosing one with flux arrows piercing it, and an inset water molecule whose dipole reorients to screen the field, labelled epsilon ≈ 80",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why can two like-charged groups on a protein sit close together in water when the same charges would repel violently in a vacuum, and what single quantity captures that difference?",
+          "answer": "Water has a high relative permittivity (ε ≈ 80), so its polarizable dipoles reorient to oppose the field and cut the Coulomb interaction roughly 80-fold. The quantity that captures this is the Bjerrum length ℓ_B = e²/(4πεε₀k_BT) ≈ 0.71 nm in water — the separation at which two elementary charges interact with just k_BT. Beyond a nanometre or so their bare repulsion is already comparable to thermal energy, so it no longer dominates."
+        },
+        {
+          "level": "derive",
+          "prompt": "Starting from Coulomb's law, find the electrostatic energy of two elementary charges separated by r = 1 nm (a) in vacuum and (b) in water (ε = 80), and express each as a multiple of k_BT at 300 K. (e = 1.60×10⁻¹⁹ C, ε₀ = 8.85×10⁻¹² F/m, k_BT = 4.14×10⁻²¹ J.)",
+          "answer": "The pair energy is U = e²/(4πεε₀r). Compute the vacuum case: e² = 2.566×10⁻³⁸ C²; 4πε₀ = 1.113×10⁻¹⁰; times r = 1×10⁻⁹ gives 1.113×10⁻¹⁹, so U_vac = 2.566×10⁻³⁸/1.113×10⁻¹⁹ = 2.31×10⁻¹⁹ J = 1.44 eV = 2.31×10⁻¹⁹/4.14×10⁻²¹ ≈ 56 k_BT. (b) In water divide by ε = 80: U_water = 2.89×10⁻²¹ J ≈ 0.70 k_BT. The 0.70 factor is just r shrinking below the Bjerrum length ℓ_B = 0.71 nm — at r = ℓ_B the energy would be exactly 1 k_BT."
+        }
+      ],
+      "lesson": "### Intuition\n\nCharges talk to each other by a simple rule: opposite signs pull, like signs push, and the conversation fades fast with distance — move twice as far apart and the force drops to a quarter. If you want the effect of a whole crowd of charges, you add up every one-on-one push and pull; the running total, felt by a small test charge, is the electric field. The one twist that matters for biology is the medium. Water is full of little dipoles that swivel to face any charge and blunt its influence about eighty-fold, which is exactly why salts fall apart into ions and why a protein bristling with charged side chains does not simply blow itself up.\n\n### Precisely\n\nFor two point charges, Coulomb's law gives\n$$F=\\frac{q_1q_2}{4\\pi\\varepsilon\\varepsilon_0 r^2},$$\nalong the line joining them, repulsive when the signs match. The **electric field** is the force per unit test charge, $\\mathbf E=\\mathbf F/q$, and it derives from a scalar **potential**, $\\mathbf E=-\\nabla\\phi$. For a continuous charge density $\\rho$, the outward flux of $\\mathbf E$ through any closed surface equals the enclosed charge over $\\varepsilon\\varepsilon_0$ — **Gauss's law**, whose differential form is $\\nabla\\!\\cdot\\!\\mathbf E=\\rho/\\varepsilon\\varepsilon_0$. Insert $\\mathbf E=-\\nabla\\phi$ and you get the **Poisson equation** $\\nabla^2\\phi=-\\rho/\\varepsilon\\varepsilon_0$; in a charge-free region it collapses to Laplace's equation $\\nabla^2\\phi=0$.\n\n### Worked example\n\nHow strong is the bare repulsion between two elementary charges 1 nm apart? The pair energy is $U=e^2/(4\\pi\\varepsilon\\varepsilon_0 r)$. In vacuum, $U=(1.60\\times10^{-19})^2/(1.113\\times10^{-10}\\times10^{-9})=2.3\\times10^{-19}$ J $=1.44$ eV $\\approx 56\\,k_BT$ — enormous. Drop it into water ($\\varepsilon=80$) and it falls to $2.9\\times10^{-21}$ J $\\approx 0.70\\,k_BT$: now thermal jostling can overpower it. That crossover distance, where the Coulomb energy equals $k_BT$, is the **Bjerrum length** $\\ell_B=e^2/(4\\pi\\varepsilon\\varepsilon_0 k_BT)\\approx 0.71$ nm in water.\n\n### Why it's true / how it works\n\nGauss's law is Coulomb's law repackaged. Draw a sphere of radius $r$ around a point charge $q$; by symmetry $\\mathbf E$ is radial and constant on the sphere, so the flux is $E\\cdot 4\\pi r^2=q/\\varepsilon\\varepsilon_0$, which recovers $E=q/(4\\pi\\varepsilon\\varepsilon_0 r^2)$. Because flux depends only on enclosed charge, the same law handles any geometry — planes, cylinders, membranes — without re-summing pairwise forces. Writing $\\mathbf E=-\\nabla\\phi$ (valid because the static field is curl-free) turns Gauss's law into Poisson's, a single linear differential equation for the potential of any charge layout.\n\n### Where it connects\n\nEverything electrostatic in this canon grows from this trunk. Add mobile ions whose density follows a **Boltzmann** distribution and the linear Poisson equation becomes the nonlinear **Poisson–Boltzmann** equation; linearize that and you get **Debye** screening with its characteristic length. Solve it at a charged surface and you have the diffuse double layer and the **ζ-potential**; carry the ion atmosphere's free energy into thermodynamics and you get the Debye–Hückel activity coefficients. The dielectric constant $\\varepsilon$ that appears here is itself a **linear-response** quantity — the medium's polarization reacting to the field.\n\n### Watch out\n\nThe single scalar $\\varepsilon\\approx80$ is a bulk average; inside a protein or right at a surface the effective permittivity is far lower (2–20), so buried charges interact much more strongly than the bulk value suggests. Coulomb's $1/r^2$ is the *bare*, unscreened law — in electrolyte it is cut off exponentially beyond the Debye length, so 'long-range' electrostatics in cells reaches only about a nanometre. And Gauss's law in a dielectric is cleanest written with the displacement field, $\\nabla\\!\\cdot\\!\\mathbf D=\\rho_{\\text{free}}$ with $\\mathbf D=\\varepsilon\\varepsilon_0\\mathbf E$, so you don't have to track bound polarization charge by hand.\n\n### Numbers & nuance\n\nKeep a few anchors: $\\varepsilon_0=8.854\\times10^{-12}$ F/m, water $\\varepsilon\\approx80$ (falling with temperature and near interfaces), Bjerrum length $\\ell_B\\approx0.71$ nm at 25 °C. An elementary charge produces a potential of about 56 mV at 1 nm in water (and 80× more in vacuum). These numbers explain why counter-ion condensation, salt bridges, and Debye screening all operate on the nanometre scale that sets the reach of molecular electrostatics."
+    },
+    {
+      "id": "continuity-equation",
+      "title": "The continuity equation — local conservation of stuff",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [],
+      "equation": "\\frac{\\partial \\rho}{\\partial t} + \\nabla\\!\\cdot\\!\\mathbf{J} = s",
+      "summary": "Anything that is conserved obeys a bookkeeping law: the rate a quantity piles up in a tiny volume equals what flows in minus what flows out, plus whatever is created there — ∂ρ/∂t + ∇·J = s, the equation that turns a flux law into a time-dependent transport equation.",
+      "depths": {
+        "eli5": "Imagine counting people in a room. The number can change only three ways: someone walks in a door, someone walks out a door, or someone is born or leaves the count some other way inside the room. Nothing appears from nowhere. Written as an equation, the rate the crowd grows equals the doors-in minus the doors-out, plus any inside change. The same rule governs mass, charge, molecules, and heat — it is just careful counting.",
+        "core": "For any conserved density ρ (mass per volume, concentration, charge density, probability) with a flux J (the amount crossing unit area per unit time), local conservation reads ∂ρ/∂t + ∇·J = s, where s is a source/sink rate. The divergence ∇·J measures net outflow from a point; if more leaves than arrives, ρ there must fall. With no sources (s = 0) the quantity is strictly conserved. The integral form, d/dt ∫_V ρ dV = −∮ J·dA + ∫_V s dV, says the change inside a region equals net influx across its boundary plus internal generation.",
+        "deep": "The continuity equation is the skeleton; a **constitutive (flux) law** supplies the flesh. Pair it with Fick's first law J = −D∇c and you get Fick's second law ∂c/∂t = D∇²c, the diffusion equation. Add a drift velocity, J = ρv − D∇ρ, and you get the drift–diffusion (Smoluchowski) equation; add a reaction rate as the source s = R(c) and you get reaction–diffusion. In probability space the same structure is the Fokker–Planck equation, with ρ the probability density and s = 0 (probability is conserved). Charge continuity ∂ρ/∂t + ∇·J = 0 is built into Maxwell's equations. So one conservation statement, plus whichever flux law and source terms the physics demands, generates an entire family of transport PDEs."
+      },
+      "note": "∂ρ/∂t + ∇·J = s (s = source/sink; s = 0 ⇒ strict conservation). Integral form: d/dt ∫_V ρ dV = −∮ J·dA + ∫_V s dV. ∇·J = net outflow per unit volume. Continuity + Fick's 1st law (J = −D∇c) ⇒ Fick's 2nd law ∂c/∂t = D∇²c. + drift ⇒ Smoluchowski; + reaction source ⇒ reaction–diffusion; in probability space ⇒ Fokker–Planck. ('Flux' J = amount per area per time; 'divergence' ∇·J = how much a field spreads out of a point.)",
+      "sources": [
+        "LibreTexts (transport phenomena; conservation laws)",
+        "MIT OpenCourseWare (transport processes / continuum mechanics)",
+        "OpenStax University Physics (fluid continuity)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Continuity equation",
+          "url": "https://en.wikipedia.org/wiki/Continuity_equation"
+        },
+        {
+          "label": "Wikipedia — Conservation law",
+          "url": "https://en.wikipedia.org/wiki/Conservation_law"
+        },
+        {
+          "label": "Wikipedia — Divergence",
+          "url": "https://en.wikipedia.org/wiki/Divergence"
+        },
+        {
+          "label": "Wikipedia — Fick's laws of diffusion",
+          "url": "https://en.wikipedia.org/wiki/Fick%27s_laws_of_diffusion"
+        },
+        {
+          "label": "Wikipedia — Fokker–Planck equation",
+          "url": "https://en.wikipedia.org/wiki/Fokker%E2%80%93Planck_equation"
+        },
+        {
+          "label": "MIT OCW — Transport processes",
+          "url": "https://ocw.mit.edu/search/?q=transport%20processes"
+        }
+      ],
+      "art_prompt": "a small cube with arrows of flux J entering some faces and leaving others, a plus/minus source dot inside, and the running tally ∂ρ/∂t = (in) − (out) + (source) written alongside",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "In the continuity equation ∂ρ/∂t + ∇·J = s, what does a positive ∇·J at a point physically mean, and what happens to ρ there if s = 0?",
+          "answer": "A positive divergence ∇·J means net outflow — more of the quantity is leaving the neighbourhood of that point than arriving (the point acts as a spreading source of flux). With no source (s = 0), the continuity equation gives ∂ρ/∂t = −∇·J < 0, so the density at that point must decrease over time. The stuff is draining away because more flows out than in."
+        },
+        {
+          "level": "derive",
+          "prompt": "Combine the continuity equation (no sources) with Fick's first law J = −D∇c to derive Fick's second law, and state what physical assumption lets D come outside the derivative.",
+          "answer": "Continuity with s = 0 is ∂c/∂t = −∇·J. Substitute Fick's first law J = −D∇c: ∂c/∂t = −∇·(−D∇c) = ∇·(D∇c). If D is spatially uniform (constant), it pulls out of the divergence: ∂c/∂t = D∇·(∇c) = D∇²c — Fick's second law, the diffusion equation. The key assumption is a constant diffusion coefficient; if D varies with position or concentration, it must stay inside as ∇·(D∇c)."
+        }
+      ],
+      "lesson": "### Intuition\n\nHere is the most honest equation in transport: stuff is counted, and the count only changes by things crossing a boundary or being made and destroyed inside. Picture a room. The number of people can rise only if more come through the doors than leave, or if the count changes for some internal reason. There is no fourth option — people do not wink into existence in the middle of the floor. Mass, charge, molecules of a solute, even probability, all obey this same accounting. Once you accept the bookkeeping, every diffusion, drift, and reaction–transport equation is just this law with a rule for how the flow is generated.\n\n### Precisely\n\nLet $\\rho$ be a conserved density and $\\mathbf J$ its flux — the amount crossing unit area per unit time. Local conservation is\n$$\\frac{\\partial\\rho}{\\partial t}+\\nabla\\!\\cdot\\!\\mathbf J=s,$$\nwhere $s$ is the local source (positive) or sink (negative) rate. The divergence $\\nabla\\!\\cdot\\!\\mathbf J$ is the net outflow per unit volume at a point. Integrated over a region $V$ it becomes\n$$\\frac{d}{dt}\\int_V\\rho\\,dV=-\\oint_{\\partial V}\\mathbf J\\!\\cdot\\!d\\mathbf A+\\int_V s\\,dV,$$\nread aloud: the change of what is inside equals net influx across the boundary plus what is created inside. When $s=0$ the quantity is strictly conserved.\n\n### Worked example\n\nTake a thin one-dimensional channel with a solute concentration $c(x,t)$ and no reactions. Continuity says $\\partial c/\\partial t=-\\partial J/\\partial x$. Fick's first law supplies the flux, $J=-D\\,\\partial c/\\partial x$ (solute drifts down its gradient). Substitute: $\\partial c/\\partial t=-\\partial_x(-D\\,\\partial_x c)=D\\,\\partial^2 c/\\partial x^2$ — the diffusion equation. A sharp spike of dye therefore spreads into a Gaussian whose width grows as $\\sqrt{2Dt}$: the continuity equation supplied the time-dependence, Fick's law supplied the flux.\n\n### Why it's true / how it works\n\nApply the integral form to an infinitesimal box of side $dx,dy,dz$. The net flux out of the two $x$-faces is $[J_x(x+dx)-J_x(x)]\\,dy\\,dz=(\\partial J_x/\\partial x)\\,dV$, and similarly for $y$ and $z$; summing gives $(\\nabla\\!\\cdot\\!\\mathbf J)\\,dV$. Setting the accumulation rate $(\\partial\\rho/\\partial t)\\,dV$ equal to sources minus that outflow recovers the differential equation. The divergence theorem is exactly the bridge that lets the surface-integral bookkeeping become a pointwise statement.\n\n### Where it connects\n\nThe continuity equation is the common backbone of the transport family. With Fick's first law it gives **Fick's** second law; with an added drift term it becomes the Smoluchowski/drift–diffusion equation behind **reaction–diffusion** patterning and **membrane transport**; in probability space, with $\\rho$ a probability density, it is the Fokker–Planck equation that partners the **Langevin** description of Brownian motion. Charge continuity is embedded in Maxwell's equations. Whenever you see a time-dependent transport PDE, look for this conservation law underneath and a constitutive flux law on top.\n\n### Watch out\n\nContinuity alone predicts nothing until you specify the flux $\\mathbf J$ — it is a bookkeeping identity, and the physics lives in the constitutive law you attach (Fick, Ohm, Fourier, Darcy). Watch the source term's sign convention: $s>0$ creates, $s<0$ destroys. And $D$ can only be pulled out of $\\nabla\\!\\cdot\\!(D\\nabla c)$ when it is uniform; in heterogeneous media (crowded cytoplasm, membranes) $D$ varies and the flux divergence must keep it inside.\n\n### Numbers & nuance\n\nThe power of the equation is unit-agnostic: choose $\\rho$ as mass density and it is mass conservation; as charge density, charge conservation; as $|\\psi|^2$, probability conservation. In steady state $\\partial\\rho/\\partial t=0$, so $\\nabla\\!\\cdot\\!\\mathbf J=s$ — flux divergence is set entirely by sources, the workhorse form for metabolic flux balance and steady diffusion through membranes. That single reduction underlies flux-balance analysis and the steady-state approximations used throughout enzyme kinetics."
+    },
+    {
+      "id": "gouy-chapman",
+      "title": "The Gouy–Chapman diffuse double layer",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "debye",
+        "electrostatics"
+      ],
+      "equation": "\\psi(x)\\approx\\psi_0\\,e^{-\\kappa x},\\qquad \\sigma=\\sqrt{8\\varepsilon\\varepsilon_0 n_0 k_BT}\\,\\sinh\\!\\Big(\\frac{ze\\psi_0}{2k_BT}\\Big)",
+      "summary": "A charged surface in electrolyte gathers a cloud of counter-ions whose potential decays into the solution over the Debye length; the Gouy–Chapman model solves Poisson–Boltzmann at a plane to give that potential profile, the surface-charge/potential (Grahame) relation, and a diffuse-layer capacitance εε₀κ.",
+      "depths": {
+        "eli5": "Dip a charged plate into salt water. Ions of the opposite charge swarm toward it, but heat keeps kicking them away, so instead of a tidy pile they form a fuzzy cloud that is densest at the surface and thins out into the water. The plate's electrical influence, strong at the surface, fades away over a tiny distance — the same screening distance that sets how far any charge reaches in salty water. The saltier the water, the thinner the cloud and the shorter the reach.",
+        "core": "At a charged planar surface, counter-ions are drawn in and co-ions pushed away, forming a **diffuse layer**. Solving the Poisson–Boltzmann equation for the plane gives the potential profile; in the low-potential (Debye–Hückel) limit it decays exponentially, ψ(x) ≈ ψ₀ e^(−κx), where κ⁻¹ is the Debye length. The full nonlinear solution is tanh(zeψ/4k_BT) = tanh(zeψ₀/4k_BT)·e^(−κx). The surface charge density σ ties to the surface potential by the **Grahame equation** σ = √(8εε₀n₀k_BT)·sinh(zeψ₀/2k_BT); linearized, σ = εε₀κψ₀, so the diffuse layer behaves as a capacitor of areal capacitance C = εε₀κ = εε₀/λ_D.",
+        "deep": "Gouy–Chapman is the mean-field continuum picture: point ions, a single dielectric ε, no ion size. It captures the essential physics — exponential screening set by κ, a capacitance that grows with √(ionic strength) — but overpredicts counter-ion accumulation at high potentials because real ions cannot pack infinitely densely. The **Stern** correction adds a compact inner layer of finite-size adsorbed ions (a capacitor in series with the diffuse one), and beyond that lies the hydrodynamic shear plane where the **ζ-potential** is measured. For highly charged surfaces the potential drops steeply within one Gouy–Chapman length λ_GC = 1/(2πℓ_B σ z/e) before the exponential tail takes over, and multivalent ions can drive counter-ion condensation and even charge reversal that the linear theory misses entirely."
+      },
+      "note": "Planar Poisson–Boltzmann. Low-ψ: ψ(x) ≈ ψ₀ e^(−κx) (κ⁻¹ = Debye length). Full: tanh(zeψ/4k_BT) = tanh(zeψ₀/4k_BT)·e^(−κx). Grahame: σ = √(8εε₀n₀k_BT)·sinh(zeψ₀/2k_BT); low-ψ σ = εε₀κψ₀ ⇒ diffuse capacitance C = εε₀κ = εε₀/λ_D. Stern layer (finite ion size) sits in series inside the shear plane (ζ). ('Diffuse layer' = the thermally smeared counter-ion cloud; 'co-ion' = same sign as surface, depleted.)",
+      "sources": [
+        "LibreTexts Chemistry (electrochemistry: electrical double layer)",
+        "PMC / open-access colloid & interface science reviews",
+        "MIT OpenCourseWare (electrochemical / interfacial science)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Double layer (surface science)",
+          "url": "https://en.wikipedia.org/wiki/Double_layer_(surface_science)"
+        },
+        {
+          "label": "Wikipedia — Gouy–Chapman model / Diffuse layer",
+          "url": "https://en.wikipedia.org/wiki/Double_layer_(surface_science)#Gouy%E2%80%93Chapman_model"
+        },
+        {
+          "label": "Wikipedia — Grahame equation",
+          "url": "https://en.wikipedia.org/wiki/Double_layer_(interfacial)"
+        },
+        {
+          "label": "Wikipedia — Debye length",
+          "url": "https://en.wikipedia.org/wiki/Debye_length"
+        },
+        {
+          "label": "Wikipedia — Zeta potential",
+          "url": "https://en.wikipedia.org/wiki/Zeta_potential"
+        },
+        {
+          "label": "LibreTexts — Electrical double layer",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        }
+      ],
+      "art_prompt": "a vertical charged plate on the left with a fuzzy cloud of plus counter-ions densest at the surface and thinning rightward into water, a curve ψ(x) decaying exponentially over the Debye length κ⁻¹, and a marked shear plane where ζ is read",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "You have a charged membrane in a dilute salt solution. What happens to the thickness of its diffuse double layer, and to the reach of its surface potential, if you raise the salt concentration tenfold?",
+          "answer": "The diffuse layer thins. Its thickness is the Debye length λ_D = κ⁻¹, which scales as 1/√(ionic strength), so a tenfold increase in salt shrinks it by √10 ≈ 3.2×. The surface potential ψ(x) ≈ ψ₀e^(−κx) therefore decays over a shorter distance — the membrane's electrostatic reach into solution is compressed. This is why high salt screens electrostatic interactions and can collapse colloidal or membrane repulsion."
+        },
+        {
+          "level": "derive",
+          "prompt": "In the low-potential limit the diffuse layer acts as a capacitor with areal capacitance C = εε₀κ. Estimate C for water (ε = 80) at physiological ionic strength (Debye length λ_D ≈ 0.78 nm), and give it in µF/cm². (ε₀ = 8.85×10⁻¹² F/m.)",
+          "answer": "C = εε₀κ = εε₀/λ_D = (80 × 8.85×10⁻¹²)/(0.78×10⁻⁹) = (7.08×10⁻¹⁰)/(7.8×10⁻¹⁰) = 0.91 F/m². Convert: 1 F/m² = 100 µF/cm², so C ≈ 91 µF/cm². This large diffuse-layer capacitance (thin layer at high salt) is why the electrical double layer stores substantial charge per area and why cell-membrane and electrode interfaces have capacitances in the tens-of-µF/cm² range."
+        }
+      ],
+      "lesson": "### Intuition\n\nPut a charged wall into salty water and the ions respond. Opposite-charge ions crowd toward the wall to neutralize it, but thermal kicks keep scattering them, so they never form a neat plating — they settle into a fuzzy cloud, thickest at the surface and fading into the bulk. That cloud is the diffuse double layer, and its whole job is to screen the wall's charge. The distance over which it does so is the same Debye length that governs screening everywhere in electrolyte: crank up the salt and the cloud gets thin and the wall's reach shrinks.\n\n### Precisely\n\nGouy and Chapman solved the **Poisson–Boltzmann** problem for a flat charged surface: Poisson's equation for the potential, closed with a Boltzmann distribution of the mobile ions. In the low-potential limit it linearizes to an exponential decay,\n$$\\psi(x)\\approx\\psi_0\\,e^{-\\kappa x},$$\nwith $\\kappa^{-1}$ the Debye length. The full nonlinear solution is $\\tanh(ze\\psi/4k_BT)=\\tanh(ze\\psi_0/4k_BT)\\,e^{-\\kappa x}$. The charge on the wall and the potential at its face are linked by the **Grahame equation**,\n$$\\sigma=\\sqrt{8\\varepsilon\\varepsilon_0 n_0 k_BT}\\,\\sinh\\!\\Big(\\frac{ze\\psi_0}{2k_BT}\\Big),$$\nwhich at low potential reduces to $\\sigma=\\varepsilon\\varepsilon_0\\kappa\\psi_0$ — the diffuse layer as a parallel-plate capacitor of areal capacitance $C=\\varepsilon\\varepsilon_0\\kappa=\\varepsilon\\varepsilon_0/\\lambda_D$.\n\n### Worked example\n\nHow much charge can the diffuse layer store per area at physiological salt? The Debye length is $\\lambda_D\\approx0.78$ nm at $I=0.15$ M, so $C=\\varepsilon\\varepsilon_0/\\lambda_D=(80\\times8.85\\times10^{-12})/(0.78\\times10^{-9})=0.91$ F/m$^2\\approx91$ µF/cm$^2$. For a modest surface potential of 25 mV, the stored surface charge is $\\sigma=C\\psi_0=0.91\\times0.025=0.023$ C/m$^2$, about one elementary charge per 7 nm$^2$. Raise the salt and $\\lambda_D$ falls, $C$ rises, and the same potential holds more charge.\n\n### Why it's true / how it works\n\nBalance electrostatics against entropy. Poisson ties the potential curvature to the local ion charge density; Boltzmann says each ion species sits at density $n_i=n_0\\exp(-z_ie\\psi/k_BT)$. Substituting gives the Poisson–Boltzmann equation $\\nabla^2\\psi=-(1/\\varepsilon\\varepsilon_0)\\sum_i z_ie n_0 e^{-z_ie\\psi/k_BT}$. For small $ze\\psi/k_BT$ the exponential linearizes to $\\nabla^2\\psi=\\kappa^2\\psi$, whose decaying solution near a plane is $\\psi_0 e^{-\\kappa x}$ — the same screening that Debye derived around a point ion, now applied to a wall. Integrating the enclosed diffuse charge and matching it to the surface charge via Gauss's law yields the Grahame relation.\n\n### Where it connects\n\nGouy–Chapman is the surface application of **Debye** screening and **electrostatics** (it is literally Poisson–Boltzmann at a plane). Its shear-plane potential is what electrophoresis reports as the **ζ-potential**, and the balance between double-layer repulsion and van der Waals attraction is the core of DLVO colloid stability. The same double-layer physics sets electrode and membrane interfacial capacitance and underlies ion-specific (Hofmeister) effects at charged surfaces.\n\n### Watch out\n\nThe model treats ions as point charges in a uniform dielectric, so it overstates how tightly counter-ions pack at high surface potential — real ions have finite size, which the **Stern** layer fixes by adding a compact inner capacitor in series. Multivalent ions break the mean-field picture entirely: they can over-screen and even reverse the effective charge, something linear Gouy–Chapman cannot produce. And the clean exponential is only the low-potential limit; above ~50 mV you need the full $\\sinh$/$\\tanh$ forms.\n\n### Numbers & nuance\n\nDebye length in water: $\\lambda_D\\approx0.304/\\sqrt{I}$ nm with $I$ in molar — about 0.96 nm at 0.1 M, 0.78 nm at 0.15 M, 3 nm at 0.01 M. Diffuse-layer capacitances therefore land in the tens of µF/cm$^2$. The thermal voltage $k_BT/e\\approx25.7$ mV at 300 K is the natural scale that decides whether you are in the linear ($\\psi_0\\lesssim25$ mV) or nonlinear regime — a useful first check before reaching for Grahame's full form."
+    },
+    {
+      "id": "debye-huckel-activity",
+      "title": "Debye–Hückel theory of ionic activity coefficients",
+      "shell": "nucleus",
+      "type": "equation",
+      "requires": [
+        "debye",
+        "chemical-potential"
+      ],
+      "equation": "\\log_{10}\\gamma_\\pm=-A\\,|z_+z_-|\\sqrt{I},\\qquad I=\\tfrac12\\sum_i c_i z_i^2",
+      "summary": "In a salt solution each ion is wrapped in an oppositely charged atmosphere that lowers its free energy; Debye–Hückel theory turns that stabilization into activity coefficients γ± that fall with the square root of ionic strength — the correction that makes real electrolyte thermodynamics deviate from ideal.",
+      "depths": {
+        "eli5": "Ions in water are never really alone — each one pulls a faint cloud of opposite charge around itself. That cozy cloud lowers the ion's energy, so the ion behaves as if there is a bit less of it than you actually dissolved. The 'activity' is that effective, felt concentration, and it is always a little below the real concentration in dilute salt. Add more salt and the discount grows, but only as the square root of how much you added, so it grows fast at first and then levels off.",
+        "core": "Real ionic solutions are non-ideal because of long-range Coulomb interactions. The **activity** a = γc replaces concentration in every thermodynamic expression, with γ the activity coefficient (γ → 1 as c → 0). Debye and Hückel computed the electrostatic free energy of an ion surrounded by its screening atmosphere and obtained the **limiting law**: log₁₀ γ± = −A|z₊z₋|√I, where the mean ionic activity coefficient γ± averages cation and anion, I = ½Σc_i z_i² is the ionic strength, and A ≈ 0.509 M^(−1/2) in water at 25 °C. Higher charges and higher ionic strength depress γ± more strongly. The **extended** law adds an ion-size term, log₁₀ γ± = −A|z₊z₋|√I/(1 + Ba√I), to hold at higher concentration.",
+        "deep": "The physics is the same ion atmosphere as **Debye** screening. The excess chemical potential of a central ion equals the work of charging it in the presence of its cloud, μ^ex = −(z²e²)/(8πεε₀)·κ = −z²e²/(8πεε₀λ_D), and since κ ∝ √I, ln γ ∝ −√I — that √I is the fingerprint of screening, not of any pairwise like-ion collision. Because the atmosphere lowers energy, γ± < 1 and salts are more soluble than ideal in dilute solution. The limiting law is exact only as I → 0; real γ± curves reach a minimum and turn back upward at high salt (ion-size exclusion, dielectric decrement, ion pairing) — captured empirically by the extended Debye–Hückel and Davies equations. This ties electrolyte thermodynamics to the same κ that governs the double layer and ζ-potential."
+      },
+      "note": "Activity a = γc (γ → 1 as c → 0). Limiting law: log₁₀ γ± = −A|z₊z₋|√I, A ≈ 0.509 M^(−1/2) (water, 25 °C). Ionic strength I = ½Σc_i z_i². Extended: log₁₀ γ± = −A|z₊z₋|√I/(1 + Ba√I). Origin: excess μ^ex = −z²e²κ/(8πεε₀) = −z²e²/(8πεε₀λ_D), κ ∝ √I ⇒ ln γ ∝ −√I. γ± < 1 in dilute solution (atmosphere stabilizes). ('Mean ionic' γ± = geometric mean over the ions, since single-ion γ isn't measurable; 'ionic strength' weights each ion by charge²).",
+      "sources": [
+        "LibreTexts Chemistry (electrolyte solutions; Debye–Hückel theory)",
+        "MIT OpenCourseWare 5.60 (thermodynamics & kinetics)",
+        "OpenStax Chemistry (solution thermodynamics)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Debye–Hückel theory",
+          "url": "https://en.wikipedia.org/wiki/Debye%E2%80%93H%C3%BCckel_theory"
+        },
+        {
+          "label": "Wikipedia — Debye–Hückel limiting law",
+          "url": "https://en.wikipedia.org/wiki/Debye%E2%80%93H%C3%BCckel_equation"
+        },
+        {
+          "label": "Wikipedia — Activity coefficient",
+          "url": "https://en.wikipedia.org/wiki/Activity_coefficient"
+        },
+        {
+          "label": "Wikipedia — Ionic strength",
+          "url": "https://en.wikipedia.org/wiki/Ionic_strength"
+        },
+        {
+          "label": "Wikipedia — Thermodynamic activity",
+          "url": "https://en.wikipedia.org/wiki/Thermodynamic_activity"
+        },
+        {
+          "label": "LibreTexts — Debye–Hückel theory",
+          "url": "https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps"
+        }
+      ],
+      "art_prompt": "a central positive ion surrounded by a diffuse shell of negative counter-ions, an arrow showing the free-energy lowering, and a plot of log γ± versus √I sloping downward with slope −A|z₊z₋|",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "Why is the activity coefficient γ± of a dilute salt less than 1, and why does the deviation from ideality scale with the square root of concentration rather than linearly?",
+          "answer": "Each ion is surrounded by an atmosphere of oppositely charged ions that lowers its electrostatic free energy, so the ion is more stable — its effective (active) concentration is below the nominal one, giving γ± < 1. The deviation scales as √I because it comes from Debye screening: the inverse screening length κ ∝ √(ionic strength), and the excess chemical potential is proportional to κ, so ln γ ∝ −√I. It is a collective screening effect, not a sum of independent pairwise collisions (which would scale linearly)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Use the Debye–Hückel limiting law (A = 0.509 M^(−1/2)) to estimate the mean activity coefficient γ± of (a) 0.010 M NaCl and (b) 0.010 M CaCl₂ at 25 °C. Comment on why they differ.",
+          "answer": "(a) NaCl: I = ½(0.010·1² + 0.010·1²) = 0.010, √I = 0.100, |z₊z₋| = 1. log₁₀γ± = −0.509·1·0.100 = −0.0509, so γ± = 10^(−0.0509) = 0.89. (b) CaCl₂: I = ½(0.010·2² + 0.020·1²) = ½(0.040 + 0.020) = 0.030, √I = 0.173, |z₊z₋| = 2. log₁₀γ± = −0.509·2·0.173 = −0.176, so γ± = 10^(−0.176) = 0.67. CaCl₂ deviates far more because both its higher ionic strength (charge-squared weighting) and its larger charge product |z₊z₋| = 2 amplify the electrostatic stabilization."
+        }
+      ],
+      "lesson": "### Intuition\n\nDissolve a pinch of salt and you might expect each ion to act independently. It does not. Every ion tugs a faint haze of opposite charge around itself — a screening atmosphere — and sitting inside that haze lowers the ion's energy. The consequence is that the solution behaves as if it holds slightly *less* salt than you added: the thermodynamically 'felt' concentration, the activity, runs below the real one. The discount grows with salt, but as the square root, which is the tell-tale signature that screening, not simple crowding, is doing the work.\n\n### Precisely\n\nNon-ideality is folded into the **activity** $a=\\gamma c$, where the activity coefficient $\\gamma\\to1$ as $c\\to0$. Because single-ion coefficients are not measurable, one uses the **mean ionic** coefficient $\\gamma_\\pm$. Debye and Hückel derived the **limiting law**\n$$\\log_{10}\\gamma_\\pm=-A\\,|z_+z_-|\\sqrt{I},\\qquad I=\\tfrac12\\sum_i c_i z_i^2,$$\nwith $A\\approx0.509\\ \\text{M}^{-1/2}$ in water at 25 °C and $I$ the **ionic strength** (each ion weighted by its charge squared). The **extended** form adds a finite ion-size $a$: $\\log_{10}\\gamma_\\pm=-A|z_+z_-|\\sqrt{I}/(1+Ba\\sqrt{I})$, extending validity to higher concentration.\n\n### Worked example\n\nCompare 0.010 M NaCl and 0.010 M CaCl$_2$. For NaCl, $I=\\tfrac12(0.010+0.010)=0.010$, $\\sqrt I=0.100$, and $|z_+z_-|=1$: $\\log_{10}\\gamma_\\pm=-0.509(0.100)=-0.051$, so $\\gamma_\\pm=0.89$. For CaCl$_2$, $I=\\tfrac12(0.010\\cdot4+0.020\\cdot1)=0.030$, $\\sqrt I=0.173$, and $|z_+z_-|=2$: $\\log_{10}\\gamma_\\pm=-0.509(2)(0.173)=-0.176$, so $\\gamma_\\pm=0.67$. Same nominal 0.010 M, but the divalent salt is far more non-ideal — both its charge-squared ionic strength and its charge product punish it.\n\n### Why it's true / how it works\n\nThe number is the **Debye** screening energy in disguise. Charge up a central ion in the presence of its Boltzmann-distributed atmosphere and the reversible work is $\\mu^{\\text{ex}}=-\\dfrac{z^2e^2}{8\\pi\\varepsilon\\varepsilon_0}\\,\\kappa=-\\dfrac{z^2e^2}{8\\pi\\varepsilon\\varepsilon_0\\lambda_D}$, the excess **chemical potential** the atmosphere contributes. Since $\\kappa\\propto\\sqrt{I}$, $\\ln\\gamma=\\mu^{\\text{ex}}/k_BT\\propto-\\sqrt{I}$ — the square-root law falls straight out of the screening length. The stabilization is negative, so $\\gamma_\\pm<1$: salts are more soluble than an ideal solution predicts.\n\n### Where it connects\n\nThis is the thermodynamic face of the same physics as the **Debye** length and the **Gouy–Chapman** double layer: one $\\kappa\\propto\\sqrt I$ governs screening around a point ion (activity coefficients), around a wall (double-layer capacitance), and at the shear plane (**ζ-potential**). The activity, not the concentration, is what belongs in every equilibrium constant, **Nernst** potential, and solubility product, so Debye–Hückel is the bridge from ideal-dilute textbook expressions to the salty reality of blood, seawater, and the cytoplasm.\n\n### Watch out\n\nThe limiting law is exact only as $I\\to0$; it fails above roughly 0.01–0.1 M, where the extended and Davies equations are needed. At high salt, $\\gamma_\\pm$ stops falling, hits a minimum, and rises again — ion size, dielectric decrement, and ion pairing take over, effects entirely outside the point-charge theory. Ionic strength must include *every* ion in solution, not just the salt of interest, and remember $\\gamma_\\pm$ is a mean; single-ion activities are model-dependent conventions.\n\n### Numbers & nuance\n\nUseful anchors: $A=0.509\\ \\text{M}^{-1/2}$ (water, 25 °C, rising with temperature as the dielectric drops); at $I=0.001$ M a 1:1 salt has $\\gamma_\\pm\\approx0.96$, at 0.01 M $\\approx0.90$, at 0.1 M $\\approx0.78$ (limiting-law estimate). Physiological ionic strength is about 0.15 M, so blood-plasma electrolytes sit well outside the limiting law and require the extended forms — a reminder that 'concentration equals activity' is a dilute-solution fiction."
     }
   ]
 }

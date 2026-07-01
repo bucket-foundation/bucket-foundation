@@ -2175,3 +2175,21 @@ Every number verified numerically before writing (DSC ΔH_vH=398 kJ/mol, ratio 1
 
 ========== build run 2026-07-01T02:54:36Z ==========
 ⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+Run 18 complete. Summary of what I did this bounded run:
+
+**Added 4 new biophysics atoms** (115 → 119), each with the full schema (7-section lesson, 3 depths, note, 5–6 open resources, art_prompt, 2 quiz items with one `derive`), all original prose with facts/equations verified:
+
+- **persistence-length** — ℓ_p = κ_b/k_BT, tangent correlation e^(−s/ℓ_p), WLC end-to-end formula. Wired *under* optical-tweezers + afm (leaf-leverage; both stay depth 2, zero cascade) since ℓ_p is what force-extension fits actually measure.
+- **zeta-potential** — shear-plane potential, Smoluchowski/Hückel mobility, Henry's function, DLVO stability. (requires debye → depth 2)
+- **preferential-interaction / m-value** — Γ₂₃, Wyman linkage, linear-extrapolation ΔG = ΔG° − m[D], osmolyte vs denaturant. (requires gibbs + chemical-potential → depth 2)
+- **debye-waller-factor** — B = 8π²⟨u²⟩ = 8π²k_BT/k, RMSF bridge. (requires bragg + equipartition + eigen-modes → depth 2)
+
+**Fixed a regression I introduced.** The diagnostic's prereq-shell check (`prereqsPlaced ≥ 5`) was razor-thin at HEAD, and four new depth-2 atoms perturbed the 18-question selection so eigen-modes stopped being placed (4/6 → FAIL). Root cause: eigen-modes and redox-potential are prereqs whose only dependents sit at depth>2, so the expert never floods them. Clean, honest fix: elastic-network/normal-mode models predict crystallographic B-factors from eigenmodes, so `debye-waller-factor` legitimately requires `eigen-modes` (depth 0 → debye-waller stays depth 2). eigen-modes now floods → prereqs back to 5/6, and total placed rose 39 → 40 (**margin +21 → +22**). Prose updated to reflect the new edge.
+
+**Validated + committed.** `validate.sh` passes end-to-end (119-atom engine sim, diagnostic GREEN at +22, all assess/lang/explorer smokes). Synced to `public/academy-app` (119 atoms, v0.10.0). Committed locally as `44e0ebf62`; LOG.md updated.
+
+**Next run should** give `redox-potential` a depth≤2 honest encompasser (e.g. a "redox tower / ΔG = −nFΔE" atom) — it's now the lone missing prereq with zero slack, so one more perturbing atom could re-break the placement check.
+---------- run done 2026-07-01T03:06:56Z ----------
+
+========== build run 2026-07-01T03:20:36Z ==========
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors

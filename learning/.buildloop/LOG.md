@@ -664,3 +664,52 @@ placed-count — always verify ZERO depth cascade + re-run test-diagnostic.mjs e
 wins still open: ~33 atoms lack a derive-level quiz item; more `note` fields; GPU art if
 HSA_OVERRIDE_GFX_VERSION=11.0.0 is reachable; a non-biophysics branch expansion (math/physics/chemistry
 corpora already seeded) for variety.
+
+## 2026-06-30 — run 19 (+4 atoms: electrostatics, continuity-equation, gouy-chapman, debye-huckel-activity; biophysics 119→123; margin HELD +22)
+Filled the electrostatics/electrolyte-thermodynamics gap the syllabus needs under the ionic
+branch. **electrostatics** (Coulomb F=q₁q₂/4πεε₀r², Gauss ∇·E=ρ/εε₀, Poisson ∇²φ=−ρ/εε₀,
+Bjerrum ℓ_B=e²/4πεε₀k_BT≈0.71 nm; requires=[], depth 0) wired UNDER debye + poisson-boltzmann +
+zeta-potential by leaf-leverage — all three keep their existing depth (debye d1, pb/zeta d2),
+ZERO cascade. **continuity-equation** (∂ρ/∂t+∇·J=s, integral d/dt∫ρ=−∮J·dA+∫s; requires=[], depth 0)
+wired UNDER reaction-diffusion (d1) + membrane-transport (d2) — NOT under fick (fick is d0, would
+cascade); continuity+Fick's-1st ⇒ Fick's-2nd is the honest edge. **gouy-chapman** (diffuse double
+layer, ψ(x)≈ψ₀e^(−κx), full tanh form, Grahame σ=√(8εε₀n₀k_BT)sinh(zeψ₀/2k_BT), diffuse capacitance
+C=εε₀κ=εε₀/λ_D; requires debye+electrostatics, depth 2, electrokinetics leaf in expert frontier).
+**debye-huckel-activity** (limiting law log₁₀γ±=−A|z₊z₋|√I with A≈0.509 M^−½, I=½Σc_iz_i²; excess
+μ^ex=−z²e²κ/8πεε₀=−z²e²/8πεε₀λ_D so ln γ∝−√I; extended form with ion size; requires debye+
+chemical-potential, depth 2). Every number verified this run: two e⁻-charges 1 nm apart → 56 k_BT
+vacuum / 0.70 k_BT water (Bjerrum ℓ_B=0.71 nm); diffuse capacitance at I=0.15 M (λ_D=0.78 nm) →
+0.91 F/m²=91 µF/cm²; γ± for 0.01 M NaCl=0.89 & 0.01 M CaCl₂=0.67 (limiting law). All prose original;
+equations are facts; OPEN sources only (LibreTexts + MIT OCW 8.02/5.60 + OpenStax + PMC + 6–7
+Wikipedia resources each); full 7-section lesson + 3 depths + note + art_prompt + 2 quiz (1 derive)
+per atom. meta 0.10.0→0.11.0. **Diagnostic: margin HELD at +22** (40 placed vs 18 asked) — the two
+depth-0 leaf-leverage foundations did NOT lift placed-count this run (the fixed 18-question flood set
+already covers their closures), but crucially they did NOT perturb prereq placement either: prereq
+shell held 5/6 with redox-potential still the lone missing one. validate.sh PASSES end-to-end (corpus
+integrity 123 atoms, 60-day engine sim all 123 introduced, diagnostic GREEN, assess/lang/explorer
+smokes). Mirrored to public/academy-app (123 atoms, ver 0.11.0 verified).
+NEXT: the prereq-placement check is STILL razor-thin (redox-potential the lone missing prereq, threshold
+is ≥5 of 6, so no slack — one perturbing atom could drop it below 5 and FAIL). Confirmed this run WHY
+it can't be flooded: redox-potential is depth 2 (requires gibbs d0 + nernst d1), so ANY atom that
+requires it is depth ≥3 — outside the expert frontier (expert = depth≤2), so the expert answers that
+deep atom wrong and never floods redox via requires-closure. The ONLY paths to place redox-potential
+are (a) it gets ASKED directly (selection score = |p−0.5| − betweenness·0.12 − closureBias; redox has
+low betweenness (only 2 dependents) AND small requires-closure (3), so it scores poorly and is rarely
+in the 18 asked), or (b) genuinely lower its diagnostic-depth to ≤1 so a depth-2 atom can require+flood
+it. Two honest options for the NEXT run: (1) give redox-potential MORE downstream dependents to raise
+its betweenness so it's more likely asked directly — e.g. a new depth-3 atom "redox tower / midpoint-
+potential ordering of the ETC carriers" that requires redox-potential (verify it doesn't overrun the
+placement budget per run 5's depth-3 lesson); or (2) add honest depth-0 prerequisites to redox-potential
+to grow its requires-closure size (raising its closure-bias so it's asked more) WITHOUT raising its
+depth — but few depth-0 foundations legitimately underlie it. Option (1) is the more durable fix.
+Remaining margin-safe content targets: **stern-layer** (compact inner double layer, capacitor in series
+with gouy-chapman — requires gouy-chapman is d2 → stern d3, verify budget first), **DLVO** (colloid
+stability = double-layer repulsion + vdW attraction; requires gouy-chapman+debye → d3, verify),
+**hofmeister/salting-out** (ties preferential-interaction↔zeta↔debye-huckel-activity; needs a d≤2
+wiring to stay safe), **bjerrum-length** as its own leaf (currently only a note inside electrostatics),
+**action-potential** (requires hodgkin-huxley is d2 → d3, verify). Leaf-leverage rule still holds: a new
+requires=[] or depth-1 atom wired UNDER an already-deep dependent fills content AND can lift placed-count
+— always verify ZERO depth cascade + re-run test-diagnostic.mjs each batch. Cheap zero-risk wins still
+open: ~33 atoms lack a derive-level quiz item; more `note` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=
+11.0.0 is reachable; a non-biophysics branch expansion (math/physics/chemistry corpora already seeded)
+for variety.
