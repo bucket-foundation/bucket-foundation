@@ -226,7 +226,7 @@ complication rate — chasing a finding that was never disease. The named hazard
 - **Overdiagnosis:** correctly detecting a "disease" (it is really there under the microscope) that would
   *never have harmed the person in their lifetime* — then treating it, with all of treatment's harms and
   none of its benefit. This is not a false positive; it is a *true positive that shouldn't have been
-  looked for*. The cleanest documented example is **PSA-detected prostate cancer** (A.12 / §25).
+  looked for*. The cleanest documented example is **PSA-detected prostate cancer** (B.5 / §25).
 - **The anxiety and labeling tax:** turning a well person into a patient with a number to worry about,
   often permanently, often over a value that was one repeat draw away from normal.
 
@@ -257,7 +257,7 @@ worry you. Effect sizes live in `WHAT-TO-TRACK-SYNTHESIS.md`.*
 
 | Category | Core tests | What it actually tells you | Honest caveat / cross-ref |
 |---|---|---|---|
-| **Clinical chemistry — metabolic panel (BMP/CMP)** | Na, K, Cl, CO₂, BUN, creatinine, glucose, Ca; CMP adds albumin, total protein, bilirubin, ALP, ALT, AST | Electrolyte/acid-base status, kidney function (eGFR from creatinine), glucose, liver enzymes | eGFR is *estimated* (creatinine depends on muscle mass — overstates function in the very muscular, understates in the frail). 14 analytes → ~51% chance of one false flag (A.7). |
+| **Clinical chemistry — metabolic panel (BMP/CMP)** | Na, K, Cl, CO₂, BUN, creatinine, glucose, Ca; CMP adds albumin, total protein, bilirubin, ALP, ALT, AST | Electrolyte/acid-base status, kidney function (eGFR from creatinine), glucose, liver enzymes | eGFR is *estimated* (creatinine depends on muscle mass — understates function in the very muscular, overstates in the frail). 14 analytes → ~51% chance of one false flag (A.7). |
 | **Glycemic** | Fasting glucose, **HbA1c**, OGTT, fasting insulin/HOMA-IR | Average glycemia (HbA1c ≈ 3-month), insulin resistance | HbA1c distorted by any RBC-turnover disorder (anemia, hemoglobinopathy, recent transfusion). Insulin assays vary by lab (A.8). Cross-ref §22, `WHAT-TO-TRACK-SYNTHESIS.md` Tier A. |
 | **Liver function (LFTs)** | ALT, AST, ALP, GGT, bilirubin, albumin, INR | Hepatocyte injury (ALT/AST), cholestasis (ALP/GGT/bili), *synthetic function* (albumin, INR) | "LFTs" is a misnomer — enzymes are *injury* markers, not function; albumin/INR are the real function tests. Mild isolated transaminase bumps are common and usually benign. |
 | **Kidney function** | Creatinine→eGFR, BUN, cystatin C, urine albumin:creatinine (ACR) | Filtration rate, proteinuria | ACR (an *early* glomerular-damage marker) often more actionable than a borderline eGFR. Cross-ref §22. |
@@ -265,7 +265,7 @@ worry you. Effect sizes live in `WHAT-TO-TRACK-SYNTHESIS.md`.*
 | **Hematology (CBC)** | Hb/Hct, RBC indices (MCV, RDW), WBC + differential, platelets | Anemia, infection/inflammation pattern, clotting capacity, marrow output | A pattern test, not a single number — see B.2. Anemia workup cross-ref §17. |
 | **Inflammatory markers** | **hsCRP**, ESR, ferritin (also iron store), fibrinogen | Non-specific *acute-phase* signal of inflammation | **Predictor, not lever** (Ridker/JUPITER): hsCRP risk-stratifies but is not itself a treatment target. ESR is slow/non-specific. Cross-ref §15. |
 | **Endocrine assays** | TSH/free T4/T3, cortisol, testosterone, estradiol, insulin, PTH, vitamin D | Hormonal axis status | Highest assay-variability category (A.8); pulsatile/diurnal secretion means timing matters; "normal range" wide. Cross-ref §13. |
-| **Tumor markers** | PSA, CA-125, CEA, CA 19-9, AFP, CA 15-3 | Trends in *known* cancer (monitoring); poor screening tools | Mostly **not** for screening — low specificity → low PPV in general population (A.11). PSA = the cautionary case (A.12, §25). |
+| **Tumor markers** | PSA, CA-125, CEA, CA 19-9, AFP, CA 15-3 | Trends in *known* cancer (monitoring); poor screening tools | Mostly **not** for screening — low specificity → low PPV in general population (B.4). PSA = the cautionary case (B.5, §25). |
 | **Coagulation** | PT/INR, aPTT, D-dimer, fibrinogen, platelets | Clotting pathway integrity, anticoagulant monitoring | **D-dimer** is the textbook high-sensitivity/low-specificity rule-*out* test (SnNout): great negative, near-useless positive (A.2). |
 | **Microbiology / cultures** | Blood/urine/wound culture + sensitivities, Gram stain, rapid antigen/PCR | Identifies the organism + which antibiotics work | Culture = slow gold standard (days); contamination (skin flora in blood cultures) is a classic false positive (Bates/Weinstein, *Ann Intern Med* 1987). PCR is fast/sensitive but can detect dead or colonizing organisms. |
 | **Urinalysis** | Dipstick (protein, glucose, blood, leukocyte esterase, nitrite), microscopy | Renal/urinary/metabolic screen | Cheap and useful *with* pre-test reasoning; asymptomatic dipstick "abnormalities" (microscopic hematuria, trace protein) are a leading cascade trigger. |
@@ -394,27 +394,25 @@ empowerment. Sorted by honesty:
 
 ## Honest debunks (state them plainly)
 
-- **"A full-body blood panel finds everything wrong before it's a problem."** **False, and backwards.** On
-  a broad panel, a healthy person is *more likely than not* to get at least one "abnormal" flag from
-  statistics alone (A.7: ~64% on 20 analytes). Without pre-test reasoning, those flags have low PPV (A.4)
-  and launch cascades (A.9). Broad untargeted screening of healthy adults has **no demonstrated outcome
-  benefit** and well-documented harms. Targeted testing of the few outcome-validated markers beats the
-  panel.
-- **"Any out-of-range result means something is wrong."** **No.** "Out of range" means *outside the central
-  95% of a reference population* — 1 in 20 healthy people clear that bar on any single test by definition.
-  A single mild flag, no symptoms, low pre-test probability → most often *repeat it*, don't treat or scan
-  it.
+- **"A full-body blood panel finds everything wrong before it's a problem" / "any out-of-range result
+  means something is wrong."** **False, and backwards.** "Out of range" means *outside the central 95% of
+  a reference population* — 1 in 20 healthy people clear that bar on any single test by definition, so on a
+  broad panel a healthy person is *more likely than not* to get at least one "abnormal" flag from statistics
+  alone (A.7: ~64% on 20 analytes). Without pre-test reasoning those flags have low PPV (A.4) and launch
+  cascades (A.9); broad untargeted screening of healthy adults has **no demonstrated outcome benefit** and
+  well-documented harms. A single mild flag, no symptoms, low pre-test probability → most often *repeat it*,
+  don't treat or scan it.
 - **"My doctor's gut 'pre-test probability' is just guessing — the test is objective."** **No** — the
   pre-test probability *is* the prevalence term in Bayes, and it does *half* the inferential work. A
   "positive" on a great test can still mean you probably don't have the disease (the 9%-PPV example, A.4).
   The test is not a verdict; it's an update.
-- **"A negative tumor marker / negative DTC panel means I'm cancer-free / healthy."** **No.** NPV is never
-  100%; a marker with imperfect sensitivity, or a panel that tests three variants out of thousands (§18
-  §A.6), leaves most of the risk space untouched. False reassurance is its own harm.
-- **"Liquid biopsy can screen me for all cancers from one blood draw."** **Not yet proven.** MCED tests
-  *detect* signals but, in screening populations, the majority of positives are false or unactionable
-  (PATHFINDER PPV ~38–43%), and **no trial has yet shown they reduce mortality.** Mechanism-plausible,
-  outcome-unproven — do not collapse the two.
+- **"A negative tumor marker / DTC panel means I'm cancer-free" / "liquid biopsy can screen me for all
+  cancers from one blood draw."** **No / not yet proven.** NPV is never 100%; a marker with imperfect
+  sensitivity, or a panel that tests three variants out of thousands (§18 §A.6), leaves most of the risk
+  space untouched — false reassurance is its own harm. And MCED tests *detect* signals but, in screening
+  populations, the majority of positives are false or unactionable (PATHFINDER PPV ~38–43%), with **no
+  trial yet showing they reduce mortality.** Mechanism-plausible, outcome-unproven — do not collapse the
+  two.
 - **"The biopsy is the gold standard, so a pathology result is certain."** **Gold standard ≠ infallible.**
   Sampling error means a negative biopsy isn't zero risk; inter-observer variability means grade (and
   borderline diagnoses) carry real disagreement — which is exactly why second opinions change management.

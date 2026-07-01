@@ -40,7 +40,7 @@ claim fails the evidence. These tier codes recur throughout the chapter.
 
 | System | Ages how | Best practical lever | Tier of the lever |
 |---|---|---|---|
-| **Respiratory** | FEV₁/FVC decline ~25–30 mL/yr after ~30–35; elastic recoil ↓, chest-wall stiffens, gas exchange ↓ | **Never smoke / quit smoking** (the only thing that changes the slope); preserve VO₂max via aerobic training | `cohort`→`rct` (cessation) |
+| **Respiratory** | FEV₁ decline ~25–30 mL/yr after ~30–35 (the FEV₁/FVC ratio falls as FEV₁ drops); elastic recoil ↓, chest-wall stiffens, gas exchange ↓ | **Never smoke / quit smoking** (the only thing that changes the slope); preserve VO₂max via aerobic training | `cohort`→`rct` (cessation) |
 | **Renal / urinary** | eGFR (kidney-filtration rate) ↓ ~0.8–1 mL/min/1.73m²/yr after ~40; nephron dropout, silent until late | **Control BP + glucose**; avoid habitual NSAIDs; don't fear protein if kidneys are healthy | `rct` (BP/glucose), `cohort` (NSAID) |
 | **Hepatic / liver** | Steatosis (MASLD) now in ~30%+ of adults; fibrosis is the prognostic axis | **Lose ≥7–10% body weight** (the one intervention that reverses histology) | `cohort`/prospective histology |
 | **Digestive / GI** | Slower motility, ↓ esophageal clearance, ↑ GERD & constipation; gut-brain signaling shifts | **Fiber + fluid + movement**; manage GERD with weight loss + positioning before reflexively escalating drugs | `meta` (fiber), `cohort`/guideline (GERD) |
@@ -474,31 +474,19 @@ your body's warning lights as prompts to fix causes — not symptoms to mask or 
 
 ### Go deeper
 
-- **Fletcher C, Peto R. "The natural history of chronic airflow obstruction." BMJ 1977.**
-  `10.1136/bmj.1.6077.1645` — the foundational lung-decline-and-smoking diagram; the reason "quit at any age"
-  is the respiratory lever.
-- **Mandsager K, et al. "Association of Cardiorespiratory Fitness With Long-term Mortality." JAMA Netw Open
-  2018.** `10.1001/jamanetworkopen.2018.3605` — 122k treadmill tests; mortality falls with fitness with no
-  upper limit; low fitness rivals smoking/diabetes as a risk.
-- **Craighead DH, et al. "Time-Efficient Inspiratory Muscle Strength Training Lowers Blood Pressure." JAHA
-  2021.** `10.1161/JAHA.121.020980` — the strongest "breathing device" evidence; benefit is cardiovascular, not
-  lung capacity.
-- **Vilar-Gomez E, et al. "Weight Loss Through Lifestyle Modification Significantly Reduces Features of NASH."
-  Gastroenterology 2015.** `10.1053/j.gastro.2015.04.005` — paired-biopsy dose-response; the empirical core of
-  "weight loss is the liver lever."
-- **Rinella ME, et al. "Multisociety Delphi consensus statement on new fatty liver disease nomenclature." J
-  Hepatol 2023.** `10.1016/j.jhep.2023.06.003` — the NAFLD→MASLD rename and the modern metabolic-liver frame.
-- **Reynolds A, et al. "Carbohydrate quality and human health: a series of systematic reviews and
-  meta-analyses." Lancet 2019.** `10.1016/S0140-6736(18)31809-9` — the hard-endpoint fiber evidence (15–30%
-  lower all-cause/CVD mortality).
-- **Brissot P, et al. "Haemochromatosis." Nat Rev Dis Primers 2018.** `10.1038/nrdp.2018.16` — the iron-overload
-  disease where therapeutic phlebotomy is the treatment; the "donation angle."
-- **Dmitrieva NI, et al. "Middle-age high normal serum sodium as a risk factor for accelerated biological
-  aging." EBioMedicine 2023.** `10.1016/j.ebiom.2022.104404` — the honest hydration signal (avoid chronic
-  under-hydration), graded as a `cohort` association.
-- **Thompson B, et al. "Manual lymphatic drainage treatment for lymphedema: a systematic review." J Cancer
-  Surviv 2021.** `10.1007/s11764-020-00928-1` — CDT works for real lymphedema; the MLD-massage component adds
-  little over compression; basis for the wellness-MLD debunk.
+Five curated entry points (full citations for every claim are in the footnotes above):
+
+- **Fletcher & Peto, BMJ 1977** `10.1136/bmj.1.6077.1645` — the foundational lung-decline-and-smoking diagram;
+  the reason "quit at any age" is the respiratory lever.
+- **Mandsager K, et al., JAMA Netw Open 2018** `10.1001/jamanetworkopen.2018.3605` — 122k treadmill tests;
+  mortality falls with fitness with no upper limit; low fitness rivals smoking/diabetes as a risk. The atlas's
+  master number.
+- **Vilar-Gomez E, et al., Gastroenterology 2015** `10.1053/j.gastro.2015.04.005` — paired-biopsy dose-response;
+  the empirical core of "weight loss is the liver lever."
+- **Reynolds A, et al., Lancet 2019** `10.1016/S0140-6736(18)31809-9` — the hard-endpoint fiber evidence
+  (15–30% lower all-cause/CVD mortality).
+- **Thompson B, et al., J Cancer Surviv 2021** `10.1007/s11764-020-00928-1` — CDT works for real lymphedema;
+  the MLD-massage component adds little over compression; basis for the wellness-MLD debunk.
 
 [^fletcher-peto]: Fletcher C, Peto R. "The natural history of chronic airflow obstruction." BMJ 1977. doi:10.1136/bmj.1.6077.1645 (cohort)
 [^lange-2015]: Lange P, et al. NEJM 2015. doi:10.1056/NEJMoa1411532

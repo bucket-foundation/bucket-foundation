@@ -47,7 +47,7 @@ covers the capacities, choosing tools by fit, access, enjoyment, and joints.
 | **COO** | Coordination / balance / skill | Postural control, motor learning, reactive stability; balance tests are validated mortality biomarkers |
 
 Each modality below is graded on **what it trains** (these tags), **real benefits**, **injury/risk profile**,
-**learning curve**, **equipment**, **who it's best for**, and an **honest evidence note**. The grading is where the
+**access** (skill cost + gear), **who it's best for**, and an **honest evidence note**. The grading is where the
 neutrality lives — nothing is dismissed for being unfashionable, nothing is inflated for being popular.
 
 > **One honest framing to carry through:** almost every modality "works" for general health, because almost
@@ -70,8 +70,7 @@ the highest-ceiling tools for the **strength** and **power** capacities.
 | **Trains** | **STR** (primary), **PWR** (secondary, esp. with speed/triples), some **COO** (bracing, bar path) |
 | **Benefits** | The highest **load ceiling** of any tool — a barbell loads in 1.25 kg increments to hundreds of kg, so **progressive overload** (Section 02 §6.3) is clean, measurable, and effectively unlimited. Directly builds the strength capacity that defines sarcopenia and the **bone-loading** signal (osteogenic — the mechanical stimulus that builds bone) that defends BMD (bone mineral density) (LIFTMOR, Section 04 §3.3). The three lifts cover squat, hinge, and horizontal push; rows/overhead press finish the patterns. |
 | **Risk / injury** | Moderate, and **technique-dependent**. The deadlift and squat punish a rounded lumbar spine under load (Section 02 §2.2, Section 21 §4); most barbell injuries are load-management failures (too much, too soon) or form breakdown under fatigue, not the barbell itself. Competitive powerlifting injury rates are actually **low** (~1–4 injuries per 1000 hours) — comparable to or below most sports — *because* the movements are slow and grooved. |
-| **Learning curve** | **High.** The squat/bench/deadlift are genuine motor skills; expect weeks of coaching to groove. This is the main cost. |
-| **Equipment** | Barbell, plates, rack, bench, a floor that tolerates loading. Gym or a home setup. |
+| **Access (skill / gear)** | **Skill high** — the squat/bench/deadlift are genuine motor skills; expect weeks of coaching to groove (the main cost). **Gear:** barbell, plates, rack, bench, a floor that tolerates loading — gym or home setup. |
 | **Best for** | Anyone whose goal is maximal strength, measurable progression, and bone density; intermediate-to-advanced trainees; people who like numbers going up. Beginners *can* start here **with coaching** — or start with the goblet/RDL standards (Section 02 §2) and graduate to the bar. |
 | **Honest evidence** | Strength → mortality is cohort/meta-tier and **J-shaped** (a little is protective; a lot stops adding benefit),[^resistance-meta] with a ~30–60 min/wk sweet spot — more is not better for the mortality endpoint. The barbell is the best *tool* for the strength capacity; it is not a magic longevity object — the capacity is what matters, the barbell is one efficient way to load it. |
 
@@ -87,8 +86,7 @@ the highest-ceiling tools for the **strength** and **power** capacities.
 | **Trains** | **STR**, some **COO** (independent-limb stabilization), some **PWR** |
 | **Benefits** | **Unilateral loading** exposes and corrects left–right asymmetries the barbell hides (one arm can't borrow from the other). A larger natural **range of motion** at the shoulder/hip than a fixed bar. Forgiving on the joints (the wrists/shoulders self-select a comfortable path). Scales from very light to quite heavy; one pair of **adjustable dumbbells** covers most home patterns (Section 04 §5.2). |
 | **Risk / injury** | **Low–moderate.** Lower stakes than a loaded barbell on the back; the main risk is dropping a heavy bell on a press or rolling an ankle on a lunge. Easy to bail safely. |
-| **Learning curve** | **Low–moderate.** More intuitive than the barbell; less coaching needed. |
-| **Equipment** | A pair (or adjustable pair) of dumbbells. Minimal footprint. |
+| **Access (skill / gear)** | **Skill low–moderate** — more intuitive than the barbell, less coaching needed. **Gear:** a pair (or adjustable pair) of dumbbells; minimal footprint. |
 | **Best for** | Beginners, home gyms, hypertrophy work, anyone correcting asymmetry or training around a cranky shoulder/back; an excellent *primary* tool, not just an accessory. |
 | **Honest evidence** | Same strength-capacity evidence umbrella as the barbell (§2.1). Dumbbell vs barbell hypertrophy/strength outcomes are **near-equivalent** when load and effort are equated; pick by access and joint comfort, not by a claimed superiority of either. |
 
@@ -102,8 +100,7 @@ implement, which is exactly why it is over-claimed.
 | **Trains** | **PWR** (the swing/clean/snatch are ballistic hip extension — explosive hinge), **CRF/conditioning** (high-rep ballistics drive heart rate hard), **STR** (get-ups, presses, front squats), **COO** (the get-up is a full-body coordination drill), grip. The rare tool that hits power *and* conditioning *and* grip in one movement. |
 | **Benefits** | The **swing** trains the explosive hip-hinge — the same pattern as a power clean but far lower-skill — making it one of the most accessible **power** developers for general trainees (power declines fastest with age — Section 04 §4.3, so this matters). High-rep work elevates cardio while loading the posterior chain. The **Turkish get-up** is a uniquely complete ground-to-stand stability and shoulder-integrity drill (cross-ref the balance/get-up theme in Section 02 §5). Compact, one or two bells cover a whole session. |
 | **Risk / injury** | **Moderate — and the caveat is real.** The swing is a *hinge done ballistically*; performed as a squat or, worse, as a back-rounded jerk-and-yank, it loads the lumbar spine repeatedly under speed. **Learn the hinge before you load it ballistically** (Section 02 §2.2). The get-up's overhead-loaded phases demand shoulder stability. Done with a coached hip-snap (the arms *float*, they don't lift), risk is low; done badly at high reps under fatigue, the lower back pays. |
-| **Learning curve** | **Moderate.** The swing's *concept* (hip drive, not arm raise) takes deliberate coaching; the get-up is complex and worth breaking into segments. |
-| **Equipment** | One or two kettlebells. Very low footprint, home-friendly. |
+| **Access (skill / gear)** | **Skill moderate** — the swing's *concept* (hip drive, not arm raise) takes deliberate coaching; the get-up is complex and worth breaking into segments. **Gear:** one or two kettlebells; very low footprint, home-friendly. |
 | **Best for** | People who want power + conditioning + grip in minimal time and space; intermediate trainees; older adults (under supervision — see the honest evidence); anyone bored by slow grinding lifts who needs the dose to be *fun* (adherence, §11). |
 | **Honest evidence** | Better than the internet's skepticism implies, but modest-tier. The **BELL pragmatic controlled trial** (Meigh et al. 2022) put insufficiently-active 59–79-year-olds through 3 months of supervised hardstyle kettlebell training and saw **meaningful gains in grip strength (~+7 kg), 6-minute walk distance, sit-to-stand, 1RM deadlift, and lean mass, with only minor adverse events** — a clean signal that it's safe and effective for older adults *when coached*.[^bell-trial] Earlier work showed kettlebell training **transfers to strength, power, and aerobic capacity** (Lake & Lauder; Manocchia 2013) — though, predictably, dedicated heavy lifting builds maximal strength faster and dedicated running builds VO₂max faster.[^kb-transfer] **The honest read:** the kettlebell is an excellent *generalist* and *power/conditioning* tool, not a *specialist* — it does several things well and nothing best, which is precisely its value for time-poor general trainees. |
 
@@ -114,8 +111,7 @@ implement, which is exactly why it is over-claimed.
 | **Trains** | **PWR** (the highest rate-of-force-development tool in the gym), **STR**, **COO** (extreme — technical), **MOB** (demands deep overhead-squat and front-rack mobility) |
 | **Benefits** | Produces **the highest power outputs of any common resistance exercise** — these are the most explosive whole-body movements you can train. Builds rate of force development, which is the *quality* (power) that protects against falls and underpins athleticism. Demands and builds remarkable mobility (a deep overhead squat). |
 | **Risk / injury** | **Moderate**, despite the dramatic appearance — competitive weightlifting injury rates are surprisingly **low and comparable to other strength sports** (~2–4 per 1000 hours) because the movements are coached obsessively and missed lifts are *dropped*, not caught. The real cost is the catastrophic-error tail if attempted untaught and under load. |
-| **Learning curve** | **Very high — the highest in this chapter.** The lifts take months-to-years to do well; they are a sport, not a general-fitness shortcut. |
-| **Equipment** | Bumper plates, a platform you can drop weight on, a barbell rated for it, ideally a qualified coach. Not home-casual. |
+| **Access (skill / gear)** | **Skill very high — the highest in this chapter.** The lifts take months-to-years to do well; they are a sport, not a general-fitness shortcut. **Gear:** bumper plates, a platform you can drop weight on, a barbell rated for it, ideally a qualified coach — not home-casual. |
 | **Best for** | Athletes training for power/explosiveness; people who enjoy mastering a complex skill; CrossFitters. **Not** the efficient choice for a general-health trainee who just wants the power capacity — kettlebell swings, jumps, and medicine-ball throws deliver most of the power benefit at a fraction of the skill cost. |
 | **Honest evidence** | Power training improves function and fall-resistance in older adults (Section 04 §4.3) — but that does **not** mean a 70-year-old should snatch. The *capacity* (power) is the lever; Olympic lifting is one very high-skill, high-ceiling way to train it, justified mainly when explosiveness is the *goal* and the skill is enjoyable. For most people, "train power" ≠ "learn the snatch." |
 
@@ -132,8 +128,7 @@ with a floor and a bar to hang from.
 | **Trains** | **STR** (relative strength — strength per kg of bodyweight), **COO** (high — most movements are skills), **MOB** (gymnastics-style work builds active range), some **PWR** (plyometric variants) |
 | **Benefits** | **Zero-to-minimal equipment**, infinitely regressable and progressable by **leverage** (the bodyweight trainee's main overload lever — Section 02 §6.3 #5). Builds exceptional **relative strength** and body control. The progression *ladders* are the natural teaching tool: wall → incline → full → weighted **push-up**; band-assisted → negative → full → weighted **pull-up/chin-up**; bench **dips** → full dips; inverted **rows** by body angle; assisted → box → full **pistol squats** (Section 02 §2 has the full ladders). Gymnastics-style skill work (levers, handstands) is a deep, joint-friendly long game. |
 | **Risk / injury** | **Low–moderate.** Generally joint-friendly and self-limiting (you fail by being unable to move, not by a bar crushing you). The exceptions: **dips** and deep ring work can stress the shoulder if rushed; advanced gymnastic holds load tendons/elbows hard (a common overuse site). Pull-ups demand honest scapular control to protect the shoulder. |
-| **Learning curve** | **Low to very high** — depending on the rung. A wall push-up is trivial; a one-arm pull-up or planche is a multi-year skill. This *range* is the appeal: a true lifelong progression. |
-| **Equipment** | A pull-up bar (the one near-essential, for the pull pattern), optionally rings/parallettes/a sturdy table. The cheapest serious strength tool there is. |
+| **Access (skill / gear)** | **Skill low to very high** — by rung: a wall push-up is trivial, a one-arm pull-up or planche is a multi-year skill; this *range* is the appeal (a true lifelong progression). **Gear:** a pull-up bar (the one near-essential, for the pull pattern), optionally rings/parallettes/a sturdy table — the cheapest serious strength tool there is. |
 | **Best for** | Beginners, travelers, home trainees, anyone without gym access, people who enjoy skill acquisition, and anyone who wants strength that travels. The honest **"you don't need a gym to get strong"** answer. |
 | **Honest evidence** | It's a strength-capacity modality — same evidence umbrella as the barbell (§2.1). The one genuine *limitation*: progressing **lower-body** strength past bodyweight is awkward (pistols and shrimp squats get hard to load further), and the pure **hinge** is under-served without external load — so a serious bodyweight trainee eventually wants a backpack, bands, or a kettlebell for the hinge/squat. For upper-body relative strength and overall function, bodyweight alone is sufficient for most people indefinitely. |
 
@@ -186,8 +181,7 @@ the *vehicles*.
 | **Trains** | **CRF** (primary), some **STR**/bone (impact loads the legs and skeleton), minimal **COO** |
 | **Benefits** | The most accessible high-dose CRF tool on Earth — needs only shoes and a door. **Weight-bearing impact** loads the skeleton (a bone benefit cycling and swimming lack). Strong, well-replicated longevity association: **even 5–10 minutes/day of slow running is associated with ~30% lower all-cause and ~45% lower cardiovascular mortality**, with a ~3-year life-expectancy benefit and **no extra benefit required from running more** (Lee et al. 2014).[^running-lee] |
 | **Risk / injury** | **Moderate, and almost always a load-management failure** (too much mileage too soon — Section 21 §7.2), not an inherent flaw of running. Common: runner's knee, shin splints, Achilles/plantar issues — overuse, responsive to gradual progression and strength work. |
-| **Learning curve** | **Low** (everyone can jog) — though running *well* and building mileage safely takes patience. |
-| **Equipment** | Shoes. That's it. |
+| **Access (skill / gear)** | **Skill low** (everyone can jog) — though running *well* and building mileage safely takes patience. **Gear:** shoes. That's it. |
 | **Best for** | People who want cheap, portable, high-dose CRF and bone loading; those who enjoy being outdoors; anyone time-pressed (the dose-efficiency is excellent). |
 | **Honest evidence** | The Lee 2014 cohort is robust and dose-flat (slow and brief is enough). Note the honest nuance: in the 80,306-adult British cohort (Oja et al. 2017), **running's mortality association was *not* statistically significant** while swimming/racquet sports/aerobics were — a reminder that self-selected sport cohorts disagree and that *who runs* confounds the estimate.[^oja] Across the literature the direction for running is positive (Lavie et al., "Running as a key lifestyle medicine for longevity," 2017); the magnitude is uncertain.[^running-review] |
 
@@ -211,8 +205,7 @@ the *vehicles*.
 | **Trains** | **CRF** (primary), **STR**-endurance of the quads, minimal **COO** (outdoor) / none (stationary) |
 | **Benefits** | **Low-impact** — spares the joints, so you can accumulate huge **Zone 2 volume** comfortably (Section 02 §3.1) and it **interferes least with strength training** (Section 02 §6.6 — far less eccentric muscle damage than running). Scales from gentle to brutal (intervals). Outdoor cycling adds transport utility and time outdoors; stationary/indoor removes traffic risk and weather. Cycling showed a significant all-cause mortality association (a hazard ratio ~0.85 — roughly a 15% lower death rate) in Oja 2017. |
 | **Risk / injury** | **Low** for the exercise itself (low-impact, low overuse); the real risk outdoors is **traffic/crash trauma**, not the pedaling. Minimal bone-loading benefit (not weight-bearing). |
-| **Learning curve** | **Low.** |
-| **Equipment** | A bike (road/indoor trainer/stationary/spin). Higher cost than shoes; broad range. |
+| **Access (skill / gear)** | **Skill low.** **Gear:** a bike (road/indoor trainer/stationary/spin) — higher cost than shoes, broad range. |
 | **Best for** | Anyone who lifts heavy and wants joint-sparing cardio with minimal interference; heavier individuals or those with knee/foot issues who can't run; high-volume Zone 2; commuters. |
 | **Honest evidence** | Solid CRF tool; mortality association positive in cohorts (with the usual self-selection caveat). The non-weight-bearing nature is the one gap — pair with resistance/impact work if bone density is a concern (Section 04 §3.3). |
 
@@ -223,8 +216,7 @@ the *vehicles*.
 | **Trains** | **CRF** (primary), **STR**-endurance (full-body, upper-body-biased), **MOB** (shoulders/hips), **COO** (stroke is a real skill) |
 | **Benefits** | **Full-body and the lowest-impact serious cardio there is** — the water unloads the joints and spine almost entirely, making it the premier option for the overweight, arthritic, pregnant, or injured. Trains the upper body aerobically (rare among cardio). One of the **strongest sport-specific mortality associations** in the cohort data: swimmers had **~28% lower all-cause and ~41% lower cardiovascular mortality** (Oja et al. 2017). |
 | **Risk / injury** | **Very low** musculoskeletal risk (no impact); shoulder overuse ("swimmer's shoulder") at high volume is the main one. The non-trivial risk is **drowning** if skills are poor — a competence, not an exercise-physiology, issue. No bone-loading benefit (water unloads the skeleton). |
-| **Learning curve** | **Moderate–high.** Efficient stroke is a genuine skill; poor technique makes it exhausting fast and caps the dose. This is the real barrier. |
-| **Equipment** | Pool access (the limiting factor) + goggles. |
+| **Access (skill / gear)** | **Skill moderate–high** — efficient stroke is a genuine skill; poor technique makes it exhausting fast and caps the dose (the real barrier). **Gear:** pool access (the limiting factor) + goggles. |
 | **Best for** | The low-impact crowd — heavy, arthritic, injured, older, pregnant; people who love the water; anyone who needs to train hard with zero joint stress. |
 | **Honest evidence** | Strong `cohort` association, but **heavily self-selected** (lap swimming requires pool access, skill, and baseline health — the classic predictor-≠-lever problem). The direction is consistent and the low-impact, full-body nature is mechanistically attractive. Like cycling, it does **not** load bone — pair with resistance/impact if BMD matters. |
 
@@ -235,8 +227,7 @@ the *vehicles*.
 | **Trains** | **CRF** (primary), **STR**-endurance (one of the most **full-body** cardio movements — legs, back, arms, trunk), some **PWR** |
 | **Benefits** | A rare cardio modality that meaningfully loads the **posterior chain and pull pattern** while driving heart rate — closer to a strength-cardio hybrid than running or cycling. **Low-impact** (no pounding), so joint-sparing and high-volume-friendly. Excellent for intervals (the erg is a brutal HIIT tool). Time-efficient full-body conditioning. |
 | **Risk / injury** | **Low–moderate.** Low-impact and safe, **but** the catch/drive loads the lumbar spine — **rowing with a rounded back at high stroke rates** is the one real injury risk (lower-back strain). Coachable; learn to drive legs-then-hips-then-arms and keep a neutral spine. |
-| **Learning curve** | **Moderate.** The sequencing (legs → hips → arms) is non-obvious and most beginners row arms-first and round the back. A few minutes of coaching fixes it. |
-| **Equipment** | A rowing erg (gym or home) or actual water rowing. |
+| **Access (skill / gear)** | **Skill moderate** — the sequencing (legs → hips → arms) is non-obvious; most beginners row arms-first and round the back, but a few minutes of coaching fixes it. **Gear:** a rowing erg (gym or home) or actual water rowing. |
 | **Best for** | People who want full-body, low-impact conditioning that also touches the pull/posterior chain; interval lovers; anyone wanting one machine that does the most. |
 | **Honest evidence** | Limited *direct* mortality cohort data (no big sport-specific cohort like swimming/cycling), so it inherits the general CRF-and-strength evidence rather than carrying its own. Mechanistically excellent; graded on capacity coverage, not its own outcome trial. |
 
@@ -247,8 +238,7 @@ the *vehicles*.
 | **Trains** | **CRF** (efficient — high heart rate fast), **COO** (timing/rhythm — a genuine skill), **PWR**/elastic (plyometric), **STR**/bone (impact loads the lower leg and skeleton) |
 | **Benefits** | **The cheapest conditioning tool that exists** and one of the most space-efficient — a rope and a few square feet. Combines **cardio + coordination + bone-loading impact + calf/foot elasticity** in one movement (rare). Skips are a low-grade plyometric, so they load bone (an impact benefit cycling/swimming lack) and build foot/ankle stiffness. Scales easily (double-unders, intervals). |
 | **Risk / injury** | **Low–moderate.** Repetitive impact on calves/Achilles/shins — start low to avoid the classic overuse flare (Section 21 §7.2). Otherwise very forgiving. |
-| **Learning curve** | **Low–moderate.** Basic skipping is quick; the coordination *is* part of the training stimulus (a feature). |
-| **Equipment** | A jump rope (a few dollars). The best cost-to-benefit ratio in this chapter. |
+| **Access (skill / gear)** | **Skill low–moderate** — basic skipping is quick, and the coordination *is* part of the training stimulus (a feature). **Gear:** a jump rope (a few dollars) — the best cost-to-benefit ratio in this chapter. |
 | **Best for** | Travelers, home/minimal-equipment trainees, anyone wanting cheap conditioning + coordination + bone loading; warm-ups; people who find steady cardio boring. |
 | **Honest evidence** | No dedicated mortality cohort; graded on capacity coverage. The impact/bone and coordination benefits are mechanistically sound; it's a generalist conditioning tool, honestly modest-tier on outcomes but excellent on access and breadth. |
 
@@ -259,8 +249,7 @@ the *vehicles*.
 | **Trains** | **CRF** (primary); stair-climber adds **STR**-endurance and some bone/impact via stepping |
 | **Benefits** | **Elliptical:** very **low-impact**, smooth, joint-sparing CRF — a fine option for sensitive joints or deconditioned beginners; easy to sustain Zone 2. **Stair-climber:** harder, loads the glutes/quads through a large range, weight-bearing (some bone benefit), strong calorie/heart-rate cost for the time. Both are gym staples that are *fine* — not magic, not useless. |
 | **Risk / injury** | **Very low** (elliptical) to **low** (stair-climber). The main "risk" is **leaning on the handrails**, which dumps the load and fakes the effort — hands light, posture tall. |
-| **Learning curve** | **Very low.** |
-| **Equipment** | Gym machines (or home units). |
+| **Access (skill / gear)** | **Skill very low.** **Gear:** gym machines (or home units). |
 | **Best for** | Deconditioned beginners, joint-sensitive trainees, indoor/weather-bound cardio, people who want a low-skill steady-state option. |
 | **Honest evidence** | Inherit general CRF evidence; no sport-specific cohort. Honestly utilitarian — they deliver the CRF capacity with low skill and low impact, which for many people is exactly the point (adherence > novelty). |
 
@@ -341,8 +330,7 @@ by contrast, *does* have validated mortality biomarkers (Section 02 §5).
 | **Trains** | **STR** (core/trunk endurance, deep stabilizers), **COO** (control, body awareness), **MOB** (some), minimal CRF |
 | **Benefits** | Excellent **core control and trunk endurance** with a focus on precise, controlled movement; accessible and low-impact; popular and adherable. Mat Pilates needs no equipment; reformer Pilates adds spring resistance. |
 | **Risk / injury** | **Low.** Among the safer modalities; the main caveat is loaded spinal flexion in some moves for those with specific back conditions (individualize — Section 21). |
-| **Learning curve** | **Low–moderate.** |
-| **Equipment** | None (mat) to a reformer (studio). |
+| **Access (skill / gear)** | **Skill low–moderate.** **Gear:** none (mat) to a reformer (studio). |
 | **Best for** | Core/control focus, low-impact trainees, rehab-adjacent populations, people who like precise movement; a good *complement* to strength/cardio, not a replacement. |
 | **Honest evidence** | For **chronic low back pain**, Pilates **works — about as well as other exercise types, not better** (network meta-analyses, e.g. JOSPT 2022 and Disabil Rehabil 2023): the honest finding across the LBP literature is that **no single exercise modality is clearly superior; adherence beats modality** (Section 21 §2.3).[^pilates-lbp] Pilates does not "lengthen muscles," "realign the spine," or burn major calories — those are marketing. It builds real core endurance and control, which is useful. Grade: useful, evidence-backed for core/LBP, **not** uniquely superior. |
 
@@ -365,8 +353,7 @@ calm), not for inflated "detox/realignment" claims. Full lineage/evidence treatm
 | **Trains** | **COO/balance** (primary — this is its superpower), MOB, low-grade STR (sustained semi-squat stance), stress regulation |
 | **Benefits** | A slow, flowing, weight-shifting practice that trains **postural control, weight transfer, and reactive balance** — exactly the capacity that prevents the fall that ends so many older lives (Section 02 §5, Section 04 §4.3). Low-impact, joint-friendly, social, and sustainable into very old age. |
 | **Risk / injury** | **Very low** — one of the safest structured activities for frail/older populations. |
-| **Learning curve** | **Moderate** (learning the forms) but each piece is gentle. |
-| **Equipment** | None. |
+| **Access (skill / gear)** | **Skill moderate** (learning the forms) but each piece is gentle. **Gear:** none. |
 | **Best for** | **Older adults and anyone at fall risk** — this is the clearest who-it's-for in the chapter. Also stress regulation and gentle movement for any age. |
 | **Honest evidence** | **The strongest evidence in this mobility/mind-body section by a clear margin.** Multiple systematic reviews and meta-analyses of RCTs show **tai chi reduces falls and improves balance in older adults** (e.g. Front Public Health 2023; and a landmark RCT, Li et al. 2018, *JAMA Intern Med*, found a therapeutic tai chi program *outperformed* conventional multimodal and stretching exercise for fall reduction in high-risk older adults).[^taichi-falls] This is meta/RCT-tier — well above the mechanism/anecdotal grade most "mobility" modalities carry. **If an older adult does one mind-body modality for fall prevention, the evidence points to tai chi.** |
 
@@ -429,8 +416,7 @@ across a very wide range; the exact number is not sacred.*
 | **Trains** | **CRF** + **STR-endurance** (load on the back recruits legs/trunk/postural muscles) + **bone** (weight-bearing under added load) — a strength-cardio hybrid at walking intensity |
 | **Benefits** | Adds a meaningful **load stimulus to the most adherable modality there is.** Carrying 10–20 kg in a pack turns an easy walk into a posterior-chain, trunk, and bone-loading session while keeping the low skill and low impact of walking. Scales trivially (add weight) and stacks onto existing walks/commutes/hikes. An efficient way to get strength-ish *and* cardio *and* bone loading from one low-skill activity. |
 | **Risk / injury** | **Low — if loaded sensibly.** Too much weight too soon stresses the shoulders, lower back, knees, and feet (load management again — Section 21 §7.2). Start light, progress gradually, keep posture tall. |
-| **Learning curve** | **Very low** (it's walking with a pack). |
-| **Equipment** | A backpack + weight (books, plates, sandbags, or a purpose-built ruck plate). Near-free. |
+| **Access (skill / gear)** | **Skill very low** (it's walking with a pack). **Gear:** a backpack + weight (books, plates, sandbags, or a purpose-built ruck plate) — near-free. |
 | **Best for** | People who want more stimulus than walking without the skill/impact of running or lifting; the time-poor (stacks onto life); military-adjacent training; anyone who'll *walk* but won't *run*. |
 | **Honest evidence** | **No dedicated mortality cohort** — rucking inherits the walking + load-carriage + resistance evidence rather than carrying its own outcome trial. Mechanistically it's a clean way to add load to a proven base. Graded honestly: under-studied directly, well-supported by inheritance, and a strong *adherence-leveraged* option. The internet's enthusiasm runs slightly ahead of the direct evidence — but the *direction* (added load to walking = added stimulus) is sound. |
 
@@ -450,8 +436,7 @@ positive though mechanism-heavy. Excellent adherence vehicle.
 | **Trains** | **CRF** (varies by style), **COO/balance** (high — learning steps is real motor learning), plus a strong **cognitive + social** component |
 | **Benefits** | The rare modality that bundles **aerobic work + balance + motor-skill learning + social connection + music/joy** in one — which is exactly the combination implicated in **brain aging**. The famous finding: in the Bronx Aging Study (Verghese et al. 2003, *NEJM*), among leisure activities, **frequent dancing was associated with a markedly lower risk of incident dementia**[^dancing-dementia] — and was the *only physical* activity in that cohort with a significant association, plausibly because it couples physical exertion with continuous cognitive demand (remembering steps, partnering, rhythm). |
 | **Risk / injury** | **Low** (style-dependent; falls/ankle in vigorous forms). |
-| **Learning curve** | **Low–high** by style — and the *learning* is part of the benefit (the cognitive load is the point). |
-| **Equipment** | None (to shoes/a partner/a class). |
+| **Access (skill / gear)** | **Skill low–high** by style — and the *learning* is part of the benefit (the cognitive load is the point). **Gear:** none (to shoes/a partner/a class). |
 | **Best for** | Older adults (cognitive + balance + social + aerobic in one — a near-ideal aging modality), people who hate "exercise" but love music/movement, anyone wanting the social-cognitive bundle. |
 | **Honest evidence** | The Verghese 2003 dementia association is `cohort` and **confounded** (people who dance frequently differ in health, sociality, and cognitive reserve — predictor ≠ lever): we cannot say dancing *prevents* dementia. But the **mechanistic bundle** (aerobic + motor learning + social engagement, each independently linked to brain health — cross-ref Section 08) is unusually coherent, and the something-beats-nothing floor applies. Grade: a delightful, defensible, *direction*-positive choice; don't oversell it as a proven dementia cure. |
 
@@ -560,9 +545,6 @@ Practical decision order (cross-ref Section 29 behavior change, and the Helms/Is
 
 ## 12. Honest debunks (don't skip)
 
-- **"Running destroys your knees."** **Backwards for recreational runners** — *lower* OA (3.5%) than sedentary
-  (10.2%); risk rises only at elite/high-volume exposure. Cartilage needs load; the "finite miles" model is
-  wrong. Full data at §5.1.
 - **"Lifting stunts children's growth."** **Myth.** The old fear (growth-plate damage from weights) is not
   supported; supervised, age-appropriate resistance training is **safe and beneficial** for youth and does
   **not** stunt growth (the rare injuries came from unsupervised maximal/ego lifting, not from training per se).
@@ -583,11 +565,6 @@ Practical decision order (cross-ref Section 29 behavior change, and the Helms/Is
 - **Spot reduction generally.** You cannot burn fat from a specific area by training that area (endless
   crunches for belly fat, inner-thigh machines for thigh fat). Fat loss is systemic. (Mechanism: lipolysis is
   hormonally driven and body-wide, not locally targeted by adjacent muscle work.)
-- **"Machines aren't functional / free weights are always better."** Both build strength; machines are *safer*
-  for beginners/rehab and let you train to failure alone (§4). "Functional" is marketing.
-- **"Tabata / 4 minutes is all you need."** No — HIIT is time-efficient for VO₂max but does not replace the
-  aerobic base; the honest model is polarized (Section 02 §3.3).
-
 ---
 
 ## Go deeper

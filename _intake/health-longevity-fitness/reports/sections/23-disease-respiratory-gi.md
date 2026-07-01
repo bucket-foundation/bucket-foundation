@@ -271,7 +271,7 @@ surgery — recurring endlessly. Then **Barry Marshall and Robin Warren** showed
 ***Helicobacter pylori***, colonizes the stomach and causes the chronic gastritis underlying most ulcers.
 Marshall famously **drank a culture of H. pylori himself** (1984), developed gastritis, and treated it — part
 of the evidence that fulfilled a modern version of Koch's postulates (Marshall *et al.*, *Med J Aust* 1985).
-They won the **2006 Nobel Prize in Physiology or Medicine.** The implication was radical: **most peptic ulcer
+They won the **2005 Nobel Prize in Physiology or Medicine.** The implication was radical: **most peptic ulcer
 disease is an infection, and infections can be cured.** `rct`/`meta` (eradication trials).
 
 **Mechanism.** *H. pylori* survives gastric acid (it makes urease, buffering its microenvironment), incites
@@ -616,30 +616,18 @@ itself.
 
 ### Go deeper
 
-- **McEvoy RD, et al. "CPAP for Prevention of Cardiovascular Events in Obstructive Sleep Apnea." NEJM 2016.**
-  `10.1056/NEJMoa1606599` — the SAVE trial; CPAP improved sleepiness/QoL but did **not** reduce CV events in
-  largely non-sleepy, under-adherent patients. The canonical predictor-≠-lever case for OSA.
+Five curated entry points (the trial DOIs also appear in the footnotes above):
+
 - **Marshall BJ, et al. "Attempt to fulfil Koch's postulates for pyloric Campylobacter." Med J Aust 1985**
   (PMID 3982345); and the original Marshall & Warren *Lancet* 1984 description — the self-experiment and the
-  discovery that peptic ulcer is an infection (2005/2006 Nobel). The cleanest "find the cause → cure the
+  discovery that peptic ulcer is an infection (2005 Nobel). The cleanest "find the cause → cure the
   disease" story in the section.
-- **Halmos EP, et al. "A diet low in FODMAPs reduces symptoms of irritable bowel syndrome." Gastroenterology
-  2014.** `10.1053/j.gastro.2013.09.046` — the landmark controlled feeding trial behind low-FODMAP; remember
-  it is a 3-phase, dietitian-guided, not-forever protocol.
-- **Harrison SA, et al. "A Phase 3, Randomized, Controlled Trial of Resmetirom in NASH with Fibrosis." NEJM
-  2024.** `10.1056/NEJMoa2309000` — MAESTRO-NASH; the first FDA-approved drug for MASH/fibrosis. Pairs with
-  **Sanyal AJ, et al. semaglutide in MASH, NEJM 2025** `10.1056/NEJMoa2413258`.
-- **Afdhal N, et al. "Ledipasvir and Sofosbuvir for Untreated HCV Genotype 1 Infection." NEJM 2014.**
-  `10.1056/NEJMoa1402454` — direct-acting antivirals; >95% cure in 8–12 weeks. Hepatitis C went from
-  incurable-and-brutal to solved.
-- **Bretthauer M, et al. "Effect of Colonoscopy Screening on Risks of Colorectal Cancer and Related Death."
-  NEJM 2022.** `10.1056/NEJMoa2208375` — NordICC; the randomized evidence that screening lowers CRC incidence
-  (and, per-protocol, mortality). The adenoma→carcinoma window is the lever.
-- **McCarthy B, et al. "Pulmonary rehabilitation for COPD." Cochrane 2015.** `10.1002/14651858.CD003793.pub3`
-  — improves exercise capacity and quality of life; the honest "function lever, not a structural cure" for COPD.
-- **Monami M, et al. "Weight Loss as a Determinant of Histological Improvement in MASLD." Diabetes Obes Metab
-  2026.** `10.1111/dom.70617` — meta-analytic confirmation that weight loss drives histological improvement
-  across modalities; the foundation under MASLD pharmacotherapy.
+- **Afdhal N, et al., NEJM 2014** `10.1056/NEJMoa1402454` — direct-acting antivirals; >95% HCV cure in 8–12
+  weeks. Hepatitis C went from incurable-and-brutal to solved.
+- **McEvoy RD, et al. (SAVE), NEJM 2016** `10.1056/NEJMoa1606599` — CPAP improved sleepiness/QoL but did **not**
+  reduce CV events in largely non-sleepy, under-adherent patients. The canonical predictor-≠-lever case for OSA.
+- **Harrison SA, et al. (MAESTRO-NASH), NEJM 2024** `10.1056/NEJMoa2309000` — the first FDA-approved drug for
+  MASH/fibrosis; pairs with **Sanyal AJ, et al. semaglutide in MASH, NEJM 2025** `10.1056/NEJMoa2413258`.
 - **AAAAI / EAACI / CSACI position statements on IgG food testing** — the multi-society consensus that IgG/IgG4
   food panels are **not** valid for diagnosing food sensitivity (IgG reflects exposure/tolerance, not
   pathology). The basis for the §D2 debunk.

@@ -40,7 +40,7 @@ read it without lying to yourself._
 | Life stage | Risk factor | PAF (2024) | What it means / the honest tier |
 |---|---|---|---|
 | **Early life** | Less education | **5%** | Fewer years of education → lower "cognitive reserve." Strong, but the lever is societal (childhood schooling), not something a 60-year-old changes about their past. Lifelong learning is the *hopeful* extrapolation, not the proven mechanism. |
-| **Midlife** | Hearing loss | **7%** | The **largest single modifiable factor.** And — uniquely — it has RCT support that it's a *lever*, not just a predictor (see §2, ACHIEVE). |
+| **Midlife** | Hearing loss | **7%** | **Tied for the largest single modifiable factor** (7%, with high LDL). And — uniquely — it has RCT support that it's a *lever*, not just a predictor (see §2, ACHIEVE). |
 | | High LDL cholesterol | **7%** | *New in 2024.* Midlife LDL → vascular + likely amyloid pathways. Lever = the same statins/lifestyle that protect the heart. |
 | | Depression | **3%** | Bidirectional: depression is both a risk factor *and* an early symptom (reverse causation is real here — see §5). |
 | | Traumatic brain injury (TBI) | **3%** | Repeated/severe head injury. Lever = helmets, fall prevention, contact-sport policy. |
@@ -87,7 +87,7 @@ as the PAF table: **treat midlife blood pressure.**
 
 ## 2. Hearing loss → cognition: the ACHIEVE trial (the field's best recent causal evidence)
 
-Hearing loss is the **largest single modifiable factor (7%)** and, until recently, the obvious objection
+Hearing loss is **tied for the largest single modifiable factor (7%, with high LDL)** and, until recently, the obvious objection
 was: *is it a cause, or just an early marker of the same neurodegeneration?* The observational signal was
 strong — **Lin et al., *Arch Neurol* 2011**[^lin-2011] found incident dementia risk rising with baseline
 hearing-loss severity (mild/moderate/severe → ~2×/3×/5× hazard) in the Baltimore Longitudinal Study of
@@ -332,22 +332,18 @@ statistically significant, clinically marginal, real harms.
 
 ## 7. The honest summary of this section
 
-1. **The spine is the Lancet 14 factors (~45% PAF)** — the most authoritative map of dementia prevention,
-   but mostly an **observational/population** counterfactual (§1.2), not a personal guarantee.
-2. **The lever with the best causal evidence is hearing** (ACHIEVE), followed by **vascular control**
-   (SPRINT-MIND) and **bundled lifestyle** (FINGER). All three are RCT-supported and all three point at
-   the same unglamorous bundle, laid out in the checklist below. What's good for the heart is good for
-   the brain.
+1. **The spine is the Lancet 14 factors (~45% PAF)** — the most authoritative map, but mostly an
+   **observational/population** counterfactual (§1.2), not a personal guarantee.
+2. **Best causal evidence: hearing** (ACHIEVE), then **vascular control** (SPRINT-MIND) and **bundled
+   lifestyle** (FINGER) — all RCT-supported, all pointing at the same unglamorous bundle below. What's
+   good for the heart is good for the brain.
 
 @@FIG:88-dementia-checklist@@
-3. **Mental health is longevity.** Depression raises mortality and dementia risk; exercise is an
-   RCT-supported treatment for depression; the serotonin-deficiency story is a marketing simplification
-   that's false *and* doesn't negate the modest real efficacy of antidepressants.
-4. **The hype is concentrated and gradeable.** Nootropics and brain-training games are mostly `mechanistic`
-   or marketing with null large RCTs; the amyloid antibodies are a real but **clinically marginal,
-   risk-laden** milestone; and the most exciting *new* lead — the shingles-vaccine signal — is
-   striking precisely because it's **quasi-experimental and replicated**, which is rare in this field. Flag
-   it loudly, grade it as the natural experiment it is.
+3. **Mental health is longevity.** Depression raises mortality and dementia risk; exercise is RCT-supported
+   treatment; the serotonin-deficiency story is a false simplification that doesn't negate antidepressants' modest real efficacy.
+4. **The hype is concentrated and gradeable:** nootropics and brain-training are mostly `mechanistic` with
+   null large RCTs; the amyloid antibodies are **clinically marginal, risk-laden**; and the best new lead —
+   the shingles-vaccine signal — is striking because it's **quasi-experimental and replicated**. Grade it as the natural experiment it is.
 
 ---
 

@@ -21,29 +21,31 @@
 
 | Asset | Count | Source of truth |
 |---|---:|---|
-| **Graded claims** | **197** | `02-domains/*-claims.json` (10 sets) |
+| **Graded claims** | **1007** | `02-domains/*-claims.json` (54 sets) |
 | **People (figure cards)** | **174** carded (`01-people/figures.json`); 170 `.md` cards; **155** graph edges | `01-people/` |
 | **Labs / institutions** | **24** | `05-labs/labs.json` |
 | **Clinical trials tracked** | **15** | `05-labs/trials.json` |
-| **Conflict objects** | **29** (15 `open`, 14 partially/mostly-resolved) | `06-evidence/CONFLICTS.md` |
+| **Conflict objects** | **38** (23 `open`, 15 partially/mostly-resolved) | `06-evidence/CONFLICTS.md` |
 | **Cross-cutting threads** | **6** | `02-domains/threads/` |
 | **Movements (movement library)** | **53** across 8 categories | `03-movement-library/` |
 | **Media assets** | **294** (video + extracted frames + anatomy images) | `media/MANIFEST.jsonl` |
 | **Practitioner protocol sheets** | **12** practitioners + **3** domain protocol sheets | `04-protocols/` |
 
-### Claims by evidence tier (all 197)
+### Claims by evidence tier (all 1007)
 | Tier | Count | | Tier | Count |
 |---|---:|---|---|---:|
-| mechanistic | 42 | | cross-sectional | 9 |
-| cohort | 40 | | theoretical | 8 |
-| meta (meta-analysis) | 29 | | anecdotal | 5 |
-| animal | 27 | | case-control | 4 |
-| rct | 27 | | in-vitro | 3 |
-| | | | n=1 | 3 |
+| rct | 250 | | anecdotal | 28 |
+| cohort | 229 | | theoretical | 22 |
+| meta (meta-analysis) | 222 | | case-control | 11 |
+| mechanistic | 154 | | in-vitro | 8 |
+| animal | 43 | | n=1 | 6 |
+| cross-sectional | 31 | | mixed | 2 |
+| | | | outcome | 1 |
 
-> Read: the corpus is **observational-heavy** (cohort + cross-sectional + case-control = 53) and
-> **mechanistic-heavy** (42), with only 27 RCT-tier and 29 meta-tier claims. That distribution *is*
-> the headline — see `00-map/01-STATE-OF-THE-FIELD.md`.
+> Read: RCT-tier (250) and meta-tier (222) claims are a large minority; the corpus is still
+> **observational-heavy** (cohort + cross-sectional + case-control = 271) and **mechanistic-heavy**
+> (154), with animal/theoretical/anecdotal/in-vitro/n=1 tiers making up the rest. That distribution
+> *is* the headline — see `00-map/01-STATE-OF-THE-FIELD.md`.
 
 ---
 
@@ -107,8 +109,8 @@ McKeown), and the inherited biophysics layer (Kruse, Pollack, Becker, Levin, Wal
 
 ## 06-evidence — grading + disagreement
 - `SCHEMA.md` — the neutrality mechanism: how every claim is graded; tier definitions; "name is provenance, not evidence"
-- `CONFLICTS.md` — 29 conflict objects, full prose + inline JSON mirror (append-only)
-- **`CONFLICTS-REGISTER.md`** — clean summary table of all 29 (question | side A | side B | status)
+- `CONFLICTS.md` — 38 conflict objects, full prose + inline JSON mirror (append-only)
+- **`CONFLICTS-REGISTER.md`** — clean summary table of all 38 (question | side A | side B | status)
 - `_WAVE4-CLEANUP.md`
 
 ## 04-protocols — recipes (separated from evidence)

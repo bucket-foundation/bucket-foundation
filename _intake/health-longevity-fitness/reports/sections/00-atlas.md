@@ -126,7 +126,7 @@ The diseases themselves, mapped as clinical entities — what they are, the mech
 | Node | Where |
 |---|---|
 | Evidence schema & the ten-rung tier ladder | the Evidence chapter |
-| The 37 open conflicts (disagreement as data) | the Conflicts register |
+| The 38 open conflicts (disagreement as data) | the Conflicts register |
 | People map — 176 figures + relationship graph | the People map |
 | Labs, institutions & trials | the Labs & Trials directory |
 | Mechanism bridge — every lever → its fundamental basis | §12 |

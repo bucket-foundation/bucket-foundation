@@ -183,7 +183,7 @@ predictor-without-a-lever, and it raises four real counseling issues:
 3. **The lever that *does* exist is generic, not genotype-specific.** ε4 carriers are not helpless —
    but what helps them is the *same* dementia-risk-reduction toolkit that helps everyone (Domain on
    brain/cognition, section 08): blood-pressure and lipid control, exercise, hearing correction
-   (ACHIEVE, see section 11), sleep, not smoking, metabolic health. **There is some evidence ε4
+   (ACHIEVE, graded in section 08), sleep, not smoking, metabolic health. **There is some evidence ε4
    carriers may benefit *more* from these levers — which flips the script: the high-genetic-risk person
    is exactly the one for whom lifestyle is most worth it (Rule 3, "something beats nothing").**
 4. **Insurance / privacy.** In the US, GINA bars *health*-insurance and employment discrimination but
@@ -261,10 +261,9 @@ A consumer kit genotypes a few hundred thousand to a million common SNPs. Sorted
 
 **The honest limits — where the chip is noise, or worse, misleading**
 
-- **"Wellness / fitness / nutrition" reports are mostly noise.** Your "endurance vs power profile,"
-  "likely to be lean," "caffeine sensitivity," "vitamin needs," "ideal diet" — these read a handful of
-  small-effect common SNPs that explain a rounding error of polygenic traits (§A.1). They are
-  *entertainment-grade*, not decision-grade.
+- **"Wellness / fitness / nutrition" reports are mostly noise.** "Endurance vs power profile," "caffeine
+  sensitivity," "ideal diet" — these read small-effect common SNPs that explain a rounding error of
+  polygenic traits (§A.1): *entertainment-grade*, not decision-grade.
 - **Relative risk ≠ absolute risk.** A report saying a variant gives "2.1× the average risk" of some
   condition is meaningless without the *baseline*: 2.1× a 0.2% lifetime risk is still 0.4%. DTC
   dashboards routinely show the multiplier and bury (or omit) the absolute number — the single most
@@ -342,7 +341,7 @@ The unifying frame for all of Part A, and the bridge to `04-individual-variation
   al., 2016).[^fto-weightloss] **"Eat for your genotype" is, on the best
   current evidence, a product, not a finding.**
 
-> **The whole of Part An in one sentence.** Your genome contains a *short* list of variants worth acting
+> **The whole of Part A in one sentence.** Your genome contains a *short* list of variants worth acting
 > on (pharmacogenes, a few high-penetrance disease genes, Lp(a), maybe APOE *with counseling*) and a
 > *vast* polygenic remainder that the wellness industry sells as personal insight but that, for *you*,
 > is mostly noise — and the levers that move your actual outcomes are environmental, work regardless of
@@ -458,15 +457,13 @@ Detailed in section 01 §2; the system-level summary:
 
 @@FIG:BS3-food-to-atp-chain@@
 
-1. **Digestive** — food is broken to glucose, fatty acids, amino acids and absorbed across the gut
-   epithelium (with the microbiome fermenting fiber to SCFAs, Domain C §4).
-2. **Cardiovascular** — fuels and hormones (insulin) are distributed; the liver buffers glucose.
-3. **Cells** — glucose → glycolysis → pyruvate; fat → β-oxidation; both → **acetyl-CoA → the Krebs
-   cycle**, which loads the electron carriers NADH/FADH₂.
-4. **Mitochondria** — those carriers feed the **electron transport chain**, pumping protons; **ATP
-   synthase** spends the proton gradient to make ATP (chemiosmosis — the foundation law, §01 §2.2).
-   **Metabolic flexibility** — switching cleanly between glucose and fat — is itself a marker of health;
-   losing it is the early signature of insulin resistance (§01 §2.5).
+**Digestive → cardiovascular → cells → mitochondria.** Food is broken to glucose, fatty acids, and amino
+acids and absorbed across the gut epithelium (microbiome fermenting fiber to SCFAs, Domain C §4); the blood
+distributes fuels and insulin while the liver buffers glucose; inside cells glucose → glycolysis → pyruvate
+and fat → β-oxidation both converge on **acetyl-CoA → the Krebs cycle**, loading NADH/FADH₂; those carriers
+feed the **electron transport chain**, and **ATP synthase** spends the proton gradient to make ATP
+(chemiosmosis — the foundation law, §01 §2.2). **Metabolic flexibility** — switching cleanly between glucose
+and fat — is itself a marker of health; losing it is the early signature of insulin resistance (§01 §2.5).
 
 ### B.4.3 How a signal travels (the control chain)
 

@@ -309,19 +309,16 @@ supplements where the mechanism and a real outcome both hold up.
 Every chain above carries an honesty tag because making mechanisms pervasive and explicit also makes
 the laundering easier to catch. The worst offenders, named:
 
-1. **NAD⁺ precursors (row 24).** The chain "NAD⁺ runs the ETC and declines with age" is `[established]`
-   bedrock biochemistry. "NAD⁺ pills extend healthspan" is `[partial]` at best — they reliably raise the
-   **surrogate** (blood NAD⁺ ~60%) and move **no powered human hard endpoint**.[^nad-eff] The mechanism's
-   prestige is doing the selling. This is the NAD/redox thread's flagship case: "a genuine foundation most
-   aggressively laundered into an unproven outcome."
+1. **NAD⁺ precursors (row 24).** `[established]` biochemistry ("NAD⁺ runs the ETC, declines with age"),
+   `[partial]` outcome — pills raise the **surrogate** (blood NAD⁺ ~60%) but move **no powered human hard
+   endpoint**;[^nad-eff] the NAD/redox thread's flagship "foundation laundered into an unproven outcome."
 
-2. **Resveratrol / "CR-mimetic sirtuin activators."** The in-vitro direct-activation finding was a
-   fluorophore assay artifact; lifespan extension does not replicate in lean mammals;
-   human-null.[^resveratrol] A textbook case of foundation-prestige laundering a *failed* outcome.
+2. **Resveratrol / "CR-mimetic sirtuin activators."** The direct-activation finding was a fluorophore
+   artifact, lifespan gains don't replicate in lean mammals, human-null[^resveratrol] — prestige
+   laundering a *failed* outcome.
 
-3. **Antioxidant supplements.** The mechanism is real but *backwards*: high-dose antioxidants suppress
-   the redox signal adaptation requires, so they **blunt** exercise/cold benefit and RCTs run
-   null/harmful.[^antiox] Here the popular practice contradicts its own mechanism.
+3. **Antioxidant supplements.** Mechanism real but *backwards*: high-dose antioxidants suppress the redox
+   signal adaptation needs, so they **blunt** exercise/cold benefit and RCTs run null/harmful.[^antiox]
 
 4. **Cold plunges.** Strong `[established]` mechanism (UCP1, norepinephrine), thin human
    outcomes, and a **protocol mismatch** — the data are on prolonged mild cold, the marketing is on brief

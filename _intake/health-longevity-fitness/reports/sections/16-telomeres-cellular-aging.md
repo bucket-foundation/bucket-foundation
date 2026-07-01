@@ -321,19 +321,17 @@ than extending divisional capacity. (Full grading: `B-aging-mechanisms.md §2`.)
 A consumer telomere-length test (blood draw or cheek swab → "your telomeres are equivalent to age X") is
 **near-useless as a personal scorecard.** Every failure mode in §16.2 and §16.3 converges on it:
 
-1. **Measurement noise** (§16.2.1): the cheap qPCR assay most consumer tests use has poor reproducibility
-   (Martin-Ruiz 2015) — the same sample scores years apart between labs, so a single number can't track
-   an individual over time.
-2. **Wrong tissue** (§16.2.2): it measures **leukocytes**, a proxy for blood-cell turnover, not "your
-   body's age"; telomere length is tissue-discordant (Demanelis 2020).
-3. **Weak prediction** (§16.2.3): even measured perfectly, leukocyte telomere length is a **weak, confounded**
+1. **It fails on measurement, tissue, and prediction at once** (§16.2): the cheap qPCR assay most tests use
+   is poorly reproducible (Martin-Ruiz 2015 — the same sample scores years apart between labs); it samples
+   **leukocytes**, a proxy for blood-cell turnover rather than "your body's age," and telomere length is
+   tissue-discordant (Demanelis 2020); and even measured perfectly it is a **weak, confounded**
    population-level predictor (Sanders & Newman 2013), not an individual prognosis.
-4. **No actionable output** (the killer): suppose the test says "short." The recommended response is… don't
+2. **No actionable output** (the killer): suppose the test says "short." The recommended response is… don't
    smoke, exercise, sleep, manage stress — **advice you already had on far stronger evidence**, that you'd
    give regardless of the number. And the one thing the result might tempt you toward — a telomerase
    activator to "fix" it — is the one intervention §16.3 says could be **net-harmful**. The test cannot
    change a correct decision in either direction.
-5. **Conflict of interest**: many tests are sold *alongside* the activator supplement that the test then
+3. **Conflict of interest**: many tests are sold *alongside* the activator supplement that the test then
    motivates you to buy. The scorecard exists to sell the cure.
 
 > **Verdict:** a consumer telomere test is a **noisy readout of the wrong tissue with no action attached, often

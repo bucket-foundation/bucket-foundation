@@ -207,7 +207,7 @@ RCT; cold has rich mechanism but thin outcomes.
 | Source | Finding | Tier |
 |---|---|---|
 | Laukkanen 2015 (KIHD, n=2,315 Finnish men, ~20y) | **4–7 sessions/wk vs 1/wk → all-cause mortality HR ~0.60 (hazard ratio; ~40% lower rate), fatal-CVD HR ~0.50, sudden cardiac death HR ~0.37**[^sauna-kihd] | `cohort` |
-| Laukkanen 2016 (same cohort) | Dementia HR ~0.34, Alzheimer's HR ~0.35 (4–7×/wk vs 1×)[^sauna-dementia] | `cohort` |
+| Laukkanen 2017 (*Age and Ageing* 46:245–249, same cohort) | Dementia HR ~0.34, Alzheimer's HR ~0.35 (4–7×/wk vs 1×)[^sauna-dementia] | `cohort` |
 | Laukkanen & Kunutsor 2018 | Sauna raises HR/cardiac output, lowers BP, improves arterial compliance ("mimics moderate exercise")[^sauna-cv] | `mechanistic` |
 
 @@FIG:23-sauna-mortality@@
@@ -490,7 +490,7 @@ in this corpus.
 [^tre-mice]: Time-restricted feeding, diet-induced obesity/steatosis in mice; timing alone. claim: tre-mice-metabolic-protection (mechanistic)
 [^tre-human]: Small uncontrolled human pilots, metabolic syndrome. claim: tre-human-metabolic-syndrome (pilot/uncontrolled)
 [^sauna-kihd]: Laukkanen 2015 — KIHD cohort, n=2,315 Finnish men, ~20y. claim: sauna-frequency-mortality-kihd (cohort)
-[^sauna-dementia]: Laukkanen 2016 — same KIHD cohort. claim: sauna-dementia-association (cohort)
+[^sauna-dementia]: Laukkanen et al. 2017, *Age and Ageing* 46:245–249 — same KIHD cohort. claim: sauna-dementia-association (cohort)
 [^sauna-cv]: Laukkanen & Kunutsor 2018. claim: sauna-cardiovascular-physiology (mechanistic)
 [^hsp]: Heat-shock proteins HSP70/90; proteostasis. claim: heat-shock-proteins-mechanism (mechanistic)
 [^sauna-conflict]: Observational, one Finnish male cohort, no RCT; healthy-user bias / reverse causation not excluded. claim: conflict-sauna-healthy-user (conflict)

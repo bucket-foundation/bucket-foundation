@@ -9,11 +9,10 @@ _Not medical advice. Dementia and depression as outcomes: §08. Evidence tiers (
 `rct` > `meta` > `cohort` > `mechanistic`/`animal` > `anecdotal`) are defined in the manual's "Start
 Here."_
 
-> **Bottom line.** The foundations (action potential, Na⁺/K⁺ pump) are canon-solid. The debunks are
-> the payoff — the 10% myth, dopamine detox, serotonin imbalance, "rewire in 21 days," and vagus hacks
-> are all mechanistically wrong even where an adjacent behaviour helps. **Pain ≠ tissue damage** is the
-> highest-stakes correction. For the aging brain, the levers are the usual unglamorous bundle (move,
-> sleep, connect, treat vascular/hearing/vision). Full 7-point list: **§8**.
+> **Bottom line.** The foundations (action potential, Na⁺/K⁺ pump) are canon-solid; the debunks are the
+> payoff, and **Pain ≠ tissue damage** is the highest-stakes correction. For the aging brain, the levers
+> are the usual unglamorous bundle (move, sleep, connect, treat vascular/hearing/vision). Full 7-point
+> list: **§8**.
 
 ---
 

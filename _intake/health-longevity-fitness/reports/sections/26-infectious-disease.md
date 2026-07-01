@@ -408,13 +408,10 @@ this manual — the order inverts how loudly each is marketed:
    antibacterial consumer products over plain soap; antibiotics "just in case" for a cold; long-term antibiotics
    for post-treatment Lyme symptoms.
 
-The meta-lesson is the one this manual keeps arriving at, in its starkest historical form: **the boring,
-collective, preventive fundamentals carried the outcomes.** Infectious disease was humanity's oldest and
-deadliest enemy, and it was beaten not by a heroic cure but by a sewer, a clean well, a bar of soap, and a
-vaccine schedule — backed by the single most important biological idea, germ theory. The remaining battles
-(resistance, hesitancy, spillover) are losable, and they will be lost the same way they were won or not: through
-collective stewardship of shared resources — antibiotics, herd immunity, and trust — rather than through anything
-you can buy for yourself in a bottle.
+The meta-lesson, in its starkest historical form: **the boring, collective, preventive fundamentals carried
+the outcomes.** Humanity's oldest, deadliest enemy was beaten by sanitation, soap, and a vaccine schedule
+backed by germ theory. The remaining battles (resistance, hesitancy, spillover) are losable — won or lost
+through collective stewardship of shared resources, not anything you can buy in a bottle.
 
 ---
 
@@ -453,4 +450,4 @@ you can buy for yourself in a bottle.
 [^sepsis-gbd]: Rudd KE et al., *Lancet* 2020. doi:10.1016/S0140-6736(19)32989-7. ~48.9M sepsis cases / 11M deaths / ~1-in-5 of all global deaths, 2017. claim: sepsis-global-burden
 [^hptn052]: HPTN 052 — Cohen MS et al., *NEJM* 2011. doi:10.1056/NEJMoa1105243. Early ART cut HIV transmission ~96% (treatment-as-prevention / U=U evidence base); pair with START (doi:10.1056/NEJMoa1506816) and Partners PrEP (doi:10.1056/NEJMoa1108524). claim: hiv-tasp-uu (rct)
 [^bnt-rct]: Polack FP et al., *NEJM* 2020. doi:10.1056/NEJMoa2034577. BNT162b2 mRNA vaccine ~95% efficacy, pivotal RCT. claim: covid-mrna-efficacy (rct)
-[^mmr-autism]: Hviid An et al., *Ann Intern Med* 2019. doi:10.7326/M18-2101. Danish cohort >650,000 children, no MMR–autism link; decisive refutation of the retracted/fraudulent Wakefield claim. claim: mmr-autism-null
+[^mmr-autism]: Hviid A et al., *Ann Intern Med* 2019. doi:10.7326/M18-2101. Danish cohort >650,000 children, no MMR–autism link; decisive refutation of the retracted/fraudulent Wakefield claim. claim: mmr-autism-null

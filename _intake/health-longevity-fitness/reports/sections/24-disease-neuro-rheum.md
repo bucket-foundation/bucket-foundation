@@ -708,66 +708,14 @@ and don't let the supplement aisle crowd out the biologic, the DMT, or the urate
 
 ## Go deeper
 
-**Stroke**
-- NINDS rt-PA Stroke Study Group. "Tissue plasminogen activator for acute ischemic stroke." *NEJM* 1995. `10.1056/NEJM199512143332401` — the trial that started acute stroke therapy.
-- Goyal M, et al. (HERMES). "Endovascular thrombectomy after large-vessel ischaemic stroke: a meta-analysis of individual patient data." *Lancet* 2016. `10.1016/S0140-6736(16)00163-X` — NNT ≈ 2.6.
-- Sharma R, et al. "Advances in treatments for acute ischemic stroke." *BMJ* 2025. `10.1136/bmj-2023-076161`.
-- Zhou Y, et al. (HOPE). "Alteplase for Acute Ischemic Stroke at 4.5 to 24 Hours." *JAMA* 2025. `10.1001/jama.2025.12063` — imaging-selected late window.
+Six curated entry points across the chapter's disease families (every trial DOI cited inline also lives in the footnotes above):
 
-**Epilepsy**
-- Thijs RD, et al. "Epilepsy in adults." *Lancet* 2019. `10.1016/S0140-6736(18)32596-0`.
-
-**Multiple sclerosis**
-- Reich DS, Lucchinetti CF, Calabresi PA. "Multiple Sclerosis." *NEJM* 2018. `10.1056/NEJMra1401483`.
-- Thompson AJ, et al. "Diagnosis of MS: 2017 revisions of the McDonald criteria." *Lancet Neurol* 2018. `10.1016/S1474-4422(17)30470-2` (2024 revisions: Montalban, `10.1016/S1474-4422(25)00270-4`).
-- Graves JS, et al. "Ageing and multiple sclerosis." *Lancet Neurol* 2023. `10.1016/S1474-4422(22)00184-3`.
-
-**Parkinson's & ALS**
-- Bloem BR, Okun MS, Klein C. "Parkinson's disease." *Lancet* 2021. `10.1016/S0140-6736(21)00218-X`.
-- Ravits J, et al. "Amyotrophic Lateral Sclerosis: A Review." *JAMA* 2026. `10.1001/jama.2026.6385`; Goutman SA, et al. *Lancet Neurol* 2022. `10.1016/S1474-4422(21)00414-2`.
-
-**Migraine & headache**
-- Ferrari MD, et al. "Migraine." *Nat Rev Dis Primers* 2022. `10.1038/s41572-021-00328-4`.
-- Edvinsson L, et al. "CGRP as the target of new migraine therapies." *Nat Rev Neurol* 2018. `10.1038/s41582-018-0003-1`; Caronna E, et al. 2024 `10.1016/B978-0-12-823357-3.00024-0`.
-- Ailani J, et al. "AHS Consensus Statement: integrating new migraine treatments." *Headache* 2021. `10.1111/head.14153`.
-
-**Neuropathy**
-- Finnerup NB, et al. (NeuPSIG). "Pharmacotherapy for neuropathic pain: systematic review and meta-analysis." *Lancet Neurol* 2015. `10.1016/S1474-4422(14)70251-0` (cross-ref Section 14 §6.4).
-
-**TBI / CTE**
-- Mez J, et al. "Clinicopathological evaluation of CTE in players of American football." *JAMA* 2017. `10.1001/jama.2017.8334` (110/111 NFL brains — note selection bias).
-- McKee AC, et al. "The spectrum of disease in chronic traumatic encephalopathy." *Brain* 2013. `10.1093/brain/aws307`.
-
-**Osteoarthritis**
-- Hunter DJ, Bierma-Zeinstra S. "Osteoarthritis." *Lancet* 2019. `10.1016/S0140-6736(19)30417-9`.
-
-**Rheumatoid arthritis**
-- Smolen JS, et al. "Rheumatoid arthritis." *Lancet* 2016. `10.1016/S0140-6736(16)30173-8`.
-- McInnes IB, Schett G. "Pathogenetic insights from the treatment of rheumatoid arthritis." *Lancet* 2017. `10.1016/S0140-6736(17)31472-1`.
-
-**Gout**
-- FitzGerald JD, et al. "2020 ACR Guideline for the Management of Gout." *Arthritis Rheumatol* 2020. `10.1002/art.41247`.
-- Choi HK, et al. "Purine-rich foods, dairy and protein intake, and the risk of gout in men." *NEJM* 2004. `10.1056/NEJMoa035700`.
-- White WB, et al. (CARES). "Cardiovascular Safety of Febuxostat or Allopurinol." *NEJM* 2018. `10.1056/NEJMoa1710895`.
-
-**Lupus & autoimmune frontier**
-- Kaul A, et al. "Systemic lupus erythematosus." *Nat Rev Dis Primers* 2016. `10.1038/nrdp.2016.39`.
-- Schett G, et al. "CAR T-cell therapy in autoimmune diseases." *Lancet* 2023. `10.1016/S0140-6736(23)01126-1`.
-
-**Spondyloarthritis**
-- Sieper J, Poddubnyy D. "Axial spondyloarthritis." *Nat Rev Dis Primers* 2015. `10.1038/nrdp.2015.13`; Danve A, Deodhar A. *Nat Rev Rheumatol* 2022. `10.1038/s41584-022-00761-z`.
-
-**Fibromyalgia & central sensitization**
-- Woolf CJ. "Central sensitization: implications for the diagnosis and treatment of pain." *Pain* 2011. `10.1016/j.pain.2010.09.030`.
-- Siracusa R, et al. "Fibromyalgia: Pathogenesis, Mechanisms, Diagnosis and Treatment Options Update." *Int J Mol Sci* 2021. `10.3390/ijms22083891`.
-
-**PMR / GCA**
-- Buttgereit F, et al. "Polymyalgia Rheumatica and Giant Cell Arteritis: A Systematic Review." *JAMA* 2016. `10.1001/jama.2016.5444`.
-- Dejaco C, et al. "Treat-to-target recommendations in giant cell arteritis and polymyalgia rheumatica." *Ann Rheum Dis* 2024. `10.1136/ard-2022-223429`.
-
-**Debunks**
-- Konijeti GG, et al. "Efficacy of the Autoimmune Protocol Diet for IBD." *Inflamm Bowel Dis* 2017. `10.1097/MIB.0000000000001221`; Pardali EC, et al. *Metabol Open* 2025. `10.1016/j.metop.2024.100342`.
-- Dersch R, et al. "Treatment of post-treatment Lyme disease symptoms — a systematic review." *Eur J Neurol* 2024. `10.1111/ene.16293`; Beaman MH. "Lyme disease: why the controversy?" *Intern Med J* 2016. `10.1111/imj.13278`.
+- **NINDS rt-PA Stroke Study Group, *NEJM* 1995** `10.1056/NEJM199512143332401` — the trial that started acute stroke therapy.
+- **Goyal M, et al. (HERMES), *Lancet* 2016** `10.1016/S0140-6736(16)00163-X` — thrombectomy NNT ≈ 2.6, the largest modern win in the chapter.
+- **Reich DS, et al. "Multiple Sclerosis," *NEJM* 2018** `10.1056/NEJMra1401483` — mechanism-and-DMT overview; see also **Graves JS, et al. "Ageing and multiple sclerosis," *Lancet Neurol* 2023** `10.1016/S1474-4422(22)00184-3`.
+- **FitzGerald JD, et al. "2020 ACR Gout Guideline," *Arthritis Rheumatol* 2020** `10.1002/art.41247` — treat-to-target urate lowering, the model for a chronic-disease target.
+- **Woolf CJ. "Central sensitization," *Pain* 2011** `10.1016/j.pain.2010.09.030` — the mechanism under fibromyalgia; see also **Siracusa R, et al., *Int J Mol Sci* 2021** `10.3390/ijms22083891`.
+- **Dersch R, et al., *Eur J Neurol* 2024** `10.1111/ene.16293` — the systematic review refuting long-course antibiotics for chronic-Lyme symptoms; the basis for the debunk.
 
 ---
 

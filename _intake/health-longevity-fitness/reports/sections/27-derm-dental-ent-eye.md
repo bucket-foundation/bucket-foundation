@@ -480,7 +480,7 @@ are marketed; none works). The treatment is surgery, and it is excellent.
 Glaucoma is a group of **progressive optic neuropathies** — death of retinal ganglion cells/optic-nerve fibers —
 that causes **irreversible**, painless, peripheral-first vision loss (you don't notice until central/late). The
 biggest modifiable risk factor is **elevated intraocular pressure (IOP)**, though glaucoma occurs at normal pressure
-too. It is the **"silent thief of sight"** — and the second-leading cause of irreversible blindness worldwide.
+too. It is the **"silent thief of sight"** — and the **leading** cause of irreversible blindness worldwide.
 
 - **The lever IS proven — lowering IOP works:** **Heijl 2002, Arch Ophthalmol — Early Manifest Glaucoma Trial
   (EMGT)** — randomly **lowering IOP** (laser + topical drug) in newly-detected
@@ -608,38 +608,17 @@ or a screening visit**, which is exactly why these surface-and-sensory specialti
 
 ### Go deeper
 
-- **Simpson EL, et al. Two Phase 3 Trials of Dupilumab versus Placebo in Atopic Dermatitis (SOLO 1 & 2).** *NEJM*
-  2016. `10.1056/NEJMoa1610020` — the trial that opened the biologic era for severe eczema.
-- **Sbidian E, et al. Systemic pharmacological treatments for chronic plaque psoriasis: a network meta-analysis.**
-  *Cochrane* 2023. `10.1002/14651858.CD011535.pub6` — IL-17/IL-23 biologics top the efficacy rankings; the clean
-  bench-to-clinic story.
-- **Abbasi NR, et al. Early diagnosis of cutaneous melanoma: revisiting the ABCD criteria.** *JAMA* 2004.
-  `10.1001/jama.292.22.2771` — the ABCDE early-detection consensus.
-- **Marinho VCC, et al. Fluoride toothpastes for preventing dental caries in children and adolescents.** *Cochrane*
-  2003. `10.1002/14651858.CD002278` (concentration: Walsh 2019, `10.1002/14651858.CD007868.pub3`) — the foundational
-  fluoride evidence.
-- **Cochrane (Innes/Schwendicke). Composite resin vs amalgam fillings for posterior teeth.** 2021.
-  `10.1002/14651858.CD005620.pub3` — the basis for the honest amalgam-safety take.
-- **Fuller T, et al. Cognitive behavioural therapy for tinnitus.** *Cochrane* 2020. `10.1002/14651858.CD012614.pub2`
-  — CBT treats the distress, not the loudness; the best-evidenced tinnitus intervention.
-- **Hilton MP, Pinder DK. The Epley (canalith repositioning) manoeuvre for benign paroxysmal positional vertigo.**
-  *Cochrane*. `10.1002/14651858.CD003162` — a 60-second maneuver that cures the most common vertigo.
-- **McEvoy RD, et al. CPAP for Prevention of Cardiovascular Events in Obstructive Sleep Apnea (SAVE).** *NEJM* 2016.
-  `10.1056/NEJMoa1606599` — CPAP fixes symptoms; the hard-CV-event benefit is null-but-adherence-confounded.
-- **He M, et al. Effect of Time Spent Outdoors at School on the Development of Myopia Among Children in China.**
-  *JAMA* 2015. `10.1001/jama.2015.10803` — the RCT-proven childhood-myopia prevention lever.
-- **Heijl A, et al. Reduction of intraocular pressure and glaucoma progression: results from the Early Manifest
-  Glaucoma Trial (EMGT).** *Arch Ophthalmol* 2002. `10.1001/archopht.120.10.1268` — IOP is both predictor and proven
-  lever; lowering it preserves sight.
-- **Rosenfeld PJ, et al. Ranibizumab for Neovascular Age-Related Macular Degeneration (MARINA).** *NEJM* 2006.
-  `10.1056/NEJMoa054481` — anti-VEGF turned wet AMD from a blinding disease into a treatable one.
-- **DCCT Research Group. The effect of intensive treatment of diabetes on the development and progression of
-  long-term complications in IDDM.** *NEJM* 1993. `10.1056/NEJM199309303291401` — glucose control prevents diabetic
-  retinopathy.
-- **TFOS DEWS II Management and Therapy Report.** *Ocul Surf* 2017. `10.1016/j.jtos.2017.05.006` — dry eye as a
-  chronic inflammatory ocular-surface disease, treated in steps.
-- **van Zuuren EJ, et al. Interventions for rosacea (abridged Cochrane, GRADE).** *Br J Dermatol* 2015.
-  `10.1111/bjd.13956` — ivermectin/azelaic acid/brimonidine/doxycycline lead.
+The load-bearing papers, one per organ (full DOIs in the footnotes above):
+
+- **Marinho 2003 fluoride toothpaste (Cochrane, `10.1002/14651858.CD002278`)** — the foundational evidence for the
+  single most cost-effective preventive move in the whole section.
+- **Hilton & Pinder, Epley maneuver (Cochrane, `10.1002/14651858.CD003162`)** — the 60-second physical maneuver that
+  *cures* the most common vertigo.
+- **He 2015 outdoor time & myopia (JAMA, `10.1001/jama.2015.10803`)** — the one RCT-proven childhood-myopia lever.
+- **Heijl EMGT (Arch Ophthalmol, `10.1001/archopht.120.10.1268`)** — IOP is both predictor and proven lever; lowering
+  it preserves sight in glaucoma.
+- **Rosenfeld MARINA (NEJM, `10.1056/NEJMoa054481`)** — anti-VEGF turned wet AMD from a blinding disease into a
+  treatable one.
 
 [^acne-nma]: *Br J Dermatol* 2022 network meta-analysis of topical, oral, physical, and combined acne treatments. doi:10.1111/bjd.21739. (meta)
 [^acne-bpo]: Benzoyl peroxide systematic review. doi:10.3109/09546634.2012.699179. (meta)

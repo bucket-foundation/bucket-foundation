@@ -8,7 +8,7 @@ Three honesty rules govern everything below:
 - **Cohort ≠ RCT** — you can't randomize fitness, sleep, or smoking over decades, so healthy-user and reverse-causation bias inflate the strong-looking numbers.
 - **"Something beats nothing" is the most reliable signal in the corpus** — the steepest gains are at the *low* end, and optimization past that is real but smaller and noisier than the marketing claims.
 
-The corpus is 197 graded claims, and its tier distribution *is* the headline: only **27 RCT-tier** (the strongest evidence) and **29 meta-tier** claims, against **53 observational** (cohort/cross-sectional/case-control) and **42 mechanistic**. The job of this page is to keep the strong evidence and the loud marketing from being mistaken for each other.
+The corpus is 1007 graded claims, and its tier distribution *is* the headline: the strongest evidence is a minority — **250 RCT-tier** and **222 meta-tier** claims sit against **271 observational** (cohort/cross-sectional/case-control), **154 mechanistic**, and **110 in weaker tiers** (animal, theoretical, in-vitro, n-of-1, anecdotal). That is 250 + 222 + 271 + 154 + 110 = 1007. The job of this page is to keep the strong evidence and the loud marketing from being mistaken for each other.
 
 _Synthesis, not medical advice, and not new evidence — the actionable form lives in the protocols companion; effect sizes, populations, and caveats live with each graded claim._
 
@@ -122,7 +122,7 @@ gap**: a real *mechanism* or a *mouse* result gets marketed as a hard human *out
 
 ## 4. The biggest open questions / conflicts
 
-The corpus holds **29 conflict objects** (15 fully `open`); the full register lists each one.[^conflicts-register]
+The corpus holds **38 conflict objects** (23 fully `open`); the full register lists each one.[^conflicts-register]
 The ones that most change the picture if resolved:
 
 1. **Protein ↔ mTOR ↔ longevity** (open).[^q-protein] The central nutrition
@@ -186,7 +186,7 @@ trends; enjoy the rest as experiments, not protocols.
 [^light]: conflict: conflict-blue-blocking-glasses (domain I).
 [^calerie]: claim: calerie-human-cr-rct (domain B).
 [^hrv]: claim: hrv-autonomic-recovery-biomarker (domain I); thread: thread-autonomic-hrv.
-[^microbiome]: conflict: conflict-microbiome-causality.
+[^microbiome]: conflict: conflict-microbiome-cause-or-consequence.
 [^nad]: claim: nad-precursor-nr-human-surrogate (domain B). Conflict: conflict-nad-precursor-efficacy.
 [^resveratrol]: conflict: conflict-resveratrol-sirtuin.
 [^senolytics]: claims: senolytics-extend-function-mouse, dq-ipf-first-in-human-pilot (domain B).

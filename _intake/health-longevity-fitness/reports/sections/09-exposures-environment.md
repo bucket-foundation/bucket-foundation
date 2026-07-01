@@ -78,7 +78,7 @@ threshold. The **GBD 2016 Alcohol Collaborators (Griswold 2018)** concluded, acr
 consumption that **minimizes total health loss is zero**[^griswold-gbd2016] — the small CV offset is overwhelmed by cancer and
 injury once you sum all outcomes.
 
-### 1.4 The honest nuance (GBD 2022) — age matters
+### 1.4 The honest nuance (Bryazka 2022 / GBD 2020) — age matters
 
 The follow-up **GBD 2020 Alcohol Collaborators (Bryazka 2022)** added a
 real wrinkle: the **theoretical minimum-risk exposure level is age-dependent.**[^bryazka-gbd2020] For younger adults

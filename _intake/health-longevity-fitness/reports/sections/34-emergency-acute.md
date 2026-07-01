@@ -385,14 +385,9 @@ maintaining the airway wins over a theoretical spine concern if they're vomiting
 |---|---|
 | **Suck the venom out of a snakebite / cut and suck** | Useless and harmful. Keep the limb still and below heart level, remove tight items, **get to antivenom.** No tourniquet, no ice, no incision, no suction. |
 | **Pee on a jellyfish sting** | Not supported and can worsen some stings. Rinse with **vinegar** (for many species) or **hot water (~45 °C) immersion**; remove tentacles without bare hands; seek care for box-jelly/systemic symptoms. |
-| **Tilt head back for a nosebleed** | Lean **forward**, not back — see §4.2. |
-| **Butter / ice on a burn** | Cool **running water**, never grease or ice — see §4.1. |
 | **Rub a frostbitten or hypothermic limb to warm it** | Don't — friction damages tissue and can trigger arrhythmia. Rewarm gently and steadily; no snow-rubbing. |
-| **Slap a choking person's back while they're still coughing** | If they can cough/speak, **let them cough.** Intervene only when the cough fails (§3.6). |
-| **A swallowed tongue in seizures** | Anatomically impossible — **nothing in the mouth**, see §4.6. |
-| **You should drain water from a drowning victim's lungs** | No — **rescue breaths and CPR** instead, see §6.3. |
-| **Tourniquets always cost the limb** | Properly applied, they **save lives** — see §3.5. |
-| **Hyperventilate / breath-hold to swim further underwater** | Dangerous — causes **shallow-water blackout** and silent drowning (cross-ref §6.3). |
+
+_(Other reflexes worth un-learning are covered where the topic lives: nosebleed §4.2, burns §4.1, choking §3.6, seizures §4.6, tourniquets §3.5, drowning §6.4.)_
 
 ---
 

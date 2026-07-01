@@ -64,25 +64,15 @@ Its defining features, and the ones that make its evidence problem unique (§2),
 
 ### The surgical subspecialties
 
-Modern surgery is not one trade but a federation of them. The headline subspecialties — you don't
-need to memorize this table; skim it for the shape of the field and read on:
-
-| Subspecialty | Operates on / for | Representative high-volume operations |
-|---|---|---|
-| **General surgery** | Abdomen, GI tract, the "acute abdomen," soft tissue, breast, endocrine glands | Appendectomy, cholecystectomy, hernia repair, bowel resection, mastectomy |
-| **Orthopaedic surgery** | Bones, joints, spine, soft-tissue musculoskeletal | Joint replacement (hip/knee), fracture fixation, arthroscopy, spinal surgery |
-| **Cardiac (cardiothoracic) surgery** | Heart, great vessels, lungs, oesophagus | CABG, valve repair/replacement, lung resection |
-| **Neurosurgery** | Brain, spinal cord, peripheral nerves | Tumour resection, aneurysm clipping, decompression, shunts |
-| **Vascular surgery** | Arteries and veins (not the heart) | Aneurysm repair (open/EVAR), carotid endarterectomy, bypass for limb ischaemia |
-| **Plastic & reconstructive surgery** | Form and function of skin/soft tissue; reconstruction | Flap reconstruction (e.g. post-mastectomy, post-trauma), burns, cleft repair; cosmetic surgery is a subset |
-| **Transplant surgery** | Replacing failed organs | Kidney, liver, heart, lung, pancreas transplant |
-| **Trauma & acute-care surgery** | Injury, hemorrhage, the surgical emergency | Damage-control laparotomy, hemorrhage control (Section 34) |
-| **Otolaryngology (ENT / head & neck)** | Ear, nose, throat, head & neck | Tonsillectomy, sinus surgery, head-and-neck cancer resection, cochlear implant |
-| **Urology** | Urinary tract, male reproductive | Prostatectomy, kidney-stone surgery, TURP, nephrectomy |
-| **Gynaecologic surgery** | Female reproductive tract | Hysterectomy, C-section (with obstetrics), oncologic gyn surgery |
-| **Ophthalmic surgery** | The eye | Cataract extraction, retinal surgery, glaucoma surgery, corneal transplant |
-| **Colorectal surgery** | Colon, rectum, anus | Colectomy, rectal cancer resection, IBD surgery |
-| **Bariatric / metabolic surgery** | Severe obesity & metabolic disease | Sleeve gastrectomy, Roux-en-Y gastric bypass |
+Modern surgery is not one trade but a federation of them. You don't need to memorize the roster — the
+shape of the field is enough: **general** (abdomen/GI, breast, endocrine), **orthopaedic** (bones,
+joints, spine), **cardiothoracic** (heart, great vessels, lungs, oesophagus), **neurosurgery** (brain,
+cord, nerves), **vascular** (arteries and veins), **plastic & reconstructive** (skin/soft-tissue form
+and function, with cosmetic as a subset), **transplant**, **trauma & acute-care** (Section 34),
+**otolaryngology** (ENT / head & neck), **urology**, **gynaecologic**, **ophthalmic** (the eye),
+**colorectal**, and **bariatric/metabolic** (severe obesity). Each owns its own high-volume operations —
+appendectomy and cholecystectomy in general, joint replacement in ortho, CABG and valve work in cardiac,
+cataract extraction in ophthalmic, sleeve gastrectomy and gastric bypass in bariatric.
 
 The boundaries blur (a head-and-neck cancer may pull in ENT, plastics, and oncology; a trauma may pull in
 general, ortho, vascular, and neuro at once), and the *team* — anaesthesia, nursing, perfusion,

@@ -10,7 +10,42 @@ Baseline before cycle 1: 689 pages, 50 chapters, ~265k words, 1007 graded claims
 
 ---
 
-<!-- next cycle goes here -->
+<!-- LOOP COMPLETE — all 4 reader perspectives have passed over the book. -->
+
+## Cycle 4 — Skeptical expert guard + structural length (full-book pass) — FINAL
+**Read:** 9 expert-guard readers audited every chapter for accuracy damage from 3 edit rounds, plus
+a dedicated agent traced the true claim/conflict counts.
+
+**Accuracy audit — the edits held.** Across the whole book: **1 real medical error**, a handful of
+stale cross-refs and citation nits, no lost load-bearing content. Fixed:
+- **ch.41: eGFR/muscle-mass direction was INVERTED** — now correct (high muscle → more creatinine →
+  eGFR understates true function; frail → overstates, masking CKD). The one science error; the guard-
+  last cycle exists to catch exactly this.
+- Stale cross-refs from Cycle 3's consolidation: ch.28 grapefruit/anticoagulant/geriatrics pointers,
+  ch.41 A.11/A.12→B.4/B.5, ch.34 §6.3→§6.4.
+- Citation/factual nits: ch.23 Nobel 2006→2005, ch.17 FEV₁/FVC unit error, ch.27 glaucoma "second"→
+  "leading" cause of irreversible blindness, ch.08 hearing "largest"→tied, ch.05 Laukkanen 2016→2017,
+  ch.11 melanoma total-vs-invasive + bold nesting, ch.35 opioid attribution, ch.32 placeholder DOI,
+  several "Hviid An/Jain An"→"A" typos.
+- The guard also **rejected** a bad finding (unifying two distinct CALERIE claim-ids would have dropped
+  a unique DOI) — correct call.
+
+**Count reconciliation (verified ground truth):** summed all 54 domain JSON files → **1007 graded
+claims** (990 distinct; 17 cross-domain duplicates) and **38 conflict objects** (23 open). 197/29/37
+were stale snapshots. Made consistent across cover, atlas, State-of-the-Field (real tier distribution
+now sums to 1007), the conflicts register (added the 9 missing rows 30–38), CANON_INDEX, FRONTIER,
+go-deeper. Regenerated the `01-claims-by-tier` figure from live data → shows 1007.
+
+**Structural length: ~3,000 words cut** — collapsed Go-deeper lists that re-listed footnote DOIs to
+~5 picks each (keeping every unique citation, several caught and preserved), tightened end-of-chapter
+"honest summary" restatements (kept as BLUF devices), halved over-long reference tables.
+
+**Verified:** 367/367 figures placed, 0 broken footnotes, counts consistent book-wide.
+
+---
+**LOOP CLOSED.** 4 cycles: layperson (hooks, jargon, citations→endnotes) → prose editor (voice,
+killed 148 "genuinely") → practitioner (BLUF boxes, ~5k words) → expert guard (accuracy + counts +
+~3k words). Depth intact throughout: every graded claim, number, citation, and all 367 figures preserved.
 
 ## Cycle 3 — Busy practitioner + LENGTH REDUCTION (full-book pass)
 **New founder mandate:** reduce length (added to the charter for Cycles 3–4). **Read:** 9 practitioner

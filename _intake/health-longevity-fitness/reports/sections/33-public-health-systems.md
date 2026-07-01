@@ -514,12 +514,10 @@ This is the section the whole manual needs to read against itself.
    toward its least powerful tier. (Same market-gap logic as Domain M: there is no SKU for friendship, job
    autonomy, clean water, or being born in a rich country.)
 
-4. **For the individual reader, the honest hierarchy is:** *(a)* be grateful you live atop functioning public
-   health and use it (vaccinate, drink the safe water, wear the seatbelt — the highest-ROI moves you'll ever
-   make are the boring infrastructural ones you barely notice); *(b)* work the ~40% behavioral bucket
-   seriously (the rest of this manual); *(c)* hold individual optimization in proportion — it is the last and
-   smallest tier, valuable but not where the leverage lives; *(d)* if you care about life-years *per dollar*,
-   the most powerful health philanthropy on Earth is global primary public health, not your supplement stack.
+4. **For the individual reader, the honest hierarchy is the (a)–(d) ladder from the "Why read this" box up
+   top:** use the public health you're standing on, work the ~40% behavioral bucket seriously, hold
+   individual optimization in proportion, and put health-philanthropy dollars where the life-years are
+   (global primary public health).
 
 The deepest claim of this section, stated plainly: **the largest health gains in human history were public
 goods, not private purchases — and they still are.** A health manual that only indexes what an individual can

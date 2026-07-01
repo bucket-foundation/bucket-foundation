@@ -54,7 +54,8 @@ ever-users" = of everyone who ever tried the drug, the share who went on to beco
 
 Transition-to-dependence percentages are from **Lopez-Quintero et al., *Drug Alcohol Depend* 2011**,[^lopez]
 a NESARC analysis of ~43,000 US adults, broadly consistent with the earlier **Anthony, Warner & Kessler
-(1994)** comparative-dependence estimates. They are **order-of-magnitude** figures meant to convey
+(1994)** comparative-dependence estimates. One exception: NESARC did not cover heroin/opioids, so the
+**~23% opioid** figure is the **Anthony 1994** estimate specifically, not Lopez-Quintero. They are **order-of-magnitude** figures meant to convey
 *relative* addiction potential, not precision — and the headline they carry is honesty rule #2: **for every
 drug here, most people who try it never become dependent.** That is not an argument for complacency; it is
 the necessary correction to "one hit and you're hooked," which is true for almost no one and false as a
@@ -555,33 +556,31 @@ insistence has a **measurable death toll** (the detox-relapse-overdose pathway, 
 **The three belief-changers, if you remember nothing else:**
 
 1. **Opioids: MOUD (methadone/buprenorphine) roughly halves death** (Sordo 2017), and **detox-alone can be
-   worse than nothing** — the moralized abstinence intuition kills; the unglamorous daily medication saves.
-   Naloxone keeps people alive long enough to reach treatment.
+   worse than nothing** — the moralized abstinence intuition kills; the daily medication saves. Naloxone
+   keeps people alive long enough to reach treatment.
 2. **Stimulants have no effective medication — and contingency management, the behavioural treatment that
-   *does* work, is scandalously under-used** because rewarding abstinence with cash sits badly with our
-   moral instincts.
+   *does* work, is scandalously under-used** because rewarding abstinence with cash sits badly with moral instinct.
 3. **Dependence ≠ addiction.** Conflating physical dependence (a cancer patient, a coffee drinker) with
-   addiction (compulsive harmful use) is the field's most common and most harmful error; DSM-5 fixed it by
-   making substance use disorder **dimensional**.
+   addiction (compulsive harmful use) is the field's most harmful error; DSM-5 fixed it by making substance
+   use disorder **dimensional**.
 
 **The rest, in one line each:**
 
-- **The model:** neither pure moral weakness nor purely a chronic brain disease — a **disorder of motivated
+- **The model:** neither moral weakness nor purely a chronic brain disease — a **disorder of motivated
   choice under altered neural conditions** (real brain change *and* responsiveness to context).
-- **Tobacco** is the most addictive common drug *and* the most lethal (separate axes); cessation that works
-  is **varenicline or combination NRT + behavioural support** — iterate after failure; nicotine ≠ combustion.
+- **Tobacco** is the most addictive common drug *and* the most lethal; cessation that works is **varenicline
+  or combination NRT + behavioural support** — iterate after failure; nicotine ≠ combustion.
 - **Alcohol withdrawal can kill** (never abrupt unsupervised detox in heavy users); **naltrexone and
   acamprosate** are real, modest, generic, and under-prescribed.
-- **Cannabis** is a real disorder (~9%, higher with adolescent onset) with real psychosis risk in the
-  vulnerable and CHS — *and* not the reefer-madness menace; today's high-THC product isn't the old plant.
+- **Cannabis** is a real disorder (~9%, higher with adolescent onset) with real psychosis risk and CHS —
+  *and* not the reefer-madness menace; today's high-THC product isn't the old plant.
 - **Behavioural addictions:** gambling is the established one; "food/sex/internet/phone addiction" are
   contested constructs where the word outruns the evidence. Grade the construct, not the vibe.
 - **Treatment ranked by evidence:** MAT/MOUD → contingency management → CBT/MI → structured 12-step
-  facilitation → harm reduction. The effective tools are unglamorous and under-deployed; the dramatic ones
-  (rapid detox, "rock bottom") are the weak or harmful ones.
-- **The compassionate move and the honest move are the same move:** hold the person's **dignity** and their
-  **agency** at once, treat with **medication + behaviour + harm reduction**, and stop letting moralism
-  override evidence.
+  facilitation → harm reduction. The effective tools are under-deployed; the dramatic ones (rapid detox,
+  "rock bottom") are weak or harmful.
+- **The compassionate move and the honest move are the same:** hold **dignity** and **agency** at once,
+  treat with **medication + behaviour + harm reduction**, and stop letting moralism override evidence.
 
 ---
 

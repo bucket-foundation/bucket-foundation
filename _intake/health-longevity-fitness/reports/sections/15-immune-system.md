@@ -344,13 +344,12 @@ the honest limits of probiotics.)
 Rank the immune interventions in this section by **strength of evidence and real-world leverage**, and — exactly
 as in the pharmacology section — the order is almost the inverse of how loudly each is marketed:
 
-1. **Proven, high-leverage:** age-appropriate **vaccination** (the right way to direct an aging immune system);
-   **sleep**, **regular moderate exercise**, **not smoking** (regulate the system); **correcting genuine
-   nutritional deficiencies**.
-2. **Strong predictor, unproven lever:** **hsCRP/IL-6/inflammaging** as a prognostic signal — track it,
-   understand it, but don't assume lowering the number with a product extends your life.
-3. **Real but narrow / oversold:** **zinc** (deficiency correction + marginal lozenge effect), **vitamin C**
-   (modest duration effect with consistent prophylaxis, mostly in the stressed/deficient).
+1. **Proven, high-leverage:** age-appropriate **vaccination**; **sleep**, **regular moderate exercise**,
+   **not smoking**; **correcting genuine nutritional deficiencies**.
+2. **Strong predictor, unproven lever:** **hsCRP/IL-6/inflammaging** — track it, but don't assume lowering
+   the number with a product extends your life.
+3. **Real but narrow / oversold:** **zinc** and **vitamin C** — deficiency correction plus a modest,
+   consistent-prophylaxis effect mostly in the stressed/deficient (§4.3).
 4. **Null-to-trivial:** **echinacea**; most "immune-boosting" blends.
 5. **No credible evidence — be skeptical:** **"immune cleanses," detoxes, IV vitamin drips,** and the entire
    "boost your immune system" framing, which mistakes *more* immunity for *better* immunity.

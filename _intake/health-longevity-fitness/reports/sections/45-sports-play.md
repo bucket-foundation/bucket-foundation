@@ -212,17 +212,11 @@ to.** That bundle is the leading explanation for the racquet edge.
   the frail and the post-injury. A near-ideal sport for cognitive + social maintenance when the body can't run.
 
 ### Why racquet sports keep topping the longevity cohorts
-Not because they are aerobically magical — running and cycling deliver more raw aerobic work. The leading
-explanation, consistent across CCHS and Oja, is that racquet sports **bundle four longevity-relevant dimensions
-into one activity**: (1) **intermittent high intensity** (rally/recover ≈ natural HIIT — high-intensity interval
-training, a pattern increasingly linked to cardiometabolic benefit); (2) **continuous motor learning and anticipation** (a cognitive load running
-lacks); (3) **a partner or opponent** — the social-connection lever, delivered automatically; and (4)
-**lifelong playability** at scalable intensity. No single dimension is unique to racquets; the *combination*, and
-the **adherence** it produces (it's fun, it's social, you book the court with a friend so you actually show up),
-is the most parsimonious account of why they win. The honest version: racquet sports are the most efficient
-known **packaging** of the things that matter — and packaging, via adherence, may be the whole game.
-
-@@FIG:Y08-racquet-bundle@@
+Not because they are aerobically magical — running and cycling deliver more raw aerobic work. Consistent across
+CCHS and Oja, the parsimonious account is that racquet sports **bundle** intermittent high intensity, continuous
+motor learning, an automatic social partner, and lifelong playability into one activity — no single dimension is
+unique to racquets, but the combination (and the adherence it produces) may be the whole game. Full four-axis
+synthesis in §7.1.
 
 ---
 
@@ -479,7 +473,9 @@ on four axes the gym usually neglects:
    the table-tennis–Parkinson's, dance–dementia, and bouldering–depression signals (cross-ref
    `08-brain-cognitive.md`).
 4. **Intermittent-HIIT physiology.** Burst-and-recover play (rally/recover, shift/bench, sprint/jog) delivers
-   intervals without a stopwatch. The game *is* the interval timer.
+   high-intensity intervals (HIIT — high-intensity interval training) without a stopwatch. The game *is* the interval timer.
+
+@@FIG:Y08-racquet-bundle@@
 
 ### 7.2 The "play" reframe — humans are built to move playfully
 The deepest framing in this chapter is evolutionary: humans did not evolve to do isolated sets of biceps curls or

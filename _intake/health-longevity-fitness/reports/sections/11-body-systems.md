@@ -9,11 +9,10 @@ Several of these carry **better evidence than the supplement aisle** — some of
 skipped because they are unglamorous — the evidence is on their side.
 
 **One-line verdict up front:** the four best-evidenced, most-skipped levers in this section are **(1) daily
-broad-spectrum sunscreen** (photoaging + skin-cancer RCT evidence), **(2) topical retinoids** (the single
-best-evidenced anti-aging *topical*), **(3) heavy resistance + impact loading for bone** (LIFTMOR-grade RCT),
-and **(4) AREDS2 supplements for intermediate AMD (age-related macular degeneration)** (one of the few real
-supplement wins). Everything else here is a high-value maintenance habit (brush/clean between teeth, get your
-eyes and ears checked, keep your feet strong) whose evidence is solid-but-modest.
+broad-spectrum sunscreen**, **(2) topical retinoids**, **(3) heavy resistance + impact loading for bone**
+(LIFTMOR-grade RCT), and **(4) AREDS2 supplements for intermediate AMD (age-related macular degeneration)**.
+Everything else here is a high-value maintenance habit (brush/clean between teeth, get your eyes and ears
+checked, keep your feet strong) whose evidence is solid-but-modest.
 
 _Not medical advice. This section keeps the practical organ-level actions; drugs are detailed in §10 and the
 dementia endpoints in the brain/cognition section. Evidence tiers and the three honesty rules — predictor ≠
@@ -46,7 +45,7 @@ and visible endpoints**, almost all from the Australian **Nambour** community tr
 - **Squamous cell carcinoma (RCT):** **Green 1999** — daily sunscreen over the Nambour trial cut SCC (squamous
   cell carcinoma) incidence; betacarotene did nothing. `rct` / outcome.[^green-scc]
 - **Melanoma (RCT follow-up):** **Green 2011** — 10-year follow-up of the same cohort found regular sunscreen
-  users had **~50% fewer invasive melanomas**. `rct`-derived / outcome. (Melanoma was a long-term follow-up
+  users had **~50% fewer melanomas** (the invasive-subset reduction was larger, on small numbers). `rct`-derived / outcome. (Melanoma was a long-term follow-up
   endpoint, not the original primary outcome — graded one notch down.)[^green-melanoma]
 - **Tanning beds (cohort):** **Ghiasvand 2016** — prospective evidence that indoor tanning raises melanoma
   risk, dose-dependent and worse with younger-age use. `cohort`. The
@@ -120,8 +119,8 @@ for diabetes, where the RCT evidence is real.
   associates with incident diabetes and worse glycemic control; the relationship is **bidirectional** (diabetes
   worsens gums, gums worsen glycemia). `meta` (observational).[^graziani-diabetes]
 - **The RCT lever:** **Simpson 2022** — periodontal treatment (scaling/root planing) in people with diabetes
-  produces a **real reduction in HbA1c (a 3-month blood-sugar average; ~0.3–0.4 percentage points at 3–4
-  months** vs. no treatment) — comparable to adding a second oral diabetes drug. `meta` of RCTs / outcome. This
+  produces a **real reduction in HbA1c** (a 3-month blood-sugar average; ~0.3–0.4 percentage points at 3–4
+  months vs. no treatment) — comparable to adding a second oral diabetes drug. `meta` of RCTs / outcome. This
   is the **one place** in the oral-systemic story where the intervention has randomized, hard-ish-endpoint
   support. Underrated.[^simpson-cochrane]
 

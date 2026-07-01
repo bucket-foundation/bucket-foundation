@@ -524,7 +524,7 @@ attention there; treat this section as experiments, graded, not as protocols.
 [^hachmo-skin]: Companion skin-aging paper — *Aging (Albany NY)* 2021. doi:10.18632/aging.203701.
 [^ali-myers]: Ali A, et al. — *J Altern Complement Med* 2009. doi:10.1089/acm.2008.0410.
 [^nad-claims]: claims: nad-precursor-nr-human-surrogate; conflict-nad-precursor-efficacy.
-[^ozone-review]: *J Clin Aesthet Dermatol* 2022, systematic review. doi:10.xxxx (placeholder in source).
+[^ozone-review]: Modena DAO, et al. "Ozone Therapy for Dermatological Conditions: A Systematic Review." *J Clin Aesthet Dermatol* 2022;15(5):65–73. PMID 35642231 · PMC9122276.
 [^tact]: TACT — Lamas GA, et al., *JAMA* 2013. doi:10.1001/jama.2013.2107.
 [^chevalier]: Chevalier G, et al. — *J Environ Public Health* 2012. doi:10.1155/2012/291541.
 [^cgm-claims]: claims: cgm-accurate-diabetes-unvalidated-healthy (L); conflict-cgm-healthy-utility.

@@ -14,11 +14,10 @@ def claims_by_tier():
         try:
             for x in json.load(open(f)):
                 t=str(x.get("evidence_tier","?")).lower().strip()
-                if x.get("duplicate_of"): continue
-                c[t]+=1
+                c[t]+=1   # count every graded-claim entry (matches the 1007 headline across the manual)
         except Exception: pass
     order=["meta","rct","cohort","cross-sectional","case-control","mechanistic","animal",
-           "in-vitro","invitro","n=1","nequals1","anecdotal","theoretical","speculative","hypothesis"]
+           "in-vitro","invitro","n=1","nequals1","mixed","outcome","anecdotal","theoretical","speculative","hypothesis"]
     items=[(t,c[t]) for t in order if c.get(t)]
     # fold synonyms
     merged=collections.OrderedDict()

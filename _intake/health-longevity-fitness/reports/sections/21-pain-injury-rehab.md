@@ -498,15 +498,14 @@ neural/sensory (altered stretch tolerance), not structural remodeling of fascia 
 
 ## 8. The honest summary of this section
 
-1. **Pain ≠ tissue damage.** Nociception is detection; pain is a brain-constructed experience shaped by
-   context, mood, and meaning. Chronic pain often reflects a **sensitised nervous system**, not ongoing
-   damage. The biopsychosocial model, not the plumbing model, is correct.
+1. **Pain ≠ tissue damage.** Pain is a brain-constructed experience shaped by context, mood, and meaning;
+   chronic pain often reflects a **sensitised nervous system**, not ongoing damage. The biopsychosocial
+   model, not the plumbing model, is correct.
 2. **Low back pain is mismanaged at global scale.** Most is non-specific, scary MRI findings are **normal
-   aging present in pain-free people**, routine imaging harms, and **fusion for non-specific LBP is not
-   better than rehab.** What helps: stay active, exercise (any kind you'll do), education.
+   aging present in pain-free people**, routine imaging harms, and **fusion for non-specific LBP is no
+   better than rehab.** What helps: stay active, exercise, education.
 3. **Rest is the old, wrong advice for tendons and sprains.** Tendinopathy is treated by **progressive
-   loading** (not "tendinitis" rest); RICE became **PEACE & LOVE** — brief protection, then early,
-   optimistic, graded loading.
+   loading**; RICE became **PEACE & LOVE** — brief protection, then early, graded loading.
 4. **Rehab is the training ladder started lower** — progressive load, pain-as-a-dial, return by
    *criteria* not calendar, and "prehab" that is just good strength/balance/conditioning.
 5. **Chronic pain is managed multimodally** — exercise + pain education + CBT/ACT + sleep + sensible

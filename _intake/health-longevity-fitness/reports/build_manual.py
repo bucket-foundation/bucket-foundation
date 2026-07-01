@@ -290,7 +290,7 @@ COVER = """<div class="cover">
     Sources: OpenAlex · PubMed · Europe PMC · ClinicalTrials.gov · the Bucket biophysics canon<br>
     Doctrine: index all · grade everything · mechanism &#8800; outcome &#8800; protocol
   </div>
-  <div class="stat">50 chapters · 1007 graded claims · 367 figures · 37 conflicts · 12 body systems · ~265,000 words</div>
+  <div class="stat">50 chapters · 1007 graded claims · 367 figures · 38 conflicts · 12 body systems · ~265,000 words</div>
 </div>"""
 
 HOWTO = """<section class="front">
@@ -334,8 +334,8 @@ DOC = f"""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <body>{COVER}{STARTHERE}{HOWTO}{toc_html}{body_html}
 <section class="front"><h1>Colophon</h1>
 <p class="small">Assembled by Nucleus Brain from the <code>health-longevity-fitness</code> research corpus
-(Bucket Foundation, bead <code>bkt-bg6</code>): 50 chapters, 1007 graded claims across 53 domain files, a
-367-figure visual layer, 24 labs, 15 trials, 37 conflict objects, and a 53-movement illustrated library.
+(Bucket Foundation, bead <code>bkt-bg6</code>): 50 chapters, 1007 graded claims across 54 claim sets, a
+367-figure visual layer, 24 labs, 15 trials, 38 conflict objects, and a 53-movement illustrated library.
 Research drew on OpenAlex, PubMed/Europe PMC, ClinicalTrials.gov and the Bucket biophysics canon; every
 chapter was written under the index-all / grade-everything doctrine and visually or numerically verified.
 Exercise diagrams are procedurally generated vector figures. The corpus is idempotent and version-controlled;

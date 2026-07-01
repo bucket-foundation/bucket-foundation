@@ -443,9 +443,9 @@ millions of children, plus retraction-for-fraud of the origin). It is as settled
     PMID 20137807. Tier: retraction-for-fraud.
 [^madsen-mmr]: Madsen KM et al., "A population-based study of MMR vaccination and autism." *NEJM* 2002.
     doi:10.1056/NEJMoa021134. PMID 12421889. Tier: cohort.
-[^hviid]: Hviid An et al., "MMR vaccination and autism: a nationwide cohort study." *Ann Intern Med* 2019.
+[^hviid]: Hviid A et al., "MMR vaccination and autism: a nationwide cohort study." *Ann Intern Med* 2019.
     doi:10.7326/M18-2101. PMID 30831578. Tier: cohort.
-[^jain]: Jain An et al., "Autism occurrence by MMR vaccine status among US children with older siblings with
+[^jain]: Jain A et al., "Autism occurrence by MMR vaccine status among US children with older siblings with
     and without autism." *JAMA* 2015. doi:10.1001/jama.2015.3077. PMID 25898051. Tier: cohort.
 [^taylor]: Taylor LE et al., "Vaccines are not associated with autism: an evidence-based meta-analysis."
     *Vaccine* 2014. doi:10.1016/j.vaccine.2014.04.085. PMID 24814559. Tier: meta (>1.2M children).

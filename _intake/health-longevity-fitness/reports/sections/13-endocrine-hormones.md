@@ -505,21 +505,13 @@ nutrition/supplements section (`03`); the endocrine framing is simply: **it's a 
 Pull the threads together and a single failure mode runs through the whole section. A cash-clinic /
 telehealth / supplement industry sells "**hormone optimization**": panels of testosterone, DHEA, thyroid,
 GH/IGF-1, cortisol, and more, with the promise of restoring every hormone to "**youthful optimal**" ranges
-to reverse aging. Every honesty rule in this manual converges to say **be maximally skeptical**, for four
-reasons:
-
-1. **It treats age-typical levels as disease** — calling a 55-year-old's normal testosterone, DHEA, or
-   IGF-1 "low" against a 25-year-old reference, ignoring that the shifted set-point is often an
-   adaptation and that for **GH/IGF-1 the youthful-high level is the one tied to *worse* longevity** (§7).
-2. **It sells predictors as levers.** DHEA (`rct`-null, Nair 2006), GH (surrogate-only + harms, Liu
-   2007), subclinical-thyroid treatment (`rct`-null, TRUST), and TRT-for-the-normal-range all fail the
-   test: moving the number did not move the outcome.
-3. **It ignores feedback consequences.** Exogenous hormones **suppress the body's own axis** (§1) —
-   shutting down endogenous production and fertility, creating dependence.
-4. **It inverts risk/benefit by population.** Legitimate replacement treats a **confirmed, symptomatic
-   deficiency** (TRT, HRT at menopause, levothyroxine, vitamin D/iodine); the optimization industry gives
-   the same hormones to **healthy people with normal-range levels**, where the trials were never done or
-   came back null.
+to reverse aging. Every honesty rule in this manual converges to say **be maximally skeptical**: it treats
+age-typical set-points as disease (for **GH/IGF-1 the youthful-high level is the one tied to *worse*
+longevity**, §7); it sells predictors as levers, where moving the number never moved the outcome (DHEA, GH,
+subclinical-thyroid treatment, TRT-for-the-normal-range all came back null or surrogate-only in §3–§10); it
+ignores that exogenous hormones **suppress the body's own axis** (§1), shutting down endogenous production
+and fertility; and it inverts risk/benefit by giving **healthy people with normal-range levels** the same
+hormones that only earn their keep as replacement for a **confirmed, symptomatic deficiency**.
 
 **The single tell:** if a clinic is selling **injectable GH or GH secretagogues, DHEA, or
 supraphysiologic testosterone as anti-aging** — pushing healthy hormones **up** rather than replacing a

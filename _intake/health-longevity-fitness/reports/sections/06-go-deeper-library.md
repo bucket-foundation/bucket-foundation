@@ -105,7 +105,7 @@ A good reading roadmap should make you *better at telling those apart*, not just
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **Stacy Sims — *ROAR* (2016); *Next Level* (2022)** | Female-specific physiology | The flagship corrective to a male-default research base: training, fueling, and recovery across the menstrual cycle, pregnancy, and **menopause** (*Next Level*). High-value precisely because the field under-studies women (Domain N). | Practitioner/translator. Several **cycle-phase-specific training/fueling prescriptions exceed current RCT evidence** — the underlying sex-difference physiology is real, the precise periodized protocols are extrapolation. Pair with the menopause-HRT trials below (WHI/KEEPS/ELITE). |
+| **Stacy Sims — *ROAR* (2016); *Next Level* (2022)** | Female-specific physiology | The flagship corrective to a male-default research base: training, fueling, and recovery across the menstrual cycle, pregnancy, and **menopause** (*Next Level*). High-value precisely because the field under-studies women (Domain N). | Practitioner/translator. Several **cycle-phase-specific training/fueling prescriptions exceed current RCT evidence** — the underlying sex-difference physiology is real, the precise periodized protocols are extrapolation. Pair with the menopause-HRT trials below (WHI/ELITE). |
 | **Mary Claire Haver — *The New Menopause* (2024)** | Clinical menopause | Practical, current framing of menopause symptoms and HRT decision-making. | Clinician-advocate; the HRT (hormone-replacement-therapy) risk/benefit picture is **age- and timing-dependent**[^cl-whi][^cl-elite] — read alongside the primary trials, not instead of them. |
 
 ### 1.8 Psychosocial & "the levers nobody sells"
@@ -353,7 +353,7 @@ actually being tested). These are the Tier-1 sources in the manual's source regi
 
 ## 5. THE OPEN QUESTIONS TO WATCH — *where the field will actually change*
 
-The corpus holds **29 conflict objects (15 still fully `open`)** — full detail in the Conflicts
+The corpus holds **38 conflict objects (23 still fully `open`)** — full detail in the Conflicts
 register. If you only track a handful, track these, because resolving them *moves the protocol*:
 
 1. **Protein ↔ mTOR ↔ longevity** (**open**)[^c-protein] — anabolic protection vs IGF-1/mTOR-driven
@@ -403,10 +403,6 @@ register. If you only track a handful, track these, because resolving them *move
 | **Unity Biotechnology** | Senolytics | **UBX0101 knee-OA Phase 2 failed (2020)** — strong mouse biology that didn't translate |
 | **Loyal** (~$150M) | Dog-lifespan drugs | **FDA "reasonable expectation of effectiveness" (2023)** — the closest a regulator has come to treating aging as an indication (in dogs) |
 | **Retro / NewLimit / BioAge / Gero** | Reprogramming, ML target discovery, physics-of-aging | Early-stage; BioAge's azelaprag setback is a recent reality check |
-
-**Two negative datapoints to remember:** Unity (great mouse senescence biology → failed first human
-joint trial) and Calico (~$2.5B, 10+ years, minimal public translation). Both prove **bench-tier and
-funding-tier signals ≠ outcome-tier proof.** One positive wedge: **Loyal's** canine-aging regulatory first.
 
 ### 6.3 Funding substrate (the map *is* a map of the open paradigm war)
 | Funder | Role | Note |

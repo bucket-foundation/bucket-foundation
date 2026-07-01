@@ -171,7 +171,7 @@ solubility, and **protein binding**. Two practical consequences:
   loratadine is non-sedating but diphenhydramine, which crosses, makes you drowsy); **fat-soluble drugs
   accumulate in adipose tissue** and release slowly (a reason dosing in obesity and in the elderly —
   who have more fat, less water, less muscle — is different; cross-ref geriatric
-  polypharmacy, §B and section 19).
+  polypharmacy, §D.3).
 
 ### A.2.3 Metabolism — the liver and the CYP450 system
 
@@ -196,7 +196,7 @@ explains most interactions and most PGx:
 
 | CYP enzyme | Share of drug metabolism | Notable substrates | Why it matters |
 |---|---|---|---|
-| **CYP3A4/5** | ~Half of all metabolized drugs | statins (simvastatin, atorvastatin), many calcium-channel blockers, benzodiazepines, immunosuppressants, many opioids | The biggest target for interactions; **inhibited by grapefruit** (§B.2) |
+| **CYP3A4/5** | ~Half of all metabolized drugs | statins (simvastatin, atorvastatin), many calcium-channel blockers, benzodiazepines, immunosuppressants, many opioids | The biggest target for interactions; **inhibited by grapefruit** (§D.2) |
 | **CYP2D6** | ~20–25% of drugs | codeine/tramadol activation, many antidepressants & antipsychotics, tamoxifen, metoprolol | **Most genetically variable**; copy-number ranges from 0 to >2 → poor to ultra-rapid metabolizers (§C) |
 | **CYP2C19** | ~10% of drugs | clopidogrel, PPIs, some antidepressants, voriconazole | Activates clopidogrel; clears PPIs; **loss-of-function common in East-Asian ancestry** (§C) |
 | **CYP2C9** | ~10–15% of drugs | warfarin, phenytoin, many NSAIDs, sulfonylureas | Clears warfarin's active enantiomer; pairs with VKORC1 for warfarin dosing (§C) |
@@ -261,7 +261,7 @@ system).
   retention/**blood-pressure elevation**, and a real **cardiovascular-event signal** with chronic
   high-dose use of most NSAIDs (the COX-2/rofecoxib story). NSAIDs are *not* the benign default they're
   treated as — they are among the most common causes of drug-induced GI bleeds and acute kidney injury,
-  particularly in older adults (§B.5, geriatrics).
+  particularly in older adults (§D.3, geriatrics).
 
 ### B.1.2 Acetaminophen / paracetamol
 
@@ -319,7 +319,7 @@ mechanistic map:
 | **Beta-blockers** | β-adrenergic *antagonists* → ↓heart rate, ↓contractility, ↓BP | Post-MI, heart failure, arrhythmia, angina (not first-line for plain HTN) | §10.3 |
 | **Diuretics** | ↑renal Na⁺/water excretion (thiazides, loop, K⁺-sparing) | Hypertension, heart failure/edema | §10.3 |
 | **Statins & lipid-lowering** | HMG-CoA reductase inhibition; ezetimibe (absorption); PCSK9i (LDL-receptor recycling) | ASCVD prevention | §10.2 (full treatment) |
-| **Anticoagulants / antiplatelets** | See §B.7 | Clot prevention | §10.4 (aspirin) |
+| **Anticoagulants / antiplatelets** | See §B.4.5 | Clot prevention | §10.4 (aspirin) |
 
 ## B.4 The other everyday classes
 
@@ -331,7 +331,7 @@ mechanistic map:
   /Benadryl, chlorpheniramine, hydroxyzine) cross the blood-brain barrier → **sedation and
   anticholinergic effects** (dry mouth, urinary retention, confusion). They are **strongly cautioned in
   older adults** (on the Beers list) and the cumulative **anticholinergic burden** is associated with
-  cognitive decline and dementia risk (§B.5; cross-ref section 19/20). **Second-generation**
+  cognitive decline and dementia risk (§D.3; cross-ref section 19/20). **Second-generation**
   (loratadine, cetirizine, fexofenadine) barely cross the BBB → non-sedating and far safer. "Using
   Benadryl as a sleep aid" is exactly the habit the geriatric-pharmacology literature warns against.
 
@@ -384,12 +384,11 @@ mechanistic map:
 
 ### B.4.6 Common OTC drugs — the honest reminders
 
-The drugstore aisle is real pharmacology with real interactions: **NSAIDs** (BP/kidney/GI — §B.1.1);
-**acetaminophen** (the hidden-in-combos overdose risk — §B.1.2); **first-gen antihistamines/"PM"
-sleep aids** (anticholinergic burden — §B.4.1); **decongestants** (pseudoephedrine/phenylephrine —
-raise BP, and oral phenylephrine is **barely effective** by recent FDA review); **antacids** (can chelate
-and block absorption of other drugs — separate dosing). "OTC" means *available without a prescription*,
-not *without consequence* — the interaction and dose rules apply identically.
+"OTC" means *available without a prescription*, not *without consequence* — the drugstore aisle is real
+pharmacology with real interactions (NSAIDs §B.1.1, acetaminophen §B.1.2, first-gen antihistamines/"PM"
+sleep aids §B.4.1). Two additions the earlier sections don't cover: **decongestants** raise BP (pseudoephedrine/
+phenylephrine), and oral **phenylephrine** is **barely effective** by recent FDA review; and **antacids**
+can chelate and block absorption of other drugs — separate the dosing.
 
 ## B.5 Antidepressants, anxiolytics, antidiabetics — pointers
 
@@ -523,7 +522,7 @@ interaction**, and that "natural" confers nothing.
 
 ## D.3 Polypharmacy — the real danger in aging
 
-This is where pharmacology becomes a geriatric-medicine problem (cross-ref section 19 life stages; §B.5):
+This is where pharmacology becomes a geriatric-medicine problem (cross-ref section 19 life stages; §D.3):
 
 - **Polypharmacy** (commonly defined as ≥5 regular medications) is increasingly the norm in older
   adults, and **risk compounds combinatorially**: the chance of a clinically significant interaction
@@ -672,26 +671,12 @@ drugs** — meaning they **do not need to prove efficacy or safety before sale**
 ## The honest synthesis
 
 Pharmacology is **dose-response biology aimed at a chosen molecular target**, delivered through a body
-that absorbs, distributes, metabolizes, and excretes on its own genetically-variable schedule. The
-recurring lessons of this whole section:
-
-1. **A drug's effect is the interaction of what it does (PD) and where it goes (PK)** — and the reason
-   the same dose helps one person and harms another is almost always **PK** (age, kidney, liver,
-   genotype, interactions), not mystery.
-2. **The most useful personal genetics that exists is pharmacogenomic** — a handful of large-effect,
-   guideline-backed gene-drug pairs that prevent catastrophe (DPYD, TPMT, HLA/abacavir & carbamazepine,
-   G6PD) or guide choice (CYP2C19/clopidogrel, CYP2D6/codeine) — while broad consumer "DNA-picks-your-
-   drug" panels run ahead of their evidence.
-3. **Interactions and polypharmacy are the under-appreciated danger of aging**, and **deprescribing** is
-   frequently the highest-value pharmacological act in an older adult.
-4. **Placebo and nocebo are real endogenous pharmacology**, which is exactly why the controlled trial —
-   not the testimonial — is the unit of truth.
-5. **"Generic = brand," "natural ≠ safe," and "price ≠ cost"** are the three honest corrections that
-   save money and prevent harm.
-
-Every one of these is the same rule the manual runs on: **mechanism is a hypothesis, the controlled
-outcome is the evidence, and the net ledger — for this person, on these drugs — is the only thing that
-counts.**
+that absorbs, distributes, metabolizes, and excretes on its own genetically-variable schedule. The five
+recurring lessons of this whole section are exactly the five in the BLUF and the honesty footer below —
+PK explains why the same dose helps one person and harms another; pharmacogenomics is the one personal
+genetics that pays; interactions/polypharmacy/deprescribing dominate in aging; placebo and nocebo are
+real endogenous pharmacology; and "generic = brand," "natural ≠ safe," "price ≠ cost" are the three
+money-and-harm corrections.
 
 ---
 

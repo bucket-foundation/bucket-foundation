@@ -43,10 +43,6 @@ level; making it at the organelle level buys three things the foundations summar
 
 @@FIG:16-mitochondria-section@@
 
-> **The one sentence to carry through the chapter.** *The mitochondrion is the best-founded object in
-> applied longevity and the most oversold — and the same fact, the depth and certainty of the
-> underlying physics, is the cause of both.*
-
 ---
 
 ## 37.2 — Mitochondrial biology, in depth
@@ -288,7 +284,7 @@ The foundations chapter introduced this (§2.6) and the mechanism bridge formali
 
 ### 37.5.1 — The free-radical theory, and its honest update
 
-Denham Harman's **free-radical theory of aging** (1956, figure `Denham Harman`): the ETC leaks
+Denham Harman's **free-radical theory of aging** (1956, figure `harman`): the ETC leaks
 electrons to O₂, forming **reactive oxygen species** (superoxide → H₂O₂ → hydroxyl radical); ROS
 damage lipids, proteins, and mtDNA; damage accumulates; you age. The naive therapeutic corollary —
 *swallow antioxidants to mop up ROS and slow aging* — dominated supplement marketing for fifty years.
@@ -346,7 +342,7 @@ Is mitochondrial damage a **driver** of aging or a **downstream readout** of it?
 as an explicit open conflict,[^conflict-mtdna] and the evidence cuts against the
 naive damage story even as it leaves the question open:
 
-- **The mtDNA "mutator mouse"** (Trifunovic 2004; Kujoth 2005)[^mutator-mouse] mice engineered with a proofreading-deficient mtDNA polymerase
+- **The mtDNA "mutator mouse"** (Trifunovic 2004; Kujoth 2005)[^mutator-mouse] — mice engineered with a proofreading-deficient mtDNA polymerase
   (POLG) accumulate mtDNA mutations and **age prematurely** — superficially a win for the damage
   theory. **But** two caveats gut the naive version: (1) the mutation loads are *far above* anything
   humans accumulate in normal aging, and (2) the premature-aging phenotype runs through **apoptosis
@@ -488,12 +484,10 @@ industry-sponsored, and report surrogate endpoints (cognitive scores, mitochondr
 inconsistent results. The "activates mitochondrial biogenesis" claim is largely preclinical. Verdict:
 not established.
 
-**NAD⁺ precursors (NR/NMN), creatine, ALCAR, ALA, methylene blue** — graded in the table and
-cross-referenced (`thread-nad-redox.md`, `12-mechanism-bridge` rows 24/17, `32-biohacking-fringe.md`).
-The headline distinctions: **creatine is real** (ATP rebuffering, not biogenesis — and one of the few
-supplements where outcome matches mechanism); **NAD⁺ precursors move the surrogate and nothing else**;
-**ALCAR and ALA are narrow/indication-specific**; **methylene blue is hype-tier with real risks** for
-healthy people.
+**NAD⁺ precursors (NR/NMN), creatine, ALCAR, ALA, methylene blue** are graded in the table above and
+cross-referenced (`thread-nad-redox.md`, `12-mechanism-bridge` rows 24/17, `32-biohacking-fringe.md`) —
+the one distinction worth carrying out: **creatine is the lone everyday winner** (ATP rebuffering, not
+biogenesis); the rest move surrogates only or are narrow/hype-tier.
 
 > **The category verdict.** Across the whole list, **exactly one** has a positive hard-endpoint RCT
 > (CoQ10, and only in heart failure), and **exactly one** is a real-for-its-mechanism
@@ -586,9 +580,8 @@ honest thing this manual can tell you about your mitochondria.
 ### Go deeper
 
 **The popular-but-rigorous canon (Nick Lane — the indispensable author for this chapter):**
-- **Nick Lane, *Power, Sex, Suicide: Mitochondria and the Meaning of Life*** (OUP, 2005). The single
-  best book on why the mitochondrion is the center of the story — endosymbiosis, ROS, apoptosis,
-  mtDNA, aging. Start here.
+- **Nick Lane, *Power, Sex, Suicide: Mitochondria and the Meaning of Life*** (OUP, 2005). The best
+  single overview — endosymbiosis, ROS, apoptosis, mtDNA, aging. Start here.
 - **Nick Lane, *The Vital Question: Energy, Evolution, and the Origins of Complex Life*** (Norton,
   2015). The energetics-of-complexity and proton-gradient-origin-of-life arguments (§37.3.1).
 - **Nick Lane, *Transformer: The Deep Chemistry of Life and Death*** (Norton, 2022). The Krebs cycle as
