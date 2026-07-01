@@ -1074,3 +1074,42 @@ stereochemistry (← isomerism), NMR/IR spectroscopy (← beer-lambert now avail
 already present. OR the durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential
 to raise betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins still open across branches:
 atoms lacking a derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0.
+
+## 2026-07-01 — run 29 (+6 mathematics atoms; branch expansion continues; biophysics untouched)
+Per run-28's handoff (mathematics 49 = clearly the thinnest). Picked mathematics, expanded
+**01-mathematics 49→55**, each `requires` into EXISTING mathematics ids only (validated no missing/dupe):
+**bayes-theorem** (P(H|E)=P(E|H)P(H)/P(E); conditional-probability derivation; prior/likelihood/posterior;
+disease-test base-rate fallacy worked (99% test, 1/1000 → ~9%); Cox's theorem forces Bayesian updating;
+log-odds additive form; ← probability, random-variables), **prime-numbers** (Fundamental Theorem of
+Arithmetic: unique factorization up to order; Euclid's lemma as the crux of uniqueness; Euclid's
+infinitude proof reproduced; 60=2²·3·5 worked; why 1 is excluded; ℤ[√−5] non-unique-factorization
+caveat; PNT + RSA connections; ← number-systems, modular-arithmetic), **markov-chains** (memoryless
+property; transition matrix, μ↦μP; stationary πP=π as left eigenvector for eigenvalue 1; 2-state
+worked → (0.8,0.2); Perron–Frobenius uniqueness + convergence; MCMC/PageRank; ← probability, linear-map,
+eigenvalue), **lagrange-multipliers** (∇f=λ∇g on g=c; gradient-perpendicular geometry; Lagrangian
+formulation; xy s.t. x+y=10 → x=y=5 worked; λ as shadow price ∂f*/∂c; KKT generalization; ←
+optimization, multivariable-calculus), **banach-fixed-point** (contraction q<1 on complete space ⇒
+unique fixed point + iteration converges from anywhere; Cauchy/geometric-gap proof; x=cos x → Dottie
+number worked; a priori error bound; Picard–Lindelöf/Newton connections; completeness + q<1 both
+essential counterexamples; ← metric-space, real-analysis), **galois-theory** (Gal(E/F) as root-symmetry
+group; Fundamental Theorem's order-reversing subfield↔subgroup bijection; solvable-by-radicals ⇔ solvable
+Galois group; S₅ unsolvable via simple non-abelian A₅ = Abel–Ruffini; constructible-polygon corollary;
+"unsolvable ≠ no roots" caveat; ← ring-field, group, polynomials-roots, homomorphism). Each = full
+7-section lesson (Intuition/Precisely/Worked example/Why it works/Where it connects/Watch out) + summary
++ 3 depths + note + art_prompt + 2 quiz (recall + derive) + OPEN sources (MIT OCW 18.02/18.05/18.100/
+18.701-702/18.781 + LibreTexts + OpenStax + Khan + SEP + primary Euclid/Abel–Ruffini/Cox). ALL prose
+ORIGINAL; equations/theorems/definitions are facts. meta 0.4.0→0.5.0. Mirrored to public/academy-app via
+`node scripts/sync-academy.mjs` from repo ROOT (mathematics 55, ver 0.5.0).
+
+**validate.sh PASSES end-to-end** (mathematics 55/no-dupes/no-missing-requires, manifest, JS syntax,
+60-day engine sim — biophysics diagnostic UNCHANGED at placed 42/asked 18 since the sim loads ONLY
+biophysics.json, so mathematics edits are zero-risk to placement; assess/lang/explorer smokes all green).
+
+**NEXT run:** branch counts now — biophysics ~133, mathematics 55, physics 55, chemistry 55, mind 54,
+information 54, cosmology 53; **cosmology (53) is now the thinnest** — pick cosmology and add 6 toward
+full syllabus coverage. Mathematics minor gaps still open if wanted: Green's/divergence theorems as own
+atoms (stokes-theorem generalizes them), convergence tests for series, quadratic forms/positive-definite
+matrices (← eigenvalue, inner-product), rank–nullity theorem, continued fractions, tensor algebra.
+OR the durable biophysics prereq-shell fix (add a depth-3 dependent of redox-potential to raise
+betweenness to 6/6; VERIFY asked stays ≤18). Cheap zero-risk wins across branches: atoms lacking a
+derive-level quiz item; more `note`/`art` fields; GPU art if HSA_OVERRIDE_GFX_VERSION=11.0.0 reachable.

@@ -2,7 +2,7 @@
   "meta": {
     "branch": "01-mathematics",
     "title": "Mathematics — the foundations of reasoning",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "note": "Explanations authored for Bucket Academy (original prose; equations and standard definitions are facts). Open sources only. Foundations-first DAG spanning logic & proof, sets and number systems, elementary and abstract algebra, linear algebra, calculus and analysis, probability and combinatorics, topology and metric spaces, differential equations, and a few frontier/foundational nodes (Gödel, computability, category theory). v0.3.0: every atom rewritten for zero-prior-knowledge learners (eli5/core/deep/note expanded, jargon defined inline) and given a verified `resources` array of 5–8 open learn-more links (Wikipedia, Stanford Encyclopedia of Philosophy, MIT OCW, LibreTexts, OpenStax, Khan Academy, nLab) — each URL confirmed to resolve. `sources` (attribution) is kept separate from `resources` (clickable learn-more).",
     "license": "CC-BY-4.0 (prose); equations are facts"
   },
@@ -3259,6 +3259,411 @@
         }
       ],
       "lesson": "### Intuition\nA **manifold** is a shape — a sphere, a donut surface, even spacetime — that looks **flat** if you zoom in close enough, even though it curves when you step back. (The Earth looks flat from where you stand, yet it is a globe.) **Differential forms** are the things you are allowed to integrate over such curved shapes, and a single operation on them does the job of gradient, curl, and divergence all at once.\n\n### Precisely\nAn $n$-dimensional manifold $M$ is **locally homeomorphic to $\\mathbb{R}^n$** — near every point it looks like flat $n$-space — assembled from overlapping smooth coordinate **charts**. Calculus transfers via the **tangent space** at each point (a `vector-space` of velocities) and **differential forms** (the integrands). The **exterior derivative** $d$ unifies grad, curl, and div, and satisfies\n$$d^2\\omega=0,\\qquad \\text{(locally)}\\ M\\approx\\mathbb{R}^n,$$\nthe identity capturing \"the boundary of a boundary is empty.\"\n\n### Worked example\nWhy is a sphere a manifold but needs more than one chart? Project the globe onto a flat map (stereographic projection from the north pole): every point *except the pole itself* lands on a flat plane $\\mathbb{R}^2$ — a perfectly good chart. But the north pole is missing. Add a second chart projecting from the south pole, and now the two flat maps **together** cover the whole sphere, overlapping smoothly in the middle. Locally flat everywhere, globally curved — exactly the manifold idea. (No single flat chart can cover a sphere, which is why world maps always distort.)\n\n### Why it works\nBecause charts are flat copies of $\\mathbb{R}^n$, ordinary multivariable calculus runs inside each one; the smooth overlaps ensure the calculus agrees where charts meet, so notions like tangent vectors and forms are well-defined globally. The point of differential forms is that they transform *correctly* under any change of chart, unlike raw partial derivatives — making calculus coordinate-free.\n\n### Where it connects\nIt builds on `topology`, `multivariable-calculus`, and `linear-map`s. The generalized `stokes-theorem` $\\int_{\\partial M}\\omega=\\int_M d\\omega$ is the capstone of integration on manifolds. The identity $d^2=0$ generalizes $\\nabla\\times\\nabla f=0$ and seeds de Rham cohomology, detecting a manifold's holes. This is the native language of general relativity (curved spacetime) and gauge theory.\n\n### Watch out\n\"Locally flat\" does **not** mean \"actually flat\" — a manifold can be intrinsically curved (a sphere has no flat global chart). And the framework's whole purpose is coordinate-independence: results stated in one chart must transform correctly to others, which is precisely why differential forms, not bare partial derivatives, are the right objects."
+    },
+    {
+      "id": "bayes-theorem",
+      "title": "Bayes' theorem and conditional probability",
+      "shell": "nucleus",
+      "type": "result",
+      "requires": [
+        "probability",
+        "random-variables"
+      ],
+      "equation": "P(H\\mid E)=\\dfrac{P(E\\mid H)\\,P(H)}{P(E)}",
+      "summary": "Bayes' theorem inverts a conditional probability: it turns 'how likely is the evidence given the hypothesis' into 'how likely is the hypothesis given the evidence', by weighting the likelihood against the prior.",
+      "depths": {
+        "eli5": "You have a belief about how likely something is. Then new evidence arrives. Bayes' rule is the exact recipe for updating that belief: it says how much to move, blending what you thought before (the prior) with how well the hypothesis explains the new evidence (the likelihood). Surprising evidence moves you a lot; expected evidence barely nudges you.",
+        "core": "The conditional probability P(A|B) is the probability of A once we know B happened, defined as P(A and B)/P(B). Because P(A and B) = P(B and A), we can write it two ways, and solving for the one we want gives Bayes' theorem: P(H|E) = P(E|H)·P(H) / P(E). Here P(H) is the prior (belief before evidence), P(E|H) is the likelihood (how well H predicts the evidence), and P(H|E) is the posterior (belief after). The denominator P(E) = Σ P(E|Hᵢ)P(Hᵢ) is a normalizer summing over all hypotheses. The whole content is that P(H|E) and P(E|H) are generally very different quantities, and Bayes tells you exactly how to convert one into the other.",
+        "deep": "Bayes' theorem is the unique consistent rule for updating degrees of belief under new information — Cox's theorem derives probability itself as the only calculus of plausibility satisfying a few consistency axioms, making Bayesian updating not one option but the forced one. Iterated, yesterday's posterior becomes today's prior, so evidence accumulates multiplicatively; in log-odds form the update is additive, log[P(H|E)/P(¬H|E)] = log[P(H)/P(¬H)] + log[P(E|H)/P(E|¬H)], where the second term is the 'weight of evidence'. This is the engine behind spam filters, medical diagnosis, and the likelihood-ratio machinery of statistical inference."
+      },
+      "note": "The base-rate fallacy is the classic trap: with a rare disease (low prior P(H)) even a highly accurate test yields mostly false positives, so P(disease | positive) can be small despite a 99% accurate test. Ignoring the prior P(H) and reading the test accuracy P(E|H) as if it were the answer P(H|E) is the error.",
+      "sources": [
+        "MIT OCW 6.041 Probabilistic Systems Analysis",
+        "MIT OCW 18.05 Introduction to Probability and Statistics",
+        "OpenStax Introductory Statistics"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Bayes' theorem",
+          "url": "https://en.wikipedia.org/wiki/Bayes%27_theorem"
+        },
+        {
+          "label": "Wikipedia — Conditional probability",
+          "url": "https://en.wikipedia.org/wiki/Conditional_probability"
+        },
+        {
+          "label": "Wikipedia — Base rate fallacy",
+          "url": "https://en.wikipedia.org/wiki/Base_rate_fallacy"
+        },
+        {
+          "label": "Wikipedia — Bayesian inference",
+          "url": "https://en.wikipedia.org/wiki/Bayesian_inference"
+        },
+        {
+          "label": "Stanford Encyclopedia of Philosophy — Bayes' Theorem",
+          "url": "https://plato.stanford.edu/entries/bayes-theorem/"
+        },
+        {
+          "label": "Khan Academy — Conditional probability",
+          "url": "https://www.khanacademy.org/math/statistics-probability/probability-library"
+        },
+        {
+          "label": "MIT OCW 18.05 — Introduction to Probability and Statistics",
+          "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2014/"
+        }
+      ],
+      "art_prompt": "a prior bell curve being reshaped by an incoming likelihood curve into a narrower posterior curve, with a 2x2 tree of true/false positives/negatives beside it",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State Bayes' theorem and name the three pieces P(H), P(E|H), and P(H|E).",
+          "answer": "P(H|E) = P(E|H)·P(H)/P(E). P(H) is the prior, P(E|H) is the likelihood, and P(H|E) is the posterior; P(E) is the normalizing evidence probability."
+        },
+        {
+          "level": "derive",
+          "prompt": "A test is 99% accurate for a disease that affects 1 in 1000 people. Roughly, why is P(disease | positive) far below 99%, and how would you compute it?",
+          "answer": "The prior P(disease)=0.001 is tiny, so out of a population the true positives (~0.99×0.001) are vastly outnumbered by false positives (~0.01×0.999). By Bayes, P(disease|+) = 0.99·0.001 / (0.99·0.001 + 0.01·0.999) ≈ 0.09, about 9% — the low base rate dominates."
+        }
+      ],
+      "lesson": "### Intuition\nYou hold a belief about how likely something is. New evidence arrives. Bayes' theorem is the exact recipe for updating that belief: it blends what you thought before (the **prior**) with how well your hypothesis predicts the new evidence (the **likelihood**). Surprising evidence moves you a lot; evidence you expected anyway barely nudges you.\n\n### Precisely\nThe **conditional probability** of $A$ given $B$ is\n$$P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)},$$\nthe fraction of $B$-outcomes that also have $A$. Since $P(A\\cap B)=P(B\\cap A)$, write it both ways and solve for the direction you want:\n$$P(H\\mid E)=\\frac{P(E\\mid H)\\,P(H)}{P(E)},\\qquad P(E)=\\sum_i P(E\\mid H_i)\\,P(H_i).$$\nHere $P(H)$ is the **prior**, $P(E\\mid H)$ the **likelihood**, $P(H\\mid E)$ the **posterior**, and $P(E)$ a normalizer summing over all hypotheses.\n\n### Worked example\nA disease affects $1$ in $1000$ people ($P(H)=0.001$). A test is $99\\%$ accurate both ways. You test positive — do you have it? Compute\n$$P(H\\mid+)=\\frac{0.99\\times0.001}{0.99\\times0.001+0.01\\times0.999}\\approx\\frac{0.00099}{0.01098}\\approx0.09.$$\nOnly about $9\\%$, because the $999$ healthy people generate about $10$ false positives, swamping the roughly $1$ true positive. The tiny prior dominates the accurate test.\n\n### Why it works\nThe two expressions for $P(H\\cap E)$ must agree, and dividing gives the theorem — algebraically trivial, conceptually deep. **Cox's theorem** shows probability is the *only* consistent calculus of plausibility, so Bayesian updating is the forced rule, not one option among many. Iterating, today's posterior becomes tomorrow's prior, and in log-odds form the update is simply additive.\n\n### Where it connects\nIt rests on `probability` (the axioms and joint probabilities) and `random-variables` (distributions as priors and likelihoods). It is the foundation of statistical inference, machine learning, spam filtering, and medical diagnosis, and the partner of the frequentist view of the same data.\n\n### Watch out\nThe **base-rate fallacy**: do not confuse $P(E\\mid H)$ (test accuracy) with $P(H\\mid E)$ (what you actually want). Ignoring the prior $P(H)$ makes a rare condition look far more likely than it is after a positive test."
+    },
+    {
+      "id": "prime-numbers",
+      "title": "Primes and the Fundamental Theorem of Arithmetic",
+      "shell": "nucleus",
+      "type": "theorem",
+      "requires": [
+        "number-systems",
+        "modular-arithmetic"
+      ],
+      "equation": "n=p_1^{a_1}p_2^{a_2}\\cdots p_k^{a_k}\\quad(\\text{unique})",
+      "summary": "Every integer greater than 1 factors into primes in exactly one way (up to order), so the primes are the multiplicative building blocks of the integers — and there are infinitely many of them.",
+      "depths": {
+        "eli5": "Some numbers can be broken into smaller factors (12 = 3×4) and some can't (7 is only 1×7). The unbreakable ones are the primes. The big fact is that every whole number is built from primes in exactly one way, like a unique recipe — 12 is always two 2s and one 3, never anything else. Primes are the atoms of multiplication, and they never run out.",
+        "core": "A prime is an integer p > 1 whose only positive divisors are 1 and p; everything else > 1 is composite. The Fundamental Theorem of Arithmetic says every integer n > 1 can be written as a product of primes, and that factorization is unique apart from the order of the factors. Uniqueness is the subtle part — it depends on Euclid's lemma: if a prime divides a product ab, it must divide a or b. Euclid also proved there are infinitely many primes: if p₁,…,pₖ were all of them, the number p₁⋯pₖ + 1 leaves remainder 1 when divided by each, so it has a prime factor not on the list — contradiction.",
+        "deep": "Unique factorization is not automatic; it can fail in other number systems (e.g. in ℤ[√−5], 6 = 2·3 = (1+√−5)(1−√−5) two genuinely different ways), and rescuing it is what launched algebraic number theory and the theory of ideals. The distribution of primes is governed by the Prime Number Theorem, π(x) ~ x/ln x, and their finer statistics are entangled with the zeros of the Riemann zeta function — the Riemann Hypothesis. Practically, the *hardness* of reversing multiplication — factoring a large product back into its primes — is the trapdoor underneath RSA public-key cryptography."
+      },
+      "note": "1 is deliberately NOT prime. If it were, factorizations would stop being unique (12 = 2²·3 = 1·2²·3 = 1²·2²·3 …), so excluding 1 is exactly what makes the Fundamental Theorem clean.",
+      "sources": [
+        "MIT OCW 18.781 Theory of Numbers",
+        "NCBI/OpenStax-style number theory notes (open)",
+        "LibreTexts — Elementary Number Theory"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Fundamental theorem of arithmetic",
+          "url": "https://en.wikipedia.org/wiki/Fundamental_theorem_of_arithmetic"
+        },
+        {
+          "label": "Wikipedia — Prime number",
+          "url": "https://en.wikipedia.org/wiki/Prime_number"
+        },
+        {
+          "label": "Wikipedia — Euclid's theorem (infinitude of primes)",
+          "url": "https://en.wikipedia.org/wiki/Euclid%27s_theorem"
+        },
+        {
+          "label": "Wikipedia — Euclid's lemma",
+          "url": "https://en.wikipedia.org/wiki/Euclid%27s_lemma"
+        },
+        {
+          "label": "Wikipedia — Prime number theorem",
+          "url": "https://en.wikipedia.org/wiki/Prime_number_theorem"
+        },
+        {
+          "label": "LibreTexts — Elementary Number Theory",
+          "url": "https://math.libretexts.org/Bookshelves/Combinatorics_and_Discrete_Mathematics/Elementary_Number_Theory_(Raji)"
+        },
+        {
+          "label": "MIT OCW 18.781 — Theory of Numbers",
+          "url": "https://ocw.mit.edu/courses/18-781-theory-of-numbers-spring-2012/"
+        }
+      ],
+      "art_prompt": "the number 60 branching down a factor tree into 2, 2, 3, 5, with a number line beside it highlighting primes 2 3 5 7 11 13 stretching to infinity",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Fundamental Theorem of Arithmetic assert, and why is 1 excluded from the primes?",
+          "answer": "Every integer > 1 factors into primes uniquely up to order. 1 is excluded because allowing it would destroy uniqueness (you could insert any number of 1s)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Reproduce Euclid's proof that there are infinitely many primes.",
+          "answer": "Suppose p₁,…,pₖ were all the primes. Form N = p₁·p₂⋯pₖ + 1. Dividing N by any pᵢ leaves remainder 1, so no pᵢ divides N. But N > 1 has some prime factor, which is therefore a prime not in the list — contradiction. Hence the primes are infinite."
+        }
+      ],
+      "lesson": "### Intuition\nSome numbers split into smaller factors ($12=3\\times4$) and some cannot ($7$ is only $1\\times7$). The unsplittable ones are the **primes**. The central fact: every whole number is built from primes in exactly one way, like a unique recipe. $12$ is always $2\\times2\\times3$ and nothing else. Primes are the atoms of multiplication — and they never run out.\n\n### Precisely\nA **prime** is an integer $p>1$ whose only positive divisors are $1$ and $p$; other integers $>1$ are **composite**. The **Fundamental Theorem of Arithmetic**: every integer $n>1$ can be written\n$$n=p_1^{a_1}p_2^{a_2}\\cdots p_k^{a_k}$$\nfor primes $p_i$ and exponents $a_i\\ge 1$, and this factorization is **unique** up to the order of the factors.\n\n### Worked example\nFactor $60$: $60=2\\times30=2\\times2\\times15=2^2\\times3\\times5$. Any other route — $60=6\\times10=(2\\cdot3)(2\\cdot5)$ — lands on the same multiset $\\{2,2,3,5\\}$. To see primes are infinite, suppose $p_1,\\dots,p_k$ were all of them and form $N=p_1\\cdots p_k+1$. Each $p_i$ divides $N-1$, so none divides $N$; yet $N>1$ must have a prime factor — a new prime. Contradiction.\n\n### Why it works\nExistence is easy: keep splitting composites until only primes remain. **Uniqueness** is the deep part and rests on **Euclid's lemma** — if a prime divides a product $ab$, it divides $a$ or $b$. Without that lemma factorization can genuinely branch, which is exactly what happens in some other number systems.\n\n### Where it connects\nIt builds on `number-systems` (the integers) and `modular-arithmetic` (divisibility and remainders). It underwrites everything from greatest-common-divisor algorithms to RSA cryptography, whose security rests on factoring being hard to reverse.\n\n### Watch out\n$1$ is **not** prime, by design: including it would let you pad any factorization with $1$s and break uniqueness. And uniqueness is not free — in $\\mathbb{Z}[\\sqrt{-5}]$, $6=2\\cdot3=(1+\\sqrt{-5})(1-\\sqrt{-5})$ factors two truly different ways, which is why unique factorization is a theorem, not an axiom."
+    },
+    {
+      "id": "markov-chains",
+      "title": "Markov chains and stationary distributions",
+      "shell": "frontier",
+      "type": "concept",
+      "requires": [
+        "probability",
+        "linear-map",
+        "eigenvalue"
+      ],
+      "equation": "\\pi P=\\pi,\\qquad \\pi_j=\\sum_i \\pi_i P_{ij}",
+      "summary": "A Markov chain is a random walk whose next step depends only on the current state; its long-run behavior is captured by a stationary distribution, the left eigenvector of the transition matrix with eigenvalue 1.",
+      "depths": {
+        "eli5": "Imagine hopping between rooms, where the room you jump to next depends only on the room you're in right now — not on how you got there. That 'only the present matters' rule is what makes it a Markov chain. If you keep hopping forever, the fraction of time you spend in each room settles down to fixed numbers. Those steady fractions are the stationary distribution.",
+        "core": "A Markov chain is a sequence of random states X₀, X₁, X₂, … where the probability of the next state depends only on the current one: P(Xₙ₊₁ = j | Xₙ = i, past) = P(Xₙ₊₁ = j | Xₙ = i) = Pᵢⱼ. The Pᵢⱼ form a transition matrix P whose rows sum to 1. If the current distribution over states is a row vector μ, then after one step it is μP, and after n steps μPⁿ. A stationary distribution π satisfies πP = π: once you're distributed as π, you stay that way. This is exactly a left eigenvector of P with eigenvalue 1, normalized to sum to 1.",
+        "deep": "For an irreducible, aperiodic finite chain the Perron–Frobenius theorem guarantees a unique stationary π with strictly positive entries, and μPⁿ → π from any start — the convergence rate set by the spectral gap (the second-largest eigenvalue modulus). This is the theoretical bedrock of Markov chain Monte Carlo: to sample from a hard distribution π, design a chain whose stationary distribution is π (e.g. via detailed balance πᵢPᵢⱼ = πⱼPⱼᵢ, the reversibility condition) and just run it. Google's original PageRank is the stationary distribution of a random surfer on the web graph."
+      },
+      "note": "The Markov (memoryless) property is a modeling assumption, not a law of nature. If the true process depends on more than the current state, either enlarge the state to include the relevant history, or the chain analysis gives wrong answers.",
+      "sources": [
+        "MIT OCW 6.041 Probabilistic Systems Analysis",
+        "MIT OCW 18.445 Introduction to Stochastic Processes",
+        "LibreTexts — Probability and Stochastic Processes"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Markov chain",
+          "url": "https://en.wikipedia.org/wiki/Markov_chain"
+        },
+        {
+          "label": "Wikipedia — Stationary distribution",
+          "url": "https://en.wikipedia.org/wiki/Stationary_distribution"
+        },
+        {
+          "label": "Wikipedia — Perron–Frobenius theorem",
+          "url": "https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem"
+        },
+        {
+          "label": "Wikipedia — Markov chain Monte Carlo",
+          "url": "https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo"
+        },
+        {
+          "label": "Wikipedia — PageRank",
+          "url": "https://en.wikipedia.org/wiki/PageRank"
+        },
+        {
+          "label": "MIT OCW 6.041 — Probabilistic Systems Analysis",
+          "url": "https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/"
+        },
+        {
+          "label": "MIT OCW 18.445 — Introduction to Stochastic Processes",
+          "url": "https://ocw.mit.edu/courses/18-445-introduction-to-stochastic-processes-spring-2015/"
+        }
+      ],
+      "art_prompt": "a directed graph of three states with labeled transition-probability arrows, alongside the state distribution converging over successive steps toward a fixed steady bar chart",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What is the Markov property, and what equation defines a stationary distribution π?",
+          "answer": "The next state depends only on the current state, not the past history. A stationary distribution satisfies πP = π (it is a left eigenvector of the transition matrix with eigenvalue 1), with entries summing to 1."
+        },
+        {
+          "level": "derive",
+          "prompt": "For a two-state chain with P(stay in A)=0.9, P(A→B)=0.1, P(B→A)=0.4, P(stay in B)=0.6, find the stationary distribution.",
+          "answer": "Solve π_A = 0.9π_A + 0.4π_B and π_A+π_B=1. The first gives 0.1π_A = 0.4π_B, so π_A = 4π_B; with π_A+π_B=1, π_B=0.2, π_A=0.8. Stationary distribution (0.8, 0.2)."
+        }
+      ],
+      "lesson": "### Intuition\nPicture hopping between rooms, where the room you jump to next depends only on the room you are in *now* — not on the path that got you there. That \"only the present matters\" rule makes it a **Markov chain**. Hop forever and the fraction of time spent in each room settles to fixed numbers: the **stationary distribution**.\n\n### Precisely\nA Markov chain is states $X_0,X_1,\\dots$ with the **memoryless property**\n$$P(X_{n+1}=j\\mid X_n=i,\\text{past})=P(X_{n+1}=j\\mid X_n=i)=P_{ij}.$$\nThe $P_{ij}$ form a **transition matrix** with each row summing to $1$. A distribution $\\mu$ (a row vector) evolves as $\\mu\\mapsto\\mu P$, and after $n$ steps $\\mu P^n$. A **stationary distribution** obeys\n$$\\pi P=\\pi,$$\ni.e. $\\pi$ is a left eigenvector of $P$ for eigenvalue $1$, normalized so $\\sum_i\\pi_i=1$.\n\n### Worked example\nTwo states $A,B$ with $P(A\\to A)=0.9,\\,P(A\\to B)=0.1,\\,P(B\\to A)=0.4,\\,P(B\\to B)=0.6$. Stationarity needs $\\pi_A=0.9\\pi_A+0.4\\pi_B$, so $0.1\\pi_A=0.4\\pi_B\\Rightarrow\\pi_A=4\\pi_B$. With $\\pi_A+\\pi_B=1$ we get $\\pi=(0.8,\\,0.2)$: in the long run the chain spends $80\\%$ of its time in $A$.\n\n### Why it works\nFor an **irreducible, aperiodic** finite chain the **Perron–Frobenius theorem** guarantees a unique positive $\\pi$, and $\\mu P^n\\to\\pi$ from *any* start, at a rate set by the second-largest eigenvalue. That convergence is what makes **Markov chain Monte Carlo** possible: build a chain whose stationary distribution is the one you want to sample, then simply run it.\n\n### Where it connects\nIt combines `probability` (the transition probabilities), `linear-map` (evolution as matrix multiplication) and `eigenvalue` (stationarity as an eigenvector). It powers PageRank, statistical physics, queueing theory, and modern Bayesian computation.\n\n### Watch out\nThe memoryless property is an **assumption**. If the real process depends on more than the current state, enlarge the state to fold in the needed history — otherwise the chain model quietly gives wrong long-run answers."
+    },
+    {
+      "id": "lagrange-multipliers",
+      "title": "Lagrange multipliers and constrained optimization",
+      "shell": "frontier",
+      "type": "method",
+      "requires": [
+        "optimization",
+        "multivariable-calculus"
+      ],
+      "equation": "\\nabla f=\\lambda\\,\\nabla g\\quad\\text{subject to}\\quad g(\\mathbf{x})=c",
+      "summary": "To optimize a function along a constraint surface, look for points where the objective's gradient is parallel to the constraint's gradient — the multiplier λ measures how hard the constraint pushes back.",
+      "depths": {
+        "eli5": "You want to climb as high as possible, but you're forced to stay on a marked trail. You can keep going uphill as long as the trail still has some uphill direction. You're stuck at the best spot when the trail runs exactly across the slope — no uphill left along it. Lagrange multipliers are the math for finding that exact spot.",
+        "core": "To maximize or minimize f(x) subject to a constraint g(x) = c, you can't just set ∇f = 0, because the free optimum may be off the constraint surface. Instead, at a constrained optimum the gradient of f must be perpendicular to the constraint surface — otherwise part of ∇f would point *along* the surface and you could improve by moving that way. Since ∇g is also perpendicular to the surface {g = c}, the two gradients must be parallel: ∇f = λ∇g for some scalar λ, the Lagrange multiplier. Solving this together with g(x) = c gives the candidate points. Equivalently, form the Lagrangian L = f − λ(g − c) and set all its partial derivatives (including ∂/∂λ) to zero.",
+        "deep": "The multiplier λ has a meaning: it is the sensitivity of the optimal value to the constraint level, λ = ∂f*/∂c — the 'shadow price' of relaxing the constraint by one unit, central in economics and mechanics. With inequality constraints the method generalizes to the Karush–Kuhn–Tucker (KKT) conditions, which add complementary slackness (a constraint is either active with λ ≥ 0, or inactive with λ = 0). For convex problems the KKT conditions are sufficient for a global optimum, which is why convex optimization is both tractable and reliable."
+      },
+      "note": "∇f = λ∇g finds stationary points, not automatically maxima. You must classify candidates (compare values, use the bordered Hessian, or check the geometry). The method also assumes ∇g ≠ 0 at the solution — a constraint qualification.",
+      "sources": [
+        "MIT OCW 18.02 Multivariable Calculus",
+        "MIT OCW 6.255J / 15.093J Optimization Methods",
+        "LibreTexts — Calculus (multivariable)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Lagrange multiplier",
+          "url": "https://en.wikipedia.org/wiki/Lagrange_multiplier"
+        },
+        {
+          "label": "Wikipedia — Karush–Kuhn–Tucker conditions",
+          "url": "https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions"
+        },
+        {
+          "label": "Wikipedia — Constrained optimization",
+          "url": "https://en.wikipedia.org/wiki/Constrained_optimization"
+        },
+        {
+          "label": "Wikipedia — Shadow price",
+          "url": "https://en.wikipedia.org/wiki/Shadow_price"
+        },
+        {
+          "label": "Khan Academy — Lagrange multipliers",
+          "url": "https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives"
+        },
+        {
+          "label": "MIT OCW 18.02 — Multivariable Calculus",
+          "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/"
+        },
+        {
+          "label": "LibreTexts — Lagrange Multipliers",
+          "url": "https://math.libretexts.org/Bookshelves/Calculus/Calculus_(OpenStax)/14%3A_Differentiation_of_Functions_of_Several_Variables"
+        }
+      ],
+      "art_prompt": "a hilly contour map of f overlaid with a single constraint curve g=c, marking the point where a contour line is tangent to the constraint and the two gradient arrows point the same way",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What condition characterizes a constrained optimum of f subject to g(x)=c, and what does the multiplier λ represent?",
+          "answer": "The gradients are parallel: ∇f = λ∇g, together with the constraint g(x)=c. The multiplier λ is the shadow price — the rate of change of the optimal value with respect to the constraint level c."
+        },
+        {
+          "level": "derive",
+          "prompt": "Maximize f(x,y)=xy subject to x+y=10 using Lagrange multipliers.",
+          "answer": "∇f=(y,x), ∇g=(1,1), so y=λ and x=λ, giving x=y. The constraint x+y=10 then gives x=y=5, and the maximum is f=25. (Parallel gradients force x=y; the constraint pins the value.)"
+        }
+      ],
+      "lesson": "### Intuition\nYou want to climb as high as possible but must stay on a marked trail. You can keep gaining height while the trail still points at all uphill. You are stuck at the best spot when the trail runs exactly *across* the slope — no uphill component left along it. **Lagrange multipliers** are the algebra for finding that spot.\n\n### Precisely\nTo optimize $f(\\mathbf{x})$ subject to $g(\\mathbf{x})=c$, the free condition $\\nabla f=0$ fails because the optimum may lie off the surface. At a constrained optimum $\\nabla f$ must be perpendicular to the surface $\\{g=c\\}$; since $\\nabla g$ is also perpendicular there, the two are parallel:\n$$\\nabla f=\\lambda\\,\\nabla g,\\qquad g(\\mathbf{x})=c.$$\nEquivalently form the **Lagrangian** $L=f-\\lambda(g-c)$ and set every partial derivative (including $\\partial L/\\partial\\lambda$) to zero.\n\n### Worked example\nMaximize $f(x,y)=xy$ subject to $x+y=10$. Here $\\nabla f=(y,x)$ and $\\nabla g=(1,1)$, so $y=\\lambda$ and $x=\\lambda$, forcing $x=y$. The constraint gives $x=y=5$, so the maximum is $25$ — the rectangle of fixed perimeter with the largest area is a square.\n\n### Why it works\nIf $\\nabla f$ had any component *along* the constraint surface, you could slide that way and improve $f$ while staying feasible. So at an optimum $\\nabla f$ is purely perpendicular — hence proportional to $\\nabla g$. The scalar $\\lambda$ is the **shadow price** $\\partial f^*/\\partial c$: how much the best value improves if you loosen the constraint by one unit.\n\n### Where it connects\nIt extends `optimization` (unconstrained critical points) using `multivariable-calculus` (the gradient as the direction of steepest ascent). With inequality constraints it generalizes to the **KKT conditions**, the backbone of convex optimization and machine learning.\n\n### Watch out\n$\\nabla f=\\lambda\\nabla g$ finds *stationary* points, not guaranteed maxima — you still must classify candidates by value or a second-order test. The method also needs $\\nabla g\\neq 0$ at the solution (a constraint qualification); otherwise it can miss or misreport the optimum."
+    },
+    {
+      "id": "banach-fixed-point",
+      "title": "The Banach fixed-point theorem",
+      "shell": "frontier",
+      "type": "theorem",
+      "requires": [
+        "metric-space",
+        "real-analysis"
+      ],
+      "equation": "d(Tx,Ty)\\le q\\,d(x,y),\\ q<1\\ \\Rightarrow\\ \\exists!\\,x^*:\\,Tx^*=x^*",
+      "summary": "A map that always shrinks distances by a fixed factor on a complete space has exactly one fixed point, and iterating the map from anywhere converges to it — the master existence-and-uniqueness engine of analysis.",
+      "depths": {
+        "eli5": "Suppose every time you apply some operation, any two points get closer together by at least a fixed fraction. Then repeating the operation squeezes everything toward a single special point that the operation leaves unchanged — a fixed point. And it doesn't matter where you start; you always end up at the same place. That's why 'just keep iterating' actually works.",
+        "core": "Let (X, d) be a complete metric space (one with no 'holes' — every Cauchy sequence converges) and let T: X → X be a contraction: there is a constant q < 1 with d(Tx, Ty) ≤ q·d(x, y) for all x, y. Then T has exactly one fixed point x* (Tx* = x*), and the iteration xₙ₊₁ = T(xₙ) converges to x* from any starting point x₀. The proof is constructive: the iterates form a Cauchy sequence because consecutive gaps shrink geometrically (d(xₙ₊₁, xₙ) ≤ qⁿ d(x₁, x₀)), completeness gives a limit, continuity makes the limit a fixed point, and contraction forces it to be unique.",
+        "deep": "The theorem is the abstract heart of many existence proofs. Picard–Lindelöf existence and uniqueness for ODEs y' = f(t,y) recasts the equation as a fixed point of an integral operator, which is a contraction on a small enough time interval. Newton's method, the inverse and implicit function theorems, and the convergence of numerical iterative solvers all reduce to contraction arguments. The bound d(xₙ, x*) ≤ qⁿ/(1−q) · d(x₁, x₀) even gives an explicit, a priori error estimate — you know how many iterations buy a target accuracy before you run them."
+      },
+      "note": "Completeness and strict contraction (q < 1) are both essential. On the incomplete space (0,1) the map x ↦ x/2 has no fixed point in the space, and a map with q = 1 (like x ↦ x + 1/(1+x) on [0,∞)) can move every point and have no fixed point at all.",
+      "sources": [
+        "MIT OCW 18.100 Real Analysis",
+        "MIT OCW 18.152 / 18.03 Differential Equations",
+        "LibreTexts — Introduction to Real Analysis"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Banach fixed-point theorem",
+          "url": "https://en.wikipedia.org/wiki/Banach_fixed-point_theorem"
+        },
+        {
+          "label": "Wikipedia — Contraction mapping",
+          "url": "https://en.wikipedia.org/wiki/Contraction_mapping"
+        },
+        {
+          "label": "Wikipedia — Complete metric space",
+          "url": "https://en.wikipedia.org/wiki/Complete_metric_space"
+        },
+        {
+          "label": "Wikipedia — Picard–Lindelöf theorem",
+          "url": "https://en.wikipedia.org/wiki/Picard%E2%80%93Lindel%C3%B6f_theorem"
+        },
+        {
+          "label": "Wikipedia — Fixed-point iteration",
+          "url": "https://en.wikipedia.org/wiki/Fixed-point_iteration"
+        },
+        {
+          "label": "MIT OCW 18.100A — Real Analysis",
+          "url": "https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/"
+        },
+        {
+          "label": "LibreTexts — Introduction to Real Analysis (Trench)",
+          "url": "https://math.libretexts.org/Bookshelves/Analysis/Introduction_to_Real_Analysis_(Trench)"
+        }
+      ],
+      "art_prompt": "nested shrinking circles spiraling inward to a single dot, with iteration arrows x0 -> x1 -> x2 -> x* converging, each hop shorter than the last by the same ratio",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "State the Banach fixed-point theorem, including all hypotheses.",
+          "answer": "On a complete metric space, a contraction T (with d(Tx,Ty) ≤ q·d(x,y) for some q<1) has a unique fixed point x*, and the iteration xₙ₊₁=T(xₙ) converges to it from any starting point. Completeness and q<1 are both required."
+        },
+        {
+          "level": "derive",
+          "prompt": "Why do the iterates xₙ₊₁ = T(xₙ) form a Cauchy sequence, and why does that give a fixed point?",
+          "answer": "Consecutive gaps shrink geometrically: d(xₙ₊₁,xₙ) ≤ qⁿ d(x₁,x₀), so the tail sums like a convergent geometric series, making the sequence Cauchy. Completeness gives a limit x*; continuity of T lets you pass to the limit in xₙ₊₁=T(xₙ), yielding x*=T(x*)."
+        }
+      ],
+      "lesson": "### Intuition\nSuppose every time you apply some operation, any two points get *closer* by at least a fixed fraction. Repeating it squeezes everything toward one special point the operation leaves unchanged — a **fixed point** — and it doesn't matter where you start. This is why \"just keep iterating\" actually converges.\n\n### Precisely\nLet $(X,d)$ be a **complete** metric space (no holes — every Cauchy sequence converges) and let $T:X\\to X$ be a **contraction**: for some $q<1$,\n$$d(Tx,Ty)\\le q\\,d(x,y)\\quad\\text{for all }x,y.$$\nThen $T$ has a **unique** fixed point $x^*$ with $Tx^*=x^*$, and the iteration $x_{n+1}=T(x_n)$ converges to $x^*$ from any $x_0$.\n\n### Worked example\nSolve $x=\\cos x$ by iterating $x_{n+1}=\\cos(x_n)$ starting from $x_0=1$. On a suitable interval $\\cos$ is a contraction ($|\\!-\\sin x|<1$), so the iterates $1,\\,0.540,\\,0.858,\\,0.654,\\dots$ spiral in to the **Dottie number** $x^*\\approx0.739$, the unique solution — no algebra needed, just repeat the map.\n\n### Why it works\nConsecutive gaps shrink geometrically, $d(x_{n+1},x_n)\\le q^n d(x_1,x_0)$, so the iterates are **Cauchy**; completeness supplies a limit $x^*$; continuity of $T$ passes to the limit to give $x^*=Tx^*$; and if two points were both fixed, contraction would force their distance below itself — impossible. You even get the a priori bound $d(x_n,x^*)\\le \\frac{q^n}{1-q}d(x_1,x_0)$.\n\n### Where it connects\nIt rests on `metric-space` (distance and contraction) and `real-analysis` (completeness and Cauchy sequences). It is the abstract engine behind the Picard–Lindelöf existence theorem for `ode`, Newton's method, and the convergence of numerical solvers.\n\n### Watch out\nBoth hypotheses are essential. On the *incomplete* space $(0,1)$ the contraction $x\\mapsto x/2$ has no fixed point inside the space, and a map that shrinks distances but only with $q=1$ (not $q<1$) can fail to have any fixed point at all."
+    },
+    {
+      "id": "galois-theory",
+      "title": "Galois theory and the unsolvable quintic",
+      "shell": "frontier",
+      "type": "result",
+      "requires": [
+        "ring-field",
+        "group",
+        "polynomials-roots",
+        "homomorphism"
+      ],
+      "equation": "\\mathrm{Gal}(E/F):\\ \\{\\text{subfields}\\}\\ \\leftrightarrow\\ \\{\\text{subgroups}\\}",
+      "summary": "Galois theory matches the symmetries of a polynomial's roots (a group) to the structure of the field that contains them, and this dictionary explains exactly why polynomials of degree 5 and higher have no general formula in radicals.",
+      "depths": {
+        "eli5": "The roots of a polynomial can be shuffled among themselves in ways that don't break any equation they satisfy. Those allowed shuffles form a group — a set of symmetries. Galois discovered that the shape of this symmetry group tells you everything about the polynomial: in particular, whether you can write its roots using only +, −, ×, ÷, and roots (√, ∛, …). For degree 5 the symmetry group is too tangled, so no such formula exists.",
+        "core": "Given a field F and a bigger field E containing all roots of a polynomial (its splitting field), the Galois group Gal(E/F) is the group of field automorphisms of E that fix F — the symmetries permuting the roots while preserving all algebraic relations. The Fundamental Theorem of Galois Theory sets up an order-reversing bijection between the subfields between F and E and the subgroups of Gal(E/F): bigger fields correspond to smaller groups. A polynomial is solvable by radicals exactly when its Galois group is a 'solvable' group (one built from abelian pieces). The general degree-n polynomial has Galois group Sₙ, the full symmetric group; S₂, S₃, S₄ are solvable (giving the quadratic, cubic, quartic formulas) but S₅ is not, because it contains the simple non-abelian group A₅.",
+        "deep": "The unsolvability of the quintic (Abel–Ruffini, explained by Galois) is the first place abstract group structure — simplicity of A₅ — dictates a concrete impossibility about formulas. The same correspondence classifies which regular n-gons are constructible with straightedge and compass (Gauss: iff n is a product of a power of 2 and distinct Fermat primes) and resolves the classical impossibilities of doubling the cube and trisecting the angle. Galois theory is also the template for far-reaching generalizations: the étale fundamental group, class field theory, and the Langlands program all descend from 'symmetries of solutions form a group that governs the arithmetic'."
+      },
+      "note": "'Unsolvable by radicals' does NOT mean quintics have no roots or can't be solved. By the Fundamental Theorem of Algebra they have five complex roots; you can find them numerically or with elliptic/hypergeometric functions. What fails is a single finite formula using only arithmetic and radicals.",
+      "sources": [
+        "MIT OCW 18.702 Algebra II",
+        "MIT OCW 18.701 Algebra I",
+        "LibreTexts — Abstract Algebra (Judson)"
+      ],
+      "resources": [
+        {
+          "label": "Wikipedia — Galois theory",
+          "url": "https://en.wikipedia.org/wiki/Galois_theory"
+        },
+        {
+          "label": "Wikipedia — Fundamental theorem of Galois theory",
+          "url": "https://en.wikipedia.org/wiki/Fundamental_theorem_of_Galois_theory"
+        },
+        {
+          "label": "Wikipedia — Abel–Ruffini theorem",
+          "url": "https://en.wikipedia.org/wiki/Abel%E2%80%93Ruffini_theorem"
+        },
+        {
+          "label": "Wikipedia — Solvable group",
+          "url": "https://en.wikipedia.org/wiki/Solvable_group"
+        },
+        {
+          "label": "Wikipedia — Constructible polygon",
+          "url": "https://en.wikipedia.org/wiki/Constructible_polygon"
+        },
+        {
+          "label": "LibreTexts — Abstract Algebra: Theory and Applications (Judson)",
+          "url": "https://abstract.ups.edu/"
+        },
+        {
+          "label": "MIT OCW 18.702 — Algebra II",
+          "url": "https://ocw.mit.edu/courses/18-702-algebra-ii-spring-2011/"
+        }
+      ],
+      "art_prompt": "a lattice of subfields on the left mirrored by an upside-down lattice of subgroups on the right, connected by an order-reversing correspondence, with S5/A5 highlighted as the tangle that blocks a quintic formula",
+      "quiz": [
+        {
+          "level": "recall",
+          "prompt": "What does the Galois group of a polynomial capture, and what property of it decides solvability by radicals?",
+          "answer": "It is the group of symmetries (field automorphisms) permuting the roots while preserving all algebraic relations. The polynomial is solvable by radicals exactly when this group is a solvable group (built from abelian pieces)."
+        },
+        {
+          "level": "derive",
+          "prompt": "Explain why the general quintic has no formula in radicals, in terms of groups.",
+          "answer": "The general degree-5 polynomial has Galois group S₅. Solvability by radicals requires a solvable Galois group, but S₅ is not solvable because it contains the simple non-abelian group A₅ (which has no normal subgroup chain with abelian quotients). Hence no general radical formula exists."
+        }
+      ],
+      "lesson": "### Intuition\nThe roots of a polynomial can be shuffled among themselves without breaking any equation they satisfy. Those allowed shuffles form a **group** of symmetries. Galois saw that the *shape* of this group decides everything — in particular, whether the roots can be written using only $+,-,\\times,\\div$ and radicals $\\sqrt[n]{\\ }$. For degree $5$ the group is too tangled, and no such formula can exist.\n\n### Precisely\nLet $E$ be the **splitting field** of a polynomial over a field $F$ (the smallest field holding all its roots). The **Galois group** $\\mathrm{Gal}(E/F)$ is the group of automorphisms of $E$ fixing $F$ — symmetries permuting the roots while preserving every algebraic relation. The **Fundamental Theorem of Galois Theory** gives an order-reversing bijection\n$$\\{\\text{fields between }F\\text{ and }E\\}\\ \\leftrightarrow\\ \\{\\text{subgroups of }\\mathrm{Gal}(E/F)\\}.$$\nA polynomial is **solvable by radicals** exactly when its Galois group is a **solvable** group.\n\n### Worked example\nThe general polynomial of degree $n$ has Galois group $S_n$, the full symmetric group on the $n$ roots. For $n=2,3,4$ the groups $S_2,S_3,S_4$ are solvable — matching the quadratic, cubic, and quartic formulas. For $n=5$, $S_5$ is *not* solvable: it contains $A_5$, a **simple non-abelian** group with no chain of normal subgroups having abelian quotients. So the general quintic has no radical formula — the **Abel–Ruffini** theorem, explained.\n\n### Why it works\nBuilding a root out of nested radicals corresponds to a tower of field extensions, each adjoining an $n$th root; on the group side this is exactly a chain of normal subgroups with abelian quotients — the definition of *solvable*. If the group has an unsolvable piece like $A_5$, no such tower reaches the roots, so no radical expression can.\n\n### Where it connects\nIt fuses `ring-field` (field extensions), `group` (the symmetry group), `polynomials-roots` (splitting fields), and `homomorphism` (automorphisms). The same dictionary settles which regular polygons are constructible and which classical compass-and-straightedge problems are impossible.\n\n### Watch out\n\"Unsolvable by radicals\" does **not** mean quintics lack roots. By the Fundamental Theorem of Algebra every quintic has five complex roots — you can find them numerically or with special functions. What is impossible is a single finite formula built only from arithmetic and radicals."
     }
   ]
 }
