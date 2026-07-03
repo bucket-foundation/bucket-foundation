@@ -79,8 +79,8 @@ than one line — skip to whichever matters to you.
 
 *APOE* comes in three alleles (ε2, ε3, ε4). The **ε4** allele is the single strongest *common* genetic
 risk factor for late-onset Alzheimer's disease, and it shows a clean **gene-dose** relationship: one
-ε4 copy raises lifetime risk roughly **2–3×**, two copies (ε4/ε4, ~2% of people) roughly **8–12×**,
-relative to the common ε3/ε3 (Corder et al., 1993; meta-analysis Farrer et al., 1997).[^apoe-risk] The
+ε4 copy raises lifetime risk roughly **2–3×**, two copies (ε4/ε4, ~2% of people) roughly **8–15×**
+(Farrer's ε4/ε4 odds ratio is ≈15 in Caucasians), relative to the common ε3/ε3 (Corder et al., 1993; meta-analysis Farrer et al., 1997).[^apoe-risk] The
 effect is **modified by age, sex, and ancestry** — larger in women, and substantially smaller in
 several African-ancestry populations (Farrer 1997) — a
 caution against reading any single risk number as universal. ε4 also modestly raises cardiovascular
@@ -173,7 +173,7 @@ lifelong, *partly* predictive number — and **no genotype-specific lever to pul
 predictor-without-a-lever, and it raises four real counseling issues:
 
 1. **Risk ≠ certainty.** Even ε4/ε4 lifetime risk, while substantially elevated, is well short of 100%
-   and varies by sex and ancestry — so a naked "8–12×" on a DTC dashboard, with no absolute framing and
+   and varies by sex and ancestry — so a naked "8–15×" on a DTC dashboard, with no absolute framing and
    no counselor, invites disproportionate fear (or false reassurance for ε3/ε3). (Relative vs absolute
    risk: §A.6.)
 2. **The "right not to know."** Predictive testing for an untreatable condition is the classic case
