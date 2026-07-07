@@ -176,9 +176,9 @@ together with muscle.
 
 ### 3.1 Fracture is a mortality event, not just a broken bone
 
-- **Hip-fracture mortality:** **Haentjens 2010** — meta-analysis: a hip fracture is followed by **~2–3× excess
-  mortality** vs. age-matched peers, with the highest risk in the first 3–6 months and persistent excess for
-  years; men fare worse than women. `meta` / outcome.[^haentjens-hipmort] This is the entire reason bone
+- **Hip-fracture mortality:** **Haentjens 2010** — meta-analysis: a hip fracture is followed by a sharp early
+  spike in death — a **~5–8× relative hazard in the first 3 months** (5.75 in women, 7.95 in men) — settling to
+  a **~2–3× excess** that persists for years; men fare worse than women. `meta` / outcome.[^haentjens-hipmort] This is the entire reason bone
   matters for *longevity*, not just orthopedics: in the elderly, the
   fall-and-fracture cascade is a leading path from "independent" to "dead," via immobilization, pneumonia, and
   loss of independence. Preventing the fracture (and the fall — cross-ref §3.5 sarcopenia and Domain E balance)

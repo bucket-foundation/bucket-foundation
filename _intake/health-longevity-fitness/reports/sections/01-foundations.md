@@ -125,6 +125,8 @@ universal energy currency the rest of the cell spends. A human at rest cycles th
 own body weight in ATP per day; it is not stored, it is made and spent continuously, which is why the
 machine never stops.
 
+@@FIG:atp-synthase-turbine@@
+
 ### 2.4 The redox couples and the Krebs cycle — the supply line
 
 *You don't need to memorize the names and molecules below. The one idea: every fuel you burn —
@@ -310,6 +312,8 @@ sequence; the **central dogma** (Crick) describes the flow of that information: 
 with no route back from protein sequence to nucleic-acid sequence. Mendel's particulate inheritance
 is the upstream axiom. Your genome is the *static* blueprint — essentially the same in
 every cell of your body and across your whole life.
+
+@@FIG:dna-double-helix@@
 
 @@FIG:101-central-dogma,RA07-dna-replication@@
 

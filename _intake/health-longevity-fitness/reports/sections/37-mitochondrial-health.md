@@ -98,6 +98,10 @@ signals) biology and pharmacology:
 | **IV** | Cytochrome c oxidase | **Yes** | The terminal step: passes electrons to **O₂**, reducing it to water. This is *why you breathe* — O₂ is the final electron acceptor. Inhibited by cyanide, carbon monoxide; **methylene blue and low-dose near-infrared light both interact here** (§37.7, §37.8). |
 | **V** | ATP synthase (F₁F₀) | Runs H⁺ *back* | Not a pump but the turbine: protons flowing down the gradient spin the rotor and force ADP + Pᵢ → ATP. Structurally confirmed rotary motor (Boyer/Walker, Nobel 1997 — canon proof chain). |
 
+@@FIG:complex-I-etc,complex-II-sdh@@
+
+@@FIG:complex-III-bc1,complex-IV-cox@@
+
 Two carriers shuttle between the complexes and are worth naming because supplements target them:
 **coenzyme Q10 (ubiquinone)**, a lipid-soluble electron carrier in the membrane that ferries electrons
 from Complexes I/II to III (this is the rationale CoQ10 supplements borrow), and **cytochrome c**, a
