@@ -98,9 +98,20 @@ def fig_framework():
            ("Polywater",1,0.4,RED),("Water memory",0.3,0.3,RED),("Lysenko",0.4,0.4,RED)]
     def PX(e): return gx0+(gx1-gx0)*(e+0.5)/4
     def PY(m): return gy1-(gy1-gy0)*m/4
+    # the failed/pathological cluster crowds the lower-left corner; its labels are
+    # routed out to a stacked column on the right with short leaders so each is readable.
+    CLUSTER=["Popp coherent\nfield","Cold fusion","Polywater","Water memory","Lysenko"]
+    stack_x=352
+    slots={"Popp coherent field":-112,"Polywater":-86,"Cold fusion":-60,"Lysenko":-34,"Water memory":-8}
     for lab,mm,ee,col in cases:
         px,py=PX(ee),PY(mm)
         s.append(f'<circle cx="{px:.0f}" cy="{py:.0f}" r="7" fill="{col}" opacity="0.9"/>')
+        if lab in CLUSTER:
+            flat=lab.replace("\n"," ")
+            ty=gy1+slots[flat]
+            s.append(f'<line x1="{px+8:.0f}" y1="{py:.0f}" x2="{stack_x-6}" y2="{ty}" stroke="{col}" stroke-width="1.1" opacity="0.85"/>')
+            s.append(T(stack_x,ty+3,flat,size=8.8,fill=INK,font=ds.BODY))
+            continue
         lines=lab.split("\n")
         for k,ln in enumerate(lines):
             s.append(T(px+11,py-2+ (k*11) - (len(lines)-1)*5,ln,size=8.6,fill=INK,font=ds.BODY))

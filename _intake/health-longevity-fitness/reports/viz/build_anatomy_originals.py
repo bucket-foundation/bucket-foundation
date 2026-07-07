@@ -41,6 +41,20 @@ def label(x,y,head,body=None,anchor="start",hc=INK2,bc=MUT,hs=12.5):
         s.append(T(x,y+16,body,size=9.6,fill=bc,font=ds.BODY,anchor=anchor))
     return "".join(s)
 
+def _txt_w(head,body,hs=12.5):
+    """Rough rendered width (px) of a label block: max of head / body lines."""
+    hw=len(str(head))*hs*0.60
+    bw=len(str(body))*9.6*0.52 if body else 0
+    return max(hw,bw)
+
+def lead_lbl(lx,ly,fx,fy,head,body=None,anchor="start",hc=INK2,col=None,pad=16):
+    """Draw a label at (lx,ly) and a leader to feature (fx,fy) that starts just
+    past the text edge, so the leader never crosses the label text."""
+    col=col or hc
+    w=_txt_w(head,body)
+    sx0 = lx+w+pad if anchor=="start" else lx-w-pad
+    return leader(sx0,ly+7,fx,fy,col)+label(lx,ly,head,body,anchor=anchor,hc=hc)
+
 def frame(name,kicker,title,sub,src,claim,W,H,body):
     head,y0,foot=ds.panel(W,H,kicker,title,sub,src,claim)
     ds.render(head+DEFS+body+foot, f"{FIG}/{name}.png")
@@ -195,12 +209,13 @@ def fig_nephron():
           f"L 570 {gy+90} C 600 {gy}, 720 {gy}, 760 {gy+60} L 820 {gy+340}")
     s.append(f'<path d="{path}" fill="none" stroke="{GOLDD}" stroke-width="7"/>')
     s.append(f'<path d="{path}" fill="none" stroke="#f3ead2" stroke-width="3"/>')
-    # arrows: reabsorption back to blood (green, inward) along proximal
-    for (ax,ay) in ((400,gy+90),(480,gy+180),(540,gy+180)):
-        s.append(f'<line x1="{ax}" y1="{ay}" x2="{ax-38}" y2="{ay}" stroke="{GRN}" stroke-width="2.6" marker-end="url(#ag)"/>')
+    # arrows: reabsorption back to blood (green, outward from the tubule wall)
+    for (ax,ay) in ((455,gy+120),(455,gy+190),(590,gy+150)):
+        dirx = -46 if ax<520 else 46
+        s.append(f'<line x1="{ax}" y1="{ay}" x2="{ax+dirx}" y2="{ay}" stroke="{GRN}" stroke-width="2.6" marker-end="url(#ag)"/>')
     # labels
     s.append(leader(gx,cy+330,gx,gy+50,RED)); s.append(label(gx,cy+352,"Glomerulus","blood filtered here",anchor="middle",hc=RED))
-    s.append(label(360,cy+40,"Proximal tubule","reclaims glucose, salts, water",hc=GRN))
+    s.append(leader(430,cy+70,470,gy+60,GRN)); s.append(label(360,cy+40,"Proximal tubule","reclaims glucose, salts, water",hc=GRN))
     s.append(leader(520,cy+430,520,gy+305)); s.append(label(520,cy+452,"Loop of Henle","concentrates the urine",anchor="middle"))
     s.append(leader(950,cy+80,770,gy+70)); s.append(label(1060,cy+70,"Distal tubule","fine-tunes salt & pH",anchor="end"))
     s.append(leader(950,cy+440,820,gy+330)); s.append(label(1060,cy+432,"Collecting duct","final water balance \u2192 urine",anchor="end"))
@@ -209,29 +224,68 @@ def fig_nephron():
 
 # ---------------------------------------------------------------- 6. BRAIN LOBES
 def fig_brain_lobes():
-    W,H=1120,640
+    W,H=1120,660
     head,cy,foot=ds.panel(W,H,"Brain & Cognition \u00b7 \u00a708","The lobes of the brain",
-        "Frontal, parietal, temporal and occipital lobes, plus the cerebellum and brainstem.",
+        "A left-side view: frontal in front, parietal on top behind it, occipital at the back, temporal below \u2014 with the cerebellum and brainstem beneath.",
         SRC_SCHEMA,"brain-lobes-anatomy")
     s=[head,DEFS]
-    import math as _m
-    cxb,cyb=W/2-40,cy+200; R=165
-    wedges=[("Frontal",BLUE,135,225),("Temporal",AMB,225,315),("Occipital",PUR,315,405),("Parietal",GRN,45,135)]
-    for name,col,a0,a1 in wedges:
-        x0=cxb+_m.cos(_m.radians(a0))*R; y0=cyb-_m.sin(_m.radians(a0))*R
-        x1=cxb+_m.cos(_m.radians(a1))*R; y1=cyb-_m.sin(_m.radians(a1))*R
-        s.append(f'<path d="M {cxb} {cyb} L {x0:.1f} {y0:.1f} A {R} {R} 0 0 0 {x1:.1f} {y1:.1f} Z" fill="{col}33" stroke="{col}" stroke-width="2.4"/>')
-    s.append(f'<circle cx="{cxb}" cy="{cyb}" r="{R}" fill="none" stroke="{GOLDD}" stroke-width="1.4" opacity="0.55"/>')
-    s.append(f'<ellipse cx="{cxb-R-26}" cy="{cyb+R-16}" rx="66" ry="42" fill="#efe4c8" stroke="{GOLDD}" stroke-width="2.2"/>')
-    s.append(f'<rect x="{cxb-R-12}" y="{cyb+R}" width="28" height="62" rx="12" fill="#efe4c8" stroke="{GOLDD}" stroke-width="2.2"/>')
-    keys=[("Frontal","planning, movement, self-control",BLUE,60,cy+90,"start"),
-          ("Parietal","touch, spatial sense",GRN,60,cy+160,"start"),
-          ("Occipital","vision",PUR,1060,cy+90,"end"),
-          ("Temporal","hearing, memory, language",AMB,1060,cy+160,"end"),
-          ("Cerebellum","balance & coordination",GOLDD,60,cy+390,"start"),
-          ("Brainstem","breathing, heart rate, arousal",INK,60,cy+450,"start")]
-    for nm,dd,col,x,y,an in keys:
-        s.append(label(x,y,nm,dd,anchor=an,hc=col))
+    cxc,cyc=555,cy+205
+    def sx(dx): return cxc+dx
+    def sy(dy): return cyc+dy
+    # cerebrum silhouette (frontal pole at LEFT, occipital pole at RIGHT)
+    cer=(f"M {sx(-235)} {sy(-5)} "
+         f"C {sx(-235)} {sy(-72)}, {sx(-170)} {sy(-120)}, {sx(-90)} {sy(-122)} "
+         f"C {sx(-10)} {sy(-124)}, {sx(90)} {sy(-120)}, {sx(160)} {sy(-96)} "
+         f"C {sx(216)} {sy(-78)}, {sx(250)} {sy(-42)}, {sx(250)} {sy(0)} "
+         f"C {sx(250)} {sy(40)}, {sx(216)} {sy(60)}, {sx(168)} {sy(62)} "
+         f"C {sx(120)} {sy(64)}, {sx(66)} {sy(60)}, {sx(28)} {sy(62)} "
+         f"C {sx(-2)} {sy(96)}, {sx(-72)} {sy(114)}, {sx(-122)} {sy(94)} "
+         f"C {sx(-162)} {sy(78)}, {sx(-186)} {sy(50)}, {sx(-210)} {sy(38)} "
+         f"C {sx(-226)} {sy(30)}, {sx(-235)} {sy(20)}, {sx(-235)} {sy(-5)} Z")
+    # shared lateral (Sylvian) fissure line through (-150,40)->(78,2)
+    m=(2-40)/(78-(-150))
+    def fy(dx): return 40+(dx-(-150))*m
+    def poly(pts): return " ".join(f"{sx(dx):.1f},{sy(dy):.1f}" for dx,dy in pts)
+    CSbot=(-18,fy(-18))     # central sulcus meets the fissure
+    FRO=[(-320,-220),(40,-220),(30,-112),CSbot,(-320,fy(-320))]
+    PAR=[(40,-220),(150,-220),(150,fy(150)),(78,2),CSbot,(30,-112)]
+    OCC=[(150,-220),(330,-220),(330,220),(150,220)]
+    TEM=[(-320,fy(-320)),(150,fy(150)),(150,220),(-320,220)]
+    cbx,cby=sx(120),sy(102)
+    s.append(f'<defs><clipPath id="cerclip"><path d="{cer}"/></clipPath>'
+             f'<clipPath id="cbclip"><ellipse cx="{cbx}" cy="{cby}" rx="80" ry="48"/></clipPath></defs>')
+    s.append('<g clip-path="url(#cerclip)">')
+    s.append(f'<polygon points="{poly(FRO)}" fill="{BLUE}" opacity="0.30"/>')
+    s.append(f'<polygon points="{poly(PAR)}" fill="{GRN}" opacity="0.30"/>')
+    s.append(f'<polygon points="{poly(OCC)}" fill="{PUR}" opacity="0.30"/>')
+    s.append(f'<polygon points="{poly(TEM)}" fill="{AMB}" opacity="0.32"/>')
+    s.append('</g>')
+    # sulci
+    syl=f"M {sx(-150)} {sy(40)} C {sx(-88)} {sy(34)}, {sx(-14)} {sy(16)}, {sx(78)} {sy(2)}"
+    cen=f"M {sx(30)} {sy(-112)} C {sx(16)} {sy(-70)}, {sx(-6)} {sy(-28)}, {sx(CSbot[0])} {sy(CSbot[1])}"
+    poc=f"M {sx(150)} {sy(-96)} C {sx(150)} {sy(-60)}, {sx(150)} {sy(-24)}, {sx(150)} {sy(fy(150))}"
+    for d in (syl,cen,poc):
+        s.append(f'<path d="{d}" fill="none" stroke="{INK}" stroke-width="1.6" opacity="0.5"/>')
+    s.append(f'<path d="{cer}" fill="none" stroke="{GOLDD}" stroke-width="2.6"/>')
+    # cerebellum (tucked lower-rear, foliated) then brainstem drawn in front of it
+    s.append(f'<ellipse cx="{cbx}" cy="{cby}" rx="80" ry="48" fill="{TEAL}" fill-opacity="0.16" stroke="{TEAL}" stroke-width="2.4"/>')
+    s.append('<g clip-path="url(#cbclip)">')
+    for k in range(-3,4):
+        yy=cby+k*10.5
+        s.append(f'<path d="M {cbx-82} {yy} Q {cbx} {yy-7} {cbx+82} {yy}" fill="none" stroke="{TEAL}" stroke-width="1.0" opacity="0.55"/>')
+    s.append('</g>')
+    bsx=sx(6)
+    brain=(f"M {bsx-26} {sy(56)} C {bsx-32} {sy(112)}, {bsx-18} {sy(152)}, {bsx-14} {sy(188)} "
+           f"L {bsx+16} {sy(188)} C {bsx+22} {sy(152)}, {bsx+30} {sy(112)}, {bsx+26} {sy(56)} Z")
+    s.append(f'<path d="{brain}" fill="#efe4c8" stroke="{GOLDD}" stroke-width="2.2"/>')
+    # labels + leaders (leaders start past the text edge)
+    s.append(lead_lbl(60,cy+60,sx(-140),sy(-74),"Frontal","planning, movement, self-control",hc=BLUE))
+    # Parietal sits directly above the lobe: a clean vertical leader, no text to cross
+    s.append(leader(sx(70),cy+6,sx(70),sy(-66),GRN)); s.append(label(sx(70),cy-6,"Parietal","touch, spatial sense",anchor="middle",hc=GRN))
+    s.append(lead_lbl(1060,cy+56,sx(205),sy(-30),"Occipital","vision",anchor="end",hc=PUR))
+    s.append(lead_lbl(60,cy+314,sx(-96),sy(78),"Temporal","hearing, memory, language",hc=AMB))
+    s.append(lead_lbl(1060,cy+322,cbx+54,cby+4,"Cerebellum","balance & coordination",anchor="end",hc=TEAL))
+    s.append(lead_lbl(1060,cy+422,bsx+14,sy(158),"Brainstem","breathing, heart rate, arousal",anchor="end",hc=INK2))
     s.append(foot); ds.render("".join(s),f"{FIG}/RA09-brain-lobes.png"); return "RA09-brain-lobes"
 
 
@@ -358,58 +412,119 @@ def fig_atherosclerosis():
 
 # ---------------------------------------------------------------- 11. HEART
 def fig_heart():
-    W,H=1120,660
+    W,H=1120,680
     head,cy,foot=ds.panel(W,H,"Cardiovascular \u00b7 \u00a722","The heart",
-        "Four chambers and the valves that keep blood moving one way: blue side pumps to the lungs, red side to the body.",
+        "Four chambers, four valves, one-way flow. The right side (blue) sends oxygen-poor blood to the lungs; the left side (red) pumps oxygen-rich blood to the body. The patient's right is on your left.",
         SRC_SCHEMA,"heart-anatomy")
     s=[head,DEFS]
-    cxh,cyh=W/2-30,cy+180
-    # simple 2x2 chamber block, right (blue/deoxy) left (red/oxy)
-    def cham(x,y,w,h,col,name,sub):
-        r=[f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="16" fill="{col}22" stroke="{col}" stroke-width="2.6"/>']
-        r.append(T(x+w/2,y+h/2-4,name,size=13,fill=col,font=ds.DISPLAY,weight="700",anchor="middle"))
-        r.append(T(x+w/2,y+h/2+16,sub,size=9.4,fill=MUT,font=ds.BODY,anchor="middle"))
-        return "".join(r)
-    # right heart (deoxygenated, drawn on viewer's left) blue; left heart red
-    s.append(cham(cxh-260,cyh-140,220,120,BLUE,"Right atrium","from body (low O\u2082)"))
-    s.append(cham(cxh-260,cyh+0,220,150,BLUE,"Right ventricle","\u2192 to lungs"))
-    s.append(cham(cxh+40,cyh-140,220,120,RED,"Left atrium","from lungs (O\u2082-rich)"))
-    s.append(cham(cxh+40,cyh+0,220,150,RED,"Left ventricle","\u2192 to body (thick wall)"))
-    # valves (gold ticks between chambers)
-    for x,y in ((cxh-150,cyh),(cxh+150,cyh)):
-        s.append(f'<line x1="{x-30}" y1="{y}" x2="{x+30}" y2="{y}" stroke="{GOLDD}" stroke-width="3"/>')
-    # flow arrows
-    s.append(f'<path d="M {cxh-150} {cyh-150} v -40" stroke="{BLUE}" stroke-width="2.6" marker-end="url(#ab)"/>')
-    s.append(f'<path d="M {cxh+150} {cyh+150} v 40" stroke="{RED}" stroke-width="2.6" marker-end="url(#ar)"/>')
-    s.append(label(60,cy+70,"Right heart","carries oxygen-poor blood to the lungs",hc=BLUE))
-    s.append(label(1060,cy+70,"Left heart","pumps oxygen-rich blood to the body",anchor="end",hc=RED))
-    s.append(leader(cxh+320,cyh+30,cxh+180,cyh,GOLDD)); s.append(label(cxh+330,cyh+26,"Valves (gold)","one-way only",anchor="start",hc=GOLDD))
-    s.append(leader(cxh-320,cyh+30,cxh-180,cyh,GOLDD)); s.append(label(cxh-330,cyh+26,"Valve","",anchor="end",hc=GOLDD))
+    cxc,cyc=545,cy+250
+    def sx(dx): return cxc+dx
+    def sy(dy): return cyc+dy
+    # myocardial silhouette (anterior view; apex to lower-right)
+    sil=(f"M {sx(-150)} {sy(-150)} "
+         f"C {sx(-205)} {sy(-150)}, {sx(-215)} {sy(-70)}, {sx(-180)} {sy(-10)} "
+         f"C {sx(-150)} {sy(45)}, {sx(-120)} {sy(95)}, {sx(-70)} {sy(120)} "
+         f"C {sx(-10)} {sy(150)}, {sx(60)} {sy(178)}, {sx(120)} {sy(150)} "
+         f"C {sx(175)} {sy(122)}, {sx(198)} {sy(50)}, {sx(190)} {sy(-30)} "
+         f"C {sx(184)} {sy(-90)}, {sx(150)} {sy(-150)}, {sx(90)} {sy(-150)} "
+         f"C {sx(30)} {sy(-150)}, {sx(-90)} {sy(-150)}, {sx(-150)} {sy(-150)} Z")
+    sept=f"M {sx(0)} {sy(-150)} C {sx(6)} {sy(-70)}, {sx(6)} {sy(20)}, {sx(24)} {sy(150)}"
+    av_y=-18
+    avplane=f"M {sx(-198)} {sy(av_y+6)} C {sx(-90)} {sy(av_y+22)}, {sx(90)} {sy(av_y+18)}, {sx(196)} {sy(av_y-6)}"
+    def poly(pts): return " ".join(f"{sx(dx):.1f},{sy(dy):.1f}" for dx,dy in pts)
+    s.append(f'<defs><clipPath id="hclip"><path d="{sil}"/></clipPath></defs>')
+    s.append('<g clip-path="url(#hclip)">')
+    s.append(f'<polygon points="{poly([(-260,-260),(12,-260),(30,260),(-260,260)])}" fill="{BLUE}" opacity="0.22"/>')
+    s.append(f'<polygon points="{poly([(12,-260),(260,-260),(260,260),(30,260)])}" fill="{RED}" opacity="0.20"/>')
+    s.append(f'<rect x="{sx(-260)}" y="{sy(-160)}" width="520" height="{av_y+160+16}" fill="{INK}" opacity="0.05"/>')
+    # thicker left-ventricle wall
+    s.append(f'<path d="M {sx(120)} {sy(150)} C {sx(160)} {sy(120)}, {sx(178)} {sy(55)}, {sx(172)} {sy(-20)}" fill="none" stroke="{RED}" stroke-width="10" opacity="0.30"/>')
+    s.append('</g>')
+    s.append(f'<path d="{sil}" fill="none" stroke="{GOLDD}" stroke-width="2.8"/>')
+    s.append(f'<path d="{sept}" fill="none" stroke="{GOLDD}" stroke-width="2.0" opacity="0.7"/>')
+    s.append(f'<path d="{avplane}" fill="none" stroke="{GOLDD}" stroke-width="1.6" opacity="0.55" stroke-dasharray="2 5"/>')
+    # great vessels (drawn before valves so leaflets read on top)
+    def tube(d,c): return f'<path d="{d}" fill="none" stroke="{c}" stroke-width="20" stroke-linecap="round" opacity="0.9"/>'
+    s.append(tube(f"M {sx(-150)} {sy(-240)} L {sx(-150)} {sy(-150)}", BLUE))          # SVC
+    s.append(tube(f"M {sx(-205)} {sy(-120)} L {sx(-178)} {sy(-118)}", BLUE))          # IVC
+    s.append(tube(f"M {sx(-70)} {sy(-150)} C {sx(-70)} {sy(-215)}, {sx(-120)} {sy(-240)}, {sx(-165)} {sy(-250)}", BLUE))  # pulmonary artery
+    s.append(tube(f"M {sx(40)} {sy(-150)} C {sx(40)} {sy(-230)}, {sx(120)} {sy(-255)}, {sx(185)} {sy(-240)}", RED))       # aorta
+    s.append(tube(f"M {sx(240)} {sy(-110)} L {sx(188)} {sy(-95)}", RED))              # pulmonary veins
+    # valves (gold leaflets)
+    def valve(x,y,w=22,c=GOLD):
+        return (f'<path d="M {x-w} {y} Q {x} {y+13} {x+w} {y}" fill="none" stroke="{c}" stroke-width="3"/>'
+                f'<line x1="{x}" y1="{y+11}" x2="{x}" y2="{y-2}" stroke="{c}" stroke-width="2"/>')
+    tric=(sx(-92),sy(av_y+16)); mitr=(sx(96),sy(av_y+8))
+    pulm=(sx(-70),sy(-150)); aort=(sx(40),sy(-150))
+    s.append(valve(*tric)); s.append(valve(*mitr))
+    s.append(valve(pulm[0],pulm[1]+8,16)); s.append(valve(aort[0],aort[1]+8,16))
+    # chamber labels (inside)
+    s.append(T(sx(-95),sy(-90),"Right atrium",size=11.5,fill=BLUE,font=ds.DISPLAY,weight="700",anchor="middle"))
+    s.append(T(sx(-95),sy(-74),"from body",size=8.8,fill=MUT,anchor="middle"))
+    s.append(T(sx(-95),sy(60),"Right ventricle",size=11.5,fill=BLUE,font=ds.DISPLAY,weight="700",anchor="middle"))
+    s.append(T(sx(-95),sy(76),"\u2192 to lungs",size=8.8,fill=MUT,anchor="middle"))
+    s.append(T(sx(95),sy(-90),"Left atrium",size=11.5,fill=RED,font=ds.DISPLAY,weight="700",anchor="middle"))
+    s.append(T(sx(95),sy(-74),"from lungs",size=8.8,fill=MUT,anchor="middle"))
+    s.append(T(sx(95),sy(60),"Left ventricle",size=11.5,fill=RED,font=ds.DISPLAY,weight="700",anchor="middle"))
+    s.append(T(sx(95),sy(76),"\u2192 to body",size=8.8,fill=MUT,anchor="middle"))
+    # outer labels + leaders (leaders start past the text edge)
+    s.append(lead_lbl(60,cy+110,sx(-150),sy(-210),"Sup./inf. vena cava","oxygen-poor blood in from the body",hc=BLUE))
+    s.append(lead_lbl(60,cy+212,pulm[0],pulm[1]-40,"Pulmonary artery","\u2192 to the lungs",hc=BLUE))
+    s.append(lead_lbl(1060,cy+110,sx(150),sy(-245),"Aorta","oxygen-rich blood out to the body",anchor="end",hc=RED))
+    s.append(lead_lbl(1060,cy+212,sx(215),sy(-105),"Pulmonary veins","\u2190 from the lungs",anchor="end",hc=RED))
+    s.append(lead_lbl(60,cy+412,tric[0],tric[1],"Tricuspid & mitral valves","the one-way AV valves",hc=GOLDD))
+    s.append(lead_lbl(1060,cy+412,aort[0],aort[1]+8,"Pulmonary & aortic valves","guard the artery exits",anchor="end",hc=GOLDD))
     s.append(foot); ds.render("".join(s),f"{FIG}/RA14-heart.png"); return "RA14-heart"
 
 # ---------------------------------------------------------------- 12. ENDOCRINE GLANDS
 def fig_endocrine():
-    W,H=1060,720
+    W,H=1060,800
     head,cy,foot=ds.panel(W,H,"Endocrine \u00b7 \u00a713","The endocrine glands",
-        "Hormone factories from head to pelvis, working as one signaling network.",
+        "Hormone factories from head to pelvis, working as one signaling network. Positions are anatomical: brain glands in the skull, adrenals atop the kidneys.",
         SRC_SCHEMA,"endocrine-anatomy")
     s=[head,DEFS]
-    # body silhouette (simple)
-    bx,by=W/2-30,cy+70
-    s.append(f'<path d="M {bx} {by} q 42 0 42 46 q 0 26 -14 40 q 60 24 60 150 l -18 200 q 0 40 -20 40 q -14 0 -16 -40 l -8 -150 l -8 150 q -2 40 -16 40 q -20 0 -20 -40 l -18 -200 q 0 -126 60 -150 q -14 -14 -14 -40 q 0 -46 42 -46 Z" fill="#f3ead2" stroke="{GOLDD}" stroke-width="2"/>')
-    glands=[("Pineal / hypothalamus / pituitary","the master controllers in the brain",by+34,BLUE,"L"),
-            ("Thyroid & parathyroid","metabolism & calcium",by+150,GRN,"R"),
-            ("Thymus","immune training (shrinks with age)",by+210,TEAL,"L"),
-            ("Adrenals","stress hormones, on the kidneys",by+300,WARN,"R"),
-            ("Pancreas (islets)","insulin & glucagon",by+340,AMB,"L"),
-            ("Gonads","sex hormones",by+470,PUR,"R")]
-    for nm,desc,gy,col,side in glands:
-        gx=bx+(6 if side=="R" else -6)
-        s.append(f'<circle cx="{gx}" cy="{gy}" r="9" fill="{col}"/>')
-        if side=="R":
-            s.append(leader(bx+120,gy,gx+8,gy,col)); s.append(label(bx+130,gy-2,nm,desc,hc=col))
+    bx=W/2-20
+    top=cy+24
+    y_head=top+14; y_chin=top+92; y_neck=top+112; y_chest=top+205
+    y_waist=top+320; y_hip=top+380; y_crotch=top+415; y_foot=top+575
+    # front-facing body silhouette (head, neck, torso, pelvis, legs)
+    body=(f"M {bx} {y_head-42} "
+          f"C {bx+42} {y_head-42}, {bx+42} {y_chin}, {bx+16} {y_neck} "
+          f"C {bx+64} {y_neck+6}, {bx+98} {y_chest-70}, {bx+98} {y_chest} "
+          f"C {bx+98} {y_waist-20}, {bx+84} {y_waist}, {bx+80} {y_hip} "
+          f"C {bx+78} {y_crotch}, {bx+70} {y_crotch+4}, {bx+30} {y_crotch+6} "
+          f"L {bx+40} {y_foot} C {bx+40} {y_foot+18}, {bx+12} {y_foot+18}, {bx+12} {y_foot} "
+          f"L {bx+6} {y_crotch+22} L {bx-6} {y_crotch+22} L {bx-12} {y_foot} "
+          f"C {bx-12} {y_foot+18}, {bx-40} {y_foot+18}, {bx-40} {y_foot} "
+          f"L {bx-30} {y_crotch+6} "
+          f"C {bx-70} {y_crotch+4}, {bx-78} {y_crotch}, {bx-80} {y_hip} "
+          f"C {bx-84} {y_waist}, {bx-98} {y_waist-20}, {bx-98} {y_chest} "
+          f"C {bx-98} {y_chest-70}, {bx-64} {y_neck+6}, {bx-16} {y_neck} "
+          f"C {bx-42} {y_chin}, {bx-42} {y_head-42}, {bx} {y_head-42} Z")
+    s.append(f'<path d="{body}" fill="#f3ead2" stroke="{GOLDD}" stroke-width="2"/>')
+    # faint kidney outlines to anchor the adrenals
+    for sgn in (-1,1):
+        s.append(f'<ellipse cx="{bx+sgn*36}" cy="{y_chest+70}" rx="15" ry="24" fill="none" stroke="{FAINT}" stroke-width="1.1" opacity="0.6"/>')
+    glands=[
+     ("Pineal / hypothalamus / pituitary","master controllers, deep in the brain", bx, y_head-2, BLUE, "L"),
+     ("Thyroid & parathyroid","in the neck \u2014 metabolism & calcium", bx, y_neck+2, GRN, "R"),
+     ("Thymus","behind the breastbone \u2014 immune training (shrinks with age)", bx, y_chest-4, TEAL, "L"),
+     ("Adrenals","one atop each kidney \u2014 stress hormones", None, y_chest+52, RED, "R"),
+     ("Pancreas (islets)","upper abdomen \u2014 insulin & glucagon", bx-8, y_chest+92, AMB, "L"),
+     ("Gonads","in the pelvis \u2014 sex hormones", bx, y_crotch-2, PUR, "R"),
+    ]
+    for nm,desc,gx,gy,col,side in glands:
+        if nm.startswith("Adrenals"):
+            for sgn in (-1,1):
+                s.append(f'<circle cx="{bx+sgn*36}" cy="{gy}" r="7" fill="{col}"/>')
+            anchorx=bx+36; anchory=gy
         else:
-            s.append(leader(bx-120,gy,gx-8,gy,col)); s.append(label(bx-130,gy-2,nm,desc,anchor="end",hc=col))
+            s.append(f'<circle cx="{gx}" cy="{gy}" r="8" fill="{col}"/>')
+            anchorx,anchory=gx,gy
+        if side=="R":
+            lx=bx+124; s.append(leader(lx,anchory,anchorx+8,anchory,col)); s.append(label(lx+10,anchory-2,nm,desc,hc=col))
+        else:
+            lx=bx-124; s.append(leader(lx,anchory,anchorx-8,anchory,col)); s.append(label(lx-10,anchory-2,nm,desc,anchor="end",hc=col))
     s.append(foot); ds.render("".join(s),f"{FIG}/RA05-endocrine-glands.png"); return "RA05-endocrine-glands"
 
 # ---------------------------------------------------------------- registry + CLI
