@@ -170,11 +170,15 @@ def linkify(h):
 # ---- build body ----
 chapters=[]   # (id, title, part_label, html)
 toc=[]
+def nsfn(body, cid):
+    # namespace per-chapter pandoc footnote ids/hrefs so fnN/fnrefN don't collide across chapters
+    return re.sub(r'(href="#|id=")(fn(?:ref)?\d+)"', rf'\g<1>{cid}-\g<2>"', body)
+
 for part_label, part_sub, items in STRUCT:
     toc.append(("part", part_label, part_sub, None))
     for cid, path, override in items:
         title = override or first_title(path)
-        body = pandoc(path)
+        body = nsfn(pandoc(path), cid)
         if cid=="training": body = diagram_grid()+body
         body = linkify(place_figs(body, cid))
         chapters.append((cid,title,part_label,body,part_sub))
