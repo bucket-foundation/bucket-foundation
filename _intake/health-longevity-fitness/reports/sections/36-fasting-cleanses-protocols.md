@@ -72,7 +72,7 @@ schedule.
 - **What it is:** all daily calories in a single ~1-hour eating window.
 - **The claim:** maximal fat loss, deep autophagy, simplicity.
 - **The evidence:** thin — mostly case reports and small studies (e.g. a managed prediabetes/obesity case using OMAD,
-  2025)[^omad]. A crossover study in healthy adults found OMAD raised
+  2025)[^omad]. One small crossover study in healthy adults reported that OMAD raised
   fasting glucose and morning cortisol and modestly raised blood pressure versus three meals at the same calories.
   It's an extreme TRE; the same "benefit = the calorie deficit" logic applies, with a harder adherence and
   nutrient-adequacy problem (hitting protein and micronutrient targets in one meal is difficult).
@@ -363,7 +363,7 @@ This is the claim doing the heaviest lifting in fasting marketing, so it gets th
 **What autophagy actually is.** Autophagy ("self-eating") is the cell's recycling and quality-control system: it
 sequesters damaged proteins and organelles (including worn mitochondria — *mitophagy*) and digests them for reuse.
 **Yoshinori Ohsumi** won the 2016 Nobel for mapping its genetic machinery in yeast (cross-ref `01-foundations.md` §3.2).
-It declines with age, and **"disabled macroautophagy" is now a named Hallmark of Aging (2023)**. So far, all true and
+It declines with age, and **"disabled macroautophagy" is now a named Hallmark of Aging (López-Otín et al., *Cell* 2023)**. So far, all true and
 foundational.
 
 **The leap the marketing makes.** From "fasting induces autophagy" (true in cells/rodents) to "**16 hours of fasting

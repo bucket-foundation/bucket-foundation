@@ -28,7 +28,7 @@ into a plain-language explanation in the chapter it points to. This is a map, no
 
 | Node | What | Where |
 |---|---|---|
-| Bioenergetics — chemiosmosis, proton-motive force, ATP | The master variable; the law every cell runs on | §01 |
+| Bioenergetics — chemiosmosis, proton-motive force, ATP | A foundational variable; the energy currency every cell depends on | §01 |
 | Biochemistry — Krebs cycle, redox (how cells shuffle electrons to move energy; NAD⁺/FAD), substrate metabolism | How matter becomes energy | §01, §12 |
 | Cell & molecular biology — membranes, proteins, proteostasis | The machinery and its container | §01 |
 | Cell water / structured-water frontier | Contested biophysics, graded honestly — still only partly settled | §01 |

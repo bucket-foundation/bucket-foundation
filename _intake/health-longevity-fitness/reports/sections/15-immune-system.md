@@ -325,7 +325,7 @@ higher-dose/adjuvanted formulations exist for elders. **Preventing the pneumonia
 
 ### 6.2 The gut–microbiome–immune axis
 
-Roughly **70% of immune tissue is associated with the gut** (GALT — gut-associated lymphoid tissue, the immune
+A commonly cited estimate holds that roughly **70% of immune tissue is gut-associated** (GALT — gut-associated lymphoid tissue, the immune
 lining of your intestine), and the microbiome is in constant cross-talk with it. The best-grounded mechanistic link in this corpus: **microbiota-derived short-chain fatty
 acids (especially butyrate, from fiber fermentation) induce regulatory T cells and support gut-barrier
 integrity** (cross-ref C2: Furusawa/Ohno; Sonnenburg's MAC/fiber thesis), which **dampens inflammaging at its

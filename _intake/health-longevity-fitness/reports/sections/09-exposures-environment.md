@@ -305,7 +305,7 @@ for 20 years:
 - **Lindqvist 2016** (competing-risk analysis): the mortality benefit of sun
   exposure came mainly from **lower cardiovascular and non-cancer/non-CVD death**, and was striking enough that
   the authors framed it provocatively — **nonsmokers who avoided sun had a life expectancy similar to smokers in
-  the highest sun-exposure group**, i.e., sun avoidance carried a risk on the order of smoking.[^lindqvist-2016]
+  the highest sun-exposure group**, i.e., in this single fair-skinned cohort, sun avoidance was correlated with a risk on the order of smoking.[^lindqvist-2016]
 
 **The honest caveats (this is cohort, not RCT, and confounding is severe):**
 

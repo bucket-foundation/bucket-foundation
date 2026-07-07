@@ -81,7 +81,7 @@ tissue: graded movement, sleep, stress, education, and time (§5).
 
 ### 1.4 The biopsychosocial model
 
-The framework that captures all of this is the **biopsychosocial model** (Gatchel et al., *Psychol Bull* 2007)[^gatchel-bps] chronic pain and disability emerge from **biological** *and*
+The framework that captures all of this is the **biopsychosocial model** (Gatchel et al., *Psychol Bull* 2007)[^gatchel-bps] holds that chronic pain and disability emerge from **biological** *and*
 **psychological** *and* **social** factors together — not from a structural lesion alone. Tissue state is
 one input; so are beliefs ("my spine is crumbling"), fear of movement, mood, sleep, stress, job
 satisfaction, and social support. This is not a soft add-on — the psychosocial factors are often the
@@ -286,8 +286,7 @@ re-injury cycle (classic in hamstring strains and ankle sprains).
 
 "Prehab" = training to reduce injury risk and build resilience *before* injury. What the evidence supports
 is unglamorous and overlaps entirely with good training (Section 02): **progressive strength training**,
-**balance/proprioception work** (strongly reduces ankle-sprain recurrence and is part of ACL-injury
-prevention programs), and **graded exposure to the sport's demands**. Sport-specific neuromuscular
+**balance/proprioception work** (reduces ankle-sprain recurrence in trials of balance training — meta-analytic evidence — and is part of ACL-injury prevention programs), and **graded exposure to the sport's demands**. Sport-specific neuromuscular
 warm-up programs (e.g. FIFA 11+) **do** reduce injury rates in their populations. "Prehab" sold as
 specialty corrective drills, gadgets, or pre-emptive "release" work has far thinner support than the plain
 strength/balance/conditioning above.
@@ -384,8 +383,7 @@ counter-intuitive to most patients:
 - **Exercise and weight management are first-line — full stop.** Every major guideline (OARSI, ACR, NICE)
   puts **education + exercise (strength + aerobic) + weight loss** as the core treatment, ahead of any
   drug or procedure. The structured **GLA:D program** (Good Life with osteoArthritis in Denmark — Skou &
-  Roos, *BMC Musculoskelet Disord* 2017)[^skou-glad] operationalises this and shows
-  reduced pain, less medication use, and fewer people proceeding to surgery in large registries. **Strong
+  Roos, *BMC Musculoskelet Disord* 2017)[^skou-glad] operationalises this and is associated with reduced pain, less medication use, and fewer people proceeding to surgery in large registries (`cohort`; observational, no control arm). **Strong
   knees and hips beat scared, weak ones** — the "wear and tear / don't load it" instinct is exactly
   backwards (joints need load to stay healthy).
 - **The surgery-vs-exercise data is humbling.** Two sham-controlled RCTs reshaped orthopaedics:

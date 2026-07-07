@@ -28,7 +28,7 @@ PRACTICE  →  proximate signal  →  cellular / molecular pathway  →  FUNDAME
   (folding, chaperoning, autophagic recycling), **membrane** (phospholipid bilayers, ion gradients,
   receptor allostery), **epigenetic** (chromatin / methylation / clock gene expression), and
   **signaling** (hormones, cytokines, nutrient sensors as information). These are the layers the Bucket
-  canon's `05-biophysics` branch is built to hold — chemiosmosis (Mitchell), redox/submolecular biology
+  canon's `05-biophysics` branch is built to hold — chemiosmosis (Mitchell), redox/submolecular biology, bioelectric patterning (Becker/Levin), long-range electron transfer
   (Szent-Györgyi), excitability (Hodgkin–Huxley), endosymbiosis (Margulis), the proton-gradient origin
   of life (Lane/Martin), mtDNA as a second genome (Wallace).
 - **outcome** — the health endpoint people actually want (lower mortality, more muscle, sharper
@@ -86,6 +86,7 @@ to, for anyone who wants to trace the underlying evidence and its tier.
 | 22 | **Sunlight / UV** | UVB photons on skin; UVA-driven photochemistry | 7-dehydrocholesterol → **vitamin D₃** synthesis; photo-release of cutaneous **nitric oxide** (↓BP); ocular light → circadian | **membrane** + signaling + epigenetic (clock) | two-sided: cardio/circadian benefit vs skin-cancer/photoaging | `[established]` (both arms) / `[partial]` (net optimum) | `uv-nitric-oxide-bp-mechanism`, `uv-sun-avoidance-mortality-risk`, `uv-skin-cancer-photoaging`, `vitamin-d-real-in-deficiency` |
 | 23 | **Senolytics (D+Q, fisetin)** | clear senescent cells | disable pro-survival SCAP networks → apoptosis of p16⁺ cells → ↓**SASP** | **signaling** (inflammaging) | +function/lifespan in mice (`animal`); one tiny human pilot | `[partial]`/`[hypothesized]` (human) | `senescence-accumulation-mechanism`, `senolytics-extend-function-mouse`, `dq-ipf-first-in-human-pilot` |
 | 24 | **NAD⁺ precursors (NR/NMN)** | raise blood NAD⁺ ~60% | substrate for sirtuins + ETC redox cofactor pool | **redox** + signaling | surrogate moves; **no hard endpoint** in humans | `[partial]` (mechanism real, outcome absent) | `nad-precursor-nr-human-surrogate`, `sirtuins-nad-decline`, `conflict-nad-precursor-efficacy` |
+| 25 | **Resistance / impact loading (bone)** | mechanical strain on bone matrix | streaming potentials + osteocyte **Piezo1/2** mechanotransduction → Wnt/sclerostin → osteoblast remodeling | **membrane** (mechanosensitive channels) + signaling | ↑BMD, ↓fracture risk (`rct`/`meta`) | `[established]` (mechanotransduction) / `[partial]` (fracture endpoint by modality) | `resistance-training-bone-density`, `mechanotransduction-piezo-bone` |
 
 ---
 
