@@ -49,6 +49,8 @@ marketing buries.
 
 ### 1.1 What they are and what they do
 
+@@FIG:semaglutide-schematic@@
+
 GLP-1 is an incretin hormone the gut releases after eating; it amplifies glucose-dependent insulin secretion,
 suppresses glucagon, **slows gastric emptying**, and acts in the hypothalamus to **reduce appetite**. The drugs
 are long-acting agonists that pin this signaling on for a week per injection. Tirzepatide adds **GIP** agonism (a
@@ -122,6 +124,10 @@ justifies it.* The honest tension is entirely about **who**, not whether.
 
 ### 2.1 The drugs
 
+@@FIG:atorvastatin-structure,rosuvastatin-structure@@
+
+@@FIG:cholesterol-structure@@
+
 | Drug class | Mechanism | LDL lowering | Hard-outcome evidence | Tier |
 |---|---|---|---|---|
 | **Statins** | HMG-CoA reductase inhibition → ↑LDL-receptor clearance | ~30–50% | **CTT meta:** ~**22% RRR** (relative risk reduction) in major vascular events **per 1 mmol/L (~39 mg/dL)** LDL drop, per year of treatment | `meta` (hard outcome) |
@@ -192,6 +198,8 @@ there is** — and the SPRINT-era answer is "lower than we used to, in the right
 
 ## 4. Aspirin — the clean "stop doing this" finding
 
+@@FIG:aspirin-structure@@
+
 For decades a daily baby aspirin was reflexive primary prevention. The **ASPREE** trial dismantled that for
 healthy older adults — and it is one of the most useful *negative* results in this whole manual, because
 **subtracting** a low-value intervention is as much a longevity move as adding a good one.
@@ -215,6 +223,8 @@ healthy older adults — and it is one of the most useful *negative* results in 
 ---
 
 ## 5. Vaccines as longevity medicine — the underrated intervention
+
+@@FIG:igg-antibody@@
 
 Vaccination is rarely filed under "longevity," but for older adults it is one of the highest-leverage,
 best-evidence, lowest-cost interventions available — and a few vaccines now carry **signals beyond their target
@@ -251,6 +261,10 @@ manual.
 
 ## 6. The geroprotector drugs — honest status
 
+@@FIG:metformin-structure,rapamycin-structure@@
+
+@@FIG:empagliflozin-structure@@
+
 These are the drugs the longevity community actually argues about: repurposed/off-label agents with strong
 *aging-biology* rationale and, in most cases, **no completed human trial proving they slow human aging.** Grade
 them as experimental for that purpose. (Mechanisms and the mouse data are detailed in
@@ -286,11 +300,15 @@ honestly labeled as such, no matter how often they're sold otherwise.
 
 ## 7. Hormones — and the unregulated peptides
 
+@@FIG:insulin@@
+
 Hormone therapy is where evidence-based medicine and the "anti-aging" cash-clinic world collide hardest. The
 rule that organizes it: **replacing a hormone to treat a diagnosed deficiency is medicine; pushing hormones
 above normal in a healthy person to chase youth is experimentation** — often sold as the former.
 
 ### 7.1 Testosterone replacement (TRT)
+
+@@FIG:testosterone-structure@@
 
 - **The honest indication:** **symptomatic hypogonadism** — low testosterone *confirmed on testing* **plus**
   symptoms (low libido, fatigue, loss of muscle/bone, erectile dysfunction). For these men, replacement to a

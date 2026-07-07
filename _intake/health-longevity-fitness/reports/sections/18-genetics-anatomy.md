@@ -431,6 +431,8 @@ which is the whole point: **the levers in this manual act on these chains.**
 
 ### B.4.1 How oxygen gets to a working muscle (the VO₂max chain)
 
+@@FIG:hemoglobin@@
+
 This is the single most important integrated-physiology story in the manual, because **VO₂max is the
 strongest exercise-related mortality predictor (Domain E)** and it is *literally* the throughput of this
 chain:

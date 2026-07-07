@@ -33,6 +33,10 @@ spinal cord generally does not — and why "neuroplasticity" (§4) is real but b
 
 ### 1.2 The neuron and the action potential — the foundation
 
+@@FIG:na-k-atpase@@
+
+@@FIG:BP03-bioelectricity@@
+
 The functional unit is the **neuron** — dendrites in, soma, axon out to the synaptic terminals.
 Its defining trick is the **action potential**, and the mechanism is one of the most
 completely solved problems in all of biology — which is why it sits in canon as a *foundation*,

@@ -30,6 +30,8 @@ _Not medical advice. Injury and rehab: §21; scaling to your body: §04._
 
 ## 1. How to read this chapter — modalities are delivery vehicles for capacities
 
+@@FIG:BP09-modality-capacity-matrix@@
+
 A "modality" is not a goal. It is a **delivery vehicle** for one or more of the trainable capacities from
 Section 02 — a barbell back squat, a goblet squat, and a leg press all deliver the *squat pattern* and the
 *strength capacity*, differing in load ceiling, skill cost, and risk, not in what adaptation they target.

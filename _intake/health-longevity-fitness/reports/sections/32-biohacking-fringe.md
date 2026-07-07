@@ -311,6 +311,8 @@ generally.
 
 ## 7. FRINGE BIOPHYSICS — grounding, structured/hydrogen water, EMF-protection
 
+@@FIG:BP08-fringe-biophysics-verdict@@
+
 This cluster claims to act on the body through *physics* that is either invented or grossly overstated. It is
 also where the contested claims associated with **Jack Kruse** (a neurosurgeon and longevity writer) around
 structured/EZ-water live — graded honestly below.

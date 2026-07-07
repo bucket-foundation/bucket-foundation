@@ -105,7 +105,7 @@ def biohacking_matrix():
           ("Methylene blue","interesting mechanism; no human longevity evidence; dose risk","HYPE",R),
           ("CGM for the healthy","accurate sensor; no outcome RCT in non-diabetics","HYPE",R),
           ("Cold plunge 'for longevity'","great for mood/alertness; metabolic data used hours of mild cold","PARTIAL",A),
-          ("Creatine / omega-3 / vit-D","the genuinely-evidenced 'biohacks' (see supplements)","REAL",G)]
+          ("Creatine / omega-3 / vit-D","the evidence-backed 'biohacks' (see supplements)","REAL",G)]
     _verdict_matrix("37-biohacking-matrix.png","Biohacking · graded","Biohacks — what survives the evidence",
         "Index-all, grade-all. Most are a real mechanism marketed as a human outcome.","§Biohacking & Fringe","biohacking-verdicts",rows)
 

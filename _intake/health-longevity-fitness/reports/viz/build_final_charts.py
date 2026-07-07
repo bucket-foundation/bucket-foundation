@@ -20,7 +20,7 @@ def polarized():
     ax.text(40,0.62,"easy", ha="center",fontsize=11,color=GRN,fontweight="bold")
     ax.text(91,0.62,"hard",ha="center",fontsize=11,color=WARN,fontweight="bold")
     ds.title(ax,"Training · §02 §3","Polarized cardio — mostly easy, a little hard",
-             "Most endurance volume should be genuinely EASY (Zone 2, talk-test pass); a smaller slice is genuinely hard. The moderate 'grey zone' is where many get stuck.")
+             "Most endurance volume should be EASY (Zone 2, talk-test pass); a smaller slice is hard. The moderate 'grey zone' is where many get stuck.")
     ds.footer(ax,"polarized training model — §02 §3","polarized-80-20",tier="cohort")
     ds.save(fig,f"{FIG}/G01-polarized.png",bottom=0.16,top=0.80)
 

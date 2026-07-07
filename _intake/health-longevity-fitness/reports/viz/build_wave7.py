@@ -115,7 +115,7 @@ def fasting_protocols():
           ("FMD (ProLon)","5-day fasting-mimic","the one branded protocol with a human RCT","#5e8a3a")]
     W,H=1020,80+len(rows)*46+64
     head,y0,foot=ds.panel(W,H,"Nutrition · the protocols","Fasting protocols, compared",
-        "Most benefit is the calorie deficit. Earlier window beats later. Some are genuinely risky.","§Fasting, Cleanses & Protocols","fasting-protocols-compared")
+        "Most benefit is the calorie deficit. Earlier window beats later. Some are risky.","§Fasting, Cleanses & Protocols","fasting-protocols-compared")
     s=[head]
     for t,x in [("PROTOCOL",40),("WHAT IT IS",290),("HONEST TAKE",560)]: s.append(ds.text(x,y0+2,t,size=9.5,fill=ds.GOLD_D,font=ds.DISPLAY,weight="bold"))
     ry=y0+18; rh=(H-58-ry)/len(rows)

@@ -150,6 +150,8 @@ and protein all meet before oxidative phosphorylation. Whatever fuel you eat, it
 
 ### 2.5 Substrate metabolism — glucose vs fat vs ketones
 
+@@FIG:BP07-metabolic-fuel-crossover@@
+
 The cell can load that hub from different fuels, and the ability to switch between them cleanly —
 **metabolic flexibility** — is itself a marker of bioenergetic health:
 
@@ -207,6 +209,8 @@ capacity — not any single biomarker — is the master variable of the manual.
 
 ## 3. STRUCTURE & MATTER — the physical body the energy runs through
 
+@@FIG:BP05-piezoelectricity-bone@@
+
 Energy needs a container and a chassis. The proton gradient of §2 is only possible because there is a
 **membrane** to hold it; the chemistry only happens because there are **proteins** to catalyze it;
 and all of it sits in a medium of **water** whose properties are still partly contested. This layer
@@ -232,6 +236,8 @@ claim outruns it. **Governs:** dietary fat, the entire structure of how nutritio
 becomes biology.
 
 ### 3.2 Proteins — the machines, and keeping them folded
+
+@@FIG:BP04-radical-pair-magnetoreception@@
 
 If membranes are the architecture, **proteins** are the machinery. Enzymes (catalysts), structural
 proteins, transporters, receptors, the ETC complexes, ATP synthase itself — all are proteins. A
@@ -260,6 +266,8 @@ proteostasis hallmark of aging, neurodegeneration (brain and cognition), and the
 by which heat and fasting earn their place in the manual.
 
 ### 3.3 Cell water and hydration — a contested frontier, graded honestly
+
+@@FIG:BP01-biophysics-framework@@
 
 Cells are ~70% water by mass, and water is not a passive backdrop — it is the medium in which every
 reaction above happens, and a participant in many. **Bulk-water hydration** (drinking enough, sodium

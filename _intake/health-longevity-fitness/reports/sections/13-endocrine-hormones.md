@@ -124,6 +124,8 @@ graded carefully in §10/Domain N.
 
 ## 3. The HPA axis & cortisol — and the "adrenal fatigue" myth
 
+@@FIG:cortisol-structure@@
+
 **The axis.** Hypothalamus releases **CRH** (corticotropin-releasing hormone) → anterior pituitary
 releases **ACTH** → adrenal cortex releases **cortisol** → cortisol feeds back to suppress CRH and ACTH.
 Cortisol is the body's master stress and arousal glucocorticoid: it raises blood glucose

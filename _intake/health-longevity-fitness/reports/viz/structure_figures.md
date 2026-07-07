@@ -135,3 +135,92 @@ honest evidence caveat. Formula/mass from the cited PubChem CID; stereochemistry
 | rapamycin-structure | PubChem 5284616 | C51H79NO13 |
 | empagliflozin-structure | PubChem 11949646 | C23H27ClO7 |
 | semaglutide-schematic | GLP-1(7-37) analogue | 31-residue schematic (Lau et al. 2015) |
+
+
+---
+
+## D. Pharmacology & foundational molecules — wave 2 (high-mention additions)
+
+Seven high-mention molecules added to `build_structures.py` (same RDKit house-style composer, four evidence-graded callout cards each, fourth card always an honest caveat). Formula/mass/SMILES verified from the cited PubChem CID.
+
+### 17. `cholesterol-structure.png` — cholesterol
+- **Home:** Foundations §2 · Clinical Prevention §07 · Cardiometabolic §22
+- **Caption:** Cholesterol, the molecule and not the villain. A rigid four-ring sterol the body makes and needs — for membranes, steroid hormones and vitamin D. Risk comes from the number of apoB particles carrying it, over a lifetime. PubChem CID 5997 (C27H46O, 386.7 g/mol).
+- **Evidence note (calibrated):** The "apoB particle count, not the molecule" framing is meta/Mendelian-grade (cross-refs `102-cholesterol-particles`, `32-apob-cumulative`). No dosing claim.
+
+### 18. `testosterone-structure.png` — testosterone
+- **Home:** Endocrine & Hormones §13 · Medical & Pharmacology §10 · Life Stages §19
+- **Caption:** Testosterone, the principal androgen. A cholesterol-derived steroid (both sexes, higher in men) that signals through the androgen receptor to build muscle and bone and drive libido. PubChem CID 6013 (C19H28O2, 288.4 g/mol).
+- **Evidence note (calibrated):** Age-related decline (~1%/yr) is a real cohort trend; the caveat card grades replacement as helping measured, symptomatic deficiency — benefit for normal age-related decline is unproven and carries risk.
+
+### 19. `nad-structure.png` — NAD⁺
+- **Home:** Foundations §2 · Mitochondrial Health §37 · Geroprotectors
+- **Caption:** NAD⁺, the electron ferry of metabolism. The central redox carrier that shuttles electrons into the respiratory chain and fuels sirtuins and PARPs. Tissue levels fall with age. PubChem CID 5893 (C21H28N7O14P2⁺, 664.4 g/mol, oxidised form).
+- **Evidence note (calibrated):** The age-related decline is well documented (mechanistic/cohort); the caveat card states NMN/NR raise blood levels but human outcome benefits are surrogate-only, not lifespan data.
+
+### 20. `cortisol-structure.png` — cortisol
+- **Home:** Endocrine & Hormones §13 · Recovery, Sleep & Stress §05 · Foundations §6
+- **Caption:** Cortisol, the stress and rhythm hormone. The main glucocorticoid, made from cholesterol under HPA-axis control; mobilises glucose, tunes immunity, and follows a daily rhythm. PubChem CID 5754 (C21H30O5, 362.5 g/mol).
+- **Evidence note (calibrated):** The diurnal-rhythm emphasis is established physiology; the caveat card names "adrenal fatigue" as not a recognised diagnosis and flags the low value of spot cortisol tests in healthy people.
+
+### 21. `aspirin-structure.png` — aspirin
+- **Home:** Medical & Pharmacology §10 · Pharmacology (Full) §28 · Clinical Prevention §07
+- **Caption:** Aspirin, the small molecule that reshaped medicine. Acetylsalicylic acid; its acetyl group irreversibly acetylates COX-1/COX-2, blocking prostaglandins and thromboxane. PubChem CID 2244 (C9H8O4, 180.2 g/mol).
+- **Evidence note (calibrated):** COX mechanism is established; the caveat card grades secondary-prevention benefit as clear (RCT) and states routine primary-prevention use is no longer advised (bleeding risk offsets benefit).
+
+### 22. `vitamin-d3-structure.png` — vitamin D3 (cholecalciferol)
+- **Home:** Nutrition & Supplements §03 · Clinical Prevention §07 · Endocrine §13
+- **Caption:** Vitamin D3, the sunlight-made hormone. A secosteroid (split sterol B-ring) the skin makes from a cholesterol relative under UVB, then the liver and kidney activate. PubChem CID 5280795 (C27H44O, 384.6 g/mol).
+- **Evidence note (calibrated):** Correcting genuine deficiency (bone, falls in elderly) is supported; the caveat card cites VITAL (RCT) — no cancer/CV benefit in the already-replete. "More is not better."
+
+### 23. `creatine-structure.png` — creatine
+- **Home:** Nutrition & Supplements §03 · Mechanism Bridge §12 · Mitochondrial Health §37
+- **Caption:** Creatine, the ATP re-buffer. A small guanidinium compound stored in muscle as phosphocreatine, regenerating ATP in seconds during hard effort. PubChem CID 586 (C4H9N3O2, 131.1 g/mol).
+- **Evidence note (calibrated):** Strength/lean-mass benefit at ~3–5 g/day monohydrate is among the strongest supplement evidence (RCT/meta); the caveat card grades cognitive/longevity claims as promising but not settled.
+
+### Source-ID reference (wave 2)
+
+| Slug | Source ID | Formula |
+|---|---|---|
+| cholesterol-structure | PubChem 5997 | C27H46O |
+| testosterone-structure | PubChem 6013 | C19H28O2 |
+| nad-structure | PubChem 5893 | C21H28N7O14P2⁺ |
+| cortisol-structure | PubChem 5754 | C21H30O5 |
+| aspirin-structure | PubChem 2244 | C9H8O4 |
+| vitamin-d3-structure | PubChem 5280795 | C27H44O |
+| creatine-structure | PubChem 586 | C4H9N3O2 |
+
+
+---
+
+## E. Anatomy originals — class-B redraws (wave 3)
+
+Twelve figures previously composited from open-license Wikimedia images
+(`build_realmedia.py`) are now **drawn from scratch in house style** by a new
+reproducible generator, `reports/viz/build_anatomy_originals.py`. No borrowed
+pixels remain in any of them. Each carries the footer:
+
+> *Original house-style schematic (design-system draw, no borrowed image) · anatomical/mechanistic — no clinical-effect claim*
+
+These are anatomical/mechanistic teaching diagrams, so they make no graded
+clinical-effect claim; the footer states that plainly. Real captured-data
+micrographs (RA11 epithelial, RA12 connective, RA13 skeletal-muscle histology)
+are **not** redrawn — they stay as `build_realmedia.py` output (class-C, must
+remain real).
+
+| slug | figure | chapter home | what it shows |
+|---|---|---|---|
+| RA01-neuron | The neuron | Nervous System §14 | dendrites → soma → axon+myelin → terminals |
+| RA02-synapse | The synapse | Nervous System §14 | vesicles, cleft, receptors; NT crossing |
+| RA03-mitochondrion | The mitochondrion | Foundations §01 | outer membrane, cristae (ETC), matrix + mtDNA |
+| RA15-the-cell | The animal cell | Foundations §01 | nucleus, mitochondria, ER, membrane |
+| RA04-nephron | The nephron | Organ Systems §17 | glomerulus → tubule; reabsorption arrows |
+| RA09-brain-lobes | The lobes of the brain | Brain §08 | 4 colour-keyed lobes + cerebellum + brainstem |
+| RA06-action-potential | The action potential | Nervous System §14 | mV curve: rest → depolarise → repolarise → refractory |
+| RA07-dna-replication | DNA replication | Foundations §01 | fork; leading (continuous) vs lagging (Okazaki) |
+| RA08-telomere | Chromosome & telomeres | Telomeres §16 | caps + shortening series (young → senescent) |
+| RA10-atherosclerosis | Atherosclerosis | Cardiovascular §22 | 4-stage cross-sections: healthy → rupture |
+| RA14-heart | The heart | Cardiovascular §22 | 4 chambers, one-way valves, R/L (blue/red) |
+| RA05-endocrine-glands | The endocrine glands | Endocrine §13 | 6 gland groups on a body silhouette |
+
+Reproduce: `python build_anatomy_originals.py` (all 12) · `--only <key>` · `--list`.

@@ -99,7 +99,7 @@ def ra():
 # 6. Low-FODMAP 3-phase
 def fodmap():
     W,H=1000,370
-    head,cy,foot=frame("DS-fod","GI · §23 §B3","Low-FODMAP — a 3-phase protocol, NOT a forever diet","Dietitian-guided: restrict, then systematically reintroduce, then personalize. ~50–67% of IBS responds.","§23 §B3","low-fodmap-protocol",W,H)
+    head,cy,foot=frame("DS-fod","GI · §23 §B3","Low-FODMAP — a temporary 3-phase protocol","Dietitian-guided: restrict, then systematically reintroduce, then personalize. ~50–67% of IBS responds.","§23 §B3","low-fodmap-protocol",W,H)
     steps=[("1 · Restriction","2–6 weeks, strict","#f6ece6",WARN),("2 · Reintroduction","test groups one at a time",CARD,AMB),("3 · Personalization","your tolerable long-term diet","#eef4ec",GRN)]
     s=[head,ARROW, flow_row(steps,80,W-80,cy+34,250,72)]
     s.append(ds.text(W/2,cy+150,"Staying in Phase 1 forever starves the microbiome — the goal is the widest tolerable diet",size=11.5,fill=WARN,font=ds.BODY,italic=True,anchor="middle"))

@@ -366,6 +366,20 @@ SMILES = {
     "rapamycin": "C[C@@H]1CC[C@H]2C[C@@H](/C(=C/C=C/C=C/[C@H](C[C@H](C(=O)[C@@H]([C@@H](/C(=C/[C@H](C(=O)C[C@H](OC(=O)[C@@H]3CCCCN3C(=O)C(=O)[C@@]1(O2)O)[C@H](C)C[C@@H]4CC[C@H]([C@@H](C4)OC)O)C)/C)O)OC)C)C)/C)OC",
     # cid 11949646
     "empagliflozin": "C1COC[C@H]1OC2=CC=C(C=C2)CC3=C(C=CC(=C3)[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)Cl",
+    # cid 5997 — cholesterol
+    "cholesterol": "C[C@H](CCCC(C)C)[C@H]1CC[C@@H]2[C@@]1(CC[C@H]3[C@H]2CC=C4[C@@]3(CC[C@@H](C4)O)C)C",
+    # cid 6013 — testosterone
+    "testosterone": "C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2O)CCC4=CC(=O)CC[C@]34C",
+    # cid 5893 — NAD+ (oxidised form)
+    "nad": "C1=CC(=C[N+](=C1)[C@H]2[C@@H]([C@@H]([C@H](O2)COP(=O)(O)OP(=O)(O)OC[C@@H]3[C@H]([C@H]([C@@H](O3)N4C=NC5=C(N=CN=C54)N)O)O)O)O)C(=O)N",
+    # cid 5754 — cortisol
+    "cortisol": "C[C@]12CCC(=O)C=C1CC[C@@H]3[C@@H]2[C@H](C[C@]4([C@H]3CC[C@@]4(C(=O)CO)O)C)O",
+    # cid 2244 — aspirin (acetylsalicylic acid)
+    "aspirin": "CC(=O)OC1=CC=CC=C1C(=O)O",
+    # cid 5280795 — cholecalciferol (vitamin D3)
+    "vitamin-d3": "C[C@H](CCCC(C)C)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C/3\\C[C@H](CCC3=C)O)C",
+    # cid 586 — creatine
+    "creatine": "CN(CC(=O)O)C(=N)N",
 }
 # the statin dihydroxy-acid "warhead" (HMG-CoA mimic)
 STATIN_PHARMACOPHORE = "OC(CC(O)CC(=O)O)"
@@ -932,7 +946,7 @@ def fig_insulin(force=False):
       dict(anchor=(int(iw*0.48),int(ih*0.48)), xy=(0.045,0.32), title="DISULFIDE BRIDGES",
            desc="Three sulfur\u2013sulfur clasps (amber) pin\nthe chains together \u2014 lose them and the\nhormone falls apart", color=AMBER),
     ]
-    cards = [dict(xy_wh=(0.70,0.34,0.28,0.17), color=GOLD_D, title="A HORMONE, NOT AN ENZYME",
+    cards = [dict(xy_wh=(0.70,0.34,0.28,0.17), color=GOLD_D, title="A HORMONE — A CHEMICAL MESSENGER",
                   sub="what it actually does",
                   lines=["Insulin carries no reaction of its","own. It is a signal \u2014 it docks on a",
                          "receptor and tells cells to pull","glucose out of the blood."], anchor=None)]
@@ -980,6 +994,136 @@ def fig_na_k_atpase(force=False):
 # ----------------------------------------------------------------------------
 # registry + runner
 # ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# SMALL-MOLECULE FIGURES — wave 2 (high-mention foundational molecules)
+# ----------------------------------------------------------------------------
+def fig_cholesterol(force=False):
+    slug = "cholesterol-structure"
+    mp = _tmp(slug)
+    draw_small_molecule(SMILES["cholesterol"], size=(1200,900), fname=mp, bond_width=3)
+    out = os.path.join(FIGDIR, slug + ".png")
+    molecule_figure(slug, mp,
+        "Foundations · \u00a72   \u00b7   Clinical Prevention · \u00a707   \u00b7   Cardiometabolic · \u00a722",
+        "Cholesterol: an essential molecule the body makes",
+        ["A rigid four-ring sterol your body makes and needs \u2014 for cell membranes, steroid hormones, and vitamin D.",
+         "It is not intrinsically harmful. Risk comes from how much rides in artery-invading (apoB) particles, and for how long."],
+        "Structure: PubChem CID 5997 (C\u2082\u2087H\u2084\u2086O, 386.7 g/mol) \u00b7 drawn in RDKit \u00b7 stereochemistry as deposited",
+        [(0.720, BLUE,  "What it is", "A sterol: four fused rings plus a\ntail. Stiff and oily \u2014 it packs into\nmembranes and stiffens them."),
+         (0.545, GREEN, "What it does", "Raw material for cell membranes,\nfor cortisol, testosterone and\noestrogen, and for vitamin D."),
+         (0.370, GOLD_D,"Why it travels packaged", "Being oily, it cannot dissolve in\nblood; it rides inside lipoproteins\n(LDL, HDL, Lp(a)) wrapped in apoB/apoA."),
+         (0.195, RED,   "The honest lever", "The cholesterol molecule is not the\nrisk \u2014 the number of apoB particles\ncarrying it, over a lifetime, is.")],
+        out)
+    return out
+
+def fig_testosterone(force=False):
+    slug = "testosterone-structure"
+    mp = _tmp(slug)
+    draw_small_molecule(SMILES["testosterone"], size=(1150,860), fname=mp, bond_width=3)
+    out = os.path.join(FIGDIR, slug + ".png")
+    molecule_figure(slug, mp,
+        "Endocrine & Hormones · \u00a713   \u00b7   Medical & Pharmacology · \u00a710   \u00b7   Life Stages · \u00a719",
+        "Testosterone: the principal androgen",
+        ["A steroid hormone built from cholesterol, in both sexes (much higher in men). It signals through the",
+         "androgen receptor to build muscle and bone, drive libido, and shape male development."],
+        "Structure: PubChem CID 6013 (C\u2081\u2089H\u2082\u2088O\u2082, 288.4 g/mol) \u00b7 drawn in RDKit \u00b7 stereochemistry as deposited",
+        [(0.720, BLUE,  "What it is", "A four-ring steroid, made from\ncholesterol. The small changes to\nthe rings are what make it an androgen."),
+         (0.545, GREEN, "What it does", "Binds the androgen receptor:\nbuilds muscle and bone, sets libido,\ndrives male sexual development."),
+         (0.370, GOLD_D,"With age", "Levels decline gradually in men\n(~1%/yr after ~30\u201340). A real trend,\noften overstated as a crisis."),
+         (0.195, RED,   "The honest caveat", "Replacement helps real deficiency\n(measured, symptomatic); for normal\nage-related decline the benefit is\nunproven and carries risks.")],
+        out)
+    return out
+
+def fig_nad(force=False):
+    slug = "nad-structure"
+    mp = _tmp(slug)
+    draw_small_molecule(SMILES["nad"], size=(1500,1000), fname=mp, bond_width=3)
+    out = os.path.join(FIGDIR, slug + ".png")
+    molecule_figure(slug, mp,
+        "Foundations · \u00a72   \u00b7   Mitochondrial Health · \u00a737   \u00b7   Geroprotectors",
+        "NAD+ : the electron ferry of metabolism",
+        ["The cell's central redox carrier. It shuttles electrons from fuel into the electron transport chain,",
+         "and is a substrate for sirtuins and PARPs. Levels fall with age \u2014 which launched a supplement industry."],
+        "Structure: PubChem CID 5893 (C\u2082\u2081H\u2082\u2088N\u2087O\u2081\u2084P\u2082\u207a, 664.4 g/mol) \u00b7 drawn in RDKit \u00b7 oxidised form",
+        [(0.720, BLUE,  "What it is", "Two nucleotides joined by phosphates.\nThe nicotinamide ring (left) is the\nbusiness end that carries electrons."),
+         (0.545, GREEN, "What it does", "Accepts electrons (\u2192 NADH) from the\nKrebs cycle and delivers them to\nComplex I \u2014 the start of ATP-making."),
+         (0.370, GOLD_D,"The aging link", "Also fuels sirtuins and DNA-repair\nPARPs. Tissue NAD\u207a declines with age;\nthat decline is well documented."),
+         (0.195, RED,   "The honest caveat", "Restoring NAD\u207a with NMN/NR raises\nblood levels, but human outcome\nbenefits are not yet demonstrated \u2014\nsurrogate data, not lifespan data.")],
+        out)
+    return out
+
+def fig_cortisol(force=False):
+    slug = "cortisol-structure"
+    mp = _tmp(slug)
+    draw_small_molecule(SMILES["cortisol"], size=(1150,860), fname=mp, bond_width=3)
+    out = os.path.join(FIGDIR, slug + ".png")
+    molecule_figure(slug, mp,
+        "Endocrine & Hormones · \u00a713   \u00b7   Recovery, Sleep & Stress · \u00a705   \u00b7   Foundations · \u00a76",
+        "Cortisol: the stress and rhythm hormone",
+        ["The main glucocorticoid, made from cholesterol in the adrenal cortex under HPA-axis control. It mobilises",
+         "glucose, tunes immunity, and follows a daily rhythm \u2014 high on waking, low at night. Necessary for life at the right level; harmful in chronic excess."],
+        "Structure: PubChem CID 5754 (C\u2082\u2081H\u2083\u2080O\u2085, 362.5 g/mol) \u00b7 drawn in RDKit \u00b7 stereochemistry as deposited",
+        [(0.720, BLUE,  "What it is", "A steroid (glucocorticoid) built\nfrom cholesterol. The added oxygens\ndistinguish it from the sex steroids."),
+         (0.545, GREEN, "What it does", "Raises available glucose, dampens\ninflammation, and sets a daily\nrhythm: peak on waking, trough late."),
+         (0.370, GOLD_D,"The rhythm matters", "A healthy curve \u2014 sharp morning rise,\nnight-time low \u2014 matters more than any\nsingle number. Chronic flattening is\nthe warning sign."),
+         (0.195, RED,   "The honest caveat", "\"Adrenal fatigue\" is not a recognised\ndiagnosis; single spot cortisol tests\nrarely guide healthy-person decisions.")],
+        out)
+    return out
+
+def fig_aspirin(force=False):
+    slug = "aspirin-structure"
+    mp = _tmp(slug)
+    draw_small_molecule(SMILES["aspirin"], size=(1000,750), fname=mp, bond_width=4)
+    out = os.path.join(FIGDIR, slug + ".png")
+    molecule_figure(slug, mp,
+        "Medical & Pharmacology · \u00a710   \u00b7   Pharmacology (Full) · \u00a728   \u00b7   Clinical Prevention · \u00a707",
+        "Aspirin: the small molecule that reshaped medicine",
+        ["Acetylsalicylic acid \u2014 among the oldest and smallest drugs still in daily use. Its acetyl group",
+         "permanently switches off the COX enzymes, blocking prostaglandins (pain, fever) and platelet clotting."],
+        "Structure: PubChem CID 2244 (C\u2089H\u2088O\u2084, 180.2 g/mol) \u00b7 drawn in RDKit",
+        [(0.720, BLUE,  "What it is", "A benzene ring with two small groups:\nan acetyl ester and a carboxylic acid.\nThe whole drug fits on one line."),
+         (0.545, GREEN, "The mechanism", "The acetyl group irreversibly acetylates\nCOX-1/COX-2 \u2014 shutting off prostaglandin\nand thromboxane synthesis."),
+         (0.370, GOLD_D,"Two jobs", "Higher doses relieve pain and fever;\nlow \"baby\" doses keep platelets from\nclumping \u2014 the cardiovascular use."),
+         (0.195, RED,   "The honest caveat", "For secondary prevention (after a\nheart attack) the benefit is clear;\nroutine primary-prevention use is no\nlonger advised \u2014 bleeding risk offsets it.")],
+        out)
+    return out
+
+def fig_vitamin_d3(force=False):
+    slug = "vitamin-d3-structure"
+    mp = _tmp(slug)
+    draw_small_molecule(SMILES["vitamin-d3"], size=(1200,900), fname=mp, bond_width=3)
+    out = os.path.join(FIGDIR, slug + ".png")
+    molecule_figure(slug, mp,
+        "Nutrition & Supplements · \u00a703   \u00b7   Clinical Prevention · \u00a707   \u00b7   Endocrine · \u00a713",
+        "Vitamin D3: the sunlight-made hormone",
+        ["Cholecalciferol \u2014 a broken-open sterol ring that skin makes from a cholesterol relative under UVB light.",
+         "It is really a pro-hormone: the liver and kidney convert it to the active form that manages calcium and more."],
+        "Structure: PubChem CID 5280795 (C\u2082\u2087H\u2084\u2084O, 384.6 g/mol) \u00b7 drawn in RDKit \u00b7 stereochemistry as deposited",
+        [(0.720, BLUE,  "What it is", "A secosteroid: the sterol B-ring is\nsplit open (that break is why UVB\nlight can make it in your skin)."),
+         (0.545, GREEN, "What it does", "Converted to calcitriol, it manages\ncalcium absorption and bone mineral-\nisation, and signals in many tissues."),
+         (0.370, GOLD_D,"Deficiency is real", "Correcting real deficiency helps\nbone health and falls in the elderly;\nblood level guides who needs it."),
+         (0.195, RED,   "The honest caveat", "Large RCTs (VITAL) found no cancer or\ncardiovascular benefit from supplements\nin the already-replete \u2014 more is not better.")],
+        out)
+    return out
+
+def fig_creatine(force=False):
+    slug = "creatine-structure"
+    mp = _tmp(slug)
+    draw_small_molecule(SMILES["creatine"], size=(1000,720), fname=mp, bond_width=4)
+    out = os.path.join(FIGDIR, slug + ".png")
+    molecule_figure(slug, mp,
+        "Nutrition & Supplements · \u00a703   \u00b7   Mechanism Bridge · \u00a712   \u00b7   Mitochondrial Health · \u00a737",
+        "Creatine: the ATP re-buffer",
+        ["A small nitrogen compound your body makes and you also eat in meat. Stored in muscle as phosphocreatine,",
+         "it regenerates ATP in seconds during hard effort. One of the best-evidenced, cheapest supplements there is."],
+        "Structure: PubChem CID 586 (C\u2084H\u2089N\u2083O\u2082, 131.1 g/mol) \u00b7 drawn in RDKit",
+        [(0.720, BLUE,  "What it is", "A tiny amino-acid derivative with a\nguanidinium group \u2014 the part that\nholds the high-energy phosphate."),
+         (0.545, GREEN, "The mechanism", "Phosphocreatine hands its phosphate\nto spent ADP, remaking ATP fast \u2014\nthe muscle's rapid energy buffer."),
+         (0.370, GOLD_D,"The evidence", "Monohydrate, ~3\u20135 g/day, reliably\nadds strength and lean mass with\ntraining; among the strongest\nsupplement evidence bases."),
+         (0.195, RED,   "The honest caveat", "Cognitive and longevity claims are\npromising but not settled; the muscle\nand strength benefits are the proven part.")],
+        out)
+    return out
+
 FIGURES = {
     # slug substring : function
     "atp-synthase":   fig_atp_synthase,
@@ -998,6 +1142,14 @@ FIGURES = {
     "igg-antibody":   fig_igg,
     "insulin":        fig_insulin,
     "na-k-atpase":    fig_na_k_atpase,
+    # wave 2 — foundational high-mention molecules
+    "cholesterol":    fig_cholesterol,
+    "testosterone":   fig_testosterone,
+    "nad":            fig_nad,
+    "cortisol":       fig_cortisol,
+    "aspirin":        fig_aspirin,
+    "vitamin-d3":     fig_vitamin_d3,
+    "creatine":       fig_creatine,
 }
 
 def main(argv=None):

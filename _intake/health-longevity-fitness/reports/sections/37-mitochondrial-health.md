@@ -253,6 +253,8 @@ routes too — BNIP3, NIX, FUNDC1 — so the picture is broader than one pathway
 
 ### 37.4.3 — Biogenesis: building new mitochondria via PGC-1α
 
+@@FIG:nad-structure@@
+
 The counterweight to destruction is **mitochondrial biogenesis** — building new mitochondrial mass —
 and it has a single master regulator: **PGC-1α** (peroxisome-proliferator-activated-receptor-γ
 coactivator-1α), a transcriptional *co-activator* that the mechanism bridge (`12-mechanism-bridge.md`
@@ -288,6 +290,8 @@ The foundations chapter introduced this (§2.6) and the mechanism bridge formali
 
 ### 37.5.1 — The free-radical theory, and its honest update
 
+@@FIG:BP02-ultraweak-photon-emission@@
+
 Denham Harman's **free-radical theory of aging** (1956, figure `harman`): the ETC leaks
 electrons to O₂, forming **reactive oxygen species** (superoxide → H₂O₂ → hydroxyl radical); ROS
 damage lipids, proteins, and mtDNA; damage accumulates; you age. The naive therapeutic corollary —
@@ -307,6 +311,8 @@ of evidence is specific:
   mitochondrially-targeted catalase, are modest and specific).
 
 ### 37.5.2 — Mitohormesis: the resolved correct frame
+
+@@FIG:BP06-mitohormesis@@
 
 The correction is **mitohormesis** (Michael Ristow): a *transient, sub-damaging* burst of
 mitochondrial ROS is the **adaptive signal** that triggers the cell's own defenses — it activates

@@ -19,21 +19,12 @@ def dims(p):
     return int(o[0]),int(o[1])
 # (output, slug, filename, kicker, head, subtitle, claim)
 PICKS=[
- ("RA01-neuron","neuron","1-Complete_neuron_cell_diagram_en.svg.png","Nervous System · §14","The neuron","Dendrites receive the signal, the axon carries it, and the terminals pass it on.","neuron-anatomy"),
- ("RA02-synapse","synapse","4-SynapseSchematic_en.svg.png","Nervous System · §14","The synapse","One neuron passes its signal to the next across the cleft, carried by neurotransmitters.","synapse-anatomy"),
- ("RA03-mitochondrion","mitochondrion","3-Animal_mitochondrion_diagram_en.svg.png","Foundations · §01","The mitochondrion","The cell's power plant, where oxygen and fuel become ATP.","mitochondrion-anatomy"),
- ("RA04-nephron","nephron","1-Kidney_nephron_molar_transport_diagram.svg.png","Renal System · §17","The nephron","The kidney's filter unit: blood is filtered, then the tubule reclaims what the body needs.","nephron-anatomy"),
- ("RA05-endocrine-glands","endocrine-glands","2-Illu_endocrine_system_New.png.png","Endocrine · §13","The endocrine glands","Hormone factories from head to pelvis, working as one signaling network.","endocrine-anatomy"),
- ("RA06-action-potential","action-potential","1-Propagation_of_action_potential_along_myelinated_nerve_fiber_en.svg.png","Nervous System · §14","The action potential","An all-or-nothing electrical wave jumps node to node down a myelinated axon.","action-potential-anatomy"),
- ("RA07-dna-replication","dna-replication","1-DNA_replication_en.svg.png","Foundations · §01","DNA replication","The fork that copies the genome, with a leading and a lagging strand.","dna-replication-anatomy"),
- ("RA08-telomere","chromosome-telomere","2-Chromosome_structure.png.png","Telomeres · §16","The chromosome and its telomeres","Protective caps at each end that shorten with every cell division.","telomere-anatomy"),
- ("RA09-brain-lobes","brain-regions","1-Diagram_showing_the_lobes_of_the_brain_CRUK_308.svg.png","Brain · §08","The lobes of the brain","Frontal, parietal, temporal, and occipital lobes, plus the cerebellum and brainstem.","brain-lobes-anatomy"),
- ("RA10-atherosclerosis","atherosclerosis","1-Atherosclerosis_diagram.png.png","Cardiovascular · §22","Atherosclerosis","Plaque builds inside the artery wall over decades and can rupture.","atherosclerosis-anatomy"),
+  # Only real captured-data micrographs remain borrowed (class-C, must stay real).
+  # The 12 illustrative anatomy figures (RA01-RA10, RA14, RA15) are now drawn from
+  # scratch in house style by build_anatomy_originals.py -- do not re-composite them here.
  ("RA11-tissue-epithelial","tissue-epithelial","1-Histological_section_of_small_intestine_epithelial_tissue__zoom.jpg.jpg","Anatomy · §18","Epithelial tissue, under the microscope","Small-intestine epithelium: the sheet that lines surfaces and forms glands.","epithelial-histology"),
  ("RA12-tissue-connective","tissue-connective","1-Connective_Tissue_Reticular__40885193805_.jpg.jpg","Anatomy · §18","Connective tissue, under the microscope","Reticular connective tissue: the framework that supports and binds.","connective-histology"),
  ("RA13-tissue-muscle","tissue-muscle","1-Skeletal_muscle_histology.jpg.jpg","Anatomy · §18","Skeletal muscle, under the microscope","Striated skeletal muscle fibers: the tissue that generates force.","muscle-histology"),
- ("RA14-heart","heart-anatomy","4-Heart_diagram-en.svg.png","Cardiovascular · §22","The heart","Four chambers, the great vessels, and the valves that keep blood moving one way.","heart-anatomy"),
- ("RA15-the-cell","the-cell","5-Animal_cell_structure_en.svg.png","Foundations · §01","The animal cell","The organelles inside a typical cell, from the nucleus to the mitochondria.","animal-cell-anatomy"),
 ]
 W=1000
 made=[]

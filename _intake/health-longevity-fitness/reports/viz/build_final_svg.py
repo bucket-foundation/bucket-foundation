@@ -95,15 +95,49 @@ def refeeding():
 
 # 6. pop-psych debunks
 def debunks():
-    W,H=1000,506
-    head,cy,foot=fr("Behavior Change · §29 §8","Pop-psychology that doesn't hold up","Popular, sticky, and wrong. Don't build your system on these.","§29 §8","pop-psych-debunks",W,H)
-    s=[head]; myths=["“21 days to form a habit”","“Willpower is a muscle that depletes” (ego depletion)","“Dopamine detox” resets your brain","“Learning styles” (visual/auditory) improve learning","“Manifestation” changes outcomes"]
-    for i,m in enumerate(myths):
-        yy=cy+24+i*54
-        s.append(f'<rect x="60" y="{yy}" width="{W-120}" height="42" rx="9" fill="#f6ece6" stroke="{WARN}" stroke-width="1.4"/>')
-        s.append(ds.text(86,yy+27,m,size=13,fill=MUT,font=ds.BODY,italic=True))
-        s.append(f'<line x1="80" y1="{yy+21}" x2="{W-160}" y2="{yy+21}" stroke="{WARN}" stroke-width="2.4"/>')
-        s.append(ds.text(W-78,yy+27,"✕",size=16,fill=WARN,font=ds.DISPLAY,weight="bold",anchor="end"))
+    W,H=1080,620
+    head,cy,foot=fr("Behavior Change \u00b7 \u00a729 \u00a78","Pop-psychology that doesn't hold up",
+        "Five sticky claims, each paired with what the evidence actually shows. Build your system on the right column.",
+        "\u00a729 \u00a78","pop-psych-debunks",W,H)
+    s=[head]
+    # column headers
+    s.append(ds.text(80,cy+6,"THE CLAIM",size=10.5,fill=WARN,font=ds.DISPLAY,weight="bold",spacing="0.4"))
+    s.append(ds.text(560,cy+6,"WHAT THE EVIDENCE SHOWS",size=10.5,fill=GRN,font=ds.DISPLAY,weight="bold",spacing="0.4"))
+    rows=[
+        ("\u201c21 days to form a habit\u201d",
+         "Median ~66 days; range 18\u2013254. Varies by habit and person.",
+         "Lally 2010, Eur J Soc Psychol"),
+        ("\u201cWillpower is a finite muscle\u201d (ego depletion)",
+         "Large multi-lab replications fail to find the effect.",
+         "Hagger 2016 RRR, 23 labs"),
+        ("\u201cDopamine detox resets your brain\u201d",
+         "No mechanism; you can't fast from a neurotransmitter.",
+         "no supporting trials"),
+        ("\u201cLearning styles improve learning\u201d",
+         "Matching to a \u201cstyle\u201d gives no learning benefit.",
+         "Pashler et al. 2008, PSPI"),
+        ("\u201cManifestation changes outcomes\u201d",
+         "Positive fantasy predicts less effort and worse results.",
+         "Kappes & Oettingen 2011, JESP"),
+    ]
+    rh=88; y0=cy+22
+    for i,(myth,reality,cite) in enumerate(rows):
+        yy=y0+i*rh
+        # claim card (left)
+        s.append(f'<rect x="60" y="{yy}" width="430" height="{rh-16}" rx="10" fill="#f6ece6" stroke="{WARN}" stroke-width="1.4"/>')
+        # crossed circle mark (drawn, not glyph)
+        cxm,cym=92,yy+(rh-16)/2
+        s.append(f'<circle cx="{cxm}" cy="{cym}" r="12" fill="none" stroke="{WARN}" stroke-width="2.2"/>')
+        s.append(f'<line x1="{cxm-7}" y1="{cym-7}" x2="{cxm+7}" y2="{cym+7}" stroke="{WARN}" stroke-width="2.2"/>')
+        s.append(f'<line x1="{cxm-7}" y1="{cym+7}" x2="{cxm+7}" y2="{cym-7}" stroke="{WARN}" stroke-width="2.2"/>')
+        # myth text (legible; a thin strike sits ABOVE the baseline, not through the letters)
+        s.append(ds.text(116,cym-2,myth,size=12.5,fill=MUT,font=ds.BODY,italic=True))
+        # reality card (right)
+        s.append(f'<rect x="510" y="{yy}" width="510" height="{rh-16}" rx="10" fill="#eef3ea" stroke="{GRN}" stroke-width="1.4"/>')
+        s.append(f'<path d="M 528 {cym} l 7 8 l 14 -18" fill="none" stroke="{GRN}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>')
+        for j,ln in enumerate(_wrap(reality,52)):
+            s.append(ds.text(560,cym-6+j*16,ln,size=12,fill=INK,font=ds.BODY))
+        s.append(ds.text(1004,yy+rh-30,cite,size=8.6,fill=GOLDD,font=ds.MONO,anchor="end"))
     s.append(foot); ds.render("".join(s),f"{FIG}/F06-debunks.png")
 
 # 7. implementation intention

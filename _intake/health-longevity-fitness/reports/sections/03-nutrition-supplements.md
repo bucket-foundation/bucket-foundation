@@ -24,6 +24,8 @@ Grade key: **real** = consistent human RCT/meta evidence for a meaningful effect
 
 ### 1.1 Creatine monohydrate — the strongest supplement in the building
 
+@@FIG:creatine-structure@@
+
 If you take one supplement for fitness, this is it. Creatine is the most-studied ergogenic aid in sports science,
 with hundreds of RCTs and a decade-stable safety record.
 
@@ -90,6 +92,8 @@ positive only for high-dose prescription EPA in already-high-risk patients.
 omega-3 index is a predictor, not a proven lever.**
 
 ### 1.3 Vitamin D — the deficiency-only honesty section
+
+@@FIG:vitamin-d3-structure@@
 
 This is the most over-supplemented "longevity" molecule, and the large RCTs are a case study in predictor≠lever.
 
