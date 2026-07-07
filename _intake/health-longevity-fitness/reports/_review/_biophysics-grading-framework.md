@@ -45,7 +45,7 @@ It is **pathological/ideological science** when the effect lives at the detectio
 | N-rays (Blondlot) | ❌ | M1 (subjective) | Decisive **blinded** test — Wood removed the prism |
 | Water memory (Benveniste) | ❌ | M0 | Collapsed under blinded re-test |
 
-Semmelweis and Wegener are load-bearing: they show the axes genuinely come apart (right evidence, missing/wrong mechanism), which is why you never collapse them.
+Semmelweis and Wegener are load-bearing: they show the axes come apart (right evidence, missing/wrong mechanism), which is why you never collapse them.
 
 ## The biophysics claim-map (graded, from the research passes)
 
@@ -82,3 +82,24 @@ Semmelweis and Wegener are load-bearing: they show the axes genuinely come apart
 4. The framework itself (two axes + the calibration table) is worth a short **teaching passage** in the foundations chapter: it shows the reader *how to weigh a biophysics claim*, which is more durable than any single verdict.
 
 *Sources are carried in the four research briefs (this session); load-bearing citations to resolve before applying: Cifra 2015, Lundholm 2015, Elton & Spencer 2020, Perez 2013, Usichenko 2008, Zilli-Vieira 2019, Lundh/Bero MR000033, Ioannidis 2005, Skou 1997, Levin lab.*
+
+## Appendix — Jack Kruse as a source (graded)
+
+Kruse is a recurring name in the biophysics/longevity space and one partial input to the 05-biophysics branch. He is **a generator of mechanism-first hypotheses at the frontier**, not a source of outcome evidence. This appendix fixes how to use him.
+
+**Sourcing tier.** His quantum-health corpus is **entirely self-published** (jackkruse.com, Patreon, podcasts, his book *Epi-Paleo Rx*) — zero PubMed-indexed case reports on any light/EMF/water/mitochondria thesis; his peer-reviewed publications are from his neurosurgery career. His "CPC" (Clinical Practice Case) series reads as theoretical essays and member Q&A, not documented patient cases with baseline/outcome/follow-up data, and much is paywalled. His strongest "case" is his own **n=1** (~130 lb lost via cold thermogenesis + a "leptin reset"). Member outcomes are self-reported, advocate-collected forum testimonials. So every *clinical* Kruse claim sits at **`n=1 / anecdotal / C:advocate-collected`** — real reported experience, no controlled evidence, no independent replication.
+
+**His signature theses, graded on the two axes (verbatim quotes):**
+
+| Kruse claim (his words) | Axis 1 (mechanism) | Axis 2 (evidence) | Verdict |
+|---|---|---|---|
+| DHA essentiality for the brain (obligate seafood, perinatal DHA) | M3 | X/W:established | **Established** — largely textbook nutrition |
+| "DHA … the first lipid on Earth to become a fully assembled semiconductor in one molecular piece … alternating holes (P) and electron rich (N) areas" | M2 (metaphor from the polyene π-cloud) | X:absent | **Speculative** — Szent-Györgyi *bulk-semiconductor* lineage, the superseded framing; long-range electron transfer is real, "DHA generates photocurrent in cells" is unshown |
+| "the inner mitochondrial membrane the electric field strength is 10⁵ volts/cm" | M4 | established | **Correct** — ~150 mV across ~5 nm is that field |
+| "Every increase of one Angstrom between respiratory proteins slows tunneling of electrons by a factor of ten" | M4 | established | **Correct** — Moser–Dutton distance-decay of electron transfer; he uses this anchor well |
+| "nnEMF is well known to cause calcium imbalance in cells, especially mitochondria" (VGCC efflux) | M2–M3 | W:weak/contested | **Frontier/contested** — the Pall VGCC–EMF hypothesis; some in-vitro Ca²⁺ effects, human-outcome evidence weak |
+| EZ water dielectric "rises to 160 from 78" (Pollack) | M2 | contested | **Contested** — Pollack lineage; the EZ phenomenon is real, the sweeping physiological scope is not |
+| "the 'on and off switch' Darwin was looking for … is an ELF, called the Schumann resonance" controlling gene expression | M1 | absent | **Speculative overreach** — Schumann resonance is real EM physics; "it is the epigenetic master switch" is unsupported |
+| "nnEMF is making 80% of all 20th and 21st-century diseases new mitochondrial diseases … For the economy to be healthy, America has to remain unhealthy" | M1 | absent | **Overreach** — sweeping, unfalsifiable, no controlled outcome data (the Langmuir profile) |
+
+**The rule for using Kruse.** Mine his corpus for **sharp mechanistic questions** — some are good (the tunneling-distance anchor, DHA essentiality, morning-light/circadian entrainment, cold physiology) — grade each on the framework, and cite `jackkruse.com` with its `n=1/anecdotal` tier. Do not import his n=1 or member anecdotes as outcome evidence, and name the overreach (DHA-photocurrent, Schumann-as-switch, 80%-of-disease) as overreach on the same rule that credits the parts he gets right. Circadian core validated; extensions speculative — the split holds claim by claim.
