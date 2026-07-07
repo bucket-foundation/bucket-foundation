@@ -51,7 +51,9 @@
       "doi": "10.1530/eje.0.1390552",
       "surfaced_via": "PubMed E-utilities (ipamorelin growth hormone secretagogue)"
     },
-    "conflicts_with": ["conflict-protein-mtor-longevity"],
+    "conflicts_with": [
+      "conflict-protein-mtor-longevity"
+    ],
     "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
     "confidence_notes": "Cross-ref igf1-u-shaped-mortality. Body-composition effect real with metabolic costs; longevity direction is net-harmful by mechanism. Grade: POTENTIALLY-HARMFUL (longevity claim).",
     "added_on": "2026-06-28"
@@ -146,7 +148,9 @@
       "doi": "",
       "surfaced_via": "PubMed E-utilities (whole-body cryotherapy systematic review; cryotherapy adverse events)"
     },
-    "conflicts_with": ["conflict-infrared-vs-traditional-sauna"],
+    "conflicts_with": [
+      "conflict-infrared-vs-traditional-sauna"
+    ],
     "canon_link": "",
     "confidence_notes": "Cross-ref 05-recovery-sleep-stress.md sec3 cold (dose-sold != dose-studied). Grade: NO-EVIDENCE (+ harm).",
     "added_on": "2026-06-28"
@@ -184,7 +188,9 @@
       "doi": "10.1038/s41467-018-03421-7",
       "surfaced_via": "cross-ref 03-nutrition-supplements.md sec5"
     },
-    "conflicts_with": ["conflict-nad-precursor-efficacy"],
+    "conflicts_with": [
+      "conflict-nad-precursor-efficacy"
+    ],
     "canon_link": "",
     "confidence_notes": "Cross-ref nad-precursor-nr-human-surrogate. Mechanism real, outcome unproven. Grade: NO-EVIDENCE (longevity).",
     "added_on": "2026-06-28"
@@ -317,7 +323,9 @@
       "doi": "",
       "surfaced_via": "cross-ref L2-wearables-quantified-self.md"
     },
-    "conflicts_with": ["conflict-cgm-healthy-utility"],
+    "conflicts_with": [
+      "conflict-cgm-healthy-utility"
+    ],
     "canon_link": "",
     "confidence_notes": "Measurement-validity != outcome-utility (L2 razor). Grade: NO-EVIDENCE (healthy optimization).",
     "added_on": "2026-06-28"
@@ -336,7 +344,9 @@
       "doi": "",
       "surfaced_via": "cross-ref L2-wearables-quantified-self.md + 01-STATE-OF-THE-FIELD.md"
     },
-    "conflicts_with": ["conflict-which-clock-is-valid"],
+    "conflicts_with": [
+      "conflict-which-clock-is-valid"
+    ],
     "canon_link": "",
     "confidence_notes": "Grade: PROMISING as discipline / NO-EVIDENCE as proof of slowed aging.",
     "added_on": "2026-06-28"
@@ -416,5 +426,163 @@
     "canon_link": "",
     "confidence_notes": "The organizing principle of the section; resolves most individual verdicts. Grade: the meta-rule.",
     "added_on": "2026-06-28"
+  },
+  {
+    "id": "pbm-androgenetic-alopecia-lllt-rct",
+    "statement": "Low-level laser therapy improves hair density in androgenetic alopecia; a meta-analysis of RCTs found LLLT superior to placebo (P<.00001), and one device class (HairMax LaserComb) is FDA-cleared for the indication.",
+    "claim_type": "outcome",
+    "domain": "biohacking-photobiomodulation",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Meta of RCTs in men and women; LLLT superior to placebo for hair density alongside minoxidil/finasteride. Small studies, variable quality.",
+    "population": "Adults with androgenetic alopecia across randomized trials",
+    "provenance": {
+      "primary": "Adil A, Godwin M - 'The effectiveness of treatments for androgenetic alopecia: A systematic review and meta-analysis', J Am Acad Dermatol 2017",
+      "doi": "10.1016/j.jaad.2017.02.054",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "28396101"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Adds an RCT-backed PBM indication beyond skin/pain. Grade: meta.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "pbm-musculoskeletal-pain-dose-dependent",
+    "statement": "Low-level laser therapy / PBM produces small-to-moderate short-term pain reduction in musculoskeletal disorders, dose-dependent on adherence to WALT parameters; for knee osteoarthritis, 22 placebo-controlled RCTs found pain reduced 14.2mm/100mm VAS at end of therapy, sustained 1-12 weeks.",
+    "claim_type": "outcome",
+    "domain": "biohacking-photobiomodulation",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Knee OA: 22 RCTs n=1063, -14.2mm VAS (95%CI 7.3-21.1), dose-dependent (Stausholm 2019). Broader MSK pain: 18 studies n=1462, pooled MD -0.85 (95%CI -1.22 to -0.48), I2=85.6% (Clijsen 2017).",
+    "population": "Adults with musculoskeletal pain (knee OA and mixed MSK) across randomized placebo-controlled trials",
+    "provenance": {
+      "primary": "Stausholm MB et al. - 'Efficacy of low-level laser therapy on pain and disability in knee osteoarthritis: SR and meta-analysis of RCTs', BMJ Open 2019; Clijsen R et al. Eur J Phys Rehabil Med 2017",
+      "doi": "10.1136/bmjopen-2019-031142",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "31662383"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strengthens the PBM-for-pain evidence beyond 'not nothing'; effect concentrated in WALT-compliant dosing. Grade: meta.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "pbm-transcranial-mci-single-rct",
+    "statement": "Transcranial photobiomodulation (near-infrared to the scalp) improved cognition and raised serum BDNF in adults with mild cognitive impairment in one randomized, double-blind, placebo-controlled trial (n=93); the result is promising and unreplicated.",
+    "claim_type": "outcome",
+    "domain": "biohacking-photobiomodulation",
+    "evidence_tier": "rct",
+    "direction": "mixed",
+    "effect_size": "Single RCT n=93, double-blind placebo-controlled; cognition gains and raised BDNF at 60 and 150 days.",
+    "population": "93 adults >50y with mild cognitive impairment",
+    "provenance": {
+      "primary": "'Transcranial photobiomodulation increases cognition and serum BDNF levels in adults over 50 years: A randomized, double-blind, placebo-controlled trial', J Photochem Photobiol B 2024",
+      "doi": "10.1016/j.jphotobiol.2024.113041",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "39423445"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "One RCT, needs replication. Promising not established. Grade: rct (single).",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "pbm-wholebody-longevity-no-evidence",
+    "statement": "Whole-body red-light panels have no human outcome evidence for lifespan extension, fat loss, or raised testosterone; the mechanism is local light on reached tissue, and the biphasic dose-response means arbitrary consumer-panel distance/irradiance does not replicate tuned trial parameters.",
+    "claim_type": "outcome",
+    "domain": "biohacking-photobiomodulation",
+    "evidence_tier": "mechanistic",
+    "direction": "refutes",
+    "effect_size": "No indexed human outcome trials for whole-body PBM longevity/metabolic/hormonal endpoints; mechanism local, dose biphasic.",
+    "population": "No controlled human cohort exists for the systemic claims",
+    "provenance": {
+      "primary": "Hamblin MR - 'Mechanisms and mitochondrial redox signaling in photobiomodulation', Photochem Photobiol 2018 (mechanism); systematic-search absence for whole-body outcomes",
+      "doi": "10.1111/php.12864",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Confirms existing NO-EVIDENCE grade for whole-body claims. Local effects real (skin/hair/pain); systemic claims unsupported. Grade: NO-EVIDENCE.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "grounding-earthing-thin-surrogate",
+    "statement": "Grounding/earthing (conductive skin contact with the Earth to transfer free electrons) rests on small, mostly unblinded, surrogate-endpoint studies largely produced by a single advocate group; the most concrete is a pre-post n=10 study reporting raised RBC zeta potential and reduced aggregation. No blinded RCT tests a hard health outcome, independent replication is absent, and the proposed antioxidant-electron mechanism is not part of established biophysics.",
+    "claim_type": "outcome",
+    "domain": "biohacking-fringe-biophysics",
+    "evidence_tier": "anecdotal",
+    "direction": "unfalsifiable",
+    "effect_size": "Chevalier 2013 blood-viscosity: n=10, ~2.7x zeta-potential increase, no sham, unreplicated. Reported cortisol/sleep/DOMS surrogate changes. No outcome trial.",
+    "population": "Small groups of healthy volunteers (typically n=10-30), advocate-authored",
+    "provenance": {
+      "primary": "Chevalier G et al. - 'Earthing: health implications of reconnecting the human body to the Earth's surface electrons', J Environ Public Health 2012; Chevalier G et al. blood viscosity, J Altern Complement Med 2013; Oschman JL et al., J Inflamm Res 2015",
+      "doi": "10.1155/2012/291541",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "22291721"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Reframed from dismissal to fair-frontier grading: thin surrogate evidence, mechanism unestablished, understudied (unpatentable, hard to blind) rather than disproven. Grade: anecdotal.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "rf-emf-mobile-brain-tumour-prospective-null",
+    "statement": "Cumulative mobile-phone radiofrequency exposure is not associated with glioma, meningioma, or acoustic neuroma in the COSMOS prospective cohort (~250,000 adults, 5 countries, exposure recalibrated against operator records); a WHO-commissioned systematic review reached the same conclusion for brain/head cancers. RF remains IARC Group 2B largely on older recall-biased case-control data.",
+    "claim_type": "outcome",
+    "domain": "exposures-nnEMF",
+    "evidence_tier": "cohort",
+    "direction": "refutes",
+    "effect_size": "COSMOS: HRs near null for glioma/meningioma/acoustic neuroma vs cumulative call-time. WHO review 2024: no association RF and brain/head cancers.",
+    "population": "~250,000 adults across Denmark, Finland, Netherlands, Sweden, UK (COSMOS); observational human studies (WHO review)",
+    "provenance": {
+      "primary": "Feychting M, Elliott P et al. - 'Mobile phone use and brain tumour risk - COSMOS, a prospective cohort study', Environ Int 2024; Karipidis K et al. - WHO-commissioned RF cancer systematic review, Environ Int 2024",
+      "doi": "10.1016/j.envint.2024.108552",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "38458118"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Prospective evidence moved against a detectable consumer-RF cancer effect. No reproducible non-thermal mechanism at consumer exposures. Grade: cohort (largely null). Updates emf-protection-no-demonstrated-harm.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "elf-magnetic-fields-childhood-leukemia",
+    "statement": "Residential extremely-low-frequency magnetic-field exposure is associated with childhood leukemia: a meta-analysis of 30 studies (186,000+ children) found an odds ratio of 1.72 (95%CI 1.25-2.35) at 0.4 microtesla with a dose-response gradient. This consistent association is the basis for the IARC Group 2B classification of ELF fields; causation is debated (confounding, no accepted mechanism), and parental occupational ELF exposure was null.",
+    "claim_type": "outcome",
+    "domain": "exposures-nnEMF",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "Seomun 2021 meta: 0.4 uT residential ELF-MF -> childhood leukemia OR 1.72 (1.25-2.35), dose-response. Consistent since Wertheimer-Leeper 1979. Occupational-ELF meta null.",
+    "population": "186,223 children across 30 epidemiological studies (residential ELF-MF)",
+    "provenance": {
+      "primary": "Seomun G et al. - 'Exposure to extremely low-frequency magnetic fields and childhood cancer: A systematic review and meta-analysis', PLoS One 2021",
+      "doi": "10.1371/journal.pone.0251628",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "33989337"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "The one nnEMF domain with a real, replicated epidemiological signal - the honest counterexample to any blanket 'EMF is harmless'. Distinct from consumer RF. Grade: meta.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "emf-hypersensitivity-provocation-null-nocebo",
+    "statement": "Electromagnetic hypersensitivity symptoms are real, but double-blind provocation trials consistently find that affected people cannot detect fields above chance and that symptoms track belief in exposure rather than actual exposure (a nocebo pattern); 'dirty electricity' health claims rest on almost no rigorous controlled outcome data.",
+    "claim_type": "outcome",
+    "domain": "exposures-nnEMF",
+    "evidence_tier": "anecdotal",
+    "direction": "refutes",
+    "effect_size": "Provocation trials: symptom reports track sham/perceived exposure, not real fields. 'Dirty electricity' controlled outcome data essentially absent.",
+    "population": "Individuals reporting EMF hypersensitivity in blinded provocation studies",
+    "provenance": {
+      "primary": "Double-blind EMF provocation trial literature (EHS); Milham ecological 'dirty electricity' reports",
+      "doi": "",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Symptoms real; field attribution unsupported (nocebo). Band genuinely understudied for outcomes. Grade: anecdotal.",
+    "added_on": "2026-07-07"
   }
 ]

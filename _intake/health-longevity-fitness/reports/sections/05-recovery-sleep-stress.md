@@ -195,6 +195,64 @@ itself a citeable result. (Full analysis: `thread-circadian-light.md`, `I-sleep-
 
 ---
 
+### 2.5 Morning light as a deliberate practice
+
+The circadian mechanism in §2.1 has a practical corollary: the timing of light matters as much as its
+presence, and the highest-leverage window is the first hours after waking. Two features make early-day
+light distinctive. First, **intensity**: outdoor light delivers 1,000–100,000 lux even under cloud, while
+a bright indoor room delivers 100–500 lux — an order-of-magnitude gap the eye compresses but the
+circadian system does not. Second, **timing**: human phase-response curves show that light in the hours
+around habitual wake time advances the clock (shifts it earlier), while the same light before bedtime
+delays it. Khalsa's phase-response curve (2003, n=21, single bright-light pulse) mapped a peak-to-trough
+amplitude of ~5 hours, with advances when light fell after the core-body-temperature minimum — roughly,
+around and after wake — and delays when it fell before. An adolescent phase-response curve (Crowley &
+Eastman, 2017) reproduced the same shape. This is the settled-photobiology basis (`mechanistic`) for the
+common instruction to get bright light early: it entrains and stabilizes the clock, which downstream
+supports sleep-onset timing and daytime alertness.
+
+**The field evidence, at its honest tier.** A calibrated-dosimetry study of office workers (Figueiro et
+al., 2017, n=109) found that those receiving high circadian-effective light in the morning had shorter
+sleep-onset latency (especially in winter), stronger circadian entrainment, and higher sleep quality;
+high all-day exposure also tracked with lower depression scores. This is a real-world signal graded
+`cross-sectional` — an association in unrandomized field data, consistent with the mechanism but not proof
+of a causal lever.
+
+**Bright-light therapy — the clinical form of the same lever.** Delivered as a defined dose (typically
+~10,000 lux for ~30 minutes in the morning), light is an established treatment for **seasonal affective
+disorder**: a meta-analysis of 19 RCTs (Tao et al., 2019) found a standardized mean difference of −0.37
+(95% CI −0.63 to −0.12) for depression scores and a response risk ratio of 1.42 (1.08–1.85) versus
+placebo, with the caveat of moderate heterogeneity and moderate-to-high risk of bias across small trials.
+For **non-seasonal major depression** the signal is also positive and moderate: 15 RCTs, 883 patients,
+SMD 0.48 (95% CI 0.22–0.74), stronger with ≥60 minutes of daily exposure (Lee et al., 2024). Both are
+graded `meta`. One honesty note on wavelength: a meta-analysis restricted to *blue-enriched* light
+(Bais et al., 2022, 9 RCTs, n=347) found no advantage of blue over control conditions — the antidepressant
+effect tracks intensity and broad-spectrum white light, and the popular "blue light" framing outruns the
+evidence for the therapeutic direction even as it holds for the melatonin-suppression direction at night.
+
+**The cortisol-awakening-response claim, graded.** The cortisol awakening response (the ~30–60 minute
+post-waking cortisol rise) is real and is gated by the circadian system independent of sleep (Gibbs &
+Shea, 2022, n=34, forced-desynchrony). The popular claim that a single morning light exposure acutely
+augments that pulse rests on thin direct evidence; the defensible link is indirect — light entrains the
+clock, and the clock sets cortisol timing. Graded `mechanistic`, and the acute-boost framing is not
+established.
+
+**Childhood myopia — the one randomized primary-prevention win.** Adding outdoor daylight time in
+childhood reduces the incidence of new myopia. The anchor is a cluster-RCT (He et al., 2015, JAMA):
+40 minutes of added outdoor class time per school day over 3 years cut 3-year myopia incidence to 30.4%
+versus 39.5% in controls — a ~9 percentage-point absolute reduction. Meta-analyses replicate the
+direction (Xiong et al., 2017, incident-myopia RR 0.54 in clinical trials; Cao et al., 2019, RR 0.66).
+The mechanism is bright-light-driven retinal dopamine slowing axial elongation. The effect is on
+*onset*; for children already myopic, progression is better controlled by low-dose atropine and
+myopia-control optics (cross-ref §11, §27). Graded `rct` — the strongest outcome-level result in this
+whole cluster.
+
+**What to do.** Get bright light early — 10–30 minutes of outdoor light within roughly an hour of waking
+on most days, more on overcast mornings, and without staring at the sun. It is free, low-risk, and sits on
+a settled mechanism with real (if tier-varied) downstream support. For winter low mood or diagnosed SAD, a
+10,000-lux light box used in the morning is an evidence-backed tool (`meta`). For children, outdoor time is
+a myopia-prevention lever with randomized support (`rct`). None of this requires the stronger claim that
+light governs health above all other inputs (§2.4).
+
 ## 3. THERMAL — Heat and Cold as Hormetic Stressors
 
 Thermal stress is the domain where the mechanism→outcome rule matters most: *heat induces HSPs* and *cold

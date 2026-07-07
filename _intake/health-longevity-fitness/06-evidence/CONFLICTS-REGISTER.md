@@ -53,4 +53,4 @@ A conflict only counts as settled when a top-tier evidence review resolves it �
 - A status is never "closed" — by design, conflicts stay first-class objects; resolution is recorded, not deleted.
 
 ## How this maps to the rest of the book
-About 1 in 9 of the book's graded claims touches one of these live disputes — 112 of the 1007 graded claims link to a conflict here. So a meaningful slice of what you read in the claim-by-claim sections is still unsettled. When a claim points to one of these fights, that's the flag telling you to hold it loosely.
+About 1 in 9 of the book's graded claims touches one of these live disputes — 112 of the 1021 graded claims link to a conflict here. So a meaningful slice of what you read in the claim-by-claim sections is still unsettled. When a claim points to one of these fights, that's the flag telling you to hold it loosely.

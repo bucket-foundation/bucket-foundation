@@ -21,7 +21,7 @@
 
 | Asset | Count | Source of truth |
 |---|---:|---|
-| **Graded claims** | **1007** | `02-domains/*-claims.json` (54 sets) |
+| **Graded claims** | **1021** | `02-domains/*-claims.json` (54 sets) |
 | **People (figure cards)** | **174** carded (`01-people/figures.json`); 170 `.md` cards; **155** graph edges | `01-people/` |
 | **Labs / institutions** | **24** | `05-labs/labs.json` |
 | **Clinical trials tracked** | **15** | `05-labs/trials.json` |
@@ -31,7 +31,7 @@
 | **Media assets** | **294** (video + extracted frames + anatomy images) | `media/MANIFEST.jsonl` |
 | **Practitioner protocol sheets** | **12** practitioners + **3** domain protocol sheets | `04-protocols/` |
 
-### Claims by evidence tier (all 1007)
+### Claims by evidence tier (all 1021)
 | Tier | Count | | Tier | Count |
 |---|---:|---|---|---:|
 | rct | 250 | | anecdotal | 28 |

@@ -5,7 +5,7 @@
 > *expands* beyond the seed map — the explicit "fill the map / random walk" ledger.
 >
 > **Updated 2026-06-27** (master-index pass): Waves 1–5 are complete and moved to the DONE log at the
-> bottom. The corpus now holds 1007 graded claims, 174 carded figures (155 graph edges), 24 labs, 15
+> bottom. The corpus now holds 1021 graded claims, 174 carded figures (155 graph edges), 24 labs, 15
 > trials, 38 conflicts, 6 threads, 53 movements / 294 media assets, and the synthesis capstones
 > (`CANON_INDEX.md`, `00-map/01-STATE-OF-THE-FIELD.md`, `04-protocols/WHAT-TO-TRACK-SYNTHESIS.md`).
 

@@ -45,7 +45,7 @@ _Not medical advice. Thermal levers (sauna/cold) live in §05; supplement verdic
 | **TB-500 / thymosin β4** | Injury recovery, regeneration | Animal/mechanistic; no human efficacy RCTs; WADA-banned | **NO-EVIDENCE** |
 | **Ipamorelin / GH secretagogues** | Anti-aging via growth hormone | Raise GH/IGF-1 (real) but **run against longevity genetics**; no healthspan data | **POTENTIALLY-HARMFUL** for longevity |
 | **GHK-Cu** (copper peptide) | Skin/hair/systemic "regeneration" | Modest *topical cosmetic* RCT signal; systemic-injection claims unstudied | **PROMISING** (topical skin) / **NO-EVIDENCE** (systemic) |
-| **Red light / photobiomodulation** | Whole-body longevity, energy, fat loss | **Real** narrow evidence: skin (wrinkles), some pain; whole-body claims unproven | **REAL** (skin/pain) / **NO-EVIDENCE** (whole-body longevity) |
+| **Red light / photobiomodulation** | Whole-body longevity, energy, fat loss | Real narrow evidence: skin (`rct`), hair-loss (`meta`), MSK pain at correct dose (`meta`); retinal/cognition early; whole-body claims unproven | **REAL** (skin/hair/pain) / **NO-EVIDENCE** (whole-body longevity) |
 | **HBOT** (hyperbaric oxygen) | Reverses aging, lengthens telomeres | ~15 approved indications are real; the telomere study is small/uncontrolled/surrogate | **REAL** (approved Dx) / **PROMISING→hype** (longevity) |
 | **Whole-body cryotherapy** | Recovery, longevity, beats cold water | No added benefit over cheaper cold-water immersion proven; **FDA: no clearance**; frostbite risk | **NO-EVIDENCE** (+ harm) / cross-ref §05 cold |
 | **IV vitamin drips** (Myers, "hydration") | Energy, immunity, recovery, "detox" | Placebo-controlled pilot: **no benefit over placebo**; bypasses gut for no outcome | **PLACEBO-LEVEL** (+ infection/cost) |
@@ -149,17 +149,34 @@ for topical cosmetic skin use** (a real, narrow effect comparable to other cosme
 **The claim:** red and near-infrared light ("red-light therapy," PBM, LLLT) boosts mitochondrial energy
 systemically — for fat loss, longevity, testosterone, whole-body "recovery," and more.
 
-**The evidence — the part that is REAL and narrow:**
-- **Skin / cosmetic:** controlled trials show red/NIR light improves skin complexion, intradermal collagen,
-  and reduces fine lines/wrinkles (e.g. Wunsch & Matuschka, 2014).[^wunsch] This is a replicated,
-  narrow effect — and it is why dermatology uses it.
-- **Pain / musculoskeletal:** systematic reviews find low-level laser/PBM produces small short-term pain
-  reductions in some conditions (e.g. fibromyalgia, *Pain Physician* 2019; some tendinopathy, neck pain) —
-  modest, heterogeneous, but not nothing.
-- **A real mechanism:** the leading hypothesis is photon absorption by mitochondrial cytochrome-c-oxidase
-  modulating ATP/ROS/nitric-oxide signaling. There is also a narrow mainstream result (Jeffery's 670 nm
-  retinal-mitochondria work) cross-referenced in §05 — graded `mechanistic` (a plausible biological pathway
-  shown, no human outcome yet).
+**The evidence — the part that is REAL and narrow, indication by indication:**
+- **Skin / cosmetic (`rct`):** controlled trials show red/NIR light improves skin complexion, intradermal
+  collagen, and reduces fine lines/wrinkles (Wunsch & Matuschka, 2014).[^wunsch] Replicated and narrow —
+  the reason dermatology uses it.
+- **Androgenetic alopecia (`meta`):** low-level laser therapy improves hair density in male- and
+  female-pattern hair loss. A meta-analysis of RCTs (Adil & Godwin, 2017, JAAD) found LLLT superior to
+  placebo (P < .00001), alongside minoxidil and finasteride; one device class (HairMax LaserComb) is
+  FDA-cleared for this use. Trials are small and quality is variable, but the direction is RCT-backed.
+- **Musculoskeletal pain (`meta`):** for knee osteoarthritis, a meta-analysis of 22 placebo-controlled
+  RCTs (n=1,063; Stausholm et al., 2019, BMJ Open) found pain reduced by 14.2 mm on a 100 mm VAS
+  (95% CI 7.3–21.1) at end of therapy, sustained 1–12 weeks, and the effect was dose-dependent — present
+  when trials followed World Association for Laser Therapy dosing and absent when they did not. A broader
+  musculoskeletal-pain meta (Clijsen et al., 2017; 18 studies, n=1,462) found a pooled mean difference of
+  −0.85 (95% CI −1.22 to −0.48) with high heterogeneity (I² = 85.6%). Small-to-moderate, dose-sensitive,
+  heterogeneous.
+- **Muscle recovery (`rct`, thin):** small RCTs suggest post-exercise PBM improves strength recovery and
+  reduces delayed-onset soreness; a meta of 4 trials (n=66) reported large effects but at moderate-to-very-low
+  GRADE certainty. Promising and underpowered.
+- **Aged retina, 670 nm (`mechanistic`):** applying 670 nm light to the eye transiently improved
+  color-contrast sensitivity and rod thresholds in adults over ~40, with no effect in the young
+  (Shinhmar & Jeffery, 2020) — a surrogate visual endpoint on the cytochrome-c-oxidase mechanism, with
+  later replication mixed.
+- **Transcranial PBM for mild cognitive impairment (`rct`, single):** one randomized, double-blind,
+  placebo-controlled trial (n=93, adults >50) reported cognition gains and raised serum BDNF at 60 and 150
+  days (2024). A single unreplicated RCT — promising, and short of established.
+- **The mechanism:** the leading hypothesis is photon absorption by mitochondrial cytochrome-c-oxidase
+  (Complex IV) modulating ATP, reactive-oxygen, and nitric-oxide signaling (Hamblin, 2018) — a real,
+  plausible pathway (`mechanistic`), which is why local effects on reached tissue are credible.
 
 **The part that is OVERCLAIMED (NO-EVIDENCE):** the leap from "red light helps skin and some local pain" to
 "whole-body panels extend lifespan / burn fat / raise testosterone / 'charge your mitochondria'" is the
@@ -317,17 +334,40 @@ This cluster claims to act on the body through *physics* that is either invented
 also where the contested claims associated with **Jack Kruse** (a neurosurgeon and longevity writer) around
 structured/EZ-water live — graded honestly below.
 
-### 7.1 Grounding / earthing — invented biophysics, tiny surrogate studies
+### 7.1 Grounding / earthing — thin evidence, honestly graded
 
-**The claim:** direct skin contact with the Earth lets "free electrons" neutralize inflammation, improving
-sleep, pain, and cardiovascular markers (the foundational review: Chevalier et al., 2012).[^chevalier]
+**The proposed mechanism (stated straight).** The Earth's surface carries an effectively unlimited supply
+of free electrons. The grounding hypothesis is that direct conductive skin contact with the ground — bare
+feet outdoors, or indoor mats/sheets wired to earth — lets those electrons enter the body and act as
+antioxidants, quenching reactive oxygen species at sites of inflammation and shifting blood rheology
+(Chevalier et al., 2012). It is a specific, testable physical claim.
 
-**The evidence:** the human studies are **small, unblinded, surrogate-endpoint, and largely from
-advocates** — reported changes in blood viscosity, cortisol, or subjective sleep, with no rigorous
-replication and **no health-outcome trial.** The proposed mechanism (the Earth's surface as an antioxidant
-electron reservoir transferred through skin) is not established biophysics. **Verdict: NO-EVIDENCE** — a real
-mechanism would be a major finding; the data are not there. (Walking barefoot outdoors is pleasant and
-overlaps real levers — daylight, movement, nature; none requires the "earthing" theory.)
+**The actual evidence, honestly.** The human literature is small, mostly unblinded, uses surrogate
+endpoints, and is largely produced by a single group of advocates (Chevalier, Sinatra, Oschman). The most
+concrete result is a pre–post study of 10 subjects reporting that two hours of grounding raised red-blood-cell
+zeta potential (surface charge) ~2.7-fold and reduced cell aggregation (Chevalier et al., 2013) — a
+plausible-sounding blood-viscosity signal, but n=10, no sham control, and unreplicated by independent labs.
+Other reports describe changes in cortisol profiles, subjective sleep, and delayed-onset-muscle-soreness
+markers. No blinded randomized trial has tested a hard health outcome. The proposed mechanism — Earth-surface
+electrons entering intact skin and acting systemically as antioxidants — is not part of established
+electrophysiology, and mainstream biophysics does not currently offer a route for it. Graded `anecdotal`:
+the effect sizes reported are surrogate, the studies are tiny and unblinded, and independent replication is
+absent.
+
+**Why it is understudied (understudied ≠ disproven).** There is no product to patent and no drug sponsor:
+skin-to-earth contact is free, so no funded program of adequately powered blinded RCTs exists. It is also
+hard to blind — a participant can often tell whether a grounding mat is connected — which
+depresses the quality ceiling of any trial. The honest position is that the surrogate signals have not been
+put to a fair test, so they are unconfirmed rather than refuted. A confirmed antioxidant effect of earthing
+would be a real and interesting finding; the data required to confirm or rule it out do not yet exist.
+
+**What a reasonable person does.** Walking barefoot outdoors and spending time in nature are pleasant,
+low-cost, and overlap levers with real support — daylight (§05 §2.5), movement, and green space. Enjoy them
+on their own merits; the "earthing" theory is not required to justify them. Grounding mats and sheets are
+low-risk and inexpensive, and a person who finds one improves their sleep has lost little — but the claim
+should be held at its tier, and it is not a treatment for any medical condition. **Verdict: thin surrogate
+evidence (`anecdotal`); mechanism unestablished; understudied rather than disproven.**
+
 
 ### 7.2 Structured / "EZ" water and hydrogen water — split the verdict
 
@@ -348,19 +388,60 @@ Two different claims get conflated:
 > have **no established outcome evidence** and are graded `speculative`. A lab phenomenon under study does not
 > license a consumer "structured water" health claim.
 
-### 7.3 EMF-protection — no demonstrated non-thermal harm, so nothing to protect against
+### 7.3 Non-native EMF — a frequency-by-frequency ledger
 
-**The claim:** "non-native EMF" (Wi-Fi, 5G, phones) causes biological harm; shielding clothing, stickers,
-pendants, and "blockers" protect you.
+**The proposed mechanism (stated straight).** The "non-native EMF" thesis holds that man-made
+electromagnetic fields — radiofrequency (RF) from phones, Wi-Fi, and cell towers; extremely-low-frequency
+(ELF) fields from mains wiring and power lines; and high-frequency transients on building wiring ("dirty
+electricity") — exert non-thermal biological effects that regulatory limits, set on heating alone, do not
+capture. Proposed routes include oxidative stress and voltage-gated calcium-channel activation. This is a
+physically contested claim: at RF and ELF frequencies the photon energy is far below what breaks chemical
+bonds, so mainstream physics has no accepted non-thermal mechanism, and any real effect would require one.
+The honest move is to read each frequency band on its own evidence rather than accept or dismiss "EMF" as
+one thing.
 
-**The evidence:** at consumer (non-ionizing, below-thermal-threshold) exposures, **decades of review have not
-established a non-thermal harm mechanism or a reproducible health effect**; the regulatory limits are set on
-the established (thermal) effect. The "non-native EMF" harm thesis is graded `speculative` (§7.2, §05). The
-protection products are **unvalidated**, and some "blocker" stickers have been found to contain radioactive
-material. **Verdict: NO-EVIDENCE** — both
-for the harm being protected against at consumer levels and for the products.
+**The actual evidence, band by band.**
+- **Radiofrequency (phones/Wi-Fi/cell) → cancer (`cohort`).** The strongest recent data are reassuring.
+  COSMOS, a prospective cohort of ~250,000 adults across five countries with exposure recalibrated against
+  operator records (2024), found cumulative mobile-phone call-time not associated with glioma, meningioma,
+  or acoustic neuroma. A WHO-commissioned systematic review (2024) reached the same conclusion for
+  brain and head cancers. RF sits in IARC Group 2B ("possibly carcinogenic"), a classification driven
+  largely by older case-control studies (INTERPHONE, Hardell) vulnerable to recall bias; the prospective
+  evidence has since moved against a detectable effect. No reproducible non-thermal disease mechanism has
+  been established at consumer exposures.
+- **Extremely-low-frequency magnetic fields → childhood leukemia (`meta`).** This is the one non-native-EMF
+  domain with a real, replicated epidemiological signal. A meta-analysis of 30 studies (186,000+ children;
+  Seomun et al., 2021) found residential ELF magnetic-field exposure at 0.4 µT associated with childhood
+  leukemia at an odds ratio of 1.72 (95% CI 1.25–2.35), with a dose-response gradient. This association —
+  consistent since the 1979 Wertheimer–Leeper report — is why ELF fields are classified IARC Group 2B.
+  Causation is still debated (residual confounding, selection bias, and no accepted mechanism), and a
+  parallel meta of parental *occupational* ELF exposure was null. But the residential-leukemia signal is
+  the honest counterexample to any blanket "EMF is harmless" claim.
+- **"Dirty electricity" and electromagnetic hypersensitivity (EHS) (`anecdotal`).** Controlled data are
+  very sparse. Double-blind provocation trials consistently find that people reporting hypersensitivity
+  cannot detect fields above chance and that symptoms track belief in exposure rather than actual exposure —
+  a nocebo pattern. The symptoms are real, and the attribution to fields lacks support. This band remains
+  barely studied, with almost no rigorous controlled outcome data.
 
----
+**Why it is understudied (understudied ≠ disproven).** Non-thermal RF bioeffects are structurally hard to
+study: exposure is now ubiquitous, so there is no unexposed control group; any effect, if present, is small
+and demands very large samples; industry and advocacy funding raise bias concerns in both directions; and
+the contested physics means there is no agreed mechanism to guide dosimetry. The result is uneven coverage —
+consumer-RF cancer risk is now well studied and largely null, ELF-leukemia is well studied and carries a 2B
+signal, and "dirty electricity" is barely studied at all. Absence of a proven consumer-RF harm reflects both
+real reassuring data and the difficulty of detecting a small effect.
+
+**What a reasonable person does.** For consumer RF, the evidence does not support health worry or the
+purchase of shielding products; a cautious person who prefers can keep a phone off the body during long
+calls, at trivial cost. For ELF, there is no useful individual action beyond a weak precautionary preference
+not to site a bed directly against a high-current source; the population signal does not translate into a
+strong personal lever. EMF-protection clothing, stickers, and pendants are unvalidated against a harm that
+is not demonstrated at consumer RF, and some "blocker" stickers have been found to contain radioactive
+material — a real hazard introduced in the name of protection. **Verdict: consumer-RF harm not demonstrated
+(`cohort`, largely null); ELF-leukemia a real 2B-level association (`meta`); "dirty electricity"/EHS
+understudied with null provocation data (`anecdotal`); protection products NO-EVIDENCE and occasionally
+harmful.**
+
 
 ## 8. THE OPTIMIZATION CLUSTER — CGM for the healthy & "Blueprint"-style total tracking
 

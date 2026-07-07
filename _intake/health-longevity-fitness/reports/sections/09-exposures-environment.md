@@ -322,15 +322,21 @@ for 20 years:
 
 - **Vitamin D status** (a *predictor*, not a proven *lever* — supplementation didn't replicate the cohort benefit).
 - **Nitric oxide release** from skin on UVA exposure → modest blood-pressure lowering (mechanistic).
-- **Circadian / mood:** daytime bright-light exposure entrains the circadian clock and supports mood/sleep
-  (cross-link Domain I, sleep-circadian) — this is arguably the most consistent non-skin benefit.
+- **Circadian / mood:** daytime bright-light exposure entrains the circadian clock and supports mood and
+  sleep, and this is the most consistent non-skin benefit. Outdoor light delivers 1,000–100,000 lux versus
+  100–500 in a bright room, and light in the hours around waking advances the clock along a well-mapped
+  human phase-response curve (Khalsa 2003; Crowley & Eastman 2017). Two outcome-level extensions of the
+  same lever are worth naming: bright-light therapy is an established treatment for seasonal and a
+  moderate one for non-seasonal depression (`meta`; Tao 2019, Lee 2024), and added outdoor daylight in
+  childhood is the one randomized primary-prevention lever for myopia (`rct`; He 2015, ~9-point absolute
+  incidence reduction). Full treatment and grading in §05 §2.5.
 
 ### 5.4 Practical synthesis (not dogmatic)
 
 | Goal | Reasonable practice |
 |---|---|
 | Skin-cancer / photoaging | Avoid **burns**; sunscreen for prolonged/intense exposure; more caution with fair skin, high UV, midday |
-| Circadian / mood / "outdoorsiness" benefit | Get **regular, non-burning** daylight exposure (morning light especially); be outdoors |
+| Circadian / mood / myopia-prevention benefit | Get **regular, non-burning** daylight exposure, morning light especially; be outdoors. For children, outdoor time also lowers myopia onset (`rct`, §05 §2.5) |
 | The honest middle | **Sensible, sunburn-free sun exposure** beats both extremes — total avoidance carries its own cohort-level mortality signal; chronic burning causes cancer |
 
 The conflict (skin-cancer "avoid UV" vs. mortality "sun-avoidance is a risk factor") is real and is captured in

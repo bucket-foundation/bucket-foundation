@@ -1,0 +1,122 @@
+[
+  {
+    "id": "morning-light-phase-advance-entrainment",
+    "statement": "Bright light in the hours around habitual wake time advances and stabilizes the circadian clock via melanopsin/ipRGC->SCN signaling; human phase-response curves show advances when light falls after the core-body-temperature minimum and delays before bedtime. Outdoor light (1,000-100,000 lux) far exceeds indoor (100-500 lux).",
+    "claim_type": "mechanism",
+    "domain": "circadian-light",
+    "evidence_tier": "mechanistic",
+    "direction": "supports",
+    "effect_size": "Type-1 human PRC to single bright pulse, peak-to-trough amplitude ~5.0 h (Khalsa 2003, n=21); adolescent PRC same shape (Crowley & Eastman 2017).",
+    "population": "Healthy adults (n=21) and late/post-pubertal adolescents (n=14-17y) in laboratory phase-shift protocols",
+    "provenance": {
+      "primary": "Khalsa SB, Jewett ME, Cajochen C, Czeisler CA - 'A phase response curve to single bright light pulses in human subjects', J Physiol 2003; Crowley SJ, Eastman CI - 'Human Adolescent Phase Response Curves to Bright White Light', J Biol Rhythms 2017",
+      "doi": "10.1113/jphysiol.2003.040477",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "12717008"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Settled photobiology; the mechanistic basis of the 'get morning light' instruction. Mechanism (entrainment), not by itself a disease outcome. Cross-ref I-claims light-melatonin-action-spectrum, J-claims huberman-morning-light-circadian. Grade: mechanistic.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "morning-light-office-sleep-mood-field",
+    "statement": "In real-world office workers, higher circadian-effective light in the morning is associated with shorter sleep-onset latency (especially in winter), stronger circadian entrainment, and better sleep quality; high all-day exposure tracks with lower depression scores.",
+    "claim_type": "outcome",
+    "domain": "circadian-light",
+    "evidence_tier": "cross-sectional",
+    "direction": "supports",
+    "effect_size": "Field dosimetry associations (not randomized); n=109, calibrated circadian-light device, 7-day exposure with self-reported sleep/mood.",
+    "population": "109 office workers in 5 US GSA buildings, measured in winter and summer",
+    "provenance": {
+      "primary": "Figueiro MG, Steverson B, Heerwagen J et al. - 'The impact of daytime light exposures on sleep and mood in office workers', Sleep Health 2017",
+      "doi": "10.1016/j.sleh.2017.03.005",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "28526259"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Real-world signal consistent with the entrainment mechanism, but observational/unrandomized. Grade: cross-sectional.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "bright-light-therapy-SAD-established",
+    "statement": "Bright light therapy (~10,000 lux, ~30 min, morning) is an effective, established treatment for seasonal affective disorder.",
+    "claim_type": "outcome",
+    "domain": "circadian-light",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "19 RCTs; depression SMD -0.37 (95%CI -0.63 to -0.12); response RR 1.42 (1.08-1.85). Moderate heterogeneity, moderate-high risk of bias.",
+    "population": "Adults with seasonal affective disorder across 19 randomized trials",
+    "provenance": {
+      "primary": "Tao L, Jiang R, Zhang K et al. - 'The Efficacy of Light Therapy in the Treatment of Seasonal Affective Disorder: A Meta-Analysis of RCTs', Psychother Psychosom 2019; Cochrane review Nussbaumer-Streit 2015 (CD011269)",
+      "doi": "10.1159/000502891",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "31574513"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "First-line for SAD. Effect from small heterogeneous trials. Grade: meta.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "bright-light-therapy-nonseasonal-mdd-moderate",
+    "statement": "Bright light therapy has a moderate antidepressant effect in non-seasonal major depressive disorder, as monotherapy or adjunct; the effect tracks light intensity/broad-spectrum rather than 'blue' wavelength specifically.",
+    "claim_type": "outcome",
+    "domain": "circadian-light",
+    "evidence_tier": "meta",
+    "direction": "supports",
+    "effect_size": "15 RCTs, 883 patients, SMD 0.48 (95%CI 0.22-0.74), p<.001; stronger with >=60 min/day. Blue-specific meta (Bais 2022, 9 RCTs n=347) found NO advantage of blue over control.",
+    "population": "Adults with non-seasonal MDD across 15 randomized trials",
+    "provenance": {
+      "primary": "Lee HK et al. - 'The effect of bright light therapy on major depressive disorder: SR and meta-analysis of RCTs', Asian J Psychiatr 2024; Bais B et al. - Blue-Light Therapy meta, Can J Psychiatry 2022",
+      "doi": "10.1016/j.ajp.2024.104149",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "39067131"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Moderate effect for non-seasonal MDD. 'Blue light' therapeutic framing outruns evidence; intensity matters. Grade: meta.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "cortisol-awakening-response-circadian-gated",
+    "statement": "The cortisol awakening response is real and modulated by the circadian system independent of sleep; the popular claim that a single morning light exposure acutely augments it rests on thin direct evidence, with the defensible link being indirect via clock entrainment setting cortisol timing.",
+    "claim_type": "mechanism",
+    "domain": "circadian-light",
+    "evidence_tier": "mechanistic",
+    "direction": "mixed",
+    "effect_size": "Forced-desynchrony lab study (n=34) shows CAR magnitude varies with circadian phase independent of behavior; no clean RCT shows acute morning-light augmentation of CAR.",
+    "population": "34 healthy adults in dim-light forced-desynchrony circadian protocols",
+    "provenance": {
+      "primary": "Gibbs M, Shea SA et al. - 'The circadian system modulates the cortisol awakening response in humans', Front Neurosci 2022",
+      "doi": "10.3389/fnins.2022.995452",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "36408390"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "CAR is circadian-gated (real). Acute light-boost framing not established. Grade: mechanistic.",
+    "added_on": "2026-07-07"
+  },
+  {
+    "id": "outdoor-daylight-childhood-myopia-prevention",
+    "statement": "Adding outdoor daylight time in childhood reduces the incidence of new myopia; a cluster-RCT adding 40 min/day of outdoor class time over 3 years lowered incidence to 30.4% vs 39.5% (control). Mechanism is bright-light-driven retinal dopamine slowing axial elongation. Effect is on onset; progression in already-myopic children is better addressed by low-dose atropine and myopia-control optics.",
+    "claim_type": "outcome",
+    "domain": "circadian-light",
+    "evidence_tier": "rct",
+    "direction": "supports",
+    "effect_size": "He 2015 cluster-RCT: 3-year incidence 30.4% vs 39.5% (~9pp absolute reduction). Meta Xiong 2017: incident-myopia RR 0.54 (trials). Meta Cao 2019: RR 0.66 (0.49-0.89), myopic-shift slower 0.13 D/y.",
+    "population": "School-aged children (primary schools, Guangzhou China) and meta-analytic child cohorts",
+    "provenance": {
+      "primary": "He M et al. - 'Effect of Time Spent Outdoors at School on the Development of Myopia Among Children in China: A RCT', JAMA 2015; Xiong 2017 Acta Ophthalmol; Cao 2019 Optom Vis Sci",
+      "doi": "10.1001/jama.2015.10803",
+      "surfaced_via": "PubMed E-utilities (light/circadian/EMF verification wave)",
+      "pmid": "26372583"
+    },
+    "conflicts_with": [],
+    "canon_link": "",
+    "confidence_notes": "Strongest outcome-level result in the light cluster. Onset prevention, not progression. Cross-ref surface-sensory-claims outdoor-time-prevents-childhood-myopia, Section 11/27. Grade: rct.",
+    "added_on": "2026-07-07"
+  }
+]
