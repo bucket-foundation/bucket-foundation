@@ -26,6 +26,11 @@ mkdir -p "$WORK"
 
 echo "[$(date -Iseconds)] sacred-history analysis: BEGIN" | tee -a "$LOG"
 
+# 0. Rights gate (bkt-npa) — fail closed. spec/rights.json must validate
+#    against RIGHTS-POLICY.md invariants before any content is processed.
+echo "[$(date -Iseconds)] step 0/4: rights-check (spec/rights.json gate)" | tee -a "$LOG"
+python3 "$TOOLS/rights-check.py" validate 2>&1 | tee -a "$LOG"
+
 # 1. Index (FTS5 + vectors)
 echo "[$(date -Iseconds)] step 1/4: build-index" | tee -a "$LOG"
 python3 "$TOOLS/build-index.py" 2>&1 | tee -a "$LOG"

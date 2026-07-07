@@ -148,3 +148,41 @@ Applied here:
 - [ ] Every node's `rights` block is complete (tier, basis, license, holder, url, coi_review).
 - [ ] No PII, no raw scrapes of paywalled translation sites, no zips of restricted text (mirrors AGFarms gdrive rules).
 - [ ] Ambiguous rights → `_intake/`, not `traditions/`. When in doubt, leave it out.
+
+## 6. Machine-checkable gate (`rights.json` + `rights-check.py`) — bkt-npa
+
+The prose above is binding; `spec/rights.json` is its **machine-readable
+codification** and the artifact every runner and downstream tool reads
+BEFORE writing bytes. It enumerates all 44 inventoried sources from
+`SOURCES.md` with, per source: `tier` (`A` / `B` / `per-item`),
+`full_text_allowed`, `license`, `nc_present`, `manuscript_provenance`,
+`images_excluded`, `phase1_live`, and `default_on_absence`.
+
+`tools/rights-check.py` is the enforcement half:
+
+```bash
+# validate rights.json against the §2/§5 invariants (fail-closed; CI + run-all.sh step 0)
+python3 tools/rights-check.py validate
+
+# classify one edition -> exit 0 = Tier A (full text), 10 = Tier B / metadata-only,
+# 20 = per-item (read upstream license at fetch time)
+python3 tools/rights-check.py classify suttacentral            # -> Tier A
+python3 tools/rights-check.py classify cbeta                   # -> Tier B (NC)
+python3 tools/rights-check.py classify sefaria                 # -> per-item
+python3 tools/rights-check.py classify sefaria --license cc-by-nc   # per-item edition read as NC -> Tier B
+python3 tools/rights-check.py classify digivatlib --images     # image bytes -> always metadata-only
+```
+
+The validator enforces, mechanically: license-class → tier consistency,
+**NC is never Tier A**, Tier B is metadata-only, **images are excluded for
+every source**, live sources never resolve to a hard Tier B, and
+`default_on_absence` is always `metadata-only`. It is wired as **step 0 of
+`tools/run-all.sh`** (`set -euo pipefail` → the pipeline aborts if rights.json
+ever drifts out of policy).
+
+**This machine gate does NOT remove any live guard.** `PD_OPEN_LIVE=1` and
+`TIER_B_GUARD=1` in the mirror runner are independent controls; delivering
+`rights.json` satisfies the bkt-npa deliverable and gives the runner a
+canonical source of truth, and Tier-B (copyrighted / NC / unclear) stays
+gated until a documented per-source rights change is logged in
+`CORPUS_INDEX.md` / `DECISIONS.md`.
