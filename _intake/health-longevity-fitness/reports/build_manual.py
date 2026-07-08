@@ -138,39 +138,86 @@ def _math_svg(tex, display):
     tex=tex.strip()
     key=(tex,display)
     if key in _MATH_CACHE: return _MATH_CACHE[key]
-    fs = 12.5 if display else 9.6                  # body font ~9.35pt
+    out=_latex_svg(tex, display)                   # real LaTeX + mhchem (\ce{}) → dvisvgm SVG
+    if out is None: out=_mpl_svg(tex, display)     # matplotlib mathtext fallback
+    if out is None: out=f'<code class="matherr">{_html.escape(tex)}</code>'
+    _MATH_CACHE[key]=out; return out
+
+import os as _os, subprocess as _sp, tempfile as _tf, shutil as _sh, glob as _glob
+_LATEX_PREAMBLE=(r"\documentclass[12pt]{article}"
+    r"\usepackage{amsmath}\usepackage[version=3]{mhchem}"
+    r"\usepackage[active,tightpage,displaymath,textmath]{preview}"
+    r"\pagestyle{empty}\begin{document}")
+_HAS_LATEX=bool(_sh.which("latex") and _sh.which("dvisvgm"))
+def _latex_svg(tex, display):
+    if not _HAS_LATEX: return None
+    body=f"\\[{tex}\\]" if display else f"\\({tex}\\)"
+    doc=_LATEX_PREAMBLE+"\n\\begin{preview}\n"+body+"\n\\end{preview}\n\\end{document}\n"
+    d=_tf.mkdtemp(prefix="mtex_")
+    try:
+        open(_os.path.join(d,"m.tex"),"w").write(doc)
+        _env=dict(_os.environ)                     # add vendored mhchem/chemgreek to the tex search path
+        _vtex=_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),"texmf","tex","latex")
+        _env["TEXINPUTS"]=f".:{_vtex}//:"+_env.get("TEXINPUTS","")
+        r=_sp.run(["latex","-interaction=nonstopmode","-halt-on-error","m.tex"],
+                  cwd=d,capture_output=True,text=True,timeout=30,env=_env)
+        if not _os.path.exists(_os.path.join(d,"m.dvi")): return None
+        # depth (below baseline) from preview log: "Preview: Snippet N ht dp wd" (sp; 65536/pt)
+        depth_pt=0.0
+        for ln in r.stdout.splitlines():
+            if ln.startswith("Preview: Snippet"):
+                p=ln.split();
+                if len(p)>=5:
+                    try: depth_pt=int(p[4])/65536.0
+                    except ValueError: pass
+        sv=_sp.run(["dvisvgm","--no-fonts","--exact","--bbox=preview","-o","m.svg","m.dvi"],
+                   cwd=d,capture_output=True,text=True,timeout=30)
+        sp=_os.path.join(d,"m.svg")
+        if not _os.path.exists(sp): return None
+        svg=open(sp,"rb").read()
+        b64=_b64.b64encode(svg).decode()
+        m=re.search(rb"height='([\d.]+)pt'",svg); h_pt=float(m.group(1)) if m else 12.0
+        scale=(12.5 if display else 9.35)/12.0     # doc is 12pt; target body ~9.35pt / display 12.5
+        if display:
+            return f'<span class="matheq-d"><img src="data:image/svg+xml;base64,{b64}" alt="{_html.escape(tex)}"/></span>'
+        va=-depth_pt*scale
+        return (f'<img class="matheq-i" style="height:{h_pt*scale:.2f}pt;vertical-align:{va:.2f}pt" '
+                f'src="data:image/svg+xml;base64,{b64}" alt="{_html.escape(tex)}"/>')
+    except Exception:
+        return None
+    finally:
+        _sh.rmtree(d, ignore_errors=True)
+
+def _mpl_svg(tex, display):
+    fs = 12.5 if display else 9.6
     try:
         fig=_MFig(); fig.patch.set_alpha(0.0)
         t=fig.text(0.0,0.0,f"${tex}$",fontsize=fs)
         can=_MCanvas(fig); r=can.get_renderer()
-        bb=t.get_window_extent(r)                  # baseline at y=0: y0<0 descent, y1>0 ascent
-        depth_pt=(-bb.y0)*72.0/fig.dpi
-        buf=_io.BytesIO()
-        fig.savefig(buf,format="svg",bbox_inches="tight",pad_inches=0.004,transparent=True)
+        bb=t.get_window_extent(r); depth_pt=(-bb.y0)*72.0/fig.dpi
+        buf=_io.BytesIO(); fig.savefig(buf,format="svg",bbox_inches="tight",pad_inches=0.004,transparent=True)
         svg=_b64.b64encode(buf.getvalue()).decode()
         if display:
-            out=f'<span class="matheq-d"><img src="data:image/svg+xml;base64,{svg}" alt="{_html.escape(tex)}"/></span>'
-        else:
-            out=(f'<img class="matheq-i" style="vertical-align:-{depth_pt:.2f}pt" '
-                 f'src="data:image/svg+xml;base64,{svg}" alt="{_html.escape(tex)}"/>')
+            return f'<span class="matheq-d"><img src="data:image/svg+xml;base64,{svg}" alt="{_html.escape(tex)}"/></span>'
+        return (f'<img class="matheq-i" style="vertical-align:-{depth_pt:.2f}pt" '
+                f'src="data:image/svg+xml;base64,{svg}" alt="{_html.escape(tex)}"/>')
     except Exception:
-        out=f'<code class="matherr">{_html.escape(tex)}</code>'   # visible fallback, never crash
-    _MATH_CACHE[key]=out; return out
+        return None
 
 def render_math(h):
     # pandoc emits <span class="math display">$$ TEX $$</span> and <span class="math inline">\( TEX \)</span>
     def disp(m): return _math_svg(m.group(1), True)
     def inl(m):  return _math_svg(m.group(1), False)
-    h=re.sub(r'<span class="math display">\s*\$\$(.*?)\$\$\s*</span>', disp, h, flags=re.S)
-    h=re.sub(r'<span class="math display">\s*\\\[(.*?)\\\]\s*</span>', disp, h, flags=re.S)
-    h=re.sub(r'<span class="math inline">\s*\\\((.*?)\\\)\s*</span>',  inl,  h, flags=re.S)
-    h=re.sub(r'<span class="math inline">\s*\$(.*?)\$\s*</span>',      inl,  h, flags=re.S)
+    h=re.sub(r'<span\s+class="math display">\s*\$\$(.*?)\$\$\s*</span>', disp, h, flags=re.S)
+    h=re.sub(r'<span\s+class="math display">\s*\\\[(.*?)\\\]\s*</span>', disp, h, flags=re.S)
+    h=re.sub(r'<span\s+class="math inline">\s*\\\((.*?)\\\)\s*</span>',  inl,  h, flags=re.S)
+    h=re.sub(r'<span\s+class="math inline">\s*\$(.*?)\$\s*</span>',      inl,  h, flags=re.S)
     return h
 
 def pandoc(md_path):
     out = subprocess.run(["pandoc",
                           "-f","markdown+pipe_tables+backtick_code_blocks+tex_math_single_backslash-citations-tex_math_dollars",
-                          "-t","html5","--no-highlight", md_path], capture_output=True, text=True)
+                          "-t","html5","--mathjax","--no-highlight", md_path], capture_output=True, text=True)
     if out.returncode!=0: raise RuntimeError(f"pandoc failed on {md_path}: {out.stderr[:300]}")
     h = out.stdout
     # drop the first <h1>...</h1> (we render our own chapter header)
