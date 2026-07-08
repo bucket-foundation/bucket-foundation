@@ -67,7 +67,8 @@ open(meta, "w").write(
 
 out = os.path.join(HERE, "manual.epub")
 cmd = ["pandoc", combined,
-       "-f", "markdown+pipe_tables+backtick_code_blocks-citations-yaml_metadata_block",
+       "-f", "markdown+pipe_tables+backtick_code_blocks+tex_math_single_backslash-citations-yaml_metadata_block-tex_math_dollars",
+       "--mathml",  # EPUB3 readers render MathML natively (reflowable, unlike the PDF's SVG)
        "-o", out, "--metadata-file", meta, "--toc", "--toc-depth=1",
        "--split-level=1", "--standalone"]
 r = subprocess.run(cmd, cwd=HERE, capture_output=True, text=True)
