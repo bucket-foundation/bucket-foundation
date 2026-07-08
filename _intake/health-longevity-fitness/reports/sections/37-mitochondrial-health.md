@@ -62,7 +62,7 @@ A mitochondrion is **two membranes and two spaces**, and the geometry is functio
   It is the organelle's border with the cytosol and the platform on which the fission/fusion machinery
   (§37.4) and much of the apoptosis decision (cytochrome-c release) play out.
 - **Intermembrane space (IMS)** — the thin gap that *is* the proton reservoir. This is the
-  high-[H⁺] side of the chemiosmotic gradient; cytochrome c lives here.
+  high-[\(\mathrm{H^{+}}\)] side of the chemiosmotic gradient; cytochrome c lives here.
 - **Inner membrane (IMM)** — the ion-impermeable sheet across which the whole law of canon
   `chemiosmosis-proton-motive-force.md` runs. It carries an unusual lipid, **cardiolipin** (a
   four-tail diphosphatidylglycerol found almost nowhere else), which physically scaffolds the ETC
@@ -75,7 +75,7 @@ A mitochondrion is **two membranes and two spaces**, and the geometry is functio
   Cristae density and shape track bioenergetic capacity directly — they tighten under energy demand
   and balloon/fragment in dysfunction. When the foundations chapter says training "adds cristae
   surface area," this is the structure it means.
-- **Matrix** — the innermost compartment, the low-[H⁺] side, holding the Krebs-cycle enzymes
+- **Matrix** — the innermost compartment, the low-[\(\mathrm{H^{+}}\)] side, holding the Krebs-cycle enzymes
   (§2.4), the mtDNA, mitochondrial ribosomes, and the machinery that makes the organelle's own
   handful of proteins.
 
@@ -90,13 +90,13 @@ The foundations chapter treated Complexes I–IV as a single "chain." At depth t
 matter for both ROS (reactive oxygen species — reactive by-products of respiration that double as
 signals) biology and pharmacology:
 
-| Complex | Name | Pumps H⁺? | Notes that matter downstream |
+| Complex | Name | Pumps \(\mathrm{H^{+}}\)? | Notes that matter downstream |
 |---|---|---|---|
-| **I** | NADH:ubiquinone oxidoreductase | **Yes** (4 H⁺) | The largest complex; accepts electrons from **NADH**. A **principal site of ROS production**, especially on *reverse electron transport* (RET) when the gradient is high and the CoQ pool reduced. **Metformin** mildly inhibits Complex I — that is the root of its AMPK story (`12-mechanism-bridge.md` row 20). |
-| **II** | Succinate dehydrogenase | No | The only ETC complex that is *also* a Krebs-cycle enzyme; feeds electrons from **FADH₂/succinate** into the CoQ pool without pumping protons. Succinate accumulation (e.g. after ischemia) drives the RET-ROS burst behind reperfusion injury. |
+| **I** | NADH:ubiquinone oxidoreductase | **Yes** (4 \(\mathrm{H^{+}}\)) | The largest complex; accepts electrons from **NADH**. A **principal site of ROS production**, especially on *reverse electron transport* (RET) when the gradient is high and the CoQ pool reduced. **Metformin** mildly inhibits Complex I — that is the root of its AMPK story (`12-mechanism-bridge.md` row 20). |
+| **II** | Succinate dehydrogenase | No | The only ETC complex that is *also* a Krebs-cycle enzyme; feeds electrons from **\(\mathrm{FADH_{2}}\)/succinate** into the CoQ pool without pumping protons. Succinate accumulation (e.g. after ischemia) drives the RET-ROS burst behind reperfusion injury. |
 | **III** | Cytochrome bc₁ | **Yes** (via Q-cycle) | Hands electrons from reduced CoQ to cytochrome c; the **Q-cycle** is a second major ROS site. Target of antimycin. |
-| **IV** | Cytochrome c oxidase | **Yes** | The terminal step: passes electrons to **O₂**, reducing it to water. This is *why you breathe* — O₂ is the final electron acceptor. Inhibited by cyanide, carbon monoxide; **methylene blue and low-dose near-infrared light both interact here** (§37.7, §37.8). |
-| **V** | ATP synthase (F₁F₀) | Runs H⁺ *back* | Not a pump but the turbine: protons flowing down the gradient spin the rotor and force ADP + Pᵢ → ATP. Structurally confirmed rotary motor (Boyer/Walker, Nobel 1997 — canon proof chain). |
+| **IV** | Cytochrome c oxidase | **Yes** | The terminal step: passes electrons to **\(\mathrm{O_{2}}\)**, reducing it to water. This is *why you breathe* — \(\mathrm{O_{2}}\) is the final electron acceptor. Inhibited by cyanide, carbon monoxide; **methylene blue and low-dose near-infrared light both interact here** (§37.7, §37.8). |
+| **V** | ATP synthase (F₁F₀) | Runs \(\mathrm{H^{+}}\) *back* | Not a pump but the turbine: protons flowing down the gradient spin the rotor and force ADP + Pᵢ → ATP. Structurally confirmed rotary motor (Boyer/Walker, Nobel 1997 — canon proof chain). |
 
 @@FIG:complex-I-etc,complex-II-sdh@@
 
@@ -116,12 +116,12 @@ quality" is real and structural.
 
 ### 37.2.3 — The proton-motive force (cross-reference, not re-derivation)
 
-Everything above exists to do one thing: build and spend **Δp**, the proton-motive force. The law,
-its formula (`Δp = Δψ − (2.303RT/F)·ΔpH`), its proof chain (Mitchell 1961 → Mitchell & Moyle 1965–69 →
+Everything above exists to do one thing: build and spend **\(\Delta p\)**, the proton-motive force. The law,
+its formula (\(\Delta p = \Delta\psi - \frac{2.303\,RT}{F}\,\Delta\mathrm{pH}\)), its proof chain (Mitchell 1961 → Mitchell & Moyle 1965–69 →
 Boyer/Walker 1993–94), and its foundation-tier status are stated once and definitively in the canon
 node `bucket-canon/05-biophysics/concepts/chemiosmosis-proton-motive-force.md` and summarized in
 `01-foundations.md` §2.2–2.3. **This chapter does not re-derive it.** What it adds is the practical
-consequence: **Δψ (the membrane potential) is itself a health readout.** A polarized inner membrane
+consequence: **\(\Delta\psi\) (the membrane potential) is itself a health readout.** A polarized inner membrane
 (~150–180 mV, negative inside) is the signature of a functional mitochondrion; its *collapse* is the
 trigger that PINK1/Parkin read to mark a mitochondrion for destruction (§37.4.2). Membrane potential is
 the bridge between "the gradient is real" (canon) and "the cell knows which mitochondria to keep"
@@ -228,7 +228,7 @@ collaborators:
 
 1. In a *healthy* mitochondrion, the kinase **PINK1** is imported across the polarized inner membrane
    and immediately degraded — so it never accumulates.
-2. When a mitochondrion **loses membrane potential (Δψ collapses)** — the readout from §37.2.3 —
+2. When a mitochondrion **loses membrane potential (\(\Delta\psi\) collapses)** — the readout from §37.2.3 —
    import stalls, and PINK1 accumulates on the *outer* membrane instead.
 3. Accumulated PINK1 phosphorylates ubiquitin and recruits/activates the E3 ligase **Parkin**, which
    coats the outer membrane in ubiquitin chains.
@@ -236,7 +236,7 @@ collaborators:
    autophagosome → lysosomal destruction.
 
 The elegance is that **membrane potential is the honesty signal**: only a mitochondrion that has
-*failed* the chemiosmotic test gets marked. This is the canon law (Δp) being used by the cell as a
+*failed* the chemiosmotic test gets marked. This is the canon law (\(\Delta p\)) being used by the cell as a
 quality gate — a direct line from `chemiosmosis-proton-motive-force.md` to organelle turnover.
 
 The disease relevance is stark: **PINK1 and PARKIN (PARK2) are mutated in autosomal-recessive
@@ -260,7 +260,7 @@ and it has a single master regulator: **PGC-1α** (peroxisome-proliferator-activ
 coactivator-1α), a transcriptional *co-activator* that the mechanism bridge (`12-mechanism-bridge.md`
 §12.3.1) already traced. The cascade:
 
-> **Proximate signals** (↑AMP:ATP via **AMPK**, Ca²⁺ transients via **CaMK**, transient **ROS**,
+> **Proximate signals** (↑AMP:ATP via **AMPK**, \(\mathrm{Ca^{2+}}\) transients via **CaMK**, transient **ROS**,
 > ↓NAD⁺ via **SIRT1** deacetylation) → **PGC-1α** activation/expression → co-activation of **NRF1/NRF2**
 > (nuclear respiratory factors) and **ERRα** → induction of nuclear-encoded ETC subunits **and**
 > **TFAM** (mitochondrial transcription factor A) → TFAM drives **mtDNA replication and transcription**
@@ -293,7 +293,7 @@ The foundations chapter introduced this (§2.6) and the mechanism bridge formali
 @@FIG:BP02-ultraweak-photon-emission@@
 
 Denham Harman's **free-radical theory of aging** (1956, figure `harman`): the ETC leaks
-electrons to O₂, forming **reactive oxygen species** (superoxide → H₂O₂ → hydroxyl radical); ROS
+electrons to \(\mathrm{O_{2}}\), forming **reactive oxygen species** (superoxide → \(\mathrm{H_{2}O_{2}}\) → hydroxyl radical); ROS
 damage lipids, proteins, and mtDNA; damage accumulates; you age. The naive therapeutic corollary —
 *swallow antioxidants to mop up ROS and slow aging* — dominated supplement marketing for fifty years.
 
@@ -409,7 +409,7 @@ unproven.**
 | **HIIT / intervals** | **Biogenesis** (++) | Same PGC-1α axis, stronger per-minute + β-adrenergic | **`meta`** (surrogate: VO₂max) | Drives strong biogenesis too — *Zone-2-is-uniquely-optimal is an over-extrapolation* (`conflict-zone2-optimal-mito`). Time-efficient; complements, doesn't replace, Zone 2. |
 | **Resistance training** | Biogenesis (+), mostly hypertrophy | mTORC1/MPS (`12-mechanism-bridge` §12.3.2) | **`meta`** (mortality) | Less mitochondrial than aerobic, but protects against sarcopenia (the tissue where mito decline shows). Pair with aerobic. |
 | **Fasting / CR / TRE** | **Mitophagy + fusion + biogenesis** | AMPK↑/mTOR↓ → autophagy; fusion under scarcity (§37.4) | **`rct`** surrogate; human longevity unproven | Real mechanism, mostly-calorie-mediated outcomes (`conflict-tre-efficacy-vs-cr`). Triggers the *clearance* dial that exercise triggers less. |
-| **Cold exposure** | **Uncoupling + mitohormesis + biogenesis** | NE→β3→UCP1 proton leak; transient ROS (`12-mechanism-bridge` §12.3.5, row 9) | **`rct`** surrogate (prolonged *mild* cold) | UCP1 thermogenesis is the textbook proof Δp is real. Outcome data are on *prolonged mild* cold, **not** brief plunges (`conflict` protocol mismatch). |
+| **Cold exposure** | **Uncoupling + mitohormesis + biogenesis** | NE→β3→UCP1 proton leak; transient ROS (`12-mechanism-bridge` §12.3.5, row 9) | **`rct`** surrogate (prolonged *mild* cold) | UCP1 thermogenesis is the textbook proof \(\Delta p\) is real. Outcome data are on *prolonged mild* cold, **not** brief plunges (`conflict` protocol mismatch). |
 | **Heat / sauna** | Proteostasis (HSP), some mito remodeling | HSF1→HSP70/90 (`12-mechanism-bridge` §12.3.5) | **`cohort`** (healthy-user bias) | More a proteostasis lever than a mitochondrial one; mitochondrial claims are secondary/weaker. |
 | **Sleep** | Repair + clearance (permissive) | Glymphatic, GH pulse, redox reset (`12-mechanism-bridge` §12.3.6) | **`rct`/`mechanistic`** | Permissive substrate: the "repair the damage" half of the mitohormesis bargain. Not a biogenesis trigger but required for the others to pay off. |
 | **Sunlight / red & near-infrared light (PBM)** | Possible Complex-IV modulation | NIR (~660–850 nm) absorbed by cytochrome c oxidase (Cx IV) → ↑activity (in vitro/animal) | **`mechanistic`/small `rct`** (narrow) | **Honest narrow evidence.** Real photobiology at Cx IV; human outcome data are small, heterogeneous, indication-specific (skin, some muscle-recovery, retinal). Not a validated general "mitochondrial booster." Grade as promising-but-thin, not established. |
@@ -442,7 +442,7 @@ graded on the *outcome* axis.
 | **CoQ10 / ubiquinol** | ETC electron carrier (Cx I/II→III); antioxidant | **Q-SYMBIO** (Mortensen, *JACC HF* 2014): 300 mg/d ↓MACE (major adverse cardiovascular events) & all-cause mortality in moderate-severe HF (HR ~0.5, i.e. roughly halved) | **`rct`** (in HF) | **Real — HF / deficiency only.** (detail below) |
 | **PQQ (pyrroloquinoline quinone)** | Claimed PGC-1α/biogenesis activation; redox cofactor | Small trials: cognition (Itoh 2016; 2023), mito biomarkers, modest aerobic markers in untrained men (2020) | **`mechanistic`/small `rct`** | **Weak; not established.** (detail below) |
 | **Urolithin A / Mitopure** | **Mitophagy induction** (§37.4.2) | Andreux 2019 (safe, molecular signature); Singh 2022 *JAMA Netw Open* (older adults, muscle endurance/mito gene-expression); Liu 2022 *Cell Rep Med* (middle-aged, ~+12% strength); Nat Aging 2025 (immune markers) | **`rct`** (surrogate-heavy, modest) | **Best-evidenced mitophagy supplement — still modest.** (detail below) |
-| **MitoQ (mitoquinol)** | Mito-targeted antioxidant (CoQ + TPP⁺ cation, concentrates in matrix) | Rossman 2018 (*Hypertension*): ↑brachial FMD ~42% in older adults; exercise trials **mixed** (peak power yes, mito content no) | **small `rct`** (mixed, surrogate) | **Mixed; unproven for general use.** (detail below) |
+| **MitoQ (mitoquinol)** | Mito-targeted antioxidant (CoQ + \(\mathrm{TPP^{+}}\) cation, concentrates in matrix) | Rossman 2018 (*Hypertension*): ↑brachial FMD ~42% in older adults; exercise trials **mixed** (peak power yes, mito content no) | **small `rct`** (mixed, surrogate) | **Mixed; unproven for general use.** (detail below) |
 | **NAD⁺ precursors (NR / NMN)** | Sirtuin substrate + ETC redox cofactor | Raise blood NAD⁺ ~60%; **no powered human hard endpoint** | **`partial`** (surrogate only) | **Mechanism real, outcome absent.** Cross-ref `thread-nad-redox.md`, `12-mechanism-bridge` row 24 — "the foundation most aggressively laundered into an unproven outcome." |
 | **Creatine** | **Phosphocreatine ATP buffer** (creatine kinase) | Meta-analyses: ↑strength/power w/ training; cognition under stress `partial` | **`meta`** | **Real.** One of the few where mechanism *and* outcome both hold. Not "mitochondrial biogenesis" — it's instantaneous ATP rebuffering (§energy layer, `12-mechanism-bridge` §12.3.11). |
 | **Acetyl-L-carnitine (ALCAR)** | Fatty-acid transport into matrix (carnitine shuttle); acetyl donor | Modest signals in diabetic neuropathy & geriatric depression; thin for healthy | **small `rct`** (indication-specific) | **Narrow.** Real biochemistry (carnitine shuttle), real in specific deficiency/clinical contexts; not a validated general booster. |
@@ -481,7 +481,7 @@ tells you how thin the category is. Verdict: legitimately promising, worth watch
 outcome; the marketing ("the mitophagy supplement") outruns the trials.
 
 **MitoQ — clever, mixed.** Developed by **Michael P. Murphy** (MRC Mitochondrial Biology Unit) and Robin
-Smith: CoQ conjugated to a lipophilic **triphenylphosphonium (TPP⁺)** cation so it accumulates
+Smith: CoQ conjugated to a lipophilic **triphenylphosphonium (\(\mathrm{TPP^{+}}\))** cation so it accumulates
 hundreds-fold inside the negatively-charged matrix — an elegant targeting trick. Rossman 2018
 (*Hypertension*) showed a real improvement in endothelial function (FMD) in older adults; exercise and
 redox trials are **inconsistent** (some peak-power benefit, no change in mitochondrial content or muscle
@@ -538,19 +538,19 @@ frontier.)
 Pull every thread of this chapter back to the canon law and the corpus's central claim becomes
 concrete rather than rhetorical. The node `chemiosmosis-proton-motive-force.md` states a *law*: living
 cells transduce energy by pumping protons across a thin ion-impermeable membrane, storing free energy
-as **Δp** and spending it through ATP synthase. This chapter has shown that **Δp is not just how the
+as **\(\Delta p\)** and spending it through ATP synthase. This chapter has shown that **\(\Delta p\) is not just how the
 cell makes ATP — it is the variable the cell uses to organize its own quality, and the variable disease
 and aging degrade:**
 
-- **Δψ is the quality-control signal** (§37.4.2): PINK1/Parkin destroy exactly the mitochondria whose
-  Δp has collapsed — the cell curates itself *by the canon law.*
-- **Cristae maximize Δp-generating surface** (§37.2.1); biogenesis (PGC-1α) builds more of it (§37.4.3)
+- **\(\Delta\psi\) is the quality-control signal** (§37.4.2): PINK1/Parkin destroy exactly the mitochondria whose
+  \(\Delta p\) has collapsed — the cell curates itself *by the canon law.*
+- **Cristae maximize \(\Delta p\)-generating surface** (§37.2.1); biogenesis (PGC-1α) builds more of it (§37.4.3)
   — exercise is the one clean, human, *interventional* handle (Holloszy).
-- **ROS leak is the adaptive signal** (§37.5) that triggers the biogenesis expanding Δp capacity — a
+- **ROS leak is the adaptive signal** (§37.5) that triggers the biogenesis expanding \(\Delta p\) capacity — a
   loop antioxidants break.
-- **UCP1 dissipates Δp as heat** (§37.7, cold) — respiration and phosphorylation are *separable*,
+- **UCP1 dissipates \(\Delta p\) as heat** (§37.7, cold) — respiration and phosphorylation are *separable*,
   joined only by the gradient. Mitchell, made visible.
-- **Primary mitochondrial disease degrades Δp genetically** (§37.9); highest-current tissues fail first
+- **Primary mitochondrial disease degrades \(\Delta p\) genetically** (§37.9); highest-current tissues fail first
   — the master-variable thesis as a clinical phenotype.
 
 So when the foundations chapter claimed bioenergetic capacity is *the* master variable, this chapter is

@@ -82,7 +82,7 @@ Inside each mitochondrion, the food you eat is stripped of high-energy electrons
 are fed into the **electron transport chain (ETC)** — a series of protein complexes embedded in the
 inner mitochondrial membrane (Complexes I–IV). As electrons hop down the chain from one carrier to
 the next, each step releases a little energy. Crucially, that energy is not captured as a chemical
-bond directly. It is used to **pump protons (H⁺) across the inner membrane**, from the matrix to the
+bond directly. It is used to **pump protons (\(\mathrm{H^{+}}\)) across the inner membrane**, from the matrix to the
 intermembrane space.
 
 ### 2.2 Chemiosmosis and the proton-motive force — the law
@@ -92,11 +92,11 @@ mainstream that searched for over a decade for a "high-energy chemical intermedi
 exist — that the energy released by the ETC is stored as an **electrochemical proton gradient across
 a membrane**, and that this gradient is what drives ATP synthesis. This is the **chemiosmotic
 hypothesis**, and it earned the (rare, unshared) 1978 Nobel in Chemistry. The experimental proof —
-measuring the proton-translocation stoichiometries (H⁺/O, H⁺/ATP) and the gradient itself — was done
+measuring the proton-translocation stoichiometries (\(\mathrm{H^{+}}\)/O, \(\mathrm{H^{+}}\)/ATP) and the gradient itself — was done
 with **Jennifer Moyle** at the Glynn Research Institute; the canon cards both, correcting
 the Nobel's single-name attribution exactly as it does for Franklin.
 
-The stored energy is called the **proton-motive force (Δp)**, and it has two components — an
+The stored energy is called the **proton-motive force (\(\Delta p\))**, and it has two components — an
 electrical one and a chemical (pH) one:
 
 \[
@@ -104,7 +104,7 @@ electrical one and a chemical (pH) one:
 \]
 
 You can skip the equation — the idea is just *voltage plus a pH difference across a membrane*.
-(`Δψ` is the voltage across the membrane, `ΔpH` the proton-concentration difference; `R` is the gas
+(\(\Delta\psi\) is the voltage across the membrane, \(\Delta\mathrm{pH}\) the proton-concentration difference; `R` is the gas
 constant, `T` the temperature, `F` Faraday's constant.) The deep idea, stated as plainly as it can
 be: **bioenergetics is redox + topology.** *Redox* means moving electrons from one molecule to
 another — it's how cells shuffle energy. That electron flow is made to do useful work *only because
@@ -146,11 +146,11 @@ high-energy electrons — delivered by two redox carriers you will meet again an
 - **NAD⁺ / NADH** — the cell's primary electron shuttle. NADH carries electrons *to* Complex I;
   NAD⁺ is the empty form returning to be reloaded. The **NAD⁺/NADH ratio** is, in effect, the cell's
   energy-charge dipstick.
-- **FAD / FADH₂** — a second carrier feeding electrons in at Complex II.
+- **FAD / \(\mathrm{FADH_{2}}\)** — a second carrier feeding electrons in at Complex II.
 
 These carriers are loaded by the **citric-acid cycle** (the Krebs cycle / TCA cycle), identified by
-**Hans Krebs** (Nobel 1953) — a closed catalytic loop in which acetyl-CoA is burned to CO₂
-while oxaloacetate is regenerated each turn, spinning off NADH and FADH₂ to feed the chain. The
+**Hans Krebs** (Nobel 1953) — a closed catalytic loop in which acetyl-CoA is burned to \(\mathrm{CO_{2}}\)
+while oxaloacetate is regenerated each turn, spinning off NADH and \(\mathrm{FADH_{2}}\) to feed the chain. The
 four-carbon dicarboxylic acid intermediates Krebs assembled into the cycle were characterized by
 **Albert Szent-Györgyi** (also the isolator of vitamin C). The Krebs cycle is the
 **central hub of metabolism**: the single convergence point where the breakdown of carbohydrate, fat,
@@ -203,7 +203,7 @@ literal, and it is documented in the corpus's deepest cross-cutting thread, the 
 | **Metabolism** | Ketones, AMPK, metabolic flexibility | Substrate load on the same chain |
 | **Aging** | "Mitochondrial dysfunction" is a named Hallmark of Aging | Bioenergetic decline + ROS leak |
 | **Genetics** | mtDNA heteroplasmy, the mutator mouse (Wallace) | The genome *of* the chemiosmotic organelle |
-| **Thermal** | Cold → UCP1 uncoupling in brown fat | Deliberately dissipating Δp as heat — the textbook proof the gradient is real |
+| **Thermal** | Cold → UCP1 uncoupling in brown fat | Deliberately dissipating \(\Delta p\) as heat — the textbook proof the gradient is real |
 
 That last row is worth pausing on. **Brown adipose tissue** contains a protein, **UCP1**, that
 deliberately puts a hole in the inner membrane, letting protons leak back *without* spinning ATP
@@ -231,7 +231,7 @@ is the matter the energy organizes.
 A cell membrane is a **phospholipid bilayer**: a two-molecule-thick sheet of lipids with water-loving
 heads facing out and water-fearing tails facing in. The single most important physical property of
 this sheet is that it is **ion-impermeable** — protons and other ions cannot freely cross it. Without
-that property, there is no gradient, no Δp, no ATP, no life. The mitochondrial inner membrane is the
+that property, there is no gradient, no \(\Delta p\), no ATP, no life. The mitochondrial inner membrane is the
 specific sheet across which §2's chemiosmosis runs; it is folded into dense **cristae** to pack in
 maximum surface area for the ETC.
 
@@ -353,7 +353,7 @@ something is the **epigenome**.
 **Epigenetics** is the set of chemical marks on DNA and its packaging that control gene expression
 without changing the sequence:
 
-- **DNA methylation** — methyl (–CH₃) groups added to cytosines (at CpG sites), generally silencing.
+- **DNA methylation** — methyl (–\(\mathrm{CH_{3}}\)) groups added to cytosines (at CpG sites), generally silencing.
 - **Histone modifications** — the proteins DNA is spooled around carry marks (acetylation,
   methylation) that loosen or tighten the spool, exposing or hiding genes.
 - **Chromatin structure** — the overall packing density of DNA.
@@ -508,7 +508,7 @@ corpus's hormesis thread — share a common biophysical engine: **transient ROS
 | **Fasting / CR** | Energy scarcity | AMPK/autophagy, metabolic switching, ketone signaling |
 | **Heat (sauna)** | Hyperthermia | HSP70/90 chaperones — proteostasis support |
 | **Cold** | Hypothermia | Norepinephrine, BAT/UCP1 thermogenic remodeling |
-| **Hypoxia (breath-holds, altitude)** | Intermittent low O₂ | Adaptive vascular/metabolic remodeling |
+| **Hypoxia (breath-holds, altitude)** | Intermittent low \(\mathrm{O_{2}}\) | Adaptive vascular/metabolic remodeling |
 | **Polyphenols (e.g. sulforaphane)** | Mild xenobiotic stress | NRF2 → *endogenous* antioxidant induction |
 
 This is also the deepest reason the **antioxidant story inverted** (§2.6): exercise works *because*
@@ -608,7 +608,7 @@ The lens is a foundation to reason from, and it holds that status only while eac
 
 A large body of twentieth-century biophysics was done in the Soviet Union and rarely entered the Western literature. That gap reflects funding, language, and Cold-War isolation rather than physical truth. The manual grades it on the same two axes as everything else: physical plausibility, and evidence-by-tradition with an explicit replication note. Some of it is sound, some failed replication, some was distorted by politics — and the discipline is to say which is which without either romanticizing or dismissing the whole tradition.
 
-- **Ultraweak photon emission (Gurwitsch → Popp).** In 1923 **Alexander Gurwitsch** reported that a dividing onion root could stimulate division in a neighbor shielded except by a quartz window, and proposed a "mitogenetic radiation" — ultraviolet light carrying a morphogenetic signal. The *mechanism* fared badly: roughly 500 replication attempts were overwhelmingly negative, and Langmuir cited the "mitogenetic ray" as a case of pathological science. But a narrower fact survived and is now established: **all cells emit an ultraweak photon flux** (~1–1000 photons/cm²/s), confirmed by photon-counting from the 1950s on, arising from **oxidative metabolism and ROS**. The German physicist **Fritz-Albert Popp** later called these "biophotons" and argued they are coherent and informational; that stronger claim remains unrealized experimentally. *Two-axis verdict: the faint light is real and metabolic (`P-established`, W-mechanistic); the morphogenetic-control mechanism failed replication; the coherent-information field is `P-strained` and unproven.*
+- **Ultraweak photon emission (Gurwitsch → Popp).** In 1923 **Alexander Gurwitsch** reported that a dividing onion root could stimulate division in a neighbor shielded except by a quartz window, and proposed a "mitogenetic radiation" — ultraviolet light carrying a morphogenetic signal. The *mechanism* fared badly: roughly 500 replication attempts were overwhelmingly negative, and Langmuir cited the "mitogenetic ray" as a case of pathological science. But a narrower fact survived and is now established: **all cells emit an ultraweak photon flux** (~1–1000 photons/\(\mathrm{cm^{2}}\)/s), confirmed by photon-counting from the 1950s on, arising from **oxidative metabolism and ROS**. The German physicist **Fritz-Albert Popp** later called these "biophotons" and argued they are coherent and informational; that stronger claim remains unrealized experimentally. *Two-axis verdict: the faint light is real and metabolic (`P-established`, W-mechanistic); the morphogenetic-control mechanism failed replication; the coherent-information field is `P-strained` and unproven.*
 - **Air ions (Chizhevsky).** **Alexander Chizhevsky** founded aero-ionization and built the electro-effluvial ionizer ("Chizhevsky chandelier"). Negative air ions have a modest, physically plausible effect on respiratory-tract physiology (mucosal secretion, ROS, antioxidant-enzyme shifts in animals), and negative-ion exposure has some Western randomized signal as an antidepressant. Early bactericidal claims were likely overestimated (ozone and electric-field confounds). *Verdict: `P-established`, evidence thin but real and multi-tradition; consumer "ionizer cures" overreach the data.*
 - **Heliobiology (Chizhevsky).** Chizhevsky also argued the ~11-year solar cycle drives mass human excitability — revolutions, wars. This is historiometric correlation with no physical channel remotely strong enough at the claimed magnitude, and the lag structure is inconsistent. He was imprisoned for eight years for a thesis that offended Marxist historiography — a real injustice that is *not* evidence for the claim. *Verdict: `P-strained`/`P-contradicted`; correlational; graded speculative. Persecution does not confirm a hypothesis, just as Lysenko's political favor did not make his genetics true — ideology corrupts evidence in both directions.*
 - **Millimeter-wave / EHF therapy (Devyatkov, Golant).** From about 1972 a USSR program, backed by the Ministry of Health, applied low-intensity **extremely-high-frequency (millimeter-wave)** radiation clinically — for cardiovascular disease, ulcers, wound healing, and as an oncology adjunct — generating a **large Russian clinical literature**, mostly in Russian-language conference proceedings. Western-accessible reviews exist but independent Western randomized replication is close to absent, and whether a *non-thermal* specific bioeffect exists is physically contested (thermal effects are established). *This is the clearest two-axis case in the manual: decades of clinical use in one tradition, almost no Western RCT, contested physics. The honest statement is "widely used in Russian clinical practice, awaiting independent Western trials, mechanism unresolved" — which is neither "proven" nor "false."*

@@ -387,7 +387,7 @@ The reason 37 trillion cells behave as *one organism* and not a heap is **homeos
 maintenance of a stable internal milieu (temperature, pH, glucose, calcium, osmolarity, oxygen) against
 constant perturbation — Claude Bernard's *milieu intérieur*, Walter Cannon's coinage (section 01 §6.2).
 Every organ system is, at bottom, a **homeostatic loop**: a sensor, a set-point, an effector, and
-negative feedback. The respiratory and cardiovascular systems hold O₂/CO₂ and pH; the kidneys hold
+negative feedback. The respiratory and cardiovascular systems hold \(\mathrm{O_{2}}\)/\(\mathrm{CO_{2}}\) and pH; the kidneys hold
 water, sodium, and acid-base; the endocrine pancreas holds glucose; the skin and hypothalamus hold
 temperature. **Allostasis** is the modern refinement — stability *through* predictive change — and its
 cost, **allostatic load**, is the wear from stress responses that never reset (section 01 §6.2; section
@@ -412,9 +412,9 @@ cardiovascular and metabolic, §11 = skin/bone/organ detail, §02 = training, an
 | 3 | **Muscular** (skeletal muscle) | Force, movement, the metabolic sink | **§02** (training), **§04** (fiber type, sarcopenia); §01 §2 (the ATP engine) |
 | 4 | **Nervous** (brain, cord, nerves, special senses) | Fast signaling, cognition, autonomic control | **§08** (brain/cognition); §05 (autonomic/HRV, sleep); §11 (vision, hearing) |
 | 5 | **Endocrine** (hypothalamus-pituitary, thyroid, adrenal, pancreas, gonads) | Slow chemical signaling; metabolism, growth, stress, reproduction | **§07** (metabolic/thyroid), §05 (cortisol/stress), §04 (sex hormones, menopause, TRT); §03/D (insulin) |
-| 6 | **Cardiovascular** (heart, vessels, blood) | Bulk transport of O₂, fuel, heat, signals; BP | **§07** (CVD prevention, lipids/ApoB, BP); §02 (VO₂max); §01 §2 (delivery half of bioenergetics) |
+| 6 | **Cardiovascular** (heart, vessels, blood) | Bulk transport of \(\mathrm{O_{2}}\), fuel, heat, signals; BP | **§07** (CVD prevention, lipids/ApoB, BP); §02 (VO₂max); §01 §2 (delivery half of bioenergetics) |
 | 7 | **Lymphatic / Immune** | Fluid return; defense; inflammaging | **§07/B** (inflammaging); §01 §5 (senescence/SASP); §11 (oral-systemic) |
-| 8 | **Respiratory** (airways, lungs) | Gas exchange (O₂ in, CO₂ out); pH | **§02** (VO₂max, the O₂ pathway); §09 (air pollution); §01 §2 |
+| 8 | **Respiratory** (airways, lungs) | Gas exchange (\(\mathrm{O_{2}}\) in, \(\mathrm{CO_{2}}\) out); pH | **§02** (VO₂max, the \(\mathrm{O_{2}}\) pathway); §09 (air pollution); §01 §2 |
 | 9 | **Digestive** (GI tract, liver, pancreas, microbiome) | Break food into absorbable fuel/building blocks | **§03** (nutrition/supplements); Domain C §4 (microbiome); §01 §2.5 (substrate) |
 | 10 | **Urinary / Renal** (kidneys, bladder) | Water/electrolyte/acid-base balance; BP; waste | **§07** (renal/metabolic markers); §11 (pelvic floor/continence); §10 (drug clearance) |
 | 11 | **Reproductive** (gonads, associated organs) | Reproduction; sex-hormone milieu | **§04** (sex differences, menopause/andropause); Domain N (women's longevity) |
@@ -439,15 +439,15 @@ chain:
 
 @@FIG:BS2-vo2max-oxygen-chain@@
 
-1. **Lungs** — you ventilate; O₂ crosses the thin alveolar–capillary membrane into blood (respiratory
+1. **Lungs** — you ventilate; \(\mathrm{O_{2}}\) crosses the thin alveolar–capillary membrane into blood (respiratory
    system; diffusion down a partial-pressure gradient).
-2. **Blood** — O₂ binds **hemoglobin** in red cells (the cooperative O₂-binding curve is why a little
+2. **Blood** — \(\mathrm{O_{2}}\) binds **hemoglobin** in red cells (the cooperative \(\mathrm{O_{2}}\)-binding curve is why a little
    change in lung loading moves a lot of delivery).
 3. **Heart** — **cardiac output** (heart rate × stroke volume) pumps oxygenated blood to the body; this
    is the step training expands most (a bigger stroke volume is the central adaptation).
-4. **Capillaries** — O₂ diffuses from blood into muscle; trained muscle grows *more* capillaries,
+4. **Capillaries** — \(\mathrm{O_{2}}\) diffuses from blood into muscle; trained muscle grows *more* capillaries,
    shortening the diffusion distance.
-5. **Mitochondria** — O₂ is the final electron acceptor of the electron transport chain (section 01 §2);
+5. **Mitochondria** — \(\mathrm{O_{2}}\) is the final electron acceptor of the electron transport chain (section 01 §2);
    endurance training roughly *doubles* mitochondrial content (Holloszy). **VO₂max is the integrated
    capacity of this entire chain** — which is exactly why section 01 calls bioenergetic capacity the
    master variable. Train any link (lungs rarely limit; heart, capillaries, mitochondria do) and the
@@ -462,7 +462,7 @@ Detailed in section 01 §2; the system-level summary:
 **Digestive → cardiovascular → cells → mitochondria.** Food is broken to glucose, fatty acids, and amino
 acids and absorbed across the gut epithelium (microbiome fermenting fiber to SCFAs, Domain C §4); the blood
 distributes fuels and insulin while the liver buffers glucose; inside cells glucose → glycolysis → pyruvate
-and fat → β-oxidation both converge on **acetyl-CoA → the Krebs cycle**, loading NADH/FADH₂; those carriers
+and fat → β-oxidation both converge on **acetyl-CoA → the Krebs cycle**, loading NADH/\(\mathrm{FADH_{2}}\); those carriers
 feed the **electron transport chain**, and **ATP synthase** spends the proton gradient to make ATP
 (chemiosmosis — the foundation law, §01 §2.2). **Metabolic flexibility** — switching cleanly between glucose
 and fat — is itself a marker of health; losing it is the early signature of insulin resistance (§01 §2.5).
@@ -472,7 +472,7 @@ and fat — is itself a marker of health; losing it is the early signature of in
 The body coordinates itself two ways, fast and slow:
 
 - **Fast — electrical (nervous system).** A neuron fires an **action potential**: a self-propagating
-  wave of Na⁺-in/K⁺-out across the membrane, governed by voltage-gated channels (the Hodgkin–Huxley
+  wave of \(\mathrm{Na^{+}}\)-in/\(\mathrm{K^{+}}\)-out across the membrane, governed by voltage-gated channels (the Hodgkin–Huxley
   foundation, canon `05-biophysics`). At the **synapse** it converts to a chemical signal
   (neurotransmitter) to the next cell. Milliseconds. This is reflexes, movement, the **autonomic**
   sympathetic/parasympathetic balance read out as HRV (section 05).

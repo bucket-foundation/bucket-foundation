@@ -178,7 +178,7 @@ unmonetized, and one of the largest environmental risk factors on Earth.
 - **Cardiovascular (causal).** The American Heart Association scientific statement (**Brook 2010**)
   concluded that PM2.5 exposure is a **causal** contributor to cardiovascular
   morbidity and mortality.[^brook-aha] The landmark cohort (**Pope 2002**) found each
-  **10 µg/m³ increase in long-term PM2.5 raised all-cause mortality ~4%, cardiopulmonary ~6%, and lung cancer
+  **10 µg/\(\mathrm{m^{3}}\) increase in long-term PM2.5 raised all-cause mortality ~4%, cardiopulmonary ~6%, and lung cancer
   ~8%.**[^pope-pm25] The dose-response extends below current regulatory limits — there is **no clear threshold of safety.**
 - **Dementia / cognition (emerging-to-strong).** PM2.5 is now a recognized modifiable risk factor for dementia
   (**Peters 2019** systematic review;[^peters-dementia] included as a modifiable factor in the **Lancet

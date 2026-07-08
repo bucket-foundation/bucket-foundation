@@ -634,7 +634,7 @@ visibility implies.
   (`14-nervous-system.md` §3); **eating disorders** and the "food addiction" construct ↔ **Section 20 §7**;
   **suicide** risk (gambling, alcohol, the lithium/clozapine anti-suicide signals) ↔ **Section 20 §9**.
 - **UP to canon:** the receptor pharmacology and reward-circuit signalling under all of this — **µ-opioid
-  and nicotinic/cannabinoid receptors, dopamine transmission, synaptic plasticity, the Na⁺/K⁺-gradient
+  and nicotinic/cannabinoid receptors, dopamine transmission, synaptic plasticity, the \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\)-gradient
   excitability that lets neurons fire at all** — rest on **membrane bioelectricity, ion gradients, and
   receptor-ligand thermodynamics** → `bucket-canon/05-biophysics/` and `bucket-canon/03-chemistry/`.
   Addiction is the **outcome-layer application** of those foundations (a learned, motivated state of an

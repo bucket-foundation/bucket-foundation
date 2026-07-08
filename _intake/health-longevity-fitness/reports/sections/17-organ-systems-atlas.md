@@ -41,7 +41,7 @@ claim fails the evidence. These tier codes recur throughout the chapter.
 | System | Ages how | Best practical lever | Tier of the lever |
 |---|---|---|---|
 | **Respiratory** | FEV₁ decline ~25–30 mL/yr after ~30–35 (the FEV₁/FVC ratio falls as FEV₁ drops); elastic recoil ↓, chest-wall stiffens, gas exchange ↓ | **Never smoke / quit smoking** (the only thing that changes the slope); preserve VO₂max via aerobic training | `cohort`→`rct` (cessation) |
-| **Renal / urinary** | eGFR (kidney-filtration rate) ↓ ~0.8–1 mL/min/1.73m²/yr after ~40; nephron dropout, silent until late | **Control BP + glucose**; avoid habitual NSAIDs; don't fear protein if kidneys are healthy | `rct` (BP/glucose), `cohort` (NSAID) |
+| **Renal / urinary** | eGFR (kidney-filtration rate) ↓ ~0.8–1 mL/min/\(1.73\,\mathrm{m^{2}}\)/yr after ~40; nephron dropout, silent until late | **Control BP + glucose**; avoid habitual NSAIDs; don't fear protein if kidneys are healthy | `rct` (BP/glucose), `cohort` (NSAID) |
 | **Hepatic / liver** | Steatosis (MASLD) now in ~30%+ of adults; fibrosis is the prognostic axis | **Lose ≥7–10% body weight** (the one intervention that reverses histology) | `cohort`/prospective histology |
 | **Digestive / GI** | Slower motility, ↓ esophageal clearance, ↑ GERD & constipation; gut-brain signaling shifts | **Fiber + fluid + movement**; manage GERD with weight loss + positioning before reflexively escalating drugs | `meta` (fiber), `cohort`/guideline (GERD) |
 | **Hematologic / blood** | Anemia prevalence climbs steeply after 65 (often a flag for another disease, not "old blood") | **Find and fix the cause** (iron, B12, CKD, occult bleed); for HFE overload, **therapeutic phlebotomy** | `cohort` (anemia prognosis), `rct`/guideline (phlebotomy) |
@@ -147,7 +147,7 @@ nephrons and feel perfectly fine; symptoms appear only at advanced disease. This
 
 ### 2.2 How it ages
 
-After ~40, **eGFR declines on the order of ~0.8–1.0 mL/min/1.73m² per year** in healthy adults — the
+After ~40, **eGFR declines on the order of ~0.8–1.0 mL/min/\(1.73\,\mathrm{m^{2}}\) per year** in healthy adults — the
 oft-quoted "~1%/year." The mechanism is **nephron dropout** (glomerulosclerosis, tubular atrophy, declining
 renal blood flow). Because this is gradual and silent, a large fraction of older adults meet criteria for CKD
 stage ≥3 by labs alone — which raises the real interpretive question of how much is "disease" vs. expected

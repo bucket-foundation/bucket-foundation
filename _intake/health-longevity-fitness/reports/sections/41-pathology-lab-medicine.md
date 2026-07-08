@@ -123,9 +123,9 @@ PPV/NPV are intuitive but population-locked. **Likelihood ratios (LRs)** package
 single number you can apply to *any* pre-test probability — they are the practitioner's Bayesian tool of
 choice (Deeks & Altman; the Sackett *Clinical Epidemiology* tradition).
 
-- **LR+ = sensitivity / (1 − specificity)** = how much *more* likely a positive result is in a sick person
+- \(\mathrm{LR}^{+} = \dfrac{\text{sensitivity}}{1-\text{specificity}}\) = how much *more* likely a positive result is in a sick person
   than a well one.
-- **LR− = (1 − sensitivity) / specificity** = how much a *negative* result lowers the odds.
+- \(\mathrm{LR}^{-} = \dfrac{1-\text{sensitivity}}{\text{specificity}}\) = how much a *negative* result lowers the odds.
 
 Rough field guide (Jaeschke/McMaster):
 
@@ -172,7 +172,7 @@ deviations. Three consequences fall straight out of that definition, and almost 
 
 1. **By construction, 1 in 20 perfectly healthy people fall "out of range" on any given test** — 2.5% high,
    2.5% low. It is *built into the math*. Run a 20-analyte panel on a healthy person and the probability at
-   least one result flags "abnormal" is roughly 1 − 0.95²⁰ ≈ **64%**. **More than half of healthy people
+   least one result flags "abnormal" is roughly 1 − \(0.95^{20}\) ≈ **64%**. **More than half of healthy people
    "fail" a broad panel** for no reason but statistics. (Galen & Gambino's classic *Beyond Normality*
    formalized this decades ago; it is why "the panel found something" is the expected, not the surprising,
    outcome.)
@@ -257,7 +257,7 @@ worry you. Effect sizes live in `WHAT-TO-TRACK-SYNTHESIS.md`.*
 
 | Category | Core tests | What it actually tells you | Honest caveat / cross-ref |
 |---|---|---|---|
-| **Clinical chemistry — metabolic panel (BMP/CMP)** | Na, K, Cl, CO₂, BUN, creatinine, glucose, Ca; CMP adds albumin, total protein, bilirubin, ALP, ALT, AST | Electrolyte/acid-base status, kidney function (eGFR from creatinine), glucose, liver enzymes | eGFR is *estimated* (creatinine depends on muscle mass — understates function in the very muscular, overstates in the frail). 14 analytes → ~51% chance of one false flag (A.7). |
+| **Clinical chemistry — metabolic panel (BMP/CMP)** | Na, K, Cl, \(\mathrm{CO_{2}}\), BUN, creatinine, glucose, Ca; CMP adds albumin, total protein, bilirubin, ALP, ALT, AST | Electrolyte/acid-base status, kidney function (eGFR from creatinine), glucose, liver enzymes | eGFR is *estimated* (creatinine depends on muscle mass — understates function in the very muscular, overstates in the frail). 14 analytes → ~51% chance of one false flag (A.7). |
 | **Glycemic** | Fasting glucose, **HbA1c**, OGTT, fasting insulin/HOMA-IR | Average glycemia (HbA1c ≈ 3-month), insulin resistance | HbA1c distorted by any RBC-turnover disorder (anemia, hemoglobinopathy, recent transfusion). Insulin assays vary by lab (A.8). Cross-ref §22, `WHAT-TO-TRACK-SYNTHESIS.md` Tier A. |
 | **Liver function (LFTs)** | ALT, AST, ALP, GGT, bilirubin, albumin, INR | Hepatocyte injury (ALT/AST), cholestasis (ALP/GGT/bili), *synthetic function* (albumin, INR) | "LFTs" is a misnomer — enzymes are *injury* markers, not function; albumin/INR are the real function tests. Mild isolated transaminase bumps are common and usually benign. |
 | **Kidney function** | Creatinine→eGFR, BUN, cystatin C, urine albumin:creatinine (ACR) | Filtration rate, proteinuria | ACR (an *early* glomerular-damage marker) often more actionable than a borderline eGFR. Cross-ref §22. |

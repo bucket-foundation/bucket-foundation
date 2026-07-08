@@ -89,8 +89,8 @@ A good reading roadmap should make you *better at telling those apart*, not just
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **James Nestor — *Breath* (2020)** | Popular synthesis | An engaging on-ramp to nasal breathing, CO₂ tolerance, and breathing's neglected role; sent millions to mouth-taping and Buteyko. | Communicator — a **journalist writing about science.** Several claims (the "lost art" history, some mouth-taping benefits) **outrun the evidence**. The physiology nuggets are real; grade the strong claims against the breath papers below. |
-| **Patrick McKeown — *The Oxygen Advantage* (2015)** | Buteyko / functional breathing | The most systematic modern Buteyko-derived program (nasal, reduced-volume, CO₂ tolerance, BOLT score). | *(practitioner.)* Buteyko has **some asthma-symptom RCT support**,[^cl-buteyko] but the broad "chronic hyperventilation causes disease" frame is contested (Buteyko himself is a contested figure). |
+| **James Nestor — *Breath* (2020)** | Popular synthesis | An engaging on-ramp to nasal breathing, \(\mathrm{CO_{2}}\) tolerance, and breathing's neglected role; sent millions to mouth-taping and Buteyko. | Communicator — a **journalist writing about science.** Several claims (the "lost art" history, some mouth-taping benefits) **outrun the evidence**. The physiology nuggets are real; grade the strong claims against the breath papers below. |
+| **Patrick McKeown — *The Oxygen Advantage* (2015)** | Buteyko / functional breathing | The most systematic modern Buteyko-derived program (nasal, reduced-volume, \(\mathrm{CO_{2}}\) tolerance, BOLT score). | *(practitioner.)* Buteyko has **some asthma-symptom RCT support**,[^cl-buteyko] but the broad "chronic hyperventilation causes disease" frame is contested (Buteyko himself is a contested figure). |
 
 ### 1.6 Nutrition
 

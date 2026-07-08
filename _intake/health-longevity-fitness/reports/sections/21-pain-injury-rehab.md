@@ -570,7 +570,7 @@ A short, honestly-annotated reading list — the field's reframing texts and the
   Section 14 §6.4 and Section 07 (clinical prevention).
 - **UP to canon:** the **mechano-adaptation of tissue** (Wolff's law for bone; the load→remodel principle
   for tendon and muscle) is an application of biophysical material-response foundations adjacent to
-  `bucket-canon/05-biophysics/`; **nociception/excitability** rests on the same Na⁺/K⁺-gradient and
+  `bucket-canon/05-biophysics/`; **nociception/excitability** rests on the same \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\)-gradient and
   Hodgkin–Huxley membrane-excitability foundations as Section 14 (`bucket-canon/05-biophysics/`).
 
 ## Gaps flagged for next wave

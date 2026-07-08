@@ -54,7 +54,7 @@ _Not medical advice. Thermal levers (sauna/cold) live in §05; supplement verdic
 | **Chelation** (non-poisoning) | Heart disease, "heavy-metal detox," autism | TACT: marginal, unreplicated, disputed; off-label deaths (hypocalcemia) | **POTENTIALLY-HARMFUL** |
 | **Coffee enemas / "detox"** | Liver detox, energy, cancer | No mechanism, no evidence; documented colitis, electrolyte deaths, perforation | **POTENTIALLY-HARMFUL** |
 | **Grounding / earthing** | Inflammation, sleep, "free electrons" | Tiny unblinded surrogate studies; invented biophysics; no outcome data | **NO-EVIDENCE** |
-| **Structured / hydrogen / "EZ" water** | Cellular hydration, energy, longevity | H₂-water has thin surrogate RCTs; "structured/EZ water" health claims = speculative | **PROMISING** (H₂, surrogate) / **NO-EVIDENCE** (structured) |
+| **Structured / hydrogen / "EZ" water** | Cellular hydration, energy, longevity | \(\mathrm{H_{2}}\)-water has thin surrogate RCTs; "structured/EZ water" health claims = speculative | **PROMISING** (\(\mathrm{H_{2}}\), surrogate) / **NO-EVIDENCE** (structured) |
 | **EMF-protection** (shielding, "blockers") | Protects from "non-native EMF" harm | No demonstrated non-thermal harm at consumer exposures; products unvalidated | **NO-EVIDENCE** |
 | **CGM for the healthy** | "Optimize" glucose, longevity | No outcome RCT in non-diabetics; variability has no proven meaning (see L2) | **NO-EVIDENCE** (healthy) / cross-ref L2 |
 | **"Blueprint"-style total optimization** | Measure/optimize everything → slow aging | Disciplined n=1; moves surrogates; **cannot prove** the longevity outcome | **PROMISING** as discipline / **NO-EVIDENCE** as proof |
@@ -162,7 +162,7 @@ systemically — for fat loss, longevity, testosterone, whole-body "recovery," a
   (95% CI 7.3–21.1) at end of therapy, sustained 1–12 weeks, and the effect was dose-dependent — present
   when trials followed World Association for Laser Therapy dosing and absent when they did not. A broader
   musculoskeletal-pain meta (Clijsen et al., 2017; 18 studies, n=1,462) found a pooled mean difference of
-  −0.85 (95% CI −1.22 to −0.48) with high heterogeneity (I² = 85.6%). Small-to-moderate, dose-sensitive,
+  −0.85 (95% CI −1.22 to −0.48) with high heterogeneity (\(\mathrm{I^{2}}\) = 85.6%). Small-to-moderate, dose-sensitive,
   heterogeneous.
 - **Muscle recovery (`rct`, thin):** small RCTs suggest post-exercise PBM improves strength recovery and
   reduces delayed-onset soreness; a meta of 4 trials (n=66) reported large effects but at moderate-to-very-low
@@ -193,7 +193,7 @@ REAL for skin and some pain at correct dose; NO-EVIDENCE for whole-body longevit
 
 ## 3. HYPERBARIC OXYGEN (HBOT) — approved medicine vs the telomere headline
 
-**The claim (legitimate):** breathing 100% O₂ at >1 atmosphere has ~15 evidence-based, approved indications —
+**The claim (legitimate):** breathing 100% \(\mathrm{O_{2}}\) at >1 atmosphere has ~15 evidence-based, approved indications —
 decompression sickness, carbon-monoxide poisoning, gas gangrene, non-healing diabetic/radiation wounds,
 crush injury, certain refractory infections. **These are REAL** and HBOT is real medicine for them.
 
@@ -372,7 +372,7 @@ evidence (`anecdotal`); mechanism unestablished; understudied rather than dispro
 ### 7.2 Structured / "EZ" water and hydrogen water — split the verdict
 
 Two different claims get conflated:
-- **Molecular hydrogen (H₂) water** has a small but *real research literature*: thin, mostly surrogate RCTs
+- **Molecular hydrogen (\(\mathrm{H_{2}}\)) water** has a small but *real research literature*: thin, mostly surrogate RCTs
   reporting modest changes in oxidative-stress and metabolic markers. It is **PROMISING at the surrogate
   tier** — a genuine (if weak and over-hyped) signal, not invented.
 - **"Structured water," "EZ water" (exclusion-zone / fourth-phase water), hexagonal water"** as a *health

@@ -246,7 +246,7 @@ physiology** (parasympathetic tone, attention, graded movement, stress-axis down
 
 **Be definitive: this one is closed.** Homeopathy (Hahnemann, ~1796) rests on two axioms — "like cures like"
 and "potentisation by serial dilution," where a substance is diluted so extremely that **typical remedies
-(30C = a 10⁻⁶⁰ dilution) contain, on average, not a single molecule of the original ingredient.** The claim
+(30C = a \(10^{-60}\) dilution) contain, on average, not a single molecule of the original ingredient.** The claim
 that water "remembers" the vanished solute has **no basis in chemistry or physics** (it violates basic
 stoichiometry and Avogadro's number) and **no demonstrated mechanism.**
 

@@ -9,7 +9,7 @@ _Not medical advice. Dementia and depression as outcomes: §08. Evidence tiers (
 `rct` > `meta` > `cohort` > `mechanistic`/`animal` > `anecdotal`) are defined in the manual's "Start
 Here."_
 
-> **Bottom line.** The foundations (action potential, Na⁺/K⁺ pump) are canon-solid; the debunks are the
+> **Bottom line.** The foundations (action potential, \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\) pump) are canon-solid; the debunks are the
 > payoff, and **Pain ≠ tissue damage** is the highest-stakes correction. For the aging brain, the levers
 > are the usual unglamorous bundle (move, sleep, connect, treat vascular/hearing/vision). Full 7-point
 > list: **§8**.
@@ -45,14 +45,14 @@ not an outcome.
 @@FIG:A01-neuron,RA01-neuron@@
 
 - A neuron at rest holds its inside ~−70 mV relative to outside. That voltage is built and
-  maintained by the **Na⁺/K⁺-ATPase ("the sodium–potassium pump")**, which burns ATP to push 3 Na⁺
-  out and 2 K⁺ in per cycle, establishing the ion gradients that store the cell's electrical
+  maintained by the **\(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\)-ATPase ("the sodium–potassium pump")**, which burns ATP to push 3 \(\mathrm{Na^{+}}\)
+  out and 2 \(\mathrm{K^{+}}\) in per cycle, establishing the ion gradients that store the cell's electrical
   potential energy. Jens Christian Skou's discovery of this enzyme (1957) won the 1997 Nobel Prize
   in Chemistry; it is the literal pump under all bioelectricity. **The brain spends an
   estimated ~20% of the body's resting energy budget largely to run these pumps** — thinking is
   metabolically expensive because keeping neurons poised to fire is.
-- When a stimulus depolarises the membrane past threshold, voltage-gated Na⁺ channels open, Na⁺
-  rushes in (the upstroke), then inactivate while voltage-gated K⁺ channels open and repolarise it
+- When a stimulus depolarises the membrane past threshold, voltage-gated \(\mathrm{Na^{+}}\) channels open, \(\mathrm{Na^{+}}\)
+  rushes in (the upstroke), then inactivate while voltage-gated \(\mathrm{K^{+}}\) channels open and repolarise it
   (the downstroke). This all-or-nothing spike propagates down the axon. **Hodgkin & Huxley (1952)**
   wrote the quantitative equations for exactly this in the squid giant axon — a model so precise it
   still predicts membrane behaviour today (Hodgkin & Huxley, 1952; Nobel Prize 1963).[^hh]
@@ -60,7 +60,7 @@ not an outcome.
 
 @@FIG:46-action-potential,RA06-action-potential@@
 
-> **UP-link to canon.** The Na⁺/K⁺ gradient and the Hodgkin–Huxley formalism are
+> **UP-link to canon.** The \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\) gradient and the Hodgkin–Huxley formalism are
 > `bucket-canon/05-biophysics/` foundations (bioelectricity, ion gradients, membrane excitability),
 > adjacent to the cell-water/interstitial-fluid physics that Domain I's glymphatic story rests on.
 > Everything downstream in this section — neurotransmission, autonomic tone, pain signalling — is an
@@ -69,8 +69,8 @@ not an outcome.
 ### 1.3 Synapses, glia, and myelin — the parts list
 
 - **Synapses.** Where one neuron talks to the next, almost always *chemically*: the action potential
-  triggers Ca²⁺ influx → vesicles release a neurotransmitter → it binds receptors on the next cell →
-  excites or inhibits it. The adult human brain has on the order of ~10¹⁴ synapses. Synaptic
+  triggers \(\mathrm{Ca^{2+}}\) influx → vesicles release a neurotransmitter → it binds receptors on the next cell →
+  excites or inhibits it. The adult human brain has on the order of ~\(10^{14}\) synapses. Synaptic
   *strength* is adjustable, and that adjustability is the physical substrate of learning (§4).
 
 @@FIG:66-synapse,RA02-synapse@@
@@ -78,7 +78,7 @@ not an outcome.
 - **Glia — not "support cells."** Glia roughly match or outnumber neurons (the once-quoted "10:1"
   ratio is a myth; it's closer to ~1:1). Three families do real computational and immune work:
   - **Astrocytes** regulate the synaptic environment, recycle neurotransmitters (glutamate uptake),
-    buffer K⁺, control blood flow, form the blood–brain barrier with endothelium, and supply
+    buffer \(\mathrm{K^{+}}\), control blood flow, form the blood–brain barrier with endothelium, and supply
     neurons with metabolic substrate. The "tripartite synapse" (pre + post + astrocyte) is now
     standard (Sofroniew & Vinters, 2009).[^tripartite] They are
     also the aquaporin-4 cells that drive **glymphatic clearance during sleep** — the direct bridge
@@ -423,7 +423,7 @@ and outcome apart is the schema's central discipline.
 
 ## 8. The honest summary of this section
 
-1. **The foundations are rock-solid and sit in canon.** The action potential, the Na⁺/K⁺ pump, and
+1. **The foundations are rock-solid and sit in canon.** The action potential, the \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\) pump, and
    Hodgkin–Huxley are among the most completely solved problems in biology — bioelectricity is a
    `bucket-canon/05-biophysics/` foundation, and everything downstream is an application of it.
 2. **Glia are not background.** Astrocytes (glymphatics, the synaptic environment) and microglia
@@ -498,7 +498,7 @@ Psychiatry* 2022, `10.1038/s41380-022-01661-0`) for the serotonin myth; **Nielse
   social connection as a neuroprotective lever ↔ **Domain M** (`M-psychosocial-determinants.md`);
   sleep / glymphatic clearance ↔ **Domain I** §1; nerve damage in diabetes ↔ Section 07 (clinical
   prevention) and the body-systems section (11).
-- **UP to canon:** the **Na⁺/K⁺ pump, ion gradients, the action potential (Hodgkin–Huxley
+- **UP to canon:** the **\(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\) pump, ion gradients, the action potential (Hodgkin–Huxley
   excitability), and membrane bioelectricity** are foundations in `bucket-canon/05-biophysics/`
   (adjacent to the cell-water / interstitial-fluid physics under the glymphatic story). The nervous
   system *as experienced* — autonomic tone, neurotransmission, pain, plasticity — is the outcome-layer

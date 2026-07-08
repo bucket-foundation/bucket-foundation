@@ -60,7 +60,7 @@ cover the overwhelming majority of prescriptions:
 | Target type | What it is | Drug examples |
 |---|---|---|
 | **Receptors** | Signal-receiving proteins (GPCRs, ion-channel-linked, nuclear hormone receptors, kinase receptors) | β-blockers, opioids, antihistamines, GLP-1 agonists, corticosteroids |
-| **Enzymes** | Catalytic proteins; drugs usually *inhibit* them | Statins (HMG-CoA reductase), ACE inhibitors, NSAIDs (COX), PPIs (H⁺/K⁺-ATPase), SSRIs (reuptake transporter) |
+| **Enzymes** | Catalytic proteins; drugs usually *inhibit* them | Statins (HMG-CoA reductase), ACE inhibitors, NSAIDs (COX), PPIs (\(\mathrm{H^{+}}\)/\(\mathrm{K^{+}}\)-ATPase), SSRIs (reuptake transporter) |
 | **Transporters / ion channels** | Move ions/molecules across membranes | Calcium-channel blockers, diuretics, SSRIs (SERT), PPIs |
 | **Nucleic acids / other** | DNA, microbial targets, antibodies to a protein | Chemotherapeutics, antibiotics, monoclonal antibodies (PCSK9i, anti-CGRP) |
 
@@ -315,9 +315,9 @@ mechanistic map:
 | Class | Mechanism (PD) | Use | Section-10 cross-ref |
 |---|---|---|---|
 | **ACE inhibitors / ARBs** | Block angiotensin II production (ACEi) or its receptor (ARB) → vasodilation, less remodeling, renal protection | Hypertension, heart failure, CKD, post-MI | §10.3 |
-| **Calcium-channel blockers** | Block Ca²⁺ entry → vasodilation (dihydropyridines, e.g. amlodipine) or rate control (verapamil/diltiazem) | Hypertension, angina, rate control | §10.3 |
+| **Calcium-channel blockers** | Block \(\mathrm{Ca^{2+}}\) entry → vasodilation (dihydropyridines, e.g. amlodipine) or rate control (verapamil/diltiazem) | Hypertension, angina, rate control | §10.3 |
 | **Beta-blockers** | β-adrenergic *antagonists* → ↓heart rate, ↓contractility, ↓BP | Post-MI, heart failure, arrhythmia, angina (not first-line for plain HTN) | §10.3 |
-| **Diuretics** | ↑renal Na⁺/water excretion (thiazides, loop, K⁺-sparing) | Hypertension, heart failure/edema | §10.3 |
+| **Diuretics** | ↑renal \(\mathrm{Na^{+}}\)/water excretion (thiazides, loop, \(\mathrm{K^{+}}\)-sparing) | Hypertension, heart failure/edema | §10.3 |
 | **Statins & lipid-lowering** | HMG-CoA reductase inhibition; ezetimibe (absorption); PCSK9i (LDL-receptor recycling) | ASCVD prevention | §10.2 (full treatment) |
 | **Anticoagulants / antiplatelets** | See §B.4.5 | Clot prevention | §10.4 (aspirin) |
 
@@ -337,7 +337,7 @@ mechanistic map:
 
 ### B.4.2 Proton-pump inhibitors (PPIs: omeprazole, pantoprazole, esomeprazole)
 
-- **Mechanism:** **irreversibly inhibit the gastric H⁺/K⁺-ATPase** (the "proton pump") → near-complete
+- **Mechanism:** **irreversibly inhibit the gastric \(\mathrm{H^{+}}\)/\(\mathrm{K^{+}}\)-ATPase** (the "proton pump") → near-complete
   acid suppression. Highly effective for GERD, peptic ulcers, and *H. pylori* regimens.
 - **The honest nuance:** valuable for clear indications, but **massively over-used long-term**
   for symptoms that don't need indefinite acid blockade. Long-term observational associations (B12/

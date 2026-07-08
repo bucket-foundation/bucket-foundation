@@ -331,18 +331,18 @@ for this corpus, breathwork has **several actual RCTs** — but nearly all use *
 endpoints** (cytokines, mood, cortisol, HRV), short durations, and small/healthy samples. The *mechanisms*
 are well established; the *clinical outcomes* are mostly modest and acute.
 
-### 4.1 Nasal breathing & CO₂ tolerance (the Bohr foundation)
+### 4.1 Nasal breathing & \(\mathrm{CO_{2}}\) tolerance (the Bohr foundation)
 
 Two settled physiology mechanisms ground the nasal-breathing case:
-- **Bohr effect**:[^bohr] elevated CO₂ (lower pH) shifts the oxyhemoglobin curve rightward, promoting
-  **O₂ release to tissues**. CO₂-tolerance breathwork (Buteyko, breath-holds) is built on blunting the
+- **Bohr effect**:[^bohr] elevated \(\mathrm{CO_{2}}\) (lower pH) shifts the oxyhemoglobin curve rightward, promoting
+  **\(\mathrm{O_{2}}\) release to tissues**. \(\mathrm{CO_{2}}\)-tolerance breathwork (Buteyko, breath-holds) is built on blunting the
   air-hunger chemoreflex. UP-link to canon `05-biophysics/` (hemoglobin allostery).
 - **Nasal nitric oxide**:[^nasal-no] NO produced in the paranasal sinuses is delivered to the lungs on
   nasal inhalation, where it is a vasodilator improving V/Q matching.
 
 **The honest gap:** the Bohr effect is settled physiology, but the claim that habitual "over-breathing"
-impairs tissue oxygenation and that CO₂-training corrects it for health/performance is a **contested
-extrapolation**; the leap to "nasal breathing meaningfully boosts athletic O₂ uptake" is a popularized
+impairs tissue oxygenation and that \(\mathrm{CO_{2}}\)-training corrects it for health/performance is a **contested
+extrapolation**; the leap to "nasal breathing meaningfully boosts athletic \(\mathrm{O_{2}}\) uptake" is a popularized
 over-reach not shown in performance outcomes. Still: **default-nasal breathing is a free, low-risk habit**
 worth defaulting to (daytime and, where tolerated, sleep — though mouth-taping evidence is mostly anecdotal).
 
@@ -370,7 +370,7 @@ minutes is not the same as buying health (see §5.1).
 
 The Buteyko technique **improved asthma symptoms and reduced reliever-medication use but did NOT change
 lung function (FEV1) or airway inflammation**.[^buteyko] The whole story is in that distinction: the
-benefit is real but comes from **breathing-pattern normalization**, not from the disputed CO₂ rationale and
+benefit is real but comes from **breathing-pattern normalization**, not from the disputed \(\mathrm{CO_{2}}\) rationale and
 not from disease modification. Different claims, different tiers.
 
 ### 4.4 Wim Hof — honest, and the hard water rule
@@ -523,7 +523,7 @@ in this corpus.
 - **Laukkanen & Kunutsor — sauna reviews (Mayo Clin Proc 2018; KIHD papers 2015–2018).** The actual
   cohort source for the sauna-mortality dose-response, with the authors' own mechanism (HSP, cardiovascular)
   framing — read alongside the healthy-user caveat.
-- **Patrick McKeown — *The Oxygen Advantage* (2015).** The popular synthesis of nasal breathing and CO₂
+- **Patrick McKeown — *The Oxygen Advantage* (2015).** The popular synthesis of nasal breathing and \(\mathrm{CO_{2}}\)
   tolerance (Bohr/Buteyko lineage); useful for the *practice*, but grade its performance claims as the
   contested extrapolation they are (§4.1).
 - **Holt-Lunstad et al. — social-connection meta-analyses (PLoS Med 2010; Perspect Psychol Sci 2015).**

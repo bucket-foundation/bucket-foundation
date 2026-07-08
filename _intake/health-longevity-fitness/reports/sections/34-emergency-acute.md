@@ -481,7 +481,7 @@ unconsciousness. Two rules dominate:
 - **Rescue without becoming the second victim:** *reach, throw, row — don't go* unless trained. Most
   would-be-rescuer drownings are untrained people swimming out.
 - **The breath-hold rule:** **never hyperventilate before underwater swimming/
-  breath-holds, and never breath-hold-swim alone.** Hyperventilation suppresses the CO₂ "breathe!" urge
+  breath-holds, and never breath-hold-swim alone.** Hyperventilation suppresses the \(\mathrm{CO_{2}}\) "breathe!" urge
   without adding much oxygen, so the swimmer blacks out underwater (**shallow-water blackout**) before feeling
   the need to surface — and drowns silently. This kills fit, strong swimmers.
 - **Cold-water immersion** triggers a **cold-shock gasp reflex** (involuntary inhalation underwater) and fast

@@ -122,7 +122,7 @@ a failed airway with no way to get oxygen in — which is why every anesthetic b
 assessment** and a **plan B, C, and D** (video laryngoscopes, supraglottic rescue, and, at the bottom of the
 ladder, a surgical airway through the neck). The single biggest driver of the field's modern safety record
 (§2.5) is arguably **pulse oximetry and capnography** — continuous monitoring of blood oxygen and exhaled
-CO₂ — which turned "the patient stopped breathing and we found out too late" into "an alarm sounds within
+\(\mathrm{CO_{2}}\) — which turned "the patient stopped breathing and we found out too late" into "an alarm sounds within
 seconds."
 
 ### 2.5 The remarkable safety record — and how to state it honestly
@@ -263,7 +263,7 @@ substitute-for-a-failing-organ model, applied while the underlying problem is (h
 
 | Organ system failing | The support the ICU provides | What it is honestly doing |
 |---|---|---|
-| **Lungs** (respiratory failure) | Mechanical ventilation (invasive via tube, or non-invasive); in extremis **ECMO** (an external artificial lung) | Moving oxygen in and CO₂ out for you — buying time for the lung to heal (§5.1) |
+| **Lungs** (respiratory failure) | Mechanical ventilation (invasive via tube, or non-invasive); in extremis **ECMO** (an external artificial lung) | Moving oxygen in and \(\mathrm{CO_{2}}\) out for you — buying time for the lung to heal (§5.1) |
 | **Circulation** (shock) | IV fluids, **vasopressors/inotropes**, monitoring | Holding blood pressure and organ perfusion up while the cause is treated (§5.2) |
 | **Kidneys** (acute kidney injury) | **Dialysis / CRRT** (continuous renal replacement therapy) | Clearing toxins, acid, and excess fluid the kidney can't (§5.3) |
 | **Brain** (coma, raised pressure, seizures) | Sedation, intracranial-pressure (ICP) control, neuro-monitoring | Protecting the brain and controlling its environment |
@@ -543,7 +543,7 @@ best "the evidence turned over" cases.
   **sepsis as an immune/disease process** ↔ **Section 26** (`26-infectious-disease.md`) and **15**
   (`15-immune-system.md`); **end-of-life, advance directives, and the over-treatment problem** ↔ **Section
   19** (`19-life-stages.md`).
-- **UP to canon:** the **membrane excitability, ion gradients, and Na⁺/K⁺ pump** that general anesthetics
+- **UP to canon:** the **membrane excitability, ion gradients, and \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\) pump** that general anesthetics
   ultimately perturb are `bucket-canon/05-biophysics/` foundations (the Hodgkin–Huxley action potential —
   see `14 §1.2`); and the question of **what consciousness physically is** — the thing general anesthesia
   reversibly switches off — is an open foundation in `bucket-canon/07-mind`. Anesthesiology is the clinical
