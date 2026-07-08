@@ -99,9 +99,9 @@ the Nobel's single-name attribution exactly as it does for Franklin.
 The stored energy is called the **proton-motive force (Δp)**, and it has two components — an
 electrical one and a chemical (pH) one:
 
-```
-Δp  =  Δψ  −  (2.303 RT / F) · ΔpH
-```
+\[
+\Delta p = \Delta\psi - \frac{2.303\,RT}{F}\,\Delta\mathrm{pH}
+\]
 
 You can skip the equation — the idea is just *voltage plus a pH difference across a membrane*.
 (`Δψ` is the voltage across the membrane, `ΔpH` the proton-concentration difference; `R` is the gas

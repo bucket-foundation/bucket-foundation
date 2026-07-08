@@ -127,14 +127,55 @@ def first_title(md_path):
             if line.startswith("# "): return line[2:].strip()
     return os.path.basename(md_path)
 
+import matplotlib
+matplotlib.use("Agg")
+matplotlib.rcParams["mathtext.fontset"]="cm"      # Computer Modern — the LaTeX look
+from matplotlib.figure import Figure as _MFig
+from matplotlib.backends.backend_agg import FigureCanvasAgg as _MCanvas
+import io as _io, base64 as _b64, html as _html
+_MATH_CACHE={}
+def _math_svg(tex, display):
+    tex=tex.strip()
+    key=(tex,display)
+    if key in _MATH_CACHE: return _MATH_CACHE[key]
+    fs = 12.5 if display else 9.6                  # body font ~9.35pt
+    try:
+        fig=_MFig(); fig.patch.set_alpha(0.0)
+        t=fig.text(0.0,0.0,f"${tex}$",fontsize=fs)
+        can=_MCanvas(fig); r=can.get_renderer()
+        bb=t.get_window_extent(r)                  # baseline at y=0: y0<0 descent, y1>0 ascent
+        depth_pt=(-bb.y0)*72.0/fig.dpi
+        buf=_io.BytesIO()
+        fig.savefig(buf,format="svg",bbox_inches="tight",pad_inches=0.004,transparent=True)
+        svg=_b64.b64encode(buf.getvalue()).decode()
+        if display:
+            out=f'<span class="matheq-d"><img src="data:image/svg+xml;base64,{svg}" alt="{_html.escape(tex)}"/></span>'
+        else:
+            out=(f'<img class="matheq-i" style="vertical-align:-{depth_pt:.2f}pt" '
+                 f'src="data:image/svg+xml;base64,{svg}" alt="{_html.escape(tex)}"/>')
+    except Exception:
+        out=f'<code class="matherr">{_html.escape(tex)}</code>'   # visible fallback, never crash
+    _MATH_CACHE[key]=out; return out
+
+def render_math(h):
+    # pandoc emits <span class="math display">$$ TEX $$</span> and <span class="math inline">\( TEX \)</span>
+    def disp(m): return _math_svg(m.group(1), True)
+    def inl(m):  return _math_svg(m.group(1), False)
+    h=re.sub(r'<span class="math display">\s*\$\$(.*?)\$\$\s*</span>', disp, h, flags=re.S)
+    h=re.sub(r'<span class="math display">\s*\\\[(.*?)\\\]\s*</span>', disp, h, flags=re.S)
+    h=re.sub(r'<span class="math inline">\s*\\\((.*?)\\\)\s*</span>',  inl,  h, flags=re.S)
+    h=re.sub(r'<span class="math inline">\s*\$(.*?)\$\s*</span>',      inl,  h, flags=re.S)
+    return h
+
 def pandoc(md_path):
-    out = subprocess.run(["pandoc","-f","markdown+pipe_tables+backtick_code_blocks-citations","-t","html5",
-                          "--no-highlight", md_path], capture_output=True, text=True)
+    out = subprocess.run(["pandoc",
+                          "-f","markdown+pipe_tables+backtick_code_blocks+tex_math_single_backslash-citations-tex_math_dollars",
+                          "-t","html5","--no-highlight", md_path], capture_output=True, text=True)
     if out.returncode!=0: raise RuntimeError(f"pandoc failed on {md_path}: {out.stderr[:300]}")
     h = out.stdout
     # drop the first <h1>...</h1> (we render our own chapter header)
     h = re.sub(r"^\s*<h1[^>]*>.*?</h1>", "", h, count=1, flags=re.S)
-    return h
+    return render_math(h)
 
 def diagram_grid():
     cells=""
