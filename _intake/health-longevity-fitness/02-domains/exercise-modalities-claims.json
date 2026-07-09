@@ -13,7 +13,9 @@
       "doi": "10.1016/j.jacc.2014.04.058",
       "surfaced_via": "PubMed esearch (leisure-time running mortality) 2026-06-29"
     },
-    "conflicts_with": ["swimming-mortality-oja"],
+    "conflicts_with": [
+      "swimming-mortality-oja"
+    ],
     "canon_link": "bucket-canon/05-biophysics/sub-outcomes/longevity/",
     "confidence_notes": "Observational cohort, healthy-user and reverse-causation confounding (runners differ at baseline). Note: in the Oja 2017 British cohort running's mortality association was NOT significant while swimming/racquet/aerobics were - self-selected sport cohorts disagree, so magnitude is uncertain though direction across the literature is positive. The dose-flat finding (slow/brief is enough) is the practically important and robust part.",
     "added_on": "2026-06-29"
@@ -70,7 +72,9 @@
       "doi": "10.1136/bjsports-2016-096822",
       "surfaced_via": "PubMed esearch (swimming all-cause mortality cohort) 2026-06-29"
     },
-    "conflicts_with": ["running-mortality-lee"],
+    "conflicts_with": [
+      "running-mortality-lee"
+    ],
     "canon_link": "",
     "confidence_notes": "Observational; heavily self-selected (lap swimming and racquet sports require access, skill, and baseline health - a classic predictor-not-lever situation, so magnitudes overstate any causal effect). The disagreement with Lee 2014 on running (null here, strongly protective there) is itself the honest lesson: sport-specific cohorts are confounded by who chooses the sport. Swimming/cycling/swimming are non-weight-bearing (no bone benefit).",
     "added_on": "2026-06-29"
@@ -264,5 +268,27 @@
     "canon_link": "",
     "confidence_notes": "Strong consensus/synthesis-tier refutation of a persistent myth. Builds on the broader point (Section 04 section 4.1) that youth is the highest-leverage window for building strength and peak bone mass. The safety caveat is supervision and appropriate loading, not avoidance.",
     "added_on": "2026-06-29"
+  },
+  {
+    "id": "resistance-training-bone-density",
+    "statement": "Progressive high-intensity resistance and impact training increases bone mineral density (or halts age-related loss) in adults, including postmenopausal women, without the fractures long feared for that population.",
+    "domain": "exercise-modalities",
+    "evidence_tier": "rct",
+    "direction": "increase",
+    "effect_size": "LIFTMOR RCT (Watson 2018, JBMR): 8 months twice-weekly HiRIT improved lumbar-spine BMD +2.9% and femoral-neck BMD/geometry vs control in postmenopausal women with low bone mass, with high adherence and no fractures.",
+    "population": "postmenopausal women with low bone mass; generalizes to older adults",
+    "provenance": "Watson SL et al., J Bone Miner Res 2018; PMID 28975661 (LIFTMOR)",
+    "confidence_notes": "Anchors the §12 bone-loading mechanism row and §11 skin/bone section. rct/outcome for BMD surrogate; fracture-endpoint RCTs remain the gap."
+  },
+  {
+    "id": "mechanotransduction-piezo-bone",
+    "statement": "Living bone adapts to mechanical load predominantly through cellular mechanotransduction — osteocytes sensing strain via Piezo1/Piezo2 stretch-activated channels and fluid-flow (streaming) potentials — with classical bulk piezoelectricity a minor in-vivo contributor.",
+    "domain": "exercise-modalities",
+    "evidence_tier": "established",
+    "direction": "mechanism",
+    "effect_size": "Piezo1 in osteocytes/osteoblasts is necessary for load-induced bone formation (mouse knockouts lose the anabolic response); Piezo channel discovery earned the 2021 Nobel.",
+    "population": "mammalian bone (model organisms + human physiology)",
+    "provenance": "Coste B et al., Science 2010 (Piezo, Nobel 2021); Sun W et al., eLife 2019 (Piezo1 in bone); Fukada & Yasuda 1957 (piezoelectricity, superseded as primary driver)",
+    "confidence_notes": "Anchors the §12 bone-loading row + §01 §3.5 piezoelectricity. Mechanism established; classical piezoelectricity's primacy is superseded."
   }
 ]
