@@ -8,6 +8,14 @@ To keep the vendor optimism and the peer-reviewed result from weighing the same,
 
 The **industry-readiness matrix** — the figure this chapter narrates — plots the twenty-seven on two axes: *is the near-term value a sensor/defense or a computer*, and *is the computational advantage proven, contested, or promised*. Every industry falls into one of the three bands below. The matrix has a heavy diagonal: readiness rises as you move from "quantum computer chasing an optimization advantage" toward "quantum sensor doing a measurement job no classical instrument does as well." That diagonal is the honest shape of the market.
 
+**Learning objectives.** After this chapter you can:
+
+- Sort any quantum industry into the three-band map — proven, contested pilot, promise — and name the kind of quantum technology (sensor, cryptographic defense, or computer) that puts it there.
+- Read a vendor or analyst claim against the T1–T5 evidence tiers and assign it the tier it earns.
+- Explain why the near-term quantum economy is sensing and cryptographic migration while quantum *computing* is still pilots and contested annealing.
+- Spot the two market-sizing traps — TAM double-counting and quantum-inspired conflation — inside a market report or a press release.
+- Price a pure-play quantum company on its real current revenue rather than its trillion-dollar TAM deck, and read a DARPA-QBI stage as a government filter, not a scoreboard.
+
 ------------------------------------------------------------------------
 
 ### The industry map at a glance
@@ -142,12 +150,21 @@ Two industries are downstream of quantum chemistry, and they hold the textbook "
 
 ------------------------------------------------------------------------
 
+> **Key takeaways**
+>
+> - The industries with something deployed today run a quantum sensor or a cryptographic defense; the industries running a quantum computer are running a pilot.
+> - The map has three bands — proven (Band 1), contested pilot (Band 2), promise (Band 3) — and readiness rises along the sensing-over-computing diagonal.
+> - Every claim carries an evidence tier: a refereed *Nature* result (T2) and an analyst forecast (T5) are four tiers apart and should never read as one number.
+> - Certified randomness (JPMorganChase × Quantinuum) is the single delivered beyond-classical application on the whole industry map, and it produces no alpha.
+> - TAM decks inflate by double-counting one chemistry advantage across five verticals and by relabeling quantum-inspired classical work as quantum.
+> - The only T4-or-better revenue today is sensing and software; treat pure-play quantum computing as a 2029–2030 option priced on the ~$1B of real revenue that exists now.
+
 ### Where the industry stands
 
 
 The throughline is one sentence, and every card above is evidence for it. **The near-term money in quantum is sensing and cryptographic defense. Every "optimization advantage" and "simulation advantage" is today a controlled proof-of-concept or a contested annealing result, and cybersecurity is the inverse case where the honest risk is under-reaction.** The industries in Band 1 got there by running a quantum sensor that measures better than any classical instrument, or by scrambling to migrate their cryptography before a computer that does not yet exist arrives to break it. The industries in Band 2 run real hardware and real pilots, and they are honest about it — Ford Otosan's annealing app is an actual production workflow whose advantage over a good classical solver is an open question. The industries in Band 3 are, for now, promise.
 
-Two economic distortions follow from this shape, and both are worth naming. First, the **TAM figures are graded T5 and frequently inflated** — McKinsey's ~$2.7T-by-2035, oil and gas's ~$2.6T-by-2035, retail's ~32% CAGR — because they are unadjusted for inflation and double-counted across verticals that all draw from the same chemistry and optimization value pools. A dollar of "quantum chemistry advantage" appears in the pharma line, the chemicals line, the climate line, the agriculture line, and the energy line at once. Sum them and you have counted the same fault-tolerant computer five times. Second, the **quantum-inspired conflation** — classical algorithms that borrow quantum structure and run on classical hardware — lets a great deal of "quantum optimizes X today" press describe honest classical progress with a quantum computer nowhere in the loop.
+Two economic distortions follow from this shape — TAM figures inflated by double-counting one chemistry advantage across five verticals, and the quantum-inspired conflation that relabels classical work as quantum. Both are unpacked in the buyer-and-investor section below.
 
 The distance to Band-1 status for the compute industries is a physics distance: logical qubits and gate fidelities, the fault-tolerance wall of Chapter 3. Until that wall comes down, the map will keep its shape: a quantum computer is a research instrument that runs paying pilots, a quantum *sensor* is a product, and a quantum-*safe* migration is a deadline. That is where the industry stands in 2026. The sensing is real, the crypto-defense is mandatory, and the computer is still the most important machine the economy is waiting on.
 
@@ -168,23 +185,40 @@ The table below is the decision-grade companion to the map — the notable build
 
 | Company | Public / Private | Modality or segment | Near-term revenue source | Valuation flag | DARPA-QBI stage |
 |---|---|---|---|---|---|
-| **IonQ** | Public — NYSE: IONQ | Trapped-ion (absorbed Oxford Ionics) | Cloud access, government contracts, networking | Price/sales ~100×; **T5** | Stage B |
-| **D-Wave** | Public — NYSE: QBTS | Quantum annealing | Annealing cloud + on-prem, optimization pilots | Price/sales ~700×+; **T5** | Not selected |
-| **Rigetti** | Public — NASDAQ: RGTI | Superconducting | Cloud access, foundry, government R&D | Price/sales ~800×+; **T5** | Stage A (not advanced) |
-| **Quantinuum** | Public — NASDAQ: QNT (IPO Jun 2026) | Trapped-ion | H-series cloud, Honeywell channel, Quantum Origin PQC | New listing at a high multiple; **T5** | Stage B |
+| **IonQ** | Public — NYSE: IONQ | Trapped-ion (absorbed Oxford Ionics) | Cloud access, government contracts, networking | Price/sales ~100×; T5 | Stage B |
+| **D-Wave** | Public — NYSE: QBTS | Quantum annealing | Annealing cloud + on-prem, optimization pilots | Price/sales ~700×+; T5 | Not selected |
+| **Rigetti** | Public — NASDAQ: RGTI | Superconducting | Cloud access, foundry, government R&D | Price/sales ~800×+; T5 | Stage A (not advanced) |
+| **Quantinuum** | Public — NASDAQ: QNT (IPO Jun 2026) | Trapped-ion | H-series cloud, Honeywell channel, Quantum Origin PQC | New listing at a high multiple; T5 | Stage B |
 | **IBM** | Public — NYSE: IBM (diversified) | Superconducting, heavy-hex → qLDPC pivot | Quantum Network subscriptions, cloud | Quantum immaterial to cap; **n/a** | Stage B |
 | **Alphabet (Google)** | Public — NASDAQ: GOOGL (diversified) | Superconducting (Willow) | No direct quantum revenue — R&D program | Quantum immaterial to cap; **n/a** | Self-funded (absorbed Atlantic Quantum) |
 | **Microsoft** | Public — NASDAQ: MSFT (diversified) | Topological (Majorana) + Azure Quantum | Azure Quantum cloud brokerage | Quantum immaterial to cap; **n/a** | US2QC lineage (QBI precursor) |
-| **PsiQuantum** | Private | Photonic, fault-tolerance bet | Pre-revenue; government/utility partnerships | ~$6B+ raise, pre-revenue; **T5** | Evaluation track (ex-US2QC) |
-| **QuEra** | Private | Neutral-atom | Cloud access, government R&D | Venture-stage, pre-revenue; **T4** | Stage B |
-| **Pasqal** | Private | Neutral-atom | On-prem installs, HPC integration | Venture-stage; **T4** | Stage A |
-| **Alice & Bob** | Private | Superconducting cat qubits | Pre-revenue; resource-estimate R&D | Venture-stage; **T4** | Stage A |
-| **Atom Computing** | Private | Neutral-atom | Pre-revenue; government R&D | Venture-stage; **T4** | Stage B |
-| **Infleqtion** | Private | Neutral-atom + atomic clocks/sensing | Sensing and clock hardware (shipping) | Revenue-backed; **T4** | Stage A |
-| **SandboxAQ** | Private | PQC + quantum sensing (software) | PQC migration software, magnetometry | Large private raise; **T4** | — |
-| **Q-CTRL** | Private | Control software + quantum sensing | Inertial-nav sensors, error-suppression SW | Venture-stage; **T4** | — |
+| **PsiQuantum** | Private | Photonic, fault-tolerance bet | Pre-revenue; government/utility partnerships | ~$6B pre-/$7B post-money; ~$2B raised (incl. $1B Series E, Sep 2025); pre-revenue; T5 | Evaluation track (ex-US2QC) |
+| **QuEra** | Private | Neutral-atom | Cloud access, government R&D | Venture-stage, pre-revenue; T4 | Stage B |
+| **Pasqal** | Private | Neutral-atom | On-prem installs, HPC integration | Venture-stage; T4 | Not in named QBI cohort |
+| **Alice & Bob** | Private | Superconducting cat qubits | Pre-revenue; resource-estimate R&D | Venture-stage; T4 | Stage A |
+| **Atom Computing** | Private | Neutral-atom | Pre-revenue; government R&D | Venture-stage; T4 | Stage B |
+| **Infleqtion** | Private | Neutral-atom + atomic clocks/sensing | Sensing and clock hardware (shipping) | Revenue-backed; T4 | Stage A |
+| **SandboxAQ** | Private | PQC + quantum sensing (software) | PQC migration software, magnetometry | Large private raise; T4 | — |
+| **Q-CTRL** | Private | Control software + quantum sensing | Inertial-nav sensors, error-suppression SW | Venture-stage; T4 | — |
 
 Read the QBI column as a vendor-neutral government filter, not a scoreboard: advancing to Stage B means a credible utility-scale plan survived review, and being absent (D-Wave's annealer, the diversified incumbents' self-funded programs) means the company opted out or sits outside the fault-tolerant race the program is scoring. The valuation flags are the sharper signal. A public pure-play priced at hundreds of times sales is a T5 lottery ticket on a machine that does not yet exist; a private neutral-atom builder with no revenue is the same bet without a daily quote. The only T4-or-better income in the table is sensing and software — Infleqtion's clocks, SandboxAQ's migration tooling, Q-CTRL's inertial-nav units — which is the same conclusion the map reaches from the other direction.
+
+### Exercises and discussion
+
+1. **Classify and defend (all readers).** Pick three industries from the map, one from each band. For each, write a short paragraph defending its placement: name the specific quantum technology it depends on, cite the best evidence and its tier, and state the single thing that would have to change to move it up one band.
+2. **Grade a vendor case study (engineers, analysts).** Take one vendor claim from the chapter — HSBC–IBM's "up to 34% improvement" on bond-trade fills (Heron, Sep 2025), or Airbus–QC Ware's "~400% faster" air-traffic result. Read the announcement as if you were the buyer, assign it a T1–T5 tier, and list what would have to be published for it to move up a tier and whether a quantum computer is provably in the loop.
+3. **TAM versus revenue estimation (CS, quant).** The chapter sets ~$1B of real 2026 sector revenue against a ~$2.7T-by-2035 TAM. Treating the TAM as a target and assuming smooth compounding, compute the implied CAGR. Then identify which of the two traps most inflates that TAM and re-estimate a defensible 2035 figure with the double-count removed.
+4. **Resource estimation (physics, CS).** A FeMoco-class catalyst simulation needs error-corrected machines with thousands of *logical* qubits. Using the surface-code overhead from Chapter 3, estimate the *physical*-qubit count at a plausible physical error rate, and explain why "today's devices simulate only tiny molecules" is a fault-tolerance statement rather than a software one.
+5. **Seminar — where the money actually is.** The chapter argues the near-term economy is sensing and crypto-migration and that quantum computing is a 2029–2030 option. Build the opposite case: what would have to be true for compute revenue to overtake sensing revenue before 2030? Treat D-Wave's contested annealing as the test case — is it the exception that breaks the thesis, or evidence for it?
+6. **Seminar — reading DARPA-QBI.** The QBI advanced eleven Stage-A performers to Stage B in November 2025, and several notable builders are absent from the cohort (D-Wave, the diversified incumbents, Pasqal). Debate what an investor should and should not infer from absence: is it a signal about a company's prospects, or an artifact of what the program is scoring?
+
+### Further reading
+
+- **M. Liu, R. Shaydulin, P. Niroula, et al., "Certified randomness using a trapped-ion quantum processor," *Nature* 640, 343–348 (2025)** (arXiv:2503.20498). The one refereed beyond-classical *application* on the whole industry map — read it to see what a T2 result, and its narrow scope, actually looks like.
+- **McKinsey & Company, *Quantum Technology Monitor* (annual).** Source of the ~$2T-by-2035 value figures the press repeats; read it against the chapter's caveat that these forecasts are unadjusted for inflation and double-counted across chemistry- and optimization-driven verticals.
+- **Alice & Bob, "Quantum Resource Estimation for Ground State Energy of FeMoco and P450 on Cat Qubits" (2025).** Estimates ~99,000 physical cat qubits for FeMoco, a ~27× cut from Google's 2021 figure of ~2.7M — a concrete look at why quantum chemistry advantage is fault-tolerance-gated, and how fast the estimates move.
+- **A. D. King, et al., "Beyond-classical computation in quantum simulation," *Science* (2025)**, alongside **J. Tindall, et al., "Dynamics of disordered quantum systems with two- and three-dimensional tensor networks," *Science* (2025)** (arXiv:2503.05693). The D-Wave Advantage2 spin-glass claim and the Flatiron Institute tensor-network rebuttal — the live "is annealing beyond classical?" exchange behind Band 2.
+- **NIST, FIPS 203 / 204 / 205 (August 2024).** The finalized post-quantum cryptography standards (ML-KEM, ML-DSA, SLH-DSA) that make the Band-1 crypto-migration a dated deadline rather than a forecast.
 
 </div>
 

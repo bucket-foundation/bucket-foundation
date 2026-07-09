@@ -139,6 +139,8 @@ def build():
     conflicts_html = render(os.path.join(ROOT, "evidence", "CONFLICTS.md"))
     sweep_html     = render(os.path.join(ROOT, "_science-jobs", "S4-arxiv-sweep", "arxiv_sweep_S4.md"))
     glossary_html  = render(os.path.join(ROOT, "evidence", "GLOSSARY.md"))
+    primer_html    = render(os.path.join(ROOT, "evidence", "MATH-PRIMER.md"))
+    lab_html       = render(os.path.join(ROOT, "evidence", "LAB-TRACK.md"))
 
     # auto topic index: node titles A–Z -> reference cards
     idx = ['<div class="indexcols">']
@@ -159,8 +161,10 @@ def build():
     toc_html.append('<li><a href="#conflicts">B · Conflict register</a></li>')
     toc_html.append('<li><a href="#sweep">C · Recent preprint evidence</a></li>')
     if glossary_html: toc_html.append('<li><a href="#glossary">D · Glossary</a></li>')
-    toc_html.append(f'<li><a href="#refindex">E · Node reference index ({total})</a></li>')
-    toc_html.append('<li><a href="#index">F · Index of topics</a></li>')
+    if primer_html: toc_html.append('<li><a href="#primer">E · Math primer</a></li>')
+    if lab_html: toc_html.append('<li><a href="#labs">F · Lab track</a></li>')
+    toc_html.append(f'<li><a href="#refindex">G · Node reference index ({total})</a></li>')
+    toc_html.append('<li><a href="#index">H · Index of topics</a></li>')
     toc_html.append('</ol></nav>')
 
     built = datetime.date.today().isoformat()
@@ -170,6 +174,12 @@ def build():
     gloss_section = (f'<section class="chapter" id="glossary"><div class="chnum">Appendix D</div>'
                      f'<h1>Glossary</h1><div class="narrative glossary">{glossary_html}</div></section>'
                      if glossary_html else "")
+    primer_section = (f'<section class="chapter" id="primer"><div class="chnum">Appendix E</div>'
+                      f'<h1>Math primer</h1><div class="narrative">{primer_html}</div></section>'
+                      if primer_html else "")
+    lab_section = (f'<section class="chapter" id="labs"><div class="chnum">Appendix F</div>'
+                   f'<h1>Lab track</h1><div class="narrative">{lab_html}</div></section>'
+                   if lab_html else "")
     body = f"""
 <header class="hero">
   <div class="kicker">Bucket Foundation · physics branch</div>
@@ -190,10 +200,12 @@ def build():
 <section class="chapter" id="conflicts"><div class="chnum">Appendix B</div><h1>Conflict register</h1><div class="narrative">{conflicts_html}</div></section>
 <section class="chapter" id="sweep"><div class="chnum">Appendix C</div><h1>Recent preprint evidence (arXiv sweep)</h1><div class="narrative">{sweep_html}</div></section>
 {gloss_section}
-<section class="chapter" id="refindex"><div class="chnum">Appendix E</div><h1>Node reference index</h1>
+{primer_section}
+{lab_section}
+<section class="chapter" id="refindex"><div class="chnum">Appendix G</div><h1>Node reference index</h1>
 <p class="blurb">The {total} graded source nodes behind the chapters — the raw knowledge base.</p>
 {''.join(refs_html)}</section>
-<section class="chapter" id="index"><div class="chnum">Appendix F</div><h1>Index of topics</h1>{index_html}</section>
+<section class="chapter" id="index"><div class="chnum">Appendix H</div><h1>Index of topics</h1>{index_html}</section>
 <footer><p>The Quantum Atlas · Bucket Foundation · {built}. Not investment advice.
 Every timeline attributed to a vendor is marketing until a peer reviews it.</p></footer>
 """
