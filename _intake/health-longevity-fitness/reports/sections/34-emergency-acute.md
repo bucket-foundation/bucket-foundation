@@ -109,7 +109,7 @@ the default** — and the evidence is unusually clean:
 - **The SOS-KANTO observational study (Lancet 2007)** and subsequent trials found compression-only bystander
   CPR was **at least as good as** conventional CPR-with-breaths for adult witnessed arrest — and far more
   people are willing to do it (no mouth-to-mouth barrier).[^sos-kanto]
-- **Bystander CPR roughly doubles to triples survival.** A nationwide Swedish study (**Hasselqvist-Ax et al.,
+- **Bystander CPR is associated with roughly double to triple the survival rate in registry studies.** A nationwide Swedish study (**Hasselqvist-Ax et al.,
   NEJM 2015**)[^hasselqvist] of ~30,000 arrests found
   30-day survival of **10.5% with bystander CPR vs 4.0% without** — and that early CPR was associated with
   survival *independent* of all later links. The intervention with the largest population effect is the one
@@ -445,7 +445,7 @@ emergency: **core temp ≳40 °C with altered mental status** — confusion, agi
 count.**
 
 > **The single most important fact: COOL FIRST, transport second — and cool aggressively.** **Cold-water
-> immersion** (an ice bath/tub) is the gold standard and lowers mortality in exertional heat stroke; if not
+> immersion** (an ice bath/tub) is the standard of care and lowers mortality in exertional heat stroke (military and athletic cooling case-series, `cohort`/`case-control`); if not
 > available, **dowse with water + fan, and pack ice at the neck, armpits, and groin.** Don't wait for the
 > ambulance to start. Fever-reducers (paracetamol [US: acetaminophen/Tylenol] or ibuprofen) **do not work**
 > here — this isn't a fever, it's a

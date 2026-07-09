@@ -53,7 +53,7 @@ behavioural therapy; **CHS** = cannabinoid hyperemesis syndrome. "Transition to 
 ever-users" = of everyone who ever tried the drug, the share who went on to become dependent._
 
 Transition-to-dependence percentages are from **Lopez-Quintero et al., *Drug Alcohol Depend* 2011**,[^lopez]
-a NESARC analysis of ~43,000 US adults, broadly consistent with the earlier **Anthony, Warner & Kessler
+a NESARC analysis of ~43,000 US adults. The two data sets diverge on nicotine — Lopez-Quintero puts the nicotine transition near 67.5% versus roughly a third in the earlier **Anthony, Warner & Kessler
 (1994)** comparative-dependence estimates. One exception: NESARC did not cover heroin/opioids, so the
 **~23% opioid** figure is the **Anthony 1994** estimate specifically, not Lopez-Quintero. They are **order-of-magnitude** figures meant to convey
 *relative* addiction potential, not precision — and the headline they carry is honesty rule #2: **for every

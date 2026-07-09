@@ -6,7 +6,7 @@ toothpaste, oil pulling, $300 serums, "eye exercises" for myopia, amalgam-remova
 on these organs lands on the wrong side of that line.
 
 Several of these conditions carry a hard mortality or function tail that earns them a place in a longevity manual:
-melanoma kills, oral cancer kills, untreated glaucoma blinds silently, sleep apnea drives cardiovascular disease,
+melanoma kills, oral cancer kills, untreated glaucoma blinds silently, sleep apnea is strongly associated with cardiovascular disease (causal benefit from treatment unproven in RCT — see §C.5),
 and vision/hearing loss now sit on the Lancet modifiable-dementia list.
 
 They are also the cleanest test of three honesty rules used throughout this manual. **Predictor ≠ lever** —
@@ -98,7 +98,7 @@ response inflames; scratching breaks the barrier further — the "itch–scratch
   clean safety profile (notable: conjunctivitis). `rct` / outcome.[^dupilumab-solo] This was the proof that **targeting type-2
   cytokines** controls severe eczema, and it opened the biologic era in dermatology beyond psoriasis.
 
-**Honest take:** the foundation is boring and works. "Steroid phobia" and chasing elimination diets cause more
+**Honest take:** the foundation is unglamorous and it works. "Steroid phobia" and chasing elimination diets cause more
 suffering than the steroids do. The biologics/JAKs are genuine breakthroughs but are for **moderate–severe disease**,
 not first-line for mild eczema. Bleach baths and "leaky gut" cures are mostly overhyped.
 
@@ -106,7 +106,7 @@ not first-line for mild eczema. Bleach baths and "leaky gut" cures are mostly ov
 
 Psoriasis is a **systemic immune-mediated disease**, not a cosmetic "dry skin" problem. The mechanism is now
 precisely mapped: the **IL-23 → Th17 → IL-17 axis** drives keratinocyte hyperproliferation (the silvery scaly
-plaques) and is **systemic** — psoriasis carries excess risk of **psoriatic arthritis** (~20–30%), cardiovascular
+plaques) and is **systemic** — psoriasis carries excess risk of **psoriatic arthritis** (~20–30%, `cohort`), cardiovascular
 disease, and metabolic syndrome (Section 24 owns the joint disease).
 
 | Tier | Intervention | Evidence | Note |
@@ -297,8 +297,7 @@ caught late, with ~50–60% 5-year survival overall (much better when caught ear
 **Honest take:** the levers are **don't smoke/chew tobacco, moderate alcohol, get HPV-vaccinated, and let your
 dentist do the oral-cancer screen** (the visual/palpation exam at checkups — the practical reason routine dental
 visits matter beyond cleaning). Any non-healing mouth ulcer, red/white patch (erythroplakia/leukoplakia), or lump
-lasting **>2–3 weeks** warrants evaluation. The **HPV-vaccine → oropharyngeal-cancer-prevention** link is a genuine
-modern prevention win (cross-ref Section 25/26).
+lasting **>2–3 weeks** warrants evaluation. **HPV vaccination prevents the HPV infections that cause most oropharyngeal cancers** (`rct` for infection and dysplasia endpoints; a direct reduction in oropharyngeal-cancer incidence is expected but not yet measured, cross-ref Section 25/26).
 
 ### B.5 The honest take on "holistic dentistry," charcoal, oil-pulling, whitening, and amalgam fear
 

@@ -276,7 +276,7 @@ This is one of medicine's great recent success stories, and an honest map distin
 | **HIV** | **Manageable, not curable** | Modern antiretroviral therapy (ART) turns HIV into a chronic condition with **near-normal life expectancy**. **U=U: undetectable = untransmittable** — effective treatment makes someone non-infectious (treatment-as-prevention).[^hptn052] **PrEP** (pre-exposure prophylaxis) prevents acquisition. Still no cure, still a lifelong daily commitment, still ~40M people living with it. |
 | **Hepatitis C** | **Curable** | Direct-acting antivirals (DAAs, since ~2014) cure **>95%** in 8–12 weeks of pills — a medical miracle that arrived quietly. The bottleneck is now diagnosis and access, not cure. |
 | **Hepatitis B** | **Preventable, suppressible** | A **vaccine prevents it** (and the liver cancer it causes — the first anti-cancer vaccine). Chronic infection is suppressed, not yet cured. |
-| **HPV** | **Preventable** | Ubiquitous; most clears on its own, but oncogenic strains cause **cervical, anal, oropharyngeal cancers**. The **vaccine prevents the cancer** (cross-ref clinical-prevention; Swedish cohort data show real cervical-cancer reduction). |
+| **HPV** | **Preventable** | Ubiquitous; most clears on its own, but oncogenic strains cause **cervical, anal, oropharyngeal cancers**. The **vaccine sharply reduces the cancer** (cross-ref clinical-prevention; large Swedish cohort data show a real cervical-cancer reduction, `cohort`). |
 | **Herpesviruses (HSV, VZV, EBV, CMV)** | Lifelong latency | Most people carry several. Mostly benign but consequential: **VZV** reactivates as shingles (vaccine-preventable, with a dementia-incidence signal — pharma §5); **CMV** is implicated in immune aging (`15 §2.4`); **EBV** is now strongly tied to multiple sclerosis. |
 
 @@FIG:DX5-chronic-viral@@
@@ -329,8 +329,8 @@ section to the exposures/environment material (`09-exposures-environment.md`).
 COVID-19 is the defining infectious event of the era, and an honest manual neither minimizes nor mythologizes it.
 
 - **What clearly worked:** the **mRNA vaccines** were a scientific triumph — designed in days, proven
-  ~95% effective against severe disease in a rigorous RCT (randomized controlled trial — the strongest evidence
-  tier) (Polack et al., *NEJM* 2020),[^bnt-rct] and credited with
+  ~95% effective against symptomatic COVID-19 in a rigorous RCT (randomized controlled trial — the strongest evidence
+  tier; the trial's primary endpoint) (Polack et al., *NEJM* 2020),[^bnt-rct] and credited with
   preventing millions of deaths. Rapid genomic sequencing and global data-sharing were unprecedented.
 - **What was hard and contested:** the relative value of **lockdowns, school closures, and mask
   mandates** involved real trade-offs (education loss, mental health, economic harm) that were not always

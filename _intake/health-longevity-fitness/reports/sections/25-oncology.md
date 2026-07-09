@@ -113,8 +113,7 @@ lifetime of replication errors, oxidative damage, and declining repair fidelity 
 normal cell's telomere clock *is* a tumour suppressor that forces senescence before a lineage can accrue
 enough mutations to turn malignant, so a cancer must reactivate telomerase to escape it
 (`16-telomeres §16.3`; the Haycock 2017 result — using inherited gene variants as a natural experiment,
-a method called Mendelian randomization — that genetically *longer* telomeres raise cancer risk is the
-causal proof). And **senescent cells** (2022 hallmark #12) are the bridge: senescence protects against
+a method called Mendelian randomization — that genetically *longer* telomeres raise cancer risk supports a causal interpretation beyond mere correlation). And **senescent cells** (2022 hallmark #12) are the bridge: senescence protects against
 cancer in youth but, via the SASP (senescence-associated secretory phenotype — the inflammatory
 signals aging cells emit), **promotes** it in age.
 
@@ -200,7 +199,7 @@ on top of heredity and environment.
 - **Heritable cancer (~5–10% of cancers).** A germline mutation in a tumour suppressor means you are
   **born with one hit already present** in every cell, so far fewer additional hits are needed — earlier,
   more frequent cancers. The canonical examples: **BRCA1/2** (hereditary breast & ovarian cancer; BRCA1
-  carriers ~55–72% lifetime breast-cancer risk, ~39–44% ovarian; BRCA2 ~45–69% breast, ~11–17% ovarian —
+  carriers ~72% cumulative breast-cancer risk to age 80 [95% CI 65–79] and ~44% ovarian [36–53]; BRCA2 ~69% breast [61–77] and ~17% ovarian [11–25] —
   Kuchenbaecker 2017), **Lynch syndrome** (mismatch-repair genes → colorectal/endometrial), **Li-Fraumeni**
   (germline *TP53* — multi-cancer), **FAP** (*APC* → colorectal), **retinoblastoma** (*RB1*). BRCA biology
   also matters for **therapy**: BRCA-deficient tumours can't repair double-strand breaks, making them

@@ -56,7 +56,7 @@ Its defining features, and the ones that make its evidence problem unique (§2),
   in pharmacology.
 - **Operator-dependence.** Outcomes vary with the *surgeon* and the *centre* in a way that outcomes of a
   pill do not vary with the prescriber. Volume-outcome relationships are real and large for complex
-  surgery — a high-volume centre is, for many operations, a genuine safety intervention.
+  surgery — a high-volume centre is, for many operations, a strong predictor of better outcomes.
 - **The package problem.** "Surgery" is never just the cut. It is anaesthesia, the incision, the
   procedure, the inflammatory/healing response, the hospital stay, the rehab, and the patient's
   expectation. Isolating *which part* did the good (or harm) is hard — and is the reason placebo-controlled

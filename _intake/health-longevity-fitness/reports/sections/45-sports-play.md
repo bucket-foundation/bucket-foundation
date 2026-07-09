@@ -1,8 +1,8 @@
 # 45 — Sports, Play & Recreational Activity
 
 Running burns more calories per hour than doubles tennis. Yet across a large Danish cohort followed for 25 years,
-the tennis players outlived the sedentary by nearly a decade — roughly **triple** the gain of the runners.
-Calories are clearly not the explanatory variable. The sports that pile on the most years are the ones that are
+tennis players showed nearly a decade longer survival than the sedentary — roughly **triple** the association seen in runners.
+Calories alone cannot easily explain the pattern. The sports that pile on the most years are the ones that are
 **social, skillful, and intermittently intense** — which means *what you play, and with whom*, is itself a dose.
 This chapter grades each game — the actual games humans play — for what it does to lifespan, healthspan, the
 brain, and the social self.

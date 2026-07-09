@@ -99,9 +99,8 @@ men, <2% of women**) developed iron-overload-related disease over time (Allen et
 The point cuts two ways: (1) it *is* worth knowing, because
 the treatment — periodic phlebotomy if ferritin/transferrin saturation climb — is trivial and fully
 preventive; but (2) **a positive genotype is not a diagnosis**; you act on the *iron studies*
-(ferritin, transferrin saturation), not on the SNP alone. Predictor ≠ lever (something that forecasts
-risk isn't automatically something that, changed, lowers it); here the lever is the blood test that
-follows.
+(ferritin, transferrin saturation), not on the SNP alone. A genotype forecasts risk; the actionable lever is the iron studies (ferritin, transferrin saturation) and the
+phlebotomy they trigger, rather than the SNP itself.
 
 ### A.2.3 BRCA and the actionable cancer genes — the *right* findings, the *wrong* instrument
 

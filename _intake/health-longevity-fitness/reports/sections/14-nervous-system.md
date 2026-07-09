@@ -24,7 +24,7 @@ The nervous system splits into the **central nervous system (CNS)** — brain + 
 in bone and the blood–brain barrier — and the **peripheral nervous system (PNS)** — everything
 else: the cranial and spinal nerves, the sensory and motor fibres, the autonomic ganglia, and the
 **enteric nervous system** of the gut. The split is not just anatomical; it is *regenerative*.
-Peripheral axons can regrow (slowly, ~1 mm/day) along their Schwann-cell sheaths; central axons
+Peripheral axons can regrow (slowly, ~1 mm/day[^regrow]) along their Schwann-cell sheaths; central axons
 mostly cannot, because the CNS environment (myelin-associated inhibitors, the glial scar) actively
 blocks regrowth. This single fact explains why a severed finger nerve can recover and a severed
 spinal cord generally does not — and why "neuroplasticity" (§4) is real but bounded.
@@ -313,7 +313,7 @@ covered in depth elsewhere — the point here is that they converge:
 - **Exercise** — best single bet; BDNF + vascular mechanism, modest RCT outcomes (08 §3, Domain E).
 - **Sleep** — glymphatic clearance, memory consolidation; protect it, don't oversell it as a proven
   preventive (Domain I, 08 §4 cross-ref).
-- **Social connection** — the largest, most replicated mortality signal in the corpus, and a Lancet
+- **Social connection** — one of the largest and most consistently replicated mortality *associations* in the observational corpus, and a Lancet
   dementia factor (Domain M; 08 §1, §5).
 - **Lifelong learning / mental engagement** — plausible reserve-builder, weak as an isolated lever.
 - **Vascular control** (BP, LDL, glucose, don't smoke) — what's good for the heart is good for the
@@ -565,3 +565,5 @@ disorders as it matures toward actionable, gradeable interventions.
 [^neuropathic-drugs]: Finnerup et al. (NeuPSIG systematic review) — *Lancet Neurol* 2015. doi:10.1016/s1474-4422(14)70251-0. Lunn et al. (duloxetine Cochrane) 2014. doi:10.1002/14651858.cd007115.pub3. claim: neuropathic-first-line-nnt (meta)
 
 [^noetel]: Noetel et al. — *BMJ* 2024. doi:10.1136/bmj-2023-075847. claim: exercise-depression-rct (meta/rct)
+
+[^regrow]: Peripheral-nerve axonal regeneration proceeds at roughly 1 mm/day along the residual Schwann-cell basal-lamina tubes; classic estimates range ~1–3 mm/day depending on nerve and distance from the cell body (Sunderland; standard peripheral-nerve physiology).

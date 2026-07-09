@@ -280,7 +280,7 @@ Adventist/cohort data, and the calorie-restriction (CR) / metabolic literature �
 @@FIG:F03-dietary-pattern@@
 
 **What the evidence actually says vs the tribes:** the *strongest dietary-pattern RCT we have* (PREDIMED) tested a
-Mediterranean pattern — and even it carries an asterisk (2013 retraction/republication over randomization
+Mediterranean pattern — and even it carries an asterisk (originally published in 2013, then retracted and republished with a corrected analysis in 2018 over randomization
 irregularities; corrected analysis still positive). Beyond that, **no diet has a hard-endpoint (mortality) RCT** —
 you can't randomize humans to decades of eating. So the honest stance is: pick a whole-food, fiber-rich,
 protein-adequate pattern you can *adhere to*; adherence and energy balance beat the brand. The macro wars are

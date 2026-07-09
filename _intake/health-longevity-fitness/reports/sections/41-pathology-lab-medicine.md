@@ -311,7 +311,7 @@ characterized (cross-ref §25):
   and on borderline lesions. Gleason grading of prostate cancer is the classic studied example: agreement
   is good for clear high- and low-grade tumors but materially worse in the intermediate range, which is
   exactly where treatment decisions hinge — a recurring finding through successive grading-system revisions
-  (ISUP 2005/2014; *Urol Clin North Am* 2026 update). Diagnosis is more reproducible than grading; grading
+  (ISUP 2005/2014). Diagnosis is more reproducible than grading; grading
   is more reproducible than "is this early dysplasia." The microscope is the gold standard *and* a source
   of real, quantifiable disagreement — both are true.
 

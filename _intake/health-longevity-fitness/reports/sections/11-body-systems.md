@@ -1,6 +1,6 @@
 # 11 — Lived-In Body Systems (Skin · Teeth · Bones · Eyes · Ears · Feet · Floor)
 
-Up to ~80% of how "old" your face looks is sun damage you could have prevented. That one fact captures why this
+Up to ~80% of how "old" your face looks is attributed to sun damage in widely-cited dermatology estimates—damage that is largely preventable. That one fact captures why this
 section exists. The popular longevity literature optimizes for VO2max (a fitness/aerobic-capacity score),
 glucose, sleep, and a short list of molecules, and quietly skips the systems you actually *live in* every
 day — **skin, teeth, bones, eyes, ears, feet, pelvic floor** — the ones that, when they fail, end independence.

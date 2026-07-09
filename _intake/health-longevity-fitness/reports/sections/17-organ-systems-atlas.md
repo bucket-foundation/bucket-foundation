@@ -313,7 +313,7 @@ nutritional epidemiology gets.
 ### 5.1 How it ages
 
 Aging hematopoiesis shows reduced marrow reserve, a drift toward myeloid lineage, and the emergence of
-**clonal hematopoiesis (CHIP)** — an independent cardiovascular and mortality risk marker (cross-ref Domain B
+**clonal hematopoiesis (CHIP)** — an independent cardiovascular and mortality risk marker (`cohort`) (cross-ref Domain B
 aging mechanisms / Domain C omics). The clinically dominant age story, though, is **anemia**, whose prevalence
 climbs steeply after 65. Crucially, **anemia in older adults is usually a signal of another disease, not "old
 blood"** — it independently predicts hospitalization, disability, and mortality (**Culleton et al., Blood

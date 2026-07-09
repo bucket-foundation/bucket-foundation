@@ -166,7 +166,7 @@ become immortal.**
 @@FIG:PS10-cancer-paradox@@
 
 A normal cell's silenced telomerase is a **brake on tumours.** When a pre-cancerous cell divides too many
-times, its telomeres run down, the ends uncap, and it either senesces or dies — the telomere clock *kills the
+times, its telomeres run down, the ends uncap, and it either senesces or dies — the telomere clock `[mechanistic]` *acts to kill the
 lineage before it can accumulate enough mutations to become malignant.* To escape, a cancer must restore
 telomere maintenance. The empirical scale of this:
 
@@ -302,8 +302,8 @@ the senescent state; the room is much larger.
 
 The strongest *animal* longevity story in the corpus, and the honest one:
 
-- **Genetic clearance** of p16^INK4a^+ senescent cells extends median lifespan ~25–27% in naturally aged
-  mice (**Baker et al., 2016**, *Nature*) — but this is a **genetic ablation tool**, not a drug.
+- **Genetic clearance** `[animal]` of p16^INK4a^+ senescent cells extends median lifespan ~25–27% in naturally aged
+  mice (**Baker et al., 2016**, *Nature*) — but this is a genetic ablation tool, not a drug.
 - **Senolytic drugs** (D+Q = dasatinib + quercetin; fisetin) improve function and extend post-treatment
   lifespan in **old mice** (`animal`-tier). The first-in-human data is **one tiny open-label pilot**
   (**Justice et al., 2019**, D+Q in idiopathic pulmonary fibrosis, n=14, improved 6-minute walk — uncontrolled,

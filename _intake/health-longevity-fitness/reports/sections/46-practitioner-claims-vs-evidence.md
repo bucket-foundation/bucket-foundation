@@ -33,7 +33,7 @@ not evidence.** We grade the underlying claim against its primary source, then n
 
 Six parallel YouTube cross-check waves ran on 2026-06-29, one per practitioner cluster. Across them,
 **~98 transcripts** were pulled and **~139 headline claims** were hand-extracted and graded against the
-**997-claim corpus** on a four-point scale:[^method-tools]
+**1,019-claim corpus** on a four-point scale:[^method-tools]
 
 - **AGREES** — the claim matches a graded corpus claim at its stated strength.
 - **OVERSTATED** — there is a real kernel (a genuine mechanism, cohort, or acute effect), but the
@@ -71,7 +71,7 @@ Counts below are per the six raw files (some claims carry split verdicts; counte
 
 | Rank | Voice (cluster) | Agree | Overstate | Contradict | One-line verdict |
 |---|---|---|---|---|---|
-| 1 | **Andy Galpin** (Rhonda+Galpin) | ~9 | ~2 | 0 | The most corpus-aligned voice in any wave — every strength/creatine/protein/hydration claim maps to a `REAL`-graded entry; already cited by name.[^cal-galpin] |
+| 1 | **Andy Galpin** (Rhonda+Galpin) | ~9 | ~2 | 0 | The most corpus-aligned voice in any wave — strength/creatine/protein claims map to `REAL`-graded entries; hydration heuristic is practitioner-tier[^cal-galpin]; already cited by name.[^cal-galpin] |
 | 2 | **Matt Kaeberlein** (longevity-sci) | 5 | 0 | 0 | The in-field validator: a geroscientist who runs the gold-standard testbeds and *refuses to overclaim*. The anti-Sinclair. |
 | 3 | **Clock-builders** — Levine / Horvath / Gladyshev | ~7 | ~2 | 0 | The people who *build* the epigenetic clocks are more cautious about them than the people who *sell* them. |
 | 4 | **Peter Attia** (Attia) | 12 | 6 | 0 | Core stack *is* the Tier-A levers; errors cluster in the biohacking margin (CGM — continuous glucose monitor, rapamycin, protein dose); demonstrably updates toward evidence (dropped metformin & heavy fasting). |
@@ -91,7 +91,7 @@ CONTRADICTS ~11, NOT-YET-IN-CORPUS ~21.
 @@FIG:26-verdict-donut@@
 
 The shape is the story. **Flat contradictions are rare (~8%)** — and they concentrate almost entirely in
-two clusters (metabolic/N=1 and Sinclair). **Overstatement is as common as agreement (~37% each)** — the
+three clusters (metabolic/N=1, the Sinclair line, and the branded movement layer). **Overstatement is as common as agreement (~37% each)** — the
 modal failure across the entire sample is *rounding up* — taking something real and
 narrating it one tier more confident than it has earned. Almost nobody is lying. And **~15% of claims point at genuine gaps** the
 corpus should fill — the practitioners are net-additive even where they're miscalibrated.

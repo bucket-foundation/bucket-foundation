@@ -195,8 +195,7 @@ overcome mucociliary clearance and immunity. **Management:** prompt risk-stratif
 pneumonia (severity tools like CURB-65 guide site-of-care), antivirals where indicated, oxygen/supportive care.
 But the **highest-leverage move is prevention by vaccination** — pneumococcal, influenza, COVID-19, and (newly)
 RSV vaccines reduce serious LRTI and death, especially in older adults and those with COPD/heart disease.
-`rct`/`meta` for the vaccines. Smoking cessation again helps (smoking impairs clearance). This is a domain where
-the boring public-health levers — vaccines, not supplements — carry the evidence.
+`rct`/`meta` for the vaccines. Smoking cessation again helps (smoking impairs clearance). This is a domain where the low-glamour public-health levers carry the evidence, and vaccines carry far more of it than supplements do.
 
 ### A5. Pulmonary fibrosis (brief) — the honest prognosis
 
@@ -453,8 +452,8 @@ cardiovascular, not liver.** `mechanistic`/`cohort`.
 
 **Management — weight loss is the foundation, and now there are drugs.**
 - **Weight loss reverses histology** — the empirical core. ≥7% weight loss resolves MASH in most; ≥10%
-  regresses fibrosis in a majority (Vilar-Gomez et al., Gastroenterology 2015; meta-confirmed by Monami et al.,
-  Diabetes Obes Metab 2026).[^masld-wl] Diet, exercise, GLP-1 therapy, and bariatric
+  regresses fibrosis in a substantial minority (~45% at ≥10% loss; Vilar-Gomez et al., Gastroenterology 2015; a
+  2026 meta-analysis by Monami et al., Diabetes Obes Metab, is consistent).[^masld-wl] Diet, exercise, GLP-1 therapy, and bariatric
   surgery all work *through* weight/metabolic improvement. `cohort`/`meta`.
 - **The first approved MASH drugs (new).** **Resmetirom** (a liver-directed thyroid-hormone-receptor-β
   agonist) became the **first FDA-approved drug for MASH with fibrosis** on the strength of the **MAESTRO-NASH**

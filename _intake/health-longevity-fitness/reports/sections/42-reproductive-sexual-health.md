@@ -59,7 +59,10 @@ quality steeply after the mid-30s, which sets nearly the entire female-fertility
 running from puberty into old age) in the testes, with the epididymis, vas deferens, seminal vesicles, and
 prostate forming the storage and delivery line. Male fertility declines **more gradually** than female — but
 it is **not** the "no clock" story popular culture implies (see §7.3): sperm quality, DNA integrity, and
-offspring risk all worsen measurably with paternal age.
+offspring risk all worsen measurably with paternal age. The offspring-risk associations (autism,
+schizophrenia, rare de novo mutations) come from observational cohorts and carry residual confounding —
+men who reproduce later differ in heritable and social ways — so the absolute per-family increase stays
+small even where the relative signal is consistent.
 
 **The hormonal cycles** (full treatment in §13): the male axis runs at a roughly **steady set-point** —
 GnRH → LH/FSH → testosterone + sperm, with negative feedback holding testosterone in a band. The female axis
@@ -351,7 +354,7 @@ the conditions:
 
 - **Urinary incontinence.** **Stress** incontinence (leak on cough/laugh/exertion — outlet/support failure) vs
   **urge** incontinence (overactive bladder) vs **mixed**. **Pelvic-floor muscle training (PFMT / "Kegels")** has
-  **RCT/meta (Cochrane-grade)** evidence for stress and mixed incontinence in women **and** for speeding
+  **RCT/meta (Cochrane-grade)** evidence of meaningful benefit for stress and mixed incontinence in women **and** for speeding
   continence recovery **after prostatectomy** in men — but technique matters (many people contract the wrong
   muscles; a pelvic-floor physiotherapist improves results materially). It is effective and under-prescribed.
 - **Pelvic organ prolapse** (women): descent of pelvic organs through a weakened floor (after childbirth, with
@@ -377,8 +380,7 @@ for it.
   guarantee the marketing implies. **Verdict: mostly hope, sold by the bottle.**
 - **"Vaginal detox" / jade eggs / yoni pearls / steaming.** The vagina is a **self-cleaning, self-regulating
   organ** with its own protective microbiome; it does **not** need detoxing, and interventions that disrupt it
-  cause harm. **Douching is associated with bacterial vaginosis, PID, and ectopic pregnancy** — i.e., the
-  "cleaning" product **causes** the problems it claims to prevent. **Jade eggs** (popularized by GOOP) have no
+  cause harm. **Douching is strongly associated with bacterial vaginosis, PID, and ectopic pregnancy in observational studies** — consistent evidence suggests the practice disrupts the protective microbiome and likely causes harm, though RCTs are absent (and would be unethical). **Jade eggs** (popularized by GOOP) have no
   evidence, a contamination/infection risk, and the company **settled a regulatory lawsuit** over the claims.
   "Vaginal steaming" can cause burns. **Verdict: at best useless, at worst harmful — a self-cleaning organ does
   not need a product.**

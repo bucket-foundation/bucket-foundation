@@ -81,7 +81,7 @@ A good reading roadmap should make you *better at telling those apart*, not just
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|
-| **Matthew Walker — *Why We Sleep* (2017)** | Popular sleep science | The book that put sleep on the cultural agenda; vivid on NREM/REM, memory, metabolism, the *importance* of sleep. | ⚠️ **Read with the errata in hand.** Contains documented factual **overstatements and mis-sourced claims** (Alexei Guzey's catalogued critique; partially resolved).[^c-walker] The famous "short sleep = short life" is actually **U-shaped** — long sleep is as risky as short.[^cl-sleepushape] Core thesis sound; **specifics overstated.** Pair with the primary papers below. |
+| **Matthew Walker — *Why We Sleep* (2017)** | Popular sleep science | The book that put sleep on the cultural agenda; vivid on NREM/REM, memory, metabolism, the *importance* of sleep. | ⚠️ **Read with the errata in hand.** Contains documented factual **overstatements and mis-sourced claims** (Alexei Guzey's catalogued critique; partially resolved).[^c-walker] The famous "short sleep = short life" is actually **U-shaped** — long sleep (RR ~1.30) carries an even larger mortality association than short sleep (RR ~1.12).[^cl-sleepushape] Core thesis sound; **specifics overstated.** Pair with the primary papers below. |
 | **Satchin Panda — *The Circadian Code* (2018)** | Circadian / TRE | The best popular treatment of circadian alignment and time-restricted eating (TRE) from the researcher who did the foundational mouse work. | Rigorous, but the human TRE outcome data is thinner than the mouse data, and **most TRE benefit is the calorie restriction it causes.**[^c-tre] The *timing/alignment* signal is the durable part. |
 | **Till Roenneberg — *Internal Time* (2012)** | Chronotype science | "Social jetlag," chronotypes, why school/work clocks fight biology. Rigorous. | Academic-leaning; lighter on actionable protocol. |
 
@@ -108,7 +108,7 @@ A good reading roadmap should make you *better at telling those apart*, not just
 | **Stacy Sims — *ROAR* (2016); *Next Level* (2022)** | Female-specific physiology | The flagship corrective to a male-default research base: training, fueling, and recovery across the menstrual cycle, pregnancy, and **menopause** (*Next Level*). High-value precisely because the field under-studies women (Domain N). | Practitioner/translator. Several **cycle-phase-specific training/fueling prescriptions exceed current RCT evidence** — the underlying sex-difference physiology is real, the precise periodized protocols are extrapolation. Pair with the menopause-HRT trials below (WHI/ELITE). |
 | **Mary Claire Haver — *The New Menopause* (2024)** | Clinical menopause | Practical, current framing of menopause symptoms and HRT decision-making. | Clinician-advocate; the HRT (hormone-replacement-therapy) risk/benefit picture is **age- and timing-dependent**[^cl-whi][^cl-elite] — read alongside the primary trials, not instead of them. |
 
-### 1.8 Psychosocial & "the levers nobody sells"
+### 1.8 Psychosocial & the levers with no product attached
 
 | Source | Type | Best for | Honest caveat |
 |---|---|---|---|

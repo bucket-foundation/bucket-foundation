@@ -429,7 +429,7 @@ not a purchase decision.
 [^taquet]: Taquet M, et al. *Nat Med* 2024. doi:10.1038/s41591-024-03201-5. claim: shingrix-dementia-cohort (cohort)
 [^welsh]: Eyting M, Geldsetzer P, et al. "A natural experiment on the effect of herpes zoster vaccination on dementia." *Nature* 2025. doi:10.1038/s41586-025-08800-x. claim: zoster-dementia-welsh-quasi (quasi-experimental)
 [^iami]: IAMI — Fröbert O, et al. *Circulation* 2021. doi:10.1161/CIRCULATIONAHA.121.057042. claim: flu-vaccine-cv-iami (rct)
-[^bj-rapa]: Bryan Johnson N-of-1 self-report, discontinued rapamycin ~2024. claim: bj-rapamycin-discontinued (`J-claims.json`, anecdotal)
+[^bj-rapa]: Bryan Johnson N-of-1 self-report, discontinued rapamycin ~2024. claim: bj-rapamycin-discontinued (`J-claims.json`, n=1)
 [^traverse]: TRAVERSE — Lincoff AM, et al. *N Engl J Med* 2023. doi:10.1056/NEJMoa2215025. claim: trt-traverse-cv-safety (rct)
 [^hrt-timing]: HRT timing/window conflict — WHI (Rossouw 2002) over-generalized vs the window hypothesis (ELITE, Hodis 2016; KEEPS). claim: conflict-hrt-timing. Full treatment in `N-womens-longevity.md`.
 [^trust]: TRUST — Stott DJ, et al. *N Engl J Med* 2017. doi:10.1056/NEJMoa1603825. claim: subclinical-hypothyroid-no-benefit (rct)

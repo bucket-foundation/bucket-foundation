@@ -547,7 +547,7 @@ morbidity) versus settled trial evidence.
 [^hale-screen-sleep]: Hale & Guan — *Sleep Med Rev* 2015. doi:10.1016/j.smrv.2014.07.007. (systematic review/cohort)
 [^screen-sleep-rct]: Screen-reduction and children's sleep — *J Sleep Res* 2021. doi:10.1111/jsr.13130.
 [^fried-frailty]: Fried et al., frailty phenotype — *J Gerontol A* 2001. doi:10.1093/gerona/56.3.m146. (cohort)
-[^ewgsop2]: Cruz-Jentoft et al., EWGSOP2 — *Age Ageing* 2019. doi:10.1093/ageing/afz046. claim: sarcopenia-strength-defining-ewgsop2. (consensus)
+[^ewgsop2]: Cruz-Jentoft et al., EWGSOP2 — *Age Ageing* 2019. doi:10.1093/ageing/afz046. claim: sarcopenia-strength-defining-ewgsop2. (cohort)
 [^scott-deprescribe]: Scott et al., "Reducing inappropriate polypharmacy: the process of deprescribing" — *JAMA Intern Med* 2015. doi:10.1001/jamainternmed.2015.0324. (cohort/expert consensus)
 [^world-falls]: Montero-Odasso et al., World Falls Guidelines — *Age & Ageing* 2022. doi:10.1093/ageing/afac205. (guideline)
 [^fries-morbidity]: Fries — *NEJM* 1980. doi:10.1056/NEJM198007173030304. (hypothesis; theoretical/cohort)

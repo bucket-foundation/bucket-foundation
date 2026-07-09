@@ -256,7 +256,7 @@ power, protein, and balance training become** — not less.
 ### 4.1 Youth / young adult — **build the peak**
 
 The body's trainability, hormonal environment, and (critically) **peak bone mass accrual** are most favorable
-here. Bone mineral density banks in the 20s–30s and is drawn down for the rest of life — so impact and
+here. Bone mineral density peaks in the 20s–30s and is drawn down for the rest of life (`cohort`) — so impact and
 resistance loading in youth is *literally building the asset* that menopause and aging will spend. Build the
 strength and aerobic base now; it is the highest-leverage window you will ever have. A high fitness ceiling
 built young is easier to defend than to rebuild.

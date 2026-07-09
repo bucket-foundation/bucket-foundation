@@ -54,7 +54,7 @@ The practical corollaries are devastating for the way most health advice is deli
   *that* gap, not on the decision.
 - **Predictor ≠ lever, restated.** "More motivated people do more" is true and nearly useless. Motivation
   is largely a *predictor* that travels with the behavior, not a *lever* you can pull to produce it. The
-  levers are the boring structural ones below.
+  levers are the structural ones below.
 
 **The one-line version of the whole chapter:** stop trying to want it more; change the conditions under
 which you act.
@@ -229,8 +229,7 @@ or environmentally defaulted (choice architecture). Every reliable technique in 
 *route around* motivation.
 
 The honest, slightly deflating implication: people who appear "disciplined" usually aren't out-willing you in
-the moment. On measurement, individuals high in trait self-control report **using willpower *less*, not
-more** — they **structure their lives to avoid temptation** (they don't keep the cookies in the house), so
+the moment. On measurement, individuals high in trait self-control report **using willpower *less* rather than more** (`cross-sectional`; trait self-control studies, e.g. Galla & Duckworth 2015) — they **structure their lives to avoid temptation** (they don't keep the cookies in the house), so
 they face fewer depleting in-the-moment battles. "Discipline" is mostly **good system design**, observed
 after the fact and misattributed to character.
 
@@ -259,9 +258,7 @@ Synthesizing §3.1–3.2: **"discipline" as a sellable trait you can train by to
 What actually produces consistent behavior is (1) reducing the number of decisions (habits, defaults),
 (2) shrinking the behavior so it's executable on a bad day, (3) engineering the environment so the right
 action is the path of least resistance, and (4) protecting the upstream inputs (sleep, stress) that make
-self-regulation cheaper. The entire "biohack your discipline / dopamine-detox / 5am-cold-shower-grindset"
-genre is, graded honestly, **`anecdotal`/`speculative` self-branding** — it confuses the visible output
-(consistent behavior) with a trainable inner force, and sells the latter.
+self-regulation cheaper. The valid kernel is real: reducing cue exposure and designing frictionless environments does improve follow-through (that much is `mechanistic`-to-`rct` supported). The "dopamine detox" framing wrapped around it is neuroscientifically incoherent — you cannot and should not lower baseline dopamine, and abstinence does not "reset receptors" on the timescale claimed. Graded honestly, the "biohack your discipline / dopamine-detox / 5am-cold-shower-grindset" genre is **`anecdotal`/`speculative` self-branding** that confuses the visible output (consistent behavior) with a trainable inner force, and sells the latter.
 
 ---
 
@@ -348,7 +345,7 @@ the medication-adherence literature is the most rigorously studied corner of the
     feeling fine, distrust). This is a *beliefs and autonomy* problem — a §4.3 problem — and education plus
     shared decision-making, not reminders, is the lever.
 - **What actually helps (and the humbling honest grade):** the landmark **Cochrane review (Nieuwlaat et al.
-  2014)**[^nieuwlaat] examined 182 RCTs (randomized controlled trials — the strongest evidence tier) and
+  2014)**[^nieuwlaat] examined 182 RCTs (randomized controlled trials — a high evidence tier) and
   reached a deflating conclusion: even the interventions that helped were **complex, labor-intensive, and only
   modestly effective**, and the evidence was generally low-quality. There is **no simple, reliable fix.** The
   things with the best (still modest) support are the unglamorous structural ones:

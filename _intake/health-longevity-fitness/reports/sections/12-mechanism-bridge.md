@@ -138,7 +138,7 @@ workload, lower lactate production (the "metabolic flexibility" of Zone 2 traini
 higher **VO₂max** (how much oxygen your body can use at full effort — a fitness score) — which, integrated
 over the whole body, *is* mitochondrial capacity expressed as a single number.
 
-Holloszy's 1967 result[^holloszy] — endurance training roughly doubles muscle mitochondrial enzyme
+Holloszy's 1967 result[^holloszy] — in rat skeletal muscle (later replicated in humans), endurance training roughly doubles muscle mitochondrial enzyme
 content — is mechanistically certain and reproducible. **The honest seam is the last rung.** VO₂max is the
 strongest mortality predictor in preventive medicine,[^vo2-mortality] but that link is `cohort`/`meta`,
 not `rct`: you cannot randomize people to decades of fitness, and fitness partly *reflects* underlying

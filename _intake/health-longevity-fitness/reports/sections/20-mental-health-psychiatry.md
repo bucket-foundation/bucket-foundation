@@ -114,14 +114,14 @@ until regulators forced trial registration. Both critiques were right and improv
 version ("they don't work") overshoots the data. `meta` — contested, severity-dependent.
 
 **Exercise** (cross-ref 08 §5.2): a real, RCT-supported treatment for depression (Noetel *BMJ* 2024)[^noetel],
-with effect sizes that rival therapy and medication in head-to-head arms — caveated by high risk of bias
+with effect sizes approaching therapy and medication in some head-to-head arms — caveated by high risk of bias
 in the included trials. The most under-prescribed effective treatment in the field. `meta`.
 
 **Severe / treatment-resistant depression.** When depression is severe, psychotic, or hasn't responded to
 trials of medication + therapy, the picture changes and the heavy tools earn their place:
 - **ECT (electroconvulsive therapy)** remains, for severe and especially psychotic or catatonic
-  depression, **one of the most effective treatments in all of medicine** (remission rates well above
-  drugs), unfairly stigmatized by its history and its cinematic depiction; modern ECT is done under
+  depression, **one of the most effective treatments for these presentations** (remission rates well above
+  drugs in head-to-head trials), unfairly stigmatized by its history and its cinematic depiction; modern ECT is done under
   anaesthesia with muscle relaxant. Memory side effects are real and usually transient. `meta`/`rct`.
 - **Ketamine / esketamine** produces rapid (hours) antidepressant and anti-suicidal effects in treatment-
   resistant depression — a mechanistic departure (glutamatergic, not monoaminergic). Honest
@@ -212,9 +212,7 @@ mania or rapid cycling. Getting the diagnosis right *is* part of the treatment.
 **Lithium** is the oldest mood stabilizer and, by a wide margin, the best-evidenced — and it is
 **chronically under-prescribed**, displaced by newer, heavily-marketed (and patent-protected) agents
 despite weaker evidence. Two facts make lithium exceptional:
-- **It is the most effective long-term mood stabilizer** for relapse prevention in bipolar disorder
-  (maintenance trials and meta-analyses; the BALANCE trial, Geddes et al., *Lancet* 2010,
-  supports lithium-containing maintenance)[^balance].
+- **It is among the most effective long-term mood stabilizers** for relapse prevention in bipolar disorder, particularly in combination regimens (BALANCE trial, Geddes et al., *Lancet* 2010, found lithium plus valproate superior to either monotherapy; maintenance trials and meta-analyses support lithium)[^balance].
 - **It uniquely reduces suicide.** **Cipriani et al., *BMJ* 2013**[^cipriani-2013] —
   a systematic review and meta-analysis — found lithium **reduces the risk of suicide and of all-cause
   mortality** in people with mood disorders versus placebo. This is a rare and important thing in
@@ -538,7 +536,7 @@ One line per topic — the belief-changing version of each section above.
 | **ADHD** | **Real, highly heritable**; **stimulants have one of the largest effect sizes in psychiatry** (Cortese 2018); *and* over-diagnosed in some settings, under-diagnosed in others, with adult self-diagnosis needing mimic-aware assessment. |
 | **PTSD frontier** | EMDR works but the eye movements are likely inert (exposure in costume); **MDMA-assisted therapy is promising but FDA-rejected (2024)** pending another trial; the psychedelic field is **unblindable**, so the tier sits below the excitement. |
 | **Eating disorders** | **Dangerous medical illnesses** — **anorexia has among the highest mortality in psychiatry** (Arcelus 2011, SMR ~5–6); FBT (adolescent AN) and CBT-E (bulimia/BED) are the levers; early weight-focused treatment matters most. |
-| **Lifestyle floor** | Exercise, sleep, connection, sunlight, not self-medicating with alcohol — real, the floor **not the ceiling**; most mood supplements, "dopamine detox," and the "nervous-system reset" genre are mechanism-or-marketing. The effective levers are free and unmonetizable. That asymmetry is the business model. |
+| **Lifestyle floor** | Exercise, sleep, connection, sunlight, not self-medicating with alcohol — real, the floor **not the ceiling**; most mood supplements, "dopamine detox," and the "nervous-system reset" genre are mechanism-or-marketing. The effective levers cost nothing and carry no product. That asymmetry is the business model. |
 | **Suicide** | Crises are usually **transient and treatable**; asking doesn't plant it; **means restriction works**; lithium/clozapine/ketamine have direct anti-suicide signals; individual prediction is poor — lean on interventions that work regardless. |
 
 ---

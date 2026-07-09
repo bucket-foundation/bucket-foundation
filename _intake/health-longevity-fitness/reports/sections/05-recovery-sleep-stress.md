@@ -41,7 +41,7 @@ All-cause mortality versus sleep duration is **U-shaped, not monotonic**:
 | Source | Finding | Tier |
 |---|---|---|
 | Cappuccio 2010 (meta, 16 cohorts, >1.3M) | Short sleep RR (relative risk) ~1.12 **and** long sleep RR ~1.30 — long sleep often the *larger* association[^sleep-ushape] | `meta` |
-| Kripke 2002 (~1.1M adults) | Lowest mortality at **~6.5–7.5h**; both <6.5h and ≥8h elevated[^kripke] | `cohort` |
+| Kripke 2002 (~1.1M adults) | Lowest mortality at **~7h**; both ≤6h and ≥8h elevated, with >15% excess below ~4.5h or above ~8.5h[^kripke] | `cohort` |
 | AASM/SRS consensus 2015 | Consensus **floor of ≥7h/night** for adults[^aasm] | `meta`/guideline |
 
 @@FIG:22-sleep-ushape@@
@@ -189,9 +189,7 @@ part it doesn't:
 - *Deuterium / structured-(EZ)-water coupling to circadian biology* — a foundation-candidate under review
   in canon, not an established outcome.
 
-**Bridge verdict:** mainstream science **validates the spine** (light is the master clock input; evening
-blue light is disruptive) while **grading the extensions speculative**. The agreement on the spine is
-itself a citeable result. (Full analysis: `thread-circadian-light.md`, `I-sleep-circadian.md §7`.)
+**Bridge verdict:** mainstream science **validates the established photobiology** Kruse popularizes — melanopsin-driven retinal input entrains the SCN, and evening short-wavelength light suppresses melatonin and shifts phase — while **grading the further extensions (mitochondrial/EMF claims) speculative**. The agreement on the well-evidenced core is itself a citeable result. (Full analysis: `thread-circadian-light.md`, `I-sleep-circadian.md §7`.)
 
 ---
 
@@ -396,7 +394,7 @@ response, not evidence of a durable health upgrade; (c) samples are tiny, young,
 
 ---
 
-## 5. STRESS & RECOVERY — The Readout, the Load, and the Levers Nobody Sells
+## 5. STRESS & RECOVERY — The Readout, the Load, and the Levers Without a Product
 
 ### 5.1 HRV — a within-person recovery readout, not a leaderboard
 
@@ -442,7 +440,7 @@ effect size, the largest, most-replicated all-cause-mortality associations in th
 |---|---|---|
 | **Social connection** | Stronger relationships → **~50% higher survival odds (OR ≈ 1.50)** — Holt-Lunstad benchmarks this as **comparable to quitting smoking, greater than obesity or inactivity**[^social-meta] | `meta` (148 studies, n≈308,849) |
 | **Isolation / loneliness** | Isolation OR ≈ 1.29, loneliness ≈ 1.26, living alone ≈ 1.32 for mortality[^isolation-meta] | `meta` (n≈3.4M) |
-| **Sense of purpose / ikigai** | Low vs high purpose → HR ≈ 2.43 mortality; greater purpose → ~2.4× lower Alzheimer/MCI risk[^purpose] | `cohort` |
+| **Sense of purpose / ikigai** | Low vs high purpose → HR ≈ 2.43 all-cause mortality (HRS cohort); a separate cohort links greater purpose to lower Alzheimer/MCI risk[^purpose] | `cohort` |
 | **Socioeconomic position** (Marmot gradient) | Stepwise inverse gradient — lowest grade ~3× the CHD mortality of the highest, even among the comfortable[^whitehall] | `cohort` |
 | **Community / religious participation** | Weekly attendance → HR ≈ 0.67 all-cause mortality (mediated by social support, optimism, less smoking)[^religious] | `cohort` |
 
@@ -575,7 +573,7 @@ in this corpus.
 [^sleep-debt]: 4h/night sleep restriction — glucose tolerance impaired ~30–40%, evening cortisol raised. claim: sleep-debt-metabolic-endocrine (interventional)
 [^social-meta]: Holt-Lunstad — social connection, OR ≈ 1.50 (~50% higher survival odds); 148 studies, n≈308,849. claim: social-relationships-mortality-meta (meta)
 [^isolation-meta]: Isolation OR ≈ 1.29, loneliness ≈ 1.26, living alone ≈ 1.32; meta, n≈3.4M. claim: isolation-loneliness-living-alone-mortality-meta (meta)
-[^purpose]: Low vs high purpose → HR ≈ 2.43 mortality; greater purpose → ~2.4× lower Alzheimer/MCI risk. claim: life-purpose-mortality-hrs; purpose-alzheimer-mci (cohort)
+[^purpose]: Low vs high purpose → HR ≈ 2.43 all-cause mortality (HRS cohort). A separate cohort associates greater purpose with lower Alzheimer/MCI risk; the two findings come from different studies. claim: life-purpose-mortality-hrs; purpose-alzheimer-mci (cohort)
 [^whitehall]: Marmot / Whitehall gradient — lowest grade ~3× CHD mortality of highest. claim: ses-gradient-whitehall-1 (cohort)
 [^religious]: Weekly attendance → HR ≈ 0.67 all-cause mortality (mediated by social support, optimism, less smoking). claim: religious-attendance-mortality (cohort)
 [^psychosocial-grade]: Read in both directions — replicated under adjustment, but observational, non-randomizable. claim: psychosocial-vs-biohack-effect-size (grading note)

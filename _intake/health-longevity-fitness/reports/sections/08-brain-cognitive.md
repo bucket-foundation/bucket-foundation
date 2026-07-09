@@ -290,8 +290,10 @@ Read it honestly:
   and microhemorrhage (**ARIA-H ~17.3%**) — plus infusion reactions, and **deaths in extension studies,
   especially in people on anticoagulants or with two *APOE4* alleles.** It requires biweekly infusions and
   serial MRI monitoring.
-- **Donanemab** (TRAILBLAZER-ALZ 2, Sims et al., *JAMA* 2023)[^donanemab] tells the same story:
-  statistically significant slowing, marginal clinical size, similar ARIA risk.
+- **Donanemab** (TRAILBLAZER-ALZ 2, Sims et al., *JAMA* 2023)[^donanemab] tells the same story on
+  efficacy — statistically significant slowing, marginal clinical size — but with a higher imaging-abnormality
+  burden: ARIA-E occurred in 24.0% of donanemab recipients (52 symptomatic) versus 2.1% on placebo, roughly
+  double lecanemab's ARIA-E rate.
 
 **The honest verdict:** these are a scientific milestone (amyloid removal *does* modestly slow decline,
 validating part of the hypothesis) and a **marginal clinical tool** — small benefit, meaningful risk and

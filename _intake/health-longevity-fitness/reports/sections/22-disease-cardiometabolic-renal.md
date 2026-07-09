@@ -70,10 +70,9 @@ VLDL remnants, Lp(a)) cross the arterial endothelium and are retained in the wal
 particles carries exactly one apoB, which is why **apoB particle count predicts events better than LDL
 cholesterol concentration**.[^apob-ldlc] Retained
 particles are oxidized, trigger an immune response, macrophages engorge into foam cells, and a lipid-
-rich plaque with a fibrous cap grows over decades — silently. The danger is not the slow narrowing
+rich plaque with a fibrous cap grows over decades — silently (the retention-and-oxidation cascade is `mechanistic`, worked out in animal and cell models). The danger is not the slow narrowing
 (which can be compensated) but the **sudden rupture of a non-obstructive plaque**, which causes most
-MIs. This is why a "70% blockage" is not the only thing to fear, and why lowering apoB — which
-stabilizes and can regress plaque — is the central lever.
+MIs. This is why a "70% blockage" is not the only thing to fear, and why lowering apoB stabilizes plaque and can modestly regress it on serial imaging (`rct`/imaging evidence) — the central lever.
 
 @@FIG:102-cholesterol-particles@@
 

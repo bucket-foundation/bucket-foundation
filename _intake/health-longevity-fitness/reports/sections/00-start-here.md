@@ -21,10 +21,10 @@ These are the whole game. Each individually outranks every supplement and gadget
 1. **Don't smoke or vape; keep alcohol low.** The single largest modifiable mortality factor. *(→ §Exposures)*
 2. **Build and keep cardiorespiratory fitness (VO₂max — how much oxygen your body can use at full effort,
    i.e. how fit your heart and lungs are).** The strongest mortality predictor in preventive medicine —
-   ~5× lower all-cause mortality (top vs bottom), no observed ceiling. Treat it like a vital sign. *(→ §Training)*
+   ~5× lower all-cause mortality (top vs bottom cohort gradient). Exercise training reliably raises VO2max; whether raising it causally lowers mortality by the same margin remains less certain. Track it like a vital sign. *(→ §Training)*
 3. **Resistance-train for strength, 2–3×/week.** *Strength* predicts survival — more than muscle size does —
    and benefit peaks around 30–60 min/week (more isn't better). *(→ §Training)*
-4. **Move all day; break up sitting.** The least-confounded signal in the field; steps help but plateau ~7–8k. *(→ §Training)*
+4. **Move all day; break up sitting.** The least-confounded association in the field; step-count trials track activity and fitness surrogates rather than a confirmed mortality reduction from counting steps. Benefit rises then plateaus around ~7–8k. *(→ §Training)*
 5. **Keep apoB / LDL low across your whole life.** apoB (a count of the cholesterol particles that actually
    clog arteries) is one of the only *causal* blood levers — earlier is better because exposure is cumulative.
    Diet first, medication if needed. *(→ §Clinical Prevention, §Pathology)*
@@ -32,8 +32,8 @@ These are the whole game. Each individually outranks every supplement and gadget
    timing matter as much as duration. *(→ §Recovery)*
 7. **Eat a protein-adequate, mostly-whole-food pattern.** ~1.6 g/kg protein covers the muscle-building plateau;
    the specific "diet brand" matters far less than the pattern. *(→ §Nutrition)*
-8. **Protect social connection and a sense of purpose.** Effect size rivals smoking cessation — and it's the one
-   nobody sells you, which is exactly why it gets left off the list. *(→ §Psychosocial, §Recovery)*
+8. **Protect social connection and a sense of purpose.** Observational studies find social isolation predicts mortality with an effect size comparable to smoking; interventional evidence that connection-building programs reduce mortality is sparser — and it's the one
+   with no product attached, which is exactly why it gets left off the list. *(→ §Psychosocial, §Recovery)*
 
 ## THE MINIMUM-EFFECTIVE WEEK (a concrete starting program)
 

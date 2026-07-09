@@ -238,7 +238,7 @@ broad, and invisible at the bottom; expensive, narrow, and effortful at the top:
   = limit damage after.
 
 When later sections say "tier-1–2, population, primary," they mean the same corner of every one of these
-maps: the boring base that does the heavy lifting.
+maps: the unshowy base that does the heavy lifting.
 
 The brutal punchline for this manual: **almost everything the longevity industry sells lives at the apex
 (tier 5) — the tier with the *least* population impact and the *most* required individual effort.** Supplements,
@@ -248,7 +248,7 @@ protocols, coaching, and "education" are tier-5 levers. The things that actually
 ### 3.4 The cheapest life-years ever bought
 
 The most cost-effective health interventions in history are almost all **primary, population-level, and
-boring** — none of them are sold to you. (Cost is shown per **DALY** — disability-adjusted life year, one
+low-profile** — and none of them has a product behind it. (Cost is shown per **DALY** — disability-adjusted life year, one
 year of healthy life lost; **LMICs** = low- and middle-income countries. Evidence codes: `rct` = randomized
 trial, the strongest tier; `meta` = pooled analysis of many trials.)
 
@@ -311,8 +311,11 @@ more clinical medicine.
 
 Coverage is not a technicality — it is a mortality variable. In the U.S., roughly **25–27 million people (~8%)
 remain uninsured** even post-ACA, and tens of millions more are *under*-insured (high deductibles that deter
-care). Studies (IOM; the Oregon Medicaid natural experiment) link uninsurance to delayed care, worse chronic-
-disease control, financial catastrophe (medical debt is a leading bankruptcy cause), and excess deaths.
+care). Studies link uninsurance to delayed care, financial catastrophe (medical debt is a leading bankruptcy cause), and, in
+some analyses, excess deaths (IOM). The randomized Oregon Medicaid experiment is more specific: coverage clearly
+improved financial protection, depression, and access to care, while showing no significant change in objective
+chronic-disease markers (blood pressure, cholesterol, glycated hemoglobin) over two years — and it was underpowered
+to measure mortality.
 Universal-coverage systems eliminate this failure mode by design. The honest nuance: **coverage buys access,
 access buys the ~10–20% that clinical care contributes — it does not buy the other 80%** (§4.4). Coverage is
 necessary and morally required; it is not, by itself, the dominant determinant of population longevity.

@@ -2,9 +2,7 @@
 
 The highest-leverage longevity moves are not in a supplement bottle. They're the unglamorous basics: not smoking, clean air, sane drinking, clean water, sensible sun — the things you breathe, drink, smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get the least airtime because nobody monetizes "don't smoke" or "filter your air."
 
-**The one-line verdict up front:** the exposures with the biggest, best-established mortality effects are, in
-order, **tobacco** (catastrophic, causal, ~10 years of life), **air pollution** (a top-10 *global* killer, causal
-for CVD), and **alcohol** (smaller, contested, and *not* the health tonic the old J-curve implied).
+**The one-line verdict up front:** the exposures with the strongest evidence for mortality effects are **tobacco** (causal, ~10 years of life lost), **air pollution** (a top-10 *global* killer, causally linked to CVD in long-term cohorts), and **alcohol** (smaller effects, contested, and offering none of the cardioprotection the old J-curve implied).
 Everything after that — microplastics, PFAS, BPA, sun, heat/cold — ranges from "regulatory-grade real" to
 "emerging and over-hyped," and the honest move is to *tier* them rather than lump them as "toxins."
 
@@ -158,7 +156,7 @@ casually adopted; it makes the combustion the thing to flee first.
 ## 3. Air Pollution — a top-10 global killer hiding in plain sight
 
 Air pollution is the most underrated entry in this manual relative to its mortality burden. It is invisible,
-unmonetized, and one of the largest environmental risk factors on Earth.
+commercially neglected, and one of the largest environmental risk factors on Earth.
 
 ### 3.1 The burden
 
@@ -199,7 +197,7 @@ Unlike most exposures, you can measurably lower your personal PM2.5 dose:
 | **Cooking/combustion at home** | Vent gas stoves; avoid indoor burning; range hood to outside | Household PM is a major indoor source |
 
 This is one of the highest-leverage, lowest-cost interventions in the entire manual, and it's nearly absent from
-the supplement-and-protocol discourse precisely because no one sells it.
+the supplement-and-protocol discourse precisely because there is no product to market alongside it.
 
 ---
 

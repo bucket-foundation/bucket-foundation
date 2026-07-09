@@ -367,7 +367,7 @@ better trials** — a model of how honest medicine corrects itself.
 @@FIG:R09-sepsis-turnover@@
 
 - **The rise (EGDT).** In 2001, Rivers et al.'s single-center trial of **Early Goal-Directed Therapy**
-  (*N Engl J Med* 2001)[^sepsis-egdt] reported a dramatic mortality reduction from an aggressive,
+  (*N Engl J Med* 2001)[^sepsis-egdt] reported a dramatic mortality reduction (absolute mortality reduced from 46.5% to 30.5%, a 16-percentage-point absolute reduction) from an aggressive,
   protocolized bundle (central venous monitoring, targeted fluids, vasopressors, transfusion, inotropes in
   the first six hours). It transformed practice and anchored a decade of the Surviving Sepsis Campaign.
 - **The deflation.** A decade later, **three large, multicenter RCTs on three continents — ProCESS** (*N

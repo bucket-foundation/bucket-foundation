@@ -440,7 +440,7 @@ Smoking and the gum bacterium *P. gingivalis* are environmental triggers in gene
 **Management — the revolution, and the "treat-to-target" doctrine:**
 - **Methotrexate** is the anchor conventional DMARD — cheap, effective, the backbone of nearly every
   regimen.
-- **Biologics**, beginning with **TNF inhibitors** (~1998: etanercept, infliximab, adalimumab),
+- **Biologics**, beginning with **TNF inhibitors** (etanercept 1998, infliximab 1999, adalimumab 2002),
   then **IL-6 inhibition** (tocilizumab), **B-cell depletion** (rituximab), T-cell costimulation
   blockade (abatacept), and the oral **JAK inhibitors** (tofacitinib, etc.). These transformed RA
   from a crippling disease into one where **clinical remission is a realistic goal**.
@@ -470,7 +470,7 @@ cases). The honesty point most patients are never told: **hyperuricemia is mostl
 dietary.** Urate is the end-product of purine metabolism, and serum levels are dominated by **renal
 under-excretion** (largely genetically determined — variants in *SLC2A9*, *ABCG2*). Diet (red meat,
 seafood, beer, fructose, alcohol) **does** raise urate and trigger attacks (Choi, 2004),[^choi]
-but its contribution to serum urate is **small (a few %) compared with
+but its contribution to serum urate is **modest compared with
 genetics** — which is why "just change your diet" routinely fails and leaves patients blaming
 themselves.
 

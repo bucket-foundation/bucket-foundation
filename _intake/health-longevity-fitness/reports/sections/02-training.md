@@ -3,7 +3,7 @@
 You do not start at the barbell. You start where you can own the movement with clean form, and you climb.
 
 > **Bottom line:** two well-run full-body strength sessions + two cardio sessions (one easy, one hard) per
-> week clears the bar for *most* of the available longevity benefit — everything past that is optimization,
+> week is a reasonable, evidence-informed floor that likely captures much of the benefit (cohort dose-response curves, not a tested program) — everything past that is optimization,
 > not survival. The full MED verdict and ready-to-run sample weeks are in §6.
 
 Every strength pattern in this chapter has a ladder — a beginner rung, a daily-driver standard, and a progression — so there is a door for the nervous first-timer and a next step for the seasoned lifter, on the same page.
@@ -24,7 +24,7 @@ can directly *change*.
 
 | Capacity | What it is | Why it's load-bearing |
 |---|---|---|
-| **Cardiorespiratory fitness (CRF / VO₂max)** | The engine: how much \(\mathrm{O_{2}}\) your body can deliver and use under load | **The single strongest longevity association in preventive medicine.** ~13% lower all-cause mortality per 1-MET (one MET = the energy you burn at rest; +1 MET is a meaningful jump in fitness); no observed upper limit. Being low-fit carried risk *comparable to or worse than* smoking; the extreme-low-fit-vs-elite gap runs as high as ~5× mortality in cohort data (a magnitude inflated by reverse causation — see §8).[^crf-met] |
+| **Cardiorespiratory fitness (CRF / VO₂max)** | The engine: how much \(\mathrm{O_{2}}\) your body can deliver and use under load | **The strongest mortality predictor in preventive medicine (the association is robust; CRF as an *isolated lever* has not been tested in RCTs, though plausible mechanisms and dose-response consistency support causality).** ~13% lower all-cause mortality per 1-MET (one MET = the energy you burn at rest; +1 MET is a meaningful jump in fitness); no observed upper limit. Being low-fit carried risk *comparable to or worse than* smoking; the extreme-low-fit-vs-elite gap runs as high as ~5× mortality in cohort data (a magnitude inflated by reverse causation — see §8).[^crf-met] |
 | **Strength** | Force production across the major movement patterns | Strength (**not** muscle mass) independently predicts mortality, falls, and disability; sarcopenia is now *defined* by low strength. Resistance activity → ~10–17% lower mortality, independent of cardio.[^strength-mort] |
 | **Mobility** | Active, controlled range of motion at each joint | Range you can *own under control* is what keeps you doing the basic human positions (deep squat, overhead reach, floor get-up) into old age. Evidence here is mechanism/anecdotal, not mortality-grade — held to a lower claim.[^mobility-inv] |
 | **Balance** | Postural control and reactive stability | The **single-leg stand** and **sit-to-rise** are validated mortality biomarkers; balance is the literal difference between a stumble and a hip fracture in the second half of life.[^balance-bio] |
@@ -345,7 +345,7 @@ warm-up.** Practical rule:
 
 ## 5. Balance — the Tests Are the Training
 
-Balance is unusual: its best **assessments are also its best exercises**. Two are validated mortality
+Balance is unusual: its strongest mortality-associated assessments—single-leg stand and sit-to-rise—also happen to be trainable tasks, though no trial shows that improving your test score itself lowers mortality risk. Two are validated mortality
 biomarkers[^balance-inv] — train them by *doing the test*, progressively.
 
 | Test = drill | What it reveals | How to train it | Benchmark |
