@@ -74,6 +74,23 @@ def test_hadamard_complex_re_and_im():
         assert abs(im - ref.imag) < 0.03
 
 
+def test_mitigation_primitives():
+    """Readout calibration on a noiseless runner returns the identity assignment
+    matrix, and global unitary folding preserves the logical result at every noise
+    scale (U (U^dag U)^k == U)."""
+    from src.mitigation import calibration_matrix, fold_global
+    from src.hadamard_test import hadamard_test_circuit, signed_inner_from_counts
+    runner = get_runner("aer")
+    A = calibration_matrix(runner, [0], 1, shots=20000)
+    assert np.allclose(A, np.eye(2), atol=0.02)          # no readout error -> identity
+    rng = np.random.default_rng(0)
+    u, v = rng.normal(size=4), rng.normal(size=4)
+    true = cosine_similarity(u, v)
+    for s in (1, 3, 5):                                    # folding is logically inert
+        c = runner(fold_global(hadamard_test_circuit(u, v), s), 20000)
+        assert abs(signed_inner_from_counts(c, 20000) - true) < 0.03
+
+
 def test_kernel_matrix_close():
     runner = get_runner("aer")
     _, hada_est = make_estimators(runner)
@@ -91,4 +108,5 @@ if __name__ == "__main__":
     test_hadamard_matches_signed_cosine()
     test_hadamard_complex_re_and_im()
     test_kernel_matrix_close()
+    test_mitigation_primitives()
     print("ALL TESTS PASSED")

@@ -43,6 +43,8 @@ increase in shots roughly halves the error, as predicted. All eight measured row
 `results/studies.json` are shown; the near-flat 256→512 step is ordinary sampling
 scatter at $n=40$ pairs, not a departure from the law.
 
+![Cosine-similarity error vs shots — follows the $1/\sqrt{S}$ shot-noise law.](results/shot_scaling.png){width=62%}
+
 **3.3 Hardware-noise scaling.** Mean error vs two-qubit depolarizing rate (8192 shots):
 
 | 2q depol | 0% | 0.2% | 0.5% | 1% | 2% | 5% |
@@ -52,6 +54,8 @@ scatter at $n=40$ pairs, not a departure from the law.
 Error grows roughly linearly in the gate-error rate (`results/noise_scaling.png`),
 and the kernel diagonal drifts below 1 — the signature of decoherence pulling states
 toward the maximally mixed state.
+
+![Error vs two-qubit depolarizing rate — the hardware-noise cost.](results/noise_scaling.png){width=62%}
 
 **3.4 Quantum-kernel SVM.** On a 2-class Iris task (PCA to 4 features, unit-normed),
 an SVM using the quantum-estimated kernel matches the exact-kernel SVM:
@@ -63,6 +67,27 @@ an SVM using the quantum-estimated kernel matches the exact-kernel SVM:
 
 train-kernel RMSE (quantum vs exact) = 0.007. A kernel built entirely from quantum
 overlap measurements drives the classifier to identical accuracy.
+
+**3.5 Error mitigation.** On a realistic noise model (2% two-qubit depolarizing + 2%
+readout error, 30 pairs), two standard mitigation techniques were applied to the
+Hadamard-test estimator: **readout-error calibration** (characterize the single-bit
+assignment matrix, invert it to correct every P(0)) and **zero-noise extrapolation**
+(ZNE — amplify gate noise by unitary folding at scales 1/3/5, extrapolate to zero):
+
+| pipeline | mean \|cos error\| |
+|---|---|
+| raw (no mitigation) | 0.130 |
+| readout-corrected | 0.119 |
+| readout + ZNE | 0.096 |
+
+Mitigation cuts the mean error by **26%**. At this circuit depth (~27 two-qubit gates
+for the 4-D encoding) gate noise dominates, so ZNE does most of the work; readout
+correction contributes more on the low-depth `dim=2` circuit where readout is the
+leading channel. The primitives are unit-tested: the assignment matrix is the identity
+on a noiseless device, and unitary folding is logically inert ($U (U^\dagger U)^k = U$).
+Regenerate: `python -m src.mitigation_study` (→ `results/mitigation.png`, `mitigation.json`).
+
+![Error budget: raw → readout-corrected → readout+ZNE on the Hadamard test.](results/mitigation.png){width=52%}
 
 ## 4. Results (hardware) — *pending IBM/IonQ credentials*
 Planned: run §3.1 and a small §3.4 kernel on (a) an IBM Open-plan superconducting

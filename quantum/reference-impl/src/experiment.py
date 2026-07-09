@@ -197,3 +197,25 @@ if __name__ == "__main__":
         hw = args.backend in ("ibm", "braket")
         demo(args.backend, args.shots, args.seed, n_pairs=args.pairs,
              do_kernel=(not hw) or args.pairs >= 5, dim=args.dim)
+
+
+# --------------------------------------------------------------------------
+# noise-model-bound runner (added for the error-mitigation studies)
+# --------------------------------------------------------------------------
+def make_aer_runner(noise_model=None, seed=None):
+    """Return a run(circuit, shots) -> counts bound to a specific Aer noise model.
+
+    Unlike get_runner("aer_noisy") (which hard-codes one gate-only model), this
+    takes any NoiseModel (e.g. from src.noise_models, including readout error),
+    so the mitigation code can run the estimator circuits, the readout-calibration
+    preparation circuits, and the ZNE-folded circuits all under the SAME model.
+    noise_model=None gives the noiseless simulator.
+    """
+    from qiskit_aer import AerSimulator
+    from qiskit import transpile
+    sim = AerSimulator(noise_model=noise_model, seed_simulator=seed)
+
+    def run(circuit, shots):
+        tqc = transpile(circuit, sim)
+        return sim.run(tqc, shots=shots).result().get_counts()
+    return run

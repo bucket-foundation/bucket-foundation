@@ -28,4 +28,4 @@ full derivation, `writeup/technical-note.md` for results.
 **Owner:** Gianangelo Dichio. **Purpose:** PhD-application artifact (quantum
 computing / quantum ML) + a reusable foundation for quantum-kernel experiments.
 
-**Repo path:** `~/agfarms/biophysics-phd-review/qc-embedding-similarity/`
+**Repo path:** `~/agfarms/bucket-foundation/quantum/reference-impl/`
