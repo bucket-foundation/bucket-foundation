@@ -11,10 +11,10 @@ The geometric phase is a loop integral. As the parameters $R$ traverse a closed 
 Because the geometric phase is set by geometry rather than timing, it is intrinsically resistant to certain control errors — the basis of **holonomic / geometric quantum gates**, where a qubit is steered around a loop to enact a gate that resists fluctuations in pulse duration and amplitude (see H-supercon, H-ion). Berry curvature is also the organizing quantity of modern band theory: it produces the anomalous Hall effect, defines topological invariants (Chern numbers) that classify topological insulators and the quantum Hall effect, and underlies the topological protection sought for qubits (see H-topo, A-materials, F-statistics). Non-abelian generalizations of the Berry phase — matrix-valued holonomies — are the mathematical content of braiding non-abelian anyons, so this node sits directly under topological quantum computing (see H-topo). The same curvature integrated over a Brillouin zone is what makes a material's response quantized and defect-tolerant, which is why classifying it is a target for materials-simulation algorithms (see S-qsim, A-materials).
 
 ## Key graded claims
-- [T1] Adiabatic cyclic evolution yields a path-dependent geometric phase separate from the dynamical phase — Berry, Proc. R. Soc. Lond. A 392, 45 (1984) (status: established)
-- [T1] Berry curvature integrated over a filled band gives a quantized Chern number = the quantum-Hall conductance — TKNN, Thouless, Kohmoto, Nightingale & den Nijs, PRL 49, 405 (1982) (Thouless, Nobel 2016) (status: established)
-- [T1] The quantized Hall resistance is reproducible to a few parts in $10^9$, precise enough to define the resistance standard $R_K = 25812.807\ \Omega$ — von Klitzing, Dorda & Pepper, PRL 45, 494 (1980), Nobel 1985 (status: established)
-- [T2] Geometric/holonomic gates realized on superconducting and NV qubits — e.g. Abdumalikov et al., Nature 496, 482 (2013) (status: demonstrated)
+- T1 Adiabatic cyclic evolution yields a path-dependent geometric phase separate from the dynamical phase — Berry, Proc. R. Soc. Lond. A 392, 45 (1984) (status: established)
+- T1 Berry curvature integrated over a filled band gives a quantized Chern number = the quantum-Hall conductance — TKNN, Thouless, Kohmoto, Nightingale & den Nijs, PRL 49, 405 (1982) (Thouless, Nobel 2016) (status: established)
+- T1 The quantized Hall resistance is reproducible to a few parts in $10^9$, precise enough to define the resistance standard $R_K = 25812.807\ \Omega$ — von Klitzing, Dorda & Pepper, PRL 45, 494 (1980), Nobel 1985 (status: established)
+- T2 Geometric/holonomic gates realized on superconducting and NV qubits — e.g. Abdumalikov et al., Nature 496, 482 (2013) (status: demonstrated)
 
 ## Conflicts / open questions
 - Whether geometric gates actually beat optimized dynamical gates in real error budgets is contested — the noise-suppression advantage can be eroded by the longer loop times.

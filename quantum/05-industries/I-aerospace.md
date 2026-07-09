@@ -12,18 +12,18 @@ Defense is where quantum tech is *closest to fielded* — and the payoff comes f
 - **Airbus** — magnetic-navigation research; broad quantum program.
 
 ## Key graded claims
-- [T3] Airborne/maritime quantum inertial navigation field trials — Q-CTRL, April 2025 (demonstrated, military-adequate performance claimed)
-- [T3/T4] Highest-performing quantum inertial sensor flown in space — Boeing/Space Force X-37B, 2025 (claimed)
-- [T4] Quantum computing for defense applications — PsiQuantum/Lockheed MoU, Nov 2025 (roadmap)
-- [T5] Defense quantum-market forecasts — analyst; grade hard
+- T3 Airborne/maritime quantum inertial navigation field trials — Q-CTRL, April 2025 (demonstrated, military-adequate performance claimed)
+- T3/T4 Highest-performing quantum inertial sensor flown in space — Boeing/Space Force X-37B, 2025 (claimed)
+- T4 Quantum computing for defense applications — PsiQuantum/Lockheed MoU, Nov 2025 (roadmap)
+- T5 Defense quantum-market forecasts — analyst; grade hard
 
 ## Proven today vs promise vs hype
-- **Proven:** quantum inertial navigation has cleared airborne, maritime, and space field trials — the nearest-term real quantum deployment in the manual.
+- **Proven:** quantum inertial navigation has cleared airborne, maritime, and space field trials — the nearest-term real quantum deployment in the atlas.
 - **Promise:** quantum magnetometry for submarine/mine detection, space quantum networking — advancing, not fielded.
 - **Hype:** "quantum computer breaks enemy crypto now," near-term battlefield quantum computing.
 
 ## Honest assessment
-Aerospace/defense has the **nearest-term real quantum payoff**, and it comes from `A-sensing`/`A-gravimetry`/`A-magneto` rather than computing. Quantum inertial navigation has cleared field and space trials and is on a credible path to deployment this decade. Quantum *computing* for defense (codebreaking, sim) is the same fault-tolerance-gated future as everyone else, plus the classified overhang that adversary capability is unknown. Split the story: sensing/nav is arriving; compute is a bet. This is the strongest "quantum is real now" case in the manual, and the thing that is real is a sensor.
+Aerospace/defense has the **nearest-term real quantum payoff**, and it comes from `A-sensing`/`A-gravimetry`/`A-magneto` rather than computing. Quantum inertial navigation has cleared field and space trials and is on a credible path to deployment this decade. Quantum *computing* for defense (codebreaking, sim) is the same fault-tolerance-gated future as everyone else, plus the classified overhang that adversary capability is unknown. Split the story: sensing/nav is arriving; compute is a bet. This is the strongest "quantum is real now" case in the atlas, and the thing that is real is a sensor.
 
 ## Sources
 - DARPA/Q-CTRL RoQS: https://thequantuminsider.com/2025/08/27/darpa-selects-q-ctrl-to-develop-next-generation-quantum-sensors-for-navigation-on-advanced-defense-platforms/

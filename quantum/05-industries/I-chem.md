@@ -12,10 +12,10 @@ Like pharma, chemicals is a native quantum-simulation target (`S-qsim`): designi
 - **Merck, Covestro, Evonik** — QUTAC members probing polymer/formulation chemistry.
 
 ## Key graded claims
-- [T1] Molecular electronic-structure simulation is a provably natural quantum-computer task — textbook (established in principle; hardware not yet capable at industrial scale)
-- [T3/T4] Photochromic excited-state simulation — Mitsubishi Chemical/PsiQuantum (exploratory)
-- [T4] Homogeneous-catalysis quantum modeling — BASF/SEEQC (research collaboration)
-- [T5] Chemicals/materials as a leading slice of McKinsey's ~$2.7T-by-2035 value estimate and BCG's $450–850B-by-2040 — analyst forecasts; grade hard, inflation-unadjusted and double-counted with pharma/energy
+- T1 Molecular electronic-structure simulation is a provably natural quantum-computer task — textbook (established in principle; hardware not yet capable at industrial scale)
+- T3/T4 Photochromic excited-state simulation — Mitsubishi Chemical/PsiQuantum (exploratory)
+- T4 Homogeneous-catalysis quantum modeling — BASF/SEEQC (research collaboration)
+- T5 Chemicals/materials as a leading slice of McKinsey's ~$2.7T-by-2035 value estimate and BCG's $450–850B-by-2040 — analyst forecasts; grade hard, inflation-unadjusted and double-counted with pharma/energy
 
 ## Proven today vs promise vs hype
 - **Proven:** VQE/QPE run on real hardware for tiny molecules (\ce{H2}, \ce{LiH}, small actives) — results classical DFT/coupled-cluster already match or beat.

@@ -12,11 +12,11 @@ The *how* behind digital quantum simulation (`S-qsim`): concrete algorithms that
 The methods are complementary, and the 2024–25 literature is about hybridizing them. For a fixed accuracy, **second-order Trotter** is often competitive with qubitization/LCU/qDRIFT on real molecular systems because commutator scaling beats the λ-scaling those methods pay, especially for geometrically local Hamiltonians; but LCU/qubitization win at high precision. Recent work compensates Trotter error with an LCU correction using one ancilla, getting both good system-size scaling and high accuracy (PRX Quantum 6, 010359, 2025), and Richardson-extrapolated qDRIFT (Watson 2024) reduces the standard qDRIFT step count. Fault-tolerant chemistry resource estimates (the FeMoco line in `S-qsim`) now overwhelmingly use qubitization for its optimal T-count. Everything here is a **fault-tolerant** primitive: the deep coherent evolution requires `S-qec`.
 
 ## Key graded claims
-- [T1] Trotter with commutator error scaling — Childs–Su–Tran–Wiebe–Zhu, PRX 11, 011020 (2021); Lloyd, Science 273 (1996) (established)
-- [T1] qDRIFT: cost $\propto\lambda$, independent of term count — Campbell, PRL 123, 070503 (2019) (established)
-- [T1] LCU / Taylor-series simulation, $O(\log 1/\varepsilon)$ precision — Berry et al., PRL 114, 090502 (2015) (established)
-- [T1] Qubitization: optimal $O(\lambda t+\log 1/\varepsilon)$ query complexity — Low–Chuang, Quantum 3, 163 (2019) (established, matches lower bound)
-- [T2] Hybrid Trotter+LCU error compensation, one ancilla — PRX Quantum 6, 010359 (2025) (peer-reviewed)
+- T1 Trotter with commutator error scaling — Childs–Su–Tran–Wiebe–Zhu, PRX 11, 011020 (2021); Lloyd, Science 273 (1996) (established)
+- T1 qDRIFT: cost $\propto\lambda$, independent of term count — Campbell, PRL 123, 070503 (2019) (established)
+- T1 LCU / Taylor-series simulation, $O(\log 1/\varepsilon)$ precision — Berry et al., PRL 114, 090502 (2015) (established)
+- T1 Qubitization: optimal $O(\lambda t+\log 1/\varepsilon)$ query complexity — Low–Chuang, Quantum 3, 163 (2019) (established, matches lower bound)
+- T2 Hybrid Trotter+LCU error compensation, one ancilla — PRX Quantum 6, 010359 (2025) (peer-reviewed)
 
 ## Speedup / caveat
 The *enabling* engine for the best-founded quantum advantage (quantum simulation, `S-qsim`) — exponential over classical for generic dynamics. Caveats: (1) all four assume you can already load / block-encode H and prepare a useful initial state; (2) the constant factors and T-counts are large, keeping useful runs in the fault-tolerant era; (3) classical tensor-network methods (`S-tensornet`) absorb the low-entanglement / short-time instances, so the advantage lives in long-time, high-entanglement regimes.

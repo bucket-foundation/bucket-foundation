@@ -13,9 +13,9 @@ The hard figures of merit: the **zero-phonon-line fraction** (Debye–Waller fac
 - **Quantum dots**: brightest, most indistinguishable photons, but short spin coherence and spectral diffusion limit them as memory nodes (they excel as sources instead — `H-photonsource`).
 
 ## Key graded claims
-- [T3] Telecom-band (1326 nm) silicon T-center spin-photon entanglement, foundry-compatible — Photonic Inc. (demonstrated; rate/fidelity targets still roadmap)
-- [T2/T3] Cavity-enhanced SiV/SnV spin-photon entanglement at high fidelity in diamond nanophotonics — Harvard/QuTech (demonstrated in lab)
-- [T4] 200 kHz / 99.8% remote entanglement over telecom fiber — company target (roadmap)
+- T3 Telecom-band (1326 nm) silicon T-center spin-photon entanglement, foundry-compatible — Photonic Inc. (demonstrated; rate/fidelity targets still roadmap)
+- T2/T3 Cavity-enhanced SiV/SnV spin-photon entanglement at high fidelity in diamond nanophotonics — Harvard/QuTech (demonstrated in lab)
+- T4 200 kHz / 99.8% remote entanglement over telecom fiber — company target (roadmap)
 
 ## Trade-offs
 Every candidate trades brightness against coherence against wavelength. Diamond centers give clean optics and good spin memory but need exotic fabrication and mostly emit in the visible; T-centers and erbium reach telecom fiber but start dim and lean on cavities; quantum dots are bright but forgetful. No single emitter yet wins all axes at once — which is why this is a distinct node rather than a footnote to `H-silicon` (electrically-controlled spin *compute*) or `H-nv` (NV sensing/compute). The spin-photon interface is the emitter node that makes matter-qubit networking possible at all.

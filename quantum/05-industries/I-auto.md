@@ -15,10 +15,10 @@ Automotive spans several quantum threads: battery/electrolyte and fuel-cell-cata
 - **Toyota / Toyota Tsusho** — participation in Japanese quantum consortia (Q-STAR) on materials and mobility optimization; exploratory.
 
 ## Key graded claims
-- [T3/T4] Ford Otosan production sequencing, ~50% scheduling-time cut — D-Wave/Ford Otosan, 2024 (demonstrated, in production; annealing not gate-model)
-- [T4] Fuel-cell catalyst simulation — BMW/Airbus/Quantinuum (exploratory)
-- [T4] Battery-chemistry pilots — Hyundai/IonQ, Ford/Quantinuum, VW/IQM (claimed)
-- [T5] Automotive slice of quantum economic-value forecasts — analyst; grade hard
+- T3/T4 Ford Otosan production sequencing, ~50% scheduling-time cut — D-Wave/Ford Otosan, 2024 (demonstrated, in production; annealing not gate-model)
+- T4 Fuel-cell catalyst simulation — BMW/Airbus/Quantinuum (exploratory)
+- T4 Battery-chemistry pilots — Hyundai/IonQ, Ford/Quantinuum, VW/IQM (claimed)
+- T5 Automotive slice of quantum economic-value forecasts — analyst; grade hard
 
 ## Proven today vs promise vs hype
 - **Proven:** Ford Otosan runs an annealing-based scheduling app in a live plant — a legitimate deployed workflow.

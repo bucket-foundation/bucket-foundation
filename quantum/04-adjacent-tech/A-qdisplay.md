@@ -3,7 +3,7 @@
 
 ## What it is
 A deliberately-included **boundary case**, here to police the word "quantum" in the largest-revenue product that carries it. A **quantum dot** is a semiconductor nanocrystal (~2–10 nm) whose emission wavelength is set by quantum confinement — make the dot smaller and the bandgap widens, so size *tunes color* with near-perfect purity. This is real quantum mechanics (particle-in-a-box confinement). But whether a QD *display* belongs in a quantum-technology atlas depends entirely on which of three things you mean:
-1. **Photoluminescent QLED (today's "QLED" TVs)** — QDs sit in a film and simply down-convert blue LED backlight into pure red/green. Confinement sets the color, but the device is an ordinary LCD. **Quantum physics, not quantum *technology*** in the manual's sense — no superposition, entanglement, or single-quantum control is exploited.
+1. **Photoluminescent QLED (today's "QLED" TVs)** — QDs sit in a film and simply down-convert blue LED backlight into pure red/green. Confinement sets the color, but the device is an ordinary LCD. **Quantum physics, not quantum *technology*** in the atlas's sense — no superposition, entanglement, or single-quantum control is exploited.
 2. **Electroluminescent QD (EL-QD / "NanoLED" / true QLED)** — QDs that conduct electricity and emit their own light, no backlight, no OLED. A real display breakthrough, still QD-as-a-material.
 3. **QD single-photon / entangled-photon sources** — the one that *is* quantum technology: individual dots emit one photon at a time on demand (Quandela, `H-photonsource`), a building block for photonic QC and QKD. That belongs to the hardware chapter, cross-linked here.
 
@@ -13,13 +13,13 @@ A deliberately-included **boundary case**, here to police the word "quantum" in 
 - **QD single-photon sources**: research/early-commercial for quantum-photonics labs (Quandela's Prometheus), covered under `H-photonsource`.
 
 ## Key graded claims
-- [T1] Quantum confinement sets QD emission color (size-tunable bandgap) — established solid-state physics (established)
-- [T2] Photoluminescent QD displays are a mass-market commercial product — Samsung/TCL/Nanosys shipments (established, commercial)
-- [T4/T6] Electroluminescent EL-QD ("true QLED") displays for consumers ~2029 — Samsung/Nanosys roadmap, repeatedly slipped (roadmap)
-- [T2] On-demand single-photon emission from individual quantum dots — established QD-photonics literature (established; see `H-photonsource`)
+- T1 Quantum confinement sets QD emission color (size-tunable bandgap) — established solid-state physics (established)
+- T2 Photoluminescent QD displays are a mass-market commercial product — Samsung/TCL/Nanosys shipments (established, commercial)
+- T4/T6 Electroluminescent EL-QD ("true QLED") displays for consumers ~2029 — Samsung/Nanosys roadmap, repeatedly slipped (roadmap)
+- T2 On-demand single-photon emission from individual quantum dots — established QD-photonics literature (established; see `H-photonsource`)
 
 ## Conflicts / open questions
-- **The definitional one, which is the point of this card**: is a QLED TV "quantum technology"? By the manual's standard (exploiting a controlled quantum state — superposition/entanglement/single-quantum readout), **no** for photoluminescent QLED — it uses a quantum *material* the way a laser or an LED does, not a quantum *information* resource. **Yes** for QD single-photon sources.
+- **The definitional one, which is the point of this card**: is a QLED TV "quantum technology"? By the atlas's standard (exploiting a controlled quantum state — superposition/entanglement/single-quantum readout), **no** for photoluminescent QLED — it uses a quantum *material* the way a laser or an LED does, not a quantum *information* resource. **Yes** for QD single-photon sources.
 - EL-QD's engineering blockers (blue-dot lifetime/efficiency, cadmium-free formulations, electrical stability) keep slipping the timeline.
 
 ## The honest call

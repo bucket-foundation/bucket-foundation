@@ -11,9 +11,9 @@ Trapped-ion, neutral-atom, and NV-diamond machines are, physically, laser instru
 - **PIC integration**: IonQ + imec are developing photonic integrated circuits to route and deliver laser light on-chip for ion machines (2025), the same bet neutral-atom vendors are making — replacing free-space beam paths with waveguides to kill drift and shrink the footprint.
 
 ## Key graded claims
-- [T1] Neutral-atom/ion machines require multiple sub-kHz-linewidth stabilized laser tones — atomic physics literature (established)
-- [T4] TOPTICA/M Squared supply the Rydberg-excitation lasers for most neutral-atom systems — supply-chain analyses (claimed/reported)
-- [T3] Photonic integrated circuits can shrink ion-machine laser delivery (IonQ × imec) — 2025 collaboration (roadmap/early)
+- T1 Neutral-atom/ion machines require multiple sub-kHz-linewidth stabilized laser tones — atomic physics literature (established)
+- T4 TOPTICA/M Squared supply the Rydberg-excitation lasers for most neutral-atom systems — supply-chain analyses (claimed/reported)
+- T3 Photonic integrated circuits can shrink ion-machine laser delivery (IonQ × imec) — 2025 collaboration (roadmap/early)
 
 ## Trade-offs
 Free-space bulk-optics laser tables give the best performance but do not scale — large, drift-prone, labor-intensive to align, and sensitive to vibration and temperature. PIC integration promises SWaP and manufacturability but currently trades away optical power and linewidth, especially at the blue/UV wavelengths ion qubits need. Laser reliability (diode lifetime, lock stability) directly bounds machine uptime: a single unlocked tone can halt the whole processor mid-computation.

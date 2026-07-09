@@ -11,9 +11,9 @@ The classical layer that makes qubits do anything: arbitrary-waveform generators
 - Frontier direction: push the controller into the cold as cryo-CMOS (`H-cryocmos`) to escape one-coax-per-qubit; couple GPUs for decoding (Nvidia CUDA-Q, `S-software`).
 
 ## Key graded claims
-- [T4] ZQCS targets large-scale logical-qubit operation — Zurich Instruments launch (Mar 2026) (claimed)
-- [T4] Sub-µs real-time feedback + GPU-coupled decoding (DGX Quantum) — QM/Nvidia (demonstrated in deployments; benchmarks vendor-supplied)
-- [T5] Quantum funding context: ~$3.77B raised Jan–Sep 2025, ~3× all of 2024 — trade press (reported/forecast)
+- T4 ZQCS targets large-scale logical-qubit operation — Zurich Instruments launch (Mar 2026) (claimed)
+- T4 Sub-µs real-time feedback + GPU-coupled decoding (DGX Quantum) — QM/Nvidia (demonstrated in deployments; benchmarks vendor-supplied)
+- T5 Quantum funding context: ~$3.77B raised Jan–Sep 2025, ~3× all of 2024 — trade press (reported/forecast)
 
 ## Trade-offs (vs other approaches)
 Room-temperature racks are flexible and vendor-agnostic but cost on the order of ~$1k+ per qubit-channel and drown in cabling past a few thousand channels; cryo-CMOS cuts the wire count but must run on a milliwatt heat budget with re-characterized transistor models. Real-time decoding forces a hard co-design between the controller, the decoder ASIC/FPGA, and the QEC cycle time — latency, not raw compute, is the binding constraint.

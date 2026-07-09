@@ -12,10 +12,10 @@ Imaging and ranging schemes that exploit photon correlations. **Ghost imaging** 
 Mostly research; the commercial wins are quantum-inspired. **Quantum radar** is the graded-hardest corner: fielded long-range quantum radar is implausible near-term because idler storage over realistic ranges is impossible (you'd need a lossless quantum memory for the round-trip light-time), entanglement generation rates are tiny, and the advantage evaporates the moment you can just transmit more classical power. Defense-lab and academic assessments are broadly skeptical despite recurring Chinese vendor claims. Ghost imaging and sub-shot-noise microscopy (Padgett, Genovese groups) are established lab techniques with niche microscopy use.
 
 ## Key graded claims
-- [T2] QI's 6 dB error-exponent advantage in the noise-limited regime — Tan et al., PRL 101, 253601 (2008); microwave lab demos ~4 dB (established theory, demonstrated small-scale)
-- [T2] Ghost imaging and sub-shot-noise imaging demonstrated repeatedly — Padgett group, Genovese reviews (established)
-- [T2] Noise-tolerant / photon-number-resolving LiDAR near the standard quantum limit — Light Sci. Appl. 2025; Nat. Commun. 2023 (demonstrated, quantum-inspired)
-- [T6] Fielded long-range quantum (entanglement) radar — vendor/press claims, no verified system (speculative; contested)
+- T2 QI's 6 dB error-exponent advantage in the noise-limited regime — Tan et al., PRL 101, 253601 (2008); microwave lab demos ~4 dB (established theory, demonstrated small-scale)
+- T2 Ghost imaging and sub-shot-noise imaging demonstrated repeatedly — Padgett group, Genovese reviews (established)
+- T2 Noise-tolerant / photon-number-resolving LiDAR near the standard quantum limit — Light Sci. Appl. 2025; Nat. Commun. 2023 (demonstrated, quantum-inspired)
+- T6 Fielded long-range quantum (entanglement) radar — vendor/press claims, no verified system (speculative; contested)
 
 ## Conflicts / open questions
 - **C-qradar**: proponents cite the QI advantage; skeptics (RAND-adjacent and academic reviews) note it assumes conditions — pre-shared entanglement surviving a lossy round trip, known target range, extreme background noise, no option to just raise transmit power — that no fielded radar meets. Resolution: any independently verified over-the-air quantum (not quantum-inspired) radar demo. None exists.

@@ -11,9 +11,9 @@ Retail's pitch is demand forecasting, dynamic pricing, assortment and shelf-spac
 - Named marquee retail deployments (Walmart/Amazon/Kroger running a QPU in the loop) do not exist in the public record; retail quantum work sits inside logistics (`I-logistics`) and finance-style optimization pilots.
 
 ## Key graded claims
-- [T3] Quantum neural networks tested for demand forecasting on benchmark data — MDPI Entropy 2025 (demonstrated on toy data; no advantage vs classical)
-- [T4] Quantum-enhanced forecasting productized (Strangeworks/Quantagonia) — vendor consolidation announcement (claimed)
-- [T5] "Quantum-enhanced demand forecasting" multi-billion-dollar market — GII/Research&Markets forecasts (speculative; double-counted with logistics/finance, inflation-unadjusted)
+- T3 Quantum neural networks tested for demand forecasting on benchmark data — MDPI Entropy 2025 (demonstrated on toy data; no advantage vs classical)
+- T4 Quantum-enhanced forecasting productized (Strangeworks/Quantagonia) — vendor consolidation announcement (claimed)
+- T5 "Quantum-enhanced demand forecasting" multi-billion-dollar market — GII/Research&Markets forecasts (speculative; double-counted with logistics/finance, inflation-unadjusted)
 
 ## Proven today vs promise vs hype
 - **Proven:** nothing operational — QNN forecasting demos on benchmark data, matched by classical ML.

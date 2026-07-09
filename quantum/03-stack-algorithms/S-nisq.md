@@ -8,11 +8,11 @@ NISQ — Noisy Intermediate-Scale Quantum, coined by Preskill (2018) — names t
 IBM's 2023 "utility" experiment — a 127-qubit kicked-Ising circuit with ZNE (Nature) — was the high-water mark of the mitigation era, and was matched within weeks by classical tensor-network methods running on a laptop (`S-tensornet`). That exchange set the field's expectations: mitigation extends the reach of noisy hardware by a constant factor, while theory shows generic mitigation costs grow **exponentially** with circuit depth and fault rate (Takagi et al.; Quek et al., Nat. Phys. 2024, giving exponentially tighter lower bounds). The field's center of gravity moved to early fault tolerance (`S-qec`, `S-logical`); mitigation persists as a complement layered on top of small logical devices, and 2025 work demonstrates mitigation *on logical qubits* (Nat. Commun. 2025). The reference implementation names ZNE and readout calibration as its own natural next lever against the hardware-noise floor (`reference-impl/MATH.md` §7).
 
 ## Key graded claims
-- [T2] Preskill's NISQ framing — arXiv:1801.00862, Quantum 2, 79 (2018) (established as terminology)
-- [T2] 127-qubit kicked-Ising beyond brute-force simulation — Kim et al., Nature 618, 500 (2023) (demonstrated)
-- [T2] Same observables reproduced classically with tensor networks — Tindall et al., PRX Quantum 5, 010308 (2024) (contested→resolved: classical matched it)
-- [T2] Error mitigation has exponential sampling overhead in general — Quek et al., Nat. Phys. 20 (2024); Takagi et al. (established)
-- [T2] ZNE/PEC origins — Temme–Bravyi–Gambetta, PRL 119, 180509 (2017) (established)
+- T2 Preskill's NISQ framing — arXiv:1801.00862, Quantum 2, 79 (2018) (established as terminology)
+- T2 127-qubit kicked-Ising beyond brute-force simulation — Kim et al., Nature 618, 500 (2023) (demonstrated)
+- T2 Same observables reproduced classically with tensor networks — Tindall et al., PRX Quantum 5, 010308 (2024) (contested→resolved: classical matched it)
+- T2 Error mitigation has exponential sampling overhead in general — Quek et al., Nat. Phys. 20 (2024); Takagi et al. (established)
+- T2 ZNE/PEC origins — Temme–Bravyi–Gambetta, PRL 119, 180509 (2017) (established)
 
 ## Speedup / caveat
 Mitigation buys accuracy at sampling cost and **never** creates asymptotic speedup. Any "utility" claim demonstrated with mitigation alone is exposed to classical counterattack by construction — if the hardware is shallow enough for mitigation to work, it is usually shallow enough for tensor networks to simulate (`S-tensornet`, `O-advantage`).

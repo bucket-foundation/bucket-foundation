@@ -12,9 +12,9 @@ Distinct from the clocks themselves (`A-clocks`): this node is the **network pro
 - Underpins GPS-independent PNT, financial-transaction timestamping, telecom sync, and VLBI/geodesy.
 
 ## Key graded claims
-- [T2] Optical-frequency transfer over deployed multicore fiber at ~3×10⁻¹⁹ instability alongside telecom traffic — Optica, 2025 (demonstrated)
-- [T2] Six-country optical-clock comparison completed — Optica newsroom, June 2025 (demonstrated)
-- [T4] SI-second redefinition on track for late-2020s/~2030 — BIPM/CCTF roadmap (roadmap)
+- T2 Optical-frequency transfer over deployed multicore fiber at ~3×10⁻¹⁹ instability alongside telecom traffic — Optica, 2025 (demonstrated)
+- T2 Six-country optical-clock comparison completed — Optica newsroom, June 2025 (demonstrated)
+- T4 SI-second redefinition on track for late-2020s/~2030 — BIPM/CCTF roadmap (roadmap)
 
 ## Conflicts / open questions
 Most record-setting transfer uses purpose-run fiber; scaling to a routine, always-on continental network sharing commercial infrastructure is unproven. **The naming trap**: "quantum" time transfer (entanglement-based clock synchronization — see the entanglement-based clock-network node `A-entclock`) is proposed and theoretically elegant, but a 2026 critical assessment (arXiv 2604.10243) questions whether it beats classical optical/comb-stabilized methods in practice, since the record-holding links are all classically stabilized. So the near-term network is optical/frequency-comb-stabilized, not entanglement-based — the word "quantum" here mostly refers to the *clocks*, not the *transfer*.

@@ -14,10 +14,10 @@ Layered maturity — from mass-market chips to lab instruments defining the SI s
 BIPM/CCTF's roadmap conditions redefinition on optical standards beating cesium by $\mathbf{\geq100\times}$, **$\mathbf{\geq5}$ independent systems** running continuously in different labs, and **$\mathbf{>1}$ year** of traceable agreeing data. The CGPM (2026) is expected to endorse the roadmap, with the actual redefinition targeted around **2030**. This is why time-transfer (`A-timedist`) is load-bearing: the clocks are now better than the links that compare them.
 
 ## Key graded claims
-- [T2] \ce{Al+} optical clock at $\sim8.1\times10^{-19}$ systematic uncertainty, record accuracy — NIST, July 2025 (established)
-- [T2] Six-country coordinated optical-clock comparison as redefinition groundwork — Optica/NMI collaboration, June 2025 (demonstrated)
-- [T3] Infleqtion Tiqker optical clock deployed on Royal Navy XV Excalibur submarine — Oct 2025 (demonstrated, vendor+navy)
-- [T5/T6] SI second redefined on an optical transition ~2030 — CIPM/BIPM roadmap, arXiv:2307.14141 (roadmap)
+- T2 \ce{Al+} optical clock at $\sim8.1\times10^{-19}$ systematic uncertainty, record accuracy — NIST, July 2025 (established)
+- T2 Six-country coordinated optical-clock comparison as redefinition groundwork — Optica/NMI collaboration, June 2025 (demonstrated)
+- T3 Infleqtion Tiqker optical clock deployed on Royal Navy XV Excalibur submarine — Oct 2025 (demonstrated, vendor+navy)
+- T5/T6 SI second redefined on an optical transition ~2030 — CIPM/BIPM roadmap, arXiv:2307.14141 (roadmap)
 
 ## Conflicts / open questions
 - Which transition wins the redefinition — \ce{Sr} lattice (most-run), \ce{Yb}, \ce{Yb+} E3, \ce{Al+} (most accurate), or a weighted ensemble of several — is unsettled; a single-transition definition versus an ensemble is an open governance choice.

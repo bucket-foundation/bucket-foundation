@@ -9,10 +9,10 @@ A nitrogen-vacancy (NV) center is a point defect in diamond — a substitutional
 - **Academic multi-qubit records** (Delft/QuTech, Stuttgart, Ulm, Harvard): ~10-qubit registers on a single NV node with fault-tolerant-grade control and demonstrated small logical operations; NV nodes double as the memory/repeater endpoints in early quantum-network experiments (a bridge to `A-qinternet`, `A-qmemory-hw`). Coherence: NV electron-spin T2 reaches milliseconds at room temperature and seconds with dynamical decoupling; ¹³C nuclear memories exceed a minute.
 
 ## Key graded claims
-- [T4] QB-QDK2.0 accelerators operating at ORNL and Fraunhofer IAF — deployment announcements (demonstrated as installations; compute utility unproven)
-- [T4] 25–100 qubits by 2026–27 — Quantum Brilliance roadmap (roadmap)
-- [T2] ~10-qubit NV registers with high-fidelity control and small logical ops — academic literature (demonstrated)
-- [T1] NV electron/nuclear spins are coherent qubits at room temperature — established physics
+- T4 QB-QDK2.0 accelerators operating at ORNL and Fraunhofer IAF — deployment announcements (demonstrated as installations; compute utility unproven)
+- T4 25–100 qubits by 2026–27 — Quantum Brilliance roadmap (roadmap)
+- T2 ~10-qubit NV registers with high-fidelity control and small logical ops — academic literature (demonstrated)
+- T1 NV electron/nuclear spins are coherent qubits at room temperature — established physics
 
 ## Trade-offs (vs other modalities)
 Room temperature, no laser-vacuum-cryo stack, car-battery-scale power, and a physically tiny package — the only modality plausibly deployable at the edge or in a vehicle. Against that: qubit counts are the lowest of any modality (single digits per node), entangling *many* NV centers is hard because each defect sits at a random lattice position, and deterministic placement of many high-quality NVs in an array is unsolved fabrication.

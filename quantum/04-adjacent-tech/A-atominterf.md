@@ -11,10 +11,10 @@ Atom interferometry is the *technique* underneath several sensing cards, promote
 - **The sensitivity lever**: interferometer phase sensitivity scales with the interrogation time squared and the momentum splitting — which is why the field pushes toward longer drop towers, microgravity, and large-momentum-transfer beam-splitters.
 
 ## Key graded claims
-- [T1] Light-pulse atom interferometry gives absolute, atomic-referenced measurement of acceleration/rotation — Kasevich–Chu lineage (established)
-- [T2] Fine-structure constant measured to sub-ppb by atom interferometry — Parker et al./Morel et al. (established)
-- [T2] Long-baseline atom interferometers (MAGIS-100, AION) under construction for dark-matter / GW search — collaboration reports (demonstrated construction, roadmap science)
-- [T3] BEC atom interferometry in microgravity (Cold Atom Lab, ISS) — NASA/JPL results (demonstrated)
+- T1 Light-pulse atom interferometry gives absolute, atomic-referenced measurement of acceleration/rotation — Kasevich–Chu lineage (established)
+- T2 Fine-structure constant measured to sub-ppb by atom interferometry — Parker et al./Morel et al. (established)
+- T2 Long-baseline atom interferometers (MAGIS-100, AION) under construction for dark-matter / GW search — collaboration reports (demonstrated construction, roadmap science)
+- T3 BEC atom interferometry in microgravity (Cold Atom Lab, ISS) — NASA/JPL results (demonstrated)
 
 ## Conflicts / open questions
 - **The moving-platform problem** (shared with `A-pnt`/`A-gravimetry`): a launched cloud dislikes vibration and rotation, so turning a beautiful lab gravimeter into a strapdown navigation-grade 6-DoF sensor on a maneuvering vehicle is unsolved engineering.

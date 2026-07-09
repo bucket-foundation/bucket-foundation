@@ -10,9 +10,9 @@ The emitter counterpart to the SNSPD (`H-detect`): a photonic quantum computer o
 - **SPDC/heralded**: the workhorse of QKD and boson-sampling; bulk-crystal and thin-film-lithium-niobate waveguide pair sources are commercial (e.g. from QKD vendors). **Sparrow Quantum** (Denmark) supplies quantum-dot single-photon chips.
 
 ## Key graded claims
-- [T2] Deterministic QD source: >30% in-fibre brightness, g²(0) < 0.05, HOM > 90% — Quandela device papers (demonstrated)
-- [T3] 88% indistinguishability between two independent QD sources, filter-free — Quandela/C2N, arXiv (2026) (demonstrated)
-- [T1] SPDC produces heralded single photons but at random times — established nonlinear optics
+- T2 Deterministic QD source: >30% in-fibre brightness, g²(0) < 0.05, HOM > 90% — Quandela device papers (demonstrated)
+- T3 88% indistinguishability between two independent QD sources, filter-free — Quandela/C2N, arXiv (2026) (demonstrated)
+- T1 SPDC produces heralded single photons but at random times — established nonlinear optics
 
 ## Trade-offs
 Deterministic dots give high brightness and on-demand timing but need cryogenics (~4 K), suffer chip-to-chip wavelength/efficiency spread (screening and binning, or on-chip tuning, required), and are hard to make *mutually* indistinguishable across many emitters. SPDC is room-temperature and dead-simple but fundamentally probabilistic, forcing multiplexing that reintroduces loss and switching complexity — the very loss budget that gates `H-photonic`.

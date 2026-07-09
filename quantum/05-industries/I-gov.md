@@ -11,9 +11,9 @@ Government is pitched as a quantum customer distinct from defense (`I-aerospace`
 - **Real government quantum spend** is on the *defensive* side — national PQC-migration mandates (US OMB M-23-02, NSA CNSA 2.0) — which is `I-cyber`, not offensive optimization.
 
 ## Key graded claims
-- [T3] QUBO community detection improves anti-fraud risk scoring on transaction graphs — PMC/arXiv method papers (demonstrated on toy data)
-- [T4] Vendor "quantum for public sector" optimization offerings — press/marketing (claimed)
-- [T5] Tax authorities should prepare for real-time quantum-enabled audits — EY/CIAT advisory (speculative)
+- T3 QUBO community detection improves anti-fraud risk scoring on transaction graphs — PMC/arXiv method papers (demonstrated on toy data)
+- T4 Vendor "quantum for public sector" optimization offerings — press/marketing (claimed)
+- T5 Tax authorities should prepare for real-time quantum-enabled audits — EY/CIAT advisory (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** nothing offensive is deployed. The genuine government quantum program that exists is defensive PQC migration.

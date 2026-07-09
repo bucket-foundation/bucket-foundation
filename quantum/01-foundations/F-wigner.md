@@ -14,9 +14,9 @@ Hudson's theorem (1974) pins down the boundary: a pure continuous-variable state
 Wigner negativity is the continuous-variable currency of quantum advantage. In photonic and bosonic hardware (see H-photonic, H-bosonic), Gaussian states and operations alone are classically simulable; a non-Gaussian, Wigner-negative element (photon subtraction, a cubic phase gate, a GKP state) is what lifts the platform to universality. In the qudit circuit model, negativity of the discrete Wigner function is the same resource that magic-state distillation must manufacture (see F-contextuality, S-qec, S-logical). Wigner negativity is also a practical witness for benchmarking non-classical state preparation on NISQ and bosonic devices (see S-nisq, S-qsim).
 
 ## Key graded claims
-- [T1] A pure state has a non-negative Wigner function iff it is Gaussian — Hudson, Rep. Math. Phys. 6, 249 (1974); qudit extension Gross, J. Math. Phys. 47, 122107 (2006), arXiv:quant-ph/0602001 (status: established)
-- [T2] Wigner negativity is a necessary resource for super-polynomial quantum speed-up; non-negative states + operations are efficiently classically simulable — Mari & Eisert, PRL 109, 230503 (2012), arXiv:1208.3660; Veitch, Ferrie, Gross & Emerson, New J. Phys. 14, 113011 (2012), arXiv:1201.1256 (status: established)
-- [T2] In odd prime dimension, non-negative discrete Wigner functions characterize exactly the stabilizer states — Gross (2006) (status: established)
+- T1 A pure state has a non-negative Wigner function iff it is Gaussian — Hudson, Rep. Math. Phys. 6, 249 (1974); qudit extension Gross, J. Math. Phys. 47, 122107 (2006), arXiv:quant-ph/0602001 (status: established)
+- T2 Wigner negativity is a necessary resource for super-polynomial quantum speed-up; non-negative states + operations are efficiently classically simulable — Mari & Eisert, PRL 109, 230503 (2012), arXiv:1208.3660; Veitch, Ferrie, Gross & Emerson, New J. Phys. 14, 113011 (2012), arXiv:1201.1256 (status: established)
+- T2 In odd prime dimension, non-negative discrete Wigner functions characterize exactly the stabilizer states — Gross (2006) (status: established)
 
 ## Conflicts / open questions
 - The qubit ($d=2$) case is subtle: the standard discrete Wigner construction fails to make stabilizer states non-negative, so the clean "negativity = magic" statement holds cleanly only for odd dimension. Rebit and qubit refinements tie negativity to contextuality instead (see F-contextuality).

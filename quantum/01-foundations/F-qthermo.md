@@ -11,11 +11,11 @@ The founding law is **Landauer's principle**: erasing one bit of information for
 Sets the energetic floor of computation and the physics of cooling: dilution refrigerators, algorithmic cooling, and the (open) question of the true energy cost per logical qubit of a fault-tolerant machine. Landauer's $kT\ln 2$ is the hard floor beneath every erasure in a quantum error-correction cycle — each syndrome reset and each measurement discard has a thermodynamic price that scales with the code's overhead (see S-qec, S-logical). Trapped-ion and superconducting platforms run their whole logic inside milli-kelvin baths, so the wall-plug cost of pumping that heat out dominates system power budgets (see H-ion, H-supercon). Quantum heat engines and absorption refrigerators are candidate on-chip coolers for keeping qubits near their ground state, and fluctuation theorems give the estimation tools for reading free energies out of the noisy, driven dynamics that quantum simulators produce (see S-qsim).
 
 ## Key graded claims
-- [T1] Erasure of one bit dissipates $\ge kT\ln 2$ — Landauer, IBM J. Res. Dev. 5, 183 (1961); demon exorcised by erasure cost, Bennett, Int. J. Theor. Phys. 21, 905 (1982) (status: established)
-- [T2] Landauer's bound verified experimentally — classically with a colloidal particle (Bérut et al., Nature 483, 187, 2012) and in the quantum regime with a trapped ion (Yan et al., PRL 120, 210601, 2018) (status: demonstrated)
-- [T2] Single-atom heat engine operated with one trapped ion — Roßnagel et al., Science 352, 325 (2016), doi:10.1126/science.aad6320 (status: demonstrated)
-- [T2] Quantum coherence measurably increases the power output of a microscopic engine in the small-action regime — Klatzow et al., PRL 122, 110601 (2019), NV-center working fluid in diamond (status: demonstrated)
-- [T2] Fluctuation theorems: $\langle e^{-\beta W}\rangle = e^{-\beta\Delta F}$ — Jarzynski, PRL 78, 2690 (1997); quantum versions established (status: established)
+- T1 Erasure of one bit dissipates $\ge kT\ln 2$ — Landauer, IBM J. Res. Dev. 5, 183 (1961); demon exorcised by erasure cost, Bennett, Int. J. Theor. Phys. 21, 905 (1982) (status: established)
+- T2 Landauer's bound verified experimentally — classically with a colloidal particle (Bérut et al., Nature 483, 187, 2012) and in the quantum regime with a trapped ion (Yan et al., PRL 120, 210601, 2018) (status: demonstrated)
+- T2 Single-atom heat engine operated with one trapped ion — Roßnagel et al., Science 352, 325 (2016), doi:10.1126/science.aad6320 (status: demonstrated)
+- T2 Quantum coherence measurably increases the power output of a microscopic engine in the small-action regime — Klatzow et al., PRL 122, 110601 (2019), NV-center working fluid in diamond (status: demonstrated)
+- T2 Fluctuation theorems: $\langle e^{-\beta W}\rangle = e^{-\beta\Delta F}$ — Jarzynski, PRL 78, 2690 (1997); quantum versions established (status: established)
 
 ## Conflicts / open questions
 - Definitions of work and heat for coherent quantum systems remain multiple and inequivalent; whether quantum coherence/entanglement give thermodynamic advantage in engines is case-by-case, still contested.

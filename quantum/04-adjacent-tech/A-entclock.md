@@ -11,10 +11,10 @@ Distinct from both the clocks (`A-clocks`) and the classical time-transfer plumb
 - **On paper**: multiple 2025–26 surveys/roadmaps (arXiv:2604.04437, 2606.15421) map the architectures; long-baseline entanglement distribution (`A-qinternet`) is the missing enabler.
 
 ## Key graded claims
-- [T1] GHZ-entangled clock networks scale to Heisenberg-limited frequency precision ∝1/(KN) — Kómár et al., Nat. Phys. 10 (2014) (established theory)
-- [T2] Two remote ion clocks entangled via photonic link, sub-Heisenberg measurement reduction — 2022 experiment (demonstrated, ~2 m)
-- [T2] Entanglement-based clock syntonization, <12 ps over 48 km deployed fiber — Appl. Phys. Lett. 126, 174003 (2025) (demonstrated)
-- [T6] Continental Heisenberg-limited entangled clock network — roadmap only (speculative)
+- T1 GHZ-entangled clock networks scale to Heisenberg-limited frequency precision ∝1/(KN) — Kómár et al., Nat. Phys. 10 (2014) (established theory)
+- T2 Two remote ion clocks entangled via photonic link, sub-Heisenberg measurement reduction — 2022 experiment (demonstrated, ~2 m)
+- T2 Entanglement-based clock syntonization, <12 ps over 48 km deployed fiber — Appl. Phys. Lett. 126, 174003 (2025) (demonstrated)
+- T6 Continental Heisenberg-limited entangled clock network — roadmap only (speculative)
 
 ## Conflicts / open questions
 - **Does entanglement actually help in practice?** A 2026 critical assessment (arXiv:2604.10243) argues that for real time-synchronization tasks, classical comb-stabilized optical transfer already saturates the useful precision, and GHZ states are fragile (one lost photon collapses the whole network state), so the theoretical 1/N gain may not survive loss and decoherence over network distances. This is the same skepticism flagged in `A-timedist`.

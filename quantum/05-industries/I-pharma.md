@@ -13,10 +13,10 @@ Drug discovery is chemistry, and chemistry is quantum — simulating molecular g
 - **Quantinuum Helios** (48 logical qubits, late 2025) — approaching the scale where quantum chemistry begins to *challenge* classical on specific systems (~20 active orbitals), per 2026 pharma reviews.
 
 ## Key graded claims
-- [T2/T3] Photodynamic-therapy ground/excited-state simulation on up to 100 qubits (Q4Bio) — Algorithmiq/Cleveland Clinic/IBM (competitively judged; demonstrates a *path*, not advantage over DFT/coupled-cluster)
-- [T3] Quantum-centric supramolecular simulation — IBM, arXiv 2410.09209 (preprint capability demo)
-- [T4] AstraZeneca/IonQ 20x workflow speedup — vendor+pharma announcement (narrow subroutine)
-- [T4] Boehringer/Google, Qubit/Pasqal, Menten/D-Wave pilots — partnership PRs (exploratory)
+- T2/T3 Photodynamic-therapy ground/excited-state simulation on up to 100 qubits (Q4Bio) — Algorithmiq/Cleveland Clinic/IBM (competitively judged; demonstrates a *path*, not advantage over DFT/coupled-cluster)
+- T3 Quantum-centric supramolecular simulation — IBM, arXiv 2410.09209 (preprint capability demo)
+- T4 AstraZeneca/IonQ 20x workflow speedup — vendor+pharma announcement (narrow subroutine)
+- T4 Boehringer/Google, Qubit/Pasqal, Menten/D-Wave pilots — partnership PRs (exploratory)
 
 ## Proven today vs promise vs hype
 - **Proven:** quantum hardware can now simulate ~20-orbital molecules accurately — matching what classical methods already do well.

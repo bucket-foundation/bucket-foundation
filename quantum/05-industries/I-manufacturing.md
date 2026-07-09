@@ -11,10 +11,10 @@ Manufacturing quantum pitches cluster on **combinatorial optimization**: product
 - **WEF "How manufacturing is harnessing quantum technologies"** (Oct 2025) — frames process optimization, quality, and materials as the leading near-term manufacturing targets.
 
 ## Key graded claims
-- [T3/T4] Ford Otosan production sequencing ~50% faster — D-Wave, 2024 (demonstrated, in production; annealing, advantage-vs-classical contested)
-- [T4] ~20% digital-twin production-time reduction — unnamed automotive case study (claimed)
-- [T4] D-Wave optimization revenue growth — vendor report, Mar 2025 (real revenue, contested advantage)
-- [T5] Broad manufacturing process-optimization TAM — WEF/analyst framing (forecast)
+- T3/T4 Ford Otosan production sequencing ~50% faster — D-Wave, 2024 (demonstrated, in production; annealing, advantage-vs-classical contested)
+- T4 ~20% digital-twin production-time reduction — unnamed automotive case study (claimed)
+- T4 D-Wave optimization revenue growth — vendor report, Mar 2025 (real revenue, contested advantage)
+- T5 Broad manufacturing process-optimization TAM — WEF/analyst framing (forecast)
 
 ## Proven today vs promise vs hype
 - **Proven:** an annealing-based scheduling app runs in a live plant (Ford Otosan) and customers pay for optimization services.

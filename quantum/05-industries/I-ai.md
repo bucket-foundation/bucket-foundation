@@ -12,10 +12,10 @@ Quantum machine learning (QML, `S-qml`) promises quantum kernels, quantum neural
 - **NVIDIA CUDA-Q / cuQuantum** — the dominant tooling is *classical GPU simulation* of quantum circuits, a tell about where the compute actually runs.
 
 ## Key graded claims
-- [T3/T4] Quantum-kernel classifiers competitive on small datasets — assorted arXiv + vendor studies (no advantage at scale)
-- [T2] Certified randomness (JPMC/Quantinuum, *Nature* 2025) has downstream ML/privacy uses — established primitive, not "QML" per se
-- [T6] Quantum acceleration of large-model training/inference — aspirational (speculative)
-- [T5] "Quantum AI" market-size projections — forecast; among the most inflated in the field
+- T3/T4 Quantum-kernel classifiers competitive on small datasets — assorted arXiv + vendor studies (no advantage at scale)
+- T2 Certified randomness (JPMC/Quantinuum, *Nature* 2025) has downstream ML/privacy uses — established primitive, not "QML" per se
+- T6 Quantum acceleration of large-model training/inference — aspirational (speculative)
+- T5 "Quantum AI" market-size projections — forecast; among the most inflated in the field
 
 ## Proven today vs promise vs hype
 - **Proven:** QML circuits run and classify toy datasets — feasibility, not advantage. Certified randomness (adjacent) is real.

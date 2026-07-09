@@ -13,9 +13,9 @@ Using quantum systems — atomic transitions, spin states, entanglement, squeezi
 **Market**: analysts put quantum sensors at roughly **$0.4–0.9B in 2025** growing **~15–23% CAGR** to ~$1.5B by the mid-2030s (Fortune Business Insights and peers). Small but real and mostly defense-led — a 2036 forecast has clocks still dominant (~76% of the PNT-sensing stack) with quantum IMUs reaching ~18%.
 
 ## Key graded claims
-- [T1] Quantum-limited metrology (squeezing, entanglement-enhanced sensitivity) beats classical shot-noise limits — LIGO squeezed-light operation, PRL 2019+ (established)
-- [T4] Ironstone Opal delivers ~4 m accuracy over 700 km flights, up to 111× better than best conventional alternative — Q-CTRL announcements 2025 (claimed, awaiting independent verification)
-- [T5] Quantum sensors market ~$435M (2025) → ~$1.5B (2034), ~15% CAGR — Fortune Business Insights (forecast)
+- T1 Quantum-limited metrology (squeezing, entanglement-enhanced sensitivity) beats classical shot-noise limits — LIGO squeezed-light operation, PRL 2019+ (established)
+- T4 Ironstone Opal delivers ~4 m accuracy over 700 km flights, up to 111× better than best conventional alternative — Q-CTRL announcements 2025 (claimed, awaiting independent verification)
+- T5 Quantum sensors market ~$435M (2025) → ~$1.5B (2034), ~15% CAGR — Fortune Business Insights (forecast)
 
 ## Conflicts / open questions
 - **Vendor navigation numbers are self-reported field trials.** No peer-reviewed head-to-head against classified military-grade ring-laser/fiber-optic INS is public — the "111×" is against a specified baseline, not the state of the art in a black program.

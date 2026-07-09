@@ -14,9 +14,9 @@ Plain version: if the wavefunction were just our ignorance about a deeper realit
 PBR sets the terms for how we reason about the state as a resource (F-interp, F-qinfo). It joins Bell nonlocality (F-bell) and Kochen-Specker contextuality (F-contextuality) as the third pillar of quantum no-go theorems, together fencing off classical hidden-variable accounts. The ψ-ontic conclusion supports treating unknown states as carrying real, uncopyable information — the ground under no-cloning and the security proofs of QKD (F-nocloning, A-qkd), and under certified-randomness arguments where the state's reality constrains what an adversary can know (A-qrng, O-verification).
 
 ## Key graded claims
-- [T2] Under preparation independence, no ψ-epistemic model reproduces quantum statistics; distinct pure states are ontologically distinct — Pusey, Barrett & Rudolph, Nat. Phys. 8, 475 (2012), arXiv:1111.3328 (status: established, given the assumption)
-- [T2] Without preparation independence, ψ-epistemic models can still reproduce all of quantum theory in dimension $d \ge 2$ — Lewis, Jennings, Barrett & Rudolph, Phys. Rev. Lett. 109, 150404 (2012) (status: established)
-- [T3] Experimental tests bound the extent of ontic overlap, constraining epistemic explanations of indistinguishability — Ringbauer et al., Nat. Phys. 11, 249 (2015), arXiv:1412.6213 (status: demonstrated, model-dependent)
+- T2 Under preparation independence, no ψ-epistemic model reproduces quantum statistics; distinct pure states are ontologically distinct — Pusey, Barrett & Rudolph, Nat. Phys. 8, 475 (2012), arXiv:1111.3328 (status: established, given the assumption)
+- T2 Without preparation independence, ψ-epistemic models can still reproduce all of quantum theory in dimension $d \ge 2$ — Lewis, Jennings, Barrett & Rudolph, Phys. Rev. Lett. 109, 150404 (2012) (status: established)
+- T3 Experimental tests bound the extent of ontic overlap, constraining epistemic explanations of indistinguishability — Ringbauer et al., Nat. Phys. 11, 249 (2015), arXiv:1412.6213 (status: demonstrated, model-dependent)
 
 ## Conflicts / open questions
 - The whole result hinges on preparation independence; drop it and epistemic models survive (Lewis et al. 2012), so critics argue PBR constrains a subclass of models rather than closing the question.

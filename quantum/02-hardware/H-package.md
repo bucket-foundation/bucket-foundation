@@ -10,9 +10,9 @@ Once a superconducting chip passes a few hundred qubits, you cannot route every 
 - **imec**, **Chalmers**, and foundry programs develop superconducting TSV and micro-bump processes; through-sapphire-substrate machining is an alternative route (arXiv:2406.09930). A 2026 review (arXiv:2602.04831) surveys large-scale superconducting integration; microwave-crosstalk characterization in planar/3D devices is an active measurement front (arXiv:2606.02440).
 
 ## Key graded claims
-- [T2] High-coherence qubits preserved through TSV/flip-chip 3D integration — MIT-LL, arXiv:2107.11140 / 1708.02226 (demonstrated)
-- [T4] Chiplet + interposer packaging enables high-density modular qubit stacks — QuantWare (claimed)
-- [T3] 3D partition (qubit chiplet + bus chiplet) as the path past 2D wiring limits — IEEE/review literature (demonstrated at small scale)
+- T2 High-coherence qubits preserved through TSV/flip-chip 3D integration — MIT-LL, arXiv:2107.11140 / 1708.02226 (demonstrated)
+- T4 Chiplet + interposer packaging enables high-density modular qubit stacks — QuantWare (claimed)
+- T3 3D partition (qubit chiplet + bus chiplet) as the path past 2D wiring limits — IEEE/review literature (demonstrated at small scale)
 
 ## Trade-offs
 3D integration buys signal density and routing headroom but adds lossy interfaces — every bump bond, via, and dielectric layer is a candidate home for TLS defects (`H-fab`) that can degrade the very coherence the packaging is meant to serve. Flip-chip gaps must be controlled to microns; TSV superconductivity must survive thermal cycling to mK. The engineering is a constant fight between more connectivity and preserved coherence.

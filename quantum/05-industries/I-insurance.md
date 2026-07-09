@@ -10,10 +10,10 @@ Insurance is finance's cousin (`I-finance`): Monte Carlo-heavy catastrophe model
 - Reinsurers (Swiss Re, Munich Re) and actuarial bodies (IFoA) are watching and running small experiments; no named production deployment has surfaced.
 
 ## Key graded claims
-- [T3] Quantum methods for non-life/life/reinsurance capital modeling — Science China Info Sci 2025, AppliedMath (peer-reviewed numerical demonstrations on small instances)
-- [T4] Allstate/Chicago Quantum Exchange risk-modeling exploration — membership announcement (early)
-- [T5] Quantum-AI copulas improve tail-dependence/catastrophe modeling at scale — summit + review framing (forecast)
-- [T5] Insurance slice of quantum-value forecasts — analyst; tracks finance, lags in adoption
+- T3 Quantum methods for non-life/life/reinsurance capital modeling — Science China Info Sci 2025, AppliedMath (peer-reviewed numerical demonstrations on small instances)
+- T4 Allstate/Chicago Quantum Exchange risk-modeling exploration — membership announcement (early)
+- T5 Quantum-AI copulas improve tail-dependence/catastrophe modeling at scale — summit + review framing (forecast)
+- T5 Insurance slice of quantum-value forecasts — analyst; tracks finance, lags in adoption
 
 ## Proven today vs promise vs hype
 - **Proven:** small numerical demonstrations of quantum capital/copula methods exist in the literature — no advantage over classical actuarial compute.

@@ -14,10 +14,10 @@ Blockchains are unusually exposed to quantum attack: their security rests almost
 - **Threat timing**: consensus estimates put a CRQC able to break ECC at **~5–15 years** out, which is *inside* the lifetime of long-lived on-chain keys — the reason migration is being taken seriously now.
 
 ## Key graded claims
-- [T2] Falcon-signed accounts live on Algorand mainnet (Nov 2025); QRL XMSS chain live since 2018 — project releases (demonstrated)
-- [T2] PQC signatures (ML-DSA/Falcon/SLH-DSA) integratable into blockchains without new math — NIST FIPS 204/205; Hyperledger integrations (established)
-- [T5] A CRQC threatening ECDSA is ~5–15 years out — analyst/CSA consensus (claimed/forecast)
-- [T4] QKD/QRNG "quantum-secured" ledgers as a needed product — vendor/academic pilots (claimed, niche)
+- T2 Falcon-signed accounts live on Algorand mainnet (Nov 2025); QRL XMSS chain live since 2018 — project releases (demonstrated)
+- T2 PQC signatures (ML-DSA/Falcon/SLH-DSA) integratable into blockchains without new math — NIST FIPS 204/205; Hyperledger integrations (established)
+- T5 A CRQC threatening ECDSA is ~5–15 years out — analyst/CSA consensus (claimed/forecast)
+- T4 QKD/QRNG "quantum-secured" ledgers as a needed product — vendor/academic pilots (claimed, niche)
 
 ## Conflicts / open questions
 - **Signature bloat**: PQC signatures are large (Dilithium ~2.4 kB, Falcon ~0.7 kB, SPHINCS+ ~8–50 kB) vs ECDSA's ~64 bytes — inflating block size, fees, and validation cost. This is the real engineering tax, and it is why chains pick Falcon (small but complex to implement) over Dilithium where they can.

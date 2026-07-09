@@ -11,11 +11,11 @@ Finance is the flagship "quantum use case": portfolio optimization, Monte Carlo 
 - **Multiverse Computing** — Spanish vendor selling "quantum-inspired" (tensor-network) finance tooling to banks; revenue is classical software, useful context on where the money actually flows.
 
 ## Key graded claims
-- [T2] Certified randomness on H2-1, classically unachievable — JPMC/Quantinuum, *Nature* s41586-025-08737-1 (demonstrated; a cryptography primitive, not trading P&L)
-- [T3] QAOA constrained-optimization speedup (theoretical) — JPMC, *Science Advances* 2025
-- [T4] HSBC/IBM 34% bond-fill improvement — co-announcement Sept 2025 (controlled POC)
-- [T4] Portfolio-optimization / Monte-Carlo "100x" speedups — bank+vendor PRs (no production deployment)
-- [T5] Finance as a headline share of McKinsey's ~$2.7T-by-2035 economic-value estimate — analyst forecast; grade hard, double-counted across verticals and inflation-unadjusted (2026 dollars)
+- T2 Certified randomness on H2-1, classically unachievable — JPMC/Quantinuum, *Nature* s41586-025-08737-1 (demonstrated; a cryptography primitive, not trading P&L)
+- T3 QAOA constrained-optimization speedup (theoretical) — JPMC, *Science Advances* 2025
+- T4 HSBC/IBM 34% bond-fill improvement — co-announcement Sept 2025 (controlled POC)
+- T4 Portfolio-optimization / Monte-Carlo "100x" speedups — bank+vendor PRs (no production deployment)
+- T5 Finance as a headline share of McKinsey's ~$2.7T-by-2035 economic-value estimate — analyst forecast; grade hard, double-counted across verticals and inflation-unadjusted (2026 dollars)
 
 ## Proven today vs promise vs hype
 - **Proven:** certified randomness (peer-reviewed, beyond-classical) — a cryptographic primitive with privacy/audit uses, not alpha.

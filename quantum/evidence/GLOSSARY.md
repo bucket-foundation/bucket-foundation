@@ -50,6 +50,8 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **Break-even (error correction)** — The milestone where an error-corrected logical qubit outlives or outperforms the best physical qubit doing the same job. The meaningful 2025 threshold; deep computation across many logical qubits at once is the next bar and has not been shown (see Ch. 2, Ch. 3).
 
+**CAGR (compound annual growth rate)** — The smoothed year-on-year rate at which a market or figure would grow to reach a projected value, assuming steady compounding. Market forecasts often headline a large CAGR; it is a modeling assumption, not measured revenue, and reads as T5 (see TAM; Ch. 6, Ch. 8).
+
 **Cat qubit** — A bosonic qubit encoded in two opposite-phase states of light ("Schrödinger-cat" states). A two-photon drive suppresses bit-flip errors exponentially, leaving only phase-flips for a simple 1D code to catch — trading a hard 2D error-correction problem for an easier 1D one. The open question is whether the noise bias survives fast gates (see Ch. 2).
 
 **Certified randomness** — Provably unpredictable random bits generated and verified using a quantum computer. The JPMorgan–Quantinuum result (2025) is arguably the first useful thing a beyond-classical machine has done, though the market for it is small (see Ch. 3, Ch. 4).
@@ -68,7 +70,7 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **CNSA 2.0** — The US National Security Agency's requirement that new national-security systems adopt post-quantum cryptography, capable by 1 January 2027 and fully migrated by 2030–2035 (see Ch. 4, Ch. 6).
 
-**Coherence time (T1 / T2)** — How long a qubit keeps its quantum information. **T1** is energy relaxation (the qubit decays toward its ground state); **T2** is dephasing (it loses the phase relationship that carries superposition). The headline spec of every hardware modality (see decoherence; Ch. 1, Ch. 2).
+**Coherence time (T1 / T2)** — How long a qubit keeps its quantum information. **T1** is energy relaxation (the qubit decays toward its ground state); **T2** is dephasing (it loses the phase relationship that carries superposition). The headline spec of every hardware modality (note: T1/T2 here are coherence times, unrelated to the evidence tiers T1–T6) (see decoherence; Ch. 1, Ch. 2).
 
 **Coherent state** — The most "classical" state of light, closest to a steady wave. The building block of cat qubits and a native state of photonic hardware (see Ch. 1).
 
@@ -80,15 +82,19 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **Cross-entropy benchmarking** — The statistical test behind random-circuit "supremacy" claims. It is not a proof of correctness and has been spoofed classically, which is part of why advantage claims are contested by default (see Ch. 8).
 
-**CRQC (cryptographically relevant quantum computer)** — A future machine large enough to run Shor's algorithm against real RSA or elliptic-curve keys and break today's public-key encryption. Expert surveys cluster around the 2035–2040 range; the exact date is uncertain, which is why migration must start now (see harvest now decrypt later; Ch. 4, Ch. 8).
+**CRQC (cryptographically relevant quantum computer)** — A future machine large enough to run Shor's algorithm against real RSA or elliptic-curve keys and break today's public-key encryption. Point estimates cluster around 2030 ± 3 years, with roughly 50% odds by 2035 (Global Risk Institute) and weight trailing toward 2040; a minority holds it will never arrive. The uncertainty is why migration must start now (see harvest now decrypt later; Ch. 4, Ch. 8).
 
 **Cryo-CMOS** — Control electronics fabricated in standard silicon that run cold, inside the refrigerator next to the qubits, to reduce the crippling number of wires. The bet that lets superconducting and silicon machines scale past a few thousand qubits (see Ch. 2).
 
 **Cryostat / dilution refrigerator** — The refrigerator that cools superconducting, silicon-spin, and bosonic qubits to near absolute zero by exploiting a mixture of helium-3 and helium-4. It sets hard ceilings on cooling power, volume, and wiring. Bluefors and Oxford Instruments dominate the market (see Ch. 2, Ch. 6).
 
+**Crypto-agility** — Designing systems so their cryptographic algorithms can be swapped out quickly, without re-architecting. The practical requirement behind post-quantum migration: an agile system can adopt new standards as they land and retire broken ones fast (see post-quantum cryptography; Ch. 4, Ch. 6).
+
 **Decoherence** — The loss of quantum behavior when a system leaks its phase information into its environment. It is why the everyday world looks classical, and it is the central enemy of every qubit — the reason error correction exists (see Ch. 1).
 
 **Dequantization** — Writing a classical algorithm that matches a claimed quantum speedup, removing the advantage. Ewin Tang's 2018 work started a program that erased the exponential edge of several quantum machine-learning and linear-algebra methods (see Ch. 3, Ch. 8).
+
+**Deemed export** — Under US export-control law, giving a foreign national access to controlled technology inside the country counts as an export to their home country. It means quantum hiring and lab access can trigger the same license rules as shipping hardware abroad (see export controls; Ch. 6).
 
 **Density matrix** — A more general description of a quantum state that also covers "mixed" states — statistical blends arising from noise or ignorance. Its off-diagonal terms carry the coherence that decoherence destroys (see Ch. 1).
 
@@ -105,6 +111,8 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 **E91** — Ekert's 1991 quantum key distribution protocol, which draws the key from entangled pairs and certifies security through a Bell-inequality violation (see Ch. 4, Ch. 7).
 
 **Ebit** — One unit of entanglement: the amount contained in one maximally entangled pair of qubits (see Ch. 1).
+
+**Eigenvalue / eigenstate** — For a given operation, an eigenstate is a state the operation leaves pointing the same way, and its eigenvalue is the number it gets scaled by. Measuring an observable can only return one of its eigenvalues, and the state collapses to the matching eigenstate (see observable, Born rule; Ch. 1).
 
 **Evidence tiers (T1–T6)** — The atlas's grading scale for how much a claim can be trusted: T1 established physics (textbook, reproduced for decades); T2 peer-reviewed result; T3 preprint or conference report, not yet refereed; T4 vendor claim, not independently reproduced; T5 analyst or market forecast; T6 speculative. A vendor press release (T4) and a peer-reviewed threshold demonstration (T2) never weigh the same. "Quantum advantage" claims are treated as contested by default. See the Preface and Appendix A.
 
@@ -220,9 +228,13 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **No-communication theorem** — The result that entanglement alone cannot send a message faster than light, which is how quantum mechanics coexists with relativity (see Ch. 1).
 
+**Normalized (state)** — A quantum state scaled so its outcome probabilities add up to exactly one. Every physical state must be normalized, since some outcome has to happen; the Born rule only gives valid probabilities for a normalized state (see Born rule, state vector; Ch. 1).
+
 **NV center** — A nitrogen-vacancy defect in diamond that acts as a qubit and sensor at room temperature and ambient pressure, with nanoscale resolution. Best near-term value is sensing; qubit counts are the lowest of any modality (see Ch. 2, Ch. 4).
 
 **Objective collapse (GRW / CSL / Diósi–Penrose)** — A family of theories that add a tiny physical mechanism causing large superpositions to collapse on their own. Unlike other interpretations, they make testable predictions, and experiments are steadily narrowing their allowed range (see measurement problem; Ch. 1, Ch. 8).
+
+**Observable** — Any physical quantity you can measure — position, energy, spin along an axis. In the formalism each observable is an operator whose eigenvalues are the possible readings; measuring one yields an eigenvalue with a Born-rule probability and leaves the state in the matching eigenstate (see eigenvalue, Born rule; Ch. 1).
 
 **Optical clock** — The most precise instruments ever built, keeping time on an atomic transition at optical frequencies (uncertainties near 19 decimal places). Heading toward a redefinition of the SI second around 2030 (see Ch. 4, Ch. 6).
 
@@ -246,7 +258,11 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **Probabilistic gate (fusion)** — A photonic two-qubit gate that only succeeds part of the time (the leading "fusion" gate about half). The structural challenge of photonic computing, worked around with many attempts and heralding (see Ch. 2).
 
+**Pure state vs mixed state** — A pure state is a single definite quantum state, described by one state vector. A mixed state is a statistical blend of pure states, arising from noise or ignorance, and needs a density matrix to describe it. Decoherence turns pure states into mixed ones (see density matrix, purification; Ch. 1).
+
 **Purification / Stinespring dilation** — The principle that every noisy, mixed state is the shadow of a pure state on a larger space, and every physical process is a clean operation on a bigger system followed by discarding part. "Noise is entanglement with something you stopped tracking" (see Ch. 1).
+
+**Q-day** — The informal name for the day a quantum computer can break today's public-key encryption (see CRQC). Used as a planning horizon; point estimates cluster around 2030 ± 3 years, roughly 50% by 2035, which is why migration starts now (see harvest now decrypt later; Ch. 4, Ch. 6).
 
 **QAOA (Quantum Approximate Optimization Algorithm)** — A near-term variational algorithm for combinatorial optimization. Provably beaten by classical algorithms on broad instance classes, with no demonstrated win on real problems (see variational algorithms; Ch. 3, Ch. 5).
 
@@ -276,11 +292,15 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **Quantum simulation** — See Hamiltonian simulation. Feynman's original 1981 pitch and the best-founded advantage in the field (see Ch. 3, Ch. 5).
 
+**Quantum supremacy** — See quantum advantage. The older term for a quantum computer doing a task no classical computer feasibly can, now largely deprecated in favor of "quantum advantage"; where it survives it usually flags an artificial benchmark rather than a useful task. Contested by default (see Ch. 3, Ch. 8).
+
 **Quantum Volume** — An IBM whole-machine benchmark combining qubit count, connectivity, and fidelity into one number. Like all vendor metrics, it flatters its own architecture; T4 (see Ch. 3, Ch. 8).
 
 **Quantum walk** — The quantum analog of a random walk, giving speedups for problems like element distinctness and serving as a full model of computation. Its speedups are query-model and polynomial, so overhead accounting applies (see Ch. 3).
 
 **Qubit** — The basic unit of quantum information: any two-level quantum system that can hold a superposition of 0 and 1. Every hardware modality implements the same abstract qubit, so algorithms are written once (see Bloch sphere; Ch. 1).
+
+**QUBO (quadratic unconstrained binary optimization)** — A standard way of writing an optimization problem as binary variables with a quadratic cost function. It is the native input format for quantum annealers and many optimization pitches, since a QUBO maps directly onto a physical energy landscape (see annealing, Hamiltonian; Ch. 2, Ch. 5).
 
 **QuOp (quantum operation)** — A proposed unit of quantum computing throughput used in UK procurement targets (MQuOp, GQuOp, TQuOp). It is not standardized, so buyers are writing contracts against an undefined quantity (see Ch. 6).
 
@@ -324,6 +344,8 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **T gate / T-count** — The single non-Clifford gate that makes a gate set universal, and the true currency of fault-tolerant cost. A circuit's T-count and T-depth — not its raw gate count — decide whether it is affordable, because T gates need expensive magic states (see Clifford+T; Ch. 3).
 
+**TAM (total addressable market)** — The full revenue a product could earn if it captured its entire market. Quantum market reports headline large TAM figures years out; a TAM is a forecast of potential demand, not booked revenue, and reads as T5 (see CAGR; Ch. 6, Ch. 8).
+
 **Teleportation** — Moving an unknown quantum state from one place to another using a shared entangled pair and two classical bits, destroying the original. It never beats light and never clones. The same trick ("gate teleportation") is how magic states are consumed in fault-tolerant circuits (see Ch. 1).
 
 **Tensor network** — A classical method that represents a quantum state or circuit as a graph of small tensors, efficient when entanglement is low. The moving classical baseline every advantage claim is judged against — it erased Sycamore's "10,000 years" and matched IBM's 2023 utility experiment (see Ch. 3, Ch. 8).
@@ -344,7 +366,7 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 
 **Trotter–Suzuki / qDRIFT / LCU / qubitization** — The four method families for digital Hamiltonian simulation. Trotter is simple and ancilla-free; qDRIFT's cost is independent of the number of terms; LCU and qubitization reach optimal precision scaling. Which wins is instance-dependent (see Ch. 3).
 
-**Trusted relay** — An intermediate node in a QKD network that decrypts and re-encrypts because no quantum repeater yet exists — meaning it knows the key. The structural hole that collapses QKD's "unhackable" marketing into adjacent-node-only security (see Ch. 4).
+**Trusted relay / trusted node** — An intermediate node in a QKD network that decrypts the key on one link and re-encrypts it on the next, because no quantum repeater yet exists to pass entanglement through untouched. The relay holds the key in the clear, so anyone who controls the node — or compromises it — sees the secret. Real QKD networks are chains of these nodes, and a satellite acting as relay is one too. It is the structural hole that collapses QKD's "unhackable" marketing into security only as strong as every node along the path, and part of why security agencies point to post-quantum cryptography instead (see quantum internet, repeater; Ch. 4).
 
 **Tsirelson bound** — The maximum Bell-inequality value quantum mechanics itself allows (2√2 for CHSH), sitting above the classical limit of 2. The gap between them is the experimental target that six decades of tests have closed (see Ch. 1).
 
@@ -353,6 +375,8 @@ Plain-language definitions of the technical terms a reader meets in *The Quantum
 **Twin-field QKD** — A QKD protocol that extends secure key distribution over unusually long fiber (hundreds of kilometers) by interfering fields from both parties at a midpoint (see Ch. 4).
 
 **Uncertainty principle** — The rule that certain pairs of quantities (position and momentum) cannot both be sharp in any state — a fact about how states can be prepared, not about clumsy measurement. It sets the standard quantum limit and defines what squeezing can buy (see Ch. 1).
+
+**Unitary (operation)** — The kind of transformation that describes every closed-system quantum evolution and every quantum gate: reversible, and preserving total probability so a normalized state stays normalized. Measurement is the one non-unitary step. Block encoding exists precisely because a quantum computer can only apply unitaries directly (see normalized, gate; Ch. 1, Ch. 3).
 
 **Universal gate set** — A finite set of gates that can approximate any quantum operation. Universality guarantees *reachability*, not cheapness — a circuit can be expressible yet astronomically expensive in T-count (see Clifford+T, Solovay–Kitaev; Ch. 3).
 

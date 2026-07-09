@@ -12,10 +12,10 @@ Space is a natural home for quantum *sensing and communication* more than comput
 - **NASA CAL** (Cold Atom Lab, ISS) — BEC/atom-interferometry science platform underpinning future space gravimetry.
 
 ## Key graded claims
-- [T2/T3] ACES ~1×10⁻¹⁶ optical-clock-class stability in orbit — ESA, 2025 (demonstrated hardware milestone)
-- [T3] Space-qualified quantum-networking payload (entanglement swapping) — Boeing Q4S (demonstrated ground test; orbital pending)
-- [T3] Photonic quantum computer operates in orbit — U. Vienna 2025 (demonstrated survival, not useful compute)
-- [T5] Space-quantum market forecasts — analyst (speculative)
+- T2/T3 ACES ~1×10⁻¹⁶ optical-clock-class stability in orbit — ESA, 2025 (demonstrated hardware milestone)
+- T3 Space-qualified quantum-networking payload (entanglement swapping) — Boeing Q4S (demonstrated ground test; orbital pending)
+- T3 Photonic quantum computer operates in orbit — U. Vienna 2025 (demonstrated survival, not useful compute)
+- T5 Space-quantum market forecasts — analyst (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** ACES clocks, quantum inertial sensors, and satellite QKD are flying and returning data now — mostly `A`-layer sensing/timing/comms.

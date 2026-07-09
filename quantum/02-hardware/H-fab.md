@@ -10,9 +10,9 @@ The materials science and manufacturing base under every qubit: Josephson-juncti
 - **Foundries**: imec's 300 mm superconducting-qubit CMOS flow (Nature npj 2024); Diraq/imec spin qubits >99% from a standard 300 mm line (2025); SQC's 250k-register patterning (2025); GlobalFoundries manufacturing PsiQuantum's Omega photonic chipset; SkyWater, Intel's 300 mm line, and national fabs (SQMS at Fermilab) round out capacity. Related nodes: `H-package` (3D/TSV integration), `H-iontrap` (surface-trap fab), `H-foundry` (the 300 mm ecosystem).
 
 ## Key graded claims
-- [T3] Surface TLS concentrate on junction leads / rough, SiO₂-rich regions — arXiv:2511.05365 (demonstrated, awaiting reproduction)
-- [T2] 300 mm CMOS flows yield error-correction-grade spin qubits and high-coherence transmons — Nature/npj papers (demonstrated)
-- [T6] TLS problem "engineerable away" by process control alone — no field consensus (speculative)
+- T3 Surface TLS concentrate on junction leads / rough, SiO₂-rich regions — arXiv:2511.05365 (demonstrated, awaiting reproduction)
+- T2 300 mm CMOS flows yield error-correction-grade spin qubits and high-coherence transmons — Nature/npj papers (demonstrated)
+- T6 TLS problem "engineerable away" by process control alone — no field consensus (speculative)
 
 ## Trade-offs
 Foundry processes buy uniformity and volume but restrict the exotic materials and geometries that still hold coherence records in the lab (shadow-evaporated Al junctions). The specialty supply chain — ³He, dilution fridges (Finnish/UK duopoly, `H-cryo`), SNSPDs (`H-detect`), isolators, ²⁸Si — concentrates in few hands and is a geopolitical single point of failure (see `E-supplychain`).

@@ -10,10 +10,10 @@ Superconducting, silicon-spin, and bosonic qubits live at 10–20 millikelvin �
 - **Market**: laboratory dilution-fridge market ~$320M (2025), projected ~$520M by 2034 — quantum programs are the main growth driver.
 
 ## Key graded claims
-- [T5] Bluefors + Oxford Instruments >70% market share — ICV Global Dilution Refrigerator Report 2025 (claimed)
-- [T4] KIDE supports 1,000+ qubit systems — Bluefors (claimed; IBM deployment corroborates at current scales)
-- [T5] Market ~$320M (2025) → ~$520M (2034) — analyst forecasts (forecast)
-- [T1] Dilution refrigeration reaches ~10 mK continuously via ³He/⁴He mixing — established cryogenics
+- T5 Bluefors + Oxford Instruments >70% market share — ICV Global Dilution Refrigerator Report 2025 (claimed)
+- T4 KIDE supports 1,000+ qubit systems — Bluefors (claimed; IBM deployment corroborates at current scales)
+- T5 Market ~$320M (2025) → ~$520M (2034) — analyst forecasts (forecast)
+- T1 Dilution refrigeration reaches ~10 mK continuously via ³He/⁴He mixing — established cryogenics
 
 ## Trade-offs (vs other modalities/components)
 Dry fridges made mK routine, but each ~1 mW of cooling power at 20 mK costs on the order of ~25 kW at the wall — the thermodynamic tax on superconducting QC. Wiring heat-load per qubit forces cryo-CMOS control, photonic I/O, or aggressive multiplexing before a fridge can hold thousands of qubits. Ion, neutral-atom, photonic, and NV modalities skip dilution fridges entirely (photon detectors still want a 2–4 K stage — see `H-detect`).

@@ -2,7 +2,7 @@
 **Layer:** L6 History · **Chapter:** §07 · **Status:** depth
 
 ## The arc
-The term "quantum winter" borrows directly from the "AI winters" — the two multi-year collapses of funding and interest (roughly 1974–1980 and 1987–1993) that followed cycles of over-promising in artificial intelligence. A quantum winter would be the same pattern: a period of stalled progress and, more sharply, a withdrawal of capital and attention when the field's grand promises fail to materialize on the advertised schedule. It is not (yet) a historical event — it is a live risk and a recurring debate. The bull case says quantum has never been advancing faster (below-threshold QEC, logical-qubit records — see T-ecera). The bear case, argued by longtime skeptics like Mikhail Dyakonov and by cautious investors, is that quantum advantage has so far appeared only in contrived, useless tasks; that no application pays for itself; and that a downturn could drain talent and funding before fault-tolerant machines arrive (see O-talent-attrition, O-killerapp). Including this card is a matter of intellectual honesty: the manual grades vendor roadmaps as marketing until peer-reviewed (SCHEMA rule 1), and a field that runs on hype is a field exposed to a winter.
+The term "quantum winter" borrows directly from the "AI winters" — the two multi-year collapses of funding and interest (roughly 1974–1980 and 1987–1993) that followed cycles of over-promising in artificial intelligence. A quantum winter would be the same pattern: a period of stalled progress and, more sharply, a withdrawal of capital and attention when the field's grand promises fail to materialize on the advertised schedule. It is not (yet) a historical event — it is a live risk and a recurring debate. The bull case says quantum has never been advancing faster (below-threshold QEC, logical-qubit records — see T-ecera). The bear case, argued by longtime skeptics like Mikhail Dyakonov and by cautious investors, is that quantum advantage has so far appeared only in contrived, useless tasks; that no application pays for itself; and that a downturn could drain talent and funding before fault-tolerant machines arrive (see O-talent-attrition, O-killerapp). Including this card is a matter of intellectual honesty: the atlas grades vendor roadmaps as marketing until peer-reviewed (SCHEMA rule 1), and a field that runs on hype is a field exposed to a winter.
 
 ## The evidence for the risk
 - **Funding volatility.** Private quantum investment reportedly fell sharply in 2023 (widely cited as ~50% globally, ~80% in the US year-over-year) before recovering — a swing consistent with hype-cycle dynamics, not steady industrial build-out. Figures vary by source and are T5.
@@ -17,10 +17,10 @@ The term "quantum winter" borrows directly from the "AI winters" — the two mul
 
 ## Milestone / discourse timeline
 - 2019 — Early "quantum winter is not coming" essays push back on premature doom (Ryan Shaffer and others) — [T5/opinion]
-- 2022 (Jan) — Mainstream "what if quantum faces a winter?" coverage (Slate) — the analogy enters public discourse — [T5]
-- 2023 — Reported ~50% global / ~80% US drop in private quantum funding; simultaneous generative-AI boom — the sharpest data point for the bear case — [T5]
-- 2024 — "No quantum winter in 2024" counter-narratives cite rapid hardware advances — [T5]
-- 2025 — "Quantum winter warning" analyses tie the risk explicitly to overhype and specific public-company controversies — [T5]
+- 2022 (Jan) — Mainstream "what if quantum faces a winter?" coverage (Slate) — the analogy enters public discourse — T5
+- 2023 — Reported ~50% global / ~80% US drop in private quantum funding; simultaneous generative-AI boom — the sharpest data point for the bear case — T5
+- 2024 — "No quantum winter in 2024" counter-narratives cite rapid hardware advances — T5
+- 2025 — "Quantum winter warning" analyses tie the risk explicitly to overhype and specific public-company controversies — T5
 
 ## Key graded claims
 - claim: A "quantum winter" analogous to the AI winters is a plausible risk, driven by an advantage gap plus hype-cycle funding · tier: T5/T6 · provenance: analysts, skeptics, some investors · status: contested — a scenario, not a fact

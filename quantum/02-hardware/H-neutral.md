@@ -12,11 +12,11 @@ Neutral atoms (Rb, Sr, Cs, Yb) held in arrays of optical tweezers; qubits live i
 - **Atom-count frontier**: Caltech loaded 6,100 atoms in a single tweezer array (Sep 2025); QuEra/Atom Computing project 100,000 atoms per chamber within a few years.
 
 ## Key graded claims
-- [T2] 48 logical qubits + logical magic-state distillation — Harvard/QuEra, Nature (2025) (demonstrated)
-- [T2] 96 logical qubits via a high-rate $[[16,6,4]]$ code on 448 atoms, below-threshold — QuEra, Nature s41586-025-09848-5 (2026) (demonstrated, peer-reviewed)
-- [T2] Continuous >2 hr operation via mid-computation atom reloading (~3,000 atoms) — Harvard/MIT, Nature (2025) (demonstrated)
-- [T3] 6,100-atom single-array loading — Caltech (Sep 2025) (demonstrated, static array)
-- [T4] Pasqal 10,000 qubits by ~2026–27 — company roadmap (roadmap)
+- T2 48 logical qubits + logical magic-state distillation — Harvard/QuEra, Nature (2025) (demonstrated)
+- T2 96 logical qubits via a high-rate $[[16,6,4]]$ code on 448 atoms, below-threshold — QuEra, Nature s41586-025-09848-5 (2026) (demonstrated, peer-reviewed)
+- T2 Continuous >2 hr operation via mid-computation atom reloading (~3,000 atoms) — Harvard/MIT, Nature (2025) (demonstrated)
+- T3 6,100-atom single-array loading — Caltech (Sep 2025) (demonstrated, static array)
+- T4 Pasqal 10,000 qubits by ~2026–27 — company roadmap (roadmap)
 
 ## Trade-offs (vs other modalities)
 The largest qubit counts of any gate-based modality, reconfigurable connectivity, a room-temperature apparatus, and intrinsically identical atoms; against that, gates are slower than transmons (Rydberg gates ~sub-µs but with cooling/rearrangement overhead per cycle), atom loss is a distinctive error channel that forces continuous reloading, and 2Q fidelities (~99.5%) still trail trapped ions. The optical-table laser subsystem is the practical scaling wall (`H-lasers`), the analog of superconducting wiring.

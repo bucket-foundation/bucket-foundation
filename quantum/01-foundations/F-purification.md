@@ -16,9 +16,9 @@ Plain version: any noisy or lossy process you run in the lab is a clean reversib
 This is the backbone of quantum error correction and open-system engineering. Modeling decoherence as a CPTP channel (via Stinespring/Kraus) is how amplitude damping, dephasing, and depolarizing noise get simulated and how threshold theorems are proved (S-qec, F-decoher). Purification underlies entanglement measures, thermofield-double states, and the environment "monitoring" picture of einselection (F-decoher, F-qinfo). It is the channel twin of Naimark dilation for measurements (F-povm) and the engine behind teleportation-based error correction and remote state preparation (F-teleport). Randomized benchmarking and process tomography assume the Kraus/Stinespring structure (O-tomography). In quantum thermodynamics and black-hole information debates, "purify the environment" is the standard move (F-interp).
 
 ## Key graded claims
-- [T1] Every CPTP map equals an isometry into a larger space followed by partial trace (Stinespring dilation) — Stinespring, Proc. Amer. Math. Soc. 6, 211 (1955) (status: established)
-- [T1] Every mixed state has a pure purification on a doubled space, unique up to a unitary on the ancilla — standard corollary; textbook Nielsen & Chuang §2.5 (status: established)
-- [T2] Fidelity between mixed states equals the maximal overlap over all purifications — Uhlmann, Rep. Math. Phys. 9, 273 (1976) (status: established)
+- T1 Every CPTP map equals an isometry into a larger space followed by partial trace (Stinespring dilation) — Stinespring, Proc. Amer. Math. Soc. 6, 211 (1955) (status: established)
+- T1 Every mixed state has a pure purification on a doubled space, unique up to a unitary on the ancilla — standard corollary; textbook Nielsen & Chuang §2.5 (status: established)
+- T2 Fidelity between mixed states equals the maximal overlap over all purifications — Uhlmann, Rep. Math. Phys. 9, 273 (1976) (status: established)
 
 ## Conflicts / open questions
 - None mathematically. The interpretive question is whether the purifying partner is a real physical system or a formal device; the "church of the larger Hilbert space" is a modeling stance, and Stinespring's non-uniqueness means many physical environments realize the same channel.

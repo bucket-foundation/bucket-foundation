@@ -8,8 +8,8 @@ Certified randomness is a protocol that produces bits *provably* random — not 
 The landmark is JPMorgan × Quantinuum × Argonne/Oak Ridge × UT Austin, published in Nature (26 Mar 2025). Running on Quantinuum's 56-qubit trapped-ion H2, the team generated 71,313 certified-random bits; verification consumed ~1.1 exaFLOPS across supercomputers — the classical check itself is what makes the quantum step meaningful (only a real quantum device answers in time, only a classical HPC cluster can verify). Provenance matters: JPMorgan (a customer with a cryptography use case) and Quantinuum (the hardware vendor) co-authored, but this cleared peer review in Nature, so it grades above a vendor PR. The honest caveat is that certified randomness is a niche, if real, first application — its commercial pull (lotteries, cryptographic key material, auditable fairness) is genuine but narrow, and the verification cost is enormous.
 
 ## Key graded claims
-- [T2] Protocol: certified randomness expansion from random circuit sampling — Aaronson–Hung, STOC 2023 (arXiv:2303.01625) (established theory)
-- [T2] First experimental certified randomness: 71,313 bits on 56-qubit H2, verified at ~1.1 exaFLOPS — Nature 640 (2025), s41586-025-08737-1 (peer-reviewed)
+- T2 Protocol: certified randomness expansion from random circuit sampling — Aaronson–Hung, STOC 2023 (arXiv:2303.01625) (established theory)
+- T2 First experimental certified randomness: 71,313 bits on 56-qubit H2, verified at ~1.1 exaFLOPS — Nature 640 (2025), s41586-025-08737-1 (peer-reviewed)
 - [T4→T2] "First commercial application of quantum computing" framing is vendor-sourced (Quantinuum/JPMorgan), but the underlying result is peer-reviewed (claimed marketing / demonstrated result)
 
 ## Speedup / caveat

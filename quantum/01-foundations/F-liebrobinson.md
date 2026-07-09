@@ -16,9 +16,9 @@ Plain version: poke one spin, and a spin a distance $d$ away barely notices unti
 Lieb-Robinson velocity sets the clock for how fast entanglement and information spread, bounding how quickly a quantum computer can move data across a chip and how fast entangling gates over distance can be (H-supercon, H-ion, S-gates). It underpins the area law for entanglement entropy and the efficiency of tensor-network (MPS/DMRG) simulation, so it controls what classical machines can and cannot simulate (F-qinfo). The gap-implies-clustering result explains why local error correction and topological order are stable (S-qec, S-logical). It also bounds state-transfer rates in quantum networks and metrology protocols spread over many sites (A-qinternet, A-sensing).
 
 ## Key graded claims
-- [T1] Short-range lattice Hamiltonians have a finite group velocity; correlations vanish exponentially outside a linear light cone — Lieb & Robinson, Commun. Math. Phys. 28, 251 (1972) (status: established)
-- [T1] A nonzero spectral gap implies exponential decay of ground-state correlations, via Lieb-Robinson bounds — Hastings & Koma, Commun. Math. Phys. 265, 781 (2006); Nachtergaele & Sims, Commun. Math. Phys. 265, 119 (2006) (status: established)
-- [T2] A light-cone spread of correlations at a finite velocity was observed directly in a quantum gas — Cheneau et al., Nature 481, 484 (2012); trapped-ion light cones, Jurcevic et al. & Richerme et al., Nature 511, 202 & 198 (2014) (status: demonstrated)
+- T1 Short-range lattice Hamiltonians have a finite group velocity; correlations vanish exponentially outside a linear light cone — Lieb & Robinson, Commun. Math. Phys. 28, 251 (1972) (status: established)
+- T1 A nonzero spectral gap implies exponential decay of ground-state correlations, via Lieb-Robinson bounds — Hastings & Koma, Commun. Math. Phys. 265, 781 (2006); Nachtergaele & Sims, Commun. Math. Phys. 265, 119 (2006) (status: established)
+- T2 A light-cone spread of correlations at a finite velocity was observed directly in a quantum gas — Cheneau et al., Nature 481, 484 (2012); trapped-ion light cones, Jurcevic et al. & Richerme et al., Nature 511, 202 & 198 (2014) (status: demonstrated)
 
 ## Conflicts / open questions
 - The tight velocity and light-cone shape for long-range (power-law $1/r^\alpha$) interactions are still being pinned down; whether the cone is linear, polynomial, or logarithmic depends on $\alpha$, and recent work keeps sharpening the boundaries.

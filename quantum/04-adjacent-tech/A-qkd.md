@@ -12,11 +12,11 @@ Commercial today, in niches — a two-decade-old product line with government an
 - **EU EuroQCI**: a continent-wide quantum-secure network is being built — Madrid's MadQCI testbed (IDQ, Toshiba, AIT), Hungary's first multi-node net with Magyar Telekom, national arms across most member states.
 
 ## Key graded claims
-- [T1] BB84/E91 offer information-theoretic key security in the ideal model — Bennett & Brassard 1984; Ekert PRL 1991 (established)
-- [T2] Real devices admit side-channel attacks (detector blinding, Trojan-horse); implementation ≠ ideal proof — Lydersen et al., Nat. Photonics 2010 (established)
-- [T2] Twin-field QKD over $1002\,\text{km}$ fiber at $\sim0.0034\,\text{bit/s}$; $111.74\,\text{kbit/s}$ at $202\,\text{km}$ — Liu et al., PRL 130, 210801 (2023) (demonstrated)
-- [T2] Beijing–Shanghai $2000\,\text{km}$ QKD backbone operational via trusted relays — Chen et al., Nature 589 (2021) (demonstrated)
-- [T4] Toshiba/Quantum Corridor cross-state QKD over live commercial metro fiber, $21.8\,\text{km}$ segment — Toshiba PR, Dec 2025 (claimed)
+- T1 BB84/E91 offer information-theoretic key security in the ideal model — Bennett & Brassard 1984; Ekert PRL 1991 (established)
+- T2 Real devices admit side-channel attacks (detector blinding, Trojan-horse); implementation ≠ ideal proof — Lydersen et al., Nat. Photonics 2010 (established)
+- T2 Twin-field QKD over $1002\,\text{km}$ fiber at $\sim0.0034\,\text{bit/s}$; $111.74\,\text{kbit/s}$ at $202\,\text{km}$ — Liu et al., PRL 130, 210801 (2023) (demonstrated)
+- T2 Beijing–Shanghai $2000\,\text{km}$ QKD backbone operational via trusted relays — Chen et al., Nature 589 (2021) (demonstrated)
+- T4 Toshiba/Quantum Corridor cross-state QKD over live commercial metro fiber, $21.8\,\text{km}$ segment — Toshiba PR, Dec 2025 (claimed)
 
 ## Conflicts / open questions
 - **C-qkd-vs-pqc**: NSA, UK NCSC, French ANSSI, and German BSI advise *against* QKD for national-security systems — citing cost, the trusted-relay hole, no protection against store-and-forward at relays, and the fact that authentication still needs classical (ideally PQC) crypto — and recommend PQC (`A-pqc`) instead. QKD vendors and China's program argue physics-based security is worth the cost for the highest-value links. Resolution: field success/failure of large deployments + whether PQC survives cryptanalysis over the next decade.

@@ -11,10 +11,10 @@ Suppose a unitary $U$ and a blank register $|b\rangle$ could copy any state: $U(
 No-cloning is the root of quantum cryptography: an eavesdropper cannot copy qubits in flight without disturbing them, which is what BB84 and E91 detect and is the physical assumption behind the security proofs in S-qkd → A-qkd. It also forbids naive backup of quantum data — the reason error correction (S-qec) has to protect information without reading or copying it, spreading one logical qubit across many physical ones instead of duplicating it. It blocks classical-style signal amplification, so long-haul links on photonic hardware (H-photonic) need quantum repeaters and entanglement swapping rather than repeaters that copy-and-amplify. The $5/6$ optimal-cloner bound is also the yardstick against which any real intercept-resend attack on deployed QKD is measured.
 
 ## Key graded claims
-- [T1] An unknown pure state cannot be perfectly copied — Wootters & Zurek, Nature 299, 802 (1982); Dieks, Phys. Lett. A 92, 271 (1982) (status: established)
-- [T1] Corollaries: no-broadcasting for mixed states (Barnum et al., PRL 76, 2818, 1996) and no-deleting (Pati & Braunstein, Nature 404, 164, 2000) (status: established)
-- [T2] Imperfect cloning is possible up to a tight bound — the optimal universal $1\to 2$ cloner reaches fidelity $5/6 \approx 0.833$: Bužek & Hillery, PRA 54, 1844 (1996) (status: established)
-- [T2] The $5/6$ bound was reached in the lab: single-photon cloning by stimulated parametric down-conversion produced clones at near-optimal fidelity, universal across input states — Lamas-Linares, Simon, Howell & Bouwmeester, Science 296, 712 (2002), arXiv:quant-ph/0205149 (status: demonstrated)
+- T1 An unknown pure state cannot be perfectly copied — Wootters & Zurek, Nature 299, 802 (1982); Dieks, Phys. Lett. A 92, 271 (1982) (status: established)
+- T1 Corollaries: no-broadcasting for mixed states (Barnum et al., PRL 76, 2818, 1996) and no-deleting (Pati & Braunstein, Nature 404, 164, 2000) (status: established)
+- T2 Imperfect cloning is possible up to a tight bound — the optimal universal $1\to 2$ cloner reaches fidelity $5/6 \approx 0.833$: Bužek & Hillery, PRA 54, 1844 (1996) (status: established)
+- T2 The $5/6$ bound was reached in the lab: single-photon cloning by stimulated parametric down-conversion produced clones at near-optimal fidelity, universal across input states — Lamas-Linares, Simon, Howell & Bouwmeester, Science 296, 712 (2002), arXiv:quant-ph/0205149 (status: demonstrated)
 
 ## Conflicts / open questions
 - None at the theorem level; the live work is in how close practical eavesdropping/cloning attacks get to the optimal-cloner bound in deployed QKD (see A-qkd).

@@ -9,9 +9,9 @@ A special-purpose analog approach that rests directly on the adiabatic theorem (
 - **Advantage claim**: D-Wave's March 2025 Science paper reported quantum-annealer simulation of quantum magnetic phase-transition dynamics (spin glasses) it argued was beyond reach of classical supercomputers. Within days, groups in Switzerland (EPFL) and the US posted arXiv counter-papers reproducing key results with tensor-network / belief-propagation methods on classical hardware; D-Wave rebutted that the classical methods only cover part of the parameter regime and time scales. Per the schema's default, the advantage stays **contested**.
 
 ## Key graded claims
-- [T4] Advantage2 GA: 4,400+ qubits, Zephyr, higher coherence — D-Wave release + whitepaper (claimed)
+- T4 Advantage2 GA: 4,400+ qubits, Zephyr, higher coherence — D-Wave release + whitepaper (claimed)
 - [T2/contested] Quantum advantage in spin-glass dynamics simulation — Science (Mar 2025); classical tensor-network counterattacks on arXiv (contested)
-- [T5] Commercial utility of annealing for production optimization — vendor case studies (claimed; few third-party-audited head-to-head wins)
+- T5 Commercial utility of annealing for production optimization — vendor case studies (claimed; few third-party-audited head-to-head wins)
 
 ## Trade-offs (vs other modalities)
 Thousands of qubits available today and real paying deployments years ahead of any gate-model rival — the modality shipped a usable product first. Against that: it is restricted to optimization/sampling problem classes, has no error correction and no threshold theorem, shows no proven scaling of *solution quality* with qubit count, and every headline speedup so far has been at least partially matched by tuned classical heuristics (simulated/parallel tempering, tensor networks).

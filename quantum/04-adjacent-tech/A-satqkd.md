@@ -11,10 +11,10 @@ Demonstrated at scale by China; entering an early commercial phase globally.
 - **Europe**: EAGLE-1 (ESA/SES) is Europe's first end-to-end satellite QKD system, launch slated 2026, feeding EuroQCI's space segment. **Toshiba** announced a satellite QKD transmitter–receiver interoperable with terrestrial fiber QKD (Jan 2026). **SealSQ** began launching a six-satellite QKD/PQC constellation (Jan 2025).
 
 ## Key graded claims
-- [T2] Satellite entanglement distribution over 1,200 km — Yin et al., Science 356 (2017) (established)
-- [T2] Real-time microsatellite QKD, up to 1.07 Mbit secure key/pass, 12,900 km China–South Africa link, ~45× cheaper spacecraft — Li et al., Nature (2025) (demonstrated)
-- [T4] EAGLE-1 launch and end-to-end European satellite QKD service by ~2026–27 — ESA/SES, arXiv:2505.20838 (roadmap)
-- [T4/T6] Chinese multi-satellite quantum constellation / space quantum internet by ~2030 — CAS/USTC statements (roadmap)
+- T2 Satellite entanglement distribution over 1,200 km — Yin et al., Science 356 (2017) (established)
+- T2 Real-time microsatellite QKD, up to 1.07 Mbit secure key/pass, 12,900 km China–South Africa link, ~45× cheaper spacecraft — Li et al., Nature (2025) (demonstrated)
+- T4 EAGLE-1 launch and end-to-end European satellite QKD service by ~2026–27 — ESA/SES, arXiv:2505.20838 (roadmap)
+- T4/T6 Chinese multi-satellite quantum constellation / space quantum internet by ~2030 — CAS/USTC statements (roadmap)
 
 ## Conflicts / open questions
 - **Trust model**: downlink QKD via a single satellite is trusted-node — the spacecraft (and whoever controls it) knows the key — unless it distributes *entanglement* end-to-end, which costs orders of magnitude in rate. Most fielded/announced systems are the trusted-relay kind.

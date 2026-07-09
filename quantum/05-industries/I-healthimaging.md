@@ -12,10 +12,10 @@ Split from `I-pharma` (molecular simulation), this node is the quantum-**sensing
 - **NIHR Innovation Observatory report** (Jan 2025) — surveys quantum sensing in healthcare; notes only two sensing technologies are beyond **TRL 6** (entering clinical testing), i.e. still early.
 
 ## Key graded claims
-- [T2/T3] OPM-MEG matches SQUID sensitivity without cryogenics, wearable — peer-reviewed OPM literature + PMC epilepsy studies (demonstrated capability)
-- [T3] 384-channel OPM-MEG system — arXiv 2509.03107 (preprint, prototype)
-- [T4] Cerca commercial OPM-MEG — vendor product (real, research-only; no regulatory approval as of 2025)
-- [T5] Quantum-healthcare-sensing market forecasts — analyst (speculative)
+- T2/T3 OPM-MEG matches SQUID sensitivity without cryogenics, wearable — peer-reviewed OPM literature + PMC epilepsy studies (demonstrated capability)
+- T3 384-channel OPM-MEG system — arXiv 2509.03107 (preprint, prototype)
+- T4 Cerca commercial OPM-MEG — vendor product (real, research-only; no regulatory approval as of 2025)
+- T5 Quantum-healthcare-sensing market forecasts — analyst (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** OPM-MEG works — wearable, cryogen-free brain magnetometry with SQUID-class sensitivity, running in research labs today. This is a real quantum sensor in health use.

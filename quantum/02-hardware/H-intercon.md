@@ -13,10 +13,10 @@ No single chip or trap reaches a million qubits, so every serious roadmap goes m
 - **Quantinuum / IonQ**: photonic interconnects are the declared scaling path beyond single-trap limits. Silicon-photonic CNOT-gate teleportation between separate chips demonstrated (PRL 2025–26).
 
 ## Key graded claims
-- [T2] Teleported two-qubit gates between separate ion-trap modules; algorithm run across the link — Nature s41586-024-08404-x (demonstrated)
-- [T3] First fully-distributed three-node GHZ state of remote ion memories, F ≈ 0.84–0.88, Mermin violation with detection loophole closed — Duke + IonQ, Goetting et al., arXiv:2606.17173 (2026) (demonstrated; preprint)
-- [T4] IBM 3×120-qubit multi-module systems in 2026 — IBM roadmap (roadmap)
-- [T4] Photonic Inc. 200 kHz / 99.8% distributed entanglement — company target (roadmap)
+- T2 Teleported two-qubit gates between separate ion-trap modules; algorithm run across the link — Nature s41586-024-08404-x (demonstrated)
+- T3 First fully-distributed three-node GHZ state of remote ion memories, F ≈ 0.84–0.88, Mermin violation with detection loophole closed — Duke + IonQ, Goetting et al., arXiv:2606.17173 (2026) (demonstrated; preprint)
+- T4 IBM 3×120-qubit multi-module systems in 2026 — IBM roadmap (roadmap)
+- T4 Photonic Inc. 200 kHz / 99.8% distributed entanglement — company target (roadmap)
 
 ## Trade-offs
 Optical links carry entanglement kilometers but at kHz rates and ~90–97% Bell-pair fidelities — orders of magnitude below intra-module gates (99.9%+). Microwave couplers are fast and high-fidelity but reach only centimeters. Entanglement distillation buys fidelity back at a further rate cost. The core tension: the faster and cleaner the link, the shorter its reach; bridging fridges cheaply needs a transducer that does not yet exist (`H-transduce`).

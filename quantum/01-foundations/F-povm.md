@@ -14,9 +14,9 @@ In plain terms: any fuzzy or partial readout you can build in the lab equals a p
 POVMs are the operational language of every real measurement in the stack. Dispersive readout of a superconducting qubit (H-supercon) and fluorescence readout of a trapped ion (H-ion) are POVMs with finite fidelity, and modeling them as POVMs is what makes readout-error mitigation and soft-information decoding possible (S-decoders, S-qec). Photon-counting detectors are POVMs (H-photonic). Unambiguous state discrimination, optimal measurements for QKD, and tomography all live in the POVM formalism (A-qkd, O-tomography). Weak measurement and continuous monitoring drive quantum feedback and metrology (A-sensing). Naimark dilation is the measurement-side twin of the Stinespring dilation for channels (F-purification), and both feed the decoherence account of how classical outcomes emerge (F-decoher, F-measure).
 
 ## Key graded claims
-- [T1] Every POVM is realized by a projective measurement on a system-plus-ancilla space (Naimark dilation) — Naimark 1940; textbook treatment Nielsen & Chuang §2.2.8 (status: established)
-- [T2] Weak measurement with pre- and post-selection yields weak values outside the eigenvalue range (proposed value 100 for a spin-$1/2$) — Aharonov, Albert & Vaidman, Phys. Rev. Lett. 60, 1351 (1988) (status: established, experimentally demonstrated)
-- [T2] Weak-value amplification measured a beam deflection of ~560 femtoradians — Hosten & Kwiat, Science 319, 787 (2008) (status: demonstrated)
+- T1 Every POVM is realized by a projective measurement on a system-plus-ancilla space (Naimark dilation) — Naimark 1940; textbook treatment Nielsen & Chuang §2.2.8 (status: established)
+- T2 Weak measurement with pre- and post-selection yields weak values outside the eigenvalue range (proposed value 100 for a spin-$1/2$) — Aharonov, Albert & Vaidman, Phys. Rev. Lett. 60, 1351 (1988) (status: established, experimentally demonstrated)
+- T2 Weak-value amplification measured a beam deflection of ~560 femtoradians — Hosten & Kwiat, Science 319, 787 (2008) (status: demonstrated)
 
 ## Conflicts / open questions
 - Whether weak values are a real physical quantity or a statistical artifact of post-selection is still debated; their utility for metrological amplification against technical noise is also contested.

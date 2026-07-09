@@ -5,15 +5,15 @@
 On **6 September 2024** the US Commerce Department's **Bureau of Industry and Security (BIS)** issued an interim final rule adding export controls on quantum computing items — full quantum computers, related equipment, components, materials, software, and development/maintenance technology — bundled with parallel controls on advanced semiconductors and additive manufacturing (new **ECCNs 3A901, 3D901, 3E901** and related). The defining feature is that it is **plurilateral**: BIS built an Export Administration Regulations framework with a **license exception (IEC — Implemented Export Controls)** authorizing exports to partner countries that adopt **harmonized** controls, so allies coordinating with the US face fewer barriers than non-aligned states. Allied measures landed in lockstep — the **Netherlands** issued its own controls **7 September 2024**, with the **UK, France, Spain, Australia, and Japan** adopting similar rules. Controls affecting exports to certain allies took effect **5 November 2024**; the rest applied from 6 September 2024. This is the first time quantum was made a first-class multilateral export-control category rather than folded into dual-use catch-alls.
 
 ## The mechanism (graded)
-- [T2] BIS interim final rule, 6 Sep 2024, controls quantum computers + enabling equipment/materials/software/technology — bis.gov / Federal Register (established)
-- [T2] Plurilateral framework + IEC license exception rewards allies with harmonized controls — Covington / Mayer Brown / Cleary analyses (established)
-- [T2] Netherlands announced coordinated controls 7 Sep 2024; UK/France/Spain/Australia/Japan aligned — Orrick / APS News (established)
-- [T2] **"Deemed export" reach:** sharing controlled quantum tech with foreign nationals *inside* the US is itself a controlled export — UChicago/LBNL guidance (established); directly ties this node to E-immigration and E-talent.
+- T2 BIS interim final rule, 6 Sep 2024, controls quantum computers + enabling equipment/materials/software/technology — bis.gov / Federal Register (established)
+- T2 Plurilateral framework + IEC license exception rewards allies with harmonized controls — Covington / Mayer Brown / Cleary analyses (established)
+- T2 Netherlands announced coordinated controls 7 Sep 2024; UK/France/Spain/Australia/Japan aligned — Orrick / APS News (established)
+- T2 **"Deemed export" reach:** sharing controlled quantum tech with foreign nationals *inside* the US is itself a controlled export — UChicago/LBNL guidance (established); directly ties this node to E-immigration and E-talent.
 
 ## Key graded claims
-- [T2] The rule is explicitly **coordination-first** — the license exception makes allied harmonization the point, not a byproduct (established)
-- [T3] BIS simultaneously **expanded CFIUS mandatory-filing scope** to cover quantum-relevant inbound investment — Cleary (claimed/analysis); the June 2026 Quantum EO reinforced the inbound-investment-screening posture.
-- [T4] Real-world chilling effect on academic collaboration and hiring of foreign nationals — reported concern, not yet measured (contested)
+- T2 The rule is explicitly **coordination-first** — the license exception makes allied harmonization the point, not a byproduct (established)
+- T3 BIS simultaneously **expanded CFIUS mandatory-filing scope** to cover quantum-relevant inbound investment — Cleary (claimed/analysis); the June 2026 Quantum EO reinforced the inbound-investment-screening posture.
+- T4 Real-world chilling effect on academic collaboration and hiring of foreign nationals — reported concern, not yet measured (contested)
 
 ## Conflicts / open questions
 - **Effectiveness is unproven:** controls slow but do not stop a determined state, and China is documented building domestic supply to route around them (see E-supplychain, China self-sufficiency).

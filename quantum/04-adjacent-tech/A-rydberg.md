@@ -12,10 +12,10 @@ A **Rydberg atom** has an electron excited to a very high principal quantum numb
 - **2025 research surge**: an all-optical Rydberg radio antenna (Oct 2025); a metamaterial GRIN lens boosting receiver gain/bandwidth (arXiv:2512.04298); a scalable Rydberg vapor-cell array with a "Stark comb" for arbitrary instantaneous bandwidth (arXiv:2509.26026); quantum-limited microwave electrometry in a Rydberg **atom array** (arXiv:2512.05413); and demonstrations of angle-of-arrival, digital beamforming, and moving-target detection with atomic receivers.
 
 ## Key graded claims
-- [T2] Rydberg EIT gives SI-traceable, self-calibrated RF electric-field measurement — established atomic-physics literature (established)
-- [T3] Over-the-air Rydberg atomic communication receiver demonstrated — Rydberg Technologies / arXiv (demonstrated)
-- [T3] Rydberg receiver angle-of-arrival, beamforming, moving-target detection — 2025 arXiv results (demonstrated, lab/field)
-- [T4] Infleqtion quantum spectrum sensing as a deployable product replacing antenna front-ends — company positioning (claimed)
+- T2 Rydberg EIT gives SI-traceable, self-calibrated RF electric-field measurement — established atomic-physics literature (established)
+- T3 Over-the-air Rydberg atomic communication receiver demonstrated — Rydberg Technologies / arXiv (demonstrated)
+- T3 Rydberg receiver angle-of-arrival, beamforming, moving-target detection — 2025 arXiv results (demonstrated, lab/field)
+- T4 Infleqtion quantum spectrum sensing as a deployable product replacing antenna front-ends — company positioning (claimed)
 
 ## Conflicts / open questions
 - **Sensitivity vs the best classical receiver**: standard Rydberg receivers have historically *not* beaten a good cryogenic low-noise-amplifier classical receiver on raw sensitivity; the advantage is self-calibration, bandwidth coverage in one device, small size, and immunity to some jamming/damage (no metal to fry). Whether quantum-enhanced (atom-array, spin-squeezed) Rydberg sensing decisively beats classical on sensitivity is the open research question.

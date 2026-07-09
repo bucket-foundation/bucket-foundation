@@ -12,10 +12,10 @@ Distinct from `I-climate` (quantum *chemistry* for carbon capture/fertilizer), t
 - **BAMS 2023** — *Quantum Computers for Weather and Climate Prediction: The Good, the Bad, and the Noisy* — the reference sober review from the meteorology community.
 
 ## Key graded claims
-- [T3] Quantum linear-solver / Hamiltonian-simulation methods mapped onto NWP dynamical cores — arXiv 2502.10488 (survey; no end-to-end advantage)
-- [T3] QNN wind-speed/precipitation nowcasting on benchmark data — arXiv 2509.01422 (toy-scale demonstration)
-- [T4] OQI quantum fluid-dynamics forecasting pilot — CERN/OQI (exploratory, pre-commercial)
-- [T5] Quantum-weather market projections — analyst (speculative)
+- T3 Quantum linear-solver / Hamiltonian-simulation methods mapped onto NWP dynamical cores — arXiv 2502.10488 (survey; no end-to-end advantage)
+- T3 QNN wind-speed/precipitation nowcasting on benchmark data — arXiv 2509.01422 (toy-scale demonstration)
+- T4 OQI quantum fluid-dynamics forecasting pilot — CERN/OQI (exploratory, pre-commercial)
+- T5 Quantum-weather market projections — analyst (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** nothing operational — surveys and toy-scale QNN nowcasting demos, matched by classical ML.

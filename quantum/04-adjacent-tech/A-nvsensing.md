@@ -11,10 +11,10 @@ The nitrogen-vacancy (NV) center — a nitrogen atom next to a missing carbon in
 - Academic: commercial scanning-NV magnetometers in closed-cycle cryostats; fully integrated nanotesla-sensitivity NV chips (arXiv 2508.03237); a 2025 Quantum Diamond Workshop findings report (arXiv 2511.11791) marks the field's coalescence.
 
 ## Key graded claims
-- [T2] NV magnetometry operates at room temperature with nanoscale resolution — established NV literature / NIST (established)
-- [T4] SBQuantum handheld ~400 pT/√Hz vector sensitivity, <5 nT heading error — company figures (claimed)
-- [T4] QDTI <1 pg/mL biomarker detection from 5 µL in <1 hr — company claim (claimed)
-- [T3] Bosch×Element Six JV to industrialize NV sensing (2025) — press + corporate filings (roadmap)
+- T2 NV magnetometry operates at room temperature with nanoscale resolution — established NV literature / NIST (established)
+- T4 SBQuantum handheld ~400 pT/√Hz vector sensitivity, <5 nT heading error — company figures (claimed)
+- T4 QDTI <1 pg/mL biomarker detection from 5 µL in <1 hr — company claim (claimed)
+- T3 Bosch×Element Six JV to industrialize NV sensing (2025) — press + corporate filings (roadmap)
 
 ## Conflicts / open questions
 NV's ambient operation and spatial resolution are unmatched, but its raw magnetic sensitivity still lags SQUID (~1–5 fT/√Hz) and OPM (~7–15 fT/√Hz) by 2–3 orders — the best NV ensembles reach ~9.4 pT/√Hz for MEG-scale work (see `A-magneto`). So its commercial fit vs the `A-magneto` incumbents is unsettled: NV wins wherever you must put the sensor *at* the sample (current mapping inside a live chip, single-cell biology, high-pressure diamond-anvil metrology) and loses on any application that just wants the lowest field noise in a shielded room.

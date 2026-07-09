@@ -10,9 +10,9 @@ An optical frequency comb is a laser whose spectrum is a set of perfectly evenly
 - **Direction**: integrate the dual comb, pump laser, on-chip heaters/tuning, and spectral filters onto a single die — the enabling piece for μPNT (micro positioning/navigation/timing) and portable optical clocks (`A-pnt`).
 
 ## Key graded claims
-- [T2] Vernier dual-microcomb optical frequency division of a stabilized clock laser — Nature Photonics s41566-025-01617-0 (2025) (demonstrated)
-- [T2] Chip-scale optical frequency synthesizer at 2.7×10⁻¹⁶ relative uncertainty — Science Advances (established/demonstrated)
-- [T1] Frequency combs coherently link optical and microwave frequencies — established (2005 Nobel)
+- T2 Vernier dual-microcomb optical frequency division of a stabilized clock laser — Nature Photonics s41566-025-01617-0 (2025) (demonstrated)
+- T2 Chip-scale optical frequency synthesizer at 2.7×10⁻¹⁶ relative uncertainty — Science Advances (established/demonstrated)
+- T1 Frequency combs coherently link optical and microwave frequencies — established (2005 Nobel)
 
 ## Trade-offs
 Bench mode-locked-laser combs are mature, low-noise, and turnkey but rack-sized and power-hungry. Microcombs promise mass-manufacturable, low-SWaP combs on a chip but currently struggle with octave-spanning bandwidth (needed for self-referencing), spectral flatness, and turnkey soliton initiation. Which you pick trades performance against integration — the same tension running through `H-lasers`.

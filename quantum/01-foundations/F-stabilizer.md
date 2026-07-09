@@ -13,9 +13,9 @@ Gottesman-Knill theorem: a circuit built from state preparations in the computat
 Every mainstream quantum error-correcting code is a stabilizer code: the surface code, color codes, and the toric code all define the protected logical subspace as the joint +1 eigenspace of a set of stabilizer generators, and error detection is just measuring those generators to read a syndrome (see S-qec, S-logical). Gottesman-Knill also defines what a quantum computer must add to escape classical simulability: Clifford operations are free, and the non-Clifford resource — magic states, T gates, Wigner negativity, contextuality — is what has to be distilled at great cost (see F-contextuality, F-wigner). Stabilizer simulation is the standard tool for validating error-correction circuits and estimating logical error rates on near-term devices (see S-nisq, S-qsim).
 
 ## Key graded claims
-- [T1] Clifford circuits on stabilizer states with Pauli measurements are efficiently classically simulable (Gottesman-Knill) — Gottesman, PhD thesis, arXiv:quant-ph/9705052 (1997); Heisenberg-representation form arXiv:quant-ph/9807006 (1998) (status: established)
-- [T1] Stabilizer circuits simulate in $O(n^2)$ per gate and the problem is $\oplus L$-complete — Aaronson & Gottesman, PRA 70, 052328 (2004), arXiv:quant-ph/0406196 (status: established)
-- [T2] Adding any single non-Clifford gate (e.g. T) to the Clifford group yields a universal gate set — Boykin et al., 2000; standard result (status: established)
+- T1 Clifford circuits on stabilizer states with Pauli measurements are efficiently classically simulable (Gottesman-Knill) — Gottesman, PhD thesis, arXiv:quant-ph/9705052 (1997); Heisenberg-representation form arXiv:quant-ph/9807006 (1998) (status: established)
+- T1 Stabilizer circuits simulate in $O(n^2)$ per gate and the problem is $\oplus L$-complete — Aaronson & Gottesman, PRA 70, 052328 (2004), arXiv:quant-ph/0406196 (status: established)
+- T2 Adding any single non-Clifford gate (e.g. T) to the Clifford group yields a universal gate set — Boykin et al., 2000; standard result (status: established)
 
 ## Conflicts / open questions
 - Where exactly the classical-to-quantum boundary sits as non-Clifford resources are added is quantified by stabilizer rank and magic monotones, and tight bounds remain an active research target.

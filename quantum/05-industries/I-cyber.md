@@ -11,10 +11,10 @@ Cybersecurity is the industry with the most *certain* quantum impact — and it 
 - **Enterprise reality** — a May 2025 survey of 1,000+ security managers found only **~5% had quantum-safe encryption deployed**; 81% said libraries/HSMs weren't PQC-ready.
 
 ## Key graded claims
-- [T2] NIST PQC standards final (FIPS 203/204/205), migration mandated — NIST, Aug 2024 (established)
-- [T1] Shor breaks RSA/ECC given a CRQC — established theory (`S-shor`); the CRQC itself is [T6]
-- [T3] RSA-2048 resource estimate reduced toward <1M qubits — 2025–26 preprints (revised estimate, not a demonstration)
-- [T5] ">$15B migration market by 2030" / 5% deployment rate — surveys + analyst projections (forecast; inflation-unadjusted)
+- T2 NIST PQC standards final (FIPS 203/204/205), migration mandated — NIST, Aug 2024 (established)
+- T1 Shor breaks RSA/ECC given a CRQC — established theory (`S-shor`); the CRQC itself is T6
+- T3 RSA-2048 resource estimate reduced toward <1M qubits — 2025–26 preprints (revised estimate, not a demonstration)
+- T5 ">$15B migration market by 2030" / 5% deployment rate — surveys + analyst projections (forecast; inflation-unadjusted)
 
 ## Proven today vs promise vs hype
 - **Proven:** the threat model and the standards. Shor's math is established; FIPS 203/204/205 are final; deadlines are legally binding for regulated/defense sectors.

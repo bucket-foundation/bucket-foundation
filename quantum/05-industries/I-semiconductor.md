@@ -12,10 +12,10 @@ Two directions, both real. (1) **Quantum FOR chips** — quantum computing appli
 - **Infineon, imec, TSMC** — running spin/superconducting qubit process R&D that doubles as advanced-node process learning.
 
 ## Key graded claims
-- [T4] Classical GPU acceleration of lithography/materials (cuLitho/cuEST) — NVIDIA/TSMC, 2025 (vendor; not quantum, sets the bar)
-- [T3] Automated quantum-chip EDA flow (topology→mask) — arXiv 2606.17956 (preprint; classical EDA for quantum chips)
-- [T4] Quantum electronic-structure simulation for device materials — vendor pilots (exploratory)
-- [T5] Semiconductor-design quantum TAM — analyst (speculative)
+- T4 Classical GPU acceleration of lithography/materials (cuLitho/cuEST) — NVIDIA/TSMC, 2025 (vendor; not quantum, sets the bar)
+- T3 Automated quantum-chip EDA flow (topology→mask) — arXiv 2606.17956 (preprint; classical EDA for quantum chips)
+- T4 Quantum electronic-structure simulation for device materials — vendor pilots (exploratory)
+- T5 Semiconductor-design quantum TAM — analyst (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** classical GPU HPC (cuLitho/cuEST) accelerates real fab workflows now — this is the competition, not quantum.

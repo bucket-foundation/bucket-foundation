@@ -8,11 +8,11 @@ A logical qubit is an error-corrected qubit (`S-qec`) — the unit that algorith
 The logical-qubit count became the field's headline metric, which invites cherry-picking. Milestones: Harvard/QuEra ran circuits on **48 logical qubits** of neutral atoms (Bluvstein et al., Nature 2024 — error-detected, shallow). Microsoft+Quantinuum demonstrated **12 logical qubits** with 22× error suppression (2024). **Quantinuum Helios** (Nov 2025) produced **48 error-corrected logical qubits at a 2:1 physical:logical ratio** — thought impossible a few years ago — plus a **94-logical-qubit GHZ state**, both with better-than-break-even fidelity (the logical qubits outperform physical qubits running the same task). QuEra demonstrated **96 logical from 448 physical** (a high-rate $[[16,6,4]]$ code, ~4.7:1 encoding) with below-threshold error suppression across all 96 logical qubits — peer-reviewed in Nature (Jan 2026), which makes it the strongest-graded logical-qubit record to date. Caution: a distance-2 detection-only "logical qubit" and Willow's distance-7 corrected memory are different animals, and none of these systems yet runs deep universal computation across many logical qubits simultaneously.
 
 ## Key graded claims
-- [T2] 48-logical-qubit circuits on neutral atoms — Bluvstein et al., Nature 626, 58 (2024) (demonstrated; error-detected, shallow)
-- [T2] 12 logical qubits, 22× error suppression — Microsoft/Quantinuum, arXiv:2404.02280 (demonstrated)
-- [T3/T4] Helios: 48 error-corrected logical at 2:1 encoding + 94-qubit GHZ, break-even fidelity — Quantinuum (Nov 2025) + Iceberg-code paper (claimed; partially peer-reviewed)
-- [T2] 96 logical qubits via a high-rate $[[16,6,4]]$ code on 448 neutral atoms (~4.7:1), below-threshold across all logical qubits — QuEra, Nature s41586-025-09848-5 (doi:10.1038/s41586-025-09848-5, Jan 2026) (demonstrated, peer-reviewed)
-- [T4] IBM Starling: 200 logical qubits / 100M gates by 2029 — IBM roadmap (roadmap)
+- T2 48-logical-qubit circuits on neutral atoms — Bluvstein et al., Nature 626, 58 (2024) (demonstrated; error-detected, shallow)
+- T2 12 logical qubits, 22× error suppression — Microsoft/Quantinuum, arXiv:2404.02280 (demonstrated)
+- T3/T4 Helios: 48 error-corrected logical at 2:1 encoding + 94-qubit GHZ, break-even fidelity — Quantinuum (Nov 2025) + Iceberg-code paper (claimed; partially peer-reviewed)
+- T2 96 logical qubits via a high-rate $[[16,6,4]]$ code on 448 neutral atoms (~4.7:1), below-threshold across all logical qubits — QuEra, Nature s41586-025-09848-5 (doi:10.1038/s41586-025-09848-5, Jan 2026) (demonstrated, peer-reviewed)
+- T4 IBM Starling: 200 logical qubits / 100M gates by 2029 — IBM roadmap (roadmap)
 
 ## Speedup / caveat
 Logical-qubit counts are **incomparable** across vendors without stating code distance, logical error rate, and gate-set completeness. Treat any bare "N logical qubits" headline as marketing until those three numbers appear (`S-bench`). Break-even (logical beats physical) is the meaningful 2025 threshold; deep universal computation on many logical qubits is the next.

@@ -11,9 +11,9 @@ Construction/built-environment cuts across three quantum threads: (1) **structur
 - **The honest datapoint** from these reviews: ~42% of "quantum in construction" research is actually **quantum materials** (`A-materials`), and compute/QML applications are "predominantly theoretical and confined to small-scale simulations."
 
 ## Key graded claims
-- [T3] QUBO project scheduling finds near-optimal construction schedules faster than classical on small cases — civil-eng reviews (demonstrated on toy instances; no advantage at scale)
-- [T3] Quantum methods framed for urban microclimate / building energy — Wang et al. arXiv 2604.18407 (framing/survey)
-- [T5/T6] Quantum-designed sustainable construction materials — review scenarios (speculative, FTQC-gated)
+- T3 QUBO project scheduling finds near-optimal construction schedules faster than classical on small cases — civil-eng reviews (demonstrated on toy instances; no advantage at scale)
+- T3 Quantum methods framed for urban microclimate / building energy — Wang et al. arXiv 2604.18407 (framing/survey)
+- T5/T6 Quantum-designed sustainable construction materials — review scenarios (speculative, FTQC-gated)
 
 ## Proven today vs promise vs hype
 - **Proven:** small QUBO scheduling and structural demos exist in the literature — classical MILP still beats them.

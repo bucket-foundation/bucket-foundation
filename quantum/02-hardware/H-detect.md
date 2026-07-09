@@ -11,9 +11,9 @@ Photonic quantum computing, QKD, and much of quantum networking rest on detectin
 - **State of the art**: system detection efficiency demonstrated >99%; dark-count rates ~0.25 counts/hour; timing jitter <3 ps; recovery ~500 ps (giving ~100s of MHz count rates). Large-area devices now reach mid-infrared (to ~7.4 µm). Waveguide-integrated SNSPDs on the same chip as the photonic circuit are the scaling path.
 
 ## Key graded claims
-- [T2] SNSPD system detection efficiency >99% with picosecond jitter and sub-Hz dark counts — peer-reviewed device papers (demonstrated)
-- [T2] 6×6 SNSPD array flown for NASA Psyche deep-space optical comms — SPIE 2025 / Single Quantum (demonstrated)
-- [T1] SNSPDs are the fastest/most-efficient single-photon detectors as of 2026 — review literature (established)
+- T2 SNSPD system detection efficiency >99% with picosecond jitter and sub-Hz dark counts — peer-reviewed device papers (demonstrated)
+- T2 6×6 SNSPD array flown for NASA Psyche deep-space optical comms — SPIE 2025 / Single Quantum (demonstrated)
+- T1 SNSPDs are the fastest/most-efficient single-photon detectors as of 2026 — review literature (established)
 
 ## Trade-offs
 SNSPDs need a cryostat (~1–3 K, a smaller cooler than a dilution fridge but still a system-cost and integration burden) versus room-temperature SPADs, which are cheaper but far noisier and slower. Scaling to the thousands-to-millions of pixels a PsiQuantum/Xanadu-class machine needs strains cryogenic wiring and readout (links to `H-control`, `H-cryocmos`, `H-paramp`). Photon-number resolution — telling one photon from two — remains hard and is a live research front (parallel nanowires, TES hybrids).

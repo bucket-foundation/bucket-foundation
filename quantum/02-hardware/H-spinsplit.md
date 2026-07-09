@@ -10,9 +10,9 @@ Inside the silicon-spin modality (`H-silicon`) there is a strategic fork sharp e
 - Hybrid ideas (flip-flop qubits, donor-dot hybrids, spin-shuttling buses) blur the line and try to take uniformity from donors and routing from dots.
 
 ## Key graded claims
-- [T2] Donor P devices: 99.99% 2Q, Grover 98.9% — SQC, Nature (Dec 2025) (demonstrated)
-- [T2] Gate-defined dots: >99% 2Q from a 300 mm CMOS flow — Diraq/imec, Nature (2025) (demonstrated)
-- [T1] Phosphorus donors are intrinsically identical; dots buy reproducibility from lithography — device physics (established)
+- T2 Donor P devices: 99.99% 2Q, Grover 98.9% — SQC, Nature (Dec 2025) (demonstrated)
+- T2 Gate-defined dots: >99% 2Q from a 300 mm CMOS flow — Diraq/imec, Nature (2025) (demonstrated)
+- T1 Phosphorus donors are intrinsically identical; dots buy reproducibility from lithography — device physics (established)
 
 ## Trade-offs
 Donors give the best intrinsic uniformity and coherence but atomic-precision STM placement is slow, serial, and hard to interface with industrial CMOS back-ends. Gate-defined dots ride the foundry and cryo-CMOS ecosystems and are naturally reproducible in *layout*, but electrostatic disorder and charge noise make each dot's exact working point drift, so tuning many dots (autotuning, ML calibration) is itself a research problem. Connectivity is short-range exchange in both, pushing spin-shuttling as the bus.

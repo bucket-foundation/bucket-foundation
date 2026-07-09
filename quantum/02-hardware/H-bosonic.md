@@ -11,10 +11,10 @@ Qubits encoded in the many-level state space of a harmonic oscillator (a superco
 - Yale (the modality's academic origin — Devoret/Schoelkopf lineage) continues to set GKP and cavity-coherence records.
 
 ## Key graded claims
-- [T2] Ocelot: cat-qubit + repetition-code chip, ~1 s bit-flip times — AWS, Nature (2025) (demonstrated)
-- [T4] Boson 4: >1 hr bit-flip lifetime — Alice & Bob release (claimed)
-- [T3] Elevator codes: ~15:1 overhead, 10,000× lower error — Alice & Bob preprint, Jan 2026 (claimed, theory + partial demo)
-- [T4] 100 logical qubits by 2030 — Alice & Bob roadmap (roadmap)
+- T2 Ocelot: cat-qubit + repetition-code chip, ~1 s bit-flip times — AWS, Nature (2025) (demonstrated)
+- T4 Boson 4: >1 hr bit-flip lifetime — Alice & Bob release (claimed)
+- T3 Elevator codes: ~15:1 overhead, 10,000× lower error — Alice & Bob preprint, Jan 2026 (claimed, theory + partial demo)
+- T4 100 logical qubits by 2030 — Alice & Bob roadmap (roadmap)
 
 ## Trade-offs (vs other modalities)
 Reuses the entire transmon fab/cryo stack (`H-fab`, `H-cryo`) but promises an order-of-magnitude smaller QEC overhead *if* the noise-bias holds under operation; against that, phase-flips remain and must still be corrected, gate sets on biased-noise qubits are awkward (bias-preserving CNOTs are the hard case), and no bosonic machine has yet run multi-logical-qubit algorithms. Most overhead numbers are extrapolations from single-digit-qubit demos.

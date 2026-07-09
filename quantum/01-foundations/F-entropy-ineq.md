@@ -18,10 +18,10 @@ Equivalently, conditioning on more never increases conditional entropy, and the 
 Monogamy is the mathematical reason quantum key distribution is secure: an eavesdropper's correlation with the key is bounded by how much the legitimate parties share, so listening in is detectable (see A-qkd). Data processing sets the ceiling on every quantum channel capacity and underwrites the LSD coherent-information formula and Holevo-type bounds (see F-qinfo). Entropy inequalities gate entanglement distillation and the resource accounting of teleportation and state merging (see F-entangle). In many-body physics and holography, SSA constrains entanglement entropy and area laws (see S-qsim).
 
 ## Key graded claims
-- [T1] Strong subadditivity holds for von Neumann entropy — Lieb & Ruskai, J. Math. Phys. 14, 1938 (1973) (status: established)
-- [T1] Relative entropy is monotone under CPTP maps (data processing), equivalent to SSA — Lindblad, Commun. Math. Phys. 40, 147 (1975); Uhlmann (1977) (status: established)
-- [T2] Three-qubit entanglement obeys the CKW monogamy inequality; generalized to $n$ qubits by Osborne & Verstraete — Coffman, Kundu & Wootters, PRA 61, 052306 (2000), arXiv:quant-ph/9907047; Osborne & Verstraete, PRL 96, 220503 (2006) (status: established)
-- [T2] Equality in SSA characterizes quantum Markov chains (recoverable states) — Hayden, Jozsa, Petz & Winter, Commun. Math. Phys. 246, 359 (2004); strengthened by Fawzi & Renner, arXiv:1410.0664 (2015) (status: established)
+- T1 Strong subadditivity holds for von Neumann entropy — Lieb & Ruskai, J. Math. Phys. 14, 1938 (1973) (status: established)
+- T1 Relative entropy is monotone under CPTP maps (data processing), equivalent to SSA — Lindblad, Commun. Math. Phys. 40, 147 (1975); Uhlmann (1977) (status: established)
+- T2 Three-qubit entanglement obeys the CKW monogamy inequality; generalized to $n$ qubits by Osborne & Verstraete — Coffman, Kundu & Wootters, PRA 61, 052306 (2000), arXiv:quant-ph/9907047; Osborne & Verstraete, PRL 96, 220503 (2006) (status: established)
+- T2 Equality in SSA characterizes quantum Markov chains (recoverable states) — Hayden, Jozsa, Petz & Winter, Commun. Math. Phys. 246, 359 (2004); strengthened by Fawzi & Renner, arXiv:1410.0664 (2015) (status: established)
 
 ## Conflicts / open questions
 - The remainder-term / approximate-recovery refinements of SSA (how much information a recovery map can restore when SSA is nearly saturated) are still being sharpened.

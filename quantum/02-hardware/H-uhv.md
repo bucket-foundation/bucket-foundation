@@ -10,9 +10,9 @@ Trapped-ion (`H-ion`) and neutral-atom (`H-neutral`) machines hold their qubits 
 - **Scale**: Caltech loaded 6,100 atoms in one chamber (Sep 2025); QuEra and Atom Computing project ~100,000 atoms per vacuum chamber within a few years — which pushes chamber size, pumping speed, and source flux hard. Vendors like **ColdQuanta/Infleqtion** and specialist UHV-chamber makers supply the hardware.
 
 ## Key graded claims
-- [T2] 3,000-second trap lifetime in a cryogenic high-optical-access chamber — arXiv:2412.09780 (demonstrated)
-- [T2] Continuous >2 hr operation via mid-computation atom reloading — Harvard/MIT, Nature (2025) (demonstrated)
-- [T1] A background-gas collision ejects a trapped atom (loss is vacuum-limited) — established atomic physics
+- T2 3,000-second trap lifetime in a cryogenic high-optical-access chamber — arXiv:2412.09780 (demonstrated)
+- T2 Continuous >2 hr operation via mid-computation atom reloading — Harvard/MIT, Nature (2025) (demonstrated)
+- T1 A background-gas collision ejects a trapped atom (loss is vacuum-limited) — established atomic physics
 
 ## Trade-offs
 Room-temperature UHV chambers are simpler and give full optical access but cap trap lifetime at seconds to minutes; cryogenic chambers extend lifetime by orders of magnitude and add blackbody suppression, at the cost of a cooling system and reduced optical access. Bigger chambers hold more atoms but are harder to pump and to keep field-uniform. The atomic source flux trades loading speed against vacuum degradation.

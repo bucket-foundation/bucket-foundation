@@ -10,9 +10,9 @@ Reading out a superconducting qubit means measuring a microwave signal carrying,
 - Suppliers/developers: academic groups (Berkeley/Siddiqi lineage, Chalmers, NIST), plus vendors bundling TWPAs into readout stacks (Silent Waves' "Argo" TWPA, Raytheon/Lincoln Lab, and control-vendor integrations). HEMTs come chiefly from **Low Noise Factory** (Sweden).
 
 ## Key graded claims
-- [T1] A phase-insensitive linear amplifier must add ≥ ½ photon of noise (standard quantum limit) — Caves theorem, established
-- [T2] JTWPAs provide near-quantum-limited gain over GHz bandwidth, enabling multiplexed single-shot readout — Science aaa8525 + follow-ons (demonstrated)
-- [T3] Two-mode-squeezed readout beats the SQL for qubit measurement — arXiv:2603.15804 (demonstrated, lab-scale)
+- T1 A phase-insensitive linear amplifier must add ≥ ½ photon of noise (standard quantum limit) — Caves theorem, established
+- T2 JTWPAs provide near-quantum-limited gain over GHz bandwidth, enabling multiplexed single-shot readout — Science aaa8525 + follow-ons (demonstrated)
+- T3 Two-mode-squeezed readout beats the SQL for qubit measurement — arXiv:2603.15804 (demonstrated, lab-scale)
 
 ## Trade-offs
 JPAs give the cleanest noise but narrow bandwidth and low saturation power (few qubits per amp); TWPAs trade a little noise for wide bandwidth and higher saturation power (many qubits per line) at the cost of a long, fabrication-sensitive Josephson transmission line. The HEMT is unavoidable but sits at 4 K and its power dissipation and noise both scale with channel count — another line-count pressure feeding the `H-cryocmos` and `H-cryo` bottlenecks.

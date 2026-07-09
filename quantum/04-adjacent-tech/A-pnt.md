@@ -12,10 +12,10 @@
 - **Programs**: DARPA **Robust Quantum Sensors (RoQS)** (ruggedization; $24.4M to Q-CTRL), DARPA **PINS** (precision inertial nav), the DIU, and a March 2025 **Lockheed Martin + Q-CTRL** prototype quantum-INS contract. A 2036 PNT-stack forecast keeps clocks dominant (~76%) with quantum IMUs reaching ~18% as they progress to platform integration (helicopter, maritime, space).
 
 ## Key graded claims
-- [T4] Ironstone Opal: up to 111× better GPS-denied accuracy, ~4 m over 700 km, 144+ h at sea — Q-CTRL field trials, 2025 (claimed)
-- [T3] Cold-atom IMU ~5 m/hour unaided navigation drift — AOSense / DARPA PINS (demonstrated, program-level)
-- [T3] Optical clock (Tiqker) deployed as holdover timing on an uncrewed submarine — Infleqtion / Royal Navy, Oct 2025 (demonstrated)
-- [T5] Quantum PNT market shifts toward clocks-dominant + ~18% quantum-IMU stack by 2036 — analyst forecast (forecast)
+- T4 Ironstone Opal: up to 111× better GPS-denied accuracy, ~4 m over 700 km, 144+ h at sea — Q-CTRL field trials, 2025 (claimed)
+- T3 Cold-atom IMU ~5 m/hour unaided navigation drift — AOSense / DARPA PINS (demonstrated, program-level)
+- T3 Optical clock (Tiqker) deployed as holdover timing on an uncrewed submarine — Infleqtion / Royal Navy, Oct 2025 (demonstrated)
+- T5 Quantum PNT market shifts toward clocks-dominant + ~18% quantum-IMU stack by 2036 — analyst forecast (forecast)
 
 ## Conflicts / open questions
 - **No independent benchmark against black-program INS.** Every headline number is a vendor field trial against a specified (often unnamed) baseline; classified military ring-laser/FOG INS performance is the real comparator and it is not public.

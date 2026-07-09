@@ -10,9 +10,9 @@ The distinct-from-materials question of *who can actually manufacture qubits at 
 - **Intel**: its own 300 mm line makes Tunnel Falls spin-qubit chips with high-volume test infrastructure. **SkyWater** (US) runs quantum/superconducting programs; **national fabs** (SQMS at Fermilab, LPS/US-government lines) and **TSMC-adjacent** research round out capacity. **SQC** patterned 250k-register donor devices with industrial STM/CMOS tooling (2025).
 
 ## Key graded claims
-- [T2] Error-correction-grade qubits produced from a standard 300 mm industrial flow (spin) — Diraq/imec, Nature (2025) (demonstrated)
-- [T2] Commercial 300 mm silicon-photonics fab makes integrated photonic-QC chips — PsiQuantum/GlobalFoundries (demonstrated, component-level)
-- [T4] "Foundry compatibility ⇒ Moore's-law-style qubit scaling" — industry thesis (claimed)
+- T2 Error-correction-grade qubits produced from a standard 300 mm industrial flow (spin) — Diraq/imec, Nature (2025) (demonstrated)
+- T2 Commercial 300 mm silicon-photonics fab makes integrated photonic-QC chips — PsiQuantum/GlobalFoundries (demonstrated, component-level)
+- T4 "Foundry compatibility ⇒ Moore's-law-style qubit scaling" — industry thesis (claimed)
 
 ## Trade-offs
 A merchant foundry buys uniformity, volume, metrology, and yield learning that no lab can match — but it constrains you to the materials and geometries the line already qualifies (no exotic substrates, restricted junction processes), which is exactly where lab-scale coherence records still live (`H-fab`). Retooling a fab for quantum (superconducting films, mK-relevant dielectrics, ²⁸Si, single-photon devices) is expensive and slow, and the volume that justifies it does not exist yet — a chicken-and-egg problem.

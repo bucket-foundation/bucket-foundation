@@ -13,10 +13,10 @@ Two threads: (1) optimization — grid balancing, unit commitment, EV-charging s
 - **Aramco** — targeting local QCaaS access ~2025; **Shell** exploring reservoir optimization (see `I-extractive`).
 
 ## Key graded claims
-- [T3/T4] EV-charging & demand forecasting on neutral atoms — Pasqal/GENCI/EDF, Jan 2025 (demonstrated pilot, not commercially viable)
-- [T4] LNG shipping-route optimization — ExxonMobil/IBM (exploratory)
-- [T4] Grid/pricing quantum algorithms — E.ON/IBM (claimed)
-- [T5] "Energy transition" TAM lines in analyst reports — forecast; grade hard, entangled with the climate/chemicals figures
+- T3/T4 EV-charging & demand forecasting on neutral atoms — Pasqal/GENCI/EDF, Jan 2025 (demonstrated pilot, not commercially viable)
+- T4 LNG shipping-route optimization — ExxonMobil/IBM (exploratory)
+- T4 Grid/pricing quantum algorithms — E.ON/IBM (claimed)
+- T5 "Energy transition" TAM lines in analyst reports — forecast; grade hard, entangled with the climate/chemicals figures
 
 ## Proven today vs promise vs hype
 - **Proven:** dated feasibility pilots (EDF/Pasqal EV-charging) run and return results — pre-commercial by the participants' own framing.

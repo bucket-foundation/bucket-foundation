@@ -11,11 +11,11 @@ The identity that makes it work is a rewriting of three qubits. Alice holds the 
 Teleportation is the workhorse of quantum networking and modular computing. Entanglement swapping is how quantum repeaters beat photon loss to build a long-range quantum internet (see A-qinternet). Teleporting gates ("gate teleportation") moves logical information between error-correction blocks and is how magic states are consumed in fault-tolerant circuits — the T-gate that universalizes the Clifford group is applied by teleporting through a magic state (see S-logical, S-qec, F-contextuality). Chip-to-chip and fridge-to-fridge links in modular architectures rely on teleported entanglement (see H-intercon, O-interconnect-loss), and the same photonic Bell-measurement primitive is the fusion operation in measurement-based photonic computing (see H-photonic). Distributed multi-node quantum computing over ion or NV registers stitches processors together by teleporting logical qubits between them (see H-ion). First photonic demonstrations came in 1997 (Innsbruck; Rome).
 
 ## Key graded claims
-- [T1] An unknown state is teleported with one EPR pair + two classical bits — Bennett et al., PRL 70, 1895 (1993) (status: established)
-- [T1] Entanglement swapping entangles independent, never-interacting particles — Żukowski, Zeilinger, Horne & Ekert, PRL 71, 4287 (1993) (status: established)
-- [T2] Deterministic teleportation between distant nodes demonstrated — Pfaff et al., Science 345, 532 (2014, NV centers 3 m); ground-to-satellite, Ren et al., Nature 549, 70 (2017) (status: demonstrated)
-- [T2] Free-space teleportation over 143 km with active feed-forward, fidelity above the $2/3$ classical bound — Ma et al., Nature 489, 269 (2012), La Palma to Tenerife (status: demonstrated)
-- [T2] Teleportation between non-neighboring nodes of a three-node quantum network, using entanglement swapping on the middle node plus a memory qubit — Hermans et al., Nature 605, 663 (2022), NV-center registers in Delft (status: demonstrated)
+- T1 An unknown state is teleported with one EPR pair + two classical bits — Bennett et al., PRL 70, 1895 (1993) (status: established)
+- T1 Entanglement swapping entangles independent, never-interacting particles — Żukowski, Zeilinger, Horne & Ekert, PRL 71, 4287 (1993) (status: established)
+- T2 Deterministic teleportation between distant nodes demonstrated — Pfaff et al., Science 345, 532 (2014, NV centers 3 m); ground-to-satellite, Ren et al., Nature 549, 70 (2017) (status: demonstrated)
+- T2 Free-space teleportation over 143 km with active feed-forward, fidelity above the $2/3$ classical bound — Ma et al., Nature 489, 269 (2012), La Palma to Tenerife (status: demonstrated)
+- T2 Teleportation between non-neighboring nodes of a three-node quantum network, using entanglement swapping on the middle node plus a memory qubit — Hermans et al., Nature 605, 663 (2022), NV-center registers in Delft (status: demonstrated)
 
 ## Conflicts / open questions
 - None foundational. Engineering frontier is fidelity and rate over lossy links and quantum memories (see A-qmemory-hw, O-interconnect-loss).

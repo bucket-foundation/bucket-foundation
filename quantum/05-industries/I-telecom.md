@@ -13,10 +13,10 @@ Telecom's quantum story is mostly about being the *substrate* for quantum-secure
 - Industry-wide: by end-June 2025, ~29 operators had made ~75 quantum-related statements/deployments.
 
 ## Key graded claims
-- [T3/T4] Commercial quantum-secured metro network live with enterprise customers — BT/Toshiba (demonstrated deployment)
-- [T3/T4] Hybrid QKD-PQC service in production data centers — SK Telecom/Nokia/ID Quantique, Oct 2024 (demonstrated)
-- [T2] PQC (ML-KEM/ML-DSA) is the NIST-standardized path most carriers actually adopt — see `A-pqc` (established standards)
-- [T5] "Quantum-safe telecom" TAM projections — forecast
+- T3/T4 Commercial quantum-secured metro network live with enterprise customers — BT/Toshiba (demonstrated deployment)
+- T3/T4 Hybrid QKD-PQC service in production data centers — SK Telecom/Nokia/ID Quantique, Oct 2024 (demonstrated)
+- T2 PQC (ML-KEM/ML-DSA) is the NIST-standardized path most carriers actually adopt — see `A-pqc` (established standards)
+- T5 "Quantum-safe telecom" TAM projections — forecast
 
 ## Proven today vs promise vs hype
 - **Proven:** PQC migration (classical software crypto) is real, mandated, and underway across carriers now.

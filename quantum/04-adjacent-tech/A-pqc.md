@@ -12,11 +12,11 @@ Classical cryptography built on problems believed hard even for quantum computer
 - **Mandated deadlines**: NSA **CNSA 2.0** requires new national-security-system acquisitions to be PQC-capable by **Jan 1 2027**, full NSS migration by **2030–2035**; NIST IR 8547 deprecates quantum-vulnerable algorithms by **2030**, disallows after **2035**.
 
 ## Key graded claims
-- [T2] ML-KEM/ML-DSA/SLH-DSA standardized after multi-year public cryptanalysis — NIST FIPS 203/204/205, Aug 2024 (established)
-- [T2] Hybrid PQC key exchange live across major browsers/CDNs at internet scale — Cloudflare/Google deployment telemetry (demonstrated)
-- [T2] Falcon-signed accounts live on Algorand mainnet — Nov 2025 (demonstrated)
-- [T1/T2] Shor breaks RSA/ECC given an FTQC — Shor 1994 (established); the *date* such a machine exists is T6
-- [T5] HNDL is economically rational for state actors today — CSA / arXiv analyses (claimed)
+- T2 ML-KEM/ML-DSA/SLH-DSA standardized after multi-year public cryptanalysis — NIST FIPS 203/204/205, Aug 2024 (established)
+- T2 Hybrid PQC key exchange live across major browsers/CDNs at internet scale — Cloudflare/Google deployment telemetry (demonstrated)
+- T2 Falcon-signed accounts live on Algorand mainnet — Nov 2025 (demonstrated)
+- T1/T2 Shor breaks RSA/ECC given an FTQC — Shor 1994 (established); the *date* such a machine exists is T6
+- T5 HNDL is economically rational for state actors today — CSA / arXiv analyses (claimed)
 
 ## Conflicts / open questions
 - **C-pqc-confidence**: lattice hardness has *no* unconditional security proof — a classical or quantum cryptanalytic surprise (cf. **SIKE's 2022 one-afternoon collapse** on a classical laptop) would force re-migration. Hence HQC as a math-diverse hedge, and **hybrid modes** (classical + PQC together) as the default so a break in either half is not catastrophic.

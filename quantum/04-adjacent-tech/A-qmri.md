@@ -12,10 +12,10 @@ Two distinct quantum leverages on magnetic-resonance and biomagnetic imaging, gr
 - **Diamond/NV NMR**: MCQST (Munich) combined optical microscopy with NV-detected NMR to push MRI toward the microscopic scale, converting MR signals to optical readout on a camera (2025). Zero-/low-field **J-spectroscopy with a diamond magnetometer** (arXiv:2512.05776) and NV nuclear-spin-locking for microscale high-field NMR (arXiv:2504.00887) demonstrate NMR in regimes conventional coils can't reach — no superconducting magnet, no large shield.
 
 ## Key graded claims
-- [T2] Parahydrogen/DNP hyperpolarization raises MR signal 10⁴–10⁵× enabling real-time metabolic MRI — established MR physics; hyperpolarized ¹³C human trials (established/demonstrated)
-- [T3] NVision POLARIS hyperpolarizer feasibility for standardized metabolic imaging with MSK — company + 2025 collaboration (demonstrated, preclinical/translational)
-- [T3] NV-diamond micro-scale and zero-field NMR without superconducting magnets — MCQST 2025; arXiv:2512.05776, 2504.00887 (demonstrated, lab)
-- [T2] OPM/atomic-magnetometer biomagnetism (MEG/MCG) — see `A-magneto` (demonstrated, clinical trials)
+- T2 Parahydrogen/DNP hyperpolarization raises MR signal 10⁴–10⁵× enabling real-time metabolic MRI — established MR physics; hyperpolarized ¹³C human trials (established/demonstrated)
+- T3 NVision POLARIS hyperpolarizer feasibility for standardized metabolic imaging with MSK — company + 2025 collaboration (demonstrated, preclinical/translational)
+- T3 NV-diamond micro-scale and zero-field NMR without superconducting magnets — MCQST 2025; arXiv:2512.05776, 2504.00887 (demonstrated, lab)
+- T2 OPM/atomic-magnetometer biomagnetism (MEG/MCG) — see `A-magneto` (demonstrated, clinical trials)
 
 ## Conflicts / open questions
 - **Hyperpolarization's clock problem**: hyperpolarized states decay in seconds to a couple of minutes (T₁-limited), so the polarizer must sit beside the scanner and imaging must be fast — a workflow/logistics barrier, not a physics one, and the main thing standing between trials and routine clinical use.

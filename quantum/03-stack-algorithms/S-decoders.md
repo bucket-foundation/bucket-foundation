@@ -8,9 +8,9 @@ Error correction (`S-qec`) is only half the job — something must read the stre
 Riverlane is the pure-play here (Deltaflow QEC system; Deltaflow 2 shipped 2025, Deltaflow 3 targeted late 2026 with continuous "streaming" decoding). In Dec 2025 they published a hardware decoder in Nature Electronics: a Local Clustering Decoder on FPGA that decodes a round in under 1 µs while adaptively modeling noise, cutting the physical-qubit count per logical qubit ~4× under a leakage-dominated model. Google's Willow result (2024) used a real-time-capable decoder to show below-threshold scaling, and its AlphaQubit work applied ML decoding for higher accuracy at the cost of speed — the central tension of the field: accuracy vs latency vs power. This is a named open problem in its own right (`O-decoder`): the classical co-processor bandwidth may bottleneck fault-tolerant scaling as hard as the qubits do.
 
 ## Key graded claims
-- [T2] Decoding must run inside the QEC cycle or the backlog diverges — Terhal, Rev. Mod. Phys. 87, 307 (2015) (established)
-- [T2] Sub-µs adaptive hardware (FPGA) decoder, ~4× qubit reduction under leakage noise — Riverlane, Nature Electronics (Dec 2025) (peer-reviewed)
-- [T2] Real-time decoding enabled Willow below-threshold demo; ML decoders (AlphaQubit) trade latency for accuracy — Google, Nature 638 (2024/25) (peer-reviewed)
+- T2 Decoding must run inside the QEC cycle or the backlog diverges — Terhal, Rev. Mod. Phys. 87, 307 (2015) (established)
+- T2 Sub-µs adaptive hardware (FPGA) decoder, ~4× qubit reduction under leakage noise — Riverlane, Nature Electronics (Dec 2025) (peer-reviewed)
+- T2 Real-time decoding enabled Willow below-threshold demo; ML decoders (AlphaQubit) trade latency for accuracy — Google, Nature 638 (2024/25) (peer-reviewed)
 
 ## Speedup / caveat
 Not an algorithm speedup — an enabling constraint. Fault tolerance is impossible without a decoder that sustains syndrome throughput at scale; a slow decoder silently caps how large a computation can run regardless of qubit quality.

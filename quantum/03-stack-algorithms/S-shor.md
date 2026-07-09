@@ -8,11 +8,11 @@ Shor (1994) showed a quantum computer can factor integers and compute discrete l
 No cryptographically relevant number has ever been factored quantumly. Honest records are tiny: 15 (NMR, Vandersypen 2001) and 21; larger published "factorings" used variational or annealing shortcuts that presuppose structure in the answer and do not scale (survey arXiv:2410.14397). The live action is **resource estimation**. Gidney (May 2025) cut the projected machine for RSA-2048 from his own 2019 estimate of ~20M noisy qubits over 8 hours to **<1M noisy qubits running under a week**, via approximate residue arithmetic, yoked surface codes, and magic-state cultivation (see `S-qec`). That ~20× drop in six years is why NIST/NSA migration deadlines (2030–2035) keep tightening rather than relaxing. The cost is dominated by modular exponentiation depth and by the T-gate / magic-state budget (`S-gates`), not by the QFT.
 
 ## Key graded claims
-- [T1] Polynomial-time quantum factoring and discrete log — Shor, SIAM J. Comput. 26, 1484 (1997) (established)
-- [T2] Largest honest quantum factorization remains trivial (15, 21) — Vandersypen et al., Nature 414, 883 (2001); survey arXiv:2410.14397 (established)
-- [T3] RSA-2048 with <1M noisy qubits in <1 week — Gidney, arXiv:2505.15917 (claimed; widely cited, unrefuted)
-- [T3] 2019 baseline: 20M qubits / 8 hours — Gidney–Ekerå, arXiv:1905.09749 (established as the prior estimate)
-- [T5/T6] "Q-Day" dates (2030–2035) — NIST IR 8547 migration timeline + analyst punditry (roadmap/speculative)
+- T1 Polynomial-time quantum factoring and discrete log — Shor, SIAM J. Comput. 26, 1484 (1997) (established)
+- T2 Largest honest quantum factorization remains trivial (15, 21) — Vandersypen et al., Nature 414, 883 (2001); survey arXiv:2410.14397 (established)
+- T3 RSA-2048 with <1M noisy qubits in <1 week — Gidney, arXiv:2505.15917 (claimed; widely cited, unrefuted)
+- T3 2019 baseline: 20M qubits / 8 hours — Gidney–Ekerå, arXiv:1905.09749 (established as the prior estimate)
+- T5/T6 "Q-Day" dates (2030–2035) — NIST IR 8547 migration timeline + analyst punditry (roadmap/speculative)
 
 ## Speedup / caveat
 Superpolynomial over the best *known* classical algorithm. Factoring has no proven classical lower bound, so a classical breakthrough is possible in principle and Shor is not a complexity-theoretic separation the way sampling tasks aim to be (`S-bench`, `O-advantage`). Practical fine print: it needs full fault tolerance — millions of physical qubits, deep coherent circuits — so Shor is a 2030s+ threat under every credible hardware roadmap. HNDL makes it a present-day data-security problem even though the machine does not exist yet.

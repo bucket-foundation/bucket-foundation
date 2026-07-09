@@ -11,9 +11,9 @@ The thinnest but genuinely pitched industry node: procedural content generation 
 - **Telefónica Servicios Audiovisuales** and similar trade pieces sketch 1–3 year horizons for recommendation optimization and 3–5 years for rendering/simulation. Vendor/advisory forecasts.
 
 ## Key graded claims
-- [T3] Quantum wave-function-collapse PCG runs on quantum hardware/simulators — Wootton, IEEE CG&A 2024 / arXiv 2312.13853 (demonstrated; research artifact, no advantage)
-- [T4] Quantum recommendation/ad optimization near-term — vendor framing (claimed)
-- [T6] Quantum rendering/simulation productized within 3–5 years — trade-press forecast (speculative)
+- T3 Quantum wave-function-collapse PCG runs on quantum hardware/simulators — Wootton, IEEE CG&A 2024 / arXiv 2312.13853 (demonstrated; research artifact, no advantage)
+- T4 Quantum recommendation/ad optimization near-term — vendor framing (claimed)
+- T6 Quantum rendering/simulation productized within 3–5 years — trade-press forecast (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** QRNG-seeded generative art/PCG runs in toy form — a novelty resource, no performance advantage (classical PRNGs are indistinguishable for entertainment).

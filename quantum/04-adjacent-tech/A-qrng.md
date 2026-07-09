@@ -14,11 +14,11 @@ Randomness drawn from quantum measurement, where outcomes are unpredictable by p
 - **Certified randomness (the 2025 headline)**: JPMorgan Chase, Quantinuum, Argonne, Oak Ridge, and UT Austin demonstrated certified randomness on Quantinuum's **56-qubit H2** (Nature 640, 2025) — the first claimed commercial-relevant application of a quantum computer beyond classical capability, using Aaronson's RCS protocol with supercomputer verification at **Frontier**. **Quantinuum's Quantum Origin** became the first software QRNG to earn **NIST ESV validation** (April 2025), and a certified-randomness product line followed.
 
 ## Key graded claims
-- [T1] Measurement outcomes on superposed states are irreducibly random — quantum theory + loophole-free Bell tests 2015 (established)
-- [T2] Chip/photonic hardware QRNG at multi-Gbit/s (18.8 Gbit/s record; ~3 Gbit/s integrated, 2025) — USTC 2021; Toshiba/Optica 2025 (demonstrated)
-- [T2] Certified randomness expansion on a 56-qubit trapped-ion processor, verified at exascale — Liu et al., Nature 640 (2025) (demonstrated)
-- [T2] Quantum Origin first software QRNG with NIST ESV validation — Quantinuum/NIST, April 2025 (demonstrated)
-- [T4] Certified randomness as a commercial product with near-term customer demand — Quantinuum/JPMC (claimed)
+- T1 Measurement outcomes on superposed states are irreducibly random — quantum theory + loophole-free Bell tests 2015 (established)
+- T2 Chip/photonic hardware QRNG at multi-Gbit/s (18.8 Gbit/s record; ~3 Gbit/s integrated, 2025) — USTC 2021; Toshiba/Optica 2025 (demonstrated)
+- T2 Certified randomness expansion on a 56-qubit trapped-ion processor, verified at exascale — Liu et al., Nature 640 (2025) (demonstrated)
+- T2 Quantum Origin first software QRNG with NIST ESV validation — Quantinuum/NIST, April 2025 (demonstrated)
+- T4 Certified randomness as a commercial product with near-term customer demand — Quantinuum/JPMC (claimed)
 
 ## Conflicts / open questions
 - **Aaronson himself flags the certified-randomness demo's limits**: certification needed exascale classical verification (only a handful of machines on Earth can do it), and the guarantee is *computational* — it assumes the server can't out-compute Frontier at spoofing, so it weakens as classical simulation improves. It is a beautiful proof-of-principle, not yet a product anyone must buy.

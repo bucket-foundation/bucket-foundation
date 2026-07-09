@@ -6,14 +6,14 @@ Quantum computing left the physics lab and became an industrial race. D-Wave sol
 
 ## Milestone timeline
 - 2011 (May) — First commercial quantum computer sold: D-Wave One (128-qubit annealer) to Lockheed Martin — D-Wave — a market exists; the underlying Nature paper shows quantum annealing in the hardware, but generic speedup stays contested for years — [T4 sale → T2 physics] D-Wave; Johnson et al., Nature 473, 194 (2011)
-- 2013 — Google, NASA, and USRA buy a D-Wave Two for the Quantum AI Lab at Ames — big tech enters, betting on annealing — [T4] press record
-- 2014 — Martinis group (UCSB) joins Google; superconducting fidelity crosses the surface-code threshold in the lab — Google — the start of the supremacy program — [T2] Barends et al., Nature 508, 500 (2014)
-- 2014 — No generic quantum speedup found in D-Wave benchmarks — Rønnow, Troyer et al. — the defining skeptical result on annealing — [T2] Rønnow et al., Science 345, 420 (2014)
-- 2016 (May) — IBM Quantum Experience: a 5-qubit processor free on the public cloud — IBM — anyone can run a circuit; the cloud-QC business model is born (see S-cloud) — [T2] IBM + subsequent literature
-- 2016 — EU announces the €1B Quantum Flagship — European Commission — governments commit at scale (see E-eu) — [T5] EC announcement
-- 2017–2018 — 50-qubit IBM prototype; 72-qubit Bristlecone (Google); 49-qubit Tangle Lake (Intel) — the qubit-count arms race in full swing — [T4] vendor announcements
-- 2018 (21 Dec) — US National Quantum Initiative Act signed into law ($1.2B over 5 years) — US Congress — quantum becomes a statutory national priority (see E-us) — [T2] Public Law 115-368
-- 2019 (Jan) — IBM Q System One, the first integrated, rack-and-chandelier commercial quantum system — IBM — productization and industrial design begin — [T4] IBM announcement
+- 2013 — Google, NASA, and USRA buy a D-Wave Two for the Quantum AI Lab at Ames — big tech enters, betting on annealing — T4 press record
+- 2014 — Martinis group (UCSB) joins Google; superconducting fidelity crosses the surface-code threshold in the lab — Google — the start of the supremacy program — T2 Barends et al., Nature 508, 500 (2014)
+- 2014 — No generic quantum speedup found in D-Wave benchmarks — Rønnow, Troyer et al. — the defining skeptical result on annealing — T2 Rønnow et al., Science 345, 420 (2014)
+- 2016 (May) — IBM Quantum Experience: a 5-qubit processor free on the public cloud — IBM — anyone can run a circuit; the cloud-QC business model is born (see S-cloud) — T2 IBM + subsequent literature
+- 2016 — EU announces the €1B Quantum Flagship — European Commission — governments commit at scale (see E-eu) — T5 EC announcement
+- 2017–2018 — 50-qubit IBM prototype; 72-qubit Bristlecone (Google); 49-qubit Tangle Lake (Intel) — the qubit-count arms race in full swing — T4 vendor announcements
+- 2018 (21 Dec) — US National Quantum Initiative Act signed into law ($1.2B over 5 years) — US Congress — quantum becomes a statutory national priority (see E-us) — T2 Public Law 115-368
+- 2019 (Jan) — IBM Q System One, the first integrated, rack-and-chandelier commercial quantum system — IBM — productization and industrial design begin — T4 IBM announcement
 - 2019 (23 Oct) — "Quantum supremacy" on the 53-qubit Sycamore chip: random circuit sampling in ~200 s vs. an estimated 10,000 classical years — Google (Martinis et al.) — first claimed beyond-classical computation — [T2 experiment] Arute et al., Nature 574, 505 (2019)
 
 ## The human context

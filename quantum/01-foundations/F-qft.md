@@ -11,11 +11,11 @@ Second quantization writes each field mode as a quantum harmonic oscillator and 
 Photonic quantum computing *is* applied field quantization: the qubits and resources are Fock states, squeezed states, and coherent states of light modes, which is the native language of H-photonic and of the bosonic codes in H-bosonic. Circuit QED treats a microwave resonator as a quantized field mode coupled to an artificial atom, and it is the theoretical backbone of superconducting transmon processors (H-supercon), where the same $a/a^\dagger$ algebra sets qubit frequencies and dispersive readout in S-gates and S-bench. Simulating interacting field theories — scattering amplitudes, lattice gauge dynamics — is a headline target for fault-tolerant machines (S-qec), one of the few applications with a proven super-polynomial speedup argument.
 
 ## Key graded claims
-- [T1] The quantized EM field: emission/absorption from field quanta — Dirac, Proc. R. Soc. A 114, 243 (1927) (status: established)
-- [T1] QED is the most precisely verified physical theory: the electron g-2 measurement (0.13 ppt precision) agrees with QED prediction — Fan et al., PRL 130, 071801 (2023), doi:10.1103/PhysRevLett.130.071801 (status: established)
-- [T1] The muon magnetic anomaly is now measured to 127 ppb, the most precise muon g-2 result and one of the sharpest QFT tests: the Fermilab Muon g-2 final result (Runs 1–6) agrees with the revised Standard Model prediction — Muon g-2 Collaboration, final result announced June 2025 (submitted to PRL), improving on the 2021/2023 measurements (status: established)
-- [T2] Circuit QED — superconducting circuits realizing quantized field–atom physics — is the theoretical backbone of transmon processors: Blais et al., RMP 93, 025005 (2021), arXiv:2005.12667 (status: established)
-- [T3] Efficient quantum algorithms exist for simulating scattering in interacting QFTs — Jordan, Lee & Preskill, Science 336, 1130 (2012), arXiv:1111.3633 (status: demonstrated in theory)
+- T1 The quantized EM field: emission/absorption from field quanta — Dirac, Proc. R. Soc. A 114, 243 (1927) (status: established)
+- T1 QED is the most precisely verified physical theory: the electron g-2 measurement (0.13 ppt precision) agrees with QED prediction — Fan et al., PRL 130, 071801 (2023), doi:10.1103/PhysRevLett.130.071801 (status: established)
+- T1 The muon magnetic anomaly is now measured to 127 ppb, the most precise muon g-2 result and one of the sharpest QFT tests: the Fermilab Muon g-2 final result (Runs 1–6) agrees with the revised Standard Model prediction — Muon g-2 Collaboration, final result announced June 2025 (submitted to PRL), improving on the 2021/2023 measurements (status: established)
+- T2 Circuit QED — superconducting circuits realizing quantized field–atom physics — is the theoretical backbone of transmon processors: Blais et al., RMP 93, 025005 (2021), arXiv:2005.12667 (status: established)
+- T3 Efficient quantum algorithms exist for simulating scattering in interacting QFTs — Jordan, Lee & Preskill, Science 336, 1130 (2012), arXiv:1111.3633 (status: demonstrated in theory)
 
 ## Conflicts / open questions
 - Rigorous mathematical construction of interacting 4D QFT (Yang–Mills mass gap) is an open Clay Millennium Problem; QFT + gravity remains unreconciled.

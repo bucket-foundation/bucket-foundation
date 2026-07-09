@@ -12,9 +12,9 @@ Climate is largely a *downstream application* of quantum chemistry (`I-chem`, `S
 - **qHPC-GREEN** (CASUS, launched Jan 2025 → 2029) — quantum-HPC hybrid research into energy-efficient fertilizer/nitrogen-fixation simulation (shared with `I-agri`).
 
 ## Key graded claims
-- [T3] \ce{FeMoco} simulation needs ~99k physical qubits (27x cut) with cat qubits — Alice & Bob, Oct 2025 (demonstrated *estimate*, not execution)
-- [T1] Haber-Bosch's carbon/energy footprint — established chemistry
-- [T5] "Quantum computing just might save the planet" TAM framing — McKinsey; grade hard, downstream of the same chemicals value pool, inflation-unadjusted
+- T3 \ce{FeMoco} simulation needs ~99k physical qubits (27x cut) with cat qubits — Alice & Bob, Oct 2025 (demonstrated *estimate*, not execution)
+- T1 Haber-Bosch's carbon/energy footprint — established chemistry
+- T5 "Quantum computing just might save the planet" TAM framing — McKinsey; grade hard, downstream of the same chemicals value pool, inflation-unadjusted
 
 ## Proven today vs promise vs hype
 - **Proven:** resource *estimates* have improved (27x fewer qubits for \ce{FeMoco}) — an engineering datapoint, not a computation.

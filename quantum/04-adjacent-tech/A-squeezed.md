@@ -10,9 +10,9 @@ Squeezed light is a quantum state of an optical field where the uncertainty in o
 - **Integrated squeezing** is advancing fast: 18 dB squeezing / 20 dB anti-squeezing at 1570 nm demonstrated in a thin-film lithium-niobate waveguide — the highest for any integrated photonic platform.
 
 ## Key graded claims
-- [T2] LIGO uses squeezed light in production to boost sensitivity ~40–50% via shot-noise reduction — Phys. Rev. X 13, 041021 (established/demonstrated)
-- [T3] 18 dB on-chip squeezing in TFLN waveguide — arXiv 2025 (demonstrated)
-- [T3] On-chip GKP states from squeezed light on 300 mm wafers — Xanadu, June 2025 (demonstrated)
+- T2 LIGO uses squeezed light in production to boost sensitivity ~40–50% via shot-noise reduction — Phys. Rev. X 13, 041021 (established/demonstrated)
+- T3 18 dB on-chip squeezing in TFLN waveguide — arXiv 2025 (demonstrated)
+- T3 On-chip GKP states from squeezed light on 300 mm wafers — Xanadu, June 2025 (demonstrated)
 
 ## Conflicts / open questions
 Squeezing is loss-limited: every lost photon degrades it toward vacuum, so end-to-end optical efficiency caps usable dB — the same wall that gates continuous-variable photonic QC. The gap between the ~18–20 dB generated on-chip and the ~2–3 dB LIGO actually uses in production is *all loss* (mirrors, mode-matching, the km-scale interferometer). Whether squeezing-based (CV/GKP) architectures reach fault tolerance before discrete-photon ones is open (`H-photonic`, `O-roomtemp`).

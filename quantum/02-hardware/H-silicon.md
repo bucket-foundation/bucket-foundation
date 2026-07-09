@@ -11,10 +11,10 @@ Qubits stored in the spin of single electrons (or nuclei) confined in silicon, s
 - **2026 firsts**: quantum error detection in silicon (Jan 2026); first universal logical operations on silicon spins (Mar 2026).
 
 ## Key graded claims
-- [T2] >99% 2Q fidelity from a standard 300 mm industrial flow (gate-defined) — Diraq/imec, Nature (2025) (demonstrated)
-- [T2] 99.99% 2Q + Grover at 98.9% in donor devices — SQC, Nature (Dec 2025) (demonstrated)
-- [T4] 250k-register patterning ⇒ manufacturing scalability — SQC release (claimed)
-- [T1] Donor P atoms are intrinsically identical; gate-dots buy reproducibility from lithography — device physics (established)
+- T2 >99% 2Q fidelity from a standard 300 mm industrial flow (gate-defined) — Diraq/imec, Nature (2025) (demonstrated)
+- T2 99.99% 2Q + Grover at 98.9% in donor devices — SQC, Nature (Dec 2025) (demonstrated)
+- T4 250k-register patterning ⇒ manufacturing scalability — SQC release (claimed)
+- T1 Donor P atoms are intrinsically identical; gate-dots buy reproducibility from lithography — device physics (established)
 
 ## Trade-offs (vs other modalities)
 Unmatched density, direct reuse of the CMOS supply chain, and solid-state coherence good enough for foundry-grade fidelity; against that, qubit counts are tiny (tens at most today versus thousands for atoms), historic device-to-device variability, short-range exchange connectivity, and cryogenic control wiring per qubit that is unsolved at scale — cryo-CMOS is the bet that closes it. The quantum-dot vs donor split is a live strategic fork (see `H-spinsplit`): manufacturability vs intrinsic uniformity.

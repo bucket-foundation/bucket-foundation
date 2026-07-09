@@ -10,9 +10,9 @@ The trapped-ion modality (`H-ion`) has quietly migrated from macroscopic four-ro
 - **Infineon** (with academic partners) fabricates ion-trap chips at scale; **Oxford Ionics** (now IonQ) builds electronic (integrated-electrode) traps for laser-free gates. Sandia's TICTOC program integrates photonics onto trap chips for compact ion clocks.
 
 ## Key graded claims
-- [T2] Microfabricated surface-electrode traps run multi-zone QCCD processors at record fidelity — Helios/Honeywell + Sandia literature (demonstrated)
-- [T2] Branched surface traps store ~200 ions with multiple junctions — Sandia Enchilada (demonstrated)
-- [T3] On-chip integrated photonics for laser delivery/readout in trap chips — Sandia TICTOC + academic demos (early)
+- T2 Microfabricated surface-electrode traps run multi-zone QCCD processors at record fidelity — Helios/Honeywell + Sandia literature (demonstrated)
+- T2 Branched surface traps store ~200 ions with multiple junctions — Sandia Enchilada (demonstrated)
+- T3 On-chip integrated photonics for laser delivery/readout in trap chips — Sandia TICTOC + academic demos (early)
 
 ## Trade-offs
 Surface traps trade the deep, symmetric confinement of blade traps for lithographic scalability, multi-zone layouts, and integrable optics/electronics. The cost: ions sit close to a surface, so **anomalous heating** from surface electric-field noise is worse (it scales steeply with ion-electrode distance), degrading gate fidelity unless the surface is cryogenically cooled or carefully treated. Junction shuttling adds motional heating and time overhead. Fabrication uniformity and dielectric charging are yield issues.

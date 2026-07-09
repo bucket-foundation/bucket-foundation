@@ -4,13 +4,13 @@
 
 *The Quantum Atlas* maps the whole of quantum — the physics that makes it possible, the machines built to exploit that physics, the algorithms that run on them, the adjacent technologies that ride alongside, and every industry now placing a bet. It is written to be two things at once: a map you can stand over and orient yourself with, and a textbook you can read from the postulates upward.
 
-The field it covers is loud. Much of the noise comes from vendors with a valuation to defend, governments with a budget to justify, and analysts with a forecast to sell. So the atlas is built on one discipline that runs through every page: every claim is graded, and the grade travels with the claim. A century-old textbook result and a launch-day press release both appear here, and the manual always says which is which. Where two credible sources disagree — "fault tolerance by 2029" against "not before 2040" — the disagreement is kept as a first-class object, written down in full, with a note on what experiment or event would settle it. The atlas never silently picks a side.
+The field it covers is loud. Much of the noise comes from vendors with a valuation to defend, governments with a budget to justify, and analysts with a forecast to sell. So the atlas is built on one discipline that runs through every page: every claim is graded, and the grade travels with the claim. A century-old textbook result and a launch-day press release both appear here, and the atlas always says which is which. Where two credible sources disagree — "fault tolerance by 2029" against "not before 2040" — the disagreement is kept as a first-class object, written down in full, with a note on what experiment or event would settle it. The atlas never silently picks a side.
 
 ## How to read it
 
-Start with the Map. `00-map/00-IDEAL-STATE-MAP.md` lays the entire territory on a single page, from the superposition postulate up through the machines and out into twenty-plus industries. Every entry on that page is a node with a stable ID, so it doubles as the atlas's index — the coordinate system the chapters hang from.
+There are two ways in. **To learn the field, read straight through** from Chapter 1 — the chapters are ordered so each earns the next, and nothing assumes you arrived knowing the vocabulary. **To use it as a reference, start with the Map** — `00-map/00-IDEAL-STATE-MAP.md` lays the entire territory on a single page, from the superposition postulate up through the machines and out into twenty-plus industries, and every entry is a node with a stable ID that keys back to the reference index at the back. When a term stops you, the glossary in Appendix D defines it in one or two plain sentences.
 
-From there the book runs in eight chapters, in the order the physics builds:
+The book runs in eight chapters, in the order the physics builds:
 
 1. **Foundations** — the twenty-six ideas that make any of this possible, from the state vector to entanglement to decoherence.
 2. **Hardware** — the eight-or-nine competing bets on what a qubit should be made of, and the fridges, lasers, and foundries beneath them.
@@ -28,6 +28,18 @@ Read it front to back as a textbook and the chapters build on each other in sequ
 ## How the grading works
 
 Every claim carries an evidence tier, strongest to weakest. **T1** is established physics — textbook, reproduced for decades, like superposition or the Bell violation. **T2** is a peer-reviewed result, published and refereed. **T3** is a preprint or conference talk, real work not yet through review. **T4** is a vendor claim — a company announcing its own numbers, not independently checked. **T5** is an analyst forecast or a national-program dollar figure, the softest anchor in the book. **T6** is speculative: plausible, unproven, the room-temperature-qubit and killer-app timelines. The rule that does most of the work: a vendor announcing its own benchmark stays T4 until an independent group reproduces it, and never gets promoted to peer-reviewed T2 on the strength of a blog post. A press release and a *Nature* paper never weigh the same here. "Quantum advantage" claims are treated as contested by default and carry a note on whether a classical method later caught up.
+
+## A field kit — how to read a quantum headline
+
+Two tools from later chapters, put here because they work on anything you read, in this book or out of it.
+
+**Four questions to ask of any quantum claim** (Chapter 8):
+1. Is this a demonstrated result or an announced one? A vendor's own number stays unverified until an independent group reproduces it.
+2. Did a classical method later catch up? "Quantum advantage" is a moving target; several headline claims were matched on classical hardware within months.
+3. What is the physical-to-logical qubit overhead? A useful computation needs error correction, and the honest all-in cost is often hundreds to a thousand physical qubits per logical one.
+4. Is the timeline a roadmap or a result? A date on a slide is marketing until the machine hits the spec.
+
+**Two traps in the money numbers** (Chapter 5): a *total-addressable-market* figure is a forecast, not booked revenue, and the same value gets double-counted across the shared chemistry-and-optimization pool. And *quantum-inspired* results run on classical computers — they borrow the vocabulary without the hardware.
 
 ## Who it's for
 

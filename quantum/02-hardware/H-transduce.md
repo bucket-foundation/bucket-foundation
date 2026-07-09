@@ -11,9 +11,9 @@ Superconducting qubits live at ~10 mK and speak microwave photons (~5–10 GHz).
 - Academic groups (Caltech, JILA/NIST, Delft, Chicago, Yale) dominate; no commercial merchant transducer ships yet. IBM, PsiQuantum, and every superconducting-modularity roadmap treat it as an *open dependency*, not a solved input.
 
 ## Key graded claims
-- [T3] Membrane optomechanical transduction near single-photon added noise, η ~2% — APS SMT 2025 / arXiv:2509.26349 (demonstrated, low efficiency)
-- [T1] η > 1/2 with low added noise is physically allowed — transduction theory (established)
-- [T4] Efficiency high enough for fault-tolerant fridge-to-fridge links — no group claims this yet (roadmap)
+- T3 Membrane optomechanical transduction near single-photon added noise, η ~2% — APS SMT 2025 / arXiv:2509.26349 (demonstrated, low efficiency)
+- T1 η > 1/2 with low added noise is physically allowed — transduction theory (established)
+- T4 Efficiency high enough for fault-tolerant fridge-to-fridge links — no group claims this yet (roadmap)
 
 ## Trade-offs
 The brutal three-way tension is efficiency vs added noise vs bandwidth: pumping harder raises η but heats the device and injects thermal noise; narrow bandwidth mismatches qubit lifetimes and throughput. Percent-level efficiency means most photons are simply lost — unusable for QEC, which needs high-fidelity links. This node, not qubit count, gates whether superconducting machines can ever go truly modular across fridges.

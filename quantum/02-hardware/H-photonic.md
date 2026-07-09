@@ -10,10 +10,10 @@ Qubits encoded in light — single photons (dual-rail, path, polarization, time-
 - **QuiX Quantum** (Netherlands): €15M Series A to ship a first-generation ~8-qubit *universal* single-photon computer in 2026, on silicon-nitride chips. **ORCA Computing** (UK): PT-series time-bin/boson-sampling systems in national labs, fiber-based, rack-mounted. **TundraSystems** (UK) and **Quandela** (see `H-photonsource`) round out the field.
 
 ## Key graded claims
-- [T3] Omega chipset with integrated fusion + wafer-scale fab at GlobalFoundries — PsiQuantum (2025) (demonstrated, component-level)
-- [T4] Aurora: first scalable networked modular photonic QC — Xanadu press (claimed)
-- [T2] Gaussian-boson-sampling advantage (Borealis) — Xanadu, Nature (2022) (demonstrated, advantage contested by later classical algorithms)
-- [T6] Million-qubit photonic FTQC in datacenter form by late decade — PsiQuantum (roadmap)
+- T3 Omega chipset with integrated fusion + wafer-scale fab at GlobalFoundries — PsiQuantum (2025) (demonstrated, component-level)
+- T4 Aurora: first scalable networked modular photonic QC — Xanadu press (claimed)
+- T2 Gaussian-boson-sampling advantage (Borealis) — Xanadu, Nature (2022) (demonstrated, advantage contested by later classical algorithms)
+- T6 Million-qubit photonic FTQC in datacenter form by late decade — PsiQuantum (roadmap)
 
 ## Trade-offs (vs other modalities)
 Room-temperature circuits, native fiber networking, and reuse of the telecom/CMOS-photonics supply chain; against that, gates are probabilistic (fusion succeeds ~50%, so massive multiplexing and fast switching are required), photon loss compounds along every waveguide and coupler, detectors still need cryogenics (2–4 K), and no photonic machine has run a meaningful gate-based algorithm at scale. The loss budget for million-photon operation is unproven end-to-end.

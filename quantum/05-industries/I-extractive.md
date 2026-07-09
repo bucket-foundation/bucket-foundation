@@ -11,15 +11,15 @@ Oil & gas pitches quantum for **seismic data processing and subsurface imaging**
 - **Seismic method work** — quantum travel-time seismic inversion (arXiv 2208.05794) and QUBO formulations of inversion sub-problems; preprints on small instances.
 
 ## Key graded claims
-- [T4] Shell/D-Wave reservoir-mapping speedup (weeks→hours) — vendor+operator framing (annealing, advantage contested)
-- [T4] Reservoir sim & materials exploration — ExxonMobil/bp/IBM (exploratory)
-- [T3] Quantum seismic-inversion formulations — arXiv 2208.05794 (demonstrated on toy instances)
-- [T5] "$2.6T oil-and-gas quantum impact by 2035 / ~30% CAGR" — market-research projections (forecast; among the most inflated in L4, inflation-unadjusted)
+- T4 Shell/D-Wave reservoir-mapping speedup (weeks→hours) — vendor+operator framing (annealing, advantage contested)
+- T4 Reservoir sim & materials exploration — ExxonMobil/bp/IBM (exploratory)
+- T3 Quantum seismic-inversion formulations — arXiv 2208.05794 (demonstrated on toy instances)
+- T5 "$2.6T oil-and-gas quantum impact by 2035 / ~30% CAGR" — market-research projections (forecast; among the most inflated in L4, inflation-unadjusted)
 
 ## Proven today vs promise vs hype
 - **Proven:** operators run feasibility studies and publish sub-problem demos — no operator runs quantum in its production geophysics pipeline.
 - **Promise:** reservoir optimization and seismic inversion at field scale — gated on fault tolerance; classical HPC dominates today.
-- **Hype:** trillion-dollar "impact by 2035" TAM lines — grade hardest in the manual.
+- **Hype:** trillion-dollar "impact by 2035" TAM lines — grade hardest in the atlas.
 
 ## Honest assessment
 Oil & gas is heavy on analyst TAM and light on reproduced results. The seismic/reservoir "advantage" claims are annealing or quantum-inspired optimization on subproblems; classical HPC still dominates production geophysics, and no operator runs quantum in its exploration pipeline. The genuinely nearer-term extractive thread is *quantum sensing* (cold-atom gravimeters, NV magnetometers) — covered under `I-mining` and `A-magneto`/`A-gravimetry`. Quantum *computing* for reservoirs/seismic is a fault-tolerance-gated **2030s** bet dressed in trillion-dollar forecasts. Grade the TAM numbers hard.

@@ -11,9 +11,9 @@ Every qubit needs control and readout wires running from room-temperature electr
 - **Diraq** (with Emergence Quantum) and **QuTech** (with Intel) also active. Silicon spin qubits (`H-silicon`) benefit most: same-die integration is native to their CMOS-compatible modality, whereas transmons must place the ASIC at a separate cold stage.
 
 ## Key graded claims
-- [T3] Cryo-CMOS control of multiple silicon quantum dots in a commercial CMOS process — Equal1, GlobalFoundries 22FDX (demonstrated/validated)
-- [T4] SemiQon cryo-CMOS controls hundreds of qubits per cooldown at ~100× lower power — company claim (claimed)
-- [T4] Horse Ridge II integrates drive + readout + multi-gate pulsing at 4 K — Intel (demonstrated on Intel's own stack)
+- T3 Cryo-CMOS control of multiple silicon quantum dots in a commercial CMOS process — Equal1, GlobalFoundries 22FDX (demonstrated/validated)
+- T4 SemiQon cryo-CMOS controls hundreds of qubits per cooldown at ~100× lower power — company claim (claimed)
+- T4 Horse Ridge II integrates drive + readout + multi-gate pulsing at 4 K — Intel (demonstrated on Intel's own stack)
 
 ## Trade-offs
 The core tension is **power vs proximity**: dissipation in the ASIC heats the cold stage, so the nearer the qubits (mK, where cooling power is ~µW–mW) the tighter the power budget. Running at 4 K eases the thermal budget (cooling power ~W) but reintroduces a wiring hop back down to the qubits. Transistors misbehave at cryo — threshold shifts, flicker noise, and carrier freeze-out all require re-characterized device models. Yield and reliability of cryo-CMOS at scale are unproven, and a failure inside a cold fridge is expensive to reach.

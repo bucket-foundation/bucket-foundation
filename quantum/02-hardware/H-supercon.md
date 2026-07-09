@@ -12,11 +12,11 @@ Artificial atoms made from superconducting circuits — a Josephson junction giv
 - **Coherence records**: a Princeton 2D transmon on tantalum/high-resistivity-silicon reached T1 ≈ 1.68 ms (Q ≈ 2.5×10⁷), roughly 3× the prior best (Nature 2025) — direct evidence the TLS/materials bottleneck (see `H-fab`) is still yielding to substrate engineering.
 
 ## Key graded claims
-- [T2] Below-threshold surface-code error correction on 105-qubit Willow — Nature s41586-024-08449-y (2024) (demonstrated)
-- [T2] 2D transmon T1 up to 1.68 ms on tantalum/Si — Princeton, Nature (2025) (demonstrated)
-- [T4] IBM Starling: fault-tolerant, 200 logical qubits by 2029 — IBM roadmap (roadmap)
-- [T4] Rigetti 99.1% median 2Q on 108-qubit GA system — company release, Apr 2026 (claimed)
-- [T4] IQM 99.91% 2Q fidelity on Radiance — company claim, Mar 2026 (claimed)
+- T2 Below-threshold surface-code error correction on 105-qubit Willow — Nature s41586-024-08449-y (2024) (demonstrated)
+- T2 2D transmon T1 up to 1.68 ms on tantalum/Si — Princeton, Nature (2025) (demonstrated)
+- T4 IBM Starling: fault-tolerant, 200 logical qubits by 2029 — IBM roadmap (roadmap)
+- T4 Rigetti 99.1% median 2Q on 108-qubit GA system — company release, Apr 2026 (claimed)
+- T4 IQM 99.91% 2Q fidelity on Radiance — company claim, Mar 2026 (claimed)
 
 ## Trade-offs (vs other modalities)
 Fast gates (tens of ns, ~1000× faster than ions), lithographic fab, and the deepest industrial base; against that, coherence measured in ~0.1–1.7 ms, mostly fixed nearest-neighbor connectivity, dilution cryogenics, and TLS defects that cap and drift coherence. Wiring heat-load and fridge volume dominate the scaling problem past ~1,000 qubits, which is why every roadmap turns to cryo-CMOS (`H-cryocmos`), 3D integration (`H-package`), and modular interconnects (`H-intercon`).

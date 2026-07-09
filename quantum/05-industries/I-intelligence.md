@@ -12,10 +12,10 @@ Distinct from defense hardware (`I-aerospace`) and defensive PQC (`I-cyber`), th
 - **No CRQC exists.** No public evidence any agency can run Shor at cryptographic scale. Adversary capability is classified — the honest overhang.
 
 ## Key graded claims
-- [T1] Shor breaks RSA/ECC given a CRQC — established theory (`S-shor`); the CRQC itself is [T6]
-- [T3] Bulk HNDL collection is technically feasible and warned-of by NSA/CISA/NIST — official advisories (established as doctrine; specific programs classified)
-- [T3] RSA-2048 resource estimate reduced toward <1M qubits — 2025–26 preprints (revised estimate, not a demonstration)
-- [T6] Any agency currently possesses cryptanalytic quantum capability — speculative/classified (no public evidence)
+- T1 Shor breaks RSA/ECC given a CRQC — established theory (`S-shor`); the CRQC itself is T6
+- T3 Bulk HNDL collection is technically feasible and warned-of by NSA/CISA/NIST — official advisories (established as doctrine; specific programs classified)
+- T3 RSA-2048 resource estimate reduced toward <1M qubits — 2025–26 preprints (revised estimate, not a demonstration)
+- T6 Any agency currently possesses cryptanalytic quantum capability — speculative/classified (no public evidence)
 
 ## Proven today vs promise vs hype
 - **Proven:** the doctrine and the math. HNDL is a real, warned-of collection strategy; Shor's threat is certain given a CRQC.

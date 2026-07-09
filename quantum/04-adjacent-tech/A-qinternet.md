@@ -11,10 +11,10 @@ A network that distributes *entanglement* between distant nodes — enabling QKD
 - **Programs & vendors**: Germany's **TD.QR** repeater project (started Jan 2026) targets viable repeater demos by **2028**. Startups sell early network gear — **Qunnect** (room-temperature memories, `A-qmemory-hw`) and **Aliro** (network orchestration/SDN). Testbeds run in Boston, Chicago (the Chicago Quantum Exchange), Amsterdam, and Hefei.
 
 ## Key graded claims
-- [T2] Multi-node heralded entanglement between two cities over ~25 km deployed fiber — Stolk et al./QuTech, Sci. Adv. 2024 (demonstrated)
-- [T3] Quantum memories entangled over 420 km fiber — arXiv:2504.05660 (claimed, preprint)
-- [T2/T3] Memory–memory entanglement + DI-QKD across 100 km — USTC, Feb 2026 (demonstrated; verify final journal ref)
-- [T6] Useful multi-node quantum internet by the early 2030s — various national roadmaps (roadmap)
+- T2 Multi-node heralded entanglement between two cities over ~25 km deployed fiber — Stolk et al./QuTech, Sci. Adv. 2024 (demonstrated)
+- T3 Quantum memories entangled over 420 km fiber — arXiv:2504.05660 (claimed, preprint)
+- T2/T3 Memory–memory entanglement + DI-QKD across 100 km — USTC, Feb 2026 (demonstrated; verify final journal ref)
+- T6 Useful multi-node quantum internet by the early 2030s — various national roadmaps (roadmap)
 
 ## Conflicts / open questions
 - **Which memory platform wins** is unsettled: atomic ensembles (highly multiplexable, good rate) vs single ions/NV/atoms (processable, can do logic at the node) vs rare-earth crystals (long storage). The network market may fork by use case.

@@ -15,10 +15,10 @@ Commercial today across several niches, with neuroimaging the standout disruptio
 - **Geophysics/defense**: SQUID transient-EM sensors (CSIRO LANDTEM) have found ore bodies; OPM/NV airborne surveys are emerging; magnetic-anomaly submarine detection (MAD) is a classified but active area.
 
 ## Key graded claims
-- [T1] SQUIDs (~1–5 fT/√Hz) and zero-field OPMs (~7–15 fT/√Hz) reach femtotesla sensitivity — decades of metrology + QuSpin datasheets (established)
-- [T2] Wearable OPM-MEG matches cryogenic MEG signal quality while allowing head motion — Boto et al., Nature 555 (2018); 80-sensor system, NeuroImage 2025 (demonstrated)
-- [T2] NV-diamond magnetometer at ~9.4 pT/√Hz enabling ambient-condition MEG-scale sensing — Phys.org/2024 diamond magnetometer result (demonstrated)
-- [T4] CardiAQ OPM cardiac diagnostics in clinical evaluation with Mayo Clinic; Cerca OPM-MEG clinical work 2024–25 — company announcements (claimed)
+- T1 SQUIDs (~1–5 fT/√Hz) and zero-field OPMs (~7–15 fT/√Hz) reach femtotesla sensitivity — decades of metrology + QuSpin datasheets (established)
+- T2 Wearable OPM-MEG matches cryogenic MEG signal quality while allowing head motion — Boto et al., Nature 555 (2018); 80-sensor system, NeuroImage 2025 (demonstrated)
+- T2 NV-diamond magnetometer at ~9.4 pT/√Hz enabling ambient-condition MEG-scale sensing — Phys.org/2024 diamond magnetometer result (demonstrated)
+- T4 CardiAQ OPM cardiac diagnostics in clinical evaluation with Mayo Clinic; Cerca OPM-MEG clinical work 2024–25 — company announcements (claimed)
 
 ## Conflicts / open questions
 - **Reimbursement, not physics, gates OPM-MEG.** The sensitivity is there; whether it displaces SQUID suites this decade turns on FDA/CE clearance and insurance reimbursement pace, plus the still-needed magnetically shielded room (OPMs cut cost but don't fully eliminate shielding).

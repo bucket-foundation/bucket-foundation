@@ -11,10 +11,10 @@ Early commercial for gravimetry; pre-deployment for navigation.
 - **Navigation**: the hot line. **Q-CTRL's Ironstone Opal** fuses quantum magnetometry/gravimetry with map-matching; airborne trials claim up to **111× better GPS-denied accuracy** than the best conventional alternative and **~4 m over 700 km flights**; a maritime trial logged **144+ hours** unattended at sea (2025–26). **AOSense** cold-atom IMUs target **~5 m/hour** navigation drift without external signals (DARPA PINS lineage). DARPA's **RoQS** funds ruggedization ($24.4M to Q-CTRL); **Lockheed Martin + Q-CTRL** won a March 2025 DoD prototype quantum-INS contract. France (Exail/ONERA) and the UK (Infleqtion, ship/aircraft trials) run parallel programs.
 
 ## Key graded claims
-- [T2] Exail AQG: ~500 nm·s⁻²/√Hz, ~1 µGal after 1 h, drift-free — independent eval, J. Geodesy 99 (2025); Ménoret et al., Sci. Rep. 2018 (demonstrated)
-- [T2] Cold-atom gradiometer located a buried structure in open-field conditions — Stray et al., Nature 602 (2022) (demonstrated)
-- [T3] Cold-atom IMU ~5 m/hour navigation drift, unaided — AOSense / DARPA PINS (demonstrated, program-level)
-- [T4] Ironstone Opal: GPS-denied navigation up to 111× better than conventional, ~4 m over 700 km — Q-CTRL, 2025 (claimed, vendor field trials)
+- T2 Exail AQG: ~500 nm·s⁻²/√Hz, ~1 µGal after 1 h, drift-free — independent eval, J. Geodesy 99 (2025); Ménoret et al., Sci. Rep. 2018 (demonstrated)
+- T2 Cold-atom gradiometer located a buried structure in open-field conditions — Stray et al., Nature 602 (2022) (demonstrated)
+- T3 Cold-atom IMU ~5 m/hour navigation drift, unaided — AOSense / DARPA PINS (demonstrated, program-level)
+- T4 Ironstone Opal: GPS-denied navigation up to 111× better than conventional, ~4 m over 700 km — Q-CTRL, 2025 (claimed, vendor field trials)
 
 ## Conflicts / open questions
 - **No independent benchmark for the nav claims**: quantum-INS vendor numbers are self-reported field trials; there is no peer-reviewed head-to-head against classified military-grade ring-laser-gyro/FOG INS.

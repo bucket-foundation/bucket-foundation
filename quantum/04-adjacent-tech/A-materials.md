@@ -11,11 +11,11 @@ Materials whose macroscopic behavior is set by quantum effects — **topological
 - **Topological insulators and 2D-material devices remain research-stage** — no volume product ships *on topological protection* yet, which is precisely the risk in Microsoft's Majorana bet (`H-topo`). Recent motion: UChicago/WVU showed **topological superconductivity in \ce{FeTe_{1-x}Se_x} can be tuned in/out by composition** (Nature Communications, 2025/26); 2D magnetic/topological heterostructures are engineered for ultralow-power spintronics; topological phase transitions were used to raise thermoelectric performance in Cr-doped \ce{PbSe}.
 
 ## Key graded claims
-- [T1] Topological insulators and cuprate high-Tc superconductivity are established, Nobel-lineage physics — Kane–Mele / Bednorz–Müller (established)
-- [T2] Magic-angle twisted bilayer graphene superconducts at $\sim1.1^\circ$ — Cao et al., Nature 556 (2018) (established)
-- [T2] REBCO high-Tc tape deployed in fusion magnets (SPARC) — Commonwealth Fusion / MIT, 2021+ (demonstrated, commercial)
-- [T2/T3] Composition-tuned topological superconductivity in \ce{FeTeSe} — Nat. Commun. 2025/26 (demonstrated)
-- [T6] Room-temperature ambient-pressure superconductor — none verified; **LK-99 (2023)** and the **Ranga Dias retractions** are the cautionary tales (contested/refuted)
+- T1 Topological insulators and cuprate high-Tc superconductivity are established, Nobel-lineage physics — Kane–Mele / Bednorz–Müller (established)
+- T2 Magic-angle twisted bilayer graphene superconducts at $\sim1.1^\circ$ — Cao et al., Nature 556 (2018) (established)
+- T2 REBCO high-Tc tape deployed in fusion magnets (SPARC) — Commonwealth Fusion / MIT, 2021+ (demonstrated, commercial)
+- T2/T3 Composition-tuned topological superconductivity in \ce{FeTeSe} — Nat. Commun. 2025/26 (demonstrated)
+- T6 Room-temperature ambient-pressure superconductor — none verified; **LK-99 (2023)** and the **Ranga Dias retractions** are the cautionary tales (contested/refuted)
 
 ## Conflicts / open questions
 - **C-hightc-mechanism**: after ~40 years there is still no accepted microscopic theory of cuprate superconductivity — the field's standing embarrassment and its biggest open prize. Without it, high-Tc discovery stays empirical.

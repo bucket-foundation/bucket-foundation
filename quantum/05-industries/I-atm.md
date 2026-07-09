@@ -11,9 +11,9 @@ Air-traffic management (ATM) is split from logistics (`I-logistics`) and aerospa
 - **SESAR/Eurocontrol & NASA** — exploratory quantum-optimization studies for trajectory/flow management; framing and feasibility, no operational use.
 
 ## Key graded claims
-- [T3] QUBO traffic-flow / trajectory / gate-scheduling solved on quantum + hybrid solvers at small scale — Nature Sci Rep 2025, arXiv 2304.14445 / 2111.09472 (demonstrated on mini instances)
-- [T4] Airbus/QC Ware "~400% faster" / "~70% higher airspace utilization" — challenge/vendor claims (not independently reproduced)
-- [T4] Quantum-inspired conflict-resolution speedups on existing HPC/GPU — vendor framing (quantum-inspired = classical; grade accordingly)
+- T3 QUBO traffic-flow / trajectory / gate-scheduling solved on quantum + hybrid solvers at small scale — Nature Sci Rep 2025, arXiv 2304.14445 / 2111.09472 (demonstrated on mini instances)
+- T4 Airbus/QC Ware "~400% faster" / "~70% higher airspace utilization" — challenge/vendor claims (not independently reproduced)
+- T4 Quantum-inspired conflict-resolution speedups on existing HPC/GPU — vendor framing (quantum-inspired = classical; grade accordingly)
 
 ## Proven today vs promise vs hype
 - **Proven:** small QUBO deconfliction/scheduling demos run on quantum + hybrid solvers — classically matchable.

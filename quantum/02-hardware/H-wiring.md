@@ -13,9 +13,9 @@ The attenuators are not there to weaken the signal for its own sake; they therma
 - **Isolator replacement** is the hot research front: on-chip Josephson circulators, directional/nonreciprocal TWPAs, and multiplexed readout aim to delete the bulky ferrite parts entirely — none is yet a drop-in production replacement.
 
 ## Key graded claims
-- [T1] Distributed multi-stage attenuation + NbTi superconducting coax deliver $\bar n \ll 1$ thermal photons at the qubit — established cryo-microwave practice
-- [T3] Flexible ribbon cabling (Cri/oFlex-class) materially raises line density per fridge — Delft Circuits + lab deployments (demonstrated)
-- [T4] On-chip nonreciprocity will retire ferrite isolators at scale — research roadmap (not yet productized)
+- T1 Distributed multi-stage attenuation + NbTi superconducting coax deliver $\bar n \ll 1$ thermal photons at the qubit — established cryo-microwave practice
+- T3 Flexible ribbon cabling (Cri/oFlex-class) materially raises line density per fridge — Delft Circuits + lab deployments (demonstrated)
+- T4 On-chip nonreciprocity will retire ferrite isolators at scale — research roadmap (not yet productized)
 
 ## Trade-offs
 Every added line buys control fidelity and costs cooling power and volume; the ferrite isolators are the worst offenders on footprint and refuse to integrate. A million-qubit superconducting machine implies millions of coax lines — physically impossible in one fridge, which is exactly why the endgame forks toward cryo-CMOS multiplexing (`H-cryocmos`), photonic readout, and multi-fridge modularity (`H-intercon`, `H-transduce`). This node is the passive-supply-chain twin of the active control problem, split out from `H-cryo` (the fridge) and `H-fab` (the chip materials).

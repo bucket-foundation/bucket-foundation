@@ -10,10 +10,10 @@ Individual atomic ions (Yb⁺, Ba⁺, Ca⁺) held in electromagnetic (Paul) trap
 - **Oxford Ionics** (now IonQ): electronic (laser-free) gate control delivered on chip traps; supplied the QUARTET system to the UK NQCC. **Alpine Quantum Technologies** (Innsbruck): Ca⁺, rack systems. **eleQtron** (Germany): MAGIC microwave-driven gates.
 
 ## Key graded claims
-- [T2] Helios: 98 qubits, 99.921% 2Q fidelity, seconds-to-minutes coherence — arXiv:2511.05465 + Sandia/Nature validation Jun 2026 (demonstrated)
-- [T4] IonQ 99.99% 2Q gate record — company claim 2025 (claimed)
-- [T4] IonQ 2M physical qubits by 2030 — post-acquisition roadmap (roadmap)
-- [T1] Ion qubits are intrinsically identical (no fab variability) — atomic physics (established)
+- T2 Helios: 98 qubits, 99.921% 2Q fidelity, seconds-to-minutes coherence — arXiv:2511.05465 + Sandia/Nature validation Jun 2026 (demonstrated)
+- T4 IonQ 99.99% 2Q gate record — company claim 2025 (claimed)
+- T4 IonQ 2M physical qubits by 2030 — post-acquisition roadmap (roadmap)
+- T1 Ion qubits are intrinsically identical (no fab variability) — atomic physics (established)
 
 ## Trade-offs (vs other modalities)
 The best gate fidelities and by far the longest coherence (seconds to minutes) of any modality, all-to-all connectivity, and no dilution fridge (UHV chamber, room-temperature-adjacent — see `H-uhv`). Against that: gates are slow (µs–ms, ~1000× slower than transmons), a single trap chain saturates around ~50–100 ions before motional-mode crowding degrades gates, and scaling then demands ion shuttling (heating, speed cost), multi-zone chips, or photonic interconnects (`H-intercon`). The whole machine is a precision laser instrument (`H-lasers`), so uptime tracks laser-lock stability.

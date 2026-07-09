@@ -12,10 +12,10 @@ Routing, scheduling, bin-packing, and supply-chain optimization are combinatoria
 - **IonQ freight/logistics pilots** (2024–25) — container/freight optimization; IonQ has leaned into logistics as a commercial narrative.
 
 ## Key graded claims
-- [T3] Aircraft cargo loading via MAL-VQA on IonQ hardware — arXiv 2504.01567 (demonstrated at small scale)
-- [T3] Train rescheduling via F-VQE — Cambridge Quantum/DB Netz (demonstrated, realistic-instance study)
-- [T4] VW Lisbon traffic routing — press pilot (hybrid solver, small fleet)
-- [T5] Multi-billion logistics-optimization TAM projections — analyst forecasts (speculative; classical solvers already dominate)
+- T3 Aircraft cargo loading via MAL-VQA on IonQ hardware — arXiv 2504.01567 (demonstrated at small scale)
+- T3 Train rescheduling via F-VQE — Cambridge Quantum/DB Netz (demonstrated, realistic-instance study)
+- T4 VW Lisbon traffic routing — press pilot (hybrid solver, small fleet)
+- T5 Multi-billion logistics-optimization TAM projections — analyst forecasts (speculative; classical solvers already dominate)
 
 ## Proven today vs promise vs hype
 - **Proven:** the workflow *runs* on today's hardware for small instances — a feasibility fact, not an advantage claim.

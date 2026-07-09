@@ -12,10 +12,10 @@ Mining's quantum story is led by **sensing**, not computing — the opposite bal
 - **Mine-optimization compute** — QUBO haulage/scheduling and processing-chemistry pilots exist at the same small-instance, no-advantage stage as `I-logistics`/`I-chem`.
 
 ## Key graded claims
-- [T3/T4] Drone-based diamond-magnetometer + gravimeter mineral mapping, ≥30% resolution gain — SBQuantum/Silicon Microgravity, 2024 (demonstrated dev program; resolution claim vendor-stated)
-- [T4] Handheld <1 lb diamond quantum magnetometer — SBQuantum (vendor product spec)
-- [T3] QUBO mine-plan/processing optimization — method papers (toy scale, no advantage)
-- [T5] Critical-minerals quantum-exploration market — analyst (speculative)
+- T3/T4 Drone-based diamond-magnetometer + gravimeter mineral mapping, ≥30% resolution gain — SBQuantum/Silicon Microgravity, 2024 (demonstrated dev program; resolution claim vendor-stated)
+- T4 Handheld <1 lb diamond quantum magnetometer — SBQuantum (vendor product spec)
+- T3 QUBO mine-plan/processing optimization — method papers (toy scale, no advantage)
+- T5 Critical-minerals quantum-exploration market — analyst (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** diamond quantum magnetometers and cold-atom gravimeters are real, deployable field instruments — mining's genuine near-term quantum tech.

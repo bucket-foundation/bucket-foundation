@@ -13,11 +13,11 @@ The bottom of the stack, where an abstract gate becomes an actual analog wavefor
 QOC is standard practice for squeezing the last fidelity out of a device and is how record two-qubit gates are calibrated. The honest 2025–26 finding is a note of restraint: a systematic transmon study concluded that **properly calibrated DRAG already operates near the decoherence floor** for single-qubit gates, so heavy numerical optimization (GRAPE) buys little there — the win from fancy control is real mainly for two-qubit gates, leakage-heavy or strongly-coupled systems, and robustness against calibration drift (arXiv:2511.12799, 2025). Reinforcement-learning control matured for robust perfect-entangling gates (npj QI 2025). The practical tension is the same everywhere: model-based optimal pulses are only as good as the device model, so closed-loop calibration against the live hardware (and periodic recalibration against drift) matters as much as the optimizer. This layer is also where analog quantum simulation (`S-qsim`) and pulse-efficient compilation of `S-hamsim` blocks live.
 
 ## Key graded claims
-- [T1] GRAPE gradient pulse optimization — Khaneja et al., J. Magn. Reson. 172, 296 (2005) (established)
-- [T1] DRAG leakage suppression for weakly-anharmonic qubits — Motzoi et al., PRL 103, 110501 (2009) (established)
-- [T1] Krotov / CRAB optimal-control frameworks — Krotov (1996); Caneva–Murphy–Calarco, PRA 84, 022326 (2011) (established)
-- [T3] Calibrated DRAG near the decoherence floor; numerical optimization helps mainly for hard cases — arXiv:2511.12799 (2025) (preprint)
-- [T2] Reinforcement-learning robust entangling gates — npj Quantum Information (2025), s41534-025-01065-2 (peer-reviewed)
+- T1 GRAPE gradient pulse optimization — Khaneja et al., J. Magn. Reson. 172, 296 (2005) (established)
+- T1 DRAG leakage suppression for weakly-anharmonic qubits — Motzoi et al., PRL 103, 110501 (2009) (established)
+- T1 Krotov / CRAB optimal-control frameworks — Krotov (1996); Caneva–Murphy–Calarco, PRA 84, 022326 (2011) (established)
+- T3 Calibrated DRAG near the decoherence floor; numerical optimization helps mainly for hard cases — arXiv:2511.12799 (2025) (preprint)
+- T2 Reinforcement-learning robust entangling gates — npj Quantum Information (2025), s41534-025-01065-2 (peer-reviewed)
 
 ## Speedup / caveat
 Not an algorithmic speedup — a **fidelity and time-optimality** layer. It raises gate quality (feeding the thresholds in `S-qec`) and can shorten gate duration to beat decoherence, but it is bounded by the quantum speed limit and by hardware (bandwidth, coherence $T_1/T_2$, control-line crosstalk). Over-optimizing to a stale device model can *reduce* real fidelity, so the practical caveat is that calibration and drift-tracking often dominate the theoretical pulse shape.

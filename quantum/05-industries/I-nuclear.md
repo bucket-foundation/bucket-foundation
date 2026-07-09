@@ -12,10 +12,10 @@ Three threads. (1) **Fusion plasma** — magnetized-plasma dynamics in tokamaks/
 - **Fusion startups** (Commonwealth Fusion, TAE, Tokamak Energy) and **ENN** (proton-boron) run heavy classical HPC plasma simulation; quantum is on watch-lists, not in the loop.
 
 ## Key graded claims
-- [T2/T3] VQE/quantum-simulation of light-nucleus binding energies on real hardware — nuclear-physics literature (demonstrated at small scale; landmark physics, not engineering advantage)
-- [T3] QAOA for tokamak plasma-stability optimization / Hamiltonian-sim for plasma — Frontiers 2025 review (method framing + small demos)
-- [T4] Quantum-accelerated fusion reactor design — vendor/lab aspiration (roadmap)
-- [T5] Fusion/nuclear quantum TAM — analyst (speculative)
+- T2/T3 VQE/quantum-simulation of light-nucleus binding energies on real hardware — nuclear-physics literature (demonstrated at small scale; landmark physics, not engineering advantage)
+- T3 QAOA for tokamak plasma-stability optimization / Hamiltonian-sim for plasma — Frontiers 2025 review (method framing + small demos)
+- T4 Quantum-accelerated fusion reactor design — vendor/lab aspiration (roadmap)
+- T5 Fusion/nuclear quantum TAM — analyst (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** quantum computers have simulated small nuclei (deuteron-scale) — real nuclear-physics results, no engineering payoff.

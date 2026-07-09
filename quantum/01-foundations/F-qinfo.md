@@ -11,11 +11,11 @@ The central quantity is the von Neumann entropy $S(\rho) = -\mathrm{Tr}(\rho\log
 Channel capacities set the hard limits for quantum communication and the quantum internet, and they are why long links on photonic hardware (H-photonic) need entanglement distillation and repeaters rather than amplification (see F-nocloning). Fidelity and trace distance are how every gate, memory, and teleportation demo is scored across H-supercon, H-ion, and H-neutral, and they are the figures of merit that S-bench randomized benchmarking and S-qec threshold estimates report. The Holevo bound underwrites the key-rate accounting in QKD security proofs (S-qkd → A-qkd). Von Neumann entropy is also the bookkeeping unit for entanglement as a resource, which is the currency spent by teleportation, superdense coding, and the whole S-gates → S-qec stack.
 
 ## Key graded claims
-- [T1] A quantum source is compressible to $S(\rho)$ qubits per signal — Schumacher, PRA 51, 2738 (1995); entropy formalism from von Neumann (1932) (status: established)
-- [T1] $n$ qubits cannot convey more than $n$ classical bits — Holevo, Probl. Inf. Transm. 9, 177 (1973) (status: established)
-- [T2] Quantum channel capacity is given by regularized coherent information (LSD theorem) — Lloyd, PRA 55, 1613 (1997); Shor (2002); Devetak, IEEE TIT 51, 44 (2005) (status: established)
-- [T2] Channel capacities are strange: additivity fails (Hastings, Nat. Phys. 5, 255, 2009) and quantum capacity is superactivatable — two zero-capacity channels can combine to positive capacity (Smith & Yard, Science 321, 1812, 2008) (status: demonstrated)
-- [T2] Quantum information survives transmission at continental scale: ground-to-satellite teleportation of single-photon qubits over a 1,400 km uplink to the Micius satellite reached average fidelity $0.80 \pm 0.01$ across six mutually unbiased input states, above the $2/3$ classical state-estimation limit — Ren et al., Nature 549, 70 (2017), arXiv:1707.00934 (status: demonstrated)
+- T1 A quantum source is compressible to $S(\rho)$ qubits per signal — Schumacher, PRA 51, 2738 (1995); entropy formalism from von Neumann (1932) (status: established)
+- T1 $n$ qubits cannot convey more than $n$ classical bits — Holevo, Probl. Inf. Transm. 9, 177 (1973) (status: established)
+- T2 Quantum channel capacity is given by regularized coherent information (LSD theorem) — Lloyd, PRA 55, 1613 (1997); Shor (2002); Devetak, IEEE TIT 51, 44 (2005) (status: established)
+- T2 Channel capacities are strange: additivity fails (Hastings, Nat. Phys. 5, 255, 2009) and quantum capacity is superactivatable — two zero-capacity channels can combine to positive capacity (Smith & Yard, Science 321, 1812, 2008) (status: demonstrated)
+- T2 Quantum information survives transmission at continental scale: ground-to-satellite teleportation of single-photon qubits over a 1,400 km uplink to the Micius satellite reached average fidelity $0.80 \pm 0.01$ across six mutually unbiased input states, above the $2/3$ classical state-estimation limit — Ren et al., Nature 549, 70 (2017), arXiv:1707.00934 (status: demonstrated)
 
 ## Conflicts / open questions
 - No closed-form, single-letter formula for the quantum capacity of a general channel; whether it is even computable in practice remains open.

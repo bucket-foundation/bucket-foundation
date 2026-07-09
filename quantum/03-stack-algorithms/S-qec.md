@@ -8,11 +8,11 @@ QEC encodes one *logical* qubit into many physical qubits so errors are detected
 Google's **Willow** result (Nature 2024) is the era-defining demo: a distance-7 surface-code logical qubit whose error rate **halves** with each increase in code distance (suppression factor $\Lambda\approx 2.14$) — the first clear below-threshold memory, meaning bigger codes now help rather than hurt. IBM pivoted to qLDPC: the $[[144,12,12]]$ "gross code" protects 12 logical qubits with 288 physical qubits, versus roughly 3,000 physical for equivalent surface-code protection — about a 10× encoding-rate win; the **Loon** chip (2025) demonstrated the required long-range couplers. Gidney's magic-state **cultivation** (2024) cut projected T-gate costs by roughly 10×, feeding directly into the falling Shor estimates (`S-shor`). Quantinuum, QuEra, and Harvard demonstrated logical operations on trapped-ion and neutral-atom platforms (`S-logical`).
 
 ## Key graded claims
-- [T1] Threshold theorem — Aharonov–Ben-Or, STOC 1997; Knill–Laflamme–Zurek (established)
-- [T2] Below-threshold surface-code memory, $\Lambda=2.14$, $d=7$ — Google, Nature 638 (2024), arXiv:2408.13687 (demonstrated)
-- [T2] Gross code $[[144,12,12]]$ ~10× better encoding rate — Bravyi et al., Nature 627, 778 (2024) (demonstrated in theory + partial hardware)
-- [T3] Magic-state cultivation reduces distillation overhead ~10× — Gidney et al., arXiv:2409.17595 (claimed)
-- [T4] IBM Loon validates qLDPC architectural components — IBM blog, Nov 2025 (claimed, awaiting peer review)
+- T1 Threshold theorem — Aharonov–Ben-Or, STOC 1997; Knill–Laflamme–Zurek (established)
+- T2 Below-threshold surface-code memory, $\Lambda=2.14$, $d=7$ — Google, Nature 638 (2024), arXiv:2408.13687 (demonstrated)
+- T2 Gross code $[[144,12,12]]$ ~10× better encoding rate — Bravyi et al., Nature 627, 778 (2024) (demonstrated in theory + partial hardware)
+- T3 Magic-state cultivation reduces distillation overhead ~10× — Gidney et al., arXiv:2409.17595 (claimed)
+- T4 IBM Loon validates qLDPC architectural components — IBM blog, Nov 2025 (claimed, awaiting peer review)
 
 ## Speedup / caveat
 Overhead is the whole game (`O-overhead`): ~100–1,000 physical qubits per logical qubit at useful error rates, and QEC **slows** the logical clock because each logical gate spans many syndrome cycles plus decode latency. Encoding rate (surface) versus connectivity demand (qLDPC) is the central engineering tension.

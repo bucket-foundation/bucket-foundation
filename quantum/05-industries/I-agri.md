@@ -11,9 +11,9 @@ Split out of `I-climate`, this node covers two threads. (1) **Food/fertilizer ch
 - **Quantum-sensing review** — *Potential applications of quantum sensors in agriculture* (Computers and Electronics in Agriculture, 2025) surveys magnetometry/gravimetry/NV soil-and-nutrient sensing as the credible near-term hook.
 
 ## Key graded claims
-- [T3] \ce{FeMoco} needs ~99k physical qubits with cat qubits — Alice & Bob (demonstrated *estimate*, not execution)
-- [T3] VQC crop-yield/resource algorithms show ~30%/25% gains on small trials — EPJ 2025 (contested; toy-scale, headline numbers unverified, classical ML matches)
-- [T5/T6] Quantum precision agriculture at farm scale — analyst/vendor scenarios (speculative)
+- T3 \ce{FeMoco} needs ~99k physical qubits with cat qubits — Alice & Bob (demonstrated *estimate*, not execution)
+- T3 VQC crop-yield/resource algorithms show ~30%/25% gains on small trials — EPJ 2025 (contested; toy-scale, headline numbers unverified, classical ML matches)
+- T5/T6 Quantum precision agriculture at farm scale — analyst/vendor scenarios (speculative)
 
 ## Proven today vs promise vs hype
 - **Proven:** quantum sensors for soil/nutrient/water measurement are real lab-grade instruments (need no fault-tolerant computer).

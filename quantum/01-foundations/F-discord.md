@@ -15,9 +15,9 @@ where the maximization runs over local measurements (POVMs) on $B$ and $I$ uses 
 Discord matters where entanglement is scarce but quantum behavior persists — highly mixed states, room-temperature and noisy platforms. It was proposed as the resource behind the DQC1 model of mixed-state quantum computation, which shows apparent speed-up with vanishing entanglement (see S-nisq, S-qsim). Discord appears in analyses of quantum metrology, state merging, and remote state preparation, and it connects to the broader map of correlations that includes entanglement and Bell nonlocality (see F-entangle, F-qinfo). For security arguments, the sharper structural constraint comes from entanglement monogamy rather than discord (see A-qkd, F-entropy-ineq).
 
 ## Key graded claims
-- [T1] Some separable states have strictly positive discord; zero entanglement does not imply classical correlations — Ollivier & Zurek, PRL 88, 017901 (2001); Henderson & Vedral, J. Phys. A 34, 6899 (2001) (status: established)
-- [T2] The DQC1 model exhibits computational advantage with negligible entanglement but nonzero discord — Datta, Shaji & Caves, PRL 100, 050502 (2008), arXiv:0709.0548 (status: demonstrated, interpretation debated)
-- [T2] Comprehensive framework and measures for discord-type correlations — Modi, Brodutch, Cable, Paterek & Vedral, Rev. Mod. Phys. 84, 1655 (2012), arXiv:1112.6238 (status: established review)
+- T1 Some separable states have strictly positive discord; zero entanglement does not imply classical correlations — Ollivier & Zurek, PRL 88, 017901 (2001); Henderson & Vedral, J. Phys. A 34, 6899 (2001) (status: established)
+- T2 The DQC1 model exhibits computational advantage with negligible entanglement but nonzero discord — Datta, Shaji & Caves, PRL 100, 050502 (2008), arXiv:0709.0548 (status: demonstrated, interpretation debated)
+- T2 Comprehensive framework and measures for discord-type correlations — Modi, Brodutch, Cable, Paterek & Vedral, Rev. Mod. Phys. 84, 1655 (2012), arXiv:1112.6238 (status: established review)
 
 ## Conflicts / open questions
 - Whether discord is an *operational* resource — one that buys a task no cheaper protocol can — is still contested; several claimed advantages have alternative explanations, and no single agreed resource theory of discord has won out.
