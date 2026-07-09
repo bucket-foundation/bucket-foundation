@@ -1,0 +1,18 @@
+# The "Quantum Utility" Definitional Debate · O-utility-definition
+**Layer:** L7 Frontier & open · **Chapter:** §08 · **Status:** depth
+
+## The open question
+Words do heavy lifting in this field, and "utility," "advantage," and "supremacy" are not interchangeable — yet marketing blurs them constantly. IBM's June 2023 *Nature* paper, "Evidence for the utility of quantum computing before fault tolerance," coined **quantum utility**: a noisy 127-qubit processor producing *reliable* results at a scale beyond brute-force classical simulation, using error mitigation. The claim was carefully *not* "advantage" (beating all classical methods) — utility meant "useful for scientific exploration, competitive with existing classical approximations." The sharp question: is "utility" a meaningful, defensible category, or a rhetorical hedge that lets vendors claim a win while conceding the harder "advantage" bar? Getting the vocabulary honest is prerequisite to grading everything else in this chapter.
+
+## Where the disagreement is
+- **Utility-is-a-real-milestone camp.** IBM and allies argue "utility" names a genuine transition: quantum processors now operate at a scale where they can *contribute to research*, run circuits classical brute force can't, and serve as a scientific tool even without asymptotic advantage. The 2023 kicked-Ising experiment on Eagle was, at minimum, a demonstration that error-mitigated NISQ machines can produce trustworthy expectation values at 127 qubits. IBM later reframed toward "the dawn of quantum advantage" as hardware improved [T4]. Proponents note the honest hedge is a *feature* — the field distinguishing "useful now" from "provably beyond classical later" is exactly the neutrality this manual asks for.
+- **Utility-is-a-goalpost-move camp.** The 2023 utility claim was **classically simulated within days** — 2D tensor networks (gPEPS, Tindall et al.) and sparse Pauli-dynamics methods (Sandia, Caltech) reproduced or beat the quantum results on laptops-to-clusters, showing the specific problem was *not* beyond classical reach [T2]. Critics argue "utility before fault tolerance" became a movable goalpost: when "supremacy" claims got matched, the bar quietly relaxed to "utility," a term with no agreed operational definition and no independent adjudicator (see O-benchmark-standard). If a result is reproduced classically within a week, calling it "utility" risks quantum-washing (O-hype). The word invites exactly the ambiguity that lets a T4 press release read like a T2 result.
+
+## What would resolve it
+A precise, community-adopted operational definition — a taxonomy that fixes "utility" (useful/competitive, may be classically reproducible), "advantage" (beats the best classical method on a task people want), and "supremacy" (beats all classical methods on *any* task, useful or not), with independent adjudication of which bar a given demo clears. Failing a standard, the manual applies its own: "utility" claims are T4 until an independent party confirms the classical baseline was strong and the result competitive; a claim that is classically reproduced within weeks is graded a *classical-simulation-frontier* data point (O-classical-sim), not an advantage.
+
+## Sources
+- IBM et al., "Evidence for the utility of quantum computing before fault tolerance," *Nature* 618, 500 (2023) [T2 paper / T4 framing]
+- Tindall et al., "Efficient tensor network simulation of IBM's Eagle kicked Ising experiment," PRX Quantum 5, 010308 (2024) [T2]
+- IBM, "The dawn of quantum advantage" — ibm.com/quantum/blog/quantum-advantage-era [T4]
+- arXiv:2306.14887 (Eagle kicked-Ising tensor network); sparse Pauli-dynamics classical rebuttals (Sandia/Caltech) [T2/T3]
