@@ -87,7 +87,7 @@ points can extrapolate to a non-physical value, and one unclamped outlier
 destroys a mean-error summary. Across 30 random pairs, **Richardson is the most
 robust** (0/30 clamped, lowest mean error), so it is the default.
 
-![ZNE extrapolation on one pair](/home/gian/.claude-science/orgs/0161b4aa-f3a1-4648-8485-561283ff1e41/artifacts/proj_21cf0cae2b00/3bd4c098-2acf-4981-a74f-16c3ddcb5c55/ve9cd31b2_zne_extrapolation.png)
+![ZNE extrapolation on one pair](results/zne_extrapolation.png)
 
 *Readout-calibrated estimate measured at λ = 1, 3, 5 and extrapolated to λ = 0.
 Raw error +0.082 → +0.040 (linear) / +0.019 (Richardson) / +0.011 (exponential).*
@@ -117,7 +117,7 @@ bits,
 |   4 |                   5 / 103 / 28 |                        4 / 25 / 7 |         4.0× |
 |   8 |                   7 / 148 / 63 |                       6 / 47 / 26 |         2.4× |
 
-![Destructive vs standard swap test](/home/gian/.claude-science/orgs/0161b4aa-f3a1-4648-8485-561283ff1e41/artifacts/proj_21cf0cae2b00/dfdc6d17-b19f-4b57-a5b2-6d8c0f84d083/v9c642a3b_depth_comparison.png)
+![Destructive vs standard swap test](results/depth_comparison.png)
 
 **The honest tradeoff.** On the gate-error axis the destructive test wins at
 every dim (mean |err| 0.016 vs 0.045 at dim 2; 0.041 vs 0.055 at dim 4,
@@ -151,9 +151,9 @@ already minimal (§4).
 The ML-relevant object improves in step: the 5×5 quantum kernel-matrix RMSE
 against the exact Gram matrix drops from **0.242 (raw) to 0.053 (both)**.
 
-![Error budget](/home/gian/.claude-science/orgs/0161b4aa-f3a1-4648-8485-561283ff1e41/artifacts/proj_21cf0cae2b00/6bab2e3b-4619-4945-8b51-ccd6014eeac7/vb41782eb_error_budget.png)
+![Error budget](results/error_budget.png)
 
-![Signed-cosine sweep, mitigated vs raw](/home/gian/.claude-science/orgs/0161b4aa-f3a1-4648-8485-561283ff1e41/artifacts/proj_21cf0cae2b00/c7d0e01e-5b18-45b7-a93b-daa314541964/v3231687c_mitigation_sweep.png)
+![Signed-cosine sweep, mitigated vs raw](results/mitigation_sweep.png)
 
 *Left: each lever vs the raw noisy estimate. Right: mitigation across the full
 signed-cosine range (dim 2) — the mitigated line tracks the ideal diagonal; the

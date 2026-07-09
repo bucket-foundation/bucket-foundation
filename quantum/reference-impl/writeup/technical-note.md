@@ -68,26 +68,30 @@ an SVM using the quantum-estimated kernel matches the exact-kernel SVM:
 train-kernel RMSE (quantum vs exact) = 0.007. A kernel built entirely from quantum
 overlap measurements drives the classifier to identical accuracy.
 
-**3.5 Error mitigation.** On a realistic noise model (2% two-qubit depolarizing + 2%
-readout error, 30 pairs), two standard mitigation techniques were applied to the
-Hadamard-test estimator: **readout-error calibration** (characterize the single-bit
-assignment matrix, invert it to correct every P(0)) and **zero-noise extrapolation**
-(ZNE — amplify gate noise by unitary folding at scales 1/3/5, extrapolate to zero):
+**3.5 Error mitigation.** Two standard techniques were applied to the Hadamard-test
+estimator on a modeled noisy device (gate depolarizing + readout): **readout-error
+calibration** (characterize the assignment matrix, invert it to correct every P(0)) and
+**zero-noise extrapolation** (ZNE — amplify gate noise by unitary folding at scales
+1/3/5, extrapolate to zero). The five-condition error budget (30 pairs, `dim=4`):
 
-| pipeline | mean \|cos error\| |
+| condition | mean \|cos error\| |
 |---|---|
-| raw (no mitigation) | 0.130 |
-| readout-corrected | 0.119 |
-| readout + ZNE | 0.096 |
+| noiseless floor | 0.006 |
+| raw noisy | 0.189 |
+| + readout calibration | 0.172 |
+| + ZNE | 0.071 |
+| **+ both** | **0.044** |
 
-Mitigation cuts the mean error by **26%**. At this circuit depth (~27 two-qubit gates
-for the 4-D encoding) gate noise dominates, so ZNE does most of the work; readout
-correction contributes more on the low-depth `dim=2` circuit where readout is the
-leading channel. The primitives are unit-tested: the assignment matrix is the identity
-on a noiseless device, and unitary folding is logically inert ($U (U^\dagger U)^k = U$).
-Regenerate: `python -m src.mitigation_study` (→ `results/mitigation.png`, `mitigation.json`).
+Combined mitigation cuts the mean error by **77%** (0.189 → 0.044), and the 5×5 kernel
+RMSE from 0.243 → 0.054. ZNE does most of the work at this depth (~27 two-qubit gates,
+gate-noise-dominated); readout calibration matters more on the low-depth `dim=2` circuit.
+The primitives are unit-tested (`tests/test_mitigation.py`): the assignment matrix is the
+identity on a noiseless device, and unitary folding is logically inert
+($U (U^\dagger U)^k = U$). Full treatment, including the low-depth *destructive* swap test,
+in [`writeup/error-mitigation.md`](error-mitigation.md). Regenerate:
+`python -m src.error_budget` (→ `results/error_budget.png`, `mitigation_sweep.png`, `error_budget.json`).
 
-![Error budget: raw → readout-corrected → readout+ZNE on the Hadamard test.](results/mitigation.png){width=52%}
+![Error budget: noiseless floor → raw → readout → ZNE → both, on the Hadamard test.](results/error_budget.png){width=60%}
 
 ## 4. Results (real hardware — IBM `ibm_fez`, 156-qubit Heron)
 The signed-cosine estimator was run on IBM Quantum's `ibm_fez` superconducting device

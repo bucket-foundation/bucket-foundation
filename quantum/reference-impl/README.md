@@ -1,119 +1,98 @@
-# Quantum similarity search — cosine similarity & kernel matrices on real quantum hardware
+# Quantum similarity search
 
-Estimate the **cosine similarity** between amplitude-encoded embedding vectors on a
-quantum computer (the swap test and Hadamard test), assemble the pairwise
-**quantum kernel matrix**, and benchmark it against classical `numpy` — on
-simulators and on real **IBM Quantum** and **IonQ (via Amazon Braket)** hardware.
+**Estimate cosine similarity and kernel matrices between embedding vectors on a real quantum computer** — via the swap test and the Hadamard test over amplitude-encoded states — assemble the quantum kernel, drive an SVM with it, and quantify the whole error budget. Derived from first principles, checked against `numpy` ground truth, and **validated on real IBM hardware**.
 
-Built by Gianangelo Dichio. The physics/math is derived from first principles in
-[`MATH.md`](MATH.md).
+*Python · Qiskit · IBM Quantum. No quantum-speedup claims — see [Honest limits](#honest-limits).*
 
-## Why this project
+---
 
-Estimating the inner product `<u|v>` of two quantum states is a core quantum
-subroutine (it underlies quantum kernels and HHL-style linear algebra). For
-amplitude-encoded unit vectors that inner product **is** cosine similarity — so a
-classic embeddings/recommender problem maps directly onto real quantum hardware.
-The project implements the primitive, proves it reproduces the classical math, and
-measures the shots-vs-noise cost honestly (no false speedup claims).
+## The result
 
-## Directory map
+Run the signed-cosine estimator on IBM's `ibm_fez` (156-qubit Heron), low-depth encoding (~2 two-qubit gates), 4096 shots:
 
-```
-qc-embedding-similarity/
-├── README.md            you are here — overview, how to run, hardware setup
-├── MATH.md              the full derivation (qubits -> swap/Hadamard test -> kernels)
-├── requirements.txt     pinned deps
-├── src/
-│   ├── classical.py     ground truth: cosine similarity + Gram matrix (numpy)
-│   ├── encode.py        amplitude encoding: classical vector -> quantum state
-│   ├── swap_test.py     swap test  -> |cos|^2   (magnitude)
-│   ├── hadamard_test.py Hadamard test -> signed cos   (used on hardware)
-│   ├── kernel.py        build the pairwise quantum kernel matrix + error metrics
-│   └── experiment.py    backends (aer / aer_noisy / ibm / braket) + end-to-end demo
-├── tests/
-│   └── test_estimators.py   proves the quantum estimators == classical math
-├── results/             saved run outputs (json/plots) — filled as you run
-└── writeup/             the 3-4 page technical note that goes with the repo
-```
+![Signed cosine measured on real IBM hardware vs the true value — mean error 0.009 across the full range.](results/hardware_sweep.png)
 
-Read order to understand it: `MATH.md` → `classical.py` → `encode.py` →
-`swap_test.py` → `hadamard_test.py` → `kernel.py` → `experiment.py` → `tests/`.
+**Mean |error| = 0.009 across the full signed cosine range (+1 to −1), every sign correct — at the shot-noise floor. Total QPU used: 12 seconds.**
 
-## Setup
+| what | result |
+|---|---|
+| Correctness (noiseless sim) | estimators reproduce classical cosine to < 0.01 |
+| Shot scaling | error falls as **1/√S** (measured, 128–16384 shots) |
+| Quantum-kernel SVM (Iris) | **100%** test accuracy, matching the exact kernel (kernel RMSE 0.007) |
+| Error mitigation | readout calibration + zero-noise extrapolation → **26%** error reduction |
+| **Real IBM hardware (`ibm_fez`)** | **mean \|error\| 0.009** across the signed range |
+
+---
+
+## The idea in three lines
+
+1. **Amplitude-encode** a normalized vector `x` into a quantum state: `|ψ_x⟩ = (1/‖x‖) Σ xᵢ|i⟩` (a 1024-dim vector fits in 10 qubits).
+2. The **overlap of two such states equals the cosine similarity** of the originals: `⟨ψ_u|ψ_v⟩ = cos(u, v)`. That is the whole engine.
+3. Measure that overlap two ways — the **swap test** (gives `|cos|²`) and the **Hadamard test** (gives signed `cos`) — stack the pairwise values into a **quantum kernel matrix**, and feed it to a classifier.
+
+Overlap (inner-product / fidelity) estimation is a canonical quantum subroutine — it underlies quantum kernels and HHL-style quantum linear algebra — so this is a small, correct, hardware-validated implementation of a primitive many quantum-ML directions build on.
+
+Full derivation from qubits → encoding → swap/Hadamard test → kernels → noise → complexity: **[`MATH.md`](MATH.md)**. Complete report with every figure and all source: **[`qc-embedding-similarity.pdf`](qc-embedding-similarity.pdf)**.
+
+---
+
+## Quickstart
 
 ```bash
 python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
+
+python tests/test_estimators.py     # correctness proof: quantum == classical (+ mitigation)
+python -m src.experiment            # end-to-end demo on the noiseless simulator
+python -m src.studies               # shot-scaling + noise-sweep figures
+python -m src.qsvm                  # quantum-kernel SVM on Iris
+python -m src.mitigation_study      # readout + ZNE error budget
 ```
 
-## Run (no credentials needed)
+**Real hardware (free IBM Open plan).** Save an IBM Cloud account once, then run the sweep:
 
 ```bash
-# correctness proof: quantum estimators reproduce classical cosine similarity
-python tests/test_estimators.py
-
-# end-to-end demo on the noiseless simulator
-# note: studies.py and qsvm.py use package-relative imports — run from the repo
-# root with the package importable, e.g.  PYTHONPATH=$PWD python -m src.studies
-python -m src.experiment
-
-# add simulated hardware noise (depolarizing)
-python -m src.experiment --backend aer_noisy
-```
-
-Expected: swap test matches `|cosine|`, Hadamard test matches signed `cosine`, and
-the quantum kernel matrix matches the exact one to ~0.01–0.03 at 4k–20k shots.
-
-## Running on real hardware
-
-Both paths use the **same circuits**; only the backend changes.
-
-**IBM Quantum (free Open plan — NEW IBM Cloud flow, 2025+):**
-IBM retired the old `quantum.ibm.com` login and the `channel='ibm_quantum'`
-account type. The free Open plan now lives on the **IBM Quantum Platform under IBM
-Cloud**. One-time setup (all free, no credit card for the Open plan):
-1. Create a free **IBM Cloud** account: https://cloud.ibm.com/registurl (email + verify).
-2. Open the **IBM Quantum Platform**: https://quantum.cloud.ibm.com → it now loads.
-3. It auto-provisions a free **Open-plan instance**. Copy two things from the
-   dashboard: your **API key** and the **instance CRN** (Cloud Resource Name).
-4. Save the account and run:
-```bash
-pip install qiskit-ibm-runtime
 python -c "from qiskit_ibm_runtime import QiskitRuntimeService; \
   QiskitRuntimeService.save_account(channel='ibm_cloud', token='YOUR_API_KEY', \
-  instance='YOUR_INSTANCE_CRN', set_as_default=True, overwrite=True)"
-python -m src.experiment --backend ibm --shots 4096
-```
-**This is the one step only you can do — it needs your account/identity.** After
-`save_account`, the code just calls `QiskitRuntimeService()` and auto-selects the
-least-busy real device — no channel hardcoded, so it works on the new platform.
+  instance='YOUR_INSTANCE_CRN', set_as_default=True)"
 
-*Alternative real-hardware provider (no IBM account):* IonQ / Rigetti via Amazon
-Braket (needs an AWS account instead) — see below.
-
-**IonQ / Rigetti via Amazon Braket:**
-```bash
-pip install qiskit-braket-provider     # + configure AWS credentials
-python -m src.experiment --backend braket --shots 1000
+python -m src.angle_sweep --backend ibm --check   # free preflight: transpile + predict, no job
+python -m src.angle_sweep --backend ibm --run     # submit the signed-range sweep (seconds of QPU)
 ```
 
-Running on both gives the "validated across two hardware providers" line.
+Every hardware path is `--run`-gated; `--check` and the simulators submit nothing.
 
-## Status
+---
 
-- [x] Amplitude encoding + classical baseline
-- [x] Swap test (|cos|) + Hadamard test (signed cos)
-- [x] Quantum kernel matrix + error metrics
-- [x] Passing correctness tests on the simulator
-- [x] Noise study: sweep shots (1/√S) and depolarizing strength → `results/*.png`
-- [x] Quantum-kernel SVM on Iris — matches exact-kernel accuracy (100%, kernel RMSE 0.007)
-- [x] Technical writeup skeleton with simulator results (`writeup/technical-note.md`)
-- [ ] Real-hardware runs (IBM + IonQ) → fill §4 results table (needs your IBM Cloud token)
+## Repo layout
 
-## What this is and is not
+```
+MATH.md                       derivation from first principles (start here to understand it)
+qc-embedding-similarity.pdf   the full report — overview, math, results, all source
+writeup/technical-note.md     paper-style writeup with results
+src/
+  encode.py         amplitude encoding (classical vector → quantum state)
+  swap_test.py      swap test → |cos|²
+  hadamard_test.py  Hadamard test → signed cos (the hardware target)
+  kernel.py         pairwise quantum kernel (Gram) matrix
+  classical.py      numpy ground truth
+  experiment.py     backends (aer / aer_noisy / ibm / braket) + demo
+  studies.py        shot-scaling + noise-sweep
+  qsvm.py           quantum-kernel SVM on Iris
+  mitigation.py     readout-error calibration + zero-noise extrapolation
+  angle_sweep.py    the low-depth signed-range hardware experiment
+tests/test_estimators.py  quantum estimators vs classical math (+ mitigation primitives)
+results/                  figures + json (shot / noise / mitigation / hardware)
+```
 
-It is a correct, hardware-validated implementation of a canonical quantum primitive
-that underlies quantum kernels, with an honest shots-vs-noise accounting. It is
-**not** a claim of quantum speedup for similarity search — classical cosine
-similarity is `O(d)`. Knowing that distinction is the point. See `MATH.md` §8.
+**Read order to understand it:** `MATH.md` → `src/encode.py` → `src/swap_test.py` → `src/hadamard_test.py` → `src/kernel.py` → `src/experiment.py`. The code reads like a transcription of the equations.
+
+---
+
+## Honest limits
+
+This is **not** a quantum speedup for similarity search. Exact amplitude encoding of an arbitrary vector costs up to `O(2ⁿ)` gates, while classical cosine similarity is `O(d)` — so the encoder dominates and classical wins today. The value here is a *correct, hardware-validated implementation of a canonical quantum primitive with a measured error budget*, plus the plumbing (encode → estimate overlap → assemble kernel → classify) that a quantum-feature-map kernel would reuse. Knowing what is and isn't a speedup is the point; the writeup states every assumption and where the cost lives.
+
+---
+
+*Author: Gianangelo Dichio. A reference implementation and PhD-application artifact in quantum machine learning — honest by construction.*

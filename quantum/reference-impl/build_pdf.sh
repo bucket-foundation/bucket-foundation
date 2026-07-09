@@ -51,8 +51,9 @@ sep "Results & technical note" ; tail -n +2 writeup/technical-note.md >> "$COMBI
 printf '\n\n\\newpage\n\n# Source code\n\n' >> "$COMBINED"
 for f in src/classical.py src/encode.py src/swap_test.py src/hadamard_test.py \
          src/kernel.py src/experiment.py src/studies.py src/qsvm.py \
-         src/angle_sweep.py src/mitigation.py src/mitigation_study.py \
-         tests/test_estimators.py; do
+         src/angle_sweep.py src/mitigation.py src/noise_models.py \
+         src/error_budget.py src/destructive_swap.py \
+         tests/test_estimators.py tests/test_mitigation.py; do
   printf '\n## %s\n\n```python\n' "$f" >> "$COMBINED"
   cat "$f" >> "$COMBINED"
   printf '\n```\n' >> "$COMBINED"
