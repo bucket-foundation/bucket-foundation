@@ -25,7 +25,7 @@ IMPLEMENTATION USED HERE
 ------------------------
 There are several equivalent constructions. The most hardware-friendly and the
 one used here is the "single-register" Hadamard test: we build a unitary
-U = Prep_v * Prep_u^dagger. Then
+U = Prep_u^dagger . Prep_v (apply prep_v first, then prep_u.inverse()). Then
 
     <0...0| U |0...0> = <psi_v | psi_u> = <u|v>   (real for real vectors),
 
@@ -42,7 +42,7 @@ from .encode import state_prep_circuit, num_qubits
 def hadamard_test_circuit(u: np.ndarray, v: np.ndarray, imag: bool = False):
     """Estimate Re(<u|v>) (or Im if imag=True) via a controlled-U Hadamard test.
 
-    U = Prep_v . Prep_u^dagger acts on n qubits; <0|U|0> = <u|v>.
+    U = Prep_u^dagger . Prep_v acts on n qubits; <0|U|0> = <u|v>.
     Layout: qubit 0 = ancilla, qubits 1..n = work register.
     """
     from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister

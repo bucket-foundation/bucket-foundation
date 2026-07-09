@@ -5,7 +5,7 @@
 > A short, honest report: implement the swap test and Hadamard test as
 > cosine-similarity estimators over amplitude-encoded vectors, assemble a quantum
 > kernel matrix, drive a classifier with it, and quantify the shots-vs-noise cost
-> on simulators (and, once credentialed, on IBM + IonQ hardware).
+> on simulators and on real IBM hardware (ibm_fez), where the low-depth estimator hits the shot-noise floor.
 
 ## 1. Motivation
 Embeddings and cosine similarity are the backbone of retrieval and recommendation.
@@ -24,7 +24,7 @@ quantum methods recover cosine similarity, and at what sampling and noise cost?*
 - **Kernel.** Assemble `K[i,j] = cos(x_i, x_j)` from pairwise estimates; feed
   `SVC(kernel='precomputed')`.
 - **Backends.** Qiskit Aer (noiseless + depolarizing); IBM Quantum Open plan and
-  IonQ/Braket for real hardware (pending credentials).
+  the real IBM device ibm_fez (IonQ/Braket wired but not yet run).
 
 ## 3. Results (simulator)
 
@@ -89,12 +89,27 @@ Regenerate: `python -m src.mitigation_study` (→ `results/mitigation.png`, `mit
 
 ![Error budget: raw → readout-corrected → readout+ZNE on the Hadamard test.](results/mitigation.png){width=52%}
 
-## 4. Results (hardware) — *pending IBM/IonQ credentials*
-Planned: run §3.1 and a small §3.4 kernel on (a) an IBM Open-plan superconducting
-device and (b) an IonQ trapped-ion device via Braket. Expected: the Hadamard test's
-shallower circuit degrades more gracefully than the swap test; readout-error
-mitigation + zero-noise extrapolation recover a meaningful fraction of the error.
-*(Table to be filled after the runs.)*
+## 4. Results (real hardware — IBM `ibm_fez`, 156-qubit Heron)
+The signed-cosine estimator was run on IBM Quantum's `ibm_fez` superconducting device
+using the low-depth `dim=2` encoding (1 data qubit + 1 ancilla, transpiling to ~2
+two-qubit gates). A single pair (true cos = +0.500) returned **+0.486** (\|err\| 0.014).
+A full signed-range sweep of 6 pairs (one batched job, 4096 shots each) recovered the
+cosine across the whole $[+1, -1]$ range with **mean \|error\| = 0.009** — essentially
+the shot-noise floor — and every sign correct:
+
+| true cos | +1.000 | +0.848 | +0.438 | −0.105 | −0.616 | −0.940 |
+|---|---|---|---|---|---|---|
+| `ibm_fez` | +0.985 | +0.837 | +0.447 | −0.111 | −0.621 | −0.929 |
+| \|err\| | 0.015 | 0.011 | 0.009 | 0.007 | 0.005 | 0.010 |
+
+![Signed cosine measured on real IBM hardware (`ibm_fez`) vs the true value — mean error 0.009 across the full range.](results/hardware_sweep.png){width=58%}
+
+Total QPU consumed: 12 s (of the 600 s/month Open-plan budget). The result confirms
+the design thesis: keeping the circuit shallow (~2 two-qubit gates) puts a real-device
+measurement at the shot-noise floor, where the deep `dim=4` circuit (~27 gates) would
+be washed out. The cos = −1 point is excluded by construction (antiparallel encoded
+states differ only by a global phase; see `src/angle_sweep.py`).
+Regenerate: `python -m src.angle_sweep --backend ibm --check` (preflight) then `--run`.
 
 ## 5. Value & applications
 

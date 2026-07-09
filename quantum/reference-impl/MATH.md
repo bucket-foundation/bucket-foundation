@@ -196,6 +196,16 @@ Two distinct error sources, both measured:
    states wash toward the maximally mixed state. **Error mitigation** (readout
    calibration, zero-noise extrapolation) is the natural next lever.
 
+Both levers are now implemented and quantified in
+[`writeup/error-mitigation.md`](../writeup/error-mitigation.md): readout-error
+calibration (invert the measured 2×2 confusion matrix of the ancilla) and
+zero-noise extrapolation (unitary folding + Richardson extrapolation to zero
+noise). On the modeled gate+readout channel they cut the mean cosine error by 77%
+(0.190 → 0.043) and the 5×5 kernel-matrix RMSE from 0.242 to 0.053. A lower-depth
+encoding — the destructive (Bell-basis) swap test, no ancilla and no Fredkin
+gates — cuts two-qubit gates by 10× at dim 2 (`src/destructive_swap.py`,
+`src/error_budget.py`).
+
 The Hadamard test's smaller qubit count and shallower circuit is why it degrades more
 gracefully on hardware than the swap test — a concrete, defensible finding.
 

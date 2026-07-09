@@ -54,6 +54,8 @@ pip install -r requirements.txt
 python tests/test_estimators.py
 
 # end-to-end demo on the noiseless simulator
+# note: studies.py and qsvm.py use package-relative imports — run from the repo
+# root with the package importable, e.g.  PYTHONPATH=$PWD python -m src.studies
 python -m src.experiment
 
 # add simulated hardware noise (depolarizing)

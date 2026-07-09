@@ -259,7 +259,7 @@ def fold_local_2q(circuit, scale):
 
 
 def zne_estimate(runner, circuit, observable_fn, shots=8192, scales=(1, 3, 5),
-                 fold="global", fit="linear"):
+                 fold="global", fit="richardson", clamp=(-1.0, 1.0)):
     """Zero-noise-extrapolate a scalar observable of `circuit`.
 
     Parameters
@@ -272,7 +272,12 @@ def zne_estimate(runner, circuit, observable_fn, shots=8192, scales=(1, 3, 5),
     fold : "global" or "local2q".
     fit  : "linear" | "richardson" | "exponential".
 
-    Returns dict {scales, values, extrapolated, fit}.
+    `clamp` bounds the extrapolated value to a physical range (default the
+    cosine range [-1, 1]); pass clamp=None to disable. Clamping is essential:
+    a degree-(k-1) polynomial through a few noisy points can extrapolate to a
+    non-physical value, and an un-clamped outlier destroys a mean-error summary.
+
+    Returns dict {scales, values, extrapolated, extrapolated_raw, fit}.
     """
     folder = fold_global if fold == "global" else fold_local_2q
     values = []
@@ -282,9 +287,11 @@ def zne_estimate(runner, circuit, observable_fn, shots=8192, scales=(1, 3, 5),
         values.append(observable_fn(counts, shots))
     scales = np.asarray(scales, dtype=float)
     values = np.asarray(values, dtype=float)
-    ext = _extrapolate(scales, values, fit)
+    ext_raw = _extrapolate(scales, values, fit)
+    ext = ext_raw if clamp is None else float(np.clip(ext_raw, clamp[0], clamp[1]))
     return {"scales": scales.tolist(), "values": values.tolist(),
-            "extrapolated": float(ext), "fit": fit}
+            "extrapolated": float(ext), "extrapolated_raw": float(ext_raw),
+            "fit": fit}
 
 
 def _extrapolate(scales, values, fit):
