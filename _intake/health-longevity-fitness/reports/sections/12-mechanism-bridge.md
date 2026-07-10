@@ -2,7 +2,7 @@
 
 Every other section of this manual grades **what works**. This one traces **why it could work** — from the lever you actually pull (run easy, eat protein, sit in a sauna) all the way down to the physics of why it matters. The point is that no lever here is a black box: "just do Zone 2" always has a derivation behind it.
 
-The catch runs through the whole chapter. A mechanism that is *true* is not the same as an outcome that is *proven*, and the gap between them is where almost all longevity hype lives. So every chain below carries an honesty tag, and the last rung — the jump to a human outcome — is the one to watch.
+The catch runs through the whole chapter. A mechanism that is *true* is not the same as an outcome that is *proven*, and the gap between them is where almost all longevity hype lives. The gap exists because a real mechanism is merely *compatible* with the outcome without *causing* it in the wild — confounding, reverse causation, and unmeasured covariates can generate the observational association even when the mechanism contributes nothing at the doses and durations humans actually use. Two things close it: a trial that isolates the lever (RCT) or a genetic instrument that randomizes it from birth (Mendelian randomization). Absent one of those, mechanism plus a cohort association stays *suggestive*, not proven. So every chain below carries an honesty tag, and the last rung — the jump to a human outcome — is the one to watch.
 
 _Not medical advice. Drugs and their trials live in §10; screening in §07._
 
@@ -116,7 +116,12 @@ Read the table column-wise and most of the manual collapses onto the **energy/re
 
 That convergence is *why* the threads exist and why the Bucket canon treats bioenergetics, redox, and
 proteostasis as **foundation-tier** candidates rather than outcome-tier curiosities: the same handful of
-physical principles is what exercise, fasting, cold, heat, and aging itself all operate through.
+physical principles is what exercise, fasting, cold, heat, and aging itself all operate through. The negative
+case sharpens the claim: a mechanism stays *outcome-tier* (not foundation-tier) if it is intervention-specific
+(only one lever reaches it) or operates purely at the regulatory/information layer with no thermodynamic
+constraint beneath it — a lone transcription factor nothing else converges on. Foundation-tier requires both
+that *multiple* practices bottom out there *and* that the layer rests on physics (gradient dissipation, electron
+transfer, phase transitions), not on evolved signaling alone.
 
 ---
 
@@ -194,7 +199,12 @@ longevity effects in animals (see the aging-mechanisms chapter).
 
 The seam, again, is the human outcome. CALERIE[^calerie] is surrogate-only at ~12% achieved CR; and the
 cleanest TRE isolations (Liu NEJM 2022, Trepanowski)[^tre-cr] show that *most* real-world
-time-restricted-eating benefit reduces to caloric restriction by another route. The durable exception
+time-restricted-eating benefit reduces to caloric restriction by another route. The nearest human
+hard-endpoint data for a fasting-*like* intervention is the GLP-1 agonists (§12.3 / row 19): they slow gastric
+emptying (lengthening inter-meal windows), autophagy is one proposed downstream mechanism, and SELECT/SUSTAIN-6
+show cardiovascular benefit. Whether that validates the *voluntary* fasting→autophagy→outcome chain is
+contested — it is a pharmacologic rather than behavioral lever and weight loss is the dominant driver — but it
+is the closest bridge the evidence has. The durable exception
 worth keeping is **circadian meal-timing** (early-TRF, Sutton 2018) — a weight-independent mechanism, but
 tiny and short. So: `[established]` molecular chain, `[partial]`/unproven human longevity outcome.
 
@@ -346,8 +356,8 @@ the laundering easier to catch. The worst offenders, named:
 **The asymmetry to remember.** The chains where *both* mechanism and human hard outcome are established
 are a short list: **statins/apoB-lowering** (row 18), **GLP-1 agonists** (row 19), and — at the
 population level, observationally — **cardiorespiratory fitness** (row 1). Notice these are also the
-least hyped relative to their evidence. The inverse correlation between marketing volume and
-outcome-tier **is** the signal. When a mechanism chain is beautiful and the product
+least hyped relative to their evidence — an inverse relationship between marketing volume and outcome tier
+that is worth noticing, even if not rigorously quantified. When a mechanism chain is beautiful and the product
 is loud, **check the last rung** — the practice→signal→pathway→layer ladder can be flawless and the
 arrow into "outcome" still be dotted.
 

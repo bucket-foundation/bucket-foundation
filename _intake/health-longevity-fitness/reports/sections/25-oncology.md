@@ -138,7 +138,10 @@ Two gene classes drive the process, and the metaphor is exact:
   - **TP53 (p53)** — the **"guardian of the genome"** (Lane, 1992). On DNA damage, p53 halts the cell
     cycle, triggers repair, and — if damage is too severe — orders apoptosis. It is **the single
     most-mutated gene in human cancer (~50% of all tumours)**. Lose p53 and damaged cells stop being
-    culled.
+    culled. Beyond outright mutation, p53 *function* also declines with age (rising MDM2, NAD+ depletion
+    affecting its SIRT1-linked activation, inflammatory dampening of its apoptotic response) — so even
+    p53-wild-type cells in older tissue respond more weakly to DNA damage, lowering the barrier to
+    transformation before the gene is ever lost. `mechanistic`
   - **RB (retinoblastoma)** — the master brake on the G1→S transition. Knudson's original two-hit gene.
   - **PTEN, APC, BRCA1/2, VHL, NF1** — other major suppressors; *APC* loss is the **initiating event** of
     most colorectal cancers; *BRCA1/2* loss cripples DNA double-strand-break repair (§25.2.4).
@@ -156,7 +159,10 @@ age-incidence curve by **Armitage and Doll (1954)** and made molecular by **Fear
 genetic model of colorectal tumorigenesis** (*Cell*, 1990) — holds that a cell must accumulate a
 **sequence of driver mutations** (typically a handful — Vogelstein's later "Cancer Genome Landscapes,"
 *Science* 2013, estimated **2–8 driver mutations** among many passengers) before it becomes fully
-malignant. The colorectal paradigm is the textbook sequence: **normal epithelium → (APC loss) → adenoma
+malignant. Those 2–8 are the *drivers* under positive selection; the *total* mutational burden is far higher and
+varies enormously by cause (melanoma/lung ~10–100+ per Mb from UV/tobacco; prostate/pancreatic ~1–10) and is
+mostly neutral passengers — but that total burden is what generates neoantigens, which is why the carcinogen-driven
+cancers respond best to immunotherapy (§25.5.2). The colorectal paradigm is the textbook sequence: **normal epithelium → (APC loss) → adenoma
 → (KRAS activation) → (loss of 18q/SMAD4) → (TP53 loss) → carcinoma.** Each hit confers a selective
 growth advantage; the tissue evolves toward malignancy one Darwinian step at a time.
 
@@ -224,7 +230,7 @@ screening section (`§07`).
 | **Breast** | ~310k cases (women), ~42k deaths | Age, family history/**BRCA**, estrogen exposure, density, obesity | **~91%** | Generally good prognosis when caught early; highly subtype-driven (ER/PR/HER2 status dictates therapy). Triple-negative is the aggressive minority. |
 | **Prostate** | ~300k cases, ~35k deaths | Age, family history, African ancestry | **~97%** (often indolent) | The overdiagnosis poster child (`§07 PSA`). Many are slow and never lethal → **active surveillance**; the danger is overtreating indolent disease *and* under-detecting the aggressive minority. |
 | **Colorectal** | ~153k cases, ~53k deaths | Age, IBD, **Lynch/FAP**, processed meat, obesity, alcohol | **~65%** (~91% localized) | Has a **removable precursor** (the adenomatous polyp) → screening works exceptionally (`§07`). Rising alarmingly in **under-50s** (cause unknown — an open question). |
-| **Melanoma (skin)** | ~100k cases, ~8k deaths | **UV/sunburn**, fair skin, nevi, family history | **~94%** | Highly curable if caught thin/early; deadly once thick/metastatic — *but* metastatic melanoma is the **flagship immunotherapy success** (§25.5), turning a near-uniformly-fatal disease into one with durable long-term survival for a real fraction. |
+| **Melanoma (skin)** | ~100k cases, ~8k deaths | **UV/sunburn**, fair skin, nevi, family history | **~94%** | The **checkpoint-inhibitor flagship** — metastatic melanoma went from near-uniformly fatal to durable long-term survival for a real fraction (§25.5), the clearest immunotherapy success story. Early-stage disease stays highly curable with surgery; the revolution is in advanced disease. |
 | **Pancreatic** | ~66k cases, ~52k deaths | Smoking, obesity, diabetes, chronic pancreatitis, family/**BRCA** | **~13%** | **The honest worst case.** Usually silent until advanced; *KRAS*-driven (long "undruggable"); minimal screening; survival has improved only modestly. The cancer where humility is mandatory. |
 
 **Prognosis honesty as a principle.** These averages describe **populations, not your tumour** (which
@@ -340,6 +346,12 @@ T-cells**. The two foundational discoveries — **James Allison** (CTLA-4 blocka
 > (mutation-heavy, often carcinogen-driven) respond and "cold," low-mutation tumours don't; (3)
 > immunotherapy has its **own serious toxicity** — by removing immune brakes it can cause autoimmune
 > attack on healthy organs (colitis, hepatitis, pneumonitis, endocrine failure), occasionally fatal.
+
+Why most tumours stay "cold": the microenvironment physically excludes T-cells (fibroblast/collagen barriers,
+abnormal vasculature) and actively suppresses them (MDSCs, M2-macrophages, regulatory T-cells, and metabolic
+suppression from hypoxia/adenosine/lactate). The next frontier is turning cold tumours hot — combinations that
+normalize vasculature (anti-VEGF + checkpoint blockade), deplete suppressive myeloid cells (CSF1R inhibitors),
+or boost effector T-cells — most still investigational. `mechanistic`/`animal`
 > **The marketing says "cancer cured by the immune system"; the data say "a real, sometimes durable cure
 > for a substantial minority, nothing for the majority, and a new class of harms."** Both halves are true,
 > and stating only the first is the most common dishonesty in cancer-therapy hype.[^immuno-cure]
@@ -359,6 +371,12 @@ relapsed ALL, ELIANA trial, ~80% remission). It is a *living drug*.
 > **extraordinarily expensive** (~$400k+ per treatment) and available only at specialist centres; and it
 > carries **life-threatening acute toxicity** — **cytokine release syndrome** and **neurotoxicity (ICANS)**
 > that require ICU-level management. A breakthrough with a **very narrow current footprint.**
+
+The solid-tumour barrier is concrete: CAR-T cells struggle to infiltrate the fibrotic/hypoxic microenvironment,
+become exhausted (PD-1 upregulation) under chronic antigen exposure, and face antigen-escape as heterogeneous
+tumours lose the target under selection; on-target/off-tumour toxicity is lethal when the antigen also sits on
+normal tissue. Engineering responses — armored CAR-Ts secreting immune boosters, dual-antigen CARs, and
+logic-gated AND/NOT circuits (Roybal 2016) — are largely preclinical. `mechanistic`/`animal`
 
 ### 25.5.4 — Tissue-agnostic / precision oncology
 

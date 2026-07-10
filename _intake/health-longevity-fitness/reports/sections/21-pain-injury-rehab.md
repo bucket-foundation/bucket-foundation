@@ -1,9 +1,5 @@
 # 21 — Pain, Injury & Rehabilitation
 
-**Bottom line:** pain ≠ tissue damage (§1) — imaging ≠ diagnosis, and chronic pain often reflects a
-sensitised nervous system rather than ongoing injury. Stay active, **load don't rest** (tendons and
-sprains included), and opioids are not first-line for chronic pain. The full summary is §8.
-
 The public model of pain is a plumbing model: damage in the tissue sends a "pain signal" up a wire, and
 the size of the signal equals the size of the damage. **This model is wrong, and the cost of believing
 it is enormous** — it drives over-imaging, over-medicalising, fear-avoidance, unnecessary surgery, and
@@ -305,7 +301,7 @@ urgent work-up:
 - **Infection:** fever, IV drug use, immunosuppression, recent procedure.
 - **Progressive neurological deficit:** worsening weakness, foot drop.
 
-Absent these, the message is reassurance and active management — not a scan.
+Absent these, the message is reassurance and active management.
 
 ---
 
@@ -461,7 +457,9 @@ herniation/compression. Key honest points:
 **A warm-up works** — for performance and (in structured neuromuscular programs) injury reduction. The
 effective version is an **active, dynamic, task-specific** warm-up (raise temperature → mobilise →
 activate → potentiate / sport-specific drills), not long passive stretching. Programs like **FIFA 11+**
-demonstrably cut injury rates in their sports.
+demonstrably cut injury rates in their sports — but the benefit is adherence-dependent: real-world compliance is
+typically poor, and follow-ups find the effect fades when teams stop running the program. The challenge is
+sustaining it, not proving it works when done.
 
 ### 7.2 Load management — the biggest lever
 

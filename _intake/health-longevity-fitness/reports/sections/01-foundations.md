@@ -41,7 +41,11 @@ themselves and mechanisms compound. A cohort tells you *that* fit people live lo
 you *why*, or what to do when the cohort and the trial disagree. The foundation tells you that
 cardiorespiratory fitness *is* integrated mitochondrial capacity — and the moment you know that,
 the cohort becomes a prediction: train the mitochondrion and the engine gets bigger, whatever the
-noisy 5× hazard ratio claims. (A hazard ratio is a comparison of event rates between groups.)
+noisy 5× hazard ratio claims. (A hazard ratio is a comparison of event rates between groups.) The
+mechanism is real, but the lever is smaller than the epidemiology implies: training interventions
+raise fitness and lower mortality more modestly than the observational hazard ratios suggest, because
+high baseline fitness partly selects for genetic and early-life robustness rather than being purely
+trainable.
 Mechanism is what lets you reason past the edge of the data instead of stopping at it.
 
 The rest of this section builds the foundation stack from the bottom up: **energy → structure →
@@ -184,7 +188,10 @@ damage, damage accumulates, you age; therefore mop up ROS with antioxidants and 
 
 **This story is mostly resolved *against* its naive form, and the correction is one of the most
 important ideas in this manual.** Large antioxidant supplement trials are null or *harmful*.[^conflict-free-radical] Why? Because **ROS are signals, not only shrapnel.** A transient
-burst of mitochondrial ROS during exercise is the *trigger* that tells the cell to build more
+burst of mitochondrial ROS during exercise is the *trigger* that activates **PGC-1α** (the master
+transcriptional coactivator for mitochondrial biogenesis, antioxidant-enzyme expression, and metabolic
+remodeling) — the molecular relay from transient oxidative stress to durable adaptation — telling the cell to
+build more
 mitochondria and upregulate its own antioxidant defenses. Blunt that signal with high-dose
 antioxidants and you blunt the adaptation itself — supplemental vitamin C/E have been shown in controlled trials to blunt the
 mitochondrial benefit of training. This is **mitohormesis** (Ristow): a small dose of oxidative
@@ -285,8 +292,12 @@ everything from blood pressure to exercise performance.
 Beyond bulk water lies a genuine **contested frontier**, and this manual grades it as such rather
 than picking a side. **Gilbert Ling** proposed that intracellular potassium is held not
 only by membrane pumps but by adsorption onto structured cell-water layered around proteins; the
-NMR-detectable differences he predicted between bulk and cell water are the basis on which Damadian
-invented MRI. **Gerald Pollack** characterized an **"exclusion zone" (EZ) of water** at
+NMR-detectable differences he predicted between bulk and cell water were an early influence on Damadian's
+*interpretation* of the T1-relaxation differences he measured between normal and tumor tissue (Damadian,
+*Science* 1971) — though MRI as an imaging modality was built by Lauterbur and Mansfield via spatial encoding,
+and the dominant biophysical account of the contrast is now free-versus-bound water relaxation in a
+conventional frame. Whether Ling's prediction was *foundational* to MRI or an early interpretive tangent is
+historically contested. **Gerald Pollack** characterized an **"exclusion zone" (EZ) of water** at
 hydrophilic surfaces — a charged, solute-excluding layer with distinct properties, replicated across
 labs.
 

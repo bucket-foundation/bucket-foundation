@@ -1,6 +1,6 @@
 # 09 — Modifiable Exposures & Environment
 
-The highest-leverage longevity moves are not in a supplement bottle. They're the unglamorous basics: not smoking, clean air, sane drinking, clean water, sensible sun — the things you breathe, drink, smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get the least airtime because nobody monetizes "don't smoke" or "filter your air."
+The highest-leverage longevity moves are not in a supplement bottle. They're the unglamorous basics: not smoking, clean air, sane drinking, clean water, sensible sun — the things you breathe, drink, smoke, and stand in. These are often the *largest* modifiable effects in the whole manual, and they get the least airtime in longevity discourse despite outweighing most protocol interventions.
 
 **The one-line verdict up front:** the exposures with the strongest evidence for mortality effects are **tobacco** (causal, ~10 years of life lost), **air pollution** (a top-10 *global* killer, causally linked to CVD in long-term cohorts), and **alcohol** (smaller effects, contested, and offering none of the cardioprotection the old J-curve implied).
 Everything after that — microplastics, PFAS, BPA, sun, heat/cold — ranges from "regulatory-grade real" to
@@ -135,8 +135,11 @@ This is where nuance is mandatory and both camps oversimplify.
   evidence — more effective than nicotine-replacement therapy (NRT).[^hartmann-boyce-cochrane] So as a *cessation tool for smokers*, the
   evidence is real.
 - **But "harm reduction vs. cigarettes" is not "safe."** Vaping is not benign: aerosol contains carbonyls,
-  fine particulates, and flavorant breakdown products; the long-term (decadal) outcome data simply don't exist
-  yet because the products are too new. "Safer than the most dangerous consumer product ever made" is a low bar.
+  fine particulates, flavorant breakdown products, and heating-coil metal contamination (nickel, chromium, lead
+  from coil degradation); the long-term (decadal) outcome data simply don't exist yet because the products are
+  too new. And the harms are not purely theoretical: the 2019–20 **EVALI** outbreak (~2,800 hospitalizations, ~68
+  deaths, CDC) was traced to **vitamin-E acetate** in illicit THC cartridges — proof that adulterant/formulation
+  harms are real acute risks, not just distant unknowns. "Safer than the most dangerous consumer product ever made" is a low bar.
 - **Youth uptake is the real cost.** The population-level concern is **nicotine initiation in adolescents** who
   would never have smoked — recruiting a new generation to nicotine dependence, with plausible effects on the
   developing brain. The risk/benefit flips entirely by population: net-positive for smokers switching,
@@ -273,8 +276,10 @@ This is the one to be most disciplined about.
 
 Notice that lead, PFAS, BPA, and microplastics all share **one cheap lever: filter your drinking water.** A
 certified activated-carbon + (ideally) reverse-osmosis filter addresses lead, many PFAS, and particulate
-microplastics simultaneously. Know your local water report; if you're on a private well or old municipal pipes,
-test. This is the single highest-leverage move across the entire "toxins" category, and it's the one with
+microplastics simultaneously. (One caveat for reverse osmosis: it also strips beneficial minerals like calcium
+and magnesium, so for long-term whole-house RO use, remineralization — a mineral cartridge or dietary
+compensation — is worth considering; the cardiovascular effect of demineralized water is debated but worth
+awareness.) Know your local water report; if you're on a private well or old municipal pipes, test. This is the single highest-leverage move across the entire "toxins" category, and it's the one with
 **actual regulatory standards** behind it (EPA contaminant limits).
 
 ---
@@ -338,8 +343,11 @@ for 20 years:
 | The honest middle | **Sensible, sunburn-free sun exposure** beats both extremes — total avoidance carries its own cohort-level mortality signal; chronic burning causes cancer |
 
 The conflict (skin-cancer "avoid UV" vs. mortality "sun-avoidance is a risk factor") is real and is captured in
-the claims file as a `mixed`-direction case. The resolution is *dose and context*: avoid burns, don't avoid
-daylight.
+the claims file as a `mixed`-direction case. It is epitomized by the **melanoma-latitude paradox**: incidence
+rises with UV dose (higher at lower latitudes), yet mortality is often higher at *higher* latitudes —
+attributed to later detection (thinner sun-awareness culture, deeper tumors at diagnosis) and possibly vitamin-D
+status, showing both sides of the ledger are real. The resolution is *dose and context*: avoid burns, don't
+avoid daylight.
 
 ---
 
@@ -392,9 +400,8 @@ exposures dwarf most of what gets optimized in longevity culture.**[^stringhini-
    individual effect.
 8. **Microplastics** — emerging; do not overclaim; low-regret hygiene only.
 
-The unifying point: the highest-leverage longevity moves are not in a supplement bottle. They're the
-unglamorous basics: **not smoking, clean air, sane drinking, clean water, and sensible sun.** None of them are
-sold to you, which is exactly why they're underweighted.
+This ordering should recalibrate any protocol discussion elsewhere in the manual: what you breathe, drink,
+and don't smoke dwarfs most of what gets optimized in supplement stacks.
 
 ---
 

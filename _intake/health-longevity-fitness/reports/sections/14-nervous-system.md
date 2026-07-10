@@ -10,7 +10,7 @@ _Not medical advice. Dementia and depression as outcomes: §08. Evidence tiers (
 Here."_
 
 > **Bottom line.** The foundations (action potential, \(\mathrm{Na^{+}}\)/\(\mathrm{K^{+}}\) pump) are canon-solid; the debunks are the
-> payoff, and **Pain ≠ tissue damage** is the highest-stakes correction. For the aging brain, the levers
+> payoff, and **Pain ≠ tissue damage** is the highest-stakes correction (developed in §6). For the aging brain, the levers
 > are the usual unglamorous bundle (move, sleep, connect, treat vascular/hearing/vision). Full 7-point
 > list: **§8**.
 
@@ -26,8 +26,11 @@ else: the cranial and spinal nerves, the sensory and motor fibres, the autonomic
 **enteric nervous system** of the gut. The split is not just anatomical; it is *regenerative*.
 Peripheral axons can regrow (slowly, ~1 mm/day[^regrow]) along their Schwann-cell sheaths; central axons
 mostly cannot, because the CNS environment (myelin-associated inhibitors, the glial scar) actively
-blocks regrowth. This single fact explains why a severed finger nerve can recover and a severed
-spinal cord generally does not — and why "neuroplasticity" (§4) is real but bounded.
+blocks regrowth. That block is now an active therapeutic target rather than an immovable law:
+**anti-Nogo-A antibodies** and **Rho-kinase inhibitors** produce partial axon regrowth and modest functional
+recovery in animal spinal-cord-injury models, and first-in-man intrathecal anti-Nogo-A has been tested for
+safety (Kucher 2018) — pharmacologically addressable, though robust human outcomes remain unproven. This single
+fact explains why a severed finger nerve can recover and a severed spinal cord generally does not — and why "neuroplasticity" (§4) is real but bounded.
 
 @@FIG:A05-cns-pns@@
 
@@ -119,7 +122,9 @@ sweat, airway, vasculature. It has two arms, classically opposed:
 
 The honest correction to the pop version: they are **not a simple seesaw**. Both arms are active at
 rest, they can co-activate, and "balance" is contextual, not a single dial you turn toward
-"parasympathetic = good." Chronic *over*-parasympathetic states exist; acute sympathetic activation
+"parasympathetic = good." (Wearables and papers often report the **LF/HF ratio** from HRV spectral analysis as
+a "sympathovagal balance" index; treat it as a research tool, not a health score — low-frequency power reflects
+both autonomic branches plus baroreflex activity, so its interpretation is disputed, Billman 2013.) Chronic *over*-parasympathetic states exist; acute sympathetic activation
 is adaptive and necessary. The useful idea is **autonomic flexibility** — the capacity to shift
 appropriately — not "maximise vagal tone."
 

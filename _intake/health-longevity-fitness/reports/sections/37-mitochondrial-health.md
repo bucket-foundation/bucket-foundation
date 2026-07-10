@@ -56,7 +56,10 @@ explains *why* they work, but the practical list stands on its own._
 
 ### 37.2.1 — Architecture: a cell within a cell
 
-A mitochondrion is **two membranes and two spaces**, and the geometry is functional:
+A mitochondrion is **two membranes and two spaces**, and the geometry is functional. (Why two? It is a relic
+of endosymbiosis — §37.3.1 — the outer membrane derives from the host, the inner from the engulfed bacterium;
+the arrangement lets the outer membrane host fission/fusion and apoptotic cytochrome-c release while the inner
+runs bioenergetics, jobs one membrane could not separate without crosstalk.)
 
 - **Outer membrane (OMM)** — smooth, porous (studded with VDAC porins), permeable to small molecules.
   It is the organelle's border with the cytosol and the platform on which the fission/fusion machinery
@@ -212,8 +215,9 @@ governed by opposing GTPase machines:
 The balance is the point. **Healthy tissue cycles between the two; aging and metabolic disease skew
 toward chronic fragmentation** (excess fission, failed fusion), which correlates with impaired
 function. Exercise and caloric restriction shift the balance back toward regulated cycling. Mutations
-in *MFN2* (Charcot–Marie–Tooth 2A) and *OPA1* (dominant optic atrophy) are human proof the machinery
-is non-negotiable — break fusion and you get neurodegeneration. (Evidence tier: the molecular biology
+in *MFN2* (Charcot–Marie–Tooth 2A) and *OPA1* (dominant optic atrophy), and in *DRP1* (severe
+neurodevelopmental disorders — lethal neonatal encephalopathy, microcephaly), are human proof the machinery
+is non-negotiable — break fusion *or* fission and you get disease. (Evidence tier: the molecular biology
 is `mechanistic` — shown in cells and animals — and established; "improve your fission-fusion balance"
 as a *consumer protocol* is not a
 thing you can buy — it is downstream of the same exercise/fasting levers below.)

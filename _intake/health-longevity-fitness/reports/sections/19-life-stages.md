@@ -1,6 +1,6 @@
 # 19 — Life Stages: Health Across the Whole Lifespan
 
-The arc you spend your adult life defending was partly drawn before you drew your first breath. Physiological capacity — VO₂max (your aerobic fitness ceiling), bone mass, muscle, kidney function — climbs to a peak in your 20s and 30s, plateaus, then declines for the rest of life. The peak you build is the asset you spend.
+The arc you spend your adult life defending was partly drawn before you drew your first breath. Physiological capacity — VO₂max (your aerobic fitness ceiling), bone mass, muscle, kidney function — climbs to a peak in your 20s and 30s, plateaus, then declines for the rest of life. The peak you build is the asset you spend. "Partly" is the operative word: twin and sibling studies suggest early-life environment accounts for a modest fraction of adult cardiometabolic risk (roughly 10–30%, varying by outcome and exposure severity), with adult behavior explaining the majority. The early window is high-leverage because it is *upstream* and population-scalable, not because it fixes individual destiny.
 
 The two ends of that arc — the womb and childhood on the way up, old age and dying on the way down — run by different rules than the defend-the-peak middle that almost all "longevity" advice addresses, and the single highest-leverage health decisions in a whole life live at those ends: maternal nutrition, childhood activity, deprescribing in elders, honest end-of-life planning. This section is the time axis the rest of the manual is missing. It walks the lifespan from conception to death and asks, at each stage, what actually matters, what the evidence says, and what is folklore.
 
@@ -71,7 +71,11 @@ The mechanistic refinement is the "**thrifty phenotype**" (Hales & Barker, 1992)
 senses scarcity down-regulates growth and reprograms its metabolism to be fuel-sparing — fewer pancreatic
 β-cells, more insulin-resistant tissues, a "store every calorie" set-point. In a matching scarce world that is
 adaptive; dropped into a modern calorie-rich world it is a **predictive adaptive mismatch** that drives
-obesity, diabetes, and cardiovascular disease.
+obesity, diabetes, and cardiovascular disease. A competing account — the **fetal insulin hypothesis**
+(Hattersley & Tooke, 1999) — argues some of the birthweight–diabetes link reflects *shared genetic variants*
+(in insulin-secretion genes) that limit both fetal growth and adult glucose control, rather than programming
+causing the disease. Observational cohorts cannot fully separate the two; the Dutch Hunger Winter (a pure
+environmental shock, §2.2) shows programming is real, but gene–environment interaction likely shapes individual risk.
 
 ### 2.2 The cleanest natural experiment: the Dutch Hunger Winter
 
@@ -123,7 +127,11 @@ _Not pregnant or planning to be? This block covers pregnancy specifically — sk
 
 Pregnancy is the one stage where the manual's usual "lifestyle levers" act on **two** bodies at once, and it
 is unusually polluted with folklore. Here the honest line between **graded intervention** and **myth** is
-sharp, because — unlike DOHaD — many pregnancy questions *do* have RCTs.
+sharp, because — unlike DOHaD — many pregnancy questions *do* have RCTs. The dual-patient reality also creates
+ethical complexity absent elsewhere — cases where maternal and fetal interests diverge (maternal cancer
+treatment, severe pre-eclampsia forcing early delivery, refusal of a recommended intervention). This section
+covers the *uncontroversial* levers where maternal and fetal interests align; the divergent-interest cases are
+beyond its scope, navigated case-by-case in obstetric ethics.
 
 ### 3.1 The micronutrients that are load-bearing
 
@@ -261,11 +269,13 @@ movement competence and an aerobic base built young are easier to *defend* than 
 - **Puberty** is the endocrine ignition of the reproductive (HPG) axis (§13): a cascade of growth, sexual
   maturation, and — relevant to the bone account — the **adolescent growth spurt** during which bone accrual
   is fastest. Timing varies widely and is normal across a broad range.
-- **The adolescent brain is under construction until the mid-20s.** The maturational order is the key fact:
-  the **limbic/reward system matures *early*** (driving sensation-seeking and reward sensitivity) while the
-  **prefrontal cortex — judgment, impulse control, long-horizon planning — matures *last*, into the mid-20s.**
-  This **developmental mismatch** is the neurobiological reason adolescence carries elevated risk-taking; it is
-  not a character defect but a stage. The practical reading: adolescents need **scaffolding** (structure,
+- **The adolescent brain is under construction until the mid-20s.** A widely cited model (dual-systems theory;
+  Casey, Somerville) holds that the **limbic/reward system becomes more responsive early** (driving
+  sensation-seeking) while the **prefrontal cortex — judgment, impulse control, planning — keeps maturing into
+  the mid-20s.** Imaging shows both regions are active and developing throughout adolescence, so the
+  **mismatch** is more about *connectivity and coordination* than one system being offline — the neat
+  "gas pedal before brakes" line is a useful metaphor, not a literal mechanism. The elevated risk-taking is a
+  stage, not a character defect. The practical reading: adolescents need **scaffolding** (structure,
   sleep, guardrails) precisely while their internal regulators are still being wired, and the *brain's*
   plasticity here is itself a deposit — skills, habits, and exposures in adolescence shape adult cognition and
   mental health. `mechanistic`/`cohort` (developmental neuroscience).
@@ -335,10 +345,9 @@ the two capture overlapping reality. `cohort` — strong, foundational.
 
 The muscular engine of frailty is **sarcopenia** — the age-related loss of muscle **strength** (better than
 mass as the defining criterion) and function (EWGSOP2: Cruz-Jentoft et al., 2019;[^ewgsop2] cross-ref Domain
-E). The **lever is the §04 §4.3 inversion**: resistance training, **power** work, adequate **protein (HIGHER in
-older adults, ~1.0–1.2+ g/kg)**, and balance — which work **even in frail nonagenarians** (Fiatarone). This
-section does not restate that prescription; it flags that **sarcopenia is the modifiable core of frailty**, the
-one part of the frailty syndrome with a strong, proven, non-pharmacologic lever.
+E). The frailty-specific point: **sarcopenia is the modifiable core of the frailty syndrome** — the one
+component with a strong, proven, non-pharmacologic lever (resistance + power + protein, detailed in §04 §4.3).
+Frailty is a multi-system readout; sarcopenia is the muscular engine you can still train.
 
 @@FIG:99-sarcopenia@@
 

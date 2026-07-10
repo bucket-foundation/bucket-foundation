@@ -31,8 +31,7 @@ grade each disease on four honest axes:
    "no disease-modifying therapy exists" (pre-1993) to **two-dozen-plus disease-modifying therapies
    (DMTs — drugs that change the disease's course, not just its symptoms) that cut relapses by
    half to ninety percent** — a genuine revolution. Parkinson's, by contrast, has **excellent
-   symptom control and still no proven disease-modifying drug** — a distinction patients are
-   routinely not told clearly.
+   symptom control and still no proven disease-modifying drug**.
 3. **What is the honest prognosis?** Not the worst case, not the brochure — the median.
 4. **Where is the market lying?** Almost every chronic neuro/autoimmune disease has a parallel
    economy of diets, supplements, and "root cause" protocols selling certainty the evidence
@@ -108,8 +107,9 @@ but the direction is not in doubt.)
   imaging-selected patients can now benefit much later: the **2025 HOPE trial** showed alteplase
   helped selected patients out to **24 hours** when imaging showed salvageable tissue.[^hope]
   **Tenecteplase**, a single-bolus agent, is now widely replacing alteplase. (`rct`/`meta`.)
-- **Endovascular thrombectomy.** For **large-vessel occlusions**, mechanically pulling the clot out
-  with a catheter is the single biggest advance. The **HERMES** individual-patient-data
+- **Endovascular thrombectomy.** For **large-vessel occlusions** (proximal internal carotid, M1/M2 middle
+  cerebral artery, or basilar — roughly a third of ischemic strokes, not the majority), mechanically pulling the
+  clot out with a catheter is the single biggest advance. The **HERMES** individual-patient-data
   meta-analysis (Goyal, 2016) pooled five 2015 trials: thrombectomy roughly **doubled the odds of
   functional independence** — with an NNT of about 2.6 for one person to end up at least one level less
   disabled on the modified Rankin Scale (≈5 to make one extra person fully independent), one of the best
@@ -198,7 +198,11 @@ fingolimod, cladribine), and the highly effective **monoclonal antibodies**, esp
 effective cut relapse rates by **on the order of 70–90%**. The field has converged on a key honest
 lesson: **early, effective treatment preserves long-term function** — the "hit hard early" vs.
 "escalate slowly" debate has largely resolved toward earlier high-efficacy therapy for active
-disease. Ocrelizumab is also the first drug with a (modest) effect in **primary progressive** MS.
+disease. What tipped it: long-term cohort and trial data showing that **irreversible axonal loss accrues
+during relapses — including subclinical ones — even when the relapse itself appears to resolve**, so the window
+to preserve function closes early and damage already done cannot be recovered. (The debate is *not* settled at
+the earliest edge, e.g. radiologically isolated syndrome.) Ocrelizumab is also the first drug with a (modest)
+effect in **primary progressive** MS.
 
 @@FIG:D15-ms-dmt@@
 
@@ -246,8 +250,11 @@ contribute; most cases are sporadic.
 
 **The honest grade — say it clearly.** Parkinson's is the cleanest example of the **§1 axis-2
 distinction**: we have **excellent symptomatic treatment and still zero proven disease-modifying
-therapy.** Nothing yet on the market slows the underlying neurodegeneration (multiple α-synuclein
-and other neuroprotection trials have failed or are unproven). Patients are routinely allowed to
+therapy.** Nothing yet on the market slows the underlying neurodegeneration — a long list of
+neuroprotection trials has failed or come up empty (vitamin E in DATATOP; rasagiline's disease-modification
+claim in ADAGIO, not supported; urate elevation in SURE-PD3; and mixed, now-contested results for the GLP-1
+agonist exenatide). The recurring pattern is a wrong target or treatment beginning after too many neurons are
+already lost. Patients are routinely allowed to
 believe their medication is "fighting the disease" when it is **masking the symptoms of an advancing
 one** — a kind, but real, communication failure. The active frontier (α-synuclein antibodies, GLP-1
 agonists, GBA-targeted therapy) is `rct`-in-progress, not yet a win.
@@ -278,7 +285,8 @@ release drives the pain pathway, and that mechanistic insight produced the break
 - **Preventive — the breakthrough.** The **anti-CGRP monoclonal antibodies** (erenumab,
   fremanezumab, galcanezumab, eptinezumab), approved from 2018, are the **first drug class designed
   specifically to prevent migraine** (Edvinsson, 2018; Caronna, 2024).[^edvinsson] Honest magnitude:
-  they reduce monthly migraine days by roughly **2–3 days more than placebo** on average — **not a
+  in **chronic migraine (≥15 headache days/month)** they reduce migraine days by ~2–3 beyond placebo
+  (roughly 11–12 down to 8–9), and in **episodic migraine (~8 days/month)** the gain is ~1–2 days — **not a
   cure**, and the placebo response in migraine is large — but a meaningful, well-tolerated advance
   for people who failed older preventives (Ailani, AHS consensus).[^ailani] Older preventives (propranolol,
   topiramate, amitriptyline, candesartan, and **Botox** for chronic migraine) still work and are
@@ -396,7 +404,9 @@ round out the degenerative map.[^dementia]
 
 **What it is.** The commonest joint disease and a leading cause of disability worldwide — pain,
 stiffness, and loss of function, classically in knees, hips, hands, and spine. The old name "wear-
-and-tear arthritis" is **only half right** (Hunter & Bierma-Zeinstra, 2019).[^hunter]
+and-tear arthritis" is **misleading** — it makes OA sound like passive erosion when it is an active
+whole-joint remodeling disease with inflammation, subchondral bone changes, and metabolic drivers;
+mechanical load is a trigger, not the disease itself (Hunter & Bierma-Zeinstra, 2019).[^hunter]
 
 **Mechanism — the honest correction.** OA is **not** simply mechanical erosion of inert cartilage. It
 is a **whole-joint disease**: an active, low-grade process involving cartilage breakdown,
@@ -567,8 +577,7 @@ lowered pain thresholds, augmented central responses, impaired descending inhibi
 exercise** (the single best-supported intervention), **CBT / pain-focused psychotherapy**, sleep
 treatment, and patient education in the central-sensitization model itself (which reduces distress).
 Drugs with FDA approval — **duloxetine, milnacipran, pregabalin** — help a minority modestly; opioids
-are unhelpful and harmful. The honest theme: **multimodal, self-management-centered, modest** — no
-single big lever.
+are unhelpful and harmful. The reality: fibromyalgia is managed multimodally and centered on self-management, with modest drug effects and no single big lever.
 
 **Honest grade.** Fibromyalgia is **real and mechanistically grounded** (`mechanistic`/`meta`), and
 the central-sensitization framing is the honest one. It is also the disease with **one of the largest

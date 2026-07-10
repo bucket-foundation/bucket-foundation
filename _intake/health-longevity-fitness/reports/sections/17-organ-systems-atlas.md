@@ -111,7 +111,9 @@ capacity" or "detox the lungs" are mostly marketing. The evidence-graded picture
   improve inspiratory muscle strength but **adds little over pulmonary rehab alone** for the outcomes patients
   care about. `meta`.
 - **"Lung capacity" cannot be meaningfully expanded in healthy adults.** Your vital capacity is set by anatomy
-  and training history. Aerobic exercise improves the *whole oxygen-transport chain* (heart, blood, muscle
+  and training history — meaning whether aerobic conditioning in youth let you reach your genetic peak before the
+  mid-20s plateau; past that plateau, training improves oxygen transport and utilization but does not expand
+  vital capacity itself. Aerobic exercise improves the *whole oxygen-transport chain* (heart, blood, muscle
   mitochondria) far more than the lung itself, which in healthy people is rarely the limiting step. **Train
   cardio for VO₂max; use IMT for blood pressure or for clinical respiratory weakness — not to "grow your
   lungs."**
@@ -304,7 +306,9 @@ concur. This is one of the few nutrition messages where the evidence and the adv
 people should eat more fiber** (whole grains, legumes, fruit, vegetables). Note the tier honesty — much of this
 is `cohort`, so it's "strongly associated," not "proven causal" at the all-cause-mortality level, but the
 convergence of mechanism, intermediate-endpoint RCTs, and consistent cohorts makes it about as solid as
-nutritional epidemiology gets.
+nutritional epidemiology gets. The strongest signal is for fiber from **whole foods** (whole grains, legumes,
+fruit, vegetables); **isolated-fiber supplements** have weaker trial support, which suggests the benefit is the
+whole-food package rather than fiber alone.
 
 ---
 
@@ -344,7 +348,10 @@ world gets dangerously one-sided (everyone thinks "low iron = take iron").
   hypothesis**, Vox Sang 1991)[^sullivan-1991] is a **plausible mechanism with
   confounded, inconsistent human evidence** — donor cohorts are healthier to begin with (healthy-donor effect).
   Donate blood because it helps other people and is reasonable for *you* if you have iron overload — not as a
-  proven longevity hack. `cohort`/`mechanistic`, mixed.
+  proven longevity hack. One exception under study: adults with **metabolic syndrome and elevated ferritin**
+  (not hemochromatosis) may gain insulin-sensitivity/blood-pressure improvements from phlebotomy (Houschyar
+  *BMC Med* 2012 RCT; later trials mixed), though this remains investigational and is not a general
+  recommendation. `cohort`/`mechanistic`, mixed; `rct` for the metabolic-syndrome niche.
 
 ### 5.3 B12 and folate
 
@@ -396,8 +403,9 @@ to place the organ on the map.
 
 The single most useful longevity insight in this system: **erectile dysfunction is an early-warning marker of
 systemic vascular disease.** Because the penile arteries are small, endothelial dysfunction often shows up there
-*years before* a coronary event — **Kloner, Int J Impot Res 2008** and an umbrella
-review (**Mostafaei et al., BJU Int 2021**)[^ed-cvd] establish ED as an independent predictor of
+*years before* a coronary event (estimates commonly cited at ~2–5 years, though variable and not a fixed
+window) — **Kloner, Int J Impot Res 2008** and an umbrella review (**Mostafaei et al., BJU Int 2021**)[^ed-cvd]
+establish ED as an independent predictor of
 cardiovascular disease. `cohort`/`meta`. **Predictor, not lever, in its purest form:** ED *predicts* heart
 disease, and the lever is to treat it as a **prompt for cardiovascular work-up and risk-factor control** (the
 same levers as `07` — BP, glucose, lipids, exercise, not smoking), *not* to silence the symptom with a PDE5

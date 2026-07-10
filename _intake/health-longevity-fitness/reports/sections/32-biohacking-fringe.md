@@ -160,7 +160,11 @@ systemically — for fat loss, longevity, testosterone, whole-body "recovery," a
 - **Musculoskeletal pain (`meta`):** for knee osteoarthritis, a meta-analysis of 22 placebo-controlled
   RCTs (n=1,063; Stausholm et al., 2019, BMJ Open) found pain reduced by 14.2 mm on a 100 mm VAS
   (95% CI 7.3–21.1) at end of therapy, sustained 1–12 weeks, and the effect was dose-dependent — present
-  when trials followed World Association for Laser Therapy dosing and absent when they did not. A broader
+  when trials followed World Association for Laser Therapy dosing and absent when they did not. Concretely,
+  WALT dosing for knee OA is roughly 4–6 J/cm² at 810–860 nm applied directly to the joint; consumer whole-body
+  panels are lower-irradiance red/NIR (~630–850 nm) at greater distance, so the dose actually reaching the
+  tissue is unknown and likely below the studied protocol — local, high-irradiance application at the studied
+  wavelength is what the pain RCTs tested, and a distant panel is not the same intervention. A broader
   musculoskeletal-pain meta (Clijsen et al., 2017; 18 studies, n=1,462) found a pooled mean difference of
   −0.85 (95% CI −1.22 to −0.48) with high heterogeneity (\(\mathrm{I^{2}}\) = 85.6%). Small-to-moderate, dose-sensitive,
   heterogeneous.
@@ -501,8 +505,9 @@ blue-tongue biohacker staple).
 
 **The evidence:** methylene blue has a **redox mechanism** — at low doses it acts as an alternative
 electron carrier in the mitochondrial chain and has real pharmacology (it is an approved drug for
-methemoglobinemia and a surgical dye). There is **one** much-cited small human study (Rodriguez et al.) using
-fMRI that reported modest memory/attention and brain-metabolism effects at low dose. That makes the
+methemoglobinemia and a surgical dye). There is **one** much-cited small human study (Rodriguez et al.,
+*Radiology* 2016)[^mb-rodriguez] using fMRI that reported modest memory/attention and brain-metabolism effects
+at low dose. That makes the
 *mechanism* PROMISING. But: there is **no** human anti-aging or healthspan outcome evidence; the dose window
 is narrow and **dose-dependent harm is real** (serotonin syndrome when combined with SSRIs/SNRIs — a
 dangerous and common interaction; hemolysis in G6PD deficiency; it is an MAOI at higher doses); and most
@@ -556,7 +561,9 @@ modafinil for sleep-deprivation; HBOT for its ~15 approved indications.** Almost
 detox cluster and the GH-secretagogue/peptide grey market — a **real harm risk that meets or exceeds any
 claimed benefit.** The Tier-A levers (`01-STATE-OF-THE-FIELD §1`) — don't smoke, build fitness and strength,
 move, sleep ~7h, lower apoB, stay metabolically healthy, protect social connection — individually outrank
-every intervention in this section, cost little, and are not sold to you because no one owns them. Spend
+every intervention in this section and cost little. They lack the novelty and profit margin that drive
+supplement and peptide marketing, so biohackers rarely sell them — though gyms, wearables, and pharma
+certainly do — yet each is backed by outcome data an order of magnitude stronger than anything here. Spend
 attention there; treat this section as experiments, graded, not as protocols.
 
 ---
@@ -612,3 +619,4 @@ attention there; treat this section as experiments, graded, not as protocols.
 [^chevalier]: Chevalier G, et al. — *J Environ Public Health* 2012. doi:10.1155/2012/291541.
 [^cgm-claims]: claims: cgm-accurate-diabetes-unvalidated-healthy (L); conflict-cgm-healthy-utility.
 [^bioage-claims]: claims: biological-age-tests-not-validated-surrogate; conflict-which-clock-is-valid.
+[^mb-rodriguez]: Rodriguez P, et al. "Multimodal Randomized Functional MR Imaging of the Effects of Methylene Blue in the Human Brain." Radiology 2016. doi:10.1148/radiol.2016152893. PMID 27351678. Small RCT; single human study behind the mechanism-PROMISING grade.

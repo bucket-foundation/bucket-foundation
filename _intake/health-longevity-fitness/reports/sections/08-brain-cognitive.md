@@ -4,7 +4,7 @@
 connection + head protection** (§1.2). The best *causal* levers are hearing (ACHIEVE, §2), midlife blood
 pressure (SPRINT-MIND, §1.3), and bundled lifestyle (FINGER, §3); the numbered summary is §7.
 
-**What actually protects the brain as it ages, and what is being sold to you that does not?** The longevity-and-biohacking world is strangely quiet about this question. The asymmetry is stark: the large, well-evidenced levers — hearing, vascular risk, education, connection, sleep — are mostly unsexy and unmonetizable. Meanwhile the marketed interventions — nootropics, brain-training apps, the new amyloid antibodies — carry far weaker benefit-to-risk than their visibility implies.
+**What actually protects the brain as it ages, and what is being sold to you that does not?** The longevity-and-biohacking world is strangely quiet about this question. The asymmetry is stark: the large, well-evidenced levers — hearing correction, vascular-risk control, education, social connection, sleep — carry the strongest cohort and trial support in the chapter, while the marketed interventions — nootropics, brain-training apps, the new amyloid antibodies — carry far weaker benefit-to-risk than their visibility implies. The structural reason is prosaic: the strongest levers are delivered as medical services and generic drugs (audiology-fitted hearing aids, generic antihypertensives) or are free (social contact, sleep), whereas the marketed interventions are high-margin, patent- or subscription-based products, so attention and evidence-generation flow toward the latter.
 
 _Not medical advice. This chapter is about protecting cognition and mental health as you age; sleep is covered in Domain I and social connection in Domain M._
 
@@ -17,8 +17,10 @@ _Not medical advice. This chapter is about protecting cognition and mental healt
 The single most important document in dementia prevention is the **Lancet Commission on dementia
 prevention, intervention and care.** Its 2020 report (Livingston et al., *Lancet* 2020)[^lancet-2020]
 concluded that **~40% of dementia worldwide is attributable to 12 modifiable risk factors.** The 2024
-update (Livingston et al., *Lancet* 2024)[^lancet-2024] added two factors — **high LDL cholesterol** and
-**untreated vision loss** — and revised the headline to **~45% of dementia attributable to 14 modifiable
+update (Livingston et al., *Lancet* 2024)[^lancet-2024] added two factors — **high LDL cholesterol** (new
+Mendelian-randomization and large-cohort data linking midlife LDL to later dementia) and **untreated vision
+loss** (accumulated cohort evidence, though the causal case is thinner than for hearing) — and revised the
+headline to **~45% of dementia attributable to 14 modifiable
 risk factors, acting across the life course.** This is the spine of the section. Everything else is detail
 hanging off it.
 
@@ -192,8 +194,12 @@ RCT for cognition.** Don't sell it as proven brain protection. `cohort` supports
 Depression is associated with **~1.5–2× higher all-cause mortality** across meta-analyses (mediated by
 suicide, but also by cardiovascular disease, reduced self-care, and treatment non-adherence). It is also
 a **bidirectional dementia factor** (Lancet PAF 3%): depression raises later dementia risk *and* is an
-early symptom of incipient neurodegeneration — so some of the association is reverse-causal. The honest
-grade: real and important, but causally tangled (cf. Domain M's treatment of psychosocial factors).
+early symptom of incipient neurodegeneration — so some of the association is reverse-causal. The loop the
+reader wants closed — does *treating* depression lower dementia or mortality? — is still open: depression
+trials measure symptom remission, not long-term brain or survival outcomes, so RCT evidence that treatment is
+a dementia-prevention lever is thin. Exercise (§5.2) is the closest we have to an RCT-supported lever that
+addresses both depression and cognition. The honest grade: real and important, but causally tangled (cf.
+Domain M's treatment of psychosocial factors).
 `cohort`/`meta`, observational.
 
 ### 5.2 Exercise for depression — a real lever
@@ -280,7 +286,7 @@ Dementia Rating–Sum of Boxes) running 0–18, where higher = worse — decline
 
 @@FIG:D14-lecanemab@@
 
-Read it honestly:
+Three caveats calibrate the result:
 - **The "27%" is a relative slowing of decline, not improvement.** Everyone still got worse; the drug
   group got worse slightly less slowly.
 - **0.45 points on an 18-point scale is at or below most estimates of the minimal *clinically*
@@ -319,7 +325,10 @@ statistically significant, clinically marginal, real harms.
 - **Lion's mane (*Hericium erinaceus*):** the most-cited human data is a tiny Japanese RCT (Mori et al.,
   *Phytother Res* 2009[^lionsmane], n≈30 with MCI) showing **transient cognitive improvement that reversed
   after stopping** — small, short, single-site, never replicated at scale. Animal/mechanistic NGF data is
-  interesting; human outcome data is thin. **Verdict: thin.** `rct` (tiny)/`mechanistic`.
+  interesting; human outcome data is thin. A separate problem is quality control: commercial products vary
+  widely in active-compound content (hericenones/erinacines) and are often mycelium-on-grain with negligible
+  levels of what animal models used — so even if efficacy were proven, many products likely lack effective
+  doses. **Verdict: thin.** `rct` (tiny)/`mechanistic`.
 - **Ginkgo biloba:** decisively tested. The **GEM study** (DeKosky et al., *JAMA* 2008[^ginkgo]), a large
   RCT (n≈3,000, ~6 years), found ginkgo **did not prevent dementia or cognitive decline.** A clean
   negative. **Verdict: null.** `rct`, null.

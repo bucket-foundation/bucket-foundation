@@ -187,7 +187,9 @@ a working copy of a gene (gene *replacement/addition*) or *editing* the existing
   This is how Luxturna and Zolgensma work — they don't edit; they add.
 - **CRISPR-Cas9** is the editing tool. Discovered as a bacterial immune system, it was turned into
   a programmable "search-and-cut" enzyme by **Jennifer Doudna and Emmanuelle Charpentier** (*Science*
-  2012; Nobel Prize in Chemistry, 2020).[^doudna-2012] A short guide RNA directs the
+  2012; Nobel Prize in Chemistry, 2020).[^doudna-2012] Feng Zhang and colleagues at the Broad Institute then
+  demonstrated the first CRISPR editing in mammalian cells (Cong et al., *Science* 2013), a key translation step
+  toward clinical use. A short guide RNA directs the
   Cas9 protein to a matching DNA sequence, where it cuts; the cell's own repair machinery then
   disrupts or rewrites the gene. This rests directly on the **DNA / molecular-biology fundamentals
   in `01-foundations.md`** — base pairing is *why* a 20-letter guide RNA can find one address in a
@@ -220,7 +222,10 @@ a working copy of a gene (gene *replacement/addition*) or *editing* the existing
 
 ### 3.3 The honest cost / access reality
 
-The triumph has a brutal asterisk: **price and access.**
+The triumph has a brutal asterisk: **price and access — and clinical cost.** The engineered-cell therapies
+carry serious acute toxicity (CAR-T's cytokine release syndrome and ICANS neurotoxicity, detailed in §25),
+manufacturing failures in a minority of attempts, and a requirement for specialized centers — all of which
+limit *who* can receive them alongside what they cost.
 
 - These are among the **most expensive medicines in history** — routinely the single most
   expensive drug in the world at launch (Hemgenix treats hemophilia B, 2022; Lenmeldy,
@@ -336,11 +341,15 @@ long-term function remains unsolved. Promising; very early; not a clinical optio
   but the honest ceiling today is **flat or thin structures** (skin, cartilage patches, cornea-like
   constructs) and pre-clinical work. The hard, unsolved problem for a **solid, vascularized organ**
   (a printed kidney or liver) is building the dense capillary network that keeps thick tissue alive.
-  That is years-to-decades away, not near-term. `invitro`/pre-clinical.
+  The approaches under study — co-printing endothelial cells to seed capillaries in situ, bioreactor perfusion
+  to guide vessel formation, and decellularized scaffolds that retain the native vascular tree — have not yet
+  produced a transplantable vascularized organ. That is years-to-decades away, not near-term. `invitro`/pre-clinical.
 - **Organoids** — self-organizing "mini-organs" (brain, gut, kidney, liver) grown from stem cells —
   are **scientifically real and enormously valuable**, but their value is as a **research and
-  drug-screening / disease-modeling tool**, not as a transplantable product. They are millimeter-scale,
-  unvascularized, and incomplete. Treating "we grew a brain organoid" as "we can replace a brain" is
+  drug-screening / disease-modeling tool**, not as a transplantable product. The research value is concrete:
+  cerebral organoids modeled microcephaly and later Zika-virus brain damage (Lancaster *Nature* 2013), and
+  patient-derived intestinal organoids became a functional CFTR assay that predicts individual cystic-fibrosis
+  drug response (Dekkers *Nat Med* 2013). They are millimeter-scale, unvascularized, and incomplete. Treating "we grew a brain organoid" as "we can replace a brain" is
   exactly the mechanism-to-outcome laundering this corpus forbids.
 
 ---

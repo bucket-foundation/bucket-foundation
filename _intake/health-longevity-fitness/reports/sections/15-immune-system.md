@@ -50,7 +50,9 @@ them — and how each ages are mapped in the figure below.
 The innate system is also where **inflammaging is generated**: the inflammasome (an alarm complex, notably
 **NLRP3**) and chronic macrophage activation are the molecular machinery that turns accumulated damage into
 low-grade systemic inflammation — which is why the ketone body **BHB** (beta-hydroxybutyrate, made during fasting)
-blocking NLRP3 is an interesting metabolic lever.
+blocking NLRP3 is an interesting metabolic lever. Honest tier: BHB inhibits the NLRP3 inflammasome in vitro and
+in rodent models (`mechanistic`/`animal`); human data that fasting or ketosis actually lowers inflammaging
+markers is sparse and mixed, so this is a promising mechanism, not a proven human lever (cross-ref fasting §36).
 
 @@FIG:BX8-innate-components@@
 
@@ -66,7 +68,10 @@ antigens with exquisite precision, and — crucially — **remembers**, which is
 - **B cells** (bone-marrow-derived): produce **antibodies** (immunoglobulins) and form memory B cells. Antibody
   responses mostly require **T-cell help**, which is why T-cell aging degrades antibody responses too.
 - **Memory**: the reason you (usually) get measles once and the reason a vaccine works. Immunological memory is
-  the most powerful longevity tool in this section — and the thing that **decays** with immune aging.
+  the most powerful longevity tool in this section — and the thing that **decays** with immune aging. What
+  breaks: memory B cells make lower-affinity antibodies and fewer plasma cells, memory T-cell recall
+  proliferation weakens, and germinal-center responses (where memory is refined) decline — so even responses to
+  *previously encountered* antigens fade, which is why boosters matter more for elders (cross-ref pharma §5).
 
 ### 1.3 Inflammation as a *process* — acute-resolving vs chronic
 
@@ -129,8 +134,9 @@ see CMV below), leaving **less room to respond to anything new.**
 Put the pieces together and the clinical reality follows: the §2.1–2.2 failures summed — plus weaker
 dendritic-cell priming and impaired (T-cell-dependent) antibody responses — mean **older adults get more,
 and more severe, infections, and mount weaker, shorter-lived responses to vaccines** (Goronzy & Weyand
-2013; Crooke & Poland 2019). This is *the* reason COVID-19, influenza, and pneumonia kill
-disproportionately at older ages — and the reason **higher-dose / adjuvanted vaccines** were developed
+2013; Crooke & Poland 2019). This is *a major reason* COVID-19, influenza, and pneumonia kill
+disproportionately at older ages — alongside higher comorbidity burden, weaker physiological reserve,
+and inflammaging's cytokine-priming effects (§3) — and the reason **higher-dose / adjuvanted vaccines** were developed
 specifically for elders (a real, partial workaround — cross-ref §6 and pharma §5).
 
 ### 2.4 CMV — the uninvited tenant that ages your T cells
@@ -318,7 +324,8 @@ interventions in this entire manual** — and it is the *correct* way to "direct
 **pharma §5**, but the headline: the **target-disease prevention is rock-solid `rct`** (influenza, pneumococcal,
 RSV, shingles), and several vaccines now carry **beyond-target signals** that make them interesting for
 healthspan — most notably the **shingles vaccine ↔ lower dementia incidence** quasi-experimental result (Welsh
-natural experiment, *Nature* 2025) and the **flu vaccine ↔ fewer cardiovascular events** post-MI RCT (IAMI). The
+natural experiment, *Nature* 2025; leading hypothesis: preventing VZV-reactivation-driven neuroinflammation,
+though trained-immunity and healthy-user effects can't be ruled out — the signal is real, the mechanism debated) and the **flu vaccine ↔ fewer cardiovascular events** post-MI RCT (IAMI). The
 immunosenescence material here explains *why* this matters more with age (weaker responses) and *why*
 higher-dose/adjuvanted formulations exist for elders. **Preventing the pneumonia or influenza that ends an
 82-year-old's independence is longevity medicine.**

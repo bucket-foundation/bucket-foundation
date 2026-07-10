@@ -44,6 +44,10 @@ with hundreds of RCTs and a decade-stable safety record.
   forms are marketing, not better.
 - **Cognition (real but smaller/`mixed`):** creatine modestly improves memory and cognition, with the largest
   effects under metabolic stress — **sleep deprivation, aging, or in vegetarians** (lower baseline stores).
+  Mechanism: creatine crosses the blood-brain barrier and feeds the brain's own phosphocreatine ATP-buffer;
+  memory encoding and retrieval are energetically expensive, so benefit is largest exactly where brain energy
+  is constrained — vegetarians (no dietary creatine, lower baseline brain stores) and metabolic stressors
+  (sleep loss, aging) that tax neural energy capacity.
   **Avgerinos 2018** (SR)[^creatine-avgerinos] and **Prokopidis 2023** (memory meta)[^creatine-prokopidis] find a
   real signal, strongest in older adults and stressed states; the effect in young, rested, omnivorous people is
   small. Honest framing: helpful, not a nootropic miracle.
@@ -82,8 +86,6 @@ positive only for high-dose prescription EPA in already-high-risk patients.
   endpoints in a general population. The exception is **REDUCE-IT (Bhatt 2019, NEJM)**[^o3-reduceit]
   high-dose (**4 g/day**) prescription **icosapent ethyl (EPA only)** cut major cardiovascular events ~25% in patients
   with high triglycerides already on statins — though some of that effect is debated (mineral-oil placebo concern).
-  Net: low-dose OTC fish oil for primary prevention in healthy people = mostly null; high-dose Rx EPA in high-TG,
-  high-risk patients = real.
 - **Dose:** **1–2 g/day combined EPA+DHA** for general status/anti-inflammatory support; **2–4 g/day** (ideally
   Rx-grade) if the target is triglycerides — that's a medical decision. Eating fatty fish 2–3×/week achieves much of
   the same.
@@ -105,9 +107,8 @@ This is the most over-supplemented "longevity" molecule, and the large RCTs are 
   fractures in generally-replete midlife/older adults.
 - **Type 2 diabetes (D2d, Pittas 2019, NEJM)**[^vitd-d2d] **4000 IU/day** in people with prediabetes
   did **not** significantly prevent diabetes (a small non-significant trend only).
-- **The honest synthesis (Manson 2020)**[^vitd-manson2020] across the major trials, vitamin D
-  supplementation in **replete** populations does little for hard endpoints. The low blood level was largely a
-  *marker* of poor health (obesity, inactivity, illness, low sun) — a predictor, not the lever.
+- **Why (Manson 2020)**[^vitd-manson2020] the low blood level was largely a *marker* of poor health
+  (obesity, inactivity, illness, low sun) — a predictor, not the lever.
 
 @@FIG:L04-vital-nulls@@
 
@@ -184,6 +185,16 @@ Test, don't guess.
   not from generic capsules; and even those stop at small surrogate RCTs (no healthspan endpoint).
 
 **Verdict: CONTEXT-ONLY.** Right strain for the right condition; otherwise unproven for wellness.
+
+### 1.9 Zinc — immune function and wound healing
+
+Inadequacy is common (elderly, athletes with heavy sweat losses, some plant-based diets, because phytates cut
+absorption), and correcting it restores immune and wound-healing function. Zinc-acetate lozenges started within
+~24 h of onset shorten colds by roughly a day or more in meta-analyses (Hemilä), and elderly people with low
+zinc show improved immune markers on repletion (Prasad). It is not a wellness supplement for replete people, and
+chronic high doses (>~40 mg/day) impair copper absorption. Maintenance RDA ~8–11 mg/day; higher only acutely.
+
+**Verdict: CONTEXT-ONLY.** Real in inadequacy/deficiency and for shortening colds when started early; not a daily longevity lever.
 
 ---
 

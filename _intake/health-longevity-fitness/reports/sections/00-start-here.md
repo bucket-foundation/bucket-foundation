@@ -27,13 +27,14 @@ These are the whole game. Each individually outranks every supplement and gadget
 4. **Move all day; break up sitting.** The least-confounded association in the field; step-count trials track activity and fitness surrogates rather than a confirmed mortality reduction from counting steps. Benefit rises then plateaus around ~7–8k. *(→ §Training)*
 5. **Keep apoB / LDL low across your whole life.** apoB (a count of the cholesterol particles that actually
    clog arteries) is one of the only *causal* blood levers — earlier is better because exposure is cumulative.
-   Diet first, medication if needed. *(→ §Clinical Prevention, §Pathology)*
-6. **Sleep ~7 hours, regularly.** U-shaped risk (both too little *and* too much are worse); regularity and
+   Diet first, medication if needed. (Lp(a), measured once, is apoB-containing but diet- and statin-resistant —
+   high Lp(a) needs different management.) *(→ §Clinical Prevention, §Pathology)*
+6. **Sleep ~7 hours, regularly.** U-shaped risk (both too little *and* too much are worse) — though short sleep
+   is directly causal in trials while long sleep is largely a marker of underlying illness. Regularity and
    timing matter as much as duration. *(→ §Recovery)*
-7. **Eat a protein-adequate, mostly-whole-food pattern.** ~1.6 g/kg protein covers the muscle-building plateau;
-   the specific "diet brand" matters far less than the pattern. *(→ §Nutrition)*
-8. **Protect social connection and a sense of purpose.** Observational studies find social isolation predicts mortality with an effect size comparable to smoking; interventional evidence that connection-building programs reduce mortality is sparser — and it's the one
-   with no product attached, which is exactly why it gets left off the list. *(→ §Psychosocial, §Recovery)*
+7. **Eat a protein-adequate, mostly-whole-food pattern.** ~1.6 g/kg protein covers the muscle-building plateau
+   for most; higher intakes add no further muscle benefit. The specific "diet brand" matters far less than the pattern. *(→ §Nutrition)*
+8. **Protect social connection and a sense of purpose.** Observational studies find social isolation predicts mortality with an effect size comparable to smoking; interventional evidence that connection-building programs reduce mortality is sparser. Often underemphasized in practice despite the cohort signal. *(→ §Psychosocial, §Recovery)*
 
 ## THE MINIMUM-EFFECTIVE WEEK (a concrete starting program)
 

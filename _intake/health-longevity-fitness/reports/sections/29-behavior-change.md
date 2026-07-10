@@ -172,7 +172,10 @@ behavior you're trying to change.
 Specific, challenging goals outperform "do your best" for *task performance* — this is one of the most
 replicated findings in organizational psychology (Locke & Latham's goal-setting theory). The popular
 **SMART** mnemonic (Specific, Measurable, Achievable, Relevant, Time-bound) is a reasonable checklist that
-operationalizes "specific and measurable."
+operationalizes "specific and measurable." One honest caveat: the **"Achievable"** component actually cuts
+against Locke & Latham's core goal-setting finding that *difficult* goals outperform easy or moderate ones —
+SMART's popularity has nudged people toward conservative targets. Keep Specific/Measurable/Time-bound; read
+"Achievable" as "feasible with real effort," not "comfortably easy."
 
 - **The honest grade:** goal-setting theory was built mostly on *short-term cognitive and motor tasks in work
   settings*, and it **transfers imperfectly to long-term health-behavior change**. A critical conceptual
@@ -320,7 +323,11 @@ better.**
   contingent rewards can *undermine* long-term adherence by crowding out autonomous motivation (the
   "overjustification" effect). This is the honest caveat on gamification and rewards (§5): they can raise
   short-term engagement while eroding the internalized motivation that sustains behavior after the points
-  stop. Design support to feel chosen, build genuine competence (visible progress), and connect it socially.
+  stop. One important moderator: the overjustification effect (Deci/Ryan/Koestner meta-analyses) mainly harms
+  *inherently interesting* tasks — for *boring*, instrumentally-motivated behaviors (medication, logging)
+  performance-contingent rewards do not reliably erode motivation and may help. So use points for dull adherence
+  and avoid them for activities that are already intrinsically rewarding. Design support to feel chosen, build
+  genuine competence (visible progress), and connect it socially.
 
 **Verdict:** the best-supported *motivational* theory in the chapter, and the corrective to naïve "just add
 rewards" thinking. Grade: solid `meta`-tier on the autonomy/maintenance link.
@@ -376,6 +383,10 @@ Short, honest answer: **modestly, and only while you're engaged — which is the
 - **The engagement cliff is the real story.** Most health apps lose the large majority of users within weeks;
   the median app is abandoned fast. An app's *theoretical* efficacy is irrelevant if it's deleted by week
   three — downloading the app is an intention; using it is the behavior.
+- **One frontier with better evidence: just-in-time adaptive interventions (JITAIs).** Apps that trigger prompts
+  from real-time sensor/context data (e.g., sedentary + at home → walk prompt) show modestly stronger effects
+  than fixed-schedule reminders (Nahum-Shani) because they exploit high-opportunity moments. Still
+  engagement-limited, but a real improvement over static apps.
 - **Gamification — honest grade.** Points, streaks, badges, and challenges **do** improve short-term engagement
   and activity; a meta-analysis of gamified physical-activity interventions found a **small but significant
   effect** (Mazeas et al. 2022).[^mazeas] **But** the SDT

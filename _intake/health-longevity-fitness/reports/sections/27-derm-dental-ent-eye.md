@@ -15,12 +15,9 @@ glaucoma, and lowering it is a *separately proven* lever (here it actually is on
 observational association is weaker than a randomized trial: charcoal "whitens" by abrasion in lab assays, not in
 outcome trials. **Something beats nothing** — a $2 fluoride tube outperforms the entire "holistic dentistry" aisle.
 
-**One-line verdict up front:** the best-evidenced moves in this entire section are **fluoride** (the single most
-cost-effective preventive intervention in dentistry), **topical retinoids + sunscreen** (§11 — the two
-best-evidenced skin actives), **the Epley maneuver** (a 60-second physical maneuver that *cures* the most common
-vertigo), **outdoor time for children** (the one myopia lever with RCT support), **anti-VEGF injections** (turned
-wet AMD from a blinding disease into a treatable one), and **getting hearing and vision corrected** (function +
-plausible dementia tail). Almost everything marketed *around* these — and most of the "wellness" reframes of
+**One-line verdict up front:** the best-evidenced moves in this section are **fluoride**, **topical retinoids +
+sunscreen** (§11), **the Epley maneuver**, **outdoor time for children**, **anti-VEGF injections**, and **correcting
+hearing and vision loss**. Almost everything marketed *around* these — and most of the "wellness" reframes of
 dentistry and eye care — is theater.
 
 _Not medical advice. This section covers the named diseases of skin, mouth, ear, and eye; the anti-aging and
@@ -55,7 +52,7 @@ outcome-proven. NMA = network meta-analysis (ranks treatments that were never te
 | **Benzoyl peroxide (BPO)** | Bactericidal (oxidizes *C. acnes*), comedolytic; no resistance | `meta` / `rct` | Cheap, OTC, prevents antibiotic resistance — pair with everything |
 | **Topical antibiotic** (clindamycin) — *always with BPO* | Anti-*C. acnes*, anti-inflammatory | `meta` | Effective but **never as monotherapy** (resistance); fixed-combo with BPO/retinoid |
 | **Combination topical** (retinoid + BPO ± antibiotic) | Multi-node | `meta` (NMA: best topical efficacy) | The evidence-winning topical strategy |
-| **Oral antibiotic** (doxycycline) | Anti-inflammatory + anti-bacterial | `meta` | Moderate–severe; **time-limited (~3 mo)**, always with topical BPO/retinoid |
+| **Oral antibiotic** (doxycycline first-line; minocycline alternative) | Anti-inflammatory + anti-bacterial | `meta` | Moderate–severe; **time-limited (~3 mo)**, always with topical BPO/retinoid. Doxycycline is preferred on side-effect profile; minocycline is comparably effective when doxycycline fails |
 | **Combined oral contraceptive / spironolactone** | Anti-androgen | `meta` / `rct` | Effective in women; hormonal acne |
 | **Oral isotretinoin** | Shrinks sebaceous glands (only drug that hits all 4 factors) | `meta` / `rct` | The closest thing to a cure for severe/nodulocystic/scarring acne; teratogenic — pregnancy-prevention program mandatory |
 
@@ -70,9 +67,10 @@ outcome-proven. NMA = network meta-analysis (ranks treatments that were never te
 - **Guideline anchor:** AAD 2024 acne guidelines.[^acne-aad]
 
 **The honest diet link.** For decades dermatology said "diet doesn't cause acne." The honest 2020s position is
-**narrower and more interesting**: (1) **high-glycemic-load diets** modestly worsen acne (`rct`/`cohort` — plausible
-via insulin/IGF-1 → androgen/sebum signaling); (2) **skim/low-fat milk** shows a consistent association
-(`cohort`); (3) **chocolate and greasy food per se** remain unproven. The defensible synthesis: diet is a **minor,
+**narrower and more interesting**: (1) **high-glycemic-load diets** modestly worsen acne (small RCTs show
+reduced lesion counts on a low-glycemic-load diet — Kwon 2012;[^acne-gl] plausible via insulin/IGF-1 →
+androgen/sebum signaling) `rct`; (2) **skim/low-fat milk** shows a consistent observational association
+(`cohort`);[^acne-milk] (3) **chocolate and greasy food per se** remain unproven. The defensible synthesis: diet is a **minor,
 real modifier** in some people (low-GL eating is a reasonable adjunct), **not** the cause and **not** a substitute
 for retinoids/BPO. Honesty rule #1 — the dietary signal is a `cohort`/small-`rct` modifier, not the lever that
 clears moderate–severe acne.
@@ -121,7 +119,9 @@ disease, and metabolic syndrome (Section 24 owns the joint disease).
   anti-IL-23 biologics (with bimekizumab, ixekizumab, risankizumab, secukinumab, guselkumab among the top)
   achieve the highest rates of PASI 90** vs placebo and outperform older systemics. `meta` / outcome.[^psoriasis-sbidian] This is one
   of the cleanest bench-to-clinic stories in medicine: the cytokine mechanism was mapped, drugs were built against
-  the exact node, and they work.
+  the exact node, and they work. The biologic era opened with **TNF-α blockers** (etanercept, adalimumab,
+  infliximab), proven in psoriasis RCTs in the early 2000s (Leonardi 2003);[^psoriasis-etanercept] the IL-17 and
+  IL-23 agents are the newer, more efficacious generation that now tops the rankings.
 
 **Honest take:** psoriasis is **treatable to near-clearance** for most people now — that is a genuine modern win.
 The honest caveats: biologics are immunosuppressants (infection screening, cost), and **none is a cure** (stopping
@@ -292,7 +292,7 @@ caught late, with ~50–60% 5-year survival overall (much better when caught ear
 |---|---|---|
 | **Tobacco (all forms) + alcohol** (synergistic) | Classic oral-cavity SCC (tongue, floor of mouth, gingiva) | Declining with smoking rates |
 | **HPV (high-risk, esp. type 16)** | **Oropharyngeal** SCC (tonsil, base of tongue) | **Rising** — now the dominant cause of oropharyngeal cancer in many high-income countries; better prognosis than HPV-negative; **HPV vaccination is primary prevention** |
-| Betel/areca nut, sun (lip), immunosuppression, chronic inflammation | Various | Region-dependent |
+| Betel/areca nut (>600M users, mostly South/Southeast Asia; **IARC Group 1 carcinogen**; rivals tobacco in regional oral-cancer burden), sun (lip), immunosuppression, chronic inflammation | Various | Region-dependent |
 
 **Honest take:** the levers are **don't smoke/chew tobacco, moderate alcohol, get HPV-vaccinated, and let your
 dentist do the oral-cancer screen** (the visual/palpation exam at checkups — the practical reason routine dental
@@ -463,8 +463,11 @@ refractive error** (see §D.7).
 
 A cataract is **clouding of the eye's natural lens** (progressive protein aggregation/oxidation with age) — the
 leading cause of reversible blindness worldwide. The fix is **phacoemulsification + intraocular lens implant**: the
-clouded lens is emulsified and replaced with a clear artificial one. It is **one of the most common, safest, and
-most effective elective operations performed** (millions/year, ~15-minute outpatient procedure, high success).
+clouded lens is emulsified and replaced with a clear artificial one. The implanted lens is typically
+**monofocal** (corrects one distance; glasses still needed for near or far); premium **multifocal/EDOF** or
+**toric** lenses reduce glasses dependence but cost more and carry trade-offs (halos, reduced contrast), so the
+choice comes down to patient preference and cost. It is **one of the most common, safest, and most effective
+elective operations performed** (millions/year, ~15-minute outpatient procedure, high success).
 
 - The **cataract→dementia** finding (Lee 2022 — extraction associated with ~30%
   lower dementia risk, with glaucoma surgery as a negative control)[^cataract-lee] is in Section 11 §4.2. The clinical point here:
@@ -564,7 +567,9 @@ systemic diseases (Sjögren's).
 **Honest take:** dry eye is **real, common, and a treatable inflammatory disease** — not just "use drops." The
 highest-yield self-care is **treating meibomian-gland dysfunction (warm compresses/lid hygiene)**, **blinking fully
 during screen time** (the digital-eye-strain overlap — Section 11 §4.5), and stepping up to anti-inflammatory drops
-when needed. The 20-20-20 habit manages the *strain*; it doesn't cure the *disease*.
+when needed. **Something beats nothing** here: cheap, unglamorous foundation care (warm compresses, lid hygiene,
+artificial tears) delivers most of the symptom relief while patients wait for a nonexistent cure. The 20-20-20
+habit manages the *strain*; it doesn't cure the *disease*.
 
 ### D.7 The honest "eye exercises / vision therapy for refractive error" debunk
 
@@ -645,3 +650,6 @@ The load-bearing papers, one per organ (full DOIs in the footnotes above):
 [^amd-marina]: Rosenfeld PJ, et al. Ranibizumab for neovascular age-related macular degeneration (MARINA). NEJM 2006. doi:10.1056/NEJMoa054481. (rct / outcome)
 [^retinopathy-dcct]: DCCT Research Group. Effect of intensive treatment of diabetes on the development and progression of long-term complications in IDDM. NEJM 1993. doi:10.1056/NEJM199309303291401. (rct / outcome)
 [^dryeye-dews]: TFOS DEWS II Management and Therapy Report, Ocul Surf 2017, doi:10.1016/j.jtos.2017.05.006; Definition and Classification Report, doi:10.1016/j.jtos.2017.05.008. (consensus / meta)
+[^acne-gl]: Kwon HH, et al. Clinical and histological effect of a low glycaemic load diet in treatment of acne vulgaris in Korea: a randomized, controlled trial. Acta Derm Venereol 2012. doi:10.2340/00015555-1346. (rct)
+[^acne-milk]: Milk consumption and multiple health outcomes: umbrella review of systematic reviews and meta-analyses. Nutr Metab (Lond) 2021. doi:10.1186/s12986-020-00527-y. (meta / observational)
+[^psoriasis-etanercept]: Leonardi CL, et al. Etanercept as monotherapy in patients with psoriasis. NEJM 2003. doi:10.1056/NEJMoa030409. (rct)

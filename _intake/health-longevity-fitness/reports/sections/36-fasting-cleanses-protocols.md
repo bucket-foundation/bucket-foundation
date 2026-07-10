@@ -172,7 +172,10 @@ A reasonable, conservative reading of the literature and clinical practice: **se
 warrant medical input; beyond ~72 hours they should be supervised**, with electrolyte monitoring and a planned
 refeed — especially for anyone on medication, with any chronic condition, or who is not robustly nourished to begin
 with. The Buchinger and Goldhamer data look benign **because** they are run in supervised facilities with screening and
-refeeding. Replicating the duration without the supervision is not replicating the study.
+refeeding. Concretely, that supervision means pre-fast screening (baseline labs, cardiac assessment where indicated,
+a BMI floor, and an eating-disorder screen), monitored vitals and periodic electrolytes during longer fasts, and a
+structured refeeding ramp (low simple carbohydrate first, thiamine before refeeding, and phosphate/potassium/magnesium
+monitoring — see §2.4). Replicating the duration without any of that is not replicating the study.
 
 ### 2.4 Refeeding syndrome — the dangerous part
 
@@ -190,7 +193,7 @@ can be cardiac arrhythmia, respiratory failure, seizures, and death.
   thiamine-deficiency catastrophe.
 - **Practical safety:** the longer and stricter the fast, the higher the risk. Refeed **slowly**, start low-carbohydrate
   and low-volume, supplement **thiamine before and during** refeeding, and **monitor phosphate/potassium/magnesium** in
-  anyone who fasted multiple days or started underweight. This is a medical procedure, not a wellness flourish.
+  anyone who fasted multiple days or started underweight. Treat this as a medical procedure requiring clinical supervision.
 
 ### 2.5 Electrolytes during the fast
 
@@ -325,6 +328,10 @@ than read every one. The one detail worth stopping for is the mechanism of the "
 - **Safety:** the messaging discourages medical supervision exactly where extended fasting most needs it (refeeding,
   meds, comorbidity); high disordered-eating risk.
 
+**The pattern across these protocols.** The dramatic visible "proof" — expelled "stones," mucus casts, color changes —
+is almost always an artifact of the cleanse ingredients themselves (saponified oil, sloughed mucosa, laxative-driven
+transit), not pathology leaving the body. Treat visual drama as marketing, not mechanism.
+
 ---
 
 ## 5. The Fasting-Mimicking Diet (FMD / ProLon) — the most science-anchored of the branded protocols
@@ -376,12 +383,16 @@ dose-response that **does not exist in the data**). The problems, stacked:
    by. Treat any specific hour-threshold as **indicative, not established.**
 2. **Measuring autophagy in living humans is an unsolved problem.** Static markers (LC3-II, p62 in blood cells) are
    snapshots, not **flux** (the rate of the full degrade-and-recycle cycle), and the gold-standard flux assays require
-   tissue and inhibitors you can't ethically run in a fasting volunteer. Most human "autophagy" claims rest on a
+   tissue and inhibitors you can't ethically run in a fasting volunteer. (Flux is measured by tracking LC3 protein
+   turnover in tissue while blocking lysosomal degradation with an inhibitor — a method needing a biopsy plus acute
+   drug exposure, so continuous or whole-body human measurement is impractical.) Most human "autophagy" claims rest on a
    surrogate marker moving — which is **mechanism, not outcome**, and not even a validated mechanism readout.
 3. **Fasting is not the unique or even the strongest autophagy lever.** Autophagy is also induced by **exercise**, by
    **sleep**, by **caloric restriction** (independent of timing), by **rapamycin**, and by **spermidine** (a dietary
-   polyamine; cross-ref `01-foundations.md`). There is no evidence that the *fasting route* to autophagy is special, or
-   that hitting a particular fasting hour confers a discrete benefit you can't get otherwise.
+   polyamine; cross-ref `01-foundations.md`). Spermidine-rich foods include wheat germ, aged cheese, mushrooms, soybeans,
+   and legumes; typical Western intake is ~10 mg/day, and higher dietary intake associates with lower mortality in
+   observational cohorts (`cohort` — association, not proven causation). There is no evidence that the *fasting route*
+   to autophagy is special, or that hitting a particular fasting hour confers a discrete benefit you can't get otherwise.
 4. **Even if you induce it, "more autophagy" → "you live longer/healthier" is an inference, not a demonstrated human
    outcome.** Autophagy's decline is *associated* with aging; transiently bumping a marker has not been shown to change
    a human health outcome.

@@ -5,12 +5,14 @@ about the next ten minutes. A complete map of human health has to include **what
 ordinary person can actually do about it.** Most premature deaths in the developed world are slow
 (cardiometabolic disease, cancer — Sections 22, 25). But a meaningful fraction are **fast and reversible**:
 a clot that stops a heart, a peanut that closes an airway, a bleed that empties a body, an opioid that
-stops a breath. In those minutes the most decisive medical intervention on Earth is **not** a hospital — it
+stops a breath. The scale is not small: in the US, sudden cardiac arrest claims on the order of ~350,000 lives a
+year, opioid overdoses exceeded 100,000 at the 2021–22 peak, and drowning ~4,000 — a large share occurring
+before EMS arrives, which is exactly why the bystander is the decisive link. In those minutes the most decisive medical intervention on Earth is **not** a hospital — it
 is whoever happens to be standing next to the person. This section is about being that person competently.
 
 > ## ⚠️ READ THIS BEFORE ANYTHING ELSE — what this section is and is not
 >
-> **This is health education, not training and not medical advice.** Reading about CPR is to *doing* CPR what
+> **This is health education — a conceptual map, not a substitute for hands-on training or individualized medical advice.** Reading about CPR is to *doing* CPR what
 > reading about swimming is to swimming. The single most useful action you can take after reading this is to
 > **book a certified, in-person, hands-on course** — Red Cross / American Heart Association / Resuscitation
 > Council (UK) / your national equivalent — where you compress a real manikin, handle a real (training) AED,
@@ -92,8 +94,11 @@ isn't breathing normally.** A heart attack can *cause* an arrest. The acute acti
 heart attack → aspirin + 911 + rest; arrest → **CPR + AED now.**
 
 Survival from out-of-hospital cardiac arrest (OHCA) is the canonical "the system is the patient" story. The
-**Chain of Survival** (an AHA/ILCOR framework) is only as strong as its first links, and **those first links
-are laypeople**:
+key mechanism is counterintuitive: **CPR does not restart the heart** — it maintains marginal circulation and
+keeps a viable, *shockable* rhythm (ventricular fibrillation) from decaying into asystole, which is unshockable
+and unsalvageable. The **defibrillator** restarts the heart; CPR buys the minutes until it arrives — which is
+why hands-only CPR works and why CPR without timely defibrillation has low survival. The **Chain of Survival**
+(an AHA/ILCOR framework) is only as strong as its first links, and **those first links are laypeople**:
 
 1. **Early recognition & call for help** (you)
 2. **Early CPR** (you)
@@ -202,7 +207,7 @@ anaphylaxis is suspected.
 
 @@FIG:13-anaphylaxis-card@@
 
-> **The honest debunk:** **Antihistamines (Benadryl) and asthma inhalers are NOT treatments for anaphylaxis.**
+> **The honest debunk:** **Antihistamines (Benadryl) and asthma inhalers are NOT substitutes for epinephrine and do not treat the life-threatening parts of anaphylaxis (airway swelling, shock).**
 > Antihistamines treat itch and hives — skin symptoms — and act too slowly to touch airway swelling or shock.
 > Relying on them while the airway closes is a documented path to death. Give **epinephrine first**; an
 > antihistamine, if any, is a distant afterthought, never a substitute.
@@ -331,9 +336,11 @@ until a real source says otherwise.
 
 ### 4.3 Sprains, strains & soft-tissue injury — RICE is retired
 
-The old **RICE** (Rest, Ice, Compression, Elevation) mnemonic has been **superseded** (cross-ref the rehab
-section §21). The current sports-medicine framework is **PEACE & LOVE** (Dubois &
-Esculier, *Br J Sports Med* 2020)[^peace-love] brief **P**rotection, **E**levation, avoid
+The old **RICE** (Rest, Ice, Compression, Elevation) mnemonic has been **updated in modern sports-medicine
+consensus** (cross-ref the rehab section §21) to **PEACE & LOVE** (Dubois & Esculier, *Br J Sports Med*
+2020)[^peace-love] — a shift grounded in mechanism (prolonged immobility and aggressive icing delay healing;
+early loading promotes tissue adaptation) and clinical consensus rather than head-to-head RCTs showing RICE
+causes worse outcomes. brief **P**rotection, **E**levation, avoid
 anti-inflammatory over-use, **C**ompression, **E**ducation — then, crucially, **L**oad, **O**ptimism,
 **V**ascularisation (movement), **E**xercise. The headline shift: **prolonged rest and aggressive icing are
 not the goal** — early, graded, optimistic loading is. (Acute first aid for the first day still uses
@@ -471,9 +478,9 @@ unconsciousness. Two rules dominate:
 
 ### 6.4 Drowning & the cold-/breath-hold-water rules
 
-- **Real drowning is silent and fast** — not the thrashing, shouting Hollywood version. A drowning person is
-  usually **upright, quiet, unable to call out**, head low. Watch children near water *constantly*; drowning
-  is a leading cause of child death and takes seconds.
+- **Real drowning is silent and fast.** A drowning person is usually **upright, quiet, unable to call out**,
+  head low in the water. Watch children near water *constantly*; drowning is a leading cause of child death
+  and takes seconds.
 - **Drowning is a *hypoxic* (asphyxial) arrest** — oxygen is the deficit. So unlike adult sudden cardiac
   arrest, **rescue breaths matter:** if the person isn't breathing, give **rescue breaths first, then full CPR
   (30:2)**. **Don't waste time trying to "empty water from the lungs"** (Szpilman, *NEJM* 2012)[^szpilman] —

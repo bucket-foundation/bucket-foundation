@@ -24,16 +24,17 @@ This chapter runs on the corpus's three standing honesty rules:
 3. **Mechanism / mouse ≠ human outcome.** "It activates SIRT1 (a longevity-linked enzyme) / raises NAD+
    (a cell-energy molecule) / spikes dopamine 250%" is a
    *mechanism* claim. "It makes you live longer / happier / leaner" is an *outcome* claim. Almost all hype
-   lives in the quiet upgrade from the first to the second.
+   lives in the quiet upgrade from the first to the second — and the upgrade is rarely innocent, because
+   supplements, wearables, and proprietary protocols are sold on outcomes, not mechanisms. That commercial
+   incentive is the systematic pressure this chapter's five-question filter is built to catch.
 
 And the governing provenance rule: **a practitioner's name attached to a claim is provenance,
 not evidence.** We grade the underlying claim against its primary source, then note who relayed it.
 
 ## Method, and its honest limits
 
-Six parallel YouTube cross-check waves ran on 2026-06-29, one per practitioner cluster. Across them,
-**~98 transcripts** were pulled and **~139 headline claims** were hand-extracted and graded against the
-**1,019-claim corpus** on a four-point scale:[^method-tools]
+Six parallel YouTube cross-check waves ran on 2026-06-29, one per practitioner cluster. Transcripts were
+pulled, headline claims hand-extracted, and each graded against the corpus on a four-point scale:[^method-tools]
 
 - **AGREES** — the claim matches a graded corpus claim at its stated strength.
 - **OVERSTATED** — there is a real kernel (a genuine mechanism, cohort, or acute effect), but the
@@ -111,7 +112,7 @@ RCT that moved it).
 | Claim (who) | The predictor is real… | …but the lever is unproven |
 |---|---|---|
 | Omega-3 index → +5 yr life (Patrick)[^fm1-omega3] | low index tracks higher mortality | VITAL was null at 1 g/d in the replete |
-| "Take 5,000 IU vitamin D, deficiency causes disease" (Patrick)[^fm1-vitd] | low 25-OH-D tracks worse outcomes | raising it in the replete moved nothing |
+| "Take 5,000 IU vitamin D, deficiency causes disease" (Patrick)[^fm1-vitd] | low 25-OH-D tracks worse outcomes | VITAL null in the replete; DO-HEALTH showed a falls/infection signal in older adults and repletion helps the truly deficient; no all-cause mortality benefit in meta-analyses — the lever works for specific outcomes in deficiency, not universally |
 | CGM glucose "spikes" damage healthy people (Means)[^fm1-cgm] | variability is measurable & individual | no outcome RCT in non-diabetics; sensors disagree |
 | "My clock dropped, the protocol works" (Johnson, Sinclair)[^fm1-clocks] | clocks predict at the population level | not a validated *surrogate*; clocks disagree, poor test-retest |
 | VO₂max (an aerobic-fitness score) spoken of as a pure causal lever (Attia, Galpin)[^fm1-vo2max] | strongest mortality *predictor* in the corpus | cohort-tier; reverse-causation inflates magnitude |
@@ -171,7 +172,7 @@ clock readouts that are not validated surrogates.[^hc-twelfth]
 ## Where the practitioners are RIGHT and corpus-additive
 
 The NOT-YET-IN-CORPUS column is where the practitioners are *ahead* of the
-corpus — real claims the index hasn't graded yet. It's a credit column, not a demerit one. These are the promote-worthy leads (the
+corpus — real claims the index hasn't graded yet, and they count in the practitioners' favor. These are the promote-worthy leads (the
 highest-value ten are captured as graded stubs in the practitioner claim-set):
 
 | Lead | Who surfaced it | Why it's promote-worthy |
@@ -246,12 +247,12 @@ this sample agrees on that. They diverge — and the spectrum above ranks them �
 The six raw cross-check files, one per cluster, with full claim-by-claim tables, the verdict for every
 headline claim, the resolving claim-ids, and the list of transcripts pulled (and which failed):
 
-- `_intake-raw/yt-wave/attia-claims-vs-evidence.md` — Peter Attia / *The Drive* (19 transcripts, 22 claims)
-- `_intake-raw/yt-wave/huberman-claims-vs-evidence.md` — Andrew Huberman (18 transcripts, 22 claims)
-- `_intake-raw/yt-wave/rhonda-galpin-claims-vs-evidence.md` — Rhonda Patrick + Andy Galpin (16, 24)
-- `_intake-raw/yt-wave/longevity-sci-claims-vs-evidence.md` — Kaeberlein, Sinclair, Levine, Horvath, Barzilai, Verdin, Gladyshev (17, 24)
-- `_intake-raw/yt-wave/metabolic-n1-claims-vs-evidence.md` — Bryan Johnson, Casey Means, Lustig, Bikman, Taubes (16, 22)
-- `_intake-raw/yt-wave/movement-breath-claims-vs-evidence.md` — Starrett, McGill, Pavel, Ido, McKeown, Wim Hof (12, 25)
+- [attia-claims-vs-evidence.md](_intake-raw/yt-wave/attia-claims-vs-evidence.md) — Peter Attia / *The Drive* (19 transcripts, 22 claims)
+- [huberman-claims-vs-evidence.md](_intake-raw/yt-wave/huberman-claims-vs-evidence.md) — Andrew Huberman (18 transcripts, 22 claims)
+- [rhonda-galpin-claims-vs-evidence.md](_intake-raw/yt-wave/rhonda-galpin-claims-vs-evidence.md) — Rhonda Patrick + Andy Galpin (16, 24)
+- [longevity-sci-claims-vs-evidence.md](_intake-raw/yt-wave/longevity-sci-claims-vs-evidence.md) — Kaeberlein, Sinclair, Levine, Horvath, Barzilai, Verdin, Gladyshev (17, 24)
+- [metabolic-n1-claims-vs-evidence.md](_intake-raw/yt-wave/metabolic-n1-claims-vs-evidence.md) — Bryan Johnson, Casey Means, Lustig, Bikman, Taubes (16, 22)
+- [movement-breath-claims-vs-evidence.md](_intake-raw/yt-wave/movement-breath-claims-vs-evidence.md) — Starrett, McGill, Pavel, Ido, McKeown, Wim Hof (12, 25)
 
 [^method-tools]: Transcripts pulled with `agf-yt` and mined with `agf-yt-mine`. Graded claims live in the domain claim-sets (`02-domains/*-claims.json`); conflicts in `06-evidence/CONFLICTS.md`. This wave produced two new first-class objects: `conflict-carbohydrate-insulin-model` and ten promote-worthy graded stubs in the practitioner claim-set. No new evidence is added; verdicts resolve to already-graded claims and converge on re-runs.
 

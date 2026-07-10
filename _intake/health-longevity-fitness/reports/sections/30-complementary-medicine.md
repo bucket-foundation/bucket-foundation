@@ -64,6 +64,10 @@ shoulder). Its findings are the honest centre of gravity for the whole field:
 
 - Acupuncture beats **no-acupuncture** control by roughly **0.5 SD** (half a standard deviation — a clear, moderate effect).
 - Acupuncture beats **sham** (fake/placebo needling) by only **~0.2 SD** (a fifth of one — a *small* effect).
+  Whether that sliver is signal or noise is debated: some researchers read it as real point-specificity within a
+  broader "any needling recruits descending pain modulation" effect, while critics note ~0.2 SD sits within
+  expectation and blinding-leak range and is hard to distinguish from residual placebo. The preponderance
+  reading: most of the benefit is context, and whether the margin above sham is mechanism or noise stays open.
 - Effects **persist** at 12 months with only ~15% decay (i.e. it isn't a one-day wonder).
 
 Together, those two numbers say it: **most of acupuncture's benefit is context — ritual, attention, touch,
@@ -248,7 +252,10 @@ physiology** (parasympathetic tone, attention, graded movement, stress-axis down
 and "potentisation by serial dilution," where a substance is diluted so extremely that **typical remedies
 (30C = a \(10^{-60}\) dilution) contain, on average, not a single molecule of the original ingredient.** The claim
 that water "remembers" the vanished solute has **no basis in chemistry or physics** (it violates basic
-stoichiometry and Avogadro's number) and **no demonstrated mechanism.**
+stoichiometry and Avogadro's number) and **no demonstrated mechanism.** The most famous water-memory claim —
+Benveniste's 1988 *Nature* paper on basophil activation by ultra-dilute antiserum (Davenas et al.) — collapsed
+under blinded on-site replication (the Maddox/Randi investigation, *Nature* 1988), and no proposed mechanism
+has since survived controlled testing.
 
 The clinical evidence matches the chemistry:
 - **Shang et al. (Lancet 2005)** — large comparative meta-analysis of homeopathy vs conventional medicine

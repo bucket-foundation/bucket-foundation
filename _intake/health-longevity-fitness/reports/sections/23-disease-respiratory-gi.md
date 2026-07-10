@@ -165,7 +165,11 @@ CV death/MI/stroke versus usual care — though it did improve sleepiness, mood,
 **ISAACC** trial reached a similar null in acute-coronary-syndrome patients. The leading explanations: trial
 participants used CPAP only ~3–4 h/night (under-adherence), trials enrolled *non-sleepy* patients (who may
 benefit less), and the patients who plausibly benefit most (severe hypoxic burden, very sleepy) are
-under-represented. Newer analyses suggest CPAP benefit may concentrate in **high-hypoxic-burden** subgroups
+under-represented. The leading mechanistic reconciliation is **hypoxic burden**: observational harm likely
+concentrates in patients with severe, prolonged nocturnal oxygen desaturations (quantified by the oxygen
+desaturation index, ODI, or percentage of sleep time with SpO₂ <90%) — a dimension the trials did not select
+for and that adherent CPAP reliably corrects — while flow-limitation events without major desaturation may
+carry less cardiovascular risk. Newer analyses suggest CPAP benefit may concentrate in **high-hypoxic-burden** subgroups
 and in adherent users — `cohort`/secondary, not yet definitive.
 
 **What this means, honestly.**
@@ -195,7 +199,7 @@ overcome mucociliary clearance and immunity. **Management:** prompt risk-stratif
 pneumonia (severity tools like CURB-65 guide site-of-care), antivirals where indicated, oxygen/supportive care.
 But the **highest-leverage move is prevention by vaccination** — pneumococcal, influenza, COVID-19, and (newly)
 RSV vaccines reduce serious LRTI and death, especially in older adults and those with COPD/heart disease.
-`rct`/`meta` for the vaccines. Smoking cessation again helps (smoking impairs clearance). This is a domain where the low-glamour public-health levers carry the evidence, and vaccines carry far more of it than supplements do.
+`rct`/`meta` for the vaccines. Smoking cessation again helps (smoking impairs clearance). The supplement claims here grade weaker on their own evidence: vitamin D prevents acute respiratory infection mainly in deficient people (`meta`), zinc modestly shortens colds (`rct`/`meta`), and elderberry rests largely on small or anecdotal data — real but minor effects that vaccines outweigh for serious LRTI and death.
 
 ### A5. Pulmonary fibrosis (brief) — the honest prognosis
 
@@ -456,7 +460,11 @@ cardiovascular, not liver.** `mechanistic`/`cohort`.
   2026 meta-analysis by Monami et al., Diabetes Obes Metab, is consistent).[^masld-wl] Diet, exercise, GLP-1 therapy, and bariatric
   surgery all work *through* weight/metabolic improvement. `cohort`/`meta`.
 - **The first approved MASH drugs (new).** **Resmetirom** (a liver-directed thyroid-hormone-receptor-β
-  agonist) became the **first FDA-approved drug for MASH with fibrosis** on the strength of the **MAESTRO-NASH**
+  agonist) became the **first FDA-approved drug for MASH with fibrosis**. Before any approval, **pioglitazone**
+  (a PPARγ agonist) was the best-evidenced off-label pharmacotherapy for over a decade — the **PIVENS** trial
+  (Sanyal et al., NEJM 2010)[^pivens] showed MASH resolution in ~47% vs ~21% on placebo, though without
+  significant fibrosis benefit and with weight gain and fluid retention as drawbacks, and it remains
+  guideline-listed for biopsy-proven MASH in appropriate patients. Resmetirom earned approval on the strength of the **MAESTRO-NASH**
   phase-3 trial (Harrison et al., NEJM 2024),[^maestro] which showed significant MASH
   resolution and fibrosis improvement versus placebo. And **semaglutide** (GLP-1) showed MASH resolution and
   fibrosis benefit in the phase-3 **ESSENCE** trial (Sanyal et al., NEJM 2025).[^essence]
@@ -637,5 +645,6 @@ Five curated entry points (the trial DOIs also appear in the footnotes above):
 [^nordicc]: NordICC — Bretthauer M, et al., NEJM 2022. doi:10.1056/NEJMoa2208375. claim: crc-colonoscopy-screening (rct)
 [^masld-wl]: Vilar-Gomez E, et al. — Gastroenterology 2015; meta-confirmed Monami M, et al., Diabetes Obes Metab 2026. doi:10.1111/dom.70617. claim: masld-weightloss-histology (cohort/meta)
 [^maestro]: MAESTRO-NASH — Harrison SA, et al., NEJM 2024. doi:10.1056/NEJMoa2309000. claim: mash-resmetirom (rct)
+[^pivens]: PIVENS — Sanyal AJ, et al. "Pioglitazone, vitamin E, or placebo for nonalcoholic steatohepatitis." NEJM 2010. doi:10.1056/NEJMoa0907929. PMID 20427778. claim: mash-pioglitazone (rct)
 [^essence]: ESSENCE — Sanyal AJ, et al., NEJM 2025. doi:10.1056/NEJMoa2413258. claim: mash-semaglutide (rct)
 [^daa]: Afdhal N, et al. — ledipasvir-sofosbuvir for HCV, NEJM 2014. doi:10.1056/NEJMoa1402454. claim: hcv-daa-cure (rct)

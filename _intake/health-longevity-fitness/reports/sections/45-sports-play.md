@@ -35,8 +35,7 @@ If you skim the catalog below, bank these first:
 3. **One thing you can still do at 75 — swimming, tai chi, golf (walked), dance.** Scalable, low-collision,
    social: the profile that stays with you for decades.
 
-The meta-rule under all three: **start from what you'll keep doing and who you'll do it with**, not from a VO₂max
-spreadsheet. A mediocre sport you keep beats an optimal program you quit.
+The meta-rule under all three: **start from what you'll keep doing and who you'll do it with.** A mediocre sport you keep beats an optimal program you quit.
 
 @@FIG:Z01-sport-matcher@@
 
@@ -68,9 +67,8 @@ Proceedings* 2018)[^cchs-schnohr] was a surprise that has shaped the entire conv
 
 **The interpretation the authors themselves reached** — and the spine of this whole chapter — is in their own
 words: *"the leisure-time sports that inherently involve more social interaction were associated with the best
-longevity."* Running burns more calories per hour than doubles tennis, yet tennis is associated with **triple**
-the life-expectancy gain. Calories are clearly not the explanatory variable. The variables that *track* the
-ranking are (a) **social interaction**, (b) **skill / cognitive engagement**, and (c) an **intermittent**
+longevity."* As the opening gambit showed, calorie burn does not track the ranking (see intro). The variables that *track* it
+are (a) **social interaction**, (b) **skill / cognitive engagement**, and (c) an **intermittent**
 (burst-and-recover) intensity pattern rather than a steady grind.
 
 @@FIG:Y01-calories-le@@
@@ -80,7 +78,11 @@ assigned — they sort on income, baseline health, joint integrity, and personal
 certainly inflated by who *gets* to play tennis into their 70s. The honest claim is **not** "tennis adds 9.7
 years." It is: *"across a large, well-adjusted cohort, the more social and skillful sports were associated with
 the largest survival differences, in a pattern that calories alone cannot explain — a hypothesis-generating
-finding the authors flag as needing confirmation."*
+finding the authors flag as needing confirmation."* What would settle it is a trial that does not exist:
+randomly assigning sedentary adults to tennis vs. swimming vs. gym would isolate causality from selection. The
+closest interventional evidence is Krustrup's recreational-football RCTs (§4), which makes soccer the
+best-evidenced *team* sport — but leaves the racquet sports atop both cohorts **unconfirmed at RCT tier**. Until
+that trial runs, the racquet-sport signal is hypothesis-generating, not proof.
 
 **The corroborating cohort (so it isn't one study):** Oja et al. (*Br J Sports Med* 2017),[^oja] pooling
 **80,306 British adults**, found **racquet sports** associated with the
@@ -232,8 +234,10 @@ without other people, which welds the psychosocial lever directly onto the exerc
   HIIT zone for much of the match.
 - **Longevity/health evidence — and this is the team sport with real *interventional* support:** **+4.7 yr** in
   CCHS (`cohort`), and crucially a substantial **"Football is Medicine" RCT body** led by Peter Krustrup and
-  colleagues showing that **recreational small-sided football** in untrained adults produces broad,
-  RCT-grade improvements: lower blood pressure, improved VO₂max, fat loss, better lipid/glycemic profiles, and
+  colleagues — pooled in meta-analyses of dozens of trials (Milanović *Sports Med* 2015 on VO₂max; Bangsbo/Milanović
+  *Br J Sports Med* 2018 on broad fitness) — showing that **recreational small-sided football** in untrained
+  adults produces broad, RCT-grade improvements: VO₂max gains on the order of **+3.5 ml/kg/min** (comparable to
+  or exceeding continuous endurance training), lower blood pressure, fat loss, better lipid/glycemic profiles, and
   gains in bone mineral density — often **matching or exceeding continuous endurance training**, with adherence
   advantages because it's a *game*, not a chore (recent meta-analyses and systematic reviews continue to support
   the cardiometabolic and antihypertensive effects, e.g., 2025–2026 reviews on recreational football and
@@ -489,9 +493,9 @@ most effective health intervention for many people is not a better workout — i
 people to play it with.**
 
 ### 7.3 Matching sport to person, age, and goal
-There is no universally "best" sport — only the best sport *for you, now*: **start from adherence and social
-fit, not from a VO₂max spreadsheet**, the intersection of "trains capacities I need" (`02-training.md`), "I'll
-actually keep doing it," and "it puts me around people" (matcher figure in "Start here").
+There is no universally "best" sport — only the best sport *for you, now*: the intersection of "trains
+capacities I need" (`02-training.md`), "I'll actually keep doing it," and "it puts me around people"
+(matcher figure in "Start here").
 
 ### 7.4 The honest injury & overuse trade-offs (and how to mitigate)
 Every sport's engaging quality is paired with a characteristic harm. The mitigation toolkit is largely shared

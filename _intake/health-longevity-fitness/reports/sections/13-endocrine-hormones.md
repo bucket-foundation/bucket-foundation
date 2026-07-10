@@ -344,8 +344,8 @@ people — an `rct` result), plus **exercise** (skeletal muscle is the main gluc
 resistance training improve insulin sensitivity, partly independent of weight), **sleep** (even short
 sleep restriction acutely worsens insulin sensitivity — Domain I, Van Cauter's work), and **diet quality /
 fiber**. When drugs are needed, the metabolic story connects to §10 (GLP-1s, SGLT2 inhibitors, metformin).
-**The headline:** if you fix one endocrine axis with lifestyle, fix this one — it is upstream of more
-disease than any other dial in the table, and it is the one most responsive to behavior.
+**The headline:** insulin resistance is one of the most modifiable endocrine axes — highly responsive
+to fat loss, exercise, and sleep — and upstream of more metabolic disease than most other dials in the table.
 
 ---
 
@@ -518,8 +518,10 @@ hormones that only earn their keep as replacement for a **confirmed, symptomatic
 **The single tell:** if a clinic is selling **injectable GH or GH secretagogues, DHEA, or
 supraphysiologic testosterone as anti-aging** — pushing healthy hormones **up** rather than replacing a
 **diagnosed** deficiency — that is the signal to walk. The best longevity genetics we have point toward
-**less** growth signaling, not more; the best metabolic lever is **lifestyle on the insulin axis**, not a
-vial; and the real hormone medicine is the boring, deficiency-replacement kind that a clinician documents
+**less** growth signaling, not more; the best *first* metabolic lever is **lifestyle on the insulin axis**, and
+when lifestyle alone is insufficient the GLP-1 drugs (cross-ref §10) add proven hard-outcome benefit —
+lifestyle and this pharmacology are complements rather than substitutes, and neither resembles the
+"hormone-optimization" hucksterism the chapter warns against; and the real hormone medicine is the boring, deficiency-replacement kind that a clinician documents
 on your chart.
 
 Now rank what to actually do. The endocrine "levers," ordered by strength of evidence and direction of
@@ -544,9 +546,7 @@ effect, again invert the marketing:
 6. **`rct`-null for the healthy / no validated lever:** DHEA replacement, levothyroxine for subclinical
    hypothyroidism, vitamin D past repletion, "hormone optimization" panels writ large.
 
-The meta-lesson is the manual's: the endocrine system is a **homeostatic control network defending
-set-points**, so most hormone levels are **outputs that report on your system's state, not knobs to be
-forced.**
+The meta-lesson is the manual's: the endocrine system is a **homeostatic control network defending set-points.**
 
 ---
 

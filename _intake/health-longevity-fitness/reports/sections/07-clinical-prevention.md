@@ -139,8 +139,9 @@ risk when a person is in the murky middle of a risk calculator and unsure whethe
   a statin in a borderline case. A high score (>100, or >75th percentile for age/sex) pushes
   decisively *toward* treatment.
 - **Honest tier:** CAC is a **predictor, not a lever** (it forecasts risk but isn't itself a thing you
-  fix) — you do not "treat the calcium" (statins can
-  even *raise* the calcium score as plaque stabilizes). Its value is purely in **reclassifying** who
+  fix) — you do not "treat the calcium." Statins can even *raise* the calcium score as they stabilize
+  plaque, converting soft lipid-rich plaque to denser calcified plaque, so the Agatston score rises even as
+  cardiovascular risk falls; a rising CAC on a statin is not treatment failure. Its value is purely in **reclassifying** who
   should be on therapy. It also delivers a radiation dose (~1 mSv) and can surface incidental findings.
 
 @@FIG:70-cac-risk@@
@@ -151,8 +152,10 @@ statin. Not needed if you are already clearly high-risk (just treat) or clearly 
 ### 2.2 Atrial fibrillation and stroke — find it, then anticoagulate
 
 Atrial fibrillation (AF) is a common, often intermittent and silent, irregular heart rhythm that is a
-**powerful independent cause of stroke** — and the strokes it causes are large and disabling. Two
-prevention moves matter:
+**powerful independent cause of stroke** — and the strokes it causes are large and disabling. The mechanism:
+the fibrillating atria (especially the left atrial appendage) pool stagnant blood, forming thrombi that
+embolize to cerebral arteries and occlude large vessels — which is why **anticoagulation**, not rate or rhythm
+control, is the stroke-preventing lever. Two prevention moves matter:
 
 1. **Detection.** AF is frequently asymptomatic; pulse checks, single-lead ECG wearables, and
    patch/Holter monitoring catch it. (Population screening with wearables is still being graded — it
@@ -231,7 +234,8 @@ adenomatous polyp) — the ideal screening target. Two strong evidence streams:
   **Adherence beats theoretical sensitivity** — an annual FIT done every year can outperform a
   colonoscopy declined.
 
-**Practical:** start at **45**. Pick the test you will actually complete and repeat — colonoscopy
+**Practical:** start at **45**, **stop at 75** for most (USPSTF); individualize 76–85 (screen if never
+screened and healthy) and discontinue after 85. Pick the test you will actually complete and repeat — colonoscopy
 every ~10 years *or* FIT every year are both defensible. Multi-target stool DNA and CT colonography are
 secondary options.
 
@@ -303,7 +307,7 @@ few behaviors.
 | **HPV vaccination** | Cuts invasive cervical cancer; adjusted **IRR 0.37**, and **0.12 if vaccinated before age 17** | cohort (national registry) | Lei 2020 (Swedish registry, NEJM) |
 | **Hepatitis B vaccination** | Prevents HBV → cuts hepatocellular (liver) carcinoma | cohort | (Taiwan childhood HBV program) |
 | **Avoid obesity / metabolic disease** | Excess adiposity is an established cause of ≥13 cancers (colorectal, postmenopausal breast, endometrial, etc.) | cohort + Mendelian | (IARC/WCRF; cross-ref Domain D) |
-| **Limit alcohol** | Causal for breast, colorectal, liver, head/neck, esophageal; risk rises from low intake (no safe threshold for cancer) | cohort + Mendelian | (alcohol depth: other agent) |
+| **Limit alcohol** | Causal for breast (**~7–10% higher risk per 10 g ethanol/day in women**), colorectal, liver, head/neck, esophageal; risk rises from low intake (no safe threshold for cancer) | cohort + Mendelian + meta (Bagnardi 2015) | (alcohol depth: other agent) |
 | **Limit processed & red meat** | **50 g/day processed meat → ~18% higher colorectal cancer**; processed meat = IARC **Group 1**, red meat **Group 2A** | meta (IARC working group) | Bouvard 2015 (IARC, Lancet Oncol) |
 | **Eat enough fiber** | Higher fiber → lower colorectal cancer and lower all-cause mortality | meta | Reynolds 2019 (Lancet; cross-ref Domain D) |
 | **Sun protection** | UV is the dominant cause of skin cancers incl. melanoma; protection lowers incidence | RCT (sunscreen) + cohort | (Nambour sunscreen trial) |
@@ -333,6 +337,12 @@ Two infections cause cancer and have vaccines:
 - **Hepatitis B → hepatocellular carcinoma.** Universal infant HBV vaccination programs (the Taiwan
   cohort is the classic demonstration) reduced childhood liver cancer — the first proof a vaccine could
   prevent a human cancer.
+
+**Hepatitis C — the curable one.** Unlike HBV, HCV has no vaccine but is **curable**: USPSTF gives a **Grade B**
+recommendation for one-time screening in adults 18–79, and **direct-acting antivirals (DAAs)** achieve **>95%
+cure (sustained virologic response)**. Cure lowers but does not eliminate cirrhosis/HCC risk, so those with
+established fibrosis still need surveillance. Screening + treatment is a high-yield, guideline-backed liver-cancer
+lever. `guideline`/`rct`
 
 ### 4.4 Diet — fiber up, processed meat down
 

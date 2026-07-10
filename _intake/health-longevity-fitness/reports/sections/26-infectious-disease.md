@@ -106,9 +106,11 @@ disease, cancer, dementia) dominates is called the **epidemiologic transition** 
 longevity manual exists *because* that transition already happened. We get to worry about telomeres and mTOR
 precisely because we mostly stopped dying of dysentery, smallpox, and childbed fever.
 
-> **The load-bearing reframe:** the highest-leverage health interventions in human history were **boring,
-> collective, and preventive** — a sewer, a clean well, a hand-washing protocol, a vaccine schedule — not heroic
-> individual cures. The same lesson recurs across this manual: the unglamorous fundamentals carry the outcomes.
+> **The load-bearing reframe:** among the highest-leverage health interventions in human history were **boring,
+> collective, and preventive** — a sewer, a clean well, a hand-washing protocol, a vaccine schedule — alongside
+> heroic individual cures. How large a share sanitation deserves relative to nutrition and early medicine is the
+> long-running McKeown debate, still contested by historians (Colgrove 2002; Szreter). The same lesson recurs
+> across this manual: the collective fundamentals carry much of the outcome.
 
 ---
 
@@ -137,7 +139,10 @@ Resistance is **natural selection, sped up**. Bacteria replicate in minutes, mut
 horizontally** (via plasmids) even across species. Every exposure to an antibiotic kills the susceptible bugs and
 **selects for the survivors** — the resistant ones inherit the world. Mechanisms include enzymes that destroy the
 drug (β-lactamases, including the extended-spectrum and carbapenemase varieties), efflux pumps, target
-modification, and reduced permeability. The drivers are entirely human: **over-prescription** (especially for
+modification, and reduced permeability. A distinct category is **biofilm tolerance** — bacteria embedded in a
+self-produced matrix (on catheters, prosthetic joints, heart valves, the cystic-fibrosis lung) become
+physiologically dormant and matrix-shielded, surviving antibiotics that the same organism is "susceptible" to in
+the lab, which is why device-associated and chronic infections so often fail treatment. The drivers are entirely human: **over-prescription** (especially for
 viral illness — §3.4), **incomplete courses**, and above all **industrial agriculture**, where the majority of
 antibiotics globally are used not to treat sick animals but as growth promoters and prophylaxis in crowded
 livestock — a vast resistance incubator feeding back to humans.
@@ -148,9 +153,15 @@ This is not hypothetical. The landmark **GRAM study** (Murray et al., *Lancet* 2
 2019, bacterial AMR was **directly responsible for ~1.27 million deaths and associated with ~4.95 million
 deaths** worldwide — already comparable to or exceeding HIV and malaria. The WHO ranks AMR among the **top global public
 health threats**, and the trajectory points toward a **"post-antibiotic era"** in which routine infections and
-minor surgeries again become dangerous. The pipeline is nearly dry: few novel antibiotic classes have
+minor surgeries again become dangerous. Resistance is not only bacterial: **antifungal resistance** is a parallel,
+faster-growing and worse-drugged threat — multidrug-resistant *Candida auris* is spreading in hospitals worldwide,
+and azole-resistant *Aspergillus* is rising, which is why the WHO published its first **Fungal Priority Pathogens
+List (2022)**. The eukaryote-similarity problem (§1) that makes antifungals toxic also makes new ones scarce. The pipeline is nearly dry: few novel antibiotic classes have
 reached the clinic in decades, because antibiotics are a poor commercial bet (a cheap drug taken for days, that
-society wants to *reserve* rather than sell). The named threats — **MRSA** (methicillin-resistant *Staph aureus*),
+society wants to *reserve* rather than sell). The 'what are we doing about it' answer beyond stewardship is a set
+of still-unproven alternatives: **phage therapy** (bacteriophages against resistant strains, with compassionate-use
+successes but no large RCTs), **anti-toxin/anti-surface monoclonal antibodies**, and **narrow-spectrum precision
+antimicrobials** — promising, early, and not yet a systemic fix. The named threats — **MRSA** (methicillin-resistant *Staph aureus*),
 **carbapenem-resistant Enterobacteriaceae (CRE)**, **drug-resistant TB (MDR/XDR-TB)**, **C. difficile** (an antibiotic-*caused*
 infection), drug-resistant gonorrhea — are not edge cases; they are in hospitals now.
 

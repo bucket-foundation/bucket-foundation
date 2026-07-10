@@ -185,7 +185,7 @@ the *vehicles*.
 | **Risk / injury** | **Moderate, and almost always a load-management failure** (too much mileage too soon — Section 21 §7.2), not an inherent flaw of running. Common: runner's knee, shin splints, Achilles/plantar issues — overuse, responsive to gradual progression and strength work. |
 | **Access (skill / gear)** | **Skill low** (everyone can jog) — though running *well* and building mileage safely takes patience. **Gear:** shoes. That's it. |
 | **Best for** | People who want cheap, portable, high-dose CRF and bone loading; those who enjoy being outdoors; anyone time-pressed (the dose-efficiency is excellent). |
-| **Honest evidence** | The Lee 2014 cohort is robust and dose-flat (slow and brief is enough). Note the honest nuance: in the 80,306-adult British cohort (Oja et al. 2017), **running's mortality association was *not* statistically significant** while swimming/racquet sports/aerobics were — a reminder that self-selected sport cohorts disagree and that *who runs* confounds the estimate.[^oja] Across the literature the direction for running is positive (Lavie et al., "Running as a key lifestyle medicine for longevity," 2017); the magnitude is uncertain.[^running-review] |
+| **Honest evidence** | Running overuse-injury incidence is well-studied and runs roughly **2.5–12+ per 1000 hours**, higher in novices and high-mileage runners and dominated by overuse (not acute) injuries — the wide range reflects population and definition differences. For kettlebells and calisthenics, injury-rate data are sparse and the risk grades here are qualitative syntheses from overuse-injury cohorts and mechanism rather than pooled rates. The Lee 2014 cohort is robust and dose-flat (slow and brief is enough). Note the honest nuance: in the 80,306-adult British cohort (Oja et al. 2017), **running's mortality association was *not* statistically significant** while swimming/racquet sports/aerobics were — a reminder that self-selected sport cohorts disagree and that *who runs* confounds the estimate.[^oja] Across the literature the direction for running is positive (Lavie et al., "Running as a key lifestyle medicine for longevity," 2017); the magnitude is uncertain.[^running-review] |
 
 > **Honest debunk — "running destroys your knees."** This is **backwards for recreational runners.** The
 > JOSPT meta-analysis (Alentorn-Geli et al. 2017, 125,810 people) found hip/knee
@@ -525,9 +525,7 @@ one-screen for modality selection:
 
 ## 11. The honest synthesis — adherence beats optimality
 
-This conclusion overrides every modality ranking above. **The best modality is the one you will keep doing.**
-
-Practical decision order (cross-ref Section 29 behavior change, and the Helms/Israetel hierarchy in Section 02
+This conclusion, stated at the top, overrides every modality ranking above. Practical decision order (cross-ref Section 29 behavior change, and the Helms/Israetel hierarchy in Section 02
 §7 that puts **adherence at the top**, above volume, intensity, and exercise selection):
 
 1. **Cover the capacities** (strength, CRF, and don't neglect power + balance — Section 02 §1). *Which* tools

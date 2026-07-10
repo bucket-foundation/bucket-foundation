@@ -24,7 +24,7 @@ can directly *change*.
 
 | Capacity | What it is | Why it's load-bearing |
 |---|---|---|
-| **Cardiorespiratory fitness (CRF / VO₂max)** | The engine: how much \(\mathrm{O_{2}}\) your body can deliver and use under load | **The strongest mortality predictor in preventive medicine (the association is robust; CRF as an *isolated lever* has not been tested in RCTs, though plausible mechanisms and dose-response consistency support causality).** ~13% lower all-cause mortality per 1-MET (one MET = the energy you burn at rest; +1 MET is a meaningful jump in fitness); no observed upper limit. Being low-fit carried risk *comparable to or worse than* smoking; the extreme-low-fit-vs-elite gap runs as high as ~5× mortality in cohort data (a magnitude inflated by reverse causation — see §8).[^crf-met] |
+| **Cardiorespiratory fitness (CRF / VO₂max)** | The engine: how much \(\mathrm{O_{2}}\) your body can deliver and use under load | **The strongest mortality predictor in preventive medicine (the association is robust; CRF as an *isolated lever* has not been tested in RCTs, though plausible mechanisms and dose-response consistency support causality).** ~13% lower all-cause mortality per 1-MET (one MET = the energy you burn at rest; +1 MET is a meaningful jump in fitness) — though the dose-response is **non-linear**: the steepest mortality drop is sedentary → low-fit, and gains flatten past moderate fitness, so the per-MET average is pulled up by the extreme low-fit end (§8). No observed upper limit for the association. Being low-fit carried risk *comparable to or worse than* smoking; the extreme-low-fit-vs-elite gap runs as high as ~5× mortality in cohort data (a magnitude inflated by reverse causation — see §8).[^crf-met] |
 | **Strength** | Force production across the major movement patterns | Strength (**not** muscle mass) independently predicts mortality, falls, and disability; sarcopenia is now *defined* by low strength. Resistance activity → ~10–17% lower mortality, independent of cardio.[^strength-mort] |
 | **Mobility** | Active, controlled range of motion at each joint | Range you can *own under control* is what keeps you doing the basic human positions (deep squat, overhead reach, floor get-up) into old age. Evidence here is mechanism/anecdotal, not mortality-grade — held to a lower claim.[^mobility-inv] |
 | **Balance** | Postural control and reactive stability | The **single-leg stand** and **sit-to-rise** are validated mortality biomarkers; balance is the literal difference between a stumble and a hip fracture in the second half of life.[^balance-bio] |
@@ -43,8 +43,7 @@ range) extend life. Don't let a mobility influencer borrow strength's evidence.
 
 Human strength reduces to five fundamental patterns: **squat, hinge, push, pull, carry** (plus single-leg
 and core as connective tissue between them). Train all five and you have covered the body. The reason this
-section exists: **every pattern has a ladder.** You do not start at the barbell — you start where you can
-own the movement with clean form, and you climb. Pick the rung you can do for the prescribed reps *with
+section exists: **every pattern has a ladder.** Pick the rung you can do for the prescribed reps *with
 good technique and 1–3 reps in reserve* (how many more reps you could do before failing). When it's
 easy, take the next rung.
 
@@ -406,7 +405,9 @@ Three dials control strength and hypertrophy adaptation:
 ### 6.3 Progressive overload + autoregulation (RPE / RIR)
 
 **Progressive overload** = the body adapts only to a stimulus it hasn't already mastered, so the stimulus
-must *climb* over time. Ways to add load (in rough priority):
+must *climb* over time — during a *building* phase. Once a strength or size target is reached, the stimulus
+needed to *maintain* it is far lower (on the order of a third of the volume that built it), which is why the
+maintenance MED is so forgiving (§6.1). Ways to add load (in rough priority):
 
 1. **Add reps** at the same weight (e.g. 3×8 → 3×10).
 2. **Add weight** once you hit the top of the rep range.
@@ -472,9 +473,11 @@ lifts on separate days to limit interference (6.6).*
 Adaptation happens during **recovery**, not during the session. Hard training without recovery is just
 damage.
 
-- **Deload** roughly **every 4–8 weeks** (sooner if beat up): cut volume ~40–60% and/or intensity for a
-  week. Joints feel achy, sleep/mood dip, lifts stall, motivation craters → time to deload. Beginners
-  need them rarely; advanced trainees near MRV need them routinely.
+- **Deload** roughly **every 4–8 weeks** — **planned** (scheduled every Nth week for advanced trainees near
+  MRV, staying ahead of fatigue) or **reactive** (when joints ache, sleep/mood dip, lifts stall, motivation
+  craters). The higher-yield deload cuts **volume ~40–60%** while keeping **intensity moderate** (~60–75% of
+  working weight) to preserve the movement pattern and neural skill; cutting both also works. Beginners need
+  them rarely; advanced trainees near MRV need them routinely.
 - **Sleep is the master recovery lever** (~7 h, regular).[^sleep-dur] Protein
   adequacy supports muscle repair (leucine-threshold dosing). 1–2 genuine rest days/week.
 - **Cold-water immersion timing:** **do not ice immediately after a strength session if growth/strength

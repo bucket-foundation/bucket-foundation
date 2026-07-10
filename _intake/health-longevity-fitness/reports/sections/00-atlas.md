@@ -94,21 +94,23 @@ The diseases themselves, mapped as clinical entities — what they are, the mech
 | Pharmacology (how drugs work, the major classes) & pharmacogenomics | §28 |
 | Longevity pharmacology (GLP-1, statins, vaccines, geroprotectors) | §10 |
 | Regenerative medicine & the longevity frontier (stem cells, gene therapy, reprogramming) | §31 |
-| Complementary & alternative medicine (graded honestly) | §30 |
-| Biohacking & fringe interventions (graded) | §32 |
+| Complementary & alternative medicine (graded honestly) — mostly weak; acupuncture for some pain and meditation/MBSR are the higher-graded exceptions | §30 |
+| Biohacking & fringe interventions (graded) — a few real (cold/heat overlap §05), most `mechanistic`/`animal`/unverified | §32 |
 
 ## Layer 3 — The levers (what you actually do)
 
-| Node | Where |
-|---|---|
-| Training — CRF (cardiorespiratory fitness — how fit your heart and lungs are), strength, mobility, balance; programming & variations | §02 |
-| Nutrition — the dietary pattern, protein, fasting | §03 |
-| Supplements — creatine, omega-3, vit D, the hype-check | §03 |
-| Sleep & circadian | §05 |
-| Thermal — sauna & cold | §05 |
-| Breath & breathwork | §05 |
-| Stress, recovery & psychosocial (connection, purpose) | §05 |
-| Movement library — 53 movements, illustrated | §02, movement library |
+Evidence tier here uses the book's ladder (`meta` > `rct` > `cohort` > … ); each chapter carries the graded specifics.
+
+| Node | Where | Strongest evidence |
+|---|---|---|
+| Training — CRF (cardiorespiratory fitness — how fit your heart and lungs are), strength, mobility, balance; programming & variations | §02 | `cohort` (CRF→mortality, robust) / `rct` (strength, hypertrophy) |
+| Nutrition — the dietary pattern, protein, fasting | §03 | `rct`/`cohort` (patterns, protein) |
+| Supplements — creatine, omega-3, vit D, the hype-check | §03 | `meta` (creatine) down to `null` (most) |
+| Sleep & circadian | §05 | `rct` (short-sleep harm) / `cohort` |
+| Thermal — sauna & cold | §05 | `cohort` (sauna) / `rct`-thin (cold) |
+| Breath & breathwork | §05 | `rct`-small / `mechanistic` |
+| Stress, recovery & psychosocial (connection, purpose) | §05 | `cohort` (strong) / `rct`-sparser |
+| Movement library — 53 movements across strength (barbell/bodyweight), mobility, balance, and plyometric categories, illustrated | §02, movement library | technique reference |
 
 ## Layer 4 — Context (the lived environment & the clinic)
 
@@ -126,8 +128,8 @@ The diseases themselves, mapped as clinical entities — what they are, the mech
 | Node | Where |
 |---|---|
 | Evidence schema & the ten-rung tier ladder | the Evidence chapter |
-| The 38 open conflicts (disagreement as data) | the Conflicts register |
-| People map — 176 figures + relationship graph | the People map |
+| The 38 conflict objects (23 open) — disagreement as data | the Conflicts register |
+| People map — 174 figures + relationship graph | the People map |
 | Labs, institutions & trials | the Labs & Trials directory |
 | Mechanism bridge — every lever → its fundamental basis | §12 |
 | Go-deeper curated library | §06 |

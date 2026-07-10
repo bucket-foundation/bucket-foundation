@@ -238,7 +238,7 @@ broad, and invisible at the bottom; expensive, narrow, and effortful at the top:
   = limit damage after.
 
 When later sections say "tier-1–2, population, primary," they mean the same corner of every one of these
-maps: the unshowy base that does the heavy lifting.
+maps: primary, population-level prevention, where the largest per-DALY gains sit.
 
 The brutal punchline for this manual: **almost everything the longevity industry sells lives at the apex
 (tier 5) — the tier with the *least* population impact and the *most* required individual effort.** Supplements,
@@ -248,7 +248,7 @@ protocols, coaching, and "education" are tier-5 levers. The things that actually
 ### 3.4 The cheapest life-years ever bought
 
 The most cost-effective health interventions in history are almost all **primary, population-level, and
-low-profile** — and none of them has a product behind it. (Cost is shown per **DALY** — disability-adjusted life year, one
+low-profile**. (Cost is shown per **DALY** — disability-adjusted life year, one
 year of healthy life lost; **LMICs** = low- and middle-income countries. Evidence codes: `rct` = randomized
 trial, the strongest tier; `meta` = pooled analysis of many trials.)
 

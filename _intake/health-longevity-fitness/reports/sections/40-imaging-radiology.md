@@ -31,9 +31,7 @@ same scanner that saves a symptomatic patient manufactures a problem in an asymp
 entirely conditional on the pre-test question, and "more imaging = better care" is the most expensive false
 belief in the field.
 
-A word on the grading shorthand used below: `cohort` = observational study (people followed over time),
-`rct` = randomized controlled trial (the strongest evidence tier), `meta` = pooled analysis across trials,
-and `mechanistic`/`theoretical` = based on how the biology *should* work rather than a measured outcome.
+Evidence grades (`cohort`, `rct`, `meta`, `mechanistic`/`theoretical`) follow the system defined in *Start Here* — see there for the full tier definitions.
 
 > **What this chapter leans on elsewhere.** Screening graded against mortality endpoints (mammography,
 > lung LDCT, CAC scoring, the whole-body-MRI / Galleri / Prenuvo debunk) lives in `07-clinical-prevention.md`.
@@ -292,7 +290,9 @@ fields in medicine, and it inverts the usual imaging story: here imaging is not 
 
 The field's origin is a 1964 act of nerve: **Charles Dotter** threaded a catheter through a narrowed leg
 artery to dilate it without surgery — inventing angioplasty and, with it, the whole discipline of
-image-guided therapy. What grew from it:
+image-guided therapy. It was **Andreas Grüntzig's 1977 balloon catheter** — inflatable and steerable — that
+turned Dotter's rigid-dilator proof-of-concept into the scalable tool that built interventional cardiology.
+What grew from it:
 
 - **Mechanical thrombectomy for acute ischaemic stroke** — the flagship, and **RCT-proven**. A catheter
   is navigated into the brain to physically pull out the clot occluding a large vessel. The **HERMES
@@ -340,7 +340,11 @@ governance, see `33-public-health-systems.md §6` — do not duplicate.)
 - **Benchmark accuracy ≠ deployment benefit.** The field has *thousands* of "AI matches radiologists"
   papers and a *handful* of prospective trials with patient outcomes. Models that excel on the dataset
   they were trained and tested on frequently **degrade on external data** from a different scanner,
-  hospital, or population (distribution shift) — the well-documented external-validation gap.
+  hospital, or population (distribution shift) — the well-documented external-validation gap. The field is
+  not stuck on it: **multi-site validation** and **federated learning** (training across institutions without
+  pooling raw data) are now standard in serious deployments, and domain-adaptation/fine-tuning on target-site
+  data partially closes scanner and population drift — though robust generalization remains an active research
+  front, not a solved problem.
 - **Even MASAI's win carries the chapter's own warning.** Detecting **29% more cancer** sounds
   unambiguously good — but part of the extra yield was **small and in-situ (DCIS — ductal carcinoma in situ, the earliest, non-invasive stage) disease**, which raises
   the same **overdiagnosis** question as mammography itself (`07 §3.3`). The trial's *primary* endpoint —
@@ -364,7 +368,8 @@ The single most useful sentence in this chapter: **a scan is not a checkup.**
 
 A **checkup** is a structured assessment of risk and a search for the *specific*, *common*, *treatable*
 things that actually kill people — blood pressure, lipids/apoB (the protein riding the particles that
-carry cholesterol into artery walls), glucose, the RCT-backed cancer screens at
+carry cholesterol into artery walls), glucose, **smoking status and cessation support (the single
+highest-yield intervention, `07 §2`)**, the RCT-backed cancer screens at
 the right ages (`07-clinical-prevention.md`). A **whole-body scan** is an indiscriminate sweep of an
 asymptomatic body that, by the base-rate math of §40.4, predictably returns incidentalomas rather than
 saved lives. They feel similar to a frightened consumer; they are opposites in expected value.

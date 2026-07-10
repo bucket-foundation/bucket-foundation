@@ -65,13 +65,13 @@ than one line — skip to whichever matters to you.
 
 | Variant / gene | What it is | Why it can matter for *you* | Honest grade |
 |---|---|---|---|
-| **APOE (ε4)** | Lipid-transport apolipoprotein; ε2/ε3/ε4 alleles | Strongest common risk allele for **late-onset Alzheimer's** + a CVD/lipid modifier | Real, large relative risk (RR) — but a *risk* allele, not destiny; **counseling-fraught** (§A.3) |
-| **Lp(a) — *LPA*** | Genetically-set lipoprotein(a) level (mostly *LPA* kringle-repeat) | **Causal**, lifelong CVD/aortic-stenosis risk; ~20% of people are high; **one-time test** | Strong (Mendelian-randomization causal); see Domain L |
-| **FOXO3** | Forkhead transcription factor, stress resistance | Replicated **longevity** association across populations | Real at *population* scale; **near-useless personally** (§A.4) |
-| **MTHFR (C677T / A1298C)** | Folate-cycle enzyme variant | Marketed endlessly; **mostly meaningless** for healthy people | **Overhyped — debunk (§A.5)** |
-| **HFE (C282Y / H63D)** | Hereditary hemochromatosis (iron overload) | Treatable if it ever manifests (phlebotomy); but **low penetrance** | Real gene, **modest personal risk** (§A.2.2) |
-| **BRCA1/2 & cancer genes** | High-penetrance hereditary cancer | **actionable** — screening, risk-reducing surgery, cascade testing | Strong *for true carriers*; chip testing is the wrong tool (§A.2.3) |
-| **Pharmacogenes (CYP2C19, CYP2D6, DPYD, TPMT, SLCO1B1, HLA-B)** | Drug-metabolism / hypersensitivity variants | **The most useful clinical genetics there is** — dose & drug choice | Strong, guideline-backed (CPIC); see §A.2.4 |
+| **APOE (ε4)** | Lipid-transport apolipoprotein; ε2/ε3/ε4 alleles | Strongest common risk allele for **late-onset Alzheimer's** + a CVD/lipid modifier | **Real, large RR** — a risk allele, not destiny; counseling required; §A.3 |
+| **Lp(a) — *LPA*** | Genetically-set lipoprotein(a) level (mostly *LPA* kringle-repeat) | **Causal**, lifelong CVD/aortic-stenosis risk; ~20% of people are high; **one-time test** | **Strong** — Mendelian-randomization causal; one-time test; Domain L |
+| **FOXO3** | Forkhead transcription factor, stress resistance | Replicated **longevity** association across populations | **Real at population scale** — near-useless personally; §A.4 |
+| **MTHFR (C677T / A1298C)** | Folate-cycle enzyme variant | Marketed endlessly; **mostly meaningless** for healthy people | **Overhyped** — testing not recommended; §A.5 |
+| **HFE (C282Y / H63D)** | Hereditary hemochromatosis (iron overload) | Treatable if it ever manifests (phlebotomy); but **low penetrance** | **Real gene, modest personal risk** — low penetrance; §A.2.2 |
+| **BRCA1/2 & cancer genes** | High-penetrance hereditary cancer | **actionable** — screening, risk-reducing surgery, cascade testing | **Strong for true carriers** — chip testing is the wrong tool; §A.2.3 |
+| **Pharmacogenes (CYP2C19, CYP2D6, DPYD, TPMT, SLCO1B1, HLA-B)** | Drug-metabolism / hypersensitivity variants | **The most useful clinical genetics there is** — dose & drug choice | **Strong, guideline-backed** — CPIC; §A.2.4 |
 
 @@FIG:BX1-actionable-variants@@
 
@@ -247,7 +247,9 @@ science.**
 
 ## A.6 Consumer genetic testing (23andMe-type) — what it's good for, and the honest limits
 
-A consumer kit genotypes a few hundred thousand to a million common SNPs. Sorted by honesty:
+A consumer kit directly genotypes ~600k–1M common SNPs, then computationally **imputes** several million more
+from population linkage patterns — imputed calls carry lower confidence and higher false-positive rates for rare
+variants, which is why a raw-data "finding" for a rare pathogenic variant needs clinical confirmation. Sorted by honesty:
 
 **What it is good for**
 
@@ -387,7 +389,8 @@ maintenance of a stable internal milieu (temperature, pH, glucose, calcium, osmo
 constant perturbation — Claude Bernard's *milieu intérieur*, Walter Cannon's coinage (section 01 §6.2).
 Every organ system is, at bottom, a **homeostatic loop**: a sensor, a set-point, an effector, and
 negative feedback. The respiratory and cardiovascular systems hold \(\mathrm{O_{2}}\)/\(\mathrm{CO_{2}}\) and pH; the kidneys hold
-water, sodium, and acid-base; the endocrine pancreas holds glucose; the skin and hypothalamus hold
+water, sodium, and acid-base; the endocrine pancreas holds glucose; the parathyroid holds serum calcium (the
+PTH ↔ bone ↔ kidney ↔ gut loop, one of the tightest set-points in the body); the skin and hypothalamus hold
 temperature. **Allostasis** is the modern refinement — stability *through* predictive change — and its
 cost, **allostatic load**, is the wear from stress responses that never reset (section 01 §6.2; section
 05 on sleep/stress). When you read any body-system section, ask: *what variable is this system holding

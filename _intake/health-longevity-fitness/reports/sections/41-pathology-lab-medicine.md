@@ -202,11 +202,13 @@ Underneath every clean digit on a lab report is an **analytical reality** the re
 - **Imprecision (the CV, or coefficient of variation — how much the same sample wobbles when re-run).**
   Repeat the same sample and you get a spread. Well-controlled chemistry assays run
   a few percent; some immunoassays (many hormones) run 10–20%+. A "change" smaller than the assay's
-  reference-change value is noise.
+  reference-change value (RCV) is noise. For comparing two measurements on the same person, RCV ≈ 2.77 × CV at
+  95% confidence (√2 × 1.96 × CV): an assay with CV = 5% has an RCV ≈ 14%, so a measured change under ~14%
+  between two draws is statistically indistinguishable from analytical noise.
 - **Between-method disagreement.** Different platforms calibrated differently give different absolute
   values — acute for **endocrine assays** (testosterone, cortisol, thyroid, insulin; cross-ref §13) and
   **insulin/HOMA-IR** (flagged in `WHAT-TO-TRACK-SYNTHESIS.md` Tier A caveat). This is why you should
-  **trend on one lab/one method**, not compare a result across providers.
+  **trend results on one lab and one method** — it avoids spurious variation from method disagreement.
 - **Interferences and pre-analytical error.** Hemolysis, fasting state, time of day, recent illness,
   biotin supplements (a notorious immunoassay interferent), tourniquet time, even posture move results.
   Most "abnormal" results are pre-analytical, not pathological.

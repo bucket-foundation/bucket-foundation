@@ -87,7 +87,9 @@ without changing a single gene.
 (driven by accumulated meiotic errors in long-arrested oocytes — tie to the §19 oocyte-aging biology). But two
 honest caveats: (1) because *more babies are born to younger mothers*, the **majority of children with Down
 syndrome are born to mothers under 35**; (2) maternal age is a **predictor, not blame** — it is a statistical
-gradient, not a choice that "causes" the condition. The Down-syndrome primer (Antonarakis et al., 2020) is the
+gradient, not a choice that "causes" the condition; and (3) some evidence suggests a **modest paternal-age
+contribution** (likely via post-zygotic mitotic errors), though this is debated and the maternal-age gradient is
+far steeper. The Down-syndrome primer (Antonarakis et al., 2020) is the
 definitive modern review.[^downsyn] `cohort`/review — strong.
 
 [^downsyn]: Antonarakis SE et al., "Down syndrome." *Nat Rev Dis Primers* 2020. doi:10.1038/s41572-019-0143-7.
@@ -101,7 +103,7 @@ definitive modern review.[^downsyn] `cohort`/review — strong.
 | **Sickle cell disease** | *HBB* (β-globin), autosomal recessive. | Sickled red cells → vaso-occlusion, pain crises, organ damage, stroke. | **Owned by §31 (hematology).** Newborn screening + penicillin prophylaxis + hydroxyurea transformed childhood survival; **gene therapies** (e.g. exagamglogene/lovotibeglogene, 2023–24 approvals) are now curative for some. Cross-ref §31; not restated here. |
 | **Huntington disease** | *HTT* CAG-repeat expansion, autosomal **dominant**, fully penetrant. | Adult-onset (usually 30s–50s) progressive movement, cognitive, and psychiatric decline. | The hardest case in predictive genetics: a definitive test exists, but **there is still no disease-modifying treatment**, so testing is a profound personal choice with major psychological and family implications. The model case for **non-directive genetic counseling** (§18). `mechanistic` (cause certain) / treatment `null` so far. |
 | **Duchenne muscular dystrophy** | *DMD* (dystrophin), X-linked recessive; affects boys. | Progressive muscle degeneration from early childhood; loss of ambulation in the teens, cardiorespiratory decline. | Corticosteroids slow decline; cardiac/respiratory care extends survival into adulthood; exon-skipping and gene therapies are **emerging but still modest/contested** in benefit. Honest: real progress, not yet a cure. |
-| **Fragile X syndrome** | *FMR1* CGG-repeat expansion, X-linked. | **The most common inherited cause of intellectual disability** and a leading single-gene cause of autism; learning/behavioral features, characteristic physical signs. | No cure; **early intervention, educational support, and managing co-occurring ADHD/anxiety** are the levers. The autism overlap (§2, §20) is biologically real here. |
+| **Fragile X syndrome** | *FMR1* CGG-repeat expansion, X-linked. | **The most common inherited cause of intellectual disability** and a leading single-gene cause of autism; learning/behavioral features, characteristic physical signs. **Premutation carriers (55–200 CGG repeats)** are at risk for **FXTAS** (late-onset tremor/ataxia) and, in women, **premature ovarian insufficiency (FXPOI)** — so a fragile-X child's family may include a grandfather with tremor or a mother with early menopause. | No cure; **early intervention, educational support, and managing co-occurring ADHD/anxiety** are the levers. The autism overlap (§2, §20) is biologically real here. |
 
 **Plain takeaway:** one broken gene, one large effect — and for several of these (cystic fibrosis, sickle
 cell) the last decade turned a childhood death sentence into a managed or even curable condition.
@@ -275,7 +277,8 @@ returning.** Cross-ref §26.
 ### 3.2 Childhood cancers — the chemotherapy success story (cross-reference §25)
 
 Childhood cancers are biologically different from adult cancers (fewer carcinogen-driven solid tumors; more
-leukemias, brain tumors, embryonal tumors). The headline is one of medicine's **greatest triumphs**:
+leukemias, brain tumors, embryonal tumors) — **neuroblastoma** is the most common extracranial solid tumor,
+usually presenting before age 5 from adrenal or sympathetic-chain primaries. The headline is one of medicine's **greatest triumphs**:
 
 - **Acute lymphoblastic leukemia (ALL)** — the most common childhood cancer — had a survival rate **near zero
   in 1960**. Today, with **risk-stratified, multi-agent chemotherapy** (and, for high-risk cases, transplant
@@ -299,10 +302,15 @@ march: eczema → food allergy → allergic rhinitis → asthma). Honest, eviden
 
 - **Inhaled corticosteroids (ICS) are the cornerstone** controller; the disease is highly manageable, and most
   children with asthma live full active lives. Under-treatment (and over-reliance on rescue inhalers) is the
-  common failure.
+  common failure. **Exercise-induced bronchoconstriction (EIB)** is a distinct, often under-recognized presentation
+  and a common reason children limit sport; a short-acting β-agonist before exercise plus optimized ICS is the
+  management cornerstone. `guideline`
 - **The hygiene / "old friends" hypothesis** — that reduced early-life microbial exposure contributes to rising
   allergic disease — is a **plausible, partly-supported mechanism**, not a settled prescription (e.g. farm/raw-
   milk environments associate with less asthma in cohorts). `mechanistic`/`cohort` — suggestive, not proven.
+  Key counter-evidence: early infections such as RSV bronchiolitis *increase* later asthma risk (opposite of the
+  hygiene prediction), and the raw-milk associations are confounded by the farm environment (endotoxin and animal
+  contact), not pasteurization itself. The microbial-diversity signal is real; the 'drink raw milk' application is not.
 - **The one place the evidence flipped hard:** early peanut **introduction**. The **LEAP trial** (Learning Early About Peanut) showed that
   introducing peanut *early* (4–11 months) in high-risk infants **dramatically reduced** peanut allergy versus
   avoidance — overturning a generation of "delay allergenic foods" advice. (Graded in the allergy/immunology
@@ -363,7 +371,9 @@ leading cause of post-neonatal infant death and a parent's worst fear. It is als
   avoid front-sleeping been adopted earlier, **tens of thousands of infant deaths might have been prevented** —
   a rare and damning case of *delayed* translation of evidence.
 - The **"Back to Sleep" campaign** (launched 1994; now "Safe to Sleep") translated this into a simple message:
-  put babies **on their backs to sleep**. Where adopted, **SIDS rates fell by roughly half or more.** A broader
+  put babies **on their backs to sleep**. Where adopted, **SIDS rates fell sharply — commonly cited as ~50%**,
+  though part of the coded decline reflects diagnostic reclassification (some deaths now recorded as accidental
+  suffocation) and pre-existing temporal trends; the position-change effect itself is real and large. A broader
   safe-sleep bundle stacks on top of the sleeping position. (Swaddling is nuanced — it can help, but increases
   risk if the baby rolls prone; Pease et al., 2016.[^swaddle])
 - **The honest lever:** a free, behavioral, position change — no drug, no device — roughly halved a leading
@@ -585,8 +595,10 @@ treatment RCTs) versus describes a syndrome.
    would have saved tens of thousands of infants. **Tier: cohort/public-health — strong.** The archetype of the
    free, behavioral, high-leverage win.
 7. **Oskoui M et al. "An update on the prevalence of cerebral palsy."** *Dev Med Child Neurol* 2013,
-   `10.1111/dmcn.12080` — the epidemiology of childhood's commonest motor disability, and the corrective on the
-   over-blamed "birth asphyxia" narrative. **Tier: cohort/meta — strong.** Pair with **the MRC folate RCT**
+   `10.1111/dmcn.12080` — the epidemiology of childhood's commonest motor disability, the corrective on the
+   over-blamed "birth asphyxia" narrative, and the divergent modern trends: CP prevalence has **declined in term
+   infants** (better obstetric/neonatal care) but stayed **flat or risen in preterm survivors** (NICU success keeps
+   very-early babies alive who then carry CP risk). **Tier: cohort/meta — strong.** Pair with **the MRC folate RCT**
    (*Lancet* 1991, PMID 1677062, graded in §19) for the preventable-structural-defect bookend.
 
 ---

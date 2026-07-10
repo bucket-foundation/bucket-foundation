@@ -6,10 +6,6 @@ organ masks: the slow failure of the same vascular and metabolic machinery. This
 cluster — what each disease is, the mechanism (tied back to the fundamentals this corpus builds), how
 it shows up in a clinic, and the honestly-graded evidence behind managing it.
 
-**Bottom line:** cardiometabolic, endocrine, and renal disease are largely **one interconnected process** —
-insulin resistance is the hub, the vasculature is the shared victim, and two drug classes (**GLP-1 agonists
-and SGLT2 inhibitors**) reorganized the whole field by protecting heart and kidney beyond glucose.
-
 Three honesty rules run through every entry (defined in Start-Here): **predictor ≠ lever** (a number that
 forecasts risk isn't automatically something that, once changed, lowers it), **cohort ≠ RCT**, and
 **something beats nothing** is not proof a treatment works.
@@ -82,7 +78,7 @@ MIs. This is why a "70% blockage" is not the only thing to fear, and why lowerin
 relieved by rest. But presentation is treacherous: women, diabetics, and the elderly often have
 **atypical or silent presentations** (fatigue, breathlessness, nausea, "indigestion"). An acute MI is
 crushing chest pain with sweating, nausea, and dyspnea — but a meaningful minority are silent. The
-honest takeaway: do not rely on textbook symptoms to rule it out.
+honest takeaway: do not rely on textbook symptoms to rule it out. **High-sensitivity troponin assays (hs-cTn)** are now the diagnostic standard — detecting smaller infarcts and enabling rapid rule-in/rule-out protocols that compensate for symptom unreliability, a change over the last decade. `guideline`/`rct`
 
 **Management, honestly graded.**
 - **Prevention is the highest-leverage move** and is owned by `07` and `L`: lower apoB aggressively
@@ -104,8 +100,11 @@ honest takeaway: do not rely on textbook symptoms to rule it out.
   is one of the most important honesty corrections in cardiology: **stents save lives in acute
   occlusion, but in stable disease they mostly treat symptoms, not mortality.** Optimal medical therapy
   (apoB lowering + BP + antiplatelet) is the survival lever.
-- **CABG (bypass surgery)** retains a mortality advantage in specific high-risk anatomy (left main,
-  multivessel disease with reduced ejection fraction, diabetics — FREEDOM trial).
+- **CABG (bypass surgery)** retains an advantage in specific high-risk anatomy: **left main** disease
+  (EXCEL and NOBLE, though the comparison is contested — EXCEL's 5-year data showed a late mortality signal,
+  Stone *NEJM* 2019; NOBLE favored CABG, Mäkikallio *Lancet* 2016), **multivessel disease with reduced EF or
+  high anatomic complexity** (SYNTAX and older trials), and **diabetics with multivessel disease** (**FREEDOM**,
+  Farkouh *NEJM* 2012). `rct`
 
 ### 1.2 Heart failure — when the pump fails, and the two flavors that matter
 
@@ -228,7 +227,9 @@ is one of the clearest "the device changed the disease" stories in modern medici
 ### 2.1 What it is and the mechanism (→ insulin resistance)
 
 **Metabolic syndrome** is a *cluster*, not a disease — meeting ≥3 of its five criteria marks a state of
-**insulin resistance** that roughly doubles cardiovascular risk and dramatically raises diabetes risk. It
+**insulin resistance** associated with roughly a doubling of cardiovascular risk (Mottillo meta-analysis,
+*JACC* 2010: ~2× CVD events) `meta` and a sharp rise in diabetes risk, though whether the *syndrome label*
+adds predictive value beyond measuring its individual components (BP, glucose, lipids, waist) is debated. It
 is the clinical face of the metabolic dysfunction built in `D-metabolic-nutrition.md`.
 
 @@FIG:42-metabolic-syndrome@@
@@ -295,7 +296,9 @@ weight gain; TZDs; DPP-4 inhibitors — glucose-only, no organ benefit) fill spe
 been displaced from the front line by GLP-1/SGLT2 where affordable.
 
 **The honest meta-point:** glucose control alone proved *insufficient* — intensive glucose-lowering in
-ACCORD even *increased* mortality — so the shift is to drugs chosen for **cardiorenal outcomes**. The
+ACCORD even *increased* mortality (likely driven by **hypoglycemia** in high-risk patients; ADVANCE, with
+slower titration and less hypoglycemia, was mortality-neutral — Patel *NEJM* 2008) — so the lesson is to avoid
+aggressive titration and hypoglycemia, and the shift is to drugs chosen for **cardiorenal outcomes**. `rct` The
 constraint is **cost and access**: GLP-1/SGLT2 are expensive, and the equity gap is real.
 
 ### 2.3 Remission — the DiRECT evidence
@@ -305,9 +308,10 @@ substantial weight loss can drive **remission** (normal glucose off all diabetes
 - **DiRECT (Lean et al., Lancet 2018)** randomized primary-care patients to a structured
   total-diet-replacement weight-management program. At **1 year, 46% achieved remission** (vs 4%
   control), and remission was **dose-dependent on weight loss** — **86% of those who lost ≥15 kg** were
-  in remission. At **2 years**, 36% remained in remission (Lancet Diabetes Endocrinol 2019). The
-  mechanism fits the pathophysiology: losing visceral and **pancreatic** fat un-stresses the beta cells
-  (the "twin cycle" hypothesis).
+  in remission. At **2 years**, 36% remained in remission (Lancet Diabetes Endocrinol 2019). Remission is
+  also strongly **duration-dependent** — highest in short-duration diabetes and declining steeply beyond about
+  6 years, marking a narrow window before beta-cell reserve is lost. The mechanism fits the pathophysiology:
+  losing visceral and **pancreatic** fat un-stresses the beta cells (the "twin cycle" hypothesis).
 
 @@FIG:D01-direct-remission@@
 
@@ -384,9 +388,11 @@ shouting at a failing gland) with **low free T4** = overt hypothyroidism.
   subclinical hypothyroidism produced **no symptomatic benefit** — a strong argument against reflexively
   treating a mildly high TSH, especially in the elderly where the normal range drifts up. Treat based on
   TSH level, age, antibodies, and symptoms — not autopilot.
-- **The honest myth-correction:** the "T4 is inferior, everyone needs T3/natural desiccated thyroid"
-  movement is **not supported by good evidence** for most patients; the symptom-relief claims for combo
-  therapy mostly fail in blinded trials. And "hypothyroidism is why I can't lose weight / am tired" is
+- **The honest myth-correction:** the T3/combo-therapy movement points to a real gap — some T4-treated
+  patients report persistent symptoms despite normal TSH, and a small trial subset with the DIO2 polymorphism
+  (Panicker 2009) showed a quality-of-life benefit. But population-level RCTs are largely negative for routine
+  combo therapy, most of them short and underpowered for patient-reported outcomes, so the evidence does not
+  support adding T3 or natural desiccated thyroid by default. And "hypothyroidism is why I can't lose weight / am tired" is
   vastly over-claimed — most fatigue with a normal TSH is not thyroid.
 
 ### 4.2 Hyperthyroidism and Graves'

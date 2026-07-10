@@ -208,6 +208,10 @@ disproportionately important for women through the transition:
    defending against accelerated loss.
 3. **Bone-density tracking.** DXA (a low-dose bone-density scan) monitoring is *more* informative for women
    because the menopausal bone-loss slope is real and individual; track it and let it drive the loading dose.
+4. **Cardiovascular risk — the other half of the inflection.** Menopause also accelerates CVD risk (LDL rises,
+   HDL falls, arterial stiffness increases); cardiovascular disease is women's leading cause of death after
+   menopause. Cardiorespiratory fitness (VO₂max) and resistance training both blunt this trajectory — the same
+   training that defends bone defends the heart — which is why the perimenopause decade is doubly load-bearing.
 
 **On HRT (hormone replacement therapy) — graded, not cheerled.** The women's-longevity material treats this
 in full; the one-paragraph honest version: HRT *started at menopause for symptoms* is, on current evidence,
@@ -223,7 +227,11 @@ The flip side of taking women's physiology seriously is refusing to launder mark
 - **"Women's metabolism is fundamentally different, so you need a female-specific program/supplement"** —
   mostly **overclaimed**. The large, real differences (menopause, bone, the male-default data gap) are above;
   beyond those, the core training principles (progressive overload, protein, VO2max, strength) apply to both
-  sexes. "Female-specific" is more often a marketing category than a physiological necessity.
+  sexes. "Female-specific" is more often a marketing category than a physiological necessity. One genuine
+  biomechanical exception: women tear the ACL at roughly **2–8× the male rate** in pivoting/landing sports,
+  driven partly by pelvic width (Q-angle) and landing mechanics — so neuromuscular training (soft landings,
+  knees tracking over toes, deceleration/plyometric drills, posterior-chain strength) addresses a real,
+  sex-linked injury risk, not all injuries.
 - **"Women shouldn't lift heavy / will get bulky"** — **false.** This is the single most counterproductive
   myth for female healthspan; heavy resistance training is exactly what defends bone and function (§3.3).
 - **"Fasted training / keto / specific timing is uniquely critical for women"** — **low evidence**; the

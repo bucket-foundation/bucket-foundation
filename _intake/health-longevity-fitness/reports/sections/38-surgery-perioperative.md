@@ -107,12 +107,8 @@ head-to-head trials (e.g. the Coughlin/Yaxley Brisbane RCT) found **comparable f
 outcomes** to open at 12–24 months. The technology is real and in some niches helpful; the blanket claim
 that it improves *outcomes* for patients is **not supported** for most operations. Robotic surgery is a
 case study in **technology adoption outrunning evidence** — the same pattern, in a different costume, as
-the surgical over-uses in §3.
-
-> The corpus position: minimally-invasive (laparoscopic) surgery is a genuine, evidence-backed advance
-> for its established indications. Robotic-*assisted* surgery is **equivalent-but-pricier** for most of
-> them — choose it for ergonomics and specific deep-field advantages, not on a promise of better outcomes
-> the trials do not deliver.
+the surgical over-uses in §3. Choose it for surgeon ergonomics and deep-field work, and expect equivalent
+patient outcomes at higher cost.
 
 ---
 
@@ -185,7 +181,7 @@ self-reinforcing parts:
 - **The visible-mechanism trap.** A blockage you can *see* on an angiogram, a disc you can *see* on MRI,
   feels like it *must* be the cause — so removing/fixing it *must* help. The asymptomatic-findings
   literature (Section 21 §1: degenerate discs and meniscal tears are rampant in *pain-free* people)
-  demolishes this intuition, but the intuition is powerful and survives the data.
+  demolishes this intuition, which survives anyway.
 - **Asymmetric memory.** Surgeons vividly remember the patient the operation saved and rarely follow up
   the one it didn't help; the dramatic save anchors the belief.
 - **Sunk cost and identity.** A surgeon is trained, paid, and identified by *operating.* "To a hammer,
@@ -352,13 +348,17 @@ with the predictor-versus-lever discipline of the schema (a *predictor* forecast
   treadmill or bike test of how much your heart and lungs can deliver under load — the **anaerobic
   threshold** is the effort level at which the body starts running short of oxygen, and **peak VO₂**
   is your aerobic-capacity ceiling. Fitter patients, by this
-  measure, **reliably do better.** This is a robust observational/physiologic relationship and dovetails
-  with the corpus's broader VO₂max-as-longevity-predictor thesis (Section 02; Section 07).
+  measure, **reliably do better** — a robust observational/physiologic relationship (Section 02; Section 07).
 - **The lever question is real but less settled.** *Prehabilitation* — deliberately raising fitness (and
   nutrition, and often psychological readiness) in the weeks before an operation — is plausible,
   increasingly practised, and supported by a growing but **heterogeneous** trial literature showing
   improved fitness markers and, in several trials/meta-analyses, fewer pulmonary complications and shorter
-  stays, particularly in abdominal and thoracic surgery and in frailer patients. But the evidence that
+  stays, particularly in abdominal and thoracic surgery and in frailer patients. The predictor relationship
+  likely runs through several pathways — cardiorespiratory reserve sets how much physiologic stress you can
+  absorb, skeletal-muscle mass is a protein bank for wound healing and immune function, and baseline
+  inflammatory tone may shape the post-op cytokine response — which is part of why the trial literature is
+  heterogeneous: interventions (aerobic vs resistance vs nutrition) and outcomes measured vary, so lever clarity
+  varies with them. But the evidence that
   prehab *changes hard outcomes* is **uneven across studies and surgery types**, and "fitness predicts
   outcome" must not be silently upgraded into "training before surgery is proven to change your outcome."
   Hold them apart: **predictor strong, lever promising-but-maturing.**
@@ -386,7 +386,11 @@ The major post-operative threats are a short, knowable list: **surgical-site inf
 thromboembolism (DVT/PE), pneumonia and other pulmonary complications, ileus** (the gut going quiet),
 **delirium** (especially in older patients), **acute kidney injury, anastomotic leak** (a join coming
 apart), and **cardiac events.** Much of perioperative medicine is the systematic *prevention* of this
-list — VTE prophylaxis, antibiotic timing, early mobilisation, glucose control, delirium-aware care — and
+list — VTE prophylaxis, antibiotic timing, early mobilisation, glucose control, delirium-aware care, and
+**pre-operative nutritional optimization** (correcting anaemia and iron/B12 deficiency, ensuring adequate
+protein status — albumin is a coarse proxy, dietary intake and lean mass are better — and repleting vitamin D;
+malnourished patients have higher infection rates, worse wound healing, and longer stays, and the interventions
+are low-cost, cross-ref Section 03) — and
 it is precisely where the **WHO Surgical Safety Checklist** (Haynes et al., *NEJM* 2009)[^who-checklist]
 made its mark: a 19-item checklist that, in a global study, was associated with
 **lower death and complication rates.** It is the most Gawande-ish fact in the section (see *The Checklist

@@ -40,7 +40,9 @@ and visible endpoints**, almost all from the Australian **Nambour** community tr
 
 - **Photoaging (RCT):** **Hughes 2013** randomized ~900 adults to daily vs. discretionary sunscreen for 4.5
   years and found the **daily group had no detectable increase in skin aging** (microtopography of the hand),
-  i.e. ~24% less photoaging than discretionary use. `rct` / outcome. This is the cleanest "sunscreen slows
+  i.e. ~24% less photoaging than discretionary use. Notably the Nambour trials used SPF 15–16 formulas — modest
+  by today's standards — yet still showed benefit, which underscores both the potency of the intervention and
+  the rationale for modern broad-spectrum SPF 30+ daily use. `rct` / outcome. This is the cleanest "sunscreen slows
   aging" evidence that exists.[^hughes-photoaging]
 - **Squamous cell carcinoma (RCT):** **Green 1999** — daily sunscreen over the Nambour trial cut SCC (squamous
   cell carcinoma) incidence; betacarotene did nothing. `rct` / outcome.[^green-scc]
@@ -67,7 +69,9 @@ class that reliably remodels the dermis in RCTs.
   outcome. Decades of replication followed.[^weiss-tretinoin]
 - **Mechanism + class review:** **Mukherjee 2006** — retinoids bind nuclear receptors, increase collagen I/III
   synthesis, inhibit MMP collagen-degrading enzymes, and normalize keratinocyte turnover. The mechanism is real
-  and matches the histology, not just the appearance.[^mukherjee-mechanism]
+  and matches the histology, not just the appearance.[^mukherjee-mechanism] Practical caveat: retinoids increase
+  photosensitivity, so UV exposure while using them can worsen the very photoaging they treat — which is why
+  daily sunscreen is non-negotiable during retinoid use, making the two synergistic rather than alternatives.
 - **Over-the-counter retinol (RCT):** **Kafi 2007** — even non-prescription retinol improved *naturally* aged
   (not just photo-aged) skin vs. vehicle. `rct` / outcome. Weaker and slower than tretinoin, but real.[^kafi-retinol]
 

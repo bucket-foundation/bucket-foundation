@@ -1,11 +1,10 @@
 # 35 — Addiction & Substance Use
 
-For opioids, the intuition everyone shares — get them clean, get them off everything — is the one
-that kills. Abstinence-only detox without maintenance is associated with *worse* outcomes, because
-detox lowers your tolerance while leaving the craving intact, so a relapse at the old dose is now
-lethal. The unglamorous daily medication saves lives; the dramatic "rock bottom" abstinence
-intuition has a measurable body count. That inversion — where the moralized answer is the dangerous
-one — runs through this whole domain.
+For opioids, the intuition everyone shares — get them clean, get them off everything — produces worse
+outcomes. Abstinence-only detox without maintenance lowers tolerance while leaving craving intact, so
+a relapse at the old dose becomes lethal. The unglamorous daily medication saves lives; the dramatic "rock bottom" abstinence
+intuition has a measurable body count. Moralized answers repeatedly produce the dangerous outcome across
+this whole domain.
 
 This section covers the disorder, dependence, and treatment of addiction. The dose-response harm of
 alcohol and tobacco lives in §09; the reward-mechanism neuroscience lives in §14; psychiatric
@@ -23,7 +22,7 @@ _Not medical advice._
 > attached. Call it pure moral weakness and you justify punishing sick people and you ignore that
 > treatment works. Call it purely a chronic brain disease and you erase the people who walk away on their
 > own, you contradict the data on remission, and you can rob someone of the agency that recovery actually
-> runs on. The honest position is **neither** — §1.2 grades the more accurate third model. Grade it
+> runs on. The honest position is a **third model**, more accurate than either — §1.2 grades it. Grade it
 > straight, hold the person's dignity and the person's agency at the same time, and say so plainly.
 
 ---
@@ -109,9 +108,12 @@ plus observational data, short of a randomized trial).
 
 **The honest critiques — which the corpus indexes as serious, not fringe:**
 - **Gene Heyman**, in *Addiction: A Disorder of Choice* (Harvard University Press, 2009), marshals the
-  **epidemiology of remission**: in large national surveys, the **majority of people who meet criteria for
-  drug dependence remit**, most by their early thirties, and **most without any treatment** (the
-  "maturing out" pattern, seen vividly in returning Vietnam veterans — see §3.3). A *chronic, progressive
+  **epidemiology of remission**: in large national surveys (NESARC), **cumulative lifetime remission is high
+  across substances** — on the order of ~80–90%+ for nicotine, alcohol, and cannabis dependence and higher
+  still for cocaine, with **median time-to-remission on the scale of years to a decade or two** and **most
+  remitting without formal treatment** (the "maturing out" pattern, seen vividly in returning Vietnam veterans
+  — see §3.3). "Remission" here mostly means no longer meeting DSM criteria, measured by self-report, so
+  loss-to-follow-up and definition ambiguity soften the exact figures. A *chronic, progressive
   brain disease* should not have a natural-recovery curve that looks like this. Heyman's reframe:
   addiction is a **disorder of choice** — not "free, unconstrained choice," but choice as economists model
   it, distorted by the steep discounting of the future that drugs produce. Choices, unlike diseases,
@@ -151,7 +153,10 @@ These three are routinely conflated, and the conflation hurts people:
 - **Physical dependence:** the body has adapted such that **stopping produces withdrawal**. This is
   **normal physiology**, not pathology — a cancer patient on around-the-clock opioids, a person on an SSRI
   or a beta-blocker, and a daily coffee drinker are all "dependent" in this sense. Dependence alone is
-  **not** addiction.
+  **not** addiction. But the transition does happen for some therapeutic users: in chronic-pain cohorts,
+  roughly **8–12% develop opioid addiction and ~20–30% show some misuse** (Vowles 2015 systematic review),
+  with prior substance-use disorder, psychiatric comorbidity, and high-dose/long-duration exposure as the main
+  risk factors — a real, manageable risk that is smaller than the pre-2016 panic implied but not zero. `meta`
 - **Addiction (substance use disorder):** **compulsive use despite harm** — loss of control, craving,
   continued use despite consequences, life narrowing around the substance. This is the disorder.
 
@@ -233,7 +238,7 @@ Opioids (heroin; prescription oxycodone/hydrocodone/morphine; and the synthetic 
 **µ-opioid receptors** to produce analgesia, euphoria, and — the lethal part — **respiratory depression**:
 in overdose, the drive to breathe simply switches off. They are powerfully reinforcing and produce severe
 physical dependence, and the withdrawal — though agonizing (the "dopesickness" of flu-like misery, GI
-distress, restlessness) — is, unlike alcohol or benzodiazepine withdrawal, **rarely directly fatal**. The
+distress, restlessness) — is **rarely directly fatal**, whereas alcohol and benzodiazepine withdrawal can kill. The
 deaths come from **overdose**, not withdrawal. That asymmetry shapes everything about treatment.
 
 ### 3.2 Fentanyl and the scale of the epidemic
@@ -361,9 +366,11 @@ The honest middle is hard to hold here because both poles shout. Anchor: **Volko
 2014** ("Adverse Health Effects of Marijuana Use")[^volkow2014] and **Hall** (*Addiction* 2016).[^hall]
 
 - **Cannabis use disorder is real.** ~9% of ever-users become dependent (Lopez-Quintero) — lower than
-  alcohol/opioids but **not zero**, rising to ~**17%** for those who start in adolescence and higher in
-  daily users. "Marijuana isn't addictive" is false; withdrawal (irritability, sleep disruption, appetite
-  loss, craving) is real if mild. `cohort`.
+  alcohol/opioids but **not zero**, rising to ~**17%** for those who start in adolescence and to roughly
+  **a third of daily/near-daily users** — a substantial minority, not a majority, and dose-related: heavier,
+  earlier, longer use raises disorder risk, and today's high-THC products may steepen that gradient (though
+  longitudinal data are still accumulating). "Marijuana isn't addictive" is false; withdrawal (irritability,
+  sleep disruption, appetite loss, craving) is real if mild. `cohort`.
 - **Adolescent exposure is the strongest concern:** earlier, heavier use is associated with worse cognitive
   and educational outcomes and — in the genetically/clinically vulnerable — **increased risk of psychosis**
   (dose-related, strongest for high-THC products). Causation vs shared-vulnerability is still debated, but

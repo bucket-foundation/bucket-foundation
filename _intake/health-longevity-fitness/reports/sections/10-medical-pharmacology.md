@@ -61,8 +61,7 @@ is mostly an **appetite/satiety** effect: people simply eat less and feel full f
 
 Evidence tiers in the last column: `rct` = proven in a randomized human trial; `meta` = pooled across many
 trials; `mechanistic` = a plausible biological story only; `cohort` = observational, weaker than a trial.
-*The column that matters is the last one — `rct (hard outcome)` is the real thing; `surrogate` is
-weight/number-moving only.*
+`rct (hard outcome)` is the real thing; `surrogate` moves a weight or a number only.
 
 | Drug / trial | Population | What it proved | Magnitude | Tier |
 |---|---|---|---|---|
@@ -101,7 +100,9 @@ trials enrolled sick people and showed they got less sick. That is the claim —
   and **gastroparesis/severe delayed gastric emptying** (relevant for anesthesia — tell your surgeon). Rodent
   C-cell tumors → **contraindicated in personal/family history of medullary thyroid carcinoma or MEN2.**
 - **The muscle-loss caveat (the real longevity catch):** roughly **25–40% of the weight lost on GLP-1s is lean
-  mass**, not fat — typical of any large rapid weight loss, but it matters for longevity because
+  mass**, not fat — typical of any large rapid weight loss (diet and bariatric surgery often show similar or
+  larger lean-mass fractions, so the drug may be no worse and possibly protective relative to the alternative),
+  but it matters for longevity because
   **muscle mass and strength are themselves protective against mortality and frailty** (see Domain E and the
   grip-strength/VO₂max (aerobic-capacity) data). Losing 20% of your body weight while losing a chunk of muscle can be a *net*
   metabolic win and still erode the reserve that protects you at 80. **Mitigation that should be standard, not
@@ -119,7 +120,9 @@ trials enrolled sick people and showed they got less sick. That is the claim —
 The drugs that lower **apoB** (a direct count of the cholesterol particles that lodge in artery walls) and the
 lipoproteins that carry it (LDL and friends) sit on the single strongest causal chain in preventive cardiology:
 genetics + epidemiology + RCTs all triangulate that **LDL/apoB is causal for atherosclerosis, and the effect is
-cumulative over a lifetime** (Ference 2017).[^ference] Lower, earlier, and longer is better — *for people whose risk
+cumulative over a lifetime** (Ference 2017)[^ference] — the genetic pillar being **Mendelian randomization**,
+where people carrying lifelong-low-LDL variants (PCSK9, APOB, LDLR) have proportionally lower CVD risk,
+independent of the confounding that plagues observational data. Lower, earlier, and longer is better — *for people whose risk
 justifies it.* The honest tension is entirely about **who**, not whether.
 
 ### 2.1 The drugs

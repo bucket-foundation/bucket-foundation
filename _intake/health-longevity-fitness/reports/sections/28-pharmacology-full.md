@@ -55,7 +55,12 @@ every prescribing decision is trying to stay inside.
 ### A.1.1 Most drugs act on four kinds of protein
 
 The body's machinery is mostly protein (section 01 §3.2), and so are most drug targets. Four families
-cover the overwhelming majority of prescriptions:
+cover the overwhelming majority of prescriptions. (A fifth class acts on **membrane lipids / lipid-protein
+interfaces** rather than a protein pocket — general anesthetics, whose site is still contested between lipid and
+protein targets, ethanol, and amphotericin — a reminder that not all pharmacology is protein binding.) Drugs can
+also bind either the natural-ligand site (**orthosteric**, competing with the endogenous ligand) or a separate
+site that tunes the receptor's response (**allosteric**, e.g. benzodiazepines at GABA-A); allosteric modulators
+often gain better selectivity and a safety ceiling because they modulate rather than fully switch signaling.
 
 | Target type | What it is | Drug examples |
 |---|---|---|
@@ -156,7 +161,7 @@ and how long it stays.
 - **Other routes bypass first-pass:** IV (instant, complete), sublingual (nitroglycerin, buprenorphine
   — straight to systemic blood under the tongue), transdermal (fentanyl, nicotine, estradiol patches),
   inhaled (bronchodilators — local + fast), rectal, intramuscular/subcutaneous (most injected biologics
-  and GLP-1s). Route choice is often *about* first-pass.
+  and GLP-1s). Route choice is often driven by first-pass avoidance — IV, sublingual, or transdermal when oral bioavailability is poor.
 
 ### A.2.2 Distribution — where the drug goes once it's in
 
@@ -439,7 +444,7 @@ allele frequencies vary sharply by ancestry.
 
 @@FIG:Z03-metabolizer-prodrug@@
 
-## C.3 The actionable gene-drug pairs (the ones with a body count or a guideline)
+## C.3 The actionable gene-drug pairs (guideline-backed or high-consequence)
 
 These are the pairs where a cheap, one-time genotype changes a real decision. (Cross-ref §18 A.2.4 for
 the practical-genetics framing; this is the prescribing detail.)
@@ -651,10 +656,12 @@ drugs** — meaning they **do not need to prove efficacy or safety before sale**
 ## F.4 Drug-development & cost reality (brief, honest)
 
 - **It's hard.** Most candidate drugs fail; the journey from target to approval spans
-  preclinical → Phase I (safety) → Phase II (does it work?) → Phase III (large RCT) → regulatory review,
-  takes many years, and the **vast majority of compounds that enter human trials never reach market** —
-  most failures are in **Phase II/III for lack of efficacy**, the mechanism-≠-outcome rule killing
-  drugs that "should have worked."
+  preclinical → Phase I (safety) → Phase II (does it work?) → Phase III (large RCT) → regulatory review →
+  **Phase IV (post-market surveillance)**, takes many years, and the **vast majority of compounds that enter
+  human trials never reach market** — most failures are in **Phase II/III for lack of efficacy**, the
+  mechanism-≠-outcome rule killing drugs that "should have worked." Approval is not the end: Phase IV is where
+  rare, delayed, or cumulative harms surface (trials enroll thousands; real-world exposure runs to millions),
+  and where drugs are sometimes withdrawn — rofecoxib, cerivastatin, troglitazone.
 - **It's expensive — and the headline figures are contested.** The often-cited "~$1–2.6
   billion per approved drug" estimates (DiMasi et al.) include the **capitalized cost of all the
   failures and the cost of capital**; critics put the out-of-pocket figure far lower. The honest reading:

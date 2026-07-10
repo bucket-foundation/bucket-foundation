@@ -160,8 +160,12 @@ is the supported move; the popular late 16:8 window is largely null on its own.
 ### 2.3 Shift work — the clearest circadian harm
 
 The strongest circadian *outcome* evidence is harm from misalignment: **IARC classifies shift work
-involving circadian disruption as a *probable* (Group 2A) carcinogen.** The honest anchor for the
-whole domain is a plain one: chronic circadian misalignment is a real, classified exposure. The disease
+involving circadian disruption as a *probable* (Group 2A) carcinogen.** The classification rests mainly on
+**breast-cancer** cohort data (meta-analytic RR ~1.3–1.4 for long-term night-shift workers) plus mechanistic
+plausibility (melatonin suppression). Group 2A means *limited* human plus *sufficient* animal evidence —
+stronger than 2B (possible) but below Group 1 (known). The signal is dose-dependent: decades of rotating
+night shifts, not occasional late nights. The honest anchor for the whole domain is a plain one: chronic
+circadian misalignment is a real, classified exposure. The disease
 signal is about misalignment, not about blue light per se. If you must do shift work, the mitigations are the same levers inverted: anchor a consistent
 (even if shifted) schedule, control light exposure aggressively, and protect sleep opportunity.
 
@@ -221,7 +225,9 @@ disorder**: a meta-analysis of 19 RCTs (Tao et al., 2019) found a standardized m
 (95% CI −0.63 to −0.12) for depression scores and a response risk ratio of 1.42 (1.08–1.85) versus
 placebo, with the caveat of moderate heterogeneity and moderate-to-high risk of bias across small trials.
 For **non-seasonal major depression** the signal is also positive and moderate: 15 RCTs, 883 patients,
-SMD 0.48 (95% CI 0.22–0.74), stronger with ≥60 minutes of daily exposure (Lee et al., 2024). Both are
+SMD 0.48 (95% CI 0.22–0.74), stronger with ≥60 minutes of daily exposure (Lee et al., 2024). For context,
+SSRI antidepressants show SMDs of roughly 0.3–0.5 vs placebo in meta-analyses, so bright light is in the same
+range, with a lower side-effect burden. Both are
 graded `meta`. One honesty note on wavelength: a meta-analysis restricted to *blue-enriched* light
 (Bais et al., 2022, 9 RCTs, n=347) found no advantage of blue over control conditions — the antidepressant
 effect tracks intensity and broad-spectrum white light, and the popular "blue light" framing outruns the
@@ -245,7 +251,9 @@ myopia-control optics (cross-ref §11, §27). Graded `rct` — the strongest out
 whole cluster.
 
 **What to do.** Get bright light early — 10–30 minutes of outdoor light within roughly an hour of waking
-on most days, more on overcast mornings, and without staring at the sun. It is free, low-risk, and sits on
+on most days, more on overcast mornings, and without staring at the sun. (Outdoor daylight delivers
+~1,000–10,000+ lux even when overcast, far above the ~100–500 lux of an indoor room; circadian effects begin
+around 500–1,000 lux at the eye. You don't need a meter — being outside is the cue.) It is free, low-risk, and sits on
 a settled mechanism with real (if tier-varied) downstream support. For winter low mood or diagnosed SAD, a
 10,000-lux light box used in the morning is an evidence-backed tool (`meta`). For children, outdoor time is
 a myopia-prevention lever with randomized support (`rct`). None of this requires the stronger claim that
@@ -469,7 +477,7 @@ wellness-industrial overclaim:
 | **Purpose / meaning** | Robust cohort association with mortality and cognition; behaviorally protective | `cohort` |
 | **Slow breathing** | Real acute parasympathetic shift; free, instant, repeatable | `mechanistic`, acute; longevity unproven |
 | **Time in nature / daylight** | Overlaps the circadian light lever (§2) and plausibly lowers stress arousal | Directionally supported, mostly surrogate |
-| **Yoga / meditation** | Improve HRV, cortisol, BP across studies — but surrogate endpoints, heterogeneous, bias-prone | `meta` tier, *weak content*; no hard-endpoint claim[^yoga-mind] |
+| **Yoga / meditation** | Improve HRV, cortisol, BP (surrogate, bias-prone); **MBSR shows modest RCT support for anxiety, depression-relapse prevention, and chronic pain** (clinical outcomes) | `meta` (surrogates) / `rct` (psychiatric/pain outcomes, small-to-moderate but real)[^yoga-mind] |
 | **Supplements / "adaptogens" / gadgets** | Marketed as stress cures | Mostly `mechanistic`/`surrogate` or null; the overclaim lives here |
 
 @@FIG:90-recovery-toolkit@@

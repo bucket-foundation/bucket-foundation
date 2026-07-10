@@ -16,17 +16,15 @@ STIs as microbiology: §26. Prostate cancer as oncology: §25/§07. Pelvic-floor
 
 ## How the three honesty rules cut for reproductive & sexual health
 
-**Predictor ≠ lever** (the number warns you, it isn't the thing you fix): a sex-hormone level or symptom is
-often a readout of something upstream, not a dial. The sharpest example is **erectile dysfunction**, an early
-cardiovascular warning that is a reason to check the heart rather than just prescribe a pill (§6.2). **Cohort ≠
-RCT:** the few places reproductive medicine has hard randomized evidence — LARC (long-acting reversible
-contraception, e.g. implants and IUDs) effectiveness, HPV-vaccine cancer prevention, low-dose aspirin for
-preeclampsia, the TRAVERSE testosterone-safety trial — are weighted above the "fertility optimization" claims
-far down the ladder. **Net benefit
-in the right person:** replacing a *diagnosed deficiency* (estrogen for symptomatic menopause within the window,
-testosterone for true hypogonadism) is favorable-ledger medicine; pushing a hormone *above normal in a healthy
-person to chase performance or youth* is experimentation sold as the former — the same dividing line that
-governs §13.
+The three honesty rules cut sharply here. **Predictor ≠ lever:** the sharpest example is **erectile
+dysfunction**, an early cardiovascular warning that is a reason to check the heart rather than just prescribe a
+pill (§6.2). **Cohort ≠ RCT:** the few places reproductive medicine has hard randomized evidence — LARC
+(long-acting reversible contraception, e.g. implants and IUDs) effectiveness, HPV-vaccine cancer prevention,
+low-dose aspirin for preeclampsia, the TRAVERSE testosterone-safety trial — are weighted above the "fertility
+optimization" claims far down the ladder. **Net benefit in the right person:** replacing a *diagnosed deficiency*
+(estrogen for symptomatic menopause within the window, testosterone for true hypogonadism) is favorable-ledger
+medicine; pushing a hormone *above normal in a healthy person* is experimentation sold as the former — the same
+dividing line that governs §13.
 
 ---
 
@@ -211,8 +209,9 @@ honest framing is statistical: **age at freezing is everything**, and **more egg
 live-birth probability is only ~**6–7%** even from younger eggs, so meaningful insurance requires banking
 **many** eggs (often multiple retrieval cycles), and **freezing before ~35** materially beats freezing later
 (Cobo 2016). Egg freezing is **a probability, not a guarantee** — marketed too often as the latter. **Sperm
-freezing** is cheap, simple, and reliable, and is the standard before gonadotoxic treatment (chemo/radiation) or
-for elective deferral. **Ovarian tissue cryopreservation** is now an established (no longer experimental) option
+freezing** is cheap, simple, and generally reliable (though post-thaw counts and motility typically drop ~30–50%,
+and a minority of men have poor post-thaw recovery), and is the standard before gonadotoxic treatment
+(chemo/radiation) or for elective deferral. **Ovarian tissue cryopreservation** is now an established (no longer experimental) option
 for pre-pubertal and oncology patients.
 
 ---
@@ -292,7 +291,9 @@ real, treatable, and frequently dismissed.
 
 ### 6.3 Libido & hormones
 
-Desire is **not** a simple function of one hormone level. **Testosterone** matters for libido in **both** sexes,
+Desire is **not** a simple function of one hormone level. **Testosterone** matters for libido in **both** sexes
+(women sustain libido at roughly a tenth of male circulating levels, via greater androgen-receptor sensitivity
+and local tissue conversion from adrenal/ovarian precursors),
 but within the normal range the correlation between a man's testosterone number and his desire is weak — which is
 why "low libido" in a man with normal labs is usually **not** a testosterone-deficiency problem (and why TRT —
 testosterone-replacement therapy — for it often disappoints; §13). In women, **estrogen** (tissue health, comfort) and **testosterone**
@@ -328,8 +329,9 @@ two main diseases present as **urinary** problems.
 
 **Testicular cancer** is the most common solid cancer in **young men (ages ~15–35)** and is **highly curable**,
 especially when caught early — which makes awareness of a **new, painless testicular lump** (the cardinal sign,
-warranting prompt evaluation) high-value. **Varicocele** (dilated scrotal veins) is a common,
-sometimes correctable cause of male-factor infertility. **Cryptorchidism** (undescended testis) history raises
+warranting prompt evaluation) high-value. **Varicocele** (dilated scrotal veins) is common and associated with male-factor infertility, but repair
+surgery has **not** clearly been shown to improve live-birth rates in randomized trials (Kroese Cochrane 2012) —
+a procedure often performed on weak outcome evidence. **Cryptorchidism** (undescended testis) history raises
 both infertility and cancer risk. Routine population screening of asymptomatic men is **not** recommended;
 prompt evaluation of symptoms is.
 

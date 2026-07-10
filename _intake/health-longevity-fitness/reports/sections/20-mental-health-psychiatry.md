@@ -222,8 +222,10 @@ despite weaker evidence. Two facts make lithium exceptional:
 @@FIG:D21-lithium-suicide@@
 
 The honest caveats keep lithium from being a free lunch: it has a **narrow therapeutic window** (needs
-blood-level monitoring), affects **thyroid and kidney** over years (also needs monitoring), and is
-dangerous in overdose. But these are *manageable* with standard monitoring — and they do not justify how
+blood-level monitoring), affects **thyroid and kidney** over years — long-term use raises hypothyroidism
+risk (on the order of ~15–20% of users) and can impair renal concentrating ability and modestly reduce GFR
+over decades (McKnight *Lancet* 2012 meta-analysis), both detectable and manageable with routine monitoring —
+and is dangerous in overdose. But these are *manageable* with standard monitoring — and they do not justify how
 far it has fallen out of fashion. The honest verdict: **lithium is one of psychiatry's most valuable
 drugs, it is under-used, and its anti-suicide effect is one of the field's most important findings.**
 
@@ -302,7 +304,10 @@ others** — both at once, which is what makes the discourse so confused:
 - **Over-diagnosis** drivers: the youngest children in a school year are diagnosed more often than their
   older classmates (the "relative age effect" — normal immaturity read as pathology); diagnostic
   thresholds applied loosely; and a culture that pathologizes ordinary distractibility in a high-
-  stimulation environment.
+  stimulation environment. The starkest epidemiological puzzle is **geographic**: U.S. stimulant-prescription
+  rates run several-fold higher than most European countries. Whether that reflects under-recognition abroad or
+  over-medicalization at home is contested — ADHD's reality is well-established, but cross-national variation of
+  this size flags that diagnostic thresholds, reimbursement incentives, and cultural framing shape who gets the label.
 - **Under-diagnosis** drivers: girls and women (less hyperactive, more inattentive presentation,
   historically missed), and adults whose childhood ADHD was never caught.
 - **Adult ADHD and self-diagnosis** deserve particular care. Adult ADHD is real and was historically
@@ -342,7 +347,10 @@ endorse it, and it outperforms waitlist/placebo. The honest controversy is about
 pairs trauma recall with bilateral stimulation (the therapist's finger moving side to side, tracked by the
 patient's eyes). **Dismantling studies — which compare EMDR with and without the eye movements — largely
 find the eye movements add little or nothing**; the active ingredient appears to be the **exposure** (the
-structured, repeated recall of the trauma), not the signature eye movements. So the honest verdict: **EMDR
+structured, repeated recall of the trauma), not the signature eye movements. Proponents counter that the
+bilateral stimulation taxes working memory during recall, blunting the memory's vividness and emotional charge
+and aiding habituation (Shapiro's "adaptive information processing" model) — a live mechanistic claim, though
+the dismantling data argue against it being necessary. So the honest verdict: **EMDR
 works, but probably because it is a form of exposure therapy with an elaborate and likely-inert ritual
 attached.** This is honesty rule #1 again — the treatment is real, the proprietary mechanism is doubtful.
 `meta`/`rct` — efficacy real, mechanism contested.
@@ -354,7 +362,10 @@ needs grading with particular care.
 
 - **MDMA-assisted therapy for PTSD — promising, and FDA-*rejected* (2024).** Lead with the load-bearing
   fact: in August 2024 the **FDA declined to approve** MDMA-assisted therapy for PTSD and requested an
-  **additional phase-3 trial.** That verdict matters precisely because the results underneath it looked so
+  **additional phase-3 trial.** MDMA remains **Schedule I** federally, so the therapy is available **only in
+  clinical trials or limited expanded-access programs** — a clinician cannot prescribe it and a patient cannot
+  obtain it outside research. The load-bearing practical fact: promising, not approved, not accessible. That
+  verdict matters precisely because the results underneath it looked so
   strong: the MAPS/Lykos phase-3 program — **Mitchell et al., *Nature Medicine* 2021** (MAPP1)[^mitchell]
   and the confirmatory MAPP2 (*Nature Medicine* 2023) — reported large reductions in PTSD severity, with
   substantial fractions of participants **no longer meeting PTSD criteria** after a few MDMA-assisted
@@ -474,10 +485,9 @@ first-episode psychosis to "just exercise and get sunlight" is its own kind of h
   trials.** Grade the mechanism as possibly real and the marketed outcome as unproven. The tell is always
   the same: a `mechanistic` claim doing `outcome` work it hasn't earned (schema hard rule #1).
 
-The structural point across all of §8: **the effective mental-health levers are mostly free and
-unmonetizable** (exercise, sleep hygiene, connection, sunlight, treating real illness with real treatment),
-**while the marketed ones are mostly monetizable and mostly oversold.** That asymmetry — the same one that
-runs through 08 and 14 — is not a coincidence; it is the business model.
+The structural point across all of §8: the effective mental-health levers — exercise, sleep hygiene,
+connection, sunlight, and treating real illness with real treatment — carry the strongest evidence in the
+chapter yet cost little, while the heavily marketed products are mostly oversold relative to their effect.
 
 ---
 
