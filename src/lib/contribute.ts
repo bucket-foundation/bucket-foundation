@@ -1,13 +1,13 @@
 /**
- * bucket.foundation — contribute config
+ * bucket.foundation, contribute config
  * -------------------------------------
  * SINGLE SOURCE OF TRUTH for the /contribute page: the open-source repos, the
  * canon branches, the citation handles, and the contact CTA. Sibling to
- * src/lib/support.ts (which owns the *funding* knobs) — this file owns the
+ * src/lib/support.ts (which owns the *funding* knobs), this file owns the
  * *contributing* knobs. The contact email + GitHub org URL are reused from
  * support.ts so there is still exactly one contact knob.
  *
- * No secrets here — every value is a public URL, a DOI, or a license name.
+ * No secrets here, every value is a public URL, a DOI, or a license name.
  */
 
 import { GITHUB_ORG_URL, CONTACT_EMAIL, mailto } from "./support";
@@ -55,14 +55,14 @@ export const REPOS: Repo[] = [
     name: "research-atlas",
     url: orgRepo("research-atlas"),
     blurb:
-      "The reconciled research-economy graph — 73 funders, ~958k grants, ~$658B, ~8.1M rows — and the pipeline that builds it. Open datasets, born citeable.",
+      "The reconciled research-economy graph, 73 funders, ~958k grants, ~$658B, ~8.1M rows, and the pipeline that builds it. Open datasets, born citeable.",
     firstIssues: firstIssues("research-atlas"),
   },
   {
     name: "x402-research-gateway",
     url: orgRepo("x402-research-gateway"),
     blurb:
-      "Paid research gateway on Base — PubMed, Semantic Scholar, OpenAlex, ClinicalTrials, PubChem, and a feed402-compliant insight tier. The live merchant on the rail.",
+      "Paid research gateway on Base, PubMed, Semantic Scholar, OpenAlex, ClinicalTrials, PubChem, and a feed402-compliant insight tier. The live merchant on the rail.",
     firstIssues: firstIssues("x402-research-gateway"),
   },
   {
@@ -101,7 +101,7 @@ export const CANON_BRANCHES: CanonBranch[] = [
 /** Prefilled "I'd like to contribute" email CTA (reuses the one contact knob). */
 export const CONTRIBUTE_MAILTO = mailto(
   "Contributing to bucket.foundation",
-  "Hi — I'd like to contribute to bucket.foundation.\n\n" +
+  "Hi, I'd like to contribute to bucket.foundation.\n\n" +
     "I can help with (delete as needed): primary research / claims for the canon · " +
     "code on the open-source repos · a new or improved research tool · " +
     "improving an existing canon branch · using/citing the datasets.\n\n" +

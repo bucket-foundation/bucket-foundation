@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — education-atlas corpus
+ * bucket.foundation, education-atlas corpus
  * ------------------------------------------
  * The education-atlas is Bucket Foundation's founding research for its
  * education-reform mission (see /mission and REFORM_THESIS). It is the newest
@@ -11,10 +11,10 @@
  * vendored into public/education/; the 19 markdown docs are vendored into
  * src/content/education/ and rendered on-site with the shared long-form renderer.
  *
- * NOTE ON DOI: education-atlas has NO minted Zenodo DOI yet (.zenodo.json is
- * staged but unminted). We therefore mark its DOI as "pending" and never
- * fabricate one — the only real DOIs on the site are the four research-atlas
- * Zenodo records.
+ * NOTE ON DOI: the flagship "The Knowledge-Access Gradient" PDF has a minted
+ * Zenodo DOI (10.5281/zenodo.22083720, published 2026-08-24). The root
+ * education-atlas corpus (.zenodo.json at the repo root) is a separate,
+ * still-unminted deposition for the whole dataset.
  */
 import fs from "fs";
 import path from "path";
@@ -29,36 +29,37 @@ export const FLAGSHIP = {
   doc: "THE-KNOWLEDGE-ACCESS-GRADIENT.md",
   title: "The Knowledge-Access Gradient",
   subtitle:
-    "Who can reach how deep into human knowledge, at what age, at what cost — and what that means for reforming education",
+    "Who can reach how deep into human knowledge, at what age, at what cost, and what that means for reforming education",
   authors: "Gianangelo Dichio · Bucket Foundation",
   affiliation: "Bucket Foundation",
   date: "2026-06-25",
   version: "v1.1",
   venue: "working paper",
-  doi: "pending" as const, // education-atlas has no minted Zenodo DOI yet
+  doi: "10.5281/zenodo.22083720",
+  doiUrl: "https://doi.org/10.5281/zenodo.22083720",
   pdfUrl: "/education/THE-KNOWLEDGE-ACCESS-GRADIENT.pdf",
   githubUrl:
     "https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md",
   license: "CC-BY-4.0 (data) / MIT (code)",
   corpusLine:
-    "education-atlas v1.1 — 78,326 observations / 219 countries / 30 indicators, vs UN SDG 4",
+    "education-atlas v1.1, 78,326 observations / 219 countries / 30 indicators, vs UN SDG 4",
   abstract: [
-    "For five thousand years, every knowledge technology widened access to consume knowledge — to read, learn, and reach what others already discovered — and none widened access to produce it. That arc is the organizing finding of this document, and the present-day access cliff is its cross-section.",
-    "Measured against UN Sustainable Development Goal 4, today's record shows three stacked crises: a learning crisis (48.3% of 10-year-olds worldwide cannot read a simple text; 86.5% in Sub-Saharan Africa), an access crisis that has shrunk but moved up a level (51M primary-age and 61M lower-secondary-age children out of school), and a financing crisis underwriting both (world education spend is 3.6% of GDP, below the agreed 4% floor). But the deepest inequity is on the depth axis: access falls from 82.5% at basic literacy (L0) to 0.14% at the research frontier (L4) — a ~270× drop from undergraduate to the frontier. About 99.86% of humanity only ever consumes knowledge; ~0.14% ever reaches where it is produced.",
-    "Seven dimensions describe the gradient's shape and converge: the historical arc (consume-access an unbroken staircase up, produce-access flat at every step), cost (bimodal — a free path to read but none to produce), field coverage (biomedicine has ~133× more researchers than mathematics), the temporal trend, the leaky pipeline, the geographic near-monopoly (top-10 countries hold 69.3% of researcher capacity, 35% of countries have no researcher datapoint, women out-enroll men into university yet hold only ~33% of research posts), and the modality axis (every scalable channel ceilings out below the frontier; the one production-reaching channel does not scale). AI is the first technology in the entire 5,000-year arc for which the consume-versus-produce verdict is not yet written.",
+    "For five thousand years, every knowledge technology widened access to consume knowledge, to read, learn, and reach what others already discovered, and none widened access to produce it. That arc is the organizing finding of this document, and the present-day access cliff is its cross-section.",
+    "Measured against UN Sustainable Development Goal 4, today's record shows three stacked crises: a learning crisis (48.3% of 10-year-olds worldwide cannot read a simple text; 86.5% in Sub-Saharan Africa), an access crisis that has shrunk but moved up a level (51M primary-age and 61M lower-secondary-age children out of school), and a financing crisis underwriting both (world education spend is 3.6% of GDP, below the agreed 4% floor). But the deepest inequity is on the depth axis: access falls from 82.5% at basic literacy (L0) to 0.14% at the research frontier (L4), a ~270× drop from undergraduate to the frontier. About 99.86% of humanity only ever consumes knowledge; ~0.14% ever reaches where it is produced.",
+    "Seven dimensions describe the gradient's shape and converge: the historical arc (consume-access an unbroken staircase up, produce-access flat at every step), cost (bimodal, a free path to read but none to produce), field coverage (biomedicine has ~133× more researchers than mathematics), the temporal trend, the leaky pipeline, the geographic near-monopoly (top-10 countries hold 69.3% of researcher capacity, 35% of countries have no researcher datapoint, women out-enroll men into university yet hold only ~33% of research posts), and the modality axis (every scalable channel ceilings out below the frontier; the one production-reaching channel does not scale). AI is the first technology in the entire 5,000-year arc for which the consume-versus-produce verdict is not yet written.",
   ],
   highlights: [
     "A ~270× depth cliff: world access to knowledge falls from 82.5% at basic literacy (L0) to 0.14% at reading the research frontier (L4); the rich-poor gap widens from under 2× at literacy to ~75× at the frontier.",
     "~99.86% of humanity only ever consumes knowledge; only ~0.14% ever reaches where it is produced.",
     "Three stacked, SDG-4-measured crises: learning (48.3% global learning poverty), access (51M + 61M children out of school), financing (3.6% of GDP, below the 4% floor; 92 of ~200 countries beneath it).",
     "The frontier is a near-monopoly: top-10 countries hold 69.3% of estimated researcher capacity, 35% of countries (75/217) have no researcher datapoint, researcher-intensity Gini 0.646.",
-    "The 5,000-year arc: every knowledge technology widened access to consume, none widened access to produce — AI is the first open question.",
+    "The 5,000-year arc: every knowledge technology widened access to consume, none widened access to produce, AI is the first open question.",
   ],
   /** Figures shown on the flagship landing (subset of the 16 vendored). */
   figures: [
     {
       src: "/education/figures/fig_access_vs_age.png",
-      alt: "World access by depth — the access cliff (log scale)",
+      alt: "World access by depth, the access cliff (log scale)",
       caption:
         "The access cliff: world access by depth, from basic literacy (L0) to producing new knowledge (L5), on a log scale. Access falls ~270× from undergraduate to the research frontier.",
     },
@@ -66,7 +67,7 @@ export const FLAGSHIP = {
       src: "/education/figures/fig_access_arc.png",
       alt: "The 5,000-year access arc",
       caption:
-        "The 5,000-year access arc — every prior technology widened access to consume knowledge; produce-access stayed flat at every step; AI is the open question.",
+        "The 5,000-year access arc, every prior technology widened access to consume knowledge; produce-access stayed flat at every step; AI is the open question.",
     },
     {
       src: "/education/figures/fig_frontier_bar.png",
@@ -122,10 +123,10 @@ export const EDUCATION_DOCS: EducationDoc[] = [
     group: "thesis",
     groupLabel: "Reform thesis",
     blurb:
-      "The bridge from diagnosis to mission: given the actual problems, where does Bucket's open-knowledge thesis measurably move the needle — and where does it not? Honesty about the second half makes the first half credible.",
+      "The bridge from diagnosis to mission: given the actual problems, where does Bucket's open-knowledge thesis measurably move the needle, and where does it not? Honesty about the second half makes the first half credible.",
     githubUrl: `${GH}/REFORM_THESIS.md`,
   },
-  // foundations 01–04
+  // foundations 01-04
   {
     slug: "foundations-01-what-it-means-to-be-educated",
     doc: "foundations/01-what-it-means-to-be-educated.md",
@@ -143,7 +144,7 @@ export const EDUCATION_DOCS: EducationDoc[] = [
     group: "foundations",
     groupLabel: "Foundations",
     blurb:
-      "How the stated aims of education have shifted — and why sorting, credentialing, and socialization are legitimate functions, not merely pathologies.",
+      "How the stated aims of education have shifted, and why sorting, credentialing, and socialization are legitimate functions in their own right.",
     githubUrl: `${GH}/foundations/02-goals-of-education-and-their-evolution.md`,
   },
   {
@@ -166,7 +167,7 @@ export const EDUCATION_DOCS: EducationDoc[] = [
       "AI as the first technology in the 5,000-year arc for which the consume-versus-produce verdict is not yet written.",
     githubUrl: `${GH}/foundations/04-ai-and-the-future-of-education.md`,
   },
-  // deep 01–04
+  // deep 01-04
   {
     slug: "deep-01-us-education-and-innovation",
     doc: "deep/01-us-education-and-innovation.md",
@@ -174,7 +175,7 @@ export const EDUCATION_DOCS: EducationDoc[] = [
     group: "deep",
     groupLabel: "Structural deep-dives",
     blurb:
-      "The industrial schooling model optimized for sorting, compliance, and credentialing — not learning.",
+      "The industrial schooling model optimized for sorting, compliance, and credentialing, not learning.",
     githubUrl: `${GH}/deep/01-us-education-and-innovation.md`,
   },
   {
@@ -204,10 +205,10 @@ export const EDUCATION_DOCS: EducationDoc[] = [
     group: "deep",
     groupLabel: "Structural deep-dives",
     blurb:
-      "Sleep, light, movement, and nutrition are large, well-evidenced levers on cognition the factory schedule structurally violates — and the system caps the top while failing the bottom.",
+      "Sleep, light, movement, and nutrition are large, well-evidenced levers on cognition the factory schedule structurally violates, and the system caps the top while failing the bottom.",
     githubUrl: `${GH}/deep/04-health-learning-and-the-ceiling.md`,
   },
-  // landscape 01–07
+  // landscape 01-07
   {
     slug: "landscape-01-solution-landscape",
     doc: "landscape/01-solution-landscape.md",

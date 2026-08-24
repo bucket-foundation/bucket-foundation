@@ -7,7 +7,7 @@ import {
   type EducationDoc,
 } from "@/lib/education";
 
-// /research/education — the education-atlas corpus hub. Bucket Foundation's
+// /research/education, the education-atlas corpus hub. Bucket Foundation's
 // founding research for its education-reform mission. Stone-bone styling
 // matches /research and /research/papers.
 
@@ -99,7 +99,7 @@ export default function Page() {
               {FLAGSHIP.venue} · {FLAGSHIP.version} · {FLAGSHIP.date}
             </span>
             <span className="text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
-              DOI pending · {FLAGSHIP.license}
+              DOI: {FLAGSHIP.doi} · {FLAGSHIP.license}
             </span>
           </div>
           <h2 className="mt-3 font-display text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.15] text-[color:var(--basalt)]">

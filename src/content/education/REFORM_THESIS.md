@@ -44,4 +44,14 @@ The K-12 funding model, teacher shortages/pay, the low-income access + financing
 
 The industrial education system was a real democratizing achievement (87.7% global literacy) whose *model* is now mismatched to the knowledge age. Reforming the schooling-logistics layer is a job for states. **Reforming the knowledge layer, open access to it, fair production and validation of it, and an un-capped frontier for self-directed learners and the few who can extend it, is the job Bucket is built for.** Everything in this atlas is the evidence base for that focus, including the explicit boundaries of it.
 
+## References
+
+Every number in §1-4 is sourced in full elsewhere in the corpus. The three
+crisis figures in §1 come from the World Bank/UNESCO/OECD data cited in
+`docs/EDUCATION_PROBLEMS.md` §1. The learning-science, health, and ability
+claims in §1.2-1.4 (retrieval/spacing, iodine deficiency and lead exposure,
+SMPY and acceleration effect sizes) are reference #18 in
+[`THE-KNOWLEDGE-ACCESS-GRADIENT.md` References](https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md#references).
+See that document's References section for the complete, numbered bibliography.
+
 *Sources: [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md) + `docs/deep/01-04` (every number traceable to World Bank / UNESCO / OECD / NCES / NSF / the peer-reviewed learning-science literature).*

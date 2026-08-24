@@ -30,7 +30,7 @@ evidence discipline the corpus holds throughout.*
 > Dichio, G. (2026). *The Knowledge-Access Gradient: who can reach how deep into
 > human knowledge, at what age, at what cost, and what that means for reforming
 > education* (v1.1). Bucket Foundation working paper, education-atlas corpus.
-> https://github.com/bucket-foundation/education-atlas
+> https://doi.org/10.5281/zenodo.22083720
 
 ```bibtex
 @techreport{dichio2026knowledgeaccess,
@@ -44,7 +44,8 @@ evidence discipline the corpus holds throughout.*
   number       = {v1.1},
   howpublished = {education-atlas corpus},
   url          = {https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md},
-  note         = {DOI pending Zenodo mint, see .zenodo.json}
+  doi          = {10.5281/zenodo.22083720},
+  note         = {https://doi.org/10.5281/zenodo.22083720}
 }
 ```
 

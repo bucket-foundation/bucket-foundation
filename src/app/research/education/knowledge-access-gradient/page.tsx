@@ -7,10 +7,10 @@ import { FLAGSHIP, readEducationDoc } from "@/lib/education";
 
 const SITE = "https://www.bucket.foundation";
 
-// /research/education/knowledge-access-gradient — the flagship education-atlas
+// /research/education/knowledge-access-gradient, the flagship education-atlas
 // synthesis, rendered on-site as a first-class paper-like page from the
 // vendored markdown (src/content/education/THE-KNOWLEDGE-ACCESS-GRADIENT.md).
-// No minted DOI yet — presented as a Bucket Foundation working paper.
+// Minted DOI 10.5281/zenodo.22083720, presented as a Bucket Foundation working paper.
 
 export const metadata: Metadata = {
   title: `${FLAGSHIP.title} · education research`,
@@ -57,6 +57,12 @@ function jsonLd() {
     abstract: FLAGSHIP.abstract.join(" "),
     description: FLAGSHIP.abstract[0],
     image: FLAGSHIP.figures.map((f) => `${SITE}${f.src}`),
+    identifier: {
+      "@type": "PropertyValue",
+      propertyID: "DOI",
+      value: FLAGSHIP.doi,
+    },
+    sameAs: FLAGSHIP.doiUrl,
   };
 }
 
@@ -83,7 +89,14 @@ export default function Page() {
             {FLAGSHIP.venue} · {FLAGSHIP.version}
           </span>
           <span>{FLAGSHIP.date}</span>
-          <span>DOI: pending</span>
+          <a
+            href={FLAGSHIP.doiUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4"
+          >
+            DOI: {FLAGSHIP.doi}
+          </a>
           <span>{FLAGSHIP.license}</span>
         </div>
         <p className="mb-3 text-[13px]">Corpus: {FLAGSHIP.corpusLine}</p>

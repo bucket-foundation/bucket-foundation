@@ -250,8 +250,22 @@ reforming education does not rest on conviction. It rests on the record.
 
 ---
 
-_Sources: World Bank EdStats (api.worldbank.org/v2, CC-BY-4.0); UNESCO Institute
-for Statistics (api.uis.unesco.org); Our World in Data (ourworldindata.org);
-OECD PISA 2022 Results, Volume I. Indicator codebook, benchmarks, and per-row
-provenance: `edu/indicators.py`, `data/MANIFEST.json`, `docs/findings.json`.
+## References
+
+1. World Bank. *EdStats: Education Statistics.* `SE.LPV.PRIM` (learning
+   poverty), `SE.PRM.UNER` / `SE.SEC.UNER.LO` (out-of-school children),
+   `SE.XPD.TOTL.GD.ZS` (education spend, % GDP), `SE.TER.ENRR.FE` / `.MA`
+   (tertiary enrollment by gender). https://databank.worldbank.org/source/education-statistics-%5e-all-indicators
+2. UNESCO Institute for Statistics (UIS). *Researchers per million
+   inhabitants*, *Women in Science*, and the *GEM/WIDE* World Inequality
+   Database on Education. http://uis.unesco.org/
+3. OECD. *PISA 2022 Results.* https://www.oecd.org/en/about/programmes/pisa.html
+4. Our World in Data. *Cross-country literacy rates.* https://ourworldindata.org/literacy
+
+These are references #1-3 and #8 in
+[`THE-KNOWLEDGE-ACCESS-GRADIENT.md` References](https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md#references),
+which carries the full 18-entry bibliography for the corpus.
+
+_Indicator codebook, benchmarks, and per-row provenance:
+`edu/indicators.py`, `data/MANIFEST.json`, `docs/findings.json`.
 Validation: [`docs/VALIDATION.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/VALIDATION.md) (14/14 checks pass)._
