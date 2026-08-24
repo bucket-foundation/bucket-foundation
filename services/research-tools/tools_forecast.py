@@ -1,40 +1,40 @@
 #!/usr/bin/env python3
 """
-research-tools — TimeSeriesForecast (REAL Holt-Winters + backtest, CPU, no GPU)
+research-tools, TimeSeriesForecast (REAL Holt-Winters + backtest, CPU, no GPU)
 ===============================================================================
 
 UNIVERSAL tool serving **econ-social** (42,276 PIs), **earth-climate** (116,840),
-and any field with a measured series over time. Forecasting a series — and
-honestly reporting backtest error — is a recurring need that researchers
-usually hand-roll. statsmodels is used if present (ARIMA/Holt-Winters), but the
+and any field with a measured series over time. Forecasting a series, and
+reporting backtest error, is a recurring need that researchers
+hand-roll. Statsmodels is used if present (ARIMA/Holt-Winters), but the
 default is a dependency-light, REAL Holt-Winters triple exponential smoothing
 implemented directly in numpy, so the tool is correct with zero heavy deps.
 
 REAL algorithms:
 
-  1. Holt-Winters exponential smoothing (Holt 1957; Winters 1960)
-     ----------------------------------------------------------------------
-     Level/trend/seasonal recursion (additive seasonality):
-         level_t  = α(y_t − season_{t−m}) + (1−α)(level_{t−1} + trend_{t−1})
-         trend_t  = β(level_t − level_{t−1}) + (1−β) trend_{t−1}
-         season_t = γ(y_t − level_t) + (1−γ) season_{t−m}
-         ŷ_{t+h}  = level_t + h·trend_t + season_{t−m+((h−1) mod m)+1}
-     With no seasonal period it degrades to Holt's linear trend (double
-     exponential smoothing); with no trend, to simple exponential smoothing.
-     Smoothing parameters (α, β, γ) are optimized by minimizing in-sample SSE
-     via a coarse grid + scipy refinement when available (else grid only).
+ 1. Holt-Winters exponential smoothing (Holt 1957; Winters 1960)
+ ----------------------------------------------------------------------
+ Level/trend/seasonal recursion (additive seasonality):
+ level_t = α(y_t − season_{t−m}) + (1−α)(level_{t−1} + trend_{t−1})
+ trend_t = β(level_t − level_{t−1}) + (1−β) trend_{t−1}
+ season_t = γ(y_t − level_t) + (1−γ) season_{t−m}
+ ŷ_{t+h} = level_t + h·trend_t + season_{t−m+((h−1) mod m)+1}
+ With no seasonal period it degrades to Holt's linear trend (double
+ exponential smoothing); with no trend, to simple exponential smoothing.
+ Smoothing parameters (α, β, γ) are optimized by minimizing in-sample SSE
+ via a coarse grid + scipy refinement when available (else grid only).
 
-  2. Classical additive decomposition
-     ----------------------------------------------------------------------
-     Trend via a centered moving average over the seasonal period; seasonal as
-     the per-phase mean of detrended values (centered to sum 0); residual =
-     series − trend − seasonal.
+ 2. Classical additive decomposition
+ ----------------------------------------------------------------------
+ Trend via a centered moving average over the seasonal period; seasonal as
+ the per-phase mean of detrended values (centered to sum 0); residual =
+ series − trend − seasonal.
 
-  3. Honest backtest
-     ----------------------------------------------------------------------
-     A holdout of the last `test` points is forecast from the remainder, and
-     MAE / RMSE / MAPE are reported on that holdout — the only honest accuracy
-     number (in-sample fit is not).
+ 3. Backtest
+ ----------------------------------------------------------------------
+ A holdout of the last `test` points is forecast from the remainder, and
+ MAE / RMSE / MAPE are reported on that holdout, the only accuracy
+ number (in-sample fit is not).
 
 Deterministic given the data; never raises on malformed input (returns a
 structured {"error": ...}).
@@ -62,13 +62,13 @@ def _as_float_list(x: Any) -> Optional[list[float]]:
 
 
 # ---------------------------------------------------------------------------
-# Holt-Winters (additive) — pure numpy
+# Holt-Winters (additive), pure numpy
 # ---------------------------------------------------------------------------
 def _hw_fit_forecast(y: np.ndarray, m: int, h: int,
                      alpha: float, beta: float, gamma: float):
     """Run additive Holt-Winters with given params. Returns (fitted, forecast).
 
-    m = seasonal period (0/1 → no seasonality). h = forecast horizon."""
+ m = seasonal period (0/1 → no seasonality). h = forecast horizon."""
     n = len(y)
     seasonal = m if m and m > 1 else 0
     # initialization
@@ -123,7 +123,7 @@ def _hw_fit_forecast(y: np.ndarray, m: int, h: int,
 
 def _optimize_hw(y: np.ndarray, m: int):
     """Grid-search (α, β, γ) minimizing in-sample SSE. Refines with scipy if
-    present. Returns (alpha, beta, gamma, sse)."""
+ present. Returns (alpha, beta, gamma, sse)."""
     seasonal = m if m and m > 1 else 0
     grid = [0.05, 0.2, 0.4, 0.6, 0.8, 0.95]
     best = (0.3, 0.1, 0.1, math.inf)
@@ -207,15 +207,15 @@ def _errors(actual: np.ndarray, pred: np.ndarray) -> dict:
 
 def run_forecast(payload: dict) -> dict:
     """payload: {
-        values: [float,...]  (the series),
-        period: int          (seasonal period m; 0/None → none),
-        horizon: int         (forecast steps; default 6),
-        test: int            (backtest holdout size; default min(period or 4, n//4))
-    }  OR  {"demo": true}
+ values: [float...] (the series),
+ period: int (seasonal period m; 0/None → none),
+ horizon: int (forecast steps; default 6),
+ test: int (backtest holdout size; default min(period or 4, n//4))
+ } OR {"demo": true}
 
-    Decompose + forecast a series with Holt-Winters triple exponential smoothing
-    (statsmodels if installed for ARIMA/HW, else the real numpy HW). Reports an
-    honest holdout backtest (MAE/RMSE/MAPE). Deterministic; never raises.
+ Decompose + forecast a series with Holt-Winters triple exponential smoothing
+ (statsmodels if installed for ARIMA/HW, else the real numpy HW). Reports an
+ holdout backtest (MAE/RMSE/MAPE). Deterministic; never raises.
     """
     demo = bool(payload.get("demo")) or (
         isinstance(payload.get("values"), str)
@@ -303,14 +303,14 @@ def run_forecast(payload: dict) -> dict:
             "parameters α/β/γ fit by minimizing in-sample SSE (grid + scipy "
             "Nelder-Mead refinement). Classical additive decomposition via a "
             "centered moving average. Accuracy is the holdout backtest "
-            "(MAE/RMSE/MAPE) on the last points, not in-sample fit. statsmodels "
+            "(MAE/RMSE/MAPE) on the last points rather than in-sample fit. statsmodels "
             "is used for ARIMA/HW if installed; the default numpy implementation "
             "is exact and dependency-light."
         ),
         "note": (
             "Universal tool (econ-social, earth-climate, any measured series): "
-            "the backtest error is the honest accuracy number; a naive last-value "
-            "baseline is reported for context — a forecast that does not beat it "
+            "the backtest error is the accuracy number; a naive last-value "
+            "baseline is reported for context, a forecast that does not beat it "
             "adds nothing. Confidence intervals + ARIMA model selection are a "
             "documented follow-up."
         ),

@@ -1,4 +1,4 @@
-// canon-fs.ts — server-only filesystem scanner for bucket-canon/.
+// canon-fs.ts, server-only filesystem scanner for bucket-canon/.
 // The repo is the CMS. No DB. Read at build time from src/app server components.
 
 import fs from "fs";
@@ -121,7 +121,7 @@ function extractRowsFromIndex(md: string, branchDir: string, subfolder: string):
       if (cells.length < 2) continue;
       const firstReal = cells.find((c) => c.length > 0) || "";
       if (!firstReal) continue;
-      // Heuristic: skip rows that are clearly not entries (e.g., "Sub-folder | Scope | Index" master list)
+      // Heuristic: skip rows that are not entries (e.g., "Sub-folder | Scope | Index" master list)
       const yearMatch = cells.join(" ").match(/\b(1[5-9]\d{2}|20\d{2})\b/);
       rows.push({
         cells,

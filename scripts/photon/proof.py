@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-proof.py — end-to-end demonstration of all five Polingual query axes on the
+proof.py, end-to-end demonstration of all five Polingual query axes on the
 real 45k-word photon substrate. Prints a short report + per-axis examples and
 measures query latency. Run: python3 scripts/photon/proof.py
 """

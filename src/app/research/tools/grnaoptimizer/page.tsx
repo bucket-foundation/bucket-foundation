@@ -6,7 +6,7 @@ export const metadata = toolMetadata("grnaoptimizer");
 const _jsonld = toolJsonLd("grnaoptimizer");
 import GRNAOptimizerClient from "./GRNAOptimizerClient";
 
-// gRNA-Optimizer run page — CRISPR SpCas9 guide design over a target.
+// gRNA-Optimizer run page, CRISPR SpCas9 guide design over a target.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/datasets
+ * bucket.foundation, /api/research/datasets
  * -------------------------------------------
  * Serves the research-atlas dataset catalog + per-dataset metadata in the
  * SAME feed402/0.2 envelope shape as /api/research ({data, citation, receipt,
@@ -14,17 +14,17 @@
  * TRUST MODEL (mirrors /api/research): the caller needs NO wallet and NO key and
  * is NEVER asked to pay. These datasets are open (CC-BY-4.0), free to read. The
  * `cite` block is passive, forward-looking license metadata for a downstream
- * PUBLISHER — not an instruction to the reader. There is no payment challenge.
+ * PUBLISHER to consume. There is no payment challenge for the reader.
  *
- *   GET /api/research/datasets
- *     → { data: { catalog }, citation, receipt, cite, provenance, canon_tier }
- *       lists every published dataset (title, sources, row_count, as_of, schema).
+ * GET /api/research/datasets
+ * → { data: { catalog }, citation, receipt, cite, provenance, canon_tier }
+ * lists every published dataset (title, sources, row_count, as_of, schema).
  *
- *   GET /api/research/datasets?dataset=<table>
- *     → a single dataset's full feed402/0.2 envelope (data + citation +
- *       provenance + canon_tier + download), born citeable.
+ * GET /api/research/datasets?dataset=<table>
+ * → a single dataset's full feed402/0.2 envelope (data + citation +
+ * provenance + canon_tier + download), born citeable.
  *
- *   404 → { error: { code:"not_found", message } }   (unknown dataset)
+ * 404 → { error: { code:"not_found", message } } (unknown dataset)
  */
 import { NextRequest, NextResponse } from "next/server";
 import {
@@ -86,7 +86,7 @@ function json(
   });
 }
 
-/** A single dataset's full feed402/0.2 envelope — born citeable. */
+/** A single dataset's full feed402/0.2 envelope, born citeable. */
 function datasetEnvelope(d: AtlasDataset) {
   return {
     data: {
@@ -109,12 +109,12 @@ function datasetEnvelope(d: AtlasDataset) {
     },
     cite: datasetCiteBlock(),
     tags: [d.kind, ...d.sources],
-    // Tool/dataset outputs are downstream applications, not foundations/axioms —
+    // Tool/dataset outputs are downstream applications of foundations/axioms, 
     // they publish as candidate, never canon. Mirrors /api/research precedence.
     canon_tier: "candidate" as const,
     provenance: datasetProvenance(d),
     // TODO(publish): attach a real `doi` (minted via Zenodo) here once a dataset
-    // is deposited. No wallet, no chain — a DOI + the feed402/0.2 cite-forever
+    // is deposited. No wallet, no chain, a DOI + the feed402/0.2 cite-forever
     // block is the whole permanence story.
     ...agentNotice(),
   };

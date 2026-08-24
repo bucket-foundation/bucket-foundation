@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/stoichbalance
+ * bucket.foundation, /api/research/stoichbalance
  * -------------------------------------------------
  * Same-origin proxy for StoichBalance (chemistry field tool). Balance a
  * chemical equation by exact rational null-space of the element matrix, then
@@ -7,7 +7,7 @@
  * (tools_stoich.py).
  *
  * POST body { equation, amounts?, amounts_g? } | { demo: true }
- *   GET  /api/research/stoichbalance?job=<id>[&result=1] → status / result
+ * GET /api/research/stoichbalance?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

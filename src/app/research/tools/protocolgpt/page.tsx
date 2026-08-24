@@ -6,7 +6,7 @@ export const metadata = toolMetadata("protocolgpt");
 const _jsonld = toolJsonLd("protocolgpt");
 import ProtocolGPTClient from "./ProtocolGPTClient";
 
-// ProtocolGPT run page — freeform methods/SOP → structured, runnable protocol.
+// ProtocolGPT run page, freeform methods/SOP → structured, runnable protocol.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

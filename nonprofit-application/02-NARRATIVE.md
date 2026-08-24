@@ -1,4 +1,6 @@
-# Narrative — Mission, Activities, Public Benefit
+# Narrative
+
+Mission, Activities, Public Benefit.
 
 > The narrative attachment that accompanies the master application. Designed to be lifted directly into IRS Form 1023 Part IV ("Narrative Description of Your Activities") or into the equivalent free-text fields on a fiscal sponsor's intake form.
 
@@ -6,13 +8,13 @@
 
 ## A. The problem we are organized to solve
 
-Primary research is the substrate on which every downstream applied science depends — medicine, energy, agriculture, materials, climate, computation. The economic system that publishes this substrate is broken in three measurable ways:
+Primary research is the substrate on which every downstream applied science depends, medicine, energy, agriculture, materials, climate, computation. The economic system that publishes this substrate is broken in three measurable ways:
 
 1. **Readers pay for papers they may not need.** Subscription bundles force libraries (and the public funds behind them) to purchase access to entire journal portfolios in order to read a small number of relevant articles.
 2. **Authors pay publishers to publish work the authors already wrote.** Article processing charges (APCs) for open-access publication routinely range from $1,500 to $11,000 per article, paid by the author's grant or institution.
 3. **Independent researchers cannot cite what they cannot afford to read.** The marginal cost of citing a paper that already exists in a library should be zero; in practice it is bounded below by the publisher's per-article paywall.
 
-The cumulative effect is that the supply of new primary research is artificially throttled by an intermediary layer that adds no scientific value, and the readers most likely to produce derivative discoveries — students, independent researchers, and researchers in low-income regions — are the ones most consistently locked out.
+The cumulative effect is that the supply of new primary research is artificially throttled by an intermediary layer that adds no scientific value, and the readers most likely to produce derivative discoveries, students, independent researchers, and researchers in low-income regions, are the ones most locked out.
 
 ## B. The mechanism we propose
 
@@ -22,19 +24,19 @@ bucket.foundation introduces a single convention on top of the existing HTTP and
 
 The convention is implemented as:
 
-- **`PROTOCOL.md`** — an open specification (CC0-in-intent) defining the bucket folder layout, the `canon.json` sidecar schema, the x402 fetch flow, and the citation receipt format.
-- **A reference implementation** — an MIT-licensed Next.js site that fetches papers from x402-gated research APIs, writes them into buckets, and exposes a public registry.
-- **A canon** — a curated, conservative collection of foundation-tier research (axioms, principles, primary derivations, landmark studies) maintained under the editorial filter described in `PROTOCOL.md`.
+- **`PROTOCOL.md`**, an open specification (CC0-in-intent) defining the bucket folder layout, the `canon.json` sidecar schema, the x402 fetch flow, and the citation receipt format.
+- **A reference implementation**, an MIT-licensed Next.js site that fetches papers from x402-gated research APIs, writes them into buckets, and exposes a public registry.
+- **A canon**, a curated, conservative collection of foundation-tier research (axioms, principles, primary derivations, landmark studies) maintained under the editorial filter described in `PROTOCOL.md`.
 
-There is **nothing technically novel** about any of these pieces in isolation. The novelty is the convention, the license, and the citation economics. The protocol is designed so that **no single party — including the Foundation itself — is structurally necessary** for the system to function. Anyone may run a bucket. The Foundation runs *a* bucket, not *the* bucket.
+There is **nothing technically novel** about any of these pieces in isolation. The novelty is the convention, the license, and the citation economics. The protocol is designed so that **no single party, including the Foundation itself, is structurally necessary** for the system to function. Anyone may run a bucket. The Foundation runs *a* bucket, not *the* bucket.
 
 ## C. Why this is a charitable activity
 
 The Foundation's activities map directly onto the IRS-recognized charitable purposes of **education, science, and the relief of the poor and distressed**:
 
-- **Education.** Disseminating primary research to the general public — including to readers who cannot afford subscription paywalls — is a textbook educational purpose. The Foundation does not gate access by membership, geography, or institutional affiliation.
+- **Education.** Disseminating primary research to the general public, including to readers who cannot afford subscription paywalls, is a textbook educational purpose. The Foundation does not gate access by membership, geography, or institutional affiliation.
 - **Science.** Maintaining the protocol and the reference implementation is the production and maintenance of open scientific infrastructure, comparable in kind (if not yet in scale) to arXiv, PubMed Central, and OpenAlex.
-- **Relief of distress.** The class of users for whom the existing publisher economy is most economically distressing — independent researchers, students, low-income institutions, and researchers in developing regions — is explicitly named as a priority constituency. The Foundation's pricing structure (read-for-free, cite-for-author-set-fee) is designed so that the marginal cost of using a bucketed paper approaches zero for these users.
+- **Relief of distress.** The class of users for whom the existing publisher economy is most economically distressing, independent researchers, students, low-income institutions, and researchers in developing regions, is explicitly named as a priority constituency. The Foundation's pricing structure (read-for-free, cite-for-author-set-fee) is designed so that the marginal cost of using a bucketed paper approaches zero for these users.
 
 The Foundation is **not** organized to:
 
@@ -43,7 +45,9 @@ The Foundation is **not** organized to:
 - Promote a particular candidate or political position (none).
 - Benefit a closed or restricted class (the user class is open and indefinite).
 
-## D. Activities — the next 12 months
+## D. Activities
+
+The next 12 months.
 
 The Foundation will pursue the following activities in its first operating year as a sponsored project:
 
@@ -55,7 +59,9 @@ The Foundation will pursue the following activities in its first operating year 
 6. **Governance maturation.** Recruit at least two additional individuals to serve as advisors or interim board members, draft bylaws, and adopt a formal conflict-of-interest acknowledgment that all participants sign.
 7. **Sponsor reporting.** Submit quarterly written reports to the fiscal sponsor on activities, finances, and risks. Comply with all sponsor reporting and audit requirements.
 
-## E. Activities — what we will NOT do in year one
+## E. Activities
+
+What we will NOT do in year one.
 
 - We will not mint, issue, or sell any token or NFT-equivalent that represents an equity, profit, or governance interest in the Foundation. (The reference site uses Story Protocol IP NFTs to represent **author copyright registrations**, which are distinct from financial instruments.)
 - We will not accept any donation, grant, or sponsorship that conditions the gift on restricting the canon, blocking specific authors, or modifying the protocol in a way that compromises interoperability.
@@ -71,9 +77,9 @@ In each quarterly report to the sponsor, the Foundation will publish:
 - **Author payouts disbursed** in the period (count, total amount, top-line recipients with consent).
 - **Operating expenses** in the period (line-item, with receipts).
 - **Surplus or deficit** for the period.
-- **Concentration risk** — what fraction of activity / revenue depends on the largest single donor, sponsor, or x402 source. The Foundation will work to keep no single party above 50% of revenue.
+- **Concentration risk**, what fraction of activity / revenue depends on the largest single donor, sponsor, or x402 source. The Foundation will work to keep no single party above 50% of revenue.
 
-These metrics, taken together, are the answer to the question *"is the Foundation actually doing what it says it does?"* and they are intended to be auditable by any third party against the on-chain wallet record.
+These metrics, taken together, are the answer to the question *"is the Foundation doing what it says it does?"* and they are intended to be auditable by any third party against the on-chain wallet record.
 
 ## G. Risks and mitigations
 
@@ -92,6 +98,6 @@ These metrics, taken together, are the answer to the question *"is the Foundatio
 - A reference bucket that has paid out non-trivial citation revenue (≥ $10,000 cumulative) to at least 25 authors.
 - A board of at least three people, with formal bylaws and an annual financial audit.
 - A clear decision on the long-term legal home: continue under the fiscal sponsor, file as a direct US 501(c)(3), or restructure under a non-US umbrella (Swiss Verein, Netherlands Stichting, or equivalent).
-- The Foundation is no longer the largest bucket operator. Other buckets — academic, commercial, individual — exist and federate.
+- The Foundation is no longer the largest bucket operator. Other buckets, academic, commercial, individual, exist and federate.
 
 If three years from now the Foundation has succeeded in its mission, it will be visibly **less central** to the network than it is at founding. That is the goal. A foundation that grows its own indispensability is a foundation that has lost the plot.

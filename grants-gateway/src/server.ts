@@ -1,14 +1,14 @@
 /**
- * grants-gateway — feed402 v0.2 paid grants-search merchant.
+ * grants-gateway, feed402 v0.2 paid grants-search merchant.
  *
  * Endpoints (see SPEC.md §5 tiers):
- *   GET /grants/raw?id=...                           $0.010 / row
- *   GET /grants/query?topic=&deadline_before=&...    $0.005 / call
- *   GET /grants/insight?venture=&topic=              $0.002 / call
+ * GET /grants/raw?id=... $0.010 / row
+ * GET /grants/query?topic=&deadline_before=&... $0.005 / call
+ * GET /grants/insight?venture=&topic= $0.002 / call
  *
  * All endpoints return a feed402 §3 envelope with a mandatory citation
  * block (canonical_url -> grants.gov / NIH RePORTER / NSF / ProPublica
- * 990-PF page). Payment verification is STUBBED — see src/x402.ts.
+ * 990-PF page). Payment verification is STUBBED, see src/x402.ts.
  *
  * Run: npm run dev
  * Curl: see README.md
@@ -136,7 +136,7 @@ async function chargeOrFail(
 
 const app = new Hono();
 
-// Liveness probe — cheap, no I/O
+// Liveness probe, cheap, no I/O
 app.get("/health", (c) => c.json({ ok: true, ts: nowIso() }));
 
 // §1 Discovery manifest
@@ -165,7 +165,7 @@ app.get("/.well-known/feed402.json", async (c) => {
   return c.json(manifest);
 });
 
-// /grants/raw — single full record by id
+// /grants/raw, single full record by id
 app.get("/grants/raw", async (c) => {
   const id = c.req.query("id");
   if (!id) {
@@ -198,7 +198,7 @@ app.get("/grants/raw", async (c) => {
   return c.json(env, 200);
 });
 
-// /grants/query — structured search
+// /grants/query, structured search
 app.get("/grants/query", async (c) => {
   const charge = await chargeOrFail(c, "query");
   if (!charge.ok) return charge.resp;
@@ -235,7 +235,7 @@ app.get("/grants/query", async (c) => {
   return c.json(env, 200);
 });
 
-// /grants/insight — venture-fit synthesis
+// /grants/insight, venture-fit synthesis
 app.get("/grants/insight", async (c) => {
   const venture = c.req.query("venture");
   const topic = c.req.query("topic");

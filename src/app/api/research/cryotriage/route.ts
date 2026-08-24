@@ -1,17 +1,17 @@
 /**
- * bucket.foundation — /api/research/cryotriage
+ * bucket.foundation, /api/research/cryotriage
  * --------------------------------------------
  * Same-origin proxy for the CryoTriage research tool (cryo-EM micrograph QC).
- * GPU tool — runs in DEMO/synthetic mode on the gateway (no GPU on the box); an
+ * GPU tool, runs in DEMO/synthetic mode on the gateway (no GPU on the box); an
  * uploaded micrograph still runs the CPU triage path. SUBMIT is multipart
  * (optional micrograph upload). Status + result are JSON GETs (see
  * /api/research/labbrain/route.ts + /api/research/patchseqml/route.ts, docs §2.5).
  *
- *   POST /api/research/cryotriage                 → gateway POST /v1/cryotriage/submit
- *        multipart: file=<mic.png>?               (else synthetic micrographs)
- *   GET  ?job=<id> / ?job=<id>&result=1           → status / result (render: "html")
+ * POST /api/research/cryotriage → gateway POST /v1/cryotriage/submit
+ * multipart: file=<mic.png>? (else synthetic micrographs)
+ * GET ?job=<id> / ?job=<id>&result=1 → status / result (render: "html")
  *
- * Env (server-only): TOOLS_GATEWAY_URL  default "https://research-tools.agfarms.dev"
+ * Env (server-only): TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  * TODO(deploy): set TOOLS_GATEWAY_URL in Vercel + K3s secret bucket/tools-gateway.
  * TODO(deploy): wire a real GPU cryo-EM triage worker (flip cryotriage off demo).
  */
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     out.append("file", file, file.name || "mic.png");
   }
 
-  // [METERING SEAM — TODO, off in v1] — see /api/research/labbrain/route.ts.
+  // [METERING SEAM, TODO, off in v1], see /api/research/labbrain/route.ts.
 
   let resp: Response;
   try {

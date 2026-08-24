@@ -2,14 +2,14 @@
 
 Verifies the ACTUAL Holt-Winters smoothing + decomposition + backtest on series
 with KNOWN structure:
-  * a pure linear trend (y = 2t) is forecast almost exactly by Holt's linear
-    trend (the load-bearing assertion: next value ≈ continuation of the line);
-  * on a trend+seasonal demo series, seasonal Holt-Winters beats the naive
-    last-value baseline on the holdout (real skill, honestly measured);
-  * the additive decomposition recovers a planted seasonal pattern;
-  * malformed input returns a structured error, never raises.
+ * a pure linear trend (y = 2t) is forecast almost exactly by Holt's linear
+ trend (the load-bearing assertion: next value ≈ continuation of the line);
+ * on a trend+seasonal demo series, seasonal Holt-Winters beats the naive
+ last-value baseline on the holdout (real skill, measured);
+ * the additive decomposition recovers a planted seasonal pattern;
+ * malformed input returns a structured error, never raises.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_forecast.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_forecast.py -q
 """
 from __future__ import annotations
 
@@ -48,7 +48,7 @@ def test_constant_series_forecasts_constant():
 
 
 # =========================================================================
-# seasonal demo beats naive baseline (real, honest skill)
+# seasonal demo beats naive baseline (real, skill)
 # =========================================================================
 def test_demo_seasonal_beats_naive():
     out = fc.run_forecast({"demo": True})
@@ -75,7 +75,7 @@ def test_decomposition_recovers_seasonality():
 
 
 # =========================================================================
-# robustness
+# resilience
 # =========================================================================
 def test_too_short_error():
     assert fc.run_forecast({"values": [1, 2]}).get("error")

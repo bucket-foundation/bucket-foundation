@@ -7,9 +7,9 @@ record fit for `bucket-canon/<branch>/<topic>/`. Outputs YAML metadata + BibTeX.
 
 This pipeline **does not** access, cache, or redistribute paywalled full-text.
 It resolves citation metadata from public APIs (OpenAlex, Crossref, PubMed,
-arXiv, bioRxiv, Unpaywall) and only downloads PDFs when Unpaywall or PMC
+ArXiv, bioRxiv, Unpaywall) and only downloads PDFs when Unpaywall or PMC
 reports an OA version with a declared license. Canon entries store citations,
-not content.
+Not content.
 
 Sci-Hub is **not** integrated and will not be. Operators who need full-text for
 reading (fair use, manual review) handle that out-of-band.
@@ -20,8 +20,8 @@ reading (fair use, manual review) handle that out-of-band.
 pip install -r requirements.txt
 ```
 
-Python 3.10+; only `requests` + `PyYAML` are required. `PyYAML` is optional —
-a stdlib fallback emitter is included.
+Python 3.10+; only `requests` + `PyYAML` are required. `PyYAML` is optional,
+A stdlib fallback emitter is included.
 
 ## Usage
 
@@ -47,29 +47,29 @@ python3 tools/canon-pipeline/canon.py fetch 10.1126/science.208.4448.1095
 
 Resolution cascade (by input kind):
 
-| Input        | Path                                                         |
+| Input | Path |
 |--------------|--------------------------------------------------------------|
-| DOI          | OpenAlex(DOI) ∪ Crossref(DOI) → merge                        |
-| PMID         | PubMed esummary → DOI → OpenAlex + Crossref                  |
-| arXiv id     | arXiv Atom → (DOI if available) → OpenAlex + Crossref        |
-| free text    | OpenAlex search → DOI → Crossref; fallback Crossref search   |
-| bioRxiv DOI  | + bioRxiv details for version metadata                       |
+| DOI | OpenAlex(DOI) ∪ Crossref(DOI) → merge |
+| PMID | PubMed esummary → DOI → OpenAlex + Crossref |
+| arXiv id | arXiv Atom → (DOI if available) → OpenAlex + Crossref |
+| free text | OpenAlex search → DOI → Crossref; fallback Crossref search |
+| bioRxiv DOI | + bioRxiv details for version metadata |
 
 Records merge across sources; OpenAlex is the default title/author/citations
 truth, Crossref fills venue + type + retraction, PubMed/arXiv fill when neither
 has the work indexed.
 
-### Canon score (0–100, explainable)
+### Canon score
 
 - +30 peer-reviewed Crossref type
 - +25 / +20 / +10 citation tiers (>1000 / >50 / >10)
 - +15 year survived >5 years
 - +10 open access
 - +15 foundational venue (Nature, Science, PNAS, Phys Rev, Cell, Annual Reviews,
-  Phil Trans, NEJM, JAMA, BMJ, Lancet, Rev Mod Phys)
+ Phil Trans, NEJM, JAMA, BMJ, Lancet, Rev Mod Phys)
 - −30 retracted
 
-Reasons list is emitted alongside the score — no black-box scoring.
+Reasons list is emitted alongside the score, no black-box scoring.
 
 ### Branch hints
 
@@ -97,7 +97,7 @@ python3 -m pytest tests/ -v
 ```
 
 Tests are network-free (mocked fixtures / pure-function checks). Real end-to-end
-resolve/dossier runs exercise the live APIs — expect occasional flakes from
+resolve/dossier runs exercise the live APIs, expect occasional flakes from
 upstream; the cache plus backoff absorb most transient issues.
 
 ## Files

@@ -1,8 +1,8 @@
 /**
- * LLM provider selection for the Bucket research agent — extracted so it can be
+ * LLM provider selection for the Bucket research agent, extracted so it can be
  * unit-tested (Next.js forbids non-handler exports from a `route.ts`). This is
  * the SAME seam the Academy tutor uses (see
- * `src/app/api/academy/tutor/provider.ts`) — local GPU LLM is the DEFAULT when
+ * `src/app/api/academy/tutor/provider.ts`), local GPU LLM is the DEFAULT when
  * LLM_BASE_URL is set, hosted Anthropic is the fallback ALTERNATIVE, neither =>
  * null => the route returns 503 (agent dark). All grounding/citation/abstain
  * safety runs in code regardless of which provider answers (S7), so they are

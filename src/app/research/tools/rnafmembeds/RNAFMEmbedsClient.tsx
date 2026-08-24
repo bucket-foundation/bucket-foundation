@@ -1,7 +1,7 @@
 "use client";
 
-// RNA-FM-Embeds client island — RNA embedding service. Real RNA-FM model when
-// weights present, else a REAL k-mer + structural-feature embedding (honestly
+// RNA-FM-Embeds client island, RNA embedding service. Real RNA-FM model when
+// weights present, else a REAL k-mer + structural-feature embedding (
 // marked). Render is "json" → typed view.
 
 import { useState } from "react";

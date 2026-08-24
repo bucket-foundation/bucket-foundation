@@ -6,7 +6,7 @@ export const metadata = toolMetadata("proteinscout");
 const _jsonld = toolJsonLd("proteinscout");
 import ProteinScoutClient from "./ProteinScoutClient";
 
-// ProteinScout run page — server-component shell (matches /research styling).
+// ProteinScout run page, server-component shell (matches /research styling).
 // See docs/research-tools/04-implementation-architecture.md §2.
 export default function Page() {
   return (

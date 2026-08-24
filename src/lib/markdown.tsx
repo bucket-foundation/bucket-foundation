@@ -1,7 +1,7 @@
 /**
  * Minimal, zero-dependency Markdown → React renderer.
- * Handles: # h1–h6, paragraphs, ul/ol, bold, italic, inline code, fenced code,
- *          links, images, GitHub-style tables, blockquotes, horizontal rule.
+ * Handles: # h1, h6, paragraphs, ul/ol, bold, italic, inline code, fenced code,
+ * links, images, GitHub-style tables, blockquotes, horizontal rule.
  * Designed for bucket.foundation's strategic docs (MANIFESTO, PROTOCOL,
  * GOVERNANCE) and the long-form research corpora (research-atlas papers,
  * education-atlas) which use a small, disciplined subset of markdown plus
@@ -69,7 +69,7 @@ function parse(md: string): Block[] {
       blocks.push({ t: "hr" }); i++; continue;
     }
 
-    // headings (1–6)
+    // headings (1-6)
     const h = /^(#{1,6})\s+(.*)$/.exec(line);
     if (h) {
       blocks.push({ t: "h", level: h[1].length as 1 | 2 | 3 | 4 | 5 | 6, text: h[2].trim() });
@@ -151,7 +151,7 @@ function parse(md: string): Block[] {
   return blocks;
 }
 
-// Inline renderer — bold **x**, italic *x*/_x_, inline code `x`, links [t](u)
+// Inline renderer, bold **x**, italic *x*/_x_, inline code `x`, links [t](u)
 function inline(text: string, key: string): React.ReactNode {
   const out: React.ReactNode[] = [];
   let rest = text;

@@ -2,17 +2,17 @@
 
 Verifies the ACTUAL statistics-reproducibility math on inputs with KNOWN,
 hand-checkable ground truth:
-  * a known statcheck DECISION ERROR is caught (χ²(1)=3.84 reported p=.049, but
-    recomputes to p≈.0500 — flips significance at α=.05);
-  * a known statcheck INCONSISTENCY is caught (t(24)=2.13 reported p=.002 but
-    recomputes to p≈.044);
-  * a CONSISTENT statistic is NOT falsely flagged (F(2,36)=5.40, p=.009);
-  * a GRIM-IMPOSSIBLE mean is flagged (M=2.19 on an integer scale, n=10 →
-    21.9 is not an integer) and a GRIM-OK mean is not;
-  * reporting flags fire (missing correction / CIs / effect sizes);
-  * malformed input returns a structured error, never raises.
+ * a known statcheck DECISION ERROR is caught (χ²(1)=3.84 reported p=.049, but
+ recomputes to p≈.0500, flips significance at α=.05);
+ * a known statcheck INCONSISTENCY is caught (t(24)=2.13 reported p=.002 but
+ recomputes to p≈.044);
+ * a CONSISTENT statistic is NOT falsely flagged (F(2,36)=5.40, p=.009);
+ * a GRIM-IMPOSSIBLE mean is flagged (M=2.19 on an integer scale, n=10 →
+ 21.9 is not an integer) and a GRIM-OK mean is not;
+ * reporting flags fire (missing correction / CIs / effect sizes);
+ * malformed input returns a structured error, never raises.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_repli.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_repli.py -q
 """
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ import tools_repli as r  # noqa: E402
 
 
 # =========================================================================
-# recompute_p — exact two-tailed scipy.stats math
+# recompute_p, exact two-tailed scipy.stats math
 # =========================================================================
 def test_recompute_t():
     p = r.recompute_p("t", 2.13, 24)
@@ -43,7 +43,7 @@ def test_recompute_chi():
     p = r.recompute_p("chi", 3.84, 1)
     # χ²(1)=3.84 sits right at the .05 boundary (p ≈ .0500)
     assert p is not None and abs(p - 0.0500) < 0.0005
-    assert p > 0.05  # truly just over — the source of the decision error
+    assert p > 0.05  # just over, the source of the decision error
 
 
 def test_recompute_r():
@@ -52,7 +52,7 @@ def test_recompute_r():
 
 
 # =========================================================================
-# statcheck — parse + consistency verdicts
+# statcheck, parse + consistency verdicts
 # =========================================================================
 def test_parse_all_test_types():
     rows = r.parse_statistics(
@@ -64,7 +64,7 @@ def test_parse_all_test_types():
 
 
 def test_decision_error_caught():
-    # χ²(1)=3.84 reported as significant (p=.049) but truly p≈.0500 → DECISION ERROR
+    # χ²(1)=3.84 reported as significant (p=.049) but p≈.0500 → DECISION ERROR
     rows = r.check_statistics("The effect, χ2(1) = 3.84, p = .049, was reliable.")
     assert len(rows) == 1
     assert rows[0]["verdict"] == "DECISION ERROR"
@@ -87,7 +87,7 @@ def test_consistent_not_flagged():
 
 
 # =========================================================================
-# GRIM test — exact integer arithmetic
+# GRIM test, exact integer arithmetic
 # =========================================================================
 def test_grim_impossible_flagged():
     # 2.19 * 10 = 21.9 → not an integer numerator → impossible
@@ -154,7 +154,7 @@ def test_clean_pass():
 
 
 # =========================================================================
-# robustness — never crash on malformed input
+# reliability, never crash on malformed input
 # =========================================================================
 def test_validation_structured_errors():
     assert r.run_repli_check({"text": "x"}).get("error")
@@ -168,7 +168,7 @@ def test_no_stats_does_not_crash():
 
 
 def test_garbage_stats_do_not_crash():
-    # malformed df / stat should be skipped, not raise
+    # malformed df / stat should be skipped silently
     out = r.run_repli_check({"text": "t() = , p = ; F(a,b) = c, p = d; r(48) = .34, p = .016"})
     # the one well-formed r(48) statistic should still parse
     tests = {s["test"] for s in out["statcheck"]}

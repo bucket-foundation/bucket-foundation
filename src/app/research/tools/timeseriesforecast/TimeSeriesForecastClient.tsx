@@ -1,7 +1,7 @@
 "use client";
 
-// TimeSeriesForecast client island — Holt-Winters decompose + forecast +
-// honest holdout backtest. Render "json".
+// TimeSeriesForecast client island, Holt-Winters decompose + forecast +
+// holdout backtest. Render "json".
 
 import { useState } from "react";
 import {

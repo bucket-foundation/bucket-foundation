@@ -2,12 +2,12 @@
 
 Verifies the ACTUAL numerical computation on synthetic traces with KNOWN
 ground truth:
-  * the passive-membrane least-squares fit recovers R, C, tau from an RC trace
-    generated with known parameters (to within a tight tolerance);
-  * the MAD spike detector finds the right number of spikes in a synthetic
-    train and extracts real waveform features.
+ * the passive-membrane least-squares fit recovers R, C, tau from an RC trace
+ generated with known parameters (to within a tight tolerance);
+ * the MAD spike detector finds the right number of spikes in a synthetic
+ train and extracts real waveform features.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_neuro.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_neuro.py -q
 """
 from __future__ import annotations
 
@@ -35,16 +35,16 @@ def test_parse_trace_list_and_string():
 
 
 # =========================================================================
-# HH-FitML — recover known RC parameters
+# HH-FitML, recover known RC parameters
 # =========================================================================
 def test_fit_recovers_known_rc_parameters():
     # generate a clean RC step with KNOWN params, then fit it back.
-    true_R, true_C, true_V0 = 0.1, 300.0, -70.0  # GOhm, pF, mV  -> tau = 30 ms
+    true_R, true_C, true_V0 = 0.1, 300.0, -70.0  # GOhm, pF, mV -> tau = 30 ms
     I, dt, t_on = 120.0, 0.1, 40.0
     t = np.arange(0, 200.0, dt)
     v = n.passive_response(t, I, true_R, true_C, true_V0, t_on)
     fit = n.fit_passive_membrane(t, v, I, t_on)
-    # clean (noise-free) data should fit essentially perfectly
+    # clean (noise-free) data should fit perfectly
     assert fit["r_squared"] > 0.999
     assert abs(fit["tau_ms"] - 30.0) < 1.0
     assert abs(fit["R_gigaohm"] - true_R) < 0.02
@@ -79,7 +79,7 @@ def test_run_hh_fit_validation():
 
 
 # =========================================================================
-# SpikeFeatures — detect a known spike train
+# SpikeFeatures, detect a known spike train
 # =========================================================================
 def _make_train(fs=30000.0, n_spikes=15, dur_s=1.0, seed=1):
     rng = np.random.default_rng(seed)
@@ -99,7 +99,7 @@ def test_detect_spikes_finds_known_count():
     fs = 30000.0
     trace, times = _make_train(fs=fs, n_spikes=15)
     det = n.detect_spikes_mad(trace, fs, thresh_mad=5.0)
-    # robust detector should find all 15 well-separated, high-SNR spikes
+    # the MAD detector should find all 15 well-separated, high-SNR spikes
     assert len(det["indices"]) == 15
     assert det["polarity"] == "negative"
     # each detected index is near a true spike (within the spike window)

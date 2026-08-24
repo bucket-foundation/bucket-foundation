@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/citationgraph
+ * bucket.foundation, /api/research/citationgraph
  * -----------------------------------------------
  * Same-origin proxy for the CitationGraph tool. Given a paper (DOI, OpenAlex ID,
  * or title), it builds the paper's local citation neighborhood from the live
@@ -7,9 +7,9 @@
  * (degree centrality on the induced 1-hop subgraph). Backend logic is REAL
  * (services/research-tools/tools_citation.py:run_citation_graph, live OpenAlex).
  *
- *   POST /api/research/citationgraph                  → gateway /v1/citationgraph/submit
- *        body { paper, limit? }                        → { job_id, status, mode, price, [result] }
- *   GET  /api/research/citationgraph?job=<id>[&result=1] → status / result
+ * POST /api/research/citationgraph → gateway /v1/citationgraph/submit
+ * body { paper, limit? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/citationgraph?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

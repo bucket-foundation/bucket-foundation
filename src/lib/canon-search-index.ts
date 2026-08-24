@@ -1,10 +1,10 @@
-// canon-search-index.ts — server-only loader for the pre-computed
+// canon-search-index.ts, server-only loader for the pre-computed
 // claim-card embeddings. At runtime we keep them in memory and do
 // brute-force cosine similarity (599 × 384 floats = ~920KB, fast).
 //
 // Query embedding happens in two places depending on environment:
-//   - dev: read a JSON file of "queryword: vector" pairs (offline)
-//   - prod: client-side via @xenova/transformers (Transformers.js)
+// - dev: read a JSON file of "queryword: vector" pairs (offline)
+// - prod: client-side via @xenova/transformers (Transformers.js)
 //
 // This module exposes a cosine-rank function the API route can call.
 

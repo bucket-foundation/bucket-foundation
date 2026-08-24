@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-research-tools — FigureMiner (REAL logic, CPU, no GPU)
+research-tools, FigureMiner (REAL logic, CPU, no GPU)
 =====================================================
 
-A genuinely FUNCTIONAL backend for FigureMiner (54-tool needs map: "extracts data
+A FUNCTIONAL backend for FigureMiner (54-tool needs map: "extracts data
 points/numbers/structures FROM figures in PDFs into a queryable DB"). This v1
-mines a paper's *text layer* — figure/table captions, reported statistics, and
-numeric data — with real parsing, no network and no GPU.
+mines a paper's *text layer*, figure/table captions, reported statistics, and
+numeric data, with real parsing, no network and no GPU.
 
 Honesty note (matches the project's pattern): the CSV flags FigureMiner as
 gpu_needed=y because *pixel-level* plot-point extraction from raster figures
 needs a vision model. That vision stage is a documented GPU/ML extension. What
 ships here is the REAL, non-GPU, high-value half that is fully deterministic:
 
-    * caption extraction        — "Figure N." / "Table N." blocks with their text
-    * reported-statistics miner — p-values, n=, CI, r/R²/ρ, ± SD/SE, %, fold-change
-    * numeric-data miner        — measurements with units (nm, kDa, µM, ms, °C, …)
-    * per-figure stat linkage   — which stats co-occur in which figure's caption
+ * caption extraction, "Figure N." / "Table N." blocks with their text
+ * reported-statistics miner, p-values, n=, CI, r/R²/ρ, ± SD/SE, %, fold-change
+ * numeric-data miner, measurements with units (nm, kDa, µM, ms, °C, …)
+ * per-figure stat linkage, which stats co-occur in which figure's caption
 
-Input is a PDF (when PyMuPDF/pypdf is available) OR raw pasted text — so the v1
+Input is a PDF (when PyMuPDF/pypdf is available) OR raw pasted text, so the v1
 JSON contract holds and the same logic unit-tests on a known string with zero
 dependencies on a PDF being present.
 
@@ -31,9 +31,9 @@ from collections import Counter
 from typing import Any, Optional
 
 # PDF text extraction is optional; raw-text input always works. PyMuPDF (fitz)
-# preferred, pypdf fallback. Reported honestly in the output.
+# preferred, pypdf fallback. Reported in the output.
 try:
-    import fitz  # type: ignore  # PyMuPDF
+    import fitz  # type: ignore # PyMuPDF
 
     _FITZ_OK = True
 except Exception:  # pragma: no cover - import guard
@@ -84,8 +84,8 @@ def extract_text_from_pdf(path: str) -> tuple[Optional[str], str]:
 def mine_captions(text: str) -> list[dict]:
     """Extract Figure/Table/Scheme caption blocks. Pure.
 
-    A caption runs from the label to the next blank-line-separated paragraph or
-    the next figure label, whichever comes first.
+ A caption runs from the label to the next blank-line-separated paragraph or
+ the next figure label, whichever comes first.
     """
     out: list[dict] = []
     matches = list(RE_FIGURE.finditer(text))
@@ -165,11 +165,11 @@ def link_stats_to_figures(captions: list[dict]) -> list[dict]:
 
 
 def run_figure_miner(payload: dict) -> dict:
-    """payload: { text: <paper text>  OR  file_path: <abs PDF path>  OR  "demo" }
+    """payload: { text: <paper text> OR file_path: <abs PDF path> OR "demo" }
 
-    Extract figure/table captions, mined reported statistics, numeric
-    measurements with units, and a per-figure stat linkage. Real deterministic
-    parsing. demo = a known mini-paper text with a verifiable stat count.
+ Extract figure/table captions, mined reported statistics, numeric
+ measurements with units, and a per-figure stat linkage. Real deterministic
+ parsing. demo = a known mini-paper text with a verifiable stat count.
     """
     backend = "raw-text"
     demo = isinstance(payload.get("text"), str) and payload["text"].strip().lower() == "demo"
@@ -215,7 +215,7 @@ def run_figure_miner(payload: dict) -> dict:
             "Real, deterministic text-layer mining: captions, p-values, n=, CIs, "
             "R²/r, mean±spread, fold-changes, and unit-bearing measurements, plus "
             "which stats live in which figure's caption. Pixel-level plot-point "
-            "digitization from raster figures needs a vision model — that is the "
+            "digitization from raster figures needs a vision model, that is the "
             "documented GPU/ML extension; the text-mining half here is real and "
             "needs no GPU."
         ),

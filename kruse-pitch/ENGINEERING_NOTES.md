@@ -1,4 +1,4 @@
-# Kruse Index — Engineering Notes
+# Kruse Index, Engineering Notes
 
 Delivers **bkt-002** (`/kruse` private preview route) + **bkt-003** (tokenized URL
 middleware). Read alongside `./README.md` (the pitch brief).
@@ -34,25 +34,25 @@ middleware). Read alongside `./README.md` (the pitch brief).
 
 Nothing else on the site changes. Root layout still renders Header/Footer for
 every other route; `src/app/kruse/layout.tsx` overlays a full-viewport container
-so the Kruse preview has its own paper-like chrome.
+So the Kruse preview has its own paper-like chrome.
 
 ## Files
 
 | Path | Purpose |
 |---|---|
-| `src/lib/kruse-token.ts` | `mintToken()` / `verifyToken()` — HS256 via `jose`. Single source of truth for cookie name, env vars, allow-list. |
+| `src/lib/kruse-token.ts` | `mintToken()` / `verifyToken()`, HS256 via `jose`. Single source of truth for cookie name, env vars, allow-list. |
 | `src/middleware.ts` | Edge-runtime gate. Matcher scoped to `/kruse` + `/api/kruse`. |
 | `src/app/kruse/layout.tsx` | Fraunces + JetBrains Mono via `next/font/google`. Full-viewport overlay in `#0b0d0f`. `robots: noindex, nofollow`. |
 | `src/app/kruse/page.tsx` | Server component. `dynamic = "force-dynamic"`. |
-| `src/app/kruse/_components/KruseSearch.tsx` | Client component. Debounced input, three-mode toggle, 1–50 limit slider, 6 example chips, mode-tinted highlight of matched terms. |
+| `src/app/kruse/_components/KruseSearch.tsx` | Client component. Debounced input, three-mode toggle, 1-50 limit slider, 6 example chips, mode-tinted highlight of matched terms. |
 | `src/app/kruse/_components/AboutDrawer.tsx` | Side-drawer explaining BM25 / MiniLM-L6-v2 / RRF in plain English. |
-| `src/app/api/kruse/search/route.ts` | Same-origin-only proxy to `KRUSE_INDEX_URL` (defaults to `http://localhost:8765`). Re-verifies the cookie — **the gate is enforced twice**. |
+| `src/app/api/kruse/search/route.ts` | Same-origin-only proxy to `KRUSE_INDEX_URL` (defaults to `http://localhost:8765`). Re-verifies the cookie, **the gate is enforced twice**. |
 | `scripts/mint-kruse-token.ts` | `npm run mint-kruse-token -- <recipient> [ttl_days]` |
-| `scripts/revoke-kruse-token.ts` | Prints the next `BKT_KRUSE_TOKEN_VERSION` — paste into Vercel + redeploy. |
-| `scripts/test-kruse-token.ts` | `npm test` — 6 roundtrip tests via `node:test`. |
+| `scripts/revoke-kruse-token.ts` | Prints the next `BKT_KRUSE_TOKEN_VERSION`, paste into Vercel + redeploy. |
+| `scripts/test-kruse-token.ts` | `npm test`, 6 roundtrip tests via `node:test`. |
 | `.env.example` | Documents `BKT_KRUSE_TOKEN_SECRET`, `BKT_KRUSE_TOKEN_VERSION`, `BKT_KRUSE_ALLOWED_RECIPIENTS`, `KRUSE_INDEX_URL`. |
 
-## Env vars (source of truth: Vercel Project → Environment Variables)
+## Env vars
 
 | Var | Default | Notes |
 |---|---|---|
@@ -83,7 +83,7 @@ https://bucket.foundation/kruse?t=<TOKEN>
 On first click, middleware sets a 90-day `HttpOnly` cookie and redirects to
 `/kruse` (no token in the browser history). Every subsequent visit is cookie-auth.
 
-## Rotating (revoking all tokens)
+## Rotating
 
 ```bash
 # 1. Find the next version number
@@ -96,18 +96,18 @@ BKT_KRUSE_TOKEN_VERSION=$CURRENT npm run revoke-kruse-token
 ```
 
 Rotating only the secret works too (and does the same thing), but bumping the
-version is the surgical revoke — you don't have to redistribute every variable
-to other services that may start consuming this key.
+version is the surgical revoke, you don't have to redistribute every variable
+To other services that may start consuming this key.
 
 ## Vercel deploy checklist
 
 - [ ] `BKT_KRUSE_TOKEN_SECRET` set (Production + Preview; never Development to
-      avoid accidental leakage through `vercel env pull`)
+ avoid accidental leakage through `vercel env pull`)
 - [ ] `BKT_KRUSE_TOKEN_VERSION=1`
 - [ ] `BKT_KRUSE_ALLOWED_RECIPIENTS=kruse`
 - [ ] `KRUSE_INDEX_URL` set (points at the Kruse Index server wherever it's hosted)
 - [ ] `kruse.bucket.foundation` CNAME or apex rewrite → `bucket.foundation/kruse`
-      (keeps the brand of the URL clean for the email)
+ (keeps the brand of the URL clean for the email)
 - [ ] Middleware smoke test after deploy:
       ```
       curl -sI https://bucket.foundation/kruse             # expect 404
@@ -118,17 +118,17 @@ to other services that may start consuming this key.
 ## Security properties
 
 1. **Opaque 404 on failure.** Scanners find no difference between `/kruse`
-   existing and not existing. Only valid cookies ever see 200s.
+ existing and not existing. Only valid cookies ever see 200s.
 2. **Secret is only in env.** `kruse-token.ts` reads from
-   `process.env.BKT_KRUSE_TOKEN_SECRET` at call time. The secret is never written
-   to disk by any script in this repo.
+ `process.env.BKT_KRUSE_TOKEN_SECRET` at call time. The secret is never written
+ to disk by any script in this repo.
 3. **Two-layer enforcement.** Middleware gates the page; the API route
-   re-verifies the cookie. Someone who guesses `/api/kruse/search` still 404s.
+ re-verifies the cookie. Someone who guesses `/api/kruse/search` still 404s.
 4. **Same-origin CORS.** Proxy rejects cross-origin `Origin` headers with 404.
 5. **URL strip.** The `?t=...` token is consumed once and replaced with a cookie
-   — never persists in browser history, share menus, analytics, or server logs.
+, never persists in browser history, share menus, analytics, or server logs.
 6. **`noindex,nofollow`.** Search engines won't index even if they somehow
-   found the URL.
+ found the URL.
 
 ## Local dev
 
@@ -152,14 +152,14 @@ open "http://localhost:3000/kruse?t=$TOKEN"
 ## Deferred
 
 - **bkt-005: feed402 wrapper.** The API proxy currently calls the plain
-  `:8765/search` server. Once bkt-005 ships the x402 feed402 wrapper, change
-  `KRUSE_INDEX_URL` in Vercel — no code change required.
+ `:8765/search` server. Once bkt-005 ships the x402 feed402 wrapper, change
+ `KRUSE_INDEX_URL` in Vercel, no code change required.
 - **Per-recipient telemetry.** Middleware already forwards `x-kruse-recipient`
-  to downstream handlers. Once we have a logging sink we'll count which
-  recipient hit which query (for the "Kruse clicked" vs "Kruse forwarded"
-  signal in the pitch brief).
-- **CSP.** Not added yet — the root layout loads Dynamic's SDK which injects
-  inline scripts. Adding CSP is a cross-route concern (not `bkt-002` / `bkt-003`).
+ to downstream handlers. Once we have a logging sink we'll count which
+ recipient hit which query (for the "Kruse clicked" vs "Kruse forwarded"
+ signal in the pitch brief).
+- **CSP.** Not added yet, the root layout loads Dynamic's SDK which injects
+ inline scripts. Adding CSP is a cross-route concern (not `bkt-002` / `bkt-003`).
 
 ## Total footprint
 

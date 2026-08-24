@@ -87,7 +87,7 @@ def test_incompatible_conversion_error():
 
 
 # =========================================================================
-# parse + robustness
+# parse + edge cases
 # =========================================================================
 def test_parse_derived_unit():
     out = u.run_units({"op": "parse", "unit": "J/(mol*K)"})

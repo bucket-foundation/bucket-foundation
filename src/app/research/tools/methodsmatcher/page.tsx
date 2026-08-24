@@ -6,7 +6,7 @@ export const metadata = toolMetadata("methodsmatcher");
 const _jsonld = toolJsonLd("methodsmatcher");
 import MethodsMatcherClient from "./MethodsMatcherClient";
 
-// MethodsMatcher run page — "which method answers this?" + which Bucket tool.
+// MethodsMatcher run page, "which method answers this?" + which Bucket tool.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

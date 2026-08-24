@@ -58,7 +58,7 @@ function mapTimelineIdToFigureId(timelineId: string): string | null {
 
 /**
  * Best per-marker "open page" URL. Returns null when the marker has no
- * dedicated page yet — UI should fall back to the deep-link
+ * dedicated page yet, UI should fall back to the deep-link
  * `/canon?marker=<id>` so the marker is at least addressable.
  */
 function markerPageUrl(m: CanonMarker): string | null {
@@ -69,7 +69,7 @@ function markerPageUrl(m: CanonMarker): string | null {
     if (figureId && branchSlug) return `/canon/${branchSlug}/figures/${figureId}`;
   }
   // canon-entry markers that came from a search result are wired in the
-  // drawer directly via `_search` — they don't go through this helper.
+  // drawer directly via `_search`, they don't go through this helper.
   return null;
 }
 
@@ -126,24 +126,24 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   }, [expanded]);
 
   // ────────────────────────────────────────────────────────────────────
-  //  Deep-link: every marker has its own URL via `?marker=<id>`
+  // Deep-link: every marker has its own URL via `?marker=<id>`
   // ────────────────────────────────────────────────────────────────────
-  //  - On mount, read `?marker=<id>` from the URL. If present, find that
-  //    marker in ALL_EVENTS or ALL_SITES, select it, and bump `year` to
-  //    include it (otherwise the time-filter could hide it).
-  //  - When `selected` changes (the user clicked a marker or a search
-  //    result), push `?marker=<id>` to the URL via replaceState so the
-  //    address bar reflects the current focus. When the drawer closes,
-  //    strip the param.
-  //  - For markers that ALSO have a dedicated page (figures with a
-  //    figures.json match), the drawer renders a primary "open page →"
-  //    link to the clean URL. For everything else the deep-link form
-  //    `/canon?marker=<id>` is the addressable representation.
+  // - On mount, read `?marker=<id>` from the URL. If present, find that
+  // marker in ALL_EVENTS or ALL_SITES, select it, and bump `year` to
+  // include it (otherwise the time-filter could hide it).
+  // - When `selected` changes (the user clicked a marker or a search
+  // result), push `?marker=<id>` to the URL via replaceState so the
+  // address bar reflects the current focus. When the drawer closes,
+  // strip the param.
+  // - For markers that ALSO have a dedicated page (figures with a
+  // figures.json match), the drawer renders a primary "open page →"
+  // link to the clean URL. For everything else the deep-link form
+  // `/canon?marker=<id>` is the addressable representation.
   //
-  //  Doing this with raw window APIs (not next/navigation's useRouter)
-  //  on purpose — useRouter.replace triggers a re-render which would
-  //  thrash the R3F canvas. window.history.replaceState updates the URL
-  //  silently.
+  // Doing this with raw window APIs (not next/navigation's useRouter)
+  // on purpose, useRouter.replace triggers a re-render which would
+  // thrash the R3F canvas. window.history.replaceState updates the URL
+  // silently.
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -197,7 +197,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
 
   // Sidebar is always present on desktop (md+). Mobile: slide-in on select.
 
-  // Time scrub state — always visible, defaults to 2020 CE (= show all)
+  // Time scrub state, always visible, defaults to 2020 CE (= show all)
   const [year, setYear] = useState(2020);
   const [playing, setPlaying] = useState(false);
 
@@ -208,19 +208,19 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
   const [searching, setSearching] = useState(false);
   const searchAbort = useRef<AbortController | null>(null);
 
-  // Layer toggles — figures (default on) + archaeological sites (default on).
+  // Layer toggles, figures (default on) + archaeological sites (default on).
   // Lets the user show the material-evidence layer (Giza, Stonehenge, Maya
   // LiDAR sites, etc.) alongside or instead of the people/works layer.
   const [showFigures, setShowFigures] = useState(true);
   const [showSites, setShowSites] = useState(true);
 
   // The globe + search were two unconnected views before. Now they share
-  // state — the same filter chips and the same query narrow BOTH the
+  // state, the same filter chips and the same query narrow BOTH the
   // search result list AND the globe markers, so a query for "topology"
   // shrinks the globe to mathematics in the same instant the result list
   // updates.
 
-  // Branches that have at least one current search result — used to
+  // Branches that have at least one current search result, used to
   // narrow the globe to topic-relevant branches when a query is active.
   const branchesInResults = useMemo(() => {
     if (!q.trim() || results.length === 0) return null;
@@ -233,7 +233,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
     if (showFigures) out.push(...eventsAsMarkers(ALL_EVENTS.filter((e) => e.year <= year)));
     if (showSites) out.push(...sitesAsMarkers(ALL_SITES.filter((s) => s.year <= year)));
     return out.filter((m) => {
-      // chip filter — mirrors what search uses, so the two stay aligned
+      // chip filter, mirrors what search uses, so the two stay aligned
       if (branchFilter) {
         const want = branchFilter.replace(/^\d+-/, "");
         const got = m.branch.replace(/^\d+-/, "");
@@ -300,7 +300,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
           : "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 backdrop-blur-[1px] shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]"
       }
     >
-      {/* Expand / minimize button — top right of the tool card */}
+      {/* Expand / minimize button, top right of the tool card */}
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
@@ -328,7 +328,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         )}
       </button>
 
-      {/* SEARCH BAR — rounded pill at the top of the tool container */}
+      {/* SEARCH BAR, rounded pill at the top of the tool container */}
       <div className="z-30 mx-auto mb-3 w-full pt-4 md:pt-6 flex flex-col items-center gap-2 flex-shrink-0">
         <div className="w-full max-w-2xl pointer-events-auto">
           <div
@@ -384,8 +384,8 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
                     key={`${r.concept}/${r.slug}`}
                     onClick={() => {
                       // Try to map this search result to a real geocoded
-                      // globe marker — that way clicking the result
-                      // actually moves the globe to a place instead of
+                      // globe marker, that way clicking the result
+                      // moves the globe to a place instead of
                       // pinning at (0,0). Strategy: find a figure marker
                       // whose name appears in the claim title (e.g. a
                       // "Becker" claim picks the Robert O. Becker marker),
@@ -426,7 +426,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
                             kind: "canon-entry",
                           }
                         : {
-                            // No geocoded match — still let the drawer
+                            // No geocoded match, still let the drawer
                             // render but flag the missing location.
                             id: `claim:${r.claim_id}`,
                             lat: 0,
@@ -466,7 +466,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
             )}
         </div>
 
-        {/* Layer toggles — figures vs sites */}
+        {/* Layer toggles, figures vs sites */}
         <div className="w-full max-w-2xl flex items-center justify-center gap-2 mb-1 pointer-events-auto">
           <button
             onClick={() => setShowFigures((v) => !v)}
@@ -494,7 +494,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
           </button>
         </div>
 
-        {/* Branch filter chips — one row of 9 toggles below the search */}
+        {/* Branch filter chips, one row of 9 toggles below the search */}
         <div className="w-full max-w-2xl flex flex-wrap items-center justify-center gap-1.5 pointer-events-auto">
           <button
             onClick={() => setBranchFilter(null)}
@@ -539,7 +539,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </div>
       </div>
 
-      {/* GLOBE — fills remaining viewport height on desktop */}
+      {/* GLOBE, fills remaining viewport height on desktop */}
       <div
         className="relative w-full mx-auto flex-1"
         style={{
@@ -554,7 +554,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
               "radial-gradient(ellipse at center, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 55%)",
           }}
         />
-        {/* Tiny corner legend — out of the way but always visible */}
+        {/* Tiny corner legend, out of the way but always visible */}
         <div
           className="absolute bottom-3 right-3 z-20 pointer-events-none rounded-md px-3 py-2 shadow-sm"
           style={{
@@ -591,13 +591,13 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         </GlobeErrorBoundary>
       </div>
 
-      {/* TIME SCRUBBER — pinned at the bottom of the tool container.
-          Full-width within the tool (the parent container reserves
-          `md:pr-[440px]` for the sidebar, so the scrubber naturally
-          ends at the sidebar's left edge). The old `max-w-3xl mx-auto`
-          made it a centered 768px island with empty bone on both
-          sides; this version uses every horizontal pixel the layout
-          gives it. */}
+      {/* TIME SCRUBBER, pinned at the bottom of the tool container.
+ Full-width within the tool (the parent container reserves
+ `md:pr-[440px]` for the sidebar, so the scrubber naturally
+ ends at the sidebar's left edge). The old `max-w-3xl mx-auto`
+ made it a centered 768px island with empty bone on both
+ sides; this version uses every horizontal pixel the layout
+ gives it. */}
       <div className="w-full mt-3 px-4 md:px-6 md:pb-6 flex-shrink-0">
         <div
           className="text-[10px] uppercase tracking-[0.22em] mb-2 px-1 text-center"
@@ -672,7 +672,7 @@ export default function CanonGlobeMount({ branches: _branches }: Props) {
         selected={selected}
         onClose={() => setSelected(null)}
         onSelectMarker={(id) => {
-          // Same-era / nearby click — find the marker by id in the
+          // Same-era / nearby click, find the marker by id in the
           // pre-loaded event + site lists and select it directly. Bump
           // the year scrubber if needed so the marker is visible on
           // the globe at the same moment its drawer fills with detail.
@@ -721,7 +721,7 @@ function Drawer({
   const pageUrl = selected ? markerPageUrl(selected) : null;
 
   // ──────────────────────────────────────────────────────────────────
-  // Cross-references — every marker becomes a hub for "what makes
+  // Cross-references, every marker becomes a hub for "what makes
   // this what it is": claim cards that mention it, contemporary
   // figures + sites (±500 years), nearby markers (~5° lat/lng radius),
   // and outbound research links (Wikipedia, Scholar, Wikidata).
@@ -737,7 +737,7 @@ function Drawer({
       return;
     }
     // Don't re-query when the search-driven _search shim is already there
-    // — that means the user clicked a result, and the excerpt section
+    //, that means the user clicked a result, and the excerpt section
     // already shows the primary match.
     fetchAbort.current?.abort();
     const ac = new AbortController();
@@ -750,7 +750,7 @@ function Drawer({
         url.searchParams.set("top_k", "8");
         const r = await fetch(url.toString(), { signal: ac.signal });
         const j = r.ok ? await r.json() : { results: [] };
-        // Skip the very same claim the user came from (avoid duplication)
+        // Skip the same claim the user came from (avoid duplication)
         const out = (j.results || []).filter((x: SearchResult) =>
           !search || `${x.concept}/${x.slug}` !== `${search.concept}/${search.slug}`
         );
@@ -764,7 +764,7 @@ function Drawer({
     return () => { clearTimeout(t); ac.abort(); };
   }, [selected, search]);
 
-  // Same era — events/sites within ±500 years (or ±100 years if the
+  // Same era, events/sites within ±500 years (or ±100 years if the
   // marker is post-1700 CE, when the canon density is higher).
   const sameEra = useMemo(() => {
     if (!selected || selected.year === undefined) return [];
@@ -786,7 +786,7 @@ function Drawer({
     return out.sort((a, b) => Math.abs(a.year - Y) - Math.abs(b.year - Y)).slice(0, 8);
   }, [selected]);
 
-  // Nearby — within ~5° lat/lng of this marker. Cheap great-circle
+  // Nearby, within ~5° lat/lng of this marker. Cheap great-circle
   // distance is overkill at this density; a simple bounding box reads
   // as "broadly the same region" without false positives across hemispheres.
   const nearby = useMemo(() => {
@@ -818,7 +818,7 @@ function Drawer({
       .slice(0, 8);
   }, [selected]);
 
-  // Build the outbound research links — Wikipedia first (highest signal),
+  // Build the outbound research links, Wikipedia first (highest signal),
   // then Google Scholar, then Wikidata. Site markers come with an
   // explicit `wikipedia` field; everything else uses a name search.
   const externalLinks = useMemo(() => {
@@ -850,7 +850,7 @@ function Drawer({
     ];
   }, [selected]);
 
-  // Close on Escape — standard UX expectation for drawers/modals
+  // Close on Escape, standard UX expectation for drawers/modals
   useEffect(() => {
     if (!selected) return;
     const onKey = (e: KeyboardEvent) => {
@@ -886,8 +886,8 @@ function Drawer({
       >
         {selected && (
           <div>
-            {/* STICKY HEADER + CTA STRIP — stays in view as the user
-                scrolls the cross-reference sections below. */}
+            {/* STICKY HEADER + CTA STRIP, stays in view as the user
+ scrolls the cross-reference sections below. */}
             <div
               className="sticky top-0 z-10 px-6 md:px-8 pt-6 md:pt-8 pb-4"
               style={{ background: "var(--bone)", borderBottom: "1px solid var(--hairline)" }}
@@ -924,7 +924,7 @@ function Drawer({
                 {selected.civilization && <> · {selected.civilization}</>}
               </p>
 
-              {/* Primary CTA row — like the branch page's top nav */}
+              {/* Primary CTA row, like the branch page's top nav */}
               <div className="flex flex-wrap gap-1.5">
                 {/* Open the canonical page when one exists */}
                 {search ? (
@@ -965,9 +965,9 @@ function Drawer({
               </div>
             </div>
 
-            {/* SCROLLABLE BODY — every source/related-material section
-                stacks here. Headers are small-caps gold; sections are
-                separated by hairline borders so the scroll has rhythm. */}
+            {/* SCROLLABLE BODY, every source/related-material section
+ stacks here. Headers are small-caps gold; sections are
+ separated by hairline borders so the scroll has rhythm. */}
             <div className="px-6 md:px-8 pt-5 pb-10 space-y-7">
               {/* Search-driven excerpt (when the user came from a search) */}
               {search && (
@@ -992,11 +992,11 @@ function Drawer({
                 </section>
               )}
 
-              {/* Source data — every primary place this marker shows up
-                  on disk. For sites this is wikipedia / unesco / lidar.
-                  For figures with a figures.json record it's the
-                  figure-page link (also in the top CTA, repeated here
-                  with a description). */}
+              {/* Source data, every primary place this marker shows up
+ on disk. For sites this is wikipedia / unesco / lidar.
+ For figures with a figures.json record it's the
+ figure-page link (also in the top CTA, repeated here
+ with a description). */}
               <section>
                 <h3
                   className="text-[10px] uppercase tracking-[0.18em] mb-3"
@@ -1052,10 +1052,10 @@ function Drawer({
                 </div>
               </section>
 
-              {/* Mentioned in canon — claim cards that match this marker
-                  by name via the canon search index. Bridges the
-                  geocoded markers (timeline + sites) into the 599
-                  curated claim cards. */}
+              {/* Mentioned in canon, claim cards that match this marker
+ by name via the canon search index. Bridges the
+ geocoded markers (timeline + sites) into the 599
+ curated claim cards. */}
               <section>
                 <h3
                   className="text-[10px] uppercase tracking-[0.18em] mb-3 flex items-baseline justify-between"
@@ -1097,10 +1097,10 @@ function Drawer({
                 )}
               </section>
 
-              {/* Same era — every other geocoded marker within ±500
-                  years (±100 if post-1700). Lets the user jump
-                  directly from Lascaux to Çatalhöyük, from Einstein
-                  to Hilbert, etc. */}
+              {/* Same era, every other geocoded marker within ±500
+ years (±100 if post-1700). Lets the user jump
+ directly from Lascaux to Çatalhöyük, from Einstein
+ to Hilbert, etc. */}
               {sameEra.length > 0 && (
                 <section>
                   <h3
@@ -1129,8 +1129,8 @@ function Drawer({
                 </section>
               )}
 
-              {/* Nearby — markers in roughly the same region (~5° box).
-                  Geographic neighbours regardless of era. */}
+              {/* Nearby, markers in roughly the same region (~5° box).
+ Geographic neighbours regardless of era. */}
               {nearby.length > 0 && (
                 <section>
                   <h3
@@ -1159,8 +1159,8 @@ function Drawer({
                 </section>
               )}
 
-              {/* Coordinates — small, dim, last. Site-specific
-                  civilization field too when present. */}
+              {/* Coordinates, small, dim, last. Site-specific
+ civilization field too when present. */}
               <section>
                 <h3
                   className="text-[10px] uppercase tracking-[0.18em] mb-3"
@@ -1194,9 +1194,9 @@ function Drawer({
           </div>
         )}
 
-        {/* Empty state — desktop only, shown when nothing is selected.
-            Acts as a persistent research panel: how to use, current corpus
-            stats, quick links. */}
+        {/* Empty state, desktop only, shown when nothing is selected.
+ Acts as a persistent research panel: how to use, current corpus
+ stats, quick links. */}
         {!selected && (
           <div className="hidden md:block p-6 md:p-8">
             <div
@@ -1253,7 +1253,7 @@ function Drawer({
                 </div>
                 <div className="flex justify-between">
                   <dt style={{ color: "var(--parchment-dim)" }}>Year span</dt>
-                  <dd>570 BCE — 2020 CE</dd>
+                  <dd>570 BCE, 2020 CE</dd>
                 </div>
               </dl>
             </div>

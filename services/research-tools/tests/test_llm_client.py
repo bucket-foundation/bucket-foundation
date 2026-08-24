@@ -1,13 +1,13 @@
 """Tests for the shared LLM seam (llm_client) and its fall-back contract.
 
 The whole point of the seam is that a flaky/absent LLM NEVER breaks a tool:
-  * unset env => disabled => chat() returns None
-  * unreachable endpoint => chat() returns None (no raise, no hang)
-  * ProtocolGPT + QuantumBioRAG keep their deterministic output when chat==None
+ * unset env => disabled => chat() returns None
+ * unreachable endpoint => chat() returns None (no raise, no hang)
+ * ProtocolGPT + QuantumBioRAG keep their deterministic output when chat==None
 
 No real network is touched: we point LLM_BASE_URL at a dead port.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_llm_client.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_llm_client.py -q
 """
 from __future__ import annotations
 
@@ -42,7 +42,7 @@ def test_enabled_when_base_url_set(monkeypatch):
 
 
 def test_chat_returns_none_on_unreachable(monkeypatch):
-    """Unreachable endpoint must yield None quickly, never raise."""
+    """Unreachable endpoint must yield None, never raise."""
     monkeypatch.setenv("LLM_BASE_URL", DEAD_URL)
     monkeypatch.setenv("LLM_TIMEOUT_S", "1")
     assert llm_client.chat("sys", "user", timeout=1) is None
@@ -147,7 +147,7 @@ def test_protocol_polish_applied_when_llm_responds(monkeypatch):
 def test_qbio_synthesis_none_when_llm_unreachable(monkeypatch):
     monkeypatch.setenv("LLM_BASE_URL", DEAD_URL)
     monkeypatch.setenv("LLM_TIMEOUT_S", "1")
-    # avoid real network for retrieval — force degraded (no works).
+    # avoid real network for retrieval, force degraded (no works).
     monkeypatch.setattr(rag, "search_works",
                         lambda *a, **k: (_ for _ in ()).throw(rag.NetworkUnavailable()))
     out = rag.run_quantum_bio_rag({"claim": "cryptochrome enables magnetoreception"})

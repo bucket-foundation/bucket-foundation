@@ -1,4 +1,4 @@
-// canon-figures.ts — server-only filesystem reader for
+// canon-figures.ts, server-only filesystem reader for
 // `canon-figures/bios/*.md`. Only 12 of the 99 figures have a hand-written
 // bio on disk so far (curie-marie, einstein, helmholtz, hilbert, maxwell,
 // mendeleev, newton, pauling, poincare, turing, von-neumann). The figure
@@ -27,17 +27,17 @@ export function hasFigureBio(slug: string): boolean {
 }
 
 /**
- * Tiny markdown → safe-HTML renderer specifically for the bios. Not a
- * general-purpose Markdown engine; just handles the subset we actually
+ * Tiny markdown → safe-HTML renderer for the bios. Not a
+ * general-purpose Markdown engine; just handles the subset we
  * use in `canon-figures/bios/`:
  *
- *   - h1/h2/h3 (`# `, `## `, `### `)
- *   - bold (`**x**`) and italic (`*x*`)
- *   - inline code (`` `x` ``)
- *   - links (`[text](url)`)
- *   - paragraphs (double-newline separation)
- *   - markdown tables (the metadata frontmatter at top of each bio)
- *   - --- horizontal rule
+ * - h1/h2/h3 (`# `, `## `, `### `)
+ * - bold (`**x**`) and italic (`*x*`)
+ * - inline code (`` `x` ``)
+ * - links (`[text](url)`)
+ * - paragraphs (double-newline separation)
+ * - markdown tables (the metadata frontmatter at top of each bio)
+ * - --- horizontal rule
  *
  * All output is escaped first, then the limited markdown tokens are
  * promoted to HTML, so it's safe to drop into `dangerouslySetInnerHTML`.
@@ -78,7 +78,7 @@ export function renderBioMarkdown(md: string): string {
   // Inline-token render: bold, italic, code, links.
   function inlineRender(s: string): string {
     let r = esc(s);
-    // Links [text](url) — apply BEFORE we touch `*` patterns.
+    // Links [text](url), apply BEFORE we touch `*` patterns.
     r = r.replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
       '<a href="$2" target="_blank" rel="noreferrer">$1</a>'
@@ -117,7 +117,7 @@ export function renderBioMarkdown(md: string): string {
     }
     if (line.startsWith("# ")) {
       flushParagraph();
-      // Skip the H1 — the page header already shows the figure name.
+      // Skip the H1, the page header already shows the figure name.
       continue;
     }
 

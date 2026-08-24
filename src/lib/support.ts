@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — support / funding / contact config
+ * bucket.foundation, support / funding / contact config
  * ------------------------------------------------------
  * SINGLE SOURCE OF TRUTH for the contact email + every donation/funding link
  * surfaced on the site (the /support page, the founder-GPU-offline notice on
  * the affected research tools, footers, etc.). Change it here, it changes
- * everywhere. No secrets live here — a public payout address is public by
+ * everywhere. No secrets live here, a public payout address is public by
  * design; private keys never touch the client and never live in this file.
  *
  * Why a public crypto address is safe to commit: an EVM address is a public
@@ -17,7 +17,7 @@ export const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_BUCKET_CONTACT_EMAIL ?? "gianyrox@gmail.com";
 
 /**
- * Canonical Bucket payout / donation address — USDC on Base.
+ * Canonical Bucket payout / donation address, USDC on Base.
  * This is the SAME address research-atlas datasets cite-pay to
  * (src/lib/research-atlas.ts BUCKET_PAYOUT_WALLET), reused as the donation
  * destination so funds land in one place. Public by design.
@@ -31,7 +31,7 @@ export const DONATE_USDC_NETWORK = "Base (USDC)";
 
 /**
  * GitHub Sponsors profile. The URL is correct, but Sponsors must be ACTIVATED
- * in the GitHub dashboard before the page resolves — surfaced with a clear
+ * in the GitHub dashboard before the page resolves, surfaced with a clear
  * "activate in GitHub" TODO badge in the UI.
  */
 export const GITHUB_SPONSORS_URL = "https://github.com/sponsors/gianyrox";

@@ -1,51 +1,51 @@
 #!/usr/bin/env python3
 """
-research-tools — FAIRCheck (REAL rubric, CPU, no GPU, no network)
+research-tools, FAIRCheck (REAL rubric, CPU, no GPU, no network)
 =================================================================
 
 The first of the two ALL-FIELD horizontal research tools. Where every other
 tool in the suite serves a discipline (biophysics, neuro, RNA, chem…),
-FAIRCheck + RepliCheck serve EVERY discipline — the ~1.17M researchers in the
-research-atlas corpus, regardless of field — because FAIR data management and
+FAIRCheck + RepliCheck serve EVERY discipline, the ~1.17M researchers in the
+research-atlas corpus, regardless of field, because FAIR data management and
 statistics reproducibility are funder-mandated across NIH, NSF, Horizon Europe,
 Wellcome, and the Gates Foundation (all now require a Data Management & Sharing
 Plan, DMSP/DMP, and most require FAIR-aligned deposition).
 
 FAIRCheck assesses a dataset / metadata record for FAIR compliance:
-    F — Findable     (persistent identifier, rich metadata, indexed/searchable)
-    A — Accessible   (open access protocol, standard protocol, metadata persists)
-    I — Interoperable(machine-readable format, standard vocabularies/ontologies,
-                      qualified references to other (meta)data)
-    R — Reusable     (clear open license, provenance, domain-relevant standards,
-                      rich attributes)
+ F, Findable (persistent identifier, rich metadata, indexed/searchable)
+ A, Accessible (open access protocol, standard protocol, metadata persists)
+ I, Interoperable(machine-readable format, standard vocabularies/ontologies,
+ qualified references to other (meta)data)
+ R, Reusable (clear open license, provenance, domain-relevant standards,
+ rich attributes)
 
-This is grounded in the real FAIR principles — Wilkinson et al. 2016,
+This is grounded in the real FAIR principles, Wilkinson et al. 2016,
 "The FAIR Guiding Principles for scientific data management and stewardship",
-Sci. Data 3:160018 — which decompose into 15 sub-principles (F1–F4, A1/A1.1/
-A1.2/A2, I1–I3, R1/R1.1/R1.2/R1.3). FAIRCheck scores each of those 15 against
+Sci. Data 3:160018, which decompose into 15 sub-principles (F1, F4, A1/A1.1/
+A1.2/A2, I1, I3, R1/R1.1/R1.2/R1.3). FAIRCheck scores each of those 15 against
 concrete, deterministic checks over the supplied record, rolls them into four
-per-principle subscores + an overall 0–100 FAIR score, and returns a PRIORITIZED
+per-principle subscores + an overall 0-100 FAIR score, and returns a PRIORITIZED
 list of concrete gaps/fixes (highest weight × largest deficit first), so a
-researcher (or a DMSP reviewer) gets an actionable punch-list, not a vibe.
+researcher (or a DMSP reviewer) gets a concrete, actionable punch-list.
 
 Deterministic, validated, never crashes on malformed input (returns a structured
 {"error": ...} the gateway turns into a clean 400). No network, no GPU.
 
 Input shape (`record`): a dict of metadata fields, OR a JSON string of the same.
-Recognized fields (all optional — missing = a gap, not a crash):
-    identifier / doi / accession   — a persistent identifier string
-    repository                     — repository / archive name or URL
-    license                        — license name/URL/SPDX id
-    formats / file_formats         — list[str] or comma string of formats/exts
-    metadata_fields                — list[str] of metadata keys present
-    access_protocol                — "https"/"ftp"/"s3"/… or a sentence
-    access_open                    — bool / "open"/"restricted" (default inferred)
-    vocabularies / ontologies      — list[str] of standards referenced
-    provenance                     — provenance / lineage text or fields
-    references / related           — qualified references to other data
-    indexed_in / searchable        — where it is indexed (search engine etc.)
-    metadata_persists              — bool: metadata outlives the data
-    standards                      — domain/community standards followed
+Recognized fields (all optional, a missing field scores as a gap):
+ identifier / doi / accession, a persistent identifier string
+ repository, repository / archive name or URL
+ license, license name/URL/SPDX id
+ formats / file_formats, list[str] or comma string of formats/exts
+ metadata_fields, list[str] of metadata keys present
+ access_protocol, "https"/"ftp"/"s3"/… or a sentence
+ access_open, bool / "open"/"restricted" (default inferred)
+ vocabularies / ontologies, list[str] of standards referenced
+ provenance, provenance / lineage text or fields
+ references / related, qualified references to other data
+ indexed_in / searchable, where it is indexed (search engine etc.)
+ metadata_persists, bool: metadata outlives the data
+ standards, domain/community standards followed
 
 The gateway imports FAIR_RUNNERS from here.
 """
@@ -73,7 +73,7 @@ _PID_PATTERNS: list[tuple[str, re.Pattern]] = [
     ("ORCID", re.compile(r"\b0000-\d{4}-\d{4}-\d{3}[\dxX]\b")),
 ]
 # A bare http(s) URL is a *resolvable locator* but NOT a guaranteed-persistent
-# identifier — it scores partial F1 credit, never full.
+# identifier, it scores partial F1 credit, never full.
 _URL = re.compile(r"https?://\S+", re.I)
 
 # Open / FAIR-friendly license signals (SPDX ids + common names + URL stems).
@@ -128,7 +128,7 @@ _FORMATS: dict[str, tuple[bool, bool]] = {
 
 # Recognized community vocabularies / ontologies / metadata standards (FAIR I2,
 # R1.3). Presence of any of these as a referenced standard scores interoperable
-# + reusable credit. Real, widely-used identifiers.
+# + reusable credit. Real,-used identifiers.
 _KNOWN_VOCABS = {
     "schema.org", "dublin core", "dcterms", "datacite", "dcat", "prov-o", "prov",
     "skos", "foaf", "owl", "rdfs", "obo", "go", "gene ontology", "chebi", "envo",
@@ -161,7 +161,7 @@ _AUTH_PROTOCOL = re.compile(r"\b(oauth|saml|shibboleth|api[\s_-]?key|token|login
 
 
 # ---------------------------------------------------------------------------
-# Field normalization (tolerant — never raises)
+# Field normalization (tolerant, never raises)
 # ---------------------------------------------------------------------------
 def _as_list(v: Any) -> list[str]:
     """Coerce a value to a list of lowercased non-empty strings."""
@@ -212,7 +212,7 @@ def _format_exts(record: dict) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# The 15 FAIR sub-principle checks (each returns 0.0–1.0). All deterministic.
+# The 15 FAIR sub-principle checks (each returns 0.0-1.0). All deterministic.
 # ---------------------------------------------------------------------------
 def _detect_pid(record: dict) -> tuple[float, Optional[str], bool]:
     """F1 / A2: persistent identifier. Returns (score, scheme, is_url_only)."""
@@ -381,13 +381,13 @@ _FIX = {
 def assess_fair(record: dict) -> dict:
     """Run the full 15-check FAIR rubric over a metadata record. Pure.
 
-    Returns per-sub-principle scores, four per-letter subscores, an overall
-    0–100 FAIR score, and a prioritized gap/fix punch-list.
+ Returns per-sub-principle scores, four per-letter subscores, an overall
+ 0-100 FAIR score, and a prioritized gap/fix punch-list.
     """
     pid_score, pid_scheme, pid_url_only = _detect_pid(record)
     rich, present_fields, missing_core = _metadata_richness(record)
     # F3: the PID appears in / is bound to the metadata (we have a PID AND a
-    # description-bearing record) — proxy: PID present and metadata non-trivial.
+    # description-bearing record), proxy: PID present and metadata non-trivial.
     f3 = 1.0 if (pid_score >= 1.0 and rich > 0) else (0.5 if pid_score >= 0.4 else 0.0)
     f4 = _findable_indexed(record)
     a1, a1_1, a2, a_notes = _accessible(record)
@@ -488,12 +488,12 @@ def _demo_record() -> dict:
 
 
 def run_fair_check(payload: dict) -> dict:
-    """payload: { record: <dict | JSON string of metadata fields>  OR  "demo" }
+    """payload: { record: <dict | JSON string of metadata fields> OR "demo" }
 
-    Assess a dataset/metadata record for FAIR (Findable, Accessible,
-    Interoperable, Reusable) compliance with a real, deterministic rubric
-    grounded in Wilkinson 2016's 15 sub-principles + funder DMSP requirements.
-    Never raises on malformed input — returns {"error": ...}.
+ Assess a dataset/metadata record for FAIR (Findable, Accessible,
+ Interoperable, Reusable) compliance with a real, deterministic rubric
+ grounded in Wilkinson 2016's 15 sub-principles + funder DMSP requirements.
+ Never raises on malformed input, returns {"error": ...}.
     """
     raw = payload.get("record")
     demo = isinstance(raw, str) and raw.strip().lower() == "demo"
@@ -523,16 +523,16 @@ def run_fair_check(payload: dict) -> dict:
     result = assess_fair(record)
     result["demo"] = demo
     result["method"] = (
-        "FAIR rubric over Wilkinson et al. 2016's 15 sub-principles (F1–F4, "
-        "A1/A1.1/A2, I1–I3, R1/R1.1–R1.3); each scored by concrete, deterministic "
+        "FAIR rubric over Wilkinson et al. 2016's 15 sub-principles (F1, F4, "
+        "A1/A1.1/A2, I1, I3, R1/R1.1, R1.3); each scored by concrete, deterministic "
         "checks over the supplied metadata, weighted into per-principle subscores "
-        "and an overall 0–100 FAIR score, with a priority-ranked fix list."
+        "and an overall 0-100 FAIR score, with a priority-ranked fix list."
     )
     result["note"] = (
         "Horizontal, all-field tool: FAIR data management is funder-mandated "
         "across NIH/NSF/Horizon Europe/Wellcome/Gates (DMSP/DMP). This is a "
-        "transparent self-assessment + remediation punch-list, not a certifying "
-        "audit — deposit in a trusted repository for an authoritative FAIR badge."
+        "transparent self-assessment + remediation punch-list. A certifying "
+        "audit comes from depositing in a trusted repository for an authoritative FAIR badge."
     )
     if demo:
         result["note"] = "DEMO: a deliberately mixed record (strong Findable/Accessible, weak Interoperable/Reusable). " + result["note"]

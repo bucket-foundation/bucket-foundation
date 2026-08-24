@@ -1,6 +1,6 @@
 "use client";
 
-// CitationGraph client island — local citation neighborhood + degree centrality
+// CitationGraph client island, local citation neighborhood + degree centrality
 // from the live OpenAlex graph. Render is "json" → typed view.
 
 import { useState } from "react";

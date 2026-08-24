@@ -7,10 +7,10 @@ import { uploadFileToWalrus } from "@/lib/walrus/upload";
 import { useState } from "react";
 
 /**
- * Interactive mint form. Only rendered when Web3 providers are actually
+ * Interactive mint form. Only rendered when Web3 providers are
  * mounted (see ResearchPublishClient).
  *
- * Every dereference of `author` / `citeTokens` is guarded — connecting a
+ * Every dereference of `author` / `citeTokens` is guarded, connecting a
  * wallet is async, and the old code crashed on cold load before the wallet
  * finished resolving.
  */

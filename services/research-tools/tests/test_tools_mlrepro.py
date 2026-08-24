@@ -107,7 +107,7 @@ def test_empty_record_scores_r0():
 
 
 # =========================================================================
-# robustness
+# edge cases
 # =========================================================================
 def test_validation_structured_errors():
     assert m.run_mlrepro_card({"record": "{not json"}).get("error")

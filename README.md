@@ -1,11 +1,11 @@
 # bucket.foundation
 
-> **build history.** *(the original slogan — still load-bearing)*
+> **build history.** *(the original slogan, still load-bearing)*
 > **bucket is the new renaissance.** *(the thesis it became)*
 >
-> Foundations, brilliant humans, and AI — on an open substrate, with the patronage layer routed back to the people who write the foundations.
+> Foundations, brilliant humans, and AI, on an open substrate, with the patronage layer routed back to the people who write the foundations.
 >
-> **Open-source research data protocol.** Free to read. Paid to cite. — the reader pays nothing and needs no wallet; "paid to cite" means a paper is paid for *once*, server-side, by the bucket operator, and the citation fee then routes to the author forever. No gatekeepers.
+> **Open-source research data protocol.** Free to read. Paid to cite., the reader pays nothing and needs no wallet; "paid to cite" means a paper is paid for *once*, server-side, by the bucket operator, and the citation fee then routes to the author forever. No gatekeepers.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![protocol](https://img.shields.io/badge/protocol-x402-purple.svg)](./PROTOCOL.md)
@@ -15,7 +15,7 @@
 ---
 
 > *"The first Renaissance happened because a few hundred people in a few cities had the right tools, the right foundations, and a working patronage layer at the same time. The second Renaissance is happening because the same three things are aligning again, on a planet of eight billion people, with an AI that fits in your pocket."*
-> — [`MANIFESTO.md`](./MANIFESTO.md)
+>, [`MANIFESTO.md`](./MANIFESTO.md)
 
 ## For AI agents
 
@@ -36,38 +36,39 @@ MCP server manifest at [`/.well-known/mcp.json`](https://www.bucket.foundation/.
 
 `bucket.foundation` is an open protocol and a reference publishing site for research that can be **paid for once and cited forever**.
 
-- The bucket *operator* pays for a paper once, server-side, over **[x402](https://x402.org/)** — HTTP-native micropayments on an L2. The reader never pays, signs, or holds a wallet.
-- The paper lands in a **bucket** — a content-addressed folder with a sidecar manifest (`canon.json`) that records provenance, license, and citation metadata.
+- The bucket *operator* pays for a paper once, server-side, over **[x402](https://x402.org/)**, HTTP-native micropayments on an L2. The reader never pays, signs, or holds a wallet.
+- The paper lands in a **bucket**, a content-addressed folder with a sidecar manifest (`canon.json`) that records provenance, license, and citation metadata.
 - Any downstream agent, research tool, or human can cite the bucketed paper from a local copy, forever, at zero marginal x402 cost.
-- Citations route fees back to the author through a simple on-chain receipt, not through publishers.
+- Citations route fees back to the author through a simple on-chain receipt, bypassing publishers.
 
 This repo contains:
 
-1. **`PROTOCOL.md`** — the open spec (sidecar schema, x402 endpoint shape, canon contract).
-2. **`src/`** — Next.js site at [bucket.foundation](https://www.bucket.foundation) — the reader UI + JSON API.
-3. **`bucket-canon/`** — 599 curated claim cards across 9 branches + 17 detected multi-branch primitive bridges.
-4. **`mcp-server/`** — local MCP server for Claude Desktop/Code (`canon_search`, `canon_get_claim`, etc.).
-5. **`_intake/`** — embeddings, knowledge graph, trained ML artifacts. See [`REPRODUCE.md`](./REPRODUCE.md).
-6. **`tools/`** — pipeline tools (`agf-*`) referenced from `~/agfarms/tools/`.
-7. **`LICENSE`** — MIT.
+1. **`PROTOCOL.md`**, the open spec (sidecar schema, x402 endpoint shape, canon contract).
+2. **`src/`**, Next.js site at [bucket.foundation](https://www.bucket.foundation), the reader UI + JSON API.
+3. **`bucket-canon/`**, 599 curated claim cards across 9 branches + 17 detected multi-branch primitive bridges.
+4. **`mcp-server/`**, local MCP server for Claude Desktop/Code (`canon_search`, `canon_get_claim`, etc.).
+5. **`_intake/`**, embeddings, knowledge graph, trained ML artifacts. See [`REPRODUCE.md`](./REPRODUCE.md).
+6. **`tools/`**, pipeline tools (`agf-*`) referenced from `~/agfarms/tools/`.
+7. **`LICENSE`**, MIT.
 
-## Map (where everything lives)
+## Map
 
 | Surface | URL | What |
 |---|---|---|
 | **Website** | https://www.bucket.foundation | Read canon, browse bridges, search |
 | **Access page** | https://www.bucket.foundation/access | Every entry point for humans, researchers, and AI agents |
 | **API** | https://www.bucket.foundation/api/canon/search | Search canon claims as JSON |
-| **MCP server** | `mcp-server/bucket-mcp.py` (this repo) | One server, 7 tools — Claude Code / Desktop. (The old standalone `bucket-mcp` repo is now archived.) |
+| **MCP server** | `mcp-server/bucket-mcp.py` (this repo) | One server, 7 tools, Claude Code / Desktop. (The old standalone `bucket-mcp` repo is now archived.) |
 | **Research artifacts** | [BucketDrive](https://drive.google.com/open?id=12QjkHYFqzVNm30kvkW-upi0kqa_Kri2B) (Google Drive) | PDFs, raw data, large research artifacts. The dormant `bucket-research` repo was retired 2026-05-15; all canon content lives here under `bucket-canon/` and `canon-figures/`. |
 | **Upstream gateway** | https://github.com/AGFarms/x402-research-gateway | The feed402/x402 rail behind /api/research |
 | **Agent-trust write-up** | https://www.bucket.foundation/protocol/agent-trust | Why a safety-tuned agent refused the protocol, why it was right, and the structural fix. Source: [`docs/AGENT-TRUST.md`](./docs/AGENT-TRUST.md) |
 
 ## The thesis in one paragraph
 
-Research access is broken. Readers pay publishers for papers they may not need. Authors pay publishers to print what they already wrote. Independent researchers can't cite what they can't afford, and can't read what they can't cite. `bucket.foundation` flips the loop: **the paper is a one-time x402 purchase with forever citation rights.** A bucket is a durable, content-addressed copy of a paper plus a sidecar manifest. Once a bucket exists, the marginal cost of citing that paper is zero; the fee attached to each citation flows to the original author, not to a publisher that already got paid. The protocol is open and the reference implementation is MIT-licensed so anyone can run a bucket, federate, mirror, and compete.
+Research access is broken. Readers pay publishers for papers they may not need. Authors pay publishers to print what they already wrote. Independent researchers can't cite what they can't afford, and can't read what they can't cite. `bucket.foundation` flips the loop: **the paper is a one-time x402 purchase with forever citation rights.** A bucket is a durable, content-addressed copy of a paper plus a sidecar manifest. Once a bucket exists, the marginal cost of citing that paper is zero; the fee attached to each citation flows to the original author, bypassing a publisher that already got paid. The protocol is open and the reference implementation is MIT-licensed so anyone can run a bucket, federate, mirror, and compete.
 
-## The protocol, in 90 seconds
+## The protocol
+In 90 seconds.
 
 ```
 ┌──────────┐    x402 payment      ┌──────────────────┐
@@ -88,7 +89,7 @@ Research access is broken. Readers pay publishers for papers they may not need. 
      ▼  citeable forever, zero marginal cost
 ```
 
-A bucket is just a folder. A sidecar is just JSON. An x402 endpoint is just HTTP 402. There is nothing novel to deploy — the novelty is the convention, the license, and the citation economics built on top.
+A bucket is just a folder. A sidecar is just JSON. An x402 endpoint is just HTTP 402. There is nothing novel to deploy, the novelty is the convention, the license, and the citation economics built on top.
 
 ## Quick start
 
@@ -108,38 +109,40 @@ See **[PROTOCOL.md](./PROTOCOL.md)** for the spec. See **[CONTRIBUTING.md](./CON
 |---|---|
 | Protocol spec (`PROTOCOL.md`) | Draft v0.1 |
 | Sidecar schema (`canon.json`) | Draft v0.1 |
-| Reference site (Next.js) | Dormant — being revived |
-| x402 buyer client | Planned — depends on [x402](https://x402.org/) vendor gateway |
+| Reference site (Next.js) | Dormant, being revived |
+| x402 buyer client | Planned, depends on [x402](https://x402.org/) vendor gateway |
 | Story Protocol IP mint (optional) | Shipped in prior version, kept |
 | Federation / mirroring spec | Not yet drafted |
 | Open contributors welcome | **Yes** |
 
 This project was dormant between Feb 2025 and April 2026. It is being revived as an **open-source protocol first** and a site second. Expect rough edges.
 
-## *build history* — the contributor index
+## *build history*
+The contributor index.
 
 The original bucket slogan, before *bucket is the new renaissance*, was **build history**. The renaissance is the thesis. Build history is the verb. The verb produces a **contributor index**: contact cards for the figures who built the foundations the canon is made of.
 
-→ [`canon-figures/`](./canon-figures/) — pass-1 seed, ~76 figures across 10 branches (the seven strict-canon branches plus three expansion branches: *tradition*, *art*, *earth sciences*). Read [`canon-figures/README.md`](./canon-figures/README.md) for the editorial standard, or jump straight to [`canon-figures/CONTRIBUTORS.md`](./canon-figures/CONTRIBUTORS.md) for the master index.
+→ [`canon-figures/`](./canon-figures/), pass-1 seed, ~76 figures across 10 branches (the seven strict-canon branches plus three expansion branches: *tradition*, *art*, *earth sciences*). Read [`canon-figures/README.md`](./canon-figures/README.md) for the editorial standard, or jump straight to [`canon-figures/CONTRIBUTORS.md`](./canon-figures/CONTRIBUTORS.md) for the master index.
 
-The index is *not* a hall of fame. It is a record of *who built what foundation*, attached to the canon, so that any reader of a bucketed paper can trace any term, any law, any axiom back to the human who first wrote it down. Pass 1 is the floor, not the ceiling — most of the work is ahead.
+The index is *not* a hall of fame. It is a record of *who built what foundation*, attached to the canon, so that any reader of a bucketed paper can trace any term, any law, any axiom back to the human who first wrote it down. Pass 1 is the floor, well below the ceiling; most of the work is ahead.
 
 ## Prior art & credits
 
-- **[x402](https://x402.org/)** — the HTTP 402 micropayment protocol this builds on.
-- **[Story Protocol](https://www.story.foundation/)** — IP NFT infrastructure used by the reference site to mint licenses.
-- **[Walrus](https://www.walrus.xyz/)** — storage layer for bucketed papers in the reference site.
-- **[Dynamic](https://www.dynamic.xyz/)** — wallet auth used by the reference site.
-- **Research gateways** that expose x402 endpoints on top of PubMed, arXiv, OpenAlex, PubChem — `bucket.foundation` is a consumer, not a replacement.
+- **[x402](https://x402.org/)**, the HTTP 402 micropayment protocol this builds on.
+- **[Story Protocol](https://www.story.foundation/)**, IP NFT infrastructure used by the reference site to mint licenses.
+- **[Walrus](https://www.walrus.xyz/)**, storage layer for bucketed papers in the reference site.
+- **[Dynamic](https://www.dynamic.xyz/)**, wallet auth used by the reference site.
+- **Research gateways** that expose x402 endpoints on top of PubMed, arXiv, OpenAlex, PubChem, `bucket.foundation` consumes these.
 
-## Governance — bucket.foundation is a nonprofit
+## Governance
+Bucket.foundation is a nonprofit.
 
-`bucket.foundation` is literally a foundation. It is operated as a **nonprofit**. No equity, no investors, no exit.
+`bucket.foundation` is a foundation. It is operated as a **nonprofit**. No equity, no investors, no exit.
 
-- **Mission:** make primary research paid-for-once and citeable-forever, and route citation fees to authors — not publishers.
-- **No profit extraction.** Any revenue from operating the reference infrastructure (hosting buckets, running x402 buyer wallets, maintaining the canonical registry) goes back into operations and author payouts. If there is ever a surplus, it funds more research access — grants, mirror subsidies, bandwidth for developing regions.
-- **The protocol is MIT.** Anyone — nonprofit, for-profit, individual, university, lab — can run a bucket. You do not need permission from the Foundation to participate in the network. The Foundation runs **a** bucket, not **the** bucket. There is no authoritative node.
-- **Why "foundation"?** Two reasons that reinforce each other: (1) legally, this is a nonprofit foundation organization; (2) structurally, the canon holds only **foundations** — axioms, real math, rules, laws, principles, primary derivations. Outcomes (longevity, disease, cognition, climate) are downstream applications, not canon. A foundation of foundations.
+- **Mission:** make primary research paid-for-once and citeable-forever, and route citation fees to authors.
+- **No profit extraction.** Any revenue from operating the reference infrastructure (hosting buckets, running x402 buyer wallets, maintaining the canonical registry) goes back into operations and author payouts. If there is ever a surplus, it funds more research access, grants, mirror subsidies, bandwidth for developing regions.
+- **The protocol is MIT.** Anyone, nonprofit, for-profit, individual, university, lab, can run a bucket. You do not need permission from the Foundation to participate in the network. The Foundation runs **a** bucket, not **the** bucket. There is no authoritative node.
+- **Why "foundation"?** Two reasons that reinforce each other: (1) legally, this is a nonprofit foundation organization; (2) structurally, the canon holds only **foundations**, axioms, real math, rules, laws, principles, primary derivations. Outcomes (longevity, disease, cognition, climate) are downstream applications, one layer below canon. A foundation of foundations.
 
 Full governance notes: see [`GOVERNANCE.md`](./GOVERNANCE.md).
 
@@ -147,6 +150,6 @@ Full governance notes: see [`GOVERNANCE.md`](./GOVERNANCE.md).
 
 ## License
 
-- **Protocol spec** (`PROTOCOL.md`) — Creative Commons Zero (CC0) equivalent in intent: use it anywhere, no attribution required. See the spec file.
-- **Code** (this repo) — [MIT](./LICENSE). Fork it.
-- **Canon content** published through `bucket.foundation` — each artifact carries its own license in `canon.json`. The Foundation does not relicense authors' work.
+- **Protocol spec** (`PROTOCOL.md`), Creative Commons Zero (CC0) equivalent in intent: use it anywhere, no attribution required. See the spec file.
+- **Code** (this repo), [MIT](./LICENSE). Fork it.
+- **Canon content** published through `bucket.foundation`, each artifact carries its own license in `canon.json`. The Foundation does not relicense authors' work.

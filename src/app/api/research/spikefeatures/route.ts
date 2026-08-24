@@ -1,15 +1,15 @@
 /**
- * bucket.foundation — /api/research/spikefeatures
+ * bucket.foundation, /api/research/spikefeatures
  * -----------------------------------------------
  * Same-origin proxy for the SpikeFeatures neuroscience tool. Detects spikes in
- * a voltage trace (MAD-robust threshold + refractory + alignment) and extracts
+ * a voltage trace (MAD-based threshold + refractory + alignment) and extracts
  * waveform features (peak-to-trough amplitude, trough-to-peak width, half-width)
  * + ISI statistics. Uses SpikeInterface if installed, else a real MAD detector.
  * Backend logic is REAL (services/research-tools/tools_neuro.py:run_spike_features).
  *
- *   POST /api/research/spikefeatures                  → gateway POST /v1/spikefeatures/submit
- *        body { trace, fs_hz?, thresh_mad? }           → { job_id, status, mode, price, [result] }
- *   GET  /api/research/spikefeatures?job=<id>[&result=1] → status / result
+ * POST /api/research/spikefeatures → gateway POST /v1/spikefeatures/submit
+ * body { trace, fs_hz?, thresh_mad? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/spikefeatures?job=<id>[&result=1] → status / result
  *
  * `trace` is a JSON array of samples OR the string "demo" (synthetic spike train
  * with a known spike count, so detection accuracy is verifiable end-to-end).
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

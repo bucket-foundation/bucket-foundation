@@ -1,5 +1,5 @@
 /**
- * bkt-ibj — local feed402 server backed by the local DuckDB patent index.
+ * bkt-ibj, local feed402 server backed by the local DuckDB patent index.
  *
  * Mounts the same /patents/* routes as the public bucket.foundation deployment
  * so the chat UI can swap between local and public via FEED402_BASE_URL alone.
@@ -7,10 +7,10 @@
  * BUCKET_LOCAL_MODE=true skips x402 payment verification (free locally).
  *
  * Run:
- *   bun run scripts/05-serve.ts            # listens on :8402
+ * bun run scripts/05-serve.ts # listens on :8402
  *
  * Requires: bun, duckdb-node-api, hono. Install once with:
- *   bun add hono @duckdb/node-api
+ * bun add hono @duckdb/node-api
  */
 import { Hono } from "hono";
 import { DuckDBInstance } from "@duckdb/node-api";
@@ -127,7 +127,7 @@ app.get("/", (c) =>
 );
 
 mountPatents(app, repo, {
-  // In LOCAL_MODE skip the x402 challenge — just stamp a dummy receipt.
+  // In LOCAL_MODE skip the x402 challenge, just stamp a dummy receipt.
   guard: () =>
     LOCAL_MODE
       ? { ok: true, tx: "local-mode-no-payment" }

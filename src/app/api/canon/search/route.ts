@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/canon/search
+ * bucket.foundation, /api/canon/search
  * --------------------------------------
  * Semantic + lexical search across the 599 curated canon claim cards
  * and 18 detected multi-branch primitive bridges.
@@ -11,42 +11,42 @@
  * Auth: anonymous (rate-limited via standard ip).
  *
  * Query params:
- *   q       (required, string)            natural-language query
- *   top_k   (optional, 1-50, default 10)  results count
- *   tier    (optional, enum)              filter by predicted tier:
- *                                           nucleus | functional | edge | all  (default all)
- *   branch  (optional, string)            filter by branch slug (e.g. "01-mathematics")
- *   mode    (optional, enum)              "semantic" | "lexical" | "hybrid"  (default hybrid)
+ * q (required, string) natural-language query
+ * top_k (optional, 1-50, default 10) results count
+ * tier (optional, enum) filter by predicted tier:
+ * nucleus | functional | edge | all (default all)
+ * branch (optional, string) filter by branch slug (e.g. "01-mathematics")
+ * mode (optional, enum) "semantic" | "lexical" | "hybrid" (default hybrid)
  *
  * Response (200):
  * {
- *   "query": "...",
- *   "top_k": 10,
- *   "mode": "lexical",   // or "semantic" once query-embedding wired
- *   "results": [
- *     {
- *       "claim_id": 0,
- *       "branch": "01-mathematics",
- *       "concept": "topology",
- *       "slug": "001-...",
- *       "title": "Claim — ...",
- *       "score": 12.0,
- *       "tier": "nucleus",
- *       "url": "https://bucket.foundation/canon/claims/topology/001-...",
- *       "excerpt": "...",
- *       "evidence_count": 10
- *     },
- *     ...
- *   ],
- *   "took_ms": 12
+ * "query": "...",
+ * "top_k": 10,
+ * "mode": "lexical", // or "semantic" once query-embedding wired
+ * "results": [
+ * {
+ * "claim_id": 0,
+ * "branch": "01-mathematics",
+ * "concept": "topology",
+ * "slug": "001-...",
+ * "title": "Claim...",
+ * "score": 12.0,
+ * "tier": "nucleus",
+ * "url": "https://bucket.foundation/canon/claims/topology/001-...",
+ * "excerpt": "...",
+ * "evidence_count": 10
+ * },
+ * ...
+ * ],
+ * "took_ms": 12
  * }
  *
  * Note on embedding inference:
- *   Server-side query embedding is not yet wired in this Vercel route.
- *   Until ONNX/Transformers.js is added, the route uses BM25-style
- *   token overlap. The /canon/search HTML page can additionally embed
- *   queries client-side via @xenova/transformers and POST the vector
- *   here as `?qvec=<base64>` for true semantic search.
+ * Server-side query embedding is not yet wired in this Vercel route.
+ * Until ONNX/Transformers.js is added, the route uses BM25-style
+ * token overlap. The /canon/search HTML page can additionally embed
+ * queries client-side via @xenova/transformers and POST the vector
+ * here as `?qvec=<base64>` for true semantic search.
  */
 
 import { NextRequest } from "next/server";
@@ -112,7 +112,7 @@ export async function GET(req: NextRequest) {
   if (branchFilter) {
     results = results.filter((r) => r.entry.branch === branchFilter);
   }
-  // TODO: tier filter — needs tier-predictions.jsonl loaded into the index
+  // TODO: tier filter, needs tier-predictions.jsonl loaded into the index
   if (tier !== "all") {
     // placeholder: noop until tier wired
   }

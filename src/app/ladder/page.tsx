@@ -10,10 +10,10 @@ import {
 } from "@/lib/depth-ladder";
 import { getBranch } from "@/lib/canon";
 
-// /ladder — the continuous L0→L5 depth ladder made visible and navigable
+// /ladder, the continuous L0→L5 depth ladder made visible and navigable
 // (bkt-a7v). The produce-side on-ramp: mastery → canon → tools → research
 // agent, with no gap. Cross-linked from /mission and the Academy flow. The
-// research agent (terminal rung) is LINKED, not rebuilt.
+// research agent (terminal rung) is LINKED from here.
 
 export const metadata: Metadata = {
   title: "The depth ladder · mastery → frontier → producing knowledge",
@@ -57,7 +57,7 @@ export default function Page({
   searchParams?: { branch?: string; level?: string; mastery?: string };
 }) {
   // Optional position seed. A learner arriving from the Academy can pass
-  // ?branch=<slug> and either ?level=Lx or ?mastery=0..1; we keep it honest
+  //?branch=<slug> and either?level=Lx or?mastery=0..1; we keep it
   // (mastery alone never places above L2) and degrade gracefully when absent.
   const branchSlug = (searchParams?.branch || "").trim().toLowerCase();
   const branch = branchSlug ? getBranch(branchSlug) : undefined;

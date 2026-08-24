@@ -1,4 +1,4 @@
-// /sacred-history — the sacred-history corpus surface.
+// /sacred-history, the sacred-history corpus surface.
 //
 // A rights-aware, citeable index of cross-tradition sacred figures, a
 // claim-backed sacred timeline, and AI-generated *contestable* cross-tradition
@@ -74,7 +74,7 @@ export default function SacredHistoryPage() {
           A rights-aware index of the world&apos;s sacred figures, a claim-backed
           sacred timeline, and AI-generated <em>contestable</em> correlations
           across traditions. Every correlation is a claim with evidence and a
-          confidence — never a fact. <em>Candidates, not settled history.</em>
+          confidence — never a fact. <em>Candidates awaiting confirmation.</em>
         </p>
 
         <dl className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">

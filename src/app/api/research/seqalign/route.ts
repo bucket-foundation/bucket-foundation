@@ -1,12 +1,12 @@
 /**
- * bucket.foundation — /api/research/seqalign
+ * bucket.foundation, /api/research/seqalign
  * -------------------------------------------------
  * Same-origin proxy for SeqAlign (biomed-bio field tool). Exact pairwise
- * sequence alignment — Needleman-Wunsch (global) + Smith-Waterman (local) with
+ * sequence alignment, Needleman-Wunsch (global) + Smith-Waterman (local) with
  * BLOSUM62 / identity scoring. Backend is REAL (tools_seqalign.py).
  *
  * POST body { seq_a, seq_b, mode?, matrix?, gap?, match?, mismatch? } | { seq_a: "demo" }
- *   GET  /api/research/seqalign?job=<id>[&result=1] → status / result
+ * GET /api/research/seqalign?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

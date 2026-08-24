@@ -6,7 +6,7 @@ export const metadata = toolMetadata("paperradar");
 const _jsonld = toolJsonLd("paperradar");
 import PaperRadarClient from "./PaperRadarClient";
 
-// PaperRadar run page — personalized recent-paper feed grounded in live OpenAlex.
+// PaperRadar run page, personalized recent-paper feed grounded in live OpenAlex.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

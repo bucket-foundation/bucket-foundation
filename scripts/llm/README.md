@@ -1,4 +1,6 @@
-# Bucket Academy — Local GPU LLM endpoint
+# Bucket Academy
+
+Local GPU LLM endpoint.
 
 A GPU-accelerated, OpenAI-compatible chat-LLM endpoint on Gian's AMD **RX 7700S**
 (gfx1102), serving the Academy Socratic tutor (`src/app/api/academy/tutor`) with
@@ -10,7 +12,7 @@ bkt-llm-server     llama.cpp on the dGPU (Vulkan)               127.0.0.1:11435 
         └─ bkt-llm-revtunnel  reverse SSH tunnel → Hetzner          Hetzner 127.0.0.1:18011
 ```
 
-## Stand up the whole stack from the repo (fresh machine)
+## Stand up the whole stack from the repo
 
 ```bash
 bash scripts/llm/install-services.sh   # checks prereqs, installs the 3 systemd
@@ -19,13 +21,13 @@ bash scripts/llm/install-services.sh   # checks prereqs, installs the 3 systemd
 
 The three unit files are versioned in `scripts/llm/systemd/`. The installer is
 idempotent and verifies prerequisites (llama.cpp Vulkan build, node, ssh key to
-the box, and the gitignored secret files `shim.env` + `.bearer-secret` — it prints
+the box, and the gitignored secret files `shim.env` + `.bearer-secret`, it prints
 the one-liner to create them). The box-side nginx is reproduced separately with
 `setup-llm-nginx.sh` (run with `sudo` on prod-hetzner-1).
 
-## Public endpoint — STABLE (production, since 2026-06-25)
+## Public endpoint, STABLE
 
-`LLM_BASE_URL = https://atlas-api.agfarms.dev/llm/v1` — a **permanent** URL that
+`LLM_BASE_URL = https://atlas-api.agfarms.dev/llm/v1`, a **permanent** URL that
 never changes. The home box opens a reverse SSH tunnel (`bkt-llm-revtunnel`,
 `systemd --user`) binding the shim onto the **always-on Hetzner box**
 (`5.161.236.151`, fixed IP, existing Let's Encrypt cert). Host nginx adds a
@@ -36,33 +38,33 @@ the box). Port 18011 is firewalled from the public internet; only nginx + the
 bearer reach the shim.
 
 > **Why not Cloudflare named tunnel?** `agfarms.dev` DNS is on **Namecheap**
-> (`registrar-servers.com`), NOT Cloudflare — so `cloudflared tunnel route dns`
+> (`registrar-servers.com`) in place of Cloudflare, so `cloudflared tunnel route dns`
 > can't create `llm.agfarms.dev`. The Hetzner reverse-tunnel reuses infra we
 > already own (fixed IP + TLS) and needs no DNS change. `make-stable-tunnel.sh`
 > (the Cloudflare path) is kept only for if `agfarms.dev` ever moves to Cloudflare.
 
 > **Previously** the public hop was a cloudflared **quick tunnel** (`bkt-llm-tunnel`,
-> `https://<rand>.trycloudflare.com`) — ephemeral + drops connections; retired
+> `https://<rand>.trycloudflare.com`), ephemeral + drops connections; retired
 > 2026-06-25 in favour of the stable reverse tunnel above.
 
-## Why llama.cpp, not the system Ollama
+## Why llama.cpp over the system Ollama
 
 The installed `ollama 0.18.2` ships **only** the `cuda_v12` backend in
-`/usr/local/lib/ollama` — **no Vulkan, no ROCm** `.so`. So `OLLAMA_VULKAN=1` (set
-in the root systemd unit) is a silent no-op and every chat model runs **100% CPU**
+`/usr/local/lib/ollama`, **no Vulkan, no ROCm** `.so`. So `OLLAMA_VULKAN=1` (set
+In the root systemd unit) is a silent no-op and every chat model runs **100% CPU**
 (`ollama ps` => "100% CPU", `rocm-smi` GPU use 0%). `llama.cpp` built with the
 Vulkan backend (`/home/gian/llama.cpp/build/bin/llama-server`,
-`libggml-vulkan.so`) genuinely offloads to the discrete GPU.
+`libggml-vulkan.so`) offloads to the discrete GPU.
 
 Vulkan enumerates `0 = Radeon 780M (iGPU, gfx1103)`, `1 = RX 7700S (dGPU, gfx1102)`.
 `GGML_VK_VISIBLE_DEVICES=1` isolates the dGPU; it then becomes `Vulkan0` and gets
 full offload (`offloaded 29/29 layers to GPU`).
 
-## Measured GPU vs CPU (Qwen2.5-Coder-7B-Instruct Q4_K_M)
+## Measured GPU vs CPU
 
 | Path | tok/s | GPU use during gen |
 |------|-------|--------------------|
-| **GPU (RX 7700S, Vulkan)** | **~13 tok/s** (sustained) / 23–70 on short warm gens | **95–99%** (rocm-smi) |
+| **GPU (RX 7700S, Vulkan)** | **~13 tok/s** (sustained) / 23-70 on short warm gens | **95-99%** (rocm-smi) |
 | CPU (`--n-gpu-layers 0`) | ~5.4 tok/s | 0% |
 
 ~2.4× faster sustained, and it gets inference off the CPU entirely. Model = 4.1 GiB
@@ -84,13 +86,13 @@ curl -s -X POST http://127.0.0.1:11500/v1/chat/completions \
   -d '{"model":"qwen2.5-coder-7b","messages":[{"role":"user","content":"hi"}],"max_tokens":20}'
 ```
 
-## Secrets (gitignored, never committed)
+## Secrets
 
-- `scripts/llm/.bearer-secret` — the bearer token (mode 600)
-- `scripts/llm/shim.env` — `LLM_SHIM_SECRET=...` consumed by the shim unit
-- `scripts/llm/.tunnel-url` — current ephemeral tunnel URL
+- `scripts/llm/.bearer-secret`, the bearer token (mode 600)
+- `scripts/llm/shim.env`, `LLM_SHIM_SECRET=...` consumed by the shim unit
+- `scripts/llm/.tunnel-url`, current ephemeral tunnel URL
 
-## Wire the deployed tutor (Vercel env)
+## Wire the deployed tutor
 
 The tutor seam (`route.ts` + `provider.ts`) already prefers a local OpenAI-compatible
 endpoint when `LLM_BASE_URL` is set (Anthropic is the fallback; neither => 503 dark).
@@ -98,27 +100,27 @@ Set on the Vercel **bucket-foundation** project:
 
 | Env | Value |
 |-----|-------|
-| `LLM_BASE_URL` | `https://<current-tunnel>.trycloudflare.com/v1`  (note the **`/v1`** suffix) |
-| `LLM_MODEL`    | `qwen2.5-coder-7b` |
-| `LLM_API_KEY`  | `<contents of scripts/llm/.bearer-secret>` (the shim bearer) |
-| `LLM_TIMEOUT_S`| `60` (optional; default 20 — bump it, local GPU is slower than hosted) |
+| `LLM_BASE_URL` | `https://<current-tunnel>.trycloudflare.com/v1` (note the **`/v1`** suffix) |
+| `LLM_MODEL` | `qwen2.5-coder-7b` |
+| `LLM_API_KEY` | `<contents of scripts/llm/.bearer-secret>` (the shim bearer) |
+| `LLM_TIMEOUT_S`| `60` (optional; default 20, bump it, local GPU is slower than hosted) |
 
 Do **not** set `ANTHROPIC_API_KEY` (would still be overridden by `LLM_BASE_URL`,
-but local-only is the point here). All S1–S7 safety runs in code regardless.
+But local-only is the point here). All S1, S7 safety runs in code regardless.
 
 > The quick-tunnel hostname **changes on each tunnel restart** (and trycloudflare
-> quick tunnels drop connections — observed in prod 2026-06-25). For a STABLE
+> quick tunnels drop connections, observed in prod 2026-06-25). For a STABLE
 > hostname that never changes, do the one founder step then run the finisher:
 >
 > ```bash
-> cloudflared tunnel login                 # 2-min browser login → pick agfarms.dev
-> bash scripts/llm/make-stable-tunnel.sh   # creates bkt-llm tunnel, routes
->                                          # llm.agfarms.dev, repoints the systemd
->                                          # unit, verifies /health, prints the
->                                          # one-time Vercel value
+> cloudflared tunnel login # 2-min browser login → pick agfarms.dev
+> bash scripts/llm/make-stable-tunnel.sh # creates bkt-llm tunnel, routes
+> # llm.agfarms.dev, repoints the systemd
+> # unit, verifies /health, prints the
+> # one-time Vercel value
 > ```
 >
 > After that, set `LLM_BASE_URL=https://llm.agfarms.dev/v1` on Vercel ONCE and it
 > never needs touching again. The finisher is idempotent and touches neither the
-> GPU server nor the auth-shim — it only swaps the public hop. (Same named-tunnel
+> GPU server nor the auth-shim, it only swaps the public hop. (Same named-tunnel
 > pattern Polingual uses.)

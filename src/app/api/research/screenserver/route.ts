@@ -1,15 +1,15 @@
 /**
- * bucket.foundation — /api/research/screenserver
+ * bucket.foundation, /api/research/screenserver
  * ----------------------------------------------
  * Same-origin proxy for the ScreenServer research tool (13 ADMET models over a
  * SMILES library). Drop-in copy of the LabBrain proxy (see
  * /api/research/labbrain/route.ts and docs §2.5).
  *
- *   POST /api/research/screenserver               → gateway POST /v1/screenserver/submit
- *        body { smiles }                           (newline/comma-separated SMILES)
- *   GET  ?job=<id> / ?job=<id>&result=1           → status / result (render: "html")
+ * POST /api/research/screenserver → gateway POST /v1/screenserver/submit
+ * body { smiles } (newline/comma-separated SMILES)
+ * GET ?job=<id> / ?job=<id>&result=1 → status / result (render: "html")
  *
- * Env (server-only): TOOLS_GATEWAY_URL  default "https://research-tools.agfarms.dev"
+ * Env (server-only): TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  * TODO(deploy): set TOOLS_GATEWAY_URL in Vercel + K3s secret bucket/tools-gateway.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "enter at least one SMILES" } }, 400);
   }
 
-  // [METERING SEAM — TODO, off in v1] — see /api/research/labbrain/route.ts.
+  // [METERING SEAM, TODO, off in v1], see /api/research/labbrain/route.ts.
 
   let resp: Response;
   try {

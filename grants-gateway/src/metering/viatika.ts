@@ -3,7 +3,7 @@
  *
  * Per CLAUDE.md Strategic Priority #6 + Viatika Vendor Integration
  * Architecture: every metered AI/data endpoint across AGFarms ventures
- * routes through the Viatika vendor API. This file is the integration
+ * routes through the Viatika vendor API. This module is the integration
  * point for grants-gateway.
  *
  * v0.1 ships a NoOp implementation so the server boots without any

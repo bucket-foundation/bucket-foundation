@@ -3,9 +3,9 @@
  * src/app/verify/VerifyClient.tsx  (bkt-52p)
  * ----------------------------------------------------------------------------
  * Interactive verify island. Posts the pasted credential (JWT or id/URL, or a
- * JSON object) to POST /api/academy/credential/verify and renders the honest
+ * JSON object) to POST /api/academy/credential/verify and renders the
  * result: signature / issuer / revocation checks, the asserted concepts, and the
- * live-consistency cross-check. Pure fetch — no secrets, works for anyone.
+ * live-consistency cross-check. Pure fetch, no secrets, works for anyone.
  */
 import { useCallback, useEffect, useState } from "react";
 

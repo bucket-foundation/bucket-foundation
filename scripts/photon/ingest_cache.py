@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ingest_cache.py — rebuild index.sqlite from the raw Kaikki cache with CLEAN,
+ingest_cache.py, rebuild index.sqlite from the raw Kaikki cache with CLEAN,
 sense-aware glosses (the data-quality fix for the Polingual word explorer).
 
 WHY THIS EXISTS
@@ -14,32 +14,32 @@ the Portuguese dietary loanword and a low-fat / light-weight / soft-drink mix.
 
 This script re-derives the photon subset DIRECTLY from `kaikki-cache/*.jsonl`,
 keeping:
-  - `meaning_en`  = the PRIMARY sense's gloss (first sense, lightly cleaned),
-                    NOT the joined blob. This is what gets LaBSE-embedded.
-  - `payload.senses`        = up to N structured senses (gloss + tags + pos),
-                              so the client/lookup can group + label by sense.
-  - `payload.translations`  = Kaikki `translations[]` (lang/code/word/sense),
-                              the explicit cross-lingual truth.
-  - guaranteed CORE vocabulary per language (Swadesh-ish seed list) so the
-    common words a learner actually types are always present and correct.
+ - `meaning_en` = the PRIMARY sense's gloss (first sense, lightly cleaned),
+ NOT the joined blob. This is what gets LaBSE-embedded.
+ - `payload.senses` = up to N structured senses (gloss + tags + pos),
+ so the client/lookup can group + label by sense.
+ - `payload.translations` = Kaikki `translations[]` (lang/code/word/sense),
+ the explicit cross-lingual truth.
+ - guaranteed CORE vocabulary per language (Swadesh-ish seed list) so the
+ common words a learner types are always present and correct.
 
 Selection per language = a commonness signal. Two ingredients, combined:
-  1. word-frequency (the everyday-word signal). `wordfreq` (MIT, 24 of our 27
-     langs incl. all Academy langs) gives a Zipf score in [0,8]: gold=5.2,
-     entropy=3.3, gene=4.4 vs quux=0.0. This is the DOMINANT term, because it
-     is the only signal that doesn't depend on Kaikki's spotty structured data.
-  2. a Kaikki-structure proxy: (#translations across senses + top-level) +
-     3*(#senses). Common words carry many senses and many translation edges.
+ 1. word-frequency (the everyday-word signal). `wordfreq` (MIT, 24 of our 27
+ langs incl. all Academy langs) gives a Zipf score in [0,8]: gold=5.2,
+ entropy=3.3, gene=4.4 vs quux=0.0. This is the DOMINANT term, because it
+ is the only signal that doesn't depend on Kaikki's spotty structured data.
+ 2. a Kaikki-structure proxy: (#translations across senses + top-level) +
+ 3*(#senses). Common words carry many senses and many translation edges.
 Combined: score = 18*zipf + n_trans + 3*n_senses + core_bonus + short_bonus.
 
 WHY zipf was added (2026-06-15, bead "expand to ~200k common words"): the live
-45k slice MISSED everyday words — gold/iron/energy/gene/planet/ocean. Root
+45k slice MISSED everyday words, gold/iron/energy/gene/planet/ocean. Root
 cause: this dump stores translations UNDER each sense (`senses[].translations`),
 not at the top-level `entry.translations` the old proxy read, so gold scored
 n_trans=0 → rank 4066, entropy 12290, gene 54227. We now (a) count sense-level
 translations too, and (b) weight by real corpus frequency. wordfreq is OPTIONAL:
 if unavailable the zipf term is 0 and we fall back to the structure proxy.
-For the 3 langs without wordfreq (la/sa/th — classical/low-resource) the proxy
+For the 3 langs without wordfreq (la/sa/th, classical/low-resource) the proxy
 alone is used, which is appropriate (Latin/Sanskrit have no everyday corpus).
 
 Output: a FRESH index.sqlite with the SAME schema the rest of the backbone
@@ -50,9 +50,9 @@ atomically swaps so a half-run never corrupts the live index.
 Source: Wiktionary via Kaikki (CC-BY-SA 4.0). Short glosses only; canonical
 URLs back to en.wiktionary.org. No long copyrighted text stored.
 
-Run:  python3 scripts/photon/ingest_cache.py                 # all langs, default caps
-      python3 scripts/photon/ingest_cache.py --per-lang 1500 --en 3000
-      python3 scripts/photon/ingest_cache.py --langs en,es,fr,de --per-lang 800
+Run: python3 scripts/photon/ingest_cache.py # all langs, default caps
+ python3 scripts/photon/ingest_cache.py --per-lang 1500 --en 3000
+ python3 scripts/photon/ingest_cache.py --langs en,es,fr,de --per-lang 800
 """
 from __future__ import annotations
 
@@ -87,15 +87,15 @@ except Exception:  # pragma: no cover - graceful degrade
 # weight on the Zipf term. Zipf is [0,8]; ×18 puts a Zipf-5 everyday word
 # (gold/water/light ~ 90 pts) on par with a 60-translation Kaikki headword,
 # and well above obscure forms. Tuned so gold/entropy/iron/gene clear typical
-# per-lang caps while genuine junk (Zipf 0) stays out.
+# per-lang caps while junk (Zipf 0) stays out.
 ZIPF_WEIGHT = 18.0
 
 
 def zipf_score(surface: str, code: str) -> float:
     """Corpus Zipf frequency for (surface, lang), or 0.0 if unavailable.
 
-    Falls back to 0 for langs wordfreq doesn't cover (la/sa/th) and when the
-    library isn't installed — the structure proxy still ranks those langs.
+ Falls back to 0 for langs wordfreq doesn't cover (la/sa/th) and when the
+ library isn't installed, the structure proxy still ranks those langs.
     """
     if not ZIPF_OK or code not in _WF_AVAIL:
         return 0.0
@@ -185,11 +185,11 @@ def clean_gloss(g: str, max_chars: int = 240) -> str:
 
 
 def primary_sense(senses):
-    """Return (gloss, tags, all_clean_senses) — primary sense first.
+    """Return (gloss, tags, all_clean_senses), primary sense first.
 
-    Kaikki orders senses with the core/most-common sense first. We skip pure
-    form-of / inflection / obsolete senses when picking the PRIMARY so the
-    headword is the real word, not "ablative singular of …".
+ Kaikki orders senses with the core/most-common sense first. We skip pure
+ form-of / inflection / obsolete senses when picking the PRIMARY so the
+ headword is the real word, not "ablative singular of …".
     """
     cleaned = []
     for s in senses:
@@ -230,10 +230,10 @@ def pick_ipa(entry):
 def _iter_translation_blocks(entry):
     """Yield every translations[] list in the entry.
 
-    Kaikki dumps are inconsistent: some put translations at the TOP level
-    (`entry.translations`), others (this English dump) nest them under each
-    sense (`entry.senses[].translations`). Reading only the top level made the
-    old ranker blind to a word's true cross-lingual weight (gold scored 0).
+ Kaikki dumps are inconsistent: some put translations at the TOP level
+ (`entry.translations`), others (this English dump) nest them under each
+ sense (`entry.senses[].translations`). Reading only the top level made the
+ old ranker blind to a word's true cross-lingual weight (gold scored 0).
     """
     top = entry.get("translations")
     if top:
@@ -246,8 +246,8 @@ def _iter_translation_blocks(entry):
 
 def extract_translations(entry, cap=60):
     """Merge translations from BOTH the top level and every sense, deduped by
-    (code, word). The dedup makes `n_trans` a faithful count of distinct
-    cross-lingual targets regardless of where the dump stored them."""
+ (code, word). The dedup makes `n_trans` a faithful count of distinct
+ cross-lingual targets regardless of where the dump stored them."""
     out = []
     seen = set()
     for block in _iter_translation_blocks(entry):
@@ -287,9 +287,9 @@ POS_PRIORITY = {
 def merge_surface(agg, surface, pos, d, core_set, is_en):
     """Accumulate one POS entry for a surface into the per-surface aggregate.
 
-    Keeps every POS entry's senses (so the explorer can group/label by sense),
-    and tracks which POS entry is DOMINANT (most translations, then POS
-    priority) — its primary sense becomes the headword `meaning_en`.
+ Keeps every POS entry's senses (so the explorer can group/label by sense),
+ and tracks which POS entry is DOMINANT (most translations, then POS
+ priority), its primary sense becomes the headword `meaning_en`.
     """
     gloss, tags, senses_clean = primary_sense(d.get("senses", []))
     if not gloss:
@@ -363,8 +363,8 @@ def rank_score(rec, core, code):
 
 def ingest_lang(code, per_lang, core_set, pin_surfaces=None):
     """Ingest one language. `pin_surfaces` = surfaces to HARD-INCLUDE for this
-    language (the translation targets of core English words, so cross-lingual
-    demos always have real targets like Licht/lumière/luce to land on)."""
+ language (the translation targets of core English words, so cross-lingual
+ demos always have real targets like Licht/lumière/luce to land on)."""
     pin_surfaces = pin_surfaces or set()
     fn, slug = LANGS[code]
     path = os.path.join(CACHE_DIR, fn)
@@ -426,15 +426,15 @@ def build_db(records, db_path):
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("""
-        CREATE TABLE photons (
-            id TEXT PRIMARY KEY,
-            kind TEXT, lang TEXT, surface TEXT,
-            meaning_en TEXT, tier TEXT, branch_csv TEXT,
-            pos TEXT, ipa TEXT,
-            semantic_row INTEGER, phonetic_row INTEGER,
-            provenance_source TEXT, provenance_uri TEXT,
-            captured_at TEXT, payload TEXT
-        )
+ CREATE TABLE photons (
+ id TEXT PRIMARY KEY,
+ kind TEXT, lang TEXT, surface TEXT,
+ meaning_en TEXT, tier TEXT, branch_csv TEXT,
+ pos TEXT, ipa TEXT,
+ semantic_row INTEGER, phonetic_row INTEGER,
+ provenance_source TEXT, provenance_uri TEXT,
+ captured_at TEXT, payload TEXT
+ )
     """)
     captured = time.strftime("%Y-%m-%dT%H:%M:%S")
     rows = []
@@ -507,7 +507,7 @@ def main():
 
     # Pass 1: English first, so we can harvest the translation targets of the
     # CORE words (Licht/lumière/luce/φως …) and hard-include them in every other
-    # language — guaranteeing the cross-lingual demos land on real targets.
+    # language, guaranteeing the cross-lingual demos land on real targets.
     all_records = []
     pins = {}  # lang code -> set(surface)
     if "en" in langs:

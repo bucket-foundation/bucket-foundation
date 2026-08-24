@@ -1,4 +1,4 @@
-// canon-bridges.ts — server-only filesystem scanner for bucket-canon/_bridges/
+// canon-bridges.ts, server-only filesystem scanner for bucket-canon/_bridges/
 import fs from "fs";
 import path from "path";
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""llm_shim — a tiny authenticating reverse proxy in front of local Ollama.
+"""llm_shim, a tiny authenticating reverse proxy in front of local Ollama.
 =========================================================================
 
 PURPOSE (security): we want the DEPLOYED gateway (Hetzner
@@ -11,21 +11,21 @@ and the shim:
   * requires `Authorization: Bearer <LLM_GATEWAY_SECRET>` on EVERY request
     (constant-time compared); 401 otherwise;
   * forwards ONLY /v1/* paths to 127.0.0.1:11434 (Ollama's OpenAI-compatible
-    surface) — everything else (/, /api/*, model management, etc.) is 404;
+    surface), everything else (/, /api/*, model management, etc.) is 404;
   * forwards ONLY GET/POST;
   * strips the inbound Authorization before forwarding (Ollama doesn't need it);
   * caps request body size; short upstream timeout; never leaks the secret.
 
-stdlib-only — no FastAPI/uvicorn dependency, so it runs anywhere Python 3 does
+stdlib-only, no FastAPI/uvicorn dependency, so it runs anywhere Python 3 does
 and has the smallest possible attack surface.
 
 ENV:
   LLM_GATEWAY_SECRET   REQUIRED. The bearer token clients must present.
-  LLM_SHIM_HOST        bind host (default 127.0.0.1 — keep it loopback).
+  LLM_SHIM_HOST        bind host (default 127.0.0.1, keep it loopback).
   LLM_SHIM_PORT        bind port (default 8011).
   OLLAMA_URL           upstream (default http://127.0.0.1:11434).
   LLM_SHIM_MAX_BODY    max request bytes (default 1048576 = 1 MiB).
-  LLM_SHIM_TIMEOUT_S   upstream timeout seconds (default 120 — generation can be slow).
+  LLM_SHIM_TIMEOUT_S   upstream timeout seconds (default 120, generation can be slow).
 """
 from __future__ import annotations
 

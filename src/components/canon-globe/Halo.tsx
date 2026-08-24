@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import * as THREE from "three";
 
-// Atmospheric halo. Adapted from janarosmonaliev/github-globe (MIT) — a
+// Atmospheric halo. Adapted from janarosmonaliev/github-globe (MIT), a
 // back-side fresnel sphere that softly tints the silhouette.
 // Tinted with bucket's --gold (#B8861E) at low alpha to bloom into bone.
 
@@ -17,7 +17,7 @@ export function Halo({
   color = "#B8861E",
   enabled = true,
 }: HaloProps) {
-  // Inner crisp gold rim — sits just off the surface, sharp fresnel.
+  // Inner crisp gold rim, sits just off the surface, sharp fresnel.
   const innerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({
@@ -50,7 +50,7 @@ export function Halo({
     [color]
   );
 
-  // Outer atmospheric bloom — wider, softer, gives the planet a glow halo.
+  // Outer atmospheric bloom, wider, softer, gives the planet a glow halo.
   const outerMat = useMemo(
     () =>
       new THREE.ShaderMaterial({

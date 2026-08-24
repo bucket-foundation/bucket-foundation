@@ -1,5 +1,5 @@
 /**
- * src/lib/x402-pay.ts — SERVER-SIDE ONLY x402 settlement.
+ * src/lib/x402-pay.ts, SERVER-SIDE ONLY x402 settlement.
  * -------------------------------------------------------
  *
  * This module is the *only* place a payment key is ever touched, and it never
@@ -24,12 +24,12 @@
  * │                 and reference it in the deployment env.              │
  * │ 3. Implement the viem signing below (marked TODO). Reference impl:   │
  * │    https://github.com/gianyrox/feed402/blob/main/agent.ts            │
- * │ 4. Until steps 1–3 are done this returns null, which makes           │
+ * │ 4. Until steps 1-3 are done this returns null, which makes           │
  * │    /api/research transparently serve the zero-key canon fallback.    │
  * │    Nothing breaks; the caller still gets real, citeable data.        │
  * └─────────────────────────────────────────────────────────────────────┘
  *
- * Invariant: this function returning `null` MUST be a safe, complete state —
+ * Invariant: this function returning `null` MUST be a safe, complete state, 
  * /api/research treats null as "no server settlement available → serve canon".
  * It must never throw in a way that surfaces a payment challenge to a caller.
  */
@@ -40,7 +40,7 @@
  * configured (the default, zero-key state).
  *
  * @param _resourceUrl the upstream gateway URL being paid for
- * @param _priceUsd     the tier price (server's own outlay, not the caller's)
+ * @param _priceUsd     the tier price (the server's own outlay)
  */
 export async function signX402ServerSide(
   _resourceUrl: string,

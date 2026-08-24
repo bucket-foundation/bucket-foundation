@@ -1,4 +1,4 @@
-// canon-graph.ts — server-only loader for the canon collaboration graph.
+// canon-graph.ts, server-only loader for the canon collaboration graph.
 
 import fs from "fs";
 import path from "path";

@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-/* Bucket Academy — adaptive-core test (bkt-ecr / bkt-buk / bkt-uzx).
+/* Bucket Academy, adaptive-core test (bkt-ecr / bkt-buk / bkt-uzx).
  * Runs the real biophysics corpus through the engine and asserts the three P1
  * mechanisms behave: encompassing graph is sane, FIRe reduces prerequisite
- * review burden, and the fused mastery model is honest (P x R, confidence band,
+ * review burden, and the fused mastery model is (P x R, confidence band
  * back-compat 0..1). No deps; `node learning/app/test-adaptive.js`.
  */
 "use strict";
 const fs = require("fs");
 const path = require("path");
 
-// localStorage shim + globals (mirror validate.sh harness).
+// localStorage shim + globals (mirror the validate.sh test rig).
 const store = {};
 global.localStorage = {
   getItem: (k) => (k in store ? store[k] : null),
@@ -109,7 +109,7 @@ function approx(a, b, eps, msg) { ok(Math.abs(a - b) <= (eps || 1e-9), msg + ` (
   // Boundedness: a single FIRe event can't exceed the +15% cap.
   ok(afterS <= beforeS * (1 + Adaptive.ADAPTIVE.FIRE_MAX_STABILITY_GAIN) + 1e-6,
     "FIRe stability gain is bounded by FIRE_MAX_STABILITY_GAIN (+15%)");
-  // Honesty: FIRe must NOT touch proficiency (it's implicit, not a graded attempt).
+  // Honesty: FIRe must NOT touch proficiency (it's implicit, so nothing is graded).
   const profBefore = E.state.prof[pre] ? E.state.prof[pre].n : 0;
   E.grade(adv.id, 3, "apply", tFire + DAY);
   const profAfter = E.state.prof[pre] ? E.state.prof[pre].n : 0;
@@ -146,7 +146,7 @@ function approx(a, b, eps, msg) { ok(Math.abs(a - b) <= (eps || 1e-9), msg + ` (
   console.log("      mastered concept detail:", JSON.stringify(det));
 
   // Multiplicative collapse: a high-proficiency card that's been left to decay
-  // (low retention at horizon) must NOT read as mastered — the whole point.
+  // (low retention at horizon) must NOT read as mastered, the whole point.
   // Simulate by checking masteryDetail at a far-future `now` (retention readout)
   // and that fuseMastery collapses when one factor -> 0.
   ok(Adaptive.fuseMastery(0.95, 0.0) === 0, "fuseMastery collapses to 0 when retention is 0 (no cramming-certifies)");
@@ -154,7 +154,7 @@ function approx(a, b, eps, msg) { ok(Math.abs(a - b) <= (eps || 1e-9), msg + ` (
   const partial = Adaptive.fuseMastery(0.81, 0.64);
   approx(partial, 0.81 * 0.64, 1e-9, "fuseMastery is the product at alpha=beta=1");
 
-  // Honest cold-start: a concept introduced but never quizzed falls back to the
+  // cold-start: a concept introduced but never quizzed falls back to the
   // stability proxy, never a fake 0.
   E.reset();
   E.grade("boltzmann", 3, "recall", Date.now()); // one rep -> has proficiency now

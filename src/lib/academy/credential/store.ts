@@ -1,5 +1,5 @@
 /**
- * src/lib/academy/credential/store.ts  (bkt-52p)
+ * src/lib/academy/credential/store.ts (bkt-52p)
  * ----------------------------------------------------------------------------
  * Persistence for issued credentials, using the EXACT service-role pattern as
  * src/app/api/academy/{progress,profile}/route.ts: the bucket.academy_credentials
@@ -8,9 +8,9 @@
  * browser never touches it directly.
  *
  * A row is the point-in-time, stable artifact a recruiter relies on:
- *   id (uuid, == the hosted credential id), user_id (owner), handle, jwt
- *   (the signed VC-JWT), credential (the unsigned VC JSON, for cheap reads),
- *   issued_at, revoked_at (null = live), revocation_reason.
+ * id (uuid, == the hosted credential id), user_id (owner), handle, jwt
+ * (the signed VC-JWT), credential (the unsigned VC JSON, for cheap reads),
+ * issued_at, revoked_at (null = live), revocation_reason.
  *
  * Revocation = setting revoked_at. Verification re-checks this live.
  */
@@ -114,7 +114,7 @@ export async function listCredentialsForUser(uid: string): Promise<CredentialRow
   return data as unknown as CredentialRow[];
 }
 
-/** Revoke a credential — owner-scoped. Returns true if a row was revoked. */
+/** Revoke a credential, owner-scoped. Returns true if a row was revoked. */
 export async function revokeCredential(
   id: string,
   uid: string,
@@ -127,7 +127,7 @@ export async function revokeCredential(
       revocation_reason: reason || "Revoked by issuer/owner.",
     })
     .eq("id", id)
-    .eq("user_id", uid) // hard owner scope — never revoke another user's credential
+    .eq("user_id", uid) // hard owner scope, never revoke another user's credential
     .is("revoked_at", null)
     .select("id");
   if (error || !data) return false;

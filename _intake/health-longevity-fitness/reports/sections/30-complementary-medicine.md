@@ -199,7 +199,7 @@ modality is magic.
 
 **The "subluxation" critique — `no-evidence`.** Traditional chiropractic (D.D. Palmer, 1895) holds that
 "vertebral subluxations" interfere with "Innate Intelligence" flowing through the nerves and **cause systemic
-disease** — so adjusting the spine could treat asthma, ear infections, colic, hypertension, etc. The
+disease** — so adjusting the spine could treat asthma, ear infections, colic, hypertension, etc. the
 chiropractic "subluxation" **is not visible on imaging, has no demonstrated pathophysiology, and the claim
 that spinal adjustment treats internal/visceral disease is unsupported.** SMT for back pain is real;
 "adjustments for your child's ear infections / your blood pressure / your immune system" are `no-evidence`.

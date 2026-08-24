@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-parse.py — canon activity feed event parser (bkt-feed-01)
+parse.py, canon activity feed event parser (bkt-feed-01)
 
 Reads a git diff between two SHAs (or a single commit) and emits JSON Lines
 events to stdout. One line per event. No external deps; stdlib only.
 
 Event types:
-  add_paper, add_figure, add_branch, add_canon_entry, add_landscape,
-  update_dossier, promote, demote, retract
+ add_paper, add_figure, add_branch, add_canon_entry, add_landscape,
+ update_dossier, promote, demote, retract
 
 Usage:
-  python3 tools/feed/parse.py --from <sha> --to <sha> [--pr <num>]
-  python3 tools/feed/parse.py --commit <sha>
+ python3 tools/feed/parse.py --from <sha> --to <sha> [--pr <num>]
+ python3 tools/feed/parse.py --commit <sha>
 """
 from __future__ import annotations
 
@@ -62,8 +62,8 @@ def git_show_file(sha: str, path: str) -> Optional[str]:
 def git_name_status(sha_from: str, sha_to: str) -> list[tuple[str, str, Optional[str]]]:
     """Return list of (status, path, old_path_or_None).
 
-    status is A/M/D/R/C (for renames R contains similarity like R100 — we
-    normalize to R).
+ status is A/M/D/R/C (for renames R contains similarity like R100, we
+ normalize to R).
     """
     out = git(
         "diff", "--name-status", "-M", "--find-renames=50%",
@@ -246,7 +246,7 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                 )
 
     for status, path, old_path in changes:
-        # figures.json — handle separately (A or M)
+        # figures.json, handle separately (A or M)
         if path == FIGURES_JSON:
             old_txt = git_show_file(sha_from, path) if status != "A" else None
             new_txt = git_show_file(sha_to, path) if status != "D" else None
@@ -324,7 +324,7 @@ def process_diff(sha_from: str, sha_to: str, pr: Optional[int]) -> Iterable[dict
                         title=basename,
                         **base_kw,
                     )
-                # other file types (images, data) — skip silently
+                # other file types (images, data), skip silently
 
             elif status == "M":
                 if basename.endswith(".bib"):

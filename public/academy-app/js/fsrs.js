@@ -1,4 +1,4 @@
-/* Bucket Academy — FSRS-5 spaced-repetition scheduler (vanilla JS).
+/* Bucket Academy, FSRS-5 spaced-repetition scheduler (vanilla JS).
  * Faithful reimplementation of the Free Spaced Repetition Scheduler memory model
  * (Difficulty / Stability / Retrievability). Algorithm: open MIT lineage (ts-fsrs /
  * py-fsrs); reimplemented here so the app has zero build step. Decision DECISIONS.md#3:

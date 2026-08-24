@@ -18,7 +18,7 @@ export default function CryoTriageClient() {
     e.preventDefault();
     const fd = new FormData();
     if (file) fd.append("file", file);
-    // multipart: no content-type header — the browser sets the boundary.
+    // multipart: no content-type header, the browser sets the boundary.
     void submit(
       { body: fd },
       file ? "Triaging the micrograph…" : "Generating + triaging a synthetic session…",

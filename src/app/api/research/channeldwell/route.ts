@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/channeldwell
+ * bucket.foundation, /api/research/channeldwell
  * -------------------------------------------
  * Same-origin proxy for ChannelDwell. Single-channel idealization (half-amplitude threshold) + open probability + dwell-time τ. Backend logic is REAL (tools_genomics.py:run_channel_dwell).
  *
  * POST body { trace, fs_hz? }; `trace` is a current array (pA) or "demo".
- *   GET  /api/research/channeldwell?job=<id>[&result=1] → status / result
+ * GET /api/research/channeldwell?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

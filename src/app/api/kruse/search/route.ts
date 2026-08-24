@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
  * Proxy to the Kruse Index search server.
  *
  * In dev: defaults to http://localhost:8765.
- * In prod: set KRUSE_INDEX_URL (will ultimately point at the feed402 wrapper
+ * In prod: set KRUSE_INDEX_URL (will point at the feed402 wrapper
  * once bkt-005 ships).
  *
  * Enforces the same cookie gate as middleware, so this endpoint is not a

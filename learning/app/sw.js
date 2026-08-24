@@ -1,4 +1,4 @@
-/* Bucket Academy service worker — offline-first app shell + corpus.
+/* Bucket Academy service worker, offline-first app shell + corpus.
  * After one online load, the app (and KaTeX) work offline. Progress lives in
  * localStorage, so a returning learner needs no network at all. */
 const CACHE = "bucket-academy-v7";
@@ -45,7 +45,7 @@ self.addEventListener("fetch", (e) => {
   // NETWORK-FIRST for same-origin APP CODE + data so every deploy reaches users
   // immediately (no manual cache bump needed): HTML, JS, CSS, JSON, and the app root.
   // Falls back to cache when offline. This is why a returning PWA user used to get
-  // stale code — cache-first JS/CSS. Static media (icons/fonts/images) + the KaTeX
+  // stale code, cache-first JS/CSS. Static media (icons/fonts/images) + the KaTeX
   // CDN stay cache-first (they rarely change and are big).
   const isAppCode = sameOrigin && (
     req.mode === "navigate" ||

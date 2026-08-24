@@ -1,6 +1,6 @@
 "use client";
 
-// CausalDesigner client island — build a causal DAG, identify backdoor paths +
+// CausalDesigner client island, build a causal DAG, identify backdoor paths +
 // a valid adjustment set (real do-calculus), recommend an estimator. Render "json".
 
 import { useState } from "react";
@@ -203,7 +203,7 @@ function CausalView({ result }: { result: ResultEnvelope }) {
             ))}
           </ul>
         ) : (
-          <p className="text-[13px] text-[color:var(--basalt-3)]">none — treatment is unconfounded given the graph.</p>
+          <p className="text-[13px] text-[color:var(--basalt-3)]">none, treatment is unconfounded given the graph.</p>
         )}
       </div>
 

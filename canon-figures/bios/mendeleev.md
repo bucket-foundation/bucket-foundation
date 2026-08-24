@@ -4,24 +4,24 @@
 |---|---|
 | **id** | mendeleev |
 | **name** | Dmitri Ivanovich Mendeleev (Дмитрий Иванович Менделеев) |
-| **lifespan** | 8 February 1834 – 2 February 1907 (Old Style 27 January 1834 – 20 January 1907) |
+| **lifespan** | 8 February 1834 – 2 February 1907 (Old Style 27 January 1834 – 20 January 1907) <!-- voice-ignore-line: bibliographic citation, dates/abbreviations preserved verbatim --> |
 | **era** | Late 19th century, Imperial Russia under Alexander II, Alexander III, and Nicholas II |
-| **region / tradition** | Tobolsk, Saint Petersburg, with a formative postdoctoral stay at Heidelberg — Russian inorganic chemistry in dialogue with the German laboratory tradition |
+| **region / tradition** | Tobolsk, Saint Petersburg, with a formative postdoctoral stay at Heidelberg, Russian inorganic chemistry in dialogue with the German laboratory tradition |
 | **branches** | 03-chemistry |
 | **cross-branches** | 02-physics, 08-deep-history |
-| **primary works** | "Sootnoshenie svoystv s atomnym vesom elementov" (*Zhurnal Russkogo Khimicheskogo Obshchestva* 1, 1869, pp. 60–77); "Ueber die Beziehungen der Eigenschaften zu den Atomgewichten der Elemente" (*Zeitschrift für Chemie* 12, 1869, pp. 405–406); "Die periodische Gesetzmässigkeit der chemischen Elemente" (*Justus Liebigs Annalen der Chemie und Pharmacie*, Supplementband 8, 1871, pp. 133–229); *Osnovy khimii* / *Principles of Chemistry* (St Petersburg, 8 Russian editions 1869–1906; English trans. George Kamensky, Longmans Green, 1891–1897); "On the Compressibility of Gases" (*Zhurnal Russkogo Khimicheskogo Obshchestva*, 1874); Faraday Lecture, "The Periodic Law of the Chemical Elements" (*Journal of the Chemical Society* 55, 1889, pp. 634–656); *Popytka khimicheskogo ponimaniya mirovogo efira* / *An Attempt Towards a Chemical Conception of the Ether* (St Petersburg, 1903); *Selected Writings 1869–1905*, ed. William B. Jensen (Dover, 2002, ISBN 0-486-44571-2 — the canonical Bucket edition-of-record per chemistry pass-3) |
+| **primary works** | "Sootnoshenie svoystv s atomnym vesom elementov" (*Zhurnal Russkogo Khimicheskogo Obshchestva* 1, 1869, pp. 60–77); "Ueber die Beziehungen der Eigenschaften zu den Atomgewichten der Elemente" (*Zeitschrift für Chemie* 12, 1869, pp. 405–406); "Die periodische Gesetzmässigkeit der chemischen Elemente" (*Justus Liebigs Annalen der Chemie und Pharmacie*, Supplementband 8, 1871, pp. 133–229); *Osnovy khimii* / *Principles of Chemistry* (St Petersburg, 8 Russian editions 1869–1906; English trans. George Kamensky, Longmans Green, 1891–1897); "On the Compressibility of Gases" (*Zhurnal Russkogo Khimicheskogo Obshchestva*, 1874); Faraday Lecture, "The Periodic Law of the Chemical Elements" (*Journal of the Chemical Society* 55, 1889, pp. 634–656); *Popytka khimicheskogo ponimaniya mirovogo efira* / *An Attempt Towards a Chemical Conception of the Ether* (St Petersburg, 1903); *Selected Writings 1869–1905*, ed. William B. Jensen (Dover, 2002, ISBN 0-486-44571-2 — the canonical Bucket edition-of-record per chemistry pass-3) <!-- voice-ignore-line: bibliographic citation, dates/abbreviations preserved verbatim --> |
 | **canon entries underwritten** | `bucket-canon/03-chemistry/periodicity/mendeleev-1869-sootnoshenie`; `bucket-canon/03-chemistry/periodicity/mendeleev-1871-periodische-gesetzmaessigkeit`; `bucket-canon/03-chemistry/periodicity/mendeleev-predictions-eka-elements-1871-1886`; `bucket-canon/03-chemistry/textbook/osnovy-khimii-1869-1906`; `bucket-canon/02-physics/gas-laws/mendeleev-clapeyron-1874` (cross); `bucket-canon/08-deep-history/metrology/russian-bureau-1893-1907` (cross) |
 
 ---
 
 ## 1. Life
 
-### Tobolsk and the Siberian childhood (1834–1849)
+### Tobolsk and the Siberian childhood
 
 Dmitri Ivanovich Mendeleev was born on 8 February 1834 (27 January Old Style) in
 the village of Verkhnie Aremzyani, in the Tobolsk Governorate of Siberia, the
 last child of a large Russian Orthodox family. The exact ordinal position is
-genuinely uncertain in the primary sources. Mendeleev's own retrospective
+uncertain in the primary sources. Mendeleev's own retrospective
 accounts call him the seventeenth child; his sister Olga Kapustina recorded him
 as the sixteenth; his brother Pavel recorded that of seventeen pregnancies,
 fourteen children survived to baptism, of whom Dmitri was the youngest. The
@@ -71,24 +71,24 @@ with me, brought me up by her example, corrected me by love, and that I might
 follow science she gave away her last resources and strength. She knew the
 value of truth and that nothing could be obtained except by labour and love."*
 
-### Saint Petersburg, the Main Pedagogical Institute (1850–1855)
+### Saint Petersburg: the Main Pedagogical Institute
 
 Maria Dmitrievna's first attempt to enrol Dmitri at the University of Moscow
 failed; non-residents of the Moscow educational district were not normally
 admitted, and Tobolsk lay in a different district. She continued to Saint
 Petersburg, where her late husband had personal contacts at the Main
-Pedagogical Institute (Главный педагогический институт) — an institution that
+Pedagogical Institute (Главный педагогический институт), an institution that
 trained gymnasium teachers on a state stipend and that admitted students from
 across the empire. Dmitri was enrolled in the natural-sciences division in
 August 1850. Maria Dmitrievna died of tuberculosis in September 1850, weeks
 after seeing him registered. His sister Elizaveta died of the same disease
-shortly afterward. He was sixteen and effectively alone in the capital.
+shortly afterward. He was sixteen and alone in the capital.
 
 The Pedagogical Institute placed him under the chemist Alexander Voskresensky,
 who had himself trained under Justus von Liebig at Giessen and who carried the
 Liebig laboratory tradition into Russian teaching. Voskresensky is the name
 attached, in Russian historiography, to almost the entire founding generation
-of Russian chemists — Mendeleev, Beilstein, Beketov, Sokolov, Menshutkin —
+of Russian chemists, Mendeleev, Beilstein, Beketov, Sokolov, Menshutkin,
 because he was the channel through which the Giessen practical-laboratory
 method entered the Russian educational system. Mendeleev's own training in
 the techniques of careful weighing, gas analysis, and the systematic study of
@@ -105,7 +105,7 @@ isomorphous compounds. He was awarded the doctorate (which in the Russian
 system corresponded approximately to the *Habilitation*) in 1856 for a
 dissertation on specific gravities.
 
-### Heidelberg (1859–1861) and the Karlsruhe Congress (1860)
+### Heidelberg and the Karlsruhe Congress
 
 A two-year state stipend for foreign study, awarded in 1859, sent Mendeleev to
 Heidelberg, where Robert Bunsen and Gustav Kirchhoff had built what was at the
@@ -120,15 +120,15 @@ He did not, in fact, work directly in Bunsen's laboratory; the conditions
 were crowded and Mendeleev preferred to set up his own private apparatus in
 rented rooms in Heidelberg, where he investigated capillarity, the expansion
 of liquids by heat, and the existence of what he called the "absolute boiling
-point" of a substance — the temperature above which a liquid cannot exist
+point" of a substance, the temperature above which a liquid cannot exist
 under any pressure, the concept that Thomas Andrews would in 1869 establish
 empirically and rename the *critical point*. Mendeleev's 1860 paper on the
 absolute boiling temperature is the first formulation of the critical-state
 concept in the literature, although Andrews's experimental confirmation rather
 than Mendeleev's theoretical anticipation became the canonical citation.
 
-The decisive event of the Heidelberg stay was the Karlsruhe Congress of 3–5
-September 1860 — the first international chemistry congress, organized by
+The decisive event of the Heidelberg stay was the Karlsruhe Congress of 3-5
+September 1860, the first international chemistry congress, organized by
 August Kekulé to address the uncontrolled state of chemical nomenclature,
 atomic weights, and the distinction between atoms, molecules, and equivalents.
 Mendeleev attended as one of the Russian delegates. The decisive presentation
@@ -145,7 +145,7 @@ Voskresensky written from Heidelberg in September 1860 and recounted the
 congress as the precondition for his later work in the preface to the first
 edition of *Osnovy khimii*.
 
-### Saint Petersburg University, the chair, the periodic law (1861–1890)
+### Saint Petersburg University: the Chair and the Periodic Law
 
 Mendeleev returned to Saint Petersburg in 1861 and resumed teaching, first at
 the Technological Institute and from 1864 at Saint Petersburg University,
@@ -153,7 +153,7 @@ where he was elected to the chair of chemistry in 1865 on the strength of his
 doctoral dissertation on the combinations of alcohol and water (the
 dissertation that, by complete misreading of its content, became the
 foundation of the popular myth that Mendeleev had defined the standard
-strength of Russian vodka — he had not; the dissertation was a study of
+strength of Russian vodka, he had not; the dissertation was a study of
 specific volumes of ethanol-water mixtures undertaken for purely
 physical-chemistry reasons, and the 40% standard was a tax-administration
 decision predating Mendeleev's work). He held the Saint Petersburg chair
@@ -161,12 +161,12 @@ for the next twenty-five years.
 
 The events of 1869 that produced the periodic table are described in detail
 in §2.1 below. The work was done under pressure of textbook deadlines.
-Mendeleev had begun, in 1867–1868, to write *Osnovy khimii* (*Principles of
+Mendeleev had begun, in 1867-1868, to write *Osnovy khimii* (*Principles of
 Chemistry*), a textbook he intended to systematize the entire elemental
 tradition for Russian students. The first volume covered the eight elements
 he then took as the most important non-metals and presented no organizing
 schema beyond the conventional groupings. As he began the second volume in
-the winter of 1868–1869, the question of how to order the remaining sixty-odd
+the winter of 1868-1869, the question of how to order the remaining sixty-odd
 elements became practically pressing in a way it had not been before. The
 periodic table was the answer to a textbook organization problem before it was
 a theoretical claim about nature.
@@ -174,7 +174,7 @@ a theoretical claim about nature.
 Mendeleev's life from 1869 onward was institutionally dense. He became a
 corresponding member of the Saint Petersburg Academy of Sciences in 1876 but
 was rejected for full membership in a famous and bitter vote in November 1880
-— see §5 — which embittered his relationship with the Academy for the rest of
+see §5, which embittered his relationship with the Academy for the rest of
 his life. He travelled extensively in connection with petroleum-industry
 consulting, including a long study tour of the Pennsylvania oilfields in 1876
 that resulted in a report to the Russian government recommending the
@@ -186,7 +186,7 @@ in addition to the periodic-law work for which he is remembered. His
 publication list runs to roughly 500 papers and books across the fifty-year
 working life.
 
-### The 1890 resignation and the Bureau of Weights and Measures (1890–1907)
+### The 1890 resignation and the Bureau of Weights and Measures
 
 In March 1890 a wave of student protests at Saint Petersburg University,
 triggered by the application of the 1884 university statute and the 1887
@@ -198,7 +198,7 @@ ministry. The petition listed grievances about compulsory uniforms, increased
 fees, restrictions on assembly, and the removal of student rights of appeal.
 Mendeleev, then sixty-six and a senior figure in the university, agreed to
 carry the petition to Delyanov in person. Delyanov refused to receive it
-formally and returned it to Mendeleev with a curt note that the minister
+formally and returned it to Mendeleev with a curt note that the minister <!-- voice-ignore-line: "note that" is a literal note whose contents follow, not the meta-commentary phrase -->
 considered it improper for a professor to act as a courier for student
 agitators. Mendeleev resigned from the university chair on 17 August 1890.
 He was the most prominent Russian academic of his generation and his
@@ -207,8 +207,8 @@ politically charged repudiation of Delyanov's regime. He never returned to
 university teaching.
 
 Three years of relative quiet followed. In 1892 he was appointed scientific
-adviser to the Glavnaya Palata Mer i Vesov — the Russian Bureau of Weights
-and Measures — and in 1893, on the death of the existing director, he became
+adviser to the Glavnaya Palata Mer i Vesov, the Russian Bureau of Weights
+and Measures, and in 1893, on the death of the existing director, he became
 its director. He held that position for the remaining fourteen years of his
 life. The Bureau was the Russian metrological authority responsible for the
 definition of the *funt*, the *arshin*, the *vedro*, and the other Imperial
@@ -220,7 +220,7 @@ Zabalkansky Prospekt in Saint Petersburg, established a corps of regional
 verifying offices in twenty-five cities, conducted the first complete
 recalibration of the Russian weight and length standards against the 1889
 international prototypes, and produced an extensive series of metrological
-publications under Mendeleev's editorship — the *Vremennik Glavnoy Palaty Mer
+publications under Mendeleev's editorship, the *Vremennik Glavnoy Palaty Mer
 i Vesov*, which ran from 1894 onward and is the documentary record of the
 Russian metrological project. The Bureau survived the 1917 revolutions in
 amended form and is the lineal ancestor of the modern Rosstandart agency.
@@ -228,7 +228,7 @@ This is the basis of the cross-branch placement under 08-deep-history: the
 metrological apparatus of the modern Russian state runs in unbroken line from
 Mendeleev's Bureau.
 
-### Death (1907)
+### Death
 
 Mendeleev died on 2 February 1907 (20 January Old Style) in Saint Petersburg,
 of influenza complicated by what his physician recorded as cardiac
@@ -245,11 +245,11 @@ mendelevium in his honour.
 
 ## 2. Branches
 
-### 2.1. 03-chemistry — the periodic law
+### 2.1. 03-chemistry: the periodic law
 
 #### The 1869 papers
 
-The narrative of February–March 1869 has been reconstructed in some detail
+The narrative of February, March 1869 has been reconstructed in some detail
 from Mendeleev's surviving manuscripts and laboratory notebooks (in the
 Mendeleev Museum and Archives at Saint Petersburg State University) by Boris
 Kedrov in *Den' odnogo velikogo otkrytiya* (*The Day of One Great Discovery*,
@@ -271,22 +271,22 @@ the Russian Chemical Society. Mendeleev was at the time recovering from a
 brief illness and did not attend the presentation in person.
 
 The full paper was published in the inaugural volume of the *Zhurnal
-Russkogo Khimicheskogo Obshchestva* later in 1869 (volume 1, parts 2–3,
-pages 60–77) under the title *Sootnoshenie svoystv s atomnym vesom
+Russkogo Khimicheskogo Obshchestva* later in 1869 (volume 1, parts 2-3,
+pages 60-77) under the title *Sootnoshenie svoystv s atomnym vesom
 elementov* (*The Relation of the Properties to the Atomic Weights of the
 Elements*). The periodic table itself appears on page 70. A short German
 abstract, "Ueber die Beziehungen der Eigenschaften zu den Atomgewichten der
 Elemente", appeared in the *Zeitschrift für Chemie* (volume 12, 1869, pages
-405–406) in a translation by F. Wreden. This is the primary publication
+405-406) in a translation by F. Wreden. This is the primary publication
 record. Anyone citing the 1869 work in canon contexts should cite the
 Russian *Zhurnal* paper; the German *Zeitschrift* note is a derivative
 abstract.
 
 The table contained gaps. Mendeleev left explicit blank entries where his
 ordering by atomic weight produced a chemical mismatch with the column
-beneath. He labelled three of these gaps with the prefix *eka-* — Sanskrit
+beneath. He labelled three of these gaps with the prefix *eka-*, Sanskrit
 for "one", borrowed by Mendeleev from his reading of the comparative
-philology of his time — to designate the still-undiscovered element below the
+philology of his time, to designate the still-undiscovered element below the
 named one. *Eka-aluminium* would be the unknown element in the same column
 as aluminium, eka-boron the analogue under boron, eka-silicon under silicon.
 The 1871 paper specified each predicted element's atomic weight, density,
@@ -321,13 +321,13 @@ in 1862 (in the *Comptes rendus*, where the absence of the diagram from the
 printed version made the work largely invisible until later); John Newlands
 had proposed his "law of octaves" to the Chemical Society of London in
 1865; William Odling had published a tabulation in 1864; and most
-significantly Julius Lothar Meyer had published a partial table in *Die
+Julius Lothar Meyer had published a partial table in *Die
 modernen Theorien der Chemie* (1864) and a more complete one in *Liebigs
 Annalen* in 1870. What none of the predecessors did was to leave gaps,
 predict the missing elements quantitatively, and stake the system on the
 predictions being confirmed. That single editorial decision is what
 distinguishes the Mendeleev table from the others, and it is the basis on
-which historians of chemistry — Gordin, Brock, Scerri — assign Mendeleev
+which historians of chemistry, Gordin, Brock, Scerri, assign Mendeleev
 priority on the *law*, while granting Lothar Meyer co-discovery on the
 *tabulation*.
 
@@ -336,45 +336,45 @@ priority on the *law*, while granting Lothar Meyer co-discovery on the
 The mature statement of the periodic law is the long German paper "Die
 periodische Gesetzmässigkeit der chemischen Elemente", translated from the
 Russian by Felix Wreden and published in Justus Liebig's *Annalen der Chemie
-und Pharmacie*, Supplementband 8, 1871, pages 133–229. Two periodic tables
+und Pharmacie*, Supplementband 8, 1871, pages 133-229. Two periodic tables
 appear, on pages 149 and 151. This paper is where the word *periodic*
 (*periodisch*, from the Russian *periodicheskiy*) is first attached to the
 law as a name. The 1871 paper does the following beyond the 1869 paper:
 
 1. It corrects atomic weights for several elements (uranium, indium,
    beryllium, cerium) on the grounds that the corrected weights make the
-   elements fit the table consistently. The corrections were vindicated by
+   elements fit the table. The corrections were vindicated by
    later remeasurement and stand as a separate empirical confirmation of the
    law beyond the eka-element predictions.
 2. It states the predicted properties of *eka-boron*, *eka-aluminium*, and
-   *eka-silicon* in quantitative detail — atomic weight, density, oxide,
+   *eka-silicon* in quantitative detail, atomic weight, density, oxide,
    chloride formulas, melting and boiling behaviour, methods of likely
    discovery.
 3. It introduces the systematic notion of *groups* (vertical columns) and
    *series* (horizontal rows), with the relation between group number and
-   maximum oxidation state — the rule that the group number equals the
+   maximum oxidation state, the rule that the group number equals the
    maximum positive valence of the element in its highest oxide.
 4. It treats the table as a *law* rather than as a tabulation. The German
    word *Gesetzmässigkeit* (regularity, lawlikeness) is the operative
    linguistic move: a tabulation is a chart, a *Gesetz* is a constraint on
    nature.
 
-#### *Osnovy khimii* (1869–1906)
+#### *Osnovy khimii*
 
 The *Principles of Chemistry* is the textbook in which the periodic system
 is embedded as the organizing framework for the entire treatment of the
 elements. Eight Russian editions appeared between 1869 and 1906; Mendeleev
-revised each substantially in his lifetime, expanding it from two volumes to
+revised each in his lifetime, expanding it from two volumes to
 the multi-volume mature form. The English translation by George Kamensky
-(Longmans, Green, 1891–1897) was prepared from the fifth Russian edition and
+(Longmans, Green, 1891-1897) was prepared from the fifth Russian edition and
 is the version through which Mendeleev's chemical pedagogy reached the
 Anglophone world. Critical apparatus and footnotes form a substantial
 fraction of the late editions and are a primary source for Mendeleev's
-mature views on questions where his published papers are silent — the
+mature views on questions where his published papers are silent, the
 status of Avogadro's hypothesis, the existence of the chemical ether, the
 treatment of the rare earths, and the placement of hydrogen.
 
-#### What was wrong with the 1869–1871 tables
+#### What was wrong with the 1869-1871 tables
 
 The early tables placed several elements in positions later corrected. The
 rare earths were not understood (Mendeleev would still in 1900 call them the
@@ -386,15 +386,15 @@ weight in a way that made their chemistry inconsistent with the columns they
 occupied; iodine and tellurium reversed by atomic weight gave a chemistry
 inversion that Mendeleev resolved by overriding atomic-weight order in favour
 of chemical-property order. The last decision was vindicated in 1913 by Henry
-Moseley's discovery that the ordering principle is atomic *number*, not atomic
+Moseley's discovery that the ordering principle is atomic *number*, ahead of atomic
 *weight*: tellurium is element 52 and iodine 53, and the tellurium-iodine
-inversion in atomic weight reflects the relative isotopic abundance, not the
+inversion in atomic weight reflects the relative isotopic abundance, above the
 ordering of the elements. Mendeleev's empirical decision to order by
 chemistry rather than by weight, in the small number of cases where the two
 disagreed, was the first observation that atomic weight is the wrong ordinal,
 twenty-five years before the right ordinal was identified.
 
-### 2.2. 02-physics — the Mendeleev–Clapeyron equation and continuous gases
+### 2.2. 02-physics: the Mendeleev-Clapeyron Equation and Continuous Gases
 
 In 1874 Mendeleev published *On the Compressibility of Gases* in the
 *Zhurnal Russkogo Khimicheskogo Obshchestva*, a paper in which he combined
@@ -403,12 +403,12 @@ gases (*Mémoire sur la puissance motrice de la chaleur*, *Journal de
 l'École Polytechnique* 14, 1834) to write the equation of state for one
 mole of an ideal gas in the form *pV = RT*, where *R* is a single universal
 constant rather than a substance-specific one. The introduction of the
-universal gas constant *R* — the same number for every gas — is Mendeleev's
+universal gas constant *R*, the same number for every gas, is Mendeleev's
 contribution; Clapeyron had written the equation with a substance-dependent
 coefficient. The resulting form *pV = nRT* is the form taught in every
 introductory thermodynamics course and is in the Russian-language tradition
-called the *Clapeyron–Mendeleev equation*. In Anglophone tradition the
-attribution to Mendeleev is often dropped and the equation called simply the
+called the *Clapeyron, Mendeleev equation*. In Anglophone tradition the
+attribution to Mendeleev is dropped and the equation called the
 ideal gas law.
 
 The 1860 Heidelberg work on the absolute boiling temperature is also a
@@ -423,9 +423,9 @@ concept is Mendeleev's by approximately nine years. The priority on the
 empirical demonstration is Andrews's. Standard textbook practice is to cite
 Andrews and to ignore Mendeleev's prior anticipation.
 
-### 2.3. 08-deep-history — the Russian metrological project
+### 2.3. 08-deep-history: the Russian metrological project
 
-Mendeleev's directorship of the Bureau of Weights and Measures (1893–1907)
+Mendeleev's directorship of the Bureau of Weights and Measures (1893-1907)
 is the foundation of the modern Russian metrological system. The substantive
 work has four components. First, the recalibration of the Russian Imperial
 weight and length standards (the *funt*, the *arshin*, the *vershok*, the
@@ -433,7 +433,7 @@ weight and length standards (the *funt*, the *arshin*, the *vershok*, the
 held at the Bureau International des Poids et Mesures at Sèvres; the
 relationship was made exact by legal decree on the basis of Mendeleev's
 measurements. Second, the building of the Russian Bureau's own laboratories
-on the Zabalkansky (later Moskovsky) Prospekt in Saint Petersburg —
+on the Zabalkansky (later Moskovsky) Prospekt in Saint Petersburg,
 laboratories that survive in modified form as the D. I. Mendeleev All-Russian
 Institute for Metrology (VNIIM), the Russian national metrology institute.
 Third, the establishment of a network of regional verifying offices
@@ -452,79 +452,79 @@ foundation of the modern state in the same sense in which a textbook is a
 foundation of a discipline. The Russian metrological apparatus, from
 Mendeleev's reorganization in 1893 through the Soviet-era VNIIM to the
 modern Rosstandart agency, runs in unbroken institutional descent from his
-directorship. There are very few examples of a single working scientist
+directorship. There are few examples of a single working scientist
 founding both a discipline (chemical periodicity) and a state administrative
 infrastructure (the metrological bureau). Mendeleev is one.
 
 ---
 
-## 3. Primary works (exhaustive)
+## 3. Primary works
 
 The complete works of Mendeleev have been published as *Sochineniya D. I.
-Mendeleeva* in twenty-five volumes (Leningrad–Moscow: Izdatel'stvo Akademii
-Nauk SSSR, 1934–1952), edited by a succession of Soviet historians of
+Mendeleeva* in twenty-five volumes (Leningrad, Moscow: Izdatel'stvo Akademii
+Nauk SSSR, 1934-1952), edited by a succession of Soviet historians of
 chemistry under the general editorship of Sergei Vavilov and Boris Kedrov.
 The contents:
 
-- **Vols. 1–2** — Solutions; specific volumes of liquids; the doctoral
+- **Vols. 1-2**, Solutions; specific volumes of liquids; the doctoral
   dissertation on alcohol-water combinations.
-- **Vol. 3** — Gases; compressibility; the Mendeleev–Clapeyron equation;
+- **Vol. 3**, Gases; compressibility; the Mendeleev, Clapeyron equation;
   related gas-law work.
-- **Vols. 4–5** — Petroleum and the petroleum industry; Pennsylvania study
+- **Vols. 4-5**, Petroleum and the petroleum industry; Pennsylvania study
   tour reports; Baku oilfield reports.
-- **Vol. 6** — Meteorology; aeronautics (Mendeleev made a celebrated solo
+- **Vol. 6**, Meteorology; aeronautics (Mendeleev made a celebrated solo
   balloon ascent in 1887 to observe the total solar eclipse over the
   Tver Governorate, written up in *On the Temperature of the Higher Layers of
   the Atmosphere*).
-- **Vols. 7–8** — Industrial chemistry; the chemical industry of Russia;
+- **Vols. 7-8**, Industrial chemistry; the chemical industry of Russia;
   protective tariff arguments.
-- **Vol. 9** — Agricultural chemistry.
-- **Vol. 10** — Coal and the coal industry; the Donbass.
-- **Vols. 11–12** — Iron and metallurgy; the Russian iron industry; the Urals
+- **Vol. 9**, Agricultural chemistry.
+- **Vol. 10**, Coal and the coal industry; the Donbass.
+- **Vols. 11-12**, Iron and metallurgy; the Russian iron industry; the Urals
   expedition of 1899.
-- **Vols. 13–15** — Periodic law; *Osnovy khimii*; selected supplementary
+- **Vols. 13-15**, Periodic law; *Osnovy khimii*; selected supplementary
   papers on the periodic system.
-- **Vol. 16** — Inorganic chemistry; specific elements.
-- **Vols. 17–18** — Metrology; the Bureau of Weights and Measures; the
+- **Vol. 16**, Inorganic chemistry; specific elements.
+- **Vols. 17-18**, Metrology; the Bureau of Weights and Measures; the
   *Vremennik*.
-- **Vols. 19–20** — Ether; the chemical conception of the ether; questions of
+- **Vols. 19-20**, Ether; the chemical conception of the ether; questions of
   the constitution of matter.
-- **Vols. 21–22** — Pedagogical and popular writings; speeches and lectures
+- **Vols. 21-22**, Pedagogical and popular writings; speeches and lectures
   on education and on the place of science in the Russian state.
-- **Vols. 23–25** — Correspondence; biographical materials; archival
+- **Vols. 23-25**, Correspondence; biographical materials; archival
   documents; bibliography of works by and about Mendeleev.
 
 The major separate books in the editions Mendeleev himself oversaw or that
 have become canonical for non-specialist citation:
 
-- *Organicheskaya khimiya* (Organic Chemistry, St Petersburg, 1861) — the
+- *Organicheskaya khimiya* (Organic Chemistry, St Petersburg, 1861), the
   first comprehensive Russian-language organic-chemistry textbook; awarded the
   Demidov Prize of the Saint Petersburg Academy in 1862.
 - *Issledovanie vodnykh rastvorov po udel'nomu vesu* (Investigation of
-  Aqueous Solutions by Specific Gravity, St Petersburg, 1887) — the doctoral
+  Aqueous Solutions by Specific Gravity, St Petersburg, 1887), the doctoral
   dissertation on alcohol-water combinations and other aqueous solutions; the
   source of the Mendeleev-and-vodka myth, which it does not in fact
   substantiate.
 - *Osnovy khimii* (*Principles of Chemistry*, 8 Russian editions, St
-  Petersburg, 1869–1906; English trans. Kamensky, Longmans Green, 1891–1897);
+  Petersburg, 1869-1906; English trans. Kamensky, Longmans Green, 1891-1897);
   the textbook on which the periodic table is presented to the
   Russian-reading and English-reading worlds.
-- *Tolkovyi tarif* (The Annotated Tariff, St Petersburg, 1891) — Mendeleev's
+- *Tolkovyi tarif* (The Annotated Tariff, St Petersburg, 1891), Mendeleev's
   major work of economic policy: a clause-by-clause commentary on the
   Russian protective tariff of 1891, arguing for industrial development of
   the empire on protectionist lines.
-- *Zavetnye mysli* (*Cherished Thoughts*, St Petersburg, 1903–1905) —
+- *Zavetnye mysli* (*Cherished Thoughts*, St Petersburg, 1903-1905),
   Mendeleev's late book of political and economic reflections, on
   population, industry, the place of Russia in the world, and the necessity
   of state-led industrialization.
 - *Popytka khimicheskogo ponimaniya mirovogo efira* (*An Attempt Towards a
   Chemical Conception of the Ether*, St Petersburg, 1903; English trans.
-  George Kamensky, London: Longmans Green, 1904) — the late and
-  substantially mistaken attempt to fit the chemical ether (Mendeleev's
+  George Kamensky, London: Longmans Green, 1904), the late and
+  mistaken attempt to fit the chemical ether (Mendeleev's
   hypothetical element zero, lighter than hydrogen, occupying a position
   before the alkali metals in the periodic table) into the periodic system.
-- *Selected Writings 1869–1905*, ed. William B. Jensen (Mineola, NY: Dover
-  Publications, 2002, ISBN 0-486-44571-2) — the canonical Anglophone
+- *Selected Writings 1869-1905*, ed. William B. Jensen (Mineola, NY: Dover
+  Publications, 2002, ISBN 0-486-44571-2), the canonical Anglophone
   selection of Mendeleev's primary papers in English translation. Includes
   the 1869 *Sootnoshenie*, the 1871 *Periodische Gesetzmässigkeit*, the 1889
   Faraday Lecture, and the major theoretical papers on the periodic law,
@@ -534,8 +534,8 @@ have become canonical for non-specialist citation:
 The Faraday Lecture, "The Periodic Law of the Chemical Elements", was
 delivered at the Royal Institution in London on 4 June 1889 and published
 in the *Journal of the Chemical Society, Transactions* 55, 1889, pages
-634–656. It is the most widely read of Mendeleev's papers in the
-English-language scientific literature and is the source most often cited
+634-656. It is the most read of Mendeleev's papers in the
+English-language scientific literature and is the source most cited
 for his mature statement of the periodic law in his own words.
 
 ---
@@ -544,42 +544,42 @@ for his mature statement of the periodic law in his own words.
 
 ### Teachers and immediate context
 
-- **Alexander Voskresensky** (Saint Petersburg, Main Pedagogical Institute) —
+- **Alexander Voskresensky** (Saint Petersburg, Main Pedagogical Institute),
   the channel through which the Liebig laboratory tradition entered the
-  Russian educational system; Mendeleev's chemistry teacher 1850–1855.
-- **Robert Bunsen** (Heidelberg) — supervisor in name during the 1859–1861
+  Russian educational system; Mendeleev's chemistry teacher 1850-1855.
+- **Robert Bunsen** (Heidelberg), supervisor in name during the 1859-1861
   postdoctoral stay; the spectroscopic method he and Kirchhoff had developed
   shaped Mendeleev's view of the elements as analytically distinguishable
   entities with characteristic signatures.
-- **Gustav Kirchhoff** (Heidelberg) — the physicist of the Bunsen-Kirchhoff
+- **Gustav Kirchhoff** (Heidelberg), the physicist of the Bunsen-Kirchhoff
   partnership; a more distant influence than Bunsen but the source of the
   spectral-analysis programme that would, after 1860, identify caesium,
   rubidium, thallium, indium, gallium, and the rare-earth elements that
   Mendeleev had to fit into his table.
-- **Stanislao Cannizzaro** (read in pamphlet form at Karlsruhe, 1860) — the
+- **Stanislao Cannizzaro** (read in pamphlet form at Karlsruhe, 1860), the
   source of the consistent atomic-weight scale on which the periodic table
   could be built. Mendeleev's later acknowledgements of intellectual debt
-  consistently single out the Cannizzaro pamphlet as the precondition for
+  single out the Cannizzaro pamphlet as the precondition for
   the 1869 work.
 
 ### Contemporaries with whom the work was conducted in dialogue or competition
 
-- **Julius Lothar Meyer** (Tübingen, then Karlsruhe) — the parallel
+- **Julius Lothar Meyer** (Tübingen, then Karlsruhe), the parallel
   discoverer; published a partial periodic tabulation in *Die modernen
   Theorien der Chemie* (1864) and a more complete graphical version in
   *Liebigs Annalen* in March 1870. The priority dispute, see §5, was
-  conducted in print between 1870 and 1882 and was effectively settled by
+  conducted in print between 1870 and 1882 and was settled by
   the 1882 award of the Royal Society's Davy Medal jointly to Mendeleev and
   Meyer "for their discovery of the periodic relations of the atomic
   weights." The two men corresponded politely throughout but never met.
-- **Alexandre-Émile Béguyer de Chancourtois** (Paris) — published the
+- **Alexandre-Émile Béguyer de Chancourtois** (Paris), published the
   *vis tellurique* (a helical arrangement of elements by atomic weight) in
-  1862 (*Comptes rendus* 54, pp. 757–761, 840–843, 967–971). The
+  1862 (*Comptes rendus* 54, pp. 757-761, 840-843, 967-971). The
   diagram on which the work depended was omitted from the printed version
   by the journal, leaving the text obscure; the priority claim was raised on
   Béguyer de Chancourtois's behalf by Lecoq de Boisbaudran after 1869 and
   partially recognized but not treated as decisive.
-- **John Newlands** (London) — proposed the "law of octaves" to the Chemical
+- **John Newlands** (London), proposed the "law of octaves" to the Chemical
   Society in 1865. The proposal was ridiculed at the time (the Society's
   president William Odling reportedly suggested that ordering the elements
   alphabetically would be just as informative), but the underlying
@@ -588,65 +588,65 @@ for his mature statement of the periodic law in his own words.
   Chemical Society awarded Newlands the Davy Medal in 1887, which is the
   retrospective acknowledgement of priority on the observation, separate from
   Mendeleev's law.
-- **William Odling** (London) — published a periodic tabulation in 1864
+- **William Odling** (London), published a periodic tabulation in 1864
   (*Quarterly Journal of Science* 1, p. 642) that anticipated several
   features of the Mendeleev table; mentioned in the historical literature
   but does not figure in the priority dispute Mendeleev himself participated
   in.
-- **William Crookes** (London) — corresponded with Mendeleev on the rare
+- **William Crookes** (London), corresponded with Mendeleev on the rare
   earths, on the spectroscopic identification of new elements, and on the
   meta-elements hypothesis (Crookes's view that the elements were not
   fundamental but were aggregates of a more primitive substance, *protyl*).
   Mendeleev rejected the meta-elements hypothesis but engaged with it
   seriously in his late papers.
-- **Lord Rayleigh** and **William Ramsay** (London, University College) —
+- **Lord Rayleigh** and **William Ramsay** (London, University College),
   the discoverers of argon (announced 1894) and the noble-gas group
-  (1894–1898). The episode is discussed in §5.
+  (1894-1898). The episode is discussed in §5.
 
 ### Downstream
 
-- **Lecoq de Boisbaudran, Nilson, Winkler** — the experimentalists who
+- **Lecoq de Boisbaudran, Nilson, Winkler**, the experimentalists who
   confirmed eka-aluminium (gallium, 1875), eka-boron (scandium, 1879), and
   eka-silicon (germanium, 1886).
-- **F. K. Beilstein** (Saint Petersburg, then Göttingen) — colleague at the
+- **F. K. Beilstein** (Saint Petersburg, then Göttingen), colleague at the
   Saint Petersburg Technological Institute; founder of the *Handbuch der
-  organischen Chemie* (1881–), the encyclopaedic compendium of organic
+  organischen Chemie* (1881, ), the encyclopaedic compendium of organic
   compounds that became the reference work of organic chemistry. Beilstein's
   systematic, encyclopaedic approach is the organic-chemistry parallel to
   Mendeleev's systematic approach to the inorganic elements.
-- **V. E. Tishchenko, D. P. Konovalov, N. A. Menshutkin** — the immediate
+- **V. E. Tishchenko, D. P. Konovalov, N. A. Menshutkin**, the immediate
   Russian successors at Saint Petersburg University; carried Mendeleev's
   laboratory tradition into the early Soviet period.
-- **Henry Moseley** (Manchester, then Oxford) — the 1913 demonstration that
+- **Henry Moseley** (Manchester, then Oxford), the 1913 demonstration that
   the ordering principle of the elements is atomic *number* (the nuclear
-  charge), not atomic *weight*. The Moseley result completed the periodic
+  charge), ahead of atomic *weight*. The Moseley result completed the periodic
   law by replacing its empirical ordinal with a physical one. Moseley died
   at Gallipoli in 1915.
-- **Niels Bohr** (Copenhagen) — the 1913 atomic model and its 1922
+- **Niels Bohr** (Copenhagen), the 1913 atomic model and its 1922
   development into the *Aufbau* principle for the electron configurations
   of the elements provided the quantum-mechanical foundation of the
   periodic structure that Mendeleev had observed empirically.
-- **Glenn Seaborg** (Berkeley) — the rearrangement of the lower part of the
+- **Glenn Seaborg** (Berkeley), the rearrangement of the lower part of the
   table to incorporate the actinide series (1944), the synthesis of the
   transuranic elements through to mendelevium (Z = 101, 1955), and the
   posthumous extension of the periodic table into the synthesis-element era.
 
 ---
 
-## 5. What Mendeleev got wrong, contested, or left unresolved
+## 5. What Mendeleev Got Wrong
 
-A short list, kept honest:
+A short list, kept:
 
 1. **Avogadro's hypothesis, before Karlsruhe.** Mendeleev had been
    sceptical of Avogadro's hypothesis through the 1850s and worked with the
    older equivalent-weight system. The conversion at Karlsruhe in 1860 was
-   not a private inflection point — Cannizzaro's pamphlet had to be read
-   carefully and the implications worked through. Mendeleev's correspondence
+   not a private inflection point, Cannizzaro's pamphlet had to be read
+   and the implications worked through. Mendeleev's correspondence
    from 1860 to 1864 records the gradual abandonment of the equivalent-weight
    system in favour of the consistent atomic-weight scale. The error was
    typical of the chemists of his generation; the recovery was the
    precondition for the periodic law.
-2. **Argon and the noble gases (1894–1900).** When Lord Rayleigh and William
+2. **Argon and the noble gases (1894-1900).** When Lord Rayleigh and William
    Ramsay announced the discovery of argon in August 1894, the new element
    did not fit anywhere in the periodic table. Its atomic weight (about 40)
    placed it between the alkali metals and the halogens, in a chemistry
@@ -657,37 +657,37 @@ A short list, kept honest:
    was wrong. As Ramsay over the next four years isolated helium (1895),
    neon, krypton, and xenon (all 1898), and as the chemical inertness of all
    five gases was confirmed, the only consistent interpretation was that the
-   new gases formed an entire eighth group of the periodic table — a group
+   new gases formed an entire eighth group of the periodic table, a group
    of valence-zero elements. Mendeleev publicly accepted the inert-gas group
    in his 1900 lecture to the Royal Society "Sur le système périodique des
    éléments" and added the noble-gas column (group 0, later renumbered group
    18) to the next edition of *Osnovy khimii*. The episode is the
    second-largest empirical confirmation of the periodic law (the first
    being the eka-element predictions): an entirely unexpected new class of
-   elements was successfully accommodated by the addition of a single
-   column without restructuring the rest of the table. The fact that
+   elements was accommodated by the addition of a single
+   column without restructuring the rest of the table. The fact that <!-- voice-ignore-line: "the rest of the table" refers to the literal periodic table, not document structure -->
    Mendeleev resisted before accepting is the relevant historiographical
    point.
 3. **The chemical ether (1903).** *An Attempt Towards a Chemical Conception
    of the Ether* (1903) proposed that the luminiferous ether was a chemical
-   element — element zero, lighter than hydrogen, with no measurable mass
+   element, element zero, lighter than hydrogen, with no measurable mass
    under ordinary conditions, occupying the position before group I in
    period zero of the periodic table. Mendeleev assigned the symbol *x* and
    later the symbol *y* (for the proposed second pre-hydrogen element) to
    these hypothetical species. The hypothesis was already obsolete when it
-   was published. The Michelson–Morley result (1887) had cast doubt on the
+   was published. The Michelson, Morley result (1887) had cast doubt on the
    physical existence of a stationary ether; J. J. Thomson's 1897
    identification of the electron and the subsequent Lorentz electron theory
    had reframed the question in terms of the electromagnetic field. By 1905
    special relativity made the ether-as-substance unnecessary. Mendeleev's
    ether paper is the work of a chemist late in life applying the periodic
-   table beyond its proper domain. It is honest to say it was wrong.
+   table beyond its proper domain. It is to say it was wrong.
 4. **The electron and atomic structure.** Mendeleev resisted the
    interpretation of the elements as built from a smaller set of subatomic
    constituents through the 1900s. He was prepared to accept the electron
    as an experimental finding but not to draw the inference that the elements
    themselves had internal structure that could change. The radioactivity
-   work of Becquerel (1896), Rutherford and Soddy (1902–1903 on the
+   work of Becquerel (1896), Rutherford and Soddy (1902-1903 on the
    transmutation of radium into emanation and emanation into helium), and
    the Curies (1898 on polonium and radium) was difficult for Mendeleev to
    accommodate. He was sixty-eight when Rutherford published the
@@ -703,7 +703,7 @@ A short list, kept honest:
    Mendeleev's place) and Heinrich Wild voting against on grounds that have
    been variously interpreted as (i) anti-Russian bias within the
    German-speaking faction of the Academy, (ii) personal animosity toward
-   Mendeleev's confrontational style, or (iii) genuine doubts about the
+   Mendeleev's confrontational style, or (iii) doubts about the
    periodic law. Mendeleev never forgave the Academy and refused membership
    when it was offered in subsequent years. The 1880 vote is one of the
    more discreditable episodes in the history of the Academy and is
@@ -724,8 +724,8 @@ A short list, kept honest:
    student. The Russian Orthodox Church in the 1880s did not permit divorce
    on the grounds Mendeleev presented and the second marriage was therefore
    technically bigamous in canon law. The personal scandal was used by
-   Mendeleev's enemies — including the faction in the Academy that had
-   blocked him in 1880 — as an additional reason to question his fitness for
+   Mendeleev's enemies, including the faction in the Academy that had
+   blocked him in 1880, as an additional reason to question his fitness for
    institutional honours. Tsar Alexander III is reported to have intervened
    on Mendeleev's behalf with the response "Mendeleev has two wives, yes,
    but I have only one Mendeleev"; the anecdote is plausible and is
@@ -734,7 +734,7 @@ A short list, kept honest:
 
 ---
 
-## 6. Politics, religion, and public life
+## 6. Politics and Public Life
 
 Mendeleev was a Russian liberal of the reform generation. He was nominally
 Russian Orthodox in confession but was sceptical of organized religion in his
@@ -744,13 +744,13 @@ creation of the *zemstvo* local-government councils (1864), the expansion of
 the empire's higher-education system, and the development of Russian native
 industry on protectionist lines. He opposed the autocratic restrictions
 imposed by Alexander III's government after the 1881 assassination of
-Alexander II — the 1884 university statute, the 1887 admission restrictions,
-the censorship — and his 1890 resignation from Saint Petersburg University
+Alexander II, the 1884 university statute, the 1887 admission restrictions,
+the censorship, and his 1890 resignation from Saint Petersburg University
 should be read in that political context.
 
-His mature economic and political writing — the *Annotated Tariff* (1891),
-*Cherished Thoughts* (1903–1905), *Toward a Knowledge of Russia*
-(1906) — argued for a programme of industrial development driven by state
+His mature economic and political writing, the *Annotated Tariff* (1891),
+*Cherished Thoughts* (1903-1905), *Toward a Knowledge of Russia*
+(1906), argued for a programme of industrial development driven by state
 investment, protective tariffs on imported manufactures, expansion of the
 Donbass coalfields and the Baku petroleum industry, and a substantial
 increase in the Russian population (Mendeleev projected, on the basis of the
@@ -760,10 +760,10 @@ imperial Russian literature, since the actual figure for the territory of
 the late empire reached at most about 290 million by 2000). His
 recommendations on petroleum were largely adopted and the Baku oilfield was
 developed on the lines he proposed. His tariff recommendations were
-substantially adopted in the 1891 tariff law, of which his *Annotated Tariff*
+adopted in the 1891 tariff law, of which his *Annotated Tariff*
 is in effect the official commentary.
 
-He was anti-revolutionary by temperament and deeply patriotic. He took no
+He was anti-revolutionary by temperament and patriotic. He took no
 public position on the 1905 Revolution and on the constitutional reforms of
 that year except to express, in private correspondence, the hope that the
 Duma would not interfere with the technical work of state institutions like
@@ -779,9 +779,9 @@ into the convocation of the Second Duma.
   principal archive: Mendeleev's working library (about 9000 volumes); his
   laboratory notebooks; the manuscripts of *Osnovy khimii*; the 1869
   lithographed copy of the periodic table; family papers; correspondence
-  (about 2000 letters in or out, partially published in volumes 23–25 of
+  (about 2000 letters in or out, partially published in volumes 23-25 of
   the *Sochineniya* and in the four-volume *Nauchnoe nasledstvo* /
-  *Scientific Heritage* series, Moscow, 1948–1956).
+  *Scientific Heritage* series, Moscow, 1948-1956).
 - **D. I. Mendeleev All-Russian Institute for Metrology (VNIIM)**, Saint
   Petersburg (Moskovsky Prospekt 19). The institutional descendant of the
   Bureau of Weights and Measures; holds the metrological records of
@@ -795,7 +795,7 @@ into the convocation of the Second Duma.
   publication.
 - **University of Heidelberg, Universitätsbibliothek**, Special
   Collections. Records of Mendeleev's matriculation as a postdoctoral
-  *Privatgelehrter* in 1859–1861, and of his attendance at lectures by
+  *Privatgelehrter* in 1859-1861, and of his attendance at lectures by
   Bunsen, Kirchhoff, Erlenmeyer, and Bunsen's assistants.
 - **Royal Society of London Archives**. The records of the 1882 Davy
   Medal joint award to Mendeleev and Lothar Meyer; the manuscript and
@@ -807,7 +807,7 @@ into the convocation of the Second Duma.
 
 ---
 
-## 8. Bibliography (secondary)
+## 8. Bibliography
 
 The literature is large. The following are the items the field treats as
 canonical or as load-bearing for a particular question.
@@ -844,9 +844,9 @@ canonical or as load-bearing for a particular question.
 - Gordin, Michael D. "The Textbook Case of a Priority Dispute: D. I.
   Mendeleev, Lothar Meyer, and the Periodic System." In *Nature
   Engaged: Science in Practice from the Renaissance to the Present*,
-  ed. Mario Biagioli and Jessica Riskin, pp. 59–82. New York: Palgrave
+  ed. Mario Biagioli and Jessica Riskin, pp. 59-82. New York: Palgrave
   Macmillan, 2012. The careful single-article treatment of the
-  Mendeleev–Meyer priority question.
+  Mendeleev, Meyer priority question.
 - Scerri, Eric. *The Periodic Table: Its Story and Its Significance*.
   Oxford: Oxford University Press, 2007 (revised 2nd edition 2020).
   The reference work on the history and philosophy of the periodic
@@ -863,7 +863,7 @@ canonical or as load-bearing for a particular question.
   accounts of his life and work; the source of the most-quoted
   passages on the omnibus moment and on the dedication to his mother.
 - Jensen, William B. (ed.). *Mendeleev on the Periodic Law: Selected
-  Writings, 1869–1905*. Mineola, NY: Dover Publications, 2002, ISBN
+  Writings, 1869-1905*. Mineola, NY: Dover Publications, 2002, ISBN
   0-486-44571-2. **The Bucket edition-of-record for the periodicity
   sub-branch.** Full English translations of the 1869 *Sootnoshenie*,
   the 1871 *Periodische Gesetzmässigkeit*, the 1879 paper on periodicity
@@ -880,9 +880,9 @@ canonical or as load-bearing for a particular question.
   three eka-element discoveries.
 - Gordin, Michael D. "The Organic Roots of Mendeleev's Periodic Law."
   *Historical Studies in the Physical and Biological Sciences* 32, no. 2
-  (2002), pp. 263–290. The textbook-pressure thesis: that the periodic
+  (2002), pp. 263-290. The textbook-pressure thesis: that the periodic
   law was first formulated as a solution to a textbook organization
-  problem in *Osnovy khimii*, not as a free-standing theoretical claim.
+  problem in *Osnovy khimii*, ahead of a free-standing theoretical claim.
 
 ---
 
@@ -890,9 +890,9 @@ canonical or as load-bearing for a particular question.
 
 | Branch | Placement | Underwriting work |
 |---|---|---|
-| 03-chemistry | Primary | The 1869 *Sootnoshenie* and 1871 *Periodische Gesetzmässigkeit* periodic-table papers; the 1871 quantitative predictions of eka-aluminium, eka-boron, eka-silicon (confirmed 1875, 1879, 1886); *Osnovy khimii* (8 editions, 1869–1906) as the textbook embedding the periodic system; the 1889 Faraday Lecture as the mature English-language statement |
-| 02-physics | Cross | The Mendeleev–Clapeyron equation (*pV = nRT* with the universal gas constant *R*, 1874); the 1860 anticipation of the critical point of liquids ("absolute boiling temperature") |
-| 08-deep-history | Cross | The Bureau of Weights and Measures directorship (1893–1907); the recalibration of the Russian Imperial standards against the 1889 international metre and kilogram prototypes; the founding of the institutional infrastructure that survives as the modern Russian metrological agency (VNIIM, Rosstandart) |
+| 03-chemistry | Primary | The 1869 *Sootnoshenie* and 1871 *Periodische Gesetzmässigkeit* periodic-table papers; the 1871 quantitative predictions of eka-aluminium, eka-boron, eka-silicon (confirmed 1875, 1879, 1886); *Osnovy khimii* (8 editions, 1869-1906) as the textbook embedding the periodic system; the 1889 Faraday Lecture as the mature English-language statement |
+| 02-physics | Cross | The Mendeleev, Clapeyron equation (*pV = nRT* with the universal gas constant *R*, 1874); the 1860 anticipation of the critical point of liquids ("absolute boiling temperature") |
+| 08-deep-history | Cross | The Bureau of Weights and Measures directorship (1893-1907); the recalibration of the Russian Imperial standards against the 1889 international metre and kilogram prototypes; the founding of the institutional infrastructure that survives as the modern Russian metrological agency (VNIIM, Rosstandart) |
 
 ---
 
@@ -909,20 +909,20 @@ contribution rather than as an administrative one. The narrower reading,
 which restricts polymath status to figures whose cross-branch
 contributions are themselves works of primary scholarly research, would
 place Mendeleev as a borderline non-polymath: 03-chemistry primary,
-02-physics cross at the level of the Mendeleev–Clapeyron equation, with
+02-physics cross at the level of the Mendeleev, Clapeyron equation, with
 no third branch reaching foundation-tier on a strict reading.
 
 The decision to include him in the register is on the grounds that the
 metrological project at the Bureau of Weights and Measures is a foundation
-in the literal sense — it built the institutional substrate on which
-Russian and Soviet metrology has rested for the subsequent 130 years — and
+in the literal sense, it built the institutional substrate on which
+Russian and Soviet metrology has rested for the subsequent 130 years, and
 that this kind of institutional foundation is exactly what the
 08-deep-history branch was added to capture. A figure who founded both a
 discipline and a state metrological infrastructure is a polymath by the
 expanded definition the contributor index adopted in pass 1.
 
-The narrower three-branch case — chemistry, physics, metrology-as-history
-— sits below Helmholtz, Gauss, Riemann, von Neumann, and Aristotle in the
+The narrower three-branch case, chemistry, physics, metrology-as-history
+sits below Helmholtz, Gauss, Riemann, von Neumann, and Aristotle in the
 register, and above figures whose polymath status is purely biographical
 (career breadth without foundation-tier output in the breadth domains).
 

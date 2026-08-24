@@ -1,4 +1,4 @@
-# Bucket Canon — Master Overview
+# Bucket Canon, Master Overview
 
 *Updated 2026-05-10 · FTS=23,384 docs · 23,366 source docs · 365+ canon authors*
 
@@ -9,8 +9,8 @@ Read this first. Everything else hangs off it.
 
 **AI + foundations + a small number of brilliant humans = the next layer of reality.**
 
-Canon holds **only foundations** — axioms, real math, rules, laws, principles, primary derivations.
-Outcomes (longevity, disease, cognition) are downstream applications, not canon.
+Canon holds **only foundations**, axioms, real math, rules, laws, principles, primary derivations.
+Outcomes (longevity, disease, cognition) are downstream applications, one layer below canon.
 
 ## The shape
 
@@ -18,16 +18,16 @@ The seven-branch grid is pedagogical. The actual structure is in the bridges
 (concepts that span branches with substantial mass) and the canon-author network
 (direct collaborators + citation lineages).
 
-### Primary axes (≥800 FTS hits across 10 branches)
+### Primary axes
 
-- **time** (2,140) — *02-physics ↔ 06-cosmology ↔ 07-mind ↔ 09-sacred-texts*
-- **quantum** (1,786) — *02-physics ↔ 05-biophysics ↔ 07-mind ↔ 06-cosmology*
-- **information** (1,739) — *04-information ↔ 02-physics ↔ 06-cosmology ↔ 07-mind*
-- **light** (1,540) — *02-physics ↔ 05-biophysics ↔ 09-sacred-texts*
-- **energy** (1,314) — *02-physics ↔ 03-chemistry ↔ 05-biophysics*
-- **water** (1,206) — *03-chemistry ↔ 05-biophysics ↔ 09-sacred-texts*
+- **time** (2,140), *02-physics ↔ 06-cosmology ↔ 07-mind ↔ 09-sacred-texts*
+- **quantum** (1,786), *02-physics ↔ 05-biophysics ↔ 07-mind ↔ 06-cosmology*
+- **information** (1,739), *04-information ↔ 02-physics ↔ 06-cosmology ↔ 07-mind*
+- **light** (1,540), *02-physics ↔ 05-biophysics ↔ 09-sacred-texts*
+- **energy** (1,314), *02-physics ↔ 03-chemistry ↔ 05-biophysics*
+- **water** (1,206), *03-chemistry ↔ 05-biophysics ↔ 09-sacred-texts*
 
-### Secondary bridges (substantial cross-branch mass)
+### Secondary bridges
 
 - **creation** (817)
 - **field** (789)
@@ -42,26 +42,26 @@ See [`bucket-canon/_bridges/`](../bucket-canon/_bridges/) for structured entries
 
 ## The cluster structure
 
-The canon-author network shows real lineages, not a single uniform graph:
+The canon-author network shows real lineages across a non-uniform graph:
 
-### Densest pair-bonds (single tight collaborations)
+### Densest pair-bonds
 
-- Marino + Becker: 29 papers — biophysics canon spine
-- Pitts + McCulloch: 23 — computational neuroscience founders
-- Penrose + Hameroff: 15 — Orch-OR
-- Rovelli + Smolin: 12 — loop quantum gravity
-- Lovelock + Margulis: 12 — Gaia hypothesis
-- Penrose + Hawking: 11 — singularity theorems
+- Marino + Becker: 29 papers, biophysics canon spine
+- Pitts + McCulloch: 23, computational neuroscience founders
+- Penrose + Hameroff: 15, Orch-OR
+- Rovelli + Smolin: 12, loop quantum gravity
+- Lovelock + Margulis: 12, Gaia hypothesis
+- Penrose + Hawking: 11, singularity theorems
 
-### Hub authors (link many directions)
+### Hub authors
 
-- **Penrose** — most-connected canon node (9 edges, 33 weighted): connects
-  Hameroff, Hawking, Rovelli, Smolin, Witten, Wolfram, Randall, Kauffman, Faggin.
-  Spans both LQG and string-theory camps + consciousness theory.
-- **Lee Smolin** (6 edges) — second-most-connected
+- **Penrose**, most-connected canon node (9 edges, 33 weighted): connects
+ Hameroff, Hawking, Rovelli, Smolin, Witten, Wolfram, Randall, Kauffman, Faggin.
+ Spans both LQG and string-theory camps + consciousness theory.
+- **Lee Smolin** (6 edges), second-most-connected
 - **Heidegger** (5 edges, phenomenology hub)
 
-### Citation lineages (different from collaboration)
+### Citation lineages
 
 The most-cited-by-canon-peer pairs:
 - Anil Seth → Karl Friston: 137 (predictive processing lineage)
@@ -73,20 +73,20 @@ The most-cited-by-canon-peer pairs:
 
 | Branch | FTS docs | Top primary works captured |
 |---|---:|---|
-| 01-mathematics  | 681  | Russell-Whitehead Principia Mathematica vol 1, Boole Laws of Thought, Whitehead Intro to Math, Hardy Course of Pure Math, Cantor/Riemann/Gödel/Noether/Hilbert via Wikisource |
-| 02-physics      | 1,035 | Newton Principia + Opticks, Maxwell Treatise, Faraday 3-vol Researches, Tesla, Einstein 1905+Relativity, Schrödinger What is Life, Helmholtz Sensations of Tone, Galileo Two World Systems, Boltzmann Lectures, Mach Mechanics |
-| 03-chemistry    | 1,233 | Mendeleev Principles of Chemistry vol 1+2 (1901), Russell Universal One 1926, Pasteur, Lavoisier-tradition |
-| 04-information  | 242  | Wheeler "It from Bit", Turing 1936, Shannon, Chaitin, Kolmogorov, Wolfram |
-| 05-biophysics   | 1,253 | Szent-Györgyi Bioenergetics 1957 + ~150 Becker/Marino/Pollack/Mitchell/Ling primary papers; Kruse 460-article corpus + 172 long-form podcast transcripts |
-| 06-cosmology    | 1,092 | Eddington, Hawking ADS, Hartle-Hawking, Maldacena, Verlinde, Hameroff-Penrose Orch-OR, Penrose CCC |
-| 07-mind         | 1,667 | William James Principles+Varieties, Locke Essay, Hume Treatise, Berkeley, Hobbes Leviathan, Spinoza Ethics, Kant Critique, Nietzsche, Bergson Creative Evolution + Time and Free Will, Stanford SEP 400+ entries |
-| 08-deep-history | 318  | Herodotus, Thucydides, Plutarch, Tacitus, Gibbon Decline & Fall, Augustine City of God + Confessions, Pliny, Strabo, Vico New Science, Burckhardt, Frazer Golden Bough |
-| 09-art          | 183  | Vasari Lives of Painters, Ruskin Modern Painters + Stones of Venice + Seven Lamps, Pater Renaissance, Reynolds Discourses, Leonardo Treatise on Painting |
-| 09-sacred-texts | 686  | KJV Bible, Plato Republic + Phaedo + Symposium + Timaeus + Theaetetus, Aristotle Metaphysics + Nicomachean Ethics + De Anima + Politics + Rhetoric + Poetics, Marcus Aurelius Meditations, Epictetus, Confucius Analects, Dhammapada, Bhagavad Gita, Lucretius, Cicero, Seneca, Augustine, Aquinas, Anselm, Pascal, Lao Tzu Tao Te Ching + Sacred-Texts.com 740+ articles |
+| 01-mathematics | 681 | Russell-Whitehead Principia Mathematica vol 1, Boole Laws of Thought, Whitehead Intro to Math, Hardy Course of Pure Math, Cantor/Riemann/Gödel/Noether/Hilbert via Wikisource |
+| 02-physics | 1,035 | Newton Principia + Opticks, Maxwell Treatise, Faraday 3-vol Researches, Tesla, Einstein 1905+Relativity, Schrödinger What is Life, Helmholtz Sensations of Tone, Galileo Two World Systems, Boltzmann Lectures, Mach Mechanics |
+| 03-chemistry | 1,233 | Mendeleev Principles of Chemistry vol 1+2 (1901), Russell Universal One 1926, Pasteur, Lavoisier-tradition |
+| 04-information | 242 | Wheeler "It from Bit", Turing 1936, Shannon, Chaitin, Kolmogorov, Wolfram |
+| 05-biophysics | 1,253 | Szent-Györgyi Bioenergetics 1957 + ~150 Becker/Marino/Pollack/Mitchell/Ling primary papers; Kruse 460-article corpus + 172 long-form podcast transcripts |
+| 06-cosmology | 1,092 | Eddington, Hawking ADS, Hartle-Hawking, Maldacena, Verlinde, Hameroff-Penrose Orch-OR, Penrose CCC |
+| 07-mind | 1,667 | William James Principles+Varieties, Locke Essay, Hume Treatise, Berkeley, Hobbes Leviathan, Spinoza Ethics, Kant Critique, Nietzsche, Bergson Creative Evolution + Time and Free Will, Stanford SEP 400+ entries |
+| 08-deep-history | 318 | Herodotus, Thucydides, Plutarch, Tacitus, Gibbon Decline & Fall, Augustine City of God + Confessions, Pliny, Strabo, Vico New Science, Burckhardt, Frazer Golden Bough |
+| 09-art | 183 | Vasari Lives of Painters, Ruskin Modern Painters + Stones of Venice + Seven Lamps, Pater Renaissance, Reynolds Discourses, Leonardo Treatise on Painting |
+| 09-sacred-texts | 686 | KJV Bible, Plato Republic + Phaedo + Symposium + Timaeus + Theaetetus, Aristotle Metaphysics + Nicomachean Ethics + De Anima + Politics + Rhetoric + Poetics, Marcus Aurelius Meditations, Epictetus, Confucius Analects, Dhammapada, Bhagavad Gita, Lucretius, Cicero, Seneca, Augustine, Aquinas, Anselm, Pascal, Lao Tzu Tao Te Ching + Sacred-Texts.com 740+ articles |
 
-## Canon contributors (126 author publication graphs captured)
+## Canon contributors
 
-### Biophysics canon (the Bucket-thesis spine)
+### Biophysics canon
 
 Becker, Marino, Pollack, Ling, Mitchell, Nordenström, Frohlich, Popp,
 Szent-Györgyi, Pauling, Mae-Wan Ho, Goodwin, Kauffman, Margulis, Lovelock.
@@ -130,14 +130,14 @@ Wolfram.
 
 After 25+ ingestion waves over a single session, the remaining gaps are:
 
-1. **08-deep-history at 318** still light. Needs more 19th-20th c. historians:
-   Toynbee, Spengler full text, Braudel, Crosby (post-1929 mostly copyrighted).
+1. **08-deep-history at 318** still light. Needs more 19th-20th c. Historians:
+ Toynbee, Spengler full text, Braudel, Crosby (post-1929 mostly copyrighted).
 2. **09-art at 183** still small. Need Wölfflin/Riegl/Panofsky English
-   translations (much is post-1929 copyrighted).
-3. **04-information at 242** — primary works exist but tightly curated; could
-   use bigger dump of arXiv cs.IT + cs.CC.
+ translations (much is post-1929 copyrighted).
+3. **04-information at 242**, primary works exist but tightly curated; could
+ use bigger dump of arXiv cs.IT + cs.CC.
 
-## Tools shipped this session (all org-wide via ~/bin)
+## Tools shipped this session
 
 20+ canon-ingestion tools (see [`CANON-INGESTION-INDEX.md`](CANON-INGESTION-INDEX.md)
 for the full list).

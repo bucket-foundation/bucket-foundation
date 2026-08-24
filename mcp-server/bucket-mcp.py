@@ -1,34 +1,34 @@
 #!/usr/bin/env python3
 """
-bucket-mcp — single Model Context Protocol server for bucket.foundation.
+bucket-mcp, single Model Context Protocol server for bucket.foundation.
 
 Replaces the old split (bucket-canon-mcp + standalone bucket-mcp repo).
-One server. All tools. This file is canonical — the standalone bucket-mcp
+One server. All tools. This file is canonical, the standalone bucket-mcp
 GitHub repo is being archived.
 
 Tools:
-  CANON (local filesystem — fast, no network):
-    - canon_search         search 599 claim cards by query
-    - canon_get_claim      fetch a single claim card
-    - canon_list_branches  list 9 canon branches with counts
-    - canon_list_bridges   list detected multi-branch primitives
-    - canon_get_bridge     fetch a detected bridge by slug
+ CANON (local filesystem, fast, no network):
+ - canon_search search 599 claim cards by query
+ - canon_get_claim fetch a single claim card
+ - canon_list_branches list 9 canon branches with counts
+ - canon_list_bridges list detected multi-branch primitives
+ - canon_get_bridge fetch a detected bridge by slug
 
-  RESEARCH RAIL (hits bucket.foundation HTTPS API):
-    - bucket_research      paid research via feed402/0.2 envelopes
-    - bucket_cite          CSL-JSON citation from DOI or URL
+ RESEARCH RAIL (hits bucket.foundation HTTPS API):
+ - bucket_research paid research via feed402/0.2 envelopes
+ - bucket_cite CSL-JSON citation from DOI or URL
 
 Transport: stdio JSON-RPC 2.0.
 
 Register in Claude Code:
-  claude mcp add --scope user --transport stdio bucket \\
-    -- python3 /home/gian/agfarms/bucket-foundation/mcp-server/bucket-mcp.py
+ claude mcp add --scope user --transport stdio bucket \\
+ -- python3 /home/gian/agfarms/bucket-foundation/mcp-server/bucket-mcp.py
 
 Register in Claude Desktop (config.json):
-  "bucket": {
-    "command": "python3",
-    "args": ["/path/to/bucket-mcp.py"]
-  }
+ "bucket": {
+ "command": "python3",
+ "args": ["/path/to/bucket-mcp.py"]
+ }
 """
 from __future__ import annotations
 import json, sys, pathlib, re, urllib.request, urllib.error

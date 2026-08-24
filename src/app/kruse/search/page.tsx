@@ -1,6 +1,6 @@
 import KruseSearch from "../_components/KruseSearch";
 
-// Gated by middleware.ts — this route is unreachable without a valid
+// Gated by middleware.ts, this route is unreachable without a valid
 // HS256 cookie. Never prerendered or cached.
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

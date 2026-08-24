@@ -1,6 +1,6 @@
 "use client";
 
-// AggregatePredict client island — amyloid / aggregation-propensity hot-spots
+// AggregatePredict client island, amyloid / aggregation-propensity hot-spots
 // (REAL windowed model). Render is "json". `sequence` is a protein sequence or
 // "demo".
 

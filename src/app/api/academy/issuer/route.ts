@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/academy/issuer  (bkt-52p)
+ * bucket.foundation, /api/academy/issuer  (bkt-52p)
  * ----------------------------------------------------------------------------
  * The Bucket Academy ISSUER IDENTITY document, served at a stable, resolvable
  * URL (ISSUER_ID === https://www.bucket.foundation/api/academy/issuer).
@@ -7,7 +7,7 @@
  * Returns the OB3 `Profile` / W3C VC issuer object: issuer id, name, url, and
  * the PUBLIC verification key(s) as JsonWebKey verificationMethods. A verifier
  * (any third party) resolves THIS document to get the public key, then checks a
- * credential's EdDSA signature against it. No secrets are ever served here — the
+ * credential's EdDSA signature against it. No secrets are ever served here, the
  * private signing key lives only in server env (issuer.loadPrivateJwk).
  *
  * Cacheable + CORS-open so external verifiers can fetch it.

@@ -1,15 +1,15 @@
 /**
- * bucket.foundation — /api/research/quantumbiorag
+ * bucket.foundation, /api/research/quantumbiorag
  * -----------------------------------------------
  * Same-origin proxy for the QuantumBioRAG tool. Given a quantum-biology /
  * biophysics claim, it retrieves the live OpenAlex evidence and scores SUPPORT
- * STRENGTH + CONSENSUS (evidence-weighted stance), citing sources — separating
+ * STRENGTH + CONSENSUS (evidence-weighted stance), citing sources, separating
  * evidence from hype. Backend logic is REAL
  * (services/research-tools/tools_rag.py:run_quantum_bio_rag, live OpenAlex).
  *
- *   POST /api/research/quantumbiorag                  → gateway /v1/quantumbiorag/submit
- *        body { claim, limit? }                        → { job_id, status, mode, price, [result] }
- *   GET  /api/research/quantumbiorag?job=<id>[&result=1] → status / result
+ * POST /api/research/quantumbiorag → gateway /v1/quantumbiorag/submit
+ * body { claim, limit? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/quantumbiorag?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

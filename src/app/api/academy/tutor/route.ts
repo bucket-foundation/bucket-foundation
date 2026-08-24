@@ -1,51 +1,51 @@
 /**
- * POST /api/academy/tutor — a GROUNDED, SAFE Socratic tutor for a single Bucket
+ * POST /api/academy/tutor, a GROUNDED, SAFE Socratic tutor for a single Bucket
  * Academy concept (epic bkt-jh0, bead bkt-5jj).
  *
  * In a teaching product a confidently-wrong explanation installs a durable
- * misconception — the worst possible failure mode. This route therefore
- * implements the S1–S7 AI-tutor safety floor from
+ * misconception, the worst possible failure mode. This route therefore
+ * implements the S1, S7 AI-tutor safety floor from
  * `learning/research/people/LEARNING-SCIENCE-AND-AI-SAFETY.md` §6, with the
- * non-negotiables enforced IN CODE, not merely requested in the prompt (S7:
- * "verification is external, layered, and enforced in code, not in the system
- * prompt"). It mirrors the conventions of the sibling `generate` route
+ * non-negotiables enforced IN CODE at the route level (S7:
+ * verification is external, layered, and enforced in code rather than in the system
+ * prompt). It mirrors the conventions of the sibling `generate` route
  * (`@anthropic-ai/sdk`, `ANTHROPIC_API_KEY`, `NextResponse.json`, the `bad()`
  * helper, capped tokens, 503 when the key is absent, the Viatika-metering TODO).
  *
- *   S1  RAG grounding to verified content. The tutor answers ONLY from the
- *       grounding the client sends — the atom's own verified lesson material
- *       (title, summary, lesson, depths, equation) plus the titles of its graph
- *       neighbours. No parametric free-generation of facts. The grounding IS the
- *       corpus the Academy already ships and renders to the learner.
- *   S2  Tight context + abstain on weak retrieval. If the question is outside the
- *       grounded material the tutor must SAY SO and point to what IS covered,
- *       rather than guess. Empty grounding => 400 (no safe answer is possible);
- *       over-long grounding is rejected.
- *   S3  Closed-set, validated citations — zero free-generation. The model may
- *       cite only from a closed allow-list (the atom's real `sources` +
- *       `resources`). Every citation the model emits is validated against that
- *       allow-list at render time; unresolvable ones are dropped (never shown).
- *       Citations are returned as a separate, server-validated array — the client
- *       renders links only from it, never by parsing model prose.
- *   S4  Uncertainty signalling + abstention as the safe failure mode. The model
- *       returns an explicit `confidence` ("high"|"medium"|"low") and an
- *       `abstained` flag; abstention is encouraged, not penalised.
- *   S5  (eval harness) — spec'd by People; the structured JSON contract here
- *       (atomic answer + claim→citation mapping + abstain flag) is exactly what a
- *       FActScore/citation-validity harness consumes. Wiring the CI block is a
- *       follow-up bead; the response shape is harness-ready today.
- *   S6  Anti-sycophancy + per-turn re-check. The system prompt instructs the
- *       tutor to CORRECT a wrong premise rather than build on it, and the
- *       grounding (S1) is re-supplied on every turn, so each turn is
- *       independently grounded (pedagogical harm compounds over a session).
- *   S7  Never trust model confidence as a safety signal — citation validation,
- *       grounding-presence checks, the abstain gate, rate limiting and a
- *       fail-safe abstaining fallback on unparseable output all live in code.
+ * S1 RAG grounding to verified content. The tutor answers ONLY from the
+ * grounding the client sends, the atom's own verified lesson material
+ * (title, summary, lesson, depths, equation) plus the titles of its graph
+ * neighbours. No parametric free-generation of facts. The grounding IS the
+ * corpus the Academy already ships and renders to the learner.
+ * S2 Tight context + abstain on weak retrieval. If the question is outside the
+ * grounded material the tutor must SAY SO and point to what IS covered,
+ * rather than guess. Empty grounding => 400 (no safe answer is possible);
+ * over-long grounding is rejected.
+ * S3 Closed-set, validated citations, zero free-generation. The model may
+ * cite only from a closed allow-list (the atom's real `sources` +
+ * `resources`). Every citation the model emits is validated against that
+ * allow-list at render time; unresolvable ones are dropped (never shown).
+ * Citations are returned as a separate, server-validated array, the client
+ * renders links only from it, never by parsing model prose.
+ * S4 Uncertainty signalling + abstention as the safe failure mode. The model
+ * returns an explicit `confidence` ("high"|"medium"|"low") and an
+ * `abstained` flag; abstention is encouraged and rewarded.
+ * S5 (eval suite), spec'd by People; the structured JSON contract here
+ * (atomic answer + claim→citation mapping + abstain flag) is exactly what a
+ * FActScore/citation-validity suite consumes. Wiring the CI block is a
+ * follow-up bead; the response shape is ready for it today.
+ * S6 Anti-sycophancy + per-turn re-check. The system prompt instructs the
+ * tutor to CORRECT a wrong premise rather than build on it, and the
+ * grounding (S1) is re-supplied on every turn, so each turn is
+ * independently grounded (pedagogical harm compounds over a session).
+ * S7 Never trust model confidence as a safety signal, citation validation,
+ * grounding-presence checks, the abstain gate, rate limiting and a
+ * fail-safe abstaining fallback on unparseable output all live in code.
  *
  * Request body (JSON):
- *   { atomId, branch, question, history?, grounding }
- *   grounding = { title, summary, lesson?, equation?, depths?, sources?,
- *                 resources?, requires?(titles), unlocks?(titles) }
+ * { atomId, branch, question, history?, grounding }
+ * grounding = { title, summary, lesson?, equation?, depths?, sources?,
+ * resources?, requires?(titles), unlocks?(titles) }
  * Response (200): { reply, confidence, abstained, citations:[{label,url?}], grounded_on }
  * Errors: 400 bad input · 429 rate-limited · 502 tutor_failed · 503 not configured.
  */
@@ -57,19 +57,19 @@ import { selectProvider } from "./provider";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// Current as of 2026-06. Sonnet is enough for a grounded Socratic turn — the
-// grounding does the factual work, not the model — and keeps per-turn cost low.
+// Current as of 2026-06. Sonnet is enough for a grounded Socratic turn, the
+// grounding does the factual work, and this keeps per-turn cost low.
 const MODEL = "claude-sonnet-4-5";
 
 // ---- LLM provider seam --------------------------------------------------
 // DEFAULT is the LOCAL GPU LLM via an OpenAI-compatible endpoint. In prod that
 // is the bearer-protected auth-shim + cloudflared tunnel in front of a
 // llama.cpp server running Qwen2.5-Coder-7B-Instruct on Gian's AMD RX 7700S
-// (Vulkan GPU offload, ~13 tok/s — the system Ollama could only do CPU because
+// (Vulkan GPU offload, ~13 tok/s, the system Ollama could only do CPU because
 // its build ships no Vulkan/ROCm backend). Set LLM_BASE_URL (e.g.
 // https://<tunnel>/v1) + LLM_API_KEY (the shim bearer) to enable it. The hosted
 // Anthropic path stays as an ALTERNATIVE when ANTHROPIC_API_KEY is set and
-// LLM_BASE_URL is not — same S1–S7 safety runs in code either way. If neither is
+// LLM_BASE_URL is not, same S1, S7 safety runs in code either way. If neither is
 // configured => 503 (dark). All factual safety is enforced in code (S7), so the
 // model behind the seam is interchangeable.
 const LLM_BASE_URL = process.env.LLM_BASE_URL?.replace(/\/+$/, "");
@@ -81,8 +81,8 @@ const LLM_TIMEOUT_MS = Number(process.env.LLM_TIMEOUT_S || 20) * 1000;
 // exports from a route file). Local LLM is the default; Anthropic is the fallback.
 
 /** Call the local OpenAI-compatible chat endpoint. Returns the assistant text,
- *  or throws an error tagged with `.status` for the caller's catch (mirrors the
- *  Anthropic error contract so the existing 401/429/502 handling applies). */
+ * or throws an error tagged with `.status` for the caller's catch (mirrors the
+ * Anthropic error contract so the existing 401/429/502 handling applies). */
 async function callLocalLLM(
   system: string,
   messages: Array<{ role: "user" | "assistant"; content: string }>,
@@ -119,7 +119,7 @@ async function callLocalLLM(
   }
 }
 
-// Tight caps — a Socratic turn is a hint or a question, not an essay (keeps
+// Tight caps, a Socratic turn is a hint or a question (keeps
 // responses tight, bounds cost, and limits the blast radius of any error).
 const MAX_TOKENS = 700;
 const MAX_QUESTION_CHARS = 1000;
@@ -131,7 +131,7 @@ function bad(status: number, error: string) {
 }
 
 // ---- crude in-memory per-IP rate limit (best-effort; resets on cold start) ----
-// Serverless instances are ephemeral, so this is a soft guard, not a hard quota;
+// Serverless instances are ephemeral, so this is a best-effort soft guard;
 // a durable limiter belongs in the Viatika metering layer (TODO below).
 const RL_WINDOW_MS = 60_000;
 const RL_MAX = 20; // 20 tutor turns / minute / IP
@@ -188,7 +188,7 @@ function norm(s: string): string {
 }
 
 /** Build the closed-set citation allow-list from the atom's real sources +
- *  resources (the ONLY set the model may cite from — S3). */
+ * resources (the ONLY set the model may cite from, S3). */
 function buildCitationAllowList(g: Grounding): {
   display: string[];
   byKey: Map<string, { label: string; url?: string }>;
@@ -209,7 +209,7 @@ function buildCitationAllowList(g: Grounding): {
 }
 
 /** Validate model-emitted citations against the closed set (S3). Drops anything
- *  that does not resolve — fabricated references never reach the client. */
+ * that does not resolve, fabricated references never reach the client. */
 function validateCitations(
   emitted: unknown,
   byKey: Map<string, { label: string; url?: string }>,
@@ -227,7 +227,7 @@ function validateCitations(
   return out;
 }
 
-/** Assemble the grounding context block — only verified atom material goes in. */
+/** Assemble the grounding context block, only verified atom material goes in. */
 function groundingBlock(g: Grounding, allow: string[]): string {
   const parts: string[] = [];
   if (g.title) parts.push(`CONCEPT: ${g.title}`);
@@ -338,7 +338,7 @@ export async function POST(req: NextRequest) {
     return bad(400, "Grounding payload too large.");
   }
 
-  // 503 when NO provider is configured — same graceful contract as the generate
+  // 503 when NO provider is configured, same graceful contract as the generate
   // route. Local LLM (LLM_BASE_URL) is the default; Anthropic is the fallback.
   // The UI reads this and shows a "tutor not enabled yet" state without breaking.
   const provider = selectProvider();
@@ -347,7 +347,7 @@ export async function POST(req: NextRequest) {
   }
 
   // TODO(bkt-jh0): route this spend through Viatika via `@/lib/meter` meterUsage()
-  // — pre-charge an estimate and true-up from response.usage. Org standard is that
+  //, pre-charge an estimate and true-up from response.usage. Org standard is that
   // ALL metered AI spend flows through the Viatika vendor API (CLAUDE.md #6). Left
   // as a hook for v1, matching the sibling generate route.
 
@@ -366,7 +366,7 @@ export async function POST(req: NextRequest) {
   try {
     if (provider === "local") {
       // Default path: local GPU LLM via OpenAI-compatible endpoint. Same SYSTEM
-      // prompt + grounding; all S1–S7 validation below runs identically.
+      // prompt + grounding; all S1, S7 validation below runs identically.
       text = await callLocalLLM(SYSTEM, messages);
     } else {
       const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -414,7 +414,7 @@ export async function POST(req: NextRequest) {
       reply: parsed.reply,
       confidence: parsed.confidence,
       abstained: parsed.abstained,
-      citations, // [{label,url?}] — server-validated, closed-set only
+      citations, // [{label,url?}], server-validated, closed-set only
       grounded_on: g!.title || body.atomId || null,
     },
     { status: 200, headers: { "cache-control": "no-store" } },

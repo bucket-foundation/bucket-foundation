@@ -1,24 +1,24 @@
 /**
  * src/lib/depth-ladder.ts  (bkt-a7v)
  * ------------------------------------------------------------------
- * The continuous L0→L5 depth ladder — Bucket's answer to the "empty
+ * The continuous L0→L5 depth ladder, Bucket's answer to the "empty
  * scalable-AND-production-reaching cell" the flagship education-atlas research
  * names (THE-KNOWLEDGE-ACCESS-GRADIENT.md). It maps the pieces Bucket already
  * shipped onto a single climb so a learner can go from mastery → frontier →
  * producing knowledge WITHOUT a gap:
  *
- *     Academy mastery (L1–L2 consume)
- *         → Canon reading (L3–L4 frontier)
- *             → research tools + research agent (L4–L5 produce)
+ *     Academy mastery (L1, L2 consume)
+ *         → Canon reading (L3, L4 frontier)
+ *             → research tools + research agent (L4, L5 produce)
  *
- * The L0–L5 rung labels/descriptions are VENDORED from the single source of
- * truth — education-atlas/analysis/landscape/scale.py (DEPTH_LEVELS /
+ * The L0, L5 rung labels/descriptions are VENDORED from the single source of
+ * truth, education-atlas/analysis/landscape/scale.py (DEPTH_LEVELS /
  * DEPTH_LABELS + the doc comment). We do NOT invent new levels here; we only
  * attach (a) world-access percentages from the published gradient and (b) the
  * Bucket surface that serves each rung. Numbers trace to the atlas; surfaces
  * are this repo's routes. If scale.py changes, update this file to match.
  *
- * No external deps, no Story Protocol, pure data — safe to import anywhere
+ * No external deps, no Story Protocol, pure data, safe to import anywhere
  * (server or client).
  */
 
@@ -162,15 +162,15 @@ export const LADDER_THESIS =
   "For 5,000 years every knowledge technology widened the access to CONSUME knowledge and none widened the access to PRODUCE it. A channel that is both scalable and production-reaching has been empty for all of recorded history — that empty cell is the consume-versus-produce gap. This ladder is Bucket's on-ramp across it: mastery → canon → tools → agent, with no gap between the rungs.";
 
 /**
- * Honest-mastery → depth-rung mapping for a single Academy branch. The Academy
- * itself spans the consume side (L1–L2); this estimates WHERE on the ladder a
+ *-mastery → depth-rung mapping for a single Academy branch. The Academy
+ * itself spans the consume side (L1, L2); this estimates WHERE on the ladder a
  * learner currently sits for one branch, so the UI can surface the next
- * rung up. Conservative by design — the Academy gives an honest signal, NOT a
- * certified rating (see /m/<handle>), so we never place a learner ABOVE L2 from
- * mastery alone; the climb past L2 is gated on the learner actually opening the
- * canon / tools / agent, not on a score.
+ * rung up. Conservative by design, the Academy gives a signal (see
+ * /m/<handle> for certified ratings), so we never place a learner ABOVE L2 from
+ * mastery alone; the climb past L2 is gated on the learner opening the
+ * canon / tools / agent.
  *
- * @param mastery 0..1 honest mastery for the branch (0 if unknown).
+ * @param mastery 0..1 mastery for the branch (0 if unknown).
  */
 export function rungForMastery(mastery: number): DepthLevel {
   if (!Number.isFinite(mastery) || mastery <= 0) return "L0";

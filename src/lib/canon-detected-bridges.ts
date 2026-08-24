@@ -1,4 +1,4 @@
-// canon-detected-bridges.ts — server-only loader for LLM-named
+// canon-detected-bridges.ts, server-only loader for LLM-named
 // multi-branch primitive bridges discovered via embedding clustering.
 //
 // Data lives at bucket-canon/_bridges/detected/<NN-slug>/README.md

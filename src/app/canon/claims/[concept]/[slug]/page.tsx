@@ -1,4 +1,4 @@
-// /canon/claims/[concept]/[slug] — single curated claim card.
+// /canon/claims/[concept]/[slug], single curated claim card.
 
 import Link from "next/link";
 import { notFound } from "next/navigation";

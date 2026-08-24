@@ -1,49 +1,49 @@
 #!/usr/bin/env python3
 """
-research-tools — CausalDesigner (REAL causal inference, CPU, no GPU, no network)
+research-tools, CausalDesigner (REAL causal inference, CPU, no GPU, no network)
 ================================================================================
 
 Per-field tool for **econ-social** (econ-social, 42,276 profiled researchers in
 the research-atlas corpus). The atlas USERS_NEEDS roadmap names "causal-inference
-tooling" as a top unmet software need for this field — the reproducibility crisis
+tooling" as a top unmet software need for this field, the reproducibility crisis
 is most acute here, and causal-inference best practice (DAGs, do-calculus, valid
 adjustment sets, design choice) is under-adopted because the tooling has a steep
 learning curve (DAGitty, dowhy, etc.).
 
-Given a described study — treatment, outcome, confounders, and the edges of the
-assumed causal graph — CausalDesigner does REAL causal-inference logic:
+Given a described study, treatment, outcome, confounders, and the edges of the
+assumed causal graph, CausalDesigner does REAL causal-inference logic:
 
-  1. Builds the causal DAG (networkx DiGraph) and validates it is acyclic.
-  2. Enumerates the BACKDOOR PATHS between treatment and outcome (Pearl's
-     back-door criterion: a path with an arrow INTO the treatment).
-  3. Finds a VALID ADJUSTMENT SET that blocks every backdoor path while opening
-     no new ones — using the real d-separation machinery (it blocks confounder
-     chains/forks, and crucially does NOT condition on colliders or on
-     descendants of the treatment, which would *introduce* bias).
-  4. Recommends an estimator (DiD / RDD / IV / matching / regression-adjustment)
-     from the declared design features, with the identifying assumptions and the
-     concrete threats to validity for that design.
+ 1. Builds the causal DAG (networkx DiGraph) and validates it is acyclic.
+ 2. Enumerates the BACKDOOR PATHS between treatment and outcome (Pearl's
+ back-door criterion: a path with an arrow INTO the treatment).
+ 3. Finds a VALID ADJUSTMENT SET that blocks every backdoor path while opening
+ no new ones, using the real d-separation machinery (it blocks confounder
+ chains/forks, and does NOT condition on colliders or on
+ descendants of the treatment, which would *introduce* bias).
+ 4. Recommends an estimator (DiD / RDD / IV / matching / regression-adjustment)
+ from the declared design features, with the identifying assumptions and the
+ concrete threats to validity for that design.
 
-This is real do-calculus basics, not a template. The backdoor enumeration and
+This is real do-calculus basics. The backdoor enumeration and
 the adjustment-set validity test use networkx's d-separation
 (`nx.is_d_separator`) over the moralized/ancestral logic Pearl defines, so the
-returned set is *checked* to satisfy the back-door criterion, not merely
+returned set is *checked* to satisfy the back-door criterion, not
 heuristically guessed. Deterministic; never crashes on malformed input (returns
 a structured {"error": ...} the gateway turns into a clean 400).
 
 Input shape (`payload`):
-    treatment   : str  — the treatment/exposure variable name (required)
-    outcome     : str  — the outcome variable name (required)
-    confounders : list[str] | comma-string — variables that may confound (optional)
-    edges       : list[[from,to]] | "A->B, C->D" string — the assumed causal
-                  graph edges (optional; if omitted, each declared confounder is
-                  assumed to point at BOTH treatment and outcome — the canonical
-                  confounding triangle)
-    design      : str — free text describing the study design (used to pick the
-                  estimator: "difference-in-differences"/"panel", "regression
-                  discontinuity"/"cutoff", "instrument"/"IV", "RCT"/"randomized",
-                  "matching"/"propensity", …)
-    instrument  : str — optional named instrument variable (for IV)
+ treatment : str, the treatment/exposure variable name (required)
+ outcome : str, the outcome variable name (required)
+ confounders : list[str] | comma-string, variables that may confound (optional)
+ edges : list[[from,to]] | "A->B, C->D" string, the assumed causal
+ graph edges (optional; if omitted, each declared confounder is
+ assumed to point at BOTH treatment and outcome, the canonical
+ confounding triangle)
+ design : str, free text describing the study design (used to pick the
+ estimator: "difference-in-differences"/"panel", "regression
+ discontinuity"/"cutoff", "instrument"/"IV", "RCT"/"randomized",
+ "matching"/"propensity", …)
+ instrument : str, optional named instrument variable (for IV)
 
 The gateway imports CAUSAL_RUNNERS from here.
 """
@@ -57,7 +57,7 @@ import networkx as nx
 
 
 # ---------------------------------------------------------------------------
-# input parsing (tolerant — never raises)
+# input parsing (tolerant, never raises)
 # ---------------------------------------------------------------------------
 def _as_list(v: Any) -> list[str]:
     if v is None:
@@ -109,7 +109,7 @@ def _parse_edge_string(s: str) -> list[tuple[str, str]]:
 # ---------------------------------------------------------------------------
 def _all_paths_undirected(G: nx.DiGraph, src: str, dst: str, cutoff: int = 12) -> list[list[str]]:
     """All simple paths in the UNDIRECTED skeleton (paths can traverse edges in
-    either direction — this is what 'a path between X and Y' means in Pearl)."""
+ either direction, this is what 'a path between X and Y' means in Pearl)."""
     U = G.to_undirected()
     try:
         return list(nx.all_simple_paths(U, src, dst, cutoff=cutoff))
@@ -119,7 +119,7 @@ def _all_paths_undirected(G: nx.DiGraph, src: str, dst: str, cutoff: int = 12) -
 
 def _is_backdoor_path(G: nx.DiGraph, path: list[str]) -> bool:
     """A back-door path from treatment T is a path whose first edge points INTO
-    T (T <- ...). The directed (front-door) path T -> ... -> Y is NOT a backdoor.
+ T (T <- ...). The directed (front-door) path T -> ... -> Y is NOT a backdoor.
     """
     if len(path) < 2:
         return False
@@ -151,10 +151,10 @@ def _valid_adjustment_set(
     G: nx.DiGraph, treatment: str, outcome: str, candidates: list[str]
 ) -> Optional[list[str]]:
     """Find a minimal adjustment set Z ⊆ candidates that satisfies the back-door
-    criterion (Pearl): (a) no node in Z is a descendant of the treatment, and
-    (b) Z d-separates treatment and outcome in the graph with all edges OUT of
-    treatment removed. Uses networkx d-separation. Returns the smallest valid Z
-    (empty set is valid if there are no open backdoor paths)."""
+ criterion (Pearl): (a) no node in Z is a descendant of the treatment, and
+ (b) Z d-separates treatment and outcome in the graph with all edges OUT of
+ treatment removed. Uses networkx d-separation. Returns the smallest valid Z
+ (empty set is valid if there are no open backdoor paths)."""
     # back-door criterion forbids conditioning on descendants of T.
     descendants = nx.descendants(G, treatment)
     pool = [c for c in candidates if c not in descendants and c != treatment and c != outcome]
@@ -267,7 +267,7 @@ _ESTIMATOR_SPEC: dict[str, dict] = {
         "threats": [
             "Sorting/manipulation around the threshold invalidates the design.",
             "Other policies that change at the same cutoff confound the jump.",
-            "Effect is local to the cutoff — limited external validity.",
+            "Effect is local to the cutoff, limited external validity.",
         ],
         "needs_adjustment": False,
     },
@@ -278,7 +278,7 @@ _ESTIMATOR_SPEC: dict[str, dict] = {
             "Parallel trends: counterfactual outcome trends are equal across groups (support with pre-trend / event-study plots).",
             "No anticipation effects before treatment onset.",
             "Stable composition / no treatment-driven sorting between groups.",
-            "With staggered adoption, use a heterogeneity-robust estimator (Callaway-Sant'Anna / Sun-Abraham), not naive TWFE.",
+            "With staggered adoption, use a heterogeneity-robust estimator (Callaway-Sant'Anna / Sun-Abraham) in place of naive TWFE.",
         ],
         "threats": [
             "Differential pre-trends falsify the key assumption.",
@@ -293,10 +293,10 @@ _ESTIMATOR_SPEC: dict[str, dict] = {
         "assumptions": [
             "Conditional ignorability / no unmeasured confounding (the adjustment set blocks all backdoor paths).",
             "Common support / overlap: treated and control units share covariate space.",
-            "Correctly specified propensity / matching model; check covariate balance after matching.",
+            "specified propensity / matching model; check covariate balance after matching.",
         ],
         "threats": [
-            "Unmeasured confounding is the central, untestable threat — run a sensitivity analysis (E-value / Rosenbaum bounds).",
+            "Unmeasured confounding is the central, untestable threat, run a sensitivity analysis (E-value / Rosenbaum bounds).",
             "Poor overlap forces extrapolation or discards units.",
             "Conditioning on a collider or a post-treatment variable REINTRODUCES bias.",
         ],
@@ -308,7 +308,7 @@ _ESTIMATOR_SPEC: dict[str, dict] = {
         "assumptions": [
             "No unmeasured confounding given the adjustment set (the set blocks every backdoor path).",
             "Correct functional form (linearity/link); consider interactions and nonlinearity.",
-            "Adjust for confounders only — never for mediators, colliders, or post-treatment variables.",
+            "Adjust for confounders only, never for mediators, colliders, or post-treatment variables.",
         ],
         "threats": [
             "Omitted-variable bias from any unblocked backdoor path.",
@@ -339,7 +339,7 @@ def _recommend_estimator(design: str, has_instrument: bool) -> tuple[str, dict, 
     else:
         key = "RegressionAdjustment"
         notes.append(
-            "No design keyword recognized — defaulting to covariate-adjusted regression on the "
+            "No design keyword recognized, defaulting to covariate-adjusted regression on the "
             "valid backdoor set. If you have a randomization, a cutoff, an instrument, or panel "
             "data, name it in `design` for a stronger identification strategy."
         )
@@ -425,7 +425,7 @@ def design_study(payload: dict) -> dict:
     else:
         identifiable = False
         ident_msg = (
-            "NOT identifiable by adjustment on the observed variables — at least one backdoor "
+            "NOT identifiable by adjustment on the observed variables, at least one backdoor "
             "path runs through an unobserved/unconditionable node. Use a design that does not "
             "rely on selection-on-observables (IV / RDD / DiD / a randomized experiment)."
         )
@@ -467,7 +467,7 @@ def design_study(payload: dict) -> dict:
             "set is CHECKED to satisfy the back-door criterion (it blocks "
             "confounders and never conditions on colliders/mediators/post-treatment "
             "variables, which would introduce bias). It encodes YOUR causal "
-            "assumptions — the DAG is an assumption, not a finding."
+            "assumptions; the DAG is an assumption, never a finding."
         ),
     }
 
@@ -475,13 +475,13 @@ def design_study(payload: dict) -> dict:
 def _demo_payload() -> dict:
     """Known confounding example with a hand-checkable answer.
 
-    Smoking → cancer with a genetic confounder, plus a collider (hospitalization
-    caused by both smoking and an unrelated injury) and a mediator (tar).
-      gene -> smoking, gene -> cancer       (a confounder; backdoor smoking<-gene->cancer)
-      smoking -> tar -> cancer              (mediator chain; the causal effect)
-      smoking -> hospitalized <- injury     (hospitalized is a COLLIDER)
-    Correct minimal adjustment set = {gene}. tar (mediator), hospitalized
-    (collider) and injury must NOT be adjusted for.
+ Smoking → cancer with a genetic confounder, plus a collider (hospitalization
+ caused by both smoking and an unrelated injury) and a mediator (tar).
+ gene -> smoking, gene -> cancer (a confounder; backdoor smoking<-gene->cancer)
+ smoking -> tar -> cancer (mediator chain; the causal effect)
+ smoking -> hospitalized <- injury (hospitalized is a COLLIDER)
+ Correct minimal adjustment set = {gene}. tar (mediator), hospitalized
+ (collider) and injury must NOT be adjusted for.
     """
     return {
         "treatment": "smoking",
@@ -500,11 +500,11 @@ def _demo_payload() -> dict:
 
 def run_causal_designer(payload: dict) -> dict:
     """payload: study description (treatment, outcome, confounders, edges, design,
-    instrument) OR { demo: true } / treatment == "demo".
+ instrument) OR { demo: true } / treatment == "demo".
 
-    Build the DAG, identify backdoor paths + a valid adjustment set (real
-    do-calculus via networkx d-separation), and recommend an estimator with
-    assumptions + threats. Deterministic; never raises on malformed input.
+ Build the DAG, identify backdoor paths + a valid adjustment set (real
+ do-calculus via networkx d-separation), and recommend an estimator with
+ assumptions + threats. Deterministic; never raises on malformed input.
     """
     demo = bool(payload.get("demo")) or (
         isinstance(payload.get("treatment"), str)

@@ -5,9 +5,9 @@
  * version live in env; the allow-list of recipients is env-driven too.
  *
  * Used in three places:
- *  - `src/middleware.ts`           — verifies on every /kruse request
- *  - `src/app/api/kruse/search/route.ts` — verifies on every proxy call
- *  - `scripts/mint-kruse-token.ts` — mints new tokens
+ *  - `src/middleware.ts`, verifies on every /kruse request
+ *  - `src/app/api/kruse/search/route.ts`, verifies on every proxy call
+ *  - `scripts/mint-kruse-token.ts`, mints new tokens
  */
 
 import { SignJWT, jwtVerify } from "jose";
@@ -18,7 +18,7 @@ export const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 90; // 90 days
 export type TokenPayload = {
   /** recipient id, e.g. "kruse" */
   r: string;
-  /** token version — bump BKT_KRUSE_TOKEN_VERSION to revoke all prior tokens */
+  /** token version, bump BKT_KRUSE_TOKEN_VERSION to revoke all prior tokens */
   v: number;
   iat: number;
   exp: number;

@@ -1,6 +1,6 @@
 "use client";
 
-// HH-FitML client island — passive-membrane (RC) parameter fit to a current-
+// HH-FitML client island, passive-membrane (RC) parameter fit to a current-
 // clamp trace via scipy least-squares (REAL numerical fit). Render is "json".
 // `trace` is a numeric array or the string "demo" (synthetic, known ground truth).
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-feed.py — canon activity feed writer (bkt-feed-02)
+feed.py, canon activity feed writer (bkt-feed-02)
 
 Merges JSON-Lines events from stdin into feed.json, monthly archives at
 feed/YYYY-MM.json, and an Atom 1.0 file at feed.xml.
 
 Commands:
-  update              read JSON-lines events on stdin, merge into feed
-  rebuild --from SHA  replay history from SHA..HEAD through parse.py
-  validate            sanity-check feed.json
+ update read JSON-lines events on stdin, merge into feed
+ rebuild --from SHA replay history from SHA..HEAD through parse.py
+ validate sanity-check feed.json
 
 Idempotent: events with an id already in the feed are skipped.
 """
@@ -171,7 +171,7 @@ def cmd_update(events_iter: Iterable[dict]) -> int:
     all_existing = feed.get("events", [])
     merged_all, added = merge_events(all_existing, new_events)
 
-    # Update archives using the superset of new events that were actually added
+    # Update archives using the superset of new events that were added
     added_ids = {e["id"] for e in merged_all} - {
         e.get("id") for e in all_existing
     }

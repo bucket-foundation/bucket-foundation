@@ -6,7 +6,7 @@ export const metadata = toolMetadata("quantumbiorag");
 const _jsonld = toolJsonLd("quantumbiorag");
 import QuantumBioRAGClient from "./QuantumBioRAGClient";
 
-// QuantumBioRAG run page — claim-strength RAG over the quantum-biology literature.
+// QuantumBioRAG run page, claim-strength RAG over the quantum-biology literature.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

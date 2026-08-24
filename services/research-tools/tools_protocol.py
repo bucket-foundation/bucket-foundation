@@ -1,42 +1,42 @@
 #!/usr/bin/env python3
 """
-research-tools — ProtocolGPT (REAL logic, CPU, no GPU, no network required)
+research-tools, ProtocolGPT (REAL logic, CPU, no GPU, no network required)
 ==========================================================================
 
-Genuinely FUNCTIONAL backend for ProtocolGPT (docs/research-tools/02-tool-
+FUNCTIONAL backend for ProtocolGPT (docs/research-tools/02-tool-
 roadmap.md §T1, opp #19). It turns a freeform methods/SOP description into a
 structured, runnable lab protocol:
 
-    * ordered steps (verb-led, deduplicated, sequenced)
-    * reagents table (name + concentration/amount where stated)
-    * volumes / amounts extracted from the prose
-    * timings (durations + temperatures) attached to the steps that mention them
-    * safety flags (a real hazard lexicon: corrosives, toxics, flammables,
-      biohazards, sharps, UV, cryogens, centrifugation, electrophoresis, …)
-    * a deterministic, validated JSON protocol schema
+ * ordered steps (verb-led, deduplicated, sequenced)
+ * reagents table (name + concentration/amount where stated)
+ * volumes / amounts extracted from the prose
+ * timings (durations + temperatures) attached to the steps that mention them
+ * safety flags (a real hazard lexicon: corrosives, toxics, flammables,
+ biohazards, sharps, UV, cryogens, centrifugation, electrophoresis, …)
+ * a deterministic, validated JSON protocol schema
 
 Design rules (match tools_rag.py / tools_dnarna.py / tools_neuro.py):
-  * REAL rule/template extraction over the input text + a built-in methods
-    knowledge base (action verbs, units, reagent cues, hazard lexicon). This is
-    NOT a stub: it parses the user's actual prose into structured fields.
-  * LLM-GROUNDED if a key is present: when ANTHROPIC_API_KEY (or OPENAI_API_KEY)
-    is set, ProtocolGPT can ask the model to *clean up* the rule-extracted
-    skeleton (same schema, validated). The model NEVER invents the structure —
-    the rule extractor always runs first and the schema is enforced after, so
-    the output is deterministic-by-shape whether or not a key exists. With no
-    key (the default on the box), the pure rule path is the product.
-  * Pure functions for every extraction step so they unit-test with fixtures,
-    ZERO network, ZERO GPU (see tests/).
-  * run_protocol_gpt(payload) -> dict returns the `output` payload only; the
-    gateway (gateway.py) wraps it in the v1 job-result envelope + provenance.
+ * REAL rule/template extraction over the input text + a built-in methods
+ knowledge base (action verbs, units, reagent cues, hazard lexicon). This is
+ NOT a stub: it parses the user's actual prose into structured fields.
+ * LLM-GROUNDED if a key is present: when ANTHROPIC_API_KEY (or OPENAI_API_KEY)
+ is set, ProtocolGPT can ask the model to *clean up* the rule-extracted
+ skeleton (same schema, validated). The model NEVER invents the structure, 
+ the rule extractor always runs first and the schema is enforced after, so
+ the output is deterministic-by-shape whether or not a key exists. With no
+ key (the default on the box), the pure rule path is the product.
+ * Pure functions for every extraction step so they unit-test with fixtures,
+ ZERO network, ZERO GPU (see tests/).
+ * run_protocol_gpt(payload) -> dict returns the `output` payload only; the
+ gateway (gateway.py) wraps it in the v1 job-result envelope + provenance.
 
 The gateway imports PROTOCOL_RUNNERS from here.
 
 TODO(deploy): the optional LLM cleanup path uses a hosted API; it is OFF unless
 a key is present in the environment, and the rule extractor is the real,
 shipped behavior. No key is set on the Hetzner box today, so the deterministic
-rule path is what runs in production. Adding a key is a config change, not a
-code change.
+rule path is what runs in production. Adding a key is a config change; the
+code stays the same.
 """
 from __future__ import annotations
 
@@ -160,7 +160,7 @@ def split_sentences(text: str) -> list[str]:
 
 def split_steps(sentence: str) -> list[str]:
     """Split a sentence into action clauses. Pure function. A clause is kept as a
-    step only if it begins with (or contains an early) imperative action verb."""
+ step only if it begins with (or contains an early) imperative action verb."""
     parts = [p.strip(" ,.;") for p in _CLAUSE_SPLIT.split(sentence) if p.strip(" ,.;")]
     out: list[str] = []
     for p in parts:
@@ -200,8 +200,8 @@ def extract_amounts(text: str) -> dict:
 
 def extract_reagents(text: str) -> list[dict]:
     """Find reagents mentioned in the text and attach any adjacent amount/conc.
-    Pure function. A reagent is a known cue token, OR a capitalized/acronym token
-    sitting next to a concentration/amount."""
+ Pure function. A reagent is a known cue token, OR a capitalized/acronym token
+ sitting next to a concentration/amount."""
     found: dict[str, dict] = {}
     toks = list(_WORD.finditer(text))
     amounts = extract_amounts(text)
@@ -235,7 +235,7 @@ def extract_reagents(text: str) -> list[dict]:
 
 def detect_hazards(text: str) -> list[dict]:
     """Scan text against the hazard lexicon. Pure function. Returns flags +
-    the trigger token + plain-language guidance."""
+ the trigger token + plain-language guidance."""
     toks = {t.lower() for t in _WORD.findall(text)}
     # also catch hyphen-joined and glued tokens
     toks |= {p for t in toks for p in t.split("-")}
@@ -331,7 +331,7 @@ def _infer_title(text: str) -> str:
 # ===========================================================================
 # Optional LLM cleanup (OFF unless the LLM seam is configured). The rule
 # extractor always runs first and the schema is enforced; the model may ONLY
-# rewrite the human-readable `action` wording of existing steps — it cannot add,
+# rewrite the human-readable `action` wording of existing steps, it cannot add,
 # remove, reorder, or renumber steps, and it cannot touch the parsed reagents,
 # timings, amounts, or safety flags. If the model is unreachable or returns
 # anything unexpected, we keep the deterministic steps verbatim.
@@ -360,10 +360,10 @@ _POLISH_SYSTEM = (
 def _polish_steps_with_llm(steps: list[dict]) -> Optional[dict[int, str]]:
     """Ask the LLM to refine ONLY the `action` text of the existing steps.
 
-    Returns a {n: polished_action} map for steps the model returned cleanly, or
-    None if the LLM is unavailable / failed / returned an unusable shape. The
-    caller keeps the deterministic action for any step not in the map, so this is
-    always safe and additive.
+ Returns a {n: polished_action} map for steps the model returned cleanly, or
+ None if the LLM is unavailable / failed / returned an unusable shape. The
+ caller keeps the deterministic action for any step not in the map, so this is
+ always safe and additive.
     """
     if llm_client is None or not llm_client.enabled() or not steps:
         return None
@@ -393,7 +393,7 @@ def _polish_steps_with_llm(steps: list[dict]) -> Optional[dict[int, str]]:
             action = str(item.get("action") or "").strip()
         except (TypeError, ValueError):
             continue
-        # only accept rewrites for steps that actually exist (no injection)
+        # only accept rewrites for steps that exist (no injection)
         if n in valid_ns and action:
             out[n] = action if action.endswith((".", "!", "?")) else action + "."
     return out or None
@@ -405,10 +405,10 @@ def _polish_steps_with_llm(steps: list[dict]) -> Optional[dict[int, str]]:
 def run_protocol_gpt(payload: dict) -> dict:
     """payload: { methods: str (freeform methods/SOP description), title?: str }
 
-    Turns freeform methods prose into a validated, structured, runnable protocol:
-    ordered steps with timings/temps/volumes, a reagent table, and safety flags.
-    Deterministic rule extraction (the shipped product); LLM cleanup is used only
-    if a key is present and never changes the schema.
+ Turns freeform methods prose into a validated, structured, runnable protocol:
+ ordered steps with timings/temps/volumes, a reagent table, and safety flags.
+ Deterministic rule extraction (the shipped product); LLM cleanup is used only
+ if a key is present and never changes the schema.
     """
     methods = (payload.get("methods") or payload.get("text") or "").strip()
     if len(methods) < 15:

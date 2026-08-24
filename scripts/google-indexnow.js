@@ -4,14 +4,14 @@
 // Indexing API enabled + added as Owner on the GSC property.
 //
 // Setup:
-//   1. GCP console → create project → enable "Indexing API"
-//   2. IAM & Admin → service accounts → create → download JSON key
-//   3. Google Search Console → Settings → Users & permissions → add
-//      the service-account email as Owner
-//   4. Put the JSON into .env.local as a single line:
-//        GOOGLE_INDEXING_SA_JSON='{"type":"service_account",...}'
-//   5. npm i googleapis   # if not already installed
-//   6. node scripts/google-indexnow.js
+// 1. GCP console → create project → enable "Indexing API"
+// 2. IAM & Admin → service accounts → create → download JSON key
+// 3. Google Search Console → Settings → Users & permissions → add
+// the service-account email as Owner
+// 4. Put the JSON into .env.local as a single line:
+// GOOGLE_INDEXING_SA_JSON='{"type":"service_account"...}'
+// 5. npm i googleapis # if not already installed
+// 6. node scripts/google-indexnow.js
 //
 // Docs: https://developers.google.com/search/apis/indexing-api/v3/prereqs
 
@@ -35,7 +35,7 @@ const BASE = "https://www.bucket.foundation";
 async function loadSitemapUrls() {
   const res = await fetch(`${BASE}/sitemap.xml`);
   const xml = await res.text();
-  // Handle sitemap index too — fetch children if present
+  // Handle sitemap index too, fetch children if present
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   const urls = [];
   for (const u of locs) {

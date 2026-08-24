@@ -1,19 +1,19 @@
-/* Bucket Academy — deterministic procedural SVG concept-art anchor.
+/* Bucket Academy, deterministic procedural SVG concept-art anchor.
  *
  * The load-bearing-art contract (GRAPHICS-RENDERING.md §2): the anchor must DEPICT
  * the actual concept/mechanism, be crisp, tiny, offline, on-brand, alt-texted, and
- * — crucially — DETERMINISTIC (same atom → same bytes, byte-for-byte). Diffusion
+ * DETERMINISTIC (same atom → same bytes, byte-for-byte). Diffusion
  * models are BANNED here: they hallucinate plausible-but-wrong science (−0.3..−0.5σ
  * for novices). Everything below is drawn from the atom's own data + a hash(atomId)
  * seed, so it is reproducible, inspectable, and $0.
  *
- * Three tiers, by what we can honestly depict:
- *   1. Equation atoms whose relation we RECOGNISE  → plot the REAL curve.
- *   2. Equation/mechanism atoms we can't parse      → an on-brand schematic motif
- *      keyed to the atom type (lattice / orbital / wave / membrane / flow / tree).
- *   3. Everything else (concept/result/abstract)    → a constrained generative motif
- *      seeded by the atom's id + dependency-graph position (encodes something true:
- *      its leverage/shell, never random decoration).
+ * Three tiers, by what we can depict:
+ * 1. Equation atoms whose relation we RECOGNISE → plot the REAL curve.
+ * 2. Equation/mechanism atoms we can't parse → an on-brand schematic motif
+ * keyed to the atom type (lattice / orbital / wave / membrane / flow / tree).
+ * 3. Everything else (concept/result/abstract) → a constrained generative motif
+ * seeded by the atom's id + dependency-graph position (encodes something true:
+ * its leverage/shell, never random decoration).
  *
  * Runs identically in the browser (window.BucketArt) and at build time
  * (module.exports, used by build-art.mjs). No dependencies.
@@ -75,10 +75,10 @@
   }
 
   /* ============================================================
-   * EQUATION RECOGNITION → real plotted figures
-   * We only claim a curve when the equation's *form* is unambiguous.
-   * Each returns {f, label, domain, note} or null.
-   * ============================================================ */
+ * EQUATION RECOGNITION → real plotted figures
+ * We only claim a curve when the equation's *form* is unambiguous.
+ * Each returns {f, label, domain, note} or null.
+ * ============================================================ */
   function recognise(eq) {
     if (!eq) return null;
     var e = eq.replace(/\s+/g, "");
@@ -99,7 +99,7 @@
     if (/e\^\{?-.*\^2/.test(e) || /gauss|normal/.test(eq)) {
       return { kind: "gaussian", f: function (x) { var u = (x - 0.5) * 6; return Math.exp(-u * u / 2); }, label: "e^{−x²}", domain: [0, 1] };
     }
-    // power law / scaling: x^a , R^2 = N b^2 , \propto
+    // power law / scaling: x^a, R^2 = N b^2, \propto
     if (/\\langleR\^2|N\s*b\^2|\\propto|\^\{?[0-9.]+\}?/.test(e) && !/e\^/.test(e)) {
       return { kind: "power", f: function (x) { return Math.pow(x, 0.5); }, label: "x^{1/2}", domain: [0, 1] };
     }
@@ -111,7 +111,7 @@
     if (/=.*-T|=k|=m?x|\\propto x|=.*\\cdot/.test(e)) {
       return { kind: "linear", f: function (x) { return 0.85 - 0.7 * x; }, label: "linear", domain: [0, 1] };
     }
-    // log: \ln , \log , F=-kT ln Z
+    // log: \ln, \log, F=-kT ln Z
     if (/\\ln|\\log/.test(e)) {
       return { kind: "log", f: function (x) { return Math.max(0, 0.2 + 0.8 * Math.log(1 + 9 * x) / Math.log(10)); }, label: "ln", domain: [0, 1] };
     }
@@ -156,7 +156,7 @@
       axes() +
       '<path d="' + area + '" fill="' + accent + '" fill-opacity="0.10"/>' +
       '<path d="' + d + '" fill="none" stroke="' + accent + '" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>' +
-      // a single honest data tick at the curve's midpoint
+      // a single data tick at the curve's midpoint
       '<circle cx="' + fnum((PLOT.x0 + PLOT.x1) / 2) + '" cy="' + fnum(PLOT.y1 - (rec.f(0.5) - rec.f(1)) / ((rec.f(0) - rec.f(1)) || 1) * (PLOT.y1 - PLOT.y0)) +
       '" r="3" fill="' + accent + '"/>' +
       '<text x="' + (PLOT.x1 - 4) + '" y="' + (PLOT.y0 + 11) + '" text-anchor="end" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="' + PAL.inkFaint + '">' + esc(rec.label) + "</text>"
@@ -164,12 +164,12 @@
   }
 
   /* ============================================================
-   * SCHEMATIC MOTIFS (tier 2/3) — keyed to atom type, seeded by id.
-   * Each is a true *constrained* schematic: it encodes the atom's kind
-   * and dependency position, never decorative noise.
-   * ============================================================ */
+ * SCHEMATIC MOTIFS (tier 2/3), keyed to atom type, seeded by id.
+ * Each is a true *constrained* schematic: it encodes the atom's kind
+ * and dependency position, never decorative noise.
+ * ============================================================ */
   function motifLattice(rnd, accent) {
-    // crystal / lattice / structure — a regular grid of nodes with subtle jitter
+    // crystal / lattice / structure, a regular grid of nodes with subtle jitter
     var s = "";
     var cols = 7, rows = 3, cw = (PLOT.x1 - PLOT.x0) / (cols - 1), ch = (PLOT.y1 - PLOT.y0) / (rows - 1);
     for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
@@ -185,7 +185,7 @@
     return s;
   }
   function motifOrbital(rnd, accent) {
-    // atom / orbital / field — concentric ellipses + a nucleus + orbiting marks
+    // atom / orbital / field, concentric ellipses + a nucleus + orbiting marks
     var cx = (PLOT.x0 + PLOT.x1) / 2, cy = (PLOT.y0 + PLOT.y1) / 2;
     var s = "";
     for (var k = 1; k <= 3; k++) {
@@ -199,7 +199,7 @@
     return s;
   }
   function motifWave(rnd, accent) {
-    // wave / oscillation / signal — two phase-shifted sinusoids
+    // wave / oscillation / signal, two phase-shifted sinusoids
     var s = axes();
     for (var w = 0; w < 2; w++) {
       var ph = rnd() * Math.PI, amp = 0.34 - w * 0.12, freq = 3 + w;
@@ -215,7 +215,7 @@
     return s;
   }
   function motifMembrane(rnd, accent) {
-    // membrane / barrier / transport — a lipid bilayer with a channel
+    // membrane / barrier / transport, a lipid bilayer with a channel
     var midY = (PLOT.y0 + PLOT.y1) / 2, sp = 14, n = 13;
     var s = "";
     var gap = Math.floor(n * (0.35 + rnd() * 0.3));
@@ -233,7 +233,7 @@
     return s;
   }
   function motifFlow(rnd, accent) {
-    // process / method / transformation — a left→right pipeline of stages
+    // process / method / transformation, a left→right pipeline of stages
     var midY = (PLOT.y0 + PLOT.y1) / 2, n = 3 + Math.floor(rnd() * 2);
     var s = "", bw = (PLOT.x1 - PLOT.x0 - (n - 1) * 18) / n;
     for (var i = 0; i < n; i++) {
@@ -249,8 +249,8 @@
     return s;
   }
   function motifTree(rnd, accent, leverage) {
-    // theorem / result / definition — a branching dependency tree whose breadth
-    // encodes leverage (how much this atom unlocks). Honest: it depicts position
+    // theorem / result / definition, a branching dependency tree whose breadth
+    // encodes leverage (how much this atom enables).: it depicts position
     // in the knowledge lattice.
     var rootX = PLOT.x0 + 14, rootY = (PLOT.y0 + PLOT.y1) / 2;
     var branches = 2 + Math.round((leverage || 0.3) * 3);
@@ -285,13 +285,13 @@
     if (/lattice|crystal|structure|bond|polymer|network|grid|matrix/.test(hay)) return { svg: motifLattice(rnd, accent), alt: "a regular lattice of bonded nodes" };
     if (t === "method" || /process|pathway|cycle|algorithm|reaction|fold|synthesis|pipeline/.test(hay)) return { svg: motifFlow(rnd, accent), alt: "a left-to-right process pipeline" };
     if (t === "theorem" || t === "result" || t === "definition") return { svg: motifTree(rnd, accent, atom.leverage), alt: "a branching dependency tree" };
-    // default: dependency tree sized by leverage (always honest about graph position)
+    // default: dependency tree sized by leverage (always about graph position)
     return { svg: motifTree(rnd, accent, atom.leverage), alt: "a branching dependency motif keyed to this concept's leverage" };
   }
 
   /* ============================================================
-   * PUBLIC: build the full SVG string + alt text for an atom.
-   * ============================================================ */
+ * PUBLIC: build the full SVG string + alt text for an atom.
+ * ============================================================ */
   function altFor(atom, body) {
     return "Concept figure for " + (atom.title || atom.id) + " — " + body + ", drawn in the Bucket palette.";
   }
@@ -313,7 +313,7 @@
       altBody = sc.alt;
     }
 
-    // subtle deterministic corner motif (grain dots) for texture — never over the figure
+    // subtle deterministic corner motif (grain dots) for texture, never over the figure
     var grain = "";
     for (var i = 0; i < 5; i++) {
       grain += '<circle cx="' + fnum(8 + rnd() * 18) + '" cy="' + fnum(H - 8 - rnd() * 18) + '" r="' + fnum(0.6 + rnd()) + '" fill="' + PAL.inkFaint + '" fill-opacity="0.25"/>';

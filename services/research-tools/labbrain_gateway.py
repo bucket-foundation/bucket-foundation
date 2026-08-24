@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-research-tools gateway — FIRST SLICE: LabBrain
+research-tools gateway, FIRST SLICE: LabBrain
 ==============================================
 
 Implements the v1 research-tools job contract (see
@@ -9,29 +9,29 @@ single tool, LabBrain, so the full submit→poll→result→publish path can be 
 end-to-end before the other six tools and the real queue/worker plane land.
 
 It reuses the EXACT validation + subprocess logic from the existing all-tools
-wrapper (`biophysics-phd-review/tools_api/app.py:/labbrain/ask`) — CPU device,
-`build` then `ask` — but wraps it in a job table so the inline-vs-async lifecycle
+wrapper (`biophysics-phd-review/tools_api/app.py:/labbrain/ask`), CPU device,
+`build` then `ask`, but wraps it in a job table so the inline-vs-async lifecycle
 is real and matches the contract every other tool will use.
 
 Endpoints:
-  GET  /health                       -> { ok, tools }
-  POST /v1/labbrain/submit           -> { job_id, status, mode, ... }
-  GET  /v1/jobs/{job_id}             -> status envelope
-  GET  /v1/jobs/{job_id}/result      -> { render:"json", output:{author,question,answer}, ... }
+ GET /health -> { ok, tools }
+ POST /v1/labbrain/submit -> { job_id, status, mode... }
+ GET /v1/jobs/{job_id} -> status envelope
+ GET /v1/jobs/{job_id}/result -> { render:"json", output:{author,question,answer}... }
 
-Run (matches the Polingual API pattern — systemd --user on the box, nginx + TLS
+Run (matches the Polingual API pattern, systemd --user on the box, nginx + TLS
 in front at research-tools.agfarms.dev):
-  uvicorn labbrain_gateway:app --host 127.0.0.1 --port 8732
+ uvicorn labbrain_gateway:app --host 127.0.0.1 --port 8732
 
 TODO (full gateway, separate bead):
-  * Swap the in-memory JOBS dict for Redis/RQ + a Supabase `bucket.research_jobs`
-    mirror (durable job records).  The in-memory table here is intentionally
-    low-ceremony and proves the contract only.
-  * Fold the other six tools in (port the rest of tools_api/app.py into this
-    contract: proteinscout, screenserver, stabilitydesigner, trajmine,
-    patchseqml, cryotriage).  Heavy tools (trajmine/cryotriage) enqueue instead
-    of running inline.
-  * Object-store / Walrus artifact storage for large outputs.
+ * Swap the in-memory JOBS dict for Redis/RQ + a Supabase `bucket.research_jobs`
+ mirror (durable job records). The in-memory table here is intentionally
+ low-ceremony and proves the contract only.
+ * Fold the other six tools in (port the rest of tools_api/app.py into this
+ contract: proteinscout, screenserver, stabilitydesigner, trajmine,
+ patchseqml, cryotriage). Heavy tools (trajmine/cryotriage) enqueue instead
+ of running inline.
+ * Object-store / Walrus artifact storage for large outputs.
 """
 from __future__ import annotations
 
@@ -173,8 +173,8 @@ def _run_labbrain(job: Job, author: str, question: str) -> None:
             "provenance": [
                 {"action": "run", "tool": "labbrain", "at": _now(), "by": "tools-gateway/v1"}
             ],
-            # Tool output is a DERIVED analysis (downstream application), not a
-            # canon axiom — publishable, but tagged derived. See doc §5.
+            # Tool output is a DERIVED analysis (downstream application) sitting
+            # below canon axioms: publishable, but tagged derived. See doc §5.
             "canon_candidate": True,
             "canon_tier": "derived",
         }
@@ -226,8 +226,8 @@ def submit(r: LabBrainSubmit) -> dict:
         "status": job.status,
         "mode": "inline" if not t.is_alive() else "async",
         "submitted_at": job.submitted_at,
-        # price block travels from day one (zeroed); metering seam is in the
-        # Next proxy, not here — the gateway stays payment-agnostic.
+        # price block travels from day one (zeroed); metering seam lives in the
+        # Next proxy, so the gateway stays payment-agnostic.
         "price": {"tier": "ask", "usd": 0.0, "metered": False},
     }
     job.mode = resp["mode"]

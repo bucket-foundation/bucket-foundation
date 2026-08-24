@@ -1,5 +1,5 @@
 /**
- * grants-gateway — shared types
+ * grants-gateway, shared types
  *
  * The feed402 envelope/citation/manifest types are mirrored from
  * ../../../feed402/types.ts (kept local so this scaffold is self-contained;
@@ -61,7 +61,7 @@ export interface Receipt {
 }
 
 /**
- * Synthesis provenance — emitted on `/grants/insight` envelopes when a real
+ * Synthesis provenance, emitted on `/grants/insight` envelopes when a real
  * model was called. Sibling to feed402 §3.2 retrieval provenance, but at the
  * envelope level so a downstream agent can audit what model produced the
  * synthesis (vs which corpus chunk was retrieved).
@@ -112,7 +112,7 @@ export interface ErrorBody {
 /**
  * A single grant opportunity record. Schema is intended to be a superset of
  * grants.gov, NIH RePORTER, NSF awards, and foundation 990 PF "Grants Paid"
- * — fields nullable where any one source doesn't carry them.
+ *, fields nullable where any one source doesn't carry them.
  */
 export interface Grant {
   /** Stable id, e.g. "grants-gov:HHS-2026-NIH-AG-001" or "irs-990:13-1837418:2024:0042". */
@@ -127,7 +127,7 @@ export interface Grant {
   summary: string;
   /** Eligibility free-text (e.g. "501(c)(3) public charities; nonprofits with <$5M budget"). */
   eligibility: string;
-  /** Topic tags — drives /grants/query?topic=. */
+  /** Topic tags, drives /grants/query?topic=. */
   topics: string[];
   /** Award ceiling in USD. Null when funder doesn't publish one. */
   amount_max_usd: number | null;
@@ -137,7 +137,7 @@ export interface Grant {
   deadline: string | null;
   /** True when funder explicitly takes applications year-round. */
   rolling: boolean;
-  /** Public listing URL — the citation envelope's canonical_url. */
+  /** Public listing URL, the citation envelope's canonical_url. */
   canonical_url: string;
   /** When this row was last refreshed from upstream. */
   last_seen_at: string;

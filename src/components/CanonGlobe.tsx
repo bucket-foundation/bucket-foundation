@@ -1,6 +1,6 @@
 "use client";
 
-// CanonGlobe — interactive armillary. Extends the Globe.tsx design language
+// CanonGlobe, interactive armillary. Extends the Globe.tsx design language
 // (basalt sphere, gilt meridians, eight ports). Each port maps to a canon
 // branch; port intensity reflects branch status.
 

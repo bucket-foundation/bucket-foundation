@@ -1,15 +1,15 @@
 /**
- * bucket.foundation — /api/research/trajmine
+ * bucket.foundation, /api/research/trajmine
  * ------------------------------------------
  * Same-origin proxy for the TrajMine research tool (MD trajectory mining).
- * GPU/long tool — runs in DEMO mode on the gateway (no GPU on the box). Drop-in
+ * GPU/long tool, runs in DEMO mode on the gateway (no GPU on the box). Drop-in
  * copy of the LabBrain proxy (see /api/research/labbrain/route.ts and docs §2.5).
  *
- *   POST /api/research/trajmine                   → gateway POST /v1/trajmine/submit
- *        body { demo }                             ("md" | "static")
- *   GET  ?job=<id> / ?job=<id>&result=1           → status / result (render: "html")
+ * POST /api/research/trajmine → gateway POST /v1/trajmine/submit
+ * body { demo } ("md" | "static")
+ * GET ?job=<id> / ?job=<id>&result=1 → status / result (render: "html")
  *
- * Env (server-only): TOOLS_GATEWAY_URL  default "https://research-tools.agfarms.dev"
+ * Env (server-only): TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  * TODO(deploy): set TOOLS_GATEWAY_URL in Vercel + K3s secret bucket/tools-gateway.
  * TODO(deploy): wire a real GPU MD worker so trajmine accepts uploaded trajectories.
  */
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
   }
   const demo = (body.demo ?? "md").trim() || "md";
 
-  // [METERING SEAM — TODO, off in v1] — see /api/research/labbrain/route.ts.
+  // [METERING SEAM, TODO, off in v1], see /api/research/labbrain/route.ts.
 
   let resp: Response;
   try {

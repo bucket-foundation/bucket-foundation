@@ -6,7 +6,7 @@ export const metadata = toolMetadata("spikefeatures");
 const _jsonld = toolJsonLd("spikefeatures");
 import SpikeFeaturesClient from "./SpikeFeaturesClient";
 
-// SpikeFeatures run page — spike detection + waveform feature extraction.
+// SpikeFeatures run page, spike detection + waveform feature extraction.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

@@ -3,7 +3,7 @@
 *Auto-generated synthesis · 2026-05-11T21:22:36.*
 
 
-This is the algorithm-discovered structure of canon — the multi-branch primitives that emerged when we embedded every claim card and let cosine similarity tell us which different branches were independently arriving at the same truth.
+This is the algorithm-discovered structure of canon, the multi-branch primitives that emerged when we embedded every claim card and let cosine similarity tell us which different branches were independently arriving at the same truth.
 
 
 ## Method
@@ -11,7 +11,7 @@ This is the algorithm-discovered structure of canon — the multi-branch primiti
 
 1. **599 curated claim cards** across 9 canon branches were each embedded with `nomic-embed-text` (768-dim, L2-normalized).
 
-2. **Cross-branch nearest neighbors** were ranked by *non-obvious score* = `cosine × (1 − lexical-Jaccard) × (1 + 0.3 × branch-distance)`. This favors pairs that are semantically close while being lexically distant AND living in branches that are far apart in the canon ontology — i.e., the non-obvious bridges.
+2. **Cross-branch nearest neighbors** were ranked by *non-obvious score* = `cosine × (1 − lexical-Jaccard) × (1 + 0.3 × branch-distance)`. This favors pairs that are semantically close while being lexically distant AND living in branches that are far apart in the canon ontology, i.e., the non-obvious bridges.
 
 3. **UMAP→HDBSCAN clustering** on the 768-d embedding space found 34 clusters; 27 spanned ≥2 branches, 17 spanned ≥3 branches. The ≥3-branch clusters are the **multi-branch primitives**.
 
@@ -47,7 +47,7 @@ No keyword matching. No manual labeling. The structure emerged from semantic dis
 | 08-deep-history | 42 |
 | 09-sacred-texts | 9 |
 
-## Detected primitives (ranked)
+## Detected primitives
 
 
 | # | Score | Branches | Name | Canonical form |
@@ -62,7 +62,7 @@ No keyword matching. No manual labeling. The structure emerged from semantic dis
 | 8 | 5.57 | 3 | [second law of thermodynamics](bucket-canon/_bridges/detected/08-second-law-of-thermodynamics/README.md) | the total entropy of an isolated system always increases over time. |
 | 9 | 5.14 | 3 | [Intrinsic Pressure](bucket-canon/_bridges/detected/09-intrinsic-pressure/README.md) | The universe exhibits a pervasive, intrinsic pressure driving objects towards their centers. |
 | 10 | 5.11 | 3 | [photoelectric effect](bucket-canon/_bridges/detected/10-photoelectric-effect/README.md) | The photoelectric effect is the process by which light energy is absorbed and converted into chemical energy. |
-| 11 | 5.06 | 4 | [Nonlinear Dynamical Systems](bucket-canon/_bridges/detected/11-nonlinear-dynamical-systems/README.md) | A system's behavior is highly sensitive to initial conditions and small changes, leading to unpredictable outcomes. |
+| 11 | 5.06 | 4 | [Nonlinear Dynamical Systems](bucket-canon/_bridges/detected/11-nonlinear-dynamical-systems/README.md) | A system's behavior is sensitive to initial conditions and small changes, leading to unpredictable outcomes. |
 | 12 | 4.76 | 3 | [constant speed of light](bucket-canon/_bridges/detected/12-constant-speed-of-light/README.md) | The speed of light is always constant. |
 | 13 | 4.61 | 3 | [Global Causality](bucket-canon/_bridges/detected/13-global-causality/README.md) | Every event has a cause, and change occurs instantly everywhere. |
 | 14 | 4.60 | 3 | [Decentralized Operational Law](bucket-canon/_bridges/detected/14-decentralized-operational-law/README.md) | Operational laws and principles are decentralized. |
@@ -73,7 +73,7 @@ No keyword matching. No manual labeling. The structure emerged from semantic dis
 ## Top-10 detailed cards
 
 
-### Non-Symmetry Principle *(score 10.00, 5 branches, 27 claims)*
+### Non-Symmetry Principle **
 
 
 **Spans**: 01-mathematics · 02-physics · 05-biophysics · 07-mind · 09-sacred-texts
@@ -88,7 +88,7 @@ The principle that any physical system or theory must be symmetric under non-tri
 *Supporting authors*: Einstein, Godel, Iron, Jung
 
 
-### Multivalence *(score 9.58, 5 branches, 17 claims)*
+### Multivalence **
 
 
 **Spans**: 01-mathematics · 02-physics · 06-cosmology · 07-mind · 09-sacred-texts
@@ -103,7 +103,7 @@ The concept of multiple meanings or interpretations shared across different bran
 *Supporting authors*: Heisenberg, Castrip, Vedanta
 
 
-### Subjective Truth *(score 7.52, 5 branches, 10 claims)*
+### Subjective Truth **
 
 
 **Spans**: 02-physics · 04-information · 05-biophysics · 06-cosmology · 07-mind
@@ -118,7 +118,7 @@ The truth is not fixed or absolute, but rather subject to change and interpretat
 *Supporting authors*: Einstein, Shannon, Hawking
 
 
-### Wound Healing *(score 6.78, 5 branches, 8 claims)*
+### Wound Healing **
 
 
 **Spans**: 01-mathematics · 05-biophysics · 07-mind · 08-deep-history · 09-sacred-texts
@@ -133,7 +133,7 @@ The process of healing from injury or trauma is a natural and essential part of 
 *Supporting authors*: Becker, Aristotle
 
 
-### Cold Increases Energy *(score 6.35, 3 branches, 26 claims)*
+### Cold Increases Energy **
 
 
 **Spans**: 02-physics · 05-biophysics · 09-sacred-texts
@@ -148,7 +148,7 @@ The principle that cold increases the amount of energy available in a system, wh
 *Supporting authors*: Rick, Becker
 
 
-### Demonstration *(score 6.05, 5 branches, 6 claims)*
+### Demonstration **
 
 
 **Spans**: 02-physics · 03-chemistry · 05-biophysics · 06-cosmology · 07-mind
@@ -163,7 +163,7 @@ The act of showing someone how to arrive at a conclusion through step-by-step ex
 *Supporting authors*: Feynman, Schrodinger, Becker, Kagan, Hegel
 
 
-### Extracurricular Learning *(score 6.05, 4 branches, 9 claims)*
+### Extracurricular Learning **
 
 
 **Spans**: 01-mathematics · 05-biophysics · 06-cosmology · 07-mind
@@ -178,7 +178,7 @@ Learning outside of formal education is a common thread across various branches,
 *Supporting authors*: <name>, <name>, <name>
 
 
-### second law of thermodynamics *(score 5.57, 3 branches, 13 claims)*
+### second law of thermodynamics **
 
 
 **Spans**: 02-physics · 05-biophysics · 07-mind
@@ -193,7 +193,7 @@ the total entropy of an isolated system always increases over time, describing t
 *Supporting authors*: William Thompson, Laplace, Kant
 
 
-### Intrinsic Pressure *(score 5.14, 3 branches, 12 claims)*
+### Intrinsic Pressure **
 
 
 **Spans**: 02-physics · 06-cosmology · 09-sacred-texts
@@ -208,7 +208,7 @@ A fundamental force driving objects towards their centers, manifesting as attrac
 *Supporting authors*: Albert Einstein, Stephen Hawking, Adi Shankaracharya
 
 
-### photoelectric effect *(score 5.11, 3 branches, 11 claims)*
+### photoelectric effect **
 
 
 **Spans**: 02-physics · 03-chemistry · 05-biophysics

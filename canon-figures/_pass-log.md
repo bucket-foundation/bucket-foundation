@@ -1,16 +1,16 @@
-# Pass Log — canon-figures/
+# Pass Log, canon-figures/
 
-> Each pass is a discrete, dated, intentional addition to the contributor index. Passes are not "edits in general" — they are batched, branch-balanced commits that move the index forward as a whole. The log exists so that future contributors can see what each pass *intended*, not just what was added.
+> Each pass is a discrete, dated, intentional addition to the contributor index. Passes are not "edits in general", they are batched, branch-balanced commits that move the index forward as a whole. The log exists so that future contributors can see what each pass *intended*, not just what was added.
 
 ---
 
-## Pass 1 — Seed pass
+## Pass 1, Seed pass
 
 **Date:** 2026-04-14
 **Author:** Bucket Foundation, founding maintainer
 **Slogan being honored:** *build history* (the original bucket slogan, predating *bucket is the new renaissance*)
 
-**Intent.** Establish the contributor index across all ten branches with enough depth that the *shape* of canon is visible — what bucket means by "foundation-tier," what counts and what doesn't, which traditions feed in. Not exhaustive. Not balanced across branches by raw count. The point is to make the editorial standard legible by example.
+**Intent.** Establish the contributor index across all ten branches with enough depth that the *shape* of canon is visible, what bucket means by "foundation-tier," what counts and what doesn't, which traditions feed in. Not exhaustive. Not balanced across branches by raw count. The point is to make the editorial standard legible by example.
 
 **What was added (76 figures total):**
 
@@ -29,23 +29,23 @@
 
 **Editorial decisions made in this pass:**
 
-1. **Three expansion branches (08, 09, 10) added alongside the strict canon (01–07).** `PROTOCOL.md` defines the strict canon as foundations-only across seven branches. Tradition, art, and earth sciences are added here as *contributor-index* branches under the *build history* slogan, not as strict-canon branches. If a future canon council folds them in, the branch labels survive as sub-categorization. If they stay separate, this folder doubles as a sister-canon. Both readings are intended.
+1. **Three expansion branches (08, 09, 10) added alongside the strict canon (01-07).** `PROTOCOL.md` defines the strict canon as foundations-only across seven branches. Tradition, art, and earth sciences are added here as *contributor-index* branches under the *build history* slogan rather than as strict-canon branches. If a future canon council folds them in, the branch labels survive as sub-categorization. If they stay separate, this folder doubles as a sister-canon. Both readings are intended.
 
-2. **Foundation-tier discipline enforced even in the expansion branches.** Tradition does not include "founders of X popular religious movement"; it includes figures whose *foundational reasoning structures* shaped how a tradition reasons about its own foundations. Art does not include "best-of" lists; it includes figures whose work *founded a form* (epic, lyric, regulated verse, vernacular literature, equal-tempered counterpoint, ukiyo-e, fictional metafiction). Earth sciences includes the figures who *first saw* deep time, plate tectonics, orbital climate forcing, the structure of the seafloor — not refiners of measurements.
+2. **Foundation-tier discipline enforced even in the expansion branches.** Tradition does not include "founders of X popular religious movement"; it includes figures whose *foundational reasoning structures* shaped how a tradition reasons about its own foundations. Art does not include "best-of" lists; it includes figures whose work *founded a form* (epic, lyric, regulated verse, vernacular literature, equal-tempered counterpoint, ukiyo-e, fictional metafiction). Earth sciences includes the figures who *first saw* deep time, plate tectonics, orbital climate forcing, the structure of the seafloor, ahead of refiners of measurements.
 
 3. **Cross-branch tagging.** Several figures legitimately belong to more than one branch (Newton, Descartes, Aristotle, Kant, Maxwell, Einstein, Noether, von Neumann, Marr). The card lives in the *primary* branch; `cross_branches` lists the others. `figures.json` is the source of truth for the cross-branch graph.
 
-4. **Posthumous / delayed-canon entries flagged explicitly.** Mendel, Wegener, Milanković, Marie Tharp, Galois, Boltzmann, Cantor — figures whose canon status was established only after their death, sometimes by decades. The pattern is itself instructive and is something future passes should track.
+4. **Posthumous / delayed-canon entries flagged explicitly.** Mendel, Wegener, Milanković, Marie Tharp, Galois, Boltzmann, Cantor, figures whose canon status was established only after their death, sometimes by decades. The pattern is itself instructive and is something future passes should track.
 
-5. **Diversity is a real editorial constraint, not a footnote.** Pass 1 includes figures from Greek, Hellenistic, Roman, Arab, Persian, Indian, Chinese, Japanese, European (multiple traditions), Russian, Belgian, Hungarian, Serbian, Argentine, and American contexts. Eight women (Sappho, du Châtelet, Curie, Noether, Franklin, Margulis, Rubin, Tharp). This is *visibly partial* and pass 2 should correct the gaps listed in `CONTRIBUTORS.md` § Coverage notes.
+5. **Diversity is a real editorial constraint.** Pass 1 includes figures from Greek, Hellenistic, Roman, Arab, Persian, Indian, Chinese, Japanese, European (multiple traditions), Russian, Belgian, Hungarian, Serbian, Argentine, and American contexts. Eight women (Sappho, du Châtelet, Curie, Noether, Franklin, Margulis, Rubin, Tharp). This is *visibly partial* and pass 2 should correct the gaps listed in `CONTRIBUTORS.md` § Coverage notes.
 
-6. **No marketing voice. No anachronisms. No hagiography.** Each card states what the figure actually did, in the vocabulary of the field, with sources that exist. Disagreements (authorship of Homer, dating of Buddha, mechanism gap in Wegener, the `Tahāfut` debate) are flagged in a `Disputed` field rather than smoothed over.
+6. **No marketing voice. No anachronisms. No hagiography.** Each card states what the figure did, in the vocabulary of the field, with sources that exist. Disagreements (authorship of Homer, dating of Buddha, mechanism gap in Wegener, the `Tahāfut` debate) are flagged in a `Disputed` field rather than smoothed over.
 
 **What pass 1 deliberately did NOT include** (and why):
 
-- **Living figures other than Chomsky.** Living figures' contributions are still being evaluated by their fields. Including too many of them would tilt the index toward present-day reputation effects. Pass 2 may add a small number of clearly-canonized living figures.
-- **20th-century giants whose foundation-tier status is still settling.** No Feynman, no Witten, no Hawking, no Penrose. Their work is unquestionably significant; whether it is *foundation-tier in the bucket sense* is a judgment that should be made deliberately, not by default.
-- **Engineering and applied-science founders.** Tesla, Edison, the Wright brothers, Tim Berners-Lee, von Braun. Pass 2 may add a small "applied/engineering" sub-branch under `04-information` or as a separate branch — TBD.
+- **Living figures other than Chomsky.** Living figures' contributions are still being evaluated by their fields. Including too many of them would tilt the index toward present-day reputation effects. Pass 2 may add a small number of-canonized living figures.
+- **20th-century giants whose foundation-tier status is still settling.** No Feynman, no Witten, no Hawking, no Penrose. Their work is unquestionably significant; whether it is *foundation-tier in the bucket sense* is a judgment that should be made deliberately.
+- **Engineering and applied-science founders.** Tesla, Edison, the Wright brothers, Tim Berners-Lee, von Braun. Pass 2 may add a small "applied/engineering" sub-branch under `04-information` or as a separate branch, TBD.
 - **Economics, anthropology, social science.** Smith, Marx, Weber, Durkheim, Lévi-Strauss. These are real foundations, but they sit in disciplines that bucket has not yet decided whether to include. Defer to a future pass with an explicit branch decision.
 
 **Open questions for pass 2:**
@@ -53,16 +53,16 @@
 - Do the expansion branches (`08-tradition`, `09-art`, `10-earth`) get folded into the strict canon, kept as a sister-canon, or split off into their own repo? The answer should be made by the canon council (not yet formed) or by the founding maintainer with explicit reasoning, and recorded here.
 - Add Hypatia, Ada Lovelace, Lise Meitner, Chien-Shiung Wu, Henrietta Leavitt, Cecilia Payne-Gaposchkin, Dorothy Hodgkin, Barbara McClintock at minimum.
 - Add Ramanujan, Nāgārjuna, Avicenna, al-Bīrūnī, Alhazen-as-mathematician (currently filed under physics), Sushruta, Charaka, Madhava of Sangamagrama.
-- Add a serious treatment of the African scholarly tradition (Timbuktu, Ethiopia, Yoruba philosophy) — currently absent and the most glaring gap.
+- Add a serious treatment of the African scholarly tradition (Timbuktu, Ethiopia, Yoruba philosophy), currently absent and the most glaring gap.
 - Decide whether Mesoamerican astronomy/calendrics gets its own card under `06-cosmology`.
 
 ---
 
-## Pass 2 — Bioelectric / deep-history / polyglot pass
+## Pass 2: Bioelectric / deep-history / polyglot pass
 
 **Date:** 2026-04-23
 **Author:** Data pillar (Nucleus agent), on beads `bkt-research-03`, `bkt-research-10`, `bkt-research-11`
-**Slogan being honored:** *build history* (continued from pass 1) — this pass widens the biophysics branch toward its contested / bioelectric lineage, and adds two derived registers (`_polymaths.md`, `_polyglots.md`) to make cross-branch structure legible.
+**Slogan being honored:** *build history* (continued from pass 1), this pass widens the biophysics branch toward its contested / bioelectric lineage, and adds two derived registers (`_polymaths.md`, `_polyglots.md`) to make cross-branch structure legible.
 
 **Intent.** Three parallel aims: (1) close the pass-1 biophysics gap around bioelectric and structured-water lineages (Burr → Becker → Marino → Levin; Ling → Pollack; plus Szent-Györgyi, Popp, Wallace, Lane, Solís-Herrera, Khavinson); (2) add a deep-history cluster under `10-earth` around weathering-geology and Neolithic chronology (Schmidt, Schoch, West, Carlson) with explicit contested-status flags; (3) extract the polymath and polyglot structure from the index as derived registers rather than new branches.
 
@@ -78,27 +78,27 @@
 
 **New register files:**
 
-- `_polymaths.md` — derived view over `figures.json` for figures with load-bearing contribution in ≥3 branches. 13 entries in the register table (12 existing + 1 new via Hildegard); flags for pass-3 additions (Leibniz, Avicenna).
-- `_polyglots.md` — editorially-curated register of figures whose multilingualism was the epistemic instrument for the canonical work. 4 canon-tier rows (Champollion, Ventris, Jones, Tolkien) + 4 landscape rows (Mezzofanti, Schliemann, Burton, Lomb, with explicit "not canon-tier, listed for completeness" framing).
+- `_polymaths.md`, derived view over `figures.json` for figures with load-bearing contribution in ≥3 branches. 13 entries in the register table (12 existing + 1 new via Hildegard); flags for pass-3 additions (Leibniz, Avicenna).
+- `_polyglots.md`, editorially-curated register of figures whose multilingualism was the epistemic instrument for the canonical work. 4 canon-tier rows (Champollion, Ventris, Jones, Tolkien) + 4 landscape rows (Mezzofanti, Schliemann, Burton, Lomb, with explicit "not canon-tier, listed for completeness" framing).
 
 **Editorial decisions made in this pass:**
 
-1. **Contested contributions are included *with* the dispute, not excluded.** Solís-Herrera, Khavinson, Schoch, Carlson are flagged `contested` in tags and have an explicit `Disputed.` paragraph. The schema requires this, and the bioelectric / structured-water / deep-history lineages cannot be honestly indexed without it. The editorial rule: if the underlying *phenomenon or observation* is reproducible, the figure can enter the index with the interpretation marked as disputed. If only the interpretation exists, they stay out or go to a landscape note.
-2. **Graham Hancock: excluded.** Hancock is a landscape-level synthesizer (media popularizer), not a field researcher; he does not meet even the Schoch / Carlson bar (field-documented geological observation as the foundation contribution). If a future pass adds a "media/popularization" sub-track, he's a candidate there.
+1. **Contested contributions are included *with* the dispute.** Solís-Herrera, Khavinson, Schoch, Carlson are flagged `contested` in tags and have an explicit `Disputed.` paragraph. The schema requires this, and the bioelectric / structured-water / deep-history lineages cannot be indexed without it. The editorial rule: if the underlying *phenomenon or observation* is reproducible, the figure can enter the index with the interpretation marked as disputed. If only the interpretation exists, they stay out or go to a landscape note.
+2. **Graham Hancock: excluded.** Hancock is a landscape-level synthesizer (media popularizer) rather than a field researcher; he does not meet even the Schoch / Carlson bar (field-documented geological observation as the foundation contribution). If a future pass adds a "media/popularization" sub-track, he's a candidate there.
 3. **Derek Parfit: excluded.** Ethics / philosophy of personal identity is real foundational philosophy, but it sits further from the foundations-only canon spine defined in `PROTOCOL.md` than pass 2 is willing to rule on. Deferred to pass 3 with an explicit branch-scope decision.
 4. **Living-figure bar enforced.** Every living-figure card (Marino, Pollack, Levin, Wallace, Lane, Solís-Herrera, Khavinson, Schoch, Carlson) explicitly names a *single* contribution and refuses career summary, as the schema requires. Cards are tagged `living-figure` for filterability.
-5. **Polymath register is a view, not a branch.** We specifically chose not to make `polymath` a new branch in `figures.json`; it's a derived index regenerable from the data. Same for polyglots. This keeps the branch set stable at 10.
+5. **Polymath register is a view over the data.** We chose not to make `polymath` a new branch in `figures.json`; it's a derived index regenerable from the data. Same for polyglots. This keeps the branch set stable at 10.
 6. **`canon_contribution` / `why_canon` / `downstream` / `disputed` fields in `figures.json`:** pass-1 entries do not carry these as JSON fields (the prose lives in the markdown cards). Pass-2 JSON entries follow the same convention for consistency; the markdown cards carry the full prose per schema.
 
 **What pass 2 deliberately did NOT include** (and why):
 
-- **Graham Hancock** — landscape-only popularizer (see above).
-- **Derek Parfit** — branch-scope decision deferred.
-- **Hypatia, Ada Lovelace, Lise Meitner, Chien-Shiung Wu, Henrietta Leavitt, Cecilia Payne-Gaposchkin, Dorothy Hodgkin, Barbara McClintock** — carried forward from pass-1 open questions; pass 2 ran out of scope, still owed in pass 3.
-- **Ramanujan, Nāgārjuna, Avicenna, al-Bīrūnī, Sushruta, Charaka, Madhava of Sangamagrama** — still owed from pass 1, deferred to pass 3.
-- **African scholarly traditions (Timbuktu, Ethiopia, Yoruba), Mesoamerican astronomy** — still the most glaring gap, deferred.
-- **Leibniz** — noted as priority pass-3 polymath addition.
-- **Rawlinson (Behistun)** — noted for pass-3 polyglot canon row.
+- **Graham Hancock**, landscape-only popularizer (see above).
+- **Derek Parfit**, branch-scope decision deferred.
+- **Hypatia, Ada Lovelace, Lise Meitner, Chien-Shiung Wu, Henrietta Leavitt, Cecilia Payne-Gaposchkin, Dorothy Hodgkin, Barbara McClintock**, carried forward from pass-1 open questions; pass 2 ran out of scope, still owed in pass 3.
+- **Ramanujan, Nāgārjuna, Avicenna, al-Bīrūnī, Sushruta, Charaka, Madhava of Sangamagrama**, still owed from pass 1, deferred to pass 3.
+- **African scholarly traditions (Timbuktu, Ethiopia, Yoruba), Mesoamerican astronomy**, still the most glaring gap, deferred.
+- **Leibniz**, noted as priority pass-3 polymath addition.
+- **Rawlinson (Behistun)**, noted for pass-3 polyglot canon row.
 
 **Open questions for pass 3:**
 
@@ -108,6 +108,6 @@
 
 ---
 
-## Pass 3 — *(not yet run)*
+## Pass 3, **
 
 When pass 3 is run, append a new heading here with the same structure: date, author, intent, what was added (table), editorial decisions, what was deliberately omitted, open questions for pass 4.

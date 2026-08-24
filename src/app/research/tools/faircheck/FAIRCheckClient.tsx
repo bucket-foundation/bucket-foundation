@@ -1,6 +1,6 @@
 "use client";
 
-// FAIRCheck client island — FAIR (Findable/Accessible/Interoperable/Reusable)
+// FAIRCheck client island, FAIR (Findable/Accessible/Interoperable/Reusable)
 // rubric over a dataset metadata record. Render is "json". `record` is a JSON
 // object/string of metadata fields, or "demo".
 

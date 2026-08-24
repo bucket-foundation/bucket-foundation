@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/cellsegtrack
+ * bucket.foundation, /api/research/cellsegtrack
  * -------------------------------------------
  * Same-origin proxy for CellSegTrack. Segment cells/nuclei. Cellpose on CPU when installed, else a real classical Otsu + distance-transform watershed pipeline, with per-object metrics. Backend logic is REAL (tools_imaging.py:run_cell_seg).
  *
  * POST body { image, min_distance?, sigma? }; `image` is a 2-D array or "demo".
- *   GET  /api/research/cellsegtrack?job=<id>[&result=1] → status / result
+ * GET /api/research/cellsegtrack?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

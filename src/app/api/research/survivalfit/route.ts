@@ -1,12 +1,12 @@
 /**
- * bucket.foundation — /api/research/survivalfit
+ * bucket.foundation, /api/research/survivalfit
  * -------------------------------------------------
  * Same-origin proxy for SurvivalFit (biomed + econ-social field tool). Exact
  * Kaplan-Meier survival estimate (+ Greenwood SE + median) and the Mantel-Cox
  * log-rank test between two groups. Backend is REAL (tools_survival.py).
  *
  * POST body { durations, events?, groups? } | { demo: true }
- *   GET  /api/research/survivalfit?job=<id>[&result=1] → status / result
+ * GET /api/research/survivalfit?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

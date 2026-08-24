@@ -6,7 +6,7 @@ export const metadata = toolMetadata("seqalign");
 const _jsonld = toolJsonLd("seqalign");
 import SeqAlignClient from "./SeqAlignClient";
 
-// SeqAlign run page — server shell framing the interactive client island.
+// SeqAlign run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("seqalign");
   return (

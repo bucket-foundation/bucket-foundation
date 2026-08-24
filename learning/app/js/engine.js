@@ -1,7 +1,7 @@
-/* Bucket Academy — learning engine.
+/* Bucket Academy, learning engine.
  * Loads the atom corpus, computes the "nucleus" leverage score (DECISIONS.md#9),
  * generates the daily ROUTE (a leverage-weighted walk over the learnable frontier,
- * never teaching an atom before its prerequisites — Knowledge Space Theory, #10),
+ * never teaching an atom before its prerequisites, Knowledge Space Theory, #10),
  * tracks per-user FSRS state + mastery, and persists to localStorage.
  */
 (function (global) {
@@ -50,7 +50,7 @@
   // WITHOUT reloading the corpus. Used by the multi-course Languages mode so each
   // target language (e.g. "lang:es", "lang:ja") keeps fully independent FSRS state
   // (cards, proficiency, xp, streak) while sharing the one in-memory deck. The atoms,
-  // leverage, and encompassing map are untouched — only `lsKey` + `state` change.
+  // leverage, and encompassing map are untouched, only `lsKey` + `state` change.
   // Saves the current state first so a switch never drops in-flight progress.
   Engine.prototype.useNamespace = function (keyOverride) {
     if (!keyOverride) return this;
@@ -65,7 +65,7 @@
   // bkt-h9k: peek at a namespace's persisted stats WITHOUT switching the live engine.
   // Returns the raw saved state object (or null) for the given keyOverride. Used by the
   // "My Languages" view to show per-language streak/xp/progress for courses that aren't
-  // currently active. Pure read — never mutates lsKey/state.
+  // currently active. Pure read, never mutates lsKey/state.
   Engine.prototype.peekNamespace = function (keyOverride) {
     if (!keyOverride) return null;
     try { return JSON.parse(localStorage.getItem(LS_BASE + "/" + keyOverride)); }
@@ -80,7 +80,7 @@
       : {};
   };
 
-  // Public: encompassing edges for an atom — [{id, weight, dist}], weight desc.
+  // Public: encompassing edges for an atom, [{id, weight, dist}], weight desc.
   Engine.prototype.encompassingFor = function (id) {
     return this.encompassing[id] || [];
   };
@@ -138,7 +138,7 @@
     s.stats = s.stats || { xp: 0, streak: 0, lastStudyDay: null, history: {} };
     s.cards = s.cards || {};
     // bkt-uzx state migration: pre-P1 state has no `prof` map. Defaulting to {}
-    // is sufficient — proficiency back-fills lazily from each card's existing
+    // is sufficient, proficiency back-fills lazily from each card's existing
     // FSRS history on the next graded review, and masteryDetail() degrades to a
     // retention-only signal until then. Old cards keep working untouched.
     s.prof = s.prof || {};
@@ -169,7 +169,7 @@
   // bkt-uzx: mastery = proficiency^alpha * retention^beta (fused, 0..1).
   // BACK-COMPAT: still returns a single 0..1 number, so every existing caller
   // (app.js pickLevel, summary, the map shading) keeps working unchanged.
-  // Honest fallbacks: if adaptive.js is absent, or a card has no proficiency
+  // fallbacks: if adaptive.js is absent, or a card has no proficiency
   // evidence yet, we fall back to the legacy stability proxy (never crash, never
   // overclaim). masteryDetail(id) exposes the richer object.
   Engine.prototype.masteryFor = function (id, now) {
@@ -183,9 +183,9 @@
     return AD.masteryDetail(prof, this.fsrs, card, now || Date.now()).mastery;
   };
 
-  // bkt-uzx: the rich, HONEST mastery object for the profile + future UI.
+  // bkt-uzx: the rich, mastery object for the profile + future UI.
   // { mastery, proficiency, retention, retrievabilityNow, daysSinceReview,
-  //   theta, attempts, confidence(emerging|developing|established), confidenceNote }
+  // theta, attempts, confidence(emerging|developing|established), confidenceNote }
   // Returns null for an un-started concept.
   Engine.prototype.masteryDetail = function (id, now) {
     const card = this.state.cards[id];
@@ -203,7 +203,7 @@
   };
 
   /* The daily ROUTE: due reviews first (most overdue first), then up to newPerDay
-   * frontier atoms (prereqs satisfied, not yet introduced) ranked by leverage. */
+ * frontier atoms (prereqs satisfied, not yet introduced) ranked by leverage. */
   Engine.prototype.route = function (now) {
     now = now || Date.now();
     const due = [];
@@ -252,7 +252,7 @@
       const s = score == null ? (rating > 1 ? 1 : 0) : score;
       this.state.prof[id] = AD.updateProficiency(this.state.prof[id], level || "recall", s);
 
-      // bkt-buk: FIRe — a successful review (>= Good) credits a small, bounded
+      // bkt-buk: FIRe, a successful review (>= Good) credits a small, bounded
       // fraction of a repetition to the encompassed prerequisites, reducing
       // their future review burden. Never inflates mastery (bounded + gated).
       if (rating >= AD.ADAPTIVE.FIRE_MIN_RATING) {
@@ -275,7 +275,7 @@
   };
 
   // bkt-buk: apply Fractional Implicit Repetition for a successful review of
-  // `triggerId`. Boosts prerequisite stability (bounded) and pushes their due
+  // `triggerId`. Increases prerequisite stability (bounded) and pushes their due
   // date out (never in), scaled by encompassing weight. Idempotent-ish: only
   // pushes the schedule forward and gates on current retrievability, so it can't
   // be farmed by re-reviewing one advanced card.
@@ -321,7 +321,8 @@
       if (c) {
         introduced++;
         // Use the fused mastery (bkt-uzx) so the home-screen "mastered" count is
-        // consistent with masteryFor()/the profile — not the raw stability proxy.
+        // consistent with masteryFor()/the profile. The raw stability proxy
+        // is deliberately avoided here.
         if (this.masteryFor(a.id, now) >= 0.7) mastered++;
         if (c.due != null && c.due <= now) dueCount++;
       }

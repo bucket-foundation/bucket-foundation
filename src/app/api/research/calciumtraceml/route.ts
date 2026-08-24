@@ -1,14 +1,14 @@
 /**
- * bucket.foundation — /api/research/calciumtraceml
+ * bucket.foundation, /api/research/calciumtraceml
  * ------------------------------------------------
  * Same-origin proxy for CalciumTraceML. Computes ΔF/F (rolling-percentile F0
  * baseline) from a calcium-imaging fluorescence trace and detects transients
  * (MAD threshold + single-exponential decay-τ fit). Backend logic is REAL
  * (services/research-tools/tools_imaging.py:run_calcium_trace).
  *
- *   POST /api/research/calciumtraceml                  → gateway /v1/calciumtraceml/submit
- *        body { trace, fs_hz?, baseline_window_s?, thresh_mad? }
- *   GET  /api/research/calciumtraceml?job=<id>[&result=1] → status / result
+ * POST /api/research/calciumtraceml → gateway /v1/calciumtraceml/submit
+ * body { trace, fs_hz?, baseline_window_s?, thresh_mad? }
+ * GET /api/research/calciumtraceml?job=<id>[&result=1] → status / result
  *
  * `trace` is a JSON array of fluorescence samples OR the string "demo"
  * (synthetic trace with a known transient count).
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

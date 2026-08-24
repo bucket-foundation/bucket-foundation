@@ -1,21 +1,21 @@
-/* Bucket Academy — Socratic tutor panel (client).
+/* Bucket Academy, Socratic tutor panel (client).
  * Grounded + safe by construction: the panel ONLY ever sends the current atom's
  * own verified material as `grounding`, and renders the tutor's reply with the
  * grounding made visible and citations linked from the server-validated set.
  *
- * Safety surfaced in UX (mirrors the S1–S7 server floor):
- *  - the concept it's grounded in is shown in the header AND in a standing
- *    disclaimer ("grounded to this concept's material"), so the learner knows
- *    its scope (S1).
- *  - abstention ("outside this concept") is rendered as a calm, expected state,
- *    never an error (S2/S4).
- *  - confidence is shown honestly (high/medium/low) (S4).
- *  - citations are rendered ONLY from the server-validated `citations` array —
- *    the client never parses links out of the model's prose (S3).
- *  - a 503 / not_configured response degrades to a graceful "tutor not enabled
- *    yet" card; the atom screen keeps working (never breaks the lesson).
+ * Safety surfaced in UX (mirrors the S1, S7 server floor):
+ * - the concept it's grounded in is shown in the header AND in a standing
+ * disclaimer ("grounded to this concept's material"), so the learner knows
+ * its scope (S1).
+ * - abstention ("outside this concept") is rendered as a calm, expected state,
+ * never an error (S2/S4).
+ * - confidence is shown (high/medium/low) (S4).
+ * - citations are rendered ONLY from the server-validated `citations` array, 
+ * the client never parses links out of the model's prose (S3).
+ * - a 503 / not_configured response degrades to a graceful "tutor not enabled
+ * yet" card; the atom screen keeps working (never breaks the lesson).
  *
- * The tutor never replaces the retrieval loop — it's an optional aid attached
+ * The tutor never replaces the retrieval loop, it's an optional aid attached
  * to the concept the learner is already studying.
  */
 (function (global) {
@@ -96,7 +96,7 @@
     head.appendChild(close);
     panel.appendChild(head);
 
-    // standing disclaimer (grounding made visible — S1)
+    // standing disclaimer (grounding made visible, S1)
     panel.appendChild(
       el(
         "div",
@@ -198,13 +198,13 @@
       }
       bubble.appendChild(el("div", "tutor-reply", esc(data.reply || "")));
 
-      // confidence chip (honest uncertainty signalling — S4)
+      // confidence chip (uncertainty signalling, S4)
       var conf = (data.confidence || "medium").toLowerCase();
       var confLabel = { high: "grounded", medium: "partly grounded", low: "low certainty" }[conf] || "partly grounded";
       var meta = el("div", "tutor-meta");
       meta.appendChild(el("span", "tutor-conf conf-" + conf, "● " + confLabel));
 
-      // citations — rendered ONLY from the server-validated closed set (S3)
+      // citations, rendered ONLY from the server-validated closed set (S3)
       if (data.citations && data.citations.length) {
         var cites = el("div", "tutor-cites");
         cites.appendChild(el("span", "tutor-cites-label", "From:"));

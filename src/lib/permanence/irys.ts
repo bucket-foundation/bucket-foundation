@@ -1,12 +1,12 @@
 /**
- * bucket.foundation — Irys (Arweave) permanent storage helper
+ * bucket.foundation, Irys (Arweave) permanent storage helper
  * ------------------------------------------------------------
  * Uploads a citation envelope as JSON to Irys, which bundles it onto Arweave
  * for pay-once-store-forever semantics. Returns the Arweave tx id + gateway
  * URL.
  *
  * We use Irys over raw Arweave because:
- *   - supports Base (USDC / ETH) payment — same wallet as x402 rail
+ *   - supports Base (USDC / ETH) payment, same wallet as x402 rail
  *   - programmable tags + instant finality receipts
  *   - ~20x cheaper than raw Arweave bundlers (see BLOCKCHAIN_LANDSCAPE.md §B)
  *

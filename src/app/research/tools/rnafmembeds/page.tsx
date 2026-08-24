@@ -6,7 +6,7 @@ export const metadata = toolMetadata("rnafmembeds");
 const _jsonld = toolJsonLd("rnafmembeds");
 import RNAFMEmbedsClient from "./RNAFMEmbedsClient";
 
-// RNA-FM-Embeds run page — hosted RNA embedding service.
+// RNA-FM-Embeds run page, hosted RNA embedding service.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

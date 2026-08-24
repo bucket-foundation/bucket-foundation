@@ -6,7 +6,7 @@ export const metadata = toolMetadata("rnastructure");
 const _jsonld = toolJsonLd("rnastructure");
 import RNAStructureClient from "./RNAStructureClient";
 
-// RNAStructure run page — RNA secondary-structure prediction via ViennaRNA.
+// RNAStructure run page, RNA secondary-structure prediction via ViennaRNA.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

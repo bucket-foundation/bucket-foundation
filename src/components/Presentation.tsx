@@ -43,7 +43,7 @@ export default function Presentation() {
           }}
         />
 
-        {/* Inscription marquee — the creed, always moving */}
+        {/* Inscription marquee, the creed, always moving */}
         <div className="relative border-b-2 border-[color:var(--basalt)] overflow-hidden">
           <div className="stele-track font-display uppercase text-[clamp(1.5rem,3vw,2.25rem)] tracking-[0.2em] py-4 text-[color:var(--basalt)]/75">
             {[...MARQUEE, ...MARQUEE].map((t, i) => (
@@ -92,7 +92,7 @@ export default function Presentation() {
               DECENTRALIZED RESEARCH · VOL I · № 01
             </div>
 
-            {/* Hidden H1 for a11y + SEO — the visual hero is the rendered stone panel */}
+            {/* Hidden H1 for a11y + SEO, the visual hero is the rendered stone panel */}
             <h1 className="sr-only">
               free to read. paid to cite. bucket.foundation — a nonprofit canon of foundations for decentralized research.
             </h1>
@@ -194,7 +194,7 @@ export default function Presentation() {
           </div>
         </div>
 
-        {/* Bottom hero stat strip — Roman inscription ledger */}
+        {/* Bottom hero stat strip, Roman inscription ledger */}
         <div className="relative border-t-2 border-[color:var(--basalt)]">
           <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <Stat roman="VIII"   label="canon branches"          sub="mathematics → earth" />
@@ -335,7 +335,7 @@ export default function Presentation() {
                     {b.note}
                   </div>
                 </div>
-                {/* Corner notch — mason's mark */}
+                {/* Corner notch, mason's mark */}
                 <span
                   aria-hidden
                   className="absolute bottom-0 right-0 w-0 h-0 border-[10px] border-transparent border-b-[color:var(--gold)]/30 border-r-[color:var(--gold)]/30"

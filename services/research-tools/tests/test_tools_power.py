@@ -2,16 +2,16 @@
 
 Verifies the ACTUAL power math recovers the textbook (G*Power / Cohen 1988)
 sample sizes:
-  * two-sample t-test, d=0.5, α=.05 two-tailed, power=.80 → n = 64 PER GROUP
-    (the load-bearing assertion — the canonical G*Power value);
-  * one-sample t-test d=0.5 → n = 34; large effect d=0.8 → n = 26;
-  * one-way ANOVA f=0.25, 4 groups → n = 45 per group;
-  * Pearson correlation r=0.3 → n = 85;
-  * the inversion is self-consistent: solving for power at the returned n gives
-    ~target, and the minimum detectable effect at n=64 recovers d≈0.5;
-  * malformed input returns a structured error, never raises.
+ * two-sample t-test, d=0.5, α=.05 two-tailed, power=.80 → n = 64 PER GROUP
+ (the load-bearing assertion, the canonical G*Power value);
+ * one-sample t-test d=0.5 → n = 34; large effect d=0.8 → n = 26;
+ * one-way ANOVA f=0.25, 4 groups → n = 45 per group;
+ * Pearson correlation r=0.3 → n = 85;
+ * the inversion is self-consistent: solving for power at the returned n gives
+ ~target, and the minimum detectable effect at n=64 recovers d≈0.5;
+ * malformed input returns a structured error, never raises.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_power.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_power.py -q
 """
 from __future__ import annotations
 
@@ -54,7 +54,7 @@ def test_large_effect_smaller_n():
 
 
 # =========================================================================
-# other designs — textbook values
+# other designs, textbook values
 # =========================================================================
 def test_one_sample_t():
     out = p.plan_power({"test": "one_sample_t", "solve_for": "n",
@@ -106,7 +106,7 @@ def test_smaller_alpha_needs_more_n():
 
 
 # =========================================================================
-# robustness
+# reliability
 # =========================================================================
 def test_bad_test_errors():
     assert p.plan_power({"test": "wizardry", "solve_for": "n", "effect_size": 0.5}).get("error")

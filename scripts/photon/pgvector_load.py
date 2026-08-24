@@ -2,7 +2,7 @@
 """Load the local photon substrate (sqlite + memmapped LaBSE vectors) into a
 local Postgres+pgvector table, build an HNSW index, and benchmark a query.
 
-This is the LOCAL proof of the pgvector migration path — no prod box, no shared
+This is the LOCAL proof of the pgvector migration path, no prod box, no shared
 multi-tenant DB. Run against the bucket-pgvector docker container.
 
 Env: PGHOST/PGPORT/PGUSER/PGPASSWORD/PGDATABASE (defaults target the container).
@@ -47,14 +47,14 @@ def main():
     cur.execute("CREATE EXTENSION IF NOT EXISTS vector")
     cur.execute("DROP TABLE IF EXISTS photons")
     cur.execute(f"""
-        CREATE TABLE photons (
-            id text PRIMARY KEY, surface text, lang text,
-            meaning_en text, pos text, ipa text,
-            embedding vector({DIM})
-        )""")
+ CREATE TABLE photons (
+ id text PRIMARY KEY, surface text, lang text,
+ meaning_en text, pos text, ipa text,
+ embedding vector({DIM})
+ )""")
     log("table created")
 
-    # Write a CSV (proper quoting) then COPY — fastest reliable bulk path.
+    # Write a CSV (proper quoting) then COPY, fastest reliable bulk path.
     t = time.time()
     tmp = tempfile.NamedTemporaryFile("w", suffix=".csv", delete=False,
                                       dir=PH, newline="")

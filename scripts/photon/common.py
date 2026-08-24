@@ -1,12 +1,12 @@
 """
-common.py — shared helpers for the Polingual photon vector backbone.
+common.py, shared helpers for the Polingual photon vector backbone.
 
 Photon substrate lives at _intake/photons/:
-  index.sqlite              table `photons` (45,000 rows), cols incl.
-                            surface, lang, meaning_en, pos, ipa,
-                            semantic_row, phonetic_row, payload
-  semantic-vectors.f32.bin  N x SEM_DIM dense L2-normalized matrix
-  phonetic-vectors.f32.bin  N x PHON_DIM dense L2-normalized matrix
+ index.sqlite table `photons` (45,000 rows), cols incl.
+ surface, lang, meaning_en, pos, ipa,
+ semantic_row, phonetic_row, payload
+ semantic-vectors.f32.bin N x SEM_DIM dense L2-normalized matrix
+ phonetic-vectors.f32.bin N x PHON_DIM dense L2-normalized matrix
 
 Both vector matrices are row-aligned memmaps: a photon's `semantic_row` /
 `phonetic_row` is its row index. Cosine similarity == dot product because
@@ -15,7 +15,7 @@ every stored row is L2-normalized at write time.
 Source data is Wiktionary via Kaikki (CC-BY-SA). Attribution is carried in
 each photon's payload.provenance; we never store long copyrighted excerpts.
 
-Build artifacts (the .f32.bin files and index.sqlite) are gitignored — this
+Build artifacts (the .f32.bin files and index.sqlite) are gitignored, this
 module + the builders + query.py regenerate them deterministically.
 """
 from __future__ import annotations
@@ -47,8 +47,8 @@ def rows_in_bin(path: str, dim: int) -> int:
 def ensure_bin_capacity(path: str, dim: int, n_rows: int) -> None:
     """Grow (never shrink) a .f32.bin so it holds at least n_rows rows.
 
-    New rows are zero-filled (norm 0) and treated as 'unfilled' by readers.
-    Idempotent: a file already large enough is left untouched.
+ New rows are zero-filled (norm 0) and treated as 'unfilled' by readers.
+ Idempotent: a file already large enough is left untouched.
     """
     target = FLOAT_SIZE * dim * n_rows
     cur = os.path.getsize(path) if os.path.exists(path) else 0

@@ -3,11 +3,11 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import ResearchAgentClient from "./ResearchAgentClient";
 
-// /research/agent — the Bucket research agent (produce-side wedge). Given a
+// /research/agent, the Bucket research agent (produce-side wedge). Given a
 // research question it runs a grounded PLAN → RETRIEVE → SYNTHESIZE → OUTPUT
 // loop over public assets (the Bucket canon, OpenAlex, PubMed, research-atlas,
 // and the live MethodsMatcher tool) and returns a CITED, REPRODUCIBLE brief.
-// Synthesis runs on the local GPU LLM (founder-GPU) — graceful offline notice.
+// Synthesis runs on the local GPU LLM (founder-GPU), graceful offline notice.
 
 export const metadata: Metadata = {
   title: "Research agent · plan, retrieve, synthesize — cited & reproducible",

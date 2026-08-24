@@ -64,26 +64,27 @@
 | `name` | yes | Canonical English-language name. Use the most-cited form. |
 | `lifespan` | yes | Use `c.` for uncertain dates, `fl.` for floruit-only figures, `?–?` for fully unknown. |
 | `era` | yes | Plain-English era ("Renaissance," "Han dynasty," "Islamic Golden Age"). |
-| `region` | yes | Where the figure worked, not necessarily where they were born. |
+| `region` | yes | Where the figure worked, which may differ from where they were born. |
 | `tradition` | yes | The intellectual tradition the work sits inside. |
 | `branches` | yes | Primary canon branch(es). Use the branch ids `01-mathematics` … `10-earth`. |
 | `cross_branches` | optional | Branches the figure also touches but is not primarily filed under. |
 | `primary_works` | yes | At least one. Title + year + language. |
-| `canon_contribution` | yes | 2–4 sentences. The single most important thing the field cites this figure for. Specific. |
-| `why_canon` | yes | 1–2 sentences. Why this is foundation-tier. |
+| `canon_contribution` | yes | 2-4 sentences. The single most important thing the field cites this figure for. Specific. |
+| `why_canon` | yes | 1-2 sentences. Why this is foundation-tier. |
 | `downstream` | optional | Other figures or fields that built on this work. |
 | `disputed` | optional | Attribution problems, lost works, multi-author traditions. |
-| `tags` | yes | 3–7 short tags for retrieval. Lowercase, hyphenated. |
+| `tags` | yes | 3-7 short tags for retrieval. Lowercase, hyphenated. |
 | `added_in_pass` | yes | Which pass added this card (see `_pass-log.md`). |
 | `added_on` | yes | ISO date. |
 
 ## Editorial constraints
 
 1. **No marketing voice.** Cards do not say "revolutionary," "brilliant," "ahead of his time," or "the father of X." They say what the work was.
-2. **No anachronisms.** Newton was not "doing physics" — he was doing natural philosophy. Mendel was not "doing genetics" — the word *gene* was coined 40 years after he died.
+2. **No anachronisms.** Newton was not "doing physics", he was doing natural philosophy. Mendel was not "doing genetics", the word *gene* was coined 40 years after he died.
 3. **Sources must exist.** Every card should be supportable by at least one citation to a peer-reviewed history of the field, the *Stanford Encyclopedia of Philosophy*, or the *MacTutor History of Mathematics archive*. The seed pass does not include inline citations to keep cards short, but each card is auditable.
+<!-- voice-ignore-next 1  "refuse to summarize a career" is the rule being stated -->
 4. **Living figures need a higher bar.** Hagiography risk is real. Living-figure cards must explicitly identify the *single* contribution and refuse to summarize a career.
-5. **Disputed attribution is not a reason to exclude.** It is a reason to include the dispute *in the card*. See: Pythagoras, the Pythagorean theorem, and what the historical record actually supports.
+5. **Disputed attribution is not a reason to exclude.** It is a reason to include the dispute *in the card*. See: Pythagoras, the Pythagorean theorem, and what the historical record supports.
 6. **The card is not the canon.** A card describes a figure; the canon contains the *bucketed primary works* the figure produced. Cards link to canon entries when the work has been bucketed; cards exist independently when the work has not yet been bucketed.
 
 ## Cross-branch figures

@@ -10,7 +10,7 @@
 
 ## Description
 
-Harold Bloom, in a small class setting, discusses the origins of Freud's concepts of Pleasure/Unpleasure, Narcissism, The Death Wish, Ambivalence, Sadism/Masochism, Libido, Repression, etc. This is from the class at the New School in NYC on Mar. 21, 1983.
+Harold Bloom, in a small class setting, discusses the origins of Freud's concepts of Pleasure/Unpleasure, Narcissism, The Death Wish, Ambivalence, Sadism/Masochism, Libido, Repression, etc. this is from the class at the New School in NYC on Mar. 21, 1983.
 
 ## Chapters
 

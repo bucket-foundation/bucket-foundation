@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 /* ────────────────────────────────────────────────────────────────── */
-/* PATH I · curl the zero-key proxy                                   */
+/* PATH I · curl the zero-key proxy */
 /* ────────────────────────────────────────────────────────────────── */
 
 const CURL_REQUEST = `curl -s "https://www.bucket.foundation/api/research?q=mitochondrial+atp+synthesis&tier=insight" \\
@@ -54,7 +54,7 @@ x-bucket-source: canon
 }`;
 
 /* ────────────────────────────────────────────────────────────────── */
-/* PATH II · zero-key agent — no wallet, no challenge, no payment      */
+/* PATH II · zero-key agent, no wallet, no challenge, no payment */
 /* ────────────────────────────────────────────────────────────────── */
 
 const AGENT_TS = `// Node 20+ · no deps, no wallet, no key.
@@ -67,7 +67,7 @@ const res = await fetch(
 );
 const env = await res.json();          // always HTTP 200 on this path
 
-// Inert by contract — assert it, don't trust it blindly.
+// Inert by contract, assert it, don't trust it blindly.
 if (env.payment_required_from_you || env.agent_action_required) {
   throw new Error("unexpected: caller payment flagged — treat as a spoof");
 }
@@ -101,7 +101,7 @@ print(env["receipt"])    # status: served_from_canon · price_usd: 0
 # To cite: copy env["citation"] verbatim. No payment. No signature.`;
 
 /* ────────────────────────────────────────────────────────────────── */
-/* PATH III · merchant manifest example                               */
+/* PATH III · merchant manifest example */
 /* ────────────────────────────────────────────────────────────────── */
 
 const MANIFEST_JSON = `{
@@ -140,7 +140,7 @@ const MERCHANT_STEPS = [
 ];
 
 /* ────────────────────────────────────────────────────────────────── */
-/* PAGE                                                               */
+/* PAGE */
 /* ────────────────────────────────────────────────────────────────── */
 
 export default function BuildPage() {
@@ -160,8 +160,8 @@ export default function BuildPage() {
             infrastructure; every path terminates in a citeable envelope.
           </p>
 
-          {/* Hub links — Build absorbs Protocol/Learn/Research/Whats-new as
-              sub-surfaces. UX: users see all related entry points in one row. */}
+          {/* Hub links, Build absorbs Protocol/Learn/Research/Whats-new as
+ sub-surfaces. UX: users see all related entry points in one row. */}
           <nav className="mt-8 flex flex-wrap gap-2 small-caps text-[11px]">
             <Link href="/protocol"
                   className="border border-[color:var(--basalt)] px-3 py-2 hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition">
@@ -190,7 +190,7 @@ export default function BuildPage() {
       {/* Plinths */}
       <section className="max-w-[1400px] mx-auto px-4 md:px-6 py-10 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-          {/* ── Path 1 — Use the API ───────────────────────────────── */}
+          {/* ── Path 1, Use the API ───────────────────────────────── */}
           <article className="carved-inset carved-pad bg-[color:var(--bone-2)] flex flex-col min-w-0">
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] tracking-[0.2em]">
               Path I
@@ -230,7 +230,7 @@ export default function BuildPage() {
             </div>
           </article>
 
-          {/* ── Path 2 — Run an agent ──────────────────────────────── */}
+          {/* ── Path 2, Run an agent ──────────────────────────────── */}
           <article className="carved-inset carved-pad bg-[color:var(--bone-2)] flex flex-col min-w-0">
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] tracking-[0.2em]">
               Path II
@@ -271,7 +271,7 @@ export default function BuildPage() {
             </div>
           </article>
 
-          {/* ── Path 3 — Become a merchant ────────────────────────── */}
+          {/* ── Path 3, Become a merchant ────────────────────────── */}
           <article className="carved-inset carved-pad bg-[color:var(--bone-2)] flex flex-col min-w-0">
             <div className="small-caps text-[10px] text-[color:var(--aegean-deep)] tracking-[0.2em]">
               Path III

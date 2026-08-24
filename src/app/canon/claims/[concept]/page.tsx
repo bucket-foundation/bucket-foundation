@@ -1,4 +1,4 @@
-// /canon/claims/[concept] — all curated claims for a concept.
+// /canon/claims/[concept], all curated claims for a concept.
 
 import Link from "next/link";
 import { notFound } from "next/navigation";

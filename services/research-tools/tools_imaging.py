@@ -1,38 +1,38 @@
 #!/usr/bin/env python3
 """
-research-tools — Imaging / mechanobiology cluster (REAL logic, CPU, no GPU)
+research-tools, Imaging / mechanobiology cluster (REAL logic, CPU, no GPU)
 ==========================================================================
 
-Genuinely FUNCTIONAL backends for the imaging + mechanobiology tools from the
+FUNCTIONAL backends for the imaging + mechanobiology tools from the
 54-tool needs map (docs/research-tools/01-needs-analysis.md). Every algorithm is
-real signal/image processing on the user's input — scipy + scikit-image, both
+real signal/image processing on the user's input, scipy + scikit-image, both
 already on the box. No GPU, no network, no fake outputs.
 
-    CalciumTraceML  — calcium imaging ΔF/F + event/transient detection.
-                      Real F0 baseline estimation (rolling percentile), ΔF/F,
-                      MAD-robust event detection, decay-tau fit. FULLY REAL.
-    CellSegTrack    — cell segmentation. Cellpose if installed (CPU), else a real
-                      classical pipeline: smoothing → Otsu/adaptive threshold →
-                      distance transform → watershed split → per-object metrics.
-                      Both paths real; the path used is reported. FULLY REAL.
-    AFM-CurveML     — AFM force–indentation curve analysis. Real contact-point
-                      detection + Hertz/Sneddon model fit for Young's modulus
-                      via scipy least-squares + adhesion from the retract minimum.
-                      FULLY REAL.
-    TractionForceML — traction-force / PIV-style displacement field summary.
-                      Real block-matching (normalized cross-correlation) between a
-                      reference and a deformed bead image → displacement field +
-                      strain-energy proxy. Classical (not ML), honestly labelled.
-                      FULLY REAL.
+ CalciumTraceML, calcium imaging ΔF/F + event/transient detection.
+ Real F0 baseline estimation (rolling percentile), ΔF/F,
+ MAD-based event detection, decay-tau fit. FULLY REAL.
+ CellSegTrack, cell segmentation. Cellpose if installed (CPU), else a real
+ classical pipeline: smoothing → Otsu/adaptive threshold →
+ distance transform → watershed split → per-object metrics.
+ Both paths real; the path used is reported. FULLY REAL.
+ AFM-CurveML, AFM force, indentation curve analysis. Real contact-point
+ detection + Hertz/Sneddon model fit for Young's modulus
+ via scipy least-squares + adhesion from the retract minimum.
+ FULLY REAL.
+ TractionForceML, traction-force / PIV-style displacement field summary.
+ Real block-matching (normalized cross-correlation) between a
+ reference and a deformed bead image → displacement field +
+ strain-energy proxy. Classical (not ML), labelled.
+ FULLY REAL.
 
 Design rules (match tools_neuro.py / tools_dnarna.py):
-  * Pure functions for every algorithm so they unit-test on synthetic inputs
-    with KNOWN ground truth, zero network, zero GPU (see tests/).
-  * Image/trace inputs arrive as plain JSON arrays (1-D traces, 2-D images) so
-    the v1 JSON contract holds; a real TIFF/CZI upload path is a documented seam
-    exactly like the existing patchseqml/cryotriage file-upload runners.
-  * Each run_<tool>(payload) -> dict returns the `output` payload only; on a bad
-    request it returns {"error": ...} (the gateway turns that into a 400).
+ * Pure functions for every algorithm so they unit-test on synthetic inputs
+ with KNOWN ground truth, zero network, zero GPU (see tests/).
+ * Image/trace inputs arrive as plain JSON arrays (1-D traces, 2-D images) so
+ the v1 JSON contract holds; a real TIFF/CZI upload path is a documented seam
+ exactly like the existing patchseqml/cryotriage file-upload runners.
+ * Each run_<tool>(payload) -> dict returns the `output` payload only; on a bad
+ request it returns {"error": ...} (the gateway turns that into a 400).
 
 The gateway imports IMAGING_RUNNERS from here.
 """
@@ -57,9 +57,9 @@ except Exception:  # pragma: no cover - import guard
     _SKIMAGE_OK = False
 
 # Cellpose is optional + heavy. CellSegTrack uses it on CPU when present, else a
-# real classical watershed pipeline. The path used is reported honestly.
+# real classical watershed pipeline. The path used is reported.
 try:
-    import cellpose  # type: ignore  # noqa: F401
+    import cellpose  # type: ignore # noqa: F401
 
     _CELLPOSE_OK = True
 except Exception:  # pragma: no cover - import guard
@@ -113,13 +113,13 @@ def parse_2d(payload: dict, key: str = "image") -> tuple[Optional[np.ndarray], O
 
 
 # ===========================================================================
-# 1. CalciumTraceML — ΔF/F + event detection (signal processing)
+# 1. CalciumTraceML, ΔF/F + event detection (signal processing)
 # ===========================================================================
 def rolling_baseline(f: np.ndarray, win: int, percentile: float = 10.0) -> np.ndarray:
-    """Real F0 baseline: rolling low-percentile (robust to transients). Pure.
+    """Real F0 baseline: rolling low-percentile (resists transients). Pure.
 
-    A standard calcium-imaging F0 estimator: the slow baseline is the low
-    percentile of fluorescence in a sliding window (Jia 2011 / CaImAn style).
+ A standard calcium-imaging F0 estimator: the slow baseline is the low
+ percentile of fluorescence in a sliding window (Jia 2011 / CaImAn style).
     """
     win = max(3, int(win) | 1)  # odd, >=3
     half = win // 2
@@ -134,11 +134,11 @@ def rolling_baseline(f: np.ndarray, win: int, percentile: float = 10.0) -> np.nd
 def detect_transients(
     dff: np.ndarray, fs: float, *, thresh_mad: float = 3.0, min_dur_s: float = 0.2
 ) -> list[dict]:
-    """Detect calcium transients: contiguous runs above a MAD-robust threshold.
+    """Detect calcium transients: contiguous runs above a MAD-based threshold.
 
-    Pure. sigma = MAD/0.6745 (robust). An event starts when ΔF/F crosses
-    +thresh_mad*sigma and ends when it falls back below sigma. Returns events
-    with onset, peak amplitude, and a single-exponential decay-tau fit.
+ Pure. sigma = MAD/0.6745 (outlier-resistant). An event starts when ΔF/F crosses
+ +thresh_mad*sigma and ends when it falls back below sigma. Returns events
+ with onset, peak amplitude, and a single-exponential decay-tau fit.
     """
     sigma = np.median(np.abs(dff - np.median(dff))) / 0.6745
     if sigma <= 0:
@@ -199,11 +199,11 @@ def _fit_decay_tau(falling: np.ndarray, fs: float) -> Optional[float]:
 
 def run_calcium_trace(payload: dict) -> dict:
     """payload: { trace: [F] or "demo", fs_hz?: float, baseline_window_s?: float,
-                  thresh_mad?: float }
+ thresh_mad?: float }
 
-    Compute ΔF/F = (F - F0)/F0 with a rolling-percentile F0 baseline, then detect
-    calcium transients (MAD threshold + decay-tau fit). demo = synthetic trace
-    with a KNOWN event count so detection accuracy is verifiable.
+ Compute ΔF/F = (F - F0)/F0 with a rolling-percentile F0 baseline, then detect
+ calcium transients (MAD threshold + decay-tau fit). demo = synthetic trace
+ with a KNOWN event count so detection accuracy is verifiable.
     """
     fs = float(payload.get("fs_hz") if payload.get("fs_hz") is not None else 30.0)
     if fs <= 0:
@@ -273,17 +273,17 @@ def run_calcium_trace(payload: dict) -> dict:
 
 
 # ===========================================================================
-# 2. CellSegTrack — segmentation (cellpose if present, else real watershed)
+# 2. CellSegTrack, segmentation (cellpose if present, else real watershed)
 # ===========================================================================
 def segment_watershed(img: np.ndarray, *, min_distance: int = 5, sigma: float = 1.0) -> tuple[np.ndarray, str]:
     """Real classical segmentation: smooth → Otsu → distance-transform watershed.
 
-    Pure (deterministic). Returns (label_image, method_string). This is the
-    canonical seeded-watershed nuclei/cell splitter — exactly what TrackMate /
-    CellProfiler fall back to without a deep model.
+ Pure (deterministic). Returns (label_image, method_string). This is the
+ canonical seeded-watershed nuclei/cell splitter, exactly what TrackMate /
+ CellProfiler fall back to without a deep model.
     """
     if not _SKIMAGE_OK:
-        # minimal numpy-only fallback (no watershed split) — still real labelling.
+        # minimal numpy-only fallback (no watershed split), still real labelling.
         sm = ndi.gaussian_filter(img, sigma)
         thr = float(np.mean(sm) + np.std(sm))
         mask = sm > thr
@@ -328,9 +328,9 @@ def object_metrics(labels: np.ndarray) -> list[dict]:
 def run_cell_seg(payload: dict) -> dict:
     """payload: { image: [[...]] or "demo", min_distance?: int, sigma?: float }
 
-    Segment cells/nuclei. Uses Cellpose on CPU if installed (reported), else a
-    real classical Otsu + distance-transform watershed pipeline. demo = synthetic
-    field of Gaussian blobs with a KNOWN cell count.
+ Segment cells/nuclei. Uses Cellpose on CPU if installed (reported), else a
+ real classical Otsu + distance-transform watershed pipeline. demo = synthetic
+ field of Gaussian blobs with a KNOWN cell count.
     """
     min_distance = int(payload.get("min_distance") or 5)
     sigma = float(payload.get("sigma") if payload.get("sigma") is not None else 1.0)
@@ -406,13 +406,13 @@ def run_cell_seg(payload: dict) -> dict:
 
 
 # ===========================================================================
-# 3. AFM-CurveML — force–indentation curve fit (Hertz/Sneddon)
+# 3. AFM-CurveML, force, indentation curve fit (Hertz/Sneddon)
 # ===========================================================================
 def detect_contact_point(z: np.ndarray, f: np.ndarray) -> int:
     """Real contact-point detection: where force rises above baseline noise.
 
-    Pure. Baseline = the non-contact (early) region; contact is the first index
-    where force exceeds baseline mean + N*std for a sustained run.
+ Pure. Baseline = the non-contact (early) region; contact is the first index
+ where force exceeds baseline mean + N*std for a sustained run.
     """
     n = f.size
     base_n = max(5, n // 5)
@@ -430,9 +430,9 @@ def fit_hertz(
 ) -> dict:
     """Fit Young's modulus E via the Hertz (sphere) / Sneddon (cone) model.
 
-    Pure scipy least-squares. Sphere: F = (4/3)*(E/(1-ν²))*sqrt(R)*δ^1.5.
-    Cone:   F = (2/π)*(E/(1-ν²))*tan(α)*δ². Returns E (kPa) + fit quality.
-    Units: indentation δ in nm, force in nN, R in nm → E in Pa, reported kPa.
+ Pure scipy least-squares. Sphere: F = (4/3)*(E/(1-ν²))*sqrt(R)*δ^1.5.
+ Cone: F = (2/π)*(E/(1-ν²))*tan(α)*δ². Returns E (kPa) + fit quality.
+ Units: indentation δ in nm, force in nN, R in nm → E in Pa, reported kPa.
     """
     nu = 0.5  # incompressible cell assumption
     d = np.clip(indentation, 0, None)
@@ -479,11 +479,11 @@ def fit_hertz(
 
 
 def run_afm_curve(payload: dict) -> dict:
-    """payload: { z: [nm], force: [nN]  OR  "demo"; radius_nm?, geometry? }
+    """payload: { z: [nm], force: [nN] OR "demo"; radius_nm?, geometry? }
 
-    Detect the contact point, fit Young's modulus via Hertz/Sneddon, and report
-    adhesion (retract minimum if present). demo = synthetic Hertz curve with a
-    KNOWN modulus so recovery is verifiable.
+ Detect the contact point, fit Young's modulus via Hertz/Sneddon, and report
+ adhesion (retract minimum if present). demo = synthetic Hertz curve with a
+ KNOWN modulus so recovery is verifiable.
     """
     geometry = (payload.get("geometry") or "sphere").strip().lower()
     if geometry not in ("sphere", "cone"):
@@ -552,16 +552,16 @@ def run_afm_curve(payload: dict) -> dict:
 
 
 # ===========================================================================
-# 4. TractionForceML — PIV-style displacement field (block matching)
+# 4. TractionForceML, PIV-style displacement field (block matching)
 # ===========================================================================
 def block_match_displacement(
     ref: np.ndarray, defm: np.ndarray, *, win: int = 16, step: int = 8, search: int = 8
 ) -> dict:
     """Real PIV: per-window normalized cross-correlation → displacement vectors.
 
-    Pure (deterministic). For each window in `ref`, find the integer shift in a
-    ±search neighbourhood of `defm` that maximizes normalized cross-correlation.
-    Returns the vector field + a strain-energy proxy (sum of |u|²).
+ Pure (deterministic). For each window in `ref`, find the integer shift in a
+ ±search neighbourhood of `defm` that maximizes normalized cross-correlation.
+ Returns the vector field + a strain-energy proxy (sum of |u|²).
     """
     H, W = ref.shape
     vectors: list[dict] = []
@@ -606,12 +606,12 @@ def block_match_displacement(
 
 
 def run_traction_force(payload: dict) -> dict:
-    """payload: { reference: [[...]], deformed: [[...]]  OR  "demo";
-                  window?, step?, search? }
+    """payload: { reference: [[...]], deformed: [[...]] OR "demo";
+ window?, step?, search? }
 
-    Block-matching PIV displacement field between a reference (relaxed) and a
-    deformed bead image, plus a strain-energy proxy. demo = synthetic bead field
-    with a KNOWN imposed shift so the recovered displacement is verifiable.
+ Block-matching PIV displacement field between a reference (relaxed) and a
+ deformed bead image, plus a strain-energy proxy. demo = synthetic bead field
+ with a KNOWN imposed shift so the recovered displacement is verifiable.
     """
     win = int(payload.get("window") or 16)
     step = int(payload.get("step") or 8)
@@ -646,7 +646,7 @@ def run_traction_force(payload: dict) -> dict:
             return {"error": "image too large (max 1M pixels for the PIV demo)"}
 
     field = block_match_displacement(ref, defm, win=win, step=step, search=search)
-    # dominant shift = the mode of the per-window (u,v) — robust to edges.
+    # dominant shift = the mode of the per-window (u,v), resists edges.
     if field["vectors"]:
         us = np.array([v["u"] for v in field["vectors"]])
         vs = np.array([v["v"] for v in field["vectors"]])
@@ -671,7 +671,7 @@ def run_traction_force(payload: dict) -> dict:
             "and a strain-energy proxy (Σ|u|²). This is the FTTC/PIV displacement "
             "stage; full Fourier-transform traction-cytometry stress recovery "
             "(needs the substrate elastic modulus + regularization) is the "
-            "documented heavier path. Classical, not ML — labelled honestly."
+            "documented heavier path. A classical method, labelled as such."
         ),
     }
     if true_shift is not None:

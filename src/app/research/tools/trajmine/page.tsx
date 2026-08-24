@@ -6,8 +6,8 @@ export const metadata = toolMetadata("trajmine");
 const _jsonld = toolJsonLd("trajmine");
 import TrajMineClient from "./TrajMineClient";
 
-// TrajMine run page — server-component shell (matches /research styling).
-// GPU/long tool — runs in DEMO mode until a GPU compute plan lands.
+// TrajMine run page, server-component shell (matches /research styling).
+// GPU/long tool, runs in DEMO mode until a GPU compute plan lands.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

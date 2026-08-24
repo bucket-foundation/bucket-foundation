@@ -1,14 +1,14 @@
 /**
- * bucket.foundation — research-tools registry
+ * bucket.foundation, research-tools registry
  * -------------------------------------------
  * Single source of truth for the 30 research tools served through
  * bucket.foundation (FastAPI gateway on Hetzner → /api/research/<tool> proxy →
  * the per-tool UI). This was previously inlined in
  * src/app/research/tools/page.tsx; it now lives here so the same data drives:
- *   - the /research/tools directory page
- *   - per-tool <generateMetadata> (title + description + canonical + OG)
- *   - per-tool SoftwareApplication / WebApplication JSON-LD
- *   - the sitemap (one URL per tool)
+ * - the /research/tools directory page
+ * - per-tool <generateMetadata> (title + description + canonical + OG)
+ * - per-tool SoftwareApplication / WebApplication JSON-LD
+ * - the sitemap (one URL per tool)
  *
  * See docs/research-tools/04-implementation-architecture.md.
  */
@@ -28,23 +28,23 @@ export type Tool = {
   // NEURO = neuroscience cluster (scipy fits + spike detection, real logic);
   // GAP = gap-research cluster (rule extraction / curated KB / OpenAlex graph);
   // IMG = imaging/mechanobiology cluster (scipy + scikit-image signal/image
-  //       processing: calcium ΔF/F, cell segmentation, AFM modulus, PIV);
+  // processing: calcium ΔF/F, cell segmentation, AFM modulus, PIV);
   // META = all-field horizontal metascience tool (FAIR data management,
-  //        statistics reproducibility) — serves EVERY discipline, not one field.
+  // statistics reproducibility), serves EVERY discipline.
   // FIELD = per-field tool for the biggest NON-bio fields (econ-social causal
-  //        inference, materials featurization, universal power analysis,
-  //        earth-climate series summary, cs-ml reproducibility) — REAL CPU
-  //        algorithms (networkx do-calculus, Magpie descriptors, scipy power,
-  //        Mann-Kendall/Theil-Sen, a deterministic repro rubric).
+  // inference, materials featurization, universal power analysis,
+  // earth-climate series summary, cs-ml reproducibility), REAL CPU
+  // algorithms (networkx do-calculus, Magpie descriptors, scipy power,
+  // Mann-Kendall/Theil-Sen, a deterministic repro rubric).
   // CLASSIC = per-field exact CLASSICAL algorithms for the biggest CPU-feasible
-  //        fields/tasks not yet covered (pairwise sequence alignment, chemical-
-  //        equation balancing, SI dimensional analysis, Kaplan-Meier survival,
-  //        Holt-Winters forecasting) — textbook-exact, no GPU, no heuristics.
+  // fields/tasks not yet covered (pairwise sequence alignment, chemical-
+  // equation balancing, SI dimensional analysis, Kaplan-Meier survival,
+  // Holt-Winters forecasting), textbook-exact, no GPU, no heuristics.
   klass: ToolClass;
   // "live" = inline CPU/RAG/DNA/NEURO/GAP tool; "demo" = GPU/long tool (synthetic).
   status: ToolStatus;
   // "always-on" = runs on the Hetzner CPU gateway, up 24/7.
-  // "founder-gpu" = runs on the founder's personal laptop GPU over a tunnel —
+  // "founder-gpu" = runs on the founder's personal laptop GPU over a tunnel, 
   // unreachable when the laptop is closed.
   hosting: ToolHosting;
 };
@@ -304,7 +304,7 @@ export const TOOLS: Tool[] = [
     hosting: "always-on",
   },
   // --- all-field HORIZONTAL metascience tools: serve every discipline (the
-  //     1.17M researchers), not one field. Funder-mandated (DMSP + reproducibility). ---
+  // 1.17M researchers) across all fields. Funder-mandated (DMSP + reproducibility). ---
   {
     slug: "faircheck",
     name: "FAIRCheck",
@@ -324,8 +324,8 @@ export const TOOLS: Tool[] = [
     hosting: "always-on",
   },
   // --- per-field NON-bio tools: the biggest CPU-feasible fields in the atlas
-  //     USERS_NEEDS roadmap (econ-social, materials, universal stats,
-  //     earth-climate, cs-ml). REAL algorithms, no GPU, always-on. ---
+  // USERS_NEEDS roadmap (econ-social, materials, universal stats,
+  // earth-climate, cs-ml). REAL algorithms, no GPU, always-on. ---
   {
     slug: "causaldesigner",
     name: "CausalDesigner",
@@ -372,10 +372,10 @@ export const TOOLS: Tool[] = [
     hosting: "always-on",
   },
   // --- per-field exact CLASSICAL algorithms: the biggest CPU-feasible
-  //     fields/tasks in the atlas USERS_NEEDS roadmap not yet covered
-  //     (bio sequence alignment, chemistry reaction arithmetic, universal
-  //     dimensional analysis, biomed/stats survival, econ/earth forecasting).
-  //     REAL textbook-exact algorithms, no GPU, always-on. ---
+  // fields/tasks in the atlas USERS_NEEDS roadmap not yet covered
+  // (bio sequence alignment, chemistry reaction arithmetic, universal
+  // dimensional analysis, biomed/stats survival, econ/earth forecasting).
+  // REAL textbook-exact algorithms, no GPU, always-on. ---
   {
     slug: "seqalign",
     name: "SeqAlign",
@@ -435,7 +435,7 @@ const SITE = "https://www.bucket.foundation";
 
 /**
  * Per-tool metadata for a tool page. Drop into a tool page as:
- *   export const metadata = toolMetadata("labbrain");
+ * export const metadata = toolMetadata("labbrain");
  * Returns a unique title + description + canonical + OpenGraph/Twitter block.
  */
 export function toolMetadata(slug: string) {

@@ -1,61 +1,61 @@
 /**
- * bucket.foundation — /api/research
+ * bucket.foundation, /api/research
  * ---------------------------------
  * Zero-key, budget-capped, server-side research proxy.
  *
- * TRUST MODEL (read this before changing anything — it is the contract):
+ * TRUST MODEL (read this before changing anything, it is the contract):
  *
- *   1. The CALLER (an AI agent or a human) needs NO wallet, NO key, and is
- *      NEVER asked to perform, authorize, or relay a payment. There is no
- *      step where the caller signs, sends, or even sees a payment challenge.
- *   2. Any x402 settlement happens entirely server-side, between
- *      bucket.foundation's own funded wallet and the upstream gateway. It is
- *      invisible to the caller by construction.
- *   3. If the server-side wallet cannot settle (not funded yet / upstream
- *      down), the proxy DOES NOT hand the caller a payment challenge to
- *      execute. Instead it serves a real answer from the local, already-paid
- *      bucket.foundation canon index. The caller still gets real, citeable
- *      data — just sourced from canon instead of the live gateway.
- *   4. `cite` is PASSIVE, FORWARD-LOOKING METADATA — a license notice telling
- *      a downstream *publisher* what it would owe if it re-publishes this in a
- *      paid work. Echoing it is not an action. The reading agent owes nothing
- *      and does nothing. This is "paid-to-cite", and it is deliberately kept
- *      separate from "pay-to-proceed" (which never happens on this path).
+ * 1. The CALLER (an AI agent or a human) needs NO wallet, NO key, and is
+ * NEVER asked to perform, authorize, or relay a payment. There is no
+ * step where the caller signs, sends, or even sees a payment challenge.
+ * 2. Any x402 settlement happens entirely server-side, between
+ * bucket.foundation's own funded wallet and the upstream gateway. It is
+ * invisible to the caller by construction.
+ * 3. If the server-side wallet cannot settle (not funded yet / upstream
+ * down), the proxy DOES NOT hand the caller a payment challenge to
+ * execute. Instead it serves a real answer from the local, already-paid
+ * bucket.foundation canon index. The caller still gets real, citeable
+ * data, just sourced from canon instead of the live gateway.
+ * 4. `cite` is PASSIVE, FORWARD-LOOKING METADATA, a license notice telling
+ * a downstream *publisher* what it would owe if it re-publishes this in a
+ * paid work. Echoing it is not an action. The reading agent owes nothing
+ * and does nothing. This is "paid-to-cite", and it is deliberately kept
+ * separate from "pay-to-proceed" (which never happens on this path).
  *
- *   The single most important invariant: on the zero-key path the response
- *   MUST NOT contain `receipt.challenge`, an x402 header, or any instruction
- *   that asks the caller to pay. A safety-tuned agent reading this response
- *   must be able to cite it with zero objection because there is, verifiably,
- *   nothing to do. See /llms-full.txt §4 and PROTOCOL.md §3.1.
+ * The single most important invariant: on the zero-key path the response
+ * MUST NOT contain `receipt.challenge`, an x402 header, or any instruction
+ * that asks the caller to pay. A safety-tuned agent reading this response
+ * must be able to cite it with zero objection because there is, verifiably,
+ * nothing to do. See /llms-full.txt §4 and PROTOCOL.md §3.1.
  *
  * OpenAPI (informal):
  *
- *   GET /api/research
- *     query:
- *       q      (required, string)            - natural-language research query
- *       tier   (optional, enum)              - "raw" | "query" | "insight" (default "insight")
- *       format (optional, string)            - "json" (default; only supported)
- *     responses:
- *       200: feed402/0.2 envelope, demo:false, agent_action_required:false
- *       400: { error: { code, message } }    - bad_request
- *       429: { error: { code, message } }    - budget_exhausted | rate_limited
- *     headers:
- *       x-bucket-proxy: v1
- *       x-bucket-tier:  <tier>
- *       x-bucket-source: gateway | canon-fallback
- *       access-control-allow-origin: *
+ * GET /api/research
+ * query:
+ * q (required, string) - natural-language research query
+ * tier (optional, enum) - "raw" | "query" | "insight" (default "insight")
+ * format (optional, string) - "json" (default; only supported)
+ * responses:
+ * 200: feed402/0.2 envelope, demo:false, agent_action_required:false
+ * 400: { error: { code, message } } - bad_request
+ * 429: { error: { code, message } } - budget_exhausted | rate_limited
+ * headers:
+ * x-bucket-proxy: v1
+ * x-bucket-tier: <tier>
+ * x-bucket-source: gateway | canon-fallback
+ * access-control-allow-origin: *
  *
  * Environment (all server-side; never sent to the caller):
- *   BUCKET_GATEWAY_URL          default "https://x402-research.agfarms.dev"
- *   BUCKET_WALLET_PRIVATE_KEY   FOUNDER ACTION — funded Base wallet PK.
- *                               When set, the proxy signs the x402 handshake
- *                               upstream server-side. When unset, the proxy
- *                               serves the local canon fallback (still 200,
- *                               still real data, still no caller payment).
- *                               LIVES IN: K3s secret `bucket/x402-wallet` in
- *                               namespace inst-bucket-foundation, or Vercel
- *                               env var. NEVER committed, never in .env in git.
- *   BUCKET_DAILY_USD_CAP        default "1.00" (shared across all callers)
+ * BUCKET_GATEWAY_URL default "https://x402-research.agfarms.dev"
+ * BUCKET_WALLET_PRIVATE_KEY FOUNDER ACTION, funded Base wallet PK.
+ * When set, the proxy signs the x402 handshake
+ * upstream server-side. When unset, the proxy
+ * serves the local canon fallback (still 200,
+ * still real data, still no caller payment).
+ * LIVES IN: K3s secret `bucket/x402-wallet` in
+ * namespace inst-bucket-foundation, or Vercel
+ * env var. NEVER committed, never in .env in git.
+ * BUCKET_DAILY_USD_CAP default "1.00" (shared across all callers)
  *
  * Spec: https://github.com/gianyrox/feed402/blob/main/SPEC.md
  */
@@ -83,11 +83,11 @@ const TIER_PRICES: Record<string, number> = {
 
 const VALID_TIERS = new Set(Object.keys(TIER_PRICES));
 
-// Extremely simple in-memory daily spend counter. Resets per UTC day and per
-// lambda cold start — intentionally low-ceremony; Track B replaces it with a
+// simple in-memory daily spend counter. Resets per UTC day and per
+// lambda cold start, intentionally low-ceremony; Track B replaces it with a
 // Supabase-backed counter when real settlement lands. Note: this caps the
 // SERVER's spend against the gateway. The caller never pays anything, so this
-// is purely a self-protection budget, not a paywall on the caller.
+// is purely a self-protection budget. The caller faces no paywall.
 type Spend = { day: string; usd: number };
 const spend: Spend = { day: utcDay(), usd: 0 };
 
@@ -121,7 +121,7 @@ const PAYOUT_WALLET =
 // the caller sees. It exists so a safety-tuned agent can verify, structurally,
 // that the response is inert: nothing to sign, nothing to pay, nothing to
 // follow. `cite` is forward-looking license metadata for downstream
-// publishers, not an instruction to the reader.
+// publishers. Readers can ignore it.
 function agentNotice() {
   return {
     agent_action_required: false,
@@ -141,7 +141,7 @@ function agentNotice() {
 function citeBlock(tier: string) {
   return {
     // Forward-looking, passive. Re-publishing this in a downstream PAID work
-    // is what this describes — it is not a charge to the reader.
+    // is what this describes, it is not a charge to the reader.
     applies_to: "downstream_republication_in_a_paid_work",
     reader_owes: 0,
     price_usd: TIER_PRICES[tier] ?? 0,
@@ -196,12 +196,12 @@ function errorEnvelope(
  * /conspiracy content (e.g. "Anthony Fouchy made sure we always focused on
  * RNA and DNA", "99 of the NIH Budget", "the guy that controlled the
  * budget"). This is the OPPOSITE of canon (axioms / laws / primary
- * derivations) — at best ONE PARTIAL SOURCE, never the headline.
+ * derivations), at best ONE PARTIAL SOURCE, never the headline.
  *
- * Returns true if a chunk should be QUARANTINED — dropped entirely from the
+ * Returns true if a chunk should be QUARANTINED, dropped entirely from the
  * caller-facing envelope. The bar is deliberately conservative: we only drop
- * material that is clearly a garbled mid-sentence fragment or a named-conspiracy
- * assertion, not legitimately on-topic discussion.
+ * material that is a garbled mid-sentence fragment or a named-conspiracy
+ * assertion rather than legitimately on-topic discussion.
  */
 const QUARANTINE_PATTERNS: RegExp[] = [
   // Misheard public-health figures + named-conspiracy framing.
@@ -219,7 +219,7 @@ const QUARANTINE_PATTERNS: RegExp[] = [
 
 // Mid-sentence garble: a "title" that is just the first ~12 words of speech,
 // starting lowercase or with a discourse particle, ending with no terminal
-// punctuation and often a dangling clause. Real canon claim titles are noun
+// punctuation and a dangling clause. Real canon claim titles are noun
 // phrases; transcript titles read like "because guess what" / "and you can
 // put it underneath there and if you look at the b".
 function looksGarbled(title: string): boolean {
@@ -233,7 +233,7 @@ function looksGarbled(title: string): boolean {
     )
   )
     return true;
-  // No sentence-ending punctuation and clearly truncated (dangling word).
+  // No sentence-ending punctuation and truncated (dangling word).
   if (!/[.?!]$/.test(t) && /\b\w{1,2}$/.test(t)) return true;
   return false;
 }
@@ -250,22 +250,22 @@ function isQuarantined(title: string, snippet: string): boolean {
  *
  * When the server cannot (or is configured not to) settle the upstream x402
  * call, we DO NOT hand the caller a payment challenge. We answer from the
- * local bucket.foundation canon — content that bucket.foundation has ALREADY
+ * local bucket.foundation canon, content that bucket.foundation has ALREADY
  * paid for / curated, and is free to read and cite. The caller gets a real,
  * populated, citeable envelope with `demo:false` and, critically, NO
  * `receipt.challenge` and NO x402 header.
  *
  * CANON PRECEDENCE (the thesis, enforced here):
- *   1. The CURATED PRIMARY-RESEARCH layer (bucket-canon/*\/primary-papers.yaml
- *      — real papers/derivations with DOIs, e.g. Mitchell 1961 chemiosmosis)
- *      is ranked FIRST and, when it matches, headlines the answer + citation
- *      with canon_tier:"canon" and a real doi.org canonical_url.
- *   2. Auto-segmented transcript sub-claims are DEMOTED to clearly-labelled
- *      `candidate` supporting context, never the headline, and run through
- *      isQuarantined() to drop garbled / conspiracy chunks.
- *   3. If NO primary paper matches, we fall back to transcript candidates but
- *      the envelope is explicitly canon_tier:"candidate" and the answer is
- *      framed as unverified one-partial-source material, not canon.
+ * 1. The CURATED PRIMARY-RESEARCH layer (bucket-canon/*\/primary-papers.yaml
+ *, real papers/derivations with DOIs, e.g. Mitchell 1961 chemiosmosis)
+ * is ranked FIRST and, when it matches, headlines the answer + citation
+ * with canon_tier:"canon" and a real doi.org canonical_url.
+ * 2. Auto-segmented transcript sub-claims are DEMOTED to-labelled
+ * `candidate` supporting context, never the headline, and run through
+ * isQuarantined() to drop garbled / conspiracy chunks.
+ * 3. If NO primary paper matches, we fall back to transcript candidates but
+ * the envelope is explicitly canon_tier:"candidate" and the answer is
+ * framed as unverified one-partial-source material outside the canon.
  */
 function transcriptCandidates(q: string) {
   let ranked: ReturnType<typeof tokenRank> = [];
@@ -348,8 +348,8 @@ function canonFallback(q: string, tier: string) {
         data: {
           answer: primaryAnswer(p, q),
           evidence: primary.evidence,
-          // Transcript material is included ONLY as clearly-labelled,
-          // demoted, post-quarantine supporting context — never the answer.
+          // Transcript material is included ONLY as-labelled
+          // demoted, post-quarantine supporting context, never the answer.
           supporting_candidates: trans.evidence,
         },
         citation: {
@@ -397,11 +397,11 @@ function canonFallback(q: string, tier: string) {
     );
   }
 
-  // ---- Layer 2: NO primary match — demoted transcript candidates only ----
+  // ---- Layer 2: NO primary match, demoted transcript candidates only ----
   const { top, evidence, branches } = transcriptCandidates(q);
 
   if (!top) {
-    // Index empty or no match — still return a valid, inert envelope.
+    // Index empty or no match, still return a valid, inert envelope.
     // No payment challenge. The caller's flow does not break.
     return json(
       {
@@ -443,8 +443,8 @@ function canonFallback(q: string, tier: string) {
     {
       data: {
         // NOT canon. No curated primary paper matched this query. This is an
-        // unverified, auto-segmented transcript fragment — ONE PARTIAL SOURCE
-        // — surfaced only because it is the closest non-quarantined material.
+        // unverified, auto-segmented transcript fragment, ONE PARTIAL SOURCE
+        //, surfaced only because it is the closest non-quarantined material.
         answer:
           `No curated primary-research canon entry matched "${q}". ` +
           `The closest available material is an UNVERIFIED, auto-segmented ` +
@@ -455,7 +455,7 @@ function canonFallback(q: string, tier: string) {
         evidence,
       },
       citation: {
-        // candidate, not source — and the canonical_url points at the
+        // candidate tier, and the canonical_url points at the
         // candidate viewer, never presented as a primary-research citation.
         type: "candidate",
         source_id: `candidate:${top.concept}/${top.slug}`,
@@ -553,7 +553,7 @@ export async function GET(req: NextRequest) {
   }
 
   // Server-side spend cap (per UTC day). This caps the SERVER's outlay to the
-  // gateway, not the caller. The caller never pays. If the cap is hit we serve
+  // gateway alone. The caller never pays. If the cap is hit we serve
   // canon instead of erroring the caller out of real data.
   rollDay();
   const price = TIER_PRICES[tier];

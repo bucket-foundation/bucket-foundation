@@ -9,15 +9,15 @@ import {
   mailto,
 } from "@/lib/support";
 
-// /support — the real fundable thing.
+// /support, the real fundable thing.
 //
 // Bucket's research tools + local-LLM features run partly on the founder's
 // personal laptop GPU; when that machine is closed, those features go dark.
-// This page makes the honest ask: fund always-on cloud-GPU hosting so the tools
+// This page makes the ask: fund always-on cloud-GPU hosting so the tools
 // (and the local-LLM features behind them) are available to everyone, 24/7.
-// Donation options are real where possible and clearly-labelled-TODO where they
-// need the founder to activate them (GitHub Sponsors). All config — the contact
-// email + the donation links — lives in src/lib/support.ts (one knob).
+// Donation options are real where possible and-labelled-TODO where they
+// need the founder to activate them (GitHub Sponsors). All config, the contact
+// email + the donation links, lives in src/lib/support.ts (one knob).
 
 export const metadata = {
   title: "Support · fund always-on research",
@@ -93,7 +93,7 @@ export default function Page() {
           ways to fund
         </h2>
         <div className="mt-7 flex flex-col gap-px bg-[color:var(--hairline)] grid-hairlines">
-          {/* (a) Crypto — real, public address */}
+          {/* (a) Crypto, real, public address */}
           <div className="bg-[color:var(--bone)] p-7 md:p-8">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">
@@ -113,7 +113,7 @@ export default function Page() {
             </code>
           </div>
 
-          {/* (b) GitHub Sponsors — link correct, activation TODO */}
+          {/* (b) GitHub Sponsors, link correct, activation TODO */}
           <div className="bg-[color:var(--bone)] p-7 md:p-8">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="font-display uppercase text-[18px] tracking-[0.04em] text-[color:var(--basalt)]">

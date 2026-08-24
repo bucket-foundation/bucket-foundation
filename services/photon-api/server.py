@@ -1,40 +1,40 @@
 #!/usr/bin/env python3
 """
-Polingual Photon API — the FULL 45k-photon dictionary as a live service.
+Polingual Photon API, the FULL 45k-photon dictionary as a live service.
 
 Wraps the proven multi-axis query engine (scripts/photon/query.py) in a small
 FastAPI app so bucket.foundation's explorer can serve every photon + all five
 comparison axes, instead of the ~6,500-word baked subset.
 
 Endpoints (all GET, JSON out):
-  GET /healthz                                 liveness + index stats
-  GET /lookup?surface=&lang=                    the photon itself (+ provenance)
-  GET /semantic?surface=&lang=&k=&cross=        words that MEAN the same
-  GET /phonetic?surface=&lang=&k=               words that SOUND the same
-  GET /spelling?surface=&lang=&k=               words SPELLED similarly
-  GET /etymology?surface=&lang=                 where a word COMES FROM
-  GET /translate?surface=&from=&to=&k=          same meaning across languages
+ GET /healthz liveness + index stats
+ GET /lookup?surface=&lang= the photon itself (+ provenance)
+ GET /semantic?surface=&lang=&k=&cross= words that MEAN the same
+ GET /phonetic?surface=&lang=&k= words that SOUND the same
+ GET /spelling?surface=&lang=&k= words SPELLED similarly
+ GET /etymology?surface=&lang= where a word COMES FROM
+ GET /translate?surface=&from=&to=&k= same meaning across languages
 
 Design notes:
-  * The semantic/phonetic vectors are memmapped (.f32.bin), never copied into
-    RAM per request. The sqlite metadata is loaded once at startup into numpy
-    arrays + a (lang, surface) lookup dict; the connection is reused.
-  * Vector dimensions are AUTO-DETECTED from the bin file size vs row count, so
-    this serves the live LaBSE-768 build without any source edit (and would
-    still work if the substrate is rebuilt at a different dim).
-  * No embedding model is loaded: all five axes operate on photons that already
-    exist in the substrate (top-k over stored vectors / edit distance / kaikki
-    cache), which is exactly what the explorer needs. Query-time embedding of
-    arbitrary free text is a deliberate v2 follow-up, not required here.
-  * Source data is Wiktionary via Kaikki (CC-BY-SA). Every response carries the
-    provenance (source + uri) so attribution travels with the data.
+ * The semantic/phonetic vectors are memmapped (.f32.bin), never copied into
+ RAM per request. The sqlite metadata is loaded once at startup into numpy
+ arrays + a (lang, surface) lookup dict; the connection is reused.
+ * Vector dimensions are AUTO-DETECTED from the bin file size vs row count, so
+ this serves the live LaBSE-768 build without any source edit (and would
+ still work if the substrate is rebuilt at a different dim).
+ * No embedding model is loaded: all five axes operate on photons that already
+ exist in the substrate (top-k over stored vectors / edit distance / kaikki
+ cache), which is exactly what the explorer needs. Query-time embedding of
+ arbitrary free text is a deliberate v2 follow-up, out of scope here.
+ * Source data is Wiktionary via Kaikki (CC-BY-SA). Every response carries the
+ provenance (source + uri) so attribution travels with the data.
 
 Run:
-  uvicorn server:app --host 127.0.0.1 --port 8088
+ uvicorn server:app --host 127.0.0.1 --port 8088
 Env:
-  PHOTONS_DIR        override path to the photon substrate dir
-  POLINGUAL_CORS     comma-sep allowed origins (default: bucket.foundation set)
-  POLINGUAL_RATE     requests/min/IP for the data axes (default 120)
+ PHOTONS_DIR override path to the photon substrate dir
+ POLINGUAL_CORS comma-sep allowed origins (default: bucket.foundation set)
+ POLINGUAL_RATE requests/min/IP for the data axes (default 120)
 """
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ from threading import Lock
 import numpy as np
 
 # --------------------------------------------------------------------------- #
-#  Paths / config                                                             #
+# Paths / config #
 # --------------------------------------------------------------------------- #
 PHOTONS_DIR = os.environ.get(
     "PHOTONS_DIR",
@@ -117,7 +117,7 @@ def _detect_dim(bin_path: str, max_row_plus_1: int) -> int:
 
 
 # --------------------------------------------------------------------------- #
-#  Index (loaded once at startup)                                             #
+# Index (loaded once at startup) #
 # --------------------------------------------------------------------------- #
 class PhotonIndex:
     def __init__(self):
@@ -154,7 +154,7 @@ class PhotonIndex:
         self._sem = None
         self._pho = None
 
-        # (lang, surface) -> array idx  +  surface-only fallback
+        # (lang, surface) -> array idx + surface-only fallback
         self.by_key = {}
         for i in range(self.n):
             self.by_key.setdefault((self.lang[i], self.surface[i]), i)
@@ -219,7 +219,7 @@ class PhotonIndex:
 
 
 # --------------------------------------------------------------------------- #
-#  Axes (cosine top-k over memmapped, L2-normalized vectors)                  #
+# Axes (cosine top-k over memmapped, L2-normalized vectors) #
 # --------------------------------------------------------------------------- #
 def _cosine_topk(matrix, valid_mask, vec, k, exclude=None):
     sims = matrix @ vec.astype("float32")
@@ -297,7 +297,7 @@ def _norm_edit(a, b):
 
 def spelling_topk(ix, surface, lang=None, k=10):
     # Vectorized candidate prefilter so the O(len*len) Python edit-distance only
-    # runs on plausible neighbors (was a full n-row Python loop — too slow at
+    # runs on plausible neighbors (was a full n-row Python loop, too slow at
     # 200k). A normalized edit distance < 1 requires the candidate to share at
     # least one character AND not differ wildly in length; we gate on lang +
     # |len diff| <= max(2, 40% of the query length).
@@ -418,7 +418,7 @@ def lookup(ix, surface, lang=None):
 
 
 # --------------------------------------------------------------------------- #
-#  Rate limiter (in-process sliding window per IP)                            #
+# Rate limiter (in-process sliding window per IP) #
 # --------------------------------------------------------------------------- #
 class RateLimiter:
     def __init__(self, per_min: int):
@@ -441,7 +441,7 @@ class RateLimiter:
 
 
 # --------------------------------------------------------------------------- #
-#  FastAPI app                                                                #
+# FastAPI app #
 # --------------------------------------------------------------------------- #
 from fastapi import FastAPI, Request  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402

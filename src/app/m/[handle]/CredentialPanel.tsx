@@ -4,7 +4,7 @@
  * ----------------------------------------------------------------------------
  * Surfaces the verifiable-credential layer on a public Mastery Profile:
  *
- *   - ALWAYS (every visitor): a "Verify" affordance linking to /verify — the
+ *   - ALWAYS (every visitor): a "Verify" affordance linking to /verify, the
  *     viral backlink. A recruiter can verify any Bucket credential there.
  *
  *   - PROFILE OWNER ONLY: an "Issue / get verifiable credential" action. We
@@ -13,9 +13,9 @@
  *     the signed-in handle matches this profile. Issuance POSTs to
  *     /api/academy/credential/issue with the verified bearer token; the server
  *     re-derives identity from the token (never trusts the client), so this is
- *     a convenience surface, not a trust boundary.
+ *     a convenience surface. The trust boundary lives on the server.
  *
- * Copy stays honest (bkt-4at): "evidence of demonstrated mastery", never a score.
+ * Copy stays (bkt-4at): "evidence of demonstrated mastery", never a score.
  * Degrades silently when sign-in is unconfigured or the visitor isn't the owner.
  */
 import { useCallback, useEffect, useState } from "react";
@@ -75,7 +75,7 @@ export default function CredentialPanel({ handle }: { handle: string }) {
         const body = (await res.json()) as { profile?: { handle?: string } };
         if (alive && body.profile?.handle === handle) setIsOwner(true);
       } catch {
-        /* not owner / offline — stay hidden */
+        /* not owner / offline, stay hidden */
       }
     });
     return () => {

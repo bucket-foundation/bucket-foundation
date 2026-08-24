@@ -81,7 +81,7 @@ export default function AiPasteCTA() {
               </span>
             </div>
 
-            {/* prompt body — selectable, non-wrapped monospace */}
+            {/* prompt body, selectable, non-wrapped monospace */}
             <div
               onClick={handleCopy}
               role="button"
@@ -99,7 +99,7 @@ export default function AiPasteCTA() {
               {PROMPT}
             </div>
 
-            {/* action row — real buttons */}
+            {/* action row, real buttons */}
             <div className="mt-5 flex flex-wrap gap-3">
               <button
                 onClick={handleCopy}

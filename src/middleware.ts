@@ -2,11 +2,11 @@
  * Gate the private Kruse Index preview.
  *
  * Rules:
- *   - `/kruse` itself is a PUBLIC preview/landing — no gate.
- *   - `/kruse/search` and `/api/kruse/*` are gated by an HS256 magic-link
- *     cookie. Missing / invalid / expired -> 404 (do not leak existence).
- *   - First visit anywhere under /kruse with ?t=<token> -> set cookie,
- *     302 to /kruse/search (strip token).
+ * - `/kruse` itself is a PUBLIC preview/landing, no gate.
+ * - `/kruse/search` and `/api/kruse/*` are gated by an HS256 magic-link
+ * cookie. Missing / invalid / expired -> 404 (do not leak existence).
+ * - First visit anywhere under /kruse with ?t=<token> -> set cookie,
+ * 302 to /kruse/search (strip token).
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -35,12 +35,12 @@ function isGatedPath(pathname: string): boolean {
 export async function middleware(req: NextRequest) {
   const { pathname, searchParams } = req.nextUrl;
 
-  // 1. Incoming magic link: ?t=<token> — accepted on any /kruse path.
+  // 1. Incoming magic link: ?t=<token>, accepted on any /kruse path.
   const rawToken = searchParams.get("t");
   if (rawToken) {
     const payload = await verifyToken(rawToken);
     if (!payload) {
-      // Invalid token — for the public preview path, let it through unchrome.
+      // Invalid token, for the public preview path, let it through unchrome.
       if (!isGatedPath(pathname)) return NextResponse.next();
       return notFound();
     }
@@ -64,12 +64,12 @@ export async function middleware(req: NextRequest) {
     return res;
   }
 
-  // 2. Public preview — no cookie required.
+  // 2. Public preview, no cookie required.
   if (!isGatedPath(pathname)) {
     return NextResponse.next();
   }
 
-  // 3. Gated path — cookie required.
+  // 3. Gated path, cookie required.
   const cookie = req.cookies.get(COOKIE_NAME)?.value;
   if (!cookie) return notFound();
 

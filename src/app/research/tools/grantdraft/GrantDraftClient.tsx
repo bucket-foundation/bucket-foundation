@@ -1,6 +1,6 @@
 "use client";
 
-// GrantDraft client island — funder/grant finder + specific-aims drafter,
+// GrantDraft client island, funder/grant finder + specific-aims drafter,
 // grounded in REAL awarded grants (research-atlas NSF corpus / OpenAlex
 // fallback). Render is "json" → typed view.
 

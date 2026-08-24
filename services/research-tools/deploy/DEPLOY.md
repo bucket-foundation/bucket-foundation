@@ -1,23 +1,25 @@
-# research-tools-gateway — Deploy Runbook
+# research-tools-gateway, Deploy Runbook
 
 **Target:** `https://research-tools.agfarms.dev` on prod-hetzner-1 (Hetzner CPX42),
 K3s-in-Docker (`agfarms-k3s`), namespace `inst-bucket-foundation`, TLS via host
 nginx + certbot. Same proven pattern as the nucleus tenants + the Polingual API.
 
-**Status: LIVE.** The **lean 9-tool image** (§0–§7) was verified 2026-06-19. The
+**Status: LIVE.** The **lean 9-tool image** (§0, §7) was verified 2026-06-19. The
 **standard 16-tool fat image** (§8b, `tools-v3`) superseded it the same day and is
-the current live image — all 16 endpoints answer over public HTTPS. See
+The current live image, all 16 endpoints answer over public HTTPS. See
 [§8b](#8b-the-standard-fat-image--all-16-tools-live-shipped-2026-06-19) and
 [§7 Verification](#7-verification-what-was-checked-live).
 
 ---
 
-## 0. Scope — what actually ships in this image (be honest)
+## 0. Scope
+
+What ships in this image.
 
 The gateway (`gateway.py`) registers **16 tools**. This image (`Dockerfile`)
-ships only the **9 that are fully self-contained and REAL**, because they need
-nothing but `fastapi/uvicorn/numpy/scipy/ViennaRNA` — no GPU, no ML weights, no
-sibling repos:
+Ships only the **9 that are fully self-contained and REAL**, because they need
+nothing but `fastapi/uvicorn/numpy/scipy/ViennaRNA`, no GPU, no ML weights, no
+Sibling repos:
 
 | Cluster | Tools | Backend | Live? |
 |---|---|---|---|
@@ -31,28 +33,28 @@ endpoints**, but their runners `subprocess` into heavy sibling repos
 (`~/agfarms/biophysics-phd-review/<tool>/`, `~/screenserver`) + ML model weights
 that are **intentionally NOT vendored** into this lean CPU image. With those
 dirs absent they return a clean tool-level error (e.g. `corpus_build_failed`,
-`no_report`) — the gateway never crashes. Vendoring them (RDKit/ADMET,
+`no_report`), the gateway never crashes. Vendoring them (RDKit/ADMET,
 MDAnalysis, MiniLM, ESM, etc.) is a separate, multi-GB image + a GPU plan for
-`cryotriage`/real-MD `trajmine`; that is a **follow-up bead**, not this slice.
+`cryotriage`/real-MD `trajmine`; that is a **follow-up bead** beyond this slice.
 `/health` reports backend status per cluster (`rag_backend`, `dnarna_backend`,
 `neuro_backend`) so the UI shows live/offline truthfully.
 
 ---
 
-## 1. Prerequisites (all satisfied on prod-hetzner-1)
+## 1. Prerequisites
 
 - DNS: `research-tools.agfarms.dev` resolves to the box (`5.161.236.151`, via the
-  Cloudflare `*.agfarms.dev` wildcard — already in place, no DNS change needed).
+ Cloudflare `*.agfarms.dev` wildcard, already in place, no DNS change needed).
 - Docker 28 on the box; `agfarms-k3s` (rancher/k3s v1.31.6) container healthy.
 - `kubectl` reached via `docker exec agfarms-k3s kubectl ...` (the host
-  `~/.kube/config` points at a stale minikube addr — do NOT use it).
+ `~/.kube/config` points at a stale minikube addr, do NOT use it).
 - Traefik ingress NodePort = **30080** on the k3s container IP **172.19.0.2**.
 - nginx + certbot on the host (Let's Encrypt, per the org pattern; **no
-  cert-manager** in this cluster — TLS is terminated at host nginx).
+ cert-manager** in this cluster, TLS is terminated at host nginx).
 - `inst-bucket-foundation` namespace already exists.
 
 SSH to the box (non-interactive; the `agfarms` shell function uses `ssh -t` and
-hangs in scripts — call sshpass directly without `-t`):
+hangs in scripts, call sshpass directly without `-t`):
 ```bash
 sshpass -p "$AGFARMS_PASS" ssh -o StrictHostKeyChecking=accept-new "$AGFARMS_HOST" '<cmd>'
 # sudo on the box: pipe the password to `sudo -S` over ssh stdin:
@@ -61,7 +63,7 @@ printf '%s\n' "$AGFARMS_PASS" | sshpass -p "$AGFARMS_PASS" ssh "$AGFARMS_HOST" "
 
 ---
 
-## 2. Build the image (on the box — x86_64, no cross-arch)
+## 2. Build the image
 
 ```bash
 # 1. Copy the build context to the box (gateway + the 3 REAL backends + deploy/).
@@ -85,8 +87,8 @@ sshpass -p "$AGFARMS_PASS" ssh "$AGFARMS_HOST" \
 
 ## 3. Import the image into k3s containerd
 
-k3s-in-docker has its **own** containerd — a host `docker build` is not visible to
-it. Import via `ctr`:
+K3s-in-docker has its **own** containerd, a host `docker build` is not visible to
+It. Import via `ctr`:
 ```bash
 sshpass -p "$AGFARMS_PASS" ssh "$AGFARMS_HOST" \
   'docker save farmera/research-tools-gateway:v1 \
@@ -146,14 +148,14 @@ Cert auto-renews via the certbot systemd timer already on the box.
 
 ---
 
-## 6. Wire Bucket -> gateway (`TOOLS_GATEWAY_URL`)
+## 6. Wire Bucket -> gateway
 
 The Bucket Next proxies (`src/app/api/research/<tool>/route.ts`, all 16 already
 exist) read `TOOLS_GATEWAY_URL` and **already default to
 `https://research-tools.agfarms.dev`**. So the live site works even with the env
-unset — but set it explicitly for clarity + preview environments:
+unset, but set it explicitly for clarity + preview environments:
 
-**Vercel (bucket-foundation project) — set for Production + Preview:**
+**Vercel (bucket-foundation project), set for Production + Preview:**
 ```bash
 cd ~/agfarms/bucket-foundation
 printf 'https://research-tools.agfarms.dev' | vercel env add TOOLS_GATEWAY_URL production
@@ -162,11 +164,11 @@ printf 'https://research-tools.agfarms.dev' | vercel env add TOOLS_GATEWAY_URL p
 # Redeploy to pick it up:  vercel --prod
 ```
 `TOOLS_GATEWAY_URL` is **server-only** (used in route handlers, `runtime="nodejs"`,
-never shipped to the client) — no `NEXT_PUBLIC_` prefix.
+Never shipped to the client), no `NEXT_PUBLIC_` prefix.
 
 **K3s secret `bucket/tools-gateway`** (for the doc-specified future where the
 Bucket app itself runs in-cluster; the live site is on Vercel, so this is
-forward-looking parity, not load-bearing today):
+Forward-looking parity, unused today):
 ```bash
 sshpass -p "$AGFARMS_PASS" ssh "$AGFARMS_HOST" \
   'docker exec agfarms-k3s kubectl create secret generic tools-gateway \
@@ -180,7 +182,7 @@ No secrets are committed to the repo. The gateway is payment-agnostic; metering
 
 ---
 
-## 7. Verification (what was checked LIVE)
+## 7. Verification
 
 All on 2026-06-19 against the public endpoint:
 
@@ -221,33 +223,35 @@ K 'delete deploy,svc,ingress research-tools-gateway'
 
 ---
 
-## 8b. The STANDARD (fat) image — all 16 tools live (shipped 2026-06-19)
+## 8b. The STANDARD image
+
+All 16 tools live.
 
 The lean image above serves 9 tools. A **second, standard image** vendors the
 remaining 7 so **all 16 endpoints answer live** from the same gateway API (no UI
-or contract change). It is the live image as of 2026-06-19 (`tools-v3`).
+Or contract change). It is the live image as of 2026-06-19 (`tools-v3`).
 
 Artifacts (all in `deploy/`):
-- `Dockerfile.tools` — fat CPU image (~3.18 GB). Base + scientific stack + CPU-only
-  torch (`--index-url .../whl/cpu`) + RDKit. Vendors the 7 tools' source + weights
-  under `/app/vendor/`, and sets `TOOLS_REPO_DIR=/app/vendor/tools` +
-  `SCREENSERVER_DIR=/app/vendor/screenserver` so the gateway's **existing**
-  subprocess logic dispatches to the vendored code — **no gateway code change**.
-  Bakes the all-MiniLM-L6-v2 HF cache (`HF_HUB_OFFLINE=1`) so labbrain never
-  downloads its embedder.
-- `requirements.tools.txt` — the fat deps. **`scikit-learn==1.6.1` is pinned**: the
-  screenserver HistGradientBoosting pickles fail to unpickle on sklearn 1.9+
-  (`No module named '_loss'`). numpy is left to the resolver (`>=1.26,<2.3`) because
-  mdtraj/deeptime cap it below the lean image's 2.2.1.
-- `build-tools-context.sh` — reproducibly assembles the build context from the
-  sibling repos (excludes the 3.7 GB cryotriage data, 296 MB stabilitydesigner
-  train data, 156 MB patchseqml data, 1.6 GB `.esm_cache` — none needed on the
-  invoked paths).
-- `k8s.tools.yaml` — the fat Deployment. **`--workers 1` (REQUIRED)** — the job
-  table is in-memory per worker; async tools (labbrain build, trajmine, cryotriage)
-  are polled by `job_id` and would 404 on a different worker. `memory: 3Gi` limit
-  (torch + the 381 MB stabilitydesigner sklearn model + RDKit need headroom).
-  `TOOLS_INLINE_BUDGET_S=45` so more heavy CPU tools return inline.
+- `Dockerfile.tools`, fat CPU image (~3.18 GB). Base + scientific stack + CPU-only
+ torch (`--index-url .../whl/cpu`) + RDKit. Vendors the 7 tools' source + weights
+ under `/app/vendor/`, and sets `TOOLS_REPO_DIR=/app/vendor/tools` +
+ `SCREENSERVER_DIR=/app/vendor/screenserver` so the gateway's **existing**
+ subprocess logic dispatches to the vendored code, **no gateway code change**.
+ Bakes the all-MiniLM-L6-v2 HF cache (`HF_HUB_OFFLINE=1`) so labbrain never
+ downloads its embedder.
+- `requirements.tools.txt`, the fat deps. **`scikit-learn==1.6.1` is pinned**: the
+ screenserver HistGradientBoosting pickles fail to unpickle on sklearn 1.9+
+ (`No module named '_loss'`). Numpy is left to the resolver (`>=1.26,<2.3`) because
+ mdtraj/deeptime cap it below the lean image's 2.2.1.
+- `build-tools-context.sh`, reproducibly assembles the build context from the
+ sibling repos (excludes the 3.7 GB cryotriage data, 296 MB stabilitydesigner
+ train data, 156 MB patchseqml data, 1.6 GB `.esm_cache`, none needed on the
+ invoked paths).
+- `k8s.tools.yaml`, the fat Deployment. **`--workers 1` (REQUIRED)**, the job
+ table is in-memory per worker; async tools (labbrain build, trajmine, cryotriage)
+ are polled by `job_id` and would 404 on a different worker. `memory: 3Gi` limit
+ (torch + the 381 MB stabilitydesigner sklearn model + RDKit need headroom).
+ `TOOLS_INLINE_BUDGET_S=45` so more heavy CPU tools return inline.
 
 What runs live in the fat image (verified 2026-06-19 via public HTTPS):
 
@@ -261,7 +265,7 @@ What runs live in the fat image (verified 2026-06-19 via public HTTPS):
 | trajmine | mdtraj+deeptime **demo-md** (no GPU) | ✅ live, DEMO (real-shaped MSM) |
 | cryotriage | scikit-image+mrcfile **synthetic** (no GPU) | ✅ live, DEMO (real-shaped triage) |
 
-Build + deploy (same proven path as §2–§4):
+Build + deploy (same proven path as §2, §4):
 ```bash
 # on a host with the sibling repos:
 bash deploy/build-tools-context.sh                       # → /tmp/rt-tools-build
@@ -276,15 +280,15 @@ Rollback to the lean 9-tool image: `kubectl set image deploy/research-tools-gate
 ## 9. Remaining / follow-up
 
 1. ~~**Vendor the 7 subprocess/demo tools** into a second image.~~ **DONE 2026-06-19**
-   — see §8b. All 16 endpoints live. **trajmine real-MD + cryotriage real cryo-EM
-   stay demo/synthetic** because the Hetzner CPX42 has **no GPU**; flipping them to
-   real is a GPU-worker deploy (a separate node/queue), not a redesign — the async
-   contract is already in place. That GPU plane is the only remaining tool gap.
-2. **Set `TOOLS_GATEWAY_URL` in Vercel** (step 6) and redeploy Bucket — optional
-   (the proxy already defaults to this URL) but recommended for explicitness.
+, see §8b. All 16 endpoints live. **trajmine real-MD + cryotriage real cryo-EM
+ stay demo/synthetic** because the Hetzner CPX42 has **no GPU**; flipping them to
+ real is a GPU-worker deploy (a separate node/queue) and no redesign, the async
+ contract is already in place. That GPU plane is the only remaining tool gap.
+2. **Set `TOOLS_GATEWAY_URL` in Vercel** (step 6) and redeploy Bucket, optional
+ (the proxy already defaults to this URL) but recommended for explicitness.
 3. **Push `farmera/research-tools-gateway` to Docker Hub** if you want pull-based
-   deploys instead of `ctr import` (then drop `imagePullPolicy: IfNotPresent`).
-4. **Persist the job table** (Redis/RQ + Supabase mirror) — currently in-memory
-   per pod; fine for inline tools, required before the async/heavy plane lands.
-   Keep `replicas: 1` until then (the in-memory job table is not shared).
-5. **Metering seam** (Viatika) in the Bucket proxy — architecture doc §6.
+ deploys instead of `ctr import` (then drop `imagePullPolicy: IfNotPresent`).
+4. **Persist the job table** (Redis/RQ + Supabase mirror), currently in-memory
+ per pod; fine for inline tools, required before the async/heavy plane lands.
+ Keep `replicas: 1` until then (the in-memory job table is not shared).
+5. **Metering seam** (Viatika) in the Bucket proxy, architecture doc §6.

@@ -1,15 +1,15 @@
 /**
- * bucket.foundation — /api/research/hhfit
+ * bucket.foundation, /api/research/hhfit
  * ---------------------------------------
  * Same-origin proxy for the HH-FitML neuroscience tool. Fits single-compartment
- * passive-membrane (RC) parameters — R, C, tau, V0 — to a current-clamp voltage
+ * passive-membrane (RC) parameters, R, C, tau, V0, to a current-clamp voltage
  * trace via scipy least-squares, reporting fit quality (R^2 / RMSE). Backend
  * logic is REAL (services/research-tools/tools_neuro.py:run_hh_fit).
  *
- *   POST /api/research/hhfit                  → gateway POST /v1/hhfit/submit
- *        body { trace, current_pa?, dt_ms?, stim_onset_ms? }
- *                                              → { job_id, status, mode, price, [result] }
- *   GET  /api/research/hhfit?job=<id>[&result=1] → status / result
+ * POST /api/research/hhfit → gateway POST /v1/hhfit/submit
+ * body { trace, current_pa?, dt_ms?, stim_onset_ms? }
+ * → { job_id, status, mode, price, [result] }
+ * GET /api/research/hhfit?job=<id>[&result=1] → status / result
  *
  * `trace` is a JSON array of mV samples OR the string "demo" (synthetic trace
  * with known ground-truth params, so the real fit is verifiable end-to-end).
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

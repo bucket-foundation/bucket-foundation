@@ -1,5 +1,5 @@
 /**
- * src/lib/academy/credential/sign.ts  (bkt-52p)
+ * src/lib/academy/credential/sign.ts (bkt-52p)
  * ----------------------------------------------------------------------------
  * Sign + verify OB3 credentials as VC-JWT (Compact JWS, alg=EdDSA / Ed25519)
  * using `jose`. This is the W3C VC "jwt" securing mechanism: the credential is
@@ -7,13 +7,13 @@
  * jti/nbf/iat) mirrored from the credential so a generic JWT tool sees them too.
  *
  * WHY VC-JWT (not Data Integrity / RDF): VC-JWT needs no JSON-LD canonicalization
- * — it signs exact bytes — so it is correct, deterministic, and serverless-
+ *, it signs exact bytes, so it is correct, deterministic, and serverless-
  * friendly. (Data Integrity with eddsa-rdfc-2022 would require a correct URDNA
  * implementation; doing it wrong silently breaks interop. VC-JWT is fully
  * spec-permitted and what we ship.)
  *
  * Keys: the PRIVATE JWK is loaded server-side only (issuer.loadPrivateJwk).
- * Verification uses the PUBLISHED public JWK(s) — no secret needed, so anyone
+ * Verification uses the PUBLISHED public JWK(s), no secret needed, so anyone
  * can verify offline against /api/academy/issuer.
  */
 import { SignJWT, jwtVerify, importJWK, type JWK } from "jose";
@@ -43,7 +43,7 @@ export async function signCredential(
 /**
  * Verify the SIGNATURE of a VC-JWT against the published issuer key(s) and
  * confirm the issuer is Bucket. Does NOT check revocation (that's a live lookup
- * the caller layers on — see /api/academy/credential/verify). Pure crypto.
+ * the caller layers on, see /api/academy/credential/verify). Pure crypto.
  */
 export async function verifySignature(jwt: string): Promise<{
   signatureValid: boolean;
@@ -64,7 +64,7 @@ export async function verifySignature(jwt: string): Promise<{
         reasons.push("JWS verified but carries no `vc` credential claim.");
         return { signatureValid: true, issuerTrusted: false, reasons };
       }
-      // Issuer must be Bucket — both in the JWT iss and the embedded credential.
+      // Issuer must be Bucket, both in the JWT iss and the embedded credential.
       const credIssuer =
         typeof vc.issuer === "object" ? vc.issuer?.id : (vc.issuer as unknown as string);
       const issuerTrusted =
@@ -96,7 +96,7 @@ export async function verifySignature(jwt: string): Promise<{
 /**
  * Accept either a compact VC-JWT or a bare credential JSON object. If JSON is
  * passed, it CANNOT be cryptographically verified (the proof lives in the JWS),
- * so we return a clear, honest negative — we never "trust" unsigned JSON.
+ * so we return a clear, negative, we never "trust" unsigned JSON.
  */
 export function looksLikeJwt(input: string): boolean {
   const s = input.trim();

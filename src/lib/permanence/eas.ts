@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — EAS (Ethereum Attestation Service) helper
+ * bucket.foundation, EAS (Ethereum Attestation Service) helper
  * --------------------------------------------------------------
  * Takes a citation envelope, computes an artifactHash (keccak256 of canonical
  * JSON), and writes an on-chain attestation via EAS on Base / Base Sepolia.
@@ -8,13 +8,13 @@
  * pull EAS SDK into the default Next.js bundle.
  *
  * Env:
- *   BUCKET_WALLET_PRIVATE_KEY   0x-prefixed hex private key (NOT committed)
- *   EAS_CONTRACT_BASE           EAS contract addr on the target chain
- *                                 Base mainnet: 0x4200000000000000000000000000000000000021
- *                                 Base Sepolia: 0x4200000000000000000000000000000000000021
- *                               (canonical predeploy; verify at easscan.org)
- *   EAS_SCHEMA_UID              schema UID registered via register-eas-schema.ts
- *   EAS_CHAIN                   "base" | "base-sepolia" (default base-sepolia)
+ * BUCKET_WALLET_PRIVATE_KEY 0x-prefixed hex private key (NOT committed)
+ * EAS_CONTRACT_BASE EAS contract addr on the target chain
+ * Base mainnet: 0x4200000000000000000000000000000000000021
+ * Base Sepolia: 0x4200000000000000000000000000000000000021
+ * (canonical predeploy; verify at easscan.org)
+ * EAS_SCHEMA_UID schema UID registered via register-eas-schema.ts
+ * EAS_CHAIN "base" | "base-sepolia" (default base-sepolia)
  */
 
 export type CitationEnvelope = Record<string, unknown> & {
@@ -116,7 +116,7 @@ export async function attestCitation(
   const canonTier = envelope.canon_tier ?? "candidate";
   const publishedAt = BigInt(Math.floor(Date.now() / 1000));
 
-  // BucketCitation schema encoding — must match scripts/register-eas-schema.ts
+  // BucketCitation schema encoding, must match scripts/register-eas-schema.ts
   const encodedData = encodeAbiParameters(
     [
       { name: "artifactHash", type: "bytes32" },

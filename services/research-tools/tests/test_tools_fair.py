@@ -1,14 +1,14 @@
 """No-network unit tests for FAIRCheck (tools_fair).
 
 Verifies the ACTUAL FAIR rubric on records with KNOWN ground truth:
-  * a dataset MISSING a license scores strictly lower on FAIR-Reusable than the
-    same dataset WITH an open license (the load-bearing assertion);
-  * a DOI is detected as a persistent identifier but a bare URL is not (partial);
-  * proprietary formats (xlsx) score lower on Interoperable than open (csv/json);
-  * the gap punch-list is prioritized and points at the right principle;
-  * malformed input returns a structured error, never raises.
+ * a dataset MISSING a license scores strictly lower on FAIR-Reusable than the
+ same dataset WITH an open license (the load-bearing assertion);
+ * a DOI is detected as a persistent identifier but a bare URL is not (partial);
+ * proprietary formats (xlsx) score lower on Interoperable than open (csv/json);
+ * the gap punch-list is prioritized and points at the right principle;
+ * malformed input returns a structured error, never raises.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_fair.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_fair.py -q
 """
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ def test_missing_license_lowers_reusable():
     no_lic_record = {k: v for k, v in STRONG.items() if k != "license"}
     without = f.run_fair_check({"record": no_lic_record})
     assert without["subscores"]["Reusable"] < with_lic["subscores"]["Reusable"]
-    # the R1.1 sub-principle specifically must drop to zero with no license
+    # the R1.1 sub-principle must drop to zero with no license
     assert without["sub_principles"]["R1.1"] == 0.0
     assert with_lic["sub_principles"]["R1.1"] == 1.0
     # and the overall score must drop too
@@ -95,7 +95,7 @@ def test_open_formats_beat_proprietary():
     # both are machine-readable, so I1 is similar, but the open formats record
     # is at least as interoperable; the meaningful difference is Reusable openness
     assert openf["detected"]["machine_readable_fraction"] >= 0.0
-    # a truly non-machine-readable format (pdf) scores lower on I1
+    # a non-machine-readable format (pdf) scores lower on I1
     pdf = f.run_fair_check({"record": {"formats": ["pdf"], "title": "x"}})
     assert pdf["sub_principles"]["I1"] < openf["sub_principles"]["I1"]
 
@@ -131,7 +131,7 @@ def test_grade_monotonic():
 
 
 # =========================================================================
-# Robustness: never crash on malformed input
+# Reliability: never crash on malformed input
 # =========================================================================
 def test_validation_structured_errors():
     assert f.run_fair_check({"record": "{not json"}).get("error")

@@ -125,8 +125,8 @@ export const metadata: Metadata = {
     // yandex: "<YANDEX_VERIFICATION_TOKEN>",
     other: {
       // "anthropic-search-verification": "<ANTHROPIC_TOKEN>",
-      // "openai-search-verification":    "<OPENAI_TOKEN>",
-      // "msvalidate.01":                 "<BING_VERIFICATION_TOKEN>",
+      // "openai-search-verification": "<OPENAI_TOKEN>",
+      // "msvalidate.01": "<BING_VERIFICATION_TOKEN>",
     },
   },
   other: {
@@ -145,7 +145,7 @@ export const metadata: Metadata = {
   },
 };
 
-// schema.org JSON-LD — Organization + WebSite + CreativeWork (the canon)
+// schema.org JSON-LD, Organization + WebSite + CreativeWork (the canon)
 const JSON_LD = {
   "@context": "https://schema.org",
   "@graph": [
@@ -261,9 +261,9 @@ export default function RootLayout({
           {children}
           <Footer />
           {/* Vercel data tracking. Web Analytics must be enabled in the Vercel
-              dashboard (Project → Analytics → Enable) for events to be recorded;
-              Speed Insights (Core Web Vitals) works once the project is deployed
-              on Vercel. Both are no-ops in local dev. */}
+ dashboard (Project → Analytics → Enable) for events to be recorded;
+ Speed Insights (Core Web Vitals) works once the project is deployed
+ on Vercel. Both are no-ops in local dev. */}
           <Analytics />
           <SpeedInsights />
         </body>

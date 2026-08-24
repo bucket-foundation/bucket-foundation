@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/powerplan
+ * bucket.foundation, /api/research/powerplan
  * -------------------------------------------------
  * Same-origin proxy for PowerPlan (universal/stats field tool). Solve the statistical power equation for n / power / effect size / alpha for t-tests, ANOVA, two proportions, and correlation. REAL scipy noncentral-distribution math. Backend is REAL (tools_power.py).
  *
  * POST body { test, solve_for, effect_size?, alpha?, power?, n?, tails?, k_groups?, p1?, p2?, ratio?, demo? }
- *   GET  /api/research/powerplan?job=<id>[&result=1] → status / result
+ * GET /api/research/powerplan?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
   }
   // power/sample-size accepts any field combination; the backend validates + returns structured errors.
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

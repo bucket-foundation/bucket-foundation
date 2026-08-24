@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/grantdraft
+ * bucket.foundation, /api/research/grantdraft
  * --------------------------------------------
  * Same-origin proxy for the GrantDraft T1 tool. GrantDraft finds relevant
  * funders/grants in the research-atlas NSF award corpus (real awarded grants;
@@ -7,9 +7,9 @@
  * those real awards. Backend logic is REAL
  * (services/research-tools/tools_rag.py:run_grant_draft).
  *
- *   POST /api/research/grantdraft                  → gateway POST /v1/grantdraft/submit
- *        body { topic, limit? }                     → { job_id, status, mode, price, [result] }
- *   GET  /api/research/grantdraft?job=<id>[&result=1] → status / result
+ * POST /api/research/grantdraft → gateway POST /v1/grantdraft/submit
+ * body { topic, limit? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/grantdraft?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "topic required" } }, 400);
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

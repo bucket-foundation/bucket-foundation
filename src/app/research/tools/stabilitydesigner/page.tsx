@@ -6,7 +6,7 @@ export const metadata = toolMetadata("stabilitydesigner");
 const _jsonld = toolJsonLd("stabilitydesigner");
 import StabilityDesignerClient from "./StabilityDesignerClient";
 
-// StabilityDesigner run page — server-component shell (matches /research styling).
+// StabilityDesigner run page, server-component shell (matches /research styling).
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

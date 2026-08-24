@@ -1,4 +1,4 @@
-/* polingual.js — Polingual word explorer engine (dependency-free).
+/* polingual.js, Polingual word explorer engine (dependency-free).
  *
  * HYBRID index (bkt-2ea / bkt-nhy): each lens tries the LIVE full-index API
  * first (same-origin Next proxy `/api/polingual?op=…`, which forwards to the
@@ -6,24 +6,24 @@
  * falls back to the baked STARTER-TIER subset computed entirely in the browser.
  *
  * The synchronous *TopK / translate / etymology / lookup functions are the
- * subset engine and are unchanged — they remain the offline fallback and are
+ * subset engine and are unchanged, they remain the offline fallback and are
  * what the headless DOM-shim test exercises (no network in the shim). The new
  * *Async wrappers are what the explorer UI calls; they return
- *   { records|result, source: "live" | "subset", attribution }
- * so the UI can render provenance and surface an honest "offline — starter set"
+ * { records|result, source: "live" | "subset", attribution }
+ * so the UI can render provenance and surface an "offline, starter set"
  * note only on the fallback path.
  *
- *   lookupAsync(surface, lang)       exact (or fuzzy) word record
- *   semanticAsync(ref, k)            words that MEAN the same, cross-lingual
- *   phoneticAsync(ref, k)            words that SOUND the same
- *   spellingAsync(ref, k)            words SPELLED similarly
- *   translateAsync(ref)              the same core concept across languages
- *   etymologyAsync(ref)              the Kaikki etymology snippet (CC-BY-SA)
+ * lookupAsync(surface, lang) exact (or fuzzy) word record
+ * semanticAsync(ref, k) words that MEAN the same, cross-lingual
+ * phoneticAsync(ref, k) words that SOUND the same
+ * spellingAsync(ref, k) words SPELLED similarly
+ * translateAsync(ref) the same core concept across languages
+ * etymologyAsync(ref) the Kaikki etymology snippet (CC-BY-SA)
  *
- * The baked subset is ~4.5k×768 int8 rows — cosine is a trivial dot-product
+ * The baked subset is ~4.5k×768 int8 rows, cosine is a trivial dot-product
  * loop in JS (<5 ms). The full 45k index lives behind the proxy on Hetzner.
  *
- * Data: Wiktionary via Kaikki (CC-BY-SA). Attribution is REQUIRED — see .attribution.
+ * Data: Wiktionary via Kaikki (CC-BY-SA). Attribution is REQUIRED, see .attribution.
  */
 (function () {
   "use strict";
@@ -57,7 +57,7 @@
 
   // Headword language-priority (mirror scripts/photon/query.py): prefer the
   // queried language (English first) so "light" resolves to the en illumination
-  // noun, not a same-spelled foreign loanword.
+  // noun ahead of a same-spelled foreign loanword.
   var LANG_PREF = ["en", "es", "fr", "de", "it", "pt", "la", "nl", "sv", "ru", "el", "sa"];
   // Sense-noise control for the MEANING lens.
   var MIN_COS = 0.5;
@@ -73,12 +73,12 @@
     words: null, // [{s,l,g,p,ipa,hv,c?,e?}]
     manifest: null,
     attribution: null,
-    conceptIndex: null, // concept -> [rowIdx,...]
+    conceptIndex: null, // concept -> [rowIdx...]
     sem: null, // Float32Array, normalized, length = N*SEM_DIM
     pho: null, // Float32Array, normalized, length = N*PHON_DIM
     phoNorm: null, // per-row phonetic L2 norm (0 = no vector)
     byKey: null, // "lang surface" -> rowIdx ; also "surface" -> rowIdx
-    bySurface: null, // surface -> [rowIdx,...] for language-priority headword
+    bySurface: null, // surface -> [rowIdx...] for language-priority headword
     n: 0,
   };
 
@@ -269,10 +269,10 @@
     return String(g || "").toLowerCase().split(/\s+/).join(" ").slice(0, 50);
   }
 
-  /* ---- lens 1: semantic (cross-lingual meaning) — SENSE-CONSISTENT ----- */
+  /* ---- lens 1: semantic (cross-lingual meaning), SENSE-CONSISTENT ----- */
   // Filters that cut the cross-sense noise (bkt-nhy): an absolute cosine floor
   // (MIN_COS) plus a relative gap below the best hit (REL_GAP), one-per-language
-  // (luz/lumière/luce/Licht, not five synonyms), and near-identical-gloss dedup.
+  // (luz/lumière/luce/Licht, one per language), and near-identical-gloss dedup.
   function semanticTopK(ref, k, opts) {
     opts = opts || {};
     k = k || 8;
@@ -446,12 +446,12 @@
   }
 
   /* ==================================================================== *
-   *  LIVE full-index layer (proxy-first, subset fallback)                *
-   * ==================================================================== */
+ * LIVE full-index layer (proxy-first, subset fallback) *
+ * ==================================================================== */
 
   // A neighbor/headword record from the LIVE API, shaped to MATCH record() so
   // the renderer treats live + subset rows identically. There is no numeric
-  // `row` for full-index words — navigation uses `ref:{surface,lang}` instead.
+  // `row` for full-index words, navigation uses `ref:{surface,lang}` instead.
   function liveRecord(o, scoreField) {
     if (!o) return null;
     var lang = o.lang || o.l || "";
@@ -538,7 +538,7 @@
   function lookupAsync(ref, lang) {
     var surface, lg;
     if (typeof ref === "number") {
-      // already a subset row — no need to hit the network
+      // already a subset row, no need to hit the network
       return Promise.resolve({ record: record(ref), source: "subset", attribution: state.attribution });
     } else if (ref && typeof ref === "object") {
       surface = ref.surface != null ? ref.surface : ref.s;
@@ -625,7 +625,7 @@
         var toLang = (j && j.to) || "";
         var arr = ex.concat(nb);
         var results = arr.map(function (o) {
-          // these carry no `lang` field — they're all in the target language
+          // these carry no `lang` field, they're all in the target language
           var oo = { surface: o.surface, lang: o.lang || toLang, meaning_en: o.meaning_en, ipa: o.ipa, pos: o.pos };
           var rec = liveRecord(oo, "score");
           return rec;
@@ -686,7 +686,7 @@
     spellingTopK: spellingTopK,
     translate: translate,
     etymology: etymology,
-    // hybrid live-first async layer (subset fallback) — what the explorer uses
+    // hybrid live-first async layer (subset fallback), what the explorer uses
     lookupAsync: lookupAsync,
     semanticAsync: semanticAsync,
     phoneticAsync: phoneticAsync,

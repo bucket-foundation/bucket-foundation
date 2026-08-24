@@ -1,11 +1,11 @@
-// canon-primary.ts — server-only loader for the CURATED primary-research
+// canon-primary.ts, server-only loader for the CURATED primary-research
 // layer: bucket-canon/<branch>/<concept>/primary-papers.yaml.
 //
 // WHY THIS EXISTS
 // ---------------
 // /api/research previously answered ONLY from bucket-canon/*/sub-claims/**.md
-// — auto-segmented YouTube transcript chunks (599 of them, ~219 of which are
-// Jack Kruse podcasts) — and served them as `canon_tier` with CC-BY
+//, auto-segmented YouTube transcript chunks (599 of them, ~219 of which are
+// Jack Kruse podcasts), and served them as `canon_tier` with CC-BY
 // canonical_urls. That is the inverse of the Bucket thesis: canon = real
 // axioms / laws / primary derivations; a podcast transcript is at best ONE
 // PARTIAL SOURCE, never the headline.
@@ -14,8 +14,8 @@
 // `primary-papers.yaml` records (title, authors, year, DOI, real doi.org
 // canonical_url, citation_count, canon_score, canon_score_reasons). Nothing at
 // runtime read it. This module loads it so the API can rank and serve a real
-// paper — e.g. Mitchell 1961 "Coupling of Phosphorylation ... by a
-// Chemi-Osmotic type of Mechanism", DOI 10.1038/191144a0, canon_score 85 — as
+// paper, e.g. Mitchell 1961 "Coupling of Phosphorylation ... by a
+// Chemi-Osmotic type of Mechanism", DOI 10.1038/191144a0, canon_score 85, as
 // the authoritative answer + citation.
 //
 // NO YAML DEPENDENCY. The files are uniform, machine-emitted, 2-space-indent
@@ -27,21 +27,21 @@ import fs from "fs";
 import path from "path";
 
 export type PrimaryPaper = {
-  id: string;
-  branch: string; // "05-biophysics"
-  concept: string; // "mitochondria"
-  title: string;
-  authors: { family: string; given: string }[];
-  year: number | null;
-  venueName: string;
-  doi: string;
-  canonicalUrl: string;
-  citationCount: number;
-  canonScore: number;
-  canonScoreReasons: string[];
-  concepts: string[];
-  // "title + venue + concepts" — the text tokens we rank queries against.
-  text: string;
+ id: string;
+ branch: string; // "05-biophysics"
+ concept: string; // "mitochondria"
+ title: string;
+ authors: { family: string; given: string }[];
+ year: number | null;
+ venueName: string;
+ doi: string;
+ canonicalUrl: string;
+ citationCount: number;
+ canonScore: number;
+ canonScoreReasons: string[];
+ concepts: string[];
+ // "title + venue + concepts", the text tokens we rank queries against.
+ text: string;
 };
 
 const REPO_ROOT = path.resolve(process.cwd());
@@ -50,75 +50,75 @@ const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
 let cache: PrimaryPaper[] | null = null;
 
 function findPrimaryFiles(): { branch: string; concept: string; file: string }[] {
-  const out: { branch: string; concept: string; file: string }[] = [];
-  if (!fs.existsSync(CANON_ROOT)) return out;
-  for (const branch of fs.readdirSync(CANON_ROOT).sort()) {
-    if (!/^\d{2}-/.test(branch)) continue;
-    const branchDir = path.join(CANON_ROOT, branch);
-    let stat: fs.Stats;
-    try {
-      stat = fs.statSync(branchDir);
-    } catch {
-      continue;
-    }
-    if (!stat.isDirectory()) continue;
-    for (const concept of fs.readdirSync(branchDir).sort()) {
-      const f = path.join(branchDir, concept, "primary-papers.yaml");
-      if (fs.existsSync(f)) out.push({ branch, concept, file: f });
-    }
-  }
-  return out;
+ const out: { branch: string; concept: string; file: string }[] = [];
+ if (!fs.existsSync(CANON_ROOT)) return out;
+ for (const branch of fs.readdirSync(CANON_ROOT).sort()) {
+ if (!/^\d{2}-/.test(branch)) continue;
+ const branchDir = path.join(CANON_ROOT, branch);
+ let stat: fs.Stats;
+ try {
+ stat = fs.statSync(branchDir);
+ } catch {
+ continue;
+ }
+ if (!stat.isDirectory()) continue;
+ for (const concept of fs.readdirSync(branchDir).sort()) {
+ const f = path.join(branchDir, concept, "primary-papers.yaml");
+ if (fs.existsSync(f)) out.push({ branch, concept, file: f });
+ }
+ }
+ return out;
 }
 
 // Tolerant scanner for the fixed machine-emitted shape. Each record starts at a
 // top-level "- id:" line. Scalars we care about are at 2-space indent
-// ("  key: value"); authors live under a "  authors:" block as "  - family:"
-// / "    given:" pairs; canon_score_reasons / concepts are "  - " list items.
+// (" key: value"); authors live under a " authors:" block as " - family:"
+// / " given:" pairs; canon_score_reasons / concepts are " - " list items.
 function parseYamlRecords(
-  raw: string,
-  branch: string,
-  concept: string,
+ raw: string,
+ branch: string,
+ concept: string,
 ): PrimaryPaper[] {
-  const lines = raw.split("\n");
-  const papers: PrimaryPaper[] = [];
+ const lines = raw.split("\n");
+ const papers: PrimaryPaper[] = [];
 
-  // Indices where a new record begins.
-  const starts: number[] = [];
-  for (let i = 0; i < lines.length; i++) {
-    if (/^- id:\s*\S/.test(lines[i])) starts.push(i);
-  }
+ // Indices where a new record begins.
+ const starts: number[] = [];
+ for (let i = 0; i < lines.length; i++) {
+ if (/^- id:\s*\S/.test(lines[i])) starts.push(i);
+ }
 
-  const unquote = (v: string) =>
-    v
-      .trim()
-      .replace(/^['"]|['"]$/g, "")
-      .trim();
+ const unquote = (v: string) =>
+ v
+ .trim()
+ .replace(/^['"]|['"]$/g, "")
+ .trim();
 
-  for (let s = 0; s < starts.length; s++) {
-    const from = starts[s];
-    const to = s + 1 < starts.length ? starts[s + 1] : lines.length;
-    const block = lines.slice(from, to);
+ for (let s = 0; s < starts.length; s++) {
+ const from = starts[s];
+ const to = s + 1 < starts.length ? starts[s + 1] : lines.length;
+ const block = lines.slice(from, to);
 
-    let id = "";
-    let title = "";
-    let year: number | null = null;
-    let venueName = "";
-    let doi = "";
-    let canonicalUrl = "";
-    let citationCount = 0;
-    let canonScore = 0;
-    const authors: { family: string; given: string }[] = [];
-    const canonScoreReasons: string[] = [];
-    const concepts: string[] = [];
+ let id = "";
+ let title = "";
+ let year: number | null = null;
+ let venueName = "";
+ let doi = "";
+ let canonicalUrl = "";
+ let citationCount = 0;
+ let canonScore = 0;
+ const authors: { family: string; given: string }[] = [];
+ const canonScoreReasons: string[] = [];
+ const concepts: string[] = [];
 
-    let section: "" | "authors" | "venue" | "reasons" | "concepts" | "oa" =
-      "";
-    let curAuthor: { family: string; given: string } | null = null;
+ let section: "" | "authors" | "venue" | "reasons" | "concepts" | "oa" =
+ "";
+ let curAuthor: { family: string; given: string } | null = null;
 
-    for (let li = 0; li < block.length; li++) {
-      const line = block[li];
-      if (li === 0) {
-        id = unquote(line.replace(/^- id:\s*/, ""));
+ for (let li = 0; li < block.length; li++) {
+ const line = block[li];
+ if (li === 0) {
+ id = unquote(line.replace(/^- id:\s*/, ""));
         continue;
       }
 
@@ -207,11 +207,11 @@ function parseYamlRecords(
         if (it) concepts.push(unquote(it[1]));
         continue;
       }
-      // section === "oa" or "" — skip nested lines.
+      // section === "oa" or "", skip nested lines.
     }
     if (curAuthor) authors.push(curAuthor);
 
-    if (!id || !title) continue; // malformed record — skip, don't throw.
+    if (!id || !title) continue; // malformed record, skip, don't throw.
 
     const text = [title, venueName, concepts.join(" ")]
       .filter(Boolean)
@@ -266,7 +266,7 @@ export function authorsShort(p: PrimaryPaper): string {
  *
  * Token-overlap on title + venue + concepts (same family of cheap ranking the
  * existing canon-search tokenRank uses), then tie-broken by canon_score and
- * citation_count so that — all else equal — the higher-authority paper wins.
+ * citation_count so that, all else equal, the higher-authority paper wins.
  * Mitchell 1961 (the chemiosmosis axiom) outranks a peripheral review for
  * "mitochondrial ATP synthesis".
  */
@@ -310,11 +310,11 @@ export function rankPrimary(
   const scored = papers.map((p) => {
     // Title matches are worth far more than concept-tag matches; concept tags
     // are noisy (OpenAlex auto-tags like "Chemistry", "Biology") and were
-    // letting an off-topic paper that merely shares a generic tag outrank the
+    // letting an off-topic paper that shares a generic tag outrank the
     // foundational paper whose TITLE is on-point.
     const t = countWords(titleOf(p));
     const c = countWords(conceptsOf(p));
-    // distinctTitle = how many *distinct* query terms appear in the title —
+    // distinctTitle = how many *distinct* query terms appear in the title, 
     // the strongest relevance signal we have without embeddings.
     const distinctTitle = t.distinct;
     const lexical = t.hits * 12 + c.hits * 2;
@@ -333,7 +333,7 @@ export function rankPrimary(
   // Abstention gate: the primary layer only covers 4 biophysics concepts
   // (no math/physics/chemistry/cosmology primary-papers.yaml yet). Without a
   // floor, ANY query (incl. "Bell inequality") gets force-mapped onto a
-  // biophysics paper that merely shares a stray token. Require at least one
+  // biophysics paper that shares a stray token. Require at least one
   // distinct query term in the TITLE of the top hit; otherwise return [] so
   // the route falls through to the explicit "no curated canon match" path
   // instead of fabricating a citation.

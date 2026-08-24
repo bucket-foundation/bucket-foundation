@@ -1,15 +1,15 @@
 """No-network unit tests for CitationGraph (tools_citation).
 
 Verifies the ACTUAL graph construction + centrality:
-  * DOI / OpenAlex-ID / title inputs are classified correctly;
-  * the induced 1-hop neighborhood is built from references + citing works;
-  * degree centrality ranks the most-connected related work first;
-  * the full runner resolves a seed and returns the contract shape, offline.
+ * DOI / OpenAlex-ID / title inputs are classified;
+ * the induced 1-hop neighborhood is built from references + citing works;
+ * degree centrality ranks the most-connected related work first;
+ * the full runner resolves a seed and returns the contract shape, offline.
 
 The OpenAlex client (tools_rag.*) is monkeypatched to fixtures and TOOLS_OFFLINE
-is set, so a real network call would raise — these run offline.
+is set, so a real network call would raise, these run offline.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_citation.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_citation.py -q
 """
 from __future__ import annotations
 

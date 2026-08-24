@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/geosummary
+ * bucket.foundation, /api/research/geosummary
  * -------------------------------------------------
  * Same-origin proxy for GeoSummary (earth-climate field tool). Summarize a geospatial/time-series dataset: descriptives + missing data, OLS + Mann-Kendall/Theil-Sen trend, seasonal climatology, lag-1 autocorrelation, spatial extent. REAL numpy/scipy. Backend is REAL (tools_geo.py).
  *
  * POST body { values, times?, period?, lat?, lon?, demo? }
- *   GET  /api/research/geosummary?job=<id>[&result=1] → status / result
+ * GET /api/research/geosummary?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

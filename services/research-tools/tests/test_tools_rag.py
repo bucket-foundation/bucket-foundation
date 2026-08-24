@@ -1,12 +1,12 @@
 """No-network unit tests for the T1 research tools (services/research-tools).
 
 Two layers:
-  1. Pure functions (ranking, scoring, matching, stance) — deterministic, no IO.
-  2. Full run_<tool>() — monkeypatch the OpenAlex/grant data sources to fixtures,
-     set TOOLS_OFFLINE so a real network call would raise, and assert the
-     contract output shape + the real logic decisions.
+ 1. Pure functions (ranking, scoring, matching, stance), deterministic, no IO.
+ 2. Full run_<tool>(), monkeypatch the OpenAlex/grant data sources to fixtures,
+ set TOOLS_OFFLINE so a real network call would raise, and assert the
+ contract output shape + the real logic decisions.
 
-Run:  cd services/research-tools && python3 -m pytest tests -q
+Run: cd services/research-tools && python3 -m pytest tests -q
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ from fixtures import (  # noqa: E402
 
 
 # =========================================================================
-# Layer 1 — pure functions
+# Layer 1, pure functions
 # =========================================================================
 def test_reconstruct_abstract():
     inv = {"protein": [0, 3], "folds": [1], "fast": [2]}
@@ -133,7 +133,7 @@ def test_stance_supports_and_contradicts():
 
 
 # =========================================================================
-# Layer 2 — full run_<tool>() against fixtures (no network)
+# Layer 2, full run_<tool>() against fixtures (no network)
 # =========================================================================
 def test_run_paper_radar(monkeypatch):
     monkeypatch.setattr(t, "search_works", lambda *a, **k: list(WORKS_PROTEIN_DYNAMICS))
@@ -198,7 +198,7 @@ def test_run_review_guard_validation():
 
 
 # =========================================================================
-# QuantumBioRAG — claim-strength RAG (evidence-weighted stance + consensus)
+# QuantumBioRAG, claim-strength RAG (evidence-weighted stance + consensus)
 # =========================================================================
 def test_evidence_strength_rewards_cited_ontopic_recent():
     terms = t.keyword_set(QBIO_CLAIM)

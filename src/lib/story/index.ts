@@ -133,7 +133,7 @@ export async function publishIpAsset({ title, description, blobId, author_id, se
 
   const meta2 = await uploadJSONToWalrus(nftMetadata);
 
-  // Access the blobId correctly for NFT metadata
+  // Access the blobId for NFT metadata
   metaId2 = meta2.newlyCreated?.blobObject?.blobId ?? meta2.alreadyCertified?.blobId ?? null;
 
   const nftHash = createHash('sha256').update(JSON.stringify(nftMetadata)).digest();

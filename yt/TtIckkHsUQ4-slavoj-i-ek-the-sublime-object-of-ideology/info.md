@@ -10,7 +10,7 @@
 
 ## Description
 
-Slavoj Žižek is the modern incarnation of an absolute ton of prior theory. Just mixed with some weird mad scientist aesthetic. He is widely known by many, but, is often either misunderstood or people just don't really know much of his theoretical backdrop. His work includes everything from Hegel, Marx, Althusser, Lacan, Kant, etc. And undeniably, Žižek's magnum opus and baseline for all future work is The Sublime Object of Ideology. This book is so densely packed with theory, that it often needs some external context and further explanation. This is what I have hoped to achieve for some.
+Slavoj Žižek is the modern incarnation of an absolute ton of prior theory. Just mixed with some weird mad scientist aesthetic. He is widely known by many, but, is often either misunderstood or people just don't really know much of his theoretical backdrop. His work includes everything from Hegel, Marx, Althusser, Lacan, Kant, etc. and undeniably, Žižek's magnum opus and baseline for all future work is The Sublime Object of Ideology. This book is so densely packed with theory, that it often needs some external context and further explanation. This is what I have hoped to achieve for some.
 
 The Sublime Object of Ideology concerns itself with the question surrounding ideology, our interactions in the context of psychoanalysis and the like. The book is at the heart and core of Žižek. Thus, undeniably deserves our attention.
 

@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/patchseqml
+ * bucket.foundation, /api/research/patchseqml
  * --------------------------------------------
  * Same-origin proxy for the PatchSeqML research tool (patch-clamp ephys ML).
  * Same lifecycle as the LabBrain proxy, but the SUBMIT is multipart/form-data
@@ -7,11 +7,11 @@
  * forwards the multipart body straight through to the gateway. Status + result
  * are identical JSON GETs (see /api/research/labbrain/route.ts, docs §2.5).
  *
- *   POST /api/research/patchseqml                 → gateway POST /v1/patchseqml/submit
- *        multipart: file=<rec.abf>?, mode="sim"|"file"
- *   GET  ?job=<id> / ?job=<id>&result=1           → status / result (render: "html")
+ * POST /api/research/patchseqml → gateway POST /v1/patchseqml/submit
+ * multipart: file=<rec.abf>?, mode="sim"|"file"
+ * GET ?job=<id> / ?job=<id>&result=1 → status / result (render: "html")
  *
- * Env (server-only): TOOLS_GATEWAY_URL  default "https://research-tools.agfarms.dev"
+ * Env (server-only): TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  * TODO(deploy): set TOOLS_GATEWAY_URL in Vercel + K3s secret bucket/tools-gateway.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -70,7 +70,7 @@ export async function OPTIONS() {
 export async function POST(req: NextRequest) {
   // Multipart pass-through: read the incoming form, rebuild it, forward to the
   // gateway. We rebuild (rather than stream the raw body) so the multipart
-  // boundary headers are set correctly by fetch.
+  // boundary headers are set by fetch.
   let inForm: FormData;
   try {
     inForm = await req.formData();
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
   const mode = (inForm.get("mode") as string | null) ?? "sim";
   out.append("mode", mode);
 
-  // [METERING SEAM — TODO, off in v1] — see /api/research/labbrain/route.ts.
+  // [METERING SEAM, TODO, off in v1], see /api/research/labbrain/route.ts.
 
   let resp: Response;
   try {

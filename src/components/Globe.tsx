@@ -1,4 +1,4 @@
-// Globe — "the canon armillary."
+// Globe, "the canon armillary."
 //
 // Antikythera-inspired stone orrery. A basalt sphere wrapped in
 // brass-gilt meridian rings, with 8 engraved ports (one per canon
@@ -30,7 +30,7 @@ export default function Globe({
   const meridianDim = isDark ? "rgba(232,178,58,0.28)" : "rgba(184,134,30,0.35)";
   const terra = isDark ? "rgba(14,140,140,0.22)" : "rgba(14,140,140,0.18)";
 
-  // Meridian ellipses — rings around the sphere at various tilts.
+  // Meridian ellipses, rings around the sphere at various tilts.
   const meridians = [0, 30, 60, 90, 120, 150].map((deg) => ({
     rx: Math.abs(Math.cos((deg * Math.PI) / 180)) * r,
     deg,
@@ -69,7 +69,7 @@ export default function Globe({
       aria-label="bucket.foundation canon armillary"
     >
       <defs>
-        {/* Basalt sphere gradient — dim, carved, with terminator shadow */}
+        {/* Basalt sphere gradient, dim, carved, with terminator shadow */}
         <radialGradient id="g-sphere" cx="0.35" cy="0.32" r="0.72">
           <stop offset="0" stopColor={isDark ? "#2A2A2A" : "var(--bone)"} />
           <stop offset="0.55" stopColor={sphereFill} />
@@ -80,7 +80,7 @@ export default function Globe({
           <stop offset="0" stopColor={terra} />
           <stop offset="1" stopColor="rgba(0,0,0,0)" />
         </radialGradient>
-        {/* Gilt limb — thin atmospheric gold ring around the sphere */}
+        {/* Gilt limb, thin atmospheric gold ring around the sphere */}
         <radialGradient id="g-limb" cx="0.5" cy="0.5" r="0.5">
           <stop offset="0.92" stopColor="var(--gold)" stopOpacity="0" />
           <stop offset="1" stopColor="var(--gold)" stopOpacity="0.55" />
@@ -132,7 +132,7 @@ export default function Globe({
           />
         ))}
 
-        {/* Outer equator band — the "bronze ring" of the armillary */}
+        {/* Outer equator band, the "bronze ring" of the armillary */}
         <circle
           cx={cx}
           cy={cy}
@@ -153,7 +153,7 @@ export default function Globe({
         />
       </g>
 
-      {/* Ports — fixed, not rotating, so they read as cardinal markers */}
+      {/* Ports stay fixed, so they read as cardinal markers */}
       {withPorts &&
         ports.map((p) => {
           const visible = p.z > 0;

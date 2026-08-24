@@ -1,11 +1,11 @@
 # USPTO Patent Corpus
 
-Bead: **bkt-5qg** — patents: ingest USPTO PatentsView + bulk XML (1976→present)
-Parent epic: **bkt-tfu** — Global Patent Index
+Bead: **bkt-5qg**, patents: ingest USPTO PatentsView + bulk XML (1976→present)
+Parent epic: **bkt-tfu**, Global Patent Index
 Sibling beads: **bkt-sq8** (pgvector embeddings on claims/abstracts), **bkt-nk7** (PostGIS on `uspto_location`)
 
 This is the USPTO ingest pipeline for Bucket Foundation's Global Patent Index.
-The index ships **paid from day one** behind feed402 — `raw $0.010 / query $0.005 / insight $0.002` per call.
+The index ships **paid from day one** behind feed402, `raw $0.010 / query $0.005 / insight $0.002` per call.
 
 ## Layout
 
@@ -57,13 +57,13 @@ YEAR_FROM=2020 ./scripts/fetch_bulk_xml.sh
 
 ## Idempotency
 
-* `wget -c -nc` on every download — partial files resume, complete files are skipped.
-* Loader uses `INSERT ... ON CONFLICT (key) DO UPDATE` — reruns converge.
+* `wget -c -nc` on every download, partial files resume, complete files are skipped.
+* Loader uses `INSERT ... ON CONFLICT (key) DO UPDATE`, reruns converge.
 * Re-pulling a quarterly PatentsView snapshot replaces the previous one in-place.
 
 ## Licensing & redistribution
 
-USPTO patent grants and pre-grant publications are **U.S. Government works under 17 U.S.C. § 105 — public domain**. PatentsView is published by the USPTO Office of the Chief Economist and is explicitly designated for redistribution. We are clear to:
+USPTO patent grants and pre-grant publications are **U.S. Government works under 17 U.S.C. § 105, public domain**. PatentsView is published by the USPTO Office of the Chief Economist and is explicitly designated for redistribution. We are clear to:
 
 * mirror raw + processed copies on Bucket infrastructure,
 * re-serve via the feed402 paywall (`raw / query / insight` tiers),

@@ -1,11 +1,11 @@
 "use client";
 
-// ToolOfflineNotice — the friendly "founder's GPU is offline" state.
+// ToolOfflineNotice, the friendly "founder's GPU is offline" state.
 //
 // Several advanced tools run on the founder's personal laptop GPU (a local LLM
 // + GPU jobs) reached over a tunnel; when his laptop is closed the upstream is
 // unreachable and the same-origin proxy returns a 503 "tool_offline" envelope.
-// Rather than show a raw error, the affected tools render this block: an honest
+// Rather than show a raw error, the affected tools render this block: an
 // explanation, a CONTACT email button, and a DONATE/FUND button → /support.
 //
 // Use detectToolOffline(status, errorMsg) to decide whether to show it.

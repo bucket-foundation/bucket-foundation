@@ -1,11 +1,11 @@
 """No-network unit tests for the genomics/sequence cluster (tools_genomics).
 
 Verifies the ACTUAL computation on inputs with KNOWN ground truth:
-  * ChromatinAccess detects a CpG island + TATA box and scores GC-rich as open;
-  * AggregatePredict flags a planted hydrophobic β-prone amyloid hot-spot;
-  * ChannelDwell idealizes a synthetic two-state record to the right open prob.
+ * ChromatinAccess detects a CpG island + TATA box and scores GC-rich as open;
+ * AggregatePredict flags a planted hydrophobic β-prone amyloid hot-spot;
+ * ChannelDwell idealizes a synthetic two-state record to the right open prob.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_genomics.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_genomics.py -q
 """
 from __future__ import annotations
 
@@ -62,7 +62,7 @@ def test_aggregate_demo_finds_hotspot():
 
 
 def test_aggregate_charged_sequence_no_hotspot():
-    # a highly charged, non-hydrophobic sequence should NOT be aggregation-prone
+    # a charged, non-hydrophobic sequence should NOT be aggregation-prone
     out = g.run_aggregate_predict({"sequence": "DEKRDEKRDEKRDEKRDEKRDEKR"})
     assert out["demo"] is False
     assert out["n_hotspots"] == 0

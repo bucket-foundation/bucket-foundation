@@ -1,25 +1,25 @@
-/* Bucket Academy — adaptive placement diagnostic (ALEKS-style).
+/* Bucket Academy, adaptive placement diagnostic (ALEKS-style).
  *
- * Goal: in ~10–20 open-ended questions, figure out what a learner ALREADY knows so
+ * Goal: in ~10-20 open-ended questions, figure out what a learner ALREADY knows so
  * experts start mid-graph and beginners start at foundations. This is the
  * "binary-search-over-knowledge-states" design from ADAPTIVE-SOTA.md §a.3
  * (ALEKS / Cosyn, Uzun, Doble & Matayoshi 2021), adapted to our small pilot graphs.
  *
- * We do NOT enumerate the 2^N knowledge-state space. Instead — exploiting the fact
- * that Knowledge-Space-Theory's prerequisite closure collapses the feasible space —
+ * We do NOT enumerate the 2^N knowledge-state space. Instead, exploiting the fact
+ * that Knowledge-Space-Theory's prerequisite closure collapses the feasible space, 
  * we keep a per-atom log-odds belief P(known) and:
- *   • each step, ASK the atom whose P(known) is closest to 0.5 (the item that halves
- *     the remaining uncertainty), tie-broken toward high-leverage / high-betweenness
- *     atoms (they split the graph most, so they are maximally informative);
- *   • CORRECT ("I knew it")  → raise this atom AND propagate belief DOWN its transitive
- *     `requires` chain (if you can do B you can do its prerequisites);
- *   • INCORRECT ("I didn't") → lower this atom AND propagate belief UP its transitive
- *     `unlocks` chain (if you can't do B you can't do what B unlocks);
- *   • bound the number of questions (default 18) and early-stop once no atom remains
- *     in the uncertain band (the posterior has concentrated).
+ * • each step, ASK the atom whose P(known) is closest to 0.5 (the item that halves
+ * the remaining uncertainty), tie-broken toward high-payoff / high-betweenness
+ * atoms (they split the graph most, so they are maximally informative);
+ * • CORRECT ("I knew it") → raise this atom AND propagate belief DOWN its transitive
+ * `requires` chain (if you can do B you can do its prerequisites);
+ * • INCORRECT ("I didn't") → lower this atom AND propagate belief UP its transitive
+ * `unlocks` chain (if you can't do B you can't do what depends on B);
+ * • bound the number of questions (default 18) and early-stop once no atom remains
+ * in the uncertain band (the posterior has concentrated).
  *
  * Output: the set of atoms to mark already-known (the learner's "known frontier"),
- * which app.js seeds into honest engine state — a modest initial stability + a
+ * which app.js seeds into engine state, a modest initial stability + a
  * low-but-present proficiency. This is a STARTING ESTIMATE, never a certified rating
  * (public ratings are gated on bkt-4at). Uncertain atoms are excluded from the known
  * set (we deliberately underestimate) and self-correct in normal study.
@@ -36,16 +36,16 @@
   const W_CORRECT = 1.55;   // ~ strong positive (open-ended correct ≈ 35)
   const W_INCORRECT = 1.35; // clean "didn't know it" negative (≈ 50)
   const W_SLOW = 0.55;      // correct-but-slow gets diminished weight (timing first-class)
-  const PROP_DECAY = 0.62;  // belief propagated one prereq/unlock hop away is attenuated
+  const PROP_DECAY = 0.62;  // belief propagated one prereq/dependent hop away is attenuated
   const PROP_FLOOR = 0.18;  // stop propagating once the nudge falls below this
   // KST prerequisite-closure inference: a CONFIDENT (non-slow) correct answer is strong
-  // evidence the learner already holds EVERY transitive prerequisite (Falmagne–Doignon
+  // evidence the learner already holds EVERY transitive prerequisite (Falmagne, Doignon
   // closure). Rather than a single decayed nudge that lands prereqs barely over threshold
-  // (P≈0.63 — still inside the ask-band, so the diagnostic wastes budget re-probing them),
+  // (P≈0.63, still inside the ask-band, so the diagnostic wastes budget re-probing them),
   // we floor the whole requires-closure to a confident-known log-odds. This is what makes
   // an expert place MANY concepts from FEW questions (the headline ALEKS property): one
   // correct answer high in the graph settles its entire foundation in a single step.
-  const INFER_FLOOR = 1.40; // log-odds ≈ P 0.80 — above UNCERTAIN_HI, so closure leaves the ask-band
+  const INFER_FLOOR = 1.40; // log-odds ≈ P 0.80, above UNCERTAIN_HI, so closure leaves the ask-band
   const CLOSURE_BIAS = 0.15; // selection bias toward high requires-closure atoms once knowledge is proven
   const UNCERTAIN_LO = 0.32; // band [LO,HI] = still-informative atoms worth asking
   const UNCERTAIN_HI = 0.68;
@@ -56,12 +56,12 @@
   function logit(p) { p = clamp01(p); return Math.log(p / (1 - p)); }
   function sigmoid(z) { return 1 / (1 + Math.exp(-z)); }
 
-  /* Build the transitive prerequisite/unlock closures once per corpus.
-   * requiresClosure[id] = every atom transitively required by id (its foundations).
-   * unlocksClosure[id]  = every atom that transitively depends on id (its consequences).
-   * Also compute a cheap betweenness/centrality proxy = how many atoms a node sits
-   * "between" (size of its requires-closure × unlocks-closure), used to break ties
-   * toward maximally-informative questions. */
+  /* Build the transitive prerequisite/dependent closures once per corpus.
+ * requiresClosure[id] = every atom transitively required by id (its foundations).
+ * unlocksClosure[id] = every atom that transitively depends on id (its consequences).
+ * Also compute a cheap betweenness/centrality proxy = how many atoms a node sits
+ * "between" (size of its requiresClosure × unlocksClosure), used to break ties
+ * toward maximally-informative questions. */
   function buildClosures(atoms, byId) {
     const reqC = {}, unlC = {};
     function reqOf(id, seen) {
@@ -91,7 +91,7 @@
     atoms.forEach((a) => {
       // centrality ≈ foundations below × consequences above; a node in the "middle"
       // of a long chain scores highest, which is exactly where a question is most
-      // informative (it splits the graph). Leverage (engine-computed) is folded in.
+      // informative (it splits the graph). The engine-computed payoff is folded in.
       const b = (reqC[a.id].size + 1) * (unlC[a.id].size + 1) + (a.leverage || 0) * 3;
       between[a.id] = b;
       if (b > maxB) maxB = b;
@@ -101,21 +101,21 @@
   }
 
   /* Diagnostic session. Construct with the loaded graph view, then loop:
-   *   const d = new Diagnostic({ atoms: E.atoms, byId: E.byId });
-   *   d.start();
-   *   while (!d.done()) {
-   *     const item = d.next();          // {id, atom, level, prompt, answer, qIndex, total}
-   *     // ...show prompt, reveal answer...
-   *     d.answer(item.id, true|false, { slow });  // "I knew it" / "I didn't"
-   *   }
-   *   const placement = d.result();     // {known:[ids], detail, asked, ...}
+ * const d = new Diagnostic({ atoms: E.atoms, byId: E.byId });
+ * d.start();
+ * while (!d.done()) {
+ * const item = d.next(); // {id, atom, level, prompt, answer, qIndex, total}
+ * // ...show prompt, reveal answer...
+ * d.answer(item.id, true|false, { slow }); // "I knew it" / "I didn't"
+ * }
+ * const placement = d.result(); // {known:[ids], detail, asked...}
    */
   function Diagnostic(graph, opts) {
     opts = opts || {};
     this.atoms = (graph.atoms || []).filter((a) => this._askable(a));
     this.byId = graph.byId || {};
     this.maxQ = opts.maxQuestions || MAX_Q_DEFAULT;
-    this.isLang = !!opts.isLang; // language corpus uses forms, not quiz
+    this.isLang = !!opts.isLang; // language corpus uses forms as items
     const view = buildClosures(graph.atoms || [], this.byId);
     this.reqC = view.reqC;
     this.unlC = view.unlC;
@@ -164,12 +164,12 @@
   };
 
   /* Pick the next most-informative question: the unasked atom whose P(known) is
-   * closest to 0.5 (it halves the remaining state distribution), tie-broken toward
-   * higher graph betweenness/leverage. Returns the question payload, or null if done. */
+ * closest to 0.5 (it halves the remaining state distribution), tie-broken toward
+ * higher graph betweenness/payoff. Returns the question payload, or null if done. */
   Diagnostic.prototype.next = function () {
     if (this.done()) return null;
     // Closure-payoff bias: once the learner has demonstrated SOME knowledge, prefer asking
-    // atoms high in the graph — a correct answer there floods a large requires-closure in one
+    // atoms high in the graph, a correct answer there floods a large requires-closure in one
     // step (the headline ALEKS efficiency: place many from few). We GATE this on a prior
     // correct answer so a beginner (zero correct) stays on pure binary search and early-stops
     // instead of being marched through deep, uninformative questions.
@@ -217,9 +217,9 @@
   };
 
   /* Record an answer and propagate belief through the prerequisite graph.
-   *   correct === true  → "I knew it"   (raise this atom + its foundations)
-   *   correct === false → "I didn't"    (lower this atom + its consequences)
-   *   meta.slow         → diminished positive weight (timing). */
+ * correct === true → "I knew it" (raise this atom + its foundations)
+ * correct === false → "I didn't" (lower this atom + its consequences)
+ * meta.slow → diminished positive weight (timing). */
   Diagnostic.prototype.answer = function (id, correct, meta) {
     meta = meta || {};
     if (this.askedSet.has(id)) return; // idempotent per atom
@@ -230,7 +230,7 @@
       const base = meta.slow ? W_SLOW : W_CORRECT;
       this.logodds[id] += base;
       // propagate DOWN: knowing B raises belief you know B's prerequisites.
-      // A confident (non-slow) correct triggers full KST closure inference — flood every
+      // A confident (non-slow) correct triggers full KST closure inference, flood every
       // transitive prerequisite to a confident-known floor so it places and exits the
       // ask-band. A slow correct is weaker evidence, so it only gets the decayed nudge.
       if (meta.slow) this._propagate(this.reqC[id], +1, base);
@@ -238,7 +238,7 @@
     } else {
       this.logodds[id] -= W_INCORRECT;
       // propagate UP (symmetric KST): if you don't know B you cannot know anything that
-      // REQUIRES B — flood B's full unlocks-closure to a confident-unknown floor so those
+      // REQUIRES B, flood B's full unlocksClosure to a confident-unknown floor so those
       // consequences leave the ask-band. This is what lets the diagnostic EARLY-STOP for a
       // beginner (one missed foundation collapses everything above it) instead of grinding
       // to the question cap. We deliberately underestimate; a slip self-corrects in study.
@@ -248,7 +248,7 @@
 
   // Distribute an attenuated nudge across a closure set, weighted by graph distance
   // (we already have the transitive set; apply a single decayed nudge to each member,
-  // skipping atoms the learner already answered directly — direct evidence wins).
+  // skipping atoms the learner already answered directly, direct evidence wins).
   Diagnostic.prototype._propagate = function (closure, sign, base) {
     if (!closure) return;
     const nudge = base * PROP_DECAY;
@@ -260,10 +260,10 @@
   };
 
   /* KST prerequisite-closure inference (down direction, confident-correct only).
-   * Raise every transitive prerequisite to at least the confident-known floor — a
-   * monotone floor, not an additive nudge, so it neither runs away on repeated corrects
-   * nor overrides a stronger existing belief. Atoms answered directly are skipped (direct
-   * measurement always wins, which also protects against a later up-propagation conflict). */
+ * Raise every transitive prerequisite to at least the confident-known floor. It is a
+ * monotone floor. It neither runs away on repeated corrects
+ * nor overrides a stronger existing belief. Atoms answered directly are skipped (direct
+ * measurement always wins, which also protects against a later up-propagation conflict). */
   Diagnostic.prototype._inferKnown = function (closure) {
     if (!closure) return;
     closure.forEach((cid) => {
@@ -273,10 +273,10 @@
   };
 
   /* KST consequence-closure inference (up direction, on an incorrect answer): lower every
-   * atom that transitively REQUIRES the missed atom to a confident-unknown floor — you
-   * cannot hold a concept whose prerequisite you just failed. Monotone floor (min), direct
-   * answers skipped. Mirror image of _inferKnown; together they implement the full
-   * prerequisite-closure collapse that makes placement efficient in both directions. */
+ * atom that transitively REQUIRES the missed atom to a confident-unknown floor, you
+ * cannot hold a concept whose prerequisite you just failed. Monotone floor (min), direct
+ * answers skipped. Mirror image of _inferKnown; together they implement the full
+ * prerequisite-closure collapse that makes placement efficient in both directions. */
   Diagnostic.prototype._inferUnknown = function (closure) {
     if (!closure) return;
     closure.forEach((cid) => {
@@ -286,8 +286,8 @@
   };
 
   /* Final placement. Returns the set of atoms to mark already-known (P ≥ threshold),
-   * plus diagnostics for the UX summary. Atoms left uncertain are intentionally
-   * EXCLUDED (we underestimate; normal study self-corrects). */
+ * plus diagnostics for the UX summary. Atoms left uncertain are intentionally
+ * EXCLUDED (we underestimate; normal study self-corrects). */
   Diagnostic.prototype.result = function (threshold) {
     const t = threshold == null ? KNOWN_THRESHOLD : threshold;
     const known = [];
@@ -299,7 +299,7 @@
     });
     // Sort known by study order proxy: foundations (fewer prereqs) first.
     known.sort((x, y) => this.reqC[x].size - this.reqC[y].size);
-    // The "frontier" = known atoms that unlock at least one not-yet-known atom; this is
+    // The "frontier" = known atoms that lead to at least one not-yet-known atom; this is
     // where the learner should resume. Reported for the result summary.
     const knownSet = new Set(known);
     const frontier = known.filter((id) =>

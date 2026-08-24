@@ -1,17 +1,17 @@
 /**
- * Retrievers for the Bucket research agent — the RETRIEVE step.
+ * Retrievers for the Bucket research agent, the RETRIEVE step.
  *
  * Every retriever returns provenance-tagged `Source` records drawn ONLY from
  * public/documented assets we already have:
  *   - canon      : the Bucket canon claim index (runtime, Vercel-shipped via
- *                  `@/lib/canon-search-index` tokenRank — closed-set, real text)
+ *                  `@/lib/canon-search-index` tokenRank, closed-set, real text)
  *   - openalex   : live OpenAlex works API (public, no key)
  *   - pubmed     : live NCBI E-utilities esearch+esummary (public, no key)
  *   - atlas      : the research-atlas read-only query API (atlas-api.agfarms.dev)
  *   - methods    : the live MethodsMatcher tool on the research-tools gateway
- *                  (research-tools.agfarms.dev) — picks the right Bucket tool
+ *                  (research-tools.agfarms.dev), picks the right Bucket tool
  *
- * Each `Source` carries `provenance.call` — the EXACT request made — so the
+ * Each `Source` carries `provenance.call`, the EXACT request made, so the
  * brief is reproducible. NO source is fabricated; DOIs/IDs come straight from
  * the upstream payloads. Network failures degrade gracefully (the retriever
  * returns [] + a note), never throw the whole run.
@@ -97,7 +97,7 @@ async function postJson(url: string, body: unknown): Promise<unknown> {
 
 // ---- canon (runtime, Vercel-shipped, closed-set) -------------------------
 
-/** Retrieve from the Bucket canon claim index via lexical tokenRank — entirely
+/** Retrieve from the Bucket canon claim index via lexical tokenRank, entirely
  *  local + deterministic, no network, always reproducible. The text is the
  *  canon excerpt itself (closed-set grounding). */
 export function retrieveCanon(query: string, topK = 4): RetrievalResult {
@@ -134,7 +134,7 @@ type OpenAlexWork = {
 };
 
 /** Reconstruct an abstract from OpenAlex's inverted index (their documented
- *  shape). Returns "" when absent — never fabricates text. */
+ *  shape). Returns "" when absent, never fabricates text. */
 function deinvertAbstract(inv?: Record<string, number[]> | null): string {
   if (!inv) return "";
   const slots: string[] = [];
@@ -146,7 +146,7 @@ function deinvertAbstract(inv?: Record<string, number[]> | null): string {
 
 /** OpenAlex's stemmed `search` treats `*`/`?` as wildcards and 400s on a bare
  *  question mark. Strip wildcard chars + collapse whitespace so a natural
- *  question is a valid full-text search. (Documented behavior — see the API's
+ *  question is a valid full-text search. (Documented behavior, see the API's
  *  "Wildcards require exact search" error.) */
 function sanitizeForSearch(query: string): string {
   return query.replace(/[*?]/g, " ").replace(/\s+/g, " ").trim();

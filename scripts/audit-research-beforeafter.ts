@@ -1,16 +1,16 @@
 /**
- * One-off audit harness (bkt canon-integrity bead): exercise the live GET
- * handler on the canon-fallback path (wallet unfunded — exactly prod) for the
+ * One-off audit rig (bkt canon-integrity bead): exercise the live GET
+ * handler on the canon-fallback path (wallet unfunded, exactly prod) for the
  * flagship query and print the caller-facing answer + citation + tier.
  *
- *   npx ts-node --compiler-options '{"module":"commonjs"}' \
- *     scripts/audit-research-beforeafter.ts
+ * npx ts-node --compiler-options '{"module":"commonjs"}' \
+ * scripts/audit-research-beforeafter.ts
  */
 import { NextRequest } from "next/server";
 import * as path from "path";
 
 // Resolve the "@/..." alias the same way next/tsconfig does (./src/*) so this
-// standalone harness can require the route module directly.
+// standalone rig can require the route module directly.
 /* eslint-disable @typescript-eslint/no-require-imports */
 const Mod = require("module");
 const origResolve = Mod._resolveFilename;
@@ -60,7 +60,7 @@ async function run(q: string, tier = "insight") {
   await run("how do I tan my skin in France", "insight"); // expect no primary
   // --- canon-intake vertical slice: previously-EMPTY branches now served ---
   // Pre-pipeline these abstained (01-math/02-physics had ZERO primary-papers
-  // — AUDIT.md §1.5). canon-intake populated them; /api/research serves real
+  //, AUDIT.md §1.5). canon-intake populated them; /api/research serves real
   // DOI-backed canon for them now via the SAME prod GET path.
   await run("On Computable Numbers Entscheidungsproblem", "insight"); // 01-math
   await run("Einstein Podolsky Rosen paradox", "query"); // 02-physics

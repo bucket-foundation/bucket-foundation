@@ -1,6 +1,6 @@
-# Bucket Academy (app)
+# Bucket Academy
 
-A runnable, offline-capable learning app for the **biophysics nucleus** — spaced
+A runnable, offline-capable learning app for the **biophysics nucleus**, spaced
 repetition (FSRS) over a foundations-first knowledge graph. Built to the spec in
 `../research/_synthesis/UX-SPEC.md` and `DECISIONS.md`.
 
@@ -12,19 +12,19 @@ Open the URL. Progress is saved in your browser (localStorage). After one online
 it works fully offline (service worker caches the app + corpus + KaTeX).
 
 ## What works today
-- **Today's Route** — a zero-decision daily queue: due reviews first, then the next
-  highest-leverage concepts you're ready for (foundations before advanced).
-- **Atom screen** — concept art card + 3-depth explanation (Plain / Core / Deep) +
-  equation (KaTeX) + a retrieval drill (Show answer → rate Again/Hard/Good/Easy) +
-  an "Unlocks →" line so you see what each concept opens up.
-- **FSRS-5 scheduler** — real spaced repetition; target retention 0.90 (toggle 0.95
-  exam-sprint in Settings).
-- **Nucleus map** — concentric-shell graph (ring = shell, size = leverage, fill = your
-  mastery). Tap any concept.
-- **Progress** — streak, XP (mastery-weighted: derive ≫ recall), per-shell mastery bars,
-  and a per-concept mastery list.
+- **Today's Route**, a zero-decision daily queue: due reviews first, then the next
+ highest-impact concepts you're ready for (foundations before advanced).
+- **Atom screen**, concept art card + 3-depth explanation (Plain / Core / Deep) +
+ equation (KaTeX) + a retrieval drill (Show answer → rate Again/Hard/Good/Easy) +
+ an "Opens →" line so you see what each concept leads to.
+- **FSRS-5 scheduler**, real spaced repetition; target retention 0.90 (toggle 0.95
+ exam-sprint in Settings).
+- **Nucleus map**, concentric-shell graph (ring = shell, size = reach, fill = your
+ mastery). Tap any concept.
+- **Progress**, streak, XP (mastery-weighted: derive ≫ recall), per-shell mastery bars,
+ and a per-concept mastery list.
 
-## Validate (used by the build loop too)
+## Validate
 ```bash
 ./validate.sh         # JSON integrity + JS syntax + a 60-day engine simulation
 ```
@@ -45,10 +45,10 @@ app/
 ## Add content
 Append atoms to `corpus/biophysics.json`. Each atom: `id, title, shell
 (prereq|nucleus|frontier), requires[], equation (TeX), summary, depths{eli5,core,deep},
-quiz[{level,prompt,answer,eq?}], sources[], art_prompt`. Run `./validate.sh` before
+Quiz[{level,prompt,answer,eq?}], sources[], art_prompt`. Run `./validate.sh` before
 shipping. New-branch corpora (math, physics, …) follow the same schema.
 
-## Honest status
+## status
 Single-player, local-first P0/P1. No accounts, no AI tutor yet, art is a functional
 placeholder (equation hero card) pending generated art. The scheduler, routing,
-content, graph, and offline support are real and working.
+Content, graph, and offline support are real and working.

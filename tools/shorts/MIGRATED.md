@@ -9,9 +9,9 @@ See `~/agfarms/longtail/longtail-pipeline/shorts/README.md` for full
 documentation.
 
 Bucket Foundation still owns and provides:
-- `bucket-canon/<branch>/sub-claims/...` — canon claim cards (source content)
-- `public/brand/` — bucket logos, papyrus texture
-- `mcp-server/bucket-canon-mcp.py` — MCP query interface for canon
+- `bucket-canon/<branch>/sub-claims/...`, canon claim cards (source content)
+- `public/brand/`, bucket logos, papyrus texture
+- `mcp-server/bucket-canon-mcp.py`, MCP query interface for canon
 
 The shorts pipeline reads these from Bucket via env vars
 (`BUCKET_FOUNDATION_DIR`, `BUCKET_BRAND_DIR`).

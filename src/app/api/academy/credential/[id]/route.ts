@@ -1,19 +1,19 @@
 /**
- * bucket.foundation — GET/DELETE /api/academy/credential/[id]  (bkt-52p)
+ * bucket.foundation, GET/DELETE /api/academy/credential/[id] (bkt-52p)
  * ----------------------------------------------------------------------------
- * The HOSTED credential — a stable, resolvable artifact a third party fetches
+ * The HOSTED credential, a stable, resolvable artifact a third party fetches
  * and verifies.
  *
- *   GET  /api/academy/credential/<id>
- *        Default: returns the signed VC-JWT as text (Content-Type matches the
- *        VC-JWT media type). `?format=json` returns the embedded credential JSON
- *        (handy to read), `?format=jwt` forces the JWS. Public, no auth.
- *        If revoked, still served but with revocation metadata + 200 (the
- *        artifact persists; revocation is a separate, verifiable status).
+ * GET /api/academy/credential/<id>
+ * Default: returns the signed VC-JWT as text (Content-Type matches the
+ * VC-JWT media type). `?format=json` returns the embedded credential JSON
+ * (handy to read), `?format=jwt` forces the JWS. Public, no auth.
+ * If revoked, still served but with revocation metadata + 200 (the
+ * artifact persists; revocation is a separate, verifiable status).
  *
- *   DELETE /api/academy/credential/<id>   (auth, owner-only)
- *        Revoke the credential. Identity from the verified token; never trusts
- *        client-supplied ids of ownership. Returns the new revoked status.
+ * DELETE /api/academy/credential/<id> (auth, owner-only)
+ * Revoke the credential. Identity from the verified token; never trusts
+ * client-supplied ids of ownership. Returns the new revoked status.
  */
 import { NextRequest, NextResponse } from "next/server";
 import {
@@ -118,7 +118,7 @@ export async function DELETE(
 
   const ok = await revokeCredential(id, uid, reason);
   if (!ok) {
-    // Either not owned by this user, already revoked, or not found — all opaque.
+    // Either not owned by this user, already revoked, or not found, all opaque.
     return json({ error: "revoke_failed" }, 409);
   }
   return json({ ok: true, id, revoked: true });

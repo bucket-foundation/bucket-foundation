@@ -3,13 +3,13 @@
 // Same-origin proxy to the research-atlas read-only query API served from the
 // Hetzner box (FastAPI over DuckDB opened read_only). The browser hits this
 // route same-origin; we forward server-side to the atlas API. The API exposes a
-// vetted, parameterized query surface only — NO arbitrary SQL — so this proxy
+// vetted, parameterized query surface only, NO arbitrary SQL, so this proxy
 // just maps a small set of `op`s to the upstream paths + whitelisted params.
 //
 // op ∈ { stats, funders, portfolio, field-funders, field-works, org, search,
-//        metascience-list, metascience }
+// metascience-list, metascience }
 //
-// Env (server-only): ATLAS_API_URL  default "https://atlas-api.agfarms.dev"
+// Env (server-only): ATLAS_API_URL default "https://atlas-api.agfarms.dev"
 // Graceful degradation: API down/unreachable/5xx → clean 503 envelope so the
 // explorer can show "the atlas API is offline" without crashing the page.
 // A valid 404 (e.g. unknown org) is a real answer and is passed through, not
@@ -144,7 +144,7 @@ export async function GET(req: NextRequest) {
   clearTimeout(to);
 
   // Treat upstream 5xx as an outage (fail soft); pass 2xx/4xx straight through
-  // (a 404 "org not found" is a real answer, not an outage).
+  // (a 404 "org not found" is a real answer from a healthy upstream).
   if (resp.status >= 500) {
     return offline(`atlas API returned ${resp.status}`);
   }

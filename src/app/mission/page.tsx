@@ -272,7 +272,7 @@ export default function Page() {
           <DepthLadder showThesis={false} missionLink={false} heading="L0 → L5 · the rungs, and the Bucket piece that serves each" />
         </div>
 
-        {/* ═══════════════════ THE HONEST BOUNDARY ═══════════════════ */}
+        {/* ═══════════════════ THE BOUNDARY ═══════════════════ */}
         <div className="mt-16 small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)]">
           § The honest boundary · what Bucket does NOT solve
         </div>

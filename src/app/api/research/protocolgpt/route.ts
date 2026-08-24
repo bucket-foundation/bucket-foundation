@@ -1,16 +1,16 @@
 /**
- * bucket.foundation — /api/research/protocolgpt
+ * bucket.foundation, /api/research/protocolgpt
  * ---------------------------------------------
  * Same-origin proxy for the ProtocolGPT tool. Turns a freeform methods/SOP
  * description into a structured, runnable protocol: ordered steps, reagent
  * table, timings/temps/volumes, and safety flags. Backend logic is REAL,
  * deterministic rule/template extraction over a methods knowledge base
- * (services/research-tools/tools_protocol.py:run_protocol_gpt) — no network,
+ * (services/research-tools/tools_protocol.py:run_protocol_gpt), no network,
  * no GPU; an optional LLM cleanup pass is used only if a key is present.
  *
- *   POST /api/research/protocolgpt                  → gateway /v1/protocolgpt/submit
- *        body { methods, title? }                    → { job_id, status, mode, price, [result] }
- *   GET  /api/research/protocolgpt?job=<id>[&result=1] → status / result
+ * POST /api/research/protocolgpt → gateway /v1/protocolgpt/submit
+ * body { methods, title? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/protocolgpt?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

@@ -1,4 +1,4 @@
-/* Bucket Academy — the "Languages" Duolingo-style experience (epic bkt-w0t).
+/* Bucket Academy, the "Languages" Duolingo-style experience (epic bkt-w0t).
  *
  * A DEDICATED language UI: a do-first onboarding, a winding PATH of lesson nodes
  * grouped into units, a full-screen LESSON PLAYER with five exercise types, and an
@@ -11,11 +11,11 @@
  * separate module means the canon "atom/study" screens are untouched.
  *
  * Public: window.DuoLang
- *   .available()            -> bridge wired + on a language deck
- *   .shouldOnboard()        -> learner hasn't picked a language yet
- *   .onboarding()           -> render the do-first onboarding flow (returns screen node)
- *   .path()                 -> render the PATH home (returns screen node)
- *   .startLesson(unit,node) -> open the full-screen lesson player
+ * .available() -> bridge wired + on a language deck
+ * .shouldOnboard() -> learner hasn't picked a language yet
+ * .onboarding() -> render the do-first onboarding flow (returns screen node)
+ * .path() -> render the PATH home (returns screen node)
+ * .startLesson(unit,node) -> open the full-screen lesson player
  */
 (function (root) {
   "use strict";
@@ -64,7 +64,7 @@
     return (b && b.LANG_NAMES && b.LANG_NAMES[l]) || l;
   }
 
-  /* ---- a friendly mascot (a stylized bucket-drop, NOT the Duolingo owl) ---- */
+  /* ---- a friendly mascot (a stylized bucket-drop of our own) ---- */
   function mascot(cls) {
     var d = el("div", "duo-mascot " + (cls || ""));
     d.innerHTML =
@@ -97,7 +97,7 @@
   /* ---- bkt-h9k multi-course helpers (independent per-language state) ---- */
   // Re-point the live engine at the active target's per-language namespace. MUST be
   // called after setPref(target,…) and before buildUnits()/startLesson() so the path
-  // and lesson read/write THAT language's own FSRS state — not a shared one.
+  // and lesson read/write THAT language's own FSRS state.
   function syncNamespace() { var b = B(); if (b && b.syncLangNamespace) b.syncLangNamespace(); }
   function startedCourses() { var b = B(); return (b && b.startedCourses) ? b.startedCourses() : []; }
   function markCourseStarted(t) { var b = B(); if (b && b.markCourseStarted) b.markCourseStarted(t); }
@@ -126,11 +126,11 @@
   }
 
   /* ===================================================================== *
-   *  UNITS — group the deck's topo study order by the deck's category
-   *  order (numbers→colors→family→animals→body→food→nature→objects→
-   *  verbs→abstract). Each unit is a winding run of lesson NODES (~4 words
-   *  each). Node/unit state derives from FSRS cards. (Surface #2 model)
-   * ===================================================================== */
+ * UNITS, group the deck's topo study order by the deck's category
+ * order (numbers→colors→family→animals→body→food→nature→objects→
+ * verbs→abstract). Each unit is a winding run of lesson NODES (~4 words
+ * each). Node/unit state derives from FSRS cards. (Surface #2 model)
+ * ===================================================================== */
   var WORDS_PER_NODE = 4;
   var PHRASES_PER_NODE = 4; // bkt-q8e: phrase lessons group ~4 phrases per node
   // canonical category display order (matches deck tiers / the prompt)
@@ -181,7 +181,7 @@
         icon: CAT_ICON[cat] || "✦", n: ui + 1, nodes: nodes,
       });
     });
-    // bkt-q8e: append a PHRASES unit — verified beginner phrases (greetings,
+    // bkt-q8e: append a PHRASES unit, verified beginner phrases (greetings,
     // courtesy, intros, survival, dining, directions). Phrases are scheduled
     // by FSRS just like words, under their own "phrase:<id>" card namespace so
     // they don't collide with word atoms.
@@ -244,9 +244,9 @@
   }
 
   /* ===================================================================== *
-   *  SURFACE #1 — DO-FIRST ONBOARDING
-   *  landing → "I want to learn ___" → why → placement → daily goal → lesson
-   * ===================================================================== */
+ * SURFACE #1, DO-FIRST ONBOARDING
+ * landing → "I want to learn ___" → why → placement → daily goal → lesson
+ * ===================================================================== */
   var REASONS = [
     { k: "career", ico: "💼", t: "Boost my work" },
     { k: "travel", ico: "✈️", t: "Prepare for travel" },
@@ -304,7 +304,7 @@
       goal: 3,
     };
     var STEPS = ["pick", "reason", "placement", "goal"];
-    // the active (first-chosen) target — the course the reason/placement/goal apply to,
+    // the active (first-chosen) target, the course the reason/placement/goal apply to,
     // and the one we drop into after onboarding. Other targets seed at 0 progress.
     function activeTarget() { return state.learn[0] || null; }
 
@@ -348,12 +348,12 @@
       if (step === "goal") return renderGoal();
     }
 
-    /* step 0 — multi-select BOTH sections (bkt-4vq):
-     *   "I already know ___"  → toggle several source langs (first = primaryKnown)
-     *   "I want to learn ___" → toggle several target langs (each seeds a course)
-     * A language can't be in both lists at once: picking it on one side removes it from
-     * the other (and known-side languages are greyed/disabled on the learn side that
-     * already know them, since you can't learn the language you anchor from). */
+    /* step 0, multi-select BOTH sections (bkt-4vq):
+ * "I already know ___" → toggle several source langs (first = primaryKnown)
+ * "I want to learn ___" → toggle several target langs (each seeds a course)
+ * A language can't be in both lists at once: picking it on one side removes it from
+ * the other (and known-side languages are greyed/disabled on the learn side that
+ * already know them, since you can't learn the language you anchor from). */
     function pickContLabel() {
       var n = state.learn.length;
       if (n <= 1) return "CONTINUE";
@@ -408,7 +408,7 @@
           '<span class="dlc-check" aria-hidden="true">✓</span>';
         card.onclick = function () {
           toggleIn(state.known, l);
-          // a language you now "know" can't also be a learn target — drop the conflict
+          // a language you now "know" can't also be a learn target, drop the conflict
           var li = state.learn.indexOf(l);
           if (li >= 0) state.learn.splice(li, 1);
           card.setAttribute("aria-pressed", state.known.indexOf(l) >= 0 ? "true" : "false");
@@ -430,7 +430,7 @@
           '<span class="dlc-sub">' + esc(b.langCoverage(l)) + " words</span>" +
           '<span class="dlc-check" aria-hidden="true">✓</span>';
         card.onclick = function () {
-          if (state.known.indexOf(l) >= 0) return; // disabled conflict — ignore
+          if (state.known.indexOf(l) >= 0) return; // disabled conflict, ignore
           toggleIn(state.learn, l);
           card.setAttribute("aria-pressed", state.learn.indexOf(l) >= 0 ? "true" : "false");
           paint();
@@ -444,7 +444,7 @@
       paint();
     }
 
-    /* step 1 — why are you learning <lang>? (applies to the active/first course) */
+    /* step 1, why are you learning <lang>? (applies to the active/first course) */
     function renderReason() {
       body.appendChild(speech("Why are you learning " + langName(activeTarget()) + "?"));
       var grid = el("div", "duo-opt-grid two");
@@ -463,7 +463,7 @@
       setCont(!!state.reason, "CONTINUE", goNext);
     }
 
-    /* step 2 — placement: How much <lang> do you know? (sets path start) */
+    /* step 2, placement: How much <lang> do you know? (sets path start) */
     function renderPlacement() {
       body.appendChild(speech("How much " + langName(activeTarget()) + " do you know?"));
       var list = el("div", "duo-opt-grid one");
@@ -487,7 +487,7 @@
       setCont(!!state.placement, "CONTINUE", goNext);
     }
 
-    /* step 3 — daily goal */
+    /* step 3, daily goal */
     function renderGoal() {
       body.appendChild(speech("What's your daily goal?"));
       var list = el("div", "duo-opt-grid one");
@@ -523,16 +523,16 @@
       setPref(first, known, { primaryKnown: primaryKnown, polyglot: false, chosen: true });
       saveDuoPrefs({ reason: state.reason, placement: state.placement, goal: state.goal });
       // bkt-h9k: switch the engine to the ACTIVE language's own state BEFORE we grade any
-      // placement words or build the path, so a new course starts truly fresh and an
+      // placement words or build the path, so a new course starts fresh and an
       // existing course resumes its own progress.
       syncNamespace();
       // PLACEMENT: pre-introduce the first <skip> words so the learner starts further
-      // along the active course's path (a real, honest head start — marked seen, not mastered).
+      // along the active course's path (a real head start; words are marked seen only).
       if (state.skip) {
         var ids = targetOrder().slice(0, state.skip);
         ids.forEach(function (id) { if (!e.cardFor(id)) grade(id, 3, "recall"); });
       }
-      // go straight into the first lesson (do-first — no long preamble)
+      // go straight into the first lesson (do-first, no long preamble)
       var units = buildUnits();
       var flat = flattenNodes(units);
       var ci = currentNodeIndex(flat);
@@ -552,8 +552,8 @@
   }
 
   /* ===================================================================== *
-   *  SURFACE #2 — THE PATH HOME (winding path of nodes grouped into units)
-   * ===================================================================== */
+ * SURFACE #2, THE PATH HOME (winding path of nodes grouped into units)
+ * ===================================================================== */
   function path(go) {
     var b = B(), e = E();
     var ls = settings();
@@ -703,13 +703,13 @@
   }
 
   /* ===================================================================== *
-   *  SURFACE #2b — "MY LANGUAGES" (the Duo course switcher / dropdown)
-   *  Lists every language the learner has STARTED (has progress), each row
-   *  showing flag + name, words-learned signal, streak and XP for THAT course.
-   *  Tapping a course switches to it (loads its own state → path). A prominent
-   *  "+ Add a language" opens the onboarding picker to start a new course.
-   *  Reachable from the flag pill on the path AND from the Progress tab.
-   * ===================================================================== */
+ * SURFACE #2b, "MY LANGUAGES" (the Duo course switcher / dropdown)
+ * Lists every language the learner has STARTED (has progress), each row
+ * showing flag + name, words-learned signal, streak and XP for THAT course.
+ * Tapping a course switches to it (loads its own state → path). A prominent
+ * "+ Add a language" opens the onboarding picker to start a new course.
+ * Reachable from the flag pill on the path AND from the Progress tab.
+ * ===================================================================== */
   function myLanguages(go) {
     var b = B();
     var cur = settings();
@@ -770,9 +770,9 @@
   }
 
   /* ===================================================================== *
-   *  SURFACE #3 — THE LESSON PLAYER (full-screen, progress bar + hearts,
-   *  ~8-12 exercises with VARIETY, gentle green/amber feedback, combo)
-   * ===================================================================== */
+ * SURFACE #3, THE LESSON PLAYER (full-screen, progress bar + hearts,
+ * ~8-12 exercises with VARIETY, gentle green/amber feedback, combo)
+ * ===================================================================== */
   function startLesson(unit, node, onExit) {
     var b = B(), e = E();
     var ls = settings();
@@ -872,7 +872,7 @@
       showFeedback(correct, opts);
     }
 
-    // the green "Correct!" / amber "Not quite" bottom bar with Continue
+    // the green "Correct!" / amber "Not" bottom bar with Continue
     function showFeedback(correct, opts) {
       var fb = el("div", "duo-feedback " + (correct ? "good" : "soft"));
       var icon = el("div", "duo-fb-icon", correct ? "✓" : "↻");
@@ -888,9 +888,9 @@
         if (ab) rev.appendChild(ab);
         txt.appendChild(rev);
       }
-      // bkt-q8e: the polyglott "this app sees me" moment — radiate the word across
+      // bkt-q8e: the polyglott "this app sees me" moment, radiate the word across
       // the learner's KNOWN languages, highlight cognates + shared root. Only for
-      // single-word atoms that actually have cognate data.
+      // single-word atoms that have cognate data.
       if (opts.atom && opts.atom.id && cognateFor(opts.atom.id)) {
         var connBtn = el("button", "duo-conn-btn", "✦ See the connections");
         var panelOpen = false;
@@ -1058,13 +1058,13 @@
   }
 
   /* ===================================================================== *
-   *  bkt-q8e — THE COGNATE / ETYMOLOGY RADIATE PANEL
-   *  "This app sees me": after a word, radiate it across the learner's KNOWN
-   *  languages + the target. Highlight true cognates (shared etymological
-   *  root), print the shared-root line. Honest: concepts with no etymology
-   *  just show translations; false friends are omitted (not derivable here).
-   *  Shines brightest when the learner knows MULTIPLE languages.
-   * ===================================================================== */
+ * bkt-q8e, THE COGNATE / ETYMOLOGY RADIATE PANEL
+ * "This app sees me": after a word, radiate it across the learner's KNOWN
+ * languages + the target. Highlight true cognates (shared etymological
+ * root), print the shared-root line.: concepts with no etymology
+ * just show translations; false friends are omitted (not derivable here).
+ * Shines brightest when the learner knows MULTIPLE languages.
+ * ===================================================================== */
   // Pretty-print a proto-root token + name its proto-language when we can confidently
   // tell. PIE roots carry laryngeals (h₁ h₂ h₃), the ʷ/ḱ/ǵ series, or end in a bare
   // ablaut hyphen (*lewk-, *wed-); those are the classic Proto-Indo-European shapes.
@@ -1079,10 +1079,10 @@
     if (!data) return null;
     var ls = settings();
     // languages to radiate across: the target + every KNOWN language (the polyglott
-    // thesis — the more you know, the more it sees you). Dedupe, target first.
+    // thesis, the more you know, the more it sees you). Dedupe, target first.
     var known = (ls.known || []).slice();
     var langs = [target].concat(known.filter(function (l) { return l !== target; }));
-    // keep only langs we actually have a form for
+    // keep only langs we have a form for
     langs = langs.filter(function (l) { return data.forms[l] && data.forms[l].word; });
     if (langs.length < 2) return null; // nothing to radiate against
 
@@ -1147,7 +1147,7 @@
     return panel;
   }
 
-  /* (a) PICTURE multiple-choice — emoji prompt → word options (Duo "Which one is X?") */
+  /* (a) PICTURE multiple-choice, emoji prompt → word options (Duo "Which one is X?") */
   function exPictureMC(a, ctx) {
     var tf = a.forms[ctx.target] || {};
     var correct = tf.word || "";
@@ -1203,7 +1203,7 @@
     return box;
   }
 
-  /* (b) WORD-BANK tile assembly — build the target word from letter/syllable tiles */
+  /* (b) WORD-BANK tile assembly, build the target word from letter/syllable tiles */
   function exWordBank(a, ctx) {
     var tf = a.forms[ctx.target] || {};
     var correct = tf.word || "";
@@ -1261,7 +1261,7 @@
     catch (e) { return { verdict: typed === correct ? "correct" : "wrong" }; }
   }
 
-  /* (c) TYPED recall — type the target word; accent/typo-tolerant grader */
+  /* (c) TYPED recall, type the target word; accent/typo-tolerant grader */
   function exTyped(a, ctx) {
     var tf = a.forms[ctx.target] || {};
     var correct = tf.word || "";
@@ -1294,7 +1294,7 @@
     return box;
   }
 
-  /* (d) MATCH / tap-the-pairs — match target words ↔ known glosses (NEW) */
+  /* (d) MATCH / tap-the-pairs, match target words ↔ known glosses (NEW) */
   function exMatch(atoms, ctx) {
     var e = E();
     var pairs = atoms.map(function (a) {
@@ -1369,7 +1369,7 @@
     return box;
   }
 
-  /* (e) LISTEN — "Tap what you hear": TTS plays the word, learner picks/assembles it (NEW) */
+  /* (e) LISTEN, "Tap what you hear": TTS plays the word, learner picks/assembles it (NEW) */
   function exListen(a, ctx) {
     var tf = a.forms[ctx.target] || {};
     var correct = tf.word || "";
@@ -1382,7 +1382,7 @@
     var box = el("div", "duo-ex duo-ex-listen");
     box.appendChild(exHeader("LISTEN", "Tap what you hear"));
     // big speaker button (auto-plays once on mount via a user-gesture-free attempt;
-    // if blocked, the learner taps it — the button always works on tap)
+    // if blocked, the learner taps it, the button always works on tap)
     var playWrap = el("div", "duo-listen-play");
     var big = el("button", "duo-listen-big", "🔊");
     big.setAttribute("aria-label", "Play the word again");
@@ -1417,9 +1417,9 @@
   }
 
   /* ===================================================================== *
-   *  bkt-q8e — PHRASE EXERCISES (words + PHRASES; reuse the proven mechanics)
-   *  A phrase grades a "phrase:<id>" FSRS card (independent scheduling).
-   * ===================================================================== */
+ * bkt-q8e, PHRASE EXERCISES (words + PHRASES; reuse the proven mechanics)
+ * A phrase grades a "phrase:<id>" FSRS card (independent scheduling).
+ * ===================================================================== */
   // the known-language prompt for a phrase (primary known, falling back to English)
   function phraseHint(p, ctx) {
     var hl = (ctx.shown && ctx.shown[0]) || (ctx.known && ctx.known[0]) || "en";
@@ -1442,7 +1442,7 @@
     return shuffle(same).slice(0, n);
   }
 
-  /* (f) PHRASE multiple-choice — known-language prompt → pick the target phrase */
+  /* (f) PHRASE multiple-choice, known-language prompt → pick the target phrase */
   function exPhraseMC(p, ctx) {
     var correct = p.forms[ctx.target] || "";
     if (!correct) return null;
@@ -1475,7 +1475,7 @@
     return box;
   }
 
-  /* (g) PHRASE word-bank — assemble the target phrase from word tiles (the "translate this" mechanic) */
+  /* (g) PHRASE word-bank, assemble the target phrase from word tiles (the "translate this" mechanic) */
   function exPhraseBank(p, ctx) {
     var correct = p.forms[ctx.target] || "";
     if (!correct) return null;
@@ -1483,7 +1483,7 @@
     var box = el("div", "duo-ex duo-ex-bank duo-ex-phrase");
     box.appendChild(exHeader("BUILD THE PHRASE",
       'Say <b>"' + esc(hint.text) + '"</b> in ' + esc(langName(ctx.target))));
-    // tokenize into WORDS (phrases assemble from word tiles, not letters)
+    // tokenize into WORDS (phrases assemble from whole word tiles)
     var tokens = correct.split(/(\s+)/).filter(function (t) { return t.trim().length; });
     // if the phrase is a single token, fall back to MC (no meaningful assembly)
     if (tokens.length < 2) return exPhraseMC(p, ctx);
@@ -1527,7 +1527,7 @@
     return box;
   }
 
-  /* (h) PHRASE listen — hear the phrase, pick it (only when TTS is supported) */
+  /* (h) PHRASE listen, hear the phrase, pick it (only when TTS is supported) */
   function exPhraseListen(p, ctx) {
     if (!(root.LangAudio && root.LangAudio.supported())) return exPhraseMC(p, ctx);
     var correct = p.forms[ctx.target] || "";
@@ -1565,8 +1565,8 @@
   }
 
   /* ===================================================================== *
-   *  SURFACE #4 — THE REWARD SCREEN (animated XP + streak + combo summary)
-   * ===================================================================== */
+ * SURFACE #4, THE REWARD SCREEN (animated XP + streak + combo summary)
+ * ===================================================================== */
   function reward(stats, onExit) {
     var b = B();
     var screen = el("div", "screen duo duo-reward");

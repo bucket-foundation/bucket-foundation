@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/paperradar
+ * bucket.foundation, /api/research/paperradar
  * --------------------------------------------
  * Same-origin proxy for the PaperRadar T1 tool. PaperRadar queries the live
  * OpenAlex API by a researcher's topics, ranks by relevance + recency +
@@ -7,12 +7,12 @@
  * (services/research-tools/tools_rag.py:run_paper_radar).
  *
  * Contract (uniform across all tools, specialized to paperradar):
- *   POST /api/research/paperradar                  → gateway POST /v1/paperradar/submit
- *        body { interests, since_days?, limit? }   → { job_id, status, mode, price, [result] }
- *   GET  /api/research/paperradar?job=<id>         → gateway GET  /v1/jobs/<id>   (status)
- *   GET  /api/research/paperradar?job=<id>&result=1→ gateway GET  /v1/jobs/<id>/result
+ * POST /api/research/paperradar → gateway POST /v1/paperradar/submit
+ * body { interests, since_days?, limit? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/paperradar?job=<id> → gateway GET /v1/jobs/<id> (status)
+ * GET /api/research/paperradar?job=<id>&result=1→ gateway GET /v1/jobs/<id>/result
  *
- * Env (server-only): TOOLS_GATEWAY_URL  default "https://research-tools.agfarms.dev"
+ * Env (server-only): TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  * Graceful degradation: gateway down → clean 503 "tool offline" envelope.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "interests required" } }, 400);
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

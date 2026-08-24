@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — POST /api/academy/credential/issue  (bkt-52p)
+ * bucket.foundation, POST /api/academy/credential/issue (bkt-52p)
  * ----------------------------------------------------------------------------
  * The authenticated learner issues a verifiable credential for THEIR OWN proven
  * canon concepts. Same auth + service-role discipline as the progress/profile
@@ -7,14 +7,14 @@
  * can never issue for someone else.
  *
  * Flow:
- *   1. verify token -> uid,
- *   2. load the user's claimed profile (must have a handle),
- *   3. assemble the honest PublicProfile from their progress rows,
- *   4. select concepts that clear the issuance bar (depth>=Derive, mastered,
- *      >=MIN_REPS spaced re-demonstrations),  [HARD GATE bkt-4at: no score]
- *   5. build an OB3 OpenBadgeCredential, sign it as VC-JWT (EdDSA),
- *   6. persist it (bucket.academy_credentials) as a stable point-in-time artifact,
- *   7. return { id, url, jwt, credential }.
+ * 1. verify token -> uid,
+ * 2. load the user's claimed profile (must have a handle),
+ * 3. Assemble the PublicProfile from their progress rows
+ * 4. select concepts that clear the issuance bar (depth>=Derive, mastered,
+ * >=MIN_REPS spaced re-demonstrations), [HARD GATE bkt-4at: no score]
+ * 5. build an OB3 OpenBadgeCredential, sign it as VC-JWT (EdDSA),
+ * 6. persist it (bucket.academy_credentials) as a stable point-in-time artifact,
+ * 7. return { id, url, jwt, credential }.
  *
  * Degrades to 503 when sync or the issuer key is unconfigured (UI hides).
  */
@@ -102,7 +102,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     is_public: boolean;
   };
 
-  // Assemble the honest profile from the user's own progress rows.
+  // Assemble the profile from the user's own progress rows.
   const { data: rows, error: rowsErr } = await service()
     .from("academy_progress")
     .select("branch,data,updated_at")

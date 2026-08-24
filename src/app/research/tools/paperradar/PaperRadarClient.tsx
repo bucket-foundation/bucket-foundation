@@ -1,6 +1,6 @@
 "use client";
 
-// PaperRadar client island — personalized recent-paper feed.
+// PaperRadar client island, personalized recent-paper feed.
 // Drives the uniform job lifecycle through /api/research/paperradar via the
 // shared useToolRun hook. Render is "json" → typed feed view.
 

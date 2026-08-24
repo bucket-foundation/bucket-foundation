@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/faircheck
+ * bucket.foundation, /api/research/faircheck
  * ------------------------------------------
  * Same-origin proxy for FAIRCheck. Assess a dataset/metadata record for FAIR
  * (Findable, Accessible, Interoperable, Reusable) compliance with a real,
@@ -7,7 +7,7 @@
  * requirements). Backend logic is REAL (tools_fair.py:run_fair_check).
  *
  * POST body { record }; `record` is a metadata object, a JSON string, or "demo".
- *   GET  /api/research/faircheck?job=<id>[&result=1] → status / result
+ * GET /api/research/faircheck?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

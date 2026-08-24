@@ -1,12 +1,12 @@
 /**
  * src/app/m/[handle]/MasteryMap.tsx  (bkt-coh)
  * ------------------------------------------------------------------
- * Server-rendered concentric-shell "nucleus" map — the public face of the
+ * Server-rendered concentric-shell "nucleus" map, the public face of the
  * in-app map (learning/app/js/app.js screenMap). Same visual grammar:
  *   ring   = shell   (prereq outer · nucleus mid · frontier inner)
  *   size   = leverage (centrality)
  *   fill   = mastery  (how lit the node is)
- *   color  = shell    (aegean / gold / laurel — the bucket palette)
+ *   color  = shell    (aegean / gold / laurel, the bucket palette)
  *
  * Pure SVG, no client JS. Accessibility: an aria-label summary + a screen-reader
  * list-mode (rendered by the page) gives non-visual viewers the same signal

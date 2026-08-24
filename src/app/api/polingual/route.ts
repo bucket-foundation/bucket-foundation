@@ -7,21 +7,21 @@
 //
 // op ∈ { lookup, semantic, phonetic, spelling, etymology, translate, health }
 // Forwarded params per axis:
-//   lookup     surface, lang
-//   semantic   surface, lang, k, cross
-//   phonetic   surface, lang, k
-//   spelling   surface, lang, k
-//   etymology  surface, lang
-//   translate  surface, from, to, k
+// lookup surface, lang
+// semantic surface, lang, k, cross
+// phonetic surface, lang, k
+// spelling surface, lang, k
+// etymology surface, lang
+// translate surface, from, to, k
 //
 // Upstream chain (tried in order, deduped):
-//   1. POLINGUAL_API_URL          — primary (e.g. the local full-6.5M box via a
-//                                    Cloudflare tunnel). May be down/unreachable.
-//   2. POLINGUAL_FALLBACK_API_URL  — fallback (the always-on 209k prod service,
-//                                    default https://polingual.agfarms.dev).
-//   3. (client) baked ~6,500-word offline subset, on a 503 from here.
-// We only fail over on a network error / timeout / 5xx — NOT on a valid 2xx/4xx
-// (a "word not found" is a real answer, not an outage).
+// 1. POLINGUAL_API_URL, primary (e.g. the local full-6.5M box via a
+// Cloudflare tunnel). May be down/unreachable.
+// 2. POLINGUAL_FALLBACK_API_URL, fallback (the always-on 209k prod service,
+// default https://polingual.agfarms.dev).
+// 3. (client) baked ~6,500-word offline subset, on a 503 from here.
+// We only fail over on a network error / timeout / 5xx. A valid 2xx/4xx is a
+// real answer (a "word not found" included), so it never triggers failover.
 // Data: Wiktionary via Kaikki (CC-BY-SA); provenance travels in every payload.
 
 import { NextRequest } from "next/server";
@@ -35,7 +35,7 @@ const FALLBACK = clean(process.env.POLINGUAL_FALLBACK_API_URL ?? "https://poling
 // deduped, order-preserving chain (avoid Set-spread for older TS targets)
 const UPSTREAMS = PRIMARY === FALLBACK ? [PRIMARY] : [PRIMARY, FALLBACK];
 
-// Short by default so a dead primary fails over to the fallback quickly.
+// Short by default so a dead primary fails over to the fallback.
 const TIMEOUT_MS = Number(process.env.POLINGUAL_TIMEOUT_MS ?? "4000");
 
 // op -> upstream path + the query params it accepts
@@ -97,7 +97,7 @@ export async function GET(req: NextRequest) {
         headers: { accept: "application/json" },
         // server-side fetch; no credentials, no cookies forwarded
       });
-      // A 5xx means the upstream is unhealthy — try the next one if any.
+      // A 5xx means the upstream is unhealthy, try the next one if any.
       if (res.status >= 500 && !isLast) {
         clearTimeout(timer);
         continue;

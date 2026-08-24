@@ -6,7 +6,7 @@ export const metadata = toolMetadata("materialsfeaturizer");
 const _jsonld = toolJsonLd("materialsfeaturizer");
 import MaterialsFeaturizerClient from "./MaterialsFeaturizerClient";
 
-// MaterialsFeaturizer run page — server shell framing the interactive client island.
+// MaterialsFeaturizer run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("materialsfeaturizer");
   return (

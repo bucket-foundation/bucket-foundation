@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""build-lang-core.py — expand the Polyglot Core deck into a real beginner course.
+"""build-lang-core.py, expand the Polyglot Core deck into a real beginner course.
 
 Keeps the existing curated atoms (lang-core.json) and APPENDS a large, hand-curated
 beginner set across the 7 built-in languages (en/es/fr/it/pt/de/la): greetings,
@@ -45,9 +45,9 @@ def ipa_for(lang, word):
 
 # ----------------------------------------------------------------------------
 # Curated data. Each entry:
-#   (id, category, pos, shell, gloss,
-#    {lang: word OR (word, gender) OR (word, gender, ipa)},
-#    {lang: example_sentence})  examples optional per-lang; must contain the word.
+# (id, category, pos, shell, gloss,
+# {lang: word OR (word, gender) OR (word, gender, ipa)},
+# {lang: example_sentence}) examples optional per-lang; must contain the word.
 # Genders: m/f/n. Latin nouns give the nominative singular; verbs give the
 # present active infinitive unless noted.
 # ----------------------------------------------------------------------------
@@ -1218,7 +1218,7 @@ def main():
     corpus["meta"]["title"] = "Polyglot Core — a beginner course across 7 languages"
     corpus["meta"]["license"] = (
         "Translations & IPA are facts cross-checked against Wiktionary (CC-BY-SA, "
-        "attributed via Kaikki — IPA pulled from the live photon dictionary at "
+        "attributed via Kaikki, IPA pulled from the live photon dictionary at "
         "polingual.agfarms.dev); example sentences are original and beginner-simple."
     )
     json.dump(corpus, open(CORPUS, "w"), ensure_ascii=False, indent=2)

@@ -1,11 +1,12 @@
-# Brand Building Research — Comprehensive Cross-Pillar Foundation
+# Brand Building Research
+Comprehensive Cross-Pillar Foundation.
 
 > Bead: eai-1wnz | Date: 2026-04-09 | Status: Complete
 > Pillars: Revenue, Product, Customer Success, People, Operations, Data
 
 ## Purpose
 
-Comprehensive research on how to build business brand — covering the full spectrum from foundational books and academic frameworks to modern AI-era strategies. Designed to help any business in the portfolio approach brand as infrastructure, not decoration.
+Comprehensive research on how to build business brand, covering the full spectrum from foundational books and academic frameworks to modern AI-era strategies. Designed to help any business in the portfolio approach brand as infrastructure.
 
 ## Research Files
 
@@ -19,51 +20,51 @@ Comprehensive research on how to build business brand — covering the full spec
 
 ## Three Schools of Brand Thought
 
-1. **Positioning School** (Ries/Trout, Dunford, Neumeier) — own a distinct position in the customer's mind
-2. **Equity/Identity School** (Aaker, Keller, Kapferer) — multi-dimensional identity systems with measurable equity
-3. **Cultural/Emotional School** (Holt, Hanlon, Roberts, Sinek, Godin) — belief systems, movements, cultural forces
+1. **Positioning School** (Ries/Trout, Dunford, Neumeier), own a distinct position in the customer's mind
+2. **Equity/Identity School** (Aaker, Keller, Kapferer), multi-dimensional identity systems with measurable equity
+3. **Cultural/Emotional School** (Holt, Hanlon, Roberts, Sinek, Godin), belief systems, movements, cultural forces
 
-## Top 10 Books for Startup Founders (Reading Order)
+## Top 10 Books for Startup Founders
 
-1. *Obviously Awesome* — April Dunford (positioning)
-2. *Building a StoryBrand* — Donald Miller (messaging)
-3. *Start with Why* — Simon Sinek (purpose)
-4. *The Brand Gap* — Marty Neumeier (strategy + design bridge)
-5. *Contagious* — Jonah Berger (word of mouth engineering)
-6. *Purple Cow* — Seth Godin (remarkability)
-7. *Primal Branding* — Patrick Hanlon (belief systems)
-8. *Eating the Big Fish* — Adam Morgan (challenger strategy)
-9. *How Brands Grow* — Byron Sharp (empirical counterargument)
-10. *Building Strong Brands* — David Aaker (comprehensive system)
+1. *Awesome*, April Dunford (positioning)
+2. *Building a StoryBrand*, Donald Miller (messaging)
+3. *Start with Why*, Simon Sinek (purpose)
+4. *The Brand Gap*, Marty Neumeier (strategy + design bridge)
+5. *Contagious*, Jonah Berger (word of mouth engineering)
+6. *Purple Cow*, Seth Godin (remarkability)
+7. *Primal Branding*, Patrick Hanlon (belief systems)
+8. *Eating the Big Fish*, Adam Morgan (challenger strategy)
+9. *How Brands Grow*, Byron Sharp (empirical counterargument)
+10. *Building Strong Brands*, David Aaker (comprehensive system)
 
 ## 7 Cross-Cutting Patterns from Case Studies
 
-1. **Subtraction before addition** — strongest brands are defined by what they refuse to do
-2. **Brand is experienced, not advertised** — transmitted through product interaction
-3. **Community as growth engine** — users who market on your behalf
-4. **Enemy marketing clarifies positioning** — clear antagonist simplifies message
-5. **Founder conviction > data optimization** — conviction finds global maxima
-6. **Mission must be structural, not cosmetic** — inseparable from the product
-7. **Category creation > category competition** — define new markets, don't win old ones
+1. **Subtraction before addition**, strongest brands are defined by what they refuse to do
+2. **Brand is experienced**, ahead of advertised, transmitted through product interaction
+3. **Community as growth engine**, users who market on your behalf
+4. **Enemy marketing clarifies positioning**, clear antagonist simplifies message
+5. **Founder conviction > data optimization**, conviction finds global maxima
+6. **Mission must be structural**, well below cosmetic, inseparable from the product
+7. **Category creation > category competition**, define new markets, don't win old ones
 
 ## Key Metrics & Frameworks
 
-- **Share of Model** — AI-era equivalent of Share of Voice (track LLM mentions)
-- **GEO** — Generative Engine Optimization (brand visibility in AI responses)
-- **CBBE Pyramid** — Keller's 4-level brand equity model
-- **STEPPS** — Berger's 6 principles for viral spread
-- **SB7** — Miller's 7-element story framework
-- **Brand Identity Prism** — Kapferer's 6 facets
-- **12 Brand Archetypes** — Jung/Mark & Pearson
+- **Share of Model**, AI-era equivalent of Share of Voice (track LLM mentions)
+- **GEO**, Generative Engine Optimization (brand visibility in AI responses)
+- **CBBE Pyramid**, Keller's 4-level brand equity model
+- **STEPPS**, Berger's 6 principles for viral spread
+- **SB7**, Miller's 7-element story framework
+- **Brand Identity Prism**, Kapferer's 6 facets
+- **12 Brand Archetypes**, Jung/Mark & Pearson
 
-## Transcript Candidates (Highest Value)
+## Transcript Candidates
 
-1. Arielle Jackson on Lenny's Podcast — startup brand positioning framework
-2. David Placek on Lenny's Podcast — brand naming (Sonos, BlackBerry, Pentium)
-3. Simon Sinek TED Talk — Golden Circle (already widely transcribed)
-4. Laura Modi on Lenny's Podcast — cult-like brand building
-5. Barbra Gago on Lenny's Podcast — category creation = brand building
-6. Chris Do "How Brand Strategy Works" — practical strategy walkthrough
+1. Arielle Jackson on Lenny's Podcast, startup brand positioning framework
+2. David Placek on Lenny's Podcast, brand naming (Sonos, BlackBerry, Pentium)
+3. Simon Sinek TED Talk, Golden Circle (already transcribed)
+4. Laura Modi on Lenny's Podcast, cult-like brand building
+5. Barbra Gago on Lenny's Podcast, category creation = brand building
+6. Chris Do "How Brand Strategy Works", practical strategy walkthrough
 
 ## Cross-Pillar Impact Summary
 

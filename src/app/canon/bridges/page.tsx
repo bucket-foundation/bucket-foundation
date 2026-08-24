@@ -1,4 +1,4 @@
-// /canon/bridges — index of canon bridges (the meta-structure across branches).
+// /canon/bridges, index of canon bridges (the meta-structure across branches).
 import Link from "next/link";
 import { getAllBridges } from "@/lib/canon-bridges";
 import { getAllDetectedBridges } from "@/lib/canon-detected-bridges";

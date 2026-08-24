@@ -64,7 +64,7 @@ const AFTER = `{
     "status": "served_from_canon",               // not payment_required
     "price_usd": 0,                              // reader pays nothing
     "paid_by": "bucket-foundation (pre-paid canon; reader pays nothing)"
-    //  NO challenge. NO pay_to. NO demo.        — the refused fields are gone
+    // NO challenge. NO pay_to. NO demo., the refused fields are gone
   },
   "cite": {
     "applies_to": "downstream_republication_in_a_paid_work",  // scoped
@@ -170,7 +170,7 @@ export default function Page() {
           </ul>
         </div>
 
-        <H2 id="setup">1 · The setup: free to read, paid to cite</H2>
+        <H2 id="setup">1 · The setup: free to read and paid to cite</H2>
         <p>
           bucket.foundation is a nonprofit. Its only reason to exist is research
           integrity: make a paper paid-for-once and citeable-forever, and route
@@ -225,7 +225,7 @@ export default function Page() {
           were correct. Neither was a model defect.
         </p>
 
-        <H3>3.1 · ChatGPT — no wallet, honest stop</H3>
+        <H3>3.1 · ChatGPT: no wallet</H3>
         <p>
           ChatGPT did not refuse on safety grounds. It read the manifest, found
           the canon, identified the right citation target — and then hit the
@@ -237,7 +237,7 @@ export default function Page() {
           the agent had no way — and no business — performing.
         </p>
 
-        <H3>3.2 · Claude — safety refusal, verbatim</H3>
+        <H3>3.2 · Claude: safety refusal</H3>
         <p>
           Claude refused, and stated exactly why. The quote below is verbatim
           from the recorded session; it is reproduced unedited because the
@@ -392,7 +392,7 @@ export default function Page() {
           anywhere) so the prose and the structure cannot diverge.
         </p>
 
-        <H3>5.4 · <code>cite</code> is passive license metadata, not an action</H3>
+        <H3>5.4 · <code>cite</code> is passive license metadata only</H3>
         <p>
           The <code>cite</code> block was the conceptual ambiguity that made the
           whole thing read as pay-to-proceed. It is now scoped so it cannot be

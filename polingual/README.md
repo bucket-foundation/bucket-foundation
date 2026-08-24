@@ -9,7 +9,7 @@ See `../POLINGUAL.md` and `../PHOTON-SPEC.md` for the canonical specs.
 
 - Domain: polingual.com (purchased 2026-05-13)
 - Photon substrate: shared with bucket-foundation
-- Code: stub — building incrementally
+- Code: stub, building incrementally
 
 ## Quickstart
 

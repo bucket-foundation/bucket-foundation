@@ -1,6 +1,6 @@
 "use client";
 
-// UnitDimCheck client island — SI dimensional analysis, unit conversion, and
+// UnitDimCheck client island, SI dimensional analysis, unit conversion, and
 // equation dimensional-consistency. Render "json".
 
 import { useState } from "react";

@@ -1,7 +1,7 @@
 /**
  * Basic smoke tests for /api/research.
  *
- * Intentionally dependency-free — run with:
+ * Intentionally dependency-free, run with:
  *   npx ts-node --compiler-options '{"module":"commonjs"}' \
  *     scripts/test-research-route.ts
  *

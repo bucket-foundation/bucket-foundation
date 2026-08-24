@@ -1,6 +1,6 @@
 "use client";
 
-// QuantumBioRAG client island — claim-strength RAG over live OpenAlex with
+// QuantumBioRAG client island, claim-strength RAG over live OpenAlex with
 // evidence-weighted stance + consensus. Render is "json" → typed view.
 
 import { useState } from "react";

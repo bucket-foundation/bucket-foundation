@@ -1,39 +1,39 @@
 #!/usr/bin/env python3
 """
-research-tools — GeoSummary (REAL geospatial/time-series stats, CPU, no GPU)
+research-tools, GeoSummary (REAL geospatial/time-series stats, CPU, no GPU)
 ============================================================================
 
 Per-field tool for **earth-climate** (earth-climate, 116,840 profiled
-researchers — the second-largest field in the corpus). The atlas USERS_NEEDS
+researchers, the second-largest field in the corpus). The atlas USERS_NEEDS
 roadmap flags reproducible geospatial/time-series workflows as a structural pain:
 EO/climate data is huge and heterogeneous, and a non-specialist has no quick way
 to get a defensible summary (trend, seasonality, missing-data, spatial extent)
-out of a series without writing bespoke code.
+out of a series without writing custom code.
 
 GeoSummary takes a time series (a list of values, optionally with timestamps and
 lat/lon coordinates) and computes REAL statistics:
 
-  1. Descriptives + missing-data accounting (count, mean, std, quantiles, % NaN).
-  2. TREND — ordinary-least-squares slope over the time index AND the robust,
-     distribution-free Mann-Kendall trend test + Theil-Sen slope estimator
-     (the standard climatological trend test; Mann 1945, Kendall 1975, Sen 1968).
-  3. SEASONALITY — if a `period` is given (e.g. 12 for monthly data), the
-     per-phase climatology (group means by phase), the seasonal amplitude, and
-     the fraction of variance explained by the seasonal cycle.
-  4. AUTOCORRELATION — lag-1 autocorrelation (a serial-dependence / red-noise
-     check that matters for trend significance).
-  5. SPATIAL EXTENT — if lat/lon are supplied: bounding box, centroid, and the
-     great-circle (haversine) span of the points.
+ 1. Descriptives + missing-data accounting (count, mean, std, quantiles, % NaN).
+ 2. TREND, ordinary-least-squares slope over the time index AND the resilient,
+ distribution-free Mann-Kendall trend test + Theil-Sen slope estimator
+ (the standard climatological trend test; Mann 1945, Kendall 1975, Sen 1968).
+ 3. SEASONALITY, if a `period` is given (e.g. 12 for monthly data), the
+ per-phase climatology (group means by phase), the seasonal amplitude, and
+ the fraction of variance explained by the seasonal cycle.
+ 4. AUTOCORRELATION, lag-1 autocorrelation (a serial-dependence / red-noise
+ check that matters for trend significance).
+ 5. SPATIAL EXTENT, if lat/lon are supplied: bounding box, centroid, and the
+ great-circle (haversine) span of the points.
 
-All math is numpy + scipy (linregress, kendalltau, theilslopes) — no GPU, no
+All math is numpy + scipy (linregress, kendalltau, theilslopes), no GPU, no
 network. Deterministic; never crashes on malformed input (returns a structured
 {"error": ...}).
 
 Input shape (`payload`):
-    values     : list[float]  — the series (required; NaN/None allowed → missing)
-    times      : list         — optional timestamps/labels (parallel to values)
-    period     : int          — optional seasonal period (e.g. 12 monthly, 4 quarterly)
-    lat, lon   : list[float]  — optional coordinates (parallel to values)
+ values : list[float], the series (required; NaN/None allowed → missing)
+ times : list, optional timestamps/labels (parallel to values)
+ period : int, optional seasonal period (e.g. 12 monthly, 4 quarterly)
+ lat, lon : list[float], optional coordinates (parallel to values)
 
 The gateway imports GEO_RUNNERS from here.
 """
@@ -63,8 +63,8 @@ def _to_float_array(v: Any) -> Optional[np.ndarray]:
 
 def _mann_kendall(x: np.ndarray) -> dict:
     """Mann-Kendall trend test (no-tie normal approximation with tie correction).
-    Returns S, the variance-corrected z, two-sided p, and the trend direction.
-    Operates on the finite values in index order."""
+ Returns S, the variance-corrected z, two-sided p, and the trend direction.
+ Operates on the finite values in index order."""
     n = len(x)
     if n < 4:
         return {"applicable": False, "reason": "need >= 4 finite points"}
@@ -216,9 +216,9 @@ def summarize(values: list, times: Any = None, period: Optional[int] = None,
 
 def _demo_series() -> dict:
     """A known synthetic monthly series (period=12): a clear positive linear
-    trend of +0.10/step on top of a sinusoidal seasonal cycle, plus a couple of
-    missing values. The trend is strong and increasing (Mann-Kendall significant);
-    the seasonal cycle explains a large share of the variance."""
+ trend of +0.10/step on top of a sinusoidal seasonal cycle, plus a couple of
+ missing values. The trend is strong and increasing (Mann-Kendall significant);
+ the seasonal cycle explains a large share of the variance."""
     n = 120  # 10 years monthly
     rng = np.arange(n)
     trend = 0.10 * rng
@@ -233,11 +233,11 @@ def _demo_series() -> dict:
 
 
 def run_geo_summary(payload: dict) -> dict:
-    """payload: { values: [...], times?, period?, lat?, lon? }  OR  { demo: true }.
+    """payload: { values: [...], times?, period?, lat?, lon? } OR { demo: true }.
 
-    Summarize a geospatial/time-series dataset: descriptives + missing data,
-    OLS + Mann-Kendall/Theil-Sen trend, seasonal climatology, lag-1
-    autocorrelation, and spatial extent. Real numpy/scipy; never raises.
+ Summarize a geospatial/time-series dataset: descriptives + missing data,
+ OLS + Mann-Kendall/Theil-Sen trend, seasonal climatology, lag-1
+ autocorrelation, and spatial extent. Real numpy/scipy; never raises.
     """
     demo = bool(payload.get("demo")) or (
         isinstance(payload.get("values"), str) and payload.get("values", "").strip().lower() == "demo"
@@ -257,7 +257,7 @@ def run_geo_summary(payload: dict) -> dict:
         result["note"] = (
             "DEMO: 120-month synthetic series = linear +0.10/step trend + a "
             "12-month seasonal cycle + 2 planted missing values. The OLS/Theil-Sen "
-            "slope should recover ≈0.10; Mann-Kendall should be significantly "
+            "slope should recover ≈0.10; Mann-Kendall should be "
             "increasing; the seasonal cycle explains a large variance share. "
         )
     else:

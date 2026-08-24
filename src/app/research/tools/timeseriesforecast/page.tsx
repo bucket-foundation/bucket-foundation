@@ -6,7 +6,7 @@ export const metadata = toolMetadata("timeseriesforecast");
 const _jsonld = toolJsonLd("timeseriesforecast");
 import TimeSeriesForecastClient from "./TimeSeriesForecastClient";
 
-// TimeSeriesForecast run page — server shell framing the interactive client island.
+// TimeSeriesForecast run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("timeseriesforecast");
   return (

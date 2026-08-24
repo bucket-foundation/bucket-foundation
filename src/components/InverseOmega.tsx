@@ -1,13 +1,13 @@
-// Inverse Omega — bucket.foundation primary logomark.
+// Inverse Omega, bucket.foundation primary logomark.
 //
 // Stonepunk treatment per the KALA locked brand system (V03 carved-stone
 // terminals, V05 elemental palette, V08 Bone+Basalt neutrals):
-//   - heavy inscriptional stroke with flat chiselled terminals
-//   - subtle asymmetric hand-carved edges (no perfect curves)
-//   - inset shadow below each stroke = the chisel cut depth
-//   - inner bone highlight on the upper edge = stone lit from above
-//   - hot-gold inlay dot inside the cup = the citation token (mythic plaque)
-//   - Roman serif feet at the top flare
+// - heavy inscriptional stroke with flat chiselled terminals
+// - subtle asymmetric hand-carved edges (no perfect curves)
+// - inset shadow below each stroke = the chisel cut depth
+// - inner bone highlight on the upper edge = stone lit from above
+// - hot-gold inlay dot inside the cup = the citation token (mythic plaque)
+// - Roman serif feet at the top flare
 //
 // Rendered entirely in SVG (no raster dependency). Scales 16px → 800px.
 
@@ -45,7 +45,7 @@ export default function InverseOmega({
       <title>{title}</title>
 
       <defs>
-        {/* Carved depth — dark inner shadow offset down-right */}
+        {/* Carved depth, dark inner shadow offset down-right */}
         <filter id={`${uid}-carve`} x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur in="SourceAlpha" stdDeviation="1.4" result="b" />
           <feOffset in="b" dx="0" dy="2" result="o" />
@@ -67,7 +67,7 @@ export default function InverseOmega({
           </feMerge>
         </filter>
 
-        {/* Gradient along strokes — slight tonal life */}
+        {/* Gradient along strokes, slight tonal life */}
         <linearGradient id={`${uid}-g`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor={stroke} stopOpacity="1" />
           <stop offset="1" stopColor={stroke} stopOpacity="0.82" />
@@ -99,7 +99,7 @@ export default function InverseOmega({
           fill={`url(#${uid}-g)`}
         />
 
-        {/* === Left leg — splays outward, flared top, carved stone ==== */}
+        {/* === Left leg, splays outward, flared top, carved stone ==== */}
         {/* Top flare tick (serifed foot of the omega leg) */}
         <path
           d="M 44 54
@@ -115,7 +115,7 @@ export default function InverseOmega({
           fill={`url(#${uid}-g)`}
         />
 
-        {/* === Right leg — mirror of left ============================= */}
+        {/* === Right leg, mirror of left ============================= */}
         <path
           d="M 196 54
              L 164 54
@@ -130,7 +130,7 @@ export default function InverseOmega({
           fill={`url(#${uid}-g)`}
         />
 
-        {/* === The cup — the bucket — arched catch basin =============== */}
+        {/* === The cup, the bucket, arched catch basin =============== */}
         {/* Outer edge */}
         <path
           d="M 50 162
@@ -146,9 +146,9 @@ export default function InverseOmega({
         />
       </g>
 
-      {/* === LYRE STRINGS — 5 hot-gold strings stretched across the ==== */}
-      {/* inverse-omega arch, crossbar (top) → cup rim (bottom).         */}
-      {/* This is what makes it an inverse-omega LYRE, not just an Ω.    */}
+      {/* === LYRE STRINGS, 5 hot-gold strings stretched across the ==== */}
+      {/* inverse-omega arch, crossbar (top) → cup rim (bottom). */}
+      {/* This is what makes it an inverse-omega LYRE, not just an Ω. */}
       <g>
         <defs>
           <linearGradient id={`${uid}-str`} x1="0" y1="0" x2="0" y2="1">
@@ -178,7 +178,7 @@ export default function InverseOmega({
         ))}
       </g>
 
-      {/* === Hot-gold citation inlay — the token in the cup =========== */}
+      {/* === Hot-gold citation inlay, the token in the cup =========== */}
       {/* Sits below the cup, the "drop" that falls from the arch. */}
       <g>
         <circle cx="120" cy="212" r="7.5" fill="var(--basalt)" opacity="0.85" />
@@ -187,15 +187,15 @@ export default function InverseOmega({
       </g>
 
       {/* === Rim highlight on the upper edge of each stroke =========== */}
-      {/* Faint bone (or gold-bone for inlay) along the top carves,     */}
-      {/* sells the depth — stone is lit from above.                   */}
+      {/* Faint bone (or gold-bone for inlay) along the top carves, */}
+      {/* sells the depth, stone is lit from above. */}
       <g opacity="1" stroke={rim} strokeWidth="0.7" fill="none" strokeLinecap="round">
         <line x1="26" y1="48" x2="214" y2="48" />
         <path d="M 44 54 L 76 54" />
         <path d="M 164 54 L 196 54" />
       </g>
 
-      {/* === Chisel cut — tiny dark crevice at each concave corner ==== */}
+      {/* === Chisel cut, tiny dark crevice at each concave corner ==== */}
       <g opacity="0.55" stroke={cut} strokeWidth="0.9" fill="none" strokeLinecap="round">
         <path d="M 68 162 L 172 162" />
         <path d="M 50 162 C 54 178 72 194 96 200" />
@@ -203,7 +203,7 @@ export default function InverseOmega({
       </g>
 
       {/* === Signature runic mark under the plinth (hot gold) ========= */}
-      {/* Three dots — the triple-rune motif from KALA V11.3 bindrune.  */}
+      {/* Three dots, the triple-rune motif from KALA V11.3 bindrune. */}
       <g fill="var(--gold)" opacity={isInlay ? 0 : 0.9}>
         <circle cx="108" cy="226" r="1.2" />
         <circle cx="120" cy="226" r="1.2" />

@@ -6,7 +6,7 @@ export const metadata = toolMetadata("labbrain");
 const _jsonld = toolJsonLd("labbrain");
 import LabBrainClient from "./LabBrainClient";
 
-// LabBrain run page — server-component shell (matches /research styling), frames
+// LabBrain run page, server-component shell (matches /research styling), frames
 // the interactive client island. FIRST SLICE of the research-tools surface.
 // See docs/research-tools/04-implementation-architecture.md §7.
 export default function Page() {

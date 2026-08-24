@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-research-tools — StoichBalance (REAL equation balancing + stoichiometry, CPU)
+research-tools, StoichBalance (REAL equation balancing + stoichiometry, CPU)
 =============================================================================
 
 Per-field tool for **chemistry** (20,531 profiled researchers). Reaction
@@ -10,30 +10,30 @@ scriptable handling of even basic reaction arithmetic. The first arithmetic
 operation on any reaction is BALANCING it, then computing limiting reagent and
 theoretical yield.
 
-StoichBalance does both with REAL linear algebra — no lookup tables, no
+StoichBalance does both with REAL linear algebra, no lookup tables, no
 heuristics:
 
-  1. Balancing as a null-space problem
-     ----------------------------------------------------------------------
-     A chemical equation is balanced when, for every element, the total atoms on
-     the left equal the total on the right. Building the element-by-species
-     matrix A (rows = elements, columns = species, sign +1 for reactants, −1 for
-     products, entries = subscript counts), the balanced coefficient vector x is
-     any nonzero solution of A·x = 0 — i.e. a basis vector of the null space of
-     A. We compute the null space exactly over the rationals (integer Gaussian
-     elimination + fraction arithmetic), then scale to the smallest positive
-     integers via the LCM of denominators / GCD of numerators. This is the
-     standard linear-algebra method (Risteski; any physical-chemistry text).
+ 1. Balancing as a null-space problem
+ ----------------------------------------------------------------------
+ A chemical equation is balanced when, for every element, the total atoms on
+ the left equal the total on the right. Building the element-by-species
+ matrix A (rows = elements, columns = species, sign +1 for reactants, −1 for
+ products, entries = subscript counts), the balanced coefficient vector x is
+ any nonzero solution of A·x = 0, i.e. a basis vector of the null space of
+ A. We compute the null space exactly over the rationals (integer Gaussian
+ elimination + fraction arithmetic), then scale to the smallest positive
+ integers via the LCM of denominators / GCD of numerators. This is the
+ standard linear-algebra method (Risteski; any physical-chemistry text).
 
-  2. Stoichiometry / limiting reagent
-     ----------------------------------------------------------------------
-     Given balanced coefficients + reactant amounts (moles, or grams with molar
-     masses), the limiting reagent is the reactant minimizing amount/coeff; the
-     theoretical product amounts follow from the mole ratios.
+ 2. Stoichiometry / limiting reagent
+ ----------------------------------------------------------------------
+ Given balanced coefficients + reactant amounts (moles, or grams with molar
+ masses), the limiting reagent is the reactant minimizing amount/coeff; the
+ theoretical product amounts follow from the mole ratios.
 
 Parsing reuses a self-contained recursive-descent formula parser (subscripts,
 nested parentheses, hydrates via "·"/".") and a built-in atomic-mass table.
-Deterministic; never raises on malformed input — returns a structured
+Deterministic; never raises on malformed input, returns a structured
 {"error": ...}.
 
 The gateway imports STOICH_RUNNERS from here.
@@ -70,7 +70,7 @@ _TOKEN = re.compile(r"([A-Z][a-z]?)|(\d+\.?\d*)|(\()|(\))|([·.])")
 
 def parse_formula(formula: str) -> dict[str, float]:
     """Parse a chemical formula → {element: count}. Supports nested parentheses
-    and hydrate dots ('·' or '.'). Raises ValueError on malformed input."""
+ and hydrate dots ('·' or '.'). Raises ValueError on malformed input."""
     s = (formula or "").replace(" ", "")
     if not s:
         return {}
@@ -150,7 +150,7 @@ def _parse_equation(eq: str) -> tuple[list[str], list[str]]:
 # ---------------------------------------------------------------------------
 def _nullspace_vector(A: list[list[Fraction]], ncols: int) -> Optional[list[Fraction]]:
     """Return ONE nonzero null-space vector of A (rows = equations), or None if
-    the null space is trivial. Exact rational reduced row echelon form."""
+ the null space is trivial. Exact rational reduced row echelon form."""
     M = [row[:] for row in A]
     nrows = len(M)
     pivot_cols: list[int] = []
@@ -275,14 +275,14 @@ def molar_mass(formula: str) -> Optional[float]:
 
 def run_stoich_balance(payload: dict) -> dict:
     """payload: {
-        equation: str  (e.g. "H2 + O2 -> H2O"), or "demo",
-        amounts: {species_formula: moles}  (optional → limiting reagent),
-        amounts_g: {species_formula: grams} (optional, alt to amounts)
-    }
+ equation: str (e.g. "H2 + O2 -> H2O"), or "demo",
+ amounts: {species_formula: moles} (optional → limiting reagent),
+ amounts_g: {species_formula: grams} (optional, alt to amounts)
+ }
 
-    Balance a chemical equation by exact rational null-space of the element
-    matrix, then (if amounts given) compute the limiting reagent + theoretical
-    product yields. Deterministic; never raises on malformed input.
+ Balance a chemical equation by exact rational null-space of the element
+ matrix, then (if amounts given) compute the limiting reagent + theoretical
+ product yields. Deterministic; never raises on malformed input.
     """
     raw = payload.get("equation")
     demo = bool(payload.get("demo")) or (isinstance(raw, str) and raw.strip().lower() == "demo")

@@ -1,28 +1,28 @@
-/* Bucket Academy — adaptive core (P1, bkt-jh0).
+/* Bucket Academy, adaptive core (P1, bkt-jh0).
  *
  * Pure, dependency-free building blocks for the three P1 upgrades, factored out
  * of engine.js so they are unit-testable in isolation and shared verbatim with
  * the server-side port (src/lib/academy/mastery.ts MUST mirror the math here):
  *
- *   1. Two-layer graph (bkt-ecr): derive ENCOMPASSING relations + weights from
- *      the `requires` DAG. An atom encompasses each of its (transitive)
- *      prerequisites with a weight that DECAYS by graph distance — the
- *      "probability a random problem in the advanced atom exercises a random
- *      problem in the simpler one" (Math Academy's framing). This is the layer
- *      FIRe propagates over.
+ * 1. Two-layer graph (bkt-ecr): derive ENCOMPASSING relations + weights from
+ * the `requires` DAG. An atom encompasses each of its (transitive)
+ * prerequisites with a weight that DECAYS by graph distance, the
+ * "probability a random problem in the advanced atom exercises a random
+ * problem in the simpler one" (Math Academy's framing). This is the layer
+ * FIRe propagates over.
  *
- *   2. FIRe (bkt-buk): Fractional Implicit Repetition. A successful review of an
- *      advanced atom credits its prerequisites a *small, bounded, principled*
- *      fraction of a repetition — nudging their FSRS stability up and pushing
- *      their due date out, scaled by the encompassing weight. Bounded +
- *      idempotent so it can never dishonestly inflate mastery.
+ * 2. FIRe (bkt-buk): Fractional Implicit Repetition. A successful review of an
+ * advanced atom credits its prerequisites a *small, bounded, principled*
+ * fraction of a repetition, nudging their FSRS stability up and pushing
+ * their due date out, scaled by the encompassing weight. Bounded +
+ * idempotent so it can never dishonestly inflate mastery.
  *
- *   3. Mastery model (bkt-uzx): replace stability-only mastery with
- *      proficiency x retention. Proficiency is an Elo-lite per-concept ability
- *      estimate (online IRT, Pelanek 2016) updated from graded reviews;
- *      retention is FSRS retrievability at a fixed horizon T. Fuse
- *      multiplicatively M = P^alpha * R^beta and surface an HONEST confidence
- *      band (emerging / developing / established) — never a fake-precise score.
+ * 3. Mastery model (bkt-uzx): replace stability-only mastery with
+ * proficiency x retention. Proficiency is an Elo-lite per-concept ability
+ * estimate (online IRT, Pelanek 2016) updated from graded reviews;
+ * retention is FSRS retrievability at a fixed horizon T. Fuse
+ * multiplicatively M = P^alpha * R^beta and surface an confidence
+ * band (emerging / developing / established), never a fake-precise score.
  *
  * HONESTY GUARDRAIL (EPIC.md §5): this is the client-side APPROXIMATION of the
  * SOTA stack (ADAPTIVE-SOTA.md §b). Real IRT calibration (>=200 responses/item),
@@ -36,8 +36,8 @@
   "use strict";
 
   /* ======================================================================
-   * Tunable constants — documented, conservative, all in one place.
-   * ==================================================================== */
+ * Tunable constants, documented, conservative, all in one place.
+ * ==================================================================== */
   var ADAPTIVE = {
     /* --- (1) Encompassing graph --- */
     // Weight an atom assigns to a DIRECT prerequisite (graph distance 1).
@@ -72,7 +72,7 @@
     PROF_K_A: 1.0,
     PROF_K_B: 0.05,
     // Per-depth item difficulty on the logit scale (Recall easiest .. Teach hardest).
-    // A correct answer at a harder depth moves ability more — this is the IRT b term.
+    // A correct answer at a harder depth moves ability more, this is the IRT b term.
     PROF_DEPTH_B: { recall: -0.8, apply: -0.2, derive: 0.6, teach: 1.2 },
     // Map a 1..4 FSRS rating to a graded correctness in [0,1] (partial credit):
     // Again=0 (wrong), Hard=0.6, Good=1.0, Easy=1.0. Hard is a struggled-but-correct.
@@ -91,18 +91,18 @@
   function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
 
   /* ======================================================================
-   * (1) TWO-LAYER GRAPH — encompassing map derived from the requires DAG.
-   *
-   * For each atom A, walk its prerequisite closure (A.requires, then THEIR
-   * requires, ...). A prerequisite P reached at graph distance d gets weight
-   *     w(P) = ENCOMPASS_BASE * ENCOMPASS_DECAY^(d-1)
-   * (the shortest distance wins if P is reachable by several paths). Weights
-   * below ENCOMPASS_MIN are dropped. Result:
-   *     { atomId: [ {id, weight, dist}, ... ] }   // sorted weight desc
-   *
-   * Interpretation (Math Academy): w ≈ fraction of skill P implicitly exercised
-   * when you successfully solve a problem in A.
-   * ==================================================================== */
+ * (1) TWO-LAYER GRAPH, encompassing map derived from the requires DAG.
+ *
+ * For each atom A, walk its prerequisite closure (A.requires, then THEIR
+ * requires...). A prerequisite P reached at graph distance d gets weight
+ * w(P) = ENCOMPASS_BASE * ENCOMPASS_DECAY^(d-1)
+ * (the shortest distance wins if P is reachable by several paths). Weights
+ * below ENCOMPASS_MIN are dropped. Result:
+ * { atomId: [ {id, weight, dist}... ] } // sorted weight desc
+ *
+ * Interpretation (Math Academy): w ≈ fraction of skill P implicitly exercised
+ * when you solve a problem in A.
+ * ==================================================================== */
   function buildEncompassingMap(atoms, byId, opts) {
     opts = opts || {};
     var BASE = opts.base != null ? opts.base : ADAPTIVE.ENCOMPASS_BASE;
@@ -136,7 +136,7 @@
       }
       var edges = [];
       Object.keys(best).forEach(function (pid) {
-        if (!byId[pid]) return; // dangling requires reference — skip
+        if (!byId[pid]) return; // dangling requires reference, skip
         var d = best[pid];
         var w = BASE * Math.pow(DECAY, d - 1);
         if (w >= MIN) edges.push({ id: pid, weight: +w.toFixed(4), dist: d });
@@ -148,28 +148,28 @@
   }
 
   /* ======================================================================
-   * (2) FIRe — fractional implicit repetition.
-   *
-   * Given a successful review of `triggerId` (rating >= Good) and the
-   * encompassing edges of that atom, compute the bounded FSRS adjustment for
-   * each prerequisite card. Returns a list of patches the engine applies:
-   *     [ { id, stability:newS, due:newDue, credit } , ... ]
-   *
-   * Properties:
-   *  - BOUNDED: stability gain per event <= FIRE_MAX_STABILITY_GAIN (+15%), and
-   *    the credit fraction <= FIRE_MAX_CREDIT * weight. Implicit credit can never
-   *    exceed a real explicit review.
-   *  - IDEMPOTENT-ISH: credit scales the EXISTING stability multiplicatively and
-   *    only pushes `due` further out (never pulls it in), so re-applying a weaker
-   *    event is a no-op and the schedule is monotone. We also gate on current
-   *    retrievability so a card already deep in its interval isn't repeatedly
-   *    juiced.
-   *  - HONEST: only STARTED prerequisites that are still reasonably retained get
-   *    credit; we never resurrect a forgotten card or create cards implicitly.
-   *
-   * `fsrs` is the FSRS instance (for retrievability + interval). `cards` is the
-   * engine card map. `ratingScore` in [0,1] is how strong the trigger success was.
-   * ==================================================================== */
+ * (2) FIRe, fractional implicit repetition.
+ *
+ * Given a successful review of `triggerId` (rating >= Good) and the
+ * encompassing edges of that atom, compute the bounded FSRS adjustment for
+ * each prerequisite card. Returns a list of patches the engine applies:
+ * [ { id, stability:newS, due:newDue, credit }... ]
+ *
+ * Properties:
+ * - BOUNDED: stability gain per event <= FIRE_MAX_STABILITY_GAIN (+15%), and
+ * the credit fraction <= FIRE_MAX_CREDIT * weight. Implicit credit can never
+ * exceed a real explicit review.
+ * - IDEMPOTENT-ISH: credit scales the EXISTING stability multiplicatively and
+ * only pushes `due` further out (never pulls it in), so re-applying a weaker
+ * event is a no-op and the schedule is monotone. We also gate on current
+ * retrievability so a card already deep in its interval isn't repeatedly
+ * juiced.
+ * -: only STARTED prerequisites that are still reasonably retained get
+ * credit; we never resurrect a forgotten card or create cards implicitly.
+ *
+ * `fsrs` is the FSRS instance (for retrievability + interval). `cards` is the
+ * engine card map. `ratingScore` in [0,1] is how strong the trigger success was.
+ * ==================================================================== */
   function fireCredits(triggerId, encEdges, cards, fsrs, now, ratingScore, opts) {
     opts = opts || {};
     var MAX_CREDIT = opts.maxCredit != null ? opts.maxCredit : ADAPTIVE.FIRE_MAX_CREDIT;
@@ -205,16 +205,16 @@
   }
 
   /* ======================================================================
-   * (3a) PROFICIENCY — Elo-lite online IRT per concept.
-   *
-   * State per concept: { theta, n }  (ability on logit scale, #graded attempts).
-   * Item difficulty b comes from the answered DEPTH (recall < apply < derive <
-   * teach). Update from a graded score s in [0,1]:
-   *     P     = sigmoid(slope * (theta - b))
-   *     K     = a / (1 + b_k * n)           // uncertainty fn: fast then settles
-   *     theta = theta + K * (s - P)         // single-pass SGD on the IRT log-lik
-   * Returns the NEW proficiency state. Interpretable, online, no calibration.
-   * ==================================================================== */
+ * (3a) PROFICIENCY, Elo-lite online IRT per concept.
+ *
+ * State per concept: { theta, n } (ability on logit scale, #graded attempts).
+ * Item difficulty b comes from the answered DEPTH (recall < apply < derive <
+ * teach). Update from a graded score s in [0,1]:
+ * P = sigmoid(slope * (theta - b))
+ * K = a / (1 + b_k * n) // uncertainty fn: fast then settles
+ * theta = theta + K * (s - P) // single-pass SGD on the IRT log-lik
+ * Returns the NEW proficiency state. Interpretable, online, no calibration.
+ * ==================================================================== */
   function initProficiency() {
     return { theta: ADAPTIVE.PROF_INIT, n: 0 };
   }
@@ -235,8 +235,8 @@
   }
 
   /* Proficiency as a 0..1 readout, evaluated at a reference difficulty (default
-   * the `apply` depth = "can you actually use it"). Honest: brand-new concepts
-   * (n small) sit near 0.5 by construction (no evidence yet => not confident). */
+ * the `apply` depth = "can you use it").: brand-new concepts
+ * (n small) sit near 0.5 by construction (no evidence yet => not confident). */
   function proficiencyScore(prof, opts) {
     opts = opts || {};
     var slope = opts.slope != null ? opts.slope : ADAPTIVE.PROF_SLOPE;
@@ -246,13 +246,13 @@
   }
 
   /* ======================================================================
-   * (3b) MASTERY FUSION — M = P^alpha * R^beta.
-   *
-   * Proficiency P = proficiencyScore(prof). Retention R = FSRS retrievability at
-   * the credential horizon T (90d) given current stability. Multiplicative so a
-   * zero in either collapses M (a credential needs BOTH "can do it" AND "kept
-   * it"). Returns a 0..1 number; richer detail via masteryDetail().
-   * ==================================================================== */
+ * (3b) MASTERY FUSION, M = P^alpha * R^beta.
+ *
+ * Proficiency P = proficiencyScore(prof). Retention R = FSRS retrievability at
+ * the credential horizon T (90d) given current stability. Multiplicative so a
+ * zero in either collapses M (a credential needs BOTH "can do it" AND "kept
+ * it"). Returns a 0..1 number; richer detail via masteryDetail().
+ * ==================================================================== */
   function retentionAtHorizon(fsrs, card, opts) {
     opts = opts || {};
     var T = opts.horizon != null ? opts.horizon : ADAPTIVE.RETENTION_HORIZON_DAYS;
@@ -269,9 +269,9 @@
     return clamp01(Math.pow(P, alpha) * Math.pow(R, beta));
   }
 
-  /* Confidence band — HONEST, qualitative uncertainty (mirrors mastery.ts).
-   * Driven by evidence VOLUME (graded attempts n) + current retention R.
-   * Never a fake-precise RD number; that's a later validated bead. */
+  /* Confidence band: qualitative uncertainty (mirrors mastery.ts).
+ * Driven by evidence VOLUME (graded attempts n) + current retention R.
+ * Never a fake-precise RD number; that's a later validated bead. */
   function confidenceBand(profN, retention) {
     if (profN >= 6 && retention >= 0.7) {
       return { band: "established", note: "Re-demonstrated several times and still well-retained." };

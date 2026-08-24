@@ -3,7 +3,7 @@
  * and landing grid.
  *
  * **Figures are loaded at module-init time from `canon-figures/figures.json`**
- * — the canonical 99-figure index across 10 branches. Don't hand-edit the
+ *, the canonical 99-figure index across 10 branches. Don't hand-edit the
  * `figures: []` arrays in BRANCHES below; edit `canon-figures/figures.json`
  * and the changes flow through on the next build. The hand-coded entries
  * below are leftover seeds that the loader overwrites.
@@ -231,7 +231,7 @@ export function getFigure(branchSlug: string, figureSlug: string) {
   return b?.figures.find((f) => f.slug === figureSlug);
 }
 
-// Canonical repo tree URL — every link that says "open on GitHub" or
+// Canonical repo tree URL, every link that says "open on GitHub" or
 // "edit on GitHub" from /canon/* points here. Was previously the stale
 // `bucket-research` repo (deleted 2026-05-15); everything that mattered
 // already lives in this repo under `bucket-canon/` and `canon-figures/`.

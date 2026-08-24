@@ -1,4 +1,4 @@
-/* Bucket Academy — first-run onboarding (the commitment ladder).
+/* Bucket Academy, first-run onboarding (the commitment ladder).
  *
  * A clean, skippable first-run shown ONLY to brand-new visitors. It delivers value
  * before any account: warm welcome → goal → ONE real foundational lesson (full markdown
@@ -7,7 +7,7 @@
  * (research/customer-success/ONBOARDING-RETENTION-COMMUNITY.md) and the UX-SPEC onboarding.
  *
  * Self-contained: exposes window.BucketOnboarding. NO API key needed. Leans on what's already
- * built — it is handed the live Engine (E) and a small set of host callbacks from app.js, and
+ * built, it is handed the live Engine (E) and a small set of host callbacks from app.js, and
  * feature-detects window.BucketAuth / a diagnostic if/when they exist (never depends on them).
  *
  * Detection of "first run": no per-branch progress exists in localStorage AND the
@@ -96,8 +96,8 @@
   ];
 
   /* ---- procedural art (zero-dependency, deterministic per atom) ----
-   * A calm, on-brand generative glyph so the "procedural art" requirement is met without
-   * touching any art module. Deterministic from the atom id, tinted by shell. */
+ * A calm, on-brand generative glyph so the "procedural art" requirement is met without
+ * touching any art module. Deterministic from the atom id, tinted by shell. */
   var SHELL_COLOR = { prereq: "#2E6B6B", nucleus: "#8A641A", frontier: "#5A7A3A" };
   var SHELL_LABEL = { prereq: "Prerequisite", nucleus: "Nucleus", frontier: "Frontier" };
   function hashStr(s) {
@@ -169,8 +169,8 @@
   }
 
   /* ---- tiny, safe markdown renderer for the atom `lesson` field ----
-   * Handles the subset the corpus uses: ### headings, **bold**, *italic*, `code`,
-   * $…$ / $$…$$ math (left for KaTeX), and paragraphs. No raw HTML passthrough. */
+ * Handles the subset the corpus uses: ### headings, **bold**, *italic*, `code`,
+ * $…$ / $$…$$ math (left for KaTeX), and paragraphs. No raw HTML passthrough. */
   function renderLesson(md) {
     var box = el("div", "ob-lesson");
     var blocks = String(md || "").split(/\n{2,}/);
@@ -224,9 +224,9 @@
   }
 
   /* ====================================================================== *
-   *  The flow. ctx = { E, mount, finish, switchBranch, openHomeAtom,
-   *                    startDiagnostic, signIn, share }
-   * ====================================================================== */
+ * The flow. ctx = { E, mount, finish, switchBranch, openHomeAtom,
+ * startDiagnostic, signIn, share }
+ * ====================================================================== */
   function start(ctx) {
     var STEPS = 6;
     var chosenGoal = null;
@@ -259,7 +259,7 @@
       ctx.finish({ skipped: true });
     }
 
-    /* 1 — warm welcome */
+    /* 1, warm welcome */
     function stepWelcome() {
       var w = el("div", "ob-body ob-center");
       w.appendChild(el("div", "ob-kicker", "Welcome"));
@@ -273,7 +273,7 @@
       frame(0, w);
     }
 
-    /* 2 — what brings you here? (goal chips → default branch) */
+    /* 2, what brings you here? (goal chips → default branch) */
     function stepGoal() {
       var w = el("div", "ob-body");
       w.appendChild(el("div", "ob-kicker", "One question"));
@@ -296,12 +296,12 @@
       frame(1, w);
     }
 
-    /* 3 — teach ONE real concept BEFORE any signup (full lesson + procedural art + 1 win) */
+    /* 3, teach ONE real concept BEFORE any signup (full lesson + procedural art + 1 win) */
     function stepLesson() {
       var atom = ctx.firstLessonAtom();
       var w = el("div", "ob-body");
       w.appendChild(el("div", "ob-kicker", "Your first concept"));
-      // language branch has no `lesson` field — give it a faithful intro instead.
+      // language branch has no `lesson` field, give it a faithful intro instead.
       if (ctx.isLang() || !atom) return stepLessonLang(w);
 
       w.appendChild(el("h1", "ob-h1", escapeHtml(atom.title)));
@@ -313,7 +313,7 @@
         w.appendChild(el("div", "ob-cite", "Learn from: " + escapeHtml(atom.sources.join(" · "))));
       }
 
-      // one quick retrieval win — the aha. Reveal → "Got it" grades it real (recall).
+      // one quick retrieval win, the aha. Reveal → "Got it" grades it real (recall).
       var q = (atom.quiz || []).find(function (x) { return x.level === "recall"; }) || (atom.quiz || [])[0];
       var drill = el("div", "ob-drill");
       drill.appendChild(el("div", "ob-drill-label", "Quick check · one question"));
@@ -379,11 +379,11 @@
       frame(2, w);
     }
 
-    /* 4 — close the use↔teach loop: explain HOW this app schedules you, and WHY,
-     * connecting the FSRS engine the learner just used (the retrieval win above) to
-     * the evidence-based mechanisms taught as content in the Learning-to-learn branch.
-     * Systems USE good cognitive science but rarely TEACH it; this step + that branch
-     * are how Bucket teaches it. (education-atlas deep brief 03.) */
+    /* 4, close the use↔teach loop: explain HOW this app schedules you, and WHY,
+ * connecting the FSRS engine the learner just used (the retrieval win above) to
+ * the evidence-based mechanisms taught as content in the Learning-to-learn branch.
+ * Systems USE good cognitive science but rarely TEACH it; this step + that branch
+ * are how Bucket teaches it. (education-atlas deep brief 03.) */
     function stepHowItWorks() {
       var w = el("div", "ob-body");
       w.appendChild(el("div", "ob-kicker", "Why that just worked"));
@@ -421,7 +421,7 @@
       frame(3, w);
     }
 
-    /* 5 — offer the diagnostic (place me) OR start from the beginning */
+    /* 5, offer the diagnostic (place me) OR start from the beginning */
     function stepDiagnostic() {
       var w = el("div", "ob-body ob-center");
       w.appendChild(el("div", "ob-kicker", "Nicely done"));
@@ -445,7 +445,7 @@
       frame(4, w);
     }
 
-    /* 5 — soft, skippable signup (benefit-framed, never a gate) */
+    /* 5, soft, skippable signup (benefit-framed, never a gate) */
     function stepSignup() {
       var w = el("div", "ob-body ob-center");
       w.appendChild(el("div", "ob-kicker", "Last thing — optional"));
@@ -462,7 +462,7 @@
             function () { ctx.finish({ goTo: "home" }); }
           );
         } else {
-          // auth not wired yet — never block; drop the learner straight into the app
+          // auth not wired yet, never block; drop the learner straight into the app
           ctx.finish({ goTo: "home" });
         }
       };

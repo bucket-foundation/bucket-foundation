@@ -1,18 +1,18 @@
 """No-network unit tests for CausalDesigner (tools_causal).
 
 Verifies the ACTUAL causal-inference logic on a graph with KNOWN ground truth:
-  * on a classic confounding DAG (gene→smoking, gene→cancer, smoking→tar→cancer,
-    smoking→hospitalized←injury) the valid minimal adjustment set is EXACTLY
-    {gene} — the confounder is adjusted for, and the mediator (tar), the collider
-    (hospitalized), and the injury are correctly NOT adjusted for (the
-    load-bearing assertion);
-  * the backdoor path smoking<-gene->cancer is found;
-  * an unobservable single-confounder case where the confounder is the only
-    backdoor is identifiable, but a design with a cycle errors out;
-  * the estimator recommendation tracks the described design;
-  * malformed input returns a structured error, never raises.
+ * on a classic confounding DAG (gene→smoking, gene→cancer, smoking→tar→cancer,
+ smoking→hospitalized←injury) the valid minimal adjustment set is EXACTLY
+ {gene}, the confounder is adjusted for, and the mediator (tar), the collider
+ (hospitalized), and the injury are NOT adjusted for (the
+ load-bearing assertion);
+ * the backdoor path smoking<-gene->cancer is found;
+ * an unobservable single-confounder case where the confounder is the only
+ backdoor is identifiable, but a design with a cycle errors out;
+ * the estimator recommendation tracks the described design;
+ * malformed input returns a structured error, never raises.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_causal.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_causal.py -q
 """
 from __future__ import annotations
 
@@ -108,7 +108,7 @@ def test_estimator_rdd():
 
 
 # =========================================================================
-# robustness — cycles + malformed input
+# reliability, cycles + malformed input
 # =========================================================================
 def test_cycle_is_rejected():
     out = c.run_causal_designer({

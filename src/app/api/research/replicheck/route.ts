@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/replicheck
+ * bucket.foundation, /api/research/replicheck
  * ------------------------------------------
  * Same-origin proxy for RepliCheck. Run statcheck-style p-value recomputation,
  * the GRIM test, and reporting-completeness flags over reported statistics in
@@ -7,7 +7,7 @@
  * exact two-tailed scipy.stats + exact GRIM integer arithmetic).
  *
  * POST body { text, alpha?, items? }; `text` is Results text or "demo".
- *   GET  /api/research/replicheck?job=<id>[&result=1] → status / result
+ * GET /api/research/replicheck?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
   const alpha = typeof body.alpha === "number" ? body.alpha : 0.05;
   const items = typeof body.items === "number" ? body.items : 1;
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

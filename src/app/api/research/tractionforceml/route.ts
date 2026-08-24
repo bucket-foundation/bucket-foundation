@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/tractionforceml
+ * bucket.foundation, /api/research/tractionforceml
  * ----------------------------------------------
  * Same-origin proxy for TractionForceML. Block-matching PIV displacement field between a relaxed and a deformed bead image + strain-energy proxy. Backend logic is REAL (tools_imaging.py:run_traction_force).
  *
  * POST body { reference, deformed?, window?, step?, search? }; `reference` is a 2-D array (with `deformed`) or "demo".
- *   GET  /api/research/tractionforceml?job=<id>[&result=1] → status / result
+ * GET /api/research/tractionforceml?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

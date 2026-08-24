@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Server component shell — always renders the stone-bone "ready state" and
+// Server component shell, always renders the stone-bone "ready state" and
 // lets the client island decide whether to show the interactive publish form
-// (only if Web3 providers actually mounted).
+// (only if Web3 providers mounted).
 export default function Page() {
   return (
     <main className="stone-bone relative grain">
@@ -44,7 +44,7 @@ export default function Page() {
         </p>
         <div className="carved-rule max-w-xs mt-10" />
 
-        {/* Research hub — the four surfaces of bucket.foundation research. */}
+        {/* Research hub, the four surfaces of bucket.foundation research. */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-px bg-[color:var(--hairline)] grid-hairlines">
           <HubCard
             href="/research/agent"

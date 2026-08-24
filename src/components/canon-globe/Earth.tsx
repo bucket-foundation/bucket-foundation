@@ -9,7 +9,7 @@ import { loadLandmask } from "./landmaskFromImage";
 // is near-transparent so the dots ARE the planet.
 //
 // Inspired by janarosmonaliev/github-globe (MIT) but implemented directly on
-// R3F + three.js — no external globe library.
+// R3F + three.js, no external globe library.
 
 interface EarthProps {
   targetRotationY: number;
@@ -28,7 +28,7 @@ function damp(current: number, target: number, lambda: number, dt: number) {
   return current + (target - current) * (1 - Math.exp(-lambda * dt));
 }
 
-// Fibonacci sphere — even angular distribution.
+// Fibonacci sphere, even angular distribution.
 function fibonacciPoints(n: number): Array<{ lat: number; lng: number }> {
   const out: Array<{ lat: number; lng: number }> = [];
   const phi = Math.PI * (Math.sqrt(5) - 1); // golden angle
@@ -147,7 +147,7 @@ export function Earth({
     }
   });
 
-  // Shared geometry for instanced dots — small, low-poly disc-like sphere.
+  // Shared geometry for instanced dots, small, low-poly disc-like sphere.
   const dotGeo = useMemo(() => new THREE.SphereGeometry(dotRadius, 8, 8), [dotRadius]);
   const dotMat = useMemo(
     () =>
@@ -160,7 +160,7 @@ export function Earth({
 
   return (
     <group ref={groupRef} rotation={[0.35, 0, 0]}>
-      {/* Faint underlying sphere — ghost of the planet, lets dots feel like skin. */}
+      {/* Faint underlying sphere, ghost of the planet, lets dots feel like skin. */}
       <mesh>
         <sphereGeometry args={[RADIUS * 0.998, 64, 64]} />
         <meshBasicMaterial

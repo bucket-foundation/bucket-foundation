@@ -1,4 +1,4 @@
-// canon-evidence.ts — server-only loader for per-claim corpus evidence
+// canon-evidence.ts, server-only loader for per-claim corpus evidence
 // passages. Data comes from _intake/embeddings/claim-evidence.jsonl
 // produced by agf-claim-evidence.
 
@@ -48,7 +48,7 @@ export function getEvidenceFor(concept: string, slug: string): ClaimEvidence | n
   return cache.get(`${concept}::${slug}`) || null;
 }
 
-// Format a source path for display — strip the repo prefix
+// Format a source path for display, strip the repo prefix
 export function prettySourcePath(p: string): string {
   return p.replace(/^.*?\/bucket-foundation\//, "");
 }

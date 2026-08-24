@@ -10,7 +10,7 @@
 
 ## Description
 
-Dr. Marc Brackett, PhD, is founding director of the Yale Center for Emotional Intelligence and a professor in the Child Study Center at Yale University. We discuss the science of emotion regulation and practical tools to increase your emotional intelligence. Dr. Brackett clarifies exactly how to do that both in the context of relationships, but also things that you can do on your own to become more emotionally intelligent to later serve you in the context of relationships, work, school, etc. We also discuss how your childhood experiences influence your relationship with emotions, with particular emphasis on how boys and men are socialized around emotional processing and expression.
+Dr. Marc Brackett, PhD, is founding director of the Yale Center for Emotional Intelligence and a professor in the Child Study Center at Yale University. We discuss the science of emotion regulation and practical tools to increase your emotional intelligence. Dr. Brackett clarifies exactly how to do that both in the context of relationships, but also things that you can do on your own to become more emotionally intelligent to later serve you in the context of relationships, work, school, etc. we also discuss how your childhood experiences influence your relationship with emotions, with particular emphasis on how boys and men are socialized around emotional processing and expression.
 
 Show notes: https://go.hubermanlab.com/TN3UuRk
 

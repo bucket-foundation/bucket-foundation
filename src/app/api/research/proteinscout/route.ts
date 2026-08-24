@@ -1,17 +1,17 @@
 /**
- * bucket.foundation — /api/research/proteinscout
+ * bucket.foundation, /api/research/proteinscout
  * ----------------------------------------------
  * Same-origin proxy for the ProteinScout research tool. Drop-in copy of the
  * LabBrain proxy (see /api/research/labbrain/route.ts and
  * docs/research-tools/04-implementation-architecture.md §2.5).
  *
  * Contract (uniform across all 7 tools):
- *   POST /api/research/proteinscout               → gateway POST /v1/proteinscout/submit
- *        body { input }                           → { job_id, status, mode, price, [result] }
- *   GET  /api/research/proteinscout?job=<id>      → gateway GET  /v1/jobs/<id>   (status)
- *   GET  /api/research/proteinscout?job=<id>&result=1 → gateway GET /v1/jobs/<id>/result
+ * POST /api/research/proteinscout → gateway POST /v1/proteinscout/submit
+ * body { input } → { job_id, status, mode, price, [result] }
+ * GET /api/research/proteinscout?job=<id> → gateway GET /v1/jobs/<id> (status)
+ * GET /api/research/proteinscout?job=<id>&result=1 → gateway GET /v1/jobs/<id>/result
  *
- * Env (server-only): TOOLS_GATEWAY_URL  default "https://research-tools.agfarms.dev"
+ * Env (server-only): TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  * TODO(deploy): set TOOLS_GATEWAY_URL in Vercel + K3s secret bucket/tools-gateway.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "input required" } }, 400);
   }
 
-  // [METERING SEAM — TODO, off in v1] — see /api/research/labbrain/route.ts.
+  // [METERING SEAM, TODO, off in v1], see /api/research/labbrain/route.ts.
   // const decision = await viatikaMeter({ tool: TOOL, tier: "analyze", caller });
   // if (!decision.allow) return json({ error: { code: "payment_required" } }, 402);
 

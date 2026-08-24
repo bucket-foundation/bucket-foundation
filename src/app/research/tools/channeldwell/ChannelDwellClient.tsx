@@ -1,6 +1,6 @@
 "use client";
 
-// ChannelDwell client island — single-channel idealization (half-amplitude
+// ChannelDwell client island, single-channel idealization (half-amplitude
 // threshold) + dwell-time analysis (REAL). Render is "json". `trace` is a
 // current (pA) array or "demo".
 

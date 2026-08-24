@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — dual-write orchestrator
+ * bucket.foundation, dual-write orchestrator
  * --------------------------------------------
  * permanentize(envelope):
  *   1. upload full envelope JSON to Irys/Arweave → arweaveTxId

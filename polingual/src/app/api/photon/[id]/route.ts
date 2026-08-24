@@ -1,4 +1,4 @@
-// GET /api/photon/:id — proxy to the polingual.photons table on
+// GET /api/photon/:id, proxy to the polingual.photons table on
 // db.agfarms.dev. Returns a single Photon JSON or 404.
 
 import { NextResponse } from "next/server";

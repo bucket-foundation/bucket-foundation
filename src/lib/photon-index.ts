@@ -1,4 +1,4 @@
-// photon-index.ts — server-only access to the photon graph.
+// photon-index.ts, server-only access to the photon graph.
 //
 // Reads _intake/photons/all.json (a snapshot of every photon as a flat
 // array). Loaded once per Node process, indexed in memory. Fast enough

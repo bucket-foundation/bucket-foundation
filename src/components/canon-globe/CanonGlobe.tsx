@@ -13,7 +13,7 @@ import * as THREE from "three";
 /**
  * Drives camera distance + position into React state via OrbitControls'
  * change event. We're on frameloop="demand" so we can't sample
- * camera.position every frame — but every user zoom/rotate fires
+ * camera.position every frame, but every user zoom/rotate fires
  * `change` on the controls, and we propagate that to setters so marker
  * LOD (size) and front-face filtering (which side of the globe a pin
  * is on) can both react.
@@ -43,9 +43,9 @@ function CameraTracker({
   return null;
 }
 
-// (unused — kept only because referenced internally)
+// (unused, kept only because referenced internally)
 function _FallbackGlobe({ className }: { className?: string }) {
-  // Self-contained SVG — slowly rotating armillary. Doesn't depend on any
+  // Self-contained SVG, slowly rotating armillary. Doesn't depend on any
   // external component or canvas. Guaranteed to render in every browser
   // that can paint SVG (every browser since 2010).
   return (
@@ -114,7 +114,7 @@ function _FallbackGlobe({ className }: { className?: string }) {
           <circle cx="0" cy="0" r="100" fill="none" stroke="var(--gold)" strokeOpacity="0.45" strokeWidth="0.6" />
         </g>
 
-        {/* eight branch ports — gold dots evenly spaced around the equator */}
+        {/* eight branch ports, gold dots evenly spaced around the equator */}
         {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
           const rad = (deg * Math.PI) / 180;
           return (
@@ -164,7 +164,7 @@ export default function CanonGlobe({
   const [cameraPosition, setCameraPosition] =
     useState<[number, number, number]>([0, 0, 3.4]);
 
-  // Faint background star/dot field — cosmic context behind the globe.
+  // Faint background star/dot field, cosmic context behind the globe.
   // Bone-tinted so it reads on light bg without going black.
   const stars = useMemo(() => {
     const N = 600;
@@ -196,7 +196,7 @@ export default function CanonGlobe({
         camera={{ position: [0, 0, 3.4], fov: 42 }}
         gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       >
-        {/* dot-globe is unlit (MeshBasicMaterial) — ambient is harmless. */}
+        {/* dot-globe is unlit (MeshBasicMaterial), ambient is harmless. */}
         <ambientLight intensity={0.5} />
 
         {/* far-field starlike dots, gold-flecked */}
@@ -232,12 +232,12 @@ export default function CanonGlobe({
         <Halo enabled />
 
         {/* Drag to rotate + scroll to zoom. `minDistance` is set tight
-            against the Earth surface (radius=1 in scene units) so users
-            can drill into dense regions like Europe. The pins scale down
-            with cameraDistance via CanonMarkers' LOD so dense clusters
-            visually separate at close zoom. `rotateSpeed` is also scaled
-            down adaptively — gentle nudges at high zoom let you fly
-            along the coastline without overshooting. */}
+ against the Earth surface (radius=1 in scene units) so users
+ can drill into dense regions like Europe. The pins scale down
+ with cameraDistance via CanonMarkers' LOD so dense clusters
+ visually separate at close zoom. `rotateSpeed` is also scaled
+ down adaptively, gentle nudges at high zoom let you fly
+ along the coastline without overshooting. */}
         <OrbitControls
           ref={controlsRef}
           enableDamping={false}
@@ -249,11 +249,11 @@ export default function CanonGlobe({
           maxDistance={6}
           minPolarAngle={0.15}
           maxPolarAngle={Math.PI - 0.15}
-          // Rotate slower the closer you get — at distance 3.4 the speed
+          // Rotate slower the closer you get, at distance 3.4 the speed
           // is 0.5, at distance 1.05 it's ~0.16. This trick makes drilling
           // into Europe feel like a real fly-over rather than a snap-spin.
           rotateSpeed={Math.max(0.12, 0.5 * Math.min(1, (cameraDistance - 1) / 2.4))}
-          // Zoom logarithmically — wider steps at far view, finer at
+          // Zoom logarithmically, wider steps at far view, finer at
           // close zoom so the last "click" doesn't overshoot the surface.
           zoomSpeed={Math.max(0.25, 0.7 * Math.min(1, (cameraDistance - 1) / 2.4))}
           autoRotate={false}

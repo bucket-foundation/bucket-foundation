@@ -100,7 +100,7 @@ def test_auto_picks_identity_for_dna():
 
 
 # =========================================================================
-# robustness
+# reliability
 # =========================================================================
 def test_empty_error():
     assert sa.run_seqalign({"seq_a": "", "seq_b": "ACGT"}).get("error")

@@ -201,7 +201,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Try-pills — only visible when search is empty */}
+        {/* Try-pills, only visible when search is empty */}
         {!q && (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
             <span
@@ -249,7 +249,7 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Results — grouped by language */}
+      {/* Results, grouped by language */}
       <section className="max-w-3xl mx-auto px-5 md:px-8 pb-24 mt-6">
         {grouped.map(([lang, items]) => (
           <div key={lang} className="mb-8 fade-in">
@@ -321,7 +321,7 @@ export default function HomePage() {
           </div>
         ))}
 
-        {/* Empty state — onboarding */}
+        {/* Empty state, onboarding */}
         {!q && !results.length && (
           <div className="mt-12 max-w-xl mx-auto text-center">
             <div

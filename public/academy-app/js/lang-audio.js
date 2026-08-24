@@ -1,28 +1,28 @@
-/* Bucket Academy — on-device language audio (bkt-n2v, epic bkt-2ea / C2).
+/* Bucket Academy, on-device language audio (bkt-n2v, epic bkt-2ea / C2).
  *
  * Zero files, zero network, zero API keys: speaks a word in its target language
  * using the browser's built-in Web Speech API (window.speechSynthesis). Picks a
  * matching voice for the language by BCP-47 tag, falls back gracefully, and is a
  * silent no-op (with a hidden button) when speech synthesis or a usable voice is
- * unavailable. Must be triggered by a user gesture — every caller wires it to a
+ * unavailable. Must be triggered by a user gesture, every caller wires it to a
  * click, so that constraint is satisfied by construction.
  *
- * Public:  window.LangAudio
- *   .supported()            -> boolean (speechSynthesis present in this browser)
- *   .available(lang)        -> boolean (a voice we can use for this lang, OR
- *                              supported() — voices can load async, so we don't
- *                              hard-block the button before getVoices() populates)
- *   .speak(word, lang)      -> boolean (true if an utterance was queued)
- *   .voiceFor(lang)         -> SpeechSynthesisVoice | null
- *   .cancel()               -> stop any in-flight speech
- *   .button(word, lang, opt)-> a ready 🔊 <button> (hidden if unsupported)
+ * Public: window.LangAudio
+ * .supported() -> boolean (speechSynthesis present in this browser)
+ * .available(lang) -> boolean (a voice we can use for this lang, OR
+ * supported(), voices can load async, so we don't
+ * hard-block the button before getVoices() populates)
+ * .speak(word, lang) -> boolean (true if an utterance was queued)
+ * .voiceFor(lang) -> SpeechSynthesisVoice | null
+ * .cancel() -> stop any in-flight speech
+ * .button(word, lang, opt)-> a ready 🔊 <button> (hidden if unsupported)
  */
 (function (root) {
   "use strict";
 
   // Deck language code -> BCP-47 tag for voice selection. Latin has no TTS voices
   // anywhere, so we read it with an Italian voice (closest church/ecclesiastical
-  // pronunciation most engines ship) — see lang→voice map in the bead report.
+  // pronunciation most engines ship), see lang→voice map in the bead report.
   var BCP47 = {
     en: "en-US",
     es: "es-ES",
@@ -87,7 +87,7 @@
       if (!warm._wired) {
         warm._wired = true;
         root.speechSynthesis.addEventListener("voiceschanged", function () {
-          _voiceCache = {}; // invalidate — better voices may have arrived
+          _voiceCache = {}; // invalidate, better voices may have arrived
         });
       }
     } catch (e) {}
@@ -117,7 +117,7 @@
     return pick;
   }
 
-  // Don't hard-block the button before voices load — once supported, we keep the
+  // Don't hard-block the button before voices load, once supported, we keep the
   // button visible and let speak() pick the best available voice at click time.
   function available(lang) {
     return supported();

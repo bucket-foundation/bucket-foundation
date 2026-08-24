@@ -2,16 +2,16 @@
  * One-shot: register the BucketCitation schema on EAS.
  *
  * Requires:
- *   BUCKET_WALLET_PRIVATE_KEY   funded key on target chain (~0.001 ETH on Base Sepolia)
- *   EAS_SCHEMA_REGISTRY         default Base predeploy 0x4200000000000000000000000000000000000020
- *   EAS_CHAIN                   "base" | "base-sepolia" (default base-sepolia)
+ * BUCKET_WALLET_PRIVATE_KEY funded key on target chain (~0.001 ETH on Base Sepolia)
+ * EAS_SCHEMA_REGISTRY default Base predeploy 0x4200000000000000000000000000000000000020
+ * EAS_CHAIN "base" | "base-sepolia" (default base-sepolia)
  *
  * Run:
- *   npx tsx scripts/register-eas-schema.ts
+ * npx tsx scripts/register-eas-schema.ts
  *
  * Output: the schema UID. Paste into .env as EAS_SCHEMA_UID.
  *
- * DO NOT run this automatically — it costs gas and requires a funded key.
+ * DO NOT run this automatically, it costs gas and requires a funded key.
  */
 
 import {
@@ -68,7 +68,7 @@ async function main() {
     args: [
       SCHEMA,
       "0x0000000000000000000000000000000000000000" as `0x${string}`,
-      false, // revocable=false — canon citations are immutable
+      false, // revocable=false, canon citations are immutable
     ],
   });
   console.log("  tx       :", txHash);

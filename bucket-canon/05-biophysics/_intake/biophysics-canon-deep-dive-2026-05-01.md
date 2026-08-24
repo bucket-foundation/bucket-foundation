@@ -842,7 +842,7 @@ The cross-mirror convention pass-2 specifies:
 
 - A paper enters `sub-outcomes/longevity/` *only* if it also cites or
   derives from a foundation entry in `bioenergetics/`, `bioelectricity/`,
-  `melanin/`, etc. The cross-link goes both ways: the foundation entry
+  `melanin/`, etc. the cross-link goes both ways: the foundation entry
   notes "downstream-application: <longevity paper>", and the longevity
   cross-mirror notes "foundation: <foundation entry>".
 - The canonical longevity index lives at

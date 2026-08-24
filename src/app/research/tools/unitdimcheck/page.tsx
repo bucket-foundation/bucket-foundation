@@ -6,7 +6,7 @@ export const metadata = toolMetadata("unitdimcheck");
 const _jsonld = toolJsonLd("unitdimcheck");
 import UnitDimCheckClient from "./UnitDimCheckClient";
 
-// UnitDimCheck run page — server shell framing the interactive client island.
+// UnitDimCheck run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("unitdimcheck");
   return (

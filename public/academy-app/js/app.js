@@ -1,4 +1,4 @@
-/* Bucket Academy — UI layer. Apple-grade, content-first. Implements the route loop,
+/* Bucket Academy, UI layer. Apple-grade, content-first. Implements the route loop,
  * the atom screen (functional art + 3-depth progressive disclosure + drill + non-punishing
  * feedback), progress, and the curated concentric-shell nucleus map (never force-directed).
  */
@@ -50,7 +50,7 @@
   }
 
   // Rebuild BRANCHES from the built-in deck manifest. (Custom/AI-generated decks were
-  // removed — the Academy ships only curated, foundations-first built-in branches.)
+  // removed, the Academy ships only curated, foundations-first built-in branches.)
   function refreshBranches() {
     BRANCHES = BUILTINS.slice();
   }
@@ -125,7 +125,7 @@
   }
 
   // Build-time procedural-art cache (art/cache/<branch>.json), loaded per branch.
-  // Deterministic SVG keyed on hash(atomId) — the load-bearing-art anchor. We prefer
+  // Deterministic SVG keyed on hash(atomId), the load-bearing-art anchor. We prefer
   // the cached bytes (inspectable, SVGO'd at build) and fall back to live generation.
   let artCache = {};
   async function loadArtCache() {
@@ -165,10 +165,10 @@
   }
 
   /* ---------- language answer checking (bkt-n2v / C3 typed grading) ----------
-   * Real recognition-free recall: the learner TYPES the target word and we grade
-   * the actual answer (correct / close-typo / wrong), then drive FSRS from the
-   * real result instead of self-report. Tolerant of diacritics, case, whitespace,
-   * surrounding articles, and a single typo. */
+ * Real recognition-free recall: the learner TYPES the target word and we grade
+ * the actual answer (correct / close-typo / wrong), then drive FSRS from the
+ * real result instead of self-report. Tolerant of diacritics, case, whitespace,
+ * surrounding articles, and a single typo. */
 
   // Strip diacritics for all 7 deck languages: é→e ñ→n ü→u ç→c ã→a ò→o ï→i ß→ss …
   // Uses NFD canonical decomposition + combining-mark removal, plus explicit maps
@@ -184,7 +184,7 @@
       .replace(/ø/g, "o")
       .replace(/ð/g, "d").replace(/þ/g, "th")
       .replace(/ł/g, "l");
-    // canonical decompose, then drop combining diacritical marks (U+0300–U+036F)
+    // canonical decompose, then drop combining diacritical marks (U+0300, U+036F)
     try { s = s.normalize("NFD").replace(/[̀-ͯ]/g, ""); } catch (e) {}
     // drop apostrophes/hyphens that don't change identity (l'eau → leau, etc.)
     s = s.replace(/[’'`\-]/g, "");
@@ -214,8 +214,8 @@
   }
 
   // Damerau-Levenshtein edit distance (bounded use: short words only). Counts an
-  // ADJACENT TRANSPOSITION ("agau"→"agua") as a SINGLE edit, not two — so a real
-  // typo where two neighbouring letters are swapped grades "close", not "wrong".
+  // ADJACENT TRANSPOSITION ("agau"→"agua") as a SINGLE edit (cost 1) so a real
+  // typo where two neighbouring letters are swapped grades "close".
   // (Optimal String Alignment variant: sufficient for single-typo tolerance, and
   // we keep three rolling rows so the transposition term `prev2[j-2]` is available.)
   function editDistance(a, b) {
@@ -246,17 +246,17 @@
 
   // Grade a typed answer against the deck's target word.
   // Returns { verdict: "correct"|"close"|"wrong", accentOnly, expected, dist }.
-  //   correct  → exact match after case/whitespace/article normalization
-  //              (accentOnly flags a right-but-for-diacritics answer — still correct,
-  //               we just note it so the reveal can nudge the accent)
-  //   close    → within 1 edit of the (folded) target = an honest typo
-  //   wrong    → otherwise
+  // correct → exact match after case/whitespace/article normalization
+  // (accentOnly flags a right-but-for-diacritics answer, still correct,
+  // we just note it so the reveal can nudge the accent)
+  // close → within 1 edit of the (folded) target = an typo
+  // wrong → otherwise
   function checkLangAnswer(typed, target, lang) {
     var expected = String(target == null ? "" : target).trim();
     var out = { verdict: "wrong", accentOnly: false, expected: expected, dist: 99 };
     if (!typed || !typed.trim()) return out;
 
-    // Tier 1: exact (case + whitespace only) — diacritics intact.
+    // Tier 1: exact (case + whitespace only), diacritics intact.
     var tRaw = typed.toLowerCase().replace(/\s+/g, " ").trim();
     var eRaw = expected.toLowerCase().replace(/\s+/g, " ").trim();
     var tRawNA = stripRawArticle(tRaw, lang);
@@ -297,7 +297,7 @@
   /* ---------- screens ---------- */
   function screenHome() {
     // Languages: force the explicit setup picker before anything (fix #1). No silent
-    // auto-Spanish default — the learner chooses target + known first, once.
+    // auto-Spanish default, the learner chooses target + known first, once.
     if (isLang() && !langPrefChosen()) return screenLangPicker();
     const s = E.summary();
     const route = E.route();
@@ -354,11 +354,11 @@
       }
     }
     wrap.appendChild(hero);
-    // honest framing right under the hero on the language branch (fix #5)
+    // framing right under the hero on the language branch (fix #5)
     if (isLang()) wrap.appendChild(langHonestyBanner());
 
-    // Placement diagnostic entry — most prominent on a fresh branch (nothing started),
-    // but always available. Honest framing: a starting estimate, fully skippable.
+    // Placement diagnostic entry, most prominent on a fresh branch (nothing started),
+    // but always available. Framing: a starting estimate, fully skippable.
     if (!isLang() && typeof window.Diagnostic === "function" && s.introduced === 0) {
       const cta = el("button", "place-cta",
         '<span class="pc-ico">✶</span>' +
@@ -376,7 +376,7 @@
     stats.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(stats);
 
-    // Discoverable LANGUAGES entry (epic bkt-w0t fix #1 — the founder couldn't find
+    // Discoverable LANGUAGES entry (epic bkt-w0t fix #1, the founder couldn't find
     // how to pick a language). A prominent card on every NON-language branch home that
     // jumps straight into the dedicated Duolingo-style language experience.
     if (!isLang()) {
@@ -393,7 +393,7 @@
       }
     }
 
-    // Languages: a leveled PATH (fix #5) instead of a flat word list — units the
+    // Languages: a leveled PATH (fix #5) instead of a flat word list, units the
     // learner can see progress through. Each level tile starts a session of its words.
     if (isLang()) {
       const levels = langLevels();
@@ -425,7 +425,7 @@
       return wrap;
     }
 
-    // Continue learning — next concepts in learning order, NO daily cap. Always something.
+    // Continue learning, next concepts in learning order, NO daily cap. Always something.
     if (next.length) {
       const list = el("div", "route-list");
       list.appendChild(el("div", "section-label", "Continue learning"));
@@ -474,7 +474,7 @@
       ' <span class="branch-caret">▾</span></button>';
     h.querySelector("#branchPill").onclick = openBranchPicker;
     // Optional sign-in / "Save progress" control (bkt-su9). No-op when auth is
-    // disabled (empty auth-config) — keeps anonymous local-first use intact.
+    // disabled (empty auth-config), keeps anonymous local-first use intact.
     if (window.BucketAuthUI) {
       try { window.BucketAuthUI.mountInto(h); } catch (e) {}
     }
@@ -583,18 +583,18 @@
     return p && typeof p === "object" ? p : {};
   }
   // Has the learner ever made an explicit "I want to learn ___ / I already know ___"
-  // choice? Drives the first-run picker (fix #1 — explicit setup, not silent defaults).
+  // choice? Drives the first-run picker (fix #1, explicit setup over defaults).
   function langPrefChosen() {
     const p = langPrefRaw();
     return !!(p && p.chosen && p.target);
   }
   // Polyglot mode = the advanced "show the word in EVERY language I know" view.
-  // OFF by default (fix #2 — beginners see one clean source→target mapping).
+  // OFF by default (fix #2, beginners see one clean source→target mapping).
   function langPolyglot() {
     return !!langPrefRaw().polyglot;
   }
   // The languages a learner may pick as the TARGET (the one being learned). This is
-  // meta.languages (guaranteed on every atom) PLUS bonusLanguages (ko/hi/ar — present
+  // meta.languages (guaranteed on every atom) PLUS bonusLanguages (ko/hi/ar, present
   // on most-but-not-all atoms; well above the ~80-word usability bar). Sorted by code
   // for a stable order; the picker re-sorts by display name. (bkt-3s9)
   function langDeckLangs() {
@@ -604,8 +604,8 @@
     [...meta, ...bonus].forEach((l) => { if (l && !seen[l]) { seen[l] = 1; out.push(l); } });
     return out;
   }
-  // How many atoms actually carry a form in language `l` (for the picker's coverage
-  // filter — only offer languages with a real, learnable amount of content).
+  // How many atoms carry a form in language `l` (for the picker's coverage
+  // filter, only offer languages with a real, learnable amount of content).
   function langCoverage(l) {
     if (!E.atoms) return 0;
     let n = 0; for (const a of E.atoms) if (a.forms && a.forms[l] && a.forms[l].word) n++;
@@ -648,13 +648,13 @@
   }
 
   /* ===================================================================== *
-   *  MULTI-COURSE LANGUAGES (bkt-h9k)
-   *  Each target language is a separate course with fully independent engine
-   *  state (FSRS cards, proficiency, xp, streak), namespaced in the engine as
-   *  "lang:<target>" (e.g. "lang:es", "lang:ja"). The shared deck (lang-core)
-   *  provides the atoms/study order; only the PROGRESS is per-language. The
-   *  canon/science branches keep using their own branch-keyed state untouched.
-   * ===================================================================== */
+ * MULTI-COURSE LANGUAGES (bkt-h9k)
+ * Each target language is a separate course with fully independent engine
+ * state (FSRS cards, proficiency, xp, streak), namespaced in the engine as
+ * "lang:<target>" (e.g. "lang:es", "lang:ja"). The shared deck (lang-core)
+ * provides the atoms/study order; only the PROGRESS is per-language. The
+ * canon/science branches keep using their own branch-keyed state untouched.
+ * ===================================================================== */
   // The engine namespace key for a given target language course.
   function langStateKey(target) { return "lang:" + target; }
   // Point the live engine at the active target's per-language state. No-op off the
@@ -692,7 +692,7 @@
     const stats = (st && st.stats) || {};
     // words "learned" = atoms with a card AND (for the active course) mastery >= .55;
     // for a peeked (inactive) course we can't cheaply compute fused mastery without
-    // swapping namespaces, so we count introduced cards as the honest signal there.
+    // swapping namespaces, so we count introduced cards as the signal there.
     let learned = 0, introduced = 0;
     const total = langCoverage(target);
     Object.keys(cards).forEach((id) => {
@@ -701,7 +701,7 @@
       introduced++;
       if (active) { if (E.masteryFor(id) >= 0.55) learned++; }
     });
-    if (!active) learned = introduced; // honest peek signal (see note above)
+    if (!active) learned = introduced; // peek signal (see note above)
     return {
       target,
       learned,
@@ -713,7 +713,7 @@
     };
   }
 
-  // "Ask the tutor" — opens a focused, grounded Socratic chat scoped to this
+  // "Ask the tutor", opens a focused, grounded Socratic chat scoped to this
   // atom. Degrades silently if the tutor module didn't load (atom screen must
   // never break). The panel itself handles the not-enabled (503) state.
   function tutorAffordance(a) {
@@ -771,7 +771,7 @@
   }
 
   // Build the per-card cross-language reference rows. By default (beginner) this shows
-  // ONLY the primary source language (fix #2 — one clean source→target). When polyglot
+  // ONLY the primary source language (fix #2, one clean source→target). When polyglot
   // (advanced) mode is on, it shows every known language. `langs` = which to render.
   function langRefSection(a, langsToShow) {
     const ref = el("div", "lang-ref");
@@ -804,7 +804,7 @@
     top.appendChild(el("span", "prog", session ? session.i + 1 + " / " + session.queue.length : ""));
     wrap.appendChild(top);
 
-    // Level badge (fix #5 — "where am I"). Small, calm, serif.
+    // Level badge (fix #5, "where am I"). Small, calm, serif.
     wrap.appendChild(el("div", "lang-level-chip", "Level " + langLevelOf(id) + " · " + (LANG_NAMES[target] || target)));
 
     if (peek) {
@@ -845,7 +845,7 @@
     }
 
     // ---- DRILL mode: a sequenced exercise (fix #3). We do NOT reveal the target word
-    // up front (that would defeat recall) — instead a prompt asking for the meaning,
+    // up front (that would defeat recall), instead a prompt asking for the meaning,
     // then the sequenced exercise stages render below. The full reference card is shown
     // by each stage AFTER the learner answers.
     const stage = el("div", "lang-stage");
@@ -856,14 +856,14 @@
   }
 
   // Sequenced language exercise (fix #3 + #4). Difficulty ramps WITHIN an atom:
-  //   (a) image-or-word multiple choice  → recognition, can't-fail FIRST exposure
-  //   (b) word-bank / tap-the-tokens     → assembly with support
-  //   (c) typed recall (langDrill)       → hardest, last; the single FSRS signal
+  // (a) image-or-word multiple choice → recognition, can't-fail FIRST exposure
+  // (b) word-bank / tap-the-tokens → assembly with support
+  // (c) typed recall (langDrill) → hardest, last; the single FSRS signal
   // The stage shown to START at scales with mastery (a brand-new word starts at MC; a
-  // well-known word jumps straight to typed recall — no babying a learner who's got it).
+  // well-known word jumps straight to typed recall, no babying a learner who's got it).
   // MC + word-bank are warm-ups (gentle amber/green feedback, no FSRS grade); the typed
   // drill is the one that grades + schedules (and chains the sentence cloze), exactly as
-  // before. So FSRS scheduling is unchanged — we only ADD recognition ramps in front.
+  // before. So FSRS scheduling is unchanged, we only ADD recognition ramps in front.
   function langExercise(a, target, known, shown, mountEl) {
     const m = E.masteryFor(a.id);
     // stage order; entry point by mastery
@@ -892,7 +892,7 @@
         if (!node) { advance(); return; } // word too short to assemble → skip to typed
         mountEl.appendChild(node);
       } else {
-        // typed recall — the existing accent/typo-tolerant drill; it grades FSRS and
+        // typed recall, the existing accent/typo-tolerant drill; it grades FSRS and
         // chains the sentence cloze, then advances the session via next().
         mountEl.appendChild(langDrill(a, target, known));
       }
@@ -901,7 +901,7 @@
   }
 
   // Gather sibling atoms in the SAME category as distractors for multiple choice /
-  // word-bank decoys (fix #3 — "distractors drawn from sibling atoms in the same deck").
+  // word-bank decoys (fix #3, "distractors drawn from sibling atoms in the same deck").
   function langSiblings(a, target, n) {
     const want = (a.forms[target] || {}).word || "";
     const sameCat = E.atoms.filter((x) =>
@@ -921,9 +921,9 @@
     return arr;
   }
 
-  // Stage (a): multiple-choice recognition — "Which one is '<gloss>'?" → pick the
+  // Stage (a): multiple-choice recognition, "Which one is '<gloss>'?" → pick the
   // target word from options. Can't-fail first exposure. Gentle feedback: green Correct
-  // → continue; amber Not-quite → reveal the right one + try again. No FSRS grade.
+  // → continue; amber Not-→ reveal the right one + try again. No FSRS grade.
   // Returns null if there aren't enough distinct options (caller falls through).
   function langMultipleChoice(a, target, known, shown, done) {
     const tf = a.forms[target] || {};
@@ -936,12 +936,12 @@
     const box = el("div", "drill lang-drill lang-mc");
     box.dataset.concept = a.id; // lets pic-MC (emoji prompt) be mapped back to its atom
     box.appendChild(el("div", "drill-label", "Choose · " + (LANG_NAMES[target] || target)));
-    // anchor the meaning via the primary known language (fix #2 — one source)
+    // anchor the meaning via the primary known language (fix #2, one source)
     const hintLang = shown[0] || known[0];
     const hint = hintLang && a.forms[hintLang];
     // PICTURE multiple-choice (bkt-3s9): when the concept has a curated emoji, show
-    // the emoji as the prompt — a true can't-fail picture choice (the Duolingo hook).
-    // Falls back to the word/gloss prompt for abstract concepts with no honest picture.
+    // the emoji as the prompt, a true can't-fail picture choice (the Duolingo hook).
+    // Falls back to the word/gloss prompt for abstract concepts with no picture.
     const emoji = window.LangEmoji && window.LangEmoji.emojiFor(a.id);
     if (emoji) {
       box.classList.add("lang-mc-pic");
@@ -1009,11 +1009,11 @@
     return box;
   }
 
-  // Stage (b): word-bank / tap-the-tokens assembly — like Duolingo's "Write this in
+  // Stage (b): word-bank / tap-the-tokens assembly, like Duolingo's "Write this in
   // <lang>" with tappable letter/syllable tiles. The learner builds the target word by
   // tapping tiles (the correct letters + a few decoy letters), then checks. Reuses the
   // accent/typo-tolerant grader. Gentle feedback. No FSRS grade (the typed drill does that).
-  // Returns null for very short words (≤2 chars) where assembly adds no value.
+  // Returns null for short words (≤2 chars) where assembly adds no value.
   function langWordBank(a, target, known, shown, done) {
     const tf = a.forms[target] || {};
     const correct = tf.word || "";
@@ -1069,7 +1069,7 @@
       const typed = built.map((b) => b.ch).join("");
       const res = checkLangAnswer(typed, correct, target);
       if (res.verdict === "wrong") {
-        // gentle: amber, reveal, offer "show me" / try again — never harsh (fix #4)
+        // gentle: amber, reveal, offer "show me" / try again, never harsh (fix #4)
         if (window.haptic) haptic("wrong");
         box.classList.remove("shake"); void box.offsetWidth; box.classList.add("shake");
         result.innerHTML = "";
@@ -1118,8 +1118,8 @@
   // Typed-recall language drill (bkt-n2v / C3). The learner TYPES the target word;
   // we check it (accent/case/article/typo-tolerant), show correct ✓ / close / wrong
   // (amber, never red), reveal the right spelling, and grade FSRS from the ACTUAL
-  // result — Good/Easy on a correct answer (Easy if it was fast & accent-perfect),
-  // Hard on a close typo, Again on wrong. An honesty "I actually knew it" override
+  // result, Good/Easy on a correct answer (Easy if it was fast & accent-perfect),
+  // Hard on a close typo, Again on wrong. An honesty "I knew it" override
   // stays available so a learner whose intent was right isn't penalised by a slip.
   function langDrill(a, target, known) {
     const box = el("div", "drill lang-drill");
@@ -1164,7 +1164,7 @@
       E.grade(a.id, g, "recall");
       // If this atom carries a usable target-language example sentence, follow the
       // word drill with a short cloze (fill-in-the-blank) sentence drill on the SAME
-      // screen — practising the word IN CONTEXT — before advancing. The cloze is
+      // screen, practising the word IN CONTEXT, before advancing. The cloze is
       // bonus practice (typed-checked with the same accent-tolerant grader) and does
       // NOT re-grade FSRS, so the word recall stays the single scheduling signal.
       const cloze = clozeForAtom(a, target);
@@ -1241,7 +1241,7 @@
   // Build a cloze (fill-in-the-blank) task from an atom's target-language example,
   // by blanking out the target word inside the sentence. Returns null when there's
   // no example, or the target word doesn't appear verbatim in it (so we never show
-  // a sentence drill we can't honestly check). The hint sentence is a known-language
+  // a sentence drill we can't check). The hint sentence is a known-language
   // rendering of the same example when available.
   function clozeForAtom(a, target) {
     const ex = a.example;
@@ -1272,7 +1272,7 @@
   // Sentence/cloze drill: show the target-language example with the word blanked,
   // ask the learner to TYPE the missing word, check it with the SAME accent/typo-
   // tolerant grader (checkLangAnswer), reveal the full sentence, then advance via
-  // `done()`. Bonus practice — does not re-grade FSRS (the word drill already did).
+  // `done()`. Bonus practice, does not re-grade FSRS (the word drill already did).
   function langSentenceDrill(a, target, known, cloze, done) {
     const box = el("div", "drill lang-drill cloze-drill");
     box.appendChild(el("div", "drill-label", "Use it in a sentence · " + (LANG_NAMES[target] || target)));
@@ -1392,7 +1392,7 @@
 
     // source citation
     if (a.sources) body.appendChild(el("div", "cite", "Learn from: " + escapeHtml((a.sources || []).join(" · "))));
-    // Ask the tutor — a grounded, Socratic aid scoped to THIS concept (bkt-5jj).
+    // Ask the tutor, a grounded, Socratic aid scoped to THIS concept (bkt-5jj).
     body.appendChild(tutorAffordance(a));
     wrap.appendChild(body);
 
@@ -1589,13 +1589,13 @@
     return levels.find((lv) => lv.done < lv.total) || levels[levels.length - 1] || null;
   }
 
-  // ---------- language picker (fix #1: explicit setup, not silent defaults) ----------
+  // ---------- language picker (fix #1: explicit setup over defaults) ----------
   // The FIRST thing a learner sees on the Languages branch before any drilling:
   // a clear "I want to learn ___ / I already know ___" choice. Persists via setLangPref
   // (marking the pref `chosen`) so it appears once. No more silent auto-Spanish.
   function screenLangPicker() {
     // TARGET options = every deck language with real coverage (≥80 words), sorted by
-    // display name — this is what surfaces the full breadth (14 guaranteed + bonus).
+    // display name, this is what surfaces the full breadth (14 guaranteed + bonus).
     const metaLangs = (E.meta && E.meta.languages) || ["en"];
     const byName = (a, b) => (LANG_NAMES[a] || a).localeCompare(LANG_NAMES[b] || b);
     const COVER_MIN = 80;
@@ -1664,7 +1664,7 @@
     return wrap;
   }
 
-  // Honesty banner (fix #5): Languages is an early experiment, not a finished course.
+  // Honesty banner (fix #5): Languages is an early experiment, still short of a course.
   // Mirrors CLAUDE.md's "don't oversell" rule (small deck, TTS-not-recorded audio,
   // residual sense-noise). Reused on the picker, study, and home screens.
   function langHonestyBanner() {
@@ -1683,7 +1683,7 @@
     wrap.appendChild(el("h1", "study-h1", cur.pill.replace(/^\S+ · /, "")));
     wrap.appendChild(el("p", "study-sub", "Read straight through — foundations first. Switch depth any time; tap a concept to drill it."));
 
-    // global depth toggle — full Lesson by default, with quick-blurb depths
+    // global depth toggle, full Lesson by default, with quick-blurb depths
     const hasLessons = E.atoms.some((x) => x.lesson);
     const tabs = el("div", "depth-tabs study-depth");
     const opts = hasLessons ? [["lesson", "Lesson"], ["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]] : [["eli5", "Plain"], ["core", "Core"], ["deep", "Deep"]];
@@ -1778,7 +1778,7 @@
       : "Every word grouped by topic, anchored in " + (LANG_NAMES[ls.primaryKnown] || ls.primaryKnown) + ". Tap to practice."));
     wrap.appendChild(langHonestyBanner());
 
-    // Word explorer entry — the Polingual cross-lingual comparison surface.
+    // Word explorer entry, the Polingual cross-lingual comparison surface.
     const exploreCta = el("button", "explore-cta reveal-up",
       '<span class="xc-ico">✦</span>' +
       '<span class="xc-copy"><span class="xc-title">Explore words across languages</span>' +
@@ -1812,14 +1812,14 @@
   }
 
   /* ---------- Polingual word explorer (bkt-nhy / bkt-2ea) ----------
-   * HYBRID five-lens cross-lingual comparison. Each lens tries the LIVE full
-   * 45k-photon index first (same-origin proxy `/api/polingual`, via the new
-   * Polingual.*Async wrappers) and falls back to the baked ~6.5k-word starter
-   * subset when offline / the service is unavailable. Lazy-loads the subset
-   * asset on first open (instant default + offline engine). Honest empty
-   * states; async loading states on lookup + lens switch; mobile + keyboard
-   * friendly. `ref` identifies a word: a numeric subset row, OR {surface,lang}
-   * for a full-index word that isn't in the baked subset.
+ * HYBRID five-lens cross-lingual comparison. Each lens tries the LIVE full
+ * 45k-photon index first (same-origin proxy `/api/polingual`, via the new
+ * Polingual.*Async wrappers) and falls back to the baked ~6.5k-word starter
+ * subset when offline / the service is unavailable. Lazy-loads the subset
+ * asset on first open (instant default + offline engine). Empty
+ * states; async loading states on lookup + lens switch; mobile + keyboard
+ * friendly. `ref` identifies a word: a numeric subset row, OR {surface,lang}
+ * for a full-index word that isn't in the baked subset.
    */
   let explorerState = { query: "", lang: "", ref: null, lens: "meaning", source: null };
   // monotonic token so a slow in-flight lens/lookup can't overwrite a newer one
@@ -1831,7 +1831,7 @@
     return (ref.lang || "") + ":" + (ref.surface != null ? ref.surface : ref.s || "");
   }
 
-  // The "offline — showing starter set" note, shown ONLY on the subset path.
+  // The "offline, showing starter set" note, shown ONLY on the subset path.
   function xplSourceNote(source) {
     if (source !== "subset") return null;
     return el("div", "xpl-offline-note",
@@ -1868,7 +1868,7 @@
     results.setAttribute("aria-live", "polite");
     wrap.appendChild(results);
 
-    // attribution (REQUIRED — visible on the explorer)
+    // attribution (REQUIRED, visible on the explorer)
     const attrib = el("div", "xpl-attrib",
       'Data: Wiktionary via <a href="https://kaikki.org" target="_blank" rel="noopener">Kaikki</a> ' +
       '(CC-BY-SA 3.0). Short glosses only — full entries at ' +
@@ -1934,7 +1934,7 @@
 
   // Run a free-text lookup. Tries the LIVE full index first (so a word NOT in
   // the baked subset still resolves when online), else the subset's fuzzy
-  // lookup, else honest empty. Async with a loading state.
+  // lookup, else empty. Async with a loading state.
   function runExplorerSearch(host, q) {
     if (!q) { renderExplorerSeed(host, null); return; }
     const P = window.Polingual;
@@ -1963,7 +1963,7 @@
     });
   }
 
-  // Navigate to a word by ref (numeric subset row OR {surface,lang} full-index).
+  // Jump to a word by ref (numeric subset row OR {surface,lang} full-index).
   // Resolves the headword (live-first) then renders. Async with a loading card.
   function renderExplorerWord(host, ref) {
     const P = window.Polingual;
@@ -2051,7 +2051,7 @@
     window.scrollTo(0, 0);
   }
 
-  // A clickable neighbor row (taps navigate to that word — full-index aware).
+  // A clickable neighbor row (taps jump to that word, full-index aware).
   function explorerNeighborRow(rec, scoreText) {
     const r = el("button", "xpl-row");
     r.type = "button";
@@ -2167,8 +2167,8 @@
     });
   }
 
-  // Etymology: the Kaikki snippet for this word (live-first), then — on the
-  // subset fallback — a simple root chain across same-concept siblings.
+  // Etymology: the Kaikki snippet for this word (live-first), then, on the
+  // subset fallback, a simple root chain across same-concept siblings.
   function renderEtymologyLens(panel, ref, stillCurrent) {
     const P = window.Polingual;
     const ok = stillCurrent || (() => true);
@@ -2306,13 +2306,13 @@
   /* ---------- share your public Mastery Profile (bkt-coh) ---------- */
   // Opt-in, signed-in-only. Lets a learner claim a handle, make the profile
   // public (default private), and copy the public link bucket.foundation/m/<h>.
-  // Honest-signal framing: an evolving learning record, not a certified score.
+  //-signal framing: an evolving learning record. It is not a certified score.
   function shareProfileSection() {
     const box = el("div", "share-profile");
     const Auth = window.BucketAuth;
     box.appendChild(el("div", "section-label", "Share your Mastery Profile"));
 
-    // Auth disabled (no backend) — nothing to share.
+    // Auth disabled (no backend), nothing to share.
     if (!Auth || !Auth.enabled) {
       box.appendChild(el("p", "share-hint", "Sign-in isn't configured here, so a public profile isn't available."));
       return box;
@@ -2542,7 +2542,7 @@
     grid.appendChild(stat("★", s.mastered, "mastered"));
     wrap.appendChild(grid);
 
-    // "Test yourself" — a sealed self-test that sharpens the mastery estimate (bkt-v7y).
+    // "Test yourself", a sealed self-test that sharpens the mastery estimate (bkt-v7y).
     // Concept branches only (polyglot keeps its own recall drill), and only once the
     // learner has started something to be tested on. Fully skippable; never blocks Study.
     if (!isLang() && window.Assess && s.introduced > 0) {
@@ -2588,7 +2588,7 @@
     });
     wrap.appendChild(list);
 
-    // Share your Mastery Profile (bkt-coh) — opt-in public, signed-in only.
+    // Share your Mastery Profile (bkt-coh), opt-in public, signed-in only.
     wrap.appendChild(shareProfileSection());
 
     const settings = el("div", "settings");
@@ -2622,7 +2622,7 @@
       };
       tRow.appendChild(tSel); settings.appendChild(tRow);
 
-      // Primary source language — the ONE language a beginner learns FROM (fix #2).
+      // Primary source language, the ONE language a beginner learns FROM (fix #2).
       const pRow = el("label", "set-row", "I learn from (my main language)");
       const pSel = el("select", "lang-sel");
       langs.filter((l) => l !== target).forEach((l) => {
@@ -2638,8 +2638,8 @@
       };
       pRow.appendChild(pSel); settings.appendChild(pRow);
 
-      // Advanced: polyglot mode — show each word in EVERY language you know at once.
-      // OFF by default (fix #2). A real toggle, not the lead experience.
+      // Advanced: polyglot mode, show each word in EVERY language you know at once.
+      // OFF by default (fix #2). A real toggle, kept out of the lead experience.
       const polyRow = el("label", "set-row", "Polyglot mode (advanced — show all my languages)");
       const polySw = el("input"); polySw.type = "checkbox"; polySw.checked = ls.polyglot;
       polySw.onchange = () => { setLangPref(target, langSettings().known, { polyglot: polySw.checked, chosen: true }); go("progress"); };
@@ -2674,7 +2674,7 @@
       settings.appendChild(redo);
     }
 
-    // Re-take placement — re-run the adaptive diagnostic to re-estimate the frontier.
+    // Re-take placement, re-run the adaptive diagnostic to re-estimate the frontier.
     if (!isLang() && typeof window.Diagnostic === "function") {
       const place = el("button", "btn ghost wide", "Re-take placement");
       place.onclick = () => go("diagnostic");
@@ -2705,12 +2705,12 @@
   }
 
   /* ---------- placement diagnostic (ALEKS-style binary search over the graph) ----------
-   * Honest framing: a STARTING ESTIMATE, never a certified rating (public ratings are
-   * gated on bkt-4at). The learner can always study any concept regardless, and the
-   * whole flow is skippable. Correct answers credit prerequisites via the encompassing
-   * graph; placement seeds modest FSRS state, never "mastered". */
+ * framing: a STARTING ESTIMATE, never a certified rating (public ratings are
+ * gated on bkt-4at). The learner can always study any concept regardless, and the
+ * whole flow is skippable. Correct answers credit prerequisites via the encompassing
+ * graph; placement seeds modest FSRS state, never "mastered". */
 
-  // Seed engine state honestly for a set of placed-known atoms. We introduce each with
+  // Seed engine state for a set of placed-known atoms. We introduce each with
   // a "Hard" grade (rating 2): present + low-but-real stability + a modest proficiency,
   // NOT certified-mastered. FIRe/encompassing credit then flows to prerequisites through
   // the engine's grade() path. This makes the route + "Continue learning" resume past
@@ -2781,7 +2781,7 @@
     top.appendChild(el("span", "diag-step", "Q" + item.qIndex + " · placing"));
     wrap.appendChild(top);
 
-    // progress bar (approximate — diagnostic may early-stop before the cap)
+    // progress bar (approximate, diagnostic may early-stop before the cap)
     const bar = el("div", "diag-bar");
     const frac = Math.min(1, item.qIndex / Math.max(1, item.total));
     bar.appendChild(el("i")).style.width = Math.round(frac * 100) + "%";
@@ -2834,7 +2834,7 @@
     wrap.appendChild(box);
 
     // an explicit "haven't learned this yet" supplies clean negative evidence without
-    // forcing a reveal (ADAPTIVE-SOTA §a.3 — measurably reduces questions needed).
+    // forcing a reveal (ADAPTIVE-SOTA §a.3, measurably reduces questions needed).
     const dunno = el("button", "diag-skip", "I haven't learned this yet");
     dunno.onclick = () => diagAnswer(false);
     wrap.appendChild(dunno);
@@ -2885,7 +2885,7 @@
           "to study whenever you like.") +
       "</p>";
 
-    // "here's where to go next" — the next learnable concepts in study order.
+    // "here's where to go next", the next learnable concepts in study order.
     const next = studyOrder().filter((id) => !E.cardFor(id)).slice(0, 5);
     if (next.length) {
       const list = el("div", "route-list dr-next");
@@ -2914,14 +2914,14 @@
   }
 
   /* ---------- "Test yourself" assessment (bkt-v7y) ----------
-   * A SEALED self-test, deliberately separate from practice (Study + drill). Practice is
-   * show-answer-then-self-rate (FSRS, retries — farmable by design); an assessment hides
-   * the answer until you respond, grades numeric/short-symbolic answers DETERMINISTICALLY
-   * (bkt-3so), and falls back to an HONEST, clearly-marked self-check for prose (lower
-   * trust). Results are stored in a SEPARATE log (the practice/credential firewall
-   * STRUCTURE, bkt-dji) and fed into the engine proficiency so the Mastery Profile reflects
-   * TESTED proficiency — never a certified or public rating (that's gated on bkt-4at + the
-   * AI key: real held-out, freshly-generated transfer items + anti-gaming come later). */
+ * A SEALED self-test, deliberately separate from practice (Study + drill). Practice is
+ * show-answer-then-self-rate (FSRS, retries, farmable by design); an assessment hides
+ * the answer until you respond, grades numeric/short-symbolic answers DETERMINISTICALLY
+ * (bkt-3so), and falls back to an,-marked self-check for prose (lower
+ * trust). Results are stored in a SEPARATE log (the practice/credential firewall
+ * STRUCTURE, bkt-dji) and fed into the engine proficiency so the Mastery Profile reflects
+ * TESTED proficiency, never a certified or public rating (that's gated on bkt-4at + the
+ * AI key: real held-out, freshly-generated transfer items + anti-gaming come later). */
 
   // Firewall: assessment results live in their OWN localStorage namespace, kept apart from
   // the engine's practice state (FSRS cards / xp / streak). This is the structural
@@ -3011,7 +3011,7 @@
     box.appendChild(el("div", "dq-prompt", item.prompt));
     if (item.eq) box.appendChild(el("div", "q-eq", "$$" + item.eq + "$$"));
 
-    // sealed input — the learner types their answer BEFORE the solution exists on screen.
+    // sealed input, the learner types their answer BEFORE the solution exists on screen.
     const inWrap = el("div", "assess-input-row");
     const input = el("input", "assess-input");
     input.type = "text";
@@ -3033,17 +3033,17 @@
     setTimeout(() => { try { input.focus(); } catch (e) {} }, 40);
   }
 
-  // Grade the submitted answer. Deterministic where possible (laurel ✓ / amber — never
-  // red); otherwise reveal the solution and ask for an HONEST self-check (lower trust).
+  // Grade the submitted answer. Deterministic where possible (laurel ✓ / amber, never
+  // red); otherwise reveal the solution and ask for an self-check (lower trust).
   function assessGrade(item, userInput) {
     const verdict = window.Assess.gradeAnswer(userInput, item.answer);
     const latency = Math.max(0, Date.now() - assess.itemStart);
     if (verdict.gradable) {
-      // deterministic verdict — record + animate, no self-report needed.
+      // deterministic verdict, record + animate, no self-report needed.
       recordAssessItem(item, verdict.correct, true, latency);
       renderAssessVerdict(item, userInput, verdict, /*auto*/ true);
     } else {
-      // honest fallback: reveal the canonical answer, let the learner self-check.
+      // fallback: reveal the canonical answer, let the learner self-check.
       renderAssessSelfCheck(item, userInput, latency);
     }
   }
@@ -3085,8 +3085,8 @@
     if (window.haptic) haptic(verdict.correct ? "correct" : "tap");
   }
 
-  // Honest self-check moment for non-auto-gradable (prose) answers. We reveal the
-  // canonical solution and the learner reports — clearly flagged as self-reported, lower
+  // self-check moment for non-auto-gradable (prose) answers. We reveal the
+  // canonical solution and the learner reports, flagged as self-reported, lower
   // trust, kept apart from the deterministic signal in the firewall log.
   function renderAssessSelfCheck(item, userInput, latency) {
     const wrap = el("div", "screen assess");
@@ -3297,7 +3297,7 @@
       // real diagnostic (js/diagnostic.js)
       hasDiagnostic: () => !isLang() && typeof window.Diagnostic === "function",
       startDiagnostic: () => go("diagnostic"),
-      // real auth (js/auth.js + auth-ui.js) — feature-detected, never required
+      // real auth (js/auth.js + auth-ui.js), feature-detected, never required
       hasAuth: () => !!(window.BucketAuth && window.BucketAuth.enabled),
       signIn: () => new Promise((resolve) => {
         // open the existing sign-in modal via the topbar pill once the app is mounted
@@ -3312,11 +3312,11 @@
   }
 
   /* ---------- Cognate + phrase data (bkt-q8e) ----------
-   * The polyglott layer: a cognate/etymology index (corpus/lang-cognates.json,
-   * built by build-cognates.mjs from the Polingual subset) and a curated phrase
-   * deck (corpus/lang-phrases.json, built by build-phrases.mjs). Both are lazy-
-   * loaded once, on first use inside the Languages branch, and cached. They are
-   * additive data resources — NOT a separate product (they live inside Academy). */
+ * The polyglott layer: a cognate/etymology index (corpus/lang-cognates.json,
+ * built by build-cognates.mjs from the Polingual subset) and a curated phrase
+ * deck (corpus/lang-phrases.json, built by build-phrases.mjs). Both are lazy-
+ * loaded once, on first use inside the Languages branch, and cached. They are
+ * additive data resources living inside Academy, never a separate product. */
   let _cognates = null, _cognatesPromise = null;
   let _phrases = null, _phrasesPromise = null;
   function loadCognates() {
@@ -3344,9 +3344,9 @@
   function allPhrases() { return (_phrases && _phrases.phrases) || []; }
 
   /* ---------- DuoLang bridge (epic bkt-w0t) ----------
-   * Expose exactly the closure-private helpers the dedicated Duolingo-style language
-   * UI (js/duo.js) needs, without leaking app internals or forcing a refactor. The
-   * canon "atom/study" screens are untouched; only the LANGUAGE branch reroutes here. */
+ * Expose exactly the closure-private helpers the dedicated Duolingo-style language
+ * UI (js/duo.js) needs, without leaking app internals or forcing a refactor. The
+ * canon "atom/study" screens are untouched; only the LANGUAGE branch reroutes here. */
   window.__DuoBridge = {
     E,
     isLang,
@@ -3364,7 +3364,7 @@
     // bkt-h9k multi-course hooks
     langStateKey,
     syncLangNamespace,       // re-point the live engine at the active target's state
-    startedCourses,          // [target,...] languages the learner has begun
+    startedCourses,          // [target...] languages the learner has begun
     markCourseStarted,       // register a target as a started course
     courseStats,             // per-language { learned, total, xp, streak, active }
     flag: (l) => l,          // duo.js owns its own flag map; placeholder for parity
@@ -3386,7 +3386,7 @@
     root.appendChild(node);
     // bkt-alw: the bottom tab bar is `position:fixed`, but screens animate with a
     // `transform` (@keyframes rise), and a transformed ancestor becomes the
-    // containing block for fixed descendants — which pinned the tab bar to the
+    // containing block for fixed descendants, which pinned the tab bar to the
     // bottom of the (tall) document instead of the viewport, pushing its tap zone
     // off-screen so MAP/PROGRESS taps landed on nothing. Hoist any .tabbar out of
     // the animated .screen up to #app (which never transforms) so it's anchored to
@@ -3408,7 +3408,7 @@
     if (where === "languages" && duoActive() && window.DuoLang.myLanguages) {
       return mount(window.DuoLang.myLanguages(go));
     }
-    // bkt-h9k: "+ Add a language" — force the onboarding language picker even though a
+    // bkt-h9k: "+ Add a language", force the onboarding language picker even though a
     // course already exists, to START a new course (fresh per-language state).
     if (where === "add-language" && duoActive()) {
       return mount(window.DuoLang.onboarding(() => go("home")));
@@ -3489,7 +3489,7 @@
       }
     }
 
-    // First-run commitment ladder — only for brand-new visitors (or explicit replay).
+    // First-run commitment ladder, only for brand-new visitors (or explicit replay).
     // EXCEPTION: on the language branch the dedicated Duo experience (go("home") →
     // DuoLang.onboarding) owns first-run, so we skip the canon onboarding there.
     if (duoActive() && !deepLink) {

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Bucket Canon Pipeline — canonical citation resolver.
+"""Bucket Canon Pipeline, canonical citation resolver.
 
 Usage:
-  canon.py resolve <DOI|arxiv:id|pmid:id|query>
-  canon.py bib <input.txt>
-  canon.py dossier <folder>
-  canon.py fetch <DOI>
+ canon.py resolve <DOI|arxiv:id|pmid:id|query>
+ canon.py bib <input.txt>
+ canon.py dossier <folder>
+ canon.py fetch <DOI>
 """
 from __future__ import annotations
 import argparse

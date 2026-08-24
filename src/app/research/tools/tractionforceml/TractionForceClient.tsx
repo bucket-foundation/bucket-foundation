@@ -1,6 +1,6 @@
 "use client";
 
-// TractionForceML client island — block-matching PIV displacement field (REAL
+// TractionForceML client island, block-matching PIV displacement field (REAL
 // normalized cross-correlation). Render is "json". Inputs: reference + deformed
 // 2-D arrays, or "demo".
 

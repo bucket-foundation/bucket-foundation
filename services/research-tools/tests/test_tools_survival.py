@@ -2,15 +2,15 @@
 
 Verifies the ACTUAL Kaplan-Meier estimator + Mantel-Cox log-rank test against
 KNOWN, hand-computable cases:
-  * KM with no censoring on 4 ordered event times → S steps 0.75/0.5/0.25/0 and
-    median = the 3rd time (first t with S ≤ 0.5) — the load-bearing assertion;
-  * Greenwood SE > 0 and survival monotone non-increasing;
-  * a censored observation stays at risk then leaves without an event;
-  * the log-rank χ² of two clearly-separated groups is large and p < 0.05, and
-    of two identical groups is ~0 with p ≈ 1;
-  * malformed input returns a structured error, never raises.
+ * KM with no censoring on 4 ordered event times → S steps 0.75/0.5/0.25/0 and
+ median = the 3rd time (first t with S ≤ 0.5), the load-bearing assertion;
+ * Greenwood SE > 0 and survival monotone non-increasing;
+ * a censored observation stays at risk then leaves without an event;
+ * the log-rank χ² of two-separated groups is large and p < 0.05, and
+ of two identical groups is ~0 with p ≈ 1;
+ * malformed input returns a structured error, never raises.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_survival.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_survival.py -q
 """
 from __future__ import annotations
 
@@ -91,7 +91,7 @@ def test_logrank_identical_groups_not_significant():
 
 
 # =========================================================================
-# robustness
+# resilience
 # =========================================================================
 def test_too_short_error():
     assert sv.run_survival({"durations": [5]}).get("error")

@@ -1,47 +1,47 @@
 #!/usr/bin/env python3
 """
-research-tools — MLReproCard (REAL repro rubric + model card, CPU, no network)
+research-tools, MLReproCard (REAL repro rubric + model card, CPU, no network)
 ==============================================================================
 
 Per-field tool for **cs-ml** (cs-ml, 44,999 profiled researchers). The atlas
 USERS_NEEDS roadmap: industry MLOps doesn't fit research (no fixed pipeline,
 frequent ad-hoc experiments); benchmarking + eval reproducibility is weak and
-experiment provenance is often a spreadsheet. The single highest-leverage,
+experiment provenance is a spreadsheet. The single highest-value
 lowest-cost intervention is a structured reproducibility checklist + model card
-— the thing the NeurIPS/ICML reproducibility checklists, Mitchell et al. 2019
+the thing the NeurIPS/ICML reproducibility checklists, Mitchell et al. 2019
 "Model Cards", and Gundersen & Kjensmo's reproducibility taxonomy all push.
 
 MLReproCard takes a described ML experiment and does REAL rubric scoring against
 a concrete, weighted reproducibility checklist grouped into the recognized
 dimensions (data, code/method, training, evaluation, compute, sharing). It flags
 exactly which repro elements are MISSING, scores each dimension and an overall
-0–100 reproducibility score, assigns a Gundersen-style reproducibility level
+0-100 reproducibility score, assigns a Gundersen-style reproducibility level
 (R3 fully / R2 partially / R1 / R0), and emits a normalized model card.
 
 This is a deterministic rubric over the supplied fields (no LLM, no network, no
-GPU) — the same idea as the FAIRCheck rubric, specialized to ML reproducibility.
+GPU), the same idea as the FAIRCheck rubric, specialized to ML reproducibility.
 
 Input shape (`payload`): a dict of experiment fields, a JSON string, or "demo".
-Recognized fields (all optional — missing = a flagged gap, not a crash):
-    model / model_name / architecture   — the model/architecture
-    task                                 — the ML task
-    dataset / data                       — dataset name/source
-    dataset_version / data_version       — a pinned dataset version/DOI/hash
-    splits / train_test_split            — how data was split (sizes/strategy)
-    seed / random_seed                   — RNG seed(s)
-    hyperparameters / hparams / config   — hyperparameters (dict or text)
-    training_procedure / training        — optimizer, epochs, schedule, early-stop
-    framework / library                  — framework + version (e.g. "pytorch 2.5")
-    hardware / compute / gpu             — compute used (GPU/TPU/CPU, count)
-    train_time / compute_budget          — wall-clock / compute cost
-    metrics / evaluation / eval          — eval metrics + protocol
-    baselines                            — baselines compared against
-    code / repository / code_url         — public code link
-    weights / checkpoint / model_url     — released weights/checkpoint
-    license                              — model/code license
-    environment / requirements / env     — env spec (requirements/conda/Docker)
-    n_runs / repeats / seeds_count       — how many runs were averaged
-    variance / std / confidence_interval — reported variance across runs
+Recognized fields (all optional, a missing field is flagged as a gap):
+ model / model_name / architecture, the model/architecture
+ task, the ML task
+ dataset / data, dataset name/source
+ dataset_version / data_version, a pinned dataset version/DOI/hash
+ splits / train_test_split, how data was split (sizes/strategy)
+ seed / random_seed, RNG seed(s)
+ hyperparameters / hparams / config, hyperparameters (dict or text)
+ training_procedure / training, optimizer, epochs, schedule, early-stop
+ framework / library, framework + version (e.g. "pytorch 2.5")
+ hardware / compute / gpu, compute used (GPU/TPU/CPU, count)
+ train_time / compute_budget, wall-clock / compute cost
+ metrics / evaluation / eval, eval metrics + protocol
+ baselines, baselines compared against
+ code / repository / code_url, public code link
+ weights / checkpoint / model_url, released weights/checkpoint
+ license, model/code license
+ environment / requirements / env, env spec (requirements/conda/Docker)
+ n_runs / repeats / seeds_count, how many runs were averaged
+ variance / std / confidence_interval, reported variance across runs
 
 The gateway imports MLREPRO_RUNNERS from here.
 """
@@ -63,7 +63,7 @@ _CHECKS: list[tuple[str, str, float, list[str], Optional[str], str]] = [
     ("dataset_named", "data", 6, ["dataset", "data"], None,
      "Name the dataset and its source so it can be obtained."),
     ("dataset_versioned", "data", 7, ["dataset_version", "data_version"], None,
-     "Pin the exact dataset version (a version tag, DOI, or content hash) — 'ImageNet' is not reproducible, 'ImageNet-1k ILSVRC2012' is."),
+     "Pin the exact dataset version (a version tag, DOI, or content hash), 'ImageNet' is not reproducible, 'ImageNet-1k ILSVRC2012' is."),
     ("splits_specified", "data", 7, ["splits", "train_test_split", "split"], None,
      "Specify the train/val/test split (sizes + strategy, e.g. fixed indices, k-fold, temporal) so others reproduce the same partition."),
     ("preprocessing", "data", 5, ["preprocessing", "transforms", "augmentation", "tokenization"], None,
@@ -75,9 +75,9 @@ _CHECKS: list[tuple[str, str, float, list[str], Optional[str], str]] = [
      "Specify the model/architecture precisely (layers, sizes, or a named variant)."),
     # --- training (22) ---
     ("seed_set", "training", 8, ["seed", "random_seed", "seeds"], None,
-     "Set and report the RNG seed(s) — without a seed, results are not bit-reproducible."),
+     "Set and report the RNG seed(s), without a seed, results are not bit-reproducible."),
     ("hyperparameters", "training", 8, ["hyperparameters", "hparams", "config", "learning_rate", "lr", "batch_size"], None,
-     "Report ALL hyperparameters (lr, batch size, optimizer, epochs, weight decay, schedule) — a config file or table."),
+     "Report ALL hyperparameters (lr, batch size, optimizer, epochs, weight decay, schedule), a config file or table."),
     ("training_procedure", "training", 6, ["training_procedure", "training", "optimizer", "epochs", "schedule"], None,
      "Describe the training procedure: optimizer, epochs/steps, LR schedule, early-stopping, checkpointing."),
     # --- evaluation (17) ---
@@ -86,12 +86,12 @@ _CHECKS: list[tuple[str, str, float, list[str], Optional[str], str]] = [
     ("baselines", "evaluation", 4, ["baselines", "baseline", "comparison"], None,
      "Compare against baselines so the result is contextualized."),
     ("multiple_runs", "evaluation", 3, ["n_runs", "repeats", "seeds_count", "runs"], None,
-     "Run multiple seeds and report how many — single-run numbers are not robust."),
+     "Run multiple seeds and report how many, single-run numbers are not robust."),
     ("variance_reported", "evaluation", 3, ["variance", "std", "confidence_interval", "ci", "stddev", "error_bars"], None,
      "Report variance across runs (std / CI / error bars), not just a point estimate."),
     # --- compute (8) ---
     ("hardware", "compute", 4, ["hardware", "compute", "gpu", "tpu", "device"], None,
-     "State the compute used (GPU/TPU/CPU model + count) — needed to judge cost and to reproduce timing."),
+     "State the compute used (GPU/TPU/CPU model + count), needed to judge cost and to reproduce timing."),
     ("compute_budget", "compute", 4, ["train_time", "compute_budget", "flops", "gpu_hours", "wall_clock"], None,
      "Report the compute budget (wall-clock / GPU-hours / FLOPs) for transparency and carbon accounting."),
     # --- sharing / environment (10) ---
@@ -112,7 +112,7 @@ _DIM_LABEL = {
 
 def _present(record: dict, fields: list[str], substance: Optional[str]) -> tuple[bool, str]:
     """Is at least one of `fields` present + (optionally) substantive? Returns
-    (present, the_value_text)."""
+ (present, the_value_text)."""
     keys = {str(k).strip().lower(): k for k in record.keys()}
     for f in fields:
         if f in keys:
@@ -236,8 +236,8 @@ def _model_card(record: dict) -> dict:
 
 def _demo_record() -> dict:
     """A deliberately MIXED experiment: strong on code/eval, missing seed, dataset
-    version, environment, and compute reporting — so the rubric surfaces concrete,
-    well-known repro gaps."""
+ version, environment, and compute reporting, so the rubric surfaces concrete,
+ well-known repro gaps."""
     return {
         "model": "ResNet-50 (torchvision variant)",
         "task": "image classification",
@@ -256,12 +256,12 @@ def _demo_record() -> dict:
 
 
 def run_mlrepro_card(payload: dict) -> dict:
-    """payload: { record: <experiment fields | JSON string> }  OR  "demo".
+    """payload: { record: <experiment fields | JSON string> } OR "demo".
 
-    Score a described ML experiment against a real reproducibility rubric
-    (data/code/training/evaluation/compute/sharing), flag missing repro elements,
-    assign a Gundersen-style level, and emit a normalized model card.
-    Deterministic; never raises on malformed input.
+ Score a described ML experiment against a real reproducibility rubric
+ (data/code/training/evaluation/compute/sharing), flag missing repro elements,
+ assign a Gundersen-style level, and emit a normalized model card.
+ Deterministic; never raises on malformed input.
     """
     raw = payload.get("record")
     demo = bool(payload.get("demo")) or (isinstance(raw, str) and raw.strip().lower() == "demo")
@@ -295,14 +295,14 @@ def run_mlrepro_card(payload: dict) -> dict:
         "code/method, training, evaluation, compute, and sharing) grounded in the "
         "ML reproducibility-checklist literature (NeurIPS/ICML checklists, Mitchell "
         "et al. 2019 Model Cards, Gundersen & Kjensmo reproducibility taxonomy). "
-        "Flags missing repro elements, scores each dimension + an overall 0–100 "
-        "score, assigns an R0–R3 level, and emits a normalized model card. No LLM, "
+        "Flags missing repro elements, scores each dimension + an overall 0-100 "
+        "score, assigns an R0, R3 level, and emits a normalized model card. No LLM, "
         "no network, no GPU."
     )
     result["note"] = (
-        "Field tool for cs-ml: research MLOps is weak — provenance is often a "
+        "Field tool for cs-ml: research MLOps is weak, provenance is a "
         "spreadsheet. This is a transparent self-assessment + a fill-in model card, "
-        "not a certifying audit. The fastest score gains are usually: pin the "
+        "not a certifying audit. The fastest score gains are: pin the "
         "dataset version, set + report a seed, and release code with a pinned "
         "environment."
     )
@@ -315,7 +315,7 @@ def run_mlrepro_card(payload: dict) -> dict:
         result["note"] = (
             "DEMO: a ResNet-50/ImageNet experiment that is strong on code+eval but "
             "MISSING a seed, a pinned dataset version, an environment spec, and "
-            "compute reporting — the rubric surfaces exactly those gaps. " + result["note"]
+            "compute reporting, the rubric surfaces exactly those gaps. " + result["note"]
         )
     return result
 

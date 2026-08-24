@@ -1,5 +1,5 @@
 /**
- * The Bucket research agent loop — PLAN → RETRIEVE → SYNTHESIZE → OUTPUT.
+ * The Bucket research agent loop, PLAN → RETRIEVE → SYNTHESIZE → OUTPUT.
  *
  * This is the produce-side wedge: given a research question it does not just
  * summarize, it runs a small grounded research loop and returns a CITED,
@@ -7,17 +7,17 @@
  * forbids non-handler exports from a route file).
  *
  * Safety posture is the tutor's, transposed from one atom to a literature set
- * (S1–S7, enforced IN CODE not in the prompt):
- *   - S1 grounding: synthesis reads ONLY the retrieved Source snippets.
- *   - S2 abstain on thin retrieval: too few sources => the agent abstains and
- *        says what it would need, rather than guessing.
- *   - S3 closed-set citations: every claim must cite a retrieved Source `id`;
- *        any claim whose citation is not in the retrieved set is DROPPED before
- *        the brief is returned. Fabricated DOIs/citations can never surface
- *        because the source list is built from upstream payloads, and the model
- *        may only reference ids we already hold.
- *   - S4 confidence + abstained flags are returned.
- *   - S7 unparseable model output => fail-safe abstaining brief.
+ * (S1, S7, enforced IN CODE not in the prompt):
+ * - S1 grounding: synthesis reads ONLY the retrieved Source snippets.
+ * - S2 abstain on thin retrieval: too few sources => the agent abstains and
+ * says what it would need, rather than guessing.
+ * - S3 closed-set citations: every claim must cite a retrieved Source `id`;
+ * any claim whose citation is not in the retrieved set is DROPPED before
+ * the brief is returned. Fabricated DOIs/citations can never surface
+ * because the source list is built from upstream payloads, and the model
+ * may only reference ids we already hold.
+ * - S4 confidence + abstained flags are returned.
+ * - S7 unparseable model output => fail-safe abstaining brief.
  */
 import { complete, type ChatMessage } from "./llm";
 import {
@@ -51,7 +51,7 @@ export type Brief = {
   findings: BriefFinding[];
   limitations: string[];
   sources: Source[];
-  /** Reproducibility ledger — the exact tool/API calls the agent made. */
+  /** Reproducibility ledger, the exact tool/API calls the agent made. */
   calls: RetrievalLog[];
   provider: "local" | "anthropic";
   notes: string[];
@@ -59,7 +59,7 @@ export type Brief = {
 
 const PLAN_MAX_TOKENS = 600;
 const SYNTH_MAX_TOKENS = 1800;
-// Below this many distinct retrieved sources we will not attempt synthesis —
+// Below this many distinct retrieved sources we will not attempt synthesis, 
 // the safe move is to abstain (S2).
 const MIN_SOURCES_FOR_SYNTHESIS = 3;
 // Cap the evidence FED to synthesis. The full retrieved set is still the closed
@@ -80,9 +80,9 @@ Rules:
 - "sub_questions": 2 to 4 focused, searchable sub-questions.
 - "method_outline": 2 to 4 short steps describing HOW one would investigate (e.g. "search recent OpenAlex works on X", "check canon for the underlying principle"). No claims, no findings.`;
 
-/** Robustly pull the first complete JSON object out of a model response. Small
- *  local models like to wrap output in ```json fences and sometimes append
- *  trailing prose; a brace-balanced scan finds the object regardless. */
+/** pull the first complete JSON object out of a model response. Small
+ * local models like to wrap output in ```json fences and sometimes append
+ * trailing prose; a brace-balanced scan finds the object regardless. */
 function parseJsonObject<T>(text: string): T | null {
   const cleaned = text.trim().replace(/^```(?:json)?/i, "").replace(/```\s*$/, "").trim();
   const start = cleaned.indexOf("{");
@@ -121,7 +121,7 @@ function parseJsonObject<T>(text: string): T | null {
   }
   // Salvage a response truncated mid-JSON (small model hit max_tokens): close
   // any open string, drop a dangling trailing fragment, and balance braces +
-  // brackets. Only accepted if it parses — never fabricates content.
+  // brackets. Only accepted if it parses, never fabricates content.
   const salvaged = salvageTruncatedJson(cleaned.slice(start));
   if (salvaged) {
     try {
@@ -152,7 +152,7 @@ function salvageTruncatedJson(s: string): string | null {
     else if (ch === "}" || ch === "]") stack.pop();
     if (!inStr && (ch === "}" || ch === "]" || ch === '"' || /[0-9a-zA-Z]/.test(ch))) lastSafe = i + 1;
   }
-  if (stack.length === 0) return null; // not actually open → nothing to salvage
+  if (stack.length === 0) return null; // not open → nothing to salvage
   let core = s.slice(0, lastSafe > 0 ? lastSafe : s.length).replace(/,\s*$/, "");
   // close in reverse order
   for (let i = stack.length - 1; i >= 0; i--) core += stack[i];
@@ -160,8 +160,8 @@ function salvageTruncatedJson(s: string): string | null {
 }
 
 /** Normalize a model-emitted citation id to match a retrieved Source id. The
- *  synthesis prompt shows ids as `[id]`, so the model frequently echoes the
- *  brackets — strip them (and stray whitespace/trailing punctuation). */
+ * synthesis prompt shows ids as `[id]`, so the model echoes the
+ * brackets, strip them (and stray whitespace/trailing punctuation). */
 function normalizeCiteId(raw: string): string {
   return String(raw).trim().replace(/^\[+/, "").replace(/\]+$/, "").trim();
 }
@@ -206,7 +206,7 @@ export async function retrieve(
   const collected: Source[] = [];
 
   // 1) Route the headline question through MethodsMatcher (picks the Bucket
-  //    instrument + surfaces exemplar papers we can cite).
+  // instrument + surfaces exemplar papers we can cite).
   const mm = await matchMethods(question);
   calls.push(mm.log);
   collected.push(...mm.sources);
@@ -220,7 +220,7 @@ export async function retrieve(
   }
 
   // 3) Live literature for the question + the first sub-question. Run the
-  //    public APIs in parallel; each degrades to [] on failure.
+  // public APIs in parallel; each degrades to [] on failure.
   const litQueries = [question, plan.sub_questions[0]].filter(Boolean).slice(0, 2) as string[];
   const litBatches = await Promise.all(
     litQueries.flatMap((q) => [retrieveOpenAlex(q, 4), retrievePubMed(q, 3)]),
@@ -230,7 +230,7 @@ export async function retrieve(
     collected.push(...b.sources);
   }
 
-  // 4) Research-atlas headline stats — grounding for any metascience claim.
+  // 4) Research-atlas headline stats, grounding for any metascience claim.
   const atlas = await retrieveAtlas();
   calls.push(...atlas.log);
   collected.push(...atlas.sources);
@@ -278,8 +278,8 @@ type SynthOut = {
 };
 
 /** Validate the model's findings against the closed set of retrieved source ids
- *  (S3). Drops any citation id not retrieved, then drops any finding left with
- *  no valid citation. Fabricated references can never reach the brief. */
+ * (S3). Drops any citation id not retrieved, then drops any finding left with
+ * no valid citation. Fabricated references can never reach the brief. */
 export function validateFindings(
   raw: Array<{ statement: string; citations: string[] }>,
   sources: Source[],
@@ -310,20 +310,20 @@ export function validateFindings(
   return { findings, dropped };
 }
 
-/** Pick the evidence we actually hand to the synthesizer: prefer sources that
- *  carry real prose (an abstract / canon excerpt / atlas stats) over bare-title
- *  records, span every retriever that returned something, and cap the count so
- *  a small local model can finish the JSON. The full retrieved set remains the
- *  closed citation set, so nothing the model cites can fall outside it. */
-/** Does this source carry genuine evidentiary prose (an abstract / a real canon
- *  excerpt / atlas numbers), as opposed to a bare title or a label-only stub? */
+/** Pick the evidence we hand to the synthesizer: prefer sources that
+ * carry real prose (an abstract / canon excerpt / atlas stats) over bare-title
+ * records, span every retriever that returned something, and cap the count so
+ * a small local model can finish the JSON. The full retrieved set remains the
+ * closed citation set, so nothing the model cites can fall outside it. */
+/** Does this source carry evidentiary prose (an abstract / a real canon
+ * excerpt / atlas numbers), as opposed to a bare title or a label-only stub? */
 function hasRealProse(s: Source): boolean {
   const t = (s.snippet || "").trim();
   if (!t || t.startsWith("(no abstract")) return false;
   // MethodsMatcher exemplars carry only a "Exemplar method paper for …" label,
-  // not the paper's content — useful as a pointer, not as evidence to cite.
+  // without the paper's content. Useful as a pointer only; never cite it as evidence.
   if (s.provenance.retriever === "methods") return false;
-  // A bare PubMed esummary line ("Title — Journal (date).") is a reference, not
+  // A bare PubMed esummary line ("Title, Journal (date).") is a reference, not
   // evidence; treat it as weak.
   if (s.kind === "pubmed") return false;
   return t.length >= 60;
@@ -331,10 +331,10 @@ function hasRealProse(s: Source): boolean {
 
 export function selectEvidence(sources: Source[], cap = MAX_EVIDENCE_FOR_SYNTHESIS): Source[] {
   // Rank by how directly the snippet can support an empirical claim:
-  //   3  OpenAlex work WITH a real abstract (strongest grounding)
-  //   2  research-atlas stats (hard numbers, for metascience questions)
-  //   1  Bucket canon excerpt with real prose (foundational/axiomatic)
-  //   0  everything else (label-only exemplars, bare titles, empty abstracts)
+  // 3 OpenAlex work WITH a real abstract (strongest grounding)
+  // 2 research-atlas stats (hard numbers, for metascience questions)
+  // 1 Bucket canon excerpt with real prose (foundational/axiomatic)
+  // 0 everything else (label-only exemplars, bare titles, empty abstracts)
   const rank = (s: Source): number => {
     if (s.kind === "openalex") return hasRealProse(s) ? 3 : 0;
     if (s.kind === "atlas") return 2;
@@ -346,8 +346,8 @@ export function selectEvidence(sources: Source[], cap = MAX_EVIDENCE_FOR_SYNTHES
     .sort((a, b) => b.r - a.r || a.i - b.i); // stable within a tier
 
   // Don't dilute synthesis with weak material when strong evidence exists. The
-  // Bucket canon for several branches is conversational transcript material —
-  // foundational in spirit but noisy as literal evidence — so it is tier 1 and
+  // Bucket canon for several branches is conversational transcript material, 
+  // foundational in spirit but noisy as literal evidence, so it is tier 1 and
   // only feeds synthesis when there isn't enough tier-2+ literature/atlas
   // grounding to stand on its own. (The full retrieved set is still the closed
   // citation set + the rendered source list, regardless of what synthesis sees.)
@@ -435,7 +435,7 @@ export async function runResearchAgent(
   try {
     synth = await synthesize(question, sources);
   } catch (e) {
-    // Provider error mid-synthesis — surface as an abstaining brief (the route
+    // Provider error mid-synthesis, surface as an abstaining brief (the route
     // maps hard provider errors to 502 before this; this is the soft path).
     notes.push(`Synthesis failed (${(e as Error).message}); returning an abstaining brief.`);
     return {

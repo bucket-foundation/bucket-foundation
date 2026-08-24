@@ -6,7 +6,7 @@ import { TOOLS, type Tool } from "@/lib/tools";
 // Research-tools directory. Forty tools served through bucket.foundation
 // (FastAPI gateway on Hetzner → /api/research/<tool> proxy → this UI). See
 // docs/research-tools/04-implementation-architecture.md. The TOOLS registry
-// lives in src/lib/tools.ts (one source of truth — also drives per-tool
+// lives in src/lib/tools.ts (one source of truth, also drives per-tool
 // metadata, per-tool JSON-LD, and the sitemap).
 
 export const metadata: Metadata = {
@@ -91,8 +91,8 @@ export default function Page() {
         <div className="carved-rule max-w-xs mt-10" />
 
         {/* Hosting legend: distinguish always-on (Hetzner CPU, up 24/7) from
-            founder-GPU tools (local LLM / GPU jobs on the founder's laptop,
-            offline when it's closed). */}
+ founder-GPU tools (local LLM / GPU jobs on the founder's laptop,
+ offline when it's closed). */}
         <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-[11px] small-caps tracking-[0.13em] text-[color:var(--basalt-3)]">
           <span className="inline-flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--laurel-deep,var(--aegean-deep))]" />

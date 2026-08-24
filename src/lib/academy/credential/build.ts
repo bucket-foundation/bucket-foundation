@@ -1,19 +1,19 @@
 /**
- * src/lib/academy/credential/build.ts  (bkt-52p)
+ * src/lib/academy/credential/build.ts (bkt-52p)
  * ----------------------------------------------------------------------------
- * Turn a learner's honest Mastery Profile (src/lib/academy/profile.ts +
+ * Turn a learner's Mastery Profile (src/lib/academy/profile.ts +
  * mastery.ts) into the achievement[] of an OB3 OpenBadgeCredential.
  *
  * THE ISSUANCE BAR (justified): a concept is credential-eligible only when the
- * learner has actually demonstrated DEEP, EVIDENCE-BACKED mastery of it:
- *   1. depth reached >= Derive  (ConceptSignal.depth ∈ {derive, teach}), AND
- *   2. it counts as mastered    (mastery >= 0.70, the app's own ★ threshold), AND
- *   3. there is an evidence trail: at least MIN_REPS spaced re-demonstrations
- *      (reps) — i.e. it was retrieved-with-feedback over time, not crammed once.
+ * learner has demonstrated DEEP, EVIDENCE-BACKED mastery of it:
+ * 1. depth reached >= Derive (ConceptSignal.depth ∈ {derive, teach}), AND
+ * 2. it counts as mastered (mastery >= 0.70, the app's own ★ threshold), AND
+ * 3. there is an evidence trail: at least MIN_REPS spaced re-demonstrations
+ * (reps), i.e. it was retrieved-with-feedback over time. Cramming once fails.
  * Rationale: the credential's trust must come from being mechanically tied to
  * doing the real retrieval work. Recall/Apply are real learning but not a
  * recruiter-grade claim; "Derive or Teach-back, mastered, with spaced evidence"
- * is the honest floor for "this person can actually do this from foundations."
+ * is the floor for "this person can do this from foundations."
  *
  * HARD GATE (bkt-4at): we copy NO numeric score into the credential. We carry
  * the depth (an enum), the canon alignment, and an evidence narrative only.
@@ -81,7 +81,7 @@ export function selectEligible(profile: PublicProfile): EligibleConcept[] {
       }
     }
   }
-  // deepest-first, then leverage — the most impressive proven concepts lead.
+  // deepest-first, then leverage, the most impressive proven concepts lead.
   out.sort(
     (a, b) =>
       depthRank(b.concept.depth) - depthRank(a.concept.depth) ||
@@ -110,7 +110,7 @@ function buildAchievement(e: EligibleConcept): Achievement {
     },
   ];
 
-  // Evidence narrative — honest, mechanical, NO score. Describes WHAT was done.
+  // Evidence narrative: mechanical, NO score. Describes WHAT was done.
   const repNote =
     concept.reps >= 6
       ? `${concept.reps} spaced re-demonstrations`
@@ -187,7 +187,7 @@ export function buildCredential(args: {
       id: statusUrl,
       type: "BucketRevocationStatus",
     },
-    // bkt-rdg + bkt-4at: honest provenance/validity statement baked into the VC.
+    // bkt-rdg + bkt-4at: provenance/validity statement baked into the VC.
     "https://bucket.foundation/ns#provenance":
       "Issued by Bucket Foundation from the learner's own public Mastery Profile. " +
       "Each achievement attests evidence-backed demonstrated mastery of a single " +

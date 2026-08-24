@@ -3,9 +3,9 @@ import Script from "next/script";
 import { getManifest } from "@/lib/research-atlas";
 import AtlasExplorer from "./AtlasExplorer";
 
-// /research/atlas — describes the research-atlas graph: the reconciled, normalized
+// /research/atlas, describes the research-atlas graph: the reconciled, normalized
 // graph of the global research economy. Headline scale, the DOI, the GitHub link,
-// links to the open-datasets catalog, and a clearly-marked PLACEHOLDER "query the
+// links to the open-datasets catalog, and a-marked PLACEHOLDER "query the
 // atlas" panel for the future live API. Stone-bone styling.
 
 export const metadata = {
@@ -188,7 +188,7 @@ export default function Page() {
           ))}
         </div>
 
-        {/* Query panel — LIVE interactive explorer */}
+        {/* Query panel, LIVE interactive explorer */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           query the atlas
         </h2>

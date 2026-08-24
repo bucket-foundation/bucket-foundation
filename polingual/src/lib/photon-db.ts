@@ -1,11 +1,11 @@
-// polingual photon client — talks to the agfarms postgres via PostgREST.
+// polingual photon client, talks to the agfarms postgres via PostgREST.
 //
 // The photon graph lives in the `polingual` schema on the agfarms supabase
 // db (https://db.agfarms.dev/rest/v1). 45 000 photons across 27 languages
 // at the time this was wired. This module is the single point of contact
 // between the polingual UI and the database.
 //
-// Server-side only — anon key lives in env (POLINGUAL_DB_ANON_KEY).
+// Server-side only, anon key lives in env (POLINGUAL_DB_ANON_KEY).
 // The anon role has SELECT on polingual.photons and read-only access via
 // PostgREST. No writes from the frontend.
 
@@ -93,10 +93,10 @@ export type SearchResult = {
 /**
  * Multi-tier photon search:
  *
- *   1. Surface exact match (eq, case-insensitive via ilike with full string)
- *   2. Surface starts-with (ilike "q%")
- *   3. Surface contains      (ilike "%q%")
- *   4. Full-text on meaning  (meaning_tsv @@ to_tsquery)
+ * 1. Surface exact match (eq, case-insensitive via ilike with full string)
+ * 2. Surface starts-with (ilike "q%")
+ * 3. Surface contains (ilike "%q%")
+ * 4. Full-text on meaning (meaning_tsv @@ to_tsquery)
  *
  * We dedupe by photon id while preserving the order above, so the most
  * relevant matches surface first. PostgREST does not support custom
@@ -189,7 +189,7 @@ export type PhotonStats = {
 };
 
 /**
- * Lightweight stats — used by the homepage status strip ("45,000+ photons
+ * Lightweight stats, used by the homepage status strip ("45,000+ photons
  * · 27 languages"). Caches for 5 min via Next.js fetch revalidation.
  */
 export async function photonStats(): Promise<PhotonStats> {
@@ -206,7 +206,7 @@ export async function photonStats(): Promise<PhotonStats> {
   // listing each lang code present and trusting the precomputed indexes
   // are evenly spread). Realistically the homepage only needs the count
   // of distinct languages.
-  // We pull a small sample of languages — the schema cap is small enough
+  // We pull a small sample of languages, the schema cap is small enough
   // that we can just enumerate the 27 known codes.
   const KNOWN_LANGS = [
     "en", "la", "sa", "fr", "de", "es", "it", "pt", "ru", "zh",

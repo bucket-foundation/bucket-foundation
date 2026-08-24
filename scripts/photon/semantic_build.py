@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-semantic_build.py — semantic vectors for every photon (cross-lingual, 768-d LaBSE).
+semantic_build.py, semantic vectors for every photon (cross-lingual, 768-d LaBSE).
 
 Embeds **"surface: primary-sense gloss"** (the dominant sense `meaning_en` from
-ingest_cache.py — NOT the old ` · `-joined all-senses blob) with **sentence-
+ingest_cache.py, superseding the old ` · `-joined all-senses blob) with **sentence-
 transformers/LaBSE** (768-d, Apache-2.0, purpose-built cross-lingual over 109
 languages). "light"/"luz"/"lumière"/"Licht" land together by meaning, which is
 what the translate / semantic axes need across the 27 languages.
@@ -13,17 +13,17 @@ so pairing the foreign surface with the English gloss pulls true translations
 together far harder than the gloss alone (measured: light↔Licht 0.53→0.80,
 love↔Liebe 0.19→0.64). The gloss anchors meaning; the surface anchors the word.
 
-  - Writes _intake/photons/semantic-vectors.f32.bin (row-aligned, 768-d, L2-norm).
-  - Sets photons.semantic_row = stable row index for every photon.
-  - Idempotent + resumable: a row whose vector is already non-zero AND whose
-    semantic_row is set is skipped. A dim change (384→768) makes every old row
-    read as zero-norm, so the default run cleanly rebuilds the whole 768-d space.
-  - CPU by default (the ROCm path has hung on long ST loops); pass --gpu to try
-    the GPU. LaBSE is heavier — budget ~20-40 min for 45k on CPU.
+ - Writes _intake/photons/semantic-vectors.f32.bin (row-aligned, 768-d, L2-norm).
+ - Sets photons.semantic_row = stable row index for every photon.
+ - Idempotent + resumable: a row whose vector is already non-zero AND whose
+ semantic_row is set is skipped. A dim change (384→768) makes every old row
+ read as zero-norm, so the default run cleanly rebuilds the whole 768-d space.
+ - CPU by default (the ROCm path has hung on long ST loops); pass --gpu to try
+ the GPU. LaBSE is heavier, budget ~20-40 min for 45k on CPU.
 
-Run:  python3 scripts/photon/semantic_build.py            # rebuild all, CPU
-      python3 scripts/photon/semantic_build.py --limit 500
-      python3 scripts/photon/semantic_build.py --only-missing
+Run: python3 scripts/photon/semantic_build.py # rebuild all, CPU
+ python3 scripts/photon/semantic_build.py --limit 500
+ python3 scripts/photon/semantic_build.py --only-missing
 """
 from __future__ import annotations
 
@@ -125,7 +125,7 @@ def main() -> int:
         if already:
             continue
         # Embed "surface: primary-gloss". The surface token anchors the
-        # cross-lingual signal — LaBSE knows luz/Licht/amor/愛 as tokens, so
+        # cross-lingual signal, LaBSE knows luz/Licht/amor/愛 as tokens, so
         # pairing them with the English primary gloss pulls true translations
         # together MUCH harder than the gloss alone (measured: light↔Licht
         # 0.53→0.80, love↔Liebe 0.19→0.64).

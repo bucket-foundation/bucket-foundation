@@ -1,15 +1,15 @@
 /**
- * bucket.foundation — /api/research/rnafmembeds
+ * bucket.foundation, /api/research/rnafmembeds
  * ---------------------------------------------
  * Same-origin proxy for the RNA-FM-Embeds DNA/RNA tool. Returns a numeric RNA
  * embedding: the RNA-FM language model if its weights are installed
  * (mode="rna-fm"), else a REAL k-mer + structural-feature embedding
- * (mode="kmer-structural-fallback", honestly marked). Backend logic is REAL
+ * (mode="kmer-structural-fallback", marked). Backend logic is REAL
  * (services/research-tools/tools_dnarna.py:run_rna_fm_embeds).
  *
- *   POST /api/research/rnafmembeds                  → gateway POST /v1/rnafmembeds/submit
- *        body { sequence, k? }                       → { job_id, status, mode, price, [result] }
- *   GET  /api/research/rnafmembeds?job=<id>[&result=1] → status / result
+ * POST /api/research/rnafmembeds → gateway POST /v1/rnafmembeds/submit
+ * body { sequence, k? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/rnafmembeds?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "sequence required (>= 4 nt)" } }, 400);
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

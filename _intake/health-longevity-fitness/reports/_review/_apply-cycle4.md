@@ -5,7 +5,7 @@ You get your slice's findings file (_review/c4-N.md) and the chapter files. Appl
 
 (1) ACCURACY FIXES FIRST — these are the priority. Apply EVERY [ACCURACY] finding exactly as its
 "fix" states: correct the wrong number/date/direction, fix the stale § cross-reference, fix the
-citation/author typo, restore any stripped caveat, fix the unit error, etc. If a finding describes a
+citation/author typo, restore any stripped caveat, fix the unit error, etc. if a finding describes a
 medical/scientific error (e.g. an inverted direction), fix the science to be correct. Double-check
 you didn't introduce a new error.
 

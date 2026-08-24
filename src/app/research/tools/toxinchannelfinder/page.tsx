@@ -6,7 +6,7 @@ export const metadata = toolMetadata("toxinchannelfinder");
 const _jsonld = toolJsonLd("toxinchannelfinder");
 import ToxinChannelFinderClient from "./ToxinChannelFinderClient";
 
-// ToxinChannelFinder run page — toxin/peptide → ranked ion-channel targets.
+// ToxinChannelFinder run page, toxin/peptide → ranked ion-channel targets.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

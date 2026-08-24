@@ -1,6 +1,6 @@
 "use client";
 
-// ProtocolGPT client island — freeform methods/SOP → structured protocol via
+// ProtocolGPT client island, freeform methods/SOP → structured protocol via
 // deterministic rule extraction. Render is "json" → typed view.
 
 import { useState } from "react";

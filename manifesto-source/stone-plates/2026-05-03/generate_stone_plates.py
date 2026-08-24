@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 """
-Stone Plates — same 13 mathematical objects as the chalkboard plates,
+Stone Plates, same 13 mathematical objects as the chalkboard plates,
 re-rendered as engraved tablets: warm sandstone background, deep umber
 chiseled strokes, faint highlight bevel, weathered noise texture.
 
 The math is identical to ``../quantum-plates/2026-05-03/generate_plates.py``.
 Only the visual register changes:
 
-    chalkboard register      stone register
-    --------------------     --------------------
-    deep slate green bg      warm sandstone bg with procedural noise
-    bone chalk strokes       deep umber engraved strokes
-    soft hand jitter         hairline jitter (chisel wear, not handwriting)
-    no bevel                 1-pixel highlight stroke offset down-right (faux 3D)
-    italic serif labels      bold serif labels (carved feel)
+ chalkboard register stone register
+ -------------------- --------------------
+ deep slate green bg warm sandstone bg with procedural noise
+ bone chalk strokes deep umber engraved strokes
+ soft hand jitter hairline jitter (chisel wear)          
+ no bevel 1-pixel highlight stroke offset down-right (faux 3D)
+ italic serif labels bold serif labels (carved feel)
 
 Run:
-    python3 generate_stone_plates.py
+ python3 generate_stone_plates.py
 """
 
 from __future__ import annotations
@@ -64,7 +64,7 @@ def stone_style() -> None:
         "font.weight": "bold",
         "font.style": "normal",
         "font.size": 12,
-        # Less jitter than chalk — a chisel is precise, slate is forgiving.
+        # Less jitter than chalk, a chisel is precise, slate is forgiving.
         # Tiny hairline irregularity for chisel wear.
         "path.sketch": (0.6, 100, 0.6),
         "axes.grid": False,
@@ -74,8 +74,8 @@ def stone_style() -> None:
 
 
 def stone_noise(ax, xlim, ylim, *, density: float = 0.012) -> None:
-    """Procedural noise overlay on the axes — gives the stone its grain.
-    Uses a low-resolution warm-toned random field, blurred in interpolation."""
+    """Procedural noise overlay on the axes, gives the stone its grain.
+ Uses a low-resolution warm-toned random field, blurred in interpolation."""
     rng = np.random.default_rng(42)
     nx, ny = 220, 220
     # Smoothed multi-octave noise for a non-uniform stone grain.
@@ -125,7 +125,7 @@ def stone_axes(ax, xlim, ylim, *, axis_labels: tuple[str, str] | None = None) ->
 
 def engraved(ax, x, y, *, color=STONE_FG, lw=2.6, alpha=1.0, **kw):
     """Plot a polyline as an engraved groove: faint highlight offset down-right
-    (the lit side of the carve) + main dark stroke (the groove itself)."""
+ (the lit side of the carve) + main dark stroke (the groove itself)."""
     # The highlight gives the illusion of depth without 3D math.
     # Offset in display coordinates is a hassle in matplotlib; we approximate
     # by drawing a slightly lighter stroke in world coords with a tiny shift.

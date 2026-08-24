@@ -37,5 +37,5 @@ research-landscape/
 
 - No hagiography.
 - No "recovered suppressed truth" framing.
-- Landscape is honest about its own status — every file should say what tier it is and why.
+- Landscape is about its own status, every file should say what tier it is and why.
 - Commercial content (peptide-markets, etc.) is read-only and non-facilitating. Bucket indexes information; it does not enable transactions.

@@ -1,6 +1,6 @@
 // src/app/api/chat/route.ts
-// POST /api/chat — streaming SSE proxy to Anthropic with feed402 tool use.
-// All grounding goes through feed402 citation envelopes — no ungrounded answers.
+// POST /api/chat, streaming SSE proxy to Anthropic with feed402 tool use.
+// All grounding goes through feed402 citation envelopes, no ungrounded answers.
 
 import { NextRequest } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
@@ -20,7 +20,7 @@ export const dynamic = "force-dynamic";
 // Current as of 2026-05.
 const MODEL = "claude-sonnet-4-5";
 
-// Conservative pre-charge — refunded/topped up after the real token count
+// Conservative pre-charge, refunded/topped up after the real token count
 // comes back from the SDK. TODO(bkt-q7k+4): post-call true-up.
 const ESTIMATED_COST_USD = 0.02;
 

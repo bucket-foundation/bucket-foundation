@@ -1,4 +1,4 @@
-// /canon/[slug] — branch page. Renders README scope + sortable entries table
+// /canon/[slug], branch page. Renders README scope + sortable entries table
 // from the filesystem PLUS the figures (from canon-figures/figures.json,
 // wired in src/lib/canon.ts) and per-concept claim cards (from
 // bucket-canon/<num>-<slug>/sub-claims/<concept>/). Falls back to static

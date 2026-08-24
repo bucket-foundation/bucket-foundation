@@ -1,14 +1,14 @@
 /**
- * Insight synthesizer — turns (venture, topic, candidate grants) into a
+ * Insight synthesizer, turns (venture, topic, candidate grants) into a
  * fit analysis with rationale + gap detection.
  *
  * Two implementations:
- *  - MockSynthesizer: deterministic keyword-overlap. Default. No API key
- *    needed; tests/CI use this.
- *  - AnthropicSynthesizer: real Claude call via @anthropic-ai/sdk. Selected
- *    by INSIGHT_SYNTH=anthropic + ANTHROPIC_API_KEY. Emits a feed402 §3.2
- *    sibling `provenance` block on the envelope (model_id, candidates,
- *    prompt_sha256, ts) so a downstream agent can audit the synthesis.
+ * - MockSynthesizer: deterministic keyword-overlap. Default. No API key
+ * needed; tests/CI use this.
+ * - AnthropicSynthesizer: real Claude call via @anthropic-ai/sdk. Selected
+ * by INSIGHT_SYNTH=anthropic + ANTHROPIC_API_KEY. Emits a feed402 §3.2
+ * sibling `provenance` block on the envelope (model_id, candidates,
+ * prompt_sha256, ts) so a downstream agent can audit the synthesis.
  *
  * Bead: bkt-x2b.
  */
@@ -23,7 +23,7 @@ import type {
 
 export interface SynthesisResult {
   insight: InsightResponse;
-  /** Optional — only populated by real-model synthesizers. */
+  /** Optional, only populated by real-model synthesizers. */
   provenance?: SynthesisProvenance;
 }
 
@@ -53,7 +53,7 @@ function daysUntil(iso: string | null): number | null {
 }
 
 /** Deterministic keyword-overlap ranker. Used both standalone (Mock) and
- *  as the pre-ranker for the LLM (so input tokens stay bounded). */
+ * as the pre-ranker for the LLM (so input tokens stay bounded). */
 function rankByOverlap(req: InsightRequest, candidates: Grant[]) {
   const wantTokens = [...tokens(req.topic), ...tokens(req.venture)];
   return candidates
@@ -144,7 +144,7 @@ export interface AnthropicSynthesizerOpts {
 /**
  * Rough-and-conservative cost model. Claude Sonnet 4.5 list price as of
  * 2026-04: $3 / 1M input tokens, $15 / 1M output tokens. Numbers are
- * intentionally pessimistic — this is a budget guard, not an invoice.
+ * intentionally pessimistic, this is a budget guard.
  */
 const COST_PER_INPUT_TOKEN_USD = 3 / 1_000_000;
 const COST_PER_OUTPUT_TOKEN_USD = 15 / 1_000_000;
@@ -286,8 +286,8 @@ export class AnthropicSynthesizer implements Synthesizer {
       return this.fallback.synthesize(req, candidates);
     }
 
-    // 4. Assemble InsightResponse — backfill deadline + days_until from the
-    //    candidate set. The model can hallucinate ids; filter to known ones.
+    // 4. Assemble InsightResponse, backfill deadline + days_until from the
+    // candidate set. The model can hallucinate ids; filter to known ones.
     const candById = new Map(candidates.map((g) => [g.id, g]));
     const matches = modelOut.matches
       .filter((m) => candById.has(m.grant_id))

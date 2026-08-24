@@ -1,18 +1,18 @@
 "use client";
 
-// AtlasExplorer — the live, interactive explorer for the research-atlas graph.
+// AtlasExplorer, the live, interactive explorer for the research-atlas graph.
 // Drives the same-origin proxy /api/research/atlas (which forwards to the
 // read-only atlas API on the Hetzner box). NO arbitrary SQL: it only calls the
 // vetted endpoints (stats, search, funder portfolio, field top-funders/works,
 // org summary, metascience). Stone-bone styling, graceful offline fallback.
 //
-//   /api/research/atlas?op=stats
-//   /api/research/atlas?op=search&q=&kind=&limit=
-//   /api/research/atlas?op=portfolio&id=<funder>&limit=
-//   /api/research/atlas?op=field-funders&id=<field>&limit=
-//   /api/research/atlas?op=field-works&id=<field>&limit=
-//   /api/research/atlas?op=org&ror=<ror>
-//   /api/research/atlas?op=metascience&name=&...
+// /api/research/atlas?op=stats
+// /api/research/atlas?op=search&q=&kind=&limit=
+// /api/research/atlas?op=portfolio&id=<funder>&limit=
+// /api/research/atlas?op=field-funders&id=<field>&limit=
+// /api/research/atlas?op=field-works&id=<field>&limit=
+// /api/research/atlas?op=org&ror=<ror>
+// /api/research/atlas?op=metascience&name=&...
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -274,7 +274,7 @@ export default function AtlasExplorer() {
 }
 
 // --------------------------------------------------------------------------- //
-//  Detail renderers                                                            //
+// Detail renderers //
 // --------------------------------------------------------------------------- //
 
 type PortfolioRow = { field: string; works: number; grants: number };

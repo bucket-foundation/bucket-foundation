@@ -9,11 +9,11 @@ const BASE = "https://www.bucket.foundation";
 /**
  * Unified sitemap. Every real Next.js page under src/app/**\/page.tsx is
  * included here. Priority / changeFrequency chosen per-page:
- *   1.0  homepage
- *   0.9  canon · learn · build · protocol (top discovery surfaces)
- *   0.8  manifesto · envelope · cite-forever license
- *   0.7  governance · about · join · contributors
- *   0.6  knowledge · research · library · kruse · assets · whats-new
+ * 1.0 homepage
+ * 0.9 canon · learn · build · protocol (top discovery surfaces)
+ * 0.8 manifesto · envelope · cite-forever license
+ * 0.7 governance · about · join · contributors
+ * 0.6 knowledge · research · library · kruse · assets · whats-new
  *
  * Keep in sync with /api/indexnow/ping and scripts/archive-org-ping.sh.
  */
@@ -75,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // The 20 research tools — one URL each.
+  // The 20 research tools, one URL each.
   const toolRoutes = TOOLS.map((t) => ({
     url: `${BASE}/research/tools/${t.slug}`,
     lastModified: now,

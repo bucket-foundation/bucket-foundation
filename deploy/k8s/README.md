@@ -1,4 +1,4 @@
-# bucket-foundation — k8s manifests
+# bucket-foundation, k8s manifests
 
 Postgres 16 + PostGIS + pgvector + TLS ingress for the `bucket-foundation` namespace
 on `prod-hetzner-1` (Hetzner CPX42, K3s in Docker `agfarms-k3s`).
@@ -10,11 +10,11 @@ Bead: **bkt-pf0**. Downstream consumers: `bkt-5qg` (USPTO ingest), `bkt-zx6`
 
 | File | What |
 |------|------|
-| `postgres.yaml` | ConfigMap (init scripts) + ClusterIP Service + StatefulSet (50Gi PVC). NO secret stanza — secret must be created out-of-band first. |
+| `postgres.yaml` | ConfigMap (init scripts) + ClusterIP Service + StatefulSet (50Gi PVC). NO secret stanza, secret must be created out-of-band first. |
 | `postgres-image/Dockerfile` | Custom image baking postgis + pgvector. Build + push once before applying postgres.yaml. |
 | `tls-ingress.yaml` | nginx Ingress for `bucket-foundation.nucleus.agfarms.dev` with cert-manager TLS |
 
-## One-time image build (founder runs once, then on extension upgrades)
+## One-time image build
 
 ```bash
 docker build -t agfarms/postgres-bucket:pg16-postgis-pgvector \
@@ -25,7 +25,7 @@ docker push agfarms/postgres-bucket:pg16-postgis-pgvector
 If the cluster pulls from a private registry, swap the tag accordingly and update
 `postgres.yaml`'s `image:` field.
 
-## Apply order (founder runs after review)
+## Apply order
 
 ```bash
 # 0. Sanity — namespace already exists (Nucleus instance lives here)
@@ -66,7 +66,7 @@ kubectl -n bucket-foundation get cert bucket-foundation-nucleus-tls -w
 curl -sI https://bucket-foundation.nucleus.agfarms.dev/ | head -3
 ```
 
-## DATABASE_URL pattern (for downstream beads)
+## DATABASE_URL pattern
 
 In-cluster (Nucleus instance, ingest jobs, feed402 server):
 ```
@@ -96,7 +96,7 @@ kubectl -n bucket-foundation get secret bucket-foundation-nucleus-tls \
   -o jsonpath='{.data.tls\.crt}' | base64 -d | openssl x509 -noout -dates -subject
 ```
 
-## Backup plan (TODO — file as bead `bkt-pf0-backup`)
+## Backup plan
 
 Nightly `pg_dump` CronJob → mirror to `gdrive:AGFarms/Nucleus/bucket-foundation/db-backups/<YYYY-MM-DD>.sql.gz`.
 Not in this manifest set; ship after first real ingest lands so we know the size profile.
@@ -104,13 +104,13 @@ Not in this manifest set; ship after first real ingest lands so we know the size
 ## Notes / caveats
 
 - **PostGIS install runs at first init via apt-get** inside `pgvector/pgvector:pg16`. Adds
-  ~60s to first-boot time and requires outbound network from the pod (Hetzner default = OK).
-  If we ever lose net egress from the cluster, swap the image for a custom build with
-  postgis + pgvector baked in (build script TODO).
+ ~60s to first-boot time and requires outbound network from the pod (Hetzner default = OK).
+ If we ever lose net egress from the cluster, swap the image for a custom build with
+ postgis + pgvector baked in (build script TODO).
 - **Single replica StatefulSet, no streaming replication.** Fine for dev / first-revenue
-  stage. Upgrade to a primary+replica or move to managed Postgres before we cross any
-  durability SLA.
+ stage. Upgrade to a primary+replica or move to managed Postgres before we cross any
+ durability SLA.
 - **Storage: `local-path` (Hetzner local disk).** Lost if the node dies. Backups (above)
-  are the recovery path until we move to networked storage.
-- **Resources: 2 CPU / 4Gi req, 4 CPU / 8Gi limit.** CPX42 has 8 vCPU / 16Gi — leaves
-  headroom for the Nucleus instance and other namespace workloads.
+ are the recovery path until we move to networked storage.
+- **Resources: 2 CPU / 4Gi req, 4 CPU / 8Gi limit.** CPX42 has 8 vCPU / 16Gi, leaves
+ headroom for the Nucleus instance and other namespace workloads.

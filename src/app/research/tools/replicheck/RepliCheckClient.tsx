@@ -1,6 +1,6 @@
 "use client";
 
-// RepliCheck client island — statcheck p-value recomputation + GRIM test +
+// RepliCheck client island, statcheck p-value recomputation + GRIM test +
 // reporting-completeness flags over a pasted Results section. Render is "json".
 // `text` is Results text or "demo".
 

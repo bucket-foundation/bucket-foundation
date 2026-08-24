@@ -111,7 +111,7 @@ def fetch(max_records: int = MAX_RECORDS) -> Iterable[dict]:
             yielded += 1
             if yielded >= max_records:
                 break
-        # NIH RePORTER caps offset at 14_999 — paginate via an iter token
+        # NIH RePORTER caps offset at 14_999, paginate via an iter token
         offset += len(results)
         if offset >= 14_999:
             # NIH cap; we got all we can from this offset path

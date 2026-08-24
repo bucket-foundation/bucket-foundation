@@ -1,4 +1,4 @@
-// /canon/search — uses the same integrated canon-tool component as the
+// /canon/search, uses the same integrated canon-tool component as the
 // main /canon page. One tool, both surfaces share it. Search box + globe
 // + sidebar + time scrubber + filter chips, all wired.
 

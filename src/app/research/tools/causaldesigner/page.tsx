@@ -6,7 +6,7 @@ export const metadata = toolMetadata("causaldesigner");
 const _jsonld = toolJsonLd("causaldesigner");
 import CausalDesignerClient from "./CausalDesignerClient";
 
-// CausalDesigner run page — server shell framing the interactive client island.
+// CausalDesigner run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("causaldesigner");
   return (

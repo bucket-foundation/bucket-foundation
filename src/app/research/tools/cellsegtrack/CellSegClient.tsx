@@ -1,6 +1,6 @@
 "use client";
 
-// CellSegTrack client island — cell segmentation (cellpose if installed, else a
+// CellSegTrack client island, cell segmentation (cellpose if installed, else a
 // real Otsu + distance-transform watershed). Render is "json". `image` is a
 // 2-D numeric array (rows) or "demo".
 

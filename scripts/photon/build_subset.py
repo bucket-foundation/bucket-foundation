@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_subset.py — bake a compact, client-side "starter tier" Polingual asset from
+build_subset.py, bake a compact, client-side "starter tier" Polingual asset from
 the full 45k-photon substrate, for the Bucket Academy word explorer.
 
 Epic bkt-2ea / bead bkt-nhy. This is the Vercel STARTER TIER: a few-thousand-word,
@@ -11,25 +11,25 @@ axes on the Hetzner box is a later phase (POLINGUAL-PLAN.md §2/§5).
 Selection signal (coreness): a built-in UNIVERSAL CORE-CONCEPT list (Swadesh /
 Leipzig-Jakarta style ~200 concepts) is matched against each photon's primary
 English gloss. A word is kept if its gloss leads with a core concept that is
-attested in >=MIN_LANGS languages — this yields a language-balanced spine of the
+attested in >=MIN_LANGS languages, this yields a language-balanced spine of the
 most translatable, most central vocabulary, where every comparison lens is
 populated. A small semantic-neighbor closure pass then pulls in the strongest
 cross-lingual neighbors of the spine so the Meaning lens surfaces real cross-
 lingual cognates/synonyms even when they didn't match a keyword.
 
-Each kept word carries: surface, lang, short gloss (FIRST sense only — short
+Each kept word carries: surface, lang, short gloss (FIRST sense only, short
 glosses, never long copyrighted definition text), pos, ipa, an int8-quantized
 semantic vector (384-d) and phonetic vector (64-d), translation links (same
 core concept across langs), and etymology_text where present in the Kaikki cache.
 
 Output (idempotent) into learning/app/polingual/:
-  subset.json     metadata + per-word records + concept->word index + manifest
-  vectors.bin     int8-quantized [semantic 384 || phonetic 64] rows, row-aligned
+ subset.json metadata + per-word records + concept->word index + manifest
+ vectors.bin int8-quantized [semantic 384 || phonetic 64] rows, row-aligned
 
 Source: Wiktionary via Kaikki (CC-BY-SA). Attribution is REQUIRED and travels in
 subset.json.attribution; only short glosses + short etymology snippets are stored.
 
-Run:  python3 scripts/photon/build_subset.py [--max-words N] [--no-etym]
+Run: python3 scripts/photon/build_subset.py [--max-words N] [--no-etym]
 """
 from __future__ import annotations
 
@@ -80,9 +80,9 @@ LANG_NAMES = {
     "tr": "Turkish", "vi": "Vietnamese", "zh": "Chinese",
 }
 
-# Universal core-concept spine — a Swadesh / Leipzig-Jakarta style list of the
+# Universal core-concept spine, a Swadesh / Leipzig-Jakarta style list of the
 # concepts that exist in (nearly) every language. Public-domain word lists; we
-# use the concept SET only as a selection filter, not as content.
+# use the concept SET only as a selection filter.
 CORE_CONCEPTS = {
     # nature / cosmos
     "water", "light", "fire", "sun", "moon", "star", "sky", "earth", "ground",
@@ -119,7 +119,7 @@ CORE_CONCEPTS = {
     "dream", "soul", "spirit", "law", "truth",
 }
 
-# Words whose gloss starts with these are grammar/meta entries — never core.
+# Words whose gloss starts with these are grammar/meta entries, never core.
 META_LEAD = re.compile(
     r"^(alternative|synonym|misspelling|abbreviation|initialism|ellipsis|"
     r"obsolete|archaic|dated|nonstandard|plural|singular|genitive|dative|"
@@ -131,7 +131,7 @@ META_LEAD = re.compile(
 
 def primary_gloss(meaning_en: str) -> str:
     """First sense only, lowercased, parentheticals/brackets stripped, leading
-    article/'to' removed. SHORT — never the full · -joined blob."""
+ article/'to' removed. SHORT, never the full · -joined blob."""
     if not meaning_en:
         return ""
     g = meaning_en.split(" · ")[0].strip()
@@ -142,7 +142,7 @@ def primary_gloss(meaning_en: str) -> str:
 
 def short_gloss(meaning_en: str, limit: int = 90) -> str:
     """A short, display-safe gloss: first sense, truncated. We deliberately do
-    NOT reproduce the long · -joined copyrighted definition text."""
+ NOT reproduce the long · -joined copyrighted definition text."""
     g = meaning_en.split(" · ")[0].strip() if meaning_en else ""
     if len(g) > limit:
         g = g[: limit - 1].rstrip() + "…"
@@ -159,7 +159,7 @@ def concept_for(gloss_lead_tokens, token_set):
 
 def select_spine(conn, min_langs: int):
     """Keyword-anchored selection: keep words whose primary gloss leads with a
-    core concept attested in >= min_langs languages."""
+ core concept attested in >= min_langs languages."""
     rows = conn.execute(
         "SELECT rowid, id, lang, surface, meaning_en, pos, ipa, "
         "semantic_row, phonetic_row, provenance_uri, payload "
@@ -215,7 +215,7 @@ def select_spine(conn, min_langs: int):
 
 def neighbor_closure(keep, arrays, max_add, sim_thresh=0.62, per_word=2):
     """Pull in the strongest CROSS-LINGUAL semantic neighbors of the spine that
-    aren't already kept. Bounded by max_add."""
+ aren't already kept. Bounded by max_add."""
     if max_add <= 0:
         return []
     sem = np.memmap(SEMANTIC_BIN, dtype="float32", mode="r").reshape(-1, SEM_DIM)
@@ -255,7 +255,7 @@ def neighbor_closure(keep, arrays, max_add, sim_thresh=0.62, per_word=2):
 
 def load_etymology(selected, arrays):
     """Stream each needed Kaikki cache file ONCE, collecting etymology_text for
-    the selected (lang, surface) pairs only. Short snippets, attributed."""
+ the selected (lang, surface) pairs only. Short snippets, attributed."""
     want = {}
     for i in selected:
         lg, sf = arrays["lang"][i], arrays["surface"][i]
@@ -405,7 +405,7 @@ def main(argv):
         "vec_quant": "int8 (value = stored/127); rows are [semantic||phonetic], "
                      "row-aligned with words[]",
         "vectors_bin": "vectors.bin",
-        # quality knobs for the client's MEANING lens (bkt-nhy) — keep in sync
+        # quality knobs for the client's MEANING lens (bkt-nhy), keep in sync
         # with scripts/photon/query.py SEM_MIN_COS / SEM_REL_GAP / LANG_PREFERENCE.
         "default_lang": "en",
         "lang_preference": ["en", "es", "fr", "de", "it", "pt", "la", "nl",

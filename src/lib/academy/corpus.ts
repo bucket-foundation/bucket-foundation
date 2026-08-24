@@ -1,9 +1,9 @@
 /**
- * src/lib/academy/corpus.ts  (bkt-coh)
+ * src/lib/academy/corpus.ts (bkt-coh)
  * ------------------------------------------------------------------
  * Server-side loader for the Academy branch corpora, used by the public
  * Mastery Profile to translate a learner's stored FSRS state (keyed by branch
- * slug) into a per-branch honest-mastery rollup.
+ * slug) into a per-branch-mastery rollup.
  *
  * The corpora are static JSON shipped in the repo. The source of truth is
  * learning/app/corpus/*.json; scripts/sync-academy.mjs mirrors them into
@@ -12,8 +12,8 @@
  * local/dev. Results are cached in-process for the lifetime of the lambda.
  *
  * The branch SLUG stored in bucket.academy_progress.branch is corpus
- * `meta.branch` (e.g. "01-mathematics", "biophysics", "lang-core") — NOT the
- * filename. index.json maps deck id -> file; note id "05-biophysics" maps to
+ * `meta.branch` (e.g. "01-mathematics", "biophysics", "lang-core"). The
+ * filename differs. index.json maps deck id -> file; note id "05-biophysics" maps to
  * the file biophysics.json whose meta.branch is "biophysics". We build a
  * slug->file map that tolerates both.
  */
@@ -68,12 +68,12 @@ function readCorpusFile(file: string): Corpus | null {
 /**
  * Resolve a stored branch slug (academy_progress.branch) to its corpus.
  * Tries, in order:
- *   1. index.json deck whose `id` === slug,
- *   2. index.json deck whose file basename (minus .json) === slug,
- *   3. a file named "<slug>.json" directly,
- *   4. any built-in corpus whose meta.branch === slug.
+ * 1. index.json deck whose `id` === slug,
+ * 2. index.json deck whose file basename (minus .json) === slug,
+ * 3. a file named "<slug>.json" directly,
+ * 4. any built-in corpus whose meta.branch === slug.
  * Returns null for unknown / user-generated decks (those have no static corpus
- * and are simply omitted from the public profile).
+ * and are omitted from the public profile).
  */
 export function loadCorpusForBranch(slug: string): Corpus | null {
   if (!slug || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(slug)) return null;
@@ -106,7 +106,7 @@ export function loadCorpusForBranch(slug: string): Corpus | null {
   }
 
   // Ensure leverage is populated (the static app computes it at runtime in
-  // engine._computeLeverage; the corpus JSON usually omits it). We derive a
+  // engine._computeLeverage; the corpus JSON omits it). We derive a
   // cheap leverage = normalized unlock-reach so node sizing on the public map
   // matches the in-app encoding even when the JSON has none.
   if (corpus && corpus.atoms) ensureLeverage(corpus);

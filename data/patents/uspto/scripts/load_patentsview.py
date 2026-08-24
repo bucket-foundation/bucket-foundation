@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
-"""load_patentsview.py — bulk-load PatentsView snapshots into Postgres.
+"""load_patentsview.py, bulk-load PatentsView snapshots into Postgres.
 
 Bead: bkt-5qg / bkt-tfu (Bucket Foundation Global Patent Index)
 
 Pipeline:
-    fetch_patentsview.sh   ->   ./parquet/patentsview/*.tsv.zip
-    psql -f schema/uspto.sql                          (creates patents.* tables)
-    load_patentsview.py    ->   patents.uspto_*       (this script)
+ fetch_patentsview.sh -> ./parquet/patentsview/*.tsv.zip
+ psql -f schema/uspto.sql (creates patents.* tables)
+ load_patentsview.py -> patents.uspto_* (this script)
 
 Design choices:
-    * Stdlib + duckdb only. No pandas, no sqlalchemy. Keeps runtime image small
-      and cold-start fast on the loader pod.
-    * DuckDB reads zipped TSV directly via `read_csv` and converts to parquet
-      in-place, then we COPY parquet into Postgres via psycopg's COPY protocol.
-      (psycopg is the one extra dep — TODO note below.)
-    * Idempotent at the row level: every load is `INSERT ... ON CONFLICT DO UPDATE`
-      so reruns converge instead of duplicating.
+ * Stdlib + duckdb only. No pandas, no sqlalchemy. Keeps runtime image small
+ and cold-start fast on the loader pod.
+ * DuckDB reads zipped TSV directly via `read_csv` and converts to parquet
+ in-place, then we COPY parquet into Postgres via psycopg's COPY protocol.
+ (psycopg is the one extra dep, TODO note below.)
+ * Idempotent at the row level: every load is `INSERT ... ON CONFLICT DO UPDATE`
+ so reruns converge instead of duplicating.
 
 Env:
-    DATABASE_URL    postgres://user:pass@host:5432/db   (required at runtime)
-    PV_DIR          override input dir (default: ../parquet/patentsview)
+ DATABASE_URL postgres://user:pass@host:5432/db (required at runtime)
+ PV_DIR override input dir (default: ../parquet/patentsview)
 
 Usage:
-    DATABASE_URL=postgres://... python3 load_patentsview.py [--table g_patent]
-    python3 load_patentsview.py --dry-run
+ DATABASE_URL=postgres://... python3 load_patentsview.py [--table g_patent]
+ python3 load_patentsview.py --dry-run
 """
 
 from __future__ import annotations
@@ -33,7 +33,7 @@ import os
 import sys
 from pathlib import Path
 
-# TODO(bkt-5qg): pip install psycopg[binary] duckdb — pin in requirements.txt
+# TODO(bkt-5qg): pip install psycopg[binary] duckdb, pin in requirements.txt
 # import duckdb
 # import psycopg
 
@@ -49,21 +49,21 @@ TABLE_MAP: dict[str, tuple[str, tuple[str, ...]]] = {
     "g_assignee_disambiguated": ("patents.uspto_assignee",    ("assignee_id", "patent_id")),
     "g_location_disambiguated": ("patents.uspto_location",    ("location_id",)),
     "g_us_patent_citation":     ("patents.uspto_citation",    ("citing_patent_id", "cited_patent_id", "citation_sequence")),
-    # g_cpc_current loads as an array update on patents.uspto_grant.cpc_codes — TODO
+    # g_cpc_current loads as an array update on patents.uspto_grant.cpc_codes, TODO
 }
 
 
 def unzip_to_parquet(tsv_zip: Path, out_dir: Path) -> Path:
     """Convert PatentsView TSV.zip -> parquet using DuckDB in-process.
 
-    TODO(bkt-5qg): implement. Approximate sketch:
-        con = duckdb.connect()
-        out = out_dir / (tsv_zip.stem + ".parquet")
-        con.execute(f\"\"\"
-            COPY (SELECT * FROM read_csv_auto('{tsv_zip}', delim='\\t', header=true))
-            TO '{out}' (FORMAT PARQUET, COMPRESSION ZSTD);
-        \"\"\")
-        return out
+ TODO(bkt-5qg): implement. Approximate sketch:
+ con = duckdb.connect()
+ out = out_dir / (tsv_zip.stem + ".parquet")
+ con.execute(f\"\"\"
+ COPY (SELECT * FROM read_csv_auto('{tsv_zip}', delim='\\t', header=true))
+ TO '{out}' (FORMAT PARQUET, COMPRESSION ZSTD);
+ \"\"\")
+ return out
     """
     raise NotImplementedError("unzip_to_parquet — wiring deferred to runtime bead")
 
@@ -71,14 +71,14 @@ def unzip_to_parquet(tsv_zip: Path, out_dir: Path) -> Path:
 def copy_parquet_to_postgres(parquet_path: Path, target_table: str, conflict_keys: tuple[str, ...], dsn: str) -> int:
     """Bulk-COPY parquet rows into Postgres.
 
-    Strategy:
-        1. CREATE TEMP TABLE LIKE target_table.
-        2. duckdb COPY parquet -> temp via psycopg COPY FROM STDIN with binary format.
-        3. INSERT INTO target SELECT ... FROM temp ON CONFLICT (keys) DO UPDATE.
-        4. Return rowcount.
+ Strategy:
+ 1. CREATE TEMP TABLE LIKE target_table.
+ 2. duckdb COPY parquet -> temp via psycopg COPY FROM STDIN with binary format.
+ 3. INSERT INTO target SELECT ... FROM temp ON CONFLICT (keys) DO UPDATE.
+ 4. Return rowcount.
 
-    TODO(bkt-5qg): wire psycopg + duckdb integration. Stream rows via Arrow batches
-    so we never materialize the full table in Python memory.
+ TODO(bkt-5qg): wire psycopg + duckdb integration. Stream rows via Arrow batches
+ so we never materialize the full table in Python memory.
     """
     raise NotImplementedError("copy_parquet_to_postgres — wiring deferred to runtime bead")
 

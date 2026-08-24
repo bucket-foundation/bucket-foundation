@@ -1,4 +1,4 @@
-# Cover Letter — Fiscal Sponsorship Application
+# Cover Letter: Fiscal Sponsorship Application
 
 **Project:** bucket.foundation
 **Applicant:** Gian Dichio (founding maintainer), in personal capacity
@@ -18,7 +18,7 @@ I am writing to apply for fiscal sponsorship of **bucket.foundation**, an open-s
 3. Begin paying author payouts from citation revenue without the founding maintainer acting as the on-chain custodian.
 4. Establish a formal board, conflict-of-interest policy, and annual audit.
 
-**Why a fiscal sponsor and not a direct 501(c)(3) filing.** The Foundation has no revenue, no full-time staff, and no urgent grant deadline. Filing a direct Form 1023 today would burn 6–12 months and several thousand dollars on a structure that may need to be restructured once the protocol finds its first sustainable revenue model. A fiscal sponsor lets us operate as a charitable project **today**, with full transparency, while we generate the operating history that will inform whether the long-term home is a US 501(c)(3), a Swiss Verein, a Netherlands Stichting, or an existing umbrella.
+**Why a fiscal sponsor and not a direct 501(c)(3) filing.** The Foundation has no revenue, no full-time staff, and no urgent grant deadline. Filing a direct Form 1023 today would burn 6-12 months and several thousand dollars on a structure that may need to be restructured once the protocol finds its first sustainable revenue model. A fiscal sponsor lets us operate as a charitable project **today**, with full transparency, while we generate the operating history that will inform whether the long-term home is a US 501(c)(3), a Swiss Verein, a Netherlands Stichting, or an existing umbrella.
 
 **What's enclosed.** This application packet contains:
 
@@ -35,11 +35,11 @@ I am writing to apply for fiscal sponsorship of **bucket.foundation**, an open-s
 
 The supporting governance document `GOVERNANCE.md` lives at the root of the repository and forms part of this application by reference.
 
-**One ask before you read further.** bucket.foundation has a real conflict-of-interest disclosure: the founding maintainer is also the founder of **AGFarms LLC**, a for-profit venture studio. AGFarms is **not** a parent, not a funder, and does not own the Foundation's domain, wallet, or code. The COI policy in this packet (and `GOVERNANCE.md` § 7) is the primary mitigation. We want this disclosed up front so the review committee can decide whether the structure is acceptable before reading the rest.
+**One ask before you read further.** bucket.foundation has a real conflict-of-interest disclosure: the founding maintainer is also the founder of **AGFarms LLC**, a for-profit venture studio. AGFarms is **not** a parent or a funder, and does not own the Foundation's domain, wallet, or code. The COI policy in this packet (and `GOVERNANCE.md` § 7) is the primary mitigation. We want this disclosed up front so the review committee can decide whether the structure is acceptable before reading the rest.
 
 If your sponsorship terms accept this packet as-is, the founding maintainer will sign the standard fiscal sponsorship agreement, transfer the `bucket.foundation` domain and the operating wallet to the sponsor's custody (or a sub-account thereof), and adopt the sponsor's grant-agreement and reporting templates. If your terms require modifications, we will respond to specific feedback rather than re-litigate the whole packet.
 
-Thank you for considering bucket.foundation. The protocol is designed to outlive any single host — we would rather build it under a sponsor's discipline than under a founder's good intentions.
+Thank you for considering bucket.foundation. The protocol is designed to outlive any single host, we would rather build it under a sponsor's discipline than under a founder's good intentions.
 
 Sincerely,
 

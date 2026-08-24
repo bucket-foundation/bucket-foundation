@@ -388,7 +388,7 @@ function ChatPanel() {
           )}
         </div>
 
-        {/* sidebar — starter lessons */}
+        {/* sidebar, starter lessons */}
         <aside className="col-span-12 md:col-span-4">
           <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--gold-deep)] mb-3">
             § starter lessons
@@ -466,11 +466,11 @@ claude mcp add --scope user --transport stdio bucket \\
 // Hard cap on the encoded-URL query string (claude.ai / chat.openai.com both
 // choke well before the browser's ~8kB limit). We budget 7500 chars for q=...
 // after encodeURIComponent. If we blow past that, we progressively truncate
-// the ground truth — slogans + thesis + envelope + cite-forever are the
+// the ground truth, slogans + thesis + envelope + cite-forever are the
 // non-negotiables; canon branches drop first.
 const MAX_ENCODED_Q = 7500;
 
-// Distilled core — kept if we have to truncate. Captures slogans, thesis,
+// Distilled core, kept if we have to truncate. Captures slogans, thesis,
 // envelope, feed402 tiers, cite-forever license. Drops canon branches,
 // nonprofit rationale, and canon thesis flourish.
 const BUCKET_GROUND_TRUTH_CORE = BUCKET_GROUND_TRUTH

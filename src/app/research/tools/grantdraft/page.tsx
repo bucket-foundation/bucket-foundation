@@ -6,7 +6,7 @@ export const metadata = toolMetadata("grantdraft");
 const _jsonld = toolJsonLd("grantdraft");
 import GrantDraftClient from "./GrantDraftClient";
 
-// GrantDraft run page — corpus-grounded funder finder + specific-aims drafter.
+// GrantDraft run page, corpus-grounded funder finder + specific-aims drafter.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

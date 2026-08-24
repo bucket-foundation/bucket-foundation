@@ -6,7 +6,7 @@ export const metadata = toolMetadata("citationgraph");
 const _jsonld = toolJsonLd("citationgraph");
 import CitationGraphClient from "./CitationGraphClient";
 
-// CitationGraph run page — local citation neighborhood from the OpenAlex graph.
+// CitationGraph run page, local citation neighborhood from the OpenAlex graph.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

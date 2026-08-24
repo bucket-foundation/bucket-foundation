@@ -1,5 +1,5 @@
 /**
- * research-atlas — the open-data publishing surface's read layer.
+ * research-atlas, the open-data publishing surface's read layer.
  *
  * research-atlas (github.com/bucket-foundation/research-atlas) is the canonical
  * research-economy graph: Funder → Grant → Organization → Person → Work → Field,
@@ -13,13 +13,13 @@
  * and the API (/api/research/datasets) all share.
  *
  * Bucket's mission: open research that's free-to-read / paid-to-cite. Each
- * dataset listed here is born citeable — the dataset page emits the same
+ * dataset listed here is born citeable, the dataset page emits the same
  * feed402/0.2 cite-forever envelope shape the rest of Bucket uses, so a
  * downstream publisher knows exactly what it would owe to re-publish over
  * feed402/x402.
  *
- * Permanence is a real DOI (via Zenodo), marked as a clearly-labelled seam where
- * it is referenced — NO blockchain, NO Story Protocol, NO IP-NFT. The DOI is
+ * Permanence is a real DOI (via Zenodo), marked as a-labelled seam where
+ * it is referenced, NO blockchain, NO Story Protocol, NO IP-NFT. The DOI is
  * NOT required to read, list, or cite a dataset.
  */
 import manifestJson from "@/data/research-atlas-manifest.json";
@@ -65,7 +65,7 @@ export function datasetSlug(d: AtlasDataset): string {
   return d.table.replace(/_/g, "-");
 }
 
-/** Reverse of datasetSlug — find a dataset by its slug. */
+/** Reverse of datasetSlug, find a dataset by its slug. */
 export function getDatasetBySlug(slug: string): AtlasDataset | null {
   const table = slug.replace(/-/g, "_");
   return manifest.datasets.find((d) => d.table === table) ?? null;
@@ -174,7 +174,7 @@ export const PAYOUT_WALLET =
 
 /**
  * The price (USD) a downstream PUBLISHER would owe to re-publish a citation of a
- * dataset in a paid work. Passive, forward-looking license metadata — the reader
+ * dataset in a paid work. Passive, forward-looking license metadata, the reader
  * owes nothing. Mirrors the tier pricing model in /api/research; datasets cite at
  * the "source" rate.
  */

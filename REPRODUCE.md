@@ -3,7 +3,7 @@
 *For collaborators who want to rebuild the canon-tuned embedding +
 knowledge graph + bridge detection from a fresh clone.*
 
-## What you get out of the box (no rebuild required)
+## What you get out of the box
 
 If you `git clone` this repo, you immediately have:
 
@@ -26,8 +26,8 @@ If you `git clone` this repo, you immediately have:
 | `_intake/training/canon-bge-small-v1/` | configs | Model config (without weights) + eval.json |
 
 That's enough to **read the canon, run the search index, view the
-knowledge graph, and predict tiers for new claims** — no GPU, no
-re-training.
+knowledge graph, and predict tiers for new claims**, no GPU, no
+Re-training.
 
 ## What you have to download separately
 
@@ -39,10 +39,10 @@ The trained embedding model **weights** are too big for git:
 | `canon-bge-small-v1/tokenizer.json` | ~12MB | Same |
 
 Until the HF release exists, the canon-tuned model is regeneratable
-locally (see "Full rebuild" below) — every step is deterministic with
+locally (see "Full rebuild" below), every step is deterministic with
 `--seed 42` baked in.
 
-## Use what's already there (fast paths)
+## Use what's already there
 
 ### Render the website locally
 
@@ -106,7 +106,7 @@ print(f'node embeddings: {kg_emb.shape}')
 That's enough to **search, traverse, and analyze the entire canon
 without any GPU or training**.
 
-## Full rebuild (~12 hours on a workstation with AMD/NVIDIA GPU)
+## Full rebuild
 
 Only needed if you want to:
 - Re-extract claim cards from new YouTube transcripts
@@ -185,19 +185,19 @@ floating-point non-determinism on GPU, which is small).
 ## How to contribute
 
 1. **Add a new claim card**: drop a markdown file into
-   `bucket-canon/<branch>/sub-claims/<concept>/<NNN-slug>.md`. Run
-   `agf-embed-claims bucket-foundation`. Open a PR.
+ `bucket-canon/<branch>/sub-claims/<concept>/<NNN-slug>.md`. Run
+ `agf-embed-claims bucket-foundation`. Open a PR.
 2. **Add a new branch**: create `bucket-canon/NN-<branch>/` with at
-   least one claim card. Update `src/lib/canon.ts` BRANCHES list.
+ least one claim card. Update `src/lib/canon.ts` BRANCHES list.
 3. **Improve a bridge name**: edit
-   `bucket-canon/_bridges/detected/<NN-slug>/README.md`. The web page
-   re-renders from that markdown.
+ `bucket-canon/_bridges/detected/<NN-slug>/README.md`. The web page
+ re-renders from that markdown.
 4. **Add a new source**: extend `agf-*` tool list in
-   `~/agfarms/tools/`.
+ `~/agfarms/tools/`.
 
 PRs welcome. Branch protection on `main`; squash merges only.
 
-## Open-source artifacts (planned releases)
+## Open-source artifacts
 
 | Artifact | License | Where |
 |---|---|---|

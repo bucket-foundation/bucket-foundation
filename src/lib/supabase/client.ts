@@ -3,9 +3,9 @@
 // Lazy Supabase client. The original module instantiated `createClient` at
 // import time, which crashed Next's static prerender whenever
 // NEXT_PUBLIC_SUPABASE_URL was absent (e.g. `next build` without an .env).
-// Now we expose a `getSupabase()` factory + a memoized Proxy so existing
+// This module exposes a `getSupabase()` factory + a memoized Proxy so existing
 // `import { supabase }` callers keep working, but instantiation is deferred
-// until first method call on the runtime — by which point Vercel / dev-server
+// until first method call on the runtime, by which point Vercel / dev-server
 // env vars are always set.
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 

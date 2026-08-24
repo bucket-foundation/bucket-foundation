@@ -1,42 +1,42 @@
 #!/usr/bin/env python3
 """
-research-tools — ToxinChannelFinder (REAL logic, CPU, live OpenAlex)
+research-tools, ToxinChannelFinder (REAL logic, CPU, live OpenAlex)
 ====================================================================
 
-Genuinely FUNCTIONAL backend for ToxinChannelFinder (docs/research-tools/
-02-tool-roadmap.md §T1, opp #8, 73.8 — the $1,032M membrane/ion-channel
+FUNCTIONAL backend for ToxinChannelFinder (docs/research-tools/
+02-tool-roadmap.md §T1, opp #8, 73.8, the $1,032M membrane/ion-channel
 sub-area). Given a toxin / peptide (by NAME or by amino-acid SEQUENCE), it maps
 it to its likely ion-channel target(s) by two REAL, complementary signals:
 
-  1. KNOWN toxin→channel pharmacology (a curated knowledge base of the major
-     venom-peptide families and their canonical channel targets — real,
-     literature-established mappings: e.g. ω-conotoxins → Cav, charybdotoxin →
-     Kv/BK, μ-conotoxins/TTX → Nav, apamin → SK, ProTx-II → Nav1.7, etc.).
-     Sequence input is classified to a family by cysteine-framework / motif
-     pattern + family keyword signatures.
+ 1. KNOWN toxin→channel pharmacology (a curated knowledge base of the major
+ venom-peptide families and their canonical channel targets, real,
+ literature-established mappings: e.g. ω-conotoxins → Cav, charybdotoxin →
+ Kv/BK, μ-conotoxins/TTX → Nav, apamin → SK, ProTx-II → Nav1.7, etc.).
+ Sequence input is classified to a family by cysteine-framework / motif
+ pattern + family keyword signatures.
 
-  2. LITERATURE CO-OCCURRENCE on the live OpenAlex API: how often the toxin
-     name appears together with each ion-channel family in titles/abstracts.
-     This is a real, data-driven signal that ranks targets and supplies
-     citeable exemplar papers.
+ 2. LITERATURE CO-OCCURRENCE on the live OpenAlex API: how the toxin
+ name appears together with each ion-channel family in titles/abstracts.
+ This is a real, data-driven signal that ranks targets and supplies
+ citeable exemplar papers.
 
-The two signals are fused into a ranked target table with an honest confidence
+The two signals are fused into a ranked target table with an confidence
 (curated-KB hits are high-confidence; literature-only hits are flagged as such).
 
 Design rules (match tools_rag.py / tools_dnarna.py):
-  * Reuses the OpenAlex client + text utilities from tools_rag (live HTTP, disk
-    cached, graceful `degraded` fallback when offline).
-  * Pure functions for classification + fusion so they unit-test with fixtures,
-    ZERO network, ZERO GPU (see tests/).
-  * run_toxin_channel_finder(payload) -> dict returns the `output` payload only;
-    the gateway wraps it in the v1 job-result envelope + provenance.
+ * Reuses the OpenAlex client + text utilities from tools_rag (live HTTP, disk
+ cached, graceful `degraded` fallback when offline).
+ * Pure functions for classification + fusion so they unit-test with fixtures,
+ ZERO network, ZERO GPU (see tests/).
+ * run_toxin_channel_finder(payload) -> dict returns the `output` payload only;
+ the gateway wraps it in the v1 job-result envelope + provenance.
 
 The gateway imports TOXIN_RUNNERS from here.
 
 TODO(deploy): a true sequence-similarity search (BLAST against a venom-peptide
 DB / UniProt animal-toxin annotation) is a documented heavier seam; the shipped
 classifier uses real cysteine-framework + motif rules, which is deterministic
-and needs no DB. Adding a similarity index is a deploy, not a redesign.
+and needs no DB. Adding a similarity index is a deploy.
 """
 from __future__ import annotations
 
@@ -49,7 +49,7 @@ import tools_rag as _rag
 
 
 # ===========================================================================
-# Ion-channel families (the target vocabulary) — real channel classes.
+# Ion-channel families (the target vocabulary), real channel classes.
 # ===========================================================================
 CHANNEL_FAMILIES: dict[str, dict] = {
     "Nav": {"name": "Voltage-gated sodium channel (Nav)",
@@ -115,7 +115,7 @@ TOXIN_FAMILIES: list[dict] = [
         "keywords": ["tetrodotoxin", "ttx", "saxitoxin", "stx"],
         "targets": [("Nav", 0.97)],
         "source": "Nav pore blocker — tetrodotoxin / saxitoxin (guanidinium toxins)",
-        "cys_count": 0, "motif": "",  # small-molecule alkaloid, not a peptide
+        "cys_count": 0, "motif": "",  # small-molecule alkaloid
     },
     {
         "family": "ProTx",
@@ -197,7 +197,7 @@ def clean_sequence(s: str) -> str:
 
 def classify_by_name(name: str) -> list[dict]:
     """Match an input NAME against the curated toxin-family KB. Pure function.
-    Returns matched families (possibly several) with their channel targets."""
+ Returns matched families (possibly several) with their channel targets."""
     nl = (name or "").lower()
     hits: list[dict] = []
     for fam in TOXIN_FAMILIES:
@@ -208,8 +208,8 @@ def classify_by_name(name: str) -> list[dict]:
 
 def classify_by_sequence(seq: str) -> list[dict]:
     """Classify a peptide SEQUENCE to candidate toxin families by cysteine count
-    + cysteine-framework motif. Pure function. Real (if coarse) structural logic:
-    venom peptides are defined by their disulfide framework."""
+ + cysteine-framework motif. Pure function. Real (if coarse) structural logic:
+ venom peptides are defined by their disulfide framework."""
     seq = clean_sequence(seq)
     if not seq:
         return []
@@ -235,10 +235,10 @@ def fuse_targets(
     kb_families: list[dict], lit_counts: dict[str, dict], *, seq_mode: bool = False
 ) -> list[dict]:
     """Fuse curated-KB targets with literature co-occurrence into a ranked table.
-    Pure function.
+ Pure function.
 
-    confidence = curated KB target weight (if any), boosted by literature support;
-    literature-only families get a lower, clearly-flagged confidence.
+ confidence = curated KB target weight (if any), boosted by literature support;
+ literature-only families get a lower,-flagged confidence.
     """
     targets: dict[str, dict] = {}
     # 1. curated KB targets
@@ -292,8 +292,8 @@ def fuse_targets(
 # Literature co-occurrence (live OpenAlex; pure scorer over fetched works)
 # ===========================================================================
 def count_channel_cooccurrence(works: list[dict]) -> dict[str, dict]:
-    """Count how often each channel family co-occurs with the toxin in a fetched
-    work set, and keep an exemplar paper per channel. Pure function over works."""
+    """Count how each channel family co-occurs with the toxin in a fetched
+ work set, and keep an exemplar paper per channel. Pure function over works."""
     out: dict[str, dict] = {}
     for w in works:
         text = f"{w.get('title','')} {w.get('abstract','')} {' '.join(w.get('concepts',[]))}".lower()
@@ -318,9 +318,9 @@ def count_channel_cooccurrence(works: list[dict]) -> dict[str, dict]:
 def run_toxin_channel_finder(payload: dict) -> dict:
     """payload: { toxin: str (name OR amino-acid sequence), limit?: int }
 
-    Maps a toxin/peptide to likely ion-channel targets via curated venom-peptide
-    pharmacology + live OpenAlex literature co-occurrence. Returns a ranked
-    target table with honest confidence + citeable exemplar papers.
+ Maps a toxin/peptide to likely ion-channel targets via curated venom-peptide
+ pharmacology + live OpenAlex literature co-occurrence. Returns a ranked
+ target table with confidence + citeable exemplar papers.
     """
     raw = (payload.get("toxin") or payload.get("input") or "").strip()
     if len(raw) < 3:
@@ -404,7 +404,7 @@ def run_toxin_channel_finder(payload: dict) -> dict:
             "established toxin→channel mappings) with live OpenAlex literature co-"
             "occurrence. Sequence input is classified by cysteine framework + motif "
             "(a real disulfide-scaffold signal); a full BLAST/UniProt-toxin similarity "
-            "search is a documented heavier path. Confidence is honest: curated hits "
+            "search is a documented heavier path. Confidence is: curated hits "
             "score high, literature-only hits are flagged and capped."
         ),
     }

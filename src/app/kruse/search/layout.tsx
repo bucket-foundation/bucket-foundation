@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 /**
  * Gated interactive search. Sits above the root layout in a fixed overlay,
  * the same way the original /kruse page used to. Access is enforced by
- * middleware — if you reach this layout, you already have a valid cookie.
+ * middleware, if you reach this layout, you already have a valid cookie.
  */
 export default function KruseSearchLayout({
   children,

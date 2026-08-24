@@ -1,6 +1,6 @@
 "use client";
 
-// PowerPlan client island — statistical power / sample-size calculator. Render "json".
+// PowerPlan client island, statistical power / sample-size calculator. Render "json".
 
 import { useState } from "react";
 import {

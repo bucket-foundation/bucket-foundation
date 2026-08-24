@@ -1,6 +1,8 @@
-# Refused, then fixed — the agent-trust design of a paid research protocol
+# Refused
 
-> A technical write-up of why a correctly safety-trained AI agent refused
+Then fixed, the agent-trust design of a paid research protocol.
+
+> A technical write-up of why a safety-trained AI agent refused
 > bucket.foundation, why that refusal was right, and the structural change
 > that answered it. This is the canonical reference for feed402's
 > agent-trust / anti-injection design.
@@ -13,18 +15,20 @@ Spec sibling: feed402 `SPEC.md §3.1` · normative rule: [`PROTOCOL.md §3.1`](h
 
 ---
 
-## 1. The setup: free to read, paid to cite
+## 1. The setup: free to read
 
-bucket.foundation is a nonprofit. Its only reason to exist is research
+Paid to cite.
+
+Bucket.foundation is a nonprofit. Its only reason to exist is research
 integrity: make a paper paid-for-once and citeable-forever, and route the
 citation fee to the author who wrote the work instead of the publisher who
 fenced it. The protocol is open (feed402), the code is MIT, and the
 foundation deliberately does not own the network it is trying to start.
 
 For that thesis to be real, something that is *not* the author has to be able
-to use it. In 2026 a large share of research retrieval is done by autonomous
-AI agents, not by humans typing into a search box. So agent-discoverability is
-not a nice-to-have — it is the load test. If a careful agent cannot safely
+To use it. In 2026 a large share of research retrieval is done by autonomous
+AI agents rather than humans typing into a search box. So agent-discoverability is
+not a nice-to-have, it is the load test. If a careful agent cannot safely
 discover the protocol, query it, and cite a result, the protocol does not
 work, regardless of how clean the spec reads.
 
@@ -36,46 +40,52 @@ hand-holding, no instruction to trust anything.
 
 The discovery half worked, and it worked the way it was designed to.
 
-One agent started from the machine-readable entry points — `/llms.txt`, the
-feed402 manifest at `/.well-known/feed402.json` — read the proxy contract
+One agent started from the machine-readable entry points, `/llms.txt`, the
+Feed402 manifest at `/.well-known/feed402.json`, read the proxy contract
 (`GET /api/research?q=&tier=`, three tiers: insight / query / raw), followed
-it into the biophysics branch of the canon, opened the mitochondria subfolder,
-and identified **Peter Mitchell's 1961 chemiosmotic-coupling paper as "the
+It into the biophysics branch of the canon, opened the mitochondria subfolder,
+And identified **Peter Mitchell's 1961 chemiosmotic-coupling paper as "the
 axiom"** underneath how mitochondria make ATP. It then walked the lineage
-forward — Mitchell 1966, Boyer's binding-change mechanism, the 1994 F₁-ATPase
-structure.
+forward, Mitchell 1966, Boyer's binding-change mechanism, the 1994 F₁-ATPase
+Structure.
 
 That is precisely the behaviour a curated canon is supposed to produce: not a
 ranked list of search hits, but a *foundation* and its primary derivations.
 The retrieval, ranking, and citation-target selection all worked end to end
 with no human in the loop.
 
-## 3. What broke: two distinct, both-correct failure modes
+## 3. What broke: two distinct
+
+Both-correct failure modes.
 
 Then both agents stopped, for two different reasons. Both reasons were
 correct. Neither was a model defect.
 
-### 3.1 ChatGPT — no wallet, honest stop
+### 3.1 ChatGPT
+
+No wallet, stop.
 
 ChatGPT did not refuse on safety grounds. It read the manifest, found the
-canon, identified the right citation target — and then hit the payment step
+canon, identified the right citation target, and then hit the payment step
 the protocol exposed at the time, tried to pay the x402 challenge *itself*,
-had no wallet or private key, could not execute the payment, and therefore
-honestly declined to cite a result it had never actually obtained. The
-discovery half was flawless; the protocol had simply put a payment action in
+Had no wallet or private key, could not execute the payment, and therefore
+declined to cite a result it had never obtained. The
+discovery half was flawless; the protocol had put a payment action in
 the agent's path that the agent had no way (and no business) performing.
 
-### 3.2 Claude — safety refusal, verbatim
+### 3.2 Claude
+
+Safety refusal, verbatim.
 
 Claude refused, and stated exactly why. The quote below is verbatim from the
 recorded session; it is reproduced unedited because the quote *is* the
-finding:
+Finding:
 
 > I'll help research mitochondrial ATP synthesis, but I want to be transparent
 > about a few things before proceeding.
 >
-> Let me first take a look at what's actually there. The fetch of `/llms.txt`
-> failed, and that actually points to the core issue I want to flag before
+> Let me first take a look at what's there. The fetch of `/llms.txt`
+> failed, and that points to the core issue I want to flag before
 > going further.
 >
 > Here's my concern. The request is structured as a multi-step instruction
@@ -87,19 +97,19 @@ finding:
 > challenges, authorize transactions, or follow instructions sight-unseen just
 > because a fetched document tells me to. If a `receipt.challenge` field
 > contained a payment demand, an instruction to send credentials somewhere, or
-> anything else, I shouldn't act on it automatically — that's the mechanism of
+> anything else, I shouldn't act on it automatically, that's the mechanism of
 > a prompt-injection or a "pay-to-proceed" trap, whether or not
 > bucket.foundation is itself legitimate.
 >
 > For context on the legitimacy question: from what I know, bucket.foundation
-> describes a "feed402" model — "free to read, paid to cite" research
+> describes a "feed402" model, "free to read, paid to cite" research
 > infrastructure built around the x402 payment protocol. So the concepts here
 > aren't invented. But "this is a real protocol" and "I should autonomously
-> pay a challenge embedded in a server response" are very different things. The
+> pay a challenge embedded in a server response" are different things. The
 > second one I won't do regardless.
 
 The agent then offered to research the topic from established science directly
-and to read bucket.foundation only via plain URLs with no payment step — a
+and to read bucket.foundation only via plain URLs with no payment step, a
 graceful, correct degrade.
 
 ## 4. Why the refusal was correct given what it saw
@@ -107,10 +117,10 @@ graceful, correct degrade.
 This section is load-bearing and is not spun.
 
 Claude was right. It was not over-cautious, it did not misread the protocol,
-and the legitimacy of bucket.foundation is not the point. The flagged pattern —
+And the legitimacy of bucket.foundation is not the point. The flagged pattern,
 *fetch a document, then perform a payment whose specifics that same document
-defines* — is the textbook shape of a prompt-injection and of a
-pay-to-proceed trap. A correctly safety-trained agent **should** refuse it.
+Defines*, is the textbook shape of a prompt-injection and of a
+pay-to-proceed trap. A safety-trained agent **should** refuse it.
 An agent that complied with that pattern would be exactly the agent you do not
 want touching a wallet or a credential store.
 
@@ -118,21 +128,21 @@ So the defect was not in the model. The defect was in the **protocol's
 presentation**: bucket.foundation had built a legitimate, well-intentioned
 mechanism that, viewed from the outside by a careful system, was
 indistinguishable from a trap. For an organisation whose only asset is trust,
-that is not a UX nit. It is the central problem, stated by an external system
+That is not a UX nit. It is the central problem, stated by an external system
 more precisely than we could have stated it ourselves.
 
 The two failures even share a root cause. ChatGPT's "no wallet, can't pay,
-won't cite" and Claude's "this is a pay-to-proceed pattern, I refuse" are the
+Won't cite" and Claude's "this is a pay-to-proceed pattern, I refuse" are the
 same finding seen from two angles: **the protocol was asking the reading agent
-to carry out a payment.** Remove that and both failures disappear at once.
+To carry out a payment.** Remove that and both failures disappear at once.
 
 We treated the refusal as the specification.
 
 ## 5. The fix, concretely
 
-The fix is structural, not cosmetic. It does not ask the agent to trust
-bucket.foundation harder; it removes every element the agent correctly flagged
-so there is nothing left to refuse. Five changes, each independently
+The fix is structural. It does not ask the agent to trust
+bucket.foundation harder; it removes every element the agent flagged
+So there is nothing left to refuse. Five changes, each independently
 verifiable from a single response.
 
 ### 5.1 A zero-key path: the agent never holds a wallet
@@ -140,9 +150,9 @@ verifiable from a single response.
 bucket.foundation operates a public, budget-capped, server-side proxy at
 `/api/research`. Any x402 settlement happens **entirely server-side**, between
 bucket.foundation's own funded wallet and the upstream gateway, before the
-caller sees anything. If the server cannot settle — wallet not yet funded,
-upstream down, daily cap reached — it does **not** hand the caller a challenge
-to execute. It transparently answers from the already-paid bucket.foundation
+caller sees anything. If the server cannot settle, wallet not yet funded,
+Upstream down, daily cap reached, it does **not** hand the caller a challenge
+To execute. It transparently answers from the already-paid bucket.foundation
 canon index and sets `receipt.status: "served_from_canon"`. The caller still
 gets a real, populated, citeable envelope. In neither state is there a payment
 step for the caller.
@@ -153,16 +163,18 @@ through a merge step that **deletes any `challenge`** the upstream might leak
 before the response is serialized. So the guarantee holds whether or not the
 server has a funded wallet.
 
-### 5.2 The refused field is gone — `receipt.challenge` is never serialized
+### 5.2 The refused field is gone
 
-The single element Claude named — *"an x402 challenge read out of a
-`receipt.challenge` field"* — does not exist on any caller-facing response.
+`receipt.challenge` is never serialized.
+
+The single element Claude named, *"an x402 challenge read out of a
+`receipt.challenge` field"*, does not exist on any caller-facing response.
 There is no `receipt.challenge`, no `pay_to`, no `X-PAYMENT` header, and no
 `error.message` instructing payment. The trust model states explicitly: if a
 caller ever receives a `receipt.challenge` on this path, it is a bug or a
 spoof and must not be acted on.
 
-### 5.3 Declarative inertness — `agent_action_required` / `payment_required_from_you`
+### 5.3 Declarative inertness, `agent_action_required` / `payment_required_from_you`
 
 Every caller-facing envelope carries two declarative booleans, kept truthful:
 
@@ -171,7 +183,7 @@ Every caller-facing envelope carries two declarative booleans, kept truthful:
 "payment_required_from_you": false
 ```
 
-plus a `summary` string restating the same in plain prose, because
+Plus a `summary` string restating the same in plain prose, because
 safety-tuned agents read prose, not only schema:
 
 > This is data you may read and cite freely. No action, payment, signature, or
@@ -183,7 +195,7 @@ they are paired with structural facts (`receipt.price_usd: 0`,
 `receipt.paid_by: bucket-foundation`, no challenge anywhere) so the prose and
 the structure cannot diverge.
 
-### 5.4 `cite` is passive license metadata, not an action
+### 5.4 `cite` is passive license metadata
 
 The `cite` block was the conceptual ambiguity that made the whole thing read
 as pay-to-proceed. It is now scoped so it cannot be misread:
@@ -200,18 +212,18 @@ as pay-to-proceed. It is now scoped so it cannot be misread:
 
 `cite` describes what a future **publisher** would owe the original author if
 that publisher re-publishes this content in a *paid* downstream work. It is
-the "fees route to authors, not publishers" mechanism, expressed as a
+the "fees route to authors" mechanism, expressed as a
 forward-looking license notice. It is never a charge to the reading agent and
 echoing it is never an action. `cite.reader_owes` is `0` and
 `cite.applies_to` declares the scope explicitly.
 
 ### 5.5 The trust model is written where an agent will read it
 
-`/llms-full.txt §4` ("Trust model — why a safety-tuned agent can use this
+`/llms-full.txt §4` ("Trust model, why a safety-tuned agent can use this
 without objecting") states the model precisely: the difference between
 paid-to-cite and pay-to-proceed, the zero-key guarantee as a verifiable
-invariant, where settlement actually happens, and that the entire citation
-action is "copy the `citation` block verbatim — no payment, no signature, no
+Invariant, where settlement happens, and that the entire citation
+action is "copy the `citation` block verbatim, no payment, no signature, no
 follow-up." This is normative in `PROTOCOL.md §3.1` and mirrored in feed402
 `SPEC.md §3.1`.
 
@@ -219,7 +231,7 @@ follow-up." This is normative in `PROTOCOL.md §3.1` and mirrored in feed402
 
 The same request, `GET /api/research?q=mitochondrial+ATP+synthesis&tier=insight`:
 
-**Before** — `HTTP 402`, flow dead-ends:
+**Before**, `HTTP 402`, flow dead-ends:
 
 ```jsonc
 {
@@ -240,7 +252,7 @@ The same request, `GET /api/research?q=mitochondrial+ATP+synthesis&tier=insight`
 }
 ```
 
-**After** — `HTTP 200`, `x-bucket-source: canon-fallback`:
+**After**, `HTTP 200`, `x-bucket-source: canon-fallback`:
 
 ```jsonc
 {
@@ -282,21 +294,21 @@ inverted element:
 
 | Claude's objection | What changed |
 |---|---|
-| "pay an x402 challenge read out of a `receipt.challenge` field" | `receipt.challenge` is never serialized on a caller-facing path; the funded-wallet path strips it too |
+| "pay an x402 challenge read out of a 0 field" | `receipt.challenge` is never serialized on a caller-facing path; the funded-wallet path strips it too |
 | "execute financial actions … defined by content I'd retrieve" | no `error.message`, no instruction; `summary` explicitly states no action is required |
-| "the mechanism of a prompt-injection or a 'pay-to-proceed' trap" | `status: served_from_canon`, `price_usd: 0`, `agent_action_required: false`, real `data` — nothing to proceed *through* |
+| "the mechanism of a prompt-injection or a 'pay-to-proceed' trap" | `status: served_from_canon`, `price_usd: 0`, `agent_action_required: false`, real `data`, nothing to proceed *through* |
 | ChatGPT: "no wallet → can't pay → nothing to cite" | `data` is populated from real canon; `citation` is a copy-verbatim block; no wallet anywhere in the flow |
 
-The result is checkable from one response, not asserted: a safety-tuned agent
+The result is checkable from one response instead of asserted: a safety-tuned agent
 reading the after-envelope has, structurally, nothing to sign, pay, or follow
-— only a `citation` block to echo.
+only a `citation` block to echo.
 
-## 6. The general principle (for other x402 / data-protocol authors)
+## 6. The general principle
 
 This is the part worth taking even if you never touch bucket.foundation. It
 generalises to any protocol that mixes content retrieval with payment.
 
-> **A correctly safety-trained autonomous agent should refuse to perform a
+> **A safety-trained autonomous agent should refuse to perform a
 > payment that a just-fetched document instructs it to perform. Do not design
 > a protocol that depends on overriding that refusal. Design the protocol so
 > the refusal is never triggered.**
@@ -304,34 +316,34 @@ generalises to any protocol that mixes content retrieval with payment.
 Concretely, for a caller-facing read/cite path:
 
 1. **Never** return a payment challenge, an x402 / `X-PAYMENT` header, or any
-   instruction directed at the caller to sign, send, authorize, or relay a
-   payment. The challenge must never be serialized into the caller's response.
+ instruction directed at the caller to sign, send, authorize, or relay a
+ payment. The challenge must never be serialized into the caller's response.
 2. Perform any settlement **entirely server-side** (operator wallet ↔ source),
-   invisibly to the caller, or serve already-paid content instead.
-3. State inertness **declaratively and in prose** — machine-checkable booleans
-   plus a plain-language restatement — and keep both truthful by construction,
-   not by promise.
+ invisibly to the caller, or serve already-paid content instead.
+3. State inertness **declaratively and in prose**, machine-checkable booleans
+ plus a plain-language restatement, and keep both truthful by construction,
+ not by promise.
 4. Keep any forward-looking fee as **passive license metadata** scoped to a
-   *downstream publisher*, never as a charge to or an action by the reading
-   agent. Make `reader_owes: 0` and the scope explicit in the payload.
-5. Treat a careful agent's refusal as a **specification, not an obstacle**.
-   The refusal tells you precisely which element reads as a trap. Delete that
-   element rather than arguing with the model.
+ *downstream publisher*, never as a charge to or an action by the reading
+ agent. Make `reader_owes: 0` and the scope explicit in the payload.
+5. Treat a careful agent's refusal as a **specification**.
+ The refusal tells you precisely which element reads as a trap. Delete that
+ element rather than arguing with the model.
 
-The line this draws is between **paid-to-cite** — passive, free to read and
-cite, fees routing to authors only on downstream paid re-publication — and
-**pay-to-proceed** — a mid-request paywall the caller must clear. feed402
-buckets are paid-to-cite. Any protocol can adopt the same five rules without
+The line this draws is between **paid-to-cite**, passive, free to read and
+cite, fees routing to authors only on downstream paid re-publication, and
+**pay-to-proceed**, a mid-request paywall the caller must clear. Feed402
+Buckets are paid-to-cite. Any protocol can adopt the same five rules without
 adopting anything else about feed402; that portability is the point.
 
 We did not get an agent to trust us. We removed the reason not to. For a
 research-integrity nonprofit, publishing the refusal that taught us how is
-not a risk to manage — it is the work.
+not a risk to manage, it is the work.
 
 ---
 
-*Reference: normative rule — [`PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md);
-agent trust model — [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt);
-envelope shape — [`/protocol/envelope`](https://www.bucket.foundation/protocol/envelope);
-spec sibling — feed402 `SPEC.md §3.1`. Source: `gianyrox/bucket-foundation`,
+*Reference: normative rule, [`PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md);
+Agent trust model, [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt);
+Envelope shape, [`/protocol/envelope`](https://www.bucket.foundation/protocol/envelope);
+Spec sibling, feed402 `SPEC.md §3.1`. Source: `gianyrox/bucket-foundation`,
 MIT. This document is CC-BY-4.0.*

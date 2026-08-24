@@ -1,35 +1,35 @@
 #!/usr/bin/env python3
 """
-research-tools — CitationGraph (REAL logic, CPU, live OpenAlex)
+research-tools, CitationGraph (REAL logic, CPU, live OpenAlex)
 ==============================================================
 
-Genuinely FUNCTIONAL backend for CitationGraph (docs/research-tools/
+FUNCTIONAL backend for CitationGraph (docs/research-tools/
 02-tool-roadmap.md, the "build its local citation neighborhood" tool). Given a
 paper (DOI, OpenAlex ID, or a title to resolve), it builds the paper's LOCAL
 citation neighborhood from the live OpenAlex graph and surfaces the key related
 works + which are most central:
 
-  * the seed paper (resolved on OpenAlex)
-  * its REFERENCES (what it cites) and CITATIONS (what cites it) — real edges
-    from OpenAlex `referenced_works` + a cited-by query
-  * a co-citation / shared-reference layer that links neighbors to each other
-  * a CENTRALITY ranking over the neighborhood (degree centrality on the induced
-    subgraph) so the most-connected related works rise to the top
+ * the seed paper (resolved on OpenAlex)
+ * its REFERENCES (what it cites) and CITATIONS (what cites it), real edges
+ from OpenAlex `referenced_works` + a cited-by query
+ * a co-citation / shared-reference layer that links neighbors to each other
+ * a CENTRALITY ranking over the neighborhood (degree centrality on the induced
+ subgraph) so the most-connected related works rise to the top
 
 Design rules (match tools_rag.py / tools_toxin.py):
-  * Reuses the OpenAlex client (cached_get_json, normalize_work) + text utils
-    from tools_rag (live HTTP, disk cached, graceful `degraded` fallback).
-  * Pure functions for graph construction + centrality so they unit-test with
-    fixtures, ZERO network, ZERO GPU (see tests/).
-  * run_citation_graph(payload) -> dict returns the `output` payload only; the
-    gateway wraps it in the v1 job-result envelope + provenance.
+ * Reuses the OpenAlex client (cached_get_json, normalize_work) + text utils
+ from tools_rag (live HTTP, disk cached, graceful `degraded` fallback).
+ * Pure functions for graph construction + centrality so they unit-test with
+ fixtures, ZERO network, ZERO GPU (see tests/).
+ * run_citation_graph(payload) -> dict returns the `output` payload only; the
+ gateway wraps it in the v1 job-result envelope + provenance.
 
 The gateway imports CITATION_RUNNERS from here.
 
 TODO(deploy): a full multi-hop centrality (eigenvector/PageRank over a 2-hop
 neighborhood) is a documented heavier path; the shipped centrality is real
 degree centrality over the induced 1-hop subgraph (deterministic, cheap, and
-informative). Expanding the hop radius is a config change, not a redesign.
+informative). Expanding the hop radius is a config change.
 """
 from __future__ import annotations
 
@@ -48,10 +48,10 @@ _OAID_RE = re.compile(r"\bW\d{3,}\b", re.I)
 
 def parse_paper_id(s: str) -> tuple[Optional[str], str]:
     """Classify the input as an OpenAlex ID, a DOI, or free-text title.
-    Returns (openalex_path_or_None, kind). Pure function.
+ Returns (openalex_path_or_None, kind). Pure function.
 
-    kind ∈ {"openalex", "doi", "title"}. For openalex/doi we can fetch the work
-    directly; for a title we must search first.
+ kind ∈ {"openalex", "doi", "title"}. For openalex/doi we can fetch the work
+ directly; for a title we must search first.
     """
     s = (s or "").strip()
     m = _OAID_RE.search(s)
@@ -78,8 +78,8 @@ def short_id(openalex_id: str) -> str:
 def degree_centrality(nodes: list[str], edges: list[tuple[str, str]]) -> dict[str, float]:
     """Degree centrality on an undirected induced subgraph. Pure function.
 
-    centrality(v) = degree(v) / (N - 1)  (the standard normalization). Only edges
-    whose BOTH endpoints are in `nodes` count (the induced neighborhood)."""
+ centrality(v) = degree(v) / (N - 1) (the standard normalization). Only edges
+ whose BOTH endpoints are in `nodes` count (the induced neighborhood)."""
     nodeset = set(nodes)
     deg: dict[str, int] = {n: 0 for n in nodes}
     seen: set[tuple[str, str]] = set()
@@ -99,11 +99,11 @@ def build_neighborhood(
     seed: dict, references: list[dict], citations: list[dict]
 ) -> dict:
     """Assemble the induced 1-hop citation neighborhood + degree centrality.
-    Pure function over already-fetched works.
+ Pure function over already-fetched works.
 
-    seed:        normalized seed work, must carry `referenced_ids` (list of OA ids)
-    references:  normalized works the seed cites (each may carry referenced_ids)
-    citations:   normalized works that cite the seed (each may carry referenced_ids)
+ seed: normalized seed work, must carry `referenced_ids` (list of OA ids)
+ references: normalized works the seed cites (each may carry referenced_ids)
+ citations: normalized works that cite the seed (each may carry referenced_ids)
     """
     seed_id = short_id(seed["id"])
     nodes: dict[str, dict] = {seed_id: seed}
@@ -225,9 +225,9 @@ def fetch_citing_works(seed_id: str, limit: int) -> list[dict]:
 def run_citation_graph(payload: dict) -> dict:
     """payload: { paper: str (DOI / OpenAlex ID / title), limit?: int }
 
-    Builds the paper's local citation neighborhood from the live OpenAlex graph
-    and surfaces the key related works + which are most central (degree
-    centrality on the induced 1-hop subgraph).
+ Builds the paper's local citation neighborhood from the live OpenAlex graph
+ and surfaces the key related works + which are most central (degree
+ centrality on the induced 1-hop subgraph).
     """
     raw = (payload.get("paper") or payload.get("doi") or payload.get("input") or "").strip()
     if len(raw) < 4:
@@ -306,7 +306,7 @@ def run_citation_graph(payload: dict) -> dict:
         "note": (
             "Edges are real OpenAlex citation relationships (references + cited-by + "
             "co-citation within the set). Centrality is degree centrality on the "
-            "induced 1-hop neighborhood — the most-connected related works rise to "
+            "induced 1-hop neighborhood, the most-connected related works rise to "
             "the top. A full PageRank over a 2-hop neighborhood is a documented "
             "heavier path."
         ),

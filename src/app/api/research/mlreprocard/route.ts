@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/mlreprocard
+ * bucket.foundation, /api/research/mlreprocard
  * -------------------------------------------------
  * Same-origin proxy for MLReproCard (cs-ml field tool). Score a described ML experiment against a REAL reproducibility rubric (data/code/training/evaluation/compute/sharing), flag missing repro elements, assign a Gundersen-style level, and emit a normalized model card. Backend is REAL (tools_mlrepro.py).
  *
  * POST body { record, demo? }
- *   GET  /api/research/mlreprocard?job=<id>[&result=1] → status / result
+ * GET /api/research/mlreprocard?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

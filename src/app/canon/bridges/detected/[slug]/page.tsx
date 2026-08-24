@@ -1,4 +1,4 @@
-// /canon/bridges/detected/[slug] — single detected primitive bridge page.
+// /canon/bridges/detected/[slug], single detected primitive bridge page.
 // Renders LLM-named multi-branch primitives discovered via embedding clustering.
 
 import Link from "next/link";

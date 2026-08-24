@@ -1,8 +1,8 @@
-/* Bucket Academy — cross-platform haptics.
+/* Bucket Academy, cross-platform haptics.
  *
  * Android Chrome exposes navigator.vibrate(); iOS Safari exposes NO Vibration API.
  * The working iOS trick (Safari 17.4+, GRAPHICS-RENDERING.md §3.6): a
- * <input type="checkbox" switch> fires a SYSTEM haptic when toggled — so we create
+ * <input type="checkbox" switch> fires a SYSTEM haptic when toggled, so we create
  * one off-screen, toggle it, and reuse it. Everything degrades to a silent no-op.
  *
  * Public:  window.haptic(kind)  where kind ∈
@@ -58,7 +58,7 @@
   }
 
   // vibration patterns per kind (ms). Short + crisp; "never red"/non-punishing ethos:
-  // wrong is a gentle double-tap, not a harsh buzz.
+  // wrong is a gentle double-tap.
   var PATTERNS = {
     tap: 8,
     select: 12,

@@ -1,4 +1,4 @@
-// canon-claims.ts — server-only filesystem scanner for
+// canon-claims.ts, server-only filesystem scanner for
 // bucket-canon/05-biophysics/sub-claims/ (curated candidate claims with
 // timestamps + source citations).
 
@@ -92,7 +92,7 @@ function parseClaimMd(file: string, branch: string, concept: string, slug: strin
     excerpt = excerpt.replace(/^>\s*/gm, "").trim();
   }
 
-  // Provenance — video slug
+  // Provenance, video slug
   const provSlugMatch = raw.match(/Video slug:\s*`([^`]+)`/);
   const videoSlug = provSlugMatch?.[1] || "";
 

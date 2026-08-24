@@ -1,13 +1,13 @@
-# polingual.com — language-focused frontend on the photon substrate
+# polingual.com: language-focused frontend on the photon substrate
 
 *Drafted 2026-05-13. Sister product to bucket.foundation. Same data
-substrate (photon index), different product surface. One canon, two
-windows.*
+Substrate (photon index), different product surface. One canon, two
+Windows.*
 
 ## What polingual is
 
 **polingual.com** is the language-focused product surface of the photon
-graph. Where bucket.foundation reads the canon as "knowledge claims and
+Graph. Where bucket.foundation reads the canon as "knowledge claims and
 bridges across branches," polingual reads the same data as "words and
 meanings across languages."
 
@@ -22,11 +22,11 @@ Same photons. Different lens.
 | "Show me words that sound like *gravitas*" | (out of scope) | Phonetic-vector top-K across all languages |
 | "Words that mean *time* across the canon-tier languages" | (out of scope) | Cross-lingual semantic top-K |
 
-## Scope (v1)
+## Scope
 
 1. **Word lookup**: type any word in any language → English definition + part of speech + IPA + translations + etymology.
-2. **Phonetic search**: "find words that sound like X" — uses the 64-d phonetic vector, cross-lingual.
-3. **Semantic search**: "find words that mean Y" — uses the 384-d semantic vector, cross-lingual.
+2. **Phonetic search**: "find words that sound like X", uses the 64-d phonetic vector, cross-lingual.
+3. **Semantic search**: "find words that mean Y", uses the 384-d semantic vector, cross-lingual.
 4. **Translation tables**: every photon's `translates` predicate edges visualized.
 5. **Etymology trees**: the `derives_from` chain rendered as a vertical tree.
 
@@ -54,7 +54,7 @@ GET https://www.bucket.foundation/api/photon/translate?surface=light&from=en&to=
 GET https://www.bucket.foundation/api/photon/phonetic?surface=gravitas&top_k=10
 ```
 
-(These endpoints don't exist yet — they're on the build list.)
+(These endpoints don't exist yet, they're on the build list.)
 
 Or in development, polingual can read the same sqlite + memmap files directly (same repo, same disk, no network).
 
@@ -80,10 +80,10 @@ bucket-foundation/
 Initial buildout option: keep polingual entirely inside this repo as
 `polingual/` workspace. Vercel project A serves `bucket.foundation` from
 `/`, project B serves `polingual.com` from `polingual/`. Same git history,
-same canon data. Cheaper and tighter than two separate repos until
+Same canon data. Cheaper and tighter than two separate repos until
 polingual stands on its own.
 
-## Routes (polingual.com)
+## Routes
 
 | Route | What |
 |---|---|
@@ -99,37 +99,37 @@ polingual stands on its own.
 ## Visual identity
 
 - **Less stone, more parchment.** Bucket is carved-in-stone. Polingual is
-  ink-on-paper — manuscript-like serif, slightly more colorful, less
-  monumental.
+ ink-on-paper, manuscript-like serif, slightly more colorful, less
+ monumental.
 - **Color**: shifted toward ink-blue + sepia (vs bucket's gold + bone).
 - **Typography**: ED Garamond Connect for headings (more lexicographic);
-  IBM Plex Sans Condensed for IPA + tabular data; Plex Mono for code.
-- **Component reuse**: search bar pill, sidebar drawer, filter chips —
-  all shared from the bucket design system, restyled.
+ IBM Plex Sans Condensed for IPA + tabular data; Plex Mono for code.
+- **Component reuse**: search bar pill, sidebar drawer, filter chips,
+ all shared from the bucket design system, restyled.
 
-## v0 milestone (what ships first)
+## v0 milestone
 
 - `/word/<id>` route reading directly from `_intake/photons/index.sqlite`.
 - Definition + lang + IPA + part-of-speech + raw provenance.
 - Semantic-neighbor list (top-10 from same lang + top-10 cross-lingual).
 - Vercel deploy on polingual.com with the bucket logo subtly cross-linking.
 
-## v0.5 — translations as first-class
+## v0.5: translations as first-class
 
 Wiktionary entries include translation tables (`translations:` array
 listing each translation by language). Parse these into the photon
 graph as `translates` predicates. Then `/translate?surface=light&to=sa`
-returns the linked sa-photon directly. No live translation API needed
-— it's all pre-cached.
+Returns the linked sa-photon directly. No live translation API needed
+It's all pre-cached.
 
-## v1 — phonetic search
+## v1, phonetic search
 
 Type "gravitas" → phonetic-vector cosine top-K across all langs →
 results: gravity (en), gravité (fr), gravedad (es), guruta (sa?),
 重力 (ja, via IPA `ʤɨːɽʲikʲi` if listed). Cross-lingual sound matching
 opens up etymological discoveries automatically.
 
-## v2 — etymology trees
+## v2, etymology trees
 
 Render the `derives_from` predicate chain as a tree visualization. For
 each English word, walk back through Latin, Greek, Sanskrit, PIE roots.
@@ -147,8 +147,8 @@ through Semitic roots. Manuscript-aesthetic SVG.
 - Domain: polingual.com (purchased 2026-05-13 by founder)
 - Repo plan: `polingual/` subdirectory in this repo until it stands on its own
 - Photon substrate: 4,500 photons live (en/la/sa @ 1,500 each), extended ingest
-  to 30 langs running in background
-- Code: not yet written — this doc is the spec
+ to 30 langs running in background
+- Code: not yet written, the spec lives here
 - Deploy: not yet wired
 
 ## Next concrete steps
@@ -158,6 +158,6 @@ through Semitic roots. Manuscript-aesthetic SVG.
 3. Wire Vercel project for polingual.com → pointing at the `polingual/` workspace
 4. Ship v0 word-lookup page, then translation, then phonetic, then etymology
 
-For now this doc is the contract. polingual.com inherits the photon
+For now the spec here is the contract. Polingual.com inherits the photon
 substrate cleanly because the spec was designed around being multi-
 product from the start.

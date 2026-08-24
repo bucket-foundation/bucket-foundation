@@ -1,4 +1,6 @@
-# Permanence Layer — EAS + Arweave/Irys Dual-Write
+# Permanence Layer
+
+EAS + Arweave/Irys Dual-Write.
 
 **Status:** Prototype (feature-flagged OFF). Shipped 2026-04-23.
 **Author:** Engineering pillar
@@ -15,12 +17,12 @@ Today the bucket.foundation citation rail depends on two things that fail the "c
 
 We need a permanence substrate that outlives both.
 
-## 2. The Solution — Dual Write
+## 2. The Solution, Dual Write
 
 Every citation envelope gets written to **two** independent, pay-once-forever rails:
 
-- **EAS (Ethereum Attestation Service) on Base** — the attestation is the citation *receipt* (who, what, when, license). Indexed by easscan.org, queryable for free forever. Gas-only, no custodian.
-- **Arweave via Irys** — the full envelope JSON is the citation *artifact*. Pay-once permanent storage. Arweave miners economically committed to 200-year durability minimum.
+- **EAS (Ethereum Attestation Service) on Base**, the attestation is the citation *receipt* (who, what, when, license). Indexed by easscan.org, queryable for free forever. Gas-only, no custodian.
+- **Arweave via Irys**, the full envelope JSON is the citation *artifact*. Pay-once permanent storage. Arweave miners economically committed to 200-year durability minimum.
 
 Both IDs are written back into the envelope's `provenance[]` array, so a reader can independently verify:
 
@@ -31,9 +33,9 @@ envelope.provenance[] += [
 ]
 ```
 
-Story Protocol, if we keep it, becomes a *third* optional write for programmable licensing — but the canonical existence proof lives in EAS + Arweave.
+Story Protocol, if we keep it, becomes a *third* optional write for programmable licensing, but the canonical existence proof lives in EAS + Arweave.
 
-## 3. EAS Schema — `BucketCitation`
+## 3. EAS Schema, `BucketCitation`
 
 ```
 bytes32 artifactHash        // keccak256 of canonical JSON (sorted keys)
@@ -64,18 +66,18 @@ Versus Walrus (~$0.0001 / 2 years) the dual-write is ~6x more per write but remo
 1. **Hot cache, cold canon.** Walrus stays as the hot read path (sub-200ms blob reads). EAS+Arweave becomes the cold source of truth.
 2. **Lazy re-attest.** On first read of any existing envelope, if it lacks `provenance[].action == "attested"`, run `permanentize()` and update Supabase with the enriched envelope.
 3. **New writes dual-written from day one** once `BUCKET_PERMANENCE_ENABLED=true`.
-4. **Story Protocol unchanged** — keep minting for programmable licensing; treat the mint as decorative, not load-bearing.
+4. **Story Protocol unchanged**, keep minting for programmable licensing; treat the mint as decorative, well below load-bearing.
 
 ## 6. What's Shipped Today
 
-- `src/lib/permanence/{eas,irys,dual-write}.ts` — helpers, viem-based, dynamic imports.
-- `src/app/api/research/route.ts` — feature-flagged call site (off by default).
-- `scripts/register-eas-schema.ts` — one-shot schema registration (requires funded key).
-- `scripts/test-permanence.ts` — end-to-end dry-run against Base Sepolia + Irys devnet.
-- `.env.example` — new vars: `BUCKET_WALLET_PRIVATE_KEY`, `EAS_CONTRACT_BASE`, `EAS_SCHEMA_UID`, `IRYS_NODE_URL`, `IRYS_TOKEN`, `BUCKET_PERMANENCE_ENABLED`.
+- `src/lib/permanence/{eas,irys,dual-write}.ts`, helpers, viem-based, dynamic imports.
+- `src/app/api/research/route.ts`, feature-flagged call site (off by default).
+- `scripts/register-eas-schema.ts`, one-shot schema registration (requires funded key).
+- `scripts/test-permanence.ts`, end-to-end dry-run against Base Sepolia + Irys devnet.
+- `.env.example`, new vars: `BUCKET_WALLET_PRIVATE_KEY`, `EAS_CONTRACT_BASE`, `EAS_SCHEMA_UID`, `IRYS_NODE_URL`, `IRYS_TOKEN`, `BUCKET_PERMANENCE_ENABLED`.
 
 ## 7. Open Questions
 
 - Solana EAS equivalent? Investigate SAS (Solana Attestation Service) when we add the Solana rail (§ blockchain memo A).
-- Batch attestation UX — EAS supports `multiAttest`; worth wiring when QPS justifies it.
-- Verifier tool — a public `/verify?uid=0x...` page that resolves attestation → Arweave blob → diff against live envelope. Queued as `bkt-` bead.
+- Batch attestation UX, EAS supports `multiAttest`; worth wiring when QPS justifies it.
+- Verifier tool, a public `/verify?uid=0x...` page that resolves attestation → Arweave blob → diff against live envelope. Queued as `bkt-` bead.

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-bkt-ibj — embed claim 1 + abstract per patent via local llama.cpp embedding server.
+bkt-ibj, embed claim 1 + abstract per patent via local llama.cpp embedding server.
 
 Assumes: llama-server -m models/bge-small-en-v1.5-q8_0.gguf --embedding -ngl 99 --port 8081
 Resumable: skips patent_ids already present in patent_embedding table.
 
-Throughput on Radeon RX 7600M XT (Vulkan, batch 64): ~800–1200 chunks/sec.
+Throughput on Radeon RX 7600M XT (Vulkan, batch 64): ~800-1200 chunks/sec.
 """
 from __future__ import annotations
 import argparse
@@ -50,19 +50,19 @@ def main() -> int:
     where_clause = ""
     if args.resume:
         where_clause = """
-            WHERE p.patent_id NOT IN (SELECT patent_id FROM patent_embedding)
+ WHERE p.patent_id NOT IN (SELECT patent_id FROM patent_embedding)
         """
     limit_clause = f"LIMIT {args.limit}" if args.limit else ""
 
     rows = con.execute(f"""
-        SELECT
-            p.patent_id,
-            COALESCE(p.patent_title, '') || '. ' ||
-            COALESCE(p.patent_abstract, '') || ' ' ||
-            COALESCE(c.claim_text, '') AS text
-        FROM patent p LEFT JOIN claim c USING (patent_id)
-        {where_clause}
-        {limit_clause}
+ SELECT
+ p.patent_id,
+ COALESCE(p.patent_title, '') || '. ' ||
+ COALESCE(p.patent_abstract, '') || ' ' ||
+ COALESCE(c.claim_text, '') AS text
+ FROM patent p LEFT JOIN claim c USING (patent_id)
+ {where_clause}
+ {limit_clause}
     """).fetchall()
 
     if not rows:
@@ -114,9 +114,9 @@ def main() -> int:
     con.execute("LOAD vss;")
     con.execute("DROP INDEX IF EXISTS patent_embedding_hnsw;")
     con.execute("""
-        CREATE INDEX patent_embedding_hnsw
-        ON patent_embedding USING HNSW (embedding)
-        WITH (metric = 'cosine');
+ CREATE INDEX patent_embedding_hnsw
+ ON patent_embedding USING HNSW (embedding)
+ WITH (metric = 'cosine');
     """)
     print("==> done")
     return 0

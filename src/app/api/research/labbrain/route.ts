@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/labbrain
+ * bucket.foundation, /api/research/labbrain
  * ------------------------------------------
  * Same-origin proxy for the LabBrain research tool (FIRST SLICE of the
  * research-tools surface; see docs/research-tools/04-implementation-architecture.md).
@@ -7,21 +7,21 @@
  * The browser ONLY ever talks to bucket.foundation, same-origin. This route
  * forwards server-side to the always-on tools gateway (FastAPI on Hetzner,
  * behind nginx + TLS at research-tools.agfarms.dev). The gateway URL is
- * server-only env (TOOLS_GATEWAY_URL) and is NEVER sent to the client — unlike
+ * server-only env (TOOLS_GATEWAY_URL) and is NEVER sent to the client, unlike
  * the legacy gianyrox.com/research/api.json discovery file this replaces.
  *
  * Contract (uniform across all 7 tools, specialized to labbrain here):
- *   POST /api/research/labbrain                  → gateway POST /v1/labbrain/submit
- *        body { author, question }               → { job_id, status, mode, price, [result] }
- *   GET  /api/research/labbrain?job=<id>         → gateway GET  /v1/jobs/<id>   (status)
- *   GET  /api/research/labbrain?job=<id>&result=1→ gateway GET  /v1/jobs/<id>/result
+ * POST /api/research/labbrain → gateway POST /v1/labbrain/submit
+ * body { author, question } → { job_id, status, mode, price, [result] }
+ * GET /api/research/labbrain?job=<id> → gateway GET /v1/jobs/<id> (status)
+ * GET /api/research/labbrain?job=<id>&result=1→ gateway GET /v1/jobs/<id>/result
  *
  * Env (server-only):
- *   TOOLS_GATEWAY_URL   default "https://research-tools.agfarms.dev"
+ * TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  *
  * Graceful degradation: if the gateway is down/unreachable, we return a clean
  * 503 "tool offline" envelope so the page degrades gracefully (mirrors the
- * Polingual proxy ethos) — nothing throws, the caller is never stranded.
+ * Polingual proxy ethos), nothing throws, the caller is never stranded.
  */
 import { NextRequest, NextResponse } from "next/server";
 
@@ -102,12 +102,12 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "question too short" } }, 400);
   }
 
-  // [METERING SEAM — TODO, off in v1]
+  // [METERING SEAM, TODO, off in v1]
   // Resolve caller identity + call the Viatika vendor API to authorize/price
-  // this run (server-side; caller never signs or pays — see /api/research
+  // this run (server-side; caller never signs or pays, see /api/research
   // trust model + org CLAUDE.md Strategic Priority #6). v1 is a no-op:
-  //   const decision = await viatikaMeter({ tool: "labbrain", tier: "ask", caller });
-  //   if (!decision.allow) return json({ error: { code: "payment_required" } }, 402);
+  // const decision = await viatikaMeter({ tool: "labbrain", tier: "ask", caller });
+  // if (!decision.allow) return json({ error: { code: "payment_required" } }, 402);
   // The gateway stays payment-agnostic; metering lives here, in Bucket.
 
   let resp: Response;

@@ -1,8 +1,10 @@
-# Brand Frameworks — Extracted from Primary Sources
+# Brand Frameworks
+
+Extracted from Primary Sources.
 
 > Date: 2026-04-09 | Sources: First Round Review, Lenny's Podcast
 
-These are actual frameworks extracted from the original articles and episodes — not summaries of summaries. Use these directly when building brand for any venture.
+These are actual frameworks extracted straight from the original articles and episodes. Use these directly when building brand for any venture.
 
 ---
 
@@ -10,27 +12,27 @@ These are actual frameworks extracted from the original articles and episodes �
 
 Source: [First Round Review](https://review.firstround.com/three-moves-every-startup-founder-must-make-to-build-a-brand-that-matters/)
 
-"A brand is who people think you are" — not merely a logo.
+"A brand is who people think you are", above any logo.
 
-### Move 1: PURPOSE (10-Year Horizon)
+### Move 1: PURPOSE
 
 **Definition**: How you want to change the world for the better.
 
 **The Big ideaL Exercise** (from Ogilvy & Mather):
 - Create a Venn diagram with two circles
-- **Circle 1**: Cultural tension — what's happening in the world relevant to your company
-- **Circle 2**: Your brand's best self — what your company delivers at its best
+- **Circle 1**: Cultural tension, what's happening in the world relevant to your company
+- **Circle 2**: Your brand's best self, what your company delivers at its best
 - **Intersection**: Your purpose
 
 **Complete this sentence**: "For our company, the world will be a better place if ___."
 
 **Examples**:
 - **Dove**: "Women were allowed to feel good about their bodies" (only 4% found themselves beautiful in 2004)
-- **eero**: "Technology actually elevated life at home" (WiFi remained outdated despite being essential)
+- **eero**: "Technology elevated life at home" (WiFi remained outdated despite being essential)
 
-**Key insight**: Purpose should sustain for roughly a decade, not fluctuate quarterly.
+**Key insight**: Purpose should sustain for roughly a decade, holding steady across quarters.
 
-### Move 2: POSITION (18-Month Horizon)
+### Move 2: POSITION
 
 **Definition**: How you're perceived relative to competitors; what makes you unique and different.
 
@@ -43,9 +45,9 @@ Source: [First Round Review](https://review.firstround.com/three-moves-every-sta
 
 **Key insight**: Position should shift every ~18 months as products evolve. It's internal guidance for teams and contractors.
 
-### Move 3: PERSONALITY (Ongoing)
+### Move 3: PERSONALITY
 
-**Definition**: How you communicate — less about what you say, more about how you say it.
+**Definition**: How you communicate, weighted toward manner over content.
 
 **Process**:
 1. Identify three adjectives describing your company as a person
@@ -80,7 +82,7 @@ Source: [First Round Review](https://review.firstround.com/positioning-your-star
 - Who is your broadest customer group? (Get progressively more specific)
 - What specific pain points do target customers face?
 - Which competitors address similar problems, and what are their strengths/weaknesses?
-- Avoid buzzwords — aim for human, clear language
+- Avoid buzzwords, aim for human, clear language
 
 ### Three Naming Approaches
 
@@ -97,19 +99,19 @@ Source: [First Round Review](https://review.firstround.com/positioning-your-star
 3. Build synonym lists via thesaurus
 4. Generate combinations: real words, compounds, blends, affixes, truncations, foreign language terms
 
-### Naming Priorities (in order)
+### Naming Priorities
 
 1. Trademark and domain availability
 2. Distinctiveness
 3. Reflects key messaging
 4. Sound and pronunciation ease
 5. Visual appearance
-6. Length (two syllables often optimal)
+6. Length (two syllables optimal)
 
 ### SOCO / SOCA Framework
 
 - **SOCO** (Single Overriding Communications Objective): The ONE most important thing you want communicated
-- **SOCA** (Single Overriding Communications Avoidance): The ONE thing you absolutely don't want people to hear
+- **SOCA** (Single Overriding Communications Avoidance): The ONE thing you don't want people to hear
 
 All other messages orbit your SOCO.
 
@@ -132,7 +134,7 @@ A one-to-two page document containing:
 
 ---
 
-## 3. David Placek / Lexicon Branding — Naming Framework
+## 3. David Placek / Lexicon Branding, Naming Framework
 
 Source: Lenny's Podcast + My First Million Episode 805
 
@@ -146,7 +148,7 @@ Source: Lenny's Podcast + My First Million Episode 805
 
 **Discomfort signals success.** Breakthrough names like Sonos, Azure, and BlackBerry initially faced internal resistance. "If your team is comfortable with a name, you probably don't have the right name yet."
 
-**Polarization indicates strength.** When Intel's leadership split over "Pentium" vs. the safer "Pro Chip," CEO Andy Grove recognized the tension as validation — the disagreement signaled "energy for Pentium."
+**Polarization indicates strength.** When Intel's leadership split over "Pentium" vs. the safer "Pro Chip," CEO Andy Grove recognized the tension as validation, the disagreement signaled "energy for Pentium."
 
 **Psychology of letters matters.** Lexicon's research identifies specific phonetic properties:
 - "V" conveys vibrancy (Corvette, Vercel)
@@ -166,15 +168,15 @@ This shifts focus from word-hunting to defining desired behaviors and experience
 
 ### Practical Strategies
 
-**Suspend judgment during creation.** Separate generation from evaluation — produce ideas freely, critique later. This protects originality from premature dismissal.
+**Suspend judgment during creation.** Separate generation from evaluation, produce ideas freely, critique later. This protects originality from premature dismissal.
 
-**Use the competitor test.** Instead of asking opinions directly, frame it: "Our competitor launched with this name — what's your reaction?" This reveals market impact rather than comfort levels.
+**Use the competitor test.** Instead of asking opinions directly, frame it: "Our competitor launched with this name, what's your reaction?" This reveals market impact rather than comfort levels.
 
 **Compounds create cognitive multipliers.** Merged words (PowerBook, BlackBerry, Windsurf) generate "1 + 1 = 3" associations, proving more memorable than single words despite length.
 
 **Domain availability is no longer decisive.** Placek advises: "Get the right name first, solve for domain later" through prefixes, alternative extensions, or negotiated purchases ($15K-$30K).
 
-### Named by Lexicon (4,000+ brands over 40 years, 250+ linguists)
+### Named by Lexicon
 
 Sonos, Azure, Windsurf, Vercel, Impossible Foods, BlackBerry, Pentium, PowerBook, Swiffer, CapCut
 
@@ -182,13 +184,13 @@ Sonos, Azure, Windsurf, Vercel, Impossible Foods, BlackBerry, Pentium, PowerBook
 
 ## 4. Quick-Reference: Apply These Frameworks
 
-### For a new venture brand (do in this order):
+### For a new venture brand
 
 1. **Purpose** (Jackson): Complete "The world will be a better place if ___"
-2. **Positioning Statement** (Jackson): Fill in the template — For/Who/Is a/That/Unlike/We
+2. **Positioning Statement** (Jackson): Fill in the template, For/Who/Is a/That/Unlike/We
 3. **SOCO/SOCA** (Jackson): Define the ONE thing to say and the ONE thing to avoid
 4. **Personality** (Jackson): Pick 3 adjectives, write the calibration table
 5. **Name** (Placek): Generate 1,000+ candidates across descriptive/suggestive/fanciful, use the competitor test
 6. **Creative Brief** (Jackson): One-to-two page doc for any designer/agency
 7. **Archetype** (Jung/Mark & Pearson): Pick 1 primary + 1 secondary from the 12
-8. **Primal Code Audit** (Hanlon): Check all 7 pieces — creation story, creed, icons, rituals, sacred words, pagans, leader
+8. **Primal Code Audit** (Hanlon): Check all 7 pieces, creation story, creed, icons, rituals, sacred words, pagans, leader

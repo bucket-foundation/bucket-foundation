@@ -1,4 +1,4 @@
-// /canon/claims — index of curated candidate canon claims by concept.
+// /canon/claims, index of curated candidate canon claims by concept.
 // Build-time render. Filesystem is the CMS.
 
 import Link from "next/link";

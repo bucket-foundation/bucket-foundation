@@ -33,7 +33,7 @@ def test_demo_recovers_trend_and_seasonality():
     out = g.run_geo_summary({"demo": True})
     assert out["demo"] is True
     t = out["trend"]
-    # Theil-Sen is robust to the seasonal oscillation → recovers 0.10 exactly
+    # Theil-Sen resists the seasonal oscillation   → recovers 0.10 exactly
     assert abs(t["theil_sen_slope_per_step"] - 0.10) < 0.01
     mk = t["mann_kendall"]
     assert mk["trend"] == "increasing"
@@ -103,7 +103,7 @@ def test_haversine_known_distance():
 
 
 # =========================================================================
-# robustness
+# edge cases
 # =========================================================================
 def test_empty_errors():
     assert g.run_geo_summary({"values": []}).get("error")

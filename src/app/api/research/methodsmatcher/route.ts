@@ -1,14 +1,14 @@
 /**
- * bucket.foundation — /api/research/methodsmatcher
+ * bucket.foundation, /api/research/methodsmatcher
  * ------------------------------------------------
  * Same-origin proxy for the MethodsMatcher T1 tool. Given a research question
  * it mines the recurring methods in the live OpenAlex literature for that
  * question and recommends which of Bucket's OWN tools applies. Backend logic
  * is REAL (services/research-tools/tools_rag.py:run_methods_matcher).
  *
- *   POST /api/research/methodsmatcher                  → gateway /v1/methodsmatcher/submit
- *        body { question }                              → { job_id, status, mode, price, [result] }
- *   GET  /api/research/methodsmatcher?job=<id>[&result=1] → status / result
+ * POST /api/research/methodsmatcher → gateway /v1/methodsmatcher/submit
+ * body { question } → { job_id, status, mode, price, [result] }
+ * GET /api/research/methodsmatcher?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "ask a research question (>= 8 chars)" } }, 400);
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

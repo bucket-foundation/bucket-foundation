@@ -22,7 +22,7 @@ export default function PatchSeqMLClient() {
     } else {
       fd.append("mode", "sim");
     }
-    // multipart: no content-type header — the browser sets the boundary.
+    // multipart: no content-type header, the browser sets the boundary.
     void submit(
       { body: fd },
       file ? "Analyzing the recording…" : "Running the Hodgkin-Huxley simulation…",

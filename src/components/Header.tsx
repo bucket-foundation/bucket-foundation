@@ -191,7 +191,7 @@ export default function Header() {
                 Contribute
               </Link>
             )}
-            {/* Hamburger — md:hidden */}
+            {/* Hamburger, md:hidden */}
             <button
               type="button"
               aria-label={open ? "Close menu" : "Open menu"}

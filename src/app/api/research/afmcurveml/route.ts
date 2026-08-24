@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/afmcurveml
+ * bucket.foundation, /api/research/afmcurveml
  * -----------------------------------------
  * Same-origin proxy for AFM-CurveML. AFM force-curve analysis: contact-point detection + Hertz/Sneddon Young's-modulus fit + adhesion. Backend logic is REAL (tools_imaging.py:run_afm_curve).
  *
  * POST body { z, force?, radius_nm?, geometry? }; `z` is an array (with `force`) or "demo".
- *   GET  /api/research/afmcurveml?job=<id>[&result=1] → status / result
+ * GET /api/research/afmcurveml?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "geometry must be 'sphere' or 'cone'" } }, 400);
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

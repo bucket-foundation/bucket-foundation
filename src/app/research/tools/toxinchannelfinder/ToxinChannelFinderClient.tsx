@@ -1,6 +1,6 @@
 "use client";
 
-// ToxinChannelFinder client island — toxin/peptide → ranked ion-channel targets
+// ToxinChannelFinder client island, toxin/peptide → ranked ion-channel targets
 // via curated KB + live OpenAlex co-occurrence. Render is "json" → typed view.
 
 import { useState } from "react";

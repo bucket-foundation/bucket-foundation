@@ -28,7 +28,7 @@ export default function Page() {
           Canon holds only <em>foundations</em>: axioms, real math, rules, laws, principles, primary derivations. Outcomes — longevity, disease, cognition — are downstream applications, cross-mirrored into the branches that derive them.
         </p>
         <p>
-          The work is open-source under <Link href="/governance" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">MIT code + CC0 intent</Link>. The protocol is <Link href="/protocol" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">feed402</Link> over x402 on Base. Code, canon entries, claim cards, figures, bridges — all live in one repo: <a href="https://github.com/bucket-foundation/bucket-foundation" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">bucket-foundation</a>.
+          The work is open-source under <Link href="/governance" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">MIT code + CC0 intent</Link>. The protocol is <Link href="/protocol" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">feed402</Link> over x402 on Base. Code, canon entries, claim cards, figures, bridges, all live in one repo: <a href="https://github.com/bucket-foundation/bucket-foundation" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">bucket-foundation</a>.
         </p>
       </div>
 
@@ -37,7 +37,7 @@ export default function Page() {
       </h2>
       <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">
         <p>
-          Bucket exists to <strong className="text-[color:var(--parchment)]">reform education</strong> — and reform that is not grounded in evidence is opinion. The founding research is the <a href="https://github.com/bucket-foundation/education-atlas" target="_blank" rel="noreferrer" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">education-atlas</a>: 78,326 observations finding that for five thousand years every knowledge technology widened access to <em>consume</em> knowledge and none widened access to <em>produce</em> it — leaving 99.86% of humanity only ever consuming, and just ~0.14% reaching the frontier where it is produced.
+          Bucket exists to <strong className="text-[color:var(--parchment)]">reform education</strong>, and reform that is not grounded in evidence is opinion. The founding research is the <a href="https://github.com/bucket-foundation/education-atlas" target="_blank" rel="noreferrer" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">education-atlas</a>: 78,326 observations finding that for five thousand years every knowledge technology widened access to <em>consume</em> knowledge and none widened access to <em>produce</em> it — leaving 99.86% of humanity only ever consuming, and just ~0.14% reaching the frontier where it is produced.
         </p>
         <p>
           <Link href="/mission" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Read the mission</Link> for the full evidence — the three crises, the 270× access cliff, the consume-vs-produce gap — and an honest map of what Bucket reforms (the knowledge layer) and what it explicitly does not (schooling logistics, K-12 funding, the floor-access crisis).
@@ -49,10 +49,10 @@ export default function Page() {
       </h2>
       <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">
         <p>
-          <strong className="text-[color:var(--parchment)]">2022.</strong> bucket 1.0 shipped as a four-verb prototype — <em>build · discuss · discover · publish</em> — a social network for collaboratively building and debating theories of history with evidence. It never shipped publicly. The slogan: <span className="italic">build the past.</span>
+          <strong className="text-[color:var(--parchment)]">2022.</strong> bucket 1.0 shipped as a four-verb prototype, <em>build · discuss · discover · publish</em>, a social network for collaboratively building and debating theories of history with evidence. It never shipped publicly. The slogan: <span className="italic">build the past.</span>
         </p>
         <p>
-          <strong className="text-[color:var(--parchment)]">2023–2025.</strong> The prototype slept. The slogan widened: <span className="italic">build history.</span> A hackathon build landed the reference site on Vercel — Story Protocol IP mint, Walrus storage, Dynamic web3 auth.
+          <strong className="text-[color:var(--parchment)]">2023-2025.</strong> The prototype slept. The slogan widened: <span className="italic">build history.</span> A hackathon build landed the reference site on Vercel — Story Protocol IP mint, Walrus storage, Dynamic web3 auth.
         </p>
         <p>
           <strong className="text-[color:var(--parchment)]">2026.</strong> Reactivated as an open-source nonprofit. Two verbs deleted, canon added. The thesis turned: <span className="italic">bucket is the new renaissance.</span> Read the <Link href="/manifesto" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">manifesto</Link>.

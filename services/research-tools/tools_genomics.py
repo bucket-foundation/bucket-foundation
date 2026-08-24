@@ -1,28 +1,28 @@
 #!/usr/bin/env python3
 """
-research-tools — Genomics / sequence-analysis cluster (REAL logic, CPU, no GPU)
+research-tools, Genomics / sequence-analysis cluster (REAL logic, CPU, no GPU)
 ==============================================================================
 
-Genuinely FUNCTIONAL backends for three more tools from the 54-tool needs map,
+FUNCTIONAL backends for three more tools from the 54-tool needs map
 all real algorithms, CPU, no network, no GPU:
 
-    ChromatinAccess  — DNA accessibility / regulatory-potential scoring from
-                       sequence. REAL feature model: GC content, CpG-island
-                       detection (Gardiner-Garden criteria), windowed promoter-
-                       motif scan (TATA / GC-box / CAAT / Initiator), and a
-                       transparent accessibility score. (A deep DNA language
-                       model — Enformer/Evo — is the documented GPU extension;
-                       the feature model here is real + interpretable.)
-    AggregatePredict — amyloid / aggregation-propensity from a protein sequence.
-                       REAL windowed model: Kyte-Doolittle hydropathy +
-                       β-sheet propensity (Chou-Fasman) + net charge, combined
-                       into an aggregation score per window; flags hot-spots.
-                       FULLY REAL.
-    ChannelDwell     — single-channel idealization. REAL half-amplitude
-                       threshold idealization of a single-channel current record
-                       into open/closed states + dwell-time histogram + maximum-
-                       likelihood single-exponential dwell-time constants.
-                       FULLY REAL (CPU; a full HMM/QuB fit is the heavier path).
+ ChromatinAccess, DNA accessibility / regulatory-potential scoring from
+ sequence. REAL feature model: GC content, CpG-island
+ detection (Gardiner-Garden criteria), windowed promoter-
+ motif scan (TATA / GC-box / CAAT / Initiator), and a
+ transparent accessibility score. (A deep DNA language
+ model, Enformer/Evo, is the documented GPU extension;
+ the feature model here is real + interpretable.)
+ AggregatePredict, amyloid / aggregation-propensity from a protein sequence.
+ REAL windowed model: Kyte-Doolittle hydropathy +
+ β-sheet propensity (Chou-Fasman) + net charge, combined
+ into an aggregation score per window; flags hot-spots.
+ FULLY REAL.
+ ChannelDwell, single-channel idealization. REAL half-amplitude
+ threshold idealization of a single-channel current record
+ into open/closed states + dwell-time histogram + maximum-
+ likelihood single-exponential dwell-time constants.
+ FULLY REAL (CPU; a full HMM/QuB fit is the heavier path).
 
 Design rules (match tools_neuro.py / tools_imaging.py): pure functions, JSON
 I/O, demo mode with KNOWN ground truth, {"error": ...} on bad input.
@@ -69,7 +69,7 @@ def clean_dna(s: str) -> str:
 
 
 # ===========================================================================
-# 1. ChromatinAccess — accessibility / regulatory potential from sequence
+# 1. ChromatinAccess, accessibility / regulatory potential from sequence
 # ===========================================================================
 def gc_content(seq: str) -> float:
     if not seq:
@@ -110,12 +110,12 @@ def promoter_motifs(seq: str) -> dict:
 
 
 def run_chromatin_access(payload: dict) -> dict:
-    """payload: { sequence: <DNA>  OR  "demo" }
+    """payload: { sequence: <DNA> OR "demo" }
 
-    Accessibility / regulatory-potential scoring from a DNA sequence: GC content,
-    CpG islands, core-promoter motif scan, and a transparent accessibility score
-    (open chromatin correlates with GC-rich, CpG-island, motif-dense regions).
-    demo = a GC-rich CpG-island/TATA promoter sequence with a known signature.
+ Accessibility / regulatory-potential scoring from a DNA sequence: GC content,
+ CpG islands, core-promoter motif scan, and a transparent accessibility score
+ (open chromatin correlates with GC-rich, CpG-island, motif-dense regions).
+ demo = a GC-rich CpG-island/TATA promoter sequence with a known signature.
     """
     demo = isinstance(payload.get("sequence"), str) and payload["sequence"].strip().lower() == "demo"
     if demo:
@@ -150,7 +150,7 @@ def run_chromatin_access(payload: dict) -> dict:
         "call": call,
         "note": (
             "Real, interpretable accessibility model: GC content, Gardiner-Garden "
-            "CpG islands, and core-promoter motif scan combined into a 0–1 "
+            "CpG islands, and core-promoter motif scan combined into a 0-1 "
             "accessibility score. A deep DNA language model (Enformer/Evo) that "
             "predicts actual ATAC/DNase signal is the documented GPU extension; "
             "this feature model is real, deterministic, and explainable."
@@ -162,14 +162,14 @@ def run_chromatin_access(payload: dict) -> dict:
 
 
 # ===========================================================================
-# 2. AggregatePredict — amyloid / aggregation propensity from sequence
+# 2. AggregatePredict, amyloid / aggregation propensity from sequence
 # ===========================================================================
 def windowed_aggregation(seq: str, win: int = 7) -> dict:
     """Per-window aggregation score = β-propensity + hydrophobicity − |charge|. Pure.
 
-    A transparent TANGO/CamSol-style heuristic: aggregation favours hydrophobic,
-    β-sheet-prone, low-net-charge stretches. Returns a per-residue score and
-    flagged hot-spots (contiguous high-score windows).
+ A transparent TANGO/CamSol-style heuristic: aggregation favours hydrophobic,
+ β-sheet-prone, low-net-charge stretches. Returns a per-residue score and
+ flagged hot-spots (contiguous high-score windows).
     """
     valid = [c for c in seq if c in AA]
     n = len(valid)
@@ -212,11 +212,11 @@ def windowed_aggregation(seq: str, win: int = 7) -> dict:
 
 
 def run_aggregate_predict(payload: dict) -> dict:
-    """payload: { sequence: <protein>  OR  "demo" }
+    """payload: { sequence: <protein> OR "demo" }
 
-    Predict aggregation-prone (amyloid) regions from a protein sequence via a
-    transparent windowed model (β-propensity + hydrophobicity − net charge).
-    demo = a sequence with a known hydrophobic β-prone hot-spot.
+ Predict aggregation-prone (amyloid) regions from a protein sequence via a
+ transparent windowed model (β-propensity + hydrophobicity − net charge).
+ demo = a sequence with a known hydrophobic β-prone hot-spot.
     """
     demo = isinstance(payload.get("sequence"), str) and payload["sequence"].strip().lower() == "demo"
     if demo:
@@ -258,15 +258,15 @@ def run_aggregate_predict(payload: dict) -> dict:
 
 
 # ===========================================================================
-# 3. ChannelDwell — single-channel idealization + dwell-time analysis
+# 3. ChannelDwell, single-channel idealization + dwell-time analysis
 # ===========================================================================
 def idealize_half_amplitude(current: np.ndarray) -> dict:
     """Half-amplitude threshold idealization into open/closed. Pure.
 
-    The standard single-channel idealization: find the closed and open current
-    levels (bimodal), threshold at their midpoint, and segment into dwell events.
+ The standard single-channel idealization: find the closed and open current
+ levels (bimodal), threshold at their midpoint, and segment into dwell events.
     """
-    # robust level estimate: closed = low mode, open = high mode (or vice versa)
+    # reliable level estimate: closed = low mode, open = high mode (or vice versa)
     lo = float(np.percentile(current, 10))
     hi = float(np.percentile(current, 90))
     thr = (lo + hi) / 2.0
@@ -297,9 +297,9 @@ def idealize_half_amplitude(current: np.ndarray) -> dict:
 def fit_dwell_tau(durations_ms: np.ndarray) -> Optional[float]:
     """ML single-exponential dwell-time constant = mean dwell. Pure.
 
-    For an exponential distribution the maximum-likelihood rate is 1/mean, so the
-    time constant τ = mean(dwell). (A multi-exponential mixture is the heavier
-    fit.) Returns τ in ms, or None if too few events.
+ For an exponential distribution the maximum-likelihood rate is 1/mean, so the
+ time constant τ = mean(dwell). (A multi-exponential mixture is the heavier
+ fit.) Returns τ in ms, or None if too few events.
     """
     if durations_ms.size < 3:
         return None
@@ -309,10 +309,10 @@ def fit_dwell_tau(durations_ms: np.ndarray) -> Optional[float]:
 def run_channel_dwell(payload: dict) -> dict:
     """payload: { trace: [pA] or "demo", fs_hz?: float }
 
-    Idealize a single-channel current record into open/closed states (half-
-    amplitude threshold), then compute open/closed probabilities, mean dwell
-    times, and ML single-exponential dwell-time constants. demo = a synthetic
-    two-state record with known open probability.
+ Idealize a single-channel current record into open/closed states (half-
+ amplitude threshold), then compute open/closed probabilities, mean dwell
+ times, and ML single-exponential dwell-time constants. demo = a synthetic
+ two-state record with known open probability.
     """
     fs = float(payload.get("fs_hz") if payload.get("fs_hz") is not None else 10000.0)
     if fs <= 0:

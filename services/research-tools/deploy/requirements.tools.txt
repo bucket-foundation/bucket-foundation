@@ -1,118 +1,119 @@
-# research-tools-gateway — FAT/standard image deps.
+# voice-ignore-file: pip requirements file; every "#" line is a code comment, not a heading.
+# research-tools-gateway, FAT/standard image deps.
 # ===================================================
-# This image vendors the 5 CPU-feasible subprocess tools (labbrain, proteinscout,
+# This image vendors the 5 CPU-feasible subprocess tools (labbrain, proteinscout
 # stabilitydesigner, screenserver, patchseqml) IN ADDITION to the 9 self-contained
-# REAL tools the lean image ships. The 2 genuinely GPU/heavy tools (trajmine real
-# MD, cryotriage real cryo-EM) stay in their documented demo/synthetic mode — they
-# need no extra deps here (demo path is numpy/scipy/matplotlib).
+# REAL tools the lean image ships. The 2 GPU/heavy tools (trajmine real
+# MD, cryotriage real cryo-EM) stay in their documented demo/synthetic mode, they
+# need no extra deps here.
 #
-# CPU-only. torch is pulled CPU-only (see Dockerfile --index-url) for labbrain's
-# sentence-transformers; no CUDA, no GPU. Sized for the Hetzner CPX42 (no GPU).
+# CPU-only. torch is pulled CPU-only for labbrain's
+# sentence-transformers; no CUDA, no GPU. Sized for the Hetzner CPX42.
 
-# --- the 9 lean-image tools + the 4 gap-research tools (unchanged deps) ---
-# The gap-research cluster (ProtocolGPT, ToxinChannelFinder, CitationGraph) and
-# QuantumBioRAG are pure stdlib (re/math/urllib) over the existing fastapi/
-# pydantic + the tools_rag OpenAlex client — they add NO new dependencies.
+# --- the 9 lean-image tools + the 4 gap-research tools ---
+# The gap-research cluster and
+# QuantumBioRAG are pure stdlib over the existing fastapi/
+# pydantic + the tools_rag OpenAlex client, they add NO new dependencies.
 #
-# NEW (2026-06-21) — three more REAL clusters, all CPU, no GPU:
-#   * imaging/mechanobiology (tools_imaging.py): CalciumTraceML, CellSegTrack,
-#     AFM-CurveML, TractionForceML — scipy + scikit-image (already present for
-#     cryotriage) + numpy. CellSegTrack uses Cellpose ONLY if installed; it is
-#     NOT pinned here (heavy) — the classical Otsu+watershed path is the default.
-#   * FigureMiner (tools_figure.py): text-layer caption + statistics mining —
-#     stdlib re + an optional PDF text backend (PyMuPDF preferred, pypdf
-#     fallback; both already present below for labbrain/screenserver). Raw-text
-#     input needs NO PDF backend.
-#   * genomics/sequence (tools_genomics.py): ChromatinAccess, AggregatePredict,
-#     ChannelDwell — pure numpy + stdlib re. NO new dependencies.
+# NEW, three more REAL clusters, all CPU, no GPU
+# * imaging/mechanobiology: CalciumTraceML, CellSegTrack
+# AFM-CurveML, TractionForceML, scipy + scikit-image (already present for
+# cryotriage) + numpy. CellSegTrack uses Cellpose ONLY if installed; it is
+# NOT pinned here, the classical Otsu+watershed path is the default.
+# * FigureMiner: text-layer caption + statistics mining
+# stdlib re + an optional PDF text backend (PyMuPDF preferred, pypdf
+# fallback; both already present below for labbrain/screenserver). Raw-text
+# input needs NO PDF backend.
+# * genomics/sequence: ChromatinAccess, AggregatePredict
+# ChannelDwell, pure numpy + stdlib re. NO new dependencies.
 # Net new hard dependency vs the prior fat image: PyMuPDF (for FigureMiner PDF
 # input). scikit-image + scipy + numpy + pypdf are already pinned below.
 #
-# NEW (2026-06-22) — two ALL-FIELD horizontal metascience tools, CPU, NO GPU,
+# NEW, two ALL-FIELD horizontal metascience tools, CPU, NO GPU
 # NO new dependencies:
-#   * FAIRCheck (tools_fair.py): FAIR (Findable/Accessible/Interoperable/Reusable)
-#     rubric over Wilkinson 2016's 15 sub-principles + funder DMSP — pure stdlib
-#     (json + re). NO new dependencies.
-#   * RepliCheck (tools_repli.py): statcheck-style p-value recomputation + GRIM
-#     test + reporting flags — uses scipy.stats (already pinned `scipy>=1.13`
-#     below) for exact two-tailed distributions. NO new dependencies.
-# These serve EVERY discipline (the 1.17M-researcher corpus), not one field.
+# * FAIRCheck: FAIR
+# rubric over Wilkinson 2016's 15 sub-principles + funder DMSP, pure stdlib
+# . NO new dependencies.
+# * RepliCheck: statcheck-style p-value recomputation + GRIM
+# test + reporting flags, uses scipy.stats (already pinned `scipy>=1.13`
+# below) for exact two-tailed distributions. NO new dependencies.
+# These serve EVERY discipline.
 #
-# NEW (2026-06-22, later) — FIVE per-field NON-bio tools, CPU, NO GPU:
-#   * CausalDesigner (tools_causal.py): DAG construction + Pearl back-door
-#     criterion + valid adjustment set via d-separation — uses networkx (the ONE
-#     new dependency below).
-#   * MaterialsFeaturizer (tools_materials.py): Magpie-style composition
-#     descriptors from a built-in element table — pure stdlib (re). NO new dep.
-#   * PowerPlan (tools_power.py): statistical power & sample size — scipy.stats
-#     noncentral t/F + normal/Fisher-z (already pinned scipy>=1.13). NO new dep.
-#   * GeoSummary (tools_geo.py): trend (Mann-Kendall/Theil-Sen) + seasonality +
-#     spatial extent — numpy + scipy.stats (already pinned). NO new dep.
-#   * MLReproCard (tools_mlrepro.py): ML reproducibility rubric + model card —
-#     pure stdlib (json + re). NO new dep.
-# Net new hard dependency: networkx (CausalDesigner only).
+# NEW, FIVE per-field NON-bio tools, CPU, NO GPU
+# * CausalDesigner: DAG construction + Pearl back-door
+# criterion + valid adjustment set via d-separation, uses networkx (the ONE
+# new dependency below).
+# * MaterialsFeaturizer: Magpie-style composition
+# descriptors from a built-in element table, pure stdlib. NO new dep.
+# * PowerPlan: statistical power & sample size, scipy.stats
+# noncentral t/F + normal/Fisher-z. NO new dep.
+# * GeoSummary: trend + seasonality +
+# spatial extent, numpy + scipy.stats. NO new dep.
+# * MLReproCard: ML reproducibility rubric + model card
+# pure stdlib. NO new dep.
+# Net new hard dependency: networkx.
 #
-# NEW (2026-06-24) — FIVE per-field CLASSICAL-algorithm tools, CPU, NO GPU,
+# NEW, FIVE per-field CLASSICAL-algorithm tools, CPU, NO GPU
 # NO new dependencies:
-#   * SeqAlign (tools_seqalign.py): Needleman-Wunsch (global) + Smith-Waterman
-#     (local) pairwise alignment with a baked BLOSUM62 matrix — pure stdlib.
-#   * StoichBalance (tools_stoich.py): chemical-equation balancing via exact
-#     rational null-space of the element matrix + limiting reagent — pure stdlib
-#     (fractions, math).
-#   * UnitDimCheck (tools_units.py): SI dimensional analysis / unit conversion /
-#     equation consistency over the 7 SI base dims — pure stdlib (fractions, re).
-#   * SurvivalFit (tools_survival.py): Kaplan-Meier + Greenwood + median +
-#     Mantel-Cox log-rank — numpy + scipy.stats (already pinned).
-#   * TimeSeriesForecast (tools_forecast.py): Holt-Winters triple exponential
-#     smoothing + additive decomposition + holdout backtest — numpy (scipy
-#     optional for the Nelder-Mead param refinement; both already pinned).
-# Net new hard dependency: NONE (numpy/scipy already present).
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
-pydantic==2.10.4
-python-multipart==0.0.20
+# * SeqAlign: Needleman-Wunsch + Smith-Waterman
+# pairwise alignment with a baked BLOSUM62 matrix, pure stdlib.
+# * StoichBalance: chemical-equation balancing via exact
+# rational null-space of the element matrix + limiting reagent, pure stdlib
+# .
+# * UnitDimCheck: SI dimensional analysis / unit conversion /
+# equation consistency over the 7 SI base dims, pure stdlib.
+# * SurvivalFit: Kaplan-Meier + Greenwood + median +
+# Mantel-Cox log-rank, numpy + scipy.stats.
+# * TimeSeriesForecast: Holt-Winters triple exponential
+# smoothing + additive decomposition + holdout backtest, numpy (scipy
+# optional for the Nelder-Mead param refinement; both already pinned).
+# Net new hard dependency: NONE.
+Fastapi==0.115.6
+Uvicorn[standard]==0.34.0
+Pydantic==2.10.4
+Python-multipart==0.0.20
 # numpy left to the resolver: mdtraj/deeptime cap numpy below the 2.2.1 the lean
-# image pinned, so we let pip pick the highest numpy all 14 tools agree on (>=1.26).
-numpy>=1.26,<2.3
-scipy>=1.13
+# image pinned, so we let pip pick the highest numpy all 14 tools agree on.
+Numpy>=1.26,<2.3
+Scipy>=1.13
 ViennaRNA==2.7.0
-networkx>=3.0               # CausalDesigner: DAG + d-separation / backdoor criterion
+networkx>=3.0 # CausalDesigner: DAG + d-separation / backdoor criterion
 
 # --- shared scientific stack for the vendored CPU tools ---
 # (loose lower-bound pins so the resolver can satisfy mdtraj/deeptime/scikit-image
-#  numpy caps alongside the 14-tool stack; all CPU wheels.)
+# numpy caps alongside the 14-tool stack; all CPU wheels.)
 # PINNED: the screenserver HistGradientBoosting pickles were trained on sklearn
-# ~1.6/1.7 and fail to unpickle on 1.9+ ("No module named '_loss'"). 1.6.1 is the
-# proven version (lean image v1) that loads all baked sklearn models.
-scikit-learn==1.6.1        # proteinscout, stabilitydesigner, screenserver sklearn models
-pandas>=2.2               # stabilitydesigner, screenserver
-matplotlib>=3.9           # proteinscout/stabilitydesigner/patchseqml/screenserver reports
-joblib>=1.4               # screenserver model persistence
-requests>=2.32            # labbrain (OpenAlex), proteinscout (UniProt)
-biopython>=1.83           # stabilitydesigner (only on --pdb path; harmless otherwise)
+# ~1.6/1.7 and fail to unpickle on 1.9+. 1.6.1 is the
+# proven version that loads all baked sklearn models.
+Scikit-learn==1.6.1 # proteinscout, stabilitydesigner, screenserver sklearn models
+pandas>=2.2 # stabilitydesigner, screenserver
+matplotlib>=3.9 # proteinscout/stabilitydesigner/patchseqml/screenserver reports
+joblib>=1.4 # screenserver model persistence
+requests>=2.32 # labbrain (OpenAlex), proteinscout (UniProt)
+Biopython>=1.83 # stabilitydesigner (only on --pdb path; harmless otherwise)
 
 # --- screenserver cheminformatics ---
-rdkit>=2024.3             # featurization, FilterCatalog, SA score, drawing (CPU wheel)
+Rdkit>=2024.3 # featurization, FilterCatalog, SA score, drawing (CPU wheel)
 
-# --- labbrain literature RAG (the only torch user) ---
-sentence-transformers>=3.0   # pulls transformers; model weights baked, see Dockerfile
-rank-bm25>=0.2.2
-pypdf>=5.0
+# --- labbrain literature RAG ---
+Sentence-transformers>=3.0 # pulls transformers; model weights baked, see Dockerfile
+Rank-bm25>=0.2.2
+Pypdf>=5.0
 
-# --- FigureMiner PDF text backend (optional but preferred over pypdf) ---
+# --- FigureMiner PDF text backend ---
 # PyMuPDF gives a far cleaner text layer for caption/stat mining. Raw-text
 # input works without it; PDF input degrades to pypdf if this is absent.
 PyMuPDF>=1.24
 
-# --- trajmine + cryotriage DEMO/SYNTHETIC mode (CPU; NO GPU) ---
-# These two stay demo-only (no GPU on the Hetzner box). Their demo/synthetic
-# code paths are pure-CPU and need these deps. Real MD (trajmine) / real cryo-EM
-# triage (cryotriage) are a GPU follow-up — the async contract flips on with a
-# GPU worker, not a redesign.
-mdtraj>=1.10               # trajmine demo-md trajectory I/O
-deeptime>=0.4.4            # trajmine tICA + MSM + PCCA+ kinetics
-mdshare>=0.4               # trajmine demo-md fetches the alanine-dipeptide trajectory
-scikit-image>=0.22         # cryotriage contamination-blob detection
-mrcfile>=1.5               # cryotriage MRC micrograph I/O
-imageio>=2.30              # cryotriage PNG/TIF fallback I/O
-Pillow>=9.5                # cryotriage thumbnails (also pulled by matplotlib)
+# --- trajmine + cryotriage DEMO/SYNTHETIC mode ---
+# These two stay demo-only. Their demo/synthetic
+# code paths are pure-CPU and need these deps. Real MD / real cryo-EM
+# triage are a GPU follow-up, the async contract flips on with a
+# GPU worker; no redesign.
+Mdtraj>=1.10 # trajmine demo-md trajectory I/O
+deeptime>=0.4.4 # trajmine tICA + MSM + PCCA+ kinetics
+mdshare>=0.4 # trajmine demo-md fetches the alanine-dipeptide trajectory
+scikit-image>=0.22 # cryotriage contamination-blob detection
+mrcfile>=1.5 # cryotriage MRC micrograph I/O
+imageio>=2.30 # cryotriage PNG/TIF fallback I/O
+Pillow>=9.5 # cryotriage thumbnails (also pulled by matplotlib)

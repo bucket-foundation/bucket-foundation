@@ -3,9 +3,9 @@
 // Shared run-UI primitives for the research-tools client islands. Every tool
 // page drives the same uniform job lifecycle through its same-origin proxy
 // /api/research/<tool>:
-//   submit  → POST  /api/research/<tool>          (json OR FormData body)
-//   poll    → GET   /api/research/<tool>?job=<id>
-//   result  → GET   /api/research/<tool>?job=<id>&result=1
+// submit → POST /api/research/<tool> (json OR FormData body)
+// poll → GET /api/research/<tool>?job=<id>
+// result → GET /api/research/<tool>?job=<id>&result=1
 // Render is "json" → typed view; "html" → sandboxed iframe of a self-contained
 // report. See docs/research-tools/04-implementation-architecture.md §2.
 
@@ -30,7 +30,7 @@ const POLL_SLOW_MS = 3000;
 const POLL_FAST_WINDOW_MS = 10_000;
 const POLL_CAP_MS = 600_000; // heavy/demo tools (trajmine, cryotriage) can be slow
 
-// useToolRun — wires the submit/poll/result lifecycle for one tool. The caller
+// useToolRun, wires the submit/poll/result lifecycle for one tool. The caller
 // supplies the proxy path and a function that builds the submit fetch init
 // (json or multipart). Returns the current phase + result + a submit() trigger.
 export function useToolRun(tool: string) {
@@ -103,7 +103,7 @@ export function useToolRun(tool: string) {
     [base, fetchResult],
   );
 
-  // submit — `init` is a standard fetch RequestInit (json body or FormData).
+  // submit, `init` is a standard fetch RequestInit (json body or FormData).
   const submit = useCallback(
     async (init: RequestInit, runningText = "Running…") => {
       setResult(null);
@@ -207,9 +207,9 @@ export function HtmlReport({ html }: { html: string }) {
   );
 }
 
-// "Publish to canon" stub — identical hook across every tool. Registers the run
+// "Publish to canon" stub, identical hook across every tool. Registers the run
 // artifact + its feed402/0.2 cite-forever block (free-to-read, paid-to-cite over
-// feed402/x402). NO blockchain, NO Story Protocol, NO IP-NFT — credentials, if
+// feed402/x402). NO blockchain, NO Story Protocol, NO IP-NFT, credentials, if
 // any, use Open Badges 3.0 / W3C VC (issuer-signed). See docs §5.
 export function PublishToCanon({ result }: { result: ResultEnvelope }) {
   const [publishing, setPublishing] = useState(false);
@@ -218,15 +218,15 @@ export function PublishToCanon({ result }: { result: ResultEnvelope }) {
   const onPublish = useCallback(async () => {
     setPublishing(true);
     setPublishMsg("");
-    // [PUBLISH-TO-CANON HOOK — TODO(deploy) backend wiring]
+    // [PUBLISH-TO-CANON HOOK, TODO(deploy) backend wiring]
     // POST the job to the publish endpoint, which renders the canonical artifact
     // + provenance and registers it with its feed402/0.2 cite-forever block
     // (free-to-read, paid-to-cite over x402). No minting, no chain. See docs §5.
     // Endpoint not built in this slice.
-    //   await fetch(`/api/research/${result.tool}/publish`, {
-    //     method: "POST", headers: { "content-type": "application/json" },
-    //     body: JSON.stringify({ job_id: result.job_id }),
-    //   });
+    // await fetch(`/api/research/${result.tool}/publish`, {
+    // method: "POST", headers: { "content-type": "application/json" },
+    // body: JSON.stringify({ job_id: result.job_id }),
+    // });
     setTimeout(() => {
       setPublishing(false);
       setPublishMsg(

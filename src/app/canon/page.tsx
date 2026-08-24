@@ -1,4 +1,4 @@
-// /canon — the seven-branch grid + interactive armillary globe.
+// /canon, the seven-branch grid + interactive armillary globe.
 // Build-time render. The repo IS the CMS.
 
 import Link from "next/link";
@@ -119,11 +119,11 @@ export default function Page() {
             <Stat label="canon entries" value={String(totalEntries)} />
           </div>
 
-          {/* Gap-analysis bar — per-branch claim-count visualisation.
-              Coverage relative to the deepest branch (currently 05-biophysics
-              at 198 cards). Bars dim when a branch is sparse, full when
-              dense. Lets visitors see exactly where the canon is thin
-              without clicking each branch. */}
+          {/* Gap-analysis bar, per-branch claim-count visualisation.
+ Coverage relative to the deepest branch (currently 05-biophysics
+ at 198 cards). Bars dim when a branch is sparse, full when
+ dense. Lets visitors see exactly where the canon is thin
+ without clicking each branch. */}
           <div className="mt-10 max-w-3xl">
             <div className="small-caps text-[10px] text-[color:var(--parchment-dim)] mb-3 tracking-[0.2em]">
               live coverage · click any branch for detail
@@ -204,7 +204,7 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-// Branch coverage bar — per-branch claim-count viz. Reads claim cards
+// Branch coverage bar, per-branch claim-count viz. Reads claim cards
 // directly off disk at build time. Bars dim when sparse, gold when dense.
 import fs from "fs";
 import path from "path";

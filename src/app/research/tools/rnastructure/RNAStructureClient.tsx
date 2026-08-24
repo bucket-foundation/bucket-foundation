@@ -1,6 +1,6 @@
 "use client";
 
-// RNAStructure client island — RNA secondary-structure prediction via ViennaRNA
+// RNAStructure client island, RNA secondary-structure prediction via ViennaRNA
 // (REAL MFE fold + partition function). Render is "json" → typed view.
 
 import { useState } from "react";

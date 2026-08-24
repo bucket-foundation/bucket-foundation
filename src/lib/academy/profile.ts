@@ -1,5 +1,5 @@
 /**
- * src/lib/academy/profile.ts  (bkt-coh)
+ * src/lib/academy/profile.ts (bkt-coh)
  * ------------------------------------------------------------------
  * Assemble a PUBLIC Mastery Profile from a learner's stored progress.
  *
@@ -7,8 +7,8 @@
  * reusable by the API route AND the server-rendered /m/<handle> page.
  *
  * Privacy: the assembled object carries ONLY a handle + optional display name +
- * the honest mastery rollup. No email, no user_id, no raw FSRS card internals
- * beyond what the inspect layer needs. The HARD GUARDRAIL lives in mastery.ts —
+ * the mastery rollup. No email, no user_id, no raw FSRS card internals
+ * beyond what the inspect layer needs. The HARD GUARDRAIL lives in mastery.ts, 
  * this layer never adds a certified rating.
  */
 import {
@@ -27,7 +27,7 @@ export interface ProgressRow {
 export interface PublicProfile {
   handle: string;
   displayName: string | null;
-  // honest, branch-spanning rollup (the "shape of a mind")
+  //, branch-spanning rollup (the "shape of a mind")
   branches: BranchSummary[];
   totals: {
     branchesTouched: number;
@@ -36,7 +36,7 @@ export interface PublicProfile {
     deepestDepthLabel: string;
     lastActivity: string | null;
   };
-  // framing strings the UI renders verbatim so copy stays honest + consistent.
+  // framing strings the UI renders verbatim so copy stays + consistent.
   framing: {
     headline: string;
     disclaimer: string;
@@ -54,7 +54,7 @@ const DEPTH_RANK: Record<string, number> = {
 
 /**
  * Build a PublicProfile from the raw progress rows of one user. Branches with no
- * matching static corpus (user-generated decks) are skipped — the public
+ * matching static corpus (user-generated decks) are skipped, the public
  * profile only shows canon branches. Branches the learner never started are
  * omitted (we don't pad the map with empty branches).
  */
@@ -112,7 +112,7 @@ export function assemblePublicProfile(
             `concept${conceptsMastered === 1 ? "" : "s"} across ` +
             `${branches.length} canon branch${branches.length === 1 ? "" : "es"} — by learning.`
           : `${name} is building their foundations on Bucket.`,
-      // The honest-signal disclaimer, shown on every public profile. This is the
+      // The-signal disclaimer, shown on every public profile. This is the
       // EPIC.md §5 guardrail made visible to viewers.
       disclaimer:
         "This is an evolving learning record, not a certified test score. " +

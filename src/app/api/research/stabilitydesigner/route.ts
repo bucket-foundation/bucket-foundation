@@ -1,15 +1,15 @@
 /**
- * bucket.foundation — /api/research/stabilitydesigner
+ * bucket.foundation, /api/research/stabilitydesigner
  * ---------------------------------------------------
  * Same-origin proxy for the StabilityDesigner research tool. Drop-in copy of the
  * LabBrain proxy (see /api/research/labbrain/route.ts and
  * docs/research-tools/04-implementation-architecture.md §2.5).
  *
- *   POST /api/research/stabilitydesigner          → gateway POST /v1/stabilitydesigner/submit
- *        body { sequence, mode, mutation?, position? }
- *   GET  ?job=<id> / ?job=<id>&result=1           → status / result
+ * POST /api/research/stabilitydesigner → gateway POST /v1/stabilitydesigner/submit
+ * body { sequence, mode, mutation?, position? }
+ * GET ?job=<id> / ?job=<id>&result=1 → status / result
  *
- * Env (server-only): TOOLS_GATEWAY_URL  default "https://research-tools.agfarms.dev"
+ * Env (server-only): TOOLS_GATEWAY_URL default "https://research-tools.agfarms.dev"
  * TODO(deploy): set TOOLS_GATEWAY_URL in Vercel + K3s secret bucket/tools-gateway.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "position required for scan" } }, 400);
   }
 
-  // [METERING SEAM — TODO, off in v1] — see /api/research/labbrain/route.ts.
+  // [METERING SEAM, TODO, off in v1], see /api/research/labbrain/route.ts.
 
   let resp: Response;
   try {

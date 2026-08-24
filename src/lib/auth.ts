@@ -1,5 +1,5 @@
 // src/lib/auth.ts
-// NextAuth v4 config — email magic link, JWT session.
+// NextAuth v4 config, email magic link, JWT session.
 // Dynamic web3 wallet auth is a future bead; this is the v1 minimum.
 //
 // Build-safe: if Supabase env vars are missing (Vercel preview without
@@ -14,7 +14,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseSecret = process.env.SUPABASE_SERVICE_ROLE_KEY;
 export const AUTH_CONFIGURED = Boolean(supabaseUrl && supabaseSecret);
 
-// bkt-vn5: NextAuth EmailProvider requires a database adapter — magic-link
+// bkt-vn5: NextAuth EmailProvider requires a database adapter, magic-link
 // flow needs a `verification_tokens` table to persist the one-time token
 // between request and click. Wired to Supabase. The Supabase project must
 // have the next-auth schema applied: https://authjs.dev/reference/adapter/supabase
@@ -46,7 +46,7 @@ export const authOptions: NextAuthOptions = AUTH_CONFIGURED
       },
     }
   : {
-      // Stub config — auth disabled. Routes that import authOptions still
+      // Stub config, auth disabled. Routes that import authOptions still
       // load, but getServerSession() returns null and NextAuth handlers
       // return 503 via the route wrapper.
       providers: [],

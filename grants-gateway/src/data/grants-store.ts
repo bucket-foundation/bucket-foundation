@@ -8,7 +8,7 @@
  *
  * TODO(bkt-ugw): replace MemoryGrantsStore with PostgresGrantsStore,
  * loading from `data/grants/*.parquet` produced by the ingestion pipeline.
- * The interface is the contract — keep it stable.
+ * The interface is the contract, keep it stable.
  */
 
 import type { Grant, GrantQuery } from "../types.js";
@@ -18,7 +18,7 @@ export interface GrantsStore {
   getById(id: string): Promise<Grant | null>;
   /** Structured search. Implementations may use SQL, ES, or in-memory. */
   search(q: GrantQuery): Promise<Grant[]>;
-  /** Iterate all grants — used by /insight to score the full set. */
+  /** Iterate all grants, used by /insight to score the full set. */
   all(): Promise<Grant[]>;
   /** Stable hex SHA-256 of the corpus (for feed402 §4 corpus_sha256). */
   corpusHash(): Promise<string>;

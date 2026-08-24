@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-research-tools gateway — UNIFIED, all 7 tools
+research-tools gateway, UNIFIED, all 7 tools
 =============================================
 
 Implements the v1 research-tools job contract (see
@@ -14,15 +14,15 @@ subprocess logic from the existing all-tools wrapper
 (`biophysics-phd-review/tools_api/app.py`) into the uniform job lifecycle every
 tool shares:
 
-    POST /v1/<tool>/submit          -> { job_id, status, mode, price, [result] }
-    GET  /v1/jobs/<job_id>          -> status envelope
-    GET  /v1/jobs/<job_id>/result   -> { render: "json"|"html", output, ... }
-    GET  /health                    -> { ok, tools, version }
+ POST /v1/<tool>/submit -> { job_id, status, mode, price, [result] }
+ GET /v1/jobs/<job_id> -> status envelope
+ GET /v1/jobs/<job_id>/result -> { render: "json"|"html", output... }
+ GET /health -> { ok, tools, version }
 
-Run (matches the Polingual API pattern — systemd --user on the box, nginx + TLS
+Run (matches the Polingual API pattern, systemd --user on the box, nginx + TLS
 in front at research-tools.agfarms.dev):
 
-    uvicorn gateway:app --host 127.0.0.1 --port 8732
+ uvicorn gateway:app --host 127.0.0.1 --port 8732
 
 Tool classes
 ------------
@@ -30,15 +30,15 @@ CPU tools run INLINE (the submit handler runs them in a worker thread and, if
 they finish within the inline budget, attaches the result to the submit
 response so the UI can skip polling):
 
-    labbrain, proteinscout, stabilitydesigner, screenserver, patchseqml
+ labbrain, proteinscout, stabilitydesigner, screenserver, patchseqml
 
 GPU / long tools run in DEMO / SYNTHETIC mode (the Hetzner CPX42 has no GPU; the
-async contract is built so flipping on a real GPU worker is a deploy, not a
-redesign). They go through the same job table but are flagged mode="async" and
+async contract is built so flipping on a real GPU worker is a plain deploy with
+no redesign). They go through the same job table but are flagged mode="async" and
 demo=True:
 
-    trajmine   (CPU demo-md trajectory; real MD needs a GPU/long worker)
-    cryotriage (synthetic micrographs; real cryo-EM triage needs a GPU worker)
+ trajmine (CPU demo-md trajectory; real MD needs a GPU/long worker)
+ cryotriage (synthetic micrographs; real cryo-EM triage needs a GPU worker)
 
 TODO(deploy): everything below marked TODO(deploy) is a backend/infra seam that
 lands when the gateway is stood up on Hetzner. None of it blocks the contract.
@@ -89,71 +89,71 @@ INLINE_BUDGET_S = float(os.environ.get("TOOLS_INLINE_BUDGET_S", "30"))
 # against this same set before forwarding.
 CPU_TOOLS = ["labbrain", "proteinscout", "stabilitydesigner", "screenserver", "patchseqml"]
 DEMO_TOOLS = ["trajmine", "cryotriage"]
-# T1 RAG/agent/data tools — REAL logic over live OpenAlex + the research-atlas
+# T1 RAG/agent/data tools, REAL logic over live OpenAlex + the research-atlas
 # grant corpus (services/research-tools/tools_rag.py). CPU/inline, no GPU, no
 # subprocess. They render "json" typed views.
 RAG_TOOLS = ["paperradar", "grantdraft", "methodsmatcher", "reviewguard"]
-# DNA/RNA cluster (services/research-tools/tools_dnarna.py) — REAL algorithms
+# DNA/RNA cluster (services/research-tools/tools_dnarna.py), REAL algorithms
 # over ViennaRNA + numpy. CPU/inline, no subprocess, render "json".
 DNARNA_TOOLS = ["rnastructure", "grnaoptimizer", "rnafmembeds"]
-# Neuroscience cluster (services/research-tools/tools_neuro.py) — REAL scipy
+# Neuroscience cluster (services/research-tools/tools_neuro.py), REAL scipy
 # numerical fits + spike detection. CPU/inline, render "json".
 NEURO_TOOLS = ["hhfit", "spikefeatures"]
 # QuantumBioRAG lives in tools_rag.py (claim-strength RAG over live OpenAlex);
 # it shares the RAG backend + registry, so it is added to RAG_TOOLS above.
 RAG_TOOLS.append("quantumbiorag")
-# ProtocolGPT (services/research-tools/tools_protocol.py) — REAL rule/template
+# ProtocolGPT (services/research-tools/tools_protocol.py), REAL rule/template
 # extraction over a methods knowledge base. CPU/inline, no network, render "json".
 PROTOCOL_TOOLS = ["protocolgpt"]
-# ToxinChannelFinder (services/research-tools/tools_toxin.py) — REAL curated
+# ToxinChannelFinder (services/research-tools/tools_toxin.py), REAL curated
 # venom-peptide pharmacology KB + live OpenAlex co-occurrence. CPU/inline.
 TOXIN_TOOLS = ["toxinchannelfinder"]
-# CitationGraph (services/research-tools/tools_citation.py) — REAL OpenAlex
+# CitationGraph (services/research-tools/tools_citation.py), REAL OpenAlex
 # citation-neighborhood graph + degree centrality. CPU/inline.
 CITATION_TOOLS = ["citationgraph"]
-# Imaging / mechanobiology cluster (services/research-tools/tools_imaging.py) —
+# Imaging / mechanobiology cluster (services/research-tools/tools_imaging.py), 
 # REAL scipy + scikit-image signal/image processing. CPU/inline, no GPU.
-#   calciumtraceml  — ΔF/F + transient detection (signal processing)
-#   cellsegtrack    — cell segmentation (cellpose if installed, else watershed)
-#   afmcurveml      — AFM force-curve Hertz/Sneddon modulus fit
-#   tractionforceml — block-matching PIV displacement field (classical)
+# calciumtraceml, ΔF/F + transient detection (signal processing)
+# cellsegtrack, cell segmentation (cellpose if installed, else watershed)
+# afmcurveml, AFM force-curve Hertz/Sneddon modulus fit
+# tractionforceml, block-matching PIV displacement field (classical)
 IMAGING_TOOLS = ["calciumtraceml", "cellsegtrack", "afmcurveml", "tractionforceml"]
-# FigureMiner (services/research-tools/tools_figure.py) — REAL text-layer caption
+# FigureMiner (services/research-tools/tools_figure.py), REAL text-layer caption
 # + statistics + measurement mining (PDF via PyMuPDF/pypdf, or raw text). The
 # pixel-level plot-digitization stage is a documented GPU/vision extension.
 FIGURE_TOOLS = ["figureminer"]
-# Genomics / sequence cluster (services/research-tools/tools_genomics.py) — REAL
+# Genomics / sequence cluster (services/research-tools/tools_genomics.py), REAL
 # interpretable sequence + signal algorithms. CPU/inline, no GPU.
-#   chromatinaccess  — accessibility/regulatory potential from DNA (feature model)
-#   aggregatepredict — amyloid/aggregation propensity from a protein sequence
-#   channeldwell     — single-channel idealization + dwell-time analysis
+# chromatinaccess, accessibility/regulatory potential from DNA (feature model)
+# aggregatepredict, amyloid/aggregation propensity from a protein sequence
+# channeldwell, single-channel idealization + dwell-time analysis
 GENOMICS_TOOLS = ["chromatinaccess", "aggregatepredict", "channeldwell"]
 # All-field HORIZONTAL tools (services/research-tools/tools_fair.py +
-# tools_repli.py) — serve EVERY discipline (the 1.17M researchers), not one
-# field. FAIR data management + statistics reproducibility are funder-mandated
+# tools_repli.py), serve EVERY discipline (the 1.17M researchers) across all
+# fields. FAIR data management + statistics reproducibility are funder-mandated
 # across NIH/NSF/Horizon/Wellcome/Gates. REAL deterministic rubric + scipy math,
 # CPU/inline, no network, no GPU, render "json".
-#   faircheck   — FAIR (Findable/Accessible/Interoperable/Reusable) rubric
-#   replicheck  — statcheck p-value recomputation + GRIM test + reporting flags
+# faircheck, FAIR (Findable/Accessible/Interoperable/Reusable) rubric
+# replicheck, statcheck p-value recomputation + GRIM test + reporting flags
 HORIZONTAL_TOOLS = ["faircheck", "replicheck"]
 # Per-field NON-bio cluster (services/research-tools/tools_{causal,materials,power,
-# geo,mlrepro}.py) — REAL algorithms for the biggest CPU-feasible non-bio fields
+# geo,mlrepro}.py), REAL algorithms for the biggest CPU-feasible non-bio fields
 # named in research-atlas/docs/USERS_NEEDS.md. CPU/inline, no GPU, render "json".
-#   causaldesigner     — econ-social: DAG + backdoor/adjustment set (networkx do-calc)
-#   materialsfeaturizer— materials: Magpie-style composition descriptors (element KB)
-#   powerplan          — universal/stats: power & sample-size (scipy noncentral dists)
-#   geosummary         — earth-climate: trend (Mann-Kendall/Theil-Sen) + seasonality
-#   mlreprocard        — cs-ml: ML reproducibility rubric + model card (deterministic)
+# causaldesigner, econ-social: DAG + backdoor/adjustment set (networkx do-calc)
+# materialsfeaturizer, materials: Magpie-style composition descriptors (element KB)
+# powerplan, universal/stats: power & sample-size (scipy noncentral dists)
+# geosummary, earth-climate: trend (Mann-Kendall/Theil-Sen) + seasonality
+# mlreprocard, cs-ml: ML reproducibility rubric + model card (deterministic)
 FIELD_TOOLS = ["causaldesigner", "materialsfeaturizer", "powerplan", "geosummary", "mlreprocard"]
 # Per-field CLASSICAL-algorithm cluster (services/research-tools/tools_{seqalign,
-# stoich,units,survival,forecast}.py) — REAL exact algorithms for the biggest
+# stoich,units,survival,forecast}.py), REAL exact algorithms for the biggest
 # CPU-feasible fields/tasks in research-atlas/docs/USERS_NEEDS.md not yet covered.
 # CPU/inline, no GPU, no subprocess, render "json".
-#   seqalign          — bio/genomics: Needleman-Wunsch + Smith-Waterman (BLOSUM62)
-#   stoichbalance     — chemistry: equation balancing (null-space) + limiting reagent
-#   unitdimcheck      — physics/universal: SI dimensional analysis + unit conversion
-#   survivalfit       — biomed/stats: Kaplan-Meier + median + log-rank test
-#   timeseriesforecast— econ/earth/universal: Holt-Winters decompose + forecast + backtest
+# seqalign, bio/genomics: Needleman-Wunsch + Smith-Waterman (BLOSUM62)
+# stoichbalance, chemistry: equation balancing (null-space) + limiting reagent
+# unitdimcheck, physics/universal: SI dimensional analysis + unit conversion
+# survivalfit, biomed/stats: Kaplan-Meier + median + log-rank test
+# timeseriesforecast, econ/earth/universal: Holt-Winters decompose + forecast + backtest
 CLASSIC_TOOLS = ["seqalign", "stoichbalance", "unitdimcheck", "survivalfit", "timeseriesforecast"]
 # REAL pure-logic backends that share one runner pattern (no subprocess, no GPU).
 PURE_TOOLS = (
@@ -164,7 +164,7 @@ PURE_TOOLS = (
 ALL_TOOLS = CPU_TOOLS + PURE_TOOLS + DEMO_TOOLS
 
 # price block travels from day one (zeroed). Metering seam lives in the Next
-# proxy, not here — the gateway stays payment-agnostic. See doc §6.
+# proxy; the gateway itself stays payment-agnostic. See doc §6.
 PRICE: dict[str, dict[str, Any]] = {
     "labbrain": {"tier": "ask", "usd": 0.0, "metered": False},
     "proteinscout": {"tier": "analyze", "usd": 0.0, "metered": False},
@@ -553,8 +553,8 @@ def _ok(job: Job, render: str, output: Any, artifacts: Optional[list] = None) ->
         "provenance": [
             {"action": "run", "tool": job.tool, "at": _now(), "by": "tools-gateway/v1"}
         ],
-        # Tool output is a DERIVED analysis (downstream application), not a canon
-        # axiom — publishable, but tagged derived. See doc §5.
+        # Tool output is a DERIVED analysis (downstream application) rather than a
+        # canon axiom, publishable, but tagged derived. See doc §5.
         "canon_candidate": True,
         "canon_tier": "derived",
         "demo": job.demo,
@@ -722,7 +722,7 @@ def _run_patchseqml(job: Job, payload: dict) -> None:
 # TODO(deploy): real GPU worker plane. trajmine real MD and cryotriage real
 # cryo-EM triage require a GPU node + a Redis/RQ queue (doc §4). Until a GPU
 # plan lands these run the synthetic/demo path tools_api/app.py already ships,
-# flagged demo=True so the UI labels them clearly.
+# flagged demo=True so the UI labels them.
 def _run_trajmine(job: Job, payload: dict) -> None:
     job.status, job.started_at = "running", _now()
     out = Path(tempfile.mkdtemp(prefix="tm_"))
@@ -773,8 +773,8 @@ def _run_cryotriage(job: Job, payload: dict) -> None:
 def _tool_report(job: Job, cwd: Any, args: list[str], timeout: int) -> Optional[str]:
     """Run a tool that writes an HTML report into a temp --out dir; return inlined HTML.
 
-    Mirrors tools_api/app.py:tool_report but fails the job (returns None) instead
-    of raising, so the job lifecycle stays clean.
+ Mirrors tools_api/app.py:tool_report but fails the job (returns None) instead
+ of raising, so the job lifecycle stays clean.
     """
     out = Path(tempfile.mkdtemp(prefix="rt_"))
     try:
@@ -821,7 +821,7 @@ def _make_pure_runner(
             if isinstance(out, dict) and out.get("error"):
                 return _fail(job, "bad_request", out["error"])
             # `degraded` (e.g. ViennaRNA missing, network down) is a successful
-            # but partial result — the UI shows a banner, never crashes.
+            # but partial result, the UI shows a banner, never crashes.
             _ok(job, "json", out)
         except Exception as e:  # never leave a job stuck running
             _fail(job, "internal", str(e)[:200])
@@ -1079,7 +1079,7 @@ class SpikeFeaturesSubmit(BaseModel):
 
 
 # --- gap-research cluster submit bodies (ProtocolGPT / QuantumBioRAG /
-#     ToxinChannelFinder / CitationGraph) ---
+# ToxinChannelFinder / CitationGraph) ---
 class ProtocolGPTSubmit(BaseModel):
     methods: str
     title: Optional[str] = None

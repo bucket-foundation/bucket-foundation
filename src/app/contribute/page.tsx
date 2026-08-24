@@ -12,7 +12,7 @@ import {
   ATLAS_CITATION,
 } from "@/lib/contribute";
 
-// /contribute — the open-research counterpart to /support.
+// /contribute, the open-research counterpart to /support.
 //
 // /support asks for MONEY (fund always-on hosting). /contribute asks for WORK:
 // add primary research to the canon, send a PR to the open-source repos, build
@@ -156,7 +156,7 @@ export default function Page() {
           </div>
         </div>
 
-        {/* (2) Contribute code — the open-source repos */}
+        {/* (2) Contribute code, the open-source repos */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           02 · contribute code
         </h2>
@@ -243,7 +243,7 @@ export default function Page() {
           </div>
         </div>
 
-        {/* (4) Improve the canon — the 7 branches */}
+        {/* (4) Improve the canon, the 7 branches */}
         <h2 className="mt-16 font-display uppercase text-[22px] tracking-[0.04em] text-[color:var(--basalt)]">
           04 · improve the canon
         </h2>

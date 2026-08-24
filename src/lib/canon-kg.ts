@@ -1,4 +1,4 @@
-// canon-kg.ts — server-only loader for the full canon knowledge graph
+// canon-kg.ts, server-only loader for the full canon knowledge graph
 // summary (1,133 nodes: 599 claims + 105 concepts + 27 bridges +
 // 402 authors). Powers /canon/graph (full KG view).
 

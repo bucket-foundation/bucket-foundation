@@ -1,6 +1,6 @@
 "use client";
 
-// src/app/chat/page.tsx — public chat surface for bucket.foundation.
+// src/app/chat/page.tsx, public chat surface for bucket.foundation.
 // Behind NEXT_PUBLIC_CHAT_ENABLED gate. Auth via NextAuth email magic link.
 
 import { useEffect, useRef, useState } from "react";
@@ -28,13 +28,13 @@ function PreviewGate() {
   const [sent, setSent] = useState(false);
   return (
     <main className="mx-auto max-w-xl px-6 py-24">
-      <h1 className="text-3xl font-light tracking-tight mb-3">chat — preview soon</h1>
+      <h1 className="text-3xl font-light tracking-tight mb-3">chat, preview soon</h1>
       <p className="text-sm text-[color:var(--basalt-2,#888)] mb-8">
         bucket.foundation chat is gated while we tune feed402 grounding.
         Drop your email to get the access link when it opens.
       </p>
       {sent ? (
-        <p className="text-sm">Thanks — we&apos;ll be in touch.</p>
+        <p className="text-sm">Thanks, we&apos;ll be in touch.</p>
       ) : (
         <form
           className="flex gap-2"

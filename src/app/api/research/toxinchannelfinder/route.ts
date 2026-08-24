@@ -1,16 +1,16 @@
 /**
- * bucket.foundation — /api/research/toxinchannelfinder
+ * bucket.foundation, /api/research/toxinchannelfinder
  * ----------------------------------------------------
  * Same-origin proxy for the ToxinChannelFinder tool. Given a toxin/peptide (by
  * NAME or amino-acid SEQUENCE), it maps it to likely ion-channel targets by
  * fusing a curated venom-peptide pharmacology KB with live OpenAlex literature
- * co-occurrence, returning a ranked target table with honest confidence + cited
+ * co-occurrence, returning a ranked target table with confidence + cited
  * exemplars. Backend logic is REAL
  * (services/research-tools/tools_toxin.py:run_toxin_channel_finder).
  *
- *   POST /api/research/toxinchannelfinder                  → gateway /v1/toxinchannelfinder/submit
- *        body { toxin, limit? }                             → { job_id, status, mode, price, [result] }
- *   GET  /api/research/toxinchannelfinder?job=<id>[&result=1] → status / result
+ * POST /api/research/toxinchannelfinder → gateway /v1/toxinchannelfinder/submit
+ * body { toxin, limit? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/toxinchannelfinder?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

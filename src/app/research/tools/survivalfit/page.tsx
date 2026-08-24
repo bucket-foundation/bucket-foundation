@@ -6,7 +6,7 @@ export const metadata = toolMetadata("survivalfit");
 const _jsonld = toolJsonLd("survivalfit");
 import SurvivalFitClient from "./SurvivalFitClient";
 
-// SurvivalFit run page — server shell framing the interactive client island.
+// SurvivalFit run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("survivalfit");
   return (

@@ -1,12 +1,12 @@
 /**
- * bucket.foundation — /api/research/unitdimcheck
+ * bucket.foundation, /api/research/unitdimcheck
  * -------------------------------------------------
  * Same-origin proxy for UnitDimCheck (universal physics/engineering tool). SI
  * dimensional analysis, unit conversion, and equation dimensional-consistency
  * checking over the 7 SI base dimensions. Backend is REAL (tools_units.py).
  *
  * POST body { op: "convert"|"check"|"parse", value?, from?, to?, equation?, unit? } | { demo: true }
- *   GET  /api/research/unitdimcheck?job=<id>[&result=1] → status / result
+ * GET /api/research/unitdimcheck?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

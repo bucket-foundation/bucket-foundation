@@ -1,6 +1,6 @@
 "use client";
 
-// SpikeFeatures client island — spike detection (MAD threshold + refractory +
+// SpikeFeatures client island, spike detection (MAD threshold + refractory +
 // alignment) + waveform features (REAL detector). Render is "json".
 // `trace` is a numeric array or the string "demo" (synthetic, known spike count).
 

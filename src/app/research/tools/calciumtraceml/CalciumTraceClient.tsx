@@ -1,6 +1,6 @@
 "use client";
 
-// CalciumTraceML client island — ΔF/F + transient detection (REAL signal
+// CalciumTraceML client island, ΔF/F + transient detection (REAL signal
 // processing). Render is "json". `trace` is a numeric array or "demo".
 
 import { useState } from "react";

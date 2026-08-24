@@ -1,4 +1,4 @@
-// /canon/graph — the canon collaboration network.
+// /canon/graph, the canon collaboration network.
 // Renders as a sortable table at build time + the raw graph JSON as a download.
 // (No client JS dep; an interactive force-directed view can be added later
 // if we pull in d3-force.)

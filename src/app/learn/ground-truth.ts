@@ -1,6 +1,6 @@
 // Distilled ground-truth context for bucket.foundation, embedded inline in
 // Tab 3 lesson prompts so Claude.ai can answer without needing to web-fetch
-// bucket URLs (critical pre-indexing — Claude's fetch tool refuses unknown
+// bucket URLs (critical pre-indexing, Claude's fetch tool refuses unknown
 // URLs, so we carry the canon with us). Keep this under ~2500 chars.
 //
 // If you edit this, also run `npm run build` and eyeball the encoded URL size

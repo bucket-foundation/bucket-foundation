@@ -4,13 +4,13 @@
  * The audit (_intake/2026-05-19-canon-integrity/AUDIT.md §1.5) found the
  * curated primary layer was only ever populated for 4 biophysics concepts.
  * canon-primary.ts:findPrimaryFiles() is branch-AGNOSTIC by construction (it
- * walks every `^\d{2}-` branch dir), so the wiring is generic — this test
+ * walks every `^\d{2}-` branch dir), so the wiring is generic, this test
  * PINS that: it asserts the loader picks up primary-papers.yaml from MORE than
  * one branch and that every loaded record is structurally serveable by
  * /api/research (DOI + canonical_url + title + canon_score).
  *
  * Run: npx ts-node --compiler-options '{"module":"commonjs"}' \
- *        scripts/test-canon-allbranch-index.ts
+ * scripts/test-canon-allbranch-index.ts
  * Exit non-zero on regression (e.g. someone hard-codes branch=05-biophysics).
  */
 import * as path from "path";
@@ -80,9 +80,9 @@ check(
 // non-biophysics primary title now ranks that real paper through the SAME
 // rankPrimary() the /api/research route calls. (Queries are chosen to clear
 // the title-overlap abstention gate; precision for paraphrase/German-title
-// queries is the SEPARATELY-beaded semantic-ranking follow-up, bkt P1 — not
+// queries is the SEPARATELY-beaded semantic-ranking follow-up, bkt P1, not
 // this deliverable. Abstaining on a non-match is the audited-correct
-// behaviour, not a wiring failure.)
+// behaviour here, never a wiring failure.)
 const mathHit = rankPrimary("computable numbers Entscheidungsproblem", 3);
 check(
   "rankPrimary serves a 01-mathematics paper for a math query (wiring live)",

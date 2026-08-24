@@ -1,19 +1,19 @@
 /**
- * src/app/m/[handle]/page.tsx  (bkt-coh)
+ * src/app/m/[handle]/page.tsx (bkt-coh)
  * ----------------------------------------------------------------------------
- * The PUBLIC Mastery Profile — bucket.foundation/m/<handle>.
+ * The PUBLIC Mastery Profile, bucket.foundation/m/<handle>.
  *
  * The headline differentiator of Bucket Academy (learning/EPIC.md §2): the
  * learning map made into a public, shareable "verifiable digital resume". This
- * is the MVP / honest-signal phase (MASTERY-PROFILE.md §3.1, Phase 1): a clean,
+ * is the MVP /-signal phase (MASTERY-PROFILE.md §3.1, Phase 1): a clean
  * screenshot-native page showing the concentric-shell map of mastered concepts
- * across canon branches + a per-branch HONEST mastery summary (started/mastered,
+ * across canon branches + a per-branch mastery summary (started/mastered
  * depth Recall→Apply→Derive→Teach, recency, with visible uncertainty) + an
  * evidence-framing placeholder + a "Verify" stub.
  *
  * HARD GUARDRAIL (EPIC.md §5): NO certified/precise numeric rating, no claim of
  * credentialed mastery. Framed throughout as "built by learning over time," an
- * evolving record, not a passed test.
+ * evolving record built from proven work.
  *
  * Privacy: server-rendered with the service-role assembler. Rendered ONLY when
  * the learner has opted in (is_public = true); otherwise notFound(). Minimal PII
@@ -163,14 +163,14 @@ export default async function MasteryProfilePage({
         </div>
       </header>
 
-      {/* the honest-signal disclaimer — the EPIC §5 guardrail, made visible */}
+      {/* the-signal disclaimer, the EPIC §5 guardrail, made visible */}
       <div className="mp-disclaimer" role="note">
         {profile.framing.disclaimer}
       </div>
 
       {/* bkt-52p: verifiable-credential surface. Owner sees "issue"; everyone
-          sees a "Verify" affordance (the viral backlink). Client island —
-          ownership + issuance are re-verified server-side from the token. */}
+ sees a "Verify" affordance (the viral backlink). Client island, 
+ ownership + issuance are re-verified server-side from the token. */}
       <CredentialPanel handle={profile.handle} />
 
       {profile.branches.length === 0 ? (
@@ -245,7 +245,7 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
             <span>{branch.total} concepts</span>
           </div>
 
-          {/* coarse progress bar — labelled "progress", never "score" */}
+          {/* coarse progress bar, labelled "progress", never "score" */}
           <div className="mp-bar-label">
             Learning progress <span className="mp-pct">{pct}%</span>
           </div>
@@ -276,7 +276,7 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
         </div>
       </div>
 
-      {/* per-shell honest summary */}
+      {/* per-shell summary */}
       <div className="mp-shells">
         {branch.shells.map((s) => (
           <div className="mp-shell-row" key={s.shell}>
@@ -328,7 +328,7 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
         </div>
       </details>
 
-      {/* screen-reader / inspect list-mode — the same signal, non-visual */}
+      {/* screen-reader / inspect list-mode, the same signal, non-visual */}
       <details className="mp-inspect">
         <summary>Concept-by-concept (list view)</summary>
         <ul className="mp-inspect-list">
@@ -351,7 +351,7 @@ function BranchCard({ branch }: { branch: BranchSummary }) {
 }
 
 /* Scoped, self-contained styles in the bucket aesthetic (bone/basalt/aegean/
- * gold/laurel, Cinzel display + Fraunces body — both already loaded by the root
+ * gold/laurel, Cinzel display + Fraunces body, both already loaded by the root
  * layout). Inline so the page is fully standalone + screenshot-native. */
 function Styles() {
   return (

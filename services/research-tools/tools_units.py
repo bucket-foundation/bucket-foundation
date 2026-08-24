@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-research-tools — UnitDimCheck (REAL dimensional analysis + unit conversion, CPU)
+research-tools, UnitDimCheck (REAL dimensional analysis + unit conversion, CPU)
 ================================================================================
 
 UNIVERSAL tool (physics-astro 108,466 PIs + engineering 93,027 + all quantitative
@@ -14,25 +14,25 @@ Three REAL operations over the 7 SI base dimensions
 (mass M, length L, time T, electric current I, temperature Θ, amount N,
 luminous intensity J):
 
-  1. Unit parsing + dimension extraction
-     ----------------------------------------------------------------------
-     Parse a unit expression ("kg*m/s^2", "N", "J/(mol*K)", "m s^-2") into a
-     dimension vector (the integer/rational exponents of the 7 base dimensions)
-     AND an SI conversion factor. A built-in table of SI base + derived + common
-     metric/imperial units, each with (factor-to-SI, dimension-vector), is
-     composed multiplicatively.
+ 1. Unit parsing + dimension extraction
+ ----------------------------------------------------------------------
+ Parse a unit expression ("kg*m/s^2", "N", "J/(mol*K)", "m s^-2") into a
+ dimension vector (the integer/rational exponents of the 7 base dimensions)
+ AND an SI conversion factor. A built-in table of SI base + derived + common
+ metric/imperial units, each with (factor-to-SI, dimension-vector), is
+ composed multiplicatively.
 
-  2. Unit conversion
-     ----------------------------------------------------------------------
-     Convert a value between two units IFF their dimension vectors are equal
-     (otherwise a structured error naming the mismatch). value_to = value_from *
-     factor_from / factor_to. (Affine temperatures °C/°F are handled specially.)
+ 2. Unit conversion
+ ----------------------------------------------------------------------
+ Convert a value between two units IFF their dimension vectors are equal
+ (otherwise a structured error naming the mismatch). value_to = value_from *
+ factor_from / factor_to. (Affine temperatures °C/°F are handled specially.)
 
-  3. Equation dimensional-consistency check
-     ----------------------------------------------------------------------
-     Given "LHS = RHS" where each side is a product/quotient of unit symbols,
-     check that both sides reduce to the same dimension vector — catching, e.g.,
-     F = m*a (consistent: both M·L·T⁻²) vs the wrong F = m*v (M·L·T⁻¹ ≠ M·L·T⁻²).
+ 3. Equation dimensional-consistency check
+ ----------------------------------------------------------------------
+ Given "LHS = RHS" where each side is a product/quotient of unit symbols,
+ check that both sides reduce to the same dimension vector, catching, e.g.,
+ F = m*a (consistent: both M·L·T⁻²) vs the wrong F = m*v (M·L·T⁻¹ ≠ M·L·T⁻²).
 
 Everything is exact rational arithmetic over Fractions; deterministic; never
 raises on malformed input (returns a structured {"error": ...}).
@@ -128,9 +128,9 @@ def _norm_token(tok: str) -> str:
 def parse_unit(expr: str) -> tuple[Optional[float], Optional[dict], Optional[str]]:
     """Parse a unit expression → (SI factor, dimension vector, error).
 
-    Grammar: products via '*' or whitespace, division via '/', powers via
-    '^n' or 'unit2'/'unit-2' (e.g. 's^-2', 'm2'). '1' is dimensionless. Pure;
-    never raises — returns ("error" string) on bad input.
+ Grammar: products via '*' or whitespace, division via '/', powers via
+ '^n' or 'unit2'/'unit-2' (e.g. 's^-2', 'm2'). '1' is dimensionless. Pure;
+ never raises, returns ("error" string) on bad input.
     """
     s = _norm_token((expr or "").strip())
     if not s:
@@ -139,7 +139,7 @@ def parse_unit(expr: str) -> tuple[Optional[float], Optional[dict], Optional[str
         return 1.0, _z(), None
     # split into numerator / denominator around the first top-level '/'
     # (no parentheses nesting beyond one level supported, which covers the
-    #  J/(mol*K) idiom: strip the parens).
+    # J/(mol*K) idiom: strip the parens).
     s = s.replace("·", "*").replace(" ", "*")
     # handle a single division
     if "/" in s:
@@ -258,13 +258,13 @@ def check_equation(eq: str) -> dict:
 
 def run_units(payload: dict) -> dict:
     """payload (one of):
-      { op: "convert", value: float, from: str, to: str }
-      { op: "check",   equation: str }   e.g. "N = kg*m/s^2"
-      { op: "parse",   unit: str }       e.g. "J/(mol*K)"
-      { demo: true }  or  { op: "demo" } -> checks F = m*a (consistent)
+ { op: "convert", value: float, from: str, to: str }
+ { op: "check", equation: str } e.g. "N = kg*m/s^2"
+ { op: "parse", unit: str } e.g. "J/(mol*K)"
+ { demo: true } or { op: "demo" } -> checks F = m*a (consistent)
 
-    Real SI dimensional analysis, unit conversion, and equation consistency.
-    Exact rational dimension arithmetic; deterministic; never raises.
+ Real SI dimensional analysis, unit conversion, and equation consistency.
+ Exact rational dimension arithmetic; deterministic; never raises.
     """
     op = (payload.get("op") or "").strip().lower()
     demo = bool(payload.get("demo")) or op == "demo"
@@ -333,7 +333,7 @@ _METHOD = (
 )
 _NOTE = (
     "Universal tool (physics, engineering, every quantitative field): dimensional "
-    "homogeneity is the cheapest correctness check there is — an equation that is "
+    "homogeneity is the cheapest correctness check there is, an equation that is "
     "not dimensionally consistent is wrong before any number is computed. The "
     "table covers the common SI/derived/imperial units; uncommon units are an "
     "easy additive extension."

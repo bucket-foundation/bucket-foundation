@@ -1,30 +1,30 @@
 #!/usr/bin/env python3
 """
-research-tools — DNA/RNA cluster (REAL logic, CPU, no GPU)
+research-tools, DNA/RNA cluster (REAL logic, CPU, no GPU)
 ==========================================================
 
-Genuinely FUNCTIONAL backends for the DNA/RNA tools from
+FUNCTIONAL backends for the DNA/RNA tools from
 docs/research-tools/02-tool-roadmap.md (the 1,105-PI DNA/RNA cohort that the
 existing 11-tool suite did not cover). Three tools, each running real
 algorithms / real scientific libraries on the user's input:
 
-    RNAStructure   — RNA secondary-structure prediction (RNAfold-style).
-                     ViennaRNA MFE fold + base-pair probabilities. FULLY REAL.
-    gRNA-Optimizer — CRISPR guide-RNA design: PAM scan, on-target scoring
-                     (GC / homopolymer / position rules), off-target heuristics.
-                     Real deterministic algorithm. FULLY REAL.
-    RNA-FM-Embeds  — hosted RNA embedding service. If an RNA language model is
-                     loadable, embed with it; else a REAL, documented k-mer +
-                     structural feature embedding (honestly marked model vs
-                     fallback). Fallback is real numeric features, not a stub.
+ RNAStructure, RNA secondary-structure prediction (RNAfold-style).
+ ViennaRNA MFE fold + base-pair probabilities. FULLY REAL.
+ gRNA-Optimizer, CRISPR guide-RNA design: PAM scan, on-target scoring
+ (GC / homopolymer / position rules), off-target heuristics.
+ Real deterministic algorithm. FULLY REAL.
+ RNA-FM-Embeds, hosted RNA embedding service. If an RNA language model is
+ loadable, embed with it; else a REAL, documented k-mer +
+ structural feature embedding (marked model vs
+ fallback). Fallback is real numeric features.
 
 Design rules (match tools_rag.py):
-  * Pure functions for every algorithm so they unit-test with fixtures, zero
-    network, zero GPU (see tests/).
-  * No subprocess to a sibling repo. ViennaRNA is a pip wheel (`pip install
-    ViennaRNA`); numpy is already present. RNA-FM weights are optional.
-  * Every run_<tool>(payload) -> dict returns the `output` payload only; the
-    gateway (gateway.py) wraps it in the v1 job-result envelope + provenance.
+ * Pure functions for every algorithm so they unit-test with fixtures, zero
+ network, zero GPU (see tests/).
+ * No subprocess to a sibling repo. ViennaRNA is a pip wheel (`pip install
+ ViennaRNA`); numpy is already present. RNA-FM weights are optional.
+ * Every run_<tool>(payload) -> dict returns the `output` payload only; the
+ gateway (gateway.py) wraps it in the v1 job-result envelope + provenance.
 
 The gateway imports DNARNA_RUNNERS from here.
 """
@@ -42,7 +42,7 @@ import numpy as np
 # the module still imports (and the other two tools still run) if the wheel is
 # missing on a given host; RNAStructure then reports backend_unavailable.
 try:
-    import RNA  # type: ignore  (ViennaRNA python bindings: `pip install ViennaRNA`)
+    import RNA  # type: ignore (ViennaRNA python bindings: `pip install ViennaRNA`)
 
     _VIENNA_OK = True
     _VIENNA_ERR = ""
@@ -64,7 +64,7 @@ _RC_RNA = {"A": "U", "C": "G", "G": "C", "U": "A", "T": "A", "N": "N"}
 
 def clean_seq(s: Optional[str], *, allow_rna: bool = True) -> str:
     """Normalize a nucleotide sequence: strip FASTA header, whitespace, lowercase.
-    Pure function. Keeps only IUPAC nucleotide letters (upper-cased)."""
+ Pure function. Keeps only IUPAC nucleotide letters (upper-cased)."""
     s = (s or "").strip()
     if s.startswith(">"):
         s = "".join(s.splitlines()[1:])
@@ -102,12 +102,12 @@ def longest_homopolymer(s: str) -> int:
 
 
 # ===========================================================================
-# 1. RNAStructure — RNA secondary-structure prediction (ViennaRNA MFE)
+# 1. RNAStructure, RNA secondary-structure prediction (ViennaRNA MFE)
 # ===========================================================================
 def summarize_dotbracket(structure: str) -> dict:
     """Parse a dot-bracket string into human-readable structure features.
-    Pure function. Returns paired-base count, helix/loop counts, and the
-    base-pair list (i,j 1-indexed)."""
+ Pure function. Returns paired-base count, helix/loop counts, and the
+ base-pair list (i,j 1-indexed)."""
     pairs: list[tuple[int, int]] = []
     stack: list[int] = []
     for i, c in enumerate(structure):
@@ -145,11 +145,11 @@ def summarize_dotbracket(structure: str) -> dict:
 def run_rna_structure(payload: dict) -> dict:
     """payload: { sequence: str (RNA or DNA; DNA is folded as RNA) }
 
-    Real MFE secondary-structure prediction via ViennaRNA:
-      * dot-bracket MFE structure + free energy (kcal/mol)
-      * ensemble free energy + base-pair probability matrix (partition function)
-      * per-base max pairing probability (positional confidence)
-      * a readable structure summary (helices, loops, paired fraction)
+ Real MFE secondary-structure prediction via ViennaRNA:
+ * dot-bracket MFE structure + free energy (kcal/mol)
+ * ensemble free energy + base-pair probability matrix (partition function)
+ * per-base max pairing probability (positional confidence)
+ * a readable structure summary (helices, loops, paired fraction)
     """
     raw = clean_seq(payload.get("sequence"))
     if len(raw) < 4:
@@ -240,7 +240,7 @@ def run_rna_structure(payload: dict) -> dict:
 
 
 # ===========================================================================
-# 2. gRNA-Optimizer — CRISPR guide-RNA design (real deterministic algorithm)
+# 2. gRNA-Optimizer, CRISPR guide-RNA design (real deterministic algorithm)
 # ===========================================================================
 # SpCas9 default: 20-nt protospacer + NGG PAM on the 3' end. We scan both
 # strands for PAMs, extract each candidate guide, and score it with rules drawn
@@ -249,8 +249,8 @@ def run_rna_structure(payload: dict) -> dict:
 def find_guides(seq: str, *, pam: str = "NGG", guide_len: int = 20) -> list[dict]:
     """Enumerate candidate SpCas9 guides on both strands. Pure function.
 
-    Returns each guide with its protospacer, strand, 0-indexed cut site, and the
-    matched PAM. PAM is matched as a IUPAC pattern on the 3' side of the guide.
+ Returns each guide with its protospacer, strand, 0-indexed cut site, and the
+ matched PAM. PAM is matched as a IUPAC pattern on the 3' side of the guide.
     """
     seq = seq.upper()
     pam_re = _iupac_regex(pam)
@@ -318,12 +318,12 @@ def _iupac_regex(pam: str) -> str:
 def score_guide_on_target(guide: str) -> dict:
     """Heuristic on-target efficiency score (0..1). Pure function.
 
-    Transparent, literature-motivated rules (not the proprietary Rule Set 2
-    gradient-boosted model, which needs trained weights):
-      * GC content sweet spot ~40-70% (penalize extremes; Doench 2014)
-      * no long homopolymers (>=4) — poor transcription / U-runs terminate Pol III
-      * position-specific nucleotide preferences (G at PAM-proximal positions)
-      * avoid TTTT (Pol III terminator) anywhere
+ Transparent, literature-motivated rules (not the proprietary Rule Set 2
+ gradient-boosted model, which needs trained weights):
+ * GC content sweet spot ~40-70% (penalize extremes; Doench 2014)
+ * no long homopolymers (>=4), poor transcription / U-runs terminate Pol III
+ * position-specific nucleotide preferences (G at PAM-proximal positions)
+ * avoid TTTT (Pol III terminator) anywhere
     """
     n = len(guide)
     gc = gc_fraction(guide)
@@ -362,10 +362,10 @@ def score_guide_on_target(guide: str) -> dict:
 def off_target_risk(guide: str, context: str) -> dict:
     """Heuristic off-target risk against the supplied target context. Pure.
 
-    Real seed-region logic (Hsu 2013): the 12 nt PAM-proximal "seed" drives
-    specificity. We count how many other near-PAM-NGG sites in the supplied
-    sequence share the guide's seed with <=2 mismatches — a real, if local,
-    off-target signal (a genome-wide search needs a reference index; documented).
+ Real seed-region logic (Hsu 2013): the 12 nt PAM-proximal "seed" drives
+ specificity. We count how many other near-PAM-NGG sites in the supplied
+ sequence share the guide's seed with <=2 mismatches, a real, if local,
+ off-target signal (a genome-wide search needs a reference index; documented).
     """
     seed = guide[-12:]
     ctx = context.upper()
@@ -402,10 +402,10 @@ def off_target_risk(guide: str, context: str) -> dict:
 
 def run_grna_optimizer(payload: dict) -> dict:
     """payload: { sequence: str (target DNA), pam?: str=NGG, guide_len?: int=20,
-                  limit?: int=20 }
+ limit?: int=20 }
 
-    CRISPR guide design: enumerate candidate guides (PAM scan, both strands),
-    score on-target efficiency, flag off-target risk, return a ranked table.
+ CRISPR guide design: enumerate candidate guides (PAM scan, both strands),
+ score on-target efficiency, flag off-target risk, return a ranked table.
     """
     seq = clean_seq(payload.get("sequence"), allow_rna=False).replace("U", "T")
     if len(seq) < 23:
@@ -460,20 +460,20 @@ def run_grna_optimizer(payload: dict) -> dict:
         ],
         "note": (
             "On-target uses transparent literature-motivated rules (GC sweet "
-            "spot, homopolymer/PolIII penalties, position preferences), not the "
+            "spot, homopolymer/PolIII penalties, position preferences) in place of the "
             "proprietary trained Rule Set 2. Off-target is a local seed heuristic."
         ),
     }
 
 
 # ===========================================================================
-# 3. RNA-FM-Embeds — hosted RNA embedding service (model OR real fallback)
+# 3. RNA-FM-Embeds, hosted RNA embedding service (model OR real fallback)
 # ===========================================================================
 # RNA-FM is a 12-layer BERT-style RNA language model (640-d). It needs the
 # `fm` package + downloaded weights (a GPU helps but CPU inference works for
 # short seqs). When present we use it; otherwise we compute a REAL, documented
 # k-mer + structural-feature embedding (numeric, reproducible) and label the
-# output mode honestly. The fallback is genuine feature extraction, not a stub.
+# output mode. The fallback is real feature extraction.
 _RNAFM = None
 _RNAFM_TRIED = False
 
@@ -486,7 +486,7 @@ def _try_load_rnafm():  # pragma: no cover - model load is environment-dependent
     if os.environ.get("RNAFM_DISABLE", "") in ("1", "true", "yes"):
         return None
     try:
-        import fm  # type: ignore  (the RNA-FM package)
+        import fm  # type: ignore (the RNA-FM package)
         import torch  # type: ignore
 
         model, alphabet = fm.pretrained.rna_fm_t12()
@@ -500,8 +500,8 @@ def _try_load_rnafm():  # pragma: no cover - model load is environment-dependent
 def kmer_embedding(seq: str, k: int = 3) -> np.ndarray:
     """Real k-mer frequency embedding over the RNA alphabet. Pure-ish (numpy).
 
-    Dimension = 4**k (k=3 -> 64). L2-normalized frequency vector — a genuine,
-    reproducible sequence representation usable as ML features downstream.
+ Dimension = 4**k (k=3 -> 64). L2-normalized frequency vector, a
+ reproducible sequence representation usable as ML features downstream.
     """
     rna = to_rna(seq)
     bases = "ACGU"
@@ -526,8 +526,8 @@ def kmer_embedding(seq: str, k: int = 3) -> np.ndarray:
 def structural_features(seq: str) -> dict:
     """Real biophysical descriptors of the RNA. Pure function (+optional Vienna).
 
-    GC content, purine fraction, longest homopolymer, dinucleotide entropy, and
-    — if ViennaRNA is present — the MFE per nucleotide (a real folding feature).
+ GC content, purine fraction, longest homopolymer, dinucleotide entropy, and
+, if ViennaRNA is present, the MFE per nucleotide (a real folding feature).
     """
     rna = to_rna(seq)
     n = len(rna) or 1
@@ -556,9 +556,9 @@ def structural_features(seq: str) -> dict:
 def run_rna_fm_embeds(payload: dict) -> dict:
     """payload: { sequence: str, k?: int=3 }
 
-    Returns an RNA embedding. Uses the RNA-FM language model if available
-    (mode="rna-fm"), else a REAL k-mer + structural-feature embedding
-    (mode="kmer-structural-fallback"). The mode is reported honestly.
+ Returns an RNA embedding. Uses the RNA-FM language model if available
+ (mode="rna-fm"), else a REAL k-mer + structural-feature embedding
+ (mode="kmer-structural-fallback"). The mode is reported.
     """
     seq = clean_seq(payload.get("sequence"))
     if len(seq) < 4:

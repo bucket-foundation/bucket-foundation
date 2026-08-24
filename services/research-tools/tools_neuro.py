@@ -1,28 +1,28 @@
 #!/usr/bin/env python3
 """
-research-tools — Neuroscience cluster (REAL logic, CPU, no GPU)
+research-tools, Neuroscience cluster (REAL logic, CPU, no GPU)
 ===============================================================
 
-Genuinely FUNCTIONAL backends for the neuroscience tools from
+FUNCTIONAL backends for the neuroscience tools from
 docs/research-tools/02-tool-roadmap.md (the 938-PI neuroscience cohort). Two
 tools, each running real numerical methods on the user's trace:
 
-    HH-FitML     — fit Hodgkin-Huxley / passive-membrane parameters to a
-                   current-clamp voltage trace via scipy least-squares.
-                   Real numerical optimization. FULLY REAL.
-    SpikeFeatures — detect spikes in an extracellular/intracellular trace
-                   (threshold + alignment) and extract waveform features.
-                   Uses SpikeInterface if available, else a REAL threshold +
-                   MAD-based detector. Both paths are real. FULLY REAL.
+ HH-FitML, fit Hodgkin-Huxley / passive-membrane parameters to a
+ current-clamp voltage trace via scipy least-squares.
+ Real numerical optimization. FULLY REAL.
+ SpikeFeatures, detect spikes in an extracellular/intracellular trace
+ (threshold + alignment) and extract waveform features.
+ Uses SpikeInterface if available, else a REAL threshold +
+ MAD-based detector. Both paths are real. FULLY REAL.
 
 Design rules (match tools_rag.py / tools_dnarna.py):
-  * scipy.optimize / scipy.signal + numpy — already on the box.
-  * Pure functions for every algorithm so they unit-test on synthetic traces
-    with known ground-truth, zero network, zero GPU (see tests/).
-  * Input traces accepted as plain JSON arrays (the gateway/proxy keeps the v1
-    JSON contract; a real ABF/NWB upload path is a documented seam, like the
-    existing patchseqml file-upload runner).
-  * Each run_<tool>(payload) -> dict returns the `output` payload only.
+ * scipy.optimize / scipy.signal + numpy, already on the box.
+ * Pure functions for every algorithm so they unit-test on synthetic traces
+ with known ground-truth, zero network, zero GPU (see tests/).
+ * Input traces accepted as plain JSON arrays (the gateway/proxy keeps the v1
+ JSON contract; a real ABF/NWB upload path is a documented seam, like the
+ existing patchseqml file-upload runner).
+ * Each run_<tool>(payload) -> dict returns the `output` payload only.
 
 The gateway imports NEURO_RUNNERS from here.
 """
@@ -35,9 +35,9 @@ from scipy import signal as sp_signal
 from scipy.optimize import least_squares
 
 # SpikeInterface is optional (heavy). When present, SpikeFeatures uses its
-# detect_peaks; otherwise a real MAD-threshold detector. Honestly reported.
+# detect_peaks; otherwise a real MAD-threshold detector. Reported.
 try:
-    import spikeinterface  # type: ignore  # noqa: F401
+    import spikeinterface  # type: ignore # noqa: F401
 
     _SI_OK = True
 except Exception:  # pragma: no cover - import guard
@@ -49,7 +49,7 @@ except Exception:  # pragma: no cover - import guard
 # ===========================================================================
 def parse_trace(payload: dict, key: str = "trace") -> tuple[Optional[np.ndarray], Optional[str]]:
     """Pull a 1-D float array from the payload. Accepts a JSON list, or a
-    comma/space/newline-separated string. Returns (array, error)."""
+ comma/space/newline-separated string. Returns (array, error)."""
     raw = payload.get(key)
     if raw is None:
         return None, f"missing required field: {key}"
@@ -76,13 +76,13 @@ def parse_trace(payload: dict, key: str = "trace") -> tuple[Optional[np.ndarray]
 
 
 # ===========================================================================
-# 1. HH-FitML — fit passive-membrane / RC parameters to a current-clamp step
+# 1. HH-FitML, fit passive-membrane / RC parameters to a current-clamp step
 # ===========================================================================
 def passive_response(t: np.ndarray, I: float, R: float, C: float, V0: float, t_on: float) -> np.ndarray:
     """Single-compartment passive (RC) membrane response to a current step.
-    Pure function. V(t) = V0 + I*R*(1 - exp(-(t-t_on)/(R*C))) for t>=t_on.
+ Pure function. V(t) = V0 + I*R*(1 - exp(-(t-t_on)/(R*C))) for t>=t_on.
 
-    R in GOhm, C in pF, I in pA, t in ms -> tau = R*C in ms, I*R in mV.
+ R in GOhm, C in pF, I in pA, t in ms -> tau = R*C in ms, I*R in mV.
     """
     tau = max(R * C, 1e-6)
     v = np.full_like(t, V0, dtype=np.float64)
@@ -96,8 +96,8 @@ def fit_passive_membrane(
 ) -> dict:
     """Least-squares fit of (R, C, V0) to a current-clamp step. Real scipy fit.
 
-    Returns fitted membrane resistance (R, GOhm), capacitance (C, pF), membrane
-    time constant tau=R*C (ms), resting V0, and fit quality (R^2, RMSE).
+ Returns fitted membrane resistance (R, GOhm), capacitance (C, pF), membrane
+ time constant tau=R*C (ms), resting V0, and fit quality (R^2, RMSE).
     """
     v0_guess = float(np.median(v[t < t_on])) if np.any(t < t_on) else float(v[0])
     v_ss = float(np.median(v[t >= t_on][-max(1, len(v) // 10):])) if np.any(t >= t_on) else float(v[-1])
@@ -146,11 +146,11 @@ def _count_spikes(v: np.ndarray, thresh: float = 0.0) -> int:
 
 def run_hh_fit(payload: dict) -> dict:
     """payload: { trace: [mV] or "demo", current_pa?: float, dt_ms?: float,
-                  stim_onset_ms?: float }
+ stim_onset_ms?: float }
 
-    Fit passive-membrane parameters (R, C, tau, V0) to a current-clamp step via
-    scipy least-squares. If trace=="demo", a synthetic ground-truth trace is
-    generated (clearly marked) so the real fit can be demonstrated end-to-end.
+ Fit passive-membrane parameters (R, C, tau, V0) to a current-clamp step via
+ scipy least-squares. If trace=="demo", a synthetic ground-truth trace is
+ generated (marked) so the real fit can be demonstrated end-to-end.
     """
     current = float(payload.get("current_pa") if payload.get("current_pa") is not None else 100.0)
     # NOTE: use an explicit None-check (not `or`) so an explicit 0 is rejected by
@@ -163,7 +163,7 @@ def run_hh_fit(payload: dict) -> dict:
     ground_truth = None
     if demo:
         # synthetic RC trace with known params + noise (DEMO mode, marked)
-        true_R, true_C, true_V0 = 0.12, 250.0, -65.0  # GOhm, pF, mV  (tau=30ms)
+        true_R, true_C, true_V0 = 0.12, 250.0, -65.0  # GOhm, pF, mV (tau=30ms)
         t = np.arange(0, 200.0, dt)
         t_on = 50.0
         rng = np.random.default_rng(42)
@@ -215,22 +215,22 @@ def run_hh_fit(payload: dict) -> dict:
 
 
 # ===========================================================================
-# 2. SpikeFeatures — spike detection + waveform feature extraction
+# 2. SpikeFeatures, spike detection + waveform feature extraction
 # ===========================================================================
 def detect_spikes_mad(
     trace: np.ndarray, fs: float, *, thresh_mad: float = 5.0, refractory_ms: float = 1.0
 ) -> dict:
     """Real spike detector: MAD-based threshold on the (sign-corrected) trace.
 
-    Pure function. Uses the robust noise estimate sigma = median(|x|)/0.6745
-    (Quiroga 2004), detects negative-going peaks beyond thresh_mad*sigma, and
-    enforces a refractory period. Returns sample indices + the threshold used.
+ Pure function. Uses the outlier-resistant noise estimate sigma = median(|x|)/0.6745
+ (Quiroga 2004), detects negative-going peaks beyond thresh_mad*sigma, and
+ enforces a refractory period. Returns sample indices + the threshold used.
     """
     x = trace - np.median(trace)
     sigma = np.median(np.abs(x)) / 0.6745 if x.size else 0.0
     if sigma <= 0:
         sigma = float(np.std(x)) or 1e-9
-    # extracellular spikes are typically negative-going; detect on -x peaks AND
+    # extracellular spikes are negative-going; detect on -x peaks AND
     # +x peaks, take whichever polarity has more energy.
     neg_peaks, _ = sp_signal.find_peaks(-x, height=thresh_mad * sigma)
     pos_peaks, _ = sp_signal.find_peaks(x, height=thresh_mad * sigma)
@@ -260,9 +260,9 @@ def waveform_features(
 ) -> dict:
     """Extract mean-waveform features from detected spikes. Pure function.
 
-    Aligns a window around each spike, averages, and measures peak-to-trough
-    amplitude, trough-to-peak width (a real cell-type signature), and
-    half-width. Returns the mean waveform + aggregate features.
+ Aligns a window around each spike, averages, and measures peak-to-trough
+ amplitude, trough-to-peak width (a real cell-type signature), and
+ half-width. Returns the mean waveform + aggregate features.
     """
     half = int(win_ms * fs / 1000.0)
     if half < 2:
@@ -304,11 +304,11 @@ def waveform_features(
 def run_spike_features(payload: dict) -> dict:
     """payload: { trace: [uV/mV] or "demo", fs_hz?: float, thresh_mad?: float }
 
-    Detect spikes (threshold + refractory + alignment) and extract waveform
-    features. Uses SpikeInterface if installed (reported), else a real MAD
-    detector. If trace=="demo", a synthetic spike train is generated (marked).
+ Detect spikes (threshold + refractory + alignment) and extract waveform
+ features. Uses SpikeInterface if installed (reported), else a real MAD
+ detector. If trace=="demo", a synthetic spike train is generated (marked).
     """
-    # explicit None-check so an explicit fs_hz=0 is rejected, not coerced.
+    # explicit None-check so an explicit fs_hz=0 is rejected rather than coerced.
     fs = float(payload.get("fs_hz") if payload.get("fs_hz") is not None else 30000.0)
     if fs <= 0:
         return {"error": "fs_hz must be > 0"}
@@ -376,7 +376,7 @@ def run_spike_features(payload: dict) -> dict:
         "spike_times_ms": [round(i / fs * 1000.0, 4) for i in indices[:500]],
         "note": (
             "Real MAD-robust threshold detection + waveform feature extraction. "
-            "trough-to-peak width + half-width are genuine cell-type signatures. "
+            "trough-to-peak width + half-width are cell-type signatures. "
             "A full template-matching sorter (Kilosort/SpikeInterface) is the "
             "documented heavier path; this detector is real and deterministic."
         ),

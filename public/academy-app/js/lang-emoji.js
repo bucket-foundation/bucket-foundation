@@ -1,14 +1,14 @@
-/* lang-emoji.js — concept → emoji map for the Languages deck (bkt-3s9).
+/* lang-emoji.js, concept → emoji map for the Languages deck (bkt-3s9).
  *
  * Powers the "can't-fail picture multiple-choice" exercise: when an atom's id
  * (the clean English concept, e.g. "water", "dog", "one") has an emoji here,
  * langMultipleChoice() shows the EMOJI as the prompt ("Which one is 💧?") with
- * the target-language words as options — a true picture choice, the Duolingo hook.
+ * the target-language words as options, a true picture choice, the Duolingo hook.
  * Atoms without an emoji fall back to the word/gloss prompt.
  *
  * Curated for the CONCRETE concepts a beginner meets first (numbers, colors,
  * family, animals, body, nature, food, common objects). Abstract/grammatical
- * concepts are intentionally left out — there is no honest picture for "truth".
+ * concepts are intentionally left out, there is no picture for "truth".
  *
  * Keyed by atom id (the concept-index English key). Exposed as window.LangEmoji.
  */

@@ -6,7 +6,7 @@ export const metadata = toolMetadata("geosummary");
 const _jsonld = toolJsonLd("geosummary");
 import GeoSummaryClient from "./GeoSummaryClient";
 
-// GeoSummary run page — server shell framing the interactive client island.
+// GeoSummary run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("geosummary");
   return (

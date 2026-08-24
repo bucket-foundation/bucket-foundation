@@ -1,21 +1,21 @@
-# Bucket Foundation — Demo / Music Video v1 Production Plan
+# Bucket Foundation: Demo / Music Video v1 Production Plan
 
-> Status: **PLAN ONLY — do not begin asset generation.**
+> Status: **PLAN ONLY, do not begin asset generation.**
 > Bead: `bkt- · demo-video v1 production plan` (priority=2, ready)
 > Author: Revenue pillar, 2026-04-23
-> Target length: 60–90 sec
+> Target length: 60-90 sec
 > Target ship: T+5 days from founder green-light
 
 ---
 
-## 0. Environment verification (done 2026-04-23)
+## 0. Environment verification
 
-### API keys actually present
+### API keys present
 | Key | Status | Source |
 |---|---|---|
 | `OPENAI_API_KEY` | **AVAILABLE** | `~/DerbyFish/derbyfish-gtm/.env` → gpt-image-1, TTS (`tts-1-hd` with `onyx`/`ash`/`sage`), Whisper, gpt-4o-audio |
-| `ANTHROPIC_API_KEY` | **AVAILABLE** | same env — script regen via Claude |
-| `HEYGEN_API_KEY` | **AVAILABLE** | same env — **not used** for v1 (talking-head aesthetic wrong for stone/museum brief; parked for v2 narrator cameo) |
+| `ANTHROPIC_API_KEY` | **AVAILABLE** | same env, script regen via Claude |
+| `HEYGEN_API_KEY` | **AVAILABLE** | same env, **not used** for v1 (talking-head aesthetic wrong for stone/museum brief; parked for v2 narrator cameo) |
 | `FIGMA_TOKEN` | **AVAILABLE** | `~/.bashrc` + `figma-agf` MCP |
 | `ELEVENLABS_API_KEY` | **NOT AVAILABLE** | fallback → OpenAI TTS `onyx` |
 | `SUNO_API_KEY` / `UDIO_API_KEY` | **NOT AVAILABLE** | fallback → YouTube Audio Library / Pixabay royalty-free |
@@ -25,11 +25,11 @@
 ### Binaries present
 `ffmpeg` ✅ · `obs` ✅ · `google-chrome` ✅ · `convert`/`magick` (ImageMagick) ✅ · `cairosvg` ✅ · `node` v22 ✅ · `python3` 3.13 ✅
 
-### Binaries missing (installable, no paid SaaS)
+### Binaries missing
 - `playwright` → `npx playwright@1.49 install chromium` (one-time, ~180 MB)
 - `whisper` → `pip install openai-whisper` OR (preferred, no local GPU) use the OpenAI Whisper **API** we already have keys for
 - `yt-dlp` → `pip install yt-dlp` (for pulling royalty-free tracks)
-- `rsvg-convert` → `sudo dnf install librsvg2-tools` (optional — cairosvg already works)
+- `rsvg-convert` → `sudo dnf install librsvg2-tools` (optional, cairosvg already works)
 - `sox` → not required; ffmpeg covers all audio DSP
 
 ### Session context
@@ -37,22 +37,22 @@ Wayland session (`XDG_SESSION_TYPE=wayland`). **Implication:** `ffmpeg -f x11gra
 
 ---
 
-## 1. Strategic framing (120 words)
+## 1. Strategic framing
 
 **Audience.** Not the general public. Two wedges, watched in the same 90 seconds:
-(a) the small number of humans who can pair with a frontier model and push an axiom forward — call them the *canon contributors*; and (b) long-horizon funders (longtermism orgs, open-science programs, protocol-aligned grantmakers on Base) who already fund this archetype.
+(a) the small number of humans who can pair with a frontier model and push an axiom forward, call them the *canon contributors*; and (b) long-horizon funders (longtermism orgs, open-science programs, protocol-aligned grantmakers on Base) who already fund this archetype.
 
 **Action.** One CTA, one URL: **bucket.foundation** → *contribute, cite, or fund.* No newsletter capture. No "learn more." The site is the funnel.
 
-**Why a music video.** The thesis is aesthetic before it is financial. A talking-head explainer flattens "written in stone" into a pitch. A scored, chiseled 75-second piece lets the limestone carry the argument — it films the product *as artifact*, which is what the product claims to be.
+**Why a music video.** The thesis is aesthetic before it is financial. A talking-head explainer flattens "written in stone" into a pitch. A scored, chiseled 75-second piece lets the limestone carry the argument, it films the product *as artifact*, which is what the product claims to be.
 
 **Watchable metric.** Completion rate > 55% on X native video (threshold for algorithmic lift) and >100 unique `bucket.foundation` visits attributed within 72h of post.
 
 ---
 
-## 2. Script — full text (75 sec)
+## 2. Script, full text
 
-> Voice: grave, unhurried, inscriptional. 90 WPM max. Each line lands on an image, not during a transition.
+> Voice: grave, unhurried, inscriptional. 90 WPM max. Each line lands on an image.
 
 ```
 [00:00–00:08]  (silence over hero logo fade-in, then, low:)
@@ -81,36 +81,36 @@ Wayland session (`XDG_SESSION_TYPE=wayland`). **Implication:** `ffmpeg -f x11gra
 
 Word count: 69. Spoken length at `tts-1-hd` speed 0.92 ≈ 72 seconds with pauses = ~75 s final.
 
-**Longtermism beat.** "A public record for the small number of people doing the real work with the new machines" — EA/longtermism semantic signature without the jargon. Pairs to a shot of the Canon branches glyph fanning out across centuries (see storyboard shot 9).
+**Longtermism beat.** "A public record for the small number of people doing the real work with the new machines", EA/longtermism semantic signature without the jargon. Pairs to a shot of the Canon branches glyph fanning out across centuries (see storyboard shot 9).
 
 ---
 
-## 3. Storyboard — shot by shot
+## 3. Storyboard: shot by shot
 
 Legend: **PW** = Playwright screen capture · **GEN** = gpt-image-1 still · **ARC** = archival/own-asset · **SVG** = rendered supers · **FFX** = ffmpeg effect
 
 | # | Time | Source | Action | VO line | Music cue | Super |
 |---|---|---|---|---|---|---|
-| 1 | 0:00–0:04 | SVG + FFX | Black → single gold chisel-strike reveals inverse-omega-lyre logo, 5 gold strings glint | — | drone enters, low C | — |
-| 2 | 0:04–0:10 | GEN | Slow push-in on weathered limestone tablet, faint cuneiform | "Every civilization leaves a layer." | drone + dulcimer tap | — |
-| 3 | 0:10–0:16 | GEN | Cross-dissolve montage: clay tablet → carved marble stele → vellum page → glowing server rack | "Clay. Stone. Paper. Server." | dulcimer enters | each noun chisels on in Cinzel as spoken |
-| 4 | 0:16–0:22 | GEN | Antikythera bronze gears rotating, patinated, shallow DOF | "Each one cheaper. Each one louder. Each one less permanent." | sub-bass swell | — |
-| 5 | 0:22–0:30 | **PW** | `bucket.foundation` hero loads cleanly, cursor scrolls to § I Thesis, text reveals | "This is the next layer." | held drone | — |
-| 6 | 0:30–0:38 | **PW** | Scroll through § II Canon — 8 plinths of branches (mathematics → earth), hover pauses on `05-biophysics` | "Not faster. Not more. Foundations — cut once, and kept." | dulcimer + distant choir | lower-third: "§ II Canon" in Cinzel |
-| 7 | 0:38–0:44 | **PW** | Scroll to § III Protocol — chisel into the `402 Payment Required` glyph | "Free to read." | sustained Low D | — |
-| 8 | 0:44–0:50 | GEN | Rosetta-stone-style triptych: left = open book, center = x402 signature, right = hand holding coin returning toward carved name | "Paid to cite. The fee returns to the hand that carved it." | choir enters | "402 · Base · cite → author" |
-| 9 | 0:50–0:58 | ARC + SVG | Pull from `canon-figures/figures.json` — Euclid, Newton, Maxwell, Turing, Shannon, McClintock, Margulis, Bohm fade in as plinths across a carved arc | — (music breath) | choir peaks | — |
-| 10 | 0:58–1:08 | **PW** | Scroll to § IV The Cut — the chisel-edge separator animates; then § V Closer appears | "Not a platform. Not a feed. A public record for the small number of people doing the real work with the new machines." | first drum hit (final 8 bars) | — |
-| 11 | 1:08–1:12 | GEN | Slow dolly up a single tall limestone plinth, lyre logo carved at the top, gold glyph catches light | "Bucket." | drums + sub-bass lock | — |
-| 12 | 1:12–1:18 | SVG | Full-frame carved inscription on bone-limestone: **"written in stone."** — five gold string-marks beneath | "Written in stone." | tail decay | url: **bucket.foundation** in hairline Cinzel |
+| 1 | 0:00-0:04 | SVG + FFX | Black → single gold chisel-strike reveals inverse-omega-lyre logo, 5 gold strings glint | - | drone enters, low C | - |
+| 2 | 0:04-0:10 | GEN | Slow push-in on weathered limestone tablet, faint cuneiform | "Every civilization leaves a layer." | drone + dulcimer tap | - |
+| 3 | 0:10-0:16 | GEN | Cross-dissolve montage: clay tablet → carved marble stele → vellum page → glowing server rack | "Clay. Stone. Paper. Server." | dulcimer enters | each noun chisels on in Cinzel as spoken |
+| 4 | 0:16-0:22 | GEN | Antikythera bronze gears rotating, patinated, shallow DOF | "Each one cheaper. Each one louder. Each one less permanent." | sub-bass swell | - |
+| 5 | 0:22-0:30 | **PW** | `bucket.foundation` hero loads cleanly, cursor scrolls to § I Thesis, text reveals | "This is the next layer." | held drone | - |
+| 6 | 0:30-0:38 | **PW** | Scroll through § II Canon, 8 plinths of branches (mathematics → earth), hover pauses on `05-biophysics` | "Not faster. Not more. Foundations, cut once, and kept." | dulcimer + distant choir | lower-third: "§ II Canon" in Cinzel |
+| 7 | 0:38-0:44 | **PW** | Scroll to § III Protocol, chisel into the `402 Payment Required` glyph | "Free to read." | sustained Low D | - |
+| 8 | 0:44-0:50 | GEN | Rosetta-stone-style triptych: left = open book, center = x402 signature, right = hand holding coin returning toward carved name | "Paid to cite. The fee returns to the hand that carved it." | choir enters | "402 · Base · cite → author" |
+| 9 | 0:50-0:58 | ARC + SVG | Pull from `canon-figures/figures.json`, Euclid, Newton, Maxwell, Turing, Shannon, McClintock, Margulis, Bohm fade in as plinths across a carved arc | (music breath) | choir peaks | - |
+| 10 | 0:58-1:08 | **PW** | Scroll to § IV The Cut, the chisel-edge separator animates; then § V Closer appears | "Not a platform. Not a feed. A public record for the small number of people doing the real work with the new machines." | first drum hit (final 8 bars) | - |
+| 11 | 1:08-1:12 | GEN | Slow dolly up a single tall limestone plinth, lyre logo carved at the top, gold glyph catches light | "Bucket." | drums + sub-bass lock | - |
+| 12 | 1:12-1:18 | SVG | Full-frame carved inscription on bone-limestone: **"written in stone."**, five gold string-marks beneath | "Written in stone." | tail decay | url: **bucket.foundation** in hairline Cinzel |
 
 12 shots. Three **PW** (hero, Canon, Protocol→Cut), five **GEN** stills (tablet, triptych of civilizations, Antikythera, Rosetta triptych, final plinth), one **ARC** (canon-figures pull), three **SVG+FFX**.
 
 ---
 
-## 4. Voice — decision tree
+## 4. Voice, decision tree
 
-### Primary path: OpenAI TTS (keys present)
+### Primary path: OpenAI TTS
 ```bash
 # model: tts-1-hd  voice: onyx (grave male)  speed: 0.92
 curl -s https://api.openai.com/v1/audio/speech \
@@ -119,12 +119,12 @@ curl -s https://api.openai.com/v1/audio/speech \
   -d @gtm/inputs/voice-v1.payload.json \
   -o gtm/voice-v1.mp3
 ```
-`payload.json` contains the full script with period-pause notation. OpenAI TTS doesn't honor SSML, but **periods and newlines control pacing** — script above is period-pointed.
+`payload.json` contains the full script with period-pause notation. OpenAI TTS doesn't honor SSML, but **periods and newlines control pacing**, script above is period-pointed.
 
-**Voice choice:** `onyx` is the closest to the brief (Attenborough-adjacent grave male). `ash` is slightly younger, more editorial — run both, A/B with founder. Cost: ~$0.015 per full pass.
+**Voice choice:** `onyx` is the closest to the brief (Attenborough-adjacent grave male). `ash` is slightly younger, more editorial, run both, A/B with founder. Cost: ~$0.015 per full pass.
 
 ### If ElevenLabs becomes available later
-Recommended voice: **`Daniel` (ID `onwK4e9ZLuTAKqWW03F9`)** — British male, editorial, ~50. Alternative: **`Adam` (ID `pNInz6obpgDQGcFmaJgB`)** for depth at expense of age. `eleven_turbo_v2_5`, stability 0.55, similarity 0.75, style 0.20.
+Recommended voice: **`Daniel` (ID `onwK4e9ZLuTAKqWW03F9`)**, British male, editorial, ~50. Alternative: **`Adam` (ID `pNInz6obpgDQGcFmaJgB`)** for depth at expense of age. `eleven_turbo_v2_5`, stability 0.55, similarity 0.75, style 0.20.
 
 ### Fallback: Gian self-records
 USB mic → `arecord -f cd -c 1 gtm/voice-raw.wav` → clean with:
@@ -143,16 +143,16 @@ curl -s https://api.openai.com/v1/audio/transcriptions \
 
 ---
 
-## 5. Music — decision tree
+## 5. Music, decision tree
 
 ### No Suno/Udio key. Use royalty-free + ffmpeg composition.
 
 **Brief to match.** "Ancient carved stone cinematic, deep male choir, slow hammered dulcimer, sub-bass drone, no drums until final 8 bars, Jon Hopkins × Jóhann Jóhannsson × Anno Domini Beats."
 
-### Shortlist (all free for commercial use with attribution where noted)
-1. **YouTube Audio Library** — search "cinematic drone", "epic ancient", filter Attribution-not-required: *"Ethereal Relaxation"*, *"Before Dawn"*, *"Stonefall"* — preview at https://www.youtube.com/audiolibrary
-2. **Pixabay Music** — https://pixabay.com/music/search/ancient%20cinematic/ — strong hits: "Ancient Ritual", "Cinematic Ethereal Choir", "The Legend of Atlantis" — free, no attribution required
-3. **Free Music Archive** — https://freemusicarchive.org/genre/Soundtrack/ — filter CC-BY or CC0
+### Shortlist
+1. **YouTube Audio Library**, search "cinematic drone", "epic ancient", filter Attribution-not-required: *"Ethereal Relaxation"*, *"Before Dawn"*, *"Stonefall"*, preview at https://www.youtube.com/audiolibrary
+2. **Pixabay Music**, https://pixabay.com/music/search/ancient%20cinematic/, strong hits: "Ancient Ritual", "Cinematic Ethereal Choir", "The Legend of Atlantis", free, no attribution required
+3. **Free Music Archive**, https://freemusicarchive.org/genre/Soundtrack/, filter CC-BY or CC0
 
 **Download workflow:**
 ```bash
@@ -163,7 +163,7 @@ yt-dlp -x --audio-format mp3 --audio-quality 0 -o 'gtm/inputs/music/%(title)s.%(
 ### Stretch: gpt-image-1-style AI music via OpenAI gpt-4o-audio
 Not reliable yet for cinematic score. **Skip for v1.**
 
-### Mix — ffmpeg ducking command
+### Mix: ffmpeg ducking command
 Assuming `music.mp3` and `voice-v1.mp3` prepared:
 ```bash
 ffmpeg -i gtm/inputs/music/track.mp3 -i gtm/voice-v1.mp3 -filter_complex \
@@ -173,11 +173,11 @@ ffmpeg -i gtm/inputs/music/track.mp3 -i gtm/voice-v1.mp3 -filter_complex \
 
 ---
 
-## 6. Production pipeline — runnable
+## 6. Production pipeline, runnable
 
 > Every command below assumes cwd = `~/agfarms/bucket-foundation/`.
 
-### Step 0 — one-time setup (~5 min)
+### Step 0, one-time setup
 ```bash
 cd ~/agfarms/bucket-foundation
 mkdir -p gtm/inputs/{images,music,voice,svg} gtm/takes gtm/out
@@ -185,7 +185,7 @@ npx -y playwright@1.49 install chromium
 pip install --user yt-dlp openai-whisper
 ```
 
-### Step 1 — generate imagery (gpt-image-1)
+### Step 1, generate imagery
 
 For each GEN shot, call gpt-image-1 at `1792x1024` (cinematic 16:9) with quality `high`. Prompts below are the exact payloads.
 
@@ -203,15 +203,15 @@ Prompts file: `gtm/inputs/image-prompts.json`
 ]
 ```
 
-Run (pseudocode script `scripts/gen_images.py` — to be written at execution time; OpenAI Python SDK one-liner per prompt, saves to `gtm/inputs/images/<id>.png`). Est cost: **8 images × $0.19 = $1.52**.
+Run (pseudocode script `scripts/gen_images.py`, to be written at execution time; OpenAI Python SDK one-liner per prompt, saves to `gtm/inputs/images/<id>.png`). Est cost: **8 images × $0.19 = $1.52**.
 
-### Step 2 — generate voice
+### Step 2, generate voice
 See §4. Output: `gtm/voice-v1.mp3`. Cost: ~$0.015.
 
-### Step 3 — download music
+### Step 3, download music
 See §5. Output: `gtm/inputs/music/track.mp3`. Cost: $0.
 
-### Step 4 — Playwright website capture
+### Step 4: Playwright website capture
 
 Ship `gtm/record.spec.ts`:
 ```ts
@@ -254,16 +254,16 @@ BF_URL=https://bucket.foundation npx playwright test gtm/record.spec.ts --config
 
 If site section IDs (`#canon`, `#protocol`, `#cut`, `#closer`) don't match: confirm in `src/app/page.tsx` and adjust selectors before execution (see §10).
 
-### Step 5 — supplementary takes
+### Step 5, supplementary takes
 Not needed if Playwright spec covers all PW shots. If OBS is preferred for a cinematic cursor: OBS → PipeWire Screen Capture source → 1920×1080/60 → record separately, drop into `gtm/takes/`.
 
-### Step 6 — SVG supers rendered to PNG
+### Step 6: SVG supers rendered to PNG
 Author `gtm/inputs/svg/super_cinzel.svg` templates (one per text card). Render via cairosvg already installed:
 ```bash
 cairosvg gtm/inputs/svg/super_clay.svg -o gtm/inputs/images/super_clay.png -W 1920 -H 1080
 ```
 
-### Step 7 — ffmpeg edit
+### Step 7, ffmpeg edit
 
 Concat list + Ken Burns per still + overlays + sync to music. Canonical build:
 
@@ -312,12 +312,12 @@ Audio target: **-14 LUFS integrated, -1.0 dBTP** (loudnorm in §5). Final durati
 | Target | Spec | Notes |
 |---|---|---|
 | **bucket.foundation hero** | 1080p mp4, autoplay muted, loop; poster.png fallback | Replace or add under hero; PR into `gianyrox/bucket-foundation` |
-| **X native upload** | 1080p mp4, < 140s, < 512 MB | Caption below post: *"free to read. paid to cite. bucket.foundation"* — link in reply to avoid algo penalty |
+| **X native upload** | 1080p mp4, < 140s, < 512 MB | Caption below post: *"free to read. Paid to cite. Bucket.foundation"*, link in reply to avoid algo penalty |
 | **YouTube** | 4K master, captions.vtt, poster | Unlisted first 24h for review; then public |
-| **Warpcast** | 1080p mp4 (≤ 100 MB) + frame preview | x402/Base adjacency — prime audience |
+| **Warpcast** | 1080p mp4 (≤ 100 MB) + frame preview | x402/Base adjacency, prime audience |
 | **Canonical URL** | https://bucket.foundation/video/v1 | Serve from `/public/video/` in Next.js |
 | **OG card** | `og:video` = canonical, `og:image` = poster.png | Update `src/app/layout.tsx` metadata |
-| **Thumbnail** | poster.png — the Shot 11 plinth — with **"written in stone."** hairline Cinzel centered | Export 1280×720 |
+| **Thumbnail** | poster.png, the Shot 11 plinth, with **"written in stone."** hairline Cinzel centered | Export 1280×720 |
 | **gdrive mirror** | `gdrive:AGFarms/Nucleus/bucket-foundation/gtm/video-v1/` | Contains: `bucket-v1-1080p.mp4`, `bucket-v1-4k.mp4`, `poster.png`, `captions.vtt`, `script.md`, `shot-manifest.json` |
 
 Mirror command:
@@ -354,7 +354,7 @@ gtm/
     └── ...
 ```
 
-### Script regeneration template — `gtm/script-generator.md`
+### Script regeneration template, `gtm/script-generator.md`
 The founder drops new reading into `gtm/inputs/reading/`, then runs a Claude API call with the template below. Output: a new `vN-script.md` in the same stone voice, re-timed to the existing 12-shot storyboard.
 
 **Prompt skeleton (Claude/Anthropic):**
@@ -397,7 +397,7 @@ This is the *engine* that makes the video regenerable as the canon grows. Every 
 
 ## 9. Total time + cost
 
-### Founder time (assuming no asset surprises)
+### Founder time
 | Phase | Hours |
 |---|---|
 | Setup (playwright install, read plan, confirm decisions in §10) | 0.5 |
@@ -421,29 +421,29 @@ This is the *engine* that makes the video regenerable as the canon grows. Every 
 | **Total** | **< $2.00** |
 
 ### Critical-path blockers
-1. **Site section IDs** — Playwright spec assumes `#canon`, `#protocol`, `#cut`, `#closer`. Must verify in `src/app/page.tsx` before running.
-2. **Music selection** — without Suno/Udio, founder must listen to 3–5 candidates and pick. Plan on 30 min, not 5.
-3. **Voice A/B** — `onyx` vs `ash`. Founder ear required. 10 min.
-4. **gpt-image-1 rejects** — ~15% of prompts reroll on first pass; budget 3 rerolls.
-5. **Wayland screen record** — if Playwright video output isn't cinematic enough (cursor rendering, font hinting), fall back to OBS+PipeWire; adds 1 hr.
+1. **Site section IDs**, Playwright spec assumes `#canon`, `#protocol`, `#cut`, `#closer`. Must verify in `src/app/page.tsx` before running.
+2. **Music selection**, without Suno/Udio, founder must listen to 3-5 candidates and pick. Plan on 30 min, not 5.
+3. **Voice A/B**, `onyx` vs `ash`. Founder ear required. 10 min.
+4. **gpt-image-1 rejects**, ~15% of prompts reroll on first pass; budget 3 rerolls.
+5. **Wayland screen record**, if Playwright video output isn't cinematic enough (cursor rendering, font hinting), fall back to OBS+PipeWire; adds 1 hr.
 
 ---
 
 ## 10. Decisions Gian must answer before bash executes
 
 1. **Script approved as-is (§2)?** Or revise specific lines? (If revise: which, and why.)
-2. **Voice — `onyx` or `ash`?** Or provision ElevenLabs ($5/mo Starter) for `Daniel`/`Adam`? Or self-record?
-3. **Music policy — royalty-free Pixabay/YouTube Audio Library OK?** Or hold video until Suno/Udio paid pilot (~$10/mo) for bespoke score?
-4. **Target URL for Playwright capture — `https://bucket.foundation` prod, or `localhost:3000` of a feature branch?** (Matters if a video-hero branch is in-flight.)
-5. **Distribution order — site-first (replace hero, then post) or X-first (drive curiosity → site)?**
-6. **Thumbnail text — `"written in stone."` or clean plinth with no super?** (Recommend: clean; Cinzel competes with motion.)
-7. **v1 length — stick to 75s or cut to 60s for X feed completion-rate?**
+2. **Voice, `onyx` or `ash`?** Or provision ElevenLabs ($5/mo Starter) for `Daniel`/`Adam`? Or self-record?
+3. **Music policy, royalty-free Pixabay/YouTube Audio Library OK?** Or hold video until Suno/Udio paid pilot (~$10/mo) for a custom score?
+4. **Target URL for Playwright capture, `https://bucket.foundation` prod, or `localhost:3000` of a feature branch?** (Matters if a video-hero branch is in-flight.)
+5. **Distribution order, site-first (replace hero, then post) or X-first (drive curiosity → site)?**
+6. **Thumbnail text, `"written in stone."` or clean plinth with no super?** (Recommend: clean; Cinzel competes with motion.)
+7. **v1 length, stick to 75s or cut to 60s for X feed completion-rate?**
 
 Founder green-lights → execution begins at §6 Step 1.
 
 ---
 
-## Appendix A — shot-manifest.json schema (for gdrive sidecar)
+## Appendix A, shot-manifest.json schema
 ```json
 {
   "version": "v1",
@@ -460,14 +460,14 @@ Founder green-lights → execution begins at §6 Step 1.
 }
 ```
 
-## Appendix B — reading seed list for §8 regen pipeline
+## Appendix B: reading seed list for §8 regen pipeline
 Drop these into `gtm/inputs/reading/` on first regen:
-- Bostrom, *Astronomical Waste* (2003) — foundational longtermism
-- MacAskill, *What We Owe The Future* (2022) ch. 1, 3 — long reflection framing
+- Bostrom, *Astronomical Waste* (2003), foundational longtermism
+- MacAskill, *What We Owe The Future* (2022) ch. 1, 3, long reflection framing
 - 80,000 Hours, *The Long Reflection* brief
-- Lessig, *Free Culture* (2004) ch. 1 — citation-as-infrastructure argument
+- Lessig, *Free Culture* (2004) ch. 1, citation-as-infrastructure argument
 - Benkler, *The Wealth of Networks* (2006) ch. 9
-- Nielsen, *Reinventing Discovery* (2011) — open science operating system
+- Nielsen, *Reinventing Discovery* (2011), open science operating system
 - MANIFESTO.md (current bucket)
 - HISTORY.md § "Three slogans, three eras"
 - `canon-figures/figures.json` pass-1 seed

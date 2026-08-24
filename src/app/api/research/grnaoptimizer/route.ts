@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/grnaoptimizer
+ * bucket.foundation, /api/research/grnaoptimizer
  * -----------------------------------------------
  * Same-origin proxy for the gRNA-Optimizer DNA/RNA tool. Designs CRISPR SpCas9
  * guide RNAs over a target: PAM scan (both strands), on-target efficiency
@@ -7,9 +7,9 @@
  * and a local seed-region off-target risk flag. Backend logic is REAL
  * (services/research-tools/tools_dnarna.py:run_grna_optimizer).
  *
- *   POST /api/research/grnaoptimizer                  → gateway POST /v1/grnaoptimizer/submit
- *        body { sequence, pam?, guide_len?, limit? }   → { job_id, status, mode, price, [result] }
- *   GET  /api/research/grnaoptimizer?job=<id>[&result=1] → status / result
+ * POST /api/research/grnaoptimizer → gateway POST /v1/grnaoptimizer/submit
+ * body { sequence, pam?, guide_len?, limit? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/grnaoptimizer?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     return json({ error: { code: "bad_request", message: "target DNA too short (need ~23 nt)" } }, 400);
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import * as THREE from "three";
 
-// Canon markers — data points on the globe at lat/lng (+ optional time).
+// Canon markers, data points on the globe at lat/lng (+ optional time).
 // Each marker is a small gold sphere. The active one gets a pulsing ring.
 // Hover → tooltip; click → routes to entry detail or branch index.
 
@@ -38,21 +38,21 @@ interface CanonMarkersProps {
   radius: number;
   reducedMotion: boolean;
   /**
-   * Distance from camera to scene origin (Earth center), in scene units
-   * where Earth radius = 1. Used for level-of-detail scaling: at far view
-   * (~3.4) markers are full size; at close zoom (~1.05) they shrink to
-   * ~30% so dense regions (Europe, Asia) visually separate. If omitted,
-   * markers use their full size — used by static / non-interactive
-   * embeddings of the globe.
+ * Distance from camera to scene origin (Earth center), in scene units
+ * where Earth radius = 1. Used for level-of-detail scaling: at far view
+ * (~3.4) markers are full size; at close zoom (~1.05) they shrink to
+ * ~30% so dense regions (Europe, Asia) visually separate. If omitted,
+ * markers use their full size, used by static / non-interactive
+ * embeddings of the globe.
    */
   cameraDistance?: number;
   /**
-   * Camera position in scene coordinates. Used to gate interaction to
-   * the front-facing hemisphere — pins on the back of the globe stay
-   * visible (dimmed) but don't fire hover or click. Without this, the
-   * cursor catches on the invisible hit-target of a marker geometrically
-   * behind the globe, opening tooltips for pins the user can't actually
-   * see. If omitted, every marker is treated as interactive.
+ * Camera position in scene coordinates. Used to gate interaction to
+ * the front-facing hemisphere, pins on the back of the globe stay
+ * visible (dimmed) but don't fire hover or click. Without this, the
+ * cursor catches on the invisible hit-target of a marker geometrically
+ * behind the globe, opening tooltips for pins the user can't
+ * see. If omitted, every marker is treated as interactive.
    */
   cameraPosition?: [number, number, number];
   onHoverChange?: (m: CanonMarker | null) => void;
@@ -120,8 +120,8 @@ export function CanonMarkers({
 
   // LOD scale: 1.0 at the default camera distance (3.4), 0.30 at the
   // minimum (~1.04 = surface-skimming). Linear in the middle. Active /
-  // hovered pins ignore this — they always render full size so the
-  // current focus stays clearly visible regardless of zoom level.
+  // hovered pins ignore this, they always render full size so the
+  // current focus stays visible regardless of zoom level.
   const lodScale = useMemo(() => {
     if (cameraDistance === undefined) return 1;
     const FAR = 3.4;
@@ -135,12 +135,12 @@ export function CanonMarkers({
   // Geometry: Earth is a sphere of radius R=1 centered at the origin. A
   // surface point M is *visible* from camera position C iff
   //
-  //     dot(M, C) > R²     ≡     dot(M, C) > 1
+  // dot(M, C) > R² ≡ dot(M, C) > 1
   //
   // (this is the tangent-plane / horizon condition: a point on the limb
   // satisfies it with equality, anything further around the globe falls
   // below 1). When `cameraPosition` is omitted we treat every marker as
-  // visible — the unguarded behaviour from before.
+  // visible, the unguarded behaviour from before.
   const visible = useMemo<boolean[]>(() => {
     if (!cameraPosition) return markers.map(() => true);
     const [cx, cy, cz] = cameraPosition;
@@ -163,7 +163,7 @@ export function CanonMarkers({
   }, [hover, visible, onHoverChange]);
 
   // Bubble hovered marker up so the parent (outside the Canvas) can render a
-  // guaranteed-visible panel — the in-3D Html tooltip alone gets clipped on
+  // guaranteed-visible panel, the in-3D Html tooltip alone gets clipped on
   // some viewports / canvas configurations.
   const reportHover = (idx: number | null) => {
     setHover(idx);
@@ -201,14 +201,14 @@ export function CanonMarkers({
         const isActive = i === activeIndex;
         const isHover = i === hover;
         // Front-hemisphere visibility (set by the dot-product check in
-        // the `visible` memo). Back-side markers still render — so the
-        // user can see the globe is populated all the way around — but
+        // the `visible` memo). Back-side markers still render, so the
+        // user can see the globe is populated all the way around, but
         // they're dimmed and have NO hit target, so the cursor doesn't
         // catch on a pin geometrically behind 6 000 km of dot-pattern.
         const isFront = visible[i];
 
         // Mapbox-style pin: head + stem + surface halo.
-        // Scale animates with hover/active — discrete steps (not useFrame)
+        // Scale animates with hover/active, discrete steps (not useFrame)
         // so we stay frameloop="demand" friendly.
         //
         // We multiply the resting size by `lodScale` (driven by camera
@@ -236,9 +236,9 @@ export function CanonMarkers({
 
         return (
           <group key={m.id}>
-            {/* Surface halo — a flat disc on the globe, like a drop-shadow.
-                Bigger and brighter when hovered/active. Visually attaches
-                the pin to the surface. */}
+            {/* Surface halo, a flat disc on the globe, like a drop-shadow.
+ Bigger and brighter when hovered/active. Visually attaches
+ the pin to the surface. */}
             <mesh
               position={anchor}
               onUpdate={(self) => self.lookAt(anchor.clone().add(normal))}
@@ -254,7 +254,7 @@ export function CanonMarkers({
               />
             </mesh>
 
-            {/* Pin stem — slim cylinder anchoring the head to the surface */}
+            {/* Pin stem, slim cylinder anchoring the head to the surface */}
             <mesh
               position={stemMid}
               onUpdate={(self) => self.lookAt(stemMid.clone().add(normal))}
@@ -268,9 +268,9 @@ export function CanonMarkers({
               />
             </mesh>
 
-            {/* Pin head (outer glow ring on hover) — only shown when
-                lifted AND on the front face, so back-side markers don't
-                phantom-glow from past frames. */}
+            {/* Pin head (outer glow ring on hover), only shown when
+ lifted AND on the front face, so back-side markers don't
+ phantom-glow from past frames. */}
             {lifted && isFront && (
               <mesh
                 position={head}
@@ -288,7 +288,7 @@ export function CanonMarkers({
               </mesh>
             )}
 
-            {/* Pin head — the visible dot */}
+            {/* Pin head, the visible dot */}
             <mesh position={head}>
               <sphereGeometry args={[headScale, 18, 18]} />
               <meshBasicMaterial
@@ -299,8 +299,8 @@ export function CanonMarkers({
               />
             </mesh>
 
-            {/* Crisp white inner highlight on the head — makes it pop on
-                the dot-pattern earth */}
+            {/* Crisp white inner highlight on the head, makes it pop on
+ the dot-pattern earth */}
             <mesh position={head.clone().multiplyScalar(1.0008)}>
               <sphereGeometry args={[headScale * 0.45, 12, 12]} />
               <meshBasicMaterial
@@ -312,13 +312,13 @@ export function CanonMarkers({
             </mesh>
 
             {/* Invisible hit-target. Only rendered for front-facing
-                pins — back-side markers stay non-interactive so the
-                cursor doesn't catch on a pin behind the globe. At the
-                default zoom this is 4× head; at close zoom the head
-                shrinks via LOD but we keep the hit target generous
-                (≥ 0.04 = ~50px of screen radius at typical fov) so
-                tight clusters in Europe / East Asia stay clickable
-                without overshooting. */}
+ pins, back-side markers stay non-interactive so the
+ cursor doesn't catch on a pin behind the globe. At the
+ default zoom this is 4× head; at close zoom the head
+ shrinks via LOD but we keep the hit target generous
+ (≥ 0.04 = ~50px of screen radius at typical fov) so
+ tight clusters in Europe / East Asia stay clickable
+ without overshooting. */}
             {isFront && (
               <mesh
                 position={head}
@@ -391,8 +391,8 @@ export function CanonMarkers({
       })}
 
       {/* Selected-marker indicator: a wide bright ring on the surface
-          + a tiny dot at the centre, marking the chosen anchor. Static
-          (no useFrame pulse) to stay friendly with frameloop=demand. */}
+ + a tiny dot at the centre, marking the chosen anchor. Static
+ (no useFrame pulse) to stay friendly with frameloop=demand. */}
       {activePos && (
         <>
           <mesh

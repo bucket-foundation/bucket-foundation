@@ -1,11 +1,11 @@
 # grants-gateway
 
-feed402-compliant paid grants-search API. x402 merchant on Base (Sepolia for
+Feed402-compliant paid grants-search API. X402 merchant on Base (Sepolia for
 dev). Sibling to:
 
-- `~/agfarms/feed402/` — protocol spec + reference impl (MIT/CC0)
-- `~/agfarms/x402-research-gateway/` — production-pattern Go merchant
-- `~/agfarms/kruse/` — production TS feed402 merchant on Hetzner K3s
+- `~/agfarms/feed402/`, protocol spec + reference impl (MIT/CC0)
+- `~/agfarms/x402-research-gateway/`, production-pattern Go merchant
+- `~/agfarms/kruse/`, production TS feed402 merchant on Hetzner K3s
 
 This is **scaffold v0.1**: in-memory fixture (5 fake-content grants with real
 schema), mock LLM synthesizer, Viatika metering as no-op. All endpoints work
@@ -58,9 +58,9 @@ npm run typecheck
 
 ## Curl examples
 
-The dev server runs in **stub-payment mode** — any `x-payment` header is
+The dev server runs in **stub-payment mode**, any `x-payment` header is
 treated as valid. In production this is swapped for a real x402 facilitator
-check.
+Check.
 
 Discovery:
 ```bash
@@ -74,25 +74,25 @@ curl -i "localhost:8789/grants/query?topic=longevity"
 # x-payment-required: {"chain":"base-sepolia","wallet":"0x00...","price_usd":0.005,"unit":"call","tier":"query"}
 ```
 
-Raw — single grant:
+Raw, single grant:
 ```bash
 curl -s -H 'x-payment: stub' \
   "localhost:8789/grants/raw?id=grants-gov:HHS-2026-NIH-AG-001" | jq
 ```
 
-Query — search by topic + deadline:
+Query, search by topic + deadline:
 ```bash
 curl -s -H 'x-payment: stub' \
   "localhost:8789/grants/query?topic=longevity&deadline_before=2026-12-31&min_amount=100000" | jq
 ```
 
-Query — by funder:
+Query, by funder:
 ```bash
 curl -s -H 'x-payment: stub' \
   "localhost:8789/grants/query?funder=NSF" | jq
 ```
 
-Insight — venture fit:
+Insight, venture fit:
 ```bash
 curl -s -H 'x-payment: stub' \
   "localhost:8789/grants/insight?venture=bucket-foundation&topic=open-source%20citation%20infrastructure" | jq
@@ -118,72 +118,72 @@ can swap implementations without touching `server.ts`.
 
 ## What's stubbed
 
-- **Payment verification** (`src/x402.ts`) — two modes via
-  `FEED402_VERIFY_MODE`. `stub` (default, dev/demos) accepts any non-empty
-  `x-payment` header. `facilitator` POSTs the header to
-  `${FEED402_FACILITATOR_URL}/verify` and trusts the verdict; the facilitator
-  must enforce (a) on-chain payment to `FEED402_WALLET` on the configured
-  chain and (b) amount ≥ tier `price_usd`. Production deploys set
-  `FEED402_VERIFY_MODE=facilitator`.
-- **Data layer** — two implementations:
-  - `MemoryGrantsStore` (`src/data/grants-store.ts`) — 5 fake fixtures
-    for fast/offline dev. Default.
-  - `SqliteGrantsStore` (`src/data/sqlite-grants-store.ts`) — reads
-    `data/grants.db` produced by `scripts/ingest.py` (Python stdlib +
-    `sqlite3`). Pulls from grants.gov, NIH RePORTER, NSF Awards,
-    USAspending, and IRS 990 / 990-PF (ProPublica). Toggle with
-    `GRANTS_STORE=sqlite`. *(bead bkt-ugw — done.)*
-- **Insight LLM** (`src/insight/synthesizer.ts`) — two implementations:
-  - `MockSynthesizer` — deterministic keyword-overlap. Default. No API key
-    needed; CI uses this.
-  - `AnthropicSynthesizer` — real Claude call via `@anthropic-ai/sdk`.
-    Selected by `INSIGHT_SYNTH=anthropic` + `ANTHROPIC_API_KEY`. Model
-    default `claude-sonnet-4-5` via `ANTHROPIC_MODEL`. Pre-ranks candidates
-    by keyword overlap and ships top-K (default 8) to bound input tokens;
-    output capped at 600 tokens. Hard budget guard: when projected cost
-    exceeds 10x the tier price ($0.002), the call is logged and downgraded
-    to `MockSynthesizer`. Emits a sibling-of-§3.2 envelope-level
-    `provenance` block: `{model_id, candidates, prompt_sha256, ts}`.
-    *(bead bkt-x2b — done.)*
-- **Viatika metering** (`src/metering/viatika.ts`) — `NoOpMeter`. Real
-  vendor-API integration is a later bead (P3).
+- **Payment verification** (`src/x402.ts`), two modes via
+ `FEED402_VERIFY_MODE`. `stub` (default, dev/demos) accepts any non-empty
+ `x-payment` header. `facilitator` POSTs the header to
+ `${FEED402_FACILITATOR_URL}/verify` and trusts the verdict; the facilitator
+ must enforce (a) on-chain payment to `FEED402_WALLET` on the configured
+ chain and (b) amount ≥ tier `price_usd`. Production deploys set
+ `FEED402_VERIFY_MODE=facilitator`.
+- **Data layer**, two implementations:
+ - `MemoryGrantsStore` (`src/data/grants-store.ts`), 5 fake fixtures
+ for fast/offline dev. Default.
+ - `SqliteGrantsStore` (`src/data/sqlite-grants-store.ts`), reads
+ `data/grants.db` produced by `scripts/ingest.py` (Python stdlib +
+ `sqlite3`). Pulls from grants.gov, NIH RePORTER, NSF Awards,
+ USAspending, and IRS 990 / 990-PF (ProPublica). Toggle with
+ `GRANTS_STORE=sqlite`. *(bead bkt-ugw, done.)*
+- **Insight LLM** (`src/insight/synthesizer.ts`), two implementations:
+ - `MockSynthesizer`, deterministic keyword-overlap. Default. No API key
+ needed; CI uses this.
+ - `AnthropicSynthesizer`, real Claude call via `@anthropic-ai/sdk`.
+ Selected by `INSIGHT_SYNTH=anthropic` + `ANTHROPIC_API_KEY`. Model
+ default `claude-sonnet-4-5` via `ANTHROPIC_MODEL`. Pre-ranks candidates
+ by keyword overlap and ships top-K (default 8) to bound input tokens;
+ output capped at 600 tokens. Hard budget guard: when projected cost
+ exceeds 10x the tier price ($0.002), the call is logged and downgraded
+ to `MockSynthesizer`. Emits a sibling-of-§3.2 envelope-level
+ `provenance` block: `{model_id, candidates, prompt_sha256, ts}`.
+ *(bead bkt-x2b, done.)*
+- **Viatika metering** (`src/metering/viatika.ts`), `NoOpMeter`. Real
+ vendor-API integration is a later bead (P3).
 
 ## Next beads
 
-1. **bkt-ugw — Grants ingestion pipeline (P2).** Replace `MemoryGrantsStore`
-   with `PostgresGrantsStore` populated nightly from grants.gov XML extract,
-   NIH RePORTER API, NSF awards, and IRS 990-PF "Grants Paid". Stable id
-   namespacing per source. Target: 10k+ active opportunities.
-2. **bkt-??? — Real LLM synthesizer (P2).** Implement `OpenAISynthesizer`
-   and/or `AnthropicSynthesizer` behind the `Synthesizer` interface; emit
-   §3.2 retrieval provenance with the actual model identifier; budget cap
-   per /insight call.
-3. **bkt-??? — Viatika metering wire-up (P3).** Implement `HttpViatikaMeter`
-   against the Viatika vendor public API (policy check + budget debit).
-   Per CLAUDE.md Strategic Priority #6 — metered AI/data routes through
-   Viatika; do NOT roll a duplicate ledger.
+1. **bkt-ugw, Grants ingestion pipeline (P2).** Replace `MemoryGrantsStore`
+ with `PostgresGrantsStore` populated nightly from grants.gov XML extract,
+ NIH RePORTER API, NSF awards, and IRS 990-PF "Grants Paid". Stable id
+ namespacing per source. Target: 10k+ active opportunities.
+2. **bkt-???, Real LLM synthesizer (P2).** Implement `OpenAISynthesizer`
+ and/or `AnthropicSynthesizer` behind the `Synthesizer` interface; emit
+ §3.2 retrieval provenance with the actual model identifier; budget cap
+ per /insight call.
+3. **bkt-???, Viatika metering wire-up (P3).** Implement `HttpViatikaMeter`
+ against the Viatika vendor public API (policy check + budget debit).
+ Per CLAUDE.md Strategic Priority #6, metered AI/data routes through
+ Viatika; do NOT roll a duplicate ledger.
 
 ## Status
 
 - [x] Compiles cleanly under `npm run typecheck` (after `npm install`)
 - [x] Boots on `npm run dev`, all three endpoints return valid envelopes
 - [x] feed402 v0.2 manifest at `/.well-known/feed402.json`
-- [x] Real grants corpus — 17,211 rows in `data/grants.db` (bkt-ugw)
-- [x] Real LLM — `AnthropicSynthesizer` behind `INSIGHT_SYNTH=anthropic` (bkt-x2b)
-- [x] Real x402 facilitator verification wired (`src/x402.ts`, mode=facilitator) — bkt-2cu
-- [x] Production K8s manifest + `deploy.sh` (mirrors `~/agfarms/kruse/`) — bkt-2cu
-- [x] Corpus baked into Docker image (no PVC, idempotent rebuilds) — bkt-2cu
-- [ ] Live on `grants-gateway.nucleus.agfarms.dev` (BLOCKED on creds — see below)
+- [x] Real grants corpus, 17,211 rows in `data/grants.db` (bkt-ugw)
+- [x] Real LLM, `AnthropicSynthesizer` behind `INSIGHT_SYNTH=anthropic` (bkt-x2b)
+- [x] Real x402 facilitator verification wired (`src/x402.ts`, mode=facilitator), bkt-2cu
+- [x] Production K8s manifest + `deploy.sh` (mirrors `~/agfarms/kruse/`), bkt-2cu
+- [x] Corpus baked into Docker image (no PVC, idempotent rebuilds), bkt-2cu
+- [ ] Live on `grants-gateway.nucleus.agfarms.dev` (BLOCKED on creds, see below)
 - [ ] Real Viatika metering (bead TBD)
 
-### Deployment (bkt-2cu, 2026-05-04)
+### Deployment
 
 **Service is deploy-ready but NOT YET LIVE.** All artifacts are in place:
 
 - `src/x402.ts` ships real facilitator-mode verification (mirror of `~/agfarms/kruse/server.ts`).
 - `Dockerfile` bakes the 17k-row SQLite corpus at build time (simplest persistence; no PVC).
 - `deploy/k8s.yaml` targets `grants-gateway.nucleus.agfarms.dev` (sibling AGFarms TLS path) on namespace `grants`.
-- `deploy.sh` mirrors `~/agfarms/kruse/deploy.sh` — `--seed-secret` for first deploy, plain run for rollouts.
+- `deploy.sh` mirrors `~/agfarms/kruse/deploy.sh`, `--seed-secret` for first deploy, plain run for rollouts.
 
 **To go live (mainnet):**
 ```bash
@@ -196,11 +196,11 @@ INSIGHT_SYNTH=anthropic \
 ```
 
 **Required secrets (rotate via `kubectl -n grants patch secret grants-env`):**
-- `FEED402_WALLET` — Base mainnet 0x... receiving payments
-- `FEED402_FACILITATOR_URL` — x402 facilitator (e.g. https://facilitator.x402.rs)
-- `FEED402_VERIFY_MODE=facilitator` — turns off stub
-- `FEED402_CHAIN=base` — mainnet (use `base-sepolia` for staging)
-- `ANTHROPIC_API_KEY` — for `INSIGHT_SYNTH=anthropic` (else falls back to MockSynthesizer)
+- `FEED402_WALLET`, Base mainnet 0x... Receiving payments
+- `FEED402_FACILITATOR_URL`, x402 facilitator (e.g. https://facilitator.x402.rs)
+- `FEED402_VERIFY_MODE=facilitator`, turns off stub
+- `FEED402_CHAIN=base`, mainnet (use `base-sepolia` for staging)
+- `ANTHROPIC_API_KEY`, for `INSIGHT_SYNTH=anthropic` (else falls back to MockSynthesizer)
 - `INSIGHT_SYNTH=anthropic`
 
 For staging, swap `FEED402_CHAIN=base-sepolia` and use a Sepolia-funded test wallet.

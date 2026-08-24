@@ -1,30 +1,30 @@
-/* Bucket Academy — "Test yourself" assessment engine (bkt-v7y; advances bkt-o1w
+/* Bucket Academy, "Test yourself" assessment engine (bkt-v7y; advances bkt-o1w
  * assessment, bkt-3so deterministic grading, bkt-dji practice/credential firewall).
  *
  * This is the SEALED-RUN counterpart to practice (Study + drill). Where practice is
- * show-answer-then-self-rate (FSRS, retries, hints — farmable by design, ADAPTIVE-SOTA
+ * show-answer-then-self-rate (FSRS, retries, hints, farmable by design, ADAPTIVE-SOTA
  * §c), an assessment run presents a focused spread of quiz items the learner must
  * answer BEFORE seeing the answer, grades them deterministically where the canonical
- * answer reduces to a numeric / short-symbolic value, and falls back to an HONEST,
- * clearly-marked self-check only where it cannot.
+ * answer reduces to a numeric / short-symbolic value, and falls back to an
+ *-marked self-check only where it cannot.
  *
- * Three pieces, all pure + dependency-free + node-testable (UMD-ish — attaches to
+ * Three pieces, all pure + dependency-free + node-testable (UMD-ish, attaches to
  * window in the browser, module.exports under node):
  *
- *   1. gradeAnswer(userInput, canonicalAnswer)  — the deterministic grader (bkt-3so).
- *      Self-contained: a tiny numeric/units/sign/whitespace normalizer + numeric
- *      tolerance + short-symbolic string equality. Returns whether the item is
- *      auto-gradable at all (gradable=false → caller must self-check), and if so the
- *      verdict. NO external libs; if mathjs is ever added it can slot in behind this.
+ * 1. gradeAnswer(userInput, canonicalAnswer), the deterministic grader (bkt-3so).
+ * Self-contained: a tiny numeric/units/sign/whitespace normalizer + numeric
+ * tolerance + short-symbolic string equality. Returns whether the item is
+ * auto-gradable at all (gradable=false → caller must self-check), and if so the
+ * verdict. NO external libs; if mathjs is ever added it can slot in behind this.
  *
- *   2. buildRun(graph, state, opts)  — pick a sealed spread of quiz items across the
- *      learner's due/learned concepts and Bloom levels for a branch (or a chosen set).
+ * 2. buildRun(graph, state, opts), pick a sealed spread of quiz items across the
+ * learner's due/learned concepts and Bloom levels for a branch (or a chosen set).
  *
- *   3. summarize(run)  — score the finished run: overall, by Bloom level, auto vs.
- *      self-graded split (trust), and the weak concepts to route back to Study.
+ * 3. summarize(run), score the finished run: overall, by Bloom level, auto vs.
+ * self-graded split (trust), and the weak concepts to route back to Study.
  *
- * HONESTY GUARDRAIL (EPIC.md §5, ADAPTIVE-SOTA §c): this is honest INTERNAL signal that
- * sharpens the proficiency estimate — NOT a certified or public rating. The real
+ * HONESTY GUARDRAIL (EPIC.md §5, ADAPTIVE-SOTA §c): this is INTERNAL signal that
+ * sharpens the proficiency estimate. It stays internal and uncertified. The real
  * credential (sealed held-out, freshly AI-generated transfer items, effort filter,
  * exposure control, anti-gaming, time-decay) is a LATER bead and needs the AI key +
  * bkt-4at. Self-graded items are recorded at LOWER trust and weighted less than
@@ -34,14 +34,14 @@
   "use strict";
 
   /* ======================================================================
-   * Tunables — documented, conservative, one place.
-   * ==================================================================== */
+ * Tunables, documented, conservative, one place.
+ * ==================================================================== */
   var ASSESS = {
     // numeric equivalence tolerance (relative, with an absolute floor for ~0 answers)
-    NUM_REL_TOL: 0.01, // 1% — generous enough for rounding (e.g. 6.02e23), tight enough to catch errors
+    NUM_REL_TOL: 0.01, // 1%, generous enough for rounding (e.g. 6.02e23), tight enough to catch errors
     NUM_ABS_TOL: 1e-9, // absolute floor so values near 0 compare sanely
     // a "short symbolic" answer is graded by normalized string equality only when it is
-    // brief enough to be unambiguous (a single expression / token, not a sentence).
+    // brief enough to be unambiguous (a single expression or token at most).
     SYMBOLIC_MAX_LEN: 24,
     // run sizing
     DEFAULT_RUN_SIZE: 10,
@@ -56,20 +56,20 @@
   };
 
   /* ======================================================================
-   * (1) DETERMINISTIC GRADER (bkt-3so)
-   *
-   * The corpus stores answers as EXPLANATORY PROSE (e.g. "18 g ÷ 18 g/mol = 1 mol,
-   * so 6.022×10²³ molecules."), not clean answer fields. So we:
-   *   a. try to extract a SALIENT comparable value from the canonical answer — the
-   *      final numeric quantity (with optional unit / scientific notation) OR a short
-   *      symbolic token (e.g. "pH = 4.7", "η = 1 − T_c/T_h", "2^4 = 16 states").
-   *   b. normalize the learner's input the SAME way and compare.
-   *   c. if no clean salient value can be extracted, declare the item NOT auto-gradable
-   *      (gradable=false) — the caller falls back to an honest self-check (lower trust).
-   *
-   * Returns: { gradable, correct, kind, expected, got, reason }
-   *   gradable=false  → caller MUST self-check (we refuse to guess on prose).
-   * ==================================================================== */
+ * (1) DETERMINISTIC GRADER (bkt-3so)
+ *
+ * The corpus stores answers as EXPLANATORY PROSE (e.g. "18 g ÷ 18 g/mol = 1 mol,
+ * so 6.022×10²³ molecules.") rather than clean answer fields. So we:
+ * a. try to extract a SALIENT comparable value from the canonical answer, the
+ * final numeric quantity (with optional unit / scientific notation) OR a short
+ * symbolic token (e.g. "pH = 4.7", "η = 1 − T_c/T_h", "2^4 = 16 states").
+ * b. normalize the learner's input the SAME way and compare.
+ * c. if no clean salient value can be extracted, declare the item NOT auto-gradable
+ * (gradable=false), the caller falls back to an self-check (lower trust).
+ *
+ * Returns: { gradable, correct, kind, expected, got, reason }
+ * gradable=false → caller MUST self-check (we refuse to guess on prose).
+ * ==================================================================== */
 
   // Map common unicode math/notation to ascii so "6.022×10²³" == "6.022e23" etc.
   var SUP = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁻": "-", "⁺": "+" };
@@ -103,7 +103,7 @@
     if (tok == null) return null;
     var s = asciiMath(String(tok)).trim().toLowerCase();
     if (!s) return null;
-    // a x 10^b  →  a e b   (after asciiMath, "×10²³" became "x10^23"; tolerate spaces
+    // a x 10^b → a e b (after asciiMath, "×10²³" became "x10^23"; tolerate spaces
     // around the mantissa-x-exponent, e.g. "6.022 x 10^23").
     s = s.replace(/\s*x\s*10\s*\^\s*([+-]?\d+)/g, "e$1");
     // bare "10^b" → "1e b"
@@ -140,7 +140,7 @@
       var val = parseNumber(raw);
       if (val == null) continue;
       var unit = (mm[2] || "").trim();
-      // ignore a stray unit that is actually trailing prose like "so" / "the"
+      // ignore a stray unit that is trailing prose like "so" / "the"
       if (/^(so|the|of|is|a|an|to|and|or|it)$/i.test(unit)) unit = "";
       matches.push({ value: val, unit: normUnit(unit) });
     }
@@ -175,37 +175,37 @@
   }
 
   /* The grader. Decide whether the canonical answer is auto-gradable, and if so grade
-   * the learner's input against it.
-   *
-   *   userInput        — the learner's typed answer (string)
-   *   canonicalAnswer  — the corpus answer string (prose OR short symbolic)
-   *
-   * Strategy, in order:
-   *   1. If the learner typed nothing → gradable but incorrect (a blank is wrong).
-   *   2. If the canonical answer yields a salient NUMBER → numeric tolerance compare
-   *      (after pulling the learner's salient number too). Units compared loosely.
-   *   3. Else if BOTH sides are SHORT symbolic tokens → normalized string equality.
-   *   4. Else → not auto-gradable (gradable=false); caller self-checks.
+ * the learner's input against it.
+ *
+ * userInput, the learner's typed answer (string)
+ * canonicalAnswer, the corpus answer string (prose OR short symbolic)
+ *
+ * Strategy, in order:
+ * 1. If the learner typed nothing → gradable but incorrect (a blank is wrong).
+ * 2. If the canonical answer yields a salient NUMBER → numeric tolerance compare
+ * (after pulling the learner's salient number too). Units compared loosely.
+ * 3. Else if BOTH sides are SHORT symbolic tokens → normalized string equality.
+ * 4. Else → not auto-gradable (gradable=false); caller self-checks.
    */
   function gradeAnswer(userInput, canonicalAnswer, opts) {
     opts = opts || {};
     var raw = userInput == null ? "" : String(userInput).trim();
     var canon = canonicalAnswer == null ? "" : String(canonicalAnswer).trim();
 
-    // 2. numeric path — canonical has an extractable salient number.
+    // 2. numeric path, canonical has an extractable salient number.
     var cNum = extractSalientNumber(canon);
     if (cNum != null) {
       if (!raw) return { gradable: true, correct: false, kind: "numeric", expected: fmtNum(cNum), got: "", reason: "blank" };
       var uNum = extractSalientNumber(raw);
       if (uNum == null) {
-        // learner answered but no parseable number — can't auto-confirm; self-check.
+        // learner answered but no parseable number, can't auto-confirm; self-check.
         return { gradable: false, kind: "numeric", expected: fmtNum(cNum), got: raw, reason: "no_number_in_input" };
       }
       var ok = numbersClose(uNum.value, cNum.value, opts) && unitsCompatible(uNum.unit, cNum.unit);
       return { gradable: true, correct: ok, kind: "numeric", expected: fmtNum(cNum), got: fmtNum(uNum), reason: ok ? "match" : "value_or_unit_mismatch" };
     }
 
-    // 3. short symbolic path — both sides brief, unambiguous tokens.
+    // 3. short symbolic path, both sides brief, unambiguous tokens.
     if (canon && canon.length <= ASSESS.SYMBOLIC_MAX_LEN) {
       if (!raw) return { gradable: true, correct: false, kind: "symbolic", expected: canon, got: "", reason: "blank" };
       var nc = normSymbolic(canon);
@@ -219,7 +219,7 @@
       return { gradable: true, correct: ok2, kind: "symbolic", expected: canon, got: raw, reason: ok2 ? "match" : "mismatch" };
     }
 
-    // 4. prose / open answer — refuse to guess. Caller falls back to honest self-check.
+    // 4. Prose / open answer, refuse to guess. Caller falls back to self-check.
     return { gradable: false, kind: "open", expected: canon, got: raw, reason: "not_auto_gradable" };
   }
 
@@ -230,29 +230,29 @@
   }
 
   /* ======================================================================
-   * (2) BUILD A SEALED RUN
-   *
-   * Pick a spread of quiz items across the learner's STARTED + DUE concepts and Bloom
-   * levels for the current branch (or a passed-in concept set). Each item is a {atomId,
-   * level, prompt, answer} drawn from the atom's quiz array. The run is SEALED: the UI
-   * must not reveal the answer until the learner has responded.
-   *
-   *   graph  = { atoms, byId }                 (E.atoms / E.byId)
-   *   state  = { cardForId(id) -> card|null }  (a thin view over the engine so this stays
-   *                                             pure; pass () => E.cardFor(id) at the call site)
-   *   opts   = { size, conceptIds, levels, rng }
-   *
-   * Selection policy (honest + useful):
-   *   • Universe = started concepts (have a card) if any, else all askable concepts —
-   *     you can't be tested on what you've never seen, but a fresh learner can still
-   *     probe themselves on the foundations.
-   *   • Prefer breadth: at most one item per concept until we run out of concepts, then
-   *     allow a second pass at a HARDER level on the highest-leverage concepts.
-   *   • Spread Bloom levels: round-robin recall→apply→derive→teach across the picks, so a
-   *     run measures depth, not just recall.
-   *   • DUE concepts (overdue review) are prioritized — testing what's fading is the most
-   *     informative use of the learner's time.
-   * ==================================================================== */
+ * (2) BUILD A SEALED RUN
+ *
+ * Pick a spread of quiz items across the learner's STARTED + DUE concepts and Bloom
+ * levels for the current branch (or a passed-in concept set). Each item is a {atomId,
+ * level, prompt, answer} drawn from the atom's quiz array. The run is SEALED: the UI
+ * must not reveal the answer until the learner has responded.
+ *
+ * graph = { atoms, byId } (E.atoms / E.byId)
+ * state = { cardForId(id) -> card|null } (a thin view over the engine so this stays
+ * pure; pass () => E.cardFor(id) at the call site)
+ * opts = { size, conceptIds, levels, rng }
+ *
+ * Selection policy (+ useful):
+ * • Universe = started concepts (have a card) if any, else all askable concepts, 
+ * you can't be tested on what you've never seen, but a fresh learner can still
+ * probe themselves on the foundations.
+ * • Prefer breadth: at most one item per concept until we run out of concepts, then
+ * allow a second pass at a HARDER level on the highest-leverage concepts.
+ * • Spread Bloom levels: round-robin recall→apply→derive→teach across the picks, so a
+ * run measures depth, not just recall.
+ * • DUE concepts (overdue review) are prioritized, testing what's fading is the most
+ * informative use of the learner's time.
+ * ==================================================================== */
   function buildRun(graph, state, opts) {
     opts = opts || {};
     var atoms = (graph && graph.atoms) || [];
@@ -305,14 +305,14 @@
       return null;
     }
 
-    // pass 1 — breadth: one item per concept, cycling Bloom levels.
+    // pass 1, breadth: one item per concept, cycling Bloom levels.
     for (var i = 0; i < ranked.length && items.length < size; i++) {
       var atom = ranked[i];
       var lvl = levelCycle[li % levelCycle.length]; li++;
       var it = pickItemFor(atom, lvl);
       if (it) { items.push(it); usedConcept[atom.id] = (usedConcept[atom.id] || []).concat(it.level); }
     }
-    // pass 2 — depth: if still short and we exhausted concepts, revisit the highest-leverage
+    // pass 2, depth: if still short and we exhausted concepts, revisit the highest-leverage
     // concepts at a level we haven't used yet (a harder probe).
     var di = 0;
     while (items.length < size && ranked.length) {
@@ -337,17 +337,17 @@
   }
 
   /* ======================================================================
-   * (3) SUMMARIZE A FINISHED RUN
-   *
-   * results = [ { atomId, level, correct, autoGraded, latencyMs } ]  (one per answered item)
-   *
-   * Returns an honest summary:
-   *   { total, correct, score (0..1),
-   *     auto: {total, correct}, self: {total, correct},   ← trust split (firewall)
-   *     byLevel: { recall:{t,c}, apply:{t,c}, ... },
-   *     weakConcepts: [atomId,...]  (missed, dedup, for "what to review")
-   *     trust: 'high'|'mixed'|'self'  (how much of the score is deterministic) }
-   * ==================================================================== */
+ * (3) SUMMARIZE A FINISHED RUN
+ *
+ * results = [ { atomId, level, correct, autoGraded, latencyMs } ] (one per answered item)
+ *
+ * Returns an summary:
+ * { total, correct, score (0..1),
+ * auto: {total, correct}, self: {total, correct}, ← trust split (firewall)
+ * byLevel: { recall:{t,c}, apply:{t,c}... },
+ * weakConcepts: [atomId...] (missed, dedup, for "what to review")
+ * trust: 'high'|'mixed'|'self' (how much of the score is deterministic) }
+ * ==================================================================== */
   function summarize(results) {
     results = results || [];
     var total = results.length;
@@ -380,12 +380,12 @@
   }
 
   /* Map a graded item to the FSRS rating the engine's grade() path expects. The engine
-   * already updates the Elo-lite proficiency (adaptive.js) from this rating at the
-   * answered depth — so feeding assessment verdicts through grade() makes masteryDetail()
-   * reflect TESTED proficiency. Auto-graded correctness is the trustworthy signal; a
-   * self-reported "I got it" is passed through but flagged so the caller can choose to
-   * down-weight it (e.g. record it in the assess log with selfGraded=true; the firewall
-   * keeps it out of any future credential). */
+ * already updates the Elo-lite proficiency (adaptive.js) from this rating at the
+ * answered depth, so feeding assessment verdicts through grade() makes masteryDetail()
+ * reflect TESTED proficiency. Auto-graded correctness is the trustworthy signal; a
+ * self-reported "I got it" is passed through but flagged so the caller can choose to
+ * down-weight it (e.g. record it in the assess log with selfGraded=true; the firewall
+ * keeps it out of any future credential). */
   function ratingFor(verdict) {
     return verdict ? ASSESS.RATING_CORRECT : ASSESS.RATING_INCORRECT;
   }

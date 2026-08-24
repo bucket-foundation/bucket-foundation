@@ -1,21 +1,21 @@
 /**
- * bucket.foundation — POST /api/academy/credential/verify  (bkt-52p)
+ * bucket.foundation, POST /api/academy/credential/verify (bkt-52p)
  * ----------------------------------------------------------------------------
  * The MACHINE verify endpoint. Public, no auth. Accepts any of:
- *   { jwt: "<compact VC-JWT>" }
- *   { credential: <id or hosted URL> }   // we fetch the stored JWT and verify
- *   { json: <credential JSON object> }   // honest negative: unsigned JSON can't
- *                                        // be cryptographically verified
+ * { jwt: "<compact VC-JWT>" }
+ * { credential: <id or hosted URL> } // we fetch the stored JWT and verify
+ * { json: <credential JSON object> } // negative: unsigned JSON can't
+ * // be cryptographically verified
  *
  * Verification (in order):
- *   1. SIGNATURE — EdDSA against the published Bucket issuer key(s),
- *   2. ISSUER    — must be Bucket (iss + embedded issuer.id),
- *   3. REVOCATION— live lookup of the credential's status (revoked? -> invalid),
- *   4. CONSISTENCY (bonus) — are the asserted concepts still consistent with the
- *      learner's live public profile? (reported, NOT the trust anchor.)
+ * 1. SIGNATURE, EdDSA against the published Bucket issuer key(s),
+ * 2. ISSUER, must be Bucket (iss + embedded issuer.id),
+ * 3. REVOCATION, live lookup of the credential's status (revoked? -> invalid),
+ * 4. CONSISTENCY (bonus), are the asserted concepts still consistent with the
+ * learner's live public profile? (reported for context only.)
  *
  * `valid` is true ONLY when signature is valid AND issuer is Bucket AND not
- * revoked. Consistency never flips `valid` — the credential is a signed
+ * revoked. Consistency never flips `valid`, the credential is a signed
  * point-in-time artifact.
  */
 import { NextRequest, NextResponse } from "next/server";
@@ -96,7 +96,7 @@ async function liveProfile(handle: string): Promise<PublicProfile | null> {
 async function checkRevoked(credential: OpenBadgeCredential): Promise<boolean | null> {
   if (!dbConfigured()) return null;
   const row = await getCredentialByUrl(credential.id);
-  if (!row) return null; // unknown to us — can't assert (could be a fixture)
+  if (!row) return null; // unknown to us, can't assert (could be a fixture)
   return !!row.revoked_at;
 }
 
@@ -108,7 +108,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return json({ error: "bad_request" }, 400);
   }
 
-  // ---- unsigned JSON: honest negative ------------------------------------
+  // ---- unsigned JSON: negative ------------------------------------
   if (body.json && typeof body.json === "object") {
     const result: VerifyResult = {
       valid: false,

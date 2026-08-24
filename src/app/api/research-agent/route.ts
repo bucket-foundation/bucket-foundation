@@ -1,12 +1,12 @@
 /**
- * POST /api/research-agent — the Bucket research agent (produce-side wedge).
+ * POST /api/research-agent, the Bucket research agent (produce-side wedge).
  *
- * Given a research question it runs a grounded loop —
- *   PLAN → RETRIEVE → SYNTHESIZE → OUTPUT —
+ * Given a research question it runs a grounded loop, 
+ * PLAN → RETRIEVE → SYNTHESIZE → OUTPUT, 
  * and returns a CITED, REPRODUCIBLE brief. It mirrors the Academy tutor
  * (`src/app/api/academy/tutor/route.ts`): same LLM seam (local GPU LLM via the
  * OpenAI-compatible auth-shim + cloudflared tunnel is the DEFAULT, hosted
- * Anthropic is the fallback, neither => 503 dark), same S1–S7 safety posture
+ * Anthropic is the fallback, neither => 503 dark), same S1, S7 safety posture
  * enforced IN CODE (closed-set citations, abstain on thin grounding, fail-safe
  * on unparseable output, no fabricated DOIs/citations), same graceful 502 when
  * the GPU box is offline.
@@ -34,7 +34,7 @@ function bad(status: number, error: string) {
   return NextResponse.json({ error }, { status });
 }
 
-// Crude in-memory per-IP rate limit — a research run fans out to several
+// Crude in-memory per-IP rate limit, a research run fans out to several
 // upstreams + a GPU synthesis, so the budget is tighter than the tutor's.
 const RL_WINDOW_MS = 60_000;
 const RL_MAX = 8; // 8 briefs / minute / IP
@@ -73,14 +73,14 @@ export async function POST(req: NextRequest) {
   if (question.length < MIN_QUESTION_CHARS) return bad(400, "Ask a research question (at least 8 characters).");
   if (question.length > MAX_QUESTION_CHARS) return bad(400, `Question exceeds ${MAX_QUESTION_CHARS} characters.`);
 
-  // 503 when NO provider is configured — same graceful contract as the tutor.
+  // 503 when NO provider is configured, same graceful contract as the tutor.
   // Local GPU LLM (LLM_BASE_URL) is the default; Anthropic is the fallback.
   const provider = selectProvider();
   if (!provider) {
     return bad(503, "The research agent isn't enabled yet (set LLM_BASE_URL or ANTHROPIC_API_KEY).");
   }
 
-  // TODO(deploy): route synthesis spend through Viatika (@/lib/meter) — pre-charge
+  // TODO(deploy): route synthesis spend through Viatika (@/lib/meter), pre-charge
   // an estimate, true-up from usage. Org standard: all metered AI spend flows
   // through the Viatika vendor API (CLAUDE.md #6). Hook left for v1, matching the
   // tutor + generate routes.

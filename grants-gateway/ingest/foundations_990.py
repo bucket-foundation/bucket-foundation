@@ -17,7 +17,7 @@ from typing import Iterable, List
 from .db import now_iso
 from .http_util import get_json
 
-# (name, EIN) — ten largest research-funding US private foundations.
+# (name, EIN), ten largest research-funding US private foundations.
 TARGET_FOUNDATIONS = [
     ("Bill & Melinda Gates Foundation",                  "562618866"),
     ("Robert Wood Johnson Foundation",                   "226029397"),

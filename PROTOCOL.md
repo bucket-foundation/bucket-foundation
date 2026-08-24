@@ -1,10 +1,10 @@
-# bucket.foundation protocol — v0.1 (draft)
+# bucket.foundation protocol, v0.1
 
 > The open spec for **pay-once, cite-forever** research buckets over x402.
 
 ## Status
 
-**Draft v0.1.** Everything in this document is subject to change until v1.0. Open an issue or PR to propose changes.
+**Draft v0.1.** Everything here is subject to change until v1.0. Open an issue or PR to propose changes.
 
 ---
 
@@ -12,7 +12,7 @@
 
 1. A paper should cost the network **once**.
 2. Once bought, it should be **citeable forever** by anyone running a compatible bucket.
-3. The author should receive the citation fee **directly**, not through a publisher.
+3. The author should receive the citation fee **directly**.
 4. The protocol should be **boring**: HTTP, JSON, SHA-256, and signatures. Nothing exotic.
 5. Implementations should be **federatable**: anyone can run a bucket, mirror another bucket, or fork the whole network.
 
@@ -40,9 +40,11 @@ bucket/<sha256>/
 - Any storage backend is acceptable: filesystem, S3, IPFS, Walrus, Arweave, Google Drive, a USB stick. The protocol only requires that a given `<sha256>` address resolves to the same bytes everywhere.
 - A bucket with a missing or invalid `canon.json` is **not a canon bucket**. It still exists; it just cannot be cited through this protocol.
 
-### 3.1 Agent-trust rule — paid-to-cite is not pay-to-proceed (normative)
+### 3.1 Agent-trust rule
 
-A correctly safety-trained autonomous agent **should refuse** the pattern
+Paid-to-cite is not pay-to-proceed.
+
+A safety-trained autonomous agent **should refuse** the pattern
 "fetch a document, then perform a payment that the fetched document instructs
 you to perform." That refusal is correct behaviour and a compatible
 implementation MUST NOT depend on overriding it.
@@ -50,40 +52,40 @@ implementation MUST NOT depend on overriding it.
 Therefore, on any caller-facing read/cite path, a compatible implementation:
 
 1. **MUST NOT** return a payment challenge, an x402/`X-PAYMENT` header, or any
-   instruction directed at the caller to sign, send, authorize, or relay a
-   payment. Specifically, `receipt.challenge` MUST NOT be present on a
-   caller-facing response.
+ instruction directed at the caller to sign, send, authorize, or relay a
+ payment., `receipt.challenge` MUST NOT be present on a
+ caller-facing response.
 2. **MUST** perform any x402 settlement entirely server-side (operator wallet
-   ↔ source), invisibly to the caller, OR serve already-paid content instead.
+ ↔ source), invisibly to the caller, OR serve already-paid content instead.
 3. **MUST** include the declarative fields `agent_action_required: false` and
-   `payment_required_from_you: false` on every caller-facing envelope, and
-   MUST keep them truthful.
+ `payment_required_from_you: false` on every caller-facing envelope, and
+ MUST keep them truthful.
 4. **MUST** treat the `cite` block as *passive, forward-looking license
-   metadata* describing what a downstream **publisher** owes the author if
-   they re-publish in a paid work — never as a charge to, or an action by, the
-   reading agent. `cite.reader_owes` MUST be `0` and `cite.applies_to` SHOULD
-   declare the scope (e.g. `downstream_republication_in_a_paid_work`).
+ metadata* describing what a downstream **publisher** owes the author if
+ they re-publish in a paid work, never as a charge to, or an action by, the
+ reading agent. `cite.reader_owes` MUST be `0` and `cite.applies_to` SHOULD
+ declare the scope (e.g. `downstream_republication_in_a_paid_work`).
 
 This is the line between **paid-to-cite** (passive, free to read and cite,
-fees route to authors only on downstream paid re-publication) and
-**pay-to-proceed** (a mid-request paywall the caller must clear). feed402
-buckets are paid-to-cite. Reference implementation:
+Fees route to authors only on downstream paid re-publication) and
+**pay-to-proceed** (a mid-request paywall the caller must clear). Feed402
+Buckets are paid-to-cite. Reference implementation:
 `/api/research` in the bucket.foundation repo; trust model in
 `/llms-full.txt §4`; sibling to feed402 `SPEC.md §3.1`.
 
-> **Why this rule exists.** A correctly safety-trained agent refused the
+> **Why this rule exists.** A safety-trained agent refused the
 > pre-fix reference implementation on exactly these grounds, in its own
-> words, and that refusal was correct. The full technical write-up — the
+> words, and that refusal was correct. The full technical write-up, the
 > verbatim refusal, why it was right given what it saw, and the field-by-field
-> structural fix — is the canonical reference for this section:
+> structural fix, is the canonical reference for this section:
 > [`/protocol/agent-trust`](https://www.bucket.foundation/protocol/agent-trust)
 > (markdown source: `docs/AGENT-TRUST.md`).
 
-## 4. The sidecar (`canon.json`)
+## 4. The sidecar
 
 The sidecar is a JSON object. All fields are UTF-8. Unknown fields MUST be preserved by implementations.
 
-### 4.1 Schema (draft v0.1)
+### 4.1 Schema
 
 ```json
 {
@@ -127,11 +129,11 @@ The sidecar is a JSON object. All fields are UTF-8. Unknown fields MUST be prese
 
 ### 4.2 Required fields
 
-- `version` — must start with `bucket.foundation/v`.
-- `sha256` — must match the hash of `paper.<ext>`.
-- `title` — non-empty.
-- `source.url` — the origin the bytes were fetched from.
-- `cite.payout_wallet` — where citation fees go.
+- `version`, must start with `bucket.foundation/v`.
+- `sha256`, must match the hash of `paper.<ext>`.
+- `title`, non-empty.
+- `source.url`, the origin the bytes were fetched from.
+- `cite.payout_wallet`, where citation fees go.
 
 ### 4.3 Canon tier
 
@@ -139,15 +141,15 @@ The sidecar is a JSON object. All fields are UTF-8. Unknown fields MUST be prese
 
 | Tier | Meaning |
 |---|---|
-| `draft` | Fetched and sidecar-ed, not reviewed. Not eligible for minting. Usable for private research. |
+| `draft` | Fetched and sidecar-ed, review pending. Not eligible for minting. Usable for private research. |
 | `candidate` | Reviewed by a human or high-confidence agent, passed a provisional canon filter. Eligible for mint. |
 | `canon` | Final, minted as an IP NFT, appears on the public canon. |
 
-Tiers are **advisory**, not enforced by the protocol. Different buckets can disagree on tier and still interoperate.
+Tiers are **advisory**; the protocol does not enforce them. Different buckets can disagree on tier and still interoperate.
 
 ### 4.4 Foundation branches
 
-`foundation_branches` is an array from this controlled vocabulary (this list is **advisory**, not normative):
+`foundation_branches` is an array from this controlled vocabulary (this list is **advisory**):
 
 | Branch | Scope |
 |---|---|
@@ -177,11 +179,11 @@ Implementations MAY define their own branches. Federated buckets SHOULD preserve
 9. Every subsequent client hits step 2 — pay-once, cite-forever.
 ```
 
-### 5.1 x402 endpoint shape (source side)
+### 5.1 x402 endpoint shape
 
 Any HTTP endpoint that returns `402 Payment Required` with an `X-Payment` header describing the x402 challenge is compatible. See [x402.org](https://x402.org/) for the full spec.
 
-### 5.2 Citation receipt (optional)
+### 5.2 Citation receipt
 
 When a bucket charges a client for a citation, it MAY emit a `cite.receipt` object in response:
 
@@ -204,7 +206,7 @@ Receipts are **advisory and auditable**. They are not required for the citation 
 
 ## 6. Federation
 
-Two buckets federate by mirroring each other's `<sha256>` addresses. Since every bucket address is a content hash, mirroring is idempotent: either both sides have the same bytes or they don't. There is no "authoritative" bucket — there is only the first bucket that paid.
+Two buckets federate by mirroring each other's `<sha256>` addresses. Since every bucket address is a content hash, mirroring is idempotent: either both sides have the same bytes or they don't. There is no "authoritative" bucket, there is only the first bucket that paid.
 
 A federated network of buckets looks like BitTorrent for papers, plus a citation-fee layer.
 
@@ -217,14 +219,14 @@ A federated network of buckets looks like BitTorrent for papers, plus a citation
 - How to price a paper or a citation. (Author sets it, market adjusts.)
 - What happens to old buckets when a paper is retracted. (Add a `retracted_at` field in v0.2.)
 
-These are deliberately out of scope. The protocol is the minimum viable coordination layer — everything else is an implementation choice.
+These are deliberately out of scope. The protocol is the minimum viable coordination layer, everything else is an implementation choice.
 
 ---
 
 ## 8. Versioning & compatibility
 
 - `version` in the sidecar drives compatibility.
-- Minor versions (`v0.1 → v0.2`) MUST be backwards-compatible — new fields only.
+- Minor versions (`v0.1 → v0.2`) MUST be backwards-compatible, new fields only.
 - Major versions (`v0.x → v1.0`) MAY break. A clean break is healthier than a rotting spec.
 - Implementations SHOULD advertise supported versions in an `X-Bucket-Protocol` response header.
 

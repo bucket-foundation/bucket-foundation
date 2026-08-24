@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-bkt-ibj — hybrid search over the local patent index (FTS + vss + RRF).
+bkt-ibj, hybrid search over the local patent index (FTS + vss + RRF).
 
 Mirrors the Kruse Index fusion recipe (~/jackkruse/): FTS BM25 ranks fused with
 dense cosine ranks via Reciprocal Rank Fusion (k=60).
 
 Usage:
-    ./04-search.py "memristor neuromorphic computing"
-    ./04-search.py "edison filament" --from 1879 --to 1881 --limit 20
+ ./04-search.py "memristor neuromorphic computing"
+ ./04-search.py "edison filament" --from 1879 --to 1881 --limit 20
 """
 from __future__ import annotations
 import argparse
@@ -45,11 +45,11 @@ def main() -> int:
     # Sparse: BM25 via FTS
     fts_rows = con.execute(
         """
-        SELECT patent_id, fts_main_patent_fts_doc.match_bm25(patent_id, ?) AS score
-        FROM patent_fts_doc
-        WHERE score IS NOT NULL
-        ORDER BY score DESC
-        LIMIT 200
+ SELECT patent_id, fts_main_patent_fts_doc.match_bm25(patent_id, ?) AS score
+ FROM patent_fts_doc
+ WHERE score IS NOT NULL
+ ORDER BY score DESC
+ LIMIT 200
         """,
         [q],
     ).fetchall()
@@ -59,10 +59,10 @@ def main() -> int:
         vec = embed(q)
         dense_rows = con.execute(
             """
-            SELECT patent_id, array_cosine_similarity(embedding, ?::FLOAT[384]) AS score
-            FROM patent_embedding
-            ORDER BY score DESC
-            LIMIT 200
+ SELECT patent_id, array_cosine_similarity(embedding, ?::FLOAT[384]) AS score
+ FROM patent_embedding
+ ORDER BY score DESC
+ LIMIT 200
             """,
             [vec],
         ).fetchall()
@@ -95,10 +95,10 @@ def main() -> int:
     extra_sql = (" AND " + " AND ".join(where_extra)) if where_extra else ""
     rows = con.execute(
         f"""
-        SELECT patent_id, grant_date, patent_title,
-               substr(coalesce(patent_abstract,''), 1, 220) AS abstract_snippet
-        FROM patent
-        WHERE patent_id IN ({placeholders}) {extra_sql}
+ SELECT patent_id, grant_date, patent_title,
+ substr(coalesce(patent_abstract,''), 1, 220) AS abstract_snippet
+ FROM patent
+ WHERE patent_id IN ({placeholders}) {extra_sql}
         """,
         params,
     ).fetchall()

@@ -6,7 +6,7 @@ export const metadata = toolMetadata("hhfit");
 const _jsonld = toolJsonLd("hhfit");
 import HHFitClient from "./HHFitClient";
 
-// HH-FitML run page — fit passive-membrane / HH parameters to a current-clamp trace.
+// HH-FitML run page, fit passive-membrane / HH parameters to a current-clamp trace.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

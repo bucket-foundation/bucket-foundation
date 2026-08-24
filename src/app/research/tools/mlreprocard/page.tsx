@@ -6,7 +6,7 @@ export const metadata = toolMetadata("mlreprocard");
 const _jsonld = toolJsonLd("mlreprocard");
 import MLReproCardClient from "./MLReproCardClient";
 
-// MLReproCard run page — server shell framing the interactive client island.
+// MLReproCard run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("mlreprocard");
   return (

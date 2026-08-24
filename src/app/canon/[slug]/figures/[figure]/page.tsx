@@ -1,10 +1,10 @@
-// /canon/<slug>/figures/<figure> — single figure page.
+// /canon/<slug>/figures/<figure>, single figure page.
 //
 // Renders the canonical record for one of the 99 canon-figures from
 // `canon-figures/figures.json`, plus (when present) the hand-written
 // bio markdown from `canon-figures/bios/<id>.md`. External links go to
 // real sources (Wikipedia, Wikidata, OpenAlex, Google Scholar) by name
-// search — *not* to the stale bucket-research repo that used to host
+// search, *not* to the stale bucket-research repo that used to host
 // per-figure subdirectories that never got built out.
 
 import Link from "next/link";
@@ -98,7 +98,7 @@ export default function Page({ params }: { params: { slug: string; figure: strin
       </header>
 
       <section className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16 space-y-12">
-        {/* Primary works — pulled from figures.json. Real, citable. */}
+        {/* Primary works, pulled from figures.json. Real, citable. */}
         {f.primary_works && f.primary_works.length > 0 && (
           <div>
             <h2 className="font-serif-display text-2xl text-[color:var(--parchment)] mb-5">
@@ -138,7 +138,7 @@ export default function Page({ params }: { params: { slug: string; figure: strin
             </h2>
             <div className="flex flex-wrap gap-2">
               {f.cross_branches.map((cb) => {
-                // cb is the directory name like "06-cosmology" — strip the prefix
+                // cb is the directory name like "06-cosmology", strip the prefix
                 const slug = cb.replace(/^\d+-/, "");
                 return (
                   <Link
@@ -200,7 +200,7 @@ export default function Page({ params }: { params: { slug: string; figure: strin
           </div>
         )}
 
-        {/* External research links — all real, all by name search. */}
+        {/* External research links, all real, all by name search. */}
         <div>
           <h2 className="font-serif-display text-2xl text-[color:var(--parchment)] mb-5">
             Sources

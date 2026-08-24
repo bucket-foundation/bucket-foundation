@@ -1,12 +1,12 @@
 """No-network unit tests for the DNA/RNA research tools (tools_dnarna).
 
 Verifies the ACTUAL computation on known inputs:
-  * a classic RNA hairpin folds to the expected dot-bracket with the right
-    number of base pairs (ViennaRNA — real MFE fold);
-  * CRISPR guide enumeration + scoring picks sensible guides and flags bad ones;
-  * the RNA embedding is a real, fixed-dimension numeric vector (fallback mode).
+ * a classic RNA hairpin folds to the expected dot-bracket with the right
+ number of base pairs (ViennaRNA, real MFE fold);
+ * CRISPR guide enumeration + scoring picks sensible guides and flags bad ones;
+ * the RNA embedding is a real, fixed-dimension numeric vector (fallback mode).
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_dnarna.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_dnarna.py -q
 """
 from __future__ import annotations
 
@@ -45,7 +45,7 @@ def test_summarize_dotbracket():
 
 
 # =========================================================================
-# RNAStructure — real ViennaRNA fold of a known hairpin
+# RNAStructure, real ViennaRNA fold of a known hairpin
 # =========================================================================
 @pytest.mark.skipif(not d._VIENNA_OK, reason="ViennaRNA not installed")
 def test_rna_structure_known_hairpin_folds():
@@ -84,7 +84,7 @@ def test_rna_structure_validation():
 
 
 # =========================================================================
-# gRNA-Optimizer — real PAM scan + scoring
+# gRNA-Optimizer, real PAM scan + scoring
 # =========================================================================
 def test_find_guides_locates_pam():
     # one forward NGG PAM right after a 20-nt protospacer
@@ -127,7 +127,7 @@ def test_run_grna_optimizer_ranks_and_validates():
 
 
 # =========================================================================
-# RNA-FM-Embeds — real fallback embedding
+# RNA-FM-Embeds, real fallback embedding
 # =========================================================================
 def test_kmer_embedding_dim_and_normalized():
     import numpy as np
@@ -146,7 +146,7 @@ def test_structural_features_real_descriptors():
 
 def test_run_rna_fm_embeds_fallback_is_real():
     out = d.run_rna_fm_embeds({"sequence": "GGGGAAAACCCC", "k": 3})
-    # without the RNA-FM weights this MUST be the honest real fallback
+    # without the RNA-FM weights this MUST be the real fallback
     assert out["mode"] == "kmer-structural-fallback"
     assert out["is_real_model"] is False
     assert out["embedding_dim"] == 64

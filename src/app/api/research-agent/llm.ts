@@ -2,17 +2,17 @@
  * LLM client seam for the Bucket research agent.
  *
  * MIRRORS the tutor's seam (`src/app/api/academy/tutor/route.ts` callLocalLLM +
- * its Anthropic branch) — same env contract (LLM_BASE_URL / LLM_MODEL /
+ * its Anthropic branch), same env contract (LLM_BASE_URL / LLM_MODEL /
  * LLM_API_KEY / LLM_TIMEOUT_S), same OpenAI-compatible POST, same error tagging
  * (`.status`) so the route's 401/429/502 handling applies, same fail-safe
  * posture. In prod the local path is the bearer-protected auth-shim +
  * cloudflared tunnel in front of a llama.cpp server running Qwen2.5-Coder-7B on
- * Gian's AMD RX 7700S (Vulkan, ~13 tok/s). It is NOT a different LLM client —
+ * Gian's AMD RX 7700S (Vulkan, ~13 tok/s). It is NOT a different LLM client, 
  * the research agent and the tutor speak to the same endpoint the same way.
  *
  * Why a local module and not an import from the tutor route: Next.js forbids
  * importing non-handler exports across `route.ts` files, and the tutor keeps its
- * client inline. This file is the agent's copy of that exact pattern (one
+ * client inline. This module is the agent's copy of that exact pattern (one
  * function, one Anthropic branch) so the seam stays identical and testable.
  */
 import Anthropic from "@anthropic-ai/sdk";
@@ -23,8 +23,8 @@ const LLM_MODEL = () => process.env.LLM_MODEL || "qwen2.5-coder-7b";
 const LLM_API_KEY = () => process.env.LLM_API_KEY;
 const LLM_TIMEOUT_MS = () => Number(process.env.LLM_TIMEOUT_S || 60) * 1000;
 
-// Hosted-Anthropic fallback model — same choice the tutor makes. The grounding
-// does the factual work, not the model, so a mid model is plenty.
+// Hosted-Anthropic fallback model, same choice the tutor makes. The grounding
+// does the factual work, so a mid model is plenty.
 const ANTHROPIC_MODEL = "claude-sonnet-4-5";
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -33,8 +33,8 @@ export type ChatMessage = { role: "user" | "assistant"; content: string };
 export type LlmError = Error & { status?: number };
 
 /** Call the local OpenAI-compatible chat endpoint (default path). Throws an
- *  error tagged with `.status` on a non-2xx so the caller's catch can map
- *  401/429/timeout exactly as the tutor route does. */
+ * error tagged with `.status` on a non-2xx so the caller's catch can map
+ * 401/429/timeout exactly as the tutor route does. */
 async function callLocalLLM(
   system: string,
   messages: ChatMessage[],
@@ -92,7 +92,7 @@ async function callAnthropic(
 }
 
 /** Single completion via whichever provider is configured (local default,
- *  Anthropic fallback). Errors propagate tagged with `.status`. */
+ * Anthropic fallback). Errors propagate tagged with `.status`. */
 export async function complete(
   system: string,
   messages: ChatMessage[],

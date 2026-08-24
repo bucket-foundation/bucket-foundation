@@ -6,8 +6,8 @@ export const metadata = toolMetadata("cryotriage");
 const _jsonld = toolJsonLd("cryotriage");
 import CryoTriageClient from "./CryoTriageClient";
 
-// CryoTriage run page — server-component shell (matches /research styling).
-// GPU tool — runs in DEMO/synthetic mode until a GPU compute plan lands.
+// CryoTriage run page, server-component shell (matches /research styling).
+// GPU tool, runs in DEMO/synthetic mode until a GPU compute plan lands.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

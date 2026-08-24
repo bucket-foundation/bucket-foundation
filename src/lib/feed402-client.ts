@@ -6,10 +6,10 @@ const FEED402_BASE_URL =
   process.env.FEED402_BASE_URL || "http://localhost:8402";
 
 // bkt-tsv: re-derived from feed402 SPEC §3 / types.ts Envelope shape.
-// SPEC is source of truth — `citation` is an ARRAY of Citation entries, not a
-// single object, and the payment block is named `receipt`. Sibling fix in
+// SPEC is source of truth, `citation` is an ARRAY of Citation entries (never a
+// single object), and the payment block is named `receipt`. Sibling fix in
 // ~/agfarms/feed402/types.ts is making citation an array; if upstream still
-// shows singular at this commit, we hold this shape — the SPEC wins.
+// shows singular at this commit, we hold this shape, the SPEC wins.
 
 export type FeedTier = "raw" | "query" | "insight";
 
@@ -77,10 +77,10 @@ export interface SearchResult {
 /**
  * Sign an x402 payment header for the given request.
  * TODO(bkt-q7k+2): real ECDSA signing with BUCKET_X402_PRIVATE_KEY using viem.
- *   For now we just emit a placeholder so requests are well-formed.
+ * Emits a placeholder so requests are well-formed.
  */
 function signX402Header(_path: string, _costUsd: number): string {
-  // TODO: real signature — viem.privateKeyToAccount(...).signMessage(...)
+  // TODO: real signature, viem.privateKeyToAccount(...).signMessage(...)
   const stubKey = process.env.BUCKET_X402_PRIVATE_KEY ? "stub-signed" : "unsigned";
   return `x402 ${stubKey}`;
 }

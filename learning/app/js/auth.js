@@ -1,25 +1,25 @@
-/* Bucket Academy — optional sign-in + cross-device progress sync (bkt-su9).
+/* Bucket Academy, optional sign-in + cross-device progress sync (bkt-su9).
  *
  * Passwordless EMAIL OTP via Supabase Auth. Anonymous local-first use keeps
- * working with NO sign-in — this module only ADDS cross-device save/sync.
+ * working with NO sign-in, this module only ADDS cross-device save/sync.
  *
  * Design:
- *  - Loads the Supabase JS client from CDN (the anon key is public by design;
- *    Row-Level Security is the real boundary — a user can only read/write their
- *    own rows in public.academy_progress).
- *  - Public config (URL + anon key) is injected at build time by
- *    scripts/sync-academy.mjs into js/auth-config.js (window.__BUCKET_SUPABASE).
- *    When that config is absent (no env), auth disables itself silently and the
- *    app stays purely anonymous + local.
- *  - Progress lives in localStorage under `bucket-academy/v1/<branch>` exactly
- *    as engine.js writes it. On sign-in we MERGE local⇄server per-card by the
- *    most recent review (`lastReview`), then push the merged blob up and write
- *    it back down, so every device converges.
+ * - Loads the Supabase JS client from CDN (the anon key is public by design;
+ * Row-Level Security is the real boundary, a user can only read/write their
+ * own rows in public.academy_progress).
+ * - Public config (URL + anon key) is injected at build time by
+ * scripts/sync-academy.mjs into js/auth-config.js (window.__BUCKET_SUPABASE).
+ * When that config is absent (no env), auth disables itself silently and the
+ * app stays purely anonymous + local.
+ * - Progress lives in localStorage under `bucket-academy/v1/<branch>` exactly
+ * as engine.js writes it. On sign-in we MERGE local⇄server per-card by the
+ * most recent review (`lastReview`), then push the merged blob up and write
+ * it back down, so every device converges.
  *
  * Storage transport (bkt-aja): the cross-device rows live in `bucket.academy_progress`
  * on a MULTI-TENANT self-hosted Supabase whose shared PostgREST does NOT expose
  * the `bucket` schema. So progress reads/writes do NOT go through supabase-js
- * `.from()` / PostgREST — they go through the same-origin Next.js API route
+ * `.from()` / PostgREST, they go through the same-origin Next.js API route
  * `/api/academy/progress`, which verifies this user's access token server-side
  * and uses a service-role client to touch ONLY that user's rows. Authentication
  * (email-OTP) still uses gotrue directly via the supabase-js client (the auth
@@ -46,7 +46,7 @@
   var API_BASE =
     cfg && cfg.apiBase ? String(cfg.apiBase).replace(/\/$/, "") : "";
   var API_PROGRESS = API_BASE + "/api/academy/progress";
-  // bkt-coh — the public Mastery Profile API (claim handle + toggle visibility).
+  // bkt-coh, the public Mastery Profile API (claim handle + toggle visibility).
   var API_PROFILE = API_BASE + "/api/academy/profile";
 
   var sb = null; // Supabase client (lazy)
@@ -94,7 +94,7 @@
   // Merge two engine states for the SAME branch. Cards merge per-id by the most
   // recent `lastReview`; stats take the monotonic max; history unions by day;
   // settings come from whichever blob was touched last (the caller decides
-  // ordering — `b` is treated as "newer or equal" on exact ties).
+  // ordering, `b` is treated as "newer or equal" on exact ties).
   function mergeState(a, b) {
     if (!a) return b ? JSON.parse(JSON.stringify(b)) : a;
     if (!b) return JSON.parse(JSON.stringify(a));
@@ -206,7 +206,7 @@
   }
 
   // Upsert one branch blob via the API route. `uid` is accepted for call-site
-  // compatibility but intentionally NOT trusted — the route forces ownership to
+  // compatibility but intentionally NOT trusted, the route forces ownership to
   // the verified token's user, so a client can never write another user's rows.
   function pushBranch(uid, branch, state) {
     var tok = accessToken();

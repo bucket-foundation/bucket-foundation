@@ -7,12 +7,12 @@ WHY THIS EXISTS
 `primary-papers.yaml`, but it OVERWRITES the file wholesale every run. That is
 not safe for an unattended, re-runnable pipeline:
 
-  * a transient API failure (one query times out) silently DROPS a record that
-    was correct last run;
-  * re-running with an extended queries.txt does not converge — it replaces;
-  * there is no quality gate (a no-DOI / non-primary / retracted hit lands in
-    canon as if it were a foundation);
-  * superseded versions are lost instead of archived.
+ * a transient API failure (one query times out) silently DROPS a record that
+ was correct last run;
+ * re-running with an extended queries.txt does not converge, it replaces;
+ * there is no quality gate (a no-DOI / non-primary / retracted hit lands in
+ canon as if it were a foundation);
+ * superseded versions are lost instead of archived.
 
 This module adds the missing convergence + quality layer WITHOUT modifying
 `canon.py` (the data pillar owns the resolver/scorer/queries seed; engineering
@@ -23,27 +23,27 @@ contract; this file never changes it.
 
 CONVERGENCE CONTRACT
 --------------------
-  * Keyed by DOI (fallback: canonical_url, then title). Re-running NEVER
-    duplicates a record.
-  * On key collision the higher canon_score wins; the displaced record is
-    written to `_archive/<YYYY-MM>/primary-papers.yaml` (canon folder
-    contract: superseded -> archive, never deleted).
-  * A query that fails to resolve this run does NOT remove a record that
-    resolved on a previous run — existing good records are preserved
-    (fail-safe, not fail-open).
-  * The merged record set is sorted by canon_score desc then title, so the
-    file is deterministic and re-running a clean state is a no-op (idempotent:
-    same bytes out).
+ * Keyed by DOI (fallback: canonical_url, then title). Re-running NEVER
+ duplicates a record.
+ * On key collision the higher canon_score wins; the displaced record is
+ written to `_archive/<YYYY-MM>/primary-papers.yaml` (canon folder
+ contract: superseded -> archive, never deleted).
+ * A query that fails to resolve this run does NOT remove a record that
+ resolved on a previous run, existing good records are preserved
+ (fail-safe).
+ * The merged record set is sorted by canon_score desc then title, so the
+ file is deterministic and re-running a clean state is a no-op (idempotent:
+ same bytes out).
 
 QUALITY GATE (pluggable)
 ------------------------
 `gate_record()` is intentionally small and centralised so the data pillar's
 RUBRIC.md can tighten it without touching the convergence logic. Defaults:
-  * MUST have a DOI (citation-only canon needs a resolvable primary anchor).
-  * MUST NOT be retracted.
-  * MUST clear a minimum canon_score floor (default 30 — i.e. at least a
-    peer-reviewed type; transcript-tier noise scores ~0 and is rejected).
-  * MUST NOT be a primary source we cannot attribute (no title or no author).
+ * MUST have a DOI (citation-only canon needs a resolvable primary anchor).
+ * MUST NOT be retracted.
+ * MUST clear a minimum canon_score floor (default 30, i.e. at least a
+ peer-reviewed type; transcript-tier noise scores ~0 and is rejected).
+ * MUST NOT be a primary source we cannot attribute (no title or no author).
 Override the floor with CANON_MIN_SCORE or --min-score; the function is the
 single tightening point.
 
@@ -91,7 +91,7 @@ def _record_key(rec: dict) -> str:
 def gate_record(rec: dict, min_score: int = DEFAULT_MIN_SCORE) -> Optional[str]:
     """Return None if the record is canon-eligible, else a rejection reason.
 
-    SINGLE pluggable tightening point. Data pillar's RUBRIC.md hardens HERE.
+ SINGLE pluggable tightening point. Data pillar's RUBRIC.md hardens HERE.
     """
     if not rec.get("title"):
         return "no title (unattributable)"
@@ -130,8 +130,8 @@ def converge(
 ) -> dict:
     """Resolve folder/queries.txt and CONVERGE into primary-papers.yaml.
 
-    Returns a stats dict (added / updated / kept / rejected / superseded /
-    failed). Pure-functional w.r.t. the network via canon.resolve()'s cache.
+ Returns a stats dict (added / updated / kept / rejected / superseded /
+ failed). Pure-functional w.r.t. the network via canon.resolve()'s cache.
     """
     queries = folder / "queries.txt"
     if not queries.exists():

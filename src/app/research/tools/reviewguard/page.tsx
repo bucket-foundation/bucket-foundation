@@ -6,7 +6,7 @@ export const metadata = toolMetadata("reviewguard");
 const _jsonld = toolJsonLd("reviewguard");
 import ReviewGuardClient from "./ReviewGuardClient";
 
-// ReviewGuard run page — cross-paper supporting vs contradicting evidence.
+// ReviewGuard run page, cross-paper supporting vs contradicting evidence.
 export default function Page() {
   return (
     <main className="stone-bone relative grain">
@@ -30,7 +30,7 @@ export default function Page() {
         </div>
         <h1 className="font-display uppercase text-[clamp(1.75rem,4.5vw,3rem)] leading-[1.05] chisel tracking-[0.005em] text-[color:var(--basalt)]">
           what does the literature{" "}
-          <span className="inlay-gold">actually say?</span>
+          <span className="inlay-gold">say?</span>
         </h1>
         <p className="mt-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)] max-w-2xl">
           State a claim. ReviewGuard pulls the relevant OpenAlex literature and

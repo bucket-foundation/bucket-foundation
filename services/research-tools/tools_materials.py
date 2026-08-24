@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-research-tools — MaterialsFeaturizer (REAL Magpie-style descriptors, CPU)
+research-tools, MaterialsFeaturizer (REAL Magpie-style descriptors, CPU)
 =========================================================================
 
 Per-field tool for **materials** (materials, 44,536 profiled researchers).
 "ML in Materials Science" is already a TOP recurring topic in our corpus, so
-demand is measured, not assumed — but interatomic-potential pipelines and
+demand here is measured. But interatomic-potential pipelines and
 structured materials descriptors are still hand-rolled per group. The standard
 first step of any materials-property ML model is FEATURIZATION: turning a
 chemical composition into a fixed-length vector of physically-meaningful
@@ -13,7 +13,7 @@ descriptors.
 
 MaterialsFeaturizer parses a chemical formula (e.g. "Fe2O3", "Li0.5CoO2",
 "CaTiO3") into fractional element amounts and computes REAL Magpie-style
-composition descriptors (Ward et al. 2016, npj Comput. Mater. 2:16028 — the
+composition descriptors (Ward et al. 2016, npj Comput. Mater. 2:16028, the
 canonical "general-purpose machine learning framework for predicting properties
 of inorganic materials"): for each tabulated elemental property it returns the
 composition-weighted mean, the (max−min) range, the average deviation, and the
@@ -23,9 +23,9 @@ valence-electron statistics. These are the exact descriptor families matminer's
 self-contained periodic-element table (no external data, no GPU).
 
 Input shape (`payload`):
-    formula : str — a chemical formula (required; e.g. "Fe2O3", "GaAs",
-              "La0.7Sr0.3MnO3"). Parentheses with multipliers are supported,
-              e.g. "Mg(OH)2".
+ formula : str, a chemical formula (required; e.g. "Fe2O3", "GaAs",
+ "La0.7Sr0.3MnO3"). Parentheses with multipliers are supported,
+ e.g. "Mg(OH)2".
 
 The gateway imports MATERIALS_RUNNERS from here.
 """
@@ -37,12 +37,12 @@ from typing import Any, Optional
 
 # ---------------------------------------------------------------------------
 # Built-in elemental property table (REAL values). Columns:
-#   Z, atomic_weight, electronegativity (Pauling), atomic_radius (pm, empirical),
-#   melting_point (K), period, group, n_valence (s+p+d valence electrons),
-#   covalent_radius (pm).
+# Z, atomic_weight, electronegativity (Pauling), atomic_radius (pm, empirical),
+# melting_point (K), period, group, n_valence (s+p+d valence electrons),
+# covalent_radius (pm).
 # Values are standard tabulated constants (CRC / IUPAC). Pauling EN and melting
 # point are None for noble gases where undefined; we carry the common set used
-# in inorganic ML. Covers H..Bi + common lanthanides — ample for inorganic ML.
+# in inorganic ML. Covers H..Bi + common lanthanides, ample for inorganic ML.
 # ---------------------------------------------------------------------------
 # (symbol): (Z, mass, EN, atomic_radius_pm, melt_K, period, group, n_valence)
 _ELEMENTS: dict[str, tuple] = {
@@ -150,8 +150,8 @@ _TOKEN = re.compile(r"([A-Z][a-z]?)|(\d+\.?\d*)|(\()|(\))")
 
 def parse_formula(formula: str) -> dict[str, float]:
     """Parse a chemical formula into {element: amount}. Supports nested
-    parentheses + fractional/decimal subscripts. Never raises — raises ValueError
-    only via the caller-guarded wrapper. Returns {} on empty."""
+ parentheses + fractional/decimal subscripts. Never raises, raises ValueError
+ only via the caller-guarded wrapper. Returns {} on empty."""
     s = (formula or "").replace(" ", "")
     if not s:
         return {}
@@ -208,8 +208,8 @@ def parse_formula(formula: str) -> dict[str, float]:
 # ---------------------------------------------------------------------------
 def _stats_for_property(prop: str, fractions: dict[str, float]) -> Optional[dict]:
     """Composition-weighted mean / range / avg-deviation / mode-value for one
-    elemental property over the elements present (skips elements missing the
-    property, e.g. EN for noble gases)."""
+ elemental property over the elements present (skips elements missing the
+ property, e.g. EN for noble gases)."""
     vals: list[tuple[float, float]] = []  # (fraction, value)
     idx = _PROP_IDX[prop]
     for el, frac in fractions.items():
@@ -292,12 +292,12 @@ def featurize(formula: str) -> dict:
 
 
 def run_materials_featurizer(payload: dict) -> dict:
-    """payload: { formula: <chemical formula>  OR  "demo" }
+    """payload: { formula: <chemical formula> OR "demo" }
 
-    Parse a composition and compute REAL Magpie-style elemental-property
-    descriptors (mean/range/avg-deviation/mode of atomic weight, electronegativity,
-    radius, melting point, valence, etc.) for materials-property ML. Deterministic;
-    never raises on malformed input.
+ Parse a composition and compute REAL Magpie-style elemental-property
+ descriptors (mean/range/avg-deviation/mode of atomic weight, electronegativity,
+ radius, melting point, valence, etc.) for materials-property ML. Deterministic;
+ never raises on malformed input.
     """
     raw = payload.get("formula")
     demo = bool(payload.get("demo")) or (isinstance(raw, str) and raw.strip().lower() == "demo")
@@ -325,14 +325,14 @@ def run_materials_featurizer(payload: dict) -> dict:
         "property (atomic weight, Pauling electronegativity, atomic radius, "
         "melting point, period, group, valence-electron count) the composition-"
         "weighted mean, range (max−min), average deviation, and mode-element value "
-        "are computed — the Magpie/ElementProperty descriptor family (Ward et al. "
+        "are computed, the Magpie/ElementProperty descriptor family (Ward et al. "
         "2016) used as ML features for inorganic-material property prediction. "
         "Built-in element table; no network, no GPU."
     )
     result["note"] = (
         "Field tool for materials: 'ML in materials science' is already a top "
         "recurring research topic, but featurization pipelines are hand-rolled per "
-        "group. These are composition-only (Magpie) descriptors — structural "
+        "group. These are composition-only (Magpie) descriptors, structural "
         "descriptors (coordination, Voronoi, site features) need a crystal "
         "structure and are a documented follow-up."
     )

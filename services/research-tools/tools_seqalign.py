@@ -1,42 +1,42 @@
 #!/usr/bin/env python3
 """
-research-tools — SeqAlign (REAL pairwise sequence alignment, CPU, no GPU)
+research-tools, SeqAlign (REAL pairwise sequence alignment, CPU, no GPU)
 ========================================================================
 
-Per-field tool for **biomed-bio** (689,684 profiled researchers — the largest
+Per-field tool for **biomed-bio** (689,684 profiled researchers, the largest
 single field). Pairwise sequence alignment is the bedrock operation of every
 bioinformatics pipeline (`seq-pipelines` in research-atlas/docs/USERS_NEEDS.md):
 before a read is mapped, a variant is called, or a protein is annotated, two
 sequences get aligned. Wet-lab PIs hit version-fragile toolchains for what is,
 at its core, one well-defined dynamic-programming algorithm.
 
-SeqAlign implements the two canonical, EXACT DP algorithms — no heuristics, no
+SeqAlign implements the two canonical, EXACT DP algorithms, no heuristics, no
 approximations:
 
-  1. Needleman–Wunsch (1970) — GLOBAL alignment
-     ---------------------------------------------------------------------
-     Optimal end-to-end alignment of the full length of both sequences with
-     affine-free linear gap penalty. The score matrix H[i,j] is filled by the
-     recurrence
-         H[i,j] = max( H[i-1,j-1] + s(a_i, b_j),   # match/mismatch
-                       H[i-1,j]   + gap,            # gap in b
-                       H[i,j-1]   + gap )           # gap in a
-     with H[i,0] = i*gap and H[0,j] = j*gap (full-length boundary), then a
-     traceback from H[m,n] reconstructs the alignment.
+ 1. Needleman, Wunsch (1970), GLOBAL alignment
+ ---------------------------------------------------------------------
+ Optimal end-to-end alignment of the full length of both sequences with
+ affine-free linear gap penalty. The score matrix H[i,j] is filled by the
+ recurrence
+ H[i,j] = max( H[i-1,j-1] + s(a_i, b_j), # match/mismatch
+ H[i-1,j] + gap, # gap in b
+ H[i,j-1] + gap ) # gap in a
+ with H[i,0] = i*gap and H[0,j] = j*gap (full-length boundary), then a
+ traceback from H[m,n] reconstructs the alignment.
 
-  2. Smith–Waterman (1981) — LOCAL alignment
-     ---------------------------------------------------------------------
-     Optimal local (best-scoring sub-segment) alignment. Identical recurrence
-     but clamped at 0 (H[i,j] = max(0, ...)), boundaries are 0, and the
-     traceback starts at the matrix maximum and stops at the first 0.
+ 2. Smith, Waterman (1981), LOCAL alignment
+ ---------------------------------------------------------------------
+ Optimal local (best-scoring sub-segment) alignment. Identical recurrence
+ but clamped at 0 (H[i,j] = max(0...)), boundaries are 0, and the
+ traceback starts at the matrix maximum and stops at the first 0.
 
 Scoring:
-  * Proteins → BLOSUM62 (Henikoff & Henikoff 1992), the standard substitution
-    matrix, baked in as a real 24×24 table.
-  * Nucleotides / unknown → a simple identity matrix (match=+1, mismatch=-1 by
-    default, overridable).
-  * Linear gap penalty (default -10 for protein BLOSUM62, -1 for identity), and
-    a 1-residue end-gap-aware traceback.
+ * Proteins → BLOSUM62 (Henikoff & Henikoff 1992), the standard substitution
+ matrix, baked in as a real 24×24 table.
+ * Nucleotides / unknown → a simple identity matrix (match=+1, mismatch=-1 by
+ default, overridable).
+ * Linear gap penalty (default -10 for protein BLOSUM62, -1 for identity), and
+ a 1-residue end-gap-aware traceback.
 
 Output: the aligned strings (with `-` gaps), the optimal score, the number of
 matches/mismatches/gaps, percent identity, and alignment length. Deterministic;
@@ -56,7 +56,7 @@ from typing import Optional
 # ---------------------------------------------------------------------------
 _B62_ORDER = "ARNDCQEGHILKMFPSTWYVBZX*"
 _B62_ROWS = [
-    # A   R   N   D   C   Q   E   G   H   I   L   K   M   F   P   S   T   W   Y   V   B   Z   X   *
+    # A R N D C Q E G H I L K M F P S T W Y V B Z X *
     [ 4, -1, -2, -2,  0, -1, -1,  0, -2, -1, -1, -1, -1, -2, -1,  1,  0, -3, -2,  0, -2, -1,  0, -4],
     [-1,  5,  0, -2, -3,  1,  0, -2,  0, -3, -2,  2, -1, -3, -2, -1, -1, -3, -2, -3, -1,  0, -1, -4],
     [-2,  0,  6,  1, -3,  0,  0,  0,  1, -3, -3,  0, -2, -3, -2,  1,  0, -4, -2, -3,  3,  0, -1, -4],
@@ -113,7 +113,7 @@ def _score_fn(matrix: str, match: int, mismatch: int):
 
 
 # ---------------------------------------------------------------------------
-# Needleman–Wunsch (global) — exact DP
+# Needleman, Wunsch (global), exact DP
 # ---------------------------------------------------------------------------
 def needleman_wunsch(a: str, b: str, score, gap: int):
     m, n = len(a), len(b)
@@ -155,7 +155,7 @@ def needleman_wunsch(a: str, b: str, score, gap: int):
 
 
 # ---------------------------------------------------------------------------
-# Smith–Waterman (local) — exact DP
+# Smith, Waterman (local), exact DP
 # ---------------------------------------------------------------------------
 def smith_waterman(a: str, b: str, score, gap: int):
     m, n = len(a), len(b)
@@ -222,16 +222,16 @@ def _looks_protein(s: str) -> bool:
 
 def run_seqalign(payload: dict) -> dict:
     """payload: {
-        seq_a: str, seq_b: str  (or "demo"),
-        mode: "global" | "local"  (default "global"),
-        matrix: "blosum62" | "identity" | "auto"  (default "auto"),
-        gap: int  (optional; defaults -10 for blosum62, -1 for identity),
-        match: int (identity match, default +1), mismatch: int (default -1)
-    }
+ seq_a: str, seq_b: str (or "demo"),
+ mode: "global" | "local" (default "global"),
+ matrix: "blosum62" | "identity" | "auto" (default "auto"),
+ gap: int (optional; defaults -10 for blosum62, -1 for identity),
+ match: int (identity match, default +1), mismatch: int (default -1)
+ }
 
-    Run an EXACT Needleman–Wunsch (global) or Smith–Waterman (local) alignment
-    with BLOSUM62 (protein) or an identity matrix (nucleotide). Deterministic;
-    never raises on malformed input.
+ Run an EXACT Needleman, Wunsch (global) or Smith, Waterman (local) alignment
+ with BLOSUM62 (protein) or an identity matrix (nucleotide). Deterministic;
+ never raises on malformed input.
     """
     raw_a = payload.get("seq_a")
     demo = isinstance(raw_a, str) and raw_a.strip().lower() == "demo"
@@ -313,7 +313,7 @@ def run_seqalign(payload: dict) -> dict:
         "note": (
             "Field tool for biomed-bio (the largest field): pairwise alignment is "
             "the bedrock of every sequence pipeline. This is the exact optimal "
-            "alignment (not a BLAST/minimap heuristic), so it is O(m·n) — capped at "
+            "alignment (not a BLAST/minimap heuristic), so it is O(m·n), capped at "
             "3000 residues per sequence. Multiple alignment + affine (open/extend) "
             "gap penalties are a documented follow-up."
         ),
@@ -326,7 +326,7 @@ def run_seqalign(payload: dict) -> dict:
         # The load-bearing checks (DP correctness) live in the test on small
         # cases with hand-computed scores.
         out["note"] = (
-            "DEMO: HEAGAWGHEE vs PAWHEAE — the classic Durbin et al. global "
+            "DEMO: HEAGAWGHEE vs PAWHEAE, the classic Durbin et al. global "
             "alignment example, scored with BLOSUM62. " + out["note"]
         )
     return out

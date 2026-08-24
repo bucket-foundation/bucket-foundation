@@ -1,13 +1,13 @@
-# Local Patent Index — bkt-ibj
+# Local Patent Index, bkt-ibj
 
 Local-first variant of the Bucket Foundation patent corpus, mirroring the
 **Kruse Index pattern** (`~/jackkruse/`: FTS5 + dense embeddings + RRF fusion)
 but for global patents and accelerated by a local AMD dGPU.
 
-Same envelope contract as the public `bucket.foundation` deployment — drop-in
+Same envelope contract as the public `bucket.foundation` deployment, drop-in
 publishable when you decide to ship.
 
-## Detected hardware on `charizard` (2026-05-03)
+## Detected hardware on `charizard`
 
 | Component | Spec |
 |---|---|
@@ -37,7 +37,7 @@ last 8 years**, runs identically on the iGPU as a fallback, and the GGUF
 embeddings are ~2× faster than ONNX runtime on this class of card.
 
 If you later swap to a CUDA box, change one env var (`LLAMA_BACKEND=cuda`) and
-rebuild llama.cpp — nothing else changes.
+rebuild llama.cpp, nothing else changes.
 
 ## File layout
 
@@ -104,22 +104,22 @@ NEXT_PUBLIC_CHAT_ENABLED=true
 
 Run `npm run dev` and visit `http://localhost:3000/chat`. The chat is now
 querying *your* dGPU-backed corpus, no x402 payments, no network round-trips
-to `bucket.foundation`. Same envelope, same citations, free.
+To `bucket.foundation`. Same envelope, same citations, free.
 
 When you're ready to publish: bump the corpus to the public DuckDB on the
 Hetzner box, mount the same `routes/patents.ts` against it, agents start paying
-$0.002–$0.010 per call. Zero code rewrite.
+$0.002, $0.010 per call. Zero code rewrite.
 
 ## Sizing notes
 
-- **bge-small @ 384d × 8M USPTO grants × fp16** = ~12 GB embeddings (fits on disk; not in VRAM, that's fine — vss reads from disk)
-- **Throughput on 7600M XT**: ~800–1200 claims/sec at batch 64 (Vulkan), so ~4 hr for 8M grants of just claim-1+abstract
+- **bge-small @ 384d × 8M USPTO grants × fp16** = ~12 GB embeddings (fits on disk; not in VRAM, that's fine, vss reads from disk)
+- **Throughput on 7600M XT**: ~800-1200 claims/sec at batch 64 (Vulkan), so ~4 hr for 8M grants of just claim-1+abstract
 - **Full claims set** (all claims, not just claim 1) ≈ 80M chunks → ~32 hr first-pass; resumable
 - **iGPU fallback**: 780M shows up as Vulkan device 1; switch with `LLAMA_VK_DEVICE=1` if you want to keep dGPU free for chat inference
 
 ## When to graduate to ROCm + PyTorch
 
 If/when you decide to fine-tune a domain-adapted patent embedder, switch to a
-ROCm + PyTorch + `sentence-transformers` stack — embedding inference can stay
-on llama.cpp Vulkan, but training needs the PyTorch path. Tracked as future
+ROCm + PyTorch + `sentence-transformers` stack, embedding inference can stay
+On llama.cpp Vulkan, but training needs the PyTorch path. Tracked as future
 bead `bkt-patent-embedder-finetune`.

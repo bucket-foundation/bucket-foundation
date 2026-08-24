@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-query.py — Polingual multi-axis query engine over the photon substrate.
+query.py, Polingual multi-axis query engine over the photon substrate.
 
 Five comparison axes on the real 45k-word data:
 
-  semantic_topk(surface, lang)   words that MEAN the same (cross-lingual)
-  phonetic_topk(surface, lang)   words that SOUND the same (lang-agnostic)
-  spelling_topk(surface, lang)   words SPELLED similarly (normalized edit dist)
-  etymology(surface, lang)       where a word COMES FROM (Wiktionary/Kaikki)
-  translate(surface, frm, to)    same meaning_en across languages + semantic
-                                  neighbors in the target language
+ semantic_topk(surface, lang) words that MEAN the same (cross-lingual)
+ phonetic_topk(surface, lang) words that SOUND the same (lang-agnostic)
+ spelling_topk(surface, lang) words SPELLED similarly (normalized edit dist)
+ etymology(surface, lang) where a word COMES FROM (Wiktionary/Kaikki)
+ translate(surface, frm, to) same meaning_en across languages + semantic
+ neighbors in the target language
 
 Cosine similarity == dot product over the L2-normalized memmapped vectors;
 brute force over 45k rows is a single numpy matmul (~ms), so no ANN index is
@@ -19,11 +19,11 @@ Source: Wiktionary via Kaikki (CC-BY-SA). Etymology snippets are short and
 attributed; we never reproduce long copyrighted text.
 
 CLI:
-  python3 scripts/photon/query.py semantic light en
-  python3 scripts/photon/query.py phonetic gravitas en
-  python3 scripts/photon/query.py spelling encyclopedia en
-  python3 scripts/photon/query.py etymology gratis la
-  python3 scripts/photon/query.py translate water en es
+ python3 scripts/photon/query.py semantic light en
+ python3 scripts/photon/query.py phonetic gravitas en
+ python3 scripts/photon/query.py spelling encyclopedia en
+ python3 scripts/photon/query.py etymology gratis la
+ python3 scripts/photon/query.py translate water en es
 """
 from __future__ import annotations
 
@@ -56,7 +56,7 @@ KAIKKI = {
 
 
 # --------------------------------------------------------------------------- #
-#  Index (loaded once)                                                        #
+# Index (loaded once) #
 # --------------------------------------------------------------------------- #
 # When the user types a bare word with no explicit language, the headword should
 # prefer the language they're most likely querying in. English first (the gloss
@@ -127,12 +127,12 @@ class PhotonIndex:
         return self._pho
 
     def find(self, surface, lang=None):
-        """Array index for a word — language-priority headword resolution.
+        """Array index for a word, language-priority headword resolution.
 
-        Exact (lang, surface) wins if an explicit lang is given; otherwise, among
-        all photons sharing this surface, pick the one whose language is highest
-        in LANG_PREFERENCE (English first). This is what stops English "light"
-        from resolving to the Portuguese dietary loanword.
+ Exact (lang, surface) wins if an explicit lang is given; otherwise, among
+ all photons sharing this surface, pick the one whose language is highest
+ in LANG_PREFERENCE (English first). This is what stops English "light"
+ from resolving to the Portuguese dietary loanword.
         """
         if lang and (lang, surface) in self.by_key:
             return self.by_key[(lang, surface)]
@@ -164,7 +164,7 @@ def idx() -> PhotonIndex:
 
 
 # --------------------------------------------------------------------------- #
-#  Axes                                                                        #
+# Axes #
 # --------------------------------------------------------------------------- #
 def _cosine_topk(matrix, valid_mask, vec, k, exclude=None):
     """Brute-force cosine top-k of `vec` against rows of `matrix` (L2-normed)."""
@@ -227,13 +227,13 @@ def _headword(ix, i):
 
 def semantic_topk(surface, lang=None, k=10, cross_lingual=True,
                   min_cos=SEM_MIN_COS, one_per_lang=ONE_PER_LANG):
-    """Cross-lingual 'means the same' neighbors — sense-consistent.
+    """Cross-lingual 'means the same' neighbors, sense-consistent.
 
-    Filters that cut the cross-sense noise:
-      - cosine threshold (drop off-sense hits below `min_cos`) + a relative gap
-        below the best hit;
-      - one-per-language (luz/lumière/luce/Licht, not five synonyms);
-      - dedup near-identical glosses.
+ Filters that cut the cross-sense noise:
+ - cosine threshold (drop off-sense hits below `min_cos`) + a relative gap
+ below the best hit;
+ - one-per-language (one of luz/lumière/luce/Licht per language);
+ - dedup near-identical glosses.
     """
     ix = idx()
     i = ix.find(surface, lang)
@@ -319,8 +319,8 @@ def spelling_topk(surface, lang=None, k=10):
 def etymology(surface, lang, max_chars=320):
     """Pull etymology_text from the Kaikki cache for (lang, surface).
 
-    Source: Wiktionary via Kaikki (CC-BY-SA). Returns a short, attributed
-    snippet; full entry lives at kaikki.org / en.wiktionary.org.
+ Source: Wiktionary via Kaikki (CC-BY-SA). Returns a short, attributed
+ snippet; full entry lives at kaikki.org / en.wiktionary.org.
     """
     fn = KAIKKI.get(lang)
     if not fn:
@@ -358,7 +358,7 @@ def etymology(surface, lang, max_chars=320):
 
 def translate(surface, frm, to, k=8):
     """Cross-lingual translate: exact same meaning_en, then semantic neighbors
-    restricted to the target language."""
+ restricted to the target language."""
     ix = idx()
     i = ix.find(surface, frm)
     if i is None:
@@ -399,7 +399,7 @@ def _fmt(ix, surface, lang, hits, score_name="score"):
 
 
 # --------------------------------------------------------------------------- #
-#  CLI                                                                          #
+# CLI #
 # --------------------------------------------------------------------------- #
 def _print(obj):
     print(json.dumps(obj, ensure_ascii=False, indent=2))

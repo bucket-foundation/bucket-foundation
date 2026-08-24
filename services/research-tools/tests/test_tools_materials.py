@@ -2,15 +2,15 @@
 
 Verifies the ACTUAL Magpie-style featurization on compositions with KNOWN,
 hand-checkable ground truth:
-  * NaCl (50/50) has mean Pauling electronegativity = (0.93 + 3.16)/2 = 2.045
-    (the load-bearing assertion) and molar mass ≈ 58.44 g/mol;
-  * formula parsing handles subscripts, fractional stoichiometry, and nested
-    parentheses (Fe2O3 → 40% Fe / 60% O; Mg(OH)2 → Mg1 O2 H2);
-  * descriptor families (mean/range/avg_deviation/mode) are present and a flat
-    feature vector is produced;
-  * unknown elements + malformed formulas return a structured error, never raise.
+ * NaCl (50/50) has mean Pauling electronegativity = (0.93 + 3.16)/2 = 2.045
+ (the load-bearing assertion) and molar mass ≈ 58.44 g/mol;
+ * formula parsing handles subscripts, fractional stoichiometry, and nested
+ parentheses (Fe2O3 → 40% Fe / 60% O; Mg(OH)2 → Mg1 O2 H2);
+ * descriptor families (mean/range/avg_deviation/mode) are present and a flat
+ feature vector is produced;
+ * unknown elements + malformed formulas return a structured error, never raise.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_materials.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_materials.py -q
 """
 from __future__ import annotations
 
@@ -87,7 +87,7 @@ def test_range_is_max_minus_min():
 
 
 # =========================================================================
-# robustness — never crash on malformed input
+# resilience, never crash on malformed input
 # =========================================================================
 def test_unknown_element_error():
     assert m.run_materials_featurizer({"formula": "Xx2O3"}).get("error")

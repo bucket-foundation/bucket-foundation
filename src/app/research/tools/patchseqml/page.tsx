@@ -6,7 +6,7 @@ export const metadata = toolMetadata("patchseqml");
 const _jsonld = toolJsonLd("patchseqml");
 import PatchSeqMLClient from "./PatchSeqMLClient";
 
-// PatchSeqML run page — server-component shell (matches /research styling).
+// PatchSeqML run page, server-component shell (matches /research styling).
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

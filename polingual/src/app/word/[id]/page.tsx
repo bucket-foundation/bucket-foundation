@@ -1,4 +1,4 @@
-// /word/<photon-id> — single photon detail page. Light-blue redesign.
+// /word/<photon-id>, single photon detail page. Light-blue redesign.
 
 import Link from "next/link";
 import { notFound } from "next/navigation";

@@ -1,16 +1,16 @@
 """No-network unit tests for ToxinChannelFinder (tools_toxin).
 
 Verifies the ACTUAL toxin->channel mapping logic:
-  * a KNOWN toxin name maps to its known channel family (curated KB);
-  * a peptide SEQUENCE is classified by cysteine framework / motif;
-  * literature co-occurrence over a fixture work set ranks targets + adds
-    citeable exemplars;
-  * the fusion produces an honest, ranked target table.
+ * a KNOWN toxin name maps to its known channel family (curated KB);
+ * a peptide SEQUENCE is classified by cysteine framework / motif;
+ * literature co-occurrence over a fixture work set ranks targets + adds
+ citeable exemplars;
+ * the fusion produces an, ranked target table.
 
 The OpenAlex client (tools_rag.search_works) is monkeypatched to fixtures and
-TOOLS_OFFLINE is set, so a real network call would raise — these run offline.
+TOOLS_OFFLINE is set, so a real network call would raise, these run offline.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_toxin.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_toxin.py -q
 """
 from __future__ import annotations
 
@@ -74,7 +74,7 @@ def test_fuse_targets_kb_beats_literature_only():
     # the curated Cav target outranks the literature-only Kv hit
     assert fused[0]["channel"] == "Cav"
     assert fused[0]["confidence"] > fused[-1]["confidence"]
-    # the literature-only target is honestly flagged
+    # the literature-only target is flagged
     kv = [r for r in fused if r["channel"] == "Kv"]
     assert kv and kv[0]["basis"] == "literature co-occurrence only"
 

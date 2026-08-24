@@ -1,5 +1,5 @@
 /**
- * bucket.foundation — /api/research/reviewguard
+ * bucket.foundation, /api/research/reviewguard
  * ---------------------------------------------
  * Same-origin proxy for the ReviewGuard T1 tool. Given a claim (and optionally
  * a set of papers), ReviewGuard retrieves the OpenAlex literature and surfaces
@@ -7,9 +7,9 @@
  * stance detection over abstracts. Backend logic is REAL
  * (services/research-tools/tools_rag.py:run_review_guard).
  *
- *   POST /api/research/reviewguard                  → gateway /v1/reviewguard/submit
- *        body { claim, papers?, limit? }             → { job_id, status, mode, price, [result] }
- *   GET  /api/research/reviewguard?job=<id>[&result=1] → status / result
+ * POST /api/research/reviewguard → gateway /v1/reviewguard/submit
+ * body { claim, papers?, limit? } → { job_id, status, mode, price, [result] }
+ * GET /api/research/reviewguard?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     ? body.papers.map((p) => String(p).trim()).filter(Boolean).slice(0, 25)
     : [];
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

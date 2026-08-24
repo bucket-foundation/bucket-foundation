@@ -1,35 +1,35 @@
 /**
- * src/lib/academy/mastery.ts  (bkt-coh)
+ * src/lib/academy/mastery.ts (bkt-coh)
  * ------------------------------------------------------------------
- * Server-side "honest mastery" rollup for the public Mastery Profile.
+ * Server-side "mastery" rollup for the public Mastery Profile.
  *
  * This is a faithful TS port of the EXACT mastery math the in-app engine uses
  * (learning/app/js/fsrs.js + engine.js), so a profile shows the same numbers a
  * learner sees in the Academy. We deliberately re-implement rather than import
- * the static app's vanilla JS — that file ships to the browser and has no module
+ * the static app's vanilla JS, that file ships to the browser and has no module
  * boundary; keeping a small typed copy here is safer and self-documenting.
  *
  * HARD GUARDRAIL (EPIC.md §5, MASTERY-PROFILE.md Phase 0/1):
- *   This module produces an HONEST, uncertainty-visible signal ONLY. It does
- *   NOT compute or expose a certified/precise numeric "rating" or any claim of
- *   credentialed mastery — that is gated on a later bead (validation vs. real
- *   exams, bkt-4at). Everything here is framed as "built by learning over time":
- *   concepts started, concepts mastered, depth reached, and recency, each with
- *   visible confidence/uncertainty. No overclaiming.
+ * This module produces an, uncertainty-visible signal ONLY. It does
+ * NOT compute or expose a certified/precise numeric "rating" or any claim of
+ * credentialed mastery, that is gated on a later bead (validation vs. real
+ * exams, bkt-4at). Everything here is framed as "built by learning over time":
+ * concepts started, concepts mastered, depth reached, and recency, each with
+ * visible confidence/uncertainty. No overclaiming.
  *
  * The numbers we DO surface:
- *   - started / mastered counts (mastered = the same 0.70 stability threshold
- *     the app uses for its "★ mastered" stat).
- *   - per-shell + overall mastery as a coarse percentage (a learning-progress
- *     readout, NOT a score), with a `confidence` band derived from evidence
- *     volume (reps) + recency — high coverage with thin/old evidence reads as
- *     "still proving it", never as a hidden high score.
- *   - depth reached on the Recall -> Apply -> Derive -> Teach ladder, inferred
- *     from each concept's current mastery and the quiz levels that exist for it
- *     (mirrors engine `pickLevel`), so depth points at understanding, not
- *     card-flipping.
- *   - recency: live FSRS retrievability right now (the forgetting-curve readout)
- *     and days-since-last-review.
+ * - started / mastered counts (mastered = the same 0.70 stability threshold
+ * the app uses for its "★ mastered" stat).
+ * - per-shell + overall mastery as a coarse percentage (a learning-progress
+ * readout expressed as coverage), with a `confidence` band derived from evidence
+ * volume (reps) + recency, high coverage with thin/old evidence reads as
+ * "still proving it", never as a hidden high score.
+ * - depth reached on the Recall -> Apply -> Derive -> Teach ladder, inferred
+ * from each concept's current mastery and the quiz levels that exist for it
+ * (mirrors engine `pickLevel`), so depth points at understanding, not
+ * card-flipping.
+ * - recency: live FSRS retrievability right now (the forgetting-curve readout)
+ * and days-since-last-review.
  */
 
 /* ----------------------------- FSRS constants ----------------------------- */
@@ -81,7 +81,7 @@ export interface ProficiencyState {
 }
 
 /** Proficiency as a 0..1 readout at a reference difficulty (the `apply` depth).
- *  Mirrors adaptive.js `proficiencyScore`. No graded evidence => 0 (honest). */
+ * Mirrors adaptive.js `proficiencyScore`. No graded evidence => 0 (). */
 export function proficiencyScore(prof: ProficiencyState | null | undefined): number {
   if (!prof || typeof prof.theta !== "number" || !prof.n) return 0;
   return clamp01(sigmoid(ADAPTIVE.PROF_SLOPE * (prof.theta - ADAPTIVE.PROF_DEPTH_B.apply)));
@@ -102,10 +102,10 @@ export function fuseMastery(P: number, R: number): number {
 }
 
 /**
- * The HONEST fused mastery for one concept, mirroring engine.masteryFor():
- *  - if there is graded proficiency evidence, return P^alpha * R^beta;
- *  - otherwise fall back to the legacy stability proxy (cold-start / pre-P1
- *    state) so we never report a dishonest 0.
+ * The fused mastery for one concept, mirroring engine.masteryFor():
+ * - if there is graded proficiency evidence, return P^alpha * R^beta;
+ * - otherwise fall back to the legacy stability proxy (cold-start / pre-P1
+ * state) so we never report a dishonest 0.
  * Returns { mastery, proficiency|null, retention|null }.
  */
 export function fusedConceptMastery(
@@ -115,7 +115,7 @@ export function fusedConceptMastery(
   if (!card) return { mastery: 0, proficiency: null, retention: null };
   const stability = card.stability ?? null;
   if (!prof || !prof.n) {
-    // No proficiency evidence yet — legacy proxy (matches engine fallback).
+    // No proficiency evidence yet, legacy proxy (matches engine fallback).
     return { mastery: masteryFromStability(stability), proficiency: null, retention: null };
   }
   const P = proficiencyScore(prof);
@@ -140,7 +140,7 @@ export interface StoredCard {
 export interface StoredEngineState {
   cards?: Record<string, StoredCard>;
   // bkt-uzx: per-concept Elo-lite proficiency. Absent in pre-P1 state (we then
-  // fall back to the stability proxy per concept — graceful migration).
+  // fall back to the stability proxy per concept, graceful migration).
   prof?: Record<string, ProficiencyState>;
   settings?: Record<string, unknown>;
   stats?: {
@@ -182,7 +182,7 @@ const DEPTH_LABEL: Record<Depth, string> = {
   teach: "Teach-back",
 };
 
-/** Per-concept honest signal for the inspect layer. */
+/** Per-concept signal for the inspect layer. */
 export interface ConceptSignal {
   id: string;
   title: string;
@@ -209,10 +209,10 @@ export interface ShellSummary {
   total: number;
   started: number;
   mastered: number;
-  meanMastery: number; // coarse progress %, not a score
+  meanMastery: number; // coarse progress % (a coverage readout)
 }
 
-/** A qualitative confidence band — how *proven* this branch's signal is. */
+/** A qualitative confidence band, how *proven* this branch's signal is. */
 export type Confidence = "emerging" | "developing" | "established";
 
 export interface BranchSummary {
@@ -244,8 +244,8 @@ const SHELL_LABEL: Record<string, string> = {
  * Infer the highest depth a learner has demonstrated on a concept. We have no
  * stored "level reached" field (engine.js stores only FSRS state), so we infer
  * it the same way the app *targets* questions in `pickLevel`: by mastery, capped
- * to the depth levels that actually exist for the atom. This is intentionally
- * conservative — it reports the deepest level the learner is at the difficulty
+ * to the depth levels that exist for the atom. This is intentionally
+ * conservative, it reports the deepest level the learner is at the difficulty
  * for AND that the concept can test, never an unproven claim.
  */
 function inferDepth(mastery: number, atom: CorpusAtom): Depth {
@@ -253,7 +253,7 @@ function inferDepth(mastery: number, atom: CorpusAtom): Depth {
   // target ladder identical to engine.pickLevel thresholds
   const target: Depth =
     mastery < 0.25 ? "recall" : mastery < 0.5 ? "apply" : mastery < 0.75 ? "derive" : "teach";
-  // walk down from target to the deepest level the atom can actually test
+  // walk down from target to the deepest level the atom can test
   for (let k = DEPTH_ORDER.indexOf(target); k >= 0; k--) {
     const lvl = DEPTH_ORDER[k];
     // if the atom has no quiz metadata at all, fall back to the mastery target
@@ -269,7 +269,7 @@ function maxDepth(a: Depth, b: Depth): Depth {
 }
 
 /**
- * Roll a stored engine state + its corpus into an honest BranchSummary.
+ * Roll a stored engine state + its corpus into an BranchSummary.
  * `now` is injectable for deterministic tests.
  */
 export function rollupBranch(
@@ -357,9 +357,9 @@ export function rollupBranch(
   const meanMastery = total ? masterySum / total : 0;
 
   // Confidence band: how *proven* is this branch's signal? Driven by evidence
-  // VOLUME (recent reps) and BREADTH (mastered count) — never hidden, always
+  // VOLUME (recent reps) and BREADTH (mastered count), never hidden, always
   // shown to the viewer. This is the uncertainty term, deliberately coarse and
-  // qualitative (NOT a Glicko RD number — that's a later, validated bead).
+  // qualitative (NOT a Glicko RD number, that's a later, validated bead).
   const confidence = confidenceBand(masteredTotal, recentReps, totalReps);
 
   const shells: ShellSummary[] = Object.keys(shellAgg)

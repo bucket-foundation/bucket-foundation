@@ -6,7 +6,7 @@ export const metadata = toolMetadata("screenserver");
 const _jsonld = toolJsonLd("screenserver");
 import ScreenServerClient from "./ScreenServerClient";
 
-// ScreenServer run page — server-component shell (matches /research styling).
+// ScreenServer run page, server-component shell (matches /research styling).
 export default function Page() {
   return (
     <main className="stone-bone relative grain">

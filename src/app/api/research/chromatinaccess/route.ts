@@ -1,10 +1,10 @@
 /**
- * bucket.foundation — /api/research/chromatinaccess
+ * bucket.foundation, /api/research/chromatinaccess
  * ----------------------------------------------
  * Same-origin proxy for ChromatinAccess. DNA accessibility / regulatory-potential from sequence (GC + CpG islands + core-promoter motifs). Backend logic is REAL (tools_genomics.py:run_chromatin_access).
  *
  * POST body { sequence }; `sequence` is DNA or "demo".
- *   GET  /api/research/chromatinaccess?job=<id>[&result=1] → status / result
+ * GET /api/research/chromatinaccess?job=<id>[&result=1] → status / result
  *
  * Env (server-only): TOOLS_GATEWAY_URL. Gateway down → 503 tool_offline.
  */
@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // [METERING SEAM — TODO(deploy), off in v1] Viatika authorize/price here.
+  // [METERING SEAM, TODO(deploy), off in v1] Viatika authorize/price here.
 
   let resp: Response;
   try {

@@ -1,9 +1,9 @@
-/* Bucket Academy — sign-in affordance + modal (bkt-su9).
+/* Bucket Academy, sign-in affordance + modal (bkt-su9).
  *
  * Renders a small "Save progress" control into the app topbar and a minimal
  * email-OTP modal styled to match the bucket aesthetic (bone/basalt ground,
  * aegean/gold/laurel accents, Cinzel + Fraunces type). Anonymous use is fully
- * intact — this only ADDS an optional sign-in.
+ * intact, this only ADDS an optional sign-in.
  *
  * app.js calls `window.BucketAuthUI.mountInto(topbarEl)` from header(); this
  * module owns everything else (modal, state, re-render on auth change).

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quantum Plates — chalkboard mathematical illustrations for the Bucket
+Quantum Plates, chalkboard mathematical illustrations for the Bucket
 Foundation /quantum page.
 
 Every plate is a real mathematical object, parametrized exactly, rendered
@@ -8,20 +8,20 @@ in a chalkboard register: dark slate background, off-white chalk strokes,
 serif-italic labels, slight hand drawn sketch jitter (matplotlib's path.sketch).
 
 Run:
-    python3 generate_plates.py
+ python3 generate_plates.py
 
 Outputs:
-    01-eulers-identity.png         e^(iθ) on the unit circle, with cos/sin shadows
-    02-helix-eix-extended.png      (cos t, sin t, t) — Euler in 3D, the "coil"
-    03-logarithmic-spiral.png      r = a·e^(bθ), spira mirabilis (Bernoulli)
-    04-great-circle-geodesic.png   shortest path between two points on a sphere
-    05-loxodrome.png               rhumb line — spiral of constant bearing on a sphere
-    06-torus-parametrization.png   donut: (R+r cos v) cos u, (R+r cos v) sin u, r sin v
-    07-vesica-piscis.png           two unit circles offset by 1, intersection lens
-    08-flower-of-life.png          19-circle hex packing, vesica iterated
-    09-phase-portrait-oscillator.png   damped harmonic in (x, x') — the bobber's heart
-    10-radial-wave-pulse.png       sin(kr − ωt)/√r — the bobber's wave on water
-    11-nand-gate.png               universal logic atom — bridge from continuous to discrete
+ 01-eulers-identity.png e^(iθ) on the unit circle, with cos/sin shadows
+ 02-helix-eix-extended.png (cos t, sin t, t), Euler in 3D, the "coil"
+ 03-logarithmic-spiral.png r = a·e^(bθ), spira mirabilis (Bernoulli)
+ 04-great-circle-geodesic.png shortest path between two points on a sphere
+ 05-loxodrome.png rhumb line, spiral of constant bearing on a sphere
+ 06-torus-parametrization.png donut: (R+r cos v) cos u, (R+r cos v) sin u, r sin v
+ 07-vesica-piscis.png two unit circles offset by 1, intersection lens
+ 08-flower-of-life.png 19-circle hex packing, vesica iterated
+ 09-phase-portrait-oscillator.png damped harmonic in (x, x'), the bobber's heart
+ 10-radial-wave-pulse.png sin(kr − ωt)/√r, the bobber's wave on water
+ 11-nand-gate.png universal logic atom, bridge from continuous to discrete
 
 Voice: this is math. Each plate is the simplest possible rendering of the
 underlying object, no decoration. Labels in LaTeX where they help the
@@ -40,7 +40,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Arc, Circle, FancyArrow, FancyArrowPatch
-from mpl_toolkits.mplot3d import Axes3D  # noqa: F401  (registers 3d projection)
+from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 (registers 3d projection)
 
 
 # ───────────────────────────── style helpers ─────────────────────────────
@@ -72,8 +72,8 @@ def chalk_style() -> None:
         "font.family": "serif",
         "font.style": "italic",
         "font.size": 12,
-        # sketch = (scale, length, randomness) — gives a slight hand-drawn jitter.
-        # Subtle. Professorial chalk, not xkcd cartoon.
+        # sketch = (scale, length, randomness), gives a slight hand-drawn jitter.
+        # Subtle. Professorial chalk.
         "path.sketch": (1.5, 80, 1.5),
         "axes.grid": False,
         "axes.spines.top": False,
@@ -83,7 +83,7 @@ def chalk_style() -> None:
 
 def label(ax, x: float, y: float, text: str, *, color: str = CHALK_FG,
           size: int = 13, halign: str = "left", valign: str = "center") -> None:
-    """Italic serif chalk label, no math wrapper — pass raw $...$ TeX if you want LaTeX."""
+    """Italic serif chalk label, no math wrapper, pass raw $...$ TeX if you want LaTeX."""
     ax.text(x, y, text, color=color, fontsize=size, family="serif",
             style="italic", ha=halign, va=valign, zorder=10)
 
@@ -118,9 +118,9 @@ def save(fig, path: Path) -> None:
 
 
 def tight_3d(fig, ax) -> None:
-    """matplotlib 3D adds wasteful padding inside the axes region.  Strip it,
-    set true cube box aspect so spheres aren't ovals, and pad only enough
-    for a title above."""
+    """matplotlib 3D adds wasteful padding inside the axes region. Strip it,
+ set true cube box aspect so spheres aren't ovals, and pad only enough
+ for a title above."""
     ax.set_box_aspect((1, 1, 1))
     fig.subplots_adjust(left=-0.08, right=1.08, top=0.96, bottom=-0.04)
 
@@ -142,7 +142,7 @@ def plate_01_eulers_identity(out: Path) -> None:
     ax.plot([0, cx], [0, sx], color=CHALK_GOLD, lw=2.4, zorder=5)
     ax.plot(cx, sx, "o", color=CHALK_GOLD, markersize=8, zorder=6)
 
-    # Drop perpendiculars to axes — cos and sin shadows.
+    # Drop perpendiculars to axes, cos and sin shadows.
     ax.plot([cx, cx], [0, sx], color=CHALK_DIM, lw=1.4, ls=(0, (4, 3)), zorder=3)
     ax.plot([0, cx], [sx, sx], color=CHALK_DIM, lw=1.4, ls=(0, (4, 3)), zorder=3)
 
@@ -170,7 +170,7 @@ def plate_02_helix(out: Path) -> None:
     x, y, z = np.cos(t), np.sin(t), t / (2 * np.pi)
 
     ax.plot(x, y, z, color=CHALK_FG, lw=2.2)
-    # Project shadow on z=0 — the unit circle traced again and again.
+    # Project shadow on z=0, the unit circle traced again and again.
     ax.plot(x, y, np.zeros_like(t), color=CHALK_DIM, lw=1.0, alpha=0.65)
     # Vertical line guide.
     ax.plot([0, 0], [0, 0], [0, t[-1] / (2 * np.pi)],
@@ -226,7 +226,7 @@ def plate_04_great_circle(out: Path) -> None:
     ax = fig.add_subplot(111, projection="3d")
     ax.set_facecolor(CHALK_BG)
 
-    # Wireframe sphere — sparse, ghosted.
+    # Wireframe sphere, sparse, ghosted.
     u = np.linspace(0, 2 * np.pi, 32)
     v = np.linspace(0, np.pi, 16)
     U, V = np.meshgrid(u, v)
@@ -311,7 +311,7 @@ def plate_06_torus(out: Path) -> None:
 
     ax.plot_wireframe(X, Y, Z, color=CHALK_FG, lw=0.7, alpha=0.85)
 
-    # Highlight one toroidal flow line — the "particle" tracing the field.
+    # Highlight one toroidal flow line, the "particle" tracing the field.
     theta = np.linspace(0, 4 * np.pi, 600)
     phi = 6 * theta
     fx = (R + r * np.cos(phi)) * np.cos(theta)
@@ -337,7 +337,7 @@ def plate_07_vesica_piscis(out: Path) -> None:
     for cx in (-0.5, 0.5):
         ax.add_patch(Circle((cx, 0), 1.0, fill=False, edgecolor=CHALK_FG, lw=2.0))
 
-    # Highlight the lens — the intersection.
+    # Highlight the lens, the intersection.
     theta = np.linspace(0, 2 * np.pi, 400)
     lens_x = []
     lens_y = []
@@ -396,14 +396,14 @@ def plate_08_flower_of_life(out: Path) -> None:
 
 
 def plate_09_phase_portrait(out: Path) -> None:
-    """Damped harmonic oscillator phase portrait — this IS the bobber's heart.
+    """Damped harmonic oscillator phase portrait, this IS the bobber's heart.
 
-        x'' + 2γ x' + ω² x = 0
+ x'' + 2γ x' + ω² x = 0
     """
     fig, ax = plt.subplots(figsize=(9, 9))
-    # Plot in NORMALIZED phase space: u = x, w = v/ω.  Then a free oscillator
+    # Plot in NORMALIZED phase space: u = x, w = v/ω. Then a free oscillator
     # traces circles, equal-aspect makes geometric sense, and damped paths
-    # are honest spirals.
+    # are spirals.
     chalk_axes(ax, (-1.6, 1.6), (-1.6, 1.6),
                axis_labels=(r"$x$", r"$\dot{x}/\omega$"))
 
@@ -430,7 +430,7 @@ def plate_09_phase_portrait(out: Path) -> None:
     xs, ws = integrate(1.3, 0.0)
     ax.plot(xs, ws, color=CHALK_GOLD, lw=2.4)
 
-    # Origin marker — the attractor.
+    # Origin marker, the attractor.
     ax.plot(0, 0, "o", color=CHALK_GOLD, markersize=8, zorder=5)
 
     title(ax, r"phase portrait:  $\ddot{x} + 2\gamma \dot{x} + \omega^2 x \;=\; 0$")
@@ -440,7 +440,7 @@ def plate_09_phase_portrait(out: Path) -> None:
 
 
 def plate_10_radial_wave(out: Path) -> None:
-    """sin(kr − ωt) / √r  — radial wave from a point source on a 2D surface."""
+    """sin(kr − ωt) / √r, radial wave from a point source on a 2D surface."""
     fig, ax = plt.subplots(figsize=(9, 9))
     chalk_axes(ax, (-3.5, 3.5), (-3.5, 3.5))
 
@@ -452,7 +452,7 @@ def plate_10_radial_wave(out: Path) -> None:
     k, omega, t = 3.2, 0.0, 0.0
     Z = np.sin(k * R - omega * t) / np.sqrt(R)
 
-    # Render as contour lines — chalkboard reads contour, not heatmap.
+    # Render as contour lines, a chalkboard reads contour.
     # Fewer, thinner levels to dial down visual noise.
     crests = np.array([0.30, 0.45, 0.60])  # outgoing wave crests
     troughs = -crests                       # outgoing wave troughs
@@ -460,21 +460,21 @@ def plate_10_radial_wave(out: Path) -> None:
                linewidths=0.9, alpha=0.65, linestyles="dashed")
     ax.contour(X, Y, Z, levels=sorted(crests.tolist()), colors=CHALK_FG,
                linewidths=1.2, alpha=0.95)
-    # Highlight the +0.45 crest in gold — picks the dominant wavefront.
+    # Highlight the +0.45 crest in gold, picks the dominant wavefront.
     ax.contour(X, Y, Z, levels=[0.45], colors=CHALK_GOLD, linewidths=2.2)
     # Source dot.
     ax.plot(0, 0, "o", color=CHALK_GOLD, markersize=9, zorder=5)
 
     title(ax, r"$u(r, t) \;=\; \dfrac{\sin(kr - \omega t)}{\sqrt{r}}$")
     label(ax, 0, -3.85,
-          "radial pulse from a point source — the bobber's wave",
+          "radial pulse from a point source, the bobber's wave",
           color=CHALK_DIM, size=11, halign="center")
     save(fig, out)
 
 
 def plate_11_nand_gate(out: Path) -> None:
     """The universal logic atom. Drawn as the standard AND-shape + bubble,
-    plus its truth table."""
+ plus its truth table."""
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.set_xlim(0, 10); ax.set_ylim(0, 6); ax.set_aspect("equal")
     ax.set_xticks([]); ax.set_yticks([])
@@ -538,8 +538,8 @@ def plate_11_nand_gate(out: Path) -> None:
 
 def plate_12_stereographic(out: Path) -> None:
     """Stereographic projection: sphere minus the north pole maps bijectively
-    to the plane. The universal "flatten the globe" map. Conformal — angles
-    preserved. Sends circles on the sphere to circles (or lines) on the plane.
+ to the plane. The universal "flatten the globe" map. Conformal, angles
+ preserved. Sends circles on the sphere to circles (or lines) on the plane.
     """
     fig = plt.figure(figsize=(11, 9))
     ax = fig.add_subplot(111, projection="3d")
@@ -557,7 +557,7 @@ def plate_12_stereographic(out: Path) -> None:
     ax.plot(2.6 * np.cos(th), 2.6 * np.sin(th), -np.ones_like(th),
             color=CHALK_FAINT, lw=0.7, alpha=0.6)
 
-    # North pole — the projection point.
+    # North pole, the projection point.
     N = np.array([0, 0, 1])
     ax.scatter(*N, color=CHALK_GOLD, s=80, zorder=10)
 
@@ -576,7 +576,7 @@ def plate_12_stereographic(out: Path) -> None:
     for p in pts_sph:
         # Stereographic from N onto plane z = -1.
         # Line from N through p meets z=-1 at parameter t s.t. N + t(p-N) has z=-1.
-        # 1 + t*(p_z - 1) = -1  →  t = -2 / (p_z - 1)  (well-defined when p≠N).
+        # 1 + t*(p_z - 1) = -1 → t = -2 / (p_z - 1) (well-defined when p≠N).
         t = -2.0 / (p[2] - 1.0)
         proj = N + t * (p - N)
         ax.plot([N[0], proj[0]], [N[1], proj[1]], [N[2], proj[2]],
@@ -596,12 +596,12 @@ def plate_12_stereographic(out: Path) -> None:
 
 
 def plate_13_trefoil_knot(out: Path) -> None:
-    """The trefoil — simplest non-trivial knot. (2,3) torus knot:
-        x = (R + r cos(3t)) cos(2t)
-        y = (R + r cos(3t)) sin(2t)
-        z = r sin(3t)
-    Foundational object in topology — every closed curve in 3-space either
-    is or isn't this knot, no matter how you bend it.
+    """The trefoil, simplest non-trivial knot. (2,3) torus knot:
+ x = (R + r cos(3t)) cos(2t)
+ y = (R + r cos(3t)) sin(2t)
+ z = r sin(3t)
+ Foundational object in topology, every closed curve in 3-space either
+ is or isn't this knot, no matter how you bend it.
     """
     fig, ax = plt.subplots(figsize=(9, 9))
     chalk_axes(ax, (-1.8, 1.8), (-1.8, 1.8))

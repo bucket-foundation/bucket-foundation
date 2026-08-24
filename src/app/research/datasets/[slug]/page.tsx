@@ -21,10 +21,10 @@ const SITE = "https://www.bucket.foundation";
 
 // Dataset detail page. Reads the vendored research-atlas manifest at build time
 // and renders: description, schema (columns), provenance, row counts, a DOWNLOAD
-// link (parquet — CSV is a TODO seam), and a CITE block reusing the existing
+// link (parquet, CSV is a TODO seam), and a CITE block reusing the existing
 // feed402/cite-forever envelope shape (so each dataset is born citeable). The
 // model: free-to-read, paid-to-cite over feed402/x402, with a real DOI (via
-// Zenodo) for permanence — NO blockchain, NO Story Protocol, NO IP-NFT.
+// Zenodo) for permanence, NO blockchain, NO Story Protocol, NO IP-NFT.
 // Stone-bone styling matches /research. See docs/research-tools/05-open-datasets.md.
 
 // Statically pre-render one page per published dataset.
@@ -149,7 +149,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const cite = datasetCiteBlock();
   const provenance = datasetProvenance(d);
 
-  // The feed402/0.2 envelope shape this dataset is born with — shown verbatim so
+  // The feed402/0.2 envelope shape this dataset is born with, shown verbatim so
   // a publisher can copy it. Identical structure to /api/research's envelope.
   const envelope = {
     data: {
@@ -248,8 +248,8 @@ export default function Page({ params }: { params: { slug: string } }) {
             {d.path}
           </p>
           {/* TODO(publish): replace the GitHub-raw parquet with a hosted,
-              content-addressed release that gets a real DOI via Zenodo once the
-              dataset hosting layer is built. No blockchain involved. */}
+ content-addressed release that gets a real DOI via Zenodo once the
+ dataset hosting layer is built. No blockchain involved. */}
         </Section>
 
         {/* SCHEMA */}
@@ -321,7 +321,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           </p>
         </Section>
 
-        {/* DOI — permanence seam (Zenodo; no blockchain) */}
+        {/* DOI, permanence seam (Zenodo; no blockchain) */}
         <Section n="05" title="doi — be cited forever (seam)">
           <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
             For permanent, scholarly-citeable identity, a published dataset gets a
@@ -334,11 +334,11 @@ export default function Page({ params }: { params: { slug: string } }) {
             read, download, or cite.
           </p>
           {/* TODO(publish): deposit the content-addressed parquet to Zenodo, mint
-              a real DOI, and record it in gdrive bucket-canon CANON_INDEX.md
-              alongside the feed402/0.2 cite block. Citation fees route to the
-              dataset's authors over feed402/x402. No wallet, no chain — a DOI +
-              the open cite-forever envelope is the whole permanence story.
-              See research-atlas/docs/ARCHITECTURE.md §"Publish-to-Bucket seam" (2). */}
+ a real DOI, and record it in gdrive bucket-canon CANON_INDEX.md
+ alongside the feed402/0.2 cite block. Citation fees route to the
+ dataset's authors over feed402/x402. No wallet, no chain, a DOI +
+ the open cite-forever envelope is the whole permanence story.
+ See research-atlas/docs/ARCHITECTURE.md §"Publish-to-Bucket seam" (2). */}
           <div className="mt-4 inline-block border border-dashed border-[color:var(--hairline)] px-5 py-2.5 text-[11px] small-caps tracking-[0.14em] text-[color:var(--basalt-3)]">
             register doi — seam (zenodo + feed402 cite-forever; no wallet, no chain)
           </div>

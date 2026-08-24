@@ -22,8 +22,8 @@ export default function AcademyPage() {
   return (
     <>
       {/* On-ramp strip: the Academy is the consume side of the depth ladder
-          (L1–L2). When a learner reaches mastery, the climb continues —
-          canon (L3–L4) → research tools + agent (L4–L5). Make that visible. */}
+          (L1, L2). When a learner reaches mastery, the climb continues, 
+          canon (L3, L4) → research tools + agent (L4, L5). Make that visible. */}
       <div className="w-full border-b border-[color:var(--hairline)] bg-[color:var(--bone-2)]/90">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 py-2.5 flex items-center gap-x-5 gap-y-1 flex-wrap text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-2)]">
           <span className="text-[color:var(--gold-deep)]">§</span>

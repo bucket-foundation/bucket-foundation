@@ -6,7 +6,7 @@ export const metadata = toolMetadata("powerplan");
 const _jsonld = toolJsonLd("powerplan");
 import PowerPlanClient from "./PowerPlanClient";
 
-// PowerPlan run page — server shell framing the interactive client island.
+// PowerPlan run page, server shell framing the interactive client island.
 export default function Page() {
   const t = getTool("powerplan");
   return (

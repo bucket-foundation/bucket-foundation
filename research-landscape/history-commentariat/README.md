@@ -1,8 +1,8 @@
 # history-commentariat/
 
-Modern history / civilization commentators who move public understanding but are not primary-source historians. **Landscape tier, not canon.** Zero auto-promotion.
+Modern history / civilization commentators who move public understanding but are not primary-source historians. **Landscape tier.** Zero auto-promotion to canon.
 
-## Evaluation axes (applied to each entry)
+## Evaluation axes
 
 | Axis | What we're asking |
 |---|---|
@@ -29,17 +29,17 @@ Modern history / civilization commentators who move public understanding but are
 - **Canon overlap**: J Harlen Bretz 1923, Waitt 1985 Missoula flood papers are canon in `08-deep-history/cataclysms/`; Carlson's geometric-synthesis work is landscape
 - **Status**: higher primary-reference density than most in this list; hypothesis-tier synthesis
 
-### Dan Carlin (Hardcore History)
+### Dan Carlin
 - **Medium**: long-form podcast
-- **Status**: self-describes as "fan of history, not a historian." High primary density, cites his sources, low retraction-need.
+- **Status**: self-describes as a "fan of history" without the historian's credential. High primary density, cites his sources, low retraction-need.
 - **Canon overlap**: none direct; landscape-tier quality reference
 
-### Fall of Civilizations (Paul Cooper)
+### Fall of Civilizations
 - **Medium**: YouTube + podcast
 - **Status**: well-sourced, footnote-dense YouTube history; closest to academic-adjacent in this landscape folder
-- **Canon overlap**: episodes often cite canon-grade primaries
+- **Canon overlap**: episodes cite canon-grade primaries
 
-### Tides of History (Patrick Wyman)
+### Tides of History
 - **Medium**: podcast
 - **Status**: Wyman has a PhD; near-canon quality; kept in landscape only because episodes are interpretive synthesis
 
@@ -47,7 +47,7 @@ Modern history / civilization commentators who move public understanding but are
 - **Medium**: YouTube
 - **Status**: Roman/Greek military history, primary-source driven, low speculation
 
-### UnchartedX (Ben van Kerkwyk)
+### UnchartedX
 - **Medium**: YouTube
 - **Status**: focused on Egyptian precision-stonework claims; some primaries (Dunn's *Lost Technologies*), much speculation; hypothesis-tier
 
@@ -55,18 +55,18 @@ Modern history / civilization commentators who move public understanding but are
 - **Medium**: YouTube, books
 - **Status**: hypothesis-heavy, elongated-skull + alt-dating claims; lowest rigor tier in this list; included for completeness but flagged
 
-### Robert Schoch (academic, listed here only for alt-dating work)
+### Robert Schoch
 - **Note**: Schoch is Boston University faculty; his core Sphinx water-weathering geology papers ARE canon in `08-deep-history/` (Schoch 1992 *KMT*, Schoch 1999). His popular-book synthesis and broader civilization claims are landscape. Split treatment by venue.
 
-### John Anthony West (†2018)
+### John Anthony West
 - **Medium**: books (*Serpent in the Sky*), films (*Magical Egypt*)
 - **Status**: the Schoch-Sphinx-older-date hypothesis was West's push; West himself was not a scientist. Landscape-tier interpreter, canon-tier collaborator (Schoch).
 
-### Martin Rundkvist (Aardvarchaeology)
+### Martin Rundkvist
 - **Medium**: blog, academic archaeology
 - **Status**: skeptical professional; useful landscape counterweight; a good reference for why specific alt-claims fail
 
-### Kurzgesagt (history-adjacent episodes only)
+### Kurzgesagt
 - **Medium**: YouTube
 - **Status**: well-sourced, general-audience; their citations are public; useful landscape entry point
 

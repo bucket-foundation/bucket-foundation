@@ -20,7 +20,7 @@ STONE_REGISTER = (
     "lit side (faux-3D depth). Antique gold accent (#7a5510). Bold "
     "serif labels chiseled into the stone. Mathematical equations "
     "rendered as if engraved by a craftsman on a Greek or Sumerian "
-    "tablet — precise, ancient, monumental. Composition centered, "
+    "tablet, precise, ancient, monumental. Composition centered, "
     "no photographic textures, no logos, no extra text beyond the "
     "specified equations."
 )
@@ -39,7 +39,7 @@ VARIANTS = [
     ("02-torus-architectural",
      "An architectural cross-section of a sphere wrapped by a torus that "
      "rotates around its vertical axis. Through the torus, fine "
-     "field-lines arc from south pole around the outside to north pole — "
+     "field-lines arc from south pole around the outside to north pole, "
      "magnetic field topology. The torus parametric equation is written "
      "alongside: x = (R + r cos v) cos u, y = (R + r cos v) sin u, "
      "z = r sin v. Labels for R (major radius), r (minor radius), u and "
@@ -55,7 +55,7 @@ VARIANTS = [
      "centers are labeled; the lens vertices are labeled (0, ±√3/2). "
      "The equation of each circle is written: (x ± 1/2)² + y² = 1. "
      "Sacred geometry plate, but rigorous and precise rather than "
-     "mystical — like a Euclid figure."),
+     "mystical, like a Euclid figure."),
 
     ("04-quantum-particle-wave",
      "A single bright particle and a wave of the same particle, "
@@ -64,7 +64,7 @@ VARIANTS = [
      "Around them, a translucent torus suggests the field they live in. "
      "Below, calm water surface with concentric pulses. Euler's identity "
      "written prominently: e^(iθ) = cos θ + i sin θ. The unit-circle "
-     "decomposition of the wave is visible — cos θ as the real component, "
+     "decomposition of the wave is visible, cos θ as the real component, "
      "sin θ as the imaginary. Particle-wave duality made geometric."),
 
     ("05-earth-as-bobber-cosmic",

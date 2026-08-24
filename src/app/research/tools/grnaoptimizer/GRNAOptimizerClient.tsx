@@ -1,6 +1,6 @@
 "use client";
 
-// gRNA-Optimizer client island — CRISPR SpCas9 guide design (REAL PAM scan +
+// gRNA-Optimizer client island, CRISPR SpCas9 guide design (REAL PAM scan +
 // on/off-target scoring). Render is "json" → typed view.
 
 import { useState } from "react";

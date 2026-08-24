@@ -2,7 +2,7 @@
 """Build a printable PDF executive brief for the AGFarms grants portfolio.
 
 Outputs:
-  grants-targets/BRIEF.pdf   (public, print-ready)
+ grants-targets/BRIEF.pdf (public, print-ready)
 
 Toolchain: matplotlib (charts) + weasyprint (HTML → PDF).
 Run: python3 scripts/build-grants-brief-pdf.py
@@ -21,7 +21,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT_PDF = ROOT / "grants-targets" / "BRIEF.pdf"
 TODAY = dt.date(2026, 5, 5)
 
-# Bucket palette — chalkboard / stone register
+# Bucket palette, chalkboard / stone register
 PALETTE = {
     "ink":     "#0E1116",
     "paper":   "#FAFAF7",
@@ -31,10 +31,10 @@ PALETTE = {
     "ok":      "#15803D",   # green
     "warn":    "#B91C1C",   # red
     "neutral": "#475569",
-    "lane1":   "#1D4ED8",   # blue   — fed
-    "lane2":   "#7C3AED",   # purple — foundation
-    "lane3":   "#0891B2",   # cyan   — crypto
-    "lane4":   "#BE185D",   # pink   — direct services
+    "lane1":   "#1D4ED8",   # blue, fed
+    "lane2":   "#7C3AED",   # purple, foundation
+    "lane3":   "#0891B2",   # cyan, crypto
+    "lane4":   "#BE185D",   # pink, direct services
 }
 
 plt.rcParams.update({
@@ -60,7 +60,7 @@ def fig_to_data_uri(fig) -> str:
 
 # ------------------------------- CHART 1 ------------------------------------
 def chart_timeline() -> str:
-    """Submission gantt — top 5 grants on a calendar."""
+    """Submission gantt, top 5 grants on a calendar."""
     items = [
         # name, start, end, lane, ask_label
         ("Gitcoin OSS GG-round",        TODAY,                 dt.date(2026,5,12),  "lane3", "$5–50K"),
@@ -204,51 +204,51 @@ def chart_funnel() -> str:
 # --------------------------------- HTML -------------------------------------
 def html(c1, c2, c3, c4) -> str:
     css = f"""
-    @page {{ size: Letter; margin: 0.55in 0.55in 0.6in 0.55in; }}
-    body {{ font-family: 'DejaVu Sans', sans-serif; color: {PALETTE['ink']};
-           background: {PALETTE['paper']}; font-size: 9.6pt; line-height: 1.32; }}
-    h1 {{ font-size: 22pt; margin: 0 0 2pt 0; letter-spacing: -0.5px; }}
-    h2 {{ font-size: 12pt; margin: 16pt 0 4pt 0;
-          border-bottom: 1.2pt solid {PALETTE['ink']}; padding-bottom: 2pt;
-          text-transform: uppercase; letter-spacing: 0.6px; }}
-    h3 {{ font-size: 10pt; margin: 8pt 0 2pt 0; color: {PALETTE['warm']}; }}
-    .sub {{ color: {PALETTE['neutral']}; font-size: 9pt; margin-bottom: 6pt; }}
-    .slogan {{ color: {PALETTE['warm']}; font-style: italic; font-size: 9.5pt; }}
-    table {{ width: 100%; border-collapse: collapse; margin: 4pt 0; font-size: 8.6pt; }}
-    th {{ text-align: left; background: {PALETTE['ink']}; color: {PALETTE['paper']};
-          padding: 4pt 6pt; }}
-    td {{ padding: 3pt 6pt; border-bottom: 0.4pt solid #cbd5e1; vertical-align: top; }}
-    tr:nth-child(even) td {{ background: #f1f5f9; }}
-    .ok   {{ color: {PALETTE['ok']};   font-weight: bold; }}
-    .warn {{ color: {PALETTE['warn']}; font-weight: bold; }}
-    .gate {{ color: {PALETTE['warm']}; font-weight: bold; }}
-    .grid2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; }}
-    .grid3 {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8pt; }}
-    .pill {{ display: inline-block; padding: 1.2pt 6pt; border-radius: 8pt;
-             font-size: 7.6pt; font-weight: bold; color: {PALETTE['paper']};
-             margin-right: 3pt; letter-spacing: 0.3px; }}
-    .pill-fed   {{ background: {PALETTE['lane1']}; }}
-    .pill-fnd   {{ background: {PALETTE['lane2']}; }}
-    .pill-cry   {{ background: {PALETTE['lane3']}; }}
-    .pill-dir   {{ background: {PALETTE['lane4']}; }}
-    .box {{ border: 0.6pt solid {PALETTE['ink']}; padding: 6pt 9pt;
-            border-radius: 4pt; margin: 6pt 0; background: #fff8eb; }}
-    ul {{ margin: 3pt 0 3pt 14pt; padding: 0; }}
-    li {{ margin-bottom: 2.4pt; }}
-    .check li {{ list-style: none; position: relative; padding-left: 14pt; }}
-    .check li::before {{ content: "☐"; position: absolute; left: 0;
-                          color: {PALETTE['warm']}; font-weight: bold; }}
-    img {{ width: 100%; max-width: 100%; }}
-    .figcap {{ font-size: 7.6pt; color: {PALETTE['neutral']};
-                text-align: center; margin-top: -2pt; margin-bottom: 6pt; }}
-    .footer {{ position: running(footer); font-size: 7pt; color: {PALETTE['neutral']};
-                border-top: 0.3pt solid {PALETTE['neutral']}; padding-top: 2pt; }}
-    @page {{ @bottom-center {{ content: element(footer); }} }}
-    .nono li {{ list-style: "✗ "; color: {PALETTE['warn']}; }}
-    .yesyes li {{ list-style: "✓ "; color: {PALETTE['ok']}; }}
-    code {{ font-family: 'DejaVu Sans Mono', monospace;
-            background: #1f2937; color: #fef3c7; padding: 0.5pt 3pt;
-            border-radius: 2pt; font-size: 8.4pt; }}
+ @page {{ size: Letter; margin: 0.55in 0.55in 0.6in 0.55in; }}
+ body {{ font-family: 'DejaVu Sans', sans-serif; color: {PALETTE['ink']};
+ background: {PALETTE['paper']}; font-size: 9.6pt; line-height: 1.32; }}
+ h1 {{ font-size: 22pt; margin: 0 0 2pt 0; letter-spacing: -0.5px; }}
+ h2 {{ font-size: 12pt; margin: 16pt 0 4pt 0;
+ border-bottom: 1.2pt solid {PALETTE['ink']}; padding-bottom: 2pt;
+ text-transform: uppercase; letter-spacing: 0.6px; }}
+ h3 {{ font-size: 10pt; margin: 8pt 0 2pt 0; color: {PALETTE['warm']}; }}
+ .sub {{ color: {PALETTE['neutral']}; font-size: 9pt; margin-bottom: 6pt; }}
+ .slogan {{ color: {PALETTE['warm']}; font-style: italic; font-size: 9.5pt; }}
+ table {{ width: 100%; border-collapse: collapse; margin: 4pt 0; font-size: 8.6pt; }}
+ th {{ text-align: left; background: {PALETTE['ink']}; color: {PALETTE['paper']};
+ padding: 4pt 6pt; }}
+ td {{ padding: 3pt 6pt; border-bottom: 0.4pt solid #cbd5e1; vertical-align: top; }}
+ tr:nth-child(even) td {{ background: #f1f5f9; }}
+ .ok {{ color: {PALETTE['ok']}; font-weight: bold; }}
+ .warn {{ color: {PALETTE['warn']}; font-weight: bold; }}
+ .gate {{ color: {PALETTE['warm']}; font-weight: bold; }}
+ .grid2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; }}
+ .grid3 {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8pt; }}
+ .pill {{ display: inline-block; padding: 1.2pt 6pt; border-radius: 8pt;
+ font-size: 7.6pt; font-weight: bold; color: {PALETTE['paper']};
+ margin-right: 3pt; letter-spacing: 0.3px; }}
+ .pill-fed {{ background: {PALETTE['lane1']}; }}
+ .pill-fnd {{ background: {PALETTE['lane2']}; }}
+ .pill-cry {{ background: {PALETTE['lane3']}; }}
+ .pill-dir {{ background: {PALETTE['lane4']}; }}
+ .box {{ border: 0.6pt solid {PALETTE['ink']}; padding: 6pt 9pt;
+ border-radius: 4pt; margin: 6pt 0; background: #fff8eb; }}
+ ul {{ margin: 3pt 0 3pt 14pt; padding: 0; }}
+ li {{ margin-bottom: 2.4pt; }}
+ .check li {{ list-style: none; position: relative; padding-left: 14pt; }}
+ .check li::before {{ content: "☐"; position: absolute; left: 0;
+ color: {PALETTE['warm']}; font-weight: bold; }}
+ img {{ width: 100%; max-width: 100%; }}
+ .figcap {{ font-size: 7.6pt; color: {PALETTE['neutral']};
+ text-align: center; margin-top: -2pt; margin-bottom: 6pt; }}
+ .footer {{ position: running(footer); font-size: 7pt; color: {PALETTE['neutral']};
+ border-top: 0.3pt solid {PALETTE['neutral']}; padding-top: 2pt; }}
+ @page {{ @bottom-center {{ content: element(footer); }} }}
+ .nono li {{ list-style: "✗ "; color: {PALETTE['warn']}; }}
+ .yesyes li {{ list-style: "✓ "; color: {PALETTE['ok']}; }}
+ code {{ font-family: 'DejaVu Sans Mono', monospace;
+ background: #1f2937; color: #fef3c7; padding: 0.5pt 3pt;
+ border-radius: 2pt; font-size: 8.4pt; }}
     """
 
     return f"""<!doctype html>
@@ -257,7 +257,7 @@ def html(c1, c2, c3, c4) -> str:
 
 <div class="footer">Bucket Foundation · AGFarms Grants Brief · 2026-05-05 · Confidential to assigned grant writer</div>
 
-<h1>AGFarms Grants — Executive Brief</h1>
+<h1>AGFarms Grants, Executive Brief</h1>
 <div class="sub">For: external grant writer + their drafting agent · Date: 2026-05-05 · Repo:
 github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 <div class="slogan">build the past. build history. bucket is the new renaissance.</div>
@@ -281,20 +281,20 @@ github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 
 <h2>4 · Ask vs gate (where to spend writing time)</h2>
 <img src="{c2}"/>
-<div class="figcap">Bubble size = drafting readiness · top-left = highest leverage today</div>
+<div class="figcap">Bubble size = drafting readiness · top-left = highest payoff today</div>
 
 <h2>5 · Cross-pillar readiness</h2>
 <img src="{c3}"/>
 <div class="figcap">Per-venture self-rating · gaps = where pillar work is needed before submit</div>
 
-<h2>6 · Submit-order — top 5</h2>
+<h2>6 · Submit-order, top 5</h2>
 <table>
 <tr><th>#</th><th>Grant</th><th>Entity</th><th>Ask</th><th>Lane</th><th>Gate</th><th>Submit by</th></tr>
-<tr><td>1</td><td>Gitcoin OSS GG-round</td><td>Bucket</td><td>$5–50K match</td><td><span class="pill pill-cry">crypto</span></td><td class="ok">none</td><td><b>NOW</b></td></tr>
+<tr><td>1</td><td>Gitcoin OSS GG-round</td><td>Bucket</td><td>$5-50K match</td><td><span class="pill pill-cry">crypto</span></td><td class="ok">none</td><td><b>NOW</b></td></tr>
 <tr><td>2</td><td>GlobalGiving Accelerator</td><td>MamaTeeTees</td><td>vetted</td><td><span class="pill pill-dir">direct</span></td><td class="gate">video + Candid</td><td>2026-06-09</td></tr>
-<tr><td>3</td><td>EF ESP</td><td>Bucket</td><td>$200K (band $30–300K)</td><td><span class="pill pill-cry">crypto</span></td><td class="gate">wallet + audit</td><td>mid-Jun 2026</td></tr>
+<tr><td>3</td><td>EF ESP</td><td>Bucket</td><td>$200K (band $30-300K)</td><td><span class="pill pill-cry">crypto</span></td><td class="gate">wallet + audit</td><td>mid-Jun 2026</td></tr>
 <tr><td>4</td><td>NSF SBIR Phase I (Project Pitch)</td><td>AGFarms (DerbyFish)</td><td>≤$305K</td><td><span class="pill pill-fed">federal</span></td><td class="gate">SAM</td><td>mid-Jun 2026</td></tr>
-<tr><td>5</td><td>Sloan Exploratory LOI</td><td>Bucket</td><td>$50–250K</td><td><span class="pill pill-fnd">foundation</span></td><td class="gate">HCB letter</td><td>Jun 2026</td></tr>
+<tr><td>5</td><td>Sloan Exploratory LOI</td><td>Bucket</td><td>$50-250K</td><td><span class="pill pill-fnd">foundation</span></td><td class="gate">HCB letter</td><td>Jun 2026</td></tr>
 </table>
 <p class="sub">Runners: NOAA Saltonstall-Kennedy (DerbyFish, Aug NOFO) · NSF POSE Phase I (Bucket, FY27 post-c3) · Templeton OFI (Bucket, Q4 2026)</p>
 
@@ -303,7 +303,7 @@ github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 <div>
 <h3>Product</h3>
 <ul>
-<li>Bucket = <b>infrastructure for research</b>, not a research project. Don't pitch as content.</li>
+<li>Bucket = <b>infrastructure for research</b>. Don't pitch it as a research project or as content.</li>
 <li>DerbyFish = citizen-science fisheries data with cryptographic provenance. Federal hook.</li>
 <li>MTT = direct-services nonprofit. Hook = local leadership + measurable retention.</li>
 </ul>
@@ -315,28 +315,28 @@ github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 </ul>
 <h3>Data</h3>
 <ul>
-<li>bucket-canon master taxonomy (gdrive) — 7 branches, ~76 contributor index.</li>
+<li>bucket-canon master taxonomy (gdrive), 7 branches, ~76 contributor index.</li>
 <li>Kruse Index (460 articles, FTS5+MiniLM+RRF) is biophysics seed corpus.</li>
 <li>Lean on this for any open-science / primary-research pitch.</li>
 </ul>
 </div><div>
 <h3>Revenue / GTM</h3>
 <ul>
-<li>LLC eligibility unlocks <b>NOAA + NSF SBIR today</b> — no c3 wait.</li>
+<li>LLC eligibility opens <b>NOAA + NSF SBIR today</b>, no c3 wait.</li>
 <li>Crypto-native lane (EF, Gitcoin, Protocol Labs) = open regardless of c3.</li>
-<li>Foundation lane (Mellon, Templeton, Pew, Walton) = 6–12mo cultivation horizon.</li>
+<li>Foundation lane (Mellon, Templeton, Pew, Walton) = 6-12mo cultivation horizon.</li>
 </ul>
 <h3>Operations</h3>
 <ul>
-<li><b>SAM.gov 4–8wk</b> is single biggest gating risk. File in week of 2026-05-05.</li>
-<li>Bucket has no EIN. Path A (HCB sponsor) or Path B (NY/NJ → SS-4 → SAM, 8–14wk).</li>
-<li>Form 1023 May 2026 → determination Q4 2026 / Q1 2027 → unlocks FY27 NSF POSE.</li>
+<li><b>SAM.gov 4-8wk</b> is single biggest gating risk. File in week of 2026-05-05.</li>
+<li>Bucket has no EIN. Path A (HCB sponsor) or Path B (NY/NJ → SS-4 → SAM, 8-14wk).</li>
+<li>Form 1023 May 2026 → determination Q4 2026 / Q1 2027 → opens FY27 NSF POSE.</li>
 </ul>
 <h3>People</h3>
 <ul>
 <li>Founder: Gianangelo Dichio · gianyrox@gmail.com · sole canonical author.</li>
-<li>CTO: Anthony Tedesco — cite for SBIR engineering credibility.</li>
-<li><b>0 NOAA scientists in Rolodex.</b> Highest-leverage cultivation = warm one regional NOAA Fisheries scientist before Aug 2026 NOFO.</li>
+<li>CTO: Anthony Tedesco, cite for SBIR engineering credibility.</li>
+<li><b>0 NOAA scientists in Rolodex.</b> Highest-payoff cultivation = warm one regional NOAA Fisheries scientist before Aug 2026 NOFO.</li>
 </ul>
 </div></div>
 
@@ -344,13 +344,13 @@ github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 <div class="grid2">
 <div><h3>Reading order</h3>
 <ul class="check">
-<li><code>MANIFESTO.md</code> — voice + thesis</li>
-<li><code>PROTOCOL.md</code> — what Bucket actually builds</li>
-<li><code>GOVERNANCE.md</code> — COI disclosure (founder personal capacity)</li>
-<li><code>grants-targets/INDEX.md</code> — portfolio strategy</li>
-<li><code>grants-targets/{{venture}}.md</code> — per-venture rationale</li>
-<li><code>grants-targets/drafts/*.md</code> — current drafts (Sloan/EF/Gitcoin)</li>
-<li><code>private/grants/*</code> — request access (SAM checklist + MTT GG draft)</li>
+<li><code>MANIFESTO.md</code>, voice + thesis</li>
+<li><code>PROTOCOL.md</code>, what Bucket builds</li>
+<li><code>GOVERNANCE.md</code>, COI disclosure (founder personal capacity)</li>
+<li><code>grants-targets/INDEX.md</code>, portfolio strategy</li>
+<li><code>grants-targets/{{venture}}.md</code>, per-venture rationale</li>
+<li><code>grants-targets/drafts/*.md</code>, current drafts (Sloan/EF/Gitcoin)</li>
+<li><code>private/grants/*</code>, request access (SAM checklist + MTT GG draft)</li>
 </ul></div>
 <div><h3>Per-application checks</h3>
 <ul class="check">
@@ -369,9 +369,9 @@ github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 <ul class="nono">
 <li>Don't pitch Bucket as a research project. It's <b>infrastructure for research</b>.</li>
 <li>Don't pitch AGFarms LLC to c3-only funders (Mellon/Templeton/Pew/Walton).</li>
-<li>Don't submit unverified MamaTeeTees stats — TODOs in <code>private/grants/mamateetees-globalgiving.md</code> must be resolved with country coordinator first.</li>
+<li>Don't submit unverified MamaTeeTees stats, TODOs in <code>private/grants/mamateetees-globalgiving.md</code> must be resolved with country coordinator first.</li>
 <li>Don't bury feed402 / x402 / Base in jargon. Translate: "users pay tiny amounts to query primary research; authors get paid each time their work is cited."</li>
-<li>Don't submit without grants-gateway citation — it's operating proof.</li>
+<li>Don't submit without grants-gateway citation, it's operating proof.</li>
 </ul>
 <ul class="yesyes">
 <li>Cite the live system every time. grants-gateway + x402-research-gateway are working merchants on Base.</li>

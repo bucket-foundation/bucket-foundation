@@ -1,15 +1,17 @@
-# PHOTON — the standardized knowledge packet of bucket.foundation
+# PHOTON
 
-*Drafted 2026-05-13. Founder: "photon is the data packet — the light, the
-data, the knowledge, the evidence, the claim, the hypothesis. Every
+The standardized knowledge packet of bucket.foundation.
+
+*Drafted 2026-05-13. Founder: "photon is the data packet, the light, the
+Data, the knowledge, the evidence, the claim, the hypothesis. Every
 vectorized object we create is a photon."*
 
 ## What a photon is
 
 A **photon** is a single, addressable, type-stable knowledge object.
-Anything we have a meaning for — a word, a sentence, a claim, an
-evidence excerpt, a coin, a manuscript leaf, a hypothesis, a bridge —
-is represented as a photon.
+Anything we have a meaning for, a word, a sentence, a claim, an
+evidence excerpt, a coin, a manuscript leaf, a hypothesis, a bridge,
+Is represented as a photon.
 
 A photon has:
 - one **canonical identity**
@@ -21,9 +23,9 @@ A photon has:
 - **relations** (other photons it cites, contradicts, refines, derives from)
 
 The bucket canon is a **graph of photons**. Different kinds of photons
-have different "shapes" in the same mega vector space — but they all
+have different "shapes" in the same mega vector space, but they all
 implement the same minimum contract, so any query can ride across
-them.
+Them.
 
 ## Why this name
 
@@ -37,7 +39,7 @@ every visible thing in the universe.
 A bucket photon carries meaning across the canon. It is the substrate
 of every visible thing in our knowledge graph.
 
-## Photon types (initial taxonomy)
+## Photon types
 
 Every photon has a `kind`. The kind determines which optional fields
 are present, but the minimum schema is shared.
@@ -58,10 +60,10 @@ are present, but the minimum schema is shared.
 | `manuscript` | A textual artifact | Codex Sinaiticus, Voynich, Dead Sea Scrolls |
 | `concept` | An abstract idea | entropy, holographic principle, exclusion zone water |
 
-The shape of a photon — which fields it carries — depends on its kind,
-but every photon implements the same minimum.
+The shape of a photon, which fields it carries, depends on its kind,
+But every photon implements the same minimum.
 
-## Minimum schema (every photon)
+## Minimum schema
 
 ```json
 {
@@ -96,7 +98,7 @@ but every photon implements the same minimum.
 | `kind` | enum | One of the kinds above. |
 | `lang` | string | BCP-47 tag for the surface form. `en` for English-only kinds (claim, axiom, bridge). |
 | `surface` | string | The original token / phrase / text. |
-| `meaning_en` | string | The English definition or meaning. **Required for every photon** — this is the universal lingua franca. |
+| `meaning_en` | string | The English definition or meaning. **Required for every photon**, this is the universal lingua franca. |
 | `tier` | enum | `nucleus` · `functional` · `edge` · `unverified` |
 | `branch` | string[] | Canon branches the photon attaches to. |
 | `semantic_vec` | ref | Pointer into the semantic embedding matrix. |
@@ -122,19 +124,19 @@ but every photon implements the same minimum.
 Each photon has **two** vectors:
 
 1. **Semantic vector** (currently 384-d via `bge-small-en` or our
-   `canon-bge-small-v1`). Captures what it *means*.
+ `canon-bge-small-v1`). Captures what it *means*.
 2. **Phonetic vector** (planned 64-d). Captures what it *sounds like*.
-   Built from IPA transcription via a character-level encoder; allows
-   cross-lingual phonetic matching independent of meaning.
+ Built from IPA transcription via a character-level encoder; allows
+ cross-lingual phonetic matching independent of meaning.
 
 The two vectors live in two separate matrices (different dims, different
 metrics). A query can ride either:
-- "find words that mean the same as `gravity`" → semantic top-K
-- "find words that sound like `gravitas`" → phonetic top-K
+- "find words that mean the same as 0" → semantic top-K
+- "find words that sound like 0" → phonetic top-K
 - "find words that mean similar AND sound similar" → joint score
 
 For non-lexical kinds (claim, site, etc.), the phonetic vector is
-optional and typically zero / absent.
+Optional and zero / absent.
 
 ## Network shape
 
@@ -164,37 +166,37 @@ The canon is a graph:
 ```
 
 The same mega vector space holds words, phrases, claims, evidence,
-sites, objects — but with different shapes (different dims, different
+Sites, objects, but with different shapes (different dims, different
 relations available). A query in the joint space can hop across
 kinds: word → claim → evidence → site.
 
-## Predicates (relations)
+## Predicates
 
 | Predicate | Meaning | Example |
 |---|---|---|
-| `translates`     | Same meaning, different language | `gravity:en` translates `Schwerkraft:de` |
-| `derives_from`   | Etymological / historical ancestor | `gravity:en` derives_from `gravitas:la` |
-| `synonym_of`     | Same language, same meaning | `entropy:en` synonym_of `disorder:en` (functional) |
-| `appears_in`     | Photon appears in another photon's text | `word:photon` appears_in `claim:einstein-1905` |
-| `cites`          | Bibliographic citation | `claim:becker-1985` cites `claim:szent-györgyi-1957` |
-| `supports`       | Evidence-for | `evidence:nature-2013` supports `claim:N` |
-| `refutes`        | Evidence-against | `evidence:counter-2020` refutes `claim:N` |
-| `bridges_to`     | Cross-branch isomorphism member | `claim:N` bridges_to `bridge:non-symmetry-principle` |
-| `located_at`     | Geographic anchor | `figure:newton` located_at `site:woolsthorpe` |
-| `attested_at`    | When a word first appears in a corpus | `word:gravity:en` attested_at year 1644 |
+| `translates` | Same meaning, different language | `gravity:en` translates `Schwerkraft:de` |
+| `derives_from` | Etymological / historical ancestor | `gravity:en` derives_from `gravitas:la` |
+| `synonym_of` | Same language, same meaning | `entropy:en` synonym_of `disorder:en` (functional) |
+| `appears_in` | Photon appears in another photon's text | `word:photon` appears_in `claim:einstein-1905` |
+| `cites` | Bibliographic citation | `claim:becker-1985` cites `claim:szent-györgyi-1957` |
+| `supports` | Evidence-for | `evidence:nature-2013` supports `claim:N` |
+| `refutes` | Evidence-against | `evidence:counter-2020` refutes `claim:N` |
+| `bridges_to` | Cross-branch isomorphism member | `claim:N` bridges_to `bridge:non-symmetry-principle` |
+| `located_at` | Geographic anchor | `figure:newton` located_at `site:woolsthorpe` |
+| `attested_at` | When a word first appears in a corpus | `word:gravity:en` attested_at year 1644 |
 
 ## Multilingual policy
 
 - **Surface in any language**, including non-Latin scripts (CJK, Cyrillic,
-  Arabic, Devanagari, etc.). UTF-8 throughout.
-- **Meaning always in English** — this is the lingua franca for the
-  vector space. A French definition gets translated before embedding.
+ Arabic, Devanagari, etc.). UTF-8 throughout.
+- **Meaning always in English**, this is the lingua franca for the
+ vector space. A French definition gets translated before embedding.
 - **Translations are first-class photons** linked by the `translates`
-  predicate; we don't merge them into one photon.
+ predicate; we don't merge them into one photon.
 - **Target initial coverage**: top 50 languages by speaker count +
-  every language with a substantial canon-tier text tradition (Greek,
-  Latin, Sanskrit, Classical Chinese, Hebrew, Arabic, Old English,
-  Akkadian, Sumerian).
+ every language with a substantial canon-tier text tradition (Greek,
+ Latin, Sanskrit, Classical Chinese, Hebrew, Arabic, Old English,
+ Akkadian, Sumerian).
 
 ## Multilingual ingestion sources
 
@@ -213,9 +215,9 @@ kinds: word → claim → evidence → site.
 | Stage | What | Output |
 |---|---|---|
 | 1 | Schema + types | `src/lib/photon.ts` · `tools/canon/photon.py` |
-| 2 | Photon builder | `agf-photon-build` — converts any source row to a photon |
+| 2 | Photon builder | `agf-photon-build`, converts any source row to a photon |
 | 3 | Semantic embedding | use existing `bge-small-en` pipeline; meaning_en → 384d |
-| 4 | Phonetic embedding | new tool — IPA → char-level encoder → 64d |
+| 4 | Phonetic embedding | new tool, IPA → char-level encoder → 64d |
 | 5 | Wiktionary ingest | first multilingual lexicon: 50 langs × top-10K words = 500K photons |
 | 6 | Cross-lingual links | use Wiktionary's translation tables to create `translates` predicates |
 | 7 | Test suite | semantic neighbors · phonetic neighbors · cross-lingual retrieval · analogy |
@@ -237,34 +239,34 @@ _intake/photons/
 
 The sqlite index has columns:
 - `id`, `kind`, `lang`, `surface`, `meaning_en`, `tier`, `branch_csv`,
-  `semantic_row`, `phonetic_row`, `provenance_source`, `captured_at`
+ `semantic_row`, `phonetic_row`, `provenance_source`, `captured_at`
 
-Vector files are memmap-style — single open, random row access. Same
+Vector files are memmap-style, single open, random row access. Same
 pattern we use for claim embeddings + corpus embeddings.
 
 ## Open design questions
 
-1. **Polysemy**: `bank` (river) vs `bank` (institution) — two photons
-   with different `meaning_en`. Sense-disambiguation is a downstream
-   step; v0 emits one photon per Wiktionary sense.
+1. **Polysemy**: `bank` (river) vs `bank` (institution), two photons
+ with different `meaning_en`. Sense-disambiguation is a downstream
+ step; v0 emits one photon per Wiktionary sense.
 
 2. **Compositional photons**: should "second law of thermodynamics"
-   be one phrase-photon or three word-photons + a phrase-photon linking
-   them via `composed_of`? Lean toward **both** — phrase photon for
-   queries, word photons for word-level analysis.
+ be one phrase-photon or three word-photons + a phrase-photon linking
+ them via `composed_of`? Lean toward **both**, phrase photon for
+ queries, word photons for word-level analysis.
 
 3. **Fringe ↔ canon gradient**: tier-classifier already exists. Every
-   photon gets a tier on ingest. The `bridge:` photons (already 17)
-   are nucleus-tier and span branches.
+ photon gets a tier on ingest. The `bridge:` photons (already 17)
+ are nucleus-tier and span branches.
 
 4. **Embedding refresh policy**: when we re-train the canon embedding,
-   do we re-embed all photons? Yes — but the photon `id` stays stable,
-   only the `semantic_row` field is rebuilt. Old vectors archived for
-   diff analysis.
+ do we re-embed all photons? Yes, but the photon `id` stays stable,
+ only the `semantic_row` field is rebuilt. Old vectors archived for
+ diff analysis.
 
 5. **API**: `/api/photon/<id>` returns the JSON. `/api/photon/search?q=`
-   semantic search. `/api/photon/similar/<id>` neighbours. These ship
-   as a new layer alongside the existing canon endpoints.
+ semantic search. `/api/photon/similar/<id>` neighbours. These ship
+ as a new layer alongside the existing canon endpoints.
 
 ## Naming convention
 
@@ -287,10 +289,10 @@ photon:hypothesis:younger-dryas-impact
 
 Hierarchical, kebab-case, stable.
 
-## Tagline (for /access page, README, etc.)
+## Tagline
 
-> bucket.foundation is a graph of **photons** — words, claims, evidence,
-> objects, sites, and hypotheses — every one with an English meaning,
+> bucket.foundation is a graph of **photons**, words, claims, evidence,
+> objects, sites, and hypotheses, every one with an English meaning,
 > a semantic vector, and a phonetic vector. Different shapes, one
 > mega vector space. Canon at the centre, fringe at the boundary.
 > Free to read. Paid to cite.

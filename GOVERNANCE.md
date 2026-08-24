@@ -1,14 +1,14 @@
 # Governance
 
-`bucket.foundation` is a **nonprofit** project. This document is the plain-English, non-legal explanation of how it is run, what it owns, what it does not own, and how decisions get made.
+`bucket.foundation` is a **nonprofit** project. Here is the plain-English, non-legal explanation of how it is run, what it owns, what it does not own, and how decisions get made.
 
-> **Legal status:** nonprofit, formalization in progress. Jurisdiction, fiscal sponsor, and tax status will be listed here once filed. Until then, treat this document as a statement of intent from the founding maintainer, not a binding charter.
+> **Legal status:** nonprofit, formalization in progress. Jurisdiction, fiscal sponsor, and tax status will be listed here once filed. Until then, treat this document as a statement of intent from the founding maintainer. It is not yet a binding charter.
 
 ---
 
 ## 1. Mission
 
-Make primary research **paid-for-once and citeable-forever**, and route citation fees to authors — not publishers.
+Make primary research **paid-for-once and citeable-forever**, and route citation fees to authors.
 
 The concrete expression of this mission is:
 
@@ -24,9 +24,9 @@ That's it. Everything else is implementation detail.
 ## 2. What the Foundation owns
 
 - The **domain** `bucket.foundation` and related subdomains.
-- The **reference bucket** — the canonical copies of papers that were purchased via x402 through the Foundation's operating wallet.
+- The **reference bucket**, the canonical copies of papers that were purchased via x402 through the Foundation's operating wallet.
 - The **trademark** of the name "bucket.foundation" (to the extent one can be established), used defensively to prevent confusing forks from impersonating the canonical site.
-- **Operating infrastructure** — the servers, wallets, and cloud accounts that run the reference site.
+- **Operating infrastructure**, the servers, wallets, and cloud accounts that run the reference site.
 
 ## 3. What the Foundation does NOT own
 
@@ -38,14 +38,14 @@ That's it. Everything else is implementation detail.
 
 ---
 
-## 4. Financial structure (intent)
+## 4. Financial structure
 
 | Revenue source | Flow |
 |---|---|
 | Citation fees collected by the Foundation's reference bucket | → author payout wallet (majority) → Foundation operating budget (minority, capped) |
 | Donations / sponsorships | → operating budget and author payouts; never to maintainer compensation beyond reasonable rates |
 | Grants | → earmarked for the specific program stated in the grant |
-| Protocol licensing | **$0** — the protocol is free forever |
+| Protocol licensing | **$0**, the protocol is free forever |
 
 The exact split between author payout and operating budget will be published once the Foundation has real operating costs to calibrate against. Default intent: **≥80% to authors, ≤20% to operations**, with the split audited annually.
 
@@ -60,9 +60,9 @@ The Foundation will not:
 Until a formal board is seated:
 
 - **Maintainer authority.** The founding maintainer (@gianyrox) is the decision-maker of last resort for:
-  - Merging changes to `PROTOCOL.md`
-  - Allocating operating surplus
-  - Accepting or declining partnerships, sponsorships, and grants
+ - Merging changes to `PROTOCOL.md`
+ - Allocating operating surplus
+ - Accepting or declining partnerships, sponsorships, and grants
 - **Open process.** Every non-trivial decision is recorded as a GitHub issue tagged `governance`. Objections from the community are considered and responded to in the thread before a decision is finalized.
 - **Transparency default.** All financial flows through the Foundation's reference wallet are public on-chain and can be independently audited.
 
@@ -70,16 +70,16 @@ Once the Foundation formalizes, this section will be replaced with a board chart
 
 ## 6. What will trigger formalization
 
-The Foundation will file as a formal nonprofit (jurisdiction TBD — candidates include US 501(c)(3) via a fiscal sponsor, Swiss Verein, or Netherlands Stichting) when any one of the following is true:
+The Foundation will file as a formal nonprofit (jurisdiction TBD, candidates include US 501(c)(3) via a fiscal sponsor, Swiss Verein, or Netherlands Stichting) when any one of the following is true:
 
 - Annual revenue exceeds **$10,000 USD**, OR
 - A single donation exceeds **$2,500 USD**, OR
 - A grant offer requires a formal legal entity, OR
 - A court order, subpoena, or takedown notice requires a legal counterparty.
 
-Until then, running as an informal nonprofit project under the founding maintainer's personal tax reporting is simpler, cheaper, and honest.
+Until then, running as an informal nonprofit project under the founding maintainer's personal tax reporting is simpler, cheaper, and.
 
-## 7. Conflicts of interest (founder disclosure)
+## 7. Conflicts of interest
 
 - **@gianyrox** is also the founder of **AGFarms**, a venture studio. AGFarms operates a separate for-profit Nucleus Brain instance that may, in the future, integrate with `bucket.foundation` as a consumer of citation data. This integration would be at arms-length and at the same rate any other consumer pays.
 - The `bucket.foundation` project and its reference wallet are **not** owned by AGFarms LLC. They are held in the founder's personal capacity, pending formalization.

@@ -84,7 +84,7 @@ def test_limiting_reagent():
 
 
 # =========================================================================
-# robustness
+# resilience
 # =========================================================================
 def test_no_arrow_error():
     assert st.run_stoich_balance({"equation": "H2 + O2 H2O"}).get("error")

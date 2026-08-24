@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-research-tools — SurvivalFit (REAL Kaplan-Meier + log-rank, CPU, no GPU)
+research-tools, SurvivalFit (REAL Kaplan-Meier + log-rank, CPU, no GPU)
 ========================================================================
 
-Per-field tool for **biomed-bio** (689,684 PIs) and **econ-social** (42,276) —
+Per-field tool for **biomed-bio** (689,684 PIs) and **econ-social** (42,276), 
 time-to-event / survival analysis is the workhorse of clinical trials,
 epidemiology, reliability engineering, and event-history social science. The
 two canonical operations are the Kaplan-Meier estimator and the log-rank test;
@@ -11,22 +11,22 @@ both are exact, closed-form, CPU-only, and serve a field where reproducible
 stats are most-mandated.
 
 REAL algorithms (numpy + scipy.stats; lifelines used ONLY if present, else the
-identical math is computed in-house — verified equal on a textbook case):
+identical math is computed in-house, verified equal on a textbook case):
 
-  1. Kaplan-Meier product-limit estimator (Kaplan & Meier 1958)
-     ----------------------------------------------------------------------
-     At each distinct event time t_i with d_i events and n_i at risk,
-         S(t_i) = S(t_{i-1}) · (1 − d_i / n_i)
-     Censored observations remain at risk up to their censoring time then leave.
-     Greenwood's formula gives the variance of S(t). Median survival = the
-     smallest t with S(t) ≤ 0.5.
+ 1. Kaplan-Meier product-limit estimator (Kaplan & Meier 1958)
+ ----------------------------------------------------------------------
+ At each distinct event time t_i with d_i events and n_i at risk,
+ S(t_i) = S(t_{i-1}) · (1 − d_i / n_i)
+ Censored observations remain at risk up to their censoring time then leave.
+ Greenwood's formula gives the variance of S(t). Median survival = the
+ smallest t with S(t) ≤ 0.5.
 
-  2. Log-rank test (Mantel-Cox) between two groups
-     ----------------------------------------------------------------------
-     At each event time, the expected events in group 1 under H0 (equal hazards)
-     are E_1i = d_i · n_1i / n_i with hypergeometric variance V_i. The statistic
-         χ² = (Σ(O_1i − E_1i))² / ΣV_i   ~ χ²(1)
-     gives the p-value via scipy.stats.chi2. This is the exact Mantel-Cox test.
+ 2. Log-rank test (Mantel-Cox) between two groups
+ ----------------------------------------------------------------------
+ At each event time, the expected events in group 1 under H0 (equal hazards)
+ are E_1i = d_i · n_1i / n_i with hypergeometric variance V_i. The statistic
+ χ² = (Σ(O_1i − E_1i))² / ΣV_i ~ χ²(1)
+ gives the p-value via scipy.stats.chi2. This is the exact Mantel-Cox test.
 
 Input is durations + event indicators (1 = event, 0 = censored), optionally a
 group label per subject for the two-group log-rank. Deterministic; never raises
@@ -150,11 +150,11 @@ def logrank_test(d1, e1, d2, e2) -> dict:
 def _demo() -> dict:
     """A small, hand-verifiable two-group dataset (classic teaching example).
 
-    Group A (treatment): times [6, 6, 6, 7, 10], events [1,1,1,1,1] (one of the
-    6s censored in the real Freireich set, but we keep it simple & exact here).
-    We use the textbook all-events case so the KM curve and median are exact.
+ Group A (treatment): times [6, 6, 6, 7, 10], events [1,1,1,1,1] (one of the
+ 6s censored in the real Freireich set, but we keep it simple & exact here).
+ We use the textbook all-events case so the KM curve and median are exact.
     """
-    # Group 1 longer survival, group 2 shorter — log-rank should separate them.
+    # Group 1 longer survival, group 2 shorter, log-rank should separate them.
     g1_dur = [6, 7, 10, 13, 16, 22, 23]
     g1_evt = [1, 1, 1, 1, 1, 1, 1]
     g2_dur = [1, 1, 2, 2, 3, 4, 5]
@@ -168,14 +168,14 @@ def _demo() -> dict:
 
 def run_survival(payload: dict) -> dict:
     """payload: {
-        durations: [float,...]  (time to event/censoring),
-        events: [0/1,...]       (1=event, 0=censored; default all 1),
-        groups: [label,...]     (optional; exactly two distinct labels → log-rank)
-    }  OR  {"demo": true}
+ durations: [float...] (time to event/censoring),
+ events: [0/1...] (1=event, 0=censored; default all 1),
+ groups: [label...] (optional; exactly two distinct labels → log-rank)
+ } OR {"demo": true}
 
-    Kaplan-Meier survival estimate (+ Greenwood SE + median) for the whole
-    sample and per group, plus the Mantel-Cox log-rank test when two groups are
-    given. Real numpy/scipy; deterministic; never raises on malformed input.
+ Kaplan-Meier survival estimate (+ Greenwood SE + median) for the whole
+ sample and per group, plus the Mantel-Cox log-rank test when two groups are
+ given. Real numpy/scipy; deterministic; never raises on malformed input.
     """
     demo = bool(payload.get("demo")) or (
         isinstance(payload.get("durations"), str)
@@ -248,13 +248,13 @@ def run_survival(payload: dict) -> dict:
     if demo:
         out["ground_truth"] = {
             # group A median = 13 (S drops to 0.5 at the 4th of 7 event times);
-            # group B median = 2; groups clearly separated → log-rank p < 0.05.
+            # group B median = 2; groups separated → log-rank p < 0.05.
             "group_A_median": 13.0,
             "group_B_median": 2.0,
             "logrank_significant": True,
         }
         out["note"] = (
-            "DEMO: two clearly-separated groups (A survives much longer than B). "
+            "DEMO: two-separated groups (A survives much longer than B). "
             "Group A median = 13, group B median = 2; the log-rank test is "
             "significant (p < 0.05). " + out["note"]
         )

@@ -1,20 +1,21 @@
-# research-tools-gateway — runtime deps for the 9 self-contained REAL tools
+# voice-ignore-file: pip requirements comments, not prose headings
+# research-tools-gateway, runtime deps for the 9 self-contained REAL tools
 # (RAG x4 over OpenAlex stdlib-http, DNA/RNA x3 over ViennaRNA+numpy, neuro x2
-# over scipy). CPU-only. The 7 subprocess/demo tools (labbrain, proteinscout,
+# over scipy). CPU-only. The 7 subprocess/demo tools (labbrain, proteinscout
 # stabilitydesigner, screenserver, patchseqml, trajmine, cryotriage) shell out
-# to heavy sibling repos + ML weights that are NOT vendored into this image —
-# they are a separate, larger image (Dockerfile.gpu / a future bead). The
-# gateway degrades gracefully for those (returns a clean tool error), so the 9
+# to heavy sibling repos + ML weights that are NOT vendored into this image,
+# they are a separate, larger image. The
+# gateway degrades gracefully for those, so the 9
 # real tools run live regardless. See DEPLOY.md §scope.
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
-pydantic==2.10.4
-python-multipart==0.0.20
-numpy==2.2.1
-scipy==1.15.0
+Fastapi==0.115.6
+Uvicorn[standard]==0.34.0
+Pydantic==2.10.4
+Python-multipart==0.0.20
+Numpy==2.2.1
+Scipy==1.15.0
 ViennaRNA==2.7.0
-# The gap-research cluster (ProtocolGPT, ToxinChannelFinder, CitationGraph) and
-# QuantumBioRAG are pure stdlib (re/math/urllib) + the existing fastapi/pydantic
-# above — they add NO new dependencies. ProtocolGPT touches no network at all;
+# The gap-research cluster and
+# QuantumBioRAG are pure stdlib + the existing fastapi/pydantic
+# above, they add NO new dependencies. ProtocolGPT touches no network at all;
 # ToxinChannelFinder + CitationGraph reuse the stdlib-urllib OpenAlex client in
 # tools_rag.py. So this image already serves all of them with no change.

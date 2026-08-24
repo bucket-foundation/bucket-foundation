@@ -1,14 +1,14 @@
 """No-network unit tests for ProtocolGPT (tools_protocol).
 
 Verifies the ACTUAL rule extraction on real methods prose:
-  * imperative clauses become ordered steps;
-  * timings/temperatures/volumes/concentrations are parsed from the text;
-  * reagents are pulled into a table;
-  * the hazard lexicon flags toxic/flammable/biohazard/etc. reagents.
+ * imperative clauses become ordered steps;
+ * timings/temperatures/volumes/concentrations are parsed from the text;
+ * reagents are pulled into a table;
+ * the hazard lexicon flags toxic/flammable/biohazard/etc. reagents.
 
 ProtocolGPT touches NO network and needs NO GPU, so these run fully offline.
 
-Run:  cd services/research-tools && python3 -m pytest tests/test_tools_protocol.py -q
+Run: cd services/research-tools && python3 -m pytest tests/test_tools_protocol.py -q
 """
 from __future__ import annotations
 
@@ -70,7 +70,7 @@ def test_detect_hazards_biohazard_and_uv():
 
 
 # =========================================================================
-# Full runner — real protocol structuring on a realistic methods paragraph
+# Full runner, real protocol structuring on a realistic methods paragraph
 # =========================================================================
 METHODS = (
     "Prepare a 50 mL culture in LB medium with 100 µg/ml ampicillin. "

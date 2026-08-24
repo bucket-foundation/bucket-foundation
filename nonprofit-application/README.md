@@ -1,4 +1,6 @@
-# bucket.foundation — Nonprofit Reinstatement Application Packet
+# bucket.foundation
+
+Nonprofit Reinstatement Application Packet.
 
 > **Status:** Draft, 2026-04-14. Not yet submitted to any sponsor or filed with any government.
 
@@ -8,7 +10,7 @@ This folder is the application packet to **reinstate bucket.foundation as an act
 
 bucket.foundation has **never been a registered legal entity**. There is no struck-off corporation to revive in the strict sense. The word *reinstated* is used in this packet to mean:
 
-> **Reactivating bucket.foundation as a publicly committed nonprofit project — with a written charter, a written conflict-of-interest policy, a written budget, a fiscal sponsor (or formal incorporation), and a public governance process — after a period of dormancy.**
+> **Reactivating bucket.foundation as a publicly committed nonprofit project, with a written charter, a written conflict-of-interest policy, a written budget, a fiscal sponsor (or formal incorporation), and a public governance process, after a period of dormancy.**
 
 If a sponsor or government office uses *reinstatement* to mean strictly "restoration of a previously dissolved entity," that is not what is happening here. The Foundation is being **established** as a formal nonprofit for the first time, and the founding maintainer is willing to amend any document in this packet to use whichever vocabulary the receiving party prefers.
 
@@ -31,7 +33,7 @@ The repository-root files **`GOVERNANCE.md`**, **`PROTOCOL.md`**, **`README.md`*
 
 The packet is structured to support two paths in parallel, so the founding maintainer is not blocked by a single decision-maker:
 
-### Path A — Fiscal sponsorship (preferred)
+### Path A, Fiscal sponsorship
 
 ```
 Submit packet to one or more of:
@@ -52,7 +54,9 @@ One-time cost: ≤ $300 (legal review of agreement)
 Ongoing cost: 5–10% of pass-through revenue (sponsor fee)
 ```
 
-### Path B — Direct incorporation + § 501(c)(3) (alternate)
+### Path B
+
+Direct incorporation + § 501.
 
 ```
 File Delaware Articles of Incorporation (06-...)

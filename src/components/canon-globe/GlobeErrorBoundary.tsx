@@ -6,7 +6,7 @@ import { Component, type ReactNode } from "react";
  * Silent error boundary around the WebGL Canvas. If Three.js fails to
  * acquire a context (browser blocks WebGL via fingerprint shields,
  * hardware acceleration off, sandboxed renderer, etc.), the boundary
- * renders empty space where the globe would have been — no message,
+ * renders empty space where the globe would have been, no message,
  * no fallback graphic. Rest of the page keeps working.
  */
 export class GlobeErrorBoundary extends Component<

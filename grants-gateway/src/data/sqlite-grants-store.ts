@@ -1,5 +1,5 @@
 /**
- * SqliteGrantsStore — production-shape backing for the GrantsStore
+ * SqliteGrantsStore, production-shape backing for the GrantsStore
  * interface. Reads from data/grants.db produced by `scripts/ingest.py`.
  *
  * Schema is owned by ingest/db.py; this module only reads + projects
@@ -55,7 +55,7 @@ function rowToGrant(r: Row): Grant {
 export interface SqliteGrantsStoreOpts {
   /** Path to grants.db. Defaults to <repo>/data/grants.db. */
   path?: string;
-  /** Hard cap on rows returned by all() — protects /insight from OOM. */
+  /** Hard cap on rows returned by all(), protects /insight from OOM. */
   insightCap?: number;
 }
 

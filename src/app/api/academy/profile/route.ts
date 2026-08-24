@@ -1,39 +1,39 @@
 /**
- * bucket.foundation — /api/academy/profile  (bkt-coh)
+ * bucket.foundation, /api/academy/profile (bkt-coh)
  * ----------------------------------------------------------------------------
  * The Mastery Profile API: the public, shareable "verifiable digital resume"
- * (MVP / honest-signal phase — see learning/research/landscape/MASTERY-PROFILE.md
+ * (MVP /-signal phase, see learning/research/landscape/MASTERY-PROFILE.md
  * Phase 0/1, learning/EPIC.md §2). Two roles, one route:
  *
- *   1. PUBLIC READ  (no auth):  GET /api/academy/profile?handle=<handle>
- *        Resolve handle -> user (service-role) and, IF the profile is public,
- *        assemble + return the honest Mastery Profile (map + per-branch mastery
- *        rollup + per-concept depth/recency). 404 if no public profile.
+ * 1. PUBLIC READ (no auth): GET /api/academy/profile?handle=<handle>
+ * Resolve handle -> user (service-role) and, IF the profile is public,
+ * assemble + return the Mastery Profile (map + per-branch mastery
+ * rollup + per-concept depth/recency). 404 if no public profile.
  *
- *   2. OWNER READ   (auth):     GET /api/academy/profile?me=1
- *        Return the caller's OWN profile record (handle, display_name, is_public)
- *        plus a preview of their assembled profile, so the in-app share UI can
- *        show "your public link" + current visibility.
+ * 2. OWNER READ (auth): GET /api/academy/profile?me=1
+ * Return the caller's OWN profile record (handle, display_name, is_public)
+ * plus a preview of their assembled profile, so the in-app share UI can
+ * show "your public link" + current visibility.
  *
- *   3. CLAIM/TOGGLE (auth):     POST /api/academy/profile
- *        body: { handle?, display_name?, is_public? }
- *        Claim a handle and/or set display name and/or toggle visibility. The
- *        caller is identified ONLY by their verified Supabase access token —
- *        never by a client-supplied id (same discipline as the progress route).
+ * 3. CLAIM/TOGGLE (auth): POST /api/academy/profile
+ * body: { handle?, display_name?, is_public? }
+ * Claim a handle and/or set display name and/or toggle visibility. The
+ * caller is identified ONLY by their verified Supabase access token, 
+ * never by a client-supplied id (same discipline as the progress route).
  *
  * SECURITY / PRIVACY (read before changing):
- *   - The bucket.academy_profiles + bucket.academy_progress tables live in the
- *     PRIVATE `bucket` Postgres schema, which the shared PostgREST does NOT
- *     expose. The browser CANNOT read them directly; everything goes through
- *     this same-origin Next.js route using a SERVER-ONLY service-role client.
- *   - Default private. A profile is rendered publicly ONLY when is_public = true.
- *   - Minimal PII: handle + optional display_name. Email is NEVER returned on the
- *     public path. The public read does not require or accept a token.
- *   - The service-role key bypasses RLS, so per-user ownership for writes is
- *     enforced HERE: every upsert forces user_id = the verified token's user.
+ * - The bucket.academy_profiles + bucket.academy_progress tables live in the
+ * PRIVATE `bucket` Postgres schema, which the shared PostgREST does NOT
+ * expose. The browser CANNOT read them directly; everything goes through
+ * this same-origin Next.js route using a SERVER-ONLY service-role client.
+ * - Default private. A profile is rendered publicly ONLY when is_public = true.
+ * - Minimal PII: handle + optional display_name. Email is NEVER returned on the
+ * public path. The public read does not require or accept a token.
+ * - The service-role key bypasses RLS, so per-user ownership for writes is
+ * enforced HERE: every upsert forces user_id = the verified token's user.
  *
  * HARD GUARDRAIL (EPIC.md §5): no certified/precise numeric rating is computed
- * or returned. The rollup (src/lib/academy/mastery.ts) emits honest,
+ * or returned. The rollup (src/lib/academy/mastery.ts) emits
  * uncertainty-visible signal only.
  *
  * When SUPABASE_SERVICE_ROLE_KEY is absent the route returns 503 and the in-app

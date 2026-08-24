@@ -5,7 +5,7 @@
  *   npx ts-node scripts/test-kruse-token.ts
  *
  * Uses node:test (built-in, no extra dependency). We set the env vars inline
- * before importing the module so the secret/version/allow-list load correctly.
+ * before importing the module so the secret/version/allow-list load.
  */
 
 process.env.BKT_KRUSE_TOKEN_SECRET =

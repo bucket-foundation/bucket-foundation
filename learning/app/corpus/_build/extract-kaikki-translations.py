@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""extract-kaikki-translations.py  (bkt-ctj)
+"""extract-kaikki-translations.py (bkt-ctj)
 
 Build VERIFIED gold translation tables from the English Wiktionary translation
 tables (kaikki.org raw-wiktextract-data, CC-BY-SA, human-curated).
@@ -11,12 +11,12 @@ item is {code, word, sense, roman, tags}. A translation ships ONLY if it is in
 that table for the matching sense. Wrong words are worse than fewer words.
 
 INPUT:
-  - corpus/_build/concepts.json     (curated headword + pos + sense-hint + category)
-  - <kaikki-cache>/English.jsonl    (English Wiktionary extract, ~3GB, gitignored)
+ - corpus/_build/concepts.json (curated headword + pos + sense-hint + category)
+ - <kaikki-cache>/English.jsonl (English Wiktionary extract, ~3GB, gitignored)
 
 OUTPUT (built artifacts, committed):
-  - corpus/_build/gold/kaikki-core.json  { lang: { concept: word } } for all 17 langs
-  - corpus/_build/gold/kaikki-meta.json  { concept: {pos, category, en_ipa, etymology, coverage:[langs]} }
+ - corpus/_build/gold/kaikki-core.json { lang: { concept: word } } for all 17 langs
+ - corpus/_build/gold/kaikki-meta.json { concept: {pos, category, en_ipa, etymology, coverage:[langs]} }
 
 A concept is KEPT only if >= MIN_LANGS of the 16 non-English target languages
 have a verified translation. English is the identity (concept == English word).
@@ -66,16 +66,16 @@ BAD_TAGS = {
     "pt": {"Brazil-only-dialectal"},
     "no": set(),
 }
-# Tags that mark a translation as not the everyday default — skip when a cleaner
+# Tags that mark a translation as not the everyday default, skip when a cleaner
 # option exists, across ALL languages.
 SOFT_BAD = {"archaic", "obsolete", "dated", "dialectal", "colloquial", "slang",
             "rare", "informal", "literary", "poetic", "vulgar",
             "uncommon", "nonstandard", "humorous", "childish", "Classical"}
 # NOTE: we deliberately do NOT penalize country tags (Spain, Latin-America,
-# Mexico, ...). For most words the regional tag just marks the standard national
+# Mexico...). For most words the regional tag just marks the standard national
 # form (patata [Spain], papa [Latin-America]) and penalizing it promotes an
 # obscure untagged variant (chuño). The rare cells where the auto-pick lands on
-# genuine slang are corrected one-by-one in overrides.json instead.
+# slang are corrected one-by-one in overrides.json instead.
 
 NUMERALS = {"zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
             "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
@@ -88,8 +88,8 @@ def nfc(s):
 
 def strip_combining_accents(s, lang):
     """ru/el: Wiktionary marks stress with combining accents (вода́, νεró). The
-    everyday written form omits them. Strip combining acute/grave that are NOT
-    part of the language's normal orthography. Keep ja/ko/zh/ar/hi untouched."""
+ everyday written form omits them. Strip combining acute/grave that are NOT
+ part of the language's normal orthography. Keep ja/ko/zh/ar/hi untouched."""
     if lang not in ("ru", "el"):
         return s
     out = []
@@ -114,7 +114,7 @@ def clean_word(word, lang):
         w = re.split(r"\s+[A-Za-z]", w)[0].strip()
         w = re.split(r"[,;:]| or ", w)[0].strip()
     # zh translations are given as "traditional /simplified" (or trad/trad/simp).
-    # Keep the SIMPLIFIED form (the last slash-separated segment) — the standard
+    # Keep the SIMPLIFIED form (the last slash-separated segment), the standard
     # script for the most learners. Single-form entries pass through unchanged.
     if lang == "zh" and "/" in w:
         w = w.split("/")[-1].strip()
@@ -137,12 +137,12 @@ def sense_ok(t_sense, hint):
 
 def gather_translations(entry, hint):
     """Collect (translation_item) from BOTH the entry's top-level `translations`
-    (older wiktextract format) AND each sense's `senses[].translations` (newer
-    format, where the sense gloss is the disambiguator). Each yielded item gets a
-    synthetic `sense` string so the existing sense_ok() hint filter works: top-
-    level items keep their own `sense`; per-sense items inherit the sense's first
-    gloss. We tag each item with `_sense_only_one` if its source entry exposes a
-    single relevant sense (lets pick_translation relax a too-strict hint)."""
+ (older wiktextract format) AND each sense's `senses[].translations` (newer
+ format, where the sense gloss is the disambiguator). Each yielded item gets a
+ synthetic `sense` string so the existing sense_ok() hint filter works: top-
+ level items keep their own `sense`; per-sense items inherit the sense's first
+ gloss. We tag each item with `_sense_only_one` if its source entry exposes a
+ single relevant sense (lets pick_translation relax a too-strict hint)."""
     items = []
     top = entry.get("translations") or []
     # sense richness for top-level: count per distinct `sense` string so a popular
@@ -203,15 +203,15 @@ def lang_match(t, lang):
 
 def pick_translation(translations, lang, hint):
     """From an entry's translations (top-level + per-sense, each carrying a
-    `sense` string), pick the single best word for `lang`.
+ `sense` string), pick the single best word for `lang`.
 
-    Ranking key (lower = better):
-      1. sense_priority: 0 if the item's sense contains the hint, else 1.
-         Hint-matched translations always win, but we DON'T hard-drop the rest —
-         so a concept whose hint doesn't match Wiktionary's exact gloss wording
-         still gets a (correct primary-sense) translation instead of nothing.
-      2. tag_score: dialect/script/soft-bad penalty (gender tags are neutral).
-      3. first-seen order (Wiktionary lists the standard form first).
+ Ranking key (lower = better):
+ 1. sense_priority: 0 if the item's sense contains the hint, else 1.
+ Hint-matched translations always win, but we DON'T hard-drop the rest, 
+ so a concept whose hint doesn't match Wiktionary's exact gloss wording
+ still gets a (correct primary-sense) translation instead of nothing.
+ 2. tag_score: dialect/script/soft-bad penalty (gender tags are neutral).
+ 3. first-seen order (Wiktionary lists the standard form first).
     """
     cands = []
     for i, t in enumerate(translations):
@@ -251,8 +251,8 @@ def main():
     # Verified manual overrides for the rare cells where Wiktionary's richest
     # sense for the target meaning carries only regional slang (so the auto-pick
     # is a non-standard word). Each override is a hand-checked standard form. This
-    # keeps the pipeline reproducible — overrides live in a committed file, not in
-    # code — and honest (they only correct demonstrably-wrong cells, never invent).
+    # keeps the pipeline reproducible, overrides live in a committed file outside
+    # the code, and (they only correct demonstrably-wrong cells, never invent).
     overrides = {}
     try:
         overrides = json.load(open(OVERRIDES, encoding="utf-8")).get("overrides", {})
