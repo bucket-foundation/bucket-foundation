@@ -392,7 +392,7 @@ of person who wants to.
 
 **Why absent / measurement model:**
 - Donald Campbell, "Assessing the Impact of Planned Social Change," 1976 (Campbell's Law); Goodhart's Law (cf. Brief 02 §6)
-- atlas §5 ("indicators miss the problems that may matter most"), [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md)
+- atlas §5 ("indicators miss the problems that may matter most"), [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md)
 
 **AI as amplifier vs. crutch:**
 - [AI-tutor learning-principles case study, arXiv 2309.13060](https://arxiv.org/pdf/2309.13060)

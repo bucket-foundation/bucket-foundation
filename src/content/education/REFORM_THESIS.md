@@ -1,7 +1,7 @@
 # Bucket Foundation: the reform thesis / grounded in the evidence
 
 > This is the bridge from *diagnosis* to *mission*. It reads the quantitative
-> atlas ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md)) and the four structural deep-dives
+> atlas ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md)) and the four structural deep-dives
 > (`docs/deep/01-04`) and asks the only question that matters for a foundation:
 > **given the actual problems, where does Bucket's open-knowledge thesis measurably
 > move the needle, and where does it not?** Honesty about the second half is what
@@ -51,7 +51,7 @@ crisis figures in §1 come from the World Bank/UNESCO/OECD data cited in
 `docs/EDUCATION_PROBLEMS.md` §1. The learning-science, health, and ability
 claims in §1.2-1.4 (retrieval/spacing, iodine deficiency and lead exposure,
 SMPY and acceleration effect sizes) are reference #18 in
-[`THE-KNOWLEDGE-ACCESS-GRADIENT.md` References](https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md#references).
+[`THE-KNOWLEDGE-ACCESS-GRADIENT.md` References](https://github.com/bucket-foundation/education-atlas/blob/master/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md#references).
 See that document's References section for the complete, numbered bibliography.
 
-*Sources: [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md) + `docs/deep/01-04` (every number traceable to World Bank / UNESCO / OECD / NCES / NSF / the peer-reviewed learning-science literature).*
+*Sources: [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md) + `docs/deep/01-04` (every number traceable to World Bank / UNESCO / OECD / NCES / NSF / the peer-reviewed learning-science literature).*

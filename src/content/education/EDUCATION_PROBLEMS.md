@@ -244,7 +244,7 @@ The data is unambiguous about where reform should aim:
  which no indicator captures and which may be the real frontier of reform.
 
 Everything above is reproducible from this repository: re-run
-[`scripts/build_all.py`](https://github.com/bucket-foundation/education-atlas/blob/main/scripts/build_all.py), then [`scripts/findings.py`](https://github.com/bucket-foundation/education-atlas/blob/main/scripts/findings.py), and every figure regenerates
+[`scripts/build_all.py`](https://github.com/bucket-foundation/education-atlas/blob/master/scripts/build_all.py), then [`scripts/findings.py`](https://github.com/bucket-foundation/education-atlas/blob/master/scripts/findings.py), and every figure regenerates
 from the same authoritative sources. That is the point. Bucket's case for
 reforming education does not rest on conviction. It rests on the record.
 
@@ -263,9 +263,9 @@ reforming education does not rest on conviction. It rests on the record.
 4. Our World in Data. *Cross-country literacy rates.* https://ourworldindata.org/literacy
 
 These are references #1-3 and #8 in
-[`THE-KNOWLEDGE-ACCESS-GRADIENT.md` References](https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md#references),
+[`THE-KNOWLEDGE-ACCESS-GRADIENT.md` References](https://github.com/bucket-foundation/education-atlas/blob/master/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md#references),
 which carries the full 18-entry bibliography for the corpus.
 
 _Indicator codebook, benchmarks, and per-row provenance:
 `edu/indicators.py`, `data/MANIFEST.json`, `docs/findings.json`.
-Validation: [`docs/VALIDATION.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/VALIDATION.md) (14/14 checks pass)._
+Validation: [`docs/VALIDATION.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/VALIDATION.md) (14/14 checks pass)._

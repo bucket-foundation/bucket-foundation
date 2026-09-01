@@ -5,8 +5,8 @@ The Goals of Education and Their Evolution.
 A neutral, globally-sourced survey of educational purpose.
 
 _This brief sits in the **foundations** layer of the atlas, beneath the diagnostic
-documents ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md), `docs/deep/01-04`) and the reform thesis
-([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md)). Those documents argue a position. This one deliberately
+documents ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md), `docs/deep/01-04`) and the reform thesis
+([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md)). Those documents argue a position. This one deliberately
 does not. Its job is to **map the terrain of educational purpose fairly**, to lay out
 every serious answer to the question "what is education supposed to do?", give each its
 strongest defenders, trace how the dominant answers have shifted across history and
@@ -560,6 +560,6 @@ prerequisite for arguing responsibly about how to rebalance it.
 - UNESCO Delors Report, _Learning: The Treasure Within_ (1996), https://eric.ed.gov/?id=ED418902
 - UNESCO SDG4 / Education 2030 & Incheon Declaration (2015), https://www.unesco.org/sdg4education2030/en/about-us
 
-_Foundations brief 02. Companion to [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md), `docs/deep/01-04`, and
-[`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md). Neutral by design: this document maps the contest over educational
+_Foundations brief 02. Companion to [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md), `docs/deep/01-04`, and
+[`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md). Neutral by design: this document maps the contest over educational
 purpose; it does not adjudicate it._

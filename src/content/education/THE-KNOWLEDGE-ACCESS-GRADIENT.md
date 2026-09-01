@@ -7,21 +7,22 @@ At what age, at what cost, and what that means for reforming education.
 *education-atlas, the flagship synthesis. V1.1. Gianangelo Dichio · Bucket Foundation · 2026-06-25.*
 
 *This document consolidates the entire education-atlas corpus, the quantitative
-Problem atlas ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md)), the four structural deep-dives
+Problem atlas ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md)), the four structural deep-dives
 (`docs/deep/01-04`), the four neutral foundations briefs (`docs/foundations/01-04`),
 the seven briefs in `docs/landscape/01-07`, the reform thesis
-([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md)), and the reproducible analyses behind
-[`analysis/landscape/results.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results.json), `results_expansion.json`,
+([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md)), and the reproducible analyses behind
+[`analysis/landscape/results.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results.json), `results_expansion.json`,
 `results_geographic.json`, and `results_historical.json`, into one argument.
 Version 1.1 adds the three dimensions the corpus gained after v1.0, the
-**historical access arc** across 5,000 years ([`docs/landscape/06`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/06-historical-access-arc.md)), the
-**geographic map** of frontier capacity ([`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/05-geographic-access.md)), and the
-**modality axis** of how knowledge is acquired ([`docs/landscape/07`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/07-modality.md)), woven into
+**historical access arc** across 5,000 years ([`docs/landscape/06`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/06-historical-access-arc.md)), the
+**geographic map** of frontier capacity ([`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/05-geographic-access.md)), and the
+**modality axis** of how knowledge is acquired ([`docs/landscape/07`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/07-modality.md)), woven into
 The argument as its spine, its cross-section, and its mechanism rather than
 appended. Every headline number is traceable to one of those sources or to the
-authoritative custodians they cite (World Bank EdStats, UNESCO UIS, OECD PISA,
-ITU, OpenAlex/research-atlas, the economic-history literature on print and
-literacy, and the peer-reviewed learning-science literature). Where a figure is
+authoritative custodians they cite (World Bank EdStats [1], UNESCO UIS [2], OECD
+PISA [3], ITU [4], OpenAlex/research-atlas [5], the economic-history literature
+on print and literacy [6][7][8], and the peer-reviewed learning-science
+literature [18]). Where a figure is
 constructed or estimated, it is flagged as such, the same
 evidence discipline the corpus holds throughout.*
 
@@ -43,7 +44,7 @@ evidence discipline the corpus holds throughout.*
   type         = {Working paper},
   number       = {v1.1},
   howpublished = {education-atlas corpus},
-  url          = {https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md},
+  url          = {https://github.com/bucket-foundation/education-atlas/blob/master/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md},
   doi          = {10.5281/zenodo.22083720},
   note         = {https://doi.org/10.5281/zenodo.22083720}
 }
@@ -136,7 +137,7 @@ Education debates almost always measure the wrong axis. They ask whether childre
 that measure the world has largely won: primary enrollment is near-saturation in most
 of the planet, and global adult literacy stands at 87.7%. The industrial expansion of
 mass schooling was, on its own terms, one of the great democratizing achievements of
-the modern era, and any account must concede that first ([`docs/deep/02`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/deep/02-world-tiers-and-the-industrial-model.md) §4.4).
+the modern era, and any account must concede that first ([`docs/deep/02`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/deep/02-world-tiers-and-the-industrial-model.md) §4.4).
 
 But enrollment is a single point on a much larger surface. The harder question, the
 one this atlas was built to answer, is: **for a person of a given age, how deep into a
@@ -146,8 +147,8 @@ produced?** That reframing changes everything, because the failures invisible to
 enrollment statistic are exactly where the deepest inequities live.
 
 To make the question tractable the corpus lays it on a two-dimensional grid
-([`docs/landscape/02`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/02-access-data-science.md) §0; the axes are a constructed analytical frame defined in
-[`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/scale.py), while the access proxies mapped to them are real data):
+([`docs/landscape/02`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/02-access-data-science.md) §0; the axes are a constructed analytical frame defined in
+[`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/scale.py), while the access proxies mapped to them are real data):
 
 - **X, Age / life-stage:** `0-5` · `5-18` · `18-22` · `22-65` · `65+`.
 - **Y, Knowledge depth,** a six-rung ladder:
@@ -176,7 +177,7 @@ Every knowledge technology widened reading, none widened producing.
 
 Before the cross-section, the arc, because the present-day cliff is a single frame of a
 film that has been running for five thousand years, and the film tells one story
-([`docs/landscape/06`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/06-historical-access-arc.md)). Read end to end, the history of knowledge *technology* resolves
+([`docs/landscape/06`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/06-historical-access-arc.md)). Read end to end, the history of knowledge *technology* resolves
 into a single, almost unbroken pattern:
 
 > **Every prior technology widened access to *consume* knowledge, to read, learn, and
@@ -200,7 +201,7 @@ Revolution, yet it did almost nothing for *who could originate*: an author still
 literacy, a press, and a patron. A giant jump in consume-access; a negligible one in
 produce-access. **Public libraries and mass schooling** (19th c.) took literacy from about
 **12% in 1820, fewer than 100 million people alive could read, to about 88% in 2024**,
-Over five billion people (Our World in Data, on Buringh & van Zanden + UNESCO), the single
+Over five billion people (Our World in Data [8], on Buringh & van Zanden [6] + UNESCO [2]), the single
 largest consume-access expansion in history by headcount; but the same century *enclosed*
 Production behind the professionalized PhD, widening the pool while hardening the gate.
 **The internet and Wikipedia** (1990s, ) drove the marginal cost of a copy to zero
@@ -240,7 +241,7 @@ Three crises, an access cliff, and a consume-versus-create gap.
 
 The quantitative atlas holds 78,326 observations across 219 countries and 30
 indicators, scoring 5,036 country × level × indicator problem profiles against SDG 4
-benchmarks ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md)). Read top to bottom it tells one story in
+benchmarks ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md)). Read top to bottom it tells one story in
 three layers.
 
 The **learning crisis** is the deepest. Learning poverty, the share of 10-year-olds
@@ -278,7 +279,7 @@ everything structural that follows.
 ### 2.2 The access cliff runs down the depth axis
 
 Now lay the same world on the age × depth grid. The reproducible analysis
-([`analysis/landscape/results.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results.json), real anchors for L0, L2 from World Bank EdStats,
+([`analysis/landscape/results.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results.json), real anchors for L0, L2 from World Bank EdStats,
 A real UNESCO UIS researchers-per-million anchor for L4, documented estimated
 multipliers for L3 and L5) produces this world-average access by depth:
 
@@ -301,7 +302,7 @@ middle tiers, and L0 (basic literacy) in low-income countries.
 ![World access by depth, the access cliff, log scale](../analysis/landscape/figures/fig_access_vs_age.png)
 
 And the cliff is bought by income. The gradient is shallow at the bottom and brutal at
-the top ([`docs/landscape/02`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/02-access-data-science.md) Finding 2):
+the top ([`docs/landscape/02`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/02-access-data-science.md) Finding 2):
 
 | Depth | High | Upper-mid | Lower-mid | Low | HIC ÷ LIC |
 |-------|-----:|----------:|----------:|----:|----------:|
@@ -321,7 +322,7 @@ decides who climbs.
 
 The single most dramatic number in the corpus follows directly. World researchers per
 million is ~1,360, so **~0.136% of humanity is at the knowledge frontier and ~99.86%
-only ever consume it** ([`docs/landscape/02`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/02-access-data-science.md) Finding 4). The frontier gap is steeply
+only ever consume it** ([`docs/landscape/02`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/02-access-data-science.md) Finding 4). The frontier gap is steeply
 unequal, 0.42% in high-income versus 0.0055% in low-income countries, the ~75× ratio
 again, and L5, publishing, is a smaller sliver still.
 
@@ -347,9 +348,9 @@ The base map says *where* the cliff is. The historical arc (§1.1) already said 
 gave the spine. The remaining dimensions say *what shape* the present-day cliff has, and
 every one of them relocates the binding constraint from consumption to production, the
 same verdict the arc delivers across time. Five **structural** dimensions
-([`analysis/landscape/results_expansion.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results_expansion.json), [`docs/landscape/03`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/03-map-expansion.md)) describe the cliff's
+([`analysis/landscape/results_expansion.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results_expansion.json), [`docs/landscape/03`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/03-map-expansion.md)) describe the cliff's
 cost, field, temporal, continuity, and latency shape (§3.1-3.5); a **geographic**
-Dimension (`results_geographic.json`, [`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/05-geographic-access.md)) maps *where on Earth* the
+Dimension (`results_geographic.json`, [`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/05-geographic-access.md)) maps *where on Earth* the
 frontier capacity sits and who is shut out (§3.6).
 
 ### 3.1 Cost: bimodal
@@ -462,8 +463,8 @@ leaks worst.
 ### 3.6 Geographic: the frontier is a near-monopoly held by a handful of countries
 
 The five structural dimensions say *what shape* the cliff has; they cannot say *where on
-earth* its top sits. The geographic dimension does ([`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/05-geographic-access.md),
-[`analysis/landscape/results_geographic.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results_geographic.json)), pulling the same UNESCO/World Bank
+earth* its top sits. The geographic dimension does ([`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/05-geographic-access.md),
+[`analysis/landscape/results_geographic.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results_geographic.json)), pulling the same UNESCO/World Bank
 **researchers-per-million** anchor doc 02 used as a tier mean (`SP.POP.SCIE.RD.P6`) into a
 Real per-country map, and the picture is a near-monopoly.
 
@@ -519,7 +520,7 @@ country; UNESCO GEM/WIDE anchor). The frontier is reached by a few countries, an
 them, unevenly by gender, wealth, and location. *(Researchers/M, tertiary, internet, and
 female/male enrollment are real per-country World Bank series; the composite index uses
 documented weights; absolute capacity is an estimate; women-in-research and wealth/rural
-figures are documented UNESCO anchors, full ledger in [`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/05-geographic-access.md) §7.)*
+figures are documented UNESCO anchors, full ledger in [`docs/landscape/05`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/05-geographic-access.md) §7.)*
 
 **The dimensional headline:** the base map said depth is the binding constraint and income
 Buys it; the dimensions say the binding constraint, stated, is *production, not
@@ -544,10 +545,10 @@ sorts, and declines* (OECD math fell a record 15 points 2018→2022, a decline t
 itself says predates COVID); the middle world *won access and stalled on quality*,
 collapsing into exam factories (China's gaokao drew ~13 million candidates in 2026); the
 poor world fights the *access and learning floors simultaneously* under financing
-collapse and teacher absenteeism (teachers absent ~25% of the time in India, with
-per-learner public spend of $55 in low-income vs $8,543 in high-income countries, a
+collapse and teacher absenteeism (teachers absent ~25% of the time in India [19], with
+per-learner public spend of $55 in low-income vs $8,543 in high-income countries [1][15], a
 155-fold gap). But all three run on the **same nineteenth-century operating system**
-([`docs/deep/02`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/deep/02-world-tiers-and-the-industrial-model.md)).
+([`docs/deep/02`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/deep/02-world-tiers-and-the-industrial-model.md)).
 
 Honesty about the history matters: the popular "schools were built as factories to make
 factory workers" story is partly a myth, the factory-like *monitorial* system
@@ -560,14 +561,14 @@ the unit of progression, one curriculum at one pace for the median learner, sort
 ranking as the terminal function, and compliance as the affective curriculum. The
 serious critics, Illich, Freire (the "banking model"), Gatto, Ken Robinson, the access/
 cost/quality "iron triangle" of John Daniel, converge on one diagnosis the U.S. Case
-study ([`docs/deep/01`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/deep/01-us-education-and-innovation.md)) makes concrete at every level:
+study ([`docs/deep/01`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/deep/01-us-education-and-innovation.md)) makes concrete at every level:
 
 | Level | What the system optimizes | What learning needs |
 |---|---|---|
 | K-12 | Standardized test scores; age-batch advancement | Mastery before progression; depth over coverage |
 | Accountability | Ranking on a proxy metric | Certifying a specific child learned a specific thing |
 | Higher ed | The credential as a hireable signal | Capability that persists after the diploma |
-| Funding | Fundable, incremental projects (NIH R01 success ~13%) | Patient, risky, frontier work |
+| Funding | Fundable, incremental projects (NIH R01 success ~13% [20]) | Patient, risky, frontier work |
 | Pipeline | Producing degree-holders and grant-winners | Producing people who can reach a new layer of reality |
 
 Each layer optimizes a *measurable proxy* (a score, a degree, a grant, a citation count)
@@ -577,7 +578,7 @@ the research pipeline that manufactures the people at L5 is the cruelest instanc
 U.S. Runs the world's best research output (~$940B/yr R&D, ~72% of Nobel-producing
 institutions) on a process that over-produces PhDs ~7:1 relative to faculty jobs (~14%
 of bio PhDs reach tenure-track), warehouses them in precarious postdocs, pushes funded
-independence to age ~43 (up from 35.7 in 1980), and concentrates nearly all serious
+independence to age ~43 (up from 35.7 in 1980) [15], and concentrates nearly all serious
 money in a few dozen elite institutions (in the research-atlas, all top-25 recipient
 orgs are U.S. Elites). The "who gets to do research at all" gate is the L4→L5 cliff seen
 from inside.
@@ -585,7 +586,7 @@ from inside.
 ### 4.2 The gatekeeping political economy: 38% margins on donated labor
 
 The depth cliff has owners. At each level an institution controls the gate and profits
-from it ([`docs/landscape/04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/04-knowledge-gatekeeping-and-what-works.md) Part 1): the state at L0, L1, universities at L2,
+from it ([`docs/landscape/04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/04-knowledge-gatekeeping-and-what-works.md) Part 1): the state at L0, L1, universities at L2,
 universities plus professional licensure at L3, **academic publishers** at L4, and
 funders plus affiliation plus prestige at L5. The most concentrated, most profitable,
 and least defensible gate is L4.
@@ -594,8 +595,8 @@ Five firms publish roughly half of all peer-reviewed articles; Elsevier alone ho
 ~25% of the market. RELX's scientific/technical/medical division reported a **38.4%
 adjusted operating margin** [9], a level that places a journal publisher alongside Apple
 and Google. The margin is an anomaly because the inputs are *donated*: authors assign
-copyright for free, peer review is unpaid (one 2021 estimate valued U.S. Reviewers' time
-alone at >$1.5 billion / >100 million hours in 2020), editing is largely unpaid, and the
+copyright for free, peer review is unpaid (one 2021 estimate valued U.S. reviewers' time
+alone at >$1.5 billion, out of >100 million reviewer-hours worldwide in 2020 [21]), editing is largely unpaid, and the
 customer is the same public that funded the research, buying it back through
 library subscriptions. This is the **public-funds round-trip**: governments fund the
 work, researchers donate the writing and reviewing, and the public pays again to read
@@ -615,10 +616,10 @@ Learning-to-learn, the body, the ceiling.
 
 The gradient is also shaped by what the machine *never builds*, the capacities that
 don't fit on a standardized test and that Goodhart's Law therefore crowds out
-([`docs/deep/03`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/deep/03-what-systems-lack-learning-to-learn.md), [`docs/deep/04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/deep/04-health-learning-and-the-ceiling.md)).
+([`docs/deep/03`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/deep/03-what-systems-lack-learning-to-learn.md), [`docs/deep/04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/deep/04-health-learning-and-the-ceiling.md)).
 
 The highest-impact missing skill is **learning-to-learn**. The cognitive science of
-how learning works is unusually settled, retrieval practice and spaced practice are
+how learning works is unusually settled [18], retrieval practice and spaced practice are
 high-utility; rereading and highlighting are low-utility, yet **84% of students study
 by rereading**, and in one clean demonstration **90% of students learned better after
 spaced practice while 72% believed massing was more effective.** Students systematically
@@ -662,7 +663,7 @@ exists to stop exactly that move, and its finding is the most important constrai
 this entire document.
 
 **There is no single, cross-civilizational answer to "what does it mean to be educated."**
-The neutral survey ([`docs/foundations/01`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/foundations/01-what-it-means-to-be-educated.md)) lays the rival conceptions side by side, Greek
+The neutral survey ([`docs/foundations/01`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/foundations/01-what-it-means-to-be-educated.md)) lays the rival conceptions side by side, Greek
 *paideia* and Roman *humanitas*, Confucian self-cultivation toward the *junzi*, the Daoist
 counter-current of *unlearning*, the Hindu *gurukula* and Buddhist mind-training, Islamic
 *ta'dib*, African and Indigenous *Ubuntu* ("a person is a person through other persons"),
@@ -674,7 +675,7 @@ disagreement is not a failure of analysis; it is a real feature of the question.
 no view from nowhere on what an educated person is.
 
 Equally, **the purposes of education are plural and the plurality is permanent**
-([`docs/foundations/02`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/foundations/02-goals-of-education-and-their-evolution.md)). Biesta's three functions (qualification, socialization,
+([`docs/foundations/02`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/foundations/02-goals-of-education-and-their-evolution.md)). Biesta's three functions (qualification, socialization,
 subjectification) and Labaree's three goals (democratic equality, social efficiency,
 social mobility) cannot be jointly maximized; every real system is a contested settlement
 among them. And, this is the part reform writing most gets wrong, the functions
@@ -685,11 +686,11 @@ replaced; Spence's signaling theory shows credentials carry real information eve
 schooling added zero skill). **Socialization** is not mere conformity; Durkheim's point
 stands that no society reproduces itself without it, and cohesion is a precondition for
 the freedom and critical thinking reformers prize. Even the contested categories at
-the heart of this atlas resist a clean verdict: **cheating** ([`docs/foundations/03`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/foundations/03-cheating-and-academic-integrity.md)) has
+the heart of this atlas resist a clean verdict: **cheating** ([`docs/foundations/03`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/foundations/03-cheating-and-academic-integrity.md)) has
 two serious framings, integrity as a moral and epistemic good, and "cheating" as
 A predictable artifact of high-stakes, gameable measurement, that converge on practice
 and diverge on meaning, a value question more data will not settle. And **AI in
-education** ([`docs/foundations/04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/foundations/04-ai-and-the-future-of-education.md)) is equity-ambivalent by design: the same tool, under
+education** ([`docs/foundations/04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/foundations/04-ai-and-the-future-of-education.md)) is equity-ambivalent by design: the same tool, under
 different policies, plausibly produces opposite outcomes, and the evidence is too thin to
 license confident prediction either way.
 
@@ -709,7 +710,7 @@ And where the biggest gains are.
 ### 6.1 What the evidence supports
 
 Knowing where the gradient is steep is not the same as knowing what moves it. The
-intervention-effectiveness evidence ([`docs/landscape/04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/04-knowledge-gatekeeping-and-what-works.md) Part 3; calibration: ~0.10 SD is
+intervention-effectiveness evidence ([`docs/landscape/04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/04-knowledge-gatekeeping-and-what-works.md) Part 3; calibration: ~0.10 SD is
 small, ~0.30 SD substantial, >0.40 SD large and rare at scale) points to a clear pattern.
 
 | Intervention | Effect size | Evidence |
@@ -737,7 +738,7 @@ strongest evidence and the emptiest market cell coincide.**
 ### 6.2 The white-space synthesis
 
 Cross the solution map against the access map and the pattern is sharp. A census of 83
-real players ([`docs/landscape/01`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/01-solution-landscape.md)) finds the grid crowded along the L0, L3 diagonal,
+real players ([`docs/landscape/01`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/01-solution-landscape.md)) finds the grid crowded along the L0, L3 diagonal,
 early-childhood literacy apps, the densely packed K-12 cell, higher-ed/professional MOOCs
 and upskilling, and nearly empty at the top: only 31 of 83 players reach L4 or L5 at all,
 the L5 "doing research" cell has *two* serious occupants (Elicit for the
@@ -748,9 +749,9 @@ responses (personalization, content delivery, test prep) target problems the atl
 Ceiling, doing research) coincide with the emptiest cells. **Markets chase the payable
 middle; the structural problems are upstream or upmarket of where the money is.**
 
-The open-knowledge counter-movement scorecard ([`docs/landscape/04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/04-knowledge-gatekeeping-and-what-works.md) Part 2) explains *what
+The open-knowledge counter-movement scorecard ([`docs/landscape/04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/04-knowledge-gatekeeping-and-what-works.md) Part 2) explains *what
 is already won*: it won access-to-read (open access at ~50% of new literature, preprints,
-shadow libraries) and the open plumbing (OpenAlex, ORCID, OER cost savings >$1.5B). It did
+shadow libraries) and the open plumbing (OpenAlex, ORCID, OER cost savings >$1B [17]). It did
 **not** win the economics (APCs re-created the gate on the author side; prestige lock-in is
 untouched) and did **not** win the last mile (access is not the same as the ability to
 *understand* and *use* what is now reachable).
@@ -758,7 +759,7 @@ untouched) and did **not** win the last mile (access is not the same as the abil
 ### 6.2a The modality lens: why the prize is the channel that has never existed
 
 The white-space map says the empty cells are at the top. The **modality** dimension
-([`docs/landscape/07`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/07-modality.md)) says *why* they are empty and *what kind* of thing would fill them,
+([`docs/landscape/07`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/07-modality.md)) says *why* they are empty and *what kind* of thing would fill them,
 by adding the channel axis: not *where* the cliff is or *who* occupies a cell, but *through
 what channel* a learner climbs at all, and how far each channel can carry them. Five
 modalities, ordered most-scalable to least: **formal** (school→university→grad),
@@ -772,7 +773,8 @@ production, and every channel that does not, does not, because the credential is
 *mechanism* that opens the next institutional gate (admission, affiliation, funding) the
 18-gate stack enumerates. Second, and decisively, **reach and production-reach are inversely
 related.** The informal/open channel reaches enormous numbers, Coursera alone 168M
-registered learners, ~220M MOOC enrollments, YouTube ~2.5B users (~51% using it to learn),
+registered learners [13], ~220M MOOC enrollments, YouTube ~2.5B users (~51% of
+users say it is important for learning how to do things [16]),
 but ceilings hard at **L2, L3**: MOOC completion runs a median of ~12.6% (most courses
 3-15%), no informal product carries a learner across the L3→L4 comprehension bridge, and the
 ceiling follows from the *nature of the channel* rather than any quality failure. The self-directed channel has
@@ -808,8 +810,8 @@ Cost ~$0, reach ~10⁹) and the only modality that attacks *both* of the autodid
 pieces at once: the comprehension bridge (as tutor) and the tacit production layer (as
 research agent). The evidence is exactly as two-sided as §1.1's open verdict: a 2025 Harvard
 physics RCT found an *engineered* AI tutor produced ~0.73-1.3 SD over active-learning control
-but over two weeks, 194 students, middle-order skills; Stanford's *Tutor CoPilot* (a
-human-AI system, >700 tutors) found a more modest +4 pp. Read against the ~0.3 SD bar for
+but over two weeks, 194 students, middle-order skills [11]; Stanford's *Tutor CoPilot* (a
+human-AI system, >700 tutors) found a more modest +4 pp [12]. Read against the ~0.3 SD bar for
 "substantial," AI today is a powerful **consumption amplifier** with a higher ceiling, which
 would make it the next informal/open channel and no more. The upside case is that research
 agents (Elicit, FutureHouse/Edison, autonomous science since 2024) perform enough of L5's
@@ -845,7 +847,7 @@ gate, and a what-works mechanism:
 
 Named as one option, bounded.
 
-Bucket Foundation's open-knowledge thesis ([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md)) maps onto this region:
+Bucket Foundation's open-knowledge thesis ([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md)) maps onto this region:
 Free-to-read primary research, paid-to-cite author-routed economics, research tooling that
 lets a motivated person *do* research rather than only consume it, and the canon as an open
 frontier for the few who can extend it. Stated against the foundations layer, this is **one
@@ -875,7 +877,7 @@ A synthesis that overclaims is worse than none. The boundaries of this evidence:
  Every "worst-off" figure is a *lower bound on a lower bound*, and the 51.2M out-of-school
  primary figure is a sum of latest-available country values rather than a modeled global total.
 - **The L0, L5 depth scale and the age bins are a constructed analytical frame**
- ([`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/scale.py)) rather than an ISCED-exact mapping measured by any authoritative
+ ([`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/scale.py)) rather than an ISCED-exact mapping measured by any authoritative
  body. The access proxies mapped to each rung are real; the ladder is ours.
 - **Several headline cells are estimates flagged as such.** L3 (graduate) is a real
  tertiary-enrollment base × an estimated graduate-entry multiplier; L5 (production) is the
@@ -952,7 +954,10 @@ thousand years it has never moved.
 
 ## References
 
-Numbered per first appearance in the text. Dataset entries link to the custodian's
+Numbered 1-18 per first appearance in the text; 19-21 were added in a later
+revision to pin sources this document previously flagged `[SOURCE NEEDED]` or
+left uncited, appended rather than inserted so the existing `[n]` markers did
+not have to be renumbered. Dataset entries link to the custodian's
 canonical query interface rather than to a single downloaded file. Indicator values move as
 custodians revise; the corpus snapshot each number was pulled from is pinned in
 `data/` and `analysis/landscape/results*.json` at the commit this document ships with.
@@ -973,77 +978,95 @@ custodians revise; the corpus snapshot each number was pulled from is pinned in
 6. Buringh, E. & van Zanden, J.L. (2009). "Charting the 'Rise of the West':
    Manuscripts and Printed Books in Europe, A Long-Term Perspective from the
    Sixth through Eighteenth Centuries." *Journal of Economic History* 69(2),
-   409-445.
+   409-445. https://doi.org/10.1017/S0022050709000837
 7. Dittmar, J. (2011). "Information Technology and Economic Change: The Impact
    of the Printing Press." *Quarterly Journal of Economics* 126(3), 1133-1172.
+   https://doi.org/10.1093/qje/qjr035
 8. Our World in Data. *Cross-country literacy rates*, built on Buringh & van
    Zanden and UNESCO. https://ourworldindata.org/literacy
 9. RELX plc. *Annual Report and Financial Statements* (Scientific, Technical &
    Medical division adjusted operating margin). https://www.relx.com/investors
 10. Springer Nature. *Nature* open-access article-processing-charge schedule.
     https://www.nature.com/nature/for-authors/open-access
-11. Kestin, G. et al. (2025). AI-tutor randomized controlled trial in an
-    undergraduate physics course, Harvard University (~0.73-1.3 SD gain over
-    active-learning control, two weeks, n=194).
-12. Stanford University. *Tutor CoPilot* human-AI tutoring study (+4 percentage
-    points, >700 tutors).
+11. Kestin, G., Miller, K., Klales, A., Milbourne, T. & Ponti, G. (2025). "AI
+    tutoring outperforms in-class active learning: an RCT introducing a novel
+    research-based design in an authentic educational setting." *Scientific
+    Reports* 15, 17458 (undergraduate physics course, Harvard University,
+    ~0.73-1.3 SD gain over active-learning control, two weeks, n=194).
+    https://doi.org/10.1038/s41598-025-97652-6
+12. Wang, R.E., Ribeiro, A.T., Robinson, C.D., Loeb, S. & Demszky, D. (2025).
+    "Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise."
+    EdWorkingPaper No. 24-1054, Annenberg Institute at Brown University
+    (+4 percentage points, >700 tutors). https://doi.org/10.26300/81nh-8262
 13. Coursera, Inc. *FY2024 full-year results* (168M registered learners, MOOC
     enrollment and completion figures). https://investor.coursera.com
 14. education-atlas internal reproducible analysis (Bucket Foundation): the
     age x depth grid, cost/field/temporal/continuity/latency dimensions, the
     geographic and historical layers, and every figure this paper cites are
     computed by
-    [`analysis/landscape/build_access.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/build_access.py),
-    [`build_expansion.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/build_expansion.py),
-    [`build_geographic.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/build_geographic.py), and
-    [`build_historical.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/build_historical.py)
+    [`analysis/landscape/build_access.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/build_access.py),
+    [`build_expansion.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/build_expansion.py),
+    [`build_geographic.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/build_geographic.py), and
+    [`build_historical.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/build_historical.py)
     against
-    [`results.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results.json),
-    [`results_expansion.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results_expansion.json),
-    [`results_geographic.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results_geographic.json), and
-    [`results_historical.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results_historical.json),
+    [`results.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results.json),
+    [`results_expansion.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results_expansion.json),
+    [`results_geographic.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results_geographic.json), and
+    [`results_historical.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results_historical.json),
     each of which records its own upstream source in a `sources` block (see
-    [`docs/VALIDATION.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/VALIDATION.md)
+    [`docs/VALIDATION.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/VALIDATION.md)
     for the validation suite that checks them).
 15. NCES (U.S. National Center for Education Statistics), NSF/NCSES (National
     Center for Science and Engineering Statistics), EPI (Economic Policy
     Institute), FREOPP (Foundation for Research on Equal Opportunity), NSC
     (National Student Clearinghouse): U.S.-specific figures cited in §4.1
-    (per-learner spend, NIH R01 success rate, PhD-to-faculty-job ratio,
-    funded-independence age).
-16. Pew Research Center (2018). Survey data on internet use for learning cited
-    in §6.2a.
-17. Open Praxis (2024). OER cost-savings figures cited in §6.2.
+    (per-learner spend, PhD-to-faculty-job ratio, funded-independence age).
+16. Pew Research Center (2018). "Many Turn to YouTube for Children's Content,
+    News, How-To Lessons." Survey data on internet use for learning cited in
+    §6.2a. https://www.pewresearch.org/internet/2018/11/07/many-turn-to-youtube-for-childrens-content-news-how-to-lessons/
+17. SPARC (2018). "$1 Billion in Savings through Open Educational Resources."
+    OER cost-savings figure cited in §6.2 (corrected here from a prior draft's
+    unsourced $1.5B to the documented $1B+ figure).
+    https://sparcopen.org/news/2018/1-billion-in-savings-through-open-educational-resources/
 18. The peer-reviewed learning-science literature (retrieval practice, spaced
     practice, metacognition, learning styles, the SMPY longitudinal study, and
     the acceleration meta-analyses) cited in full, study by study, across
-    [`docs/deep/01-04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/deep/01-us-education-and-innovation.md),
-    [`docs/foundations/01-04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/foundations/01-what-it-means-to-be-educated.md),
+    [`docs/deep/01-04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/deep/01-us-education-and-innovation.md),
+    [`docs/foundations/01-04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/foundations/01-what-it-means-to-be-educated.md),
     and
-    [`docs/landscape/01-07`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/landscape/01-solution-landscape.md).
-
-**[SOURCE NEEDED]**: two figures in §4.1 could not be traced to a specific
-citable source in this pass and are flagged rather than attributed by
-inference: the "~25%" India teacher-absenteeism figure (a cited World
-Bank/Azim Premji Foundation estimate range exists, but the exact study
-behind this figure is not pinned in `data/` or `analysis/`)
-and the "~13%" NIH R01 success rate (NIH publishes this annually; the specific
-fiscal year behind this document's figure is not recorded). Both read as
-directionally correct against public NIH and World Bank reporting but need a
-pinned source before the next revision.
+    [`docs/landscape/01-07`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/landscape/01-solution-landscape.md).
+19. Chaudhury, N., Hammer, J., Kremer, M., Muralidharan, K. & Rogers, F.H.
+    (2006). "Missing in Action: Teacher and Health Worker Absence in
+    Developing Countries." *Journal of Economic Perspectives* 20(1), 91-116
+    (source for the India ~25% teacher-absenteeism figure in §4.1, pinned in
+    this revision, resolving the prior draft's [SOURCE NEEDED] flag).
+    https://doi.org/10.1257/089533006776526058
+20. NIH Office of Extramural Research. *NIH Data Book*, "Success Rates:
+    R01-Equivalent and Research Project Grants" (NIH-wide R01-equivalent
+    success rate, FY2025 = 13.0%; source for the §4.1 figure, pinned in this
+    revision, resolving the prior draft's [SOURCE NEEDED] flag).
+    https://report.nih.gov/nihdatabook/category/10
+21. Aczel, B., Szaszi, B. & Holcombe, A.O. (2021). "A billion-dollar donation:
+    estimating the cost of researchers' time spent on peer review." *Research
+    Integrity and Peer Review* 6, 14. https://doi.org/10.1186/s41073-021-00118-2
 
 ---
 
 *Sources: World Bank EdStats (CC-BY-4.0); UNESCO Institute for Statistics (incl. Women in
 Science, GEM/WIDE); OECD PISA 2022; Our World in Data (incl. `cross-country-literacy-rates`);
 ITU Facts & Figures 2023; OpenAlex / research-atlas; the economic-history literature on print
-and literacy (Buringh & van Zanden 2009, *JEH* 69(2):409-445; Dittmar 2011, *QJE*
-126(3):1133-1172); NCES, NSF/NCSES, EPI, FREOPP, NSC; Coursera FY2024 results, Pew (2018),
-open Praxis (2024), the Kestin et al. 2025 Harvard and Stanford Tutor CoPilot AI-tutor RCTs;
-and the peer-reviewed learning-science literature cited across `docs/deep/01-04`,
+and literacy (Buringh & van Zanden 2009, *JEH* 69(2):409-445, doi:10.1017/S0022050709000837;
+Dittmar 2011, *QJE* 126(3):1133-1172, doi:10.1093/qje/qjr035); NCES, NSF/NCSES, EPI, FREOPP,
+NSC; Coursera FY2024 results; Pew Research Center (2018); the Kestin et al. 2025 (*Scientific
+Reports* 15:17458, doi:10.1038/s41598-025-97652-6) Harvard and Wang et al. 2025 (EdWorkingPaper
+24-1054, doi:10.26300/81nh-8262) Stanford Tutor CoPilot AI-tutor RCTs; SPARC (2018) on OER cost
+savings; Chaudhury et al. 2006 (*JEP* 20(1):91-116, doi:10.1257/089533006776526058) on teacher
+absenteeism; the NIH Data Book on R01 success rates; Aczel et al. 2021 (*Research Integrity and
+Peer Review* 6:14, doi:10.1186/s41073-021-00118-2) on peer-review time cost; and the
+peer-reviewed learning-science literature cited across `docs/deep/01-04`,
 `docs/foundations/01-04`, and `docs/landscape/01-07`. See [References](#references) above for
-the numbered, resolvable form of this list. Analysis files:
-[`analysis/landscape/build_access.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/build_access.py), `build_expansion.py`, `build_geographic.py`,
+the numbered, resolvable form of this list, refs 1-21. Analysis files:
+[`analysis/landscape/build_access.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/build_access.py), `build_expansion.py`, `build_geographic.py`,
 `build_historical.py`, `results.json`, `results_expansion.json`, `results_geographic.json`,
 `results_historical.json`, and the figures in `analysis/landscape/figures/` (the nine base +
 expansion figures plus `fig_access_arc.png`, `fig_literacy_longrun.png`, `fig_geo_*.png`, and

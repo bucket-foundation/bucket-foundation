@@ -5,13 +5,13 @@
 The channel, and how far up the depth ladder each channel can carry a learner.
 
 _education-atlas field analysis. Figure by
-[`analysis/landscape/make_figures_modality.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/make_figures_modality.py) (`fig_modality_reach.png`). This
+[`analysis/landscape/make_figures_modality.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/make_figures_modality.py) (`fig_modality_reach.png`). This
 brief adds the **CHANNEL axis** to the knowledge-access gradient. It is
 orthogonal to everything in docs `01`, `06`: those docs measure *where* the cliff
 is (depth, income, geography, time, history) and *who occupies which cell*; this
 one asks **through what channel** a person climbs the ladder at all, and how far
 each channel can carry them. It reuses the **L0, L5 depth ladder** and the
-**consume-vs-produce distinction** built in [`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/scale.py),
+**consume-vs-produce distinction** built in [`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/scale.py),
 `02-access-data-science.md`, and the master synthesis
 `docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md`. Reach headcounts and completion rates
 below are real cited figures; the depth-ceiling mapping onto the L0, L5 ladder is
@@ -380,7 +380,7 @@ reach; it is the first channel that scales all the way to production.**
 
 - **[1]** UNESCO Institute for Statistics / global enrollment stock, ~1.4B
  learners in formal education worldwide (primary through tertiary, order of
- magnitude). Consistent with the access proxies in [`analysis/landscape/results.json`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/results.json).
+ magnitude). Consistent with the access proxies in [`analysis/landscape/results.json`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/results.json).
 - **[2]** Coursera Q4/FY2024 financial results, 168M registered learners, +19%
  YoY. https://investor.coursera.com/news/news-details/2025/Coursera-Reports-Fourth-Quarter-and-Full-Year-2024-Financial-Results/default.aspx
 - **[3]** Open Praxis, "Uncovering MOOC Completion: A Comparative Study of
@@ -420,4 +420,4 @@ consume-vs-produce thesis §2.3, white space §6.2); `02-access-data-science.md`
 democratizing reading not production); `04-knowledge-gatekeeping-and-what-works.md`
 (the 18 gates, what-works effect sizes); `06-historical-access-arc.md` (the
 consume-vs-produce arc and AI as the first open question);
-[`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/main/analysis/landscape/scale.py) (the constructed L0, L5 ladder)._
+[`analysis/landscape/scale.py`](https://github.com/bucket-foundation/education-atlas/blob/master/analysis/landscape/scale.py) (the constructed L0, L5 ladder)._

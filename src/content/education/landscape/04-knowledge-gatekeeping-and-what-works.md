@@ -4,14 +4,14 @@ The Open-Knowledge Counter-Movement, and What Works.
 ### Bucket Foundation landscape brief 04
 Who controls access to advanced knowledge, who is trying to pry the gates open, and which interventions the evidence supports.
 
-> The atlas's diagnosis ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md)) measured the
+> The atlas's diagnosis ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md)) measured the
 > problem; the access analysis (`docs/landscape/02-access-data-science.md`)
 > showed the cliff is **down the depth axis, bought by income**, a ~270×
 > fall from undergraduate (37%) to the frontier (0.14%), widening from a
 > sub-2× rich-poor gap at literacy to ~75× at the frontier. The solution
 > landscape (`docs/landscape/01-solution-landscape.md`) showed the grid's
 > top-right (L4, L5) is the thinnest occupied region. The reform thesis
-> ([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md)) put Bucket's wedge there: the **knowledge
+> ([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md)) put Bucket's wedge there: the **knowledge
 > layer**, access to the frontier, fair production/validation, an un-capped
 > path for self-directed learners.
 >
@@ -510,7 +510,7 @@ production/validation), for the users the incumbents exclude.
 _Method: grounded with web research (June 2026) and cited above; complements
 rather than repeats `docs/landscape/01-solution-landscape.md` (the player
 census), `docs/landscape/02-access-data-science.md` (the access measurement),
-[`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md) (the diagnosis), and [`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md)
+[`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md) (the diagnosis), and [`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md)
 (the wedge). Effect sizes are reported in standard deviations (SD) or the
 EEF months-of-progress unit; figures for private firms are company-reported
 or third-party estimates as noted. Sci-Hub is documented factually as

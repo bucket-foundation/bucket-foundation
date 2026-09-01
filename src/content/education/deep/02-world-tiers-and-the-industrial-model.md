@@ -423,7 +423,7 @@ Replace outright.
 ## Key sources
 
 **Quantitative spine (atlas + custodians):**
-- World Bank EdStats; UNESCO UIS; OECD PISA 2022; Our World in Data, via [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md)
+- World Bank EdStats; UNESCO UIS; OECD PISA 2022; Our World in Data, via [`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md)
 - [World Bank, *What is Learning Poverty*](https://www.worldbank.org/en/topic/education/brief/what-is-learning-poverty), 53% of LMIC children, ~43% still learning-poor in 2030
 - [World Bank, *World Development Report 2024: The Middle-Income Trap*](https://openknowledge.worldbank.org/entities/publication/7c5cd962-11ae-4101-8f3f-e15b86135f0e) + [press release](https://www.worldbank.org/en/news/press-release/2024/07/22/-middle-income-trap-hinders-progress-in-108-developing-countries)
 - [OECD, *PISA 2022 Results Vol. I*](https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53f23881-en.html) + [long-term trends chapter](https://www.oecd.org/en/publications/2023/12/pisa-2022-results-volume-i_76772a36/full-report/long-term-trends-in-performance-and-equity-in-education_d66743ab.html)

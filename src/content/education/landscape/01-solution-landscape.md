@@ -6,9 +6,9 @@ Mapped on the Age × Knowledge-depth grid.
 
 Who is already solving what, and where the grid is empty.
 
-> The atlas's diagnosis ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md)) and four deep-dives
+> The atlas's diagnosis ([`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md)) and four deep-dives
 > (`docs/deep/01-04`) say *what is broken*. The reform thesis
-> ([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md)) says Bucket's wedge is the **knowledge layer**,
+> ([`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md)) says Bucket's wedge is the **knowledge layer**,
 > access to the frontier, fair production and validation of it, and an
 > un-capped path for self-directed learners and the few who can extend it.
 > This brief tests that wedge against the market: it catalogs **83 real
@@ -96,9 +96,9 @@ The single most crowded region of the entire grid. Five overlapping sub-markets:
  (taken private by KKR for $4.8B) [19], Schoology/PowerSchool (Bain, $5.6B) [20].
 
 This is where the AI-tutoring "2-sigma" promise is being fought (see
-[`docs/foundations/04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/foundations/04-ai-and-the-future-of-education.md), §2). The cell is saturated; the unmet problems here are
+[`docs/foundations/04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/foundations/04-ai-and-the-future-of-education.md), §2). The cell is saturated; the unmet problems here are
 the ones no product targets, *learning-to-learn*, philosophy, agency
-([`docs/deep/03`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/deep/03-what-systems-lack-learning-to-learn.md)) rather than a lack of content-delivery vendors.
+([`docs/deep/03`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/deep/03-what-systems-lack-learning-to-learn.md)) rather than a lack of content-delivery vendors.
 
 ### 1.3 Higher-ed + Professional
 
@@ -180,7 +180,7 @@ visual mappers **Connected Papers** [62] / **Research Rabbit** [63] /
 mostly free, well-built. Still: finding is not doing.
 
 **(d) AI research tools (L4, L5, the closest anyone gets to *doing*).** This is
-The newest and most contested layer ([`docs/foundations/04`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/foundations/04-ai-and-the-future-of-education.md)). On a spectrum of
+The newest and most contested layer ([`docs/foundations/04`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/foundations/04-ai-and-the-future-of-education.md)). On a spectrum of
 "how close to doing research":
 
 | Tool | What it does | How far up the L4→L5 ladder |
@@ -430,6 +430,6 @@ And *how knowledge production is paid for*, leaving agent-building to them.
 _Catalog: `data/landscape/solutions.csv` (83 rows × 12 columns). Method: a
 representative census of category leaders and structurally distinct players,
 grounded with web research (June 2026) and cited above. Maps to
-[`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/EDUCATION_PROBLEMS.md), `docs/deep/01-04`, `docs/foundations/01-04`, and
-[`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/main/docs/REFORM_THESIS.md). Figures for private companies are estimates or
+[`docs/EDUCATION_PROBLEMS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/EDUCATION_PROBLEMS.md), `docs/deep/01-04`, `docs/foundations/01-04`, and
+[`docs/REFORM_THESIS.md`](https://github.com/bucket-foundation/education-atlas/blob/master/docs/REFORM_THESIS.md). Figures for private companies are estimates or
 company-reported reach where noted in the catalog's `scale_note` column._

@@ -39,7 +39,7 @@ export const FLAGSHIP = {
   doiUrl: "https://doi.org/10.5281/zenodo.22083720",
   pdfUrl: "/education/THE-KNOWLEDGE-ACCESS-GRADIENT.pdf",
   githubUrl:
-    "https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md",
+    "https://github.com/bucket-foundation/education-atlas/blob/master/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md",
   license: "CC-BY-4.0 (data) / MIT (code)",
   corpusLine:
     "education-atlas v1.1, 78,326 observations / 219 countries / 30 indicators, vs UN SDG 4",
@@ -103,7 +103,7 @@ export type EducationDoc = {
 };
 
 const GH =
-  "https://github.com/bucket-foundation/education-atlas/blob/main/docs";
+  "https://github.com/bucket-foundation/education-atlas/blob/master/docs";
 
 export const EDUCATION_DOCS: EducationDoc[] = [
   {

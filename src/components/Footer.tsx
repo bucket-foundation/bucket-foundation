@@ -72,7 +72,7 @@ export default function Footer() {
             <li><a href="https://github.com/bucket-foundation/x402-research-gateway" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">x402-gateway</a></li>
             <li><a href="https://github.com/bucket-foundation/research-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">research-atlas</a></li>
             <li><a href="https://github.com/bucket-foundation/education-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">education-atlas</a></li>
-            <li><a href="https://github.com/bucket-foundation/education-atlas/blob/main/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">knowledge-access gradient</a></li>
+            <li><a href="https://github.com/bucket-foundation/education-atlas/blob/master/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">knowledge-access gradient</a></li>
             <li><a href="/feed.xml" className="hover:text-[color:var(--bone)] transition">RSS feed</a></li>
             <li><Link href="/manifesto" className="hover:text-[color:var(--bone)] transition">Manifesto</Link></li>
             <li><Link href="/governance" className="hover:text-[color:var(--bone)] transition">Governance</Link></li>
