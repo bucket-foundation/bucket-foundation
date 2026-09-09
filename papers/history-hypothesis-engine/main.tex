@@ -61,25 +61,24 @@
 \maketitle
 
 \begin{abstract}
-History accumulates claims faster than any one framework scores them: a
-correlation, a dated fragment, and a contested attribution can each carry
-their own confidence number, with no single credence a reader can compare
-across hypotheses. We present a design for a hypothesis engine that treats
-every placement of an actor, action, and mechanism into a dated interval,
-and every ordered pair of such placements, as one point in a combinatorial
-address space, generated whether or not the existing literature already
-supports it. Each hypothesis carries a subjective-logic opinion, belief,
-disbelief, and uncertainty mass, rather than one point estimate, so a
-hypothesis nobody has examined reads apart from one actively refuted. A
-structural-unknowns layer gives the engine's own blind spots, an unnamed
-concept, an unexcavated gap, undiscovered evidence, a place inside the
-model instead of leaving them for a human reviewer to notice later. We
-derive the address scheme's size and injectivity, the opinion model's
-normalization and probability bound, and lay out an engine loop of
-generation, critique, ranking, and evolution, built against a sibling
-engine designed for a different corpus. We close with a calibration
-design, two holdout tests and two candidate pilot periods, and state what
-in the model stays uncalibrated. No results are claimed here; this is a
+History accumulates claims faster than any framework scores them: a
+correlation, a dated fragment, a contested attribution each carry their
+own confidence number, with no credence a reader can compare across
+hypotheses. We present a design for a hypothesis engine that treats every
+placement of an actor, action, and mechanism into a dated interval, and
+every ordered pair of placements, as one point in a combinatorial address
+space, generated whether or not the literature supports it. Each
+hypothesis carries a subjective-logic opinion, belief, disbelief, and
+uncertainty mass, rather than one point estimate, so a hypothesis nobody
+has examined reads apart from one refuted. A structural-unknowns layer
+puts the engine's blind spots, an unnamed concept, an unexcavated gap,
+undiscovered evidence, inside the model instead of a footnote added
+later. We derive the address scheme's size and injectivity, the opinion
+model's normalization and probability bound, and lay out an engine loop
+of generation, critique, ranking, and evolution, checked against a
+sibling engine for a different corpus. We close with a calibration
+design, two holdout tests and two candidate pilot periods, naming what in
+the model stays uncalibrated. No results are claimed here; this is a
 design and the proofs that check it.
 \end{abstract}
 
@@ -158,6 +157,10 @@ contributions are:
 \section{Related work}
 \label{sec:related}
 
+This section places each of the five contributions of \Cref{sec:intro}
+against the closest published system it extends, departs from, or
+stands in for.
+
 \paragraph{AI hypothesis generation.} A generate, critique, rank, evolve
 loop over a claims graph, with Elo seeded from a Bayesian posterior and
 updated by simulated debate, is the shape DeepMind's AI co-scientist runs
@@ -168,9 +171,12 @@ function \autocite{novikov2025alphaevolve}, generalizing FunSearch's
 evolution of one function toward a numeric objective
 \autocite{romeraparedes2024funsearch}; neither has a crisp fitness
 function for a qualitative historical claim, so \Cref{sec:belief}'s
-belief model stands in its place. Sakana's AI Scientist runs a tree
-search from idea to code to experiment to paper draft, with one output
-passing automated peer review \autocite{lu2024aiscientist}; Stanford's
+belief model stands in its place. Sakana's AI Scientist runs an
+idea-to-code-to-experiment-to-paper-draft loop scored by an automated
+reviewer \autocite{lu2024aiscientist}; its v2 successor replaces that
+loop with an agentic tree search and submitted three fully autonomous
+manuscripts to a peer-reviewed ICLR workshop, one of which cleared the
+human acceptance threshold \autocite{yamada2025aiscientistv2}. Stanford's
 Virtual Lab specializes agent roles under a principal-investigator agent
 and budgets a small human-review pass over its output
 \autocite{swanson2024virtuallab}, the pattern \Cref{sec:calibration}'s
@@ -180,8 +186,8 @@ critic roles \autocite{ghafarollahi2024sciagents}, the role-specialization
 pattern \Cref{sec:engine-loop} extends with an unknown-unknown generator
 and a preservation critic. FutureHouse's Robin closes a
 literature-to-hypothesis-to-experiment loop against a real wet-lab
-result, ten disease campaigns in roughly ten weeks and one validated
-candidate for dry age-related macular degeneration
+result, validating one candidate, ripasudil, for dry age-related macular
+degeneration and generating hypotheses across ten additional diseases
 \autocite{ghareeb2025robin}; with no wet lab to close against,
 \Cref{sec:calibration}'s holdout splits stand in. MC-NEST extends Monte
 Carlo tree search with an explicit explore or exploit control and an LLM
@@ -266,6 +272,39 @@ patterns that crosswalk pulls into this design.
 \section{Preliminaries}
 \label{sec:prelim}
 
+This section defines every term \Cref{sec:timeline} through
+\Cref{sec:calibration} depends on, each linked via
+\texttt{\textbackslash term} to a glossary entry (\Cref{app:glossary})
+and a Lean counterpart (\Cref{app:lean}). \Cref{tab:symbols} collects
+the symbols carried across
+every section below as a single reference, so a symbol's meaning does
+not have to be traced back through whichever section introduced it.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Symbols carried across \Cref{sec:timeline} through
+  \Cref{sec:calibration}, with the equation or definition that first
+  fixes each.}
+\label{tab:symbols}
+\begin{tabular}{@{}cl@{}}
+  \toprule
+  Symbol & Meaning \\
+  \midrule
+  $a$, $b$, $d$, $u$ & Base rate, belief, disbelief, uncertainty mass of one opinion $\omega(h)$ (\Cref{def:opinion}) \\
+  $P$ & Projected probability $P(h) = b(h) + a(h)\,u(h)$ (\Cref{def:projection}) \\
+  $r$, $s$ & Pooled supporting and refuting evidence weight for $h$ (\Cref{def:opinion-fusion}) \\
+  $W$ & Total-ignorance weight, fixed at $2$ (\Cref{eq:opinion-sum}) \\
+  $D(n)$ & Diminishing-returns discount on $n$ corroborating clusters, $\lambda = 0.5$ (\Cref{eq:diminishing}) \\
+  $X(K)$ & Cross-kind independence bonus over $K$ evidence kinds (\Cref{eq:cross-kind}) \\
+  $\mu$ & The corpus's original contradiction-penalty weight, $0.5$; superseded by \Cref{eq:opinion-sum} \\
+  $\delta$ & Detectability, $\delta(\mathrm{period}, \mathrm{medium}, \mathrm{region}) \in [0,1]$ (\Cref{def:detect}) \\
+  $\tau$ & The corpus's pre-opinion sigmoid posterior, $\tau = \operatorname{sigmoid}(L)$ (\Cref{sec:intro}) \\
+  $L(h)$ & Ranking score, the logit of $P(h)$ shifted by $\Theta_{\mathrm{temporal}}(h)$ (\Cref{eq:rank}) \\
+  \bottomrule
+\end{tabular}
+\end{table}
+
 \begin{definition}[Astronomical-year interval]
 \label{def:interval}
 The engine's time axis is a signed integer line in astronomical years:
@@ -316,7 +355,12 @@ product space
 \end{equation}
 read as the claim that the named actor performed the named action on the
 named object at the named place, inside the named time bin, by the named
-mechanism. Lean counterpart: \texttt{Bucket.Hypothesis.Placement}.
+mechanism. Lean counterpart: \texttt{Bucket.Hypothesis.Placement}, which
+carries the full \texttt{Interval} the corpus stores for a placement
+rather than the bucketed \texttt{TIME\_BIN} identifier this product
+space addresses; \texttt{Bucket.Address.SlotTuple}
+(\Cref{sec:combinatorics}) is the Lean structure that names
+\texttt{timeBin} as its own field, the one \Cref{eq:address} encodes.
 \end{definition}
 
 \begin{definition}[Sequence hypothesis]
@@ -356,11 +400,11 @@ An evidence item is a tuple $(\kappa, \theta, \sigma, \pi, e)$: a
 \{\mathrm{T1}, \ldots, \mathrm{T6}\}$ carrying a fixed weight
 $k(\theta)$, a \term{evidence-span}{span} $\sigma$ naming the character
 range and hypothesis field it grounds, a provenance record $\pi$ naming
-who or what asserted it, and an edge strength $e \in [0, 1]$. An evidence
-item is the argument \texttt{Bucket.Belief.fuse} pools over; it has no
-independent Lean type of its own in this pass, since the definitional
-weight the paper needs from it, kind, tier, and strength, is exactly the
-tuple \texttt{fuse} consumes.
+who or what asserted it, and an edge strength $e \in [0, 1]$. An evidence item has no independent Lean type of its own in this pass:
+its definitional weight, kind, tier, and strength, is exactly what
+\Cref{eq:cluster-weight}'s $s_i = k(\theta_i) \cdot e_i$ reduces it to
+before it reaches \texttt{Bucket.Belief.fromEvidence}'s $r$ and $s$
+arguments.
 \end{definition}
 
 \begin{definition}[Opinion]
@@ -392,9 +436,12 @@ $[0,1]$. Fix a threshold $\theta_{\mathrm{prune}}$ (default $0.6$); the
 the number of connected components of the stemma after removing every
 edge below $\theta_{\mathrm{prune}}$. $n_{\mathrm{eff}}$ replaces the raw
 cluster count $n$ everywhere a diminishing-returns discount is applied.
-The effective-count discount is threaded through
-\texttt{Bucket.Belief.fuse}'s cluster-count argument; Lean counterpart:
-\texttt{Bucket.Belief.fuse}.
+No Lean counterpart is named for this pass: connected-component counting
+over a pruned stemma graph is not yet formalized, and $n_{\mathrm{eff}}$
+reaches \texttt{Bucket.Belief.fromEvidence} only as a plain \texttt{Nat}
+substituted for $n$ in \Cref{eq:diminishing} before that function is
+called. \Cref{sec:limitations} states this as an open item in the Lean
+listings alongside detectability and gap nodes.
 \end{definition}
 
 \begin{definition}[Detectability]
@@ -539,7 +586,8 @@ $13 \times (3.6 \times 10^{11})^2 = 13 \times 1.296 \times 10^{23}
 \approx 1.7 \times 10^{24}$.
 \end{proof}
 
-\Cref{fig:hypothesis-space} plots \Cref{lem:size}'s two sizes alongside a
+\Cref{fig:hypothesis-space} plots \Cref{lem:size}'s two sizes,
+\Cref{eq:size-h} and \Cref{eq:size-hseq}, alongside a
 scale an order of magnitude smaller and one an order of magnitude larger
 on every axis, showing how fast the address space grows as a corpus names
 more actors, actions, objects, places, time bins, and mechanisms. No
@@ -664,7 +712,8 @@ one. The cross-kind independence bonus is
 rewarding corroboration from two different kinds over two clusters of one
 kind. The pooled supporting and refuting weights are
 $S_{+} = X(K_{+}) \sum_{\kappa} D(n_{\mathrm{eff},\kappa}) \sum_{i \in
-\kappa} s_i$ and $S_{-}$ symmetrically for refuting evidence.
+\kappa} s_i$ and $S_{-}$ symmetrically for refuting evidence, with each
+$s_i$ the per-cluster evidence weight of \Cref{eq:cluster-weight}.
 
 \begin{definition}[Opinion from evidence sums]
 \label{def:opinion-fusion}
@@ -681,7 +730,9 @@ $r = S_{+}$ and $s = S_{-}$ (each already carrying its own
 \end{equation}
 where $L_{\mathrm{prior}}(h) = \sum_{\mathrm{slots}} \ell(c)$ sums the
 \term{prior-logit}{prior logit} of every slot's concept, per
-\Cref{def:slot}. Lean counterpart: \texttt{Bucket.Belief.fuse}.
+\Cref{def:slot}. Lean counterpart: \texttt{Bucket.Belief.fromEvidence},
+proved over its \texttt{Rat} counterpart \texttt{fromEvidenceQ}
+(\Cref{lem:opinion-sum}).
 \end{definition}
 
 \begin{lemma}[Normalization and probability bound]
@@ -703,7 +754,8 @@ $P(h) \in [0,1]$.
 \end{proof}
 
 At zero evidence, $r = s = 0$, so $b = d = 0$ and $u = 1$ by
-\Cref{eq:opinion-sum}, giving $P(h) = a(h)$ exactly: a hypothesis nobody
+\Cref{eq:opinion-sum}, giving $P(h) = a(h)$ exactly (Lean:
+\texttt{Bucket.Belief.u\_eq\_one\_of\_no\_evidence}): a hypothesis nobody
 has examined reads at its prior, with a stated uncertainty mass of $1$,
 rather than at an unmarked point estimate indistinguishable from a
 refuted one. Ranking stays compatible with the corpus's existing
@@ -717,6 +769,18 @@ no date claim is tested), the ranking score
 is a read-out of the opinion rather than the primitive it is built from,
 so the tournament of \Cref{sec:engine-loop} keeps working on it
 unmodified.
+
+\emph{Contradiction falls out on its own.} The corpus's original
+truth-score formula subtracted a separate contradiction penalty
+$\Omega_{\mathrm{contradiction}} = \mu \cdot \min(D(n_{+}) S_{+},
+D(n_{-}) S_{-})$, with $\mu = 0.5$, whenever both sides carried real
+weight. \Cref{eq:opinion-sum} needs no such term: when $b(h)$ and $d(h)$
+sit close together, $P(h)$ sits close to $a(h)$, since $b = d$ gives
+$P = (1-u)/2 + a u$, which reduces to $a$ as $u \to 1$ and to $1/2$ only
+when $a = 1/2$. A contested hypothesis settles at the prior it carries
+instead of landing at even odds by default, so $\mu$ has no counterpart
+in \Cref{eq:opinion-sum} or \Cref{eq:rank}: the opinion model absorbs
+what $\Omega_{\mathrm{contradiction}}$ did.
 
 \Cref{fig:opinion-triangle} plots the opinion triangle, and
 \Cref{fig:evidence-accumulation} plots $b$, $d$, $u$, and $P$ against a
@@ -855,9 +919,9 @@ with weights $w_1, \ldots, w_5$ starting uniform and calibrated against
 the holdout runs of \Cref{sec:calibration}. Since new evidence always
 adds to $r$ or $s$ and shrinks $u$ by \Cref{eq:opinion-sum}, $\Delta
 u_{\mathrm{expected}}$ is well defined for every gap without running the
-retrieval it names; the active-learning queue this score orders is the
-mirror of \Cref{sec:calibration}'s founder-review queue, one ranks what
-to judge, the other ranks what to go look at next.
+retrieval it names; the active-learning queue \Cref{eq:voi}'s score
+orders is the mirror of \Cref{sec:calibration}'s founder-review queue,
+one ranks what to judge, the other ranks what to go look at next.
 
 Every slot's vocabulary (\Cref{def:slot}) carries a reserved
 \term{other-slot}{\texttt{OTHER}} concept with a Dirichlet-process
@@ -1023,8 +1087,9 @@ recomputes exactly and Elo reseeds from it, keeping the projected
 probability authoritative over the tournament's running score rather than
 the reverse.
 
-\emph{Evolver.} \Cref{def:neighbors}'s one-slot mutation is the evolver's
-smallest move; it also recombines two hypotheses sharing a cluster into
+\emph{Evolver.} \Cref{def:neighbors}'s one-slot mutation
+(\Cref{eq:neighbors}) is the evolver's smallest move; it also recombines
+two hypotheses sharing a cluster into
 one with a merged claim set, splits an overbroad hypothesis into narrower
 dated children, and generalizes a set of narrow siblings that agree into
 one broader periodization claim.
@@ -1089,11 +1154,13 @@ caution the Hist-LLM benchmark raises about a model's memorized sense of
 a period from training data (\Cref{sec:related}).
 
 Both Brier scores feed a recalibration pass over the tunable constants
-$\lambda$ (\Cref{eq:diminishing}), $\mu$ (the corpus's original
-contradiction penalty, unchanged by the opinion model), and $W$
-(\Cref{eq:opinion-sum}), fit by grid search and re-run on a schedule as
-the corpus grows. Each recalibration carries a run id, the same audit
-pattern the corpus's mirror jobs already write.
+$\lambda$ (\Cref{eq:diminishing}) and $W$ (\Cref{eq:opinion-sum}), fit by
+grid search and re-run on a schedule as the corpus grows. The corpus's
+original contradiction penalty $\mu$ takes no recalibration pass of its
+own: \Cref{sec:belief} folds contradiction into the opinion model
+directly rather than carrying $\mu$ forward as a separate term. Each
+recalibration carries a run id, the same audit pattern the corpus's
+mirror jobs already write.
 
 Once the discovery-date holdout has run on a well-dated timeline, the
 period holdout runs as a frozen campaign against a contested period,
@@ -1144,12 +1211,21 @@ itself, and a model whose training corpus underrepresents a tradition
 still generates fewer hypotheses favoring that tradition's reading before
 any evidence is read.
 
-The constants $W = 2$, $\lambda = 0.5$, and $\mu = 0.5$ carried through
-\Cref{eq:opinion-sum}, \Cref{eq:diminishing}, and \Cref{eq:rank} are
-uncalibrated: they are the values the corpus's existing truth-score
-formula already used, kept fixed through the move to an opinion model
-rather than refit to it. \Cref{sec:calibration}'s recalibration pass is
-designed but has not run.
+The constants $W = 2$ (\Cref{eq:opinion-sum}) and $\lambda = 0.5$
+(\Cref{eq:diminishing}) are uncalibrated: they are the values the
+corpus's existing truth-score formula already used, kept fixed through
+the move to an opinion model rather than refit to it.
+\Cref{sec:calibration}'s recalibration pass is designed but has not run.
+
+The reserved \term{other-slot}{\texttt{OTHER}} concept
+(\Cref{eq:new-concept}) gives a value outside the closed vocabulary an
+address and a share of the probability mass, without naming that value:
+a hypothesis routed through \texttt{OTHER} carries a base rate and a
+place in the frontier, leaving the specific actor, action, or mechanism
+a reader would need to go test it unnamed. Every slot's vocabulary stays
+closed at the concept level even though its reserved mass is open;
+naming what \texttt{OTHER} stands for on a given run stays a curation
+step outside \Cref{eq:new-concept} itself.
 
 Detectability (\Cref{def:detect}) and gap nodes (\Cref{def:gap}) have no
 Lean counterpart in this pass; \Cref{app:lean} names both as pending
@@ -1157,6 +1233,23 @@ rather than proving a stand-in for either. The detectability table itself
 is stated as illustrative in \Cref{fig:detectability}: its real values
 are a claim about the corpus, one new excavation or archive access can
 revise.
+
+Two gaps sit inside the Lean listings themselves (\Cref{app:lean}).
+First, \texttt{Bucket.Belief.Opinion} is the \texttt{Float} shape the
+running system computes with, and every proved claim, \Cref{lem:opinion-sum}
+included, is proved instead over \texttt{Bucket.Belief.OpinionQ}'s
+\texttt{Rat} counterpart, since \texttt{Float} carries no Lean order
+structure a proof can use; nothing in this pass bounds how far a running
+\texttt{Float} computation can drift from its \texttt{Rat} proof. Second,
+\texttt{Bucket.Address.encode\_injective}, the Lean statement of
+\Cref{lem:injective}'s general injectivity claim, is left \texttt{sorry}:
+the pen-and-paper proof in \Cref{sec:combinatorics} stands on the
+fundamental theorem of arithmetic, and mechanizing that argument for an
+arbitrary vocabulary size needs Mathlib's \texttt{Nat.factorization} or
+an equivalent unique-factorization development, unavailable in this
+Mathlib-free build. Only the bounded case,
+\texttt{encode\_injective\_bounded}, is proved in full, by exhaustive
+computation over tuples with every slot index below $2$.
 
 The Younger Dryas and Neolithic Anatolia candidates of
 \Cref{tab:pilot-periods} are both contested periods by design, chosen to
@@ -1184,9 +1277,9 @@ Every definition in \Cref{sec:prelim} names a Lean counterpart under
 \texttt{lean/Bucket/}, a minimal Lake project (\texttt{lean-toolchain}
 pinned to \texttt{leanprover/lean4:v4.33.1}, one \texttt{lean\_lib}
 target) built by \texttt{make lean}, mirroring
-\texttt{papers/template/lean/}. The six files below are being written in
-parallel to this paper by a companion pass; each listing is guarded so
-this build compiles whether or not that file has landed yet.
+\texttt{papers/template/lean/}. All six files below are on disk and
+\texttt{lake build} passes over every one of them; the guard on each
+listing below is a defensive fallback rather than a live condition.
 
 \paragraph{Bucket.Timeline} (\Cref{def:interval}, \Cref{def:allen}).
 \bucketlean{lean-snapshots/Timeline.lean}{lean/Bucket/Timeline.lean}{Bucket.Timeline.Interval, Bucket.Timeline.AllenRelation}
@@ -1201,21 +1294,48 @@ this build compiles whether or not that file has landed yet.
 \bucketlean{lean-snapshots/Address.lean}{lean/Bucket/Address.lean}{Bucket.Address.encode}
 
 \paragraph{Bucket.Belief} (\Cref{def:opinion}, \Cref{def:projection},
-\Cref{def:stemma}, \Cref{def:opinion-fusion}, \Cref{lem:opinion-sum}).
-\bucketlean{lean-snapshots/Belief.lean}{lean/Bucket/Belief.lean}{Bucket.Belief.Opinion, Bucket.Belief.project, Bucket.Belief.fuse}
+\Cref{def:opinion-fusion}, \Cref{lem:opinion-sum}).
+\bucketlean{lean-snapshots/Belief.lean}{lean/Bucket/Belief.lean}{Bucket.Belief.Opinion, Bucket.Belief.fromEvidence, Bucket.Belief.project}
 
 \paragraph{Bucket.Unknowns} (\Cref{def:missingmass}).
 \bucketlean{lean-snapshots/Unknowns.lean}{lean/Bucket/Unknowns.lean}{Bucket.Unknowns.missingMass}
 
-\texttt{Bucket.Address.encode}'s companion decode function, and
-\Cref{lem:injective}'s proof of injectivity, are the two results this
-paper needs machine-checked rather than derived by hand; every other
-listing above formalizes a definition with no accompanying lemma to
-discharge. Detectability (\Cref{def:detect}) and gap nodes
-(\Cref{def:gap}) carry no listing here, per \Cref{sec:limitations}, and
-no \texttt{lake build} transcript is captured in this appendix: the
-build has not run, because the files it would build do not yet exist at
-the time of this pass.
+\texttt{Bucket.Address.encode\_injective}, the Lean statement of
+\Cref{lem:injective}'s general injectivity claim, is the one result this
+paper needs machine-checked and leaves \texttt{sorry}, per
+\Cref{sec:limitations}; \texttt{Bucket.Belief} discharges
+\Cref{lem:opinion-sum} in full, as \texttt{sum\_eq\_one} and
+\texttt{project\_mem\_unit} over the \texttt{Rat}-typed
+\texttt{fromEvidenceQ}, and \texttt{Bucket.Timeline} discharges seven
+further theorems characterizing \texttt{relate}, none of them stated as
+a lemma in the body. \Cref{def:stemma}'s effective count and
+\Cref{def:detect}'s detectability and \Cref{def:gap}'s gap nodes carry
+no listing here, per \Cref{sec:limitations}.
+
+The verbatim block below is \texttt{lake build}'s own output for this
+project, run from \texttt{lean/} with \texttt{PATH} carrying
+\texttt{\textasciitilde/.elan/bin} (Lean 4.33.1, Lake 5.0.0), captured
+for this pass. Lake marks each job with a Unicode check mark or warning
+triangle; this build has no Unicode math font either (the same gap
+\texttt{make\_lean\_snapshots.py}'s header documents), so those two
+glyphs are transliterated to \texttt{OK} and \texttt{WARN} below and
+nothing else in the line is altered:
+
+% voice-ignore-next 10
+\begin{verbatim}
+OK [2/9] Built Bucket.Concept (297ms)
+OK [3/9] Built Bucket.Belief (354ms)
+OK [4/9] Built Bucket.Unknowns (314ms)
+WARN [5/9] Built Bucket.Address (1.7s)
+warning: Bucket/Address.lean:57:8: declaration uses `sorry`
+OK [6/9] Built Bucket.Timeline (12s)
+OK [7/9] Built Bucket.Hypothesis (223ms)
+OK [8/9] Built Bucket (150ms)
+Build completed successfully (9 jobs).
+\end{verbatim}
+
+The one warning is \Cref{lem:injective}'s open item: every other module
+builds with no warning.
 
 \section{Bead list}
 \label{app:beads}
