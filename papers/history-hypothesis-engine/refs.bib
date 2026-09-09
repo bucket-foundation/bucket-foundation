@@ -1,0 +1,108 @@
+% papers/history-hypothesis-engine/refs.bib
+%
+% Paper-local citations for "A Hypothesis Engine over History." Entries
+% shared with other Bucket papers live in papers/bib/common.bib and are
+% pulled in with a second \addbibresource in main.tex; this file holds only
+% entries specific to this paper. Every entry below was checked against
+% doi.org or arxiv.org on 2026-09-09 (see papers/PAPER-STANDARDS.md for the
+% verification rule); the curl status for each is recorded next to it.
+
+% Robin (FutureHouse): the multi-agent literature-to-hypothesis-to-experiment
+% system cited in the related work survey. Confirmed via export.arxiv.org's
+% API: id_list=2505.13400 returns this exact title and author list.
+@misc{ghareeb2025robin,
+  author        = {Ghareeb, Ali Essam and Chang, Benjamin and Mitchener,
+                    Ludovico and Yiu, Angela and Szostkiewicz, Caralyn J.
+                    and Laurent, Jon M. and Razzak, Muhammed T. and White,
+                    Andrew D. and Hinks, Michaela M. and Rodriques, Samuel G.},
+  title         = {Robin: a multi-agent system for automating scientific discovery},
+  year          = {2025},
+  eprint        = {2505.13400},
+  eprinttype    = {arxiv},
+  archiveprefix = {arXiv},
+}
+
+% MC-NEST: Monte Carlo Self-Refine Tree with an explicit explore/exploit
+% control, cited for the ranking-tournament related work. Confirmed via
+% export.arxiv.org's API: search_query=ti:"MC-NEST" returns exactly this
+% one entry, id 2411.15645.
+@misc{rabby2024mcnest,
+  author        = {Rabby, Gollam and Keya, Farhana and Auer, S{\"o}ren},
+  title         = {{MC-NEST}: enhancing mathematical reasoning in large language models leveraging a {M}onte {C}arlo self-refine tree}, % voice-ignore-line: exact published title, quoted verbatim, never reworded.
+  year          = {2024},
+  eprint        = {2411.15645},
+  eprinttype    = {arxiv},
+  archiveprefix = {arXiv},
+}
+
+% Seshat: the coded-variable historical databank cited for computational
+% history related work. Confirmed via doi.org: 10.21237/C7clio6127917
+% resolves (HTTP 302) and Crossref's metadata for that DOI matches the
+% title, author list, and venue below.
+@article{turchin2015seshat,
+  author       = {Turchin, Peter and Brennan, Rob and Currie, Thomas and
+                   Feeney, Kevin and Francois, Pieter and Hoyer, Daniel and
+                   Manning, Joseph and Marciniak, Arkadiusz and Mullins,
+                   Daniel and Palmisano, Alessio and Peregrine, Peter and
+                   Turner, Edward A. L. and Whitehouse, Harvey},
+  title        = {Seshat: the global history databank},
+  journaltitle = {Cliodynamics: The Journal of Quantitative History and
+                   Cultural Evolution},
+  volume       = {6},
+  number       = {1},
+  year         = {2015},
+  doi          = {10.21237/C7clio6127917},
+}
+
+% Chao1 species-richness estimator. The exact formula this paper uses,
+% S_est = S_obs + f1^2/(2 f2), traces to Chao (1984), Scandinavian Journal
+% of Statistics, which papers/bib/common.bib already documents as checked
+% and dropped for lacking a resolvable DOI (pre-DOI-era journal, no
+% Crossref record). Two verifiable stand-ins are cited in its place: Chao's
+% own capture-recapture estimator for sparse data, the same author's
+% closest DOI-bearing primary source, and Colwell and Coddington's review,
+% which restates the S_obs + f1^2/(2 f2) form directly as "Chao1" as a
+% citable secondary source. Confirmed via doi.org: both DOIs below resolve
+% (HTTP 302), and Crossref's metadata for each matches the entry.
+@article{chao1987estimating,
+  author       = {Chao, Anne},
+  title        = {Estimating the population size for capture-recapture data with unequal catchability},
+  journaltitle = {Biometrics},
+  volume       = {43},
+  number       = {4},
+  pages        = {783--791},
+  year         = {1987},
+  doi          = {10.2307/2531532},
+}
+
+@article{colwell1994estimating,
+  author       = {Colwell, Robert K. and Coddington, Jonathan A.},
+  title        = {Estimating terrestrial biodiversity through extrapolation},
+  journaltitle = {Philosophical Transactions of the Royal Society of London.
+                   Series B: Biological Sciences},
+  volume       = {345},
+  number       = {1311},
+  pages        = {101--118},
+  year         = {1994},
+  doi          = {10.1098/rstb.1994.0091},
+}
+
+% Two candidates were checked and dropped, same rule as common.bib:
+%
+% - Hist-LLM / Seshat historical-knowledge benchmark (NeurIPS 2024 Datasets
+%   and Benchmarks Track): common.bib already records this drop (Oxford ORA
+%   ARK identifier and an ACM DL catalog number, neither a resolvable DOI;
+%   no arXiv preprint found). The 46-percent recall figure this paper cites
+%   in Section 10 and the Limitations traces to that benchmark; it is
+%   attributed in-text to the intake specification that reports it
+%   (IDEAL-STATE-AND-UNKNOWNS-SPEC.md \S7) rather than to an unverifiable
+%   bibliography entry.
+% - gianyrox/quantum-algorithm-discovery (the sibling engine
+%   "scientific-discovery," v0.11): checked via the GitHub API
+%   (api.github.com/repos/gianyrox/quantum-algorithm-discovery, HTTP 200,
+%   confirms the repository exists and is public) and by requesting
+%   CITATION.cff (HTTP 404, no file) and README.md (no "doi" or "zenodo"
+%   string) from the repository's default branch. No DOI, no arXiv id, no
+%   Zenodo archive. Cited in-text as a software repository by URL only,
+%   per papers/PAPER-STANDARDS.md's citation rule: an entry with neither a
+%   DOI nor an arXiv id does not go in the bibliography.

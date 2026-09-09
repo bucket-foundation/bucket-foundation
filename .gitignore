@@ -131,3 +131,18 @@ learning/research/ux/captures/**/*.mp4
 _intake/health-longevity-fitness/reports/viz/_struct/
 _intake/health-longevity-fitness/reports/viz/_audit_thumbs/
 _intake/health-longevity-fitness/reports/viz/_contact-sheets/
+
+# LaTeX and Lean build artifacts (papers/)
+papers/**/*.aux
+papers/**/*.bbl
+papers/**/*.bcf
+papers/**/*.blg
+papers/**/*.log
+papers/**/*.out
+papers/**/*.run.xml
+papers/**/*.toc
+papers/**/*.fls
+papers/**/*.fdb_latexmk
+papers/**/*.lof
+papers/**/*.lot
+papers/**/.lake/

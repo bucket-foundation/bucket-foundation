@@ -1,0 +1,226 @@
+% papers/history-hypothesis-engine/glossary.tex
+%
+% Every \glossentry declared here backs a \term{key}{...} call in main.tex.
+% \input this file from the preamble, before \begin{document}, per
+% papers/PAPER-STANDARDS.md's rule that a \glossentry can be declared
+% anywhere before \printglossaryentry runs.
+%
+% None of these terms has a canon page on bucket.foundation yet: the engine
+% they name is a design that has not shipped as a feature of the live
+% site. Every URL
+% below points instead at the repository path and section of the intake
+% specification that defines the term, per this paper's brief ("a link to
+% its canon definition on bucket.foundation when one exists, else the repo
+% path of the spec section that defines it").
+
+\newcommand{\bktrepo}{https://github.com/bucket-foundation/bucket-foundation/blob/main}
+
+\glossentry{astronomical-year}{astronomical year axis}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#1-timeline-data-structure}%
+  {The engine's time axis: a signed integer line with year 0 present and no
+   gap between 1~BCE and 1~CE, unlike the historical BC/AD count. Every
+   calendar system maps onto this axis through a converter; see
+   \Cref{def:interval}.}
+
+\glossentry{interval-uncertainty}{interval with uncertainty}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#1-timeline-data-structure}%
+  {A dated interval on the astronomical-year axis carrying a distribution
+   over its start and end, of type point, uniform, normal, or an OxCal
+   posterior with its sampled density curve. \Cref{def:interval}.}
+
+\glossentry{allen-relation}{Allen relation}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#1-timeline-data-structure}%
+  {One of the thirteen qualitative relations between two intervals on a
+   time axis (before, meets, overlaps, starts, finishes, during, equals,
+   and their inverses) \autocite{allen1983interval}. The engine's only
+   vocabulary for ordering a pair of dated hypotheses. \Cref{def:allen}.}
+
+\glossentry{concept-slot}{concept and slot}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#2-concept-ontology}%
+  {A slot (ACTOR, ACTION, OBJECT, PLACE, TIME\_BIN, MECHANISM, or RELATION)
+   names one axis of a hypothesis; a concept is one member of a slot's
+   vocabulary, carrying its own editable prior log-odds. \Cref{def:slot}.}
+
+\glossentry{prior-logit}{prior logit}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#2-concept-ontology}%
+  {The log-odds a concept node carries before any hypothesis built from it
+   sees evidence, a stored, editable number rather than a constant buried
+   in code. \Cref{def:slot}.}
+
+\glossentry{other-slot}{open-world slot}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#6-unknown-unknowns}%
+  {A reserved \texttt{OTHER} concept in every slot's vocabulary, carrying a
+   Dirichlet-process new-concept probability mass so a hypothesis can name
+   an actor, action, or mechanism the ontology has not yet added.
+   \Cref{sec:unknowns}.}
+
+\glossentry{placement-hypothesis}{placement hypothesis}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#3-the-combinatorial-function}%
+  {A hypothesis of the form "event $E$ happened in interval $T$," one point
+   in the product space $H = \text{ACTOR} \times \text{ACTION} \times
+   \text{OBJECT} \times \text{PLACE} \times \text{TIME\_BIN} \times
+   \text{MECHANISM}$. \Cref{def:placement}.}
+
+\glossentry{sequence-hypothesis}{sequence hypothesis}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#3-the-combinatorial-function}%
+  {A hypothesis of the form "$E_1$ then $E_2$," one point in $H_{\mathrm{seq}}
+   = H \times \text{ALLEN\_RELATION} \times H$: two placements joined by one
+   of the thirteen Allen relations. \Cref{def:sequence}.}
+
+\glossentry{address}{hypothesis address}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#3-the-combinatorial-function}%
+  {The prime-factorization identifier of a hypothesis: each slot's
+   vocabulary index plus one becomes the exponent of a fixed prime, and the
+   product is the hypothesis's integer ID, decodable by trial division
+   alone. \Cref{def:address}.}
+
+\glossentry{evidence-kind}{evidence kind}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#4-truth-score-as-additive-prime-knowledge}%
+  {One of nine independent modalities evidence can carry: material or
+   archaeological, textual or documentary, genetic, linguistic, astronomical
+   or radiometric, geological or climate, oral tradition or myth,
+   iconographic, or model-based inference. \Cref{def:evidence}.}
+
+\glossentry{evidence-tier}{evidence tier}%
+  {\bktrepo/_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md\#2-truth-score-model}%
+  {A source-reliability band, T1 through T6, mapped from a source-quality
+   score and carrying a fixed weight $k(\text{tier})$ from $2.0$ down to
+   $0.1$, the maximum log-odds swing one independent piece of evidence at
+   that tier contributes. \Cref{def:evidence}.}
+
+\glossentry{evidence-span}{evidence span}%
+  {\bktrepo/_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md\#3-hypothesis-data-model}%
+  {The character range and named field (\texttt{who}, \texttt{what},
+   \texttt{when}, \texttt{where}, \texttt{why}, or \texttt{causal\_direction})
+   an evidence item supports, grounding a claim at the field level rather
+   than the hypothesis as a whole. \Cref{def:evidence}.}
+
+\glossentry{opinion}{opinion}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#2-belief-as-opinion}%
+  {A subjective-logic tuple $\omega = (b, d, u, a)$, belief, disbelief,
+   uncertainty mass, and base rate, with $b + d + u = 1$
+   \autocite{josang2016subjective}, replacing a single posterior score.
+   \Cref{def:opinion}.}
+
+\glossentry{projected-probability}{projected probability}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#2-belief-as-opinion}%
+  {The scalar read-out $P(h) = b(h) + a(h) \cdot u(h)$ of an opinion,
+   collapsing belief, disbelief, and uncertainty mass into one number for
+   ranking while the opinion itself keeps the three apart.
+   \Cref{def:projection}.}
+
+\glossentry{base-rate}{base rate}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#2-belief-as-opinion}%
+  {An opinion's resting point under total ignorance, $a(h) =
+   \operatorname{sigmoid}(L_{\mathrm{prior}}(h))$: what $P(h)$ equals when
+   $b = d = 0$ and $u = 1$. \Cref{def:opinion}.}
+
+\glossentry{stemma}{stemma}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#3-source-dependence}%
+  {A dependency graph over evidence sources, one node per source and a
+   directed \texttt{copies\_from} or \texttt{shares\_archetype\_with} edge
+   with a copy-confidence weight, borrowed from manuscript philology.
+   \Cref{def:stemma}.}
+
+\glossentry{effective-count}{effective count}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#3-source-dependence}%
+  {$n_{\mathrm{eff}}$, the count of connected components in a stemma after
+   pruning low-confidence edges, replacing the raw count of evidence
+   clusters everywhere a diminishing-returns discount is applied.
+   \Cref{def:stemma}.}
+
+\glossentry{detectability}{detectability}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#4-preservation-and-detectability}%
+  {$\delta(\mathrm{period}, \mathrm{medium}, \mathrm{region}) \in [0,1]$,
+   the probability that evidence of a true hypothesis would have survived
+   and been found in that period, medium, and region; scales absence
+   evidence rather than treating it at a flat weight. \Cref{def:detect}.}
+
+\glossentry{gap-node}{gap node}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#5-known-unknowns-as-gap-nodes}%
+  {A first-class node for something the corpus has not yet looked at, an
+   unexcavated site, an untranslated text, an undated stratum, an unread
+   archive, naming the hypotheses it would move and its expected value of
+   information. \Cref{def:gap}.}
+
+\glossentry{voi-score}{value of information}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#5-known-unknowns-as-gap-nodes}%
+  {A gap node's ranking score, folding expected uncertainty reduction,
+   novelty, coverage gap, historical gap, and provider disagreement into
+   one number that orders the active-learning queue. \Cref{def:gap}.}
+
+\glossentry{missing-mass}{missing mass}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#6-unknown-unknowns}%
+  {The Good-Turing estimate $f_1/N$ of the unseen share of the hypothesis
+   space, where $f_1$ is the count of hypotheses observed in exactly one
+   generation run and $N$ is the total observed across runs.
+   \Cref{def:missingmass}.}
+
+\glossentry{chao1}{Chao1 estimator}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#6-unknown-unknowns}%
+  {The richness estimator $S_{\mathrm{est}} = S_{\mathrm{obs}} +
+   f_1^2/(2f_2)$, sizing the total hypothesis or evidence count from how
+   many items were seen exactly once or twice across repeated runs
+   \autocite{colwell1994estimating,chao1987estimating}. \Cref{def:missingmass}.}
+
+\glossentry{coverage-share}{coverage share}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#8-coverage-claim}%
+  {The fraction $\mathrm{hypotheses\_generated\_and\_scored}(\mathrm{bin}) /
+   S_{\mathrm{est}}(\mathrm{bin})$ reported with a confidence interval per
+   time bin, replacing the claim that generation produces the full set.
+   \Cref{sec:unknowns}.}
+
+\glossentry{surprise-event}{surprise event}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#6-unknown-unknowns}%
+  {A logged event when new evidence matches no hypothesis address the
+   generator has materialized at any slot-value combination; its rate,
+   tracked per period, is a health signal on whether the ontology has
+   fallen behind the evidence. \Cref{sec:unknowns}.}
+
+\glossentry{prior-profile-robustness}{prior-profile robustness}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#6-unknown-unknowns}%
+  {$1$ minus the spread of $P(h)$ across four prior profiles, consensus,
+   skeptic, fringe, and uniform; a hypothesis whose rank flips depending on
+   which profile scores it earns less trust than one that does not.
+   \Cref{sec:unknowns}.}
+
+\glossentry{target-blind}{target-blind generation}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#7-the-model-accounting-for-itself}%
+  {The rule that hypothesis generation stays complete and scored the same
+   way regardless of which target reading, orthodox, fringe, or any
+   consensus status between, a hypothesis would end up supporting; the
+   history engine's own name for QAD's quantum-blind rule.
+   \Cref{sec:engine-loop}.}
+
+\glossentry{ranking-tournament}{ranking tournament}%
+  {\bktrepo/_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md\#5-hypothesis-generation-loop}%
+  {The Elo-seeded, pairwise-debate ranking pass over the generated
+   frontier, seeded from each hypothesis's posterior and recomputed against
+   the belief model every fixed number of rounds. \Cref{sec:engine-loop}.}
+
+\glossentry{self-report}{self-report}%
+  {\bktrepo/_intake/hypothesis-engine/IDEAL-STATE-AND-UNKNOWNS-SPEC.md\#7-the-model-accounting-for-itself}%
+  {A corpus artifact every generation run emits: its assumptions, which
+   slot vocabularies it judged incomplete, its missing-mass estimate, and
+   its calibration score against the holdout tests.
+   \Cref{sec:engine-loop}.}
+
+\glossentry{retrieval-envelope}{retrieval envelope}%
+  {\bktrepo/_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md\#8-implementation-plan}%
+  {An immutable record of one fetch, linked to a \texttt{RetrievalRun} id,
+   so a later re-fetch cannot silently change what an earlier run found
+   without a new run id appearing in the provenance chain.
+   \Cref{sec:engine-loop}.}
+
+\glossentry{neighbor-mutation}{neighbor mutation}%
+  {\bktrepo/_intake/hypothesis-engine/TIMELINE-AND-COMBINATORICS-SPEC.md\#3-the-combinatorial-function}%
+  {The evolver's one-slot mutation move: from a hypothesis $h$, hold every
+   slot fixed but one and range that slot over its vocabulary, yielding
+   every hypothesis address one edit away from $h$. \Cref{def:neighbors}.}
+
+\glossentry{founder-review}{founder review}%
+  {\bktrepo/_intake/hypothesis-engine/HISTORY-HYPOTHESIS-ENGINE-SPEC.md\#7-human-review-budget}%
+  {A weekly-budgeted queue of hypotheses whose posterior falls inside a
+   contested band or that touch a high-impact claim; a founder verdict
+   enters as one evidence kind at the top tier, folded by fusion rather
+   than overriding it. \Cref{sec:calibration}.}
