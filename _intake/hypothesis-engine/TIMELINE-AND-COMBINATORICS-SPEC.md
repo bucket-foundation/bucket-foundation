@@ -61,6 +61,8 @@ era-holocene
 
 A period can carry more than one `parent` when two chronologies frame it differently: `parent` is one pointer per framing, per the existing rule in engine spec §4, so a period node can sit under two eras at once.
 
+**Pulled from QAD v0.11:** an `oxcal-posterior` distribution's `pdf_samples` and any `dating_claim` above trace back to the retrieval envelope that supplied the radiocarbon date or documentary source, via the `RetrievalRun` id from engine spec §8's `retrieval.py`. A period's `date_posterior` is only as good as the dated observations feeding its OxCal phase model; linking each observation to an immutable envelope means a later re-fetch cannot silently change a phase model's inputs without a new `run_id` showing up in the model's provenance.
+
 ## 2. Concept Ontology
 
 A hypothesis is a slot frame: ACTOR, ACTION, OBJECT, PLACE, TIME, MECHANISM, RELATION. The first six fill a placement hypothesis; RELATION fills a sequence hypothesis only, drawn from the 13 relations in §1.
@@ -168,6 +170,8 @@ X(K) = 1 + 0.3 . sum_pairs kind_distance(pair)
 
 reuses the branch-distance coefficient directly.
 
+**Pulled from QAD v0.11:** `e_i` in the sum above stops being one blended scalar. Each evidence item carries a small vector of separate similarity views instead: `e_i_semantic` (embedding cosine), `e_i_lexical` (fuzzy string match), `e_i_motif` (shared-motif count), and any later view a new extractor contributes, the way `scientific-discovery` keeps task-family, math, operator, and lexical views apart rather than folding structural similarity into one number (`STRUCTURE_DISCOVERY_V0.10.md`). Engine spec §2's original formula, `e_i = min(0.99, 0.40·cos + 0.25·fuz + 0.10·motif)`, becomes one named view, `e_i_blended_A`, kept exactly as written so every correlation already scored under it keeps its stored `confidence`. `k(tier_i) . e_i` in the sum above reads `k(tier_i) . e_i_blended_A` until a view-aggregation rule (mean, max, or a learned weight per view) is chosen and versioned; that choice is scoped to `bkt-hte-multiview-evidence` below rather than decided here.
+
 `L_prior(h)` is new for hypotheses: the sum of `prior_logit` on every slot's concept node, ACTOR through MECHANISM. A hypothesis with no evidence at all still gets `tau(h) = sigmoid(L_prior(h))`, computed the moment its address exists. "Extraterrestrials built a shrine at Çatalhöyük in 7000 BCE" needs no citation to sit in the frontier at a near-zero score. It needs a slot tuple.
 
 **Worked example.** Fix ACTION=built, OBJECT=çatalhöyük-shrine, PLACE=çatalhöyük, TIME_BIN=-7000-century, and vary ACTOR and MECHANISM. `neolithic-farmers-anatolia` (prior_logit 2.0) paired with `organized-human-labor` (0.5) gives `L_prior = 2.5`, `tau0 = sigmoid(2.5) ~ 0.924`. `extraterrestrials` (-4.0) paired with `unknown-technology` (-2.5) gives `L_prior = -6.5`, `tau0 = sigmoid(-6.5) ~ 0.0015`. Both hypotheses already exist. Neither has been read against a single source.
@@ -220,3 +224,4 @@ These extend engine spec §8's list. `bkt-hte-combinatorial-generator` supersede
 4. **bkt-hte-combinatorial-generator**: Rewrite `generator.py`'s `enumerate()` to draw ACTOR/ACTION/MECHANISM from the full concept ontology on every pass, evidence or none, replacing the cluster-bounded loop and its `has_min_evidence` gate.
 5. **bkt-hte-kind-truth-score**: Extend `truth_score.py` to group evidence by knowledge kind, apply the cross-kind independence bonus, and compute `L_prior` from slot concept priors for the zero-evidence case.
 6. **bkt-hte-timeline-views**: Build the per-bin, per-event, and per-pair exporter and its JSON shape, with display-only pruning.
+7. **bkt-hte-multiview-evidence**: Split `e_i` into separate similarity views per §4, keep the engine spec §2 formula as the `e_i_blended_A` view, and version the view-aggregation rule.

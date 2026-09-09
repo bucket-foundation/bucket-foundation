@@ -119,6 +119,15 @@ A gap is a first-class node for something the corpus has not yet looked at: an u
 
 `expected_delta_u` estimates how much reading the gap would shrink `u(h)` for each affected hypothesis, since new evidence always adds to `r` or `s` and shrinks `u` by construction (§2). `decision_weight` runs higher for a hypothesis already inside the founder review band or flagged high-impact, reusing HISTORY §7's criteria. An active-learning loop ranks open gaps by `voi_score` and surfaces the top of that queue the way HISTORY §7 surfaces the top of the review queue: one ranks what to judge, the other ranks what to go look at next.
 
+**Pulled from QAD v0.11:** `voi_score` folds in the same five factors `scientific-discovery` combines for its own active-retrieval priority, uncertainty, recent novelty, coverage gap, historical gap, and provider disagreement (`COVERAGE_FEEDBACK_V0.10.md`), rather than resting on `expected_delta_u` and `decision_weight` alone.
+
+```
+voi_score(gap) = w1 . expected_delta_u + w2 . novelty(gap) + w3 . coverage_gap(gap.period_id)
+                + w4 . historical_gap(gap.period_id) + w5 . provider_disagreement(gap)
+```
+
+`novelty` and `coverage_gap` read off the same strata IDEAL-STATE §8 scores; `historical_gap` runs higher for a period with a wide coverage interval; `provider_disagreement` is a source-level signal, disagreement among independent retrieval sources about a fact within the gap's scope, distinct from the prior-profile spread §6d scores on a hypothesis. Weights `w1..w5` start uniform and calibrate against the holdout runs in HISTORY §6.
+
 ## 6. Unknown Unknowns
 
 **(a) Open-world slots.** Every slot vocabulary carries an `OTHER` concept with a reserved probability mass, sized by a Dirichlet-process new-concept probability:
@@ -160,6 +169,8 @@ The model's own trained-in sense of a period enters the system as one evidence k
 
 Founder signals get the identical treatment. A founder yes or no is one evidence kind, folded into `r` or `s` by the same fusion as any other cluster, with its own tracked calibration: whether a founder's past verdicts predicted later independent corroboration. It updates the pooled opinion. It never overrides it.
 
+**Pulled from QAD v0.11:** `RESEARCH_CHARTER.md`'s core rule, quantum relevance never biases corpus construction, generalizes to target-blind: generation stays complete and scored the same way regardless of which target reading, orthodox, fringe, or any `consensus_status` in between, a hypothesis would end up supporting. The unknown-unknown generator above already follows this rule by construction, proposing without scoring; the addition here makes the rule explicit and testable. A per-run self-report adds one line stating whether the generator's proposal rate for non-consensus ACTOR/MECHANISM values held steady against the run before it; a falling rate under stable evidence volume is the same health signal §6c's surprise-rate tracks, read for target-blindness instead of vocabulary drift.
+
 ## 8. Coverage Claim
 
 Replace "the full set is exactly this combinatorial enumeration" with a coverage estimate that states what it does not cover. For each time bin:
@@ -176,6 +187,8 @@ coverage_share, ci_low, ci_high, missing_mass_estimate
 
 alongside every bin in TIMELINE §5's per-bin view. A bin with a narrow, high coverage interval has been looked at closely; a bin with a wide, low one has not, and the gap-node queue in §5 is where that difference becomes something to go do.
 
+**Pulled from QAD v0.11:** a bin's `coverage_share` interval is not reported until the bin passes the three-part audited-saturation gate `COVERAGE_FEEDBACK_V0.10.md` runs before any stopping claim: the minimum number of generation iterations has run for that bin, recent normalized novelty has stayed below threshold, and the bin's coverage strata (period, tradition, evidence kind, rights tier) are stable. A bin that has not passed the gate reports `status: "generating"` in place of an interval, so an early, wide, and misleadingly confident-looking interval never appears before the search has run long enough to earn one.
+
 ## 9. Beads
 
 These extend HISTORY §8 and TIMELINE §6's lists. `bkt-hte-opinion-model` supersedes `bkt-hte-truth-score` and `bkt-hte-kind-truth-score`; the rest are additions.
@@ -183,8 +196,8 @@ These extend HISTORY §8 and TIMELINE §6's lists. `bkt-hte-opinion-model` super
 1. **bkt-hte-opinion-model**: Replace the sigmoid truth score with a subjective-logic opinion `(b, d, u, a)` and keep `L(h)` as its projected-probability read-out.
 2. **bkt-hte-stemma-dependence**: Build the source dependency graph and the `n_eff` discount, collapsing LLM-extracted claims that cite one underlying source.
 3. **bkt-hte-detectability-table**: Build the per-period, per-medium, per-region detectability table and scale absence evidence by it.
-4. **bkt-hte-gap-nodes**: Add the gap node type and the value-of-information-ranked active-learning queue.
+4. **bkt-hte-gap-nodes**: Add the gap node type and the value-of-information-ranked active-learning queue, `voi_score` folding in the five-factor active-retrieval priority from §5.
 5. **bkt-hte-open-world-slots**: Add an `OTHER` concept to every slot vocabulary with Dirichlet-process new-concept probability mass.
-6. **bkt-hte-missing-mass**: Build Good-Turing and Chao1 estimators over repeated generation runs and evidence discovery, feeding the coverage interval.
+6. **bkt-hte-missing-mass**: Build Good-Turing and Chao1 estimators over repeated generation runs and evidence discovery, gated behind the §8 audited-saturation check before a bin's coverage interval is reported.
 7. **bkt-hte-surprise-and-robustness**: Build the unknown-unknown surprise-rate tracker and the multi-prior-profile robustness score.
-8. **bkt-hte-self-accounting**: Add the unknown-unknown generator role, the preservation critic role, the per-run self-report, and the `model-prior` and founder evidence kinds with tracked reliability.
+8. **bkt-hte-self-accounting**: Add the unknown-unknown generator role, the preservation critic role, the per-run self-report, the target-blind generalization from §7, and the `model-prior` and founder evidence kinds with tracked reliability.

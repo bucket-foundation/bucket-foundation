@@ -129,6 +129,8 @@ A hypothesis extends the `claim` object (`ENTITY-MODEL.md` §5) with `claim_type
 
 `claims[]` is a set, capturing how several existing claims relate. `depends_on[]` and `conflicts_with[]` extend `counter_claims[]` with a directed edge for hypotheses that presuppose or exclude each other, the graph the evolver (§5) walks. `truth_score` is new and additive, layered above the per-evidence `confidence` fields systems A through D already write. `evidence[]` keeps the exact §5 shape (`kind`, `locator`, `source_node`, `rights_tier`, `quote`, `summary`, `supports`), so existing claim readers keep working.
 
+**Pulled from QAD v0.11:** each `evidence[]` entry adds an `evidence_span` field, `{"section": ..., "start_char": ..., "end_char": ..., "field": "who"|"what"|"when"|"where"|"why"|"causal_direction"}`, naming which hypothesis field the span supports rather than the hypothesis as a whole. `scientific-discovery`'s `EvidenceSpan` (`PROBLEM_EXTRACTION_V0.10.md`) grounds a `ProblemInstance` at this same per-field resolution; a hypothesis's `evidence[]` array grounded only at the claim level before this addition.
+
 ## 4. Timeline and Periods
 
 The engine partitions history into a `period` node, nested four levels deep: era, period, event, year. Each period shares the envelope from `ENTITY-MODEL.md` §1:
@@ -191,6 +193,8 @@ frontier = top_n(frontier, N_MAX_PER_CLUSTER)
 
 **Critic.** A rule-and-model pass rejects combinations the graph itself contradicts, a `who` not attested inside the proposed `when`, a `where` outside every tradition the `who` belongs to, before scoring.
 
+**Pulled from QAD v0.11:** the who/what/when/where/why enumeration above runs through a `ClaimExtractorEnsemble` instead of one fixed rule. The first member stays the existing embedding-fuzzy-motif rule extractor; later members can be a local or remote LLM extractor implementing the same protocol. Ensemble members disagreeing on a slot value is not resolved by majority vote inside the generator; each disagreement is recorded on a `HypothesisQualityReport` (completeness of the who/what/when/where/why tuple, evidence-span coverage per field) attached to the hypothesis before it enters the frontier, mirroring `scientific-discovery`'s `ProblemExtractorEnsemble` and `ProblemQualityReport` (`PROBLEM_EXTRACTION_V0.10.md`).
+
 **Ranking tournament.** Elo is seeded from the posterior, `Elo0 = 1500 + 400·logit(posterior)`, then updated by pairwise debate rounds as in the co-scientist tournament, ordering the frontier for review and for the evolver's pairing choices. Every fixed number of rounds, `truth_score` recomputes exactly from §2 and Elo reseeds from it, keeping the posterior authoritative.
 
 **Evolver.** Recombines two hypotheses sharing a cluster into one with a merged claim set, splits an overbroad hypothesis into narrower dated children, and generalizes a narrow hypothesis into a broader periodization claim once several narrow siblings agree.
@@ -208,6 +212,8 @@ Two holdout splits test whether a posterior predicts unseen evidence.
 **Period holdout.** Withhold every claim assigned to one period, generate hypotheses from the remaining periods only, then test the withheld period's real claims against the predicted who/what/when/where/why tuples for a match rate. This checks the engine against the claims graph for that period, the caution the Hist-LLM benchmark raises about a model's memorized sense of a period from training data.
 
 Both Brier scores feed a recalibration pass over §2's tunable constants (α, λ, μ), fit by grid search and re-run on a schedule as the corpus grows. Each recalibration carries a `run_id`, the same audit pattern `build-entity-graph.py` already writes.
+
+**Pulled from QAD v0.11:** both holdout splits run inside a named campaign instead of an ad hoc script call. A campaign fixes a frozen work set (the claims and correlations eligible for that run, sampled across explicit strata, period, tradition, evidence kind, rights tier) before generation starts, so the holdout sample is drawn the same way every recalibration. Extraction, scoring, and matching failures on the frozen set are recorded in the campaign's run log before any repair lands, the discipline `scientific-discovery`'s Campaign 001 runs against its 24 frozen works and eight sampling strata (`README.md`, `RESEARCH_CHARTER.md`). The first campaign, `hte-campaign-001`, is the vehicle for both holdout splits above.
 
 ## 7. Human Review Budget
 
@@ -233,16 +239,21 @@ New modules, under `tools/hypothesis-engine/`:
 - `holdout.py`, the §6 discovery-date and period holdout tests and the recalibration fit.
 - `periods.py`, the OxCal-style phase model over `sacred-history.json`'s timeline array, from §4.
 
+**Pulled from QAD v0.11:** a `retrieval.py` module persists every fetch the sacred-history mirror jobs make as an immutable envelope, linked to a `RetrievalRun` id, rather than letting a re-run overwrite what an earlier fetch found. Once a fetch routes through `x402-research-gateway` and parses as feed402, the envelope carries the gateway manifest fingerprint, protocol version, and citation/lineage counts the same way QAD's `feed402_envelope` table does (`GATEWAY_FIRST_V0.11.md`, `DATA_MODEL_V0.2.md`). Until that gateway path exists for history sources, `retrieval.py` still writes the envelope shape against the existing `sacred-history-runner.sh` fetch, so the provenance layer needs no rework when the gateway path lands.
+
 Beads:
 
 1. **bkt-hte-truth-score**: Implement the unified Bayesian truth-score module and wire systems A, B, C, and D into it as specified.
-2. **bkt-hte-hypothesis-schema**: Add the hypothesis claim type and JSON shape to ENTITY-MODEL.md and PHOTON-SPEC.md.
+2. **bkt-hte-hypothesis-schema**: Add the hypothesis claim type and JSON shape to ENTITY-MODEL.md and PHOTON-SPEC.md, including the per-field `evidence_span` addition in §3.
 3. **bkt-hte-period-model**: Add the period node type and the OxCal-style phase model over the existing timeline array.
 4. **bkt-hte-generator**: Build the cluster, gap, contradiction, and cross-period-analogy hypothesis generators over the claims graph.
 5. **bkt-hte-tournament**: Build the Elo-seeded ranking tournament and critic pass over generated hypotheses.
-6. **bkt-hte-holdout**: Build the discovery-date and period holdout tests and calibrate the truth-score constants against it.
+6. **bkt-hte-holdout**: Build the discovery-date and period holdout tests, run inside the `hte-campaign-001` frozen-work/strata campaign from §6, and calibrate the truth-score constants against it.
 7. **bkt-hte-review-queue**: Wire founder yes and no review into the hypothesis evidence array and the generator's prior feedback.
 8. **bkt-hte-ui**: Add a hypothesis browsing route mirroring canon-claims.ts's read pattern for the new hypothesis store.
+9. **bkt-hte-retrieval-provenance**: Build `retrieval.py`, the immutable retrieval-envelope store and `RetrievalRun` linkage from this section.
+10. **bkt-hte-evidence-span**: Add the `evidence_span` field to every `evidence[]` entry per §3.
+11. **bkt-hte-extraction-ensemble**: Build the `ClaimExtractorEnsemble` and `HypothesisQualityReport` from §5.
 
 ## 9. Open Questions
 
