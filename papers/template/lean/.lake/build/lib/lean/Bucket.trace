@@ -1,0 +1,33 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["7cd637d86d6e551d.olean"],
+  "m": false,
+  "i": "4cf804b7849beeb4.ilean",
+  "c": "8e4357dfcdb3b6df.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/gian/agfarms/bucket-foundation/papers/template/lean/.lake/build/lib/lean /home/gian/.elan/toolchains/leanprover--lean4---v4.33.1/bin/lean /home/gian/agfarms/bucket-foundation/papers/template/lean/Bucket.lean -o /home/gian/agfarms/bucket-foundation/papers/template/lean/.lake/build/lib/lean/Bucket.olean -i /home/gian/agfarms/bucket-foundation/papers/template/lean/.lake/build/lib/lean/Bucket.ilean -c /home/gian/agfarms/bucket-foundation/papers/template/lean/.lake/build/ir/Bucket.c --setup /home/gian/agfarms/bucket-foundation/papers/template/lean/.lake/build/ir/Bucket.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["deps",
+   [["bucket_template/Bucket:extraDep",
+     [["@bucket_template:extraDep", "00000000000006bb"]]],
+    ["imports",
+     [["Bucket.Example transitive imports (legacy)", "00000000000006bb"],
+      ["Bucket.Example:importAllArts", "fbd168738b7cbc28"]]]]],
+  ["libs",
+   [["import dynlibs", "00000000000006bb"],
+    ["package external libraries", "00000000000006bb"],
+    ["module dynlibs", "00000000000006bb"],
+    ["module plugins", "00000000000006bb"]]],
+  ["Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+   "0051240b7c23c453"],
+  ["/home/gian/agfarms/bucket-foundation/papers/template/lean/Bucket.lean",
+   "0cd5af90eb43b93f"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Bucket", "064e31e9a2213f11"],
+  ["Package.id?: (some bucket_template)", "093ff00c1963fbe3"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "bef6dcd8b1106967"}

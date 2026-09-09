@@ -1,0 +1,110 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{allen1983interval}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=140c649ea139e19aba1f3dda2fcf4a20}{%
+           family={Allen},
+           familyi={A\bibinitperiod},
+           given={James\bibnamedelima F.},
+           giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{140c649ea139e19aba1f3dda2fcf4a20}
+      \strng{fullhash}{140c649ea139e19aba1f3dda2fcf4a20}
+      \strng{fullhashraw}{140c649ea139e19aba1f3dda2fcf4a20}
+      \strng{bibnamehash}{140c649ea139e19aba1f3dda2fcf4a20}
+      \strng{authorbibnamehash}{140c649ea139e19aba1f3dda2fcf4a20}
+      \strng{authornamehash}{140c649ea139e19aba1f3dda2fcf4a20}
+      \strng{authorfullhash}{140c649ea139e19aba1f3dda2fcf4a20}
+      \strng{authorfullhashraw}{140c649ea139e19aba1f3dda2fcf4a20}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Communications of the ACM}
+      \field{number}{11}
+      \field{title}{Maintaining knowledge about temporal intervals}
+      \field{volume}{26}
+      \field{year}{1983}
+      \field{pages}{832\bibrangedash 843}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1145/182.358434
+      \endverb
+    \endentry
+    \entry{gottweis2025coscientist}{misc}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{6}{}{%
+        {{hash=527d775ad381db2e1d8d0a9909d8f528}{%
+           family={Gottweis},
+           familyi={G\bibinitperiod},
+           given={Juraj},
+           giveni={J\bibinitperiod}}}%
+        {{hash=22a513153a4107153eb8e3051aef261b}{%
+           family={Weng},
+           familyi={W\bibinitperiod},
+           given={Wei-Hung},
+           giveni={W\bibinithyphendelim H\bibinitperiod}}}%
+        {{hash=4d71ebae6f1cb6c64c746844663a745c}{%
+           family={Daryin},
+           familyi={D\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+        {{hash=991ee980b344d7fe10784c3f775d92f8}{%
+           family={Tu},
+           familyi={T\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod}}}%
+        {{hash=b160026950ebb1e2286dfb40c15482f5}{%
+           family={Hassabis},
+           familyi={H\bibinitperiod},
+           given={Demis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=aa89cd9ecfc08eca06d1bdf5c0fe4a7b}{%
+           family={Natarajan},
+           familyi={N\bibinitperiod},
+           given={Vivek},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{82ba0648e5aaf66a8fca4c97df39650a}
+      \strng{fullhash}{432298ad4b2ef525f2793bc07d691f38}
+      \strng{fullhashraw}{432298ad4b2ef525f2793bc07d691f38}
+      \strng{bibnamehash}{82ba0648e5aaf66a8fca4c97df39650a}
+      \strng{authorbibnamehash}{82ba0648e5aaf66a8fca4c97df39650a}
+      \strng{authornamehash}{82ba0648e5aaf66a8fca4c97df39650a}
+      \strng{authorfullhash}{432298ad4b2ef525f2793bc07d691f38}
+      \strng{authorfullhashraw}{432298ad4b2ef525f2793bc07d691f38}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arxiv}
+      \field{title}{Accelerating scientific discovery with an {AI} co-scientist}
+      \field{year}{2025}
+      \verb{eprint}
+      \verb 2502.18864
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

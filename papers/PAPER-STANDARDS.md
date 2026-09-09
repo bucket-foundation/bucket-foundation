@@ -1,0 +1,201 @@
+# Paper Standards
+
+How Bucket Foundation writes a research paper: LaTeX conventions, citation
+rules, the Lean rule, the figures rule, and the current state of the local
+toolchain. `papers/template/` is a working example of every rule below;
+copy it as the starting point for a new paper.
+
+## Register
+
+Dry and human readable. Every claim is either cited or derived. No claim
+carries a citation it has not been checked against (see Citation rules).
+Mechanism belongs in a paper; framing, hype, and marketing language do
+not. The org voice rules in the root `CLAUDE.md` apply to every word a
+paper contains, comments and Lean docstrings included.
+
+## Structure
+
+A paper follows this section order:
+
+1. Abstract
+2. Introduction
+3. Related work
+4. Preliminaries, with every term linked via `\term` to a glossary entry
+5. Method
+6. Results, or Design for a system paper without an empirical result
+7. Calibration
+8. Limitations
+9. References
+10. Appendices, including a Glossary and a Lean listings section
+
+Calibration is not optional. A paper whose central claims are derivations
+proves them and points to the matching Lean listing instead of an error
+budget; a paper whose central claims are empirical states the
+calibration procedure, the error budget, and how the two were checked
+against each other.
+
+## LaTeX conventions
+
+- Document class: plain `article`, or a clean two-column arXiv-style
+  class where a paper's length calls for it. `papers/template/main.tex`
+  uses `article`.
+- Load order: `biblatex` first, then `hyperref`, then `bucket.sty`.
+  `bucket.sty` conditionally loads `cleveref`, and `cleveref` has to load
+  after `hyperref`, which is why `hyperref` comes first.
+- Cross-references: `\Cref`/`\cref` everywhere, never a bare `\ref`, so a
+  future `cleveref` install upgrades every reference to a typed one
+  ("Lemma 3", "Figure 2") with no source change. `bucket.sty` falls back
+  to plain `\ref` when `cleveref.sty` is not on the system; see Toolchain
+  notes below for this repo's current state.
+- Theorem environments: `definition`, `lemma`, `theorem`, `corollary`,
+  `proposition`, `remark`, all from `amsthm` via `bucket.sty`, numbered
+  and labeled together inside one counter per section.
+- Bibliography: `biblatex` with the `biber` backend. Style is `ieee` or
+  `nature` where one of those packages is installed; `numeric` otherwise,
+  since it ships with core `biblatex` and renders the same numbered,
+  DOI-bearing citations. See Toolchain notes.
+- Terms: `\term{key}{shown text}` typesets the term and hyperlinks it to
+  its glossary entry. Declare the entry once with `\glossentry{key}{term}
+  {url}{definition}`, anywhere before the Glossary appendix runs
+  `\printglossaryentry{key}`. The link works through the PDF's own named
+  destinations, so `\term` and `\glossentry` can appear in either order
+  in the source.
+- Glossary URLs: every `\glossentry` carries a URL. Point it at the
+  matching canon page on bucket.foundation where one exists; otherwise
+  point it at the repository path that defines the term (a Lean file, a
+  spec, a source module).
+- Colors and macros: `bucketblue` and `bucketgray`, plus every macro
+  above, live in `papers/template/bucket.sty`. A new paper's own `.sty`
+  starts as a copy of it, extended only when a paper needs a macro the
+  template does not have.
+
+## Citation rules
+
+- Every bibliography entry carries a DOI or an arXiv id. An entry with
+  neither does not go in the bibliography, full stop.
+- No unverified citations. Check each entry against `doi.org`,
+  `arxiv.org`, or the Crossref API before it lands in a `.bib` file, and
+  drop it if it cannot be confirmed there. `papers/bib/common.bib`
+  documents the entries dropped from its own seed list, and why.
+- Layout: a paper's own citations live in its `bib/refs.bib` (the
+  template keeps a flat `refs.bib` at its own root since it has no
+  sibling files to organize); shared, cross-paper citations live once in
+  `papers/bib/common.bib` and get pulled in with a second
+  `\addbibresource`.
+
+## Lean rule
+
+- Every definition stated in a paper's Preliminaries has a Lean 4
+  counterpart in that paper's `lean/` directory.
+- Every lemma stated in the body is either proved in Lean, or left as
+  `sorry` with a `TODO:` comment naming exactly what remains.
+- The Lean listings appendix lists every Lean source file the paper
+  depends on and the `lake build` output for it, quoted verbatim inside
+  a `verbatim` block with a `voice-ignore-next` marker above it (tool
+  transcripts are evidence, not prose the voice rules rewrite).
+- A paper's `lean/` is a minimal Lake project: `lean-toolchain` pinned to
+  an exact release, `lakefile.toml`, and one `lean_lib` target. Depend on
+  Mathlib only when a lemma needs it; the template's own example needs
+  nothing beyond Lean 4's core library, so `lake build` runs with no
+  network access.
+
+## Figures rule
+
+Every figure is generated by a script under that paper's `figures/`
+directory, in matplotlib or TikZ, and rebuilt by `make figures`. No
+figure is pasted in by hand. A script takes no random seed it does not
+fix, so two runs of `make figures` on the same source produce the same
+bytes. `papers/template/figures/fig_example.py` is the pattern: pure
+function of its inputs, one named PNG out.
+
+## Voice
+
+The org writing voice rules apply to every word a paper contains: no
+banned words or filler adverbs, no em or en dashes, no antithesis
+framing, headings that name the thing and stop, no meta commentary about
+the writing itself. A term of art that collides with the banned list (a
+statistics term like "robust," a field name, a metric) goes in this
+repository's root `.voiceallow`, one entry per line, with a comment
+explaining what real thing it names.
+
+`agf-lint-voice` only recognizes `.md`, `.mdx`, `.txt`, and `.rst`, and
+`agf-lint-voice-src` has no comment syntax registered for `.tex` or
+`.sty`. Neither tool reads LaTeX natively. `make lint` in
+`papers/template/` works around this by copying `main.tex` to a `.md`
+file inside the paper's own directory (never to `/tmp`, since
+`agf-lint-voice`'s `.voiceallow` lookup walks upward from the linted
+file's own directory to `$HOME`, and a `/tmp` copy would walk to the
+filesystem root instead and never see this repository's `.voiceallow`),
+running the check on the copy, then deleting it.
+
+## Directory layout
+
+```
+papers/
+├── PAPER-STANDARDS.md   this file
+├── bib/
+│   └── common.bib       shared, cross-paper citations
+└── template/             the reference build; copy this for a new paper
+    ├── main.tex
+    ├── bucket.sty
+    ├── refs.bib
+    ├── figures/
+    │   └── fig_example.py
+    ├── lean/
+    │   ├── lean-toolchain
+    │   ├── lakefile.toml
+    │   ├── Bucket.lean
+    │   └── Bucket/
+    │       └── Example.lean
+    └── Makefile           targets: pdf, figures, lean, lint, clean
+```
+
+A real paper's own directory follows the same shape as `template/`, with
+its own `bib/refs.bib` alongside `main.tex` rather than a flat file, and
+a paper-specific name in place of `template`.
+
+## Toolchain notes
+
+State of this machine as of 2026-09-09, so the next person building a
+paper here knows what is real and what still needs a package.
+
+**Installed this session:**
+- Lean 4.33.1 and Lake 5.0.0, via `elan`, user-level under `~/.elan`.
+  `~/.bashrc` puts `~/.elan/bin` on `PATH`. `lean --version` and
+  `lake --version` both resolve in a fresh login shell.
+- `pdflatex`, `xelatex`, `bibtex`, and `biber` were already present
+  system-wide (TeX Live 2023).
+
+**Missing, worked around:**
+- `latexmk` is not installed. `papers/template/Makefile`'s `pdf` target
+  runs the four-pass sequence by hand instead:
+  `pdflatex` → `biber` → `pdflatex` → `pdflatex`. Copy that target
+  as-is into a new paper's own Makefile.
+
+**Missing LaTeX packages, confirmed by compiling the template:**
+
+| Package | dnf package | Effect while missing |
+|---|---|---|
+| `cleveref.sty` | `texlive-cleveref` | `bucket.sty` falls back to plain `\ref` for `\cref`/`\Cref`; a paper still compiles, but references read as bare numbers instead of "Lemma 3" |
+| `glossaries.sty` | `texlive-glossaries` | Not used. The glossary in `bucket.sty` is hand-rolled on `hyperref`'s own `\hyperlink`/`\hypertarget`, by design, so this gap does not block a paper |
+| `ieee.bbx`/`ieee.cbx` | `texlive-biblatex-ieee` | `papers/template/main.tex` uses biblatex's built-in `numeric` style until this is installed |
+| `nature.bbx` | `texlive-biblatex-nature` | Same gap as above; `numeric` is the working default for either target style |
+
+None of these were installed by this session; installing any of them
+needs `sudo dnf install <package>`, which this session does not run. The
+table above is the exact fix for whoever has the credentials to run it.
+Once `texlive-cleveref` lands, every paper's cross-references upgrade
+with no source change, because they are all written as `\Cref`/`\cref`
+already.
+
+**Bibliography verification, 2026-09-09:** sixteen entries in
+`papers/bib/common.bib` were checked against `doi.org`, `arxiv.org`, or
+Crossref and confirmed. Two candidates from the original list were
+checked and dropped for lacking a resolvable DOI or arXiv id: Chao
+(1984), *Nonparametric Estimation of the Number of Classes in a
+Population*, Scandinavian Journal of Statistics, a pre-DOI-era journal
+article with no Crossref record; and the HiST-LLM / Seshat historical
+knowledge benchmark (NeurIPS 2024 Datasets and Benchmarks Track), indexed
+only under an Oxford ORA ARK identifier and an ACM Digital Library
+catalog number that does not resolve at `doi.org`, with no arXiv preprint
+found.

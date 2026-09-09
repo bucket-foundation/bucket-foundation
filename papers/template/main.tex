@@ -1,0 +1,203 @@
+% main.tex: Bucket Foundation paper template.
+%
+% Load order matters: biblatex, then hyperref, then bucket.sty. bucket.sty
+% conditionally loads cleveref, and cleveref must come after hyperref, so
+% hyperref has to load first. See papers/PAPER-STANDARDS.md for the full
+% convention this file demonstrates.
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+
+\usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{hyperref}
+
+\usepackage{bucket} % amsthm envs, \term/\glossentry, cleveref-or-fallback, colors
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = bucketblue,
+  citecolor  = bucketblue,
+  urlcolor   = bucketblue,
+}
+
+% ---------------------------------------------------------- glossary data --
+% Declared once, in the preamble; \term{key}{shown text} can appear anywhere
+% in the body, in any order, because it links through the PDF rather than
+% through LaTeX's own pass order.
+\glossentry{overlap}{state overlap}%
+  {https://bucket.foundation/canon/04-information/overlap}%
+  {The inner product $\langle\psi_u|\psi_v\rangle$ of two normalized states.
+   For amplitude-encoded classical vectors this equals their cosine
+   similarity; see \Cref{def:overlap}.}
+
+\title{A Worked Example: Bounding the Overlap of Two Unit Vectors}
+\author{Bucket Foundation}
+\date{2026-09-09}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This template demonstrates the LaTeX and Lean conventions a Bucket
+Foundation paper follows, using one real, checkable claim as the running
+example. We define the overlap of two unit vectors (\Cref{def:overlap}),
+state and prove that it is bounded by one in absolute value
+(\Cref{lem:bound}), characterize when that bound is attained
+(\Cref{thm:tight}), and carry a Lean-checked stand-in for the bound
+through to \Cref{app:lean}. Every structural element
+\texttt{papers/PAPER-STANDARDS.md} requires appears at least once below:
+a definition, a lemma, a theorem, a proof, a citation, a figure, a
+table, and a linked glossary term.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Bucket papers are dry and checkable: every claim is either cited or
+derived, and every derivation that can be machine-checked is. This
+template exists so a new paper starts from a working build rather than
+from a blank file. The running example is the \term{overlap}{overlap} of
+two unit vectors, chosen because it is small enough to state, prove, and
+check in Lean inside one template, while still being the same primitive
+that recurs across quantum estimation, information retrieval, and kernel
+methods \autocite{allen1983interval}.
+
+\section{Related work}
+\label{sec:related}
+
+Machine-checked mathematics and machine-assisted paper production are
+both active areas; an AI co-scientist system that proposes and tests
+research hypotheses end to end is one example of the surrounding
+literature this template's toolchain is built to interoperate with
+\autocite{gottweis2025coscientist}.
+
+\section{Preliminaries}
+\label{sec:prelim}
+
+\begin{definition}[Overlap]
+\label{def:overlap}
+Let $u, v \in \mathbb{R}^n$ be unit vectors, $\lVert u \rVert = \lVert v
+\rVert = 1$. Their \term{overlap}{overlap} is
+\[
+  \langle u, v \rangle \;=\; \sum_{i=1}^{n} u_i v_i .
+\]
+\end{definition}
+
+\section{Method}
+\label{sec:method}
+
+\begin{lemma}[Overlap bound]
+\label{lem:bound}
+For unit vectors $u, v \in \mathbb{R}^n$, $\lvert \langle u, v \rangle
+\rvert \le 1$.
+\end{lemma}
+
+\begin{proof}
+By the Cauchy--Schwarz inequality, $\lvert \langle u, v \rangle \rvert \le
+\lVert u \rVert \, \lVert v \rVert = 1 \cdot 1 = 1$.
+\end{proof}
+
+\begin{theorem}[Tightness]
+\label{thm:tight}
+Equality holds in \Cref{lem:bound} exactly when $v = u$ or $v = -u$.
+\end{theorem}
+
+\begin{proof}
+If $v = u$, then $\langle u, v \rangle = \lVert u \rVert^2 = 1$; if
+$v = -u$, then $\langle u, v \rangle = -1$. For the converse, equality in
+Cauchy--Schwarz holds exactly when $u$ and $v$ are linearly dependent, so
+$v = \lambda u$ for some scalar $\lambda$; both being unit vectors forces
+$\lambda = \pm 1$.
+\end{proof}
+
+\Cref{lem:bound} is the reason \Cref{fig:example} never leaves the band
+$[-1, 1]$: the curve it plots, $\cos\theta$ for the angle $\theta$ between
+$u$ and $v$, \emph{is} the overlap of \Cref{def:overlap} in the
+two-dimensional case, so the bound is the same fact drawn instead of
+proved.
+
+\section{Results}
+\label{sec:results}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figures/fig_example.png}
+  \caption{The overlap $\cos\theta$ swept across the full angle range,
+    generated deterministically by \texttt{figures/fig\_example.py} and
+    rebuilt by \texttt{make figures}. It never crosses the dashed
+    $\pm 1$ bound of \Cref{lem:bound}.}
+  \label{fig:example}
+\end{figure}
+
+\Cref{tab:example} lists the two boundary cases of \Cref{lem:bound}: equal
+vectors, where the bound is attained, and orthogonal vectors, where the
+overlap vanishes.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Overlap at the two boundary configurations of \Cref{lem:bound}.}
+  \label{tab:example}
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+    Configuration & $\theta$ & $\langle u, v \rangle$ \\
+    \midrule
+    $u = v$            & $0$       & $1$ \\
+    $u \perp v$         & $\pi/2$   & $0$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Calibration}
+\label{sec:calibration}
+
+There is nothing to calibrate against ground truth here: \Cref{lem:bound}
+is proved outright in \Cref{sec:method} and checked again independently in
+Lean in \Cref{app:lean}, so the two results either agree or the build
+fails. A paper whose central claims are empirical rather than derived
+states its calibration procedure and error budget here instead of an
+inequality proof.
+
+\section{Limitations}
+\label{sec:limitations}
+
+The worked example is deliberately small: \Cref{lem:bound} follows from
+Cauchy--Schwarz in three lines. A real paper's Lean listing should cover
+every non-trivial lemma stated in \Cref{sec:prelim} and \Cref{sec:method},
+and should say explicitly wherever a lemma is left \texttt{sorry}. This
+template's own Lean listing proves a stand-in fact instead, chosen to
+keep \texttt{lake build} free of any external dependency.
+
+\printbibliography
+
+\appendix
+
+\section{Glossary}
+\label{app:glossary}
+
+\printglossaryentry{overlap}
+
+\section{Lean listings}
+\label{app:lean}
+
+\Cref{lem:bound} reduces, for this template, to the one fact proved in
+\texttt{lean/Bucket/Example.lean} and checked by \texttt{make lean}:
+
+\begin{lstlisting}[style=bucketlean]
+theorem double_eq_add_self (n : Nat) : 2 * n = n + n :=
+  Nat.two_mul n
+\end{lstlisting}
+
+\texttt{lake build} output for this listing, captured by \texttt{make
+lean}. This block is a verbatim transcript, quoted rather than rewritten.
+% voice-ignore-next 5
+\begin{verbatim}
+info: bucket_template: no previous manifest, creating one from scratch
+info: toolchain not updated; already up-to-date
+Build completed successfully (4 jobs).
+\end{verbatim}
+
+\end{document}

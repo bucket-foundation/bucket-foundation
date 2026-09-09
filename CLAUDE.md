@@ -54,6 +54,16 @@ Bucket Foundation canon lives on gdrive (not in this repo, too large, too many P
 - **Outcome canon (longevity)**: `gdrive:AGFarms/Nucleus/research/longevity-canon/`, cross-referenced to `bucket-canon/05-biophysics/sub-outcomes/longevity/`
 - **Kruse corpus**: `~/jackkruse/`, 460 scraped articles, FTS5 + MiniLM-L6-v2 + RRF hybrid search, one partial source for the 05-biophysics branch. **This is the Kruse Index.** Not open-source as of 2026-04-17.
 
+## Research Papers
+
+Rules for writing a Bucket paper to journal standard, LaTeX + Lean 4 +
+citations, every term hyperlinked to its glossary entry: `papers/PAPER-STANDARDS.md`.
+Copy `papers/template/` for a new paper. Its `Makefile` targets: `pdf`
+(pdflatex/biber/pdflatex/pdflatex, latexmk is not installed here),
+`figures` (rebuild every figure from its script), `lean` (`lake build`),
+`lint` (org voice rules on the paper's prose), `clean`. Shared, verified
+citations live in `papers/bib/common.bib`.
+
 ## Autonomous Mirror Jobs
 
 Long-running ingestion tasks live as systemd --user services + timers, with
