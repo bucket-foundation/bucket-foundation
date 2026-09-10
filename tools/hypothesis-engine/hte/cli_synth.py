@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import contextlib
+import inspect
 import json
 import os
 import statistics
@@ -91,6 +92,35 @@ def _parse_seed_range(spec: str) -> list[int]:
 
 def _parse_values(spec: str) -> list[float]:
     return [float(v.strip()) for v in spec.split(",") if v.strip()]
+
+
+def _parse_seeds_or_error(parser: argparse.ArgumentParser, spec: str) -> list[int]:
+    """`_parse_seed_range(spec)`, with every way it can go wrong (an
+    unparseable part, a spec with no parseable seeds at all, e.g. `""` or
+    `","`) turned into `parser.error(...)` (`argparse`'s own usage
+    message plus `SystemExit(2)`) rather than a raw `ValueError`
+    propagating out of `main()`."""
+    try:
+        seeds = _parse_seed_range(spec)
+    except ValueError as exc:
+        parser.error(f"--seeds: {exc} (want a range like \"0-49\", a comma list like \"0,3,7\", or a single integer)")
+    if not seeds:
+        parser.error(f"--seeds: {spec!r} names no seeds (want a range like \"0-49\", a comma list like \"0,3,7\", or a single integer)")
+    return seeds
+
+
+def _make_world_param_names() -> list[str]:
+    """`sweep --param`'s registered names: every `hte.synth.make_world`
+    keyword-only parameter except `seed` itself (the seed loop's own
+    positional). Read from `make_world`'s live signature, so the accepted
+    set (`--help` text and `sweep`'s own validation) can never drift out
+    of sync with the function it targets, unlike a hand-maintained copy
+    of the name list."""
+    return [
+        name
+        for name, param in inspect.signature(synth.make_world).parameters.items()
+        if name != "seed" and param.kind in (inspect.Parameter.POSITIONAL_OR_KEYWORD, inspect.Parameter.KEYWORD_ONLY)
+    ]
 
 
 def _campaign_config(seed: int, corpus_name: str, out_dir: Path) -> dict[str, Any]:
@@ -243,7 +273,7 @@ def _write_summary_md(path: Path, summary: dict[str, Any]) -> None:
 
 def _cmd_run(args: argparse.Namespace) -> int:
     runner_module = _import_runner()
-    seeds = _parse_seed_range(args.seeds)
+    seeds = _parse_seeds_or_error(args.parser, args.seeds)
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -285,8 +315,17 @@ def _cmd_run(args: argparse.Namespace) -> int:
 
 def _cmd_sweep(args: argparse.Namespace) -> int:
     runner_module = _import_runner()
-    seeds = _parse_seed_range(args.seeds)
-    values = _parse_values(args.values)
+    registered_params = _make_world_param_names()
+    if args.param not in registered_params:
+        args.parser.error(
+            f"--param: {args.param!r} is not a hte.synth.make_world kwarg; "
+            f"registered params: {', '.join(registered_params)}"
+        )
+    seeds = _parse_seeds_or_error(args.parser, args.seeds)
+    try:
+        values = _parse_values(args.values)
+    except ValueError as exc:
+        args.parser.error(f"--values: {exc} (want a comma-separated list of numbers like \"0,0.1,0.2\")")
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -328,14 +367,18 @@ def build_parser() -> argparse.ArgumentParser:
     p_run.add_argument("--out", required=True, help="output directory (runs/synth/<seed>/... per seed, plus SUMMARY.json/.md)")
     p_run.add_argument("--min-coverage", type=float, default=0.8, help="exit non-zero if aggregate coverage_of_truth falls below this (default 0.8)")
     p_run.add_argument("--max-brier", type=float, default=0.25, help="exit non-zero if mean brier_true_only exceeds this (default 0.25)")
-    p_run.set_defaults(func=_cmd_run)
+    p_run.set_defaults(func=_cmd_run, parser=p_run)
 
     p_sweep = sub.add_parser("sweep", help="sweep one hte.synth.make_world parameter across values")
-    p_sweep.add_argument("--param", required=True, help="a hte.synth.make_world kwarg name, e.g. noise")
+    p_sweep.add_argument(
+        "--param",
+        required=True,
+        help="a hte.synth.make_world kwarg name; registered params: " + ", ".join(_make_world_param_names()),
+    )
     p_sweep.add_argument("--values", required=True, help='comma-separated values, e.g. "0,0.1,0.2,0.4"')
     p_sweep.add_argument("--seeds", required=True, help='seed range, e.g. "0-19"')
     p_sweep.add_argument("--out", default="runs/synth-sweep", help="output directory")
-    p_sweep.set_defaults(func=_cmd_sweep)
+    p_sweep.set_defaults(func=_cmd_sweep, parser=p_sweep)
 
     return parser
 
