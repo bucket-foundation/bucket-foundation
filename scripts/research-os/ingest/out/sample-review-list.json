@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-09-10T17:57:03.471Z",
+  "items": [
+    {
+      "id": "unmatched_derives_from:bell-theorem:bkt-d8a749ee80a7",
+      "kind": "unmatched_derives_from",
+      "note": "Canon entry \"bell-theorem\" (On the Einstein Podolsky Rosen paradox) has no Academy atom whose id matches its dossier slug, and no canon-atom-map.json override. No derives_from edge written.",
+      "detail": {
+        "concept": "bell-theorem",
+        "paperId": "bkt-d8a749ee80a7",
+        "title": "On the Einstein Podolsky Rosen paradox"
+      }
+    },
+    {
+      "id": "unmatched_derives_from:gauge-principle:bkt-94b77c829202",
+      "kind": "unmatched_derives_from",
+      "note": "Canon entry \"gauge-principle\" (Conservation of Isotopic Spin and Isotopic Gauge Invariance) has no Academy atom whose id matches its dossier slug, and no canon-atom-map.json override. No derives_from edge written.",
+      "detail": {
+        "concept": "gauge-principle",
+        "paperId": "bkt-94b77c829202",
+        "title": "Conservation of Isotopic Spin and Isotopic Gauge Invariance"
+      }
+    },
+    {
+      "id": "unmatched_derives_from:quantum-field-theory:bkt-8a764cb991dd",
+      "kind": "unmatched_derives_from",
+      "note": "Canon entry \"quantum-field-theory\" (Space-Time Approach to Non-Relativistic Quantum Mechanics) has no Academy atom whose id matches its dossier slug, and no canon-atom-map.json override. No derives_from edge written.",
+      "detail": {
+        "concept": "quantum-field-theory",
+        "paperId": "bkt-8a764cb991dd",
+        "title": "Space-Time Approach to Non-Relativistic Quantum Mechanics"
+      }
+    },
+    {
+      "id": "unmatched_derives_from:quantum-mechanics:bkt-32eb9d2f876d",
+      "kind": "unmatched_derives_from",
+      "note": "Canon entry \"quantum-mechanics\" (Significance of Electromagnetic Potentials in the Quantum Theory) has no Academy atom whose id matches its dossier slug, and no canon-atom-map.json override. No derives_from edge written.",
+      "detail": {
+        "concept": "quantum-mechanics",
+        "paperId": "bkt-32eb9d2f876d",
+        "title": "Significance of Electromagnetic Potentials in the Quantum Theory"
+      }
+    }
+  ],
+  "_comment": "Committed sample of scripts/research-os/ingest/out/review-list.json (gitignored in full, but this IS the full real review list both importers currently produce). Regenerate with npm run ingest:research-os:academy && npm run ingest:research-os:canon."
+}
