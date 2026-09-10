@@ -37,6 +37,7 @@ import { createHash } from "node:crypto";
 import type { NextRequest } from "next/server";
 import { configured, graphService, verifyLearnerIdentity } from "./db";
 import { verifyReviewer } from "./reviewer";
+import { DELETE_CONFIRM_TOKEN } from "./types";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -329,4 +330,17 @@ export async function resolvePrivacyActor(req: NextRequest, requestedLearnerId: 
 
 export function privacyConfigured(): boolean {
   return configured() && Boolean(SUPABASE_URL && SERVICE_ROLE_KEY);
+}
+
+/**
+ * True only when `body.confirm` is exactly DELETE_CONFIRM_TOKEN
+ * (bkt-ros ros-07 follow-up, task item 2: "the confirm cannot be skipped
+ * server-side"). Pure, so the route's own confirm gate is unit-testable
+ * without a live Supabase call, matching this file's decideConsent-style
+ * convention (see consent.ts). Anything other than an exact string match,
+ * including a boolean true, an empty string, or the field being absent
+ * entirely, fails closed.
+ */
+export function isDeleteConfirmed(body: { confirm?: unknown }): boolean {
+  return body.confirm === DELETE_CONFIRM_TOKEN;
 }

@@ -1614,3 +1614,112 @@ banned-word, filler-adverb, AI-tell, antithesis, and em/en-dash rule lists found
 on any added line, including the two fixed cards. `origin/main` already merged into the
 branch. No file under `src/` or `public/` touched. `npm ci` and `npm run build` both
 clean.
+
+## Iteration 19: ros-07 follow-up
+
+Consent gate wiring. Date 2026-09-10. `feat/ros-07-consent-wiring`, worktree
+`.ros-worktrees/ros07b`, branched from `origin/main` at `af5b7c9ea`. Scope: wire
+`src/lib/research-os/consent.ts`'s `requireConsent` into every learner-facing write
+path, a minimal `/research-os/profile` page, self-service export/delete in the
+workspace footer, and a truthful status band on `/research-os`.
+
+### Added
+
+- `src/app/api/research-os/profile/route.ts`: GET/POST, the learner's own role and
+  birth-year bucket. POST upserts only those two columns; `consent_status` is never
+  read from the request body and is untyped in `ProfileBody`, so there is no code
+  path here that could write it.
+- `src/app/research-os/profile/page.tsx`: email-OTP auth (the same pattern as
+  `workspace/page.tsx` and `review/page.tsx`), two radio groups (role, birth-year
+  bucket), a save button, and a result message that links back to the workspace.
+- `src/lib/research-os/profile.ts`: `validateProfileInput`, `isValidRole`,
+  `isValidBirthYearBucket`, `BIRTH_YEAR_BUCKET_LABELS`, `ROLE_LABELS`. Pure, no I/O,
+  covered by `scripts/test-research-os-profile.ts` (new, 11 tests).
+- `src/lib/research-os/consent.ts`: `consentBlockedBody`, shaping a blocked
+  `ConsentCheckResult` into the `{error, message, needsProfile}` body every gated
+  route now returns on its 403. `ConsentAction` grew from `"workspace_tool" |
+  "production_submit"` to four values, adding `"probe_answer"` and
+  `"transfer_answer"`.
+- `src/lib/research-os/types.ts`: `DELETE_CONFIRM_TOKEN`, the exact string
+  `POST /api/research-os/privacy`'s delete action now requires in its `confirm`
+  field. Lives in the dependency-free `types.ts`, not `privacy.ts`, so the
+  client-side workspace page can import it without pulling in `privacy.ts`'s
+  service-role Supabase client into the browser bundle.
+- `src/lib/research-os/privacy.ts`: `isDeleteConfirmed`, a pure equality check
+  against `DELETE_CONFIRM_TOKEN`.
+- `scripts/test-research-os-profile.ts` (new, 11 tests).
+
+### Edited
+
+- `src/app/api/research-os/workspace/route.ts`: `requireConsent(learnerId,
+  "workspace_tool")` right after `verifyLearner()`, before the burst rate limiter,
+  in front of the whole handler (Locate and Quote included, not only Check/Organize:
+  COPPA's floor is collecting personal information from a known minor, and a search
+  query already does that).
+- `src/app/api/research-os/probe/route.ts`: same gate on POST only (action
+  `"probe_answer"`); GET (the due-ness check and question prompts) stays ungated.
+- `src/app/api/research-os/state/route.ts`: the gate applies only when
+  `action === "transfer_item"` (action `"transfer_answer"`); the sibling `"open"`
+  action (a navigation event) stays ungated on purpose, so a signed-in minor with no
+  profile yet can still reach `/research-os/profile`.
+- `src/app/api/research-os/production/route.ts`: the gate runs right after
+  `verifyLearner()`, before the body is parsed, in front of the whole handler
+  (action `"production_submit"`, covering a draft save and a submit).
+- `src/app/api/research-os/privacy/route.ts`: `PrivacyBody` gained `confirm`;
+  `action === "delete"` without `isDeleteConfirmed(body)` returns 400
+  `"confirm_required"` before `resolvePrivacyActor` runs.
+- `src/app/research-os/workspace/page.tsx`: `handleConsentResponse` recognizes the
+  gate's 403 shape from every gated fetch (Locate, Quote, Check, Organize, the probe
+  answer, the transfer answer, a Production save) and renders a banner with a link
+  to `/research-os/profile` when `needsProfile` is true. `saveTransferAnswer` now
+  checks `res.ok` for the first time (previously ignored its own response entirely,
+  a real pre-existing gap this pass closed as a side effect of detecting the
+  block). The footer gained "export my data" (a client-side JSON download of the
+  export envelope) and "delete my data" (a typed-confirm panel gating a disabled
+  button, sending `confirm: DELETE_CONFIRM_TOKEN`). The file header's stale
+  `TODO(... "Under-13 consent flow")` note was rewritten to describe what is now
+  built instead of what was still missing.
+- `src/app/research-os/page.tsx`: the "§ status" paragraph rewritten into three
+  paragraphs, on main today, not yet on main, and the unchanged subject-choice /
+  repository-path / pilot-classrooms content. Original text preserved verbatim in
+  `_intake/research-os-k12/DELETIONS.md`. No other section of the page touched.
+- `scripts/test-research-os-consent.ts`: a `ConsentAction`-parametrized block (one
+  test per action, including the no-profile case, over all four wired actions) plus
+  `consentBlockedBody` coverage. 8 new tests.
+- `scripts/test-research-os-privacy.ts`: `isDeleteConfirmed` coverage, 5 new tests
+  (exact match, missing field, empty string, boolean true, three near-miss strings).
+- `learning/research-os/compliance/README.md`: "What is built but not wired"
+  renamed "The consent gate, wired" and rewritten to list all four call sites; part B
+  item 6 (self-service privacy access) struck through and marked done, with what
+  remains (a parent-facing UI, as opposed to the existing reviewer-on-behalf-of path)
+  named explicitly; the `learner_profiles`/`requireConsent` and `POST /privacy`
+  bullets near the top updated to point at the new section.
+- `learning/research-os/WORKSPACE.md`: header's "Reads against" list extended; new
+  section 5, "The consent gate and self-service privacy actions."
+- `package.json`: `test:research-os` gained `scripts/test-research-os-profile.ts`.
+
+### Removed
+
+None. No file deleted; the replaced status-section text is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md` per this repo's own "never delete, log it"
+convention.
+
+### Verified
+
+`npm ci` clean. `npx tsc --noEmit` clean. `npm run build` clean, both new routes
+(`/research-os/profile`, `/api/research-os/profile`) present in the route manifest.
+`npm run test:research-os`: 236/236 pass (18 suites; the three touched/added suites,
+`test-research-os-consent.ts`, `test-research-os-privacy.ts`, and the new
+`test-research-os-profile.ts`, contribute 14 + 20 + 11 of that total). `eslint` over
+every touched/added file: clean. `agf-lint-voice-src check` over every touched/added
+TS/TSX file: clean (fixed six antithesis hits and one banned word, `honestly`, found
+on the first pass, all in header comments this PR itself added or touched).
+`agf-lint-voice check` over the two touched Markdown docs: clean (fixed two more
+antithesis hits and two meta-commentary hits, `"in this page"`, found on the first
+pass); `_intake/research-os-k12/DELETIONS.md` was not scanned by the general checker,
+the same pre-existing `_intake` ignore-list gap Iteration 17 already found, checked by
+hand instead, no hit. Manual review of the profile page's CSS at a 400px viewport: the
+`max-w-[560px]` wrapper uses `px-4` gutters (368px content width), the email input is
+`flex-1 min-w-0` inside a `flex flex-wrap` row, the OTP-code input is a fixed 140px,
+and the radio rows wrap on their own line each; no element forces horizontal scroll.
+No secret, absolute local path, or PII found in a diff review of every changed file.
