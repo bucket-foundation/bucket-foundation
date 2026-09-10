@@ -92,6 +92,236 @@ _STANCE_MAP: dict[str, Stance] = {"supports": Stance.POSITIVE, "extends": Stance
 _SLOT_KEYS: tuple[Slot, ...] = (Slot.ACTOR, Slot.ACTION, Slot.OBJECT, Slot.PLACE, Slot.MECHANISM)
 
 
+# --------------------------------------------------------------------------
+# Research OS native-shape adapter (bkt-hte, `docs/PRODUCTION-SCHEMA-
+# ALIGNMENT.md` carries the full field-by-field table and the rationale for
+# every default below; this section's own docstrings repeat only what a
+# reader needs at the call site).
+#
+# `graph.productions` (bucket-foundation PR #6,
+# `supabase/migrations/20260910000000_research_os_graph.sql` +
+# `src/lib/research-os/types.ts`) is a flatter, single-claim record with no
+# analog to this module's `claims[].slots`/`stance`/`interval`, no
+# `grade_band`/`school_or_district_id`/`research_question`, and a four-value
+# `status` enum that does not line up with `_STATUS_ORDER`. Rather than push
+# every caller through a hand-written conversion step, `Production.from_dict`
+# detects the shape and normalizes it onto this module's own JSON shape
+# before doing anything else, so `load`, `load_supabase`, and
+# `hte.api.hypothesize` all accept a `graph.productions` row natively.
+# --------------------------------------------------------------------------
+
+# Research OS's four `graph.productions.status` values, mapped onto this
+# module's own five-value ladder. `"submitted"` and `"returned"` both read
+# as `"draft"`: Phase 0 ships no teacher or peer-review layer
+# (`RESEARCH-OS-INTEGRATION.md`'s own "What the engine does not touch"), so
+# a learner clicking submit, or a hold sent back for revision, is not the
+# independent review `_STATUS_ORDER`'s `"peer-reviewed"` rung represents.
+# Mapping either to `"peer-reviewed"` would let unreviewed student work
+# reach belief fusion under this adapter's own default `status_min`, exactly
+# what `PRODUCTION-SCHEMA.md`'s "an unreviewed record has not yet cleared
+# the review... requires" default excludes for the shipped fixture shape.
+RESEARCH_OS_STATUS_MAP: dict[str, str] = {
+    "draft": "draft",
+    "submitted": "draft",
+    "accepted": "accepted",
+    "returned": "draft",
+}
+
+
+def is_research_os_record(raw: dict[str, Any]) -> bool:
+    """Whether `raw` is a `graph.productions` row (Research OS's own shape)
+    rather than this module's own `PRODUCTION-SCHEMA.md` shape. Fingerprint:
+    a Research OS row always carries `target_node_id` and never carries
+    `claims`; a `PRODUCTION-SCHEMA.md` record is the reverse. Both fields
+    are required on their own side (`_validate_production_record` requires
+    `claims`' absence to mean nothing here; the SQL migration's `not null`
+    on `target_node_id` means the reverse), so the fingerprint never
+    misclassifies a well-formed record of either shape."""
+    return isinstance(raw, dict) and "target_node_id" in raw and "claims" not in raw
+
+
+def _tier_to_grade_band(tier: float | int) -> str:
+    """`graph.nodes.tier`'s own approximate-US-grade-level proxy (the
+    migration's own column comment), bucketed into `PRODUCTION-SCHEMA.md`'s
+    free-text grade bands (the shipped fixtures use `"6-8"`, `"9-10"`,
+    `"11-12"`). `tier >= 90` is the migration's own canon-bridge sentinel,
+    "adult, canon tier, outside any K-12 grade band"; read here as
+    `"canon"` rather than forced into a K-12 band it explicitly is not."""
+    if tier >= 90:
+        return "canon"
+    if tier <= 5:
+        return "3-5"
+    if tier <= 8:
+        return "6-8"
+    if tier <= 10:
+        return "9-10"
+    return "11-12"
+
+
+def _citation_from_research_os_source(source: dict[str, Any], idx: int) -> dict[str, str]:
+    if source.get("doi"):
+        return {"type": "doi", "value": source["doi"]}
+    if source.get("url"):
+        return {"type": "url", "value": source["url"]}
+    return {"type": "url", "value": source.get("label") or f"research-os-source-{idx}"}
+
+
+def _research_os_evidence(evidence_raw: list[Any], sources_raw: list[Any]) -> list[dict[str, Any]]:
+    """Fold `graph.productions.evidence` (the Quote tool's own quoted spans,
+    `[{source_id|node_id, quote, locator?}]`) and `.sources` (the closed
+    citation set, `[{label, url?, license?, doi?}]`) into
+    `PRODUCTION-SCHEMA.md` evidence entries.
+
+    Research OS attaches `sources` to the whole production as one closed
+    citation set (the migration's own column comment), rather than pairing
+    one source to one quote. Every entry this function builds therefore
+    carries the *same*, full converted citation list.
+    `tier` is `"T2"` when any cited source carries a `doi` (a
+    primary/peer-reviewed source, matching `PRODUCTION-SCHEMA.md`'s own "a
+    peer-reviewed paper reads T2" example), else `"T4"` (an
+    education-reference-tier source, NASA Space Place or Wikipedia in the
+    shipped `research-os-sky-blue` seed)."""
+    citations = [_citation_from_research_os_source(s, i) for i, s in enumerate(sources_raw or [])]
+    tier = "T2" if any(c["type"] == "doi" for c in citations) else "T4"
+
+    if evidence_raw:
+        out = []
+        for i, ev in enumerate(evidence_raw):
+            source_id = ev.get("source_id") or ev.get("node_id") or f"research-os-quote-{i}"
+            out.append({
+                "source_id": source_id,
+                "locator": ev.get("locator") or source_id,
+                "quote": ev.get("quote") or "(no quote recorded)",
+                "kind": "textual",
+                "tier": tier,
+                "citations": citations,
+            })
+        return out
+
+    if citations:
+        # No quoted span captured yet (a citation-only draft): one evidence
+        # entry per source, since `ClaimEvidence.quote` is a required field
+        # with no meaningful blank value (`PRODUCTION-SCHEMA.md`, "An
+        # evidence entry").
+        return [
+            {
+                "source_id": s.get("label") or f"research-os-source-{i}",
+                "locator": s.get("url") or s.get("label") or "",
+                "quote": f"(citation only, no quoted span captured: {s.get('label') or 'untitled source'})",
+                "kind": "textual",
+                "tier": tier,
+                "citations": [cite],
+            }
+            for i, (s, cite) in enumerate(zip(sources_raw, citations))
+        ]
+    return []
+
+
+def normalize_research_os_record(raw: dict[str, Any]) -> dict[str, Any]:
+    """A `graph.productions` row, restructured onto this module's own
+    `PRODUCTION-SCHEMA.md` JSON shape. `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`
+    carries the full field-by-field table; this docstring names only the
+    defaults a caller needs to know about.
+
+    A real caller (`load_supabase`, or a batch a Next.js route posts to
+    `hypothesize`) may enrich a row with an optional `_target_node` object
+    (`{"slug", "title", "tier", "branch"}`, that row's own `graph.nodes`
+    join) before normalizing; this function reads it when present and
+    falls back to the documented defaults below when it is not, so a bare
+    row with no join still normalizes rather than raising:
+
+    - `author_role` is always `"student"`: Phase 0 has no non-student
+      production author (`RESEARCH-OS-INTEGRATION.md`'s own "What the
+      engine needs from Research OS").
+    - `grade_band` is `"unknown"` without `_target_node.tier`, else
+      `_tier_to_grade_band`'s bucketed reading of it.
+    - `school_or_district_id` is the fixed sentinel
+      `"research-os-phase-0"`: Phase 0 has no roster or district concept
+      (task item 6, no roster sync) to carry a real pseudonymous id.
+    - `research_question` folds `target_node_id` (and `_target_node.title`
+      when given) into descriptive free text: `PRODUCTION-SCHEMA.md` has no
+      dedicated "which graph node this argues about" field.
+    - `claims` is empty when the row carries no `claim` text, `evidence`,
+      or `sources` at all (an untouched draft); PRODUCTION-SCHEMA.md
+      explicitly allows an empty `claims` list. Otherwise one claim, with
+      `stance` always `"supports"` (Research OS carries no stance
+      vocabulary; a learner's own production always stands behind its own
+      claim) and every one of the five engine slots `None` ("not
+      asserted"): the shipped `vocab-production-seed.json` names concepts
+      about the engine's own calibration questions (`tier-assignment`,
+      `hypothesis-ranking`, ...). Forcing a sky-is-blue claim into that
+      vocabulary would misrepresent it, so a normalized claim's slots
+      stay unresolved until a domain-specific K-12 physics vocabulary
+      exists.
+    - `claims[].interval` is always `None`: a physics fact has no "the
+      claim's own subject happened in year X" the way a historical claim
+      does, so a normalized Research OS production never contributes a
+      `GroundTruthEvent` regardless of status (see the alignment doc's own
+      "What this normalizer does not attempt" section).
+    - `review.history` is synthesized as a single entry at the row's own
+      `updated_at` (falling back to `created_at`; a row missing both
+      raises, below): Research OS keeps no per-transition review history
+      on `graph.productions` the way `PRODUCTION-SCHEMA.md`'s own
+      `review.history` array does. It stays exact for the one date
+      `_build_corpus` reads, `review.date_of("accepted")`.
+
+    Raises `ValueError` if the row carries no `id`, no `target_node_id`,
+    a `status` outside `RESEARCH_OS_STATUS_MAP`'s own four known values,
+    or neither `updated_at` nor `created_at`: every one of these is a
+    field this function cannot default around without silently
+    corrupting a downstream read (an unrecognized status folding into
+    `"draft"`, which the default `status_min="peer-reviewed"` then drops
+    from the corpus with no trace of why; a missing timestamp folding
+    into the Unix epoch, which `hte.calibrate.holdout_by_discovery_date`
+    would then read as maximally old).
+    """
+    if not raw.get("id"):
+        raise ValueError("Research OS production row has no 'id'")
+    if not raw.get("target_node_id"):
+        raise ValueError(f"Research OS production row {raw.get('id')!r} has no 'target_node_id'")
+
+    node = raw.get("_target_node") or {}
+    target_node_id = raw["target_node_id"]
+    tier = node.get("tier")
+    node_title = node.get("title") or node.get("slug") or target_node_id
+
+    claim_text = (raw.get("claim") or "").strip()
+    evidence_raw = raw.get("evidence") or []
+    sources_raw = raw.get("sources") or []
+    claims: list[dict[str, Any]] = []
+    if claim_text or evidence_raw or sources_raw:
+        claims.append({
+            "text": claim_text,
+            "stance": "supports",
+            "slots": {"actor": None, "action": None, "object": None, "place": None, "mechanism": None},
+            "interval": None,
+            "evidence": _research_os_evidence(evidence_raw, sources_raw),
+        })
+
+    raw_status = raw.get("status") or "draft"
+    if raw_status not in RESEARCH_OS_STATUS_MAP:
+        raise ValueError(
+            f"Research OS production row {raw['id']!r} has an unrecognized status {raw_status!r}, "
+            f"not one of {sorted(RESEARCH_OS_STATUS_MAP)}"
+        )
+    mapped_status = RESEARCH_OS_STATUS_MAP[raw_status]
+    moved_at = raw.get("updated_at") or raw.get("created_at")
+    if not moved_at:
+        raise ValueError(f"Research OS production row {raw['id']!r} has neither 'updated_at' nor 'created_at'")
+
+    return {
+        "id": raw["id"],
+        "created_at": raw.get("created_at") or moved_at,
+        "author_role": "student",
+        "grade_band": _tier_to_grade_band(tier) if isinstance(tier, (int, float)) else "unknown",
+        "school_or_district_id": "research-os-phase-0",
+        "research_question": f"Research OS target: {node_title}",
+        "claims": claims,
+        "review": {"status": mapped_status, "history": [{"status": mapped_status, "date": moved_at}]},
+        "provenance": f"research-os-{node.get('branch', 'phase-0')}",
+    }
+
+
 def load_vocab() -> Vocabulary:
     """The K-12 production seed vocabulary (`hte/data/vocab-production-
     seed.json`): six consensus ACTOR roles (student, teacher, peer panel,
@@ -256,6 +486,14 @@ class Production:
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> "Production":
+        """Accepts either this module's own `PRODUCTION-SCHEMA.md` shape,
+        or a `graph.productions` row (Research OS's own shape), detected by
+        `is_research_os_record` and normalized by
+        `normalize_research_os_record` before parsing either way. See that
+        function's own docstring, and `docs/PRODUCTION-SCHEMA-ALIGNMENT.md`,
+        for the mapping."""
+        if is_research_os_record(d):
+            d = normalize_research_os_record(d)
         return cls(
             id=d["id"], created_at=d["created_at"], author_role=d["author_role"],
             grade_band=d["grade_band"], school_or_district_id=d["school_or_district_id"],
@@ -548,4 +786,5 @@ __all__ = [
     "Citation", "ClaimEvidence", "Claim", "ReviewHistoryEntry", "Review", "Production",
     "load_vocab", "load_raw", "load", "load_supabase",
     "PRODUCTION_VOCAB_PATH", "DEFAULT_FIXTURES_DIR", "EVIDENCE_PROVENANCE_TAG",
+    "is_research_os_record", "normalize_research_os_record", "RESEARCH_OS_STATUS_MAP",
 ]

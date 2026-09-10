@@ -9,7 +9,11 @@ doi: "10.3102/0034654315581420"
 url: "https://doi.org/10.3102/0034654315581420"
 openalex_id: "https://openalex.org/W1985824294"
 branch: "hci-human-ai-collaboration"
-tier: "canon"
+tier: "outcome"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-2cce3fc65496)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3, Roediger and Karpicke 2006)"
 why_it_matters: >
   A second, larger, more recent intelligent-tutoring-systems meta-analysis than VanLehn's,
   updating the expected effect size and identifying study-quality moderators Research OS's
@@ -30,6 +34,15 @@ how_it_bears_on_research_os: >
 ---
 
 # Effectiveness of Intelligent Tutoring Systems
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-2cce3fc65496`, `canon_score` 65) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports a 50-study meta-analytic effect size,
+> RUBRIC E7, and depends on the retrieval-practice/testing-effect mechanism
+> in `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006).
+> This file stays in place as the Research OS-specific reading; the
+> sub-outcomes entry is the citeable record.
 
 A second, larger, more recent intelligent-tutoring-systems meta-analysis than VanLehn's, updating the expected effect size and identifying study-quality moderators Research OS's own pilot design should control for.
 

@@ -123,3 +123,7 @@ Recorded here for the hypothesis-engine owners; each is a bead candidate under t
 ## 11. Work items
 
 Filed as `ros-01` through `ros-10` in `BEADS-PENDING.jsonl`: plan acceptance; state model and mapping paper; route API with target; four-tool workspace over the Phase 0 corpus; production schema and engine adapter; teacher view; minors compliance pack; evidence infrastructure and pre-registration; funding wave 1; site page and intake. `CHANGE-LEDGER.md` records every file this work adds or edits.
+
+## Revision 1
+
+`PLAN-REVISION-1.md`, alongside this file, reads PRs #3 through #15 (including the batch-two literature evidence PR #15 landed) against this plan: what shipped, four evidence-driven design revisions to the payout, routing, testbed, and Check-tool design above, a dependency-ordered Phase 1 scope with five blocking founder decisions, a mapping of the twelve overlap-map research questions onto pilot-scale versus district-scale answerability, and the ETH AI Center fellowship fit. This file stays the iteration-1 record; `PLAN-REVISION-1.md` is where the revision lives.

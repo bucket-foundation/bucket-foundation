@@ -7,10 +7,77 @@ the resolution ladder that buckets a point on the axis at five widths.
 """
 from __future__ import annotations
 
+import logging
 import math
+import threading
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Sequence
+
+logger = logging.getLogger("hte.timeline")
+
+
+# --------------------------------------------------------------------------
+# `time_bin_index` clamp log (`FINDING-2026-09-10-103`, silent-failures
+# review #2): a year clamped to bin 0 is the one new "this happened, and
+# it might mean the data is wrong" event `bkt-hte-binning-clamp` added
+# with no persisted trace of its own, unlike `hte.roles`'s sibling
+# refusal-tracking work, which gets a `run.log` line and a `MANIFEST.
+# json` tally for the same kind of "absorbed rather than raised" event.
+# No CLI entry point in this package (`hte.cli`/`hte.cli_pipeline`/`hte.
+# serve`) ever calls `logging.basicConfig` or attaches a handler, so the
+# `logger.warning` call below reaches only Python's own bare handler of
+# last resort in a real run; `_CLAMP_LOG` is this module's own record of
+# the same events, mirroring `hte.roles._REFUSAL_LOG`'s shape exactly so
+# `hte.runner.run_campaign` can read it back the same way: one `run.log`
+# line per clamp, folded into `MANIFEST.json["clamped_years"]`.
+# --------------------------------------------------------------------------
+
+
+class _ClampLog:
+    """Thread-safe record of every `time_bin_index` clamp so far this
+    process. Lives in this module, the same layering `hte.roles.
+    _REFUSAL_LOG` uses for the same reason: `hte.timeline` is a
+    substrate module several packages import (`hte.address`, `hte.
+    generate`, `hte.calibrate`, ...), so it cannot import `hte.runner`
+    (which itself imports `hte.timeline`) without a cycle; `hte.runner`
+    reads this log back instead, the same direction it already reads
+    `hte.roles.refusal_log()`."""
+
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self._events: list[dict[str, int]] = []
+
+    def record(self, *, year: int, span_start: int) -> None:
+        with self._lock:
+            self._events.append({"year": year, "span_start": span_start})
+
+    def snapshot(self) -> list[dict[str, int]]:
+        with self._lock:
+            return list(self._events)
+
+    def reset(self) -> None:
+        with self._lock:
+            self._events.clear()
+
+
+_CLAMP_LOG = _ClampLog()
+
+
+def clamp_log() -> list[dict[str, int]]:
+    """`[{"year": ..., "span_start": ...}, ...]`, one entry per
+    `time_bin_index` clamp so far this process, oldest first. Safe to
+    write verbatim into `MANIFEST.json` or `run.log`: every field is a
+    plain integer year, never prompt text or evidence content."""
+    return _CLAMP_LOG.snapshot()
+
+
+def reset_clamp_log() -> None:
+    """Clear `clamp_log()`'s own record. `hte.runner.run_campaign` calls
+    this alongside `hte.roles.reset_refusal_log()` at the start of a
+    run, so each run's own manifest reports only that run's own
+    clamps."""
+    _CLAMP_LOG.reset()
 
 # --------------------------------------------------------------------------
 # Calendar mapping
@@ -368,9 +435,39 @@ def time_bin_index(year: int, span_start: int = DEFAULT_SPAN_START, bin_width: i
     at `span_start` (`TIME_BIN`, `main.tex` §Combinatorics). `TIME_BIN` is a
     numeric axis rather than a named concept vocabulary, so this function,
     not `hte.concepts.Vocabulary`, is what `hte.address.encode` calls to
-    resolve a placement's time slot."""
+    resolve a placement's time slot.
+
+    A `year` before `span_start` clamps to bin 0 rather than raising
+    (`bkt-hte-binning-clamp`, 2026-09-10: an `education-atlas` campaign
+    died here, `ValueError: year 2000 sits before the span start 2002`,
+    over a generator-role proposal whose own `time_hint` named a year
+    this run's own span, built before that proposal ever existed, had
+    not been widened to cover). `hte.address.encode_indices` needs a
+    non-negative `TIME_BIN` index for its own Gödel-prime encoding
+    (`idx < 0` raises there), so "extend the ladder leftward" is not
+    available to this function on its own; clamping to the span's own
+    earliest bin, with one warning logged naming the shortfall, is the
+    fallback this function owns. `hte.runner._resolve_time_binning`'s own
+    span, built from the union of every ground-truth date and every
+    evidence item's own interval, is the primary defense that keeps this
+    branch rare; this is the backstop for whatever that union still does
+    not cover (a hallucinated year naming no evidence item at all).
+
+    Every clamp also lands in `clamp_log()` (`_CLAMP_LOG`, this module's
+    own record, `hte.roles.refusal_log()`'s own shape), which `hte.
+    runner.run_campaign` reads back into `run.log` and `MANIFEST.
+    json["clamped_years"]`: the `logger.warning` call below reaches only
+    stderr's bare handler of last resort in a real run (no CLI entry
+    point in this package ever configures one), so `clamp_log()` is the
+    one persisted trace a reader of a run's own artifacts can check
+    without a handler attached."""
     if year < span_start:
-        raise ValueError(f"year {year} sits before the span start {span_start}")
+        logger.warning(
+            "hte.timeline.time_bin_index: year %d sits %d year(s) before span_start %d; "
+            "clamped to bin 0 rather than raising", year, span_start - year, span_start,
+        )
+        _CLAMP_LOG.record(year=year, span_start=span_start)
+        return 0
     return (year - span_start) // bin_width
 
 

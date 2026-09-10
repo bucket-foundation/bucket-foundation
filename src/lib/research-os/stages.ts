@@ -8,7 +8,7 @@
 import type { Stage } from "./types";
 import { stageAtLeast } from "./types";
 
-export type EvidenceKind = "open" | "explanation" | "check" | "transfer_item" | "production_submitted";
+export type EvidenceKind = "open" | "explanation" | "check" | "transfer_item" | "production_submitted" | "teacher_review";
 
 export interface EvidenceEvent {
   at: string; // ISO timestamp
@@ -18,6 +18,7 @@ export interface EvidenceEvent {
   held?: boolean;
   heldReason?: string;
   note?: string;
+  reviewerId?: string; // set only on a "teacher_review" event
 }
 
 export interface StageTransition {
@@ -77,6 +78,49 @@ export function onTransferItemAnswered(
 }
 
 /**
+ * Diagnostic-probe grading (bkt-ros, Phase 1 item 2, review section 3 step
+ * 5, "handle unknown prior knowledge"). src/lib/research-os/probe.ts's
+ * probeDue only fires a probe for a learner with NO state record on any
+ * ancestor of the target, so the starting stage here is always 'access'.
+ * The grading call itself is the SAME one Check makes
+ * (src/lib/research-os/grounding.ts's gradeExplanation, task item 2's
+ * "graded by the existing grounded tutor Check action"); this function only
+ * differs from onCheckResult in what a result is worth, because a cold-start
+ * probe answer means something different from an in-path Check answer:
+ *
+ *   - strongly grounded (support, no abstain, confidence >= medium):
+ *     the learner can already explain this ancestor concept, so probing
+ *     jumps straight to 'understanding' -- skipping the 'awareness' gate
+ *     onCheckResult enforces, since that gate exists to require "opened the
+ *     node" first, which a probe deliberately bypasses for a node the
+ *     learner never opened.
+ *   - recognized but not fully explained (support, low confidence, or
+ *     unknown without abstaining): 'awareness' -- they showed some prior
+ *     familiarity, short of a full explanation.
+ *   - unrelated, contradicted, or abstained: stays at 'access'. The probe
+ *     attempt is still logged as evidence either way.
+ */
+export function onProbeCheckResult(
+  check: { result: "support" | "contradiction" | "unknown"; confidence: "high" | "medium" | "low"; abstained: boolean },
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "check",
+    result: check.result,
+    confidence: check.confidence,
+    note: "diagnostic_probe",
+  };
+  if (!check.abstained && check.result === "support" && check.confidence !== "low") {
+    return { nextStage: "understanding", event };
+  }
+  if (!check.abstained && (check.result === "support" || check.result === "unknown")) {
+    return { nextStage: "awareness", event };
+  }
+  return { nextStage: "access", event };
+}
+
+/**
  * production: submitting a Production for this node raises its state to
  * `production` directly. Unlike the internalization gate above, task item 5
  * lists this transition without a stub caveat, and Phase 0 has no review
@@ -89,4 +133,41 @@ export function onTransferItemAnswered(
 export function onProductionSubmitted(now: string = new Date().toISOString()): StageTransition {
   const event: EvidenceEvent = { at: now, kind: "production_submitted" };
   return { nextStage: "production", event };
+}
+
+/**
+ * Teacher review decision on a held transfer-item answer (bkt-ros, Phase 1
+ * item 4). Completes the transition onTransferItemAnswered above
+ * deliberately left held: RESEARCH-OS-K12-SYSTEM-REVIEW.md section 3,
+ * "Teacher judgment is a first-class evidence kind from the start: a
+ * teacher can advance or hold back a stage directly, with a required
+ * one-line reason stored on the evidence record." An "approved" decision
+ * raises understanding -> internalization; "returned" leaves the stage
+ * where it is, with the reason logged either way. Only meaningful when the
+ * learner is already past Understanding and not yet at Internalization; a
+ * decision on any other stage still logs the evidence event but leaves
+ * `stage` unchanged (nothing for this specific gate to advance).
+ *
+ * `reviewerId` is who made the call (src/lib/research-os/reviewer.ts's
+ * verified identity), never the learner: this event's author is the
+ * teacher, unlike every other EvidenceEvent in this file.
+ */
+export function onTeacherReview(
+  currentStage: Stage,
+  decision: "approved" | "returned",
+  reviewerId: string,
+  reason: string | undefined,
+  now: string = new Date().toISOString(),
+): StageTransition {
+  const event: EvidenceEvent = {
+    at: now,
+    kind: "teacher_review",
+    held: decision === "returned",
+    heldReason: decision === "returned" ? reason : undefined,
+    note: reason,
+    reviewerId,
+  };
+  const eligible = stageAtLeast(currentStage, "understanding") && !stageAtLeast(currentStage, "internalization");
+  const nextStage: Stage = decision === "approved" && eligible ? "internalization" : currentStage;
+  return { nextStage, event };
 }

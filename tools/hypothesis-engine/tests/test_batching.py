@@ -147,6 +147,115 @@ def test_batch_judge_missing_id_falls_back_to_single_call(tmp_path, monkeypatch)
 
 
 # --------------------------------------------------------------------------
+# Refusal fallback (`bkt-hte-refusal-handling`, 2026-09-10): the whole
+# batched call itself refuses (`claude -p` exits 1, `stop_reason="refusal"`
+# in its own envelope). `_run_batch` catches `hte.llm.ModelRefusal` the
+# same way it already catches any other batch-call failure (it is a
+# subclass of `hte.llm.LLMError`), falling back to one single-item call
+# per hypothesis/pair; a single-item call that also refuses takes `hte.
+# roles`'s own per-role default rather than raising out of the batch.
+# --------------------------------------------------------------------------
+
+
+def _refusal_envelope() -> str:
+    return json.dumps({
+        "is_error": True, "stop_reason": "refusal", "session_id": "should-never-leak",
+        "total_cost_usd": 0.01, "result": "API Error: can't help with this.",
+    })
+
+
+def test_batch_critique_refused_falls_back_to_single_calls(tmp_path, monkeypatch):
+    corpus, hyps = _hypotheses(2)
+    fake = _fake_run([
+        (1, _refusal_envelope()),  # the batch call itself refuses
+        (0, _envelope({"keep": True, "issues": [], "rationale": "single-ok-0"})),
+        (0, _envelope({"keep": False, "issues": ["contradiction"], "rationale": "single-ok-1"})),
+    ])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+
+    out = batching.batch_critique(hyps, corpus.evidence, batch_size=8, cache_dir=tmp_path, replay_only=False)
+
+    assert out[0] == {"keep": True, "issues": [], "rationale": "single-ok-0"}
+    assert out[1] == {"keep": False, "issues": ["contradiction"], "rationale": "single-ok-1"}
+    assert len(fake.calls) == 3
+    assert "should-never-leak" not in json.dumps(out)
+
+
+def test_batch_judge_refused_falls_back_to_single_calls(tmp_path, monkeypatch):
+    corpus, hyps = _hypotheses(2)
+    pairs = [(hyps[0], hyps[1], {"opinions": {}})]
+    fake = _fake_run([
+        (1, _refusal_envelope()),  # the batch call itself refuses
+        (0, _envelope({"p_a_wins": 0.6, "rationale": "single-fallback"})),
+    ])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+
+    out = batching.batch_judge(pairs, batch_size=8, cache_dir=tmp_path, replay_only=False)
+
+    assert out == [0.6]
+    assert len(fake.calls) == 2
+    assert "should-never-leak" not in json.dumps(out)
+
+
+def test_batch_critique_every_single_call_also_refused_defaults(tmp_path, monkeypatch):
+    """The batch call and every single-item fallback call all refuse:
+    `hte.roles.critique`'s own default (`keep=False`) absorbs each one,
+    so `batch_critique` still returns `len(hyps)` results rather than
+    raising."""
+    corpus, hyps = _hypotheses(2)
+    fake = _fake_run([
+        (1, _refusal_envelope()),  # batch call refuses
+        (1, _refusal_envelope()),  # single fallback for hyps[0] also refuses
+        (1, _refusal_envelope()),  # single fallback for hyps[1] also refuses
+    ])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+
+    out = batching.batch_critique(hyps, corpus.evidence, batch_size=8, cache_dir=tmp_path, replay_only=False)
+
+    assert out[0]["keep"] is False
+    assert out[1]["keep"] is False
+    assert len(fake.calls) == 3
+    assert "should-never-leak" not in json.dumps(out)
+
+
+def test_batch_judge_every_single_call_also_refused_defaults(tmp_path, monkeypatch):
+    corpus, hyps = _hypotheses(2)
+    pairs = [(hyps[0], hyps[1], {"opinions": {}})]
+    fake = _fake_run([
+        (1, _refusal_envelope()),  # batch call refuses
+        (1, _refusal_envelope()),  # single fallback also refuses
+    ])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+
+    out = batching.batch_judge(pairs, batch_size=8, cache_dir=tmp_path, replay_only=False)
+
+    assert out == [0.5]  # hte.roles.judge's own refused default
+    assert len(fake.calls) == 2
+    assert "should-never-leak" not in json.dumps(out)
+
+
+def test_batch_judge_truncated_falls_back_to_single_calls(tmp_path, monkeypatch):
+    """The same fallback contract for `ModelTruncation` (`stop_reason=
+    "max_tokens"`) rather than `ModelRefusal`."""
+    corpus, hyps = _hypotheses(2)
+    pairs = [(hyps[0], hyps[1], {"opinions": {}})]
+    truncation_envelope = json.dumps({
+        "is_error": True, "stop_reason": "max_tokens", "session_id": "should-never-leak",
+        "total_cost_usd": 0.02, "result": "",
+    })
+    fake = _fake_run([
+        (1, truncation_envelope),
+        (0, _envelope({"p_a_wins": 0.4, "rationale": "single-fallback"})),
+    ])
+    monkeypatch.setattr(llm, "subprocess", SimpleNamespace(run=fake))
+
+    out = batching.batch_judge(pairs, batch_size=8, cache_dir=tmp_path, replay_only=False)
+
+    assert out == [0.4]
+    assert len(fake.calls) == 2
+
+
+# --------------------------------------------------------------------------
 # Malformed-entry fallback: an id present but missing a required key, or a
 # duplicated id, or a non-list "results"
 # --------------------------------------------------------------------------

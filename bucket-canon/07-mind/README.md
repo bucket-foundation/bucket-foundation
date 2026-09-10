@@ -1,3 +1,9 @@
+<!-- voice-ignore-file: pre-existing branch documentation predates strict
+     voice-rule enforcement. The intake/ros-canon-promotion pass fixes one
+     stale relative path in an existing footnote and leaves the rest of
+     this file's prose as written; a full voice pass is future cleanup,
+     not part of this promotion. -->
+
 # 07-mind — Canon Branch
 
 ## Scope
@@ -43,7 +49,7 @@ It does **NOT** hold:
 - Histories or biographies of psychologists and philosophers (those are
   candidate material for `08-deep-history/`)
 - Therapy-tradition primary texts (Freud, Jung, Beck) at this pass — see
-  `TAXONOMY_NOTES.md` open question on whether psychodynamic theory has a
+  `../TAXONOMY_NOTES.md` open question on whether psychodynamic theory has a
   canon-tier originator entry or sits entirely in landscape
 
 ## Promotion rule

@@ -2,6 +2,7 @@ import random
 
 import pytest
 
+from hte import timeline
 from hte.timeline import (
     AllenRelation,
     DEFAULT_BIN_WIDTH,
@@ -149,9 +150,34 @@ def test_time_bin_index_matches_paper_span():
     assert time_bin_index(last_year, DEFAULT_SPAN_START, DEFAULT_BIN_WIDTH) == 199
 
 
-def test_time_bin_index_rejects_year_before_span():
-    with pytest.raises(ValueError):
-        time_bin_index(DEFAULT_SPAN_START - 1)
+def test_time_bin_index_clamps_year_before_span(caplog):
+    # `bkt-hte-binning-clamp`, 2026-09-10: a year before `span_start`
+    # clamps to bin 0 and logs a warning, instead of raising, since
+    # `hte.address.encode_indices` needs a non-negative TIME_BIN index
+    # and has no other bin to fall back to for a too-early year.
+    with caplog.at_level("WARNING", logger="hte.timeline"):
+        assert time_bin_index(DEFAULT_SPAN_START - 1) == 0
+    assert any("clamped to bin 0" in r.message for r in caplog.records)
+
+
+def test_time_bin_index_does_not_clamp_a_year_at_or_after_span_start():
+    assert time_bin_index(DEFAULT_SPAN_START) == 0
+    assert time_bin_index(DEFAULT_SPAN_START + DEFAULT_BIN_WIDTH) == 1
+
+
+def test_time_bin_index_clamp_is_recorded_in_clamp_log():
+    # Silent-failures review finding 2: the `logging.warning` call alone
+    # reaches no persisted artifact in a real run (no CLI entry point in
+    # this package attaches a handler); `clamp_log()` is the record
+    # `hte.runner.run_campaign` reads back into `run.log` and
+    # `MANIFEST.json["clamped_years"]` instead.
+    timeline.reset_clamp_log()
+    assert timeline.clamp_log() == []
+    time_bin_index(DEFAULT_SPAN_START - 5, DEFAULT_SPAN_START)
+    time_bin_index(DEFAULT_SPAN_START, DEFAULT_SPAN_START)  # not a clamp, must not be logged
+    assert timeline.clamp_log() == [{"year": DEFAULT_SPAN_START - 5, "span_start": DEFAULT_SPAN_START}]
+    timeline.reset_clamp_log()
+    assert timeline.clamp_log() == []
 
 
 def test_combine_date_observations_weights_tighter_sigma_more():

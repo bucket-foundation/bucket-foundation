@@ -28,7 +28,10 @@ from .corpus import education_atlas, fixtures as fixtures_corpus, production
 from .evidence import EvidenceItem
 from .generate import combinatorial_sample, from_evidence
 from .hypothesis import Hypothesis
-from .timeline import Interval, Resolution, RESOLUTION_WIDTH_YEARS, auto_resolution, bin_bounds, bin_label
+from .timeline import (
+    Interval, Resolution, RESOLUTION_WIDTH_YEARS, auto_resolution, bin_bounds, bin_label,
+    clamp_log, reset_clamp_log,
+)
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "campaign": "default",
@@ -198,11 +201,27 @@ def _resolve_time_binning(cfg: dict[str, Any], corpus: Corpus) -> tuple[Resoluti
     this package's pre-fix behavior exactly: `tests/test_runner.py`'s own
     `FIXTURE_CONFIG` pins `"century"` for this reason, so its frozen
     replay-only `claude -p` cache, keyed by prompt text, still hits.
+
+    The span this function returns is anchored at the union of every
+    ground-truth event's own year AND every `corpus.evidence` item's own
+    extracted interval (`bkt-hte-binning-span-coverage`, 2026-09-10: an
+    `education-atlas` campaign died with `ValueError: year 2000 sits
+    before the span start 2002`, `_llm_proposed_hypotheses`'s own
+    generator-role proposal naming a year an evidence item's own
+    extracted interval carried, that this function's prior ground-truth-
+    only span never covered). Vocab-growth proposals (`_grow_vocab`)
+    carry no interval of their own (`hte.concepts.Concept` has no date
+    field) and so add nothing further to union over. Widening the span
+    this way is the primary defense; `hte.timeline.time_bin_index`'s own
+    clamp-not-raise contract is the fallback for whatever a real corpus's
+    evidence still does not cover (a generator role's own hallucinated
+    year, naming no evidence item at all).
     """
     if cfg["resolution"] is not None:
         resolution = Resolution(cfg["resolution"])
         return resolution, DEFAULT_SPAN_START, RESOLUTION_WIDTH_YEARS[resolution]
     intervals = [Interval(start=g.year, end=g.year) for g in corpus.ground_truth]
+    intervals += [e.interval for e in corpus.evidence if e.interval is not None]
     if not intervals:
         return Resolution.CENTURY, DEFAULT_SPAN_START, RESOLUTION_WIDTH_YEARS[Resolution.CENTURY]
     resolution = auto_resolution(intervals)
@@ -329,7 +348,14 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     cfg = {**DEFAULT_CONFIG, **(config or {})}
     # This run's own `llm.stats()` snapshot (`docs/THROUGHPUT.md`), reset
     # here rather than accumulated across every campaign this process has run.
+    # `roles.reset_refusal_log()` resets alongside it (`bkt-hte-refusal-
+    # handling`), so this run's own MANIFEST.json/self-report/run.log
+    # report only the refusals/truncations this run's own roles hit.
+    # `reset_clamp_log()` (`FINDING-2026-09-10-103`) gets the same
+    # treatment for `hte.timeline.time_bin_index`'s own clamp events.
     llm.reset_stats()
+    roles.reset_refusal_log()
+    reset_clamp_log()
     out_root = Path(cfg["out_dir"]) / cfg["campaign"]
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     run_dir = out_root / timestamp
@@ -408,7 +434,6 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
     preservation_results = roles.preservation_critique_many(
         survivors, table, cache_dir=cache_dir, replay_only=replay_only, workers=cfg["llm_workers"],
     )
-    preservation_notes = [{"hypothesis": h.short_id, **note} for h, note in zip(survivors, preservation_results)]
     for h, note in zip(survivors, preservation_results):
         logger.log(f"preservation critique on {h.short_id}: could_have_survived={note.get('could_have_survived')}")
 
@@ -480,6 +505,53 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "meta_review": meta_review_result,
     }
     self_report = roles.self_report(run_summary, cache_dir=cache_dir, replay_only=replay_only)
+
+    # `bkt-hte-refusal-handling`: every default `hte.roles` substituted
+    # for a refused or truncated model call this run, one `run.log` line
+    # per affected hypothesis/document id (never prompt text, per `hte.
+    # llm.ModelRefusal`/`ModelTruncation`'s own contract), and a summary
+    # line folded into `self_report["assumptions"]` so a reader of
+    # self-report.json alone still learns a refusal happened even when
+    # they never open MANIFEST.json.
+    refusals = roles.refusal_log()
+    n_refusals = sum(len(ids) for ids in refusals.values())
+    for role_name, ids in sorted(refusals.items()):
+        for affected_id in ids:
+            logger.log(f"refusal: role={role_name} id={affected_id} (defaulted; see MANIFEST.json['refusals'])")
+    if n_refusals:
+        by_role = ", ".join(f"{role_name}={len(ids)}" for role_name, ids in sorted(refusals.items()))
+        logger.log(f"refusals: {n_refusals} model refusal/truncation default(s) this run ({by_role})")
+        self_report = dict(self_report)
+        self_report["assumptions"] = list(self_report.get("assumptions", [])) + [
+            f"{n_refusals} model refusal/truncation default(s) this run ({by_role}); "
+            "see MANIFEST.json['refusals'] for the affected hypothesis/document ids."
+        ]
+
+    # `FINDING-2026-09-10-103` (silent-failures review #2): the same
+    # `run.log`/`self_report`-assumption treatment refusals got above,
+    # for every `hte.timeline.time_bin_index` clamp this run hit (a
+    # generator-role hallucinated year, or any other year naming no
+    # evidence item this run's own span union already covers, force-
+    # placed into bin 0 rather than dropped). `MANIFEST.json`'s own
+    # `clamped_years` list, assembled below alongside `manifest`, is
+    # this event's persisted record; the `logger.warning` line `time_bin_
+    # index` itself still emits reaches only stderr's bare handler of
+    # last resort in a real run, no CLI entry point in this package ever
+    # configures one.
+    clamped_years = clamp_log()
+    for clamp in clamped_years:
+        logger.log(
+            f"time-bin clamp: year={clamp['year']} span_start={clamp['span_start']} "
+            "(clamped to bin 0 rather than raising; see MANIFEST.json['clamped_years'])"
+        )
+    if clamped_years:
+        logger.log(f"clamped_years: {len(clamped_years)} year(s) clamped to bin 0 this run")
+        self_report = dict(self_report)
+        self_report["assumptions"] = list(self_report.get("assumptions", [])) + [
+            f"{len(clamped_years)} year(s) clamped to bin 0 this run (before this run's own TIME_BIN "
+            "span); see MANIFEST.json['clamped_years'] for the affected years."
+        ]
+
     # `hte.artifacts.validate_self_report` reads `self_report` through
     # the same contract `hte.paper`/`hte.referee`/`hte.publish`/`hte.
     # pipeline` load it back with, before it ever touches disk: this
@@ -515,6 +587,17 @@ def run_campaign(config: dict[str, Any] | None = None) -> RunArtifacts:
         "models": llm._model_policy(),
         "cache": cache_stats.to_dict(),
         "llm_stats": llm.stats(),
+        # `bkt-hte-refusal-handling`: `{role: [affected hypothesis/document
+        # ids]}` for every default `hte.roles` substituted for a refused or
+        # truncated model call this run (`llm_stats[role]["refusals"/
+        # "truncations"]` above carries the per-role counts; this carries
+        # which ids, never prompt text or an unsanitized envelope).
+        "refusals": refusals,
+        # `FINDING-2026-09-10-103`: `[{"year": ..., "span_start": ...},
+        # ...]` for every `hte.timeline.time_bin_index` clamp this run
+        # hit, the same "absorbed rather than raised" treatment
+        # `refusals` above gets for a defaulted model call.
+        "clamped_years": clamped_years,
         "seeds": list(range(cfg["seeds"])),
         "git_sha": _git_sha(),
         "config": cfg,

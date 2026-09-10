@@ -2,6 +2,82 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## Iteration 6, Phase 1 stub closures: closure table, diagnostic probe, real quotes, review hold
+
+Date 2026-09-10. Branch `feat/ros-phase0-stubs`, closing four of the Phase 0 PR's (#6)
+listed stubs, scoped to the review's own Phase 1 boundary (section 8). Rebased twice
+onto `main`: once after the site-alignment PR (#12) merged, once after the hypothesis
+engine bridge (#14) and the `hte` refusal-handling PR (#10) both merged; both rebases
+carried forward the concurrent work unchanged, resolving only the files this work and
+the engine bridge both touched (`package.json`'s `test:research-os` script,
+`src/app/api/research-os/route/route.ts`, `src/lib/research-os/db.ts`).
+
+### Added
+
+- `src/lib/research-os/closure.ts` (from the preserved wip commits; item 1):
+  `ancestorsOf` and `computeAncestorClosure`, the in-memory counterpart to
+  `graph.prereq_ancestor`.
+- `supabase/migrations/20260910010000_research_os_prereq_ancestor.sql` (from the
+  preserved wip commits; item 1): the closure table itself, public-read RLS.
+- `scripts/rebuild-prereq-ancestor.ts` (item 1): rebuilds `graph.prereq_ancestor` for
+  one branch from `graph.edges`, delete-and-reinsert, matching
+  `scripts/seed-research-os.mjs`'s idempotent pattern. Wired to
+  `npm run rebuild:research-os-ancestors`.
+- `scripts/test-research-os-closure.ts` (item 1): unit tests for `ancestorsOf` /
+  `computeAncestorClosure`, plus equivalence tests asserting `computeFrontier`'s
+  full-graph walk and its closure-pruned walk agree on every synthetic learner state
+  the routing test file already covers.
+- `src/lib/research-os/probe.ts` (item 2): `probeDue`, `selectProbeNodes`,
+  `probeQuestion`, `buildProbe` -- pure functions deciding whether a diagnostic probe
+  is due (no learner state on any ancestor of the target) and which 3-5 ancestor
+  nodes, at rising tiers, to ask about.
+- `src/lib/research-os/grounding.ts` (item 2): `gradeExplanation`, extracted from the
+  Check tool's original inline grading call in `workspace/route.ts` so the probe route
+  reuses the identical grading logic instead of a second copy of the prompt.
+- `src/app/api/research-os/probe/route.ts` (item 2): `GET` (is a probe due, and its
+  questions) and `POST` (grade one answer via `gradeExplanation`, apply
+  `onProbeCheckResult`).
+- `scripts/test-research-os-probe.ts` (item 2): unit tests for every function in
+  `probe.ts` plus `stages.ts`'s new `onProbeCheckResult`.
+- `src/lib/research-os/passages.ts` (item 3): a curated table of verbatim, under-90-
+  word passages with a locator and URL, verified character-for-character against the
+  live source (raw HTML/wikitext fetch, never a paraphrase) for Tyndall 1869, Rayleigh
+  1871, NASA Space Place, and the cited Wikipedia revisions. Carries a
+  `voice-ignore-file` marker (the passages are verbatim quotations).
+- `src/lib/research-os/reviewer.ts` (item 4): `verifyReviewer`, an
+  `RESEARCH_OS_REVIEWER_EMAILS` env-var allowlist gate, with a TODO pointing at the
+  real roster-backed role the review's gap analysis calls for (Phase 1+).
+- `src/app/api/research-os/review/route.ts` (item 4): `GET` (pending transfer-item
+  holds and submitted Productions) and `POST` (approve/return, gated by
+  `verifyReviewer`; an approval logs evidence on the learner's own state and, for a
+  transfer item, advances it to Internalization).
+- `src/app/research-os/review/page.tsx` (item 4): the reviewer queue UI.
+- `stages.ts`'s `onProbeCheckResult` and `onTeacherReview` (items 2 and 4): new stage
+  transitions; `EvidenceKind` gained `"teacher_review"`.
+
+### Edited
+
+- `src/lib/research-os/frontier.ts`: `computeFrontier` gained the optional fifth
+  `ancestorRows` argument the Phase 0 PR's header comment had already documented but
+  never implemented; pruning logic split into `pruneToClosure`. Every existing caller
+  and test keeps working unchanged (the argument defaults to the original full-graph
+  walk).
+- `src/lib/research-os/db.ts`: added `loadAncestorRows` (item 1) and refactored
+  `verifyLearner` into a shared `verifyToken` plus the new `verifyLearnerIdentity`
+  (item 4, so `reviewer.ts` can read the caller's email).
+- `src/app/api/research-os/route/route.ts`: reads `graph.prereq_ancestor` via
+  `loadAncestorRows` and passes the rows to `computeFrontier` (item 1).
+- `src/app/api/research-os/workspace/route.ts`: the `check` case now calls
+  `grounding.ts`'s `gradeExplanation` instead of an inline prompt (item 2); the
+  `quote` case now returns a curated verbatim passage when one exists, or the node's
+  own summary labeled `"summary"` when it does not (item 3).
+- `src/app/research-os/workspace/page.tsx`: renders the diagnostic probe panel when
+  due (item 2) and the quote tool's new `kind`/`locator` fields (item 3).
+
+### Removed
+
+None.
+
 ## Iteration 1
 
 Date 2026-09-09. Branch `feat/research-os-k12`.
@@ -163,3 +239,312 @@ against `main` since the PR's head branch was already deleted).
 ### Removed
 
 None.
+
+## Iteration 4
+
+Date 2026-09-10. Branch `feat/ros-engine-bridge`, worktree
+`bucket-foundation-ros-bridge`. Reviewed a WIP commit ("wip(feat/ros-engine-bridge):
+partial work preserved after 429 spend-limit stop") against PR #10
+(`feat/hte-k12-research-os`, merging concurrently), which lands `hte.api.hypothesize`,
+`hte/serve.py`, `hte/mcp_tool.py`, the literature corpus adapter, and
+`hte.corpus.production.is_research_os_record`/`normalize_research_os_record` in
+`tools/hypothesis-engine`.
+
+### Added
+
+- `learning/research-os/ENGINE-BRIDGE.md`: data flow, tables, idempotency keys, what
+  PR #10 covers versus this PR, and open stubs.
+- `supabase/migrations/20260910010000_research_os_engine_bridge.sql`: a
+  `graph.edges (from_id, to_id, kind)` unique index (item 1's own edge idempotency),
+  and `public.research_os_productions_outbox` (item 3).
+- `scripts/test-research-os-engine-bridge.ts`: unit tests for the engine node/edge
+  builder (item 1) and the production outbox row builder (item 3), against fixtures.
+- `scripts/test-research-os-engine-frontier.ts`: unit tests for `findFrontierEngineTargets`
+  (item 2), against the sky-blue seed plus a synthetic engine fixture node.
+
+### Edited
+
+- `src/lib/research-os/engine-bridge.ts`: item 1's section (`buildEngineNode`,
+  `buildEngineEdges`, `engineNodeSlug`, `engineTierToGraphTier`) kept as the WIP wrote
+  it. Item 3's section rebuilt: dropped the hand-built `PRODUCTION-SCHEMA.md` envelope
+  conversion (`buildProductionEnvelope` and its supporting types), superseded by PR
+  #10's own server-side normalizer; added `buildProductionOutboxRow`, which writes the
+  raw `graph.productions` row (plus an optional `_target_node` join) that normalizer
+  already reads directly. Full reasoning and the dropped code, verbatim:
+  `_intake/research-os-k12/DELETIONS.md`.
+- `src/lib/research-os/db.ts`: `writeProductionOutbox`'s signature simplified to match
+  the raw-row outbox contract (one argument, no separate `graphProductionId`, since the
+  outbox row's own `id` now is the production's real id).
+- `src/app/api/research-os/production/route.ts`: updated to call
+  `buildProductionOutboxRow`/the new `writeProductionOutbox` signature; the emit now
+  runs even when the target node join fails to resolve (the engine's own normalizer
+  already tolerates a missing `_target_node`, per its own docstring); the header
+  comment's reference to a `scripts/sync-productions-outbox.mjs` file that was never
+  built was removed.
+- `src/app/research-os/workspace/page.tsx`: added the "from the engine" panel that
+  renders `route.engineFrontier` (item 2's data was already plumbed by the WIP; this
+  iteration adds the render, the WIP's own +10 lines were the type definitions only).
+- `package.json`: `test:research-os` now runs all three research-os test files in
+  sequence (`test-research-os-routing.ts`, `test-research-os-engine-bridge.ts`,
+  `test-research-os-engine-frontier.ts`).
+- `_intake/research-os-k12/DELETIONS.md`, `_intake/research-os-k12/CHANGELOG.md`: this
+  iteration's own entries.
+
+### Removed
+
+None (the superseded envelope-conversion code is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`, per this repo's own no-deletions policy).
+
+## Iteration 5
+
+Date 2026-09-10. Branch `feat/hte-k12-research-os`, PR #10 review pass.
+
+### Edited
+
+- `tools/hypothesis-engine/hte/api.py`: moved the `_build_response()` call inside
+  `hypothesize()`'s `try`/`except` so a response-assembly bug reaches the documented
+  `CampaignError` contract instead of escaping as a bare exception; widened
+  `_sanitize()`'s path-redaction regex to `/srv`, `/opt`, `/root`, `/app`, `/mnt`, `/data`,
+  `/etc`; added `manifest["models"]` to the response so a caller gets which model backed
+  a run alongside `run_id`.
+- `tools/hypothesis-engine/hte/serve.py`: unexpected-500 branch logs the exception and a
+  traceback to stderr.
+- `tools/hypothesis-engine/hte/mcp_tool.py`: added `models` to the `hypothesize` tool's
+  `outputSchema`.
+- `tools/hypothesis-engine/docs/research-os-hypothesize-route.patch`: threaded `models`
+  through the not-yet-applied TS route's types and response mapping; corrected the two
+  unified-diff hunk headers' line counts to match.
+- `tools/hypothesis-engine/tests/test_api.py`: added
+  `test_response_carries_which_model_backed_each_role_alongside_run_id`.
+
+Full detail in `_intake/research-os-k12/CHANGELOG.md`'s "2026-09-10: PR #10 review pass"
+entry, including the leak scan, the graph-table overlap verification, and a note on an
+unrelated concurrent process sharing this review's worktree.
+
+### Removed
+
+None.
+
+## Iteration 6
+
+Date 2026-09-10. Branch `intake/ros-literature-2`. Literature batch two: 31 new papers plus one
+already-committed paper (Bastani and colleagues 2025) folded into the index, for a corpus total
+of 77.
+
+### Added
+
+- 31 new files under `_intake/research-os-k12-literature/`, one per paper, DOI-checked against
+  OpenAlex or Crossref at intake time: 12 in `hci-human-ai-collaboration/` (6 on LLM assistance
+  and learning outcomes, 6 on cognitive offloading and metacognition), 4 in `educational-methods/`
+  on motivation and payment, 5 in a new `prerequisite-knowledge-graphs/` branch on automatic
+  prerequisite-edge inference and learning-path routing, 7 in `scientific-discovery-metascience/`
+  on AI systems that generate or evaluate research hypotheses, and 3 in `ai-and-researchers/` on
+  scientific understanding as a goal distinct from predictive accuracy.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/`: new branch folder, five
+  files (Pan and colleagues 2017, Liang and colleagues 2018, Roy and colleagues 2019, Gasparetti
+  and colleagues 2017, Gligorea and colleagues 2023).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index table extended from 45 to 77 rows across
+  five areas (the fifth, prerequisite and knowledge-graph learning, new this pass); intro
+  paragraph and final per-area count line updated to match.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: each of the twelve open
+  questions gained an "Evidence added in batch two" paragraph naming the new papers relevant to
+  it and whether they support, complicate, or partially contradict the design bet the question
+  poses. No existing sentence in the twelve-question list was removed or reworded.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass appended, logged below in
+  this same iteration for cross-reference.
+
+### Verified Clean
+
+- Every new paper's DOI and OpenAlex work id were checked live via WebFetch against
+  `api.openalex.org` or `api.crossref.org` at intake time; none are placeholders.
+- No file reproduces a blockquote or extended verbatim passage from its source paper; every
+  file's `key_claims` and body are paraphrase, matching this corpus's existing convention.
+- A paper searched for but not found with a resolvable DOI (Talukdar and Cohen 2012's Wikipedia
+  prerequisite-structure paper; a distinct World Bank Nigeria follow-up beyond the de Simone 2025
+  paper already in the corpus; a Si, Yang, and Hashimoto 2025 ideation-execution-gap follow-up)
+  was omitted rather than included without a checkable citation.
+
+### Removed
+
+None.
+
+## Iteration 8
+
+Date 2026-09-10. Branch `docs/ros-plan-revision-1`, worktree `.wt-plan-revision-1`.
+Reviewed shipped work (PRs #3, #5, #6, #7, #8, #10, #12, #14, #15) against
+PLAN.md, plus PR #11 (draft, site repositioning) against the open founder
+decisions this iteration names. PR #15 (literature batch two, Iteration 6
+above) merged to main partway through this review; this entry cites it as
+shipped rather than open. PR #9 (canon promotion, Iteration 7 below) was
+still open when this iteration was drafted.
+
+### Added
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR-by-PR account of what shipped;
+  four evidence-driven design revisions (payout, frontier routing, the
+  three-arm testbed's diversity outcome, Check-tool phrasing robustness),
+  each citing its paper file in `_intake/research-os-k12-literature/` and
+  labeled STABLE, STRONG LEAN, or OPEN; a dependency-ordered Phase 1 scope
+  naming five blocking founder decisions with their exact questions; a table
+  mapping the overlap map's twelve open questions onto Phase 1 pilot versus
+  Phase 2 district-scale answerability; and a one-page ETH AI Center
+  fellowship fit (research-question paragraph, two-PI pairing rationale).
+
+### Edited
+
+- `learning/research-os/PLAN.md`: appended a "Revision 1" section pointing to
+  `PLAN-REVISION-1.md`. No existing section was rewritten, reordered, or
+  removed.
+- `_intake/research-os-k12/CHANGELOG.md`: this iteration's own entry.
+- `tools/hypothesis-engine/tests/swarm-20260910/test_runner_props.py`,
+  `tools/hypothesis-engine/docs/LOOP-LOG.md`: rewrote one antithesis
+  construction in each, voice-lint fixes only, no logic changed.
+
+### Removed
+
+None.
+
+## Iteration 7
+
+Date 2026-09-10. Branch `intake/ros-canon-promotion` (PR #9). Promotes six
+records from `_intake/research-os-k12-literature/` into `bucket-canon/`,
+opens two taxonomy questions without resolving them, and closes the
+site-registry-registration question `README.md` had left open. Full detail
+in `_intake/research-os-k12/CHANGELOG.md`'s matching entry; this ledger
+carries the summary.
+
+### Added
+
+- Two canon-tier records in `bucket-canon/07-mind/memory-systems/`
+  (Roediger and Karpicke 2006; Sparrow, Liu, and Wegner 2011).
+- `bucket-canon/07-mind/sub-outcomes/education/`, a new outcome-tier
+  dossier: four records (Bloom 1984; Kulik, Kulik, and Bangert-Drowns
+  1990; VanLehn 2011; Kulik and Fletcher 2016), each naming its
+  `07-mind/memory-systems/` foundation.
+- `bucket-canon/TAXONOMY_NOTES.md`, opening two branch-placement questions
+  (metascience/sociology-of-science home; AlphaFold method-card-versus-
+  landscape) and carrying forward the pre-existing psychodynamic-theory
+  question.
+
+### Edited
+
+- Six intake cards marked `status: promoted` with pointers; two marked
+  `status: open-question` with a `TAXONOMY_NOTES.md` pointer; claim text
+  unchanged in all eight.
+- `bucket-canon/05-biophysics/README.md`, `bucket-canon/07-mind/README.md`:
+  short pointer additions/fixes, no scope-note text removed.
+- `_intake/research-os-k12/README.md`: "Site registry registration"
+  section updated from "not yet done" to done, since `feat(site): align
+  public site with Research OS for K-12 (#12)` (merged into this branch
+  2026-09-10) added the `NAV` entry the section had scoped and documented.
+- `_intake/research-os-k12-literature/README.md`: merged against
+  `intake/ros-literature-2`'s concurrent batch-two expansion (45 to 77
+  rows); this pass's tier/status changes carried onto the six affected
+  rows in the merged 77-row table, the "other files unchanged" count
+  updated from 39 to 68 to account for batch two's 32 additions.
+
+### Removed
+
+None.
+
+## Iteration 9
+
+Date 2026-09-10. PR #19 review pass, worktree `.ros-worktrees/r19`. Full account in
+`_intake/research-os-k12/CHANGELOG.md`, "2026-09-10: PR #19 review pass".
+
+### Edited
+
+- `learning/research-os/PLAN-REVISION-1.md`: PR #15 and PR #9 status corrected from open to
+  merged in section 1's table, and the batch-two references in sections 4 and 5 updated to match
+  PR #15's landing; two antithesis constructions rewritten.
+- `learning/research-os/PLAN.md`: Revision 1 pointer paragraph's PR #15 status corrected.
+- `_intake/research-os-k12/CHANGELOG.md`: same PR #15 and PR #9 status fixes in the
+  plan-revision-1 entry.
+- `learning/research-os/CHANGE-LEDGER.md` (this file): resolved two merge conflicts against
+  `origin/main` as it advanced during review, first PR #15 (kept as Iteration 6), then PR #9
+  (kept as Iteration 7); this PR's own entry landed as Iteration 8.
+
+### Removed
+
+None.
+
+## Iteration 10
+
+Date 2026-09-10. Branch `feat/ros-canon-ingest`, worktree `wt-ingest`. Numbered
+Iteration 10 rather than 5: origin/main used "Iteration 5" for a concurrent PR
+#10 review pass and ran through Iteration 9 (a PR #19 review pass) by the time
+this branch merged, per `git merge origin/main`'s own conflict here. A
+canon-to-graph ingestion slice: two importers that grow the graph beyond the
+22-node Phase 0 seed with no model in the loop, per `_intake/research-os-k12/
+RESEARCH-OS-K12-SYSTEM-REVIEW.md` section 3 and `02-architecture.md` section
+10's own ingestion pipeline description.
+
+### Added
+
+- `src/lib/research-os/ingest/types.ts`: shared `IngestNodeDraft`,
+  `IngestEdgeDraft`, `ReviewItem`, `IngestResult` types both importers use.
+- `src/lib/research-os/ingest/academy.ts`: the Academy corpus importer
+  (`buildAcademyImport`, `buildAcademyFileImport`, `computeRequiresDepth`,
+  `academyNodeSlug`, `mapAtomKind`, `isAcademyCorpusFile`). Pure, no
+  filesystem access.
+- `src/lib/research-os/ingest/canon.ts`: the canon entry importer
+  (`buildCanonImport`, `buildCanonEntryNode`, `buildCanonSourceNode`,
+  `buildCanonCitesEdge`, `matchAcademyAtom`, `isLawFolder`,
+  `canonEntrySlug`/`canonSourceSlug`). Pure, no filesystem access.
+- `src/lib/research-os/ingest/validate.ts`: `checkOrphanEdges`,
+  `checkTierMonotonicity`, `tierViolationsToReviewItems`, shared by both
+  importers, their CLIs, and their tests.
+- `src/lib/research-os/ingest/review.ts`: `mergeReviewList`, the review-list
+  convergence helper both CLIs call.
+- `scripts/research-os/ingest/academy-import.ts`, `.../canon-import.ts`: the
+  two CLI scripts (dry-run default, `--apply` upserts through the
+  graph-schema service-role client, `scripts/seed-research-os.mjs`'s own
+  construction).
+- `scripts/research-os/ingest/lib/load-academy-corpus.ts`: the filesystem
+  loader both CLIs share, so a canon `derives_from` edge's target slug
+  always agrees with the node `academy-import.ts` itself writes.
+- `scripts/research-os/ingest/canon-atom-map.json`: the explicit
+  canon-to-Academy-atom override file, seeded with the sky-blue seed's own
+  three canon-bridge node pairs (`waves`, `em-waves`, `wave-optics`).
+- `scripts/research-os/ingest/test-ingest-validate.ts`,
+  `test-ingest-academy.ts`, `test-ingest-canon.ts`: 42 `node:test` cases
+  total, fixture-based plus two blocks run against the real corpus and the
+  real `bucket-canon/02-physics/` dossiers on disk. Wired into
+  `npm run test:research-os`.
+- `scripts/research-os/ingest/out/sample-academy-preview.json`,
+  `sample-canon-preview.json`, `sample-review-list.json`: small committed
+  samples of the gitignored dry-run output (`.gitignore` gains a
+  `scripts/research-os/ingest/out/*` rule with these three exceptions).
+- `learning/research-os/INGESTION.md`: the data flow, the tier and kind
+  heuristics, the canon-to-Academy matching order, and the review-list
+  contract.
+- `package.json`: two convenience scripts, `ingest:research-os:academy`,
+  `ingest:research-os:canon`; `test:research-os` now also runs the three new
+  test files.
+
+### Edited
+
+- `.gitignore`: added the `scripts/research-os/ingest/out/` ignore block.
+- `_intake/research-os-k12/CHANGELOG.md`, this file: this iteration's own
+  entries.
+
+### Removed
+
+None.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build`, `npm run test:research-os`
+(42/42 pass, this slice's three new files plus the three pre-existing
+research-os test files), `next lint` on every touched file, and
+`agf-lint-voice-src check` / `agf-lint-voice check` on every touched
+file/doc: all clean. Dry run against the current repo: Academy importer, 487
+nodes, 820 `prerequisite` edges, 0 tier violations, 0 review items; canon
+importer, 8 nodes, 4 edges, 4 `unmatched_derives_from` review items (of the
+six `bucket-canon/02-physics/` dossiers, `special-relativity` and
+`standard-model` match an Academy atom id exactly, `bell-theorem`,
+`gauge-principle`, `quantum-field-theory`, and `quantum-mechanics` do not).
+Zero orphan edges in either run.

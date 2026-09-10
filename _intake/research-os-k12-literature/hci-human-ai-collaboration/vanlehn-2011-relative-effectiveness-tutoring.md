@@ -8,7 +8,11 @@ doi: "10.1080/00461520.2011.611369"
 url: "https://doi.org/10.1080/00461520.2011.611369"
 openalex_id: "https://openalex.org/W2051339053"
 branch: "hci-human-ai-collaboration"
-tier: "canon"
+tier: "outcome"
+status: "promoted"
+promoted_to: "bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml (id bkt-1fa55749afd0)"
+promoted_at: "2026-09-10"
+depends_on_foundation: "bucket-canon/07-mind/memory-systems/primary-papers.yaml (id bkt-0333f4a853f3, Roediger and Karpicke 2006)"
 why_it_matters: >
   A meta-analysis directly comparing human tutoring, step-based intelligent tutoring
   systems, and answer-based tutoring systems, giving Research OS a calibrated expectation
@@ -29,6 +33,15 @@ how_it_bears_on_research_os: >
 ---
 
 # The Relative Effectiveness of Human Tutoring, Intelligent Tutoring Systems, and Other Tutoring Systems
+
+> **Promoted to outcome tier, 2026-09-10.** This record lives in
+> `bucket-canon/07-mind/sub-outcomes/education/primary-papers.yaml` (id
+> `bkt-1fa55749afd0`, `canon_score` 70) and `bucket-canon/07-mind/sub-outcomes/education/CANON_INDEX.md`.
+> Outcome tier, not canon: it reports tutoring-system effect sizes, RUBRIC
+> E7, and depends on the retrieval-practice/testing-effect mechanism in
+> `bucket-canon/07-mind/memory-systems/` (Roediger and Karpicke 2006). This
+> file stays in place as the Research OS-specific reading; the sub-outcomes
+> entry is the citeable record.
 
 A meta-analysis directly comparing human tutoring, step-based intelligent tutoring systems, and answer-based tutoring systems, giving Research OS a calibrated expectation for what its own Check tool, a step-based verifier, should be able to achieve relative to a human tutor.
 
