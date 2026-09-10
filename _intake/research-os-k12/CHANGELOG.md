@@ -1,5 +1,20 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, ros-07 minors compliance pack part A
+
+Bead `ros-07`, branch `feat/ros-07-compliance-part-a`. Built the decision-independent slice
+of the minors compliance pack named in `learning/research-os/PLAN-REVISION-1.md` section 3
+item 8: a full data inventory, a self- or reviewer-gated export/delete API route backed by
+a one-transaction Postgres function, the age-and-consent gate's decision rule, and three
+policy drafts (privacy policy, student data privacy addendum, AI disclosure), all under
+`learning/research-os/compliance/`. Full entry in `learning/research-os/CHANGE-LEDGER.md`,
+"Iteration 15, ros-07 minors compliance pack part A." This document
+(`04-compliance-distribution.md`) was read in full as the source of every legal-basis claim
+in the new data inventory and policy drafts; no line of it was edited by this pass. One
+fact checked beyond what this document already states: the SDPC NDPA's current version,
+verified live by `WebFetch` against `privacy.a4l.org/national-dpa/` on 2026-09-10 at
+version 2.2 (published November 19, 2025), recorded in the new addendum draft.
+
 ## 2026-09-10, PR #27 review pass
 
 Review of `feat/ros-03-confidence-routing` (PR #27) in worktree `.ros-worktrees/r27`. Leak

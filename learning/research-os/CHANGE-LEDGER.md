@@ -807,3 +807,78 @@ index row count (82) matched the corpus file count (82) exactly, `find` counted 
 22 educational methods, 25 HCI, 18 scientific discovery, 12 AI and researchers, 5
 prerequisite graphs. Every framework mapping table states "No counterpart" with a reason
 where one applies. `agf-lint-voice check` clean on every file it scanned.
+
+## Iteration 15: ros-07 minors compliance pack part A
+
+Date 2026-09-10. Bead `ros-07`, branch `feat/ros-07-compliance-part-a`, worktree
+`.ros-worktrees/ros07`. `PLAN-REVISION-1.md` section 3 item 8 scopes this bead to the
+decision-independent slice only (the front-door decision between the sky-blue and
+quantum-history pilot paths stays open); everything below holds regardless of which path
+gets picked.
+
+### Added
+
+- `learning/research-os/compliance/DATA-INVENTORY.md`: every table and jsonb field across
+  the `graph` and `bucket` schemas that can hold a learner's data, its legal basis, its
+  retention rule, and a data-minimization audit, including the three free-text fields a
+  child may have written (`learner_node_state.evidence[].learnerText`/`.note`,
+  `productions.claim`/`.evidence`/`.transfer_proof`) and their deletion rule.
+- `supabase/migrations/20260910040000_research_os_privacy_consent.sql`: `graph.
+  learner_profiles` (role, coarse birth-year bucket, consent status and source), `graph.
+  privacy_events` (a hashed-learner-id audit log), and `graph.privacy_delete_learner`, a
+  plpgsql function that hard-deletes a learner's rows across every table in the inventory
+  and writes one audit row, in one Postgres transaction.
+- `src/app/api/research-os/privacy/route.ts` + `src/lib/research-os/privacy.ts`: `POST
+  /api/research-os/privacy` with `export` and `delete` actions, self- or reviewer-gated
+  (`resolvePrivacyActor`). `PRIVACY_TABLES` is the single table-list source both the export
+  read path and the delete RPC call are checked against; `buildExportEnvelope` re-scopes
+  every row to the requesting learner as a second, pure enforcement layer on top of the
+  database query's own filter; `simulateLearnerDelete` is a pure, offline-testable mirror of
+  the SQL function's table list and semantics.
+- `src/lib/research-os/consent.ts`: the age-and-consent gate's decision rule, `decideConsent`
+  (pure) and `requireConsent` (the thin DB-reading wrapper). Rule: no profile row, or an
+  under-13/13-to-17 bucket with `consent_status` `'none'`, blocks a workspace tool call or
+  Production submission; every other case is allowed.
+- `learning/research-os/compliance/PRIVACY-POLICY-DRAFT.md`,
+  `STUDENT-DATA-PRIVACY-ADDENDUM-DRAFT.md`, `AI-DISCLOSURE-DRAFT.md`: three policy drafts,
+  each marked draft and requiring counsel review. The addendum's NDPA version note was
+  verified live by direct `WebFetch` against `privacy.a4l.org/national-dpa/` on 2026-09-10:
+  current version 2.2, published November 19, 2025, superseding the compliance research's
+  earlier "130,000+ signed agreements" figure (now over 222,000, per the same page).
+- `learning/research-os/compliance/README.md`: what part A covers, what part B still needs
+  (the front-door decision, a VPC vendor, age assurance, district DPA signatures,
+  time-based retention, self-service UI, counsel review), and the two open founder decisions
+  restated.
+- `scripts/test-research-os-consent.ts` (7 tests), `scripts/test-research-os-privacy.ts` (13
+  tests, including a drift check that reads the migration file's own text and asserts every
+  `PRIVACY_TABLES` entry has a matching `delete from` statement in it), both wired into
+  `package.json`'s `test:research-os` chain.
+
+### Edited
+
+- `package.json`: appended the two new test scripts to `test:research-os`.
+- `_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md` (this
+  file): this iteration's own entry.
+- `BEADS-PENDING.jsonl`: appended a `ros-07` status line.
+
+### Skipped, and why
+
+`requireConsent` is not wired into `src/app/api/research-os/workspace/route.ts` or
+`.../production/route.ts`: `git log -3 --since='3 hours ago' -- src/app/api/research-os/`
+showed two commits, the most recent 2 minutes old at the time this bead started, matching
+this bead's own instruction to leave concurrently-edited tool handlers and routes alone.
+The helper is exported complete and tested; wiring it in is a two-line addition documented
+as a TODO at the bottom of `consent.ts`'s own file header.
+
+### Verified
+
+`npm ci`, `npx tsc --noEmit`, `npm run build` (the new `/api/research-os/privacy` route
+appears in the build's own route manifest), and `npm run test:research-os` (137 tests, 0
+failures) all green. `next lint` on every touched TypeScript file: no warnings or errors.
+`agf-lint-voice check` on all five new files under `learning/research-os/compliance/`, and
+`agf-lint-voice-src check` on `consent.ts`, `privacy.ts`, the new route, both new test
+scripts, and the new migration: 0 violations after one auto-fix pass plus a manual rewrite
+pass on every antithesis-pattern and appended-clause-heading flag (neither is auto-fixed).
+No secrets, absolute local paths, or PII in any new file; the SDPC NDPA version claim is
+the only external fact in this pass, sourced to a direct fetch rather than carried forward
+from the source compliance document unchecked.
