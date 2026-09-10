@@ -6,7 +6,7 @@ year: 2023
 venue: "Nature"
 doi: "10.1038/d41586-023-00107-z"
 url: "https://doi.org/10.1038/d41586-023-00107-z"
-openalex_id: "https://openalex.org/W4317390716"
+openalex_id: null
 branch: "ai-and-researchers"
 tier: "candidate"
 why_it_matters: >

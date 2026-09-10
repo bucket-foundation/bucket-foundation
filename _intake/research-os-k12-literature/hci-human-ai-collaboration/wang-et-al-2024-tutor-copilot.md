@@ -18,7 +18,7 @@ why_it_matters: >
   chatbot, an architecture pattern closer to Research OS's own AI finds, quotes, checks,
   organizes design than most classroom-AI literature.
 key_claims:
-  - "Tutor CoPilot gives human tutors, not students, real-time AI-generated suggestions grounded in expert-tutoring strategies, which the tutor may use, adapt, or ignore."
+  - "Tutor CoPilot gives human tutors real-time AI-generated suggestions grounded in expert-tutoring strategies, which the tutor may use, adapt, or ignore."
   - "In a large field deployment, students working with tutors who had CoPilot access showed higher mastery of topics, with especially large gains for tutors with less certification or experience."
   - "The effect appears to come from upskilling weaker tutors toward expert-tutor patterns rather than from students interacting with AI output directly."
 research_questions_it_leaves_open:
@@ -39,7 +39,7 @@ A real-time-in-session AI support system for human tutors rather than a student-
 
 ## Key Claims
 
-- Tutor CoPilot gives human tutors, not students, real-time AI-generated suggestions grounded in expert-tutoring strategies, which the tutor may use, adapt, or ignore.
+- Tutor CoPilot gives human tutors real-time AI-generated suggestions grounded in expert-tutoring strategies, which the tutor may use, adapt, or ignore.
 - In a large field deployment, students working with tutors who had CoPilot access showed higher mastery of topics, with especially large gains for tutors with less certification or experience.
 - The effect appears to come from upskilling weaker tutors toward expert-tutor patterns rather than from students interacting with AI output directly.
 

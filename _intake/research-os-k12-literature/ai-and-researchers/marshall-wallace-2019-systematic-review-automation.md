@@ -7,7 +7,7 @@ year: 2019
 venue: "Systematic Reviews"
 doi: "10.1186/s13643-019-1074-9"
 url: "https://doi.org/10.1186/s13643-019-1074-9"
-openalex_id: "https://openalex.org/W2961191798"
+openalex_id: null
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >
@@ -18,7 +18,7 @@ why_it_matters: >
 key_claims:
   - "Machine learning tools can reliably assist several discrete steps of a systematic review, screening candidate studies for relevance, extracting structured data like sample size or outcome measures from a paper's text, but no tool fully automates the synthesis and judgment steps a systematic review requires."
   - "Screening-assistance tools, ranking studies by predicted relevance so a human reviews the most likely candidates first, are among the most mature and most validated of the surveyed methods."
-  - "The authors are explicit that automation should augment, not replace, a human reviewer's own judgment at every step surveyed, given the current state of the tools' own reliability."
+  - "The authors are explicit that automation should augment a human reviewer's own judgment at every step surveyed rather than replace it, given the current state of the tools' own reliability."
 research_questions_it_leaves_open:
   - "Which specific systematic-review-automation methods transfer directly to Bucket's own canon-intake rubric, and which of the rubric's own eligibility checks already are, in effect, one of these methods."
   - "How to validate an automation tool's own reliability for a new, narrower literature, a single research question's own citation base, rather than the large, general biomedical review corpora most of the surveyed validation studies use."
@@ -40,7 +40,7 @@ A practical, method-by-method survey of where machine learning can and cannot ye
 
 - Machine learning tools can reliably assist several discrete steps of a systematic review, screening candidate studies for relevance, extracting structured data like sample size or outcome measures from a paper's text, but no tool fully automates the synthesis and judgment steps a systematic review requires.
 - Screening-assistance tools, ranking studies by predicted relevance so a human reviews the most likely candidates first, are among the most mature and most validated of the surveyed methods.
-- The authors are explicit that automation should augment, not replace, a human reviewer's own judgment at every step surveyed, given the current state of the tools' own reliability.
+- The authors are explicit that automation should augment a human reviewer's own judgment at every step surveyed rather than replace it, given the current state of the tools' own reliability.
 
 ## Research Questions It Leaves Open
 

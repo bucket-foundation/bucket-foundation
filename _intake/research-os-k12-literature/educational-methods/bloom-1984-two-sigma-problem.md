@@ -19,7 +19,7 @@ key_claims:
   - "Mastery learning alone (group instruction plus formative tests and corrective feedback, no individual tutor) reached about one standard deviation, roughly half the tutoring effect."
   - "Bloom frames the gap between the two conditions as a research agenda: find methods of group instruction that approach tutoring's effect at tutoring's cost."
 research_questions_it_leaves_open:
-  - "Which specific tutoring behaviors, not just the one-to-one format, carry the two-sigma effect, and whether a scoped AI tool can reproduce them without reproducing a human tutor's judgment."
+  - "Which specific tutoring behaviors carry the two-sigma effect, beyond the one-to-one format itself, and whether a scoped AI tool can reproduce them without reproducing a human tutor's judgment."
   - "Whether the two-sigma figure replicates outside Bloom's own studies and their small samples, a question the Kulik, Kulik, and Bangert-Drowns meta-analysis in this same corpus takes up directly."
 how_it_bears_on_research_os: >
   Research OS's own design document treats the five-state ladder and the constrained
@@ -42,7 +42,7 @@ Names the empirical ceiling any one-to-one-tutoring-equivalent system is chasing
 
 ## Research Questions It Leaves Open
 
-- Which specific tutoring behaviors, not just the one-to-one format, carry the two-sigma effect, and whether a scoped AI tool can reproduce them without reproducing a human tutor's judgment.
+- Which specific tutoring behaviors carry the two-sigma effect, beyond the one-to-one format itself, and whether a scoped AI tool can reproduce them without reproducing a human tutor's judgment.
 - Whether the two-sigma figure replicates outside Bloom's own studies and their small samples, a question the Kulik, Kulik, and Bangert-Drowns meta-analysis in this same corpus takes up directly.
 
 ## How It Bears on Research OS

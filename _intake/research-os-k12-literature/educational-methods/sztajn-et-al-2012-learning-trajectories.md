@@ -26,8 +26,9 @@ research_questions_it_leaves_open:
 how_it_bears_on_research_os: >
   Names the failure mode the prerequisite-edge inference worker has to guard against: an
   LLM-proposed edge from standards sequencing encodes the logical order an expert would
-  choose, not necessarily the developmental path this paper shows students take, which is
-  why the system review requires human review before any inferred edge can affect routing.
+  choose, rather than necessarily the developmental path this paper shows students take,
+  which is why the system review requires human review before any inferred edge can affect
+  routing.
 ---
 
 # Learning Trajectory Based Instruction
@@ -47,4 +48,4 @@ The direct precedent for representing a subject as a sequenced prerequisite stru
 
 ## How It Bears on Research OS
 
-Names the failure mode the prerequisite-edge inference worker has to guard against: an LLM-proposed edge from standards sequencing encodes the logical order an expert would choose, not necessarily the developmental path this paper shows students take, which is why the system review requires human review before any inferred edge can affect routing.
+Names the failure mode the prerequisite-edge inference worker has to guard against: an LLM-proposed edge from standards sequencing encodes the logical order an expert would choose, rather than necessarily the developmental path this paper shows students take, which is why the system review requires human review before any inferred edge can affect routing.

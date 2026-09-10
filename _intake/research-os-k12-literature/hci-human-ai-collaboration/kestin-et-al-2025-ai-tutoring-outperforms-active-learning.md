@@ -16,10 +16,11 @@ tier: "canon"
 why_it_matters: >
   A 2025 randomized classroom trial of AI tutoring against a live, research-based
   active-learning comparison, the closest existing evidence to what the planned three-arm
-  study would need to beat or match with a constrained, not open-ended, AI condition.
+  study would need to beat or match with a constrained AI condition rather than an
+  open-ended one.
 key_claims:
   - "In a randomized within-class crossover, students using an AI tutor built on a research-based instructional design learned more, in less time, and reported higher engagement than students in an active, in-person, research-validated class session on the same physics content."
-  - "The AI tutor's design, not the underlying model alone, was treated as the active ingredient: it followed an explicit pedagogical structure rather than open-ended question answering."
+  - "The paper treats the AI tutor's own pedagogical design as the active ingredient, distinct from the underlying model alone: it followed an explicit pedagogical structure rather than open-ended question answering."
   - "The study measured learning gains on the same class period's content, a short-horizon outcome distinct from retention weeks later."
 research_questions_it_leaves_open:
   - "Whether the effect holds at longer retention intervals, since this study measured same-day learning gains rather than delayed post-tests."
@@ -34,12 +35,12 @@ how_it_bears_on_research_os: >
 
 # AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting
 
-A 2025 randomized classroom trial of AI tutoring against a live, research-based active-learning comparison, the closest existing evidence to what the planned three-arm study would need to beat or match with a constrained, not open-ended, AI condition.
+A 2025 randomized classroom trial of AI tutoring against a live, research-based active-learning comparison, the closest existing evidence to what the planned three-arm study would need to beat or match with a constrained AI condition rather than an open-ended one.
 
 ## Key Claims
 
 - In a randomized within-class crossover, students using an AI tutor built on a research-based instructional design learned more, in less time, and reported higher engagement than students in an active, in-person, research-validated class session on the same physics content.
-- The AI tutor's design, not the underlying model alone, was treated as the active ingredient: it followed an explicit pedagogical structure rather than open-ended question answering.
+- The paper treats the AI tutor's own pedagogical design as the active ingredient, distinct from the underlying model alone: it followed an explicit pedagogical structure rather than open-ended question answering.
 - The study measured learning gains on the same class period's content, a short-horizon outcome distinct from retention weeks later.
 
 ## Research Questions It Leaves Open

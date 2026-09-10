@@ -15,7 +15,7 @@ why_it_matters: >
   updating the expected effect size and identifying study-quality moderators Research OS's
   own pilot design should control for.
 key_claims:
-  - "Across 50 controlled evaluations, intelligent tutoring systems raised test scores by about 0.66 standard deviations on average relative to conventional instruction, a robust but more modest figure than some earlier, smaller studies reported."
+  - "Across 50 controlled evaluations, intelligent tutoring systems raised test scores by about 0.66 standard deviations on average relative to conventional instruction, a stable but more modest figure than some earlier, smaller studies reported."
   - "Effect sizes were larger in studies with weaker methodological controls, non-randomized designs, researcher-made outcome measures, meaning the pooled estimate likely overstates the effect a rigorous randomized study would find."
   - "Intelligent-tutoring effects held across subject areas and across K-12 and higher-education populations, evidence the benefit is not specific to one domain."
 research_questions_it_leaves_open:
@@ -35,7 +35,7 @@ A second, larger, more recent intelligent-tutoring-systems meta-analysis than Va
 
 ## Key Claims
 
-- Across 50 controlled evaluations, intelligent tutoring systems raised test scores by about 0.66 standard deviations on average relative to conventional instruction, a robust but more modest figure than some earlier, smaller studies reported.
+- Across 50 controlled evaluations, intelligent tutoring systems raised test scores by about 0.66 standard deviations on average relative to conventional instruction, a stable but more modest figure than some earlier, smaller studies reported.
 - Effect sizes were larger in studies with weaker methodological controls, non-randomized designs, researcher-made outcome measures, meaning the pooled estimate likely overstates the effect a rigorous randomized study would find.
 - Intelligent-tutoring effects held across subject areas and across K-12 and higher-education populations, evidence the benefit is not specific to one domain.
 

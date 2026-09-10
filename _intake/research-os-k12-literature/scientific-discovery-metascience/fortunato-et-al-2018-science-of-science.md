@@ -28,7 +28,7 @@ why_it_matters: >
   what a citation-and-belief-fusion engine over the scientific literature is itself an
   instance of.
 key_claims:
-  - "Large-scale bibliometric data now make it possible to study patterns of productivity, collaboration, citation, and career trajectory across science as a whole, not just within a single field's own self-understanding."
+  - "Large-scale bibliometric data now make it possible to study patterns of productivity, collaboration, citation, and career trajectory across science as a whole, beyond a single field's own self-understanding."
   - "Citation counts are a noisy and field-dependent proxy for a paper's scientific impact or correctness, and the review catalogs known biases, self-citation, citation cartels, field-size effects, any citation-weighted system needs to correct for."
   - "Predicting which papers, people, or ideas will have outsized future impact remains an open, only partially solved problem, despite large data and many proposed models."
 research_questions_it_leaves_open:
@@ -49,7 +49,7 @@ A review-scale synthesis of the science of science field, the quantitative study
 
 ## Key Claims
 
-- Large-scale bibliometric data now make it possible to study patterns of productivity, collaboration, citation, and career trajectory across science as a whole, not just within a single field's own self-understanding.
+- Large-scale bibliometric data now make it possible to study patterns of productivity, collaboration, citation, and career trajectory across science as a whole, beyond a single field's own self-understanding.
 - Citation counts are a noisy and field-dependent proxy for a paper's scientific impact or correctness, and the review catalogs known biases, self-citation, citation cartels, field-size effects, any citation-weighted system needs to correct for.
 - Predicting which papers, people, or ideas will have outsized future impact remains an open, only partially solved problem, despite large data and many proposed models.
 

@@ -16,7 +16,7 @@ why_it_matters: >
   hypothesis engine's own stemma-aware fusion and Research OS's own citation-fee routing.
 key_claims:
   - "In studies of collaborative recognition, more eminent scientists tend to receive disproportionate credit for jointly authored work relative to their less well-known collaborators, a pattern Merton names for the biblical passage about unto every one that hath shall be given."
-  - "The effect operates through visibility and communication patterns, not necessarily through any actor's own deliberate intent to under-credit a collaborator."
+  - "The effect operates through visibility and communication patterns rather than necessarily through any actor's own deliberate intent to under-credit a collaborator."
   - "Early-career researchers and structurally disadvantaged contributors bear the accumulating cost of the effect over a career, since early under-credit compounds into later reduced opportunity."
 research_questions_it_leaves_open:
   - "Whether an automated, provenance-tracked citation-fee system, routing a payment on every cited use rather than relying on reputational credit, counteracts the Matthew effect or only relocates it to whichever source an AI system happens to retrieve most often."
@@ -38,7 +38,7 @@ Names the credit-allocation dynamic, eminent researchers receiving disproportion
 ## Key Claims
 
 - In studies of collaborative recognition, more eminent scientists tend to receive disproportionate credit for jointly authored work relative to their less well-known collaborators, a pattern Merton names for the biblical passage about unto every one that hath shall be given.
-- The effect operates through visibility and communication patterns, not necessarily through any actor's own deliberate intent to under-credit a collaborator.
+- The effect operates through visibility and communication patterns rather than necessarily through any actor's own deliberate intent to under-credit a collaborator.
 - Early-career researchers and structurally disadvantaged contributors bear the accumulating cost of the effect over a career, since early under-credit compounds into later reduced opportunity.
 
 ## Research Questions It Leaves Open

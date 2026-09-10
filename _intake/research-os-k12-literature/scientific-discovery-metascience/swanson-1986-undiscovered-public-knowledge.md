@@ -22,11 +22,11 @@ research_questions_it_leaves_open:
   - "How to systematically search for this kind of disconnected-literature structure at scale, the problem Swanson's own later ARROWSMITH system attempts and later knowledge-graph methods revisit."
   - "How to distinguish a real undiscovered connection from a spurious one, since most pairs of disconnected literatures share no meaningful link at all."
 how_it_bears_on_research_os: >
-  Is the founding precedent for treating a structural gap, not just a stated open
-  question, as an addressable research target: the hypothesis engine's own GapNode, an
-  unread document, an unfilled evidence cell, an unresolved mechanism, each priced by
-  value_of_information, formalizes this paper's own move of treating an absence of
-  connection as itself a finding worth pursuing, rather than a topic not yet written
+  Is the founding precedent for treating a structural gap as an addressable research
+  target in its own right, beyond a stated open question: the hypothesis engine's own
+  GapNode, an unread document, an unfilled evidence cell, an unresolved mechanism, each
+  priced by value_of_information, formalizes this paper's own move of treating an absence
+  of connection as itself a finding worth pursuing, rather than a topic not yet written
   about.
 ---
 
@@ -47,4 +47,4 @@ The founding case study of literature-based discovery, finding a testable medica
 
 ## How It Bears on Research OS
 
-Is the founding precedent for treating a structural gap, not just a stated open question, as an addressable research target: the hypothesis engine's own GapNode, an unread document, an unfilled evidence cell, an unresolved mechanism, each priced by value_of_information, formalizes this paper's own move of treating an absence of connection as itself a finding worth pursuing, rather than a topic not yet written about.
+Is the founding precedent for treating a structural gap as an addressable research target in its own right, beyond a stated open question: the hypothesis engine's own GapNode, an unread document, an unfilled evidence cell, an unresolved mechanism, each priced by value_of_information, formalizes this paper's own move of treating an absence of connection as itself a finding worth pursuing, rather than a topic not yet written about.

@@ -17,7 +17,7 @@ why_it_matters: >
   hypothesis engine's own multi-role pipeline should be sized and organized.
 key_claims:
   - "Across tens of millions of papers and patents, small teams tend to produce more disruptive work, introducing new ideas that later work builds on rather than cites the team's own prior references, while large teams tend to produce more developmental work, refining and extending existing ideas."
-  - "The pattern holds after controlling for team members' own individual citation histories, suggesting team size itself, not just who is on the team, shapes the kind of contribution produced."
+  - "The pattern holds after controlling for team members' own individual citation histories, suggesting team size itself shapes the kind of contribution produced, beyond who is on the team."
   - "Small teams draw disproportionately on older and less conventional combinations of ideas, while large teams draw on newer, more mainstream combinations, a difference the paper connects to how large teams tend to divide labor into familiar, well-understood sub-tasks."
 research_questions_it_leaves_open:
   - "Whether the same team-size effect holds for a human-AI team, where the team includes tool-using AI roles alongside human contributors, a composition this citation-based study cannot directly measure."
@@ -38,7 +38,7 @@ An empirical finding that team size systematically predicts whether a paper deve
 ## Key Claims
 
 - Across tens of millions of papers and patents, small teams tend to produce more disruptive work, introducing new ideas that later work builds on rather than cites the team's own prior references, while large teams tend to produce more developmental work, refining and extending existing ideas.
-- The pattern holds after controlling for team members' own individual citation histories, suggesting team size itself, not just who is on the team, shapes the kind of contribution produced.
+- The pattern holds after controlling for team members' own individual citation histories, suggesting team size itself shapes the kind of contribution produced, beyond who is on the team.
 - Small teams draw disproportionately on older and less conventional combinations of ideas, while large teams draw on newer, more mainstream combinations, a difference the paper connects to how large teams tend to divide labor into familiar, well-understood sub-tasks.
 
 ## Research Questions It Leaves Open

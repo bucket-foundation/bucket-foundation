@@ -19,7 +19,7 @@ key_claims:
   - "Monitoring an automated system well is itself a skill that degrades without active engagement, so a human kept in the loop as a monitor is not necessarily a safeguard."
 research_questions_it_leaves_open:
   - "Whether Bainbridge's industrial-control findings transfer to a cognitive skill domain like research and writing, rather than the manual and perceptual-motor skills the paper's own examples draw on."
-  - "What design features, not just less automation, preserve skill under partial automation, a question the paper raises without a general answer."
+  - "What design features, beyond less automation, preserve skill under partial automation, a question the paper raises without a general answer."
 how_it_bears_on_research_os: >
   Is the direct theoretical ancestor of the system review's own cognitive-offloading
   testbed (Section 9): the three-arm design, constrained AI, full chatbot, no AI, exists
@@ -40,7 +40,7 @@ The founding statement of the skill-decay risk from automation, the specific haz
 ## Research Questions It Leaves Open
 
 - Whether Bainbridge's industrial-control findings transfer to a cognitive skill domain like research and writing, rather than the manual and perceptual-motor skills the paper's own examples draw on.
-- What design features, not just less automation, preserve skill under partial automation, a question the paper raises without a general answer.
+- What design features, beyond less automation, preserve skill under partial automation, a question the paper raises without a general answer.
 
 ## How It Bears on Research OS
 

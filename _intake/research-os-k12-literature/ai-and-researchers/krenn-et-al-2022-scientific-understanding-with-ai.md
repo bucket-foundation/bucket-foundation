@@ -17,7 +17,7 @@ year: 2022
 venue: "Nature Reviews Physics"
 doi: "10.1038/s42254-022-00518-3"
 url: "https://doi.org/10.1038/s42254-022-00518-3"
-openalex_id: "https://openalex.org/W4304185479"
+openalex_id: null
 branch: "ai-and-researchers"
 tier: "canon"
 why_it_matters: >
@@ -36,8 +36,8 @@ how_it_bears_on_research_os: >
   hte.roles.self_report produces a calibration summary and a missing-mass estimate a
   machine can evaluate, but this paper's own criteria ask whether a human researcher, or a
   K-12 learner routed to a hypothesis engine's gap node, can internalize why a ranked
-  hypothesis holds, not just that it is calibrated, a gap between the engine's shipped
-  self-report and this paper's own bar for understanding.
+  hypothesis holds, beyond the fact that it is calibrated, a gap between the engine's
+  shipped self-report and this paper's own bar for understanding.
 ---
 
 # On scientific understanding with artificial intelligence
@@ -57,4 +57,4 @@ Directly names the distinction between an AI system that predicts well and one t
 
 ## How It Bears on Research OS
 
-Poses the sharpest test for the hypothesis engine's own self-report: hte.roles.self_report produces a calibration summary and a missing-mass estimate a machine can evaluate, but this paper's own criteria ask whether a human researcher, or a K-12 learner routed to a hypothesis engine's gap node, can internalize why a ranked hypothesis holds, not just that it is calibrated, a gap between the engine's shipped self-report and this paper's own bar for understanding.
+Poses the sharpest test for the hypothesis engine's own self-report: hte.roles.self_report produces a calibration summary and a missing-mass estimate a machine can evaluate, but this paper's own criteria ask whether a human researcher, or a K-12 learner routed to a hypothesis engine's gap node, can internalize why a ranked hypothesis holds, beyond the fact that it is calibrated, a gap between the engine's shipped self-report and this paper's own bar for understanding.

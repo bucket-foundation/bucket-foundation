@@ -10,11 +10,9 @@ openalex_id: "https://openalex.org/W4416794937"
 branch: "hci-human-ai-collaboration"
 tier: "candidate"
 why_it_matters: >
-  This UNESCO evidence review surveys generative-AI deployments for foundational literacy and numeracy
-  across Sub-Saharan African school systems and finds that connectivity, teacher training, and language
-  coverage decide whether a pilot scales, ahead of model capability. It gives Research OS a region-wide
-  evidence base for the infrastructure and language constraints a single country-level field study
-  cannot show on its own.
+  An institutional evidence review of generative-AI deployments for foundational learning
+  in Sub-Saharan African school systems, the closest verified match to the AI-tutoring
+  deployment literature in lower-resource school systems the task named by region.
 key_claims:
   - "Early generative-AI pilots for foundational literacy and numeracy in Sub-Saharan African school systems show promise on narrow, well-scoped tasks but face large infrastructure, connectivity, and teacher-training gaps before they can scale."
   - "Deployments that pair AI tools with structured teacher support and offline-capable delivery outperform unstructured, chatbot-style deployments on foundational-learning outcomes."
@@ -32,7 +30,14 @@ how_it_bears_on_research_os: >
 
 # From promise to practice: harnessing generative AI to improve foundational learning in Sub-Saharan Africa
 
-An institutional evidence review of generative-AI deployments for foundational learning in Sub-Saharan African school systems, the closest verified match to the AI-tutoring deployment literature in lower-resource school systems the task named by region.
+UNESCO's 2025 review pulls together evidence from generative-AI pilots aimed at foundational literacy
+and numeracy across school systems in Sub-Saharan Africa, moving beyond any single country's field
+trial to ask what determines whether a pilot scales region-wide. The answer the review lands on is
+infrastructural rather than technical: connectivity, teacher training, language coverage in
+multilingual classrooms, and cost per learner set the ceiling on what a generative-AI deployment can
+reach, well before model quality becomes the binding constraint. Deployments built around structured
+teacher support and offline-capable delivery outperformed loosely supervised, chatbot-style rollouts on
+the review's own foundational-learning measures.
 
 ## Key Claims
 

@@ -25,7 +25,7 @@ research_questions_it_leaves_open:
 how_it_bears_on_research_os: >
   Names the exact risk the Access-to-Understanding gate exists to guard against: if a
   learner routes every fact through Locate and Quote without the system ever requiring
-  unaided recall, this finding predicts the fact itself, not just its location, becomes
+  unaided recall, this finding predicts the fact itself, beyond its own location, becomes
   what gets deprioritized in memory, which is why Awareness-stage items are designed as
   low-stakes recognition checks rather than open lookups.
 ---
@@ -47,4 +47,4 @@ The empirical demonstration that easy external access to information changes wha
 
 ## How It Bears on Research OS
 
-Names the exact risk the Access-to-Understanding gate exists to guard against: if a learner routes every fact through Locate and Quote without the system ever requiring unaided recall, this finding predicts the fact itself, not just its location, becomes what gets deprioritized in memory, which is why Awareness-stage items are designed as low-stakes recognition checks rather than open lookups.
+Names the exact risk the Access-to-Understanding gate exists to guard against: if a learner routes every fact through Locate and Quote without the system ever requiring unaided recall, this finding predicts the fact itself, beyond its own location, becomes what gets deprioritized in memory, which is why Awareness-stage items are designed as low-stakes recognition checks rather than open lookups.

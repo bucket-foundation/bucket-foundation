@@ -31,7 +31,7 @@ how_it_bears_on_research_os: >
   tie-breaking convenience: if curiosity functions as reward-anticipation that also lifts
   encoding of nearby material, routing a learner toward a self-selected frontier node over
   an arbitrarily chosen one of equal prerequisite validity may carry a measurable memory
-  benefit worth testing in the planned pilot, not just a preference-satisfaction one.
+  benefit worth testing in the planned pilot, beyond a preference-satisfaction one.
 ---
 
 # The Wick in the Candle of Learning
@@ -51,4 +51,4 @@ Grounds curiosity-driven learning as a measurable state, high-curiosity trivia q
 
 ## How It Bears on Research OS
 
-Supports treating the frontier-backward router's interest-vector rerank as more than a tie-breaking convenience: if curiosity functions as reward-anticipation that also lifts encoding of nearby material, routing a learner toward a self-selected frontier node over an arbitrarily chosen one of equal prerequisite validity may carry a measurable memory benefit worth testing in the planned pilot, not just a preference-satisfaction one.
+Supports treating the frontier-backward router's interest-vector rerank as more than a tie-breaking convenience: if curiosity functions as reward-anticipation that also lifts encoding of nearby material, routing a learner toward a self-selected frontier node over an arbitrarily chosen one of equal prerequisite validity may carry a measurable memory benefit worth testing in the planned pilot, beyond a preference-satisfaction one.

@@ -22,8 +22,8 @@ research_questions_it_leaves_open:
   - "Which specific step-based feedback behaviors close most of the human-tutor gap, versus which contribute little, a design question for any automated Check tool."
   - "Whether the finding holds for open-ended, non-procedural tasks, a written claim, a source evaluation, rather than the step-based math and science problems most of the reviewed systems targeted."
 how_it_bears_on_research_os: >
-  Sets a calibrated bar for the Check tool: this meta-analysis finds step-based feedback,
-  not answer-only feedback, is what closes most of the gap to human tutoring, a direct
+  Sets a calibrated bar for the Check tool: this meta-analysis finds step-based feedback
+  closes most of the gap to human tutoring rather than answer-only feedback, a direct
   argument for Check's own rubric-graded, pointer-to-what-is-missing design over a simple
   right-or-wrong verdict on a submitted claim.
 ---
@@ -45,4 +45,4 @@ A meta-analysis directly comparing human tutoring, step-based intelligent tutori
 
 ## How It Bears on Research OS
 
-Sets a calibrated bar for the Check tool: this meta-analysis finds step-based feedback, not answer-only feedback, is what closes most of the gap to human tutoring, a direct argument for Check's own rubric-graded, pointer-to-what-is-missing design over a simple right-or-wrong verdict on a submitted claim.
+Sets a calibrated bar for the Check tool: this meta-analysis finds step-based feedback closes most of the gap to human tutoring rather than answer-only feedback, a direct argument for Check's own rubric-graded, pointer-to-what-is-missing design over a simple right-or-wrong verdict on a submitted claim.

@@ -22,7 +22,7 @@ branch: "scientific-discovery-metascience"
 tier: "canon"
 why_it_matters: >
   A demonstrated case of an LLM-plus-search system finding a new mathematical
-  construction, not just recombining known results, the closest existing precedent for
+  construction, beyond recombining known results, the closest existing precedent for
   whether the hypothesis engine's own combinatorial generation-plus-tournament loop could,
   in principle, surface a novel finding rather than only rank known claims.
 key_claims:
@@ -44,7 +44,7 @@ how_it_bears_on_research_os: >
 
 # Mathematical discoveries from program search with large language models
 
-A demonstrated case of an LLM-plus-search system finding a new mathematical construction, not just recombining known results, the closest existing precedent for whether the hypothesis engine's own combinatorial generation-plus-tournament loop could, in principle, surface a novel finding rather than only rank known claims.
+A demonstrated case of an LLM-plus-search system finding a new mathematical construction, beyond recombining known results, the closest existing precedent for whether the hypothesis engine's own combinatorial generation-plus-tournament loop could, in principle, surface a novel finding rather than only rank known claims.
 
 ## Key Claims
 

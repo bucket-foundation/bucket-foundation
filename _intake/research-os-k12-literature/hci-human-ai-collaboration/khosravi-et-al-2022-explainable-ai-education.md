@@ -28,14 +28,14 @@ key_claims:
   - "Evaluation of whether an explanation helps a teacher or student make a better decision, versus whether it is technically faithful to the model, is rare in the surveyed literature."
 research_questions_it_leaves_open:
   - "How to design a stage-confidence or belief-score explanation for a teacher who is not a data scientist, without oversimplifying to the point of being misleading."
-  - "How to evaluate whether an explanation changes a teacher's decision for the better, not just whether the explanation is accurate."
+  - "How to evaluate whether an explanation changes a teacher's decision for the better, beyond whether the explanation is accurate."
 how_it_bears_on_research_os: >
   Bears directly on the teacher-visible evidence requirement: every Check result that
   would advance a stage past Understanding writes a teacher-visible evidence row, and this
   survey's own stakeholder-specific framing argues that row needs a teacher-legible
-  explanation of why the model reached its verdict, not just the verdict itself, echoing
-  the hypothesis engine's own unresolved question of whether exposing belief-score
-  components changes teacher trust.
+  explanation of why the model reached its verdict, beyond the verdict alone, echoing the
+  hypothesis engine's own unresolved question of whether exposing belief-score components
+  changes teacher trust.
 ---
 
 # Explainable Artificial Intelligence in education
@@ -51,8 +51,8 @@ A survey of explainable-AI methods and evaluation approaches specific to educati
 ## Research Questions It Leaves Open
 
 - How to design a stage-confidence or belief-score explanation for a teacher who is not a data scientist, without oversimplifying to the point of being misleading.
-- How to evaluate whether an explanation changes a teacher's decision for the better, not just whether the explanation is accurate.
+- How to evaluate whether an explanation changes a teacher's decision for the better, beyond whether the explanation is accurate.
 
 ## How It Bears on Research OS
 
-Bears directly on the teacher-visible evidence requirement: every Check result that would advance a stage past Understanding writes a teacher-visible evidence row, and this survey's own stakeholder-specific framing argues that row needs a teacher-legible explanation of why the model reached its verdict, not just the verdict itself, echoing the hypothesis engine's own unresolved question of whether exposing belief-score components changes teacher trust.
+Bears directly on the teacher-visible evidence requirement: every Check result that would advance a stage past Understanding writes a teacher-visible evidence row, and this survey's own stakeholder-specific framing argues that row needs a teacher-legible explanation of why the model reached its verdict, beyond the verdict alone, echoing the hypothesis engine's own unresolved question of whether exposing belief-score components changes teacher trust.
