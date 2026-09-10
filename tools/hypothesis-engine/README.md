@@ -37,7 +37,8 @@ are the two pieces still open.
 | `hte/llm.py` | none (own layer) | `complete`, the cached, schema-validated `claude -p` wrapper every role calls; `resolve_model`, `escalation_model`, `cache_stats`; `LLMError` and its three subclasses |
 | `hte/roles.py` | `main.tex` §8, `IDEAL-STATE-AND-UNKNOWNS-SPEC.md` §7 | One function per engine-loop role: `generate`, `critique`, `unknown_unknown`, `preservation_critique`, `judge`, `meta_review`, `self_report`, `extract` (the ensemble-of-3, agreement-scored, opus-escalated extractor, `bkt-hte-extraction-ensemble`; its schema additively carries the same slot fields `hte.evidence.EvidenceItem` does, `bkt-hte-evidence-slots`) |
 | `hte/corpus/` | `main.tex` §8's retrieval-envelope paragraph | `Corpus`, `GroundTruthEvent`, `RetrievalEnvelope` (`bkt-hte-retrieval-provenance`, fixture mode only); `quantum_history.ingest` (parses `quantum/07-history/*.md`) and `fixtures.build` (a tiny synthetic corpus of the same shape) |
-| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve` (`bkt-hte-holdout`) |
+| `hte/calibrate.py` | `main.tex` §9 | `holdout_by_discovery_date`, `run_holdout` (event-targeted: a held-out event's own matching placement at the right date scored against `1`, its top wrong-interval competitor against `0`), `holdout_kfold`, `choose_holdout_mode`, `run_calibration`, `fit_constants`, `write_calibration`, `brier_score`, `calibration_curve` (`bkt-hte-holdout`, `bkt-hte-calibration-redesign`) |
+| `hte/diagnostics.py` | (none; a k-fold/discovery-date coverage diagnostic, no Lean counterpart) | `coverage_report` (why a held-out event has no matching placement, one reason per event from a fixed set, `bkt-hte-generation-coverage`), `write_diagnostics` |
 | `hte/runner.py` | `main.tex` §8's whole engine loop | `run_campaign`, `RunArtifacts`, `Logger` |
 | `hte/cli.py` | none (own layer) | The `hte` console script: `campaign run`, `calibrate`, `views` |
 | `hte/generate.py` | (none; generator is out of `Bucket.*`'s scope) | `enumerate_placements` (lazy product, `OTHER` included, its own `span_start`/`bin_width` override the module-default TIME_BIN axis), `neighbors` (one-slot mutation, one-bin time shift, sequence relation change), `from_evidence` (the four evidence-driven generators: evidence-cluster, claim-gap, contradiction, cross-period-analogy; same `span_start`/`bin_width` override), `sequences_from` (Allen-relation pairing) |
@@ -287,6 +288,22 @@ are the two pieces still open.
   `main.tex` §9 assumed and this package now runs. `mu` is still excluded
   from `fit_constants`'s grid on `main.tex` §9's own word that it "takes
   no recalibration pass of its own."
+- **Fixed 2026-09-10: k-fold coverage of truth on real corpora rose from
+  0.15-0.21 to 0.51-1.00 (`bkt-hte-generation-coverage`, `docs/COVERAGE-
+  2026-09-10.md`).** `hte.calibrate._placement_from_item`'s own candidate-
+  building had never been anchored to a corpus's own span (`hte.address`'s
+  bare 20,000-year/century-bin module defaults instead), so two distinct-
+  dated candidates sharing every concept slot but landing in the SAME
+  default century bin encoded to the identical hypothesis address; a plain
+  `{address: hypothesis}` dict then silently kept whichever one was built
+  first and dropped the other's own interval, one of three confirmed,
+  measured root causes (address-collision candidate loss, `_placement_
+  from_item`'s `OTHER`-filled slot read as a disagreement rather than
+  silence, and exact-year interval containment instead of the corpus's own
+  resolution). None of them is the generation-cap hypothesis this bead set
+  out to test first: `holdout_kfold`/`run_holdout` never call `hte.
+  generate` or apply `max_hypotheses` at all, confirmed structurally
+  inapplicable to this code path rather than fixed.
 - **`hte.runner.run_campaign`'s preservation critique reads the shipped
   ancient-history detectability table (`hte/data/detectability-seed.json`)
   against a modern-history hypothesis.** Neither shipped corpus assigns a
@@ -423,7 +440,20 @@ the same way.
 | `quantum-history` | `hte.corpus.quantum_history.ingest` | 105 events, `discovery_year == year` | k-fold |
 | `fixtures` | `hte.corpus.fixtures.build` | 6 events, `discovery_year == year` | k-fold |
 | `education-atlas` | `hte.corpus.education_atlas.load` | 125 severity-flagged problem rows, `discovery_year == year` | k-fold |
-| `production` | `hte.corpus.production.load` | 8 accepted claims, `discovery_year` = review-acceptance date | discovery-date |
+| `production` | `hte.corpus.production.load` | 8 accepted claims | k-fold (see note) |
+| `literature` | `hte.corpus.literature.load_local` | 6 canon/outcome-tier claims (this checkout's own local corpus) | k-fold |
+
+`production`'s own design carries a real discovery lag (`discovery_year`
+is a claim's review-acceptance date, distinct from the claim's subject
+date, `hte.corpus.production`'s own module docstring), which would pick
+discovery-date holdout the moment at least one locally shipped claim
+carries that lag; every one of the 8 accepted claims this checkout's own
+local fixture ships happens to read `discovery_year == year` today
+(confirmed empirically, `docs/COVERAGE-2026-09-10.md`), so `choose_
+holdout_mode` reads k-fold here too, same as every other corpus above. A
+live Supabase-backed pull (`hte.corpus.production.load_supabase`) may
+carry claims with a real lag and pick discovery-date instead; this
+checkout's own local fixture does not exercise that path.
 
 `education-atlas` reads a live clone of the sibling `bucket-foundation/
 education-atlas` repo (its `data/processed/sample/` ships Parquet, not
@@ -465,6 +495,27 @@ or, once installed (`pip install -e .`), the `hte` console script directly.
 Every LLM call `run_campaign` makes shells out to the `claude` CLI already
 authenticated on this machine; nothing in this package ever reads or prints
 an API key.
+
+`hte calibrate`'s own `--diagnose` flag additionally writes
+`DIAGNOSTICS.md` next to `CALIBRATION.md`: a per-reason breakdown of
+every held-out ground-truth event `hte.calibrate` did not cover
+(`hte.diagnostics.coverage_report`, `docs/COVERAGE-2026-09-10.md`):
+
+```bash
+python3 -m hte.cli calibrate --corpus quantum-history --diagnose
+```
+
+With no `--cutoff-years`, `calibrate` auto-picks discovery-date or
+k-fold holdout the same way `run_campaign`'s own calibration step does
+(`hte.calibrate.choose_holdout_mode`); an explicit `--cutoff-years`
+still pins discovery-date holdout unconditionally, unchanged.
+`hte-synth realsweep` runs the same `hte.calibrate.run_calibration` call
+over every shipped real corpus at once, no LLM call, for a fast
+before/after comparison across a fix:
+
+```bash
+python3 -m hte.cli_synth realsweep --diagnose
+```
 
 ## Voice lint
 
