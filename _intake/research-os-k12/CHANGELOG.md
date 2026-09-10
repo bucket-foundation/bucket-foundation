@@ -1,6 +1,18 @@
 # Changelog: _intake/research-os-k12/
 
-## 2026-09-10 (literature corpus and overlap map)
+## 2026-09-10: PR #5 post-merge review followup
+
+PR #5 merged (`397066318`) before this review pass completed, so its two residual issues land
+here as a direct commit against `main` instead of a PR update. Leak scan of the full PR #5 diff
+found no secrets, PII, non-public hostnames, or local paths. Citation check on 8 of the 45 files
+against Crossref and DataCite matched frontmatter DOI, title, authors, and year in every case. No
+file reproduces more than a paraphrase of its source, so no deletions were needed. Fixed the
+parenthetical heading below and the paper-count error (46 to 45) in
+`learning/research-os/CHANGE-LEDGER.md`; added a `voice-ignore-line` marker to the one corpus line
+carrying a real em dash, a journal's own name. `npm ci` and `npm run build` both pass. Full detail
+in `learning/research-os/CHANGE-LEDGER.md`, Iteration 3.
+
+## 2026-09-10: literature corpus and overlap map
 
 Added `_intake/research-os-k12-literature/` (45 verified papers across four areas, see its own
 README for the index) and `OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md` (the shared-substrate map

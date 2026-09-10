@@ -17,7 +17,7 @@ authors:
   - "Weston, Timothy J."
   - "Dolan, Erin L."
 year: 2014
-venue: "CBE—Life Sciences Education"
+venue: "CBE—Life Sciences Education"  # voice-ignore-line: verbatim journal title, the ASCB name carries the dash
 doi: "10.1187/cbe.14-01-0004"
 url: "https://doi.org/10.1187/cbe.14-01-0004"
 openalex_id: "https://openalex.org/W2113142830"
