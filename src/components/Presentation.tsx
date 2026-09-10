@@ -3,6 +3,7 @@ import Link from "next/link";
 import Globe from "./Globe";
 import InverseOmega from "./InverseOmega";
 import AiPasteCTA from "./AiPasteCTA";
+import ScrollReveal from "./ScrollReveal";
 
 const BRANCHES = [
   { num: "I",    slug: "mathematics", name: "mathematics", note: "axioms · real math" },
@@ -24,14 +25,14 @@ const RESEARCH_OS_STAGES = [
 ];
 
 const MARQUEE = [
-  "free to read",
-  "paid to cite",
-  "free to read",
-  "paid to cite",
-  "free to read",
-  "paid to cite",
-  "free to read",
-  "paid to cite",
+  "reform education",
+  "widen producing",
+  "reform education",
+  "widen producing",
+  "reform education",
+  "widen producing",
+  "reform education",
+  "widen producing",
 ];
 
 export default function Presentation() {
@@ -63,144 +64,73 @@ export default function Presentation() {
           </div>
         </div>
 
-        <div className="relative max-w-[1400px] mx-auto px-4 md:px-6 pt-10 md:pt-14 pb-16 md:pb-24 grid grid-cols-12 gap-6 md:gap-10 items-start">
-          {/* ═══════ Left rail: metadata column (editorial) ═══════ */}
-          <aside className="col-span-12 lg:col-span-2 flex flex-wrap lg:flex-col gap-x-5 gap-y-4 lg:gap-10 items-start carve-in-1">
-            <div>
-              <div className="small-caps text-[10px] text-[color:var(--aegean-deep)]">Folio</div>
-              <div className="font-mono-mark text-[11px] mt-1 text-[color:var(--basalt-2)]">
-                MMXXII — MMXXVI
-              </div>
-            </div>
-            <div>
-              <div className="small-caps text-[10px] text-[color:var(--aegean-deep)]">Imprint</div>
-              <div className="font-mono-mark text-[11px] mt-1 text-[color:var(--basalt-2)]">
-                bucket.foundation
-              </div>
-            </div>
-            <div>
-              <div className="small-caps text-[10px] text-[color:var(--aegean-deep)]">Ledger</div>
-              <div className="font-mono-mark text-[11px] mt-1 text-[color:var(--basalt-2)]">
-                Base · x402
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <div className="small-caps text-[10px] text-[color:var(--aegean-deep)]">Seal</div>
-              <div className="font-mono-mark text-[11px] mt-1 text-[color:var(--laurel)] flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-[color:var(--laurel)] ember" />
-                verified
-              </div>
-            </div>
-          </aside>
-
-          {/* ═══════ Center: the masthead inscription ═══════ */}
-          <div className="col-span-12 lg:col-span-7">
-            <div className="carve-in font-mono-mark uppercase text-[10px] tracking-[0.4em] text-[color:var(--basalt-2)] mb-8">
-              <span className="text-[color:var(--crimson)]">◆</span>{" "}
-              DECENTRALIZED RESEARCH · VOL I · № 01
-            </div>
-
-            {/* Hidden H1 for a11y + SEO, the visual hero is the rendered stone panel */}
-            <h1 className="sr-only">
-              free to read. paid to cite. bucket.foundation — a nonprofit canon of foundations for decentralized research.
-            </h1>
-            <figure aria-hidden className="carve-in-1 relative border-2 border-[color:var(--basalt)] shadow-[0_50px_80px_-40px_rgba(13,13,13,0.45)]">
-              <Image
-                src="/brand/tagline-stone.png"
-                alt=""
-                width={1536}
-                height={1024}
-                priority
-                className="w-full h-auto"
-                sizes="(max-width: 1024px) 100vw, 820px"
-              />
-              {/* Stone plate caption */}
-              <figcaption className="absolute -bottom-3 left-4 right-4 bg-[color:var(--basalt)] text-[color:var(--bone)] px-5 py-2 flex items-center justify-between">
-                <span className="font-mono-mark text-[10px] tracking-[0.18em] uppercase">
-                  Tabula I · the creed
-                </span>
-                <span className="font-mono-mark text-[10px] text-[color:var(--gold)]">
-                  bucket.foundation · MMXXVI
-                </span>
-              </figcaption>
-            </figure>
-
-            <div className="mt-10 carve-in-5 carved-rule max-w-md" />
-
-            <p className="mt-10 carve-in-5 max-w-xl text-[20px] text-[color:var(--basalt)] font-semibold leading-[1.55] drop-cap">
-              A nonprofit canon of foundations — axioms, real math, laws,
-              principles, primary derivations — carved into stone by the small
-              number of people who can do genius work with AI. Every paper is free
-              to read. Every citation pays the author, over the x402 rail, forever.
-            </p>
-
-            <div className="mt-12 carve-in-6 flex flex-wrap gap-3">
-              <Link
-                href="/canon"
-                className="group relative px-8 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] shadow-[inset_0_-2px_0_rgba(0,0,0,0.4),inset_0_1px_0_rgba(247,244,236,0.12)]"
-              >
-                <span className="flex items-center gap-3">
-                  Read the canon
-                  <span className="text-[color:var(--gold)] group-hover:translate-x-1 transition">
-                    →
-                  </span>
-                </span>
-              </Link>
-              <Link
-                href="/protocol"
-                className="px-8 py-4 border-2 border-[color:var(--aegean)] text-[color:var(--aegean-deep)] hover:bg-[color:var(--aegean)] hover:text-[color:var(--bone)] transition small-caps text-[11px]"
-              >
-                feed402 protocol
-              </Link>
-              <Link
-                href="/manifesto"
-                className="px-8 py-4 text-[color:var(--basalt)] hover:text-[color:var(--aegean)] transition small-caps text-[11px] border-b-2 border-[color:var(--basalt)] hover:border-[color:var(--aegean)]"
-              >
-                Manifesto ↗
-              </Link>
-            </div>
+        <div className="relative max-w-4xl mx-auto px-4 md:px-6 pt-16 md:pt-28 pb-4 md:pb-8 text-center">
+          <div className="carve-in font-mono-mark uppercase text-[10px] tracking-[0.4em] text-[color:var(--basalt-2)] mb-10 flex items-center justify-center gap-2">
+            <span className="text-[color:var(--crimson)]">◆</span>
+            bucket foundation · nonprofit
           </div>
 
-          {/* ═══════ Right: the stonepunk omega artifact ═══════ */}
-          <div className="col-span-12 lg:col-span-3 relative carve-in-4">
-            <figure className="relative aspect-square">
-              <div className="absolute inset-0 rounded-sm overflow-hidden shadow-[0_40px_60px_-30px_rgba(13,13,13,0.4)] border-2 border-[color:var(--basalt)]">
-                <Image
-                  src="/brand/omega-stonepunk.png"
-                  alt="Carved stonepunk inverse omega — the bucket.foundation mark"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 80vw, 320px"
-                />
-              </div>
-              {/* Caption plate */}
-              <figcaption className="absolute -bottom-3 left-2 right-2 bg-[color:var(--basalt)] text-[color:var(--bone)] px-4 py-2 flex items-center justify-between">
-                <span className="font-mono-mark text-[10px] tracking-[0.15em] uppercase">
-                  Ω · plate I
-                </span>
-                <span className="font-mono-mark text-[10px] text-[color:var(--gold)]">
-                  carved · MMXXVI
-                </span>
-              </figcaption>
-            </figure>
+          <div className="carve-in-1 flex justify-center mb-8">
+            <Image
+              src="/brand/omega-stonepunk.png"
+              alt="The bucket.foundation mark, a carved inverse omega"
+              width={84}
+              height={84}
+              priority
+              className="rounded-sm border-2 border-[color:var(--basalt)] shadow-[0_20px_30px_-18px_rgba(13,13,13,0.45)]"
+            />
+          </div>
 
-            {/* Provenance ledger under the artifact */}
-            <dl className="mt-10 space-y-4 font-mono-mark text-[11px]">
-              {[
-                ["medium", "bone limestone"],
-                ["inlay", "basalt + hot gold"],
-                ["ledger", "bucket.foundation"],
-                ["license", "CC0 intent · MIT code"],
-              ].map(([k, v]) => (
-                <div key={k} className="flex items-baseline justify-between gap-4 border-b border-[color:var(--hairline)] pb-2">
-                  <dt className="small-caps text-[9px] text-[color:var(--aegean-deep)]">{k}</dt>
-                  <dd className="text-[color:var(--basalt)]">{v}</dd>
-                </div>
-              ))}
-            </dl>
+          <h1 className="carve-in-2 font-display uppercase text-[clamp(2.75rem,9vw,7rem)] leading-[0.95] chisel tracking-[0.01em]">
+            reform <span className="inlay-gold">education.</span>
+          </h1>
+
+          <div className="mt-8 carve-in-3 carved-rule max-w-xs mx-auto" />
+
+          <p className="mt-10 carve-in-4 mx-auto max-w-2xl text-[19px] md:text-[21px] text-[color:var(--basalt)] font-semibold leading-[1.6]">
+            For five thousand years the world widened reading and never widened
+            producing. Bucket is the operating system a student runs inside from
+            the first year of school to the research frontier, a canon of
+            foundations underneath every step, and every citation pays its
+            author, forever.
+          </p>
+
+          <div className="mt-10 carve-in-5 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/research-os"
+              className="group relative px-8 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] shadow-[inset_0_-2px_0_rgba(0,0,0,0.4),inset_0_1px_0_rgba(247,244,236,0.12)]"
+            >
+              <span className="flex items-center gap-3">
+                Research OS
+                <span className="text-[color:var(--gold)] group-hover:translate-x-1 transition">
+                  →
+                </span>
+              </span>
+            </Link>
+            <Link
+              href="/mission"
+              className="px-8 py-4 border-2 border-[color:var(--aegean)] text-[color:var(--aegean-deep)] hover:bg-[color:var(--aegean)] hover:text-[color:var(--bone)] transition small-caps text-[11px]"
+            >
+              The founding research
+            </Link>
+            <Link
+              href="/manifesto"
+              className="px-8 py-4 text-[color:var(--basalt)] hover:text-[color:var(--aegean)] transition small-caps text-[11px] border-b-2 border-[color:var(--basalt)] hover:border-[color:var(--aegean)]"
+            >
+              Manifesto ↗
+            </Link>
           </div>
         </div>
+
+        {/* Canon search, creeps in from the bottom on scroll rather than leading the hero */}
+        <ScrollReveal className="relative flex justify-center pt-8 pb-4 md:pt-14 md:pb-8">
+          <Link href="/canon/search" aria-label="Search the canon" className="group flex flex-col items-center">
+            <Globe size={300} mode="basalt" />
+            <span className="mt-5 small-caps text-[11px] tracking-[0.14em] text-[color:var(--aegean-deep)] group-hover:text-[color:var(--basalt)] transition">
+              search the canon underneath it →
+            </span>
+          </Link>
+        </ScrollReveal>
 
         {/* Bottom hero stat strip, Roman inscription ledger */}
         <div className="relative border-t-2 border-[color:var(--basalt)]">

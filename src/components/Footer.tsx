@@ -47,6 +47,9 @@ export default function Footer() {
             <li><Link href="/canon/claims" className="hover:text-[color:var(--bone)] transition">All claims</Link></li>
             <li><Link href="/sacred-history" className="hover:text-[color:var(--bone)] transition">Sacred history</Link></li>
             <li><Link href="/access" className="hover:text-[color:var(--bone)] transition">How to access</Link></li>
+            <li><Link href="/protocol" className="hover:text-[color:var(--bone)] transition">Protocol, feed402/x402</Link></li>
+            <li><Link href="/build" className="hover:text-[color:var(--bone)] transition">Build on the API</Link></li>
+            <li><Link href="/learn" className="hover:text-[color:var(--bone)] transition">Learn with Claude</Link></li>
           </ul>
         </div>
 
