@@ -1,5 +1,29 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #34 review pass
+
+Review of `docs/ros-08-preregistration` (PR #34) in worktree `.ros-worktrees/r34`, docs-only,
+as a methods reviewer. Leak scan against the full diff's added lines found no API keys,
+`.env` contents, IPs, non-public hostnames, personal emails other than `gianyrox@gmail.com`,
+PII, `/home/gian` paths, or Claude session URLs. Power analysis recomputed from the stated
+inputs (d = 0.4, alpha 0.025 two-sided, power 0.80, two-sample t): the naive n-per-arm table
+(76, 119, 211 at d = 0.5, 0.4, 0.3) confirmed exact given the draft's own stated rounded
+z-values (2.24, 0.84); the cluster-corrected table's design-effect formula (`1 + (m-1)*ICC`)
+confirmed correct and the ICC range confirmed marked unsourced, but the ICC = 0.20 row's n
+per arm was off by one (119 x 5.8 = 690.2, needs ceiling to 691, the draft had 690); fixed.
+Every effect size traced to a named, existing intake card; the 22-node, 28-edge transfer-bank
+count reverified by a direct Python read of `supabase/seed/research-os-sky-blue.json`, and the
+44 transfer prompts confirmed covering all 22 seed nodes by slug. Every hypothesis's primary
+outcome variable confirmed mapped to a `src/lib/research-os/EVIDENCE-SCHEMA.md` field, a named
+schema gap, or a `TRANSFER-TASK-BANK.md` item. `RESEARCH-QUESTIONS.md`'s eleven pointer lines
+confirmed append-only (diff carries no removed or rewritten lines). No claim of an existing
+partner school, IRB approval, PI, or host institution found; the founder-as-researcher
+conflict is disclosed in both `PREREGISTRATION-DRAFT.md` and `IRB-PACKET-OUTLINE.md`.
+`agf-lint-voice check` clean on all five core study files; found and fixed one antithesis
+violation this PR's own `BEADS-PENDING.jsonl` line introduced ("not merged" rewritten to
+"merge pending"), the file's other 25 violations pre-existing on `main` and out of this PR's
+scope. Confirmed no file under `src/` or `public/` touched. Merged clean, branch deleted.
+
 ## 2026-09-10, ros-08 preregistration packet
 
 Bead `ros-08`, branch `docs/ros-08-preregistration`, worktree `.ros-worktrees/ros08`. Four

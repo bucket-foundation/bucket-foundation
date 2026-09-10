@@ -90,7 +90,7 @@ Recruitment follows `04-compliance-distribution.md` section 9's ranked procureme
 |---|---|---|---|
 | 0.05 | 2.2 | 262 | 11 |
 | 0.10 | 3.4 | 405 | 17 |
-| 0.20 | 5.8 | 690 | 28 |
+| 0.20 | 5.8 | 691 | 28 |
 
 At every ICC in this range, the fully powered target sits far above what `PLAN-REVISION-1.md` section 3's own Phase 1 scope, "two classrooms, one semester" (`PLAN.md` section 8), or `04-compliance-distribution.md` section 9's district-MOU path can plausibly deliver in a first pilot. This draft therefore registers Phase 1 as a feasibility and effect-size-estimation pilot for H1's confirmatory claim; the fully powered confirmatory test of that same claim waits for Phase 2, consistent with `PLAN-REVISION-1.md` section 4's own verdict that question 1's core comparison is answerable at Phase 1 while its diversity addition needs Phase 2 for power. The table above is the pre-specified power target for the Phase 2 extension of this same registration, to be filed as an update once district-scale recruitment is contracted; Phase 1 alone is not expected to reach it.
 

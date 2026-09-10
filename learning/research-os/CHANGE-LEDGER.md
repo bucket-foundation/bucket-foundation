@@ -1071,3 +1071,39 @@ own header comment. `agf-lint-voice check` run to 0 violations on all five touch
 clear); the antithesis category needed roughly forty hand rewrites across the four new files,
 none auto-fixable. No file under `src/` or `public/` is touched by this pass, so no
 `npm run build` gate applies to it.
+
+## Iteration 16: PR #34 review pass
+
+Date 2026-09-10. Review of `docs/ros-08-preregistration` (PR #34) in worktree
+`.ros-worktrees/r34`, docs-only, methods review.
+
+### Verified
+
+Leak scan against the full diff's added lines: no API keys, `.env` contents, IPs, non-public
+hostnames, personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude
+session URLs. Power analysis recomputed from the stated inputs (d = 0.4, alpha 0.025
+two-sided, power 0.80, two-sample t): naive n-per-arm table (76, 119, 211) confirmed exact
+against the draft's own stated rounded z-values (2.24, 0.84); cluster-correction formula
+(`1 + (m-1)*ICC`) confirmed correct, ICC range confirmed marked unsourced. Every effect size
+traced to a named, existing intake card. `TRANSFER-TASK-BANK.md`'s 22-node, 28-edge count and
+44-item, all-nodes-covered claim reverified by a direct Python read of
+`supabase/seed/research-os-sky-blue.json`. Every hypothesis's primary outcome variable
+confirmed mapped to an `EVIDENCE-SCHEMA.md` field, a named schema gap, or a transfer-bank
+item. `RESEARCH-QUESTIONS.md`'s eleven pointer lines confirmed append-only. No claim of an
+existing partner school, IRB approval, PI, or host institution found; the founder-as-researcher
+conflict confirmed disclosed. Confirmed no file under `src/` or `public/` touched.
+
+### Fixed
+
+- `learning/research-os/study/PREREGISTRATION-DRAFT.md`: the cluster-corrected sample-size
+  table's ICC = 0.20 row read 690 (119 x 5.8 = 690.2, truncated instead of rounded up to 691,
+  inconsistent with the ceiling convention the ICC = 0.05 and 0.10 rows both used);
+  corrected to 691.
+- `BEADS-PENDING.jsonl`: this PR's own new `ros-08` status line ended "PR opened against main,
+  not merged," an antithesis construction `agf-lint-voice check` flags; rewritten to "PR opened
+  against main, merge pending." The file's other 25 violations predate this PR (confirmed
+  against `origin/main`'s own copy) and are out of this review's scope.
+
+### Result
+
+Merged clean, `review/pr34` branch and worktree removed.
