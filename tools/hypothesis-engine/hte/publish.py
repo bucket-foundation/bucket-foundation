@@ -36,7 +36,17 @@ _RUN_ARTIFACT_NAMES = [
     "calibration.json", "CALIBRATION.md", "self-report.json", "run.log",
 ]
 _PAGE_COUNT_RE = re.compile(r"Output written on \S+\.pdf \((\d+) pages?")
-_SKIP_NAMES = {".referee-lint-tmp.md"}
+# `PUBLISH.json` is this module's own output (`publish()` below writes it
+# into `paper_dir` on every call, dry-run included); staging it back into
+# a later commit would carry a prior run's own commit sha and share link
+# as if they belonged to this one. `STAGE.json`/`PIPELINE.json` are `hte.
+# pipeline`'s own per-stage and per-run summaries; they live under the
+# pipeline's own stage directories, not `paper_dir`, but are excluded
+# here too, defensively, since nothing stops a future pipeline layout
+# from nesting one under `paper_dir` (PR #4 review finding: `PUBLISH.json`
+# was not excluded and a retried publish over a `paper_dir` carrying one
+# from a prior attempt would git-add it).
+_SKIP_NAMES = {".referee-lint-tmp.md", "PUBLISH.json", "STAGE.json", "PIPELINE.json"}
 
 
 class PublishError(RuntimeError):
@@ -60,11 +70,13 @@ def _run_artifact_files(run_dir: Path) -> list[Path]:
 
 def _paper_files(paper_dir: Path) -> list[Path]:
     """Every file under `paper_dir`, excluding this pipeline's own
-    scratch files (`_llm-cache/`, the referee's temp lint copy) and
-    LaTeX's own build byproducts that add no reviewable content
-    (`.aux`/`.log`/`.bcf`/`.blg`/`.out`/`.run.xml`): the paper's source,
-    its figures, its bibliography, and the built PDF and REVIEW.md are
-    what a reviewer, or a later `git log`, needs."""
+    scratch files (`_llm-cache/`, the referee's temp lint copy), this
+    pipeline's own run/stage bookkeeping (`PUBLISH.json`, `STAGE.json`,
+    `PIPELINE.json`, `_SKIP_NAMES` above), and LaTeX's own build
+    byproducts that add no reviewable content (`.aux`/`.log`/`.bcf`/
+    `.blg`/`.out`/`.run.xml`): the paper's source, its figures, its
+    bibliography, and the built PDF and REVIEW.md are what a reviewer,
+    or a later `git log`, needs."""
     if not paper_dir.is_dir():
         return []
     skip_suffixes = {".aux", ".bcf", ".blg", ".out", ".synctex.gz", ".toc"}

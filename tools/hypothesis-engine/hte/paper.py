@@ -24,6 +24,7 @@ have.
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -157,6 +158,13 @@ below as `RUN_DIR`: the paper is a report on that one run, so the figure
 has no meaning re-pointed at a different run without regenerating the
 whole paper alongside it.
 
+`RUN_DIR` is stored relative to this paper's own directory (one level up
+from `HERE`, this script's own directory, resolved at import time via
+`Path(__file__).resolve().parent` rather than trusted to whatever `cwd`
+`make figures` or a direct `python3` invocation happens to run from), so
+this file carries no machine-specific absolute path and stays correct
+after a `git clone` onto a different machine or username.
+
 Run:
     python3 figures/{stem}.py
 Writes:
@@ -166,22 +174,24 @@ from __future__ import annotations
 
 import json
 import os
+from pathlib import Path
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "{stem}.png")
-RUN_DIR = {run_dir!r}
+HERE = Path(__file__).resolve().parent
+PAPER_DIR = HERE.parent
+OUT = HERE / "{stem}.png"
+RUN_DIR = (PAPER_DIR / {run_dir_rel!r}).resolve()
 '''
 
 
-def _fig_opinion_histogram_script(run_dir: Path) -> str:
+def _fig_opinion_histogram_script(run_dir_rel: str) -> str:
     body = _FIG_HEADER.format(
         label="the survivor opinion distribution", source="timeline.json",
-        stem="fig_opinion_histogram", run_dir=str(run_dir.resolve()),
+        stem="fig_opinion_histogram", run_dir_rel=run_dir_rel,
     ) + '''
 
 def main() -> None:
@@ -213,10 +223,10 @@ if __name__ == "__main__":
     return body
 
 
-def _fig_bin_topk_script(run_dir: Path) -> str:
+def _fig_bin_topk_script(run_dir_rel: str) -> str:
     body = _FIG_HEADER.format(
         label="the top-ranked hypotheses per time bin", source="timeline.json",
-        stem="fig_bin_topk", run_dir=str(run_dir.resolve()),
+        stem="fig_bin_topk", run_dir_rel=run_dir_rel,
     ) + '''
 
 def main() -> None:
@@ -246,10 +256,10 @@ if __name__ == "__main__":
     return body
 
 
-def _fig_calibration_curve_script(run_dir: Path) -> str:
+def _fig_calibration_curve_script(run_dir_rel: str) -> str:
     body = _FIG_HEADER.format(
         label="the discovery-date holdout calibration curve", source="calibration.json",
-        stem="fig_calibration_curve", run_dir=str(run_dir.resolve()),
+        stem="fig_calibration_curve", run_dir_rel=run_dir_rel,
     ) + '''
 
 def main() -> None:
@@ -289,10 +299,17 @@ if __name__ == "__main__":
 def _write_figures(out_dir: Path, run_dir: Path) -> list[str]:
     figures_dir = out_dir / "figures"
     figures_dir.mkdir(parents=True, exist_ok=True)
+    # Relative to `out_dir` (this paper's own directory, one level above
+    # each figure script's own `HERE`): a committed figure script's
+    # `RUN_DIR` must carry no absolute path (PR #4 review finding,
+    # `main.tex`/figure-script `/home/...` leak). `out_dir` is the one
+    # anchor every figure script recovers on its own at runtime, via
+    # `Path(__file__).resolve().parent.parent`.
+    run_dir_rel = os.path.relpath(run_dir.resolve(), out_dir.resolve())
     scripts = {
-        "fig_opinion_histogram.py": _fig_opinion_histogram_script(run_dir),
-        "fig_bin_topk.py": _fig_bin_topk_script(run_dir),
-        "fig_calibration_curve.py": _fig_calibration_curve_script(run_dir),
+        "fig_opinion_histogram.py": _fig_opinion_histogram_script(run_dir_rel),
+        "fig_bin_topk.py": _fig_bin_topk_script(run_dir_rel),
+        "fig_calibration_curve.py": _fig_calibration_curve_script(run_dir_rel),
     }
     for name, content in scripts.items():
         (figures_dir / name).write_text(content)
@@ -350,6 +367,21 @@ def _write_refs_bib(out_dir: Path) -> None:
 
 def _write_bucket_sty(out_dir: Path) -> None:
     shutil.copyfile(TEMPLATE_DIR / "bucket.sty", out_dir / "bucket.sty")
+
+
+def _write_common_bib(out_dir: Path) -> None:
+    """Copies `papers/bib/common.bib` into `out_dir` so `main.tex` can
+    `\\addbibresource` it by basename. `out_dir` can be any directory a
+    caller picks (`hte.pipeline` alone writes three different depths:
+    a bare campaign paper, a `--from-run` replay, and a pipeline run's
+    own `<pipeline_dir>/paper/`), so a path relative to `REPO_ROOT` or to
+    `out_dir` itself would need re-deriving per caller; a paper-local
+    copy needs no path math at all and keeps the paper directory
+    self-contained the same way `refs.bib` and `bucket.sty` already are
+    (PR #4 review finding: the old `str(COMMON_BIB)` reference baked
+    this checkout's own absolute path, home directory included, into a
+    committed `main.tex`)."""
+    shutil.copyfile(COMMON_BIB, out_dir / COMMON_BIB.name)
 
 
 _MAKEFILE = '''# Makefile: generated campaign-report paper, copied from
@@ -790,12 +822,18 @@ non-consensus proposal rate against the run before it.
 """
 
 
-def _render_main_tex(data: RunData, run_id: str) -> str:
+def _render_main_tex(data: RunData, run_id: str, out_dir: Path) -> str:
+    # Relative to `out_dir` (this paper's own directory), the same
+    # anchor `_write_figures` uses for each figure script's own
+    # `RUN_DIR`. The header comment below is committed prose, read by a
+    # person rather than resolved by code at runtime, and must carry no
+    # absolute path either (PR #4 review finding).
+    run_dir_display = os.path.relpath(data.run_dir.resolve(), out_dir.resolve())
     return _MAIN_TEX.format(
         campaign=data.campaign,
         run_id=run_id,
-        run_dir=str(data.run_dir),
-        common_bib=str(COMMON_BIB),
+        run_dir=run_dir_display,
+        common_bib=COMMON_BIB.name,
         glossary_entries=_glossary_entries(),
         title=tex_escape(f"{_title_case(data.campaign)}: An Automated Hypothesis-Engine Campaign"),
         date=_run_date(data.manifest.timestamp or ""),
@@ -814,11 +852,16 @@ def _render_main_tex(data: RunData, run_id: str) -> str:
 def emit_paper(run_dir: str | Path, out_dir: str | Path) -> dict[str, Any]:
     """Writes a full paper directory at `out_dir` from `run_dir`'s own
     artifacts: `main.tex`, `bucket.sty` (copied from `papers/template/`),
-    a paper-local `refs.bib`, a `Makefile` copied from the template
-    pattern, and three figure scripts under `out_dir/figures/`, then runs
-    those figure scripts once so `out_dir` is ready for `make pdf`
-    (`hte.paper.build_pdf` runs that build; `hte.referee.referee` is the
-    caller that owns the rebuild loop).
+    a paper-local `refs.bib`, a paper-local copy of `papers/bib/
+    common.bib`, a `Makefile` copied from the template pattern, and
+    three figure scripts under `out_dir/figures/`, then runs those
+    figure scripts once so `out_dir` is ready for `make pdf` (`hte.
+    paper.build_pdf` runs that build; `hte.referee.referee` is the
+    caller that owns the rebuild loop). Every path this module writes
+    into `out_dir`'s own files, `common.bib`'s reference and each figure
+    script's `RUN_DIR`, is relative to `out_dir` itself, never absolute:
+    a committed paper carries no machine-specific path (PR #4 review
+    finding).
 
     Returns `{"paper_dir", "run_id", "campaign", "figures"}`.
     """
@@ -829,9 +872,10 @@ def emit_paper(run_dir: str | Path, out_dir: str | Path) -> dict[str, Any]:
     data = load_run(run_dir)
     run_id = run_dir.name
 
-    (out_dir / "main.tex").write_text(_render_main_tex(data, run_id))
+    (out_dir / "main.tex").write_text(_render_main_tex(data, run_id, out_dir))
     _write_bucket_sty(out_dir)
     _write_refs_bib(out_dir)
+    _write_common_bib(out_dir)
     _write_makefile(out_dir)
     figures = _write_figures(out_dir, run_dir)
     run_figure_scripts(out_dir)
