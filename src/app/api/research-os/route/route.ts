@@ -17,11 +17,20 @@
  * letting the prototype page render a route before sign-in. A PRESENT but
  * invalid token is rejected (401) rather than silently treated as anonymous.
  *
- * 200: { target, frontier: [...], chain: [{ node, stage, hops, isFrontier }], gap: [...] }
+ * 200: { target, frontier: [...], chain: [{ node, stage, hops, isFrontier }], gap: [...],
+ *        engineFrontier: [{ node, prerequisiteNodeIds, heldCount, totalCount, heldFraction }] }
  * 400: bad target · 401: bad token · 404: target not found · 503: not configured
+ *
+ * `engineFrontier` (engine bridge task item 2) is optional and additive:
+ * every engine hypothesis node (src/lib/research-os/engine-bridge.ts) in the
+ * same branch whose `derives_from` prerequisites this learner mostly holds,
+ * nearest first (src/lib/research-os/engine-frontier.ts). Empty until an
+ * engine hypothesis has been ingested into this branch; the workspace page
+ * renders it only when non-empty.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { computeFrontier } from "@/lib/research-os/frontier";
+import { findFrontierEngineTargets } from "@/lib/research-os/engine-frontier";
 import { configured, loadSubgraph, loadLearnerStates, verifyLearner } from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
@@ -59,6 +68,7 @@ export async function GET(req: NextRequest) {
   const states = learnerId ? await loadLearnerStates(learnerId, nodes.map((n) => n.id)) : [];
 
   const result = computeFrontier(nodes, edges, states, target.id);
+  const engineFrontier = findFrontierEngineTargets(nodes, edges, states);
 
   return NextResponse.json(
     {
@@ -66,6 +76,7 @@ export async function GET(req: NextRequest) {
       frontier: result.frontier,
       chain: result.chain,
       gap: result.gap,
+      engineFrontier,
       learner: learnerId ? "self" : "anonymous",
     },
     { headers: { "cache-control": "no-store" } },

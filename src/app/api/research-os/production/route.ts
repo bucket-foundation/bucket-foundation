@@ -12,11 +12,28 @@
  *         Phase 0 has no review queue, so "accepted"/"returned" are not
  *         settable here (task item 6, no teacher layer).
  *
+ * Engine bridge task item 3: whenever a write here leaves a production at
+ * status "accepted", its row is emitted to `public.research_os_
+ * productions_outbox` (src/lib/research-os/engine-bridge.ts's
+ * buildProductionOutboxRow, db.ts's writeProductionOutbox). Nothing today
+ * calls this route with status "accepted" (the validation above still
+ * rejects it, Phase 0 has no teacher-accept path), so this hook is wired
+ * but unreached until Phase 1 opens one. See learning/research-os/
+ * ENGINE-BRIDGE.md.
+ *
  * Auth: Authorization: Bearer <supabase access token>, required.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { onProductionSubmitted } from "@/lib/research-os/stages";
-import { configured, graphService, verifyLearner, recordEvidence } from "@/lib/research-os/db";
+import { buildProductionOutboxRow } from "@/lib/research-os/engine-bridge";
+import {
+  configured,
+  graphService,
+  verifyLearner,
+  recordEvidence,
+  findNodeById,
+  writeProductionOutbox,
+} from "@/lib/research-os/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -104,6 +121,33 @@ export async function POST(req: NextRequest) {
   if (body.status === "submitted" && data?.target_node_id) {
     const transition = onProductionSubmitted();
     await recordEvidence(learnerId, data.target_node_id as string, transition.nextStage, transition.event as unknown as Record<string, unknown>);
+  }
+
+  // Engine bridge task item 3: an accepted production is the engine's own
+  // evidence item. Unreachable today (the status validation above never lets
+  // a learner set "accepted"), wired for Phase 1's teacher-accept path. Best
+  // effort: a failed emit never fails the production save itself, the same
+  // way academy's own mirror jobs treat a sync step as best effort.
+  if (data?.status === "accepted" && data?.target_node_id) {
+    try {
+      const targetNode = await findNodeById(data.target_node_id as string);
+      const row = buildProductionOutboxRow(
+        {
+          id: data.id as string,
+          target_node_id: data.target_node_id as string,
+          claim: (data.claim as string | null) ?? null,
+          evidence: (data.evidence as unknown[]) ?? [],
+          sources: (data.sources as unknown[]) ?? [],
+          status: data.status as string,
+          created_at: data.created_at as string,
+          updated_at: data.updated_at as string | undefined,
+        },
+        targetNode ? { slug: targetNode.slug, title: targetNode.title, tier: targetNode.tier, branch: targetNode.branch } : null,
+      );
+      await writeProductionOutbox(row);
+    } catch {
+      // best effort, see comment above
+    }
   }
 
   return NextResponse.json({ production: data }, { headers: { "cache-control": "no-store" } });

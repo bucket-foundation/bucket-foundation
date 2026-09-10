@@ -31,6 +31,63 @@ Date 2026-09-09. Branch `feat/research-os-k12`.
 
 None.
 
+## Iteration 3, site alignment
+
+Date 2026-09-10. Branch `feat/ros-site-alignment`.
+
+Task: align the public site with the Research OS for K-12 direction where it
+fits, without removing any existing direction. Authoritative paragraph:
+"Bucket becomes the operating system a student runs inside from the first
+year of school to the research frontier. Everything humans know sits on one
+map, in layers, from the first fact a child can hold to the deepest laws we
+have, across every subject from physics to history. A twelve-year-old who
+asks why the sky is blue gets walked backward to what they already know and
+forward, one source at a time, to the physics that answers it. Every idea on
+the map has the same five stages: you can reach it, you know it exists, you
+can explain it, you can use it on a problem you have never seen, and you can
+add something new to it. The student's work is the same thing a scientist
+makes: a claim, the evidence, the sources, and proof they can use the idea
+somewhere new. The map is the game. The AI finds, quotes, checks, and
+organizes. The student asks the question, sketches the idea, works through
+the hard part, and writes the answer, because the point is that the kid is
+smarter next year than this year. Teachers see their whole class on the same
+map. When a student adds something the map accepts, they get paid for it the
+same way any researcher on Bucket does. Bucket is a nonprofit, so the OS is
+free to any learner anywhere in the world. Bucket is where a person learns to
+produce knowledge, starting on day one."
+
+### Edited
+
+- `src/components/Header.tsx`: added a "Research OS" primary-nav item
+  (`/research-os`) between Academy and Access; every existing nav item kept,
+  none reordered otherwise.
+- `src/components/Presentation.tsx`: added a "Research OS for K-12" section
+  on the home page, placed after the hero section and before the AI-native
+  and thesis sections. Carries the five stages (Access, Awareness,
+  Understanding, Internalization, Production), two sentences quoted from the
+  authoritative paragraph above, and links to `/research-os` and
+  `/research-os/workspace`. No existing home-page section changed.
+- `src/app/research-os/page.tsx`: prototype link label changed from "open the
+  Phase 0 prototype →" to "Try the prototype →" (same href, same styling);
+  added a "Read the plan ↗" link to `learning/research-os/PLAN.md` on
+  GitHub. The five stage names on this page already matched the authoritative
+  five (Access, Awareness, Understanding, Internalization, Production); no
+  further copy changed, since no other sentence on the page conflicted with
+  the authoritative paragraph. Old link text recorded verbatim in
+  `_intake/research-os-k12/DELETIONS.md`.
+- `MANIFESTO.md`, section 5 ("Who bucket is for"): appended one sentence at
+  the end of the section: "Bucket is where a person learns to produce
+  knowledge, starting on day one." No other sentence in the manifesto
+  changed.
+- `public/llms.txt`: added a line for `/research-os` under "Pages you can
+  read for free".
+- `_intake/research-os-k12/DELETIONS.md`, `_intake/research-os-k12/CHANGELOG.md`:
+  this pass's own ledger entries.
+
+### Removed
+
+None.
+
 ## Iteration 2
 
 Date 2026-09-10. Branch `intake/research-os-k12-literature`, rebased onto `main` after PR #3
@@ -108,6 +165,61 @@ against `main` since the PR's head branch was already deleted).
 None.
 
 ## Iteration 4
+
+Date 2026-09-10. Branch `feat/ros-engine-bridge`, worktree
+`bucket-foundation-ros-bridge`. Reviewed a WIP commit ("wip(feat/ros-engine-bridge):
+partial work preserved after 429 spend-limit stop") against PR #10
+(`feat/hte-k12-research-os`, merging concurrently), which lands `hte.api.hypothesize`,
+`hte/serve.py`, `hte/mcp_tool.py`, the literature corpus adapter, and
+`hte.corpus.production.is_research_os_record`/`normalize_research_os_record` in
+`tools/hypothesis-engine`.
+
+### Added
+
+- `learning/research-os/ENGINE-BRIDGE.md`: data flow, tables, idempotency keys, what
+  PR #10 covers versus this PR, and open stubs.
+- `supabase/migrations/20260910010000_research_os_engine_bridge.sql`: a
+  `graph.edges (from_id, to_id, kind)` unique index (item 1's own edge idempotency),
+  and `public.research_os_productions_outbox` (item 3).
+- `scripts/test-research-os-engine-bridge.ts`: unit tests for the engine node/edge
+  builder (item 1) and the production outbox row builder (item 3), against fixtures.
+- `scripts/test-research-os-engine-frontier.ts`: unit tests for `findFrontierEngineTargets`
+  (item 2), against the sky-blue seed plus a synthetic engine fixture node.
+
+### Edited
+
+- `src/lib/research-os/engine-bridge.ts`: item 1's section (`buildEngineNode`,
+  `buildEngineEdges`, `engineNodeSlug`, `engineTierToGraphTier`) kept as the WIP wrote
+  it. Item 3's section rebuilt: dropped the hand-built `PRODUCTION-SCHEMA.md` envelope
+  conversion (`buildProductionEnvelope` and its supporting types), superseded by PR
+  #10's own server-side normalizer; added `buildProductionOutboxRow`, which writes the
+  raw `graph.productions` row (plus an optional `_target_node` join) that normalizer
+  already reads directly. Full reasoning and the dropped code, verbatim:
+  `_intake/research-os-k12/DELETIONS.md`.
+- `src/lib/research-os/db.ts`: `writeProductionOutbox`'s signature simplified to match
+  the raw-row outbox contract (one argument, no separate `graphProductionId`, since the
+  outbox row's own `id` now is the production's real id).
+- `src/app/api/research-os/production/route.ts`: updated to call
+  `buildProductionOutboxRow`/the new `writeProductionOutbox` signature; the emit now
+  runs even when the target node join fails to resolve (the engine's own normalizer
+  already tolerates a missing `_target_node`, per its own docstring); the header
+  comment's reference to a `scripts/sync-productions-outbox.mjs` file that was never
+  built was removed.
+- `src/app/research-os/workspace/page.tsx`: added the "from the engine" panel that
+  renders `route.engineFrontier` (item 2's data was already plumbed by the WIP; this
+  iteration adds the render, the WIP's own +10 lines were the type definitions only).
+- `package.json`: `test:research-os` now runs all three research-os test files in
+  sequence (`test-research-os-routing.ts`, `test-research-os-engine-bridge.ts`,
+  `test-research-os-engine-frontier.ts`).
+- `_intake/research-os-k12/DELETIONS.md`, `_intake/research-os-k12/CHANGELOG.md`: this
+  iteration's own entries.
+
+### Removed
+
+None (the superseded envelope-conversion code is preserved verbatim in
+`_intake/research-os-k12/DELETIONS.md`, per this repo's own no-deletions policy).
+
+## Iteration 5
 
 Date 2026-09-10. Branch `feat/hte-k12-research-os`, PR #10 review pass.
 
