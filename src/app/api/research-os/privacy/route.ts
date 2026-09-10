@@ -30,7 +30,11 @@
  *
  * Auth: Authorization: Bearer <supabase access token>, required for both
  * actions. See src/lib/research-os/privacy.ts's resolvePrivacyActor for
- * the exact self-vs-reviewer resolution rule.
+ * the exact self-vs-reviewer resolution rule. The resolved actor (not just
+ * the target learner id) is passed into exportLearnerData/deleteLearnerData
+ * below, so a reviewer-invoked call is always distinguishable in the
+ * graph.privacy_events audit row from the learner's own self-request: a
+ * reviewer cannot act on a learner's behalf without that fact being logged.
  */
 import { NextRequest, NextResponse } from "next/server";
 import { deleteLearnerData, exportLearnerData, privacyConfigured, resolvePrivacyActor } from "@/lib/research-os/privacy";
@@ -68,12 +72,12 @@ export async function POST(req: NextRequest) {
   if (!actor) return bad(401, "unauthorized");
 
   if (body.action === "export") {
-    const envelope = await exportLearnerData(actor.targetLearnerId);
+    const envelope = await exportLearnerData(actor);
     return NextResponse.json(envelope, { headers: { "cache-control": "no-store" } });
   }
 
   try {
-    const result = await deleteLearnerData(actor.targetLearnerId);
+    const result = await deleteLearnerData(actor);
     return NextResponse.json(result, { headers: { "cache-control": "no-store" } });
   } catch {
     return bad(500, "delete_failed");

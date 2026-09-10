@@ -2,6 +2,78 @@
 
 Every file this work adds, edits, or would remove is listed here with the reason, so nothing is lost. Policy: no deletions; when text is replaced, the old text is recorded below before the change lands.
 
+## PR #35 review pass
+
+Date 2026-09-10. Review of `feat/ros-07-compliance-part-a` (PR #35), worktree `review/pr35`.
+Full account: `_intake/research-os-k12/CHANGELOG.md`, "2026-09-10, PR #35 review pass".
+
+### Edited
+
+- `supabase/migrations/20260910040000_research_os_privacy_consent.sql`: added
+  `actor_id_hash text` and `acting_as_reviewer boolean not null default false` to
+  `graph.privacy_events` (via `alter table ... add column if not exists`, matching the
+  migration's own idempotent convention); `graph.privacy_delete_learner` gained two new
+  default-valued params (`p_actor_id uuid default null`, `p_acting_as_reviewer boolean
+  default false`) and now writes both into its own audit-row insert. Header comments for
+  both objects updated to describe the addition.
+- `src/lib/research-os/privacy.ts`: `exportLearnerData` and `deleteLearnerData` now take
+  the full `PrivacyRequestActor` (not just the target learner id) and pass `callerId`/
+  `actingAsReviewer` through to the audit row and the RPC call. `simulateLearnerDelete`
+  gained an optional third `actor` param mirroring the RPC's new params (omitted, it
+  defaults to a self-request: `actorIdHash` equals `learner_id_hash`); `FixtureStore`'s
+  `privacy_events` type gained the two matching optional fields. Doc comments updated to
+  name the accountability guarantee.
+- `src/app/api/research-os/privacy/route.ts`: both call sites now pass the resolved `actor`
+  object instead of `actor.targetLearnerId`; header comment records the accountability
+  guarantee this closes.
+- `scripts/test-research-os-privacy.ts`: two new tests, "a self-request's audit row hashes
+  the same id into actor and learner" and "a reviewer-invoked delete is distinguishable in
+  the audit row from a self-request" (173 tests total in `test:research-os`, up from 171).
+- `_intake/research-os-k12/CHANGELOG.md`, `learning/research-os/CHANGE-LEDGER.md` (this
+  file): this review pass's own entry.
+
+### Removed
+
+None.
+
+### Defect found and fixed
+
+`resolvePrivacyActor` resolves and returns `actingAsReviewer`, but the route discarded it
+after the auth check: `exportLearnerData`/`deleteLearnerData` took only the target learner
+id, and `graph.privacy_events`'s three original columns (`learner_id_hash`, `action`,
+`created_at`) recorded nothing about who acted. A reviewer invoking export or delete on a
+learner's behalf therefore wrote the exact same audit row a learner's own self-request
+would, no way to tell the two apart after the fact. The migration, `privacy.ts`, and
+`route.ts` changes above close the gap; a reviewer-invoked delete or export now writes
+`actor_id_hash` (a hash of the reviewer's own id,
+distinct from `learner_id_hash`) and `acting_as_reviewer: true`, closing the review task's
+"a reviewer cannot act on a learner's behalf without that being logged" requirement.
+
+### Verified
+
+Leak scan against the full diff clean: no keys, `.env` values, IPs, non-public hostnames,
+personal emails other than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session
+URLs. Delete-table cross-check: `graph.privacy_delete_learner`'s nine `delete from`
+statements (`learner_node_state`, `productions`, `teacher_reviews`, `edge_flags`,
+`class_members`, `learner_profiles`, `academy_progress`, `academy_profiles`,
+`academy_credentials`) match `DATA-INVENTORY.md`'s nine learner-keyed table rows one for
+one. Export scoping test exists and passes. `learner_profiles` RLS policies (`own_select`,
+`own_insert`, `own_update`) all scope to `auth.uid() = learner_id`. `decideConsent` blocks
+`under13`/`13to17` with `consent_status: none` (and the stricter no-profile-row case),
+allows `18plus` regardless of consent status. `consent.ts` exports `requireConsent` with a
+TODO naming the two call sites; `git diff origin/main...HEAD -- src/app/api/research-os/
+workspace/route.ts src/app/api/research-os/production/route.ts` is empty, confirming
+neither route changed in this PR's own diff. `agf-lint-voice check` on the five compliance
+docs and `agf-lint-voice-src check` on every touched source file plus the migration: 0
+violations (the plain `agf-lint-voice check`'s hits on pre-existing lines in
+`BEADS-PENDING.jsonl` and test-description strings in `scripts/test-research-os-privacy.ts`
+predate this pass or belong to the original PR author's own content, out of scope for a
+source file the correct tool for which is `agf-lint-voice-src`, which is clean). Gates
+rerun clean: `npm ci`, `npx tsc --noEmit`, `npm run build` (`/api/research-os/privacy`
+present in the route manifest), `npm run test:research-os` (173/173, 0 failures), `next
+lint` on every touched file (0 warnings). Branch was already even with `origin/main` at
+review start, no merge needed.
+
 ## PR #30 review pass
 
 Date 2026-09-10. Review of `feat/ros-12-engine-wiring` (PR #30), worktree `review/pr30`.

@@ -23,7 +23,12 @@
 -- matching this migration's own privacy-minimization principle: an audit
 -- trail proving an export or delete happened, and roughly when, without
 -- itself becoming a second place a learner's identity is stored longer
--- than the data it is logging the deletion of.
+-- than the data it is logging the deletion of. Also carries a hashed
+-- actor id and an acting_as_reviewer flag, so a reviewer invoking export
+-- or delete on a learner's behalf leaves an audit row distinguishable
+-- from the learner's own self-request; a self-request's actor_id_hash
+-- equals its own learner_id_hash, no new information beyond what was
+-- already stored.
 --
 -- 3. graph.privacy_delete_learner(uuid): the one-transaction hard-delete
 -- the compliance pack's task item 2 calls for. A single plpgsql function
@@ -109,6 +114,18 @@ create table if not exists graph.privacy_events (
   created_at         timestamptz not null default now()
 );
 
+-- A reviewer acting on a learner's behalf (the resolvePrivacyActor "reviewer-
+-- gated" path in src/lib/research-os/privacy.ts) must leave a trace that
+-- distinguishes it from a learner's own self-request; without these two
+-- columns the audit row for both cases was identical, so a reviewer-invoked
+-- export or delete carried no record of who invoked it. `add column if not
+-- exists` rather than folding into the `create table` above, matching this
+-- migration's own idempotent, safe-to-re-run convention: a re-run against an
+-- environment that already created the table with the original three columns
+-- still converges to the full shape.
+alter table graph.privacy_events add column if not exists actor_id_hash text;
+alter table graph.privacy_events add column if not exists acting_as_reviewer boolean not null default false;
+
 create index if not exists graph_privacy_events_hash_idx on graph.privacy_events (learner_id_hash);
 
 alter table graph.privacy_events enable row level security;
@@ -121,7 +138,11 @@ alter table graph.privacy_events enable row level security;
 -- ---------------------------------------------------------------------------
 -- graph.privacy_delete_learner: the one-transaction hard delete.
 -- ---------------------------------------------------------------------------
-create or replace function graph.privacy_delete_learner(p_learner_id uuid)
+create or replace function graph.privacy_delete_learner(
+  p_learner_id uuid,
+  p_actor_id uuid default null,
+  p_acting_as_reviewer boolean default false
+)
 returns jsonb
 language plpgsql
 security definer
@@ -173,8 +194,13 @@ begin
   delete from bucket.academy_credentials where user_id = p_learner_id;
   get diagnostics v_academy_credentials = row_count;
 
-  insert into graph.privacy_events (learner_id_hash, action)
-  values (encode(digest(p_learner_id::text, 'sha256'), 'hex'), 'delete');
+  insert into graph.privacy_events (learner_id_hash, action, actor_id_hash, acting_as_reviewer)
+  values (
+    encode(digest(p_learner_id::text, 'sha256'), 'hex'),
+    'delete',
+    case when p_actor_id is not null then encode(digest(p_actor_id::text, 'sha256'), 'hex') else null end,
+    coalesce(p_acting_as_reviewer, false)
+  );
 
   return jsonb_build_object(
     'learner_node_state', v_learner_node_state,

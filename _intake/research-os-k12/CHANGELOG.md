@@ -1,5 +1,31 @@
 # Changelog: _intake/research-os-k12/
 
+## 2026-09-10, PR #35 review pass
+
+Review of `feat/ros-07-compliance-part-a` (PR #35) in worktree `review/pr35`. Full account:
+`learning/research-os/CHANGE-LEDGER.md`, "PR #35 review pass." Leak scan against the full
+diff found no API keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs. Delete-table
+cross-check: `graph.privacy_delete_learner`'s nine `delete from` statements match
+`DATA-INVENTORY.md`'s nine learner-keyed tables one for one, no gap. One defect found and
+fixed: `resolvePrivacyActor` resolved `actingAsReviewer` but the route discarded it, so a
+reviewer-invoked export or delete wrote the same `graph.privacy_events` audit row as a
+learner's own self-request, no record of who acted. Fixed by adding `actor_id_hash` and
+`acting_as_reviewer` columns to `privacy_events`, threading the resolved actor through
+`privacy_delete_learner`'s two new RPC params and through `exportLearnerData`/
+`deleteLearnerData`, and two new tests in `scripts/test-research-os-privacy.ts` asserting a
+reviewer-invoked delete's audit row is distinguishable from a self-request's (173 tests
+total, up from 171, 0 failures). Every other correctness item held on first read: export
+returns only the caller's rows (test passes), delete is one transaction with one audit row
+holding a hash only, `learner_profiles` RLS scopes to `auth.uid()`, `requireConsent` blocks
+under13/13to17 with `consent_status: none` and allows 18plus, the consent gate is exported
+with a TODO, and `workspace/route.ts`/`production/route.ts` are untouched by this PR's own
+diff against `origin/main` (verified). `agf-lint-voice check` on the five compliance docs
+and `agf-lint-voice-src check` on all touched source files and the migration: 0 violations.
+Gates rerun clean post-fix: `npm ci`, `npx tsc --noEmit`, `npm run build` (route present in
+the manifest), `npm run test:research-os` (173/173), `next lint` on every touched file.
+Branch was already even with `origin/main`, no merge needed. Merged via `gh pr merge --squash`.
+
 ## 2026-09-10, ros-07 minors compliance pack part A
 
 Bead `ros-07`, branch `feat/ros-07-compliance-part-a`. Built the decision-independent slice

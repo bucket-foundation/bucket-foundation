@@ -161,6 +161,28 @@ test("simulateLearnerDelete: writes exactly one audit row, hashed, action delete
   assert.notEqual(row.learner_id_hash, LEARNER_A);
 });
 
+test("simulateLearnerDelete: a self-request's audit row hashes the same id into actor and learner", () => {
+  const store = fixtureStore();
+  const result = simulateLearnerDelete(store, LEARNER_A);
+  assert.equal(result.auditRowsWritten, 1);
+  const row = store.privacy_events![0];
+  assert.equal(row.actingAsReviewer, false);
+  assert.equal(row.actorIdHash, hashLearnerId(LEARNER_A));
+  assert.equal(row.actorIdHash, row.learner_id_hash);
+});
+
+test("simulateLearnerDelete: a reviewer-invoked delete is distinguishable in the audit row from a self-request", () => {
+  const store = fixtureStore();
+  const REVIEWER = "99999999-9999-9999-9999-999999999999";
+  const result = simulateLearnerDelete(store, LEARNER_A, { actorId: REVIEWER, actingAsReviewer: true });
+  assert.equal(result.auditRowsWritten, 1);
+  const row = store.privacy_events![0];
+  assert.equal(row.actingAsReviewer, true);
+  assert.equal(row.actorIdHash, hashLearnerId(REVIEWER));
+  assert.notEqual(row.actorIdHash, row.learner_id_hash);
+  assert.notEqual(row.actorIdHash, REVIEWER, "actor id is hashed, never stored raw");
+});
+
 test("simulateLearnerDelete: reported deleted counts match what was actually removed", () => {
   const store = fixtureStore();
   const result = simulateLearnerDelete(store, LEARNER_A);

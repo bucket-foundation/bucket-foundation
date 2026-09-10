@@ -155,7 +155,8 @@ export function buildExportEnvelope(
  * still names every table so a caller can see what came back empty.
  * Writes one graph.privacy_events audit row, best effort: a logging
  * failure must never block a learner from getting their own data back. */
-export async function exportLearnerData(learnerId: string): Promise<ExportEnvelope> {
+export async function exportLearnerData(actor: PrivacyRequestActor): Promise<ExportEnvelope> {
+  const { targetLearnerId, callerId, actingAsReviewer } = actor;
   const graphSvc = graphService();
   const bucketSvc = bucketService();
   const rowsByLabel: Record<string, Record<string, unknown>[]> = {};
@@ -164,7 +165,7 @@ export async function exportLearnerData(learnerId: string): Promise<ExportEnvelo
     PRIVACY_TABLES.map(async (cfg) => {
       const svc = cfg.schema === "graph" ? graphSvc : bucketSvc;
       try {
-        const { data, error } = await svc.from(cfg.table).select("*").eq(cfg.learnerColumn, learnerId);
+        const { data, error } = await svc.from(cfg.table).select("*").eq(cfg.learnerColumn, targetLearnerId);
         rowsByLabel[cfg.label] = error ? [] : ((data as Record<string, unknown>[]) ?? []);
       } catch {
         rowsByLabel[cfg.label] = [];
@@ -172,10 +173,19 @@ export async function exportLearnerData(learnerId: string): Promise<ExportEnvelo
     }),
   );
 
-  const envelope = buildExportEnvelope(rowsByLabel, learnerId, new Date().toISOString());
+  const envelope = buildExportEnvelope(rowsByLabel, targetLearnerId, new Date().toISOString());
 
   try {
-    await graphSvc.from("privacy_events").insert({ learner_id_hash: hashLearnerId(learnerId), action: "export" });
+    // actor_id_hash equals learner_id_hash on a self-request; on a
+    // reviewer-invoked export it differs and acting_as_reviewer is true,
+    // so the audit row records WHO acted, not just that an export
+    // happened, see resolvePrivacyActor's own doc comment.
+    await graphSvc.from("privacy_events").insert({
+      learner_id_hash: hashLearnerId(targetLearnerId),
+      action: "export",
+      actor_id_hash: hashLearnerId(callerId),
+      acting_as_reviewer: actingAsReviewer,
+    });
   } catch {
     // best effort, see doc comment above
   }
@@ -194,13 +204,22 @@ export interface DeleteResult {
  * RPC. The RPC itself writes the audit row as part of the same
  * transaction, so a delete that throws here never leaves a partial
  * deletion with no audit trail, and an audit row is never written for a
- * delete that did not happen, both hold together or neither does.
+ * delete that did not happen, both hold together or neither does. Passes
+ * the actor through to the RPC so a reviewer-invoked delete's audit row
+ * carries a hashed actor id distinct from the learner's own, and
+ * acting_as_reviewer true, matching exportLearnerData's own accountability
+ * guarantee above.
  */
-export async function deleteLearnerData(learnerId: string): Promise<DeleteResult> {
+export async function deleteLearnerData(actor: PrivacyRequestActor): Promise<DeleteResult> {
+  const { targetLearnerId, callerId, actingAsReviewer } = actor;
   const svc = graphService();
-  const { data, error } = await svc.rpc("privacy_delete_learner", { p_learner_id: learnerId });
+  const { data, error } = await svc.rpc("privacy_delete_learner", {
+    p_learner_id: targetLearnerId,
+    p_actor_id: callerId,
+    p_acting_as_reviewer: actingAsReviewer,
+  });
   if (error) throw new Error(`deleteLearnerData: rpc failed: ${error.message}`);
-  return { learnerId, deletedAt: new Date().toISOString(), deleted: (data as Record<string, number>) ?? {} };
+  return { learnerId: targetLearnerId, deletedAt: new Date().toISOString(), deleted: (data as Record<string, number>) ?? {} };
 }
 
 // ---------------------------------------------------------------------------
@@ -214,12 +233,26 @@ export async function deleteLearnerData(learnerId: string): Promise<DeleteResult
  * table's learnerColumn field, matching what a real Supabase `.select("*")`
  * would return. */
 export type FixtureStore = Record<string, Record<string, unknown>[]> & {
-  privacy_events?: { learner_id_hash: string; action: string }[];
+  privacy_events?: {
+    learner_id_hash: string;
+    action: string;
+    actorIdHash?: string;
+    actingAsReviewer?: boolean;
+  }[];
 };
 
 export interface SimulatedDeleteResult {
   deleted: Record<string, number>;
   auditRowsWritten: number;
+}
+
+/** Who invoked the simulated delete, mirroring privacy_delete_learner's
+ * p_actor_id/p_acting_as_reviewer RPC params. Omit for a self-request:
+ * the audit row then hashes learnerId as its own actor, matching a real
+ * self-request's identical actor_id_hash and learner_id_hash. */
+export interface SimulatedActor {
+  actorId: string;
+  actingAsReviewer: boolean;
 }
 
 /**
@@ -229,9 +262,12 @@ export interface SimulatedDeleteResult {
  * `privacy_events` row with the hashed id, and returns per-table deleted
  * counts. Never touches a row whose learnerColumn does not match, so
  * another learner's rows in the same fixture store are untouched, the
- * exact property scripts/test-research-os-privacy.ts asserts.
+ * exact property scripts/test-research-os-privacy.ts asserts. The audit
+ * row records who acted: a reviewer-invoked delete (actor passed, with
+ * actingAsReviewer true) hashes a different id into actorIdHash than
+ * learner_id_hash, mirroring the real RPC's own accountability guarantee.
  */
-export function simulateLearnerDelete(store: FixtureStore, learnerId: string): SimulatedDeleteResult {
+export function simulateLearnerDelete(store: FixtureStore, learnerId: string, actor?: SimulatedActor): SimulatedDeleteResult {
   const deleted: Record<string, number> = {};
   for (const cfg of PRIVACY_TABLES) {
     const rows = store[cfg.label] ?? [];
@@ -240,7 +276,12 @@ export function simulateLearnerDelete(store: FixtureStore, learnerId: string): S
     store[cfg.label] = kept;
   }
   const events = store.privacy_events ?? [];
-  events.push({ learner_id_hash: hashLearnerId(learnerId), action: "delete" });
+  events.push({
+    learner_id_hash: hashLearnerId(learnerId),
+    action: "delete",
+    actorIdHash: hashLearnerId(actor?.actorId ?? learnerId),
+    actingAsReviewer: actor?.actingAsReviewer ?? false,
+  });
   store.privacy_events = events;
   return { deleted, auditRowsWritten: 1 };
 }
