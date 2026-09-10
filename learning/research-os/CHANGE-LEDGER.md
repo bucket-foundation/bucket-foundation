@@ -1312,3 +1312,138 @@ path in the auth-panel or grid CSS. Gates: `npm ci`, `npx tsc --noEmit`, `npm ru
 ### Result
 
 Merged clean, `review/pr37` branch and worktree removed.
+
+## Iteration 17: literature batch three
+
+Date 2026-09-10. Branch `intake/ros-literature-3`, worktree `.ros-worktrees/lit3`.
+Literature batch three: 35 new DOI- or ISBN-verified papers targeted at the gaps
+`LEARNER-STATE-MODEL.md` section 5 and the overlap map's twelve questions leave open,
+across five topic areas: understanding and internalization measurement, curiosity and
+interest as routing signals, teacher workload and adoption of edtech, division of
+cognitive labor and mixed-initiative research tools, and prerequisite-graph and
+concept-map validity.
+
+### Added
+
+- 15 files under `_intake/research-os-k12-literature/educational-methods/`: nine on
+  transfer-assessment design, self-explanation scoring, concept inventories, and
+  learning-progression validation (Bransford and Schwartz 1999; Schwartz, Chase, and
+  Bransford 2012; Chi and colleagues 1989; Renkl 2002; Linn 2000; Hestenes, Wells, and
+  Swackhamer 1992; Alonzo and Steedle 2009; Corcoran, Mosher, and Rogat 2009; Jonsson
+  and Svingby 2007), and six on curiosity and interest as routing signals (Loewenstein
+  1994; Gruber, Gelman, and Ranganath 2014; Hidi and Renninger 2006; Gottlieb and
+  colleagues 2013; Oudeyer, Kaplan, and Hafner 2007; Kidd and Hayden 2015).
+- `_intake/research-os-k12-literature/teacher-workload-adoption/`: new sixth branch,
+  seven files on adoption barriers, coaching, district AI training, dashboards, human-
+  AI control levels, teacher trust in predictive analytics, and a historical caution
+  (Ertmer 1999; Kraft, Blazar, and Hogan 2018; Diliberti, Lake, and Weiner 2025;
+  Verbert and colleagues 2013; Molenaar 2022; Herodotou and colleagues 2019; Cuban
+  2001).
+- 7 files under `_intake/research-os-k12-literature/hci-human-ai-collaboration/` on
+  mixed-initiative design and human-AI complementarity (Shneiderman 2020; Amershi and
+  colleagues 2019; Bansal and colleagues 2021; Bucinca, Malaya, and Gajos 2021;
+  Vaccaro, Almaatouq, and Malone 2024; Dell'Acqua and colleagues 2023; Noy and Zhang
+  2023).
+- 6 files under `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/` on
+  prerequisite-graph methods and concept-structure validity (De Medio and colleagues
+  2016; Manrique and colleagues 2018; Novak 1990; Alzetta and colleagues 2018; Valdez,
+  Roldan, and Masuli 2025; Zhou and Xiao 2019).
+
+### Edited
+
+- `_intake/research-os-k12-literature/README.md`: index extended from 82 to 117 rows
+  across six areas (`teacher-workload-adoption` new); intro paragraph, per-area
+  counts, and a new "Literature batch three" summary section.
+- `learning/research-os/LEARNER-STATE-MODEL.md`: an "Evidence added in batch three"
+  paragraph appended under OPEN-1 through OPEN-5 and OPEN-7 (six of the seven open
+  questions; OPEN-6 has no batch-three paper bearing on it directly), each naming
+  which new paper supports, complicates, or extends the question. No existing
+  sentence removed or reworded.
+- `_intake/research-os-k12/OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`: an "Evidence
+  added in batch three" paragraph appended under eight of the twelve open questions
+  (1, 3, 5, 7, 8, 10, 11, 12), each naming support, complication, or both. Questions
+  2, 4, 6, and 9 have no batch-three paper bearing on them directly and were left
+  unedited.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this pass, logged below in
+  this same iteration for cross-reference.
+
+### Removed
+
+None.
+
+### Verified
+
+Read in full before writing: `_intake/research-os-k12-literature/README.md` (for the
+frontmatter schema, copied from `chi-et-al-1994-self-explanation.md` and
+`roy-et-al-2019-inferring-concept-prerequisite-relations.md`), `LEARNER-STATE-MODEL.md`
+section 5, `ROUTING.md`, `RESEARCH-QUESTIONS.md`, and
+`OVERLAP-RESEARCH-OS-AND-AI-FOR-RESEARCH.md`'s twelve questions. No
+`TEACHER-LAYER.md` exists in this repo at this date; skipped as instructed. Every new
+paper's DOI or ISBN and its OpenAlex work id were checked live via WebFetch against
+`api.openalex.org`, `api.crossref.org`, or `openlibrary.org` at intake time; none are
+placeholders. Two candidate papers named in the task brief were searched for and not
+found with a resolvable DOI: a 2019 Adorni-authored prerequisite-graph paper matching
+that exact year (the closest verified match, Alzetta and colleagues 2018, carries
+Adorni as a co-author and was used in its place), and an Open Syllabus Project
+curriculum-mining paper (Valdez, Roldan, and Masuli 2025's course-prerequisite
+centrality analysis was used as the closest verified match for that theme). No file
+under `src/` or `public/` is touched by this pass, so no `npm run build` gate applies
+to it. `_intake/research-os-k12-literature/README.md`'s row count (117) matched the
+corpus file count exactly, `find` counted per branch: 37 educational methods, 32 HCI,
+18 scientific discovery, 12 AI and researchers, 7 teacher workload and adoption, 11
+prerequisite graphs. A grep-based self-audit against the full banned-word, filler-
+adverb, AI-tell, antithesis, and em/en-dash rule lists ran against every file this
+pass authored or edited, since `agf-lint-voice check` silently scans zero files under
+any path containing an `_intake` path segment (the org-level `~/agfarms/.voiceignore`
+carries a bare `_intake` entry meant for `agf-yt`-mined transcript dumps, which also
+matches this corpus's own hand-authored cards; flagged here rather than fixed in this
+pass, since changing an org-level ignore file is outside this task's scope). Every flagged
+instance was rewritten before commit; `LEARNER-STATE-MODEL.md`, outside the `_intake`
+tree, was scanned by the real linter directly and returned zero violations,
+corroborating the self-audit's own result.
+
+## Iteration 18: PR #38 review pass
+
+Date 2026-09-10. Review of Iteration 17's own PR (#38) in worktree `.ros-worktrees/r38`,
+content-only.
+
+### Added
+
+None.
+
+### Edited
+
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/alzetta-et-al-2018-pret-prerequisite-enriched-terminology.md`:
+  appended a sentence to `why_it_matters` naming it as the closest verified match to the
+  unresolved 2019-dated Adorni prerequisite paper named in the task brief. Iteration 17's
+  own `why_it_matters` text carried no such label; the precedent for labeling a
+  replacement card directly, set by `unesco-2025-generative-ai-foundational-learning-sub-saharan-africa.md`'s
+  `why_it_matters` field, was not followed on this card. No other text changed.
+- `_intake/research-os-k12-literature/prerequisite-knowledge-graphs/valdez-roldan-masuli-2025-course-prerequisite-network-centrality.md`:
+  same fix, naming it as the closest verified match to the unresolved Open Syllabus
+  Project curriculum-mining paper named in the task brief. No other text changed.
+- `_intake/research-os-k12/CHANGELOG.md`: dated entry for this review pass.
+
+### Removed
+
+None.
+
+### Verified
+
+Eight of the 35 new cards picked at random (Novak 1990, Hestenes/Wells/Swackhamer 1992,
+Shneiderman 2020, Bucinca/Malaya/Gajos 2021, Chi and colleagues 1989, Molenaar 2022,
+Bansal and colleagues 2021, Schwartz/Chase/Bransford 2012), DOI checked live against
+Crossref: title, authors, and year matched frontmatter exactly on all eight. README
+index row count (117) confirmed exact against `find`'s own corpus file count. Both
+`LEARNER-STATE-MODEL.md` section 5 (six paragraphs) and the overlap map (eight
+paragraphs) confirmed to carry the claimed "Evidence added in batch three" count, and
+every card path either doc names confirmed to resolve to a file on disk. No blockquote
+or long verbatim excerpt found in any new card. Leak scan against the full diff's added
+lines found no keys, `.env` contents, IPs, non-public hostnames, personal emails other
+than `gianyrox@gmail.com`, PII, `/home/gian` paths, or Claude session URLs.
+`agf-lint-voice check` scanned zero of the 40 changed files, reconfirming Iteration 17's
+own finding on the `_intake` ignore-list gap; a grep-based self-audit against the full
+banned-word, filler-adverb, AI-tell, antithesis, and em/en-dash rule lists found no hit
+on any added line, including the two fixed cards. `origin/main` already merged into the
+branch. No file under `src/` or `public/` touched. `npm ci` and `npm run build` both
+clean.

@@ -183,6 +183,18 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    must be unassisted and scheduled after a retention interval, since learners do not notice their own
    skill decay. *Complicates:* Doshi and Hauser (2024) add a class-level cost, reduced diversity across
    many learners' productions, invisible to any per-student outcome the testbed currently measures.
+
+   *Evidence added in batch three, supports and complicates the design bet:* Dell'Acqua and colleagues
+   (2023) give the sharpest empirical case for scoping over an open-ended tutor: the same AI assistance
+   that helps inside its own capability frontier can perform below a no-AI baseline outside it, and the
+   frontier is invisible to a user without an explicit signal. Bucinca, Malaya, and Gajos (2021) name the
+   mechanism behind Locate and Quote's own evidence-before-Check ordering, a cognitive forcing function
+   that reduces over-reliance on a wrong AI answer past explanation alone, with a retention benefit that
+   outlasts the assisted session. *Complicates:* Bansal and colleagues (2021) find complementary
+   human-AI performance was rare even when explanations raised stated trust, and Vaccaro, Almaatouq, and
+   Malone (2024)'s meta-analysis finds human-AI combination underperforms the better of either alone on
+   content-creation tasks on average, a caution that scoping the tool surface does not by itself
+   guarantee the complementary gain the testbed is built to measure.
 2. **Does a scoped find/quote/check/organize interface replicate a two-sigma-class tutoring effect at
    graph-routed scale.** Bloom (1984) sets the target effect size; VanLehn (2011) and Kulik and
    Fletcher (2016) measure how far intelligent tutoring systems close that gap without a human tutor.
@@ -205,6 +217,18 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    Gasparetti and colleagues (2017) find instructor disagreement concentrates on weak or optional
    prerequisite pairs, a warning that not every learned edge should enter `graph.prereq_ancestor` at
    `canon` tier.
+
+   *Evidence added in batch three, supports the design bet:* De Medio and colleagues (2016) and
+   Manrique and colleagues (2018) are two more independent teams converging on the same
+   candidate-then-confidence method family, and Zhou and Xiao (2019) independently corroborate
+   Wikipedia's own link structure as a prerequisite signal, alongside Roy and colleagues (2019)'s
+   related finding. Valdez, Roldan, and Masuli (2025) extend the technique itself: centrality analysis
+   over a real prerequisite network could identify which frontier nodes serve the most downstream
+   targets once mastered, a criterion orthogonal to the router's edge-confidence weighting. *Complicates:*
+   Alzetta and colleagues (2018)'s gold-standard dataset finds only moderate inter-annotator agreement
+   among trained humans labeling prerequisite pairs, and Novak (1990) sets a validity bar for any
+   claimed concept structure, expert review against a domain's accepted structure, that a
+   lexical-overlap `inferred` edge does not clear by construction.
 4. **Do AI-generated hypotheses meet the novelty and testability bar a domain scientist applies, and
    does a reviewed K-12 production meet the same bar.** The AI-for-science literature on evaluating
    generated hypotheses (Si, Yang, and Hashimoto 2024; Lu and others 2024), read alongside Auchincloss
@@ -234,6 +258,13 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    crowd-out story by finding a non-payment, recognition-style element raised performance with no
    measured motivational cost, supporting `RESEARCH-QUESTIONS.md` Q13's recognition-only arm as a real
    design option rather than a fallback.
+
+   *Evidence added in batch three, supports the design bet:* Chi and colleagues (1989) supply the
+   decades-old scoring scheme this question's own productive-struggle framing rests on, counting the
+   inferences a learner generates while studying rather than a final answer's surface correctness; Renkl
+   (2002) sharpens what the payout should reward, a brief rationale-focused hint raised self-explanation
+   frequency while a hint restating a step's own content added no benefit, evidence a payout tied to
+   process signals like these would reward the mechanism rather than a shortcut around it.
 6. **Does isolated-quote checking or full-document-context checking change a critic tool's accuracy.**
    `docs/RESEARCH-OS-INTEGRATION.md` question 22 names this directly as a Research OS question the
    engine's own held-out corpus can answer cheaply, no production required, before the same comparison
@@ -255,6 +286,11 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    engine gap node; Roy and colleagues (2019)'s finding that citation and reference structure predicts
    prerequisite relations suggests `graph.edge`'s own `cites` kind could double as a gap-relevance
    signal.
+
+   *Evidence added in batch three, supports the design bet:* Gottlieb and colleagues (2013)'s review of
+   information-seeking as driven by expected information gain gives a published computational account,
+   past Swanson's own founding case, for treating an unmade connection as a discoverable object with a
+   scoreable value, the same move `hte.unknowns.value_of_information` makes.
 8. **Does named human sign-off change how a downstream system should weight a claim's detectability and
    tier.** Holstein and Aleven (2022) on human-AI complementarity in classrooms and Birhane and others
    (2023) on human oversight of AI-assisted science both bear on how `docs/PRODUCTION-SCHEMA.md`'s
@@ -266,6 +302,14 @@ Each item names the paper or papers that pose it and, where one exists, the numb
    self-reported and must come from an external reviewer; Schmidgall and colleagues (2025, Agent
    Laboratory) find intermediate-stage human feedback improves output quality more than end-only review,
    supporting teacher review sited at Production rather than only at a finished claim.
+
+   *Evidence added in batch three, supports the design bet:* Molenaar (2022)'s six-level scale of AI
+   control over learning gives Research OS's own division of labor, no checkpoint on Check or Organize,
+   a mandatory one on Production, a named place in a published typology, and finds a system granted too
+   much control can outrun teacher trust even when more accurate, direct support for keeping sign-off
+   sited at Production rather than lower. Herodotou and colleagues (2019) supply field evidence that
+   training teachers on a predictive model's own mechanism, alongside its output, raises trust and use
+   past output-only training, a design implication for the review ladder's own onboarding.
 9. **Does spaced retrieval practice interact differently with a machine-graded checkpoint than a
    human-graded one.** Roediger and Karpicke (2006) establish the testing effect; Corbett and Anderson
    (1994) and Piech and others (2015) are the two knowledge-tracing models Research OS's own FSRS-plus-
@@ -287,6 +331,17 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     Research OS's workspace enforces by construction; Binz and Schulz (2023)'s method, probing a model
     with canonical psychology tasks rather than one benchmark score, is a candidate way to test whether
     the division of labor actually shifts with a learner's own age or state rather than staying fixed.
+
+    *Evidence added in batch three, supports and complicates the design bet:* Shneiderman (2020)'s
+    separable control-and-automation axes give a vocabulary for the division already built into the
+    workspace, high automation on Locate and Quote, full human control on when a claim counts.
+    *Complicates:* Vaccaro, Almaatouq, and Malone (2024)'s meta-analysis finds human-AI combination
+    underperforms the better of either alone on content-creation tasks in particular, a caution since
+    writing a claim sits closer to content creation than to the decision tasks the same review finds
+    combination helps; Noy and Zhang (2023) add a nuance worth separating from Doshi and Hauser (2024)'s
+    diversity loss, the same AI assistance that narrows collective diversity across writers also narrows
+    the gap between weaker and stronger writers, two distinct class-level effects a division-of-labor
+    outcome measure should not collapse into one.
 11. **Does the burden of knowledge predict where an engine's gap nodes cluster, and does routing
     students at those gaps produce citable productions.** Jones's work on the burden of knowledge and
     the shrinking of an individual researcher's reachable frontier motivates reading `hte.unknowns.
@@ -297,6 +352,14 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     confirming a known result to formulating a new framework, gives a way to score whether a routed gap
     node produces a merely confirming production or a genuinely gap-closing one, sharpening what
     "citable production" should mean for this question.
+
+    *Evidence added in batch three, supports the design bet:* Oudeyer, Kaplan, and Hafner (2007) supply
+    the founding computational account of learning-progress-driven prioritization, reward an action by
+    how much it improves a learner's own predictive model, a mechanism that naturally avoids both
+    mastered and unlearnable regions, the closest published precedent for what `hte.unknowns.
+    active_priority`'s own unwired scoring function is likely to need. Valdez, Roldan, and Masuli (2025)
+    add a structural technique, centrality analysis, for identifying which nodes in a curriculum's own
+    prerequisite network sit at generational choke points worth clustering gap nodes around.
 12. **Is scientific understanding, as distinct from predictive accuracy, achievable by an AI system, and
     what would count as evidence a K-12 production reached it.** Krenn and others (2022) and de Regt's
     work on scientific understanding both bear directly on whether Production, the highest of Research
@@ -310,3 +373,9 @@ Each item names the paper or papers that pose it and, where one exists, the numb
     that harder bar as a non-binary scale rather than a single pass or fail; Binz and Schulz (2023)
     supply a probing method, testing a system or a production against a battery of tasks rather than one
     score, for telling a surface match from real understanding.
+
+    *Evidence added in batch three, supports the design bet:* Linn (2000)'s knowledge-integration
+    framework, scoring how many ideas a learner has connected and how well contradictions between them
+    are reconciled, offers a candidate operational form for the harder, understanding-specific bar this
+    question names, one that Messeri and Crockett's illusion-of-explanatory-depth finding argues a
+    surface-correctness Check verdict alone would not catch.
